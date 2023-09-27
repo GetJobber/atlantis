@@ -13,9 +13,13 @@ searching through data.
 ## Design & usage guidelines
 
 The `Combobox` component's primary function is to facilitate option selection
-and searching within a list of items. It should be used in scenarios where users
-need to choose from a set of options, with the added benefit of filtering and
-customization.
+and searching within a list of items.
+
+It should be used in scenarios where users need to choose from a set of options,
+with the added benefit of filtering.
+
+The `Combobox` also has flexibility to allow for custom actions, such as adding
+a new item to the list of options or managing a selection.
 
 ### Structure
 
@@ -27,8 +31,11 @@ The trigger is the user-facing interface to open and close the `Combobox` and
 initiate option selection. The choice between them depends on the design and
 user experience requirements.
 
-There are two primary options for trigger elements of the `Combobox`,
-`TriggerButton` and `TriggerChip`. You must have one trigger component.
+There are two options for trigger elements of the `Combobox`,
+[TriggerButton](../?path=/story/components-selections-combobox-web--trigger-button)
+and
+[TriggerChip](../?path=/story/components-selections-combobox-web--trigger-chip).
+You must have one trigger component.
 
 #### Content
 
