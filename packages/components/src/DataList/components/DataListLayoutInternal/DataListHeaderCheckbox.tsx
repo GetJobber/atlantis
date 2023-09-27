@@ -8,6 +8,7 @@ import { Text } from "../../../Text";
 import { useDataListContext } from "../../context/DataListContext";
 import styles from "../../DataList.css";
 import { InternalDataListBulkActions } from "../DataListBulkActions";
+import { useResponsiveSizing } from "../../hooks/useResponsiveSizing";
 
 interface DataListHeaderCheckbox {
   readonly children: ReactElement;
@@ -23,6 +24,11 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
   } = useDataListContext();
 
   if (!onSelectAll && !onSelect) return children;
+
+  const { sm } = useResponsiveSizing();
+
+  // Show "Deselect All" if breakpoint is sm or higher
+  const deselectText = sm ? "Deselect All" : "Deselect";
 
   return (
     <div className={classNames(styles.selectable)}>
@@ -47,7 +53,7 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
               <b>{selected.length} selected</b>
             </Text>
             <Button
-              label="Deselect All"
+              label={deselectText}
               onClick={() => onSelect?.([])}
               type="tertiary"
             />

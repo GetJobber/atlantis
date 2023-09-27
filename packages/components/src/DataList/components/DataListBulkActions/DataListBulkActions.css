@@ -1,5 +1,6 @@
 .bulkActionsContainer {
-  display: grid;
+  display: flex;
+  padding: var(--space-smaller) 0;
   overflow-x: auto;
   grid-auto-flow: column;
   grid-auto-columns: max-content;

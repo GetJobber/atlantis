@@ -1,6 +1,8 @@
 import * as React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { Breakpoints } from "@jobber/components/DataList/DataList.types";
+import { BREAKPOINT_SIZES } from "@jobber/components/DataList/DataList.const";
 import {
   DataListContext,
   defaultValues,
@@ -112,6 +114,35 @@ describe("DataListHeaderCheckbox", () => {
   });
 
   describe("Select All Checkbox Indeterminate and Checked State", () => {
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      value: jest.fn().mockImplementation((query: string) => {
+        const queryValue = parseInt(query.match(/(\d+)/)?.[0] || "0", 10);
+        const queryBreakpoint = Object.entries(BREAKPOINT_SIZES).find(
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          ([_, value]) => {
+            return value === queryValue;
+          },
+        )?.[0];
+        const expectedValue = {
+          xs: true,
+          sm: true,
+          md: true,
+          lg: true,
+          xl: true,
+        }[queryBreakpoint as Breakpoints];
+        return {
+          matches: expectedValue,
+          media: query,
+          onchange: null,
+          addListener: jest.fn(), // deprecated
+          removeListener: jest.fn(), // deprecated
+          addEventListener: jest.fn(),
+          removeEventListener: jest.fn(),
+          dispatchEvent: jest.fn(),
+        };
+      }),
+    });
     describe("Indeterminate", () => {
       it.each([
         [
