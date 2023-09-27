@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.42.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.42.0...@jobber/components@4.42.1) (2023-09-27)
+
+
+### Bug Fixes
+
+* **components:** Improve performance on the list item creation ([#1547](https://github.com/GetJobber/atlantis/issues/1547)) ([02a1c34](https://github.com/GetJobber/atlantis/commit/02a1c34c7dcdc33ee8a043cf20d19bf423efcc81))
+
+
+
+
+
 # [4.42.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.41.0...@jobber/components@4.42.0) (2023-09-25)
 
 
