@@ -37,8 +37,6 @@ export function useFocusTrap<T extends HTMLElement>(active: boolean) {
   useEffect(() => {
     if (active && ref.current) {
       const { firstElement } = getElements(ref.current);
-      console.log(firstElement);
-
       firstElement.focus();
       ref.current.addEventListener("keydown", handleKeyDown);
     }
