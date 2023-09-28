@@ -1,92 +1,102 @@
-import { Meta } from "@storybook/addon-docs";
-import { Figma } from "storybook-addon-designs/blocks";
+<Meta
+  title="Components/Selections/Combobox/Docs"
+  parameters={{ alpha: true }}
+/>
 
 # Combobox
 
-<Meta title="Components/Combobox/Combobox/Docs" />
+The `Combobox` is designed to provide a versatile and accessible interface for
+selecting options from a list. `Combobox` can be used for a variety of
+scenarios, such as selecting items from a predefined list, filtering and
+searching through data.
 
 ## Design & usage guidelines
 
-The Combobox will... _Add a brief description of the design and usage of the
-component_
+The `Combobox` component's primary function is to facilitate option selection
+and searching within a list of items.
 
-<!--
-  What is the design purpose of this component? How do its responsibilities
-  relate to other components? What should this component not be used for?
-  Try to describe this component not in terms of what it looks like or what
-  elements make it up, but what function it performs or how it enables a user
-  to perform tasks (e.g. “Buttons allow users to initiate, complete, and reverse
-  actions.” vs “Buttons are rectangular elements that have a green background and white text”).
--->
+It should be used in scenarios where users need to choose from a set of options,
+with the added benefit of filtering.
+
+The `Combobox` also has flexibility to allow for custom actions, such as adding
+a new item to the list of options or managing a selection.
+
+### Structure
+
+`Combobox` is composed of three main parts:
+
+#### Trigger
+
+The trigger is the user-facing interface to open and close the `Combobox` and
+initiate option selection. The choice between them depends on the design and
+user experience requirements.
+
+There are two options for trigger elements of the `Combobox`,
+[TriggerButton](../?path=/story/components-selections-combobox-web--trigger-button)
+and
+[TriggerChip](../?path=/story/components-selections-combobox-web--trigger-chip).
+You must have one trigger component.
+
+#### Content
+
+This component is responsible for displaying the list of selectable options,
+handling user interactions, and managing search functionality.
+
+#### Action
+
+Actions are an optional way to allow users to perform custom tasks such as
+adding a new item to the list of options.
 
 ## Content guidelines
 
-<!--
-  What type of content does this component present (documents, text, images, other components)?
-  What is the recommended, or expected, amount of content? What is the components’ behaviour when
-  the provided content diverges from what is expected (image aspect ratio, amount of text, video
-  vs audio, filesize)? Are there any important references to the [Product Vocabulary](https://atlantis.getjobber.com/guides/product-vocabulary)
-  that should be made regarding this component? What happens when content is unavailable or unreliable
-  (poor connection, empty states, flaky GPS data?)
--->
+Combobox is designed to handle lists of selectable options, so the component is
+text based.
 
-## Related components
+You may customize the trigger and action `label`. Refer to the
+[Product Vocabulary](../?path=/docs/content-product-vocabulary--page) for
+consistency in terminology and naming conventions when setting these values.
 
-<!--
-  What are some related components in Atlantis?
--->
+You may also set an optional `subjectNoun` for the `Combobox` content. This will
+be used in the
+[empty state](../?path=/story/components-selections-combobox-web--empty-state)
+of the `Combobox`, as well as the noun within the search placeholder.
 
-## Related patterns
+Follow InputText content guidelines for the text input.
 
-<!--
-  Is there a pattern related to this component?
--->
+Follow Button content guidelines for the actions.
 
-## Related resources
+### Empty states
 
-<!--
-  Is there any related resource (internal or external) to this component?
--->
+In cases where the list of options is empty, the `Combobox` content will display
+a message indicating the absence of options. The default will read, _"No options
+yet"_ or _"You don't have any [subjectNoun] yet"_ if you've set the
+`subjectNoun` prop.
 
-## Platform considerations
-
-<!--
-  Mostly for mobile components. Is there something that applies only for Android/iOS or
-  is browser-specific?
--->
+If options are available, but the search query does not match any of them, the
+Combobox Content will display a message indicating that no options match the
+search query.
 
 ## Accessibility
 
-<!--
-  Describe the accessibility concerns for the component. How does it handle touch vs cursor vs
-  keyboard events? Should it capture input? What should a screen reader see when it's focuse?
--->
+### Keyboard operation
 
-## Responsiveness
+- The trigger can be actioned with `space` or `return`
+- The Comobox confines tabbing to within itself while it's open using
+  [useFocusTrap](https://atlantis.getjobber.com/?path=/docs/hooks-usefocustrap--use-focus-trap)
+- Pressing `esc` will close the `Combobox` and return focus to the trigger using
+  [useRefocusOnActivator](https://atlantis.getjobber.com/?path=/docs/hooks-userefocusonactivator--use-refocus-on-activator)
+- The search input is automatically focused when the `Combobox` opens. The
+  button to clear the input can be focused with `tab`
+- Pressing `tab` again will set focus to the options list, which are navigated
+  by the `up` and `down` arrow keys, and actioned with `space` or `return`
+- Pressing `tab` again will set focus to the actions (if present), or return
+  focus to the input if not
 
-<!--
-  How should the component behave on an iPhone 8? An iPad? A 1920x1080 monitor? How does the
-  component appear when the component itself is less than 375px wide? Less than 640px wide?
-  Less than 1200px wide? Greater than 1200px? Does it change when the device DPI is higher
-  or lower?
--->
+### Assistive technology
 
-## Mockup
-
-<Figma collapsable />
-
-<!--
-  Insert a Figma mockup from the [Design System Contribution template](https://www.figma.com/file/3BXCXXD9glMtj8RAHjXiQC/Design-System-Contribution-TEMPLATE?node-id=26%3A2)
-  that conveys the visual design of the component, with variants and state accounted for.
-  Consider progressive enhancement; might this rely on newer browser features that aren’t
-  widely supported yet?
--->
-
-## Notes
-
-<!--
-  What decisions worth remembering have gone into this component? Did we consider any potentially valuable
-  functionality that we’re not implementing right now for scope purposes? Are there any design decisions
-  that might need explaining beyond the usage guidelines? This will help consumers understand this component
-  more fully.
--->
+- The trigger element is given a `role="combobox"` to inform the user the type
+  of content they'll be interacting with
+- Once the user opens the `Combobox`, the search input is focused and announced
+- The title and "selected/unselected" status of each item is announced as the
+  user navigates the options
+- The actions (if present) are announced and operable as buttons

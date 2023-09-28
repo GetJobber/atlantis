@@ -1,1 +1,1 @@
-export const alphaComponents = ["DataList"];
+export const alphaComponents = ["DataList", "Combobox"];
