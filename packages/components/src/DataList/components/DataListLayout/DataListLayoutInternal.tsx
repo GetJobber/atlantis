@@ -1,17 +1,11 @@
 import React, { useState } from "react";
 import { useDataListContext } from "../../context/DataListContext";
 import { DataListLayoutContext } from "../../context/DataListLayoutContext";
-import { DataListItemType, DataListObject } from "../../DataList.types";
+import { DataListObject } from "../../DataList.types";
 import { DataListItem } from "../DataListItem";
 
-interface DataListLayoutInternalProps<T extends DataListObject> {
-  readonly layout: (item: DataListItemType<T[]>) => JSX.Element;
-}
-
-export function DataListLayoutInternal<T extends DataListObject>({
-  layout,
-}: DataListLayoutInternalProps<T>) {
-  const { data } = useDataListContext<T>();
+export function DataListLayoutInternal<T extends DataListObject>() {
+  const { data, visibleLayout } = useDataListContext<T>();
   const [hasInLayoutActions, setHasInLayoutActions] = useState(false);
 
   return (
@@ -23,7 +17,12 @@ export function DataListLayoutInternal<T extends DataListObject>({
       }}
     >
       {data.map((child, i) => (
-        <DataListItem key={data[i].id} index={i} item={child} layout={layout} />
+        <DataListItem
+          key={data[i].id}
+          index={i}
+          item={child}
+          layout={visibleLayout.children}
+        />
       ))}
     </DataListLayoutContext.Provider>
   );

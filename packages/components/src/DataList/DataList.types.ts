@@ -129,8 +129,12 @@ export interface DataListProps<T extends DataListObject> {
   readonly onSelectAll?: () => void;
 }
 
+export type LayoutRenderer<T extends DataListObject> = (
+  item: DataListItemType<T[]>,
+) => JSX.Element;
+
 export interface DataListLayoutProps<T extends DataListObject> {
-  readonly children: (item: DataListItemType<T[]>) => JSX.Element;
+  readonly children: LayoutRenderer<T>;
 
   /**
    * The breakpoint at which the layout should be displayed. It will be rendered until a layout with a larger breakpoint is found.
@@ -184,6 +188,12 @@ export interface DataListContextProps<T extends DataListObject>
   readonly layoutComponents?: ReactElement<DataListLayoutProps<T>>[];
   readonly itemActionComponent?: ReactElement<DataListItemActionsProps<T>>;
   readonly bulkActionsComponent?: ReactElement<DataListItemActionsProps<T>>;
+
+  readonly layoutBreakpoints: Breakpoints[];
+  readonly setLayoutBreakpoints: (breakpoints: Breakpoints[]) => void;
+
+  readonly visibleLayout: DataListLayoutProps<T>;
+  readonly setVisibleLayout: (layout: DataListLayoutProps<T>) => void;
 }
 
 export interface DataListLayoutContextProps {

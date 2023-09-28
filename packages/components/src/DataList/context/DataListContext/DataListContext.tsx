@@ -1,4 +1,5 @@
-import { createContext, useContext } from "react";
+import React, { createContext, useContext } from "react";
+import noop from "lodash/noop";
 import { DataListContextProps, DataListObject } from "../../DataList.types";
 
 export const defaultValues: DataListContextProps<DataListObject> = {
@@ -7,6 +8,13 @@ export const defaultValues: DataListContextProps<DataListObject> = {
   headers: {},
   children: [],
   selected: [],
+  layoutBreakpoints: [],
+  setLayoutBreakpoints: noop,
+  visibleLayout: {
+    size: "xs",
+    children: () => <></>,
+  },
+  setVisibleLayout: noop,
 };
 
 export const DataListContext =

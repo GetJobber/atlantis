@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./DataList.css";
 import { DataListTotalCount } from "./components/DataListTotalCount";
 import { DataListLoadingState } from "./components/DataListLoadingState";
@@ -21,7 +21,11 @@ import { DataListLoadMore } from "./components/DataListLoadMore";
 import { DataListItemActions } from "./components/DataListItemActions";
 import { DataListAction } from "./components/DataListAction";
 import { DataListLayoutActions } from "./components/DataListLayoutActions";
-import { DataListContext, useDataListContext } from "./context/DataListContext";
+import {
+  DataListContext,
+  defaultValues,
+  useDataListContext,
+} from "./context/DataListContext";
 import {
   DataListBulkActionProps,
   DataListBulkActionsProps,
@@ -39,7 +43,10 @@ import {
   getCompoundComponents,
 } from "./DataList.utils";
 import { useLayoutMediaQueries } from "./hooks/useLayoutMediaQueries";
-import { DATA_LIST_FILTERING_SPINNER_TEST_ID } from "./DataList.const";
+import {
+  Breakpoints,
+  DATA_LIST_FILTERING_SPINNER_TEST_ID,
+} from "./DataList.const";
 import { DataListBulkActions } from "./components/DataListBulkActions";
 import { Heading } from "../Heading";
 import { Spinner } from "../Spinner";
@@ -48,6 +55,11 @@ export function DataList<T extends DataListObject>({
   sorting,
   ...props
 }: DataListProps<T>) {
+  const [layoutBreakpoints, setLayoutBreakpoints] = useState<Breakpoints[]>([]);
+  const [visibleLayout, setVisibleLayout] = useState<
+    DataListLayoutProps<DataListObject>
+  >(defaultValues.visibleLayout);
+
   const searchComponent = getCompoundComponent<DataListSearchProps>(
     props.children,
     DataListSearch,
@@ -80,6 +92,10 @@ export function DataList<T extends DataListObject>({
         emptyStateComponents,
         itemActionComponent,
         bulkActionsComponent,
+        layoutBreakpoints,
+        setLayoutBreakpoints,
+        visibleLayout,
+        setVisibleLayout,
         ...props,
         selected: props.selected ?? [],
         // T !== DataListObject
