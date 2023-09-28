@@ -6,7 +6,8 @@
 
 :root {
   --color-surface--background--hover: var(
-    --color-greyBlue--lighter); /* delete once PR 1545 has merged */
+    --color-greyBlue--lighter
+  ); /* delete once PR 1545 has merged */
 }
 
 .wrapper {
@@ -20,8 +21,8 @@
   display: inline-grid;
   position: relative;
   max-width: 100%;
-  box-sizing: border-box;
   min-height: calc(var(--space-largest) - var(--space-small));
+  box-sizing: border-box;
   padding: var(--space-small) var(--space-base);
   border-radius: calc(var(--space-base) + var(--space-smaller));
   color: var(--color-heading);
