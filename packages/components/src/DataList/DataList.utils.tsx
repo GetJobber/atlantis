@@ -101,6 +101,10 @@ export function sortSizeProp(sizeProp: Breakpoints[]) {
   );
 }
 
+export function sortBreakpoints(sizeProp: Breakpoints[]) {
+  return sortSizeProp(sizeProp);
+}
+
 export function getExposedActions(
   childrenArray: ReactElement[],
   childCount = 2,
