@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, waitFor } from "@testing-library/react";
 import { ComboboxSearch } from "./ComboboxSearch";
 
 describe("ComboboxSearch", () => {
@@ -73,5 +73,16 @@ describe("ComboboxSearch", () => {
     expect(
       getByTestId("ATL-Combobox-Content-Search-Clear"),
     ).toBeInTheDocument();
+  });
+
+  it("should focus the search input when open", async () => {
+    const { getByPlaceholderText } = render(
+      <ComboboxSearch searchValue="" open={true} setSearchValue={jest.fn()} />,
+    );
+    const searchInput = getByPlaceholderText("Search");
+
+    await waitFor(() => {
+      expect(searchInput).toHaveFocus();
+    });
   });
 });
