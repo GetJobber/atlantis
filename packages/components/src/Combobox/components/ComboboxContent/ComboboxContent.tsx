@@ -77,7 +77,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       id="ATL-Combobox-Content"
       data-testid="ATL-Combobox-Content"
       tabIndex={0}
-      className={classnames(styles.content, !open && styles.hidden)}
+      className={classnames(styles.content, { [styles.hidden]: !open })}
       style={popperStyles.popper}
       {...attributes.popper}
     >
@@ -105,9 +105,9 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
             (child, index, childrenArray) => (
               <div
                 key={index}
-                className={
-                  index === childrenArray.length - 1 ? styles.actionPadding : ""
-                }
+                className={classnames({
+                  [styles.actionPadding]: index === childrenArray.length - 1,
+                })}
               >
                 {child}
               </div>
