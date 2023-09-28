@@ -47,28 +47,24 @@ interface ComboboxContentProps {
 }
 
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
+  const { open, setOpen, wrapperRef } = React.useContext(ComboboxContext);
   const optionsExist = props.options.length > 0;
+
   const {
     searchValue,
     setSearchValue,
-    selectedElement,
     setSelectedElement,
+    filteredOptions,
+    optionsListRef,
+  } = useComboboxContent(props.options, open);
+
+  const { popperRef, popperStyles, attributes } = useComboboxAccessibility(
+    handleSelection,
+    filteredOptions,
+    optionsListRef,
     open,
     setOpen,
-    popperRef,
-    popperStyles,
-    attributes,
-    filteredOptions,
-    optionsListRef,
-  } = useComboboxContent(props.options);
-
-  useComboboxAccessibility(
-    open,
-    handleSelection,
-    popperRef,
-    filteredOptions,
-    optionsListRef,
-    selectedElement,
+    wrapperRef,
   );
 
   const template = (
@@ -128,38 +124,56 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
 }
 
 function useComboboxAccessibility(
-  open: boolean,
   selectionCallback: (selection: ComboboxOption) => void,
-  containerRef: React.RefObject<HTMLDivElement>,
   filteredOptions: ComboboxOption[],
   optionsListRef: React.RefObject<HTMLUListElement>,
-  selectedElement: HTMLElement | null,
-): void {
+  open: boolean,
+  setOpen: (open: boolean) => void,
+  wrapperRef: React.RefObject<HTMLDivElement>,
+): {
+  popperRef: React.RefObject<HTMLDivElement>;
+  popperStyles: { [key: string]: React.CSSProperties };
+  attributes: { [key: string]: { [key: string]: string } | undefined };
+} {
   const hasOptionsVisible = open && filteredOptions.length > 0;
   const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
+
+  useRefocusOnActivator(open);
+
+  const popperRef = useFocusTrap<HTMLDivElement>(open);
+  const { styles: popperStyles, attributes } = usePopper(
+    wrapperRef.current,
+    popperRef.current,
+    {
+      modifiers: [
+        {
+          name: "flip",
+          options: {
+            fallbackPlacements: ["top-start"],
+          },
+        },
+      ],
+      placement: "bottom-start",
+    },
+  );
 
   useEffect(() => setFocusedIndex(null), [open, filteredOptions.length]);
 
   useEffect(() => {
-    if (open && selectedElement) {
-      selectedElement?.scrollIntoView({
-        block: "nearest",
-      });
-    }
-  }, [open, selectedElement]);
-
-  useEffect(() => {
     if (open) {
-      containerRef.current?.addEventListener("keydown", handleContentKeydown);
+      popperRef.current?.addEventListener("keydown", handleContentKeydown);
     }
 
     return () => {
-      containerRef.current?.removeEventListener(
-        "keydown",
-        handleContentKeydown,
-      );
+      popperRef.current?.removeEventListener("keydown", handleContentKeydown);
     };
   }, [open, optionsListRef, focusedIndex, filteredOptions]);
+
+  useOnKeyDown(() => {
+    if (open) {
+      setOpen(false);
+    }
+  }, "Escape");
 
   function handleContentKeydown(event: KeyboardEvent) {
     if (!hasOptionsVisible) return;
@@ -204,18 +218,21 @@ function useComboboxAccessibility(
       selectionCallback(filteredOptions[focusedIndex]);
     }
   }
+
+  return {
+    popperRef,
+    popperStyles,
+    attributes,
+  };
 }
 
-function useComboboxContent(options: ComboboxOption[]): {
+function useComboboxContent(
+  options: ComboboxOption[],
+  open: boolean,
+): {
   searchValue: string;
   setSearchValue: React.Dispatch<React.SetStateAction<string>>;
-  selectedElement: HTMLElement | null;
   setSelectedElement: React.Dispatch<React.SetStateAction<HTMLElement | null>>;
-  open: boolean;
-  setOpen: (open: boolean) => void;
-  popperRef: React.RefObject<HTMLDivElement>;
-  popperStyles: { [key: string]: React.CSSProperties };
-  attributes: { [key: string]: { [key: string]: string } | undefined };
   filteredOptions: ComboboxOption[];
   optionsListRef: React.RefObject<HTMLUListElement>;
 } {
@@ -223,48 +240,23 @@ function useComboboxContent(options: ComboboxOption[]): {
   const [selectedElement, setSelectedElement] = useState<HTMLElement | null>(
     null,
   );
-  const { open, setOpen, wrapperRef } = React.useContext(ComboboxContext);
-
+  const optionsListRef = useRef<HTMLUListElement>(null);
   const filteredOptions = options.filter(option =>
     option.label.toLowerCase().includes(searchValue.toLowerCase()),
   );
 
-  useOnKeyDown(() => {
-    if (open) {
-      setOpen(false);
+  useEffect(() => {
+    if (open && selectedElement) {
+      selectedElement?.scrollIntoView({
+        block: "nearest",
+      });
     }
-  }, "Escape");
-
-  useRefocusOnActivator(open);
-
-  const optionsListRef = useRef<HTMLUListElement>(null);
-  const popperRef = useFocusTrap<HTMLDivElement>(open);
-  const { styles: popperStyles, attributes } = usePopper(
-    wrapperRef.current,
-    popperRef.current,
-    {
-      modifiers: [
-        {
-          name: "flip",
-          options: {
-            fallbackPlacements: ["top-start"],
-          },
-        },
-      ],
-      placement: "bottom-start",
-    },
-  );
+  }, [open, selectedElement]);
 
   return {
     searchValue,
     setSearchValue,
-    selectedElement,
     setSelectedElement,
-    open,
-    setOpen,
-    popperRef,
-    popperStyles,
-    attributes,
     filteredOptions,
     optionsListRef,
   };
