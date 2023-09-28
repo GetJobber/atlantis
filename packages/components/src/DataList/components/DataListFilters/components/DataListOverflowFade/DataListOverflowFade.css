@@ -1,17 +1,19 @@
-.bulkActionsContainer {
-  display: flex;
-  padding: var(--space-smaller) 0;
+.fadeContainer {
+  align-self: center;
+  position: relative;
+  min-width: 0;
+}
+
+.overflowGrid {
+  display: grid;
   overflow-x: auto;
   grid-auto-flow: column;
   grid-auto-columns: max-content;
   align-items: center;
-  gap: var(--space-smaller);
 }
 
-.filters {
-  align-self: center;
-  position: relative;
-  min-width: 0;
+.overflowGrid > :nth-child(n + 3):not(:last-child) {
+  margin-left: var(--space-small);
 }
 
 .overflowTrigger {
@@ -26,7 +28,7 @@
   width: var(--space-large);
   height: 100%;
   background-image: linear-gradient(
-    var(--data-list-filters-overflow-shadow-angle, to right),
+    var(--data-list-overflow-shadow-angle, to right),
     var(--color-surface) 0%,
     rgba(var(--color-white--rgb), 0) 100%
   );
@@ -38,6 +40,6 @@
 }
 
 .overflowRight::after {
-  --data-list-filters-overflow-shadow-angle: to left;
+  --data-list-overflow-shadow-angle: to left;
   right: 0;
 }

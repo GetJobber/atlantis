@@ -1,9 +1,6 @@
 import React, { ReactElement } from "react";
-import classNames from "classnames";
-import { useInView } from "@jobber/hooks/useInView";
-import styles from "./DataListFilters.css";
-import { CONTAINER_TEST_ID } from "./DataListFilter.const";
 import { DataListSort } from "./components/DataListSort";
+import { DataListOverflowFade } from "./components/DataListOverflowFade/DataListOverflowFade";
 import { useDataListContext } from "../../context/DataListContext";
 import { getCompoundComponent } from "../../DataList.utils";
 import { useShowHeader } from "../../hooks/useShowHeader";
@@ -30,30 +27,15 @@ export function InternalDataListFilters() {
     DataListFilters,
   );
 
-  const [leftRef, isLeftVisible] = useInView<HTMLSpanElement>();
-  const [rightRef, isRightVisible] = useInView<HTMLSpanElement>();
-
   if (!showSortButton && !component) return null;
 
   const children = component?.props.children;
 
   return (
-    <div
-      data-testid={CONTAINER_TEST_ID}
-      className={classNames(styles.filters, {
-        [styles.overflowLeft]: !isLeftVisible,
-        [styles.overflowRight]: !isRightVisible,
-      })}
-    >
-      <div className={styles.filterActions}>
-        <span ref={leftRef} className={styles.overflowTrigger} />
+    <DataListOverflowFade>
+      {children && children}
 
-        {children && children}
-
-        {showSortButton && <DataListSort />}
-
-        <span ref={rightRef} className={styles.overflowTrigger} />
-      </div>
-    </div>
+      {showSortButton && <DataListSort />}
+    </DataListOverflowFade>
   );
 }
