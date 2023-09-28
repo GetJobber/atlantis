@@ -42,14 +42,10 @@
 
 .headerBatchSelect {
   display: flex;
+  width: 100%;
+  margin: calc(var(--space-small) * -1) 0;
   align-items: center;
   gap: var(--space-smaller);
-  margin: calc(var(--space-small) * -1) 0;
-
-  @media (--small-screens-and-below) {
-    min-width: 100%;
-    justify-content: space-between;
-  }
 }
 
 .listItem {

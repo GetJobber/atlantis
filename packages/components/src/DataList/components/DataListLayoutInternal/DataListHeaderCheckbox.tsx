@@ -4,7 +4,6 @@ import { ReactElement } from "react-markdown/lib/react-markdown";
 import { AnimatedSwitcher } from "../../../AnimatedSwitcher";
 import { Button } from "../../../Button";
 import { Checkbox } from "../../../Checkbox";
-import { Text } from "../../../Text";
 import { useDataListContext } from "../../context/DataListContext";
 import styles from "../../DataList.css";
 import { InternalDataListBulkActions } from "../DataListBulkActions";
@@ -30,6 +29,8 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
   // Show "Deselect All" if breakpoint is sm or higher
   const deselectText = sm ? "Deselect All" : "Deselect";
 
+  const selectedLabel = selected.length ? `${selected.length} selected` : "";
+
   return (
     <div className={classNames(styles.selectable)}>
       <div
@@ -41,6 +42,7 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
           checked={isAllSelected()}
           indeterminate={selected.length > 0 && !isAllSelected()}
           onChange={onSelectAll}
+          label={selectedLabel}
         />
       </div>
 
@@ -49,9 +51,6 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
         initialChild={children}
         switchTo={
           <div className={styles.headerBatchSelect}>
-            <Text>
-              <b>{selected.length} selected</b>
-            </Text>
             <Button
               label={deselectText}
               onClick={() => onSelect?.([])}
