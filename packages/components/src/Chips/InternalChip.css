@@ -5,7 +5,8 @@
  */
 
 :root {
-  --color-surface--background--hover: var(--color-greyBlue--lighter); /* delete once PR 1545 has merged */
+  --color-surface--background--hover: var(
+    --color-greyBlue--lighter); /* delete once PR 1545 has merged */
 }
 
 .wrapper {
@@ -20,8 +21,8 @@
   position: relative;
   max-width: 100%;
   box-sizing: border-box;
-  padding: var(--space-small) var(--space-base);
   min-height: calc(var(--space-largest) - var(--space-small));
+  padding: var(--space-small) var(--space-base);
   border-radius: calc(var(--space-base) + var(--space-smaller));
   color: var(--color-heading);
   text-align: left;
@@ -39,7 +40,8 @@
   padding-left: var(--space-small);
 }
 
-.hasSuffix, .active {
+.hasSuffix,
+.active {
   grid-template-columns: 1fr min-content min-content;
   padding-right: var(--space-small);
 }
@@ -75,11 +77,11 @@
  */
 
 .activeIndicator {
-  background-color: var(--color-surface);
-  border-radius: var(--radius-circle);
-  height: var(--space-large);
-  width: var(--space-large);
   display: none;
+  width: var(--space-large);
+  height: var(--space-large);
+  border-radius: var(--radius-circle);
+  background-color: var(--color-surface);
 }
 
 .chip.active .activeIndicator {
