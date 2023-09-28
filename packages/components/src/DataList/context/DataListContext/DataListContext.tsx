@@ -9,7 +9,7 @@ export const defaultValues: DataListContextProps<DataListObject> = {
   children: [],
   selected: [],
   layoutBreakpoints: [],
-  setLayoutBreakpoints: noop,
+  registerLayoutBreakpoints: noop,
   visibleLayout: {
     size: "xs",
     children: () => <></>,

@@ -41,6 +41,7 @@ import {
   generateHeaderElements,
   getCompoundComponent,
   getCompoundComponents,
+  sortBreakpoints,
 } from "./DataList.utils";
 import { useLayoutMediaQueries } from "./hooks/useLayoutMediaQueries";
 import {
@@ -93,7 +94,7 @@ export function DataList<T extends DataListObject>({
         itemActionComponent,
         bulkActionsComponent,
         layoutBreakpoints,
-        setLayoutBreakpoints,
+        registerLayoutBreakpoints,
         visibleLayout,
         setVisibleLayout,
         ...props,
@@ -105,6 +106,10 @@ export function DataList<T extends DataListObject>({
       <InternalDataList />
     </DataListContext.Provider>
   );
+
+  function registerLayoutBreakpoints(size: Breakpoints) {
+    setLayoutBreakpoints(prev => sortBreakpoints([...prev, size]));
+  }
 }
 
 function InternalDataList() {
