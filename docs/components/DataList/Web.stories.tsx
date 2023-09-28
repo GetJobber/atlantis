@@ -160,15 +160,25 @@ const Template: ComponentStory<typeof DataList> = args => {
       />
 
       <DataList.ItemActions>
-        <DataList.Action icon="edit" label="Edit" onClick={handleActionClick} />
-        <DataList.Action
+        <DataList.ItemAction
+          icon="edit"
+          label="Edit"
+          onClick={handleActionClick}
+        />
+        <DataList.ItemAction
           icon="sendMessage"
           label="Message"
           onClick={handleActionClick}
         />
-        <DataList.Action label="Create new..." onClick={handleActionClick} />
-        <DataList.Action label="Add attribute..." onClick={handleActionClick} />
-        <DataList.Action
+        <DataList.ItemAction
+          label="Create new..."
+          onClick={handleActionClick}
+        />
+        <DataList.ItemAction
+          label="Add attribute..."
+          onClick={handleActionClick}
+        />
+        <DataList.ItemAction
           icon="trash"
           label="Delete"
           destructive={true}
@@ -177,26 +187,26 @@ const Template: ComponentStory<typeof DataList> = args => {
       </DataList.ItemActions>
 
       <DataList.BulkActions>
-        <DataList.Action
+        <DataList.BatchAction
           icon="edit"
           label="Edit"
           onClick={handleBulkActionClick}
         />
-        <DataList.Action
+        <DataList.BatchAction
           icon="sendMessage"
           label="Message"
           onClick={handleBulkActionClick}
         />
-        <DataList.Action
+        <DataList.BatchAction
           label="Create new..."
           icon="add"
           onClick={handleBulkActionClick}
         />
-        <DataList.Action
+        <DataList.BatchAction
           label="Add attribute..."
           onClick={handleBulkActionClick}
         />
-        <DataList.Action
+        <DataList.BatchAction
           icon="trash"
           label="Delete"
           destructive={true}

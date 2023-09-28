@@ -26,6 +26,7 @@ import { DataListAction } from "./components/DataListAction";
 import { DataListLayoutActions } from "./components/DataListLayoutActions";
 import { DataListContext, useDataListContext } from "./context/DataListContext";
 import {
+  DataListBulkActionProps,
   DataListBulkActionsProps,
   DataListEmptyStateProps,
   DataListFiltersProps,
@@ -230,4 +231,14 @@ DataList.BulkActions = DataListBulkActions;
  * Defines the action in a DataList. This should be used inside the
  * DataListItemActions component.
  */
-DataList.Action = DataListAction;
+DataList.ItemAction = DataListAction;
+
+/**
+ * Defines the batch action in a DataList. This should be used inside the
+ * DataListBulkActions component.
+ */
+DataList.BatchAction = function DataListBatchAction(
+  props: DataListBulkActionProps,
+) {
+  return <DataListAction {...props} />;
+};
