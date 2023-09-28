@@ -1,11 +1,4 @@
-import React, {
-  Dispatch,
-  ReactElement,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { ReactElement, useEffect, useRef, useState } from "react";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
 import { usePopper } from "react-popper";
@@ -13,7 +6,8 @@ import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import styles from "./ComboboxContent.css";
-import { Icon } from "../../../Icon";
+import { ComboboxSearch } from "./ComboboxSearch";
+import { ComboboxList } from "./ComboboxList";
 import { ComboboxContext } from "../../ComboboxProvider";
 import { ComboboxOption } from "../../Combobox.types";
 
@@ -87,43 +81,23 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       style={popperStyles.popper}
       {...attributes.popper}
     >
-      <Search
+      <ComboboxSearch
         open={open}
         placeholder={props.subjectNoun}
         searchValue={searchValue}
         setSearchValue={setSearchValue}
       />
-      <ul className={styles.optionsList} role="listbox" ref={optionsListRef}>
-        {optionsExist &&
-          filteredOptions.map(option => {
-            const isSelected =
-              option.id.toString() === props.selected?.id.toString();
 
-            return (
-              <li
-                ref={listItem => {
-                  if (isSelected) setSelectedElement(listItem);
-                }}
-                key={option.id}
-                tabIndex={-1}
-                role="option"
-                aria-selected={isSelected}
-                onClick={() => handleSelection(option)}
-                className={classnames(styles.option, {
-                  [styles.selectedOption]: isSelected,
-                })}
-              >
-                {option.label}
-              </li>
-            );
-          })}
-
-        {optionsExist && filteredOptions.length === 0 && (
-          <p>No results for {`"${searchValue}"`}</p>
-        )}
-
-        {!optionsExist && <p>{getZeroIndexStateText(props.subjectNoun)}</p>}
-      </ul>
+      <ComboboxList
+        showEmptyState={!optionsExist}
+        options={filteredOptions}
+        selected={props.selected}
+        optionsListRef={optionsListRef}
+        setSelectedElement={setSelectedElement}
+        selectionHandler={handleSelection}
+        searchValue={searchValue}
+        subjectNoun={props.subjectNoun}
+      />
 
       {props.children && (
         <div className={styles.actions} role="group">
@@ -151,68 +125,6 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     setSearchValue("");
     setOpen(false);
   }
-}
-
-function Search(props: {
-  placeholder?: string;
-  searchValue: string;
-  open: boolean;
-  setSearchValue: Dispatch<SetStateAction<string>>;
-}): JSX.Element {
-  const searchRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (props.open) {
-      setTimeout(() => {
-        searchRef.current?.focus();
-      }, 0);
-    }
-  }, [props.open]);
-
-  return (
-    <div className={styles.search}>
-      <input
-        type="search"
-        ref={searchRef}
-        className={styles.searchInput}
-        placeholder={
-          props.placeholder ? `Search ${props.placeholder}` : "Search"
-        }
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-          handleSearch(event)
-        }
-        value={props.searchValue}
-      />
-
-      {props.searchValue && (
-        <button
-          className={styles.clearSearch}
-          onClick={clearSearch}
-          data-testid="ATL-Combobox-Content-Search-Clear"
-          aria-label="Clear search"
-        >
-          <Icon name="remove" size="small" />
-        </button>
-      )}
-    </div>
-  );
-
-  function clearSearch() {
-    props.setSearchValue("");
-    searchRef.current?.focus();
-  }
-
-  function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
-    props.setSearchValue(event.target.value);
-  }
-}
-
-function getZeroIndexStateText(subjectNoun?: string) {
-  if (subjectNoun) {
-    return `You don't have any ${subjectNoun} yet`;
-  }
-
-  return "No options yet";
 }
 
 function useComboboxAccessibility(

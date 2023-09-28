@@ -1,0 +1,20 @@
+.optionsList {
+  max-height: 300px;
+  margin: 0;
+  padding: 0;
+  overflow: scroll;
+  list-style: none;
+}
+
+.option {
+  padding: var(--space-small) var(--space-base);
+  cursor: pointer;
+}
+
+.option:hover {
+  background-color: var(--color-surface--background);
+}
+
+.selectedOption {
+  background-color: var(--color-surface--background);
+}
