@@ -136,7 +136,7 @@ function useComboboxAccessibility(
   attributes: { [key: string]: { [key: string]: string } | undefined };
 } {
   const hasOptionsVisible = open && filteredOptions.length > 0;
-  const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
+  const focusedIndex = useRef<number | null>(null);
 
   useRefocusOnActivator(open);
 
@@ -157,7 +157,9 @@ function useComboboxAccessibility(
     },
   );
 
-  useEffect(() => setFocusedIndex(null), [open, filteredOptions.length]);
+  useEffect(() => {
+    focusedIndex.current = null;
+  }, [open, filteredOptions.length]);
 
   useEffect(() => {
     if (open) {
@@ -167,7 +169,7 @@ function useComboboxAccessibility(
     return () => {
       popperRef.current?.removeEventListener("keydown", handleContentKeydown);
     };
-  }, [open, optionsListRef, focusedIndex, filteredOptions]);
+  }, [open, optionsListRef, filteredOptions]);
 
   useOnKeyDown(() => {
     if (open) {
@@ -196,7 +198,8 @@ function useComboboxAccessibility(
   }
 
   function handleKeyboardNavigation(event: KeyboardEvent, indexChange: number) {
-    const newIndex = focusedIndex === null ? 0 : focusedIndex + indexChange;
+    const newIndex =
+      focusedIndex.current === null ? 0 : focusedIndex.current + indexChange;
 
     if (newIndex < 0 || newIndex >= filteredOptions.length) return;
 
@@ -205,7 +208,8 @@ function useComboboxAccessibility(
     ] as HTMLElement;
 
     optionElement?.focus();
-    setFocusedIndex(newIndex);
+    // setFocusedIndex(newIndex);
+    focusedIndex.current = newIndex;
     event.preventDefault();
     event.stopPropagation();
   }
@@ -214,8 +218,8 @@ function useComboboxAccessibility(
     event.preventDefault();
     event.stopPropagation();
 
-    if (focusedIndex !== null) {
-      selectionCallback(filteredOptions[focusedIndex]);
+    if (focusedIndex.current !== null) {
+      selectionCallback(filteredOptions[focusedIndex.current]);
     }
   }
 
