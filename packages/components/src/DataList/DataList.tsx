@@ -3,10 +3,7 @@ import styles from "./DataList.css";
 import { DataListTotalCount } from "./components/DataListTotalCount";
 import { DataListLoadingState } from "./components/DataListLoadingState";
 import { DataListLayout } from "./components/DataListLayout";
-import {
-  DataListHeader,
-  DataListItems,
-} from "./components/DataListLayoutInternal";
+import { DataListHeader } from "./components/DataListLayoutInternal";
 import {
   DataListFilters,
   InternalDataListFilters,
@@ -152,13 +149,7 @@ function InternalDataList() {
 
       {showEmptyState && <InternalDataListEmptyState />}
 
-      {!initialLoading && (
-        <DataListItems
-          data={data}
-          layouts={layoutComponents}
-          mediaMatches={mediaMatches}
-        />
-      )}
+      {!initialLoading && layoutComponents}
 
       {loadingState === "filtering" && (
         <div
