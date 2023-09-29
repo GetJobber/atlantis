@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.43.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.43.0...@jobber/components@4.43.1) (2023-09-29)
+
+
+### Bug Fixes
+
+* **components:** Expose Link component props ([#1551](https://github.com/GetJobber/atlantis/issues/1551)) ([4e3a230](https://github.com/GetJobber/atlantis/commit/4e3a2301f3f5026be4d5d8c7816c479085621c4e))
+
+
+
+
+
 # [4.43.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.42.1...@jobber/components@4.43.0) (2023-09-29)
 
 
