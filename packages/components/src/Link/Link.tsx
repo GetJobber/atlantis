@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from "react";
 
-interface LinkProps {
+export interface LinkProps {
   readonly url: string;
   readonly ariaLabel?: string;
   readonly ariaExpanded?: boolean;
