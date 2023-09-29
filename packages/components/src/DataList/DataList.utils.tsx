@@ -46,38 +46,36 @@ export function getCompoundComponents<T>(
 }
 
 /**
- * Generate the default elements the DataList would use on the data provided.
+ * Generate the default element the DataList would use on the data provided.
  */
-export function generateListItemElements<T extends DataListObject>(data: T[]) {
-  type DataListElements = DataListItemType<typeof data>;
+export function generateListItemElement<T extends DataListObject>(item: T) {
+  type DataListElements = DataListItemType<T[]>;
 
-  return data.map(item =>
-    Object.keys(item).reduce((acc, key: keyof DataListElements) => {
-      const currentItem = item[key];
+  return Object.keys(item).reduce((acc, key: keyof DataListElements) => {
+    const currentItem = item[key];
 
-      if (!currentItem) {
-        return acc;
-      }
-
-      if (key === "tags" && Array.isArray(currentItem)) {
-        acc[key] = <DataListTags items={currentItem} />;
-      } else if (key === "label" && typeof currentItem === "string") {
-        acc[key] = <Heading level={5}>{currentItem}</Heading>;
-      } else if (isValidElement(currentItem)) {
-        acc[key] = currentItem;
-      } else if (currentItem instanceof Date) {
-        acc[key] = (
-          <Text variation="subdued">
-            <FormatDate date={currentItem} />
-          </Text>
-        );
-      } else {
-        acc[key] = <Text variation="subdued">{currentItem}</Text>;
-      }
-
+    if (!currentItem) {
       return acc;
-    }, {} as DataListElements),
-  );
+    }
+
+    if (key === "tags" && Array.isArray(currentItem)) {
+      acc[key] = <DataListTags items={currentItem} />;
+    } else if (key === "label" && typeof currentItem === "string") {
+      acc[key] = <Heading level={5}>{currentItem}</Heading>;
+    } else if (isValidElement(currentItem)) {
+      acc[key] = currentItem;
+    } else if (currentItem instanceof Date) {
+      acc[key] = (
+        <Text variation="subdued">
+          <FormatDate date={currentItem} />
+        </Text>
+      );
+    } else {
+      acc[key] = <Text variation="subdued">{currentItem}</Text>;
+    }
+
+    return acc;
+  }, {} as DataListElements);
 }
 
 /**
