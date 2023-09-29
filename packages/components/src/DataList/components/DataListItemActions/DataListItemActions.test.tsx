@@ -1,14 +1,17 @@
 import React, { PropsWithChildren } from "react";
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { DataListItemActions, InternalDataListItemActions } from ".";
-import { DataListContext, defaultValues } from "../../context/DataListContext";
-import { DataListAction } from "../DataListAction";
+import {
+  DataListContext,
+  defaultValues,
+} from "@jobber/components/DataList/context/DataListContext";
+import { DataListAction } from "@jobber/components/DataList/components/DataListAction";
 import {
   DataListLayoutContext,
   defaultValues as layoutDefaultValues,
-} from "../../context/DataListLayoutContext";
-import { DataListLayoutActionsContext } from "../DataListLayoutActions/DataListLayoutContext";
+} from "@jobber/components/DataList/context/DataListLayoutContext";
+import { DataListLayoutActionsContext } from "@jobber/components/DataList/components/DataListLayoutActions/DataListLayoutContext";
+import { DataListItemActions, InternalDataListItemActions } from ".";
 
 const handleEditClick = jest.fn();
 const mockSetHasInLayoutActions = jest.fn().mockReturnValue(true);

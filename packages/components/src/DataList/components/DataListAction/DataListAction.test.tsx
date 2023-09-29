@@ -1,8 +1,8 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { DataListLayoutActionsContext } from "@jobber/components/DataList/components/DataListLayoutActions/DataListLayoutContext";
 import { DataListAction } from "./DataListAction";
-import { DataListLayoutActionsContext } from "../DataListLayoutActions/DataListLayoutContext";
 
 const name = "Hello";
 const handleClick = jest.fn();

@@ -1,16 +1,19 @@
 import React, { PropsWithChildren } from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { DataListItem } from "./DataListItem";
-import { DataListContext, defaultValues } from "../../context/DataListContext";
-import { DataListLayout } from "../DataListLayout";
-import { DataListItemActions } from "../DataListItemActions";
-import { DataListAction } from "../DataListAction";
+import {
+  DataListContext,
+  defaultValues,
+} from "@jobber/components/DataList/context/DataListContext";
 import {
   DataListLayoutContext,
   defaultValues as layoutDefaultValues,
-} from "../../context/DataListLayoutContext";
-import { DataListLayoutActionsContext } from "../DataListLayoutActions/DataListLayoutContext";
+} from "@jobber/components/DataList/context/DataListLayoutContext";
+import { DataListLayout } from "@jobber/components/DataList/components/DataListLayout";
+import { DataListItemActions } from "@jobber/components/DataList/components/DataListItemActions";
+import { DataListAction } from "@jobber/components/DataList/components/DataListAction";
+import { DataListLayoutActionsContext } from "@jobber/components/DataList/components/DataListLayoutActions/DataListLayoutContext";
+import { DataListItem } from "./DataListItem";
 
 const mockSetHasInLayoutActions = jest.fn().mockReturnValue(true);
 const mockItemActionComponent = jest.fn().mockReturnValue(
