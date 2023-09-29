@@ -1,37 +1,73 @@
 .content {
   z-index: var(--elevation-tooltip);
   max-width: var(--popover--width);
+  min-width: calc(var(--space-extravagant) * 3.75);
   box-shadow: var(--shadow-base);
+  margin-top: var(--space-small);
   border: var(--border-base) solid var(--color-border);
-  border-radius: var(--radius-base);
-  font-size: var(--typography--fontSize-base);
-  line-height: normal;
+  border-radius: var(--radius-larger);
+  overflow: scroll;
+  overflow-y: auto;
   background: var(--color-surface);
 }
 
 /* CAUTION: Tests for content visibility assume this class' presence hides the content
-  * so please be careful if you change this class name, or the css rules within.
- */
+* so please be careful if you change this class name, or the css rules within.
+*/
 .content.hidden {
   display: none;
   visibility: hidden;
 }
 
-.optionsList {
-  max-height: 300px;
-  margin: 0;
+.clearSearch {
+  position: absolute;
+  top: 50%;
+  right: var(--space-base);
+  z-index: var(--elevation-tooltip);
+  width: var(--space-large);
+  height: var(--space-large);
   padding: 0;
+  border: none;
+  border-radius: var(--radius-circle);
+  background-color: var(--color-surface--background);
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.optionsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-smaller);
+  max-height: calc(var(--space-small) * 32.5);
+  margin: 0;
+  padding: var(--space-small);
   overflow: scroll;
   list-style: none;
 }
 
 .option {
-  padding: var(--space-small) var(--space-base);
+  display: flex;
+  min-height: calc((var(--space-largest) - var(--space-smaller)));
+  box-sizing: border-box;
+  padding: var(--space-small);
+  border-radius: var(--radius-large);
+  color: var(--color-heading);
+  font-weight: 500;
   cursor: pointer;
+  justify-content: space-between;
+  align-items: center;
+  transition: all var(--timing-base);
 }
 
-.option:hover {
+.selectedOption,
+.option:hover,
+.option:focus {
   background-color: var(--color-surface--background);
+}
+
+.option:focus,
+.clearSearch:focus {
+  box-shadow: var(--shadow-focus);
 }
 
 .search {
@@ -40,36 +76,17 @@
 
 .searchInput {
   width: 100%;
-  padding: var(--space-base) var(--space-base);
+  padding: var(--space-base);
+  padding-right: calc(var(--space-large) * 2.25);
   border: none;
   border-bottom: var(--border-base) solid var(--color-border);
-  border-radius: 0;
   font-family: var(--typography--fontFamily-normal);
   font-size: var(--typography--fontSize-base);
-  line-height: normal;
-  background-color: var(--color-surface);
 }
 
-.clearSearch {
-  display: flex;
-  position: absolute;
-  top: 0;
-  top: 50%;
-  right: var(--space-small);
-  z-index: var(--elevation-tooltip);
-  width: calc(var(--space-smaller) * 5);
-  height: calc(var(--space-smaller) * 5);
-  padding: 0;
-  border: none;
-  border-radius: var(--radius-circle);
-  background-color: var(--color-surface--background);
-  transform: translateY(-50%);
-  justify-content: center;
-  align-items: center;
-}
-
-.clearSearch:focus {
-  box-shadow: var(--shadow-focus);
+.filterMessage,
+.emptyStateMessage {
+  padding: var(--space-small);
 }
 
 .search::after {
@@ -94,27 +111,22 @@
   top: calc(var(--space-base) * -1);
   right: 0;
   left: 0;
-  width: 100%;
   height: var(--space-base);
-  background-image: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 1)
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgb(255, 255, 255) 100%
   );
 }
 
-.selectedOption {
-  background-color: var(--color-surface--background);
-}
-
 .actions {
+  display: flex;
+  flex-direction: column;
   position: sticky;
+  gap: var(--space-smaller);
   bottom: 0;
   width: 100%;
-}
-
-.actions button:last-child {
-  padding-bottom: var(--space-small);
+  background-color: var(--color-surface);
 }
 
 .actionPadding {

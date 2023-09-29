@@ -14,6 +14,7 @@ import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import styles from "./ComboboxContent.css";
 import { Icon } from "../../../Icon";
+import { Text } from "../../../Text";
 import { ComboboxContext } from "../../ComboboxProvider";
 import { ComboboxOption } from "../../Combobox.types";
 
@@ -114,15 +115,24 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
                 })}
               >
                 {option.label}
+                {isSelected && <Icon name="checkmark" color="blue" />}
               </li>
             );
           })}
 
         {optionsExist && filteredOptions.length === 0 && (
-          <p>No results for {`"${searchValue}"`}</p>
+          <div className={styles.filterMessage}>
+            <Text variation="subdued">No results for {`“${searchValue}”`}</Text>
+          </div>
         )}
 
-        {!optionsExist && <p>{getZeroIndexStateText(props.subjectNoun)}</p>}
+        {!optionsExist && (
+          <div className={styles.emptyStateMessage}>
+            <Text variation="subdued">
+              {getZeroIndexStateText(props.subjectNoun)}
+            </Text>
+          </div>
+        )}
       </ul>
 
       {props.children && (
