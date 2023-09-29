@@ -1,12 +1,16 @@
+.container {
+  padding: var(--space-small);
+}
+
 .optionsList {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-smaller);
-  max-height: calc(var(--space-small) * 32.5);
+  max-height: calc(var(--space-small) * 33.33);
   margin: 0;
-  padding: var(--space-small);
+  padding: 0;
   overflow: scroll;
   list-style: none;
+  flex-direction: column;
+  gap: var(--space-smaller);
 }
 
 .option {

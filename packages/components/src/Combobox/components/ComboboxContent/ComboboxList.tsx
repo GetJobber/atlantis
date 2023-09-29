@@ -18,36 +18,39 @@ interface ComboboxListProps {
 
 export function ComboboxList(props: ComboboxListProps): JSX.Element {
   return (
-    <ul
-      className={styles.optionsList}
-      role="listbox"
-      ref={props.optionsListRef}
-    >
-      {!props.showEmptyState &&
-        props.options.map(option => {
-          const isSelected =
-            option.id.toString() === props.selected?.id.toString();
+    <div className={styles.container}>
+      {!props.showEmptyState && props.options.length > 0 && (
+        <ul
+          className={styles.optionsList}
+          role="listbox"
+          ref={props.optionsListRef}
+        >
+          {!props.showEmptyState &&
+            props.options.map(option => {
+              const isSelected =
+                option.id.toString() === props.selected?.id.toString();
 
-          return (
-            <li
-              ref={listItem => {
-                if (isSelected) props.setSelectedElement(listItem);
-              }}
-              key={option.id}
-              tabIndex={-1}
-              role="option"
-              aria-selected={isSelected}
-              onClick={() => props.selectionHandler(option)}
-              className={classnames(styles.option, {
-                [styles.selectedOption]: isSelected,
-              })}
-            >
-              {option.label}
-              {isSelected && <Icon name="checkmark" color="blue" />}
-            </li>
-          );
-        })}
-
+              return (
+                <li
+                  ref={listItem => {
+                    if (isSelected) props.setSelectedElement(listItem);
+                  }}
+                  key={option.id}
+                  tabIndex={-1}
+                  role="option"
+                  aria-selected={isSelected}
+                  onClick={() => props.selectionHandler(option)}
+                  className={classnames(styles.option, {
+                    [styles.selectedOption]: isSelected,
+                  })}
+                >
+                  {option.label}
+                  {isSelected && <Icon name="checkmark" color="blue" />}
+                </li>
+              );
+            })}
+        </ul>
+      )}
       {!props.showEmptyState && props.options.length === 0 && (
         <div className={styles.filterMessage}>
           <Text variation="subdued">
@@ -63,7 +66,7 @@ export function ComboboxList(props: ComboboxListProps): JSX.Element {
           </Text>
         </div>
       )}
-    </ul>
+    </div>
   );
 }
 

@@ -36,7 +36,7 @@
   display: block;
   position: absolute;
   right: 0;
-  bottom: calc(var(--space-base) * -1);
+  bottom: calc(var(--space-large) * -1);
   left: 0;
   height: var(--space-base);
   background-image: linear-gradient(
