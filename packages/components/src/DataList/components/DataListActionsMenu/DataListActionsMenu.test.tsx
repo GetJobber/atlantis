@@ -60,7 +60,7 @@ describe("DataListActionsMenu", () => {
       });
     });
 
-    it("should position ensure the X positioning doesn't put the menu off screen", () => {
+    it("should ensure the X positioning doesn't put the menu off screen", () => {
       mockPositionValue.mockReturnValueOnce({ x: viewportWidth, y: 0 });
       renderComponent();
 
@@ -73,7 +73,7 @@ describe("DataListActionsMenu", () => {
       });
     });
 
-    it("should position ensure the Y positioning doesn't put the menu off screen", () => {
+    it("should ensure the Y positioning doesn't put the menu off screen", () => {
       mockPositionValue.mockReturnValueOnce({ x: 0, y: viewportHeight });
       renderComponent();
 
