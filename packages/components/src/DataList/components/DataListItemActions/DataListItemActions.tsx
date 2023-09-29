@@ -80,7 +80,7 @@ export function InternalDataListItemActions<T extends DataListObject>({
         );
       })}
 
-      <DataListItemActionsOverflow actions={childrenArray} item={item} />
+      <DataListItemActionsOverflow actions={childrenArray} />
     </motion.div>
   );
 }

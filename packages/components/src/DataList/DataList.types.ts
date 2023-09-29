@@ -260,8 +260,3 @@ export interface DataListActionProps<T extends DataListObject> {
    */
   readonly onClick?: (data: T) => void;
 }
-
-export interface InternalDataListActionProps<T extends DataListObject>
-  extends DataListActionProps<T> {
-  readonly item: T;
-}
