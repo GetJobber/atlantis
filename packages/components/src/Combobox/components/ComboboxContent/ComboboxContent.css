@@ -20,7 +20,6 @@
 }
 
 .clearSearch {
-  display: flex;
   position: absolute;
   top: 50%;
   right: var(--space-base);
@@ -31,9 +30,8 @@
   border: none;
   border-radius: var(--radius-circle);
   background-color: var(--color-surface--background);
+  cursor: pointer;
   transform: translateY(-50%);
-  justify-content: center;
-  align-items: center;
 }
 
 .optionsList {
