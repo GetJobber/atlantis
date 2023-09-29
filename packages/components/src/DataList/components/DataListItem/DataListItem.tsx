@@ -19,6 +19,7 @@ import { InternalDataListAction } from "@jobber/components/DataList/components/D
 import { DataListLayoutActionsContext } from "@jobber/components/DataList/components/DataListLayoutActions/DataListLayoutContext";
 import styles from "@jobber/components/DataList/DataList.css";
 import { DataListItemInternal } from "./DataListItemInternal";
+import { DataListItemClickable } from "./components/DataListItemClickable";
 import { generateListItemElement } from "../../DataList.utils";
 
 interface DataListItem<T extends DataListObject> {
@@ -49,6 +50,8 @@ export function DataListItem<T extends DataListObject>({
       <div
         onMouseEnter={handleShowMenu}
         onMouseLeave={handleHideMenu}
+        onFocus={handleShowMenu}
+        onBlur={handleHideMenu}
         onContextMenu={handleContextMenu}
         className={classNames(styles.listItem, {
           [styles.active]: showMenu && isContextMenuVisible,
@@ -56,7 +59,9 @@ export function DataListItem<T extends DataListObject>({
         key={item.id}
       >
         <DataListItemInternal item={item}>
-          {layout.props.children(generatedItem)}
+          <DataListItemClickable>
+            {layout.props.children(generatedItem)}
+          </DataListItemClickable>
         </DataListItemInternal>
 
         <AnimatePresence>
