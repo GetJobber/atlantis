@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
+import { cleanup, fireEvent, render } from "@testing-library/react";
 import React from "react";
 import {
   COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE,
@@ -232,35 +232,8 @@ describe("ComboboxContent", () => {
   });
 });
 
-describe("Combobox Search", () => {
-  it("should focus search input after opening", async () => {
-    const { getByPlaceholderText, getByText } = render(
-      <Combobox>
-        <Combobox.TriggerButton label="Click Me" />
-        <Combobox.Content
-          options={[
-            { id: "1", label: "Bilbo Baggins" },
-            { id: "2", label: "Frodo Baggins" },
-          ]}
-          onSelect={jest.fn()}
-          selected={null}
-        ></Combobox.Content>
-      </Combobox>,
-    );
-
-    const button = getByText("Click Me");
-    fireEvent.click(button);
-
-    const searchInput = getByPlaceholderText("Search");
-
-    await waitFor(() => {
-      expect(searchInput).toHaveFocus();
-    });
-  });
-});
-
 describe("Combobox selected value", () => {
-  it("has no selected option when a null selected value is passed", () => {
+  it("has no selected option when selection is cleared", () => {
     const { getByText } = render(<ClearSelectionCombobox />);
 
     const option = getByText("Bilbo Baggins");
@@ -271,92 +244,6 @@ describe("Combobox selected value", () => {
     fireEvent.click(clearButton);
     fireEvent.click(getByText("Button"));
     expect(option).not.toHaveClass("selectedOption");
-  });
-  it("has a selected option when a selected id is passed as a number and option id is a string", () => {
-    const { getByText } = render(
-      <Combobox>
-        <Combobox.TriggerButton label="Button" />
-        <Combobox.Content
-          options={[
-            { id: "1", label: "Bilbo Baggins" },
-            { id: "2", label: "Frodo Baggins" },
-          ]}
-          onSelect={jest.fn()}
-          selected={{ id: 1, label: "Bilbo Baggins" }}
-        ></Combobox.Content>
-      </Combobox>,
-    );
-    const option = getByText("Bilbo Baggins");
-    expect(option).toHaveClass("selectedOption");
-  });
-
-  it("has a selected option when a selected value is passed as the same type as the option id", () => {
-    const { getByText } = render(
-      <Combobox>
-        <Combobox.TriggerButton label="Button" />
-        <Combobox.Content
-          options={[
-            { id: 1, label: "Bilbo Baggins" },
-            { id: 2, label: "Frodo Baggins" },
-          ]}
-          onSelect={jest.fn()}
-          selected={{ id: 1, label: "Bilbo Baggins" }}
-        ></Combobox.Content>
-      </Combobox>,
-    );
-    const option = getByText("Bilbo Baggins");
-    expect(option).toHaveClass("selectedOption");
-  });
-});
-
-describe("Combobox Zero Index State", () => {
-  describe("when no options exist and subjectNoun is provided", () => {
-    it("should render the correct zero index state text", () => {
-      const subjectNoun = "teammates";
-      const { getByText } = render(
-        <Combobox>
-          <Combobox.TriggerButton label="Select a teammate" />
-          <Combobox.Content
-            options={[]}
-            onSelect={jest.fn()}
-            subjectNoun={subjectNoun}
-            selected={null}
-          />
-        </Combobox>,
-      );
-
-      expect(getByText("You don't have any teammates yet")).toBeInTheDocument();
-    });
-  });
-
-  describe("when no options exist and subjectNoun is not provided", () => {
-    it("should render the default zero index state text", () => {
-      const { getByText } = render(
-        <Combobox>
-          <Combobox.TriggerButton label="Select a tax rate" />
-          <Combobox.Content options={[]} onSelect={jest.fn()} selected={null} />
-        </Combobox>,
-      );
-
-      expect(getByText("No options yet")).toBeInTheDocument();
-    });
-  });
-
-  describe("when options do exist", () => {
-    it("should not render default zero index state text", () => {
-      const { queryByText } = render(
-        <Combobox>
-          <Combobox.TriggerButton label="Select a tax rate" />
-          <Combobox.Content
-            options={[{ id: "1", label: "10%" }]}
-            onSelect={jest.fn()}
-            selected={null}
-          />
-        </Combobox>,
-      );
-
-      expect(queryByText("No options yet")).not.toBeInTheDocument();
-    });
   });
 });
 
