@@ -1,5 +1,6 @@
 import { ReactElement, ReactNode } from "react";
 import { IconNames } from "@jobber/design";
+import { XOR } from "ts-xor";
 import { Breakpoints } from "./DataList.const";
 import { ButtonProps } from "../Button";
 
@@ -185,9 +186,8 @@ export interface DataListContextProps<T extends DataListObject>
   readonly bulkActionsComponent?: ReactElement<DataListItemActionsProps<T>>;
 }
 
-export interface DataListLayoutContextProps<T extends DataListObject> {
+export interface DataListLayoutContextProps {
   readonly isInLayoutProvider: boolean;
-  readonly activeItem?: T;
 
   /**
    * Determine if the consumer of the DataList manually added an action to the
@@ -198,14 +198,23 @@ export interface DataListLayoutContextProps<T extends DataListObject> {
   readonly setHasInLayoutActions: (state: boolean) => void;
 }
 
+export interface DataListLayoutActionsContextProps<T extends DataListObject> {
+  readonly activeItem?: T;
+}
+
 type Fragment<T> = T | T[];
 
-export interface DataListItemActionsProps<T extends DataListObject> {
+interface BaseDataListItemActionsProps<T extends DataListObject> {
   /**
    * The actions to render for each item in the DataList. This only accepts the
    * DataList.Action component.
    */
   readonly children?: Fragment<ReactElement<DataListActionProps<T>>>;
+
+  /**
+   * Callback when an item is clicked.
+   */
+  readonly onClick?: (item: T) => void;
 }
 
 export interface DataListBulkActionsProps {
@@ -215,6 +224,29 @@ export interface DataListBulkActionsProps {
    */
   readonly children?: Fragment<ReactElement<DataListBulkActionProps>>;
 }
+
+interface DataListItemActionsPropsWithURL<T extends DataListObject>
+  extends BaseDataListItemActionsProps<T> {
+  /**
+   * If a normal page navigation is needed, use this prop to change the element
+   * to an `a` tag with an `href`.
+   */
+  readonly url?: string | ((item: T) => string);
+}
+
+interface DataListItemActionsPropsWithTo<T extends DataListObject>
+  extends BaseDataListItemActionsProps<T> {
+  /**
+   * If a React Navigation is needed, use this prop to use the `Link` component
+   * that comes with React Router.
+   */
+  readonly to?: string | ((item: T) => string);
+}
+
+export type DataListItemActionsProps<T extends DataListObject> = XOR<
+  DataListItemActionsPropsWithURL<T>,
+  DataListItemActionsPropsWithTo<T>
+>;
 
 export interface DataListActionProps<T extends DataListObject> {
   /**

@@ -159,7 +159,7 @@ const Template: ComponentStory<typeof DataList> = args => {
         placeholder="Search characters..."
       />
 
-      <DataList.ItemActions>
+      <DataList.ItemActions onClick={handleActionClick}>
         <DataList.ItemAction
           icon="edit"
           label="Edit"
