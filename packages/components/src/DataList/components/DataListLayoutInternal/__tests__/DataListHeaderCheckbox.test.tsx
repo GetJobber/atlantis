@@ -114,6 +114,12 @@ describe("DataListHeaderCheckbox", () => {
   });
 
   describe("Select All Checkbox Indeterminate and Checked State", () => {
+    const originalMatchMedia = window.matchMedia;
+
+    afterAll(() => {
+      window.matchMedia = originalMatchMedia;
+    });
+
     Object.defineProperty(window, "matchMedia", {
       writable: true,
       value: jest.fn().mockImplementation((query: string) => {
