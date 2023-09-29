@@ -1,6 +1,6 @@
 .container {
   position: relative;
-  padding: var(--space-small);
+  padding: var(--space-small) 0;
 }
 
 .optionsList {
@@ -18,14 +18,15 @@
   display: flex;
   min-height: calc((var(--space-largest) - var(--space-smaller)));
   box-sizing: border-box;
+  margin: 0 var(--space-small);
   padding: var(--space-small);
   border-radius: var(--radius-large);
   color: var(--color-heading);
   font-weight: 500;
   cursor: pointer;
+  transition: all var(--timing-base);
   justify-content: space-between;
   align-items: center;
-  transition: all var(--timing-base);
 }
 
 .selectedOption,
@@ -40,7 +41,7 @@
 
 .filterMessage,
 .emptyStateMessage {
-  padding: var(--space-small);
+  padding: var(--space-small) var(--space-base);
 }
 
 .container::after {
