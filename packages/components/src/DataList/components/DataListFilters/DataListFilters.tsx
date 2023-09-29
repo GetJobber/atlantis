@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import { DataListSort } from "./components/DataListSort";
-import { DataListOverflowFade } from "../DataListOverflowFade/DataListOverflowFade";
+import { DataListOverflowFade } from "../DataListOverflowFade";
 import { useDataListContext } from "../../context/DataListContext";
 import { getCompoundComponent } from "../../DataList.utils";
 import { useShowHeader } from "../../hooks/useShowHeader";

@@ -300,7 +300,7 @@ const Template: ComponentStory<typeof DataList> = args => {
     </DataList>
   );
 
-  function handleActionClick(item: (typeof mappedData)[number] | undefined) {
+  function handleActionClick(item: (typeof mappedData)[number]) {
     alert(`You clicked the action for ${item?.label}`);
   }
 

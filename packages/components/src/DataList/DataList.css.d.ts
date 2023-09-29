@@ -12,6 +12,7 @@ declare const styles: {
   readonly "selected": string;
   readonly "filtering": string;
   readonly "filteringSpinner": string;
+  readonly "srOnly": string;
 };
 export = styles;
 

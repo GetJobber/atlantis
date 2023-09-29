@@ -211,7 +211,7 @@ export interface DataListItemActionsProps<T extends DataListObject> {
 export interface DataListBulkActionsProps {
   /**
    * The actions to render on the top of the DataList to make actions to multiple items.
-   * This only accepts the DataList.Action component.
+   * This only accepts the DataList.BatchAction component.
    */
   readonly children?: Fragment<ReactElement<DataListBulkActionProps>>;
 }
@@ -235,7 +235,7 @@ export interface DataListActionProps<T extends DataListObject> {
   /**
    * The callback function when the action is clicked.
    */
-  readonly onClick?: (data?: T) => void;
+  readonly onClick?: (data: T) => void;
 }
 
 export interface DataListBulkActionProps

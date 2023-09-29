@@ -43,8 +43,9 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
           checked={isAllSelected()}
           indeterminate={selected.length > 0 && !isAllSelected()}
           onChange={onSelectAll}
-          label={selectedLabel}
-        />
+        >
+          <div className={styles.srOnly}>{selectedLabel}</div>
+        </Checkbox>
       </div>
 
       <AnimatedSwitcher
