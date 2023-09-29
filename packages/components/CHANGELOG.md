@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.43.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.42.1...@jobber/components@4.43.0) (2023-09-29)
+
+
+### Features
+
+* **components:** DataList row click and tabbing a11y ([#1548](https://github.com/GetJobber/atlantis/issues/1548)) ([8ceb373](https://github.com/GetJobber/atlantis/commit/8ceb373e917f678e4bb754a9df172d13af569d89))
+
+
+
+
+
 ## [4.42.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.42.0...@jobber/components@4.42.1) (2023-09-27)
 
 
