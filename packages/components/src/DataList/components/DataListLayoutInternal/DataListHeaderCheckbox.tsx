@@ -2,6 +2,7 @@ import classNames from "classnames";
 import React from "react";
 import { ReactElement } from "react-markdown/lib/react-markdown";
 import { AnimatedSwitcher } from "../../../AnimatedSwitcher";
+import { Text } from "../../../Text";
 import { Button } from "../../../Button";
 import { Checkbox } from "../../../Checkbox";
 import { useDataListContext } from "../../context/DataListContext";
@@ -51,6 +52,9 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
         initialChild={children}
         switchTo={
           <div className={styles.headerBatchSelect}>
+            <Text>
+              <b>{selected.length} selected</b>
+            </Text>
             <Button
               label={deselectText}
               onClick={() => onSelect?.([])}

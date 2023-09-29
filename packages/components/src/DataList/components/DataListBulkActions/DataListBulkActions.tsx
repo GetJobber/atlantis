@@ -5,7 +5,7 @@ import { DataListBulkActionsProps } from "../../DataList.types";
 import { useDataListContext } from "../../context/DataListContext";
 import { DataListItemActionsOverflow } from "../DataListItemActions/DataListItemActionsOverflow";
 import { getExposedActions } from "../../DataList.utils";
-import { DataListOverflowFade } from "../DataListFilters/components/DataListOverflowFade/DataListOverflowFade";
+import { DataListOverflowFade } from "../DataListOverflowFade/DataListOverflowFade";
 
 // This component is meant to capture the props of the DataList.BulkActions
 export function DataListBulkActions(
