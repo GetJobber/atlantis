@@ -1,4 +1,9 @@
-import React, { Children, ReactElement, isValidElement } from "react";
+import React, {
+  Children,
+  MouseEvent,
+  ReactElement,
+  isValidElement,
+} from "react";
 import { Variants, motion } from "framer-motion";
 import styles from "./DataListItemActions.css";
 import { DataListItemActionsOverflow } from "./DataListItemActionsOverflow";
@@ -57,6 +62,7 @@ export function InternalDataListItemActions<T extends DataListObject>({
         delay: TRANSITION_DELAY_IN_SECONDS,
       }}
       className={styles.menu}
+      onContextMenu={handleContextMenu}
     >
       {exposedActions.map(({ props }) => {
         if (!props.icon) return null;
@@ -77,6 +83,10 @@ export function InternalDataListItemActions<T extends DataListObject>({
       <DataListItemActionsOverflow actions={childrenArray} item={item} />
     </motion.div>
   );
+}
+
+function handleContextMenu(event: MouseEvent<HTMLDivElement>) {
+  event.stopPropagation();
 }
 
 function getExposedActions<T extends DataListObject>(

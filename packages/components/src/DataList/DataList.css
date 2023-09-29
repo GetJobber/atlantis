@@ -1,3 +1,8 @@
+.wrapper,
+.wrapper * {
+  box-sizing: border-box;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -5,6 +10,10 @@
   z-index: var(--elevation-default);
   flex: 1;
 }
+
+/*
+ * Header
+ */
 
 .titleContainer {
   display: flex;
@@ -22,28 +31,108 @@
 }
 
 .headerTitles {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: var(--space-largest);
   padding: var(--space-small);
   border-bottom: var(--border-thick) solid var(--color-border);
 }
+
+.headerBatchSelect > p {
+  font-weight: 500;
+}
+
+.headerBatchSelect {
+  display: flex;
+  align-items: center;
+  gap: var(--space-smaller);
+  margin: calc(var(--space-small) * -1) 0;
+}
+
+/*
+ * List Item
+ */
 
 .listItem {
   position: relative;
   padding: var(--space-small);
   border-bottom: var(--border-base) solid var(--color-border);
+  transition: all var(--timing-base);
 }
+
+.listItem.active,
+.listItem:hover,
+.listItem:focus-within {
+  --data-list-item-active-color: var(--color-surface--background);
+  background-color: var(--data-list-item-active-color);
+}
+
+.listItemClickable {
+  display: block;
+  margin: calc(var(--space-small) * -1) 0;
+  padding: var(--space-small) 0;
+  border: none;
+  text-align: left;
+  text-decoration: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+/**
+ * Enable a better hover and focus experience when :has() is supported.
+ * This is a workaround for Firefox where the :has() selector is not supported.
+ */
+@supports selector(*:has(*)) {
+  .listItem:hover,
+  .listItem:focus-within {
+    background-color: transparent;
+  }
+
+  .listItem:has(.listItemClickable:hover, .listItemClickable:focus) {
+    background-color: var(--data-list-item-active-color);
+  }
+}
+
+/*
+ * List Item Selection
+ */
 
 .selectable {
   display: grid;
-  column-gap: var(--space-small);
   align-items: flex-start;
-  grid-template-columns: max-content minmax(0px, auto);
 
   @media (--medium-screens-and-up) {
     align-items: center;
   }
 }
 
+.selectable,
+.headerTitles .selectable {
+  grid-template-columns: max-content minmax(0px, auto);
+  column-gap: var(--space-small);
+}
+
+.headerTitles .selectable {
+  display: grid;
+  align-items: center;
+}
+
+.selectAllCheckbox {
+  display: flex;
+  visibility: hidden;
+}
+
+.selectAllCheckbox.visible {
+  visibility: visible;
+}
+
 .listItem .selectable > :first-child {
+  order: 2;
+}
+
+.listItem .selectable > :last-child {
+  order: 1;
   padding-top: var(--space-smaller);
   opacity: 1;
   transition: opacity var(--transition-properties);
@@ -55,11 +144,15 @@
   }
 }
 
-.listItem:hover .selectable > :first-child,
-.listItem:focus-within .selectable > :first-child,
-.listItem .selectable.selected > :first-child {
+.listItem:hover .selectable > :last-child,
+.listItem:focus-within .selectable > :last-child,
+.listItem .selectable.selected > :last-child {
   opacity: 1;
 }
+
+/*
+ * Filters
+ */
 
 .filtering {
   display: flex;

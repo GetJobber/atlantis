@@ -9,7 +9,3 @@
 .sortable {
   cursor: pointer;
 }
-
-.headerLabel > * {
-  font-weight: 500;
-}

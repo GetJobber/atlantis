@@ -3,6 +3,83 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.43.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.43.0...@jobber/components@4.43.1) (2023-09-29)
+
+
+### Bug Fixes
+
+* **components:** Expose Link component props ([#1551](https://github.com/GetJobber/atlantis/issues/1551)) ([4e3a230](https://github.com/GetJobber/atlantis/commit/4e3a2301f3f5026be4d5d8c7816c479085621c4e))
+
+
+
+
+
+# [4.43.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.42.1...@jobber/components@4.43.0) (2023-09-29)
+
+
+### Features
+
+* **components:** DataList row click and tabbing a11y ([#1548](https://github.com/GetJobber/atlantis/issues/1548)) ([8ceb373](https://github.com/GetJobber/atlantis/commit/8ceb373e917f678e4bb754a9df172d13af569d89))
+
+
+
+
+
+## [4.42.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.42.0...@jobber/components@4.42.1) (2023-09-27)
+
+
+### Bug Fixes
+
+* **components:** Improve performance on the list item creation ([#1547](https://github.com/GetJobber/atlantis/issues/1547)) ([02a1c34](https://github.com/GetJobber/atlantis/commit/02a1c34c7dcdc33ee8a043cf20d19bf423efcc81))
+
+
+
+
+
+# [4.42.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.41.0...@jobber/components@4.42.0) (2023-09-25)
+
+
+### Features
+
+* **components:** DataList Layout pluggable actions ([#1544](https://github.com/GetJobber/atlantis/issues/1544)) ([e19c76d](https://github.com/GetJobber/atlantis/commit/e19c76d7e811f98500db32b4ddf54152079635c9))
+
+
+
+
+
+# [4.41.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.40.0...@jobber/components@4.41.0) (2023-09-22)
+
+
+### Features
+
+* **components:** add context menu on data list ([#1542](https://github.com/GetJobber/atlantis/issues/1542)) ([6c4f0b1](https://github.com/GetJobber/atlantis/commit/6c4f0b172ea351a5810d21d6146287213c19448b))
+
+
+
+
+
+# [4.40.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.39.0...@jobber/components@4.40.0) (2023-09-22)
+
+
+### Features
+
+* **components:** move sorting to a button when the header disappears ([#1541](https://github.com/GetJobber/atlantis/issues/1541)) ([84010c3](https://github.com/GetJobber/atlantis/commit/84010c3d57c1a111137c31155063f0e3c37c0c47))
+
+
+
+
+
+# [4.39.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.38.0...@jobber/components@4.39.0) (2023-09-19)
+
+
+### Features
+
+* **components:** support select all and deselect all on DataList ([#1539](https://github.com/GetJobber/atlantis/issues/1539)) ([2b5a231](https://github.com/GetJobber/atlantis/commit/2b5a23117a16452b5c7da6a4da06326027a32ffe))
+
+
+
+
+
 # [4.38.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.37.0...@jobber/components@4.38.0) (2023-09-18)
 
 
