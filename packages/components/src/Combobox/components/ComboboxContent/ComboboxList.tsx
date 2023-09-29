@@ -1,5 +1,7 @@
 import React, { SetStateAction } from "react";
 import classnames from "classnames";
+import { Icon } from "@jobber/components/Icon";
+import { Text } from "@jobber/components/Text";
 import styles from "./ComboboxList.css";
 import { ComboboxOption } from "../../Combobox.types";
 
@@ -41,16 +43,25 @@ export function ComboboxList(props: ComboboxListProps): JSX.Element {
               })}
             >
               {option.label}
+              {isSelected && <Icon name="checkmark" color="blue" />}
             </li>
           );
         })}
 
       {!props.showEmptyState && props.options.length === 0 && (
-        <p>No results for {`"${props.searchValue}"`}</p>
+        <div className={styles.filterMessage}>
+          <Text variation="subdued">
+            No results for {`“${props.searchValue}”`}
+          </Text>
+        </div>
       )}
 
       {props.showEmptyState && (
-        <p>{getZeroIndexStateText(props.subjectNoun)}</p>
+        <div className={styles.emptyStateMessage}>
+          <Text variation="subdued">
+            {getZeroIndexStateText(props.subjectNoun)}
+          </Text>
+        </div>
       )}
     </ul>
   );

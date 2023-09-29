@@ -21,6 +21,9 @@ import {
   InternalDataListEmptyState,
 } from "./components/DataListEmptyState";
 import { DataListLoadMore } from "./components/DataListLoadMore";
+import { DataListItemActions } from "./components/DataListItemActions";
+import { DataListAction } from "./components/DataListAction";
+import { DataListLayoutActions } from "./components/DataListLayoutActions";
 import { DataListContext, useDataListContext } from "./context/DataListContext";
 import {
   DataListEmptyStateProps,
@@ -38,8 +41,6 @@ import {
 } from "./DataList.utils";
 import { useLayoutMediaQueries } from "./hooks/useLayoutMediaQueries";
 import { DATA_LIST_FILTERING_SPINNER_TEST_ID } from "./DataList.const";
-import { DataListItemActions } from "./components/DataListItemActions";
-import { DataListAction } from "./components/DataListAction";
 import { Heading } from "../Heading";
 import { Spinner } from "../Spinner";
 
@@ -181,9 +182,40 @@ function InternalDataList() {
   }
 }
 
+/**
+ * Sets the layout that the DataList item and header will use.
+ */
 DataList.Layout = DataListLayout;
+
+/**
+ * By using this component, we can render the actions anywhere in the layout
+ * instead of being added automatically on hover.
+ */
+DataList.LayoutActions = DataListLayoutActions;
+
+/**
+ * When the DataList is either empty and/or filtered, this component will be
+ * rendered.
+ */
 DataList.EmptyState = DataListEmptyState;
+
+/**
+ * Adds the filter components of your choosing to the DataList.
+ */
 DataList.Filters = DataListFilters;
+
+/**
+ * Enables the search functionality of the DataList.
+ */
 DataList.Search = DataListSearch;
+
+/**
+ * Defines the group actions you could do on a single DataList item.
+ */
 DataList.ItemActions = DataListItemActions;
+
+/**
+ * Defines the action in a DataList. This should be used inside the
+ * DataListItemActions component.
+ */
 DataList.Action = DataListAction;

@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react";
 import { DataListContextProps, DataListObject } from "../../DataList.types";
 
-export const defaultValues = {
+export const defaultValues: DataListContextProps<DataListObject> = {
   title: "",
   data: [],
   headers: {},

@@ -4,7 +4,7 @@ import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
 import { Button as ClearButton } from "@jobber/components/Button";
 
 export default {
-  title: "Components/Combobox/Combobox/Web",
+  title: "Components/Selections/Combobox/Web",
   component: Combobox,
   parameters: {
     viewMode: "story",
@@ -17,7 +17,7 @@ const ComboboxButton: ComponentStory<typeof Combobox> = args => {
   return (
     <Combobox {...args}>
       <Combobox.TriggerButton
-        label="Select a teammate"
+        label="Select Teammate"
         variation="subtle"
         type="primary"
         icon="arrowDown"
@@ -30,21 +30,20 @@ const ComboboxButton: ComponentStory<typeof Combobox> = args => {
           { id: "3", label: "Pippin Took" },
           { id: "4", label: "Merry Brandybuck" },
           { id: "5", label: "Sam Gamgee" },
-          { id: "6", label: "Bilbo Baggins2" },
-          { id: "7", label: "Frodo Baggins2" },
-          { id: "8", label: "Pippin Took2" },
-          { id: "9", label: "Merry Brandybuck2" },
-          { id: "10", label: "Sam Gamgee2" },
-          { id: "11", label: "Bilbo Baggins3" },
-          { id: "12", label: "Frodo Baggins3" },
-          { id: "13", label: "Pippin Took3" },
-          { id: "14", label: "Merry Brandybuck3" },
-          { id: "15", label: "Sam Gamgee3" },
+          { id: "6", label: "Aragorn" },
+          { id: "7", label: "Galadriel" },
+          { id: "8", label: "Arwen" },
+          { id: "9", label: "Gandalf" },
+          { id: "10", label: "Legolas" },
+          { id: "11", label: "Gimli" },
+          { id: "12", label: "Samwise Gamgee" },
+          { id: "14", label: "Faramir" },
         ]}
         onSelect={selection => {
           setSelected(selection);
         }}
         selected={selected}
+        subjectNoun="teammates"
       >
         <Combobox.Action
           label="Add Teammate"
@@ -67,7 +66,7 @@ const ComboboxChip: ComponentStory<typeof Combobox> = args => {
   const [selected, setSelected] = useState<ComboboxOption | null>(null);
   return (
     <Combobox {...args}>
-      <Combobox.TriggerChip label="Tags" />
+      <Combobox.TriggerChip label="Teammates" />
       <Combobox.Content
         options={[
           { id: "1", label: "Bilbo Baggins" },
@@ -98,12 +97,41 @@ const ComboboxChip: ComponentStory<typeof Combobox> = args => {
   );
 };
 
+const ComboboxEmptyState: ComponentStory<typeof Combobox> = args => {
+  const [selected, setSelected] = useState<ComboboxOption | null>(null);
+  return (
+    <Combobox {...args}>
+      <Combobox.TriggerButton
+        label="Select Teammate"
+        variation="subtle"
+        type="primary"
+        icon="arrowDown"
+        iconOnRight={true}
+      />
+      <Combobox.Content
+        options={[]}
+        onSelect={selection => {
+          setSelected(selection);
+        }}
+        selected={selected}
+        subjectNoun="teammates"
+      >
+        <Combobox.Action
+          label="Add Teammate"
+          onClick={() => {
+            alert("Added a new teammate ✅");
+          }}
+        />
+      </Combobox.Content>
+    </Combobox>
+  );
+};
+
 const ComboboxClearSelection: ComponentStory<typeof Combobox> = args => {
   const [selected, setSelected] = useState<ComboboxOption | null>({
     id: "1",
     label: "Bilbo Baggins",
   });
-
   return (
     <>
       <ClearButton
@@ -126,16 +154,14 @@ const ComboboxClearSelection: ComponentStory<typeof Combobox> = args => {
             { id: "3", label: "Pippin Took" },
             { id: "4", label: "Merry Brandybuck" },
             { id: "5", label: "Sam Gamgee" },
-            { id: "6", label: "Bilbo Baggins2" },
-            { id: "7", label: "Frodo Baggins2" },
-            { id: "8", label: "Pippin Took2" },
-            { id: "9", label: "Merry Brandybuck2" },
-            { id: "10", label: "Sam Gamgee2" },
-            { id: "11", label: "Bilbo Baggins3" },
-            { id: "12", label: "Frodo Baggins3" },
-            { id: "13", label: "Pippin Took3" },
-            { id: "14", label: "Merry Brandybuck3" },
-            { id: "15", label: "Sam Gamgee3" },
+            { id: "6", label: "Aragorn" },
+            { id: "7", label: "Galadriel" },
+            { id: "8", label: "Arwen" },
+            { id: "9", label: "Gandalf" },
+            { id: "10", label: "Legolas" },
+            { id: "11", label: "Gimli" },
+            { id: "12", label: "Samwise Gamgee" },
+            { id: "14", label: "Faramir" },
           ]}
           onSelect={selection => {
             setSelected(selection);
@@ -160,11 +186,14 @@ const ComboboxClearSelection: ComponentStory<typeof Combobox> = args => {
   );
 };
 
-export const Button = ComboboxButton.bind({});
-Button.args = {};
+export const TriggerButton = ComboboxButton.bind({});
+TriggerButton.args = {};
 
-export const Chip = ComboboxChip.bind({});
-Chip.args = {};
+export const TriggerChip = ComboboxChip.bind({});
+TriggerChip.args = {};
 
 export const ClearSelection = ComboboxClearSelection.bind({});
 ClearSelection.args = {};
+
+export const EmptyState = ComboboxEmptyState.bind({});
+EmptyState.args = {};

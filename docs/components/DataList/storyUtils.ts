@@ -35,6 +35,18 @@ export interface ListQueryType {
   };
 }
 
+export interface ListIDsQueryType {
+  allPeople: {
+    __typename?: "PeopleConnection";
+    edges: Array<{
+      __typename?: "PeopleEdge";
+      node: {
+        id: string;
+      };
+    }>;
+  };
+}
+
 export type ListEdges = ListQueryType["allPeople"]["edges"];
 export type ListNode = ListEdges[number]["node"];
 
@@ -69,6 +81,19 @@ export const LIST_QUERY = gql`
         endCursor
       }
       totalCount
+    }
+  }
+`;
+
+export const LAZY_LIST_IDS_QUERY = gql`
+  query ListIDQuery {
+    allPeople {
+      edges {
+        node {
+          id
+        }
+        cursor
+      }
     }
   }
 `;

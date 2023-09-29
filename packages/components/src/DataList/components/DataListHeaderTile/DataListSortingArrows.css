@@ -1,0 +1,16 @@
+.sortIcon {
+  padding-right: var(--space-small);
+}
+
+.sortIcon path {
+  fill: var(--color-greyBlue);
+  transition: all var(--timing-base) ease;
+}
+
+.sortIcon path.active {
+  fill: var(--color-blue);
+}
+
+.sortIcon path.inactive {
+  fill: var(--color-greyBlue--lighter);
+}

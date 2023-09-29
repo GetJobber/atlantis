@@ -3,6 +3,8 @@ import { AnimatePresence, Variants, motion } from "framer-motion";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
+import { createPortal } from "react-dom";
+import { tokens } from "@jobber/design/foundation";
 import styles from "./DataListActionsMenu.css";
 import { TRANSITION_DELAY_IN_SECONDS } from "../../DataList.const";
 
@@ -32,13 +34,12 @@ export function DataListActionsMenu({
   const focusTrapRef = useFocusTrap<HTMLDivElement>(visible);
   useOnKeyDown(onRequestClose, "Escape");
 
-  return (
+  return createPortal(
     <AnimatePresence>
       {visible && (
-        <>
-          <div className={styles.overlay} onClick={onRequestClose} />
-
+        <div ref={focusTrapRef}>
           <motion.div
+            role="menu"
             ref={setRef}
             variants={variants}
             initial="hidden"
@@ -47,14 +48,20 @@ export function DataListActionsMenu({
             transition={{ duration: TRANSITION_DELAY_IN_SECONDS }}
             className={styles.menu}
             style={getPositionCssVars()}
+            onClick={onRequestClose}
           >
-            <div tabIndex={0} ref={focusTrapRef}>
-              {children}
-            </div>
+            {children}
           </motion.div>
-        </>
+
+          <button
+            className={styles.overlay}
+            onClick={onRequestClose}
+            aria-label="Close menu"
+          />
+        </div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   );
 
   function getPositionCssVars() {
@@ -73,9 +80,10 @@ export function DataListActionsMenu({
 
     const xIsOffScreen = x + width > window.innerWidth;
     const yIsOffScreen = y + height > window.innerHeight;
+    const xOffSet = x + width - window.innerWidth + tokens["space-base"];
     const yOffSet = y + height - window.innerHeight;
 
-    const newPosX = Math.floor(xIsOffScreen ? x - width : x);
+    const newPosX = Math.floor(xIsOffScreen ? x - xOffSet : x);
     const newPosY = Math.floor(yIsOffScreen ? y - yOffSet : y);
     return { posX: newPosX, posY: newPosY };
   }

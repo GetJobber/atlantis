@@ -93,7 +93,7 @@ describe("ComboboxList", () => {
         searchValue="Frederick"
       />,
     );
-    expect(getByText('No results for "Frederick"')).toBeInTheDocument();
+    expect(getByText("No results for “Frederick”")).toBeInTheDocument();
   });
   it("should only apply a selected style to the selected option", () => {
     const { getByText } = render(

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { AnimatePresence } from "framer-motion";
+import { DataListItem } from "@jobber/components/DataList/components/DataListItem";
+import { Breakpoints } from "@jobber/components/DataList/DataList.const";
+import {
+  DataListLayoutProps,
+  DataListObject,
+} from "@jobber/components/DataList/DataList.types";
+import { DataListLayoutContext } from "@jobber/components/DataList/context/DataListLayoutContext";
 import { DataListLayoutInternal } from "./DataListLayoutInternal";
-import { DataListItemInternal } from "./DataListItemInternal";
-import { Breakpoints } from "../../DataList.const";
-import styles from "../../DataList.css";
-import { DataListLayoutProps, DataListObject } from "../../DataList.types";
-import { generateListItemElements } from "../../DataList.utils";
-import { InternalDataListItemActions } from "../DataListItemActions";
 
 interface DataListItemsProps<T extends DataListObject> {
   readonly layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined;
@@ -19,41 +19,32 @@ export function DataListItems<T extends DataListObject>({
   mediaMatches,
   data,
 }: DataListItemsProps<T>) {
-  const elementData = generateListItemElements(data);
-  const [hover, setHover] = useState<T["id"]>();
+  const [hasInLayoutActions, setHasInLayoutActions] = useState(false);
 
   return (
-    <DataListLayoutInternal
-      layouts={layouts}
-      mediaMatches={mediaMatches}
-      renderLayout={layout => {
-        return (
-          <>
-            {elementData.map((child, i) => {
-              const item = data[i];
-
-              return (
-                <div
-                  onMouseEnter={() => setHover(item.id)}
-                  onMouseLeave={() => setHover(undefined)}
-                  className={styles.listItem}
-                  key={item.id}
-                >
-                  <DataListItemInternal item={data[i]}>
-                    {layout.props.children(child)}
-                  </DataListItemInternal>
-
-                  <AnimatePresence>
-                    {hover === item.id && (
-                      <InternalDataListItemActions item={item} />
-                    )}
-                  </AnimatePresence>
-                </div>
-              );
-            })}
-          </>
-        );
+    <DataListLayoutContext.Provider
+      value={{
+        isInLayoutProvider: true,
+        hasInLayoutActions,
+        setHasInLayoutActions,
       }}
-    />
+    >
+      <DataListLayoutInternal
+        layouts={layouts}
+        mediaMatches={mediaMatches}
+        renderLayout={layout => (
+          <>
+            {data.map((child, i) => (
+              <DataListItem
+                key={data[i].id}
+                index={i}
+                item={child}
+                layout={layout}
+              />
+            ))}
+          </>
+        )}
+      />
+    </DataListLayoutContext.Provider>
   );
 }

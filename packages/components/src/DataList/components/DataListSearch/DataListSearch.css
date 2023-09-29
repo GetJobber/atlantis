@@ -4,7 +4,7 @@
 
   position: absolute;
   /* Inputs are off by 1 when put beside a button */
-  top: calc(var(--space-small) - 1px);
+  top: calc(var(--space-small) + 1px);
   right: var(--button-offset);
   visibility: hidden;
   width: 0;

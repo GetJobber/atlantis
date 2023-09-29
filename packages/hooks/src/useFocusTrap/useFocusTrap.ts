@@ -35,9 +35,10 @@ export function useFocusTrap<T extends HTMLElement>(active: boolean) {
   }
 
   useEffect(() => {
-    if (active) {
-      ref.current?.focus();
-      ref.current?.addEventListener("keydown", handleKeyDown);
+    if (active && ref.current) {
+      const { firstElement } = getElements(ref.current);
+      firstElement.focus();
+      ref.current.addEventListener("keydown", handleKeyDown);
     }
 
     return () => {
@@ -57,8 +58,16 @@ function getElements<T extends HTMLElement>(ref: T) {
     "textarea",
     '[tabindex]:not([tabindex="-1"])',
   ];
-  const elements = ref.querySelectorAll<HTMLElement>(focusables.join(", "));
-  const firstElement = ref;
+  const elements = [
+    ...ref.querySelectorAll<HTMLElement>(focusables.join(", ")),
+  ];
+
+  // If the ref is focusable, ensure it's the first element to be focused.
+  if (ref.getAttribute("tabindex") === "0") {
+    elements.unshift(ref);
+  }
+
+  const firstElement = elements[0];
   const lastElement = elements[elements.length - 1];
   return { firstElement, lastElement };
 }
