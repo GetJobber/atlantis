@@ -38,7 +38,7 @@ export function InternalDataListAction<T extends DataListObject>({
     if (item) {
       onClick?.(item);
     } else {
-      onClick?.();
+      (onClick as () => void)?.();
     }
   }
 }

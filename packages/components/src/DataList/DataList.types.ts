@@ -281,4 +281,5 @@ export interface DataListBulkActionProps
 export interface InternalDataListActionProps<T extends DataListObject>
   extends DataListActionProps<T> {
   readonly item?: T;
+  readonly onClick?: ((data: T) => void) | (() => void);
 }
