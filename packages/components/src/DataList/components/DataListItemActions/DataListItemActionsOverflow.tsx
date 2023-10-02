@@ -1,21 +1,14 @@
-import React, { Children, MouseEvent, ReactElement, useState } from "react";
+import React, { MouseEvent, ReactElement, useState } from "react";
 import { Button } from "../../../Button";
 import { Tooltip } from "../../../Tooltip";
-import {
-  DataListActionProps,
-  DataListObject,
-  InternalDataListActionProps,
-} from "../../DataList.types";
-import { InternalDataListAction } from "../DataListAction";
+import { DataListActionProps, DataListObject } from "../../DataList.types";
 import { DataListActionsMenu } from "../DataListActionsMenu";
 
-interface DataListItemActionsOverflowProps<T extends DataListObject>
-  extends Partial<Pick<InternalDataListActionProps<T>, "item">> {
+interface DataListItemActionsOverflowProps<T extends DataListObject> {
   readonly actions: ReactElement<DataListActionProps<T>>[];
 }
 
 export function DataListItemActionsOverflow<T extends DataListObject>({
-  item,
   actions,
 }: DataListItemActionsOverflowProps<T>) {
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
@@ -39,9 +32,7 @@ export function DataListItemActionsOverflow<T extends DataListObject>({
           position={menuPosition}
           onRequestClose={handleClose}
         >
-          {Children.map(actions, action => (
-            <InternalDataListAction {...action.props} item={item} />
-          ))}
+          {actions}
         </DataListActionsMenu>
       )}
     </>
