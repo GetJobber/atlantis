@@ -50,6 +50,11 @@
   margin: calc(var(--space-small) * -1) 0;
   align-items: center;
   gap: var(--space-smaller);
+
+  @media (--small-screens-and-below) {
+    min-width: 100%;
+    justify-content: space-between;
+  }
 }
 
 /*
