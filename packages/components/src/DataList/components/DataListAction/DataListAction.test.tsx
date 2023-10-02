@@ -45,7 +45,8 @@ describe("DataListAction", () => {
     const { button } = renderComponent();
 
     userEvent.click(button);
-    expect(handleClick).not.toHaveBeenCalled();
+    // ensure item doesn't get passed in
+    expect(handleClick).toHaveBeenCalledWith();
   });
 
   it("should fire the onClick when the item from the context is defined", () => {

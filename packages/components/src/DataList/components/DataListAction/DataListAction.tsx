@@ -28,6 +28,10 @@ export function DataListAction<T extends DataListObject>({
   );
 
   function handleClick() {
-    activeItem && onClick?.(activeItem);
+    if (activeItem) {
+      onClick?.(activeItem);
+    } else {
+      (onClick as () => void)?.();
+    }
   }
 }

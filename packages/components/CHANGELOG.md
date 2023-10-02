@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.44.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.43.1...@jobber/components@4.44.0) (2023-10-02)
+
+
+### Features
+
+* **components:** Allow Bulk actions on DataList ([#1549](https://github.com/GetJobber/atlantis/issues/1549)) ([5ddfdcf](https://github.com/GetJobber/atlantis/commit/5ddfdcf25eaf44a89c13606102d35da380ab6385))
+
+
+
+
+
+## [4.43.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.43.0...@jobber/components@4.43.1) (2023-09-29)
+
+
+### Bug Fixes
+
+* **components:** Expose Link component props ([#1551](https://github.com/GetJobber/atlantis/issues/1551)) ([4e3a230](https://github.com/GetJobber/atlantis/commit/4e3a2301f3f5026be4d5d8c7816c479085621c4e))
+
+
+
+
+
+# [4.43.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.42.1...@jobber/components@4.43.0) (2023-09-29)
+
+
+### Features
+
+* **components:** DataList row click and tabbing a11y ([#1548](https://github.com/GetJobber/atlantis/issues/1548)) ([8ceb373](https://github.com/GetJobber/atlantis/commit/8ceb373e917f678e4bb754a9df172d13af569d89))
+
+
+
+
+
 ## [4.42.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.42.0...@jobber/components@4.42.1) (2023-09-27)
 
 

@@ -183,6 +183,7 @@ export interface DataListContextProps<T extends DataListObject>
   readonly emptyStateComponents?: ReactElement<DataListEmptyStateProps>[];
   readonly layoutComponents?: ReactElement<DataListLayoutProps<T>>[];
   readonly itemActionComponent?: ReactElement<DataListItemActionsProps<T>>;
+  readonly bulkActionsComponent?: ReactElement<DataListItemActionsProps<T>>;
 }
 
 export interface DataListLayoutContextProps {
@@ -214,6 +215,14 @@ interface BaseDataListItemActionsProps<T extends DataListObject> {
    * Callback when an item is clicked.
    */
   readonly onClick?: (item: T) => void;
+}
+
+export interface DataListBulkActionsProps {
+  /**
+   * The actions to render on the top of the DataList to make actions to multiple items.
+   * This only accepts the DataList.BatchAction component.
+   */
+  readonly children?: Fragment<ReactElement<DataListBulkActionProps>>;
 }
 
 interface DataListItemActionsPropsWithURL<T extends DataListObject>
@@ -259,4 +268,12 @@ export interface DataListActionProps<T extends DataListObject> {
    * The callback function when the action is clicked.
    */
   readonly onClick?: (data: T) => void;
+}
+
+export interface DataListBulkActionProps
+  extends DataListActionProps<DataListObject> {
+  /**
+   * The callback function when the action is clicked.
+   */
+  readonly onClick?: () => void;
 }
