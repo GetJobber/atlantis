@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { DataListLayoutInternal } from "./DataListLayoutInternal";
+import { DataListItems } from "../DataListItems";
 import { useDataListContext } from "../../context/DataListContext";
 import { DataListLayoutProps, DataListObject } from "../../DataList.types";
 import { useResponsiveSizing } from "../../hooks/useResponsiveSizing";
@@ -27,7 +27,7 @@ export function DataListLayout<T extends DataListObject>({
     breakpoints[size] && !breakpoints[nextAvailableSize];
 
   if (shouldRenderLayout) {
-    return <DataListLayoutInternal size={size} />;
+    return <DataListItems size={size} />;
   }
 
   return null;
