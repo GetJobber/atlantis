@@ -53,9 +53,7 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
         initialChild={children}
         switchTo={
           <div className={styles.headerBatchSelect}>
-            <Text>
-              <b>{selected.length} selected</b>
-            </Text>
+            <Text>{selected.length} selected</Text>
             <Button
               label={deselectText}
               onClick={() => onSelect?.([])}

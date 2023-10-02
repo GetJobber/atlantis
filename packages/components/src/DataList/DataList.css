@@ -176,6 +176,7 @@
   top: 50vh;
 }
 
+/* This hides the text from the UI but not from the screen readers */
 .srOnly {
   position: absolute;
   top: auto;
