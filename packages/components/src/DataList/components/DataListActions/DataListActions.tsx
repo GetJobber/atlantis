@@ -48,7 +48,7 @@ export function DataListActions<T extends DataListObject>({
         );
       })}
 
-      <DataListItemActionsOverflow actions={childrenArray} item={activeItem} />
+      <DataListItemActionsOverflow actions={childrenArray} />
     </DataListOverflowFade>
   );
 }

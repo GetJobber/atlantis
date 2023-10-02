@@ -7,13 +7,11 @@ import React, {
 import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
 import { useDataListLayoutContext } from "@jobber/components/DataList/context/DataListLayoutContext";
 import { DataListItemActionsOverflow } from "@jobber/components/DataList/components/DataListItemActionsOverflow";
-import { useDataListLayoutActionsContext } from "./DataListLayoutContext";
 import styles from "./DataListLayoutActions.css";
 
 export function DataListLayoutActions() {
   const { itemActionComponent } = useDataListContext();
   const { setHasInLayoutActions } = useDataListLayoutContext();
-  const { activeItem } = useDataListLayoutActionsContext();
 
   const { children: actionsChildren } = itemActionComponent?.props || {};
   const actions = Children.toArray(actionsChildren) as ReactElement[];
@@ -31,7 +29,7 @@ export function DataListLayoutActions() {
 
   return (
     <DataListLayoutActionsWrapper>
-      <DataListItemActionsOverflow actions={actions} item={activeItem} />
+      <DataListItemActionsOverflow actions={actions} />
     </DataListLayoutActionsWrapper>
   );
 }

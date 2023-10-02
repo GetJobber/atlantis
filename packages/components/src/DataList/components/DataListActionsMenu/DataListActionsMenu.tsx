@@ -76,7 +76,7 @@ export function DataListActionsMenu({
   function getPosition() {
     const rect = ref?.getBoundingClientRect();
     const { width = 0, height = 0 } = rect || {};
-    const { x = 0, y = 0 } = position;
+    const { x, y } = position;
 
     const xIsOffScreen = x + width > window.innerWidth;
     const yIsOffScreen = y + height > window.innerHeight;
