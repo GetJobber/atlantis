@@ -12,6 +12,7 @@ import {
   DataListProps,
 } from "../../DataList.types";
 import { useShowHeader } from "../../hooks/useShowHeader";
+import { useDataListContext } from "../../context/DataListContext";
 
 interface DataListHeaderProps<T extends DataListObject> {
   readonly layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined;
@@ -26,8 +27,11 @@ export function DataListHeader<T extends DataListObject>({
   headerData,
 }: DataListHeaderProps<T>) {
   const showHeader = useShowHeader();
+  const { selected } = useDataListContext();
 
-  if (!showHeader || !headerData) return null;
+  const noItemsSelected = selected?.length === 0;
+
+  if ((!showHeader && noItemsSelected) || !headerData) return null;
 
   return (
     <DataListLayoutInternal

@@ -33,7 +33,7 @@ export function DataListItemActionsOverflow<T extends DataListObject>({
         />
       </Tooltip>
 
-      {item && (
+      {actions && (
         <DataListActionsMenu
           visible={showMenu}
           position={menuPosition}

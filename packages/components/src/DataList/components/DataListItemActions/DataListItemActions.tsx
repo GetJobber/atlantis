@@ -19,6 +19,7 @@ import {
   TRANSITION_DURATION_IN_SECONDS,
 } from "../../DataList.const";
 import { Tooltip } from "../../../Tooltip";
+import { getExposedActions } from "../../DataList.utils";
 
 // This component is meant to capture the props of the DataList.ItemActions
 export function DataListItemActions<T extends DataListObject>(
@@ -87,27 +88,4 @@ export function InternalDataListItemActions<T extends DataListObject>({
 
 function handleContextMenu(event: MouseEvent<HTMLDivElement>) {
   event.stopPropagation();
-}
-
-function getExposedActions<T extends DataListObject>(
-  childrenArray: ReactElement<DataListActionProps<T>>[],
-) {
-  const firstTwoChildren = childrenArray.slice(0, 2);
-
-  return firstTwoChildren.reduce((result: typeof childrenArray, child, i) => {
-    const hasIcon = Boolean(child.props.icon);
-
-    const isFirstChild = i === 0;
-    if (isFirstChild && hasIcon) {
-      return [...result, child];
-    }
-
-    const isSecondChild = i === 1;
-    const hasFirstChild = result.length === 1;
-    if (isSecondChild && hasIcon && hasFirstChild) {
-      return [...result, child];
-    }
-
-    return result;
-  }, []);
 }
