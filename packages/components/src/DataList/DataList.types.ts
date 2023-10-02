@@ -192,8 +192,13 @@ export interface DataListContextProps<T extends DataListObject>
   readonly layoutBreakpoints: Breakpoints[];
   readonly registerLayoutBreakpoints: (breakpoint: Breakpoints) => void;
 
-  readonly visibleLayout: DataListLayoutProps<T>;
-  readonly setVisibleLayout: (layout: DataListLayoutProps<T>) => void;
+  readonly layouts: {
+    readonly [Breakpoint in Breakpoints]?: LayoutRenderer<T>;
+  };
+  readonly registerLayout: (
+    size: Breakpoints,
+    layout: LayoutRenderer<T>,
+  ) => void;
 }
 
 export interface DataListLayoutContextProps {

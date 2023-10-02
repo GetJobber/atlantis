@@ -8,14 +8,17 @@ export function DataListLayout<T extends DataListObject>({
   children,
   size = "xs",
 }: DataListLayoutProps<T>) {
-  const { layoutBreakpoints, setVisibleLayout, registerLayoutBreakpoints } =
+  const { layoutBreakpoints, registerLayout, registerLayoutBreakpoints } =
     useDataListContext<T>();
+  const breakpoints = useResponsiveSizing();
 
   useEffect(() => {
     registerLayoutBreakpoints(size);
   }, [size]);
 
-  const breakpoints = useResponsiveSizing();
+  useEffect(() => {
+    registerLayout(size, children);
+  }, [size, children]);
 
   const sizeIndex = layoutBreakpoints.indexOf(size);
   const nextAvailableSize = layoutBreakpoints[sizeIndex + 1];
@@ -23,14 +26,8 @@ export function DataListLayout<T extends DataListObject>({
   const shouldRenderLayout =
     breakpoints[size] && !breakpoints[nextAvailableSize];
 
-  useEffect(() => {
-    if (shouldRenderLayout) {
-      setVisibleLayout({ size, children });
-    }
-  }, [shouldRenderLayout]);
-
   if (shouldRenderLayout) {
-    return <DataListLayoutInternal />;
+    return <DataListLayoutInternal size={size} />;
   }
 
   return null;

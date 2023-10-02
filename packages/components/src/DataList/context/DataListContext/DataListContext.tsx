@@ -10,11 +10,14 @@ export const defaultValues: DataListContextProps<DataListObject> = {
   selected: [],
   layoutBreakpoints: [],
   registerLayoutBreakpoints: noop,
-  visibleLayout: {
-    size: "xs",
-    children: () => <></>,
+  layouts: {
+    xs: children => <>{children}</>,
+    sm: children => <>{children}</>,
+    md: children => <>{children}</>,
+    lg: children => <>{children}</>,
+    xl: children => <>{children}</>,
   },
-  setVisibleLayout: noop,
+  registerLayout: noop,
 };
 
 export const DataListContext =

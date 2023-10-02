@@ -21,11 +21,7 @@ import { DataListLoadMore } from "./components/DataListLoadMore";
 import { DataListItemActions } from "./components/DataListItemActions";
 import { DataListAction } from "./components/DataListAction";
 import { DataListLayoutActions } from "./components/DataListLayoutActions";
-import {
-  DataListContext,
-  defaultValues,
-  useDataListContext,
-} from "./context/DataListContext";
+import { DataListContext, useDataListContext } from "./context/DataListContext";
 import {
   DataListBulkActionProps,
   DataListBulkActionsProps,
@@ -36,6 +32,7 @@ import {
   DataListObject,
   DataListProps,
   DataListSearchProps,
+  LayoutRenderer,
 } from "./DataList.types";
 import {
   generateHeaderElements,
@@ -53,13 +50,14 @@ import { Heading } from "../Heading";
 import { Spinner } from "../Spinner";
 
 export function DataList<T extends DataListObject>({
+  selected = [],
   sorting,
   ...props
 }: DataListProps<T>) {
   const [layoutBreakpoints, setLayoutBreakpoints] = useState<Breakpoints[]>([]);
-  const [visibleLayout, setVisibleLayout] = useState<
-    DataListLayoutProps<DataListObject>
-  >(defaultValues.visibleLayout);
+  const [layouts, setLayouts] = useState<{
+    [Breakpoint in Breakpoints]?: LayoutRenderer<DataListObject>;
+  }>({});
 
   const searchComponent = getCompoundComponent<DataListSearchProps>(
     props.children,
@@ -95,10 +93,10 @@ export function DataList<T extends DataListObject>({
         bulkActionsComponent,
         layoutBreakpoints,
         registerLayoutBreakpoints,
-        visibleLayout,
-        setVisibleLayout,
+        layouts,
+        registerLayout,
         ...props,
-        selected: props.selected ?? [],
+        selected,
         // T !== DataListObject
         sorting: sorting as DataListProps<DataListObject>["sorting"],
       }}
@@ -109,6 +107,16 @@ export function DataList<T extends DataListObject>({
 
   function registerLayoutBreakpoints(size: Breakpoints) {
     setLayoutBreakpoints(prev => sortBreakpoints([...prev, size]));
+  }
+
+  function registerLayout(
+    size: Breakpoints,
+    children: LayoutRenderer<DataListObject>,
+  ) {
+    setLayouts(prev => ({
+      ...prev,
+      [size]: children,
+    }));
   }
 }
 
