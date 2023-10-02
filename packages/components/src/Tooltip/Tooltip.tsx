@@ -9,7 +9,6 @@ import ReactDOM from "react-dom";
 import { motion } from "framer-motion";
 import styles from "./Tooltip.css";
 import { useTooltipPositioning } from "./useTooltipPositioning";
-import { Text } from "../Text";
 
 const variation = {
   startOrStop: { scale: 0.6, opacity: 0 },
@@ -65,11 +64,11 @@ export function Tooltip({ message, children }: TooltipProps) {
               exit="startOrStop"
               transition={{
                 type: "spring",
-                damping: 20,
-                stiffness: 300,
+                damping: 50,
+                stiffness: 500,
               }}
             >
-              <Text>{message}</Text>
+              <p className={styles.tooltipMessage}>{message}</p>
               <div
                 ref={setArrowRef}
                 style={popperStyles.arrow}

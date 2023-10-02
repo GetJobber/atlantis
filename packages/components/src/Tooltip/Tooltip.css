@@ -1,6 +1,7 @@
 :root {
   --tooltip--arrow-size: var(--space-small);
-  --tooltip--offset: calc(-1 * calc(var(--space-smaller) + 1px));
+  --tooltip--offset: calc(-1 * var(--space-smaller));
+  --tooltip--surface: var(--color-surface--reverse);
 }
 
 .shadowActivator {
@@ -17,10 +18,9 @@
   display: inline-block;
   position: relative;
   max-width: calc(var(--base-unit) * 15);
-  padding: var(--space-small);
-  border: var(--border-base) solid var(--color-informative);
-  border-radius: var(--radius-base);
-  background-color: var(--color-informative--surface);
+  padding: calc(var(--space-base) - var(--space-smallest)) var(--space-base);
+  border-radius: var(--radius-larger);
+  background-color: var(--tooltip--surface);
 }
 
 .tooltip .arrow,
@@ -34,8 +34,7 @@
   content: "";
   display: block;
   position: absolute;
-  border: var(--border-base) solid var(--color-informative);
-  background-color: var(--color-informative--surface);
+  background-color: var(--tooltip--surface);
   transform: rotate(45deg);
 }
 
@@ -71,4 +70,12 @@
 .below .tooltip .arrow::after {
   border-bottom-width: 0;
   border-right-width: 0;
+}
+
+.tooltipMessage {
+  margin: 0;
+  color: var(--color-text--reverse);
+  font-size: var(--typography--fontSize-base);
+  font-weight: 600;
+  line-height: var(--typography--lineHeight-base);
 }
