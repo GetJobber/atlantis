@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.44.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.43.1...@jobber/components@4.44.0) (2023-10-02)
+
+
+### Features
+
+* **components:** Allow Bulk actions on DataList ([#1549](https://github.com/GetJobber/atlantis/issues/1549)) ([5ddfdcf](https://github.com/GetJobber/atlantis/commit/5ddfdcf25eaf44a89c13606102d35da380ab6385))
+
+
+
+
+
 ## [4.43.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.43.0...@jobber/components@4.43.1) (2023-09-29)
 
 
