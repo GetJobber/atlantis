@@ -1,8 +1,11 @@
 import React, { useEffect } from "react";
-import { DataListItems } from "../DataListItems";
-import { useDataListContext } from "../../context/DataListContext";
-import { DataListLayoutProps, DataListObject } from "../../DataList.types";
-import { useResponsiveSizing } from "../../hooks/useResponsiveSizing";
+import { DataListItems } from "@jobber/components/DataList/components/DataListItems";
+import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
+import {
+  DataListLayoutProps,
+  DataListObject,
+} from "@jobber/components/DataList/DataList.types";
+import { useResponsiveSizing } from "@jobber/components/DataList/hooks/useResponsiveSizing";
 
 export function DataListLayout<T extends DataListObject>({
   children,

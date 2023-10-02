@@ -1,10 +1,13 @@
 import React, { PropsWithChildren } from "react";
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import {
+  DataListContext,
+  defaultValues,
+} from "@jobber/components/DataList/context/DataListContext";
+import { DataListItemActions } from "@jobber/components/DataList/components/DataListItemActions";
+import { DataListAction } from "@jobber/components/DataList/components/DataListAction";
 import { DataListItems } from ".";
-import { DataListContext, defaultValues } from "../../context/DataListContext";
-import { DataListItemActions } from "../DataListItemActions";
-import { DataListAction } from "../DataListAction";
 
 const mockData = [
   { id: 1, label: "Luke Skywalker" },
