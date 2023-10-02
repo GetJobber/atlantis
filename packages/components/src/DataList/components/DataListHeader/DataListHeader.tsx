@@ -16,17 +16,10 @@ export function DataListHeader() {
     layoutBreakpoints,
   } = useDataListContext();
 
-  const headerBreakpoints = sortBreakpoints(
-    Object.keys(headerVisibility) as Breakpoints[],
-  ).reverse();
+  const size = getVisibleSize();
+  const layout = getLayout();
 
-  const size =
-    headerBreakpoints.find(key => breakpoints[key]) || layoutBreakpoints[0];
-
-  const layout =
-    layouts[size] || layouts[layoutBreakpoints[layoutBreakpoints.length - 1]];
-
-  const visible = breakpoints[size] && headerVisibility[size];
+  const visible = headerVisibility[size];
   const noItemsSelected = selected?.length === 0;
 
   if ((!visible && noItemsSelected) || !layout) return null;
@@ -39,4 +32,21 @@ export function DataListHeader() {
       <DataListHeaderCheckbox>{layout(headerData)}</DataListHeaderCheckbox>
     </div>
   );
+
+  function getLayout() {
+    if (layoutBreakpoints.includes(size)) {
+      return layouts[size];
+    }
+
+    const lastItem = layoutBreakpoints.length - 1;
+    return layouts[layoutBreakpoints[lastItem]];
+  }
+
+  function getVisibleSize() {
+    const visibilityKeys = Object.keys(headerVisibility) as Breakpoints[];
+    const headerBreakpoints = sortBreakpoints(visibilityKeys).reverse();
+    const visibleHeaderSize = headerBreakpoints.find(key => breakpoints[key]);
+
+    return visibleHeaderSize || layoutBreakpoints[0];
+  }
 }
