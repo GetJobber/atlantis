@@ -6,7 +6,7 @@ import React, {
 } from "react";
 import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
 import { useDataListLayoutContext } from "@jobber/components/DataList/context/DataListLayoutContext";
-import { DataListItemActionsOverflow } from "@jobber/components/DataList/components/DataListItemActions";
+import { DataListItemActionsOverflow } from "@jobber/components/DataList/components/DataListItemActionsOverflow";
 import { useDataListLayoutActionsContext } from "./DataListLayoutContext";
 import styles from "./DataListLayoutActions.css";
 

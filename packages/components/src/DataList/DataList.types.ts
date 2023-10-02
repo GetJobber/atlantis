@@ -270,6 +270,20 @@ export interface DataListActionProps<T extends DataListObject> {
   readonly onClick?: (data: T) => void;
 }
 
+export interface DataListActionsProps<T extends DataListObject> {
+  /**
+   * The actions to render for each item in the DataList. This only accepts the
+   * DataList.Action component.
+   */
+  readonly children?: Fragment<ReactElement<DataListActionProps<T>>>;
+
+  /**
+   * The number of items to expose before the "More" button is shown.
+   * @default 2
+   */
+  readonly itemsToExpose?: number;
+}
+
 export interface DataListBulkActionProps
   extends DataListActionProps<DataListObject> {
   /**
