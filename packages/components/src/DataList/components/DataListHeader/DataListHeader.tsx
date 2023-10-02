@@ -1,10 +1,10 @@
 import React from "react";
+import { DataListHeaderCheckbox } from "./DataListHeaderCheckbox";
 import { useDataListContext } from "../../context/DataListContext";
 import { Breakpoints } from "../../DataList.const";
 import styles from "../../DataList.css";
 import { generateHeaderElements, sortBreakpoints } from "../../DataList.utils";
 import { useResponsiveSizing } from "../../hooks/useResponsiveSizing";
-import { DataListHeaderCheckbox } from "../DataListLayoutInternal/DataListHeaderCheckbox";
 
 export function DataListHeader() {
   const breakpoints = useResponsiveSizing();

@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { DataListLayoutInternal } from "./DataListLayoutInternal";
-import { DataListHeaderCheckbox } from "./DataListHeaderCheckbox";
+import { DataListHeaderCheckbox } from "../DataListHeader/DataListHeaderCheckbox";
 import { Breakpoints } from "../../DataList.const";
 import styles from "../../DataList.css";
 import {
