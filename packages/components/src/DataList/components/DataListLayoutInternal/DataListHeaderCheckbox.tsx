@@ -52,13 +52,15 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
         switched={Boolean(selected.length)}
         initialChild={children}
         switchTo={
-          <div className={styles.headerBatchSelect}>
-            <Text>{selected.length} selected</Text>
-            <Button
-              label={deselectText}
-              onClick={() => onSelect?.([])}
-              type="tertiary"
-            />
+          <div className={styles.batchSelectContainer}>
+            <div className={styles.headerBatchSelect}>
+              <Text>{selected.length} selected</Text>
+              <Button
+                label={deselectText}
+                onClick={() => onSelect?.([])}
+                type="tertiary"
+              />
+            </div>
             <InternalDataListBulkActions />
           </div>
         }

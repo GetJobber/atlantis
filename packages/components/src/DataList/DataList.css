@@ -39,6 +39,15 @@
   border-bottom: var(--border-thick) solid var(--color-border);
 }
 
+.batchSelectContainer {
+  display: flex;
+
+  @media (--small-screens-and-below) {
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
 .headerBatchSelect > p {
   font-weight: 500;
   white-space: nowrap;
@@ -46,15 +55,9 @@
 
 .headerBatchSelect {
   display: flex;
-  width: 100%;
   margin: calc(var(--space-small) * -1) 0;
   align-items: center;
   gap: var(--space-smaller);
-
-  @media (--small-screens-and-below) {
-    min-width: 100%;
-    justify-content: space-between;
-  }
 }
 
 /*
