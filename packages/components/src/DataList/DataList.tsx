@@ -3,7 +3,7 @@ import styles from "./DataList.css";
 import { DataListTotalCount } from "./components/DataListTotalCount";
 import { DataListLoadingState } from "./components/DataListLoadingState";
 import { DataListLayout } from "./components/DataListLayout";
-import { DataListHeader } from "./components/DataListLayoutInternal";
+import { DataListHeader } from "./components/DataListHeader";
 import {
   DataListFilters,
   InternalDataListFilters,
@@ -126,7 +126,6 @@ function InternalDataList() {
     headers,
     title,
     totalCount,
-    headerVisibility = { xs: true, sm: true, md: true, lg: true, xl: true },
     loadingState = "none",
     layoutComponents,
   } = useDataListContext();
@@ -158,14 +157,7 @@ function InternalDataList() {
           <InternalDataListSearch />
         </div>
 
-        {headerData && (
-          <DataListHeader
-            layouts={layoutComponents}
-            headerData={headerData}
-            headerVisibility={headerVisibility}
-            mediaMatches={mediaMatches}
-          />
-        )}
+        {headerData && <DataListHeader />}
       </DataListStickyHeader>
 
       {initialLoading && (
