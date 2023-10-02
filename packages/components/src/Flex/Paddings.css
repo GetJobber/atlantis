@@ -1,0 +1,31 @@
+.smallest {
+  padding: var(--space-smallest);
+}
+
+.smaller {
+  padding: var(--space-smaller);
+}
+
+.small {
+  padding: var(--space-small);
+}
+
+.base {
+  padding: var(--space-base);
+}
+
+.large {
+  padding: var(--space-large);
+}
+
+.larger {
+  padding: var(--space-larger);
+}
+
+.largest {
+  padding: var(--space-largest);
+}
+
+.none {
+  padding: 0;
+}

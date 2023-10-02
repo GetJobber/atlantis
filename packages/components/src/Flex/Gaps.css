@@ -1,0 +1,63 @@
+.columnGapSmallest {
+  column-gap: var(--space-smallest);
+}
+
+.rowGapSmallest {
+  row-gap: var(--space-smallest);
+}
+
+.columnGapSmaller {
+  column-gap: var(--space-smaller);
+}
+
+.rowGapSmaller {
+  row-gap: var(--space-smaller);
+}
+
+.columnGapSmall {
+  column-gap: var(--space-small);
+}
+
+.rowGapSmall {
+  row-gap: var(--space-small);
+}
+
+.columnGapBase {
+  column-gap: var(--space-base);
+}
+
+.rowGapBase {
+  row-gap: var(--space-base);
+}
+
+.columnGapLarge {
+  column-gap: var(--space-large);
+}
+
+.rowGapLarge {
+  row-gap: var(--space-large);
+}
+
+.columnGapLarger {
+  column-gap: var(--space-larger);
+}
+
+.rowGapLarger {
+  row-gap: var(--space-larger);
+}
+
+.columnGapLargest {
+  column-gap: var(--space-largest);
+}
+
+.rowGapLargest {
+  row-gap: var(--space-largest);
+}
+
+.rowGapNone {
+  row-gap: 0;
+}
+
+.columnGapNone {
+  column-gap: 0;
+}
