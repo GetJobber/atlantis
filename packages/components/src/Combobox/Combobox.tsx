@@ -10,6 +10,14 @@ import {
 
 export interface ComboboxProps {
   readonly children: ReactElement | ReactElement[];
+
+  /**
+   * multi select
+   * @default false
+   * @type boolean
+   * @description if true, allows multiple selections
+   */
+  readonly multiSelect?: boolean;
 }
 
 export const COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE =
