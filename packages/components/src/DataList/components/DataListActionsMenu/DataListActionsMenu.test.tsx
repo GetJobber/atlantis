@@ -64,7 +64,6 @@ describe("DataListActionsMenu", () => {
       mockPositionValue.mockReturnValueOnce({ x: viewportWidth, y: 0 });
       renderComponent();
 
-      screen.logTestingPlaygroundURL();
       expect(screen.getByRole("menu")).toHaveStyle({
         "--actions-menu-x": `${
           viewportWidth - menuWidth - tokens["space-base"]
@@ -77,7 +76,6 @@ describe("DataListActionsMenu", () => {
       mockPositionValue.mockReturnValueOnce({ x: 0, y: viewportHeight });
       renderComponent();
 
-      screen.logTestingPlaygroundURL();
       expect(screen.getByRole("menu")).toHaveStyle({
         "--actions-menu-x": "0px",
         "--actions-menu-y": `${viewportHeight - menuHeight}px`,

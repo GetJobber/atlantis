@@ -9,7 +9,6 @@ import {
   DataListLayoutContext,
   defaultValues as layoutDefaultValues,
 } from "@jobber/components/DataList/context/DataListLayoutContext";
-import { DataListLayout } from "@jobber/components/DataList/components/DataListLayout";
 import { DataListItemActions } from "@jobber/components/DataList/components/DataListItemActions";
 import { DataListAction } from "@jobber/components/DataList/components/DataListAction";
 import { DataListLayoutActionsContext } from "@jobber/components/DataList/components/DataListLayoutActions/DataListLayoutContext";
@@ -40,9 +39,7 @@ describe("DataListItem", () => {
             <DataListItem
               item={{ id: 1 }}
               index={0}
-              layout={
-                <DataListLayout>{() => <div>{listItem}</div>}</DataListLayout>
-              }
+              layout={() => <div>{listItem}</div>}
             />
           </MockLayoutContextProvider>
         </MockMainContextProvider>,
