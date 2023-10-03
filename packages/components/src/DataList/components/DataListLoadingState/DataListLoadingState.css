@@ -2,10 +2,7 @@
   padding: var(--space-small);
 }
 
-.mobileLoadingState {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: var(--space-largest);
-  padding: var(--space-base) 0;
+.glimmer {
+  width: 100%;
+  min-width: var(--space-largest);
 }

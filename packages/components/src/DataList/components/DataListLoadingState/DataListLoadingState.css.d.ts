@@ -1,6 +1,6 @@
 declare const styles: {
   readonly "loadingItem": string;
-  readonly "mobileLoadingState": string;
+  readonly "glimmer": string;
 };
 export = styles;
 

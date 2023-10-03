@@ -8,6 +8,7 @@ import {
 } from "@jobber/components/DataList/DataList.utils";
 import { useResponsiveSizing } from "@jobber/components/DataList/hooks/useResponsiveSizing";
 import { DataListHeaderCheckbox } from "./DataListHeaderCheckbox";
+import { useActiveLayout } from "../../hooks/useActiveLayout";
 
 export function DataListHeader() {
   const breakpoints = useResponsiveSizing();
@@ -15,12 +16,11 @@ export function DataListHeader() {
     headerVisibility = { xs: true, sm: true, md: true, lg: true, xl: true },
     headers,
     selected,
-    layouts,
     layoutBreakpoints,
   } = useDataListContext();
 
   const size = getVisibleSize();
-  const layout = getLayout();
+  const { layout } = useActiveLayout();
 
   const visible = headerVisibility[size];
   const noItemsSelected = selected?.length === 0;
@@ -35,15 +35,6 @@ export function DataListHeader() {
       <DataListHeaderCheckbox>{layout(headerData)}</DataListHeaderCheckbox>
     </div>
   );
-
-  function getLayout() {
-    if (layoutBreakpoints.includes(size)) {
-      return layouts[size];
-    }
-
-    const lastItem = layoutBreakpoints.length - 1;
-    return layouts[layoutBreakpoints[lastItem]];
-  }
 
   function getVisibleSize() {
     const visibilityKeys = Object.keys(headerVisibility) as Breakpoints[];
