@@ -1,10 +1,10 @@
 import React, { PropsWithChildren } from "react";
 import { Link } from "react-router-dom";
-import styles from "@jobber/components/DataList/DataList.css";
 import {
   DataListItemActionsProps,
   DataListObject,
 } from "@jobber/components/DataList/DataList.types";
+import styles from "../../../../DataList.css";
 import { useDataListLayoutActionsContext } from "../../../DataListLayoutActions/DataListLayoutContext";
 
 export function DataListItemClickableInternal<T extends DataListObject>({
