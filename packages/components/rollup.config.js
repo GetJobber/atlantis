@@ -60,8 +60,6 @@ export default {
     "framer-motion",
     "classnames",
     "uuid",
-    "lodash/debounce",
-    "lodash/get",
     new RegExp("lodash/.*"),
     "@std-proposal/temporal",
     "@use-it/event-listener",
