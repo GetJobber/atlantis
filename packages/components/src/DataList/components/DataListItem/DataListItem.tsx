@@ -1,10 +1,4 @@
-import React, {
-  Children,
-  MouseEvent,
-  ReactElement,
-  useMemo,
-  useState,
-} from "react";
+import React, { MouseEvent, ReactElement, useMemo, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import classNames from "classnames";
 import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
@@ -15,7 +9,6 @@ import {
 } from "@jobber/components/DataList/DataList.types";
 import { InternalDataListItemActions } from "@jobber/components/DataList/components/DataListItemActions";
 import { DataListActionsMenu } from "@jobber/components/DataList/components/DataListActionsMenu";
-import { InternalDataListAction } from "@jobber/components/DataList/components/DataListAction";
 import { DataListLayoutActionsContext } from "@jobber/components/DataList/components/DataListLayoutActions/DataListLayoutContext";
 import { DataListItemInternal } from "./DataListItemInternal";
 import { DataListItemClickable } from "./components/DataListItemClickable";
@@ -75,14 +68,7 @@ export function DataListItem<T extends DataListObject>({
             position={contextPosition || { x: 0, y: 0 }}
             onRequestClose={() => setContextPosition(undefined)}
           >
-            {contextMenuActions &&
-              Children.map(contextMenuActions, action => (
-                <InternalDataListAction
-                  key={item.id}
-                  {...action.props}
-                  item={item}
-                />
-              ))}
+            {contextMenuActions}
           </DataListActionsMenu>
         </AnimatePresence>
       </div>
