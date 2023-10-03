@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.45.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.45.1...@jobber/components@4.45.2) (2023-10-03)
+
+
+### Bug Fixes
+
+* **components:** Fix importing of datalist css issue ([#1559](https://github.com/GetJobber/atlantis/issues/1559)) ([3d2c9a9](https://github.com/GetJobber/atlantis/commit/3d2c9a94e9fc03720a5acfdc195699c8d198166f))
+
+
+
+
+
 ## [4.45.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.45.0...@jobber/components@4.45.1) (2023-10-02)
 
 **Note:** Version bump only for package @jobber/components
