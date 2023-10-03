@@ -36,7 +36,7 @@ export function DataListLoadingState() {
   );
 
   return (
-    <>
+    <div className={styles.wrapper}>
       {loadingData.map((child, i) => (
         <div
           key={i}
@@ -46,6 +46,6 @@ export function DataListLoadingState() {
           {layout(child)}
         </div>
       ))}
-    </>
+    </div>
   );
 }
