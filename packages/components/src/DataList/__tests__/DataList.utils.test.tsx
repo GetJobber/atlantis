@@ -5,7 +5,7 @@ import {
   generateListItemElement,
   getCompoundComponent,
   getCompoundComponents,
-  sortSizeProp,
+  sortBreakpoints,
 } from "../DataList.utils";
 import { BREAKPOINTS } from "../DataList.const";
 
@@ -138,9 +138,11 @@ describe("Datalist utils", () => {
     });
   });
 
-  describe("Sort Size Prop", () => {
+  describe("Sort Breakpoints", () => {
     it("sorts correctly", () => {
-      expect(sortSizeProp(["xl", "md", "lg", "sm", "xs"])).toEqual(BREAKPOINTS);
+      expect(sortBreakpoints(["xl", "md", "lg", "sm", "xs"])).toEqual(
+        BREAKPOINTS,
+      );
     });
   });
 

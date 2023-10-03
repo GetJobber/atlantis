@@ -6,8 +6,8 @@ import { BREAKPOINT_SIZES } from "@jobber/components/DataList/DataList.const";
 import {
   DataListContext,
   defaultValues,
-} from "../../../context/DataListContext";
-import { DataListHeaderCheckbox } from "../DataListHeaderCheckbox";
+} from "@jobber/components/DataList/context/DataListContext";
+import { DataListHeaderCheckbox } from "./DataListHeaderCheckbox";
 
 const handleSelect = jest.fn();
 const handleSelectAll = jest.fn();

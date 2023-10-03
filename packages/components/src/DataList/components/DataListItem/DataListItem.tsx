@@ -1,4 +1,4 @@
-import React, { MouseEvent, ReactElement, useMemo, useState } from "react";
+import React, { MouseEvent, useMemo, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import classNames from "classnames";
 import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
@@ -10,15 +10,15 @@ import {
 import { InternalDataListItemActions } from "@jobber/components/DataList/components/DataListItemActions";
 import { DataListActionsMenu } from "@jobber/components/DataList/components/DataListActionsMenu";
 import { DataListLayoutActionsContext } from "@jobber/components/DataList/components/DataListLayoutActions/DataListLayoutContext";
+import { generateListItemElement } from "@jobber/components/DataList/DataList.utils";
 import { DataListItemInternal } from "./DataListItemInternal";
 import { DataListItemClickable } from "./components/DataListItemClickable";
 import styles from "../../DataList.css";
-import { generateListItemElement } from "../../DataList.utils";
 
 interface DataListItem<T extends DataListObject> {
   readonly item: T;
   readonly index: number;
-  readonly layout: ReactElement<DataListLayoutProps<T>>;
+  readonly layout: DataListLayoutProps<T>["children"];
 }
 
 export function DataListItem<T extends DataListObject>({
@@ -52,9 +52,7 @@ export function DataListItem<T extends DataListObject>({
         key={item.id}
       >
         <DataListItemInternal item={item}>
-          <DataListItemClickable>
-            {layout.props.children(generatedItem)}
-          </DataListItemClickable>
+          <DataListItemClickable>{layout(generatedItem)}</DataListItemClickable>
         </DataListItemInternal>
 
         <AnimatePresence>
