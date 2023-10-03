@@ -17,9 +17,9 @@ import { InternalDataListItemActions } from "@jobber/components/DataList/compone
 import { DataListActionsMenu } from "@jobber/components/DataList/components/DataListActionsMenu";
 import { InternalDataListAction } from "@jobber/components/DataList/components/DataListAction";
 import { DataListLayoutActionsContext } from "@jobber/components/DataList/components/DataListLayoutActions/DataListLayoutContext";
-import styles from "@jobber/components/DataList/DataList.css";
 import { DataListItemInternal } from "./DataListItemInternal";
 import { DataListItemClickable } from "./components/DataListItemClickable";
+import styles from "../../DataList.css";
 import { generateListItemElement } from "../../DataList.utils";
 
 interface DataListItem<T extends DataListObject> {
