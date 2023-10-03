@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 import { DataListObject } from "@jobber/components/DataList/DataList.types";
@@ -61,6 +61,24 @@ describe("DataListItemClickable", () => {
 
     userEvent.click(target);
     expect(handleClick).toHaveBeenCalledTimes(1);
+    expect(handleClick).toHaveBeenCalledWith(expectedItem);
+  });
+
+  it("should fire the `onClick` when pressing space or enter", () => {
+    mockItemActionComponent.mockReturnValueOnce(
+      <DataListItemActions onClick={handleClick} />,
+    );
+
+    renderComponent();
+
+    const target = screen.getByText(content);
+
+    fireEvent.keyDown(target, { key: "Enter" });
+    expect(handleClick).toHaveBeenCalledTimes(1);
+    expect(handleClick).toHaveBeenCalledWith(expectedItem);
+
+    fireEvent.keyDown(target, { key: " " });
+    expect(handleClick).toHaveBeenCalledTimes(2);
     expect(handleClick).toHaveBeenCalledWith(expectedItem);
   });
 
