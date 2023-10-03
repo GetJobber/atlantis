@@ -45,7 +45,8 @@ interface ComboboxContentProps {
 }
 
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
-  const { open, setOpen, wrapperRef } = React.useContext(ComboboxContext);
+  const { open, setOpen, wrapperRef, multiselect } =
+    React.useContext(ComboboxContext);
   const optionsExist = props.options.length > 0;
 
   const {
@@ -83,6 +84,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       />
 
       <ComboboxList
+        multiselect={multiselect}
         showEmptyState={!optionsExist}
         options={filteredOptions}
         selected={props.selected}

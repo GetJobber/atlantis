@@ -13,6 +13,7 @@ interface ComboboxListProps {
   setSelectedElement: React.Dispatch<SetStateAction<HTMLElement | null>>;
   selectionHandler: (option: ComboboxOption) => void;
   searchValue: string;
+  multiselect: boolean;
   subjectNoun?: string;
 }
 
@@ -23,6 +24,7 @@ export function ComboboxList(props: ComboboxListProps): JSX.Element {
         <ul
           className={styles.optionsList}
           role="listbox"
+          aria-multiselectable={props.multiselect}
           ref={props.optionsListRef}
         >
           {!props.showEmptyState &&
