@@ -1,0 +1,196 @@
+.wrapper,
+.wrapper * {
+  box-sizing: border-box;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: var(--elevation-default);
+  flex: 1;
+}
+
+/*
+ * Header
+ */
+
+.titleContainer {
+  display: flex;
+  position: relative;
+  z-index: var(--elevation-base);
+  margin-bottom: var(--space-small);
+  align-items: center;
+}
+
+.headerFilters {
+  display: grid;
+  padding: var(--space-small) 0;
+  gap: var(--space-small);
+  grid-template-columns: auto max-content;
+}
+
+.headerTitles {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: var(--space-largest);
+  padding: var(--space-small);
+  border-bottom: var(--border-thick) solid var(--color-border);
+}
+
+.batchSelectContainer {
+  display: flex;
+
+  @media (--small-screens-and-below) {
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
+.headerBatchSelect > p {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.headerBatchSelect {
+  display: flex;
+  margin: calc(var(--space-small) * -1) 0;
+  align-items: center;
+  gap: var(--space-smaller);
+}
+
+/*
+ * List Item
+ */
+
+.listItem {
+  position: relative;
+  padding: var(--space-small);
+  border-bottom: var(--border-base) solid var(--color-border);
+  transition: all var(--timing-base);
+}
+
+.listItem.active,
+.listItem:hover,
+.listItem:focus-within {
+  --data-list-item-active-color: var(--color-surface--background);
+  background-color: var(--data-list-item-active-color);
+}
+
+.listItemClickable {
+  display: block;
+  margin: calc(var(--space-small) * -1) 0;
+  padding: var(--space-small) 0;
+  border: none;
+  text-align: left;
+  text-decoration: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+/**
+ * Enable a better hover and focus experience when :has() is supported.
+ * This is a workaround for Firefox where the :has() selector is not supported.
+ */
+@supports selector(*:has(*)) {
+  .listItem:hover,
+  .listItem:focus-within {
+    background-color: transparent;
+  }
+
+  .listItem:has(.listItemClickable:hover, .listItemClickable:focus) {
+    background-color: var(--data-list-item-active-color);
+  }
+}
+
+/*
+ * List Item Selection
+ */
+
+.selectable {
+  display: grid;
+  align-items: flex-start;
+
+  @media (--medium-screens-and-up) {
+    align-items: center;
+  }
+}
+
+.selectable,
+.headerTitles .selectable {
+  grid-template-columns: max-content minmax(0px, auto);
+  column-gap: var(--space-small);
+}
+
+.headerTitles .selectable {
+  display: grid;
+  align-items: center;
+}
+
+.selectAllCheckbox {
+  display: flex;
+  visibility: hidden;
+
+  /* To compensate the Checkbox's label margin that we are using for screen-readers */
+  margin-right: calc(var(--space-base) * -1);
+}
+
+.selectAllCheckbox.visible {
+  visibility: visible;
+}
+
+.listItem .selectable > :first-child {
+  order: 2;
+}
+
+.listItem .selectable > :last-child {
+  order: 1;
+  padding-top: var(--space-smaller);
+  opacity: 1;
+  transition: opacity var(--transition-properties);
+  --transition-properties: var(--timing-quick) ease-in-out;
+
+  @media (--medium-screens-and-up) {
+    padding-top: 0;
+    opacity: 0;
+  }
+}
+
+.listItem:hover .selectable > :last-child,
+.listItem:focus-within .selectable > :last-child,
+.listItem .selectable.selected > :last-child {
+  opacity: 1;
+}
+
+/*
+ * Filters
+ */
+
+.filtering {
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--color-overlay--dimmed);
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.filteringSpinner {
+  position: sticky;
+  top: 50vh;
+}
+
+/* This hides the text from the UI but not from the screen readers */
+.srOnly {
+  position: absolute;
+  top: auto;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  text-indent: -10000px;
+}

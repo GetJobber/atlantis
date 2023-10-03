@@ -1,0 +1,25 @@
+.small {
+  height: var(--space-small);
+}
+
+.base {
+  height: var(--space-base);
+}
+
+.large {
+  height: var(--space-large);
+}
+
+.larger {
+  height: var(--space-larger);
+}
+
+.largest {
+  height: var(--space-largest);
+}
+
+.auto {
+  height: 100%;
+  min-width: var(--space-base);
+  min-height: var(--space-base);
+}

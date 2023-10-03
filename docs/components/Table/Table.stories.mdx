@@ -1,0 +1,47 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Components/Lists and Tables/Table/Docs" />
+
+# Table
+
+Tables are used to organize and display tabular data to users.
+
+In addition to the base Table component, there are additional `Header`, `Body`,
+`Footer`, `Row` and `Cell` each of which is used to construct a compliant table.
+
+Multiple [Cell types](#cell-types) are provided for common formats.
+
+## Design & usage guidelines
+
+The Table component is a great solution when you need to allow the user to
+compare data across items. It's a tried-and-true means of data visualization
+that can make reports easier to read.
+
+A best practice in Table presentation is to ensure that all columns with
+numerical data (and their headers) round to the same decimal point, and are
+right-aligned. This makes it much easier for the reader to quickly parse large
+distinctions in dollar amounts, inventory counts, and other key business data.
+
+To list more complex collections of information (such as multi-line content like
+a detailed property address), you may want to consider the
+[List](../?path=/docs/components-lists-and-tables-list-docs--page) component. If
+you have a small list of information with a 1:1 label-to-data relationship (for
+example, the issued and due dates on an invoice), consider using
+[DescriptionList](../?path=/docs/components-lists-and-tables-descriptionlist-docs--page).
+
+## Cell types
+
+### Cell
+
+A `Cell` can contain text, or other elements. It can also be used to make
+specialized reusable cell types such as `CellNumeric` and `CellCurrency`.
+
+### CellNumeric
+
+A `CellNumeric` is used to display numeric values to users in tables. It is
+preferred to simply `Cell` as it ensures characters are visually aligned
+vertically.
+
+### CellCurrency
+
+A `CellCurrency` is used to format and display monetary values.

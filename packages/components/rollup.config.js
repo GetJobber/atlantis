@@ -5,7 +5,7 @@ import postcss from "rollup-plugin-postcss";
 import commonjs from "@rollup/plugin-commonjs";
 
 export default {
-  input: `src/*/index.ts`,
+  input: `src/*/index.{ts,tsx}`,
   plugins: [
     multiInput(),
     typescript({
@@ -21,14 +21,15 @@ export default {
       plugins: [
         require("postcss-import"),
         require("autoprefixer"),
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        require("@csstools/postcss-global-data")({
+          files: [
+            require.resolve("@jobber/design/foundation.css"),
+            require.resolve("@jobber/design/src/responsiveBreakpoints.css"),
+          ],
+        }),
         require("postcss-preset-env")({
           stage: 1,
           preserve: true,
-          importFrom: [
-            require.resolve("@jobber/design"),
-            require.resolve("@jobber/design/src/responsiveBreakpoints.css"),
-          ],
         }),
       ],
     }),
@@ -58,14 +59,20 @@ export default {
     "color",
     "framer-motion",
     "classnames",
-    "lodash",
     "uuid",
     "lodash/debounce",
+    "lodash/get",
+    "lodash/groupBy",
+    "lodash/omit",
+    "lodash/sortBy",
     "@std-proposal/temporal",
     "@use-it/event-listener",
     "@jobber/design",
     "@jobber/formatters",
-    "@jobber/hooks",
+    new RegExp("@jobber/hooks/.*"),
+    "zxcvbn",
+    "use-resize-observer/polyfilled",
+    "@apollo/client",
     "@tanstack/react-table",
   ],
 };

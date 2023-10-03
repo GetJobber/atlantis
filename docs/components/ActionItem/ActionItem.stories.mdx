@@ -1,0 +1,61 @@
+import { Meta } from "@storybook/addon-docs";
+import { Figma } from "storybook-addon-designs/blocks";
+
+<Meta title="Components/Layouts and Structure/ActionItem/Docs" />
+
+# Action Item
+
+ActionItem allows for consistent presentation of text content that can be
+actioned on. It can use icons to provide additional visual context about the
+text content.
+
+## Design & usage guidelines
+
+The ActionItem will provide a familiar pattern for enhancing text content with
+icons and providing actions.
+
+ActionItem is commonly used
+[in a Card](../?path=/story/components-layouts-and-structure-actionitem-mobile--in-a-card),
+where it can be grouped with other ActionItems or other elements as needed.
+
+If the action appears directly related to the title, or otherwise is not
+well-suited to be centered in the ActionItem, you can
+[align the action](../?path=/story/components-layouts-and-structure-actionitem-mobile--action-alignment)
+as needed.
+
+## Content guidelines
+
+ActionItem provides a pre-styled `title`, which can be used to consistently
+title the element. You can use the
+[title](../?path=/story/components-layouts-and-structure-actionitem-mobile--title-only)
+and not pass any children. This is useful when you have empty states that
+require the user's attention.
+
+When an `onPress` is provided, the entire ActionItem is tappable for easy
+interactivity. If a child of the ActionItem has an `onPress`, tapping directly
+on that child will trigger the child item's `onPress`.
+
+Child content can be whatever you need but typically consists of
+[Text](../?path=/docs/components-text-and-typography-text-docs--page).
+
+## Related components
+
+To group multiple ActionItems together with dividers between them, use
+[ActionItemGroup](../?path=/docs/components-layouts-and-structure-actionitemgroup-docs--page).
+
+ActionItem is commonly consumed by
+[Card](../?path=/docs/components-layouts-and-structure-card-docs--page). In most
+cases, it will also render at least one
+[Icon](../?path=/docs/components-images-and-icons-icon-docs--page).
+
+## Accessibility
+
+The Icons in ActionItem should not be announced to assistive technology. The
+entire contents of the ActionItem should be read as one element.
+
+## Mockup
+
+<Figma
+  collapsable
+  url="https://www.figma.com/file/avvgu5SkbBvS8lGVePBsqO/%F0%9F%92%99-Product%2FMobile?node-id=41947%3A224683"
+/>

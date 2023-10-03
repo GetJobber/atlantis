@@ -7,7 +7,7 @@ import React, {
   isValidElement,
 } from "react";
 import { ReactDatePickerProps } from "react-datepicker";
-import { omit } from "lodash";
+import omit from "lodash/omit";
 import { Button } from "../Button";
 
 export interface DatePickerActivatorProps

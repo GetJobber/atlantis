@@ -9,22 +9,26 @@ it("renders an input type number", () => {
   expect(container).toMatchInlineSnapshot(`
     <div>
       <div
-        class="wrapper"
+        class="container"
       >
         <div
-          class="inputWrapper"
+          class="wrapper"
         >
-          <label
-            class="label"
-            for="123e4567-e89b-12d3-a456-426655440001"
-          />
-          <input
-            class="input"
-            id="123e4567-e89b-12d3-a456-426655440001"
-            name="generatedName--123e4567-e89b-12d3-a456-426655440001"
-            type="number"
-            value="123"
-          />
+          <div
+            class="inputWrapper"
+          >
+            <div
+              class="childrenWrapper"
+            >
+              <input
+                class="input"
+                id="123e4567-e89b-12d3-a456-426655440001"
+                name="generatedName--123e4567-e89b-12d3-a456-426655440001"
+                type="number"
+                value="123"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -50,7 +54,7 @@ test("it should call the handler with a number value", () => {
   expect(changeHandler).toHaveBeenCalledWith(newValue);
 });
 
-test("it should call the validation with undefined as a success", () => {
+test("it should call the validation with empty string as a success", () => {
   const validationHandler = jest.fn();
 
   render(
@@ -63,7 +67,7 @@ test("it should call the validation with undefined as a success", () => {
     />,
   );
 
-  expect(validationHandler).toHaveBeenCalledWith(undefined);
+  expect(validationHandler).toHaveBeenCalledWith("");
 });
 
 test("it should call the validation with a range error", async () => {
@@ -163,7 +167,7 @@ test("validation passes if number is correct", async () => {
   input.blur();
 
   await waitFor(() => {
-    expect(validationHandler).toHaveBeenCalledWith(undefined);
+    expect(validationHandler).toHaveBeenCalledWith("");
   });
 });
 
@@ -192,6 +196,122 @@ test("allows custom validation", async () => {
 
   await waitFor(() => {
     expect(validationHandler).toHaveBeenCalledWith("only one number");
+  });
+});
+
+test("it should call the custom validate function if provided", async () => {
+  const validationHandler = jest.fn();
+  const expectedValidationValue = Math.floor(
+    Math.random() * Number.MAX_SAFE_INTEGER,
+  );
+  const { getByLabelText } = render(
+    <InputNumber
+      value={expectedValidationValue}
+      placeholder="Custom validation function"
+      validations={{
+        validate: validationHandler,
+      }}
+    />,
+  );
+
+  const input = getByLabelText("Custom validation function");
+
+  input.focus();
+  input.blur();
+
+  await waitFor(() => {
+    expect(validationHandler).toHaveBeenCalledWith(
+      expectedValidationValue,
+      expect.any(Object),
+    );
+    // Received: 12, {"generatedName--123e4567-e89b-12d3-a456-426655440063": 12}
+  });
+});
+
+test("it should use the custom validate object if provided", async () => {
+  const validationHandler = jest.fn();
+  const validationHandler2 = jest.fn();
+  const expectedValidationValue = Math.floor(
+    Math.random() * Number.MAX_SAFE_INTEGER,
+  );
+
+  const { getByLabelText } = render(
+    <InputNumber
+      value={expectedValidationValue}
+      placeholder="Custom validation function"
+      validations={{
+        validate: {
+          validationHandler,
+          validationHandler2,
+        },
+      }}
+    />,
+  );
+
+  const input = getByLabelText("Custom validation function");
+
+  input.focus();
+  input.blur();
+
+  await waitFor(() => {
+    expect(validationHandler).toHaveBeenCalledWith(
+      expectedValidationValue,
+      expect.anything(),
+    );
+    expect(validationHandler2).toHaveBeenCalledWith(
+      expectedValidationValue,
+      expect.anything(),
+    );
+  });
+});
+
+test("it should call the min validation if the custom validation passes", async () => {
+  const { getByLabelText, getByText } = render(
+    <InputNumber
+      value={98}
+      min={99}
+      validations={{
+        validate: {
+          alwaysPasses: () => true,
+        },
+      }}
+      placeholder="Count to 100"
+    />,
+  );
+
+  const input = getByLabelText("Count to 100");
+  input.focus();
+  input.blur();
+
+  await waitFor(() => {
+    expect(
+      getByText("Enter a number that is greater than or equal to 99"),
+    ).toBeInTheDocument();
+  });
+});
+
+test("it should call the max validation if the custom validation passes", async () => {
+  const { getByLabelText, getByText } = render(
+    <InputNumber
+      value={101}
+      max={100}
+      validations={{
+        validate: {
+          alwaysPasses: () => true,
+        },
+      }}
+      placeholder="Count to 100"
+    />,
+  );
+
+  const input = getByLabelText("Count to 100");
+  input.focus();
+  input.blur();
+
+  await waitFor(() => {
+    expect(
+      getByText("Enter a number that is less than or equal to 100"),
+    ).toBeInTheDocument();
   });
 });
 

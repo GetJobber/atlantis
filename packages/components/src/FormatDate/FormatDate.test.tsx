@@ -31,17 +31,33 @@ describe("strFormatDate", () => {
   const mockLocaleDateFormat: Intl.DateTimeFormatOptions = {
     day: "numeric",
     month: "short",
+  };
+  const mockLocaleDateFormatWithYear: Intl.DateTimeFormatOptions = {
+    day: "numeric",
+    month: "short",
     year: "numeric",
   };
 
   it("should return the right locale date format", () => {
     const mockDateSpy = jest.spyOn(Date.prototype, "toLocaleDateString");
     strFormatDate(expectedDate);
-    expect(mockDateSpy).toHaveBeenCalledWith(mockLocale, mockLocaleDateFormat);
+    expect(mockDateSpy).toHaveBeenCalledWith(
+      mockLocale,
+      mockLocaleDateFormatWithYear,
+    );
   });
 
   it("should return the proper date format", () => {
     expect(strFormatDate(expectedDate)).toBe(
+      new Date(expectedDateString).toLocaleDateString(
+        mockLocale,
+        mockLocaleDateFormatWithYear,
+      ),
+    );
+  });
+
+  it("should return the proper date format with year is hidden", () => {
+    expect(strFormatDate(expectedDate, false)).toBe(
       new Date(expectedDateString).toLocaleDateString(
         mockLocale,
         mockLocaleDateFormat,

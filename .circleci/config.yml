@@ -38,7 +38,7 @@ references:
   npm_install: &npm_install
     run:
       name: Install Dependencies
-      command: npm ci --legacy-peer-deps
+      command: npm ci
 
   github_authenticity: &github_authenticity
     run:
@@ -119,7 +119,10 @@ jobs:
           command:
             npm test -- --runInBand --no-cache --coverage --reporters=jest-junit
           environment:
-            JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
+            JEST_JUNIT_OUTPUT_DIR: "reports/junit/"
+            JEST_JUNIT_OUTPUT_NAME: "js-test-results.xml"
+            JEST_JUNIT_ADD_FILE_ATTRIBUTE: "true"
+            JEST_JUNIT_SUITE_NAME: "{displayName} {title}"
       - store_test_results:
           path: reports/junit
       - store_artifacts:
@@ -135,22 +138,6 @@ jobs:
       - *generate_base_path
       - run:
           command: npm run build
-      - *persist_to_workspace
-
-  upload_to_cloudflare:
-    <<: *container_config
-    environment:
-      ATLANTIS_BRANCH: << pipeline.git.branch >>
-    steps:
-      - *attach_workspace
-      - *generate_base_path
-      - run:
-          command: |
-            if [ "$ATLANTIS_BRANCH" = "master" ]; then
-              npx wrangler pages publish storybook-static --project-name=atlantis
-            else
-              npx wrangler pages publish storybook-static --project-name=atlantis --branch=$ATLANTIS_BRANCH
-            fi
 
   release:
     <<: *container_config
@@ -193,9 +180,6 @@ workflows:
       - build_docs:
           requires:
             - check_for_manual_release
-      - upload_to_cloudflare:
-          requires:
-            - build_docs
       - release:
           filters:
             branches:

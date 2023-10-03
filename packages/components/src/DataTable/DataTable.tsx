@@ -1,7 +1,10 @@
 import { ColumnDef, Row, useReactTable } from "@tanstack/react-table";
 import classNames from "classnames";
 import React, { LegacyRef, ReactNode } from "react";
-import { Breakpoints, useResizeObserver } from "@jobber/hooks";
+import {
+  Breakpoints,
+  useResizeObserver,
+} from "@jobber/hooks/useResizeObserver";
 import { Body } from "./Body";
 import { createTableSettings } from "./createTableSettings";
 import styles from "./DataTable.css";
@@ -65,6 +68,11 @@ export interface DataTableProps<T> {
    * The elements to display when the data table is empty
    */
   emptyState?: ReactNode | ReactNode[];
+
+  /**
+   * When true, shows the loading state of the DataTable
+   */
+  loading?: boolean;
 }
 
 export function DataTable<T extends object>({
@@ -77,6 +85,7 @@ export function DataTable<T extends object>({
   pinFirstColumn,
   onRowClick,
   emptyState,
+  loading = false,
 }: DataTableProps<T>) {
   const [ref, { exactWidth }] = useResizeObserver();
   const tableSettings = createTableSettings(data, columns, {
@@ -106,8 +115,8 @@ export function DataTable<T extends object>({
           <Body
             table={table}
             onRowClick={onRowClick}
-            height={height ? height * 0.7 : undefined}
             emptyState={emptyState}
+            loading={loading}
           />
           {table.getRowModel().rows.length &&
           exactWidth &&
@@ -131,6 +140,7 @@ export function DataTable<T extends object>({
               ? pagination.totalItems
               : table.getCoreRowModel().rows.length
           }
+          loading={loading}
         />
       )}
     </div>

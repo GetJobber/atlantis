@@ -6,24 +6,32 @@ exports[`it should display headers when headers are passed in 1`] = `
     class="autocomplete"
   >
     <div
-      class="wrapper"
+      class="container"
     >
       <div
-        class="inputWrapper"
+        class="wrapper"
       >
-        <label
-          class="label"
-          for="123e4567-e89b-12d3-a456-426655440033"
+        <div
+          class="inputWrapper"
         >
-          placeholder_name
-        </label>
-        <input
-          autocomplete="off"
-          class="input"
-          id="123e4567-e89b-12d3-a456-426655440033"
-          type="text"
-          value=""
-        />
+          <label
+            class="label"
+            for="123e4567-e89b-12d3-a456-426655440033"
+          >
+            placeholder_name
+          </label>
+          <div
+            class="childrenWrapper"
+          >
+            <input
+              autocomplete="off"
+              class="input"
+              id="123e4567-e89b-12d3-a456-426655440033"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -36,24 +44,32 @@ exports[`renders an Autocomplete 1`] = `
     class="autocomplete"
   >
     <div
-      class="wrapper"
+      class="container"
     >
       <div
-        class="inputWrapper"
+        class="wrapper"
       >
-        <label
-          class="label"
-          for="123e4567-e89b-12d3-a456-426655440001"
+        <div
+          class="inputWrapper"
         >
-          placeholder_name
-        </label>
-        <input
-          autocomplete="off"
-          class="input"
-          id="123e4567-e89b-12d3-a456-426655440001"
-          type="text"
-          value=""
-        />
+          <label
+            class="label"
+            for="123e4567-e89b-12d3-a456-426655440001"
+          >
+            placeholder_name
+          </label>
+          <div
+            class="childrenWrapper"
+          >
+            <input
+              autocomplete="off"
+              class="input"
+              id="123e4567-e89b-12d3-a456-426655440001"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
       </div>
     </div>
   </div>

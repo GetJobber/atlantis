@@ -1,0 +1,89 @@
+name: Trigger Pre-release Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      workflow:
+        description: 'Desired Workflow'
+        required: true
+        default: 'Publish Pre-release (Recommended)'
+        type: choice
+        options:
+        - Publish Pre-release (Recommended)
+        - Force Publish Components
+        - Force Publish Design
+        - Force Publish Components & Design
+        - Force Publish Hooks
+        - Force Publish All
+
+jobs:
+  trigger_pre_release_build:
+    name: Trigger Pre-release Build
+    runs-on: ubuntu-latest
+    outputs:
+      lernaSummary: ${{ steps.summaryFile.outputs.releaseSummary}}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref_name }}
+          # pulls all commits (needed for lerna / semantic release to correctly version)
+          fetch-depth: "0"
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: 'https://registry.npmjs.org'
+          # Defaults to the user or organization that owns the workflow file
+          scope: '@jobber'
+      - name: NPM CI
+        run: npm ci
+      - name: NPM Publish
+        id: npmPublish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.JOBBER_NPM_TOKEN }}
+          ATLANTIS_BRANCH_NAME_RAW: ${{ github.ref_name }}
+          PUBLISH_SETTING: ${{ github.event.inputs.workflow }}
+        run: |
+          # Generates a preId from the branch name. Removes characters that can't be used in a preId
+          ATLANTIS_BRANCH_NAME=$(echo ${ATLANTIS_BRANCH_NAME_RAW:0:10} | sed 's/\///g')
+          if [ "$PUBLISH_SETTING" == "Publish Pre-release (Recommended)" ]; then
+            npm run publish:prerelease:githubAction -- --y --preid $ATLANTIS_BRANCH_NAME
+          else
+            if [ "$PUBLISH_SETTING" == "Force Publish Components" ]; then
+            FORCE_PUBLISH_SETTINGS="--force-publish @jobber/components"
+            elif [ "$PUBLISH_SETTING" == "Force Publish Components-native" ]; then
+            FORCE_PUBLISH_SETTINGS="--force-publish @jobber/components-native"
+            elif [ "$PUBLISH_SETTING" == "Force Publish Design" ]; then
+            FORCE_PUBLISH_SETTINGS="--force-publish @jobber/design"
+            elif [ "$PUBLISH_SETTING" == "Force Publish Components & Design" ]; then
+            FORCE_PUBLISH_SETTINGS="--force-publish @jobber/components,@jobber/design"
+            elif [ "$PUBLISH_SETTING" == "Force Publish Hooks" ]; then
+            FORCE_PUBLISH_SETTINGS="--force-publish @jobber/hooks"
+            else
+            FORCE_PUBLISH_SETTINGS="--force-publish"
+            fi
+            npm run publish:prerelease:githubAction -- --y --preid $ATLANTIS_BRANCH_NAME $FORCE_PUBLISH_SETTINGS
+          fi
+
+      - name: Send Summary File
+        id: summaryFile
+        run: echo "releaseSummary=$(cat ./lerna-publish-summary.json)" >> $GITHUB_OUTPUT
+  send_build_information:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    needs: trigger_pre_release_build
+    name: Send Build Information
+    if: ${{ always() }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/github-script@v6
+        name: Comment on PR
+        env:
+          SUMMARY_JSON_STRING: ${{ needs.trigger_pre_release_build.outputs.lernaSummary }}
+          COMMIT_SHA: ${{ github.sha }}
+        with:
+          script: |
+            const script = require('./scripts/commentOnPrAfterPreRelease.js')
+            await script({github, context, core})

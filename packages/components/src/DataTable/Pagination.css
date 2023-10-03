@@ -42,7 +42,7 @@
   align-items: center;
   justify-content: center;
 
-  @media (--handhelds) {
+  @media (--small-screens-and-below) {
     gap: var(--space-base);
   }
 }

@@ -1,0 +1,25 @@
+.action {
+  display: flex;
+  width: 100%;
+  min-height: 44px;
+  padding: var(--space-small);
+  border: none;
+  border-radius: 0;
+  font-size: var(--typography--fontSize-base);
+  text-align: left;
+  background: none;
+  cursor: pointer;
+  transition: background var(--timing-base) ease;
+  appearance: none;
+  align-items: center;
+  gap: var(--space-small);
+}
+
+.action:hover,
+.action:focus {
+  background-color: var(--color-surface--hover);
+}
+
+.label {
+  font-weight: 500;
+}

@@ -10,21 +10,25 @@ it("renders a InputTime", () => {
   expect(container).toMatchInlineSnapshot(`
     <div>
       <div
-        class="wrapper"
+        class="container"
       >
         <div
-          class="inputWrapper"
+          class="wrapper"
         >
-          <label
-            class="label"
-            for="123e4567-e89b-12d3-a456-426655440001"
-          />
-          <input
-            class="input"
-            id="123e4567-e89b-12d3-a456-426655440001"
-            type="time"
-            value=""
-          />
+          <div
+            class="inputWrapper"
+          >
+            <div
+              class="childrenWrapper"
+            >
+              <input
+                class="input"
+                id="123e4567-e89b-12d3-a456-426655440001"
+                type="time"
+                value=""
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -38,21 +42,25 @@ it("renders an initial time when given 'defaultValue'", () => {
   expect(container).toMatchInlineSnapshot(`
     <div>
       <div
-        class="wrapper"
+        class="container"
       >
         <div
-          class="inputWrapper"
+          class="wrapper"
         >
-          <label
-            class="label"
-            for="123e4567-e89b-12d3-a456-426655440007"
-          />
-          <input
-            class="input"
-            id="123e4567-e89b-12d3-a456-426655440007"
-            type="time"
-            value="11:23"
-          />
+          <div
+            class="inputWrapper"
+          >
+            <div
+              class="childrenWrapper"
+            >
+              <input
+                class="input"
+                id="123e4567-e89b-12d3-a456-426655440007"
+                type="time"
+                value="11:23"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -66,22 +74,26 @@ it("renders correctly in a readonly state", () => {
   expect(container).toMatchInlineSnapshot(`
     <div>
       <div
-        class="wrapper"
+        class="container"
       >
         <div
-          class="inputWrapper"
+          class="wrapper"
         >
-          <label
-            class="label"
-            for="123e4567-e89b-12d3-a456-426655440009"
-          />
-          <input
-            class="input"
-            id="123e4567-e89b-12d3-a456-426655440009"
-            readonly=""
-            type="time"
-            value="11:23"
-          />
+          <div
+            class="inputWrapper"
+          >
+            <div
+              class="childrenWrapper"
+            >
+              <input
+                class="input"
+                id="123e4567-e89b-12d3-a456-426655440009"
+                readonly=""
+                type="time"
+                value="11:23"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -95,22 +107,26 @@ it("adds a error border when invalid", () => {
   expect(container).toMatchInlineSnapshot(`
     <div>
       <div
-        class="wrapper"
+        class="container"
       >
         <div
-          class="inputWrapper"
+          class="wrapper"
         >
-          <label
-            class="label"
-            for="123e4567-e89b-12d3-a456-426655440015"
-          />
-          <input
-            class="input"
-            id="123e4567-e89b-12d3-a456-426655440015"
-            readonly=""
-            type="time"
-            value="11:23"
-          />
+          <div
+            class="inputWrapper"
+          >
+            <div
+              class="childrenWrapper"
+            >
+              <input
+                class="input"
+                id="123e4567-e89b-12d3-a456-426655440015"
+                readonly=""
+                type="time"
+                value="11:23"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -122,21 +138,25 @@ it("should set the value when given 'value' and 'onChange'", () => {
   expect(container).toMatchInlineSnapshot(`
     <div>
       <div
-        class="wrapper invalid"
+        class="container"
       >
         <div
-          class="inputWrapper"
+          class="wrapper invalid"
         >
-          <label
-            class="label"
-            for="123e4567-e89b-12d3-a456-426655440021"
-          />
-          <input
-            class="input"
-            id="123e4567-e89b-12d3-a456-426655440021"
-            type="time"
-            value=""
-          />
+          <div
+            class="inputWrapper"
+          >
+            <div
+              class="childrenWrapper"
+            >
+              <input
+                class="input"
+                id="123e4567-e89b-12d3-a456-426655440021"
+                type="time"
+                value=""
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>

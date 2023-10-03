@@ -1,0 +1,45 @@
+.fadeContainer {
+  align-self: center;
+  position: relative;
+  min-width: 0;
+}
+
+.overflowGrid {
+  display: grid;
+  overflow-x: auto;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  align-items: center;
+}
+
+.overflowGrid > :nth-child(n + 3):not(:last-child) {
+  margin-left: var(--space-small);
+}
+
+.overflowTrigger {
+  visibility: hidden;
+}
+
+.overflowLeft::before,
+.overflowRight::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: var(--space-large);
+  height: 100%;
+  background-image: linear-gradient(
+    var(--data-list-overflow-shadow-angle, to right),
+    var(--color-surface) 0%,
+    rgba(var(--color-white--rgb), 0) 100%
+  );
+  pointer-events: none;
+}
+
+.overflowLeft::before {
+  left: 0;
+}
+
+.overflowRight::after {
+  --data-list-overflow-shadow-angle: to left;
+  right: 0;
+}

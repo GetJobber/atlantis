@@ -1,0 +1,34 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Components/Forms and Inputs/InputPhoneNumber/Docs" />
+
+# InputPhoneNumber
+
+Automatically format your user's phone number as they type.
+
+InputPhoneNumber's auto-format is set to always be `(***) ***-****` and doesn't
+expect the user to type in their country code. Because phone numbers vary so
+much around the world, typing more than 10 digits will turn off the
+auto-formatting.
+
+## Design & Usage guidelines
+
+Due to the auto-format, this component is restricted to only be used as a
+controlled component. That means the `value` and `onChange` props are required,
+unlike the other input components.
+
+## Content guidelines
+
+The `prefix` prop can be used to add a
+[country code](../?path=/story/components-forms-and-inputs-inputphonenumber-web--with-country-code)
+to the input. The country code won't be added to the value that the component
+would return. It is simply for visual purposes.
+
+InputPhoneNumber can also have a
+[custom pattern](../?path=/story/components-forms-and-inputs-inputphonenumber-web--custom-pattern)
+if you wish to use a different format for the phone number.
+
+Lastly, InputPhoneNumber will respect the format of the
+[initial value](../?path=/story/components-forms-and-inputs-inputphonenumber-web--initial-value)
+it is given. It will only start auto-formatting the existing value when the user
+edits the input.

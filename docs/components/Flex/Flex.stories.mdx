@@ -1,0 +1,28 @@
+import { Meta } from "@storybook/addon-docs";
+import { Flex } from "@jobber/components-native";
+
+<Meta title="Components/Layouts and Structure/Flex/Docs" component={Flex} />
+
+# Flex
+
+Flex is a component that allows you to easily create a flexbox layout in React
+Native.
+
+## Design & usage guidelines
+
+The Flex component facilitates the rendering of multiple child components into a
+grid layout with as many rows as needed. Each column of the Flex grid can be
+programmed to take the smallest space possible or grow depending on available
+space. Once the number of child components exceeds the length of the template
+array, new rows will be created to accomodate the extra children, styled
+similarily to the children above.
+
+It is also possible to nest grids within each other. This can be helpful when
+wanting to apply different grid styles to different groups of children. For
+example, nested grids with different `align` and `template` props can be used to
+further control the layout of the children.
+
+## Related Components
+
+When creating a grid layout in a web application, use
+[Grid.](../?path=/docs/components-layouts-and-structure-grid-docs--page)

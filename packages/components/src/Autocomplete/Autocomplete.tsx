@@ -1,16 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { Ref, forwardRef, useEffect, useRef, useState } from "react";
 import debounce from "lodash/debounce";
 import { XOR } from "ts-xor";
 import styles from "./Autocomplete.css";
 import { Menu } from "./Menu";
 import { AnyOption, GroupOption, Option } from "./Option";
-import { InputText } from "../InputText";
+import { InputText, InputTextRef } from "../InputText";
 import { FormFieldProps } from "../FormField";
 
 type OptionCollection = XOR<Option[], GroupOption[]>;
 
 interface AutocompleteProps
-  extends Pick<FormFieldProps, "size" | "onBlur" | "onFocus" | "invalid"> {
+  extends Pick<
+    FormFieldProps,
+    | "invalid"
+    | "name"
+    | "onBlur"
+    | "onFocus"
+    | "prefix"
+    | "size"
+    | "suffix"
+    | "validations"
+  > {
+  /**
+   * @deprecated
+   * Use `ref` instead.
+   */
+  readonly inputRef?: FormFieldProps["inputRef"];
+
   /**
    * Initial options to show when user first focuses the Autocomplete
    */
@@ -56,27 +72,29 @@ interface AutocompleteProps
   readonly placeholder: string;
 }
 
-/**
- * Max statements disabled here to make room for the
- * debounce functions.
- */
-// eslint-disable-next-line max-statements
-export function Autocomplete({
-  initialOptions = [],
-  value,
-  allowFreeForm = true,
-  size = undefined,
-  invalid,
-  debounce: debounceRate = 300,
-  onChange,
-  getOptions,
-  placeholder,
-  onBlur,
-  onFocus,
-}: AutocompleteProps) {
+// Max statements increased to make room for the debounce functions
+/* eslint max-statements: ["error", 14] */
+function AutocompleteInternal(
+  {
+    initialOptions = [],
+    value,
+    allowFreeForm = true,
+    size = undefined,
+    debounce: debounceRate = 300,
+    onChange,
+    getOptions,
+    placeholder,
+    onBlur,
+    onFocus,
+    validations,
+    ...inputProps
+  }: AutocompleteProps,
+  ref: Ref<InputTextRef>,
+) {
   const [options, setOptions] = useState(initialOptions);
   const [menuVisible, setMenuVisible] = useState(false);
   const [inputText, setInputText] = useState(value?.label ?? "");
+  const autocompleteRef = useRef(null);
 
   const delayedSearch = debounce(updateSearch, debounceRate);
 
@@ -90,20 +108,23 @@ export function Autocomplete({
   }, [value]);
 
   return (
-    <div className={styles.autocomplete}>
+    <div className={styles.autocomplete} ref={autocompleteRef}>
       <InputText
+        ref={ref}
         autocomplete={false}
         size={size}
-        invalid={invalid}
         value={inputText}
         onChange={handleInputChange}
         placeholder={placeholder}
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
+        validations={validations}
+        {...inputProps}
       />
       {menuVisible && (
         <Menu
-          visible={true}
+          attachTo={autocompleteRef}
+          visible={menuVisible && options.length > 0}
           options={options}
           selectedOption={value}
           onOptionSelect={handleMenuChange}
@@ -138,7 +159,6 @@ export function Autocomplete({
     if (allowFreeForm) {
       onChange({ label: newText });
     }
-    setMenuVisible(true);
   }
 
   function handleInputBlur() {
@@ -167,3 +187,5 @@ function mapToOptions(items: AnyOption[]) {
     return result;
   }, []);
 }
+
+export const Autocomplete = forwardRef(AutocompleteInternal);

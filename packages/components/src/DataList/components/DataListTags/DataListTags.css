@@ -1,0 +1,26 @@
+.tags {
+  display: flex;
+  position: relative;
+  z-index: var(--elevation-default);
+  overflow: hidden;
+  gap: var(--space-small);
+}
+
+.tagCount {
+  --overflow-bg: var(--data-list-item-active-color, var(--color-surface));
+
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  padding-left: var(--space-base);
+  background-image: linear-gradient(
+    90deg,
+    transparent 0,
+    var(--overflow-bg) var(--space-base),
+    var(--overflow-bg) 100%
+  );
+  align-items: center;
+  transition: all var(--timing-base);
+}

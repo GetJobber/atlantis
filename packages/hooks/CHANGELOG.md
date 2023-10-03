@@ -3,6 +3,98 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.3.0...@jobber/hooks@2.4.0) (2023-09-29)
+
+
+### Features
+
+* **components:** DataList row click and tabbing a11y ([#1548](https://github.com/GetJobber/atlantis/issues/1548)) ([8ceb373](https://github.com/GetJobber/atlantis/commit/8ceb373e917f678e4bb754a9df172d13af569d89))
+
+
+
+
+
+# [2.3.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.2.1...@jobber/hooks@2.3.0) (2023-09-14)
+
+
+### Features
+
+* **components:** JOB-78452 Select DataList row ([#1529](https://github.com/GetJobber/atlantis/issues/1529)) ([3b503b6](https://github.com/GetJobber/atlantis/commit/3b503b63930fa5ea1f276cbac9287050c1139520))
+
+
+
+
+
+## [2.2.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.2.0...@jobber/hooks@2.2.1) (2023-09-07)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+# [2.2.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.1.5...@jobber/hooks@2.2.0) (2023-09-04)
+
+
+### Features
+
+* **components:** implement ability to add a data list filters ([#1512](https://github.com/GetJobber/atlantis/issues/1512)) ([8de68a6](https://github.com/GetJobber/atlantis/commit/8de68a671945d7c0c510fcaf6047a28217cdb35b))
+
+
+
+
+
+## [2.1.5](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.1.4...@jobber/hooks@2.1.5) (2023-06-28)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+## [2.1.4](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.1.3...@jobber/hooks@2.1.4) (2023-06-09)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+## [2.1.3](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.1.2...@jobber/hooks@2.1.3) (2023-05-25)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+## [2.1.2](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.1.1...@jobber/hooks@2.1.2) (2023-05-12)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+## [2.1.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.1.0...@jobber/hooks@2.1.1) (2023-05-01)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+# [2.1.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.0.2...@jobber/hooks@2.1.0) (2023-04-24)
+
+
+### Features
+
+* Upgrade to Node 18 [Feature Branch][JOB-62820] ([#1141](https://github.com/GetJobber/atlantis/issues/1141)) ([8b766cd](https://github.com/GetJobber/atlantis/commit/8b766cd1ebb215610ff3b0babe5d1f05540872b6)), closes [#1142](https://github.com/GetJobber/atlantis/issues/1142) [#1149](https://github.com/GetJobber/atlantis/issues/1149) [#1150](https://github.com/GetJobber/atlantis/issues/1150)
+
+
+
+
+
 ## [2.0.2](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.0.1...@jobber/hooks@2.0.2) (2023-03-22)
 
 **Note:** Version bump only for package @jobber/hooks

@@ -1,0 +1,20 @@
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: fadeIn 200ms ease;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

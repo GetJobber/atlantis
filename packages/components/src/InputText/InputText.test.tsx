@@ -8,23 +8,31 @@ it("renders a regular input for text and numbers", () => {
   expect(container).toMatchInlineSnapshot(`
     <div>
       <div
-        class="wrapper"
+        class="container"
       >
         <div
-          class="inputWrapper"
+          class="wrapper"
         >
-          <label
-            class="label"
-            for="123e4567-e89b-12d3-a456-426655440001"
+          <div
+            class="inputWrapper"
           >
-            Favourite colour
-          </label>
-          <input
-            class="input"
-            id="123e4567-e89b-12d3-a456-426655440001"
-            type="text"
-            value=""
-          />
+            <label
+              class="label"
+              for="123e4567-e89b-12d3-a456-426655440001"
+            >
+              Favourite colour
+            </label>
+            <div
+              class="childrenWrapper"
+            >
+              <input
+                class="input"
+                id="123e4567-e89b-12d3-a456-426655440001"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -38,22 +46,30 @@ it("renders a textarea", () => {
   expect(container).toMatchInlineSnapshot(`
     <div>
       <div
-        class="wrapper textarea"
+        class="container"
       >
         <div
-          class="inputWrapper"
+          class="wrapper textarea"
         >
-          <label
-            class="label"
-            for="123e4567-e89b-12d3-a456-426655440003"
+          <div
+            class="inputWrapper"
           >
-            Describe your favourite colour?
-          </label>
-          <textarea
-            class="input"
-            id="123e4567-e89b-12d3-a456-426655440003"
-            rows="3"
-          />
+            <label
+              class="label"
+              for="123e4567-e89b-12d3-a456-426655440003"
+            >
+              Describe your favourite colour?
+            </label>
+            <div
+              class="childrenWrapper"
+            >
+              <textarea
+                class="input"
+                id="123e4567-e89b-12d3-a456-426655440003"
+                rows="3"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -71,22 +87,30 @@ it("renders a textarea with 4 rows", () => {
   expect(container).toMatchInlineSnapshot(`
     <div>
       <div
-        class="wrapper textarea"
+        class="container"
       >
         <div
-          class="inputWrapper"
+          class="wrapper textarea"
         >
-          <label
-            class="label"
-            for="123e4567-e89b-12d3-a456-426655440005"
+          <div
+            class="inputWrapper"
           >
-            Describe your favourite colour?
-          </label>
-          <textarea
-            class="input"
-            id="123e4567-e89b-12d3-a456-426655440005"
-            rows="4"
-          />
+            <label
+              class="label"
+              for="123e4567-e89b-12d3-a456-426655440005"
+            >
+              Describe your favourite colour?
+            </label>
+            <div
+              class="childrenWrapper"
+            >
+              <textarea
+                class="input"
+                id="123e4567-e89b-12d3-a456-426655440005"
+                rows="4"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -130,9 +154,36 @@ test("it should handle inserting text", () => {
 
   render(<InputText value={initial} onChange={changeHandler} ref={textRef} />);
 
-  textRef.current.insert("YUP");
+  textRef.current?.insert("YUP");
   expect(changeHandler).toHaveBeenCalledWith(result);
 
-  textRef.current.insert("sure");
+  textRef.current?.insert("sure");
   expect(changeHandler).toHaveBeenCalledWith(secondResult);
+});
+
+test("it should focus input text", () => {
+  const placeholder = "Got milk?";
+
+  const textRef = React.createRef<InputTextRef>();
+
+  const { getByLabelText } = render(
+    <InputText placeholder={placeholder} ref={textRef} />,
+  );
+
+  textRef.current?.focus();
+  expect(getByLabelText(placeholder)).toHaveFocus();
+});
+
+test("it should scroll into view input text", () => {
+  const scrollIntoViewMock = jest.fn();
+  window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
+
+  const placeholder = "Got milk?";
+
+  const textRef = React.createRef<InputTextRef>();
+
+  render(<InputText placeholder={placeholder} ref={textRef} />);
+
+  textRef.current?.scrollIntoView();
+  expect(scrollIntoViewMock).toHaveBeenCalled();
 });

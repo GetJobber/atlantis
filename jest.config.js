@@ -1,7 +1,7 @@
 /* eslint-env node */
 // For a detailed explanation regarding each configuration property, visit:
 // https://jestjs.io/docs/en/configuration.html
-
+/** @type {import('jest').Config} */
 module.exports = {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
@@ -81,6 +81,7 @@ module.exports = {
     "\\.css$": "identity-obj-proxy",
     "react-markdown":
       "<rootDir>/node_modules/react-markdown/react-markdown.min.js",
+    "^@jobber/hooks/(.*)$": "<rootDir>/packages/hooks/dist/$1",
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -96,7 +97,10 @@ module.exports = {
   // preset: null,
 
   // Run tests from one or more projects
-  // projects: null,
+  projects: [
+    "<rootDir>/jest.web.config.js",
+    "<rootDir>/packages/components-native/jest.config.js",
+  ],
 
   // Use this configuration option to add custom reporters to Jest
   // reporters: undefined,
@@ -128,13 +132,13 @@ module.exports = {
   // setupFiles: [],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  setupFilesAfterEnv: ["./jestConfig.js"],
+  // setupFilesAfterEnv: [],
 
   // A list of paths to snapshot serializer modules Jest should use for snapshot testing
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  testEnvironment: "jest-environment-jsdom",
+  // testEnvironment: "jest-environment-jsdom",
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},

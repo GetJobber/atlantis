@@ -1,0 +1,37 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Components/Lists and Tables/DataTable/Docs" />
+
+# Data Table
+
+Data Tables are used to organize and display tabular data to users while
+providing a multitude of features that allows the user to interact with the data
+been displayed on the table.
+
+The `DataTable` component has the capability to integrate sorting, filtering and
+pagination with an external API or on the client side.
+
+## Design & usage guidelines
+
+The `DataTable` component is a great solution if you are looking to display data
+in a tabular way while giving your user the ability to sort, paginate or filter
+that data, this can be implemented on the server side or on the client side
+depending on your needs.
+
+A best practice in Data Table presentation is to ensure that all columns with
+numerical data (and their headers) round to the same decimal point, and are
+right-aligned. This makes it much easier for the reader to quickly parse large
+distinctions in dollar amounts, inventory counts, and other key business data.
+
+To list more complex collections of information (such as multi-line content like
+a detailed property address), you may want to consider the
+[List](../?path=/docs/components-lists-and-tables-list-docs--page) component. If
+you have a small list of information with a 1:1 label-to-data relationship (for
+example, the issued and due dates on an invoice), consider using
+[DescriptionList](../?path=/docs/components-lists-and-tables-descriptionlist--description-list).
+
+## Responsiveness
+
+The `DataTable` component has the option to handle responsive design, these
+options will allow us to fix the header or the first left column depending on
+your needs, this will allow the user a more efficient way to visualize the data.

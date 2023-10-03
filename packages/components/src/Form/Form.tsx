@@ -5,13 +5,18 @@ import React, {
   useEffect,
   useImperativeHandle,
 } from "react";
-import { ErrorOption, FormProvider, useForm } from "react-hook-form";
+import {
+  FieldErrors,
+  FieldValues,
+  FormProvider,
+  useForm,
+} from "react-hook-form";
 
 export interface FormRef {
   submit(): void;
 }
 
-interface FormProps {
+export interface FormProps {
   readonly children: ReactNode;
   /**
    * Callback for when the form has been sucessfully
@@ -28,10 +33,9 @@ export const Form = forwardRef(function InternalForm(
 ) {
   const methods = useForm({ mode: "onTouched" });
   const {
-    errors,
     trigger,
     handleSubmit,
-    formState: { isDirty, isValid },
+    formState: { isDirty, isValid, errors },
   } = methods;
 
   useEffect(
@@ -81,7 +85,7 @@ export const Form = forwardRef(function InternalForm(
     onSubmit && onSubmit();
   }
 
-  function errorHandler(errs: ErrorOption) {
+  function errorHandler(errs: FieldErrors<FieldValues>) {
     const firstErrName = Object.keys(errs)[0];
     const element = document.querySelector(
       `[name="${firstErrName}"]`,

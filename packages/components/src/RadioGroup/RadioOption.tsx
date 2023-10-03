@@ -1,53 +1,63 @@
-import React, { PropsWithChildren } from "react";
+import React, { ReactNode } from "react";
 import { XOR } from "ts-xor";
 import { v1 as uuidv1 } from "uuid";
 import styles from "./RadioGroup.css";
 import { Text } from "../Text";
 
-interface BaseRadioOptions {
-  readonly value: string | number;
-  readonly disabled?: boolean;
-}
-
-interface RadioOptionsWithDescription extends BaseRadioOptions {
+interface BaseRadioOptionProps {
   /**
-   * The label to appear beside the radio button.
+   * The value of the radio button.
    */
-  label: string;
+  readonly value: string | number;
+
+  /**
+   * Disables the radio button.
+   */
+  readonly disabled?: boolean;
+
   /**
    * Further description of the label.
    */
-  description?: string;
+  readonly description?: string;
+
+  /**
+   * The label to appear beside the radio button.
+   */
+  readonly label?: string;
+
+  /**
+   * Render a custom label or additional content below the `label`
+   * and `description`.
+   *
+   * Prefer using `label` and `description` over adding child elements if the
+   * content of either would be a string.
+   */
+  readonly children?: ReactNode;
 }
 
-type RadioOptionProps = XOR<
-  RadioOptionsWithDescription,
-  PropsWithChildren<BaseRadioOptions>
->;
+interface WithRequiredChildren extends BaseRadioOptionProps {
+  readonly children: ReactNode;
+}
+
+interface WithRequiredLabel extends BaseRadioOptionProps {
+  readonly label: string;
+}
+
+type RadioOptionProps = XOR<WithRequiredChildren, WithRequiredLabel>;
 
 /**
  * For rendering props only. To make updates to
  * the real RadioOption, look at InternalRadioOption
  */
-export function RadioOption({ children }: PropsWithChildren<RadioOptionProps>) {
+export function RadioOption({ children }: RadioOptionProps) {
   return <>{children}</>;
 }
 
-interface BaseInternalRadioOptions extends BaseRadioOptions {
+interface InternalRadioOptionProps extends BaseRadioOptionProps {
   readonly name: string;
   readonly checked: boolean;
   onChange(newValue: string | number): void;
 }
-
-interface InternalRadioOptionsWithDescription extends BaseInternalRadioOptions {
-  label: string;
-  description?: string;
-}
-
-type InternalRadioOptionProps = XOR<
-  InternalRadioOptionsWithDescription,
-  PropsWithChildren<BaseInternalRadioOptions>
->;
 
 export function InternalRadioOption({
   value,
@@ -58,8 +68,9 @@ export function InternalRadioOption({
   checked,
   children,
   onChange,
-}: PropsWithChildren<InternalRadioOptionProps>) {
+}: InternalRadioOptionProps) {
   const inputId = `${value.toString()}_${uuidv1()}`;
+  const shouldRenderIndependentChildren = label && children;
   return (
     <div>
       <input
@@ -81,6 +92,11 @@ export function InternalRadioOption({
           <Text variation="subdued" size="small">
             {description}
           </Text>
+        </div>
+      )}
+      {shouldRenderIndependentChildren && (
+        <div className={styles.children} id={`${inputId}_children`}>
+          {children}
         </div>
       )}
     </div>

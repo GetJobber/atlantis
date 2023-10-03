@@ -1,6 +1,6 @@
 import React, { MutableRefObject, useRef } from "react";
 import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
-import { useFormState } from "@jobber/hooks";
+import { useFormState } from "@jobber/hooks/useFormState";
 import { Form, FormRef } from ".";
 import { InputText } from "../InputText";
 import { Text } from "../Text";
@@ -42,7 +42,7 @@ test("renders an error message when field is invalid", async () => {
   );
 });
 
-test("fires onStateChage when component renders", async () => {
+test("fires onStateChange when component renders", async () => {
   const stateChangeHandler = jest.fn();
   render(<MockForm onSubmit={jest.fn()} onStateChange={stateChangeHandler} />);
 
@@ -50,12 +50,12 @@ test("fires onStateChage when component renders", async () => {
     expect(stateChangeHandler).toHaveBeenCalled();
     expect(stateChangeHandler).toHaveBeenCalledWith({
       isDirty: false,
-      isValid: true,
+      isValid: false,
     });
   });
 });
 
-test("onStateChage updates state when form is valid", async () => {
+test("onStateChange updates state when form is valid", async () => {
   const stateChangeHandler = jest.fn();
   const { getByLabelText } = render(
     <MockForm onSubmit={jest.fn()} onStateChange={stateChangeHandler} />,

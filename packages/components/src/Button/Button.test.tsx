@@ -143,7 +143,7 @@ it("renders button type='submit'", () => {
 });
 
 it("routes when buttons are clicked", () => {
-  const { queryByText } = render(
+  const { getByText, queryByText } = render(
     <Router>
       <Button label="One" to="/" />
       <Button label="Two" to="/two" />
@@ -166,15 +166,33 @@ it("routes when buttons are clicked", () => {
   expect(queryByText("Dos")).not.toBeInstanceOf(HTMLElement);
   expect(queryByText("Tres")).not.toBeInstanceOf(HTMLElement);
 
-  fireEvent.click(queryByText("Two"));
+  fireEvent.click(getByText("Two"));
 
   expect(queryByText("Uno")).not.toBeInstanceOf(HTMLElement);
   expect(queryByText("Dos")).toBeInstanceOf(HTMLElement);
   expect(queryByText("Tres")).not.toBeInstanceOf(HTMLElement);
 
-  fireEvent.click(queryByText("Three"));
+  fireEvent.click(getByText("Three"));
 
   expect(queryByText("Uno")).not.toBeInstanceOf(HTMLElement);
   expect(queryByText("Dos")).not.toBeInstanceOf(HTMLElement);
   expect(queryByText("Tres")).toBeInstanceOf(HTMLElement);
+});
+
+describe("Button role", () => {
+  it("should have a role of button when role not provided", () => {
+    const { getByRole } = render(<Button label="hello" />);
+    expect(getByRole("button")).toBeInstanceOf(HTMLButtonElement);
+  });
+  it("should not have a role of button when role not provided and it's a link", () => {
+    const { queryByRole, getByRole } = render(
+      <Button label="hello" url="myspace.com" />,
+    );
+    expect(queryByRole("button")).not.toBeInTheDocument();
+    expect(getByRole("link")).toBeInTheDocument();
+  });
+  it("should apply provided role when present", () => {
+    const { getByRole } = render(<Button label="hello" role="combobox" />);
+    expect(getByRole("combobox")).toBeInstanceOf(HTMLButtonElement);
+  });
 });

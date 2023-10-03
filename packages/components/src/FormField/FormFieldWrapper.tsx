@@ -50,15 +50,19 @@ export function FormFieldWrapper({
       [styles.miniLabel]:
         (placeholder && value !== "") ||
         (placeholder && type === "select") ||
-        (placeholder && type === "time"),
+        (placeholder && type === "time") ||
+        // Naively assume that if the the type is tel, it is the InputPhoneNumber
+        (placeholder && type === "tel"),
       [styles.textarea]: type === "textarea",
+      [styles.select]: type === "select",
       [styles.invalid]: invalid ?? error,
       [styles.disabled]: disabled,
-      [styles.inline]: inline,
       [styles.maxLength]: maxLength,
-      [styles.select]: type === "select",
     },
   );
+  const containerClasses = classnames(styles.container, {
+    [styles.inline]: inline,
+  });
 
   const wrapperInlineStyle = {
     ["--formField-maxLength" as string]: maxLength || max,
@@ -77,21 +81,26 @@ export function FormFieldWrapper({
   }, [value]);
 
   return (
-    <>
+    <div className={containerClasses}>
       <div className={wrapperClasses} style={wrapperInlineStyle}>
         {prefix?.icon && <AffixIcon {...prefix} size={size} />}
         <div className={styles.inputWrapper}>
-          <label
-            className={styles.label}
-            htmlFor={identifier}
-            style={
-              prefixRef?.current || suffixRef?.current ? labelStyle : undefined
-            }
-          >
-            {placeholder}
-          </label>
+          {placeholder && (
+            <label
+              className={styles.label}
+              htmlFor={identifier}
+              style={
+                prefixRef?.current || suffixRef?.current
+                  ? labelStyle
+                  : undefined
+              }
+            >
+              {placeholder}
+            </label>
+          )}
+
           {prefix?.label && <AffixLabel {...prefix} labelRef={prefixRef} />}
-          {children}
+          <div className={styles.childrenWrapper}>{children}</div>
           {suffix?.label && (
             <AffixLabel {...suffix} labelRef={suffixRef} variation="suffix" />
           )}
@@ -107,7 +116,7 @@ export function FormFieldWrapper({
         />
       )}
       {error && !inline && <InputValidation message={error} />}
-    </>
+    </div>
   );
 
   function getAffixPaddding() {
@@ -116,6 +125,9 @@ export function FormFieldWrapper({
       paddingLeft: undefined,
       paddingRight: undefined,
     };
+
+    // Naively assume that if the the type is tel, it is the InputPhoneNumber
+    if (type === "tel") return newPadding;
 
     if (prefixRef?.current && !hasValue) {
       const { offsetWidth } = prefixRef.current;

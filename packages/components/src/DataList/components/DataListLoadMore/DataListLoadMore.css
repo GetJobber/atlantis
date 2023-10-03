@@ -1,0 +1,26 @@
+.trigger {
+  position: relative;
+  transform: translateY(calc(var(--space-largest) * -1));
+}
+
+.loadingMore,
+.backToTop {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-small);
+}
+
+.backToTop {
+  opacity: 0;
+  animation: fadeIn var(--timing-base) ease var(--timing-base) forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

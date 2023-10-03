@@ -1,0 +1,21 @@
+.rectangle {
+  width: 100%;
+}
+
+.rectangleShort {
+  width: 85%;
+}
+
+.rectangleShorter {
+  width: 70%;
+}
+
+.square,
+.circle {
+  width: auto;
+  aspect-ratio: 1;
+}
+
+.circle {
+  border-radius: var(--radius-circle);
+}

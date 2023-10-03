@@ -1,7 +1,8 @@
-import { omit } from "lodash";
-import React from "react";
+import omit from "lodash/omit";
+import React, { useRef } from "react";
 import {
   CommonFormFieldProps,
+  FieldActionsRef,
   FormField,
   FormFieldProps,
   Suffix,
@@ -40,6 +41,7 @@ interface InputDateProps
 }
 
 export function InputDate(inputProps: InputDateProps) {
+  const formFieldActionsRef = useRef<FieldActionsRef>(null);
   return (
     <DatePicker
       selected={inputProps.value}
@@ -62,22 +64,30 @@ export function InputDate(inputProps: InputDateProps) {
           }),
         } as Suffix;
 
+        // Set form field to formatted date string immediately, to avoid validations
+        //  triggering incorrectly when it blurs (to handle the datepicker UI click)
+        value && formFieldActionsRef.current?.setValue(value);
+
         return (
-          <FormField
-            {...newActivatorProps}
-            {...inputProps}
-            value={value}
-            onChange={(_, event) => onChange && onChange(event)}
-            onBlur={() => {
-              inputProps.onBlur && inputProps.onBlur();
-              activatorProps.onBlur && activatorProps.onBlur();
-            }}
-            onFocus={() => {
-              inputProps.onFocus && inputProps.onFocus();
-              activatorProps.onFocus && activatorProps.onFocus();
-            }}
-            suffix={suffix}
-          />
+          // We prevent the picker from opening on focus for keyboard navigation, so to maintain a good UX for mouse users we want to open the picker on click
+          <div onClick={onClick}>
+            <FormField
+              {...newActivatorProps}
+              {...inputProps}
+              value={value}
+              onChange={(_, event) => onChange && onChange(event)}
+              onBlur={() => {
+                inputProps.onBlur && inputProps.onBlur();
+                activatorProps.onBlur && activatorProps.onBlur();
+              }}
+              onFocus={() => {
+                inputProps.onFocus && inputProps.onFocus();
+                activatorProps.onFocus && activatorProps.onFocus();
+              }}
+              actionsRef={formFieldActionsRef}
+              suffix={suffix}
+            />
+          </div>
         );
       }}
     />

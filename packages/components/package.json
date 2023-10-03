@@ -1,15 +1,17 @@
 {
   "name": "@jobber/components",
-  "version": "4.4.5",
+  "version": "4.45.2",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rollup --config",
-    "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
-    "prepublishOnly": "ts-node --project ../../tsconfig.bin.json scripts/entryPoints.ts",
     "bootstrap": "npm run clean; npm run build",
-    "postpublish": "ts-node --project ../../tsconfig.bin.json scripts/entryPoints.ts clean"
+    "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
+    "entryPoints:build": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts",
+    "entryPoints:clean": "npm run entryPoints:build clean",
+    "prepack": "npm run entryPoints:build",
+    "postpack": "npm run entryPoints:clean"
   },
   "files": [
     "*.js",
@@ -17,9 +19,9 @@
     "dist/*"
   ],
   "dependencies": {
-    "@jobber/design": "^0.31.1",
+    "@jobber/design": "^0.45.0",
     "@jobber/formatters": "*",
-    "@jobber/hooks": "*",
+    "@jobber/hooks": "^2.4.0",
     "@popperjs/core": "^2.0.6",
     "@std-proposal/temporal": "0.0.1",
     "@tanstack/react-table": "8.5.13",
@@ -39,7 +41,7 @@
     "react-countdown": "^2.3.2",
     "react-datepicker": "^4.10.0",
     "react-dropzone": "^11.0.2",
-    "react-hook-form": "^6.15.8",
+    "react-hook-form": "^7.43.7",
     "react-markdown": "^8.0.3",
     "react-popper": "^2.2.5",
     "react-router-dom": "^5.3.4",
@@ -48,6 +50,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@csstools/postcss-global-data": "^1.0.3",
     "@rollup/plugin-commonjs": "^24.0.1",
     "@rollup/plugin-typescript": "^9.0.1",
     "@testing-library/jest-dom": "^5.16.5",
@@ -61,13 +64,13 @@
     "autoprefixer": "^9.5.1",
     "copyfiles": "^2.4.1",
     "glob": "^7.1.4",
+    "jsdom-testing-mocks": "^1.9.0",
     "postcss": "^8.4.21",
     "postcss-import": "^12.0.1",
-    "postcss-preset-env": "^6.7.0",
+    "postcss-preset-env": "^8.3.0",
     "rollup": "^2.79.1",
     "rollup-plugin-multi-input": "^1.4.1",
     "rollup-plugin-postcss": "^4.0.2",
-    "ts-node": "^8.1.0",
     "typed-css-modules": "^0.7.0",
     "typescript": "^4.9.5",
     "uuid": "^8.3.2"

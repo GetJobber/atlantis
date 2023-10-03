@@ -1,0 +1,61 @@
+.searchInput {
+  --transition-properties: var(--timing-base) ease-in-out;
+  --button-offset: calc(var(--space-largest) - var(--space-smallest));
+
+  position: absolute;
+  /* Inputs are off by 1 when put beside a button */
+  top: calc(var(--space-small) + 1px);
+  right: var(--button-offset);
+  visibility: hidden;
+  width: 0;
+  opacity: 0;
+  transition: opacity var(--transition-properties),
+    width var(--transition-properties), visibility var(--transition-properties);
+}
+
+.searchInputVisible {
+  visibility: visible;
+  width: calc(100% - var(--button-offset));
+  opacity: 1;
+}
+
+.searchInput,
+.searchInputVisible {
+  @media (--medium-screens-and-up) {
+    position: static;
+    visibility: visible;
+    width: auto;
+    opacity: 1;
+    transition: none;
+  }
+}
+
+.searchButton {
+  display: block;
+
+  @media (--medium-screens-and-up) {
+    display: none;
+  }
+}
+
+/*
+ * No Filters Styling
+ *
+ * When there are no filters, the search input is always visible.
+ * ------------------------------------------------------------------------- */
+
+.withNoFilters .searchInput {
+  position: static;
+  visibility: visible;
+  width: auto;
+  opacity: 1;
+  transition: none;
+
+  @media (--medium-screens-and-up) {
+    max-width: 30%;
+  }
+}
+
+.withNoFilters .searchButton {
+  display: none;
+}

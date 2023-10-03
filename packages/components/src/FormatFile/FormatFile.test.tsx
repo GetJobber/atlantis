@@ -1,6 +1,13 @@
 import React from "react";
-import { act, cleanup, fireEvent, render } from "@testing-library/react";
+import {
+  act,
+  cleanup,
+  fireEvent,
+  render,
+  waitFor,
+} from "@testing-library/react";
 import { FormatFile } from ".";
+import { GLIMMER_TEST_ID } from "../Glimmer";
 
 afterEach(cleanup);
 
@@ -28,9 +35,39 @@ it("renders an image when provided as src", async () => {
     src: () => Promise.resolve(url),
   };
 
-  const { findByRole } = render(<FormatFile file={testFile} />);
+  const { getByAltText } = render(<FormatFile file={testFile} />);
 
-  expect(await findByRole("img")).toBeInTheDocument();
+  expect(getByAltText(testFile.name)).not.toHaveAttribute("src");
+  fireEvent.load(getByAltText(testFile.name));
+
+  await waitFor(() => {
+    expect(getByAltText(testFile.name)).toHaveAttribute("src", url);
+  });
+});
+
+it("renders a skeleton loader when the provided image has not fully loaded", async () => {
+  const url = "not_actually_a_url";
+  const testFile = {
+    key: "234",
+    name: "Onion",
+    type: "image/png",
+    size: 102432,
+    progress: 1,
+    src: () => Promise.resolve(url),
+  };
+
+  const { getByTestId, queryByTestId, getByAltText } = render(
+    <FormatFile file={testFile} />,
+  );
+  expect(getByTestId(GLIMMER_TEST_ID)).toBeInTheDocument();
+  expect(getByAltText(testFile.name)).toHaveClass("hidden");
+
+  fireEvent.load(getByAltText(testFile.name));
+
+  await waitFor(() => {
+    expect(queryByTestId(GLIMMER_TEST_ID)).not.toBeInTheDocument();
+  });
+  expect(getByAltText(testFile.name)).not.toHaveClass("hidden");
 });
 
 it("should call the delete handler", async () => {
@@ -80,7 +117,7 @@ describe("when the format file is a thumbnail", () => {
 
       const thumbnailImage = await findByRole("img");
 
-      expect(thumbnailImage.parentElement.className).toContain("base");
+      expect(thumbnailImage.parentElement?.className).toContain("base");
     });
   });
 
@@ -102,7 +139,7 @@ describe("when the format file is a thumbnail", () => {
 
       const thumbnailImage = await findByRole("img");
 
-      expect(thumbnailImage.parentElement.className).toContain("large");
+      expect(thumbnailImage.parentElement?.className).toContain("large");
     });
   });
 });
