@@ -43,9 +43,20 @@ export function DataListItemClickableInternal<T extends DataListObject>({
 
   if (onClick) {
     return (
-      <button className={styles.listItemClickable} onClick={handleClick}>
+      <div
+        role="button"
+        tabIndex={0}
+        className={styles.listItemClickable}
+        onClick={handleClick}
+        onKeyDown={e => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            handleClick();
+          }
+        }}
+      >
         {children}
-      </button>
+      </div>
     );
   }
 

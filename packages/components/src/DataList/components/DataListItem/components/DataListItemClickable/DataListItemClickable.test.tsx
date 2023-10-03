@@ -48,7 +48,7 @@ describe("DataListItemClickable", () => {
     expect(screen.getByText(content)).toBeInstanceOf(HTMLDivElement);
   });
 
-  it("should render a button when there's only an `onClick` prop", () => {
+  it("should render a div with a role of button when there's only an `onClick` prop", () => {
     mockItemActionComponent.mockReturnValueOnce(
       <DataListItemActions onClick={handleClick} />,
     );
@@ -56,7 +56,8 @@ describe("DataListItemClickable", () => {
     renderComponent();
 
     const target = screen.getByText(content);
-    expect(target).toBeInstanceOf(HTMLButtonElement);
+    expect(target).toBeInstanceOf(HTMLDivElement);
+    expect(target).toHaveAttribute("role", "button");
 
     userEvent.click(target);
     expect(handleClick).toHaveBeenCalledTimes(1);
