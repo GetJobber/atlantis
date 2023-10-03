@@ -170,7 +170,7 @@ function InternalDataList() {
 
       {showEmptyState && <InternalDataListEmptyState />}
 
-      {!initialLoading && layoutComponents}
+      {layoutComponents}
 
       {loadingState === "filtering" && (
         <div

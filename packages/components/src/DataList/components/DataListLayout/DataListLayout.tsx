@@ -11,8 +11,12 @@ export function DataListLayout<T extends DataListObject>({
   children,
   size = "xs",
 }: DataListLayoutProps<T>) {
-  const { layoutBreakpoints, registerLayout, registerLayoutBreakpoints } =
-    useDataListContext<T>();
+  const {
+    layoutBreakpoints,
+    registerLayout,
+    registerLayoutBreakpoints,
+    loadingState,
+  } = useDataListContext<T>();
   const breakpoints = useResponsiveSizing();
 
   useEffect(() => {
@@ -26,10 +30,9 @@ export function DataListLayout<T extends DataListObject>({
   const sizeIndex = layoutBreakpoints.indexOf(size);
   const nextAvailableSize = layoutBreakpoints[sizeIndex + 1];
 
-  const shouldRenderLayout =
-    breakpoints[size] && !breakpoints[nextAvailableSize];
+  const shouldRenderList = breakpoints[size] && !breakpoints[nextAvailableSize];
 
-  if (shouldRenderLayout) {
+  if (loadingState !== "initial" && shouldRenderList) {
     return <DataListItems size={size} />;
   }
 
