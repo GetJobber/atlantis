@@ -14,6 +14,8 @@ export function DataListItemActionsOverflow<T extends DataListObject>({
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
   const [showMenu, setShowMenu] = useState(false);
 
+  if (actions.length === 0) return null;
+
   return (
     <>
       <Tooltip message="More actions">
@@ -26,15 +28,13 @@ export function DataListItemActionsOverflow<T extends DataListObject>({
         />
       </Tooltip>
 
-      {actions && (
-        <DataListActionsMenu
-          visible={showMenu}
-          position={menuPosition}
-          onRequestClose={handleClose}
-        >
-          {actions}
-        </DataListActionsMenu>
-      )}
+      <DataListActionsMenu
+        visible={showMenu}
+        position={menuPosition}
+        onRequestClose={handleClose}
+      >
+        {actions}
+      </DataListActionsMenu>
     </>
   );
 

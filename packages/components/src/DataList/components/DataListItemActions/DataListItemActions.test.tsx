@@ -126,7 +126,7 @@ function renderComponent() {
   return render(
     <MockMainContextProvider>
       <MockLayoutContextProvider>
-        <InternalDataListItemActions item={{ id: 1 }} />
+        <InternalDataListItemActions />
       </MockLayoutContextProvider>
     </MockMainContextProvider>,
   );

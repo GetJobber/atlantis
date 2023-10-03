@@ -3,6 +3,7 @@ declare const styles: {
   readonly "titleContainer": string;
   readonly "headerFilters": string;
   readonly "headerTitles": string;
+  readonly "batchSelectContainer": string;
   readonly "headerBatchSelect": string;
   readonly "listItem": string;
   readonly "active": string;
