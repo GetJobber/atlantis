@@ -35,12 +35,10 @@ import {
   LayoutRenderer,
 } from "./DataList.types";
 import {
-  generateHeaderElements,
   getCompoundComponent,
   getCompoundComponents,
   sortBreakpoints,
 } from "./DataList.utils";
-import { useLayoutMediaQueries } from "./hooks/useLayoutMediaQueries";
 import {
   Breakpoints,
   DATA_LIST_FILTERING_SPINNER_TEST_ID,
@@ -123,7 +121,6 @@ export function DataList<T extends DataListObject>({
 function InternalDataList() {
   const {
     data,
-    headers,
     title,
     totalCount,
     loadingState = "none",
@@ -131,9 +128,6 @@ function InternalDataList() {
   } = useDataListContext();
 
   const backToTopRef = useRef<HTMLDivElement>(null);
-
-  const headerData = generateHeaderElements(headers);
-  const mediaMatches = useLayoutMediaQueries();
 
   const initialLoading = loadingState === "initial";
   const showEmptyState = !initialLoading && data.length === 0;
@@ -157,16 +151,10 @@ function InternalDataList() {
           <InternalDataListSearch />
         </div>
 
-        {headerData && <DataListHeader />}
+        <DataListHeader />
       </DataListStickyHeader>
 
-      {initialLoading && (
-        <DataListLoadingState
-          headers={headers}
-          layouts={layoutComponents}
-          mediaMatches={mediaMatches}
-        />
-      )}
+      {initialLoading && <DataListLoadingState />}
 
       {showEmptyState && <InternalDataListEmptyState />}
 
