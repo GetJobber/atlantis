@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.45.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.45.2...@jobber/components@4.45.3) (2023-10-03)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.45.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.45.1...@jobber/components@4.45.2) (2023-10-03)
+
+
+### Bug Fixes
+
+* **components:** Fix importing of datalist css issue ([#1559](https://github.com/GetJobber/atlantis/issues/1559)) ([3d2c9a9](https://github.com/GetJobber/atlantis/commit/3d2c9a94e9fc03720a5acfdc195699c8d198166f))
+
+
+
+
+
+## [4.45.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.45.0...@jobber/components@4.45.1) (2023-10-02)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [4.45.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.44.0...@jobber/components@4.45.0) (2023-10-02)
+
+
+### Features
+
+* **components:** Combobox single-select ([#1509](https://github.com/GetJobber/atlantis/issues/1509)) ([3d1394c](https://github.com/GetJobber/atlantis/commit/3d1394ca0e3a9e63a27eb09e25a67c14baf3ffa5)), closes [#1510](https://github.com/GetJobber/atlantis/issues/1510) [#1513](https://github.com/GetJobber/atlantis/issues/1513)
+
+
+
+
+
+# [4.44.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.43.1...@jobber/components@4.44.0) (2023-10-02)
+
+
+### Features
+
+* **components:** Allow Bulk actions on DataList ([#1549](https://github.com/GetJobber/atlantis/issues/1549)) ([5ddfdcf](https://github.com/GetJobber/atlantis/commit/5ddfdcf25eaf44a89c13606102d35da380ab6385))
+
+
+
+
+
 ## [4.43.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.43.0...@jobber/components@4.43.1) (2023-09-29)
 
 

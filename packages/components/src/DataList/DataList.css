@@ -39,15 +39,25 @@
   border-bottom: var(--border-thick) solid var(--color-border);
 }
 
+.batchSelectContainer {
+  display: flex;
+
+  @media (--small-screens-and-below) {
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
 .headerBatchSelect > p {
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .headerBatchSelect {
   display: flex;
+  margin: calc(var(--space-small) * -1) 0;
   align-items: center;
   gap: var(--space-smaller);
-  margin: calc(var(--space-small) * -1) 0;
 }
 
 /*
@@ -121,6 +131,9 @@
 .selectAllCheckbox {
   display: flex;
   visibility: hidden;
+
+  /* To compensate the Checkbox's label margin that we are using for screen-readers */
+  margin-right: calc(var(--space-base) * -1);
 }
 
 .selectAllCheckbox.visible {
@@ -169,4 +182,15 @@
 .filteringSpinner {
   position: sticky;
   top: 50vh;
+}
+
+/* This hides the text from the UI but not from the screen readers */
+.srOnly {
+  position: absolute;
+  top: auto;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  text-indent: -10000px;
 }
