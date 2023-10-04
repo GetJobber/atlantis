@@ -39,6 +39,10 @@ export function DataListItemActionsOverflow<T extends DataListObject>({
   );
 
   function handleMoreClick(event: MouseEvent<HTMLButtonElement>): void {
+    // Prevent firing the parent's onClick event when it is nested
+    // within a clickable list item
+    event.stopPropagation();
+
     setShowMenu(true);
 
     const rect = event.currentTarget.getBoundingClientRect();
