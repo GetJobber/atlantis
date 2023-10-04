@@ -30,7 +30,7 @@ interface FlexProps {
   /**
    * The spacing between the children.
    *
-   *  @default "none"
+   *  @default "base"
    */
   readonly gap?: Spacing;
 
@@ -52,11 +52,13 @@ export function Flex({
   align = "center",
   children,
   direction = "row",
-  gap = "none",
+  gap = "base",
   template = [],
 }: FlexProps) {
-  if (template.length === 1) {
-    console.warn("Please use <Content /> component for a stacked layout");
+  if (template.length !== Children.count(children)) {
+    console.warn(
+      "Flex template length does not match children count, this may cause unexpected results.",
+    );
   }
 
   const templateKey =
