@@ -8,6 +8,8 @@ export const DataListLayoutActionsContext = createContext<
   DataListLayoutActionsContextProps<DataListObject>
 >({ activeItem: undefined });
 
-export function useDataListLayoutActionsContext() {
-  return useContext(DataListLayoutActionsContext);
+export function useDataListLayoutActionsContext<T extends DataListObject>() {
+  return useContext(
+    DataListLayoutActionsContext,
+  ) as DataListLayoutActionsContextProps<T>;
 }

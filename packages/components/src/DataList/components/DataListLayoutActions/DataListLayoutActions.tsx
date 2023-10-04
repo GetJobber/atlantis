@@ -6,14 +6,13 @@ import React, {
 } from "react";
 import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
 import { useDataListLayoutContext } from "@jobber/components/DataList/context/DataListLayoutContext";
-import { DataListItemActionsOverflow } from "@jobber/components/DataList/components/DataListItemActions";
-import { useDataListLayoutActionsContext } from "./DataListLayoutContext";
+import { DataListItemActionsOverflow } from "@jobber/components/DataList/components/DataListItemActionsOverflow";
+import { Glimmer } from "@jobber/components/Glimmer";
 import styles from "./DataListLayoutActions.css";
 
 export function DataListLayoutActions() {
-  const { itemActionComponent } = useDataListContext();
+  const { itemActionComponent, loadingState } = useDataListContext();
   const { setHasInLayoutActions } = useDataListLayoutContext();
-  const { activeItem } = useDataListLayoutActionsContext();
 
   const { children: actionsChildren } = itemActionComponent?.props || {};
   const actions = Children.toArray(actionsChildren) as ReactElement[];
@@ -27,11 +26,15 @@ export function DataListLayoutActions() {
     };
   }, []);
 
+  if (loadingState === "initial") {
+    return <Glimmer shape="square" size="large" />;
+  }
+
   if (!hasActions) return null;
 
   return (
     <DataListLayoutActionsWrapper>
-      <DataListItemActionsOverflow actions={actions} item={activeItem} />
+      <DataListItemActionsOverflow actions={actions} />
     </DataListLayoutActionsWrapper>
   );
 }

@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import uniq from "lodash/uniq";
@@ -158,22 +159,60 @@ const Template: ComponentStory<typeof DataList> = args => {
         placeholder="Search characters..."
       />
 
-      <DataList.ItemActions>
-        <DataList.Action icon="edit" label="Edit" onClick={handleActionClick} />
-        <DataList.Action
+      <DataList.ItemActions onClick={handleActionClick}>
+        <DataList.ItemAction
+          icon="edit"
+          label="Edit"
+          onClick={handleActionClick}
+        />
+        <DataList.ItemAction
           icon="sendMessage"
           label="Message"
           onClick={handleActionClick}
         />
-        <DataList.Action label="Create new..." onClick={handleActionClick} />
-        <DataList.Action label="Add attribute..." onClick={handleActionClick} />
-        <DataList.Action
+        <DataList.ItemAction
+          label="Create new..."
+          onClick={handleActionClick}
+        />
+        <DataList.ItemAction
+          label="Add attribute..."
+          onClick={handleActionClick}
+        />
+        <DataList.ItemAction
           icon="trash"
           label="Delete"
           destructive={true}
           onClick={handleActionClick}
         />
       </DataList.ItemActions>
+
+      <DataList.BulkActions>
+        <DataList.BatchAction
+          icon="edit"
+          label="Edit"
+          onClick={handleBulkActionClick}
+        />
+        <DataList.BatchAction
+          icon="sendMessage"
+          label="Message"
+          onClick={handleBulkActionClick}
+        />
+        <DataList.BatchAction
+          label="Create new..."
+          icon="add"
+          onClick={handleBulkActionClick}
+        />
+        <DataList.BatchAction
+          label="Add attribute..."
+          onClick={handleBulkActionClick}
+        />
+        <DataList.BatchAction
+          icon="trash"
+          label="Delete"
+          destructive={true}
+          onClick={handleBulkActionClick}
+        />
+      </DataList.BulkActions>
 
       <DataList.Layout size="md">
         {(item: DataListItemType<typeof mappedData>) => (
@@ -262,7 +301,11 @@ const Template: ComponentStory<typeof DataList> = args => {
   );
 
   function handleActionClick(item: (typeof mappedData)[number]) {
-    alert(`You clicked the action for ${item.label}`);
+    alert(`You clicked the action for ${item?.label}`);
+  }
+
+  function handleBulkActionClick() {
+    console.log("You clicked on a bulk action", selected);
   }
 
   function getColor(gender: string): InlineLabelColors | undefined {

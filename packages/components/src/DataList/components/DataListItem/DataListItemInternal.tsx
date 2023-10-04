@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { Checkbox } from "@jobber/components/Checkbox";
 import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
 import { DataListObject } from "@jobber/components/DataList/DataList.types";
-import styles from "@jobber/components/DataList/DataList.css";
+import styles from "../../DataList.css";
 
 interface ListItemInternalProps<T extends DataListObject> {
   readonly children: JSX.Element;
@@ -23,11 +23,11 @@ export function DataListItemInternal<T extends DataListObject>({
           [styles.selected]: selected?.length,
         })}
       >
+        {children}
         <Checkbox
           checked={selected?.includes(item.id)}
           onChange={handleChange}
         />
-        {children}
       </div>
     );
   }

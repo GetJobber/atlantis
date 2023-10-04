@@ -11,6 +11,10 @@
   flex: 1;
 }
 
+/*
+ * Header
+ */
+
 .titleContainer {
   display: flex;
   position: relative;
@@ -35,16 +39,30 @@
   border-bottom: var(--border-thick) solid var(--color-border);
 }
 
+.batchSelectContainer {
+  display: flex;
+
+  @media (--small-screens-and-below) {
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
 .headerBatchSelect > p {
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .headerBatchSelect {
   display: flex;
+  margin: calc(var(--space-small) * -1) 0;
   align-items: center;
   gap: var(--space-smaller);
-  margin: calc(var(--space-small) * -1) 0;
 }
+
+/*
+ * List Item
+ */
 
 .listItem {
   position: relative;
@@ -53,10 +71,42 @@
   transition: all var(--timing-base);
 }
 
-.listItem.active {
+.listItem.active,
+.listItem:hover,
+.listItem:focus-within {
   --data-list-item-active-color: var(--color-surface--background);
   background-color: var(--data-list-item-active-color);
 }
+
+.listItemClickable {
+  display: block;
+  margin: calc(var(--space-small) * -1) 0;
+  padding: var(--space-small) 0;
+  border: none;
+  text-align: left;
+  text-decoration: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+/**
+ * Enable a better hover and focus experience when :has() is supported.
+ * This is a workaround for Firefox where the :has() selector is not supported.
+ */
+@supports selector(*:has(*)) {
+  .listItem:hover,
+  .listItem:focus-within {
+    background-color: transparent;
+  }
+
+  .listItem:has(.listItemClickable:hover, .listItemClickable:focus) {
+    background-color: var(--data-list-item-active-color);
+  }
+}
+
+/*
+ * List Item Selection
+ */
 
 .selectable {
   display: grid;
@@ -81,6 +131,9 @@
 .selectAllCheckbox {
   display: flex;
   visibility: hidden;
+
+  /* To compensate the Checkbox's label margin that we are using for screen-readers */
+  margin-right: calc(var(--space-base) * -1);
 }
 
 .selectAllCheckbox.visible {
@@ -88,6 +141,11 @@
 }
 
 .listItem .selectable > :first-child {
+  order: 2;
+}
+
+.listItem .selectable > :last-child {
+  order: 1;
   padding-top: var(--space-smaller);
   opacity: 1;
   transition: opacity var(--transition-properties);
@@ -99,11 +157,15 @@
   }
 }
 
-.listItem:hover .selectable > :first-child,
-.listItem:focus-within .selectable > :first-child,
-.listItem .selectable.selected > :first-child {
+.listItem:hover .selectable > :last-child,
+.listItem:focus-within .selectable > :last-child,
+.listItem .selectable.selected > :last-child {
   opacity: 1;
 }
+
+/*
+ * Filters
+ */
 
 .filtering {
   display: flex;
@@ -120,4 +182,15 @@
 .filteringSpinner {
   position: sticky;
   top: 50vh;
+}
+
+/* This hides the text from the UI but not from the screen readers */
+.srOnly {
+  position: absolute;
+  top: auto;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  text-indent: -10000px;
 }

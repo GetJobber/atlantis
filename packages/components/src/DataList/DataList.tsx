@@ -1,12 +1,9 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./DataList.css";
 import { DataListTotalCount } from "./components/DataListTotalCount";
 import { DataListLoadingState } from "./components/DataListLoadingState";
 import { DataListLayout } from "./components/DataListLayout";
-import {
-  DataListHeader,
-  DataListItems,
-} from "./components/DataListLayoutInternal";
+import { DataListHeader } from "./components/DataListHeader";
 import {
   DataListFilters,
   InternalDataListFilters,
@@ -26,6 +23,8 @@ import { DataListAction } from "./components/DataListAction";
 import { DataListLayoutActions } from "./components/DataListLayoutActions";
 import { DataListContext, useDataListContext } from "./context/DataListContext";
 import {
+  DataListBulkActionProps,
+  DataListBulkActionsProps,
   DataListEmptyStateProps,
   DataListFiltersProps,
   DataListItemActionsProps,
@@ -33,21 +32,31 @@ import {
   DataListObject,
   DataListProps,
   DataListSearchProps,
+  LayoutRenderer,
 } from "./DataList.types";
 import {
-  generateHeaderElements,
   getCompoundComponent,
   getCompoundComponents,
+  sortBreakpoints,
 } from "./DataList.utils";
-import { useLayoutMediaQueries } from "./hooks/useLayoutMediaQueries";
-import { DATA_LIST_FILTERING_SPINNER_TEST_ID } from "./DataList.const";
+import {
+  Breakpoints,
+  DATA_LIST_FILTERING_SPINNER_TEST_ID,
+} from "./DataList.const";
+import { DataListBulkActions } from "./components/DataListBulkActions";
 import { Heading } from "../Heading";
 import { Spinner } from "../Spinner";
 
 export function DataList<T extends DataListObject>({
+  selected = [],
   sorting,
   ...props
 }: DataListProps<T>) {
+  const [layoutBreakpoints, setLayoutBreakpoints] = useState<Breakpoints[]>([]);
+  const [layouts, setLayouts] = useState<{
+    [Breakpoint in Breakpoints]?: LayoutRenderer<DataListObject>;
+  }>({});
+
   const searchComponent = getCompoundComponent<DataListSearchProps>(
     props.children,
     DataListSearch,
@@ -66,6 +75,10 @@ export function DataList<T extends DataListObject>({
   const itemActionComponent = getCompoundComponent<
     DataListItemActionsProps<DataListObject>
   >(props.children, DataListItemActions);
+  const bulkActionsComponent = getCompoundComponent<DataListBulkActionsProps>(
+    props.children,
+    DataListBulkActions,
+  );
 
   return (
     <DataListContext.Provider
@@ -75,8 +88,13 @@ export function DataList<T extends DataListObject>({
         layoutComponents,
         emptyStateComponents,
         itemActionComponent,
+        bulkActionsComponent,
+        layoutBreakpoints,
+        registerLayoutBreakpoints,
+        layouts,
+        registerLayout,
         ...props,
-        selected: props.selected ?? [],
+        selected,
         // T !== DataListObject
         sorting: sorting as DataListProps<DataListObject>["sorting"],
       }}
@@ -84,23 +102,32 @@ export function DataList<T extends DataListObject>({
       <InternalDataList />
     </DataListContext.Provider>
   );
+
+  function registerLayoutBreakpoints(size: Breakpoints) {
+    setLayoutBreakpoints(prev => sortBreakpoints([...prev, size]));
+  }
+
+  function registerLayout(
+    size: Breakpoints,
+    children: LayoutRenderer<DataListObject>,
+  ) {
+    setLayouts(prev => ({
+      ...prev,
+      [size]: children,
+    }));
+  }
 }
 
 function InternalDataList() {
   const {
     data,
-    headers,
     title,
     totalCount,
-    headerVisibility = { xs: true, sm: true, md: true, lg: true, xl: true },
     loadingState = "none",
     layoutComponents,
   } = useDataListContext();
 
   const backToTopRef = useRef<HTMLDivElement>(null);
-
-  const headerData = generateHeaderElements(headers);
-  const mediaMatches = useLayoutMediaQueries();
 
   const initialLoading = loadingState === "initial";
   const showEmptyState = !initialLoading && data.length === 0;
@@ -124,33 +151,14 @@ function InternalDataList() {
           <InternalDataListSearch />
         </div>
 
-        {headerData && (
-          <DataListHeader
-            layouts={layoutComponents}
-            headerData={headerData}
-            headerVisibility={headerVisibility}
-            mediaMatches={mediaMatches}
-          />
-        )}
+        <DataListHeader />
       </DataListStickyHeader>
 
-      {initialLoading && (
-        <DataListLoadingState
-          headers={headers}
-          layouts={layoutComponents}
-          mediaMatches={mediaMatches}
-        />
-      )}
+      {initialLoading && <DataListLoadingState />}
 
       {showEmptyState && <InternalDataListEmptyState />}
 
-      {!initialLoading && (
-        <DataListItems
-          data={data}
-          layouts={layoutComponents}
-          mediaMatches={mediaMatches}
-        />
-      )}
+      {layoutComponents}
 
       {loadingState === "filtering" && (
         <div
@@ -215,7 +223,22 @@ DataList.Search = DataListSearch;
 DataList.ItemActions = DataListItemActions;
 
 /**
+ * Defines the group actions you could do on multiple DataList items.
+ */
+DataList.BulkActions = DataListBulkActions;
+
+/**
  * Defines the action in a DataList. This should be used inside the
  * DataListItemActions component.
  */
-DataList.Action = DataListAction;
+DataList.ItemAction = DataListAction;
+
+/**
+ * Defines the batch action in a DataList. This should be used inside the
+ * DataListBulkActions component.
+ */
+DataList.BatchAction = function DataListBatchAction(
+  props: DataListBulkActionProps,
+) {
+  return <DataListAction {...props} />;
+};

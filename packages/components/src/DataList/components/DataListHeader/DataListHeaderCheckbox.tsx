@@ -2,11 +2,13 @@ import classNames from "classnames";
 import React from "react";
 import { ReactElement } from "react-markdown/lib/react-markdown";
 import { AnimatedSwitcher } from "../../../AnimatedSwitcher";
+import { Text } from "../../../Text";
 import { Button } from "../../../Button";
 import { Checkbox } from "../../../Checkbox";
-import { Text } from "../../../Text";
 import { useDataListContext } from "../../context/DataListContext";
 import styles from "../../DataList.css";
+import { InternalDataListBulkActions } from "../DataListBulkActions";
+import { useResponsiveSizing } from "../../hooks/useResponsiveSizing";
 
 interface DataListHeaderCheckbox {
   readonly children: ReactElement;
@@ -23,6 +25,13 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
 
   if (!onSelectAll && !onSelect) return children;
 
+  const { sm } = useResponsiveSizing();
+
+  // Show "Deselect All" if breakpoint is sm or higher
+  const deselectText = sm ? "Deselect All" : "Deselect";
+
+  const selectedLabel = selected.length ? `${selected.length} selected` : "";
+
   return (
     <div className={classNames(styles.selectable)}>
       <div
@@ -34,22 +43,25 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
           checked={isAllSelected()}
           indeterminate={selected.length > 0 && !isAllSelected()}
           onChange={onSelectAll}
-        />
+        >
+          <div className={styles.srOnly}>{selectedLabel}</div>
+        </Checkbox>
       </div>
 
       <AnimatedSwitcher
         switched={Boolean(selected.length)}
         initialChild={children}
         switchTo={
-          <div className={styles.headerBatchSelect}>
-            <Text>
-              <b>{selected.length} selected</b>
-            </Text>
-            <Button
-              label="Deselect All"
-              onClick={() => onSelect?.([])}
-              type="tertiary"
-            />
+          <div className={styles.batchSelectContainer}>
+            <div className={styles.headerBatchSelect}>
+              <Text>{selected.length} selected</Text>
+              <Button
+                label={deselectText}
+                onClick={() => onSelect?.([])}
+                type="tertiary"
+              />
+            </div>
+            <InternalDataListBulkActions />
           </div>
         }
       />
