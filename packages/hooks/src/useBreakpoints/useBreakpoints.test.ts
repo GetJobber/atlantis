@@ -125,4 +125,67 @@ describe("useBreakpoints", () => {
       });
     });
   });
+
+  describe("in between values", () => {
+    function randomBreakpoint(min: number, max: number) {
+      return Math.floor(min + Math.random() * (max - min + 1));
+    }
+
+    it("should have the correct breakpoint values on higher than xl size screens", () => {
+      setViewportWidth(randomBreakpoint(BREAKPOINT_SIZES.xl, 10000));
+      const { result } = renderHook(useBreakpoints);
+
+      expect(result.current).toMatchObject({
+        smallAndUp: true,
+        mediumAndUp: true,
+        largeAndUp: true,
+        extraLargeAndUp: true,
+      });
+    });
+
+    it("should have the correct breakpoint values on lg size screens", () => {
+      setViewportWidth(
+        randomBreakpoint(BREAKPOINT_SIZES.lg, BREAKPOINT_SIZES.xl),
+      );
+      const { result } = renderHook(useBreakpoints);
+
+      expect(result.current).toMatchObject({
+        smallAndUp: true,
+        mediumAndUp: true,
+        largeAndUp: true,
+
+        extraLargeAndUp: false,
+      });
+    });
+
+    it("should have the correct breakpoint values on md size screens", () => {
+      setViewportWidth(
+        randomBreakpoint(BREAKPOINT_SIZES.md, BREAKPOINT_SIZES.lg),
+      );
+      const { result } = renderHook(useBreakpoints);
+
+      expect(result.current).toMatchObject({
+        smallAndUp: true,
+        mediumAndUp: true,
+
+        largeAndUp: false,
+        extraLargeAndUp: false,
+      });
+    });
+
+    it("should have the correct breakpoint values on sm size screens", () => {
+      setViewportWidth(
+        randomBreakpoint(BREAKPOINT_SIZES.sm, BREAKPOINT_SIZES.md),
+      );
+      const { result } = renderHook(useBreakpoints);
+
+      expect(result.current).toMatchObject({
+        smallAndUp: true,
+
+        mediumAndUp: false,
+        largeAndUp: false,
+        extraLargeAndUp: false,
+      });
+    });
+  });
 });
