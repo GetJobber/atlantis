@@ -1,10 +1,4 @@
-import React, {
-  Children,
-  MouseEvent,
-  ReactElement,
-  useMemo,
-  useState,
-} from "react";
+import React, { MouseEvent, useMemo, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import classNames from "classnames";
 import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
@@ -15,17 +9,16 @@ import {
 } from "@jobber/components/DataList/DataList.types";
 import { InternalDataListItemActions } from "@jobber/components/DataList/components/DataListItemActions";
 import { DataListActionsMenu } from "@jobber/components/DataList/components/DataListActionsMenu";
-import { InternalDataListAction } from "@jobber/components/DataList/components/DataListAction";
 import { DataListLayoutActionsContext } from "@jobber/components/DataList/components/DataListLayoutActions/DataListLayoutContext";
-import styles from "@jobber/components/DataList/DataList.css";
+import { generateListItemElement } from "@jobber/components/DataList/DataList.utils";
 import { DataListItemInternal } from "./DataListItemInternal";
 import { DataListItemClickable } from "./components/DataListItemClickable";
-import { generateListItemElement } from "../../DataList.utils";
+import styles from "../../DataList.css";
 
 interface DataListItem<T extends DataListObject> {
   readonly item: T;
   readonly index: number;
-  readonly layout: ReactElement<DataListLayoutProps<T>>;
+  readonly layout: DataListLayoutProps<T>["children"];
 }
 
 export function DataListItem<T extends DataListObject>({
@@ -59,15 +52,11 @@ export function DataListItem<T extends DataListObject>({
         key={item.id}
       >
         <DataListItemInternal item={item}>
-          <DataListItemClickable>
-            {layout.props.children(generatedItem)}
-          </DataListItemClickable>
+          <DataListItemClickable>{layout(generatedItem)}</DataListItemClickable>
         </DataListItemInternal>
 
         <AnimatePresence>
-          {showMenu && !hasInLayoutActions && (
-            <InternalDataListItemActions item={item} />
-          )}
+          {showMenu && !hasInLayoutActions && <InternalDataListItemActions />}
 
           <DataListActionsMenu
             key={item.id}
@@ -75,14 +64,7 @@ export function DataListItem<T extends DataListObject>({
             position={contextPosition || { x: 0, y: 0 }}
             onRequestClose={() => setContextPosition(undefined)}
           >
-            {contextMenuActions &&
-              Children.map(contextMenuActions, action => (
-                <InternalDataListAction
-                  key={item.id}
-                  {...action.props}
-                  item={item}
-                />
-              ))}
+            {contextMenuActions}
           </DataListActionsMenu>
         </AnimatePresence>
       </div>

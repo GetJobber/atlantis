@@ -12,10 +12,9 @@ export interface ComboboxProps {
   readonly children: ReactElement | ReactElement[];
 
   /**
-   * multi select
+   * When `true`, `Combobox` will allow for multiple selections
+   *
    * @default false
-   * @type boolean
-   * @description if true, allows multiple selections
    */
   readonly multiSelect?: boolean;
 }
@@ -30,7 +29,7 @@ export const Combobox = (props: ComboboxProps): JSX.Element => {
     props.children,
   );
   return (
-    <ComboboxContextProvider>
+    <ComboboxContextProvider multiselect={props.multiSelect}>
       {triggerElement}
       {contentElement}
     </ComboboxContextProvider>
