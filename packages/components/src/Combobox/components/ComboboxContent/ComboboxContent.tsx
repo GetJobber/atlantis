@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement } from "react";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
 import { XOR } from "ts-xor";
@@ -69,7 +69,9 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     setFirstSelectedElement,
     filteredOptions,
     optionsListRef,
-  } = useComboboxContent(props.options, open);
+    selectedOptions,
+    setInternalSelected,
+  } = useComboboxContent(props.options, open, props.selected, props.onClose);
 
   const { popperRef, popperStyles, attributes } = useComboboxAccessibility(
     handleSelection,
@@ -79,17 +81,6 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     setOpen,
     wrapperRef,
   );
-
-  const [internalSelected, setInternalSelected] = useState<ComboboxOption[]>(
-    props.selected,
-  );
-  const selectedOptions = props.onClose ? internalSelected : props.selected;
-
-  useEffect(() => {
-    if (!open) {
-      props.onClose && props.onClose(selectedOptions);
-    }
-  }, [open]);
 
   const template = (
     <div

@@ -1,10 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ComboboxOption } from "../Combobox.types";
 
-export function useComboboxContent(
-  options: ComboboxOption[],
-  open: boolean,
-): {
+interface useComboboxContent {
   searchValue: string;
   setSearchValue: React.Dispatch<React.SetStateAction<string>>;
   setFirstSelectedElement: React.Dispatch<
@@ -12,7 +9,16 @@ export function useComboboxContent(
   >;
   filteredOptions: ComboboxOption[];
   optionsListRef: React.RefObject<HTMLUListElement>;
-} {
+  selectedOptions: ComboboxOption[];
+  setInternalSelected: (selected: ComboboxOption[]) => void;
+}
+
+export function useComboboxContent(
+  options: ComboboxOption[],
+  open: boolean,
+  selected: ComboboxOption[],
+  onClose: ((selection: ComboboxOption[]) => void) | undefined,
+): useComboboxContent {
   const [searchValue, setSearchValue] = useState<string>("");
   const [firstSelectedElement, setFirstSelectedElement] =
     useState<HTMLElement | null>(null);
@@ -20,6 +26,16 @@ export function useComboboxContent(
   const filteredOptions = options.filter(option =>
     option.label.toLowerCase().includes(searchValue.toLowerCase()),
   );
+
+  const [internalSelected, setInternalSelected] =
+    useState<ComboboxOption[]>(selected);
+  const selectedOptions = onClose ? internalSelected : selected;
+
+  useEffect(() => {
+    if (!open && onClose) {
+      onClose(selectedOptions);
+    }
+  }, [open, onClose]);
 
   useEffect(() => {
     if (open && firstSelectedElement) {
@@ -35,5 +51,7 @@ export function useComboboxContent(
     setFirstSelectedElement,
     filteredOptions,
     optionsListRef,
+    selectedOptions,
+    setInternalSelected,
   };
 }
