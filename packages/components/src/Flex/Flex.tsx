@@ -53,7 +53,7 @@ export function Flex({
   gap = "base",
   template = [],
 }: FlexProps) {
-  if (template.length !== Children.count(children)) {
+  if (template.length && template.length !== Children.count(children)) {
     console.warn(
       "Flex template length does not match children count, this may cause unexpected results.",
     );
@@ -62,11 +62,13 @@ export function Flex({
   const templateKey =
     direction === "row" ? "gridTemplateColumns" : "gridTemplateRows";
 
-  const containerStyles: CSSProperties = {
-    [templateKey]: template.length
-      ? template.map(item => templateValues[item]).join(" ")
-      : new Array(Children.count(children)).fill("auto").join(" "),
-  };
+  const containerStyles: CSSProperties = {};
+
+  if (template.length) {
+    containerStyles[templateKey] = template
+      .map(key => templateValues[key])
+      .join(" ");
+  }
 
   return (
     <div

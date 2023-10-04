@@ -107,3 +107,15 @@ it("warns if the template length does not match the number of children", () => {
     "Flex template length does not match children count, this may cause unexpected results.",
   );
 });
+
+it("does not warn if there is no template", () => {
+  const spy = jest.spyOn(console, "warn").mockImplementation(jest.fn());
+
+  render(
+    <Flex>
+      <h1>Foo</h1>
+    </Flex>,
+  );
+
+  expect(spy).not.toHaveBeenCalled();
+});
