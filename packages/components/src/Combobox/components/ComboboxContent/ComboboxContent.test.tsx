@@ -295,6 +295,7 @@ function MockComboboxProvider({ children }: { children: React.ReactNode }) {
   return (
     <ComboboxContext.Provider
       value={{
+        multiselect: false,
         open,
         setOpen,
         wrapperRef: { current: null },

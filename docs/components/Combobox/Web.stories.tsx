@@ -139,7 +139,7 @@ const ComboboxClearSelection: ComponentStory<typeof Combobox> = args => {
         type="primary"
         onClick={() => setSelected(null)}
       />
-      <Combobox {...args}>
+      <Combobox {...args} multiSelect>
         <Combobox.TriggerButton
           label="Select a teammate"
           variation="subtle"
