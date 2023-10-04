@@ -43,6 +43,8 @@ export function DataListItemClickableInternal<T extends DataListObject>({
 
   if (onClick) {
     return (
+      // A button can be nested within the list item. To prevent a button inside
+      // button error, we need to manually declare a div to be a button
       <div
         role="button"
         tabIndex={0}
