@@ -3,6 +3,74 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.46.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.45.6...@jobber/components@4.46.0) (2023-10-04)
+
+
+### Features
+
+* **components:** Add multiselect prop to combobox ([#1557](https://github.com/GetJobber/atlantis/issues/1557)) ([876d3a4](https://github.com/GetJobber/atlantis/commit/876d3a413d58767adfef7ec9bda900252e3eb09a))
+
+
+
+
+
+## [4.45.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.45.5...@jobber/components@4.45.6) (2023-10-04)
+
+
+### Bug Fixes
+
+* **components:** Fixed using DataList in jest tests failing ([#1567](https://github.com/GetJobber/atlantis/issues/1567)) ([f01e581](https://github.com/GetJobber/atlantis/commit/f01e58140d472216ed6f3d7c92efacbf8dfd157b))
+
+
+
+
+
+## [4.45.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.45.4...@jobber/components@4.45.5) (2023-10-04)
+
+
+### Bug Fixes
+
+* **components:** nested button issue on DataList ([#1564](https://github.com/GetJobber/atlantis/issues/1564)) ([46dd8b9](https://github.com/GetJobber/atlantis/commit/46dd8b929f641d90533e4e527945b2882a09e7eb))
+
+
+
+
+
+## [4.45.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.45.3...@jobber/components@4.45.4) (2023-10-04)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.45.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.45.2...@jobber/components@4.45.3) (2023-10-03)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.45.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.45.1...@jobber/components@4.45.2) (2023-10-03)
+
+
+### Bug Fixes
+
+* **components:** Fix importing of datalist css issue ([#1559](https://github.com/GetJobber/atlantis/issues/1559)) ([3d2c9a9](https://github.com/GetJobber/atlantis/commit/3d2c9a94e9fc03720a5acfdc195699c8d198166f))
+
+
+
+
+
+## [4.45.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.45.0...@jobber/components@4.45.1) (2023-10-02)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 # [4.45.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.44.0...@jobber/components@4.45.0) (2023-10-02)
 
 

@@ -1,27 +1,20 @@
 import React from "react";
-import styles from "./DataListAction.css";
 import {
   DataListActionProps,
   DataListObject,
-  InternalDataListActionProps,
-} from "../../DataList.types";
-import { Typography } from "../../../Typography";
-import { Icon } from "../../../Icon";
+} from "@jobber/components/DataList/DataList.types";
+import { Typography } from "@jobber/components/Typography";
+import { Icon } from "@jobber/components/Icon";
+import { useDataListLayoutActionsContext } from "@jobber/components/DataList/components/DataListLayoutActions/DataListLayoutContext";
+import styles from "./DataListAction.css";
 
-export function DataListAction<T extends DataListObject>(
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  _: DataListActionProps<T>,
-) {
-  return null;
-}
-
-export function InternalDataListAction<T extends DataListObject>({
+export function DataListAction<T extends DataListObject>({
   label,
   icon,
   destructive,
   onClick,
-  item,
-}: InternalDataListActionProps<T>) {
+}: DataListActionProps<T>) {
+  const { activeItem } = useDataListLayoutActionsContext<T>();
   const color = destructive ? "critical" : "blue";
 
   return (
@@ -35,8 +28,8 @@ export function InternalDataListAction<T extends DataListObject>({
   );
 
   function handleClick() {
-    if (item) {
-      onClick?.(item);
+    if (activeItem) {
+      onClick?.(activeItem);
     } else {
       (onClick as () => void)?.();
     }
