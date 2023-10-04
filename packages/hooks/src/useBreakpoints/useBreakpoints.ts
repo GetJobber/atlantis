@@ -1,6 +1,6 @@
 import { useMediaQuery } from "./useMediaQuery";
 
-const BREAKPOINT_SIZES = { sm: 490, md: 768, lg: 1080, xl: 1440 };
+export const BREAKPOINT_SIZES = { sm: 490, md: 768, lg: 1080, xl: 1440 };
 
 /**
  * Hook equivalent of CSS media queries with our
