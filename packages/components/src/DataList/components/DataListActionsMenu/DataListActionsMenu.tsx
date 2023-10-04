@@ -9,7 +9,7 @@ import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { createPortal } from "react-dom";
-import { tokens } from "@jobber/design/foundation";
+import { tokens } from "@jobber/design";
 import styles from "./DataListActionsMenu.css";
 import { TRANSITION_DELAY_IN_SECONDS } from "../../DataList.const";
 
