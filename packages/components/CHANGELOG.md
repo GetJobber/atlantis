@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.45.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.45.5...@jobber/components@4.45.6) (2023-10-04)
+
+
+### Bug Fixes
+
+* **components:** Fixed using DataList in jest tests failing ([#1567](https://github.com/GetJobber/atlantis/issues/1567)) ([f01e581](https://github.com/GetJobber/atlantis/commit/f01e58140d472216ed6f3d7c92efacbf8dfd157b))
+
+
+
+
+
 ## [4.45.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.45.4...@jobber/components@4.45.5) (2023-10-04)
 
 
