@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import styles from "./ComboboxContent.css";
 import { ComboboxSearch } from "./ComboboxSearch";
 import { ComboboxList } from "./ComboboxList";
+import { ComboboxHeader } from "./ComboboxHeader";
 import { ComboboxContext } from "../../ComboboxProvider";
 import { ComboboxOption } from "../../Combobox.types";
 import { useComboboxContent } from "../../hooks/useComboboxContent";
@@ -82,6 +83,8 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         setSearchValue={setSearchValue}
       />
 
+      <ComboboxHeader />
+
       <ComboboxList
         showEmptyState={!optionsExist}
         options={filteredOptions}
@@ -92,7 +95,6 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         searchValue={searchValue}
         subjectNoun={props.subjectNoun}
       />
-
       {props.children && (
         <div className={styles.actions} role="group">
           {React.Children.toArray(props.children).map(
