@@ -29,7 +29,7 @@ export const Combobox = (props: ComboboxProps): JSX.Element => {
     props.children,
   );
   return (
-    <ComboboxContextProvider>
+    <ComboboxContextProvider multiselect={props.multiSelect}>
       {triggerElement}
       {contentElement}
     </ComboboxContextProvider>
