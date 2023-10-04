@@ -216,7 +216,7 @@ const ComboboxMultiSelection: ComponentStory<typeof Combobox> = args => {
           { id: "12", label: "Samwise Gamgee" },
           { id: "14", label: "Faramir" },
         ]}
-        onSelect={selection => {
+        onClose={selection => {
           setSelected(selection);
         }}
         selected={selected}

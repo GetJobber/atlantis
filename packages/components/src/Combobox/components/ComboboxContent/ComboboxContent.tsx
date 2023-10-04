@@ -1,6 +1,7 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
+import { XOR } from "ts-xor";
 import styles from "./ComboboxContent.css";
 import { ComboboxSearch } from "./ComboboxSearch";
 import { ComboboxList } from "./ComboboxList";
@@ -9,16 +10,26 @@ import { ComboboxOption } from "../../Combobox.types";
 import { useComboboxContent } from "../../hooks/useComboboxContent";
 import { useComboboxAccessibility } from "../../hooks/useComboboxAccessibility";
 
-interface ComboboxContentProps {
+interface ComboboxCloseProps {
+  /**
+   * Callback function invoked upon the selection of an option. Provides the selected option(s) as an argument.
+   */
+  readonly onSelect: (selection: ComboboxOption[]) => void;
+}
+
+interface ComoboboxSelectProps {
+  /**
+   *
+   * Callback function invoked upon the Combobox menu closing. Provides the selected option(s) as an argument.
+   */
+  readonly onClose: (selection: ComboboxOption[]) => void;
+}
+
+interface ComboboxContentBaseProps {
   /**
    * List of selectable options to display.
    */
   readonly options: ComboboxOption[];
-
-  /**
-   * Callback function invoked upon the selection of an option. Provides the selected option as an argument.
-   */
-  readonly onSelect: (selection: ComboboxOption[]) => void;
 
   /**
    * Optional action button(s) to display at the bottom of the list.
@@ -44,11 +55,14 @@ interface ComboboxContentProps {
   readonly subjectNoun?: string;
 }
 
+type ComboboxContentProps = ComboboxContentBaseProps &
+  XOR<ComboboxCloseProps, ComoboboxSelectProps>;
+
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   const { open, setOpen, wrapperRef, multiselect } =
     React.useContext(ComboboxContext);
   const optionsExist = props.options.length > 0;
-  console.log(props.selected);
+
   const {
     searchValue,
     setSearchValue,
@@ -65,6 +79,17 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     setOpen,
     wrapperRef,
   );
+
+  const [internalSelected, setInternalSelected] = useState<ComboboxOption[]>(
+    props.selected,
+  );
+  const selectedOptions = props.onClose ? internalSelected : props.selected;
+
+  useEffect(() => {
+    if (!open) {
+      props.onClose && props.onClose(selectedOptions);
+    }
+  }, [open]);
 
   const template = (
     <div
@@ -87,7 +112,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         multiselect={multiselect}
         showEmptyState={!optionsExist}
         options={filteredOptions}
-        selected={props.selected}
+        selected={selectedOptions}
         optionsListRef={optionsListRef}
         setFirstSelectedElement={setFirstSelectedElement}
         selectionHandler={handleSelection}
@@ -117,10 +142,14 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   return ReactDOM.createPortal(template, document.body);
 
   function handleSelection(selection: ComboboxOption) {
+    const callbackHandler = props.onSelect
+      ? props.onSelect
+      : setInternalSelected;
+
     if (multiselect) {
-      handleMultiSelect(props.onSelect, props.selected, selection);
+      handleMultiSelect(callbackHandler, selectedOptions, selection);
     } else {
-      props.onSelect([selection]);
+      callbackHandler([selection]);
       setSearchValue("");
       setOpen(false);
     }
