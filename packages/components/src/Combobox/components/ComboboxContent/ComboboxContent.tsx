@@ -18,7 +18,7 @@ interface ComboboxContentProps {
   /**
    * Callback function invoked upon the selection of an option. Provides the selected option as an argument.
    */
-  readonly onSelect: (selection: ComboboxOption) => void;
+  readonly onSelect: (selection: ComboboxOption[]) => void;
 
   /**
    * Optional action button(s) to display at the bottom of the list.
@@ -35,7 +35,7 @@ interface ComboboxContentProps {
    * @default ""
    * @type string
    */
-  readonly selected: ComboboxOption | null;
+  readonly selected: ComboboxOption[];
 
   /**
    * The encapsulating noun for the content of the combobox. Used
@@ -48,11 +48,11 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   const { open, setOpen, wrapperRef, multiselect } =
     React.useContext(ComboboxContext);
   const optionsExist = props.options.length > 0;
-
+  console.log(props.selected);
   const {
     searchValue,
     setSearchValue,
-    setSelectedElement,
+    setFirstSelectedElement,
     filteredOptions,
     optionsListRef,
   } = useComboboxContent(props.options, open);
@@ -89,7 +89,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         options={filteredOptions}
         selected={props.selected}
         optionsListRef={optionsListRef}
-        setSelectedElement={setSelectedElement}
+        setFirstSelectedElement={setFirstSelectedElement}
         selectionHandler={handleSelection}
         searchValue={searchValue}
         subjectNoun={props.subjectNoun}
@@ -117,8 +117,24 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   return ReactDOM.createPortal(template, document.body);
 
   function handleSelection(selection: ComboboxOption) {
-    props.onSelect(selection);
-    setSearchValue("");
-    setOpen(false);
+    if (multiselect) {
+      handleMultiSelect(props.onSelect, props.selected, selection);
+    } else {
+      props.onSelect([selection]);
+      setSearchValue("");
+      setOpen(false);
+    }
+  }
+}
+
+function handleMultiSelect(
+  selectCallback: (selected: ComboboxOption[]) => void,
+  selected: ComboboxOption[],
+  selection: ComboboxOption,
+) {
+  if (selected.some(s => s.id === selection.id)) {
+    selectCallback(selected.filter(s => s.id !== selection.id));
+  } else {
+    selectCallback([...selected, selection]);
   }
 }

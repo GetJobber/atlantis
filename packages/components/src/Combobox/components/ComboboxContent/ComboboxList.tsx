@@ -8,9 +8,9 @@ import { ComboboxOption } from "../../Combobox.types";
 interface ComboboxListProps {
   options: ComboboxOption[];
   showEmptyState: boolean;
-  selected: ComboboxOption | null;
+  selected: ComboboxOption[];
   optionsListRef: React.RefObject<HTMLUListElement>;
-  setSelectedElement: React.Dispatch<SetStateAction<HTMLElement | null>>;
+  setFirstSelectedElement: React.Dispatch<SetStateAction<HTMLElement | null>>;
   selectionHandler: (option: ComboboxOption) => void;
   searchValue: string;
   multiselect: boolean;
@@ -18,6 +18,8 @@ interface ComboboxListProps {
 }
 
 export function ComboboxList(props: ComboboxListProps): JSX.Element {
+  let hasSeenFirstSelected = false;
+
   return (
     <div className={styles.container}>
       {!props.showEmptyState && props.options.length > 0 && (
@@ -29,13 +31,17 @@ export function ComboboxList(props: ComboboxListProps): JSX.Element {
         >
           {!props.showEmptyState &&
             props.options.map(option => {
-              const isSelected =
-                option.id.toString() === props.selected?.id.toString();
+              const isSelected = props.selected.some(
+                selection => selection.id.toString() === option.id.toString(),
+              );
 
               return (
                 <li
                   ref={listItem => {
-                    if (isSelected) props.setSelectedElement(listItem);
+                    if (isSelected && !hasSeenFirstSelected) {
+                      props.setFirstSelectedElement(listItem);
+                      hasSeenFirstSelected = true;
+                    }
                   }}
                   key={option.id}
                   tabIndex={-1}

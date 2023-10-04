@@ -7,31 +7,32 @@ export function useComboboxContent(
 ): {
   searchValue: string;
   setSearchValue: React.Dispatch<React.SetStateAction<string>>;
-  setSelectedElement: React.Dispatch<React.SetStateAction<HTMLElement | null>>;
+  setFirstSelectedElement: React.Dispatch<
+    React.SetStateAction<HTMLElement | null>
+  >;
   filteredOptions: ComboboxOption[];
   optionsListRef: React.RefObject<HTMLUListElement>;
 } {
   const [searchValue, setSearchValue] = useState<string>("");
-  const [selectedElement, setSelectedElement] = useState<HTMLElement | null>(
-    null,
-  );
+  const [firstSelectedElement, setFirstSelectedElement] =
+    useState<HTMLElement | null>(null);
   const optionsListRef = useRef<HTMLUListElement>(null);
   const filteredOptions = options.filter(option =>
     option.label.toLowerCase().includes(searchValue.toLowerCase()),
   );
 
   useEffect(() => {
-    if (open && selectedElement) {
-      selectedElement?.scrollIntoView({
+    if (open && firstSelectedElement) {
+      firstSelectedElement?.scrollIntoView({
         block: "nearest",
       });
     }
-  }, [open, selectedElement]);
+  }, [open, firstSelectedElement]);
 
   return {
     searchValue,
     setSearchValue,
-    setSelectedElement,
+    setFirstSelectedElement,
     filteredOptions,
     optionsListRef,
   };
