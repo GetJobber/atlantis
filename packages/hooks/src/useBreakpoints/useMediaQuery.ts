@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 /**
- * Internal use only.
+ * Sets the JS media query listener. Internal use only.
  */
 export function useMediaQuery(CSSMediaQuery: string) {
   const [matches, setMatches] = useState(
