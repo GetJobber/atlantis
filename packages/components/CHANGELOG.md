@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.45.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.45.4...@jobber/components@4.45.5) (2023-10-04)
+
+
+### Bug Fixes
+
+* **components:** nested button issue on DataList ([#1564](https://github.com/GetJobber/atlantis/issues/1564)) ([46dd8b9](https://github.com/GetJobber/atlantis/commit/46dd8b929f641d90533e4e527945b2882a09e7eb))
+
+
+
+
+
 ## [4.45.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.45.3...@jobber/components@4.45.4) (2023-10-04)
 
 **Note:** Version bump only for package @jobber/components
