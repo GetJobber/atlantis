@@ -1,4 +1,4 @@
-export type ColumnKeys = "shrink" | "grow" | "auto";
+export type ColumnKeys = "shrink" | "grow";
 
 export const spacing = [
   "none",

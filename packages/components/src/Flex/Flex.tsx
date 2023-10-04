@@ -45,8 +45,7 @@ interface FlexProps {
 
 const templateValues = {
   grow: "1fr",
-  auto: "auto",
-  shrink: "min-content",
+  shrink: "max-content",
 };
 
 export function Flex({

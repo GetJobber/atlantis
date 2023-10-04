@@ -27,3 +27,15 @@ it("renders a Flex column if direction is set to column", () => {
   const flex = container.firstChild;
   expect(flex).toHaveClass("flex column");
 });
+
+it("uses a grid layout if a template is set", () => {
+  const { container } = render(
+    <Flex template={["grow", "shrink"]}>
+      <h1>Foo</h1>
+      <p>Bar</p>
+    </Flex>,
+  );
+
+  const flex = container.firstChild;
+  expect(flex).toHaveClass("grid");
+});
