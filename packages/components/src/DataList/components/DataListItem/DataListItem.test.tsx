@@ -1,5 +1,11 @@
 import React, { PropsWithChildren } from "react";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {
   DataListContext,
@@ -11,12 +17,16 @@ import {
 } from "@jobber/components/DataList/context/DataListLayoutContext";
 import { DataListItemActions } from "@jobber/components/DataList/components/DataListItemActions";
 import { DataListAction } from "@jobber/components/DataList/components/DataListAction";
+import { DataListLayoutActions } from "@jobber/components/DataList/components/DataListLayoutActions";
 import { DataListLayoutActionsContext } from "@jobber/components/DataList/components/DataListLayoutActions/DataListLayoutContext";
 import { DataListItem } from "./DataListItem";
 
+const listItem = "I am a list item";
+const handleItemClick = jest.fn();
+const mockLayout = jest.fn().mockReturnValue(() => <div>{listItem}</div>);
 const mockSetHasInLayoutActions = jest.fn().mockReturnValue(true);
 const mockItemActionComponent = jest.fn().mockReturnValue(
-  <DataListItemActions onClick={jest.fn()}>
+  <DataListItemActions onClick={handleItemClick}>
     <DataListAction label="Edit" />
     <DataListAction label="Email" />
     <DataListAction label="Delete" />
@@ -24,28 +34,14 @@ const mockItemActionComponent = jest.fn().mockReturnValue(
 );
 
 afterEach(() => {
+  handleItemClick.mockClear();
+  mockLayout.mockClear();
   mockSetHasInLayoutActions.mockClear();
   mockItemActionComponent.mockClear();
 });
 
 describe("DataListItem", () => {
   describe("Hover/Focus/Context Menu", () => {
-    const listItem = "I am a list item";
-
-    function renderComponent() {
-      return render(
-        <MockMainContextProvider>
-          <MockLayoutContextProvider>
-            <DataListItem
-              item={{ id: 1 }}
-              index={0}
-              layout={() => <div>{listItem}</div>}
-            />
-          </MockLayoutContextProvider>
-        </MockMainContextProvider>,
-      );
-    }
-
     it("should render a menu when hovered and not on unhover", async () => {
       renderComponent();
 
@@ -94,7 +90,50 @@ describe("DataListItem", () => {
       });
     });
   });
+
+  describe("In-layout action", () => {
+    beforeEach(() => {
+      mockLayout.mockReturnValueOnce(() => (
+        <div>
+          {listItem} <DataListLayoutActions />
+        </div>
+      ));
+      renderComponent();
+    });
+
+    it("should render the action with the layout", () => {
+      const listItemEl = screen.getByText(listItem);
+      expect(
+        within(listItemEl).getByRole("button", { name: "More actions" }),
+      ).toBeInTheDocument();
+    });
+
+    it("should not fire the parent click when opening the menu", () => {
+      const moreAction = screen.getByRole("button", { name: "More actions" });
+
+      userEvent.click(moreAction);
+      expect(handleItemClick).not.toHaveBeenCalled();
+    });
+
+    it("should not fire the parent click when clicking one of the menu items", () => {
+      const moreAction = screen.getByRole("button", { name: "More actions" });
+
+      userEvent.click(moreAction);
+      userEvent.click(screen.getByRole("button", { name: "Edit" }));
+      expect(handleItemClick).not.toHaveBeenCalled();
+    });
+  });
 });
+
+function renderComponent() {
+  return render(
+    <MockMainContextProvider>
+      <MockLayoutContextProvider>
+        <DataListItem item={{ id: 1 }} index={0} layout={mockLayout()} />
+      </MockLayoutContextProvider>
+    </MockMainContextProvider>,
+  );
+}
 
 function MockMainContextProvider({ children }: PropsWithChildren<object>) {
   return (
