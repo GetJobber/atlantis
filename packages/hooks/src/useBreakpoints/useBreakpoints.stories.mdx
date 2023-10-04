@@ -41,4 +41,25 @@ target specific breakpoints since JS doesn't cascade like CSS.
 
 _Note: Resize your browser and to the values change_
 
-<ArgsTable of={hooks.useBreakpoints} />
+## Testing
+
+You can use the `mockViewportWidth` function to mock the window size and trigger
+specific breakpoints.
+
+```tsx
+import { mockViewportWidth } from "@jobber/hooks/useBreakpoints";
+
+const { cleanup, setViewportWidth } = mockViewportWidth();
+
+afterEach(() => {
+  cleanup();
+});
+
+it("should render my element when the viewport size is 500px", () => {
+  // Set the viewport width before the component renders
+  setViewportWidth(500);
+
+  render(<MyComponent />);
+  expect(screen.getByText("500px")).toBeInTheDocument();
+});
+```
