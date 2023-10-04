@@ -15,5 +15,8 @@ export function useBreakpoints() {
     mediumAndUp,
     largeAndUp,
     extraLargeAndUp,
+    smallOnly: smallAndUp && !mediumAndUp,
+    mediumOnly: mediumAndUp && !largeAndUp,
+    largeOnly: largeAndUp && !extraLargeAndUp,
   };
 }
