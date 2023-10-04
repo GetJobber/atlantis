@@ -3,9 +3,3 @@
   padding: 16px 16px 0 16px;
   justify-content: space-between;
 }
-
-.action {
-  border: none;
-  background-color: var(--color-surface);
-  cursor: pointer;
-}
