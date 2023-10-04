@@ -15,8 +15,6 @@ interface FlexProps {
    *   grow, then they'll have equal width.
    * - `"shrink"` - Shrinks to the smallest size possible. Normally the size of
    *   the child.
-   * - `"auto"` - Grows to the size of the content.
-   * - `"max-content"` - Grows to the size of the largest child.
    *
    * By default, this will set every children to grow in equal widths.
    */
