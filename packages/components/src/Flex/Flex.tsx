@@ -1,179 +1,86 @@
-import { CSSProperties, ReactNode, createElement } from "react";
+import React, { CSSProperties, Children, ReactNode } from "react";
+// import chunk from "lodash/chunk";
 import classnames from "classnames";
-import alignments from "./FlexAlign.css";
-import gapStyles from "./Gaps.css";
-import justifications from "./FlexJustify.css";
+import { ColumnKeys, Spacing } from "./types";
 import styles from "./Flex.css";
-import paddings from "./Paddings.css";
-
-const gaps = {
-  smallest: {
-    row: gapStyles.rowGapSmallest,
-    column: gapStyles.columnGapSmallest,
-  },
-  smaller: {
-    row: gapStyles.rowGapSmaller,
-    column: gapStyles.columnGapSmaller,
-  },
-  small: {
-    row: gapStyles.rowGapSmall,
-    column: gapStyles.columnGapSmall,
-  },
-  base: {
-    row: gapStyles.rowGapBase,
-    column: gapStyles.columnGapBase,
-  },
-  large: {
-    row: gapStyles.rowGapLarge,
-    column: gapStyles.columnGapLarge,
-  },
-  larger: {
-    row: gapStyles.rowGapLarger,
-    column: gapStyles.columnGapLarger,
-  },
-  largest: {
-    row: gapStyles.rowGapLargest,
-    column: gapStyles.columnGapLargest,
-  },
-  none: {
-    row: gapStyles.rowGapNone,
-    column: gapStyles.columnGapNone,
-  },
-};
 
 interface FlexProps {
-  /**
-   * How flex items should align along the cross axis of the container
-   */
-
-  readonly align?: keyof typeof alignments;
-
-  readonly children: ReactNode | ReactNode[];
+  children: ReactNode;
 
   /**
-   * The gap between flex columns
-   */
-  readonly columnGap?: keyof typeof gaps;
-
-  /**
-   *   Change the flex direction
+   * Determine how the children gets laid out
    *
-   *   @default row
+   * **Supported keys**
+   * - `"grow"` - Grows to the space available. If all children are set to
+   *   grow, then they'll have equal width.
+   * - `"shrink"` - Shrinks to the smallest size possible. Normally the size of
+   *   the child.
+   * - `"auto"` - Grows to the size of the content.
+   * - `"max-content"` - Grows to the size of the largest child.
+   *
+   * By default, this will set every children to grow in equal widths.
    */
+  readonly template?: ColumnKeys[];
+
+  /**
+   * It works the same way as `alignItems` style with flex.
+   */
+  readonly align?: "start" | "end" | "center";
+
+  /**
+   * The spacing between the children.
+   *
+   *  @default "none"
+   */
+  readonly gap?: Spacing;
+
+  /**
+   * The direction of the content.
+   *
+   * @default "row"
+   */
+
   readonly direction?: "row" | "column";
-
-  /**
-   * The height of the container
-   */
-  readonly height?: string;
-
-  /**
-   *   The id of the element
-   */
-  readonly id?: string;
-
-  /**
-   * How children should align along the main axis of the container
-   */
-
-  readonly justify?: keyof typeof justifications;
-
-  /**
-   *   Reverse the flex direction
-   *
-   *   @default false
-   */
-  readonly reverse?: boolean;
-
-  /**
-   *   Add padding to the flex container
-   *
-   *   @default none
-   */
-  readonly padding?: keyof typeof paddings;
-
-  /**
-   * The gap between flex rows
-   */
-  readonly rowGap?: keyof typeof gaps;
-
-  /**
-   *   The data-testid of the element
-   */
-  readonly testId?: string;
-
-  /**
-   * Change the wrapping element to be one of the available
-   * semantic tags.
-   *
-   * @default div
-   */
-  readonly type?:
-    | "section"
-    | "aside"
-    | "header"
-    | "footer"
-    | "article"
-    | "main"
-    | "div";
-
-  /**
-   * The width of the container
-   */
-
-  readonly width?: string;
-
-  /**
-   * Should children wrap?
-   *
-   * @default false
-   */
-  readonly wrap?: boolean;
 }
 
-export function Flex({
-  align,
-  children,
-  columnGap,
-  direction,
-  height,
-  id,
-  justify,
-  padding = "none",
-  reverse,
-  rowGap,
-  testId,
-  type = "div",
-  width,
-  wrap = false,
-}: FlexProps) {
-  const className = classnames(
-    styles.flex,
-    {
-      [styles.column]: direction === "column",
-      [styles.reverse]: reverse,
-      [styles.wrap]: wrap,
-    },
-    paddings[padding],
-    align ? alignments[align] : null,
-    justify ? justifications[justify] : null,
-    rowGap ? gaps[rowGap].row : null,
-    columnGap ? gaps[columnGap].column : null,
-  );
+const templateValues = {
+  grow: "1fr",
+  auto: "auto",
+  "max-content": "max-content",
+  shrink: "min-content",
+};
 
-  const elementStyle: CSSProperties = {
-    width,
-    height,
+export function Flex({
+  align = "center",
+  children,
+  direction = "row",
+  gap = "none",
+  template = [],
+}: FlexProps) {
+  if (template.length === 1) {
+    console.warn("Please use <Content /> component for a stacked layout");
+  }
+
+  const templateKey =
+    direction === "row" ? "gridTemplateColumns" : "gridTemplateRows";
+
+  const containerStyles: CSSProperties = {
+    [templateKey]: template.length
+      ? template.map(item => templateValues[item]).join(" ")
+      : new Array(Children.count(children)).fill("auto").join(" "),
   };
 
-  return createElement(
-    type,
-    {
-      className,
-      id,
-      ["data-testid"]: testId,
-      style: elementStyle,
-    },
-    children,
+  return (
+    <div
+      className={classnames(
+        template.length ? styles.grid : styles.flex,
+        template.length === 0 && direction === "column" ? styles.column : null,
+        gap ? styles[`${gap}Gap`] : null,
+        align ? styles[`${align}Align`] : null,
+      )}
+      style={containerStyles}
+    >
+      {children}
+    </div>
   );
 }

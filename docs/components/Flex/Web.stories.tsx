@@ -21,9 +21,9 @@ const BasicTemplate: ComponentStory<typeof Flex> = args => (
   <Grid>
     <Grid.Cell
       size={{
-        md: 4,
-        lg: 3,
-        xl: 2,
+        md: 5,
+        lg: 4,
+        xl: 3,
       }}
     >
       <Content>
@@ -39,7 +39,7 @@ const BasicTemplate: ComponentStory<typeof Flex> = args => (
             size="small"
           />
         </Flex>
-        <Flex {...args} justify="space-between">
+        <Flex {...args}>
           <Heading level={3}>One-off job projections</Heading>
           <Link url="#" external>
             View report
@@ -67,3 +67,4 @@ const BasicTemplate: ComponentStory<typeof Flex> = args => (
 );
 
 export const Basic = BasicTemplate.bind({});
+Basic.args = {};
