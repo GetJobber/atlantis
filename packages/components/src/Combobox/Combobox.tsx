@@ -10,6 +10,13 @@ import {
 
 export interface ComboboxProps {
   readonly children: ReactElement | ReactElement[];
+
+  /**
+   * When `true`, `Combobox` will allow for multiple selections
+   *
+   * @default false
+   */
+  readonly multiSelect?: boolean;
 }
 
 export const COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE =
@@ -22,7 +29,7 @@ export const Combobox = (props: ComboboxProps): JSX.Element => {
     props.children,
   );
   return (
-    <ComboboxContextProvider>
+    <ComboboxContextProvider multiselect={props.multiSelect}>
       {triggerElement}
       {contentElement}
     </ComboboxContextProvider>
