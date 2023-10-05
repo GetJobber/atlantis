@@ -7,6 +7,7 @@ export const ComboboxContext = React.createContext(
     open: boolean;
     setOpen: (open: boolean) => void;
     wrapperRef: RefObject<HTMLDivElement>;
+    subjectNoun?: string;
   },
 );
 

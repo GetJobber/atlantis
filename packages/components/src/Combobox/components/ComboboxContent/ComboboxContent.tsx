@@ -50,6 +50,9 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     React.useContext(ComboboxContext);
   const optionsExist = props.options.length > 0;
 
+  // Calculate the count of selected options
+  const selectedCount = props.selected ? 1 : 0;
+
   const {
     searchValue,
     setSearchValue,
@@ -84,7 +87,12 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         setSearchValue={setSearchValue}
       />
 
-      {multiselect && <ComboboxHeader />}
+      {multiselect && (
+        <ComboboxHeader
+          subjectNoun={props.subjectNoun}
+          selectedCount={selectedCount}
+        />
+      )}
 
       <ComboboxList
         showEmptyState={!optionsExist}
