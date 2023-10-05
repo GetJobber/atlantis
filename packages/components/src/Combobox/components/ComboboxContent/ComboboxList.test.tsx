@@ -6,14 +6,15 @@ describe("ComboboxList", () => {
   it("should render a list of options if provided", () => {
     const { getByText } = render(
       <ComboboxList
+        multiselect={false}
         options={[
           { id: "1", label: "Michael" },
           { id: "2", label: "Jason" },
         ]}
         showEmptyState={false}
-        selected={null}
+        selected={[]}
         optionsListRef={React.createRef()}
-        setSelectedElement={jest.fn()}
+        setFirstSelectedElement={jest.fn()}
         selectionHandler={jest.fn()}
         searchValue=""
       />,
@@ -24,14 +25,15 @@ describe("ComboboxList", () => {
   it("should not show the empty message if list of options provided", () => {
     const { queryByText } = render(
       <ComboboxList
+        multiselect={false}
         options={[
           { id: "1", label: "Michael" },
           { id: "2", label: "Jason" },
         ]}
         showEmptyState={false}
-        selected={null}
+        selected={[]}
         optionsListRef={React.createRef()}
-        setSelectedElement={jest.fn()}
+        setFirstSelectedElement={jest.fn()}
         selectionHandler={jest.fn()}
         searchValue=""
       />,
@@ -41,11 +43,12 @@ describe("ComboboxList", () => {
   it("should render a generic message if no options, nor subjectNoun are provided", () => {
     const { getByText } = render(
       <ComboboxList
+        multiselect={false}
         options={[]}
         showEmptyState={true}
-        selected={null}
+        selected={[]}
         optionsListRef={React.createRef()}
-        setSelectedElement={jest.fn()}
+        setFirstSelectedElement={jest.fn()}
         selectionHandler={jest.fn()}
         searchValue=""
       />,
@@ -55,11 +58,12 @@ describe("ComboboxList", () => {
   it("should render a message if no options are provided and a subjectNoun is provided", () => {
     const { getByText } = render(
       <ComboboxList
+        multiselect={false}
         options={[]}
         showEmptyState={true}
-        selected={null}
+        selected={[]}
         optionsListRef={React.createRef()}
-        setSelectedElement={jest.fn()}
+        setFirstSelectedElement={jest.fn()}
         selectionHandler={jest.fn()}
         searchValue=""
         subjectNoun="Plumbus"
@@ -70,11 +74,12 @@ describe("ComboboxList", () => {
   it("should render a message if no options are provided and a search term is entered", () => {
     const { getByText } = render(
       <ComboboxList
+        multiselect={false}
         options={[]}
         showEmptyState={true}
-        selected={null}
+        selected={[]}
         optionsListRef={React.createRef()}
-        setSelectedElement={jest.fn()}
+        setFirstSelectedElement={jest.fn()}
         selectionHandler={jest.fn()}
         searchValue="Rick"
       />,
@@ -84,47 +89,55 @@ describe("ComboboxList", () => {
   it("should render a message if no options are provided and a search term is entered and no results are found", () => {
     const { getByText } = render(
       <ComboboxList
+        multiselect={false}
         options={[]}
         showEmptyState={false}
-        selected={null}
+        selected={[]}
         optionsListRef={React.createRef()}
-        setSelectedElement={jest.fn()}
+        setFirstSelectedElement={jest.fn()}
         selectionHandler={jest.fn()}
         searchValue="Frederick"
       />,
     );
     expect(getByText("No results for “Frederick”")).toBeInTheDocument();
   });
-  it("should only apply a selected style to the selected option", () => {
+  it("should only apply a selected style to the selected options", () => {
     const { getByText } = render(
       <ComboboxList
+        multiselect={false}
         options={[
           { id: "1", label: "Michael" },
           { id: "2", label: "Jason" },
+          { id: "3", label: "Leatherface" },
         ]}
         showEmptyState={false}
-        selected={{ id: "1", label: "Michael" }}
+        selected={[
+          { id: "1", label: "Michael" },
+          { id: "3", label: "Leatherface" },
+        ]}
         optionsListRef={React.createRef()}
-        setSelectedElement={jest.fn()}
+        setFirstSelectedElement={jest.fn()}
         selectionHandler={jest.fn()}
         searchValue=""
       />,
     );
     expect(getByText("Michael")).toHaveClass("selectedOption");
+    expect(getByText("Leatherface")).toHaveClass("selectedOption");
     expect(getByText("Jason")).not.toHaveClass("selectedOption");
   });
 
   it("should have a selected option when selected id is a number and option id is a string", () => {
     const { getByText } = render(
       <ComboboxList
+        multiselect={false}
         options={[
           { id: "1", label: "Michael" },
           { id: "2", label: "Jason" },
         ]}
         showEmptyState={false}
-        selected={{ id: 1, label: "Michael" }}
+        selected={[{ id: 1, label: "Michael" }]}
         optionsListRef={React.createRef()}
-        setSelectedElement={jest.fn()}
+        setFirstSelectedElement={jest.fn()}
         selectionHandler={jest.fn()}
         searchValue=""
       />,
@@ -136,14 +149,15 @@ describe("ComboboxList", () => {
   it("has no selected option when a null selected value is passed", () => {
     const { getByText } = render(
       <ComboboxList
+        multiselect={false}
         options={[
           { id: "1", label: "Michael" },
           { id: "2", label: "Jason" },
         ]}
         showEmptyState={false}
-        selected={null}
+        selected={[]}
         optionsListRef={React.createRef()}
-        setSelectedElement={jest.fn()}
+        setFirstSelectedElement={jest.fn()}
         selectionHandler={jest.fn()}
         searchValue=""
       />,
