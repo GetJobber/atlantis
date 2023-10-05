@@ -7,6 +7,10 @@ import {
 } from "./Combobox";
 import { ComboboxOption } from "./Combobox.types";
 
+// jsdom is missing this implementation
+const scrollIntoViewMock = jest.fn();
+window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
+
 afterEach(cleanup);
 
 describe("Combobox validation", () => {
@@ -246,6 +250,159 @@ describe("Combobox selected value", () => {
     expect(option).not.toHaveClass("selectedOption");
   });
 });
+
+describe("Combobox multiselect", () => {
+  it("should allow selections without closing", () => {
+    const { getByTestId, getByText } = render(
+      <Combobox multiSelect>
+        <Combobox.TriggerButton label="Click Me" />
+        <Combobox.Content
+          options={[
+            { id: "1", label: "Bilbo Baggins" },
+            { id: "2", label: "Frodo Baggins" },
+          ]}
+          onSelect={jest.fn()}
+          selected={[]}
+        ></Combobox.Content>
+      </Combobox>,
+    );
+
+    const button = getByText("Click Me");
+    fireEvent.click(button);
+
+    expect(getByTestId("ATL-Combobox-Content")).not.toHaveClass("hidden");
+
+    const option = getByText("Bilbo Baggins");
+    fireEvent.click(option);
+
+    expect(getByTestId("ATL-Combobox-Content")).not.toHaveClass("hidden");
+  });
+
+  it("should allow for multiple selections to be made", () => {
+    const { getByTestId, getByText } = render(
+      <MockMultiSelectOnSelectCombobox />,
+    );
+
+    const button = getByText("Click Me");
+    fireEvent.click(button);
+
+    expect(getByTestId("ATL-Combobox-Content")).not.toHaveClass("hidden");
+
+    const option = getByText("Bilbo Baggins");
+    const option2 = getByText("Frodo Baggins");
+
+    fireEvent.click(option);
+    fireEvent.click(option2);
+
+    expect(option).toHaveClass("selectedOption");
+    expect(option2).toHaveClass("selectedOption");
+  });
+  it("should not clear search after making a selection", () => {
+    const { getByTestId, getByText, getByPlaceholderText } = render(
+      <MockMultiSelectOnSelectCombobox />,
+    );
+
+    const button = getByText("Click Me");
+    fireEvent.click(button);
+
+    expect(getByTestId("ATL-Combobox-Content")).not.toHaveClass("hidden");
+
+    const option = getByText("Bilbo Baggins");
+    const searchInput = getByPlaceholderText("Search");
+
+    fireEvent.change(searchInput, { target: { value: "Bilbo" } });
+    fireEvent.click(option);
+
+    expect(searchInput).toHaveValue("Bilbo");
+  });
+
+  describe("onClose callback", () => {
+    it("should call onClose with selections when the content is closed", async () => {
+      const onClose = jest.fn();
+      const { getByText } = render(
+        <MockMultiSelectOnCloseCombobox onCloseOverride={onClose} />,
+      );
+
+      const button = getByText("Click Me");
+      const option = getByText("Bilbo Baggins");
+      const spoder = getByText("Shelob the Spoder");
+
+      fireEvent.click(button);
+      fireEvent.click(option);
+      fireEvent.click(spoder);
+      fireEvent.keyDown(button, { key: "Escape" });
+
+      expect(onClose).toHaveBeenCalledWith([
+        { id: "1", label: "Bilbo Baggins" },
+        { id: "3", label: "Shelob the Spoder" },
+      ]);
+    });
+    it("should not update consumer as selections are made", () => {
+      const { getByText, queryByText } = render(
+        <MockMultiSelectOnCloseCombobox />,
+      );
+
+      const button = getByText("Click Me");
+      const option = getByText("Bilbo Baggins");
+      const spoder = getByText("Shelob the Spoder");
+
+      fireEvent.click(button);
+      fireEvent.click(option);
+      fireEvent.click(spoder);
+
+      expect(queryByText("Choice: Bilbo Baggins")).not.toBeInTheDocument();
+      expect(queryByText("Choice: Shelob the Spoder")).not.toBeInTheDocument();
+    });
+  });
+});
+
+function MockMultiSelectOnCloseCombobox(props: {
+  onCloseOverride?: () => void;
+}): JSX.Element {
+  const [selected, setSelected] = React.useState<ComboboxOption[]>([]);
+  const callback = props.onCloseOverride || setSelected;
+
+  return (
+    <>
+      <Combobox multiSelect>
+        <Combobox.TriggerButton label="Click Me" />
+        <Combobox.Content
+          options={[
+            { id: "1", label: "Bilbo Baggins" },
+            { id: "2", label: "Frodo Baggins" },
+            { id: "3", label: "Shelob the Spoder" },
+          ]}
+          onClose={callback}
+          selected={selected}
+        ></Combobox.Content>
+      </Combobox>
+      {selected.map(option => (
+        <span key={option.id}>{`Choice: ${option.label}`}</span>
+      ))}
+    </>
+  );
+}
+
+function MockMultiSelectOnSelectCombobox(): JSX.Element {
+  const [selected, setSelected] = React.useState<ComboboxOption[]>([]);
+
+  return (
+    <>
+      <Combobox multiSelect>
+        <Combobox.TriggerButton label="Click Me" />
+        <Combobox.Content
+          options={[
+            { id: "1", label: "Bilbo Baggins" },
+            { id: "2", label: "Frodo Baggins" },
+          ]}
+          onSelect={setSelected}
+          selected={selected}
+        ></Combobox.Content>
+      </Combobox>
+      ,
+    </>
+  );
+}
 
 function ClearSelectionCombobox() {
   const [selected, setSelected] = React.useState<ComboboxOption[]>([
