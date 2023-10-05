@@ -60,43 +60,25 @@ describe("useBreakpoints", () => {
     });
   });
 
-  describe("and below", () => {
-    it("should only set the smallAndBelow to true", () => {
+  describe("only", () => {
+    it("should only set the extraSmallOnly to true on smaller than sm", () => {
       setViewportWidth(BREAKPOINT_SIZES.sm - 1);
       const { result } = renderHook(useBreakpoints);
 
       expect(result.current).toMatchObject({
-        smallAndBelow: true,
-
-        smallAndUp: false,
-        mediumAndUp: false,
-        largeAndUp: false,
-        extraLargeAndUp: false,
+        extraSmallOnly: true,
         smallOnly: false,
         mediumOnly: false,
         largeOnly: false,
       });
     });
 
-    it.each([
-      [BREAKPOINT_SIZES.sm],
-      [BREAKPOINT_SIZES.md],
-      [BREAKPOINT_SIZES.lg],
-      [BREAKPOINT_SIZES.xl],
-    ])("should only set the smallAndBelow to false on %s", width => {
-      setViewportWidth(width);
-      const { result } = renderHook(useBreakpoints);
-
-      expect(result.current).toMatchObject({ smallAndBelow: false });
-    });
-  });
-
-  describe("only", () => {
     it("should only set the smallOnly to true on sm", () => {
       setViewportWidth(BREAKPOINT_SIZES.sm);
       const { result } = renderHook(useBreakpoints);
 
       expect(result.current).toMatchObject({
+        extraSmallOnly: false,
         smallOnly: true,
         mediumOnly: false,
         largeOnly: false,
@@ -108,6 +90,7 @@ describe("useBreakpoints", () => {
       const { result } = renderHook(useBreakpoints);
 
       expect(result.current).toMatchObject({
+        extraSmallOnly: false,
         smallOnly: false,
         mediumOnly: true,
         largeOnly: false,
@@ -119,6 +102,7 @@ describe("useBreakpoints", () => {
       const { result } = renderHook(useBreakpoints);
 
       expect(result.current).toMatchObject({
+        extraSmallOnly: false,
         smallOnly: false,
         mediumOnly: false,
         largeOnly: true,
