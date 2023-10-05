@@ -24,7 +24,12 @@ export function ComboboxContextProvider(
 
   return (
     <ComboboxContext.Provider
-      value={{ multiselect, open, setOpen, wrapperRef }}
+      value={{
+        multiselect,
+        open,
+        setOpen,
+        wrapperRef,
+      }}
     >
       <div ref={wrapperRef}>
         {open && (

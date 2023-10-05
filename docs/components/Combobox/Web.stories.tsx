@@ -65,7 +65,7 @@ const ComboboxButton: ComponentStory<typeof Combobox> = args => {
 const ComboboxChip: ComponentStory<typeof Combobox> = args => {
   const [selected, setSelected] = useState<ComboboxOption | null>(null);
   return (
-    <Combobox {...args}>
+    <Combobox {...args} multiSelect>
       <Combobox.TriggerChip label="Teammates" />
       <Combobox.Content
         options={[
@@ -167,6 +167,7 @@ const ComboboxClearSelection: ComponentStory<typeof Combobox> = args => {
             setSelected(selection);
           }}
           selected={selected}
+          subjectNoun="teammates"
         >
           <Combobox.Action
             label="Add Teammate"
