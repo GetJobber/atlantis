@@ -293,6 +293,25 @@ describe("Combobox multiselect", () => {
     expect(option).toHaveClass("selectedOption");
     expect(option2).toHaveClass("selectedOption");
   });
+  it("should call the onSelect callback upon making selection(s)", () => {
+    const onSelect = jest.fn();
+    const { getByText } = render(
+      <MockMultiSelectOnSelectCombobox onSelectOverride={onSelect} />,
+    );
+
+    const button = getByText("Click Me");
+    const option = getByText("Bilbo Baggins");
+
+    fireEvent.click(button);
+    fireEvent.click(option);
+
+    expect(onSelect).toHaveBeenCalledWith([
+      {
+        id: "1",
+        label: "Bilbo Baggins",
+      },
+    ]);
+  });
   it("should not clear search after making a selection", () => {
     const { getByText, getByPlaceholderText } = render(
       <MockMultiSelectOnSelectCombobox />,
@@ -376,8 +395,11 @@ function MockMultiSelectOnCloseCombobox(props: {
   );
 }
 
-function MockMultiSelectOnSelectCombobox(): JSX.Element {
+function MockMultiSelectOnSelectCombobox(props: {
+  onSelectOverride?: () => void;
+}): JSX.Element {
   const [selected, setSelected] = React.useState<ComboboxOption[]>([]);
+  const callback = props.onSelectOverride || setSelected;
 
   return (
     <>
@@ -388,7 +410,7 @@ function MockMultiSelectOnSelectCombobox(): JSX.Element {
             { id: "1", label: "Bilbo Baggins" },
             { id: "2", label: "Frodo Baggins" },
           ]}
-          onSelect={setSelected}
+          onSelect={callback}
           selected={selected}
         ></Combobox.Content>
       </Combobox>
