@@ -64,6 +64,7 @@ describe("DataListBulkActions", () => {
     renderComponent();
     userEvent.click(screen.getByLabelText("Edit"));
     expect(handleEditClick).toHaveBeenCalledTimes(1);
+    expect(handleEditClick).toHaveBeenCalledWith();
   });
 
   it("should collapse all actions under More actions when breakpoint is smaller than sm", () => {
