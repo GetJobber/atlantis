@@ -18,7 +18,7 @@ describe("Combobox validation", () => {
           <Combobox.Content
             options={[]}
             onSelect={jest.fn()}
-            selected={null}
+            selected={[]}
           ></Combobox.Content>
         </Combobox>,
       );
@@ -34,7 +34,7 @@ describe("Combobox validation", () => {
           <Combobox.Content
             options={[]}
             onSelect={jest.fn()}
-            selected={null}
+            selected={[]}
           ></Combobox.Content>
         </Combobox>,
       );
@@ -56,7 +56,7 @@ describe("Combobox validation", () => {
           <Combobox.Content
             options={[]}
             onSelect={jest.fn()}
-            selected={null}
+            selected={[]}
           ></Combobox.Content>
         </Combobox>,
       );
@@ -78,7 +78,7 @@ describe("Combobox validation", () => {
           <Combobox.Content
             options={[]}
             onSelect={jest.fn()}
-            selected={null}
+            selected={[]}
           ></Combobox.Content>
         </Combobox>,
       );
@@ -147,7 +147,7 @@ describe("ComboboxContent", () => {
         <Combobox.Content
           options={[]}
           onSelect={jest.fn()}
-          selected={null}
+          selected={[]}
         ></Combobox.Content>
       </Combobox>,
     );
@@ -164,7 +164,7 @@ describe("ComboboxContent", () => {
             { id: "2", label: "Frodo Baggins" },
           ]}
           onSelect={jest.fn()}
-          selected={null}
+          selected={[]}
         ></Combobox.Content>
       </Combobox>,
     );
@@ -190,7 +190,7 @@ describe("ComboboxContent", () => {
             { id: "2", label: "Frodo Baggins" },
           ]}
           onSelect={jest.fn()}
-          selected={null}
+          selected={[]}
         ></Combobox.Content>
       </Combobox>,
     );
@@ -215,7 +215,7 @@ describe("ComboboxContent", () => {
             { id: "2", label: "Frodo Baggins" },
           ]}
           onSelect={jest.fn()}
-          selected={null}
+          selected={[]}
         ></Combobox.Content>
       </Combobox>,
     );
@@ -248,14 +248,16 @@ describe("Combobox selected value", () => {
 });
 
 function ClearSelectionCombobox() {
-  const [selected, setSelected] = React.useState<ComboboxOption | null>({
-    id: 1,
-    label: "Bilbo Baggins",
-  });
+  const [selected, setSelected] = React.useState<ComboboxOption[]>([
+    {
+      id: 1,
+      label: "Bilbo Baggins",
+    },
+  ]);
 
   return (
     <>
-      <button onClick={() => setSelected(null)}>Clear Selection</button>
+      <button onClick={() => setSelected([])}>Clear Selection</button>
       <Combobox>
         <Combobox.TriggerButton label="Button" />
         <Combobox.Content

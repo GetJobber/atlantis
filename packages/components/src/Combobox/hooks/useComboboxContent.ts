@@ -45,6 +45,12 @@ export function useComboboxContent(
     }
   }, [open, firstSelectedElement]);
 
+  useEffect(() => {
+    if (selectedOptions.length === 0) {
+      setFirstSelectedElement(null);
+    }
+  }, [selectedOptions]);
+
   return {
     searchValue,
     setSearchValue,
