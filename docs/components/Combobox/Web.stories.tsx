@@ -15,7 +15,7 @@ export default {
 const ComboboxButton: ComponentStory<typeof Combobox> = args => {
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
   return (
-    <Combobox {...args} multiSelect>
+    <Combobox {...args}>
       <Combobox.TriggerButton
         label="Select Teammate"
         variation="subtle"
