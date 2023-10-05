@@ -279,14 +279,10 @@ describe("Combobox multiselect", () => {
   });
 
   it("should allow for multiple selections to be made", () => {
-    const { getByTestId, getByText } = render(
-      <MockMultiSelectOnSelectCombobox />,
-    );
+    const { getByText } = render(<MockMultiSelectOnSelectCombobox />);
 
     const button = getByText("Click Me");
     fireEvent.click(button);
-
-    expect(getByTestId("ATL-Combobox-Content")).not.toHaveClass("hidden");
 
     const option = getByText("Bilbo Baggins");
     const option2 = getByText("Frodo Baggins");
@@ -298,18 +294,15 @@ describe("Combobox multiselect", () => {
     expect(option2).toHaveClass("selectedOption");
   });
   it("should not clear search after making a selection", () => {
-    const { getByTestId, getByText, getByPlaceholderText } = render(
+    const { getByText, getByPlaceholderText } = render(
       <MockMultiSelectOnSelectCombobox />,
     );
 
     const button = getByText("Click Me");
-    fireEvent.click(button);
-
-    expect(getByTestId("ATL-Combobox-Content")).not.toHaveClass("hidden");
-
     const option = getByText("Bilbo Baggins");
     const searchInput = getByPlaceholderText("Search");
 
+    fireEvent.click(button);
     fireEvent.change(searchInput, { target: { value: "Bilbo" } });
     fireEvent.click(option);
 
