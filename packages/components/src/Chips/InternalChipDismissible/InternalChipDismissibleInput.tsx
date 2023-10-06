@@ -106,6 +106,7 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
               <button
                 key={option.value}
                 role="option"
+                type="button"
                 id={generateDescendantId(i)}
                 className={classNames(styles.menuListOption, {
                   [styles.activeOption]: activeIndex === i,
