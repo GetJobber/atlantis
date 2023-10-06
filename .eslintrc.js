@@ -51,6 +51,7 @@ module.exports = {
       },
     ],
     "react/prefer-read-only-props": "error",
+    "react/jsx-no-useless-fragment": ["error", { allowExpressions: true }],
     "padding-line-between-statements": [
       "warn",
       { blankLine: "always", prev: "*", next: "return" },
