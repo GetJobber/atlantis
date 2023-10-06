@@ -2,8 +2,6 @@ import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Chip } from "@jobber/components/Chip";
 import { Content } from "@jobber/components/Content";
-import { Typography } from "@jobber/components/Typography";
-import { Avatar } from "@jobber/components/Avatar";
 import { Icon } from "@jobber/components/Icon";
 
 export default {
@@ -23,397 +21,166 @@ export default {
   },
 } as ComponentMeta<typeof Chip>;
 
-const BasicTemplate: ComponentStory<typeof Chip> = () => {
+const BasicTemplate: ComponentStory<typeof Chip> = props => {
   return (
     <Content>
-      <div style={{ display: "flex", gap: 12 }}>
-        <div>
-          <Typography>Base</Typography>
-          <Typography>Base Default</Typography>
-          <Chip label="Chip Label" />
-          <Typography>Base Disabled</Typography>
-          <Chip label="Chip Label" disabled />
-          <Typography>Subtle</Typography>
-          <Chip label="Chip Label" variation="subtle" />
-          <Typography>Subtle Disabled</Typography>
-          <Chip label="Chip Label" variation="subtle" disabled />
-          <Typography>Invalid</Typography>
-          <Chip label="Chip Label" invalid />
-          <Typography>Invalid Disabled</Typography>
-          <Chip label="Chip Label" invalid disabled />
-          <Typography>Subtle Invalid</Typography>
-          <Chip label="Chip Label" variation="subtle" invalid />
-          <Typography>Subtle Invalid Disabled</Typography>
-          <Chip label="Chip Label" variation="subtle" invalid disabled />
-          <Typography>Base Heading</Typography>
-          <Chip label="Chip Label" heading="Heading" />
-          <Typography>Base Heading Disabled</Typography>
-          <Chip label="Chip Label" heading="Heading" disabled />
-          <Typography>Subtle Heading</Typography>
-          <Chip label="Chip Label" heading="Heading" variation="subtle" />
-          <Typography>Subtle Heading Disabled</Typography>
-          <Chip
-            label="Chip Label"
-            heading="Heading"
-            variation="subtle"
-            disabled
-          />
-          <Typography>Invalid Heading</Typography>
-          <Chip
-            label="Chip Label"
-            heading="Heading"
-            variation="subtle"
-            invalid
-          />
-          <Typography>Invalid Heading Disabled</Typography>
-          <Chip
-            label="Chip Label"
-            heading="Heading"
-            variation="subtle"
-            invalid
-            disabled
-          />
-        </div>
-        <div>
-          <Typography>Only Prefix</Typography>
-          <Typography>Base Default</Typography>
-          <Chip label="Chip Label">
-            <Chip.Prefix>
-              <Avatar initials="st" size="small" />
-            </Chip.Prefix>
-          </Chip>
-          <Typography>Base Disabled</Typography>
-          <Chip label="Chip Label" disabled>
-            <Chip.Prefix>
-              <Avatar initials="st" size="small" />
-            </Chip.Prefix>
-          </Chip>
-          <Typography>Subtle</Typography>
-          <Chip label="Chip Label" variation="subtle">
-            <Chip.Prefix>
-              <Avatar initials="st" size="small" />
-            </Chip.Prefix>
-          </Chip>
-          <Typography>Subtle Disabled</Typography>
-          <Chip label="Chip Label" variation="subtle" disabled>
-            <Chip.Prefix>
-              <Avatar initials="st" size="small" />
-            </Chip.Prefix>
-          </Chip>
-          <Typography>Invalid</Typography>
-          <Chip label="Chip Label" invalid>
-            <Chip.Prefix>
-              <Avatar initials="st" size="small" />
-            </Chip.Prefix>
-          </Chip>
-          <Typography>Invalid Disabled</Typography>
-          <Chip label="Chip Label" invalid disabled>
-            <Chip.Prefix>
-              <Avatar initials="st" size="small" />
-            </Chip.Prefix>
-          </Chip>
-          <Typography>Subtle Invalid</Typography>
-          <Chip label="Chip Label" variation="subtle" invalid>
-            <Chip.Prefix>
-              <Avatar initials="st" size="small" />
-            </Chip.Prefix>
-          </Chip>
-          <Typography>Subtle Invalid Disabled</Typography>
-          <Chip label="Chip Label" variation="subtle" invalid disabled>
-            <Chip.Prefix>
-              <Avatar initials="st" size="small" />
-            </Chip.Prefix>
-          </Chip>
-          <Typography>Base Heading</Typography>
-          <Chip label="Chip Label" heading="Heading">
-            <Chip.Prefix>
-              <Avatar initials="st" size="small" />
-            </Chip.Prefix>
-          </Chip>
-          <Typography>Base Heading Disabled</Typography>
-          <Chip label="Chip Label" heading="Heading" disabled>
-            <Chip.Prefix>
-              <Avatar initials="st" size="small" />
-            </Chip.Prefix>
-          </Chip>
-          <Typography>Subtle Heading</Typography>
-          <Chip label="Chip Label" heading="Heading" variation="subtle">
-            <Chip.Prefix>
-              <Avatar initials="st" size="small" />
-            </Chip.Prefix>
-          </Chip>
-          <Typography>Subtle Heading Disabled</Typography>
-          <Chip
-            label="Chip Label"
-            heading="Heading"
-            variation="subtle"
-            disabled
-          >
-            <Chip.Prefix>
-              <Avatar initials="st" size="small" />
-            </Chip.Prefix>
-          </Chip>
-          <Typography>Invalid Heading</Typography>
-          <Chip label="Chip Label" heading="Heading" variation="subtle" invalid>
-            <Chip.Prefix>
-              <Avatar initials="st" size="small" />
-            </Chip.Prefix>
-          </Chip>
-          <Typography>Invalid Heading Disabled</Typography>
-          <Chip
-            label="Chip Label"
-            heading="Heading"
-            variation="subtle"
-            invalid
-            disabled
-          >
-            <Chip.Prefix>
-              <Avatar initials="st" size="small" />
-            </Chip.Prefix>
-          </Chip>
-        </div>
-        <div>
-          <Typography>Only Suffix</Typography>
-          <Typography>Base Default</Typography>
-          <Chip label="Chip Label">
-            <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
-            </Chip.Suffix>
-          </Chip>
-          <Typography>Base Disabled</Typography>
-          <Chip label="Chip Label" disabled>
-            <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
-            </Chip.Suffix>
-          </Chip>
-          <Typography>Subtle</Typography>
-          <Chip label="Chip Label" variation="subtle">
-            <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
-            </Chip.Suffix>
-          </Chip>
-          <Typography>Subtle Disabled</Typography>
-          <Chip label="Chip Label" variation="subtle" disabled>
-            <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
-            </Chip.Suffix>
-          </Chip>
-          <Typography>Invalid</Typography>
-          <Chip label="Chip Label" invalid>
-            <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
-            </Chip.Suffix>
-          </Chip>
-          <Typography>Invalid Disabled</Typography>
-          <Chip label="Chip Label" invalid disabled>
-            <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
-            </Chip.Suffix>
-          </Chip>
-          <Typography>Subtle Invalid</Typography>
-          <Chip label="Chip Label" variation="subtle" invalid>
-            <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
-            </Chip.Suffix>
-          </Chip>
-          <Typography>Subtle Invalid Disabled</Typography>
-          <Chip label="Chip Label" variation="subtle" invalid disabled>
-            <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
-            </Chip.Suffix>
-          </Chip>
-          <Typography>Base Heading</Typography>
-          <Chip label="Chip Label" heading="Heading">
-            <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
-            </Chip.Suffix>
-          </Chip>
-          <Typography>Base Heading Disabled</Typography>
-          <Chip label="Chip Label" heading="Heading" disabled>
-            <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
-            </Chip.Suffix>
-          </Chip>
-          <Typography>Subtle Heading</Typography>
-          <Chip label="Chip Label" heading="Heading" variation="subtle">
-            <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
-            </Chip.Suffix>
-          </Chip>
-          <Typography>Subtle Heading Disabled</Typography>
-          <Chip
-            label="Chip Label"
-            heading="Heading"
-            variation="subtle"
-            disabled
-          >
-            <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
-            </Chip.Suffix>
-          </Chip>
-          <Typography>Invalid Heading</Typography>
-          <Chip label="Chip Label" heading="Heading" variation="subtle" invalid>
-            <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
-            </Chip.Suffix>
-          </Chip>
-          <Typography>Invalid Heading Disabled</Typography>
-          <Chip
-            label="Chip Label"
-            heading="Heading"
-            variation="subtle"
-            invalid
-            disabled
-          >
-            <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
-            </Chip.Suffix>
-          </Chip>
-        </div>
-        <div>
-          <Typography>Suffix & Prefix</Typography>
-          <Typography>Base Default</Typography>
-          <Chip label="Chip Label">
-            <Chip.Prefix>
-              <Avatar initials="st" size="small" />
-            </Chip.Prefix>
-            <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
-            </Chip.Suffix>
-          </Chip>
-          <Typography>Base Disabled</Typography>
-          <Chip label="Chip Label" disabled>
-            <Chip.Prefix>
-              <Avatar initials="st" size="small" />
-            </Chip.Prefix>
-            <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
-            </Chip.Suffix>
-          </Chip>
-          <Typography>Subtle</Typography>
-          <Chip label="Chip Label" variation="subtle">
-            <Chip.Prefix>
-              <Avatar initials="st" size="small" />
-            </Chip.Prefix>
-            <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
-            </Chip.Suffix>
-          </Chip>
-          <Typography>Subtle Disabled</Typography>
-          <Chip label="Chip Label" variation="subtle" disabled>
-            <Chip.Prefix>
-              <Avatar initials="st" size="small" />
-            </Chip.Prefix>
-            <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
-            </Chip.Suffix>
-          </Chip>
-          <Typography>Invalid</Typography>
-          <Chip label="Chip Label" invalid>
-            <Chip.Prefix>
-              <Avatar initials="st" size="small" />
-            </Chip.Prefix>
-            <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
-            </Chip.Suffix>
-          </Chip>
-          <Typography>Invalid Disabled</Typography>
-          <Chip label="Chip Label" invalid disabled>
-            <Chip.Prefix>
-              <Avatar initials="st" size="small" />
-            </Chip.Prefix>
-            <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
-            </Chip.Suffix>
-          </Chip>
-          <Typography>Subtle Invalid</Typography>
-          <Chip label="Chip Label" variation="subtle" invalid>
-            <Chip.Prefix>
-              <Avatar initials="st" size="small" />
-            </Chip.Prefix>
-            <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
-            </Chip.Suffix>
-          </Chip>
-          <Typography>Subtle Invalid Disabled</Typography>
-          <Chip label="Chip Label" variation="subtle" invalid disabled>
-            <Chip.Prefix>
-              <Avatar initials="st" size="small" />
-            </Chip.Prefix>
-            <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
-            </Chip.Suffix>
-          </Chip>
-          <Typography>Base Heading</Typography>
-          <Chip label="Chip Label" heading="Heading">
-            <Chip.Prefix>
-              <Avatar initials="st" size="small" />
-            </Chip.Prefix>
-            <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
-            </Chip.Suffix>
-          </Chip>
-          <Typography>Base Heading Disabled</Typography>
-          <Chip label="Chip Label" heading="Heading" disabled>
-            <Chip.Prefix>
-              <Avatar initials="st" size="small" />
-            </Chip.Prefix>
-            <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
-            </Chip.Suffix>
-          </Chip>
-          <Typography>Subtle Heading</Typography>
-          <Chip label="Chip Label" heading="Heading" variation="subtle">
-            <Chip.Prefix>
-              <Avatar initials="st" size="small" />
-            </Chip.Prefix>
-            <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
-            </Chip.Suffix>
-          </Chip>
-          <Typography>Subtle Heading Disabled</Typography>
-          <Chip
-            label="Chip Label"
-            heading="Heading"
-            variation="subtle"
-            disabled
-          >
-            <Chip.Prefix>
-              <Avatar initials="st" size="small" />
-            </Chip.Prefix>
-            <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
-            </Chip.Suffix>
-          </Chip>
-          <Typography>Invalid Heading</Typography>
-          <Chip label="Chip Label" heading="Heading" variation="subtle" invalid>
-            <Chip.Prefix>
-              <Avatar initials="st" size="small" />
-            </Chip.Prefix>
-            <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
-            </Chip.Suffix>
-          </Chip>
-          <Typography>Invalid Heading Disabled</Typography>
-          <Chip
-            label="Chip Label"
-            heading="Heading"
-            variation="subtle"
-            invalid
-            disabled
-          >
-            <Chip.Prefix>
-              <Avatar initials="st" size="small" />
-            </Chip.Prefix>
-            <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
-            </Chip.Suffix>
-          </Chip>
-        </div>
-      </div>
+      <Chip {...props} onClick={() => alert("you clicked me!")} />
     </Content>
   );
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {};
+const SuffixTemplate: ComponentStory<typeof Chip> = props => {
+  return (
+    <Content>
+      <Chip {...props} onClick={() => alert("you clicked me!")}>
+        <Chip.Suffix>
+          <Icon name="cross" size="small" />
+        </Chip.Suffix>
+      </Chip>
+    </Content>
+  );
+};
+
+const PrefixTemplate: ComponentStory<typeof Chip> = props => {
+  return (
+    <Content>
+      <Chip {...props} onClick={() => alert("you clicked me!")}>
+        <Chip.Prefix>
+          <Icon name="cross" size="small" />
+        </Chip.Prefix>
+      </Chip>
+    </Content>
+  );
+};
+
+export const Base = BasicTemplate.bind({});
+Base.args = {
+  label: "Chip Label",
+  heading: "",
+  ariaLabel: "Accessible Label",
+  role: "button",
+  tabIndex: 0,
+  variation: "base",
+  disabled: false,
+  invalid: false,
+};
+
+export const BaseDisabled = BasicTemplate.bind({});
+BaseDisabled.args = {
+  label: "Disabled Chip",
+  heading: "",
+  ariaLabel: "Accessible Label",
+  role: "button",
+  tabIndex: 0,
+  variation: "base",
+  disabled: true,
+  invalid: false,
+};
+
+export const Invalid = BasicTemplate.bind({});
+Invalid.args = {
+  label: "Invalid Chip",
+  heading: "",
+  ariaLabel: "Accessible Label",
+  role: "button",
+  tabIndex: 0,
+  variation: "base",
+  disabled: false,
+  invalid: true,
+};
+
+export const Subtle = BasicTemplate.bind({});
+Subtle.args = {
+  label: "Subtle Chip",
+  heading: "",
+  ariaLabel: "Accessible Label",
+  role: "button",
+  tabIndex: 0,
+  variation: "subtle",
+  disabled: false,
+  invalid: false,
+};
+
+export const SubtleDisabled = BasicTemplate.bind({});
+SubtleDisabled.args = {
+  label: "Subtle Chip",
+  heading: "",
+  ariaLabel: "Accessible Label",
+  role: "button",
+  tabIndex: 0,
+  variation: "subtle",
+  disabled: true,
+  invalid: false,
+};
+
+export const SubtleInvalid = BasicTemplate.bind({});
+SubtleInvalid.args = {
+  label: "Subtle Invalid Chip",
+  heading: "",
+  ariaLabel: "Accessible Label",
+  role: "button",
+  tabIndex: 0,
+  variation: "subtle",
+  disabled: false,
+  invalid: true,
+};
+
+export const WithHeading = BasicTemplate.bind({});
+WithHeading.args = {
+  label: "Chip Label",
+  heading: "Heading",
+  ariaLabel: "Accessible Label",
+  role: "button",
+  tabIndex: 0,
+  variation: "subtle",
+  disabled: false,
+  invalid: false,
+};
+
+export const WithHeadingInvalid = BasicTemplate.bind({});
+WithHeadingInvalid.args = {
+  label: "Chip Label",
+  heading: "Heading",
+  ariaLabel: "Accessible Label",
+  role: "button",
+  tabIndex: 0,
+  variation: "subtle",
+  disabled: false,
+  invalid: true,
+};
+
+export const WithHeadingDisabled = BasicTemplate.bind({});
+WithHeadingDisabled.args = {
+  label: "Chip Label",
+  heading: "Heading",
+  ariaLabel: "Accessible Label",
+  role: "button",
+  tabIndex: 0,
+  variation: "subtle",
+  disabled: true,
+  invalid: false,
+};
+
+export const Suffix = SuffixTemplate.bind({});
+Suffix.args = {
+  label: "Chip With Suffix",
+  heading: "",
+  ariaLabel: "Accessible Label",
+  role: "button",
+  tabIndex: 0,
+  variation: "subtle",
+  disabled: true,
+  invalid: false,
+};
+
+export const Prefix = PrefixTemplate.bind({});
+Prefix.args = {
+  label: "Chip With Prefix",
+  heading: "",
+  ariaLabel: "Accessible Label",
+  role: "button",
+  tabIndex: 0,
+  variation: "subtle",
+  disabled: true,
+  invalid: false,
+};
