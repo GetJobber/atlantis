@@ -5,18 +5,16 @@ import { Banner } from "@jobber/components/Banner";
 
 # Responsive Breakpoints
 
-<Banner type="notice" dismissible={false}>
+We have 3 different ways to deal with responsive breakpoints in our components.
 
-To make components responsive depending on the size of its container rather than
-the browser, you should use the
-[useResizeObserver hook](../?path=/docs/hooks-useresizeobserver--use-resize-observer)
-so that the component can be responsive based on its container.
+1. CSS variables (`@custom-media`) that are relative to the browser size.
+2. [`useBreakpoints` hook](..) that is the JS counterpart of the CSS variables.
+3. [`useResizeObserver` hook](..) that is used to make components responsive
+   depending on the size of its container rather than the browser.
 
-</Banner>
+## CSS variables
 
-However, there are times the component will not care about its container and
-want to be responsive based on the browser size. For this, you will want to use
-the @media breakpoint in your CSS.
+We have 5 CSS breakpoints that you can choose from when styling your components.
 
 | Breakpoint                     | Width       |
 | :----------------------------- | :---------- |
@@ -26,7 +24,7 @@ the @media breakpoint in your CSS.
 | `--large-screens-and-up`       | `>= 1080px` |
 | `--extra-large-screens-and-up` | `>= 1440px` |
 
-## Usage
+### Usage
 
 Components should be styled mobile-first, meaning that they should be styled for
 small screens and then scaled up. This means that the
@@ -50,7 +48,7 @@ when reading your CSS.
 }
 ```
 
-### Caveat
+#### Caveat
 
 We use [custom-media](https://www.w3.org/TR/mediaqueries-5/#custom-mq) that
 creates a CSS variable-like pattern for media queries. It isn't widely supported
@@ -65,3 +63,16 @@ your compiler to transform them back to normal media queries.
 | `--handhelds`      | `< 640px`   |
 | `--medium-screens` | `>= 640px`  |
 | `--wide-screens`   | `>= 1024px` |
+
+## 2. useBreakpoints hook
+
+This closely mimics the CSS breakpoints but you can use within a JS code. Read
+more about useBreakpoints
+[here](../?path=/docs/hooks-usebreakpoints--use-breakpoints).
+
+## 3. useResizeObserver hook
+
+To make components responsive depending on the size of its container rather than
+the browser, you should use the
+[useResizeObserver hook](../?path=/docs/hooks-useresizeobserver--use-resize-observer)
+so that the component can be responsive based on its container.
