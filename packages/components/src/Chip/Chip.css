@@ -1,6 +1,10 @@
 :root {
   --chip-height: 40px;
   --chip-radius: 20px;
+  --chip-disabled--bg: var(--color-grey--lighter);
+  --chip-bar-color: var(--color-greyBlue--light);
+  --chip-base-bg: var(--color-greyBlue--lightest);
+  --chip-base--hover: var(--color-greyBlue--lighter);
 }
 
 .chip {
@@ -56,7 +60,7 @@
   width: var(--space-minuscule);
   height: var(--base-unit);
   margin: 0 var(--space-small);
-  background-color: var(--color-greyBlue--light);
+  background-color: var(--chip-bar-color);
 }
 
 .chip .selected {
@@ -67,11 +71,11 @@
 .base {
   border: var(--border-base) solid transparent;
   color: var(--color-heading);
-  background-color: var(--color-greyBlue--lightest);
+  background-color: var(--chip-base-bg);
 }
 .base:hover,
 .base:focus {
-  background-color: var(--color-greyBlue--lighter);
+  background-color: var(--chip-base--hover);
 }
 
 .invalid,
@@ -89,16 +93,16 @@
   background-color: var(--color-surface);
 }
 .subtle:hover {
-  border: var(--border-base) solid var(--color-greyBlue--lightest);
-  background-color: var(--color-greyBlue--lightest);
+  border: var(--border-base) solid var(--chip-base-bg);
+  background-color: var(--chip-base-bg);
 }
 
 .disabled,
 .disabled:hover,
 .disabled:focus {
-  border: var(--border-base) solid var(--color-grey--lighter);
+  border: var(--border-base) solid var(--chip-disabled--bg);
   color: var(--color-disabled);
-  background-color: var(--color-grey--lighter);
+  background-color: var(--chip-disabled--bg);
   cursor: auto;
 }
 
