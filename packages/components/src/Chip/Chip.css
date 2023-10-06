@@ -1,7 +1,6 @@
 :root {
   --chip-height: 40px;
   --chip-radius: 20px;
-  --chip-highlighted: var(--color-greyBlue--lighter);
 }
 
 .chip {
@@ -9,7 +8,6 @@
   position: relative;
   height: var(--chip-height);
   padding: var(--space-small) var(--base-unit);
-  border: none;
   border: var(--border-base) solid transparent;
   border-radius: var(--chip-radius);
   color: var(--color-heading);
@@ -44,6 +42,11 @@
   justify-content: center;
 }
 
+.chip .suffix:hover,
+.chip .prefix:hover {
+  background-color: var(--color-disabled);
+}
+
 .chip .prefix.empty,
 .chip .suffix.empty {
   display: none;
@@ -62,12 +65,13 @@
 }
 
 .base {
+  border: var(--border-base) solid transparent;
   color: var(--color-heading);
-  background-color: var(--chip-highlighted);
+  background-color: var(--color-greyBlue--lightest);
 }
 .base:hover,
 .base:focus {
-  background-color: var(--chip-highlighted);
+  background-color: var(--color-greyBlue--lighter);
 }
 
 .invalid,
@@ -84,10 +88,15 @@
   border: var(--border-base) solid var(--color-disabled--secondary);
   background-color: var(--color-surface);
 }
+.subtle:hover {
+  border: var(--border-base) solid var(--color-greyBlue--lightest);
+  background-color: var(--color-greyBlue--lightest);
+}
 
 .disabled,
 .disabled:hover,
 .disabled:focus {
+  border: var(--border-base) solid var(--color-grey--lighter);
   color: var(--color-disabled);
   background-color: var(--color-grey--lighter);
   cursor: auto;

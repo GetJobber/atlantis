@@ -1,3 +1,3 @@
 export * from "./Chip";
-export * from "./ChipSelectable";
-export * from "./ChipDismissible";
+export * from "./components/ChipSelectable/ChipSelectable";
+export * from "./components/ChipDismissible/ChipDismissible";

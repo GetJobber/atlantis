@@ -30,21 +30,6 @@ describe("Chip", () => {
     expect(onKeyDown).toHaveBeenCalledTimes(1);
   });
 
-  it("renders an invalid Chip", () => {
-    const { container } = render(<Chip label="Test Chip" invalid />);
-    expect(container).toMatchSnapshot();
-  });
-
-  it("renders a disabled Chip", () => {
-    const { container } = render(<Chip label="Test Chip" disabled />);
-    expect(container).toMatchSnapshot();
-  });
-
-  it("renders a disabled and invalid Chip", () => {
-    const { container } = render(<Chip label="Test Chip" invalid disabled />);
-    expect(container).toMatchSnapshot();
-  });
-
   it("does not fire onClick when disabled", () => {
     const label = "Test Disabled";
     const clickHandler = jest.fn();

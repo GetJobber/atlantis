@@ -1,8 +1,8 @@
 import React, { PropsWithChildren } from "react";
 import classNames from "classnames";
 import { useChildComponent } from "@jobber/hooks/useChildComponent";
-import styles from "./Chip.css";
-import { Icon } from "../Icon";
+import styles from "../../Chip.css";
+import { Icon } from "../../../Icon";
 
 interface ChipSuffixProps extends PropsWithChildren {
   className?: string;

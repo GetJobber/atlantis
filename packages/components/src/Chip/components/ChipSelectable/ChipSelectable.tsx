@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Chip } from "./Chip";
-import { ChipSelectableProps } from "./Chip.types";
-import styles from "./Chip.css";
-import { Icon } from "../Icon";
+import { Chip } from "../../Chip";
+import { ChipSelectableProps } from "../../Chip.types";
+import styles from "../../Chip.css";
+import { Icon } from "../../../Icon";
 
 export function ChipSelectable({
   label,

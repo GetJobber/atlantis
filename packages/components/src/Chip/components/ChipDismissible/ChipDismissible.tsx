@@ -1,7 +1,7 @@
 import React from "react";
-import { Chip } from "./Chip";
-import { ChipProps } from "./Chip.types";
-import { Icon } from "../Icon";
+import { Chip } from "../../Chip";
+import { ChipProps } from "../../Chip.types";
+import { Icon } from "../../../Icon";
 
 export function ChipDismissible(props: ChipProps) {
   return (

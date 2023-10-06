@@ -53,133 +53,85 @@ const PrefixTemplate: ComponentStory<typeof Chip> = props => {
 };
 
 export const Base = BasicTemplate.bind({});
-Base.args = {
-  label: "Chip Label",
+const defaultArgs = {
   heading: "",
+  label: "Chip Label",
   ariaLabel: "Accessible Label",
   role: "button",
   tabIndex: 0,
-  variation: "base",
+  variation: "base" as const,
   disabled: false,
   invalid: false,
+};
+Base.args = {
+  ...defaultArgs,
+  label: "Chip Label",
 };
 
 export const BaseDisabled = BasicTemplate.bind({});
 BaseDisabled.args = {
+  ...defaultArgs,
   label: "Disabled Chip",
-  heading: "",
-  ariaLabel: "Accessible Label",
-  role: "button",
-  tabIndex: 0,
-  variation: "base",
   disabled: true,
-  invalid: false,
 };
 
 export const Invalid = BasicTemplate.bind({});
 Invalid.args = {
+  ...defaultArgs,
   label: "Invalid Chip",
-  heading: "",
-  ariaLabel: "Accessible Label",
-  role: "button",
-  tabIndex: 0,
-  variation: "base",
-  disabled: false,
   invalid: true,
 };
 
 export const Subtle = BasicTemplate.bind({});
 Subtle.args = {
+  ...defaultArgs,
   label: "Subtle Chip",
-  heading: "",
-  ariaLabel: "Accessible Label",
-  role: "button",
-  tabIndex: 0,
   variation: "subtle",
-  disabled: false,
-  invalid: false,
 };
 
 export const SubtleDisabled = BasicTemplate.bind({});
 SubtleDisabled.args = {
-  label: "Subtle Chip",
-  heading: "",
-  ariaLabel: "Accessible Label",
-  role: "button",
-  tabIndex: 0,
-  variation: "subtle",
+  ...defaultArgs,
+  label: "Subtle Disabled Chip",
   disabled: true,
-  invalid: false,
 };
 
 export const SubtleInvalid = BasicTemplate.bind({});
 SubtleInvalid.args = {
+  ...defaultArgs,
   label: "Subtle Invalid Chip",
-  heading: "",
-  ariaLabel: "Accessible Label",
-  role: "button",
-  tabIndex: 0,
   variation: "subtle",
-  disabled: false,
   invalid: true,
 };
 
 export const WithHeading = BasicTemplate.bind({});
 WithHeading.args = {
-  label: "Chip Label",
+  ...defaultArgs,
   heading: "Heading",
-  ariaLabel: "Accessible Label",
-  role: "button",
-  tabIndex: 0,
-  variation: "subtle",
-  disabled: false,
-  invalid: false,
 };
 
 export const WithHeadingInvalid = BasicTemplate.bind({});
 WithHeadingInvalid.args = {
-  label: "Chip Label",
+  ...defaultArgs,
   heading: "Heading",
-  ariaLabel: "Accessible Label",
-  role: "button",
-  tabIndex: 0,
-  variation: "subtle",
-  disabled: false,
   invalid: true,
 };
 
 export const WithHeadingDisabled = BasicTemplate.bind({});
 WithHeadingDisabled.args = {
-  label: "Chip Label",
+  ...defaultArgs,
   heading: "Heading",
-  ariaLabel: "Accessible Label",
-  role: "button",
-  tabIndex: 0,
-  variation: "subtle",
   disabled: true,
-  invalid: false,
 };
 
 export const Suffix = SuffixTemplate.bind({});
 Suffix.args = {
+  ...defaultArgs,
   label: "Chip With Suffix",
-  heading: "",
-  ariaLabel: "Accessible Label",
-  role: "button",
-  tabIndex: 0,
-  variation: "subtle",
-  disabled: true,
-  invalid: false,
 };
 
 export const Prefix = PrefixTemplate.bind({});
 Prefix.args = {
+  ...defaultArgs,
   label: "Chip With Prefix",
-  heading: "",
-  ariaLabel: "Accessible Label",
-  role: "button",
-  tabIndex: 0,
-  variation: "subtle",
-  disabled: true,
-  invalid: false,
 };

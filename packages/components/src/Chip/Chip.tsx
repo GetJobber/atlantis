@@ -2,8 +2,8 @@ import React from "react";
 import { useChildComponent } from "@jobber/hooks/useChildComponent";
 import classNames from "classnames";
 import styles from "./Chip.css";
-import { ChipPrefix } from "./Chip.Prefix";
-import { ChipSuffix } from "./Chip.Suffix";
+import { ChipPrefix } from "./components/ChipPrefix/Chip.Prefix";
+import { ChipSuffix } from "./components/ChipSuffix/Chip.Suffix";
 import { ChipProps } from "./Chip.types";
 import { Typography } from "../Typography";
 
