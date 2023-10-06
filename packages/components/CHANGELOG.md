@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.46.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.46.2...@jobber/components@4.46.3) (2023-10-06)
+
+
+### Bug Fixes
+
+* **components:** Always Allow Combobox Gradient to Show ([#1554](https://github.com/GetJobber/atlantis/issues/1554)) ([ce44f6f](https://github.com/GetJobber/atlantis/commit/ce44f6f1a2bb849e1408f9f05c6d68ec13270e03)), closes [#1510](https://github.com/GetJobber/atlantis/issues/1510) [#1513](https://github.com/GetJobber/atlantis/issues/1513)
+
+
+
+
+
 ## [4.46.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.46.1...@jobber/components@4.46.2) (2023-10-05)
 
 **Note:** Version bump only for package @jobber/components
