@@ -51,6 +51,13 @@ module.exports = {
       },
     ],
     "react/prefer-read-only-props": "error",
+    "padding-line-between-statements": [
+      "warn",
+      { blankLine: "always", prev: "*", next: "return" },
+      { blankLine: "always", prev: "function", next: "function" },
+      { blankLine: "always", prev: "*", next: "block" },
+      { blankLine: "always", prev: "*", next: "block-like" },
+    ],
   },
   overrides: [
     {
