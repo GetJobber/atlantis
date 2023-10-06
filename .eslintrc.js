@@ -50,15 +50,16 @@ module.exports = {
         ],
       },
     ],
-    "react/prefer-read-only-props": "error",
-    "react/jsx-no-useless-fragment": ["error", { allowExpressions: true }],
-    "react/button-has-type": "error",
+    "react/prefer-read-only-props": "warn",
+    "react/jsx-no-useless-fragment": ["warn", { allowExpressions: true }],
+    "react/button-has-type": "warn",
     "padding-line-between-statements": [
       "warn",
       { blankLine: "always", prev: "*", next: "return" },
       { blankLine: "always", prev: "function", next: "function" },
       { blankLine: "always", prev: "*", next: "block" },
       { blankLine: "always", prev: "*", next: "block-like" },
+      { blankLine: "any", prev: "case", next: "case" },
     ],
   },
   overrides: [
@@ -70,6 +71,7 @@ module.exports = {
         "@typescript-eslint/naming-convention": "off",
         "@typescript-eslint/no-unused-expressions": "off",
         "import/no-extraneous-dependencies": "off",
+        "padding-line-between-statements": "off",
       },
     },
     {
