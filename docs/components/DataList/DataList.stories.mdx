@@ -31,13 +31,13 @@ component instead.
 Since DataList is a large component, we use a mixture of compound components and
 props to separate each part of the component.
 
-## Main wrapper
+### Main wrapper
 
 DataList is the main component that holds everything and important props.
 
 <ArgsTable of={DataList} />
 
-## Layout
+### Layout
 
 DataList.Layout enables you to implement the layout of the list items. Keep in
 mind that DataList doesn't have a default layout so you have to have at least 1
@@ -87,7 +87,9 @@ It is also important to add the type of `DataListItem<typeof data>` on the
 
 <ArgsTable of={DataList.Layout} />
 
-## Per item action(s)
+### Actions
+
+#### Item actions
 
 DataList.ItemActions allows you to add an action on the item itself such as
 `onClick` or `url`. While the DataList.ItemAction (without an s) child adds more
@@ -111,11 +113,37 @@ action that is related to the item.
   </Tab>
 </Tabs>
 
-## Layout actions
+#### Batch actions
+
+There are two steps to allow the user to select and perform actions on multiple
+items:
+
+1. Enable multiselect by adding a `selected`, `onSelect`, and `onSelectAll`
+   props to the DataList component.
+2. Add a DataList.BatchActions component inside the DataList.Layout component.
+
+```tsx
+<DataList
+  selected={selected}
+  onSelect={handleSelect}
+  onSelectAll={handleSelectAll}
+>
+  <DataList.BatchActions>
+    <DataList.BatchAction label="Send" onClick={handleSend} />
+    <DataList.BatchAction label="Delete" onClick={handleDelete} />
+  </DataList.BatchActions>
+</DataList>
+```
+
+##### DataList.BatchAction props
+
+<ArgsTable of={DataList.BatchAction} />
+
+#### Layout actions
 
 By default, the actions from the DataList.ItemActions will be placed on the top
 right of the list item and will be triggered by hover. You can change this
-behaviour by including the DataList.LayoutActions component inside the
+behavior by including the DataList.LayoutActions component inside the
 DataList.Layout component.
 
 ```tsx
@@ -136,10 +164,10 @@ DataList.Layout component.
 </DataList>
 ```
 
-## Filters
+### Filters
 
-DataList.Filters add filters to the list. This compound component accepts any
-children and drops it above the list of items.
+DataList.Filters adds filters to the list. This compound component accepts any
+children and inserts it above the list of items.
 
 ```tsx
 <DataList>
@@ -151,7 +179,7 @@ children and drops it above the list of items.
 </DataList>
 ```
 
-## Search
+### Search
 
 DataList.Search adds a search input to the list. This is debounced by 500ms.
 
@@ -163,10 +191,10 @@ DataList.Search adds a search input to the list. This is debounced by 500ms.
 
 <ArgsTable of={DataList.Search} />
 
-## Empty state
+### Empty state
 
-By default, the DataList have a basic empty state message when it is empty or
-filtering. You can override this by using the DataList.EmptyState component.
+The DataList has a default empty state message when it is empty or filtering.
+You can override this by using the DataList.EmptyState component.
 
 ```tsx
 <DataList>
@@ -197,29 +225,3 @@ need to set the `filtered` to `true`.
   />
 </DataList>
 ```
-
-## Batch actions
-
-In order to select multiple items and perform an action on them, you have to set
-up 2 things.
-
-1. Enable multiselect by adding a `selected`, `onSelect`, and `onSelectAll`
-   props to the DataList component.
-2. Add a DataList.BatchActions component inside the DataList.Layout component.
-
-```tsx
-<DataList
-  selected={selected}
-  onSelect={handleSelect}
-  onSelectAll={handleSelectAll}
->
-  <DataList.BatchActions>
-    <DataList.BatchAction label="Send" onClick={handleSend} />
-    <DataList.BatchAction label="Delete" onClick={handleDelete} />
-  </DataList.BatchActions>
-</DataList>
-```
-
-### DataList.BatchAction props
-
-<ArgsTable of={DataList.BatchAction} />
