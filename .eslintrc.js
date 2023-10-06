@@ -8,7 +8,8 @@ const packageAliases = [
 ];
 
 module.exports = {
-  extends: ["@jobber/eslint-config"],
+  plugins: ["monorepo-cop"],
+  extends: ["@jobber/eslint-config", "plugin:monorepo-cop/recommended"],
   root: true,
   settings: {
     "import/ignore": ["react-native/index"],
@@ -21,10 +22,10 @@ module.exports = {
   },
   rules: {
     /*
-      Need to figure out a good way to enforce intra vs inter module import
-      rules. For now, warn on these.
+      Atlantis is a monorepo so we need to use `monorepo-cop` to enforce the
+      relative import rule.
      */
-    "import/no-relative-parent-imports": "warn",
+    "import/no-relative-parent-imports": "off",
     "no-restricted-imports": [
       "error",
       {
