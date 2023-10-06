@@ -8,7 +8,7 @@ const packageAliases = [
 ];
 
 module.exports = {
-  plugins: ["monorepo-cop"],
+  plugins: ["monorepo-cop", "react"],
   extends: ["@jobber/eslint-config", "plugin:monorepo-cop/recommended"],
   root: true,
   settings: {
@@ -50,6 +50,7 @@ module.exports = {
         ],
       },
     ],
+    "react/prefer-read-only-props": "error",
   },
   overrides: [
     {
