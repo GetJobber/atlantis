@@ -5,9 +5,9 @@ export interface ChipProps extends PropsWithChildren {
   ariaLabel?: string;
   /** Disables Chip */
   disabled?: boolean;
-  /** Adds a Medium Heading with a Pipe separator */
+  /** Adds more prominent text to act as a heading */
   heading?: string;
-  /** Makes Chip red. */
+  /** Changes Chip styling to inform the user of an issue. */
   invalid?: boolean;
   /** What do you want Chip to say? */
   label: string;

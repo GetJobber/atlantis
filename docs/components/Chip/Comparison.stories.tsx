@@ -7,7 +7,7 @@ import { Avatar } from "@jobber/components/Avatar";
 import { Icon } from "@jobber/components/Icon";
 
 export default {
-  title: "Components/Selections/Chip/Comparisons",
+  title: "Components/Selections/Chip/Web/Comparisons",
   component: Chip,
   subcomponents: { Chip },
   parameters: {

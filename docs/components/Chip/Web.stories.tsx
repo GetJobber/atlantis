@@ -7,7 +7,6 @@ import { Icon } from "@jobber/components/Icon";
 export default {
   title: "Components/Selections/Chip/Web",
   component: Chip,
-  subcomponents: { Chip },
   parameters: {
     viewMode: "story",
     previewTabs: {

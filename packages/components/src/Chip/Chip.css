@@ -1,6 +1,7 @@
 :root {
   --chip-height: 40px;
   --chip-radius: 20px;
+  --chip-highlighted: var(--color-greyBlue--lighter);
 }
 
 .chip {
@@ -9,10 +10,12 @@
   height: var(--chip-height);
   padding: var(--space-small) var(--base-unit);
   border: none;
+  border: var(--border-base) solid transparent;
   border-radius: var(--chip-radius);
+  color: var(--color-heading);
   text-align: left;
   cursor: pointer;
-  transition: all ease-in-out 0.12s;
+  transition: all var(--ease-both) var(--timing-quick);
   align-items: center;
 }
 
@@ -36,7 +39,7 @@
   width: var(--space-large);
   height: var(--space-large);
   border-radius: var(--radius-circle);
-  background-color: var(--color-white);
+  background-color: var(--color-surface);
   align-items: center;
   justify-content: center;
 }
@@ -55,16 +58,16 @@
 
 .chip .selected {
   border-radius: var(--radius-circle);
-  background-color: var(--color-white);
+  background-color: var(--color-surface);
 }
 
 .base {
-  color: var(--color-blue);
-  background-color: var(--color-greyBlue--lightest);
+  color: var(--color-heading);
+  background-color: var(--chip-highlighted);
 }
 .base:hover,
 .base:focus {
-  background-color: var(--color-greyBlue--lighter);
+  background-color: var(--chip-highlighted);
 }
 
 .invalid,
@@ -73,21 +76,29 @@
 .subtle.invalid,
 .subtle.invalid:hover,
 .subtle.invalid:focus {
-  border: var(--border-base) solid var(--color-red);
-  background-color: var(--color-red--lightest);
+  border: var(--border-base) solid var(--color-critical);
+  background-color: var(--color-critical--surface);
 }
 
 .subtle {
-  border: var(--border-base) solid var(--color-grey--lighter);
-  background-color: var(--color-white);
+  border: var(--border-base) solid var(--color-disabled--secondary);
+  background-color: var(--color-surface);
 }
 
 .disabled,
 .disabled:hover,
 .disabled:focus {
-  color: var(--color-grey);
+  color: var(--color-disabled);
   background-color: var(--color-grey--lighter);
   cursor: auto;
+}
+
+.disabled .chipBar {
+  background-color: var(--color-disabled);
+}
+
+.chip.disabled .suffix {
+  background-color: var(--color-disabled);
 }
 
 .invalid.disabled {
