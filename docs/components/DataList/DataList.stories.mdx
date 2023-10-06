@@ -1,4 +1,6 @@
-import { Meta } from "@storybook/addon-docs";
+import { ArgsTable, Meta } from "@storybook/addon-docs";
+import { DataList } from "@jobber/components/DataList";
+import { DataListLayout } from "@jobber/components/DataList/components/DataListLayout";
 
 <Meta
   title="Components/Lists and Tables/DataList/Docs"
@@ -23,3 +25,60 @@ item.
 If you need to add more information, consider using the
 [DataTable](?path=/story/components-lists-and-tables-datatable-docs--page)
 component instead.
+
+## Implementation guidelines
+
+Since DataList is a large component, we use a mixture of compound components and
+props to separate each part of the component.
+
+## DataList
+
+DataList is the main component that holds everything and important props.
+
+<ArgsTable of={DataList} />
+
+## DataList.Layout
+
+DataList.Layout component enables you to implement the layout of the list items.
+Keep in mind that DataList doesn't have a default layout so you have to have at
+least 1 implemented.
+
+It also supports different `size` breakpoints so you can completely change the
+component it's using depending on the window size.
+
+```tsx
+// You can have 1 responsive layout
+<DataList>
+  <DataList.Layout>
+    {(item: DataListItem<MyDataType>) => (
+      <Grid>
+        <Grid.Cell size={{ xs: 12 md: 6 }}>{item.name}</Grid.Cell>
+        <Grid.Cell size={{ xs: 12 md: 6 }}>{item.email}</Grid.Cell>
+      </Grid>
+    )}
+  </DataList.Layout>
+</DataList>
+
+// Or you can have multiple layouts per breakpoint
+<DataList>
+  <DataList.Layout size="xs">
+    {(item: DataListItem<MyDataType>) => (
+      <Grid>
+        <Grid.Cell size={{ md: 6 }}>{item.name}</Grid.Cell>
+        <Grid.Cell size={{ md: 6 }}>{item.email}</Grid.Cell>
+      </Grid>
+    )}
+  </DataList.Layout>
+
+  <DataList.Layout size="md">
+    {(item: DataListItem<MyDataType>) => (
+      <Content>
+        <div>{item.name}</div>
+        <div>{item.email}</div>
+      </Content>
+    )}
+  </DataList.Layout>
+</DataList>
+```
+
+<ArgsTable of={DataListLayout} />
