@@ -1,145 +1,61 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { multiSelect } from "@jobber/components/MultiSelect/MultiSelect.css";
-// import { ComboboxHeader } from "./ComboboxHeader";
-import { Combobox } from "../../Combobox";
+import { ComboboxHeader } from "./ComboboxHeader";
 import { ComboboxContext } from "../../ComboboxProvider";
 
 describe("ComboboxHeader", () => {
-  it("should be present when multiselect is true", () => {
-    const { getByText } = render(
-      <MockComboboxProvider multiSelect={true}>
-        <Combobox.Content
-          options={[
-            { id: "1", label: "Bilbo Baggins" },
-            { id: "2", label: "Frodo Baggins" },
-          ]}
-          onSelect={jest.fn()}
-          selected={null}
-        ></Combobox.Content>
-      </MockComboboxProvider>,
-    );
+  describe("When no options have been selected", () => {
+    it("should render a button with the correct label", () => {
+      const { getByText } = render(
+        <MockComboboxProvider>
+          <ComboboxHeader selectedCount={0} />
+        </MockComboboxProvider>,
+      );
 
-    expect(getByText("Select all")).toBeInTheDocument();
+      expect(getByText("Select all")).toBeInTheDocument();
+    });
+
+    it("should render the correct label when subjectNoun is provided", () => {
+      const { getByText } = render(
+        <MockComboboxProvider>
+          <ComboboxHeader selectedCount={0} subjectNoun="tax rates" />
+        </MockComboboxProvider>,
+      );
+
+      expect(getByText("Select tax rates")).toBeInTheDocument();
+    });
   });
 
-  // it("should be absent when multiselect is false", () => {
-  //   const { queryByText } = render(
-  //     <MockComboboxProvider multiSelect={false}>
-  //       <Combobox.Content
-  //         options={[
-  //           { id: "1", label: "Bilbo Baggins" },
-  //           { id: "2", label: "Frodo Baggins" },
-  //         ]}
-  //         onSelect={jest.fn()}
-  //         selected={null}
-  //       ></Combobox.Content>
-  //     </MockComboboxProvider>,
-  //   );
+  describe("When one or more options has been selected", () => {
+    it("should render a button with the correct label", () => {
+      const { getByText } = render(
+        <MockComboboxProvider>
+          <ComboboxHeader selectedCount={1} />
+        </MockComboboxProvider>,
+      );
 
-  //   expect(queryByText("Select all")).not.toBeInTheDocument();
-  // });
+      expect(getByText("Clear")).toBeInTheDocument();
+    });
 
-  it("should read 'Select` when subjectNoun is not provided", () => {
-    const { getByText } = render(
-      <MockComboboxProvider multiSelect={true}>
-        <Combobox.Content
-          options={[
-            { id: "1", label: "Bilbo Baggins" },
-            { id: "2", label: "Frodo Baggins" },
-          ]}
-          onSelect={jest.fn()}
-          selected={null}
-        ></Combobox.Content>
-      </MockComboboxProvider>,
-    );
+    it("should render the correct label", () => {
+      const { getByText } = render(
+        <MockComboboxProvider>
+          <ComboboxHeader selectedCount={1} />
+        </MockComboboxProvider>,
+      );
 
-    expect(getByText("Select")).toBeInTheDocument();
-  });
-
-  it("should read 'Select {subjectNoun}' when subjectNoun is provided", () => {
-    const { getByText } = render(
-      <MockComboboxProvider multiSelect={true}>
-        <Combobox.Content
-          options={[
-            { id: "1", label: "Bilbo Baggins" },
-            { id: "2", label: "Frodo Baggins" },
-          ]}
-          onSelect={jest.fn()}
-          selected={null}
-          subjectNoun="teammates"
-        ></Combobox.Content>
-      </MockComboboxProvider>,
-    );
-
-    expect(getByText("Select teammates")).toBeInTheDocument();
-  });
-
-  it("should read '1 selected' when one option is selected", () => {
-    const { getByText } = render(
-      <MockComboboxProvider multiSelect={true}>
-        <Combobox.Content
-          options={[
-            { id: "1", label: "Bilbo Baggins" },
-            { id: "2", label: "Frodo Baggins" },
-          ]}
-          onSelect={jest.fn()}
-          selected={{ id: "1", label: "Bilbo Baggins" }}
-        ></Combobox.Content>
-      </MockComboboxProvider>,
-    );
-
-    expect(getByText("1 selected")).toBeInTheDocument();
-  });
-
-  it("should display '{selectedCount} selected' label when selectedCount is 1 or more", () => {
-    const { getByText } = render(
-      <MockComboboxProvider multiSelect={true}>
-        <Combobox.Content
-          options={[
-            { id: "1", label: "Bilbo Baggins" },
-            { id: "2", label: "Frodo Baggins" },
-          ]}
-          onSelect={jest.fn()}
-          selected={{ id: "1", label: "Bilbo Baggins" }}
-          subjectNoun="teammates"
-        ></Combobox.Content>
-      </MockComboboxProvider>,
-    );
-
-    expect(getByText("1 selected")).toBeInTheDocument();
-  });
-
-  it("should display 'Clear' when one option is selected", () => {
-    const { getByText } = render(
-      <MockComboboxProvider multiSelect={true}>
-        <Combobox.Content
-          options={[
-            { id: "1", label: "Bilbo Baggins" },
-            { id: "2", label: "Frodo Baggins" },
-          ]}
-          onSelect={jest.fn()}
-          selected={{ id: "1", label: "Bilbo Baggins" }}
-        ></Combobox.Content>
-      </MockComboboxProvider>,
-    );
-
-    expect(getByText("Clear")).toBeInTheDocument();
+      expect(getByText("1 selected")).toBeInTheDocument();
+    });
   });
 });
 
-function MockComboboxProvider({
-  children,
-}: {
-  children: React.ReactNode;
-  multiSelect?: boolean;
-}) {
+function MockComboboxProvider({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = React.useState(false);
 
   return (
     <ComboboxContext.Provider
       value={{
-        multiselect: !!multiSelect,
+        multiselect: true,
         open,
         setOpen,
         wrapperRef: { current: null },

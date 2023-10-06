@@ -117,6 +117,43 @@ describe("ComboboxContent Search", () => {
   });
 });
 
+describe("ComboboxContent Header", () => {
+  it("should render when multiSelect is true", () => {
+    const { getByText, getByTestId } = render(
+      <MockComboboxProvider multiselect={true}>
+        <Combobox.Content
+          options={[
+            { id: "1", label: "Bilbo Baggins" },
+            { id: "2", label: "Frodo Baggins" },
+          ]}
+          onSelect={jest.fn()}
+          selected={null}
+        ></Combobox.Content>
+      </MockComboboxProvider>,
+    );
+
+    expect(getByText("Select all")).toBeInTheDocument();
+    expect(getByTestId("ATL-Combobox-Header")).toBeInTheDocument();
+  });
+
+  it("should not render when multiSelect is false", () => {
+    const { queryByTestId } = render(
+      <MockComboboxProvider>
+        <Combobox.Content
+          options={[
+            { id: "1", label: "Bilbo Baggins" },
+            { id: "2", label: "Frodo Baggins" },
+          ]}
+          onSelect={jest.fn()}
+          selected={null}
+        ></Combobox.Content>
+      </MockComboboxProvider>,
+    );
+
+    expect(queryByTestId("ATL-Combobox-Header")).not.toBeInTheDocument();
+  });
+});
+
 describe("ComboboxContent Options", () => {
   it("should focus first option with down arrow key press", async () => {
     const { getByText, getByTestId } = render(
@@ -289,13 +326,19 @@ describe("ComboboxContent Options", () => {
   });
 });
 
-function MockComboboxProvider({ children }: { children: React.ReactNode }) {
+function MockComboboxProvider({
+  children,
+  multiselect = false,
+}: {
+  children: React.ReactNode;
+  multiselect?: boolean;
+}) {
   const [open, setOpen] = React.useState(false);
 
   return (
     <ComboboxContext.Provider
       value={{
-        multiselect: false,
+        multiselect,
         open,
         setOpen,
         wrapperRef: { current: null },

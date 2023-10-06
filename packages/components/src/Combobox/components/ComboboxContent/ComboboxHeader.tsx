@@ -15,7 +15,7 @@ export function ComboboxHeader(props: ComboboxHeaderProps): JSX.Element {
   const actionText = selectedCount > 0 ? "Clear" : "Select all";
 
   return (
-    <div className={styles.header}>
+    <div className={styles.header} data-testid="ATL-Combobox-Header">
       <Typography textColor="heading" fontWeight="semiBold">
         {selectedCount === 1 ? `${selectedCount} selected` : label}
       </Typography>
