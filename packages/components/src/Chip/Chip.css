@@ -41,6 +41,11 @@
   justify-content: center;
 }
 
+.chip .prefix.empty,
+.chip .suffix.empty {
+  display: none;
+}
+
 .chip .chipBar {
   width: var(--space-minuscule);
   height: var(--base-unit);

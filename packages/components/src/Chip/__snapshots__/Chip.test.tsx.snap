@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chip renders a disabled Chip 1`] = `
+<div>
+  <button
+    aria-label="Test Chip"
+    class="chip base disabled"
+    disabled=""
+    role="button"
+    tabindex="0"
+  >
+    <span>
+      <p
+        class="base medium base"
+      />
+    </span>
+    <span>
+      <p
+        class="base regular base"
+      >
+        Test Chip
+      </p>
+    </span>
+  </button>
+</div>
+`;
+
+exports[`Chip renders a disabled and invalid Chip 1`] = `
+<div>
+  <button
+    aria-label="Test Chip"
+    class="chip invalid base disabled"
+    disabled=""
+    role="button"
+    tabindex="0"
+  >
+    <span>
+      <p
+        class="base medium base"
+      />
+    </span>
+    <span>
+      <p
+        class="base regular base"
+      >
+        Test Chip
+      </p>
+    </span>
+  </button>
+</div>
+`;
+
+exports[`Chip renders an invalid Chip 1`] = `
+<div>
+  <button
+    aria-label="Test Chip"
+    class="chip invalid base"
+    role="button"
+    tabindex="0"
+  >
+    <span>
+      <p
+        class="base medium base"
+      />
+    </span>
+    <span>
+      <p
+        class="base regular base"
+      >
+        Test Chip
+      </p>
+    </span>
+  </button>
+</div>
+`;
