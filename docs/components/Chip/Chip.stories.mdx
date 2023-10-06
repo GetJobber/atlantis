@@ -1,0 +1,80 @@
+import { Meta } from "@storybook/addon-docs";
+import { Chip, ChipSelectable, ChipDismissible } from "@jobber/components/Chip";
+import { Avatar } from "@jobber/components/Avatar";
+import { Icon } from "@jobber/components/Icon";
+
+<Meta title="Components/Selections/Chip/Docs" />
+
+# Chip
+
+Chip is cool.
+
+<Chip label="hey" />
+
+### Chip doesn't do much
+
+<Chip label="Not Much." />
+
+### Chip is accessible. Chip has a nice keyboard focus state.
+
+<Chip label="You can tab to Chip. It's alright with Chip." />
+
+## Chip has friends. Their names are Prefix and Suffix.
+
+<Chip label="This is my friend Prefix.">
+  <Chip.Prefix>
+    <Avatar initials="st" size="small" />
+  </Chip.Prefix>
+</Chip>
+
+<Chip label="This is my friend Suffix.">
+  <Chip.Suffix>
+    <Avatar initials="st" size="small" />
+  </Chip.Suffix>
+</Chip>
+
+### Prefix and Suffix get along.
+
+<Chip label="We're all friends here.">
+  <Chip.Prefix>
+    <Avatar initials="st" size="small" />
+  </Chip.Prefix>
+
+  <Chip.Suffix>
+              <Icon name="cross" size="small" color="blue" />
+  </Chip.Suffix>
+</Chip>
+
+### Chip can do some neat stuff. Like have a hat.
+
+<Chip label="Well, a heading." heading="Hat"></Chip>
+
+#### Or be subtle
+
+<Chip label="I don't draw attention to myself." variation="subtle"></Chip>
+
+#### Or wrong
+
+<Chip label="Uh Oh" invalid></Chip>
+
+#### Chip can also say no.
+
+<Chip label="Nope." disabled></Chip>
+
+#### Chip can't be both invalid and disabled though. Chip just won't show up.
+
+<Chip label="Can't see me." disabled invalid></Chip>
+
+# Even Friendlier Chips
+
+Ever think to yourself, I just want a Chip that comes with built-in
+selectability? Chip has you covered.
+
+<ChipSelectable label="I'm selectable."></ChipSelectable>
+
+Or how about a Chip that's ready to go away?
+
+<ChipDismissible
+  label="Ready to go. :)"
+  onClick={() => alert("Atlantis wont remove Chip here. That is up to you.")}
+></ChipDismissible>
