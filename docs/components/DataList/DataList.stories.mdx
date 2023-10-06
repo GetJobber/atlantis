@@ -1,6 +1,6 @@
 import { ArgsTable, Meta } from "@storybook/addon-docs";
+import { Tab, Tabs } from "@jobber/components/Tabs";
 import { DataList } from "@jobber/components/DataList";
-import { DataListLayout } from "@jobber/components/DataList/components/DataListLayout";
 
 <Meta
   title="Components/Lists and Tables/DataList/Docs"
@@ -39,9 +39,9 @@ DataList is the main component that holds everything and important props.
 
 ## DataList.Layout
 
-DataList.Layout component enables you to implement the layout of the list items.
-Keep in mind that DataList doesn't have a default layout so you have to have at
-least 1 implemented.
+DataList.Layout enables you to implement the layout of the list items. Keep in
+mind that DataList doesn't have a default layout so you have to have at least 1
+implemented.
 
 It also supports different `size` breakpoints so you can completely change the
 component it's using depending on the window size.
@@ -81,4 +81,28 @@ component it's using depending on the window size.
 </DataList>
 ```
 
-<ArgsTable of={DataListLayout} />
+<ArgsTable of={DataList.Layout} />
+
+## DataList.ItemActions
+
+DataList.ItemActions allows you to add an action on the item itself such as
+`onClick` or `url`. While the DataList.ItemAction (without an s) child adds more
+action that is related to the item.
+
+```tsx
+<DataList>
+  <DataList.ItemActions onClick={item => alert(item.name)}>
+    <DataList.ItemAction icon="edit" label="Edit" onClick={} />
+    <DataList.ItemAction icon="delete" label="Delete" onClick={} />
+  </DataList.ItemActions>
+</DataList>
+```
+
+<Tabs>
+  <Tab label="DataList.ItemActions">
+    <ArgsTable of={DataList.ItemActions} />
+  </Tab>
+  <Tab label="DataList.ItemAction">
+    <ArgsTable of={DataList.ItemAction} />
+  </Tab>
+</Tabs>
