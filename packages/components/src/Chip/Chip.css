@@ -1,13 +1,10 @@
-:root {
+.chip {
   --chip-height: 40px;
   --chip-radius: 20px;
   --chip-disabled--bg: var(--color-grey--lighter);
   --chip-bar-color: var(--color-greyBlue--light);
   --chip-base-bg: var(--color-greyBlue--lightest);
   --chip-base--hover: var(--color-greyBlue--lighter);
-}
-
-.chip {
   display: flex;
   position: relative;
   height: var(--chip-height);
