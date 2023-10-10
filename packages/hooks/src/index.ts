@@ -1,4 +1,5 @@
 export * from "./useAssert";
+export * from "./useBreakpoints";
 export * from "./useChildComponent";
 export * from "./useCollectionQuery";
 export * from "./useFocusTrap";
