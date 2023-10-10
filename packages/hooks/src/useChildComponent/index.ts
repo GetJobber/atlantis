@@ -1,1 +1,0 @@
-export { useChildComponent } from "./useChildComponent";

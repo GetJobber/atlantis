@@ -47,26 +47,23 @@ describe("Chip", () => {
   });
 
   it("should have a tabIndex of zero if one is not provided", () => {
-    const { container } = render(<Chip label="Test Chip" />);
-    const element = container.querySelector("button");
+    const { getByRole } = render(<Chip label="Test Chip" />);
 
-    expect(element).toHaveAttribute("tabIndex", "0");
+    expect(getByRole("button")).toHaveAttribute("tabIndex", "0");
   });
 
   it("should set aria-label if one is provided", () => {
-    const { container } = render(
+    const { getByRole } = render(
       <Chip label="Test Chip" ariaLabel="Test Label" />,
     );
-    const element = container.querySelector("button");
 
-    expect(element).toHaveAttribute("aria-label", "Test Label");
+    expect(getByRole("button")).toHaveAttribute("aria-label", "Test Label");
   });
 
   it("should default aria-label to provided label if not provided", () => {
-    const { container } = render(<Chip label="Test Chip" />);
-    const element = container.querySelector("button");
+    const { getByRole } = render(<Chip label="Test Chip" />);
 
-    expect(element).toHaveAttribute("aria-label", "Test Chip");
+    expect(getByRole("button")).toHaveAttribute("aria-label", "Test Chip");
   });
 });
 

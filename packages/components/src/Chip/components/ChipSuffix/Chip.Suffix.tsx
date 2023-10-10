@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from "react";
 import classNames from "classnames";
-import { useChildComponent } from "@jobber/hooks/useChildComponent";
+import { useChildComponent } from "@jobber/components/hooks/useChildComponent";
 import styles from "../../Chip.css";
 import { Icon } from "../../../Icon";
 
