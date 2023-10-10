@@ -15,12 +15,14 @@ export interface ChipProps extends PropsWithChildren {
   readonly role?: string;
   /** Used for accessibility purpopses, specifically using the tab key as navigation. Defaults to 0. */
   readonly tabIndex?: number;
+  /** Passed to the consumer onClick */
+  readonly value?: string | number;
   /** Button style variation. Does not affect functionality. Defaults to base. */
   readonly variation?: ChipVariations;
   /** Chip Click Callback. Sends an event and sometimes a value (SelectableChip).  */
   readonly onClick?: (
+    value: string | number,
     ev: React.MouseEvent<HTMLButtonElement>,
-    value?: string | number,
   ) => void;
   /**  Callback. Called when you keydown on Chip. Ships the event, so you can get the key pushed.  */
   readonly onKeyDown?: (ev: React.KeyboardEvent<HTMLButtonElement>) => void;

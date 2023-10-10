@@ -13,6 +13,7 @@ export const Chip = ({
   heading,
   invalid,
   label,
+  value,
   onClick,
   onKeyDown,
   children,
@@ -33,7 +34,7 @@ export const Chip = ({
   return (
     <button
       className={classes}
-      onClick={onClick}
+      onClick={ev => onClick && onClick(value || label, ev)}
       tabIndex={tabIndex}
       onKeyDown={onKeyDown}
       aria-label={ariaLabel || label}

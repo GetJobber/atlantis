@@ -1,8 +1,7 @@
 import React, { MouseEvent } from "react";
 import styles from "./InternalChip.css";
-import { InternalChip } from "./InternalChip";
 import { ChipMultiSelectProps } from "./ChipsTypes";
-import { Icon } from "../Icon";
+import { ChipSelectable } from "../Chip";
 
 type InternalChipChoiceMultipleProps = Pick<
   ChipMultiSelectProps,
@@ -29,11 +28,10 @@ export function InternalChipMultiSelect({
               onChange={handleChange(chip.props.value)}
               disabled={chip.props.disabled}
             />
-            <InternalChip
+            <ChipSelectable
               {...chip.props}
-              active={isChipActive}
-              suffix={checkmarkIcon(isChipActive)}
-            />
+              selected={selected.includes(chip.props.label)}
+            ></ChipSelectable>
           </label>
         );
       })}
@@ -67,15 +65,5 @@ export function InternalChipMultiSelect({
     const values = selected;
     const newVal = values.filter(val => val !== value);
     onChange(newVal);
-  }
-
-  function checkmarkIcon(show: boolean) {
-    // Ideally, we should be returning a fragment `<></>` when a function
-    // returns a component / element. However, this one needs to return nothing
-    // to prevent it from randomly rendering a suffix.
-    //
-    // DO NOT COPY!
-    if (!show) return;
-    return <Icon name="checkmark" />;
   }
 }

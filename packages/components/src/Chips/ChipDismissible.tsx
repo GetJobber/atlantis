@@ -1,40 +1,13 @@
-import React, { MouseEvent } from "react";
-import { InternalChipProps } from "./ChipTypes";
-import { InternalChip } from "./InternalChip";
-import { InternalChipButton } from "./InternalChipButton";
+import React from "react";
+import { Icon } from "../Icon";
+import { Chip, ChipProps } from "../Chip";
 
-interface ChipDismissibleProps
-  extends Pick<
-    InternalChipProps,
-    "label" | "disabled" | "invalid" | "prefix" | "onClick"
-  > {
-  onRequestRemove(event: MouseEvent<HTMLDivElement>): void;
-}
-
-export function ChipDismissible({
-  label,
-  disabled,
-  invalid,
-  prefix,
-  onClick,
-  onRequestRemove,
-}: ChipDismissibleProps) {
+export function ChipDismissible({ onClick, ...rest }: ChipProps) {
   return (
-    <InternalChip
-      label={label}
-      disabled={disabled}
-      invalid={invalid}
-      prefix={prefix}
-      onClick={onClick}
-      suffix={
-        <InternalChipButton
-          icon="remove"
-          label={label}
-          invalid={invalid}
-          disabled={disabled}
-          onClick={onRequestRemove}
-        />
-      }
-    />
+    <Chip {...rest} onClick={onClick}>
+      <Chip.Suffix>
+        <Icon name="remove" />
+      </Chip.Suffix>
+    </Chip>
   );
 }

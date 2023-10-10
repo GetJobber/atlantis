@@ -1,10 +1,10 @@
 import React from "react";
+import { Icon } from "@jobber/components/Icon";
 import styles from "./InternalChipDismissible.css";
 import { useInternalChipDismissible } from "./hooks";
 import { InternalChipDismissibleInput } from "./InternalChipDismissibleInput";
 import { InternalChipDismissibleProps } from "./InternalChipDismissibleTypes";
-import { InternalChip } from "../InternalChip";
-import { InternalChipButton } from "../InternalChipButton";
+import { Chip } from "../../Chip";
 
 export function InternalChipDismissible(props: InternalChipDismissibleProps) {
   const {
@@ -12,7 +12,6 @@ export function InternalChipDismissible(props: InternalChipDismissibleProps) {
     ref: wrapperRef,
     sortedVisibleChipOptions,
     handleChipAdd,
-    handleChipClick,
     handleChipKeyDown,
     handleChipRemove,
     handleCustomAdd,
@@ -28,23 +27,18 @@ export function InternalChipDismissible(props: InternalChipDismissibleProps) {
       role="listbox"
     >
       {sortedVisibleChipOptions.map(chip => (
-        <InternalChip
+        <Chip
           key={chip.value}
           {...chip}
           onKeyDown={handleChipKeyDown(chip.value)}
-          onClick={handleChipClick(chip.value)}
+          onClick={handleChipRemove(chip.value)}
           ariaLabel={`${chip.label}. Press delete or backspace to remove ${chip.label}`}
           tabIndex={0}
-          suffix={
-            <InternalChipButton
-              icon="remove"
-              invalid={chip.invalid}
-              disabled={chip.disabled}
-              label={chip.label}
-              onClick={handleChipRemove(chip.value)}
-            />
-          }
-        />
+        >
+          <Chip.Suffix>
+            <Icon name="cross" size="small" />
+          </Chip.Suffix>
+        </Chip>
       ))}
 
       <InternalChipDismissibleInput

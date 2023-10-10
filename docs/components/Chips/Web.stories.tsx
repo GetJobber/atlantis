@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Content } from "@jobber/components/Content";
-import { Chip, Chips } from "@jobber/components/Chips";
-import { Icon } from "@jobber/components/Icon";
+import { Chips } from "@jobber/components/Chips";
+import { Chip } from "@jobber/components/Chip";
+import { Icon, IconNames } from "@jobber/components/Icon";
 import { Text } from "@jobber/components/Text";
 import { Avatar } from "@jobber/components/Avatar";
 import { useFakeOptionQuery } from "./utils/storyUtils";
@@ -26,28 +27,36 @@ export default {
 
 const BasicTemplate: ComponentStory<typeof Chips> = args => {
   const [selected, setSelected] = useState<string>();
+  const chips = [
+    { label: "Amazing", initials: "AZ" },
+    { label: "Wonderful", icon: "video" },
+    { label: "Brilliant", icon: "starFill" },
+    { label: "Magnificent" },
+  ];
   return (
     <Content>
       <Text>
         You are <u>{selected ? selected : "_______"}</u>
       </Text>
       <Chips {...args} selected={selected} onChange={setSelected}>
-        <Chip
-          prefix={<Avatar initials="AZ" />}
-          label="Amazing"
-          value="Amazing"
-        />
-        <Chip
-          prefix={<Icon name="video" />}
-          label="Wonderful"
-          value="Wonderful"
-        />
-        <Chip
-          prefix={<Icon name="starFill" />}
-          label="Brilliant"
-          value="Brilliant"
-        />
-        <Chip label="Magnificent" value="Magnificent" />
+        {chips.map((c, index) => {
+          return (
+            <Chip label={c.label} key={index} onClick={setSelected}>
+              <Chip.Prefix>
+                {c.icon ? (
+                  <Icon name={c.icon as IconNames} size="small" />
+                ) : (
+                  <></>
+                )}
+                {c.initials ? (
+                  <Avatar initials={c.initials} size="small" />
+                ) : (
+                  <></>
+                )}
+              </Chip.Prefix>
+            </Chip>
+          );
+        })}
       </Chips>
     </Content>
   );
@@ -58,6 +67,13 @@ Basic.args = {};
 
 const MultiSelectTemplate: ComponentStory<typeof Chips> = args => {
   const [selected, setSelected] = useState<string[]>([]);
+  const multiSelectItems = value => {
+    if (selected.includes(value)) {
+      setSelected(selected.filter(d => d !== value));
+    } else {
+      setSelected(d => [...d, value]);
+    }
+  };
   return (
     <Content>
       <Text>
@@ -69,10 +85,14 @@ const MultiSelectTemplate: ComponentStory<typeof Chips> = args => {
         selected={selected}
         onChange={setSelected}
       >
-        <Chip label="Amazing" value="Amazing" />
-        <Chip label="Wonderful" value="Wonderful" />
-        <Chip label="Brilliant" value="Brilliant" />
-        <Chip label="Magnificent" value="Magnificent" />
+        <Chip label="Amazing" onClick={multiSelectItems} />
+        <Chip label="Wonderful" value="Wonderful" onClick={multiSelectItems} />
+        <Chip label="Brilliant" value="Brilliant" onClick={multiSelectItems} />
+        <Chip
+          label="Magnificent"
+          value="Magnificent"
+          onClick={multiSelectItems}
+        />
       </Chips>
     </Content>
   );

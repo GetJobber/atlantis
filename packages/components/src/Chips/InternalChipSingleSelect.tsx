@@ -1,8 +1,8 @@
 import React, { KeyboardEvent, MouseEvent } from "react";
 import { v1 as uuidv1 } from "uuid";
 import styles from "./InternalChip.css";
-import { InternalChip } from "./InternalChip";
 import { ChipSingleSelectProps } from "./ChipsTypes";
+import { Chip } from "../Chip";
 
 type InternalChipChoiceProps = Pick<
   ChipSingleSelectProps,
@@ -34,7 +34,7 @@ export function InternalChipSingleSelect({
               }}
               disabled={child.props.disabled}
             />
-            <InternalChip {...child.props} active={isSelected} />
+            <Chip {...child.props} active={isSelected} />
           </label>
         );
       })}
