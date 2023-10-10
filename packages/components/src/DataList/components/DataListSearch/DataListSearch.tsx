@@ -19,7 +19,7 @@ export function DataListSearch(_: DataListSearchProps) {
 }
 
 /**
- * Renders the DataList.Search component
+ * Renders the DataList.Search component.
  */
 export function InternalDataListSearch() {
   const inputRef = useRef<InputTextRef>(null);
@@ -37,7 +37,7 @@ export function InternalDataListSearch() {
   );
 
   if (!searchComponent) return null;
-  const { placeholder } = searchComponent.props;
+  const { placeholder, initialValue } = searchComponent.props;
 
   return (
     <div
@@ -52,6 +52,9 @@ export function InternalDataListSearch() {
         })}
       >
         <InputText
+          // If the initial value changes, reset the input.
+          key={initialValue}
+          defaultValue={initialValue}
           ref={inputRef}
           placeholder={getPlaceholder()}
           onChange={debouncedSearch}
