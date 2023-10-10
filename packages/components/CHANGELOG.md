@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.46.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.46.3...@jobber/components@4.46.4) (2023-10-06)
+
+
+### Bug Fixes
+
+* **components:** Use button type in Dismissable Chip menu items ([#1576](https://github.com/GetJobber/atlantis/issues/1576)) ([efcde8d](https://github.com/GetJobber/atlantis/commit/efcde8de9d816cd10fc2b322de6907587c285ef4))
+
+
+
+
+
+## [4.46.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.46.2...@jobber/components@4.46.3) (2023-10-06)
+
+
+### Bug Fixes
+
+* **components:** Always Allow Combobox Gradient to Show ([#1554](https://github.com/GetJobber/atlantis/issues/1554)) ([ce44f6f](https://github.com/GetJobber/atlantis/commit/ce44f6f1a2bb849e1408f9f05c6d68ec13270e03)), closes [#1510](https://github.com/GetJobber/atlantis/issues/1510) [#1513](https://github.com/GetJobber/atlantis/issues/1513)
+
+
+
+
+
+## [4.46.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.46.1...@jobber/components@4.46.2) (2023-10-05)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.46.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.46.0...@jobber/components@4.46.1) (2023-10-05)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 # [4.46.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.45.6...@jobber/components@4.46.0) (2023-10-04)
 
 
