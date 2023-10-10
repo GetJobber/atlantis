@@ -1,34 +1,35 @@
 import React, { PropsWithChildren } from "react";
 
 export interface ChipProps extends PropsWithChildren {
-  /** Accessible Label */
-  ariaLabel?: string;
-  /** Disables Chip */
-  disabled?: boolean;
-  /** Adds more prominent text to act as a heading */
-  heading?: string;
+  /** Accessible label, which can be different from the primary label. */
+  readonly ariaLabel?: string;
+  /** Disables both mouse and keyboard functionality, and updates the visual style of the Chip to appear disabled. */
+  readonly disabled?: boolean;
+  /** Adds more prominent text to act as a heading. Will be displayed on the left with a | separator. */
+  readonly heading?: string;
   /** Changes Chip styling to inform the user of an issue. */
-  invalid?: boolean;
-  /** What do you want Chip to say? */
-  label: string;
-  /** What role does Chip play? */
-  role?: string;
-  /** Defaults to zero. Accessible feature. */
-  tabIndex?: number;
-  /** Defaults to base. Changes style of button */
-  variation?: "subtle" | "base";
+  readonly invalid?: boolean;
+  /** The content of the chip. Will be displayed on the right if you include a heading. */
+  readonly label: string;
+  /** The accessible role the Chip is fulfilling. Defaults to 'button' */
+  readonly role?: string;
+  /** Used for accessibility purpopses, specifically using the tab key as navigation. Defaults to 0. */
+  readonly tabIndex?: number;
+  /** Button style variation. Does not affect functionality. Defaults to base. */
+  readonly variation?: ChipVariations;
   /** Chip Click Callback. Sends an event and sometimes a value (SelectableChip).  */
-  onClick?: (
+  readonly onClick?: (
     ev: React.MouseEvent<HTMLButtonElement>,
     value?: string | number,
   ) => void;
   /**  Callback. Called when you keydown on Chip. Ships the event, so you can get the key pushed.  */
-  onKeyDown?: (ev: React.KeyboardEvent<HTMLButtonElement>) => void;
+  readonly onKeyDown?: (ev: React.KeyboardEvent<HTMLButtonElement>) => void;
 }
 
+export type ChipVariations = "subtle" | "base";
 export interface ChipSelectableProps extends ChipProps {
   /** Is Chip selected? */
-  selected?: boolean;
+  readonly selected?: boolean;
   /** Send this back onClick. Good for determining which Chip was clicked. */
-  value?: string | number;
+  readonly value?: string | number;
 }

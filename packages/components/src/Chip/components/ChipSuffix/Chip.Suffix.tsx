@@ -4,13 +4,9 @@ import { useChildComponent } from "@jobber/hooks/useChildComponent";
 import styles from "../../Chip.css";
 import { Icon } from "../../../Icon";
 
-interface ChipSuffixProps extends PropsWithChildren {
-  className?: string;
-}
-
 export function ChipSuffix({ children, className }: ChipSuffixProps) {
   let singleChild = useChildComponent(children, d => d.type === Icon);
-  if (!["cross", "add", "checkmark"].includes(singleChild?.props?.name)) {
+  if (!allowedSuffixIcons.includes(singleChild?.props?.name)) {
     singleChild = undefined;
   }
   return (
@@ -25,3 +21,9 @@ export function ChipSuffix({ children, className }: ChipSuffixProps) {
     </span>
   );
 }
+
+export interface ChipSuffixProps extends PropsWithChildren {
+  className?: string;
+}
+
+export const allowedSuffixIcons = ["cross", "add", "checkmark"];
