@@ -14,6 +14,7 @@ export function ComboboxTriggerChip(
     <button
       className={styles.trigger}
       role="combobox"
+      type="button"
       aria-expanded={open}
       aria-haspopup="listbox"
       aria-controls="ATL-Combobox-Content"
