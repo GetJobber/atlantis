@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Chip } from "@jobber/components/Chip";
+import { Chip, ChipDismissible, ChipSelectable } from "@jobber/components/Chip";
 import { Content } from "@jobber/components/Content";
 import { Icon } from "@jobber/components/Icon";
 
@@ -52,17 +52,38 @@ const PrefixTemplate: ComponentStory<typeof Chip> = props => {
   );
 };
 
+const DismissibleTemplate: ComponentStory<typeof Chip> = props => {
+  return (
+    <Content>
+      <ChipDismissible
+        {...props}
+        onClick={() => alert("now you can remove me!")}
+      />
+    </Content>
+  );
+};
+
+const SelectableTemplate: ComponentStory<typeof Chip> = props => {
+  return (
+    <Content>
+      <ChipSelectable {...props} />
+    </Content>
+  );
+};
+
 export const Base = BasicTemplate.bind({});
 const defaultArgs = {
-  heading: "",
-  label: "Chip Label",
   ariaLabel: "Accessible Label",
+  disabled: false,
+  heading: "",
+  invalid: false,
+  label: "Chip Label",
   role: "button",
   tabIndex: 0,
+  value: "",
   variation: "base" as const,
-  disabled: false,
-  invalid: false,
 };
+
 Base.args = {
   ...defaultArgs,
   label: "Chip Label",
@@ -134,4 +155,16 @@ export const Prefix = PrefixTemplate.bind({});
 Prefix.args = {
   ...defaultArgs,
   label: "Chip With Prefix",
+};
+
+export const Dismissible = DismissibleTemplate.bind({});
+Dismissible.args = {
+  ...defaultArgs,
+  label: "Dismissible Chip",
+};
+
+export const Selectable = SelectableTemplate.bind({});
+Selectable.args = {
+  ...defaultArgs,
+  label: "Selectable Chip",
 };

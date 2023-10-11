@@ -13,6 +13,7 @@ export const Chip = ({
   heading,
   invalid,
   label,
+  value,
   onClick,
   onKeyDown,
   children,
@@ -33,7 +34,9 @@ export const Chip = ({
   return (
     <button
       className={classes}
-      onClick={onClick}
+      onClick={(ev: React.MouseEvent<HTMLButtonElement>) =>
+        onClick && onClick(value, ev)
+      }
       tabIndex={tabIndex}
       onKeyDown={onKeyDown}
       aria-label={ariaLabel || label}
@@ -45,10 +48,8 @@ export const Chip = ({
       <Typography size="base" fontWeight="medium">
         {heading}
       </Typography>
-      {heading && <span className={styles.chipBar}></span>}
-      <span>
-        <Typography size="base">{label}</Typography>
-      </span>
+      {heading && <span className={styles.chipBar} />}
+      <Typography size="base">{label}</Typography>
       {suffix}
     </button>
   );
