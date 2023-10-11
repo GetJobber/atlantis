@@ -140,10 +140,17 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     if (multiselect) {
       handleMultiSelect(callbackHandler, selectedOptions, selection);
     } else {
-      callbackHandler([selection]);
-      setSearchValue("");
-      setOpen(false);
+      handleSingleSelect(callbackHandler, selection);
     }
+  }
+
+  function handleSingleSelect(
+    selectCallback: (selected: ComboboxOption[]) => void,
+    selection: ComboboxOption,
+  ) {
+    selectCallback([selection]);
+    setSearchValue("");
+    setOpen(false);
   }
 }
 
