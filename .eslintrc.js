@@ -8,7 +8,7 @@ const packageAliases = [
 ];
 
 module.exports = {
-  plugins: ["monorepo-cop"],
+  plugins: ["monorepo-cop", "react"],
   extends: ["@jobber/eslint-config", "plugin:monorepo-cop/recommended"],
   root: true,
   settings: {
@@ -50,6 +50,20 @@ module.exports = {
         ],
       },
     ],
+    "react/prefer-read-only-props": "warn",
+    "react/jsx-no-useless-fragment": ["warn", { allowExpressions: true }],
+    "react/button-has-type": "warn",
+    "padding-line-between-statements": [
+      "warn",
+      // Catch all for block statements
+      { blankLine: "always", prev: "*", next: "block" },
+      { blankLine: "always", prev: "*", next: "block-like" },
+      // Specific cases
+      { blankLine: "always", prev: "*", next: "return" },
+      { blankLine: "always", prev: "function", next: "function" },
+      // Turn off for case statements
+      { blankLine: "any", prev: "case", next: "case" },
+    ],
   },
   overrides: [
     {
@@ -60,6 +74,7 @@ module.exports = {
         "@typescript-eslint/naming-convention": "off",
         "@typescript-eslint/no-unused-expressions": "off",
         "import/no-extraneous-dependencies": "off",
+        "padding-line-between-statements": "off",
       },
     },
     {
