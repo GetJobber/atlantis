@@ -7,6 +7,12 @@
     "rootDir": "src",
     "outDir": "dist"
   },
-  "include": ["src"],
-  "files": ["src/index.ts"]
+  "include": [
+    "src",
+    "../components/src/hooks/useChildComponent",
+    "../components/src/hooks/useChildComponent.ts"
+  ],
+  "files": [
+    "src/index.ts"
+  ]
 }
