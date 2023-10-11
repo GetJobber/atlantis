@@ -6,8 +6,8 @@
 # Combobox
 
 The `Combobox` is designed to provide a versatile and accessible interface for
-selecting options from a list. `Combobox` can be used for a variety of
-scenarios, such as selecting items from a predefined list, filtering and
+selecting one or more options from a list. `Combobox` can be used for a variety
+of scenarios, such as selecting items from a predefined list, filtering and
 searching through data.
 
 ## Design & usage guidelines
@@ -47,15 +47,41 @@ handling user interactions, and managing search functionality.
 Actions are an optional way to allow users to perform custom tasks such as
 adding a new item to the list of options.
 
-#### Callback
+### Selection Behavior
 
-`onSelect` is the recommended callback handler that should be used in most cases. This will immediately inform
-the consumer of changes to selections as they happen.
+#### Single Select
 
-If however immediate changes are not desired, and instead it is preferable to wait until all selections or
-modifications to selections have been made before informing the consumer, `onClose` may be used. The arguments provided to this callback are
-Identical to those of `onSelect`, only the timing differs. Please note this will only
-have a noticeable effect with `multiSelect = true` since the Combobox closes immediately upon selection with single-select.
+This is the default. When a selection is made, the Combobox will close.
+
+#### Multi Select
+
+Add the `multiSelect` prop for this behavior. This enables multiple options to
+be selected and/or un-selected, and will only close when a user takes an
+explicit action to close the open Combobox. eg. clicking outside the Combobox,
+or pressing the ESC key.
+
+#### Selection Callbacks
+
+As selections are made, the data will be returned via an argument to the
+callbacks passed in through either the `onClose` or `onSelect` prop on
+`Combobox.Content`. **Only one or the other may be provided**.
+
+`onSelect` is the recommended callback handler that should be used in most
+cases. This will immediately inform the consumer of changes to selections as
+they happen.
+
+If immediate changes are not desired, and instead it is preferable to wait until
+all selections have been made, `onClose` may be used.
+
+The arguments provided to the `onClose` callback are identical to those of
+`onSelect`, only the timing differs. As such, please note this will only have a
+noticeable effect with the `multiSelect` variation which remains open after
+making selections whereas the Combobox closes immediately upon selection with
+single-select.
+
+Combobox has no predefined visual representation of the selections outside of
+the internal list. It is up to the consumer to decide how to best represent
+these selections in their UI, if at all.
 
 ## Content guidelines
 
@@ -97,10 +123,10 @@ search query.
   [useRefocusOnActivator](https://atlantis.getjobber.com/?path=/docs/hooks-userefocusonactivator--use-refocus-on-activator)
 - The search input is automatically focused when the `Combobox` opens. The
   button to clear the input can be focused with `tab`
-- Pressing `tab` again will set focus to the options list, which are navigated
-  by the `up` and `down` arrow keys, and actioned with `space` or `return`
-- Pressing `tab` again will set focus to the actions (if present), or return
-  focus to the input if not
+- The options list is navigated with the `up` and `down` arrow keys, and
+  actioned with `space` or `return`, this can be done at anytime when the
+  Combobox is open
+- The actions, if present, are the next tabbable element after the search
 
 ### Assistive technology
 
