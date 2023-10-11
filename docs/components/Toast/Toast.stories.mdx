@@ -16,24 +16,16 @@ function.
 
 ## Design & usage guidelines
 
-When contributing to or consuming the Toast component, consider the following:
+Use `Toast` to present non-blocking feedback about the system to a user.
 
-- Keep text labels as short as possible
-  - They should be clear and concise, and should not take up more than one line.
-- Use the pattern "action + subject" to maintain [active voice](https://atlantis.getjobber.com/?path=/docs/content-voice-tone--page#active-voice)
-  - Examples: `Saved job`, `Approved quote`, `Archived client`.
-- No need to use "Successfully", should be implicit in the toast.
-- Don't use `Dismiss` or `Cancel` as an action label.
-  - Examples of action labels: `Undo`, `View`, `Refresh`.
-
-## Related components
+### Related components
 
 For more persistent feedback (such as displaying errors), communicating a
 background process that is ongoing, or for feedback that has a longer reading
 length or CTA, use
 [Banner.](../?path=/docs/components-status-and-feedback-banner-docs--page)
 
-## Variation (Web only)
+### Variation (Web only)
 
 The primary use case for Toast is success messages.
 
@@ -50,3 +42,31 @@ Use [Banner](../?path=/docs/components-status-and-feedback-banner-docs--page)
 and, where necessary, targeted error messaging (such as
 [InputValidation](../?path=/docs/components-forms-and-inputs-inputvalidation-docs--page))
 so that the user can appropriately assess and recover from the error.
+
+## Content guidelines
+
+The Toast label should be clear and concise, and should not take up more than
+one line.
+
+Use the pattern "action + subject" to maintain
+[active voice](../?path=/docs/content-voice-tone--page#active-voice). The
+subject should be specific without overloading too much detail for the user to
+parse at a quick glance.
+
+| ✅ Do             | ❌ Don't                                           |
+| ----------------- | -------------------------------------------------- |
+| Saved job         | Saved job #216 - Weekly mowing for Nathaniel Lewis |
+| Archived property | Archived 289 NW 198th St, Shoreline, WA 98177, USA |
+
+- No need to use "Successfully", should be implicit in the Toast
+- Don't use `Dismiss` or `Cancel` as an action label
+  - Examples of action labels: `Undo`, `View`, `Refresh`
+- Toast's label does not require a period
+- Use sentence case, and only capitalize
+  ["branded"](../?path=/docs/content-product-vocabulary--page#jobber-card-reader)
+  Jobber features
+
+| ✅ Do      | ❌ Don't                |
+| ---------- | ----------------------- |
+| Saved job  | Saved Job Successfully. |
+| Sent quote | Sent Quote              |
