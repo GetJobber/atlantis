@@ -4,7 +4,7 @@ import styles from "./Chip.css";
 import { ChipPrefix } from "./components/ChipPrefix/Chip.Prefix";
 import { ChipSuffix } from "./components/ChipSuffix/Chip.Suffix";
 import { ChipProps } from "./Chip.types";
-import { useChildComponent } from "../hooks/useChildComponent";
+import { useChildComponent } from "./hooks/useChildComponent";
 import { Typography } from "../Typography";
 
 export const Chip = ({

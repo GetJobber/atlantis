@@ -1,14 +1,16 @@
 import React, { PropsWithChildren } from "react";
 import classNames from "classnames";
-import { useChildComponent } from "@jobber/components/hooks/useChildComponent";
+import { useChildComponent } from "../../hooks";
 import styles from "../../Chip.css";
 import { Icon } from "../../../Icon";
 
 export function ChipSuffix({ children, className }: ChipSuffixProps) {
   let singleChild = useChildComponent(children, d => d.type === Icon);
+
   if (!allowedSuffixIcons.includes(singleChild?.props?.name)) {
     singleChild = undefined;
   }
+
   return (
     <span
       className={classNames(
@@ -23,7 +25,7 @@ export function ChipSuffix({ children, className }: ChipSuffixProps) {
 }
 
 export interface ChipSuffixProps extends PropsWithChildren {
-  className?: string;
+  readonly className?: string;
 }
 
 export const allowedSuffixIcons = ["cross", "add", "checkmark"];
