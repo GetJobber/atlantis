@@ -293,6 +293,7 @@ describe("Combobox multiselect", () => {
     expect(option).toHaveClass("selectedOption");
     expect(option2).toHaveClass("selectedOption");
   });
+
   it("should call the onSelect callback upon making selection(s)", () => {
     const onSelect = jest.fn();
     const { getByText } = render(
@@ -312,6 +313,7 @@ describe("Combobox multiselect", () => {
       },
     ]);
   });
+
   it("should not clear search after making a selection", () => {
     const { getByText, getByPlaceholderText } = render(
       <MockMultiSelectOnSelectCombobox />,
@@ -349,6 +351,7 @@ describe("Combobox multiselect", () => {
         { id: "3", label: "Shelob the Spoder" },
       ]);
     });
+
     it("should not update consumer as selections are made", () => {
       const { getByText, queryByText } = render(
         <MockMultiSelectOnCloseCombobox />,

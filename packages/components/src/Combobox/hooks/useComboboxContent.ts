@@ -35,7 +35,7 @@ export function useComboboxContent(
     if (!open && onClose) {
       onClose(selectedOptions);
     }
-  }, [open, onClose]);
+  }, [open, onClose, selectedOptions]);
 
   useEffect(() => {
     if (open && firstSelectedElement) {
