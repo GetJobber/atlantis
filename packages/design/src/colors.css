@@ -45,7 +45,7 @@
 
   /* Surfaces and Borders */
   --color-surface: var(--color-white);
-  --color-surface--hover: var(--color-greyBlue--lightest);
+  --color-surface--hover: rgb(244, 246, 250);
   --color-surface--active: var(--color-green--lightest);
   --color-surface--background: var(--color-greyBlue--lightest);
   --color-surface--background--hover: var(--color-greyBlue--lighter);

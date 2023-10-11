@@ -64,7 +64,7 @@
 .listItem.active,
 .listItem:hover,
 .listItem:focus-within {
-  --data-list-item-active-color: var(--color-surface--background);
+  --data-list-item-active-color: var(--color-surface--hover);
   background-color: var(--data-list-item-active-color);
 }
 
