@@ -32,6 +32,7 @@ describe("Combobox validation", () => {
   it("throws an error if there is no Trigger element", () => {
     expect.assertions(1);
     let error;
+
     try {
       render(
         <Combobox>
@@ -52,6 +53,7 @@ describe("Combobox validation", () => {
   it("throws an error if there are multiple of the same Trigger element", () => {
     expect.assertions(1);
     let error;
+
     try {
       render(
         <Combobox>
@@ -74,6 +76,7 @@ describe("Combobox validation", () => {
   it("throws an error if there are multiple of various Trigger elements", () => {
     expect.assertions(1);
     let error;
+
     try {
       render(
         <Combobox>
@@ -96,6 +99,7 @@ describe("Combobox validation", () => {
   it("throws an error if there is no Content element", () => {
     expect.assertions(1);
     let error;
+
     try {
       render(
         <Combobox>
@@ -112,6 +116,7 @@ describe("Combobox validation", () => {
   it("throws an error if there is neither a Content nor Trigger element", () => {
     expect.assertions(1);
     let error;
+
     try {
       render(
         <Combobox>
@@ -128,6 +133,7 @@ describe("Combobox validation", () => {
   it("throws an error if there are multiple Trigger elements and no Content", () => {
     expect.assertions(1);
     let error;
+
     try {
       render(
         <Combobox>
@@ -243,11 +249,11 @@ describe("Combobox selected value", () => {
     const option = getByText("Bilbo Baggins");
     const clearButton = getByText("Clear Selection");
 
-    expect(option).toHaveClass("selectedOption");
+    expect(option).toHaveAttribute("aria-selected", "true");
 
     fireEvent.click(clearButton);
     fireEvent.click(getByText("Button"));
-    expect(option).not.toHaveClass("selectedOption");
+    expect(option).not.toHaveAttribute("aria-selected", "true");
   });
 });
 
@@ -290,8 +296,8 @@ describe("Combobox multiselect", () => {
     fireEvent.click(option);
     fireEvent.click(option2);
 
-    expect(option).toHaveClass("selectedOption");
-    expect(option2).toHaveClass("selectedOption");
+    expect(option).toHaveAttribute("aria-selected", "true");
+    expect(option2).toHaveAttribute("aria-selected", "true");
   });
 
   it("should call the onSelect callback upon making selection(s)", () => {
@@ -372,7 +378,7 @@ describe("Combobox multiselect", () => {
 });
 
 function MockMultiSelectOnCloseCombobox(props: {
-  onCloseOverride?: () => void;
+  readonly onCloseOverride?: () => void;
 }): JSX.Element {
   const [selected, setSelected] = React.useState<ComboboxOption[]>([]);
   const callback = props.onCloseOverride || setSelected;
@@ -399,7 +405,7 @@ function MockMultiSelectOnCloseCombobox(props: {
 }
 
 function MockMultiSelectOnSelectCombobox(props: {
-  onSelectOverride?: () => void;
+  readonly onSelectOverride?: () => void;
 }): JSX.Element {
   const [selected, setSelected] = React.useState<ComboboxOption[]>([]);
   const callback = props.onSelectOverride || setSelected;
