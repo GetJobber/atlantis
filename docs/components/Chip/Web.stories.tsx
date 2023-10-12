@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Chip, ChipDismissible, ChipSelectable } from "@jobber/components/Chip";
 import { Content } from "@jobber/components/Content";
@@ -64,9 +64,15 @@ const DismissibleTemplate: ComponentStory<typeof Chip> = props => {
 };
 
 const SelectableTemplate: ComponentStory<typeof Chip> = props => {
+  const [selected, setSelected] = useState(false);
+
   return (
     <Content>
-      <ChipSelectable {...props} />
+      <ChipSelectable
+        {...props}
+        selected={selected}
+        onClick={() => setSelected(previousValue => !previousValue)}
+      />
     </Content>
   );
 };

@@ -1,8 +1,8 @@
 import React, { PropsWithChildren } from "react";
 import classNames from "classnames";
+import { Icon } from "@jobber/components/Icon";
 import { useChildComponent } from "../../hooks";
 import styles from "../../Chip.css";
-import { Icon } from "../../../Icon";
 
 export function ChipSuffix({ children, className }: ChipSuffixProps) {
   let singleChild = useChildComponent(children, d => d.type === Icon);
