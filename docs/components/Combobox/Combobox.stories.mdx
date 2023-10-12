@@ -47,6 +47,19 @@ handling user interactions, and managing search functionality.
 Actions are an optional way to allow users to perform custom tasks such as
 adding a new item to the list of options.
 
+#### Callback
+
+`onSelect` is the recommended callback handler that should be used in most
+cases. This will immediately inform the consumer of changes to selections as
+they happen.
+
+If however immediate changes are not desired, and instead it is preferable to
+wait until all selections or modifications to selections have been made before
+informing the consumer, `onClose` may be used. The arguments provided to this
+callback are Identical to those of `onSelect`, only the timing differs. Please
+note this will only have a noticeable effect with `multiSelect = true` since the
+Combobox closes immediately upon selection with single-select.
+
 ## Content guidelines
 
 Combobox is designed to handle lists of selectable options, so the component is

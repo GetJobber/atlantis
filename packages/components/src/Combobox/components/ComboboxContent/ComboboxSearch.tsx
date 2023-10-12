@@ -3,10 +3,10 @@ import styles from "./ComboboxSearch.css";
 import { Icon } from "../../../Icon";
 
 export function ComboboxSearch(props: {
-  placeholder?: string;
-  searchValue: string;
-  open: boolean;
-  setSearchValue: Dispatch<SetStateAction<string>>;
+  readonly placeholder?: string;
+  readonly searchValue: string;
+  readonly open: boolean;
+  readonly setSearchValue: Dispatch<SetStateAction<string>>;
 }): JSX.Element {
   const searchRef = useRef<HTMLInputElement>(null);
 
@@ -37,6 +37,7 @@ export function ComboboxSearch(props: {
         <button
           className={styles.clearSearch}
           onClick={clearSearch}
+          type="button"
           data-testid="ATL-Combobox-Content-Search-Clear"
           aria-label="Clear search"
         >

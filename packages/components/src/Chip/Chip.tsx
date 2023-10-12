@@ -4,7 +4,7 @@ import styles from "./Chip.css";
 import { ChipPrefix } from "./components/ChipPrefix/Chip.Prefix";
 import { ChipSuffix } from "./components/ChipSuffix/Chip.Suffix";
 import { ChipProps } from "./Chip.types";
-import { useChildComponent } from "../hooks/useChildComponent";
+import { useChildComponent } from "./hooks/useChildComponent";
 import { Typography } from "../Typography";
 
 export const Chip = ({
@@ -46,10 +46,8 @@ export const Chip = ({
       <Typography size="base" fontWeight="medium">
         {heading}
       </Typography>
-      {heading && <span className={styles.chipBar}></span>}
-      <span>
-        <Typography size="base">{label}</Typography>
-      </span>
+      {heading && <span className={styles.chipBar} />}
+      <Typography size="base">{label}</Typography>
       {suffix}
     </button>
   );

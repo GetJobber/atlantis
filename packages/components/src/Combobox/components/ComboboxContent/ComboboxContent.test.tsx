@@ -14,7 +14,7 @@ describe("ComboboxContent Search", () => {
             { id: "2", label: "Frodo Baggins" },
           ]}
           onSelect={jest.fn()}
-          selected={null}
+          selected={[]}
         ></Combobox.Content>
         ,
       </MockComboboxProvider>,
@@ -33,7 +33,7 @@ describe("ComboboxContent Search", () => {
             { id: "2", label: "Frodo Baggins" },
           ]}
           onSelect={jest.fn()}
-          selected={null}
+          selected={[]}
         ></Combobox.Content>
       </MockComboboxProvider>,
     );
@@ -54,7 +54,7 @@ describe("ComboboxContent Search", () => {
             { id: "2", label: "Frodo Baggins" },
           ]}
           onSelect={jest.fn()}
-          selected={null}
+          selected={[]}
         ></Combobox.Content>
       </MockComboboxProvider>,
     );
@@ -78,7 +78,7 @@ describe("ComboboxContent Search", () => {
             { id: "1", label: "Bilbo Baggins" },
             { id: "2", label: "Frodo Baggins" },
           ]}
-          selected={null}
+          selected={[]}
           onSelect={jest.fn()}
         ></Combobox.Content>
       </MockComboboxProvider>,
@@ -105,7 +105,7 @@ describe("ComboboxContent Search", () => {
             { id: "2", label: "Jason Vorhees" },
           ]}
           onSelect={jest.fn()}
-          selected={null}
+          selected={[]}
         ></Combobox.Content>
       </MockComboboxProvider>,
     );
@@ -128,7 +128,7 @@ describe("ComboboxContent Options", () => {
             { id: 2, label: "Jason" },
             { id: 3, label: "Michael" },
           ]}
-          selected={null}
+          selected={[]}
           onSelect={jest.fn()}
         ></Combobox.Content>
       </Combobox>,
@@ -156,7 +156,7 @@ describe("ComboboxContent Options", () => {
             { id: 2, label: "Jason" },
             { id: 3, label: "Michael" },
           ]}
-          selected={null}
+          selected={[]}
           onSelect={jest.fn()}
         ></Combobox.Content>
       </Combobox>,
@@ -187,7 +187,7 @@ describe("ComboboxContent Options", () => {
             { id: 3, label: "Michael" },
           ]}
           onSelect={jest.fn()}
-          selected={null}
+          selected={[]}
         ></Combobox.Content>
       </Combobox>,
     );
@@ -216,7 +216,7 @@ describe("ComboboxContent Options", () => {
             { id: 3, label: "Michael" },
           ]}
           onSelect={selectHandler}
-          selected={null}
+          selected={[]}
         ></Combobox.Content>
       </Combobox>,
     );
@@ -228,7 +228,9 @@ describe("ComboboxContent Options", () => {
     const firstOption = getByText("Leatherface");
 
     userEvent.type(firstOption, "{enter}");
-    expect(selectHandler).toHaveBeenCalledWith({ id: 1, label: "Leatherface" });
+    expect(selectHandler).toHaveBeenCalledWith([
+      { id: 1, label: "Leatherface" },
+    ]);
   });
   it("should close after making a selection with the enter key", () => {
     const { getByText, getByTestId } = render(
@@ -240,7 +242,7 @@ describe("ComboboxContent Options", () => {
             { id: 2, label: "Jason" },
             { id: 3, label: "Michael" },
           ]}
-          selected={null}
+          selected={[]}
           onSelect={jest.fn()}
         ></Combobox.Content>
       </Combobox>,
@@ -266,7 +268,7 @@ describe("ComboboxContent Options", () => {
               { id: 2, label: "Jason" },
               { id: 3, label: "Michael" },
             ]}
-            selected={null}
+            selected={[]}
             onSelect={jest.fn()}
           ></Combobox.Content>
         </Combobox>,
@@ -289,7 +291,11 @@ describe("ComboboxContent Options", () => {
   });
 });
 
-function MockComboboxProvider({ children }: { children: React.ReactNode }) {
+function MockComboboxProvider({
+  children,
+}: {
+  readonly children: React.ReactNode;
+}) {
   const [open, setOpen] = React.useState(false);
 
   return (

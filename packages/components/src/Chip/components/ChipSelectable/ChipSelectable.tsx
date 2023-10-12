@@ -5,12 +5,18 @@ import styles from "../../Chip.css";
 import { Icon } from "../../../Icon";
 
 export function ChipSelectable({
-  label,
   ariaLabel,
+  disabled,
+  heading,
+  invalid,
+  label,
   selected,
+  role,
+  tabIndex,
+  value,
+  variation,
   onClick,
   onKeyDown,
-  value,
 }: ChipSelectableProps) {
   const [isChipSelected, setIsChipSelected] = useState(selected);
 
@@ -21,17 +27,28 @@ export function ChipSelectable({
   const toggleSelected = () =>
     setIsChipSelected(oldSelectedVal => !oldSelectedVal);
 
-  const innerClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
+  const innerClick = (
+    inVal: string | number | undefined,
+    ev: React.MouseEvent<HTMLButtonElement>,
+  ) => {
     toggleSelected();
+
     if (onClick) {
-      onClick(ev, value);
+      onClick(inVal, ev);
     }
   };
 
   return (
     <Chip
-      label={label}
       ariaLabel={ariaLabel}
+      disabled={disabled}
+      heading={heading}
+      invalid={invalid}
+      label={label}
+      role={role}
+      tabIndex={tabIndex}
+      variation={variation}
+      value={value}
       onClick={innerClick}
       onKeyDown={onKeyDown}
     >

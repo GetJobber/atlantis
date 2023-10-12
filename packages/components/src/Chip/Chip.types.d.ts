@@ -38,7 +38,7 @@ export interface ChipProps extends PropsWithChildren {
   readonly tabIndex?: number;
 
   /**
-   * Passed to the consumer onClick
+   * Will be passed to onClick, when the user clicks on this Chip.
    */
   readonly value?: string | number;
 
@@ -52,7 +52,7 @@ export interface ChipProps extends PropsWithChildren {
    * Chip Click Callback. Sends an event and sometimes a value (SelectableChip).
    */
   readonly onClick?: (
-    value: string | number,
+    value: string | number | undefined,
     ev: React.MouseEvent<HTMLButtonElement>,
   ) => void;
 
@@ -64,8 +64,13 @@ export interface ChipProps extends PropsWithChildren {
 
 export type ChipVariations = "subtle" | "base";
 export interface ChipSelectableProps extends ChipProps {
-  /** Is Chip selected? */
+  /**
+   * Is Chip selected?
+   */
   readonly selected?: boolean;
-  /** Send this back onClick. Good for determining which Chip was clicked. */
+
+  /**
+   * Send this back onClick. Good for determining which Chip was clicked.
+   */
   readonly value?: string | number;
 }

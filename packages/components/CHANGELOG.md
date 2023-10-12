@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.47.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.46.5...@jobber/components@4.47.0) (2023-10-11)
+
+
+### Features
+
+* **components:** MultiSelect Combobox ([#1569](https://github.com/GetJobber/atlantis/issues/1569)) ([986f076](https://github.com/GetJobber/atlantis/commit/986f0766cd96e3574117ce30f373cf9f3702bc05))
+
+
+
+
+
 ## [4.46.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.46.4...@jobber/components@4.46.5) (2023-10-10)
 
 
