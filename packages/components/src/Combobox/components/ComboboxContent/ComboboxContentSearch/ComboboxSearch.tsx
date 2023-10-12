@@ -1,13 +1,9 @@
-import React, { Dispatch, SetStateAction, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
+import { Icon } from "@jobber/components/Icon";
+import { ComboboxSearchProps } from "@jobber/components/Combobox/Combobox.types";
 import styles from "./ComboboxSearch.css";
-import { Icon } from "../../../Icon";
 
-export function ComboboxSearch(props: {
-  placeholder?: string;
-  searchValue: string;
-  open: boolean;
-  setSearchValue: Dispatch<SetStateAction<string>>;
-}): JSX.Element {
+export function ComboboxSearch(props: ComboboxSearchProps): JSX.Element {
   const searchRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {

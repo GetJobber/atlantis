@@ -1,11 +1,11 @@
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import React from "react";
+import { Combobox } from "./Combobox";
+import { ComboboxOption } from "./Combobox.types";
 import {
   COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE,
   COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE,
-  Combobox,
-} from "./Combobox";
-import { ComboboxOption } from "./Combobox.types";
+} from "./hooks/useComboboxValidation";
 
 // jsdom is missing this implementation
 const scrollIntoViewMock = jest.fn();
