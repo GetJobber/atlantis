@@ -10,7 +10,7 @@ interface useComboboxContent {
   filteredOptions: ComboboxOption[];
   optionsListRef: React.RefObject<HTMLUListElement>;
   selectedOptions: ComboboxOption[];
-  callbackHandler: (selected: ComboboxOption[]) => void;
+  optionsSelectionHandler: (selected: ComboboxOption[]) => void;
 }
 
 export function useComboboxContent(
@@ -32,7 +32,7 @@ export function useComboboxContent(
     useState<ComboboxOption[]>(selected);
   const selectedOptions = onClose ? internalSelected : selected;
 
-  const callbackHandler = onSelect ? onSelect : setInternalSelected;
+  const optionsSelectionHandler = onSelect ? onSelect : setInternalSelected;
 
   useEffect(() => {
     if (!open && onClose) {
@@ -61,6 +61,6 @@ export function useComboboxContent(
     filteredOptions,
     optionsListRef,
     selectedOptions,
-    callbackHandler,
+    optionsSelectionHandler,
   };
 }

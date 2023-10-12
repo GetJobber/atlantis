@@ -71,7 +71,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     filteredOptions,
     optionsListRef,
     selectedOptions,
-    callbackHandler,
+    optionsSelectionHandler,
   } = useComboboxContent(
     props.options,
     open,
@@ -111,10 +111,10 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
           subjectNoun={props.subjectNoun}
           selectedCount={selectedOptions.length}
           onClearAll={() => {
-            callbackHandler([]);
+            optionsSelectionHandler([]);
           }}
           onSelectAll={() => {
-            callbackHandler(filteredOptions);
+            optionsSelectionHandler(filteredOptions);
           }}
         />
       )}
@@ -153,9 +153,9 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
 
   function handleSelection(selection: ComboboxOption) {
     if (multiselect) {
-      handleMultiSelect(callbackHandler, selectedOptions, selection);
+      handleMultiSelect(optionsSelectionHandler, selectedOptions, selection);
     } else {
-      handleSingleSelect(callbackHandler, selection);
+      handleSingleSelect(optionsSelectionHandler, selection);
     }
   }
 
