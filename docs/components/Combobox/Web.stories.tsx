@@ -67,7 +67,7 @@ const ComboboxChip: ComponentStory<typeof Combobox> = args => {
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
 
   return (
-    <Combobox {...args}>
+    <Combobox {...args} multiSelect>
       <Combobox.TriggerChip label="Teammates" />
       <Combobox.Content
         options={[

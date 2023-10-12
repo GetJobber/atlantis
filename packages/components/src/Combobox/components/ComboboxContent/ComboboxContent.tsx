@@ -71,8 +71,14 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     filteredOptions,
     optionsListRef,
     selectedOptions,
-    setInternalSelected,
-  } = useComboboxContent(props.options, open, props.selected, props.onClose);
+    callbackHandler,
+  } = useComboboxContent(
+    props.options,
+    open,
+    props.selected,
+    props.onClose,
+    props.onSelect,
+  );
 
   const { popperRef, popperStyles, attributes } = useComboboxAccessibility(
     handleSelection,
@@ -105,9 +111,11 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
           subjectNoun={props.subjectNoun}
           selectedCount={selectedOptions.length}
           onClearAll={() => {
-            setInternalSelected([]);
+            callbackHandler([]);
           }}
-          onSelectAll={selectAllOptions}
+          onSelectAll={() => {
+            callbackHandler(filteredOptions);
+          }}
         />
       )}
 
@@ -144,10 +152,6 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   return ReactDOM.createPortal(template, document.body);
 
   function handleSelection(selection: ComboboxOption) {
-    const callbackHandler = props.onSelect
-      ? props.onSelect
-      : setInternalSelected;
-
     if (multiselect) {
       handleMultiSelect(callbackHandler, selectedOptions, selection);
     } else {
@@ -162,11 +166,6 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     selectCallback([selection]);
     setSearchValue("");
     setOpen(false);
-  }
-
-  function selectAllOptions() {
-    const allOptions = filteredOptions;
-    setInternalSelected(allOptions);
   }
 }
 
