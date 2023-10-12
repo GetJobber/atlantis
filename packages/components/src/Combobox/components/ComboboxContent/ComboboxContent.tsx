@@ -1,11 +1,14 @@
 import React from "react";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
+import {
+  ComboboxContentProps,
+  ComboboxOption,
+} from "@jobber/components/Combobox/Combobox.types";
 import styles from "./ComboboxContent.css";
 import { ComboboxContentSearch } from "./ComboboxContentSearch";
 import { ComboboxContentList } from "./ComboboxContentList";
 import { ComboboxContext } from "../../ComboboxProvider";
-import { ComboboxContentProps, ComboboxOption } from "../../Combobox.types";
 import { useComboboxContent } from "../../hooks/useComboboxContent";
 import { useComboboxAccessibility } from "../../hooks/useComboboxAccessibility";
 

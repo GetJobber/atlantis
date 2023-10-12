@@ -1,4 +1,5 @@
 import React from "react";
+import { ComboboxProps } from "@jobber/components/Combobox/Combobox.types";
 import { ComboboxContent } from "./components/ComboboxContent";
 import { ComboboxAction } from "./components/ComboboxAction";
 import { ComboboxContextProvider } from "./ComboboxProvider";
@@ -6,7 +7,6 @@ import {
   ComboboxTriggerButton,
   ComboboxTriggerChip,
 } from "./components/ComboboxTrigger";
-import { ComboboxProps } from "./Combobox.types";
 import { useComboboxValidation } from "./hooks/useComboboxValidation";
 
 export const Combobox = (props: ComboboxProps): JSX.Element => {
