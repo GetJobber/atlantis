@@ -37,6 +37,7 @@ export function ComboboxSearch(props: {
         <button
           className={styles.clearSearch}
           onClick={clearSearch}
+          type="button"
           data-testid="ATL-Combobox-Content-Search-Clear"
           aria-label="Clear search"
         >

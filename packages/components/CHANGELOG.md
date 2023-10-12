@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.47.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.46.5...@jobber/components@4.47.0) (2023-10-11)
+
+
+### Features
+
+* **components:** MultiSelect Combobox ([#1569](https://github.com/GetJobber/atlantis/issues/1569)) ([986f076](https://github.com/GetJobber/atlantis/commit/986f0766cd96e3574117ce30f373cf9f3702bc05))
+
+
+
+
+
+## [4.46.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.46.4...@jobber/components@4.46.5) (2023-10-10)
+
+
+### Bug Fixes
+
+* **components:** DataList search initial value ([#1574](https://github.com/GetJobber/atlantis/issues/1574)) ([17e2822](https://github.com/GetJobber/atlantis/commit/17e2822eb6835c8567d885dadb1cf3e65d7946be))
+
+
+
+
+
+## [4.46.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.46.3...@jobber/components@4.46.4) (2023-10-06)
+
+
+### Bug Fixes
+
+* **components:** Use button type in Dismissable Chip menu items ([#1576](https://github.com/GetJobber/atlantis/issues/1576)) ([efcde8d](https://github.com/GetJobber/atlantis/commit/efcde8de9d816cd10fc2b322de6907587c285ef4))
+
+
+
+
+
 ## [4.46.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.46.2...@jobber/components@4.46.3) (2023-10-06)
 
 
