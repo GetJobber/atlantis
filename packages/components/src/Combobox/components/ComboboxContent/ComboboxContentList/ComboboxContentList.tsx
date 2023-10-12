@@ -3,9 +3,9 @@ import classnames from "classnames";
 import { Icon } from "@jobber/components/Icon";
 import { Text } from "@jobber/components/Text";
 import { ComboboxListProps } from "@jobber/components/Combobox/Combobox.types";
-import styles from "./ComboboxList.css";
+import styles from "./ComboboxContentList.css";
 
-export function ComboboxList(props: ComboboxListProps): JSX.Element {
+export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
   let hasSeenFirstSelected = false;
 
   return (

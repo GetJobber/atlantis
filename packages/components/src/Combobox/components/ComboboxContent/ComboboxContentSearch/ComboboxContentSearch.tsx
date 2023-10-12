@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { Icon } from "@jobber/components/Icon";
 import { ComboboxSearchProps } from "@jobber/components/Combobox/Combobox.types";
-import styles from "./ComboboxSearch.css";
+import styles from "./ComboboxContentSearch.css";
 
-export function ComboboxSearch(props: ComboboxSearchProps): JSX.Element {
+export function ComboboxContentSearch(props: ComboboxSearchProps): JSX.Element {
   const searchRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {

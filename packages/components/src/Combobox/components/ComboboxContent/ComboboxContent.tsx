@@ -2,8 +2,8 @@ import React from "react";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
 import styles from "./ComboboxContent.css";
-import { ComboboxSearch } from "./ComboboxContentSearch/ComboboxSearch";
-import { ComboboxList } from "./ComboboxContentList/ComboboxList";
+import { ComboboxContentSearch } from "./ComboboxContentSearch";
+import { ComboboxContentList } from "./ComboboxContentList";
 import { ComboboxContext } from "../../ComboboxProvider";
 import { ComboboxContentProps, ComboboxOption } from "../../Combobox.types";
 import { useComboboxContent } from "../../hooks/useComboboxContent";
@@ -43,14 +43,14 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       style={popperStyles.popper}
       {...attributes.popper}
     >
-      <ComboboxSearch
+      <ComboboxContentSearch
         open={open}
         placeholder={props.subjectNoun}
         searchValue={searchValue}
         setSearchValue={setSearchValue}
       />
 
-      <ComboboxList
+      <ComboboxContentList
         multiselect={multiselect}
         showEmptyState={!optionsExist}
         options={filteredOptions}
