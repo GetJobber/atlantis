@@ -1,25 +1,23 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import { Chip } from "../../Chip";
-import styles from "../../Chip.css";
 import { Avatar } from "../../../Avatar";
 import { Icon } from "../../../Icon";
 
 describe("Chip.Prefix Component", () => {
   it("renders Prefix", () => {
-    const { container } = render(
+    const { getByText } = render(
       <Chip.Prefix>
-        <Avatar initials="" />
+        <Avatar initials="DT" />
       </Chip.Prefix>,
     );
 
-    expect(container.querySelector("." + styles.prefix)).toBeInTheDocument();
+    expect(getByText("DT")).toBeInTheDocument();
   });
 
   it("should hide prefix when passed bad child", () => {
-    const { container } = render(<Chip.Prefix>Yo!</Chip.Prefix>);
-    const elem = container.querySelector("." + styles.empty);
-    expect(elem).toBeInTheDocument();
+    const { queryByText } = render(<Chip.Prefix>Hello!</Chip.Prefix>);
+    expect(queryByText("Hello!")).not.toBeInTheDocument();
   });
 
   it("prefix renders only one valid child", () => {
