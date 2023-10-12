@@ -50,7 +50,7 @@ module.exports = {
         ],
       },
     ],
-    "react/prefer-read-only-props": "warn",
+    "react/prefer-read-only-props": "error",
     "react/jsx-no-useless-fragment": ["warn", { allowExpressions: true }],
     "react/button-has-type": "warn",
     "padding-line-between-statements": [
