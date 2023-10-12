@@ -1,62 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Icon } from "@jobber/components/Icon";
 import { Chip } from "../../Chip";
 import { ChipSelectableProps } from "../../Chip.types";
 import styles from "../../Chip.css";
 
-export function ChipSelectable({
-  ariaLabel,
-  disabled,
-  heading,
-  invalid,
-  label,
-  selected,
-  role,
-  tabIndex,
-  value,
-  variation,
-  onClick,
-  onKeyDown,
-}: ChipSelectableProps) {
-  const [isChipSelected, setIsChipSelected] = useState(selected);
-
-  useEffect(() => {
-    setIsChipSelected(selected);
-  }, [selected]);
-
-  const toggleSelected = () =>
-    setIsChipSelected(oldSelectedVal => !oldSelectedVal);
-
-  const innerClick = (
-    inVal: string | number | undefined,
-    ev: React.MouseEvent<HTMLButtonElement>,
-  ) => {
-    toggleSelected();
-
-    if (onClick) {
-      onClick(inVal, ev);
-    }
-  };
-
+export function ChipSelectable({ selected, ...rest }: ChipSelectableProps) {
   return (
-    <Chip
-      ariaLabel={ariaLabel}
-      disabled={disabled}
-      heading={heading}
-      invalid={invalid}
-      label={label}
-      role={role}
-      tabIndex={tabIndex}
-      variation={variation}
-      value={value}
-      onClick={innerClick}
-      onKeyDown={onKeyDown}
-    >
-      <Chip.Suffix className={isChipSelected ? styles.selected : ""}>
+    <Chip {...rest}>
+      <Chip.Suffix className={selected ? styles.selected : ""}>
         <Icon
-          name={isChipSelected ? "checkmark" : "add"}
+          name={selected ? "checkmark" : "add"}
           size="small"
-          color={isChipSelected ? "green" : "blue"}
+          color={selected ? "green" : "blue"}
         />
       </Chip.Suffix>
     </Chip>
