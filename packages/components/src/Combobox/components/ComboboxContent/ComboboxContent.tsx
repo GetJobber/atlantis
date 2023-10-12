@@ -1,6 +1,7 @@
 import React, { ReactElement } from "react";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
+import { XOR } from "ts-xor";
 import styles from "./ComboboxContent.css";
 import { ComboboxSearch } from "./ComboboxSearch";
 import { ComboboxList } from "./ComboboxList";
@@ -10,16 +11,26 @@ import { ComboboxOption } from "../../Combobox.types";
 import { useComboboxContent } from "../../hooks/useComboboxContent";
 import { useComboboxAccessibility } from "../../hooks/useComboboxAccessibility";
 
-interface ComboboxContentProps {
+interface ComboboxCloseProps {
+  /**
+   * Callback function invoked upon the selection of an option. Provides the selected option(s) as an argument.
+   */
+  readonly onSelect: (selection: ComboboxOption[]) => void;
+}
+
+interface ComoboboxSelectProps {
+  /**
+   *
+   * Callback function invoked upon the Combobox menu closing. Provides the selected option(s) as an argument.
+   */
+  readonly onClose: (selection: ComboboxOption[]) => void;
+}
+
+interface ComboboxContentBaseProps {
   /**
    * List of selectable options to display.
    */
   readonly options: ComboboxOption[];
-
-  /**
-   * Callback function invoked upon the selection of an option. Provides the selected option as an argument.
-   */
-  readonly onSelect: (selection: ComboboxOption) => void;
 
   /**
    * Optional action button(s) to display at the bottom of the list.
@@ -36,7 +47,7 @@ interface ComboboxContentProps {
    * @default ""
    * @type string
    */
-  readonly selected: ComboboxOption | null;
+  readonly selected: ComboboxOption[];
 
   /**
    * The encapsulating noun for the content of the combobox. Used
@@ -44,6 +55,9 @@ interface ComboboxContentProps {
    */
   readonly subjectNoun?: string;
 }
+
+type ComboboxContentProps = ComboboxContentBaseProps &
+  XOR<ComboboxCloseProps, ComoboboxSelectProps>;
 
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   const { open, setOpen, wrapperRef, multiselect } =
@@ -56,10 +70,12 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   const {
     searchValue,
     setSearchValue,
-    setSelectedElement,
+    setFirstSelectedElement,
     filteredOptions,
     optionsListRef,
-  } = useComboboxContent(props.options, open);
+    selectedOptions,
+    setInternalSelected,
+  } = useComboboxContent(props.options, open, props.selected, props.onClose);
 
   const { popperRef, popperStyles, attributes } = useComboboxAccessibility(
     handleSelection,
@@ -95,11 +111,12 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       )}
 
       <ComboboxList
+        multiselect={multiselect}
         showEmptyState={!optionsExist}
         options={filteredOptions}
-        selected={props.selected}
+        selected={selectedOptions}
         optionsListRef={optionsListRef}
-        setSelectedElement={setSelectedElement}
+        setFirstSelectedElement={setFirstSelectedElement}
         selectionHandler={handleSelection}
         searchValue={searchValue}
         subjectNoun={props.subjectNoun}
@@ -126,8 +143,35 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   return ReactDOM.createPortal(template, document.body);
 
   function handleSelection(selection: ComboboxOption) {
-    props.onSelect(selection);
+    const callbackHandler = props.onSelect
+      ? props.onSelect
+      : setInternalSelected;
+
+    if (multiselect) {
+      handleMultiSelect(callbackHandler, selectedOptions, selection);
+    } else {
+      handleSingleSelect(callbackHandler, selection);
+    }
+  }
+
+  function handleSingleSelect(
+    selectCallback: (selected: ComboboxOption[]) => void,
+    selection: ComboboxOption,
+  ) {
+    selectCallback([selection]);
     setSearchValue("");
     setOpen(false);
+  }
+}
+
+function handleMultiSelect(
+  selectCallback: (selected: ComboboxOption[]) => void,
+  selected: ComboboxOption[],
+  selection: ComboboxOption,
+) {
+  if (selected.some(s => s.id === selection.id)) {
+    selectCallback(selected.filter(s => s.id !== selection.id));
+  } else {
+    selectCallback([...selected, selection]);
   }
 }

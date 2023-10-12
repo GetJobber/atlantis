@@ -1,38 +1,63 @@
 import { useEffect, useRef, useState } from "react";
 import { ComboboxOption } from "../Combobox.types";
 
+interface useComboboxContent {
+  searchValue: string;
+  setSearchValue: React.Dispatch<React.SetStateAction<string>>;
+  setFirstSelectedElement: React.Dispatch<
+    React.SetStateAction<HTMLElement | null>
+  >;
+  filteredOptions: ComboboxOption[];
+  optionsListRef: React.RefObject<HTMLUListElement>;
+  selectedOptions: ComboboxOption[];
+  setInternalSelected: (selected: ComboboxOption[]) => void;
+}
+
 export function useComboboxContent(
   options: ComboboxOption[],
   open: boolean,
-): {
-  searchValue: string;
-  setSearchValue: React.Dispatch<React.SetStateAction<string>>;
-  setSelectedElement: React.Dispatch<React.SetStateAction<HTMLElement | null>>;
-  filteredOptions: ComboboxOption[];
-  optionsListRef: React.RefObject<HTMLUListElement>;
-} {
+  selected: ComboboxOption[],
+  onClose: ((selection: ComboboxOption[]) => void) | undefined,
+): useComboboxContent {
   const [searchValue, setSearchValue] = useState<string>("");
-  const [selectedElement, setSelectedElement] = useState<HTMLElement | null>(
-    null,
-  );
+  const [firstSelectedElement, setFirstSelectedElement] =
+    useState<HTMLElement | null>(null);
   const optionsListRef = useRef<HTMLUListElement>(null);
   const filteredOptions = options.filter(option =>
     option.label.toLowerCase().includes(searchValue.toLowerCase()),
   );
 
+  const [internalSelected, setInternalSelected] =
+    useState<ComboboxOption[]>(selected);
+  const selectedOptions = onClose ? internalSelected : selected;
+
   useEffect(() => {
-    if (open && selectedElement) {
-      selectedElement?.scrollIntoView({
+    if (!open && onClose) {
+      onClose(selectedOptions);
+    }
+  }, [open, onClose, selectedOptions]);
+
+  useEffect(() => {
+    if (open && firstSelectedElement) {
+      firstSelectedElement?.scrollIntoView({
         block: "nearest",
       });
     }
-  }, [open, selectedElement]);
+  }, [open, firstSelectedElement]);
+
+  useEffect(() => {
+    if (selectedOptions.length === 0) {
+      setFirstSelectedElement(null);
+    }
+  }, [selectedOptions]);
 
   return {
     searchValue,
     setSearchValue,
-    setSelectedElement,
+    setFirstSelectedElement,
     filteredOptions,
     optionsListRef,
+    selectedOptions,
+    setInternalSelected,
   };
 }
