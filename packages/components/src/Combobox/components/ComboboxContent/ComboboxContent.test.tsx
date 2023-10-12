@@ -127,7 +127,7 @@ describe("ComboboxContent Header", () => {
             { id: "2", label: "Frodo Baggins" },
           ]}
           onSelect={jest.fn()}
-          selected={null}
+          selected={[]}
         ></Combobox.Content>
       </MockComboboxProvider>,
     );
@@ -145,7 +145,7 @@ describe("ComboboxContent Header", () => {
             { id: "2", label: "Frodo Baggins" },
           ]}
           onSelect={jest.fn()}
-          selected={null}
+          selected={[]}
         ></Combobox.Content>
       </MockComboboxProvider>,
     );
@@ -332,8 +332,8 @@ function MockComboboxProvider({
   children,
   multiselect = false,
 }: {
-  children: React.ReactNode;
-  multiselect?: boolean;
+  readonly children: React.ReactNode;
+  readonly multiselect?: boolean;
 }) {
   const [open, setOpen] = React.useState(false);
 

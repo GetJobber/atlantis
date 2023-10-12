@@ -3,16 +3,29 @@ import { render } from "@testing-library/react";
 import { ComboboxHeader } from "./ComboboxHeader";
 
 describe("ComboboxHeader", () => {
+  const onClearAll = jest.fn();
+  const onSelectAll = jest.fn();
   describe("When no options have been selected", () => {
     it("should render a button with the correct label", () => {
-      const { getByText } = render(<ComboboxHeader selectedCount={0} />);
+      const { getByText } = render(
+        <ComboboxHeader
+          onSelectAll={onSelectAll}
+          onClearAll={onClearAll}
+          selectedCount={0}
+        />,
+      );
 
       expect(getByText("Select all")).toBeInTheDocument();
     });
 
     it("should render the correct label when subjectNoun is provided", () => {
       const { getByText } = render(
-        <ComboboxHeader selectedCount={0} subjectNoun="tax rates" />,
+        <ComboboxHeader
+          onSelectAll={onSelectAll}
+          onClearAll={onClearAll}
+          selectedCount={0}
+          subjectNoun="tax rates"
+        />,
       );
 
       expect(getByText("Select tax rates")).toBeInTheDocument();
@@ -21,13 +34,25 @@ describe("ComboboxHeader", () => {
 
   describe("When one or more options has been selected", () => {
     it("should render a button with the correct label", () => {
-      const { getByText } = render(<ComboboxHeader selectedCount={1} />);
+      const { getByText } = render(
+        <ComboboxHeader
+          onSelectAll={onSelectAll}
+          onClearAll={onClearAll}
+          selectedCount={1}
+        />,
+      );
 
       expect(getByText("Clear")).toBeInTheDocument();
     });
 
     it("should render the correct label", () => {
-      const { getByText } = render(<ComboboxHeader selectedCount={1} />);
+      const { getByText } = render(
+        <ComboboxHeader
+          onSelectAll={onSelectAll}
+          onClearAll={onClearAll}
+          selectedCount={1}
+        />,
+      );
 
       expect(getByText("1 selected")).toBeInTheDocument();
     });

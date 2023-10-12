@@ -64,9 +64,6 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     React.useContext(ComboboxContext);
   const optionsExist = props.options.length > 0;
 
-  // Calculate the count of selected options
-  const selectedCount = props.selected ? 1 : 0;
-
   const {
     searchValue,
     setSearchValue,
@@ -106,7 +103,11 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       {multiselect && (
         <ComboboxHeader
           subjectNoun={props.subjectNoun}
-          selectedCount={selectedCount}
+          selectedCount={selectedOptions.length}
+          onClearAll={() => {
+            setInternalSelected([]);
+          }}
+          onSelectAll={selectAllOptions}
         />
       )}
 
@@ -161,6 +162,11 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     selectCallback([selection]);
     setSearchValue("");
     setOpen(false);
+  }
+
+  function selectAllOptions() {
+    const allOptions = filteredOptions;
+    setInternalSelected(allOptions);
   }
 }
 
