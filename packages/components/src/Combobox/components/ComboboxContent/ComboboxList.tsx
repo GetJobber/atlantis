@@ -6,15 +6,17 @@ import styles from "./ComboboxList.css";
 import { ComboboxOption } from "../../Combobox.types";
 
 interface ComboboxListProps {
-  options: ComboboxOption[];
-  showEmptyState: boolean;
-  selected: ComboboxOption[];
-  optionsListRef: React.RefObject<HTMLUListElement>;
-  setFirstSelectedElement: React.Dispatch<SetStateAction<HTMLElement | null>>;
-  selectionHandler: (option: ComboboxOption) => void;
-  searchValue: string;
-  multiselect: boolean;
-  subjectNoun?: string;
+  readonly options: ComboboxOption[];
+  readonly showEmptyState: boolean;
+  readonly selected: ComboboxOption[];
+  readonly optionsListRef: React.RefObject<HTMLUListElement>;
+  readonly setFirstSelectedElement: React.Dispatch<
+    SetStateAction<HTMLElement | null>
+  >;
+  readonly selectionHandler: (option: ComboboxOption) => void;
+  readonly searchValue: string;
+  readonly multiselect: boolean;
+  readonly subjectNoun?: string;
 }
 
 export function ComboboxList(props: ComboboxListProps): JSX.Element {

@@ -7,7 +7,7 @@ interface DescriptionListProps {
    * A tuple where the first item is the string to display as the term
    * and the second value is the string to display as the definition
    */
-  data: [string, string | ReactNode][];
+  readonly data: [string, string | ReactNode][];
 }
 
 export function DescriptionList({ data }: DescriptionListProps) {

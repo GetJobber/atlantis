@@ -15,7 +15,7 @@ import { styles } from "./InputAccessoriesProvider.style";
 export function InputAccessoriesProvider({
   children,
 }: {
-  children: ReactNode;
+  readonly children: ReactNode;
 }): JSX.Element {
   const inputAccessoryID = useRef(v4()).current;
   const {

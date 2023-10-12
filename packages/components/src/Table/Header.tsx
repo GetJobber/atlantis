@@ -3,7 +3,7 @@ import styles from "./Table.css";
 import { Row } from "./Row";
 
 interface HeaderProps {
-  children: ReactElement | ReactElement[];
+  readonly children: ReactElement | ReactElement[];
 }
 
 export function Header({ children }: HeaderProps) {

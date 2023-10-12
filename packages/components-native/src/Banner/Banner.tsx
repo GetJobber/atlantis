@@ -47,7 +47,7 @@ export function Banner({
 function BannerChildren({
   children,
 }: {
-  children?: ReactElement | ReactElement[] | string;
+  readonly children?: ReactElement | ReactElement[] | string;
 }): JSX.Element {
   if (!children) return <></>;
 

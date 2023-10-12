@@ -99,8 +99,8 @@ export function Modal({
 }
 
 interface HeaderProps {
-  title: string;
-  dismissible?: boolean;
+  readonly title: string;
+  readonly dismissible?: boolean;
   onRequestClose?(): void;
 }
 
@@ -117,9 +117,9 @@ function Header({ title, dismissible, onRequestClose }: HeaderProps) {
 }
 
 interface ActionsProps {
-  primary?: ButtonProps;
-  secondary?: ButtonProps;
-  tertiary?: ButtonProps;
+  readonly primary?: ButtonProps;
+  readonly secondary?: ButtonProps;
+  readonly tertiary?: ButtonProps;
 }
 
 function Actions({ primary, secondary, tertiary }: ActionsProps) {

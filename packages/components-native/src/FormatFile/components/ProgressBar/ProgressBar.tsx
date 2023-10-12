@@ -7,15 +7,15 @@ interface ProgressBarProps {
   /**
    * Upload progress value from 0 to 1
    */
-  progress: number;
+  readonly progress: number;
   /**
    * Upload status
    */
-  status: StatusCode;
+  readonly status: StatusCode;
   /**
    * Function to be called when the progress is finished
    */
-  onComplete?: () => void;
+  readonly onComplete?: () => void;
 }
 
 export const ProgressBar = ({

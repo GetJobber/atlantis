@@ -31,7 +31,7 @@ describe("InputAccessories", () => {
   const mockInputOneFocus = jest.fn();
   const mockInputTwoFocus = jest.fn();
 
-  function InputWrapper({ focusedInput }: { focusedInput: string }) {
+  function InputWrapper({ focusedInput }: { readonly focusedInput: string }) {
     const { register, setFocusedInput, unregister } = useContext(
       InputAccessoriesContext,
     );
@@ -40,12 +40,14 @@ describe("InputAccessories", () => {
       register(inputOneName, () => mockInputOneFocus());
       register(inputTwoName, () => mockInputTwoFocus());
       setFocusedInput(focusedInput);
+
       return () => {
         unregister(inputOneName);
         unregister(inputTwoName);
         setFocusedInput("");
       };
     }, [register, setFocusedInput, unregister, focusedInput]);
+
     return (
       <>
         <InputText
@@ -58,6 +60,7 @@ describe("InputAccessories", () => {
       </>
     );
   }
+
   function SetupInputAccessoriesTest(focusedInput: string) {
     mockUseFormController.mockImplementation(({ name, value, validations }) => {
       const { field, error } = actualUseFormController({
@@ -65,8 +68,10 @@ describe("InputAccessories", () => {
         value,
         validations,
       });
+
       return { field, error };
     });
+
     return render(<InputWrapper focusedInput={focusedInput} />, {
       wrapper: InputAccessoriesProvider,
     });

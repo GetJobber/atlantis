@@ -3,7 +3,7 @@ import styles from "./Table.css";
 import { Row } from "./Row";
 
 interface FooterProps {
-  children: ReactElement | ReactElement[];
+  readonly children: ReactElement | ReactElement[];
 }
 
 export function Footer({ children }: FooterProps) {

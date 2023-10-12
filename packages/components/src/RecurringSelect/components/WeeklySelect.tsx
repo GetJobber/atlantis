@@ -5,8 +5,8 @@ import checkboxStyles from "../DateCellCheckbox.css";
 import { WeekDay } from "../types";
 
 interface WeeklySelectProps {
-  disabled: boolean;
-  selectedDays: Set<WeekDay>;
+  readonly disabled: boolean;
+  readonly selectedDays: Set<WeekDay>;
   onChange(selectedDays: Set<WeekDay>): void;
 }
 const weekDays = [0, 1, 2, 3, 4, 5, 6];

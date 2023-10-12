@@ -8,7 +8,7 @@ interface InputValidationProps {
   /**
    * Validation message to be displayed
    */
-  message: string;
+  readonly message: string;
 }
 
 export function InputValidation({ message }: InputValidationProps) {

@@ -48,6 +48,7 @@ interface LightBoxProps {
 }
 
 const swipeConfidenceThreshold = 10000;
+
 const swipePower = (offset: number, velocity: number) => {
   return Math.abs(offset) * velocity;
 };
@@ -200,7 +201,7 @@ export function LightBox({
 }
 
 interface NavButtonProps {
-  onClick: () => void;
+  readonly onClick: () => void;
 }
 
 function PreviousButton({ onClick }: NavButtonProps) {

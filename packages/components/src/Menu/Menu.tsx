@@ -213,7 +213,7 @@ export function Menu({ activator, items }: MenuProps) {
 }
 
 interface SectionHeaderProps {
-  text: string;
+  readonly text: string;
 }
 
 function SectionHeader({ text }: SectionHeaderProps) {
@@ -236,17 +236,17 @@ export interface ActionProps {
   /**
    * Action label
    */
-  label: string;
+  readonly label: string;
 
   /**
    * Parent Section Label
    */
-  sectionLabel?: string;
+  readonly sectionLabel?: string;
 
   /**
    * Visual cue for the action label
    */
-  icon?: IconNames;
+  readonly icon?: IconNames;
 
   /**
    * Callback when an action gets clicked
@@ -256,7 +256,7 @@ export interface ActionProps {
   /**
    * Focus on the action when rendered
    */
-  shouldFocus?: boolean;
+  readonly shouldFocus?: boolean;
 }
 
 function Action({

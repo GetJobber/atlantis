@@ -19,6 +19,7 @@ function DefaultToast({ text1 }: ToastConfigParams<string>): JSX.Element {
   const { bottom } = useSafeAreaInsets();
   const { t } = useAtlantisI18n();
   const toastContainerStyles = [styles.container, { paddingBottom: bottom }];
+
   return (
     <View style={toastContainerStyles}>
       <View style={styles.toast}>
@@ -48,7 +49,7 @@ export interface JobberToastProps {
    * Has effect only when the position is "bottom".
    * @default 40
    */
-  bottomOffset?: number;
+  readonly bottomOffset?: number;
 }
 
 export function JobberToast({ bottomOffset }: JobberToastProps): JSX.Element {

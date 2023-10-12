@@ -198,7 +198,7 @@ describe("when InputDate is used within a Modal", () => {
   });
 });
 
-function NestedTestComponent(props: { date: string }): JSX.Element {
+function NestedTestComponent(props: { readonly date: string }): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
   const changeHandler = jest.fn();
 

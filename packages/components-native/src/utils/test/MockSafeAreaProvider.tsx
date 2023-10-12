@@ -6,9 +6,9 @@ import {
 } from "react-native-safe-area-context";
 
 interface MockSafeAreaProviderProps {
-  children: React.ReactNode;
-  frame?: Rect;
-  insets?: EdgeInsets;
+  readonly children: React.ReactNode;
+  readonly frame?: Rect;
+  readonly insets?: EdgeInsets;
 }
 
 export function MockSafeAreaProvider({

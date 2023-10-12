@@ -13,9 +13,9 @@ import { FormFieldDescription } from "./FormFieldDescription";
 import { InputValidation } from "../InputValidation";
 
 interface FormFieldWrapperProps extends FormFieldProps {
-  error: string;
-  identifier: string;
-  descriptionIdentifier: string;
+  readonly error: string;
+  readonly identifier: string;
+  readonly descriptionIdentifier: string;
 }
 
 interface LabelPadding {

@@ -2,7 +2,7 @@ import React, { ReactElement } from "react";
 import styles from "./Table.css";
 
 interface RowProps {
-  children: ReactElement | ReactElement[];
+  readonly children: ReactElement | ReactElement[];
 }
 
 export function Row({ children }: RowProps) {

@@ -3,7 +3,7 @@ import { IconNames } from "@jobber/design";
 import { Icon } from "../../../Icon";
 
 export interface BannerIconProps {
-  icon: IconNames;
+  readonly icon: IconNames;
 }
 
 export function BannerIcon({ icon }: BannerIconProps): JSX.Element {

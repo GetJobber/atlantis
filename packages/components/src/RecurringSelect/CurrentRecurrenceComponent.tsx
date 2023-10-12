@@ -13,8 +13,8 @@ import {
 } from "./types";
 
 interface RecurringSelectProps {
-  disabled?: boolean;
-  recurrenceRule: RecurrenceRule;
+  readonly disabled?: boolean;
+  readonly recurrenceRule: RecurrenceRule;
   onChange(newRecurrence: RecurrenceRule): void;
 }
 

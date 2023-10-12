@@ -3,8 +3,8 @@ import { Button } from "../Button";
 import { ConfirmationModal } from "../ConfirmationModal";
 
 interface DeleteButtonProps {
-  size?: "base" | "large";
-  onDelete?: () => void;
+  readonly size?: "base" | "large";
+  readonly onDelete?: () => void;
 }
 
 export function FormatFileDeleteButton({ size, onDelete }: DeleteButtonProps) {

@@ -5,8 +5,8 @@ import checkboxStyles from "../DateCellCheckbox.css";
 import { DayOfMonth } from "../types";
 
 interface DayOfMonthSelectProps {
-  selectedDays: Set<DayOfMonth>;
-  disabled: boolean;
+  readonly selectedDays: Set<DayOfMonth>;
+  readonly disabled: boolean;
   onChange(selectedDays: Set<DayOfMonth>): void;
 }
 

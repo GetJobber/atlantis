@@ -33,7 +33,7 @@ interface MultiSelectProps {
   /**
    * Change handler
    */
-  onOptionsChange: Dispatch<React.SetStateAction<Options>>;
+  readonly onOptionsChange: Dispatch<React.SetStateAction<Options>>;
 
   /**
    * Adjusts the interface to either have small or large spacing.
@@ -96,6 +96,7 @@ export function MultiSelect({
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
+
     return () => document.removeEventListener("mousedown", handleClickOutside);
   });
 

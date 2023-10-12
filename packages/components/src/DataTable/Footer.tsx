@@ -5,12 +5,12 @@ import styles from "./Footer.css";
 export type ViewType = "desktop" | "handheld";
 
 export interface FooterProps<T> {
-  table: Table<T>;
-  viewType?: ViewType;
+  readonly table: Table<T>;
+  readonly viewType?: ViewType;
 }
 
 interface ViewProps<T> {
-  table: Table<T>;
+  readonly table: Table<T>;
 }
 
 const DesktopView = <T extends object>({ table }: ViewProps<T>) => (

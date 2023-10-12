@@ -4,8 +4,8 @@ import { DurationPeriod } from "../types";
 import { RadioGroup, RadioOption } from "../../RadioGroup";
 
 interface MonthlySelectProps {
-  disabled: boolean;
-  selectedMonthOption:
+  readonly disabled: boolean;
+  readonly selectedMonthOption:
     | DurationPeriod.DayOfMonth
     | DurationPeriod.WeekDayOfMonth;
   onChange(

@@ -5,7 +5,7 @@ import { Icon } from "../../../Icon";
 import { styles } from "../../Banner.style";
 
 export interface BannerIconProps {
-  icon: IconNames;
+  readonly icon: IconNames;
 }
 
 export function BannerIcon({ icon }: BannerIconProps): JSX.Element {

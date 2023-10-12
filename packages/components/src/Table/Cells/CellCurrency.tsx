@@ -3,8 +3,8 @@ import { CurrencyType, formatCurrency } from "@jobber/formatters";
 import { CellNumeric, CellNumericProps } from "./CellNumeric";
 
 interface CellCurrencyProps extends CellNumericProps {
-  value: number;
-  currency?: CurrencyType;
+  readonly value: number;
+  readonly currency?: CurrencyType;
 }
 
 export function CellCurrency({

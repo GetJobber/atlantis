@@ -291,7 +291,11 @@ describe("ComboboxContent Options", () => {
   });
 });
 
-function MockComboboxProvider({ children }: { children: React.ReactNode }) {
+function MockComboboxProvider({
+  children,
+}: {
+  readonly children: React.ReactNode;
+}) {
   const [open, setOpen] = React.useState(false);
 
   return (

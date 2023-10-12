@@ -7,10 +7,10 @@ import { Text } from "../Text";
 import { Glimmer } from "../Glimmer";
 
 interface PaginationProps<T> {
-  table: Table<T>;
-  itemsPerPage?: number[];
-  totalItems: number;
-  loading: boolean;
+  readonly table: Table<T>;
+  readonly itemsPerPage?: number[];
+  readonly totalItems: number;
+  readonly loading: boolean;
 }
 
 const defaultItemsPerPageOptions = ["10", "20", "30", "40", "50"];
@@ -30,6 +30,7 @@ export function Pagination<T extends object>({
     () => itemsPerPage?.map(item => String(item)) ?? defaultItemsPerPageOptions,
     [itemsPerPage],
   );
+
   return secondPosition <= 0 ? (
     <div className={styles.pagination}>
       <div className={styles.paginationInfo}>

@@ -15,7 +15,7 @@ export interface InputPasswordProps
    *
    * @default true
    */
-  usePrivacyEye?: boolean;
+  readonly usePrivacyEye?: boolean;
 }
 
 function InputPasswordInternal(
@@ -43,6 +43,7 @@ function InputPasswordInternal(
         onPress: handleOnPress,
       };
     }
+
     return undefined;
   };
 

@@ -6,9 +6,9 @@ import { FormActionBar, FormActionBarProps } from "../FormActionBar";
 import { tokens } from "../../../utils/design";
 
 interface FormBodyProps extends FormActionBarProps {
-  children: JSX.Element;
-  shouldRenderActionBar?: boolean;
-  saveButtonOffset?: number;
+  readonly children: JSX.Element;
+  readonly shouldRenderActionBar?: boolean;
+  readonly saveButtonOffset?: number;
 }
 
 export function FormBody({
@@ -58,5 +58,6 @@ export function FormBody({
 export function useBottomPadding(): number {
   const { insets } = useScreenInformation();
   const extraBottomSpace = insets.bottom - tokens["space-base"];
+
   return extraBottomSpace >= 0 ? extraBottomSpace : 0;
 }

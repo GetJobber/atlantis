@@ -71,8 +71,8 @@ function SetupWithForm({
   initialValues,
   onChangeHandlers,
 }: {
-  initialValues: CheckboxGroupFormData;
-  onChangeHandlers?: CheckboxGroupFormOnChangeHandlers;
+  readonly initialValues: CheckboxGroupFormData;
+  readonly onChangeHandlers?: CheckboxGroupFormOnChangeHandlers;
 }): JSX.Element {
   const formMethods = useForm({ defaultValues: initialValues });
 
@@ -178,6 +178,7 @@ describe("when all of the checkboxes in a group are checked", () => {
 describe("when the parent checkbox does not have a label", () => {
   it("does not render the parent checkbox", async () => {
     const { checkboxGroup } = setup(undefined);
+
     const findParentCheckbox = () => {
       checkboxGroup.getByLabelText(parentCheckboxLabel);
     };

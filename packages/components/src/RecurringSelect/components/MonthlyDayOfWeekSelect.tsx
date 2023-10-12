@@ -5,8 +5,8 @@ import { Text } from "../../Text";
 import { WeekDay } from "../types";
 
 interface MonthlyDayOfWeekSelectProps {
-  disabled: boolean;
-  selectedWeeks: Set<WeekDay>[];
+  readonly disabled: boolean;
+  readonly selectedWeeks: Set<WeekDay>[];
   onChange(nextSelectedWeeks: Set<WeekDay>[]): void;
 }
 

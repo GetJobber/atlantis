@@ -3,7 +3,7 @@ import { FormBannerMessage, FormBannerMessageType } from "../../types";
 import { Banner, BannerTypes } from "../../../Banner";
 
 interface FormMessageBannerProps {
-  bannerMessages?: FormBannerMessage[];
+  readonly bannerMessages?: FormBannerMessage[];
 }
 
 export function FormMessageBanner({

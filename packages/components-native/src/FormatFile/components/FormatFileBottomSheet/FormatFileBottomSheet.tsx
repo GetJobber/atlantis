@@ -7,10 +7,10 @@ import { useAtlantisI18n } from "../../../hooks/useAtlantisI18n";
 export type BottomSheetOptionsSuffix = "receipt" | "image" | "file" | "video";
 
 interface FormatFileBottomSheetProps {
-  bottomSheetRef: RefObject<BottomSheetRef>;
-  onPreviewPress?: () => void;
-  onRemovePress?: () => void;
-  bottomSheetOptionsSuffix?: BottomSheetOptionsSuffix;
+  readonly bottomSheetRef: RefObject<BottomSheetRef>;
+  readonly onPreviewPress?: () => void;
+  readonly onRemovePress?: () => void;
+  readonly bottomSheetOptionsSuffix?: BottomSheetOptionsSuffix;
 }
 
 export const FormatFileBottomSheet = ({

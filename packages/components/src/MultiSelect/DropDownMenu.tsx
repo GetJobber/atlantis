@@ -24,7 +24,7 @@ interface DropDownMenuProps {
   /**
    * Change handler.
    */
-  setOptions: Dispatch<React.SetStateAction<Options>>;
+  readonly setOptions: Dispatch<React.SetStateAction<Options>>;
 }
 
 export function DropDownMenu({ options, setOptions }: DropDownMenuProps) {
@@ -37,6 +37,7 @@ export function DropDownMenu({ options, setOptions }: DropDownMenuProps) {
         if (option.label == clickedOption.label) {
           return { ...option, checked: !clickedOption.checked };
         }
+
         return option;
       }),
     );
@@ -74,6 +75,7 @@ export function DropDownMenu({ options, setOptions }: DropDownMenuProps) {
     } = itemDiv.getBoundingClientRect();
     const itemTrueBottom = itemBottom + itemHeight;
     const menuBottom = menuDivElement.getBoundingClientRect().bottom;
+
     if (direction == "up" && itemTop - itemHeight < menuTop) {
       menuDivElement.scrollTop -= itemHeight;
     } else if (direction == "down" && itemTrueBottom > menuBottom) {

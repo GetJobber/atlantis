@@ -11,12 +11,12 @@ import { ErrorIcon } from "../ErrorIcon";
 import { useAtlantisI18n } from "../../../hooks/useAtlantisI18n";
 
 interface FileViewProps {
-  accessibilityLabel?: string;
-  showOverlay: boolean;
-  showError: boolean;
-  file: FormattedFile;
-  styleInGrid: boolean;
-  onUploadComplete: () => void;
+  readonly accessibilityLabel?: string;
+  readonly showOverlay: boolean;
+  readonly showError: boolean;
+  readonly file: FormattedFile;
+  readonly styleInGrid: boolean;
+  readonly onUploadComplete: () => void;
 }
 
 export function FileView({
@@ -37,6 +37,7 @@ export function FileView({
 
   const freezeProgressBar =
     file.status !== StatusCode.Completed && file.progress >= 0.9;
+
   return (
     <View
       style={[
@@ -107,6 +108,7 @@ interface FileTypeToIconNameParams {
   fileName?: string;
   fileType?: string;
 }
+
 function mapFileTypeToIconName({
   fileName,
   fileType,
@@ -114,6 +116,7 @@ function mapFileTypeToIconName({
   if (!fileName && !fileType) {
     return "alert";
   }
+
   if (fileType?.includes("pdf") || fileName?.match(/~*.pdf$/)) {
     return "pdf";
   } else if (

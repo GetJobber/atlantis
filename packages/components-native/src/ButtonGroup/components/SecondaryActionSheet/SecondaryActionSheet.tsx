@@ -6,12 +6,12 @@ import { BottomSheetOption } from "../../../BottomSheet/components/BottomSheetOp
 import { BottomSheet, BottomSheetRef } from "../../../BottomSheet/BottomSheet";
 
 interface SecondaryActionSheetProps {
-  actions: ButtonGroupSecondaryActionProps[];
-  secondaryActionsRef: RefObject<BottomSheetRef>;
-  showCancel?: boolean;
-  heading?: string;
-  onOpenBottomSheet?: () => void;
-  onCloseBottomSheet?: () => void;
+  readonly actions: ButtonGroupSecondaryActionProps[];
+  readonly secondaryActionsRef: RefObject<BottomSheetRef>;
+  readonly showCancel?: boolean;
+  readonly heading?: string;
+  readonly onOpenBottomSheet?: () => void;
+  readonly onCloseBottomSheet?: () => void;
 }
 
 export function SecondaryActionSheet({
@@ -34,6 +34,7 @@ export function SecondaryActionSheet({
         <View>
           {actions.map((action, index) => {
             const { label, onPress, icon, iconColor, destructive } = action;
+
             return (
               <BottomSheetOption
                 destructive={destructive}

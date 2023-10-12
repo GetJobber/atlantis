@@ -202,8 +202,8 @@ test("controlled ConfirmationModal should cancel", () => {
 });
 
 interface ControlledConfirmProps {
-  onConfirmMock: jest.Mock;
-  onCancelMock: jest.Mock;
+  readonly onConfirmMock: jest.Mock;
+  readonly onCancelMock: jest.Mock;
 }
 
 function ControlledConfirm({

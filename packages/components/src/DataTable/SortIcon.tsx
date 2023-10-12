@@ -27,12 +27,13 @@ const sortStyleIndex = [
 ];
 
 interface SortIconProps {
-  direction: SortDirection;
+  readonly direction: SortDirection;
 }
 
 export function SortIcon({ direction }: SortIconProps): JSX.Element {
   const foundStyle = sortStyleIndex.find(style => style.option === direction);
   const finalStyle = foundStyle === undefined ? sortStyleIndex[0] : foundStyle;
+
   return (
     <div className={classNames(styles.sortIcon)}>
       <svg

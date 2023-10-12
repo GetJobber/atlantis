@@ -212,6 +212,7 @@ describe("DataList", () => {
             },
           )?.[0];
           const expectedValue = expectedValues[queryBreakpoint as Breakpoints];
+
           return {
             matches: expectedValue,
             media: query,
@@ -394,7 +395,7 @@ describe("DataList", () => {
     function MockSortingLayout({
       sorting,
     }: {
-      sorting: DataListProps<(typeof mockData)[0]>["sorting"];
+      readonly sorting: DataListProps<(typeof mockData)[0]>["sorting"];
     }) {
       return (
         <DataList data={mockData} headers={mockHeaders} sorting={sorting}>
