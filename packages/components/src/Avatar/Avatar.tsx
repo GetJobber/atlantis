@@ -5,7 +5,7 @@ import styles from "./Avatar.css";
 import { isDark } from "./utilities";
 import { Icon } from "../Icon";
 
-type AvatarSize = "base" | "large" | "small";
+export type AvatarSize = "base" | "large" | "small";
 interface AvatarFoundationProps {
   /**
    * A url for the image that will be displayed

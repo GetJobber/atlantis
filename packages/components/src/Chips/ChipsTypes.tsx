@@ -37,8 +37,8 @@ interface ChipFoundationProps {
 
 export interface ChipSingleSelectProps extends ChipFoundationProps {
   readonly type?: "singleselect";
-  readonly selected?: string;
-  onChange(value?: string): void;
+  readonly selected: string;
+  onChange(value?: string | Array<string>): void;
 
   /**
    * The Chip's radio input name.
@@ -49,20 +49,20 @@ export interface ChipSingleSelectProps extends ChipFoundationProps {
 }
 
 export interface ChipMultiSelectProps extends ChipFoundationProps {
-  readonly type: "multiselect";
+  readonly type?: "multiselect";
   readonly selected: string[];
   onChange(value: string[]): void;
 }
 
 export interface ChipDismissibleProps extends ChipFoundationProps {
-  readonly type: "dismissible";
+  readonly type?: "dismissible";
   readonly selected: string[];
   onChange(value: string[]): void;
 
   /**
-   * Use a custom activator to trigger the Chip option selector
+   * Element that triggers opening the ChipDismissible Menu
    */
-  readonly activator?: ReactElement;
+  activator?: ReactElement;
 
   /**
    * Adds a loading indicator

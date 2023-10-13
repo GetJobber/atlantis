@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Content } from "@jobber/components/Content";
-import { Chips } from "@jobber/components/Chips";
+import {
+  Chips,
+  InternalChipDismissible,
+  InternalChipMultiSelect,
+  InternalChipSingleSelect,
+} from "@jobber/components/Chips";
 import { Chip } from "@jobber/components/Chip";
 import { Icon, IconNames } from "@jobber/components/Icon";
 import { Text } from "@jobber/components/Text";
-import { Avatar } from "@jobber/components/Avatar";
+import { Avatar, AvatarSize } from "@jobber/components/Avatar/";
 import { useFakeOptionQuery } from "./utils/storyUtils";
 
 export default {
@@ -25,33 +30,42 @@ export default {
   },
 } as ComponentMeta<typeof Chips>;
 
-const BasicTemplate: ComponentStory<typeof Chips> = args => {
-  const [selected, setSelected] = useState<string>();
+const BasicTemplate: ComponentStory<typeof InternalChipSingleSelect> = args => {
+  const [selected, setSelected] = useState("");
   const chips = [
-    { label: "Amazing", initials: "AZ" },
-    { label: "Wonderful", icon: "video" },
-    { label: "Brilliant", icon: "starFill" },
+    { label: "Amazing", initials: "AZ", size: "small" },
+    { label: "Wonderful", icon: "video", size: "small" },
+    { label: "Brilliant", icon: "starFill", size: "small" },
     { label: "Magnificent" },
   ];
+
   return (
     <Content>
       <Text>
         You are <u>{selected ? selected : "_______"}</u>
       </Text>
-      <Chips {...args} selected={selected} onChange={setSelected}>
+      <Chips
+        type="singleselect"
+        {...args}
+        selected={selected}
+        onChange={allSelections => setSelected(allSelections as string)}
+      >
         {chips.map((c, index) => {
           return (
-            <Chip label={c.label} key={index} onClick={setSelected}>
+            <Chip
+              label={c.label}
+              key={index}
+              onClick={val => setSelected(val as string)}
+            >
               <Chip.Prefix>
-                {c.icon ? (
-                  <Icon name={c.icon as IconNames} size="small" />
-                ) : (
-                  <></>
+                {c.icon && (
+                  <Icon
+                    name={c.icon as IconNames}
+                    size={c.size as AvatarSize}
+                  />
                 )}
-                {c.initials ? (
-                  <Avatar initials={c.initials} size="small" />
-                ) : (
-                  <></>
+                {c.initials && (
+                  <Avatar initials={c.initials} size={c.size as AvatarSize} />
                 )}
               </Chip.Prefix>
             </Chip>
@@ -63,17 +77,24 @@ const BasicTemplate: ComponentStory<typeof Chips> = args => {
 };
 
 export const Basic = BasicTemplate.bind({});
-Basic.args = {};
+Basic.args = {
+  type: "singleselect" as const,
+  selected: "",
+};
 
-const MultiSelectTemplate: ComponentStory<typeof Chips> = args => {
+const MultiSelectTemplate: ComponentStory<
+  typeof InternalChipMultiSelect
+> = args => {
   const [selected, setSelected] = useState<string[]>([]);
-  const multiSelectItems = value => {
-    if (selected.includes(value)) {
+
+  const multiSelectItems = (value?: string | number) => {
+    if (value && selected.includes(String(value))) {
       setSelected(selected.filter(d => d !== value));
     } else {
-      setSelected(d => [...d, value]);
+      setSelected(d => [...d, value as string]);
     }
   };
+
   return (
     <Content>
       <Text>
@@ -101,7 +122,9 @@ const MultiSelectTemplate: ComponentStory<typeof Chips> = args => {
 export const MultiSelect = MultiSelectTemplate.bind({});
 MultiSelect.args = {};
 
-const SelectionTemplate: ComponentStory<typeof Chips> = args => {
+const SelectionTemplate: ComponentStory<
+  typeof InternalChipDismissible
+> = args => {
   const {
     selected,
     options,
@@ -111,6 +134,7 @@ const SelectionTemplate: ComponentStory<typeof Chips> = args => {
     handleSelect,
     handleCustomAdd,
   } = useFakeOptionQuery();
+
   return (
     <Chips
       {...args}
@@ -130,7 +154,7 @@ const SelectionTemplate: ComponentStory<typeof Chips> = args => {
 
 export const Selection = SelectionTemplate.bind({});
 Selection.args = {
-  type: "dismissible",
+  type: "dismissible" as const,
 };
 
 Selection.parameters = {

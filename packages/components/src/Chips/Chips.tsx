@@ -11,6 +11,12 @@ export function Chips(props: ChipsProps) {
     case "multiselect":
       return <InternalChipMultiSelect {...props} />;
     default:
-      return <InternalChipSingleSelect {...props} />;
+      return (
+        <InternalChipSingleSelect
+          {...props}
+          type="singleselect"
+          selected={props.selected as string}
+        />
+      );
   }
 }

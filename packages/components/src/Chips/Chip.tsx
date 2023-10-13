@@ -7,7 +7,7 @@ export interface ChipProps
   /**
    * The value that gets returned on the `<Chips>`'s onChange callback.
    */
-  readonly value: string;
+  readonly value?: string | number;
 }
 
 // Only need the component to pass in the data as a react children
@@ -16,5 +16,7 @@ export function Chip(props: ChipProps) {
   // Throw error when <Chip /> gets used outside of the <Chips />
   useAssert(true, "`<Chip>` component can only be used inside `<Chips>`");
 
+  // es-lint override below because this is legacy code
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   return <></>;
 }

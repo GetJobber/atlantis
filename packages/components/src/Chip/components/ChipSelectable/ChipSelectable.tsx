@@ -7,7 +7,7 @@ import styles from "../../Chip.css";
 export function ChipSelectable({ selected, ...rest }: ChipSelectableProps) {
   return (
     <Chip {...rest}>
-      <Chip.Suffix className={selected ? styles.selected : ""}>
+      <Chip.Suffix className={selected ? styles.selected : ""} showBG={true}>
         <Icon
           name={selected ? "checkmark" : "add"}
           size="small"

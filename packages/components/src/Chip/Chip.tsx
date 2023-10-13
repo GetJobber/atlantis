@@ -41,6 +41,7 @@ export const Chip = ({
       disabled={disabled}
       role={role}
       type="button"
+      data-testid="chip-wrapper"
     >
       {prefix}
       <Typography size="base" fontWeight="medium">

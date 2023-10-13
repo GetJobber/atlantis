@@ -57,6 +57,7 @@ export function DataListSort() {
         if (!label) return acc;
 
         acc.push({ label, value: sort.toString() });
+
         return acc;
       },
       [],
@@ -78,6 +79,7 @@ export function DataListSort() {
   function handleKeyChange(value?: string) {
     if (value && value !== "none") {
       onSort({ key: value, order: state?.order || "asc" });
+
       return;
     }
 
@@ -87,6 +89,7 @@ export function DataListSort() {
   function handleSortingChange(value: "asc" | "desc") {
     if (state?.key && value) {
       onSort({ key: state.key, order: value });
+
       return;
     }
   }

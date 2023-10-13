@@ -5,15 +5,25 @@ import { Icon } from "@jobber/components/Icon";
 import { useChildComponent } from "../../hooks/index";
 import styles from "../../Chip.css";
 
-export function ChipPrefix({ children }: PropsWithChildren) {
+export function ChipPrefix({ children, showBG }: ChipPrefixProps) {
   const singleChild = useChildComponent(
     children,
     d => d.type === Avatar || d.type === Icon,
   );
 
   return (
-    <span className={classNames(styles.prefix, !singleChild && styles.empty)}>
+    <span
+      className={classNames(
+        styles.prefix,
+        !singleChild && styles.empty,
+        showBG,
+      )}
+    >
       {singleChild}
     </span>
   );
+}
+
+interface ChipPrefixProps extends PropsWithChildren {
+  readonly showBG?: boolean;
 }

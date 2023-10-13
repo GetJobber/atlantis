@@ -3,10 +3,10 @@ import { Icon } from "@jobber/components/Icon";
 import styles from "./InternalChipDismissible.css";
 import { useInternalChipDismissible } from "./hooks";
 import { InternalChipDismissibleInput } from "./InternalChipDismissibleInput";
-import { InternalChipDismissibleProps } from "./InternalChipDismissibleTypes";
 import { Chip } from "../../Chip";
+import { ChipDismissibleProps } from "../ChipsTypes";
 
-export function InternalChipDismissible(props: InternalChipDismissibleProps) {
+export function InternalChipDismissible(props: ChipDismissibleProps) {
   const {
     availableChipOptions,
     ref: wrapperRef,
@@ -30,6 +30,7 @@ export function InternalChipDismissible(props: InternalChipDismissibleProps) {
         <Chip
           key={chip.value}
           {...chip}
+          value={chip.label}
           onKeyDown={handleChipKeyDown(chip.value)}
           onClick={handleChipRemove(chip.value)}
           ariaLabel={`${chip.label}. Press delete or backspace to remove ${chip.label}`}
@@ -43,6 +44,7 @@ export function InternalChipDismissible(props: InternalChipDismissibleProps) {
 
       <InternalChipDismissibleInput
         activator={props.activator}
+        type={props.type}
         attachTo={wrapperRef}
         isLoadingMore={props.isLoadingMore}
         options={availableChipOptions}

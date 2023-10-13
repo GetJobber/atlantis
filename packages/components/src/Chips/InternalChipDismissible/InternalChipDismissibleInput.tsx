@@ -57,6 +57,7 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
 
   useEffect(() => {
     handleDebouncedSearch();
+
     return handleDebouncedSearch.cancel;
   }, [searchValue]);
 
