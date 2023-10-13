@@ -20,6 +20,7 @@ export function ComboboxAction(props: ComboboxActionProps): JSX.Element {
       <button
         className={styles.actionButton}
         onClick={props.onClick}
+        type="button"
         aria-label={props.label}
       >
         <Typography

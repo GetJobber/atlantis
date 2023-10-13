@@ -149,7 +149,17 @@ export interface DataListSearchProps {
    * prepended by "Search" or just falls back to "Search".
    */
   readonly placeholder?: string;
-  readonly onSearch: (search: string) => void;
+
+  /**
+   * The initial value of the search input.
+   *
+   * Updating this prop after the component has mounted will rerender the
+   * component with the new value. Only update the value of this when you
+   * absolutely have to.
+   */
+  readonly initialValue?: string;
+
+  readonly onSearch: (value: string) => void;
 }
 
 export interface DataListFiltersProps {

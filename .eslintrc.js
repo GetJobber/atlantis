@@ -8,7 +8,8 @@ const packageAliases = [
 ];
 
 module.exports = {
-  extends: ["@jobber/eslint-config"],
+  plugins: ["monorepo-cop", "react"],
+  extends: ["@jobber/eslint-config", "plugin:monorepo-cop/recommended"],
   root: true,
   settings: {
     "import/ignore": ["react-native/index"],
@@ -21,10 +22,10 @@ module.exports = {
   },
   rules: {
     /*
-      Need to figure out a good way to enforce intra vs inter module import
-      rules. For now, warn on these.
+      Atlantis is a monorepo so we need to use `monorepo-cop` to enforce the
+      relative import rule.
      */
-    "import/no-relative-parent-imports": "warn",
+    "import/no-relative-parent-imports": "off",
     "no-restricted-imports": [
       "error",
       {
@@ -49,6 +50,20 @@ module.exports = {
         ],
       },
     ],
+    "react/prefer-read-only-props": "warn",
+    "react/jsx-no-useless-fragment": ["warn", { allowExpressions: true }],
+    "react/button-has-type": "warn",
+    "padding-line-between-statements": [
+      "warn",
+      // Catch all for block statements
+      { blankLine: "always", prev: "*", next: "block" },
+      { blankLine: "always", prev: "*", next: "block-like" },
+      // Specific cases
+      { blankLine: "always", prev: "*", next: "return" },
+      { blankLine: "always", prev: "function", next: "function" },
+      // Turn off for case statements
+      { blankLine: "any", prev: "case", next: "case" },
+    ],
   },
   overrides: [
     {
@@ -59,6 +74,7 @@ module.exports = {
         "@typescript-eslint/naming-convention": "off",
         "@typescript-eslint/no-unused-expressions": "off",
         "import/no-extraneous-dependencies": "off",
+        "padding-line-between-statements": "off",
       },
     },
     {
