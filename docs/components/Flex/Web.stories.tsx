@@ -67,4 +67,6 @@ const BasicTemplate: ComponentStory<typeof Flex> = args => (
 );
 
 export const Basic = BasicTemplate.bind({});
-Basic.args = {};
+Basic.args = {
+  template: ["shrink", "shrink"],
+};

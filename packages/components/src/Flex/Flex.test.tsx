@@ -4,19 +4,7 @@ import { Flex } from ".";
 
 afterEach(cleanup);
 
-it("uses a flex layout with default settings", () => {
-  const { container } = render(
-    <Flex>
-      <h1>Foo</h1>
-      <p>Bar</p>
-    </Flex>,
-  );
-
-  const flex = container.firstChild;
-  expect(flex).toHaveClass("flex");
-});
-
-it("uses a grid layout if a template is set", () => {
+it("renders the flexible container", () => {
   const { container } = render(
     <Flex template={["grow", "shrink"]}>
       <h1>Foo</h1>
@@ -25,19 +13,7 @@ it("uses a grid layout if a template is set", () => {
   );
 
   const flex = container.firstChild;
-  expect(flex).toHaveClass("grid");
-});
-
-it("uses flexbox and column if direction is set to column", () => {
-  const { container } = render(
-    <Flex direction="column">
-      <h1>Foo</h1>
-      <p>Bar</p>
-    </Flex>,
-  );
-
-  const flex = container.firstChild;
-  expect(flex).toHaveClass("flex column");
+  expect(flex).toHaveClass("flexible");
 });
 
 it("uses grid and sets the template columns if direction is row and a template is provided", () => {
@@ -49,7 +25,7 @@ it("uses grid and sets the template columns if direction is row and a template i
   );
 
   const flex = container.firstChild;
-  expect(flex).toHaveClass("grid");
+  expect(flex).toHaveClass("flexible");
   expect(flex).toHaveStyle({
     gridTemplateColumns: "1fr max-content",
   });
@@ -64,7 +40,7 @@ it("uses grid and sets the template rows if direction is column and a template i
   );
 
   const flex = container.firstChild;
-  expect(flex).toHaveClass("grid");
+  expect(flex).toHaveClass("flexible");
   expect(flex).toHaveStyle({
     gridTemplateRows: "1fr max-content",
   });
@@ -72,7 +48,7 @@ it("uses grid and sets the template rows if direction is column and a template i
 
 it("sets the gap between children", () => {
   const { container } = render(
-    <Flex gap="small">
+    <Flex template={["grow", "shrink"]} gap="small">
       <h1>Foo</h1>
       <p>Bar</p>
     </Flex>,
@@ -84,7 +60,7 @@ it("sets the gap between children", () => {
 
 it("sets the alignment of children", () => {
   const { container } = render(
-    <Flex align="end">
+    <Flex template={["grow", "shrink"]} align="end">
       <h1>Foo</h1>
       <p>Bar</p>
     </Flex>,
@@ -92,30 +68,4 @@ it("sets the alignment of children", () => {
 
   const flex = container.firstChild;
   expect(flex).toHaveClass("endAlign");
-});
-
-it("warns if the template length does not match the number of children", () => {
-  const spy = jest.spyOn(console, "warn").mockImplementation(jest.fn());
-
-  render(
-    <Flex template={["grow", "shrink"]}>
-      <h1>Foo</h1>
-    </Flex>,
-  );
-
-  expect(spy).toHaveBeenCalledWith(
-    "Flex template length does not match children count, this may cause unexpected results.",
-  );
-});
-
-it("does not warn if there is no template", () => {
-  const spy = jest.spyOn(console, "warn").mockImplementation(jest.fn());
-
-  render(
-    <Flex>
-      <h1>Foo</h1>
-    </Flex>,
-  );
-
-  expect(spy).not.toHaveBeenCalled();
 });

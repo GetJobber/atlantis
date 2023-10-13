@@ -1,7 +1,5 @@
 declare const styles: {
-  readonly "flex": string;
-  readonly "grid": string;
-  readonly "column": string;
+  readonly "flexible": string;
   readonly "smallestGap": string;
   readonly "smallerGap": string;
   readonly "smallGap": string;

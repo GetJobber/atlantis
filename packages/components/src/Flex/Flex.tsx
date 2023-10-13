@@ -1,7 +1,7 @@
-import React, { CSSProperties, Children, ReactNode } from "react";
+import React, { CSSProperties, ReactNode } from "react";
 // import chunk from "lodash/chunk";
 import classnames from "classnames";
-import { ColumnKeys, Spacing } from "./types";
+import { ColumnKeys, Spacing } from "./Flex.types";
 import styles from "./Flex.css";
 
 interface FlexProps {
@@ -18,7 +18,7 @@ interface FlexProps {
    *
    * By default, this will set every children to grow in equal widths.
    */
-  readonly template?: ColumnKeys[];
+  readonly template: ColumnKeys[];
 
   /**
    * It works the same way as `alignItems` style with flex.
@@ -41,10 +41,20 @@ interface FlexProps {
   readonly direction?: "row" | "column";
 }
 
-const templateValues = {
-  grow: "1fr",
-  shrink: "max-content",
-};
+function generateGridStylesFromTemplate(
+  flowDirection: string,
+  layoutTemplate: ColumnKeys[],
+): CSSProperties {
+  const containerStyles: CSSProperties = {};
+  const templateKey =
+    flowDirection === "row" ? "gridTemplateColumns" : "gridTemplateRows";
+
+  containerStyles[templateKey] = layoutTemplate
+    .map(key => (key === "grow" ? "1fr" : "max-content"))
+    .join(" ");
+
+  return containerStyles;
+}
 
 export function Flex({
   align = "center",
@@ -53,32 +63,13 @@ export function Flex({
   gap = "base",
   template = [],
 }: FlexProps) {
-  if (template.length && template.length !== Children.count(children)) {
-    console.warn(
-      "Flex template length does not match children count, this may cause unexpected results.",
-    );
-  }
-
-  const templateKey =
-    direction === "row" ? "gridTemplateColumns" : "gridTemplateRows";
-
-  const containerStyles: CSSProperties = {};
-
-  if (template.length) {
-    containerStyles[templateKey] = template
-      .map(key => templateValues[key])
-      .join(" ");
-  }
-
   return (
     <div
-      className={classnames(
-        template.length ? styles.grid : styles.flex,
-        template.length === 0 && direction === "column" ? styles.column : null,
-        gap ? styles[`${gap}Gap`] : null,
-        align ? styles[`${align}Align`] : null,
-      )}
-      style={containerStyles}
+      className={classnames(styles.flexible, {
+        [styles[`${gap}Gap`]]: Boolean(gap),
+        [styles[`${align}Align`]]: Boolean(align),
+      })}
+      style={generateGridStylesFromTemplate(direction, template)}
     >
       {children}
     </div>

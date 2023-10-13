@@ -1,13 +1,5 @@
-.flex {
-  display: flex;
-}
-
-.grid {
+.flexible {
   display: grid;
-}
-
-.column {
-  flex-direction: column;
 }
 
 .smallestGap {
@@ -34,11 +26,7 @@
   gap: 0;
 }
 
-.flex.startAlign {
-  align-items: flex-start;
-}
-
-.grid.startAlign {
+.startAlign {
   align-items: start;
 }
 
@@ -46,10 +34,6 @@
   align-items: center;
 }
 
-.flex.endAlign {
-  align-items: flex-end;
-}
-
-.grid.endAlign {
+.endAlign {
   align-items: end;
 }
