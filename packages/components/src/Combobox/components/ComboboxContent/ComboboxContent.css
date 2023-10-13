@@ -19,21 +19,6 @@
   visibility: hidden;
 }
 
-.actions::before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: calc(var(--space-large) * -1);
-  right: 0;
-  left: 0;
-  height: var(--space-base);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgb(255, 255, 255) 100%
-  );
-}
-
 .actions {
   display: flex;
   flex-direction: column;

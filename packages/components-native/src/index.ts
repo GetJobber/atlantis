@@ -26,6 +26,7 @@ export * from "./IconButton";
 export * from "./InputFieldWrapper";
 export * from "./InputCurrency";
 export * from "./InputDate";
+export * from "./InputEmail";
 export * from "./InputNumber";
 export * from "./InputPassword";
 export * from "./InputPressable";

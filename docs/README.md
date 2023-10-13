@@ -49,6 +49,20 @@ Within Atlantis, in order for one package to depend on another all that is
 required is for it to be listed in the appropriate `package.json` file. Lerna
 will automatically take care of managing the versions for you.
 
+When working on some packages (for example `design`) locally, you'll need to run
+
+```
+ npm run bootstrap
+```
+
+and then
+
+```
+  npm start
+```
+
+to view and test your changes.
+
 ## Installing packages
 
 Atlantis packages are installed and updated using [npm](https://www.npmjs.com/).
