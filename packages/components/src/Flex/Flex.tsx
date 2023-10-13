@@ -1,12 +1,10 @@
-import React, { CSSProperties, ReactNode } from "react";
+import React, { CSSProperties, PropsWithChildren } from "react";
 // import chunk from "lodash/chunk";
 import classnames from "classnames";
 import { ColumnKeys, Spacing } from "./Flex.types";
 import styles from "./Flex.css";
 
-interface FlexProps {
-  children: ReactNode;
-
+interface FlexProps extends PropsWithChildren {
   /**
    * Determine how the children gets laid out
    *
