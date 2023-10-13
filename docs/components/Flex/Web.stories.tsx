@@ -1,12 +1,11 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Button } from "@jobber/components/Button";
 import { Content } from "@jobber/components/Content";
 import { Flex } from "@jobber/components/Flex";
-import { Heading } from "@jobber/components/Heading";
-import { Link } from "@jobber/components/Link";
 import { Text } from "@jobber/components/Text";
-import { Grid } from "@jobber/components/Grid";
+import { Icon } from "@jobber/components/Icon";
+import { Emphasis } from "@jobber/components/Emphasis";
+import { StatusLabel } from "@jobber/components/StatusLabel";
 
 export default {
   title: "Components/Layouts and Structure/Flex/Web",
@@ -18,52 +17,19 @@ export default {
 } as ComponentMeta<typeof Flex>;
 
 const BasicTemplate: ComponentStory<typeof Flex> = args => (
-  <Grid>
-    <Grid.Cell
-      size={{
-        md: 5,
-        lg: 4,
-        xl: 3,
-      }}
-    >
+  <Flex {...args}>
+    <Flex align="start" template={["shrink", "grow"]}>
+      <Icon name="quote" />
       <Content>
-        <Flex {...args}>
-          <Heading level={2}>Job insights</Heading>
-          <Button
-            label="Feedback"
-            onClick={() => {
-              console.log("clicked");
-            }}
-            type="tertiary"
-            variation="subtle"
-            size="small"
-          />
+        <Flex template={["grow", "shrink"]}>
+          <Emphasis variation="bold">Dylan Tec</Emphasis>
+          <StatusLabel label="Success" status="success" />
         </Flex>
-        <Flex {...args}>
-          <Heading level={3}>One-off job projections</Heading>
-          <Link url="#" external>
-            View report
-          </Link>
-        </Flex>
-        <Flex {...args}>
-          <Content spacing="small">
-            <Heading level={4}>Job revenue</Heading>
-            <Heading level={3}>$5,782</Heading>
-            <Text variation="subdued" size="small">
-              vs $5,012 past 30 days
-            </Text>
-          </Content>
-          <Content spacing="small">
-            <Heading level={4}>Jobs scheduled</Heading>
-            <Heading level={3}>37</Heading>
-            <Text variation="subdued" size="small">
-              vs 42 past 30 days
-            </Text>
-          </Content>
-        </Flex>
+        <Text>Sep 03 | $100 | Quote #93</Text>
       </Content>
-    </Grid.Cell>
-  </Grid>
+    </Flex>
+    <Icon name="arrowRight" />
+  </Flex>
 );
 
 export const Basic = BasicTemplate.bind({});
