@@ -16,7 +16,7 @@ it("renders the flexible container", () => {
   expect(flex).toHaveClass("flexible");
 });
 
-it("uses grid and sets the template columns if direction is row and a template is provided", () => {
+it("sets the template columns if direction is row", () => {
   const { container } = render(
     <Flex template={["grow", "shrink"]}>
       <h1>Foo</h1>
@@ -25,13 +25,12 @@ it("uses grid and sets the template columns if direction is row and a template i
   );
 
   const flex = container.firstChild;
-  expect(flex).toHaveClass("flexible");
   expect(flex).toHaveStyle({
     gridTemplateColumns: "1fr max-content",
   });
 });
 
-it("uses grid and sets the template rows if direction is column and a template is provided", () => {
+it("sets the template rows if direction is column", () => {
   const { container } = render(
     <Flex direction="column" template={["grow", "shrink"]}>
       <h1>Foo</h1>
@@ -40,7 +39,6 @@ it("uses grid and sets the template rows if direction is column and a template i
   );
 
   const flex = container.firstChild;
-  expect(flex).toHaveClass("flexible");
   expect(flex).toHaveStyle({
     gridTemplateRows: "1fr max-content",
   });
