@@ -123,8 +123,8 @@ describe("ComboboxContent Header", () => {
       <MockComboboxProvider multiselect={true}>
         <Combobox.Content
           options={[
-            { id: "1", label: "Bilbo Baggins" },
-            { id: "2", label: "Frodo Baggins" },
+            { id: 1, label: "Bilbo Baggins" },
+            { id: 2, label: "Frodo Baggins" },
           ]}
           onSelect={jest.fn()}
           selected={[]}
@@ -141,8 +141,8 @@ describe("ComboboxContent Header", () => {
       <MockComboboxProvider>
         <Combobox.Content
           options={[
-            { id: "1", label: "Bilbo Baggins" },
-            { id: "2", label: "Frodo Baggins" },
+            { id: 1, label: "Bilbo Baggins" },
+            { id: 2, label: "Frodo Baggins" },
           ]}
           onSelect={jest.fn()}
           selected={[]}
@@ -151,6 +151,59 @@ describe("ComboboxContent Header", () => {
     );
 
     expect(queryByTestId("ATL-Combobox-Header")).not.toBeInTheDocument();
+  });
+
+  it("should select all options when 'Select all' is clicked", () => {
+    const selectHandler = jest.fn();
+    const { getByText } = render(
+      <MockComboboxProvider multiselect={true}>
+        <Combobox.Content
+          options={[
+            { id: 1, label: "Eleanor Shellstrop" },
+            { id: 2, label: "Jason Mendoza" },
+            { id: 3, label: "Tahani Al-Jamil" },
+            { id: 4, label: "Chidi Anagonye" },
+          ]}
+          onSelect={selectHandler}
+          selected={[]}
+        ></Combobox.Content>
+      </MockComboboxProvider>,
+    );
+
+    const selectAllButton = getByText("Select all");
+    fireEvent.click(selectAllButton);
+
+    expect(selectHandler).toHaveBeenCalledWith([
+      { id: 1, label: "Eleanor Shellstrop" },
+      { id: 2, label: "Jason Mendoza" },
+      { id: 3, label: "Tahani Al-Jamil" },
+      { id: 4, label: "Chidi Anagonye" },
+    ]);
+  });
+
+  it("should clear all options when 'Clear' is clicked", () => {
+    const selectHandler = jest.fn();
+    const { getByText } = render(
+      <MockComboboxProvider multiselect={true}>
+        <Combobox.Content
+          options={[
+            { id: 1, label: "Eleanor Shellstrop" },
+            { id: 2, label: "Jason Mendoza" },
+            { id: 3, label: "Tahani Al-Jamil" },
+          ]}
+          onSelect={selectHandler}
+          selected={[
+            { id: 1, label: "Eleanor Shellstrop" },
+            { id: 2, label: "Jason Mendoza" },
+          ]}
+        ></Combobox.Content>
+      </MockComboboxProvider>,
+    );
+
+    const clearButton = getByText("Clear");
+    fireEvent.click(clearButton);
+
+    expect(selectHandler).toHaveBeenCalledWith([]);
   });
 });
 
