@@ -50,9 +50,7 @@ export function ComboboxList(props: ComboboxListProps): JSX.Element {
                   role="option"
                   aria-selected={isSelected}
                   onClick={() => props.selectionHandler(option)}
-                  className={classnames(styles.option, {
-                    [styles.selectedOption]: isSelected,
-                  })}
+                  className={classnames(styles.option)}
                 >
                   {option.label}
                   {isSelected && <Icon name="checkmark" color="blue" />}

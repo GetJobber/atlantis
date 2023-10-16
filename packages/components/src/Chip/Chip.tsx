@@ -34,7 +34,9 @@ export const Chip = ({
   return (
     <button
       className={classes}
-      onClick={ev => onClick && onClick(value || label, ev)}
+      onClick={(ev: React.MouseEvent<HTMLButtonElement>) =>
+        onClick && onClick(value || label, ev)
+      }
       tabIndex={tabIndex}
       onKeyDown={onKeyDown}
       aria-label={ariaLabel || label}

@@ -249,11 +249,11 @@ describe("Combobox selected value", () => {
     const option = getByText("Bilbo Baggins");
     const clearButton = getByText("Clear Selection");
 
-    expect(option).toHaveClass("selectedOption");
+    expect(option).toHaveAttribute("aria-selected", "true");
 
     fireEvent.click(clearButton);
     fireEvent.click(getByText("Button"));
-    expect(option).not.toHaveClass("selectedOption");
+    expect(option).not.toHaveAttribute("aria-selected", "true");
   });
 });
 
@@ -296,8 +296,8 @@ describe("Combobox multiselect", () => {
     fireEvent.click(option);
     fireEvent.click(option2);
 
-    expect(option).toHaveClass("selectedOption");
-    expect(option2).toHaveClass("selectedOption");
+    expect(option).toHaveAttribute("aria-selected", "true");
+    expect(option2).toHaveAttribute("aria-selected", "true");
   });
 
   it("should call the onSelect callback upon making selection(s)", () => {

@@ -121,9 +121,9 @@ describe("ComboboxList", () => {
         searchValue=""
       />,
     );
-    expect(getByText("Michael")).toHaveClass("selectedOption");
-    expect(getByText("Leatherface")).toHaveClass("selectedOption");
-    expect(getByText("Jason")).not.toHaveClass("selectedOption");
+    expect(getByText("Michael")).toHaveAttribute("aria-selected", "true");
+    expect(getByText("Leatherface")).toHaveAttribute("aria-selected", "true");
+    expect(getByText("Jason")).not.toHaveAttribute("aria-selected", "true");
   });
 
   it("should have a selected option when selected id is a number and option id is a string", () => {
@@ -142,8 +142,8 @@ describe("ComboboxList", () => {
         searchValue=""
       />,
     );
-    expect(getByText("Michael")).toHaveClass("selectedOption");
-    expect(getByText("Jason")).not.toHaveClass("selectedOption");
+    expect(getByText("Michael")).toHaveAttribute("aria-selected", "true");
+    expect(getByText("Jason")).not.toHaveAttribute("aria-selected", "true");
   });
 
   it("has no selected option when a null selected value is passed", () => {
@@ -162,7 +162,7 @@ describe("ComboboxList", () => {
         searchValue=""
       />,
     );
-    expect(getByText("Michael")).not.toHaveClass("selectedOption");
-    expect(getByText("Jason")).not.toHaveClass("selectedOption");
+    expect(getByText("Michael")).not.toHaveAttribute("aria-selected", "true");
+    expect(getByText("Jason")).not.toHaveAttribute("aria-selected", "true");
   });
 });
