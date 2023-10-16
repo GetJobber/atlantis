@@ -61,6 +61,19 @@ un-selected. In multi-select mode, the Combobox will only close when a user
 takes an explicit action to close it such as clicking outside the Combobox or
 pressing the ESC key.
 
+When `multiSelect` is enabled, a Combobox header will be displayed below the
+search input.
+
+When no selections have been made, the header label will read "Select" and the
+button will read "Select all". When clicking "Select all", all options will be
+selected.
+
+When one or more options have been selected, the header label will show the
+number of selected items, like a counter. The button will then read "Clear".
+When clicking "Clear", all options will be un-selected. If you have filtered the
+options, the "Clear" button will un-select each option selected, whether present
+in the filtered results or not.
+
 #### Selection callbacks
 
 As selections are made, the data will be returned via an argument to the
