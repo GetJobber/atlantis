@@ -47,7 +47,10 @@ You can use the `mockViewportWidth` function to mock the window size and trigger
 specific breakpoints.
 
 ```tsx
-import { mockViewportWidth } from "@jobber/hooks/useBreakpoints";
+import {
+  BREAKPOINT_SIZES,
+  mockViewportWidth,
+} from "@jobber/hooks/useBreakpoints";
 
 const { cleanup, setViewportWidth } = mockViewportWidth();
 
@@ -61,5 +64,13 @@ it("should render my element when the viewport size is 500px", () => {
 
   render(<MyComponent />);
   expect(screen.getByText("500px")).toBeInTheDocument();
+});
+
+it("should render my element when the viewport size is large", () => {
+  // Set the viewport width before the component renders
+  setViewportWidth(BREAKPOINT_SIZES.lg);
+
+  render(<MyComponent />);
+  expect(screen.getByText("Large")).toBeInTheDocument();
 });
 ```
