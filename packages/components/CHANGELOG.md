@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.49.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.48.2...@jobber/components@4.49.0) (2023-10-16)
+
+
+### Features
+
+* **components:** Chip ([#1571](https://github.com/GetJobber/atlantis/issues/1571)) ([104071a](https://github.com/GetJobber/atlantis/commit/104071a3ddefc965673b7885fabd7c9b44b765e1))
+
+
+
+
+
 ## [4.48.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.48.1...@jobber/components@4.48.2) (2023-10-13)
 
 
