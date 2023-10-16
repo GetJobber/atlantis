@@ -12,25 +12,9 @@ interface ComboboxHeaderProps {
 
 export function ComboboxHeader(props: ComboboxHeaderProps): JSX.Element {
   const hasSelected = props.selectedCount > 0;
-  let label = "Select";
-  let actionLabel = "Select all";
-
-  if (props.subjectNoun) {
-    label = `Select ${props.subjectNoun}`;
-  }
-
-  if (hasSelected) {
-    label = `${props.selectedCount} selected`;
-    actionLabel = "Clear";
-  }
-
-  const handleSelectAll = () => {
-    if (hasSelected) {
-      props.onClearAll();
-    } else {
-      props.onSelectAll();
-    }
-  };
+  const actionLabel = hasSelected ? "Clear" : "Select all";
+  const label = getLabel(hasSelected, props.selectedCount, props.subjectNoun);
+  const handleSelectAll = hasSelected ? props.onClearAll : props.onSelectAll;
 
   return (
     <div className={styles.header} data-testid="ATL-Combobox-Header">
@@ -45,4 +29,20 @@ export function ComboboxHeader(props: ComboboxHeaderProps): JSX.Element {
       />
     </div>
   );
+}
+
+function getLabel(
+  hasSelected: boolean,
+  count: number,
+  subjectNoun?: string,
+): string {
+  if (hasSelected) {
+    return `${count} selected`;
+  }
+
+  if (subjectNoun) {
+    return `Select ${subjectNoun}`;
+  }
+
+  return "Select";
 }
