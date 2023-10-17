@@ -374,6 +374,32 @@ describe("Combobox multiselect", () => {
       expect(queryByText("Choice: Bilbo Baggins")).not.toBeInTheDocument();
       expect(queryByText("Choice: Shelob the Spoder")).not.toBeInTheDocument();
     });
+
+    it("should not update consumer as selections are made by clicking Select all", () => {
+      const { getByText, queryByText } = render(
+        <MockMultiSelectOnCloseCombobox />,
+      );
+
+      const button = getByText("Click Me");
+      const selectAll = getByText("Select all");
+
+      fireEvent.click(button);
+      fireEvent.click(selectAll);
+
+      const options = [
+        getByText("Bilbo Baggins"),
+        getByText("Frodo Baggins"),
+        getByText("Shelob the Spoder"),
+      ];
+
+      options.forEach(option => {
+        expect(option).toHaveAttribute("aria-selected", "true");
+      });
+
+      expect(queryByText("Choice: Bilbo Baggins")).not.toBeInTheDocument();
+      expect(queryByText("Choice: Frodo Baggins")).not.toBeInTheDocument();
+      expect(queryByText("Choice: Shelob the Spoder")).not.toBeInTheDocument();
+    });
   });
 
   describe("Select all", () => {
