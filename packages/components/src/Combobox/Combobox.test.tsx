@@ -32,6 +32,7 @@ describe("Combobox validation", () => {
   it("throws an error if there is no Trigger element", () => {
     expect.assertions(1);
     let error;
+
     try {
       render(
         <Combobox>
@@ -52,6 +53,7 @@ describe("Combobox validation", () => {
   it("throws an error if there are multiple of the same Trigger element", () => {
     expect.assertions(1);
     let error;
+
     try {
       render(
         <Combobox>
@@ -74,6 +76,7 @@ describe("Combobox validation", () => {
   it("throws an error if there are multiple of various Trigger elements", () => {
     expect.assertions(1);
     let error;
+
     try {
       render(
         <Combobox>
@@ -96,6 +99,7 @@ describe("Combobox validation", () => {
   it("throws an error if there is no Content element", () => {
     expect.assertions(1);
     let error;
+
     try {
       render(
         <Combobox>
@@ -112,6 +116,7 @@ describe("Combobox validation", () => {
   it("throws an error if there is neither a Content nor Trigger element", () => {
     expect.assertions(1);
     let error;
+
     try {
       render(
         <Combobox>
@@ -128,6 +133,7 @@ describe("Combobox validation", () => {
   it("throws an error if there are multiple Trigger elements and no Content", () => {
     expect.assertions(1);
     let error;
+
     try {
       render(
         <Combobox>
@@ -369,10 +375,75 @@ describe("Combobox multiselect", () => {
       expect(queryByText("Choice: Shelob the Spoder")).not.toBeInTheDocument();
     });
   });
+
+  describe("Select all", () => {
+    it("should contextually select all options when filtering", () => {
+      const onSelect = jest.fn();
+      const { getByText, getByPlaceholderText } = render(
+        <Combobox multiSelect>
+          <Combobox.TriggerButton label="Select teammates" />
+          <Combobox.Content
+            options={[
+              { id: "1", label: "Bilbo Baggins" },
+              { id: "2", label: "Frodo Baggins" },
+              { id: "3", label: "Shelob the Spoder" },
+            ]}
+            onSelect={onSelect}
+            selected={[]}
+          ></Combobox.Content>
+        </Combobox>,
+      );
+
+      const button = getByText("Select teammates");
+      const searchInput = getByPlaceholderText("Search");
+
+      fireEvent.click(button);
+      fireEvent.change(searchInput, { target: { value: "Baggins" } });
+
+      const selectAllButton = getByText("Select all");
+      fireEvent.click(selectAllButton);
+
+      expect(onSelect).toHaveBeenCalledWith([
+        { id: "1", label: "Bilbo Baggins" },
+        { id: "2", label: "Frodo Baggins" },
+      ]);
+    });
+  });
+
+  describe("Clear", () => {
+    it("should unselect all selections regardless of filter state", () => {
+      const onSelect = jest.fn();
+      const { getByText, getByPlaceholderText } = render(
+        <Combobox multiSelect>
+          <Combobox.TriggerButton label="Select teammates" />
+          <Combobox.Content
+            options={[
+              { id: "1", label: "Bilbo Baggins" },
+              { id: "2", label: "Frodo Baggins" },
+              { id: "3", label: "Shelob the Spoder" },
+            ]}
+            onSelect={onSelect}
+            selected={[{ id: "3", label: "Shelob the Spoder" }]}
+          ></Combobox.Content>
+        </Combobox>,
+      );
+
+      const button = getByText("Select teammates");
+      fireEvent.click(button);
+
+      const searchInput = getByPlaceholderText("Search");
+      fireEvent.change(searchInput, { target: { value: "Baggins" } });
+
+      const clearButton = getByText("Clear");
+      fireEvent.click(clearButton);
+
+      expect(onSelect).toHaveBeenCalledWith([]);
+    });
+  });
 });
 
 function MockMultiSelectOnCloseCombobox(props: {
-  onCloseOverride?: () => void;
+  readonly onCloseOverride?: () => void;
 }): JSX.Element {
   const [selected, setSelected] = React.useState<ComboboxOption[]>([]);
   const callback = props.onCloseOverride || setSelected;
@@ -399,7 +470,7 @@ function MockMultiSelectOnCloseCombobox(props: {
 }
 
 function MockMultiSelectOnSelectCombobox(props: {
-  onSelectOverride?: () => void;
+  readonly onSelectOverride?: () => void;
 }): JSX.Element {
   const [selected, setSelected] = React.useState<ComboboxOption[]>([]);
   const callback = props.onSelectOverride || setSelected;
