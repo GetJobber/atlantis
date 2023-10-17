@@ -1,7 +1,7 @@
 import React, { CSSProperties, PropsWithChildren } from "react";
 // import chunk from "lodash/chunk";
 import classnames from "classnames";
-import { ColumnKeys, Spacing } from "./Flex.types";
+import { ColumnKeys, Direction, Spacing } from "./Flex.types";
 import styles from "./Flex.css";
 
 interface FlexProps extends PropsWithChildren {
@@ -36,7 +36,7 @@ interface FlexProps extends PropsWithChildren {
    * @default "row"
    */
 
-  readonly direction?: "row" | "column";
+  readonly direction?: Direction;
 }
 
 export function Flex({
@@ -60,15 +60,21 @@ export function Flex({
 }
 
 function generateGridStylesFromTemplate(
-  flowDirection: string,
+  direction: Direction,
   layoutTemplate: ColumnKeys[],
 ): CSSProperties {
   const containerStyles: CSSProperties = {};
-  const templateKey =
-    flowDirection === "row" ? "gridTemplateColumns" : "gridTemplateRows";
+  const templateKeys = {
+    row: "gridTemplateColumns",
+    column: "gridTemplateRows",
+  } as const;
+  const templateValues = {
+    grow: "1fr",
+    shrink: "max-content",
+  } as const;
 
-  containerStyles[templateKey] = layoutTemplate
-    .map(key => (key === "grow" ? "1fr" : "max-content"))
+  containerStyles[templateKeys[direction]] = layoutTemplate
+    .map(key => templateValues[key])
     .join(" ");
 
   return containerStyles;
