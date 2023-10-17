@@ -39,21 +39,6 @@ interface FlexProps extends PropsWithChildren {
   readonly direction?: "row" | "column";
 }
 
-function generateGridStylesFromTemplate(
-  flowDirection: string,
-  layoutTemplate: ColumnKeys[],
-): CSSProperties {
-  const containerStyles: CSSProperties = {};
-  const templateKey =
-    flowDirection === "row" ? "gridTemplateColumns" : "gridTemplateRows";
-
-  containerStyles[templateKey] = layoutTemplate
-    .map(key => (key === "grow" ? "1fr" : "max-content"))
-    .join(" ");
-
-  return containerStyles;
-}
-
 export function Flex({
   align = "center",
   children,
@@ -72,4 +57,19 @@ export function Flex({
       {children}
     </div>
   );
+}
+
+function generateGridStylesFromTemplate(
+  flowDirection: string,
+  layoutTemplate: ColumnKeys[],
+): CSSProperties {
+  const containerStyles: CSSProperties = {};
+  const templateKey =
+    flowDirection === "row" ? "gridTemplateColumns" : "gridTemplateRows";
+
+  containerStyles[templateKey] = layoutTemplate
+    .map(key => (key === "grow" ? "1fr" : "max-content"))
+    .join(" ");
+
+  return containerStyles;
 }
