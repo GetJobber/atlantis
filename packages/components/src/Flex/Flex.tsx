@@ -44,7 +44,7 @@ export function Flex({
   children,
   direction = "row",
   gap = "base",
-  template = [],
+  template,
 }: FlexProps) {
   return (
     <div
