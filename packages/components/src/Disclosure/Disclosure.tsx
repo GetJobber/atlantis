@@ -9,7 +9,7 @@ import { Typography } from "../Typography";
 
 interface DisclosureProps {
   /**
-   * Child content that is manged by this component.
+   * Child content that is managed by this component.
    */
   readonly children: ReactNode | ReactNode[];
 
@@ -17,6 +17,11 @@ interface DisclosureProps {
    * Title for the disclosure pane.
    */
   readonly title: string;
+
+  /**
+   * Override the summary of the Disclosure with custom React content.
+   */
+  readonly customSummary?: ReactNode;
 
   /**
    * This sets the default open state of the disclosure.
@@ -30,6 +35,7 @@ interface DisclosureProps {
 export function Disclosure({
   children,
   title,
+  customSummary,
   defaultOpen = false,
 }: DisclosureProps) {
   const [isOpen, setOpen] = useState(defaultOpen);
@@ -45,14 +51,18 @@ export function Disclosure({
     <details open={isOpen} onToggle={onToggle} className={styles.details}>
       <summary className={styles.summary}>
         <div className={styles.summaryWrap} ref={titleRef}>
-          <Typography
-            element="h4"
-            size={isBelowBreakpoint ? "base" : "large"}
-            fontWeight="bold"
-            textColor="heading"
-          >
-            {title}
-          </Typography>
+          {customSummary ? (
+            customSummary
+          ) : (
+            <Typography
+              element="h4"
+              size={isBelowBreakpoint ? "base" : "large"}
+              fontWeight="bold"
+              textColor="heading"
+            >
+              {title}
+            </Typography>
+          )}
           <span className={styles.arrowIconWrapper}>
             <Icon size="large" name="arrowDown" color="green" />
           </span>
