@@ -1,0 +1,10 @@
+.container {
+  /* box-shadow: var(--shadow-base);
+  padding: var(--space-base) 0; */
+}
+
+.grid {
+  padding-bottom: var(--space-base);
+  padding-left: var(--space-base);
+  padding-right: var(--space-base);
+}
