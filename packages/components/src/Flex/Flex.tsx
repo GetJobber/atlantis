@@ -19,7 +19,7 @@ interface FlexProps extends PropsWithChildren {
   readonly template: ColumnKeys[];
 
   /**
-   * It works the same way as `alignItems` style with flex.
+   * Adjusts the alignment of the Flex children.
    */
   readonly align?: "start" | "end" | "center";
 
