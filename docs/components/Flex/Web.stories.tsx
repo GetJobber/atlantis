@@ -34,5 +34,5 @@ const BasicTemplate: ComponentStory<typeof Flex> = args => (
 
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
-  template: ["shrink", "shrink"],
+  template: ["grow", "shrink"],
 };
