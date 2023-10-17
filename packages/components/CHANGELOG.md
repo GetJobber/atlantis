@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.49.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.49.0...@jobber/components@4.49.1) (2023-10-16)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [4.49.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.48.2...@jobber/components@4.49.0) (2023-10-16)
+
+
+### Features
+
+* **components:** Chip ([#1571](https://github.com/GetJobber/atlantis/issues/1571)) ([104071a](https://github.com/GetJobber/atlantis/commit/104071a3ddefc965673b7885fabd7c9b44b765e1))
+
+
+
+
+
+## [4.48.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.48.1...@jobber/components@4.48.2) (2023-10-13)
+
+
+### Bug Fixes
+
+* **components:** Avoid rendering DataListItemActions when there's no children ([#1585](https://github.com/GetJobber/atlantis/issues/1585)) ([7e02ea2](https://github.com/GetJobber/atlantis/commit/7e02ea2bd3e4c13db86dd3a5b19e08c764585b65))
+
+
+
+
+
+## [4.48.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.48.0...@jobber/components@4.48.1) (2023-10-13)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 # [4.48.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.47.0...@jobber/components@4.48.0) (2023-10-12)
 
 
