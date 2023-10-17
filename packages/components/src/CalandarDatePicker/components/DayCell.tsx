@@ -46,7 +46,7 @@ export const DayCell = (props: {
       onClick={props.disabled ? undefined : props.onToggle}
       role="togglebutton"
       aria-disabled={props.disabled}
-      aria-selected={props.selected}
+      aria-selected={props.selected || props.range !== "none"}
       className={combineClassNames(
         classNames.cell,
         !props.disabled && props.selected ? classNames.selected : "",
