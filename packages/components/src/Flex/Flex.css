@@ -1,5 +1,7 @@
 .flexible {
   display: grid;
+  /* If this gets wrapped in a flex container, it should take the remaining space */
+  flex: 1;
 }
 
 .smallestGap {
