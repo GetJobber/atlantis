@@ -9,6 +9,10 @@ declare const styles: {
   readonly "invalid": string;
   readonly "subtle": string;
   readonly "disabled": string;
+  readonly "chipHeading": string;
+  readonly "chipLabel": string;
+  readonly "truncateGradient": string;
+  readonly "noMargin": string;
 };
 export = styles;
 

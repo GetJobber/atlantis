@@ -8,6 +8,7 @@
   display: flex;
   position: relative;
   height: var(--chip-height);
+  max-width: 100%;
   padding: var(--space-small) var(--base-unit);
   border: var(--border-base) solid transparent;
   border-radius: var(--chip-radius);
@@ -110,4 +111,77 @@
 
 .chip.disabled .suffix {
   background-color: var(--color-disabled);
+}
+
+.chipHeading {
+  flex-shrink: 0;
+}
+
+.chipHeading,
+.chipLabel {
+  position: relative;
+  overflow: hidden;
+}
+
+.chipHeading > p,
+.chipLabel > p {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.truncateGradient {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--space-base);
+  height: 100%;
+  background: linear-gradient(
+    to left,
+    var(--chip-base-bg) 25%,
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.invalid .truncateGradient {
+  background: linear-gradient(
+    to left,
+    var(--color-critical--surface) 25%,
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.disabled .truncateGradient {
+  background: linear-gradient(
+    to left,
+    var(--chip-disabled--bg) 25%,
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.subtle .truncateGradient {
+  background: linear-gradient(
+    to left,
+    var(--color-surface) 25%,
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.base:hover .truncateGradient {
+  background: linear-gradient(
+    to left,
+    var(--chip-base--hover) 25%,
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.subtle:hover .truncateGradient {
+  background: linear-gradient(
+    to left,
+    var(--chip-base-bg) 25%,
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.noMargin > * {
+  margin-left: 0 !important;
 }
