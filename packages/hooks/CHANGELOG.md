@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.6.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.6.0...@jobber/hooks@2.6.1) (2023-10-16)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+# [2.6.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.5.0...@jobber/hooks@2.6.0) (2023-10-16)
+
+
+### Features
+
+* **components:** Chip ([#1571](https://github.com/GetJobber/atlantis/issues/1571)) ([104071a](https://github.com/GetJobber/atlantis/commit/104071a3ddefc965673b7885fabd7c9b44b765e1))
+
+
+
+
+
+# [2.5.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.4.0...@jobber/hooks@2.5.0) (2023-10-05)
+
+
+### Features
+
+* **hooks:** create breakpoints hook ([#1565](https://github.com/GetJobber/atlantis/issues/1565)) ([0036fa5](https://github.com/GetJobber/atlantis/commit/0036fa5422a3b528b031810409b35d555ead38b7))
+
+
+
+
+
 # [2.4.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.3.0...@jobber/hooks@2.4.0) (2023-09-29)
 
 

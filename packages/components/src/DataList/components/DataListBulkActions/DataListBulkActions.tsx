@@ -1,11 +1,8 @@
-import React, { Children, ReactElement, isValidElement } from "react";
-import { Tooltip } from "@jobber/components/Tooltip";
-import { Button } from "@jobber/components/Button";
+import React from "react";
 import { DataListBulkActionsProps } from "../../DataList.types";
 import { useDataListContext } from "../../context/DataListContext";
-import { DataListItemActionsOverflow } from "../DataListItemActions/DataListItemActionsOverflow";
-import { getExposedActions } from "../../DataList.utils";
-import { DataListOverflowFade } from "../DataListOverflowFade";
+import { DataListActions } from "../DataListActions";
+import { useResponsiveSizing } from "../../hooks/useResponsiveSizing";
 
 // This component is meant to capture the props of the DataList.BulkActions
 export function DataListBulkActions(
@@ -20,31 +17,13 @@ export function InternalDataListBulkActions() {
   if (!bulkActionsComponent) return null;
 
   const { children } = bulkActionsComponent.props;
-  const childrenArray =
-    Children.toArray(children).filter<ReactElement>(isValidElement);
 
-  const exposedActions = getExposedActions(childrenArray, 3);
-  childrenArray.splice(0, exposedActions.length);
+  const { sm } = useResponsiveSizing();
+
+  // Collapse all actions under "More actions" when breakpoint is smaller than sm
+  const itemsToExpose = sm ? 3 : 0;
 
   return (
-    <DataListOverflowFade>
-      {exposedActions.map(({ props }) => {
-        if (!props.icon) return null;
-
-        return (
-          <Tooltip key={props.label} message={props.label}>
-            <Button
-              icon={props.icon}
-              ariaLabel={props.label}
-              onClick={() => props.onClick?.()}
-              type="secondary"
-              variation="subtle"
-            />
-          </Tooltip>
-        );
-      })}
-
-      <DataListItemActionsOverflow actions={childrenArray} />
-    </DataListOverflowFade>
+    <DataListActions itemsToExpose={itemsToExpose}>{children}</DataListActions>
   );
 }

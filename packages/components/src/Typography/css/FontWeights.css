@@ -3,6 +3,11 @@
   font-weight: 400;
 }
 
+.medium {
+  font-family: var(--typography--fontFamily-normal);
+  font-weight: 500;
+}
+
 .semiBold {
   font-family: var(--typography--fontFamily-normal);
   font-weight: 600;

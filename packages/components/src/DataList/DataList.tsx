@@ -1,12 +1,9 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./DataList.css";
 import { DataListTotalCount } from "./components/DataListTotalCount";
 import { DataListLoadingState } from "./components/DataListLoadingState";
 import { DataListLayout } from "./components/DataListLayout";
-import {
-  DataListHeader,
-  DataListItems,
-} from "./components/DataListLayoutInternal";
+import { DataListHeader } from "./components/DataListHeader";
 import {
   DataListFilters,
   InternalDataListFilters,
@@ -35,22 +32,31 @@ import {
   DataListObject,
   DataListProps,
   DataListSearchProps,
+  LayoutRenderer,
 } from "./DataList.types";
 import {
-  generateHeaderElements,
   getCompoundComponent,
   getCompoundComponents,
+  sortBreakpoints,
 } from "./DataList.utils";
-import { useLayoutMediaQueries } from "./hooks/useLayoutMediaQueries";
-import { DATA_LIST_FILTERING_SPINNER_TEST_ID } from "./DataList.const";
+import {
+  Breakpoints,
+  DATA_LIST_FILTERING_SPINNER_TEST_ID,
+} from "./DataList.const";
 import { DataListBulkActions } from "./components/DataListBulkActions";
 import { Heading } from "../Heading";
 import { Spinner } from "../Spinner";
 
 export function DataList<T extends DataListObject>({
+  selected = [],
   sorting,
   ...props
 }: DataListProps<T>) {
+  const [layoutBreakpoints, setLayoutBreakpoints] = useState<Breakpoints[]>([]);
+  const [layouts, setLayouts] = useState<{
+    [Breakpoint in Breakpoints]?: LayoutRenderer<DataListObject>;
+  }>({});
+
   const searchComponent = getCompoundComponent<DataListSearchProps>(
     props.children,
     DataListSearch,
@@ -83,8 +89,12 @@ export function DataList<T extends DataListObject>({
         emptyStateComponents,
         itemActionComponent,
         bulkActionsComponent,
+        layoutBreakpoints,
+        registerLayoutBreakpoints,
+        layouts,
+        registerLayout,
         ...props,
-        selected: props.selected ?? [],
+        selected,
         // T !== DataListObject
         sorting: sorting as DataListProps<DataListObject>["sorting"],
       }}
@@ -92,23 +102,32 @@ export function DataList<T extends DataListObject>({
       <InternalDataList />
     </DataListContext.Provider>
   );
+
+  function registerLayoutBreakpoints(size: Breakpoints) {
+    setLayoutBreakpoints(prev => sortBreakpoints([...prev, size]));
+  }
+
+  function registerLayout(
+    size: Breakpoints,
+    children: LayoutRenderer<DataListObject>,
+  ) {
+    setLayouts(prev => ({
+      ...prev,
+      [size]: children,
+    }));
+  }
 }
 
 function InternalDataList() {
   const {
     data,
-    headers,
     title,
     totalCount,
-    headerVisibility = { xs: true, sm: true, md: true, lg: true, xl: true },
     loadingState = "none",
     layoutComponents,
   } = useDataListContext();
 
   const backToTopRef = useRef<HTMLDivElement>(null);
-
-  const headerData = generateHeaderElements(headers);
-  const mediaMatches = useLayoutMediaQueries();
 
   const initialLoading = loadingState === "initial";
   const showEmptyState = !initialLoading && data.length === 0;
@@ -132,33 +151,14 @@ function InternalDataList() {
           <InternalDataListSearch />
         </div>
 
-        {headerData && (
-          <DataListHeader
-            layouts={layoutComponents}
-            headerData={headerData}
-            headerVisibility={headerVisibility}
-            mediaMatches={mediaMatches}
-          />
-        )}
+        <DataListHeader />
       </DataListStickyHeader>
 
-      {initialLoading && (
-        <DataListLoadingState
-          headers={headers}
-          layouts={layoutComponents}
-          mediaMatches={mediaMatches}
-        />
-      )}
+      {initialLoading && <DataListLoadingState />}
 
       {showEmptyState && <InternalDataListEmptyState />}
 
-      {!initialLoading && (
-        <DataListItems
-          data={data}
-          layouts={layoutComponents}
-          mediaMatches={mediaMatches}
-        />
-      )}
+      {layoutComponents}
 
       {loadingState === "filtering" && (
         <div
@@ -214,6 +214,9 @@ DataList.Filters = DataListFilters;
 
 /**
  * Enables the search functionality of the DataList.
+ *
+ * Since the debounce is implemented within the component, it can only be an
+ * uncontrolled component. Thus the lack of a `value` prop.
  */
 DataList.Search = DataListSearch;
 

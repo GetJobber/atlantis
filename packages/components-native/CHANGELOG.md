@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.46.10](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.46.9...@jobber/components-native@0.46.10) (2023-10-16)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.46.9](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.46.8...@jobber/components-native@0.46.9) (2023-10-16)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.46.8](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.46.7...@jobber/components-native@0.46.8) (2023-10-12)
+
+
+### Bug Fixes
+
+* **components:** Move InputEmail Mobile into Atlantis ([#1573](https://github.com/GetJobber/atlantis/issues/1573)) ([0e28c27](https://github.com/GetJobber/atlantis/commit/0e28c2719078721552b768e48ae855218317b06c))
+
+
+
+
+
+## [0.46.7](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.46.6...@jobber/components-native@0.46.7) (2023-10-05)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
 ## [0.46.6](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.46.5...@jobber/components-native@0.46.6) (2023-09-29)
 
 **Note:** Version bump only for package @jobber/components-native

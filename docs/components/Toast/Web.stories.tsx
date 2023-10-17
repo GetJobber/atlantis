@@ -27,7 +27,7 @@ const Template: ComponentStory<Toast> = args => (
 
 export const Basic = Template.bind({});
 Basic.args = {
-  message: "Toast showed",
+  message: "Showed toast",
 };
 
 export const Variation = Template.bind({});

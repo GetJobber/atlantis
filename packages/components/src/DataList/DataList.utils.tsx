@@ -95,7 +95,7 @@ export function generateHeaderElements<T extends DataListObject>(
   return isEmpty(headerElements) ? undefined : headerElements;
 }
 
-export function sortSizeProp(sizeProp: Breakpoints[]) {
+export function sortBreakpoints(sizeProp: Breakpoints[]) {
   return sizeProp.sort(
     (a, b) => BREAKPOINTS.indexOf(a) - BREAKPOINTS.indexOf(b),
   );

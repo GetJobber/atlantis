@@ -1,0 +1,76 @@
+import { Canvas, Meta, Story } from "@storybook/addon-docs";
+import { DescriptionList } from "@jobber/components/DescriptionList";
+import { InlineLabel } from "@jobber/components/InlineLabel";
+import { Content } from "@jobber/components/Content";
+import * as hooks from ".";
+
+<Meta title="Hooks/useBreakpoints" />
+
+# useBreakpoints
+
+```ts
+import { useBreakpoints } from "@jobber/hooks/useBreakpoints";
+```
+
+`useBreakpoints` is the JS version of our
+[Design/Breakpoints](http://localhost:6005/?path=/docs/design-breakpoints--page)
+that uses `window.matchMedia` to mimic the CSS media queries.
+
+This allows you to use the same breakpoints in JS as you do in CSS. It also
+returns a `smallOnly`, `mediumOnly`, and `largeOnly` boolean that you can use to
+target specific breakpoints since JS doesn't cascade like CSS.
+
+<Canvas>
+  <Story name="useBreakpoints">
+    {() => {
+      const breakpoints = hooks.useBreakpoints();
+      const data = Object.entries(breakpoints).map(([key, value], i) => [
+        <code key={i}>{key}</code>,
+        <InlineLabel key={key} color={value ? "green" : "red"}>
+          {String(value)}
+        </InlineLabel>,
+      ]);
+      return (
+        <Content>
+          <DescriptionList data={data} />
+        </Content>
+      );
+    }}
+  </Story>
+</Canvas>
+
+_Note: Resize your browser and to the values change_
+
+## Testing
+
+You can use the `mockViewportWidth` function to mock the window size and trigger
+specific breakpoints.
+
+```tsx
+import {
+  BREAKPOINT_SIZES,
+  mockViewportWidth,
+} from "@jobber/hooks/useBreakpoints";
+
+const { cleanup, setViewportWidth } = mockViewportWidth();
+
+afterEach(() => {
+  cleanup();
+});
+
+it("should render my element when the viewport size is 500px", () => {
+  // Set the viewport width before the component renders
+  setViewportWidth(500);
+
+  render(<MyComponent />);
+  expect(screen.getByText("500px")).toBeInTheDocument();
+});
+
+it("should render my element when the viewport size is large", () => {
+  // Set the viewport width before the component renders
+  setViewportWidth(BREAKPOINT_SIZES.lg);
+
+  render(<MyComponent />);
+  expect(screen.getByText("Large")).toBeInTheDocument();
+});
+```
