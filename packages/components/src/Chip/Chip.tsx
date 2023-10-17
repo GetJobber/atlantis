@@ -1,5 +1,6 @@
 import React from "react";
-import classNames from "classnames";
+import classnames from "classnames";
+import { useInView } from "@jobber/hooks/useInView";
 import styles from "./Chip.css";
 import { ChipPrefix } from "./components/ChipPrefix/Chip.Prefix";
 import { ChipSuffix } from "./components/ChipSuffix/Chip.Suffix";
@@ -21,7 +22,7 @@ export const Chip = ({
   tabIndex = 0,
   variation = "base",
 }: ChipProps): JSX.Element => {
-  const classes = classNames(styles.chip, {
+  const classes = classnames(styles.chip, {
     [styles.invalid]: invalid,
     [styles.base]: variation === "base",
     [styles.subtle]: variation === "subtle",
@@ -30,6 +31,8 @@ export const Chip = ({
 
   const prefix = useChildComponent(children, d => d.type === Chip.Prefix);
   const suffix = useChildComponent(children, d => d.type === Chip.Suffix);
+
+  const [labelRef, isLabelInView] = useInView<HTMLSpanElement>();
 
   return (
     <button
@@ -45,12 +48,22 @@ export const Chip = ({
       type="button"
     >
       {prefix}
-      <Typography size="base" fontWeight="medium">
-        {heading}
-      </Typography>
+      <div className={styles.chipHeading}>
+        <Typography size="base" fontWeight="medium">
+          {heading}
+        </Typography>
+      </div>
       {heading && <span className={styles.chipBar} />}
-      <Typography size="base">{label}</Typography>
-      {suffix}
+      <div className={styles.chipLabel}>
+        <Typography size="base">
+          {label}
+          <span ref={labelRef} />
+        </Typography>
+        {!isLabelInView && <div className={styles.truncateGradient} />}
+      </div>
+      <div className={classnames({ [styles.noMargin]: !isLabelInView })}>
+        {suffix}
+      </div>
     </button>
   );
 };
