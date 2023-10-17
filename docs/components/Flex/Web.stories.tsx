@@ -20,7 +20,7 @@ const BasicTemplate: ComponentStory<typeof Flex> = args => (
   <Flex {...args}>
     <Flex align="start" template={["shrink", "grow"]}>
       <Icon name="quote" />
-      <Content>
+      <Content spacing="small">
         <Flex template={["grow", "shrink"]}>
           <Emphasis variation="bold">Dylan Tec</Emphasis>
           <StatusLabel label="Success" status="success" />
