@@ -159,7 +159,7 @@ function useRowsAndCells({
           onToggle={onToggle}
           highlighted={mapOfHighlightedDates[dateOfCell.getTime()]}
           disabled={!!isDisabled}
-          range={getRangeType(dateOfCell, selected)}
+          range={range ? getRangeType(dateOfCell, selected) : "none"}
         />,
       );
     }
