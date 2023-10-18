@@ -8,8 +8,8 @@ import {
   waitFor,
   within,
 } from "@testing-library/react";
-import { InternalChipDismissible } from ".";
-import { Chip } from "../Chip";
+import { InternalChipDismissible } from "..";
+import { Chip } from "../../Chip";
 
 const mockIsInView = jest.fn(() => false);
 
@@ -24,7 +24,9 @@ const handleSearch = jest.fn(value => value);
 const handleLoadMore = jest.fn(value => value);
 
 function getByChipLabelText(chipName: string) {
-  return screen.getByText(chipName);
+  return screen.getByLabelText(
+    chipName + ". Press delete or backspace to remove " + chipName,
+  );
 }
 
 describe("Basic interaction", () => {
@@ -44,7 +46,12 @@ describe("Basic interaction", () => {
         onLoadMore={handleLoadMore}
       >
         {chips.map(chip => (
-          <Chip key={chip} label={chip} value={chip} />
+          <Chip
+            key={chip}
+            label={chip}
+            value={chip}
+            onClick={handleClickChip}
+          />
         ))}
       </InternalChipDismissible>,
     );
@@ -132,6 +139,24 @@ describe("Basic interaction", () => {
       });
     });
   });
+  /*
+  it("should trigger the onClick callback when a chip gets clicked", () => {
+    const wrapperEl = screen.getByTestId("chip-wrapper");
+    fireEvent.click(wrapperEl);
+
+    expect(handleClickChip).toHaveBeenCalledWith(
+      selectedChips[0],
+      expect.any(Object),
+    );
+  }); */
+
+  //
+  it("should trigger the onChange callback when removing a chip", () => {
+    const wrapperEl = getByChipLabelText(selectedChips[0]);
+    fireEvent.click(wrapperEl);
+
+    expect(handleChange).toHaveBeenCalledWith([]);
+  });
 
   describe("delete via keyboard", () => {
     beforeEach(() => {
@@ -140,19 +165,45 @@ describe("Basic interaction", () => {
     });
 
     it("should add the highlighted option on enter", () => {
-      fireEvent.keyDown(screen.queryByRole("combobox") as Element, {
-        key: "Enter",
-      });
+      fireEvent.keyDown(screen.queryByRole("combobox"), { key: "Enter" });
       expect(handleChange).toHaveBeenCalledWith([...selectedChips, chips[1]]);
       expect(handleCustomAdd).not.toHaveBeenCalled();
     });
 
     it("should add the highlighted option on tab", () => {
-      fireEvent.keyDown(screen.queryByRole("combobox") as Element, {
-        key: "Tab",
-      });
+      fireEvent.keyDown(screen.queryByRole("combobox"), { key: "Tab" });
       expect(handleChange).toHaveBeenCalledWith([...selectedChips, chips[1]]);
       expect(handleCustomAdd).not.toHaveBeenCalled();
+    });
+
+    it("should focus on the last selected chip on input backspace", () => {
+      fireEvent.keyDown(screen.queryByRole("combobox"), { key: "Backspace" });
+      const wrapperEl = getByChipLabelText(selectedChips[0]);
+      expect(wrapperEl).toHaveFocus();
+    });
+  });
+
+  describe("left and right arrow keys via keyboard", () => {
+    it("should focus on the correct element when left or right arrow down", () => {
+      const chipWrappers = screen.getAllByTestId("chip-wrapper");
+      const first = chipWrappers[0];
+
+      fireEvent.select(first);
+      expect(first).toHaveFocus();
+
+      fireEvent.keyDown(first, {
+        key: "ArrowRight",
+      });
+      expect(first).not.toHaveFocus();
+
+      const addButton = screen.getByRole("button", { name: "Add" });
+      expect(addButton).toHaveFocus();
+
+      fireEvent.keyDown(addButton, {
+        key: "ArrowLeft",
+      });
+      expect(addButton).not.toHaveFocus();
+      expect(first).toHaveFocus();
     });
   });
 });

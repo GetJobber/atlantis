@@ -9,6 +9,7 @@ import { Typography } from "../Typography";
 
 export const Chip = ({
   ariaLabel,
+  dataTestID,
   disabled,
   heading,
   invalid,
@@ -43,7 +44,7 @@ export const Chip = ({
       disabled={disabled}
       role={role}
       type="button"
-      data-testid="chip-wrapper"
+      data-testid={dataTestID || "chip-wrapper"}
     >
       {prefix}
       <Typography size="base" fontWeight="medium">

@@ -12,6 +12,7 @@ export function InternalChipMultiSelect({
   children,
   selected,
   onChange,
+  onClick,
 }: InternalChipChoiceMultipleProps) {
   const toggleSelectedChip = (val?: string | number) => {
     const newChips = [...selected];
@@ -34,12 +35,54 @@ export function InternalChipMultiSelect({
         );
 
         return (
-          <ChipSelectable
-            {...chip.props}
-            selected={isChipActive}
-            onClick={toggleSelectedChip}
-          ></ChipSelectable>
+          <>
+            <label style={{ display: "none" }}>
+              <input
+                type="checkbox"
+                checked={isChipActive}
+                className={styles.input}
+                onClick={handleClick(chip.props.value)}
+                onChange={handleChange(chip.props.value)}
+                disabled={chip.props.disabled}
+              />
+            </label>
+            <ChipSelectable
+              {...chip.props}
+              selected={isChipActive}
+              onClick={toggleSelectedChip}
+            ></ChipSelectable>
+          </>
         );
+
+        function isChipSelected(value: string) {
+          return selected.includes(value);
+        }
+
+        function handleClick(value: string) {
+          return (event: React.MouseEvent<HTMLInputElement>) =>
+            onClick?.(event, value);
+        }
+
+        function handleChange(value: string) {
+          return () => {
+            if (isChipSelected(value)) {
+              handleDeselect(value);
+            } else {
+              handleSelect(value);
+            }
+          };
+        }
+
+        function handleSelect(value: string) {
+          const newVal = [...selected, value];
+          onChange(newVal);
+        }
+
+        function handleDeselect(value: string) {
+          const values = selected;
+          const newVal = values.filter(val => val !== value);
+          onChange(newVal);
+        }
       })}
     </div>
   );

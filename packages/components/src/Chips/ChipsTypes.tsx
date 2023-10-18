@@ -3,7 +3,7 @@ import { XOR } from "ts-xor";
 import { ChipProps } from "./Chip";
 
 interface ChipFoundationProps {
-  readonly children: ReactElement<ChipProps>[];
+  readonly children?: ReactElement<ChipProps>[];
 
   /**
    * Change the interaction on the chip.
@@ -94,6 +94,8 @@ export interface ChipDismissibleProps extends ChipFoundationProps {
    * @param searchValue - The input value
    */
   onLoadMore?(searchValue: string): void;
+
+  dataTestId?: string;
 }
 
 export type ChipsProps = XOR<

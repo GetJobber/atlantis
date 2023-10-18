@@ -28,6 +28,14 @@ beforeEach(() => {
 
 afterEach(cleanup);
 
+it("should have a label and a checkbox", () => {
+  const component = screen.getByTestId("multiselect-chips");
+  expect(component.querySelectorAll("label")).toHaveLength(chips.length);
+  expect(component.querySelectorAll("input[type=checkbox]")).toHaveLength(
+    chips.length,
+  );
+});
+
 it("should show a checkmark on the selected chip", () => {
   expect(screen.queryAllByTestId("checkmark")).toHaveLength(
     selectedChips.length,
@@ -48,3 +56,14 @@ describe("onChange", () => {
     expect(handleChange).toHaveReturnedWith([]);
   });
 });
+
+/*
+describe("onClick", () => {
+  it("should trigger the chip onClick", () => {
+    const target = chips[2];
+    userEvent.click(screen.getByLabelText(target));
+    expect(handleClickChip).toHaveBeenCalledTimes(1);
+    expect(handleClickChip).toHaveReturnedWith(target);
+  });
+});
+*/

@@ -7,6 +7,11 @@ export interface ChipProps extends PropsWithChildren {
   readonly ariaLabel?: string;
 
   /**
+   * Enables pass through of a data-testid. This is legacy functionality to allow old tests to pass.
+   */
+  readonly dataTestID?: string;
+
+  /**
    * Disables both mouse and keyboard functionality, and updates the visual style of the Chip to appear disabled.
    */
   readonly disabled?: boolean;

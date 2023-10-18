@@ -77,3 +77,103 @@ describe("DataListSort", () => {
     });
   });
 });
+
+describe("Sort by chips", () => {
+  beforeEach(() => {
+    render(
+      <DataListContext.Provider value={mockContextValue}>
+        <DataListSort />
+      </DataListContext.Provider>,
+    );
+
+    userEvent.click(screen.getByRole("button", { name: buttonLabel }));
+  });
+
+  it.each(sortableKeys)("should render a chip for %s", name => {
+    expect(
+      screen.getByRole("radio", { name: mockContextValue.headers[name] }),
+    ).toBeInTheDocument();
+  });
+
+  it("should render a chip for none", () => {
+    expect(screen.getByRole("radio", { name: "None" })).toBeInTheDocument();
+  });
+
+  it("should render a chip for ascending and descending and they're disabled", () => {
+    const ascendingRadio = screen.getByRole("radio", { name: "Ascending" });
+    expect(ascendingRadio).toBeInTheDocument();
+    expect(ascendingRadio).toBeDisabled();
+
+    const descendingRadio = screen.getByRole("radio", { name: "Descending" });
+    expect(descendingRadio).toBeInTheDocument();
+    expect(descendingRadio).toBeDisabled();
+  });
+});
+
+describe("Sorting key change", () => {
+  beforeEach(() => {
+    render(
+      <DataListContext.Provider value={mockContextValue}>
+        <DataListSort />
+      </DataListContext.Provider>,
+    );
+
+    userEvent.click(screen.getByRole("button", { name: buttonLabel }));
+  });
+
+  it.each(sortableKeys)("should call onSort with %s", name => {
+    userEvent.click(
+      screen.getByRole("radio", { name: mockContextValue.headers[name] }),
+    );
+
+    expect(handleSort).toHaveBeenCalledWith({
+      key: name,
+      order: "asc",
+    });
+  });
+
+  it("should call onSort with undefined when none is clicked", () => {
+    userEvent.click(screen.getByRole("radio", { name: "None" }));
+    expect(handleSort).toHaveBeenCalledWith(undefined);
+  });
+});
+
+describe("'Ordered by' change", () => {
+  const initialSortingState: DataListSorting = {
+    key: "label",
+    order: "asc",
+  };
+
+  beforeEach(() => {
+    render(
+      <DataListContext.Provider
+        value={{
+          ...mockContextValue,
+          sorting: {
+            ...mockContextValue.sorting,
+            state: initialSortingState,
+          },
+        }}
+      >
+        <DataListSort />
+      </DataListContext.Provider>,
+    );
+
+    userEvent.click(
+      screen.getByRole("button", { name: RegExp(buttonLabel, "i") }),
+    );
+  });
+
+  it("should not call onSort when you're selecting the already selected value", () => {
+    userEvent.click(screen.getByRole("radio", { name: "Ascending" }));
+    expect(handleSort).not.toHaveBeenCalled();
+  });
+
+  it("should call onSort with the new direction", () => {
+    userEvent.click(screen.getByRole("radio", { name: "Descending" }));
+    expect(handleSort).toHaveBeenCalledWith({
+      ...initialSortingState,
+      order: "desc",
+    });
+  });
+});

@@ -35,7 +35,7 @@ export function useInternalChipDismissibleInput({
   const [shouldCancelEnter, setShouldCancelEnter] = useState(false);
   const canAddCustomOption =
     onCustomOptionSelect !== undefined && !isLoadingMore;
-  const maxOptionIndex = allOptions.length - 1;
+  const maxOptionIndex = allOptions?.length - 1;
 
   const { liveAnnounce } = useLiveAnnounce();
 
@@ -46,8 +46,8 @@ export function useInternalChipDismissibleInput({
   const computed = {
     menuId,
     inputRef: useRef<HTMLInputElement>(null),
-    activeOption: allOptions[activeIndex],
-    hasAvailableOptions: allOptions.length > 0,
+    activeOption: allOptions?.[activeIndex],
+    hasAvailableOptions: allOptions?.length > 0,
     nextOptionIndex: activeIndex < maxOptionIndex ? activeIndex + 1 : 0,
     previousOptionIndex: activeIndex > 0 ? activeIndex - 1 : maxOptionIndex,
   };
@@ -89,6 +89,7 @@ export function useInternalChipDismissibleInput({
     handleSelectOption: (selected: typeof computed.activeOption) => {
       if (allOptions.length === 0) return;
       const setValue = selected.custom ? onCustomOptionSelect : onOptionSelect;
+
       if (setValue) {
         setValue(selected.value);
         liveAnnounce(`${selected.label} Added`);
@@ -120,6 +121,7 @@ export function useInternalChipDismissibleInput({
           // If there's no text left to delete,
           // and delete is pressed again, focus on a chip instead.
           const target = computed.inputRef.current?.previousElementSibling;
+
           if (target instanceof HTMLElement) {
             target.focus();
           }
@@ -153,7 +155,7 @@ function generateOptions(
   canAddCustomOption: boolean,
 ) {
   const allOptions: ChipDismissibleInputOptionProps[] = options
-    .filter(option =>
+    ?.filter(option =>
       option.label.toLowerCase().match(searchValue.trim().toLowerCase()),
     )
     .map(opt => ({ ...opt, custom: false }));
@@ -174,7 +176,7 @@ function generateCustomOption(
   canAddCustomOption: boolean,
 ) {
   function shouldAddCustomOption() {
-    const isMatchingOption = options.some(
+    const isMatchingOption = options?.some(
       option => option.label.toLowerCase() === searchValue.trim().toLowerCase(),
     );
 

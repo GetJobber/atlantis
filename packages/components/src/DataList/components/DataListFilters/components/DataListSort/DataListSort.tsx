@@ -3,7 +3,8 @@ import { useDataListContext } from "@jobber/components/DataList/context/DataList
 import { Button } from "@jobber/components/Button";
 import { Popover } from "@jobber/components/Popover";
 import { Content } from "@jobber/components/Content";
-import { Chip, Chips } from "@jobber/components/Chips";
+import { Chips } from "@jobber/components/Chips";
+import { Chip } from "@jobber/components/Chip";
 import { Heading } from "@jobber/components/Heading";
 
 export function DataListSort() {
@@ -36,14 +37,24 @@ export function DataListSort() {
           <Heading level={5}>Sort by</Heading>
           <Chips selected={state?.key || "none"} onChange={handleKeyChange}>
             {sortByOptions.map(({ label, value }) => (
-              <Chip key={label} label={label} value={value} />
+              <Chip key={label} label={label} value={value} role="radio" />
             ))}
           </Chips>
 
           <Heading level={5}>Ordered by</Heading>
           <Chips selected={state?.order} onChange={handleSortingChange}>
-            <Chip label="Ascending" value="asc" disabled={canChangeOrder} />
-            <Chip label="Descending" value="desc" disabled={canChangeOrder} />
+            <Chip
+              label="Ascending"
+              value="asc"
+              disabled={canChangeOrder}
+              role="radio"
+            />
+            <Chip
+              label="Descending"
+              value="desc"
+              disabled={canChangeOrder}
+              role="radio"
+            />
           </Chips>
         </Content>
       </Popover>
@@ -77,7 +88,7 @@ export function DataListSort() {
   }
 
   function handleKeyChange(value?: string) {
-    if (value && value !== "none") {
+    if (value && value !== "none" && value !== state?.order) {
       onSort({ key: value, order: state?.order || "asc" });
 
       return;
@@ -87,7 +98,7 @@ export function DataListSort() {
   }
 
   function handleSortingChange(value: "asc" | "desc") {
-    if (state?.key && value) {
+    if (state?.key && value && value !== state?.order) {
       onSort({ key: state.key, order: value });
 
       return;

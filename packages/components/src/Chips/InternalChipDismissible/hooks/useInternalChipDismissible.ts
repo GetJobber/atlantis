@@ -11,14 +11,14 @@ export function useInternalChipDismissible({
   onCustomAdd,
 }: InternalChipDismissibleProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const chipOptions = children.map(chip => chip.props);
-  const visibleChipOptions = chipOptions.filter(chip =>
+  const chipOptions = children?.map(chip => chip.props);
+  const visibleChipOptions = chipOptions?.filter(chip =>
     selected.includes(chip.value),
   );
   const sortedVisibleChipOptions = sortBy(visibleChipOptions, chip =>
     selected.indexOf(chip.value),
   );
-  const availableChipOptions = chipOptions.filter(
+  const availableChipOptions = chipOptions?.filter(
     chip => !selected.includes(chip.value),
   );
 
@@ -37,6 +37,7 @@ export function useInternalChipDismissible({
 
     handleChipClick: (value: string) => {
       if (onClick === undefined) return;
+
       return (event: MouseEvent<HTMLButtonElement>) => onClick(event, value);
     },
 
@@ -60,6 +61,7 @@ export function useInternalChipDismissible({
       ) {
         prevElementToFocus.focus();
       }
+
       if (
         event.key === "ArrowRight" &&
         nextElementToFocus instanceof HTMLElement
@@ -72,6 +74,7 @@ export function useInternalChipDismissible({
       return (event: KeyboardEvent<HTMLElement>) => {
         if (event.key === "Backspace" || event.key === "Delete") {
           const target = event.target;
+
           if (target instanceof HTMLElement) {
             const prevElement = target.previousElementSibling;
             const nextElement = target.nextElementSibling;
