@@ -15,9 +15,8 @@ interface TabsProps {
 
   /**
    * Specifies the tab that should be active on mount
-   * @default 0
    */
-  readonly activeTabOnMount?: number;
+  readonly defaultTab?: number;
 
   /**
    * Callback that fires when the active tab changes
@@ -27,12 +26,10 @@ interface TabsProps {
   onTabChange?(newTabIndex: number, prevTabIndex: number): void;
 }
 
-export function Tabs({
-  children,
-  activeTabOnMount = 0,
-  onTabChange,
-}: TabsProps) {
-  const [activeTab, setActiveTab] = useState(activeTabOnMount);
+export function Tabs({ children, defaultTab, onTabChange }: TabsProps) {
+  const activeTabInitialValue =
+    defaultTab && defaultTab < React.Children.count(children) ? defaultTab : 0;
+  const [activeTab, setActiveTab] = useState(activeTabInitialValue);
   const [overflowRight, setOverflowRight] = useState(false);
   const [overflowLeft, setOverflowLeft] = useState(false);
   const tabRow = useRef() as MutableRefObject<HTMLUListElement>;

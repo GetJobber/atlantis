@@ -67,8 +67,8 @@ describe("Tabs", () => {
   });
 
   it("sets the active tab on mount", () => {
-    const { getByText, queryByText } = render(
-      <Tabs activeTabOnMount={1}>
+    const { queryByText } = render(
+      <Tabs defaultTab={1}>
         <Tab label="Eggs">
           <p>🍳</p>
           <p>Eggs</p>
@@ -80,6 +80,23 @@ describe("Tabs", () => {
     );
 
     expect(queryByText("🍳")).toBeFalsy();
-    expect(getByText("🧀")).toBeTruthy();
+    expect(queryByText("🧀")).toBeTruthy();
+  });
+
+  it("sets the active tab to 0 if the defaultTab is out of bounds", () => {
+    const { queryByText } = render(
+      <Tabs defaultTab={2}>
+        <Tab label="Eggs">
+          <p>🍳</p>
+          <p>Eggs</p>
+        </Tab>
+        <Tab label="Cheese">
+          <p>🧀</p>
+        </Tab>
+      </Tabs>,
+    );
+
+    expect(queryByText("🍳")).toBeTruthy();
+    expect(queryByText("🧀")).toBeFalsy();
   });
 });
