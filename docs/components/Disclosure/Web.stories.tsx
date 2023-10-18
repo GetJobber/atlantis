@@ -3,7 +3,6 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Disclosure } from "@jobber/components/Disclosure";
 import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
-import { Heading } from "@jobber/components/Heading";
 
 export default {
   title: "Components/Layouts and Structure/Disclosure/Web",
@@ -31,8 +30,8 @@ Basic.args = {
 const WithCustomSummaryTemplate: ComponentStory<typeof Disclosure> = args => (
   <Disclosure {...args}>
     <Content>
-      <Text>Here is some helpful information to level up your business:</Text>
-      <Text>For every 2 team members you add, your profits will triple.</Text>
+      <Text>Here are some more details about your purchase</Text>
+      <Text>Lorem ipsum dolor sit amet </Text>
     </Content>
   </Disclosure>
 );
@@ -42,15 +41,8 @@ WithCustomSummary.args = {
   title: "Some Other Stuff",
   customSummary: (
     <div>
-      <div>
-        <Heading level={3}>{"Subtotal"}</Heading>
-        <Heading level={3}>{"$45"}</Heading>
-      </div>
-      <div>
-        <Text variation="subdued" align="end">
-          All prices are in $USD
-        </Text>
-      </div>
+      <h1>Hello</h1>
+      <h2>Everybody</h2>
     </div>
   ),
 };
