@@ -150,3 +150,13 @@ search query.
 - The title and "selected/unselected" status of each item is announced as the
   user navigates the options
 - The actions (if present) are announced and operable as buttons
+
+## Testing
+
+When using Jest to test Combobox implementations, you will need to include this
+mock in your test setup:
+
+```js
+const scrollIntoViewMock = jest.fn();
+window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
+```
