@@ -11,6 +11,7 @@ export type FormFieldTypes =
   | "textarea"
   | "select"
   | "tel"
+  | "date"
   | "email";
 
 export type AutocompleteTypes =

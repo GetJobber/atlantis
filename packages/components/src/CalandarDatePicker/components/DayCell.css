@@ -13,11 +13,18 @@
   width: 32px;
   height: 32px;
   box-sizing: border-box;
+  border: 0;
   border-color: transparent;
   border-radius: var(--radius-circle);
+  background: transparent;
   flex-basis: auto;
   align-items: center;
   justify-content: center;
+}
+
+.cell:not(.selected):focus {
+  color: var(--color-text);
+  background-color: var(--color-surface--hover);
 }
 
 .cell:not(.disabled):not(.selected):not(.outOfRange):hover {

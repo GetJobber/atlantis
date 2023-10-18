@@ -1,8 +1,8 @@
 declare const styles: {
   readonly "container": string;
   readonly "cell": string;
-  readonly "disabled": string;
   readonly "selected": string;
+  readonly "disabled": string;
   readonly "outOfRange": string;
   readonly "range-none": string;
   readonly "highlighted": string;

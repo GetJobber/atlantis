@@ -6,7 +6,10 @@ import { useEffect } from "react";
  *
  * @param active - Determines if it should focus or not
  */
-export function useRefocusOnActivator(active: boolean) {
+export function useRefocusOnActivator(
+  active: boolean,
+  { disabled }: { disabled?: boolean } = {},
+) {
   useEffect(() => {
     let activator: Element | null | undefined;
 
@@ -17,7 +20,7 @@ export function useRefocusOnActivator(active: boolean) {
     return () => {
       if (active) {
         if (activator instanceof HTMLElement) {
-          activator.focus();
+          !disabled && activator.focus();
         }
         activator = undefined;
       }

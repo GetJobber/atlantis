@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo, useRef } from "react";
 import { XOR } from "ts-xor";
 import classNames from "./CalendarDatePicker.css";
 import { CalendarDatePickerHeader } from "./components/CalendarDatePickerHeader";
@@ -31,6 +31,7 @@ export interface CalendarDatePickerBaseProps {
   readonly maxDate?: Date;
   readonly weekStartsOnMonday?: boolean;
   readonly onMonthChange?: (date: Date) => void;
+  readonly onClickOutside?: (event: MouseEvent) => void;
 }
 
 export type CalendarDatePickerProps = CalendarDatePickerBaseProps &
@@ -48,6 +49,7 @@ export const CalendarDatePicker = ({
   multi,
   onChange,
   onMonthChange,
+  onClickOutside,
 }: CalendarDatePickerProps) => {
   const [viewingDate, setViewingDate] = React.useState<Date>(() => {
     if (multi === true || range === true) {
@@ -57,10 +59,16 @@ export const CalendarDatePicker = ({
     return selected || today();
   });
 
+  const date = Array.isArray(selected) ? selected[0] : selected;
+
+  useEffect(() => {
+    date && setViewingDate(date);
+  }, [date]);
+
   const onMonthChangeInternal = useCallback(
-    (date: Date) => {
-      setViewingDate(date);
-      onMonthChange?.(date);
+    (next: Date) => {
+      setViewingDate(next);
+      onMonthChange?.(next);
     },
     [setViewingDate, onMonthChange],
   );
@@ -93,6 +101,7 @@ export const CalendarDatePicker = ({
       multi={!!multi}
       onChange={onChangeSelection}
       onMonthChange={onMonthChangeInternal}
+      onClickOutside={onClickOutside}
     />
   );
 };
@@ -115,9 +124,33 @@ export function CalendarMultiDatePickerComponent({
   range,
   onChange,
   onMonthChange,
+  onClickOutside,
 }: CalendarMultiDatePickerComponentProps) {
+  const elRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (onClickOutside) {
+      const el = elRef.current;
+      if (!el) return;
+
+      const listener = (event: MouseEvent) => {
+        console.log(el, event.target);
+        if (el.contains(event.target as Node)) return;
+        onClickOutside(event);
+      };
+
+      console.log("registering");
+      document.addEventListener("mouseup", listener);
+
+      return () => {
+        console.log("unmounting");
+        document.removeEventListener("mouseup", listener);
+      };
+    }
+  }, [onClickOutside, elRef.current]);
+
   return (
-    <div className={classNames.container}>
+    <div className={classNames.container} ref={elRef}>
       <CalendarDatePickerHeader
         month={viewingDate.getMonth()}
         year={viewingDate.getFullYear()}

@@ -41,12 +41,18 @@ export const DayCell = (props: {
    */
   readonly onToggle: () => void;
 }): JSX.Element => {
+  const formatter = new Intl.DateTimeFormat(navigator.language, {
+    dateStyle: "long",
+  });
+
   const cell = props.inMonth ? (
-    <div
-      onClick={props.disabled ? undefined : props.onToggle}
+    <button
+      type="button"
       role="togglebutton"
-      aria-disabled={props.disabled}
-      aria-selected={props.selected || props.range !== "none"}
+      aria-selected={props.selected}
+      disabled={props.disabled}
+      aria-label={formatter.format(props.date)}
+      onClick={props.disabled ? undefined : props.onToggle}
       className={combineClassNames(
         classNames.cell,
         !props.disabled && props.selected ? classNames.selected : "",
@@ -57,7 +63,7 @@ export const DayCell = (props: {
       )}
     >
       {"" + new Date(props.date).getDate()}
-    </div>
+    </button>
   ) : (
     <div
       className={combineClassNames(classNames.cell, classNames.outOfRange)}

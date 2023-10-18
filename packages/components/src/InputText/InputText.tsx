@@ -30,7 +30,6 @@ interface BaseProps
       | "onFocus"
       | "onBlur"
       | "onChange"
-      | "inputRef"
       | "validations"
       | "defaultValue"
       | "prefix"
@@ -44,6 +43,9 @@ export interface InputTextRef {
   blur(): void;
   focus(): void;
   scrollIntoView(arg?: boolean | ScrollIntoViewOptions): void;
+  getInputRef: () => React.RefObject<
+    HTMLInputElement | HTMLTextAreaElement | null
+  >;
 }
 
 interface MultilineProps extends BaseProps {
@@ -78,22 +80,26 @@ function InputTextInternal(
     },
     blur: () => {
       const input = inputRef.current;
+
       if (input) {
         input.blur();
       }
     },
     focus: () => {
       const input = inputRef.current;
+
       if (input) {
         input.focus();
       }
     },
     scrollIntoView: arg => {
       const input = inputRef.current;
+
       if (input) {
         input.scrollIntoView(arg);
       }
     },
+    getInputRef: () => inputRef,
   }));
 
   useLayoutEffect(() => {
@@ -164,6 +170,7 @@ function InputTextInternal(
 
   function insertText(text: string) {
     const input = inputRef.current;
+
     if (input) {
       insertAtCursor(input, text);
 
