@@ -53,7 +53,6 @@ export function InternalChipSingleSelect({
   );
 
   function handleKeyUp(active: boolean, value: string) {
-    console.log("AHANDLING HKEYU UP", active, value);
     if (!active) return;
 
     return (event: React.KeyboardEvent<HTMLInputElement>) => {
