@@ -1,6 +1,6 @@
 import { ColumnDef, Row, useReactTable } from "@tanstack/react-table";
 import classNames from "classnames";
-import React, { LegacyRef, ReactNode } from "react";
+import React, { LegacyRef, ReactNode, useRef } from "react";
 import {
   Breakpoints,
   useResizeObserver,
@@ -87,7 +87,9 @@ export function DataTable<T extends object>({
   emptyState,
   loading = false,
 }: DataTableProps<T>) {
-  const [ref, { exactWidth }] = useResizeObserver();
+  const ref = useRef<HTMLDivElement>(null);
+
+  const [, { exactWidth }] = useResizeObserver({ ref });
   const tableSettings = createTableSettings(data, columns, {
     pagination,
     sorting,
