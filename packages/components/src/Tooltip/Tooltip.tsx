@@ -49,7 +49,7 @@ export function Tooltip({ message, children }: TooltipProps) {
       <span className={styles.shadowActivator} ref={shadowRef} />
       {children}
       <TooltipPortal>
-        {show && (
+        {show && Boolean(message) && (
           <div
             className={toolTipClassNames}
             style={popperStyles.popper}
