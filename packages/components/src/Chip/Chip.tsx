@@ -58,11 +58,15 @@ export const Chip = ({
       >
         {prefix}
         <div className={styles.chipContent}>
-          <Typography size="base" fontWeight="medium">
-            {heading}
-            <span ref={headingRef} />
-          </Typography>
-          {heading && <span className={styles.chipBar} />}
+          {heading && (
+            <>
+              <Typography size="base" fontWeight="medium">
+                {heading}
+                <span ref={headingRef} />
+              </Typography>
+              <span className={styles.chipBar} />
+            </>
+          )}
           <Typography size="base">
             {label}
             <span ref={labelRef} />
