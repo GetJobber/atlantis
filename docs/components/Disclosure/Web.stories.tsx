@@ -40,9 +40,12 @@ export const WithCustomSummary = WithCustomSummaryTemplate.bind({});
 WithCustomSummary.args = {
   title: "Some Other Stuff",
   customSummary: (
-    <div>
-      <h1>Hello</h1>
-      <h2>Everybody</h2>
+    <div style={{ display: "flex", width: "100%" }}>
+      <Content>
+        <h1>Hello</h1>
+        <h2>Everybody</h2>
+        <Text variation="subdued">Here is something I have to say</Text>
+      </Content>
     </div>
   ),
 };
