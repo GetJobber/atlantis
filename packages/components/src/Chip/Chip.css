@@ -8,7 +8,7 @@
   display: flex;
   position: relative;
   height: var(--chip-height);
-  max-width: 100%;
+  min-width: 0;
   padding: var(--space-small) var(--base-unit);
   border: var(--border-base) solid transparent;
   border-radius: var(--chip-radius);
@@ -113,23 +113,18 @@
   background-color: var(--color-disabled);
 }
 
-.chipHeading {
-  flex-shrink: 0;
-  max-width: 75%;
-}
-
-.chipLabel {
-  flex-shrink: 4;
-}
-
-.chipHeading,
-.chipLabel {
+.chipContent {
+  display: flex;
   position: relative;
   overflow: hidden;
+  flex-wrap: nowrap;
 }
 
-.chipHeading > p,
-.chipLabel > p {
+.chipContent > * {
+  flex: 0 0 auto;
+}
+
+.chipContent > p {
   overflow: hidden;
   white-space: nowrap;
 }

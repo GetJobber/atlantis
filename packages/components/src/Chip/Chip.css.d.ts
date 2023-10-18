@@ -9,8 +9,7 @@ declare const styles: {
   readonly "invalid": string;
   readonly "subtle": string;
   readonly "disabled": string;
-  readonly "chipHeading": string;
-  readonly "chipLabel": string;
+  readonly "chipContent": string;
   readonly "truncateGradient": string;
 };
 export = styles;

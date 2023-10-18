@@ -7,6 +7,7 @@ import { ChipSuffix } from "./components/ChipSuffix/Chip.Suffix";
 import { ChipProps } from "./Chip.types";
 import { useChildComponent } from "./hooks/useChildComponent";
 import { Typography } from "../Typography";
+import { Tooltip } from "../Tooltip";
 
 export const Chip = ({
   ariaLabel,
@@ -32,42 +33,64 @@ export const Chip = ({
   const prefix = useChildComponent(children, d => d.type === Chip.Prefix);
   const suffix = useChildComponent(children, d => d.type === Chip.Suffix);
 
-  const [labelRef, isLabelFullyVisible] = useInView<HTMLSpanElement>();
-  const [headingRef, isHeadingFullyVisible] = useInView<HTMLSpanElement>();
+  const [labelRef, labelFullyVisible] = useInView<HTMLSpanElement>();
+  const [headingRef, headingFullyVisible] = useInView<HTMLSpanElement>();
+  const tooltipMessage = getTooltipMessage(
+    labelFullyVisible,
+    headingFullyVisible,
+    label,
+    heading,
+  );
 
   return (
-    <button
-      className={classes}
-      onClick={(ev: React.MouseEvent<HTMLButtonElement>) =>
-        onClick && onClick(value, ev)
-      }
-      tabIndex={tabIndex}
-      onKeyDown={onKeyDown}
-      aria-label={ariaLabel || label}
-      disabled={disabled}
-      role={role}
-      type="button"
-    >
-      {prefix}
-      <div className={styles.chipHeading}>
-        <Typography size="base" fontWeight="medium">
-          {heading}
-          <span ref={headingRef} />
-        </Typography>
-        {!isHeadingFullyVisible && <div className={styles.truncateGradient} />}
-      </div>
-      {heading && <span className={styles.chipBar} />}
-      <div className={styles.chipLabel}>
-        <Typography size="base">
-          {label}
-          <span ref={labelRef} />
-        </Typography>
-        {!isLabelFullyVisible && <div className={styles.truncateGradient} />}
-      </div>
-      {suffix}
-    </button>
+    <Tooltip message={tooltipMessage}>
+      <button
+        className={classes}
+        onClick={(ev: React.MouseEvent<HTMLButtonElement>) =>
+          onClick && onClick(value, ev)
+        }
+        tabIndex={tabIndex}
+        onKeyDown={onKeyDown}
+        aria-label={ariaLabel || label}
+        disabled={disabled}
+        role={role}
+        type="button"
+      >
+        {prefix}
+        <div className={styles.chipContent}>
+          <Typography size="base" fontWeight="medium">
+            {heading}
+            <span ref={headingRef} />
+          </Typography>
+          {heading && <span className={styles.chipBar} />}
+          <Typography size="base">
+            {label}
+            <span ref={labelRef} />
+          </Typography>
+          {!labelFullyVisible && <div className={styles.truncateGradient} />}
+        </div>
+        {suffix}
+      </button>
+    </Tooltip>
   );
 };
+
+function getTooltipMessage(
+  labelFullyVisible: boolean,
+  headingFullyVisible: boolean,
+  label: string,
+  heading?: string,
+): string {
+  if (!headingFullyVisible) {
+    return `${heading} | ${label}`;
+  }
+
+  if (!labelFullyVisible) {
+    return label;
+  }
+
+  return "";
+}
 
 Chip.Prefix = ChipPrefix;
 Chip.Suffix = ChipSuffix;
