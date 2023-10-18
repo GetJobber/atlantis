@@ -1,7 +1,7 @@
 import React from "react";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { InternalChipButton } from "./InternalChipButton";
+import { InternalChipButton } from "../InternalChipButton";
 
 describe("Interaction", () => {
   let handleClick: jest.Mock;

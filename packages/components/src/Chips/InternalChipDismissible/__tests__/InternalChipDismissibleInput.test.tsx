@@ -6,12 +6,12 @@ import {
   screen,
   within,
 } from "@testing-library/react";
-import { InternalChipDismissibleInput } from "./InternalChipDismissibleInput";
-import { ChipProps } from "../../Chip";
+import { InternalChipDismissibleInput } from "../InternalChipDismissibleInput";
+import { ChipProps } from "../../../Chip";
 
 const mockIsInView = jest.fn(() => false);
 
-jest.mock("./hooks/useInView", () => ({
+jest.mock("../hooks/useInView", () => ({
   useInView: () => ({ isInView: mockIsInView() }),
 }));
 

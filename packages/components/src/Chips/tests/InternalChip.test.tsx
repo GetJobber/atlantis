@@ -1,8 +1,8 @@
 import React from "react";
 import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { InternalChip } from "./InternalChip";
-import { Icon } from "../Icon";
+import { InternalChip } from "../InternalChip";
+import { Icon } from "../../Icon";
 
 afterEach(cleanup);
 

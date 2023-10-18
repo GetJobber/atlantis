@@ -8,12 +8,12 @@ import {
   waitFor,
   within,
 } from "@testing-library/react";
-import { InternalChipDismissible } from "..";
-import { Chip } from "../../Chip";
+import { InternalChipDismissible } from "../..";
+import { Chip } from "../../../Chip";
 
 const mockIsInView = jest.fn(() => false);
 
-jest.mock("./hooks/useInView", () => ({
+jest.mock("../hooks/useInView", () => ({
   useInView: () => ({ isInView: mockIsInView() }),
 }));
 
