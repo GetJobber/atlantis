@@ -1,8 +1,8 @@
 import React from "react";
 import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { InternalChipSingleSelect } from "./InternalChipSingleSelect";
-import { Chip } from "../Chip";
+import { InternalChipSingleSelect } from "../InternalChipSingleSelect";
+import { Chip } from "../../Chip";
 
 let handleChange: jest.Mock;
 let handleClickChip: jest.Mock;

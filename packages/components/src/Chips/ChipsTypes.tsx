@@ -65,6 +65,11 @@ export interface ChipDismissibleProps extends ChipFoundationProps {
   activator?: ReactElement;
 
   /**
+   * Enables pass through of a data-testid. This is legacy functionality to allow old tests to pass.
+   */
+  dataTestId?: string;
+
+  /**
    * Adds a loading indicator
    */
   readonly isLoadingMore?: boolean;
@@ -94,8 +99,6 @@ export interface ChipDismissibleProps extends ChipFoundationProps {
    * @param searchValue - The input value
    */
   onLoadMore?(searchValue: string): void;
-
-  dataTestId?: string;
 }
 
 export type ChipsProps = XOR<
