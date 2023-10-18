@@ -13,8 +13,6 @@ interface FlexProps extends PropsWithChildren {
    *   grow, then they'll have equal width.
    * - `"shrink"` - Shrinks to the smallest size possible. Normally the size of
    *   the child.
-   *
-   * By default, this will set every children to grow in equal widths.
    */
   readonly template: ColumnKeys[];
 
