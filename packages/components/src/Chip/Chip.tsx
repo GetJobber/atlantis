@@ -32,7 +32,8 @@ export const Chip = ({
   const prefix = useChildComponent(children, d => d.type === Chip.Prefix);
   const suffix = useChildComponent(children, d => d.type === Chip.Suffix);
 
-  const [labelRef, isLabelInView] = useInView<HTMLSpanElement>();
+  const [labelRef, isLabelFullyVisible] = useInView<HTMLSpanElement>();
+  const [headingRef, isHeadingFullyVisible] = useInView<HTMLSpanElement>();
 
   return (
     <button
@@ -51,7 +52,9 @@ export const Chip = ({
       <div className={styles.chipHeading}>
         <Typography size="base" fontWeight="medium">
           {heading}
+          <span ref={headingRef} />
         </Typography>
+        {!isHeadingFullyVisible && <div className={styles.truncateGradient} />}
       </div>
       {heading && <span className={styles.chipBar} />}
       <div className={styles.chipLabel}>
@@ -59,11 +62,9 @@ export const Chip = ({
           {label}
           <span ref={labelRef} />
         </Typography>
-        {!isLabelInView && <div className={styles.truncateGradient} />}
+        {!isLabelFullyVisible && <div className={styles.truncateGradient} />}
       </div>
-      <div className={classnames({ [styles.noMargin]: !isLabelInView })}>
-        {suffix}
-      </div>
+      {suffix}
     </button>
   );
 };

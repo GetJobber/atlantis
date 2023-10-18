@@ -12,7 +12,6 @@ declare const styles: {
   readonly "chipHeading": string;
   readonly "chipLabel": string;
   readonly "truncateGradient": string;
-  readonly "noMargin": string;
 };
 export = styles;
 
