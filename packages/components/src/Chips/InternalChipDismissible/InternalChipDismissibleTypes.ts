@@ -1,6 +1,8 @@
 import { ChipProps } from "../Chip";
 import { ChipDismissibleProps } from "../ChipsTypes";
 
+export type InternalChipDismissibleProps = Omit<ChipDismissibleProps, "type">;
+
 export interface ChipDismissibleInputProps
   extends Pick<
     ChipDismissibleProps,

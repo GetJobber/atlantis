@@ -49,7 +49,7 @@ export function InternalChipDismissible(props: ChipDismissibleProps) {
         type={props.type}
         attachTo={wrapperRef}
         isLoadingMore={props.isLoadingMore}
-        options={availableChipOptions}
+        options={availableChipOptions || []}
         onOptionSelect={handleChipAdd}
         onCustomOptionSelect={handleCustomAdd}
         onSearch={props.onSearch}

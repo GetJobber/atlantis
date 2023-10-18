@@ -1,7 +1,7 @@
 import React from "react";
 import { Icon } from "@jobber/components/Icon";
 import { Chip } from "../../Chip";
-import { ChipSelectableProps } from "../../Chip.types";
+import { ChipSelectableProps } from "../../Chip.types.d";
 import styles from "../../Chip.css";
 
 export function ChipSelectable({ selected, ...rest }: ChipSelectableProps) {

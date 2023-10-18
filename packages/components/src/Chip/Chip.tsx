@@ -3,7 +3,7 @@ import classNames from "classnames";
 import styles from "./Chip.css";
 import { ChipPrefix } from "./components/ChipPrefix/Chip.Prefix";
 import { ChipSuffix } from "./components/ChipSuffix/Chip.Suffix";
-import { ChipProps } from "./Chip.types";
+import { ChipProps } from "./Chip.types.d";
 import { useChildComponent } from "./hooks/useChildComponent";
 import { Typography } from "../Typography";
 

@@ -42,7 +42,7 @@ export function DataListSort() {
           </Chips>
 
           <Heading level={5}>Ordered by</Heading>
-          <Chips selected={state?.order} onChange={handleSortingChange}>
+          <Chips selected={state?.order || ""} onChange={handleSortingChange}>
             <Chip
               label="Ascending"
               value="asc"

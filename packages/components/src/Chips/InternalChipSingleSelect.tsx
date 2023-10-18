@@ -19,7 +19,7 @@ export function InternalChipSingleSelect({
     <div className={styles.wrapper} data-testid="singleselect-chips">
       {React.Children.map(children, child => {
         const isSelected =
-          child.props.value === selected || child.props.label === selected;
+          child?.props.value === selected || child?.props.label === selected;
 
         return (
           <>
@@ -28,23 +28,32 @@ export function InternalChipSingleSelect({
                 type="radio"
                 checked={isSelected}
                 className={styles.input}
-                onClick={handleClick(child.props.value)}
-                onKeyUp={handleKeyUp(isSelected, child.props.value)}
+                onClick={handleClick(child?.props.value || "")}
+                onKeyUp={handleKeyUp(isSelected, child?.props.value || "")}
                 onChange={() => {
                   /* No op. onClick handles the change to allow deselecting. */
                 }}
-                disabled={child.props.disabled}
+                disabled={child?.props.disabled}
               />
-              <InternalChip {...child.props} active={isSelected} />
+              <InternalChip
+                {...child?.props}
+                label={child?.props.label || ""}
+                active={isSelected}
+              />
             </label>
             <ChipSelectable
-              {...child.props}
+              {...child?.props}
+              label={child?.props.label || ""}
               selected={isSelected}
               onClick={clickedItem => {
                 onChange(clickedItem as string);
-                onClick && onClick({}, child?.props.value);
+                onClick &&
+                  onClick(
+                    {} as React.MouseEvent<HTMLButtonElement>,
+                    child?.props.value,
+                  );
               }}
-              onKeyDown={handleKeyUp(isSelected, child?.props.value)}
+              onKeyDown={handleKeyUp(isSelected, child?.props.value || "")}
             />
           </>
         );
@@ -55,7 +64,9 @@ export function InternalChipSingleSelect({
   function handleKeyUp(active: boolean, value: string) {
     if (!active) return;
 
-    return (event: React.KeyboardEvent<HTMLInputElement>) => {
+    return (
+      event: React.KeyboardEvent<HTMLInputElement | HTMLButtonElement>,
+    ) => {
       if (event.key === " ") {
         // Wait for DOM changes before applying the new change.
         setTimeout(() => handleChange(value), 0);

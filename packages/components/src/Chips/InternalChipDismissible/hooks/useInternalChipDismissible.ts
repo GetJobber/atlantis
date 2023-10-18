@@ -29,7 +29,7 @@ export function useInternalChipDismissible({
       return () => {
         liveAnnounce(`${value} Removed`);
         onChange(selected.filter(val => val !== value));
-        onClick(value);
+        onClick && onClick({} as MouseEvent<HTMLInputElement>, value);
       };
     },
 

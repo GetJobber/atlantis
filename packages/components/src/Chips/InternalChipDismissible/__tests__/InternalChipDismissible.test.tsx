@@ -137,7 +137,7 @@ describe("Basic interaction", () => {
   it("should trigger the onClick callback when a chip gets clicked", () => {
     fireEvent.click(getByChipLabelText(selectedChips[0]));
 
-    expect(handleClickChip).toHaveBeenCalledWith(selectedChips[0]);
+    expect(handleClickChip).toHaveBeenCalledWith({}, selectedChips[0]);
   });
 
   it("should trigger the onChange callback when removing a chip", () => {
