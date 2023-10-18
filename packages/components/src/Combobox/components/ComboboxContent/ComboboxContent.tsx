@@ -106,7 +106,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         setSearchValue={setSearchValue}
       />
 
-      {multiselect && (
+      {multiselect && optionsExist && (
         <ComboboxHeader
           subjectNoun={props.subjectNoun}
           selectedCount={selectedOptions.length}
