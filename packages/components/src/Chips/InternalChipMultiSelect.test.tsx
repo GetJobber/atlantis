@@ -20,7 +20,7 @@ beforeEach(() => {
       onClick={handleClickChip}
     >
       {chips.map(chip => (
-        <Chip key={chip} label={chip} value={chip} />
+        <Chip key={chip} label={chip} value={chip} onClick={handleClickChip} />
       ))}
     </InternalChipMultiSelect>,
   );
@@ -57,13 +57,11 @@ describe("onChange", () => {
   });
 });
 
-/*
 describe("onClick", () => {
   it("should trigger the chip onClick", () => {
     const target = chips[2];
-    userEvent.click(screen.getByLabelText(target));
+    userEvent.click(screen.getByText(target));
     expect(handleClickChip).toHaveBeenCalledTimes(1);
     expect(handleClickChip).toHaveReturnedWith(target);
   });
 });
-*/

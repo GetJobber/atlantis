@@ -46,12 +46,7 @@ describe("Basic interaction", () => {
         onLoadMore={handleLoadMore}
       >
         {chips.map(chip => (
-          <Chip
-            key={chip}
-            label={chip}
-            value={chip}
-            onClick={handleClickChip}
-          />
+          <Chip key={chip} label={chip} value={chip} />
         ))}
       </InternalChipDismissible>,
     );
@@ -139,18 +134,12 @@ describe("Basic interaction", () => {
       });
     });
   });
-  /*
   it("should trigger the onClick callback when a chip gets clicked", () => {
-    const wrapperEl = screen.getByTestId("chip-wrapper");
-    fireEvent.click(wrapperEl);
+    fireEvent.click(getByChipLabelText(selectedChips[0]));
 
-    expect(handleClickChip).toHaveBeenCalledWith(
-      selectedChips[0],
-      expect.any(Object),
-    );
-  }); */
+    expect(handleClickChip).toHaveBeenCalledWith(selectedChips[0]);
+  });
 
-  //
   it("should trigger the onChange callback when removing a chip", () => {
     const wrapperEl = getByChipLabelText(selectedChips[0]);
     fireEvent.click(wrapperEl);
