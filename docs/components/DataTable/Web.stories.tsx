@@ -217,8 +217,8 @@ export const ClientSidePagination = BasicTemplate.bind({});
 ClientSidePagination.args = {
   data: exampleData,
   stickyHeader: true,
-  height: 400,
-  pagination: { manualPagination: false, itemsPerPage: [10, 20, 30] },
+  height: 200,
+  pagination: { manualPagination: false, itemsPerPage: [5, 20, 30] },
   sorting: { manualSorting: false },
   onRowClick: row => alert(JSON.stringify(row.original, null, 2)),
   columns: [
@@ -295,10 +295,12 @@ const ManualSortingTemplate: ComponentStory<typeof DataTable> = args => {
   const defaultData = args.data;
   const sortedData = useMemo(() => {
     if (sortingState.length == 0) return defaultData;
+
     return sortingState[0].desc
       ? sortBy(defaultData, [sortingState[0].id]).reverse()
       : sortBy(defaultData, [sortingState[0].id]);
   }, [sortingState]);
+
   return (
     <div>
       <DataDump label="Sorting State" data={sortingState} defaultOpen />
