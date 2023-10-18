@@ -78,3 +78,24 @@ describe("Chip icon colors depending on state", () => {
     return screen.getByTestId("checkbox").querySelector("path");
   }
 });
+
+// TODO: Figure out why this is always passing
+
+describe.skip("When the chip is disabled and invalid", () => {
+  it("should still look disabled but have a border of red", () => {
+    render(<InternalChip disabled invalid label="Yo!" />);
+    expect(screen.getByTestId("chip-wrapper")).toHaveStyle({
+      borderColor: "var(--color-critical)",
+      backgroundColor: "var(--color-disabled--secondary)",
+    });
+  });
+});
+
+describe.skip("When the chip is disabled and active", () => {
+  it("should be a darker chip but still grey", async () => {
+    render(<InternalChip disabled active label="Yo!" />);
+    expect(screen.getByTestId("chip-wrapper")).toHaveStyle(`
+        background-color: var(--color-disabled);
+      `);
+  });
+});
