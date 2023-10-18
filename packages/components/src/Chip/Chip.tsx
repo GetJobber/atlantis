@@ -85,7 +85,7 @@ function getTooltipMessage(
   label: string,
   heading?: string,
 ): string {
-  if (!headingFullyVisible) {
+  if (heading && !headingFullyVisible) {
     return `${heading} | ${label}`;
   }
 
