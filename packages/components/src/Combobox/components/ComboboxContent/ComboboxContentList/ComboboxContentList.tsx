@@ -1,25 +1,11 @@
-import React, { SetStateAction } from "react";
+import React from "react";
 import classnames from "classnames";
 import { Icon } from "@jobber/components/Icon";
 import { Text } from "@jobber/components/Text";
-import styles from "./ComboboxList.css";
-import { ComboboxOption } from "../../Combobox.types";
+import { ComboboxListProps } from "@jobber/components/Combobox/Combobox.types";
+import styles from "./ComboboxContentList.css";
 
-interface ComboboxListProps {
-  readonly options: ComboboxOption[];
-  readonly showEmptyState: boolean;
-  readonly selected: ComboboxOption[];
-  readonly optionsListRef: React.RefObject<HTMLUListElement>;
-  readonly setFirstSelectedElement: React.Dispatch<
-    SetStateAction<HTMLElement | null>
-  >;
-  readonly selectionHandler: (option: ComboboxOption) => void;
-  readonly searchValue: string;
-  readonly multiselect: boolean;
-  readonly subjectNoun?: string;
-}
-
-export function ComboboxList(props: ComboboxListProps): JSX.Element {
+export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
   let hasSeenFirstSelected = false;
 
   return (
