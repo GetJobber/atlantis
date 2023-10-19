@@ -56,7 +56,6 @@ export const FormFieldWrapper = forwardRef(function FormFieldWrapper(
         (placeholder && value !== "") ||
         (placeholder && type === "select") ||
         (placeholder && type === "time") ||
-        (placeholder && type === "date") ||
         // Naively assume that if the the type is tel, it is the InputPhoneNumber
         (placeholder && type === "tel"),
       [styles.textarea]: type === "textarea",

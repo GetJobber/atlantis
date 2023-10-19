@@ -53,6 +53,7 @@ export const DayCell = (props: {
       disabled={props.disabled}
       aria-label={formatter.format(props.date)}
       onClick={props.disabled ? undefined : props.onToggle}
+      data-date={props.date}
       className={combineClassNames(
         classNames.cell,
         !props.disabled && props.selected ? classNames.selected : "",

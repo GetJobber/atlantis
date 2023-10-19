@@ -1,5 +1,6 @@
 import React, {
   Ref,
+  RefObject,
   forwardRef,
   useImperativeHandle,
   useLayoutEffect,
@@ -35,7 +36,15 @@ interface BaseProps
       | "prefix"
       | "suffix"
     > {
-  multiline?: boolean;
+  readonly multiline?: boolean;
+  /**
+   * Ref to the form field wrapper.
+   */
+  readonly formFieldRef?: Ref<HTMLDivElement>;
+  /**
+   *
+   */
+  readonly inputRef?: RefObject<HTMLInputElement | HTMLTextAreaElement>;
 }
 
 export interface InputTextRef {
@@ -43,9 +52,6 @@ export interface InputTextRef {
   blur(): void;
   focus(): void;
   scrollIntoView(arg?: boolean | ScrollIntoViewOptions): void;
-  getInputRef: () => React.RefObject<
-    HTMLInputElement | HTMLTextAreaElement | null
-  >;
 }
 
 interface MultilineProps extends BaseProps {
@@ -69,7 +75,8 @@ function InputTextInternal(
   props: InputTextPropOptions,
   ref: Ref<InputTextRef>,
 ) {
-  const inputRef = useRef<HTMLTextAreaElement | HTMLInputElement>(null);
+  const inputRefInner = useRef<HTMLTextAreaElement | HTMLInputElement>(null);
+  const inputRef = props.inputRef || inputRefInner;
   const actionsRef = useRef<FieldActionsRef>(null);
 
   const rowRange = getRowRange();
@@ -99,7 +106,6 @@ function InputTextInternal(
         input.scrollIntoView(arg);
       }
     },
-    getInputRef: () => inputRef,
   }));
 
   useLayoutEffect(() => {
@@ -111,6 +117,7 @@ function InputTextInternal(
   return (
     <FormField
       {...props}
+      ref={props.formFieldRef}
       type={props.multiline ? "textarea" : "text"}
       inputRef={inputRef}
       actionsRef={actionsRef}

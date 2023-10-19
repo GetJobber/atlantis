@@ -20,6 +20,7 @@ const BasicTemplate: ComponentStory<typeof InputDate> = args => {
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
   placeholder: "Start Date",
+  highlightedDates: [new Date("11/12/2011")],
 };
 
 const MinMaxTemplate: ComponentStory<typeof InputDate> = args => {

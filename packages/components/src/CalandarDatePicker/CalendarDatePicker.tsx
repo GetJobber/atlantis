@@ -1,4 +1,12 @@
-import React, { useCallback, useEffect, useMemo, useRef } from "react";
+import React, {
+  Ref,
+  forwardRef,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+} from "react";
 import { XOR } from "ts-xor";
 import classNames from "./CalendarDatePicker.css";
 import { CalendarDatePickerHeader } from "./components/CalendarDatePickerHeader";
@@ -30,6 +38,7 @@ export interface CalendarDatePickerBaseProps {
   readonly minDate?: Date;
   readonly maxDate?: Date;
   readonly weekStartsOnMonday?: boolean;
+  readonly focusonSelectedDate?: boolean;
   readonly onMonthChange?: (date: Date) => void;
   readonly onClickOutside?: (event: MouseEvent) => void;
 }
@@ -39,18 +48,22 @@ export type CalendarDatePickerProps = CalendarDatePickerBaseProps &
 
 const today = () => new Date();
 
-export const CalendarDatePicker = ({
-  selected,
-  hightlightedDates,
-  minDate,
-  maxDate,
-  weekStartsOnMonday,
-  range,
-  multi,
-  onChange,
-  onMonthChange,
-  onClickOutside,
-}: CalendarDatePickerProps) => {
+export const CalendarDatePicker = forwardRef(function CalendarDatePicker(
+  {
+    selected,
+    hightlightedDates,
+    minDate,
+    maxDate,
+    weekStartsOnMonday,
+    focusonSelectedDate,
+    range,
+    multi,
+    onChange,
+    onMonthChange,
+    onClickOutside,
+  }: CalendarDatePickerProps,
+  ref: Ref<HTMLDivElement>,
+) {
   const [viewingDate, setViewingDate] = React.useState<Date>(() => {
     if (multi === true || range === true) {
       return selected[0] ?? today();
@@ -89,6 +102,20 @@ export const CalendarDatePicker = ({
     [multi, range, onChange],
   );
 
+  useEffect(() => {
+    if (focusonSelectedDate) {
+      const dt = Array.isArray(selected) ? selected[0] : selected;
+
+      if (dt) {
+        document
+          .querySelector<HTMLButtonElement>(
+            `button[data-date="${dt.getTime()}"]`,
+          )
+          ?.focus();
+      }
+    }
+  }, []);
+
   return (
     <CalendarMultiDatePickerComponent
       selected={selectedDates}
@@ -102,9 +129,11 @@ export const CalendarDatePicker = ({
       onChange={onChangeSelection}
       onMonthChange={onMonthChangeInternal}
       onClickOutside={onClickOutside}
+      ref={ref}
+      // ^?
     />
   );
-};
+});
 
 type CalendarMultiDatePickerComponentProps = CalendarDatePickerBaseProps & {
   readonly viewingDate: Date;
@@ -114,19 +143,27 @@ type CalendarMultiDatePickerComponentProps = CalendarDatePickerBaseProps & {
   readonly onChange: (dates: Date[]) => void;
 };
 
-export function CalendarMultiDatePickerComponent({
-  selected,
-  hightlightedDates = [],
-  minDate,
-  maxDate,
-  viewingDate,
-  weekStartsOnMonday,
-  range,
-  onChange,
-  onMonthChange,
-  onClickOutside,
-}: CalendarMultiDatePickerComponentProps) {
+export const CalendarMultiDatePickerComponent = forwardRef<
+  HTMLDivElement,
+  CalendarMultiDatePickerComponentProps
+>(function CalendarMultiDatePickerComponent(
+  {
+    selected,
+    hightlightedDates = [],
+    minDate,
+    maxDate,
+    viewingDate,
+    weekStartsOnMonday,
+    range,
+    onChange,
+    onMonthChange,
+    onClickOutside,
+  }: CalendarMultiDatePickerComponentProps,
+  ref,
+) {
   const elRef = useRef<HTMLDivElement>(null);
+
+  useImperativeHandle(ref, () => elRef.current as HTMLDivElement);
 
   useEffect(() => {
     if (onClickOutside) {
@@ -134,16 +171,13 @@ export function CalendarMultiDatePickerComponent({
       if (!el) return;
 
       const listener = (event: MouseEvent) => {
-        console.log(el, event.target);
         if (el.contains(event.target as Node)) return;
         onClickOutside(event);
       };
 
-      console.log("registering");
       document.addEventListener("mouseup", listener);
 
       return () => {
-        console.log("unmounting");
         document.removeEventListener("mouseup", listener);
       };
     }
@@ -170,4 +204,4 @@ export function CalendarMultiDatePickerComponent({
       </div>
     </div>
   );
-}
+});

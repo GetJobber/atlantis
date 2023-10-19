@@ -1,15 +1,12 @@
 import React, { ReactElement, useEffect, useRef, useState } from "react";
-import classnames from "classnames";
-import ReactDatePicker from "react-datepicker";
 import { XOR } from "ts-xor";
-import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import styles from "./DatePicker.css";
-import { DatePickerCustomHeader } from "./DatePickerCustomHeader";
 import {
   DatePickerActivator,
   DatePickerActivatorProps,
 } from "./DatePickerActivator";
-import { useFocusOnSelectedDate } from "./useFocusOnSelectedDate";
+import { Popover } from "../Popover";
+import { CalendarDatePicker } from "../CalandarDatePicker";
 
 interface BaseDatePickerProps {
   /**
@@ -41,7 +38,7 @@ interface BaseDatePickerProps {
   /**
    * Change handler that will return the date selected.
    */
-  onChange(val: Date): void;
+  onChange(val: Date | undefined): void;
 
   /**
    * Change handler when the selected month changes
@@ -96,89 +93,73 @@ export function DatePicker({
   minDate,
   highlightDates,
 }: DatePickerProps) {
-  const { ref, focusOnSelectedDate } = useFocusOnSelectedDate();
   const [open, setOpen] = useState(false);
-  const wrapperClassName = classnames(styles.datePickerWrapper, {
-    // react-datepicker uses this class name to not close the date picker when
-    // the activator is clicked
-    // https://github.com/Hacker0x01/react-datepicker/blob/master/src/index.jsx#L905
-    //
-    // It uses react-onclickoutside package and declaring some elements to be
-    // ignored via said class name
-    // https://www.npmjs.com/package/react-onclickoutside#marking-elements-as-skip-over-this-one-during-the-event-loop
-    "react-datepicker-ignore-onclickoutside": !inline,
-    [styles.fullWidth]: fullWidth,
-  });
-  const datePickerClassNames = classnames(styles.datePicker, {
-    [styles.inline]: inline,
-  });
-  const { pickerRef } = useEscapeKeyToCloseDatePicker(open, ref);
+  const ref = useRef<HTMLDivElement>(null);
 
-  if (smartAutofocus) {
-    useRefocusOnActivator(open);
-    useEffect(focusOnSelectedDate, [open]);
+  useEscapeKeyToCloseDatePicker(open, handleCalendarClose, ref);
+
+  if (inline) {
+    return (
+      <CalendarDatePicker
+        onChange={readonly ? () => undefined : onChange}
+        selected={selected}
+        minDate={minDate}
+        maxDate={maxDate}
+        hightlightedDates={highlightDates}
+        onMonthChange={onMonthChange}
+        onClickOutside={handleCalendarClose}
+        focusonSelectedDate
+      />
+    );
   }
 
   return (
-    <div className={wrapperClassName} ref={ref}>
-      <ReactDatePicker
-        ref={pickerRef}
-        calendarClassName={datePickerClassNames}
-        showPopperArrow={false}
-        selected={selected}
-        inline={inline}
+    <div className={styles.datePickerWrapper} ref={ref}>
+      <DatePickerActivator
+        activator={activator}
+        fullWidth={fullWidth}
         disabled={disabled}
-        readOnly={readonly}
-        onChange={handleChange}
-        maxDate={maxDate}
-        preventOpenOnFocus={true}
-        minDate={minDate}
-        useWeekdaysShort={true}
-        customInput={
-          <DatePickerActivator activator={activator} fullWidth={fullWidth} />
-        }
-        renderCustomHeader={props => <DatePickerCustomHeader {...props} />}
-        onCalendarOpen={handleCalendarOpen}
-        onCalendarClose={handleCalendarClose}
-        dateFormat={["P", "PP", "PPP", "MMM dd yyyy", "MMMM dd yyyy"]}
-        highlightDates={highlightDates}
-        onMonthChange={onMonthChange}
+        onClick={toggleCalendar}
       />
+      <Popover
+        attachTo={ref}
+        open={open}
+        refocus={smartAutofocus}
+        dismissable={false}
+      >
+        <CalendarDatePicker
+          onChange={readonly ? () => undefined : onChange}
+          selected={selected}
+          minDate={minDate}
+          maxDate={maxDate}
+          hightlightedDates={highlightDates}
+          onMonthChange={onMonthChange}
+          onClickOutside={handleCalendarClose}
+          focusonSelectedDate
+        />
+      </Popover>
     </div>
   );
 
-  /**
-   * The onChange callback on ReactDatePicker returns a Date and an Event, but
-   * the onChange in our interface only provides the Date. Simplifying the code
-   * by removing this function and passing it directly to the underlying
-   * component breaks tests both here and downstream (i.e. the pattern
-   * `expect(onChange).toHaveBeenCalledWith(date)` is commonly used and would
-   * fail).
-   */
-  function handleChange(value: Date /* , event: React.SyntheticEvent */) {
-    onChange(value);
-  }
-
-  function handleCalendarOpen() {
-    setOpen(true);
-  }
-
   function handleCalendarClose() {
     setOpen(false);
+  }
+
+  function toggleCalendar() {
+    setOpen(!open);
   }
 }
 
 function useEscapeKeyToCloseDatePicker(
   open: boolean,
+  onClose: () => void,
   ref: React.RefObject<HTMLDivElement>,
-): { pickerRef: React.RefObject<ReactDatePicker> } {
-  const pickerRef = useRef<ReactDatePicker>(null);
-
+) {
   const escFunction = (event: KeyboardEvent) => {
     if (event.key === "Escape" && open) {
       // Close the picker ourselves and prevent propagation so that ESC presses with the picker open
       // do not close parent elements that may also be listening for ESC presses such as Modals
-      pickerRef.current?.setOpen(false);
+      onClose();
       event.stopPropagation();
     }
   };
@@ -188,9 +169,5 @@ function useEscapeKeyToCloseDatePicker(
     return () => {
       ref.current?.removeEventListener("keydown", escFunction);
     };
-  }, [open, ref, pickerRef]);
-
-  return {
-    pickerRef,
-  };
+  }, [open, ref]);
 }
