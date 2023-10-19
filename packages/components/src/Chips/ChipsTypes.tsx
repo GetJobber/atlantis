@@ -37,7 +37,7 @@ interface ChipFoundationProps {
 
 export interface ChipSingleSelectProps extends ChipFoundationProps {
   readonly type?: "singleselect";
-  readonly selected: string;
+  readonly selected?: string;
   onChange(value?: string | Array<string>): void;
 
   /**
@@ -50,13 +50,13 @@ export interface ChipSingleSelectProps extends ChipFoundationProps {
 
 export interface ChipMultiSelectProps extends ChipFoundationProps {
   readonly type?: "multiselect";
-  readonly selected: string[];
+  readonly selected?: string[];
   onChange(value: string[]): void;
 }
 
 export interface ChipDismissibleProps extends ChipFoundationProps {
   readonly type?: "dismissible";
-  readonly selected: string[];
+  readonly selected?: string[];
   onChange(value: string[]): void;
 
   /**

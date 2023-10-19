@@ -13,13 +13,13 @@ export function useInternalChipDismissible({
   const ref = useRef<HTMLDivElement>(null);
   const chipOptions = children?.map(chip => chip.props);
   const visibleChipOptions = chipOptions?.filter(chip =>
-    selected.includes(chip.value),
+    selected?.includes(chip.value),
   );
   const sortedVisibleChipOptions = sortBy(visibleChipOptions, chip =>
-    selected.indexOf(chip.value),
+    selected?.indexOf(chip.value),
   );
   const availableChipOptions = chipOptions?.filter(
-    chip => !selected.includes(chip.value),
+    chip => !selected?.includes(chip.value),
   );
 
   const { liveAnnounce } = useLiveAnnounce();
@@ -28,12 +28,12 @@ export function useInternalChipDismissible({
     handleChipRemove: (value: string) => {
       return () => {
         liveAnnounce(`${value} Removed`);
-        onChange(selected.filter(val => val !== value));
+        onChange(selected?.filter(val => val !== value) || []);
         onClick && onClick({} as MouseEvent<HTMLInputElement>, value);
       };
     },
 
-    handleChipAdd: (value: string) => onChange([...selected, value]),
+    handleChipAdd: (value: string) => onChange([...(selected || []), value]),
     handleCustomAdd: onCustomAdd,
 
     handleChipClick: (value: string) => {

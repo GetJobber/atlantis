@@ -18,7 +18,7 @@ export function InternalChipMultiSelect({
     val: string | number | undefined,
     ev: React.MouseEvent<HTMLButtonElement>,
   ) => {
-    const newChips = [...selected];
+    const newChips = [...(selected || [])];
     const indexOfItem = newChips.findIndex(d => d === (val as string));
 
     if (indexOfItem !== -1) {
@@ -34,7 +34,7 @@ export function InternalChipMultiSelect({
   return (
     <div className={styles.wrapper} data-testid="multiselect-chips">
       {React.Children.map(children, chip => {
-        const isChipActive = selected.includes(
+        const isChipActive = selected?.includes(
           (chip?.props.value as string) || (chip?.props.label as string),
         );
 
@@ -61,7 +61,7 @@ export function InternalChipMultiSelect({
         );
 
         function isChipSelected(value: string) {
-          return selected.includes(value);
+          return selected?.includes(value);
         }
 
         function handleClick(value: string) {
@@ -80,14 +80,14 @@ export function InternalChipMultiSelect({
         }
 
         function handleSelect(value: string) {
-          const newVal = [...selected, value];
+          const newVal = [...(selected || []), value];
           onChange(newVal);
         }
 
         function handleDeselect(value: string) {
           const values = selected;
-          const newVal = values.filter(val => val !== value);
-          onChange(newVal);
+          const newVal = values?.filter(val => val !== value);
+          onChange(newVal || []);
         }
       })}
     </div>
