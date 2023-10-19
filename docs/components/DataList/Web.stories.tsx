@@ -160,9 +160,8 @@ const Template: ComponentStory<typeof DataList> = args => {
         placeholder="Search characters..."
       />
 
-      <DataList.Banner type="error">
-        There was an issue loading your data. Refresh to try again or check your
-        internet connection.
+      <DataList.Banner type="error" icon="alert">
+        Something went wrong. Refresh or check your internet connection.
       </DataList.Banner>
 
       <DataList.ItemActions onClick={handleActionClick}>
