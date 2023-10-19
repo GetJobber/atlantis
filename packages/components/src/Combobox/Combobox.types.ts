@@ -2,6 +2,17 @@ import { Dispatch, ReactElement, SetStateAction } from "react";
 import { XOR } from "ts-xor";
 import { ButtonProps } from "../Button";
 
+export interface ComboboxProps {
+  readonly children: ReactElement | ReactElement[];
+
+  /**
+   * When `true`, `Combobox` will allow for multiple selections
+   *
+   * @default false
+   */
+  readonly multiSelect?: boolean;
+}
+
 export interface ComboboxTriggerProps {
   /**
    * The label text of the trigger.
@@ -18,29 +29,6 @@ export type ComboboxTriggerChipProps = ComboboxTriggerProps;
 export interface ComboboxOption {
   id: string | number;
   label: string;
-}
-
-export interface ComboboxProps {
-  readonly children: ReactElement | ReactElement[];
-
-  /**
-   * When `true`, `Combobox` will allow for multiple selections
-   *
-   * @default false
-   */
-  readonly multiSelect?: boolean;
-}
-
-export interface ComboboxActionProps {
-  /**
-   * The function to call when the action is clicked.
-   */
-  onClick(event: React.MouseEvent<HTMLButtonElement>): void;
-
-  /**
-   * The label text of the action.
-   */
-  readonly label: string;
 }
 
 interface ComboboxCloseProps {
@@ -75,9 +63,7 @@ interface ComboboxContentBaseProps {
   readonly searchPlaceholder?: string;
 
   /**
-   * pre selected option
-   * @default ""
-   * @type string
+   * The selected options of the Combobox.
    */
   readonly selected: ComboboxOption[];
 
@@ -90,6 +76,13 @@ interface ComboboxContentBaseProps {
 
 export type ComboboxContentProps = ComboboxContentBaseProps &
   XOR<ComboboxCloseProps, ComboboxSelectProps>;
+
+export interface ComboboxSearchProps {
+  placeholder?: string;
+  searchValue: string;
+  open: boolean;
+  setSearchValue: Dispatch<SetStateAction<string>>;
+}
 
 export interface ComboboxListProps {
   readonly options: ComboboxOption[];
@@ -105,9 +98,14 @@ export interface ComboboxListProps {
   readonly subjectNoun?: string;
 }
 
-export interface ComboboxSearchProps {
-  placeholder?: string;
-  searchValue: string;
-  open: boolean;
-  setSearchValue: Dispatch<SetStateAction<string>>;
+export interface ComboboxActionProps {
+  /**
+   * The function to call when the action is clicked.
+   */
+  onClick(event: React.MouseEvent<HTMLButtonElement>): void;
+
+  /**
+   * The label text of the action.
+   */
+  readonly label: string;
 }
