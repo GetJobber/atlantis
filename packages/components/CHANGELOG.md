@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.50.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.49.2...@jobber/components@4.50.0) (2023-10-19)
+
+
+### Features
+
+* **components:** add Flex component for web ([#1556](https://github.com/GetJobber/atlantis/issues/1556)) ([73e89c9](https://github.com/GetJobber/atlantis/commit/73e89c9b4d55d7a4ca2492d82a57d9b573769114))
+
+
+
+
+
 ## [4.49.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.49.1...@jobber/components@4.49.2) (2023-10-18)
 
 **Note:** Version bump only for package @jobber/components
