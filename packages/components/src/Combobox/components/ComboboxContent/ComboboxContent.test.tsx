@@ -153,6 +153,20 @@ describe("ComboboxContent Header", () => {
     expect(queryByTestId("ATL-Combobox-Header")).not.toBeInTheDocument();
   });
 
+  it("should not render when multiSelect is true but there are no options", () => {
+    const { queryByTestId } = render(
+      <MockComboboxProvider multiselect={true}>
+        <Combobox.Content
+          options={[]}
+          onSelect={jest.fn()}
+          selected={[]}
+        ></Combobox.Content>
+      </MockComboboxProvider>,
+    );
+
+    expect(queryByTestId("ATL-Combobox-Header")).not.toBeInTheDocument();
+  });
+
   it("should select all options when 'Select all' is clicked", () => {
     const selectHandler = jest.fn();
     const { getByText } = render(
