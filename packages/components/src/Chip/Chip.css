@@ -1,3 +1,8 @@
+:root {
+  --chip--gradient-color-variation: var(--chip-base-bg);
+  --chip--gradient-color-variation--hover: var(--chip-base--hover);
+}
+
 .chip {
   --chip-height: 40px;
   --chip-radius: 20px;
@@ -71,10 +76,13 @@
   border: var(--border-base) solid transparent;
   color: var(--color-heading);
   background-color: var(--chip-base-bg);
+  --chip--gradient-color-variation: var(--chip-base-bg);
 }
+
 .base:hover,
 .base:focus {
   background-color: var(--chip-base--hover);
+  --chip--gradient-color-variation--hover: var(--chip-base--hover);
 }
 
 .invalid,
@@ -85,15 +93,22 @@
 .subtle.invalid:focus {
   border: var(--border-base) solid var(--color-critical);
   background-color: var(--color-critical--surface);
+  --chip--gradient-color-variation: var(--color-critical--surface);
+  --chip--gradient-color-variation--hover: var(--color-critical--surface);
 }
 
 .subtle {
   border: var(--border-base) solid var(--color-disabled--secondary);
   background-color: var(--color-surface);
+  --chip--gradient-color-variation: var(--color-surface);
 }
 .subtle:hover {
   border: var(--border-base) solid var(--chip-base-bg);
   background-color: var(--chip-base-bg);
+  --chip--gradient-color-variation--hover: var(--chip-base-bg);
+}
+.subtle:focus {
+  --chip--gradient-color-variation--hover: var(--color-surface);
 }
 
 .disabled,
@@ -103,6 +118,8 @@
   color: var(--color-disabled);
   background-color: var(--chip-disabled--bg);
   cursor: auto;
+  --chip--gradient-color-variation: var(--chip-disabled--bg);
+  --chip--gradient-color-variation--hover: var(--chip-disabled--bg);
 }
 
 .disabled .chipBar {
@@ -137,48 +154,16 @@
   height: 100%;
   background: linear-gradient(
     to left,
-    var(--chip-base-bg) 5%,
+    var(--chip--gradient-color-variation) 5%,
     rgba(255, 255, 255, 0)
   );
 }
 
-.invalid .truncateGradient {
+.chip:focus .truncateGradient,
+.chip:hover .truncateGradient {
   background: linear-gradient(
     to left,
-    var(--color-critical--surface) 5%,
-    rgba(255, 255, 255, 0)
-  );
-}
-
-.disabled .truncateGradient {
-  background: linear-gradient(
-    to left,
-    var(--chip-disabled--bg) 5%,
-    rgba(255, 255, 255, 0)
-  );
-}
-
-.subtle .truncateGradient {
-  background: linear-gradient(
-    to left,
-    var(--color-surface) 5%,
-    rgba(255, 255, 255, 0)
-  );
-}
-
-.base:hover .truncateGradient,
-.base:focus .truncateGradient {
-  background: linear-gradient(
-    to left,
-    var(--chip-base--hover) 5%,
-    rgba(255, 255, 255, 0)
-  );
-}
-
-.subtle:hover .truncateGradient {
-  background: linear-gradient(
-    to left,
-    var(--chip-base-bg) 5%,
+    var(--chip--gradient-color-variation--hover) 5%,
     rgba(255, 255, 255, 0)
   );
 }
