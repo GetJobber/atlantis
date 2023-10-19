@@ -71,7 +71,12 @@ export const Chip = ({
             {label}
             <span ref={labelRef} />
           </Typography>
-          {!labelFullyVisible && <div className={styles.truncateGradient} />}
+          {!labelFullyVisible && (
+            <div
+              className={styles.truncateGradient}
+              data-testid="ATL-Chip-Truncation-Gradient"
+            />
+          )}
         </div>
         {suffix}
       </button>
