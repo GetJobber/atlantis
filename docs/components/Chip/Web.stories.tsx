@@ -77,6 +77,35 @@ const SelectableTemplate: ComponentStory<typeof Chip> = props => {
   );
 };
 
+const TruncatingTemplate: ComponentStory<typeof Chip> = props => {
+  return (
+    <Content>
+      <div
+        style={{
+          display: "flex",
+          maxWidth: "500px",
+        }}
+      >
+        <Chip
+          variation="subtle"
+          label="Only a label that is quite long"
+          onClick={() => alert("you clicked me!")}
+        />
+        <ChipDismissible
+          heading="A very very long heading"
+          label="Short label"
+          onClick={() => alert("now you can remove me!")}
+        />
+        <Chip {...props} invalid onClick={() => alert("you clicked me!")}>
+          <Chip.Suffix>
+            <Icon name="cross" size="small" />
+          </Chip.Suffix>
+        </Chip>
+      </div>
+    </Content>
+  );
+};
+
 export const Base = BasicTemplate.bind({});
 const defaultArgs = {
   ariaLabel: "Accessible Label",
@@ -173,4 +202,11 @@ export const Selectable = SelectableTemplate.bind({});
 Selectable.args = {
   ...defaultArgs,
   label: "Selectable Chip",
+};
+
+export const Truncating = TruncatingTemplate.bind({});
+Truncating.args = {
+  ...defaultArgs,
+  heading: "Heading",
+  label: "Truncating Chip",
 };
