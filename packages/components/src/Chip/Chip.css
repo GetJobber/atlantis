@@ -102,13 +102,20 @@
   background-color: var(--color-surface);
   --chip--gradient-color-variation: var(--color-surface);
 }
+
+/* CAUTION: Order is important here since
+* there is are different styles for subtle:focus and subtle:hover
+* and we want hover to take priority
+*/
+
+.subtle:focus {
+  --chip--gradient-color-variation--hover: var(--color-surface);
+}
+
 .subtle:hover {
   border: var(--border-base) solid var(--chip-base-bg);
   background-color: var(--chip-base-bg);
   --chip--gradient-color-variation--hover: var(--chip-base-bg);
-}
-.subtle:focus {
-  --chip--gradient-color-variation--hover: var(--color-surface);
 }
 
 .disabled,
