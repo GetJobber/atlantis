@@ -1,0 +1,32 @@
+import { Canvas, Meta, Story } from "@storybook/addon-docs";
+// import { Checkbox } from "@jobber/components/Checkbox";
+// import { Content } from "@jobber/components/Content";
+// import { Button } from "@jobber/components/Button";
+import { useBool } from "./useBool";
+
+<Meta title="Hooks/useBool" />
+
+# UseBool
+
+`useBool` is a simple wrapper around `useState` for managing boolean values. It
+provides a simple API for toggling the value, setting it to true, and setting it
+to false.
+
+```tsx
+import { useBool } from "@jobber/hooks/useBool";
+```
+
+<Canvas>
+  <Story name="useBool">
+    {() => {
+      const [checked, on, off, toggle] = useBool(false);
+      return (
+        <>
+          <Checkbox checked={checked} onChange={toggle} />
+          <Button onClick={on} label={"On"} />
+          <Button onClick={off} label={"Off"} />
+        </>
+      );
+    }}
+  </Story>
+</Canvas>
