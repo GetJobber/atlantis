@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.51.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.50.2...@jobber/components@4.51.0) (2023-10-19)
+
+
+### Features
+
+* **components:** Combobox Header ([#1570](https://github.com/GetJobber/atlantis/issues/1570)) ([ec41d1c](https://github.com/GetJobber/atlantis/commit/ec41d1c996a0bac4408dea0a3bdc9b8a95200428))
+
+
+
+
+
 ## [4.50.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.50.1...@jobber/components@4.50.2) (2023-10-19)
 
 **Note:** Version bump only for package @jobber/components
