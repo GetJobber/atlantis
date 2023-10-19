@@ -212,6 +212,7 @@ describe("DataList", () => {
             },
           )?.[0];
           const expectedValue = expectedValues[queryBreakpoint as Breakpoints];
+
           return {
             matches: expectedValue,
             media: query,
@@ -394,7 +395,7 @@ describe("DataList", () => {
     function MockSortingLayout({
       sorting,
     }: {
-      sorting: DataListProps<(typeof mockData)[0]>["sorting"];
+      readonly sorting: DataListProps<(typeof mockData)[0]>["sorting"];
     }) {
       return (
         <DataList data={mockData} headers={mockHeaders} sorting={sorting}>
@@ -584,6 +585,27 @@ describe("DataList", () => {
         block: "nearest",
         inline: "start",
       });
+    });
+  });
+
+  describe("Banner", () => {
+    it("should show a banner when it's provided", () => {
+      const bannerText =
+        "Something went wrong. Refresh or check your internet connection.";
+      render(
+        <DataList
+          data={Array.from({ length: MAX_DATA_COUNT + 1 }, (_, id) => ({
+            id,
+          }))}
+          headers={{ id: "ID" }}
+        >
+          <DataList.Banner type="error" icon="alert">
+            {bannerText}
+          </DataList.Banner>
+        </DataList>,
+      );
+
+      expect(screen.getByText(bannerText)).toBeInTheDocument();
     });
   });
 });
