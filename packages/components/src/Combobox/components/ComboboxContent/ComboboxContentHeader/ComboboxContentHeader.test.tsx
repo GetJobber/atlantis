@@ -70,47 +70,6 @@ describe("ComboboxContentHeader", () => {
 
       expect(onSelectAll).toHaveBeenCalledTimes(1);
     });
-
-    describe("When the search term matches one or more options", () => {
-      it("should render a button that is labelled 'Select all'", () => {
-        const { getByText } = render(
-          <ComboboxContentHeader
-            onSelectAll={onSelectAll}
-            onClearAll={onClearAll}
-            selectedCount={0}
-            searchValue="Bag"
-            options={[
-              { id: "1", label: "Bilbo Baggins" },
-              { id: "2", label: "Frodo Baggins" },
-              { id: "3", label: "Samwise Gamgee" },
-            ]}
-          />,
-        );
-
-        expect(getByText("Select all")).toBeInTheDocument();
-      });
-    });
-
-    describe("When the search term does not match any options", () => {
-      it("should not render a button in the header", () => {
-        const { queryByText } = render(
-          <ComboboxContentHeader
-            onSelectAll={onSelectAll}
-            onClearAll={onClearAll}
-            selectedCount={0}
-            searchValue="Taylor"
-            options={[
-              { id: "1", label: "Bilbo Baggins" },
-              { id: "2", label: "Frodo Baggins" },
-              { id: "3", label: "Samwise Gamgee" },
-            ]}
-          />,
-        );
-
-        expect(queryByText("Select all")).not.toBeInTheDocument();
-        expect(queryByText("Clear")).not.toBeInTheDocument();
-      });
-    });
   });
 
   describe("When one or more options has been selected", () => {
@@ -170,45 +129,81 @@ describe("ComboboxContentHeader", () => {
 
       expect(onClearAll).toHaveBeenCalledTimes(1);
     });
+  });
+  describe("When the search term matches one or more options", () => {
+    it("should render a button that is labelled 'Select all' when no selections have been made", () => {
+      const { getByText } = render(
+        <ComboboxContentHeader
+          onSelectAll={onSelectAll}
+          onClearAll={onClearAll}
+          selectedCount={0}
+          searchValue="Bag"
+          options={[
+            { id: "1", label: "Bilbo Baggins" },
+            { id: "2", label: "Frodo Baggins" },
+            { id: "3", label: "Samwise Gamgee" },
+          ]}
+        />,
+      );
 
-    describe("When the search term matches one or more options", () => {
-      it("should render a button that is labelled 'Clear'", () => {
-        const { getByText } = render(
-          <ComboboxContentHeader
-            onSelectAll={onSelectAll}
-            onClearAll={onClearAll}
-            selectedCount={1}
-            searchValue="Bag"
-            options={[
-              { id: "1", label: "Bilbo Baggins" },
-              { id: "2", label: "Frodo Baggins" },
-              { id: "3", label: "Samwise Gamgee" },
-            ]}
-          />,
-        );
-
-        expect(getByText("Clear")).toBeInTheDocument();
-      });
+      expect(getByText("Select all")).toBeInTheDocument();
     });
 
-    describe("When the search term does not match any options", () => {
-      it("should render a button that is labelled 'Clear'", () => {
-        const { getByText } = render(
-          <ComboboxContentHeader
-            onSelectAll={onSelectAll}
-            onClearAll={onClearAll}
-            selectedCount={1}
-            searchValue="Taylor"
-            options={[
-              { id: "1", label: "Bilbo Baggins" },
-              { id: "2", label: "Frodo Baggins" },
-              { id: "3", label: "Samwise Gamgee" },
-            ]}
-          />,
-        );
+    it("should render a button that is labelled 'Clear' when one or more selections have already been made", () => {
+      const { getByText } = render(
+        <ComboboxContentHeader
+          onSelectAll={onSelectAll}
+          onClearAll={onClearAll}
+          selectedCount={1}
+          searchValue="Bag"
+          options={[
+            { id: "1", label: "Bilbo Baggins" },
+            { id: "2", label: "Frodo Baggins" },
+            { id: "3", label: "Samwise Gamgee" },
+          ]}
+        />,
+      );
 
-        expect(getByText("Clear")).toBeInTheDocument();
-      });
+      expect(getByText("Clear")).toBeInTheDocument();
+    });
+  });
+
+  describe("When the search term does not match any options", () => {
+    it("should not render a button in the header when no selections have been made", () => {
+      const { queryByText } = render(
+        <ComboboxContentHeader
+          onSelectAll={onSelectAll}
+          onClearAll={onClearAll}
+          selectedCount={0}
+          searchValue="Taylor"
+          options={[
+            { id: "1", label: "Bilbo Baggins" },
+            { id: "2", label: "Frodo Baggins" },
+            { id: "3", label: "Samwise Gamgee" },
+          ]}
+        />,
+      );
+
+      expect(queryByText("Select all")).not.toBeInTheDocument();
+      expect(queryByText("Clear")).not.toBeInTheDocument();
+    });
+
+    it("should render a button that is labelled 'Clear' when one or more selections have already been made", () => {
+      const { getByText } = render(
+        <ComboboxContentHeader
+          onSelectAll={onSelectAll}
+          onClearAll={onClearAll}
+          selectedCount={1}
+          searchValue="Taylor"
+          options={[
+            { id: "1", label: "Bilbo Baggins" },
+            { id: "2", label: "Frodo Baggins" },
+            { id: "3", label: "Samwise Gamgee" },
+          ]}
+        />,
+      );
+
+      expect(getByText("Clear")).toBeInTheDocument();
     });
   });
 });

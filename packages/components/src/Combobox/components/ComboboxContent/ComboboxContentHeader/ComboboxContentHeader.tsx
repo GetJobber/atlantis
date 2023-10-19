@@ -14,14 +14,14 @@ export function ComboboxContentHeader(props: ComboboxHeaderProps): JSX.Element {
     option.label.toLowerCase().includes(props.searchValue.toLowerCase()),
   );
 
-  const showClearButton = hasSelected || searchTermMatches;
+  const showAction = hasSelected || searchTermMatches;
 
   return (
     <div className={styles.header} data-testid="ATL-Combobox-Header">
       <Typography textColor="heading" fontWeight="semiBold">
         {label}
       </Typography>
-      {showClearButton && (
+      {showAction && (
         <Button
           size="small"
           label={actionLabel}
