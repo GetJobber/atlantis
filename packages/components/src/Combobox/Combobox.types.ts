@@ -31,6 +31,7 @@ export interface ComboboxOption {
    * A unique identifier for the option.
    */
   id: string | number;
+
   /**
    * The value to be visually displayed in the Combobox options list.
    */
@@ -46,7 +47,6 @@ interface ComboboxCloseProps {
 
 interface ComboboxSelectProps {
   /**
-   *
    * Callback function invoked upon the Combobox menu closing. Provides the selected option(s) as an argument.
    */
   readonly onClose: (selection: ComboboxOption[]) => void;
@@ -88,55 +88,97 @@ export interface ComboboxSearchProps {
    * The placeholder for the search input.
    */
   placeholder?: string;
+
   /**
    * The value of the search input
    */
   searchValue: string;
+
   /**
    * The open state of the Combobox listbox.
    */
   open: boolean;
+
   /**
    * Setter for the search input value.
    */
   setSearchValue: Dispatch<SetStateAction<string>>;
 }
 
+export interface ComboboxHeaderProps {
+  /**
+   * The noun to be used in the header label.
+   */
+  readonly subjectNoun?: string;
+
+  /**
+   * The number of selected options.
+   */
+  readonly selectedCount: number;
+
+  /**
+   * The function to call when the clear all button is clicked.
+   */
+  readonly onClearAll: () => void;
+
+  /**
+   * The function to call when the select all button is clicked.
+   */
+  readonly onSelectAll: () => void;
+
+  /**
+   * The current search term.
+   */
+  readonly searchValue: string;
+
+  /**
+   * Used to check the array of options to determine header label and button state.
+   */
+  readonly options: ComboboxOption[];
+}
 export interface ComboboxListProps {
   /**
    * The options to display in the list. May be the full set of the Combobox or could be filtered.
    */
   readonly options: ComboboxOption[];
+
   /**
    * Used to determine if the empty state should be shown and given priority over the options list.
    */
   readonly showEmptyState: boolean;
+
   /**
    * The currently selected options.
    */
   readonly selected: ComboboxOption[];
+
   /**
    * A ref to the list element.
    */
   readonly optionsListRef: React.RefObject<HTMLUListElement>;
+
   /**
    * Setter for the first selected element, which is used to scroll the list to the first selected element on re-opening.
    */
   readonly setFirstSelectedElement: React.Dispatch<
     SetStateAction<HTMLElement | null>
   >;
+
   /**
    * The callback function to call when an option is selected.
    */
   readonly selectionHandler: (option: ComboboxOption) => void;
+
   /**
    * The current search term. Used in the no results message.
    */
   readonly searchValue: string;
+
   /**
    * Determines if it is a single selection or multi selection Combobox.
    */
   readonly multiselect: boolean;
+
   /**
    * The noun to be used in the empty state message.
    */

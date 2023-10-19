@@ -1,14 +1,14 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
-import { ComboboxHeader } from "./ComboboxHeader";
+import { ComboboxContentHeader } from "./ComboboxContentHeader";
 
-describe("ComboboxHeader", () => {
+describe("ComboboxContentHeader", () => {
   const onClearAll = jest.fn();
   const onSelectAll = jest.fn();
   describe("When no options have been selected", () => {
     it("should render a button that is labelled 'Select all'", () => {
       const { getByText } = render(
-        <ComboboxHeader
+        <ComboboxContentHeader
           onSelectAll={onSelectAll}
           onClearAll={onClearAll}
           selectedCount={0}
@@ -25,7 +25,7 @@ describe("ComboboxHeader", () => {
 
     it("should render a label 'Select {subjectNoun}' when subjectNoun is provided", () => {
       const { getByText } = render(
-        <ComboboxHeader
+        <ComboboxContentHeader
           onSelectAll={onSelectAll}
           onClearAll={onClearAll}
           selectedCount={0}
@@ -40,7 +40,7 @@ describe("ComboboxHeader", () => {
 
     it("should render a label 'Select' when subjectNoun is not provided", () => {
       const { getByText } = render(
-        <ComboboxHeader
+        <ComboboxContentHeader
           onSelectAll={onSelectAll}
           onClearAll={onClearAll}
           selectedCount={0}
@@ -54,7 +54,7 @@ describe("ComboboxHeader", () => {
 
     it("should call onSelectAll when the 'Select all' button is clicked", () => {
       const { getByText } = render(
-        <ComboboxHeader
+        <ComboboxContentHeader
           onSelectAll={onSelectAll}
           onClearAll={onClearAll}
           selectedCount={0}
@@ -74,7 +74,7 @@ describe("ComboboxHeader", () => {
     describe("When the search term matches one or more options", () => {
       it("should render a button that is labelled 'Select all'", () => {
         const { getByText } = render(
-          <ComboboxHeader
+          <ComboboxContentHeader
             onSelectAll={onSelectAll}
             onClearAll={onClearAll}
             selectedCount={0}
@@ -94,7 +94,7 @@ describe("ComboboxHeader", () => {
     describe("When the search term does not match any options", () => {
       it("should not render a button in the header", () => {
         const { queryByText } = render(
-          <ComboboxHeader
+          <ComboboxContentHeader
             onSelectAll={onSelectAll}
             onClearAll={onClearAll}
             selectedCount={0}
@@ -116,7 +116,7 @@ describe("ComboboxHeader", () => {
   describe("When one or more options has been selected", () => {
     it("should render a button that is labelled 'Clear'", () => {
       const { getByText } = render(
-        <ComboboxHeader
+        <ComboboxContentHeader
           onSelectAll={onSelectAll}
           onClearAll={onClearAll}
           selectedCount={1}
@@ -133,7 +133,7 @@ describe("ComboboxHeader", () => {
 
     it("should render a label '{selectedCount} selected'", () => {
       const { getByText } = render(
-        <ComboboxHeader
+        <ComboboxContentHeader
           onSelectAll={onSelectAll}
           onClearAll={onClearAll}
           selectedCount={3}
@@ -152,7 +152,7 @@ describe("ComboboxHeader", () => {
 
     it("should call onClearAll when the 'Clear' button is clicked", () => {
       const { getByText } = render(
-        <ComboboxHeader
+        <ComboboxContentHeader
           onSelectAll={onSelectAll}
           onClearAll={onClearAll}
           selectedCount={4}
@@ -174,7 +174,7 @@ describe("ComboboxHeader", () => {
     describe("When the search term matches one or more options", () => {
       it("should render a button that is labelled 'Clear'", () => {
         const { getByText } = render(
-          <ComboboxHeader
+          <ComboboxContentHeader
             onSelectAll={onSelectAll}
             onClearAll={onClearAll}
             selectedCount={1}
@@ -194,7 +194,7 @@ describe("ComboboxHeader", () => {
     describe("When the search term does not match any options", () => {
       it("should render a button that is labelled 'Clear'", () => {
         const { getByText } = render(
-          <ComboboxHeader
+          <ComboboxContentHeader
             onSelectAll={onSelectAll}
             onClearAll={onClearAll}
             selectedCount={1}

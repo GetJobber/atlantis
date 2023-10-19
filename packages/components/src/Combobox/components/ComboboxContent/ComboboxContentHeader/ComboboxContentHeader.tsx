@@ -1,19 +1,10 @@
 import React from "react";
 import { Typography } from "@jobber/components/Typography";
 import { Button } from "@jobber/components/Button";
-import styles from "./ComboboxHeader.css";
-import { ComboboxOption } from "../../Combobox.types";
+import { ComboboxHeaderProps } from "@jobber/components/Combobox/Combobox.types";
+import styles from "./ComboboxContentHeader.css";
 
-interface ComboboxHeaderProps {
-  readonly subjectNoun?: string;
-  readonly selectedCount: number;
-  readonly onClearAll: () => void;
-  readonly onSelectAll: () => void;
-  readonly searchValue: string;
-  readonly options: ComboboxOption[];
-}
-
-export function ComboboxHeader(props: ComboboxHeaderProps): JSX.Element {
+export function ComboboxContentHeader(props: ComboboxHeaderProps): JSX.Element {
   const hasSelected = props.selectedCount > 0;
   const actionLabel = hasSelected ? "Clear" : "Select all";
   const label = getLabel(hasSelected, props.selectedCount, props.subjectNoun);

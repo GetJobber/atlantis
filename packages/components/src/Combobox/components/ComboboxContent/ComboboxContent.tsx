@@ -8,7 +8,7 @@ import {
 import styles from "./ComboboxContent.css";
 import { ComboboxContentSearch } from "./ComboboxContentSearch";
 import { ComboboxContentList } from "./ComboboxContentList";
-import { ComboboxHeader } from "./ComboboxHeader";
+import { ComboboxContentHeader } from "./ComboboxContentHeader";
 import { ComboboxContext } from "../../ComboboxProvider";
 import { useComboboxContent } from "../../hooks/useComboboxContent";
 import { useComboboxAccessibility } from "../../hooks/useComboboxAccessibility";
@@ -61,7 +61,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       />
 
       {multiselect && optionsExist && (
-        <ComboboxHeader
+        <ComboboxContentHeader
           subjectNoun={props.subjectNoun}
           selectedCount={selectedOptions.length}
           onClearAll={() => {
