@@ -46,6 +46,7 @@ import {
 import { DataListBulkActions } from "./components/DataListBulkActions";
 import { Heading } from "../Heading";
 import { Spinner } from "../Spinner";
+import { Banner, BannerProps } from "../Banner";
 
 export function DataList<T extends DataListObject>({
   selected = [],
@@ -79,6 +80,10 @@ export function DataList<T extends DataListObject>({
     props.children,
     DataListBulkActions,
   );
+  const bannerComponent = getCompoundComponent<BannerProps>(
+    props.children,
+    Banner,
+  );
 
   return (
     <DataListContext.Provider
@@ -89,6 +94,7 @@ export function DataList<T extends DataListObject>({
         emptyStateComponents,
         itemActionComponent,
         bulkActionsComponent,
+        bannerComponent,
         layoutBreakpoints,
         registerLayoutBreakpoints,
         layouts,
@@ -125,6 +131,7 @@ function InternalDataList() {
     totalCount,
     loadingState = "none",
     layoutComponents,
+    bannerComponent,
   } = useDataListContext();
 
   const backToTopRef = useRef<HTMLDivElement>(null);
@@ -150,6 +157,8 @@ function InternalDataList() {
           <InternalDataListFilters />
           <InternalDataListSearch />
         </div>
+
+        {bannerComponent}
 
         <DataListHeader />
       </DataListStickyHeader>
@@ -245,3 +254,8 @@ DataList.BatchAction = function DataListBatchAction(
 ) {
   return <DataListAction {...props} />;
 };
+
+/**
+ * Defines a banner that is going to rendered between the filters and the header.
+ */
+DataList.Banner = Banner;
