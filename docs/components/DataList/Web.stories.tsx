@@ -32,6 +32,7 @@ export default {
     // Detach from Storybook's layout
     (Story, { viewMode }) => {
       if (viewMode === "docs") return <Story />;
+
       return (
         <div
           style={{
@@ -158,6 +159,11 @@ const Template: ComponentStory<typeof DataList> = args => {
         onSearch={search => console.log(search)}
         placeholder="Search characters..."
       />
+
+      <DataList.Banner type="error">
+        There was an issue loading your data. Refresh to try again or check your
+        internet connection.
+      </DataList.Banner>
 
       <DataList.ItemActions onClick={handleActionClick}>
         <DataList.ItemAction
@@ -322,6 +328,7 @@ const Template: ComponentStory<typeof DataList> = args => {
   function getLoadingState() {
     if (loadingInitialContent) return "initial";
     if (loadingNextPage || loadingIDs) return "loadingMore";
+
     return args.loadingState;
   }
 
