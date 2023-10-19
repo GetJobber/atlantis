@@ -225,3 +225,20 @@ need to set the `filtered` to `true`.
   />
 </DataList>
 ```
+
+### Banner
+
+You can add a banner that will be displayed between the filters and the header.
+This banner can be used to display error messages or anything you want to
+information the user about something related to the Datalist. It renders a
+Atlantis
+[Banner](../?path=/docs/components-status-and-feedback-banner-docs--page)
+component
+
+```tsx
+<DataList>
+  <DataList.Banner type="error" icon="alert" dismissible>
+    Something went wrong. Refresh or check your internet connection.
+  </DataList.Banner>
+</DataList>
+```
