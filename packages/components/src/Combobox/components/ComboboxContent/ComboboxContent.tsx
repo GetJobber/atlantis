@@ -62,6 +62,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
 
       {multiselect && optionsExist && (
         <ComboboxContentHeader
+          hasOptionsVisible={filteredOptions.length > 0}
           subjectNoun={props.subjectNoun}
           selectedCount={selectedOptions.length}
           onClearAll={() => {
@@ -70,8 +71,6 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
           onSelectAll={() => {
             optionsSelectionHandler(filteredOptions);
           }}
-          searchValue={searchValue}
-          options={props.options}
         />
       )}
 

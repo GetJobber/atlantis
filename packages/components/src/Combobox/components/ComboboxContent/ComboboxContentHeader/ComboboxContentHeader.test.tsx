@@ -3,20 +3,16 @@ import { fireEvent, render } from "@testing-library/react";
 import { ComboboxContentHeader } from "./ComboboxContentHeader";
 
 describe("ComboboxContentHeader", () => {
-  const onClearAll = jest.fn();
-  const onSelectAll = jest.fn();
   describe("When no options have been selected", () => {
     it("should render a button that is labelled 'Select all'", () => {
+      const onClearAll = jest.fn();
+      const onSelectAll = jest.fn();
       const { getByText } = render(
         <ComboboxContentHeader
           onSelectAll={onSelectAll}
           onClearAll={onClearAll}
           selectedCount={0}
-          searchValue=""
-          options={[
-            { id: "1", label: "Bilbo Baggins" },
-            { id: "2", label: "Frodo Baggins" },
-          ]}
+          hasOptionsVisible
         />,
       );
 
@@ -24,14 +20,15 @@ describe("ComboboxContentHeader", () => {
     });
 
     it("should render a label 'Select {subjectNoun}' when subjectNoun is provided", () => {
+      const onClearAll = jest.fn();
+      const onSelectAll = jest.fn();
       const { getByText } = render(
         <ComboboxContentHeader
           onSelectAll={onSelectAll}
           onClearAll={onClearAll}
           selectedCount={0}
           subjectNoun="tax rates"
-          searchValue=""
-          options={[]}
+          hasOptionsVisible
         />,
       );
 
@@ -39,13 +36,14 @@ describe("ComboboxContentHeader", () => {
     });
 
     it("should render a label 'Select' when subjectNoun is not provided", () => {
+      const onClearAll = jest.fn();
+      const onSelectAll = jest.fn();
       const { getByText } = render(
         <ComboboxContentHeader
           onSelectAll={onSelectAll}
           onClearAll={onClearAll}
           selectedCount={0}
-          searchValue=""
-          options={[]}
+          hasOptionsVisible
         />,
       );
 
@@ -53,16 +51,14 @@ describe("ComboboxContentHeader", () => {
     });
 
     it("should call onSelectAll when the 'Select all' button is clicked", () => {
+      const onClearAll = jest.fn();
+      const onSelectAll = jest.fn();
       const { getByText } = render(
         <ComboboxContentHeader
           onSelectAll={onSelectAll}
           onClearAll={onClearAll}
           selectedCount={0}
-          searchValue=""
-          options={[
-            { id: "1", label: "Bilbo Baggins" },
-            { id: "2", label: "Frodo Baggins" },
-          ]}
+          hasOptionsVisible
         />,
       );
 
@@ -72,18 +68,16 @@ describe("ComboboxContentHeader", () => {
     });
   });
 
-  describe("When one or more options has been selected", () => {
+  describe("When one or more options are selected", () => {
     it("should render a button that is labelled 'Clear'", () => {
+      const onClearAll = jest.fn();
+      const onSelectAll = jest.fn();
       const { getByText } = render(
         <ComboboxContentHeader
           onSelectAll={onSelectAll}
           onClearAll={onClearAll}
           selectedCount={1}
-          searchValue=""
-          options={[
-            { id: "1", label: "Bilbo Baggins" },
-            { id: "2", label: "Frodo Baggins" },
-          ]}
+          hasOptionsVisible
         />,
       );
 
@@ -91,18 +85,14 @@ describe("ComboboxContentHeader", () => {
     });
 
     it("should render a label '{selectedCount} selected'", () => {
+      const onClearAll = jest.fn();
+      const onSelectAll = jest.fn();
       const { getByText } = render(
         <ComboboxContentHeader
           onSelectAll={onSelectAll}
           onClearAll={onClearAll}
           selectedCount={3}
-          searchValue=""
-          options={[
-            { id: "1", label: "Bilbo Baggins" },
-            { id: "2", label: "Frodo Baggins" },
-            { id: "3", label: "Samwise Gamgee" },
-            { id: "4", label: "Meriadoc Brandybuck" },
-          ]}
+          hasOptionsVisible
         />,
       );
 
@@ -110,18 +100,14 @@ describe("ComboboxContentHeader", () => {
     });
 
     it("should call onClearAll when the 'Clear' button is clicked", () => {
+      const onClearAll = jest.fn();
+      const onSelectAll = jest.fn();
       const { getByText } = render(
         <ComboboxContentHeader
           onSelectAll={onSelectAll}
           onClearAll={onClearAll}
           selectedCount={4}
-          searchValue=""
-          options={[
-            { id: "1", label: "Bilbo Baggins" },
-            { id: "2", label: "Frodo Baggins" },
-            { id: "3", label: "Samwise Gamgee" },
-            { id: "4", label: "Meriadoc Brandybuck" },
-          ]}
+          hasOptionsVisible
         />,
       );
 
@@ -130,57 +116,17 @@ describe("ComboboxContentHeader", () => {
       expect(onClearAll).toHaveBeenCalledTimes(1);
     });
   });
-  describe("When the search term matches one or more options", () => {
-    it("should render a button that is labelled 'Select all' when no selections have been made", () => {
-      const { getByText } = render(
-        <ComboboxContentHeader
-          onSelectAll={onSelectAll}
-          onClearAll={onClearAll}
-          selectedCount={0}
-          searchValue="Bag"
-          options={[
-            { id: "1", label: "Bilbo Baggins" },
-            { id: "2", label: "Frodo Baggins" },
-            { id: "3", label: "Samwise Gamgee" },
-          ]}
-        />,
-      );
 
-      expect(getByText("Select all")).toBeInTheDocument();
-    });
-
-    it("should render a button that is labelled 'Clear' when one or more selections have already been made", () => {
-      const { getByText } = render(
-        <ComboboxContentHeader
-          onSelectAll={onSelectAll}
-          onClearAll={onClearAll}
-          selectedCount={1}
-          searchValue="Bag"
-          options={[
-            { id: "1", label: "Bilbo Baggins" },
-            { id: "2", label: "Frodo Baggins" },
-            { id: "3", label: "Samwise Gamgee" },
-          ]}
-        />,
-      );
-
-      expect(getByText("Clear")).toBeInTheDocument();
-    });
-  });
-
-  describe("When the search term does not match any options", () => {
+  describe("When no options are visible", () => {
     it("should not render a button in the header when no selections have been made", () => {
+      const onClearAll = jest.fn();
+      const onSelectAll = jest.fn();
       const { queryByText } = render(
         <ComboboxContentHeader
           onSelectAll={onSelectAll}
           onClearAll={onClearAll}
           selectedCount={0}
-          searchValue="Taylor"
-          options={[
-            { id: "1", label: "Bilbo Baggins" },
-            { id: "2", label: "Frodo Baggins" },
-            { id: "3", label: "Samwise Gamgee" },
-          ]}
+          hasOptionsVisible={false}
         />,
       );
 
@@ -189,17 +135,14 @@ describe("ComboboxContentHeader", () => {
     });
 
     it("should render a button that is labelled 'Clear' when one or more selections have already been made", () => {
+      const onClearAll = jest.fn();
+      const onSelectAll = jest.fn();
       const { getByText } = render(
         <ComboboxContentHeader
           onSelectAll={onSelectAll}
           onClearAll={onClearAll}
           selectedCount={1}
-          searchValue="Taylor"
-          options={[
-            { id: "1", label: "Bilbo Baggins" },
-            { id: "2", label: "Frodo Baggins" },
-            { id: "3", label: "Samwise Gamgee" },
-          ]}
+          hasOptionsVisible={false}
         />,
       );
 

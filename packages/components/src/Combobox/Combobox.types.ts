@@ -107,6 +107,10 @@ export interface ComboboxSearchProps {
 
 export interface ComboboxHeaderProps {
   /**
+   * Does the Combobox have any options visible in the list.
+   */
+  readonly hasOptionsVisible: boolean;
+  /**
    * The noun to be used in the header label.
    */
   readonly subjectNoun?: string;
@@ -125,16 +129,6 @@ export interface ComboboxHeaderProps {
    * The function to call when the select all button is clicked.
    */
   readonly onSelectAll: () => void;
-
-  /**
-   * The current search term.
-   */
-  readonly searchValue: string;
-
-  /**
-   * Used to check the array of options to determine header label and button state.
-   */
-  readonly options: ComboboxOption[];
 }
 export interface ComboboxListProps {
   /**

@@ -9,12 +9,7 @@ export function ComboboxContentHeader(props: ComboboxHeaderProps): JSX.Element {
   const actionLabel = hasSelected ? "Clear" : "Select all";
   const label = getLabel(hasSelected, props.selectedCount, props.subjectNoun);
   const handleSelectAll = hasSelected ? props.onClearAll : props.onSelectAll;
-
-  const searchTermMatches = props.options.some(option =>
-    option.label.toLowerCase().includes(props.searchValue.toLowerCase()),
-  );
-
-  const showAction = hasSelected || searchTermMatches;
+  const showAction = hasSelected || props.hasOptionsVisible;
 
   return (
     <div className={styles.header} data-testid="ATL-Combobox-Header">
