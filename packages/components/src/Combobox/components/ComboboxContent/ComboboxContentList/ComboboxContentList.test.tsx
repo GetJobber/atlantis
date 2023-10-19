@@ -1,11 +1,11 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { ComboboxList } from "./ComboboxList";
+import { ComboboxContentList } from "./ComboboxContentList";
 
-describe("ComboboxList", () => {
+describe("ComboboxContentList", () => {
   it("should render a list of options if provided", () => {
     const { getByText } = render(
-      <ComboboxList
+      <ComboboxContentList
         multiselect={false}
         options={[
           { id: "1", label: "Michael" },
@@ -24,7 +24,7 @@ describe("ComboboxList", () => {
   });
   it("should not show the empty message if list of options provided", () => {
     const { queryByText } = render(
-      <ComboboxList
+      <ComboboxContentList
         multiselect={false}
         options={[
           { id: "1", label: "Michael" },
@@ -42,7 +42,7 @@ describe("ComboboxList", () => {
   });
   it("should render a generic message if no options, nor subjectNoun are provided", () => {
     const { getByText } = render(
-      <ComboboxList
+      <ComboboxContentList
         multiselect={false}
         options={[]}
         showEmptyState={true}
@@ -57,7 +57,7 @@ describe("ComboboxList", () => {
   });
   it("should render a message if no options are provided and a subjectNoun is provided", () => {
     const { getByText } = render(
-      <ComboboxList
+      <ComboboxContentList
         multiselect={false}
         options={[]}
         showEmptyState={true}
@@ -73,7 +73,7 @@ describe("ComboboxList", () => {
   });
   it("should render a message if no options are provided and a search term is entered", () => {
     const { getByText } = render(
-      <ComboboxList
+      <ComboboxContentList
         multiselect={false}
         options={[]}
         showEmptyState={true}
@@ -88,7 +88,7 @@ describe("ComboboxList", () => {
   });
   it("should render a message if no options are provided and a search term is entered and no results are found", () => {
     const { getByText } = render(
-      <ComboboxList
+      <ComboboxContentList
         multiselect={false}
         options={[]}
         showEmptyState={false}
@@ -103,7 +103,7 @@ describe("ComboboxList", () => {
   });
   it("should only apply a selected style to the selected options", () => {
     const { getByText } = render(
-      <ComboboxList
+      <ComboboxContentList
         multiselect={false}
         options={[
           { id: "1", label: "Michael" },
@@ -121,14 +121,14 @@ describe("ComboboxList", () => {
         searchValue=""
       />,
     );
-    expect(getByText("Michael")).toHaveClass("selectedOption");
-    expect(getByText("Leatherface")).toHaveClass("selectedOption");
-    expect(getByText("Jason")).not.toHaveClass("selectedOption");
+    expect(getByText("Michael")).toHaveAttribute("aria-selected", "true");
+    expect(getByText("Leatherface")).toHaveAttribute("aria-selected", "true");
+    expect(getByText("Jason")).not.toHaveAttribute("aria-selected", "true");
   });
 
   it("should have a selected option when selected id is a number and option id is a string", () => {
     const { getByText } = render(
-      <ComboboxList
+      <ComboboxContentList
         multiselect={false}
         options={[
           { id: "1", label: "Michael" },
@@ -142,13 +142,13 @@ describe("ComboboxList", () => {
         searchValue=""
       />,
     );
-    expect(getByText("Michael")).toHaveClass("selectedOption");
-    expect(getByText("Jason")).not.toHaveClass("selectedOption");
+    expect(getByText("Michael")).toHaveAttribute("aria-selected", "true");
+    expect(getByText("Jason")).not.toHaveAttribute("aria-selected", "true");
   });
 
   it("has no selected option when a null selected value is passed", () => {
     const { getByText } = render(
-      <ComboboxList
+      <ComboboxContentList
         multiselect={false}
         options={[
           { id: "1", label: "Michael" },
@@ -162,7 +162,7 @@ describe("ComboboxList", () => {
         searchValue=""
       />,
     );
-    expect(getByText("Michael")).not.toHaveClass("selectedOption");
-    expect(getByText("Jason")).not.toHaveClass("selectedOption");
+    expect(getByText("Michael")).not.toHaveAttribute("aria-selected", "true");
+    expect(getByText("Jason")).not.toHaveAttribute("aria-selected", "true");
   });
 });

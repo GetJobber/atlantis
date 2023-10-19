@@ -1,11 +1,11 @@
 import React from "react";
 import { fireEvent, render, waitFor } from "@testing-library/react";
-import { ComboboxSearch } from "./ComboboxSearch";
+import { ComboboxContentSearch } from "./ComboboxContentSearch";
 
-describe("ComboboxSearch", () => {
+describe("ComboboxContentSearch", () => {
   it("should have the correct placeholder if provided", () => {
     const { getByPlaceholderText } = render(
-      <ComboboxSearch
+      <ComboboxContentSearch
         placeholder="Bloop"
         searchValue=""
         open={true}
@@ -16,7 +16,11 @@ describe("ComboboxSearch", () => {
   });
   it("should have the default placeholder without one provided", () => {
     const { getByPlaceholderText } = render(
-      <ComboboxSearch searchValue="" open={true} setSearchValue={jest.fn()} />,
+      <ComboboxContentSearch
+        searchValue=""
+        open={true}
+        setSearchValue={jest.fn()}
+      />,
     );
     expect(getByPlaceholderText("Search")).toBeInTheDocument();
   });
@@ -24,7 +28,7 @@ describe("ComboboxSearch", () => {
   it("should call the setSearchValue function when the search input changes", () => {
     const setSearchValue = jest.fn();
     const { getByPlaceholderText } = render(
-      <ComboboxSearch
+      <ComboboxContentSearch
         searchValue=""
         open={true}
         setSearchValue={setSearchValue}
@@ -38,7 +42,7 @@ describe("ComboboxSearch", () => {
   it("should clear the search when the clear is used", () => {
     const setSearchValue = jest.fn();
     const { getByTestId } = render(
-      <ComboboxSearch
+      <ComboboxContentSearch
         searchValue="Rumplestiltskin"
         open={true}
         setSearchValue={setSearchValue}
@@ -51,7 +55,7 @@ describe("ComboboxSearch", () => {
   it("should refocus search input when cleared", () => {
     const setSearchValue = jest.fn();
     const { getByTestId } = render(
-      <ComboboxSearch
+      <ComboboxContentSearch
         searchValue="Rumplestiltskin"
         open={true}
         setSearchValue={setSearchValue}
@@ -64,7 +68,7 @@ describe("ComboboxSearch", () => {
 
   it("should have a clear button when there is a search value", () => {
     const { getByTestId } = render(
-      <ComboboxSearch
+      <ComboboxContentSearch
         searchValue="Rumplestiltskin"
         open={true}
         setSearchValue={jest.fn()}
@@ -77,7 +81,11 @@ describe("ComboboxSearch", () => {
 
   it("should focus the search input when open", async () => {
     const { getByPlaceholderText } = render(
-      <ComboboxSearch searchValue="" open={true} setSearchValue={jest.fn()} />,
+      <ComboboxContentSearch
+        searchValue=""
+        open={true}
+        setSearchValue={jest.fn()}
+      />,
     );
     const searchInput = getByPlaceholderText("Search");
 

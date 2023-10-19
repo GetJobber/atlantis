@@ -1,23 +1,11 @@
-import React, { SetStateAction } from "react";
+import React from "react";
 import classnames from "classnames";
 import { Icon } from "@jobber/components/Icon";
 import { Text } from "@jobber/components/Text";
-import styles from "./ComboboxList.css";
-import { ComboboxOption } from "../../Combobox.types";
+import { ComboboxListProps } from "@jobber/components/Combobox/Combobox.types";
+import styles from "./ComboboxContentList.css";
 
-interface ComboboxListProps {
-  options: ComboboxOption[];
-  showEmptyState: boolean;
-  selected: ComboboxOption[];
-  optionsListRef: React.RefObject<HTMLUListElement>;
-  setFirstSelectedElement: React.Dispatch<SetStateAction<HTMLElement | null>>;
-  selectionHandler: (option: ComboboxOption) => void;
-  searchValue: string;
-  multiselect: boolean;
-  subjectNoun?: string;
-}
-
-export function ComboboxList(props: ComboboxListProps): JSX.Element {
+export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
   let hasSeenFirstSelected = false;
 
   return (
@@ -48,9 +36,7 @@ export function ComboboxList(props: ComboboxListProps): JSX.Element {
                   role="option"
                   aria-selected={isSelected}
                   onClick={() => props.selectionHandler(option)}
-                  className={classnames(styles.option, {
-                    [styles.selectedOption]: isSelected,
-                  })}
+                  className={classnames(styles.option)}
                 >
                   {option.label}
                   {isSelected && <Icon name="checkmark" color="blue" />}

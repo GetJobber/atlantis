@@ -29,7 +29,6 @@
   align-items: center;
 }
 
-.selectedOption,
 .option:hover,
 .option:focus {
   background-color: var(--color-surface--background);

@@ -1,63 +1,17 @@
-import React, { ReactElement } from "react";
+import React from "react";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
-import { XOR } from "ts-xor";
+import {
+  ComboboxContentProps,
+  ComboboxOption,
+} from "@jobber/components/Combobox/Combobox.types";
 import styles from "./ComboboxContent.css";
-import { ComboboxSearch } from "./ComboboxSearch";
-import { ComboboxList } from "./ComboboxList";
+import { ComboboxContentSearch } from "./ComboboxContentSearch";
+import { ComboboxContentList } from "./ComboboxContentList";
 import { ComboboxHeader } from "./ComboboxHeader";
 import { ComboboxContext } from "../../ComboboxProvider";
-import { ComboboxOption } from "../../Combobox.types";
 import { useComboboxContent } from "../../hooks/useComboboxContent";
 import { useComboboxAccessibility } from "../../hooks/useComboboxAccessibility";
-
-interface ComboboxCloseProps {
-  /**
-   * Callback function invoked upon the selection of an option. Provides the selected option(s) as an argument.
-   */
-  readonly onSelect: (selection: ComboboxOption[]) => void;
-}
-
-interface ComoboboxSelectProps {
-  /**
-   *
-   * Callback function invoked upon the Combobox menu closing. Provides the selected option(s) as an argument.
-   */
-  readonly onClose: (selection: ComboboxOption[]) => void;
-}
-
-interface ComboboxContentBaseProps {
-  /**
-   * List of selectable options to display.
-   */
-  readonly options: ComboboxOption[];
-
-  /**
-   * Optional action button(s) to display at the bottom of the list.
-   */
-  readonly children?: ReactElement | ReactElement[];
-
-  /**
-   * Placeholder text to display in the search input. Defaults to "Search".
-   */
-  readonly searchPlaceholder?: string;
-
-  /**
-   * pre selected option
-   * @default ""
-   * @type string
-   */
-  readonly selected: ComboboxOption[];
-
-  /**
-   * The encapsulating noun for the content of the combobox. Used
-   * in the empty state, and search placeholder. Should be pluralized.
-   */
-  readonly subjectNoun?: string;
-}
-
-type ComboboxContentProps = ComboboxContentBaseProps &
-  XOR<ComboboxCloseProps, ComoboboxSelectProps>;
 
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   const { open, setOpen, wrapperRef, multiselect } =
@@ -99,7 +53,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       style={popperStyles.popper}
       {...attributes.popper}
     >
-      <ComboboxSearch
+      <ComboboxContentSearch
         open={open}
         placeholder={props.subjectNoun}
         searchValue={searchValue}
@@ -121,7 +75,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         />
       )}
 
-      <ComboboxList
+      <ComboboxContentList
         multiselect={multiselect}
         showEmptyState={!optionsExist}
         options={filteredOptions}

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ComboboxOption } from "../Combobox.types";
+import { ComboboxOption } from "@jobber/components/Combobox/Combobox.types";
 
 interface useComboboxContent {
   searchValue: string;

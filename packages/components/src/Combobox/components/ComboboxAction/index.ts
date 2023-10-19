@@ -1,1 +1,1 @@
-export { ComboboxAction, ComboboxActionProps } from "./ComboboxAction";
+export { ComboboxAction } from "./ComboboxAction";

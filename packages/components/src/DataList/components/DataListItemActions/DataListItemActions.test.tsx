@@ -12,6 +12,7 @@ import {
 } from "@jobber/components/DataList/context/DataListLayoutContext";
 import { DataListLayoutActionsContext } from "@jobber/components/DataList/components/DataListLayoutActions/DataListLayoutContext";
 import { DataListItemActions, InternalDataListItemActions } from ".";
+import { CONTAINER_TEST_ID } from "../DataListOverflowFade";
 
 const handleEditClick = jest.fn();
 const mockSetHasInLayoutActions = jest.fn().mockReturnValue(true);
@@ -66,6 +67,16 @@ describe("DataListItemActions", () => {
     userEvent.click(screen.getByLabelText("Edit"));
     expect(handleEditClick).toHaveBeenCalledTimes(1);
     expect(handleEditClick).toHaveBeenCalledWith({ id: 1 });
+  });
+
+  it("should not render the DataListItemActions overlay if there's no children", () => {
+    mockItemActionComponent.mockReturnValueOnce(
+      <DataListItemActions url={"getjobber.com"} />,
+    );
+
+    renderComponent();
+
+    expect(screen.queryByTestId(CONTAINER_TEST_ID)).not.toBeInTheDocument();
   });
 });
 
