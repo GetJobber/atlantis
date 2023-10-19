@@ -116,6 +116,8 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
           onSelectAll={() => {
             optionsSelectionHandler(filteredOptions);
           }}
+          searchValue={searchValue}
+          options={props.options}
         />
       )}
 

@@ -12,6 +12,11 @@ describe("ComboboxHeader", () => {
           onSelectAll={onSelectAll}
           onClearAll={onClearAll}
           selectedCount={0}
+          searchValue=""
+          options={[
+            { id: "1", label: "Bilbo Baggins" },
+            { id: "2", label: "Frodo Baggins" },
+          ]}
         />,
       );
 
@@ -25,6 +30,8 @@ describe("ComboboxHeader", () => {
           onClearAll={onClearAll}
           selectedCount={0}
           subjectNoun="tax rates"
+          searchValue=""
+          options={[]}
         />,
       );
 
@@ -37,24 +44,72 @@ describe("ComboboxHeader", () => {
           onSelectAll={onSelectAll}
           onClearAll={onClearAll}
           selectedCount={0}
+          searchValue=""
+          options={[]}
         />,
       );
 
       expect(getByText("Select")).toBeInTheDocument();
     });
 
-    it("should call onSelectAll when the Select all button is clicked", () => {
+    it("should call onSelectAll when the 'Select all' button is clicked", () => {
       const { getByText } = render(
         <ComboboxHeader
           onSelectAll={onSelectAll}
           onClearAll={onClearAll}
           selectedCount={0}
+          searchValue=""
+          options={[
+            { id: "1", label: "Bilbo Baggins" },
+            { id: "2", label: "Frodo Baggins" },
+          ]}
         />,
       );
 
       fireEvent.click(getByText("Select all"));
 
       expect(onSelectAll).toHaveBeenCalledTimes(1);
+    });
+
+    describe("When the search term matches one or more options", () => {
+      it("should render a button that is labelled 'Select all'", () => {
+        const { getByText } = render(
+          <ComboboxHeader
+            onSelectAll={onSelectAll}
+            onClearAll={onClearAll}
+            selectedCount={0}
+            searchValue="Bag"
+            options={[
+              { id: "1", label: "Bilbo Baggins" },
+              { id: "2", label: "Frodo Baggins" },
+              { id: "3", label: "Samwise Gamgee" },
+            ]}
+          />,
+        );
+
+        expect(getByText("Select all")).toBeInTheDocument();
+      });
+    });
+
+    describe("When the search term does not match any options", () => {
+      it("should not render a button in the header", () => {
+        const { queryByText } = render(
+          <ComboboxHeader
+            onSelectAll={onSelectAll}
+            onClearAll={onClearAll}
+            selectedCount={0}
+            searchValue="Taylor"
+            options={[
+              { id: "1", label: "Bilbo Baggins" },
+              { id: "2", label: "Frodo Baggins" },
+              { id: "3", label: "Samwise Gamgee" },
+            ]}
+          />,
+        );
+
+        expect(queryByText("Select all")).not.toBeInTheDocument();
+        expect(queryByText("Clear")).not.toBeInTheDocument();
+      });
     });
   });
 
@@ -65,6 +120,11 @@ describe("ComboboxHeader", () => {
           onSelectAll={onSelectAll}
           onClearAll={onClearAll}
           selectedCount={1}
+          searchValue=""
+          options={[
+            { id: "1", label: "Bilbo Baggins" },
+            { id: "2", label: "Frodo Baggins" },
+          ]}
         />,
       );
 
@@ -76,25 +136,79 @@ describe("ComboboxHeader", () => {
         <ComboboxHeader
           onSelectAll={onSelectAll}
           onClearAll={onClearAll}
-          selectedCount={5}
+          selectedCount={3}
+          searchValue=""
+          options={[
+            { id: "1", label: "Bilbo Baggins" },
+            { id: "2", label: "Frodo Baggins" },
+            { id: "3", label: "Samwise Gamgee" },
+            { id: "4", label: "Meriadoc Brandybuck" },
+          ]}
         />,
       );
 
-      expect(getByText("5 selected")).toBeInTheDocument();
+      expect(getByText("3 selected")).toBeInTheDocument();
     });
 
-    it("should call onClearAll when the Clear button is clicked", () => {
+    it("should call onClearAll when the 'Clear' button is clicked", () => {
       const { getByText } = render(
         <ComboboxHeader
           onSelectAll={onSelectAll}
           onClearAll={onClearAll}
           selectedCount={4}
+          searchValue=""
+          options={[
+            { id: "1", label: "Bilbo Baggins" },
+            { id: "2", label: "Frodo Baggins" },
+            { id: "3", label: "Samwise Gamgee" },
+            { id: "4", label: "Meriadoc Brandybuck" },
+          ]}
         />,
       );
 
       fireEvent.click(getByText("Clear"));
 
       expect(onClearAll).toHaveBeenCalledTimes(1);
+    });
+
+    describe("When the search term matches one or more options", () => {
+      it("should render a button that is labelled 'Clear'", () => {
+        const { getByText } = render(
+          <ComboboxHeader
+            onSelectAll={onSelectAll}
+            onClearAll={onClearAll}
+            selectedCount={1}
+            searchValue="Bag"
+            options={[
+              { id: "1", label: "Bilbo Baggins" },
+              { id: "2", label: "Frodo Baggins" },
+              { id: "3", label: "Samwise Gamgee" },
+            ]}
+          />,
+        );
+
+        expect(getByText("Clear")).toBeInTheDocument();
+      });
+    });
+
+    describe("When the search term does not match any options", () => {
+      it("should render a button that is labelled 'Clear'", () => {
+        const { getByText } = render(
+          <ComboboxHeader
+            onSelectAll={onSelectAll}
+            onClearAll={onClearAll}
+            selectedCount={1}
+            searchValue="Taylor"
+            options={[
+              { id: "1", label: "Bilbo Baggins" },
+              { id: "2", label: "Frodo Baggins" },
+              { id: "3", label: "Samwise Gamgee" },
+            ]}
+          />,
+        );
+
+        expect(getByText("Clear")).toBeInTheDocument();
+      });
     });
   });
 });

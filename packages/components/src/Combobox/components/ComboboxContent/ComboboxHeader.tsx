@@ -2,12 +2,15 @@ import React from "react";
 import { Typography } from "@jobber/components/Typography";
 import { Button } from "@jobber/components/Button";
 import styles from "./ComboboxHeader.css";
+import { ComboboxOption } from "../../Combobox.types";
 
 interface ComboboxHeaderProps {
   readonly subjectNoun?: string;
   readonly selectedCount: number;
   readonly onClearAll: () => void;
   readonly onSelectAll: () => void;
+  readonly searchValue: string;
+  readonly options: ComboboxOption[];
 }
 
 export function ComboboxHeader(props: ComboboxHeaderProps): JSX.Element {
@@ -16,17 +19,25 @@ export function ComboboxHeader(props: ComboboxHeaderProps): JSX.Element {
   const label = getLabel(hasSelected, props.selectedCount, props.subjectNoun);
   const handleSelectAll = hasSelected ? props.onClearAll : props.onSelectAll;
 
+  const searchTermMatches = props.options.some(option =>
+    option.label.toLowerCase().includes(props.searchValue.toLowerCase()),
+  );
+
+  const showClearButton = hasSelected || searchTermMatches;
+
   return (
     <div className={styles.header} data-testid="ATL-Combobox-Header">
       <Typography textColor="heading" fontWeight="semiBold">
         {label}
       </Typography>
-      <Button
-        size="small"
-        label={actionLabel}
-        type="tertiary"
-        onClick={handleSelectAll}
-      />
+      {showClearButton && (
+        <Button
+          size="small"
+          label={actionLabel}
+          type="tertiary"
+          onClick={handleSelectAll}
+        />
+      )}
     </div>
   );
 }
