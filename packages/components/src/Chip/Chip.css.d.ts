@@ -10,6 +10,8 @@ declare const styles: {
   readonly "invalid": string;
   readonly "subtle": string;
   readonly "disabled": string;
+  readonly "chipContent": string;
+  readonly "truncateGradient": string;
   readonly "clickableSuffix": string;
 };
 export = styles;
