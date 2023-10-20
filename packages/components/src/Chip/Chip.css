@@ -8,7 +8,6 @@
   display: flex;
   position: relative;
   height: var(--chip-height);
-  padding: var(--space-small) var(--base-unit);
   border: var(--border-base) solid transparent;
   border-radius: var(--chip-radius);
   color: var(--color-heading);
@@ -16,6 +15,12 @@
   cursor: pointer;
   transition: all var(--ease-both) var(--timing-quick);
   align-items: center;
+}
+div.chip {
+  padding: 0 var(--base-unit);
+}
+button.chip {
+  padding: var(--space-small) var(--base-unit);
 }
 
 .chip:focus {

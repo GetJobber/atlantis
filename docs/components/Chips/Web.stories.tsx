@@ -33,10 +33,10 @@ export default {
 const BasicTemplate: ComponentStory<typeof InternalChipSingleSelect> = args => {
   const [selected, setSelected] = useState("");
   const chips = [
-    { label: "Amazing", initials: "AZ", size: "small" },
-    { label: "Wonderful", icon: "video", size: "small" },
-    { label: "Brilliant", icon: "starFill", size: "small" },
-    { label: "Magnificent" },
+    { label: "Amazing", value: "Amazing", initials: "AZ", size: "small" },
+    { label: "Wonderful", value: "Wonderful", icon: "video", size: "small" },
+    { label: "Brilliant", value: "Brilliant", icon: "starFill", size: "small" },
+    { label: "Magnificent", value: "Magnificent" },
   ];
 
   return (
@@ -45,18 +45,13 @@ const BasicTemplate: ComponentStory<typeof InternalChipSingleSelect> = args => {
         You are <u>{selected ? selected : "_______"}</u>
       </Text>
       <Chips
-        type="singleselect"
         {...args}
         selected={selected}
         onChange={allSelections => setSelected(allSelections as string)}
       >
         {chips.map((c, index) => {
           return (
-            <Chip
-              label={c.label}
-              key={index}
-              onClick={val => setSelected(val as string)}
-            >
+            <Chip label={c.label} value={c.value} key={index}>
               <Chip.Prefix>
                 {c.icon && (
                   <Icon
@@ -106,7 +101,7 @@ const MultiSelectTemplate: ComponentStory<
         selected={selected}
         onChange={setSelected}
       >
-        <Chip label="Amazing" onClick={multiSelectItems} />
+        <Chip label="Amazing" onClick={multiSelectItems} value="Amazing" />
         <Chip label="Wonderful" value="Wonderful" onClick={multiSelectItems} />
         <Chip label="Brilliant" value="Brilliant" onClick={multiSelectItems} />
         <Chip

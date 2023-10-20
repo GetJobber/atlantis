@@ -5,6 +5,7 @@ import {
   render,
   screen,
   waitFor,
+  within,
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { InternalChipSingleSelect } from "../InternalChipSingleSelect";
@@ -26,13 +27,7 @@ beforeEach(() => {
       onClick={handleClickChip}
     >
       {chips.map(chip => (
-        <Chip
-          key={chip}
-          label={chip}
-          value={chip}
-          onClick={handleClickChip}
-          onKeyDown={handleClickChip}
-        />
+        <Chip key={chip} label={chip} value={chip} />
       ))}
     </InternalChipSingleSelect>,
   );
@@ -51,34 +46,35 @@ it("should have a label and a checkbox", () => {
 describe("onChange", () => {
   it("should trigger the onChange selecting a chip", () => {
     const target = chips[1];
-    userEvent.click(screen.getByLabelText(target));
+    userEvent.click(screen.getAllByLabelText(target)[0]);
     expect(handleChange).toHaveBeenCalledTimes(1);
     expect(handleChange).toHaveReturnedWith(target);
   });
   it("should trigger the onChange deselecting a chip", () => {
-    userEvent.click(screen.getByLabelText(selectedChip));
+    userEvent.click(screen.getAllByLabelText(selectedChip)[0]);
     expect(handleChange).toHaveBeenCalledTimes(1);
-    expect(handleChange).toHaveReturnedWith(selectedChip);
+    expect(handleChange).toHaveReturnedWith(undefined);
   });
 
   describe("onClick", () => {
     it("should trigger the chip onClick", () => {
-      const target = screen
-        .getAllByRole("button")
-        .find(d => d.textContent === chips[2]);
-      userEvent.click(target);
+      const target = chips[2];
+      userEvent.click(screen.getAllByLabelText(target)[0]);
       expect(handleClickChip).toHaveBeenCalledTimes(1);
-      expect(handleClickChip).toHaveReturnedWith(chips[2]);
+      expect(handleClickChip).toHaveReturnedWith(target);
     });
   });
 
   describe("On space bar press", () => {
     it("should deselect the selected chip", async () => {
-      const element = screen
-        .getAllByRole("button")
-        .find(d => d.textContent === selectedChip);
-      fireEvent.keyDown(element, { key: " " });
+      const element = within(
+        screen
+          .getAllByLabelText(selectedChip)[0]
+          .closest("label") as HTMLLabelElement,
+      ).getByRole("radio");
+      fireEvent.keyUp(element, { key: " " });
 
+      // Wait for next tick
       await waitFor(() => {
         expect(handleChange).toHaveBeenCalledTimes(1);
         expect(handleChange).toHaveReturnedWith(undefined);

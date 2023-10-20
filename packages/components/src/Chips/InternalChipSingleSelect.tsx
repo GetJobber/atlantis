@@ -1,7 +1,7 @@
 import React from "react";
+import { v1 as uuidv1 } from "uuid";
 import styles from "./InternalChip.css";
 import { ChipSingleSelectProps } from "./ChipsTypes";
-import { InternalChip } from "./InternalChip";
 import { ChipSelectable } from "../Chip";
 
 type InternalChipChoiceProps = Pick<
@@ -12,6 +12,7 @@ type InternalChipChoiceProps = Pick<
 export function InternalChipSingleSelect({
   children,
   selected,
+  name = uuidv1(),
   onChange,
   onClick,
 }: InternalChipChoiceProps) {
@@ -22,40 +23,25 @@ export function InternalChipSingleSelect({
           child?.props.value === selected || child?.props.label === selected;
 
         return (
-          <>
-            <label style={{ display: "none" }}>
-              <input
-                type="radio"
-                checked={isSelected}
-                className={styles.input}
-                onClick={handleClick(child?.props.value || "")}
-                onKeyUp={handleKeyUp(isSelected, child?.props.value || "")}
-                onChange={() => {
-                  /* No op. onClick handles the change to allow deselecting. */
-                }}
-                disabled={child?.props.disabled}
-              />
-              <InternalChip
-                {...child?.props}
-                label={child?.props.label || ""}
-                active={isSelected}
-              />
-            </label>
+          <label>
+            <input
+              type="radio"
+              name={name}
+              checked={isSelected}
+              className={styles.input}
+              onClick={handleClick(child?.props.value || "")}
+              onKeyUp={handleKeyUp(isSelected, child?.props.value || "")}
+              onChange={() => {
+                /* No op. onClick handles the change to allow deselecting. */
+              }}
+              disabled={child?.props.disabled}
+            />
             <ChipSelectable
-              {...child?.props}
               label={child?.props.label || ""}
               selected={isSelected}
-              onClick={clickedItem => {
-                onChange(clickedItem as string);
-                onClick &&
-                  onClick(
-                    {} as React.MouseEvent<HTMLButtonElement>,
-                    child?.props.value,
-                  );
-              }}
-              onKeyDown={handleKeyUp(isSelected, child?.props.value || "")}
+              role={"option"}
             />
-          </>
+          </label>
         );
       })}
     </div>

@@ -43,7 +43,7 @@ describe("Chip", () => {
 
   it("should have a role of button when role not provided", () => {
     const { getByRole } = render(<Chip label="Test Chip" />);
-    expect(getByRole("button")).toBeInstanceOf(HTMLButtonElement);
+    expect(getByRole("button")).toBeInstanceOf(HTMLDivElement);
   });
 
   it("should have a tabIndex of zero if one is not provided", () => {

@@ -31,15 +31,19 @@ export const Chip = ({
 
   const prefix = useChildComponent(children, d => d.type === Chip.Prefix);
   const suffix = useChildComponent(children, d => d.type === Chip.Suffix);
+  const Tag = onClick ? "button" : "div";
 
   return (
-    <button
+    <Tag
       className={classes}
-      onClick={(ev: React.MouseEvent<HTMLButtonElement>) =>
-        onClick && onClick(value || label, ev)
+      onClick={(ev: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) =>
+        onClick &&
+        onClick(value || label, ev as React.MouseEvent<HTMLButtonElement>)
       }
       tabIndex={tabIndex}
-      onKeyDown={onKeyDown}
+      onKeyDown={(
+        ev: React.KeyboardEvent<HTMLButtonElement | HTMLDivElement>,
+      ) => onKeyDown && onKeyDown(ev as React.KeyboardEvent<HTMLButtonElement>)}
       aria-label={ariaLabel || label}
       disabled={disabled}
       role={role}
@@ -53,7 +57,7 @@ export const Chip = ({
       {heading && <span className={styles.chipBar} />}
       <Typography size="base">{label}</Typography>
       {suffix}
-    </button>
+    </Tag>
   );
 };
 

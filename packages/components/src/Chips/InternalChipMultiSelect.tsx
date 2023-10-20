@@ -39,17 +39,15 @@ export function InternalChipMultiSelect({
         );
 
         return (
-          <>
-            <label style={{ display: "none" }}>
-              <input
-                type="checkbox"
-                checked={isChipActive}
-                className={styles.input}
-                onClick={chip && handleClick(chip.props.value)}
-                onChange={chip && handleChange(chip.props.value)}
-                disabled={chip?.props.disabled}
-              />
-            </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={isChipActive}
+              className={styles.input}
+              onClick={chip && handleClick(chip.props.value)}
+              onChange={chip && handleChange(chip.props.value)}
+              disabled={chip?.props.disabled}
+            />
             {chip && (
               <ChipSelectable
                 {...chip.props}
@@ -57,7 +55,7 @@ export function InternalChipMultiSelect({
                 onClick={toggleSelectedChip}
               ></ChipSelectable>
             )}
-          </>
+          </label>
         );
 
         function isChipSelected(value: string) {
