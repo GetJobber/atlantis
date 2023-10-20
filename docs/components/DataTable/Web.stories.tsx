@@ -217,8 +217,8 @@ export const ClientSidePagination = BasicTemplate.bind({});
 ClientSidePagination.args = {
   data: exampleData,
   stickyHeader: true,
-  height: 200,
-  pagination: { manualPagination: false, itemsPerPage: [5, 20, 30] },
+  height: 400,
+  pagination: { manualPagination: false, itemsPerPage: [10, 20, 30] },
   sorting: { manualSorting: false },
   onRowClick: row => alert(JSON.stringify(row.original, null, 2)),
   columns: [
