@@ -62,14 +62,10 @@ const WithDefaultTabTemplate: ComponentStory<typeof Tabs> = args => (
 const WithTabChangeCallbackTemplate: ComponentStory<typeof Tabs> = args => {
   const [tab, setTab] = React.useState(args.defaultTab ?? 0);
 
-  const handleTabChange = (tabIndex: number) => {
-    setTab(tabIndex);
-  };
-
   return (
     <div>
       <p>Active tab index: {tab}</p>
-      <Tabs {...args} onTabChange={handleTabChange}>
+      <Tabs {...args} onTabChange={setTab}>
         <Tab label="Eggs">
           🍳 Some eggs are laid by female animals of many different species,
           including birds, reptiles, amphibians, mammals, and fish, and have
