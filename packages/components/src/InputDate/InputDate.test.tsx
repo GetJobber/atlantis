@@ -30,6 +30,7 @@ it("fires onChange with the new value when you click a date", () => {
   fireEvent.click(selectDate);
   expect(changeHandler).toHaveBeenCalledWith(new Date(newDate));
 });
+
 it("shouldn't call onChange with the new value when you click a disabled date", () => {
   const date = "11/11/2011";
   const minDate = "11/9/2011";
@@ -69,6 +70,9 @@ it("fires onChange with the new value when you type a different date", () => {
   fireEvent.change(getByLabelText(placeholder), {
     target: { value: newDate },
   });
+
+  fireEvent.blur(getByLabelText(placeholder));
+
   expect(changeHandler).toHaveBeenCalledWith(new Date(newDate));
 });
 
@@ -76,27 +80,27 @@ it("updates the value of the field when the value prop changes", () => {
   const date = "11/11/2011";
   const newDate = "11/15/2011";
   const changeHandler = jest.fn();
-  const { queryByDisplayValue, rerender } = render(
+  const { queryByDisplayValue, getByDisplayValue, rerender } = render(
     <InputDate value={new Date(date)} onChange={changeHandler} />,
   );
-  expect(queryByDisplayValue(date)).toBeInTheDocument();
+  expect(queryByDisplayValue("Nov 11, 2011")).toBeInTheDocument();
 
   rerender(<InputDate value={new Date(newDate)} onChange={changeHandler} />);
 
-  expect(queryByDisplayValue(date)).not.toBeInTheDocument();
-  expect(queryByDisplayValue(newDate)).toBeInTheDocument();
+  expect(queryByDisplayValue("Nov 11, 2011")).not.toBeInTheDocument();
+  expect(getByDisplayValue("Nov 15, 2011")).toBeInTheDocument();
 });
 
-it("returns the correct date object when long formatted date is supplied", () => {
+it("calls onChange with the correct date when long formatted date is supplied", () => {
   const date = "11/11/2011";
   const newDate = "November 15, 2011";
   const changeHandler = jest.fn();
   const { getByDisplayValue } = render(
     <InputDate value={new Date(date)} onChange={changeHandler} />,
   );
-  expect(getByDisplayValue(date)).toBeInTheDocument();
+  expect(getByDisplayValue("Nov 11, 2011")).toBeInTheDocument();
 
-  fireEvent.change(getByDisplayValue(date), {
+  fireEvent.change(getByDisplayValue("Nov 11, 2011"), {
     target: { value: newDate },
   });
 
@@ -116,9 +120,9 @@ it("doesn't fire onChange when the new value is invalid", async () => {
     />,
   );
 
-  expect(getByDisplayValue(date)).toBeInTheDocument();
+  expect(getByDisplayValue("Nov 11, 2011")).toBeInTheDocument();
 
-  const form = getByDisplayValue(date);
+  const form = getByDisplayValue("Nov 11, 2011");
   fireEvent.focus(form);
 
   fireEvent.change(getByLabelText(placeholder), {
@@ -127,18 +131,6 @@ it("doesn't fire onChange when the new value is invalid", async () => {
   expect(changeHandler).toHaveBeenCalledTimes(0);
 });
 
-it("doesn't display the calendar when input is focused with keyboard", () => {
-  const date = "11/11/2011";
-  const changeHandler = jest.fn();
-  const { queryByText, getByDisplayValue } = render(
-    <InputDate value={new Date(date)} onChange={changeHandler} />,
-  );
-  const input = getByDisplayValue(date);
-
-  fireEvent.focus(input);
-
-  expect(queryByText("15")).not.toBeInTheDocument();
-});
 it("doesn't display the calendar when calendar button is focused with keyboard", () => {
   const date = "11/11/2011";
   const changeHandler = jest.fn();
@@ -171,9 +163,9 @@ it("displays the calendar when input is focused with a click", () => {
   const { getByText, getByDisplayValue } = render(
     <InputDate value={new Date(date)} onChange={changeHandler} />,
   );
-  const input = getByDisplayValue(date);
+  const input = getByDisplayValue("Nov 11, 2011");
 
-  fireEvent.click(input);
+  fireEvent.focus(input);
 
   expect(getByText("15")).toBeInTheDocument();
 });
@@ -187,8 +179,8 @@ describe("when InputDate is used within a Modal", () => {
     const button = getByRole("button");
     fireEvent.click(button);
 
-    const input = getByDisplayValue(date);
-    fireEvent.click(input);
+    const input = getByDisplayValue("Nov 11, 2011");
+    fireEvent.focus(input);
 
     expect(getByText("15")).toBeInTheDocument();
     fireEvent.keyDown(input, { key: "Escape" });
@@ -198,7 +190,7 @@ describe("when InputDate is used within a Modal", () => {
   });
 });
 
-function NestedTestComponent(props: { date: string }): JSX.Element {
+function NestedTestComponent(props: { readonly date: string }): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
   const changeHandler = jest.fn();
 

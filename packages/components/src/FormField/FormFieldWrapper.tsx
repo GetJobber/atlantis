@@ -1,6 +1,8 @@
 import React, {
   PropsWithChildren,
+  Ref,
   RefObject,
+  forwardRef,
   useEffect,
   useRef,
   useState,
@@ -13,9 +15,9 @@ import { FormFieldDescription } from "./FormFieldDescription";
 import { InputValidation } from "../InputValidation";
 
 interface FormFieldWrapperProps extends FormFieldProps {
-  error: string;
-  identifier: string;
-  descriptionIdentifier: string;
+  readonly error: string;
+  readonly identifier: string;
+  readonly descriptionIdentifier: string;
 }
 
 interface LabelPadding {
@@ -23,25 +25,28 @@ interface LabelPadding {
   paddingRight: number | string | undefined;
 }
 
-export function FormFieldWrapper({
-  align,
-  description,
-  descriptionIdentifier,
-  placeholder,
-  value,
-  children,
-  invalid,
-  error,
-  size,
-  prefix,
-  suffix,
-  max,
-  maxLength,
-  type,
-  disabled,
-  inline,
-  identifier,
-}: PropsWithChildren<FormFieldWrapperProps>) {
+export const FormFieldWrapper = forwardRef(function FormFieldWrapper(
+  {
+    align,
+    description,
+    descriptionIdentifier,
+    placeholder,
+    value,
+    children,
+    invalid,
+    error,
+    size,
+    prefix,
+    suffix,
+    max,
+    maxLength,
+    type,
+    disabled,
+    inline,
+    identifier,
+  }: PropsWithChildren<FormFieldWrapperProps>,
+  ref: Ref<HTMLDivElement>,
+) {
   const wrapperClasses = classnames(
     styles.wrapper,
     size && styles[size],
@@ -81,7 +86,7 @@ export function FormFieldWrapper({
   }, [value]);
 
   return (
-    <div className={containerClasses}>
+    <div className={containerClasses} ref={ref}>
       <div className={wrapperClasses} style={wrapperInlineStyle}>
         {prefix?.icon && <AffixIcon {...prefix} size={size} />}
         <div className={styles.inputWrapper}>
@@ -145,4 +150,4 @@ export function FormFieldWrapper({
 
     return newPadding;
   }
-}
+});

@@ -4,12 +4,15 @@ import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import classes from "./Popover.css";
 import { ButtonDismiss } from "../ButtonDismiss";
 
+type Attachable = Element | React.RefObject<Element | null>;
+type Lazy<T> = () => T;
+
 export interface PopoverProps {
   /**
    * Element the Popover will attach to and point at. A `useRef` must be attached to an html element
    * and passed as an attachTo prop in order for the Popover to function properly
    */
-  readonly attachTo: Element | React.RefObject<Element | null>;
+  readonly attachTo?: Attachable | Lazy<Attachable>;
 
   /**
    * Popover content.
@@ -20,6 +23,16 @@ export interface PopoverProps {
    * Control Popover visibility.
    */
   readonly open: boolean;
+
+  /**
+   * Dismissaable popovers will display a close button in the top right corner.
+   */
+  readonly dismissable?: boolean;
+
+  /**
+   * Refocus the activator element when the Popover is closed.
+   */
+  readonly refocus?: boolean;
 
   /**
    * Callback executed when the user wants to close/dismiss the Popover
@@ -39,18 +52,23 @@ export function Popover({
   attachTo,
   open,
   preferredPlacement = "auto",
+  dismissable = true,
+  refocus = true,
 }: PopoverProps) {
   const [popperElement, setPopperElement] = useState<HTMLElement | null>();
   const [arrowElement, setArrowElement] = useState<HTMLElement | null>();
+
+  const attachToValue = typeof attachTo === "function" ? attachTo() : attachTo;
+
   const { styles: popperStyles, attributes } = usePopper(
-    attachTo instanceof Element ? attachTo : attachTo.current,
+    attachToValue instanceof Element ? attachToValue : attachToValue?.current,
     popperElement,
     {
       modifiers: buildModifiers(arrowElement),
       placement: preferredPlacement,
     },
   );
-  useRefocusOnActivator(open);
+  useRefocusOnActivator(open, { disabled: !refocus });
 
   return (
     <>
@@ -62,9 +80,14 @@ export function Popover({
           className={classes.popover}
           {...attributes.popper}
         >
-          <div className={classes.dismissButton}>
-            <ButtonDismiss onClick={onRequestClose} ariaLabel="Close dialog" />
-          </div>
+          {dismissable && (
+            <div className={classes.dismissButton}>
+              <ButtonDismiss
+                onClick={onRequestClose}
+                ariaLabel="Close dialog"
+              />
+            </div>
+          )}
           {children}
           <div
             ref={setArrowElement}
@@ -96,5 +119,6 @@ function buildModifiers(arrowElement: HTMLElement | undefined | null) {
       },
     },
   ];
+
   return modifiers;
 }

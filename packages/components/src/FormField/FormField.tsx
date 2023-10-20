@@ -3,6 +3,8 @@ import React, {
   FocusEvent,
   KeyboardEvent,
   MutableRefObject,
+  Ref,
+  forwardRef,
   useEffect,
   useImperativeHandle,
   useState,
@@ -16,7 +18,10 @@ import { FormFieldPostFix } from "./FormFieldPostFix";
 
 // Added 13th statement to accommodate getErrorMessage function
 /*eslint max-statements: ["error", 13]*/
-export function FormField(props: FormFieldProps) {
+export const FormField = forwardRef(function FormField(
+  props: FormFieldProps,
+  ref: Ref<HTMLDivElement>,
+) {
   const {
     actionsRef,
     autocomplete = true,
@@ -118,6 +123,7 @@ export function FormField(props: FormFieldProps) {
         return (
           <FormFieldWrapper
             {...props}
+            ref={ref}
             value={rest.value}
             error={error}
             identifier={identifier}
@@ -216,7 +222,7 @@ export function FormField(props: FormFieldProps) {
   function handleValidation() {
     onValidation && onValidation(error);
   }
-}
+});
 
 function setAutocomplete(
   autocompleteSetting: boolean | FormFieldProps["autocomplete"],
