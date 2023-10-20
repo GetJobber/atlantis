@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.47.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.46.10...@jobber/components-native@0.47.0) (2023-10-20)
+
+
+### Features
+
+* **components-native:** add testID property to Button and default testID values to ButtonGroup ([#1590](https://github.com/GetJobber/atlantis/issues/1590)) ([ce565a1](https://github.com/GetJobber/atlantis/commit/ce565a165d02c80590435501654be26e2ea65cb2))
+
+
+
+
+
 ## [0.46.10](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.46.9...@jobber/components-native@0.46.10) (2023-10-16)
 
 **Note:** Version bump only for package @jobber/components-native
