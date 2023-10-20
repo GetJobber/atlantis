@@ -1,0 +1,81 @@
+.container {
+  display: flex;
+  height: 34px;
+  border-top: 2px solid var(--color-surface);
+  border-bottom: 2px solid var(--color-surface);
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 0px;
+}
+
+.cell {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  box-sizing: border-box;
+  border: 0;
+  border-color: transparent;
+  border-radius: var(--radius-circle);
+  background: transparent;
+  flex-basis: auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.cell:not(.selected):focus {
+  color: var(--color-text);
+  background-color: var(--color-surface--hover);
+}
+
+.cell:not(.disabled):not(.selected):not(.outOfRange):hover {
+  background-color: var(--color-surface--hover);
+}
+
+.selected {
+  border-color: var(--color-green);
+  color: var(--color-surface);
+  background-color: var(--color-green);
+}
+
+.selected:hover {
+  background-color: var(--color-interactive--hover);
+}
+
+.range-none .highlighted {
+  border-color: var(--color-green);
+  border-style: solid;
+  border-width: 1px;
+}
+
+.range-none .highlighted:hover {
+  border-color: var(--color-interactive--hover);
+  background-color: var(--color-surface--hover);
+}
+
+.disabled {
+  color: var(--color-disabled);
+}
+
+.range-none {
+  background: none;
+}
+
+.range-between {
+  background-color: var(--color-green--lightest);
+}
+
+.range-start {
+  background: linear-gradient(
+    90deg,
+    transparent 50%,
+    var(--color-green--lightest) 50%
+  );
+}
+
+.range-end {
+  background: linear-gradient(
+    90deg,
+    var(--color-green--lightest) 50%,
+    transparent 50%
+  );
+}

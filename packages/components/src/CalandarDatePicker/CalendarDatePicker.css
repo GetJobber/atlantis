@@ -1,0 +1,5 @@
+.grid {
+  padding-bottom: var(--space-base);
+  padding-left: var(--space-base);
+  padding-right: var(--space-base);
+}
