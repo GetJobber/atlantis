@@ -1,8 +1,3 @@
-export {
-  Combobox,
-  ComboboxProps,
-  COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE,
-  COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE,
-} from "./Combobox";
+export { Combobox } from "./Combobox";
 export { ComboboxContextProvider } from "./ComboboxProvider";
-export { ComboboxOption } from "./Combobox.types";
+export { ComboboxOption, ComboboxProps } from "./Combobox.types";

@@ -28,6 +28,8 @@ export function InternalDataListItemActions() {
 
   const { children } = itemActionComponent.props;
 
+  if (!children) return null;
+
   return (
     <motion.div
       variants={variants}

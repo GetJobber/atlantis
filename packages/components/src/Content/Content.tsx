@@ -16,7 +16,7 @@ interface ContentProps {
    * Change the wrapping element to be one of the available
    * semantic tags.
    *
-   * @default 'div'
+   * @default "div"
    */
   readonly type?:
     | "section"

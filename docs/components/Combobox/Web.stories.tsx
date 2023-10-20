@@ -14,6 +14,7 @@ export default {
 
 const ComboboxButton: ComponentStory<typeof Combobox> = args => {
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
+
   return (
     <Combobox {...args}>
       <Combobox.TriggerButton
@@ -64,6 +65,7 @@ const ComboboxButton: ComponentStory<typeof Combobox> = args => {
 
 const ComboboxChip: ComponentStory<typeof Combobox> = args => {
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
+
   return (
     <Combobox {...args}>
       <Combobox.TriggerChip label="Teammates" />
@@ -79,6 +81,7 @@ const ComboboxChip: ComponentStory<typeof Combobox> = args => {
           setSelected(selection);
         }}
         selected={selected}
+        subjectNoun="teammates"
       >
         <Combobox.Action
           label="Add Teammate"
@@ -99,6 +102,7 @@ const ComboboxChip: ComponentStory<typeof Combobox> = args => {
 
 const ComboboxEmptyState: ComponentStory<typeof Combobox> = args => {
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
+
   return (
     <Combobox {...args}>
       <Combobox.TriggerButton
@@ -134,6 +138,7 @@ const ComboboxClearSelection: ComponentStory<typeof Combobox> = args => {
       label: "Bilbo Baggins",
     },
   ]);
+
   return (
     <>
       <ClearButton
@@ -169,6 +174,7 @@ const ComboboxClearSelection: ComponentStory<typeof Combobox> = args => {
             setSelected(selection);
           }}
           selected={selected}
+          subjectNoun="teammates"
         >
           <Combobox.Action
             label="Add Teammate"
