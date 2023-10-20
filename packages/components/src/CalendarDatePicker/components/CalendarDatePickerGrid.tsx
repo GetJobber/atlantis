@@ -20,21 +20,29 @@ interface CalendarDatePickerGridProps {
   readonly viewingDate: Date;
   readonly minDate?: Date;
   readonly maxDate?: Date;
-  readonly hightlightedDates: Date[];
+  readonly highlightedDates: Date[];
   readonly weekStartsOnMonday: boolean;
+  readonly translations?: {
+    readonly highlightedLabelSuffix?: string;
+    readonly chooseDate?: string;
+  };
   readonly range: boolean;
-  readonly onChange?: (date: Date[]) => void;
+  readonly onChange?: (
+    date: Date[],
+    method: "click" | "enter" | "space",
+  ) => void;
   readonly onMonthChange?: (date: Date) => void;
 }
 
 export const CalendarDatePickerGrid = ({
   selected = [],
   viewingDate,
-  hightlightedDates = [],
+  highlightedDates = [],
   minDate,
   maxDate,
   range,
   weekStartsOnMonday,
+  translations,
   onChange,
   onMonthChange,
 }: CalendarDatePickerGridProps): JSX.Element => {
@@ -53,11 +61,12 @@ export const CalendarDatePickerGrid = ({
     selected,
     minDate,
     maxDate,
-    hightlightedDates,
+    highlightedDates,
     weekStartsOnMonday,
     range,
     viewingDate,
     focusedDate,
+    highlightedLabelSuffix: translations?.highlightedLabelSuffix,
     onToggle,
   });
 
@@ -76,7 +85,12 @@ export const CalendarDatePickerGrid = ({
   const id = useRef(`calendar-${Math.random()}`).current;
 
   return (
-    <div role="grid" onKeyDown={onKeyDown} id={id} aria-label="Choose date">
+    <div
+      role="grid"
+      onKeyDown={onKeyDown}
+      id={id}
+      aria-label={translations?.chooseDate || "Choose date"}
+    >
       {grid}
     </div>
   );
@@ -88,8 +102,9 @@ function useRowsAndCells({
   selected,
   minDate,
   maxDate,
-  hightlightedDates,
+  highlightedDates,
   weekStartsOnMonday,
+  highlightedLabelSuffix,
   range,
   focusedDate,
   onToggle,
@@ -98,18 +113,23 @@ function useRowsAndCells({
   selected: Date[];
   minDate?: Date;
   maxDate?: Date;
-  hightlightedDates: Date[];
+  highlightedDates: Date[];
   weekStartsOnMonday: boolean;
+  highlightedLabelSuffix: string | undefined;
   range: boolean;
   focusedDate: Date;
-  onToggle: (date: Date, isSelected?: boolean) => void;
+  onToggle: (
+    date: Date,
+    method: "click" | "enter" | "space",
+    isSelected?: boolean,
+  ) => void;
 }) {
   const rows = [
     <DaysOfTheWeekRow key="weekdays" weekStartsOnMonday={weekStartsOnMonday} />,
   ];
 
   const mapOfHighlightedDates =
-    useHighlightedDatesGroupedByTimeStamp(hightlightedDates);
+    useHighlightedDatesGroupedByTimeStamp(highlightedDates);
 
   const { currentDate, month, lastDateOfTheMonth, startDate } = useMemo(() => {
     const firstDayOfTheMonth = startOfMonth(viewingDate);
@@ -155,7 +175,7 @@ function useRowsAndCells({
         (minDate && dateOfCell < minDate) || (maxDate && dateOfCell > maxDate);
 
       const onToggleCell = () => {
-        onToggle(dateOfCell, isSelected);
+        onToggle(dateOfCell, "click", isSelected);
       };
 
       cells.push(
@@ -168,6 +188,7 @@ function useRowsAndCells({
           onToggle={onToggleCell}
           highlighted={mapOfHighlightedDates[dateOfCell.getTime()]}
           disabled={!!isDisabled}
+          highlightedLabelSuffix={highlightedLabelSuffix}
           range={
             range ? getRangeIndicatorForCell(dateOfCell, selected) : "none"
           }

@@ -1,16 +1,8 @@
 import React, { useEffect, useRef } from "react";
-// import formatDate from "date-fns/format";
 import combineClassNames from "classnames";
 import classNames from "./DayCell.css";
 
-// const getPressStyle = ({ pressed }: { pressed: boolean }) => ({
-//   // opacity: pressed ? tokens["opacity-pressed"] : 1,
-// });
-
-/**
- * A date cell in the calendar
- */
-export const DayCell = (props: {
+interface DayCellProps {
   /**
    * Flag indicating if the cell falls with in the month being viewed
    */
@@ -35,42 +27,56 @@ export const DayCell = (props: {
    * Flag indicating the cell represents a disabled date
    */
   readonly disabled: boolean;
+  /**
+   * Indicates where the cell falls in a range of dates when selecting a range
+   */
   readonly range: "start" | "end" | "between" | "none";
+  /**
+   * Flag indicating if the cell has received focus via keyboard navigation
+   */
   readonly hasFocus: boolean;
   /**
-   * Callback for pressing the cell
+   * Callback for clicking the cell
    */
   readonly onToggle: () => void;
-}): JSX.Element => {
-  const formatter = new Intl.DateTimeFormat(navigator.language, {
-    dateStyle: "medium",
-  });
+  /**
+   * The suffix to append to the date label when the cell is highlighted.
+   * Is "highlighted" by default.
+   */
+  readonly highlightedLabelSuffix: string | undefined;
+}
 
-  const dt = new Date(props.date);
-
-  const cell = props.inMonth ? (
-    <div
-      className={combineClassNames(
-        classNames.cell,
-        !props.disabled && props.selected ? classNames.selected : "",
-        !props.disabled && !props.selected && props.highlighted
-          ? classNames.highlighted
-          : "",
-        props.disabled ? classNames.disabled : "",
-      )}
-    >
-      <span
-        className={classNames.accessibleLabel}
-        id={`date-label-${props.date}`}
-      >
-        {`${formatter.format(dt)}${props.highlighted ? ", highlighted" : ""}`}
-      </span>
-      <span aria-hidden="true">{dt.getDate()}</span>
-    </div>
+export const DayCell = ({ inMonth, range, ...props }: DayCellProps) =>
+  inMonth ? (
+    <GridCell {...props} range={range} />
   ) : (
+    <OutOfRangeCell range={range} />
+  );
+
+const OutOfRangeCell = ({ range }: Pick<DayCellProps, "range">) => (
+  <div
+    className={combineClassNames(
+      classNames.container,
+      classNames[`range-${range}`],
+    )}
+  >
     <div
       className={combineClassNames(classNames.cell, classNames.outOfRange)}
     />
+  </div>
+);
+
+/**
+ * A date cell in the calendar
+ */
+const GridCell = (props: Omit<DayCellProps, "inMonth">): JSX.Element => {
+  const dt = new Date(props.date);
+
+  const cell = (
+    <div className={propsBasedClassNames()}>
+      <span className={classNames.accessibleLabel}>{accessibleLabel()}</span>
+      <span aria-hidden="true">{dt.getDate()}</span>
+    </div>
   );
 
   const ref = useRef<HTMLDivElement>(null);
@@ -78,38 +84,51 @@ export const DayCell = (props: {
   useEffect(() => {
     if (
       props.hasFocus &&
-      props.inMonth &&
       document.activeElement?.getAttribute("role") === "gridcell"
     ) {
       ref.current?.focus();
     }
-  }, [props.hasFocus, ref.current, props.inMonth]);
-
-  const tabbableProps = props.inMonth
-    ? {
-        role: props.inMonth ? "gridcell" : undefined,
-        tabIndex: props.hasFocus ? 0 : -1,
-        ["aria-selected"]: props.selected,
-        ["aria-disabled"]: props.disabled,
-        ["data-date"]: `${dt.getFullYear()}-${
-          dt.getMonth() + 1
-        }-${dt.getDate()}`,
-        onClick: props.disabled ? undefined : props.onToggle,
-      }
-    : {};
+  }, [props.hasFocus, ref.current]);
 
   return (
     <div
       ref={ref}
-      {...tabbableProps}
-      // aria-labelledby={`date-label-${props.date}`}
+      role="gridcell"
+      tabIndex={props.hasFocus ? 0 : -1}
+      aria-selected={props.selected}
+      aria-disabled={props.disabled}
+      data-date={`${dt.getFullYear()}-${dt.getMonth() + 1}-${dt.getDate()}`}
+      onClick={props.disabled ? undefined : props.onToggle}
       className={combineClassNames(
         classNames.container,
         classNames[`range-${props.range}`],
-        props.hasFocus && props.inMonth ? classNames.focus : "",
+        props.hasFocus ? classNames.focus : "",
       )}
     >
       {cell}
     </div>
   );
+
+  function accessibleLabel() {
+    const formatter = new Intl.DateTimeFormat(navigator.language, {
+      dateStyle: "medium",
+    });
+
+    return `${formatter.format(dt)}${
+      props.highlighted
+        ? `, ${props.highlightedLabelSuffix || "highlighted"}`
+        : ""
+    }`;
+  }
+
+  function propsBasedClassNames() {
+    return combineClassNames(
+      classNames.cell,
+      !props.disabled && props.selected ? classNames.selected : "",
+      !props.disabled && !props.selected && props.highlighted
+        ? classNames.highlighted
+        : "",
+      props.disabled ? classNames.disabled : "",
+    );
+  }
 };

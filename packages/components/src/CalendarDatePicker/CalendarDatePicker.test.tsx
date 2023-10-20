@@ -121,7 +121,7 @@ it("allows you to specify a max date", () => {
 it("allows you to highlight dates", () => {
   setup({
     selected: mkDate(11),
-    hightlightedDates: [mkDate(10)],
+    highlightedDates: [mkDate(10)],
     onChange: jest.fn(),
   });
   expect(screen.getByText("May 10, 1905, highlighted")).toBeInTheDocument();
@@ -191,4 +191,23 @@ it("allows you to select a range of dates spanning months", () => {
   userEvent.click(screen.getByLabelText("Previous month"));
   userEvent.click(screen.getByText("3"));
   expect(onChange).toHaveBeenLastCalledWith([mkDate(3, 4), mkDate(9, 6)]);
+});
+
+it("supports translations", () => {
+  setup({
+    selected: mkDate(11),
+    onChange: jest.fn(),
+    highlightedDates: [mkDate(1)],
+    translations: {
+      chooseDate: "Kies datum",
+      highlightedLabelSuffix: "gemarkeerd",
+      nextMonth: "Volgende maand",
+      previousMonth: "Vorige maand",
+    },
+  });
+
+  expect(screen.getByLabelText("Volgende maand")).toBeInTheDocument();
+  expect(screen.getByLabelText("Vorige maand")).toBeInTheDocument();
+  expect(screen.getByLabelText("Kies datum")).toBeInTheDocument();
+  expect(screen.getByText("May 1, 1905, gemarkeerd")).toBeInTheDocument();
 });

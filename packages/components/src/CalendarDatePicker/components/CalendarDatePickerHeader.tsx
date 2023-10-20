@@ -8,12 +8,17 @@ interface CaleanderDatePickerHeaderProps {
   readonly month: number;
   readonly year: number;
   readonly onChange?: (date: Date) => void;
+  readonly translations?: {
+    readonly previousMonth?: string;
+    readonly nextMonth?: string;
+  };
 }
 
 export const CalendarDatePickerHeader = ({
   onChange,
   month,
   year,
+  translations,
 }: CaleanderDatePickerHeaderProps) => {
   const date = useMemo(() => new Date(year, month, 1), [year, month]);
 
@@ -38,13 +43,13 @@ export const CalendarDatePickerHeader = ({
       <Button
         type="tertiary"
         icon="arrowLeft"
-        ariaLabel="Previous month"
+        ariaLabel={translations?.previousMonth || "Previous month"}
         onClick={onPreviousMonth}
       />
       <Button
         type="tertiary"
         icon="arrowRight"
-        ariaLabel="Next month"
+        ariaLabel={translations?.nextMonth || "Next month"}
         onClick={onNextMonth}
       />
     </div>

@@ -10,10 +10,14 @@ export function useOnToggleDate({
   selected: Date[];
   range: boolean | undefined;
   setFocusedDate: Dispatch<SetStateAction<Date>>;
-  onChange?: (dates: Date[]) => void;
+  onChange?: (dates: Date[], method: "click" | "enter" | "space") => void;
 }) {
   return useCallback(
-    function onToggle(date: Date, isSelected?: boolean) {
+    function onToggle(
+      date: Date,
+      method: "click" | "enter" | "space",
+      isSelected?: boolean,
+    ) {
       setFocusedDate(date);
 
       if (isSelected === undefined) {
@@ -22,20 +26,23 @@ export function useOnToggleDate({
 
       if (range) {
         if (selected.length === 0) {
-          onChange?.([date]);
+          onChange?.([date], method);
         } else if (selected.length === 1) {
           if (date < selected[0]) {
-            onChange?.([date, selected[0]]);
+            onChange?.([date, selected[0]], method);
           } else {
-            onChange?.([selected[0], date]);
+            onChange?.([selected[0], date], method);
           }
         } else {
-          onChange?.([date]);
+          onChange?.([date], method);
         }
       } else if (isSelected) {
-        onChange?.(selected.filter(dt => !datesAreEqual(dt, date)));
+        onChange?.(
+          selected.filter(dt => !datesAreEqual(dt, date)),
+          method,
+        );
       } else {
-        onChange?.([...selected, date]);
+        onChange?.([...selected, date], method);
       }
     },
     [onChange, setFocusedDate, selected, range],

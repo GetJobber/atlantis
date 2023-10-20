@@ -8,7 +8,7 @@ export function useGridKeyboardControl({
   maxDate,
 }: {
   setFocusedDate: Dispatch<SetStateAction<Date>>;
-  onToggle: (date: Date) => void;
+  onToggle: (date: Date, method: "click" | "enter" | "space") => void;
   minDate?: Date;
   maxDate?: Date;
 }) {
@@ -28,7 +28,7 @@ export function useGridKeyboardControl({
               (!minDate || date.getTime() >= minDate.getTime()) &&
               (!maxDate || date.getTime() <= maxDate.getTime())
             ) {
-              onToggle(date);
+              onToggle(date, event.key === " " ? "space" : "enter");
             }
           }
           break;

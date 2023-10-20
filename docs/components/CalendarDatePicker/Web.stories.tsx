@@ -32,7 +32,7 @@ const SingleDateSelectionTemplate: ComponentStory<
         selected={date}
         minDate={startOfMonth(new Date())}
         maxDate={add(new Date(), { months: 2 })}
-        hightlightedDates={highlightDates}
+        highlightedDates={highlightDates}
         onChange={setDate}
         weekStartsOnMonday={!!args.weekStartsOnMonday}
       />
@@ -65,7 +65,7 @@ const MultiDateSelectionTemplate: ComponentStory<
         selected={dates}
         minDate={startOfMonth(new Date())}
         maxDate={add(new Date(), { months: 2 })}
-        hightlightedDates={highlightDates}
+        highlightedDates={highlightDates}
         onChange={setDates}
         weekStartsOnMonday={!!args.weekStartsOnMonday}
       />
@@ -96,7 +96,7 @@ const RangeDateSelectionTemplate: ComponentStory<
         selected={dates}
         minDate={startOfMonth(new Date())}
         maxDate={add(new Date(), { months: 2 })}
-        hightlightedDates={highlightDates}
+        highlightedDates={highlightDates}
         onChange={setDates}
         weekStartsOnMonday={!!args.weekStartsOnMonday}
       />

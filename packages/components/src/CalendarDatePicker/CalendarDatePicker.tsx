@@ -16,29 +16,40 @@ interface MultiDateSelection {
   multi: true;
   range?: false;
   selected: Date[];
-  onChange: (dates: Date[]) => void;
+  onChange: (dates: Date[], method: "click" | "enter" | "space") => void;
 }
 
 interface RangeDateSelection {
   multi?: never;
   range: true;
   selected: [] | [Date] | [Date, Date];
-  onChange: (dates: [] | [Date] | [Date, Date]) => void;
+  onChange: (
+    dates: [] | [Date] | [Date, Date],
+    method: "click" | "enter" | "space",
+  ) => void;
 }
 
 interface SingleDateSelection {
   multi?: false;
   selected?: Date;
   range?: never;
-  onChange: (date: Date | undefined) => void;
+  onChange: (
+    date: Date | undefined,
+    method: "click" | "enter" | "space",
+  ) => void;
 }
 export interface CalendarDatePickerBaseProps {
-  // readonly selected: Date[];
-  readonly hightlightedDates?: Date[];
+  readonly highlightedDates?: Date[];
   readonly minDate?: Date;
   readonly maxDate?: Date;
   readonly weekStartsOnMonday?: boolean;
   readonly focusonSelectedDate?: boolean;
+  readonly translations?: {
+    readonly previousMonth?: string;
+    readonly nextMonth?: string;
+    readonly chooseDate?: string;
+    readonly highlightedLabelSuffix?: string;
+  };
   readonly onMonthChange?: (date: Date) => void;
   readonly onClickOutside?: (event: MouseEvent) => void;
 }
@@ -51,13 +62,14 @@ const today = () => new Date();
 export const CalendarDatePicker = forwardRef(function CalendarDatePicker(
   {
     selected,
-    hightlightedDates,
+    highlightedDates,
     minDate,
     maxDate,
     weekStartsOnMonday,
     focusonSelectedDate,
     range,
     multi,
+    translations,
     onChange,
     onMonthChange,
     onClickOutside,
@@ -92,11 +104,11 @@ export const CalendarDatePicker = forwardRef(function CalendarDatePicker(
   );
 
   const onChangeSelection = useCallback(
-    (dates: Date[]) => {
+    (dates: Date[], method: "click" | "enter" | "space") => {
       if (multi === true || range === true) {
-        onChange(dates as [Date, Date]);
+        onChange(dates as [Date, Date], method);
       } else {
-        onChange(dates[dates.length - 1]);
+        onChange(dates[dates.length - 1], method);
       }
     },
     [multi, range, onChange],
@@ -121,7 +133,7 @@ export const CalendarDatePicker = forwardRef(function CalendarDatePicker(
   return (
     <CalendarMultiDatePickerComponent
       selected={selectedDates}
-      hightlightedDates={hightlightedDates}
+      highlightedDates={highlightedDates}
       minDate={minDate}
       maxDate={maxDate}
       viewingDate={viewingDate}
@@ -131,8 +143,8 @@ export const CalendarDatePicker = forwardRef(function CalendarDatePicker(
       onChange={onChangeSelection}
       onMonthChange={onMonthChangeInternal}
       onClickOutside={onClickOutside}
+      translations={translations}
       ref={ref}
-      // ^?
     />
   );
 });
@@ -142,7 +154,10 @@ type CalendarMultiDatePickerComponentProps = CalendarDatePickerBaseProps & {
   readonly multi: boolean;
   readonly range: boolean;
   readonly selected: Date[];
-  readonly onChange: (dates: Date[]) => void;
+  readonly onChange: (
+    dates: Date[],
+    method: "click" | "enter" | "space",
+  ) => void;
 };
 
 export const CalendarMultiDatePickerComponent = forwardRef<
@@ -151,12 +166,13 @@ export const CalendarMultiDatePickerComponent = forwardRef<
 >(function CalendarMultiDatePickerComponent(
   {
     selected,
-    hightlightedDates = [],
+    highlightedDates = [],
     minDate,
     maxDate,
     viewingDate,
     weekStartsOnMonday,
     range,
+    translations,
     onChange,
     onMonthChange,
     onClickOutside,
@@ -191,18 +207,20 @@ export const CalendarMultiDatePickerComponent = forwardRef<
         month={viewingDate.getMonth()}
         year={viewingDate.getFullYear()}
         onChange={onMonthChange}
+        translations={translations}
       />
       <div className={classNames.grid}>
         <CalendarDatePickerGrid
           viewingDate={viewingDate}
           selected={selected}
-          hightlightedDates={hightlightedDates}
+          highlightedDates={highlightedDates}
           minDate={minDate}
           maxDate={maxDate}
           range={!!range}
           onChange={onChange}
           onMonthChange={onMonthChange}
           weekStartsOnMonday={!!weekStartsOnMonday}
+          translations={translations}
         />
       </div>
     </div>
