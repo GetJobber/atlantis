@@ -46,12 +46,12 @@ describe("DataListItem", () => {
       renderComponent();
 
       const listItemEl = screen.getByText(listItem);
-      userEvent.hover(listItemEl);
+      await userEvent.hover(listItemEl);
 
       const menuButton = screen.getByRole("button", { name: "More actions" });
       expect(menuButton).toBeInTheDocument();
 
-      userEvent.unhover(listItemEl);
+      await userEvent.unhover(listItemEl);
       await waitFor(() => {
         expect(menuButton).not.toBeInTheDocument();
       });
@@ -73,14 +73,14 @@ describe("DataListItem", () => {
       });
     });
 
-    it("should render a context menu when right clicked", () => {
+    it("should render a context menu when right clicked", async () => {
       renderComponent();
 
       const listItemEl = screen.getByText(listItem);
 
       const clientX = 20;
       const clientY = 30;
-      userEvent.hover(listItemEl);
+      await userEvent.hover(listItemEl);
       fireEvent.contextMenu(listItemEl, { clientX, clientY });
 
       const menuElement = screen.getByRole("menu");
@@ -108,18 +108,18 @@ describe("DataListItem", () => {
       ).toBeInTheDocument();
     });
 
-    it("should not fire the parent click when opening the menu", () => {
+    it("should not fire the parent click when opening the menu", async () => {
       const moreAction = screen.getByRole("button", { name: "More actions" });
 
-      userEvent.click(moreAction);
+      await userEvent.click(moreAction);
       expect(handleItemClick).not.toHaveBeenCalled();
     });
 
-    it("should not fire the parent click when clicking one of the menu items", () => {
+    it("should not fire the parent click when clicking one of the menu items", async () => {
       const moreAction = screen.getByRole("button", { name: "More actions" });
 
-      userEvent.click(moreAction);
-      userEvent.click(screen.getByRole("button", { name: "Edit" }));
+      await userEvent.click(moreAction);
+      await userEvent.click(screen.getByRole("button", { name: "Edit" }));
       expect(handleItemClick).not.toHaveBeenCalled();
     });
   });
