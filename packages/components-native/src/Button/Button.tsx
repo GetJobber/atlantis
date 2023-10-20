@@ -126,7 +126,7 @@ export function Button({
   return (
     <TouchableHighlight
       onPress={onPress}
-      testID={testID || accessibilityLabel || label}
+      testID={buildTestID(testID, label, accessibilityLabel)}
       accessibilityLabel={accessibilityLabel || label}
       accessibilityHint={accessibilityHint}
       accessibilityRole="button"
@@ -226,4 +226,16 @@ function getContentStyles(
     icon && !!label && styles.iconPaddingOffset,
     !!label && styles.contentWithLabel,
   ];
+}
+
+function buildTestID(
+  testID: string | undefined,
+  label: string | undefined,
+  accessibilityLabel: string | undefined,
+): string | undefined {
+  if (testID) {
+    return `ATL-${testID}-Button`;
+  }
+
+  return accessibilityLabel || label;
 }

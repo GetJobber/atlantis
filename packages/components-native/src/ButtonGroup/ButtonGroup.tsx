@@ -76,7 +76,7 @@ export function ButtonGroup({
                 fullHeight={true}
                 icon={icon}
                 loading={loading}
-                testID={`primary-action-${index}`}
+                testID={`ATL-ButtonGroup-Primary-Action-${index}`}
               />
             )}
           </View>
@@ -90,7 +90,7 @@ export function ButtonGroup({
             accessibilityLabel={t("more")}
             onPress={handlePress(openBottomSheet)}
             fullHeight={true}
-            testID="secondary-action"
+            testID="ATL-ButtonGroup-Secondary-Action"
           />
         </View>
       )}
