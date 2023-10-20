@@ -61,17 +61,14 @@ const WithDefaultTabTemplate: ComponentStory<typeof Tabs> = args => (
 
 const WithTabChangeCallbackTemplate: ComponentStory<typeof Tabs> = args => {
   const [tab, setTab] = React.useState(args.defaultTab ?? 0);
-  const [prevTab, setPrevTab] = React.useState<number>();
 
-  const handleTabChange = (tabIndex: number, prevTabIndex: number) => {
+  const handleTabChange = (tabIndex: number) => {
     setTab(tabIndex);
-    setPrevTab(prevTabIndex);
   };
 
   return (
     <div>
       <p>Active tab index: {tab}</p>
-      <p>Previous tab index: {prevTab !== undefined ? prevTab : "none"}</p>
       <Tabs {...args} onTabChange={handleTabChange}>
         <Tab label="Eggs">
           🍳 Some eggs are laid by female animals of many different species,

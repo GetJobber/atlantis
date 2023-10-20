@@ -63,7 +63,7 @@ describe("Tabs", () => {
     );
 
     fireEvent.click(getByText("Cheese"));
-    expect(onTabChange).toHaveBeenCalledWith(1, 0);
+    expect(onTabChange).toHaveBeenCalledWith(1);
   });
 
   it("sets the active tab on mount", () => {

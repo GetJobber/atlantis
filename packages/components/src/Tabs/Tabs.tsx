@@ -23,9 +23,8 @@ interface TabsProps {
   /**
    * Callback that fires when the active tab changes
    * @param newTabIndex
-   * @param prevTabIndex
    */
-  onTabChange?(newTabIndex: number, prevTabIndex: number): void;
+  onTabChange?(newTabIndex: number): void;
 }
 
 export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
@@ -46,7 +45,7 @@ export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
       setActiveTab(index);
 
       if (onTabChange) {
-        onTabChange(index, activeTab);
+        onTabChange(index);
       }
     };
   };
