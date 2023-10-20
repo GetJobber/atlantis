@@ -7,5 +7,9 @@ import classNames from "./WeekRow.css";
 export const WeekRow = (props: {
   readonly children: React.ReactNode;
 }): JSX.Element => {
-  return <div className={classNames.container}>{props.children}</div>;
+  return (
+    <div className={classNames.container} role="row">
+      {props.children}
+    </div>
+  );
 };

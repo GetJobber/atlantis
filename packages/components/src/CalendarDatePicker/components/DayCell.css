@@ -22,7 +22,8 @@
   justify-content: center;
 }
 
-.cell:not(.selected):focus {
+.container:focus > .cell:not(.selected),
+.container.focus > .cell:not(.selected) {
   color: var(--color-text);
   background-color: var(--color-surface--hover);
 }
@@ -78,4 +79,14 @@
     var(--color-green--lightest) 50%,
     transparent 50%
   );
+}
+
+.accessibleLabel {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
 }

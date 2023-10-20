@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { DaysOfTheWeekRow } from "./DaysOfTheWeekRow";
 import { DayCell } from "./DayCell";
 import { WeekRow } from "./WeekRow";
@@ -10,6 +10,10 @@ import {
   startOfMonth,
   startOfWeek,
 } from "../utils";
+import { useGridKeyboardControl } from "../hooks/useGridKeyboardControl";
+import { useSyncFocusAndViewingDate } from "../hooks/useSyncFocusAndViewingDate";
+import { useOnToggleDate } from "../hooks/useOnToggleDate";
+import { useHighlightedDatesGroupedByTimeStamp } from "../hooks/useHighlightedDatesGroupedByTimeStamp";
 
 interface CalendarDatePickerGridProps {
   readonly selected?: Date[];
@@ -20,6 +24,7 @@ interface CalendarDatePickerGridProps {
   readonly weekStartsOnMonday: boolean;
   readonly range: boolean;
   readonly onChange?: (date: Date[]) => void;
+  readonly onMonthChange?: (date: Date) => void;
 }
 
 export const CalendarDatePickerGrid = ({
@@ -31,7 +36,19 @@ export const CalendarDatePickerGrid = ({
   range,
   weekStartsOnMonday,
   onChange,
+  onMonthChange,
 }: CalendarDatePickerGridProps): JSX.Element => {
+  const [focusedDate, setFocusedDate] = useState<Date>(
+    selected[0] || viewingDate,
+  );
+
+  const onToggle = useOnToggleDate({
+    selected,
+    range,
+    onChange,
+    setFocusedDate,
+  });
+
   const grid = useRowsAndCells({
     selected,
     minDate,
@@ -40,18 +57,31 @@ export const CalendarDatePickerGrid = ({
     weekStartsOnMonday,
     range,
     viewingDate,
-    onChange,
+    focusedDate,
+    onToggle,
   });
 
-  return <div>{grid}</div>;
+  const onKeyDown = useGridKeyboardControl({
+    setFocusedDate,
+    onToggle,
+  });
+
+  useSyncFocusAndViewingDate({
+    viewingDate,
+    focusedDate,
+    setFocusedDate,
+    onMonthChange,
+  });
+
+  const id = useRef(`calendar-${Math.random()}`).current;
+
+  return (
+    <div role="grid" onKeyDown={onKeyDown} id={id} aria-label="Choose date">
+      {grid}
+    </div>
+  );
 };
 
-/**
- * Builds a grid off cell components for each date of the month
- * being viewed. Determines styling properties for each cell based
- * on if the cell date is selected, is the current date or falls
- * in a different month.
- */
 // eslint-disable-next-line max-statements
 function useRowsAndCells({
   viewingDate,
@@ -61,7 +91,8 @@ function useRowsAndCells({
   hightlightedDates,
   weekStartsOnMonday,
   range,
-  onChange,
+  focusedDate,
+  onToggle,
 }: {
   viewingDate: Date;
   selected: Date[];
@@ -70,21 +101,15 @@ function useRowsAndCells({
   hightlightedDates: Date[];
   weekStartsOnMonday: boolean;
   range: boolean;
-  onChange?: (date: Date[]) => void;
+  focusedDate: Date;
+  onToggle: (date: Date, isSelected?: boolean) => void;
 }) {
   const rows = [
     <DaysOfTheWeekRow key="weekdays" weekStartsOnMonday={weekStartsOnMonday} />,
   ];
 
-  const mapOfHighlightedDates = useMemo(
-    () =>
-      hightlightedDates.reduce((acc, date) => {
-        acc[startOfDay(date).getTime()] = true;
-
-        return acc;
-      }, {} as Record<string, boolean>),
-    [hightlightedDates],
-  );
+  const mapOfHighlightedDates =
+    useHighlightedDatesGroupedByTimeStamp(hightlightedDates);
 
   const { currentDate, month, lastDateOfTheMonth, startDate } = useMemo(() => {
     const firstDayOfTheMonth = startOfMonth(viewingDate);
@@ -129,24 +154,8 @@ function useRowsAndCells({
       const isDisabled =
         (minDate && dateOfCell < minDate) || (maxDate && dateOfCell > maxDate);
 
-      const onToggle = () => {
-        if (range) {
-          if (selected.length === 0) {
-            onChange?.([dateOfCell]);
-          } else if (selected.length === 1) {
-            if (dateOfCell < selected[0]) {
-              onChange?.([dateOfCell, selected[0]]);
-            } else {
-              onChange?.([selected[0], dateOfCell]);
-            }
-          } else {
-            onChange?.([dateOfCell]);
-          }
-        } else if (isSelected) {
-          onChange?.(selected.filter(date => !datesAreEqual(date, dateOfCell)));
-        } else {
-          onChange?.([...selected, dateOfCell]);
-        }
+      const onToggleCell = () => {
+        onToggle(dateOfCell, isSelected);
       };
 
       cells.push(
@@ -156,10 +165,13 @@ function useRowsAndCells({
           inMonth={isInCurrentMonth}
           selected={isSelected}
           isCurrentDate={isCurrentDate}
-          onToggle={onToggle}
+          onToggle={onToggleCell}
           highlighted={mapOfHighlightedDates[dateOfCell.getTime()]}
           disabled={!!isDisabled}
-          range={range ? getRangeType(dateOfCell, selected) : "none"}
+          range={
+            range ? getRangeIndicatorForCell(dateOfCell, selected) : "none"
+          }
+          hasFocus={focusedDate.getDate() === dateOfCell.getDate()}
         />,
       );
     }
@@ -169,7 +181,7 @@ function useRowsAndCells({
   return rows;
 }
 
-function getRangeType(date: Date, selected: Date[]) {
+function getRangeIndicatorForCell(date: Date, selected: Date[]) {
   const [start, end] = selected;
 
   if (start && datesAreEqual(date, start)) {

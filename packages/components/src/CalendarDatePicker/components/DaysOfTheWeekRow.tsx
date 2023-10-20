@@ -27,7 +27,7 @@ export const DaysOfTheWeekRow = ({
   const firstDayOfTheWeek = getFirstDayOfTheWeekDate(!!weekStartsOnMonday);
 
   const row = Array.from({ length: 7 }).map((_, index) => (
-    <div className={classNames.cell} key={index}>
+    <div className={classNames.cell} key={index} role="row">
       <Text>{formatter.format(addDays(firstDayOfTheWeek, index))}</Text>
     </div>
   ));

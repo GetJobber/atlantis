@@ -109,7 +109,9 @@ export const CalendarDatePicker = forwardRef(function CalendarDatePicker(
       if (dt) {
         document
           .querySelector<HTMLButtonElement>(
-            `button[data-date="${dt.getTime()}"]`,
+            `[data-date="${dt.getFullYear()}-${
+              dt.getMonth() + 1
+            }-${dt.getDate()}"]`,
           )
           ?.focus();
       }
@@ -199,6 +201,7 @@ export const CalendarMultiDatePickerComponent = forwardRef<
           maxDate={maxDate}
           range={!!range}
           onChange={onChange}
+          onMonthChange={onMonthChange}
           weekStartsOnMonday={!!weekStartsOnMonday}
         />
       </div>

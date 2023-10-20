@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 // import formatDate from "date-fns/format";
 import combineClassNames from "classnames";
 import classNames from "./DayCell.css";
@@ -36,24 +36,20 @@ export const DayCell = (props: {
    */
   readonly disabled: boolean;
   readonly range: "start" | "end" | "between" | "none";
+  readonly hasFocus: boolean;
   /**
    * Callback for pressing the cell
    */
   readonly onToggle: () => void;
 }): JSX.Element => {
   const formatter = new Intl.DateTimeFormat(navigator.language, {
-    dateStyle: "long",
+    dateStyle: "medium",
   });
 
+  const dt = new Date(props.date);
+
   const cell = props.inMonth ? (
-    <button
-      type="button"
-      role="togglebutton"
-      aria-selected={props.selected}
-      disabled={props.disabled}
-      aria-label={formatter.format(props.date)}
-      onClick={props.disabled ? undefined : props.onToggle}
-      data-date={props.date}
+    <div
       className={combineClassNames(
         classNames.cell,
         !props.disabled && props.selected ? classNames.selected : "",
@@ -63,19 +59,54 @@ export const DayCell = (props: {
         props.disabled ? classNames.disabled : "",
       )}
     >
-      {"" + new Date(props.date).getDate()}
-    </button>
+      <span
+        className={classNames.accessibleLabel}
+        id={`date-label-${props.date}`}
+      >
+        {`${formatter.format(dt)}${props.highlighted ? ", highlighted" : ""}`}
+      </span>
+      <span aria-hidden="true">{dt.getDate()}</span>
+    </div>
   ) : (
     <div
       className={combineClassNames(classNames.cell, classNames.outOfRange)}
     />
   );
 
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (
+      props.hasFocus &&
+      props.inMonth &&
+      document.activeElement?.getAttribute("role") === "gridcell"
+    ) {
+      ref.current?.focus();
+    }
+  }, [props.hasFocus, ref.current, props.inMonth]);
+
+  const tabbableProps = props.inMonth
+    ? {
+        role: props.inMonth ? "gridcell" : undefined,
+        tabIndex: props.hasFocus ? 0 : -1,
+        ["aria-selected"]: props.selected,
+        ["aria-disabled"]: props.disabled,
+        ["data-date"]: `${dt.getFullYear()}-${
+          dt.getMonth() + 1
+        }-${dt.getDate()}`,
+        onClick: props.disabled ? undefined : props.onToggle,
+      }
+    : {};
+
   return (
     <div
+      ref={ref}
+      {...tabbableProps}
+      // aria-labelledby={`date-label-${props.date}`}
       className={combineClassNames(
         classNames.container,
         classNames[`range-${props.range}`],
+        props.hasFocus && props.inMonth ? classNames.focus : "",
       )}
     >
       {cell}

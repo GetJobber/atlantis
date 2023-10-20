@@ -43,9 +43,30 @@ export const addDays = (date: Date, days: number): Date => {
   return newDate;
 };
 
-export const addMonths = (date: Date, months: number): Date => {
-  const newDate = new Date(date);
-  newDate.setMonth(date.getMonth() + months);
+export function addMonths(date: Date, months: number): Date {
+  const isPrev = months < 0;
+  const numYears = Math.trunc(Math.abs(months) / 12);
+  months = Math.abs(months) % 12;
+
+  const newYear = isPrev
+    ? date.getFullYear() - numYears
+    : date.getFullYear() + numYears;
+
+  const newMonth = isPrev ? date.getMonth() - months : date.getMonth() + months;
+
+  const newDate = new Date(newYear, newMonth, 1);
+
+  const daysInMonth = new Date(
+    newDate.getFullYear(),
+    newDate.getMonth() + 1,
+    0,
+  ).getDate();
+
+  newDate.setDate(date.getDate() <= daysInMonth ? date.getDate() : daysInMonth);
 
   return newDate;
-};
+}
+
+export function isValidDate(date: Date | undefined) {
+  return date instanceof Date && !isNaN(date.getTime());
+}

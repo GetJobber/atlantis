@@ -32,7 +32,7 @@ export const CalendarDatePickerHeader = ({
 
   return (
     <div className={classNames.container}>
-      <div className={classNames.label}>
+      <div className={classNames.label} aria-live="polite">
         <Typography fontWeight="semiBold">{formatter.format(date)}</Typography>
       </div>
       <Button
