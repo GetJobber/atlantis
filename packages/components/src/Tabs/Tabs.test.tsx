@@ -26,16 +26,16 @@ describe("Tabs", () => {
   it("should switch tabs", () => {
     const { getByText, queryByText } = render(omelet);
 
-    expect(queryByText("🍳")).toBeTruthy();
-    expect(queryByText("🧀")).toBeFalsy();
+    expect(queryByText("🍳")).toBeInTheDocument();
+    expect(queryByText("🧀")).not.toBeInTheDocument();
 
     fireEvent.click(getByText("Cheese"));
-    expect(queryByText("🍳")).toBeFalsy();
-    expect(queryByText("🧀")).toBeTruthy();
+    expect(queryByText("🍳")).not.toBeInTheDocument();
+    expect(queryByText("🧀")).toBeInTheDocument();
 
     fireEvent.click(getByText("Eggs"));
-    expect(queryByText("🍳")).toBeTruthy();
-    expect(queryByText("🧀")).toBeFalsy();
+    expect(queryByText("🍳")).toBeInTheDocument();
+    expect(queryByText("🧀")).not.toBeInTheDocument();
   });
 
   it("should handle tab onClick", () => {
@@ -79,8 +79,8 @@ describe("Tabs", () => {
       </Tabs>,
     );
 
-    expect(queryByText("🍳")).toBeFalsy();
-    expect(queryByText("🧀")).toBeTruthy();
+    expect(queryByText("🍳")).not.toBeInTheDocument();
+    expect(queryByText("🧀")).toBeInTheDocument();
   });
 
   it("sets the active tab to 0 if the defaultTab is out of bounds", () => {
@@ -96,7 +96,7 @@ describe("Tabs", () => {
       </Tabs>,
     );
 
-    expect(queryByText("🍳")).toBeTruthy();
-    expect(queryByText("🧀")).toBeFalsy();
+    expect(queryByText("🍳")).toBeInTheDocument();
+    expect(queryByText("🧀")).not.toBeInTheDocument();
   });
 });
