@@ -184,7 +184,7 @@ export const CalendarMultiDatePickerComponent = forwardRef<
   }, [onClickOutside, elRef.current]);
 
   return (
-    <div className={classNames.container} ref={elRef}>
+    <div ref={elRef}>
       <CalendarDatePickerHeader
         month={viewingDate.getMonth()}
         year={viewingDate.getFullYear()}
