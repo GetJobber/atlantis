@@ -58,6 +58,8 @@ describe("when using pagination", () => {
         pagination={{ manualPagination: false, itemsPerPage: [5, 10, 15] }}
       />,
     );
+    const tableContainer = screen.getByTestId("table-container");
+    tableContainer.scrollTo = jest.fn();
   });
 
   it("renders table with pagination info", () => {
@@ -142,6 +144,8 @@ describe("when using manual pagination", () => {
         }}
       />,
     );
+    const tableContainer = screen.getByTestId("table-container");
+    tableContainer.scrollTo = jest.fn();
   });
   it("calls the provided callback", () => {
     userEvent.click(screen.getByLabelText("arrowRight"));

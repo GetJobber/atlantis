@@ -104,6 +104,7 @@ export function DataTable<T extends object>({
   return (
     <div className={styles.dataTableContainer}>
       <div
+        data-testid="table-container"
         className={styles.tableContainer}
         style={{ height }}
         ref={ref as LegacyRef<HTMLDivElement> | undefined}
