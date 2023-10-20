@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { add, startOfMonth } from "date-fns";
 import { Content } from "@jobber/components/Content";
-import { CalendarDatePicker } from "@jobber/components/CalandarDatePicker";
+import { CalendarDatePicker } from "@jobber/components/CalendarDatePicker";
 
 export default {
   title: "Components/Selections/CalendarDatePicker/Web",
