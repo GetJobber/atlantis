@@ -2,6 +2,10 @@ import React, { PropsWithChildren } from "react";
 
 export interface ChipProps extends PropsWithChildren {
   /**
+   * If you need Chip to be part of a form element, this makes it not a button, but just a div so you can wrap it in a label.
+   */
+  readonly actAsFormElement?: boolean;
+  /**
    * Accessible label, which can be different from the primary label.
    */
   readonly ariaLabel?: string;

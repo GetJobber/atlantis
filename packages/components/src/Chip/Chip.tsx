@@ -8,6 +8,7 @@ import { useChildComponent } from "./hooks/useChildComponent";
 import { Typography } from "../Typography";
 
 export const Chip = ({
+  actAsFormElement = false,
   ariaLabel,
   dataTestID,
   disabled,
@@ -23,6 +24,7 @@ export const Chip = ({
   variation = "base",
 }: ChipProps): JSX.Element => {
   const classes = classNames(styles.chip, {
+    [styles.actingAsDiv]: actAsFormElement,
     [styles.invalid]: invalid,
     [styles.base]: variation === "base",
     [styles.subtle]: variation === "subtle",
@@ -31,13 +33,14 @@ export const Chip = ({
 
   const prefix = useChildComponent(children, d => d.type === Chip.Prefix);
   const suffix = useChildComponent(children, d => d.type === Chip.Suffix);
-  const Tag = onClick ? "button" : "div";
+  const Tag = actAsFormElement ? "div" : "button";
 
   return (
     <Tag
       className={classes}
       onClick={(ev: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) =>
         onClick &&
+        !actAsFormElement &&
         onClick(value || label, ev as React.MouseEvent<HTMLButtonElement>)
       }
       tabIndex={tabIndex}

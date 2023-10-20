@@ -1,18 +1,17 @@
 import React from "react";
-import { v1 as uuidv1 } from "uuid";
 import styles from "./InternalChip.css";
 import { ChipSingleSelectProps } from "./ChipsTypes";
-import { ChipSelectable } from "../Chip";
+import { Chip } from "../Chip";
+import { Icon } from "../Icon";
 
 type InternalChipChoiceProps = Pick<
   ChipSingleSelectProps,
-  "selected" | "onChange" | "children" | "onClick" | "name" | "type"
+  "selected" | "onChange" | "children" | "onClick" | "name"
 >;
 
 export function InternalChipSingleSelect({
   children,
   selected,
-  name = uuidv1(),
   onChange,
   onClick,
 }: InternalChipChoiceProps) {
@@ -26,7 +25,6 @@ export function InternalChipSingleSelect({
           <label>
             <input
               type="radio"
-              name={name}
               checked={isSelected}
               className={styles.input}
               onClick={handleClick(child?.props.value || "")}
@@ -36,11 +34,17 @@ export function InternalChipSingleSelect({
               }}
               disabled={child?.props.disabled}
             />
-            <ChipSelectable
+            <Chip
               label={child?.props.label || ""}
-              selected={isSelected}
-              role={"option"}
-            />
+              role="option"
+              actAsFormElement={true}
+            >
+              <Chip.Suffix>
+                {isSelected && (
+                  <Icon name="checkmark" size="small" color="heading" />
+                )}
+              </Chip.Suffix>
+            </Chip>
           </label>
         );
       })}

@@ -1,5 +1,6 @@
 declare const styles: {
   readonly "chip": string;
+  readonly "actingAsDiv": string;
   readonly "prefix": string;
   readonly "suffix": string;
   readonly "empty": string;
@@ -9,6 +10,7 @@ declare const styles: {
   readonly "invalid": string;
   readonly "subtle": string;
   readonly "disabled": string;
+  readonly "clickableSuffix": string;
 };
 export = styles;
 

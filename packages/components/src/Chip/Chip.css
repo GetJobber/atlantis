@@ -22,6 +22,9 @@ div.chip {
 button.chip {
   padding: var(--space-small) var(--base-unit);
 }
+.chip.actingAsDiv {
+  cursor: auto;
+}
 
 .chip:focus {
   box-shadow: var(--shadow-focus);
@@ -51,7 +54,7 @@ button.chip {
 
 .chip .suffix:hover,
 .chip .prefix:hover {
-  background-color: var(--color-disabled);
+  background-color: var(--color-surface--hover);
 }
 
 .chip .prefix.empty,
@@ -115,4 +118,8 @@ button.chip {
 
 .chip.disabled .suffix {
   background-color: var(--color-disabled);
+}
+
+.clickableSuffix {
+  cursor: pointer;
 }

@@ -136,13 +136,16 @@ describe("Basic interaction", () => {
   });
   it("should trigger the onClick callback when a chip gets clicked", () => {
     fireEvent.click(getByChipLabelText(selectedChips[0]));
-
-    expect(handleClickChip).toHaveBeenCalledWith({}, selectedChips[0]);
+    expect(handleClickChip).toHaveBeenCalledWith(
+      expect.any(Object),
+      selectedChips[0],
+    );
   });
 
   it("should trigger the onChange callback when removing a chip", () => {
     const wrapperEl = getByChipLabelText(selectedChips[0]);
-    fireEvent.click(wrapperEl);
+
+    fireEvent.click(within(wrapperEl).getByRole("button"));
 
     expect(handleChange).toHaveBeenCalledWith([]);
   });
@@ -154,19 +157,25 @@ describe("Basic interaction", () => {
     });
 
     it("should add the highlighted option on enter", () => {
-      fireEvent.keyDown(screen.queryByRole("combobox"), { key: "Enter" });
+      fireEvent.keyDown(screen.queryByRole("combobox") as Element, {
+        key: "Enter",
+      });
       expect(handleChange).toHaveBeenCalledWith([...selectedChips, chips[1]]);
       expect(handleCustomAdd).not.toHaveBeenCalled();
     });
 
     it("should add the highlighted option on tab", () => {
-      fireEvent.keyDown(screen.queryByRole("combobox"), { key: "Tab" });
+      fireEvent.keyDown(screen.queryByRole("combobox") as Element, {
+        key: "Tab",
+      });
       expect(handleChange).toHaveBeenCalledWith([...selectedChips, chips[1]]);
       expect(handleCustomAdd).not.toHaveBeenCalled();
     });
 
     it("should focus on the last selected chip on input backspace", () => {
-      fireEvent.keyDown(screen.queryByRole("combobox"), { key: "Backspace" });
+      fireEvent.keyDown(screen.queryByRole("combobox") as Element, {
+        key: "Backspace",
+      });
       const wrapperEl = getByChipLabelText(selectedChips[0]);
       expect(wrapperEl).toHaveFocus();
     });

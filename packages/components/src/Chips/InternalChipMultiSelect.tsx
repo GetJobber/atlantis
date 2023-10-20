@@ -1,11 +1,12 @@
 import React from "react";
 import styles from "./InternalChip.css";
 import { ChipMultiSelectProps } from "./ChipsTypes";
-import { ChipSelectable } from "../Chip";
+import { Chip } from "../Chip";
+import { Icon } from "../Icon";
 
 type InternalChipChoiceMultipleProps = Pick<
   ChipMultiSelectProps,
-  "selected" | "onChange" | "children" | "onClick" | "type"
+  "selected" | "onChange" | "children" | "onClick"
 >;
 
 export function InternalChipMultiSelect({
@@ -14,23 +15,6 @@ export function InternalChipMultiSelect({
   onChange,
   onClick,
 }: InternalChipChoiceMultipleProps) {
-  const toggleSelectedChip = (
-    val: string | number | undefined,
-    ev: React.MouseEvent<HTMLButtonElement>,
-  ) => {
-    const newChips = [...(selected || [])];
-    const indexOfItem = newChips.findIndex(d => d === (val as string));
-
-    if (indexOfItem !== -1) {
-      newChips.splice(indexOfItem, 1);
-    } else {
-      newChips.push(val as string);
-    }
-
-    onChange(newChips);
-    onClick && onClick(ev, val as string);
-  };
-
   return (
     <div className={styles.wrapper} data-testid="multiselect-chips">
       {React.Children.map(children, chip => {
@@ -49,11 +33,13 @@ export function InternalChipMultiSelect({
               disabled={chip?.props.disabled}
             />
             {chip && (
-              <ChipSelectable
-                {...chip.props}
-                selected={isChipActive}
-                onClick={toggleSelectedChip}
-              ></ChipSelectable>
+              <Chip {...chip.props} actAsFormElement={true}>
+                <Chip.Suffix>
+                  {isChipActive && (
+                    <Icon name="checkmark" size="small" color="heading" />
+                  )}
+                </Chip.Suffix>
+              </Chip>
             )}
           </label>
         );
