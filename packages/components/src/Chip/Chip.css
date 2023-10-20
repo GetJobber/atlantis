@@ -123,3 +123,7 @@ button.chip {
 .clickableSuffix {
   cursor: pointer;
 }
+
+.chip p {
+  cursor: default;
+}
