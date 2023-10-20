@@ -14,7 +14,7 @@ interface TabsProps {
   readonly children: ReactElement | ReactElement[];
 
   /**
-   * Specifies the tab that should be active on mount
+   * Specifies the index of the tab that should be active on mount
    *
    * @default 0
    */
