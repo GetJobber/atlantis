@@ -1,11 +1,11 @@
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import React from "react";
+import { ComboboxOption } from "./Combobox.types";
+import { Combobox } from "./Combobox";
 import {
   COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE,
   COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE,
-  Combobox,
-} from "./Combobox";
-import { ComboboxOption } from "./Combobox.types";
+} from "./hooks/useComboboxValidation";
 
 // jsdom is missing this implementation
 const scrollIntoViewMock = jest.fn();
@@ -372,6 +372,32 @@ describe("Combobox multiselect", () => {
       fireEvent.click(spoder);
 
       expect(queryByText("Choice: Bilbo Baggins")).not.toBeInTheDocument();
+      expect(queryByText("Choice: Shelob the Spoder")).not.toBeInTheDocument();
+    });
+
+    it("should not update consumer as selections are made by clicking Select all", () => {
+      const { getByText, queryByText } = render(
+        <MockMultiSelectOnCloseCombobox />,
+      );
+
+      const button = getByText("Click Me");
+      const selectAll = getByText("Select all");
+
+      fireEvent.click(button);
+      fireEvent.click(selectAll);
+
+      const options = [
+        getByText("Bilbo Baggins"),
+        getByText("Frodo Baggins"),
+        getByText("Shelob the Spoder"),
+      ];
+
+      options.forEach(option => {
+        expect(option).toHaveAttribute("aria-selected", "true");
+      });
+
+      expect(queryByText("Choice: Bilbo Baggins")).not.toBeInTheDocument();
+      expect(queryByText("Choice: Frodo Baggins")).not.toBeInTheDocument();
       expect(queryByText("Choice: Shelob the Spoder")).not.toBeInTheDocument();
     });
   });
