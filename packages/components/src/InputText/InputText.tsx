@@ -71,6 +71,8 @@ interface MultilineProps extends BaseProps {
 
 type InputTextPropOptions = XOR<BaseProps, MultilineProps>;
 
+export type InputTextProps = InputTextPropOptions;
+
 function InputTextInternal(
   props: InputTextPropOptions,
   ref: Ref<InputTextRef>,

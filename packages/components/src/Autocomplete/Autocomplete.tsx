@@ -4,7 +4,7 @@ import { XOR } from "ts-xor";
 import styles from "./Autocomplete.css";
 import { Menu } from "./Menu";
 import { AnyOption, GroupOption, Option } from "./Option";
-import { InputText, InputTextRef } from "../InputText";
+import { InputText, InputTextProps, InputTextRef } from "../InputText";
 import { FormFieldProps } from "../FormField";
 
 type OptionCollection = XOR<Option[], GroupOption[]>;
@@ -25,7 +25,7 @@ interface AutocompleteProps
    * @deprecated
    * Use `ref` instead.
    */
-  readonly inputRef?: FormFieldProps["inputRef"];
+  readonly inputRef?: InputTextProps["inputRef"];
 
   /**
    * Initial options to show when user first focuses the Autocomplete
@@ -100,6 +100,7 @@ function AutocompleteInternal(
 
   useEffect(() => {
     delayedSearch();
+
     return delayedSearch.cancel;
   }, [inputText]);
 
@@ -135,6 +136,7 @@ function AutocompleteInternal(
 
   function updateInput(newText: string) {
     setInputText(newText);
+
     if (newText === "") {
       setOptions(mapToOptions(initialOptions));
     }
@@ -156,6 +158,7 @@ function AutocompleteInternal(
 
   function handleInputChange(newText: string) {
     updateInput(newText);
+
     if (allowFreeForm) {
       onChange({ label: newText });
     }
@@ -163,6 +166,7 @@ function AutocompleteInternal(
 
   function handleInputBlur() {
     setMenuVisible(false);
+
     if (value == undefined || value.label !== inputText) {
       setInputText("");
       onChange(undefined);
@@ -172,6 +176,7 @@ function AutocompleteInternal(
 
   function handleInputFocus() {
     setMenuVisible(true);
+
     if (onFocus) {
       onFocus();
     }
@@ -181,9 +186,11 @@ function AutocompleteInternal(
 function mapToOptions(items: AnyOption[]) {
   return items.reduce(function (result: AnyOption[], item) {
     result = result.concat([item]);
+
     if (item.options) {
       result = result.concat(item.options);
     }
+
     return result;
   }, []);
 }
