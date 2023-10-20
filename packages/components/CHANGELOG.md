@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.52.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.51.0...@jobber/components@4.52.0) (2023-10-20)
+
+
+### Features
+
+* **components:** Tabs supports caching active tab between page loads ([#1591](https://github.com/GetJobber/atlantis/issues/1591)) ([4bc6f8e](https://github.com/GetJobber/atlantis/commit/4bc6f8e6f9ebf2922e0fbd12df85b43966d8ba34))
+
+
+
+
+
 # [4.51.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.50.2...@jobber/components@4.51.0) (2023-10-19)
 
 
