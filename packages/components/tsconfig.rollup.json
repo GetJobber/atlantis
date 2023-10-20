@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "exclude": [
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "entryPoints.ts"
+  ],
+  "references": [
+    {
+      "path": "../formatters"
+    },
+    {
+      "path": "../hooks"
+    }
+  ]
+}

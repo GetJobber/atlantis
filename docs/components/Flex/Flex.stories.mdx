@@ -1,12 +1,10 @@
 import { Meta } from "@storybook/addon-docs";
-import { Flex } from "@jobber/components-native";
 
-<Meta title="Components/Layouts and Structure/Flex/Docs" component={Flex} />
+<Meta title="Components/Layouts and Structure/Flex/Docs" />
 
 # Flex
 
-Flex is a component that allows you to easily create a flexbox layout in React
-Native.
+Flex is a component that allows you to easily create a flexible layout.
 
 ## Design & usage guidelines
 
@@ -22,7 +20,12 @@ wanting to apply different grid styles to different groups of children. For
 example, nested grids with different `align` and `template` props can be used to
 further control the layout of the children.
 
-## Related Components
+## Related components
 
-When creating a grid layout in a web application, use
-[Grid.](../?path=/docs/components-layouts-and-structure-grid-docs--page)
+Use [Grid](../?path=/docs/components-layouts-and-structure-grid-docs--page) to
+create grid layouts. Using Flex inside of Grid gives you the ability to achieve
+complex layouts without needing custom wrappers.
+
+Use
+[Content](../?path=/docs/components-layouts-and-structure-content-docs--page) to
+evenly space elements in a simple one-directional layout.

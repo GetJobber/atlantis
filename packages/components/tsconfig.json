@@ -1,7 +1,10 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "lib": ["dom", "es2018"],
+    "lib": [
+      "dom",
+      "es2018"
+    ],
     "jsx": "react",
     "declaration": true,
     "rootDir": "src",
@@ -15,10 +18,15 @@
       ]
     }
   },
-  "include": ["src"],
-  "exclude": ["**/*.test.ts", "**/*.test.tsx", "entryPoints.ts"],
+  "include": [
+    "src"
+  ],
   "references": [
-    { "path": "../formatters" },
-    { "path": "../hooks" }
+    {
+      "path": "../formatters"
+    },
+    {
+      "path": "../hooks"
+    }
   ]
 }
