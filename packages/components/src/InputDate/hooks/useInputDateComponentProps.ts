@@ -84,11 +84,15 @@ export function useInputDateComponentProps(props: InputDateProps) {
   /**
    * Callback passed to the date picker to be executed when the user selects a date.
    */
-  const onSelectDate = useCallback((newDate: Date | undefined) => {
-    const isValid = isValidDate(newDate);
-    setValue(isValid ? formatter.format(newDate) : "");
-    props.onChange(isValid ? newDate : undefined);
-  }, []);
+  const onSelectDate = useCallback(
+    (newDate: Date | undefined, method: "click" | "enter" | "space") => {
+      const isValid = isValidDate(newDate);
+      setValue(isValid ? formatter.format(newDate) : "");
+      props.onChange(isValid ? newDate : undefined);
+      if (method === "enter") onHideDatePicker();
+    },
+    [props.onChange, onHideDatePicker],
+  );
 
   /**
    * Callback executed when the input receives focus.

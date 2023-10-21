@@ -57,7 +57,7 @@ export function InputDateComponent({
             onClickOutside={onClickOutside}
             minDate={props.minDate}
             maxDate={props.maxDate}
-            hightlightedDates={props.highlightedDates}
+            highlightedDates={props.highlightedDates}
             ref={pickerRef}
           />
         </div>
