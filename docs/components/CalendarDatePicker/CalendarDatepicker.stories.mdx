@@ -9,32 +9,45 @@ from a visual calendar interface.
 
 ## Design & usage guidelines
 
-Use Datepicker when you are looking to provide the user with a highly visual
-interface for date selections.
+Use CalendarDatepicker when you are looking to provide the user with a highly
+visual interface for date selections.
 
-A classic use case for a standalone Datepicker would be as a means to navigate
-within a larger calendar interface.
+A classic use case for a standalone CalendarDatepicker would be as a means to
+navigate within a larger calendar interface.
 
 ## Restricting date ranges
 
 If you want to enable for selection only a range of dates you can pass `minDate`
 or `maxDate` to the component as props. See
-[Date Range](../?path=/story/components-selections-datepicker-web--min-date-max-date)
-example.
+[this example](?path=/story/components-selections-calendardatepicker-web--basic)
 
 ## Highlighted dates
 
 If you need to call attention to a series of dates on the calendar, the
 `highlightDates` prop accepts an array of dates that will be displayed with
-additional emphasis. See the
-[Highlighted Dates](?path=/story/components-selections-datepicker-web--restricted-date-range)
-example.
+additional emphasis. See
+[this example](?path=/story/components-selections-calendardatepicker-web--basic)
+
+## Localization
+
+Internally the component makes use of `navigator.language` +
+`Intl.DateTimeFormat` to format and display dates. The `weekStartsOnMonday` prop
+can be used to change the first day of the week to Monday. Textual translations
+can be provided using the `translations` prop.
 
 ## Accessibility
 
 Users can operate all of the controls by keyboard, including the `tab` to cycle
 between Next/Previous month and the calendar, arrow keys to navigate between
 dates, and `space` and/or `return` to make selections.
+
+Page up and page down keys can be used to navigate between months or, when
+adding shift key, navigate between years.
+
+The _onChange_ callback also provides you with information about via what method
+a selection was made. This supports cases where the _CalendarDatePicker_ is
+rendered inside a dialog or modal and should close when selecting a date using
+the _Enter_ key.
 
 The date available for selection is read aloud to assistive technology in the
 format "Choose {date} (button)". For example, "Choose December 1st, 2021
