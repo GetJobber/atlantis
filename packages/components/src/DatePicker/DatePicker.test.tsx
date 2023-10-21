@@ -36,7 +36,7 @@ it("returns the dates from onChange", async () => {
   await popperUpdate(() => fireEvent.click(getByTestId("calendar")));
   await popperUpdate(() => fireEvent.click(getByText("15")));
 
-  expect(changeHandler).toHaveBeenCalledWith(expect.any(Date), "click");
+  expect(changeHandler).toHaveBeenCalledWith(expect.any(Date));
 });
 
 it("should not call onChange handler if date is disabled", async () => {

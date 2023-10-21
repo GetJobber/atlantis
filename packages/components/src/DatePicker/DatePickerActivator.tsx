@@ -56,7 +56,6 @@ function InternalActivator(
         ref,
       });
     } else {
-      // @ts-expect-error isValidElement is not narrowing down the type correctly
       return activator(props);
     }
   } else {

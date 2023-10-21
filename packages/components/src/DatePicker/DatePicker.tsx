@@ -79,11 +79,40 @@ interface DatePickerInlineProps extends BaseDatePickerProps {
 
 type DatePickerProps = XOR<DatePickerModalProps, DatePickerInlineProps>;
 
-export function DatePicker({
+export function DatePicker({ inline, ...props }: DatePickerProps) {
+  if (inline) {
+    return <InlineDatePicker {...props} />;
+  } else {
+    return <DatePickerWithActivator {...props} />;
+  }
+}
+
+function InlineDatePicker({
+  onChange,
+  onMonthChange,
+  selected,
+  readonly = false,
+  maxDate,
+  minDate,
+  highlightDates,
+}: DatePickerProps) {
+  return (
+    <CalendarDatePicker
+      onChange={readonly ? () => undefined : onChange}
+      selected={selected}
+      minDate={minDate}
+      maxDate={maxDate}
+      highlightedDates={highlightDates}
+      onMonthChange={onMonthChange}
+      focusonSelectedDate
+    />
+  );
+}
+
+function DatePickerWithActivator({
   onChange,
   onMonthChange,
   activator,
-  inline,
   selected,
   readonly = false,
   disabled = false,
@@ -98,20 +127,14 @@ export function DatePicker({
 
   useEscapeKeyToCloseDatePicker(open, handleCalendarClose, ref);
 
-  if (inline) {
-    return (
-      <CalendarDatePicker
-        onChange={readonly ? () => undefined : onChange}
-        selected={selected}
-        minDate={minDate}
-        maxDate={maxDate}
-        highlightedDates={highlightDates}
-        onMonthChange={onMonthChange}
-        onClickOutside={handleCalendarClose}
-        focusonSelectedDate
-      />
-    );
-  }
+  const onChangeHandler = (
+    date: Date | undefined,
+    method: "click" | "enter" | "space",
+  ) => {
+    onChange(date);
+
+    if (method === "enter") handleCalendarClose();
+  };
 
   return (
     <div className={styles.datePickerWrapper} ref={ref}>
@@ -128,7 +151,7 @@ export function DatePicker({
         dismissable={false}
       >
         <CalendarDatePicker
-          onChange={readonly ? () => undefined : onChange}
+          onChange={readonly ? () => undefined : onChangeHandler}
           selected={selected}
           minDate={minDate}
           maxDate={maxDate}
