@@ -6,20 +6,19 @@ import React, {
   forwardRef,
   isValidElement,
 } from "react";
-import { ReactDatePickerProps } from "react-datepicker";
 import omit from "lodash/omit";
 import { Button } from "../Button";
 
-export interface DatePickerActivatorProps
-  extends Pick<
-    ReactDatePickerProps,
-    | "value"
-    | "id"
-    | "ariaDescribedBy"
-    | "ariaInvalid"
-    | "ariaLabelledBy"
-    | "ariaRequired"
-  > {
+export interface DatePickerActivatorProps {
+  // extends Pick<
+  //   ReactDatePickerProps,
+  //   | "value"
+  //   | "id"
+  //   | "ariaDescribedBy"
+  //   | "ariaInvalid"
+  //   | "ariaLabelledBy"
+  //   | "ariaRequired"
+  // > {
   readonly disabled?: boolean;
   readonly activator?:
     | ReactElement
@@ -57,6 +56,7 @@ function InternalActivator(
         ref,
       });
     } else {
+      // @ts-expect-error isValidElement is not narrowing down the type correctly
       return activator(props);
     }
   } else {

@@ -1,6 +1,5 @@
 import React from "react";
 import { act, cleanup, fireEvent, render } from "@testing-library/react";
-import ReactDatePicker from "react-datepicker";
 import { DatePicker } from "./DatePicker";
 
 afterEach(cleanup);
@@ -121,18 +120,6 @@ describe("ESC key behavior", () => {
       queryByRole("button", { name: /next month/i }),
     ).not.toBeInTheDocument();
     expect(handleEscape).not.toHaveBeenCalled();
-  });
-});
-
-describe("Ensure ReactDatePicker CSS class names exists", () => {
-  it("should have the click outside class", async () => {
-    const { getByRole } = render(<ReactDatePicker onChange={jest.fn} />);
-    const input = getByRole("textbox");
-    const className = "react-datepicker-ignore-onclickoutside";
-
-    expect(input).not.toHaveClass(className);
-    await popperUpdate(() => fireEvent.focus(input));
-    expect(input).toHaveClass(className);
   });
 });
 
