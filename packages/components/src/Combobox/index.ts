@@ -1,4 +1,4 @@
-export { Combobox } from "./Combobox";
+export * from "./Combobox";
 export { ComboboxContextProvider } from "./ComboboxProvider";
 export {
   ComboboxOption,
@@ -7,8 +7,5 @@ export {
   ComboboxTriggerButtonProps,
   ComboboxTriggerChipProps,
   ComboboxContentProps,
-  ComboboxSearchProps,
-  ComboboxHeaderProps,
-  ComboboxListProps,
   ComboboxActionProps,
 } from "./Combobox.types";
