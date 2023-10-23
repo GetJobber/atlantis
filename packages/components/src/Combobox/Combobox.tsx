@@ -1,5 +1,5 @@
 import React from "react";
-import { ComboboxProps } from "@jobber/components/Combobox/Combobox.types";
+import { ComboboxProps } from "./Combobox.types";
 import { ComboboxContent } from "./components/ComboboxContent";
 import { ComboboxAction } from "./components/ComboboxAction";
 import { ComboboxContextProvider } from "./ComboboxProvider";
@@ -9,7 +9,7 @@ import {
 } from "./components/ComboboxTrigger";
 import { useComboboxValidation } from "./hooks/useComboboxValidation";
 
-export const Combobox = (props: ComboboxProps): JSX.Element => {
+export function Combobox(props: ComboboxProps): JSX.Element {
   const { contentElement, triggerElement } = useComboboxValidation(
     props.children,
   );
@@ -20,7 +20,7 @@ export const Combobox = (props: ComboboxProps): JSX.Element => {
       {contentElement}
     </ComboboxContextProvider>
   );
-};
+}
 
 Combobox.TriggerButton = ComboboxTriggerButton;
 Combobox.TriggerChip = ComboboxTriggerChip;
