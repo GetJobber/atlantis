@@ -43,24 +43,24 @@ it("should show a checkmark on the selected chip", () => {
 });
 
 describe("onChange", () => {
-  it("should trigger the onChange selecting a chip", () => {
+  it("should trigger the onChange selecting a chip", async () => {
     const target = chips[1];
-    userEvent.click(screen.getByLabelText(target));
+    await userEvent.click(screen.getByLabelText(target));
     expect(handleChange).toHaveBeenCalledTimes(1);
     expect(handleChange).toHaveReturnedWith([...selectedChips, target]);
   });
 
-  it("should trigger the onChange deselecting a chip", () => {
-    userEvent.click(screen.getByLabelText(selectedChips[0]));
+  it("should trigger the onChange deselecting a chip", async () => {
+    await userEvent.click(screen.getByLabelText(selectedChips[0]));
     expect(handleChange).toHaveBeenCalledTimes(1);
     expect(handleChange).toHaveReturnedWith([]);
   });
 });
 
 describe("onClick", () => {
-  it("should trigger the chip onClick", () => {
+  it("should trigger the chip onClick", async () => {
     const target = chips[2];
-    userEvent.click(screen.getByLabelText(target));
+    await userEvent.click(screen.getByLabelText(target));
     expect(handleClickChip).toHaveBeenCalledTimes(1);
     expect(handleClickChip).toHaveReturnedWith(target);
   });
