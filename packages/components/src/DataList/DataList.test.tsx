@@ -212,6 +212,7 @@ describe("DataList", () => {
             },
           )?.[0];
           const expectedValue = expectedValues[queryBreakpoint as Breakpoints];
+
           return {
             matches: expectedValue,
             media: query,
@@ -394,7 +395,7 @@ describe("DataList", () => {
     function MockSortingLayout({
       sorting,
     }: {
-      sorting: DataListProps<(typeof mockData)[0]>["sorting"];
+      readonly sorting: DataListProps<(typeof mockData)[0]>["sorting"];
     }) {
       return (
         <DataList data={mockData} headers={mockHeaders} sorting={sorting}>
@@ -562,7 +563,7 @@ describe("DataList", () => {
       ).not.toBeInTheDocument();
     });
 
-    it("should call the scrollIntoView on the target element", () => {
+    it("should call the scrollIntoView on the target element", async () => {
       const scrollIntoViewMock = jest.fn();
       window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
       render(
@@ -578,7 +579,9 @@ describe("DataList", () => {
 
       expect(scrollIntoViewMock).not.toHaveBeenCalled();
 
-      userEvent.click(screen.getByRole("button", { name: "Back to top" }));
+      await userEvent.click(
+        screen.getByRole("button", { name: "Back to top" }),
+      );
       expect(scrollIntoViewMock).toHaveBeenCalledWith({
         behavior: "smooth",
         block: "nearest",
