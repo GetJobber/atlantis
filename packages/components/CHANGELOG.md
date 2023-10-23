@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.53.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.52.1...@jobber/components@4.53.0) (2023-10-23)
+
+
+### Features
+
+* **components:** JOB-80773 Datatable scroll to top pagination loading ([#1595](https://github.com/GetJobber/atlantis/issues/1595)) ([e7dfc3c](https://github.com/GetJobber/atlantis/commit/e7dfc3c584691cc9667627f6eb59d49b48749f1d))
+
+
+
+
+
 ## [4.52.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.52.0...@jobber/components@4.52.1) (2023-10-23)
 
 **Note:** Version bump only for package @jobber/components
