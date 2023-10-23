@@ -8,6 +8,7 @@ import {
 import styles from "./ComboboxContent.css";
 import { ComboboxContentSearch } from "./ComboboxContentSearch";
 import { ComboboxContentList } from "./ComboboxContentList";
+import { ComboboxContentHeader } from "./ComboboxContentHeader";
 import { ComboboxContext } from "../../ComboboxProvider";
 import { useComboboxContent } from "../../hooks/useComboboxContent";
 import { useComboboxAccessibility } from "../../hooks/useComboboxAccessibility";
@@ -24,8 +25,14 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     filteredOptions,
     optionsListRef,
     selectedOptions,
-    setInternalSelected,
-  } = useComboboxContent(props.options, open, props.selected, props.onClose);
+    optionsSelectionHandler,
+  } = useComboboxContent(
+    props.options,
+    open,
+    props.selected,
+    props.onClose,
+    props.onSelect,
+  );
 
   const { popperRef, popperStyles, attributes } = useComboboxAccessibility(
     handleSelection,
@@ -53,6 +60,20 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         setSearchValue={setSearchValue}
       />
 
+      {multiselect && optionsExist && (
+        <ComboboxContentHeader
+          hasOptionsVisible={filteredOptions.length > 0}
+          subjectNoun={props.subjectNoun}
+          selectedCount={selectedOptions.length}
+          onClearAll={() => {
+            optionsSelectionHandler([]);
+          }}
+          onSelectAll={() => {
+            optionsSelectionHandler(filteredOptions);
+          }}
+        />
+      )}
+
       <ComboboxContentList
         multiselect={multiselect}
         showEmptyState={!optionsExist}
@@ -64,7 +85,6 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         searchValue={searchValue}
         subjectNoun={props.subjectNoun}
       />
-
       {props.children && (
         <div className={styles.actions} role="group">
           {React.Children.toArray(props.children).map(
@@ -87,14 +107,10 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   return ReactDOM.createPortal(template, document.body);
 
   function handleSelection(selection: ComboboxOption) {
-    const callbackHandler = props.onSelect
-      ? props.onSelect
-      : setInternalSelected;
-
     if (multiselect) {
-      handleMultiSelect(callbackHandler, selectedOptions, selection);
+      handleMultiSelect(optionsSelectionHandler, selectedOptions, selection);
     } else {
-      handleSingleSelect(callbackHandler, selection);
+      handleSingleSelect(optionsSelectionHandler, selection);
     }
   }
 

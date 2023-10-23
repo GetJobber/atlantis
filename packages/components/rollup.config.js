@@ -9,6 +9,7 @@ export default {
   plugins: [
     multiInput(),
     typescript({
+      tsconfig: "./tsconfig.rollup.json",
       declarationDir: "dist",
       noEmitOnError: true,
     }),
