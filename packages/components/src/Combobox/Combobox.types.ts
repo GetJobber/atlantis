@@ -38,21 +38,21 @@ export interface ComboboxOption {
   label: string;
 }
 
-interface ComboboxCloseProps {
+export interface ComboboxCloseProps {
   /**
    * Callback function invoked upon the selection of an option. Provides the selected option(s) as an argument.
    */
   readonly onSelect: (selection: ComboboxOption[]) => void;
 }
 
-interface ComboboxSelectProps {
+export interface ComboboxSelectProps {
   /**
    * Callback function invoked upon the Combobox menu closing. Provides the selected option(s) as an argument.
    */
   readonly onClose: (selection: ComboboxOption[]) => void;
 }
 
-interface ComboboxContentBaseProps {
+export interface ComboboxContentBaseProps {
   /**
    * List of selectable options to display.
    */
