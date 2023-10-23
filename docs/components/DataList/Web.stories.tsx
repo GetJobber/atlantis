@@ -14,7 +14,6 @@ import { InlineLabel, InlineLabelColors } from "@jobber/components/InlineLabel";
 import { Content } from "@jobber/components/Content";
 import { Button } from "@jobber/components/Button";
 import { DatePicker } from "@jobber/components/DatePicker";
-import { Banner } from "@jobber/components/Banner";
 import {
   LAZY_LIST_IDS_QUERY,
   LIST_QUERY,
@@ -155,12 +154,6 @@ const Template: ComponentStory<typeof DataList> = args => {
           }
         />
       </DataList.Filters>
-
-      <DataList.StatusBar>
-        <Banner type="error" dismissible>
-          testtt
-        </Banner>
-      </DataList.StatusBar>
 
       <DataList.Search
         onSearch={search => console.log(search)}
