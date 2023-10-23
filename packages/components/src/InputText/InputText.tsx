@@ -1,5 +1,6 @@
 import React, {
   Ref,
+  RefObject,
   forwardRef,
   useImperativeHandle,
   useLayoutEffect,
@@ -30,13 +31,20 @@ interface BaseProps
       | "onFocus"
       | "onBlur"
       | "onChange"
-      | "inputRef"
       | "validations"
       | "defaultValue"
       | "prefix"
       | "suffix"
     > {
-  multiline?: boolean;
+  readonly multiline?: boolean;
+  /**
+   * Ref to the form field wrapper.
+   */
+  readonly formFieldRef?: Ref<HTMLDivElement>;
+  /**
+   *
+   */
+  readonly inputRef?: RefObject<HTMLInputElement | HTMLTextAreaElement>;
 }
 
 export interface InputTextRef {
@@ -63,11 +71,14 @@ interface MultilineProps extends BaseProps {
 
 type InputTextPropOptions = XOR<BaseProps, MultilineProps>;
 
+export type InputTextProps = InputTextPropOptions;
+
 function InputTextInternal(
   props: InputTextPropOptions,
   ref: Ref<InputTextRef>,
 ) {
-  const inputRef = useRef<HTMLTextAreaElement | HTMLInputElement>(null);
+  const inputRefInner = useRef<HTMLTextAreaElement | HTMLInputElement>(null);
+  const inputRef = props.inputRef || inputRefInner;
   const actionsRef = useRef<FieldActionsRef>(null);
 
   const rowRange = getRowRange();
@@ -78,18 +89,21 @@ function InputTextInternal(
     },
     blur: () => {
       const input = inputRef.current;
+
       if (input) {
         input.blur();
       }
     },
     focus: () => {
       const input = inputRef.current;
+
       if (input) {
         input.focus();
       }
     },
     scrollIntoView: arg => {
       const input = inputRef.current;
+
       if (input) {
         input.scrollIntoView(arg);
       }
@@ -105,6 +119,7 @@ function InputTextInternal(
   return (
     <FormField
       {...props}
+      ref={props.formFieldRef}
       type={props.multiline ? "textarea" : "text"}
       inputRef={inputRef}
       actionsRef={actionsRef}
@@ -164,6 +179,7 @@ function InputTextInternal(
 
   function insertText(text: string) {
     const input = inputRef.current;
+
     if (input) {
       insertAtCursor(input, text);
 

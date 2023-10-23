@@ -12,27 +12,42 @@ export default {
 } as ComponentMeta<typeof InputDate>;
 
 const BasicTemplate: ComponentStory<typeof InputDate> = args => {
-  const [date, setDate] = useState(new Date("11/11/2011"));
+  const [date, setDate] = useState<Date | undefined>(new Date("11/11/2011"));
+
   return <InputDate {...args} value={date} onChange={setDate} />;
 };
 
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
   placeholder: "Start Date",
+  highlightedDates: [new Date("11/12/2011")],
 };
 
 const MinMaxTemplate: ComponentStory<typeof InputDate> = args => {
   const minDate = new Date("11/06/2011");
   const maxDate = new Date("11/25/2011");
-  const [date, setDate] = useState(new Date("11/11/2011"));
+  const [date, setDate] = useState<Date | undefined>(new Date("11/11/2011"));
+
   return (
-    <InputDate
-      {...args}
-      minDate={minDate}
-      maxDate={maxDate}
-      value={date}
-      onChange={setDate}
-    />
+    <>
+      <InputDate
+        {...args}
+        minDate={minDate}
+        maxDate={maxDate}
+        value={date}
+        onChange={setDate}
+      />
+      {date?.toString()}
+      <button
+        onClick={() => {
+          setTimeout(() => {
+            setDate(minDate);
+          }, 2000);
+        }}
+      >
+        Set to min
+      </button>
+    </>
   );
 };
 
