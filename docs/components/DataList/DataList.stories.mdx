@@ -226,18 +226,18 @@ need to set the `filtered` to `true`.
 </DataList>
 ```
 
-### Banner
+### Status Bar
 
-You can add a banner that will be displayed between the filters and the header.
-This banner can be used to display error messages or anything you want to inform
-the user about something related to the Datalist. It renders a Atlantis
-[Banner](../?path=/docs/components-status-and-feedback-banner-docs--page)
-component.
+You can add a status bar that will be displayed between the filters and the
+header. This sstatus bar can be used to display error messages or anything you
+want to inform the user about something related to the Datalist.
 
 ```tsx
 <DataList>
-  <DataList.Banner type="error" icon="alert" dismissible>
-    Something went wrong. Refresh or check your internet connection.
-  </DataList.Banner>
+  <DataList.StatusBar>
+    <Banner type="error" icon="alert" dismissible>
+      Something went wrong. Refresh or check your internet connection.
+    </Banner>
+  </DataList.StatusBar>
 </DataList>
 ```
