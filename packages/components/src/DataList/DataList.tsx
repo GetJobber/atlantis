@@ -44,9 +44,12 @@ import {
   DATA_LIST_FILTERING_SPINNER_TEST_ID,
 } from "./DataList.const";
 import { DataListBulkActions } from "./components/DataListBulkActions";
+import {
+  DataListStatusBar,
+  InternalDataListStatusBar,
+} from "./components/DataListStatusBar";
 import { Heading } from "../Heading";
 import { Spinner } from "../Spinner";
-import { Banner, BannerProps } from "../Banner";
 
 export function DataList<T extends DataListObject>({
   selected = [],
@@ -80,10 +83,6 @@ export function DataList<T extends DataListObject>({
     props.children,
     DataListBulkActions,
   );
-  const bannerComponent = getCompoundComponent<BannerProps>(
-    props.children,
-    Banner,
-  );
 
   return (
     <DataListContext.Provider
@@ -94,7 +93,6 @@ export function DataList<T extends DataListObject>({
         emptyStateComponents,
         itemActionComponent,
         bulkActionsComponent,
-        bannerComponent,
         layoutBreakpoints,
         registerLayoutBreakpoints,
         layouts,
@@ -131,7 +129,6 @@ function InternalDataList() {
     totalCount,
     loadingState = "none",
     layoutComponents,
-    bannerComponent,
   } = useDataListContext();
 
   const backToTopRef = useRef<HTMLDivElement>(null);
@@ -158,7 +155,7 @@ function InternalDataList() {
           <InternalDataListSearch />
         </div>
 
-        {bannerComponent}
+        <InternalDataListStatusBar />
 
         <DataListHeader />
       </DataListStickyHeader>
@@ -258,4 +255,4 @@ DataList.BatchAction = function DataListBatchAction(
 /**
  * Defines a banner that is going to rendered between the filters and the header.
  */
-DataList.Banner = Banner;
+DataList.StatusBar = DataListStatusBar;
