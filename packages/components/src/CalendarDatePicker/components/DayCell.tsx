@@ -35,6 +35,7 @@ interface DayCellProps {
    * Flag indicating if the cell has received focus via keyboard navigation
    */
   readonly hasFocus: boolean;
+  readonly alternate?: boolean;
   /**
    * Callback for clicking the cell
    */
@@ -103,6 +104,7 @@ const GridCell = (props: Omit<DayCellProps, "inMonth">): JSX.Element => {
         classNames.container,
         classNames[`range-${props.range}`],
         props.hasFocus ? classNames.focus : "",
+        props.alternate ? classNames.alternate : "",
       )}
     >
       {cell}

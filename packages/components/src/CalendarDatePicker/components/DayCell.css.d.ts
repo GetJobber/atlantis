@@ -1,6 +1,7 @@
 declare const styles: {
   readonly "container": string;
   readonly "cell": string;
+  readonly "alternate": string;
   readonly "selected": string;
   readonly "focus": string;
   readonly "disabled": string;

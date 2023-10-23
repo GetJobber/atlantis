@@ -22,6 +22,7 @@ interface CalendarDatePickerGridProps {
   readonly maxDate?: Date;
   readonly highlightedDates: Date[];
   readonly weekStartsOnMonday: boolean;
+  readonly alternate?: boolean;
   readonly translations?: {
     readonly highlightedLabelSuffix?: string;
     readonly chooseDate?: string;
@@ -43,6 +44,7 @@ export const CalendarDatePickerGrid = ({
   range,
   weekStartsOnMonday,
   translations,
+  alternate,
   onChange,
   onMonthChange,
 }: CalendarDatePickerGridProps): JSX.Element => {
@@ -63,6 +65,7 @@ export const CalendarDatePickerGrid = ({
     maxDate,
     highlightedDates,
     weekStartsOnMonday,
+    alternate,
     range,
     viewingDate,
     focusedDate,
@@ -105,6 +108,7 @@ function useRowsAndCells({
   highlightedDates,
   weekStartsOnMonday,
   highlightedLabelSuffix,
+  alternate,
   range,
   focusedDate,
   onToggle,
@@ -116,6 +120,7 @@ function useRowsAndCells({
   highlightedDates: Date[];
   weekStartsOnMonday: boolean;
   highlightedLabelSuffix: string | undefined;
+  alternate?: boolean;
   range: boolean;
   focusedDate: Date;
   onToggle: (
@@ -125,7 +130,11 @@ function useRowsAndCells({
   ) => void;
 }) {
   const rows = [
-    <DaysOfTheWeekRow key="weekdays" weekStartsOnMonday={weekStartsOnMonday} />,
+    <DaysOfTheWeekRow
+      key="weekdays"
+      weekStartsOnMonday={weekStartsOnMonday}
+      alternate={alternate}
+    />,
   ];
 
   const mapOfHighlightedDates =
@@ -187,6 +196,7 @@ function useRowsAndCells({
           isCurrentDate={isCurrentDate}
           onToggle={onToggleCell}
           highlighted={mapOfHighlightedDates[dateOfCell.getTime()]}
+          alternate={alternate}
           disabled={!!isDisabled}
           highlightedLabelSuffix={highlightedLabelSuffix}
           range={

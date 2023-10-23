@@ -1,6 +1,6 @@
 .container {
   display: flex;
-  height: 34px;
+  height: calc(var(--typography--fontSize-large) * 2.25);
   border-top: 2px solid var(--color-surface);
   border-bottom: 2px solid var(--color-surface);
   justify-content: center;
@@ -10,8 +10,8 @@
 
 .cell {
   display: flex;
-  width: 32px;
-  height: 32px;
+  width: calc(var(--typography--fontSize-large) * 2);
+  height: calc(var(--typography--fontSize-large) * 2);
   box-sizing: border-box;
   border: 0;
   border-color: transparent;
@@ -22,18 +22,22 @@
   justify-content: center;
 }
 
+.alternate .cell {
+  width: calc(var(--typography--fontSize-large) * 1.75);
+  height: calc(var(--typography--fontSize-large) * 1.75);
+}
+
 .container:focus > .cell:not(.selected),
 .container.focus > .cell:not(.selected) {
   color: var(--color-text);
   background-color: var(--color-surface--hover);
 }
 
-.cell:not(.disabled):not(.selected):not(.outOfRange):hover {
+.container:hover .cell:not(.disabled):not(.selected):not(.outOfRange) {
   background-color: var(--color-surface--hover);
 }
 
 .selected {
-  border-color: var(--color-green);
   color: var(--color-surface);
   background-color: var(--color-green);
 }
@@ -42,10 +46,13 @@
   background-color: var(--color-interactive--hover);
 }
 
-.range-none .highlighted {
+.range-none:not(.alternate) .highlighted {
   border-color: var(--color-green);
   border-style: solid;
   border-width: 1px;
+}
+.range-none.alternate .highlighted {
+  background-color: var(--color-green--lightest);
 }
 
 .range-none .highlighted:hover {

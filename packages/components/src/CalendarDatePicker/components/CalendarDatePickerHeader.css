@@ -1,6 +1,5 @@
 .container {
   display: flex;
-  padding-left: var(--space-base);
   background-color: var(--color-surface);
   flex-direction: row;
   justify-content: space-between;
@@ -9,4 +8,22 @@
 
 .label {
   flex: 1;
+}
+
+.alternate {
+  height: 50px;
+  padding-left: 0;
+}
+
+.alternate .label {
+  order: 1;
+  text-align: center;
+}
+
+.alternate button:nth-of-type(1) {
+  order: 0;
+}
+
+.alternate button:nth-of-type(2) {
+  order: 2;
 }

@@ -9,3 +9,10 @@
 .row {
   display: flex;
 }
+
+.alternate .cell {
+  height: auto;
+  padding: var(--space-small) 0 var(--space-small) 0;
+  border-bottom: 1px solid var(--color-grey--lighter);
+  text-transform: uppercase;
+}

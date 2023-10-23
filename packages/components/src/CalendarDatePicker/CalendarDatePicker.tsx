@@ -43,6 +43,7 @@ export interface CalendarDatePickerBaseProps {
   readonly maxDate?: Date;
   readonly weekStartsOnMonday?: boolean;
   readonly focusonSelectedDate?: boolean;
+  readonly alternate?: boolean;
   readonly translations?: {
     readonly previousMonth?: string;
     readonly nextMonth?: string;
@@ -68,6 +69,7 @@ export const CalendarDatePicker = forwardRef(function CalendarDatePicker(
     focusonSelectedDate,
     range,
     multi,
+    alternate,
     translations,
     onChange,
     onMonthChange,
@@ -139,6 +141,7 @@ export const CalendarDatePicker = forwardRef(function CalendarDatePicker(
       weekStartsOnMonday={weekStartsOnMonday}
       range={!!range}
       multi={!!multi}
+      alternate={alternate}
       onChange={onChangeSelection}
       onMonthChange={onMonthChangeInternal}
       onClickOutside={onClickOutside}
@@ -172,6 +175,7 @@ export const CalendarMultiDatePickerComponent = forwardRef<
     weekStartsOnMonday,
     range,
     translations,
+    alternate,
     onChange,
     onMonthChange,
     onClickOutside,
@@ -207,6 +211,7 @@ export const CalendarMultiDatePickerComponent = forwardRef<
         year={viewingDate.getFullYear()}
         onChange={onMonthChange}
         translations={translations}
+        alternate={alternate}
       />
       <div>
         <CalendarDatePickerGrid
@@ -220,6 +225,7 @@ export const CalendarMultiDatePickerComponent = forwardRef<
           onMonthChange={onMonthChange}
           weekStartsOnMonday={!!weekStartsOnMonday}
           translations={translations}
+          alternate={alternate}
         />
       </div>
     </div>
