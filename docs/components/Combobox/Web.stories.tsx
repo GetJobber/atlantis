@@ -81,6 +81,7 @@ const ComboboxChip: ComponentStory<typeof Combobox> = args => {
           setSelected(selection);
         }}
         selected={selected}
+        subjectNoun="teammates"
       >
         <Combobox.Action
           label="Add Teammate"
@@ -173,6 +174,7 @@ const ComboboxClearSelection: ComponentStory<typeof Combobox> = args => {
             setSelected(selection);
           }}
           selected={selected}
+          subjectNoun="teammates"
         >
           <Combobox.Action
             label="Add Teammate"

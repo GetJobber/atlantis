@@ -42,18 +42,18 @@ describe("DataListItemActions", () => {
     expect(screen.getByLabelText("More actions")).toBeInTheDocument();
   });
 
-  it("should only render the first 2 actions", () => {
+  it("should only render the first 2 actions", async () => {
     renderComponent();
     expect(screen.getByLabelText("Edit")).toBeInTheDocument();
     expect(screen.getByLabelText("Email")).toBeInTheDocument();
     expect(screen.queryByLabelText("Note")).not.toBeInTheDocument();
   });
 
-  it("should only render put the remaining actions in the more menu", () => {
+  it("should only render put the remaining actions in the more menu", async () => {
     renderComponent();
 
     const moreMenuButton = screen.getByLabelText("More actions");
-    userEvent.click(moreMenuButton);
+    await userEvent.click(moreMenuButton);
 
     const menu = screen.getByRole("menu");
     expect(menu).toBeInTheDocument();
@@ -62,9 +62,9 @@ describe("DataListItemActions", () => {
     expect(within(menu).getAllByRole("button")).toHaveLength(2);
   });
 
-  it("should call the onClick handler when clicking the edit button", () => {
+  it("should call the onClick handler when clicking the edit button", async () => {
     renderComponent();
-    userEvent.click(screen.getByLabelText("Edit"));
+    await userEvent.click(screen.getByLabelText("Edit"));
     expect(handleEditClick).toHaveBeenCalledTimes(1);
     expect(handleEditClick).toHaveBeenCalledWith({ id: 1 });
   });

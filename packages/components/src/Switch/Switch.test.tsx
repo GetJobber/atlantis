@@ -143,23 +143,23 @@ it("renders a disabled Switch", () => {
   `);
 });
 
-test("it should change the input value on click", () => {
+test("it should change the input value on click", async () => {
   const { getByRole } = render(<Switch ariaLabel="Toggle me" />);
   const element = getByRole("switch");
 
-  userEvent.click(element);
+  await userEvent.click(element);
   expect(element).toHaveAttribute("aria-checked", "true");
 
-  userEvent.click(element);
+  await userEvent.click(element);
   expect(element).toHaveAttribute("aria-checked", "false");
 });
 
-test("it should not change the input value on click", () => {
+test("it should not change the input value on click", async () => {
   const { getByRole } = render(
     <Switch ariaLabel="Can't touch this" value={true} disabled={true} />,
   );
   const element = getByRole("switch");
 
-  userEvent.click(element);
+  await userEvent.click(element);
   expect(element).toHaveAttribute("aria-checked", "true");
 });

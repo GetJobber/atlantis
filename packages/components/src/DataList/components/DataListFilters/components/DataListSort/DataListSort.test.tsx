@@ -53,40 +53,42 @@ describe("DataListSort", () => {
   });
 
   describe("Popover", () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       render(
         <DataListContext.Provider value={mockContextValue}>
           <DataListSort />
         </DataListContext.Provider>,
       );
 
-      userEvent.click(screen.getByRole("button", { name: buttonLabel }));
+      await userEvent.click(screen.getByRole("button", { name: buttonLabel }));
     });
 
     it("should render a popover when the button is clicked", () => {
       expect(screen.getByRole("dialog")).toBeInTheDocument();
     });
 
-    it("should close the popover when the button is clicked again", () => {
-      userEvent.click(screen.getByRole("button", { name: buttonLabel }));
+    it("should close the popover when the button is clicked again", async () => {
+      await userEvent.click(screen.getByRole("button", { name: buttonLabel }));
       expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
     });
 
-    it("should close the popover when the close button is pressed", () => {
-      userEvent.click(screen.getByRole("button", { name: "Close dialog" }));
+    it("should close the popover when the close button is pressed", async () => {
+      await userEvent.click(
+        screen.getByRole("button", { name: "Close dialog" }),
+      );
       expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
     });
   });
 
   describe("Sort by chips", () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       render(
         <DataListContext.Provider value={mockContextValue}>
           <DataListSort />
         </DataListContext.Provider>,
       );
 
-      userEvent.click(screen.getByRole("button", { name: buttonLabel }));
+      await userEvent.click(screen.getByRole("button", { name: buttonLabel }));
     });
 
     it.each(sortableKeys)("should render a chip for %s", name => {
@@ -111,18 +113,18 @@ describe("DataListSort", () => {
   });
 
   describe("Sorting key change", () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       render(
         <DataListContext.Provider value={mockContextValue}>
           <DataListSort />
         </DataListContext.Provider>,
       );
 
-      userEvent.click(screen.getByRole("button", { name: buttonLabel }));
+      await userEvent.click(screen.getByRole("button", { name: buttonLabel }));
     });
 
-    it.each(sortableKeys)("should call onSort with %s", name => {
-      userEvent.click(
+    it.each(sortableKeys)("should call onSort with %s", async name => {
+      await userEvent.click(
         screen.getByRole("radio", { name: mockContextValue.headers[name] }),
       );
 
@@ -132,8 +134,8 @@ describe("DataListSort", () => {
       });
     });
 
-    it("should call onSort with undefined when none is clicked", () => {
-      userEvent.click(screen.getByRole("radio", { name: "None" }));
+    it("should call onSort with undefined when none is clicked", async () => {
+      await userEvent.click(screen.getByRole("radio", { name: "None" }));
       expect(handleSort).toHaveBeenCalledWith(undefined);
     });
   });
@@ -144,7 +146,7 @@ describe("DataListSort", () => {
       order: "asc",
     };
 
-    beforeEach(() => {
+    beforeEach(async () => {
       render(
         <DataListContext.Provider
           value={{
@@ -159,18 +161,18 @@ describe("DataListSort", () => {
         </DataListContext.Provider>,
       );
 
-      userEvent.click(
+      await userEvent.click(
         screen.getByRole("button", { name: RegExp(buttonLabel, "i") }),
       );
     });
 
-    it("should call not call onSort when you're selecting the already selected value", () => {
-      userEvent.click(screen.getByRole("radio", { name: "Ascending" }));
+    it("should call not call onSort when you're selecting the already selected value", async () => {
+      await userEvent.click(screen.getByRole("radio", { name: "Ascending" }));
       expect(handleSort).not.toHaveBeenCalled();
     });
 
-    it("should call onSort with the new direction", () => {
-      userEvent.click(screen.getByRole("radio", { name: "Descending" }));
+    it("should call onSort with the new direction", async () => {
+      await userEvent.click(screen.getByRole("radio", { name: "Descending" }));
       expect(handleSort).toHaveBeenCalledWith({
         ...initialSortingState,
         order: "desc",
