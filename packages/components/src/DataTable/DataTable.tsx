@@ -1,6 +1,6 @@
 import { ColumnDef, Row, useReactTable } from "@tanstack/react-table";
 import classNames from "classnames";
-import React, { LegacyRef, ReactNode, useRef } from "react";
+import React, { LegacyRef, ReactNode } from "react";
 import {
   Breakpoints,
   useResizeObserver,
@@ -87,9 +87,7 @@ export function DataTable<T extends object>({
   emptyState,
   loading = false,
 }: DataTableProps<T>) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  const [, { exactWidth }] = useResizeObserver({ ref });
+  const [ref, { exactWidth }] = useResizeObserver<HTMLDivElement>();
   const tableSettings = createTableSettings(data, columns, {
     pagination,
     sorting,
@@ -104,7 +102,7 @@ export function DataTable<T extends object>({
   return (
     <div className={styles.dataTableContainer}>
       <div
-        data-testid="table-container"
+        data-testid="ATL-DataTable-Container"
         className={styles.tableContainer}
         style={{ height }}
         ref={ref as LegacyRef<HTMLDivElement> | undefined}
@@ -145,7 +143,7 @@ export function DataTable<T extends object>({
               : table.getCoreRowModel().rows.length
           }
           loading={loading}
-          scrollRef={ref}
+          onPageChange={() => ref.current?.scrollTo(0, 0)}
         />
       )}
     </div>

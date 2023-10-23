@@ -17,10 +17,9 @@ interface ObservedSize {
   height: number | undefined;
 }
 
-interface ResizeObserverProps<T extends HTMLElement> {
+interface ResizeObserverProps {
   widths?: object;
   heights?: object;
-  ref?: React.RefObject<T>;
 }
 
 const wait = 100;
@@ -28,15 +27,13 @@ const wait = 100;
 export function useResizeObserver<T extends HTMLElement>({
   widths = Breakpoints,
   heights = Breakpoints,
-  ref: refObject,
-}: ResizeObserverProps<T> = {}) {
+}: ResizeObserverProps = {}) {
   const [exactSize, setSize] = useState<ObservedSize>({
     width: undefined,
     height: undefined,
   });
   const onResize = useMemo(() => throttle(setSize, wait), [wait]);
   const { ref } = useResizeObserverPackage<T>({
-    ...(refObject && { ref: refObject }),
     onResize,
   });
 

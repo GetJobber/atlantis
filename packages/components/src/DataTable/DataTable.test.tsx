@@ -50,6 +50,7 @@ describe("when rendering a Basic Table", () => {
 });
 
 describe("when using pagination", () => {
+  const scrollToMock = jest.fn();
   beforeEach(() => {
     render(
       <DataTable
@@ -58,8 +59,8 @@ describe("when using pagination", () => {
         pagination={{ manualPagination: false, itemsPerPage: [5, 10, 15] }}
       />,
     );
-    const tableContainer = screen.getByTestId("table-container");
-    tableContainer.scrollTo = jest.fn();
+    const tableContainer = screen.getByTestId("ATL-DataTable-Container");
+    tableContainer.scrollTo = scrollToMock;
   });
 
   it("renders table with pagination info", () => {
@@ -75,6 +76,16 @@ describe("when using pagination", () => {
 
   it("renders previous page button disabled on the first page", () => {
     expect(screen.getByLabelText("arrowLeft")).toBeDisabled();
+  });
+
+  it("resets scroll when navigating between next and previous page", () => {
+    const arrowRight = screen.getByTestId("arrowRight");
+    userEvent.click(arrowRight);
+    expect(scrollToMock).toHaveBeenCalledWith(0, 0);
+
+    const arrowLeft = screen.getByTestId("arrowLeft");
+    userEvent.click(arrowLeft);
+    expect(scrollToMock).toHaveBeenCalledWith(0, 0);
   });
 
   it("renders updated pagination info of the next page", () => {
@@ -128,6 +139,7 @@ describe("when using pagination", () => {
 
 describe("when using manual pagination", () => {
   const mockedOnPaginationChange = jest.fn();
+  const scrollToMock = jest.fn();
   const state = { pageIndex: 0, pageSize: 10 };
   const totalItems = 13;
   beforeEach(() => {
@@ -144,8 +156,8 @@ describe("when using manual pagination", () => {
         }}
       />,
     );
-    const tableContainer = screen.getByTestId("table-container");
-    tableContainer.scrollTo = jest.fn();
+    const tableContainer = screen.getByTestId("ATL-DataTable-Container");
+    tableContainer.scrollTo = scrollToMock;
   });
   it("calls the provided callback", () => {
     userEvent.click(screen.getByLabelText("arrowRight"));

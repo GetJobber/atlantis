@@ -11,7 +11,7 @@ interface PaginationProps<T> {
   readonly itemsPerPage?: number[];
   readonly totalItems: number;
   readonly loading: boolean;
-  readonly scrollRef: React.RefObject<HTMLElement>;
+  readonly onPageChange: () => void;
 }
 
 const defaultItemsPerPageOptions = ["10", "20", "30", "40", "50"];
@@ -21,7 +21,7 @@ export function Pagination<T extends object>({
   itemsPerPage,
   totalItems,
   loading,
-  scrollRef,
+  onPageChange,
 }: PaginationProps<T>) {
   const { pageIndex, pageSize } = table.getState().pagination;
   const totalRows = totalItems;
@@ -69,7 +69,7 @@ export function Pagination<T extends object>({
             ariaLabel="arrowLeft"
             onClick={() => {
               table.previousPage();
-              scrollRef.current?.scrollTo(0, 0);
+              onPageChange();
             }}
             disabled={!table.getCanPreviousPage()}
           />
@@ -80,7 +80,7 @@ export function Pagination<T extends object>({
             ariaLabel="arrowRight"
             onClick={() => {
               table.nextPage();
-              scrollRef.current?.scrollTo(0, 0);
+              onPageChange();
             }}
             disabled={!table.getCanNextPage()}
           />
