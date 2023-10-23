@@ -78,13 +78,13 @@ describe("when using pagination", () => {
     expect(screen.getByLabelText("arrowLeft")).toBeDisabled();
   });
 
-  it("resets scroll when navigating between next and previous page", () => {
+  it("resets scroll when navigating between next and previous page", async () => {
     const arrowRight = screen.getByTestId("arrowRight");
-    userEvent.click(arrowRight);
+    await userEvent.click(arrowRight);
     expect(scrollToMock).toHaveBeenCalledWith(0, 0);
 
     const arrowLeft = screen.getByTestId("arrowLeft");
-    userEvent.click(arrowLeft);
+    await userEvent.click(arrowLeft);
     expect(scrollToMock).toHaveBeenCalledWith(0, 0);
   });
 
