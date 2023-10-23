@@ -33,8 +33,9 @@ const SingleDateSelectionTemplate: ComponentStory<
         minDate={startOfMonth(new Date())}
         maxDate={add(new Date(), { months: 2 })}
         highlightedDates={highlightDates}
-        onChange={setDate}
         weekStartsOnMonday={!!args.weekStartsOnMonday}
+        {...args}
+        onChange={setDate}
       />
     </Content>
   );

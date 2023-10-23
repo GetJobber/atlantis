@@ -21,12 +21,16 @@ export function useSyncFocusAndViewingDate({
   const ref = useRef({
     focusedDate,
     viewingDate,
+    onMonthChange,
+    setFocusedDate,
   });
 
   useLayoutEffect(() => {
     ref.current = {
       focusedDate,
       viewingDate,
+      onMonthChange,
+      setFocusedDate,
     };
   });
 
@@ -39,9 +43,9 @@ export function useSyncFocusAndViewingDate({
       focusedDate.getMonth() !== ref.current.viewingDate.getMonth() ||
       focusedDate.getFullYear() !== ref.current.viewingDate.getFullYear()
     ) {
-      onMonthChange?.(focusedDate);
+      ref.current.onMonthChange?.(focusedDate);
     }
-  }, [focusedDate, onMonthChange]);
+  }, [focusedDate]);
 
   /**
    * If the user has clicked "Previous month" or "Next month" we need to
@@ -49,9 +53,9 @@ export function useSyncFocusAndViewingDate({
    */
   useEffect(() => {
     if (viewingDate.getMonth() !== ref.current.focusedDate.getMonth()) {
-      setFocusedDate(current =>
+      ref.current.setFocusedDate(current =>
         addMonths(current, viewingDate.getMonth() - current.getMonth()),
       );
     }
-  }, [viewingDate, setFocusedDate]);
+  }, [viewingDate]);
 }
