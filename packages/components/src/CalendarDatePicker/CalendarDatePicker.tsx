@@ -8,7 +8,6 @@ import React, {
   useRef,
 } from "react";
 import { XOR } from "ts-xor";
-import classNames from "./CalendarDatePicker.css";
 import { CalendarDatePickerHeader } from "./components/CalendarDatePickerHeader";
 import { CalendarDatePickerGrid } from "./components/CalendarDatePickerGrid";
 
@@ -209,7 +208,7 @@ export const CalendarMultiDatePickerComponent = forwardRef<
         onChange={onMonthChange}
         translations={translations}
       />
-      <div className={classNames.grid}>
+      <div>
         <CalendarDatePickerGrid
           viewingDate={viewingDate}
           selected={selected}
