@@ -1,6 +1,5 @@
 import React from "react";
 import { act, cleanup, fireEvent, render } from "@testing-library/react";
-import ReactDatePicker from "react-datepicker";
 import { DatePicker } from "./DatePicker";
 
 afterEach(cleanup);
@@ -67,7 +66,7 @@ it("allows for a custom activator to open the DatePicker", async () => {
   );
   await popperUpdate(() => fireEvent.click(getByText("Activate me")));
 
-  expect(getByText("15")).toBeInstanceOf(HTMLDivElement);
+  expect(getByText("15")).toBeInstanceOf(HTMLSpanElement);
 });
 
 it("always appears when inline", () => {
@@ -75,19 +74,7 @@ it("always appears when inline", () => {
     <DatePicker selected={new Date()} onChange={jest.fn()} inline />,
   );
 
-  expect(getByText("15")).toBeInstanceOf(HTMLDivElement);
-});
-
-it("should not add the `react-datepicker-ignore-onclickoutside` when inline", () => {
-  const { container, rerender } = render(<DatePicker onChange={jest.fn()} />);
-
-  const target = container.firstChild;
-  const className = "react-datepicker-ignore-onclickoutside";
-  expect(target).toHaveClass(className);
-
-  rerender(<DatePicker onChange={jest.fn()} inline />);
-
-  expect(target).not.toHaveClass(className);
+  expect(getByText("15")).toBeInstanceOf(HTMLSpanElement);
 });
 
 it("should call onMonthChange when the user switches month", async () => {
@@ -100,7 +87,7 @@ it("should call onMonthChange when the user switches month", async () => {
     />,
   );
   await popperUpdate(() => fireEvent.click(getByTestId("calendar")));
-  await popperUpdate(() => fireEvent.click(getByLabelText("Next Month")));
+  await popperUpdate(() => fireEvent.click(getByLabelText("Next month")));
 
   expect(monthChangeHandler).toHaveBeenCalledWith(expect.any(Date));
 });
@@ -133,50 +120,6 @@ describe("ESC key behavior", () => {
       queryByRole("button", { name: /next month/i }),
     ).not.toBeInTheDocument();
     expect(handleEscape).not.toHaveBeenCalled();
-  });
-});
-
-describe("Ensure ReactDatePicker CSS class names exists", () => {
-  it("should have the click outside class", async () => {
-    const { getByRole } = render(<ReactDatePicker onChange={jest.fn} />);
-    const input = getByRole("textbox");
-    const className = "react-datepicker-ignore-onclickoutside";
-
-    expect(input).not.toHaveClass(className);
-    await popperUpdate(() => fireEvent.focus(input));
-    expect(input).toHaveClass(className);
-  });
-
-  describe("Overwritten CSS class name", () => {
-    const classNames = [
-      ".react-datepicker",
-      ".react-datepicker__input-container",
-      ".react-datepicker-wrapper",
-      ".react-datepicker-popper",
-      ".react-datepicker__header",
-      ".react-datepicker__month",
-      ".react-datepicker__day",
-      ".react-datepicker__day--outside-month",
-      ".react-datepicker__day--selected",
-      ".react-datepicker__day-names",
-      ".react-datepicker__day-name",
-      ".react-datepicker__day--disabled",
-    ];
-
-    classNames.forEach(className => {
-      it(`should have ${className}`, async () => {
-        const { getByRole, container } = render(
-          <ReactDatePicker
-            minDate={new Date(2021, 3, 4)}
-            maxDate={new Date(2021, 3, 27)}
-            selected={new Date()}
-            onChange={jest.fn}
-          />,
-        );
-        await popperUpdate(() => fireEvent.focus(getByRole("textbox")));
-        expect(container.querySelector(className)).toBeTruthy();
-      });
-    });
   });
 });
 

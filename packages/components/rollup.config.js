@@ -52,7 +52,6 @@ export default {
     "react-markdown",
     "react-countdown",
     "react-popper",
-    "react-datepicker",
     "react-dropzone",
     "react-dom/client",
     "axios",

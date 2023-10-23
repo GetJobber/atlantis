@@ -6,20 +6,20 @@ import React, {
   forwardRef,
   isValidElement,
 } from "react";
-import { ReactDatePickerProps } from "react-datepicker";
 import omit from "lodash/omit";
 import { Button } from "../Button";
 
-export interface DatePickerActivatorProps
-  extends Pick<
-    ReactDatePickerProps,
-    | "value"
-    | "id"
-    | "ariaDescribedBy"
-    | "ariaInvalid"
-    | "ariaLabelledBy"
-    | "ariaRequired"
-  > {
+export interface DatePickerActivatorProps {
+  // extends Pick<
+  //   ReactDatePickerProps,
+  //   | "value"
+  //   | "id"
+  //   | "ariaDescribedBy"
+  //   | "ariaInvalid"
+  //   | "ariaLabelledBy"
+  //   | "ariaRequired"
+  // > {
+  readonly disabled?: boolean;
   readonly activator?:
     | ReactElement
     | ((props: DatePickerActivatorProps) => ReactElement);
@@ -41,12 +41,13 @@ function InternalActivator(
   props: DatePickerActivatorProps,
   ref: Ref<HTMLElement>,
 ) {
-  const { activator, fullWidth } = props;
+  const { activator, fullWidth, disabled } = props;
   const newActivatorProps = omit(props, ["activator", "fullWidth"]);
 
   if (activator) {
     if (isValidElement(activator)) {
       const isAComponent = typeof activator.type === "function";
+
       return cloneElement(activator, {
         ...newActivatorProps,
         ...(isAComponent && { fullWidth: fullWidth }),
@@ -64,6 +65,7 @@ function InternalActivator(
         type="tertiary"
         icon="calendar"
         ariaLabel="Open Datepicker"
+        disabled={disabled}
         fullWidth={fullWidth}
         {...newActivatorProps}
       />
