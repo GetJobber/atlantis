@@ -2,8 +2,8 @@ import React from "react";
 import classnames from "classnames";
 import { Icon } from "@jobber/components/Icon";
 import { Text } from "@jobber/components/Text";
-import { ComboboxListProps } from "@jobber/components/Combobox/Combobox.types";
 import styles from "./ComboboxContentList.css";
+import { ComboboxListProps } from "../../../Combobox.types";
 
 export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
   let hasSeenFirstSelected = false;

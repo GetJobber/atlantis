@@ -1,5 +1,5 @@
 import React from "react";
-import { ComboboxTriggerButtonProps } from "@jobber/components/Combobox/Combobox.types";
+import { ComboboxTriggerButtonProps } from "../../../Combobox.types";
 import { Button } from "../../../../Button";
 import { ComboboxContext } from "../../../ComboboxProvider";
 

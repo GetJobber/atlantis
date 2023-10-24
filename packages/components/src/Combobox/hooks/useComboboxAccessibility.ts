@@ -3,7 +3,7 @@ import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import { usePopper } from "react-popper";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
-import { ComboboxOption } from "@jobber/components/Combobox/Combobox.types";
+import { ComboboxOption } from "../Combobox.types";
 
 export function useComboboxAccessibility(
   selectionCallback: (selection: ComboboxOption) => void,
