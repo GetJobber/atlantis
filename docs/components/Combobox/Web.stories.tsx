@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
-import { Button as ClearButton } from "@jobber/components/Button";
+// import { Button } from "@jobber/components/Button";
+// import { Chip } from "@jobber/components/Chip";
 
 export default {
   title: "Components/Selections/Combobox/Web",
@@ -16,14 +17,24 @@ const ComboboxButton: ComponentStory<typeof Combobox> = args => {
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
 
   return (
-    <Combobox {...args}>
-      <Combobox.TriggerButton
+    <Combobox {...args} label="Select">
+      {/* <Combobox.TriggerButton
         label="Select Teammate"
         variation="subtle"
         type="primary"
         icon="arrowDown"
         iconOnRight={true}
-      />
+      /> */}
+      {/* <Combobox.Activator>
+        <Button
+          label="Select Teammate"
+          variation="subtle"
+          type="primary"
+          icon="arrowDown"
+          iconOnRight={true}
+        />
+      </Combobox.Activator> */}
+
       <Combobox.Content
         options={[
           { id: "1", label: "Bilbo Baggins" },

@@ -11,6 +11,7 @@ export interface ComboboxProps {
    * @default false
    */
   readonly multiSelect?: boolean;
+  readonly label: string;
 }
 
 export interface ComboboxTriggerProps {

@@ -15,7 +15,7 @@ export function useComboboxValidation(children: ReactNode): {
   triggerElement: ReactNode;
   contentElement: ReactNode;
 } {
-  const childrenArray = React.Children.toArray(children);
+  const childrenArray = React.Children.toArray(children); // [<Combobox.Trigger>, <Combobox.Content>]
   let triggerElement: ReactNode,
     contentElement: ReactNode,
     multipleTriggersFound = false;
@@ -35,10 +35,10 @@ export function useComboboxValidation(children: ReactNode): {
 
   useAssert(multipleTriggersFound, COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
 
-  useAssert(
-    !triggerElement || !contentElement,
-    COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE,
-  );
+  // useAssert(
+  //   !triggerElement || !contentElement,
+  //   COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE,
+  // );
 
   return {
     contentElement,
