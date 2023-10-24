@@ -113,13 +113,13 @@ describe("Chip truncation", () => {
       mockIsInView.mockReturnValueOnce(false);
     });
 
-    it("should show a tooltip with the label's content", () => {
+    it("should show a tooltip with the label's content", async () => {
       const label =
         "Has Anyone Really Been Far Even as Decided to Use Even Go Want to do Look More Like?";
       const { getByRole } = render(<Chip label={label} />);
       const button = getByRole("button");
 
-      userEvent.hover(button);
+      await userEvent.hover(button);
 
       expect(document.querySelector("div[role='tooltip']")).toHaveTextContent(
         label,
@@ -141,12 +141,12 @@ describe("Chip truncation", () => {
       mockIsInView = jest.fn(() => true);
     });
 
-    it("should not show a tooltip", () => {
+    it("should not show a tooltip", async () => {
       const label = "short";
       const { getByRole } = render(<Chip label={label} />);
       const button = getByRole("button");
 
-      userEvent.hover(button);
+      await userEvent.hover(button);
 
       expect(
         document.querySelector("div[role='tooltip']"),
@@ -168,14 +168,14 @@ describe("Chip truncation", () => {
         mockIsInView.mockReturnValueOnce(false);
       });
 
-      it("should show a tooltip with only the label content", () => {
+      it("should show a tooltip with only the label content", async () => {
         const heading = "heading";
         const label =
           "Has Anyone Really Been Far Even as Decided to Use Even Go Want to do Look More Like?";
         const { getByRole } = render(<Chip label={label} heading={heading} />);
         const button = getByRole("button");
 
-        userEvent.hover(button);
+        await userEvent.hover(button);
 
         expect(document.querySelector("div[role='tooltip']")).toHaveTextContent(
           label,
@@ -197,14 +197,14 @@ describe("Chip truncation", () => {
         mockIsInView.mockReturnValue(false);
       });
 
-      it("should show a tooltip with the label and heading content", () => {
+      it("should show a tooltip with the label and heading content", async () => {
         const heading = "heading";
         const label =
           "Has Anyone Really Been Far Even as Decided to Use Even Go Want to do Look More Like?";
         const { getByRole } = render(<Chip label={label} heading={heading} />);
         const button = getByRole("button");
 
-        userEvent.hover(button);
+        await userEvent.hover(button);
 
         expect(document.querySelector("div[role='tooltip']")).toHaveTextContent(
           `${heading} | ${label}`,
@@ -226,14 +226,14 @@ describe("Chip truncation", () => {
         mockIsInView.mockReturnValue(true);
       });
 
-      it("should not show a tooltip on hover", () => {
+      it("should not show a tooltip on hover", async () => {
         const heading = "heading";
         const label =
           "Has Anyone Really Been Far Even as Decided to Use Even Go Want to do Look More Like?";
         const { getByRole } = render(<Chip label={label} heading={heading} />);
         const button = getByRole("button");
 
-        userEvent.hover(button);
+        await userEvent.hover(button);
 
         expect(document.querySelector("div[role='tooltip']")).toBeNull();
       });

@@ -41,6 +41,8 @@ export const Chip = ({
     label,
     heading,
   );
+  console.log(labelFullyVisible);
+  console.log(headingFullyVisible);
 
   return (
     <Tooltip message={tooltipMessage}>
@@ -90,15 +92,15 @@ function getTooltipMessage(
   label: string,
   heading?: string,
 ): string {
+  let message = "";
+
   if (heading && !headingFullyVisible) {
-    return `${heading} | ${label}`;
+    message = `${heading} | ${label}`;
+  } else if (!labelFullyVisible) {
+    message = label;
   }
 
-  if (!labelFullyVisible) {
-    return label;
-  }
-
-  return "";
+  return message;
 }
 
 Chip.Prefix = ChipPrefix;
