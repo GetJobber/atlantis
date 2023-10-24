@@ -260,6 +260,34 @@ describe("useCollectionQuery", () => {
           await act(wait);
         });
       });
+
+      describe("when there is an error", () => {
+        it("should update the error state", async () => {
+          const mockError = new Error("Failed to fetch more items");
+          const { result } = renderHook(() => useCollectionQueryHook(query), {
+            wrapper: wrapper([
+              buildListRequestMock(query, responseMock),
+              {
+                request: {
+                  query: query,
+                  variables: { cursor: "MZ" },
+                },
+                error: mockError,
+              },
+            ]),
+          });
+
+          await act(wait);
+
+          act(() => {
+            result.current.nextPage();
+          });
+
+          await act(wait);
+
+          expect(result.current.error).toEqual(mockError);
+        });
+      });
     });
 
     describe("#refresh", () => {
