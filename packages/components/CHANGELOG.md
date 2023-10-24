@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.54.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.53.1...@jobber/components@4.54.0) (2023-10-24)
+
+
+### Features
+
+* **components:** Add DataList.StatusBar ([#1596](https://github.com/GetJobber/atlantis/issues/1596)) ([6be47f4](https://github.com/GetJobber/atlantis/commit/6be47f475863f8ead75398c80f057dad63f3dea0))
+
+
+
+
+
 ## [4.53.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.53.0...@jobber/components@4.53.1) (2023-10-24)
 
 
