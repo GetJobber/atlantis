@@ -41,8 +41,6 @@ export const Chip = ({
     label,
     heading,
   );
-  console.log(labelFullyVisible);
-  console.log(headingFullyVisible);
 
   return (
     <Tooltip message={tooltipMessage}>
