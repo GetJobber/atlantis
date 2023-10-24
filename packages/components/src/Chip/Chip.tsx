@@ -48,7 +48,7 @@ export const Chip = ({
       <Typography size="base" fontWeight="medium">
         {heading}
       </Typography>
-      {heading && <span className={styles.chipBar} />}
+      {heading && label && <span className={styles.chipBar} />}
       <Typography size="base">{label}</Typography>
       {suffix}
     </button>
