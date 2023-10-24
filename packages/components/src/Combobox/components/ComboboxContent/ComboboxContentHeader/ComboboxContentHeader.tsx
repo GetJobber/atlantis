@@ -1,8 +1,8 @@
 import React from "react";
 import { Typography } from "@jobber/components/Typography";
 import { Button } from "@jobber/components/Button";
-import { ComboboxHeaderProps } from "@jobber/components/Combobox/Combobox.types";
 import styles from "./ComboboxContentHeader.css";
+import { ComboboxHeaderProps } from "../../../Combobox.types";
 
 export function ComboboxContentHeader(props: ComboboxHeaderProps): JSX.Element {
   const hasSelected = props.selectedCount > 0;

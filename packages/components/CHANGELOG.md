@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.53.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.53.0...@jobber/components@4.53.1) (2023-10-24)
+
+
+### Bug Fixes
+
+* **components:** Fix Combobox Types Exports ([#1606](https://github.com/GetJobber/atlantis/issues/1606)) ([da2879c](https://github.com/GetJobber/atlantis/commit/da2879c62e6740a1d37263b1ac37444f903e8a9e))
+
+
+
+
+
 # [4.53.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.52.1...@jobber/components@4.53.0) (2023-10-23)
 
 
