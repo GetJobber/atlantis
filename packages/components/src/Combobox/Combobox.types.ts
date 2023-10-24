@@ -15,7 +15,7 @@ export interface ComboboxProps {
   /**
    * The Chip heading for the trigger
    */
-  readonly label: string;
+  readonly heading: string;
 }
 
 export interface ComboboxTriggerProps {

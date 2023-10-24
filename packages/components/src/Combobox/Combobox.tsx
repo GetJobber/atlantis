@@ -21,7 +21,7 @@ export const Combobox = (props: ComboboxProps): JSX.Element => {
 
   return (
     <ComboboxContextProvider multiselect={props.multiSelect}>
-      {activatorElement || <ComboboxTrigger label={props.label} />}
+      {activatorElement || <ComboboxTrigger heading={props.heading} />}
       {triggerElement}
       {contentElement}
     </ComboboxContextProvider>

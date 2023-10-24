@@ -4,7 +4,7 @@ import { Icon } from "@jobber/components/Icon";
 import { ComboboxContext } from "../../ComboboxProvider";
 
 interface ComboboxTriggerProps {
-  readonly label: string;
+  readonly heading: string;
 }
 
 export function ComboboxTrigger(props: ComboboxTriggerProps) {
@@ -19,7 +19,7 @@ export function ComboboxTrigger(props: ComboboxTriggerProps) {
     <Chip
       variation={hasSelection ? "base" : "subtle"}
       label={hasSelection ? selectedLabel : ""}
-      heading={renderHeading ? props.label : ""}
+      heading={renderHeading ? props.heading : ""}
       onClick={() => setOpen(!open)}
     >
       {!hasSelection && (
