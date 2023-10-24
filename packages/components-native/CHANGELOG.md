@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.47.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.47.1...@jobber/components-native@0.47.2) (2023-10-24)
+
+
+### Bug Fixes
+
+* **components-native:** remove doubled testID prefix for GroupButton ([#1607](https://github.com/GetJobber/atlantis/issues/1607)) ([b918e83](https://github.com/GetJobber/atlantis/commit/b918e83ae73c2eb579aa0ff5fb4e960a42a0c980))
+
+
+
+
+
 ## [0.47.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.47.0...@jobber/components-native@0.47.1) (2023-10-23)
 
 **Note:** Version bump only for package @jobber/components-native
