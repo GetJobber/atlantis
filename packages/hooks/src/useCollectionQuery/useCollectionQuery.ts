@@ -152,6 +152,7 @@ export function useCollectionQuery<TQuery, TSubscription = undefined>({
     }
 
     setLoadingNextPage(true);
+    setHookError(undefined);
 
     fetchMore({
       variables: {
@@ -185,6 +186,9 @@ export function useCollectionQuery<TQuery, TSubscription = undefined>({
       if (subscription == undefined) return;
 
       const subscriptionOptions = subscription.options || {};
+
+      // Reset this state so we can handle errors from the subscription
+      setHookError(undefined);
 
       return subscribeToMore<TSubscription>({
         ...subscriptionOptions,
