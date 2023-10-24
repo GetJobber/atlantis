@@ -117,7 +117,11 @@ export function Banner({
   }
 }
 
-function BannerChildren({ children }: { children?: ReactNode }): JSX.Element {
+function BannerChildren({
+  children,
+}: {
+  readonly children?: ReactNode;
+}): JSX.Element {
   if (!children) return <></>;
 
   if (children && typeof children === "string") {
