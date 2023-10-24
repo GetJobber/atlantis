@@ -1,6 +1,6 @@
 import React from "react";
-import { ComboboxTriggerChipProps } from "@jobber/components/Combobox/Combobox.types";
 import styles from "./ComboboxTriggerChip.css";
+import { ComboboxTriggerChipProps } from "../../../Combobox.types";
 import { Icon } from "../../../../Icon";
 import { ComboboxContext } from "../../../ComboboxProvider";
 import { Typography } from "../../../../Typography";
