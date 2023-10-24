@@ -274,6 +274,7 @@ describe("useCollectionQuery", () => {
                 },
                 error: mockError,
               },
+              buildListRequestMockForNextPage(query, responseMock),
             ]),
           });
 
@@ -286,6 +287,15 @@ describe("useCollectionQuery", () => {
           await act(wait);
 
           expect(result.current.error).toEqual(mockError);
+
+          // should clear the error after a successful fetch
+          act(() => {
+            result.current.nextPage();
+          });
+
+          await act(wait);
+
+          expect(result.current.error).toBeUndefined();
         });
       });
     });
