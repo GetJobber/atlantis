@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./ComboboxTriggerChip.css";
+import { ComboboxTriggerChipProps } from "../../../Combobox.types";
 import { Icon } from "../../../../Icon";
 import { ComboboxContext } from "../../../ComboboxProvider";
 import { Typography } from "../../../../Typography";
-import { ComboboxTriggerChipProps } from "../../../Combobox.types";
 
 export function ComboboxTriggerChip(
   props: ComboboxTriggerChipProps,

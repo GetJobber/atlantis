@@ -72,6 +72,11 @@ interface CommonButtonProps {
    * `accessibilityLabel`. **Don't use this for testing purposes.**
    */
   readonly accessibilityLabel?: string;
+
+  /**
+   * Used to locate this view in end-to-end tests.
+   */
+  readonly testID?: string;
 }
 
 interface LabelButton extends CommonButtonProps {
@@ -87,6 +92,7 @@ interface IconButton extends CommonButtonProps {
 }
 
 export type ButtonProps = XOR<LabelButton, IconButton>;
+
 export function Button({
   label,
   onPress,
@@ -100,6 +106,7 @@ export function Button({
   accessibilityLabel,
   accessibilityHint,
   icon,
+  testID,
 }: ButtonProps): JSX.Element {
   const buttonStyle = [
     styles.button,
@@ -119,7 +126,7 @@ export function Button({
   return (
     <TouchableHighlight
       onPress={onPress}
-      testID={accessibilityLabel || label}
+      testID={buildTestID(testID, label, accessibilityLabel)}
       accessibilityLabel={accessibilityLabel || label}
       accessibilityHint={accessibilityHint}
       accessibilityRole="button"
@@ -219,4 +226,16 @@ function getContentStyles(
     icon && !!label && styles.iconPaddingOffset,
     !!label && styles.contentWithLabel,
   ];
+}
+
+function buildTestID(
+  testID: string | undefined,
+  label: string | undefined,
+  accessibilityLabel: string | undefined,
+): string | undefined {
+  if (testID) {
+    return `ATL-${testID}-Button`;
+  }
+
+  return accessibilityLabel || label;
 }

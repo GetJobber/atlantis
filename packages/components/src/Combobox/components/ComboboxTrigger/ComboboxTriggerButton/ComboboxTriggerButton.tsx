@@ -1,6 +1,6 @@
 import React from "react";
-import { Button } from "../../../../Button";
 import { ComboboxTriggerButtonProps } from "../../../Combobox.types";
+import { Button } from "../../../../Button";
 import { ComboboxContext } from "../../../ComboboxProvider";
 
 export function ComboboxTriggerButton(

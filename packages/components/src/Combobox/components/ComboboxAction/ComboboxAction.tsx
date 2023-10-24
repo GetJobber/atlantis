@@ -1,18 +1,7 @@
 import React from "react";
 import styles from "./ComboboxAction.css";
 import { Typography } from "../../../Typography";
-
-export interface ComboboxActionProps {
-  /**
-   * The function to call when the action is clicked.
-   */
-  onClick(event: React.MouseEvent<HTMLButtonElement>): void;
-
-  /**
-   * The label text of the action.
-   */
-  readonly label: string;
-}
+import { ComboboxActionProps } from "../../Combobox.types";
 
 export function ComboboxAction(props: ComboboxActionProps): JSX.Element {
   return (

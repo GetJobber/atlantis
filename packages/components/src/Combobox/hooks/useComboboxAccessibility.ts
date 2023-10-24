@@ -71,9 +71,11 @@ export function useComboboxAccessibility(
 
       handleKeyboardSelection(event);
     }
+
     if (event.key === "ArrowDown") {
       handleKeyboardNavigation(event, 1);
     }
+
     if (event.key === "ArrowUp") {
       handleKeyboardNavigation(event, -1);
     }

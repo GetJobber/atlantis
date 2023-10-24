@@ -1,4 +1,6 @@
-import { Meta } from "@storybook/addon-docs";
+import { ArgsTable, Meta } from "@storybook/addon-docs";
+import { Tab, Tabs } from "@jobber/components/Tabs";
+import { DataList } from "@jobber/components/DataList";
 
 <Meta
   title="Components/Lists and Tables/DataList/Docs"
@@ -23,3 +25,219 @@ item.
 If you need to add more information, consider using the
 [DataTable](?path=/story/components-lists-and-tables-datatable-docs--page)
 component instead.
+
+## Implementation guidelines
+
+Since DataList is a large component, we use a mixture of compound components and
+props to separate each part of the component.
+
+### Main wrapper
+
+DataList is the main component that holds everything and important props.
+
+<ArgsTable of={DataList} />
+
+### Layout
+
+DataList.Layout enables you to implement the layout of the list items. Keep in
+mind that DataList doesn't have a default layout so you have to have at least 1
+implemented.
+
+It also supports different `size` breakpoints so you can completely change the
+component it's using depending on the window size.
+
+It is also important to add the type of `DataListItem<typeof data>` on the
+`item` param in the layout so you can easily access the known data.
+
+```tsx
+// You can have 1 responsive layout
+<DataList>
+  <DataList.Layout>
+    {/* Declare the type of the item */}
+    {(item: DataListItem<MyDataType>) => (
+      <Grid>
+        <Grid.Cell size={{ xs: 12 md: 6 }}>{item.name}</Grid.Cell>
+        <Grid.Cell size={{ xs: 12 md: 6 }}>{item.email}</Grid.Cell>
+      </Grid>
+    )}
+  </DataList.Layout>
+</DataList>
+
+// Or you can have multiple layouts per breakpoint
+<DataList>
+  <DataList.Layout size="xs">
+    {(item: DataListItem<MyDataType>) => (
+      <Grid>
+        <Grid.Cell size={{ md: 6 }}>{item.name}</Grid.Cell>
+        <Grid.Cell size={{ md: 6 }}>{item.email}</Grid.Cell>
+      </Grid>
+    )}
+  </DataList.Layout>
+
+  <DataList.Layout size="md">
+    {(item: DataListItem<MyDataType>) => (
+      <Content>
+        <div>{item.name}</div>
+        <div>{item.email}</div>
+      </Content>
+    )}
+  </DataList.Layout>
+</DataList>
+```
+
+<ArgsTable of={DataList.Layout} />
+
+### Actions
+
+#### Item actions
+
+DataList.ItemActions allows you to add an action on the item itself such as
+`onClick` or `url`. While the DataList.ItemAction (without an s) child adds more
+action that is related to the item.
+
+```tsx
+<DataList>
+  <DataList.ItemActions onClick={item => alert(item.name)}>
+    <DataList.ItemAction icon="edit" label="Edit" onClick={} />
+    <DataList.ItemAction icon="delete" label="Delete" onClick={} />
+  </DataList.ItemActions>
+</DataList>
+```
+
+<Tabs>
+  <Tab label="DataList.ItemActions">
+    <ArgsTable of={DataList.ItemActions} />
+  </Tab>
+  <Tab label="DataList.ItemAction">
+    <ArgsTable of={DataList.ItemAction} />
+  </Tab>
+</Tabs>
+
+#### Batch actions
+
+There are two steps to allow the user to select and perform actions on multiple
+items:
+
+1. Enable multiselect by adding a `selected`, `onSelect`, and `onSelectAll`
+   props to the DataList component.
+2. Add a DataList.BatchActions component inside the DataList.Layout component.
+
+```tsx
+<DataList
+  selected={selected}
+  onSelect={handleSelect}
+  onSelectAll={handleSelectAll}
+>
+  <DataList.BatchActions>
+    <DataList.BatchAction label="Send" onClick={handleSend} />
+    <DataList.BatchAction label="Delete" onClick={handleDelete} />
+  </DataList.BatchActions>
+</DataList>
+```
+
+##### DataList.BatchAction props
+
+<ArgsTable of={DataList.BatchAction} />
+
+#### Layout actions
+
+By default, the actions from the DataList.ItemActions will be placed on the top
+right of the list item and will be triggered by hover. You can change this
+behavior by including the DataList.LayoutActions component inside the
+DataList.Layout component.
+
+```tsx
+<DataList>
+  <DataList.Layout>
+    {(item: DataListItem<MyDataType>) => (
+      <>
+        <Grid>
+          <Grid.Cell size={{ xs: 12 md: 6 }}>{item.name}</Grid.Cell>
+          <Grid.Cell size={{ xs: 12 md: 6 }}>{item.email}</Grid.Cell>
+        </Grid>
+
+        {/* This will place the actions as a part of the layout */}
+        <DataList.LayoutActions />
+      </>
+    )}
+  </DataList.Layout>
+</DataList>
+```
+
+### Filters
+
+DataList.Filters adds filters to the list. This compound component accepts any
+children and inserts it above the list of items.
+
+```tsx
+<DataList>
+  <DataList.Filters>
+    <Combobox />
+    <Button />
+    <Select />
+  </DataList.Filters>
+</DataList>
+```
+
+### Search
+
+DataList.Search adds a search input to the list. This is debounced by 500ms.
+
+```tsx
+<DataList>
+  <DataList.Search onSearch={handleSearch} />
+</DataList>
+```
+
+<ArgsTable of={DataList.Search} />
+
+### Empty state
+
+The DataList has a default empty state message when it is empty or filtering.
+You can override this by using the DataList.EmptyState component.
+
+```tsx
+<DataList>
+  <DataList.EmptyState
+    message="Character list is looking empty"
+    action={
+      <Button
+        label="New character"
+        onClick={() => alert("Create a new character")}
+      />
+    }
+  />
+</DataList>
+```
+
+You can also add a custom empty message when you've filtered the list and there
+are no results. Please note that for this specific empty state to show up, you
+need to set the `filtered` to `true`.
+
+```tsx
+<DataList filtered={true}>
+  <DataList.EmptyState
+    type="filtered"
+    message="No results found"
+    action={
+      <Button label="Clear filters" onClick={() => alert("Clear filters")} />
+    }
+  />
+</DataList>
+```
+
+### Status bar
+
+You can add a status bar that will be displayed between the filters and the
+header. This status bar can be used to display error messages or anything you
+want to inform the user about something related to the Datalist.
+
+```tsx
+<DataList>
+  <DataList.StatusBar>
+    <Banner type="error" icon="alert" dismissible>
+      Something went wrong. Refresh or check your internet connection.
+    </Banner>
+  </DataList.StatusBar>
+</DataList>
+```
