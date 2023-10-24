@@ -253,6 +253,6 @@ DataList.BatchAction = function DataListBatchAction(
 };
 
 /**
- * Defines a banner that is going to rendered between the filters and the header.
+ * Defines a status bar that is rendered between the filters and the header.
  */
 DataList.StatusBar = DataListStatusBar;

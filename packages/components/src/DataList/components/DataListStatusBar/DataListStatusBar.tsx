@@ -27,5 +27,5 @@ export function InternalDataListStatusBar() {
 
   const children = component?.props.children;
 
-  return <>{children && children}</>;
+  return <>{children}</>;
 }
