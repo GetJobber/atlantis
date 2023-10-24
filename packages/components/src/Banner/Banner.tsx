@@ -11,7 +11,7 @@ import { Button, ButtonProps } from "../Button";
 
 export type BannerType = "notice" | "success" | "warning" | "error";
 
-export interface BannerProps {
+interface BannerProps {
   readonly children: ReactNode;
   readonly type: BannerType;
   /**
