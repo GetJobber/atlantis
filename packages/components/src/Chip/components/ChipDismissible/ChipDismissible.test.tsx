@@ -21,7 +21,7 @@ describe("Chip Dismissible", () => {
     expect(container.querySelector("svg")).toBeInTheDocument();
   });
 
-  it("does not call onClick when clicked", () => {
+  it("does not call onClick when clicked because suffix is clickable", () => {
     const onClick = jest.fn();
     const { getByText } = render(
       <ChipDismissible onClick={onClick} label="Test Chip" />,
