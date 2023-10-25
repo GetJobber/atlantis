@@ -70,7 +70,7 @@ describe("ComboboxContent Search", () => {
     expect(getByText("Frodo Baggins")).toBeInTheDocument();
   });
 
-  it("should clear search when activating the clear button with enter key", () => {
+  it("should clear search when activating the clear button with enter key", async () => {
     const { getByTestId, getByPlaceholderText, getByText } = render(
       <MockComboboxProvider>
         <Combobox.Content
@@ -89,7 +89,7 @@ describe("ComboboxContent Search", () => {
 
     const clearButton = getByTestId("ATL-Combobox-Content-Search-Clear");
 
-    userEvent.type(clearButton, "{enter}");
+    await userEvent.type(clearButton, "{enter}");
 
     expect(searchInput).toHaveValue("");
     expect(getByText("Bilbo Baggins")).toBeInTheDocument();
@@ -300,7 +300,7 @@ describe("ComboboxContent Options", () => {
 
     const content = getByTestId("ATL-Combobox-Content");
 
-    userEvent.type(content, "{arrowdown}");
+    await userEvent.type(content, "{arrowdown}");
 
     await waitFor(() => {
       expect(getByText("Leatherface")).toHaveFocus();
@@ -328,9 +328,9 @@ describe("ComboboxContent Options", () => {
 
     const content = getByTestId("ATL-Combobox-Content");
 
-    userEvent.type(content, "{arrowdown}");
-    userEvent.type(content, "{arrowdown}");
-    userEvent.type(content, "{arrowdown}");
+    await userEvent.type(content, "{arrowdown}");
+    await userEvent.type(content, "{arrowdown}");
+    await userEvent.type(content, "{arrowdown}");
 
     await waitFor(() => {
       expect(getByText("Michael")).toHaveFocus();
@@ -358,13 +358,13 @@ describe("ComboboxContent Options", () => {
 
     const content = getByTestId("ATL-Combobox-Content");
 
-    userEvent.type(content, "{arrowup}");
+    await userEvent.type(content, "{arrowup}");
 
     await waitFor(() => {
       expect(getByText("Leatherface")).toHaveFocus();
     });
   });
-  it("should select option with enter key press", () => {
+  it("should select option with enter key press", async () => {
     const selectHandler = jest.fn();
     const { getByText } = render(
       <Combobox>
@@ -387,12 +387,12 @@ describe("ComboboxContent Options", () => {
 
     const firstOption = getByText("Leatherface");
 
-    userEvent.type(firstOption, "{enter}");
+    await userEvent.type(firstOption, "{enter}");
     expect(selectHandler).toHaveBeenCalledWith([
       { id: 1, label: "Leatherface" },
     ]);
   });
-  it("should close after making a selection with the enter key", () => {
+  it("should close after making a selection with the enter key", async () => {
     const { getByText, getByTestId } = render(
       <Combobox>
         <Combobox.TriggerButton label="Click Me" />
@@ -414,7 +414,7 @@ describe("ComboboxContent Options", () => {
 
     const firstOption = getByText("Leatherface");
 
-    userEvent.type(firstOption, "{enter}");
+    await userEvent.type(firstOption, "{enter}");
     expect(getByTestId("ATL-Combobox-Content")).toHaveClass("hidden");
   });
   describe("with a search entered", () => {
@@ -442,7 +442,7 @@ describe("ComboboxContent Options", () => {
 
       fireEvent.change(searchInput, { target: { value: "Mi" } });
 
-      userEvent.type(content, "{arrowdown}");
+      await userEvent.type(content, "{arrowdown}");
 
       await waitFor(() => {
         expect(getByText("Michael")).toHaveFocus();

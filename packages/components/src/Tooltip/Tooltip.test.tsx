@@ -1,5 +1,5 @@
 import React from "react";
-import { cleanup, render, waitFor } from "@testing-library/react";
+import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Tooltip } from ".";
 
@@ -32,7 +32,7 @@ it("should show up on hover", async () => {
     </Tooltip>,
   );
 
-  userEvent.hover(getByTestId(contentID));
+  await userEvent.hover(getByTestId(contentID));
   expect(getByText(message)).toBeInTheDocument();
   expect(getByText(content)).toBeInTheDocument();
 });
@@ -48,7 +48,7 @@ it("should show the tooltip up on focus", async () => {
     </Tooltip>,
   );
 
-  userEvent.hover(getByTestId(contentID));
+  await userEvent.hover(getByTestId(contentID));
   expect(getByText(message)).toBeInTheDocument();
 });
 
@@ -63,8 +63,8 @@ it("should disappear on blur", async () => {
     </Tooltip>,
   );
 
-  userEvent.hover(getByTestId(contentID));
-  userEvent.unhover(getByTestId(contentID));
+  await userEvent.hover(getByTestId(contentID));
+  await userEvent.unhover(getByTestId(contentID));
 
   await waitFor(() => {
     expect(queryByText(message)).not.toBeInTheDocument();
@@ -84,4 +84,40 @@ it("should have aria-description and tabindex", () => {
 
   expect(getByTestId(contentID)).toHaveAttribute("aria-description", message);
   expect(getByTestId(contentID)).toHaveAttribute("tabindex", "0");
+});
+
+describe("with a message of an empty string", () => {
+  it("should not show the tooltip up on hover", async () => {
+    const message = "";
+    const content = "Focus on me";
+    const contentID = "focus-on-me";
+
+    const { getByTestId } = render(
+      <Tooltip message={message}>
+        <div data-testid={contentID}>{content}</div>
+      </Tooltip>,
+    );
+
+    userEvent.hover(getByTestId(contentID));
+
+    const visibleTooltip = document.querySelector("div[role='tooltip']");
+    expect(visibleTooltip).toBeNull();
+  });
+
+  it("should not show the tooltip up on focus", async () => {
+    const message = "";
+    const content = "Focus on me";
+    const contentID = "focus-on-me";
+
+    const { getByTestId } = render(
+      <Tooltip message={message}>
+        <div data-testid={contentID}>{content}</div>
+      </Tooltip>,
+    );
+
+    fireEvent.focus(getByTestId(contentID));
+
+    const visibleTooltip = document.querySelector("div[role='tooltip']");
+    expect(visibleTooltip).toBeNull();
+  });
 });

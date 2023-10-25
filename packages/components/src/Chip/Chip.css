@@ -1,3 +1,8 @@
+:root {
+  --chip--gradient-color-variation: var(--chip-base-bg);
+  --chip--gradient-color-variation--hover: var(--chip-base--hover);
+}
+
 .chip {
   --chip-height: 40px;
   --chip-radius: 20px;
@@ -8,6 +13,7 @@
   display: flex;
   position: relative;
   height: var(--chip-height);
+  min-width: 0;
   border: var(--border-base) solid transparent;
   border-radius: var(--chip-radius);
   color: var(--color-heading);
@@ -78,10 +84,13 @@ button.chip {
   border: var(--border-base) solid transparent;
   color: var(--color-heading);
   background-color: var(--chip-base-bg);
+  --chip--gradient-color-variation: var(--chip-base-bg);
 }
+
 .base:hover,
 .base:focus {
   background-color: var(--chip-base--hover);
+  --chip--gradient-color-variation--hover: var(--chip-base--hover);
 }
 
 .invalid,
@@ -92,15 +101,29 @@ button.chip {
 .subtle.invalid:focus {
   border: var(--border-base) solid var(--color-critical);
   background-color: var(--color-critical--surface);
+  --chip--gradient-color-variation: var(--color-critical--surface);
+  --chip--gradient-color-variation--hover: var(--color-critical--surface);
 }
 
 .subtle {
   border: var(--border-base) solid var(--color-disabled--secondary);
   background-color: var(--color-surface);
+  --chip--gradient-color-variation: var(--color-surface);
 }
+
+/* CAUTION: Order is important here since
+* there is are different styles for subtle:focus and subtle:hover
+* and we want hover to take priority
+*/
+
+.subtle:focus {
+  --chip--gradient-color-variation--hover: var(--color-surface);
+}
+
 .subtle:hover {
   border: var(--border-base) solid var(--chip-base-bg);
   background-color: var(--chip-base-bg);
+  --chip--gradient-color-variation--hover: var(--chip-base-bg);
 }
 
 .disabled,
@@ -110,6 +133,8 @@ button.chip {
   color: var(--color-disabled);
   background-color: var(--chip-disabled--bg);
   cursor: auto;
+  --chip--gradient-color-variation: var(--chip-disabled--bg);
+  --chip--gradient-color-variation--hover: var(--chip-disabled--bg);
 }
 
 .disabled .chipBar {
@@ -119,7 +144,44 @@ button.chip {
 .chip.disabled .suffix {
   background-color: var(--color-disabled);
 }
-
 .clickableSuffix {
   cursor: pointer;
+}
+
+.chipContent {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  flex-wrap: nowrap;
+}
+
+.chipContent > * {
+  flex: 0 0 auto;
+}
+
+.chipContent > p {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.truncateGradient {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--space-base);
+  height: 100%;
+  background: linear-gradient(
+    to left,
+    var(--chip--gradient-color-variation) 5%,
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.chip:focus .truncateGradient,
+.chip:hover .truncateGradient {
+  background: linear-gradient(
+    to left,
+    var(--chip--gradient-color-variation--hover) 5%,
+    rgba(255, 255, 255, 0)
+  );
 }

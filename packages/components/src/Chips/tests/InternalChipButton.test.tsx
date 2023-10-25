@@ -17,8 +17,8 @@ describe("Interaction", () => {
 
   afterEach(cleanup);
 
-  it("should call the onClick action", () => {
-    userEvent.click(target);
+  it("should call the onClick action", async () => {
+    await userEvent.click(target);
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 

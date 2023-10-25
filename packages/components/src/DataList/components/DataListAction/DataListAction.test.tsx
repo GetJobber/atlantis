@@ -41,20 +41,20 @@ describe("DataListAction", () => {
     expect(button.querySelector("p")).toHaveClass("critical");
   });
 
-  it("should not fire the onClick when the item from the context is undefined", () => {
+  it("should not fire the onClick when the item from the context is undefined", async () => {
     const { button } = renderComponent();
 
-    userEvent.click(button);
+    await userEvent.click(button);
     // ensure item doesn't get passed in
     expect(handleClick).toHaveBeenCalledWith();
   });
 
-  it("should fire the onClick when the item from the context is defined", () => {
+  it("should fire the onClick when the item from the context is defined", async () => {
     const mockItem = { id: "1" };
     mockActiveItemValue.mockReturnValue(mockItem);
     const { button } = renderComponent();
 
-    userEvent.click(button);
+    await userEvent.click(button);
     expect(handleClick).toHaveBeenCalledWith(mockItem);
   });
 });

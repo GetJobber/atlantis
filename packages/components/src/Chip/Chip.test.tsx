@@ -1,8 +1,14 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { Chip } from "./Chip";
 import styles from "./Chip.css";
 import { Avatar } from "../Avatar";
+
+let mockIsInView = jest.fn(() => true);
+jest.mock("@jobber/hooks/useInView", () => ({
+  useInView: () => [{ current: null }, mockIsInView()],
+}));
 
 describe("Chip", () => {
   it("renders without error", () => {
@@ -98,5 +104,148 @@ describe("Chip Children", () => {
     const elements = container.querySelectorAll("." + styles.suffix);
 
     expect(elements).toHaveLength(1);
+  });
+});
+
+describe("Chip truncation", () => {
+  describe("with only a label too long to display", () => {
+    beforeEach(() => {
+      mockIsInView.mockReturnValueOnce(false);
+    });
+
+    it("should show a tooltip with the label's content", async () => {
+      const label =
+        "Has Anyone Really Been Far Even as Decided to Use Even Go Want to do Look More Like?";
+      const { getByRole } = render(<Chip label={label} />);
+      const button = getByRole("button");
+
+      await userEvent.hover(button);
+
+      expect(document.querySelector("div[role='tooltip']")).toHaveTextContent(
+        label,
+      );
+    });
+
+    it("should show a gradient to indicate truncation", () => {
+      const label =
+        "Has Anyone Really Been Far Even as Decided to Use Even Go Want to do Look More Like?";
+      const { getByTestId } = render(<Chip label={label} />);
+      const gradient = getByTestId("ATL-Chip-Truncation-Gradient");
+
+      expect(gradient).toBeInTheDocument();
+    });
+  });
+
+  describe("with only a label short enough to display", () => {
+    beforeEach(() => {
+      mockIsInView = jest.fn(() => true);
+    });
+
+    it("should not show a tooltip", async () => {
+      const label = "short";
+      const { getByRole } = render(<Chip label={label} />);
+      const button = getByRole("button");
+
+      await userEvent.hover(button);
+
+      expect(
+        document.querySelector("div[role='tooltip']"),
+      ).not.toBeInTheDocument();
+    });
+
+    it("should not show a gradient", () => {
+      const label = "short";
+      const { queryByTestId } = render(<Chip label={label} />);
+      const gradient = queryByTestId("ATL-Chip-Truncation-Gradient");
+
+      expect(gradient).not.toBeInTheDocument();
+    });
+  });
+
+  describe("with a label and heading", () => {
+    describe("when only label is too long to display", () => {
+      beforeEach(() => {
+        mockIsInView.mockReturnValueOnce(false);
+      });
+
+      it("should show a tooltip with only the label content", async () => {
+        const heading = "heading";
+        const label =
+          "Has Anyone Really Been Far Even as Decided to Use Even Go Want to do Look More Like?";
+        const { getByRole } = render(<Chip label={label} heading={heading} />);
+        const button = getByRole("button");
+
+        await userEvent.hover(button);
+
+        expect(document.querySelector("div[role='tooltip']")).toHaveTextContent(
+          label,
+        );
+      });
+
+      it("should show a gradient to indicate truncation", () => {
+        const label =
+          "Has Anyone Really Been Far Even as Decided to Use Even Go Want to do Look More Like?";
+        const { getByTestId } = render(<Chip label={label} />);
+        const gradient = getByTestId("ATL-Chip-Truncation-Gradient");
+
+        expect(gradient).toBeInTheDocument();
+      });
+    });
+
+    describe("when heading is also too long to display", () => {
+      beforeEach(() => {
+        mockIsInView.mockReturnValue(false);
+      });
+
+      it("should show a tooltip with the label and heading content", async () => {
+        const heading = "heading";
+        const label =
+          "Has Anyone Really Been Far Even as Decided to Use Even Go Want to do Look More Like?";
+        const { getByRole } = render(<Chip label={label} heading={heading} />);
+        const button = getByRole("button");
+
+        await userEvent.hover(button);
+
+        expect(document.querySelector("div[role='tooltip']")).toHaveTextContent(
+          `${heading} | ${label}`,
+        );
+      });
+
+      it("should show a gradient to indicate truncation", () => {
+        const label =
+          "Has Anyone Really Been Far Even as Decided to Use Even Go Want to do Look More Like?";
+        const { getByTestId } = render(<Chip label={label} />);
+        const gradient = getByTestId("ATL-Chip-Truncation-Gradient");
+
+        expect(gradient).toBeInTheDocument();
+      });
+    });
+
+    describe("when both can fully display", () => {
+      beforeEach(() => {
+        mockIsInView.mockReturnValue(true);
+      });
+
+      it("should not show a tooltip on hover", async () => {
+        const heading = "heading";
+        const label =
+          "Has Anyone Really Been Far Even as Decided to Use Even Go Want to do Look More Like?";
+        const { getByRole } = render(<Chip label={label} heading={heading} />);
+        const button = getByRole("button");
+
+        await userEvent.hover(button);
+
+        expect(document.querySelector("div[role='tooltip']")).toBeNull();
+      });
+
+      it("shold now show a gradient to indicate truncation", () => {
+        const label =
+          "Has Anyone Really Been Far Even as Decided to Use Even Go Want to do Look More Like?";
+        const { queryByTestId } = render(<Chip label={label} />);
+        const gradient = queryByTestId("ATL-Chip-Truncation-Gradient");
+
+        expect(gradient).not.toBeInTheDocument();
+      });
+    });
   });
 });

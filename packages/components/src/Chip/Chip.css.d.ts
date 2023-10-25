@@ -11,6 +11,8 @@ declare const styles: {
   readonly "subtle": string;
   readonly "disabled": string;
   readonly "clickableSuffix": string;
+  readonly "chipContent": string;
+  readonly "truncateGradient": string;
 };
 export = styles;
 

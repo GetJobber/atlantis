@@ -16,10 +16,10 @@ it("should render a button chip when onClick is not present", () => {
   expect(screen.getByTestId("chip-wrapper")).toBeInstanceOf(HTMLButtonElement);
 });
 
-it("should fire the callback when it's clicked", () => {
+it("should fire the callback when it's clicked", async () => {
   const handleClick = jest.fn();
   render(<InternalChip label="Yo!" onClick={handleClick} />);
-  userEvent.click(screen.getByTestId("chip-wrapper"));
+  await userEvent.click(screen.getByTestId("chip-wrapper"));
   expect(handleClick).toHaveBeenCalledTimes(1);
 });
 

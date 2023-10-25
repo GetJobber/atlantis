@@ -44,40 +44,41 @@ it("should have a label and a checkbox", () => {
 });
 
 describe("onChange", () => {
-  it("should trigger the onChange selecting a chip", () => {
+  it("should trigger the onChange selecting a chip", async () => {
     const target = chips[1];
-    userEvent.click(screen.getAllByLabelText(target)[0]);
+    await userEvent.click(screen.getAllByLabelText(target)[0]);
     expect(handleChange).toHaveBeenCalledTimes(1);
     expect(handleChange).toHaveReturnedWith(target);
   });
-  it("should trigger the onChange deselecting a chip", () => {
-    userEvent.click(screen.getAllByLabelText(selectedChip)[0]);
+
+  it("should trigger the onChange deselecting a chip", async () => {
+    await userEvent.click(screen.getAllByLabelText(selectedChip)[0]);
     expect(handleChange).toHaveBeenCalledTimes(1);
     expect(handleChange).toHaveReturnedWith(undefined);
   });
 
   describe("onClick", () => {
-    it("should trigger the chip onClick", () => {
+    it("should trigger the chip onClick", async () => {
       const target = chips[2];
-      userEvent.click(screen.getAllByLabelText(target)[0]);
+      await userEvent.click(screen.getAllByLabelText(target)[0]);
       expect(handleClickChip).toHaveBeenCalledTimes(1);
       expect(handleClickChip).toHaveReturnedWith(target);
     });
-  });
 
-  describe("On space bar press", () => {
-    it("should deselect the selected chip", async () => {
-      const element = within(
-        screen
-          .getAllByLabelText(selectedChip)[0]
-          .closest("label") as HTMLLabelElement,
-      ).getByRole("radio");
-      fireEvent.keyUp(element, { key: " " });
+    describe("On space bar press", () => {
+      it("should deselect the selected chip", async () => {
+        const element = within(
+          screen
+            .getAllByLabelText(selectedChip)[0]
+            .closest("label") as HTMLLabelElement,
+        ).getByRole("radio");
+        fireEvent.keyUp(element, { key: " " });
 
-      // Wait for next tick
-      await waitFor(() => {
-        expect(handleChange).toHaveBeenCalledTimes(1);
-        expect(handleChange).toHaveReturnedWith(undefined);
+        // Wait for next tick
+        await waitFor(() => {
+          expect(handleChange).toHaveBeenCalledTimes(1);
+          expect(handleChange).toHaveReturnedWith(undefined);
+        });
       });
     });
   });
