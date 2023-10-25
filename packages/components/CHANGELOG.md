@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.55.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.55.1...@jobber/components@4.55.2) (2023-10-25)
+
+
+### Bug Fixes
+
+* **components:** eliminate Tooltip/activator flicker ([#1609](https://github.com/GetJobber/atlantis/issues/1609)) ([86194bc](https://github.com/GetJobber/atlantis/commit/86194bc7be079428c8ac99ce63fdd1ff8a2ea409))
+
+
+
+
+
 ## [4.55.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.55.0...@jobber/components@4.55.1) (2023-10-25)
 
 **Note:** Version bump only for package @jobber/components
