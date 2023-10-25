@@ -3,10 +3,10 @@ import { Chip } from "../../Chip";
 import { ChipProps } from "../../Chip.types.d";
 import { Icon } from "../../../Icon";
 
-export function ChipDismissible(props: ChipProps) {
+export function ChipDismissible({ onClick, ...rest }: ChipProps) {
   return (
-    <Chip {...props}>
-      <Chip.Suffix>
+    <Chip {...rest}>
+      <Chip.Suffix onClick={onClick}>
         <Icon name="cross" size="small" color="blue" />
       </Chip.Suffix>
     </Chip>

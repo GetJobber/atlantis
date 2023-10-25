@@ -21,7 +21,7 @@ describe("Chip Dismissible", () => {
     expect(container.querySelector("svg")).toBeInTheDocument();
   });
 
-  it("calls onClick when clicked", () => {
+  it("does not call onClick when clicked", () => {
     const onClick = jest.fn();
     const { getByText } = render(
       <ChipDismissible onClick={onClick} label="Test Chip" />,
@@ -29,6 +29,6 @@ describe("Chip Dismissible", () => {
 
     fireEvent.click(getByText("Test Chip"));
 
-    expect(onClick).toHaveBeenCalledTimes(1);
+    expect(onClick).toHaveBeenCalledTimes(0);
   });
 });
