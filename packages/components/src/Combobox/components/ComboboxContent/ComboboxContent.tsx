@@ -1,10 +1,6 @@
 import React, { useEffect } from "react";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
-import {
-  ComboboxContentProps,
-  ComboboxOption,
-} from "@jobber/components/Combobox/Combobox.types";
 import styles from "./ComboboxContent.css";
 import { ComboboxContentSearch } from "./ComboboxContentSearch";
 import { ComboboxContentList } from "./ComboboxContentList";
@@ -12,6 +8,7 @@ import { ComboboxContentHeader } from "./ComboboxContentHeader";
 import { ComboboxContext } from "../../ComboboxProvider";
 import { useComboboxContent } from "../../hooks/useComboboxContent";
 import { useComboboxAccessibility } from "../../hooks/useComboboxAccessibility";
+import { ComboboxContentProps, ComboboxOption } from "../../Combobox.types";
 
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   const { open, setOpen, setSelected, wrapperRef, multiselect } =

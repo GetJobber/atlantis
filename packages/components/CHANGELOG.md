@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.55.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.55.0...@jobber/components@4.55.1) (2023-10-25)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [4.55.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.54.0...@jobber/components@4.55.0) (2023-10-24)
+
+
+### Features
+
+* **components:** Truncate Long Chip Content with Gradient ([#1593](https://github.com/GetJobber/atlantis/issues/1593)) ([d2de2de](https://github.com/GetJobber/atlantis/commit/d2de2de8c005ff08c2f68d256316dba039e352c5))
+
+
+
+
+
+# [4.54.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.53.1...@jobber/components@4.54.0) (2023-10-24)
+
+
+### Features
+
+* **components:** Add DataList.StatusBar ([#1596](https://github.com/GetJobber/atlantis/issues/1596)) ([6be47f4](https://github.com/GetJobber/atlantis/commit/6be47f475863f8ead75398c80f057dad63f3dea0))
+
+
+
+
+
+## [4.53.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.53.0...@jobber/components@4.53.1) (2023-10-24)
+
+
+### Bug Fixes
+
+* **components:** Fix Combobox Types Exports ([#1606](https://github.com/GetJobber/atlantis/issues/1606)) ([da2879c](https://github.com/GetJobber/atlantis/commit/da2879c62e6740a1d37263b1ac37444f903e8a9e))
+
+
+
+
+
 # [4.53.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.52.1...@jobber/components@4.53.0) (2023-10-23)
 
 

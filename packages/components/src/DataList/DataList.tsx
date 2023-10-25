@@ -44,6 +44,10 @@ import {
   DATA_LIST_FILTERING_SPINNER_TEST_ID,
 } from "./DataList.const";
 import { DataListBulkActions } from "./components/DataListBulkActions";
+import {
+  DataListStatusBar,
+  InternalDataListStatusBar,
+} from "./components/DataListStatusBar";
 import { Heading } from "../Heading";
 import { Spinner } from "../Spinner";
 
@@ -151,6 +155,8 @@ function InternalDataList() {
           <InternalDataListSearch />
         </div>
 
+        <InternalDataListStatusBar />
+
         <DataListHeader />
       </DataListStickyHeader>
 
@@ -245,3 +251,8 @@ DataList.BatchAction = function DataListBatchAction(
 ) {
   return <DataListAction {...props} />;
 };
+
+/**
+ * Defines a status bar that is rendered between the filters and the header.
+ */
+DataList.StatusBar = DataListStatusBar;

@@ -3,6 +3,7 @@ import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import React from "react";
 import { configMocks, mockIntersectionObserver } from "jsdom-testing-mocks";
 import userEvent from "@testing-library/user-event";
+import { Banner } from "@jobber/components/Banner";
 import { DataList } from "./DataList";
 import {
   BREAKPOINT_SIZES,
@@ -587,6 +588,29 @@ describe("DataList", () => {
         block: "nearest",
         inline: "start",
       });
+    });
+  });
+
+  describe("StatusBar", () => {
+    it("should show the StatusBar when it's provided", () => {
+      const bannerText =
+        "Something went wrong. Refresh or check your internet connection.";
+      render(
+        <DataList
+          data={Array.from({ length: MAX_DATA_COUNT + 1 }, (_, id) => ({
+            id,
+          }))}
+          headers={{ id: "ID" }}
+        >
+          <DataList.StatusBar>
+            <Banner type="error" icon="alert">
+              {bannerText}
+            </Banner>
+          </DataList.StatusBar>
+        </DataList>,
+      );
+
+      expect(screen.getByText(bannerText)).toBeInTheDocument();
     });
   });
 });

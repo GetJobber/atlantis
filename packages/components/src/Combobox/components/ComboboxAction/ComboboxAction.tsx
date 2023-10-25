@@ -1,7 +1,7 @@
 import React from "react";
-import { ComboboxActionProps } from "@jobber/components/Combobox/Combobox.types";
 import styles from "./ComboboxAction.css";
 import { Typography } from "../../../Typography";
+import { ComboboxActionProps } from "../../Combobox.types";
 
 export function ComboboxAction(props: ComboboxActionProps): JSX.Element {
   return (
