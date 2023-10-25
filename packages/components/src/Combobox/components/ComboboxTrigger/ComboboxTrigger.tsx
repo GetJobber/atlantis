@@ -21,6 +21,7 @@ export function ComboboxTrigger(props: ComboboxTriggerProps) {
       label={hasSelection ? selectedLabel : ""}
       heading={renderHeading ? props.heading : ""}
       onClick={() => setOpen(!open)}
+      role="combobox"
     >
       {!hasSelection && (
         <Chip.Suffix>

@@ -44,6 +44,23 @@ describe("Combobox validation", () => {
     }).not.toThrow();
   });
 
+  it("renders without error when there is a ComboboxActivator", () => {
+    expect(() => {
+      render(
+        <Combobox>
+          <Combobox.Activator>
+            <Chip variation="subtle" label="Teammates" />
+          </Combobox.Activator>
+          <Combobox.Content
+            options={[]}
+            onSelect={jest.fn()}
+            selected={[]}
+          ></Combobox.Content>
+        </Combobox>,
+      );
+    }).not.toThrow();
+  });
+
   it("throws an error if there are multiple of the same Trigger element", () => {
     expect.assertions(1);
     let error;
@@ -90,7 +107,7 @@ describe("Combobox validation", () => {
     }
   });
 
-  it("throws an error if there is a Trigger element and a Combobox.Activator", () => {
+  it("throws an error if there is a Trigger element and a ComboboxActivator", () => {
     const component = () =>
       render(
         <Combobox>
