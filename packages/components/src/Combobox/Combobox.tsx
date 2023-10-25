@@ -15,20 +15,22 @@ export function Combobox(props: ComboboxProps): JSX.Element {
   const { contentElement, triggerElement } = useComboboxValidation(
     props.children,
   );
-  const activatorElement = React.Children.toArray(props.children).find(
-    child => React.isValidElement(child) && child.type === ComboboxActivator,
-  );
 
   return (
     <ComboboxContextProvider multiselect={props.multiSelect}>
-      {activatorElement || <ComboboxTrigger heading={props.heading} />}
-      {triggerElement}
+      {triggerElement || <ComboboxTrigger heading={props.heading} />}
       {contentElement}
     </ComboboxContextProvider>
   );
 }
 
+/**
+ * @deprecated Use Combobox.Activator instead
+ */
 Combobox.TriggerButton = ComboboxTriggerButton;
+/**
+ * @deprecated Use Combobox.Activator instead
+ */
 Combobox.TriggerChip = ComboboxTriggerChip;
 Combobox.Activator = ComboboxActivator;
 Combobox.Content = ComboboxContent;
