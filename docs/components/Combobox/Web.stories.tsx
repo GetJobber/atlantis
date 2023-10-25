@@ -79,7 +79,7 @@ const ComboboxButton: ComponentStory<typeof Combobox> = args => {
           { id: "12", label: "Samwise Gamgee" },
           { id: "14", label: "Faramir" },
         ]}
-        onSelect={selection => {
+        onClose={selection => {
           setSelected(selection);
         }}
         selected={selected}
@@ -118,7 +118,7 @@ const ComboboxChip: ComponentStory<typeof Combobox> = args => {
           { id: "4", label: "Merry Brandybuck" },
           { id: "5", label: "Sam Gamgee" },
         ]}
-        onSelect={selection => {
+        onClose={selection => {
           setSelected(selection);
         }}
         selected={selected}
@@ -242,7 +242,7 @@ const ComboboxMultiSelection: ComponentStory<typeof Combobox> = args => {
           { id: "12", label: "Samwise Gamgee" },
           { id: "14", label: "Faramir" },
         ]}
-        onClose={selection => {
+        onSelect={selection => {
           setSelected(selection);
         }}
         selected={selected}
