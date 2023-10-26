@@ -9,32 +9,6 @@ import {
 } from "../../ComboboxProvider";
 import { Combobox } from "../../Combobox";
 
-function ComboboxActivatorButtonTestWrapper() {
-  const { open } = React.useContext(ComboboxContext);
-
-  return (
-    <>
-      <span data-testid="combobox-state">{open ? "Open" : "Closed"}</span>
-      <ComboboxActivator>
-        <Button label="Teammates" />
-      </ComboboxActivator>
-    </>
-  );
-}
-
-function ComboboxActivatorChipTestWrapper() {
-  const { open } = React.useContext(ComboboxContext);
-
-  return (
-    <>
-      <span data-testid="combobox-state">{open ? "Open" : "Closed"}</span>
-      <ComboboxActivator>
-        <Chip label="Teammates" />
-      </ComboboxActivator>
-    </>
-  );
-}
-
 describe("ComboboxActivator", () => {
   it("can render a Button with role 'combobox' and onClick handler", () => {
     const { getByRole, getByTestId } = render(
@@ -84,7 +58,7 @@ describe("ComboboxActivator", () => {
     expect(queryByRole("combobox")).not.toBeInTheDocument();
   });
 
-  it("renders a ComboboxTrigger when no custom activator is provided", () => {
+  it("renders a ComboboxTrigger with role 'combobox' when no custom activator is provided", () => {
     const { getByRole } = render(
       <Combobox heading="Teammates">
         <Combobox.Content
@@ -99,3 +73,29 @@ describe("ComboboxActivator", () => {
     expect(getByRole("combobox")).toHaveTextContent("Teammates");
   });
 });
+
+function ComboboxActivatorButtonTestWrapper() {
+  const { open } = React.useContext(ComboboxContext);
+
+  return (
+    <>
+      <span data-testid="combobox-state">{open ? "Open" : "Closed"}</span>
+      <ComboboxActivator>
+        <Button label="Teammates" />
+      </ComboboxActivator>
+    </>
+  );
+}
+
+function ComboboxActivatorChipTestWrapper() {
+  const { open } = React.useContext(ComboboxContext);
+
+  return (
+    <>
+      <span data-testid="combobox-state">{open ? "Open" : "Closed"}</span>
+      <ComboboxActivator>
+        <Chip label="Teammates" />
+      </ComboboxActivator>
+    </>
+  );
+}
