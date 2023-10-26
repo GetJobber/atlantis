@@ -5,15 +5,11 @@ import styles from "./ComboboxContent.css";
 import { ComboboxContentSearch } from "./ComboboxContentSearch";
 import { ComboboxContentList } from "./ComboboxContentList";
 import { ComboboxContentHeader } from "./ComboboxContentHeader";
-import { ComboboxContext } from "../../ComboboxProvider";
 import { useComboboxContent } from "../../hooks/useComboboxContent";
 import { useComboboxAccessibility } from "../../hooks/useComboboxAccessibility";
 import { ComboboxContentProps } from "../../Combobox.types";
 
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
-  // do we even need these in here anymore?
-  // can we just pass this in as props
-  const { open, setOpen, wrapperRef } = React.useContext(ComboboxContext);
   const options = props.optionElements
     ? props.optionElements.map(option => {
         return {
@@ -25,15 +21,15 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   const optionsExist = options.length > 0;
 
   const { setFirstSelectedElement, filteredOptions, optionsListRef } =
-    useComboboxContent(options, open, props.selected, props.searchValue);
+    useComboboxContent(options, props.open, props.selected, props.searchValue);
 
   const { popperRef, popperStyles, attributes } = useComboboxAccessibility(
     props.handleSelection,
     filteredOptions,
     optionsListRef,
-    open,
-    setOpen,
-    wrapperRef,
+    props.open,
+    props.setOpen,
+    props.wrapperRef,
   );
 
   const template = (
@@ -47,7 +43,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       {...attributes.popper}
     >
       <ComboboxContentSearch
-        open={open}
+        open={props.open}
         placeholder={props.subjectNoun}
         searchValue={props.searchValue}
         setSearchValue={props.setSearchValue}

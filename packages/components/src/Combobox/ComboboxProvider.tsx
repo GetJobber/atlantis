@@ -7,7 +7,7 @@ export const ComboboxContext = React.createContext(
     // multiselect: boolean;
     open: boolean;
     setOpen: (open: boolean) => void;
-    wrapperRef: RefObject<HTMLDivElement>;
+    // wrapperRef: RefObject<HTMLDivElement>;
     selected: ComboboxOption[];
     selectionHandler: (option: ComboboxOption) => void;
   },
@@ -27,7 +27,7 @@ export function ComboboxContextProvider(
 ): JSX.Element {
   // const multiselect = props.multiselect || false;
   // const [open, setOpen] = useState<boolean>(false);
-  const wrapperRef = useRef<HTMLDivElement>(null);
+  // const wrapperRef = useRef<HTMLDivElement>(null);
 
   return (
     <ComboboxContext.Provider
@@ -35,21 +35,21 @@ export function ComboboxContextProvider(
         // multiselect,
         open: props.open,
         setOpen: props.setOpen,
-        wrapperRef,
+        // wrapperRef,
         selected: props.selectedOptions,
         selectionHandler: props.selectionHandler,
       }}
     >
-      <div ref={wrapperRef}>
+      {/* <div ref={wrapperRef}>
         {props.open && (
           <div
             className={styles.overlay}
             onClick={() => props.setOpen(false)}
             data-testid="ATL-Combobox-Overlay"
           />
-        )}
-        {props.children}
-      </div>
+        )} */}
+      {props.children}
+      {/* </div> */}
     </ComboboxContext.Provider>
   );
 }

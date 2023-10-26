@@ -105,6 +105,10 @@ export interface ComboboxContentProps {
 
   readonly searchValue: string;
   readonly setSearchValue: Dispatch<SetStateAction<string>>;
+
+  readonly wrapperRef: React.RefObject<HTMLDivElement>;
+  readonly open: boolean;
+  readonly setOpen: (open: boolean) => void;
 }
 
 export interface ComboboxSearchProps {

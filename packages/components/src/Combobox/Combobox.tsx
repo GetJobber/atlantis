@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ComboboxOption, ComboboxProps } from "./Combobox.types";
 import { ComboboxContent } from "./components/ComboboxContent";
 import { ComboboxAction } from "./components/ComboboxAction";
@@ -9,6 +9,7 @@ import {
 } from "./components/ComboboxTrigger";
 import { useComboboxValidation } from "./hooks/useComboboxValidation";
 import { ComboboxOption as ComboboxOptionElement } from "./components/ComboboxOption/ComboboxOption";
+import styles from "./Combobox.css";
 
 export function Combobox(props: ComboboxProps): JSX.Element {
   const { optionElements, triggerElement, actionElements } =
@@ -16,6 +17,8 @@ export function Combobox(props: ComboboxProps): JSX.Element {
   const [internalSelected, setInternalSelected] = useState<ComboboxOption[]>(
     props.selected,
   );
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
   const selectedOptions = props.onClose ? internalSelected : props.selected;
   // is this a good name? it's more of a state setter
   const selectedStateSetter = props.onClose
@@ -30,21 +33,6 @@ export function Combobox(props: ComboboxProps): JSX.Element {
     }
   }, [open, props.onClose, selectedOptions]);
 
-  // all the props of combobox content move up a level if they are needed from the user
-  // options --
-  // children -- ???
-  // searchPlaceholder ++
-  // selected ++
-  // subjectNoun ++
-  // onClose ++
-  // onSelect ++
-
-  // what can be pulled out of the context?
-  // wrapperRef, we now just have that here if we want it
-  // open? no we still need that
-  // setOpen too - the trigger needs this
-  // multiselect is just a prop here that can be passed in and down
-
   return (
     <ComboboxContextProvider
       multiselect={props.multiSelect}
@@ -53,21 +41,34 @@ export function Combobox(props: ComboboxProps): JSX.Element {
       open={open}
       setOpen={setOpen}
     >
-      {triggerElement}
-      {/* this is now private and can receive whatever */}
-      {/* including open and setopen */}
-      <ComboboxContent
-        multiselect={props.multiSelect}
-        selected={selectedOptions}
-        subjectNoun={props.subjectNoun}
-        searchPlaceholder={props.searchPlaceholder}
-        actionElements={actionElements}
-        optionElements={optionElements}
-        selectedStateSetter={selectedStateSetter}
-        handleSelection={handleSelection}
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
-      />
+      <div ref={wrapperRef}>
+        {open && (
+          <div
+            className={styles.overlay}
+            onClick={() => setOpen(false)}
+            data-testid="ATL-Combobox-Overlay"
+          />
+        )}
+        {triggerElement}
+        {/* this is now private and can receive whatever */}
+        {/* including open and setopen */}
+        <ComboboxContent
+          multiselect={props.multiSelect}
+          selected={selectedOptions}
+          subjectNoun={props.subjectNoun}
+          searchPlaceholder={props.searchPlaceholder}
+          actionElements={actionElements}
+          optionElements={optionElements}
+          selectedStateSetter={selectedStateSetter}
+          handleSelection={handleSelection}
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+          wrapperRef={wrapperRef}
+          open={open}
+          setOpen={setOpen}
+        />
+      </div>
+
       {/* this has to be an array of the options */}
       {/* do we copy them here? */}
       {/* do we have to copy them at all? */}
