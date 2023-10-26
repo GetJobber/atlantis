@@ -25,6 +25,7 @@ afterEach(() => {
 
 const defaultPlaceholder = "Select an option";
 
+// eslint-disable-next-line max-statements
 describe("Select", () => {
   it("renders a Select", () => {
     const component = render(
@@ -164,6 +165,18 @@ describe("Select", () => {
     expect(
       getByText(expectedValue, { includeHiddenElements: true }),
     ).toBeDefined();
+  });
+
+  it("renders a Select with custom testID", () => {
+    const testID = "testID";
+    const { getByTestId } = render(
+      <Select onChange={onChange} testID={testID}>
+        <Option value={"1"}>1</Option>
+        <Option value={"2"}>2</Option>
+      </Select>,
+    );
+
+    expect(getByTestId(`ATL-${testID}-Select`)).toBeDefined();
   });
 
   describe("fires the onChange callback", () => {
