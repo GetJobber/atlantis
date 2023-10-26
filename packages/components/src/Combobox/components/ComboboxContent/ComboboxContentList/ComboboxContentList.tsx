@@ -1,12 +1,11 @@
 import React from "react";
-import classnames from "classnames";
-import { Icon } from "@jobber/components/Icon";
 import { Text } from "@jobber/components/Text";
 import styles from "./ComboboxContentList.css";
 import { ComboboxListProps } from "../../../Combobox.types";
+import { ComboboxOption } from "../../ComboboxOption/ComboboxOption";
 
 export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
-  let hasSeenFirstSelected = false;
+  const hasSeenFirstSelected = false;
 
   return (
     <div className={styles.container}>
@@ -19,28 +18,12 @@ export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
         >
           {!props.showEmptyState &&
             props.options.map(option => {
-              const isSelected = props.selected.some(
-                selection => selection.id.toString() === option.id.toString(),
-              );
-
               return (
-                <li
-                  ref={listItem => {
-                    if (isSelected && !hasSeenFirstSelected) {
-                      props.setFirstSelectedElement(listItem);
-                      hasSeenFirstSelected = true;
-                    }
-                  }}
+                <ComboboxOption
                   key={option.id}
-                  tabIndex={-1}
-                  role="option"
-                  aria-selected={isSelected}
-                  onClick={() => props.selectionHandler(option)}
-                  className={classnames(styles.option)}
-                >
-                  {option.label}
-                  {isSelected && <Icon name="checkmark" color="blue" />}
-                </li>
+                  id={option.id}
+                  label={option.label}
+                />
               );
             })}
         </ul>

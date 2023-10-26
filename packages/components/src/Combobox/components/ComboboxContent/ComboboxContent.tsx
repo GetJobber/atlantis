@@ -8,31 +8,27 @@ import { ComboboxContentHeader } from "./ComboboxContentHeader";
 import { ComboboxContext } from "../../ComboboxProvider";
 import { useComboboxContent } from "../../hooks/useComboboxContent";
 import { useComboboxAccessibility } from "../../hooks/useComboboxAccessibility";
-import { ComboboxContentProps, ComboboxOption } from "../../Combobox.types";
+import { ComboboxContentProps } from "../../Combobox.types";
 
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
-  const { open, setOpen, wrapperRef, multiselect } =
-    React.useContext(ComboboxContext);
-  const optionsExist = props.options.length > 0;
+  // do we even need these in here anymore?
+  // can we just pass this in as props
+  const { open, setOpen, wrapperRef } = React.useContext(ComboboxContext);
+  const options = props.optionElements
+    ? props.optionElements.map(option => {
+        return {
+          id: option.props.id,
+          label: option.props.label,
+        };
+      })
+    : [];
+  const optionsExist = options.length > 0;
 
-  const {
-    searchValue,
-    setSearchValue,
-    setFirstSelectedElement,
-    filteredOptions,
-    optionsListRef,
-    selectedOptions,
-    optionsSelectionHandler,
-  } = useComboboxContent(
-    props.options,
-    open,
-    props.selected,
-    props.onClose,
-    props.onSelect,
-  );
+  const { setFirstSelectedElement, filteredOptions, optionsListRef } =
+    useComboboxContent(options, open, props.selected, props.searchValue);
 
   const { popperRef, popperStyles, attributes } = useComboboxAccessibility(
-    handleSelection,
+    props.handleSelection,
     filteredOptions,
     optionsListRef,
     open,
@@ -53,49 +49,50 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       <ComboboxContentSearch
         open={open}
         placeholder={props.subjectNoun}
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
+        searchValue={props.searchValue}
+        setSearchValue={props.setSearchValue}
       />
 
-      {multiselect && optionsExist && (
+      {props.multiselect && optionsExist && (
         <ComboboxContentHeader
           hasOptionsVisible={filteredOptions.length > 0}
           subjectNoun={props.subjectNoun}
-          selectedCount={selectedOptions.length}
+          selectedCount={props.selected.length}
           onClearAll={() => {
-            optionsSelectionHandler([]);
+            props.selectedStateSetter([]);
           }}
           onSelectAll={() => {
-            optionsSelectionHandler(filteredOptions);
+            props.selectedStateSetter(filteredOptions);
           }}
         />
       )}
-
+      {/* we will receive all the options but we only render the ones that match the filter */}
+      {/* how does that work? */}
+      {/* we'll need to intercept the full list before here */}
+      {/* then this thing can be simple and say yeah sure I'll render what you gave me */}
+      {/* we just have to make sure to give it the right stuff */}
       <ComboboxContentList
-        multiselect={multiselect}
+        multiselect={props.multiselect}
         showEmptyState={!optionsExist}
         options={filteredOptions}
-        selected={selectedOptions}
+        selected={props.selected}
         optionsListRef={optionsListRef}
         setFirstSelectedElement={setFirstSelectedElement}
-        selectionHandler={handleSelection}
-        searchValue={searchValue}
+        searchValue={props.searchValue}
         subjectNoun={props.subjectNoun}
       />
-      {props.children && (
+      {props.actionElements && (
         <div className={styles.actions} role="group">
-          {React.Children.toArray(props.children).map(
-            (child, index, childrenArray) => (
-              <div
-                key={index}
-                className={classnames({
-                  [styles.actionPadding]: index === childrenArray.length - 1,
-                })}
-              >
-                {child}
-              </div>
-            ),
-          )}
+          {props.actionElements.map((child, index, childrenArray) => (
+            <div
+              key={index}
+              className={classnames({
+                [styles.actionPadding]: index === childrenArray.length - 1,
+              })}
+            >
+              {child}
+            </div>
+          ))}
         </div>
       )}
     </div>
@@ -103,32 +100,36 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
 
   return ReactDOM.createPortal(template, document.body);
 
-  function handleSelection(selection: ComboboxOption) {
-    if (multiselect) {
-      handleMultiSelect(optionsSelectionHandler, selectedOptions, selection);
-    } else {
-      handleSingleSelect(optionsSelectionHandler, selection);
-    }
-  }
+  // function handleSelection(selection: ComboboxOption) {
+  //   if (props.multiselect) {
+  //     handleMultiSelect(
+  //       props.optionsSelectionHandler,
+  //       selectedOptions,
+  //       selection,
+  //     );
+  //   } else {
+  //     handleSingleSelect(props.optionsSelectionHandler, selection);
+  //   }
+  // }
 
-  function handleSingleSelect(
-    selectCallback: (selected: ComboboxOption[]) => void,
-    selection: ComboboxOption,
-  ) {
-    selectCallback([selection]);
-    setSearchValue("");
-    setOpen(false);
-  }
+  // function handleSingleSelect(
+  //   selectCallback: (selected: ComboboxOption[]) => void,
+  //   selection: ComboboxOption,
+  // ) {
+  //   selectCallback([selection]);
+  //   setSearchValue("");
+  //   setOpen(false);
+  // }
 }
 
-function handleMultiSelect(
-  selectCallback: (selected: ComboboxOption[]) => void,
-  selected: ComboboxOption[],
-  selection: ComboboxOption,
-) {
-  if (selected.some(s => s.id === selection.id)) {
-    selectCallback(selected.filter(s => s.id !== selection.id));
-  } else {
-    selectCallback([...selected, selection]);
-  }
-}
+// function handleMultiSelect(
+//   selectCallback: (selected: ComboboxOption[]) => void,
+//   selected: ComboboxOption[],
+//   selection: ComboboxOption,
+// ) {
+//   if (selected.some(s => s.id === selection.id)) {
+//     selectCallback(selected.filter(s => s.id !== selection.id));
+//   } else {
+//     selectCallback([...selected, selection]);
+//   }
+// }

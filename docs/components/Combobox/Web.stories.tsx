@@ -198,7 +198,15 @@ const ComboboxMultiSelection: ComponentStory<typeof Combobox> = args => {
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
 
   return (
-    <Combobox {...args} multiSelect>
+    <Combobox
+      multiSelect
+      onClose={selection => {
+        setSelected(selection);
+      }}
+      selected={selected}
+    >
+      <Combobox.Option id="1" label="Bilbo Baggins" />
+      <Combobox.Option id="12" label="Blorb Baggins" />
       <Combobox.TriggerButton
         label="Select a teammate"
         variation="subtle"
@@ -206,40 +214,18 @@ const ComboboxMultiSelection: ComponentStory<typeof Combobox> = args => {
         icon="arrowDown"
         iconOnRight={true}
       />
-      <Combobox.Content
-        options={[
-          { id: "1", label: "Bilbo Baggins" },
-          { id: "2", label: "Frodo Baggins" },
-          { id: "3", label: "Pippin Took" },
-          { id: "4", label: "Merry Brandybuck" },
-          { id: "5", label: "Sam Gamgee" },
-          { id: "6", label: "Aragorn" },
-          { id: "7", label: "Galadriel" },
-          { id: "8", label: "Arwen" },
-          { id: "9", label: "Gandalf" },
-          { id: "10", label: "Legolas" },
-          { id: "11", label: "Gimli" },
-          { id: "12", label: "Samwise Gamgee" },
-          { id: "14", label: "Faramir" },
-        ]}
-        onClose={selection => {
-          setSelected(selection);
+      <Combobox.Action
+        label="Add Teammate"
+        onClick={() => {
+          alert("Added a new teammate ✅");
         }}
-        selected={selected}
-      >
-        <Combobox.Action
-          label="Add Teammate"
-          onClick={() => {
-            alert("Added a new teammate ✅");
-          }}
-        />
-        <Combobox.Action
-          label="Manage Teammates"
-          onClick={() => {
-            alert("Managed teammates 👍");
-          }}
-        />
-      </Combobox.Content>
+      />
+      <Combobox.Action
+        label="Manage Teammates"
+        onClick={() => {
+          alert("Managed teammates 👍");
+        }}
+      />
     </Combobox>
   );
 };

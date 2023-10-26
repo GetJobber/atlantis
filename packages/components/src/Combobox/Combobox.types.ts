@@ -2,7 +2,7 @@ import { Dispatch, ReactElement, SetStateAction } from "react";
 import { XOR } from "ts-xor";
 import { ButtonProps } from "../Button";
 
-export interface ComboboxProps {
+interface ComboboxBaseProps {
   readonly children: ReactElement | ReactElement[];
 
   /**
@@ -11,7 +11,26 @@ export interface ComboboxProps {
    * @default false
    */
   readonly multiSelect?: boolean;
+
+  /**
+   * Placeholder text to display in the search input. Defaults to "Search".
+   */
+  readonly searchPlaceholder?: string;
+
+  /**
+   * The selected options of the Combobox.
+   */
+  readonly selected: ComboboxOption[];
+
+  /**
+   * The encapsulating noun for the content of the combobox. Used
+   * in the empty state, and search placeholder. Should be pluralized.
+   */
+  readonly subjectNoun?: string;
 }
+
+export type ComboboxProps = ComboboxBaseProps &
+  XOR<ComboboxCloseProps, ComboboxSelectProps>;
 
 export interface ComboboxTriggerProps {
   /**
@@ -52,12 +71,7 @@ interface ComboboxSelectProps {
   readonly onClose: (selection: ComboboxOption[]) => void;
 }
 
-interface ComboboxContentBaseProps {
-  /**
-   * List of selectable options to display.
-   */
-  readonly options: ComboboxOption[];
-
+export interface ComboboxContentProps {
   /**
    * Optional action button(s) to display at the bottom of the list.
    */
@@ -78,10 +92,20 @@ interface ComboboxContentBaseProps {
    * in the empty state, and search placeholder. Should be pluralized.
    */
   readonly subjectNoun?: string;
-}
 
-export type ComboboxContentProps = ComboboxContentBaseProps &
-  XOR<ComboboxCloseProps, ComboboxSelectProps>;
+  readonly actionElements?: ReactElement[];
+
+  readonly optionElements?: ReactElement[];
+
+  readonly selectedStateSetter: (selection: ComboboxOption[]) => void;
+
+  readonly handleSelection: (option: ComboboxOption) => void;
+
+  readonly multiselect?: boolean;
+
+  readonly searchValue: string;
+  readonly setSearchValue: Dispatch<SetStateAction<string>>;
+}
 
 export interface ComboboxSearchProps {
   /**
@@ -158,10 +182,10 @@ export interface ComboboxListProps {
     SetStateAction<HTMLElement | null>
   >;
 
-  /**
-   * The callback function to call when an option is selected.
-   */
-  readonly selectionHandler: (option: ComboboxOption) => void;
+  // /**
+  //  * The callback function to call when an option is selected.
+  //  */
+  // readonly selectionHandler: (option: ComboboxOption) => void;
 
   /**
    * The current search term. Used in the no results message.
@@ -171,12 +195,14 @@ export interface ComboboxListProps {
   /**
    * Determines if it is a single selection or multi selection Combobox.
    */
-  readonly multiselect: boolean;
+  readonly multiselect?: boolean;
 
   /**
    * The noun to be used in the empty state message.
    */
   readonly subjectNoun?: string;
+
+  readonly optionElements?: ReactElement[];
 }
 
 export interface ComboboxActionProps {

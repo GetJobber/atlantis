@@ -1,0 +1,24 @@
+
+.option {
+  display: flex;
+  min-height: calc((var(--space-largest) - var(--space-smaller)));
+  box-sizing: border-box;
+  margin: 0 var(--space-small);
+  padding: var(--space-small);
+  border-radius: var(--radius-large);
+  color: var(--color-heading);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--timing-base);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.option:hover,
+.option:focus {
+  background-color: var(--color-surface--background);
+}
+
+.option:focus {
+  box-shadow: var(--shadow-focus);
+}
