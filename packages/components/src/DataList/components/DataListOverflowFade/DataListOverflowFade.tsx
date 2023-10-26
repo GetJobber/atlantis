@@ -11,6 +11,7 @@ interface DataListOverflowFadeProps {
 export function DataListOverflowFade({ children }: DataListOverflowFadeProps) {
   const [leftRef, isLeftVisible] = useInView<HTMLSpanElement>();
   const [rightRef, isRightVisible] = useInView<HTMLSpanElement>();
+
   return (
     <div
       data-testid={CONTAINER_TEST_ID}
