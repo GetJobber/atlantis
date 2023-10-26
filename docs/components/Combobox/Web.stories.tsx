@@ -225,7 +225,7 @@ const ComboboxMultiSelection: ComponentStory<typeof Combobox> = args => {
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
 
   return (
-    <Combobox {...args} multiSelect heading="Tags">
+    <Combobox {...args} multiSelect heading="Teammates">
       <Combobox.Content
         options={[
           { id: "1", label: "Bilbo Baggins" },
