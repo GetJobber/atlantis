@@ -95,37 +95,4 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   );
 
   return ReactDOM.createPortal(template, document.body);
-
-  // function handleSelection(selection: ComboboxOption) {
-  //   if (props.multiselect) {
-  //     handleMultiSelect(
-  //       props.optionsSelectionHandler,
-  //       selectedOptions,
-  //       selection,
-  //     );
-  //   } else {
-  //     handleSingleSelect(props.optionsSelectionHandler, selection);
-  //   }
-  // }
-
-  // function handleSingleSelect(
-  //   selectCallback: (selected: ComboboxOption[]) => void,
-  //   selection: ComboboxOption,
-  // ) {
-  //   selectCallback([selection]);
-  //   setSearchValue("");
-  //   setOpen(false);
-  // }
 }
-
-// function handleMultiSelect(
-//   selectCallback: (selected: ComboboxOption[]) => void,
-//   selected: ComboboxOption[],
-//   selection: ComboboxOption,
-// ) {
-//   if (selected.some(s => s.id === selection.id)) {
-//     selectCallback(selected.filter(s => s.id !== selection.id));
-//   } else {
-//     selectCallback([...selected, selection]);
-//   }
-// }

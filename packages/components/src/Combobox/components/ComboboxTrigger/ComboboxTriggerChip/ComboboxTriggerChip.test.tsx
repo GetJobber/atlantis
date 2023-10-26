@@ -1,37 +1,33 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import { fireEvent, render } from "@testing-library/react";
 import { ComboboxTriggerChip } from "./ComboboxTriggerChip";
-import {
-  ComboboxContext,
-  ComboboxContextProvider,
-} from "../../../ComboboxProvider";
+import { ComboboxContextProvider } from "../../../ComboboxProvider";
 
 function TriggerChipTestWrapper() {
-  const { open } = useContext(ComboboxContext);
+  const [open, setOpen] = useState<boolean>(false);
 
   return (
-    <>
+    <ComboboxContextProvider
+      open={open}
+      setOpen={setOpen}
+      selectedOptions={[]}
+      selectionHandler={jest.fn()}
+    >
       <span data-testid="combobox-state">{open ? "Open" : "Closed"}</span>
       <ComboboxTriggerChip label="Open Combobox" />
-    </>
+    </ComboboxContextProvider>
   );
 }
 describe("TriggerChip", () => {
   it("renders a label", () => {
-    const { getByText } = render(
-      <ComboboxContextProvider>
-        <ComboboxTriggerChip label="Open Combobox" />
-      </ComboboxContextProvider>,
-    );
+    const { getByText } = render(<ComboboxTriggerChip label="Open Combobox" />);
 
     expect(getByText("Open Combobox")).toBeInTheDocument();
   });
 
   it("renders the 'add' icon", () => {
     const { getByTestId } = render(
-      <ComboboxContextProvider>
-        <ComboboxTriggerChip label="Open Combobox" />
-      </ComboboxContextProvider>,
+      <ComboboxTriggerChip label="Open Combobox" />,
     );
 
     const iconElement = getByTestId("add");
@@ -40,11 +36,7 @@ describe("TriggerChip", () => {
   });
 
   it("toggles the combobox when clicked", () => {
-    const { getByRole, getByTestId } = render(
-      <ComboboxContextProvider>
-        <TriggerChipTestWrapper />
-      </ComboboxContextProvider>,
-    );
+    const { getByRole, getByTestId } = render(<TriggerChipTestWrapper />);
     const triggerChip = getByRole("combobox");
 
     expect(getByTestId("combobox-state")).toHaveTextContent("Closed");

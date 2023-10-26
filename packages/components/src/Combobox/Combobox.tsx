@@ -20,7 +20,6 @@ export function Combobox(props: ComboboxProps): JSX.Element {
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   const selectedOptions = props.onClose ? internalSelected : props.selected;
-  // is this a good name? it's more of a state setter
   const selectedStateSetter = props.onClose
     ? setInternalSelected
     : props.onSelect;
@@ -50,8 +49,6 @@ export function Combobox(props: ComboboxProps): JSX.Element {
           />
         )}
         {triggerElement}
-        {/* this is now private and can receive whatever */}
-        {/* including open and setopen */}
         <ComboboxContent
           multiselect={props.multiSelect}
           selected={selectedOptions}
@@ -68,10 +65,6 @@ export function Combobox(props: ComboboxProps): JSX.Element {
           setOpen={setOpen}
         />
       </div>
-
-      {/* this has to be an array of the options */}
-      {/* do we copy them here? */}
-      {/* do we have to copy them at all? */}
     </ComboboxContextProvider>
   );
 

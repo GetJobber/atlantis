@@ -1,39 +1,35 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import { fireEvent, render } from "@testing-library/react";
 import { ComboboxTriggerButton } from "./ComboboxTriggerButton";
-import {
-  ComboboxContext,
-  ComboboxContextProvider,
-} from "../../../ComboboxProvider";
+import { ComboboxContextProvider } from "../../../ComboboxProvider";
 
 function TriggerButtonTestWrapper() {
-  const { open } = useContext(ComboboxContext);
+  const [open, setOpen] = useState<boolean>(false);
 
   return (
-    <>
+    <ComboboxContextProvider
+      open={open}
+      setOpen={setOpen}
+      selectedOptions={[]}
+      selectionHandler={jest.fn()}
+    >
       <span data-testid="combobox-state">{open ? "Open" : "Closed"}</span>
       <ComboboxTriggerButton label="Open Combobox" />
-    </>
+    </ComboboxContextProvider>
   );
 }
 
 describe("TriggerButton", () => {
   it("renders a label", () => {
     const { getByText } = render(
-      <ComboboxContextProvider>
-        <ComboboxTriggerButton label="Open Combobox" />
-      </ComboboxContextProvider>,
+      <ComboboxTriggerButton label="Open Combobox" />,
     );
 
     expect(getByText("Open Combobox")).toBeInTheDocument();
   });
 
   it("toggles the combobox when clicked", () => {
-    const { getByRole, getByTestId } = render(
-      <ComboboxContextProvider>
-        <TriggerButtonTestWrapper />
-      </ComboboxContextProvider>,
-    );
+    const { getByRole, getByTestId } = render(<TriggerButtonTestWrapper />);
     const triggerButton = getByRole("combobox");
 
     expect(getByTestId("combobox-state")).toHaveTextContent("Closed");
