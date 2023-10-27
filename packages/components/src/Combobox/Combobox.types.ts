@@ -11,6 +11,10 @@ export interface ComboboxProps {
    * @default false
    */
   readonly multiSelect?: boolean;
+
+  readonly selected?: ComboboxOption[];
+  readonly onSelect?: (selection: ComboboxOption[]) => void;
+  readonly onClose?: (selection: ComboboxOption[]) => void;
 }
 
 export interface ComboboxTriggerProps {
