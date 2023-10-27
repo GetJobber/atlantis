@@ -13,6 +13,7 @@ export interface ComboboxProps {
   readonly multiSelect?: boolean;
 
   readonly selected?: ComboboxOption[];
+  readonly subjectNoun?: string;
   readonly onSelect?: (selection: ComboboxOption[]) => void;
   readonly onClose?: (selection: ComboboxOption[]) => void;
 }

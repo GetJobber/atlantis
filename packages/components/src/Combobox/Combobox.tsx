@@ -8,6 +8,7 @@ import {
   ComboboxTriggerChip,
 } from "./components/ComboboxTrigger";
 import { useComboboxValidation } from "./hooks/useComboboxValidation";
+import { ComboboxOption } from "./components/ComboboxOption";
 
 export function Combobox({
   selected = [],
@@ -34,6 +35,7 @@ export function Combobox({
           onSelect={props.onSelect}
           onClose={props.onClose}
           selected={selected}
+          subjectNoun={props.subjectNoun}
         >
           {actionElements}
         </ComboboxContent>
@@ -50,3 +52,4 @@ Combobox.TriggerChip = ComboboxTriggerChip;
  */
 Combobox.Content = ComboboxContent;
 Combobox.Action = ComboboxAction;
+Combobox.Option = ComboboxOption;

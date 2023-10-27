@@ -51,11 +51,6 @@ export function useComboboxValidation(children: ReactNode): {
 
   useAssert(multipleTriggersFound, COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
 
-  useAssert(
-    !triggerElement || !contentElement,
-    COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE,
-  );
-
   return {
     contentElement,
     triggerElement,
