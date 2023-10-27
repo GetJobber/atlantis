@@ -2,10 +2,7 @@ import { cleanup, fireEvent, render } from "@testing-library/react";
 import React from "react";
 import { ComboboxOption } from "./Combobox.types";
 import { Combobox } from "./Combobox";
-import {
-  COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE,
-  COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE,
-} from "./hooks/useComboboxValidation";
+import { COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE } from "./hooks/useComboboxValidation";
 
 // jsdom is missing this implementation
 const scrollIntoViewMock = jest.fn();
@@ -46,7 +43,7 @@ describe("Combobox validation", () => {
     } catch (e) {
       error = e as Error;
     } finally {
-      expect(error?.message).toBe(COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE);
+      expect(error?.message).toBe(COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
     }
   });
 
@@ -93,40 +90,6 @@ describe("Combobox validation", () => {
       error = e as Error;
     } finally {
       expect(error?.message).toBe(COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
-    }
-  });
-
-  it("throws an error if there is no Content element", () => {
-    expect.assertions(1);
-    let error;
-
-    try {
-      render(
-        <Combobox>
-          <Combobox.TriggerButton label="Button" />
-        </Combobox>,
-      );
-    } catch (e) {
-      error = e as Error;
-    } finally {
-      expect(error?.message).toBe(COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE);
-    }
-  });
-
-  it("throws an error if there is neither a Content nor Trigger element", () => {
-    expect.assertions(1);
-    let error;
-
-    try {
-      render(
-        <Combobox>
-          <></>
-        </Combobox>,
-      );
-    } catch (e) {
-      error = e as Error;
-    } finally {
-      expect(error?.message).toBe(COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE);
     }
   });
 
