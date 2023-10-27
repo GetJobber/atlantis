@@ -14,8 +14,8 @@ import { ComboboxAction } from "../components/ComboboxAction";
 
 export const COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE =
   "Combobox can only have one Trigger element";
-export const COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE =
-  "Combobox must have a Trigger and Combobox.Content element";
+export const COMBOBOX_OPTION_AND_CONTENT_EXISTS_ERROR =
+  "Combobox prefers using Combobox.Option and Combobox.Action as the direct child of Combobox child instead of Combobox.Content";
 
 export function useComboboxValidation(children: ReactNode): {
   triggerElement: ReactNode;
@@ -27,6 +27,8 @@ export function useComboboxValidation(children: ReactNode): {
   let triggerElement: ReactNode,
     contentElement: ReactNode | undefined,
     multipleTriggersFound = false;
+  const optionElements: ReactElement<ComboboxOptionProps>[] = [];
+  const actionElements: ReactElement<ComboboxActionProps>[] = [];
 
   childrenArray.forEach(child => {
     if (isTriggerElement(child)) {
@@ -39,17 +41,21 @@ export function useComboboxValidation(children: ReactNode): {
     if (isContentElement(child)) {
       contentElement = child;
     }
+
+    if (isOptionElement(child)) {
+      optionElements.push(child as ReactElement<ComboboxOptionProps>);
+    }
+
+    if (isActionElement(child)) {
+      actionElements.push(child as ReactElement<ComboboxActionProps>);
+    }
   });
 
-  const optionElements = childrenArray.filter(child =>
-    isOptionElement(child),
-  ) as ReactElement<ComboboxOptionProps>[];
-
-  const actionElements = childrenArray.filter(child =>
-    isActionElement(child),
-  ) as ReactElement<ComboboxActionProps>[];
-
   useAssert(multipleTriggersFound, COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
+  useAssert(
+    Boolean((optionElements.length || actionElements.length) && contentElement),
+    COMBOBOX_OPTION_AND_CONTENT_EXISTS_ERROR,
+  );
 
   return {
     contentElement,

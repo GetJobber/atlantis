@@ -2,7 +2,10 @@ import React from "react";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { ComboboxOption } from "./Combobox.types";
 import { Combobox } from "./Combobox";
-import { COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE } from "./hooks/useComboboxValidation";
+import {
+  COMBOBOX_OPTION_AND_CONTENT_EXISTS_ERROR,
+  COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE,
+} from "./hooks/useComboboxValidation";
 
 // jsdom is missing this implementation
 const scrollIntoViewMock = jest.fn();
@@ -123,6 +126,24 @@ describe("Combobox Simplified API", () => {
 
     actionLabel.click();
     expect(mockActionClick).toHaveBeenCalled();
+  });
+
+  it("should throw an error when Option/Action and Content all exist as siblings", () => {
+    const component = () =>
+      render(
+        <Combobox onSelect={mockOnSelect} selected={[]}>
+          <Combobox.TriggerButton label="Button" />
+
+          <Combobox.Content options={[]} onSelect={jest.fn()} selected={[]} />
+
+          <Combobox.Option id="1" label="Option 1" />
+          <Combobox.Option id="2" label="Option 2" />
+
+          <Combobox.Action label="Action 1" onClick={mockActionClick} />
+        </Combobox>,
+      );
+
+    expect(component).toThrow(COMBOBOX_OPTION_AND_CONTENT_EXISTS_ERROR);
   });
 });
 
