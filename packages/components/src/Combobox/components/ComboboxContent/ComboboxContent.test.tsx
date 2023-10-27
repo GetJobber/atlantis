@@ -3,6 +3,7 @@ import React from "react";
 import userEvent from "@testing-library/user-event";
 import { Combobox } from "../../Combobox";
 import { ComboboxContext } from "../../ComboboxProvider";
+import { ComboboxOption } from "../../Combobox.types";
 
 describe("ComboboxContent Search", () => {
   it("should have a search input when open", () => {
@@ -459,6 +460,7 @@ function MockComboboxProvider({
   readonly multiselect?: boolean;
 }) {
   const [open, setOpen] = React.useState(false);
+  const [selected, setSelected] = React.useState<ComboboxOption[]>([]);
 
   return (
     <ComboboxContext.Provider
@@ -467,6 +469,8 @@ function MockComboboxProvider({
         open,
         setOpen,
         wrapperRef: { current: null },
+        selected,
+        setSelected,
       }}
     >
       {children}

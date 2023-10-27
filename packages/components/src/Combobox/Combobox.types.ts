@@ -11,6 +11,11 @@ export interface ComboboxProps {
    * @default false
    */
   readonly multiSelect?: boolean;
+
+  /**
+   * The Chip heading for the trigger
+   */
+  readonly heading: string;
 }
 
 export interface ComboboxTriggerProps {
