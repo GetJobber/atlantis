@@ -1,10 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { MutableRefObject, useContext, useEffect, useRef } from "react";
 import { ComboboxOption } from "../Combobox.types";
+import { ComboboxContext } from "../ComboboxProvider";
 
 interface useComboboxContent {
-  setFirstSelectedElement: React.Dispatch<
-    React.SetStateAction<HTMLElement | null>
-  >;
   filteredOptions: ComboboxOption[];
   optionsListRef: React.RefObject<HTMLUListElement>;
 }
@@ -15,30 +13,41 @@ export function useComboboxContent(
   selected: ComboboxOption[],
   searchValue: string,
 ): useComboboxContent {
-  const [firstSelectedElement, setFirstSelectedElement] =
-    useState<HTMLElement | null>(null);
+  const { shouldScroll } = useContext(ComboboxContext);
   const optionsListRef = useRef<HTMLUListElement>(null);
   const filteredOptions = options.filter(option =>
     option.label.toLowerCase().includes(searchValue.toLowerCase()),
   );
 
   useEffect(() => {
-    if (open && firstSelectedElement) {
-      firstSelectedElement?.scrollIntoView({
-        block: "nearest",
-      });
-    }
-  }, [open, firstSelectedElement]);
+    if (open && shouldScroll.current && optionsListRef.current) {
+      const firstSelected = Array.from(optionsListRef?.current?.children).find(
+        child => {
+          if (child instanceof HTMLElement) {
+            return child.dataset.selected === "true";
+          }
+        },
+      );
 
-  useEffect(() => {
-    if (selected.length === 0) {
-      setFirstSelectedElement(null);
+      scrollToFirstSelected(firstSelected, shouldScroll);
     }
-  }, [selected]);
+  }, [open, selected]);
 
   return {
-    setFirstSelectedElement,
     filteredOptions,
     optionsListRef,
   };
+}
+
+function scrollToFirstSelected(
+  firstSelected: Element | undefined,
+  shouldScroll: MutableRefObject<boolean>,
+) {
+  if (firstSelected) {
+    firstSelected.scrollIntoView({
+      block: "nearest",
+    });
+
+    shouldScroll.current = false;
+  }
 }

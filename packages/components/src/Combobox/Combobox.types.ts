@@ -180,18 +180,6 @@ export interface ComboboxListProps {
   readonly optionsListRef: React.RefObject<HTMLUListElement>;
 
   /**
-   * Setter for the first selected element, which is used to scroll the list to the first selected element on re-opening.
-   */
-  readonly setFirstSelectedElement: React.Dispatch<
-    SetStateAction<HTMLElement | null>
-  >;
-
-  // /**
-  //  * The callback function to call when an option is selected.
-  //  */
-  // readonly selectionHandler: (option: ComboboxOption) => void;
-
-  /**
    * The current search term. Used in the no results message.
    */
   readonly searchValue: string;

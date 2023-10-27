@@ -5,8 +5,6 @@ import { ComboboxListProps } from "../../../Combobox.types";
 import { ComboboxOption } from "../../ComboboxOption/ComboboxOption";
 
 export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
-  const hasSeenFirstSelected = false;
-
   return (
     <div className={styles.container}>
       {!props.showEmptyState && props.options.length > 0 && (

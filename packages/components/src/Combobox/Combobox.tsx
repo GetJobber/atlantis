@@ -11,6 +11,7 @@ import { useComboboxValidation } from "./hooks/useComboboxValidation";
 import { ComboboxOption as ComboboxOptionElement } from "./components/ComboboxOption/ComboboxOption";
 import styles from "./Combobox.css";
 
+// eslint-disable-next-line max-statements
 export function Combobox(props: ComboboxProps): JSX.Element {
   const { optionElements, triggerElement, actionElements } =
     useComboboxValidation(props.children);
@@ -18,6 +19,7 @@ export function Combobox(props: ComboboxProps): JSX.Element {
     props.selected,
   );
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const shouldScroll = useRef<boolean>(false);
 
   const selectedOptions = props.onClose ? internalSelected : props.selected;
   const selectedStateSetter = props.onClose
@@ -39,12 +41,14 @@ export function Combobox(props: ComboboxProps): JSX.Element {
       selectionHandler={handleSelection}
       open={open}
       setOpen={setOpen}
+      closeCombobox={closeCombobox}
+      shouldScroll={shouldScroll}
     >
       <div ref={wrapperRef}>
         {open && (
           <div
             className={styles.overlay}
-            onClick={() => setOpen(false)}
+            onClick={() => closeCombobox()}
             data-testid="ATL-Combobox-Overlay"
           />
         )}
@@ -81,8 +85,16 @@ export function Combobox(props: ComboboxProps): JSX.Element {
     selection: ComboboxOption,
   ) {
     selectCallback([selection]);
-    setSearchValue("");
+    closeCombobox();
+  }
+
+  function closeCombobox() {
     setOpen(false);
+    setSearchValue("");
+
+    if (selectedOptions.length > 0) {
+      shouldScroll.current = true;
+    }
   }
 }
 

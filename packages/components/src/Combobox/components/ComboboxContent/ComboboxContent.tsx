@@ -20,15 +20,18 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     : [];
   const optionsExist = options.length > 0;
 
-  const { setFirstSelectedElement, filteredOptions, optionsListRef } =
-    useComboboxContent(options, props.open, props.selected, props.searchValue);
+  const { filteredOptions, optionsListRef } = useComboboxContent(
+    options,
+    props.open,
+    props.selected,
+    props.searchValue,
+  );
 
   const { popperRef, popperStyles, attributes } = useComboboxAccessibility(
     props.handleSelection,
     filteredOptions,
     optionsListRef,
     props.open,
-    props.setOpen,
     props.wrapperRef,
   );
 
@@ -73,7 +76,6 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         options={filteredOptions}
         selected={props.selected}
         optionsListRef={optionsListRef}
-        setFirstSelectedElement={setFirstSelectedElement}
         searchValue={props.searchValue}
         subjectNoun={props.subjectNoun}
       />

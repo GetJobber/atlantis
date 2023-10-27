@@ -205,8 +205,29 @@ const ComboboxMultiSelection: ComponentStory<typeof Combobox> = args => {
       }}
       selected={selected}
     >
-      <Combobox.Option id="1" label="Bilbo Baggins" />
-      <Combobox.Option id="12" label="Blorb Baggins" />
+      <Combobox.Option id="1" label="Jason Vorhees" />
+      <Combobox.Option id="2" label="Michael Myers" />
+      <Combobox.Option id="3" label="Freddy Krueger" />
+      <Combobox.Option id="4" label="Chucky" />
+      <Combobox.Option id="5" label="Leatherface" />
+      <Combobox.Option id="6" label="Pinhead" />
+      <Combobox.Option id="7" label="Pennywise" />
+      <Combobox.Option id="8" label="Jigsaw" />
+      <Combobox.Option id="9" label="Ghostface" />
+      <Combobox.Option id="10" label="Norman Bates" />
+      <Combobox.Option id="11" label="Candyman" />
+      <Combobox.Option id="12" label="The Creeper" />
+      <Combobox.Option id="13" label="Jack Torrance" />
+      <Combobox.Option id="14" label="Damien Thorn" />
+      <Combobox.Option id="15" label="Regan MacNeil" />
+      <Combobox.Option id="16" label="Carrie White" />
+      <Combobox.Option id="17" label="Hannibal Lecter" />
+      <Combobox.Option id="18" label="Annie Wilkes" />
+      <Combobox.Option id="19" label="Dracula" />
+      <Combobox.Option id="20" label="Frankenstein's Monster" />
+      <Combobox.Option id="21" label="The Mummy" />
+      <Combobox.Option id="22" label="The Wolfman" />
+
       <Combobox.TriggerButton
         label="Select a teammate"
         variation="subtle"

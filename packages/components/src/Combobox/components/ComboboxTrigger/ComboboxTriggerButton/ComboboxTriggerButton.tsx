@@ -6,7 +6,7 @@ import { ComboboxContext } from "../../../ComboboxProvider";
 export function ComboboxTriggerButton(
   props: ComboboxTriggerButtonProps,
 ): JSX.Element {
-  const { open, setOpen } = React.useContext(ComboboxContext);
+  const { open, setOpen, closeCombobox } = React.useContext(ComboboxContext);
 
   return (
     <Button
@@ -18,7 +18,13 @@ export function ComboboxTriggerButton(
       label={props.label}
       variation={props.variation}
       type={props.type}
-      onClick={() => setOpen(!open)}
+      onClick={() => {
+        if (open) {
+          closeCombobox();
+        } else {
+          setOpen(true);
+        }
+      }}
       icon={props.icon}
       iconOnRight={props.iconOnRight}
     />
