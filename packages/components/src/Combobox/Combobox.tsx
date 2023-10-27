@@ -28,12 +28,8 @@ export function Combobox({
       {contentElement}
 
       {Boolean(optionElements.length) && (
-        // @ts-expect-error - Suppress the XOR error with onClose until we finish the refactor on JOB-81416
-        <ComboboxContent
-          onSelect={() => new Error("Add an `onSelect` prop on `Combobox`")}
-          options={buildOptions}
-          {...props}
-        >
+        // @ts-expect-error - Suppress the XOR error with onClose|onSelect until we finish the refactor on JOB-81416
+        <ComboboxContent options={buildOptions} {...props}>
           {actionElements}
         </ComboboxContent>
       )}

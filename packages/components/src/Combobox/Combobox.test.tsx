@@ -1,5 +1,5 @@
-import { cleanup, fireEvent, render } from "@testing-library/react";
 import React from "react";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { ComboboxOption } from "./Combobox.types";
 import { Combobox } from "./Combobox";
 import { COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE } from "./hooks/useComboboxValidation";
@@ -88,6 +88,41 @@ describe("Combobox validation", () => {
     } finally {
       expect(error?.message).toBe(COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
     }
+  });
+});
+
+// TODO: Consolidate this with "ComboboxContent" test once we've completely
+// remove Combobox.Content JOB-81416
+describe("Combobox Simplified API", () => {
+  const mockOnSelect = jest.fn();
+  const mockActionClick = jest.fn();
+
+  it("should show the options and actions in the Combobox Content", () => {
+    const triggerLabel = "Button";
+    render(
+      <Combobox onSelect={mockOnSelect} selected={[]}>
+        <Combobox.TriggerButton label={triggerLabel} />
+
+        <Combobox.Option id="1" label="Option 1" />
+        <Combobox.Option id="2" label="Option 2" />
+
+        <Combobox.Action label="Action 1" onClick={mockActionClick} />
+      </Combobox>,
+    );
+
+    const optionOneLabel = screen.getByText("Option 1");
+    const actionLabel = screen.getByLabelText("Action 1");
+
+    fireEvent.click(screen.getByText(triggerLabel));
+    expect(optionOneLabel).toBeInTheDocument();
+    expect(screen.getByText("Option 2")).toBeInTheDocument();
+    expect(actionLabel).toBeInTheDocument();
+
+    fireEvent.click(optionOneLabel);
+    expect(mockOnSelect).toHaveBeenCalledWith([{ id: "1", label: "Option 1" }]);
+
+    actionLabel.click();
+    expect(mockActionClick).toHaveBeenCalled();
   });
 });
 
