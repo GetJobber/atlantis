@@ -18,8 +18,8 @@
   align-items: center;
 }
 
-.overflowGrid > :nth-child(n + 3):not(:last-child) {
-  margin-left: var(--space-small);
+.overflowGrid > :not(:nth-last-child(2)):not(.overflowTrigger) {
+  margin-right: var(--space-small);
 }
 
 .overflowTrigger {
