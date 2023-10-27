@@ -4,6 +4,7 @@
   z-index: var(--elevation-default);
   overflow: hidden;
   gap: var(--space-small);
+  white-space: nowrap;
 }
 
 .tagCount {
