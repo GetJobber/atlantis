@@ -11,31 +11,28 @@ import { useComboboxValidation } from "./hooks/useComboboxValidation";
 import { ComboboxOption } from "./components/ComboboxOption";
 
 export function Combobox({
-  selected = [],
+  multiSelect = false,
   ...props
 }: ComboboxProps): JSX.Element {
   const { contentElement, triggerElement, optionElements, actionElements } =
     useComboboxValidation(props.children);
 
-  const getOptions = optionElements.map(option => ({
+  const buildOptions = optionElements.map(option => ({
     id: option.props.id,
     label: option.props.label,
   }));
 
   return (
-    <ComboboxContextProvider multiselect={props.multiSelect}>
+    <ComboboxContextProvider multiselect={multiSelect}>
       {triggerElement}
       {contentElement}
 
       {Boolean(optionElements.length) && (
-        // @ts-expect-error - XOR issue but since this will be refactored, we
-        // can ignore this for now
+        // @ts-expect-error - Suppress the XOR error with onClose until we finish the refactor on JOB-81416
         <ComboboxContent
-          options={getOptions}
-          onSelect={props.onSelect}
-          onClose={props.onClose}
-          selected={selected}
-          subjectNoun={props.subjectNoun}
+          onSelect={() => new Error("Add an `onSelect` prop on `Combobox`")}
+          options={buildOptions}
+          {...props}
         >
           {actionElements}
         </ComboboxContent>
