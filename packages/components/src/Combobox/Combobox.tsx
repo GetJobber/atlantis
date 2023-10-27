@@ -4,11 +4,13 @@ import { ComboboxContent } from "./components/ComboboxContent";
 import { ComboboxAction } from "./components/ComboboxAction";
 import { ComboboxContextProvider } from "./ComboboxProvider";
 import {
+  ComboboxTrigger,
   ComboboxTriggerButton,
   ComboboxTriggerChip,
 } from "./components/ComboboxTrigger";
 import { useComboboxValidation } from "./hooks/useComboboxValidation";
 import { ComboboxOption } from "./components/ComboboxOption";
+import { ComboboxActivator } from "./components/ComboboxActivator";
 
 export function Combobox({
   multiSelect = false,
@@ -24,7 +26,7 @@ export function Combobox({
 
   return (
     <ComboboxContextProvider multiselect={multiSelect}>
-      {triggerElement}
+      {triggerElement || <ComboboxTrigger heading={props.heading} />}
       {contentElement}
 
       {Boolean(optionElements.length) && (
@@ -37,8 +39,15 @@ export function Combobox({
   );
 }
 
+/**
+ * @deprecated Use Combobox.Activator instead
+ */
 Combobox.TriggerButton = ComboboxTriggerButton;
+/**
+ * @deprecated Use Combobox.Activator instead
+ */
 Combobox.TriggerChip = ComboboxTriggerChip;
+Combobox.Activator = ComboboxActivator;
 
 /**
  * @deprecated Use individual Combobox.Option instead

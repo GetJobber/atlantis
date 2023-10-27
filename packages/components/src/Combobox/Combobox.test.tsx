@@ -4,8 +4,10 @@ import { ComboboxOption } from "./Combobox.types";
 import { Combobox } from "./Combobox";
 import {
   COMBOBOX_OPTION_AND_CONTENT_EXISTS_ERROR,
+  COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE,
   COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE,
 } from "./hooks/useComboboxValidation";
+import { Chip } from "../Chip";
 
 // jsdom is missing this implementation
 const scrollIntoViewMock = jest.fn();
@@ -19,6 +21,37 @@ describe("Combobox validation", () => {
       render(
         <Combobox>
           <Combobox.TriggerButton label="Button" />
+          <Combobox.Content
+            options={[]}
+            onSelect={jest.fn()}
+            selected={[]}
+          ></Combobox.Content>
+        </Combobox>,
+      );
+    }).not.toThrow();
+  });
+
+  it("renders without error when there is no TriggerButton or TriggerChip", () => {
+    expect(() => {
+      render(
+        <Combobox>
+          <Combobox.Content
+            options={[]}
+            onSelect={jest.fn()}
+            selected={[]}
+          ></Combobox.Content>
+        </Combobox>,
+      );
+    }).not.toThrow();
+  });
+
+  it("renders without error when there is a ComboboxActivator", () => {
+    expect(() => {
+      render(
+        <Combobox>
+          <Combobox.Activator>
+            <Chip variation="subtle" label="Teammates" />
+          </Combobox.Activator>
           <Combobox.Content
             options={[]}
             onSelect={jest.fn()}
@@ -72,6 +105,59 @@ describe("Combobox validation", () => {
       error = e as Error;
     } finally {
       expect(error?.message).toBe(COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
+    }
+  });
+
+  it("throws an error if there is a Trigger element and a ComboboxActivator", () => {
+    const component = () =>
+      render(
+        <Combobox>
+          <Combobox.TriggerButton label="Button" />
+          <Combobox.Activator>
+            <Chip variation="subtle" label="Teammates" />
+          </Combobox.Activator>
+          <Combobox.Content
+            options={[]}
+            onSelect={jest.fn()}
+            selected={[]}
+          ></Combobox.Content>
+        </Combobox>,
+      );
+
+    expect(component).toThrow(COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
+  });
+
+  it("throws an error if there is no Content element", () => {
+    expect.assertions(1);
+    let error;
+
+    try {
+      render(
+        <Combobox>
+          <Combobox.TriggerButton label="Button" />
+        </Combobox>,
+      );
+    } catch (e) {
+      error = e as Error;
+    } finally {
+      expect(error?.message).toBe(COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE);
+    }
+  });
+
+  it("throws an error if there is neither a Content nor Trigger element", () => {
+    expect.assertions(1);
+    let error;
+
+    try {
+      render(
+        <Combobox>
+          <></>
+        </Combobox>,
+      );
+    } catch (e) {
+      error = e as Error;
+    } finally {
+      expect(error?.message).toBe(COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE);
     }
   });
 

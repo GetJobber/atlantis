@@ -1,0 +1,4 @@
+.bulkActions {
+  /* Offset the button's padding so the height of the header bar doesn't change */
+  margin: calc(var(--space-small) * -1) 0;
+}
