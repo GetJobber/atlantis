@@ -3,7 +3,6 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
 import { Button, Button as ClearButton } from "@jobber/components/Button";
 import { Chip } from "@jobber/components/Chip";
-import { Flex } from "@jobber/components/Flex";
 
 export default {
   title: "Components/Selections/Combobox/Web",
@@ -12,6 +11,10 @@ export default {
     viewMode: "story",
     previewTabs: { code: { hidden: false } },
   },
+  decorators: [
+    // Workaround Storybook's wrapping flex parent that make everything full width
+    story => <div>{story()}</div>,
+  ],
 } as ComponentMeta<typeof Combobox>;
 
 const BasicCombobox: ComponentStory<typeof Combobox> = args => {
@@ -174,7 +177,12 @@ const ComboboxClearSelection: ComponentStory<typeof Combobox> = args => {
   ]);
 
   return (
-    <Flex direction={"row"} template={["grow", "grow"]}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+      }}
+    >
       <ClearButton
         label="Clear Selection"
         type="primary"
@@ -217,7 +225,7 @@ const ComboboxClearSelection: ComponentStory<typeof Combobox> = args => {
           />
         </Combobox.Content>
       </Combobox>
-    </Flex>
+    </div>
   );
 };
 
