@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { ComboboxOption, ComboboxProps } from "./Combobox.types";
 import { ComboboxContent } from "./components/ComboboxContent";
 import { ComboboxAction } from "./components/ComboboxAction";
@@ -7,33 +7,29 @@ import {
   ComboboxTriggerButton,
   ComboboxTriggerChip,
 } from "./components/ComboboxTrigger";
-import { useComboboxValidation } from "./hooks/useComboboxValidation";
 import { ComboboxOption as ComboboxOptionElement } from "./components/ComboboxOption/ComboboxOption";
 import styles from "./Combobox.css";
+import { useComboboxProps } from "./hooks/useComboboxProps";
 
-// eslint-disable-next-line max-statements
 export function Combobox(props: ComboboxProps): JSX.Element {
-  const waitUntilClose = props.selectionTiming === "onClose";
-  const { optionElements, triggerElement, actionElements } =
-    useComboboxValidation(props.children);
-  const [internalSelected, setInternalSelected] = useState<ComboboxOption[]>(
+  const {
+    actionElements,
+    optionElements,
+    triggerElement,
+    selectedOptions,
+    selectedStateSetter,
+    shouldScroll,
+    wrapperRef,
+    searchValue,
+    setSearchValue,
+    open,
+    setOpen,
+  } = useComboboxProps(
+    props.children,
     props.selected,
+    props.onSelect,
+    props.selectionTiming,
   );
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const shouldScroll = useRef<boolean>(false);
-
-  const selectedOptions = waitUntilClose ? internalSelected : props.selected;
-  const selectedStateSetter = waitUntilClose
-    ? setInternalSelected
-    : props.onSelect;
-  const [open, setOpen] = useState<boolean>(false);
-  const [searchValue, setSearchValue] = useState<string>("");
-
-  useEffect(() => {
-    if (!open && waitUntilClose) {
-      props.onSelect(selectedOptions);
-    }
-  }, [open, props.selectionTiming, selectedOptions]);
 
   return (
     <ComboboxContextProvider
