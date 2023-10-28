@@ -13,6 +13,7 @@ import styles from "./Combobox.css";
 
 // eslint-disable-next-line max-statements
 export function Combobox(props: ComboboxProps): JSX.Element {
+  const waitUntilClose = props.selectionTiming === "onClose";
   const { optionElements, triggerElement, actionElements } =
     useComboboxValidation(props.children);
   const [internalSelected, setInternalSelected] = useState<ComboboxOption[]>(
@@ -21,18 +22,18 @@ export function Combobox(props: ComboboxProps): JSX.Element {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const shouldScroll = useRef<boolean>(false);
 
-  const selectedOptions = props.onClose ? internalSelected : props.selected;
-  const selectedStateSetter = props.onClose
+  const selectedOptions = waitUntilClose ? internalSelected : props.selected;
+  const selectedStateSetter = waitUntilClose
     ? setInternalSelected
     : props.onSelect;
   const [open, setOpen] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
 
   useEffect(() => {
-    if (!open && props.onClose) {
-      props.onClose(selectedOptions);
+    if (!open && waitUntilClose) {
+      props.onSelect(selectedOptions);
     }
-  }, [open, props.onClose, selectedOptions]);
+  }, [open, props.selectionTiming, selectedOptions]);
 
   return (
     <ComboboxContextProvider
@@ -91,6 +92,8 @@ export function Combobox(props: ComboboxProps): JSX.Element {
   function closeCombobox() {
     setOpen(false);
     setSearchValue("");
+
+    props.onClose && props.onClose();
 
     if (selectedOptions.length > 0) {
       shouldScroll.current = true;

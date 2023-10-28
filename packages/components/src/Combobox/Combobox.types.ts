@@ -1,8 +1,9 @@
 import { Dispatch, ReactElement, SetStateAction } from "react";
-import { XOR } from "ts-xor";
 import { ButtonProps } from "../Button";
 
-interface ComboboxBaseProps {
+export type ComboboxSelectionTiming = "onSelect" | "onClose";
+
+export interface ComboboxProps {
   readonly children: ReactElement | ReactElement[];
 
   /**
@@ -27,10 +28,22 @@ interface ComboboxBaseProps {
    * in the empty state, and search placeholder. Should be pluralized.
    */
   readonly subjectNoun?: string;
-}
 
-export type ComboboxProps = ComboboxBaseProps &
-  XOR<ComboboxCloseProps, ComboboxSelectProps>;
+  /**
+   * Callback function invoked upon the selection of an option. Provides the selected option(s) as an argument.
+   */
+  readonly onSelect: (selection: ComboboxOption[]) => void;
+
+  /**
+   * Callback function invoked upon the Combobox menu closing.
+   */
+  readonly onClose?: () => void;
+
+  /**
+   * Determines if the selections immediately call the onSelect callback or wait until the Combobox is closed. Defaults to "selection".
+   */
+  readonly selectionTiming?: ComboboxSelectionTiming;
+}
 
 export interface ComboboxTriggerProps {
   /**
@@ -55,20 +68,6 @@ export interface ComboboxOption {
    * The value to be visually displayed in the Combobox options list.
    */
   label: string;
-}
-
-interface ComboboxCloseProps {
-  /**
-   * Callback function invoked upon the selection of an option. Provides the selected option(s) as an argument.
-   */
-  readonly onSelect: (selection: ComboboxOption[]) => void;
-}
-
-interface ComboboxSelectProps {
-  /**
-   * Callback function invoked upon the Combobox menu closing. Provides the selected option(s) as an argument.
-   */
-  readonly onClose: (selection: ComboboxOption[]) => void;
 }
 
 export interface ComboboxContentProps {

@@ -200,7 +200,7 @@ const ComboboxMultiSelection: ComponentStory<typeof Combobox> = args => {
   return (
     <Combobox
       multiSelect
-      onClose={selection => {
+      onSelect={selection => {
         setSelected(selection);
       }}
       selected={selected}
