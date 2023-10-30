@@ -33,8 +33,8 @@ export function InternalChipDismissible(props: InternalChipDismissibleProps) {
           {...chip}
           onClick={(
             inVal: string | number | undefined,
-            ev: React.MouseEvent<HTMLButtonElement>,
-          ) => handleChipClick(inVal as string)?.(ev)}
+            event: React.MouseEvent<HTMLButtonElement>,
+          ) => handleChipClick(inVal as string)?.(event)}
           value={chip.label}
           role="radio"
           data-testid={props.dataTestId || "remove-chip-button"}

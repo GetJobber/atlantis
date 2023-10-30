@@ -21,6 +21,17 @@ describe("Chip Dismissible", () => {
     expect(container.querySelector("svg")).toBeInTheDocument();
   });
 
+  it("calls onClick when Suffix is Clicked", () => {
+    const onClick = jest.fn();
+    const { getByTestId } = render(
+      <ChipDismissible onClick={onClick} label="Test Chip" />,
+    );
+
+    fireEvent.click(getByTestId("ATL-Chip-Suffix"));
+
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
+
   it("does not call onClick when clicked because suffix is clickable", () => {
     const onClick = jest.fn();
     const { getByText } = render(

@@ -4,10 +4,23 @@ import { Icon } from "@jobber/components/Icon";
 import { useChildComponent } from "../../hooks";
 import styles from "../../Chip.css";
 
+export interface ChipSuffixProps extends PropsWithChildren {
+  readonly className?: string;
+  readonly showBackground?: boolean;
+  readonly onClick?: (
+    value: string | number | undefined,
+    ev: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => void;
+  readonly onKeyDown?: (ev: React.KeyboardEvent<HTMLButtonElement>) => void;
+  readonly value?: string;
+}
+
+export const allowedSuffixIcons = ["cross", "add", "checkmark"];
+
 export function ChipSuffix({
   children,
   className,
-  showBG,
+  showBackground,
   value,
   onClick,
   onKeyDown,
@@ -22,7 +35,7 @@ export function ChipSuffix({
 
     className,
     !singleChild && styles.empty,
-    showBG,
+    showBackground,
     {
       [styles.clickableSuffix]: onClick,
     },
@@ -30,6 +43,7 @@ export function ChipSuffix({
 
   return (
     <span
+      data-testid="ATL-Chip-Suffix"
       role={onClick && "button"}
       onClick={ev =>
         onClick?.(value, ev as React.MouseEvent<HTMLButtonElement>)
@@ -43,16 +57,3 @@ export function ChipSuffix({
     </span>
   );
 }
-
-export interface ChipSuffixProps extends PropsWithChildren {
-  readonly className?: string;
-  readonly showBG?: boolean;
-  readonly onClick?: (
-    value: string | number | undefined,
-    ev: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => void;
-  readonly onKeyDown?: (ev: React.KeyboardEvent<HTMLButtonElement>) => void;
-  readonly value?: string;
-}
-
-export const allowedSuffixIcons = ["cross", "add", "checkmark"];

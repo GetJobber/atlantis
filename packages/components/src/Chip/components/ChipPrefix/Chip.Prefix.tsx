@@ -5,7 +5,7 @@ import { Icon } from "@jobber/components/Icon";
 import { useChildComponent } from "../../hooks/index";
 import styles from "../../Chip.css";
 
-export function ChipPrefix({ children, showBG }: ChipPrefixProps) {
+export function ChipPrefix({ children, showBackground }: ChipPrefixProps) {
   const singleChild = useChildComponent(
     children,
     d => d.type === Avatar || d.type === Icon,
@@ -16,7 +16,7 @@ export function ChipPrefix({ children, showBG }: ChipPrefixProps) {
       className={classNames(
         styles.prefix,
         !singleChild && styles.empty,
-        showBG,
+        showBackground,
       )}
     >
       {singleChild}
@@ -25,5 +25,5 @@ export function ChipPrefix({ children, showBG }: ChipPrefixProps) {
 }
 
 interface ChipPrefixProps extends PropsWithChildren {
-  readonly showBG?: boolean;
+  readonly showBackground?: boolean;
 }

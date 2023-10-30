@@ -65,7 +65,7 @@ export interface ChipDismissibleProps extends ChipFoundationProps {
   activator?: ReactElement;
 
   /**
-   * Enables pass through of a data-testid. This is legacy functionality to allow old tests to pass.
+   * Enables pass through of a data-testid, used to locate this view in e2e tests.
    */
   dataTestId?: string;
 
