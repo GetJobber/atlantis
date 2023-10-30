@@ -4,7 +4,6 @@ import { ComboboxOption } from "./Combobox.types";
 import { Combobox } from "./Combobox";
 import {
   COMBOBOX_OPTION_AND_CONTENT_EXISTS_ERROR,
-  COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE,
   COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE,
 } from "./hooks/useComboboxValidation";
 import { Chip } from "../Chip";
@@ -125,40 +124,6 @@ describe("Combobox validation", () => {
       );
 
     expect(component).toThrow(COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
-  });
-
-  it("throws an error if there is no Content element", () => {
-    expect.assertions(1);
-    let error;
-
-    try {
-      render(
-        <Combobox>
-          <Combobox.TriggerButton label="Button" />
-        </Combobox>,
-      );
-    } catch (e) {
-      error = e as Error;
-    } finally {
-      expect(error?.message).toBe(COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE);
-    }
-  });
-
-  it("throws an error if there is neither a Content nor Trigger element", () => {
-    expect.assertions(1);
-    let error;
-
-    try {
-      render(
-        <Combobox>
-          <></>
-        </Combobox>,
-      );
-    } catch (e) {
-      error = e as Error;
-    } finally {
-      expect(error?.message).toBe(COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE);
-    }
   });
 
   it("throws an error if there are multiple Trigger elements and no Content", () => {

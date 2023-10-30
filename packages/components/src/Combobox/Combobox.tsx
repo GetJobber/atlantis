@@ -27,9 +27,8 @@ export function Combobox({
   return (
     <ComboboxContextProvider multiselect={multiSelect}>
       {triggerElement || <ComboboxTrigger heading={props.heading} />}
-      {contentElement}
 
-      {Boolean(optionElements.length) && (
+      {contentElement || (
         // @ts-expect-error - Suppress the XOR error with onClose|onSelect until we finish the refactor on JOB-81416
         <ComboboxContent options={buildOptions} {...props}>
           {actionElements}
