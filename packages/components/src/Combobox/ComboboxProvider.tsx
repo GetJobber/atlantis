@@ -7,7 +7,7 @@ export const ComboboxContext = React.createContext(
     setOpen: (open: boolean) => void;
     selected: ComboboxOption[];
     selectionHandler: (option: ComboboxOption) => void;
-    closeCombobox: () => void;
+    handleClose: () => void;
     shouldScroll: MutableRefObject<boolean>;
   },
 );
@@ -19,7 +19,7 @@ export interface ComboboxProviderProps {
   readonly selectionHandler: (option: ComboboxOption) => void;
   readonly open: boolean;
   readonly setOpen: Dispatch<SetStateAction<boolean>>;
-  readonly closeCombobox: () => void;
+  readonly handleClose: () => void;
   readonly shouldScroll: MutableRefObject<boolean>;
 }
 
@@ -33,7 +33,7 @@ export function ComboboxContextProvider(
         setOpen: props.setOpen,
         selected: props.selectedOptions,
         selectionHandler: props.selectionHandler,
-        closeCombobox: props.closeCombobox,
+        handleClose: props.handleClose,
         shouldScroll: props.shouldScroll,
       }}
     >

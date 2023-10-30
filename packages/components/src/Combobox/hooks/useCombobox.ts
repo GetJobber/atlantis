@@ -7,9 +7,13 @@ import React, {
   useState,
 } from "react";
 import { useComboboxValidation } from "./useComboboxValidation";
+import {
+  UseMakeComboboxHandlersReturn,
+  useMakeComboboxHandlers,
+} from "./useMakeComboboxHandlers";
 import { ComboboxOption, ComboboxSelectionTiming } from "../Combobox.types";
 
-interface UseComboboxReturn {
+type UseComboboxReturn = {
   optionElements?: ReactElement[];
   triggerElement?: ReactElement;
   actionElements?: ReactElement[];
@@ -21,13 +25,15 @@ interface UseComboboxReturn {
   selectedOptions: ComboboxOption[];
   selectedStateSetter: (selection: ComboboxOption[]) => void;
   shouldScroll: MutableRefObject<boolean>;
-}
+} & UseMakeComboboxHandlersReturn;
 
-export function useComboboxProps(
+export function useCombobox(
   children: ReactElement | ReactElement[],
   selected: ComboboxOption[],
   onSelect: (selection: ComboboxOption[]) => void,
   selectionTiming?: ComboboxSelectionTiming,
+  onClose?: () => void,
+  multiSelect?: boolean,
 ): UseComboboxReturn {
   const waitUntilClose = selectionTiming === "onClose";
   const { optionElements, triggerElement, actionElements } =
@@ -40,6 +46,16 @@ export function useComboboxProps(
   const selectedStateSetter = waitUntilClose ? setInternalSelected : onSelect;
   const [open, setOpen] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
+
+  const { handleClose, handleSelection } = useMakeComboboxHandlers(
+    setOpen,
+    setSearchValue,
+    selectedOptions,
+    shouldScroll,
+    selectedStateSetter,
+    multiSelect,
+    onClose,
+  );
 
   useEffect(() => {
     if (!open && waitUntilClose) {
@@ -59,5 +75,7 @@ export function useComboboxProps(
     selectedOptions,
     selectedStateSetter,
     shouldScroll,
+    handleClose,
+    handleSelection,
   };
 }

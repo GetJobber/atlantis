@@ -18,7 +18,7 @@ export function useComboboxAccessibility(
   popperStyles: { [key: string]: React.CSSProperties };
   attributes: { [key: string]: { [key: string]: string } | undefined };
 } {
-  const { closeCombobox } = useContext(ComboboxContext);
+  const { handleClose } = useContext(ComboboxContext);
   const hasOptionsVisible = open && filteredOptions.length > 0;
   const focusedIndex = useRef<number | null>(null);
 
@@ -57,7 +57,7 @@ export function useComboboxAccessibility(
 
   useOnKeyDown(() => {
     if (open) {
-      closeCombobox();
+      handleClose();
     }
   }, "Escape");
 

@@ -67,35 +67,34 @@ const ComboboxChip: ComponentStory<typeof Combobox> = args => {
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
 
   return (
-    <Combobox {...args}>
+    <Combobox
+      {...args}
+      onSelect={selection => {
+        setSelected(selection);
+      }}
+      selected={selected}
+      subjectNoun="teammates"
+    >
       <Combobox.TriggerChip label="Teammates" />
-      <Combobox.Content
-        options={[
-          { id: "1", label: "Bilbo Baggins" },
-          { id: "2", label: "Frodo Baggins" },
-          { id: "3", label: "Pippin Took" },
-          { id: "4", label: "Merry Brandybuck" },
-          { id: "5", label: "Sam Gamgee" },
-        ]}
-        onSelect={selection => {
-          setSelected(selection);
+      <Combobox.Option id="1" label="Bilbo Baggins" />
+      <Combobox.Option id="2" label="Frodo Baggins" />
+      <Combobox.Option id="3" label="Pippin Took" />
+      <Combobox.Option id="4" label="Merry Brandybuck" />
+      <Combobox.Option id="5" label="Sam Gamgee" />
+      <Combobox.Option id="6" label="Aragorn" />
+
+      <Combobox.Action
+        label="Add Teammate"
+        onClick={() => {
+          alert("Added a new teammate ✅");
         }}
-        selected={selected}
-        subjectNoun="teammates"
-      >
-        <Combobox.Action
-          label="Add Teammate"
-          onClick={() => {
-            alert("Added a new teammate ✅");
-          }}
-        />
-        <Combobox.Action
-          label="Manage Teammates"
-          onClick={() => {
-            alert("Managed teammates 👍");
-          }}
-        />
-      </Combobox.Content>
+      />
+      <Combobox.Action
+        label="Manage Teammates"
+        onClick={() => {
+          alert("Managed teammates 👍");
+        }}
+      />
     </Combobox>
   );
 };

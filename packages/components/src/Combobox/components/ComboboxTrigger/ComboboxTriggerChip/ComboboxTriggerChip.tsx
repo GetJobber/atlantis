@@ -8,7 +8,7 @@ import { Typography } from "../../../../Typography";
 export function ComboboxTriggerChip(
   props: ComboboxTriggerChipProps,
 ): JSX.Element {
-  const { open, closeCombobox, setOpen } = React.useContext(ComboboxContext);
+  const { open, handleClose, setOpen } = React.useContext(ComboboxContext);
 
   return (
     <button
@@ -21,7 +21,7 @@ export function ComboboxTriggerChip(
       aria-autocomplete="list"
       onClick={() => {
         if (open) {
-          closeCombobox();
+          handleClose();
         } else {
           setOpen(true);
         }

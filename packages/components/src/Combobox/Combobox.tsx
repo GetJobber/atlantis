@@ -1,5 +1,5 @@
 import React from "react";
-import { ComboboxOption, ComboboxProps } from "./Combobox.types";
+import { ComboboxProps } from "./Combobox.types";
 import { ComboboxContent } from "./components/ComboboxContent";
 import { ComboboxAction } from "./components/ComboboxAction";
 import { ComboboxContextProvider } from "./ComboboxProvider";
@@ -7,9 +7,9 @@ import {
   ComboboxTriggerButton,
   ComboboxTriggerChip,
 } from "./components/ComboboxTrigger";
-import { ComboboxOption as ComboboxOptionElement } from "./components/ComboboxOption/ComboboxOption";
+import { ComboboxOption as ComboboxOptionComponent } from "./components/ComboboxOption/ComboboxOption";
 import styles from "./Combobox.css";
-import { useComboboxProps } from "./hooks/useComboboxProps";
+import { useCombobox } from "./hooks/useCombobox";
 
 export function Combobox(props: ComboboxProps): JSX.Element {
   const {
@@ -24,11 +24,15 @@ export function Combobox(props: ComboboxProps): JSX.Element {
     setSearchValue,
     open,
     setOpen,
-  } = useComboboxProps(
+    handleClose,
+    handleSelection,
+  } = useCombobox(
     props.children,
     props.selected,
     props.onSelect,
     props.selectionTiming,
+    props.onClose,
+    props.multiSelect,
   );
 
   return (
@@ -38,23 +42,23 @@ export function Combobox(props: ComboboxProps): JSX.Element {
       selectionHandler={handleSelection}
       open={open}
       setOpen={setOpen}
-      closeCombobox={closeCombobox}
+      handleClose={handleClose}
       shouldScroll={shouldScroll}
     >
       <div ref={wrapperRef}>
         {open && (
           <div
             className={styles.overlay}
-            onClick={() => closeCombobox()}
+            onClick={() => handleClose()}
             data-testid="ATL-Combobox-Overlay"
           />
         )}
         {triggerElement}
         <ComboboxContent
           multiselect={props.multiSelect}
-          selected={selectedOptions}
-          subjectNoun={props.subjectNoun}
           searchPlaceholder={props.searchPlaceholder}
+          subjectNoun={props.subjectNoun}
+          selected={selectedOptions}
           actionElements={actionElements}
           optionElements={optionElements}
           selectedStateSetter={selectedStateSetter}
@@ -68,49 +72,10 @@ export function Combobox(props: ComboboxProps): JSX.Element {
       </div>
     </ComboboxContextProvider>
   );
-
-  function handleSelection(selection: ComboboxOption) {
-    if (props.multiSelect) {
-      handleMultiSelect(selectedStateSetter, selectedOptions, selection);
-    } else {
-      handleSingleSelect(selectedStateSetter, selection);
-    }
-  }
-
-  function handleSingleSelect(
-    selectCallback: (selected: ComboboxOption[]) => void,
-    selection: ComboboxOption,
-  ) {
-    selectCallback([selection]);
-    closeCombobox();
-  }
-
-  function closeCombobox() {
-    setOpen(false);
-    setSearchValue("");
-
-    props.onClose && props.onClose();
-
-    if (selectedOptions.length > 0) {
-      shouldScroll.current = true;
-    }
-  }
-}
-
-function handleMultiSelect(
-  selectCallback: (selected: ComboboxOption[]) => void,
-  selected: ComboboxOption[],
-  selection: ComboboxOption,
-) {
-  if (selected.some(s => s.id === selection.id)) {
-    selectCallback(selected.filter(s => s.id !== selection.id));
-  } else {
-    selectCallback([...selected, selection]);
-  }
 }
 
 Combobox.TriggerButton = ComboboxTriggerButton;
 Combobox.TriggerChip = ComboboxTriggerChip;
 Combobox.Content = ComboboxContent;
 Combobox.Action = ComboboxAction;
-Combobox.Option = ComboboxOptionElement;
+Combobox.Option = ComboboxOptionComponent;
