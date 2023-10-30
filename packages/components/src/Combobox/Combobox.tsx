@@ -14,6 +14,7 @@ import { ComboboxActivator } from "./components/ComboboxActivator";
 
 export function Combobox({
   multiSelect = false,
+  selected = [],
   ...props
 }: ComboboxProps): JSX.Element {
   const { contentElement, triggerElement, optionElements, actionElements } =
@@ -26,11 +27,13 @@ export function Combobox({
 
   return (
     <ComboboxContextProvider multiselect={multiSelect}>
-      {triggerElement || <ComboboxTrigger heading={props.heading} />}
+      {triggerElement || (
+        <ComboboxTrigger heading={props.heading} selected={selected} />
+      )}
 
       {contentElement || (
         // @ts-expect-error - Suppress the XOR error with onClose|onSelect until we finish the refactor on JOB-81416
-        <ComboboxContent options={buildOptions} {...props}>
+        <ComboboxContent options={buildOptions} selected={selected} {...props}>
           {actionElements}
         </ComboboxContent>
       )}
