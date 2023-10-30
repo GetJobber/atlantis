@@ -11,14 +11,18 @@ import {
 import { useComboboxValidation } from "./hooks/useComboboxValidation";
 import { ComboboxActivator } from "./components/ComboboxActivator";
 
-export function Combobox(props: ComboboxProps): JSX.Element {
+export function Combobox({
+  multiSelect = false,
+  heading = "Select",
+  ...props
+}: ComboboxProps): JSX.Element {
   const { contentElement, triggerElement } = useComboboxValidation(
     props.children,
   );
 
   return (
-    <ComboboxContextProvider multiselect={props.multiSelect}>
-      {triggerElement || <ComboboxTrigger heading={props.heading} />}
+    <ComboboxContextProvider multiselect={multiSelect}>
+      {triggerElement || <ComboboxTrigger heading={heading} />}
       {contentElement}
     </ComboboxContextProvider>
   );

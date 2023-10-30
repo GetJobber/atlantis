@@ -56,6 +56,23 @@ describe("ComboboxTrigger", () => {
       expect(getByText("Teammates")).toBeInTheDocument();
     });
 
+    it("renders a Chip with a 'Select' heading if no heading is provided", () => {
+      const { getByText } = render(
+        <Combobox>
+          <Combobox.Content
+            options={[
+              { id: "1", label: "Michael" },
+              { id: "2", label: "Jason" },
+            ]}
+            onSelect={jest.fn()}
+            selected={[]}
+          ></Combobox.Content>
+        </Combobox>,
+      );
+
+      expect(getByText("Select")).toBeInTheDocument();
+    });
+
     it("renders a Chip with a suffix", () => {
       const { getByTestId } = render(
         <ComboboxContextProvider>
