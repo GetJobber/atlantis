@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
 import styles from "./ComboboxContent.css";
@@ -10,14 +10,18 @@ import { useComboboxAccessibility } from "../../hooks/useComboboxAccessibility";
 import { ComboboxContentProps } from "../../Combobox.types";
 
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
-  const options = props.optionElements
-    ? props.optionElements.map(option => {
-        return {
-          id: option.props.id,
-          label: option.props.label,
-        };
-      })
-    : [];
+  const options = useMemo(
+    () =>
+      props.optionElements
+        ? props.optionElements.map(option => {
+            return {
+              id: option.props.id,
+              label: option.props.label,
+            };
+          })
+        : [],
+    [props.optionElements],
+  );
   const optionsExist = options.length > 0;
 
   const { filteredOptions, optionsListRef } = useComboboxContent(
