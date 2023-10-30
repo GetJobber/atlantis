@@ -8,7 +8,7 @@ interface ComboboxTriggerProps {
 }
 
 export function ComboboxTrigger(props: ComboboxTriggerProps) {
-  const { open, setOpen, selected, multiselect } =
+  const { handleClose, open, setOpen, selected, multiselect } =
     React.useContext(ComboboxContext);
 
   const hasSelection = selected.length;
@@ -20,7 +20,13 @@ export function ComboboxTrigger(props: ComboboxTriggerProps) {
       variation={hasSelection ? "base" : "subtle"}
       label={hasSelection ? selectedLabel : ""}
       heading={renderHeading ? props.heading : ""}
-      onClick={() => setOpen(!open)}
+      onClick={() => {
+        if (open) {
+          handleClose();
+        } else {
+          setOpen(true);
+        }
+      }}
       role="combobox"
     >
       {!hasSelection && (

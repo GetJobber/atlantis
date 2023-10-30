@@ -69,11 +69,6 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
           }}
         />
       )}
-      {/* we will receive all the options but we only render the ones that match the filter */}
-      {/* how does that work? */}
-      {/* we'll need to intercept the full list before here */}
-      {/* then this thing can be simple and say yeah sure I'll render what you gave me */}
-      {/* we just have to make sure to give it the right stuff */}
       <ComboboxContentList
         multiselect={props.multiselect}
         showEmptyState={!optionsExist}
