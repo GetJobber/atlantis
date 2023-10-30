@@ -1,15 +1,7 @@
 import React, { useState } from "react";
-import {
-  cleanup,
-  fireEvent,
-  render,
-  screen,
-  within,
-} from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MultiSelect } from ".";
-
-afterEach(cleanup);
 
 const Component = () => {
   const [options, setOptions] = useState([

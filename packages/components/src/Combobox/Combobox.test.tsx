@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import React from "react";
 import { ComboboxOption } from "./Combobox.types";
 import { Combobox } from "./Combobox";
@@ -11,8 +11,6 @@ import { Chip } from "../Chip";
 // jsdom is missing this implementation
 const scrollIntoViewMock = jest.fn();
 window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
-
-afterEach(cleanup);
 
 describe("Combobox validation", () => {
   it("renders without error if the correct count and composition of elements are present", () => {

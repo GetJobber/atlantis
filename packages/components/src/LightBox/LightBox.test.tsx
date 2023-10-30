@@ -1,8 +1,6 @@
 import React from "react";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { LightBox } from ".";
-
-afterEach(cleanup);
 
 test("Lightbox opens and shows the image", () => {
   const title = "Dis be a title";

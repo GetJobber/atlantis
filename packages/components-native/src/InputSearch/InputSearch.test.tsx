@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  cleanup,
-  fireEvent,
-  render,
-  waitFor,
-} from "@testing-library/react-native";
+import { fireEvent, render, waitFor } from "@testing-library/react-native";
 import { InputSearch } from "./InputSearch";
 
 const accessibilityLabelSearch = "Search";
@@ -18,7 +13,6 @@ beforeEach(() => {
   mockOnDebouncedChange.mockReset();
   searchValue = "";
 });
-afterEach(cleanup);
 
 function setup() {
   return render(

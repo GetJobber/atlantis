@@ -1,15 +1,7 @@
 import React from "react";
-import {
-  act,
-  cleanup,
-  fireEvent,
-  render,
-  waitFor,
-} from "@testing-library/react";
+import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { FormatFile } from ".";
 import { GLIMMER_TEST_ID } from "../Glimmer";
-
-afterEach(cleanup);
 
 it("renders a FormatFile", () => {
   const testFile = {
