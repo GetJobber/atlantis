@@ -59,7 +59,8 @@ export function useComboboxValidation(
 
   return {
     optionElements,
-    triggerElement: triggerButtons[0] || triggerChips[0],
+    triggerElement:
+      triggerButtons[0] || triggerChips[0] || activatorElements[0],
     actionElements,
   };
 }
@@ -85,18 +86,13 @@ function validateTriggerCount(
   const hasMutlipleButtons = triggerButtons.length > 1;
   const hasMultipleChips = triggerChips.length > 1;
   const hasMultipleActivators = activators.length > 1;
-  const hasNoTrigger =
-    triggerButtons.length === 0 &&
-    triggerChips.length === 0 &&
-    activators.length === 0;
   let invalid = false;
 
   if (
     hasMultipleTriggerTypes ||
     hasMutlipleButtons ||
     hasMultipleChips ||
-    hasMultipleActivators ||
-    hasNoTrigger
+    hasMultipleActivators
   ) {
     invalid = true;
   }
