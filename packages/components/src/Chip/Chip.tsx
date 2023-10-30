@@ -26,7 +26,7 @@ export const Chip = ({
   variation = "base",
 }: ChipProps): JSX.Element => {
   const classes = classnames(styles.chip, {
-    [styles.actingAsDiv]: actAsFormElement,
+    [styles.useDiv]: actAsFormElement,
     [styles.invalid]: invalid,
     [styles.base]: variation === "base",
     [styles.subtle]: variation === "subtle",
@@ -57,9 +57,10 @@ export const Chip = ({
         }
         tabIndex={tabIndex}
         onKeyDown={(
-          ev: React.KeyboardEvent<HTMLButtonElement | HTMLDivElement>,
+          event: React.KeyboardEvent<HTMLButtonElement | HTMLDivElement>,
         ) =>
-          onKeyDown && onKeyDown(ev as React.KeyboardEvent<HTMLButtonElement>)
+          onKeyDown &&
+          onKeyDown(event as React.KeyboardEvent<HTMLButtonElement>)
         }
         aria-label={ariaLabel || label}
         disabled={disabled}

@@ -22,13 +22,16 @@
   transition: all var(--ease-both) var(--timing-quick);
   align-items: center;
 }
+
 div.chip {
   padding: 0 var(--base-unit);
 }
+
 button.chip {
   padding: var(--space-small) var(--base-unit);
 }
-.chip.actingAsDiv {
+
+.chip.useDiv {
   cursor: auto;
 }
 
@@ -144,6 +147,7 @@ button.chip {
 .chip.disabled .suffix {
   background-color: var(--color-disabled);
 }
+
 .clickableSuffix {
   cursor: pointer;
 }

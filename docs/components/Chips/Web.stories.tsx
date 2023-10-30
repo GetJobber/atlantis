@@ -48,19 +48,17 @@ const BasicTemplate: ComponentStory<typeof InternalChipSingleSelect> = args => {
         {...args}
         selected={selected}
         onChange={allSelections => setSelected(allSelections as string)}
+        type="singleselect"
       >
-        {chips.map((c, index) => {
+        {chips.map(({ label, value, icon, initials, size }, index) => {
           return (
-            <Chip label={c.label} value={c.value} key={index}>
+            <Chip label={label} value={value} key={index}>
               <Chip.Prefix>
-                {c.icon && (
-                  <Icon
-                    name={c.icon as IconNames}
-                    size={c.size as AvatarSize}
-                  />
+                {icon && (
+                  <Icon name={icon as IconNames} size={size as AvatarSize} />
                 )}
-                {c.initials && (
-                  <Avatar initials={c.initials} size={c.size as AvatarSize} />
+                {initials && (
+                  <Avatar initials={initials} size={size as AvatarSize} />
                 )}
               </Chip.Prefix>
             </Chip>
@@ -73,7 +71,6 @@ const BasicTemplate: ComponentStory<typeof InternalChipSingleSelect> = args => {
 
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
-  type: "singleselect" as const,
   selected: "",
 };
 
@@ -101,7 +98,7 @@ const MultiSelectTemplate: ComponentStory<
         selected={selected}
         onChange={setSelected}
       >
-        <Chip label="Amazing" onClick={multiSelectItems} value="Amazing" />
+        <Chip label="Amazing" value="Amazing" onClick={multiSelectItems} />
         <Chip label="Wonderful" value="Wonderful" onClick={multiSelectItems} />
         <Chip label="Brilliant" value="Brilliant" onClick={multiSelectItems} />
         <Chip
@@ -139,6 +136,7 @@ const SelectionTemplate: ComponentStory<
       isLoadingMore={loading}
       onSearch={handleSearch}
       onLoadMore={handleLoadMore}
+      type="dismissible"
     >
       {options.map(name => (
         <Chip key={name} label={name} value={name} />
@@ -148,9 +146,7 @@ const SelectionTemplate: ComponentStory<
 };
 
 export const Selection = SelectionTemplate.bind({});
-Selection.args = {
-  type: "dismissible" as const,
-};
+Selection.args = {};
 
 Selection.parameters = {
   previewTabs: {
