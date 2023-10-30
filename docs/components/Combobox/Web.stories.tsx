@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
-import { Button, Button as ClearButton } from "@jobber/components/Button";
+import { Button } from "@jobber/components/Button";
 import { Chip } from "@jobber/components/Chip";
 
 export default {
@@ -183,7 +183,7 @@ const ComboboxClearSelection: ComponentStory<typeof Combobox> = args => {
         flexDirection: "row",
       }}
     >
-      <ClearButton
+      <Button
         label="Clear Selection"
         type="primary"
         onClick={() => setSelected([])}
