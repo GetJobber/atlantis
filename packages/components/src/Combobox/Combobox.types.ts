@@ -2,7 +2,8 @@ import { Dispatch, ReactElement, SetStateAction } from "react";
 import { XOR } from "ts-xor";
 import { ButtonProps } from "../Button";
 
-export interface ComboboxProps {
+export interface ComboboxProps
+  extends Partial<Omit<ComboboxContentBaseProps, "options">> {
   readonly children: ReactElement | ReactElement[];
 
   /**
@@ -16,6 +17,9 @@ export interface ComboboxProps {
    * The Chip heading for the trigger
    */
   readonly heading: string;
+
+  readonly onSelect?: (selection: ComboboxOption[]) => void;
+  readonly onClose?: (selection: ComboboxOption[]) => void;
 }
 
 export interface ComboboxTriggerProps {
