@@ -42,8 +42,8 @@ export function InternalChipDismissible(props: InternalChipDismissibleProps) {
           tabIndex={0}
         >
           <Chip.Suffix
-            onKeyDown={(ev: React.KeyboardEvent<HTMLButtonElement>) =>
-              handleChipKeyDown(chip.value)(ev)
+            onKeyDown={(event: React.KeyboardEvent<HTMLButtonElement>) =>
+              handleChipKeyDown(chip.value)(event)
             }
             onClick={handleChipRemove(chip.value)}
           >
