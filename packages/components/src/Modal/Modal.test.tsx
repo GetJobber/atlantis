@@ -7,7 +7,7 @@ afterEach(cleanup);
 
 test('modal contains aria role of "dialog"', async () => {
   const { findByRole } = render(<Modal open>Content</Modal>);
-  expect(await findByRole("dialog")).toBeDefined();
+  expect(await findByRole("dialog")).toBeInTheDocument();
 });
 
 test("modal shows the children and a close button", () => {
