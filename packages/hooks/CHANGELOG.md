@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.6.3](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.6.2...@jobber/hooks@2.6.3) (2023-10-25)
+
+
+### Bug Fixes
+
+* **hooks:** Fix useCollectionQuery error state when fetching more ([#1608](https://github.com/GetJobber/atlantis/issues/1608)) ([3e84477](https://github.com/GetJobber/atlantis/commit/3e84477989fb9ee3a20528ca4a1248acfb1e625b))
+
+
+
+
+
 ## [2.6.2](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.6.1...@jobber/hooks@2.6.2) (2023-10-23)
 
 **Note:** Version bump only for package @jobber/hooks

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.48.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.47.3...@jobber/components-native@0.48.0) (2023-10-27)
+
+
+### Features
+
+* **components-native:** add custom testID to Select component ([#1613](https://github.com/GetJobber/atlantis/issues/1613)) ([56c5e33](https://github.com/GetJobber/atlantis/commit/56c5e33adbb7e3f594fe691806c8d3a2755d92a0))
+
+
+
+
+
+## [0.47.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.47.2...@jobber/components-native@0.47.3) (2023-10-25)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
 ## [0.47.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.47.1...@jobber/components-native@0.47.2) (2023-10-24)
 
 

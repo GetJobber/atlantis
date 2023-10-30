@@ -3,6 +3,69 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.56.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.55.3...@jobber/components@4.56.0) (2023-10-27)
+
+
+### Features
+
+* **components:** Implement Custom Activator to Combobox ([#1610](https://github.com/GetJobber/atlantis/issues/1610)) ([7aa1444](https://github.com/GetJobber/atlantis/commit/7aa1444b5dd084da0bbd81eb2fb84febb075f075))
+
+
+
+
+
+## [4.55.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.55.2...@jobber/components@4.55.3) (2023-10-27)
+
+
+### Bug Fixes
+
+* **components:** DataList UI updates ([#1612](https://github.com/GetJobber/atlantis/issues/1612)) ([85d91ff](https://github.com/GetJobber/atlantis/commit/85d91ff7045b91df3b5864deaf8428617da2ab2f))
+
+
+
+
+
+## [4.55.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.55.1...@jobber/components@4.55.2) (2023-10-25)
+
+
+### Bug Fixes
+
+* **components:** eliminate Tooltip/activator flicker ([#1609](https://github.com/GetJobber/atlantis/issues/1609)) ([86194bc](https://github.com/GetJobber/atlantis/commit/86194bc7be079428c8ac99ce63fdd1ff8a2ea409))
+
+
+
+
+
+## [4.55.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.55.0...@jobber/components@4.55.1) (2023-10-25)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [4.55.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.54.0...@jobber/components@4.55.0) (2023-10-24)
+
+
+### Features
+
+* **components:** Truncate Long Chip Content with Gradient ([#1593](https://github.com/GetJobber/atlantis/issues/1593)) ([d2de2de](https://github.com/GetJobber/atlantis/commit/d2de2de8c005ff08c2f68d256316dba039e352c5))
+
+
+
+
+
+# [4.54.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.53.1...@jobber/components@4.54.0) (2023-10-24)
+
+
+### Features
+
+* **components:** Add DataList.StatusBar ([#1596](https://github.com/GetJobber/atlantis/issues/1596)) ([6be47f4](https://github.com/GetJobber/atlantis/commit/6be47f475863f8ead75398c80f057dad63f3dea0))
+
+
+
+
+
 ## [4.53.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.53.0...@jobber/components@4.53.1) (2023-10-24)
 
 

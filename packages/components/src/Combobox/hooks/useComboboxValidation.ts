@@ -1,7 +1,6 @@
 import { useAssert } from "@jobber/hooks/useAssert";
 import { ReactElement } from "react";
 import { getCompoundComponents } from "@jobber/components/DataList/DataList.utils";
-import { ComboboxTriggerButtonProps } from "packages/components/dist/Combobox/Combobox.types";
 import {
   ComboboxTriggerButton,
   ComboboxTriggerChip,
@@ -13,8 +12,11 @@ import {
 import { ComboboxAction } from "../components/ComboboxAction";
 import {
   ComboboxActionProps,
+  ComboboxActivatorProps,
+  ComboboxTriggerButtonProps,
   ComboboxTriggerChipProps,
 } from "../Combobox.types";
+import { ComboboxActivator } from "../components/ComboboxActivator";
 
 export const COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE =
   "Combobox must have exactly one Trigger element";
@@ -42,10 +44,15 @@ export function useComboboxValidation(
     children,
     ComboboxAction,
   );
+  const activatorElements = getCompoundComponents<ComboboxActivatorProps>(
+    children,
+    ComboboxActivator,
+  );
 
   const shouldThrowTriggerError = validateTriggerCount(
     triggerButtons,
     triggerChips,
+    activatorElements,
   );
 
   useAssert(shouldThrowTriggerError, COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
@@ -66,18 +73,29 @@ function validateTriggerCount(
     ComboboxTriggerButtonProps,
     string | React.JSXElementConstructor<ComboboxTriggerChipProps>
   >[],
+  activators: ReactElement<
+    ComboboxActivatorProps,
+    string | React.JSXElementConstructor<ComboboxActivatorProps>
+  >[],
 ): boolean {
   const hasMultipleTriggerTypes =
-    triggerButtons.length > 0 && triggerChips.length > 0;
+    (triggerButtons.length > 0 && triggerChips.length > 0) ||
+    (triggerButtons.length > 0 && activators.length > 0) ||
+    (triggerChips.length > 0 && activators.length > 0);
   const hasMutlipleButtons = triggerButtons.length > 1;
   const hasMultipleChips = triggerChips.length > 1;
-  const hasNoTrigger = triggerButtons.length === 0 && triggerChips.length === 0;
+  const hasMultipleActivators = activators.length > 1;
+  const hasNoTrigger =
+    triggerButtons.length === 0 &&
+    triggerChips.length === 0 &&
+    activators.length === 0;
   let invalid = false;
 
   if (
     hasMultipleTriggerTypes ||
     hasMutlipleButtons ||
     hasMultipleChips ||
+    hasMultipleActivators ||
     hasNoTrigger
   ) {
     invalid = true;

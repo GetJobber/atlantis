@@ -43,8 +43,16 @@ export interface ComboboxProps {
    * Determines if the selections immediately call the onSelect callback or wait until the Combobox is closed. Defaults to "selection".
    */
   readonly selectionTiming?: ComboboxSelectionTiming;
+
+  /**
+   * The Chip heading for the trigger
+   */
+  readonly heading: string;
 }
 
+export interface ComboboxActivatorProps {
+  readonly children: React.ReactElement;
+}
 export interface ComboboxTriggerProps {
   /**
    * The label text of the trigger.

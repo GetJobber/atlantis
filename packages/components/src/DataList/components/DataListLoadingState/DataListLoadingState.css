@@ -18,7 +18,7 @@
 }
 
 .loadingItem {
-  padding: var(--space-small);
+  padding: var(--space-base) var(--space-small);
 }
 
 .glimmer {

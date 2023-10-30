@@ -32,6 +32,7 @@ export default {
     // Detach from Storybook's layout
     (Story, { viewMode }) => {
       if (viewMode === "docs") return <Story />;
+
       return (
         <div
           style={{
@@ -322,6 +323,7 @@ const Template: ComponentStory<typeof DataList> = args => {
   function getLoadingState() {
     if (loadingInitialContent) return "initial";
     if (loadingNextPage || loadingIDs) return "loadingMore";
+
     return args.loadingState;
   }
 

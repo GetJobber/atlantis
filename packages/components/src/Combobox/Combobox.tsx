@@ -4,12 +4,14 @@ import { ComboboxContent } from "./components/ComboboxContent";
 import { ComboboxAction } from "./components/ComboboxAction";
 import { ComboboxContextProvider } from "./ComboboxProvider";
 import {
+  ComboboxTrigger,
   ComboboxTriggerButton,
   ComboboxTriggerChip,
 } from "./components/ComboboxTrigger";
 import { ComboboxOption as ComboboxOptionComponent } from "./components/ComboboxOption/ComboboxOption";
 import styles from "./Combobox.css";
 import { useCombobox } from "./hooks/useCombobox";
+import { ComboboxActivator } from "./components/ComboboxActivator";
 
 export function Combobox(props: ComboboxProps): JSX.Element {
   const {
@@ -53,7 +55,7 @@ export function Combobox(props: ComboboxProps): JSX.Element {
             data-testid="ATL-Combobox-Overlay"
           />
         )}
-        {triggerElement}
+        {triggerElement || <ComboboxTrigger heading={props.heading} />}
         <ComboboxContent
           multiselect={props.multiSelect}
           searchPlaceholder={props.searchPlaceholder}
@@ -74,8 +76,15 @@ export function Combobox(props: ComboboxProps): JSX.Element {
   );
 }
 
+/**
+ * @deprecated Use Combobox.Activator instead
+ */
 Combobox.TriggerButton = ComboboxTriggerButton;
+/**
+ * @deprecated Use Combobox.Activator instead
+ */
 Combobox.TriggerChip = ComboboxTriggerChip;
+Combobox.Activator = ComboboxActivator;
 Combobox.Content = ComboboxContent;
 Combobox.Action = ComboboxAction;
 Combobox.Option = ComboboxOptionComponent;
