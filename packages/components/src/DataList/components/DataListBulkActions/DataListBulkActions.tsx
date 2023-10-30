@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./DataListBulkActions.css";
 import { DataListBulkActionsProps } from "../../DataList.types";
 import { useDataListContext } from "../../context/DataListContext";
 import { DataListActions } from "../DataListActions";
@@ -24,6 +25,10 @@ export function InternalDataListBulkActions() {
   const itemsToExpose = sm ? 3 : 0;
 
   return (
-    <DataListActions itemsToExpose={itemsToExpose}>{children}</DataListActions>
+    <div className={styles.bulkActions}>
+      <DataListActions itemsToExpose={itemsToExpose}>
+        {children}
+      </DataListActions>
+    </div>
   );
 }

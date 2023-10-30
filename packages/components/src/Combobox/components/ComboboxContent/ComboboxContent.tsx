@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
 import styles from "./ComboboxContent.css";
@@ -11,8 +11,13 @@ import { useComboboxAccessibility } from "../../hooks/useComboboxAccessibility";
 import { ComboboxContentProps, ComboboxOption } from "../../Combobox.types";
 
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
-  const { open, setOpen, wrapperRef, multiselect } =
+  const { open, setOpen, setSelected, wrapperRef, multiselect } =
     React.useContext(ComboboxContext);
+
+  useEffect(() => {
+    setSelected(props.selected);
+  }, [props.selected]);
+
   const optionsExist = props.options.length > 0;
 
   const {

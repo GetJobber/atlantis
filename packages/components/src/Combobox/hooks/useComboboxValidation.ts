@@ -5,11 +5,12 @@ import {
   ComboboxTriggerChip,
 } from "../components/ComboboxTrigger";
 import { ComboboxContent } from "../components/ComboboxContent";
+import { ComboboxActivator } from "../components/ComboboxActivator";
 
 export const COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE =
-  "Combobox can only have one Trigger element";
+  "Combobox can only have one Trigger or Activator element";
 export const COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE =
-  "Combobox must have a Trigger and Combobox.Content element";
+  "Combobox must have a Combobox.Content element";
 
 export function useComboboxValidation(children: ReactNode): {
   triggerElement: ReactNode;
@@ -35,10 +36,7 @@ export function useComboboxValidation(children: ReactNode): {
 
   useAssert(multipleTriggersFound, COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
 
-  useAssert(
-    !triggerElement || !contentElement,
-    COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE,
-  );
+  useAssert(!contentElement, COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE);
 
   return {
     contentElement,
@@ -49,7 +47,9 @@ export function useComboboxValidation(children: ReactNode): {
 function isTriggerElement(child: ReactNode): boolean {
   return (
     React.isValidElement(child) &&
-    (child.type === ComboboxTriggerButton || child.type === ComboboxTriggerChip)
+    (child.type === ComboboxTriggerButton ||
+      child.type === ComboboxTriggerChip ||
+      child.type === ComboboxActivator)
   );
 }
 
