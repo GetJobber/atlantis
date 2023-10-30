@@ -5,6 +5,11 @@ import styles from "./Modal.css";
 
 afterEach(cleanup);
 
+test('modal contains aria role of "dialog"', async () => {
+  const { findByRole } = render(<Modal open>Content</Modal>);
+  expect(await findByRole("dialog")).toBeDefined();
+});
+
 test("modal shows the children and a close button", () => {
   const title = "Dis be a title";
   const content = "Dis be a content 🎉";
