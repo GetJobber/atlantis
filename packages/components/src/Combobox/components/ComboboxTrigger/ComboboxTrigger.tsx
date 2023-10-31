@@ -5,7 +5,7 @@ import { ComboboxContext } from "../../ComboboxProvider";
 import { ComboboxContentProps } from "../../Combobox.types";
 
 interface ComboboxTriggerProps extends Pick<ComboboxContentProps, "selected"> {
-  readonly heading: string;
+  readonly label: string;
 }
 
 export function ComboboxTrigger({ selected, ...props }: ComboboxTriggerProps) {
@@ -19,7 +19,7 @@ export function ComboboxTrigger({ selected, ...props }: ComboboxTriggerProps) {
     <Chip
       variation={hasSelection ? "base" : "subtle"}
       label={hasSelection ? selectedLabel : ""}
-      heading={renderHeading ? props.heading : ""}
+      heading={renderHeading ? props.label : ""}
       onClick={() => setOpen(!open)}
       role="combobox"
     >

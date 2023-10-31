@@ -25,7 +25,7 @@ const BasicCombobox: ComponentStory<typeof Combobox> = args => {
       {...args}
       onSelect={setSelected}
       selected={selected}
-      heading="Teammates"
+      label="Teammates"
     >
       <Combobox.Option id="1" label="Bilbo Baggins" />
       <Combobox.Option id="2" label="Frodo Baggins" />
@@ -143,7 +143,7 @@ const ComboboxEmptyState: ComponentStory<typeof Combobox> = args => {
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
 
   return (
-    <Combobox {...args} heading="Teammates">
+    <Combobox {...args} label="Teammates">
       <Combobox.Content
         options={[]}
         onSelect={selection => {
@@ -183,7 +183,7 @@ const ComboboxClearSelection: ComponentStory<typeof Combobox> = args => {
         type="primary"
         onClick={() => setSelected([])}
       />
-      <Combobox {...args} heading="Teammates">
+      <Combobox {...args} label="Teammates">
         <Combobox.Content
           options={[
             { id: "1", label: "Bilbo Baggins" },
@@ -231,7 +231,7 @@ const ComboboxMultiSelection: ComponentStory<typeof Combobox> = args => {
     <Combobox
       {...args}
       multiSelect
-      heading="Teammates"
+      label="Teammates"
       onSelect={setSelected}
       selected={selected}
     >
