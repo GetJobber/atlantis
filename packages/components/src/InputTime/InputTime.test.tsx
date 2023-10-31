@@ -1,9 +1,7 @@
 import React from "react";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { CivilTime } from "@std-proposal/temporal";
 import { InputTime } from ".";
-
-afterEach(cleanup);
 
 it("renders a InputTime", () => {
   const { container } = render(<InputTime />);

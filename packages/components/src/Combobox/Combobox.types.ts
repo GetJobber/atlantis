@@ -42,18 +42,16 @@ export interface ComboboxProps {
   /**
    * The Chip heading for the trigger
    */
-  readonly heading: string;
+  readonly label?: string;
 }
 
 export interface ComboboxActivatorProps {
   readonly children: React.ReactElement;
 }
 
-export interface ComboboxTriggerProps {
-  /**
-   * The heading text of the trigger.
-   */
-  readonly heading: string;
+export interface ComboboxTriggerProps
+  extends Pick<ComboboxContentProps, "selected"> {
+  readonly label?: string;
 }
 
 export interface ComboboxOption {

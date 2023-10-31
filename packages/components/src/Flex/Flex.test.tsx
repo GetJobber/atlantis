@@ -1,8 +1,6 @@
 import React from "react";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { Flex } from ".";
-
-afterEach(cleanup);
 
 describe("Flex", () => {
   it("renders the flexible container", () => {

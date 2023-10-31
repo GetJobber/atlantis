@@ -1,9 +1,7 @@
 import React from "react";
-import { cleanup, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ChipDismissible } from "..";
-
-afterEach(cleanup);
 
 it("should have a remove action", () => {
   render(<ChipDismissible onRequestRemove={jest.fn()} label="This thing!" />);

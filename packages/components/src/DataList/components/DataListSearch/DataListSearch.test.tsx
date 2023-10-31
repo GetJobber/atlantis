@@ -1,5 +1,5 @@
 import React from "react";
-import { cleanup, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent, { UserEvent } from "@testing-library/user-event";
 import {
   DATA_LIST_SEARCH_TEST_ID,
@@ -27,7 +27,6 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  cleanup();
   spy.mockReset();
   jest.useRealTimers();
 });

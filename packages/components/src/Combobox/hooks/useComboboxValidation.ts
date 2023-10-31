@@ -1,16 +1,16 @@
+import React, { Children, ReactElement, isValidElement } from "react";
 import { useAssert } from "@jobber/hooks/useAssert";
-import { Children, ReactElement, isValidElement } from "react";
+import { ComboboxActivator } from "../components/ComboboxActivator";
 import {
   ComboboxOption,
   ComboboxOptionProps,
-} from "../components/ComboboxOption/ComboboxOption";
-import { ComboboxAction } from "../components/ComboboxAction";
+} from "../components/ComboboxOption";
 import {
   ComboboxActionProps,
   ComboboxActivatorProps,
   ComboboxProps,
 } from "../Combobox.types";
-import { ComboboxActivator } from "../components/ComboboxActivator";
+import { ComboboxAction } from "../components/ComboboxAction";
 
 export const COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE =
   "Combobox must have exactly one Trigger element";

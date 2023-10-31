@@ -4,8 +4,11 @@ import { Icon } from "@jobber/components/Icon";
 import { ComboboxContext } from "../../ComboboxProvider";
 import { ComboboxTriggerProps } from "../../Combobox.types";
 
-export function ComboboxTrigger(props: ComboboxTriggerProps) {
-  const { handleClose, open, setOpen, selected, multiselect } =
+export function ComboboxTrigger({
+  label = "Select",
+  selected,
+}: ComboboxTriggerProps) {
+  const { handleClose, open, setOpen, multiselect } =
     React.useContext(ComboboxContext);
 
   const hasSelection = selected.length;
@@ -16,7 +19,7 @@ export function ComboboxTrigger(props: ComboboxTriggerProps) {
     <Chip
       variation={hasSelection ? "base" : "subtle"}
       label={hasSelection ? selectedLabel : ""}
-      heading={renderHeading ? props.heading : ""}
+      heading={renderHeading ? label : ""}
       onClick={() => {
         if (open) {
           handleClose();

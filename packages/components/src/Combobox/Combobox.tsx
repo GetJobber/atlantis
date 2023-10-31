@@ -49,7 +49,9 @@ export function Combobox(props: ComboboxProps): JSX.Element {
             data-testid="ATL-Combobox-Overlay"
           />
         )}
-        {triggerElement || <ComboboxTrigger heading={props.heading} />}
+        {triggerElement || (
+          <ComboboxTrigger label={props.label} selected={props.selected} />
+        )}
         <ComboboxContent
           multiselect={props.multiSelect}
           searchPlaceholder={props.searchPlaceholder}

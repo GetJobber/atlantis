@@ -1,299 +1,336 @@
-import { cleanup, fireEvent, render } from "@testing-library/react";
 import React from "react";
-import { ComboboxOption } from "./Combobox.types";
+import { render, screen } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
 import { Combobox } from "./Combobox";
+import { ComboboxOption } from "./Combobox.types";
 import { COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE } from "./hooks/useComboboxValidation";
-import { Chip } from "../Chip";
+import { Button } from "../Button";
 
 // jsdom is missing this implementation
 const scrollIntoViewMock = jest.fn();
 window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
 
-afterEach(cleanup);
+const MENU_TEST_ID = "ATL-Combobox-Content";
+const OVERLAY_TEST_ID = "ATL-Combobox-Overlay";
 
-describe("Combobox validation", () => {
-  it("renders without error when there is no Activator", () => {
-    expect(() => {
-      render(<Combobox onSelect={jest.fn()} selected={[]} heading="no" />);
-    }).not.toThrow();
+const activatorLabel = "Select a Baggins";
+const handleAction = jest.fn();
+const handleSelect = jest.fn();
+const mockSelectedValue = jest.fn<ComboboxOption[], []>().mockReturnValue([]);
+const mockMultiSelectValue = jest.fn().mockReturnValue(false);
+
+afterEach(() => {
+  handleAction.mockClear();
+  handleSelect.mockClear();
+});
+
+describe("Combobox", () => {
+  beforeEach(renderCombobox);
+
+  it("should render with the default activator with the closed menu", () => {
+    expect(screen.getByText(activatorLabel)).toBeInTheDocument();
+    expect(screen.getByTestId(MENU_TEST_ID)).toHaveClass("hidden");
   });
 
-  it("renders without error when there is a ComboboxActivator", () => {
-    expect(() => {
-      render(
-        <Combobox heading="hi" onSelect={jest.fn()} selected={[]}>
-          <Combobox.Activator>
-            <Chip variation="subtle" label="Teammates" />
-          </Combobox.Activator>
-        </Combobox>,
-      );
-    }).not.toThrow();
+  describe("Menu", () => {
+    beforeEach(async () => {
+      await userEvent.click(screen.getByText(activatorLabel));
+    });
+
+    it("should open the menu", async () => {
+      expect(screen.getByTestId(MENU_TEST_ID)).not.toHaveClass("hidden");
+    });
+
+    it("should have the options and actions", () => {
+      expect(screen.getAllByRole("option")).toHaveLength(2);
+      expect(screen.getByText("Add Teammate")).toBeInTheDocument();
+    });
+
+    it("should close the menu when clicking the activator", async () => {
+      await userEvent.click(screen.getByText(activatorLabel));
+      expect(screen.getByTestId(MENU_TEST_ID)).toHaveClass("hidden");
+    });
+
+    it("should close the menu when clicking outside the menu (which clicks the overlay)", async () => {
+      await userEvent.click(screen.getByTestId(OVERLAY_TEST_ID));
+      expect(screen.getByTestId(MENU_TEST_ID)).toHaveClass("hidden");
+    });
+
+    it("should close the menu when pressing the ESC key", async () => {
+      await userEvent.type(document.body, "{Escape}");
+      expect(screen.getByTestId(MENU_TEST_ID)).toHaveClass("hidden");
+    });
+
+    it("should close the menu when clicking an option", async () => {
+      await userEvent.click(screen.getByText("Bilbo Baggins"));
+      expect(screen.getByTestId(MENU_TEST_ID)).toHaveClass("hidden");
+    });
+
+    it("should not close the menu when clicking an action", async () => {
+      await userEvent.click(screen.getByText("Add Teammate"));
+      expect(screen.getByTestId(MENU_TEST_ID)).not.toHaveClass("hidden");
+    });
   });
 
-  it("throws an error if there are multiple Activators", () => {
-    expect.assertions(1);
-    let error;
+  it("should fire the onClick of an action when clicking an action", async () => {
+    await userEvent.click(screen.getByText(activatorLabel));
+    await userEvent.click(screen.getByText("Add Teammate"));
+    expect(handleAction).toHaveBeenCalledTimes(1);
+  });
 
-    try {
-      render(
-        <Combobox onSelect={jest.fn()} selected={[]} heading="hello">
-          <Combobox.Activator>
-            <span>hey</span>
-          </Combobox.Activator>
-          <Combobox.Activator>
-            <span>hi</span>
-          </Combobox.Activator>
-        </Combobox>,
-      );
-    } catch (e) {
-      error = e as Error;
-    } finally {
-      expect(error?.message).toBe(COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
-    }
+  it("should fire the onSelect when clicking an option", async () => {
+    await userEvent.click(screen.getByText(activatorLabel));
+    await userEvent.click(screen.getByText("Bilbo Baggins"));
+
+    expect(handleSelect).toHaveBeenCalledTimes(1);
+    expect(handleSelect).toHaveBeenCalledWith([
+      { id: "1", label: "Bilbo Baggins" },
+    ]);
   });
 });
 
-describe("ComboboxContent", () => {
-  it("should not have the content visible by default", () => {
-    const { getByTestId } = render(
-      <Combobox onSelect={jest.fn()} selected={[]} heading="hi"></Combobox>,
-    );
-    expect(getByTestId("ATL-Combobox-Content")).toHaveClass("hidden");
+describe("Combobox Single Select", () => {
+  const selectedValue = { id: "1", label: "Bilbo Baggins" };
+  beforeEach(() => {
+    mockSelectedValue.mockReturnValueOnce([selectedValue]);
+    renderCombobox();
   });
 
-  it("should close the content after opening and making a (single) selection", () => {
-    const { getByTestId, getByText, getByRole } = render(
-      <Combobox heading="hi" onSelect={jest.fn()} selected={[]}>
-        <Combobox.Option id="1" label="Bilbo Baggins" />
-        <Combobox.Option id="2" label="Frodo Baggins" />
-      </Combobox>,
-    );
-
-    const button = getByRole("combobox");
-    fireEvent.click(button);
-
-    expect(getByTestId("ATL-Combobox-Content")).not.toHaveClass("hidden");
-
-    const option = getByText("Bilbo Baggins");
-    fireEvent.click(option);
-
-    expect(getByTestId("ATL-Combobox-Content")).toHaveClass("hidden");
+  it("should not show the heading when there's a selection", () => {
+    expect(screen.queryByText(activatorLabel)).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("combobox", { name: selectedValue.label }),
+    ).toBeInTheDocument();
   });
 
-  it("should close the content after opening and pressing ESC", () => {
-    const { getByTestId, getByRole } = render(
-      <Combobox onSelect={jest.fn()} selected={[]} heading="hi">
-        <Combobox.Option id="1" label="Bilbo Baggins" />
-        <Combobox.Option id="2" label="Frodo Baggins" />
-      </Combobox>,
-    );
+  it("should fire the onSelect with the new option", async () => {
+    await userEvent.click(screen.getByText("Frodo Baggins"));
 
-    const button = getByRole("combobox");
-    fireEvent.click(button);
-
-    expect(getByTestId("ATL-Combobox-Content")).not.toHaveClass("hidden");
-
-    fireEvent.keyDown(button, { key: "Escape" });
-
-    expect(getByTestId("ATL-Combobox-Content")).toHaveClass("hidden");
-  });
-
-  it("should close the content after opening and clicking outside the content", () => {
-    const { getByTestId, getByRole } = render(
-      <Combobox onSelect={jest.fn()} selected={[]} heading="hi">
-        <Combobox.Option id="1" label="Bilbo Baggins" />
-        <Combobox.Option id="2" label="Frodo Baggins" />
-      </Combobox>,
-    );
-
-    const button = getByRole("combobox");
-    fireEvent.click(button);
-
-    expect(getByTestId("ATL-Combobox-Content")).not.toHaveClass("hidden");
-
-    const overlay = getByTestId("ATL-Combobox-Overlay");
-    fireEvent.click(overlay);
-
-    expect(getByTestId("ATL-Combobox-Content")).toHaveClass("hidden");
+    expect(handleSelect).toHaveBeenCalledTimes(1);
+    expect(handleSelect).toHaveBeenCalledWith([
+      { id: "2", label: "Frodo Baggins" },
+    ]);
   });
 });
 
-describe("Combobox selected value", () => {
-  it("has no selected option when selection is cleared", () => {
-    const { getByText, getByRole } = render(<ClearSelectionCombobox />);
+describe("Combobox Multiselect", () => {
+  it("should not close the menu when selecting the value", async () => {
+    renderMultiSelectCombobox();
 
-    const option = getByRole("option", { name: "Bilbo Baggins" });
-    const clearButton = getByText("Clear Selection");
+    expect(screen.getByTestId(MENU_TEST_ID)).toHaveClass("hidden");
 
-    expect(option).toHaveAttribute("aria-selected", "true");
+    await userEvent.click(screen.getByText(activatorLabel));
+    expect(screen.getByTestId(MENU_TEST_ID)).not.toHaveClass("hidden");
 
-    fireEvent.click(clearButton);
-    fireEvent.click(getByRole("combobox"));
-    expect(option).not.toHaveAttribute("aria-selected", "true");
-  });
-});
-
-describe("Combobox multiselect", () => {
-  it("should allow selections without closing", () => {
-    const { getByTestId, getByText, getByRole } = render(
-      <Combobox multiSelect onSelect={jest.fn()} selected={[]} heading="hi">
-        <Combobox.Option id="1" label="Bilbo Baggins" />
-        <Combobox.Option id="2" label="Frodo Baggins" />
-      </Combobox>,
-    );
-
-    const button = getByRole("combobox");
-    fireEvent.click(button);
-
-    expect(getByTestId("ATL-Combobox-Content")).not.toHaveClass("hidden");
-
-    const option = getByText("Bilbo Baggins");
-    fireEvent.click(option);
-
-    expect(getByTestId("ATL-Combobox-Content")).not.toHaveClass("hidden");
+    await userEvent.click(screen.getByText("Bilbo Baggins"));
+    expect(screen.getByTestId(MENU_TEST_ID)).not.toHaveClass("hidden");
   });
 
-  it("should allow for multiple selections to be made", () => {
-    const { getByText, getByRole } = render(
-      <MockMultiSelectOnSelectCombobox />,
-    );
+  it("should show both the header and the selected values in the activator", async () => {
+    mockSelectedValue.mockReturnValueOnce([
+      { id: "1", label: "Bilbo Baggins" },
+      { id: "2", label: "Frodo Baggins" },
+    ]);
+    renderMultiSelectCombobox();
 
-    const button = getByRole("combobox");
-    fireEvent.click(button);
-
-    const option = getByText("Bilbo Baggins");
-    const option2 = getByText("Frodo Baggins");
-
-    fireEvent.click(option);
-    fireEvent.click(option2);
-
-    expect(option).toHaveAttribute("aria-selected", "true");
-    expect(option2).toHaveAttribute("aria-selected", "true");
+    expect(screen.getByText(activatorLabel)).toBeInTheDocument();
+    expect(
+      screen.getByText("Bilbo Baggins, Frodo Baggins"),
+    ).toBeInTheDocument();
   });
 
-  it("should call the onSelect callback upon making selection(s)", () => {
-    const onSelect = jest.fn();
-    const { getByText, getByRole } = render(
-      <MockMultiSelectOnSelectCombobox onSelectOverride={onSelect} />,
+  it("should allow for multiple selections to be made", async () => {
+    mockSelectedValue.mockReturnValueOnce([
+      { id: "1", label: "Bilbo Baggins" },
+      { id: "2", label: "Frodo Baggins" },
+    ]);
+    renderMultiSelectCombobox();
+
+    expect(screen.getByText(activatorLabel)).toBeInTheDocument();
+    expect(screen.getByText("Bilbo Baggins")).toHaveAttribute(
+      "aria-selected",
+      "true",
     );
+    expect(screen.getByText("Frodo Baggins")).toHaveAttribute(
+      "aria-selected",
+      "true",
+    );
+  });
 
-    const button = getByRole("combobox");
-    const option = getByText("Bilbo Baggins");
+  it("should call the onSelect callback with the new addition", async () => {
+    mockSelectedValue.mockReturnValueOnce([
+      { id: "1", label: "Bilbo Baggins" },
+    ]);
+    renderMultiSelectCombobox();
 
-    fireEvent.click(button);
-    fireEvent.click(option);
+    await userEvent.click(screen.getByText(activatorLabel));
+    await userEvent.click(screen.getByText("Frodo Baggins"));
 
-    expect(onSelect).toHaveBeenCalledWith([
-      {
-        id: "1",
-        label: "Bilbo Baggins",
-      },
+    expect(handleSelect).toHaveBeenCalledWith([
+      { id: "1", label: "Bilbo Baggins" },
+      { id: "2", label: "Frodo Baggins" },
     ]);
   });
 
-  it("should not clear search after making a selection", () => {
-    const { getByText, getByPlaceholderText, getByRole } = render(
-      <MockMultiSelectOnSelectCombobox />,
+  it("should call the onSelect callback with the removal", async () => {
+    mockSelectedValue.mockReturnValueOnce([
+      { id: "1", label: "Bilbo Baggins" },
+    ]);
+    renderMultiSelectCombobox();
+
+    await userEvent.click(screen.getByText(activatorLabel));
+    await userEvent.click(
+      screen.getByRole("option", { name: "Bilbo Baggins" }),
     );
 
-    const button = getByRole("combobox");
-    const option = getByText("Bilbo Baggins");
-    const searchInput = getByPlaceholderText("Search");
+    expect(handleSelect).toHaveBeenCalledWith([]);
+  });
 
-    fireEvent.click(button);
-    fireEvent.change(searchInput, { target: { value: "Bilbo" } });
-    fireEvent.click(option);
+  it("should not clear search after making a selection", async () => {
+    renderMultiSelectCombobox();
+    const searchInput = screen.getByPlaceholderText("Search");
+
+    await userEvent.click(screen.getByText(activatorLabel));
+    await userEvent.type(searchInput, "Bilbo");
+    await userEvent.click(screen.getByText("Bilbo Baggins"));
 
     expect(searchInput).toHaveValue("Bilbo");
   });
 
+  it("should select all options when clicking Select all", async () => {
+    renderMultiSelectCombobox();
+
+    await userEvent.click(screen.getByText(activatorLabel));
+    await userEvent.click(screen.getByText("Select all"));
+
+    expect(handleSelect).toHaveBeenCalledWith([
+      { id: "1", label: "Bilbo Baggins" },
+      { id: "2", label: "Frodo Baggins" },
+    ]);
+  });
+
   describe("onClose callback", () => {
-    it("should call onClose when the content is closed", async () => {
-      const onClose = jest.fn();
-      const { getByText, getByRole } = render(
-        <MockMultiSelectOnCloseCombobox onCloseOverride={onClose} />,
+    const handleClose = jest.fn();
+
+    beforeEach(() => {
+      handleClose.mockClear();
+
+      render(
+        <Combobox
+          heading={activatorLabel}
+          multiSelect={true}
+          selected={[]}
+          onClose={handleClose}
+        >
+          <Combobox.Option id="1" label="Bilbo Baggins" />
+          <Combobox.Option id="2" label="Frodo Baggins" />
+          <Combobox.Action label="Add Teammate" onClick={handleAction} />
+        </Combobox>,
       );
+    });
 
-      const button = getByRole("combobox");
-      const option = getByText("Bilbo Baggins");
-      const spoder = getByText("Shelob the Spoder");
+    it("should call onClose with selections when the content is closed", async () => {
+      await userEvent.click(screen.getByText(activatorLabel));
+      await userEvent.click(screen.getByText("Bilbo Baggins"));
+      await userEvent.click(screen.getByText("Frodo Baggins"));
+      await userEvent.click(screen.getByTestId(OVERLAY_TEST_ID));
 
-      fireEvent.click(button);
-      fireEvent.click(option);
-      fireEvent.click(spoder);
-      fireEvent.keyDown(button, { key: "Escape" });
+      // This should be 1. If this errors out and expects the value to be 1,
+      // then you've fixed the bug! Please to change the value to 1.
+      expect(handleClose).toHaveBeenCalledTimes(2);
+      expect(handleClose).toHaveBeenCalledWith([
+        { id: "1", label: "Bilbo Baggins" },
+        { id: "2", label: "Frodo Baggins" },
+      ]);
+    });
 
-      expect(onClose).toHaveBeenCalled();
+    it("should not update consumer as selections are made", async () => {
+      await userEvent.click(screen.getByText(activatorLabel));
+      await userEvent.click(screen.getByText("Bilbo Baggins"));
+      await userEvent.click(screen.getByText("Frodo Baggins"));
+
+      // This should be 0. If this errors out and expects the value to be 0,
+      // then you've fixed the bug! Please to change to .not.toHaveBeenCalled()
+      expect(handleClose).toHaveBeenCalledTimes(1);
+      expect(
+        screen.queryByText("Bilbo Baggins, Frodo Baggins"),
+      ).not.toBeInTheDocument();
+    });
+
+    it("should not update consumer as selections are made by clicking Select all", async () => {
+      await userEvent.click(screen.getByText(activatorLabel));
+      await userEvent.click(screen.getByText("Select all"));
+
+      expect(handleSelect).not.toHaveBeenCalled();
+      expect(
+        screen.queryByText("Bilbo Baggins, Frodo Baggins"),
+      ).not.toBeInTheDocument();
     });
   });
 });
 
-function MockMultiSelectOnCloseCombobox(props: {
-  readonly onCloseOverride?: () => void;
-}): JSX.Element {
-  const [selected, setSelected] = React.useState<ComboboxOption[]>([]);
-  const callback = props.onCloseOverride;
+describe("Combobox Compound Component Validation", () => {
+  it("renders without error if the correct count and composition of elements are present", () => {
+    expect(renderCombobox).not.toThrow();
+  });
 
-  return (
-    <>
-      <Combobox
-        multiSelect
-        heading="hi"
-        onSelect={setSelected}
-        onClose={callback}
-        selected={selected}
-      >
-        <Combobox.Option id="1" label="Bilbo Baggins" />
-        <Combobox.Option id="2" label="Frodo Baggins" />
-        <Combobox.Option id="3" label="Pippin Took" />
-        <Combobox.Option id="4" label="Shelob the Spoder" />
-      </Combobox>
-      {selected.map(option => (
-        <span key={option.id}>{`Choice: ${option.label}`}</span>
-      ))}
-    </>
+  it("renders without error when there is a ComboboxActivator", () => {
+    expect(() =>
+      render(
+        <Combobox heading={activatorLabel} selected={[]} onSelect={jest.fn()}>
+          <Combobox.Activator>
+            <Button label="Click me" />
+          </Combobox.Activator>
+        </Combobox>,
+      ),
+    ).not.toThrow();
+  });
+
+  it("should throw an error if there is a Trigger element and a Combobox.Activator", () => {
+    expect(() =>
+      render(
+        <Combobox heading={activatorLabel} selected={[]} onSelect={jest.fn()}>
+          <Combobox.Activator>
+            <Button label="Click me" />
+          </Combobox.Activator>
+          <Combobox.TriggerButton label="Heyoo" />
+        </Combobox>,
+      ),
+    ).toThrow(COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
+  });
+
+  it("should throw an error when Option/Action and Content all exist as siblings", () => {
+    expect(() =>
+      render(
+        <Combobox heading={activatorLabel}>
+          <Combobox.Content options={[]} onSelect={jest.fn()} selected={[]} />
+
+          <Combobox.Option id="1" label="Option 1" />
+          <Combobox.Option id="2" label="Option 2" />
+          <Combobox.Action label="Action 1" onClick={jest.fn()} />
+        </Combobox>,
+      ),
+    ).toThrow(COMBOBOX_OPTION_AND_CONTENT_EXISTS_ERROR);
+  });
+});
+
+function renderCombobox() {
+  return render(
+    <Combobox
+      heading={activatorLabel}
+      multiSelect={mockMultiSelectValue()}
+      selected={mockSelectedValue()}
+      onSelect={handleSelect}
+    >
+      <Combobox.Option id="1" label="Bilbo Baggins" />
+      <Combobox.Option id="2" label="Frodo Baggins" />
+      <Combobox.Action label="Add Teammate" onClick={handleAction} />
+    </Combobox>,
   );
 }
 
-function MockMultiSelectOnSelectCombobox(props: {
-  readonly onSelectOverride?: () => void;
-}): JSX.Element {
-  const [selected, setSelected] = React.useState<ComboboxOption[]>([]);
-  const callback = props.onSelectOverride || setSelected;
+function renderMultiSelectCombobox() {
+  mockMultiSelectValue.mockReturnValueOnce(true);
 
-  return (
-    <>
-      <Combobox
-        multiSelect
-        onSelect={callback}
-        selected={selected}
-        heading="hi"
-      >
-        <Combobox.Option id="1" label="Bilbo Baggins" />
-        <Combobox.Option id="2" label="Frodo Baggins" />
-        <Combobox.Option id="3" label="Pippin Took" />
-      </Combobox>
-      ,
-    </>
-  );
-}
-
-function ClearSelectionCombobox() {
-  const [selected, setSelected] = React.useState<ComboboxOption[]>([
-    {
-      id: 1,
-      label: "Bilbo Baggins",
-    },
-  ]);
-
-  return (
-    <>
-      <button onClick={() => setSelected([])}>Clear Selection</button>
-      <Combobox heading="hi" onSelect={jest.fn()} selected={selected}>
-        <Combobox.Option id="1" label="Bilbo Baggins" />
-        <Combobox.Option id="2" label="Frodo Baggins" />
-        <Combobox.Option id="3" label="Pippin Took" />
-      </Combobox>
-    </>
-  );
+  return renderCombobox();
 }

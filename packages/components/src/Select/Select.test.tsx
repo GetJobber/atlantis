@@ -1,8 +1,6 @@
 import React from "react";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { Option, Select } from ".";
-
-afterEach(cleanup);
 
 it("renders a Select with no options", () => {
   const { container } = render(<Select />);
