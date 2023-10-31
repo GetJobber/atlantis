@@ -21,33 +21,31 @@ const BasicCombobox: ComponentStory<typeof Combobox> = args => {
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
 
   return (
-    <Combobox {...args} heading="Teammates">
-      <Combobox.Content
-        options={[
-          { id: "1", label: "Bilbo Baggins" },
-          { id: "2", label: "Frodo Baggins" },
-          { id: "3", label: "Pippin Took" },
-          { id: "4", label: "Merry Brandybuck" },
-          { id: "5", label: "Sam Gamgee" },
-        ]}
-        onSelect={selection => {
-          setSelected(selection);
+    <Combobox
+      {...args}
+      heading="Teammates"
+      onSelect={selection => {
+        setSelected(selection);
+      }}
+      selected={selected}
+    >
+      <Combobox.Option id="1" label="Bilbo Baggins" />
+      <Combobox.Option id="2" label="Frodo Baggins" />
+      <Combobox.Option id="3" label="Pippin Took" />
+      <Combobox.Option id="4" label="Merry Brandybuck" />
+      <Combobox.Option id="5" label="Sam Gamgee" />
+      <Combobox.Action
+        label="Add Teammate"
+        onClick={() => {
+          alert("Added a new teammate ✅");
         }}
-        selected={selected}
-      >
-        <Combobox.Action
-          label="Add Teammate"
-          onClick={() => {
-            alert("Added a new teammate ✅");
-          }}
-        />
-        <Combobox.Action
-          label="Manage Teammates"
-          onClick={() => {
-            alert("Managed teammates 👍");
-          }}
-        />
-      </Combobox.Content>
+      />
+      <Combobox.Action
+        label="Manage Teammates"
+        onClick={() => {
+          alert("Managed teammates 👍");
+        }}
+      />
     </Combobox>
   );
 };
@@ -56,7 +54,14 @@ const ComboboxButton: ComponentStory<typeof Combobox> = args => {
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
 
   return (
-    <Combobox {...args}>
+    <Combobox
+      {...args}
+      onSelect={selection => {
+        setSelected(selection);
+      }}
+      selected={selected}
+      subjectNoun="teammates"
+    >
       <Combobox.Activator>
         <Button
           label="Select Teammate"
@@ -66,41 +71,33 @@ const ComboboxButton: ComponentStory<typeof Combobox> = args => {
           iconOnRight={true}
         />
       </Combobox.Activator>
-      <Combobox.Content
-        options={[
-          { id: "1", label: "Bilbo Baggins" },
-          { id: "2", label: "Frodo Baggins" },
-          { id: "3", label: "Pippin Took" },
-          { id: "4", label: "Merry Brandybuck" },
-          { id: "5", label: "Sam Gamgee" },
-          { id: "6", label: "Aragorn" },
-          { id: "7", label: "Galadriel" },
-          { id: "8", label: "Arwen" },
-          { id: "9", label: "Gandalf" },
-          { id: "10", label: "Legolas" },
-          { id: "11", label: "Gimli" },
-          { id: "12", label: "Samwise Gamgee" },
-          { id: "14", label: "Faramir" },
-        ]}
-        onClose={selection => {
-          setSelected(selection);
+      <Combobox.Option id="1" label="Bilbo Baggins" />
+      <Combobox.Option id="2" label="Frodo Baggins" />
+      <Combobox.Option id="3" label="Pippin Took" />
+      <Combobox.Option id="4" label="Merry Brandybuck" />
+      <Combobox.Option id="5" label="Sam Gamgee" />
+      <Combobox.Option id="6" label="Aragorn" />
+      <Combobox.Option id="7" label="Gimli" />
+      <Combobox.Option id="8" label="Legolas" />
+      <Combobox.Option id="9" label="Gandalf" />
+      <Combobox.Option id="10" label="Gollum" />
+      <Combobox.Option id="11" label="Sauron" />
+      <Combobox.Option id="12" label="Saruman" />
+      <Combobox.Option id="13" label="Elrond" />
+      <Combobox.Option id="14" label="Galadriel" />
+
+      <Combobox.Action
+        label="Add Teammate"
+        onClick={() => {
+          alert("Added a new teammate ✅");
         }}
-        selected={selected}
-        subjectNoun="teammates"
-      >
-        <Combobox.Action
-          label="Add Teammate"
-          onClick={() => {
-            alert("Added a new teammate ✅");
-          }}
-        />
-        <Combobox.Action
-          label="Manage Teammates"
-          onClick={() => {
-            alert("Managed teammates 👍");
-          }}
-        />
-      </Combobox.Content>
+      />
+      <Combobox.Action
+        label="Manage Teammates"
+        onClick={() => {
+          alert("Managed teammates 👍");
+        }}
+      />
     </Combobox>
   );
 };
@@ -147,22 +144,21 @@ const ComboboxEmptyState: ComponentStory<typeof Combobox> = args => {
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
 
   return (
-    <Combobox {...args} heading="Teammates">
-      <Combobox.Content
-        options={[]}
-        onSelect={selection => {
-          setSelected(selection);
+    <Combobox
+      {...args}
+      heading="Teammates"
+      onSelect={selection => {
+        setSelected(selection);
+      }}
+      selected={selected}
+      subjectNoun="teammates"
+    >
+      <Combobox.Action
+        label="Add Teammate"
+        onClick={() => {
+          alert("Added a new teammate ✅");
         }}
-        selected={selected}
-        subjectNoun="teammates"
-      >
-        <Combobox.Action
-          label="Add Teammate"
-          onClick={() => {
-            alert("Added a new teammate ✅");
-          }}
-        />
-      </Combobox.Content>
+      />
     </Combobox>
   );
 };
@@ -187,42 +183,41 @@ const ComboboxClearSelection: ComponentStory<typeof Combobox> = args => {
         type="primary"
         onClick={() => setSelected([])}
       />
-      <Combobox {...args} heading="Teammates">
-        <Combobox.Content
-          options={[
-            { id: "1", label: "Bilbo Baggins" },
-            { id: "2", label: "Frodo Baggins" },
-            { id: "3", label: "Pippin Took" },
-            { id: "4", label: "Merry Brandybuck" },
-            { id: "5", label: "Sam Gamgee" },
-            { id: "6", label: "Aragorn" },
-            { id: "7", label: "Galadriel" },
-            { id: "8", label: "Arwen" },
-            { id: "9", label: "Gandalf" },
-            { id: "10", label: "Legolas" },
-            { id: "11", label: "Gimli" },
-            { id: "12", label: "Samwise Gamgee" },
-            { id: "14", label: "Faramir" },
-          ]}
-          onSelect={selection => {
-            setSelected(selection);
+      <Combobox
+        {...args}
+        heading="Teammates"
+        onSelect={selection => {
+          setSelected(selection);
+        }}
+        selected={selected}
+        subjectNoun="teammates"
+      >
+        <Combobox.Option id="1" label="Bilbo Baggins" />
+        <Combobox.Option id="2" label="Frodo Baggins" />
+        <Combobox.Option id="3" label="Pippin Took" />
+        <Combobox.Option id="4" label="Merry Brandybuck" />
+        <Combobox.Option id="5" label="Sam Gamgee" />
+        <Combobox.Option id="6" label="Aragorn" />
+        <Combobox.Option id="7" label="Gimli" />
+        <Combobox.Option id="8" label="Legolas" />
+        <Combobox.Option id="9" label="Gandalf" />
+        <Combobox.Option id="10" label="Gollum" />
+        <Combobox.Option id="11" label="Sauron" />
+        <Combobox.Option id="12" label="Saruman" />
+        <Combobox.Option id="13" label="Elrond" />
+        <Combobox.Option id="14" label="Galadriel" />
+        <Combobox.Action
+          label="Add Teammate"
+          onClick={() => {
+            alert("Added a new teammate ✅");
           }}
-          selected={selected}
-          subjectNoun="teammates"
-        >
-          <Combobox.Action
-            label="Add Teammate"
-            onClick={() => {
-              alert("Added a new teammate ✅");
-            }}
-          />
-          <Combobox.Action
-            label="Manage Teammates"
-            onClick={() => {
-              alert("Managed teammates 👍");
-            }}
-          />
-        </Combobox.Content>
+        />
+        <Combobox.Action
+          label="Manage Teammates"
+          onClick={() => {
+            alert("Managed teammates 👍");
+          }}
+        />
       </Combobox>
     </div>
   );
@@ -233,6 +228,7 @@ const ComboboxMultiSelection: ComponentStory<typeof Combobox> = args => {
 
   return (
     <Combobox
+      {...args}
       multiSelect
       heading="Teammates"
       onSelect={selection => {
@@ -241,28 +237,20 @@ const ComboboxMultiSelection: ComponentStory<typeof Combobox> = args => {
       selectionTiming="onClose"
       selected={selected}
     >
-      <Combobox.Option id="1" label="Jason Vorhees" />
-      <Combobox.Option id="2" label="Michael Myers" />
-      <Combobox.Option id="3" label="Freddy Krueger" />
-      <Combobox.Option id="4" label="Chucky" />
-      <Combobox.Option id="5" label="Leatherface" />
-      <Combobox.Option id="6" label="Pinhead" />
-      <Combobox.Option id="7" label="Pennywise" />
-      <Combobox.Option id="8" label="Jigsaw" />
-      <Combobox.Option id="9" label="Ghostface" />
-      <Combobox.Option id="10" label="Norman Bates" />
-      <Combobox.Option id="11" label="Candyman" />
-      <Combobox.Option id="12" label="The Creeper" />
-      <Combobox.Option id="13" label="Jack Torrance" />
-      <Combobox.Option id="14" label="Damien Thorn" />
-      <Combobox.Option id="15" label="Regan MacNeil" />
-      <Combobox.Option id="16" label="Carrie White" />
-      <Combobox.Option id="17" label="Hannibal Lecter" />
-      <Combobox.Option id="18" label="Annie Wilkes" />
-      <Combobox.Option id="19" label="Dracula" />
-      <Combobox.Option id="20" label="Frankenstein's Monster" />
-      <Combobox.Option id="21" label="The Mummy" />
-      <Combobox.Option id="22" label="The Wolfman" />
+      <Combobox.Option id="1" label="Bilbo Baggins" />
+      <Combobox.Option id="2" label="Frodo Baggins" />
+      <Combobox.Option id="3" label="Pippin Took" />
+      <Combobox.Option id="4" label="Merry Brandybuck" />
+      <Combobox.Option id="5" label="Sam Gamgee" />
+      <Combobox.Option id="6" label="Aragorn" />
+      <Combobox.Option id="7" label="Gimli" />
+      <Combobox.Option id="8" label="Legolas" />
+      <Combobox.Option id="9" label="Gandalf" />
+      <Combobox.Option id="10" label="Gollum" />
+      <Combobox.Option id="11" label="Sauron" />
+      <Combobox.Option id="12" label="Saruman" />
+      <Combobox.Option id="13" label="Elrond" />
+      <Combobox.Option id="14" label="Galadriel" />
 
       <Combobox.TriggerButton
         label="Select a teammate"
