@@ -1,8 +1,6 @@
 import React from "react";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { FormatEmail } from ".";
-
-afterEach(cleanup);
 
 it("renders a FormatEmail", () => {
   const { container } = render(<FormatEmail email="email@address.me" />);

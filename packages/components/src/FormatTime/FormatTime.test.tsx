@@ -1,9 +1,7 @@
 import React from "react";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { CivilTime } from "@std-proposal/temporal";
 import { FormatTime } from "./FormatTime";
-
-afterEach(cleanup);
 
 describe("FormatTime", () => {
   describe.each(

@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  RenderAPI,
-  cleanup,
-  fireEvent,
-  render,
-} from "@testing-library/react-native";
+import { RenderAPI, fireEvent, render } from "@testing-library/react-native";
 import { tokens } from "@jobber/design/foundation";
 import { AccessibilityInfo } from "react-native";
 import { Option, Select } from ".";
@@ -19,7 +14,6 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  cleanup();
   jest.resetAllMocks();
 });
 

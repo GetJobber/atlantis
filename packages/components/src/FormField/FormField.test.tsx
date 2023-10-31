@@ -1,8 +1,6 @@
 import React from "react";
-import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
+import { fireEvent, render, waitFor } from "@testing-library/react";
 import { FormField } from ".";
-
-afterEach(cleanup);
 
 // eslint-disable-next-line max-statements
 describe("FormField", () => {

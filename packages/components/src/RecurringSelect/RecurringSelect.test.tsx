@@ -1,10 +1,8 @@
 /* eslint-disable jest/no-conditional-expect */
 import React from "react";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { RecurringSelect } from "./RecurringSelect";
 import { DayOfMonth, DurationPeriod, WeekDay } from "./types";
-
-afterEach(cleanup);
 
 let onChange: jest.Mock;
 

@@ -9,17 +9,33 @@ import {
   ComboboxTriggerChip,
 } from "./components/ComboboxTrigger";
 import { useComboboxValidation } from "./hooks/useComboboxValidation";
+import { ComboboxOption } from "./components/ComboboxOption";
 import { ComboboxActivator } from "./components/ComboboxActivator";
 
-export function Combobox(props: ComboboxProps): JSX.Element {
-  const { contentElement, triggerElement } = useComboboxValidation(
-    props.children,
-  );
+export function Combobox({
+  multiSelect = false,
+  label = "Select",
+  selected = [],
+  ...props
+}: ComboboxProps): JSX.Element {
+  const { contentElement, triggerElement, optionElements, actionElements } =
+    useComboboxValidation(props.children);
+
+  const buildOptions = optionElements.map(option => ({
+    id: option.props.id,
+    label: option.props.label,
+  }));
 
   return (
-    <ComboboxContextProvider multiselect={props.multiSelect}>
-      {triggerElement || <ComboboxTrigger heading={props.heading} />}
-      {contentElement}
+    <ComboboxContextProvider multiselect={multiSelect}>
+      {triggerElement || <ComboboxTrigger label={label} selected={selected} />}
+
+      {contentElement || (
+        // @ts-expect-error - Suppress the XOR error with onClose|onSelect until we finish the refactor on JOB-81416
+        <ComboboxContent options={buildOptions} selected={selected} {...props}>
+          {actionElements}
+        </ComboboxContent>
+      )}
     </ComboboxContextProvider>
   );
 }
@@ -33,5 +49,10 @@ Combobox.TriggerButton = ComboboxTriggerButton;
  */
 Combobox.TriggerChip = ComboboxTriggerChip;
 Combobox.Activator = ComboboxActivator;
+
+/**
+ * @deprecated Use individual Combobox.Option instead
+ */
 Combobox.Content = ComboboxContent;
 Combobox.Action = ComboboxAction;
+Combobox.Option = ComboboxOption;
