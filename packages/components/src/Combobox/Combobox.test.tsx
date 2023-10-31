@@ -1,9 +1,9 @@
-import { cleanup, fireEvent, render } from "@testing-library/react";
 import React from "react";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { ComboboxOption } from "./Combobox.types";
 import { Combobox } from "./Combobox";
 import {
-  COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE,
+  COMBOBOX_OPTION_AND_CONTENT_EXISTS_ERROR,
   COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE,
 } from "./hooks/useComboboxValidation";
 import { Chip } from "../Chip";
@@ -126,40 +126,6 @@ describe("Combobox validation", () => {
     expect(component).toThrow(COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
   });
 
-  it("throws an error if there is no Content element", () => {
-    expect.assertions(1);
-    let error;
-
-    try {
-      render(
-        <Combobox>
-          <Combobox.TriggerButton label="Button" />
-        </Combobox>,
-      );
-    } catch (e) {
-      error = e as Error;
-    } finally {
-      expect(error?.message).toBe(COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE);
-    }
-  });
-
-  it("throws an error if there is neither a Content nor Trigger element", () => {
-    expect.assertions(1);
-    let error;
-
-    try {
-      render(
-        <Combobox>
-          <></>
-        </Combobox>,
-      );
-    } catch (e) {
-      error = e as Error;
-    } finally {
-      expect(error?.message).toBe(COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE);
-    }
-  });
-
   it("throws an error if there are multiple Trigger elements and no Content", () => {
     expect.assertions(1);
     let error;
@@ -176,6 +142,59 @@ describe("Combobox validation", () => {
     } finally {
       expect(error?.message).toBe(COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
     }
+  });
+});
+
+// TODO: Consolidate this with "ComboboxContent" test once we've completely
+// remove Combobox.Content JOB-81416
+describe("Combobox Simplified API", () => {
+  const mockOnSelect = jest.fn();
+  const mockActionClick = jest.fn();
+
+  it("should show the options and actions in the Combobox Content", () => {
+    const triggerLabel = "Button";
+    render(
+      <Combobox onSelect={mockOnSelect} selected={[]}>
+        <Combobox.TriggerButton label={triggerLabel} />
+
+        <Combobox.Option id="1" label="Option 1" />
+        <Combobox.Option id="2" label="Option 2" />
+
+        <Combobox.Action label="Action 1" onClick={mockActionClick} />
+      </Combobox>,
+    );
+
+    const optionOneLabel = screen.getByText("Option 1");
+    const actionLabel = screen.getByLabelText("Action 1");
+
+    fireEvent.click(screen.getByText(triggerLabel));
+    expect(optionOneLabel).toBeInTheDocument();
+    expect(screen.getByText("Option 2")).toBeInTheDocument();
+    expect(actionLabel).toBeInTheDocument();
+
+    fireEvent.click(optionOneLabel);
+    expect(mockOnSelect).toHaveBeenCalledWith([{ id: "1", label: "Option 1" }]);
+
+    actionLabel.click();
+    expect(mockActionClick).toHaveBeenCalled();
+  });
+
+  it("should throw an error when Option/Action and Content all exist as siblings", () => {
+    const component = () =>
+      render(
+        <Combobox onSelect={mockOnSelect} selected={[]}>
+          <Combobox.TriggerButton label="Button" />
+
+          <Combobox.Content options={[]} onSelect={jest.fn()} selected={[]} />
+
+          <Combobox.Option id="1" label="Option 1" />
+          <Combobox.Option id="2" label="Option 2" />
+
+          <Combobox.Action label="Action 1" onClick={mockActionClick} />
+        </Combobox>,
+      );
+
+    expect(component).toThrow(COMBOBOX_OPTION_AND_CONTENT_EXISTS_ERROR);
   });
 });
 

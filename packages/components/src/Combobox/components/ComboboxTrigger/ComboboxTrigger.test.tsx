@@ -100,15 +100,13 @@ describe("ComboboxTrigger", () => {
     afterEach(cleanup);
     it("renders a Chip with 'base' variation", () => {
       const { getByRole } = render(
-        <Combobox heading="Teammates">
-          <Combobox.Content
-            options={[
-              { id: "1", label: "Michael" },
-              { id: "2", label: "Jason" },
-            ]}
-            onSelect={jest.fn()}
-            selected={[{ id: "1", label: "Michael" }]}
-          ></Combobox.Content>
+        <Combobox
+          heading="Teammates"
+          onSelect={jest.fn()}
+          selected={[{ id: "1", label: "Michael" }]}
+        >
+          <Combobox.Option id="1" label="Michael" />
+          <Combobox.Option id="2" label="Jason" />
         </Combobox>,
       );
 
@@ -121,15 +119,13 @@ describe("ComboboxTrigger", () => {
     describe("When multiSelect is false", () => {
       it("renders Chip with the selected option as the label", () => {
         const { getByRole } = render(
-          <Combobox heading="Teammates">
-            <Combobox.Content
-              options={[
-                { id: "1", label: "Michael" },
-                { id: "2", label: "Jason" },
-              ]}
-              onSelect={jest.fn()}
-              selected={[{ id: "1", label: "Michael" }]}
-            ></Combobox.Content>
+          <Combobox
+            heading="Teammates"
+            onSelect={jest.fn()}
+            selected={[{ id: "1", label: "Michael" }]}
+          >
+            <Combobox.Option id="1" label="Michael" />
+            <Combobox.Option id="2" label="Jason" />
           </Combobox>,
         );
 
@@ -142,16 +138,15 @@ describe("ComboboxTrigger", () => {
     describe("When multiSelect is true", () => {
       it("renders Chip with a heading and label", () => {
         const { getByRole } = render(
-          <Combobox heading="Teammates" multiSelect>
-            <Combobox.Content
-              options={[
-                { id: "1", label: "Michael" },
-                { id: "2", label: "Jason" },
-                { id: "3", label: "Leatherface" },
-              ]}
-              onSelect={jest.fn()}
-              selected={[{ id: "1", label: "Michael" }]}
-            ></Combobox.Content>
+          <Combobox
+            heading="Teammates"
+            multiSelect
+            onSelect={jest.fn()}
+            selected={[{ id: "1", label: "Michael" }]}
+          >
+            <Combobox.Option id="1" label="Michael" />
+            <Combobox.Option id="2" label="Jason" />
+            <Combobox.Option id="3" label="Leatherface" />
           </Combobox>,
         );
 
@@ -163,19 +158,18 @@ describe("ComboboxTrigger", () => {
 
       it("renders Chip with a label that is the selected options joined by a comma", () => {
         const { getByRole } = render(
-          <Combobox heading="Teammates" multiSelect>
-            <Combobox.Content
-              options={[
-                { id: "1", label: "Michael" },
-                { id: "2", label: "Jason" },
-                { id: "3", label: "Leatherface" },
-              ]}
-              onSelect={jest.fn()}
-              selected={[
-                { id: "1", label: "Michael" },
-                { id: "3", label: "Leatherface" },
-              ]}
-            ></Combobox.Content>
+          <Combobox
+            heading="Teammates"
+            multiSelect
+            onSelect={jest.fn()}
+            selected={[
+              { id: "1", label: "Michael" },
+              { id: "3", label: "Leatherface" },
+            ]}
+          >
+            <Combobox.Option id="1" label="Michael" />
+            <Combobox.Option id="2" label="Jason" />
+            <Combobox.Option id="3" label="Leatherface" />
           </Combobox>,
         );
 
@@ -193,7 +187,7 @@ function TriggerTestWrapper() {
   return (
     <>
       <span data-testid="combobox-state">{open ? "Open" : "Closed"}</span>
-      <ComboboxTrigger heading="Teammates" />
+      <ComboboxTrigger heading="Teammates" selected={[]} />
     </>
   );
 }
