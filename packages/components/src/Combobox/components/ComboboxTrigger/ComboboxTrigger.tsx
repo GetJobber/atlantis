@@ -2,10 +2,7 @@ import React from "react";
 import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
 import { ComboboxContext } from "../../ComboboxProvider";
-
-interface ComboboxTriggerProps {
-  readonly heading: string;
-}
+import { ComboboxTriggerProps } from "../../Combobox.types";
 
 export function ComboboxTrigger(props: ComboboxTriggerProps) {
   const { handleClose, open, setOpen, selected, multiselect } =

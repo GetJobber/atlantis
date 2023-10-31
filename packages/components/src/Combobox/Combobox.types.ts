@@ -1,5 +1,4 @@
 import { Dispatch, ReactElement, SetStateAction } from "react";
-import { ButtonProps } from "../Button";
 
 export type ComboboxSelectionTiming = "onSelect" | "onClose";
 
@@ -55,16 +54,10 @@ export interface ComboboxActivatorProps {
 }
 export interface ComboboxTriggerProps {
   /**
-   * The label text of the trigger.
+   * The heading text of the trigger.
    */
-  readonly label: string;
+  readonly heading: string;
 }
-
-export interface ComboboxTriggerButtonProps
-  extends ComboboxTriggerProps,
-    Pick<ButtonProps, "type" | "variation" | "icon" | "iconOnRight"> {}
-
-export type ComboboxTriggerChipProps = ComboboxTriggerProps;
 
 export interface ComboboxOption {
   /**

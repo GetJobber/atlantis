@@ -3,11 +3,7 @@ import { ComboboxProps } from "./Combobox.types";
 import { ComboboxContent } from "./components/ComboboxContent";
 import { ComboboxAction } from "./components/ComboboxAction";
 import { ComboboxContextProvider } from "./ComboboxProvider";
-import {
-  ComboboxTrigger,
-  ComboboxTriggerButton,
-  ComboboxTriggerChip,
-} from "./components/ComboboxTrigger";
+import { ComboboxTrigger } from "./components/ComboboxTrigger";
 import { ComboboxOption as ComboboxOptionComponent } from "./components/ComboboxOption/ComboboxOption";
 import styles from "./Combobox.css";
 import { useCombobox } from "./hooks/useCombobox";
@@ -76,14 +72,6 @@ export function Combobox(props: ComboboxProps): JSX.Element {
   );
 }
 
-/**
- * @deprecated Use Combobox.Activator instead
- */
-Combobox.TriggerButton = ComboboxTriggerButton;
-/**
- * @deprecated Use Combobox.Activator instead
- */
-Combobox.TriggerChip = ComboboxTriggerChip;
 Combobox.Activator = ComboboxActivator;
 Combobox.Content = ComboboxContent;
 Combobox.Action = ComboboxAction;

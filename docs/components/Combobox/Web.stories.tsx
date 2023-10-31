@@ -252,13 +252,6 @@ const ComboboxMultiSelection: ComponentStory<typeof Combobox> = args => {
       <Combobox.Option id="13" label="Elrond" />
       <Combobox.Option id="14" label="Galadriel" />
 
-      <Combobox.TriggerButton
-        label="Select a teammate"
-        variation="subtle"
-        type="primary"
-        icon="arrowDown"
-        iconOnRight={true}
-      />
       <Combobox.Action
         label="Add Teammate"
         onClick={() => {
