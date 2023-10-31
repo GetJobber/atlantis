@@ -234,7 +234,6 @@ const ComboboxMultiSelection: ComponentStory<typeof Combobox> = args => {
       onSelect={selection => {
         setSelected(selection);
       }}
-      selectionTiming="onClose"
       selected={selected}
     >
       <Combobox.Option id="1" label="Bilbo Baggins" />

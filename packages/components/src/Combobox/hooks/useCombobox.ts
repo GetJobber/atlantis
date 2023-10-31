@@ -10,7 +10,7 @@ import {
   UseMakeComboboxHandlersReturn,
   useMakeComboboxHandlers,
 } from "./useMakeComboboxHandlers";
-import { ComboboxOption } from "../Combobox.types";
+import { ComboboxOption, ComboboxProps } from "../Combobox.types";
 
 type UseComboboxReturn = {
   optionElements?: ReactElement[];
@@ -29,7 +29,7 @@ type UseComboboxReturn = {
 export function useCombobox(
   selected: ComboboxOption[],
   onSelect: (selection: ComboboxOption[]) => void,
-  children?: ReactElement | ReactElement[],
+  children?: ComboboxProps["children"],
   onClose?: () => void,
   multiSelect?: boolean,
 ): UseComboboxReturn {

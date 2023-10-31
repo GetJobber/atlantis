@@ -1,7 +1,10 @@
 import { Dispatch, ReactElement, SetStateAction } from "react";
 
+type ComboboxFragment = Iterable<ComboboxNode>;
+type ComboboxNode = ReactElement | ComboboxFragment;
+
 export interface ComboboxProps {
-  readonly children?: ReactElement | ReactElement[];
+  readonly children?: ComboboxNode;
 
   /**
    * When `true`, `Combobox` will allow for multiple selections

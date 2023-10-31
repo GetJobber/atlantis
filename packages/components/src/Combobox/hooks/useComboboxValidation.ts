@@ -1,20 +1,21 @@
 import { useAssert } from "@jobber/hooks/useAssert";
-import { ReactElement } from "react";
-import { getCompoundComponents } from "@jobber/components/DataList/DataList.utils";
+import { Children, ReactElement, isValidElement } from "react";
 import {
   ComboboxOption,
   ComboboxOptionProps,
 } from "../components/ComboboxOption/ComboboxOption";
 import { ComboboxAction } from "../components/ComboboxAction";
-import { ComboboxActionProps, ComboboxActivatorProps } from "../Combobox.types";
+import {
+  ComboboxActionProps,
+  ComboboxActivatorProps,
+  ComboboxProps,
+} from "../Combobox.types";
 import { ComboboxActivator } from "../components/ComboboxActivator";
 
 export const COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE =
   "Combobox must have exactly one Trigger element";
 
-export function useComboboxValidation(
-  children?: ReactElement | ReactElement[],
-): {
+export function useComboboxValidation(children?: ComboboxProps["children"]): {
   triggerElement?: ReactElement;
   optionElements?: ReactElement[];
   actionElements?: ReactElement[];
@@ -50,4 +51,20 @@ function isInvalid(
   >[],
 ): boolean {
   return activators.length > 1 ? true : false;
+}
+
+/**
+ * Return all instances child component that matches the `type` provided
+ */
+export function getCompoundComponents<T>(
+  type: ReactElement<T>["type"],
+  children?: ComboboxProps["children"],
+): ReactElement<T>[] {
+  const childrenArray = Children.toArray(children);
+  const elements = childrenArray.filter(
+    (child): child is ReactElement<T> =>
+      isValidElement<T>(child) && child.type === type,
+  );
+
+  return elements;
 }
