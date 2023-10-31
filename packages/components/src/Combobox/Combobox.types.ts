@@ -52,6 +52,7 @@ export interface ComboboxProps {
 export interface ComboboxActivatorProps {
   readonly children: React.ReactElement;
 }
+
 export interface ComboboxTriggerProps {
   /**
    * The heading text of the trigger.
@@ -93,21 +94,54 @@ export interface ComboboxContentProps {
    */
   readonly subjectNoun?: string;
 
+  /**
+   * Action elements to be displayed at the bottom of the list.
+   */
   readonly actionElements?: ReactElement[];
 
+  /**
+   * Option elements to display in the list. Filtering may cause this to be a subset of the full set of options.
+   */
   readonly optionElements?: ReactElement[];
 
+  /**
+   * State setter for the selected options.
+   */
   readonly selectedStateSetter: (selection: ComboboxOption[]) => void;
 
+  /**
+   * Callback function to be called when an option is selected.
+   */
   readonly handleSelection: (option: ComboboxOption) => void;
 
+  /**
+   * Are multiple selections permitted.
+   */
   readonly multiselect?: boolean;
 
+  /**
+   * The current search term.
+   */
   readonly searchValue: string;
+
+  /**
+   * Setter for the current search term.
+   */
   readonly setSearchValue: Dispatch<SetStateAction<string>>;
 
+  /**
+   * Reference to the wrapping div element of all the Combobox pieces
+   */
   readonly wrapperRef: React.RefObject<HTMLDivElement>;
+
+  /**
+   * Is the Combobox open
+   */
   readonly open: boolean;
+
+  /**
+   * Setter for the open state of the Combobox.
+   */
   readonly setOpen: (open: boolean) => void;
 }
 
@@ -193,8 +227,6 @@ export interface ComboboxListProps {
    * The noun to be used in the empty state message.
    */
   readonly subjectNoun?: string;
-
-  readonly optionElements?: ReactElement[];
 }
 
 export interface ComboboxActionProps {
