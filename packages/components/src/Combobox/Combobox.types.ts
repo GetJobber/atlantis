@@ -1,7 +1,7 @@
 import { Dispatch, ReactElement, SetStateAction } from "react";
 
 export interface ComboboxProps {
-  readonly children: ReactElement | ReactElement[];
+  readonly children?: ReactElement | ReactElement[];
 
   /**
    * When `true`, `Combobox` will allow for multiple selections
