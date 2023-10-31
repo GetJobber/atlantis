@@ -1,5 +1,5 @@
 import React from "react";
-import { cleanup, fireEvent, render } from "@testing-library/react-native";
+import { fireEvent, render } from "@testing-library/react-native";
 import { AccessibilityInfo, View } from "react-native";
 import { SelectDefaultPicker } from "./SelectDefaultPicker";
 import { Text } from "../../../Text";
@@ -19,11 +19,11 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  cleanup();
   jest.resetAllMocks();
 });
 
 const childText = "Click me";
+
 function setup() {
   return render(
     <View testID="SelectDefaultPicker">

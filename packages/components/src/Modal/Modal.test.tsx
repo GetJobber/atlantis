@@ -1,9 +1,7 @@
 import React from "react";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { Modal } from ".";
 import styles from "./Modal.css";
-
-afterEach(cleanup);
 
 test("modal shows the children and a close button", () => {
   const title = "Dis be a title";

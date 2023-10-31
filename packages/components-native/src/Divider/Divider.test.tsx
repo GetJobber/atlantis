@@ -1,9 +1,7 @@
 import React from "react";
-import { cleanup, render } from "@testing-library/react-native";
+import { render } from "@testing-library/react-native";
 import { Divider } from "./Divider";
 import { styles } from "./Divider.style";
-
-afterEach(cleanup);
 
 const dividerTestId = "Divider";
 

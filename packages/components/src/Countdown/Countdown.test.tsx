@@ -1,10 +1,8 @@
 import React from "react";
-import { cleanup, render, waitFor } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import { Countdown } from "./Countdown";
 
 jest.useFakeTimers();
-
-afterEach(cleanup);
 
 it(`Shows units`, () => {
   const { container } = render(

@@ -1,9 +1,7 @@
 import React from "react";
-import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
+import { fireEvent, render, waitFor } from "@testing-library/react";
 import { AnyOption, Autocomplete } from ".";
 import { InputTextRef } from "../InputText";
-
-afterEach(cleanup);
 
 function returnOptions(options: AnyOption[]) {
   return async () => {

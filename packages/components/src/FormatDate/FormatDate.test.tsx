@@ -1,9 +1,7 @@
 import React from "react";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { CivilDate } from "@std-proposal/temporal";
 import { FormatDate, strFormatDate } from "./FormatDate";
-
-afterEach(cleanup);
 
 describe("Different date values", () => {
   const dates = {
