@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.58.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.57.1...@jobber/components@4.58.0) (2023-10-31)
+
+
+### Features
+
+* **components:** Make Combobox heading prop optional ([#1618](https://github.com/GetJobber/atlantis/issues/1618)) ([144aa80](https://github.com/GetJobber/atlantis/commit/144aa8086d91bca60fc10b953d149667cc41818e))
+
+
+
+
+
 ## [4.57.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.57.0...@jobber/components@4.57.1) (2023-10-31)
 
 **Note:** Version bump only for package @jobber/components
