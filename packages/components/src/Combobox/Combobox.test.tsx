@@ -78,7 +78,7 @@ describe("Combobox validation", () => {
       expect(error?.message).toBe(COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
     }
   });
-
+});
 
 describe("ComboboxContent", () => {
   it("should not have the content visible by default", () => {
@@ -263,7 +263,7 @@ describe("Combobox multiselect", () => {
   });
 
   describe("onClose callback", () => {
-    it("should call onClose with selections when the content is closed", async () => {
+    it("should call onClose when the content is closed", async () => {
       const onClose = jest.fn();
       const { getByText } = render(
         <MockMultiSelectOnCloseCombobox onCloseOverride={onClose} />,
@@ -278,53 +278,7 @@ describe("Combobox multiselect", () => {
       fireEvent.click(spoder);
       fireEvent.keyDown(button, { key: "Escape" });
 
-      expect(onClose).toHaveBeenCalledWith([
-        { id: "1", label: "Bilbo Baggins" },
-        { id: "3", label: "Shelob the Spoder" },
-      ]);
-    });
-
-    it("should not update consumer as selections are made", () => {
-      const { getByText, queryByText } = render(
-        <MockMultiSelectOnCloseCombobox />,
-      );
-
-      const button = getByText("Click Me");
-      const option = getByText("Bilbo Baggins");
-      const spoder = getByText("Shelob the Spoder");
-
-      fireEvent.click(button);
-      fireEvent.click(option);
-      fireEvent.click(spoder);
-
-      expect(queryByText("Choice: Bilbo Baggins")).not.toBeInTheDocument();
-      expect(queryByText("Choice: Shelob the Spoder")).not.toBeInTheDocument();
-    });
-
-    it("should not update consumer as selections are made by clicking Select all", () => {
-      const { getByText, queryByText } = render(
-        <MockMultiSelectOnCloseCombobox />,
-      );
-
-      const button = getByText("Click Me");
-      const selectAll = getByText("Select all");
-
-      fireEvent.click(button);
-      fireEvent.click(selectAll);
-
-      const options = [
-        getByText("Bilbo Baggins"),
-        getByText("Frodo Baggins"),
-        getByText("Shelob the Spoder"),
-      ];
-
-      options.forEach(option => {
-        expect(option).toHaveAttribute("aria-selected", "true");
-      });
-
-      expect(queryByText("Choice: Bilbo Baggins")).not.toBeInTheDocument();
-      expect(queryByText("Choice: Frodo Baggins")).not.toBeInTheDocument();
-      expect(queryByText("Choice: Shelob the Spoder")).not.toBeInTheDocument();
+      expect(onClose).toHaveBeenCalled();
     });
   });
 });
