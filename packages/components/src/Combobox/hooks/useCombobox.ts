@@ -2,7 +2,6 @@ import React, {
   Dispatch,
   MutableRefObject,
   ReactElement,
-  useEffect,
   useRef,
   useState,
 } from "react";
@@ -11,7 +10,7 @@ import {
   UseMakeComboboxHandlersReturn,
   useMakeComboboxHandlers,
 } from "./useMakeComboboxHandlers";
-import { ComboboxOption, ComboboxSelectionTiming } from "../Combobox.types";
+import { ComboboxOption } from "../Combobox.types";
 
 type UseComboboxReturn = {
   optionElements?: ReactElement[];
@@ -31,37 +30,25 @@ export function useCombobox(
   children: ReactElement | ReactElement[],
   selected: ComboboxOption[],
   onSelect: (selection: ComboboxOption[]) => void,
-  selectionTiming?: ComboboxSelectionTiming,
   onClose?: () => void,
   multiSelect?: boolean,
 ): UseComboboxReturn {
-  const waitUntilClose = selectionTiming === "onClose";
   const { optionElements, triggerElement, actionElements } =
     useComboboxValidation(children);
-  const [internalSelected, setInternalSelected] =
-    useState<ComboboxOption[]>(selected);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const shouldScroll = useRef<boolean>(false);
-  const selectedOptions = waitUntilClose ? internalSelected : selected;
-  const selectedStateSetter = waitUntilClose ? setInternalSelected : onSelect;
   const [open, setOpen] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
 
   const { handleClose, handleSelection } = useMakeComboboxHandlers(
     setOpen,
     setSearchValue,
-    selectedOptions,
+    selected,
     shouldScroll,
-    selectedStateSetter,
+    onSelect,
     multiSelect,
     onClose,
   );
-
-  useEffect(() => {
-    if (!open && waitUntilClose) {
-      onSelect(selectedOptions);
-    }
-  }, [open, waitUntilClose, selectedOptions]);
 
   return {
     optionElements,
@@ -72,8 +59,8 @@ export function useCombobox(
     setSearchValue,
     open,
     setOpen,
-    selectedOptions,
-    selectedStateSetter,
+    selectedOptions: selected,
+    selectedStateSetter: onSelect,
     shouldScroll,
     handleClose,
     handleSelection,

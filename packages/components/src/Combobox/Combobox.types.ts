@@ -1,7 +1,5 @@
 import { Dispatch, ReactElement, SetStateAction } from "react";
 
-export type ComboboxSelectionTiming = "onSelect" | "onClose";
-
 export interface ComboboxProps {
   readonly children: ReactElement | ReactElement[];
 
@@ -37,11 +35,6 @@ export interface ComboboxProps {
    * Callback function invoked upon the Combobox menu closing.
    */
   readonly onClose?: () => void;
-
-  /**
-   * Determines if the selections immediately call the onSelect callback or wait until the Combobox is closed. Defaults to "selection".
-   */
-  readonly selectionTiming?: ComboboxSelectionTiming;
 
   /**
    * The Chip heading for the trigger

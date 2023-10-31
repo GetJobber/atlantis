@@ -28,7 +28,6 @@ export function Combobox(props: ComboboxProps): JSX.Element {
     props.children,
     props.selected,
     props.onSelect,
-    props.selectionTiming,
     props.onClose,
     props.multiSelect,
   );
