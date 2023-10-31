@@ -1,9 +1,7 @@
 import React from "react";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { Checkbox } from ".";
 import { Text } from "../Text";
-
-afterEach(cleanup);
 
 it("renders a Checkbox", () => {
   const { getByRole } = render(

@@ -1,8 +1,6 @@
 import { ChangeEvent, KeyboardEvent } from "react";
-import { act, cleanup, renderHook } from "@testing-library/react-hooks";
+import { act, renderHook } from "@testing-library/react-hooks";
 import { useInternalChipDismissibleInput } from "../useInternalChipDismissibleInput";
-
-afterEach(cleanup);
 
 const handleOptionSelect = jest.fn(value => value);
 const handleCustomOptionSelect = jest.fn(value => value);
@@ -23,6 +21,7 @@ function setupHook(params?: Partial<typeof hookParams>) {
   const { result } = renderHook(() =>
     useInternalChipDismissibleInput({ ...hookParams, ...params }),
   );
+
   return result;
 }
 

@@ -1,8 +1,6 @@
 import React from "react";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { List } from ".";
-
-afterEach(cleanup);
 
 it("renders 1 List item with all the props", () => {
   const { container } = render(

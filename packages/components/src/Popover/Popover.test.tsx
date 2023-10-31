@@ -1,21 +1,14 @@
 import React, { useRef } from "react";
-import {
-  RenderResult,
-  act,
-  cleanup,
-  fireEvent,
-  render,
-} from "@testing-library/react";
+import { RenderResult, act, fireEvent, render } from "@testing-library/react";
 import { Popover } from ".";
 import { PopoverProps } from "./Popover";
-
-afterEach(cleanup);
 
 let rendered: RenderResult;
 const content = "Test Content";
 
 const PopoverTestComponent = (props: Omit<PopoverProps, "attachTo">) => {
   const divRef = useRef();
+
   return (
     <>
       <div ref={divRef}></div>

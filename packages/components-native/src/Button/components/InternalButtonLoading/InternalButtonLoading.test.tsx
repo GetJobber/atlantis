@@ -1,13 +1,11 @@
 import React from "react";
-import { cleanup, render } from "@testing-library/react-native";
+import { render } from "@testing-library/react-native";
 import {
   InternalButtonLoading,
   darkPattern,
   lightPattern,
 } from "./InternalButtonLoading";
 import { ButtonType, ButtonVariation } from "../../types";
-
-afterEach(cleanup);
 
 describe("Loading pattern", () => {
   it.each<[string, ButtonType, ButtonVariation]>([

@@ -1,8 +1,6 @@
 import React from "react";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { Tab, Tabs } from ".";
-
-afterEach(cleanup);
 
 let count = 0;
 const omelet = (

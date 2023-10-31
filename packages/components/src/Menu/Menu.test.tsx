@@ -1,15 +1,8 @@
 import React from "react";
-import {
-  cleanup,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { Menu } from ".";
 import { Button } from "../Button";
 
-afterEach(cleanup);
 jest.mock("uuid");
 
 describe("Menu", () => {
