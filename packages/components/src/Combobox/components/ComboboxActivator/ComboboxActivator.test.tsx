@@ -60,7 +60,7 @@ describe("ComboboxActivator", () => {
 
   it("renders a ComboboxTrigger with role 'combobox' when no custom activator is provided", () => {
     const { getByRole } = render(
-      <Combobox heading="Teammates">
+      <Combobox label="Teammates">
         <Combobox.Content
           options={[]}
           onSelect={jest.fn()}

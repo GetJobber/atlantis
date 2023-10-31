@@ -46,7 +46,7 @@ describe("ComboboxTrigger", () => {
   });
 
   describe("before selection", () => {
-    it("renders a Chip with a heading", () => {
+    it("renders a ComboboxTrigger with a label", () => {
       const { getByText } = render(
         <ComboboxContextProvider>
           <TriggerTestWrapper />
@@ -56,7 +56,7 @@ describe("ComboboxTrigger", () => {
       expect(getByText("Teammates")).toBeInTheDocument();
     });
 
-    it("renders a Chip with a 'Select' heading if no heading is provided", () => {
+    it("renders a ComboboxTrigger with a 'Select' label if no label is provided", () => {
       const { getByText } = render(
         <Combobox>
           <Combobox.Content
@@ -101,7 +101,7 @@ describe("ComboboxTrigger", () => {
     it("renders a Chip with 'base' variation", () => {
       const { getByRole } = render(
         <Combobox
-          heading="Teammates"
+          label="Teammates"
           onSelect={jest.fn()}
           selected={[{ id: "1", label: "Michael" }]}
         >
@@ -120,7 +120,7 @@ describe("ComboboxTrigger", () => {
       it("renders Chip with the selected option as the label", () => {
         const { getByRole } = render(
           <Combobox
-            heading="Teammates"
+            label="Teammates"
             onSelect={jest.fn()}
             selected={[{ id: "1", label: "Michael" }]}
           >
@@ -136,10 +136,10 @@ describe("ComboboxTrigger", () => {
     });
 
     describe("When multiSelect is true", () => {
-      it("renders Chip with a heading and label", () => {
+      it("renders ComboboxTrigger with a label and selected options", () => {
         const { getByRole } = render(
           <Combobox
-            heading="Teammates"
+            label="Teammates"
             multiSelect
             onSelect={jest.fn()}
             selected={[{ id: "1", label: "Michael" }]}
@@ -156,10 +156,10 @@ describe("ComboboxTrigger", () => {
         expect(trigger).toHaveTextContent("Michael");
       });
 
-      it("renders Chip with a label that is the selected options joined by a comma", () => {
+      it("renders ComboboxTrigger with multiple selected options joined by a comma", () => {
         const { getByRole } = render(
           <Combobox
-            heading="Teammates"
+            label="Teammates"
             multiSelect
             onSelect={jest.fn()}
             selected={[
@@ -187,7 +187,7 @@ function TriggerTestWrapper() {
   return (
     <>
       <span data-testid="combobox-state">{open ? "Open" : "Closed"}</span>
-      <ComboboxTrigger heading="Teammates" selected={[]} />
+      <ComboboxTrigger label="Teammates" selected={[]} />
     </>
   );
 }

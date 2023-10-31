@@ -14,9 +14,9 @@ export interface ComboboxProps
   readonly multiSelect?: boolean;
 
   /**
-   * The Chip heading for the trigger
+   * The label for the Combobox trigger
    */
-  readonly heading?: string;
+  readonly label?: string;
 
   readonly onSelect?: (selection: ComboboxOption[]) => void;
   readonly onClose?: (selection: ComboboxOption[]) => void;
