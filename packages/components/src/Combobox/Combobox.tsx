@@ -25,9 +25,9 @@ export function Combobox(props: ComboboxProps): JSX.Element {
     handleClose,
     handleSelection,
   } = useCombobox(
-    props.children,
     props.selected,
     props.onSelect,
+    props.children,
     props.onClose,
     props.multiSelect,
   );
@@ -72,6 +72,5 @@ export function Combobox(props: ComboboxProps): JSX.Element {
 }
 
 Combobox.Activator = ComboboxActivator;
-Combobox.Content = ComboboxContent;
 Combobox.Action = ComboboxAction;
 Combobox.Option = ComboboxOptionComponent;

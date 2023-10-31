@@ -27,9 +27,9 @@ type UseComboboxReturn = {
 } & UseMakeComboboxHandlersReturn;
 
 export function useCombobox(
-  children: ReactElement | ReactElement[],
   selected: ComboboxOption[],
   onSelect: (selection: ComboboxOption[]) => void,
+  children?: ReactElement | ReactElement[],
   onClose?: () => void,
   multiSelect?: boolean,
 ): UseComboboxReturn {

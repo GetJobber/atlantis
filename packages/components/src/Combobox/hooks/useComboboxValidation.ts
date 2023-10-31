@@ -13,23 +13,23 @@ export const COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE =
   "Combobox must have exactly one Trigger element";
 
 export function useComboboxValidation(
-  children: ReactElement | ReactElement[],
+  children?: ReactElement | ReactElement[],
 ): {
   triggerElement?: ReactElement;
   optionElements?: ReactElement[];
   actionElements?: ReactElement[];
 } {
   const optionElements = getCompoundComponents<ComboboxOptionProps>(
-    children,
     ComboboxOption,
+    children,
   );
   const actionElements = getCompoundComponents<ComboboxActionProps>(
-    children,
     ComboboxAction,
+    children,
   );
   const activatorElements = getCompoundComponents<ComboboxActivatorProps>(
-    children,
     ComboboxActivator,
+    children,
   );
 
   const shouldThrowTriggerError = isInvalid(activatorElements);
