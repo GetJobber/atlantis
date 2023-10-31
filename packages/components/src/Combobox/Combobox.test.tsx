@@ -16,7 +16,6 @@ describe("Combobox validation", () => {
     expect(() => {
       render(
         <Combobox>
-          <Combobox.TriggerButton label="Button" />
           <Combobox.Content
             options={[]}
             onSelect={jest.fn()}
@@ -27,7 +26,7 @@ describe("Combobox validation", () => {
     }).not.toThrow();
   });
 
-  it("renders without error when there is no TriggerButton or TriggerChip", () => {
+  it("renders without error when there is no Activator", () => {
     expect(() => {
       render(
         <Combobox>
@@ -58,80 +57,19 @@ describe("Combobox validation", () => {
     }).not.toThrow();
   });
 
-  it("throws an error if there are multiple of the same Trigger element", () => {
+  it("throws an error if there are multiple Activators", () => {
     expect.assertions(1);
     let error;
 
     try {
       render(
-        <Combobox>
-          <Combobox.TriggerButton label="Button" />
-          <Combobox.TriggerButton label="Button Again" />
-          <Combobox.Content
-            options={[]}
-            onSelect={jest.fn()}
-            selected={[]}
-          ></Combobox.Content>
-        </Combobox>,
-      );
-    } catch (e) {
-      error = e as Error;
-    } finally {
-      expect(error?.message).toBe(COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
-    }
-  });
-
-  it("throws an error if there are multiple of various Trigger elements", () => {
-    expect.assertions(1);
-    let error;
-
-    try {
-      render(
-        <Combobox>
-          <Combobox.TriggerButton label="Button" />
-          <Combobox.TriggerChip label="Chippy Chip" />
-          <Combobox.Content
-            options={[]}
-            onSelect={jest.fn()}
-            selected={[]}
-          ></Combobox.Content>
-        </Combobox>,
-      );
-    } catch (e) {
-      error = e as Error;
-    } finally {
-      expect(error?.message).toBe(COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
-    }
-  });
-
-  it("throws an error if there is a Trigger element and a ComboboxActivator", () => {
-    const component = () =>
-      render(
-        <Combobox>
-          <Combobox.TriggerButton label="Button" />
+        <Combobox onSelect={jest.fn()} selected={[]} heading="hello">
           <Combobox.Activator>
-            <Chip variation="subtle" label="Teammates" />
+            <span>hey</span>
           </Combobox.Activator>
-          <Combobox.Content
-            options={[]}
-            onSelect={jest.fn()}
-            selected={[]}
-          ></Combobox.Content>
-        </Combobox>,
-      );
-
-    expect(component).toThrow(COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
-  });
-
-  it("throws an error if there are multiple Trigger elements and no Content", () => {
-    expect.assertions(1);
-    let error;
-
-    try {
-      render(
-        <Combobox>
-          <Combobox.TriggerButton label="Button" />
-          <Combobox.TriggerChip label="Chippy Chip" />
+          <Combobox.Activator>
+            <span>hi</span>
+          </Combobox.Activator>
         </Combobox>,
       );
     } catch (e) {
@@ -140,13 +78,12 @@ describe("Combobox validation", () => {
       expect(error?.message).toBe(COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
     }
   });
-});
+
 
 describe("ComboboxContent", () => {
   it("should not have the content visible by default", () => {
     const { getByTestId } = render(
       <Combobox>
-        <Combobox.TriggerButton label="Button" />
         <Combobox.Content
           options={[]}
           onSelect={jest.fn()}
@@ -160,7 +97,6 @@ describe("ComboboxContent", () => {
   it("should close the content after opening and making a (single) selection", () => {
     const { getByTestId, getByText } = render(
       <Combobox>
-        <Combobox.TriggerButton label="Click Me" />
         <Combobox.Content
           options={[
             { id: "1", label: "Bilbo Baggins" },
@@ -186,7 +122,6 @@ describe("ComboboxContent", () => {
   it("should close the content after opening and pressing ESC", () => {
     const { getByTestId, getByText } = render(
       <Combobox>
-        <Combobox.TriggerButton label="Click Me" />
         <Combobox.Content
           options={[
             { id: "1", label: "Bilbo Baggins" },
@@ -211,7 +146,6 @@ describe("ComboboxContent", () => {
   it("should close the content after opening and clicking outside the content", () => {
     const { getByTestId, getByText } = render(
       <Combobox>
-        <Combobox.TriggerButton label="Click Me" />
         <Combobox.Content
           options={[
             { id: "1", label: "Bilbo Baggins" },
@@ -254,7 +188,6 @@ describe("Combobox multiselect", () => {
   it("should allow selections without closing", () => {
     const { getByTestId, getByText } = render(
       <Combobox multiSelect>
-        <Combobox.TriggerButton label="Click Me" />
         <Combobox.Content
           options={[
             { id: "1", label: "Bilbo Baggins" },
@@ -405,7 +338,6 @@ function MockMultiSelectOnCloseCombobox(props: {
   return (
     <>
       <Combobox multiSelect>
-        <Combobox.TriggerButton label="Click Me" />
         <Combobox.Content
           options={[
             { id: "1", label: "Bilbo Baggins" },
@@ -432,7 +364,6 @@ function MockMultiSelectOnSelectCombobox(props: {
   return (
     <>
       <Combobox multiSelect>
-        <Combobox.TriggerButton label="Click Me" />
         <Combobox.Content
           options={[
             { id: "1", label: "Bilbo Baggins" },
@@ -459,7 +390,6 @@ function ClearSelectionCombobox() {
     <>
       <button onClick={() => setSelected([])}>Clear Selection</button>
       <Combobox>
-        <Combobox.TriggerButton label="Button" />
         <Combobox.Content
           options={[
             { id: "1", label: "Bilbo Baggins" },
