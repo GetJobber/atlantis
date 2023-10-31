@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.57.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.57.0...@jobber/components@4.57.1) (2023-10-31)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [4.57.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.56.0...@jobber/components@4.57.0) (2023-10-30)
+
+
+### Features
+
+* **components:** Implement option and deprecate content ([#1616](https://github.com/GetJobber/atlantis/issues/1616)) ([4efbcbe](https://github.com/GetJobber/atlantis/commit/4efbcbed2acd8c888e7f69efe4ac8efa0398db1e))
+
+
+
+
+
 # [4.56.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.55.3...@jobber/components@4.56.0) (2023-10-27)
 
 

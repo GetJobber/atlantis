@@ -1,8 +1,6 @@
 import React from "react";
-import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
+import { fireEvent, render, waitFor } from "@testing-library/react";
 import { InputAvatar } from ".";
-
-afterEach(cleanup);
 
 const testFile = new File(["🔱 Atlantis"], "atlantis.png", {
   type: "image/png",

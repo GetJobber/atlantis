@@ -1,9 +1,7 @@
 import React from "react";
-import { act, cleanup, fireEvent, render } from "@testing-library/react";
+import { act, fireEvent, render } from "@testing-library/react";
 import ReactDatePicker from "react-datepicker";
 import { DatePicker } from "./DatePicker";
-
-afterEach(cleanup);
 
 beforeEach(() => {
   /**
