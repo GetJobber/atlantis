@@ -1,21 +1,11 @@
-import React, {
-  Dispatch,
-  MutableRefObject,
-  ReactElement,
-  useRef,
-  useState,
-} from "react";
-import { useComboboxValidation } from "./useComboboxValidation";
+import React, { Dispatch, MutableRefObject, useRef, useState } from "react";
 import {
   UseMakeComboboxHandlersReturn,
   useMakeComboboxHandlers,
 } from "./useMakeComboboxHandlers";
-import { ComboboxOption, ComboboxProps } from "../Combobox.types";
+import { ComboboxOption } from "../Combobox.types";
 
 type UseComboboxReturn = {
-  optionElements?: ReactElement[];
-  triggerElement?: ReactElement;
-  actionElements?: ReactElement[];
   wrapperRef: React.RefObject<HTMLDivElement>;
   searchValue: string;
   setSearchValue: Dispatch<React.SetStateAction<string>>;
@@ -29,12 +19,9 @@ type UseComboboxReturn = {
 export function useCombobox(
   selected: ComboboxOption[],
   onSelect: (selection: ComboboxOption[]) => void,
-  children?: ComboboxProps["children"],
   onClose?: () => void,
   multiSelect?: boolean,
 ): UseComboboxReturn {
-  const { optionElements, triggerElement, actionElements } =
-    useComboboxValidation(children);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const shouldScroll = useRef<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
@@ -51,9 +38,6 @@ export function useCombobox(
   );
 
   return {
-    optionElements,
-    triggerElement,
-    actionElements,
     wrapperRef,
     searchValue,
     setSearchValue,

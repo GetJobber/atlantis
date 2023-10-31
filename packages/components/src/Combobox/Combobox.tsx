@@ -8,12 +8,12 @@ import { ComboboxOption as ComboboxOptionComponent } from "./components/Combobox
 import styles from "./Combobox.css";
 import { useCombobox } from "./hooks/useCombobox";
 import { ComboboxActivator } from "./components/ComboboxActivator";
+import { useComboboxValidation } from "./hooks/useComboboxValidation";
 
 export function Combobox(props: ComboboxProps): JSX.Element {
+  const { optionElements, triggerElement, actionElements } =
+    useComboboxValidation(props.children);
   const {
-    actionElements,
-    optionElements,
-    triggerElement,
     selectedOptions,
     selectedStateSetter,
     shouldScroll,
@@ -27,7 +27,6 @@ export function Combobox(props: ComboboxProps): JSX.Element {
   } = useCombobox(
     props.selected,
     props.onSelect,
-    props.children,
     props.onClose,
     props.multiSelect,
   );
