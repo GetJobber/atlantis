@@ -68,11 +68,6 @@ export interface ComboboxOption {
 
 export interface ComboboxContentProps {
   /**
-   * Optional action button(s) to display at the bottom of the list.
-   */
-  readonly children?: ReactElement | ReactElement[];
-
-  /**
    * Placeholder text to display in the search input. Defaults to "Search".
    */
   readonly searchPlaceholder?: string;
@@ -137,6 +132,11 @@ export interface ComboboxContentProps {
    * Setter for the open state of the Combobox.
    */
   readonly setOpen: (open: boolean) => void;
+
+  /**
+   * The full set of options for the Combobox in the shape of data, not elements.
+   */
+  readonly options: ComboboxOption[];
 }
 
 export interface ComboboxSearchProps {

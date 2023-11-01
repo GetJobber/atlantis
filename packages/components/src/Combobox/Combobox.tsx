@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { ComboboxProps } from "./Combobox.types";
 import { ComboboxContent } from "./components/ComboboxContent";
 import { ComboboxAction } from "./components/ComboboxAction";
@@ -13,6 +13,20 @@ import { useComboboxValidation } from "./hooks/useComboboxValidation";
 export function Combobox(props: ComboboxProps): JSX.Element {
   const { optionElements, triggerElement, actionElements } =
     useComboboxValidation(props.children);
+
+  const options = useMemo(
+    () =>
+      optionElements
+        ? optionElements.map(option => {
+            return {
+              id: option.props.id,
+              label: option.props.label,
+            };
+          })
+        : [],
+    [optionElements],
+  );
+
   const {
     selectedOptions,
     selectedStateSetter,
@@ -66,6 +80,7 @@ export function Combobox(props: ComboboxProps): JSX.Element {
           wrapperRef={wrapperRef}
           open={open}
           setOpen={setOpen}
+          options={options}
         />
       </div>
     </ComboboxContextProvider>
