@@ -5,7 +5,7 @@ import { OutParticle } from "./OutParticle";
 export const Boom = ({
   enabled,
   particles = 50,
-  boomType = "fireworks",
+  boomType = "firework",
   scheme = "all",
 }: {
   readonly enabled: boolean;
@@ -29,23 +29,19 @@ export const Boom = ({
   return (
     <>
       {enabled &&
-        loopArray.map((_, index) =>
-          boomType === "firework" ? (
-            <Particle
-              key={index}
-              enabled={particlesEnabled}
-              scheme={scheme}
-              boomType={boomType}
-            />
+        loopArray.map((_, index) => {
+          console.log("BOOMT!", boomType);
+
+          return boomType === "firework" ? (
+            <Particle key={index} enabled={particlesEnabled} scheme={scheme} />
           ) : (
             <OutParticle
               key={index}
               enabled={particlesEnabled}
               scheme={scheme}
-              boomType={boomType}
             />
-          ),
-        )}
+          );
+        })}
     </>
   );
 };

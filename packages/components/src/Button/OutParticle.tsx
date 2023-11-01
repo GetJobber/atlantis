@@ -25,11 +25,9 @@ const schemes: Record<string, string[]> = {
 export const OutParticle = ({
   enabled,
   scheme,
-  boomType,
 }: {
   readonly enabled: boolean;
   readonly scheme: string;
-  readonly boomType: string;
 }) => {
   const confettiProps = () => {
     const xDirection = Math.random() * 200;
@@ -48,7 +46,7 @@ export const OutParticle = ({
 
     return {
       x: xDirection * xFlip,
-      y: yDirection * (boomType === "confetti" ? yFlip : -1),
+      y: yDirection * yFlip,
       color: colors[colorPick],
       scale,
       id: particleID,

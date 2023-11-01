@@ -69,7 +69,7 @@ export const ButtonDelight = (props: ButtonDelightProps) => {
       type="button"
       ref={delightfulButton}
     >
-      <Boom enabled={boomEnabled} particles={150} />
+      <Boom enabled={boomEnabled} particles={150} boomType="firework" />
       {splitWord.length === 0
         ? props.children
         : splitWord.map((letter, index) => {

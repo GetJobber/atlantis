@@ -25,47 +25,34 @@ const schemes: Record<string, string[]> = {
 export const Particle = ({
   enabled,
   scheme,
-  boomType,
 }: {
   readonly enabled: boolean;
   readonly scheme: string;
-  readonly boomType: string;
 }) => {
   const fireworkProps = () => {
-    const xDirection = Math.random() * 250;
-    const yDirection = Math.random() * 250 + 75;
+    const xDirection = Math.random() * 350;
+    const yDirection = Math.random() * 150 + 75;
     const xFlip = Math.random() > 0.5 ? -1 : 1;
-    const yFlip = 1;
 
-    return { xDirection, yDirection, xFlip, yFlip, scale: 1 };
+    return { xDirection, yDirection, xFlip };
   };
 
-  const confettiProps = () => {
-    const xDirection = Math.random() * 150;
-    const yDirection = Math.random() * 100;
-    const xFlip = Math.random() > 0.5 ? -1 : 1;
-    const yFlip = Math.random() > 0.5 ? -1 : 1;
-    const scale = Math.random() * 10;
-
-    return { xDirection, yDirection, xFlip, yFlip, scale };
-  };
   const particleProps = useMemo(() => {
     const colors = schemes[scheme];
     const colorPick = Math.floor(Math.random() * colors?.length);
     const particleID = "id" + Math.floor(Math.random() * 100000);
-    const { xDirection, yDirection, xFlip, yFlip, scale } =
-      boomType === "confetti" ? confettiProps() : fireworkProps();
+    const { xDirection, yDirection, xFlip } = fireworkProps();
 
     return {
       x: xDirection * xFlip,
-      y: yDirection * (boomType === "confetti" ? yFlip : -1),
+      y: yDirection * -1,
       color: colors[colorPick],
-      scale,
       id: particleID,
     };
   }, []);
   const classes = classnames(styles.particle, {
     [`cl-${particleProps.id}`]: enabled,
+    "hi!": enabled,
   });
 
   return (
@@ -77,7 +64,7 @@ export const Particle = ({
             }
             @keyframes ${particleProps.id} {
                  0% {
-                      transform: translateX(0px) translateY(-5px) translateZ(0px);
+                      transform: translateX(0px) translateY(-5px);
                       opacity:0;
                       background-color:${particleProps.color};
                     }
@@ -85,7 +72,7 @@ export const Particle = ({
                             opacity:1;
                         }
                         50% {
-                            transform: translateZ(${particleProps.x}px) translateY(${particleProps.y}px) scale(${particleProps.scale});
+                            transform: translateX(${particleProps.x}px) translateY(${particleProps.y}px);
                         }
                         61% {
                             opacity:0;
