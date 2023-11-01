@@ -33,8 +33,8 @@ export function getCompoundComponent<T>(
  * Return all instances child component that matches the `type` provided
  */
 export function getCompoundComponents<T>(
+  children: ReactElement | ReactElement[],
   type: ReactElement<T>["type"],
-  children?: ReactElement | ReactElement[],
 ): ReactElement<T>[] {
   const childrenArray = Children.toArray(children);
   const elements = childrenArray.filter(
