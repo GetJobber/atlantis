@@ -72,7 +72,6 @@ export function Combobox(props: ComboboxProps): JSX.Element {
           subjectNoun={props.subjectNoun}
           selected={selectedOptions}
           actionElements={actionElements}
-          optionElements={optionElements}
           selectedStateSetter={selectedStateSetter}
           handleSelection={handleSelection}
           searchValue={searchValue}

@@ -89,11 +89,6 @@ export interface ComboboxContentProps {
   readonly actionElements?: ReactElement[];
 
   /**
-   * Option elements to display in the list. Filtering may cause this to be a subset of the full set of options.
-   */
-  readonly optionElements?: ReactElement[];
-
-  /**
    * State setter for the selected options.
    */
   readonly selectedStateSetter: (selection: ComboboxOption[]) => void;
