@@ -1,8 +1,8 @@
 import { render } from "@testing-library/react";
 import React from "react";
 import { ComboboxContent } from "./ComboboxContent";
-import { ComboboxContext } from "../../ComboboxProvider";
-import { ComboboxOption, ComboboxProps } from "../../Combobox.types";
+import { ComboboxContextProvider } from "../../ComboboxProvider";
+import { ComboboxOption } from "../../Combobox.types";
 
 const setOpen = jest.fn();
 const setSelected = jest.fn();
@@ -68,30 +68,6 @@ describe("ComboboxContent Header", () => {
   });
 });
 
-function MockComboboxProvider({
-  children,
-  multiselect = false,
-}: {
-  readonly children: ComboboxProps["children"];
-  readonly multiselect?: boolean;
-}) {
-  return (
-    <ComboboxContext.Provider
-      value={{
-        multiselect,
-        open: true,
-        setOpen,
-        selected: [],
-        shouldScroll: { current: false },
-        handleClose,
-        selectionHandler: handleSelect,
-      }}
-    >
-      {children}
-    </ComboboxContext.Provider>
-  );
-}
-
 function renderComboboxContent(
   options: ComboboxOption[] = [],
   selected: ComboboxOption[] = [],
@@ -100,7 +76,15 @@ function renderComboboxContent(
   searchValue = "",
 ) {
   return render(
-    <MockComboboxProvider>
+    <ComboboxContextProvider
+      setOpen={setOpen}
+      handleClose={handleClose}
+      selectionHandler={handleSelect}
+      multiselect={multiSelect}
+      shouldScroll={{ current: false }}
+      open={open}
+      selected={selected}
+    >
       <ComboboxContent
         selected={selected}
         selectedStateSetter={setSelected}
@@ -113,6 +97,6 @@ function renderComboboxContent(
         options={options}
         multiselect={multiSelect}
       />
-    </MockComboboxProvider>,
+    </ComboboxContextProvider>,
   );
 }
