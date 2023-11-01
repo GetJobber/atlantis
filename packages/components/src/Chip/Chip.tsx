@@ -56,12 +56,7 @@ export const Chip = ({
           onClick(value || label, ev as React.MouseEvent<HTMLButtonElement>)
         }
         tabIndex={tabIndex}
-        onKeyDown={(
-          event: React.KeyboardEvent<HTMLButtonElement | HTMLDivElement>,
-        ) =>
-          onKeyDown &&
-          onKeyDown(event as React.KeyboardEvent<HTMLButtonElement>)
-        }
+        onKeyDown={onKeyDown}
         aria-label={ariaLabel || label}
         disabled={disabled}
         role={role}

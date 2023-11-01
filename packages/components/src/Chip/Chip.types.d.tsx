@@ -69,7 +69,9 @@ export interface ChipProps extends PropsWithChildren {
   /**
    * Callback. Called when you keydown on Chip. Ships the event, so you can get the key pushed.
    */
-  readonly onKeyDown?: (ev: React.KeyboardEvent<HTMLButtonElement>) => void;
+  readonly onKeyDown?: (
+    ev: React.KeyboardEvent<HTMLButtonElement | HTMLDivElement>,
+  ) => void;
 }
 
 export type ChipVariations = "subtle" | "base";

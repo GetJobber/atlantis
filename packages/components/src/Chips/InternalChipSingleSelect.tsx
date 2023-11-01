@@ -26,6 +26,7 @@ export function InternalChipSingleSelect({
             <input
               type="radio"
               checked={isSelected}
+              tabIndex={-1}
               className={styles.input}
               onClick={handleClick(child?.props.value || "")}
               onKeyUp={handleKeyUp(isSelected, child?.props.value || "")}
