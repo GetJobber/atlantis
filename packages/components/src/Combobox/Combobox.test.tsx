@@ -99,7 +99,7 @@ describe("Combobox Single Select", () => {
     renderCombobox();
   });
 
-  it("should not show the heading when there's a selection", () => {
+  it("should not show the label when there's a selection", () => {
     expect(screen.queryByText(activatorLabel)).not.toBeInTheDocument();
     expect(
       screen.getByRole("combobox", { name: selectedValue.label }),
@@ -220,7 +220,7 @@ describe("Combobox Multiselect", () => {
 
       render(
         <Combobox
-          heading={activatorLabel}
+          label={activatorLabel}
           multiSelect={true}
           selected={[]}
           onClose={handleClose}
@@ -280,7 +280,7 @@ describe("Combobox Compound Component Validation", () => {
   it("renders without error when there is a ComboboxActivator", () => {
     expect(() =>
       render(
-        <Combobox heading={activatorLabel} selected={[]} onSelect={jest.fn()}>
+        <Combobox label={activatorLabel} selected={[]} onSelect={jest.fn()}>
           <Combobox.Activator>
             <Button label="Click me" />
           </Combobox.Activator>
@@ -292,7 +292,7 @@ describe("Combobox Compound Component Validation", () => {
   it("should throw an error if there is a Trigger element and a Combobox.Activator", () => {
     expect(() =>
       render(
-        <Combobox heading={activatorLabel} selected={[]} onSelect={jest.fn()}>
+        <Combobox label={activatorLabel} selected={[]} onSelect={jest.fn()}>
           <Combobox.Activator>
             <Button label="Click me" />
           </Combobox.Activator>
@@ -305,7 +305,7 @@ describe("Combobox Compound Component Validation", () => {
   it("should throw an error when Option/Action and Content all exist as siblings", () => {
     expect(() =>
       render(
-        <Combobox heading={activatorLabel}>
+        <Combobox label={activatorLabel}>
           <Combobox.Content options={[]} onSelect={jest.fn()} selected={[]} />
 
           <Combobox.Option id="1" label="Option 1" />
@@ -320,7 +320,7 @@ describe("Combobox Compound Component Validation", () => {
 function renderCombobox() {
   return render(
     <Combobox
-      heading={activatorLabel}
+      label={activatorLabel}
       multiSelect={mockMultiSelectValue()}
       selected={mockSelectedValue()}
       onSelect={handleSelect}
