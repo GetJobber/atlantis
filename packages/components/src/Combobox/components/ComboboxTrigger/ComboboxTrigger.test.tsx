@@ -1,84 +1,59 @@
 import { cleanup, fireEvent, render } from "@testing-library/react";
-import React, { useContext } from "react";
+import React from "react";
 import { ComboboxTrigger } from "./ComboboxTrigger";
-import {
-  ComboboxContext,
-  ComboboxContextProvider,
-} from "../../ComboboxProvider";
-import { Combobox } from "../../Combobox";
+import { ComboboxContextProvider } from "../../ComboboxProvider";
+import { ComboboxOption } from "../../Combobox.types";
+
+const handleClose = jest.fn();
+const setOpen = jest.fn();
+
+afterEach(() => {
+  handleClose.mockClear();
+  setOpen.mockClear();
+});
 
 describe("ComboboxTrigger", () => {
-  it("renders without error", () => {
-    const { getByRole } = render(
-      <ComboboxContextProvider>
-        <TriggerTestWrapper />
-      </ComboboxContextProvider>,
-    );
+  describe("when open is false", () => {
+    it("calls setOpen", () => {
+      const { getByRole } = renderTrigger();
+      const trigger = getByRole("combobox");
 
-    expect(getByRole("combobox")).toBeInTheDocument();
+      fireEvent.click(trigger);
+      expect(setOpen).toHaveBeenCalled();
+    });
   });
 
-  it("opens and closes ComboboxContent when clicked", () => {
-    const { getByRole, getByTestId } = render(
-      <ComboboxContextProvider>
-        <TriggerTestWrapper />
-      </ComboboxContextProvider>,
-    );
-    const trigger = getByRole("combobox");
+  describe("when open is true", () => {
+    it("calls onClose", () => {
+      const { getByRole } = renderTrigger(true);
+      const trigger = getByRole("combobox");
 
-    expect(getByTestId("combobox-state")).toHaveTextContent("Closed");
-
-    fireEvent.click(trigger);
-    expect(getByTestId("combobox-state")).toHaveTextContent("Open");
-
-    fireEvent.click(trigger);
-    expect(getByTestId("combobox-state")).toHaveTextContent("Closed");
+      fireEvent.click(trigger);
+      expect(handleClose).toHaveBeenCalled();
+    });
   });
 
   it("has role 'combobox'", () => {
-    const { getByRole } = render(
-      <ComboboxContextProvider>
-        <TriggerTestWrapper />
-      </ComboboxContextProvider>,
-    );
+    const { getByRole } = renderTrigger();
 
     expect(getByRole("combobox")).toBeInTheDocument();
   });
 
   describe("before selection", () => {
     it("renders a ComboboxTrigger with a label", () => {
-      const { getByText } = render(
-        <ComboboxContextProvider>
-          <TriggerTestWrapper />
-        </ComboboxContextProvider>,
-      );
+      const { getByText } = renderTrigger(false, [], "Teammates");
 
       expect(getByText("Teammates")).toBeInTheDocument();
     });
 
     it("renders a ComboboxTrigger with a 'Select' label if no label is provided", () => {
-      const { getByText } = render(
-        <Combobox>
-          <Combobox.Content
-            options={[
-              { id: "1", label: "Michael" },
-              { id: "2", label: "Jason" },
-            ]}
-            onSelect={jest.fn()}
-            selected={[]}
-          ></Combobox.Content>
-        </Combobox>,
-      );
+      const { getByText } = renderTrigger();
 
       expect(getByText("Select")).toBeInTheDocument();
     });
 
     it("renders a Chip with a suffix", () => {
-      const { getByTestId } = render(
-        <ComboboxContextProvider>
-          <TriggerTestWrapper />
-        </ComboboxContextProvider>,
-      );
+      const { getByTestId } = renderTrigger();
 
       const suffixIcon = getByTestId("add");
 
@@ -86,11 +61,7 @@ describe("ComboboxTrigger", () => {
     });
 
     it("renders a Chip with 'subtle' variation", () => {
-      const { getByRole } = render(
-        <ComboboxContextProvider>
-          <TriggerTestWrapper />
-        </ComboboxContextProvider>,
-      );
+      const { getByRole } = renderTrigger();
 
       expect(getByRole("combobox")).toHaveClass("subtle");
     });
@@ -99,16 +70,9 @@ describe("ComboboxTrigger", () => {
   describe("after selection", () => {
     afterEach(cleanup);
     it("renders a Chip with 'base' variation", () => {
-      const { getByRole } = render(
-        <Combobox
-          label="Teammates"
-          onSelect={jest.fn()}
-          selected={[{ id: "1", label: "Michael" }]}
-        >
-          <Combobox.Option id="1" label="Michael" />
-          <Combobox.Option id="2" label="Jason" />
-        </Combobox>,
-      );
+      const { getByRole } = renderTrigger(true, [
+        { id: "1", label: "Michael" },
+      ]);
 
       const trigger = getByRole("combobox");
 
@@ -118,15 +82,11 @@ describe("ComboboxTrigger", () => {
 
     describe("When multiSelect is false", () => {
       it("renders Chip with the selected option as the label", () => {
-        const { getByRole } = render(
-          <Combobox
-            label="Teammates"
-            onSelect={jest.fn()}
-            selected={[{ id: "1", label: "Michael" }]}
-          >
-            <Combobox.Option id="1" label="Michael" />
-            <Combobox.Option id="2" label="Jason" />
-          </Combobox>,
+        const { getByRole } = renderTrigger(
+          true,
+          [{ id: "1", label: "Michael" }],
+          undefined,
+          false,
         );
 
         const trigger = getByRole("combobox");
@@ -137,19 +97,15 @@ describe("ComboboxTrigger", () => {
 
     describe("When multiSelect is true", () => {
       it("renders ComboboxTrigger with a label and selected options", () => {
-        const { getByRole } = render(
-          <Combobox
-            label="Teammates"
-            multiSelect
-            onSelect={jest.fn()}
-            selected={[{ id: "1", label: "Michael" }]}
-          >
-            <Combobox.Option id="1" label="Michael" />
-            <Combobox.Option id="2" label="Jason" />
-            <Combobox.Option id="3" label="Leatherface" />
-          </Combobox>,
+        const { getByRole } = renderTrigger(
+          true,
+          [
+            { id: "1", label: "Michael" },
+            { id: "3", label: "Leatherface" },
+          ],
+          "Teammates",
+          true,
         );
-
         const trigger = getByRole("combobox");
 
         expect(trigger).toHaveTextContent("Teammates");
@@ -157,20 +113,14 @@ describe("ComboboxTrigger", () => {
       });
 
       it("renders ComboboxTrigger with multiple selected options joined by a comma", () => {
-        const { getByRole } = render(
-          <Combobox
-            label="Teammates"
-            multiSelect
-            onSelect={jest.fn()}
-            selected={[
-              { id: "1", label: "Michael" },
-              { id: "3", label: "Leatherface" },
-            ]}
-          >
-            <Combobox.Option id="1" label="Michael" />
-            <Combobox.Option id="2" label="Jason" />
-            <Combobox.Option id="3" label="Leatherface" />
-          </Combobox>,
+        const { getByRole } = renderTrigger(
+          true,
+          [
+            { id: "1", label: "Michael" },
+            { id: "3", label: "Leatherface" },
+          ],
+          undefined,
+          true,
         );
 
         const trigger = getByRole("combobox");
@@ -181,13 +131,23 @@ describe("ComboboxTrigger", () => {
   });
 });
 
-function TriggerTestWrapper() {
-  const { open } = useContext(ComboboxContext);
-
-  return (
-    <>
-      <span data-testid="combobox-state">{open ? "Open" : "Closed"}</span>
-      <ComboboxTrigger label="Teammates" selected={[]} />
-    </>
+function renderTrigger(
+  open = false,
+  selected: ComboboxOption[] = [],
+  label?: string,
+  multiselect = false,
+) {
+  return render(
+    <ComboboxContextProvider
+      setOpen={setOpen}
+      handleClose={handleClose}
+      selected={[]}
+      open={open}
+      shouldScroll={{ current: false }}
+      selectionHandler={jest.fn()}
+      multiselect={multiselect}
+    >
+      <ComboboxTrigger label={label} selected={selected} />
+    </ComboboxContextProvider>,
   );
 }
