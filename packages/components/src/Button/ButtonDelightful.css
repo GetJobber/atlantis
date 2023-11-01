@@ -1,0 +1,23 @@
+.space {
+  margin-right: 3.5px;
+
+  transform: translateY(0px);
+  transition: transform ease-in-out 0.2s;
+}
+.span {
+  font-family: var(--typography--fontFamily-normal);
+  font-size: var(--typography--fontSize-base);
+  font-weight: 800;
+  line-height: var(--typography--lineHeight-base);
+  transform: translateY(0px);
+  transition: transform ease-in-out 0.2s;
+}
+.drop {
+  transform: translateY(28px);
+  transition: transform ease-in 0.2s;
+}
+
+.explode {
+  transform: translateY(-28px);
+  transition: transform ease-in-out 0.1s;
+}

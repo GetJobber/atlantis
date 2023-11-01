@@ -4,6 +4,9 @@ import { XOR } from "ts-xor";
 import { Link } from "react-router-dom";
 import { IconNames } from "@jobber/design";
 import styles from "./Button.css";
+import { ButtonDelight } from "./ButtonDelight";
+import { TagProps } from "./Button.types";
+import { ButtonConfettiDelight } from "./ButtonConfettiDelight";
 import { Icon } from "../Icon";
 import { Typography } from "../Typography";
 
@@ -18,6 +21,8 @@ interface ButtonFoundationProps {
   readonly ariaControls?: string;
   readonly ariaHaspopup?: boolean;
   readonly ariaExpanded?: boolean;
+  readonly delight?: boolean;
+  readonly delightType?: string;
   readonly disabled?: boolean;
   readonly external?: boolean;
   readonly fullWidth?: boolean;
@@ -105,6 +110,8 @@ export function Button(props: ButtonProps) {
     ariaHaspopup,
     ariaExpanded,
     ariaLabel,
+    delight,
+    delightType = "firework",
     disabled = false,
     external,
     fullWidth,
@@ -137,7 +144,7 @@ export function Button(props: ButtonProps) {
 
   const buttonType: ButtonType = submit ? "submit" : "button";
 
-  const tagProps = {
+  const tagProps: TagProps = {
     className: buttonClassNames,
     disabled,
     id,
@@ -163,7 +170,15 @@ export function Button(props: ButtonProps) {
     );
   }
 
-  const Tag = url ? "a" : "button";
+  let Tag: ((props: typeof tagProps) => JSX.Element) | string = url
+    ? "a"
+    : "button";
+
+  if (delight && delightType === "firework") {
+    Tag = ButtonDelight;
+  } else if (delight && delightType === "confetti") {
+    Tag = ButtonConfettiDelight;
+  }
 
   return <Tag {...tagProps}>{buttonInternals}</Tag>;
 }

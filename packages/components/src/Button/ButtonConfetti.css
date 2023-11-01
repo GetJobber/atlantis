@@ -1,0 +1,4 @@
+.shrink {
+  transform: scale(0.9);
+  transition: transform ease-in-out 0.2s;
+}

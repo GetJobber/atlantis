@@ -1,0 +1,7 @@
+.particle {
+  position: absolute;
+  z-index: 0;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+}

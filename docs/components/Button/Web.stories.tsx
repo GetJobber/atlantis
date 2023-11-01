@@ -75,3 +75,22 @@ const FormTemplate: ComponentStory<typeof Button> = () => (
 );
 
 export const FormSubmit = FormTemplate.bind({});
+
+const DelightTemplate: ComponentStory<typeof Button> = args => (
+  <div style={{ paddingTop: 300, paddingLeft: 300 }}>
+    <Button {...args} />
+  </div>
+);
+
+export const Delighter = DelightTemplate.bind({});
+Delighter.args = {
+  delight: true,
+  label: "I am feeling Systemic Delight.",
+};
+
+export const DelighterConfetti = DelightTemplate.bind({});
+DelighterConfetti.args = {
+  delight: true,
+  delightType: "confetti",
+  label: "I am feeling Systemic Delight.",
+};
