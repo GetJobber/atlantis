@@ -1,453 +1,69 @@
-import { fireEvent, render, waitFor } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import React from "react";
-import userEvent from "@testing-library/user-event";
-import { Combobox } from "../../Combobox";
+import { ComboboxContent } from "./ComboboxContent";
 import { ComboboxContext } from "../../ComboboxProvider";
-import { ComboboxOption } from "../../Combobox.types";
+import { ComboboxOption, ComboboxProps } from "../../Combobox.types";
 
-describe("ComboboxContent Search", () => {
-  it("should have a search input when open", () => {
-    const { getByPlaceholderText } = render(
-      <MockComboboxProvider>
-        <Combobox.Content
-          options={[
-            { id: "1", label: "Bilbo Baggins" },
-            { id: "2", label: "Frodo Baggins" },
-          ]}
-          onSelect={jest.fn()}
-          selected={[]}
-        ></Combobox.Content>
-        ,
-      </MockComboboxProvider>,
-    );
+const setOpen = jest.fn();
+const setSelected = jest.fn();
+const handleSelect = jest.fn();
+const setSearchValue = jest.fn();
+const handleClose = jest.fn();
 
-    const searchInput = getByPlaceholderText("Search");
-    expect(searchInput).toBeInTheDocument();
-  });
-
-  it("should refine results after entering a search term", () => {
-    const { getByPlaceholderText, getByText, queryByText } = render(
-      <MockComboboxProvider>
-        <Combobox.Content
-          options={[
-            { id: "1", label: "Bilbo Baggins" },
-            { id: "2", label: "Frodo Baggins" },
-          ]}
-          onSelect={jest.fn()}
-          selected={[]}
-        ></Combobox.Content>
-      </MockComboboxProvider>,
-    );
-    const searchInput = getByPlaceholderText("Search");
-
-    fireEvent.change(searchInput, { target: { value: "Bilbo" } });
-
-    expect(getByText("Bilbo Baggins")).toBeInTheDocument();
-    expect(queryByText("Frodo Baggins")).not.toBeInTheDocument();
-  });
-
-  it("should clear search when clicking the clear button after entering a search term", () => {
-    const { getByTestId, getByPlaceholderText, getByText } = render(
-      <MockComboboxProvider>
-        <Combobox.Content
-          options={[
-            { id: "1", label: "Bilbo Baggins" },
-            { id: "2", label: "Frodo Baggins" },
-          ]}
-          onSelect={jest.fn()}
-          selected={[]}
-        ></Combobox.Content>
-      </MockComboboxProvider>,
-    );
-
-    const searchInput = getByPlaceholderText("Search");
-    fireEvent.change(searchInput, { target: { value: "Bilbo" } });
-
-    const clearButton = getByTestId("ATL-Combobox-Content-Search-Clear");
-    fireEvent.click(clearButton);
-
-    expect(searchInput).toHaveValue("");
-    expect(getByText("Bilbo Baggins")).toBeInTheDocument();
-    expect(getByText("Frodo Baggins")).toBeInTheDocument();
-  });
-
-  it("should clear search when activating the clear button with enter key", async () => {
-    const { getByTestId, getByPlaceholderText, getByText } = render(
-      <MockComboboxProvider>
-        <Combobox.Content
-          options={[
-            { id: "1", label: "Bilbo Baggins" },
-            { id: "2", label: "Frodo Baggins" },
-          ]}
-          selected={[]}
-          onSelect={jest.fn()}
-        ></Combobox.Content>
-      </MockComboboxProvider>,
-    );
-
-    const searchInput = getByPlaceholderText("Search");
-    fireEvent.change(searchInput, { target: { value: "Bilbo" } });
-
-    const clearButton = getByTestId("ATL-Combobox-Content-Search-Clear");
-
-    await userEvent.type(clearButton, "{enter}");
-
-    expect(searchInput).toHaveValue("");
-    expect(getByText("Bilbo Baggins")).toBeInTheDocument();
-    expect(getByText("Frodo Baggins")).toBeInTheDocument();
-  });
-
-  it("should display a no results message if nothing matched the search term", () => {
-    const { getByPlaceholderText, getByText } = render(
-      <MockComboboxProvider>
-        <Combobox.Content
-          options={[
-            { id: "1", label: "Michael Myers" },
-            { id: "2", label: "Jason Vorhees" },
-          ]}
-          onSelect={jest.fn()}
-          selected={[]}
-        ></Combobox.Content>
-      </MockComboboxProvider>,
-    );
-
-    const searchInput = getByPlaceholderText("Search");
-    fireEvent.change(searchInput, { target: { value: "Bilbo" } });
-
-    expect(getByText("No results for “Bilbo”")).toBeInTheDocument();
-  });
+afterEach(() => {
+  setOpen.mockClear();
+  setSelected.mockClear();
+  setSearchValue.mockClear();
+  handleSelect.mockClear();
+  handleClose.mockClear();
 });
 
 describe("ComboboxContent Header", () => {
-  it("should render when multiSelect is true", () => {
-    const { getByText, getByTestId } = render(
-      <MockComboboxProvider multiselect={true}>
-        <Combobox.Content
-          options={[
-            { id: 1, label: "Bilbo Baggins" },
-            { id: 2, label: "Frodo Baggins" },
-          ]}
-          onSelect={jest.fn()}
-          selected={[]}
-        ></Combobox.Content>
-      </MockComboboxProvider>,
-    );
-
-    expect(getByText("Select all")).toBeInTheDocument();
-    expect(getByTestId("ATL-Combobox-Header")).toBeInTheDocument();
-  });
-
-  it("should not render when multiSelect is false", () => {
-    const { queryByTestId } = render(
-      <MockComboboxProvider>
-        <Combobox.Content
-          options={[
-            { id: 1, label: "Bilbo Baggins" },
-            { id: 2, label: "Frodo Baggins" },
-          ]}
-          onSelect={jest.fn()}
-          selected={[]}
-        ></Combobox.Content>
-      </MockComboboxProvider>,
-    );
-
-    expect(queryByTestId("ATL-Combobox-Header")).not.toBeInTheDocument();
-  });
-
-  it("should not render when multiSelect is true but there are no options", () => {
-    const { queryByTestId } = render(
-      <MockComboboxProvider multiselect={true}>
-        <Combobox.Content
-          options={[]}
-          onSelect={jest.fn()}
-          selected={[]}
-        ></Combobox.Content>
-      </MockComboboxProvider>,
-    );
-
-    expect(queryByTestId("ATL-Combobox-Header")).not.toBeInTheDocument();
-  });
-
-  it("should select all options when 'Select all' is clicked", () => {
-    const selectHandler = jest.fn();
-    const { getByText } = render(
-      <MockComboboxProvider multiselect={true}>
-        <Combobox.Content
-          options={[
-            { id: 1, label: "Eleanor Shellstrop" },
-            { id: 2, label: "Jason Mendoza" },
-            { id: 3, label: "Tahani Al-Jamil" },
-            { id: 4, label: "Chidi Anagonye" },
-          ]}
-          onSelect={selectHandler}
-          selected={[]}
-        ></Combobox.Content>
-      </MockComboboxProvider>,
-    );
-
-    const selectAllButton = getByText("Select all");
-    fireEvent.click(selectAllButton);
-
-    expect(selectHandler).toHaveBeenCalledWith([
-      { id: 1, label: "Eleanor Shellstrop" },
-      { id: 2, label: "Jason Mendoza" },
-      { id: 3, label: "Tahani Al-Jamil" },
-      { id: 4, label: "Chidi Anagonye" },
-    ]);
-  });
-
-  it("should contextually select all options when 'Select all' is clicked", () => {
-    const selectHandler = jest.fn();
-    const { getByText, getByPlaceholderText } = render(
-      <MockComboboxProvider multiselect={true}>
-        <Combobox.Content
-          options={[
-            { id: "1", label: "Bilbo Baggins" },
-            { id: "2", label: "Frodo Baggins" },
-            { id: "3", label: "Shelob the Spoder" },
-          ]}
-          onSelect={selectHandler}
-          selected={[]}
-        ></Combobox.Content>
-      </MockComboboxProvider>,
-    );
-
-    const searchInput = getByPlaceholderText("Search");
-    fireEvent.change(searchInput, { target: { value: "Baggins" } });
-
-    const selectAllButton = getByText("Select all");
-    fireEvent.click(selectAllButton);
-
-    expect(selectHandler).toHaveBeenCalledWith([
-      { id: "1", label: "Bilbo Baggins" },
-      { id: "2", label: "Frodo Baggins" },
-    ]);
-  });
-
-  it("should clear all selections when 'Clear' is clicked", () => {
-    const selectHandler = jest.fn();
-    const { getByText } = render(
-      <MockComboboxProvider multiselect={true}>
-        <Combobox.Content
-          options={[
-            { id: 1, label: "Eleanor Shellstrop" },
-            { id: 2, label: "Jason Mendoza" },
-            { id: 3, label: "Tahani Al-Jamil" },
-          ]}
-          onSelect={selectHandler}
-          selected={[
-            { id: 1, label: "Eleanor Shellstrop" },
-            { id: 2, label: "Jason Mendoza" },
-          ]}
-        ></Combobox.Content>
-      </MockComboboxProvider>,
-    );
-
-    const clearButton = getByText("Clear");
-    fireEvent.click(clearButton);
-
-    expect(selectHandler).toHaveBeenCalledWith([]);
-  });
-
-  it("should non-contextually clear all selections when 'Clear' is clicked", () => {
-    const selectHandler = jest.fn();
-    const { getByText, getByPlaceholderText } = render(
-      <MockComboboxProvider multiselect={true}>
-        <Combobox.Content
-          options={[
-            { id: "1", label: "Bilbo Baggins" },
-            { id: "2", label: "Frodo Baggins" },
-            { id: "3", label: "Shelob the Spoder" },
-          ]}
-          onSelect={selectHandler}
-          selected={[
-            { id: "1", label: "Bilbo Baggins" },
-            { id: "2", label: "Frodo Baggins" },
-          ]}
-        ></Combobox.Content>
-      </MockComboboxProvider>,
-    );
-
-    const searchInput = getByPlaceholderText("Search");
-    fireEvent.change(searchInput, { target: { value: "Shelbob" } });
-
-    const clearButton = getByText("Clear");
-    fireEvent.click(clearButton);
-
-    expect(selectHandler).toHaveBeenCalledWith([]);
-  });
-});
-
-describe("ComboboxContent Options", () => {
-  it("should focus first option with down arrow key press", async () => {
-    const { getByText, getByTestId } = render(
-      <Combobox>
-        <Combobox.TriggerButton label="Click Me" />
-        <Combobox.Content
-          options={[
-            { id: 1, label: "Leatherface" },
-            { id: 2, label: "Jason" },
-            { id: 3, label: "Michael" },
-          ]}
-          selected={[]}
-          onSelect={jest.fn()}
-        ></Combobox.Content>
-      </Combobox>,
-    );
-
-    const openButton = getByText("Click Me");
-
-    fireEvent.click(openButton);
-
-    const content = getByTestId("ATL-Combobox-Content");
-
-    await userEvent.type(content, "{arrowdown}");
-
-    await waitFor(() => {
-      expect(getByText("Leatherface")).toHaveFocus();
-    });
-  });
-  it("should focus 3rd option with as many arrow down key presses", async () => {
-    const { getByText, getByTestId } = render(
-      <Combobox>
-        <Combobox.TriggerButton label="Click Me" />
-        <Combobox.Content
-          options={[
-            { id: 1, label: "Leatherface" },
-            { id: 2, label: "Jason" },
-            { id: 3, label: "Michael" },
-          ]}
-          selected={[]}
-          onSelect={jest.fn()}
-        ></Combobox.Content>
-      </Combobox>,
-    );
-
-    const openButton = getByText("Click Me");
-
-    fireEvent.click(openButton);
-
-    const content = getByTestId("ATL-Combobox-Content");
-
-    await userEvent.type(content, "{arrowdown}");
-    await userEvent.type(content, "{arrowdown}");
-    await userEvent.type(content, "{arrowdown}");
-
-    await waitFor(() => {
-      expect(getByText("Michael")).toHaveFocus();
-    });
-  });
-  it("should focus first option with up arrow key press", async () => {
-    const { getByText, getByTestId } = render(
-      <Combobox>
-        <Combobox.TriggerButton label="Click Me" />
-        <Combobox.Content
-          options={[
-            { id: 1, label: "Leatherface" },
-            { id: 2, label: "Jason" },
-            { id: 3, label: "Michael" },
-          ]}
-          onSelect={jest.fn()}
-          selected={[]}
-        ></Combobox.Content>
-      </Combobox>,
-    );
-
-    const openButton = getByText("Click Me");
-
-    fireEvent.click(openButton);
-
-    const content = getByTestId("ATL-Combobox-Content");
-
-    await userEvent.type(content, "{arrowup}");
-
-    await waitFor(() => {
-      expect(getByText("Leatherface")).toHaveFocus();
-    });
-  });
-  it("should select option with enter key press", async () => {
-    const selectHandler = jest.fn();
-    const { getByText } = render(
-      <Combobox>
-        <Combobox.TriggerButton label="Click Me" />
-        <Combobox.Content
-          options={[
-            { id: 1, label: "Leatherface" },
-            { id: 2, label: "Jason" },
-            { id: 3, label: "Michael" },
-          ]}
-          onSelect={selectHandler}
-          selected={[]}
-        ></Combobox.Content>
-      </Combobox>,
-    );
-
-    const openButton = getByText("Click Me");
-
-    fireEvent.click(openButton);
-
-    const firstOption = getByText("Leatherface");
-
-    await userEvent.type(firstOption, "{enter}");
-    expect(selectHandler).toHaveBeenCalledWith([
-      { id: 1, label: "Leatherface" },
-    ]);
-  });
-  it("should close after making a selection with the enter key", async () => {
-    const { getByText, getByTestId } = render(
-      <Combobox>
-        <Combobox.TriggerButton label="Click Me" />
-        <Combobox.Content
-          options={[
-            { id: 1, label: "Leatherface" },
-            { id: 2, label: "Jason" },
-            { id: 3, label: "Michael" },
-          ]}
-          selected={[]}
-          onSelect={jest.fn()}
-        ></Combobox.Content>
-      </Combobox>,
-    );
-
-    const openButton = getByText("Click Me");
-
-    fireEvent.click(openButton);
-
-    const firstOption = getByText("Leatherface");
-
-    await userEvent.type(firstOption, "{enter}");
-    expect(getByTestId("ATL-Combobox-Content")).toHaveClass("hidden");
-  });
-  describe("with a search entered", () => {
-    it("should focus first of filtered options on arrown down press", async () => {
-      const { getByText, getByTestId, getByPlaceholderText } = render(
-        <Combobox>
-          <Combobox.TriggerButton label="Click Me" />
-          <Combobox.Content
-            options={[
-              { id: 1, label: "Leatherface" },
-              { id: 2, label: "Jason" },
-              { id: 3, label: "Michael" },
-            ]}
-            selected={[]}
-            onSelect={jest.fn()}
-          ></Combobox.Content>
-        </Combobox>,
+  describe("when multiSelect is true", () => {
+    it("should render when options exist", () => {
+      const { getByText, getByTestId } = renderComboboxContent(
+        [
+          { id: 1, label: "Han Solo" },
+          { id: 2, label: "Chewbacca" },
+        ],
+        [],
+        true,
       );
-      const openButton = getByText("Click Me");
 
-      fireEvent.click(openButton);
+      expect(getByText("Select all")).toBeInTheDocument();
+      expect(getByTestId("ATL-Combobox-Header")).toBeInTheDocument();
+    });
 
-      const searchInput = getByPlaceholderText("Search");
-      const content = getByTestId("ATL-Combobox-Content");
+    it("should not render when no options exist", () => {
+      const { queryByText, queryByTestId } = renderComboboxContent(
+        [],
+        [],
+        true,
+      );
 
-      fireEvent.change(searchInput, { target: { value: "Mi" } });
+      expect(queryByText("Select all")).not.toBeInTheDocument();
+      expect(queryByTestId("ATL-Combobox-Header")).not.toBeInTheDocument();
+    });
+  });
 
-      await userEvent.type(content, "{arrowdown}");
+  describe("when multiSelect is false", () => {
+    it("should not render when options exist", () => {
+      const { queryByTestId } = renderComboboxContent(
+        [
+          { id: 1, label: "Han Solo" },
+          { id: 2, label: "Chewbacca" },
+        ],
+        [],
+        false,
+      );
 
-      await waitFor(() => {
-        expect(getByText("Michael")).toHaveFocus();
-      });
+      expect(queryByTestId("ATL-Combobox-Header")).not.toBeInTheDocument();
+    });
+
+    it("should not render when options do not exist", () => {
+      const { queryByTestId } = renderComboboxContent([], [], false);
+
+      expect(queryByTestId("ATL-Combobox-Header")).not.toBeInTheDocument();
     });
   });
 });
@@ -456,24 +72,47 @@ function MockComboboxProvider({
   children,
   multiselect = false,
 }: {
-  readonly children: React.ReactNode;
+  readonly children: ComboboxProps["children"];
   readonly multiselect?: boolean;
 }) {
-  const [open, setOpen] = React.useState(false);
-  const [selected, setSelected] = React.useState<ComboboxOption[]>([]);
-
   return (
     <ComboboxContext.Provider
       value={{
         multiselect,
-        open,
+        open: true,
         setOpen,
-        wrapperRef: { current: null },
-        selected,
-        setSelected,
+        selected: [],
+        shouldScroll: { current: false },
+        handleClose,
+        selectionHandler: handleSelect,
       }}
     >
       {children}
     </ComboboxContext.Provider>
+  );
+}
+
+function renderComboboxContent(
+  options: ComboboxOption[] = [],
+  selected: ComboboxOption[] = [],
+  multiSelect = false,
+  open = true,
+  searchValue = "",
+) {
+  return render(
+    <MockComboboxProvider>
+      <ComboboxContent
+        selected={selected}
+        selectedStateSetter={setSelected}
+        handleSelection={handleSelect}
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+        wrapperRef={{ current: null }}
+        open={open}
+        setOpen={setOpen}
+        options={options}
+        multiselect={multiSelect}
+      />
+    </MockComboboxProvider>,
   );
 }

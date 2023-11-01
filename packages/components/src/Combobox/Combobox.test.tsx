@@ -72,6 +72,78 @@ describe("Combobox", () => {
     });
   });
 
+  describe("Search", () => {
+    it("should have a search input", () => {
+      expect(screen.getByPlaceholderText("Search")).toBeInTheDocument();
+    });
+
+    it("should refine results after entering a search term", async () => {
+      await userEvent.type(screen.getByPlaceholderText("Search"), "Bilbo");
+      expect(screen.getAllByRole("option")).toHaveLength(1);
+      expect(screen.getByText("Bilbo Baggins")).toBeInTheDocument();
+    });
+
+    it("should clear the search when clicking the clear button after entering a term", async () => {
+      await userEvent.type(screen.getByPlaceholderText("Search"), "Bilbo");
+      await userEvent.click(
+        screen.getByTestId("ATL-Combobox-Content-Search-Clear"),
+      );
+      expect(screen.getAllByRole("option")).toHaveLength(2);
+      expect(screen.getByPlaceholderText("Search")).toHaveValue("");
+    });
+
+    it("should clear the search when activating the clear button with keyboard", async () => {
+      await userEvent.type(screen.getByPlaceholderText("Search"), "Bilbo");
+      await userEvent.tab();
+      await userEvent.keyboard("{enter}");
+      expect(screen.getAllByRole("option")).toHaveLength(2);
+      expect(screen.getByPlaceholderText("Search")).toHaveValue("");
+    });
+  });
+
+  describe("Keyboard actions", () => {
+    it("should focus the first option when pressing the down arrow", async () => {
+      await userEvent.click(screen.getByRole("combobox"));
+      await userEvent.keyboard("{arrowdown}");
+      expect(screen.getByText("Bilbo Baggins")).toHaveFocus();
+    });
+
+    it("should focus the last option with excessive down arrow presses", async () => {
+      // excessive in this context simply means more arrow down presses
+      // than there are options
+      await userEvent.click(screen.getByRole("combobox"));
+      await userEvent.keyboard("{arrowdown}");
+      await userEvent.keyboard("{arrowdown}");
+      await userEvent.keyboard("{arrowdown}");
+      await userEvent.keyboard("{arrowdown}");
+      await userEvent.keyboard("{arrowdown}");
+      expect(screen.getByText("Frodo Baggins")).toHaveFocus();
+    });
+
+    it("should focus the first option with up arrow key press", async () => {
+      await userEvent.click(screen.getByRole("combobox"));
+      await userEvent.keyboard("{arrowup}");
+      expect(screen.getByText("Bilbo Baggins")).toHaveFocus();
+    });
+
+    it("should fire the onSelect callback when pressing the enter key", async () => {
+      await userEvent.click(screen.getByRole("combobox"));
+      await userEvent.keyboard("{arrowdown}");
+      await userEvent.keyboard("{enter}");
+      expect(handleSelect).toHaveBeenCalledTimes(1);
+      expect(handleSelect).toHaveBeenCalledWith([
+        { id: "1", label: "Bilbo Baggins" },
+      ]);
+    });
+
+    it("should focus first of filtered options when pressing the down arrow after searching", async () => {
+      await userEvent.click(screen.getByRole("combobox"));
+      await userEvent.type(screen.getByPlaceholderText("Search"), "Frodo");
+      await userEvent.keyboard("{arrowdown}");
+      expect(screen.getByText("Frodo Baggins")).toHaveFocus();
+    });
+  });
+
   it("should fire the onClick of an action when clicking an action", async () => {
     await userEvent.click(screen.getByRole("combobox"));
     await userEvent.click(screen.getByText("Add Teammate"));
@@ -207,6 +279,46 @@ describe("Combobox Multiselect", () => {
       { id: "1", label: "Bilbo Baggins" },
       { id: "2", label: "Frodo Baggins" },
     ]);
+  });
+
+  it("should contextually select all matching options when clicking Select all after searching", async () => {
+    mockSelectedValue.mockReturnValueOnce([]);
+    renderMultiSelectCombobox();
+
+    await userEvent.click(screen.getByRole("combobox"));
+    await userEvent.type(screen.getByPlaceholderText("Search"), "Bilbo");
+    await userEvent.click(screen.getByText("Select all"));
+
+    expect(handleSelect).toHaveBeenCalledWith([
+      { id: "1", label: "Bilbo Baggins" },
+    ]);
+  });
+
+  it("should clear all options when clicking Clear", async () => {
+    mockSelectedValue.mockReturnValueOnce([
+      { id: "1", label: "Bilbo Baggins" },
+      { id: "2", label: "Frodo Baggins" },
+    ]);
+    renderMultiSelectCombobox();
+
+    await userEvent.click(screen.getByRole("combobox"));
+    await userEvent.click(screen.getByText("Clear"));
+
+    expect(handleSelect).toHaveBeenCalledWith([]);
+  });
+
+  it("should NOT contextually clear all selections when clicking Clear after searching", async () => {
+    mockSelectedValue.mockReturnValueOnce([
+      { id: "1", label: "Bilbo Baggins" },
+      { id: "2", label: "Frodo Baggins" },
+    ]);
+    renderMultiSelectCombobox();
+
+    await userEvent.click(screen.getByRole("combobox"));
+    await userEvent.type(screen.getByPlaceholderText("Search"), "Bilbo");
+    await userEvent.click(screen.getByText("Clear"));
+
+    expect(handleSelect).toHaveBeenCalledWith([]);
   });
 
   describe("onClose callback", () => {
