@@ -1,14 +1,7 @@
+/* eslint-disable max-statements */
 import React from "react";
 import classnames from "classnames";
 import styles from "./Spinner.css";
-import arboristGif from "./assets/Jobber_Arborist.gif";
-import hvacGif from "./assets/Jobber_PressureGauge.gif";
-import workVanGif from "./assets/Jobber_WorkVan.gif";
-import landscapingGif from "./assets/Jobber_Bobcat.gif";
-import chainsawGif from "./assets/Jobber_Chainsaw.gif";
-import plumbingGif from "./assets/Jobber_PipeWrench.gif";
-import powerdrillGif from "./assets/Jobber_PowerDrill.gif";
-import windowCleaningGif from "./assets/Jobber_WaterLogo.gif";
 
 interface SpinnerProps {
   /**
@@ -30,15 +23,24 @@ interface SpinnerProps {
   readonly hasDelight?:
     | "arborist"
     | "pressureGauge"
-    | "workVanGif"
+    | "workVan"
     | "landscaping"
     | "chainsaw"
     | "plumbing"
-    | "powerdrill"
+    | "powerDrill"
     | "windowCleaning";
 }
 
 export function Spinner({ size = "base", inline, hasDelight }: SpinnerProps) {
+  const arboristGif = require("./assets/Jobber_Arborist.gif");
+  const hvacGif = require("./assets/Jobber_PressureGauge.gif");
+  const workVanGif = require("./assets/Jobber_WorkVan.gif");
+  const landscapingGif = require("./assets/Jobber_Bobcat.gif");
+  const chainsawGif = require("./assets/Jobber_Chainsaw.gif");
+  const plumbingGif = require("./assets/Jobber_PipeWrench.gif");
+  const powerdrillGif = require("./assets/Jobber_PowerDrill.gif");
+  const windowCleaningGif = require("./assets/Jobber_WaterLogo.gif");
+
   let selectedGif;
 
   switch (hasDelight) {
@@ -48,7 +50,7 @@ export function Spinner({ size = "base", inline, hasDelight }: SpinnerProps) {
     case "pressureGauge":
       selectedGif = hvacGif;
       break;
-    case "workVanGif":
+    case "workVan":
       selectedGif = workVanGif;
       break;
     case "landscaping":
@@ -60,7 +62,7 @@ export function Spinner({ size = "base", inline, hasDelight }: SpinnerProps) {
     case "plumbing":
       selectedGif = plumbingGif;
       break;
-    case "powerdrill":
+    case "powerDrill":
       selectedGif = powerdrillGif;
       break;
     case "windowCleaning":
