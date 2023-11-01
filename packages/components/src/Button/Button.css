@@ -21,7 +21,7 @@
   text-align: center;
   text-decoration: none;
   vertical-align: middle;
-  background-color: var(--button--color-surface);
+  background-color: pink;
   cursor: pointer;
   transition: all var(--timing-base);
   appearance: none;
