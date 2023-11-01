@@ -176,9 +176,9 @@ function ButtonInternals({ label, icon, size = "base" }: ButtonProps) {
       <AnimatePresence exitBeforeEnter initial={false}>
         <motion.span
           key={label}
-          initial={{ opacity: 0, x: -8 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: 8 }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.9 }}
           transition={{ duration: 0.2 }}
         >
           <Typography
