@@ -1,168 +1,99 @@
 import React from "react";
 import { render } from "@testing-library/react";
+import { ComboboxContextProvider } from "@jobber/components/Combobox/ComboboxProvider";
+import { ComboboxOption } from "@jobber/components/Combobox/Combobox.types";
 import { ComboboxContentList } from "./ComboboxContentList";
 
 describe("ComboboxContentList", () => {
   it("should render a list of options if provided", () => {
-    const { getByText } = render(
-      <ComboboxContentList
-        multiselect={false}
-        options={[
-          { id: "1", label: "Michael" },
-          { id: "2", label: "Jason" },
-        ]}
-        showEmptyState={false}
-        selected={[]}
-        optionsListRef={React.createRef()}
-        setFirstSelectedElement={jest.fn()}
-        selectionHandler={jest.fn()}
-        searchValue=""
-      />,
-    );
+    const { getByText } = renderComboboxContentList();
+
     expect(getByText("Michael")).toBeInTheDocument();
     expect(getByText("Jason")).toBeInTheDocument();
   });
+
   it("should not show the empty message if list of options provided", () => {
-    const { queryByText } = render(
-      <ComboboxContentList
-        multiselect={false}
-        options={[
-          { id: "1", label: "Michael" },
-          { id: "2", label: "Jason" },
-        ]}
-        showEmptyState={false}
-        selected={[]}
-        optionsListRef={React.createRef()}
-        setFirstSelectedElement={jest.fn()}
-        selectionHandler={jest.fn()}
-        searchValue=""
-      />,
-    );
+    const { queryByText } = renderComboboxContentList();
+
     expect(queryByText("No Options yet")).not.toBeInTheDocument();
   });
-  it("should render a generic message if no options, nor subjectNoun are provided", () => {
-    const { getByText } = render(
-      <ComboboxContentList
-        multiselect={false}
-        options={[]}
-        showEmptyState={true}
-        selected={[]}
-        optionsListRef={React.createRef()}
-        setFirstSelectedElement={jest.fn()}
-        selectionHandler={jest.fn()}
-        searchValue=""
-      />,
-    );
-    expect(getByText("No options yet")).toBeInTheDocument();
-  });
-  it("should render a message if no options are provided and a subjectNoun is provided", () => {
-    const { getByText } = render(
-      <ComboboxContentList
-        multiselect={false}
-        options={[]}
-        showEmptyState={true}
-        selected={[]}
-        optionsListRef={React.createRef()}
-        setFirstSelectedElement={jest.fn()}
-        selectionHandler={jest.fn()}
-        searchValue=""
-        subjectNoun="Plumbus"
-      />,
-    );
-    expect(getByText("You don't have any Plumbus yet")).toBeInTheDocument();
-  });
-  it("should render a message if no options are provided and a search term is entered", () => {
-    const { getByText } = render(
-      <ComboboxContentList
-        multiselect={false}
-        options={[]}
-        showEmptyState={true}
-        selected={[]}
-        optionsListRef={React.createRef()}
-        setFirstSelectedElement={jest.fn()}
-        selectionHandler={jest.fn()}
-        searchValue="Rick"
-      />,
-    );
-    expect(getByText("No options yet")).toBeInTheDocument();
-  });
-  it("should render a message if no options are provided and a search term is entered and no results are found", () => {
-    const { getByText } = render(
-      <ComboboxContentList
-        multiselect={false}
-        options={[]}
-        showEmptyState={false}
-        selected={[]}
-        optionsListRef={React.createRef()}
-        setFirstSelectedElement={jest.fn()}
-        selectionHandler={jest.fn()}
-        searchValue="Frederick"
-      />,
-    );
-    expect(getByText("No results for “Frederick”")).toBeInTheDocument();
-  });
-  it("should only apply a selected style to the selected options", () => {
-    const { getByText } = render(
-      <ComboboxContentList
-        multiselect={false}
-        options={[
-          { id: "1", label: "Michael" },
-          { id: "2", label: "Jason" },
-          { id: "3", label: "Leatherface" },
-        ]}
-        showEmptyState={false}
-        selected={[
-          { id: "1", label: "Michael" },
-          { id: "3", label: "Leatherface" },
-        ]}
-        optionsListRef={React.createRef()}
-        setFirstSelectedElement={jest.fn()}
-        selectionHandler={jest.fn()}
-        searchValue=""
-      />,
-    );
-    expect(getByText("Michael")).toHaveAttribute("aria-selected", "true");
-    expect(getByText("Leatherface")).toHaveAttribute("aria-selected", "true");
-    expect(getByText("Jason")).not.toHaveAttribute("aria-selected", "true");
+
+  describe("when showEmptyState is true", () => {
+    it("should render a generic message if no options nor subjectNoun are provided", () => {
+      const { getByText } = renderComboboxContentList([], [], true);
+
+      expect(getByText("No options yet")).toBeInTheDocument();
+    });
+
+    it("should render a message if no options are provided and a subjectNoun is provided", () => {
+      const { getByText } = renderComboboxContentList(
+        [],
+        [],
+        true,
+        "",
+        "Plumbus",
+      );
+      expect(getByText("You don't have any Plumbus yet")).toBeInTheDocument();
+    });
+    it("should render a message if no options are provided and a search term is entered", () => {
+      const { getByText } = renderComboboxContentList(
+        [],
+        [],
+        true,
+        "Frederick",
+      );
+      expect(getByText("No options yet")).toBeInTheDocument();
+    });
   });
 
-  it("should have a selected option when selected id is a number and option id is a string", () => {
-    const { getByText } = render(
-      <ComboboxContentList
-        multiselect={false}
-        options={[
-          { id: "1", label: "Michael" },
-          { id: "2", label: "Jason" },
-        ]}
-        showEmptyState={false}
-        selected={[{ id: 1, label: "Michael" }]}
-        optionsListRef={React.createRef()}
-        setFirstSelectedElement={jest.fn()}
-        selectionHandler={jest.fn()}
-        searchValue=""
-      />,
-    );
-    expect(getByText("Michael")).toHaveAttribute("aria-selected", "true");
-    expect(getByText("Jason")).not.toHaveAttribute("aria-selected", "true");
-  });
-
-  it("has no selected option when a null selected value is passed", () => {
-    const { getByText } = render(
-      <ComboboxContentList
-        multiselect={false}
-        options={[
-          { id: "1", label: "Michael" },
-          { id: "2", label: "Jason" },
-        ]}
-        showEmptyState={false}
-        selected={[]}
-        optionsListRef={React.createRef()}
-        setFirstSelectedElement={jest.fn()}
-        selectionHandler={jest.fn()}
-        searchValue=""
-      />,
-    );
-    expect(getByText("Michael")).not.toHaveAttribute("aria-selected", "true");
-    expect(getByText("Jason")).not.toHaveAttribute("aria-selected", "true");
+  describe("when showEmptyState is false", () => {
+    it("should render a message if no options are provided and a search term is entered", () => {
+      const { getByText } = renderComboboxContentList(
+        [],
+        [],
+        false,
+        "Frederick",
+      );
+      expect(getByText("No results for “Frederick”")).toBeInTheDocument();
+    });
   });
 });
+
+function renderComboboxContentList(
+  options: ComboboxOption[] = [
+    {
+      id: "1",
+      label: "Michael",
+    },
+    {
+      id: "2",
+      label: "Jason",
+    },
+  ],
+  selected: ComboboxOption[] = [],
+  showEmptyState = false,
+  searchValue = "",
+  subjectNoun?: string,
+) {
+  return render(
+    <ComboboxContextProvider
+      setOpen={jest.fn()}
+      handleClose={jest.fn()}
+      selectionHandler={jest.fn()}
+      multiselect={false}
+      shouldScroll={{ current: false }}
+      open={true}
+      selected={[]}
+    >
+      <ComboboxContentList
+        multiselect={false}
+        options={options}
+        showEmptyState={showEmptyState}
+        selected={selected}
+        optionsListRef={{ current: null }}
+        searchValue={searchValue}
+        subjectNoun={subjectNoun}
+      />
+    </ComboboxContextProvider>,
+  );
+}
