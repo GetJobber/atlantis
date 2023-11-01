@@ -30,8 +30,6 @@ export const Boom = ({
     <>
       {enabled &&
         loopArray.map((_, index) => {
-          console.log("BOOMT!", boomType);
-
           return boomType === "firework" ? (
             <Particle key={index} enabled={particlesEnabled} scheme={scheme} />
           ) : (
