@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { Button } from "@jobber/components/Button";
@@ -28,6 +28,49 @@ Basic.args = {
   label: "New Job",
   onClick: () => alert("👍"),
 };
+
+const AnimatedTemplate: ComponentStory<typeof Button> = () => {
+  const [switchedArrows, setSwitchedArrows] = useState(false);
+  const [switchedChecked, setSwitchedChecked] = useState(false);
+  const [switchedShow, setSwitchedShow] = useState(false);
+  const [switchedMenu, setSwitchedMenu] = useState(false);
+
+  return (
+    <Content>
+      <div>
+        <Button
+          label={switchedArrows ? "Expand" : "Collapse"}
+          icon={switchedArrows ? "arrowDown" : "arrowUp"}
+          type="secondary"
+          onClick={() => setSwitchedArrows(!switchedArrows)}
+        />
+      </div>
+      <div>
+        <Button
+          label={switchedChecked ? "Added" : "Add"}
+          icon={switchedChecked ? "checkmark" : "add"}
+          type="secondary"
+          onClick={() => setSwitchedChecked(!switchedChecked)}
+        />
+      </div>
+      <div>
+        <Button
+          icon={switchedMenu ? "backArrow" : "menu"}
+          ariaLabel="Menu"
+          type="secondary"
+          onClick={() => setSwitchedMenu(!switchedMenu)}
+        />{" "}
+        <Button
+          label={switchedShow ? "Show" : "Hide"}
+          type="secondary"
+          onClick={() => setSwitchedShow(!switchedShow)}
+        />
+      </div>
+    </Content>
+  );
+};
+
+export const Animated = AnimatedTemplate.bind({});
 
 const RoutingTemplate: ComponentStory<typeof Button> = () => (
   <Router basename="/components/button">
