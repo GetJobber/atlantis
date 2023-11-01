@@ -1,4 +1,3 @@
-
 .option {
   display: flex;
   min-height: calc((var(--space-largest) - var(--space-smaller)));
