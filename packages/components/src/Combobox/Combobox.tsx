@@ -48,7 +48,7 @@ export function Combobox(props: ComboboxProps): JSX.Element {
   return (
     <ComboboxContextProvider
       multiselect={props.multiSelect}
-      selectedOptions={selectedOptions}
+      selected={selectedOptions}
       selectionHandler={handleSelection}
       open={open}
       setOpen={setOpen}

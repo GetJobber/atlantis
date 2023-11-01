@@ -16,7 +16,7 @@ export const ComboboxContext = React.createContext(
 export interface ComboboxProviderProps {
   readonly children: React.ReactNode;
   readonly multiselect?: boolean;
-  readonly selectedOptions: ComboboxOption[];
+  readonly selected: ComboboxOption[];
   readonly selectionHandler: (option: ComboboxOption) => void;
   readonly open: boolean;
   readonly setOpen: Dispatch<SetStateAction<boolean>>;
@@ -32,7 +32,7 @@ export function ComboboxContextProvider(
       value={{
         open: props.open,
         setOpen: props.setOpen,
-        selected: props.selectedOptions,
+        selected: props.selected,
         selectionHandler: props.selectionHandler,
         handleClose: props.handleClose,
         shouldScroll: props.shouldScroll,
