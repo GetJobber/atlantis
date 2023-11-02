@@ -56,11 +56,9 @@ export function Switch({
         onClick={toggleSwitch}
         disabled={disabled}
       >
-        <span className={styles.toggle}>
-          <Label as="On" disabled={disabled} />
-          <span className={styles.pip} />
-          <Label as="Off" disabled={disabled} />
-        </span>
+        <Label as="On" disabled={disabled} />
+        <span className={styles.pip} />
+        <Label as="Off" disabled={disabled} />
       </button>
       <input name={name} type="hidden" value={String(value)} />
     </>
@@ -79,6 +77,7 @@ function Label({ as, disabled }: LabelProps) {
     } else if (as === "On") {
       return "white";
     }
+
     return "greyBlue";
   };
 

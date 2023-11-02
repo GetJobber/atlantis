@@ -15,28 +15,24 @@ it("renders a Switch", () => {
         type="button"
       >
         <span
-          class="toggle"
+          class="label"
         >
           <span
-            class="label"
+            class="base bold small uppercase white"
           >
-            <span
-              class="base bold small uppercase white"
-            >
-              On
-            </span>
+            On
           </span>
+        </span>
+        <span
+          class="pip"
+        />
+        <span
+          class="label"
+        >
           <span
-            class="pip"
-          />
-          <span
-            class="label"
+            class="base bold small uppercase greyBlue"
           >
-            <span
-              class="base bold small uppercase greyBlue"
-            >
-              Off
-            </span>
+            Off
           </span>
         </span>
       </button>
@@ -60,28 +56,24 @@ it("renders a Switch that is turned ON", () => {
         type="button"
       >
         <span
-          class="toggle"
+          class="label"
         >
           <span
-            class="label"
+            class="base bold small uppercase white"
           >
-            <span
-              class="base bold small uppercase white"
-            >
-              On
-            </span>
+            On
           </span>
+        </span>
+        <span
+          class="pip"
+        />
+        <span
+          class="label"
+        >
           <span
-            class="pip"
-          />
-          <span
-            class="label"
+            class="base bold small uppercase greyBlue"
           >
-            <span
-              class="base bold small uppercase greyBlue"
-            >
-              Off
-            </span>
+            Off
           </span>
         </span>
       </button>
@@ -108,28 +100,24 @@ it("renders a disabled Switch", () => {
         type="button"
       >
         <span
-          class="toggle"
+          class="label"
         >
           <span
-            class="label"
+            class="base bold small uppercase grey"
           >
-            <span
-              class="base bold small uppercase grey"
-            >
-              On
-            </span>
+            On
           </span>
+        </span>
+        <span
+          class="pip"
+        />
+        <span
+          class="label"
+        >
           <span
-            class="pip"
-          />
-          <span
-            class="label"
+            class="base bold small uppercase grey"
           >
-            <span
-              class="base bold small uppercase grey"
-            >
-              Off
-            </span>
+            Off
           </span>
         </span>
       </button>

@@ -1,10 +1,10 @@
 declare const styles: {
   readonly "track": string;
   readonly "isChecked": string;
-  readonly "toggle": string;
-  readonly "label": string;
   readonly "pip": string;
+  readonly "pipInertiaForwards": string;
   readonly "disabled": string;
+  readonly "label": string;
 };
 export = styles;
 

@@ -120,28 +120,24 @@ exports[`renders a full FeatureSwitch 1`] = `
           type="button"
         >
           <span
-            class="toggle"
+            class="label"
           >
             <span
-              class="label"
+              class="base bold small uppercase white"
             >
-              <span
-                class="base bold small uppercase white"
-              >
-                On
-              </span>
+              On
             </span>
+          </span>
+          <span
+            class="pip"
+          />
+          <span
+            class="label"
+          >
             <span
-              class="pip"
-            />
-            <span
-              class="label"
+              class="base bold small uppercase greyBlue"
             >
-              <span
-                class="base bold small uppercase greyBlue"
-              >
-                Off
-              </span>
+              Off
             </span>
           </span>
         </button>
@@ -167,9 +163,13 @@ exports[`renders a full FeatureSwitch 1`] = `
           type="button"
         >
           <span
-            class="base extraBold base base"
+            style="opacity: 1; transform: none;"
           >
-            Edit
+            <span
+              class="base extraBold base base"
+            >
+              Edit
+            </span>
           </span>
         </button>
       </div>

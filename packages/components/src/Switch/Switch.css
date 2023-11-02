@@ -1,7 +1,8 @@
 :root {
-  --switch--pipSize: calc(var(--space-base) * 1.875);
-  --switch--labelWidth: calc(var(--switch--pipSize) * 1.3);
-  --switch--borderOffset: calc(var(--border-base) * 2);
+  --switch--pipSize: var(--space-large);
+  --switch--width: 68px;
+  --switch--labelWidth: calc(var(--switch--width) - var(--switch--pipSize));
+  --switch--innerOffset: var(--space-smaller);
 }
 
 .track,
@@ -12,9 +13,10 @@
 
 .track {
   display: inline-flex;
-  width: calc(var(--switch--labelWidth) + var(--switch--pipSize));
-  padding: 0;
-  border: var(--border-base) solid var(--color-border);
+  position: relative;
+  width: var(--switch--width);
+  padding: var(--space-smaller);
+  border: none;
   border-radius: var(--switch--pipSize);
   overflow: hidden;
   line-height: normal;
@@ -29,53 +31,46 @@
 }
 
 .isChecked {
-  border-color: var(--color-interactive);
   background-color: var(--color-interactive);
 }
 
-.toggle {
-  display: flex;
-  position: relative;
-  margin-left: calc(-1 * var(--switch--labelWidth));
-  pointer-events: none;
-  flex: 1 1 100%;
-  align-items: center;
-}
-
-.isChecked .toggle {
-  margin-left: calc(-1 * var(--switch--borderOffset));
-}
-
-.label {
-  display: flex;
-  position: relative;
-  min-width: var(--switch--labelWidth);
-  margin-top: var(--space-minuscule);
-  user-select: none;
-  pointer-events: none;
-  align-items: center;
-  justify-content: center;
-}
-
-.label:first-of-type {
-  padding-left: var(--space-small);
-}
-
-.label:last-of-type {
-  padding-right: var(--space-small);
-}
-
 .pip {
-  flex: 0 0 auto;
+  position: relative;
+  z-index: 1;
   width: var(--switch--pipSize);
   height: var(--switch--pipSize);
-  border: var(--border-base) solid var(--color-border);
+  box-shadow: var(--shadow-base);
   border-radius: var(--radius-circle);
   background-color: var(--color-surface);
+  transition: all var(--timing-base) ease-in-out;
+  flex: 0 0 auto;
+}
+
+@keyframes pipInertiaForwards {
+  10% {
+    width: var(--switch--pipSize);
+  }
+
+  40% {
+    width: calc(var(--switch--pipSize) + var(--space-base));
+    border-top-right-radius: var(--space-large);
+    border-bottom-right-radius: var(--space-large);
+  }
+
+  85%,
+  100% {
+    width: var(--switch--pipSize);
+  }
 }
 
 .isChecked .pip {
   border-color: var(--color-green);
+  transform: translateX(
+    calc(
+      calc(var(--switch--width) - var(--switch--pipSize)) - var(--space-small)
+    )
+  );
+  animation: pipInertiaForwards var(--timing-base) ease-in-out;
 }
 
 .disabled {
@@ -86,4 +81,41 @@
 
 .disabled .pip {
   border-color: var(--color-disabled--secondary);
+}
+
+.label {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  z-index: 0;
+  min-width: var(--switch--labelWidth);
+  margin-top: var(--space-minuscule);
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+  pointer-events: none;
+  transform: translateY(-50%);
+  align-items: center;
+  justify-content: center;
+}
+
+.label:first-of-type {
+  left: 0;
+  opacity: 0;
+  transform: translate(20%, -50%);
+}
+
+.label:last-of-type {
+  right: 0;
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+.isChecked .label:first-of-type {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+.isChecked .label:last-of-type {
+  opacity: 0;
+  transform: translate(-20%, -50%);
 }
