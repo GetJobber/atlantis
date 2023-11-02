@@ -20,24 +20,25 @@ const transitions = {
 };
 
 interface AnimatedPresenceProps extends Required<PropsWithChildren> {
-  readonly type?: keyof typeof transitions;
-  readonly inline?: boolean;
+  readonly transition?: keyof typeof transitions;
+  readonly initial?: boolean;
 }
 
 export function AnimatedPresence({
-  type = "fromTop",
+  transition = "fromTop",
+  initial = false,
   children,
 }: AnimatedPresenceProps) {
   const lastChildIndex = usePreviousValue(Children.count(children) - 1);
 
   return (
-    <AnimatePresence initial={false}>
+    <AnimatePresence initial={initial}>
       {Children.map(
         children,
         (child, i) =>
           child && (
             <motion.div
-              variants={transitions[type]}
+              variants={transitions[transition]}
               initial="hidden"
               animate="visible"
               exit="hidden"

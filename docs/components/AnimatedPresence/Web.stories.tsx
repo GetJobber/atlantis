@@ -6,6 +6,7 @@ import { Text } from "@jobber/components/Text";
 import { Card } from "@jobber/components/Card";
 import { Content } from "@jobber/components/Content";
 import { Flex } from "@jobber/components/Flex";
+import { Switch } from "@jobber/components/Switch";
 
 export default {
   title: "Components/Utilities/AnimatedPresence/Web",
@@ -18,55 +19,64 @@ export default {
 
 const BasicTemplate: ComponentStory<typeof AnimatedPresence> = args => {
   const [switched, setSwitched] = useState(false);
-  const [count, setCount] = useState(2);
+  const [added, setAdded] = useState(false);
+  const [count, setCount] = useState(0);
 
   return (
-    <Flex template={["grow", "grow"]} align="start">
-      <Content>
-        <Button label="Add" onClick={() => setCount(count + 2)} />
-        <Button label="Remove" onClick={() => setCount(count - 2)} />
-        <AnimatedPresence {...args}>
-          {[...Array(count)].map((_, i) => (
-            <Card key={i}>
-              <Content>
-                <Text>Card {i + 1}</Text>
-              </Content>
-            </Card>
-          ))}
-        </AnimatedPresence>
-      </Content>
+    <Content>
+      <Button
+        icon={switched ? "arrowUp" : "arrowDown"}
+        label={switched ? "Hide" : "Show"}
+        iconOnRight
+        onClick={() => setSwitched(!switched)}
+      />
 
-      <Content>
-        <Button
-          icon={switched ? "arrowUp" : "arrowDown"}
-          label={switched ? "Hide" : "Show"}
-          iconOnRight
-          onClick={() => setSwitched(!switched)}
-        />
-        <AnimatedPresence {...args}>
-          {switched && (
-            <Card>
-              <Content>
-                <Text>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Maiores nemo recusandae quae autem nisi eum veniam blanditiis
-                  aliquam quo expedita necessitatibus, est provident minus unde
-                  cupiditate reprehenderit.
-                </Text>
-              </Content>
-            </Card>
-          )}
+      <AnimatedPresence {...args}>
+        {switched && (
+          <Text variation="subdued">
+            Oh, theres more text here for some fine print and such. Lorem ipsum
+            dolor sit, amet consectetur adipisicing elit. Doloremque omnis nobis
+            totam dicta animi minus sequi quibusdam quisquam esse suscipit!
+          </Text>
+        )}
 
-          <Card>
-            <Content>
-              <Text>Something in the middle</Text>
-            </Content>
-          </Card>
+        <Card>
+          <Content>
+            <Flex template={["grow", "shrink"]}>
+              <Text>Add me</Text>
 
-          {switched && <Text>Oh, theres more</Text>}
-        </AnimatedPresence>
-      </Content>
-    </Flex>
+              <Button
+                icon={added ? "checkmark" : "add"}
+                label={added ? "Added" : "Add"}
+                iconOnRight
+                onClick={() => setAdded(!added)}
+              />
+            </Flex>
+          </Content>
+        </Card>
+
+        {switched && (
+          <Content>
+            <Flex template={["shrink", "shrink"]}>
+              <Button label="Add" onClick={() => setCount(count + 2)} />
+              <Button label="Remove" onClick={() => setCount(count - 2)} />
+            </Flex>
+            <AnimatedPresence {...args}>
+              {[...Array(count)].map((_, i) => (
+                <Card key={i}>
+                  <Content>
+                    <Flex template={["grow", "shrink"]}>
+                      <Text>Card {i + 1}</Text>
+                      <Switch />
+                    </Flex>
+                  </Content>
+                </Card>
+              ))}
+            </AnimatedPresence>
+          </Content>
+        )}
+      </AnimatedPresence>
+    </Content>
   );
 };
 
