@@ -32,14 +32,14 @@ interface SpinnerProps {
 }
 
 export function Spinner({ size = "base", inline, hasDelight }: SpinnerProps) {
-  const arboristGif = require("./assets/Jobber_Arborist.gif");
-  const hvacGif = require("./assets/Jobber_PressureGauge.gif");
-  const workVanGif = require("./assets/Jobber_WorkVan.gif");
-  const landscapingGif = require("./assets/Jobber_Bobcat.gif");
-  const chainsawGif = require("./assets/Jobber_Chainsaw.gif");
-  const plumbingGif = require("./assets/Jobber_PipeWrench.gif");
-  const powerdrillGif = require("./assets/Jobber_PowerDrill.gif");
-  const windowCleaningGif = require("./assets/Jobber_WaterLogo.gif");
+  const arboristGif = require("../Spinner/assets/Jobber_Arborist.gif");
+  const hvacGif = require("../Spinner/assets/Jobber_PressureGauge.gif");
+  const workVanGif = require("../Spinner/assets/Jobber_WorkVan.gif");
+  const landscapingGif = require("../Spinner/assets/Jobber_Bobcat.gif");
+  const chainsawGif = require("../Spinner/assets/Jobber_Chainsaw.gif");
+  const plumbingGif = require("../Spinner/assets/Jobber_PipeWrench.gif");
+  const powerdrillGif = require("../Spinner/assets/Jobber_PowerDrill.gif");
+  const windowCleaningGif = require("../Spinner/assets/Jobber_WaterLogo.gif");
 
   let selectedGif;
 
