@@ -32,10 +32,28 @@
 
 .isChecked {
   background-color: var(--color-interactive);
+  transform-origin: left center;
+}
+
+.withForce.isChecked {
+  background-color: var(--color-green);
+  animation: inertia var(--timing-base) ease-in-out var(--timing-quick);
+}
+
+@keyframes inertia {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1, 1);
+  }
 }
 
 .pip {
   position: relative;
+  left: 0;
   z-index: 1;
   width: var(--switch--pipSize);
   height: var(--switch--pipSize);
@@ -46,33 +64,6 @@
   flex: 0 0 auto;
 }
 
-@keyframes pipInertiaForwards {
-  10% {
-    width: var(--switch--pipSize);
-  }
-
-  40% {
-    width: calc(var(--switch--pipSize) + var(--space-base));
-    border-top-right-radius: var(--space-large);
-    border-bottom-right-radius: var(--space-large);
-  }
-
-  85%,
-  100% {
-    width: var(--switch--pipSize);
-  }
-}
-
-.isChecked .pip {
-  border-color: var(--color-green);
-  transform: translateX(
-    calc(
-      calc(var(--switch--width) - var(--switch--pipSize)) - var(--space-small)
-    )
-  );
-  animation: pipInertiaForwards var(--timing-base) ease-in-out;
-}
-
 .disabled {
   border-color: var(--color-disabled--secondary);
   background-color: var(--color-surface--background);
@@ -81,6 +72,83 @@
 
 .disabled .pip {
   border-color: var(--color-disabled--secondary);
+}
+
+.withForce .pip {
+  animation: shake var(--timing-base) ease-in-out infinite;
+}
+
+.isChecked .pip {
+  left: calc(
+    calc(var(--switch--width) - var(--switch--pipSize)) - var(--space-small)
+  );
+  border-color: var(--color-green);
+  animation: pipInertiaForwards var(--timing-base) ease-in-out;
+}
+
+.withForce.isChecked .pip {
+  animation-duration: var(--timing-quick);
+  transition-duration: var(--timing-quick);
+}
+
+@keyframes pipInertiaForwards {
+  10%,
+  85%,
+  100% {
+    width: var(--switch--pipSize);
+  }
+
+  40% {
+    width: calc(var(--switch--pipSize) + var(--space-base));
+    border-top-right-radius: var(--space-large);
+    border-bottom-right-radius: var(--space-large);
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px);
+  }
+
+  10% {
+    transform: translate(-1px, -2px);
+  }
+
+  20% {
+    transform: translate(-3px, 0px);
+  }
+
+  30% {
+    transform: translate(3px, 2px);
+  }
+
+  40% {
+    transform: translate(1px, -1px);
+  }
+
+  50% {
+    transform: translate(-1px, 2px);
+  }
+
+  60% {
+    transform: translate(-3px, 1px);
+  }
+
+  70% {
+    transform: translate(3px, 1px);
+  }
+
+  80% {
+    transform: translate(-1px, -1px);
+  }
+
+  90% {
+    transform: translate(1px, 2px);
+  }
+
+  100% {
+    transform: translate(1px, -2px);
+  }
 }
 
 .label {

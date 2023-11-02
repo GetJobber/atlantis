@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { MouseEvent, useState } from "react";
 import classnames from "classnames";
 import styles from "./Switch.css";
 import { Typography } from "../Typography";
@@ -23,6 +23,9 @@ export function Switch({
   disabled,
   onChange,
 }: SwitchProps) {
+  const onLongPress = useLongPress();
+  const [withForce, setWithForce] = useState(false);
+
   const [statefulValue, setValue] = useState(false);
   const value = providedValue != undefined ? providedValue : statefulValue;
 
@@ -33,6 +36,7 @@ export function Switch({
 
     const newValue = !value;
     onChange && onChange(newValue);
+    !newValue && setWithForce(false);
 
     if (providedValue == undefined) {
       setValue(newValue);
@@ -42,6 +46,7 @@ export function Switch({
   const className = classnames(styles.track, {
     [styles.isChecked]: value,
     [styles.disabled]: disabled,
+    [styles.withForce]: withForce,
   });
 
   return (
@@ -55,6 +60,8 @@ export function Switch({
         className={className}
         onClick={toggleSwitch}
         disabled={disabled}
+        {...onLongPress(() => value === false && setWithForce(true))}
+        onMouseLeave={() => setWithForce(false)}
       >
         <Label as="On" disabled={disabled} />
         <span className={styles.pip} />
@@ -94,4 +101,39 @@ function Label({ as, disabled }: LabelProps) {
       </Typography>
     </span>
   );
+}
+
+function useLongPress() {
+  return function (callback: () => void) {
+    let timeout: NodeJS.Timeout;
+    let preventClick = false;
+
+    function start() {
+      timeout = setTimeout(() => {
+        preventClick = true;
+        callback();
+      }, 300);
+    }
+
+    function clear() {
+      timeout && clearTimeout(timeout);
+      preventClick = false;
+    }
+
+    function clickCaptureHandler(e: MouseEvent<HTMLButtonElement>) {
+      if (preventClick) {
+        e.stopPropagation();
+        preventClick = false;
+      }
+    }
+
+    return {
+      onMouseDown: start,
+      onTouchStart: start,
+      onMouseUp: clear,
+      onTouchMove: clear,
+      onTouchEnd: clear,
+      onClickCapture: clickCaptureHandler,
+    };
+  };
 }
