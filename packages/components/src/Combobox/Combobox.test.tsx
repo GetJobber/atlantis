@@ -168,7 +168,7 @@ describe("Combobox Single Select", () => {
     renderCombobox();
   });
 
-  it("should not show the heading when there's a selection", () => {
+  it("should not show the label when there's a selection", () => {
     expect(screen.queryByText(activatorLabel)).not.toBeInTheDocument();
     expect(
       screen.getByRole("combobox", { name: selectedValue.label }),
