@@ -12,6 +12,17 @@
   font-size: var(--typography--fontSize-base);
 }
 
+.searchInput::-webkit-search-decoration,
+.searchInput::-webkit-search-cancel-button,
+.searchInput::-webkit-search-results-button,
+.searchInput::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+}
+
+.searchInput:focus {
+  outline: none;
+}
+
 .clearSearch {
   position: absolute;
   top: 50%;
