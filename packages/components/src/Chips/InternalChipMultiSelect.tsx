@@ -33,7 +33,7 @@ export function InternalChipMultiSelect({
               disabled={chip?.props.disabled}
             />
             {chip && (
-              <Chip {...chip.props} actAsFormElement={true}>
+              <Chip {...chip.props} mode="form">
                 <Chip.Suffix>
                   {isChipActive && (
                     <Icon name="checkmark" size="small" color="heading" />

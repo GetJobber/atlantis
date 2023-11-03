@@ -8,6 +8,11 @@ export interface ChipProps
    * The value that gets returned on the `<Chips>`'s onChange callback.
    */
   readonly value: string;
+
+  /**
+   * Chips to display
+   */
+  readonly children?: React.ReactNode;
 }
 
 // Only need the component to pass in the data as a react children

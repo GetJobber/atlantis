@@ -38,7 +38,8 @@ export function InternalChipSingleSelect({
             <Chip
               label={child?.props.label || ""}
               role="option"
-              actAsFormElement={true}
+              mode="form"
+              disabled={child?.props.disabled}
             >
               <Chip.Suffix>
                 {isSelected && (

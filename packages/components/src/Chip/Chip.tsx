@@ -10,13 +10,13 @@ import { Typography } from "../Typography";
 import { Tooltip } from "../Tooltip";
 
 export const Chip = ({
-  actAsFormElement = false,
   ariaLabel,
   dataTestID,
   disabled,
   heading,
   invalid,
   label,
+  mode = "button",
   value,
   onClick,
   onKeyDown,
@@ -26,7 +26,7 @@ export const Chip = ({
   variation = "base",
 }: ChipProps): JSX.Element => {
   const classes = classnames(styles.chip, {
-    [styles.useDiv]: actAsFormElement,
+    [styles.useDiv]: mode === "form",
     [styles.invalid]: invalid,
     [styles.base]: variation === "base",
     [styles.subtle]: variation === "subtle",
@@ -35,7 +35,7 @@ export const Chip = ({
 
   const prefix = useChildComponent(children, d => d.type === Chip.Prefix);
   const suffix = useChildComponent(children, d => d.type === Chip.Suffix);
-  const Tag = actAsFormElement ? "div" : "button";
+  const Tag = mode === "form" && !disabled ? "div" : "button";
 
   const [labelRef, labelFullyVisible] = useInView<HTMLSpanElement>();
   const [headingRef, headingFullyVisible] = useInView<HTMLSpanElement>();
@@ -51,9 +51,8 @@ export const Chip = ({
       <Tag
         className={classes}
         onClick={(ev: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) =>
-          onClick &&
-          !actAsFormElement &&
-          onClick(value || label, ev as React.MouseEvent<HTMLButtonElement>)
+          mode === "button" &&
+          onClick?.(value || label, ev as React.MouseEvent<HTMLButtonElement>)
         }
         tabIndex={tabIndex}
         onKeyDown={onKeyDown}

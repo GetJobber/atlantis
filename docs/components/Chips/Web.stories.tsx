@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Content } from "@jobber/components/Content";
 import {
+  Chip,
   Chips,
   InternalChipDismissible,
   InternalChipMultiSelect,
   InternalChipSingleSelect,
 } from "@jobber/components/Chips";
-import { Chip } from "@jobber/components/Chip";
+import { Chip as SeperatedChip } from "@jobber/components/Chip";
 import { Icon, IconNames } from "@jobber/components/Icon";
 import { Text } from "@jobber/components/Text";
 import { Avatar, AvatarSize } from "@jobber/components/Avatar/";
@@ -53,14 +54,14 @@ const BasicTemplate: ComponentStory<typeof InternalChipSingleSelect> = args => {
         {chips.map(({ label, value, icon, initials, size }, index) => {
           return (
             <Chip label={label} value={value} key={index}>
-              <Chip.Prefix>
+              <SeperatedChip.Prefix>
                 {icon && (
                   <Icon name={icon as IconNames} size={size as AvatarSize} />
                 )}
                 {initials && (
                   <Avatar initials={initials} size={size as AvatarSize} />
                 )}
-              </Chip.Prefix>
+              </SeperatedChip.Prefix>
             </Chip>
           );
         })}
@@ -79,14 +80,6 @@ const MultiSelectTemplate: ComponentStory<
 > = args => {
   const [selected, setSelected] = useState<string[]>([]);
 
-  const multiSelectItems = (value?: string | number) => {
-    if (value && selected.includes(String(value))) {
-      setSelected(selected.filter(d => d !== value));
-    } else {
-      setSelected(d => [...d, value as string]);
-    }
-  };
-
   return (
     <Content>
       <Text>
@@ -98,14 +91,10 @@ const MultiSelectTemplate: ComponentStory<
         selected={selected}
         onChange={setSelected}
       >
-        <Chip label="Amazing" value="Amazing" onClick={multiSelectItems} />
-        <Chip label="Wonderful" value="Wonderful" onClick={multiSelectItems} />
-        <Chip label="Brilliant" value="Brilliant" onClick={multiSelectItems} />
-        <Chip
-          label="Magnificent"
-          value="Magnificent"
-          onClick={multiSelectItems}
-        />
+        <Chip label="Amazing" value="Amazing" />
+        <Chip label="Wonderful" value="Wonderful" />
+        <Chip label="Brilliant" value="Brilliant" />
+        <Chip label="Magnificent" value="Magnificent" />
       </Chips>
     </Content>
   );
