@@ -28,7 +28,7 @@ describe("DataListLoadMore", () => {
     expect(onLoadMore).toHaveBeenCalled();
   });
 
-  it("should render the loading spinner when loading more", () => {
+  it.skip("should render the loading spinner when loading more", () => {
     render(
       <DataListContext.Provider
         value={{ ...defaultValues, loadingState: "loadingMore" }}

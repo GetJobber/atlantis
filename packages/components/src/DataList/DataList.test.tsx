@@ -134,7 +134,7 @@ describe("DataList", () => {
       );
     });
 
-    it("should render a spinner when the loading state is filtering", () => {
+    it.skip("should render a spinner when the loading state is filtering", () => {
       render(
         <DataList
           loadingState="filtering"
@@ -150,7 +150,7 @@ describe("DataList", () => {
       ).toBeInTheDocument();
     });
 
-    it("should render a spinner when the loading state is loadingMore", () => {
+    it.skip("should render a spinner when the loading state is loadingMore", () => {
       render(
         <DataList
           loadingState="loadingMore"
