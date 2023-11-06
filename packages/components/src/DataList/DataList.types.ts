@@ -315,7 +315,7 @@ export interface DataListActionsProps<T extends DataListObject> {
 }
 
 export interface DataListBulkActionProps
-  extends DataListActionProps<DataListObject> {
+  extends Omit<DataListActionProps<DataListObject>, "visible"> {
   /**
    * The callback function when the action is clicked.
    */
