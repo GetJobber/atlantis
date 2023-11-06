@@ -104,6 +104,18 @@ action that is related to the item.
 </DataList>
 ```
 
+##### Hiding an action
+
+Hide an action by using the `visible` prop. It accepts a function that has a
+parameter of the item it's related to.
+
+```tsx
+<DataList.ItemAction
+  visible={item => item.status === "Archived"}
+  label="Delete"
+/>
+```
+
 <Tabs>
   <Tab label="DataList.ItemActions">
     <ArgsTable of={DataList.ItemActions} />
