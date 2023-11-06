@@ -290,6 +290,11 @@ export interface DataListActionProps<T extends DataListObject> {
   readonly destructive?: boolean;
 
   /**
+   * Determine if the action is visible for a given item.
+   */
+  readonly visible?: (item: T) => boolean;
+
+  /**
    * The callback function when the action is clicked.
    */
   readonly onClick?: (data: T) => void;
