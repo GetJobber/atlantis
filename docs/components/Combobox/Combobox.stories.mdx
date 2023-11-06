@@ -28,14 +28,29 @@ Combobox is composed of three main parts:
 #### Trigger
 
 The trigger is the user-facing interface to open and close the Combobox and
-initiate option selection. The choice between them depends on the design and
-user experience requirements.
+initiate option selection. When implementing Combobox, you may rely on the
+default trigger or, you may pass in a custom activator.
 
-There are two options for trigger elements of the Combobox,
-[TriggerButton](../?path=/story/components-selections-combobox-web--trigger-button)
+The default trigger is a
+[Chip](../?path=/story/components-selections-chip-web--subtle) containing a
+label that reads "Select" and an `add` Icon suffix. The label can be customized
+by adding the optional `label` prop to better reflect the type of data being
+selected. Examples of using a default trigger can be found in the
+[single-select](../?path=/code/components-selections-combobox-web--single-select)
 and
-[TriggerChip](../?path=/story/components-selections-combobox-web--trigger-chip).
-You must have one trigger component.
+[multi-select](../?path=/code/components-selections-combobox-web--multi-select)
+stories.
+
+Notice that omitting a trigger subcomponent will result in the default trigger
+being used.
+
+The custom activator should be used when the Combobox trigger is a
+[Button](../?path=/docs/components-actions-button-docs--page) or an alternate
+variation of Chip. Button or Chip should be a child of `<Combobox.Activator />`
+and will be rendered in place of the default trigger. Examples of using a custom
+activator can be found in the
+[custom activator](../?path=/code/components-selections-combobox-web--custom-activator)
+story.
 
 #### Content
 
