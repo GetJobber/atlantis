@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
 import { Button } from "@jobber/components/Button";
+import { Content } from "@jobber/components/Content";
+import { Typography } from "@jobber/components/Typography";
+import { Chip } from "@jobber/components/Chip";
+import { Icon } from "@jobber/components/Icon";
 
 export default {
   title: "Components/Selections/Combobox/Web",
@@ -15,51 +19,6 @@ export default {
     story => <div>{story()}</div>,
   ],
 } as ComponentMeta<typeof Combobox>;
-
-const SingleSelectCombobox: ComponentStory<typeof Combobox> = args => {
-  const [selected, setSelected] = useState<ComboboxOption[]>([]);
-
-  return (
-    <Combobox
-      {...args}
-      onSelect={setSelected}
-      selected={selected}
-      label="Teammates"
-    >
-      <Combobox.Option id="1" label="Bilbo Baggins" />
-      <Combobox.Option id="2" label="Frodo Baggins" />
-      <Combobox.Option id="3" label="Pippin Took" />
-      <Combobox.Option id="4" label="Merry Brandybuck" />
-      <Combobox.Option id="5" label="Sam Gamgee" />
-
-      <Combobox.Action
-        label="Add Teammate"
-        onClick={() => {
-          alert("Added a new teammate ✅");
-        }}
-      />
-      <Combobox.Action
-        label="Manage Teammates"
-        onClick={() => {
-          alert("Managed teammates 👍");
-        }}
-      />
-    </Combobox>
-  );
-};
-
-const ComboboxEmptyState: ComponentStory<typeof Combobox> = args => {
-  return (
-    <Combobox {...args} label="Teammates" subjectNoun="teammates">
-      <Combobox.Action
-        label="Add Teammate"
-        onClick={() => {
-          alert("Added a new teammate ✅");
-        }}
-      />
-    </Combobox>
-  );
-};
 
 const ComboboxClearSelection: ComponentStory<typeof Combobox> = args => {
   const [selected, setSelected] = useState<ComboboxOption[]>([
@@ -118,6 +77,108 @@ const ComboboxClearSelection: ComponentStory<typeof Combobox> = args => {
   );
 };
 
+const ComboboxCustomActivator: ComponentStory<typeof Combobox> = args => {
+  const [selected, setSelected] = useState<ComboboxOption[]>([]);
+
+  return (
+    <Content>
+      <Typography element={"h3"} fontFamily={"display"}>
+        Custom Activators using Button:
+      </Typography>{" "}
+      <Combobox {...args} onSelect={setSelected} selected={selected}>
+        <Combobox.Activator>
+          <Button label={"Tax Rate"} icon={"dropdown"} iconOnRight={true} />
+        </Combobox.Activator>
+        <Combobox.Option id="1" label="13%" />
+        <Combobox.Option id="2" label="15%" />
+        <Combobox.Option id="3" label="20%" />
+
+        <Combobox.Action
+          label="Add Tax Rate"
+          onClick={() => {
+            alert("Added a new tax rate ✅");
+          }}
+        />
+      </Combobox>
+      <Combobox {...args} onSelect={setSelected} selected={selected}>
+        <Combobox.Activator>
+          <Button
+            label={"Tax Rate"}
+            icon={"plus"}
+            type={"primary"}
+            variation={"subtle"}
+          />
+        </Combobox.Activator>
+        <Combobox.Option id="1" label="13%" />
+        <Combobox.Option id="2" label="15%" />
+        <Combobox.Option id="3" label="20%" />
+
+        <Combobox.Action
+          label="Add Tax Rate"
+          onClick={() => {
+            alert("Added a new tax rate ✅");
+          }}
+        />
+      </Combobox>
+      <Combobox {...args} onSelect={setSelected} selected={selected}>
+        <Combobox.Activator>
+          <Button
+            label={""}
+            icon={"percent"}
+            size={"large"}
+            type={"secondary"}
+          />
+        </Combobox.Activator>
+        <Combobox.Option id="1" label="13%" />
+        <Combobox.Option id="2" label="15%" />
+        <Combobox.Option id="3" label="20%" />
+
+        <Combobox.Action
+          label="Add Tax Rate"
+          onClick={() => {
+            alert("Added a new tax rate ✅");
+          }}
+        />
+      </Combobox>
+      <Typography element={"h3"} fontFamily={"display"}>
+        Custom Activator using Chip:
+      </Typography>
+      <Combobox {...args} onSelect={setSelected} selected={selected}>
+        <Combobox.Activator>
+          <Chip label="" heading={"Tax Rate"} variation={"subtle"}>
+            <Chip.Prefix>
+              <Icon name={"percent"} size={"small"} />
+            </Chip.Prefix>
+          </Chip>
+        </Combobox.Activator>
+        <Combobox.Option id="1" label="13%" />
+        <Combobox.Option id="2" label="15%" />
+        <Combobox.Option id="3" label="20%" />
+
+        <Combobox.Action
+          label="Add Tax Rate"
+          onClick={() => {
+            alert("Added a new tax rate ✅");
+          }}
+        />
+      </Combobox>
+    </Content>
+  );
+};
+
+const ComboboxEmptyState: ComponentStory<typeof Combobox> = args => {
+  return (
+    <Combobox {...args} label="Teammates" subjectNoun="teammates">
+      <Combobox.Action
+        label="Add Teammate"
+        onClick={() => {
+          alert("Added a new teammate ✅");
+        }}
+      />
+    </Combobox>
+  );
+};
+
 const ComboboxMultiSelection: ComponentStory<typeof Combobox> = args => {
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
 
@@ -159,14 +220,49 @@ const ComboboxMultiSelection: ComponentStory<typeof Combobox> = args => {
   );
 };
 
-export const SingleSelect = SingleSelectCombobox.bind({});
-SingleSelect.args = {};
+const ComboboxSingleSelection: ComponentStory<typeof Combobox> = args => {
+  const [selected, setSelected] = useState<ComboboxOption[]>([]);
+
+  return (
+    <Combobox
+      {...args}
+      onSelect={setSelected}
+      selected={selected}
+      label="Teammates"
+    >
+      <Combobox.Option id="1" label="Bilbo Baggins" />
+      <Combobox.Option id="2" label="Frodo Baggins" />
+      <Combobox.Option id="3" label="Pippin Took" />
+      <Combobox.Option id="4" label="Merry Brandybuck" />
+      <Combobox.Option id="5" label="Sam Gamgee" />
+
+      <Combobox.Action
+        label="Add Teammate"
+        onClick={() => {
+          alert("Added a new teammate ✅");
+        }}
+      />
+      <Combobox.Action
+        label="Manage Teammates"
+        onClick={() => {
+          alert("Managed teammates 👍");
+        }}
+      />
+    </Combobox>
+  );
+};
 
 export const ClearSelection = ComboboxClearSelection.bind({});
 ClearSelection.args = {};
+
+export const CustomActivator = ComboboxCustomActivator.bind({});
+CustomActivator.args = {};
 
 export const EmptyState = ComboboxEmptyState.bind({});
 EmptyState.args = {};
 
 export const MultiSelect = ComboboxMultiSelection.bind({});
 MultiSelect.args = {};
+
+export const SingleSelect = ComboboxSingleSelection.bind({});
+SingleSelect.args = {};
