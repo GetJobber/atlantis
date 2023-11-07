@@ -8,18 +8,16 @@ export function ComboboxTrigger({
   label = "Select",
   selected,
 }: ComboboxTriggerProps) {
-  const { handleClose, open, setOpen, multiselect } =
-    React.useContext(ComboboxContext);
+  const { handleClose, open, setOpen } = React.useContext(ComboboxContext);
 
   const hasSelection = selected.length;
   const selectedLabel = selected.map(option => option.label).join(", ");
-  const renderHeading = multiselect || !hasSelection;
 
   return (
     <Chip
       variation={hasSelection ? "base" : "subtle"}
       label={hasSelection ? selectedLabel : ""}
-      heading={renderHeading ? label : ""}
+      heading={label}
       onClick={() => {
         if (open) {
           handleClose();

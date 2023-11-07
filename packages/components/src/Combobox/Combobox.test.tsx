@@ -162,26 +162,47 @@ describe("Combobox", () => {
 });
 
 describe("Combobox Single Select", () => {
-  const selectedValue = { id: "1", label: "Bilbo Baggins" };
-  beforeEach(() => {
-    mockSelectedValue.mockReturnValueOnce([selectedValue]);
-    renderCombobox();
+  describe("when there is a selection", () => {
+    const selectedValue = { id: "1", label: "Bilbo Baggins" };
+    beforeEach(() => {
+      mockSelectedValue.mockReturnValueOnce([selectedValue]);
+      renderCombobox();
+    });
+    it("should show the label", () => {
+      expect(screen.getByText(activatorLabel)).toBeInTheDocument();
+      expect(
+        screen.getByRole("combobox", { name: selectedValue.label }),
+      ).toBeInTheDocument();
+    });
+
+    it("should fire the onSelect with the new option", async () => {
+      await userEvent.click(screen.getByText("Frodo Baggins"));
+
+      expect(handleSelect).toHaveBeenCalledTimes(1);
+      expect(handleSelect).toHaveBeenCalledWith([
+        { id: "2", label: "Frodo Baggins" },
+      ]);
+    });
   });
 
-  it("should not show the label when there's a selection", () => {
-    expect(screen.queryByText(activatorLabel)).not.toBeInTheDocument();
-    expect(
-      screen.getByRole("combobox", { name: selectedValue.label }),
-    ).toBeInTheDocument();
-  });
+  describe("when there is no selection", () => {
+    beforeEach(() => {
+      mockSelectedValue.mockReturnValueOnce([]);
+      renderCombobox();
+    });
 
-  it("should fire the onSelect with the new option", async () => {
-    await userEvent.click(screen.getByText("Frodo Baggins"));
+    it("should show the label", () => {
+      expect(screen.getByText(activatorLabel)).toBeInTheDocument();
+    });
 
-    expect(handleSelect).toHaveBeenCalledTimes(1);
-    expect(handleSelect).toHaveBeenCalledWith([
-      { id: "2", label: "Frodo Baggins" },
-    ]);
+    it("should fire the onSelect with the new option", async () => {
+      await userEvent.click(screen.getByText("Frodo Baggins"));
+
+      expect(handleSelect).toHaveBeenCalledTimes(1);
+      expect(handleSelect).toHaveBeenCalledWith([
+        { id: "2", label: "Frodo Baggins" },
+      ]);
+    });
   });
 });
 
