@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.59.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.58.5...@jobber/components@4.59.0) (2023-11-07)
+
+
+### Features
+
+* **components:** Refactor ComboboxContent to ComboboxOption ([#1614](https://github.com/GetJobber/atlantis/issues/1614)) ([3762ea5](https://github.com/GetJobber/atlantis/commit/3762ea5fee086209e8dd2b11503c714af696cee1))
+
+
+
+
+
 ## [4.58.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.58.4...@jobber/components@4.58.5) (2023-11-07)
 
 
