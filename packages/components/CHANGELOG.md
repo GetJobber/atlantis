@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.58.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.58.3...@jobber/components@4.58.4) (2023-11-07)
+
+
+### Bug Fixes
+
+* **components:** Fix Chip gradient on Safari ([#1627](https://github.com/GetJobber/atlantis/issues/1627)) ([2924cb2](https://github.com/GetJobber/atlantis/commit/2924cb2f1660dfb3f9a46eddedeca7d59c972e46))
+
+
+
+
+
 ## [4.58.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.58.2...@jobber/components@4.58.3) (2023-11-07)
 
 **Note:** Version bump only for package @jobber/components
