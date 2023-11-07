@@ -55,7 +55,7 @@ export function Combobox(props: ComboboxProps): JSX.Element {
       handleClose={handleClose}
       shouldScroll={shouldScroll}
     >
-      <div ref={wrapperRef}>
+      <div ref={wrapperRef} className={styles.wrapper}>
         {open && (
           <div
             className={styles.overlay}
