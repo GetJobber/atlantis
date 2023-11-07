@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.6.3...@jobber/hooks@2.7.0) (2023-11-07)
+
+
+### Features
+
+* **hooks:** Hook for managing boolean values ([#1598](https://github.com/GetJobber/atlantis/issues/1598)) ([bab0035](https://github.com/GetJobber/atlantis/commit/bab0035dcef691f68e55f60fefef20387fb79eae))
+
+
+
+
+
 ## [2.6.3](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.6.2...@jobber/hooks@2.6.3) (2023-10-25)
 
 
