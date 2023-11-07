@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.58.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.58.4...@jobber/components@4.58.5) (2023-11-07)
+
+
+### Bug Fixes
+
+* **components:** remove useragent styling from Combobox search [JOB-82086] ([#1625](https://github.com/GetJobber/atlantis/issues/1625)) ([91069b3](https://github.com/GetJobber/atlantis/commit/91069b3180efba45efb1294c87a8157af5873a13))
+
+
+
+
+
 ## [4.58.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.58.3...@jobber/components@4.58.4) (2023-11-07)
 
 
