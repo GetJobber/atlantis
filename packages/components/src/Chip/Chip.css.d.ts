@@ -11,6 +11,7 @@ declare const styles: {
   readonly "disabled": string;
   readonly "chipContent": string;
   readonly "truncateGradient": string;
+  readonly "chipLabelRef": string;
 };
 export = styles;
 
