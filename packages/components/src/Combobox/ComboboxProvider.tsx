@@ -9,13 +9,11 @@ export const ComboboxContext = React.createContext(
     selectionHandler: (option: ComboboxOption) => void;
     handleClose: () => void;
     shouldScroll: MutableRefObject<boolean>;
-    multiselect?: boolean;
   },
 );
 
 export interface ComboboxProviderProps {
   readonly children: React.ReactNode;
-  readonly multiselect?: boolean;
   readonly selected: ComboboxOption[];
   readonly selectionHandler: (option: ComboboxOption) => void;
   readonly open: boolean;
@@ -36,7 +34,6 @@ export function ComboboxContextProvider(
         selectionHandler: props.selectionHandler,
         handleClose: props.handleClose,
         shouldScroll: props.shouldScroll,
-        multiselect: props.multiselect,
       }}
     >
       {props.children}

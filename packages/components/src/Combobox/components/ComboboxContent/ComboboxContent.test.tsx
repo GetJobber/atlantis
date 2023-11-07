@@ -80,7 +80,6 @@ function renderComboboxContent(
       setOpen={setOpen}
       handleClose={handleClose}
       selectionHandler={handleSelect}
-      multiselect={multiSelect}
       shouldScroll={{ current: false }}
       open={open}
       selected={selected}

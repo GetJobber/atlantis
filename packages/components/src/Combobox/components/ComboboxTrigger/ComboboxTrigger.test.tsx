@@ -80,53 +80,34 @@ describe("ComboboxTrigger", () => {
       expect(trigger).toHaveTextContent("Michael");
     });
 
-    describe("When multiSelect is false", () => {
-      it("renders Chip with the selected option as the label", () => {
-        const { getByRole } = renderTrigger(
-          true,
-          [{ id: "1", label: "Michael" }],
-          undefined,
-          false,
-        );
+    it("renders ComboboxTrigger with a label and selected options", () => {
+      const { getByRole } = renderTrigger(
+        true,
+        [
+          { id: "1", label: "Michael" },
+          { id: "3", label: "Leatherface" },
+        ],
+        "Teammates",
+      );
+      const trigger = getByRole("combobox");
 
-        const trigger = getByRole("combobox");
-
-        expect(trigger).toHaveTextContent("Michael");
-      });
+      expect(trigger).toHaveTextContent("Teammates");
+      expect(trigger).toHaveTextContent("Michael");
     });
 
-    describe("When multiSelect is true", () => {
-      it("renders ComboboxTrigger with a label and selected options", () => {
-        const { getByRole } = renderTrigger(
-          true,
-          [
-            { id: "1", label: "Michael" },
-            { id: "3", label: "Leatherface" },
-          ],
-          "Teammates",
-          true,
-        );
-        const trigger = getByRole("combobox");
+    it("renders ComboboxTrigger with multiple selected options joined by a comma", () => {
+      const { getByRole } = renderTrigger(
+        true,
+        [
+          { id: "1", label: "Michael" },
+          { id: "3", label: "Leatherface" },
+        ],
+        undefined,
+      );
 
-        expect(trigger).toHaveTextContent("Teammates");
-        expect(trigger).toHaveTextContent("Michael");
-      });
+      const trigger = getByRole("combobox");
 
-      it("renders ComboboxTrigger with multiple selected options joined by a comma", () => {
-        const { getByRole } = renderTrigger(
-          true,
-          [
-            { id: "1", label: "Michael" },
-            { id: "3", label: "Leatherface" },
-          ],
-          undefined,
-          true,
-        );
-
-        const trigger = getByRole("combobox");
-
-        expect(trigger).toHaveTextContent("Michael, Leatherface");
-      });
+      expect(trigger).toHaveTextContent("Michael, Leatherface");
     });
   });
 });
@@ -135,7 +116,6 @@ function renderTrigger(
   open = false,
   selected: ComboboxOption[] = [],
   label?: string,
-  multiselect = false,
 ) {
   return render(
     <ComboboxContextProvider
@@ -145,7 +125,6 @@ function renderTrigger(
       open={open}
       shouldScroll={{ current: false }}
       selectionHandler={jest.fn()}
-      multiselect={multiselect}
     >
       <ComboboxTrigger label={label} selected={selected} />
     </ComboboxContextProvider>,
