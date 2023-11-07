@@ -1,12 +1,36 @@
-import { useAssert } from "@jobber/hooks/useAssert";
-import { ComboboxOption as ComboboxOptionType } from "../../Combobox.types";
+import React, { useContext } from "react";
+import classnames from "classnames";
+import { Icon } from "@jobber/components/Icon";
+import styles from "./ComboboxOption.css";
+import { ComboboxContext } from "../../ComboboxProvider";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function ComboboxOption(_: ComboboxOptionType) {
-  useAssert(
-    true,
-    "Combobox.Option can only be used inside a Combobox component",
+export interface ComboboxOptionProps {
+  readonly id: string | number;
+  readonly label: string;
+}
+
+export function ComboboxOption(props: ComboboxOptionProps) {
+  const { selected, selectionHandler } = useContext(ComboboxContext);
+
+  const isSelected = selected.some(
+    selection => selection.id.toString() === props.id.toString(),
   );
 
-  return null;
+  return (
+    <li
+      key={props.id}
+      tabIndex={-1}
+      data-selected={isSelected}
+      role="option"
+      aria-selected={isSelected}
+      onClick={() =>
+        selectionHandler &&
+        selectionHandler({ id: props.id, label: props.label })
+      }
+      className={classnames(styles.option)}
+    >
+      {props.label}
+      {isSelected && <Icon name="checkmark" color="blue" />}
+    </li>
+  );
 }

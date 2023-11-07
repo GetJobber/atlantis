@@ -7,3 +7,7 @@
   z-index: var(--elevation-menu);
   background-color: transparent;
 }
+
+.wrapper {
+  display: inline-block;
+}

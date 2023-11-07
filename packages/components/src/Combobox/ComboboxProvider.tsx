@@ -1,41 +1,42 @@
-import React, { RefObject, useRef, useState } from "react";
-import styles from "./Combobox.css";
+import React, { Dispatch, MutableRefObject, SetStateAction } from "react";
+import { ComboboxOption } from "./Combobox.types";
 
 export const ComboboxContext = React.createContext(
   {} as {
-    multiselect: boolean;
     open: boolean;
     setOpen: (open: boolean) => void;
-    wrapperRef: RefObject<HTMLDivElement>;
+    selected: ComboboxOption[];
+    selectionHandler: (option: ComboboxOption) => void;
+    handleClose: () => void;
+    shouldScroll: MutableRefObject<boolean>;
   },
 );
 
 export interface ComboboxProviderProps {
   readonly children: React.ReactNode;
-  readonly multiselect?: boolean;
+  readonly selected: ComboboxOption[];
+  readonly selectionHandler: (option: ComboboxOption) => void;
+  readonly open: boolean;
+  readonly setOpen: Dispatch<SetStateAction<boolean>>;
+  readonly handleClose: () => void;
+  readonly shouldScroll: MutableRefObject<boolean>;
 }
 
 export function ComboboxContextProvider(
   props: ComboboxProviderProps,
 ): JSX.Element {
-  const multiselect = props.multiselect || false;
-  const [open, setOpen] = useState<boolean>(false);
-  const wrapperRef = useRef<HTMLDivElement>(null);
-
   return (
     <ComboboxContext.Provider
-      value={{ multiselect, open, setOpen, wrapperRef }}
+      value={{
+        open: props.open,
+        setOpen: props.setOpen,
+        selected: props.selected,
+        selectionHandler: props.selectionHandler,
+        handleClose: props.handleClose,
+        shouldScroll: props.shouldScroll,
+      }}
     >
-      <div ref={wrapperRef}>
-        {open && (
-          <div
-            className={styles.overlay}
-            onClick={() => setOpen(false)}
-            data-testid="ATL-Combobox-Overlay"
-          />
-        )}
-        {props.children}
-      </div>
+      {props.children}
     </ComboboxContext.Provider>
   );
 }

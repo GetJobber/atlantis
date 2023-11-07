@@ -3,10 +3,7 @@ import { render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import { Combobox } from "./Combobox";
 import { ComboboxOption } from "./Combobox.types";
-import {
-  COMBOBOX_OPTION_AND_CONTENT_EXISTS_ERROR,
-  COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE,
-} from "./hooks/useComboboxValidation";
+import { COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE } from "./hooks/useComboboxValidation";
 import { Button } from "../Button";
 
 // jsdom is missing this implementation
@@ -37,7 +34,7 @@ describe("Combobox", () => {
 
   describe("Menu", () => {
     beforeEach(async () => {
-      await userEvent.click(screen.getByText(activatorLabel));
+      await userEvent.click(screen.getByRole("combobox"));
     });
 
     it("should open the menu", async () => {
@@ -50,7 +47,7 @@ describe("Combobox", () => {
     });
 
     it("should close the menu when clicking the activator", async () => {
-      await userEvent.click(screen.getByText(activatorLabel));
+      await userEvent.click(screen.getByRole("combobox"));
       expect(screen.getByTestId(MENU_TEST_ID)).toHaveClass("hidden");
     });
 
@@ -75,14 +72,86 @@ describe("Combobox", () => {
     });
   });
 
+  describe("Search", () => {
+    it("should have a search input", () => {
+      expect(screen.getByPlaceholderText("Search")).toBeInTheDocument();
+    });
+
+    it("should refine results after entering a search term", async () => {
+      await userEvent.type(screen.getByPlaceholderText("Search"), "Bilbo");
+      expect(screen.getAllByRole("option")).toHaveLength(1);
+      expect(screen.getByText("Bilbo Baggins")).toBeInTheDocument();
+    });
+
+    it("should clear the search when clicking the clear button after entering a term", async () => {
+      await userEvent.type(screen.getByPlaceholderText("Search"), "Bilbo");
+      await userEvent.click(
+        screen.getByTestId("ATL-Combobox-Content-Search-Clear"),
+      );
+      expect(screen.getAllByRole("option")).toHaveLength(2);
+      expect(screen.getByPlaceholderText("Search")).toHaveValue("");
+    });
+
+    it("should clear the search when activating the clear button with keyboard", async () => {
+      await userEvent.type(screen.getByPlaceholderText("Search"), "Bilbo");
+      await userEvent.tab();
+      await userEvent.keyboard("{enter}");
+      expect(screen.getAllByRole("option")).toHaveLength(2);
+      expect(screen.getByPlaceholderText("Search")).toHaveValue("");
+    });
+  });
+
+  describe("Keyboard actions", () => {
+    it("should focus the first option when pressing the down arrow", async () => {
+      await userEvent.click(screen.getByRole("combobox"));
+      await userEvent.keyboard("{arrowdown}");
+      expect(screen.getByText("Bilbo Baggins")).toHaveFocus();
+    });
+
+    it("should focus the last option with excessive down arrow presses", async () => {
+      // excessive in this context simply means more arrow down presses
+      // than there are options
+      await userEvent.click(screen.getByRole("combobox"));
+      await userEvent.keyboard("{arrowdown}");
+      await userEvent.keyboard("{arrowdown}");
+      await userEvent.keyboard("{arrowdown}");
+      await userEvent.keyboard("{arrowdown}");
+      await userEvent.keyboard("{arrowdown}");
+      expect(screen.getByText("Frodo Baggins")).toHaveFocus();
+    });
+
+    it("should focus the first option with up arrow key press", async () => {
+      await userEvent.click(screen.getByRole("combobox"));
+      await userEvent.keyboard("{arrowup}");
+      expect(screen.getByText("Bilbo Baggins")).toHaveFocus();
+    });
+
+    it("should fire the onSelect callback when pressing the enter key", async () => {
+      await userEvent.click(screen.getByRole("combobox"));
+      await userEvent.keyboard("{arrowdown}");
+      await userEvent.keyboard("{enter}");
+      expect(handleSelect).toHaveBeenCalledTimes(1);
+      expect(handleSelect).toHaveBeenCalledWith([
+        { id: "1", label: "Bilbo Baggins" },
+      ]);
+    });
+
+    it("should focus first of filtered options when pressing the down arrow after searching", async () => {
+      await userEvent.click(screen.getByRole("combobox"));
+      await userEvent.type(screen.getByPlaceholderText("Search"), "Frodo");
+      await userEvent.keyboard("{arrowdown}");
+      expect(screen.getByText("Frodo Baggins")).toHaveFocus();
+    });
+  });
+
   it("should fire the onClick of an action when clicking an action", async () => {
-    await userEvent.click(screen.getByText(activatorLabel));
+    await userEvent.click(screen.getByRole("combobox"));
     await userEvent.click(screen.getByText("Add Teammate"));
     expect(handleAction).toHaveBeenCalledTimes(1);
   });
 
   it("should fire the onSelect when clicking an option", async () => {
-    await userEvent.click(screen.getByText(activatorLabel));
+    await userEvent.click(screen.getByRole("combobox"));
     await userEvent.click(screen.getByText("Bilbo Baggins"));
 
     expect(handleSelect).toHaveBeenCalledTimes(1);
@@ -93,26 +162,47 @@ describe("Combobox", () => {
 });
 
 describe("Combobox Single Select", () => {
-  const selectedValue = { id: "1", label: "Bilbo Baggins" };
-  beforeEach(() => {
-    mockSelectedValue.mockReturnValueOnce([selectedValue]);
-    renderCombobox();
+  describe("when there is a selection", () => {
+    const selectedValue = { id: "1", label: "Bilbo Baggins" };
+    beforeEach(() => {
+      mockSelectedValue.mockReturnValueOnce([selectedValue]);
+      renderCombobox();
+    });
+    it("should show the label", () => {
+      expect(screen.getByText(activatorLabel)).toBeInTheDocument();
+      expect(
+        screen.getByRole("combobox", { name: selectedValue.label }),
+      ).toBeInTheDocument();
+    });
+
+    it("should fire the onSelect with the new option", async () => {
+      await userEvent.click(screen.getByText("Frodo Baggins"));
+
+      expect(handleSelect).toHaveBeenCalledTimes(1);
+      expect(handleSelect).toHaveBeenCalledWith([
+        { id: "2", label: "Frodo Baggins" },
+      ]);
+    });
   });
 
-  it("should not show the label when there's a selection", () => {
-    expect(screen.queryByText(activatorLabel)).not.toBeInTheDocument();
-    expect(
-      screen.getByRole("combobox", { name: selectedValue.label }),
-    ).toBeInTheDocument();
-  });
+  describe("when there is no selection", () => {
+    beforeEach(() => {
+      mockSelectedValue.mockReturnValueOnce([]);
+      renderCombobox();
+    });
 
-  it("should fire the onSelect with the new option", async () => {
-    await userEvent.click(screen.getByText("Frodo Baggins"));
+    it("should show the label", () => {
+      expect(screen.getByText(activatorLabel)).toBeInTheDocument();
+    });
 
-    expect(handleSelect).toHaveBeenCalledTimes(1);
-    expect(handleSelect).toHaveBeenCalledWith([
-      { id: "2", label: "Frodo Baggins" },
-    ]);
+    it("should fire the onSelect with the new option", async () => {
+      await userEvent.click(screen.getByText("Frodo Baggins"));
+
+      expect(handleSelect).toHaveBeenCalledTimes(1);
+      expect(handleSelect).toHaveBeenCalledWith([
+        { id: "2", label: "Frodo Baggins" },
+      ]);
+    });
   });
 });
 
@@ -122,7 +212,7 @@ describe("Combobox Multiselect", () => {
 
     expect(screen.getByTestId(MENU_TEST_ID)).toHaveClass("hidden");
 
-    await userEvent.click(screen.getByText(activatorLabel));
+    await userEvent.click(screen.getByRole("combobox"));
     expect(screen.getByTestId(MENU_TEST_ID)).not.toHaveClass("hidden");
 
     await userEvent.click(screen.getByText("Bilbo Baggins"));
@@ -166,7 +256,7 @@ describe("Combobox Multiselect", () => {
     ]);
     renderMultiSelectCombobox();
 
-    await userEvent.click(screen.getByText(activatorLabel));
+    await userEvent.click(screen.getByRole("combobox"));
     await userEvent.click(screen.getByText("Frodo Baggins"));
 
     expect(handleSelect).toHaveBeenCalledWith([
@@ -181,7 +271,7 @@ describe("Combobox Multiselect", () => {
     ]);
     renderMultiSelectCombobox();
 
-    await userEvent.click(screen.getByText(activatorLabel));
+    await userEvent.click(screen.getByRole("combobox"));
     await userEvent.click(
       screen.getByRole("option", { name: "Bilbo Baggins" }),
     );
@@ -193,7 +283,7 @@ describe("Combobox Multiselect", () => {
     renderMultiSelectCombobox();
     const searchInput = screen.getByPlaceholderText("Search");
 
-    await userEvent.click(screen.getByText(activatorLabel));
+    await userEvent.click(screen.getByRole("combobox"));
     await userEvent.type(searchInput, "Bilbo");
     await userEvent.click(screen.getByText("Bilbo Baggins"));
 
@@ -203,13 +293,53 @@ describe("Combobox Multiselect", () => {
   it("should select all options when clicking Select all", async () => {
     renderMultiSelectCombobox();
 
-    await userEvent.click(screen.getByText(activatorLabel));
+    await userEvent.click(screen.getByRole("combobox"));
     await userEvent.click(screen.getByText("Select all"));
 
     expect(handleSelect).toHaveBeenCalledWith([
       { id: "1", label: "Bilbo Baggins" },
       { id: "2", label: "Frodo Baggins" },
     ]);
+  });
+
+  it("should contextually select all matching options when clicking Select all after searching", async () => {
+    mockSelectedValue.mockReturnValueOnce([]);
+    renderMultiSelectCombobox();
+
+    await userEvent.click(screen.getByRole("combobox"));
+    await userEvent.type(screen.getByPlaceholderText("Search"), "Bilbo");
+    await userEvent.click(screen.getByText("Select all"));
+
+    expect(handleSelect).toHaveBeenCalledWith([
+      { id: "1", label: "Bilbo Baggins" },
+    ]);
+  });
+
+  it("should clear all options when clicking Clear", async () => {
+    mockSelectedValue.mockReturnValueOnce([
+      { id: "1", label: "Bilbo Baggins" },
+      { id: "2", label: "Frodo Baggins" },
+    ]);
+    renderMultiSelectCombobox();
+
+    await userEvent.click(screen.getByRole("combobox"));
+    await userEvent.click(screen.getByText("Clear"));
+
+    expect(handleSelect).toHaveBeenCalledWith([]);
+  });
+
+  it("should NOT contextually clear all selections when clicking Clear after searching", async () => {
+    mockSelectedValue.mockReturnValueOnce([
+      { id: "1", label: "Bilbo Baggins" },
+      { id: "2", label: "Frodo Baggins" },
+    ]);
+    renderMultiSelectCombobox();
+
+    await userEvent.click(screen.getByRole("combobox"));
+    await userEvent.type(screen.getByPlaceholderText("Search"), "Bilbo");
+    await userEvent.click(screen.getByText("Clear"));
+
+    expect(handleSelect).toHaveBeenCalledWith([]);
   });
 
   describe("onClose callback", () => {
@@ -223,6 +353,7 @@ describe("Combobox Multiselect", () => {
           label={activatorLabel}
           multiSelect={true}
           selected={[]}
+          onSelect={handleSelect}
           onClose={handleClose}
         >
           <Combobox.Option id="1" label="Bilbo Baggins" />
@@ -232,42 +363,11 @@ describe("Combobox Multiselect", () => {
       );
     });
 
-    it("should call onClose with selections when the content is closed", async () => {
-      await userEvent.click(screen.getByText(activatorLabel));
-      await userEvent.click(screen.getByText("Bilbo Baggins"));
-      await userEvent.click(screen.getByText("Frodo Baggins"));
+    it("should call onClose when the content is closed", async () => {
+      await userEvent.click(screen.getByRole("combobox"));
       await userEvent.click(screen.getByTestId(OVERLAY_TEST_ID));
 
-      // This should be 1. If this errors out and expects the value to be 1,
-      // then you've fixed the bug! Please to change the value to 1.
-      expect(handleClose).toHaveBeenCalledTimes(2);
-      expect(handleClose).toHaveBeenCalledWith([
-        { id: "1", label: "Bilbo Baggins" },
-        { id: "2", label: "Frodo Baggins" },
-      ]);
-    });
-
-    it("should not update consumer as selections are made", async () => {
-      await userEvent.click(screen.getByText(activatorLabel));
-      await userEvent.click(screen.getByText("Bilbo Baggins"));
-      await userEvent.click(screen.getByText("Frodo Baggins"));
-
-      // This should be 0. If this errors out and expects the value to be 0,
-      // then you've fixed the bug! Please to change to .not.toHaveBeenCalled()
       expect(handleClose).toHaveBeenCalledTimes(1);
-      expect(
-        screen.queryByText("Bilbo Baggins, Frodo Baggins"),
-      ).not.toBeInTheDocument();
-    });
-
-    it("should not update consumer as selections are made by clicking Select all", async () => {
-      await userEvent.click(screen.getByText(activatorLabel));
-      await userEvent.click(screen.getByText("Select all"));
-
-      expect(handleSelect).not.toHaveBeenCalled();
-      expect(
-        screen.queryByText("Bilbo Baggins, Frodo Baggins"),
-      ).not.toBeInTheDocument();
     });
   });
 });
@@ -289,31 +389,19 @@ describe("Combobox Compound Component Validation", () => {
     ).not.toThrow();
   });
 
-  it("should throw an error if there is a Trigger element and a Combobox.Activator", () => {
+  it("throws an error when there are multiple Combobox Activators present", () => {
     expect(() =>
       render(
         <Combobox label={activatorLabel} selected={[]} onSelect={jest.fn()}>
           <Combobox.Activator>
             <Button label="Click me" />
           </Combobox.Activator>
-          <Combobox.TriggerButton label="Heyoo" />
+          <Combobox.Activator>
+            <Button label="No Click me" />
+          </Combobox.Activator>
         </Combobox>,
       ),
     ).toThrow(COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
-  });
-
-  it("should throw an error when Option/Action and Content all exist as siblings", () => {
-    expect(() =>
-      render(
-        <Combobox label={activatorLabel}>
-          <Combobox.Content options={[]} onSelect={jest.fn()} selected={[]} />
-
-          <Combobox.Option id="1" label="Option 1" />
-          <Combobox.Option id="2" label="Option 2" />
-          <Combobox.Action label="Action 1" onClick={jest.fn()} />
-        </Combobox>,
-      ),
-    ).toThrow(COMBOBOX_OPTION_AND_CONTENT_EXISTS_ERROR);
   });
 });
 
