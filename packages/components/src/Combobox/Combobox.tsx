@@ -16,14 +16,10 @@ export function Combobox(props: ComboboxProps): JSX.Element {
 
   const options = useMemo(
     () =>
-      optionElements
-        ? optionElements.map(option => {
-            return {
-              id: option.props.id,
-              label: option.props.label,
-            };
-          })
-        : [],
+      optionElements?.map(option => ({
+        id: option.props.id,
+        label: option.props.label,
+      })) || [],
     [optionElements],
   );
 
