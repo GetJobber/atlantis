@@ -1,13 +1,6 @@
-import React, {
-  Children,
-  MouseEvent,
-  ReactElement,
-  useMemo,
-  useState,
-} from "react";
+import React, { MouseEvent, useMemo, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import classNames from "classnames";
-import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
 import { useDataListLayoutContext } from "@jobber/components/DataList/context/DataListLayoutContext";
 import {
   DataListLayoutProps,
@@ -15,24 +8,24 @@ import {
 } from "@jobber/components/DataList/DataList.types";
 import { InternalDataListItemActions } from "@jobber/components/DataList/components/DataListItemActions";
 import { DataListActionsMenu } from "@jobber/components/DataList/components/DataListActionsMenu";
-import { InternalDataListAction } from "@jobber/components/DataList/components/DataListAction";
 import { DataListLayoutActionsContext } from "@jobber/components/DataList/components/DataListLayoutActions/DataListLayoutContext";
-import styles from "@jobber/components/DataList/DataList.css";
+import { generateListItemElement } from "@jobber/components/DataList/DataList.utils";
 import { DataListItemInternal } from "./DataListItemInternal";
 import { DataListItemClickable } from "./components/DataListItemClickable";
-import { generateListItemElement } from "../../DataList.utils";
+import styles from "../../DataList.css";
+import { useGetItemActions } from "../../hooks/useGetItemActions";
 
 interface DataListItem<T extends DataListObject> {
   readonly item: T;
   readonly index: number;
-  readonly layout: ReactElement<DataListLayoutProps<T>>;
+  readonly layout: DataListLayoutProps<T>["children"];
 }
 
+// eslint-disable-next-line max-statements
 export function DataListItem<T extends DataListObject>({
   item,
   layout,
 }: DataListItem<T>) {
-  const { itemActionComponent } = useDataListContext();
   const { hasInLayoutActions } = useDataListLayoutContext();
   const [showMenu, setShowMenu] = useState(false);
   const [contextPosition, setContextPosition] =
@@ -40,10 +33,9 @@ export function DataListItem<T extends DataListObject>({
 
   const generatedItem = useMemo(() => generateListItemElement(item), [item]);
 
-  const contextMenuActions = itemActionComponent?.props.children;
+  const { actions, hasActions } = useGetItemActions<T>(item);
   const isContextMenuVisible = Boolean(contextPosition);
-  const shouldShowContextMenu =
-    showMenu && isContextMenuVisible && Boolean(contextMenuActions);
+  const shouldShowContextMenu = showMenu && isContextMenuVisible && hasActions;
 
   return (
     <DataListLayoutActionsContext.Provider value={{ activeItem: item }}>
@@ -59,14 +51,12 @@ export function DataListItem<T extends DataListObject>({
         key={item.id}
       >
         <DataListItemInternal item={item}>
-          <DataListItemClickable>
-            {layout.props.children(generatedItem)}
-          </DataListItemClickable>
+          <DataListItemClickable>{layout(generatedItem)}</DataListItemClickable>
         </DataListItemInternal>
 
         <AnimatePresence>
-          {showMenu && !hasInLayoutActions && (
-            <InternalDataListItemActions item={item} />
+          {showMenu && hasActions && !hasInLayoutActions && (
+            <InternalDataListItemActions actions={actions} />
           )}
 
           <DataListActionsMenu
@@ -75,14 +65,7 @@ export function DataListItem<T extends DataListObject>({
             position={contextPosition || { x: 0, y: 0 }}
             onRequestClose={() => setContextPosition(undefined)}
           >
-            {contextMenuActions &&
-              Children.map(contextMenuActions, action => (
-                <InternalDataListAction
-                  key={item.id}
-                  {...action.props}
-                  item={item}
-                />
-              ))}
+            {actions}
           </DataListActionsMenu>
         </AnimatePresence>
       </div>
@@ -98,7 +81,7 @@ export function DataListItem<T extends DataListObject>({
   }
 
   function handleContextMenu(event: MouseEvent<HTMLDivElement>) {
-    if (!contextMenuActions || isContextMenuVisible) return;
+    if (!hasActions || isContextMenuVisible) return;
 
     event.preventDefault();
     setContextPosition({

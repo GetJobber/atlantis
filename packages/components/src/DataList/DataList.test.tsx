@@ -3,6 +3,7 @@ import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import React from "react";
 import { configMocks, mockIntersectionObserver } from "jsdom-testing-mocks";
 import userEvent from "@testing-library/user-event";
+import { Banner } from "@jobber/components/Banner";
 import { DataList } from "./DataList";
 import {
   BREAKPOINT_SIZES,
@@ -212,6 +213,7 @@ describe("DataList", () => {
             },
           )?.[0];
           const expectedValue = expectedValues[queryBreakpoint as Breakpoints];
+
           return {
             matches: expectedValue,
             media: query,
@@ -394,7 +396,7 @@ describe("DataList", () => {
     function MockSortingLayout({
       sorting,
     }: {
-      sorting: DataListProps<(typeof mockData)[0]>["sorting"];
+      readonly sorting: DataListProps<(typeof mockData)[0]>["sorting"];
     }) {
       return (
         <DataList data={mockData} headers={mockHeaders} sorting={sorting}>
@@ -562,7 +564,7 @@ describe("DataList", () => {
       ).not.toBeInTheDocument();
     });
 
-    it("should call the scrollIntoView on the target element", () => {
+    it("should call the scrollIntoView on the target element", async () => {
       const scrollIntoViewMock = jest.fn();
       window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
       render(
@@ -578,12 +580,37 @@ describe("DataList", () => {
 
       expect(scrollIntoViewMock).not.toHaveBeenCalled();
 
-      userEvent.click(screen.getByRole("button", { name: "Back to top" }));
+      await userEvent.click(
+        screen.getByRole("button", { name: "Back to top" }),
+      );
       expect(scrollIntoViewMock).toHaveBeenCalledWith({
         behavior: "smooth",
         block: "nearest",
         inline: "start",
       });
+    });
+  });
+
+  describe("StatusBar", () => {
+    it("should show the StatusBar when it's provided", () => {
+      const bannerText =
+        "Something went wrong. Refresh or check your internet connection.";
+      render(
+        <DataList
+          data={Array.from({ length: MAX_DATA_COUNT + 1 }, (_, id) => ({
+            id,
+          }))}
+          headers={{ id: "ID" }}
+        >
+          <DataList.StatusBar>
+            <Banner type="error" icon="alert">
+              {bannerText}
+            </Banner>
+          </DataList.StatusBar>
+        </DataList>,
+      );
+
+      expect(screen.getByText(bannerText)).toBeInTheDocument();
     });
   });
 });

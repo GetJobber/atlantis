@@ -1,0 +1,34 @@
+.content {
+  z-index: var(--elevation-tooltip);
+  max-width: var(--popover--width);
+  min-width: calc(var(--space-extravagant) * 3.75);
+  box-shadow: var(--shadow-base);
+  margin-top: var(--space-small);
+  border: var(--border-base) solid var(--color-border);
+  border-radius: var(--radius-larger);
+  overflow: scroll;
+  overflow-y: auto;
+  background: var(--color-surface);
+}
+
+/* CAUTION: Tests for content visibility assume this class' presence hides the content
+* so please be careful if you change this class name, or the css rules within.
+*/
+.content.hidden {
+  display: none;
+  visibility: hidden;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  gap: var(--space-smaller);
+  bottom: 0;
+  width: 100%;
+  background-color: var(--color-surface);
+}
+
+.actionPadding {
+  padding-bottom: var(--space-small);
+}

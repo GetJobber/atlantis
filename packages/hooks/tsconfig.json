@@ -7,6 +7,10 @@
     "rootDir": "src",
     "outDir": "dist"
   },
-  "include": ["src"],
-  "files": ["src/index.ts"]
+  "include": [
+    "src",
+  ],
+  "files": [
+    "src/index.ts"
+  ]
 }

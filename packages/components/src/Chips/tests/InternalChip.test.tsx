@@ -1,10 +1,8 @@
 import React from "react";
-import { cleanup, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { InternalChip } from "../InternalChip";
 import { Icon } from "../../Icon";
-
-afterEach(cleanup);
 
 it("should render a div chip when onClick is not present", () => {
   render(<InternalChip label="Yo!" />);
@@ -16,10 +14,10 @@ it("should render a button chip when onClick is not present", () => {
   expect(screen.getByTestId("chip-wrapper")).toBeInstanceOf(HTMLButtonElement);
 });
 
-it("should fire the callback when it's clicked", () => {
+it("should fire the callback when it's clicked", async () => {
   const handleClick = jest.fn();
   render(<InternalChip label="Yo!" onClick={handleClick} />);
-  userEvent.click(screen.getByTestId("chip-wrapper"));
+  await userEvent.click(screen.getByTestId("chip-wrapper"));
   expect(handleClick).toHaveBeenCalledTimes(1);
 });
 
@@ -74,6 +72,7 @@ describe("Chip icon colors depending on state", () => {
         label="Yo!"
       />,
     );
+
     return screen.getByTestId("checkbox").querySelector("path");
   }
 });

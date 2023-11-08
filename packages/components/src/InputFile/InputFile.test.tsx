@@ -1,5 +1,5 @@
 import React from "react";
-import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
+import { fireEvent, render, waitFor } from "@testing-library/react";
 import axios from "axios";
 import { InputFile } from ".";
 
@@ -10,8 +10,6 @@ jest.mock("axios", () => {
 beforeEach(() => {
   (axios.request as jest.Mock).mockReturnValue(Promise.resolve());
 });
-
-afterEach(cleanup);
 
 const testFile = new File(["🔱 Atlantis"], "atlantis.png", {
   type: "image/png",

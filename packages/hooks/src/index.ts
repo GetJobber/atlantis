@@ -1,4 +1,6 @@
 export * from "./useAssert";
+export * from "./useBool";
+export * from "./useBreakpoints";
 export * from "./useCollectionQuery";
 export * from "./useFocusTrap";
 export * from "./useFormState";

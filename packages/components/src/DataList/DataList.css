@@ -4,6 +4,8 @@
 }
 
 .wrapper {
+  --data-list--minimum-item-height: calc(var(--base-unit) * 3.5);
+
   display: flex;
   flex-direction: column;
   position: relative;
@@ -39,15 +41,25 @@
   border-bottom: var(--border-thick) solid var(--color-border);
 }
 
+.batchSelectContainer {
+  display: flex;
+
+  @media (--small-screens-and-below) {
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
 .headerBatchSelect > p {
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .headerBatchSelect {
   display: flex;
+  margin: calc(var(--space-small) * -1) 0;
   align-items: center;
   gap: var(--space-smaller);
-  margin: calc(var(--space-small) * -1) 0;
 }
 
 /*
@@ -61,6 +73,14 @@
   transition: all var(--timing-base);
 }
 
+.listItem,
+.listItemClickable {
+  display: grid;
+  grid-template-columns: minmax(0px, auto);
+  min-height: var(--data-list--minimum-item-height);
+  align-items: center;
+}
+
 .listItem.active,
 .listItem:hover,
 .listItem:focus-within {
@@ -69,7 +89,6 @@
 }
 
 .listItemClickable {
-  display: block;
   margin: calc(var(--space-small) * -1) 0;
   padding: var(--space-small) 0;
   border: none;
@@ -77,6 +96,15 @@
   text-decoration: none;
   background-color: transparent;
   cursor: pointer;
+}
+
+/**
+ * Reset CSS properties on focus to ensure we only have the focus state on the
+ * parent .listItem
+ */
+.listItemClickable:focus {
+  outline: none;
+  background-color: transparent;
 }
 
 /**
@@ -121,6 +149,9 @@
 .selectAllCheckbox {
   display: flex;
   visibility: hidden;
+
+  /* To compensate the Checkbox's label margin that we are using for screen-readers */
+  margin-right: calc(var(--space-base) * -1);
 }
 
 .selectAllCheckbox.visible {
@@ -169,4 +200,15 @@
 .filteringSpinner {
   position: sticky;
   top: 50vh;
+}
+
+/* This hides the text from the UI but not from the screen readers */
+.srOnly {
+  position: absolute;
+  top: auto;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  text-indent: -10000px;
 }

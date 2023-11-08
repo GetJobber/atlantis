@@ -1,31 +1,31 @@
 import React from "react";
-import styles from "./DataListAction.css";
 import {
   DataListActionProps,
   DataListObject,
-  InternalDataListActionProps,
-} from "../../DataList.types";
-import { Typography } from "../../../Typography";
-import { Icon } from "../../../Icon";
+} from "@jobber/components/DataList/DataList.types";
+import { Typography } from "@jobber/components/Typography";
+import { Icon } from "@jobber/components/Icon";
+import { useDataListLayoutActionsContext } from "@jobber/components/DataList/components/DataListLayoutActions/DataListLayoutContext";
+import styles from "./DataListAction.css";
 
-export function DataListAction<T extends DataListObject>(
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  _: DataListActionProps<T>,
-) {
-  return null;
-}
-
-export function InternalDataListAction<T extends DataListObject>({
+export function DataListAction<T extends DataListObject>({
   label,
   icon,
   destructive,
+  visible = () => true,
   onClick,
-  item,
-}: InternalDataListActionProps<T>) {
+}: DataListActionProps<T>) {
+  const { activeItem } = useDataListLayoutActionsContext<T>();
+
+  // Don't render if the item is not visible
+  if (activeItem && !visible(activeItem)) {
+    return null;
+  }
+
   const color = destructive ? "critical" : "blue";
 
   return (
-    <button className={styles.action} onClick={() => onClick?.(item)}>
+    <button type="button" className={styles.action} onClick={handleClick}>
       {icon && <Icon name={icon} color={color} />}
 
       <Typography textColor={color}>
@@ -33,4 +33,12 @@ export function InternalDataListAction<T extends DataListObject>({
       </Typography>
     </button>
   );
+
+  function handleClick() {
+    if (activeItem) {
+      onClick?.(activeItem);
+    } else {
+      (onClick as () => void)?.();
+    }
+  }
 }

@@ -1,0 +1,1 @@
+export { ComboboxTrigger } from "./ComboboxTrigger";

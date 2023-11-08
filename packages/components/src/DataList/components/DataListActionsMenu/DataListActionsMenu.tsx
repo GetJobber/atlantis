@@ -1,10 +1,15 @@
-import React, { CSSProperties, PropsWithChildren, useState } from "react";
+import React, {
+  CSSProperties,
+  MouseEvent,
+  PropsWithChildren,
+  useState,
+} from "react";
 import { AnimatePresence, Variants, motion } from "framer-motion";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { createPortal } from "react-dom";
-import { tokens } from "@jobber/design/foundation";
+import { tokens } from "@jobber/design";
 import styles from "./DataListActionsMenu.css";
 import { TRANSITION_DELAY_IN_SECONDS } from "../../DataList.const";
 
@@ -37,7 +42,7 @@ export function DataListActionsMenu({
   return createPortal(
     <AnimatePresence>
       {visible && (
-        <div ref={focusTrapRef}>
+        <div ref={focusTrapRef} onClick={handleClick}>
           <motion.div
             role="menu"
             ref={setRef}
@@ -54,6 +59,7 @@ export function DataListActionsMenu({
           </motion.div>
 
           <button
+            type="button"
             className={styles.overlay}
             onClick={onRequestClose}
             aria-label="Close menu"
@@ -63,6 +69,12 @@ export function DataListActionsMenu({
     </AnimatePresence>,
     document.body,
   );
+
+  function handleClick(event: MouseEvent<HTMLDivElement>): void {
+    // Prevent menu from firing the parent's onClick event when it is nested
+    // within a clickable list item
+    event.stopPropagation();
+  }
 
   function getPositionCssVars() {
     const { posX, posY } = getPosition();
@@ -76,7 +88,7 @@ export function DataListActionsMenu({
   function getPosition() {
     const rect = ref?.getBoundingClientRect();
     const { width = 0, height = 0 } = rect || {};
-    const { x = 0, y = 0 } = position;
+    const { x, y } = position;
 
     const xIsOffScreen = x + width > window.innerWidth;
     const yIsOffScreen = y + height > window.innerHeight;
@@ -85,6 +97,7 @@ export function DataListActionsMenu({
 
     const newPosX = Math.floor(xIsOffScreen ? x - xOffSet : x);
     const newPosY = Math.floor(yIsOffScreen ? y - yOffSet : y);
+
     return { posX: newPosX, posY: newPosY };
   }
 }

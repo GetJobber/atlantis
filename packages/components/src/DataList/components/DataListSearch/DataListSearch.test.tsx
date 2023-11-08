@@ -1,6 +1,6 @@
 import React from "react";
-import { cleanup, render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render, screen } from "@testing-library/react";
+import userEvent, { UserEvent } from "@testing-library/user-event";
 import {
   DATA_LIST_SEARCH_TEST_ID,
   DataListSearch,
@@ -17,12 +17,16 @@ const contextValueWithRenderableChildren: DataListContextProps<DataListObject> =
     searchComponent: <DataListSearch onSearch={jest.fn()} />,
   };
 
+let user: UserEvent;
+
 beforeEach(() => {
   jest.useFakeTimers();
+  user = userEvent.setup({
+    advanceTimers: jest.advanceTimersByTime,
+  });
 });
 
 afterEach(() => {
-  cleanup();
   spy.mockReset();
   jest.useRealTimers();
 });
@@ -74,7 +78,7 @@ describe("InternalDataListSearch", () => {
   });
 
   describe("Toggle search", () => {
-    it("should add the searchInputVisible class name after clicking the search button", () => {
+    it("should add the searchInputVisible class name after clicking the search button", async () => {
       spy.mockReturnValue(contextValueWithRenderableChildren);
       render(<InternalDataListSearch />);
 
@@ -83,11 +87,11 @@ describe("InternalDataListSearch", () => {
 
       expect(input).not.toHaveClass("searchInputVisible");
 
-      userEvent.click(searchButton);
+      await user.click(searchButton);
       expect(input).toHaveClass("searchInputVisible");
     });
 
-    it("should focus on the search input after clicking the search button", () => {
+    it("should focus on the search input after clicking the search button", async () => {
       spy.mockReturnValue(contextValueWithRenderableChildren);
       render(<InternalDataListSearch />);
 
@@ -96,13 +100,13 @@ describe("InternalDataListSearch", () => {
 
       expect(input).not.toHaveFocus();
 
-      userEvent.click(searchButton);
+      await user.click(searchButton);
       jest.runAllTimers();
       expect(input).toHaveFocus();
     });
   });
 
-  it("should debounce the search", () => {
+  it("should debounce the search", async () => {
     const onSearch = jest.fn();
     spy.mockReturnValue({
       ...contextValueWithRenderableChildren,
@@ -113,7 +117,7 @@ describe("InternalDataListSearch", () => {
     const input = screen.getByRole("textbox");
     const searchValue = "search";
     input.focus();
-    userEvent.type(input, searchValue);
+    await user.type(input, searchValue);
 
     expect(onSearch).not.toHaveBeenCalled();
     jest.advanceTimersByTime(200);

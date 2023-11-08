@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.47.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.46.0...@jobber/design@0.47.0) (2023-11-03)
+
+
+### Features
+
+* **design:** Add Marketing Icon ([#1522](https://github.com/GetJobber/atlantis/issues/1522)) ([64da4d5](https://github.com/GetJobber/atlantis/commit/64da4d55704159e3ac7edba8dafa7c309b51335d))
+
+
+
+
+
+# [0.46.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.45.0...@jobber/design@0.46.0) (2023-10-05)
+
+
+### Features
+
+* **hooks:** create breakpoints hook ([#1565](https://github.com/GetJobber/atlantis/issues/1565)) ([0036fa5](https://github.com/GetJobber/atlantis/commit/0036fa5422a3b528b031810409b35d555ead38b7))
+
+
+
+
+
 # [0.45.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.44.4...@jobber/design@0.45.0) (2023-09-18)
 
 

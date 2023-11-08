@@ -129,8 +129,12 @@ export interface DataListProps<T extends DataListObject> {
   readonly onSelectAll?: () => void;
 }
 
+export type LayoutRenderer<T extends DataListObject> = (
+  item: DataListItemType<T[]>,
+) => JSX.Element;
+
 export interface DataListLayoutProps<T extends DataListObject> {
-  readonly children: (item: DataListItemType<T[]>) => JSX.Element;
+  readonly children: LayoutRenderer<T>;
 
   /**
    * The breakpoint at which the layout should be displayed. It will be rendered until a layout with a larger breakpoint is found.
@@ -145,7 +149,17 @@ export interface DataListSearchProps {
    * prepended by "Search" or just falls back to "Search".
    */
   readonly placeholder?: string;
-  readonly onSearch: (search: string) => void;
+
+  /**
+   * The initial value of the search input.
+   *
+   * Updating this prop after the component has mounted will rerender the
+   * component with the new value. Only update the value of this when you
+   * absolutely have to.
+   */
+  readonly initialValue?: string;
+
+  readonly onSearch: (value: string) => void;
 }
 
 export interface DataListFiltersProps {
@@ -183,6 +197,18 @@ export interface DataListContextProps<T extends DataListObject>
   readonly emptyStateComponents?: ReactElement<DataListEmptyStateProps>[];
   readonly layoutComponents?: ReactElement<DataListLayoutProps<T>>[];
   readonly itemActionComponent?: ReactElement<DataListItemActionsProps<T>>;
+  readonly bulkActionsComponent?: ReactElement<DataListItemActionsProps<T>>;
+
+  readonly layoutBreakpoints: Breakpoints[];
+  readonly registerLayoutBreakpoints: (breakpoint: Breakpoints) => void;
+
+  readonly layouts: {
+    readonly [Breakpoint in Breakpoints]?: LayoutRenderer<T>;
+  };
+  readonly registerLayout: (
+    size: Breakpoints,
+    layout: LayoutRenderer<T>,
+  ) => void;
 }
 
 export interface DataListLayoutContextProps {
@@ -214,6 +240,14 @@ interface BaseDataListItemActionsProps<T extends DataListObject> {
    * Callback when an item is clicked.
    */
   readonly onClick?: (item: T) => void;
+}
+
+export interface DataListBulkActionsProps {
+  /**
+   * The actions to render on the top of the DataList to make actions to multiple items.
+   * This only accepts the DataList.BatchAction component.
+   */
+  readonly children?: Fragment<ReactElement<DataListBulkActionProps>>;
 }
 
 interface DataListItemActionsPropsWithURL<T extends DataListObject>
@@ -256,12 +290,34 @@ export interface DataListActionProps<T extends DataListObject> {
   readonly destructive?: boolean;
 
   /**
+   * Determine if the action is visible for a given item.
+   */
+  readonly visible?: (item: T) => boolean;
+
+  /**
    * The callback function when the action is clicked.
    */
   readonly onClick?: (data: T) => void;
 }
 
-export interface InternalDataListActionProps<T extends DataListObject>
-  extends DataListActionProps<T> {
-  readonly item: T;
+export interface DataListActionsProps<T extends DataListObject> {
+  /**
+   * The actions to render for each item in the DataList. This only accepts the
+   * DataList.Action component.
+   */
+  readonly children?: Fragment<ReactElement<DataListActionProps<T>>>;
+
+  /**
+   * The number of items to expose before the "More" button is shown.
+   * @default 2
+   */
+  readonly itemsToExpose?: number;
+}
+
+export interface DataListBulkActionProps
+  extends Omit<DataListActionProps<DataListObject>, "visible"> {
+  /**
+   * The callback function when the action is clicked.
+   */
+  readonly onClick?: () => void;
 }

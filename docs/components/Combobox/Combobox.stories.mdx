@@ -1,0 +1,162 @@
+<Meta
+  title="Components/Selections/Combobox/Docs"
+  parameters={{ alpha: true }}
+/>
+
+# Combobox
+
+The Combobox is designed to provide a versatile and accessible interface for
+selecting one or more options from a list. Combobox can be used for a variety of
+scenarios, such as selecting items from a predefined list, filtering and
+searching through data.
+
+## Design & usage guidelines
+
+The Combobox component's primary function is to facilitate option selection and
+searching within a list of items.
+
+It should be used in scenarios where users need to choose from a set of options,
+with the added benefit of filtering.
+
+The Combobox also has the flexibility to allow for custom actions, such as
+adding a new item to the list of options or managing a selection.
+
+### Structure
+
+Combobox is composed of three main parts:
+
+#### Trigger
+
+The trigger is the user-facing interface to open and close the Combobox and
+initiate option selection. The choice between them depends on the design and
+user experience requirements.
+
+There are two options for trigger elements of the Combobox,
+[TriggerButton](../?path=/story/components-selections-combobox-web--trigger-button)
+and
+[TriggerChip](../?path=/story/components-selections-combobox-web--trigger-chip).
+You must have one trigger component.
+
+#### Content
+
+This component is responsible for displaying the list of selectable options,
+handling user interactions, and managing search functionality.
+
+#### Action
+
+Actions are an optional way to allow users to perform custom tasks such as
+adding a new item to the list of options.
+
+### Selection behavior
+
+#### Single-select
+
+Single-select is ComboBox's default selection mode. When a selection is made,
+the Combobox will close.
+
+#### Multi-select
+
+Add the `multiSelect` prop to allow multiple options to be selected and/or
+un-selected. In multi-select mode, the Combobox will only close when a user
+takes an explicit action to close it such as clicking outside the Combobox or
+pressing the ESC key.
+
+When `multiSelect` is enabled, a Combobox header will be displayed below the
+search input.
+
+When no selections have been made, the header label will read "Select" and the
+button will read "Select all". When clicking "Select all", all options will be
+selected.
+
+When one or more options have been selected, the header label will show the
+number of selected items, like a counter. The button will then read "Clear".
+When clicking "Clear", all options will be un-selected. If you have filtered the
+options, the "Clear" button will un-select each option selected, whether present
+in the filtered results or not.
+
+#### Selection callbacks
+
+As selections are made, the data will be returned via an argument to the
+callbacks passed in through either the `onClose` or `onSelect` prop on
+`Combobox.Content`. **Only one or the other may be provided**.
+
+`onSelect` is the recommended callback handler that should be used in most
+cases. This will immediately inform the consumer of changes to selections as
+they happen.
+
+`onClose` should be used when you need to wait until all selections have been
+made before applying changes.
+
+The arguments provided to the `onClose` callback are identical to those of
+`onSelect`, only the timing differs. As such, please note this will only have a
+noticeable effect with the `multiSelect` variation which remains open after
+making selections whereas the Combobox closes immediately upon selection with
+single-select.
+
+Combobox has no predefined visual representation of the selections outside of
+the internal list. It is up to the consumer to decide how to best represent
+these selections in their UI, if at all.
+
+## Content guidelines
+
+Combobox is designed to handle lists of selectable options, so the component is
+text based.
+
+You may customize the trigger and action `label`. Refer to the
+[Product Vocabulary](../?path=/docs/content-product-vocabulary--page) for
+consistency in terminology and naming conventions when setting these values.
+
+You may also set an optional `subjectNoun` for the Combobox content. This will
+be used in the
+[empty state](../?path=/story/components-selections-combobox-web--empty-state)
+of the Combobox, as well as the noun within the search placeholder.
+
+Follow InputText content guidelines for the text input.
+
+Follow Button content guidelines for the actions.
+
+### Empty states
+
+In cases where the list of options is empty, the Combobox content will display a
+message indicating the absence of options. The default will read, _"No options
+yet"_ or _"You don't have any [subjectNoun] yet"_ if you've set the
+`subjectNoun` prop.
+
+If options are available, but the search query does not match any of them, the
+Combobox Content will display a message indicating that no options match the
+search query.
+
+## Accessibility
+
+### Keyboard operation
+
+- The trigger can be actioned with `space` or `return`
+- The Comobox confines tabbing to within itself while it's open using
+  [useFocusTrap](https://atlantis.getjobber.com/?path=/docs/hooks-usefocustrap--use-focus-trap)
+- Pressing `esc` will close the Combobox and return focus to the trigger using
+  [useRefocusOnActivator](https://atlantis.getjobber.com/?path=/docs/hooks-userefocusonactivator--use-refocus-on-activator)
+- The search input is automatically focused when the Combobox opens. The button
+  to clear the input can be focused with `tab`
+- The options list is navigated with the `up` and `down` arrow keys, and
+  actioned with `space` or `return`, this can be done at any time when the
+  Combobox is open
+- The actions, if present, are the next tabbable element after the search
+
+### Assistive technology
+
+- The trigger element is given a `role="combobox"` to inform the user of the
+  type of content they'll be interacting with
+- Once the user opens the Combobox, the search input is focused and announced
+- The title and "selected/unselected" status of each item is announced as the
+  user navigates the options
+- The actions (if present) are announced and operable as buttons
+
+## Testing
+
+When using Jest to test Combobox implementations, you will need to include this
+mock in your test setup:
+
+```js
+const scrollIntoViewMock = jest.fn();
+window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
+```

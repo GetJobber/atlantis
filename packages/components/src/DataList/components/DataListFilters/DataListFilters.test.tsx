@@ -1,8 +1,8 @@
 import React from "react";
-import { act, cleanup, render, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import { configMocks, mockIntersectionObserver } from "jsdom-testing-mocks";
 import { DataListFilters, InternalDataListFilters } from "./DataListFilters";
-import { CONTAINER_TEST_ID } from "./DataListFilter.const";
+import { CONTAINER_TEST_ID } from "../DataListOverflowFade";
 import { defaultValues } from "../../context/DataListContext";
 import * as dataListContext from "../../context/DataListContext/DataListContext";
 import * as useShowHeader from "../../hooks/useShowHeader";
@@ -24,7 +24,6 @@ const contextValueWithRenderableChildren = {
 const showHeaderSpy = jest.spyOn(useShowHeader, "useShowHeader");
 
 afterEach(() => {
-  cleanup();
   spy.mockReset();
   showHeaderSpy.mockReset();
 });

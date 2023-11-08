@@ -1,5 +1,5 @@
 import React from "react";
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { InternalChipButton } from "../InternalChipButton";
 
@@ -15,10 +15,8 @@ describe("Interaction", () => {
     target = screen.getByTestId("remove-chip-button");
   });
 
-  afterEach(cleanup);
-
-  it("should call the onClick action", () => {
-    userEvent.click(target);
+  it("should call the onClick action", async () => {
+    await userEvent.click(target);
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 

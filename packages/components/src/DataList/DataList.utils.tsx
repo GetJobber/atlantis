@@ -95,8 +95,30 @@ export function generateHeaderElements<T extends DataListObject>(
   return isEmpty(headerElements) ? undefined : headerElements;
 }
 
-export function sortSizeProp(sizeProp: Breakpoints[]) {
+export function sortBreakpoints(sizeProp: Breakpoints[]) {
   return sizeProp.sort(
     (a, b) => BREAKPOINTS.indexOf(a) - BREAKPOINTS.indexOf(b),
   );
+}
+
+export function getExposedActions(
+  childrenArray: ReactElement[],
+  childCount = 2,
+) {
+  const firstNChildren = childrenArray.slice(0, childCount);
+
+  return firstNChildren.reduce((result: typeof childrenArray, child, i) => {
+    const hasIcon = Boolean(child.props.icon);
+
+    if (!hasIcon) return result; // If the child does not have an icon, continue.
+
+    const isLastChildAdded = result.length === i;
+
+    // If it's the first child or if the previous child was added, then add this child.
+    if (i === 0 || (i < childCount && isLastChildAdded)) {
+      return [...result, child];
+    }
+
+    return result;
+  }, []);
 }

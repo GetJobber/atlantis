@@ -1,0 +1,41 @@
+.flexible {
+  display: grid;
+  /* If this gets wrapped in a flex container, it should take the remaining space */
+  flex: 1;
+}
+
+.smallestGap {
+  gap: var(--space-smallest);
+}
+
+.smallerGap {
+  gap: var(--space-smaller);
+}
+
+.smallGap {
+  gap: var(--space-small);
+}
+
+.baseGap {
+  gap: var(--space-base);
+}
+
+.largeGap {
+  gap: var(--space-large);
+}
+
+.noneGap {
+  gap: 0;
+}
+
+.startAlign {
+  align-items: start;
+}
+
+.centerAlign {
+  align-items: center;
+}
+
+.endAlign {
+  align-items: end;
+}

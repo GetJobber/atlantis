@@ -1,15 +1,7 @@
 import React, { useState } from "react";
-import {
-  cleanup,
-  fireEvent,
-  render,
-  screen,
-  within,
-} from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MultiSelect } from ".";
-
-afterEach(cleanup);
 
 const Component = () => {
   const [options, setOptions] = useState([
@@ -113,8 +105,8 @@ describe("when focusing multislect to display the options", () => {
   });
 
   describe("when clicking MultiSelect", () => {
-    it("should display the dropdown menu with the options", () => {
-      userEvent.click(screen.getByTestId("multi-select"));
+    it("should display the dropdown menu with the options", async () => {
+      await userEvent.click(screen.getByTestId("multi-select"));
       const dropDownMenu = screen.getByTestId("dropdown-menu");
 
       expect(dropDownMenu).not.toBeNull();
@@ -126,8 +118,8 @@ describe("when focusing multislect to display the options", () => {
   });
 
   describe("when pressing Spacebar key", () => {
-    it("should display the dropdown menu with the options", () => {
-      userEvent.tab();
+    it("should display the dropdown menu with the options", async () => {
+      await userEvent.tab();
       fireEvent(
         screen.getByTestId("multi-select"),
         new KeyboardEvent("keydown", {
@@ -148,8 +140,8 @@ describe("when focusing multislect to display the options", () => {
   });
 
   describe("when pressing Enter key", () => {
-    it("should display the dropdown menu with the options", () => {
-      userEvent.tab();
+    it("should display the dropdown menu with the options", async () => {
+      await userEvent.tab();
       fireEvent(
         screen.getByTestId("multi-select"),
         new KeyboardEvent("keydown", {
@@ -170,8 +162,8 @@ describe("when focusing multislect to display the options", () => {
   });
 
   describe("when pressing 'Escape' key", () => {
-    it("should hide the dropdown menu", () => {
-      userEvent.click(screen.getByTestId("multi-select"));
+    it("should hide the dropdown menu", async () => {
+      await userEvent.click(screen.getByTestId("multi-select"));
 
       expect(screen.queryByTestId("dropdown-menu")).not.toBeNull();
 
@@ -189,12 +181,12 @@ describe("when focusing multislect to display the options", () => {
   });
 
   describe("when clicking out of the component", () => {
-    it("should hide the dropdown menu", () => {
-      userEvent.click(screen.getByTestId("multi-select"));
+    it("should hide the dropdown menu", async () => {
+      await userEvent.click(screen.getByTestId("multi-select"));
 
       expect(screen.queryByTestId("dropdown-menu")).not.toBeNull();
 
-      userEvent.click(document.body);
+      await userEvent.click(document.body);
 
       expect(screen.queryByTestId("dropdown-menu")).toBeNull();
     });
@@ -207,17 +199,17 @@ describe("when selecting an option", () => {
   });
 
   describe("when using mouse click event", () => {
-    it("should call the provided callback", () => {
-      userEvent.click(screen.getByTestId("multi-select"));
-      userEvent.click(screen.getAllByRole("checkbox")[2]);
+    it("should call the provided callback", async () => {
+      await userEvent.click(screen.getByTestId("multi-select"));
+      await userEvent.click(screen.getAllByRole("checkbox")[2]);
 
       expect(screen.getByLabelText("Warnings")).not.toBeChecked();
     });
   });
 
   describe("when using keyboard navigation", () => {
-    it("should call the provided callback when using arrows and Enter keys", () => {
-      userEvent.click(screen.getByTestId("multi-select"));
+    it("should call the provided callback when using arrows and Enter keys", async () => {
+      await userEvent.click(screen.getByTestId("multi-select"));
 
       fireEvent(
         screen.getByTestId("dropdown-menu"),
@@ -239,10 +231,10 @@ describe("when selecting an option", () => {
       expect(screen.getByLabelText("Errors")).toBeChecked();
     });
 
-    it("should call the provided callback when using tab and spacebar keys", () => {
-      userEvent.click(screen.getByTestId("multi-select"));
+    it("should call the provided callback when using tab and spacebar keys", async () => {
+      await userEvent.click(screen.getByTestId("multi-select"));
 
-      userEvent.tab();
+      await userEvent.tab();
       fireEvent(
         screen.getByTestId("dropdown-menu"),
         new KeyboardEvent("keydown", {

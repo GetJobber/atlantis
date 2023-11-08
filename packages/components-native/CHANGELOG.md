@@ -3,6 +3,114 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.48.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.48.2...@jobber/components-native@0.48.3) (2023-11-07)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.48.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.48.1...@jobber/components-native@0.48.2) (2023-11-03)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.48.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.48.0...@jobber/components-native@0.48.1) (2023-10-31)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+# [0.48.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.47.3...@jobber/components-native@0.48.0) (2023-10-27)
+
+
+### Features
+
+* **components-native:** add custom testID to Select component ([#1613](https://github.com/GetJobber/atlantis/issues/1613)) ([56c5e33](https://github.com/GetJobber/atlantis/commit/56c5e33adbb7e3f594fe691806c8d3a2755d92a0))
+
+
+
+
+
+## [0.47.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.47.2...@jobber/components-native@0.47.3) (2023-10-25)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.47.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.47.1...@jobber/components-native@0.47.2) (2023-10-24)
+
+
+### Bug Fixes
+
+* **components-native:** remove doubled testID prefix for GroupButton ([#1607](https://github.com/GetJobber/atlantis/issues/1607)) ([b918e83](https://github.com/GetJobber/atlantis/commit/b918e83ae73c2eb579aa0ff5fb4e960a42a0c980))
+
+
+
+
+
+## [0.47.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.47.0...@jobber/components-native@0.47.1) (2023-10-23)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+# [0.47.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.46.10...@jobber/components-native@0.47.0) (2023-10-20)
+
+
+### Features
+
+* **components-native:** add testID property to Button and default testID values to ButtonGroup ([#1590](https://github.com/GetJobber/atlantis/issues/1590)) ([ce565a1](https://github.com/GetJobber/atlantis/commit/ce565a165d02c80590435501654be26e2ea65cb2))
+
+
+
+
+
+## [0.46.10](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.46.9...@jobber/components-native@0.46.10) (2023-10-16)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.46.9](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.46.8...@jobber/components-native@0.46.9) (2023-10-16)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.46.8](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.46.7...@jobber/components-native@0.46.8) (2023-10-12)
+
+
+### Bug Fixes
+
+* **components:** Move InputEmail Mobile into Atlantis ([#1573](https://github.com/GetJobber/atlantis/issues/1573)) ([0e28c27](https://github.com/GetJobber/atlantis/commit/0e28c2719078721552b768e48ae855218317b06c))
+
+
+
+
+
+## [0.46.7](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.46.6...@jobber/components-native@0.46.7) (2023-10-05)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
 ## [0.46.6](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.46.5...@jobber/components-native@0.46.6) (2023-09-29)
 
 **Note:** Version bump only for package @jobber/components-native

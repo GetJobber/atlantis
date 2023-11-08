@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { InputDate } from ".";
 import { Modal } from "../Modal";
 import { Button } from "../Button";
 import { Text } from "../Text";
-
-afterEach(cleanup);
 
 it("renders a blank form by default", () => {
   const { getByDisplayValue, queryByText } = render(
@@ -198,7 +196,7 @@ describe("when InputDate is used within a Modal", () => {
   });
 });
 
-function NestedTestComponent(props: { date: string }): JSX.Element {
+function NestedTestComponent(props: { readonly date: string }): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
   const changeHandler = jest.fn();
 

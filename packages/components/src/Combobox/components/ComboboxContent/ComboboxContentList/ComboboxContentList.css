@@ -1,0 +1,49 @@
+.container {
+  position: relative;
+  padding: var(--space-small) 0;
+}
+
+.optionsList {
+  display: flex;
+  max-height: calc(var(--space-small) * 33.33);
+  margin: 0;
+  padding: 0;
+  overflow: scroll;
+  list-style: none;
+  flex-direction: column;
+  gap: var(--space-smaller);
+}
+.filterMessage,
+.emptyStateMessage {
+  padding: var(--space-small) var(--space-base);
+}
+
+.container::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: var(--space-small);
+  left: 0;
+  height: var(--space-base);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgb(255, 255, 255) 100%
+  );
+}
+
+.container::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: var(--space-small);
+  right: 0;
+  left: 0;
+  height: var(--space-base);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0)
+  );
+}
