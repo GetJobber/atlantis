@@ -1,5 +1,4 @@
 import React, { useLayoutEffect } from "react";
-import TimePolyfill from "time-input-polyfill";
 import debounce from "lodash/debounce";
 import { InputTimeProps } from "./InputTimeProps";
 import {

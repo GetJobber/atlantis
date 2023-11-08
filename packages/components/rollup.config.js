@@ -2,7 +2,6 @@
 import multiInput from "rollup-plugin-multi-input";
 import typescript from "@rollup/plugin-typescript";
 import postcss from "rollup-plugin-postcss";
-import commonjs from "@rollup/plugin-commonjs";
 
 export default {
   input: `src/*/index.{ts,tsx}`,
@@ -33,9 +32,6 @@ export default {
           preserve: true,
         }),
       ],
-    }),
-    commonjs({
-      ignore: ["time-input-polyfill", "time-input-polyfill/supportsTime"],
     }),
   ],
   output: [
