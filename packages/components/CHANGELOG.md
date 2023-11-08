@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.60.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.59.0...@jobber/components@4.60.0) (2023-11-08)
+
+
+### Features
+
+* **components:** Optional DataList action ([#1626](https://github.com/GetJobber/atlantis/issues/1626)) ([e97e8d8](https://github.com/GetJobber/atlantis/commit/e97e8d853d30cf30b6264cca1adf52b23ce99d64))
+
+
+
+
+
 # [4.59.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.58.5...@jobber/components@4.59.0) (2023-11-07)
 
 
