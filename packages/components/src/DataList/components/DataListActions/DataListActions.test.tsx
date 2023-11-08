@@ -99,6 +99,38 @@ describe("DataListActions", () => {
 
     expect(screen.queryByLabelText("More actions")).not.toBeInTheDocument();
   });
+
+  describe("Visibility prop", () => {
+    it("should render the action if the visibility prop is not set", () => {
+      render(
+        <DataListActions>
+          <DataListAction icon="edit" label="Edit" />
+        </DataListActions>,
+      );
+
+      expect(screen.getByLabelText("Edit")).toBeInTheDocument();
+    });
+
+    it("should render the action if the visibility prop is returning true", () => {
+      render(
+        <DataListActions>
+          <DataListAction icon="edit" label="Edit" visible={() => true} />
+        </DataListActions>,
+      );
+
+      expect(screen.getByLabelText("Edit")).toBeInTheDocument();
+    });
+
+    it("should not render the action if the visibility prop is returning false", () => {
+      render(
+        <DataListActions>
+          <DataListAction icon="edit" label="Edit" visible={() => false} />
+        </DataListActions>,
+      );
+
+      expect(screen.queryByLabelText("Edit")).not.toBeInTheDocument();
+    });
+  });
 });
 
 function renderComponent(itemsToExpose = 3) {

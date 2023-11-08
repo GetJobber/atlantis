@@ -162,6 +162,7 @@ const Template: ComponentStory<typeof DataList> = args => {
 
       <DataList.ItemActions onClick={handleActionClick}>
         <DataList.ItemAction
+          visible={item => item.species !== "Droid"}
           icon="edit"
           label="Edit"
           onClick={handleActionClick}
