@@ -78,6 +78,7 @@ export const Chip = ({
             />
           )}
         </div>
+        <span>&nbsp;</span>
         {suffix}
       </button>
     </Tooltip>
