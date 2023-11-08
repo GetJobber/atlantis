@@ -46,10 +46,11 @@ export interface InputCurrencyProps
   readonly maxLength?: number;
 
   onChange?(newValue?: number | string | undefined): void;
-  value?: number;
-  defaultValue?: number;
-  keyboard?: "decimal-pad" | "numbers-and-punctuation";
+  readonly value?: number;
+  readonly defaultValue?: number;
+  readonly keyboard?: "decimal-pad" | "numbers-and-punctuation";
 }
+
 export const getInternalValue = (
   props: InputCurrencyProps,
   field: ControllerRenderProps<FieldValues, string>,
@@ -59,6 +60,7 @@ export const getInternalValue = (
   ) => string,
 ): string => {
   if (!props.value && !field.value) return "";
+
   return (
     props.value?.toString() ??
     formatNumber(field.value, {
@@ -113,6 +115,7 @@ export function InputCurrency(props: InputCurrencyProps): JSX.Element {
       decimalNumbers !== ""
         ? transformedValue.toString() + "." + decimalNumbers.slice(1)
         : transformedValue.toString();
+
     if (checkLastChar(stringValue)) {
       const roundedDecimal = configureDecimal(
         decimalCount,
@@ -167,40 +170,40 @@ export function InputCurrency(props: InputCurrencyProps): JSX.Element {
   const { t } = useAtlantisI18n();
 
   return (
-    <>
-      <InputText
-        {...props}
-        prefix={showCurrencySymbol ? { label: currencySymbol } : undefined}
-        keyboard={getKeyboard(props)}
-        value={props.value?.toString() || displayValue}
-        defaultValue={props.defaultValue?.toString()}
-        onChangeText={handleChange}
-        transform={{
-          output: val => {
-            return val
-              ?.split(floatSeparators.group)
-              .join("")
-              .replace(floatSeparators.decimal, ".");
-          },
-        }}
-        validations={{
-          pattern: {
-            value: NUMBER_VALIDATION_REGEX,
-            message: t("errors.notANumber"),
-          },
-          ...props.validations,
-        }}
-        onBlur={() => {
-          props.onBlur?.();
-          if (
-            field.value === 0 ||
-            field.value === "" ||
-            field.value === undefined
-          ) {
-            setDisplayValue("0");
-          }
-        }}
-      />
-    </>
+    <InputText
+      {...props}
+      prefix={showCurrencySymbol ? { label: currencySymbol } : undefined}
+      keyboard={getKeyboard(props)}
+      value={props.value?.toString() || displayValue}
+      defaultValue={props.defaultValue?.toString()}
+      onChangeText={handleChange}
+      transform={{
+        output: val => {
+          return val
+            ?.split(floatSeparators.group)
+            .join("")
+            .replace(floatSeparators.decimal, ".");
+        },
+      }}
+      validations={{
+        pattern: {
+          value: NUMBER_VALIDATION_REGEX,
+          message: t("errors.notANumber"),
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any,
+        ...props.validations,
+      }}
+      onBlur={() => {
+        props.onBlur?.();
+
+        if (
+          field.value === 0 ||
+          field.value === "" ||
+          field.value === undefined
+        ) {
+          setDisplayValue("0");
+        }
+      }}
+    />
   );
 }

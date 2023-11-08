@@ -53,7 +53,8 @@ export function useInternalForm<T extends FieldValues, SubmitResponseType>({
   const formMethods = useForm<T>({
     mode,
     reValidateMode,
-    defaultValues: initialValues,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    defaultValues: initialValues as any,
     shouldFocusError: false,
   });
 

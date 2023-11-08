@@ -39,6 +39,7 @@ export function Form<T extends FieldValues, S>({
   ...rest
 }: FormProps<T, S>): JSX.Element {
   const child = initialLoading ? <FormMask /> : <InternalForm {...rest} />;
+
   return (
     <InputAccessoriesProvider>
       <ErrorMessageProvider>{child}</ErrorMessageProvider>
@@ -149,7 +150,8 @@ function InternalForm<T extends FieldValues, S>({
 
         <FormBody
           keyboardHeight={calculateSaveButtonOffset()}
-          submit={handleSubmit(internalSubmit)}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          submit={handleSubmit(internalSubmit as any)}
           isFormSubmitting={isSubmitting}
           saveButtonLabel={saveButtonLabel}
           shouldRenderActionBar={saveButtonPosition === "sticky"}
@@ -192,13 +194,15 @@ function InternalForm<T extends FieldValues, S>({
                     <View style={styles.fixedSaveButton}>
                       {renderStickySection ? (
                         renderStickySection(
-                          handleSubmit(internalSubmit),
+                          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                          handleSubmit(internalSubmit as any),
                           saveButtonLabel,
                           isSubmitting,
                         )
                       ) : (
                         <FormSaveButton
-                          primaryAction={handleSubmit(internalSubmit)}
+                          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                          primaryAction={handleSubmit(internalSubmit as any)}
                           label={saveButtonLabel}
                           loading={isSubmitting}
                           secondaryActions={secondaryActions}
@@ -245,6 +249,7 @@ function InternalForm<T extends FieldValues, S>({
 
   async function internalSubmit(data: FormValues<T>) {
     let performSubmit = true;
+
     if (onBeforeSubmit) {
       performSubmit = await onBeforeSubmit(data);
     }
@@ -280,9 +285,12 @@ function InternalForm<T extends FieldValues, S>({
     // when the form had no internet connection
     formMethods.clearErrors("offline");
   }
+
   function handleRetry() {
     clearFormErrors();
-    return handleSubmit(internalSubmit)();
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return handleSubmit(internalSubmit as any)();
   }
 
   function calculateSaveButtonOffset() {

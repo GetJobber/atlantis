@@ -20,6 +20,7 @@ interface UseFormController {
   field: UseControllerReturn["field"];
 }
 
+// eslint-disable-next-line max-statements
 export function useFormController<T>({
   name,
   value,
@@ -50,19 +51,22 @@ export function useFormController<T>({
   // We assume here that fields will either follow this period-delimited three-part convention, or else that they are simple and indivisible (e.g. "city").
   // TODO: Add support for two-part identifiers (e.g. "property.province")
   const fieldIdentifiers = fieldName.split(".");
-  let error: FieldError | undefined;
+  let error: unknown;
+
   if (fieldIdentifiers.length === 3) {
     const [section, item, identifier] = fieldIdentifiers;
-    error = errors[section]?.[item]?.[identifier];
+    const err = (errors[section] as never)?.[item];
+    error = err?.[identifier];
   } else {
     error = errors[fieldName];
   }
 
-  return { error, field };
+  return { error: error as FieldError, field };
 }
 
 function useControlName(name?: string): UseControllerReturn["field"]["name"] {
   const [identifier] = useState(v1());
   const prefix = `generatedName--${identifier}`;
+
   return `${name || prefix}` as const;
 }
