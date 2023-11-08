@@ -48,7 +48,12 @@
 /* States */
 
 .isActive {
-  background-color: var(--color-surface--active);
+  background-color: var(--color-surface--background);
+}
+
+.isActive:hover,
+.isActive:focus {
+  background-color: var(--color-surface--background--hover);
 }
 
 /* TODO: Move truncate in typography */

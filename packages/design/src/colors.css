@@ -12,7 +12,7 @@
   --color-disabled: var(--color-grey);
   --color-disabled--secondary: var(--color-grey--lighter);
 
-  --color-focus: var(--color-yellow--light);
+  --color-focus: var(--color-greyBlue--light);
 
   /* Status Colours */
 
@@ -46,7 +46,7 @@
   /* Surfaces and Borders */
   --color-surface: var(--color-white);
   --color-surface--hover: rgb(244, 246, 250);
-  --color-surface--active: var(--color-green--lightest);
+  --color-surface--active: var(--color-blue--lightest);
   --color-surface--background: var(--color-greyBlue--lightest);
   --color-surface--background--hover: var(--color-greyBlue--lighter);
   --color-surface--reverse: var(--color-blue);

@@ -9,5 +9,5 @@
       rgba(0, 0, 0, 0.075),
     0px 0px var(--space-small) 0px rgba(0, 0, 0, 0.05);
   --shadow-focus: 0px 0px 0px var(--space-smallest) var(--color-surface),
-    0px 0px 0px var(--space-smaller) var(--color-greyBlue--light);
+    0px 0px 0px var(--space-smaller) var(--color-focus);
 }
