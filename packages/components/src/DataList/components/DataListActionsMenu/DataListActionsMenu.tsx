@@ -59,6 +59,7 @@ export function DataListActionsMenu({
           </motion.div>
 
           <button
+            type="button"
             className={styles.overlay}
             onClick={onRequestClose}
             aria-label="Close menu"
@@ -96,6 +97,7 @@ export function DataListActionsMenu({
 
     const newPosX = Math.floor(xIsOffScreen ? x - xOffSet : x);
     const newPosY = Math.floor(yIsOffScreen ? y - yOffSet : y);
+
     return { posX: newPosX, posY: newPosY };
   }
 }
