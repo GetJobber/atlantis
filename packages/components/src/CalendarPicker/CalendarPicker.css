@@ -1,0 +1,15 @@
+.picker {
+  margin-top: 12px;
+}
+.picker p {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 12px;
+}
+.picker p > div {
+  width: 80px;
+}
+.selected {
+  background-color: green;
+}
