@@ -2,7 +2,6 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "module": "commonjs",
-    "composite": true,
     "rootDir": "src",
     "outDir": "dist"
   },
