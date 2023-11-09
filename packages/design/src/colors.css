@@ -39,7 +39,7 @@
   /* Typography */
   --color-heading: var(--color-blue);
   --color-text: var(--color-greyBlue--dark);
-  --color-text--secondary: var(--color-greyBlue);
+  --color-text--secondary: var(--color-blue--light);
   --color-text--reverse: var(--color-white);
   --color-text--reverse--secondary: var(--color-greyBlue--lighter);
 
@@ -116,7 +116,7 @@
   --color-grey--lightest: rgb(244, 244, 244);
   --color-grey--dark: rgb(118, 118, 118);
 
-  --color-greyBlue--rgb: 77, 105, 116;
+  --color-greyBlue--rgb: 101, 120, 132;
   --color-greyBlue: rgba(var(--color-greyBlue--rgb), 1);
   --color-greyBlue--light: rgb(147, 161, 169);
   --color-greyBlue--lighter: rgb(193, 201, 206);
