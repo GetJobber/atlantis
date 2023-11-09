@@ -63,7 +63,6 @@ export default {
     "uuid",
     new RegExp("lodash/.*"),
     "@std-proposal/temporal",
-    "@use-it/event-listener",
     "@jobber/design",
     "@jobber/design/foundation",
     "@jobber/formatters",

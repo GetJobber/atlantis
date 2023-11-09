@@ -1,6 +1,5 @@
 import React, { RefObject, useEffect, useLayoutEffect, useState } from "react";
 import classnames from "classnames";
-import useEventListener from "@use-it/event-listener";
 import { createPortal } from "react-dom";
 import { usePopper } from "react-popper";
 import { AnyOption, Option } from "./Option";
@@ -158,14 +157,17 @@ function useOnKeyDown(
   keyName: string,
   handler: (event: KeyboardEvent) => boolean | void,
 ) {
-  // Pending: https://github.com/donavon/use-event-listener/pull/12
-  // The types in useEventListener mistakenly require a SyntheticEvent for the passed generic.
-  useEventListener("keydown", event => {
-    const newEvent = event as unknown as KeyboardEvent;
-    if (newEvent.key === keyName) {
-      handler(newEvent);
-    }
-  });
+  useEffect(() => {
+    window.addEventListener('keydown', event => {
+      const newEvent = event as unknown as KeyboardEvent;
+      if (newEvent.key === keyName) {
+        handler(newEvent);
+      }
+    });
+    return () => {
+      window.removeEventListener('keydown', handler);
+    };
+  }, []);
 }
 
 function isGroup(option: AnyOption) {

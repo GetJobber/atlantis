@@ -1,4 +1,4 @@
-import useEventListener from "@use-it/event-listener";
+import { useEffect } from "react";
 import { XOR } from "ts-xor";
 
 type SimpleKeyComparator = KeyboardEvent["key"];
@@ -18,7 +18,12 @@ export function useOnKeyDown(
   callback: (event: KeyboardEvent) => void,
   keys: KeyComparator[] | KeyComparator,
 ) {
-  useEventListener("keydown", handler);
+  useEffect(() => {
+    window.addEventListener('keydown', handler);
+    return () => {
+      window.removeEventListener('keydown', handler);
+    };
+  }, [handler]);
 
   function handler(event: KeyboardEvent) {
     const keyboardEvent = event as unknown as VerboseKeyComparator;
