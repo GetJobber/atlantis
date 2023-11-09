@@ -11,11 +11,15 @@ import { Typography } from "../Typography";
 export const CalendarPicker = ({
   onUpdate,
   restrict = false,
+  defaultPickedCalendarRange,
 }: {
   readonly onUpdate: (calTime: PickedCalendarRange) => void | undefined;
+  readonly defaultPickedCalendarRange?: PickedCalendarRange;
   readonly restrict?: boolean;
 }) => {
-  const [frequency, setFrequency] = useState("Weekly");
+  const [frequency, setFrequency] = useState(
+    defaultPickedCalendarRange?.frequency || "Weekly",
+  );
   const options = ["Daily", "Weekly", "Monthly", "Yearly"];
   const daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"];
 
@@ -33,14 +37,35 @@ export const CalendarPicker = ({
           <Option key={index}>{option}</Option>
         ))}
       </Select>
-      {frequency === "Daily" && <CalendarPickerDaily onUpdate={onUpdate} />}
+      {frequency === "Daily" && (
+        <CalendarPickerDaily
+          onUpdate={onUpdate}
+          defaultInterval={defaultPickedCalendarRange?.interval}
+        />
+      )}
       {frequency === "Weekly" && (
-        <CalendarPickerWeekly daysOfWeek={daysOfWeek} onUpdate={onUpdate} />
+        <CalendarPickerWeekly
+          daysOfWeek={daysOfWeek}
+          defaultWeeklyDays={defaultPickedCalendarRange?.daysOfWeek}
+          onUpdate={onUpdate}
+        />
       )}
       {frequency === "Monthly" && (
-        <CalendarPickerMonthly daysOfWeek={daysOfWeek} onUpdate={onUpdate} />
+        <CalendarPickerMonthly
+          daysOfWeek={daysOfWeek}
+          onUpdate={onUpdate}
+          defaultInterval={defaultPickedCalendarRange?.interval}
+          defaultTypeOfMonth={defaultPickedCalendarRange?.typeOfMonth}
+          defaultMonthlyDays={defaultPickedCalendarRange?.daysOfMonth}
+          defaultWeeklyDays={defaultPickedCalendarRange?.weeksOfMonth}
+        />
       )}
-      {frequency === "Yearly" && <CalendarPickerYearly onUpdate={onUpdate} />}
+      {frequency === "Yearly" && (
+        <CalendarPickerYearly
+          onUpdate={onUpdate}
+          defaultInterval={defaultPickedCalendarRange?.interval}
+        />
+      )}
     </div>
   );
 };

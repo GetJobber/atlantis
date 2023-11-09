@@ -1,80 +1,82 @@
 import React, { useEffect, useState } from "react";
 import styles from "./CalendarPicker.css";
 import { PickedCalendarRange } from "./CalendarPickerTypes";
+import { CalendarPickerDayOfTheMonth } from "./CalendarPickerDayOfTheMonth";
+import { CalendarPickerDayOfTheWeek } from "./CalendarPickerDayOfTheWeek";
+import { useMonthlyByDay, useMonthlyByWeek } from "./useHumanReadableRRule";
 import { Text } from "../Text";
 import { InputNumber } from "../InputNumber";
 import { RadioGroup, RadioOption } from "../RadioGroup";
 
-function appendSuffix(n: number) {
-  const j = n % 10,
-    k = n % 100;
-
-  if (j == 1 && k != 11) {
-    return n + "st";
-  }
-
-  if (j == 2 && k != 12) {
-    return n + "nd";
-  }
-
-  if (j == 3 && k != 13) {
-    return n + "rd";
-  }
-
-  return n + "th";
-}
-
-function getDayOfWeek(dayNumber: number) {
-  const daysOfWeek = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-
-  return daysOfWeek[dayNumber];
-}
-
 export const CalendarPickerMonthly = ({
   daysOfWeek,
   onUpdate,
+  defaultInterval = 1,
+  defaultTypeOfMonth = 1,
+  defaultMonthlyDays = [],
+  defaultWeeklyDays = [[]],
 }: {
   readonly daysOfWeek: Array<string>;
   readonly onUpdate: (calTime: PickedCalendarRange) => void | undefined;
+  readonly defaultInterval?: number;
+  readonly defaultTypeOfMonth?: number;
+  readonly defaultMonthlyDays?: Array<number | undefined>;
+  readonly defaultWeeklyDays?: Array<Array<string | undefined>>;
 }) => {
-  const days = Array.from({ length: 31 });
-  const weeks = ["1st", "2nd", "3rd", "4th"];
-  const [monthlyDays, setMonthlyDays] = useState<Array<number | undefined>>([]);
-  const [weeklyDays, setWeeklyDays] = useState<
-    Array<Array<string | undefined>>
-  >([[]]);
-  const [weeklyInterval, setWeeklyInterval] = useState(1);
-  const [typeOfMonth, setTypeOfMonth] = useState(1);
+  const [monthlyDays, setMonthlyDays] =
+    useState<Array<number | undefined>>(defaultMonthlyDays);
+  const [weeklyDays, setWeeklyDays] =
+    useState<Array<Array<string | undefined>>>(defaultWeeklyDays);
+  const [monthlyInterval, setMonthlyInterval] = useState(defaultInterval);
+  const [typeOfMonth, setTypeOfMonth] = useState(defaultTypeOfMonth);
+  const monthlyByDay = useMonthlyByDay(monthlyDays, monthlyInterval);
+  const monthlyByWeek = useMonthlyByWeek(weeklyDays, monthlyInterval);
+
   useEffect(() => {
     onUpdate({
       frequency: "Monthly",
-      interval: weeklyInterval,
+      interval: monthlyInterval,
       daysOfMonth: monthlyDays,
       weeksOfMonth: weeklyDays,
       typeOfMonth,
     });
-  }, [weeklyInterval, monthlyDays, weeklyDays, typeOfMonth]);
+  }, [monthlyInterval, monthlyDays, weeklyDays, typeOfMonth]);
 
-  let found = false;
+  const toggleWeeklyDay = (key: number, index: number, day: string) => {
+    setWeeklyDays(db => {
+      const newWeeklyDays = [...db];
+
+      if (!newWeeklyDays[key]) {
+        newWeeklyDays[key] = [];
+      }
+
+      newWeeklyDays[key][index] = newWeeklyDays[key][index] ? undefined : day;
+
+      return newWeeklyDays;
+    });
+  };
+
+  const toggleMonthlyDay = (index: number) => {
+    setMonthlyDays(db => {
+      const n = [...db];
+      n[index] = n[index] ? undefined : index + 1;
+
+      return n;
+    });
+  };
 
   return (
     <div>
       <div className={styles.picker}>
         <Text>
-          Every{" "}
+          <span className={styles.intervalPrefix}>Every </span>
           <InputNumber
-            value={weeklyInterval}
-            onChange={d => setWeeklyInterval(Number(d))}
+            value={monthlyInterval}
+            onChange={d => setMonthlyInterval(Number(d))}
           />{" "}
-          months(s):
+          <span className={styles.intervalSuffix}>
+            month{monthlyInterval > 1 ? "s" : ""}:
+          </span>
         </Text>
       </div>
       <div className={styles.radioButtons}>
@@ -88,153 +90,25 @@ export const CalendarPickerMonthly = ({
         </RadioGroup>
       </div>
       {typeOfMonth === 1 && (
-        <div className={styles.buttonWrapper}>
-          {days.map((_, index) => {
-            return (
-              <button
-                type="button"
-                className={`${monthlyDays[index] ? styles.selected : ""} ${
-                  styles.button
-                }`}
-                onClick={() =>
-                  setMonthlyDays(db => {
-                    const n = [...db];
-                    n[index] = n[index] ? undefined : index + 1;
-
-                    return n;
-                  })
-                }
-                key={index}
-              >
-                {index + 1}
-              </button>
-            );
-          })}
-          <button
-            type="button"
-            className={`${monthlyDays[32] ? styles.selected : ""} ${
-              styles.button
-            } ${styles.bigButton}`}
-            onClick={() => {
-              setMonthlyDays(db => {
-                const n = [...db];
-                n[32] = n[32] ? undefined : 32;
-
-                return n;
-              });
-            }}
-          >
-            Last Day
-          </button>
-        </div>
+        <CalendarPickerDayOfTheMonth
+          value={monthlyDays}
+          onClick={(index: number) => {
+            toggleMonthlyDay(index);
+          }}
+        />
       )}
       {typeOfMonth === 2 && (
-        <div>
-          {weeks.map((week, key) => {
-            return (
-              <div key={key} className={styles.weekWrapper}>
-                <Text>{week}</Text>
-                <div className={styles.buttonWrapper}>
-                  {daysOfWeek.map((day, index) => {
-                    return (
-                      <button
-                        type="button"
-                        className={`${
-                          weeklyDays[key]?.[index] ? styles.selected : ""
-                        } ${styles.button}`}
-                        key={index}
-                        onClick={() =>
-                          setWeeklyDays(db => {
-                            const n = [...db];
-
-                            if (!n[key]) {
-                              n[key] = [];
-                            }
-                            n[key][index] = n[key][index] ? undefined : day;
-
-                            return n;
-                          })
-                        }
-                      >
-                        {day}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        <CalendarPickerDayOfTheWeek
+          daysOfWeek={daysOfWeek}
+          value={weeklyDays}
+          onClick={(key: number, index: number, day: string) => {
+            toggleWeeklyDay(key, index, day);
+          }}
+        />
       )}
-      {typeOfMonth === 1 && (
-        <div className={styles.summary}>
-          {!monthlyDays.find(d => d) && "Summary:"}
-          {monthlyDays.find(d => d) && (
-            <div>
-              {weeklyInterval === 1
-                ? "Monthly "
-                : `Every ${weeklyInterval} months `}
-              on the{" "}
-              {monthlyDays
-                .filter(d => d)
-                .map((d, index) => {
-                  let val = "";
-
-                  if (d !== 32) {
-                    val = appendSuffix(Number(d));
-                  } else {
-                    val = "last";
-                  }
-
-                  if (
-                    index > 0 &&
-                    index === monthlyDays.filter(e => e).length - 1
-                  ) {
-                    val = "and " + val;
-                  }
-
-                  return val;
-                })
-                .join(", ")}{" "}
-              day{monthlyDays.filter(d => d).length > 1 ? "s" : ""} of the month
-            </div>
-          )}
-        </div>
-      )}
-      {typeOfMonth === 2 && (
-        <div className={styles.summary}>
-          {weeklyInterval === 1 && "Summary: Monthly "}
-          {weeklyInterval > 1 && `Every ${weeklyInterval} months`}
-          {weeklyDays
-            .map(d => d)
-            ?.find(d => d)
-            ?.filter(d => d) && " on the "}
-          {weeklyDays
-            .map((b, index1) => {
-              return b
-                ?.map((d, index2) => {
-                  if (d) {
-                    let prefix = "";
-
-                    if (found) {
-                      prefix = " and ";
-                    }
-                    found = true;
-
-                    return (
-                      prefix +
-                      appendSuffix(index1 + 1) +
-                      " " +
-                      getDayOfWeek(index2) +
-                      " "
-                    );
-                  }
-                })
-                .filter(d => d);
-            })
-            .filter(d => d)}
-        </div>
-      )}
+      <div className={styles.summary}>
+        {typeOfMonth === 1 ? monthlyByDay : monthlyByWeek}
+      </div>
     </div>
   );
 };

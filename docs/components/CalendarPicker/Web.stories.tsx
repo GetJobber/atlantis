@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import {
   CalendarPicker,
   PickedCalendarRange,
+  usePickedCalendarRangeFromRRule,
   useRRuleFromPickedCalendarRange,
 } from "@jobber/components/CalendarPicker";
 import { Content } from "@jobber/components/Content";
@@ -26,14 +27,21 @@ export default {
 const BasicTemplate: ComponentStory<typeof CalendarPicker> = () => {
   const [range, setRange] = useState<PickedCalendarRange>();
   const { rule } = useRRuleFromPickedCalendarRange(range);
-  console.log("Final String:", rule);
+  useEffect(() => {
+    localStorage.setItem("rule", rule);
+  }, [rule]);
+
+  const pickedRange = usePickedCalendarRangeFromRRule(
+    localStorage.getItem("rule") || "",
+  );
+  console.log("RULE", rule);
 
   return (
     <Content>
       <CalendarPicker
         restrict
+        defaultPickedCalendarRange={pickedRange}
         onUpdate={update => {
-          console.log("got an update!", update);
           setRange(update);
         }}
       />
