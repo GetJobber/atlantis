@@ -48,20 +48,24 @@ export const CalendarPickerWeekly = ({
     <div>
       <div className={styles.picker}>
         <Text>
-          Every{" "}
+          <span className={styles.intervalPrefix}>Every </span>
           <InputNumber
             value={weeklyInterval}
             onChange={d => setWeeklyInterval(Number(d))}
           />{" "}
-          week(s) on:
+          <span className={styles.intervalSuffix}>
+            week{weeklyInterval > 1 ? "s" : ""} on:
+          </span>
         </Text>
       </div>
-      <div>
+      <div className={styles.buttonWrapper}>
         {daysOfWeek.map((day, index) => {
           return (
             <button
               type="button"
-              className={weeklyDays[index] ? styles.selected : ""}
+              className={`${weeklyDays[index] ? styles.selected : ""} ${
+                styles.button
+              }`}
               key={index}
               onClick={() =>
                 setWeeklyDays(db => {
@@ -77,7 +81,7 @@ export const CalendarPickerWeekly = ({
           );
         })}
       </div>
-      <div>
+      <div className={styles.summary}>
         {weeklyDays.filter(d => d).length === 0 && weeklyInterval === 1 ? (
           "Summary: Weekly"
         ) : (

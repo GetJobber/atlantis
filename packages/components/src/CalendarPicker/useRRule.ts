@@ -1,5 +1,11 @@
-import { RRule, Weekday } from "rrule";
+import { RRule } from "rrule";
 import { PickedCalendarRange } from "./CalendarPickerTypes";
+
+function getDayOfWeek(dayIndex: number) {
+  const daysOfWeek = ["SU", "MO", "TU", "WE", "TH", "FR", "SA"];
+
+  return daysOfWeek[dayIndex];
+}
 
 const ruleFromIndexes = (dayOfWeek: number, weekOfMonth: number) => {
   switch (dayOfWeek) {
@@ -24,20 +30,15 @@ const ruleFromIndexes = (dayOfWeek: number, weekOfMonth: number) => {
 export const useRRuleFromPickedCalendarRange = (
   range: PickedCalendarRange | undefined,
 ) => {
-  let rule = new RRule();
-
-  console.log("RANGE", range);
+  let rule = "";
 
   if (range && range.frequency === "Yearly") {
-    rule = new RRule({
-      freq: RRule.YEARLY,
-      interval: range.interval,
-    });
+    rule = `RRULE:FREQ=YEARLY;INTERVAL=${range.interval}`;
   } else if (range && range.frequency === "Daily") {
     rule = new RRule({
       freq: RRule.DAILY,
       interval: range.interval,
-    });
+    }).toString();
   } else if (range && range.frequency === "Monthly") {
     let options = {};
 
@@ -65,27 +66,21 @@ export const useRRuleFromPickedCalendarRange = (
       });
       options = { byweekday: weekDays };
     }
-
+    console.log("MONTHLY OPTIONS!", options);
+    rule = `RRULE:FREQ=MONTHLY;INTERVAL=${range.interval};`;
     rule = new RRule({
       freq: RRule.MONTHLY,
       interval: range.interval,
       ...options,
-    });
+    }).toString();
   } else if (range && range.frequency === "Weekly") {
-    rule = new RRule({
-      freq: RRule.WEEKLY,
-      interval: range.interval,
-      byweekday: range.daysOfWeek
-        ?.filter(d => d)
-        .map(d => {
-          if (d?.day === "S" && d.index === 0) {
-            return new Weekday(6);
-          }
-
-          return new Weekday((d?.index || 1) - 1);
-        }),
-    });
+    rule = `RRULE:FREQ=WEEKLY;INTERVAL=${
+      range.interval
+    };BYDAY=${range.daysOfWeek
+      ?.filter(d => d)
+      .map(d => getDayOfWeek(d?.index))
+      .join(",")}`;
   }
 
-  return { rule, asString: rule.toString() };
+  return { rule };
 };

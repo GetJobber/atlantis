@@ -25,12 +25,13 @@ export default {
 
 const BasicTemplate: ComponentStory<typeof CalendarPicker> = () => {
   const [range, setRange] = useState<PickedCalendarRange>();
-  const { asString } = useRRuleFromPickedCalendarRange(range);
-  console.log("Final String:", asString);
+  const { rule } = useRRuleFromPickedCalendarRange(range);
+  console.log("Final String:", rule);
 
   return (
     <Content>
       <CalendarPicker
+        restrict
         onUpdate={update => {
           console.log("got an update!", update);
           setRange(update);

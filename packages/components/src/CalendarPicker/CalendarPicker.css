@@ -1,15 +1,72 @@
 .picker {
-  margin-top: 12px;
+  margin-top: var(--space-large);
+  margin-bottom: var(--space-large);
+}
+
+.radioButtons > div {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: var(--space-small);
+}
+
+.radioButtons > div > div {
+  margin-right: var(--space-small);
 }
 .picker p {
   display: flex;
   align-items: center;
   width: 100%;
-  gap: 12px;
+  gap: var(--space-small);
 }
 .picker p > div {
   width: 80px;
 }
+.picker p > div > div {
+  height: 35px;
+}
+.title {
+  margin-bottom: var(--space-small);
+}
+.pickerWrapper {
+  display: block;
+}
+.restrict {
+  max-width: 500px;
+}
+.button {
+  width: 30px;
+  height: 30px;
+  box-shadow: var(--shadow-base);
+  border: 0;
+  border: 1px solid var(--color-interactive);
+  background-color: var(--color-text--reverse);
+  cursor: pointer;
+}
+.bigButton {
+  width: auto;
+}
+.buttonWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-small);
+}
 .selected {
-  background-color: green;
+  box-shadow: var(--shadow-focus);
+  color: var(--color-text--reverse);
+  background-color: var(--color-interactive);
+}
+.intervalPrefix {
+  margin-right: var(--space-small);
+}
+
+.intervalSuffix {
+  margin-left: var(--space-small);
+}
+
+.summary {
+  margin-top: var(--space-large);
+  font-weight: 700;
+}
+.weekWrapper {
+  margin-bottom: var(--space-small);
 }

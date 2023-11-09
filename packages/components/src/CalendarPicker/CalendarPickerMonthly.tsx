@@ -63,7 +63,6 @@ export const CalendarPickerMonthly = ({
     });
   }, [weeklyInterval, monthlyDays, weeklyDays, typeOfMonth]);
 
-  console.log("TYPE OF MONTH", typeOfMonth, weeklyDays);
   let found = false;
 
   return (
@@ -78,7 +77,7 @@ export const CalendarPickerMonthly = ({
           months(s):
         </Text>
       </div>
-      <div>
+      <div className={styles.radioButtons}>
         <RadioGroup
           ariaLabel="Type Of Month"
           onChange={d => setTypeOfMonth(Number(d))}
@@ -89,12 +88,14 @@ export const CalendarPickerMonthly = ({
         </RadioGroup>
       </div>
       {typeOfMonth === 1 && (
-        <div style={{ display: "flex", maxWidth: "300px", flexWrap: "wrap" }}>
+        <div className={styles.buttonWrapper}>
           {days.map((_, index) => {
             return (
               <button
                 type="button"
-                className={monthlyDays[index] ? styles.selected : ""}
+                className={`${monthlyDays[index] ? styles.selected : ""} ${
+                  styles.button
+                }`}
                 onClick={() =>
                   setMonthlyDays(db => {
                     const n = [...db];
@@ -111,7 +112,9 @@ export const CalendarPickerMonthly = ({
           })}
           <button
             type="button"
-            className={monthlyDays[32] ? styles.selected : ""}
+            className={`${monthlyDays[32] ? styles.selected : ""} ${
+              styles.button
+            } ${styles.bigButton}`}
             onClick={() => {
               setMonthlyDays(db => {
                 const n = [...db];
@@ -129,16 +132,16 @@ export const CalendarPickerMonthly = ({
         <div>
           {weeks.map((week, key) => {
             return (
-              <div key={key}>
+              <div key={key} className={styles.weekWrapper}>
                 <Text>{week}</Text>
-                <div>
+                <div className={styles.buttonWrapper}>
                   {daysOfWeek.map((day, index) => {
                     return (
                       <button
                         type="button"
-                        className={
+                        className={`${
                           weeklyDays[key]?.[index] ? styles.selected : ""
-                        }
+                        } ${styles.button}`}
                         key={index}
                         onClick={() =>
                           setWeeklyDays(db => {
@@ -164,7 +167,7 @@ export const CalendarPickerMonthly = ({
         </div>
       )}
       {typeOfMonth === 1 && (
-        <div>
+        <div className={styles.summary}>
           {!monthlyDays.find(d => d) && "Summary:"}
           {monthlyDays.find(d => d) && (
             <div>
@@ -199,7 +202,7 @@ export const CalendarPickerMonthly = ({
         </div>
       )}
       {typeOfMonth === 2 && (
-        <div>
+        <div className={styles.summary}>
           {weeklyInterval === 1 && "Summary: Monthly "}
           {weeklyInterval > 1 && `Every ${weeklyInterval} months`}
           {weeklyDays

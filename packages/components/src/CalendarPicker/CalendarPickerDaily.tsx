@@ -18,14 +18,16 @@ export const CalendarPickerDaily = ({
     <div>
       <div className={styles.picker}>
         <Text>
-          Every{" "}
+          <span className={styles.intervalPrefix}>Every </span>
           <InputNumber
             value={dailyInterval}
             onChange={d => setDailyInterval(Number(d))}
           />{" "}
-          days(s)
+          <span className={styles.intervalSuffix}>
+            day{dailyInterval > 1 ? "s" : ""}
+          </span>
         </Text>
-        <div>
+        <div className={styles.summary}>
           {dailyInterval === 1 && "Summary: Daily"}
           {dailyInterval > 1 && `Summary: Every ${dailyInterval} days`}
         </div>
