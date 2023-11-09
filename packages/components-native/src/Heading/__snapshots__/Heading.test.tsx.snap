@@ -149,7 +149,7 @@ exports[`when Heading called with sub-heading variation and text-color should ma
         "fontFamily": "inter-semibold",
       },
       {
-        "color": "rgba(77, 105, 116, 1)",
+        "color": "rgb(77, 105, 116)",
       },
       {
         "textAlign": "left",

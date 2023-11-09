@@ -14,7 +14,7 @@ exports[`renders text respecting the text direction 1`] = `
         "fontFamily": "inter-regular",
       },
       {
-        "color": "rgba(77, 105, 116, 1)",
+        "color": "rgba(101, 120, 132, 1)",
       },
       {
         "textAlign": "right",
@@ -48,7 +48,7 @@ exports[`renders text using the maxLines is also passed 1`] = `
         "fontFamily": "inter-regular",
       },
       {
-        "color": "rgba(77, 105, 116, 1)",
+        "color": "rgba(101, 120, 132, 1)",
       },
       {
         "textAlign": "left",
@@ -82,7 +82,7 @@ exports[`renders text with adjustsFontSizeToFit set to true 1`] = `
         "fontFamily": "inter-regular",
       },
       {
-        "color": "rgba(77, 105, 116, 1)",
+        "color": "rgba(101, 120, 132, 1)",
       },
       {
         "textAlign": "left",
@@ -115,7 +115,7 @@ exports[`renders text with black style and display as fontFamily 1`] = `
         "fontFamily": "jobberpro-blk",
       },
       {
-        "color": "rgba(77, 105, 116, 1)",
+        "color": "rgba(101, 120, 132, 1)",
       },
       {
         "textAlign": "left",
@@ -148,7 +148,7 @@ exports[`renders text with bold style 1`] = `
         "fontFamily": "inter-bold",
       },
       {
-        "color": "rgba(77, 105, 116, 1)",
+        "color": "rgba(101, 120, 132, 1)",
       },
       {
         "textAlign": "left",
@@ -181,7 +181,7 @@ exports[`renders text with bold style and display as fontFamily 1`] = `
         "fontFamily": "jobberpro-bd",
       },
       {
-        "color": "rgba(77, 105, 116, 1)",
+        "color": "rgba(101, 120, 132, 1)",
       },
       {
         "textAlign": "left",
@@ -214,7 +214,7 @@ exports[`renders text with bold weight and italic style 1`] = `
         "fontFamily": "inter-regular",
       },
       {
-        "color": "rgba(77, 105, 116, 1)",
+        "color": "rgba(101, 120, 132, 1)",
       },
       {
         "textAlign": "left",
@@ -247,7 +247,7 @@ exports[`renders text with center align 1`] = `
         "fontFamily": "inter-regular",
       },
       {
-        "color": "rgba(77, 105, 116, 1)",
+        "color": "rgba(101, 120, 132, 1)",
       },
       {
         "textAlign": "center",
@@ -280,7 +280,7 @@ exports[`renders text with default color 1`] = `
         "fontFamily": "inter-regular",
       },
       {
-        "color": "rgba(77, 105, 116, 1)",
+        "color": "rgba(101, 120, 132, 1)",
       },
       {
         "textAlign": "left",
@@ -313,7 +313,7 @@ exports[`renders text with default size 1`] = `
         "fontFamily": "inter-regular",
       },
       {
-        "color": "rgba(77, 105, 116, 1)",
+        "color": "rgba(101, 120, 132, 1)",
       },
       {
         "textAlign": "left",
@@ -346,7 +346,7 @@ exports[`renders text with extraBold weight and display as fontFamily 1`] = `
         "fontFamily": "jobberpro-xbd",
       },
       {
-        "color": "rgba(77, 105, 116, 1)",
+        "color": "rgba(101, 120, 132, 1)",
       },
       {
         "textAlign": "left",
@@ -412,7 +412,7 @@ exports[`renders text with italic style 1`] = `
         "fontFamily": "inter-regular",
       },
       {
-        "color": "rgba(77, 105, 116, 1)",
+        "color": "rgba(101, 120, 132, 1)",
       },
       {
         "textAlign": "left",
@@ -445,7 +445,7 @@ exports[`renders text with large size 1`] = `
         "fontFamily": "inter-regular",
       },
       {
-        "color": "rgba(77, 105, 116, 1)",
+        "color": "rgba(101, 120, 132, 1)",
       },
       {
         "textAlign": "left",
@@ -478,7 +478,7 @@ exports[`renders text with letter spacing 1`] = `
         "fontFamily": "inter-regular",
       },
       {
-        "color": "rgba(77, 105, 116, 1)",
+        "color": "rgba(101, 120, 132, 1)",
       },
       {
         "textAlign": "left",
@@ -511,7 +511,7 @@ exports[`renders text with line height override 1`] = `
         "fontFamily": "inter-regular",
       },
       {
-        "color": "rgba(77, 105, 116, 1)",
+        "color": "rgba(101, 120, 132, 1)",
       },
       {
         "textAlign": "left",
@@ -544,7 +544,7 @@ exports[`renders text with lowercase transform 1`] = `
         "fontFamily": "inter-regular",
       },
       {
-        "color": "rgba(77, 105, 116, 1)",
+        "color": "rgba(101, 120, 132, 1)",
       },
       {
         "textAlign": "left",
@@ -610,7 +610,7 @@ exports[`renders text with no additional props 1`] = `
         "fontFamily": "inter-regular",
       },
       {
-        "color": "rgba(77, 105, 116, 1)",
+        "color": "rgba(101, 120, 132, 1)",
       },
       {
         "textAlign": "left",
@@ -643,7 +643,7 @@ exports[`renders text with regular style 1`] = `
         "fontFamily": "inter-regular",
       },
       {
-        "color": "rgba(77, 105, 116, 1)",
+        "color": "rgba(101, 120, 132, 1)",
       },
       {
         "textAlign": "left",
@@ -742,7 +742,7 @@ exports[`renders text with small size 1`] = `
         "fontFamily": "inter-regular",
       },
       {
-        "color": "rgba(77, 105, 116, 1)",
+        "color": "rgba(101, 120, 132, 1)",
       },
       {
         "textAlign": "left",
@@ -775,7 +775,7 @@ exports[`renders text with strikethough styling 1`] = `
         "fontFamily": "inter-regular",
       },
       {
-        "color": "rgba(77, 105, 116, 1)",
+        "color": "rgba(101, 120, 132, 1)",
       },
       {
         "textAlign": "left",
@@ -811,7 +811,7 @@ exports[`renders text with uppercase transform 1`] = `
         "fontFamily": "inter-regular",
       },
       {
-        "color": "rgba(77, 105, 116, 1)",
+        "color": "rgba(101, 120, 132, 1)",
       },
       {
         "textAlign": "left",

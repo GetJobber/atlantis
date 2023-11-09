@@ -17,7 +17,7 @@ exports[`renders apple icon 1`] = `
       },
       {
         "display": "flex",
-        "fill": "rgba(77, 105, 116, 1)",
+        "fill": "rgba(101, 120, 132, 1)",
         "height": 24,
         "verticalAlign": "middle",
         "width": 24,
@@ -34,7 +34,7 @@ exports[`renders apple icon 1`] = `
   vbWidth={24}
 >
   <RNSVGGroup
-    fill={4283263348}
+    fill={4284840068}
     propList={
       [
         "fill",
@@ -43,7 +43,7 @@ exports[`renders apple icon 1`] = `
   >
     <RNSVGPath
       d="M18.467 12.754c-.027-2.996 2.453-4.453 2.566-4.52-1.404-2.048-3.581-2.328-4.346-2.35-1.828-.193-3.601 1.094-4.533 1.094-.95 0-2.384-1.076-3.93-1.044-1.988.03-3.849 1.182-4.87 2.97C1.25 12.55 2.82 17.91 4.838 20.856c1.01 1.443 2.189 3.055 3.733 2.998 1.51-.062 2.074-.963 3.897-.963 1.806 0 2.335.963 3.91.927 1.62-.026 2.641-1.45 3.615-2.907 1.166-1.654 1.635-3.283 1.653-3.367-.038-.013-3.147-1.2-3.178-4.79Zm-2.974-8.81c.812-1.015 1.368-2.397 1.213-3.8-1.175.053-2.646.814-3.492 1.807-.75.876-1.418 2.31-1.246 3.66 1.321.099 2.677-.666 3.525-1.666Z"
-      fill={4283263348}
+      fill={4284840068}
       propList={
         [
           "fill",
@@ -71,7 +71,7 @@ exports[`renders home icon 1`] = `
       },
       {
         "display": "flex",
-        "fill": "rgba(77, 105, 116, 1)",
+        "fill": "rgba(101, 120, 132, 1)",
         "height": 24,
         "verticalAlign": "middle",
         "width": 24,
@@ -88,7 +88,7 @@ exports[`renders home icon 1`] = `
   vbWidth={24}
 >
   <RNSVGGroup
-    fill={4283263348}
+    fill={4284840068}
     propList={
       [
         "fill",
@@ -97,7 +97,7 @@ exports[`renders home icon 1`] = `
   >
     <RNSVGPath
       d="M13.147 3.582a2 2 0 0 0-2.294 0l-9.426 6.599a1 1 0 1 0 1.147 1.638L5 10.121V18a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3v-7.88l2.427 1.7a1 1 0 0 0 1.146-1.64l-9.426-6.598ZM17 8.721V18a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V8.72l5-3.5 5 3.5Z"
-      fill={4283263348}
+      fill={4284840068}
       propList={
         [
           "fill",
@@ -125,7 +125,7 @@ exports[`renders large arrowDown icon 1`] = `
       },
       {
         "display": "flex",
-        "fill": "rgba(77, 105, 116, 1)",
+        "fill": "rgba(101, 120, 132, 1)",
         "height": 32,
         "verticalAlign": "middle",
         "width": 32,
@@ -142,7 +142,7 @@ exports[`renders large arrowDown icon 1`] = `
   vbWidth={24}
 >
   <RNSVGGroup
-    fill={4283263348}
+    fill={4284840068}
     propList={
       [
         "fill",
@@ -151,7 +151,7 @@ exports[`renders large arrowDown icon 1`] = `
   >
     <RNSVGPath
       d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
-      fill={4283263348}
+      fill={4284840068}
       propList={
         [
           "fill",
@@ -242,7 +242,7 @@ exports[`renders small more icon 1`] = `
       },
       {
         "display": "flex",
-        "fill": "rgba(77, 105, 116, 1)",
+        "fill": "rgba(101, 120, 132, 1)",
         "height": 16,
         "verticalAlign": "middle",
         "width": 16,
@@ -259,7 +259,7 @@ exports[`renders small more icon 1`] = `
   vbWidth={24}
 >
   <RNSVGGroup
-    fill={4283263348}
+    fill={4284840068}
     propList={
       [
         "fill",
@@ -268,7 +268,7 @@ exports[`renders small more icon 1`] = `
   >
     <RNSVGPath
       d="M4 12a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm6 0a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm8-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"
-      fill={4283263348}
+      fill={4284840068}
       propList={
         [
           "fill",
@@ -296,7 +296,7 @@ exports[`renders star icon with custom color 1`] = `
       },
       {
         "display": "flex",
-        "fill": "rgba(77, 105, 116, 1)",
+        "fill": "rgba(101, 120, 132, 1)",
         "height": 24,
         "verticalAlign": "middle",
         "width": 24,
@@ -313,7 +313,7 @@ exports[`renders star icon with custom color 1`] = `
   vbWidth={24}
 >
   <RNSVGGroup
-    fill={4283263348}
+    fill={4284840068}
     propList={
       [
         "fill",
@@ -350,7 +350,7 @@ exports[`renders thumbsDown icon 1`] = `
       },
       {
         "display": "flex",
-        "fill": "rgba(77, 105, 116, 1)",
+        "fill": "rgba(101, 120, 132, 1)",
         "height": 24,
         "transform": [
           {
@@ -372,7 +372,7 @@ exports[`renders thumbsDown icon 1`] = `
   vbWidth={24}
 >
   <RNSVGGroup
-    fill={4283263348}
+    fill={4284840068}
     matrix={
       [
         1,
@@ -391,7 +391,7 @@ exports[`renders thumbsDown icon 1`] = `
   >
     <RNSVGPath
       d="M8 11.78V19h8l3-5.76v-1.29h-7.639l1.036-7.944L8 11.78ZM6.134 11l4.555-8.034c1.124-1.846 3.971-.844 3.691 1.299l-.74 5.685h6.86a.5.5 0 0 1 .5.5v3a1 1 0 0 1-.084.4l-3.276 6.648a.95.95 0 0 1-.44.453c-.132.065-.276.049-.423.049H4c-1.105 0-2-1.045-2-2.15V13a2 2 0 0 1 2-2h2.134ZM6 13H4v6h2v-6Z"
-      fill={4283263348}
+      fill={4284840068}
       propList={
         [
           "fill",
