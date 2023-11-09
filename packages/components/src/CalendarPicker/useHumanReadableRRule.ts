@@ -1,36 +1,42 @@
+import { useMemo } from "react";
+import { usePickedCalendarRangeFromRRule } from "./useRRule";
+
 export const useMonthlyByDay = (
   monthlyDays: Array<number | undefined>,
   weeklyInterval: number,
   maxDays = 32,
 ) => {
-  let humanReadable = !monthlyDays.find(d => d) && "Summary: Monthly";
+  let humanReadable = !monthlyDays.find(d => d) ? "Summary: Monthly" : "";
 
-  if (monthlyDays.find(d => d)) {
+  if (weeklyInterval > 1) {
     humanReadable =
       weeklyInterval === 1 ? "Monthly " : `Every ${weeklyInterval} months `;
-    humanReadable += " on the ";
-    humanReadable += monthlyDays
-      .filter(d => d)
-      .map((d, index) => {
-        let val = "";
 
-        if (d && d < maxDays) {
-          val = appendSuffix(Number(d));
-        } else {
-          val = "last";
-        }
+    if (monthlyDays.find(d => d)) {
+      humanReadable += " on the ";
+      humanReadable += monthlyDays
+        .filter(d => d)
+        .map((d, index) => {
+          let val = "";
 
-        if (index > 0 && index === monthlyDays.filter(e => e).length - 1) {
-          val = "and " + val;
-        }
+          if (d && d < maxDays) {
+            val = appendSuffix(Number(d));
+          } else {
+            val = "last";
+          }
 
-        return val;
-      })
-      .filter(d => d)
-      .join(", ");
-    humanReadable += ` day${
-      monthlyDays.filter(d => d).length > 1 ? "s" : ""
-    } of the month`;
+          if (index > 0 && index === monthlyDays.filter(e => e).length - 1) {
+            val = "and " + val;
+          }
+
+          return val;
+        })
+        .filter(d => d)
+        .join(", ");
+      humanReadable += ` day${
+        monthlyDays.filter(d => d).length > 1 ? "s" : ""
+      } of the month`;
+    }
   }
 
   return humanReadable;
@@ -76,6 +82,28 @@ export const useMonthlyByWeek = (
   return humanReadable;
 };
 
+export const useHumanReadableRRule = (rRule: string) => {
+  const range = usePickedCalendarRangeFromRRule(rRule);
+
+  return useMemo(() => {
+    let response = useYearly(range.interval);
+
+    if (range.frequency === "Daily") {
+      response = useDaily(range.interval);
+    } else if (range.frequency === "Weekly") {
+      response = useWeekly(range.daysOfWeek || [], range.interval);
+    } else if (range.frequency === "Monthly") {
+      if (range.typeOfMonth === 2 || range.weeksOfMonth) {
+        response = useMonthlyByWeek(range.weeksOfMonth || [], range.interval);
+      } else if (range.typeOfMonth == 1 || range.daysOfMonth) {
+        response = useMonthlyByDay(range.daysOfMonth || [], range.interval);
+      }
+    }
+
+    return response;
+  }, [range]);
+};
+
 const weeklyDaysAsList = (
   weeklyDays: Array<{ day: string; index: number } | undefined>,
 ) => {
@@ -101,7 +129,7 @@ export const useWeekly = (
 ) => {
   let humanReadable = "Summary: Weekly";
 
-  if (weeklyDays.filter(d => d).length > 0) {
+  if (weeklyInterval > 1) {
     humanReadable =
       weeklyInterval === 1 ? "Weekly " : `Every ${weeklyInterval} weeks `;
   }

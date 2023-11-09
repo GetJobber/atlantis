@@ -14,32 +14,49 @@ export const CalendarPickerMonthly = ({
   defaultInterval = 1,
   defaultTypeOfMonth = 1,
   defaultMonthlyDays = [],
+  enableUpdate = true,
   defaultWeeklyDays = [[]],
 }: {
   readonly daysOfWeek: Array<string>;
   readonly onUpdate: (calTime: PickedCalendarRange) => void | undefined;
   readonly defaultInterval?: number;
   readonly defaultTypeOfMonth?: number;
+  readonly enableUpdate?: boolean;
   readonly defaultMonthlyDays?: Array<number | undefined>;
   readonly defaultWeeklyDays?: Array<Array<string | undefined>>;
 }) => {
   const [monthlyDays, setMonthlyDays] =
     useState<Array<number | undefined>>(defaultMonthlyDays);
+
   const [weeklyDays, setWeeklyDays] =
     useState<Array<Array<string | undefined>>>(defaultWeeklyDays);
   const [monthlyInterval, setMonthlyInterval] = useState(defaultInterval);
   const [typeOfMonth, setTypeOfMonth] = useState(defaultTypeOfMonth);
   const monthlyByDay = useMonthlyByDay(monthlyDays, monthlyInterval);
   const monthlyByWeek = useMonthlyByWeek(weeklyDays, monthlyInterval);
-
   useEffect(() => {
-    onUpdate({
-      frequency: "Monthly",
-      interval: monthlyInterval,
-      daysOfMonth: monthlyDays,
-      weeksOfMonth: weeklyDays,
-      typeOfMonth,
-    });
+    if (!enableUpdate) {
+      setMonthlyDays(defaultMonthlyDays);
+      setWeeklyDays(defaultWeeklyDays);
+      setMonthlyInterval(defaultInterval);
+      setTypeOfMonth(defaultTypeOfMonth);
+    }
+  }, [
+    defaultMonthlyDays,
+    defaultWeeklyDays,
+    defaultInterval,
+    defaultTypeOfMonth,
+  ]);
+  useEffect(() => {
+    if (enableUpdate) {
+      onUpdate({
+        frequency: "Monthly",
+        interval: monthlyInterval,
+        daysOfMonth: monthlyDays,
+        weeksOfMonth: weeklyDays,
+        typeOfMonth,
+      });
+    }
   }, [monthlyInterval, monthlyDays, weeklyDays, typeOfMonth]);
 
   const toggleWeeklyDay = (key: number, index: number, day: string) => {

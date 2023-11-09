@@ -20,6 +20,7 @@ const ruleFromIndexes = (dayOfWeek: number, weekOfMonth: number) => {
 // eslint-disable-next-line max-statements
 export const useRRuleFromPickedCalendarRange = (
   range: PickedCalendarRange | undefined,
+  maxSize = 31,
 ) => {
   let rule = "";
   let suffix = "";
@@ -32,9 +33,7 @@ export const useRRuleFromPickedCalendarRange = (
     if (range.typeOfMonth === 1) {
       const options = range.daysOfMonth
         ?.map((d, index) => {
-          console.log("INDEXES", index);
-
-          if (index === 32) {
+          if (index === maxSize + 1) {
             return -1;
           }
 
@@ -68,7 +67,7 @@ export const useRRuleFromPickedCalendarRange = (
 
 export const usePickedCalendarRangeFromRRule = (
   unParsedRRule: string,
-  maxSize = 32,
+  maxSize = 31,
 ) => {
   const isRRule = unParsedRRule.split(":");
   const pickedCalendarRange = {} as PickedCalendarRange;
@@ -92,7 +91,7 @@ export const usePickedCalendarRangeFromRRule = (
         const myArray: Array<Array<string | undefined>> = [];
         values.forEach(val => {
           const dayOfWeek = val.slice(-2);
-          const week = Number(val.slice(1, 2));
+          const week = Number(val.slice(1, 2)) - 1;
 
           if (!myArray[week]) {
             myArray[week] = [];
@@ -123,7 +122,7 @@ export const usePickedCalendarRangeFromRRule = (
           }
 
           if (index == -1) {
-            pickedCalendarRange.daysOfMonth[maxSize] = maxSize;
+            pickedCalendarRange.daysOfMonth[maxSize] = maxSize + 1;
           } else {
             pickedCalendarRange.daysOfMonth[index - 1] = index;
           }

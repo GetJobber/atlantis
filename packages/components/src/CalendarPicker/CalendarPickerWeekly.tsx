@@ -9,9 +9,12 @@ import { InputNumber } from "../InputNumber";
 export const CalendarPickerWeekly = ({
   daysOfWeek,
   defaultWeeklyDays = [],
+  defaultInterval = 1,
   onUpdate,
+  enableUpdate,
 }: {
   readonly daysOfWeek: Array<string>;
+  readonly defaultInterval?: number;
   readonly defaultWeeklyDays:
     | (
         | {
@@ -21,22 +24,32 @@ export const CalendarPickerWeekly = ({
         | undefined
       )[]
     | undefined;
+  readonly enableUpdate?: boolean;
   readonly onUpdate: (calTime: PickedCalendarRange) => void | undefined;
 }) => {
   const [weeklyDays, setWeeklyDays] =
     useState<Array<{ day: string; index: number } | undefined>>(
       defaultWeeklyDays,
     );
-  const [weeklyInterval, setWeeklyInterval] = useState(1);
+  const [weeklyInterval, setWeeklyInterval] = useState(defaultInterval);
   const weeklyDaysSummary = useWeekly(weeklyDays, weeklyInterval);
 
   useEffect(() => {
-    onUpdate({
-      frequency: "Weekly",
-      interval: weeklyInterval,
-      daysOfWeek: weeklyDays,
-    });
-  }, [weeklyInterval, weeklyDays]);
+    if (!enableUpdate) {
+      setWeeklyDays(defaultWeeklyDays);
+      setWeeklyInterval(defaultInterval);
+    }
+  }, [defaultWeeklyDays, enableUpdate, defaultInterval]);
+
+  useEffect(() => {
+    if (enableUpdate) {
+      onUpdate({
+        frequency: "Weekly",
+        interval: weeklyInterval,
+        daysOfWeek: weeklyDays,
+      });
+    }
+  }, [weeklyInterval, weeklyDays, enableUpdate]);
 
   return (
     <div>

@@ -8,14 +8,26 @@ import { InputNumber } from "../InputNumber";
 export const CalendarPickerDaily = ({
   onUpdate,
   defaultInterval,
+  enableUpdate = true,
 }: {
   readonly onUpdate: (calTime: PickedCalendarRange) => void | undefined;
   readonly defaultInterval?: number;
+  readonly enableUpdate?: boolean;
 }) => {
   const [dailyInterval, setDailyInterval] = useState(defaultInterval || 1);
-  const dailySummary = useDaily(dailyInterval);
+
   useEffect(() => {
-    onUpdate({ frequency: "Daily", interval: dailyInterval });
+    if (!enableUpdate) {
+      setDailyInterval(defaultInterval || 1);
+    }
+  }, [defaultInterval]);
+
+  const dailySummary = useDaily(dailyInterval);
+
+  useEffect(() => {
+    if (enableUpdate) {
+      onUpdate({ frequency: "Daily", interval: dailyInterval });
+    }
   }, [dailyInterval]);
 
   return (

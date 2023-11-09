@@ -8,15 +8,24 @@ import { InputNumber } from "../InputNumber";
 export const CalendarPickerYearly = ({
   onUpdate,
   defaultInterval = 1,
+  enableUpdate = true,
 }: {
   readonly onUpdate: (calTime: PickedCalendarRange) => void | undefined;
   readonly defaultInterval?: number;
+  readonly enableUpdate?: boolean;
 }) => {
   const [yearlyInterval, setYearlyInterval] = useState(defaultInterval);
+  useEffect(() => {
+    if (!enableUpdate) {
+      setYearlyInterval(defaultInterval);
+    }
+  }, [defaultInterval]);
   const yearlySummary = useYearly(yearlyInterval);
 
   useEffect(() => {
-    onUpdate({ frequency: "Yearly", interval: yearlyInterval });
+    if (enableUpdate) {
+      onUpdate({ frequency: "Yearly", interval: yearlyInterval });
+    }
   }, [yearlyInterval]);
 
   return (

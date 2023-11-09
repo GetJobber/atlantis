@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./CalendarPicker.css";
 import { CalendarPickerWeekly } from "./CalendarPickerWeekly";
 import { CalendarPickerDaily } from "./CalendarPickerDaily";
@@ -12,14 +12,19 @@ export const CalendarPicker = ({
   onUpdate,
   restrict = false,
   defaultPickedCalendarRange,
+  enableRangeInteraction = true,
 }: {
   readonly onUpdate: (calTime: PickedCalendarRange) => void | undefined;
   readonly defaultPickedCalendarRange?: PickedCalendarRange;
   readonly restrict?: boolean;
+  readonly enableRangeInteraction?: boolean;
 }) => {
   const [frequency, setFrequency] = useState(
     defaultPickedCalendarRange?.frequency || "Weekly",
   );
+  useEffect(() => {
+    setFrequency(defaultPickedCalendarRange?.frequency || "Weekly");
+  }, [defaultPickedCalendarRange?.frequency]);
   const options = ["Daily", "Weekly", "Monthly", "Yearly"];
   const daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"];
 
@@ -41,11 +46,14 @@ export const CalendarPicker = ({
         <CalendarPickerDaily
           onUpdate={onUpdate}
           defaultInterval={defaultPickedCalendarRange?.interval}
+          enableUpdate={enableRangeInteraction}
         />
       )}
       {frequency === "Weekly" && (
         <CalendarPickerWeekly
+          enableUpdate={enableRangeInteraction}
           daysOfWeek={daysOfWeek}
+          defaultInterval={defaultPickedCalendarRange?.interval}
           defaultWeeklyDays={defaultPickedCalendarRange?.daysOfWeek}
           onUpdate={onUpdate}
         />
@@ -54,6 +62,7 @@ export const CalendarPicker = ({
         <CalendarPickerMonthly
           daysOfWeek={daysOfWeek}
           onUpdate={onUpdate}
+          enableUpdate={enableRangeInteraction}
           defaultInterval={defaultPickedCalendarRange?.interval}
           defaultTypeOfMonth={defaultPickedCalendarRange?.typeOfMonth}
           defaultMonthlyDays={defaultPickedCalendarRange?.daysOfMonth}
@@ -63,6 +72,7 @@ export const CalendarPicker = ({
       {frequency === "Yearly" && (
         <CalendarPickerYearly
           onUpdate={onUpdate}
+          enableUpdate={enableRangeInteraction}
           defaultInterval={defaultPickedCalendarRange?.interval}
         />
       )}
