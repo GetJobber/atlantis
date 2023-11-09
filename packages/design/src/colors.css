@@ -116,11 +116,11 @@
   --color-grey--lightest: rgb(244, 244, 244);
   --color-grey--dark: rgb(118, 118, 118);
 
-  --color-greyBlue--rgb: 101, 120, 132;
+  --color-greyBlue--rgb: 77, 105, 116;
   --color-greyBlue: rgba(var(--color-greyBlue--rgb), 1);
   --color-greyBlue--light: rgb(147, 161, 169);
   --color-greyBlue--lighter: rgb(193, 201, 206);
-  --color-greyBlue--lightest: rgb(232, 235, 237);
+  --color-greyBlue--lightest: rgb(238, 240, 242);
   --color-greyBlue--dark: rgb(66, 78, 86);
 
   --color-lightBlue: rgb(60, 162, 224);

@@ -26,12 +26,12 @@ exports[`renders a Switch with defaultValue false 1`] = `
         "width": 51,
       },
       {
-        "backgroundColor": "rgb(244, 244, 244)",
+        "backgroundColor": "rgb(238, 240, 242)",
         "borderRadius": 16,
       },
     ]
   }
-  tintColor="rgb(244, 244, 244)"
+  tintColor="rgb(238, 240, 242)"
   value={false}
 />
 `;
@@ -62,12 +62,12 @@ exports[`renders a Switch with defaultValue true 1`] = `
         "width": 51,
       },
       {
-        "backgroundColor": "rgb(244, 244, 244)",
+        "backgroundColor": "rgb(238, 240, 242)",
         "borderRadius": 16,
       },
     ]
   }
-  tintColor="rgb(244, 244, 244)"
+  tintColor="rgb(238, 240, 242)"
   value={true}
 />
 `;
@@ -98,12 +98,12 @@ exports[`renders a Switch with value false 1`] = `
         "width": 51,
       },
       {
-        "backgroundColor": "rgb(244, 244, 244)",
+        "backgroundColor": "rgb(238, 240, 242)",
         "borderRadius": 16,
       },
     ]
   }
-  tintColor="rgb(244, 244, 244)"
+  tintColor="rgb(238, 240, 242)"
   value={false}
 />
 `;
@@ -134,12 +134,12 @@ exports[`renders a Switch with value true 1`] = `
         "width": 51,
       },
       {
-        "backgroundColor": "rgb(244, 244, 244)",
+        "backgroundColor": "rgb(238, 240, 242)",
         "borderRadius": 16,
       },
     ]
   }
-  tintColor="rgb(244, 244, 244)"
+  tintColor="rgb(238, 240, 242)"
   value={true}
 />
 `;
@@ -170,12 +170,12 @@ exports[`renders a disabled Switch with value false 1`] = `
         "width": 51,
       },
       {
-        "backgroundColor": "rgb(244, 244, 244)",
+        "backgroundColor": "rgb(238, 240, 242)",
         "borderRadius": 16,
       },
     ]
   }
-  tintColor="rgb(244, 244, 244)"
+  tintColor="rgb(238, 240, 242)"
   value={false}
 />
 `;
@@ -206,12 +206,12 @@ exports[`renders a disabled Switch with value true 1`] = `
         "width": 51,
       },
       {
-        "backgroundColor": "rgb(244, 244, 244)",
+        "backgroundColor": "rgb(238, 240, 242)",
         "borderRadius": 16,
       },
     ]
   }
-  tintColor="rgb(244, 244, 244)"
+  tintColor="rgb(238, 240, 242)"
   value={true}
 />
 `;

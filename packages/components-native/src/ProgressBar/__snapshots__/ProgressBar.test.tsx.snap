@@ -30,7 +30,7 @@ exports[`renders blue inProgress bar when 1 or more jobs is in progress 1`] = `
             "width": "100%",
           },
           {
-            "backgroundColor": "rgb(244, 244, 244)",
+            "backgroundColor": "rgb(238, 240, 242)",
             "width": "100%",
           },
         ]
@@ -108,7 +108,7 @@ exports[`renders green CompletedProgress bar when 1 or more jobs is completed 1`
             "width": "100%",
           },
           {
-            "backgroundColor": "rgb(244, 244, 244)",
+            "backgroundColor": "rgb(238, 240, 242)",
             "width": "100%",
           },
         ]

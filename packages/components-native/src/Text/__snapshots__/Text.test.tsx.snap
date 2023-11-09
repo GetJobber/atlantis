@@ -459,7 +459,7 @@ exports[`renders text with subdued variation 1`] = `
         "fontFamily": "inter-regular",
       },
       {
-        "color": "rgba(101, 120, 132, 1)",
+        "color": "rgba(77, 105, 116, 1)",
       },
       {
         "textAlign": "left",
