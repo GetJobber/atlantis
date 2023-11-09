@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./CalendarPicker.css";
+import { PickedCalendarRange } from "./CalendarPickerTypes";
 import { Text } from "../Text";
 import { InputNumber } from "../InputNumber";
 import { RadioGroup, RadioOption } from "../RadioGroup";
@@ -23,10 +24,26 @@ function appendSuffix(n: number) {
   return n + "th";
 }
 
+function getDayOfWeek(dayNumber: number) {
+  const daysOfWeek = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  return daysOfWeek[dayNumber];
+}
+
 export const CalendarPickerMonthly = ({
   daysOfWeek,
+  onUpdate,
 }: {
   readonly daysOfWeek: Array<string>;
+  readonly onUpdate: (calTime: PickedCalendarRange) => void | undefined;
 }) => {
   const days = Array.from({ length: 31 });
   const weeks = ["1st", "2nd", "3rd", "4th"];
@@ -36,6 +53,18 @@ export const CalendarPickerMonthly = ({
   >([[]]);
   const [weeklyInterval, setWeeklyInterval] = useState(1);
   const [typeOfMonth, setTypeOfMonth] = useState(1);
+  useEffect(() => {
+    onUpdate({
+      frequency: "Monthly",
+      interval: weeklyInterval,
+      daysOfMonth: monthlyDays,
+      weeksOfMonth: weeklyDays,
+      typeOfMonth,
+    });
+  }, [weeklyInterval, monthlyDays, weeklyDays, typeOfMonth]);
+
+  console.log("TYPE OF MONTH", typeOfMonth, weeklyDays);
+  let found = false;
 
   return (
     <div>
@@ -167,6 +196,40 @@ export const CalendarPickerMonthly = ({
               day{monthlyDays.filter(d => d).length > 1 ? "s" : ""} of the month
             </div>
           )}
+        </div>
+      )}
+      {typeOfMonth === 2 && (
+        <div>
+          {weeklyInterval === 1 && "Summary: Monthly "}
+          {weeklyInterval > 1 && `Every ${weeklyInterval} months`}
+          {weeklyDays
+            .map(d => d)
+            ?.find(d => d)
+            ?.filter(d => d) && " on the "}
+          {weeklyDays
+            .map((b, index1) => {
+              return b
+                ?.map((d, index2) => {
+                  if (d) {
+                    let prefix = "";
+
+                    if (found) {
+                      prefix = " and ";
+                    }
+                    found = true;
+
+                    return (
+                      prefix +
+                      appendSuffix(index1 + 1) +
+                      " " +
+                      getDayOfWeek(index2) +
+                      " "
+                    );
+                  }
+                })
+                .filter(d => d);
+            })
+            .filter(d => d)}
         </div>
       )}
     </div>

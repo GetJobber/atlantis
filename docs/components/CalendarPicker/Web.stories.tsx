@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { CalendarPicker } from "@jobber/components/CalendarPicker";
+import {
+  CalendarPicker,
+  PickedCalendarRange,
+  useRRuleFromPickedCalendarRange,
+} from "@jobber/components/CalendarPicker";
 import { Content } from "@jobber/components/Content";
 
 export default {
@@ -20,9 +24,18 @@ export default {
 } as ComponentMeta<typeof CalendarPicker>;
 
 const BasicTemplate: ComponentStory<typeof CalendarPicker> = () => {
+  const [range, setRange] = useState<PickedCalendarRange>();
+  const { asString } = useRRuleFromPickedCalendarRange(range);
+  console.log("Final String:", asString);
+
   return (
     <Content>
-      <CalendarPicker />
+      <CalendarPicker
+        onUpdate={update => {
+          console.log("got an update!", update);
+          setRange(update);
+        }}
+      />
     </Content>
   );
 };

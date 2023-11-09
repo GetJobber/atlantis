@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./CalendarPicker.css";
+import { PickedCalendarRange } from "./CalendarPickerTypes";
 import { Text } from "../Text";
 import { InputNumber } from "../InputNumber";
 
-export const CalendarPickerDaily = () => {
-  const [weeklyInterval, setWeeklyInterval] = useState(1);
+export const CalendarPickerDaily = ({
+  onUpdate,
+}: {
+  readonly onUpdate: (calTime: PickedCalendarRange) => void | undefined;
+}) => {
+  const [dailyInterval, setDailyInterval] = useState(1);
+  useEffect(() => {
+    onUpdate({ frequency: "Daily", interval: dailyInterval });
+  }, [dailyInterval]);
 
   return (
     <div>
@@ -12,11 +20,15 @@ export const CalendarPickerDaily = () => {
         <Text>
           Every{" "}
           <InputNumber
-            value={weeklyInterval}
-            onChange={d => setWeeklyInterval(Number(d))}
+            value={dailyInterval}
+            onChange={d => setDailyInterval(Number(d))}
           />{" "}
           days(s)
         </Text>
+        <div>
+          {dailyInterval === 1 && "Summary: Daily"}
+          {dailyInterval > 1 && `Summary: Every ${dailyInterval} days`}
+        </div>
       </div>
     </div>
   );
