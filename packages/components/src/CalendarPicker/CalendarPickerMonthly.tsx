@@ -4,7 +4,6 @@ import { PickedCalendarRange } from "./CalendarPickerTypes";
 import { CalendarPickerDayOfTheMonth } from "./CalendarPickerDayOfTheMonth";
 import { CalendarPickerDayOfTheWeek } from "./CalendarPickerDayOfTheWeek";
 import { useMonthlyByDay, useMonthlyByWeek } from "./useHumanReadableRRule";
-import { Text } from "../Text";
 import { InputNumber } from "../InputNumber";
 import { RadioGroup, RadioOption } from "../RadioGroup";
 
@@ -18,7 +17,7 @@ export const CalendarPickerMonthly = ({
   defaultWeeklyDays = [[]],
 }: {
   readonly daysOfWeek: Array<string>;
-  readonly onUpdate: (calTime: PickedCalendarRange) => void | undefined;
+  readonly onUpdate?: (calTime: PickedCalendarRange) => void | undefined;
   readonly defaultInterval?: number;
   readonly defaultTypeOfMonth?: number;
   readonly enableUpdate?: boolean;
@@ -48,7 +47,7 @@ export const CalendarPickerMonthly = ({
     defaultTypeOfMonth,
   ]);
   useEffect(() => {
-    if (enableUpdate) {
+    if (enableUpdate && onUpdate) {
       onUpdate({
         frequency: "Monthly",
         interval: monthlyInterval,
@@ -85,7 +84,7 @@ export const CalendarPickerMonthly = ({
   return (
     <div>
       <div className={styles.picker}>
-        <Text>
+        <div className={styles.intervalWrapper}>
           <span className={styles.intervalPrefix}>Every </span>
           <InputNumber
             value={monthlyInterval}
@@ -94,7 +93,7 @@ export const CalendarPickerMonthly = ({
           <span className={styles.intervalSuffix}>
             month{monthlyInterval > 1 ? "s" : ""}:
           </span>
-        </Text>
+        </div>
       </div>
       <div className={styles.radioButtons}>
         <RadioGroup

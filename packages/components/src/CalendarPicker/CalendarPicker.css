@@ -12,16 +12,22 @@
 .radioButtons > div > div {
   margin-right: var(--space-small);
 }
-.picker p {
+
+.intervalWrapper {
+  display: flex;
+  width: 200px;
+  white-space: nowrap;
+  align-items: center;
+}
+.picker .intervalWrapper {
   display: flex;
   align-items: center;
-  width: 100%;
   gap: var(--space-small);
 }
-.picker p > div {
+.picker .intervalWrapper > div {
   width: 80px;
 }
-.picker p > div > div {
+.picker .intervalWrapper > div > div {
   height: 35px;
 }
 .title {

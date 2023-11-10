@@ -4,7 +4,7 @@ import { CalendarPickerWeekly } from "./CalendarPickerWeekly";
 import { CalendarPickerDaily } from "./CalendarPickerDaily";
 import { CalendarPickerMonthly } from "./CalendarPickerMonthly";
 import { CalendarPickerYearly } from "./CalendarPickerYearly";
-import { PickedCalendarRange } from "./CalendarPickerTypes";
+import { CalendarPickerProps } from "./CalendarPickerTypes";
 import { Option, Select } from "../Select";
 import { Typography } from "../Typography";
 
@@ -13,12 +13,12 @@ export const CalendarPicker = ({
   restrict = false,
   defaultPickedCalendarRange,
   enableRangeInteraction = true,
-}: {
-  readonly onUpdate: (calTime: PickedCalendarRange) => void | undefined;
-  readonly defaultPickedCalendarRange?: PickedCalendarRange;
-  readonly restrict?: boolean;
-  readonly enableRangeInteraction?: boolean;
-}) => {
+  dailyTestId = "ATL-CalendarPicker-Daily",
+  weeklyTestId = "ATL-CalendarPicker-Weekly",
+  monthlyTestId = "ATL-CalendarPicker-Monthly",
+  yearlyTestId = "ATL-CalendarPicker-Yearly",
+  selectPickerId = "ATL-CalendarPicker-Select",
+}: CalendarPickerProps) => {
   const [frequency, setFrequency] = useState(
     defaultPickedCalendarRange?.frequency || "Weekly",
   );
@@ -37,44 +37,54 @@ export const CalendarPicker = ({
           <Typography size="large">Repeat</Typography>
         </div>
       </div>
-      <Select value={frequency} onChange={(val: string) => setFrequency(val)}>
-        {options.map((option, index) => (
-          <Option key={index}>{option}</Option>
-        ))}
-      </Select>
+      <div data-testid={selectPickerId}>
+        <Select value={frequency} onChange={(val: string) => setFrequency(val)}>
+          {options.map((option, index) => (
+            <Option key={index}>{option}</Option>
+          ))}
+        </Select>
+      </div>
       {frequency === "Daily" && (
-        <CalendarPickerDaily
-          onUpdate={onUpdate}
-          defaultInterval={defaultPickedCalendarRange?.interval}
-          enableUpdate={enableRangeInteraction}
-        />
+        <div data-testid={dailyTestId}>
+          <CalendarPickerDaily
+            onUpdate={onUpdate}
+            defaultInterval={defaultPickedCalendarRange?.interval}
+            enableUpdate={enableRangeInteraction}
+          />
+        </div>
       )}
       {frequency === "Weekly" && (
-        <CalendarPickerWeekly
-          enableUpdate={enableRangeInteraction}
-          daysOfWeek={daysOfWeek}
-          defaultInterval={defaultPickedCalendarRange?.interval}
-          defaultWeeklyDays={defaultPickedCalendarRange?.daysOfWeek}
-          onUpdate={onUpdate}
-        />
+        <div data-testid={weeklyTestId}>
+          <CalendarPickerWeekly
+            enableUpdate={enableRangeInteraction}
+            daysOfWeek={daysOfWeek}
+            defaultInterval={defaultPickedCalendarRange?.interval}
+            defaultWeeklyDays={defaultPickedCalendarRange?.daysOfWeek}
+            onUpdate={onUpdate}
+          />
+        </div>
       )}
       {frequency === "Monthly" && (
-        <CalendarPickerMonthly
-          daysOfWeek={daysOfWeek}
-          onUpdate={onUpdate}
-          enableUpdate={enableRangeInteraction}
-          defaultInterval={defaultPickedCalendarRange?.interval}
-          defaultTypeOfMonth={defaultPickedCalendarRange?.typeOfMonth}
-          defaultMonthlyDays={defaultPickedCalendarRange?.daysOfMonth}
-          defaultWeeklyDays={defaultPickedCalendarRange?.weeksOfMonth}
-        />
+        <div data-testid={monthlyTestId}>
+          <CalendarPickerMonthly
+            daysOfWeek={daysOfWeek}
+            onUpdate={onUpdate}
+            enableUpdate={enableRangeInteraction}
+            defaultInterval={defaultPickedCalendarRange?.interval}
+            defaultTypeOfMonth={defaultPickedCalendarRange?.typeOfMonth}
+            defaultMonthlyDays={defaultPickedCalendarRange?.daysOfMonth}
+            defaultWeeklyDays={defaultPickedCalendarRange?.weeksOfMonth}
+          />
+        </div>
       )}
       {frequency === "Yearly" && (
-        <CalendarPickerYearly
-          onUpdate={onUpdate}
-          enableUpdate={enableRangeInteraction}
-          defaultInterval={defaultPickedCalendarRange?.interval}
-        />
+        <div data-testid={yearlyTestId}>
+          <CalendarPickerYearly
+            onUpdate={onUpdate}
+            enableUpdate={enableRangeInteraction}
+            defaultInterval={defaultPickedCalendarRange?.interval}
+          />
+        </div>
       )}
     </div>
   );

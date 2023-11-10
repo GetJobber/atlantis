@@ -7,3 +7,14 @@ export interface PickedCalendarRange {
   typeOfMonth?: number;
   monthsOfYear?: Array<string>;
 }
+export interface CalendarPickerProps {
+  onUpdate?: (calTime: PickedCalendarRange) => void | undefined;
+  defaultPickedCalendarRange?: PickedCalendarRange;
+  restrict?: boolean;
+  enableRangeInteraction?: boolean;
+  selectPickerId?: string;
+  dailyTestId?: string;
+  weeklyTestId?: string;
+  monthlyTestId?: string;
+  yearlyTestId?: string;
+}

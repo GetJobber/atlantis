@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styles from "./CalendarPicker.css";
 import { PickedCalendarRange } from "./CalendarPickerTypes";
 import { useDaily } from "./useHumanReadableRRule";
-import { Text } from "../Text";
 import { InputNumber } from "../InputNumber";
 
 export const CalendarPickerDaily = ({
@@ -10,7 +9,7 @@ export const CalendarPickerDaily = ({
   defaultInterval,
   enableUpdate = true,
 }: {
-  readonly onUpdate: (calTime: PickedCalendarRange) => void | undefined;
+  readonly onUpdate?: (calTime: PickedCalendarRange) => void | undefined;
   readonly defaultInterval?: number;
   readonly enableUpdate?: boolean;
 }) => {
@@ -25,7 +24,7 @@ export const CalendarPickerDaily = ({
   const dailySummary = useDaily(dailyInterval);
 
   useEffect(() => {
-    if (enableUpdate) {
+    if (enableUpdate && onUpdate) {
       onUpdate({ frequency: "Daily", interval: dailyInterval });
     }
   }, [dailyInterval]);
@@ -33,7 +32,7 @@ export const CalendarPickerDaily = ({
   return (
     <div>
       <div className={styles.picker}>
-        <Text>
+        <div className={styles.intervalWrapper}>
           <span className={styles.intervalPrefix}>Every </span>
           <InputNumber
             value={dailyInterval}
@@ -42,7 +41,7 @@ export const CalendarPickerDaily = ({
           <span className={styles.intervalSuffix}>
             day{dailyInterval > 1 ? "s" : ""}
           </span>
-        </Text>
+        </div>
         <div className={styles.summary}>{dailySummary}</div>
       </div>
     </div>

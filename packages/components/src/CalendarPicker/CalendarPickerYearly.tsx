@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styles from "./CalendarPicker.css";
 import { PickedCalendarRange } from "./CalendarPickerTypes";
 import { useYearly } from "./useHumanReadableRRule";
-import { Text } from "../Text";
 import { InputNumber } from "../InputNumber";
 
 export const CalendarPickerYearly = ({
@@ -10,7 +9,7 @@ export const CalendarPickerYearly = ({
   defaultInterval = 1,
   enableUpdate = true,
 }: {
-  readonly onUpdate: (calTime: PickedCalendarRange) => void | undefined;
+  readonly onUpdate?: (calTime: PickedCalendarRange) => void | undefined;
   readonly defaultInterval?: number;
   readonly enableUpdate?: boolean;
 }) => {
@@ -23,7 +22,7 @@ export const CalendarPickerYearly = ({
   const yearlySummary = useYearly(yearlyInterval);
 
   useEffect(() => {
-    if (enableUpdate) {
+    if (enableUpdate && onUpdate) {
       onUpdate({ frequency: "Yearly", interval: yearlyInterval });
     }
   }, [yearlyInterval]);
@@ -31,7 +30,7 @@ export const CalendarPickerYearly = ({
   return (
     <div>
       <div className={styles.picker}>
-        <Text>
+        <div className={styles.intervalWrapper}>
           <span className={styles.intervalPrefix}> Every </span>
           <InputNumber
             value={yearlyInterval}
@@ -40,7 +39,7 @@ export const CalendarPickerYearly = ({
           <span className={styles.intervalSuffix}>
             year{yearlyInterval > 1 ? "s" : ""}
           </span>
-        </Text>
+        </div>
         <div className={styles.summary}>{yearlySummary}</div>
       </div>
     </div>

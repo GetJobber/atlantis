@@ -3,7 +3,6 @@ import styles from "./CalendarPicker.css";
 import { PickedCalendarRange } from "./CalendarPickerTypes";
 import { useWeekly } from "./useHumanReadableRRule";
 import { CalendarPickerDaysOfTheWeek } from "./CalendarPickerDaysOfTheWeek";
-import { Text } from "../Text";
 import { InputNumber } from "../InputNumber";
 
 export const CalendarPickerWeekly = ({
@@ -25,7 +24,7 @@ export const CalendarPickerWeekly = ({
       )[]
     | undefined;
   readonly enableUpdate?: boolean;
-  readonly onUpdate: (calTime: PickedCalendarRange) => void | undefined;
+  readonly onUpdate?: (calTime: PickedCalendarRange) => void | undefined;
 }) => {
   const [weeklyDays, setWeeklyDays] =
     useState<Array<{ day: string; index: number } | undefined>>(
@@ -42,7 +41,7 @@ export const CalendarPickerWeekly = ({
   }, [defaultWeeklyDays, enableUpdate, defaultInterval]);
 
   useEffect(() => {
-    if (enableUpdate) {
+    if (enableUpdate && onUpdate) {
       onUpdate({
         frequency: "Weekly",
         interval: weeklyInterval,
@@ -54,7 +53,7 @@ export const CalendarPickerWeekly = ({
   return (
     <div>
       <div className={styles.picker}>
-        <Text>
+        <div className={styles.intervalWrapper}>
           <span className={styles.intervalPrefix}>Every </span>
           <InputNumber
             value={weeklyInterval}
@@ -63,7 +62,7 @@ export const CalendarPickerWeekly = ({
           <span className={styles.intervalSuffix}>
             week{weeklyInterval > 1 ? "s" : ""} on:
           </span>
-        </Text>
+        </div>
       </div>
       <div className={styles.buttonWrapper}>
         <CalendarPickerDaysOfTheWeek

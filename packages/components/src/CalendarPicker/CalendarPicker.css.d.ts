@@ -1,6 +1,7 @@
 declare const styles: {
   readonly "picker": string;
   readonly "radioButtons": string;
+  readonly "intervalWrapper": string;
   readonly "title": string;
   readonly "pickerWrapper": string;
   readonly "restrict": string;

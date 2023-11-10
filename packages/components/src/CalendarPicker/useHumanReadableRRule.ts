@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { usePickedCalendarRangeFromRRule } from "./useRRule";
+import { PickedCalendarRange } from "./CalendarPickerTypes";
 
 export const useMonthlyByDay = (
   monthlyDays: Array<number | undefined>,
@@ -82,9 +83,7 @@ export const useMonthlyByWeek = (
   return humanReadable;
 };
 
-export const useHumanReadableRRule = (rRule: string) => {
-  const range = usePickedCalendarRangeFromRRule(rRule);
-
+export const useHumanReadable = (range: PickedCalendarRange) => {
   return useMemo(() => {
     let response = useYearly(range.interval);
 
@@ -102,6 +101,12 @@ export const useHumanReadableRRule = (rRule: string) => {
 
     return response;
   }, [range]);
+};
+
+export const useHumanReadableRRule = (rRule: string) => {
+  const range = usePickedCalendarRangeFromRRule(rRule);
+
+  return useHumanReadable(range);
 };
 
 const weeklyDaysAsList = (
