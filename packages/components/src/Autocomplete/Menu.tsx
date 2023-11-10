@@ -65,6 +65,7 @@ export function Menu({
           [styles.active]: index === highlightedIndex,
           [styles.separator]: addSeparators,
         });
+
         if (isGroup(option)) {
           return (
             <div key={option.label} className={styles.heading}>
@@ -72,6 +73,7 @@ export function Menu({
             </div>
           );
         }
+
         return (
           <button
             className={optionClass}
@@ -115,6 +117,7 @@ export function Menu({
 
     useOnKeyDown("ArrowDown", (event: KeyboardEvent) => {
       const indexChange = arrowKeyPress(event, IndexChange.Next);
+
       if (indexChange) {
         setHighlightedIndex(
           Math.min(options.length - 1, highlightedIndex + indexChange),
@@ -124,6 +127,7 @@ export function Menu({
 
     useOnKeyDown("ArrowUp", (event: KeyboardEvent) => {
       const indexChange = arrowKeyPress(event, IndexChange.Previous);
+
       if (indexChange) {
         setHighlightedIndex(Math.max(0, highlightedIndex + indexChange));
       }
@@ -142,6 +146,7 @@ export function Menu({
     if (!visible) return;
     event.preventDefault();
     const requestedIndex = options[highlightedIndex + direction];
+
     return requestedIndex && isGroup(requestedIndex)
       ? direction + direction
       : direction;
@@ -157,20 +162,24 @@ function useOnKeyDown(
   keyName: string,
   handler: (event: KeyboardEvent) => boolean | void,
 ) {
+  const newHandler = (event: KeyboardEvent): void => {
+    if (event.key === keyName) {
+      handler(event);
+    }
+  };
+
   useEffect(() => {
-    window.addEventListener('keydown', event => {
-      if (event.key === keyName) {
-        handler(event);
-      }
-    });
+    window.addEventListener("keydown", newHandler);
+
     return () => {
-      window.removeEventListener('keydown', handler);
+      window.removeEventListener("keydown", newHandler);
     };
-  }, []);
+  }, [keyName, handler]);
 }
 
 function isGroup(option: AnyOption) {
   if (option.options) return true;
+
   return false;
 }
 
