@@ -92,7 +92,10 @@ export const useHumanReadable = (range: PickedCalendarRange) => {
     } else if (range.frequency === "Weekly") {
       response = useWeekly(range.daysOfWeek || [], range.interval);
     } else if (range.frequency === "Monthly") {
-      if (range.typeOfMonth === 2 || range.weeksOfMonth) {
+      if (
+        range.typeOfMonth === 2 ||
+        range.weeksOfMonth?.find(d => d)?.find(d => d)
+      ) {
         response = useMonthlyByWeek(range.weeksOfMonth || [], range.interval);
       } else if (range.typeOfMonth == 1 || range.daysOfMonth) {
         response = useMonthlyByDay(range.daysOfMonth || [], range.interval);

@@ -67,6 +67,47 @@ export const CalendarPickerPOM = (props?: CalendarPickerProps) => {
     return currentFrequency;
   };
 
+  const toggleMonthRadio = () => {
+    const radioButtons = queryByTestId(monthlyID)?.querySelectorAll(
+      'input[type="radio"]',
+    ) as NodeListOf<HTMLInputElement>;
+
+    if (radioButtons[0].checked) {
+      userEvent.click(radioButtons[1]);
+    } else {
+      userEvent.click(radioButtons[0]);
+    }
+  };
+
+  const clickButtonsByIndex = async (indexes: number[]) => {
+    const select = getSelect();
+
+    if (select) {
+      let buttons: NodeListOf<HTMLButtonElement> | undefined;
+
+      switch (select.value) {
+        case "Daily":
+          buttons = queryByTestId(dailyID)?.querySelectorAll("button");
+          break;
+        case "Weekly":
+          buttons = queryByTestId(weeklyID)?.querySelectorAll("button");
+          break;
+        case "Monthly":
+          buttons = queryByTestId(monthlyID)?.querySelectorAll("button");
+          break;
+        case "Yearly":
+          buttons = queryByTestId(yearlyID)?.querySelectorAll("button");
+          break;
+      }
+
+      for (let i = 0; i < indexes?.length; i++) {
+        if (buttons?.[indexes[i]]) {
+          await userEvent.click(buttons[indexes[i]]);
+        }
+      }
+    }
+  };
+
   const changeIntervalTo = async (newInterval: number) => {
     const select = getSelect();
 
@@ -127,6 +168,8 @@ export const CalendarPickerPOM = (props?: CalendarPickerProps) => {
     lastRange: () => newValue.mock.calls[newValue.mock.calls.length - 1]?.[0],
     changeCurrentFrequencyTo,
     getCurrentFrequency,
+    clickButtonsByIndex,
+    toggleMonthRadio,
     changeIntervalTo,
     getCurrentInterval,
   };
