@@ -2,6 +2,7 @@ import React, { RefObject, useEffect, useLayoutEffect, useState } from "react";
 import classnames from "classnames";
 import { createPortal } from "react-dom";
 import { usePopper } from "react-popper";
+import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { AnyOption, Option } from "./Option";
 import styles from "./Autocomplete.css";
 import { Text } from "../Text";
@@ -115,7 +116,7 @@ export function Menu({
       });
     }, [highlightedIndex]);
 
-    useOnKeyDown("ArrowDown", (event: KeyboardEvent) => {
+    useOnKeyDown((event: KeyboardEvent) => {
       const indexChange = arrowKeyPress(event, IndexChange.Next);
 
       if (indexChange) {
@@ -123,23 +124,23 @@ export function Menu({
           Math.min(options.length - 1, highlightedIndex + indexChange),
         );
       }
-    });
+    }, "ArrowDown");
 
-    useOnKeyDown("ArrowUp", (event: KeyboardEvent) => {
+    useOnKeyDown((event: KeyboardEvent) => {
       const indexChange = arrowKeyPress(event, IndexChange.Previous);
 
       if (indexChange) {
         setHighlightedIndex(Math.max(0, highlightedIndex + indexChange));
       }
-    });
+    }, "ArrowUp");
 
-    useOnKeyDown("Enter", (event: KeyboardEvent) => {
+    useOnKeyDown((event: KeyboardEvent) => {
       if (!visible) return;
       if (isGroup(options[highlightedIndex])) return;
 
       event.preventDefault();
       onOptionSelect(options[highlightedIndex]);
-    });
+    }, "Enter");
   }
 
   function arrowKeyPress(event: KeyboardEvent, direction: number) {
@@ -155,26 +156,6 @@ export function Menu({
 
 function isOptionSelected(selectedOption: Option | undefined, option: Option) {
   return selectedOption && selectedOption.value === option.value;
-}
-
-// Split this out into a hooks package.
-function useOnKeyDown(
-  keyName: string,
-  handler: (event: KeyboardEvent) => boolean | void,
-) {
-  const newHandler = (event: KeyboardEvent): void => {
-    if (event.key === keyName) {
-      handler(event);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("keydown", newHandler);
-
-    return () => {
-      window.removeEventListener("keydown", newHandler);
-    };
-  }, [keyName, handler]);
 }
 
 function isGroup(option: AnyOption) {
