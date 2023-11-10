@@ -22,10 +22,13 @@ export const CalendarPicker = ({
   const [frequency, setFrequency] = useState(
     defaultPickedCalendarRange?.frequency || "Weekly",
   );
+
   useEffect(() => {
     setFrequency(defaultPickedCalendarRange?.frequency || "Weekly");
   }, [defaultPickedCalendarRange?.frequency]);
+
   const options = ["Daily", "Weekly", "Monthly", "Yearly"];
+
   const daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"];
 
   return (
@@ -49,14 +52,14 @@ export const CalendarPicker = ({
           <CalendarPickerDaily
             onUpdate={onUpdate}
             defaultInterval={defaultPickedCalendarRange?.interval}
-            enableUpdate={enableRangeInteraction}
+            enableInteraction={enableRangeInteraction}
           />
         </div>
       )}
       {frequency === "Weekly" && (
         <div data-testid={weeklyTestId}>
           <CalendarPickerWeekly
-            enableUpdate={enableRangeInteraction}
+            enableInteraction={enableRangeInteraction}
             daysOfWeek={daysOfWeek}
             defaultInterval={defaultPickedCalendarRange?.interval}
             defaultWeeklyDays={defaultPickedCalendarRange?.daysOfWeek}
@@ -69,7 +72,7 @@ export const CalendarPicker = ({
           <CalendarPickerMonthly
             daysOfWeek={daysOfWeek}
             onUpdate={onUpdate}
-            enableUpdate={enableRangeInteraction}
+            enableInteraction={enableRangeInteraction}
             defaultInterval={defaultPickedCalendarRange?.interval}
             defaultTypeOfMonth={defaultPickedCalendarRange?.typeOfMonth}
             defaultMonthlyDays={defaultPickedCalendarRange?.daysOfMonth}
@@ -81,7 +84,7 @@ export const CalendarPicker = ({
         <div data-testid={yearlyTestId}>
           <CalendarPickerYearly
             onUpdate={onUpdate}
-            enableUpdate={enableRangeInteraction}
+            enableInteraction={enableRangeInteraction}
             defaultInterval={defaultPickedCalendarRange?.interval}
           />
         </div>

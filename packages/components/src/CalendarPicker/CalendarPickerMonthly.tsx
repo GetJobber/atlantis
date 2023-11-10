@@ -13,14 +13,14 @@ export const CalendarPickerMonthly = ({
   defaultInterval = 1,
   defaultTypeOfMonth = 1,
   defaultMonthlyDays = [],
-  enableUpdate = true,
+  enableInteraction = true,
   defaultWeeklyDays = [[]],
 }: {
   readonly daysOfWeek: Array<string>;
   readonly onUpdate?: (calTime: PickedCalendarRange) => void | undefined;
   readonly defaultInterval?: number;
   readonly defaultTypeOfMonth?: number;
-  readonly enableUpdate?: boolean;
+  readonly enableInteraction?: boolean;
   readonly defaultMonthlyDays?: Array<number | undefined>;
   readonly defaultWeeklyDays?: Array<Array<string | undefined>>;
 }) => {
@@ -29,12 +29,16 @@ export const CalendarPickerMonthly = ({
 
   const [weeklyDays, setWeeklyDays] =
     useState<Array<Array<string | undefined>>>(defaultWeeklyDays);
+
   const [monthlyInterval, setMonthlyInterval] = useState(defaultInterval);
+
   const [typeOfMonth, setTypeOfMonth] = useState(defaultTypeOfMonth);
+
   const monthlyByDay = useMonthlyByDay(monthlyDays, monthlyInterval);
   const monthlyByWeek = useMonthlyByWeek(weeklyDays, monthlyInterval);
+
   useEffect(() => {
-    if (!enableUpdate) {
+    if (!enableInteraction) {
       setMonthlyDays(defaultMonthlyDays);
       setWeeklyDays(defaultWeeklyDays);
       setMonthlyInterval(defaultInterval);
@@ -46,8 +50,9 @@ export const CalendarPickerMonthly = ({
     defaultInterval,
     defaultTypeOfMonth,
   ]);
+
   useEffect(() => {
-    if (enableUpdate && onUpdate) {
+    if (enableInteraction && onUpdate) {
       onUpdate({
         frequency: "Monthly",
         interval: monthlyInterval,

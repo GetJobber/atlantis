@@ -17,7 +17,36 @@ const ruleFromIndexes = (dayOfWeek: number, weekOfMonth: number) => {
   return `+${dayOfWeek}${getDayOfWeek(weekOfMonth)}`;
 };
 
-// eslint-disable-next-line max-statements
+const generateSuffixForMonthDay = (
+  range: PickedCalendarRange,
+  maxSize: number,
+) => {
+  const options = range.daysOfMonth
+    ?.map((d, index) => {
+      if (index === maxSize + 1) {
+        return -1;
+      }
+
+      return d && index + 1;
+    })
+    .filter(d => d);
+
+  return "BYMONTHDAY=" + options?.join(",");
+};
+
+const generateSuffixForWeekMonth = (range: PickedCalendarRange) => {
+  const weekDays: string[] = [];
+  range.weeksOfMonth?.forEach((d, index1) => {
+    d?.forEach((b, index2) => {
+      if (b) {
+        weekDays.push(ruleFromIndexes(index1 + 1, index2));
+      }
+    });
+  });
+
+  return "BYDAY=" + weekDays.join(",");
+};
+
 export const useRRuleFromPickedCalendarRange = (
   range: PickedCalendarRange | undefined,
   maxSize = 31,
@@ -31,26 +60,9 @@ export const useRRuleFromPickedCalendarRange = (
     rule = `RRULE:FREQ=DAILY;INTERVAL=${range.interval}`;
   } else if (range && range.frequency === "Monthly") {
     if (range.typeOfMonth === 1) {
-      const options = range.daysOfMonth
-        ?.map((d, index) => {
-          if (index === maxSize + 1) {
-            return -1;
-          }
-
-          return d && index + 1;
-        })
-        .filter(d => d);
-      suffix = "BYMONTHDAY=" + options?.join(",");
+      suffix = generateSuffixForMonthDay(range, maxSize);
     } else if (range.typeOfMonth === 2 && range.weeksOfMonth) {
-      const weekDays: string[] = [];
-      range.weeksOfMonth?.forEach((d, index1) => {
-        d?.forEach((b, index2) => {
-          if (b) {
-            weekDays.push(ruleFromIndexes(index1 + 1, index2));
-          }
-        });
-      });
-      suffix = "BYDAY=" + weekDays.join(",");
+      suffix = generateSuffixForWeekMonth(range);
     }
     rule = `RRULE:FREQ=MONTHLY;INTERVAL=${range.interval};${suffix}`;
   } else if (range && range.frequency === "Weekly") {
@@ -65,6 +77,22 @@ export const useRRuleFromPickedCalendarRange = (
   return { rule };
 };
 
+const generateMonthlyValues = (value: string) => {
+  const values = value.split(",");
+  const myArray: Array<Array<string | undefined>> = [];
+  values.forEach(val => {
+    const dayOfWeek = val.slice(-2);
+    const week = Number(val.slice(1, 2)) - 1;
+
+    if (!myArray[week]) {
+      myArray[week] = [];
+    }
+    myArray[week][getDayIndex(dayOfWeek)] = dayOfWeek.slice(0, 1);
+  });
+
+  return myArray;
+};
+
 export const usePickedCalendarRangeFromRRule = (
   unParsedRRule: string,
   maxSize = 31,
@@ -75,7 +103,6 @@ export const usePickedCalendarRangeFromRRule = (
   if (isRRule[0] === "RRULE") {
     const remainder = isRRule[1];
     const remainderSplit = remainder.split(";");
-    // eslint-disable-next-line max-statements
     remainderSplit.forEach(d => {
       const [key, value] = d.split("=");
 
@@ -87,18 +114,7 @@ export const usePickedCalendarRangeFromRRule = (
         key === "BYDAY" &&
         pickedCalendarRange.frequency === "Monthly"
       ) {
-        const values = value.split(",");
-        const myArray: Array<Array<string | undefined>> = [];
-        values.forEach(val => {
-          const dayOfWeek = val.slice(-2);
-          const week = Number(val.slice(1, 2)) - 1;
-
-          if (!myArray[week]) {
-            myArray[week] = [];
-          }
-          myArray[week][getDayIndex(dayOfWeek)] = dayOfWeek.slice(0, 1);
-        });
-        pickedCalendarRange.weeksOfMonth = myArray;
+        pickedCalendarRange.weeksOfMonth = generateMonthlyValues(value);
         pickedCalendarRange.typeOfMonth = 2;
       } else if (
         key === "BYDAY" &&

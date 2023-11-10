@@ -7,27 +7,27 @@ import { InputNumber } from "../InputNumber";
 export const CalendarPickerDaily = ({
   onUpdate,
   defaultInterval,
-  enableUpdate = true,
+  enableInteraction = true,
 }: {
   readonly onUpdate?: (calTime: PickedCalendarRange) => void | undefined;
   readonly defaultInterval?: number;
-  readonly enableUpdate?: boolean;
+  readonly enableInteraction?: boolean;
 }) => {
   const [dailyInterval, setDailyInterval] = useState(defaultInterval || 1);
-
-  useEffect(() => {
-    if (!enableUpdate) {
-      setDailyInterval(defaultInterval || 1);
-    }
-  }, [defaultInterval]);
 
   const dailySummary = useDaily(dailyInterval);
 
   useEffect(() => {
-    if (enableUpdate && onUpdate) {
+    if (enableInteraction && onUpdate) {
       onUpdate({ frequency: "Daily", interval: dailyInterval });
     }
   }, [dailyInterval]);
+
+  useEffect(() => {
+    if (!enableInteraction) {
+      setDailyInterval(defaultInterval || 1);
+    }
+  }, [defaultInterval]);
 
   return (
     <div>

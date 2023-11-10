@@ -10,7 +10,7 @@ export const CalendarPickerWeekly = ({
   defaultWeeklyDays = [],
   defaultInterval = 1,
   onUpdate,
-  enableUpdate,
+  enableInteraction,
 }: {
   readonly daysOfWeek: Array<string>;
   readonly defaultInterval?: number;
@@ -23,7 +23,7 @@ export const CalendarPickerWeekly = ({
         | undefined
       )[]
     | undefined;
-  readonly enableUpdate?: boolean;
+  readonly enableInteraction?: boolean;
   readonly onUpdate?: (calTime: PickedCalendarRange) => void | undefined;
 }) => {
   const [weeklyDays, setWeeklyDays] =
@@ -34,21 +34,21 @@ export const CalendarPickerWeekly = ({
   const weeklyDaysSummary = useWeekly(weeklyDays, weeklyInterval);
 
   useEffect(() => {
-    if (!enableUpdate) {
+    if (!enableInteraction) {
       setWeeklyDays(defaultWeeklyDays);
       setWeeklyInterval(defaultInterval);
     }
-  }, [defaultWeeklyDays, enableUpdate, defaultInterval]);
+  }, [defaultWeeklyDays, enableInteraction, defaultInterval]);
 
   useEffect(() => {
-    if (enableUpdate && onUpdate) {
+    if (enableInteraction && onUpdate) {
       onUpdate({
         frequency: "Weekly",
         interval: weeklyInterval,
         daysOfWeek: weeklyDays,
       });
     }
-  }, [weeklyInterval, weeklyDays, enableUpdate]);
+  }, [weeklyInterval, weeklyDays, enableInteraction]);
 
   return (
     <div>
