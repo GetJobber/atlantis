@@ -159,9 +159,8 @@ function useOnKeyDown(
 ) {
   useEffect(() => {
     window.addEventListener('keydown', event => {
-      const newEvent = event as unknown as KeyboardEvent;
-      if (newEvent.key === keyName) {
-        handler(newEvent);
+      if (event.key === keyName) {
+        handler(event);
       }
     });
     return () => {
