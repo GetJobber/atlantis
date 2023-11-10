@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
@@ -7,27 +7,10 @@ import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import styles from "./Modal.css";
 import sizes from "./Sizes.css";
+import { ModalProps } from "./ModalTypes";
 import { Heading } from "../Heading";
 import { Button, ButtonProps } from "../Button";
 import { ButtonDismiss } from "../ButtonDismiss";
-
-interface ModalProps {
-  /**
-   * @default false
-   */
-  readonly title?: string;
-  readonly open?: boolean;
-  readonly size?: keyof typeof sizes;
-  /**
-   * @default true
-   */
-  readonly dismissible?: boolean;
-  readonly children: ReactNode;
-  readonly primaryAction?: ButtonProps;
-  readonly secondaryAction?: ButtonProps;
-  readonly tertiaryAction?: ButtonProps;
-  onRequestClose?(): void;
-}
 
 export function Modal({
   open = false,
@@ -99,8 +82,8 @@ export function Modal({
 }
 
 interface HeaderProps {
-  title: string;
-  dismissible?: boolean;
+  readonly title: string;
+  readonly dismissible?: boolean;
   onRequestClose?(): void;
 }
 
@@ -117,9 +100,9 @@ function Header({ title, dismissible, onRequestClose }: HeaderProps) {
 }
 
 interface ActionsProps {
-  primary?: ButtonProps;
-  secondary?: ButtonProps;
-  tertiary?: ButtonProps;
+  readonly primary?: ButtonProps;
+  readonly secondary?: ButtonProps;
+  readonly tertiary?: ButtonProps;
 }
 
 function Actions({ primary, secondary, tertiary }: ActionsProps) {

@@ -76,3 +76,6 @@
 .weekWrapper {
   margin-bottom: var(--space-small);
 }
+.calendarInModal {
+  padding: 20px;
+}

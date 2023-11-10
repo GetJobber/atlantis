@@ -9,7 +9,7 @@ export const useMonthlyByDay = (
 ) => {
   let humanReadable = !monthlyDays.find(d => d) ? "Summary: Monthly" : "";
 
-  if (weeklyInterval > 1) {
+  if (weeklyInterval > 1 || monthlyDays.find(d => d)) {
     humanReadable =
       weeklyInterval === 1 ? "Monthly " : `Every ${weeklyInterval} months `;
 

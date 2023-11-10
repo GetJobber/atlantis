@@ -13,6 +13,7 @@ declare const styles: {
   readonly "intervalSuffix": string;
   readonly "summary": string;
   readonly "weekWrapper": string;
+  readonly "calendarInModal": string;
 };
 export = styles;
 

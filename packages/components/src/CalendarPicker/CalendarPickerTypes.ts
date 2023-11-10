@@ -1,3 +1,5 @@
+import { ModalProps } from "../Modal";
+
 export interface PickedCalendarRange {
   frequency: string;
   interval: number;
@@ -17,4 +19,9 @@ export interface CalendarPickerProps {
   weeklyTestId?: string;
   monthlyTestId?: string;
   yearlyTestId?: string;
+}
+
+export interface CalendarPickerModalProps {
+  readonly picker: CalendarPickerProps;
+  readonly modal: ModalProps;
 }
