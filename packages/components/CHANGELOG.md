@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.60.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.0...@jobber/components@4.60.1) (2023-11-13)
+
+
+### Bug Fixes
+
+* **components:** Make pseudo-elements avoid pointer events on Combobox ([#1632](https://github.com/GetJobber/atlantis/issues/1632)) ([3776138](https://github.com/GetJobber/atlantis/commit/3776138f548307d763692131dfcac92625eff9ef))
+
+
+
+
+
 # [4.60.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.59.0...@jobber/components@4.60.0) (2023-11-08)
 
 
