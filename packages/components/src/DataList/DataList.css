@@ -70,7 +70,6 @@
   position: relative;
   padding: var(--space-small);
   border-bottom: var(--border-base) solid var(--color-border);
-  transition: all var(--timing-base);
 }
 
 .listItem,

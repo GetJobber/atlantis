@@ -23,5 +23,4 @@
     var(--overflow-bg) 100%
   );
   align-items: center;
-  transition: all var(--timing-base);
 }
