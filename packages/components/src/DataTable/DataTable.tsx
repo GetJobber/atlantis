@@ -8,8 +8,8 @@ import {
 import { Body } from "./Body";
 import { createTableSettings } from "./createTableSettings";
 import styles from "./DataTable.css";
-import { Pagination } from "./Pagination";
 import { PaginationType, SortingType } from "./types";
+import { Pagination } from "./Pagination";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 

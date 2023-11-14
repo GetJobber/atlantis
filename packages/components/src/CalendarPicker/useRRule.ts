@@ -93,6 +93,33 @@ const generateMonthlyValues = (value: string) => {
   return myArray;
 };
 
+const generateWeekDays = (value: string) => {
+  const weekDays1: Array<{ day: string; index: number }> = [];
+  const weekDays = value.split(",");
+  weekDays.forEach(day => {
+    const dayOfWeek = day.slice(-2);
+    const index = getDayIndex(dayOfWeek);
+
+    weekDays1[index] = { day: dayOfWeek, index };
+  });
+
+  return weekDays1;
+};
+
+const generateDaysOfMonth = (value: string, maxSize: number) => {
+  const daysOfMonth = [];
+  const indexes = value.split(",").map(e => Number(e));
+  indexes.forEach(index => {
+    if (index == -1) {
+      daysOfMonth[maxSize] = maxSize + 1;
+    } else {
+      daysOfMonth[index - 1] = index;
+    }
+  });
+
+  return indexes;
+};
+
 export const usePickedCalendarRangeFromRRule = (
   unParsedRRule: string,
   maxSize = 31,
@@ -120,29 +147,9 @@ export const usePickedCalendarRangeFromRRule = (
         key === "BYDAY" &&
         pickedCalendarRange.frequency === "Weekly"
       ) {
-        const weekDays = value.split(",");
-        weekDays.forEach(day => {
-          const dayOfWeek = day.slice(-2);
-          const index = getDayIndex(dayOfWeek);
-
-          if (!pickedCalendarRange.daysOfWeek) {
-            pickedCalendarRange.daysOfWeek = [];
-          }
-          pickedCalendarRange.daysOfWeek[index] = { day: dayOfWeek, index };
-        });
+        pickedCalendarRange.daysOfWeek = generateWeekDays(value);
       } else if (key === "BYMONTHDAY") {
-        const indexes = value.split(",").map(e => Number(e));
-        indexes.forEach(index => {
-          if (!pickedCalendarRange.daysOfMonth) {
-            pickedCalendarRange.daysOfMonth = [];
-          }
-
-          if (index == -1) {
-            pickedCalendarRange.daysOfMonth[maxSize] = maxSize + 1;
-          } else {
-            pickedCalendarRange.daysOfMonth[index - 1] = index;
-          }
-        });
+        pickedCalendarRange.daysOfMonth = generateDaysOfMonth(value, maxSize);
       }
     });
   }

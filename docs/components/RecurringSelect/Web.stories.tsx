@@ -39,7 +39,19 @@ const BasicTemplate: ComponentStory<typeof RecurringSelect> = args => {
     type: DurationPeriod.DayOfMonth,
     date: new Set([2, 4, 6, 10, 12, 18, 25, "LAST"]),
   });
-  return <RecurringSelect {...args} value={rule} onChange={setRule} />;
+  console.log("RULE?", rule);
+
+  return (
+    <RecurringSelect
+      {...args}
+      value={rule}
+      onChange={x => {
+        console.log("RULE!", x);
+
+        setRule(x);
+      }}
+    />
+  );
 };
 
 export const Basic = BasicTemplate.bind({});

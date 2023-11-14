@@ -1,6 +1,5 @@
 import React, {
   ChangeEvent,
-  ReactElement,
   Ref,
   cloneElement,
   forwardRef,
@@ -20,9 +19,7 @@ export interface DatePickerActivatorProps
     | "ariaLabelledBy"
     | "ariaRequired"
   > {
-  readonly activator?:
-    | ReactElement
-    | ((props: DatePickerActivatorProps) => ReactElement);
+  readonly activator?: unknown;
   readonly fullWidth?: boolean;
   onBlur?(): void;
   onChange?(
@@ -47,6 +44,7 @@ function InternalActivator(
   if (activator) {
     if (isValidElement(activator)) {
       const isAComponent = typeof activator.type === "function";
+
       return cloneElement(activator, {
         ...newActivatorProps,
         ...(isAComponent && { fullWidth: fullWidth }),
@@ -54,7 +52,7 @@ function InternalActivator(
         // cloneElement. https://github.com/DefinitelyTyped/DefinitelyTyped/issues/40888
         ref,
       });
-    } else {
+    } else if (typeof activator === "function") {
       return activator(props);
     }
   } else {

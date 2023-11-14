@@ -1,5 +1,5 @@
 import React from "react";
-import { ActionProps, CardProps } from "./types";
+import { ActionProps, CardProps, HeaderActionProps } from "./types";
 import styles from "./Card.css";
 import { Heading } from "../Heading";
 import { Button, ButtonProps } from "../Button";
@@ -16,13 +16,18 @@ export function CardHeader({
   const heading = title || header;
 
   if (React.isValidElement(heading)) return <>{heading}</>;
+
   if (heading) {
-    const titleString = typeof heading === "string" ? heading : heading.title;
+    const titleString =
+      typeof heading === "string"
+        ? heading
+        : (heading as HeaderActionProps).title;
 
     return (
       <div className={styles.header}>
         {titleString && <Heading level={3}>{titleString}</Heading>}
-        {typeof heading === "object" && renderHeaderAction(heading?.action)}
+        {typeof heading === "object" &&
+          renderHeaderAction((heading as HeaderActionProps)?.action)}
       </div>
     );
   }
@@ -37,6 +42,7 @@ function renderHeaderAction(action?: ActionProps) {
       ...action.props,
       size: "small",
     } as ButtonProps;
+
     return action && <Button {...props} />;
   }
 
