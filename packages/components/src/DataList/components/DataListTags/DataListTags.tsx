@@ -29,13 +29,14 @@ export function DataListTags({ items }: DataListTagsProps) {
   }, [items]);
 
   return (
-    <div className={styles.tags} ref={ref}>
-      {items.filter(Boolean).map((tag, index) => (
-        <div key={tag} data-tag-element={index}>
-          <InlineLabel>{tag}</InlineLabel>
-        </div>
-      ))}
-
+    <div className={styles.tagWrapper} ref={ref}>
+      <div className={styles.tags}>
+        {items.filter(Boolean).map((tag, index) => (
+          <div key={tag} data-tag-element={index}>
+            <InlineLabel>{tag}</InlineLabel>
+          </div>
+        ))}
+      </div>
       {Boolean(visibleItems) && (
         <div className={styles.tagCount}>
           <Text>+{visibleItems}</Text>
