@@ -2,21 +2,26 @@ import React, { forwardRef, useEffect, useRef, useState } from "react";
 import classnames from "classnames";
 import styles from "./FormField.css";
 
-export const RawTextInput = ({
-  className,
-  ...rest
-}: React.DetailedHTMLProps<
-  React.InputHTMLAttributes<HTMLInputElement>,
-  HTMLInputElement
->) => {
-  return <input {...rest} className={`${styles.input} ${className}`} />;
+export const RawTextInput = (
+  {
+    className,
+    ...rest
+  }: React.DetailedHTMLProps<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  >,
+  ref: React.LegacyRef<HTMLInputElement>,
+) => {
+  return (
+    <input {...rest} ref={ref} className={`${styles.input} ${className}`} />
+  );
 };
 
 const RawTextInputWithRef = forwardRef(RawTextInput);
 
 export const TextInput = ({ className = "", label = "", ...rest }) => {
   const [miniMode, setMiniMode] = useState(false);
-  const input = useRef<HTMLInputElement>();
+  const input = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setMiniMode(!!input.current?.value);
