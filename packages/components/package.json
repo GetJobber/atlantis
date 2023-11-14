@@ -44,15 +44,14 @@
     "react-markdown": "^8.0.3",
     "react-popper": "^2.2.5",
     "react-router-dom": "^5.3.4",
-    "rrule":"2.7.2",
     "time-input-polyfill": "^1.0.7",
     "ts-xor": "^1.0.8",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@csstools/postcss-global-data": "^1.0.3",
-    "@rollup/plugin-commonjs": "25.0.7",
-    "@rollup/plugin-typescript": "11.1.5",
+    "@rollup/plugin-commonjs": "24.0.1",
+    "@rollup/plugin-typescript": "9.0.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/react-hooks": "^7.0.2",
@@ -72,14 +71,13 @@
     "rollup-plugin-multi-input": "^1.4.1",
     "rollup-plugin-postcss": "^4.0.2",
     "typed-css-modules": "^0.7.0",
-    "typescript": "5.2.2",
+    "typescript": "4.9.5",
     "uuid": "^8.3.2"
   },
   "peerDependencies": {
     "react": "^18",
     "react-dom": "^18",
-    "react-hook-form": "^7.43.7",
-    "@remix-run/react":"2.2.0"
+    "react-hook-form": "^7.43.7"
   },
   "browserslist": [
     "last 1 version",

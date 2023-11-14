@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { FormField } from "@jobber/components/FormField";
+import { FormField, TextInput } from "@jobber/components/FormField";
 
 export default {
   title: "Components/Private/FormField/Web",
@@ -32,6 +32,17 @@ const InlineTemplate: ComponentStory<typeof FormField> = args => {
   );
 };
 
+const RemixTemplate: ComponentStory<typeof TextInput> = args => {
+  return (
+    <div>
+      <TextInput {...args} />
+    </div>
+  );
+};
+export const Remix = RemixTemplate.bind({});
+Remix.args = {
+  label: "Remix",
+};
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
   placeholder: "Words...",
