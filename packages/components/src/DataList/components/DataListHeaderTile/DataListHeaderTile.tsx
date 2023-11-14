@@ -37,8 +37,9 @@ export function DataListHeaderTile<T extends DataListObject>({
   );
 
   function toggleSorting(sortingKey: string) {
-    if (sortingState?.order === "desc") {
+    if (sortingKey === sortingState?.key && sortingState?.order === "desc") {
       sorting?.onSort(undefined);
+
       return;
     }
 
