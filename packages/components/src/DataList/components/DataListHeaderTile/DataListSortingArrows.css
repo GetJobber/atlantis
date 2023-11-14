@@ -1,5 +1,7 @@
 .sortIcon {
-  padding-right: var(--space-small);
+  width: var(--space-large);
+  height: var(--space-large);
+  margin-right: var(--space-small);
 }
 
 .sortIcon path {
