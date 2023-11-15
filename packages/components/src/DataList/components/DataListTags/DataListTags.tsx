@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./DataListTags.css";
+import classNames from "classnames";
 import { InlineLabel } from "../../../InlineLabel";
 import { Text } from "../../../Text";
 
@@ -11,6 +12,7 @@ export function DataListTags({ items }: DataListTagsProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [visibleIndex, setVisibleIndex] = useState<boolean[]>([]);
   const visibleItems = visibleIndex.filter(Boolean).length;
+  const shouldShowTagCount = Boolean(visibleItems);
 
   useEffect(() => {
     if (!window.IntersectionObserver) return;
@@ -30,14 +32,18 @@ export function DataListTags({ items }: DataListTagsProps) {
 
   return (
     <div className={styles.tagWrapper} ref={ref}>
-      <div className={styles.tags}>
+      <div
+        className={classNames(styles.tags, {
+          [styles.tagsMask]: shouldShowTagCount,
+        })}
+      >
         {items.filter(Boolean).map((tag, index) => (
           <div key={tag} data-tag-element={index}>
             <InlineLabel>{tag}</InlineLabel>
           </div>
         ))}
       </div>
-      {Boolean(visibleItems) && (
+      {shouldShowTagCount && (
         <div className={styles.tagCount}>
           <Text>+{visibleItems}</Text>
         </div>

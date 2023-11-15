@@ -8,6 +8,9 @@
   overflow: hidden;
   gap: var(--space-small);
   white-space: nowrap;
+}
+
+.tagsMask {
   mask-image: linear-gradient(
     to left,
     transparent,
