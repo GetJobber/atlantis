@@ -1,6 +1,8 @@
 import React from "react";
 import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
 import { Combobox } from "@jobber/components/Combobox";
+import { Chip } from "@jobber/components/Chip";
+import { Icon } from "@jobber/components/Icon";
 
 export function DataListSort() {
   const { sorting, headers } = useDataListContext();
@@ -12,12 +14,20 @@ export function DataListSort() {
 
   return (
     <Combobox
-      label={getButtonLabel()}
       onSelect={selection => {
         handleKeyChange(selection[0].id.toString());
       }}
       selected={[{ id: state?.key || "", label: state?.order || "" }]}
     >
+      <Combobox.Activator>
+        <Chip heading="Sort" label={getButtonLabel()} variation="subtle">
+          {!state && (
+            <Chip.Suffix>
+              <Icon name="arrowDown" size="small" />
+            </Chip.Suffix>
+          )}
+        </Chip>
+      </Combobox.Activator>
       {sortByOptions.map(({ label, value }) => {
         return <Combobox.Option key={value} id={value} label={label} />;
       })}
@@ -50,10 +60,11 @@ export function DataListSort() {
   }
 
   function getButtonLabel() {
-    const label = state && headers[state.key];
-    if (!label) return "Sort";
+    const selectedOption = sortByOptions.find(
+      option => option.value === `${state?.key},${state?.order}`,
+    );
 
-    return `Sort by: ${label}`;
+    return selectedOption?.label || "";
   }
 
   function handleKeyChange(value?: string) {

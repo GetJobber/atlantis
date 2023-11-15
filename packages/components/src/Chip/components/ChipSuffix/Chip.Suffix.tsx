@@ -28,4 +28,4 @@ export interface ChipSuffixProps extends PropsWithChildren {
   readonly className?: string;
 }
 
-export const allowedSuffixIcons = ["cross", "add", "checkmark"];
+export const allowedSuffixIcons = ["cross", "add", "checkmark", "arrowDown"];
