@@ -238,7 +238,7 @@ const Template: ComponentStory<typeof DataList> = args => {
                   textAlign: "right",
                 }}
               >
-                {item.created}
+                {item.lastActivity}
               </div>
             </Grid.Cell>
           </Grid>
@@ -271,7 +271,7 @@ const Template: ComponentStory<typeof DataList> = args => {
                 alignItems: "center",
               }}
             >
-              {item.created}
+              {item.lastActivity}
               <DataList.LayoutActions />
             </div>
           </Content>
