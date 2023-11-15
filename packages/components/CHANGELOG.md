@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.60.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.1...@jobber/components@4.60.2) (2023-11-14)
+
+
+### Bug Fixes
+
+* **components:** Ensure DataList sorting gets cleared in a predictable manner ([#1635](https://github.com/GetJobber/atlantis/issues/1635)) ([f3f6aea](https://github.com/GetJobber/atlantis/commit/f3f6aea032ccc4cf72bee65b625f5791576bf9d5))
+
+
+
+
+
+## [4.60.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.0...@jobber/components@4.60.1) (2023-11-13)
+
+
+### Bug Fixes
+
+* **components:** Make pseudo-elements avoid pointer events on Combobox ([#1632](https://github.com/GetJobber/atlantis/issues/1632)) ([3776138](https://github.com/GetJobber/atlantis/commit/3776138f548307d763692131dfcac92625eff9ef))
+
+
+
+
+
+# [4.60.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.59.0...@jobber/components@4.60.0) (2023-11-08)
+
+
+### Features
+
+* **components:** Optional DataList action ([#1626](https://github.com/GetJobber/atlantis/issues/1626)) ([e97e8d8](https://github.com/GetJobber/atlantis/commit/e97e8d853d30cf30b6264cca1adf52b23ce99d64))
+
+
+
+
+
 # [4.59.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.58.5...@jobber/components@4.59.0) (2023-11-07)
 
 
