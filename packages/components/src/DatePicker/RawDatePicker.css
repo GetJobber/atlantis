@@ -1,0 +1,55 @@
+.datePicker {
+  max-width: 320px;
+  padding: 20px;
+}
+.headerWrapper {
+  display: flex;
+  width: 100%;
+  padding: 0;
+  border-bottom: var(--border-base) solid var(--color-border);
+  background: var(--color-surface);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerWrapper button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.headerTitle {
+  color: var(--color-heading);
+  font-size: var(--typography--fontSize-large);
+  font-weight: 700;
+  line-height: var(--typography--lineHeight-base);
+}
+
+.buttonWrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.buttonWrapper button {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: var(--radius-base);
+  background: transparent;
+  cursor: pointer;
+}
+
+.buttonWrapper button:hover {
+  background: var(--color-surface--hover);
+}
+
+.buttonWrapper button.selected {
+  color: var(--color-text--reverse);
+  background: var(--color-interactive);
+}
+
+.buttonWrapper button.outOfMonth {
+  box-shadow: none;
+  background: var(--color-disabled--secondary);
+  cursor: default;
+}

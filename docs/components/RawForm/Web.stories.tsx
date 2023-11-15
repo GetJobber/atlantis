@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import {
-  DateInput,
+  RawDatePicker,
   SelectInput,
   SelectOption,
   TextInput,
@@ -45,10 +45,10 @@ Select.args = {
   label: "Raw Select",
 };
 
-const DateTemplate: ComponentStory<typeof DateInput> = args => {
+const DateTemplate: ComponentStory<typeof RawDatePicker> = args => {
   return (
     <div>
-      <DateInput {...args} />
+      <RawDatePicker {...args} />
     </div>
   );
 };
