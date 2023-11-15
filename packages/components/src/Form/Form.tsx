@@ -91,8 +91,6 @@ export const Form = forwardRef(function InternalForm(
       `[name="${firstErrName}"]`,
     ) as HTMLElement;
 
-    if (typeof element != undefined) {
-      element?.focus();
-    }
+    element?.focus();
   }
 });
