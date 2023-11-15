@@ -11,13 +11,19 @@ export function DataListSort() {
   const { sortable, state, onSort } = sorting;
 
   const sortByOptions = getSortByOptions();
+  console.log({ state });
 
   return (
     <Combobox
       onSelect={selection => {
         handleKeyChange(selection[0].id.toString());
       }}
-      selected={[{ id: state?.key || "", label: state?.order || "" }]}
+      selected={[
+        {
+          id: `${state?.key},${state?.order}`,
+          label: state?.order || "",
+        },
+      ]}
     >
       <Combobox.Activator>
         <Chip
