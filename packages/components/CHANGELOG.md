@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.60.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.2...@jobber/components@4.60.3) (2023-11-15)
+
+
+### Bug Fixes
+
+* **components:** Ensure DataList renders the list item on safari ([#1639](https://github.com/GetJobber/atlantis/issues/1639)) ([eaff341](https://github.com/GetJobber/atlantis/commit/eaff341b11428b1c36dd560a547b93ae196eafd2))
+
+
+
+
+
 ## [4.60.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.1...@jobber/components@4.60.2) (2023-11-14)
 
 
