@@ -95,7 +95,7 @@ const Template: ComponentStory<typeof DataList> = args => {
       ...node.homeworld.terrains,
     ]),
     homePopulation: node.homeworld.population?.toLocaleString(),
-    created: new Date(node.created),
+    lastActivity: new Date(node.created),
   }));
 
   const [sortingState, setSortingState] = useState<DataListSorting | undefined>(
@@ -113,7 +113,7 @@ const Template: ComponentStory<typeof DataList> = args => {
         home: "Home world",
         tags: "Attributes",
         gender: "Gender",
-        created: "Created",
+        lastActivity: "Last activity",
       }}
       onLoadMore={nextPage}
       selected={selected}
@@ -125,7 +125,7 @@ const Template: ComponentStory<typeof DataList> = args => {
           console.log(sorting);
           setSortingState(sorting);
         },
-        sortable: ["label", "home"],
+        sortable: ["label", "home", "lastActivity"],
       }}
     >
       <DataList.Filters>

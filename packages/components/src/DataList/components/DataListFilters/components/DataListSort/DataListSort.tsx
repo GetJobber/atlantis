@@ -1,53 +1,27 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
-import { Button } from "@jobber/components/Button";
-import { Popover } from "@jobber/components/Popover";
-import { Content } from "@jobber/components/Content";
-import { Chip, Chips } from "@jobber/components/Chips";
-import { Heading } from "@jobber/components/Heading";
+import { Combobox } from "@jobber/components/Combobox";
 
 export function DataListSort() {
   const { sorting, headers } = useDataListContext();
-  const divRef = useRef<HTMLSpanElement>(null);
-  const [showPopover, setShowPopover] = useState(false);
 
   if (!sorting) return null;
   const { sortable, state, onSort } = sorting;
 
   const sortByOptions = getSortByOptions();
-  const canChangeOrder = !state?.key;
 
   return (
-    <>
-      <span ref={divRef}>
-        <Button
-          {...(!state && { icon: "add", iconOnRight: true })}
-          label={getButtonLabel()}
-          variation="subtle"
-          onClick={() => setShowPopover(!showPopover)}
-        />
-      </span>
-      <Popover
-        attachTo={divRef}
-        open={showPopover}
-        onRequestClose={() => setShowPopover(false)}
-      >
-        <Content>
-          <Heading level={5}>Sort by</Heading>
-          <Chips selected={state?.key || "none"} onChange={handleKeyChange}>
-            {sortByOptions.map(({ label, value }) => (
-              <Chip key={label} label={label} value={value} />
-            ))}
-          </Chips>
-
-          <Heading level={5}>Ordered by</Heading>
-          <Chips selected={state?.order} onChange={handleSortingChange}>
-            <Chip label="Ascending" value="asc" disabled={canChangeOrder} />
-            <Chip label="Descending" value="desc" disabled={canChangeOrder} />
-          </Chips>
-        </Content>
-      </Popover>
-    </>
+    <Combobox
+      label={getButtonLabel()}
+      onSelect={selection => {
+        handleKeyChange(selection[0].id.toString());
+      }}
+      selected={[{ id: state?.key || "", label: state?.order || "" }]}
+    >
+      {sortByOptions.map(({ label, value }) => {
+        return <Combobox.Option key={value} id={value} label={label} />;
+      })}
+    </Combobox>
   );
 
   function getSortByOptions() {
@@ -56,7 +30,14 @@ export function DataListSort() {
         const label = headers[sort];
         if (!label) return acc;
 
-        acc.push({ label, value: sort.toString() });
+        if (label === "Last activity") {
+          acc.push({ label: "Last Activity (Newest)", value: `${sort},desc` });
+          acc.push({ label: "Last Activity (Oldest)", value: `${sort},asc` });
+        } else {
+          acc.push({ label: `${label} (A-Z)`, value: `${sort},asc` });
+          acc.push({ label: `${label} (Z-A)`, value: `${sort},desc` });
+        }
+
         return acc;
       },
       [],
@@ -70,24 +51,19 @@ export function DataListSort() {
 
   function getButtonLabel() {
     const label = state && headers[state.key];
-    if (!label) return "Sort by";
+    if (!label) return "Sort";
 
-    return `Sort by: ${label}, ${state.order}`;
+    return `Sort by: ${label}`;
   }
 
   function handleKeyChange(value?: string) {
     if (value && value !== "none") {
-      onSort({ key: value, order: state?.order || "asc" });
+      const [key, order] = value.split(",");
+      onSort({ key, order: order as "asc" | "desc" });
+
       return;
     }
 
     onSort(undefined);
-  }
-
-  function handleSortingChange(value: "asc" | "desc") {
-    if (state?.key && value) {
-      onSort({ key: state.key, order: value });
-      return;
-    }
   }
 }

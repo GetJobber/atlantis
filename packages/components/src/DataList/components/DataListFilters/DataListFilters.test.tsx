@@ -118,9 +118,7 @@ describe("InternalDataListFilters", () => {
       showHeaderSpy.mockReturnValueOnce(false);
       render(<InternalDataListFilters />);
 
-      expect(
-        screen.getByRole("button", { name: "Sort by" }),
-      ).toBeInTheDocument();
+      expect(screen.getByRole("combobox")).toBeInTheDocument();
     });
 
     it("should not render the sort button when the header is there", () => {
