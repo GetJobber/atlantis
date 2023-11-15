@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.60.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.4...@jobber/components@4.60.5) (2023-11-15)
+
+
+### Bug Fixes
+
+* **components:** resolve transition flicker on DataList "tag count" element ([#1637](https://github.com/GetJobber/atlantis/issues/1637)) ([f3e33e7](https://github.com/GetJobber/atlantis/commit/f3e33e789dd32baeff93d7480b8d0fce8efa72bb))
+
+
+
+
+
 ## [4.60.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.3...@jobber/components@4.60.4) (2023-11-15)
 
 
