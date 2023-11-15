@@ -17,8 +17,9 @@ export default {
   },
 } as ComponentMeta<typeof InputTime>;
 
-const BasicTemplate: ComponentStory<any> = args => {
+const BasicTemplate: ComponentStory = args => {
   const [time, setTime] = useState(new Date("2023-07-21T16:36:34.873Z"));
+
   return <InputTime {...args} value={time} onChange={setTime} />;
 };
 
@@ -26,7 +27,7 @@ const EmptyValueTemplate: ComponentStory<typeof InputTime> = args => {
   return <InputTime {...args} />;
 };
 
-const FormControlledTemplate: ComponentStory<any> = args => (
+const FormControlledTemplate: ComponentStory = args => (
   <Form initialValues={{ startTime: new Date("2023-07-21T16:36:34.873Z") }}>
     <Content>
       <InputTime {...args} />
