@@ -38,7 +38,7 @@ export function useComboboxAccessibility(
         },
       },
     ],
-    placement: "auto",
+    placement: "bottom-start",
   });
 
   useEffect(() => {
