@@ -20,7 +20,11 @@ export function DataListSort() {
       selected={[{ id: state?.key || "", label: state?.order || "" }]}
     >
       <Combobox.Activator>
-        <Chip heading="Sort" label={getButtonLabel()} variation="subtle">
+        <Chip
+          heading="Sort"
+          label={getButtonLabel()}
+          variation={state ? "base" : "subtle"}
+        >
           {!state && (
             <Chip.Suffix>
               <Icon name="arrowDown" size="small" />
