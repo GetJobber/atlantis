@@ -25,24 +25,28 @@ export function useComboboxAccessibility(
   useRefocusOnActivator(open);
 
   const popperRef = useFocusTrap<HTMLDivElement>(open);
-  const { styles: popperStyles, attributes } = usePopper(
-    wrapperRef.current,
-    popperRef.current,
-    {
-      modifiers: [
-        {
-          name: "flip",
-          options: {
-            fallbackPlacements: ["top-start"],
-          },
+  const {
+    styles: popperStyles,
+    attributes,
+    update,
+  } = usePopper(wrapperRef.current, popperRef.current, {
+    modifiers: [
+      {
+        name: "flip",
+        options: {
+          fallbackPlacements: ["top-start"],
         },
-      ],
-      placement: "bottom-start",
-    },
-  );
+      },
+    ],
+    placement: "auto",
+  });
 
   useEffect(() => {
     focusedIndex.current = null;
+
+    if (open) {
+      update?.();
+    }
   }, [open, filteredOptions.length]);
 
   useEffect(() => {
