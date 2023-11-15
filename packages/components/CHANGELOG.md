@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.60.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.3...@jobber/components@4.60.4) (2023-11-15)
+
+
+### Bug Fixes
+
+* **components:** Refactor DataListSort to use Combobox ([#1638](https://github.com/GetJobber/atlantis/issues/1638)) ([ba1675f](https://github.com/GetJobber/atlantis/commit/ba1675f2ff6ba34a55e3612ba7c8b382176ea74d))
+
+
+
+
+
 ## [4.60.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.2...@jobber/components@4.60.3) (2023-11-15)
 
 
