@@ -6,6 +6,7 @@ import {
   SelectOption,
   TextInput,
 } from "@jobber/components/FormField";
+import { CheckboxInput } from "@jobber/components/Checkbox";
 
 export default {
   title: "Components/Forms and Inputs/RawForm/Web",
@@ -53,5 +54,17 @@ const DateTemplate: ComponentStory<typeof DateInput> = args => {
 };
 export const Date = DateTemplate.bind({});
 Date.args = {
+  label: "Raw",
+};
+
+const CheckboxTemplate: ComponentStory<typeof CheckboxInput> = args => {
+  return (
+    <div>
+      <CheckboxInput {...args} />
+    </div>
+  );
+};
+export const Checkbox = CheckboxTemplate.bind({});
+Text.args = {
   label: "Raw",
 };
