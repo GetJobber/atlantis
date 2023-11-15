@@ -24,7 +24,12 @@
   align-items: center;
 }
 
-.chip:focus {
+.chip:focus,
+.chip:focus-visible {
+  outline: none;
+}
+
+.chip:focus-visible {
   box-shadow: var(--shadow-focus);
 }
 
@@ -48,11 +53,6 @@
   background-color: var(--color-surface);
   align-items: center;
   justify-content: center;
-}
-
-.chip .suffix:hover,
-.chip .prefix:hover {
-  background-color: var(--color-disabled);
 }
 
 .chip .prefix.empty,
@@ -80,17 +80,17 @@
 }
 
 .base:hover,
-.base:focus {
+.base:focus-visible {
   background-color: var(--chip-base--hover);
   --chip--gradient-color-variation--hover: var(--chip-base--hover);
 }
 
 .invalid,
 .invalid:hover,
-.invalid:focus,
+.invalid:focus-visible,
 .subtle.invalid,
 .subtle.invalid:hover,
-.subtle.invalid:focus {
+.subtle.invalid:focus-visible {
   border: var(--border-base) solid var(--color-critical);
   background-color: var(--color-critical--surface);
   --chip--gradient-color-variation: var(--color-critical--surface);
@@ -108,7 +108,7 @@
 * and we want hover to take priority
 */
 
-.subtle:focus {
+.subtle:focus-visible {
   --chip--gradient-color-variation--hover: var(--color-surface);
 }
 
@@ -120,7 +120,7 @@
 
 .disabled,
 .disabled:hover,
-.disabled:focus {
+.disabled:focus-visible {
   border: var(--border-base) solid var(--chip-disabled--bg);
   color: var(--color-disabled);
   background-color: var(--chip-disabled--bg);
@@ -166,7 +166,7 @@
   );
 }
 
-.chip:focus .truncateGradient,
+.chip:focus-visible .truncateGradient,
 .chip:hover .truncateGradient {
   background: linear-gradient(
     to left,

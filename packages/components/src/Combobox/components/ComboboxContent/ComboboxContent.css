@@ -19,6 +19,15 @@
   visibility: hidden;
 }
 
+.content:focus,
+.content:focus-visible {
+  outline: none;
+}
+
+.content:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+
 .actions {
   display: flex;
   flex-direction: column;

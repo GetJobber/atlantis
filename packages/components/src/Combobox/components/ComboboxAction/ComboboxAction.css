@@ -19,12 +19,17 @@
 }
 
 .actionButton:focus {
-  box-shadow: var(--shadow-focus);
+  outline: none;
+}
+
+.actionButton:hover,
+.actionButton:focus-visible {
+  outline: none;
   background-color: var(--color-surface--background);
 }
 
-.actionButton:hover {
-  background-color: var(--color-surface--background);
+.actionButton:focus-visible {
+  box-shadow: var(--shadow-focus);
 }
 
 .actionButton span {

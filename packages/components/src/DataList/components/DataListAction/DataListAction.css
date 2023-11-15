@@ -20,6 +20,15 @@
   background-color: var(--color-surface--hover);
 }
 
+.action:focus,
+.action:focus-visible {
+  outline: none;
+}
+
+.action:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+
 .label {
   font-weight: 500;
 }
