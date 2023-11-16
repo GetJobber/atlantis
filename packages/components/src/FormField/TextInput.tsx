@@ -49,7 +49,7 @@ const TextInputInternal = (
                 rest.onChange(e);
               }
             }}
-            ref={input || ref}
+            ref={ref || input}
           />
         </div>
       </div>
