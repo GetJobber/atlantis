@@ -19,16 +19,19 @@ export function useOnKeyDown(
   keys: KeyComparator[] | KeyComparator,
 ) {
   useEffect(() => {
-    window.addEventListener('keydown', handler);
+    window.addEventListener("keydown", handler);
+
     return () => {
-      window.removeEventListener('keydown', handler);
+      window.removeEventListener("keydown", handler);
     };
   }, [handler]);
 
   function handler(event: KeyboardEvent) {
     const keyboardEvent = event as unknown as VerboseKeyComparator;
+
     if (typeof keys === "string" && keyboardEvent.key === keys) {
       callback(event);
+
       return;
     }
 
@@ -36,12 +39,14 @@ export function useOnKeyDown(
       Array.isArray(keys) &&
       keys.some(item => {
         if (typeof item === "string") return keyboardEvent.key === item;
+
         return Object.keys(item).every(
           index => keyboardEvent[index] === item[index],
         );
       })
     ) {
       callback(event);
+
       return;
     }
 
@@ -51,6 +56,7 @@ export function useOnKeyDown(
       Object.keys(keys).every(index => keyboardEvent[index] === keys[index])
     ) {
       callback(event);
+
       return;
     }
   }
