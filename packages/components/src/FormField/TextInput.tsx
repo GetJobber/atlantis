@@ -24,9 +24,9 @@ const TextInputInternal = (
 
   useEffect(() => {
     const setRef =
-      (ref as React.RefObject<HTMLInputElement>) ??
-      (input as React.RefObject<HTMLInputElement>);
-    setMiniMode(!!setRef?.current?.value);
+      (ref as React.RefObject<HTMLInputElement>).current ??
+      (input as React.RefObject<HTMLInputElement>)?.current;
+    setMiniMode(!!setRef?.value);
   }, [input.current?.value]);
 
   const wrapperClasses = classnames(styles.wrapper, {
