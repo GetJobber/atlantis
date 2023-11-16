@@ -6,26 +6,27 @@ import { RawTextInputProps } from "./Types";
 export const RawTextInput = (
   { className, ...rest }: RawTextInputProps,
 
-  ref: React.ForwardedRef<HTMLInputElement>,
+  ref: React.Ref<HTMLInputElement>,
 ) => {
   return (
     <input {...rest} ref={ref} className={`${styles.input} ${className}`} />
   );
 };
 
-const RawTextInputWithRef = forwardRef(RawTextInput);
+const RawTextWithRef = forwardRef(RawTextInput);
 
-export const TextInput = ({
-  className = "",
-  prefix = "",
-  placeholder = "",
-  ...rest
-}: RawTextInputProps) => {
+const TextInputInternal = (
+  { className = "", prefix = "", placeholder = "", ...rest }: RawTextInputProps,
+  ref: React.Ref<HTMLInputElement>,
+) => {
   const [miniMode, setMiniMode] = useState(false);
   const input = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    setMiniMode(!!input.current?.value);
+    const setRef =
+      (ref as React.RefObject<HTMLInputElement>) ??
+      (input as React.RefObject<HTMLInputElement>);
+    setMiniMode(!!setRef?.current?.value);
   }, [input.current?.value]);
 
   const wrapperClasses = classnames(styles.wrapper, {
@@ -38,7 +39,7 @@ export const TextInput = ({
         <label className={styles.label}>{placeholder}</label>
         <div style={{ display: "flex", alignItems: "center" }}>
           {prefix && <span className={styles.prefix}>{prefix}</span>}
-          <RawTextInputWithRef
+          <RawTextWithRef
             className={className}
             {...rest}
             onChange={e => {
@@ -48,10 +49,12 @@ export const TextInput = ({
                 rest.onChange(e);
               }
             }}
-            ref={input}
+            ref={input || ref}
           />
         </div>
       </div>
     </div>
   );
 };
+
+export const TextInput = forwardRef(TextInputInternal);

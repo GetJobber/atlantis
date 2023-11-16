@@ -8,6 +8,7 @@ import {
   TextInput,
 } from "@jobber/components/FormField";
 import { CheckboxInput } from "@jobber/components/Checkbox";
+import { CompleteAuto, Option } from "@jobber/components/Autocomplete";
 
 export default {
   title: "Components/Forms and Inputs/RawForm/Web",
@@ -78,4 +79,43 @@ const CurrencyTemplate: ComponentStory<typeof CurrencyInput> = args => {
 export const Currency = CurrencyTemplate.bind({});
 Currency.args = {
   placeholder: "Currency",
+};
+
+const CompleteAutoTemplate: ComponentStory<typeof CompleteAuto> = args => {
+  const [selectedOption, setSelectedOption] = React.useState<
+    Option | undefined
+  >(undefined);
+
+  const getOptions = async (searchValue: string) => {
+    return [
+      {
+        label: "First",
+        value: "First",
+      },
+      {
+        label: "Second",
+        value: "Second",
+      },
+      {
+        label: "Third",
+        value: "Third",
+      },
+    ].filter(option => option.label.includes(searchValue));
+  };
+
+  return (
+    <div>
+      <CompleteAuto
+        {...args}
+        getOptions={getOptions}
+        value={selectedOption}
+        onChange={s => setSelectedOption(s)}
+      />
+    </div>
+  );
+};
+
+export const Complete = CompleteAutoTemplate.bind({});
+Complete.args = {
+  placeholder: "Complete",
 };

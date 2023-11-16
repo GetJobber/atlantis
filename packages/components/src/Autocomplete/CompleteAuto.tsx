@@ -4,22 +4,14 @@ import { XOR } from "ts-xor";
 import styles from "./Autocomplete.css";
 import { Menu } from "./Menu";
 import { AnyOption, GroupOption, Option } from "./Option";
-import { InputText, InputTextRef } from "../InputText";
-import { FormFieldProps } from "../FormField";
+import { FormFieldProps, TextInput } from "../FormField";
 
 type OptionCollection = XOR<Option[], GroupOption[]>;
 
-interface AutocompleteProps
+export interface completeAutoProps
   extends Pick<
     FormFieldProps,
-    | "invalid"
-    | "name"
-    | "onBlur"
-    | "onFocus"
-    | "prefix"
-    | "size"
-    | "suffix"
-    | "validations"
+    "invalid" | "name" | "onBlur" | "onFocus" | "validations"
   > {
   /**
    * @deprecated
@@ -74,22 +66,20 @@ interface AutocompleteProps
 
 // Max statements increased to make room for the debounce functions
 /* eslint max-statements: ["error", 14] */
-function AutocompleteInternal(
+function CompleteAutoInternal(
   {
     initialOptions = [],
     value,
     allowFreeForm = true,
-    size = undefined,
     debounce: debounceRate = 300,
     onChange,
     getOptions,
     placeholder,
     onBlur,
     onFocus,
-    validations,
     ...inputProps
-  }: AutocompleteProps,
-  ref: Ref<InputTextRef>,
+  }: completeAutoProps,
+  ref: Ref<HTMLInputElement>,
 ) {
   const [options, setOptions] = useState(initialOptions);
   const [menuVisible, setMenuVisible] = useState(false);
@@ -110,16 +100,15 @@ function AutocompleteInternal(
 
   return (
     <div className={styles.autocomplete} ref={autocompleteRef}>
-      <InputText
+      <TextInput
         ref={ref}
-        autocomplete={false}
-        size={size}
         value={inputText}
-        onChange={handleInputChange}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          handleInputChange(e.target.value)
+        }
         placeholder={placeholder}
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
-        validations={validations}
         {...inputProps}
       />
       {menuVisible && (
@@ -195,4 +184,4 @@ function mapToOptions(items: AnyOption[]) {
   }, []);
 }
 
-export const Autocomplete = forwardRef(AutocompleteInternal);
+export const CompleteAuto = forwardRef(CompleteAutoInternal);
