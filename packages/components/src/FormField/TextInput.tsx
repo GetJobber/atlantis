@@ -21,6 +21,7 @@ const TextInputInternal = (
 ) => {
   const [miniMode, setMiniMode] = useState(false);
   const input = useRef<HTMLInputElement>(null);
+  const [uselessState, setUselessState] = useState(false);
 
   useEffect(() => {
     const setRef =
@@ -28,6 +29,10 @@ const TextInputInternal = (
       (input as React.RefObject<HTMLInputElement>)?.current;
     setMiniMode(!!setRef?.value);
   }, [input.current?.value]);
+
+  useEffect(() => {
+    setUselessState(!uselessState);
+  }, [className]);
 
   const wrapperClasses = classnames(styles.wrapper, {
     [styles.miniLabel]: miniMode,
