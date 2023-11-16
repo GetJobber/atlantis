@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.47.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.47.0...@jobber/design@0.47.1) (2023-11-16)
+
+
+### Bug Fixes
+
+* breakpoints and viewport mock ([#1642](https://github.com/GetJobber/atlantis/issues/1642)) ([c1e5042](https://github.com/GetJobber/atlantis/commit/c1e50422a7cfec36effaf7c27b322d68fd5c70b5))
+
+
+
+
+
 # [0.47.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.46.0...@jobber/design@0.47.0) (2023-11-03)
 
 
