@@ -1,7 +1,11 @@
 .datePicker {
+  width: 100%;
   max-width: 320px;
+  min-width: 320px;
   padding: 20px;
+  background-color: var(--color-surface);
 }
+
 .headerWrapper {
   display: flex;
   width: 100%;

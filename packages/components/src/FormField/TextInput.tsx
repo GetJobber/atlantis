@@ -19,7 +19,7 @@ const TextInputInternal = (
   { className = "", prefix = "", placeholder = "", ...rest }: RawTextInputProps,
   ref: React.Ref<HTMLInputElement>,
 ) => {
-  const [miniMode, setMiniMode] = useState(false);
+  const [miniMode, setMiniMode] = useState(rest.type === "time");
   const input = useRef<HTMLInputElement>(null);
   const [uselessState, setUselessState] = useState(false);
 
@@ -27,7 +27,7 @@ const TextInputInternal = (
     const setRef =
       (ref as React.RefObject<HTMLInputElement>)?.current ??
       (input as React.RefObject<HTMLInputElement>)?.current;
-    setMiniMode(!!setRef?.value);
+    setMiniMode(rest.type === "time" || !!setRef?.value);
   }, [input.current?.value]);
 
   useEffect(() => {

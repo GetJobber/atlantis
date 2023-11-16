@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React, { useRef } from "react";
 import {
   CurrencyInput,
-  RawDatePicker,
+  DateInput,
   SelectInput,
   SelectOption,
   TextInput,
@@ -47,10 +47,10 @@ Select.args = {
   placeholder: "Raw Select",
 };
 
-const DateTemplate: ComponentStory<typeof RawDatePicker> = args => {
+const DateTemplate: ComponentStory<typeof DateInput> = args => {
   return (
     <div>
-      <RawDatePicker {...args} />
+      <DateInput {...args} />
     </div>
   );
 };

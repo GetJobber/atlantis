@@ -3,7 +3,7 @@ import classnames from "classnames";
 import styles from "./FormField.css";
 import { RawerDatePicker } from "../DatePicker";
 
-export const RawDatePicker = ({
+export const DateInput = ({
   placeholder,
 }: {
   readonly placeholder: string;
