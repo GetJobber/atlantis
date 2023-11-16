@@ -3,7 +3,11 @@ import classnames from "classnames";
 import styles from "./FormField.css";
 import { RawerDatePicker } from "../DatePicker";
 
-export const RawDatePicker = ({ label }: { readonly label: string }) => {
+export const RawDatePicker = ({
+  placeholder,
+}: {
+  readonly placeholder: string;
+}) => {
   const wrapperClasses = classnames(styles.wrapper, styles.miniLabel);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
@@ -51,7 +55,7 @@ export const RawDatePicker = ({ label }: { readonly label: string }) => {
     <div ref={myElement}>
       <div className={wrapperClasses}>
         <div className={styles.childrenWrapper}>
-          <label className={styles.label}>{label}</label>
+          <label className={styles.label}>{placeholder}</label>
           <input
             className={styles.input}
             type="date"

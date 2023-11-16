@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import classnames from "classnames";
 import styles from "./FormField.css";
 
@@ -6,25 +6,26 @@ export const RawSelectInput = ({
   className,
   children,
   ...rest
-}: React.DetailedHTMLProps<
-  React.SelectHTMLAttributes<HTMLSelectElement>,
-  HTMLSelectElement
->) => {
+}: RawSelectInputProps) => {
   return (
     <select {...rest} className={`${styles.input} ${className}`}>
       {children}
     </select>
   );
 };
-export interface SelectInputProps extends PropsWithChildren {
+type RawSelectInputProps = React.DetailedHTMLProps<
+  React.SelectHTMLAttributes<HTMLSelectElement>,
+  HTMLSelectElement
+>;
+export interface SelectInputProps extends RawSelectInputProps {
   readonly className?: string;
-  readonly label?: string;
+  readonly placeholder?: string;
 }
 
 export const SelectInput = ({
   children,
+  placeholder = "",
   className = "",
-  label = "",
   ...rest
 }: SelectInputProps) => {
   const [miniMode, setMiniMode] = useState(false);
@@ -42,7 +43,7 @@ export const SelectInput = ({
   return (
     <div className={wrapperClasses}>
       <div className={styles.childrenWrapper}>
-        <label className={styles.label}>{label}</label>
+        <label className={styles.label}>{placeholder}</label>
         <RawSelectInput
           className={className}
           {...rest}

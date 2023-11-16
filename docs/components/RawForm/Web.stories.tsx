@@ -27,7 +27,7 @@ const TextTemplate: ComponentStory<typeof TextInput> = args => {
 };
 export const Text = TextTemplate.bind({});
 Text.args = {
-  label: "Raw",
+  placeholder: "Raw",
 };
 
 const SelectTemplate: ComponentStory<typeof SelectInput> = args => {
@@ -43,7 +43,7 @@ const SelectTemplate: ComponentStory<typeof SelectInput> = args => {
 };
 export const Select = SelectTemplate.bind({});
 Select.args = {
-  label: "Raw Select",
+  placeholder: "Raw Select",
 };
 
 const DateTemplate: ComponentStory<typeof RawDatePicker> = args => {
@@ -55,7 +55,7 @@ const DateTemplate: ComponentStory<typeof RawDatePicker> = args => {
 };
 export const Date = DateTemplate.bind({});
 Date.args = {
-  label: "Raw",
+  placeholder: "Raw",
 };
 
 const CheckboxTemplate: ComponentStory<typeof CheckboxInput> = args => {
@@ -77,5 +77,5 @@ const CurrencyTemplate: ComponentStory<typeof CurrencyInput> = args => {
 };
 export const Currency = CurrencyTemplate.bind({});
 Currency.args = {
-  label: "Currency",
+  placeholder: "Currency",
 };

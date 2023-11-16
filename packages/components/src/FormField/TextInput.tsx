@@ -1,7 +1,7 @@
 import React, { forwardRef, useEffect, useRef, useState } from "react";
 import classnames from "classnames";
 import styles from "./FormField.css";
-import { RawTextInputProps, TextInputProps } from "./Types";
+import { RawTextInputProps } from "./Types";
 
 export const RawTextInput = (
   { className, ...rest }: RawTextInputProps,
@@ -17,10 +17,10 @@ const RawTextInputWithRef = forwardRef(RawTextInput);
 
 export const TextInput = ({
   className = "",
-  label = "",
   prefix = "",
+  placeholder = "",
   ...rest
-}: TextInputProps) => {
+}: RawTextInputProps) => {
   const [miniMode, setMiniMode] = useState(false);
   const input = useRef<HTMLInputElement>(null);
 
@@ -35,7 +35,7 @@ export const TextInput = ({
   return (
     <div className={wrapperClasses}>
       <div className={styles.childrenWrapper}>
-        <label className={styles.label}>{label}</label>
+        <label className={styles.label}>{placeholder}</label>
         <div style={{ display: "flex", alignItems: "center" }}>
           {prefix && <span className={styles.prefix}>{prefix}</span>}
           <RawTextInputWithRef
