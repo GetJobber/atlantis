@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.60.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.4...@jobber/components@4.60.5) (2023-11-15)
+
+
+### Bug Fixes
+
+* **components:** resolve transition flicker on DataList "tag count" element ([#1637](https://github.com/GetJobber/atlantis/issues/1637)) ([f3e33e7](https://github.com/GetJobber/atlantis/commit/f3e33e789dd32baeff93d7480b8d0fce8efa72bb))
+
+
+
+
+
+## [4.60.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.3...@jobber/components@4.60.4) (2023-11-15)
+
+
+### Bug Fixes
+
+* **components:** Refactor DataListSort to use Combobox ([#1638](https://github.com/GetJobber/atlantis/issues/1638)) ([ba1675f](https://github.com/GetJobber/atlantis/commit/ba1675f2ff6ba34a55e3612ba7c8b382176ea74d))
+
+
+
+
+
+## [4.60.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.2...@jobber/components@4.60.3) (2023-11-15)
+
+
+### Bug Fixes
+
+* **components:** Ensure DataList renders the list item on safari ([#1639](https://github.com/GetJobber/atlantis/issues/1639)) ([eaff341](https://github.com/GetJobber/atlantis/commit/eaff341b11428b1c36dd560a547b93ae196eafd2))
+
+
+
+
+
+## [4.60.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.1...@jobber/components@4.60.2) (2023-11-14)
+
+
+### Bug Fixes
+
+* **components:** Ensure DataList sorting gets cleared in a predictable manner ([#1635](https://github.com/GetJobber/atlantis/issues/1635)) ([f3f6aea](https://github.com/GetJobber/atlantis/commit/f3f6aea032ccc4cf72bee65b625f5791576bf9d5))
+
+
+
+
+
+## [4.60.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.0...@jobber/components@4.60.1) (2023-11-13)
+
+
+### Bug Fixes
+
+* **components:** Make pseudo-elements avoid pointer events on Combobox ([#1632](https://github.com/GetJobber/atlantis/issues/1632)) ([3776138](https://github.com/GetJobber/atlantis/commit/3776138f548307d763692131dfcac92625eff9ef))
+
+
+
+
+
 # [4.60.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.59.0...@jobber/components@4.60.0) (2023-11-08)
 
 
