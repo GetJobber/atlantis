@@ -24,7 +24,7 @@ const TextInputInternal = (
 
   useEffect(() => {
     const setRef =
-      (ref as React.RefObject<HTMLInputElement>).current ??
+      (ref as React.RefObject<HTMLInputElement>)?.current ??
       (input as React.RefObject<HTMLInputElement>)?.current;
     setMiniMode(!!setRef?.value);
   }, [input.current?.value]);
