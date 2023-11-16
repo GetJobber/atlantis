@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.7.0...@jobber/hooks@2.7.1) (2023-11-16)
+
+
+### Bug Fixes
+
+* remove @use-it/event-listener dependency and use regular event handler attachment api. ([#1630](https://github.com/GetJobber/atlantis/issues/1630)) ([9453814](https://github.com/GetJobber/atlantis/commit/9453814837699d4a1caae8b32caf65c7ddd3b92a))
+
+
+
+
+
 # [2.7.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.6.3...@jobber/hooks@2.7.0) (2023-11-07)
 
 
