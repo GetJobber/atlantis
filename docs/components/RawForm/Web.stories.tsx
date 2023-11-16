@@ -99,8 +99,8 @@ const CompleteAutoTemplate: ComponentStory<typeof CompleteAuto> = args => {
         value: "Second",
       },
       {
-        label: "Third",
-        value: "Third",
+        label: "Fourth",
+        value: "Fourth",
       },
     ].filter(option => option.label.includes(searchValue));
   };
