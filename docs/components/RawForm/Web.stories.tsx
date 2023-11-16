@@ -1,6 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import {
+  CurrencyInput,
   RawDatePicker,
   SelectInput,
   SelectOption,
@@ -65,6 +66,16 @@ const CheckboxTemplate: ComponentStory<typeof CheckboxInput> = args => {
   );
 };
 export const Checkbox = CheckboxTemplate.bind({});
-Text.args = {
-  label: "Raw",
+Checkbox.args = {};
+
+const CurrencyTemplate: ComponentStory<typeof CurrencyInput> = args => {
+  return (
+    <div>
+      <CurrencyInput {...args} />
+    </div>
+  );
+};
+export const Currency = CurrencyTemplate.bind({});
+Currency.args = {
+  label: "Currency",
 };
