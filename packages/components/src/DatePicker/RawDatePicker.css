@@ -1,8 +1,11 @@
 .datePicker {
+  position: absolute;
+  z-index: 999;
   width: 100%;
-  max-width: 320px;
-  min-width: 320px;
+  max-width: 322px;
+  min-width: 322px;
   padding: 20px;
+  border: 1px solid var(--color-border);
   background-color: var(--color-surface);
 }
 

@@ -52,7 +52,7 @@ export const DateInput = ({
   }, []);
 
   return (
-    <div ref={myElement}>
+    <div ref={myElement} className={styles.wrapper}>
       <div className={wrapperClasses}>
         <div className={styles.childrenWrapper}>
           <label className={styles.label}>{placeholder}</label>
