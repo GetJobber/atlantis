@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import React from "react";
+import React, { useRef } from "react";
 import {
   CurrencyInput,
   RawDatePicker,
@@ -70,9 +70,11 @@ export const Checkbox = CheckboxTemplate.bind({});
 Checkbox.args = {};
 
 const CurrencyTemplate: ComponentStory<typeof CurrencyInput> = args => {
+  const ref = useRef<HTMLInputElement>(null);
+
   return (
     <div>
-      <CurrencyInput {...args} />
+      <CurrencyInput {...args} ref={ref} />
     </div>
   );
 };
