@@ -187,7 +187,9 @@ const ComboboxMultiSelection: ComponentStory<typeof Combobox> = args => {
       {...args}
       multiSelect
       label="Teammates"
-      onSelect={setSelected}
+      onSelect={selection => {
+        setSelected(selection);
+      }}
       selected={selected}
     >
       <Combobox.Option id="1" label="Bilbo Baggins" />
@@ -196,13 +198,14 @@ const ComboboxMultiSelection: ComponentStory<typeof Combobox> = args => {
       <Combobox.Option id="4" label="Merry Brandybuck" />
       <Combobox.Option id="5" label="Sam Gamgee" />
       <Combobox.Option id="6" label="Aragorn" />
-      <Combobox.Option id="7" label="Galadriel" />
-      <Combobox.Option id="8" label="Arwen" />
+      <Combobox.Option id="7" label="Gimli" />
+      <Combobox.Option id="8" label="Legolas" />
       <Combobox.Option id="9" label="Gandalf" />
-      <Combobox.Option id="10" label="Legolas" />
-      <Combobox.Option id="11" label="Gimli" />
-      <Combobox.Option id="12" label="Samwise Gamgee" />
-      <Combobox.Option id="14" label="Faramir" />
+      <Combobox.Option id="10" label="Gollum" />
+      <Combobox.Option id="11" label="Sauron" />
+      <Combobox.Option id="12" label="Saruman" />
+      <Combobox.Option id="13" label="Elrond" />
+      <Combobox.Option id="14" label="Galadriel" />
 
       <Combobox.Action
         label="Add Teammate"

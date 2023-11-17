@@ -2,25 +2,29 @@ import React from "react";
 import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
 import { ComboboxContext } from "../../ComboboxProvider";
-import { ComboboxContentProps } from "../../Combobox.types";
+import { ComboboxTriggerProps } from "../../Combobox.types";
 
-interface ComboboxTriggerProps extends Pick<ComboboxContentProps, "selected"> {
-  readonly label: string;
-}
-
-export function ComboboxTrigger({ selected, ...props }: ComboboxTriggerProps) {
-  const { open, setOpen, multiselect } = React.useContext(ComboboxContext);
+export function ComboboxTrigger({
+  label = "Select",
+  selected,
+}: ComboboxTriggerProps) {
+  const { handleClose, open, setOpen } = React.useContext(ComboboxContext);
 
   const hasSelection = selected.length;
   const selectedLabel = selected.map(option => option.label).join(", ");
-  const renderHeading = multiselect || !hasSelection;
 
   return (
     <Chip
       variation={hasSelection ? "base" : "subtle"}
       label={hasSelection ? selectedLabel : ""}
-      heading={renderHeading ? props.label : ""}
-      onClick={() => setOpen(!open)}
+      heading={label}
+      onClick={() => {
+        if (open) {
+          handleClose();
+        } else {
+          setOpen(true);
+        }
+      }}
       role="combobox"
     >
       {!hasSelection && (

@@ -5,40 +5,26 @@ import styles from "./ComboboxContent.css";
 import { ComboboxContentSearch } from "./ComboboxContentSearch";
 import { ComboboxContentList } from "./ComboboxContentList";
 import { ComboboxContentHeader } from "./ComboboxContentHeader";
-import { ComboboxContext } from "../../ComboboxProvider";
 import { useComboboxContent } from "../../hooks/useComboboxContent";
 import { useComboboxAccessibility } from "../../hooks/useComboboxAccessibility";
-import { ComboboxContentProps, ComboboxOption } from "../../Combobox.types";
+import { ComboboxContentProps } from "../../Combobox.types";
 
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
-  const { open, setOpen, wrapperRef, multiselect } =
-    React.useContext(ComboboxContext);
-
   const optionsExist = props.options.length > 0;
 
-  const {
-    searchValue,
-    setSearchValue,
-    setFirstSelectedElement,
-    filteredOptions,
-    optionsListRef,
-    selectedOptions,
-    optionsSelectionHandler,
-  } = useComboboxContent(
+  const { filteredOptions, optionsListRef } = useComboboxContent(
     props.options,
-    open,
+    props.open,
     props.selected,
-    props.onClose,
-    props.onSelect,
+    props.searchValue,
   );
 
   const { popperRef, popperStyles, attributes } = useComboboxAccessibility(
-    handleSelection,
+    props.handleSelection,
     filteredOptions,
     optionsListRef,
-    open,
-    setOpen,
-    wrapperRef,
+    props.open,
+    props.wrapperRef,
   );
 
   const template = (
@@ -47,89 +33,55 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       id="ATL-Combobox-Content"
       data-testid="ATL-Combobox-Content"
       tabIndex={0}
-      className={classnames(styles.content, { [styles.hidden]: !open })}
+      className={classnames(styles.content, { [styles.hidden]: !props.open })}
       style={popperStyles.popper}
       {...attributes.popper}
     >
       <ComboboxContentSearch
-        open={open}
+        open={props.open}
         placeholder={props.subjectNoun}
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
+        searchValue={props.searchValue}
+        setSearchValue={props.setSearchValue}
       />
 
-      {multiselect && optionsExist && (
+      {props.multiselect && optionsExist && (
         <ComboboxContentHeader
           hasOptionsVisible={filteredOptions.length > 0}
           subjectNoun={props.subjectNoun}
-          selectedCount={selectedOptions.length}
+          selectedCount={props.selected.length}
           onClearAll={() => {
-            optionsSelectionHandler([]);
+            props.selectedStateSetter([]);
           }}
           onSelectAll={() => {
-            optionsSelectionHandler(filteredOptions);
+            props.selectedStateSetter(filteredOptions);
           }}
         />
       )}
-
       <ComboboxContentList
-        multiselect={multiselect}
+        multiselect={props.multiselect}
         showEmptyState={!optionsExist}
         options={filteredOptions}
-        selected={selectedOptions}
+        selected={props.selected}
         optionsListRef={optionsListRef}
-        setFirstSelectedElement={setFirstSelectedElement}
-        selectionHandler={handleSelection}
-        searchValue={searchValue}
+        searchValue={props.searchValue}
         subjectNoun={props.subjectNoun}
       />
-      {props.children && (
+      {props.actionElements && (
         <div className={styles.actions} role="group">
-          {React.Children.toArray(props.children).map(
-            (child, index, childrenArray) => (
-              <div
-                key={index}
-                className={classnames({
-                  [styles.actionPadding]: index === childrenArray.length - 1,
-                })}
-              >
-                {child}
-              </div>
-            ),
-          )}
+          {props.actionElements.map((child, index, childrenArray) => (
+            <div
+              key={index}
+              className={classnames({
+                [styles.actionPadding]: index === childrenArray.length - 1,
+              })}
+            >
+              {child}
+            </div>
+          ))}
         </div>
       )}
     </div>
   );
 
   return ReactDOM.createPortal(template, document.body);
-
-  function handleSelection(selection: ComboboxOption) {
-    if (multiselect) {
-      handleMultiSelect(optionsSelectionHandler, selectedOptions, selection);
-    } else {
-      handleSingleSelect(optionsSelectionHandler, selection);
-    }
-  }
-
-  function handleSingleSelect(
-    selectCallback: (selected: ComboboxOption[]) => void,
-    selection: ComboboxOption,
-  ) {
-    selectCallback([selection]);
-    setSearchValue("");
-    setOpen(false);
-  }
-}
-
-function handleMultiSelect(
-  selectCallback: (selected: ComboboxOption[]) => void,
-  selected: ComboboxOption[],
-  selection: ComboboxOption,
-) {
-  if (selected.some(s => s.id === selection.id)) {
-    selectCallback(selected.filter(s => s.id !== selection.id));
-  } else {
-    selectCallback([...selected, selection]);
-  }
 }

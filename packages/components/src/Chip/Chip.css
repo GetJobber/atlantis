@@ -174,3 +174,8 @@
     rgba(255, 255, 255, 0)
   );
 }
+
+.chipLabelRef {
+  display: inline-block;
+  width: 1px;
+}

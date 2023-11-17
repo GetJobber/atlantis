@@ -7,11 +7,12 @@ export const BREAKPOINT_SIZES = { sm: 490, md: 768, lg: 1080, xl: 1440 };
  * [supported breakpoints](https://atlantis.getjobber.com/?path=/docs/design-breakpoints--page).
  */
 export function useBreakpoints() {
-  const extraSmallOnly = useMediaQuery(`(width < ${BREAKPOINT_SIZES.sm}px)`);
-  const smallAndUp = useMediaQuery(`(width >= ${BREAKPOINT_SIZES.sm}px)`);
-  const mediumAndUp = useMediaQuery(`(width >= ${BREAKPOINT_SIZES.md}px)`);
-  const largeAndUp = useMediaQuery(`(width >= ${BREAKPOINT_SIZES.lg}px)`);
-  const extraLargeAndUp = useMediaQuery(`(width >= ${BREAKPOINT_SIZES.xl}px)`);
+  const { sm, md, lg, xl } = BREAKPOINT_SIZES;
+  const extraSmallOnly = useMediaQuery(`(max-width: ${sm - 1}px)`);
+  const smallAndUp = useMediaQuery(`(min-width: ${sm}px)`);
+  const mediumAndUp = useMediaQuery(`(min-width: ${md}px)`);
+  const largeAndUp = useMediaQuery(`(min-width: ${lg}px)`);
+  const extraLargeAndUp = useMediaQuery(`(min-width: ${xl}px)`);
 
   return {
     smallAndUp,

@@ -62,14 +62,14 @@ export const Chip = ({
             <>
               <Typography size="base" fontWeight="medium">
                 {heading}
-                <span ref={headingRef} />
+                <span ref={headingRef} className={styles.chipLabelRef} />
               </Typography>
               {label && <span className={styles.chipBar} />}
             </>
           )}
           <Typography size="base">
             {label}
-            <span ref={labelRef} />
+            <span ref={labelRef} className={styles.chipLabelRef} />
           </Typography>
           {!labelFullyVisible && (
             <div
