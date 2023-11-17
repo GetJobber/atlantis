@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
 import { Button } from "@jobber/components/Button";
-import { Content } from "@jobber/components/Content";
 import { Typography } from "@jobber/components/Typography";
 import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
@@ -81,65 +80,70 @@ const ComboboxCustomActivator: ComponentStory<typeof Combobox> = args => {
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
 
   return (
-    <Content>
-      <Typography element={"h3"} fontFamily={"display"}>
-        Custom Activators using Button:
-      </Typography>{" "}
-      <Combobox {...args} onSelect={setSelected} selected={selected}>
-        <Combobox.Activator>
-          <Button label={"Tax Rate"} icon={"dropdown"} iconOnRight={true} />
-        </Combobox.Activator>
-        <Combobox.Option id="1" label="13%" />
-        <Combobox.Option id="2" label="15%" />
-        <Combobox.Option id="3" label="20%" />
+    <>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <Typography element={"h3"} fontFamily={"display"}>
+          Custom Activators using Button:
+        </Typography>{" "}
+        <Combobox {...args} onSelect={setSelected} selected={selected}>
+          <Combobox.Activator>
+            <Button label={"Tax Rate"} icon={"dropdown"} iconOnRight={true} />
+          </Combobox.Activator>
+          <Combobox.Option id="1" label="13%" />
+          <Combobox.Option id="2" label="15%" />
+          <Combobox.Option id="3" label="20%" />
 
-        <Combobox.Action
-          label="Add Tax Rate"
-          onClick={() => {
-            alert("Added a new tax rate ✅");
-          }}
-        />
-      </Combobox>
-      <Combobox {...args} onSelect={setSelected} selected={selected}>
-        <Combobox.Activator>
-          <Button
-            label={"Tax Rate"}
-            icon={"plus"}
-            type={"primary"}
-            variation={"subtle"}
+          <Combobox.Action
+            label="Add Tax Rate"
+            onClick={() => {
+              alert("Added a new tax rate ✅");
+            }}
           />
-        </Combobox.Activator>
-        <Combobox.Option id="1" label="13%" />
-        <Combobox.Option id="2" label="15%" />
-        <Combobox.Option id="3" label="20%" />
+        </Combobox>
+        <br />
+        <Combobox {...args} onSelect={setSelected} selected={selected}>
+          <Combobox.Activator>
+            <Button
+              label={"Tax Rate"}
+              icon={"plus"}
+              type={"primary"}
+              variation={"subtle"}
+            />
+          </Combobox.Activator>
+          <Combobox.Option id="1" label="13%" />
+          <Combobox.Option id="2" label="15%" />
+          <Combobox.Option id="3" label="20%" />
 
-        <Combobox.Action
-          label="Add Tax Rate"
-          onClick={() => {
-            alert("Added a new tax rate ✅");
-          }}
-        />
-      </Combobox>
-      <Combobox {...args} onSelect={setSelected} selected={selected}>
-        <Combobox.Activator>
-          <Button
-            label={""}
-            icon={"percent"}
-            size={"large"}
-            type={"secondary"}
+          <Combobox.Action
+            label="Add Tax Rate"
+            onClick={() => {
+              alert("Added a new tax rate ✅");
+            }}
           />
-        </Combobox.Activator>
-        <Combobox.Option id="1" label="13%" />
-        <Combobox.Option id="2" label="15%" />
-        <Combobox.Option id="3" label="20%" />
+        </Combobox>
+        <br />
+        <Combobox {...args} onSelect={setSelected} selected={selected}>
+          <Combobox.Activator>
+            <Button
+              label={""}
+              icon={"percent"}
+              size={"large"}
+              type={"secondary"}
+            />
+          </Combobox.Activator>
+          <Combobox.Option id="1" label="13%" />
+          <Combobox.Option id="2" label="15%" />
+          <Combobox.Option id="3" label="20%" />
 
-        <Combobox.Action
-          label="Add Tax Rate"
-          onClick={() => {
-            alert("Added a new tax rate ✅");
-          }}
-        />
-      </Combobox>
+          <Combobox.Action
+            label="Add Tax Rate"
+            onClick={() => {
+              alert("Added a new tax rate ✅");
+            }}
+          />
+        </Combobox>
+      </div>
+      <br />
       <Typography element={"h3"} fontFamily={"display"}>
         Custom Activator using Chip:
       </Typography>
@@ -149,6 +153,9 @@ const ComboboxCustomActivator: ComponentStory<typeof Combobox> = args => {
             <Chip.Prefix>
               <Icon name={"percent"} size={"small"} />
             </Chip.Prefix>
+            <Chip.Suffix>
+              <Icon name={"arrowDown"} size={"large"} />
+            </Chip.Suffix>
           </Chip>
         </Combobox.Activator>
         <Combobox.Option id="1" label="13%" />
@@ -162,13 +169,13 @@ const ComboboxCustomActivator: ComponentStory<typeof Combobox> = args => {
           }}
         />
       </Combobox>
-    </Content>
+    </>
   );
 };
 
 const ComboboxEmptyState: ComponentStory<typeof Combobox> = args => {
   return (
-    <Combobox {...args} label="Teammates" subjectNoun="teammates">
+    <Combobox {...args} label="Teammates" subjectNoun="teammates" selected={[]}>
       <Combobox.Action
         label="Add Teammate"
         onClick={() => {
