@@ -1,14 +1,13 @@
 import { DocumentNode } from "@apollo/client";
 import { MockedProvider, MockedResponse } from "@apollo/react-testing";
-import React from "react";
-import { v1 as uuidv1 } from "uuid";
+import React, { useId } from "react";
 import { SUBSCRIPTION_QUERY } from "./queries";
 
 export function wrapper(mocks: MockedResponse[]) {
   function ApolloMockedProvider({
     children,
   }: {
-    children: React.ReactElement;
+    readonly children: React.ReactElement;
   }) {
     return (
       <MockedProvider addTypename={true} mocks={mocks}>
@@ -33,14 +32,14 @@ export const listQueryResponseMock = jest.fn(id => {
               __typename: "SMSMessageEdge",
               node: {
                 __typename: "SMSMessage",
-                id: id || uuidv1(),
+                id: id || useId(),
               },
             },
           ],
           nodes: [
             {
               __typename: "SMSMessage",
-              id: id || uuidv1(),
+              id: id || useId(),
             },
           ],
           pageInfo: {
@@ -66,14 +65,14 @@ export const listQueryWithTotalCountResponseMock = jest.fn(id => {
               __typename: "SMSMessageEdge",
               node: {
                 __typename: "SMSMessage",
-                id: id || uuidv1(),
+                id: id || useId(),
               },
             },
           ],
           nodes: [
             {
               __typename: "SMSMessage",
-              id: id || uuidv1(),
+              id: id || useId(),
             },
           ],
           pageInfo: {
