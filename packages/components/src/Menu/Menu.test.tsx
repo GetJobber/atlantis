@@ -3,8 +3,6 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { Menu } from ".";
 import { Button } from "../Button";
 
-jest.mock("uuid");
-
 describe("Menu", () => {
   it("renders", () => {
     const { container } = render(

@@ -1,8 +1,7 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useId } from "react";
 import classnames from "classnames";
 import { DropzoneOptions, useDropzone } from "react-dropzone";
 import axios, { AxiosRequestConfig } from "axios";
-import { v1 as uuidv1 } from "uuid";
 import styles from "./InputFile.css";
 import { Button } from "../Button";
 import { Content } from "../Content";
@@ -55,7 +54,7 @@ export interface UploadParams {
 
   /**
    * Key to identify file.
-   * If unspecified a `uuid` will be used.
+   * If unspecified a generated id will be used.
    */
   readonly key?: string;
 
@@ -169,6 +168,7 @@ export function InputFile({
     multiple: allowMultiple,
     onDrop: useCallback(handleDrop, []),
   };
+
   if (allowedTypes === "images") {
     options.accept = "image/*";
   } else if (allowedTypes === "basicImages") {
@@ -224,7 +224,7 @@ export function InputFile({
   async function uploadFile(file: File) {
     const {
       url,
-      key = uuidv1(),
+      key = useId(),
       fields = {},
       httpMethod = "POST",
     } = await getUploadParams(file);
@@ -328,6 +328,7 @@ function getFileUpload(
   function getSrc() {
     const promise = new Promise<string>((resolve, reject) => {
       const reader = new FileReader();
+
       reader.onload = event => {
         if (
           event.target &&

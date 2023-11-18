@@ -1,5 +1,10 @@
-import React, { ChangeEvent, ReactElement, useEffect, useState } from "react";
-import { v1 as uuidv1 } from "uuid";
+import React, {
+  ChangeEvent,
+  ReactElement,
+  useEffect,
+  useId,
+  useState,
+} from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
 import { Controller, useForm, useFormContext } from "react-hook-form";
@@ -87,7 +92,7 @@ export function Checkbox({
       : // If there isn't a Form Context being provided, get a form for this field.
         useForm({ mode: "onTouched" });
 
-  const [identifier] = useState(uuidv1());
+  const identifier = useId();
 
   /**
    * Generate a name if one is not supplied, this is the name

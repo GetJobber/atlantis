@@ -20,7 +20,7 @@ it("renders an input type number", () => {
             >
               <input
                 class="input"
-                id="123e4567-e89b-12d3-a456-426655440001"
+                id="123e4567-e89b-12d3-a456-426655440005"
                 name="generatedName--123e4567-e89b-12d3-a456-426655440001"
                 type="number"
                 value="123"

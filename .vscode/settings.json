@@ -39,7 +39,10 @@
   "workbench.colorCustomizations": {
     "statusBar.background": "#f4e465",
     "statusBarItem.hoverBackground": "#f1dc35",
-    "statusBar.foreground": "#15202b"
+    "statusBar.foreground": "#15202b",
+    "sash.hoverBorder": "#f7ec95",
+    "statusBarItem.remoteBackground": "#f4e465",
+    "statusBarItem.remoteForeground": "#15202b"
   },
   "peacock.affectActivityBar": false,
   "peacock.affectTitleBar": false,
