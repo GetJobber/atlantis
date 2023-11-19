@@ -21,7 +21,7 @@
   "dependencies": {
     "@jobber/design": "^0.47.0",
     "@jobber/formatters": "*",
-    "@jobber/hooks": "^2.7.0",
+    "@jobber/hooks": "^2.7.1-st-spike-w.41",
     "@popperjs/core": "^2.0.6",
     "@std-proposal/temporal": "0.0.1",
     "@tanstack/react-table": "8.5.13",
