@@ -15,7 +15,7 @@ export function InternalChipSingleSelect({
   onChange,
   onClick,
 }: InternalChipChoiceProps) {
-  const foo = useId();
+  const generatedName = useId();
 
   return (
     <div className={styles.wrapper} data-testid="singleselect-chips">
@@ -28,7 +28,7 @@ export function InternalChipSingleSelect({
               type="radio"
               checked={isSelected}
               className={styles.input}
-              name={name || foo}
+              name={name || generatedName}
               onClick={handleClick(child.props.value)}
               onKeyUp={handleKeyUp(isSelected, child.props.value)}
               onChange={() => {

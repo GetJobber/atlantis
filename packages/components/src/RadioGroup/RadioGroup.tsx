@@ -38,14 +38,14 @@ export function RadioGroup({
   onChange,
   name,
 }: RadioGroupProps) {
-  const foo = useId();
+  const generatedName = useId();
 
   return (
     <div role="radiogroup" aria-label={ariaLabel} className={styles.radioGroup}>
       {React.Children.map(children, option => (
         <InternalRadioOption
           checked={value === option.props.value}
-          name={name || foo}
+          name={name || generatedName}
           onChange={handleChange}
           {...option.props}
         >
