@@ -15,8 +15,6 @@ import {
 import { Icon } from "../../../Icon";
 import { ChipProps } from "../../Chip";
 
-const menuId = useId();
-
 // eslint-disable-next-line max-statements
 export function useInternalChipDismissibleInput({
   options,
@@ -25,6 +23,7 @@ export function useInternalChipDismissibleInput({
   onOptionSelect,
   onSearch,
 }: ChipDismissibleInputProps) {
+  const menuId = useId();
   const [allOptions, setAllOptions] = useState<
     ChipDismissibleInputOptionProps[]
   >([]);

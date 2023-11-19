@@ -16,11 +16,12 @@ export function DayOfMonthSelect({
   disabled,
   onChange,
 }: DayOfMonthSelectProps) {
+  const inputId = useId();
+
   return (
     <div className={styles.container}>
       {daysInMonth.map(day => {
         const isSelected = selectedDays.has(day as DayOfMonth);
-        const inputId = useId();
 
         return (
           <div key={`${day}`} className={checkboxStyles.checkboxWrapper}>

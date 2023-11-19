@@ -1,4 +1,4 @@
-import React, { useCallback, useId } from "react";
+import React, { useCallback } from "react";
 import classnames from "classnames";
 import { DropzoneOptions, useDropzone } from "react-dropzone";
 import axios, { AxiosRequestConfig } from "axios";
@@ -224,10 +224,14 @@ export function InputFile({
   async function uploadFile(file: File) {
     const {
       url,
-      key = useId(),
+      key,
       fields = {},
       httpMethod = "POST",
     } = await getUploadParams(file);
+
+    if (!key) {
+      throw new Error("InputFile: a key is required");
+    }
 
     const fileUpload = getFileUpload(file, key, url);
     onUploadStart && onUploadStart({ ...fileUpload });

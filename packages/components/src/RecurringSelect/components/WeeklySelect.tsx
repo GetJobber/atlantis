@@ -15,6 +15,8 @@ export function WeeklySelect({
   selectedDays,
   disabled,
 }: WeeklySelectProps) {
+  const inputId = useId();
+
   const onChangeWeekDays = (event: React.FormEvent<HTMLInputElement>): void => {
     const day = Number(event.currentTarget.value);
     const next = new Set(Array.from(selectedDays));
@@ -31,7 +33,6 @@ export function WeeklySelect({
     <div className={styles.container}>
       {weekDays.map(weekDay => {
         const isSelected = selectedDays.has(weekDay);
-        const inputId = useId();
 
         return (
           <div key={`${weekDay}`} className={checkboxStyles.checkboxWrapper}>
