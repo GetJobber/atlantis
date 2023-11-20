@@ -31,18 +31,27 @@ The activator is the user-facing interface to open and close the Combobox and
 initiate option selection. When implementing Combobox, you may rely on the
 default activator or, you may pass in a custom activator.
 
+##### Default activator
+
 The default activator is a
-[Chip](../?path=/story/components-selections-chip-web--subtle) containing a
-label that reads "Select" and an `add` Icon suffix. The label can be customized
-by adding the optional `label` prop to better reflect the type of data being
-selected. Examples of using a default activator can be found in the
+[Chip](../?path=/story/components-selections-chip-web--subtle) containing an
+`add` Icon suffix and an optional Combobox prop `label` that by default, reads
+"Select". The label can be customized by adding the `label` prop to Combobox, to
+better reflect the type of data being selected. Examples of using a default
+activator can be found in the
 [single-select](../?path=/code/components-selections-combobox-web--single-select)
 and
 [multi-select](../?path=/code/components-selections-combobox-web--multi-select)
 stories.
 
-Notice that omitting an activator subcomponent will result in the default
-activator being used.
+_Note:_
+
+- The optional `label` prop on Combobox will only affect the default activator.
+  A custom activator label will overwrite the Combobox label.
+- Omitting a custom activator subcomponent will result in the default activator
+  being used.
+
+##### Custom activator
 
 The custom activator should be used when the Combobox activator is a
 [Button](../?path=/docs/components-actions-button-docs--page) or an alternate
