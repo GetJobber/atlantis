@@ -8,7 +8,6 @@
   --button-offset: calc(var(--space-largest) - var(--space-smaller));
 
   position: absolute;
-  /* Inputs are off by 1 when put beside a button */
   top: 50%;
   right: var(--button-offset);
   visibility: hidden;
