@@ -6,6 +6,15 @@
   background-color: transparent;
 }
 
+.headerLabel:focus,
+.headerLabel:focus-visible {
+  outline: none;
+}
+
+.headerLabel:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+
 .sortable {
   cursor: pointer;
 }
