@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.60.9](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.8...@jobber/components@4.60.9) (2023-11-20)
+
+
+### Bug Fixes
+
+* **components:** fix Chip, Combobox, and DataList focus states [JOB-82715] ([#1636](https://github.com/GetJobber/atlantis/issues/1636)) ([979b53e](https://github.com/GetJobber/atlantis/commit/979b53e34b1e16cbbb7de53184c1d9eb42dba8d7))
+
+
+
+
+
 ## [4.60.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.7...@jobber/components@4.60.8) (2023-11-16)
 
 **Note:** Version bump only for package @jobber/components
