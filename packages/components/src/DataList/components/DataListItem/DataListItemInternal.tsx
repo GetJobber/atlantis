@@ -16,18 +16,18 @@ export function DataListItemInternal<T extends DataListObject>({
 }: ListItemInternalProps<T>) {
   const { selected, onSelect } = useDataListContext();
 
+  const hasSelectedAll = !Array.isArray(selected);
+  const ids = Array.isArray(selected) ? selected : selected?.unselected || [];
+
   if (selected !== undefined && onSelect) {
     return (
       <div
         className={classNames(styles.selectable, {
-          [styles.selected]: selected?.length,
+          [styles.selected]: hasSelectedAll || ids?.length,
         })}
       >
         {children}
-        <Checkbox
-          checked={selected?.includes(item.id)}
-          onChange={handleChange}
-        />
+        <Checkbox checked={ids.includes(item.id)} onChange={handleChange} />
       </div>
     );
   }
@@ -35,10 +35,10 @@ export function DataListItemInternal<T extends DataListObject>({
   return children;
 
   function handleChange() {
-    if (selected?.includes(item.id)) {
-      onSelect?.(selected?.filter(id => id !== item.id));
-    } else if (selected) {
-      onSelect?.([...selected, item.id]);
+    if (ids?.includes(item.id)) {
+      onSelect?.(ids?.filter(id => id !== item.id));
+    } else if (ids) {
+      onSelect?.([...ids, item.id]);
     }
   }
 }
