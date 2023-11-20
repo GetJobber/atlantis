@@ -117,16 +117,36 @@ export interface DataListProps<T extends DataListObject> {
   };
 
   /**
+   * The list of Selected Item ids
+   */
+  readonly selected?: T["id"][] | DataListSelectedAll;
+
+  /**
    * Callback when an item checkbox is clicked.
    */
   readonly onSelect?: (items: T["id"][]) => void;
 
-  /**
-   * The list of Selected Item ids
-   */
-  readonly selected?: T["id"][];
-
   readonly onSelectAll?: () => void;
+}
+
+/**
+ * Select all items in the DataList except the ones in the unselected array.
+ *
+ * This is used in scenarios where we need to select all items in the DataList
+ * but couldn't query all the ID's. So instead of feeding all the ID's to the
+ * DataList, we set all checkboxes to be checked except for the items that are
+ * in the unselected array.
+ */
+export interface DataListSelectedAll {
+  /**
+   * The total number of selected items in the DataList.
+   */
+  readonly totalCount: number;
+
+  /**
+   * Track the ID's of the unchecked items.
+   */
+  readonly unselected: (string | number)[];
 }
 
 export type LayoutRenderer<T extends DataListObject> = (

@@ -15,25 +15,25 @@ interface DataListHeaderCheckbox {
 }
 
 export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
-  const {
-    data,
-    totalCount,
-    selected = [],
-    onSelectAll,
-    onSelect,
-  } = useDataListContext();
+  const { data, totalCount, selected, onSelectAll, onSelect } =
+    useDataListContext();
+
+  const { selectedCount, hasSelectedAll } = {
+    selectedCount: Array.isArray(selected)
+      ? selected.length
+      : selected?.totalCount || 0,
+    hasSelectedAll: !Array.isArray(selected),
+  };
 
   if (!onSelectAll && !onSelect) return children;
 
   const { sm } = useResponsiveSizing();
 
-  // Show "Deselect All" if breakpoint is sm or higher
   const deselectText = sm ? "Deselect All" : "Deselect";
-
-  const selectedLabel = selected.length ? `${selected.length} selected` : "";
+  const selectedLabel = selectedCount ? `${selectedCount} selected` : "";
 
   return (
-    <div className={classNames(styles.selectable)}>
+    <div className={styles.selectable}>
       <div
         className={classNames(styles.selectAllCheckbox, {
           [styles.visible]: Boolean(onSelectAll),
@@ -41,7 +41,7 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
       >
         <Checkbox
           checked={isAllSelected()}
-          indeterminate={selected.length > 0 && !isAllSelected()}
+          indeterminate={selectedCount > 0 && !isAllSelected()}
           onChange={onSelectAll}
         >
           <div className={styles.srOnly}>{selectedLabel}</div>
@@ -49,12 +49,12 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
       </div>
 
       <AnimatedSwitcher
-        switched={Boolean(selected.length)}
+        switched={Boolean(selectedCount)}
         initialChild={children}
         switchTo={
           <div className={styles.batchSelectContainer}>
             <div className={styles.headerBatchSelect}>
-              <Text>{selected.length} selected</Text>
+              <Text>{selectedCount} selected</Text>
               <Button
                 label={deselectText}
                 onClick={() => onSelect?.([])}
@@ -69,16 +69,18 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
   );
 
   function isAllSelected() {
+    if (hasSelectedAll) return true;
+
     // If there's a totalCount, we can use that to accurately determine if the
     // user have "selected all".
     if (totalCount) {
-      return totalCount === selected.length;
+      return totalCount === selectedCount;
     }
 
     // Otherwise, we'll use the total count of data. This is not as reliable, as
     // it's possible that the would select all loaded data while we're
     // loading more. It's still hard to get to that state as the load more
     // triggers before you see the last item.
-    return data.length > 0 && selected.length >= data.length;
+    return data.length > 0 && selectedCount >= data.length;
   }
 }
