@@ -7,19 +7,23 @@
   min-width: 0;
 }
 
+.overflowItems,
 .overflowGrid {
   display: grid;
-  margin: var(--overflow-fade--negative-offset);
-  padding: var(--overflow-fade--offset);
-  overflow-x: auto;
-  overflow-y: visible;
   grid-auto-flow: column;
   grid-auto-columns: max-content;
   align-items: center;
 }
 
-.overflowGrid > :not(:nth-last-child(2)):not(.overflowTrigger) {
-  margin-right: var(--space-small);
+.overflowItems {
+  gap: var(--space-small);
+}
+
+.overflowGrid {
+  margin: var(--overflow-fade--negative-offset);
+  padding: var(--overflow-fade--offset);
+  overflow-x: auto;
+  overflow-y: visible;
 }
 
 .overflowTrigger {
