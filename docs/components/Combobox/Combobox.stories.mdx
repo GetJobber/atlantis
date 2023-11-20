@@ -25,30 +25,30 @@ adding a new item to the list of options or managing a selection.
 
 Combobox is composed of three main parts:
 
-#### Trigger
+#### Activator
 
-The trigger is the user-facing interface to open and close the Combobox and
+The activator is the user-facing interface to open and close the Combobox and
 initiate option selection. When implementing Combobox, you may rely on the
-default trigger or, you may pass in a custom activator.
+default activator or, you may pass in a custom activator.
 
-The default trigger is a
+The default activator is a
 [Chip](../?path=/story/components-selections-chip-web--subtle) containing a
 label that reads "Select" and an `add` Icon suffix. The label can be customized
 by adding the optional `label` prop to better reflect the type of data being
-selected. Examples of using a default trigger can be found in the
+selected. Examples of using a default activator can be found in the
 [single-select](../?path=/code/components-selections-combobox-web--single-select)
 and
 [multi-select](../?path=/code/components-selections-combobox-web--multi-select)
 stories.
 
-Notice that omitting a trigger subcomponent will result in the default trigger
-being used.
+Notice that omitting an activator subcomponent will result in the default
+activator being used.
 
-The custom activator should be used when the Combobox trigger is a
+The custom activator should be used when the Combobox activator is a
 [Button](../?path=/docs/components-actions-button-docs--page) or an alternate
 variation of Chip. Button or Chip should be a child of `<Combobox.Activator />`
-and will be rendered in place of the default trigger. Examples of using a custom
-activator can be found in the
+and will be rendered in place of the default activator. Examples of using a
+custom activator can be found in the
 [custom activator](../?path=/code/components-selections-combobox-web--custom-activator)
 story.
 
@@ -69,7 +69,7 @@ adding a new item to the list of options.
 
 #### Single-select
 
-Single-select is ComboBox's default selection mode. When a selection is made,
+Single-select is Combobox's default selection mode. When a selection is made,
 the Combobox will close.
 
 #### Multi-select
@@ -120,7 +120,7 @@ these selections in their UI, if at all.
 Combobox is designed to handle lists of selectable options, so the component is
 text based.
 
-You may customize the trigger and action `label`. Refer to the
+You may customize the activator and action `label`. Refer to the
 [Product Vocabulary](../?path=/docs/content-product-vocabulary--page) for
 consistency in terminology and naming conventions when setting these values.
 
@@ -144,10 +144,10 @@ search query.
 
 ### Keyboard operation
 
-- The trigger can be actioned with `space` or `return`
+- The activator can be actioned with `space` or `return`
 - The Comobox confines tabbing to within itself while it's open using
   [useFocusTrap](https://atlantis.getjobber.com/?path=/docs/hooks-usefocustrap--use-focus-trap)
-- Pressing `esc` will close the Combobox and return focus to the trigger using
+- Pressing `esc` will close the Combobox and return focus to the activator using
   [useRefocusOnActivator](https://atlantis.getjobber.com/?path=/docs/hooks-userefocusonactivator--use-refocus-on-activator)
 - The search input is automatically focused when the Combobox opens. The button
   to clear the input can be focused with `tab`
@@ -158,7 +158,7 @@ search query.
 
 ### Assistive technology
 
-- The trigger element is given a `role="combobox"` to inform the user of the
+- The activator element is given a `role="combobox"` to inform the user of the
   type of content they'll be interacting with
 - Once the user opens the Combobox, the search input is focused and announced
 - The title and "selected/unselected" status of each item is announced as the
