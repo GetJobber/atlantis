@@ -1,8 +1,8 @@
 import React from "react";
 import classNames from "classnames";
 import { Checkbox } from "@jobber/components/Checkbox";
-import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
 import { DataListObject } from "@jobber/components/DataList/DataList.types";
+import { useBatchSelect } from "@jobber/components/DataList/hooks/useBatchSelect";
 import styles from "../../DataList.css";
 
 interface ListItemInternalProps<T extends DataListObject> {
@@ -14,31 +14,43 @@ export function DataListItemInternal<T extends DataListObject>({
   children,
   item,
 }: ListItemInternalProps<T>) {
-  const { selected, onSelect } = useDataListContext();
+  const {
+    canSelect,
+    hasAtLeastOneSelected,
+    hasSelectedAll,
+    selectedIDs,
+    onSelect,
+  } = useBatchSelect();
+  if (!canSelect) return children;
 
-  const hasSelectedAll = !Array.isArray(selected);
-  const ids = Array.isArray(selected) ? selected : selected?.unselected || [];
+  return (
+    <div
+      className={classNames(styles.selectable, {
+        [styles.selected]: hasAtLeastOneSelected,
+      })}
+    >
+      {children}
+      <Checkbox checked={getIsChecked()} onChange={handleChange} />
+    </div>
+  );
 
-  if (selected !== undefined && onSelect) {
-    return (
-      <div
-        className={classNames(styles.selectable, {
-          [styles.selected]: hasSelectedAll || ids?.length,
-        })}
-      >
-        {children}
-        <Checkbox checked={ids.includes(item.id)} onChange={handleChange} />
-      </div>
-    );
+  function getIsChecked(): boolean | undefined {
+    const isItemInSelectedIDs = selectedIDs.includes(item.id);
+
+    // If we're in a "select all" state, the selectedID's becomes a list of
+    // unchecked ID's.
+    if (hasSelectedAll) return !isItemInSelectedIDs;
+
+    // Otherwise, we're in a "select some" state, so we can just check if the
+    // item is in the selectedIDs list.
+    return isItemInSelectedIDs;
   }
 
-  return children;
-
   function handleChange() {
-    if (ids?.includes(item.id)) {
-      onSelect?.(ids?.filter(id => id !== item.id));
-    } else if (ids) {
-      onSelect?.([...ids, item.id]);
+    if (selectedIDs?.includes(item.id)) {
+      onSelect?.(selectedIDs?.filter(id => id !== item.id));
+    } else if (selectedIDs) {
+      onSelect?.([...selectedIDs, item.id]);
     }
   }
 }

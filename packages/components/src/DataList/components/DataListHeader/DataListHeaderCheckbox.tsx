@@ -9,25 +9,26 @@ import { useDataListContext } from "../../context/DataListContext";
 import styles from "../../DataList.css";
 import { InternalDataListBulkActions } from "../DataListBulkActions";
 import { useResponsiveSizing } from "../../hooks/useResponsiveSizing";
+import { useBatchSelect } from "../../hooks/useBatchSelect";
 
 interface DataListHeaderCheckbox {
   readonly children: ReactElement;
 }
 
 export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
-  const { data, totalCount, selected, onSelectAll, onSelect } =
-    useDataListContext();
-
-  const { selectedCount, hasSelectedAll } = {
-    selectedCount: Array.isArray(selected)
-      ? selected.length
-      : selected?.totalCount || 0,
-    hasSelectedAll: !Array.isArray(selected),
-  };
-
-  if (!onSelectAll && !onSelect) return children;
-
   const { sm } = useResponsiveSizing();
+  const { data, totalCount } = useDataListContext();
+  const {
+    canSelectAll,
+    hasSelectedAll,
+    selectedCount,
+    selectedIDs,
+    onSelectAll,
+    onSelect,
+  } = useBatchSelect();
+
+  // If there's no onSelectAll or onSelect, we don't need to render the checkbox.
+  if (!canSelectAll) return children;
 
   const deselectText = sm ? "Deselect All" : "Deselect";
   const selectedLabel = selectedCount ? `${selectedCount} selected` : "";
@@ -41,7 +42,7 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
       >
         <Checkbox
           checked={isAllSelected()}
-          indeterminate={selectedCount > 0 && !isAllSelected()}
+          indeterminate={isIndeterminate()}
           onChange={onSelectAll}
         >
           <div className={styles.srOnly}>{selectedLabel}</div>
@@ -67,6 +68,12 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
       />
     </div>
   );
+
+  function isIndeterminate() {
+    if (hasSelectedAll) return selectedIDs.length > 0;
+
+    return selectedCount > 0 && !isAllSelected();
+  }
 
   function isAllSelected() {
     if (hasSelectedAll) return true;

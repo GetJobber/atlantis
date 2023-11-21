@@ -119,7 +119,7 @@ export interface DataListProps<T extends DataListObject> {
   /**
    * The list of Selected Item ids
    */
-  readonly selected?: T["id"][] | DataListSelectedAll;
+  readonly selected?: DataListSelectedType<T["id"]>;
 
   /**
    * Callback when an item checkbox is clicked.
@@ -137,7 +137,9 @@ export interface DataListProps<T extends DataListObject> {
  * DataList, we set all checkboxes to be checked except for the items that are
  * in the unselected array.
  */
-export interface DataListSelectedAll {
+export interface DataListSelectedAllType<
+  T extends DataListObject = DataListObject,
+> {
   /**
    * The total number of selected items in the DataList.
    */
@@ -146,8 +148,12 @@ export interface DataListSelectedAll {
   /**
    * Track the ID's of the unchecked items.
    */
-  readonly unselected: (string | number)[];
+  readonly unselected: T["id"][];
 }
+
+export type DataListSelectedType<
+  T extends string | number = DataListObject["id"],
+> = T[] | DataListSelectedAllType;
 
 export type LayoutRenderer<T extends DataListObject> = (
   item: DataListItemType<T[]>,
