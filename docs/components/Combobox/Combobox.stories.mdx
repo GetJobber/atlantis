@@ -96,28 +96,36 @@ When clicking "Clear", all options will be un-selected. If you have filtered the
 options, the "Clear" button will un-select each option selected in the list,
 whether present in the filtered results or not.
 
-#### Selection callbacks
+#### Selection callback
 
 As selections are made, the data will be returned via an argument to the
-callbacks passed in through either the `onClose` or `onSelect` prop on
-`Combobox.Content`. **Only one or the other may be provided**.
+function provided to the `onSelect` prop.
 
-`onSelect` is the recommended callback handler that should be used in most
-cases. This will immediately inform the consumer of changes to selections as
-they happen.
+Please note that regardless of if it is a single-select or a multi-select, the
+`onSelect` will be called immediately as options are selected (or un-selected in
+the case of multi-select). Multi-select will receive an array of all selections,
+not only the most recent.
 
-`onClose` should be used when you need to wait until all selections have been
-made before applying changes.
+##### onClose
 
-The arguments provided to the `onClose` callback are identical to those of
-`onSelect`, only the timing differs. As such, please note this will only have a
-noticeable effect with the `multiSelect` variation which remains open after
-making selections whereas the Combobox closes immediately upon selection with
-single-select.
+If it is desirable to wait until the Combobox has been closed, likely indicating
+that all selections have been made, it is recommended to use the optional
+`onClose` callback which will fire when the Combobox is closed by any means.
+This callback provides no arguments.
 
-Combobox has no predefined visual representation of the selections outside of
-the internal list. It is up to the consumer to decide how to best represent
-these selections in their UI, if at all.
+While the selections will still be updated in real time, this callback will
+allow you to call any potentially expensive operations only once the Combobox
+has been closed. As such, it will only have a difference in timing for
+multi-select since a single-select selection will immediately close the
+Combobox.
+
+##### Selection Display
+
+When using the default activator, the selections will be displayed inside the
+activator. The data will still be returned via callback.
+
+When using a custom activator, the selections will only be returned as data
+keeping the choice of how to display the data flexible.
 
 ## Content guidelines
 
