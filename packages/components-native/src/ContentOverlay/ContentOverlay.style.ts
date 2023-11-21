@@ -59,6 +59,7 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     paddingTop: tokens["space-base"],
+    paddingHorizontal: tokens["space-smaller"],
   },
 
   titleWithDismiss: {
