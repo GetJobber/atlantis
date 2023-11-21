@@ -17,8 +17,9 @@ export function DataListItemInternal<T extends DataListObject>({
   const {
     canSelect,
     hasAtLeastOneSelected,
-    hasSelectedAll,
+    isSelectAll,
     selectedIDs,
+    selected,
     onSelect,
   } = useBatchSelect();
   if (!canSelect) return children;
@@ -39,7 +40,7 @@ export function DataListItemInternal<T extends DataListObject>({
 
     // If we're in a "select all" state, the selectedID's becomes a list of
     // unchecked ID's.
-    if (hasSelectedAll) return !isItemInSelectedIDs;
+    if (isSelectAll) return !isItemInSelectedIDs;
 
     // Otherwise, we're in a "select some" state, so we can just check if the
     // item is in the selectedIDs list.
@@ -47,6 +48,25 @@ export function DataListItemInternal<T extends DataListObject>({
   }
 
   function handleChange() {
+    if (isSelectAll) return handleSelectAllChange();
+
+    return handleSelectSomeChange();
+  }
+
+  function handleSelectAllChange() {
+    if (!selected || Array.isArray(selected)) return;
+
+    if (selectedIDs?.includes(item.id)) {
+      onSelect?.({
+        ...selected,
+        unselected: selectedIDs?.filter(id => id !== item.id),
+      });
+    } else if (selectedIDs) {
+      onSelect?.({ ...selected, unselected: [...selectedIDs, item.id] });
+    }
+  }
+
+  function handleSelectSomeChange() {
     if (selectedIDs?.includes(item.id)) {
       onSelect?.(selectedIDs?.filter(id => id !== item.id));
     } else if (selectedIDs) {

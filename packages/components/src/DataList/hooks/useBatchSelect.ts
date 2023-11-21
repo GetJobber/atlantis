@@ -5,15 +5,17 @@ export function useBatchSelect() {
   const { selected, onSelect, onSelectAll } = useDataListContext();
   const isArray = Array.isArray(selected);
   const selectedIDs = getIDs(selected);
-  const hasSelectedAll = !isArray;
+  const isSelectAll = !isArray;
 
   return {
     canSelect: Boolean(selected && onSelect),
     canSelectAll: Boolean(onSelect && onSelectAll),
-    hasAtLeastOneSelected: hasSelectedAll || selectedIDs.length > 0,
-    hasSelectedAll,
+    hasAtLeastOneSelected: isSelectAll || selectedIDs.length > 0,
+    isSelectAll,
+    isSelectSome: isArray,
     selectedCount: getSelectedCount(selected),
     selectedIDs,
+    selected,
     onSelect,
     onSelectAll,
   };

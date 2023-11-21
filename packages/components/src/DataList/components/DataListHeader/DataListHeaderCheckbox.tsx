@@ -20,7 +20,7 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
   const { data, totalCount } = useDataListContext();
   const {
     canSelectAll,
-    hasSelectedAll,
+    isSelectAll,
     selectedCount,
     selectedIDs,
     onSelectAll,
@@ -37,7 +37,7 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
     <div className={styles.selectable}>
       <div
         className={classNames(styles.selectAllCheckbox, {
-          [styles.visible]: Boolean(onSelectAll),
+          [styles.visible]: canSelectAll,
         })}
       >
         <Checkbox
@@ -70,13 +70,13 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
   );
 
   function isIndeterminate() {
-    if (hasSelectedAll) return selectedIDs.length > 0;
+    if (isSelectAll) return selectedIDs.length > 0;
 
     return selectedCount > 0 && !isAllSelected();
   }
 
   function isAllSelected() {
-    if (hasSelectedAll) return true;
+    if (isSelectAll) return true;
 
     // If there's a totalCount, we can use that to accurately determine if the
     // user have "selected all".
