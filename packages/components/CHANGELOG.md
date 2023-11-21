@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.60.13](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.12...@jobber/components@4.60.13) (2023-11-21)
+
+
+### Bug Fixes
+
+* **components:** fix Chip transition state ([#1648](https://github.com/GetJobber/atlantis/issues/1648)) ([6a479a2](https://github.com/GetJobber/atlantis/commit/6a479a2f7d0a4017fda7ed386db23a98a5925cd4))
+
+
+
+
+
 ## [4.60.12](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.11...@jobber/components@4.60.12) (2023-11-20)
 
 **Note:** Version bump only for package @jobber/components

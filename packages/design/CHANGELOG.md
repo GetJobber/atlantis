@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.47.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.47.1...@jobber/design@0.47.2) (2023-11-21)
+
+
+### Bug Fixes
+
+* **components:** fix Chip transition state ([#1648](https://github.com/GetJobber/atlantis/issues/1648)) ([6a479a2](https://github.com/GetJobber/atlantis/commit/6a479a2f7d0a4017fda7ed386db23a98a5925cd4))
+
+
+
+
+
 ## [0.47.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.47.0...@jobber/design@0.47.1) (2023-11-16)
 
 
