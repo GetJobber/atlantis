@@ -20,7 +20,7 @@
   color: var(--color-heading);
   text-align: left;
   cursor: pointer;
-  transition: all var(--ease-both) var(--timing-quick);
+  transition: all var(--timing-base) ease-in-out;
   align-items: center;
 }
 
