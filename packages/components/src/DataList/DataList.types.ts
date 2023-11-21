@@ -126,7 +126,10 @@ export interface DataListProps<T extends DataListObject> {
    */
   readonly onSelect?: (selected: DataListSelectedType<T["id"]>) => void;
 
-  readonly onSelectAll?: () => void;
+  /**
+   * Callback when the select all checkbox is clicked.
+   */
+  readonly onSelectAll?: (selected: DataListSelectedType<T["id"]>) => void;
 }
 
 /**

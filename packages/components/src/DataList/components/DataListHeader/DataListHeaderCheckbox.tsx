@@ -20,9 +20,11 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
   const { data, totalCount } = useDataListContext();
   const {
     canSelectAll,
+    hasAtLeastOneSelected,
     isSelectAll,
     selectedCount,
     selectedIDs,
+    selected,
     onSelectAll,
     onSelect,
   } = useBatchSelect();
@@ -43,19 +45,19 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
         <Checkbox
           checked={isAllSelected()}
           indeterminate={isIndeterminate()}
-          onChange={onSelectAll}
+          onChange={handleSelectAll}
         >
           <div className={styles.srOnly}>{selectedLabel}</div>
         </Checkbox>
       </div>
 
       <AnimatedSwitcher
-        switched={Boolean(selectedCount)}
+        switched={hasAtLeastOneSelected}
         initialChild={children}
         switchTo={
           <div className={styles.batchSelectContainer}>
             <div className={styles.headerBatchSelect}>
-              <Text>{selectedCount} selected</Text>
+              {Boolean(selectedCount) && <Text>{selectedCount} selected</Text>}
               <Button
                 label={deselectText}
                 onClick={() => onSelect?.([])}
@@ -89,5 +91,20 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
     // loading more. It's still hard to get to that state as the load more
     // triggers before you see the last item.
     return data.length > 0 && selectedCount >= data.length;
+  }
+
+  function handleSelectAll() {
+    if (isAllSelected()) {
+      return onSelectAll?.([]);
+    }
+
+    onSelectAll?.({ totalCount: getTotalCount(), unselected: [] });
+  }
+
+  function getTotalCount() {
+    if (selected && "totalCount" in selected) return selected.totalCount;
+    if (totalCount) return totalCount;
+
+    return 0;
   }
 }
