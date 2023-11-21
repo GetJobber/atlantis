@@ -40,12 +40,8 @@ stories. The label of the default activator can be customized by adding the
 optional `label` prop to Combobox, to better reflect the type of data being
 selected. Otherwise, the default activator label will read "Select".
 
-_Note:_
-
-- The optional `label` prop on Combobox will only affect the default activator.
-  A custom activator label will overwrite the Combobox label.
-- Omitting a custom activator subcomponent will result in the default activator
-  being used.
+The optional `label` prop on Combobox if only effective when using the default
+activator.
 
 ##### Custom activator
 
@@ -55,6 +51,9 @@ is not suitable. Your custom activator should be a child of
 the
 [custom activator](../?path=/code/components-selections-combobox-web--custom-activator)
 story.
+
+Omitting a custom activator subcomponent will result in the default activator
+being used.
 
 #### Content
 
