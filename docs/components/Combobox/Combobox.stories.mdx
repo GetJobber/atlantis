@@ -28,21 +28,17 @@ Combobox is composed of three main parts:
 #### Activator
 
 The activator is the user-facing interface to open and close the Combobox and
-initiate option selection. When implementing Combobox, you may rely on the
-default activator or, you may pass in a custom activator.
+initiate option selection.
 
 ##### Default activator
 
-The default activator is a
-[Chip](../?path=/story/components-selections-chip-web--subtle) containing an
-`add` Icon suffix and an optional Combobox prop `label` that by default, reads
-"Select". The label can be customized by adding the `label` prop to Combobox, to
-better reflect the type of data being selected. Examples of using a default
-activator can be found in the
+Examples of using a default activator can be found in the
 [single-select](../?path=/code/components-selections-combobox-web--single-select)
 and
 [multi-select](../?path=/code/components-selections-combobox-web--multi-select)
-stories.
+stories. The label of the default activator can be customized by adding the
+optional `label` prop to Combobox, to better reflect the type of data being
+selected. Otherwise, the default activator label will read "Select".
 
 _Note:_
 
@@ -53,11 +49,10 @@ _Note:_
 
 ##### Custom activator
 
-The custom activator should be used when the Combobox activator is a
-[Button](../?path=/docs/components-actions-button-docs--page) or an alternate
-variation of Chip. Button or Chip should be a child of `<Combobox.Activator />`
-and will be rendered in place of the default activator. Examples of using a
-custom activator can be found in the
+The custom activator should be used in any instance where the default activator
+is not suitable. Your custom activator should be a child of
+`<Combobox.Activator />`. An example of using a custom activator can be found in
+the
 [custom activator](../?path=/code/components-selections-combobox-web--custom-activator)
 story.
 
