@@ -8,7 +8,9 @@ describe("DataList Selection", () => {
       await pom.clickCheckbox(1);
 
       expect(pom.getCheckboxes()[1]).toBeChecked();
-      expect(screen.getByText("1 selected")).toBeInTheDocument();
+      await waitFor(() =>
+        expect(screen.getAllByText("1 selected")).toHaveLength(2),
+      );
     });
 
     it("should have 2 selected items", async () => {
@@ -19,7 +21,9 @@ describe("DataList Selection", () => {
       const checkboxes = pom.getCheckboxes();
       expect(checkboxes[2]).toBeChecked();
       expect(checkboxes[4]).toBeChecked();
-      expect(screen.getByText("2 selected")).toBeInTheDocument();
+      await waitFor(() =>
+        expect(screen.getAllByText("2 selected")).toHaveLength(2),
+      );
     });
 
     it("should unselect the correct item", async () => {
