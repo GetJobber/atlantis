@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.61.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.14...@jobber/components@4.61.0) (2023-11-22)
+
+
+### Features
+
+* **components:** Adding onBlur and onFocus support to Web <Select /> ([#1644](https://github.com/GetJobber/atlantis/issues/1644)) ([259598a](https://github.com/GetJobber/atlantis/commit/259598ac323fbff7259952ce236223b3a9210f73))
+
+
+
+
+
 ## [4.60.14](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.13...@jobber/components@4.60.14) (2023-11-22)
 
 **Note:** Version bump only for package @jobber/components
