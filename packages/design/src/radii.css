@@ -4,3 +4,7 @@
   --radius-larger: var(--space-small);
   --radius-circle: 100%;
 }
+
+.radii {
+  display: block;
+}

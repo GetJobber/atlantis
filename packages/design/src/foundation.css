@@ -1,11 +1,11 @@
 @import "./borders.css";
-@import "./colors.css";
+@import "./rootcolors.css";
 @import "./radii.css";
-@import "./spacing.css";
+@import "./rootspacing.css";
 @import "./shadows.css";
 @import "./timings.css";
 @import "./opacity.css";
 @import "./elevations.css";
-@import "./typography.css";
+@import "./roottypography.css";
 @import "./responsiveBreakpoints.css";
 @import "./styles.css";

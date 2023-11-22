@@ -1,4 +1,4 @@
-import { ArgsTable, Meta } from "@storybook/addon-docs";
+import { ArgsTable, Meta, Story } from "@storybook/addon-docs";
 import { Tab, Tabs } from "@jobber/components/Tabs";
 import { DataList } from "@jobber/components/DataList";
 
@@ -34,8 +34,6 @@ props to separate each part of the component.
 ### Main wrapper
 
 DataList is the main component that holds everything and important props.
-
-<ArgsTable of={DataList} />
 
 ### Layout
 
@@ -85,8 +83,6 @@ It is also important to add the type of `DataListItem<typeof data>` on the
 </DataList>
 ```
 
-<ArgsTable of={DataList.Layout} />
-
 ### Actions
 
 #### Item actions
@@ -117,12 +113,8 @@ parameter of the item it's related to.
 ```
 
 <Tabs>
-  <Tab label="DataList.ItemActions">
-    <ArgsTable of={DataList.ItemActions} />
-  </Tab>
-  <Tab label="DataList.ItemAction">
-    <ArgsTable of={DataList.ItemAction} />
-  </Tab>
+  <Tab label="DataList.ItemActions"></Tab>
+  <Tab label="DataList.ItemAction"></Tab>
 </Tabs>
 
 #### Batch actions
@@ -148,8 +140,6 @@ items:
 ```
 
 ##### DataList.BatchAction props
-
-<ArgsTable of={DataList.BatchAction} />
 
 #### Layout actions
 
@@ -200,8 +190,6 @@ DataList.Search adds a search input to the list. This is debounced by 500ms.
   <DataList.Search onSearch={handleSearch} />
 </DataList>
 ```
-
-<ArgsTable of={DataList.Search} />
 
 ### Empty state
 

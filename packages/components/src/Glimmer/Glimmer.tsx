@@ -2,7 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import styles from "./Glimmer.css";
 /* eslint-disable import/no-internal-modules */
-import sizes from "./style/Sizes.css";
+import sizes from "./style/GlimmerSizes.css";
 import shapes from "./style/Shape.css";
 import timings from "./style/Timing.css";
 /* eslint-enable import/no-internal-modules */
@@ -103,6 +103,7 @@ Glimmer.Header = function GlimmerHeader({
     4: "base",
     5: "small",
   };
+
   return (
     <div className={styles.header} data-testid={GLIMMER_HEADER_TEST_ID}>
       <Glimmer size={headerSize[level]} {...props} />
@@ -153,6 +154,7 @@ Glimmer.Button = function GlimmerButton({
   const buttonClassNames = classnames(styles.button, {
     [styles.buttonFill]: fullWidth,
   });
+
   return (
     <div className={buttonClassNames} data-testid={GLIMMER_BUTTON_TEST_ID}>
       <Glimmer {...props} size="auto" />

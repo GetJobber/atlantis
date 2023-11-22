@@ -11,3 +11,7 @@
   --elevation-tooltip: 1002;
   --elevation-toast: 1003;
 }
+
+.elevations {
+  display: block;
+}

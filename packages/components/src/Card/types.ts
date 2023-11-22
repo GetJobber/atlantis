@@ -1,5 +1,5 @@
 import { ReactElement, ReactNode } from "react";
-import colors from "./colors.css";
+import colors from "./CardColors.css";
 import { ButtonProps } from "../Button";
 import { MenuProps } from "../Menu";
 

@@ -11,3 +11,7 @@
   --space-largest: calc(var(--base-unit) * 3);
   --space-extravagant: calc(var(--base-unit) * 4);
 }
+
+.rootspacing {
+  display: block;
+}

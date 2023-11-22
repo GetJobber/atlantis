@@ -35,7 +35,7 @@ exports[`renders a Select with many options 1`] = `
             class="postfix"
           >
             <svg
-              class="Z6OfUI2sH34- TphtDHcwxDc-"
+              class="Z6OfUI2sH34- GDdXV9mfOQY-"
               data-testid="arrowDown"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +75,7 @@ exports[`renders a Select with no options 1`] = `
             class="postfix"
           >
             <svg
-              class="Z6OfUI2sH34- TphtDHcwxDc-"
+              class="Z6OfUI2sH34- GDdXV9mfOQY-"
               data-testid="arrowDown"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
@@ -119,7 +119,7 @@ exports[`renders a Select with one option 1`] = `
             class="postfix"
           >
             <svg
-              class="Z6OfUI2sH34- TphtDHcwxDc-"
+              class="Z6OfUI2sH34- GDdXV9mfOQY-"
               data-testid="arrowDown"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
@@ -163,7 +163,7 @@ exports[`renders correctly as large 1`] = `
             class="postfix"
           >
             <svg
-              class="Z6OfUI2sH34- TphtDHcwxDc-"
+              class="Z6OfUI2sH34- GDdXV9mfOQY-"
               data-testid="arrowDown"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
@@ -207,7 +207,7 @@ exports[`renders correctly as small 1`] = `
             class="postfix"
           >
             <svg
-              class="Z6OfUI2sH34- TphtDHcwxDc-"
+              class="Z6OfUI2sH34- GDdXV9mfOQY-"
               data-testid="arrowDown"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
@@ -252,7 +252,7 @@ exports[`renders correctly when disabled 1`] = `
             class="postfix"
           >
             <svg
-              class="Z6OfUI2sH34- TphtDHcwxDc-"
+              class="Z6OfUI2sH34- GDdXV9mfOQY-"
               data-testid="arrowDown"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
@@ -296,7 +296,7 @@ exports[`renders correctly when invalid 1`] = `
             class="postfix"
           >
             <svg
-              class="Z6OfUI2sH34- TphtDHcwxDc-"
+              class="Z6OfUI2sH34- GDdXV9mfOQY-"
               data-testid="arrowDown"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"

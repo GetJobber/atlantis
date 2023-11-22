@@ -41,11 +41,7 @@ For web, you can set a minimum and maximum number of rows. See:
 [Web/rows example](?path=/story/components-forms-and-inputs-inputtext-web--multiline).
 
 <Canvas>
-  <InputText
-    multiline={true}
-    placeholder="Describe your age"
-    name="describeAge"
-  />
+  <InputText multiline={true} placeholder="Describe your age" />
 </Canvas>
 
 ### Prefix/suffix
@@ -144,7 +140,6 @@ This includes, but is not limited to:
     placeholder="Credit card"
     value="**** **** **** 1234"
     disabled={true}
-    name="creditCard"
   />
 </Canvas>
 
@@ -155,12 +150,7 @@ See:
 [Mobile/invalid example](?path=/story/components-forms-and-inputs-inputtext-mobile--invalid).
 
 <Canvas>
-  <InputText
-    placeholder="Email"
-    value="atlantis"
-    invalid={true}
-    name="emailAddress"
-  />
+  <InputText placeholder="Email" value="atlantis" invalid={true} />
 </Canvas>
 
 ### Keyboard
@@ -168,11 +158,7 @@ See:
 Determine what default keyboard appears on mobile.
 
 <Canvas>
-  <InputText
-    placeholder="Describe your age"
-    name="describeAge"
-    keyboard="numeric"
-  />
+  <InputText placeholder="Describe your age" keyboard="numeric" />
 </Canvas>
 
 ### Using onValidation (Web)

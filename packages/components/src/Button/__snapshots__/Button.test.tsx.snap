@@ -23,7 +23,7 @@ exports[`renders a Button that is just an icon 1`] = `
     type="button"
   >
     <svg
-      class="Z6OfUI2sH34- TphtDHcwxDc-"
+      class="Z6OfUI2sH34- GDdXV9mfOQY-"
       data-testid="user"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +82,7 @@ exports[`renders a Button with an icon 1`] = `
     type="button"
   >
     <svg
-      class="Z6OfUI2sH34- TphtDHcwxDc-"
+      class="Z6OfUI2sH34- GDdXV9mfOQY-"
       data-testid="add"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +108,7 @@ exports[`renders a Button with an icon on the right 1`] = `
     type="button"
   >
     <svg
-      class="Z6OfUI2sH34- TphtDHcwxDc-"
+      class="Z6OfUI2sH34- GDdXV9mfOQY-"
       data-testid="add"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"

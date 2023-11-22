@@ -1,7 +1,7 @@
 /* eslint-disable import/no-internal-modules */
 import React, { CSSProperties, ReactNode } from "react";
 import classnames from "classnames";
-import styles from "./css/Typography.css";
+import styles from "./css/TypographyStyle.css";
 import fontSizes from "./css/FontSizes.css";
 import fontWeights from "./css/FontWeights.css";
 import textCases from "./css/TextCases.css";
@@ -49,7 +49,7 @@ interface TypographyProps {
   readonly align?: keyof typeof alignment;
   readonly fontFamily?: keyof typeof fontFamilies;
   readonly children: ReactNode;
-  numberOfLines?: number;
+  readonly numberOfLines?: number;
 }
 export type TypographyOptions = Omit<TypographyProps, "children">;
 
@@ -82,6 +82,7 @@ export function Typography({
   );
 
   let truncateLines: CSSProperties | undefined;
+
   if (shouldTruncateText) {
     truncateLines = {
       WebkitLineClamp: numberOfLines,

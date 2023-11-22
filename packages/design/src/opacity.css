@@ -2,3 +2,7 @@
   --opacity-overlay: 0.8;
   --opacity-pressed: 0.6;
 }
+
+.opacity {
+  display: block;
+}

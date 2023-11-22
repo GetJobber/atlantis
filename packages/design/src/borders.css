@@ -4,3 +4,6 @@
   --border-thicker: var(--space-smaller);
   --border-thickest: var(--space-small);
 }
+.borders {
+  display: block;
+}

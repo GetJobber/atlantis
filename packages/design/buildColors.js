@@ -4,7 +4,7 @@ const fs = require("fs");
 const postcss = require("postcss");
 const postcssExtract = require("@csstools/postcss-extract");
 
-const colors = fs.readFileSync("src/colors.css");
+const colors = fs.readFileSync("src/rootcolors.css");
 
 postcss([
   postcssExtract({
@@ -15,6 +15,7 @@ postcss([
       const mappedResults = yourResults.customProperties.reduce(
         (acc, { prop, value }) => {
           acc[prop] = value;
+
           return acc;
         },
         {},

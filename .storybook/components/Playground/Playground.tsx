@@ -1,6 +1,6 @@
 import process from "process";
 import React, { useEffect } from "react";
-import { Story, useStorybookApi } from "@storybook/api";
+import { StoryEntry, useStorybookApi } from "@storybook/api";
 import {
   SandpackCodeEditor,
   SandpackPreview,
@@ -16,7 +16,7 @@ import { formatCode } from "./utils";
 
 export function Playground() {
   const { getCurrentStoryData, emit } = useStorybookApi();
-  const activeStory = getCurrentStoryData() as Story | undefined;
+  const activeStory: any = getCurrentStoryData();
 
   useEffect(() => {
     // Emit story changed so GA can track it as a page change. This mimics the
@@ -87,7 +87,7 @@ export function Playground() {
   }
 }
 
-function getPlaygroundInfo({ parameters, type, title }: Story) {
+function getPlaygroundInfo({ parameters, type, title }: StoryEntry) {
   const isComponentsNative = title.includes("/Mobile");
   const importsString = getImportStrings(parameters, isComponentsNative);
 
@@ -101,8 +101,8 @@ function getPlaygroundInfo({ parameters, type, title }: Story) {
 }
 
 function getSourceCode(
-  args: Story["args"],
-  parameters: Story["parameters"],
+  args: StoryEntry["args"],
+  parameters: StoryEntry["parameters"],
 ): string | undefined {
   if (parameters && "storySource" in parameters) {
     let sourceCode: string | undefined;
@@ -137,7 +137,7 @@ function getSourceCode(
 }
 
 function getImportStrings(
-  parameters: Story["parameters"],
+  parameters: StoryEntry["parameters"],
   isComponentsNative: boolean,
 ): string {
   const extraDependencyImports = getExtraDependencyImports(parameters);
@@ -210,7 +210,7 @@ function parseSourceStringForImports(source: string, extraImports: string[]) {
   return { componentNames, hookNames };
 }
 
-function getAttributeProps(args: Story["args"]) {
+function getAttributeProps(args: StoryEntry["args"]) {
   let attributes = "";
 
   if (args) {
@@ -273,7 +273,7 @@ interface ExtraImports {
   componentNames: string[];
 }
 
-function getExtraDependencyImports(parameters: Story["parameters"]): {
+function getExtraDependencyImports(parameters: StoryEntry["parameters"]): {
   importString: string;
   componentNames: string[];
 } {
@@ -326,7 +326,7 @@ function getExtraDependencyImports(parameters: Story["parameters"]): {
 }
 
 function getExtraDependencies(
-  parameters: Story["parameters"],
+  parameters: StoryEntry["parameters"],
 ): Record<string, string> {
   const extraImportsParameter: PlaygroundImports =
     parameters?.previewTabs?.code.extraImports || {};

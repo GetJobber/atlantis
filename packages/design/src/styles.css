@@ -9,3 +9,6 @@ body {
   line-height: var(--typography--lineHeight-larger, 1.5);
   background-color: var(--color-surface);
 }
+.styles {
+  display: block;
+}

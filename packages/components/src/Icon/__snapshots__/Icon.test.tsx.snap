@@ -3,7 +3,7 @@
 exports[`renders apple icon 1`] = `
 <div>
   <svg
-    class="Z6OfUI2sH34- TphtDHcwxDc-"
+    class="Z6OfUI2sH34- GDdXV9mfOQY-"
     data-testid="apple"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
@@ -19,7 +19,7 @@ exports[`renders apple icon 1`] = `
 exports[`renders dashboard icon 1`] = `
 <div>
   <svg
-    class="Z6OfUI2sH34- TphtDHcwxDc-"
+    class="Z6OfUI2sH34- GDdXV9mfOQY-"
     data-testid="dashboard"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +35,7 @@ exports[`renders dashboard icon 1`] = `
 exports[`renders large arrowDown icon 1`] = `
 <div>
   <svg
-    class="Z6OfUI2sH34- xZ6Jnv-7uXc-"
+    class="Z6OfUI2sH34- K9tbUNqr9ww-"
     data-testid="arrowDown"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +51,7 @@ exports[`renders large arrowDown icon 1`] = `
 exports[`renders small more icon 1`] = `
 <div>
   <svg
-    class="Z6OfUI2sH34- qm8vYTlCGG4-"
+    class="Z6OfUI2sH34- M4HbTFjsAyo-"
     data-testid="more"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +67,7 @@ exports[`renders small more icon 1`] = `
 exports[`renders star icon with custom color 1`] = `
 <div>
   <svg
-    class="Z6OfUI2sH34- TphtDHcwxDc-"
+    class="Z6OfUI2sH34- GDdXV9mfOQY-"
     data-testid="star"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
@@ -84,7 +84,7 @@ exports[`renders star icon with custom color 1`] = `
 exports[`renders thumbsDown icon 1`] = `
 <div>
   <svg
-    class="Z6OfUI2sH34- TphtDHcwxDc- _30zSLR5-c7Y-"
+    class="Z6OfUI2sH34- GDdXV9mfOQY- _30zSLR5-c7Y-"
     data-testid="thumbsDown"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
@@ -100,13 +100,13 @@ exports[`renders thumbsDown icon 1`] = `
 exports[`renders truck icon 1`] = `
 <div>
   <svg
-    class="Z6OfUI2sH34- TphtDHcwxDc-"
+    class="Z6OfUI2sH34- GDdXV9mfOQY-"
     data-testid="truck"
     viewBox="0 0 1024 1024"
     xmlns="http://www.w3.org/2000/svg"
   >
     <g
-      class="kBAjqBTXEsI-"
+      class="b--UClBpmy0-"
       transform="translate(233.000000, 0.000000)"
     >
       <path

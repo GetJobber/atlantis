@@ -1,7 +1,7 @@
 import classnames from "classnames";
 import styles from "./Icon.css";
-import sizes from "./Sizes.css";
-import colors from "./Colors.css";
+import sizes from "./IconSizes.css";
+import colors from "./IconColors.css";
 import { iconMap } from "./iconMap";
 
 export const iconClassMap = getInvertedClassMap(styles);
@@ -57,11 +57,13 @@ export function getIcon({ name, color, size = "base" }: IconProps) {
   const paths = getPaths(name);
   const iconSize = name === "truck" ? 1024 : 24;
   const viewBox = `0 0 ${iconSize} ${iconSize}`;
+
   return { svgClassNames, pathClassNames, paths, viewBox } as const;
 }
 
 function getPaths(name: IconNames) {
   const iconName = mapToCorrectIcon(name);
+
   if (iconName === "truck") {
     return [];
   } else {
@@ -83,6 +85,7 @@ function mapToCorrectIcon(name: IconNames) {
       return name;
   }
 }
+
 function getPathClassNames(name: string, color?: IconColorNames) {
   return classnames(color && colors[color], {
     [styles.person]: name === "person",

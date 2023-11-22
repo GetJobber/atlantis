@@ -7,3 +7,7 @@
   --timing-loading: 1000ms;
   --timing-loading--extended: 2000ms;
 }
+
+.timings {
+  display: block;
+}

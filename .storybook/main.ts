@@ -1,23 +1,20 @@
+import { dirname, join } from "path";
+const util = require('util');
 const webpack = require("webpack");
 const path = require("path");
 
 const config = {
   stories: [
-    "../packages/**/*.stories.mdx",
-    "../packages/**/*.stories.@(js|jsx|ts|tsx)",
     "../docs/**/*.stories.mdx",
     "../docs/**/*.stories.@(js|jsx|ts|tsx)",
   ],
+  core: {
+    builder: "webpack5",
+  },
   addons: [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/addon-interactions",
-    {
-      name: "@storybook/addon-docs",
-      options: {
-        transcludeMarkdown: true,
-      },
-    },
+    getAbsolutePath("@storybook/addon-links"),
+    getAbsolutePath("@storybook/addon-essentials"),
+    getAbsolutePath("@storybook/addon-interactions"),
     {
       name: "@storybook/addon-react-native-web",
       options: {
@@ -26,9 +23,16 @@ const config = {
           "react-native-reanimated/plugin"],
       },
     },
+    getAbsolutePath("@storybook/addon-mdx-gfm")
   ],
+
   features: { buildStoriesJson: true },
-  framework: "@storybook/react",
+
+  framework: {
+    name: getAbsolutePath("@storybook/react-webpack5"),
+    options: {}
+  },
+
   webpackFinal: async config => {
     config.plugins = [
       ...config.plugins,
@@ -78,18 +82,24 @@ const config = {
         atlantisCssRule,
       ];
     }
-
-    /**
-     * Framer motion 5 and up use ESM mjs files which doesn't work out of the
-     * box for webpack 4.
-     *
-     * Until we get to React 18, Node 18, Webpack 5, Storybook 7, this is needed.
-     */
-    config.module?.rules.push({
-      test: /\.mjs$/,
-      include: /node_modules/,
-      type: "javascript/auto",
-    });
+    
+    config.devtool = false;
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      os: false,
+      util: false,
+      path: require.resolve("path-browserify"),
+      assert: require.resolve('browser-assert'),
+      fs: false,
+      stream: false,
+      module: false,
+      crypto: false,
+      child_process: false,
+      tty: false,
+      benchmark: false,
+      v8: false,
+      net: false,
+    }
 
     /**
      * Generate css types on `.css` file save,
@@ -146,6 +156,14 @@ const config = {
     // Return the altered config
     return config;
   },
+
+  docs: {
+    autodocs: false
+  }
 };
 
 module.exports = config;
+
+function getAbsolutePath(value) {
+  return dirname(require.resolve(join(value, "package.json")));
+}

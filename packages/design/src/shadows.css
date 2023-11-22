@@ -11,3 +11,7 @@
   --shadow-focus: 0px 0px var(--space-smaller) var(--space-smallest)
     var(--color-focus);
 }
+
+.shadows {
+  display: block;
+}

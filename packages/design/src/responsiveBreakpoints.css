@@ -3,3 +3,6 @@
 @custom-media --medium-screens-and-up (min-width: 768px);
 @custom-media --large-screens-and-up (min-width: 1080px);
 @custom-media --extra-large-screens-and-up (min-width: 1440px);
+.responsiveBreakpoints {
+  display: block;
+}

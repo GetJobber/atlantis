@@ -2,7 +2,7 @@ import React, { PropsWithChildren, useState } from "react";
 import { DocsContainer, DocsContainerProps } from "@storybook/addon-docs";
 import { Button } from "@jobber/components/Button";
 import { Banner } from "@jobber/components/Banner";
-import * as styles from "./DocsWithSidebar.css";
+import styles from "./DocsWithSidebar.css";
 import { TableOfContents } from "../TableOfContents";
 
 export function DocsWithSidebar({
@@ -27,7 +27,6 @@ export function DocsWithSidebar({
     styles.sidebar,
     navigationOpen && styles.visible,
   ].join(" ");
-
   return (
     <div className={styles.wrapper}>
       <div className={styles.content}>
