@@ -63,7 +63,6 @@ export function Combobox(props: ComboboxProps): JSX.Element {
         )}
         <ComboboxContent
           multiselect={props.multiSelect}
-          searchPlaceholder={props.searchPlaceholder}
           subjectNoun={props.subjectNoun}
           selected={selectedOptions}
           actionElements={actionElements}

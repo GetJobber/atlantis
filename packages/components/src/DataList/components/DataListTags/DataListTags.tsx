@@ -62,6 +62,7 @@ export function DataListTags({ items }: DataListTagsProps) {
       setVisibleIndex(prevState => {
         const newState = [...prevState];
         newState[indexNumber] = entry.intersectionRatio !== 1;
+
         return newState;
       });
     });
@@ -78,5 +79,6 @@ function buildIntersectionThreshold(items: DataListTagsProps["items"]) {
   }
 
   thresholds.push(0);
+
   return thresholds;
 }
