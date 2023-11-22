@@ -39,6 +39,7 @@ export function Form<T extends FieldValues, S>({
   ...rest
 }: FormProps<T, S>): JSX.Element {
   const child = initialLoading ? <FormMask /> : <InternalForm {...rest} />;
+
   return (
     <InputAccessoriesProvider>
       <ErrorMessageProvider>{child}</ErrorMessageProvider>
@@ -223,6 +224,7 @@ function InternalForm<T extends FieldValues, S>({
     </FormProvider>
   );
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function handleKeyboardShow(frames: Record<string, any>) {
     setKeyboardScreenY(frames.endCoordinates.screenY);
     setKeyboardHeight(frames.endCoordinates.height);
@@ -245,6 +247,7 @@ function InternalForm<T extends FieldValues, S>({
 
   async function internalSubmit(data: FormValues<T>) {
     let performSubmit = true;
+
     if (onBeforeSubmit) {
       performSubmit = await onBeforeSubmit(data);
     }
@@ -280,8 +283,10 @@ function InternalForm<T extends FieldValues, S>({
     // when the form had no internet connection
     formMethods.clearErrors("offline");
   }
+
   function handleRetry() {
     clearFormErrors();
+
     return handleSubmit(internalSubmit)();
   }
 

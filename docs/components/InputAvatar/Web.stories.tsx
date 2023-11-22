@@ -13,8 +13,10 @@ export default {
 
 const BasicTemplate: ComponentStory<typeof InputAvatar> = args => {
   const [avatarUrl, setAvatarUrl] = useState(args.imageUrl);
+
   return <InputAvatar {...args} imageUrl={avatarUrl} onChange={handleChange} />;
-  async function handleChange(newAvatar: any) {
+
+  async function handleChange(newAvatar: unknown) {
     if (newAvatar) {
       setAvatarUrl(await newAvatar.src());
     } else {
