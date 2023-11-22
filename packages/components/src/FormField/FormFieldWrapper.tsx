@@ -13,9 +13,9 @@ import { FormFieldDescription } from "./FormFieldDescription";
 import { InputValidation } from "../InputValidation";
 
 interface FormFieldWrapperProps extends FormFieldProps {
-  error: string;
-  identifier: string;
-  descriptionIdentifier: string;
+  readonly error: string;
+  readonly identifier: string;
+  readonly descriptionIdentifier: string;
 }
 
 interface LabelPadding {
@@ -50,7 +50,6 @@ export function FormFieldWrapper({
       [styles.miniLabel]:
         (placeholder && value !== "") ||
         (placeholder && type === "select") ||
-        (placeholder && type === "time") ||
         // Naively assume that if the the type is tel, it is the InputPhoneNumber
         (placeholder && type === "tel"),
       [styles.textarea]: type === "textarea",
@@ -58,6 +57,8 @@ export function FormFieldWrapper({
       [styles.invalid]: invalid ?? error,
       [styles.disabled]: disabled,
       [styles.maxLength]: maxLength,
+      [styles.timeInputLabel]:
+        placeholder && type === "time" && placeholder && value === "",
     },
   );
   const containerClasses = classnames(styles.container, {

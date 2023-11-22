@@ -65,6 +65,15 @@
   box-shadow: var(--shadow-focus);
 }
 
+.timeInputLabel input {
+  color: var(--field--background-color);
+}
+
+.timeInputLabel input:focus {
+  color: inherit;
+}
+
+.timeInputLabel:focus-within,
 .miniLabel {
   --field--placeholder-color: var(--color-text--secondary);
   --field--placeholder-offset: var(--space-smallest);
@@ -73,6 +82,7 @@
   --field--padding-bottom: var(--space-small);
 }
 
+.timeInputLabel.large:focus-within,
 .miniLabel.large {
   --field--padding-top: calc(var(--space-large) + var(--space-smaller));
 }
@@ -220,6 +230,7 @@
   transition: all var(--timing-quick);
 }
 
+.timeInputLabel:focus-within .label,
 .miniLabel .label {
   font-size: var(--typography--fontSize-small);
 }
@@ -238,10 +249,12 @@
   background-color: var(--field--background-color);
 }
 
+.timeInputLabel.small.miniLabel:focus-within .label,
 .small.miniLabel .label {
   display: none;
 }
 
+.timeInputLabel.large.miniLabel:focus-within .label,
 .large.miniLabel .label {
   padding-top: var(--space-small);
 }
