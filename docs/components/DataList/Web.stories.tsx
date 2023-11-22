@@ -170,7 +170,7 @@ const Template: ComponentStory<typeof DataList> = args => {
         />
       </DataList.ItemActions>
 
-      <DataList.BulkActions>
+      <DataList.BatchActions>
         <DataList.BatchAction
           icon="edit"
           label="Edit"
@@ -196,7 +196,7 @@ const Template: ComponentStory<typeof DataList> = args => {
           destructive={true}
           onClick={handleBulkActionClick}
         />
-      </DataList.BulkActions>
+      </DataList.BatchActions>
 
       <DataList.Layout size="md">
         {(item: DataListItemType<typeof mappedData>) => (
