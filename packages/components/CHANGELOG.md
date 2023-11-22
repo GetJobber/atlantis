@@ -3,6 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.60.14](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.13...@jobber/components@4.60.14) (2023-11-22)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.60.13](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.12...@jobber/components@4.60.13) (2023-11-21)
+
+
+### Bug Fixes
+
+* **components:** fix Chip transition state ([#1648](https://github.com/GetJobber/atlantis/issues/1648)) ([6a479a2](https://github.com/GetJobber/atlantis/commit/6a479a2f7d0a4017fda7ed386db23a98a5925cd4))
+
+
+
+
+
+## [4.60.12](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.11...@jobber/components@4.60.12) (2023-11-20)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.60.11](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.10...@jobber/components@4.60.11) (2023-11-20)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.60.10](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.9...@jobber/components@4.60.10) (2023-11-20)
+
+
+### Bug Fixes
+
+* **components:** DataList filters gap ([#1646](https://github.com/GetJobber/atlantis/issues/1646)) ([1f96fa0](https://github.com/GetJobber/atlantis/commit/1f96fa097d5369361a98c868c8662b4a63662aea))
+
+
+
+
+
+## [4.60.9](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.8...@jobber/components@4.60.9) (2023-11-20)
+
+
+### Bug Fixes
+
+* **components:** fix Chip, Combobox, and DataList focus states [JOB-82715] ([#1636](https://github.com/GetJobber/atlantis/issues/1636)) ([979b53e](https://github.com/GetJobber/atlantis/commit/979b53e34b1e16cbbb7de53184c1d9eb42dba8d7))
+
+
+
+
+
 ## [4.60.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.7...@jobber/components@4.60.8) (2023-11-16)
 
 **Note:** Version bump only for package @jobber/components

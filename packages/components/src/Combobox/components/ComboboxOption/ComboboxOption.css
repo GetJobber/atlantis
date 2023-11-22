@@ -14,10 +14,15 @@
 }
 
 .option:hover,
-.option:focus {
+.option:focus-visible {
   background-color: var(--color-surface--background);
 }
 
-.option:focus {
+.option:focus,
+.option:focus-visible {
+  outline: none;
+}
+
+.option:focus-visible {
   box-shadow: var(--shadow-focus);
 }
