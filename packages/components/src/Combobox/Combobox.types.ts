@@ -14,13 +14,6 @@ export interface ComboboxProps {
   readonly multiSelect?: boolean;
 
   /**
-   * Placeholder text to display in the search input. Defaults to "Search".
-   *
-   * @deprecated Use `subjectNoun` instead; search input will read "Search {subjectNoun}".
-   */
-  readonly searchPlaceholder?: string;
-
-  /**
    * The selected options of the Combobox.
    */
   readonly selected: ComboboxOption[];
@@ -69,13 +62,6 @@ export interface ComboboxOption {
 }
 
 export interface ComboboxContentProps {
-  /**
-   * Placeholder text to display in the search input. Defaults to "Search".
-
-   * @deprecated Use `subjectNoun` instead; search input will read "Search {subjectNoun}".
-   */
-  readonly searchPlaceholder?: string;
-
   /**
    * The selected options of the Combobox.
    */
