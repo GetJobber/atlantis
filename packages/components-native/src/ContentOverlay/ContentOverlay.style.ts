@@ -34,6 +34,7 @@ export const styles = StyleSheet.create({
     zIndex: tokens["elevation-base"],
     borderTopLeftRadius: modalBorderRadius,
     borderTopRightRadius: modalBorderRadius,
+    minHeight: tokens["space-extravagant"],
   },
 
   headerShadow: {
