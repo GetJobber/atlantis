@@ -34,7 +34,6 @@ export const styles = StyleSheet.create({
     zIndex: tokens["elevation-base"],
     borderTopLeftRadius: modalBorderRadius,
     borderTopRightRadius: modalBorderRadius,
-    height: tokens["space-extravagant"],
   },
 
   headerShadow: {
@@ -54,7 +53,7 @@ export const styles = StyleSheet.create({
     opacity: 0,
   },
 
-  titleWithoutDimiss: {
+  titleWithoutDismiss: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",

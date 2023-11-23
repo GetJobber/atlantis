@@ -85,6 +85,7 @@ function ContentOverlayInternal(
     if (!modalizeMethods?.open || !modalizeMethods?.close) {
       return {};
     }
+
     return {
       open: modalizeMethods?.open,
       close: modalizeMethods?.close,
@@ -110,9 +111,11 @@ function ContentOverlayInternal(
       return undefined;
     }
     const overlayHeight = headerHeight + childrenHeight;
+
     if (overlayHeight >= windowHeight) {
       return undefined;
     }
+
     return overlayHeight;
   }, [
     fullScreen,
@@ -136,9 +139,11 @@ function ContentOverlayInternal(
   const onCloseController = () => {
     if (!onBeforeExit) {
       internalRef.current?.close();
+
       return true;
     } else {
       onBeforeExit();
+
       return false;
     }
   };
@@ -169,6 +174,7 @@ function ContentOverlayInternal(
           onOpened={() => {
             if (overlayHeader.current) {
               const reactTag = findNodeHandle(overlayHeader.current);
+
               if (reactTag) {
                 AccessibilityInfo.setAccessibilityFocus(reactTag);
               }
@@ -217,7 +223,7 @@ function ContentOverlayInternal(
         <View style={headerStyles}>
           <View
             style={
-              showDismiss ? styles.titleWithDismiss : styles.titleWithoutDimiss
+              showDismiss ? styles.titleWithDismiss : styles.titleWithoutDismiss
             }
           >
             <Heading
