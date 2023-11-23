@@ -1,5 +1,5 @@
 import { screen, waitFor } from "@testing-library/react";
-import * as pom from "../POM/DataList.selectable.pom";
+import * as pom from "../__POM__/DataList.selectable.pom";
 
 describe("DataList Selection", () => {
   describe("Select some", () => {
