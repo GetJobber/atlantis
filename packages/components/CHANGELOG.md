@@ -3,6 +3,112 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.62.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.61.0...@jobber/components@4.62.0) (2023-11-23)
+
+
+### Features
+
+* **components:** add missing role to modal component ([#1619](https://github.com/GetJobber/atlantis/issues/1619)) ([ae02c3f](https://github.com/GetJobber/atlantis/commit/ae02c3fb7af5023979934acfdd6cf2565bf26f3e))
+
+
+
+
+
+# [4.61.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.14...@jobber/components@4.61.0) (2023-11-22)
+
+
+### Features
+
+* **components:** Adding onBlur and onFocus support to Web <Select /> ([#1644](https://github.com/GetJobber/atlantis/issues/1644)) ([259598a](https://github.com/GetJobber/atlantis/commit/259598ac323fbff7259952ce236223b3a9210f73))
+
+
+
+
+
+## [4.60.14](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.13...@jobber/components@4.60.14) (2023-11-22)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.60.13](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.12...@jobber/components@4.60.13) (2023-11-21)
+
+
+### Bug Fixes
+
+* **components:** fix Chip transition state ([#1648](https://github.com/GetJobber/atlantis/issues/1648)) ([6a479a2](https://github.com/GetJobber/atlantis/commit/6a479a2f7d0a4017fda7ed386db23a98a5925cd4))
+
+
+
+
+
+## [4.60.12](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.11...@jobber/components@4.60.12) (2023-11-20)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.60.11](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.10...@jobber/components@4.60.11) (2023-11-20)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.60.10](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.9...@jobber/components@4.60.10) (2023-11-20)
+
+
+### Bug Fixes
+
+* **components:** DataList filters gap ([#1646](https://github.com/GetJobber/atlantis/issues/1646)) ([1f96fa0](https://github.com/GetJobber/atlantis/commit/1f96fa097d5369361a98c868c8662b4a63662aea))
+
+
+
+
+
+## [4.60.9](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.8...@jobber/components@4.60.9) (2023-11-20)
+
+
+### Bug Fixes
+
+* **components:** fix Chip, Combobox, and DataList focus states [JOB-82715] ([#1636](https://github.com/GetJobber/atlantis/issues/1636)) ([979b53e](https://github.com/GetJobber/atlantis/commit/979b53e34b1e16cbbb7de53184c1d9eb42dba8d7))
+
+
+
+
+
+## [4.60.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.7...@jobber/components@4.60.8) (2023-11-16)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.60.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.6...@jobber/components@4.60.7) (2023-11-16)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.60.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.5...@jobber/components@4.60.6) (2023-11-16)
+
+
+### Bug Fixes
+
+* remove @use-it/event-listener dependency and use regular event handler attachment api. ([#1630](https://github.com/GetJobber/atlantis/issues/1630)) ([9453814](https://github.com/GetJobber/atlantis/commit/9453814837699d4a1caae8b32caf65c7ddd3b92a))
+
+
+
+
+
 ## [4.60.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.4...@jobber/components@4.60.5) (2023-11-15)
 
 

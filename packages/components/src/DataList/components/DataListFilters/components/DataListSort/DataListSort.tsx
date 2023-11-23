@@ -11,13 +11,10 @@ export function DataListSort() {
   const { sortable, state, onSort } = sorting;
 
   const sortByOptions = getSortByOptions();
-  console.log({ state });
 
   return (
     <Combobox
-      onSelect={selection => {
-        handleKeyChange(selection[0].id.toString());
-      }}
+      onSelect={selection => handleKeyChange(selection[0].id.toString())}
       selected={[
         {
           id: `${state?.key},${state?.order}`,
@@ -38,9 +35,9 @@ export function DataListSort() {
           )}
         </Chip>
       </Combobox.Activator>
-      {sortByOptions.map(({ label, value }) => {
-        return <Combobox.Option key={value} id={value} label={label} />;
-      })}
+      {sortByOptions.map(({ label, value }) => (
+        <Combobox.Option key={value} id={value} label={label} />
+      ))}
     </Combobox>
   );
 

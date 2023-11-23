@@ -23,7 +23,7 @@ export function DataListOverflowFade({ children }: DataListOverflowFadeProps) {
       <div className={styles.overflowGrid}>
         <span ref={leftRef} className={styles.overflowTrigger} />
 
-        {children}
+        <div className={styles.overflowItems}>{children}</div>
 
         <span ref={rightRef} className={styles.overflowTrigger} />
       </div>

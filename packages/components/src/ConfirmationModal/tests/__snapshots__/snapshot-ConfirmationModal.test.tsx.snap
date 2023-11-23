@@ -4,6 +4,7 @@ exports[`renders a simple ConfirmationModal 1`] = `
 <div>
   <div
     class="container"
+    role="dialog"
     tabindex="0"
   >
     <div

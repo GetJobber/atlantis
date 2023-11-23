@@ -105,7 +105,7 @@ it("should call onMonthChange when the user switches month", async () => {
 
 describe("ESC key behavior", () => {
   const handleEscape = jest.fn();
-  const handleKeyDown = (e: any) => e.key === "Escape" && handleEscape();
+  const handleKeyDown = (e: unknown) => e.key === "Escape" && handleEscape();
   beforeEach(() => {
     window.addEventListener("keydown", handleKeyDown);
   });

@@ -151,6 +151,7 @@ interface CreateAxiosConfigParams extends Omit<UploadParams, "key"> {
    * The axios request config type from the library specifies
    * the input to this function as `any`
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   handleUploadProgress(progress: any): void;
 }
 
@@ -169,6 +170,7 @@ export function InputFile({
     multiple: allowMultiple,
     onDrop: useCallback(handleDrop, []),
   };
+
   if (allowedTypes === "images") {
     options.accept = "image/*";
   } else if (allowedTypes === "basicImages") {
@@ -232,6 +234,7 @@ export function InputFile({
     const fileUpload = getFileUpload(file, key, url);
     onUploadStart && onUploadStart({ ...fileUpload });
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleUploadProgress = (progressEvent: any) => {
       onUploadProgress &&
         onUploadProgress({
@@ -328,6 +331,7 @@ function getFileUpload(
   function getSrc() {
     const promise = new Promise<string>((resolve, reject) => {
       const reader = new FileReader();
+
       reader.onload = event => {
         if (
           event.target &&
