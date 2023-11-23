@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.62.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.61.0...@jobber/components@4.62.0) (2023-11-23)
+
+
+### Features
+
+* **components:** add missing role to modal component ([#1619](https://github.com/GetJobber/atlantis/issues/1619)) ([ae02c3f](https://github.com/GetJobber/atlantis/commit/ae02c3fb7af5023979934acfdd6cf2565bf26f3e))
+
+
+
+
+
 # [4.61.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.14...@jobber/components@4.61.0) (2023-11-22)
 
 
