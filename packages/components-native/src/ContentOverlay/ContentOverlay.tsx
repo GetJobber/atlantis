@@ -223,16 +223,20 @@ function ContentOverlayInternal(
         <View style={headerStyles}>
           <View
             style={
-              showDismiss ? styles.titleWithDismiss : styles.titleWithoutDismiss
+              shouldShowDismiss
+                ? styles.titleWithDismiss
+                : styles.titleWithoutDismiss
             }
           >
             <Heading
               level="subtitle"
               variation={loading ? "subdued" : "heading"}
+              align={shouldShowDismiss ? "start" : "center"}
             >
               {title}
             </Heading>
           </View>
+
           {shouldShowDismiss && (
             <View
               style={styles.dismissButton}
