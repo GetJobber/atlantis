@@ -22,4 +22,23 @@ export const styles = StyleSheet.create({
     height: "100%",
     borderRadius: 100,
   },
+  steppedProgressBarContainer: {
+    marginTop: tokens["space-small"],
+    marginBottom: tokens["space-small"],
+    width: "100%",
+    height: 10,
+    position: "relative",
+    flexDirection: "row",
+  },
+  step: {
+    flex: 1,
+    marginRight: tokens["space-small"],
+    backgroundColor: tokens["color-surface--background"],
+    height: "100%",
+    borderRadius: 100,
+    borderColor: "rgba(255,255,255,0.3)",
+  },
+  completedStep: {
+    backgroundColor: tokens["color-interactive"],
+  },
 });

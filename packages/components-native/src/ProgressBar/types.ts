@@ -31,4 +31,10 @@ export interface ProgressBarProps {
    * Component to render above the progress bar.
    */
   readonly header?: ReactNode;
+
+  /**
+   * Set the variation of the progress bar
+   * @default progress
+   */
+  readonly variation?: "progress" | "stepped";
 }

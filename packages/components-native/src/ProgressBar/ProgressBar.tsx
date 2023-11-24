@@ -3,6 +3,7 @@ import { View } from "react-native";
 import { ProgressBarProps } from "./types";
 import { styles } from "./ProgressBar.style";
 import { ProgressBarInner, calculateWidth } from "./ProgressBarInner";
+import { ProgressBarStepped } from "./ProgressBarStepped";
 import { tokens } from "../utils/design";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
@@ -13,6 +14,7 @@ export function ProgressBar({
   inProgress = 0,
   reverseTheme = false,
   header,
+  variation = "progress",
 }: ProgressBarProps): JSX.Element {
   const { t } = useAtlantisI18n();
 
@@ -23,31 +25,37 @@ export function ProgressBar({
       accessibilityLabel={getA11yLabel()}
     >
       {header}
-      <View style={styles.progressBarContainer}>
-        <ProgressBarInner
-          width={100}
-          animationDuration={0}
-          color={reverseTheme ? undefined : tokens["color-surface--background"]}
-        />
-        {!loading && (
-          <>
-            {inProgress && inProgress > 0 ? (
+      {variation === "stepped" ? (
+        <ProgressBarStepped total={total} current={current} />
+      ) : (
+        <View style={styles.progressBarContainer}>
+          <ProgressBarInner
+            width={100}
+            animationDuration={0}
+            color={
+              reverseTheme ? undefined : tokens["color-surface--background"]
+            }
+          />
+          {!loading && (
+            <>
+              {inProgress && inProgress > 0 ? (
+                <ProgressBarInner
+                  width={calculateWidth(total, current + inProgress)}
+                  color={tokens["color-informative"]}
+                  animationDuration={800}
+                />
+              ) : (
+                <></>
+              )}
               <ProgressBarInner
-                width={calculateWidth(total, current + inProgress)}
-                color={tokens["color-informative"]}
-                animationDuration={800}
+                width={calculateWidth(total, current)}
+                color={tokens["color-interactive"]}
+                animationDuration={600}
               />
-            ) : (
-              <></>
-            )}
-            <ProgressBarInner
-              width={calculateWidth(total, current)}
-              color={tokens["color-interactive"]}
-              animationDuration={600}
-            />
-          </>
-        )}
-      </View>
+            </>
+          )}
+        </View>
+      )}
     </View>
   );
 
