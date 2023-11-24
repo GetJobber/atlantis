@@ -26,13 +26,16 @@ const BasicTemplate: ComponentStory<typeof InputTime> = args => (
 );
 
 const EventTemplate: ComponentStory<typeof InputTime> = args => {
-  const [time, setTime] = useState(new CivilTime(3, 52));
+  const [time, setTime] = useState<CivilTime>();
+
   const resetTime = () => {
     setTime(new CivilTime(3, 52));
   };
+
   const handleChange = (newTime: CivilTime) => {
     setTime(newTime);
   };
+
   return (
     <Content>
       <InputTime {...args} value={time} onChange={handleChange} />
@@ -66,4 +69,6 @@ Invalid.args = {
 };
 
 export const Event = EventTemplate.bind({});
-Event.args = {};
+Event.args = {
+  placeholder: "Start time",
+};
