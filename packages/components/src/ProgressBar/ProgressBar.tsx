@@ -21,17 +21,17 @@ interface ProgressBarProps {
   readonly size?: keyof typeof sizes;
 
   /**
-   * Set the variation to the stepped progress bar
-   * @default false
+   * Set the variation of the progress bar
+   * @default progress
    */
-  readonly stepped?: boolean;
+  readonly variation?: "progress" | "stepped";
 }
 
 export function ProgressBar({
   currentStep,
   totalSteps,
   size = "base",
-  stepped = false,
+  variation = "progress",
 }: ProgressBarProps) {
   const percentage = (currentStep / totalSteps) * 100;
   const progressBarClassName = classnames(styles.ProgressBar, sizes[size]);
@@ -65,7 +65,7 @@ export function ProgressBar({
     );
   }
 
-  if (stepped) return steppedVariation();
+  if (variation === "stepped") return steppedVariation();
 
   return (
     <progress

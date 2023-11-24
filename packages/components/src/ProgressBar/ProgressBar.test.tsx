@@ -19,7 +19,7 @@ describe("with props", () => {
 
   it("accept stepped variation", () => {
     const { container } = render(
-      <ProgressBar currentStep={2} totalSteps={3} stepped />,
+      <ProgressBar currentStep={2} totalSteps={3} variation={"stepped"} />,
     );
     expect(container).toMatchSnapshot();
   });
