@@ -2,9 +2,24 @@ import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Banner } from ".";
 
+it("renders a success banner", () => {
+  const { container } = render(<Banner type="success">Success</Banner>);
+  expect(container).toMatchSnapshot();
+});
+
 it("adds an error class to error banners", () => {
   const { getByRole } = render(<Banner type="error">Fail</Banner>);
   expect(getByRole("alert").classList).toContain("error");
+});
+
+it("renders a notice banner", () => {
+  const { container } = render(<Banner type="notice">Notice me</Banner>);
+  expect(container).toMatchSnapshot();
+});
+
+it("renders a warning banner", () => {
+  const { container } = render(<Banner type="warning">Warn</Banner>);
+  expect(container).toMatchSnapshot();
 });
 
 it("renders without close button", () => {
@@ -36,6 +51,36 @@ test("should call the handler with a number value", () => {
 
   fireEvent.click(getByLabelText("Close this notification"));
   expect(changeHandler).toHaveBeenCalledTimes(1);
+});
+
+it("renders a banner with a primary action", () => {
+  const { container } = render(
+    <Banner
+      type="success"
+      primaryAction={{
+        label: "smash me",
+      }}
+    >
+      Bruce
+    </Banner>,
+  );
+
+  expect(container).toMatchSnapshot();
+});
+
+it("renders a banner with a primary 'learning' action when the type is 'notice'", () => {
+  const { container } = render(
+    <Banner
+      type="notice"
+      primaryAction={{
+        label: "smash me",
+      }}
+    >
+      Bruce
+    </Banner>,
+  );
+
+  expect(container).toMatchSnapshot();
 });
 
 it("wraps its children in text if the children are a simple string", () => {

@@ -1,5 +1,5 @@
 import React, { PropsWithChildren, useState } from "react";
-import { DocsContainer, DocsContainerProps } from "@storybook/addon-docs";
+import { DocsContainer, DocsContainerProps, Unstyled } from "@storybook/addon-docs";
 import { Button } from "@jobber/components/Button";
 import { Banner } from "@jobber/components/Banner";
 import styles from "./DocsWithSidebar.css";
@@ -28,6 +28,8 @@ export function DocsWithSidebar({
     navigationOpen && styles.visible,
   ].join(" ");
   return (
+    <Unstyled>
+
     <div className={styles.wrapper}>
       <div className={styles.content}>
         <DocsContainer context={context} {...rest}>
@@ -53,6 +55,7 @@ export function DocsWithSidebar({
         </div>
       </aside>
     </div>
+    </Unstyled>
   );
 
   function toggleMenu() {

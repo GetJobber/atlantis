@@ -44,13 +44,23 @@ no value to the user by offering an incrementer.
 ### Disabled
 
 <Canvas>
-  <InputNumber placeholder="SIN Number" value={1234} disabled={true} />
+  <InputNumber
+    placeholder="SIN Number"
+    value={1234}
+    disabled={true}
+    name="sin"
+  />
 </Canvas>
 
 ### Read-only
 
 <Canvas>
-  <InputNumber placeholder="Your pin number" value={12345} readonly={true} />
+  <InputNumber
+    placeholder="Your pin number"
+    value={12345}
+    readonly={true}
+    name="pinNumber"
+  />
 </Canvas>
 
 ### Prefix/suffix

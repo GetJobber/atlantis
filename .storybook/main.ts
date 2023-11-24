@@ -82,8 +82,23 @@ const config = {
         atlantisCssRule,
       ];
     }
-    
-    config.devtool = false;
+    /**
+     * Framer motion 5 and up use ESM mjs files which doesn't work out of the
+     * box for webpack 4.
+     *
+     * Until we get to React 18, Node 18, Webpack 5, Storybook 7, this is needed.
+     */
+    config.module?.rules.push({
+      test: /\.mjs$/,
+      include: /node_modules/,
+      type: "javascript/auto",
+    });
+
+    config.module?.rules.push({
+      test: /\.html$/,
+      use: require.resolve('html-loader') as string,
+    })
+
     config.resolve.fallback = {
       ...config.resolve.fallback,
       os: false,

@@ -1,6 +1,8 @@
 # 🔱 Atlantis
 
-[![CircleCI](https://circleci.com/gh/GetJobber/atlantis/tree/master.svg?style=svg)](https://circleci.com/gh/GetJobber/atlantis/tree/master)
+<a href="https://circleci.com/gh/GetJobber/atlantis/tree/master">
+  <img src="https://circleci.com/gh/GetJobber/atlantis/tree/master.svg?style=svg" alt="CircleCI">
+</a>
 
 ## What is Atlantis?
 
