@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.48.8](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.48.7...@jobber/components-native@0.48.8) (2023-11-24)
+
+
+### Bug Fixes
+
+* **components-native:** avoid InputText re-renders ([#1652](https://github.com/GetJobber/atlantis/issues/1652)) ([e1c35b9](https://github.com/GetJobber/atlantis/commit/e1c35b947fdafe186431c6d07c3a03605477e3fc))
+
+
+
+
+
 ## [0.48.7](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.48.6...@jobber/components-native@0.48.7) (2023-11-21)
 
 **Note:** Version bump only for package @jobber/components-native

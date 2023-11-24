@@ -82,8 +82,6 @@ describe.each([{ includeATLContext: true }, { includeATLContext: false }])(
       });
 
       fireEvent.changeText(getByLabelText(placeHolder), `${value}`);
-      fireEvent(getByLabelText("Price"), "blur");
-      fireEvent(getByLabelText("Price"), "blur");
 
       await waitFor(() => {
         expect(getByDisplayValue("123.45912")).toBeDefined();
@@ -95,7 +93,6 @@ describe.each([{ includeATLContext: true }, { includeATLContext: false }])(
       const { getByLabelText, getByDisplayValue } = setup({ name: "sample" });
 
       fireEvent.changeText(getByLabelText(placeHolder), `${value}`);
-      fireEvent(getByLabelText("Price"), "blur");
 
       await waitFor(() => {
         expect(getByDisplayValue("123.11")).toBeDefined();
@@ -107,7 +104,6 @@ describe.each([{ includeATLContext: true }, { includeATLContext: false }])(
       const { getByLabelText, getByDisplayValue } = setup({ name: "sample" });
 
       fireEvent.changeText(getByLabelText(placeHolder), `${value}`);
-      fireEvent(getByLabelText("Price"), "blur");
 
       await waitFor(() => {
         expect(getByDisplayValue(`${value}`)).toBeDefined();
@@ -119,7 +115,6 @@ describe.each([{ includeATLContext: true }, { includeATLContext: false }])(
       const { getByLabelText, getByDisplayValue } = setup({ name: "sample" });
 
       fireEvent.changeText(getByLabelText(placeHolder), `${value}`);
-      fireEvent(getByLabelText("Price"), "blur");
 
       await waitFor(() => {
         expect(getByDisplayValue("5,098.543")).toBeDefined();
@@ -142,7 +137,6 @@ describe.each([{ includeATLContext: true }, { includeATLContext: false }])(
       const { getByLabelText, getByDisplayValue } = setup({ name: "sample" });
 
       fireEvent.changeText(getByLabelText(placeHolder), `${value}`);
-      fireEvent(getByLabelText("Price"), "blur");
 
       await waitFor(() => {
         expect(getByDisplayValue("123,456.78999")).toBeDefined();
