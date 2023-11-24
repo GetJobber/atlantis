@@ -29,7 +29,6 @@ export function DocsWithSidebar({
   ].join(" ");
   return (
     <Unstyled>
-
     <div className={styles.wrapper}>
       <div className={styles.content}>
         <DocsContainer context={context} {...rest}>

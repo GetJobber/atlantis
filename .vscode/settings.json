@@ -1,7 +1,7 @@
 {
   // Set eslint as the default Formatter for TS/TSX
   "[typescriptreact]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[typescript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
