@@ -67,6 +67,5 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     paddingLeft: tokens["space-base"],
     paddingRight: tokens["space-smaller"],
-    flexGrow: 1,
   },
 });
