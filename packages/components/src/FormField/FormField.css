@@ -65,13 +65,14 @@
   box-shadow: var(--shadow-focus);
 }
 
-.timeInputLabel input {
+.timeInputLabel:not(:focus-within) input {
   color: var(--field--background-color);
+  -webkit-text-fill-color: var(--field--background-color);
 }
 
-.timeInputLabel input:focus {
+/* .timeInputLabel input:focus {
   color: inherit;
-}
+} */
 
 .timeInputLabel:focus-within,
 .miniLabel {
