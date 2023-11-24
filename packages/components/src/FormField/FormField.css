@@ -187,6 +187,10 @@
   appearance: none;
 }
 
+.input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
 .input:focus {
   outline: none;
 }

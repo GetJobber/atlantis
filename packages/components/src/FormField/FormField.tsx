@@ -42,6 +42,7 @@ export function FormField(props: FormFieldProps) {
     onFocus,
     onBlur,
     onValidation,
+    onClick,
   } = props;
 
   const {
@@ -132,7 +133,9 @@ export function FormField(props: FormFieldProps) {
             case "select":
               return (
                 <>
-                  <select {...fieldProps}>{children}</select>
+                  <select {...fieldProps} onClick={onClick}>
+                    {children}
+                  </select>
                   <FormFieldPostFix variation="select" />
                 </>
               );
@@ -142,6 +145,7 @@ export function FormField(props: FormFieldProps) {
                   {...textFieldProps}
                   rows={rows}
                   ref={inputRef as MutableRefObject<HTMLTextAreaElement>}
+                  onClick={onClick}
                 />
               );
             default:
@@ -155,6 +159,7 @@ export function FormField(props: FormFieldProps) {
                     max={max}
                     min={min}
                     ref={inputRef as MutableRefObject<HTMLInputElement>}
+                    onClick={onClick}
                   />
                   {loading && <FormFieldPostFix variation="spinner" />}
                   {children}

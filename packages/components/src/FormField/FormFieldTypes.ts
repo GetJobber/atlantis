@@ -196,6 +196,15 @@ export interface FormFieldProps extends CommonFormFieldProps {
   onBlur?(): void;
 
   /**
+   * Click callback.
+   */
+  onClick?(
+    event: React.MouseEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ): void;
+
+  /**
    * Exclusively for textareas. Specifies the visible height of a textarea.
    */
   readonly rows?: number;

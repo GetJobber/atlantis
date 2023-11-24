@@ -22,6 +22,7 @@ export function InputTime({
   if (supportsTime) {
     const fieldProps: FormFieldProps = {
       onChange: handleChange,
+      onClick: event => (event.currentTarget as HTMLInputElement).showPicker(),
       ...(defaultValue && { defaultValue: civilTimeToHTMLTime(defaultValue) }),
       ...(!defaultValue && { value: civilTimeToHTMLTime(value) }),
       ...params,
