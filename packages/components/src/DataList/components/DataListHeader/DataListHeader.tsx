@@ -8,6 +8,7 @@ import {
 import { useResponsiveSizing } from "@jobber/components/DataList/hooks/useResponsiveSizing";
 import { DataListHeaderCheckbox } from "./DataListHeaderCheckbox";
 import { useActiveLayout } from "../../hooks/useActiveLayout";
+import { useBatchSelect } from "../../hooks/useBatchSelect";
 import styles from "../../DataList.css";
 
 export function DataListHeader() {
@@ -15,15 +16,15 @@ export function DataListHeader() {
   const {
     headerVisibility = { xs: true, sm: true, md: true, lg: true, xl: true },
     headers,
-    selected,
     layoutBreakpoints,
   } = useDataListContext();
+  const { selectedIDs } = useBatchSelect();
 
   const size = getVisibleSize();
   const { layout } = useActiveLayout();
 
   const visible = headerVisibility[size];
-  const noItemsSelected = selected?.length === 0;
+  const noItemsSelected = selectedIDs?.length === 0;
 
   if ((!visible && noItemsSelected) || !layout) return null;
 
