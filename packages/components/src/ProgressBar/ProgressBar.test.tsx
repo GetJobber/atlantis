@@ -16,4 +16,11 @@ describe("with props", () => {
     );
     expect(container).toMatchSnapshot();
   });
+
+  it("accept stepped variation", () => {
+    const { container } = render(
+      <ProgressBar currentStep={2} totalSteps={3} stepped />,
+    );
+    expect(container).toMatchSnapshot();
+  });
 });

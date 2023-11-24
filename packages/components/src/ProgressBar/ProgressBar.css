@@ -2,7 +2,8 @@
   --progress-bar--height: var(--space-base);
 }
 
-progress.ProgressBar[value] {
+progress.ProgressBar[value],
+progress.SteppedProgressBar[value] {
   width: 100%;
   height: var(--progress-bar--height);
   border: none;
@@ -10,14 +11,24 @@ progress.ProgressBar[value] {
   appearance: none;
 }
 
+progress.SteppedProgressBar[value] {
+  margin-right: var(--space-small);
+}
+
 progress.ProgressBar[value],
-progress.ProgressBar[value]::-webkit-progress-bar {
+progress.ProgressBar[value]::-webkit-progress-bar,
+progress.SteppedProgressBar[value],
+progress.SteppedProgressBar[value]::-webkit-progress-bar {
   box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.05);
   border-radius: calc(var(--progress-bar--height) / 2);
 }
 
 progress.ProgressBar[value]::-webkit-progress-bar {
   background-color: var(--color-surface--background);
+}
+
+progress.SteppedProgressBar[value]::-webkit-progress-bar {
+  background-color: var(--color-greyBlue--lightest);
 }
 
 progress.ProgressBar[value]::-webkit-progress-value {
@@ -30,4 +41,20 @@ progress.ProgressBar[value]::-moz-progress-bar {
   border-radius: calc(var(--progress-bar--height) / 2);
   background-color: var(--color-interactive);
   transition: all var(--timing-slow) ease-out;
+}
+
+progress.SteppedProgressBar[value]::-webkit-progress-value {
+  border-radius: calc(var(--progress-bar--height) / 2);
+  background-color: var(--color-interactive);
+  transition: all var(--timing-quick) ease-out;
+}
+
+progress.SteppedProgressBar[value]::-moz-progress-bar {
+  border-radius: calc(var(--progress-bar--height) / 2);
+  background-color: var(--color-interactive);
+}
+
+.SteppedProgressBar {
+  display: flex;
+  flex-direction: row;
 }
