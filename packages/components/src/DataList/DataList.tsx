@@ -232,19 +232,19 @@ DataList.Search = DataListSearch;
 DataList.ItemActions = DataListItemActions;
 
 /**
- * Defines the group actions you could do on multiple DataList items.
- */
-DataList.BulkActions = DataListBulkActions;
-
-/**
  * Defines the action in a DataList. This should be used inside the
  * DataListItemActions component.
  */
 DataList.ItemAction = DataListAction;
 
 /**
+ * Defines the group actions you could do on multiple DataList items.
+ */
+DataList.BatchActions = DataListBulkActions;
+
+/**
  * Defines the batch action in a DataList. This should be used inside the
- * DataListBulkActions component.
+ * DataListBatchActions component.
  */
 DataList.BatchAction = function DataListBatchAction(
   props: DataListBulkActionProps,
