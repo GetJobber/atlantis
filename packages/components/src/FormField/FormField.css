@@ -70,10 +70,6 @@
   -webkit-text-fill-color: var(--field--background-color);
 }
 
-/* .timeInputLabel input:focus {
-  color: inherit;
-} */
-
 .timeInputLabel:focus-within,
 .miniLabel {
   --field--placeholder-color: var(--color-text--secondary);
