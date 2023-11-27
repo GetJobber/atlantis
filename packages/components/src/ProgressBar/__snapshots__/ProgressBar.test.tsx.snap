@@ -1,41 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`with props accept stepped variation 1`] = `
-<div>
-  <div
-    class="SteppedProgressBar base"
-  >
-    <progress
-      aria-valuenow="0.6666666666666666"
-      aria-valuetext="progress, 1 out of 3"
-      class="SteppedProgressBar base"
-      value="100"
-    >
-      100
-      %
-    </progress>
-    <progress
-      aria-valuenow="0.6666666666666666"
-      aria-valuetext="progress, 2 out of 3"
-      class="SteppedProgressBar base"
-      value="100"
-    >
-      100
-      %
-    </progress>
-    <progress
-      aria-valuenow="0.6666666666666666"
-      aria-valuetext="progress, 3 out of 3"
-      class="SteppedProgressBar base"
-      value="0"
-    >
-      0
-      %
-    </progress>
-  </div>
-</div>
-`;
-
 exports[`with props accepts small size 1`] = `
 <div>
   <progress

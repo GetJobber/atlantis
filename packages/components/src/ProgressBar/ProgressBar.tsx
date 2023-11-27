@@ -2,6 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import styles from "./ProgressBar.css";
 import sizes from "./Sizes.css";
+import { ProgressBarStepped } from "./ProgressBarStepped";
 
 interface ProgressBarProps {
   /**
@@ -35,37 +36,17 @@ export function ProgressBar({
 }: ProgressBarProps) {
   const percentage = (currentStep / totalSteps) * 100;
   const progressBarClassName = classnames(styles.ProgressBar, sizes[size]);
-  const steppedProgressBarClassName = classnames(
-    styles.SteppedProgressBar,
-    sizes[size],
-  );
 
-  function steppedVariation() {
+  if (variation === "stepped") {
     return (
-      <div className={steppedProgressBarClassName}>
-        {Array.from({ length: totalSteps }).map((_, index) => {
-          const step = index + 1;
-          const value = step <= currentStep ? 100 : 0;
-          const ariaValue = currentStep / totalSteps;
-          const ariaLabel = `progress, ${step} out of ${totalSteps}`;
-
-          return (
-            <progress
-              key={step}
-              className={steppedProgressBarClassName}
-              value={value}
-              aria-valuenow={ariaValue}
-              aria-valuetext={ariaLabel}
-            >
-              {value}%
-            </progress>
-          );
-        })}
-      </div>
+      <ProgressBarStepped
+        currentStep={currentStep}
+        totalSteps={totalSteps}
+        percentage={percentage}
+        size={size}
+      />
     );
   }
-
-  if (variation === "stepped") return steppedVariation();
 
   return (
     <progress
