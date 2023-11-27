@@ -3,6 +3,8 @@
   "exclude": [
     "**/*.test.ts",
     "**/*.test.tsx",
+    "**/*.pom.ts",
+    "**/*.pom.tsx",
     "entryPoints.ts"
   ],
   "references": [

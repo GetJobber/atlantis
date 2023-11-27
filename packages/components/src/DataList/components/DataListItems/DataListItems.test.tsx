@@ -34,11 +34,6 @@ afterEach(() => {
 
 describe("DataListItems", () => {
   describe("selectable", () => {
-    it("should render list items with checkboxes when onSelect and selected provided", () => {
-      renderComponent();
-      expect(screen.getAllByRole("checkbox")).toHaveLength(2);
-    });
-
     it("should not render list items with checkboxes when selected is not provided", () => {
       mockSelectedValue.mockReturnValueOnce(undefined);
       renderComponent();
@@ -51,43 +46,6 @@ describe("DataListItems", () => {
       renderComponent();
 
       expect(screen.queryAllByRole("checkbox")).toHaveLength(0);
-    });
-  });
-
-  describe("onSelect", () => {
-    it("should call onSelect when a single checkbox is selected", async () => {
-      renderComponent();
-
-      const checkbox = screen.getAllByRole("checkbox")[0];
-      await userEvent.click(checkbox);
-
-      expect(onSelectMock).toHaveBeenCalledTimes(1);
-      expect(onSelectMock).toHaveBeenCalledWith([mockData[0].id]);
-    });
-
-    it("should call onSelect with multiple checkboxes selected", async () => {
-      mockSelectedValue.mockReturnValueOnce([mockData[0].id]);
-      renderComponent();
-
-      const checkbox = screen.getAllByRole("checkbox")[1];
-      await userEvent.click(checkbox);
-
-      expect(onSelectMock).toHaveBeenCalledTimes(1);
-      expect(onSelectMock).toHaveBeenCalledWith([
-        mockData[0].id,
-        mockData[1].id,
-      ]);
-    });
-
-    it("should call onSelect when a single checkbox is un-selected", async () => {
-      mockSelectedValue.mockReturnValueOnce([mockData[0].id, mockData[1].id]);
-      renderComponent();
-
-      const checkbox = screen.getAllByRole("checkbox")[0];
-      await userEvent.click(checkbox);
-
-      expect(onSelectMock).toHaveBeenCalledTimes(1);
-      expect(onSelectMock).toHaveBeenCalledWith([mockData[1].id]);
     });
   });
 

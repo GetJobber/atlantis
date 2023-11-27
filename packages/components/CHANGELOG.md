@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.63.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.62.0...@jobber/components@4.63.0) (2023-11-24)
+
+
+### Features
+
+* DataList batch selection for select all with unknown IDs ([#1650](https://github.com/GetJobber/atlantis/issues/1650)) ([73ed768](https://github.com/GetJobber/atlantis/commit/73ed768307d13aabd50b5f79fb74f28737fd127a))
+
+
+
+
+
 # [4.62.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.61.0...@jobber/components@4.62.0) (2023-11-23)
 
 
