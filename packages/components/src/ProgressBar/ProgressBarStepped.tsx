@@ -17,6 +17,7 @@ export function ProgressBarStepped({
   size = "base",
 }: ProgressBarSteppedProps) {
   const steppedProgressBarClassName = classnames(
+    styles.ProgressBar,
     styles.SteppedProgressBar,
     sizes[size],
   );
@@ -25,7 +26,7 @@ export function ProgressBarStepped({
   return (
     <div
       role={"progressbar"}
-      className={steppedProgressBarClassName}
+      className={styles.wrapper}
       aria-valuenow={percentage}
       aria-valuetext={ariaLabel}
     >
