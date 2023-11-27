@@ -46,7 +46,7 @@ export function ProgressBar({
         {Array.from({ length: totalSteps }).map((_, index) => {
           const step = index + 1;
           const value = step <= currentStep ? 100 : 0;
-          const ariaValue = step / totalSteps;
+          const ariaValue = currentStep / totalSteps;
           const ariaLabel = `progress, ${step} out of ${totalSteps}`;
 
           return (

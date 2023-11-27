@@ -6,7 +6,7 @@ exports[`with props accept stepped variation 1`] = `
     class="SteppedProgressBar base"
   >
     <progress
-      aria-valuenow="0.3333333333333333"
+      aria-valuenow="0.6666666666666666"
       aria-valuetext="progress, 1 out of 3"
       class="SteppedProgressBar base"
       value="100"
@@ -24,7 +24,7 @@ exports[`with props accept stepped variation 1`] = `
       %
     </progress>
     <progress
-      aria-valuenow="1"
+      aria-valuenow="0.6666666666666666"
       aria-valuetext="progress, 3 out of 3"
       class="SteppedProgressBar base"
       value="0"
