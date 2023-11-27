@@ -135,7 +135,7 @@ export interface InputTextProps {
   readonly autoCorrect?: boolean;
 
   /**
-   *  Determines where to autocapitalize
+   * Determines where to autocapitalize
    */
   readonly autoCapitalize?: "characters" | "words" | "sentences" | "none";
 
@@ -456,7 +456,14 @@ function trimWhitespace(
   if (!field.value || !field.value.trim) {
     return;
   }
+
   const trimmedInput = field.value.trim();
+
+  if (trimmedInput === field.value) {
+    // avoid re-renders when nothing changed
+    return;
+  }
+
   onChangeText?.(trimmedInput);
   field.onChange(trimmedInput);
 }

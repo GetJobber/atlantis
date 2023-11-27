@@ -29,7 +29,7 @@ const EventTemplate: ComponentStory<typeof InputTime> = args => {
   const [time, setTime] = useState<CivilTime>();
 
   const resetTime = () => {
-    setTime(new CivilTime(3, 52));
+    setTime(undefined);
   };
 
   const handleChange = (newTime: CivilTime) => {

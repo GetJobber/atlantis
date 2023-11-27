@@ -11,6 +11,7 @@ it("renders an input type number", () => {
       >
         <div
           class="wrapper"
+          data-testid="Form-Field-Wrapper"
         >
           <div
             class="inputWrapper"
