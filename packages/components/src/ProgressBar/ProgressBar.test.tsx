@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import React from "react";
 import { ProgressBar } from "./ProgressBar";
 
@@ -18,19 +18,26 @@ describe("with props", () => {
   });
 
   describe("stepped variation", () => {
-    it("renders correctly", () => {
-      const { getAllByTestId } = render(
+    beforeEach(() => {
+      render(
         <ProgressBar currentStep={2} totalSteps={3} variation={"stepped"} />,
       );
-
-      const progressElements = getAllByTestId("progress-step");
+    });
+    it("renders the correct number of steps", () => {
+      const progressElements = screen.getAllByTestId("progress-step");
       expect(progressElements).toHaveLength(3);
+    });
 
-      const completeSteps = progressElements.filter(
+    it("renders the correct number of completed steps", () => {
+      const progressElements = screen.getAllByTestId("progress-step");
+      const completedSteps = progressElements.filter(
         progress => progress.getAttribute("value") === "100",
       );
-      expect(completeSteps).toHaveLength(2);
+      expect(completedSteps).toHaveLength(2);
+    });
 
+    it("renders the correct number of incomplete steps", () => {
+      const progressElements = screen.getAllByTestId("progress-step");
       const incompleteSteps = progressElements.filter(
         progress => progress.getAttribute("value") === "0",
       );
