@@ -45,3 +45,6 @@ Basic.args = {
 
 export const WithState = WithStateTemplate.bind({});
 WithState.args = {};
+
+export const WithSteppedVariation = WithStateTemplate.bind({});
+WithSteppedVariation.args = { variation: "stepped" };
