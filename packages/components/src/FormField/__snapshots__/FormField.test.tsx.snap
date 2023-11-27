@@ -7,6 +7,7 @@ exports[`FormField when small renders 1`] = `
   >
     <div
       class="wrapper small"
+      data-testid="Form-Field-Wrapper"
     >
       <div
         class="inputWrapper"
@@ -16,7 +17,7 @@ exports[`FormField when small renders 1`] = `
         >
           <input
             class="input"
-            id="123e4567-e89b-12d3-a456-426655440005"
+            id="123e4567-e89b-12d3-a456-426655440009"
             type="text"
             value=""
           />
@@ -34,6 +35,7 @@ exports[`FormField with no props renders 1`] = `
   >
     <div
       class="wrapper"
+      data-testid="Form-Field-Wrapper"
     >
       <div
         class="inputWrapper"
