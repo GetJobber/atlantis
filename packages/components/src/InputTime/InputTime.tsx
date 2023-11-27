@@ -25,11 +25,13 @@ export function InputTime({
       onClick: event => (event.currentTarget as HTMLInputElement).showPicker(),
       ...(defaultValue && { defaultValue: civilTimeToHTMLTime(defaultValue) }),
       ...(!defaultValue && { value: civilTimeToHTMLTime(value) }),
-      suffix: {
-        ariaLabel: "clear time",
-        icon: "remove",
-        onClick: () => handleChange(""),
-      },
+      ...(value && {
+        suffix: {
+          ariaLabel: "clear " + params.placeholder,
+          icon: "remove",
+          onClick: () => handleChange(""),
+        },
+      }),
       ...params,
     };
 
