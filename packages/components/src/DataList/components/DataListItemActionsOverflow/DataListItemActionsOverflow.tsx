@@ -43,8 +43,8 @@ export function DataListItemActionsOverflow<T extends DataListObject>({
     // within a clickable list item
     event.stopPropagation();
 
-    // This action can be wrapped in a link, which will navigate to the URL
-    // when clicked. The `preventDefault` prevents that from happening
+    // Prevent navigating to the parent's href event when it is nested within a
+    // linked list item
     event.preventDefault();
 
     setShowMenu(true);
