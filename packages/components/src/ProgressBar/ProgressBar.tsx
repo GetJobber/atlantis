@@ -46,16 +46,16 @@ export function ProgressBar({
         {Array.from({ length: totalSteps }).map((_, index) => {
           const step = index + 1;
           const value = step <= currentStep ? 100 : 0;
+          const ariaValue = step / totalSteps;
+          const ariaLabel = `progress, ${step} out of ${totalSteps}`;
 
           return (
             <progress
               key={step}
               className={steppedProgressBarClassName}
-              max={100}
               value={value}
-              aria-valuenow={value}
-              aria-valuemin={0}
-              aria-valuemax={100}
+              aria-valuenow={ariaValue}
+              aria-valuetext={ariaLabel}
             >
               {value}%
             </progress>
