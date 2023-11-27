@@ -17,7 +17,7 @@ describe("with props", () => {
     expect(container).toMatchSnapshot();
   });
 
-  describe("stepped variation", () => {
+  describe("with stepped variation", () => {
     beforeEach(() => {
       render(
         <ProgressBar currentStep={2} totalSteps={3} variation={"stepped"} />,
