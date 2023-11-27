@@ -83,7 +83,11 @@ export function FormFieldWrapper({
 
   return (
     <div className={containerClasses}>
-      <div className={wrapperClasses} style={wrapperInlineStyle}>
+      <div
+        className={wrapperClasses}
+        style={wrapperInlineStyle}
+        data-testid="Form-Field-Wrapper"
+      >
         {prefix?.icon && <AffixIcon {...prefix} size={size} />}
         <div className={styles.inputWrapper}>
           {placeholder && (
