@@ -27,6 +27,30 @@ it("renders a InputTime", () => {
               />
             </div>
           </div>
+          <div
+            class="affixIcon suffix hasAction"
+          >
+            <button
+              aria-label="clear time"
+              class="button base onlyIcon subtle tertiary"
+              type="button"
+            >
+              <svg
+                class="Z6OfUI2sH34- TphtDHcwxDc-"
+                data-testid="remove"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class=""
+                  d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
+                />
+              </svg>
+              <span
+                class="base extraBold base base"
+              />
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -58,6 +82,30 @@ it("renders an initial time when given 'defaultValue'", () => {
                 value="11:23"
               />
             </div>
+          </div>
+          <div
+            class="affixIcon suffix hasAction"
+          >
+            <button
+              aria-label="clear time"
+              class="button base onlyIcon subtle tertiary"
+              type="button"
+            >
+              <svg
+                class="Z6OfUI2sH34- TphtDHcwxDc-"
+                data-testid="remove"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class=""
+                  d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
+                />
+              </svg>
+              <span
+                class="base extraBold base base"
+              />
+            </button>
           </div>
         </div>
       </div>
@@ -92,6 +140,30 @@ it("renders correctly in a readonly state", () => {
               />
             </div>
           </div>
+          <div
+            class="affixIcon suffix hasAction"
+          >
+            <button
+              aria-label="clear time"
+              class="button base onlyIcon subtle tertiary"
+              type="button"
+            >
+              <svg
+                class="Z6OfUI2sH34- TphtDHcwxDc-"
+                data-testid="remove"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class=""
+                  d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
+                />
+              </svg>
+              <span
+                class="base extraBold base base"
+              />
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -125,6 +197,30 @@ it("adds a error border when invalid", () => {
               />
             </div>
           </div>
+          <div
+            class="affixIcon suffix hasAction"
+          >
+            <button
+              aria-label="clear time"
+              class="button base onlyIcon subtle tertiary"
+              type="button"
+            >
+              <svg
+                class="Z6OfUI2sH34- TphtDHcwxDc-"
+                data-testid="remove"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class=""
+                  d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
+                />
+              </svg>
+              <span
+                class="base extraBold base base"
+              />
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -154,6 +250,30 @@ it("should set the value when given 'value' and 'onChange'", () => {
                 value=""
               />
             </div>
+          </div>
+          <div
+            class="affixIcon suffix hasAction"
+          >
+            <button
+              aria-label="clear time"
+              class="button base onlyIcon subtle tertiary"
+              type="button"
+            >
+              <svg
+                class="Z6OfUI2sH34- TphtDHcwxDc-"
+                data-testid="remove"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class=""
+                  d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
+                />
+              </svg>
+              <span
+                class="base extraBold base base"
+              />
+            </button>
           </div>
         </div>
       </div>
