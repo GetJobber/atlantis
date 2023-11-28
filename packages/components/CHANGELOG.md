@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.64.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.63.0...@jobber/components@4.64.0) (2023-11-28)
+
+
+### Bug Fixes
+
+* **components:** Prevent data list from navigating within the link when opening the menu ([#1657](https://github.com/GetJobber/atlantis/issues/1657)) ([c819238](https://github.com/GetJobber/atlantis/commit/c819238c436773fc502bb0fe274b4eaadf81f673))
+
+
+### Features
+
+* **components:** Add css changes to show the placeholder label to the form field [JOB-83555] ([#1654](https://github.com/GetJobber/atlantis/issues/1654)) ([fee6712](https://github.com/GetJobber/atlantis/commit/fee6712082ec543517ab714130f71e11d824961d))
+
+
+
+
+
 # [4.63.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.62.0...@jobber/components@4.63.0) (2023-11-24)
 
 
