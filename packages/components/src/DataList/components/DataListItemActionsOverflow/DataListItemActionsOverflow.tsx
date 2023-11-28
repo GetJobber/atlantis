@@ -43,6 +43,10 @@ export function DataListItemActionsOverflow<T extends DataListObject>({
     // within a clickable list item
     event.stopPropagation();
 
+    // Prevent navigating to the parent's href event when it is nested within a
+    // linked list item
+    event.preventDefault();
+
     setShowMenu(true);
 
     const rect = event.currentTarget.getBoundingClientRect();
