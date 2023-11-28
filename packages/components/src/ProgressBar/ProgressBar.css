@@ -32,10 +32,6 @@ progress.ProgressBar[value]::-moz-progress-bar {
   transition: all var(--timing-slow) ease-out;
 }
 
-progress.SteppedProgressBar[value] {
-  margin-right: var(--space-small);
-}
-
 progress.SteppedProgressBar[value]::-webkit-progress-value {
   transition: all var(--timing-quick) ease-out;
 }
@@ -43,4 +39,5 @@ progress.SteppedProgressBar[value]::-webkit-progress-value {
 .wrapper {
   display: flex;
   flex-direction: row;
+  gap: var(--space-small);
 }
