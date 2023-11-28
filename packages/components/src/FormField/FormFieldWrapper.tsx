@@ -11,6 +11,7 @@ import styles from "./FormField.css";
 import { AffixIcon, AffixLabel } from "./FormFieldAffix";
 import { FormFieldDescription } from "./FormFieldDescription";
 import { InputValidation } from "../InputValidation";
+import { Icon } from "../Icon";
 
 interface FormFieldWrapperProps extends FormFieldProps {
   readonly error: string;
@@ -41,6 +42,8 @@ export function FormFieldWrapper({
   disabled,
   inline,
   identifier,
+  clearable,
+  onChange,
 }: PropsWithChildren<FormFieldWrapperProps>) {
   const wrapperClasses = classnames(
     styles.wrapper,
@@ -112,6 +115,17 @@ export function FormFieldWrapper({
         </div>
         {suffix?.icon && (
           <AffixIcon {...suffix} variation="suffix" size={size} />
+        )}
+        {clearable && value && (
+          <button
+            className={styles.clearInput}
+            onClick={onChange && (() => onChange(""))}
+            type="button"
+            data-testid="ATL-Input-Time-Clear"
+            aria-label="Clear input"
+          >
+            <Icon name="remove" size="small" />
+          </button>
         )}
       </div>
       {description && !inline && (
