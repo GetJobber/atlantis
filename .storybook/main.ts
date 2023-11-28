@@ -1,5 +1,4 @@
 import { dirname, join } from "path";
-const util = require('util');
 const webpack = require("webpack");
 const path = require("path");
 
@@ -82,39 +81,12 @@ const config = {
         atlantisCssRule,
       ];
     }
-    /**
-     * Framer motion 5 and up use ESM mjs files which doesn't work out of the
-     * box for webpack 4.
-     *
-     * Until we get to React 18, Node 18, Webpack 5, Storybook 7, this is needed.
-     */
-    config.module?.rules.push({
-      test: /\.mjs$/,
-      include: /node_modules/,
-      type: "javascript/auto",
-    });
+   
 
     config.module?.rules.push({
       test: /\.html$/,
       use: require.resolve('html-loader') as string,
     })
-
-    config.resolve.fallback = {
-      ...config.resolve.fallback,
-      os: false,
-      util: false,
-      path: require.resolve("path-browserify"),
-      assert: require.resolve('browser-assert'),
-      fs: false,
-      stream: false,
-      module: false,
-      crypto: false,
-      child_process: false,
-      tty: false,
-      benchmark: false,
-      v8: false,
-      net: false,
-    }
 
     /**
      * Generate css types on `.css` file save,
