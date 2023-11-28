@@ -8,7 +8,7 @@ const config = {
     "../docs/**/*.stories.@(js|jsx|ts|tsx)",
   ],
   core: {
-    builder: "webpack5",
+    builder: "@storybook/builder-webpack5",
   },
   addons: [
     getAbsolutePath("@storybook/addon-links"),
