@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.48.9](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.48.8...@jobber/components-native@0.48.9) (2023-11-28)
+
+
+### Bug Fixes
+
+* **components-native:** add padding horizontal on content overlay title ([#1649](https://github.com/GetJobber/atlantis/issues/1649)) ([f697799](https://github.com/GetJobber/atlantis/commit/f697799ea0adf234d6e189f88e134e238c1c1dc0))
+
+
+
+
+
 ## [0.48.8](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.48.7...@jobber/components-native@0.48.8) (2023-11-24)
 
 
