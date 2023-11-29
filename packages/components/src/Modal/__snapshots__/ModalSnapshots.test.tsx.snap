@@ -4,6 +4,7 @@ exports[`Button Variations modal shows with primary learning button 1`] = `
 <div>
   <div
     class="container"
+    role="dialog"
     tabindex="0"
   >
     <div

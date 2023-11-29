@@ -1,5 +1,5 @@
 import React from "react";
-import { act, cleanup, render, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import { configMocks, mockIntersectionObserver } from "jsdom-testing-mocks";
 import { DataListFilters, InternalDataListFilters } from "./DataListFilters";
 import { CONTAINER_TEST_ID } from "../DataListOverflowFade";
@@ -24,7 +24,6 @@ const contextValueWithRenderableChildren = {
 const showHeaderSpy = jest.spyOn(useShowHeader, "useShowHeader");
 
 afterEach(() => {
-  cleanup();
   spy.mockReset();
   showHeaderSpy.mockReset();
 });
@@ -119,9 +118,7 @@ describe("InternalDataListFilters", () => {
       showHeaderSpy.mockReturnValueOnce(false);
       render(<InternalDataListFilters />);
 
-      expect(
-        screen.getByRole("button", { name: "Sort by" }),
-      ).toBeInTheDocument();
+      expect(screen.getByRole("combobox")).toBeInTheDocument();
     });
 
     it("should not render the sort button when the header is there", () => {

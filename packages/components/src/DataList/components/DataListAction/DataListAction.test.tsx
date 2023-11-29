@@ -41,21 +41,49 @@ describe("DataListAction", () => {
     expect(button.querySelector("p")).toHaveClass("critical");
   });
 
-  it("should not fire the onClick when the item from the context is undefined", () => {
+  it("should not fire the onClick when the item from the context is undefined", async () => {
     const { button } = renderComponent();
 
-    userEvent.click(button);
+    await userEvent.click(button);
     // ensure item doesn't get passed in
     expect(handleClick).toHaveBeenCalledWith();
   });
 
-  it("should fire the onClick when the item from the context is defined", () => {
+  it("should fire the onClick when the item from the context is defined", async () => {
     const mockItem = { id: "1" };
     mockActiveItemValue.mockReturnValue(mockItem);
     const { button } = renderComponent();
 
-    userEvent.click(button);
+    await userEvent.click(button);
     expect(handleClick).toHaveBeenCalledWith(mockItem);
+  });
+
+  describe("Action visibility", () => {
+    const value = { activeItem: { id: 1 } };
+
+    it("should render the action if the visibility prop is returning true", () => {
+      const mockVisibility = jest.fn(() => true);
+      render(
+        <DataListLayoutActionsContext.Provider value={value}>
+          <DataListAction label={name} visible={mockVisibility} />
+        </DataListLayoutActionsContext.Provider>,
+      );
+
+      expect(screen.getByRole("button", { name })).toBeInTheDocument();
+      expect(mockVisibility).toHaveBeenCalledWith(value.activeItem);
+    });
+
+    it("should not render the action if the visibility prop is returning false", () => {
+      const mockVisibility = jest.fn(() => false);
+      render(
+        <DataListLayoutActionsContext.Provider value={value}>
+          <DataListAction label={name} visible={mockVisibility} />
+        </DataListLayoutActionsContext.Provider>,
+      );
+
+      expect(screen.queryByRole("button", { name })).not.toBeInTheDocument();
+      expect(mockVisibility).toHaveBeenCalledWith(value.activeItem);
+    });
   });
 });
 

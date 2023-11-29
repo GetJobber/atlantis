@@ -1,8 +1,7 @@
 import React from "react";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { {{name}} } from ".";
 
-afterEach(cleanup);
 
 it("renders a {{name}}", () => {
   const { container } = render(<{{name}} text="Foo" />);

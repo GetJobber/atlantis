@@ -1,5 +1,5 @@
 import React, { ElementType } from "react";
-import { cleanup, fireEvent, render } from "@testing-library/react-native";
+import { fireEvent, render } from "@testing-library/react-native";
 import { View } from "react-native";
 import { SelectInternalPicker } from ".";
 import { SelectInternalPickerProps } from "../../types";
@@ -19,7 +19,6 @@ jest.mock("@react-native-picker/picker", () => ({ Picker: MockPicker }));
 MockPicker.Item = MockPickerItem;
 
 afterEach(() => {
-  cleanup();
   jest.resetAllMocks();
 });
 

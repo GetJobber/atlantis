@@ -1,6 +1,6 @@
 {
   "name": "@jobber/hooks",
-  "version": "2.6.1",
+  "version": "2.7.2",
   "license": "MIT",
   "main": "./dist/index.js",
   "types": "./dist/index.d.js",
@@ -23,7 +23,7 @@
     "@jobber/formatters": "*",
     "@testing-library/react": "^14.0.0",
     "@testing-library/react-hooks": "^7.0.0",
-    "@testing-library/user-event": "^12.0.2",
+    "@testing-library/user-event": "^14.5.1",
     "@types/lodash": "4.14.136",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
@@ -34,7 +34,6 @@
     "uuid": "^8.3.2"
   },
   "dependencies": {
-    "@use-it/event-listener": "^0.1.6",
     "lodash": "^4.17.20",
     "resize-observer-polyfill": "^1.5.1",
     "ts-xor": "^1.0.8",

@@ -18,7 +18,7 @@ describe("DataListActions", () => {
     expect(screen.getByLabelText("More actions")).toBeInTheDocument();
   });
 
-  it("should render 2 buttons and collapse the last 2 into More Actions", () => {
+  it("should render 2 buttons and collapse the last 2 into More Actions", async () => {
     renderComponent(2);
     expect(screen.getByLabelText("Edit")).toBeInTheDocument();
     expect(screen.getByLabelText("Email")).toBeInTheDocument();
@@ -26,7 +26,7 @@ describe("DataListActions", () => {
     expect(screen.getByLabelText("More actions")).toBeInTheDocument();
 
     const moreMenuButton = screen.getByLabelText("More actions");
-    userEvent.click(moreMenuButton);
+    await userEvent.click(moreMenuButton);
 
     const menu = screen.getByRole("menu");
     expect(menu).toBeInTheDocument();
@@ -35,7 +35,7 @@ describe("DataListActions", () => {
     expect(within(menu).getAllByRole("button")).toHaveLength(2);
   });
 
-  it("should not render the first 2 actions if the first action doesn't have an icon", () => {
+  it("should not render the first 2 actions if the first action doesn't have an icon", async () => {
     render(
       <DataListActions>
         <DataListAction label="Edit" />
@@ -51,7 +51,7 @@ describe("DataListActions", () => {
     expect(screen.getByLabelText("More actions")).toBeInTheDocument();
 
     const moreMenuButton = screen.getByLabelText("More actions");
-    userEvent.click(moreMenuButton);
+    await userEvent.click(moreMenuButton);
 
     const menu = screen.getByRole("menu");
     expect(menu).toBeInTheDocument();
@@ -74,7 +74,7 @@ describe("DataListActions", () => {
     expect(screen.getByLabelText("More actions")).toBeInTheDocument();
   });
 
-  it("should collapse all actions under More actions if the items to expose is 0", () => {
+  it("should collapse all actions under More actions if the items to expose is 0", async () => {
     renderComponent(0);
     expect(screen.queryByLabelText("Edit")).not.toBeInTheDocument();
     expect(screen.queryByLabelText("Email")).not.toBeInTheDocument();
@@ -82,7 +82,7 @@ describe("DataListActions", () => {
     expect(screen.queryByLabelText("Delete")).not.toBeInTheDocument();
 
     const moreMenuButton = screen.getByLabelText("More actions");
-    userEvent.click(moreMenuButton);
+    await userEvent.click(moreMenuButton);
 
     const menu = screen.getByRole("menu");
     expect(menu).toBeInTheDocument();
@@ -98,6 +98,38 @@ describe("DataListActions", () => {
     );
 
     expect(screen.queryByLabelText("More actions")).not.toBeInTheDocument();
+  });
+
+  describe("Visibility prop", () => {
+    it("should render the action if the visibility prop is not set", () => {
+      render(
+        <DataListActions>
+          <DataListAction icon="edit" label="Edit" />
+        </DataListActions>,
+      );
+
+      expect(screen.getByLabelText("Edit")).toBeInTheDocument();
+    });
+
+    it("should render the action if the visibility prop is returning true", () => {
+      render(
+        <DataListActions>
+          <DataListAction icon="edit" label="Edit" visible={() => true} />
+        </DataListActions>,
+      );
+
+      expect(screen.getByLabelText("Edit")).toBeInTheDocument();
+    });
+
+    it("should not render the action if the visibility prop is returning false", () => {
+      render(
+        <DataListActions>
+          <DataListAction icon="edit" label="Edit" visible={() => false} />
+        </DataListActions>,
+      );
+
+      expect(screen.queryByLabelText("Edit")).not.toBeInTheDocument();
+    });
   });
 });
 

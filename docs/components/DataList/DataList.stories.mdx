@@ -104,6 +104,18 @@ action that is related to the item.
 </DataList>
 ```
 
+##### Hiding an action
+
+Hide an action by using the `visible` prop. It accepts a function that has a
+parameter of the item it's related to.
+
+```tsx
+<DataList.ItemAction
+  visible={item => item.status === "Archived"}
+  label="Delete"
+/>
+```
+
 <Tabs>
   <Tab label="DataList.ItemActions">
     <ArgsTable of={DataList.ItemActions} />
@@ -138,6 +150,57 @@ items:
 ##### DataList.BatchAction props
 
 <ArgsTable of={DataList.BatchAction} />
+
+##### Using onSelectAll
+
+There are two ways to use the `onSelectAll` prop:
+
+Option 1. The "known IDs" way is where you update the selected IDs state with
+all the possible IDs in an array format (`[1, 2, 3]`).
+
+```tsx
+return (
+  <DataList
+    selected={selected}
+    onSelect={handleSelect}
+    onSelectAll={handleSelectAll}
+  >
+    ...
+  </DataList>
+);
+
+async function handleSelectAll() {
+  const allIDs: number[] = await query.fetchIds();
+  setSelected(allIDs);
+}
+```
+
+Option 2. The "unknown IDs" way is where you pass in an object to the `selected`
+prop. In doing so, the DataList will assume that everything is selected except
+for the ID's in the `unselected` array.
+
+```tsx
+return (
+  <DataList
+    selected={selected}
+    onSelect={handleSelect}
+    onSelectAll={handleSelectAll}
+  >
+    ...
+  </DataList>
+);
+
+/**
+ * In this example, `selected` will be an object with the following shape:
+ * {
+ *   totalCount: boolean; // approximately how many items are selected
+ *   unselected: T[]; // the items that are not selected
+ * }
+ */
+function handleSelectAll(selected: DataListSelectAllData<T>) {
+  setSelected(selected);
+}
+```
 
 #### Layout actions
 
@@ -223,5 +286,21 @@ need to set the `filtered` to `true`.
       <Button label="Clear filters" onClick={() => alert("Clear filters")} />
     }
   />
+</DataList>
+```
+
+### Status bar
+
+You can add a status bar that will be displayed between the filters and the
+header. This status bar can be used to display error messages or anything you
+want to inform the user about something related to the Datalist.
+
+```tsx
+<DataList>
+  <DataList.StatusBar>
+    <Banner type="error" icon="alert" dismissible>
+      Something went wrong. Refresh or check your internet connection.
+    </Banner>
+  </DataList.StatusBar>
 </DataList>
 ```

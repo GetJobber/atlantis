@@ -104,14 +104,14 @@ export function FormField(props: FormFieldProps) {
           readOnly: readonly,
           inputMode: keyboard,
           onChange: handleChange,
+          onBlur: handleBlur,
+          onFocus: handleFocus,
           ...(description &&
             !inline && { "aria-describedby": descriptionIdentifier }),
         };
 
         const textFieldProps = {
           ...fieldProps,
-          onBlur: handleBlur,
-          onFocus: handleFocus,
           onKeyDown: handleKeyDown,
         };
 
@@ -190,10 +190,15 @@ export function FormField(props: FormFieldProps) {
         }
 
         function handleFocus(
-          event: FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+          event: FocusEvent<
+            HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+          >,
         ) {
           const target = event.currentTarget;
-          setTimeout(() => readonly && target.select());
+
+          if ((target as HTMLInputElement).select) {
+            setTimeout(() => readonly && (target as HTMLInputElement).select());
+          }
           onFocus && onFocus();
         }
 

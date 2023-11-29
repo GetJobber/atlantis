@@ -1,58 +1,70 @@
+import React, { Children, ReactElement, isValidElement } from "react";
 import { useAssert } from "@jobber/hooks/useAssert";
-import React, { ReactNode } from "react";
+import { ComboboxActivator } from "../components/ComboboxActivator";
 import {
-  ComboboxTriggerButton,
-  ComboboxTriggerChip,
-} from "../components/ComboboxTrigger";
-import { ComboboxContent } from "../components/ComboboxContent";
+  ComboboxOption,
+  ComboboxOptionProps,
+} from "../components/ComboboxOption";
+import {
+  ComboboxActionProps,
+  ComboboxActivatorProps,
+  ComboboxProps,
+} from "../Combobox.types";
+import { ComboboxAction } from "../components/ComboboxAction";
 
 export const COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE =
-  "Combobox can only have one Trigger element";
-export const COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE =
-  "Combobox must have a Trigger and Combobox.Content element";
+  "Combobox must have exactly one Trigger element";
 
-export function useComboboxValidation(children: ReactNode): {
-  triggerElement: ReactNode;
-  contentElement: ReactNode;
+export function useComboboxValidation(children?: ComboboxProps["children"]): {
+  triggerElement?: ReactElement;
+  optionElements?: ReactElement[];
+  actionElements?: ReactElement[];
 } {
-  const childrenArray = React.Children.toArray(children);
-  let triggerElement: ReactNode,
-    contentElement: ReactNode,
-    multipleTriggersFound = false;
-
-  childrenArray.forEach(child => {
-    if (isTriggerElement(child)) {
-      if (triggerElement) {
-        multipleTriggersFound = true;
-      }
-      triggerElement = child;
-    }
-
-    if (isContentElement(child)) {
-      contentElement = child;
-    }
-  });
-
-  useAssert(multipleTriggersFound, COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
-
-  useAssert(
-    !triggerElement || !contentElement,
-    COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE,
+  const optionElements = getCompoundComponents<ComboboxOptionProps>(
+    ComboboxOption,
+    children,
+  );
+  const actionElements = getCompoundComponents<ComboboxActionProps>(
+    ComboboxAction,
+    children,
+  );
+  const activatorElements = getCompoundComponents<ComboboxActivatorProps>(
+    ComboboxActivator,
+    children,
   );
 
+  const shouldThrowTriggerError = isInvalid(activatorElements);
+
+  useAssert(shouldThrowTriggerError, COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
+
   return {
-    contentElement,
-    triggerElement,
+    optionElements,
+    triggerElement: activatorElements[0],
+    actionElements,
   };
 }
 
-function isTriggerElement(child: ReactNode): boolean {
-  return (
-    React.isValidElement(child) &&
-    (child.type === ComboboxTriggerButton || child.type === ComboboxTriggerChip)
-  );
+function isInvalid(
+  activators: ReactElement<
+    ComboboxActivatorProps,
+    string | React.JSXElementConstructor<ComboboxActivatorProps>
+  >[],
+): boolean {
+  return activators.length > 1 ? true : false;
 }
 
-function isContentElement(child: ReactNode): boolean {
-  return React.isValidElement(child) && child.type === ComboboxContent;
+/**
+ * Return all instances child component that matches the `type` provided
+ */
+export function getCompoundComponents<T>(
+  type: ReactElement<T>["type"],
+  children?: ComboboxProps["children"],
+): ReactElement<T>[] {
+  const childrenArray = Children.toArray(children);
+  const elements = childrenArray.filter(
+    (child): child is ReactElement<T> =>
+      isValidElement<T>(child) && child.type === type,
+  );
+
+  return elements;
 }

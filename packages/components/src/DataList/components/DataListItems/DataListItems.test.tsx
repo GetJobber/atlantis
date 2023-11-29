@@ -34,11 +34,6 @@ afterEach(() => {
 
 describe("DataListItems", () => {
   describe("selectable", () => {
-    it("should render list items with checkboxes when onSelect and selected provided", () => {
-      renderComponent();
-      expect(screen.getAllByRole("checkbox")).toHaveLength(2);
-    });
-
     it("should not render list items with checkboxes when selected is not provided", () => {
       mockSelectedValue.mockReturnValueOnce(undefined);
       renderComponent();
@@ -54,50 +49,13 @@ describe("DataListItems", () => {
     });
   });
 
-  describe("onSelect", () => {
-    it("should call onSelect when a single checkbox is selected", async () => {
-      renderComponent();
-
-      const checkbox = screen.getAllByRole("checkbox")[0];
-      userEvent.click(checkbox);
-
-      expect(onSelectMock).toHaveBeenCalledTimes(1);
-      expect(onSelectMock).toHaveBeenCalledWith([mockData[0].id]);
-    });
-
-    it("should call onSelect with multiple checkboxes selected", () => {
-      mockSelectedValue.mockReturnValueOnce([mockData[0].id]);
-      renderComponent();
-
-      const checkbox = screen.getAllByRole("checkbox")[1];
-      userEvent.click(checkbox);
-
-      expect(onSelectMock).toHaveBeenCalledTimes(1);
-      expect(onSelectMock).toHaveBeenCalledWith([
-        mockData[0].id,
-        mockData[1].id,
-      ]);
-    });
-
-    it("should call onSelect when a single checkbox is un-selected", () => {
-      mockSelectedValue.mockReturnValueOnce([mockData[0].id, mockData[1].id]);
-      renderComponent();
-
-      const checkbox = screen.getAllByRole("checkbox")[0];
-      userEvent.click(checkbox);
-
-      expect(onSelectMock).toHaveBeenCalledTimes(1);
-      expect(onSelectMock).toHaveBeenCalledWith([mockData[1].id]);
-    });
-  });
-
   describe("Context menu", () => {
-    it("should render context menu when right clicking on a list item", () => {
+    it("should render context menu when right clicking on a list item", async () => {
       renderComponent();
       expect(screen.queryByRole("menu")).not.toBeInTheDocument();
 
       const listItem = screen.getByText(mockData[0].label);
-      userEvent.hover(listItem);
+      await userEvent.hover(listItem);
 
       fireEvent.contextMenu(listItem);
 
@@ -106,10 +64,10 @@ describe("DataListItems", () => {
       expect(within(menuElement).getAllByRole("button")).toHaveLength(3);
     });
 
-    it("should render context menu in the right position when right clicking on a list item", () => {
+    it("should render context menu in the right position when right clicking on a list item", async () => {
       renderComponent();
       const listItem = screen.getByText(mockData[0].label);
-      userEvent.hover(listItem);
+      await userEvent.hover(listItem);
 
       const clientX = 20;
       const clientY = 30;
@@ -122,36 +80,36 @@ describe("DataListItems", () => {
       });
     });
 
-    it("should have the correct item when clicking the edit button", () => {
+    it("should have the correct item when clicking the edit button", async () => {
       renderComponent();
       const selectedItem = mockData[1];
       const listItem = screen.getByText(selectedItem.label);
-      userEvent.hover(listItem);
+      await userEvent.hover(listItem);
       fireEvent.contextMenu(listItem);
 
       const menuElement = screen.getByRole("menu");
       const editButton = within(menuElement).getByText("Edit");
-      userEvent.click(editButton);
+      await userEvent.click(editButton);
       expect(mockEditClick).toHaveBeenCalledWith(selectedItem);
     });
 
-    it("should not render context menu when right clicking on a list item and itemActionComponent is not provided", () => {
+    it("should not render context menu when right clicking on a list item and itemActionComponent is not provided", async () => {
       mockItemActionComponent.mockReturnValueOnce(undefined);
       renderComponent();
       const listItem = screen.getByText(mockData[0].label);
-      userEvent.hover(listItem);
+      await userEvent.hover(listItem);
       fireEvent.contextMenu(listItem);
 
       expect(screen.queryByRole("menu")).not.toBeInTheDocument();
     });
 
-    it("should not close the menu when hovering out of the target", () => {
+    it("should not close the menu when hovering out of the target", async () => {
       renderComponent();
       const listItem = screen.getByText(mockData[0].label);
-      userEvent.hover(listItem);
+      await userEvent.hover(listItem);
       fireEvent.contextMenu(listItem);
 
-      userEvent.unhover(listItem);
+      await userEvent.unhover(listItem);
 
       expect(screen.getByRole("menu")).toBeInTheDocument();
     });

@@ -60,14 +60,14 @@ describe("DataListBulkActions", () => {
     expect(screen.getByLabelText("More actions")).toBeInTheDocument();
   });
 
-  it("should call the onClick handler when clicking the edit button", () => {
+  it("should call the onClick handler when clicking the edit button", async () => {
     renderComponent();
-    userEvent.click(screen.getByLabelText("Edit"));
+    await userEvent.click(screen.getByLabelText("Edit"));
     expect(handleEditClick).toHaveBeenCalledTimes(1);
     expect(handleEditClick).toHaveBeenCalledWith();
   });
 
-  it("should collapse all actions under More actions when breakpoint is smaller than sm", () => {
+  it("should collapse all actions under More actions when breakpoint is smaller than sm", async () => {
     Object.defineProperty(window, "matchMedia", {
       writable: true,
       value: jest.fn().mockImplementation((query: string) => {
@@ -85,6 +85,7 @@ describe("DataListBulkActions", () => {
           lg: false,
           xl: false,
         }[queryBreakpoint as Breakpoints];
+
         return {
           matches: expectedValue,
           media: query,
@@ -105,7 +106,7 @@ describe("DataListBulkActions", () => {
     expect(screen.queryByLabelText("Note")).not.toBeInTheDocument();
     expect(screen.getByLabelText("More actions")).toBeInTheDocument();
     const moreMenuButton = screen.getByLabelText("More actions");
-    userEvent.click(moreMenuButton);
+    await userEvent.click(moreMenuButton);
 
     const menu = screen.getByRole("menu");
     expect(menu).toBeInTheDocument();

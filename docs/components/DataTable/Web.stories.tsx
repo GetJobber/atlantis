@@ -295,10 +295,12 @@ const ManualSortingTemplate: ComponentStory<typeof DataTable> = args => {
   const defaultData = args.data;
   const sortedData = useMemo(() => {
     if (sortingState.length == 0) return defaultData;
+
     return sortingState[0].desc
       ? sortBy(defaultData, [sortingState[0].id]).reverse()
       : sortBy(defaultData, [sortingState[0].id]);
   }, [sortingState]);
+
   return (
     <div>
       <DataDump label="Sorting State" data={sortingState} defaultOpen />

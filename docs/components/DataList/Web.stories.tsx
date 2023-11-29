@@ -2,11 +2,11 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import uniq from "lodash/uniq";
-import { useLazyQuery } from "@apollo/client";
 import { useCollectionQuery } from "@jobber/hooks/useCollectionQuery";
 import {
   DataList,
   DataListItemType,
+  DataListSelectedType,
   DataListSorting,
 } from "@jobber/components/DataList";
 import { Grid } from "@jobber/components/Grid";
@@ -14,13 +14,7 @@ import { InlineLabel, InlineLabelColors } from "@jobber/components/InlineLabel";
 import { Content } from "@jobber/components/Content";
 import { Button } from "@jobber/components/Button";
 import { DatePicker } from "@jobber/components/DatePicker";
-import {
-  LAZY_LIST_IDS_QUERY,
-  LIST_QUERY,
-  ListIDsQueryType,
-  ListQueryType,
-  apolloClient,
-} from "./storyUtils";
+import { LIST_QUERY, ListQueryType, apolloClient } from "./storyUtils";
 
 export default {
   title: "Components/Lists and Tables/DataList/Web",
@@ -32,6 +26,7 @@ export default {
     // Detach from Storybook's layout
     (Story, { viewMode }) => {
       if (viewMode === "docs") return <Story />;
+
       return (
         <div
           style={{
@@ -51,8 +46,6 @@ export default {
 } as ComponentMeta<typeof DataList>;
 
 const Template: ComponentStory<typeof DataList> = args => {
-  const [selected, setSelected] = useState<string[]>([]);
-
   const { data, nextPage, loadingNextPage, loadingInitialContent } =
     useCollectionQuery<ListQueryType>({
       query: LIST_QUERY,
@@ -66,15 +59,6 @@ const Template: ComponentStory<typeof DataList> = args => {
         return items?.allPeople;
       },
     });
-
-  const [getIDs, { loading: loadingIDs }] = useLazyQuery<ListIDsQueryType>(
-    LAZY_LIST_IDS_QUERY,
-    {
-      fetchPolicy: "network-only",
-      nextFetchPolicy: "cache-first",
-      client: apolloClient,
-    },
-  );
 
   const items = data?.allPeople.edges || [];
   const totalCount = data?.allPeople.totalCount || null;
@@ -94,12 +78,11 @@ const Template: ComponentStory<typeof DataList> = args => {
       ...node.homeworld.terrains,
     ]),
     homePopulation: node.homeworld.population?.toLocaleString(),
-    created: new Date(node.created),
+    lastActivity: new Date(node.created),
   }));
 
-  const [sortingState, setSortingState] = useState<DataListSorting | undefined>(
-    undefined,
-  );
+  const [selected, setSelected] = useState<DataListSelectedType<string>>();
+  const [sortingState, setSortingState] = useState<DataListSorting>();
 
   return (
     <DataList
@@ -112,19 +95,19 @@ const Template: ComponentStory<typeof DataList> = args => {
         home: "Home world",
         tags: "Attributes",
         gender: "Gender",
-        created: "Created",
+        lastActivity: "Last activity",
       }}
       onLoadMore={nextPage}
       selected={selected}
       onSelect={setSelected}
-      onSelectAll={handleSelectAll}
+      onSelectAll={setSelected}
       sorting={{
         state: sortingState,
         onSort: sorting => {
           console.log(sorting);
           setSortingState(sorting);
         },
-        sortable: ["label", "home"],
+        sortable: ["label", "home", "lastActivity"],
       }}
     >
       <DataList.Filters>
@@ -161,6 +144,7 @@ const Template: ComponentStory<typeof DataList> = args => {
 
       <DataList.ItemActions onClick={handleActionClick}>
         <DataList.ItemAction
+          visible={item => item.species !== "Droid"}
           icon="edit"
           label="Edit"
           onClick={handleActionClick}
@@ -186,7 +170,7 @@ const Template: ComponentStory<typeof DataList> = args => {
         />
       </DataList.ItemActions>
 
-      <DataList.BulkActions>
+      <DataList.BatchActions>
         <DataList.BatchAction
           icon="edit"
           label="Edit"
@@ -212,7 +196,7 @@ const Template: ComponentStory<typeof DataList> = args => {
           destructive={true}
           onClick={handleBulkActionClick}
         />
-      </DataList.BulkActions>
+      </DataList.BatchActions>
 
       <DataList.Layout size="md">
         {(item: DataListItemType<typeof mappedData>) => (
@@ -236,7 +220,7 @@ const Template: ComponentStory<typeof DataList> = args => {
                   textAlign: "right",
                 }}
               >
-                {item.created}
+                {item.lastActivity}
               </div>
             </Grid.Cell>
           </Grid>
@@ -269,7 +253,7 @@ const Template: ComponentStory<typeof DataList> = args => {
                 alignItems: "center",
               }}
             >
-              {item.created}
+              {item.lastActivity}
               <DataList.LayoutActions />
             </div>
           </Content>
@@ -321,19 +305,9 @@ const Template: ComponentStory<typeof DataList> = args => {
 
   function getLoadingState() {
     if (loadingInitialContent) return "initial";
-    if (loadingNextPage || loadingIDs) return "loadingMore";
+    if (loadingNextPage) return "loadingMore";
+
     return args.loadingState;
-  }
-
-  async function handleSelectAll() {
-    if (totalCount === selected.length) return setSelected([]);
-
-    const idsQuery = await getIDs();
-    const edges = idsQuery?.data?.allPeople?.edges;
-    if (!edges) return;
-
-    const ids = edges.map(({ node }) => node.id);
-    setSelected(ids);
   }
 };
 

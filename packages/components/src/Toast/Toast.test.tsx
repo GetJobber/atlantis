@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  act,
-  cleanup,
-  fireEvent,
-  render,
-  waitFor,
-} from "@testing-library/react";
+import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { showToast } from ".";
 
 jest.mock("framer-motion", () => ({
@@ -28,7 +22,6 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  cleanup();
   jest.runOnlyPendingTimers();
   jest.useRealTimers();
 });
@@ -126,6 +119,7 @@ it("stops and starts the timer when the item is hover toggled", async () => {
 interface MockToastProps {
   mockAction?(): void;
 }
+
 const MockToast = ({ mockAction }: MockToastProps) => {
   const buttons = [
     {
@@ -157,6 +151,7 @@ const MockToast = ({ mockAction }: MockToastProps) => {
       },
     },
   ];
+
   return (
     <>
       {buttons.map(({ label, onClick }) => (

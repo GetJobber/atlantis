@@ -44,6 +44,10 @@ import {
   DATA_LIST_FILTERING_SPINNER_TEST_ID,
 } from "./DataList.const";
 import { DataListBulkActions } from "./components/DataListBulkActions";
+import {
+  DataListStatusBar,
+  InternalDataListStatusBar,
+} from "./components/DataListStatusBar";
 import { Heading } from "../Heading";
 import { Spinner } from "../Spinner";
 
@@ -151,6 +155,8 @@ function InternalDataList() {
           <InternalDataListSearch />
         </div>
 
+        <InternalDataListStatusBar />
+
         <DataListHeader />
       </DataListStickyHeader>
 
@@ -226,22 +232,27 @@ DataList.Search = DataListSearch;
 DataList.ItemActions = DataListItemActions;
 
 /**
- * Defines the group actions you could do on multiple DataList items.
- */
-DataList.BulkActions = DataListBulkActions;
-
-/**
  * Defines the action in a DataList. This should be used inside the
  * DataListItemActions component.
  */
 DataList.ItemAction = DataListAction;
 
 /**
+ * Defines the group actions you could do on multiple DataList items.
+ */
+DataList.BatchActions = DataListBulkActions;
+
+/**
  * Defines the batch action in a DataList. This should be used inside the
- * DataListBulkActions component.
+ * DataListBatchActions component.
  */
 DataList.BatchAction = function DataListBatchAction(
   props: DataListBulkActionProps,
 ) {
   return <DataListAction {...props} />;
 };
+
+/**
+ * Defines a status bar that is rendered between the filters and the header.
+ */
+DataList.StatusBar = DataListStatusBar;

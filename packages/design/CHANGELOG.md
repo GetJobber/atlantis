@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.47.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.47.1...@jobber/design@0.47.2) (2023-11-21)
+
+
+### Bug Fixes
+
+* **components:** fix Chip transition state ([#1648](https://github.com/GetJobber/atlantis/issues/1648)) ([6a479a2](https://github.com/GetJobber/atlantis/commit/6a479a2f7d0a4017fda7ed386db23a98a5925cd4))
+
+
+
+
+
+## [0.47.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.47.0...@jobber/design@0.47.1) (2023-11-16)
+
+
+### Bug Fixes
+
+* breakpoints and viewport mock ([#1642](https://github.com/GetJobber/atlantis/issues/1642)) ([c1e5042](https://github.com/GetJobber/atlantis/commit/c1e50422a7cfec36effaf7c27b322d68fd5c70b5))
+
+
+
+
+
+# [0.47.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.46.0...@jobber/design@0.47.0) (2023-11-03)
+
+
+### Features
+
+* **design:** Add Marketing Icon ([#1522](https://github.com/GetJobber/atlantis/issues/1522)) ([64da4d5](https://github.com/GetJobber/atlantis/commit/64da4d55704159e3ac7edba8dafa7c309b51335d))
+
+
+
+
+
 # [0.46.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.45.0...@jobber/design@0.46.0) (2023-10-05)
 
 

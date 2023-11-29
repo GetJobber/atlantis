@@ -4,11 +4,9 @@
  */
 
 import React, { RefObject, useRef } from "react";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { ConfirmationModal, ConfirmationModalRef } from "..";
 import { Button } from "../../Button";
-
-afterEach(cleanup);
 
 test("simple ConfirmationModal should confirm", () => {
   const confirmHandler = jest.fn();
@@ -202,8 +200,8 @@ test("controlled ConfirmationModal should cancel", () => {
 });
 
 interface ControlledConfirmProps {
-  onConfirmMock: jest.Mock;
-  onCancelMock: jest.Mock;
+  readonly onConfirmMock: jest.Mock;
+  readonly onCancelMock: jest.Mock;
 }
 
 function ControlledConfirm({

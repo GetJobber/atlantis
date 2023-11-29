@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.2](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.7.1...@jobber/hooks@2.7.2) (2023-11-16)
+
+
+### Bug Fixes
+
+* breakpoints and viewport mock ([#1642](https://github.com/GetJobber/atlantis/issues/1642)) ([c1e5042](https://github.com/GetJobber/atlantis/commit/c1e50422a7cfec36effaf7c27b322d68fd5c70b5))
+
+
+
+
+
+## [2.7.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.7.0...@jobber/hooks@2.7.1) (2023-11-16)
+
+
+### Bug Fixes
+
+* remove @use-it/event-listener dependency and use regular event handler attachment api. ([#1630](https://github.com/GetJobber/atlantis/issues/1630)) ([9453814](https://github.com/GetJobber/atlantis/commit/9453814837699d4a1caae8b32caf65c7ddd3b92a))
+
+
+
+
+
+# [2.7.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.6.3...@jobber/hooks@2.7.0) (2023-11-07)
+
+
+### Features
+
+* **hooks:** Hook for managing boolean values ([#1598](https://github.com/GetJobber/atlantis/issues/1598)) ([bab0035](https://github.com/GetJobber/atlantis/commit/bab0035dcef691f68e55f60fefef20387fb79eae))
+
+
+
+
+
+## [2.6.3](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.6.2...@jobber/hooks@2.6.3) (2023-10-25)
+
+
+### Bug Fixes
+
+* **hooks:** Fix useCollectionQuery error state when fetching more ([#1608](https://github.com/GetJobber/atlantis/issues/1608)) ([3e84477](https://github.com/GetJobber/atlantis/commit/3e84477989fb9ee3a20528ca4a1248acfb1e625b))
+
+
+
+
+
+## [2.6.2](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.6.1...@jobber/hooks@2.6.2) (2023-10-23)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
 ## [2.6.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.6.0...@jobber/hooks@2.6.1) (2023-10-16)
 
 **Note:** Version bump only for package @jobber/hooks

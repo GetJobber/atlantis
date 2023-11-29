@@ -1,8 +1,6 @@
 import React from "react";
-import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
+import { fireEvent, render, waitFor } from "@testing-library/react";
 import { InputNumber, InputNumberRef } from ".";
-
-afterEach(cleanup);
 
 it("renders an input type number", () => {
   const { container } = render(<InputNumber value={123} />);
@@ -13,6 +11,7 @@ it("renders an input type number", () => {
       >
         <div
           class="wrapper"
+          data-testid="Form-Field-Wrapper"
         >
           <div
             class="inputWrapper"
