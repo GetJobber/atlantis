@@ -23,9 +23,9 @@
   box-sizing: border-box;
   padding-right: var(--space-small);
   margin-inline-start: 0;
-  flex: 1 1 40%;
+  flex: 1 1 60%;
 }
 
 .termGroup dt {
-  flex: 1 1 60%;
+  flex: 1 1 40%;
 }

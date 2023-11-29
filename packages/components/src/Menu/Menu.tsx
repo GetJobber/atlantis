@@ -12,6 +12,7 @@ import { v1 as uuidv1 } from "uuid";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
+import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { IconNames } from "@jobber/design";
 import styles from "./Menu.css";
 import { Button } from "../Button";
@@ -92,6 +93,7 @@ export function Menu({ activator, items }: MenuProps) {
       setPosition(newPosition);
     }
   }, [visible, fullWidth]);
+  useRefocusOnActivator(visible);
 
   if (!activator) {
     activator = (
@@ -117,7 +119,11 @@ export function Menu({ activator, items }: MenuProps) {
   });
 
   return (
-    <div className={wrapperClasses} ref={wrapperRef}>
+    <div
+      className={wrapperClasses}
+      ref={wrapperRef}
+      onClick={handleParentClick}
+    >
       {React.cloneElement(activator, {
         onClick: toggle(activator.props.onClick),
         id: buttonID,
@@ -196,10 +202,18 @@ export function Menu({ activator, items }: MenuProps) {
     event.stopPropagation();
     key === "Escape" && hide();
   }
+
+  function handleParentClick(event: MouseEvent<HTMLDivElement>) {
+    // Since the menu is being rendered within the same parent as the activator,
+    // we need to stop the click event from bubbling up. If the Menu component
+    // gets added within a parent that has a click handler, any click on the
+    // menu will trigger the parent's click handler.
+    event.stopPropagation();
+  }
 }
 
 interface SectionHeaderProps {
-  text: string;
+  readonly text: string;
 }
 
 function SectionHeader({ text }: SectionHeaderProps) {
@@ -222,17 +236,17 @@ export interface ActionProps {
   /**
    * Action label
    */
-  label: string;
+  readonly label: string;
 
   /**
    * Parent Section Label
    */
-  sectionLabel?: string;
+  readonly sectionLabel?: string;
 
   /**
    * Visual cue for the action label
    */
-  icon?: IconNames;
+  readonly icon?: IconNames;
 
   /**
    * Callback when an action gets clicked
@@ -242,7 +256,7 @@ export interface ActionProps {
   /**
    * Focus on the action when rendered
    */
-  shouldFocus?: boolean;
+  readonly shouldFocus?: boolean;
 }
 
 function Action({
@@ -255,8 +269,9 @@ function Action({
   const actionButtonRef = useRef() as RefObject<HTMLButtonElement>;
 
   useEffect(() => {
-    if (actionButtonRef.current && shouldFocus) {
-      actionButtonRef.current.focus();
+    if (shouldFocus) {
+      // Focus on the next tick to allow useRefocusOnActivator to initialize
+      setTimeout(() => actionButtonRef.current?.focus(), 0);
     }
   }, [shouldFocus]);
 

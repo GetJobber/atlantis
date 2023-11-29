@@ -3,21 +3,26 @@
 exports[`FormField when small renders 1`] = `
 <div>
   <div
-    class="wrapper small"
+    class="container"
   >
     <div
-      class="inputWrapper"
+      class="wrapper small"
+      data-testid="Form-Field-Wrapper"
     >
-      <label
-        class="label"
-        for="123e4567-e89b-12d3-a456-426655440005"
-      />
-      <input
-        class="input"
-        id="123e4567-e89b-12d3-a456-426655440005"
-        type="text"
-        value=""
-      />
+      <div
+        class="inputWrapper"
+      >
+        <div
+          class="childrenWrapper"
+        >
+          <input
+            class="input"
+            id="123e4567-e89b-12d3-a456-426655440009"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -26,21 +31,26 @@ exports[`FormField when small renders 1`] = `
 exports[`FormField with no props renders 1`] = `
 <div>
   <div
-    class="wrapper"
+    class="container"
   >
     <div
-      class="inputWrapper"
+      class="wrapper"
+      data-testid="Form-Field-Wrapper"
     >
-      <label
-        class="label"
-        for="123e4567-e89b-12d3-a456-426655440001"
-      />
-      <input
-        class="input"
-        id="123e4567-e89b-12d3-a456-426655440001"
-        type="text"
-        value=""
-      />
+      <div
+        class="inputWrapper"
+      >
+        <div
+          class="childrenWrapper"
+        >
+          <input
+            class="input"
+            id="123e4567-e89b-12d3-a456-426655440001"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -51,6 +51,8 @@ jobs:
           else
             if [ "$PUBLISH_SETTING" == "Force Publish Components" ]; then
             FORCE_PUBLISH_SETTINGS="--force-publish @jobber/components"
+            elif [ "$PUBLISH_SETTING" == "Force Publish Components-native" ]; then
+            FORCE_PUBLISH_SETTINGS="--force-publish @jobber/components-native"
             elif [ "$PUBLISH_SETTING" == "Force Publish Design" ]; then
             FORCE_PUBLISH_SETTINGS="--force-publish @jobber/design"
             elif [ "$PUBLISH_SETTING" == "Force Publish Components & Design" ]; then
@@ -67,6 +69,7 @@ jobs:
         id: summaryFile
         run: echo "releaseSummary=$(cat ./lerna-publish-summary.json)" >> $GITHUB_OUTPUT
   send_build_information:
+    permissions: write-all
     runs-on: ubuntu-latest
     needs: trigger_pre_release_build
     name: Send Build Information

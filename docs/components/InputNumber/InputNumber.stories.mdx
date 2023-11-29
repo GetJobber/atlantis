@@ -1,0 +1,108 @@
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { useState } from "react";
+import { InputNumber } from "@jobber/components/InputNumber";
+import { Button } from "@jobber/components/Button";
+import { Content } from "@jobber/components/Content";
+
+<Meta
+  title="Components/Forms and Inputs/InputNumber/Docs"
+  component={InputNumber}
+/>
+
+# InputNumber
+
+InputNumber is used in forms that accept numbers as an answer.
+
+## Design & usage guidelines
+
+This is best suited for input data that benefits from being modified in
+increments, such as quantity, price, or days (ie 2 days -> 3 days).
+
+While some types of data may technically be numbers, they can be ill-suited for
+using a number input. For example, phone numbers and credit card numbers provide
+no value to the user by offering an incrementer.
+
+## Controlled
+
+<Canvas>
+  {() => {
+    const [value, setValue] = useState(30);
+    return (
+      <InputNumber
+        value={value}
+        max={32}
+        min={0}
+        onChange={setValue}
+        placeholder="Age"
+      />
+    );
+  }}
+</Canvas>
+
+## States
+
+### Disabled
+
+<Canvas>
+  <InputNumber
+    placeholder="SIN Number"
+    value={1234}
+    disabled={true}
+    name="sin"
+  />
+</Canvas>
+
+### Read-only
+
+<Canvas>
+  <InputNumber
+    placeholder="Your pin number"
+    value={12345}
+    readonly={true}
+    name="pinNumber"
+  />
+</Canvas>
+
+### Prefix/suffix
+
+<Canvas>
+  <InputNumber
+    defaultValue="100000"
+    placeholder="Invoice Total"
+    prefix={{ label: "$", icon: "invoice" }}
+    suffix={{ label: ".00" }}
+  />
+</Canvas>
+
+## Focus & blur
+
+<Canvas>
+  {() => {
+    const inputNumberRef = React.createRef();
+    const focusInput = () => {
+      inputNumberRef.current.focus();
+    };
+    const blurInput = () => {
+      inputNumberRef.current.blur();
+    };
+    return (
+      <Content>
+        <InputNumber value={5} ref={inputNumberRef} />
+        <Button label="Focus input" onClick={focusInput} />
+        <br />
+        <Button label="Blur input" onClick={blurInput} />
+      </Content>
+    );
+  }}
+</Canvas>
+
+## Using onValidation
+
+If you need to capture the error message and render it outside of the component.
+Read the
+[InputValidation](../?path=/docs/components-forms-and-inputs-inputvalidation-docs--page)
+documentation.
+
+For more details about `validation` using `Input` components, see the
+[InputText](../?path=/docs/components-forms-and-inputs-inputtext--input-text/#validation-message)
+documentation.

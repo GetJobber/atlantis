@@ -1,0 +1,205 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextList when the bulletItems is provided displays the text list 1`] = `
+<View
+  style={
+    {
+      "flexDirection": "column",
+      "marginTop": 8,
+    }
+  }
+>
+  <View
+    style={
+      [
+        {},
+        {
+          "padding": 0,
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        [
+          {},
+        ]
+      }
+    >
+      <View
+        style={
+          {
+            "flexDirection": "row",
+            "paddingLeft": 8,
+          }
+        }
+      >
+        <Text
+          accessibilityRole="text"
+          adjustsFontSizeToFit={false}
+          allowFontScaling={true}
+          collapsable={false}
+          maxFontSizeMultiplier={3.125}
+          selectable={true}
+          selectionColor="rgb(132, 234, 0)"
+          style={
+            [
+              {
+                "fontFamily": "inter-regular",
+              },
+              {
+                "color": "rgb(66, 78, 86)",
+              },
+              {
+                "textAlign": "left",
+              },
+              {
+                "fontSize": 16,
+                "lineHeight": 20,
+              },
+              {
+                "letterSpacing": 0,
+              },
+            ]
+          }
+        >
+          •
+        </Text>
+        <View
+          style={
+            {
+              "flex": 1,
+              "paddingLeft": 8,
+            }
+          }
+        >
+          <Text
+            accessibilityRole="text"
+            adjustsFontSizeToFit={false}
+            allowFontScaling={true}
+            collapsable={false}
+            maxFontSizeMultiplier={3.125}
+            selectable={true}
+            selectionColor="rgb(132, 234, 0)"
+            style={
+              [
+                {
+                  "fontFamily": "inter-regular",
+                },
+                {
+                  "color": "rgb(66, 78, 86)",
+                },
+                {
+                  "textAlign": "left",
+                },
+                {
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                },
+                {
+                  "letterSpacing": 0,
+                },
+              ]
+            }
+          >
+            this is list item uno
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        [
+          {},
+          {
+            "padding": 0,
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          {
+            "flexDirection": "row",
+            "paddingLeft": 8,
+          }
+        }
+      >
+        <Text
+          accessibilityRole="text"
+          adjustsFontSizeToFit={false}
+          allowFontScaling={true}
+          collapsable={false}
+          maxFontSizeMultiplier={3.125}
+          selectable={true}
+          selectionColor="rgb(132, 234, 0)"
+          style={
+            [
+              {
+                "fontFamily": "inter-regular",
+              },
+              {
+                "color": "rgb(66, 78, 86)",
+              },
+              {
+                "textAlign": "left",
+              },
+              {
+                "fontSize": 16,
+                "lineHeight": 20,
+              },
+              {
+                "letterSpacing": 0,
+              },
+            ]
+          }
+        >
+          •
+        </Text>
+        <View
+          style={
+            {
+              "flex": 1,
+              "paddingLeft": 8,
+            }
+          }
+        >
+          <Text
+            accessibilityRole="text"
+            adjustsFontSizeToFit={false}
+            allowFontScaling={true}
+            collapsable={false}
+            maxFontSizeMultiplier={3.125}
+            selectable={true}
+            selectionColor="rgb(132, 234, 0)"
+            style={
+              [
+                {
+                  "fontFamily": "inter-regular",
+                },
+                {
+                  "color": "rgb(66, 78, 86)",
+                },
+                {
+                  "textAlign": "left",
+                },
+                {
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                },
+                {
+                  "letterSpacing": 0,
+                },
+              ]
+            }
+          >
+            this is list item dos
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`TextList when the bulletItems is provided displays will not display a bulleted list 1`] = `null`;

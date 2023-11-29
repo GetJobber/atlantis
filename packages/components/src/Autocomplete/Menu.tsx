@@ -1,8 +1,8 @@
-import React, { RefObject, useEffect, useState } from "react";
+import React, { RefObject, useEffect, useLayoutEffect, useState } from "react";
 import classnames from "classnames";
-import useEventListener from "@use-it/event-listener";
 import { createPortal } from "react-dom";
 import { usePopper } from "react-popper";
+import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { AnyOption, Option } from "./Option";
 import styles from "./Autocomplete.css";
 import { Text } from "../Text";
@@ -39,7 +39,7 @@ export function Menu({
     styles: popperStyles,
     attributes,
     targetWidth,
-  } = useRepositionMenu(attachTo);
+  } = useRepositionMenu(attachTo, visible);
 
   const detectSeparatorCondition = (option: Option) =>
     option.description || option.details;
@@ -66,6 +66,7 @@ export function Menu({
           [styles.active]: index === highlightedIndex,
           [styles.separator]: addSeparators,
         });
+
         if (isGroup(option)) {
           return (
             <div key={option.label} className={styles.heading}>
@@ -73,6 +74,7 @@ export function Menu({
             </div>
           );
         }
+
         return (
           <button
             className={optionClass}
@@ -114,35 +116,38 @@ export function Menu({
       });
     }, [highlightedIndex]);
 
-    useOnKeyDown("ArrowDown", (event: KeyboardEvent) => {
+    useOnKeyDown((event: KeyboardEvent) => {
       const indexChange = arrowKeyPress(event, IndexChange.Next);
+
       if (indexChange) {
         setHighlightedIndex(
           Math.min(options.length - 1, highlightedIndex + indexChange),
         );
       }
-    });
+    }, "ArrowDown");
 
-    useOnKeyDown("ArrowUp", (event: KeyboardEvent) => {
+    useOnKeyDown((event: KeyboardEvent) => {
       const indexChange = arrowKeyPress(event, IndexChange.Previous);
+
       if (indexChange) {
         setHighlightedIndex(Math.max(0, highlightedIndex + indexChange));
       }
-    });
+    }, "ArrowUp");
 
-    useOnKeyDown("Enter", (event: KeyboardEvent) => {
+    useOnKeyDown((event: KeyboardEvent) => {
       if (!visible) return;
       if (isGroup(options[highlightedIndex])) return;
 
       event.preventDefault();
       onOptionSelect(options[highlightedIndex]);
-    });
+    }, "Enter");
   }
 
   function arrowKeyPress(event: KeyboardEvent, direction: number) {
     if (!visible) return;
     event.preventDefault();
     const requestedIndex = options[highlightedIndex + direction];
+
     return requestedIndex && isGroup(requestedIndex)
       ? direction + direction
       : direction;
@@ -153,27 +158,13 @@ function isOptionSelected(selectedOption: Option | undefined, option: Option) {
   return selectedOption && selectedOption.value === option.value;
 }
 
-// Split this out into a hooks package.
-function useOnKeyDown(
-  keyName: string,
-  handler: (event: KeyboardEvent) => boolean | void,
-) {
-  // Pending: https://github.com/donavon/use-event-listener/pull/12
-  // The types in useEventListener mistakenly require a SyntheticEvent for the passed generic.
-  useEventListener("keydown", event => {
-    const newEvent = event as unknown as KeyboardEvent;
-    if (newEvent.key === keyName) {
-      handler(newEvent);
-    }
-  });
-}
-
 function isGroup(option: AnyOption) {
   if (option.options) return true;
+
   return false;
 }
 
-function useRepositionMenu(attachTo: MenuProps["attachTo"]) {
+function useRepositionMenu(attachTo: MenuProps["attachTo"], visible = false) {
   const [menuRef, setMenuRef] = useState<HTMLElement | null>();
   const popper = usePopper(attachTo.current, menuRef, {
     modifiers: [
@@ -181,6 +172,10 @@ function useRepositionMenu(attachTo: MenuProps["attachTo"]) {
       { name: "flip", options: { fallbackPlacements: ["top"] } },
     ],
   });
+
+  useLayoutEffect(() => {
+    popper?.update?.();
+  }, [visible]);
 
   const targetWidth = attachTo.current?.clientWidth;
 

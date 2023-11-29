@@ -1,5 +1,5 @@
 import { create } from "@storybook/theming";
-import { JobberStyle } from "@jobber/design/foundation.js";
+import { tokens } from "@jobber/design/foundation.js";
 
 // eslint-disable-next-line import/no-default-export
 export default create({
@@ -8,21 +8,21 @@ export default create({
   /**
    * Fonts
    */
-  fontBase: JobberStyle["typography--fontFamily-normal"],
+  fontBase: tokens["typography--fontFamily-normal"],
 
   /**
    * Inputs, buttons etc within the controls
    */
-  inputBg: JobberStyle["color-surface"],
-  inputBorder: JobberStyle["color-border"],
-  inputBorderRadius: JobberStyle["radius-base"],
+  inputBg: tokens["color-surface"],
+  inputBorder: tokens["color-border"],
+  inputBorderRadius: tokens["radius-base"],
 
   /**
    * Toolbar default and active colors
    */
-  barBg: JobberStyle["color-surface--background"],
-  barTextColor: JobberStyle["color-text"],
-  barSelectedColor: JobberStyle["color-text--secondary"],
+  barBg: tokens["color-surface--background"],
+  barTextColor: tokens["color-text"],
+  barSelectedColor: tokens["color-text--secondary"],
 
   /**
    * Brand Identity

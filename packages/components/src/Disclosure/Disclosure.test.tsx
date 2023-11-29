@@ -1,8 +1,6 @@
 import React from "react";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { Disclosure } from ".";
-
-afterEach(cleanup);
 
 it("renders a Disclosure", () => {
   const { container } = render(

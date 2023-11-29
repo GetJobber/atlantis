@@ -1,0 +1,30 @@
+.tagWrapper {
+  position: relative;
+}
+
+.tags {
+  display: flex;
+  z-index: var(--elevation-default);
+  overflow: hidden;
+  gap: var(--space-small);
+  white-space: nowrap;
+}
+
+.tagsMask {
+  mask-image: linear-gradient(
+    to left,
+    transparent,
+    transparent var(--space-large),
+    rgba(0, 0, 0, 1) var(--space-largest),
+    rgba(0, 0, 0, 1)
+  );
+}
+
+.tagCount {
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  align-items: center;
+}

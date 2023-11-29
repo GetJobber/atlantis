@@ -10,6 +10,7 @@ export type FormFieldTypes =
   | "time"
   | "textarea"
   | "select"
+  | "tel"
   | "email";
 
 export type AutocompleteTypes =

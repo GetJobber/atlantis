@@ -1,5 +1,6 @@
 .small {
   --modal--padding: var(--space-base);
+  --public-tab--inset: var(--space-base);
   max-width: calc(var(--base-unit) * 25);
 }
 

@@ -1,11 +1,12 @@
 :root {
   --modal--width: calc(var(--base-unit) * 37.5);
-  --modal--padding: var(--space-base);
-}
+  --modal--padding-horizontal: var(--space-base);
+  --modal--padding-vertical: var(--space-base);
+  --modal--padding: var(--modal--padding-vertical)
+    var(--modal--padding-horizontal);
 
-@media (--medium-screens) {
-  :root {
-    --modal--padding: var(--space-base) var(--space-large);
+  @media (--medium-screens-and-up) {
+    --modal--padding-horizontal: var(--space-large);
   }
 }
 
@@ -31,8 +32,6 @@
 }
 
 .modal {
-  --public-tab--inset: var(--space-large);
-
   position: relative;
   flex: 0 0 auto;
   width: 100%;
@@ -44,10 +43,11 @@
   background-color: var(--color-surface);
 }
 
-/* Adjust `Content` components public padding to match the modal */
+/* Adjust `Content` and `Tab` components public padding to match the modal */
 
 .modal > * {
   --public-content--padding: var(--modal--padding);
+  --public-tab--inset: var(--modal--padding-horizontal);
 }
 
 /* Remove the nested `Content` components public padding */

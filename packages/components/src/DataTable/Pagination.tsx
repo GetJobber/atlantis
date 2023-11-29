@@ -4,11 +4,14 @@ import styles from "./Pagination.css";
 import { Option, Select } from "../Select";
 import { Button } from "../Button";
 import { Text } from "../Text";
+import { Glimmer } from "../Glimmer";
 
 interface PaginationProps<T> {
-  table: Table<T>;
-  itemsPerPage?: number[];
-  totalItems: number;
+  readonly table: Table<T>;
+  readonly itemsPerPage?: number[];
+  readonly totalItems: number;
+  readonly loading: boolean;
+  readonly onPageChange: () => void;
 }
 
 const defaultItemsPerPageOptions = ["10", "20", "30", "40", "50"];
@@ -17,6 +20,8 @@ export function Pagination<T extends object>({
   table,
   itemsPerPage,
   totalItems,
+  loading,
+  onPageChange,
 }: PaginationProps<T>) {
   const { pageIndex, pageSize } = table.getState().pagination;
   const totalRows = totalItems;
@@ -27,10 +32,11 @@ export function Pagination<T extends object>({
     () => itemsPerPage?.map(item => String(item)) ?? defaultItemsPerPageOptions,
     [itemsPerPage],
   );
+
   return secondPosition <= 0 ? (
     <div className={styles.pagination}>
       <div className={styles.paginationInfo}>
-        <Text>No items</Text>
+        {!loading ? <Text>No items</Text> : <Glimmer width={200} />}
       </div>
     </div>
   ) : (
@@ -61,7 +67,10 @@ export function Pagination<T extends object>({
             variation="subtle"
             icon="arrowLeft"
             ariaLabel="arrowLeft"
-            onClick={() => table.previousPage()}
+            onClick={() => {
+              table.previousPage();
+              onPageChange();
+            }}
             disabled={!table.getCanPreviousPage()}
           />
           <Button
@@ -69,7 +78,10 @@ export function Pagination<T extends object>({
             variation="subtle"
             icon="arrowRight"
             ariaLabel="arrowRight"
-            onClick={() => table.nextPage()}
+            onClick={() => {
+              table.nextPage();
+              onPageChange();
+            }}
             disabled={!table.getCanNextPage()}
           />
         </div>

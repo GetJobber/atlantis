@@ -1,0 +1,36 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Tooltip } from "@jobber/components/Tooltip";
+import { Button } from "@jobber/components/Button";
+
+# Tooltip
+
+<Meta title="Components/Overlays/Tooltip/Docs" />
+
+A Tooltip provides in-context information that briefly explains the function of
+a UI element. It should be applied to a single wrapped element.
+
+## Design & usage guidelines
+
+When contributing to, or consuming the Tooltip component, consider the
+following:
+
+- A Tooltip can provide the user with additional context about an element of the
+  UI. For example, a Button with only an icon might benefit from a Tooltip to
+  help clarify the action the Button will perform
+- The information in a Tooltip should not be necessary for the user to
+  successfully complete a task. It should provide a "tip" to use the "tools" in
+  the UI
+- Tooltip should _not_ be used to introduce a new element to an interface, or
+  contain actions or other content. Use
+  [Popover](../?path=/docs/components-overlays-popover--popover) instead
+
+## Content guidelines
+
+The Tooltip component should contain only text. The text should be brief and
+concise, never exceeding 3 lines.
+
+## Related components
+
+To introduce a novel change to the interface, highlight new functionality, or
+offer a temporary, dismissible "attached" element to part of the UI, use
+[Popover](../?path=/docs/components-overlays-popover--popover)

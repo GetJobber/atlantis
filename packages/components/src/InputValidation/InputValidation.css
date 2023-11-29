@@ -11,6 +11,8 @@
 
 .message > svg {
   margin-right: var(--space-smaller);
+  flex-shrink: 0;
+  align-self: flex-start;
 }
 
 .message:focus {

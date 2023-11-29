@@ -5,6 +5,7 @@ declare const styles: {
   readonly "arrow": string;
   readonly "above": string;
   readonly "below": string;
+  readonly "tooltipMessage": string;
 };
 export = styles;
 

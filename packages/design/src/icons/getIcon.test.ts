@@ -71,3 +71,12 @@ it("returns truck icon properties", () => {
   expect(paths).toEqual([]);
   expect(viewBox).toBe("0 0 1024 1024");
 });
+
+it("returns runningTimer icon properties", () => {
+  const name = "runningTimer";
+  const { svgClassNames, pathClassNames } = getIcon({
+    name,
+  });
+  expect(svgClassNames).toBe("icon base runningTimer");
+  expect(pathClassNames).toBe("timer");
+});

@@ -3,47 +3,52 @@
 exports[`renders a Select with many options 1`] = `
 <div>
   <div
-    class="wrapper select"
+    class="container"
   >
     <div
-      class="inputWrapper"
+      class="wrapper select"
+      data-testid="Form-Field-Wrapper"
     >
-      <label
-        class="label"
-        for="123e4567-e89b-12d3-a456-426655440005"
-      />
-      <select
-        class="input"
-        id="123e4567-e89b-12d3-a456-426655440005"
+      <div
+        class="inputWrapper"
       >
-        <option>
-          Foo
-        </option>
-        <option>
-          Bar
-        </option>
-        <option>
-          Baz
-        </option>
-        <option>
-          Quux
-        </option>
-      </select>
-      <span
-        class="postfix"
-      >
-        <svg
-          class="Z6OfUI2sH34- TphtDHcwxDc-"
-          data-testid="arrowDown"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
+        <div
+          class="childrenWrapper"
         >
-          <path
-            class=""
-            d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
-          />
-        </svg>
-      </span>
+          <select
+            class="input"
+            id="123e4567-e89b-12d3-a456-426655440005"
+          >
+            <option>
+              Foo
+            </option>
+            <option>
+              Bar
+            </option>
+            <option>
+              Baz
+            </option>
+            <option>
+              Quux
+            </option>
+          </select>
+          <span
+            class="postfix"
+          >
+            <svg
+              class="Z6OfUI2sH34- TphtDHcwxDc-"
+              data-testid="arrowDown"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class=""
+                d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -52,34 +57,39 @@ exports[`renders a Select with many options 1`] = `
 exports[`renders a Select with no options 1`] = `
 <div>
   <div
-    class="wrapper select"
+    class="container"
   >
     <div
-      class="inputWrapper"
+      class="wrapper select"
+      data-testid="Form-Field-Wrapper"
     >
-      <label
-        class="label"
-        for="123e4567-e89b-12d3-a456-426655440001"
-      />
-      <select
-        class="input"
-        id="123e4567-e89b-12d3-a456-426655440001"
-      />
-      <span
-        class="postfix"
+      <div
+        class="inputWrapper"
       >
-        <svg
-          class="Z6OfUI2sH34- TphtDHcwxDc-"
-          data-testid="arrowDown"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
+        <div
+          class="childrenWrapper"
         >
-          <path
-            class=""
-            d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+          <select
+            class="input"
+            id="123e4567-e89b-12d3-a456-426655440001"
           />
-        </svg>
-      </span>
+          <span
+            class="postfix"
+          >
+            <svg
+              class="Z6OfUI2sH34- TphtDHcwxDc-"
+              data-testid="arrowDown"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class=""
+                d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -88,38 +98,43 @@ exports[`renders a Select with no options 1`] = `
 exports[`renders a Select with one option 1`] = `
 <div>
   <div
-    class="wrapper select"
+    class="container"
   >
     <div
-      class="inputWrapper"
+      class="wrapper select"
+      data-testid="Form-Field-Wrapper"
     >
-      <label
-        class="label"
-        for="123e4567-e89b-12d3-a456-426655440003"
-      />
-      <select
-        class="input"
-        id="123e4567-e89b-12d3-a456-426655440003"
+      <div
+        class="inputWrapper"
       >
-        <option>
-          Foo
-        </option>
-      </select>
-      <span
-        class="postfix"
-      >
-        <svg
-          class="Z6OfUI2sH34- TphtDHcwxDc-"
-          data-testid="arrowDown"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
+        <div
+          class="childrenWrapper"
         >
-          <path
-            class=""
-            d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
-          />
-        </svg>
-      </span>
+          <select
+            class="input"
+            id="123e4567-e89b-12d3-a456-426655440003"
+          >
+            <option>
+              Foo
+            </option>
+          </select>
+          <span
+            class="postfix"
+          >
+            <svg
+              class="Z6OfUI2sH34- TphtDHcwxDc-"
+              data-testid="arrowDown"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class=""
+                d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -128,38 +143,43 @@ exports[`renders a Select with one option 1`] = `
 exports[`renders correctly as large 1`] = `
 <div>
   <div
-    class="wrapper large select"
+    class="container"
   >
     <div
-      class="inputWrapper"
+      class="wrapper large select"
+      data-testid="Form-Field-Wrapper"
     >
-      <label
-        class="label"
-        for="123e4567-e89b-12d3-a456-426655440009"
-      />
-      <select
-        class="input"
-        id="123e4567-e89b-12d3-a456-426655440009"
+      <div
+        class="inputWrapper"
       >
-        <option>
-          Foo
-        </option>
-      </select>
-      <span
-        class="postfix"
-      >
-        <svg
-          class="Z6OfUI2sH34- TphtDHcwxDc-"
-          data-testid="arrowDown"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
+        <div
+          class="childrenWrapper"
         >
-          <path
-            class=""
-            d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
-          />
-        </svg>
-      </span>
+          <select
+            class="input"
+            id="123e4567-e89b-12d3-a456-426655440009"
+          >
+            <option>
+              Foo
+            </option>
+          </select>
+          <span
+            class="postfix"
+          >
+            <svg
+              class="Z6OfUI2sH34- TphtDHcwxDc-"
+              data-testid="arrowDown"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class=""
+                d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -168,38 +188,43 @@ exports[`renders correctly as large 1`] = `
 exports[`renders correctly as small 1`] = `
 <div>
   <div
-    class="wrapper small select"
+    class="container"
   >
     <div
-      class="inputWrapper"
+      class="wrapper small select"
+      data-testid="Form-Field-Wrapper"
     >
-      <label
-        class="label"
-        for="123e4567-e89b-12d3-a456-426655440007"
-      />
-      <select
-        class="input"
-        id="123e4567-e89b-12d3-a456-426655440007"
+      <div
+        class="inputWrapper"
       >
-        <option>
-          Foo
-        </option>
-      </select>
-      <span
-        class="postfix"
-      >
-        <svg
-          class="Z6OfUI2sH34- TphtDHcwxDc-"
-          data-testid="arrowDown"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
+        <div
+          class="childrenWrapper"
         >
-          <path
-            class=""
-            d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
-          />
-        </svg>
-      </span>
+          <select
+            class="input"
+            id="123e4567-e89b-12d3-a456-426655440007"
+          >
+            <option>
+              Foo
+            </option>
+          </select>
+          <span
+            class="postfix"
+          >
+            <svg
+              class="Z6OfUI2sH34- TphtDHcwxDc-"
+              data-testid="arrowDown"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class=""
+                d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -208,39 +233,44 @@ exports[`renders correctly as small 1`] = `
 exports[`renders correctly when disabled 1`] = `
 <div>
   <div
-    class="wrapper disabled select"
+    class="container"
   >
     <div
-      class="inputWrapper"
+      class="wrapper select disabled"
+      data-testid="Form-Field-Wrapper"
     >
-      <label
-        class="label"
-        for="123e4567-e89b-12d3-a456-426655440011"
-      />
-      <select
-        class="input"
-        disabled=""
-        id="123e4567-e89b-12d3-a456-426655440011"
+      <div
+        class="inputWrapper"
       >
-        <option>
-          Foo
-        </option>
-      </select>
-      <span
-        class="postfix"
-      >
-        <svg
-          class="Z6OfUI2sH34- TphtDHcwxDc-"
-          data-testid="arrowDown"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
+        <div
+          class="childrenWrapper"
         >
-          <path
-            class=""
-            d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
-          />
-        </svg>
-      </span>
+          <select
+            class="input"
+            disabled=""
+            id="123e4567-e89b-12d3-a456-426655440011"
+          >
+            <option>
+              Foo
+            </option>
+          </select>
+          <span
+            class="postfix"
+          >
+            <svg
+              class="Z6OfUI2sH34- TphtDHcwxDc-"
+              data-testid="arrowDown"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class=""
+                d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -249,38 +279,43 @@ exports[`renders correctly when disabled 1`] = `
 exports[`renders correctly when invalid 1`] = `
 <div>
   <div
-    class="wrapper invalid select"
+    class="container"
   >
     <div
-      class="inputWrapper"
+      class="wrapper select invalid"
+      data-testid="Form-Field-Wrapper"
     >
-      <label
-        class="label"
-        for="123e4567-e89b-12d3-a456-426655440013"
-      />
-      <select
-        class="input"
-        id="123e4567-e89b-12d3-a456-426655440013"
+      <div
+        class="inputWrapper"
       >
-        <option>
-          Foo
-        </option>
-      </select>
-      <span
-        class="postfix"
-      >
-        <svg
-          class="Z6OfUI2sH34- TphtDHcwxDc-"
-          data-testid="arrowDown"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
+        <div
+          class="childrenWrapper"
         >
-          <path
-            class=""
-            d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
-          />
-        </svg>
-      </span>
+          <select
+            class="input"
+            id="123e4567-e89b-12d3-a456-426655440013"
+          >
+            <option>
+              Foo
+            </option>
+          </select>
+          <span
+            class="postfix"
+          >
+            <svg
+              class="Z6OfUI2sH34- TphtDHcwxDc-"
+              data-testid="arrowDown"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class=""
+                d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </div>

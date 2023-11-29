@@ -1,0 +1,154 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a thumbnail component with attachments 1`] = `
+[
+  <View
+    collapsable={false}
+    pointerEvents="box-none"
+    style={
+      [
+        {
+          "flex": 1,
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "display": "flex",
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "marginTop": 4,
+            "maxHeight": 136,
+            "overflow": "hidden",
+          },
+          false,
+        ]
+      }
+    >
+      <View>
+        <View
+          accessibilityHint="Select for more options"
+          accessibilityRole="imagebutton"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "opacity": 1,
+            }
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "backgroundColor": "rgb(244, 244, 244)",
+                  "borderColor": "rgb(225, 225, 225)",
+                  "borderRadius": 2,
+                  "borderWidth": 1,
+                  "marginBottom": 8,
+                },
+                {
+                  "height": 64,
+                  "marginRight": 8,
+                  "width": 64,
+                },
+              ]
+            }
+          >
+            <View
+              accessibilityLabel="image.jpeg"
+              accessible={true}
+            >
+              <View
+                accessibilityIgnoresInvertColors={true}
+                style={
+                  [
+                    {
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "width": "100%",
+                    },
+                    {
+                      "height": "100%",
+                    },
+                  ]
+                }
+              >
+                <Image
+                  onLoadEnd={[Function]}
+                  onLoadStart={[Function]}
+                  resizeMode="cover"
+                  source={
+                    {
+                      "uri": "https://imageurl.com/ababathumb.jpg",
+                    }
+                  }
+                  style={
+                    [
+                      {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      },
+                      {
+                        "height": "100%",
+                        "width": "100%",
+                      },
+                      undefined,
+                    ]
+                  }
+                  testID="test-image"
+                />
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>,
+  <View
+    collapsable={false}
+    pointerEvents="box-none"
+    style={
+      {
+        "bottom": 0,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  />,
+]
+`;

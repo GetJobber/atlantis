@@ -1,0 +1,40 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Components/Selections/MultiSelect/Docs" />
+
+# Multi Select
+
+The MultiSelect component gives our users the possibility to select multiple
+options from a menu.
+
+## Design & usage guidelines
+
+The goal of the MultiSelect component is to allow a user to check multiple
+options within a list of items.
+
+A user can click on the element to expand it and display the multiple options.
+The element will display the selected options or the placeholder text if none
+are selected.
+
+Every time an option is checked or unchecked, a behavior can be triggered using
+the `onOptionsChange` prop.
+
+Adjusting the
+[size](../?path=/story/components-selections-multiselect-web--sizes) of the
+MultiSelect can be used to help align with common adjacent elements such as
+[InputText](../?path=/docs/components-forms-and-inputs-inputtext-docs--page) or
+[Select](../?path=/docs/components-selections-select--select).
+
+## Accessibility
+
+- The MultiSelect trigger element contains a downward-pointing-arrow to hint
+  that it can be expanded.
+- Users are able to focus the MultiSelect trigger element by using the Tab key.
+- Users should be able to display the options by using the Space or Enter/Return
+  keys.
+- Users should be able to navigate through the options by using Tab or
+  ArrowDown/ArrowUp keys and check/uncheck them by using Space or Enter/Return
+  keys.
+- Users can press the Escape key, click out of the component or click the
+  trigger again to close the menu.
+- Features and behavior are announced to the user when using a screen reader.

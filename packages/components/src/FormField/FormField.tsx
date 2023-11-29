@@ -14,6 +14,8 @@ import styles from "./FormField.css";
 import { FormFieldWrapper } from "./FormFieldWrapper";
 import { FormFieldPostFix } from "./FormFieldPostFix";
 
+// Added 13th statement to accommodate getErrorMessage function
+/*eslint max-statements: ["error", 13]*/
 export function FormField(props: FormFieldProps) {
   const {
     actionsRef,
@@ -42,11 +44,15 @@ export function FormField(props: FormFieldProps) {
     onValidation,
   } = props;
 
-  const { control, errors, setValue, watch } =
-    useFormContext() != undefined
-      ? useFormContext()
-      : // If there isn't a Form Context being provided, get a form for this field.
-        useForm({ mode: "onTouched" });
+  const {
+    control,
+    formState: { errors },
+    setValue,
+    watch,
+  } = useFormContext() != undefined
+    ? useFormContext()
+    : // If there isn't a Form Context being provided, get a form for this field.
+      useForm({ mode: "onTouched" });
 
   const [identifier] = useState(uuidv1());
   const [descriptionIdentifier] = useState(`descriptionUUID--${uuidv1()}`);
@@ -71,7 +77,8 @@ export function FormField(props: FormFieldProps) {
     },
   }));
 
-  const error = errors[controlledName] && errors[controlledName].message;
+  const message = errors[controlledName]?.message;
+  const error = getErrorMessage();
   useEffect(() => handleValidation(), [error]);
 
   return (
@@ -81,10 +88,12 @@ export function FormField(props: FormFieldProps) {
       rules={{ ...validations }}
       defaultValue={value ?? defaultValue ?? ""}
       render={({
-        onChange: onControllerChange,
-        onBlur: onControllerBlur,
-        name: controllerName,
-        ...rest
+        field: {
+          onChange: onControllerChange,
+          onBlur: onControllerBlur,
+          name: controllerName,
+          ...rest
+        },
       }) => {
         const fieldProps = {
           ...rest,
@@ -95,14 +104,14 @@ export function FormField(props: FormFieldProps) {
           readOnly: readonly,
           inputMode: keyboard,
           onChange: handleChange,
+          onBlur: handleBlur,
+          onFocus: handleFocus,
           ...(description &&
             !inline && { "aria-describedby": descriptionIdentifier }),
         };
 
         const textFieldProps = {
           ...fieldProps,
-          onBlur: handleBlur,
-          onFocus: handleFocus,
           onKeyDown: handleKeyDown,
         };
 
@@ -148,6 +157,7 @@ export function FormField(props: FormFieldProps) {
                     ref={inputRef as MutableRefObject<HTMLInputElement>}
                   />
                   {loading && <FormFieldPostFix variation="spinner" />}
+                  {children}
                 </>
               );
           }
@@ -180,10 +190,15 @@ export function FormField(props: FormFieldProps) {
         }
 
         function handleFocus(
-          event: FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+          event: FocusEvent<
+            HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+          >,
         ) {
           const target = event.currentTarget;
-          setTimeout(() => readonly && target.select());
+
+          if ((target as HTMLInputElement).select) {
+            setTimeout(() => readonly && (target as HTMLInputElement).select());
+          }
           onFocus && onFocus();
         }
 
@@ -194,6 +209,14 @@ export function FormField(props: FormFieldProps) {
       }}
     />
   );
+
+  function getErrorMessage() {
+    if (typeof message === "string") {
+      return message;
+    }
+
+    return "";
+  }
 
   function handleValidation() {
     onValidation && onValidation(error);

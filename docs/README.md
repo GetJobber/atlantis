@@ -49,6 +49,20 @@ Within Atlantis, in order for one package to depend on another all that is
 required is for it to be listed in the appropriate `package.json` file. Lerna
 will automatically take care of managing the versions for you.
 
+When working on some packages (for example `design`) locally, you'll need to run
+
+```
+ npm run bootstrap
+```
+
+and then
+
+```
+  npm start
+```
+
+to view and test your changes.
+
 ## Installing packages
 
 Atlantis packages are installed and updated using [npm](https://www.npmjs.com/).
@@ -82,6 +96,8 @@ You should name your component in `PascalCase`.
 npm run generate
 ```
 
+You will be able to select the platform you want to create the component.
+
 #### Example
 
 ```sh
@@ -91,12 +107,20 @@ npm run generate
 > plop
 
 ? Component Name: ExampleComponent
+? Generate for:
+> Web
+> React native
+> Both
+
 ✔  +! 5 files added
  -> /packages/components/src/ExampleComponent/index.ts
  -> /packages/components/src/ExampleComponent/ExampleComponent.css
  -> /packages/components/src/ExampleComponent/ExampleComponent.stories.mdx
  -> /packages/components/src/ExampleComponent/ExampleComponent.test.tsx
  -> /packages/components/src/ExampleComponent/ExampleComponent.tsx
+✔  +! 2 files added
+ -> /docs/components/ExampleComponent/Web.stories.tsx
+ -> /docs/components/ExampleComponent/ExampleComponent.stories.mdx
 ```
 
 ## Testing
@@ -156,7 +180,8 @@ For more information on how the packages are bootstrapped, check out
 ## Contributing
 
 Everyone is a friend of Atlantis and we welcome pull requests. See the
-[contribution guidelines](../?path=/docs/contributing--page) to learn how.
+[contribution guidelines](https://atlantis.getjobber.com/?path=/docs/contributing--page)
+to learn how.
 
 ## Publishing
 
@@ -179,7 +204,7 @@ publish whenever a pull request is merged.
 <code>npm run release:unpublished-package</code>
 </details>
 
-### Pre-release
+## Pre-release
 
 <details>
 <summary>Releasing manually (Team Atlantis Only)</summary>
@@ -228,6 +253,29 @@ pre-release on a previously published commit, it will fail. This also happens on
 forced pre-release._
 
 </details>
+
+## Local testing
+
+If you're not sharing your changes with your peers yet and want a quicker way to
+check your changes, you can run `npm run pack {{scope}}` from the root folder
+against one of the workspaces.
+
+```
+npm run pack @jobber/components
+```
+
+That will create a `jobber-components-{{version}}.tgz` file on the root. You can
+then install it on your project.
+
+```
+npm i your/path/to/atlantis/repo/jobber-components-{{version}}.tgz
+```
+
+You can replace `@jobber/components` with `@jobber/design`, `@jobber/hooks` or
+the package you want to be packed up.
+
+_**NOTE: Use a pre-release if you want to share your changes with someone else
+instead of sending them the file.**_
 
 ### What has changed
 

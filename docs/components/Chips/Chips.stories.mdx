@@ -1,0 +1,144 @@
+import { Meta } from "@storybook/addon-docs";
+import { Tab, Tabs } from "@jobber/components/Tabs";
+
+<Meta title="Components/Selections/Chips/Docs" />
+
+# Chips
+
+Chips are a flexible component that can be used for the selection of items from
+a group while preserving vertical space in the interface.
+
+## Usage guidelines
+
+The Chip will allow users to make selections in scenarios where vertical space
+is at a premium. It has three high-level usages: single-select, multi-select,
+and add/dismiss selection.
+
+<Tabs>
+  <Tab label="Web">
+
+### Single-select
+
+If you need the user to make a selection of a single item from among several
+items, and those items all have short (1–2 word) labels, single-select Chips
+will allow the user to choose one of those items.
+
+This preserves vertical space while allowing the user to clearly identify which
+item they have selected.
+
+Unlike
+[Radio](../?path=/docs/components-forms-and-inputs-radiogroup-docs--page), the
+selected single-select Chip can be de-selected by the user, leaving all
+selections blank.
+
+### Multi-select
+
+If you need the user to make a selection of one _or more_ items from amongst
+several items, and those items all have short (1–2 word) labels, a multi-select
+Chips will allow the user to choose as many items from the group as they wish.
+
+This preserves vertical space while allowing the user to clearly identify which
+items they have selected. To signify to the user that multiple selections are
+possible, a checkmark icon is present to reinforce the conceptual similarity to
+a [Checkbox](../?path=/docs/components-selections-checkbox-docs--page).
+
+Similar to Checkbox, a selected multi-select Chip can be de-selected by the
+user, leaving all selections blank.
+
+### Add/dismiss selection
+
+When the user will be selecting one or more items by inputting their own Chip
+options with, use the dismissible Chip.
+
+The dismissible Chip allows them to remove previous selections from the Chips.
+Use this option when the full list of possible selections is too great to
+reasonably display in one group of Chip. For example, "all of my phone contacts"
+would be far too many Chip options to present in one group, and would be
+overwhelming for the user to interpret.
+
+This format also allows the user to create their own "freeform" Chip options,
+which they can also remove once added.
+
+  </Tab>
+  <Tab label="Mobile">
+
+### Accent
+
+Chip can be themed to one of Jobber's "workflow" colours in an active state when
+the user may benefit from additional visual indication of the type of workflow
+item selected.
+
+### Dismissible
+
+In cases where there are existing selections that the user may need to remove,
+Chip can display a `cross` Icon signifying that these options can be removed.
+
+### Inactive Background Color
+
+In cases where the Chip is on an area whose background is
+`--color-surface--background`, Chip can be made visible by specifying the
+`inactiveBackgroundColor`.
+
+  </Tab>
+</Tabs>
+
+## Content guidelines
+
+Chip labels should be 1–2 words at most. If any of the options in the group may
+have longer labels, consider Checkbox or Radio as necessary for your selection
+type.
+
+## Accessibility
+
+<Tabs>
+  <Tab label="Web">
+
+Chips should convey to the user whether it is a "checkbox" or "radio" element
+based on single or multi-select. The Chips in this group have the appropriate
+roles and keyboard operation to allow the user to interact as though they are
+dealing with a checkbox or radio button.
+
+If Chips is set for add/dismiss selections, the dismiss button will notify the
+user that they will "dismiss {label name}" upon press.
+
+  </Tab>
+
+  <Tab label="Mobile">
+
+Chip accessibilityRole by default is `radio` so the view containing it should
+have the accessibilityRole `radiogroup`. Chip labels and the state `checked` or
+`not checked` state are read aloud when focused by assistive technology. If an
+Icon is present, it will not be read aloud as Icons are visually decorative in
+the case of a Chip.
+
+If the accessibilityRole is not `radio` the label is read aloud when focused by
+assistive technology.
+
+  </Tab>
+</Tabs>
+
+## Responsiveness
+
+The Chips themselves will take up as much space as their container allows, and
+the Chips will flow left to right. Chips may re-flow into new rows, or scroll
+out of view in a single row, depending on your use case.
+
+## Related components
+
+- [RadioGroup](../?path=/docs/components-forms-and-inputs-radiogroup-docs--page)
+  should be used to allow the user to select "one-of-many" items (single-select)
+  and the labels for the items are longer than 1 or 2 words.
+- [Checkbox](../?path=/docs/components-selections-checkbox-docs--page) should be
+  used to allow the user to select "one-or-more-of-many" items (multi-select)
+  and the labels for the items are longer than 1 or 2 words.
+- [InlineLabel](../?path=/docs/components-status-and-feedback-inlinelabel-docs--page)
+  should be used when you just need a rectangular element that displays the
+  status of another element.
+
+## Notes
+
+There was some consideration to bring the ability to "accent" Chips with certain
+colors for parity with Jobber's mobile platform, but we will not be implementing
+this is for the web components as of this first iteration of our web Chip. The
+mobile use-case is very specific to a filtering use case that we as of now do
+not anticipate will be required for the web.

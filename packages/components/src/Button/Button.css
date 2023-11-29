@@ -5,7 +5,7 @@
   --button--color-surface--hover: var(--color-surface--background);
   --button--color-primaryLabel: var(--color-white);
 
-  --button--duration-loading: 2s;
+  --button--duration-loading: var(--timing-loading--extended);
 }
 
 .button {

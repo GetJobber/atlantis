@@ -1,4 +1,4 @@
-import { omit } from "lodash";
+import omit from "lodash/omit";
 import React, { useRef } from "react";
 import {
   CommonFormFieldProps,
@@ -42,6 +42,7 @@ interface InputDateProps
 
 export function InputDate(inputProps: InputDateProps) {
   const formFieldActionsRef = useRef<FieldActionsRef>(null);
+
   return (
     <DatePicker
       selected={inputProps.value}
@@ -69,22 +70,25 @@ export function InputDate(inputProps: InputDateProps) {
         value && formFieldActionsRef.current?.setValue(value);
 
         return (
-          <FormField
-            {...newActivatorProps}
-            {...inputProps}
-            value={value}
-            onChange={(_, event) => onChange && onChange(event)}
-            onBlur={() => {
-              inputProps.onBlur && inputProps.onBlur();
-              activatorProps.onBlur && activatorProps.onBlur();
-            }}
-            onFocus={() => {
-              inputProps.onFocus && inputProps.onFocus();
-              activatorProps.onFocus && activatorProps.onFocus();
-            }}
-            actionsRef={formFieldActionsRef}
-            suffix={suffix}
-          />
+          // We prevent the picker from opening on focus for keyboard navigation, so to maintain a good UX for mouse users we want to open the picker on click
+          <div onClick={onClick}>
+            <FormField
+              {...newActivatorProps}
+              {...inputProps}
+              value={value}
+              onChange={(_, event) => onChange && onChange(event)}
+              onBlur={() => {
+                inputProps.onBlur && inputProps.onBlur();
+                activatorProps.onBlur && activatorProps.onBlur();
+              }}
+              onFocus={() => {
+                inputProps.onFocus && inputProps.onFocus();
+                activatorProps.onFocus && activatorProps.onFocus();
+              }}
+              actionsRef={formFieldActionsRef}
+              suffix={suffix}
+            />
+          </div>
         );
       }}
     />

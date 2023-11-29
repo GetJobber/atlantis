@@ -1,0 +1,21 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Components/Forms and Inputs/RadioGroup/Docs" />
+
+# Radio Group
+
+RadioGroup will allow users to choose a single selection from one of a list of
+provided options.
+
+## Usage guidelines
+
+### Rendering RadioOption with children
+
+If the `RadioGroup` is being used to select something other then text, you can
+render the `RadioOptions` with `children`.
+
+## Accessibility
+
+**Note:** When using `children` without a `label` it is the responsibility of
+the child to supply the proper accessible labels. If you are using children that
+do not contain text, an `aria-label` should be provided.

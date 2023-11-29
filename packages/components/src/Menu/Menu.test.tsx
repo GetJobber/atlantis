@@ -1,15 +1,8 @@
 import React from "react";
-import {
-  cleanup,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { Menu } from ".";
 import { Button } from "../Button";
 
-afterEach(cleanup);
 jest.mock("uuid");
 
 describe("Menu", () => {
@@ -153,7 +146,8 @@ describe("Menu", () => {
   });
 });
 
-it("should focus first action item from the menu when activated", () => {
+it("should focus first action item from the menu when activated", async () => {
+  jest.useFakeTimers();
   const { getByRole } = render(
     <Menu
       activator={<Button label="Menu" />}
@@ -177,5 +171,8 @@ it("should focus first action item from the menu when activated", () => {
 
   fireEvent.click(getByRole("button"));
   const firstMenuItem = screen.getAllByRole("menuitem")[0];
+  expect(firstMenuItem).not.toHaveFocus();
+  jest.runAllTimers();
   expect(firstMenuItem).toHaveFocus();
+  jest.useRealTimers();
 });

@@ -1,0 +1,7 @@
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# tag atlantis on everything!
+* @GetJobber/atlantis
+
+# Ping our brave designers when an icon gets added
+packages/design/assets/icons/ @chris-at-jobber @fagnanm

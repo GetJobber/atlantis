@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { debounce } from "lodash";
+import debounce from "lodash/debounce";
 import classNames from "classnames";
 import styles from "./InternalChipDismissible.css";
 import { ChipDismissibleInputProps } from "./InternalChipDismissibleTypes";
@@ -57,6 +57,7 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
 
   useEffect(() => {
     handleDebouncedSearch();
+
     return handleDebouncedSearch.cancel;
   }, [searchValue]);
 
@@ -106,6 +107,7 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
               <button
                 key={option.value}
                 role="option"
+                type="button"
                 id={generateDescendantId(i)}
                 className={classNames(styles.menuListOption, {
                   [styles.activeOption]: activeIndex === i,

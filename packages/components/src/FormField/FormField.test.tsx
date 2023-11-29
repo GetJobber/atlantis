@@ -1,8 +1,6 @@
 import React from "react";
-import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { FormField } from ".";
-
-afterEach(cleanup);
 
 // eslint-disable-next-line max-statements
 describe("FormField", () => {
@@ -20,6 +18,28 @@ describe("FormField", () => {
         <FormField placeholder={placeholder} />,
       );
       expect(getByLabelText(placeholder)).toBeInTheDocument();
+    });
+
+    describe("with type", () => {
+      it("should render input with  timeInputLabel when type = 'time'", () => {
+        const FORM_FIELD_TEST_ID = "Form-Field-Wrapper";
+        const placeholder = "The best placeholder!";
+        render(<FormField placeholder={placeholder} type="time" />);
+        expect(screen.getByLabelText(placeholder)).toBeInTheDocument();
+        expect(screen.getByTestId(FORM_FIELD_TEST_ID)).toHaveClass(
+          "timeInputLabel",
+        );
+      });
+
+      it("should render input without timeInputLabel style when type != 'time'", () => {
+        const FORM_FIELD_TEST_ID = "Form-Field-Wrapper";
+        const placeholder = "The best placeholder!";
+        render(<FormField placeholder={placeholder} type="text" />);
+        expect(screen.getByLabelText(placeholder)).toBeInTheDocument();
+        expect(screen.getByTestId(FORM_FIELD_TEST_ID)).not.toHaveClass(
+          "timeInputLabel",
+        );
+      });
     });
   });
 
@@ -189,7 +209,7 @@ describe("FormField", () => {
     });
 
     describe("without validation errors", () => {
-      it("should trigger onValidation with undefined", () => {
+      it("should trigger onValidation with an empty string", () => {
         const validationHandler = jest.fn();
 
         render(
@@ -201,7 +221,7 @@ describe("FormField", () => {
         );
 
         expect(validationHandler).toHaveBeenCalled();
-        expect(validationHandler).toHaveBeenCalledWith(undefined);
+        expect(validationHandler).toHaveBeenCalledWith("");
       });
     });
 

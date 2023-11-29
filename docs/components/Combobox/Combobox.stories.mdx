@@ -1,0 +1,183 @@
+<Meta
+  title="Components/Selections/Combobox/Docs"
+  parameters={{ alpha: true }}
+/>
+
+# Combobox
+
+The Combobox is designed to provide a versatile and accessible interface for
+selecting one or more options from a list. Combobox can be used for a variety of
+scenarios, such as selecting items from a predefined list, filtering and
+searching through data.
+
+## Design & usage guidelines
+
+The Combobox component's primary function is to facilitate option selection and
+searching within a list of items.
+
+It should be used in scenarios where users need to choose from a set of options,
+with the added benefit of filtering.
+
+The Combobox also has the flexibility to allow for custom actions, such as
+adding a new item to the list of options or managing a selection.
+
+### Structure
+
+Combobox is composed of three main parts:
+
+#### Activator
+
+The activator is the user-facing interface to open and close the Combobox and
+initiate option selection.
+
+##### Default activator
+
+Examples of using a default activator can be found in the
+[single-select](../?path=/code/components-selections-combobox-web--single-select)
+and
+[multi-select](../?path=/code/components-selections-combobox-web--multi-select)
+stories. The label of the default activator can be customized by adding the
+optional `label` prop to Combobox, to better reflect the type of data being
+selected. Otherwise, the default activator label will read "Select".
+
+The optional `label` prop on Combobox is only effective when using the default
+activator.
+
+##### Custom activator
+
+The custom activator should be used in any instance where the default activator
+is not suitable. Your custom activator should be a child of
+`<Combobox.Activator />`. An example of using a custom activator can be found in
+the
+[custom activator](../?path=/code/components-selections-combobox-web--custom-activator)
+story.
+
+Omitting a custom activator subcomponent will result in the default activator
+being used.
+
+#### Content
+
+The content of the Combobox is responsible for displaying the list of selectable
+options, handling user interactions, and managing search functionality.
+
+`<Combobox.Option />` represents an individual option within the list. Each
+option has `id` and `label` props which are used to identify and display the
+option.
+
+#### Action
+
+Actions are an optional way to allow users to perform custom tasks such as
+adding a new item to the list of options.
+
+### Selection behavior
+
+#### Single-select
+
+Single-select is Combobox's default selection mode. When a selection is made,
+the Combobox will close.
+
+#### Multi-select
+
+Add the `multiSelect` prop to allow multiple options to be selected and/or
+un-selected. In multi-select mode, the Combobox will only close when a user
+takes an explicit action to close it such as clicking outside the Combobox or
+pressing the ESC key.
+
+With multiSelect activated, a header appears beneath the search input, providing
+information about the number of selected items. Additionally, a button allows
+users to either select or deselect all options in the list.
+
+In the case of selecting all options in a filtered state, only the currently
+visible filtered options will be selected. When deselecting all options, every
+item will be deselected, irrespective of the filter state.
+
+#### Selection callback
+
+As selections are made, the data will be returned via an argument to the
+function provided to the `onSelect` prop.
+
+Please note that regardless of if it is a single-select or a multi-select, the
+`onSelect` will be called immediately as options are selected (or un-selected in
+the case of multi-select). Multi-select will receive an array of all selections,
+not only the most recent.
+
+##### onClose
+
+If it is desirable to wait until the Combobox has been closed, likely indicating
+that all selections have been made, it is recommended to use the optional
+`onClose` callback which will fire when the Combobox is closed by any means.
+This callback provides no arguments.
+
+While the selections will still be updated in real time, this callback will
+allow you to call any potentially expensive operations only once the Combobox
+has been closed. As such, it will only have a difference in timing for
+multi-select since a single-select selection will immediately close the
+Combobox.
+
+##### Selection Display
+
+When using the default activator, the selections will be displayed inside the
+activator. The data will still be returned via callback.
+
+When using a custom activator, the selections will only be returned as data
+keeping the choice of how to display the data flexible.
+
+## Content guidelines
+
+Combobox is designed to handle lists of selectable options, so the component is
+text based.
+
+You may customize the activator and action `label`. Refer to the
+[Product Vocabulary](../?path=/docs/content-product-vocabulary--page) for
+consistency in terminology and naming conventions when setting these values.
+
+You may also set an optional `subjectNoun` for the Combobox content. This will
+be used in the
+[empty state](../?path=/story/components-selections-combobox-web--empty-state)
+of the Combobox, as well as the noun within the search placeholder.
+
+### Empty states
+
+In cases where the list of options is empty, the Combobox content will display a
+message indicating the absence of options. The default will read, _"No options
+yet"_ or _"You don't have any [subjectNoun] yet"_ if you've set the
+`subjectNoun` prop.
+
+If options are available, but the search query does not match any of them, the
+Combobox Content will display a message indicating that no options match the
+search query.
+
+## Accessibility
+
+### Keyboard operation
+
+- The activator can be actioned with `space` or `return`
+- The Comobox confines tabbing to within itself while it's open using
+  [useFocusTrap](https://atlantis.getjobber.com/?path=/docs/hooks-usefocustrap--use-focus-trap)
+- Pressing `esc` will close the Combobox and return focus to the activator using
+  [useRefocusOnActivator](https://atlantis.getjobber.com/?path=/docs/hooks-userefocusonactivator--use-refocus-on-activator)
+- The search input is automatically focused when the Combobox opens. The button
+  to clear the input can be focused with `tab`
+- The options list is navigated with the `up` and `down` arrow keys, and
+  actioned with `space` or `return`, this can be done at any time when the
+  Combobox is open
+- The actions, if present, are the next tabbable element after the search
+
+### Assistive technology
+
+- The activator element is given a `role="combobox"` to inform the user of the
+  type of content they'll be interacting with
+- Once the user opens the Combobox, the search input is focused and announced
+- The title and "selected/unselected" status of each item is announced as the
+  user navigates the options
+- The actions (if present) are announced and operable as buttons
+
+## Testing
+
+When using Jest to test Combobox implementations, you will need to include this
+mock in your test setup:
+
+```js
+const scrollIntoViewMock = jest.fn();
+window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
+```

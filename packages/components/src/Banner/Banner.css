@@ -9,16 +9,29 @@
   align-items: center;
 }
 
+.bannerChildren > a {
+  color: var(--color-text);
+}
+
+.bannerChildren > a:hover {
+  color: var(--color-blue);
+}
+
 .bannerContent {
   display: flex;
   flex: 1 1 auto;
   gap: var(--space-small);
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: space-between;
   align-items: flex-start;
+
+  @media (--small-screens-and-below) {
+    flex-wrap: wrap;
+  }
 }
 
 .bannerChildren {
+  flex: 1;
   align-self: center;
 }
 
@@ -33,6 +46,11 @@
 .bannerAction {
   display: flex;
   flex: 0 0 auto;
+
+  @media (--small-screens-and-below) {
+    width: 100%;
+    margin-top: var(--space-small);
+  }
 }
 
 .closeButton {

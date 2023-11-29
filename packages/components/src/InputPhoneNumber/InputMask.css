@@ -1,0 +1,24 @@
+.mask {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: var(--elevation-base);
+  height: var(--field--height);
+  padding-top: var(--field--padding-top);
+  padding-bottom: var(--field--padding-bottom);
+  padding-left: var(--field--padding-left);
+  padding-right: var(--field--padding-right);
+  color: var(--color-grey);
+  font-family: inherit;
+  font-size: inherit;
+  line-height: var(--field--value-lineHeight);
+  pointer-events: none;
+}
+
+.hiddenValue {
+  visibility: hidden;
+  opacity: 0;
+}

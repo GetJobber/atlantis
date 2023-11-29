@@ -34,7 +34,7 @@ async function clean() {
 }
 
 async function getEntryPoints() {
-  const indices = await pGlob("./src/*/index.ts");
+  const indices = await pGlob("./src/*/index.{ts,tsx}");
 
   return indices.reduce((entryPoints: EntryPoint[], entryPoint) => {
     const pathParts = entryPoint.split(sep);

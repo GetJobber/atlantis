@@ -1,11 +1,10 @@
 import { Canvas, Meta } from "@storybook/addon-docs";
+import { useState } from "react";
 import { Card } from "@jobber/components/Card";
 import { Content } from "@jobber/components/Content";
 import { Button } from "@jobber/components/Button";
 import { InputText } from "@jobber/components/InputText";
-import { loadingGIF, getGIF } from "./getGIF";
-import { useState } from "react";
-import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
+import { getGIF, loadingGIF } from "./getGIF";
 
 <Meta title="Guides/Getting started with React" />
 
@@ -100,25 +99,23 @@ For this example we are going to build a card that allows you to enter a topic
 and then search for a related gif.
 
 <Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const [topic, setTopic] = useState();
-      const [url, setURL] = useState();
-      return (
-        <Card title="Gif Gift">
-          <Content>
-            <InputText value={topic} onChange={setTopic} placeholder="Topic" />
-            <Button label="Search" fullWidth={true} onClick={gifSearch} />
-            <center>{url && <img src={url} />}</center>
-          </Content>
-        </Card>
-      );
-      async function gifSearch() {
-        setURL(loadingGIF);
-        setURL(await getGIF(topic));
-      }
-    }}
-  </ExampleWithHooks>
+  {() => {
+    const [topic, setTopic] = useState();
+    const [url, setURL] = useState();
+    return (
+      <Card title="Gif Gift">
+        <Content>
+          <InputText value={topic} onChange={setTopic} placeholder="Topic" />
+          <Button label="Search" fullWidth={true} onClick={gifSearch} />
+          <center>{url && <img src={url} />}</center>
+        </Content>
+      </Card>
+    );
+    async function gifSearch() {
+      setURL(loadingGIF);
+      setURL(await getGIF(topic));
+    }
+  }}
 </Canvas>
 
 > **Note:**
@@ -154,10 +151,10 @@ The next section is the return value which will return the TSX defining our
 component. In here you can see that our `GifGift` component is composed of the
 following other react components:
 
-- [Card](../?path=/docs/components-card--card)
-- [Content](../?path=/docs/components-content--content)
-- [Button](../?path=/docs/components-button--button)
-- [InputText](../?path=/docs/components-inputtext--input-text)
+- [Card](../?path=/docs/components-layouts-and-structure-card-docs--page)
+- [Content](../?path=/docs/components-layouts-and-structure-content-docs--page)
+- [Button](../?path=/docs/components-actions-button-docs--page)
+- [InputText](../?path=/docs/components-forms-and-inputs-inputtext-docs--page)
 
 If you look at the docs for the above components you can see how the different
 props they expose allow us to customize their behaviour given the needs of our

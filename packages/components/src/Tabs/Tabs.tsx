@@ -12,10 +12,25 @@ import { Typography } from "../Typography";
 
 interface TabsProps {
   readonly children: ReactElement | ReactElement[];
+
+  /**
+   * Specifies the index of the tab that should be active on mount
+   *
+   * @default 0
+   */
+  readonly defaultTab?: number;
+
+  /**
+   * Callback that fires when the active tab changes
+   * @param newTabIndex
+   */
+  onTabChange?(newTabIndex: number): void;
 }
 
-export function Tabs({ children }: TabsProps) {
-  const [activeTab, setActiveTab] = useState(0);
+export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
+  const activeTabInitialValue =
+    defaultTab < React.Children.count(children) ? defaultTab : 0;
+  const [activeTab, setActiveTab] = useState(activeTabInitialValue);
   const [overflowRight, setOverflowRight] = useState(false);
   const [overflowLeft, setOverflowLeft] = useState(false);
   const tabRow = useRef() as MutableRefObject<HTMLUListElement>;
@@ -28,6 +43,10 @@ export function Tabs({ children }: TabsProps) {
   const activateTab = (index: number) => {
     return () => {
       setActiveTab(index);
+
+      if (onTabChange) {
+        onTabChange(index);
+      }
     };
   };
 
@@ -113,6 +132,7 @@ export function InternalTab({
 }: InternalTabProps) {
   const className = classnames(styles.tab, { [styles.selected]: selected });
   const color = selected ? "green" : "heading";
+
   return (
     <button
       type="button"

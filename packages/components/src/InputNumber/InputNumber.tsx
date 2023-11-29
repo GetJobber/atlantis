@@ -1,7 +1,8 @@
 import React, { Ref, createRef, forwardRef, useImperativeHandle } from "react";
+import { RegisterOptions } from "react-hook-form";
 import { CommonFormFieldProps, FormField, FormFieldProps } from "../FormField";
 
-interface InputNumberProps
+export interface InputNumberProps
   extends CommonFormFieldProps,
     Pick<
       FormFieldProps,
@@ -17,8 +18,10 @@ interface InputNumberProps
       | "readonly"
       | "defaultValue"
       | "keyboard"
+      | "prefix"
+      | "suffix"
     > {
-  value?: number;
+  readonly value?: number;
 }
 
 export interface InputNumberRef {
@@ -35,12 +38,14 @@ function InputNumberInternal(
   useImperativeHandle(ref, () => ({
     blur: () => {
       const input = inputRef.current;
+
       if (input) {
         input.blur();
       }
     },
     focus: () => {
       const input = inputRef.current;
+
       if (input) {
         input.focus();
       }
@@ -55,10 +60,28 @@ function InputNumberInternal(
       onChange={handleChange}
       validations={{
         ...props.validations,
-        validate: getOverLimitMessage,
+        validate: customValidators(props.validations?.validate),
       }}
     />
   );
+
+  function customValidators(
+    validators?: RegisterOptions["validate"],
+  ): RegisterOptions["validate"] {
+    if (validators == null) {
+      return getOverLimitMessage;
+    } else if (typeof validators === "function") {
+      return {
+        customValidation: validators,
+        getOverLimitMessage,
+      };
+    }
+
+    return {
+      ...validators,
+      getOverLimitMessage,
+    };
+  }
 
   function handleChange(newValue: number) {
     props.onChange && props.onChange(newValue);

@@ -58,7 +58,7 @@
 
   /* Brand */
   --color-brand: var(--color-green);
-  --color-brand--highlight: rgb(160, 215, 42);
+  --color-brand--highlight: rgb(132, 234, 0);
 
   /* Jobber Workflow Colors */
   --color-request: var(--color-indigo);

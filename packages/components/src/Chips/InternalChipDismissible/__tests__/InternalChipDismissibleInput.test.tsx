@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  cleanup,
-  fireEvent,
-  render,
-  screen,
-  within,
-} from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { InternalChipDismissibleInput } from "../InternalChipDismissibleInput";
 import { ChipProps } from "../../Chip";
 
@@ -49,8 +43,6 @@ beforeEach(async () => {
   );
   rerender = rerenderComponent;
 });
-
-afterEach(cleanup);
 
 describe("Menu closed", () => {
   it("should show a button", () => {

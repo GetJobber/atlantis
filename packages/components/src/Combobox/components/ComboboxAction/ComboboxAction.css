@@ -1,0 +1,37 @@
+.actionContainer {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 var(--space-small);
+  background-color: var(--color-surface);
+}
+
+.actionButton {
+  position: relative;
+  width: 100%;
+  min-height: calc((var(--space-largest) - var(--space-small)));
+  padding: var(--space-small) 0;
+  border: none;
+  border-radius: var(--radius-large);
+  text-align: left;
+  background-color: var(--color-surface);
+  cursor: pointer;
+  transition: all var(--timing-base);
+}
+
+.actionButton:focus {
+  outline: none;
+}
+
+.actionButton:hover,
+.actionButton:focus-visible {
+  outline: none;
+  background-color: var(--color-surface--background);
+}
+
+.actionButton:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+
+.actionButton span {
+  margin-left: var(--space-small);
+}

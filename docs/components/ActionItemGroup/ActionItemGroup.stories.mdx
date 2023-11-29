@@ -1,0 +1,41 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Components/Layouts and Structure/ActionItemGroup/Docs" />
+
+# Action Item Group
+
+ActionItemGroup is a layout wrapper allowing for quick and easy grouping of
+[ActionItems](../?path=/docs/components-layouts-and-structure-actionitem-docs--page).
+It can also house other content alongside an ActionItem if needed.
+
+## Design & usage guidelines
+
+The ActionItemGroup makes it easy to consistently display several ActionItems
+alongside each other with dividers to segment each item.
+
+## Content guidelines
+
+You'll mostly be passing ActionItems into ActionItemGroup, but as shown it can
+handle other content types if needed.
+
+In forms in particular, you may find the need to add other elements into the
+group. You may need to use
+[Content](../?path=/docs/components-layouts-and-structure-content-docs--page) or
+write some styling to get things aligned. In the Mixed Components
+[example](../?path=/story/components-layouts-and-structure-actionitemgroup-mobile--mixed-components)
+you can see Content being used to layout
+[Text](../?path=/docs/components-text-and-typography-text-docs--page) and
+[Typography](../?path=/docs/components-text-and-typography-typography-docs--page)
+alongside some
+[ActionItems](../?path=/docs/components-layouts-and-structure-actionitem-docs--page).
+
+## Related components
+
+If you only need one
+[ActionItem](../?path=/docs/components-layouts-and-structure-actionitem-docs--page),
+you can use that on its own without this wrapper.
+
+## Accessibility
+
+ActionItemGroup is just a layout wrapper and does not communicate anything to
+screen-readers - that's the job of its children.

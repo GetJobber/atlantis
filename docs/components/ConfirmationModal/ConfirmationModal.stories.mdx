@@ -1,0 +1,62 @@
+import { Meta } from "@storybook/addon-docs";
+
+# Confirmation Modal
+
+<Meta title="Components/Overlays/ConfirmationModal/Docs" />
+
+A ConfirmationModal allows users to confirm or cancel actions that they are
+performing. Examples of actions that may need confirmation are navigating off an
+edited page or deleting an object.
+
+## Design & usage guidelines
+
+ConfirmationModal should be used to confirm or cancel an action the user is
+performing.
+
+If the user is confirming an action that will destroy, delete, or remove
+something, use a
+[destructive](../?path=/story/components-overlays-confirmationmodal-web--destructive)
+ConfirmationModal to visually reinforce the potential consequences.
+
+In some instances, such as when dealing with a collection of items with common
+actions, you may want to place a single ConfirmationModal on a page and then
+call to open it when required for each action. We can do this by using the
+`confirmationModalRef` which exposes a `show` method, allowing you to present a
+confirmation modal on demand. In the
+[Controlled](../?path=/story/components-overlays-confirmationmodal-web--controlled)
+example, we have an array of users and then render a button for each that
+presents a confirm modal.
+
+## Content guidelines
+
+Keep language in a ConfirmationModal clear, concise, and consistent.
+
+Verbs in the title should directly relate to the `confirmLabel`.
+
+| **✅ Do**                    | **❌ Don't**        |
+| ---------------------------- | ------------------- |
+| **Discard unsaved changes?** | **Cancel editing?** |
+| Cancel / Discard             | No / Yes            |
+
+Only use **Cancel** as a label to allow the user to exit the current action.
+
+| **✅ Do**             | **❌ Don't**            |
+| --------------------- | ----------------------- |
+| **Stop file upload?** | **Cancel file upload?** |
+| Cancel / Stop         | Exit / Cancel           |
+
+Avoid using generic or verbose titles.
+
+| **✅ Do**                                           | **❌ Don't**                                        |
+| --------------------------------------------------- | --------------------------------------------------- |
+| **Delete job #2121?**                               | **Are you sure?**                                   |
+| Deleting this job will remove all associated visits | Deleting this job will remove all associated visits |
+| Cancel / Delete Job                                 | Cancel / Delete Job                                 |
+
+## Related components
+
+- To present non-blocking, contextual, text-only content, use a
+  [Tooltip](../?path=/docs/components-overlays-tooltip-docs--page)
+- To simply present information for users to view, edit, or for a temporary
+  change of context, use a regular
+  [Modal](../?path=/docs/components-overlays-modal--modal)

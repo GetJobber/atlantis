@@ -7,7 +7,7 @@ import React, {
   isValidElement,
 } from "react";
 import { ReactDatePickerProps } from "react-datepicker";
-import { omit } from "lodash";
+import omit from "lodash/omit";
 import { Button } from "../Button";
 
 export interface DatePickerActivatorProps
@@ -47,6 +47,7 @@ function InternalActivator(
   if (activator) {
     if (isValidElement(activator)) {
       const isAComponent = typeof activator.type === "function";
+
       return cloneElement(activator, {
         ...newActivatorProps,
         ...(isAComponent && { fullWidth: fullWidth }),

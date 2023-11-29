@@ -1,0 +1,47 @@
+import { Meta } from "@storybook/addon-docs";
+import { Autocomplete } from "@jobber/components/Autocomplete";
+
+<Meta
+  title="Components/Forms and Inputs/Autocomplete/Docs"
+  component={Autocomplete}
+/>
+
+# Autocomplete
+
+An Autocomplete component allows a user to quickly pick a preset value from a
+larger list of possible options.
+
+## Design & usage guidelines
+
+The options in an Autocomplete component should be a list of possible values
+that the user can select. These options should be presented in a way that makes
+it easy for the user to find the value they are looking for. There are a few
+ways to achieve this.
+
+[Details](../?path=/story/components-forms-and-inputs-autocomplete-web--with-details)
+can be added to an option, which will either appear below the option's label or
+on the bottom right of the option. This can be used to provide more information
+about the option, such as a description or a count.
+
+[Section headings](../?path=/story/components-forms-and-inputs-autocomplete-web--section-heading)
+can be added to an Autocomplete to break up the options into groups. This can be
+useful if there are a lot of options or if the options are related to different
+things.
+
+You can
+[set a value](../?path=/story/components-forms-and-inputs-autocomplete-web--set-a-value)
+to the Autocomplete component by passing an active option. This will set the
+`value` of the input.
+
+Using the `getOptions` prop, you can pass a function that will be called when
+the user types in the input. This async request should return a list of possible
+options based on the user's input. This can be achieved by using either promises
+or `await`.
+
+## Related components
+
+- If you want to present a list of predefined options without text input, or the
+  number of options is smaller, use a
+  [Select](../?path=/docs/components-selections-select-docs--page)
+- If autocompleted results are not required for the text input, use
+  [InputText](../?path=/docs/components-forms-and-inputs-inputtext-docs--page)

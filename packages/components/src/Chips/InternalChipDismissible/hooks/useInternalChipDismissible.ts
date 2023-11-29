@@ -1,5 +1,5 @@
 import { KeyboardEvent, MouseEvent, useRef } from "react";
-import { sortBy } from "lodash";
+import sortBy from "lodash/sortBy";
 import { useLiveAnnounce } from "@jobber/hooks/useLiveAnnounce";
 import { InternalChipDismissibleProps } from "../InternalChipDismissibleTypes";
 
@@ -37,6 +37,7 @@ export function useInternalChipDismissible({
 
     handleChipClick: (value: string) => {
       if (onClick === undefined) return;
+
       return (event: MouseEvent<HTMLButtonElement>) => onClick(event, value);
     },
 
@@ -60,6 +61,7 @@ export function useInternalChipDismissible({
       ) {
         prevElementToFocus.focus();
       }
+
       if (
         event.key === "ArrowRight" &&
         nextElementToFocus instanceof HTMLElement
@@ -72,6 +74,7 @@ export function useInternalChipDismissible({
       return (event: KeyboardEvent<HTMLElement>) => {
         if (event.key === "Backspace" || event.key === "Delete") {
           const target = event.target;
+
           if (target instanceof HTMLElement) {
             const prevElement = target.previousElementSibling;
             const nextElement = target.nextElementSibling;

@@ -13,7 +13,16 @@ interface BaseToastProps {
 }
 
 interface ActionToastProps extends BaseToastProps {
+  /**
+   * **Deprecated**: action will be removed in the next major version
+   * @deprecated
+   */
   action(): void;
+
+  /**
+   * **Deprecated**: actionLabel will be removed in the next major version
+   * @deprecated
+   */
   actionLabel: string;
 }
 
@@ -108,6 +117,7 @@ export function Toast({
 
     if (time < min) return min;
     if (time > max) return max;
+
     return time;
   }
 

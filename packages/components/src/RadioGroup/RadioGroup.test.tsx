@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { RadioGroup, RadioOption } from ".";
-
-afterEach(cleanup);
 
 test("renders a RadioGroup", () => {
   const { container } = render(<MockRadioGroup />);
@@ -34,8 +32,8 @@ test("it should be able to disable options", () => {
       onChange={handleChange}
       ariaLabel="Test Label"
     >
-      <RadioOption value="foo"></RadioOption>
-      <RadioOption value="bear" disabled={true}></RadioOption>
+      <RadioOption value="foo" label="foo"></RadioOption>
+      <RadioOption value="bear" label="bear" disabled={true}></RadioOption>
     </RadioGroup>,
   );
 
@@ -88,6 +86,20 @@ test("it should render a description", () => {
   expect(getByText("A sound box")).toBeInstanceOf(HTMLParagraphElement);
 });
 
+test("it should render a label, description, and children", () => {
+  const { getByText } = render(
+    <RadioGroup value="" onChange={jest.fn()} ariaLabel="Test Label">
+      <RadioOption value="foo" description="Description" label="Label">
+        Children
+      </RadioOption>
+    </RadioGroup>,
+  );
+
+  expect(getByText("Label")).toBeInstanceOf(HTMLLabelElement);
+  expect(getByText("Description")).toBeInstanceOf(HTMLParagraphElement);
+  expect(getByText("Children")).toBeInstanceOf(HTMLElement);
+});
+
 interface MockProps {
   onChange?(val: string): void;
 }
@@ -95,6 +107,7 @@ interface MockProps {
 function MockRadioGroup({ onChange }: MockProps) {
   const [value, setValue] = useState("one");
   const [valueTwo, setValueTwo] = useState("one");
+
   return (
     <>
       <RadioGroup

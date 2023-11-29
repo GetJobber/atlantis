@@ -1,0 +1,25 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Components/Utilities/FormatRelativeDateTime/Docs" />
+
+# FormatRelativeDateTime
+
+A FormatRelateDateTime displays the date and time using relative wording or
+approximate values. This component only represents current date and dates in the
+past. No future dating.
+
+## Rules
+
+If the message was received less than an hour ago the format is x minutes ago.
+
+If the message was received today, but more than an hour ago, the format becomes
+the hours and minutes it was received at.
+
+If the message was received within the last six days, the format is Sun, Mon,
+Tue, Wed, Thu, Fri, Sat.
+
+If the message was received between six days ago and yesterday’s date one year
+previous, the format is Month Date.
+
+If the message was received exactly one year ago or more than one year ago, the
+format is Month Day, Year.

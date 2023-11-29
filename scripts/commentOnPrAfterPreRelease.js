@@ -3,8 +3,10 @@ module.exports = async ({ github, context, core }) => {
   const repo = context.repo.repo;
 
   const prs = await getPRs({ github, repo, owner, ref: context.ref });
+
   if (prs.length === 0) {
     core.info("No PRs found");
+
     return;
   }
   await createOrUpdateComment({
@@ -24,34 +26,47 @@ async function generatePRComment({
   existingComment,
 }) {
   if (!process.env.SUMMARY_JSON_STRING) {
-    const workflowRun = await github.rest.actions.getWorkflowRun({
-      owner,
+    const failedBuildString = await handleBuildFailure({
+      context,
       repo,
-      run_id: context.runId,
+      existingComment,
+      github,
+      owner,
     });
-    const workflowRunUrl = workflowRun.data.html_url;
-    const quotedPreviousComment = quotePreviousComment(existingComment?.body);
 
-    const previousBuildStatus = quotedPreviousComment
-      ? `\nPrevious build information:\n${quotedPreviousComment}`
-      : "";
-    return `Could not publish Pre-release for ${process.env.COMMIT_SHA}. [View Logs](${workflowRunUrl})\nThe problem is likely in the \`NPM Publish\` or \`NPM CI\` step in the \`Trigger Pre-release Build\` Job.\n${previousBuildStatus}.\n `;
+    return failedBuildString;
   }
   const summaryFileJson = JSON.parse(process.env.SUMMARY_JSON_STRING);
 
   const releaseString = summaryFileJson
     .map(releaseSummary => {
       const { packageName, version } = releaseSummary;
+
       return `  - ${packageName}@${version}\n`;
     })
     .join("");
-  const toInstallString = summaryFileJson
-    .map(releaseSummary => {
-      const { packageName, version } = releaseSummary;
-      return `${packageName}@${version}`;
-    })
-    .join(" ");
-  return `Published Pre-release for ${process.env.COMMIT_SHA} with versions:\n\`\`\`\n${releaseString}\`\`\`\n\nTo install the new version(s) run:\n\`\`\`\nnpm install ${toInstallString}\n\`\`\``;
+  const webPackagesString = getInstallPackageString(
+    summaryFileJson.filter(releaseSummary => {
+      const { packageName } = releaseSummary;
+
+      return packageName !== "@jobber/components-native";
+    }),
+  );
+  const mobilePackagesString = getInstallPackageString(
+    summaryFileJson.filter(releaseSummary => {
+      const { packageName } = releaseSummary;
+
+      return packageName !== "@jobber/components";
+    }),
+  );
+  const mobileInstallString = mobilePackagesString
+    ? `\n\nTo install the new version(s) for Mobile run:\n\`\`\`\nnpm install ${mobilePackagesString}\n\`\`\``
+    : "";
+  const webInstallString = webPackagesString
+    ? `\n\nTo install the new version(s) for Web run:\n\`\`\`\nnpm install ${webPackagesString}\n\`\`\``
+    : "";
+
+  return `Published Pre-release for ${process.env.COMMIT_SHA} with versions:\n\`\`\`\n${releaseString}\`\`\`${webInstallString}${mobileInstallString}`;
 }
 
 async function getPRs({ github, repo, owner, ref }) {
@@ -60,6 +75,7 @@ async function getPRs({ github, repo, owner, ref }) {
     owner,
     head: `${owner}:${ref}`,
   });
+
   return response.data.map(pr => pr.number);
 }
 
@@ -109,10 +125,43 @@ function quotePreviousComment(previousCommentBody) {
   if (!previousCommentBody) {
     return "";
   }
+
   return previousCommentBody
     .split("\n")
     .map(commentBodyLine => {
       return `> ${commentBodyLine}`;
     })
     .join("\n");
+}
+
+function getInstallPackageString(packages) {
+  return packages
+    .map(releaseSummary => {
+      const { packageName, version } = releaseSummary;
+
+      return `${packageName}@${version}`;
+    })
+    .join(" ");
+}
+
+async function handleBuildFailure({
+  owner,
+  repo,
+  context,
+  existingComment,
+  github,
+}) {
+  const workflowRun = await github.rest.actions.getWorkflowRun({
+    owner,
+    repo,
+    run_id: context.runId,
+  });
+  const workflowRunUrl = workflowRun.data.html_url;
+  const quotedPreviousComment = quotePreviousComment(existingComment?.body);
+
+  const previousBuildStatus = quotedPreviousComment
+    ? `\nPrevious build information:\n${quotedPreviousComment}`
+    : "";
+
+  return `Could not publish Pre-release for ${process.env.COMMIT_SHA}. [View Logs](${workflowRunUrl})\nThe problem is likely in the \`NPM Publish\` or \`NPM CI\` step in the \`Trigger Pre-release Build\` Job.\n${previousBuildStatus}.\n `;
 }

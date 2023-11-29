@@ -1,0 +1,52 @@
+.sp-wrapper {
+  display: grid;
+  height: 100%;
+  grid-template-columns: auto;
+  grid-auto-rows: minmax(50%, auto);
+}
+
+.sp-stack {
+  min-width: 0;
+}
+
+.sp-loading {
+  background-color: var(--color-grey--lighter);
+  background-image: linear-gradient(
+    90deg,
+    transparent 0px,
+    rgba(var(--color-white--rgb), 80%) 50%,
+    transparent 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 50% 100%;
+  animation: glimmer 2s infinite linear;
+}
+
+@keyframes glimmer {
+  0%,
+  20% {
+    background-position-x: -100%;
+  }
+
+  100% {
+    background-position-x: 200%;
+  }
+}
+
+.sandbox {
+  display: flex;
+}
+
+.localDevNotice {
+  padding: var(--base-unit);
+  overflow-y: scroll;
+  background-color: var(--color-warning);
+}
+
+.localDevNotice pre {
+  background-color: var(--color-yellow--light);
+}
+
+.codeUnavailable ~ #storybook-preview-wrapper {
+  display: block;
+}

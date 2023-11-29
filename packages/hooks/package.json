@@ -1,6 +1,6 @@
 {
   "name": "@jobber/hooks",
-  "version": "2.1.0",
+  "version": "2.7.2",
   "license": "MIT",
   "main": "./dist/index.js",
   "types": "./dist/index.d.js",
@@ -8,8 +8,10 @@
     "build": "tsc --project . --skipLibCheck",
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
     "bootstrap": "npm run clean; npm run build",
-    "prepublishOnly": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts",
-    "postpublish": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts clean"
+    "entryPoints:build": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts",
+    "entryPoints:clean": "npm run entryPoints:build clean",
+    "prepack": "npm run entryPoints:build",
+    "postpack": "npm run entryPoints:clean"
   },
   "files": [
     "*.js",
@@ -21,17 +23,17 @@
     "@jobber/formatters": "*",
     "@testing-library/react": "^14.0.0",
     "@testing-library/react-hooks": "^7.0.0",
-    "@testing-library/user-event": "^12.0.2",
+    "@testing-library/user-event": "^14.5.1",
     "@types/lodash": "4.14.136",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@types/uuid": "^8.3.3",
     "@types/zxcvbn": "^4.4.1",
+    "jsdom-testing-mocks": "^1.9.0",
     "typescript": "^4.9.5",
     "uuid": "^8.3.2"
   },
   "dependencies": {
-    "@use-it/event-listener": "^0.1.6",
     "lodash": "^4.17.20",
     "resize-observer-polyfill": "^1.5.1",
     "ts-xor": "^1.0.8",
@@ -39,7 +41,7 @@
     "zxcvbn": "^4.4.2"
   },
   "peerDependencies": {
-    "@apollo/client": "^3.7.10",
+    "@apollo/client": "^3.0.0",
     "react": "^18"
   }
 }

@@ -1,0 +1,18 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Components/Forms and Inputs/InputCurrency/Docs" />
+
+# Input Currency
+
+InputCurrency is a component that displays a currency input field with a
+currency symbol.
+
+## Design & usage guidelines
+
+InputCurrency defaults to displaying a minimum of two decimal places and a
+maximum of five decimal places. If a user continues to try and enter numbers
+beyond the `maxDecimalPlaces` default or set number, the component will
+automatically round the value to the nearest two decimal places.
+
+By setting `showCurrencySymbol` to true, the users currency prefix will be
+displayed to them.

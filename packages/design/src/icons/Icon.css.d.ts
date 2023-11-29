@@ -31,6 +31,8 @@ declare const styles: {
   readonly "excel": string;
   readonly "pdf": string;
   readonly "word": string;
+  readonly "runningTimer": string;
+  readonly "spinning": string;
 };
 export = styles;
 

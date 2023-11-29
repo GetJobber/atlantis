@@ -7,6 +7,7 @@ on:
 jobs:
   pr-title-check:
     name: PR Title Check
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: Check PR title
@@ -19,6 +20,7 @@ jobs:
           # These are regex patterns auto-wrapped in `^ $`.
           scopes: |
             components
+            components-native
             deps
             design
             docx

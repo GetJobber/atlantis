@@ -19,55 +19,60 @@ export interface DataTableProps<T> {
    * Typescript should infer T from typeof data.
    *
    */
-  data: T[];
+  readonly data: T[];
 
   /**
    * Should follow the @tanstack/react-table [ColumnDef](https://tanstack.com/table/v8/docs/guide/column-defs).
    * [createColumnHelper](https://tanstack.com/table/v8/docs/guide/column-defs#column-helpers) is also exposed to make it more convenient
    * to create columns.
    */
-  columns: ColumnDef<T>[];
+  readonly columns: ColumnDef<T>[];
 
   /**
    * Enables pagination, mostly follows:
    * https://tanstack.com/table/v8/docs/api/features/pagination
    *
    */
-  pagination?: PaginationType;
+  readonly pagination?: PaginationType;
 
   /**
    * Enables sorting, mostly follows:
    * https://tanstack.com/table/v8/docs/api/features/sorting#table-options
    *
    */
-  sorting?: SortingType;
+  readonly sorting?: SortingType;
 
   /**
    * This will force the table to have the specified hight
    *
    */
-  height?: number;
+  readonly height?: number;
   /**
    * When set to true makes the header sticky while scrolling vertically
    *
    */
-  stickyHeader?: boolean;
+  readonly stickyHeader?: boolean;
 
   /**
    * Pins the firstColumn when scrolling horizontally
    *
    */
-  pinFirstColumn?: boolean;
+  readonly pinFirstColumn?: boolean;
 
   /**
    * Enables row click action. The provided callback will be executed when the row is clicked.
    */
-  onRowClick?: (row: Row<T>) => void;
+  readonly onRowClick?: (row: Row<T>) => void;
 
   /**
    * The elements to display when the data table is empty
    */
-  emptyState?: ReactNode | ReactNode[];
+  readonly emptyState?: ReactNode | ReactNode[];
+
+  /**
+   * When true, shows the loading state of the DataTable
+   */
+  readonly loading?: boolean;
 }
 
 export function DataTable<T extends object>({
@@ -80,8 +85,9 @@ export function DataTable<T extends object>({
   pinFirstColumn,
   onRowClick,
   emptyState,
+  loading = false,
 }: DataTableProps<T>) {
-  const [ref, { exactWidth }] = useResizeObserver();
+  const [ref, { exactWidth }] = useResizeObserver<HTMLDivElement>();
   const tableSettings = createTableSettings(data, columns, {
     pagination,
     sorting,
@@ -92,9 +98,11 @@ export function DataTable<T extends object>({
   });
 
   const table = useReactTable(tableSettings);
+
   return (
     <div className={styles.dataTableContainer}>
       <div
+        data-testid="ATL-DataTable-Container"
         className={styles.tableContainer}
         style={{ height }}
         ref={ref as LegacyRef<HTMLDivElement> | undefined}
@@ -109,8 +117,8 @@ export function DataTable<T extends object>({
           <Body
             table={table}
             onRowClick={onRowClick}
-            height={height ? height * 0.7 : undefined}
             emptyState={emptyState}
+            loading={loading}
           />
           {table.getRowModel().rows.length &&
           exactWidth &&
@@ -134,6 +142,8 @@ export function DataTable<T extends object>({
               ? pagination.totalItems
               : table.getCoreRowModel().rows.length
           }
+          loading={loading}
+          onPageChange={() => ref.current?.scrollTo(0, 0)}
         />
       )}
     </div>

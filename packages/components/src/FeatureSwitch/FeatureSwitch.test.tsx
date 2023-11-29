@@ -1,8 +1,6 @@
 import React from "react";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { FeatureSwitch } from ".";
-
-afterEach(cleanup);
 
 it("renders a full FeatureSwitch", () => {
   const { container } = render(

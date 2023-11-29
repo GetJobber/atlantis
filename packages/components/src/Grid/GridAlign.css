@@ -1,0 +1,15 @@
+.center {
+  align-items: center;
+}
+
+.start {
+  align-items: start;
+}
+
+.end {
+  align-items: end;
+}
+
+.stretch {
+  align-items: stretch;
+}

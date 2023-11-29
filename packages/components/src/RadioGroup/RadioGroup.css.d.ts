@@ -3,6 +3,7 @@ declare const styles: {
   readonly "input": string;
   readonly "label": string;
   readonly "description": string;
+  readonly "children": string;
 };
 export = styles;
 

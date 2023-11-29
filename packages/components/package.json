@@ -1,15 +1,17 @@
 {
   "name": "@jobber/components",
-  "version": "4.9.4",
+  "version": "4.64.0",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rollup --config",
-    "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
-    "prepublishOnly": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts",
     "bootstrap": "npm run clean; npm run build",
-    "postpublish": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts clean"
+    "clean": "rm -rf dist/* tsconfig.rollup.tsbuildinfo",
+    "entryPoints:build": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts",
+    "entryPoints:clean": "npm run entryPoints:build clean",
+    "prepack": "npm run entryPoints:build",
+    "postpack": "npm run entryPoints:clean"
   },
   "files": [
     "*.js",
@@ -17,9 +19,9 @@
     "dist/*"
   ],
   "dependencies": {
-    "@jobber/design": "^0.37.1",
+    "@jobber/design": "^0.47.2",
     "@jobber/formatters": "*",
-    "@jobber/hooks": "^2.1.0",
+    "@jobber/hooks": "^2.7.2",
     "@popperjs/core": "^2.0.6",
     "@std-proposal/temporal": "0.0.1",
     "@tanstack/react-table": "8.5.13",
@@ -29,7 +31,6 @@
     "@types/react-router": "5.1.7",
     "@types/react-router-dom": "^5.3.3",
     "@types/uuid": "^8.3.3",
-    "@use-it/event-listener": "^0.1.3",
     "axios": "^0.21.2",
     "classnames": "^2.3.2",
     "color": "^3.1.2",
@@ -39,7 +40,7 @@
     "react-countdown": "^2.3.2",
     "react-datepicker": "^4.10.0",
     "react-dropzone": "^11.0.2",
-    "react-hook-form": "^6.15.8",
+    "react-hook-form": "^7.43.7",
     "react-markdown": "^8.0.3",
     "react-popper": "^2.2.5",
     "react-router-dom": "^5.3.4",
@@ -54,7 +55,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/react-hooks": "^7.0.2",
-    "@testing-library/user-event": "^12.0.2",
+    "@testing-library/user-event": "^14.5.1",
     "@types/glob": "^7.1.1",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
@@ -62,6 +63,7 @@
     "autoprefixer": "^9.5.1",
     "copyfiles": "^2.4.1",
     "glob": "^7.1.4",
+    "jsdom-testing-mocks": "^1.9.0",
     "postcss": "^8.4.21",
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^8.3.0",
