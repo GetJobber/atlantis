@@ -19,6 +19,7 @@ jest.mock("../InputFieldWrapper", () => ({
   ...jest.requireActual("../InputFieldWrapper"),
   InputFieldWrapper: function Mock(props: InputFieldWrapperProps) {
     MockInputFieldWrapper(props);
+
     return jest.requireActual("../InputFieldWrapper").InputFieldWrapper(props);
   },
 }));
@@ -198,20 +199,43 @@ describe("InputText", () => {
         expect(blurCallback).toHaveBeenCalledTimes(1);
       });
 
-      it("trims whitespace on blur", () => {
-        const onChangeHandler = jest.fn();
-        const a11yLabel = "Test InputText";
-        const whiteSpacesValue = "    Hello World    ";
-        const { getByLabelText } = render(
-          <InputText
-            value={whiteSpacesValue}
-            accessibilityLabel={a11yLabel}
-            onChangeText={onChangeHandler}
-          />,
-        );
+      describe("when whitespace is present at the start or end of the value", () => {
+        const value = "    Hello World    ";
 
-        fireEvent(getByLabelText(a11yLabel), "blur");
-        expect(onChangeHandler).toHaveBeenCalledWith("Hello World");
+        it("trims whitespace", () => {
+          const onChangeHandler = jest.fn();
+          const a11yLabel = "Test InputText";
+          const { getByLabelText } = render(
+            <InputText
+              value={value}
+              accessibilityLabel={a11yLabel}
+              onChangeText={onChangeHandler}
+            />,
+          );
+
+          fireEvent(getByLabelText(a11yLabel), "blur");
+          expect(onChangeHandler).toHaveBeenCalledTimes(1);
+          expect(onChangeHandler).toHaveBeenLastCalledWith("Hello World");
+        });
+      });
+
+      describe("when whitespace is not present at the start or end of the value", () => {
+        const value = "Hello World";
+
+        it("does not invoke the onChangeText callback", () => {
+          const onChangeHandler = jest.fn();
+          const a11yLabel = "Test InputText";
+          const { getByLabelText } = render(
+            <InputText
+              value={value}
+              accessibilityLabel={a11yLabel}
+              onChangeText={onChangeHandler}
+            />,
+          );
+
+          fireEvent(getByLabelText(a11yLabel), "blur");
+          expect(onChangeHandler).toHaveBeenCalledTimes(0);
+        });
       });
     });
 

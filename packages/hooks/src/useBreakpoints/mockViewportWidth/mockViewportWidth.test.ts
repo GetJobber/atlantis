@@ -1,13 +1,13 @@
 import { isQueryMatching } from "./mockViewportWidth";
 
 describe("isQueryMatching", () => {
-  it.each([["<"], [">"]])("should return false on %s", operator => {
-    const result = isQueryMatching(`width ${operator} ${window.innerWidth}`);
+  it("should return false on max-width", () => {
+    const result = isQueryMatching(`max-width: ${window.innerWidth - 1}`);
     expect(result).toBe(false);
   });
 
-  it.each([["<="], [">="], ["="]])("should return true on %s", operator => {
-    const result = isQueryMatching(`width ${operator} ${window.innerWidth}`);
+  it("should return true on min-width", () => {
+    const result = isQueryMatching(`min-width: ${window.innerWidth}`);
     expect(result).toBe(true);
   });
 
