@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.49.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.48.11...@jobber/components-native@0.49.0) (2023-11-29)
+
+
+### Features
+
+* **design:** update hover colors for common surfaces [JOB-82570] ([#1545](https://github.com/GetJobber/atlantis/issues/1545)) ([6d8795a](https://github.com/GetJobber/atlantis/commit/6d8795afad3133fe2c74de29e17d629787561554))
+
+
+
+
+
 ## [0.48.11](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.48.10...@jobber/components-native@0.48.11) (2023-11-29)
 
 **Note:** Version bump only for package @jobber/components-native
