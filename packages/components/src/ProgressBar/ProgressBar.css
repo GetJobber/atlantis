@@ -31,3 +31,13 @@ progress.ProgressBar[value]::-moz-progress-bar {
   background-color: var(--color-interactive);
   transition: all var(--timing-slow) ease-out;
 }
+
+progress.SteppedProgressBar[value]::-webkit-progress-value {
+  transition: all var(--timing-quick) ease-out;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-small);
+}
