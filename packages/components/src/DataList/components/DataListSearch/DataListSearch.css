@@ -1,14 +1,21 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
 .searchInput {
   --transition-properties: var(--timing-base) ease-in-out;
-  --button-offset: calc(var(--space-largest) - var(--space-smallest));
+  --button-offset: calc(var(--space-largest) - var(--space-smaller));
 
   position: absolute;
-  /* Inputs are off by 1 when put beside a button */
-  top: calc(var(--space-small) + 1px);
+  top: 50%;
   right: var(--button-offset);
   visibility: hidden;
   width: 0;
+  padding: var(--space-smaller) 0;
+  background-color: var(--color-surface);
   opacity: 0;
+  transform: translateY(-50%);
   transition: opacity var(--transition-properties),
     width var(--transition-properties), visibility var(--transition-properties);
 }
@@ -25,7 +32,10 @@
     position: static;
     visibility: visible;
     width: auto;
+    padding: 0;
+    background-color: transparent;
     opacity: 1;
+    transform: none;
     transition: none;
   }
 }

@@ -1,8 +1,8 @@
 import React from "react";
 import classNames from "classnames";
 import { Checkbox } from "@jobber/components/Checkbox";
-import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
 import { DataListObject } from "@jobber/components/DataList/DataList.types";
+import { useBatchSelect } from "@jobber/components/DataList/hooks/useBatchSelect";
 import styles from "../../DataList.css";
 
 interface ListItemInternalProps<T extends DataListObject> {
@@ -14,31 +14,63 @@ export function DataListItemInternal<T extends DataListObject>({
   children,
   item,
 }: ListItemInternalProps<T>) {
-  const { selected, onSelect } = useDataListContext();
+  const {
+    canSelect,
+    hasAtLeastOneSelected,
+    isSelectAll,
+    selectedIDs,
+    selected,
+    onSelect,
+  } = useBatchSelect();
+  if (!canSelect) return children;
 
-  if (selected !== undefined && onSelect) {
-    return (
-      <div
-        className={classNames(styles.selectable, {
-          [styles.selected]: selected?.length,
-        })}
-      >
-        {children}
-        <Checkbox
-          checked={selected?.includes(item.id)}
-          onChange={handleChange}
-        />
-      </div>
-    );
+  return (
+    <div
+      className={classNames(styles.selectable, {
+        [styles.selected]: hasAtLeastOneSelected,
+      })}
+    >
+      {children}
+      <Checkbox checked={getIsChecked()} onChange={handleChange} />
+    </div>
+  );
+
+  function getIsChecked(): boolean | undefined {
+    const isItemInSelectedIDs = selectedIDs.includes(item.id);
+
+    // If we're in a "select all" state, the selectedID's becomes a list of
+    // unchecked ID's.
+    if (isSelectAll) return !isItemInSelectedIDs;
+
+    // Otherwise, we're in a "select some" state, so we can just check if the
+    // item is in the selectedIDs list.
+    return isItemInSelectedIDs;
   }
 
-  return children;
-
   function handleChange() {
-    if (selected?.includes(item.id)) {
-      onSelect?.(selected?.filter(id => id !== item.id));
-    } else if (selected) {
-      onSelect?.([...selected, item.id]);
+    if (isSelectAll) return handleSelectAllChange();
+
+    return handleSelectSomeChange();
+  }
+
+  function handleSelectAllChange() {
+    if (!selected || Array.isArray(selected)) return;
+
+    if (selectedIDs?.includes(item.id)) {
+      onSelect?.({
+        ...selected,
+        unselected: selectedIDs?.filter(id => id !== item.id),
+      });
+    } else if (selectedIDs) {
+      onSelect?.({ ...selected, unselected: [...selectedIDs, item.id] });
+    }
+  }
+
+  function handleSelectSomeChange() {
+    if (selectedIDs?.includes(item.id)) {
+      onSelect?.(selectedIDs?.filter(id => id !== item.id));
+    } else if (selectedIDs) {
+      onSelect?.([...selectedIDs, item.id]);
     }
   }
 }

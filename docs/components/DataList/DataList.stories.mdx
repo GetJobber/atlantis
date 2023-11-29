@@ -151,6 +151,57 @@ items:
 
 <ArgsTable of={DataList.BatchAction} />
 
+##### Using onSelectAll
+
+There are two ways to use the `onSelectAll` prop:
+
+Option 1. The "known IDs" way is where you update the selected IDs state with
+all the possible IDs in an array format (`[1, 2, 3]`).
+
+```tsx
+return (
+  <DataList
+    selected={selected}
+    onSelect={handleSelect}
+    onSelectAll={handleSelectAll}
+  >
+    ...
+  </DataList>
+);
+
+async function handleSelectAll() {
+  const allIDs: number[] = await query.fetchIds();
+  setSelected(allIDs);
+}
+```
+
+Option 2. The "unknown IDs" way is where you pass in an object to the `selected`
+prop. In doing so, the DataList will assume that everything is selected except
+for the ID's in the `unselected` array.
+
+```tsx
+return (
+  <DataList
+    selected={selected}
+    onSelect={handleSelect}
+    onSelectAll={handleSelectAll}
+  >
+    ...
+  </DataList>
+);
+
+/**
+ * In this example, `selected` will be an object with the following shape:
+ * {
+ *   totalCount: boolean; // approximately how many items are selected
+ *   unselected: T[]; // the items that are not selected
+ * }
+ */
+function handleSelectAll(selected: DataListSelectAllData<T>) {
+  setSelected(selected);
+}
+```
+
 #### Layout actions
 
 By default, the actions from the DataList.ItemActions will be placed on the top

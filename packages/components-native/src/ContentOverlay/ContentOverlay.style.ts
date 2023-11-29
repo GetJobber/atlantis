@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
     zIndex: tokens["elevation-base"],
     borderTopLeftRadius: modalBorderRadius,
     borderTopRightRadius: modalBorderRadius,
-    height: tokens["space-extravagant"],
+    minHeight: tokens["space-extravagant"],
   },
 
   headerShadow: {
@@ -54,11 +54,12 @@ export const styles = StyleSheet.create({
     opacity: 0,
   },
 
-  titleWithoutDimiss: {
+  titleWithoutDismiss: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
     paddingTop: tokens["space-base"],
+    paddingHorizontal: tokens["space-base"],
   },
 
   titleWithDismiss: {
@@ -66,6 +67,5 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     paddingLeft: tokens["space-base"],
     paddingRight: tokens["space-smaller"],
-    flexGrow: 1,
   },
 });

@@ -70,6 +70,21 @@ const InitialValueTemplate: ComponentStory<typeof Select> = args => (
   </Select>
 );
 
+const OnFocusAndBlurTemplate: ComponentStory<typeof Select> = args => (
+  <Select
+    {...args}
+    onFocus={() => {
+      console.log("I have been focused!");
+    }}
+    onBlur={() => console.log("I have been blurred!")}
+  >
+    <Option value="tony">Tony</Option>
+    <Option value="steve">Steve</Option>
+    <Option value="natasha">Natasha</Option>
+    <Option value="bob">Bob</Option>
+  </Select>
+);
+
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
   placeholder: "My best friend",
@@ -91,4 +106,10 @@ Events.args = {
   onChange: (newValue: string) => {
     alert("You picked: " + newValue);
   },
+};
+
+export const OnFocusAndBlur = OnFocusAndBlurTemplate.bind({});
+OnFocusAndBlur.args = {
+  placeholder: "Pick a friend",
+  defaultValue: "bob",
 };
