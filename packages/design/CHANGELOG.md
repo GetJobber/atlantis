@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.48.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.47.2...@jobber/design@0.48.0) (2023-11-29)
+
+
+### Features
+
+* **components:** add 'starHalf' icon  — (Minor) Feature Release ([#1660](https://github.com/GetJobber/atlantis/issues/1660)) ([68f8200](https://github.com/GetJobber/atlantis/commit/68f8200efd9c4817fd792937ca4034a3f15d86b2))
+
+
+
+
+
 ## [0.47.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.47.1...@jobber/design@0.47.2) (2023-11-21)
 
 
