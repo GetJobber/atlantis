@@ -37,13 +37,16 @@ export function DataListHeaderTile<T extends DataListObject>({
   );
 
   function toggleSorting(sortingKey: string) {
-    if (sortingState?.order === "desc") {
+    const isSameKey = sortingKey === sortingState?.key;
+
+    if (isSameKey && sortingState?.order === "desc") {
       sorting?.onSort(undefined);
+
       return;
     }
 
     sorting?.onSort({
-      order: sortingState?.order === "asc" ? "desc" : "asc",
+      order: isSameKey && sortingState?.order === "asc" ? "desc" : "asc",
       key: sortingKey,
     });
   }

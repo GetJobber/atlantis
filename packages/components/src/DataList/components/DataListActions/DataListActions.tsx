@@ -27,6 +27,7 @@ export function DataListActions<T extends DataListObject>({
   return (
     <DataListOverflowFade>
       {exposedActions.map(({ props }) => {
+        if (props.visible && !props.visible(activeItem)) return null;
         if (!props.icon) return null;
 
         return (

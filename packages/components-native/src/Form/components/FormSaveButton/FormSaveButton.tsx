@@ -21,36 +21,34 @@ export function FormSaveButton({
   const buttonActions = useButtonGroupAction(secondaryActions);
 
   return (
-    <>
-      <ButtonGroup
-        onOpenBottomSheet={onOpenBottomSheet}
-        onCloseBottomSheet={onCloseBottomSheet}
-        allowTapWhenOffline={true}
-      >
-        {buttonActions.map((action, index) => {
-          if (index === 0) {
-            return (
-              <ButtonGroup.PrimaryAction
-                key={index}
-                onPress={primaryAction}
-                label={label ?? t("save")}
-                loading={loading}
-              />
-            );
-          } else {
-            return (
-              <ButtonGroup.SecondaryAction
-                key={index}
-                label={action.label}
-                icon={action.icon}
-                onPress={action.onPress}
-                destructive={action.destructive}
-              />
-            );
-          }
-        })}
-      </ButtonGroup>
-    </>
+    <ButtonGroup
+      onOpenBottomSheet={onOpenBottomSheet}
+      onCloseBottomSheet={onCloseBottomSheet}
+      allowTapWhenOffline={true}
+    >
+      {buttonActions.map((action, index) => {
+        if (index === 0) {
+          return (
+            <ButtonGroup.PrimaryAction
+              key={index}
+              onPress={primaryAction}
+              label={label ?? t("save")}
+              loading={loading}
+            />
+          );
+        } else {
+          return (
+            <ButtonGroup.SecondaryAction
+              key={index}
+              label={action.label}
+              icon={action.icon}
+              onPress={action.onPress}
+              destructive={action.destructive}
+            />
+          );
+        }
+      })}
+    </ButtonGroup>
   );
 
   function useButtonGroupAction(
@@ -81,6 +79,7 @@ export function FormSaveButton({
     handleAction: SecondaryActionProp["handleAction"],
   ) {
     let performSubmit = true;
+
     if (handleAction.onBeforeSubmit) {
       performSubmit = await handleAction.onBeforeSubmit();
     }

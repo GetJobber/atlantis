@@ -50,6 +50,7 @@ describe("when rendering a Basic Table", () => {
 });
 
 describe("when using pagination", () => {
+  const scrollToMock = jest.fn();
   beforeEach(() => {
     render(
       <DataTable
@@ -58,6 +59,8 @@ describe("when using pagination", () => {
         pagination={{ manualPagination: false, itemsPerPage: [5, 10, 15] }}
       />,
     );
+    const tableContainer = screen.getByTestId("ATL-DataTable-Container");
+    tableContainer.scrollTo = scrollToMock;
   });
 
   it("renders table with pagination info", () => {
@@ -75,27 +78,37 @@ describe("when using pagination", () => {
     expect(screen.getByLabelText("arrowLeft")).toBeDisabled();
   });
 
-  it("renders updated pagination info of the next page", () => {
+  it("resets scroll when navigating between next and previous page", async () => {
     const arrowRight = screen.getByTestId("arrowRight");
-    userEvent.click(arrowRight);
+    await userEvent.click(arrowRight);
+    expect(scrollToMock).toHaveBeenCalledWith(0, 0);
+
+    const arrowLeft = screen.getByTestId("arrowLeft");
+    await userEvent.click(arrowLeft);
+    expect(scrollToMock).toHaveBeenCalledWith(0, 0);
+  });
+
+  it("renders updated pagination info of the next page", async () => {
+    const arrowRight = screen.getByTestId("arrowRight");
+    await userEvent.click(arrowRight);
 
     const paginationInfo = screen.getByText(/Showing 6-10 of 13 items/i);
     expect(paginationInfo).toBeInTheDocument();
   });
 
-  it("renders correct number of rows of the next page and previous page", () => {
+  it("renders correct number of rows of the next page and previous page", async () => {
     const arrowRight = screen.getByTestId("arrowRight");
-    userEvent.click(arrowRight);
+    await userEvent.click(arrowRight);
 
     const [, ...bodyRowsPage2] = screen.getAllByRole("row");
     expect(bodyRowsPage2).toHaveLength(5);
 
-    userEvent.click(arrowRight);
+    await userEvent.click(arrowRight);
 
     const [, ...bodyRowsPage3] = screen.getAllByRole("row");
     expect(bodyRowsPage3).toHaveLength(3);
 
-    userEvent.click(screen.getByTestId("arrowLeft"));
+    await userEvent.click(screen.getByTestId("arrowLeft"));
 
     const [, ...bodyRowsFinalPage] = screen.getAllByRole("row");
     expect(bodyRowsFinalPage).toHaveLength(5);
@@ -126,6 +139,7 @@ describe("when using pagination", () => {
 
 describe("when using manual pagination", () => {
   const mockedOnPaginationChange = jest.fn();
+  const scrollToMock = jest.fn();
   const state = { pageIndex: 0, pageSize: 10 };
   const totalItems = 13;
   beforeEach(() => {
@@ -142,16 +156,18 @@ describe("when using manual pagination", () => {
         }}
       />,
     );
+    const tableContainer = screen.getByTestId("ATL-DataTable-Container");
+    tableContainer.scrollTo = scrollToMock;
   });
-  it("calls the provided callback", () => {
-    userEvent.click(screen.getByLabelText("arrowRight"));
+  it("calls the provided callback", async () => {
+    await userEvent.click(screen.getByLabelText("arrowRight"));
 
     expect(mockedOnPaginationChange).toHaveBeenCalledTimes(1);
   });
 });
 
 describe("when using sorting", () => {
-  it("renders table with clickable headers", () => {
+  it("renders table with clickable headers", async () => {
     render(
       <DataTable
         data={data}
@@ -161,12 +177,12 @@ describe("when using sorting", () => {
     );
     const nameHeader = screen.getByText("Name");
 
-    userEvent.click(nameHeader); // sort to asc
+    await userEvent.click(nameHeader); // sort to asc
 
     const firstBodyRow = screen.getAllByRole("row")[1];
     expect(within(firstBodyRow).getByText("Arya")).toBeInTheDocument();
 
-    userEvent.click(nameHeader); // sort to desc
+    await userEvent.click(nameHeader); // sort to desc
 
     const firstBodyRowUpdated = screen.getAllByRole("row")[1];
     expect(within(firstBodyRowUpdated).getByText("Tommen")).toBeInTheDocument();
@@ -176,7 +192,7 @@ describe("when using sorting", () => {
 describe("when using manual sorting", () => {
   const mockedOnSortingChange = jest.fn();
 
-  it("calls the provided callback", () => {
+  it("calls the provided callback", async () => {
     render(
       <DataTable
         data={data}
@@ -191,7 +207,7 @@ describe("when using manual sorting", () => {
 
     const nameHeader = screen.getByText("Name");
 
-    userEvent.click(nameHeader);
+    await userEvent.click(nameHeader);
 
     expect(mockedOnSortingChange).toHaveBeenCalledTimes(1);
   });
@@ -205,9 +221,9 @@ describe("when using onRowClick", () => {
     );
   });
 
-  it("Executes a callback function", () => {
+  it("Executes a callback function", async () => {
     const firstBodyRow = screen.getAllByRole("row")[1];
-    userEvent.click(firstBodyRow);
+    await userEvent.click(firstBodyRow);
     expect(clickHandler).toHaveBeenCalledTimes(1);
   });
 });

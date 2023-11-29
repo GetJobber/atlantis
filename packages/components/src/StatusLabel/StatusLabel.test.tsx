@@ -1,8 +1,6 @@
 import React from "react";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { StatusLabel } from ".";
-
-afterEach(cleanup);
 
 it("renders an inactive StatusLabel", () => {
   const { container } = render(<StatusLabel label="Foo" status="inactive" />);

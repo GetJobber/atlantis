@@ -1,8 +1,11 @@
-import React, { MouseEvent } from "react";
+import React, { MouseEvent, ReactElement } from "react";
 import { Variants, motion } from "framer-motion";
 import styles from "./DataListItemActions.css";
-import { useDataListContext } from "../../context/DataListContext";
-import { DataListItemActionsProps, DataListObject } from "../../DataList.types";
+import {
+  DataListActionProps,
+  DataListItemActionsProps,
+  DataListObject,
+} from "../../DataList.types";
 import {
   TRANSITION_DELAY_IN_SECONDS,
   TRANSITION_DURATION_IN_SECONDS,
@@ -22,14 +25,13 @@ const variants: Variants = {
   visible: { opacity: 1, y: 0 },
 };
 
-export function InternalDataListItemActions() {
-  const { itemActionComponent } = useDataListContext();
-  if (!itemActionComponent) return null;
+interface InternalDataListItemActionsProps<T extends DataListObject> {
+  readonly actions: ReactElement<DataListActionProps<T>>[];
+}
 
-  const { children } = itemActionComponent.props;
-
-  if (!children) return null;
-
+export function InternalDataListItemActions<T extends DataListObject>({
+  actions,
+}: InternalDataListItemActionsProps<T>) {
   return (
     <motion.div
       variants={variants}
@@ -43,7 +45,7 @@ export function InternalDataListItemActions() {
       className={styles.menu}
       onContextMenu={handleContextMenu}
     >
-      <DataListActions>{children}</DataListActions>
+      <DataListActions>{actions}</DataListActions>
     </motion.div>
   );
 }

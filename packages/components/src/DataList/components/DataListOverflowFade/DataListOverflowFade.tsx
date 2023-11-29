@@ -11,6 +11,7 @@ interface DataListOverflowFadeProps {
 export function DataListOverflowFade({ children }: DataListOverflowFadeProps) {
   const [leftRef, isLeftVisible] = useInView<HTMLSpanElement>();
   const [rightRef, isRightVisible] = useInView<HTMLSpanElement>();
+
   return (
     <div
       data-testid={CONTAINER_TEST_ID}
@@ -22,7 +23,7 @@ export function DataListOverflowFade({ children }: DataListOverflowFadeProps) {
       <div className={styles.overflowGrid}>
         <span ref={leftRef} className={styles.overflowTrigger} />
 
-        {children}
+        <div className={styles.overflowItems}>{children}</div>
 
         <span ref={rightRef} className={styles.overflowTrigger} />
       </div>

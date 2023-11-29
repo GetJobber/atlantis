@@ -48,7 +48,7 @@ describe("DataListItemClickable", () => {
     expect(screen.getByText(content)).toBeInstanceOf(HTMLDivElement);
   });
 
-  it("should render a div with a role of button when there's only an `onClick` prop", () => {
+  it("should render a div with a role of button when there's only an `onClick` prop", async () => {
     mockItemActionComponent.mockReturnValueOnce(
       <DataListItemActions onClick={handleClick} />,
     );
@@ -59,7 +59,7 @@ describe("DataListItemClickable", () => {
     expect(target).toBeInstanceOf(HTMLDivElement);
     expect(target).toHaveAttribute("role", "button");
 
-    userEvent.click(target);
+    await userEvent.click(target);
     expect(handleClick).toHaveBeenCalledTimes(1);
     expect(handleClick).toHaveBeenCalledWith(expectedItem);
   });
@@ -83,7 +83,7 @@ describe("DataListItemClickable", () => {
   });
 
   describe("URL prop", () => {
-    it("should render an `a` tag", () => {
+    it("should render an `a` tag", async () => {
       mockItemActionComponent.mockReturnValueOnce(
         <DataListItemActions url="jobber.com" />,
       );
@@ -94,7 +94,7 @@ describe("DataListItemClickable", () => {
       expect(target).toBeInstanceOf(HTMLAnchorElement);
       expect(target).toHaveAttribute("href", "jobber.com");
 
-      userEvent.click(target);
+      await userEvent.click(target);
       expect(handleClick).not.toHaveBeenCalled();
     });
 
@@ -110,7 +110,7 @@ describe("DataListItemClickable", () => {
       expect(target).toHaveAttribute("href", "jobber.com/1");
     });
 
-    it("should still fire onClick if it exists", () => {
+    it("should still fire onClick if it exists", async () => {
       mockItemActionComponent.mockReturnValueOnce(
         <DataListItemActions url="jobber.com" onClick={handleClick} />,
       );
@@ -119,14 +119,14 @@ describe("DataListItemClickable", () => {
       const target = screen.getByText(content);
       expect(target).toBeInstanceOf(HTMLAnchorElement);
 
-      userEvent.click(target);
+      await userEvent.click(target);
       expect(handleClick).toHaveBeenCalledTimes(1);
       expect(handleClick).toHaveBeenCalledWith(expectedItem);
     });
   });
 
   describe("To prop", () => {
-    it("should render an `a` tag", () => {
+    it("should render an `a` tag", async () => {
       mockItemActionComponent.mockReturnValueOnce(
         <DataListItemActions to="/getjobber.com" />,
       );
@@ -137,7 +137,7 @@ describe("DataListItemClickable", () => {
       expect(target).toBeInstanceOf(HTMLAnchorElement);
       expect(target).toHaveAttribute("href", "/getjobber.com");
 
-      userEvent.click(target);
+      await userEvent.click(target);
       expect(handleClick).not.toHaveBeenCalled();
     });
 
@@ -153,7 +153,7 @@ describe("DataListItemClickable", () => {
       expect(target).toHaveAttribute("href", "/getjobber.com/1");
     });
 
-    it("should still fire onClick if it exists", () => {
+    it("should still fire onClick if it exists", async () => {
       mockItemActionComponent.mockReturnValueOnce(
         <DataListItemActions to="/getjobber.com" onClick={handleClick} />,
       );
@@ -162,7 +162,7 @@ describe("DataListItemClickable", () => {
       const target = screen.getByText(content);
       expect(target).toBeInstanceOf(HTMLAnchorElement);
 
-      userEvent.click(target);
+      await userEvent.click(target);
       expect(handleClick).toHaveBeenCalledTimes(1);
       expect(handleClick).toHaveBeenCalledWith(expectedItem);
     });

@@ -12,13 +12,20 @@ export function DataListAction<T extends DataListObject>({
   label,
   icon,
   destructive,
+  visible = () => true,
   onClick,
 }: DataListActionProps<T>) {
   const { activeItem } = useDataListLayoutActionsContext<T>();
+
+  // Don't render if the item is not visible
+  if (activeItem && !visible(activeItem)) {
+    return null;
+  }
+
   const color = destructive ? "critical" : "blue";
 
   return (
-    <button className={styles.action} onClick={handleClick}>
+    <button type="button" className={styles.action} onClick={handleClick}>
       {icon && <Icon name={icon} color={color} />}
 
       <Typography textColor={color}>

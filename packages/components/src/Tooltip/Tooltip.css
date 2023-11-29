@@ -12,6 +12,7 @@
   display: inline-block;
   position: absolute;
   z-index: var(--elevation-tooltip);
+  pointer-events: none;
 }
 
 .tooltip {

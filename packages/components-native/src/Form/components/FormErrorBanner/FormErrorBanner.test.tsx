@@ -1,8 +1,10 @@
 import React from "react";
-import { cleanup, render } from "@testing-library/react-native";
+import { render } from "@testing-library/react-native";
 import { FormErrorBanner } from "./FormErrorBanner";
 import { atlantisContextDefaultValues } from "../../../AtlantisContext";
 import * as atlantisContext from "../../../AtlantisContext/AtlantisContext";
+
+afterEach(jest.clearAllMocks);
 
 describe("FormErrorBanner", () => {
   const atlantisContextSpy = jest.spyOn(atlantisContext, "useAtlantisContext");
@@ -56,6 +58,3 @@ describe("FormErrorBanner", () => {
     expect(queryByText(couldNotSavechanges)).toBeNull();
   });
 });
-
-afterEach(jest.clearAllMocks);
-afterEach(cleanup);

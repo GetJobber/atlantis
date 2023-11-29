@@ -9,6 +9,7 @@ export default {
   plugins: [
     multiInput(),
     typescript({
+      tsconfig: "./tsconfig.rollup.json",
       declarationDir: "dist",
       noEmitOnError: true,
     }),
@@ -62,7 +63,6 @@ export default {
     "uuid",
     new RegExp("lodash/.*"),
     "@std-proposal/temporal",
-    "@use-it/event-listener",
     "@jobber/design",
     "@jobber/design/foundation",
     "@jobber/formatters",

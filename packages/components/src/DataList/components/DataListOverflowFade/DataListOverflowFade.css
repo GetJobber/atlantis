@@ -1,19 +1,29 @@
 .fadeContainer {
+  --overflow-fade--offset: var(--space-smaller);
+  --overflow-fade--negative-offset: calc(var(--overflow-fade--offset) * -1);
+
   align-self: center;
   position: relative;
   min-width: 0;
 }
 
+.overflowItems,
 .overflowGrid {
   display: grid;
-  overflow-x: auto;
   grid-auto-flow: column;
   grid-auto-columns: max-content;
   align-items: center;
 }
 
-.overflowGrid > :nth-child(n + 3):not(:last-child) {
-  margin-left: var(--space-small);
+.overflowItems {
+  gap: var(--space-small);
+}
+
+.overflowGrid {
+  margin: var(--overflow-fade--negative-offset);
+  padding: var(--overflow-fade--offset);
+  overflow-x: auto;
+  overflow-y: visible;
 }
 
 .overflowTrigger {
@@ -36,10 +46,10 @@
 }
 
 .overflowLeft::before {
-  left: 0;
+  left: var(--overflow-fade--negative-offset);
 }
 
 .overflowRight::after {
   --data-list-overflow-shadow-angle: to left;
-  right: 0;
+  right: var(--overflow-fade--negative-offset);
 }

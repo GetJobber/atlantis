@@ -18,7 +18,7 @@ export function DataListLoadingState() {
 
   if (!layout) return null;
 
-  const glimmerSize = activeBreakpoint === "xs" ? "small" : "base";
+  const glimmerSize = activeBreakpoint === "xs" ? "small" : "large";
   const glimmersFromHeader = Object.keys(headers).reduce(
     (data: DataListItemType<DataListObject[]>, key) => ({
       ...data,

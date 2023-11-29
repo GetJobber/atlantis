@@ -84,7 +84,7 @@ describe("DataListHeaderCheckbox", () => {
     expect(screen.getByText(textToBeFound)).toBeInTheDocument();
   });
 
-  it("should fire the onSelectAll when the checkbox have been clicked", () => {
+  it("should fire the onSelectAll when the checkbox have been clicked", async () => {
     render(
       <DataListContext.Provider value={withSelectedContext}>
         <DataListHeaderCheckbox>
@@ -93,12 +93,12 @@ describe("DataListHeaderCheckbox", () => {
       </DataListContext.Provider>,
     );
 
-    userEvent.click(screen.getByRole("checkbox"));
+    await userEvent.click(screen.getByRole("checkbox"));
 
     expect(handleSelectAll).toHaveBeenCalledTimes(1);
   });
 
-  it("should return an empty array on onSelect when deselect all have been clicked", () => {
+  it("should return an empty array on onSelect when deselect all have been clicked", async () => {
     render(
       <DataListContext.Provider value={withSelectedContext}>
         <DataListHeaderCheckbox>
@@ -107,7 +107,9 @@ describe("DataListHeaderCheckbox", () => {
       </DataListContext.Provider>,
     );
 
-    userEvent.click(screen.getByRole("button", { name: deselectAllLabel }));
+    await userEvent.click(
+      screen.getByRole("button", { name: deselectAllLabel }),
+    );
 
     expect(handleSelect).toHaveBeenCalledTimes(1);
     expect(handleSelect).toHaveBeenCalledWith([]);
@@ -137,6 +139,7 @@ describe("DataListHeaderCheckbox", () => {
           lg: true,
           xl: true,
         }[queryBreakpoint as Breakpoints];
+
         return {
           matches: expectedValue,
           media: query,

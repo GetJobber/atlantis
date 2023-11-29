@@ -12,28 +12,28 @@ it("should focus on the ref target on mount", () => {
   expect(getByTestId(targetId)).toHaveFocus();
 });
 
-it("should focus on the ref target when tabbing out of the last focusable element and ignore the tabindex'=-1'", () => {
+it("should focus on the ref target when tabbing out of the last focusable element and ignore the tabindex'=-1'", async () => {
   const { getByTestId } = render(<TestComponent />);
   getByTestId(lastFocusableChild).focus();
-  userEvent.tab();
+  await userEvent.tab();
   expect(getByTestId(targetId)).toHaveFocus();
 });
 
-it("should focus on the first focusable element", () => {
+it("should focus on the first focusable element", async () => {
   const { getByTestId } = render(<TestComponent />);
-  userEvent.tab();
+  await userEvent.tab();
   expect(getByTestId(firstFocusableChild)).toHaveFocus();
 });
 
-it("should focus on the last focusable element", () => {
+it("should focus on the last focusable element", async () => {
   const { getByTestId } = render(<TestComponent />);
-  userEvent.tab({ shift: true });
+  await userEvent.tab({ shift: true });
   expect(getByTestId(lastFocusableChild)).toHaveFocus();
 });
 
-it("should not trap the tabbing and focus on the first child node", () => {
+it("should not trap the tabbing and focus on the first child node", async () => {
   const { getByTestId } = render(<TestComponent trap={false} />);
-  userEvent.tab();
+  await userEvent.tab();
   expect(getByTestId(targetId).previousElementSibling).toHaveFocus();
 });
 

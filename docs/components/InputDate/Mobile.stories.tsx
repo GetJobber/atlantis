@@ -17,8 +17,9 @@ export default {
   },
 } as ComponentMeta<typeof InputDate>;
 
-const BasicTemplate: ComponentStory<any> = args => {
+const BasicTemplate: ComponentStory = args => {
   const [date, setDate] = useState(new Date("11/11/2011"));
+
   return <InputDate {...args} value={date} onChange={setDate} />;
 };
 

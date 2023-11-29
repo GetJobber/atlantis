@@ -56,7 +56,7 @@ describe("DataListLoadMore", () => {
     ).toBeInTheDocument();
   });
 
-  it("should fire the onBackToTop callback", () => {
+  it("should fire the onBackToTop callback", async () => {
     const handleBackToTop = jest.fn();
     render(
       <DataListContext.Provider value={{ ...defaultValues, data: mockData }}>
@@ -64,7 +64,7 @@ describe("DataListLoadMore", () => {
       </DataListContext.Provider>,
     );
 
-    userEvent.click(screen.getByRole("button", { name: "Back to top" }));
+    await userEvent.click(screen.getByRole("button", { name: "Back to top" }));
 
     expect(handleBackToTop).toHaveBeenCalled();
   });

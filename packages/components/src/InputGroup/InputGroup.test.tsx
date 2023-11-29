@@ -1,8 +1,6 @@
 import React from "react";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { InputGroup } from ".";
-
-afterEach(cleanup);
 
 it("renders a vertical InputGroup", () => {
   const { container } = render(
