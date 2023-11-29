@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.49.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.48.0...@jobber/design@0.49.0) (2023-11-29)
+
+
+### Features
+
+* **design:** add tag icon  ([#1659](https://github.com/GetJobber/atlantis/issues/1659)) ([c55764f](https://github.com/GetJobber/atlantis/commit/c55764f18ad0fbb56360c244b7ba88e78bccc961))
+
+
+
+
+
 # [0.48.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.47.2...@jobber/design@0.48.0) (2023-11-29)
 
 
