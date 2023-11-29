@@ -22,14 +22,6 @@ export const styles = StyleSheet.create({
     height: "100%",
     borderRadius: 100,
   },
-  steppedProgressBarContainer: {
-    marginTop: tokens["space-small"],
-    marginBottom: tokens["space-small"],
-    width: "100%",
-    height: 10,
-    position: "relative",
-    flexDirection: "row",
-  },
   step: {
     flex: 1,
     marginRight: tokens["space-small"],

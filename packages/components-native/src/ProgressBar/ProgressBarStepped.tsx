@@ -12,15 +12,20 @@ export function ProgressBarStepped({
   current,
 }: ProgressBarSteppedProps) {
   return (
-    <View style={styles.steppedProgressBarContainer}>
+    <View style={[styles.progressBarContainer, { height: 10 }]}>
       {Array.from({ length: total }).map((_, index) => {
         const step = index + 1;
         const isCompleted = step <= current;
+        const lastStep = step === total;
 
         return (
           <View
             key={step}
-            style={[styles.step, isCompleted && styles.completedStep]}
+            style={[
+              styles.step,
+              isCompleted && styles.completedStep,
+              lastStep && { marginRight: 0 },
+            ]}
           ></View>
         );
       })}
