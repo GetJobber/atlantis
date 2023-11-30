@@ -58,6 +58,20 @@ describe("DataListAction", () => {
     expect(handleClick).toHaveBeenCalledWith(mockItem);
   });
 
+  it("should render the correct label when a callback is passed", async () => {
+    const value = { activeItem: { id: 1 } };
+    const mockLabel = jest.fn(() => "Edit");
+
+    render(
+      <DataListLayoutActionsContext.Provider value={value}>
+        <DataListAction label={mockLabel} />
+      </DataListLayoutActionsContext.Provider>,
+    );
+
+    expect(screen.getByRole("button", { name: "Edit" })).toBeInTheDocument();
+    expect(mockLabel).toHaveBeenCalledWith(value.activeItem);
+  });
+
   describe("Action visibility", () => {
     const value = { activeItem: { id: 1 } };
 
