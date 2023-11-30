@@ -30,6 +30,7 @@ export function ProgressBar({
           total={total}
           current={current}
           color={reverseTheme ? undefined : tokens["color-surface--background"]}
+          loading={loading}
         />
       ) : (
         <View style={styles.progressBarContainer}>
