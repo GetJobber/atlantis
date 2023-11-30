@@ -25,7 +25,6 @@ export const styles = StyleSheet.create({
   step: {
     flex: 1,
     marginRight: tokens["space-small"],
-    backgroundColor: tokens["color-surface--background"],
     height: "100%",
     borderRadius: 100,
     borderColor: "rgba(255,255,255,0.3)",

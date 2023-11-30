@@ -26,7 +26,11 @@ export function ProgressBar({
     >
       {header}
       {variation === "stepped" ? (
-        <ProgressBarStepped total={total} current={current} />
+        <ProgressBarStepped
+          total={total}
+          current={current}
+          color={reverseTheme ? undefined : tokens["color-surface--background"]}
+        />
       ) : (
         <View style={styles.progressBarContainer}>
           <ProgressBarInner

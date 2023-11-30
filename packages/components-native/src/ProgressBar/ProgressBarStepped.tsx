@@ -5,11 +5,13 @@ import { styles } from "./ProgressBar.style";
 interface ProgressBarSteppedProps {
   readonly total: number;
   readonly current: number;
+  readonly color?: string;
 }
 
 export function ProgressBarStepped({
   total,
   current,
+  color,
 }: ProgressBarSteppedProps) {
   return (
     <View style={[styles.progressBarContainer, { height: 10 }]}>
@@ -23,6 +25,7 @@ export function ProgressBarStepped({
             key={step}
             style={[
               styles.step,
+              { ...(color && { backgroundColor: color }) },
               isCompleted && styles.completedStep,
               lastStep && { marginRight: 0 },
             ]}
