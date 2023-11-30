@@ -82,8 +82,6 @@ export function DropDownMenu({ options, setOptions }: DropDownMenuProps) {
     }
   }
 
-  // Increase max statements to 14 to allow for the switch statement
-  /* eslint max-statements: ["error", 14] */
   function handleKeyDown(event: KeyboardEvent<HTMLUListElement>) {
     const { key, metaKey, ctrlKey } = event;
 
@@ -97,17 +95,11 @@ export function DropDownMenu({ options, setOptions }: DropDownMenuProps) {
         break;
       }
       case "ArrowDown": {
-        const newIndex = Math.min(options.length - 1, highlightedIndex + 1);
-
-        handleOptionFocus(newIndex);
-        scrollMenuIfItemNotInView(menuDiv.current, "down");
+        handlePressDown(event);
         break;
       }
       case "ArrowUp": {
-        const newIndex = Math.max(0, highlightedIndex - 1);
-
-        handleOptionFocus(newIndex);
-        scrollMenuIfItemNotInView(menuDiv.current, "up");
+        handlePressUp(event);
         break;
       }
     }
@@ -151,4 +143,20 @@ export function DropDownMenu({ options, setOptions }: DropDownMenuProps) {
       })}
     </ul>
   );
+
+  function handlePressUp(event: React.KeyboardEvent<HTMLUListElement>) {
+    event.preventDefault();
+    const newIndex = Math.max(0, highlightedIndex - 1);
+
+    handleOptionFocus(newIndex);
+    scrollMenuIfItemNotInView(menuDiv.current, "up");
+  }
+
+  function handlePressDown(event: React.KeyboardEvent<HTMLUListElement>) {
+    event.preventDefault();
+    const newIndex = Math.min(options.length - 1, highlightedIndex + 1);
+
+    handleOptionFocus(newIndex);
+    scrollMenuIfItemNotInView(menuDiv.current, "down");
+  }
 }
