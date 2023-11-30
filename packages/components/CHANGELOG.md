@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.66.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.66.2...@jobber/components@4.66.3) (2023-11-30)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.66.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.66.1...@jobber/components@4.66.2) (2023-11-30)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.66.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.66.0...@jobber/components@4.66.1) (2023-11-30)
+
+
+### Bug Fixes
+
+* **components:** Fix stepped variation of progress bar ([#1663](https://github.com/GetJobber/atlantis/issues/1663)) ([56f9608](https://github.com/GetJobber/atlantis/commit/56f96087537a2722a6c4a7cffc203a20035d42d3))
+
+
+
+
+
 # [4.66.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.65.0...@jobber/components@4.66.0) (2023-11-29)
 
 

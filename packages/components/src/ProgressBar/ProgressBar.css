@@ -39,5 +39,6 @@ progress.SteppedProgressBar[value]::-webkit-progress-value {
 .wrapper {
   display: flex;
   flex-direction: row;
+  width: 100%;
   gap: var(--space-small);
 }
