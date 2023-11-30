@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.66.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.66.3...@jobber/components@4.66.4) (2023-11-30)
+
+
+### Bug Fixes
+
+* **components:** multiselect preventing space bar from being recognized ([#1665](https://github.com/GetJobber/atlantis/issues/1665)) ([f920fda](https://github.com/GetJobber/atlantis/commit/f920fda1d4b60fe1fea0be2785b9bf327393d3e2))
+
+
+
+
+
 ## [4.66.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.66.2...@jobber/components@4.66.3) (2023-11-30)
 
 **Note:** Version bump only for package @jobber/components
