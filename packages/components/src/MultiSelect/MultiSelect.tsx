@@ -1,16 +1,15 @@
 import React, {
   Dispatch,
+  KeyboardEvent,
   MutableRefObject,
   useEffect,
   useRef,
   useState,
 } from "react";
 import classNames from "classnames";
-import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import styles from "./MultiSelect.css";
 import { DropDownMenu } from "./DropDownMenu";
 import { Options } from "./types";
-import { handleKeyboardShortcut } from "./utils";
 import { Text } from "../Text";
 import { Icon } from "../Icon";
 
@@ -33,7 +32,7 @@ interface MultiSelectProps {
   /**
    * Change handler
    */
-  onOptionsChange: Dispatch<React.SetStateAction<Options>>;
+  readonly onOptionsChange: Dispatch<React.SetStateAction<Options>>;
 
   /**
    * Adjusts the interface to either have small or large spacing.
@@ -71,7 +70,11 @@ export function MultiSelect({
     }
   };
 
-  function setupKeyListeners(key: string) {
+  function handleKeydown(event: KeyboardEvent<HTMLDivElement>) {
+    const { key, metaKey, ctrlKey } = event;
+
+    if (metaKey || ctrlKey) return;
+
     switch (key) {
       case "Enter":
       case " ": {
@@ -88,14 +91,9 @@ export function MultiSelect({
     }
   }
 
-  useOnKeyDown(handleKeyboardShortcut(setupKeyListeners).callback, [
-    "Enter",
-    " ",
-    "Escape",
-  ]);
-
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
+
     return () => document.removeEventListener("mousedown", handleClickOutside);
   });
 
@@ -121,6 +119,7 @@ export function MultiSelect({
         onClick={handleMenuVisibility}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
+        onKeyDown={handleKeydown}
         tabIndex={0}
         ref={multiSelectRef}
         role="button"
