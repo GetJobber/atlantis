@@ -30,11 +30,16 @@ export function DataListActions<T extends DataListObject>({
         if (props.visible && !props.visible(activeItem)) return null;
         if (!props.icon) return null;
 
+        const actionLabel =
+          typeof props.label === "function"
+            ? props.label(activeItem)
+            : props.label;
+
         return (
-          <Tooltip key={props.label} message={props.label}>
+          <Tooltip key={actionLabel} message={actionLabel}>
             <Button
               icon={props.icon}
-              ariaLabel={props.label}
+              ariaLabel={actionLabel}
               onClick={() => {
                 if (activeItem) {
                   props.onClick?.(activeItem);

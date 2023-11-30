@@ -151,7 +151,7 @@ const Template: ComponentStory<typeof DataList> = args => {
         />
         <DataList.ItemAction
           icon="sendMessage"
-          label="Message"
+          label={item => `Message ${item.label}`}
           onClick={handleActionClick}
         />
         <DataList.ItemAction

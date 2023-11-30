@@ -24,10 +24,13 @@ export function DataListAction<T extends DataListObject>({
 
   const color = destructive ? "critical" : "heading";
 
+  const actionLabel =
+    typeof label === "function" && activeItem ? label(activeItem) : label;
+
   return (
     <button type="button" className={styles.action} onClick={handleClick}>
       <Typography textColor={color}>
-        <span className={styles.label}>{label}</span>
+        <span className={styles.label}>{actionLabel as string}</span>
       </Typography>
 
       {icon && <Icon name={icon} color={color} />}
