@@ -12,7 +12,8 @@ export interface ProgressBarProps {
   readonly current: number;
 
   /**
-   * The number of items in progress (not completed, but to be less than the total)
+   * The number of items in progress (not completed, but to be less than the total);
+   * not applicable with stepped variation
    */
   readonly inProgress?: number;
 
