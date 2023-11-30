@@ -1,5 +1,6 @@
 import React, {
   Dispatch,
+  KeyboardEvent,
   MouseEvent,
   MutableRefObject,
   useCallback,
@@ -8,10 +9,8 @@ import React, {
   useState,
 } from "react";
 import classNames from "classnames";
-import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import styles from "./DropDownMenu.css";
 import { Option, Options } from "./types";
-import { handleKeyboardShortcut } from "./utils";
 import { Checkbox } from "../Checkbox";
 
 interface DropDownMenuProps {
@@ -24,7 +23,7 @@ interface DropDownMenuProps {
   /**
    * Change handler.
    */
-  setOptions: Dispatch<React.SetStateAction<Options>>;
+  readonly setOptions: Dispatch<React.SetStateAction<Options>>;
 }
 
 export function DropDownMenu({ options, setOptions }: DropDownMenuProps) {
@@ -37,6 +36,7 @@ export function DropDownMenu({ options, setOptions }: DropDownMenuProps) {
         if (option.label == clickedOption.label) {
           return { ...option, checked: !clickedOption.checked };
         }
+
         return option;
       }),
     );
@@ -74,6 +74,7 @@ export function DropDownMenu({ options, setOptions }: DropDownMenuProps) {
     } = itemDiv.getBoundingClientRect();
     const itemTrueBottom = itemBottom + itemHeight;
     const menuBottom = menuDivElement.getBoundingClientRect().bottom;
+
     if (direction == "up" && itemTop - itemHeight < menuTop) {
       menuDivElement.scrollTop -= itemHeight;
     } else if (direction == "down" && itemTrueBottom > menuBottom) {
@@ -81,10 +82,15 @@ export function DropDownMenu({ options, setOptions }: DropDownMenuProps) {
     }
   }
 
-  function setupKeyListeners(key: string) {
+  // Increase max statements to 14 to allow for the switch statement
+  /* eslint max-statements: ["error", 14] */
+  function handleKeyDown(event: KeyboardEvent<HTMLUListElement>) {
+    const { key, metaKey, ctrlKey } = event;
+
+    if (metaKey || ctrlKey) return;
+
     switch (key) {
-      case "Enter":
-      case " ": {
+      case "Enter": {
         if (highlightedIndex >= 0) {
           handleOptionClick(options[highlightedIndex]);
         }
@@ -107,13 +113,6 @@ export function DropDownMenu({ options, setOptions }: DropDownMenuProps) {
     }
   }
 
-  useOnKeyDown(handleKeyboardShortcut(setupKeyListeners).callback, [
-    "Enter",
-    " ",
-    "ArrowDown",
-    "ArrowUp",
-  ]);
-
   useEffect(() => {
     // focus first option
     handleOptionFocus(0);
@@ -124,6 +123,7 @@ export function DropDownMenu({ options, setOptions }: DropDownMenuProps) {
       data-testid="dropdown-menu"
       className={styles.dropDownMenuContainer}
       ref={menuDiv}
+      onKeyDown={handleKeyDown}
     >
       {options.map((option, index) => {
         const optionClass = classNames(styles.option, {
