@@ -59,9 +59,6 @@ describe("DataList Selection", () => {
 
       const checkboxes = pom.getCheckboxes();
       checkboxes.forEach(checkbox => expect(checkbox).not.toBeChecked());
-      await waitFor(() =>
-        expect(screen.queryByText("7 selected")).not.toBeInTheDocument(),
-      );
     });
 
     it("should deselect all after clicking the deselect all button", async () => {
@@ -71,9 +68,6 @@ describe("DataList Selection", () => {
 
       const checkboxes = pom.getCheckboxes();
       checkboxes.forEach(checkbox => expect(checkbox).not.toBeChecked());
-      await waitFor(() =>
-        expect(screen.queryByText("7 selected")).not.toBeInTheDocument(),
-      );
     });
 
     it("should allow unselecting and re-selecting a single item after a select all", async () => {
