@@ -22,15 +22,15 @@ export function DataListAction<T extends DataListObject>({
     return null;
   }
 
-  const color = destructive ? "critical" : "blue";
+  const color = destructive ? "critical" : "heading";
 
   return (
     <button type="button" className={styles.action} onClick={handleClick}>
-      {icon && <Icon name={icon} color={color} />}
-
       <Typography textColor={color}>
         <span className={styles.label}>{label}</span>
       </Typography>
+
+      {icon && <Icon name={icon} color={color} />}
     </button>
   );
 

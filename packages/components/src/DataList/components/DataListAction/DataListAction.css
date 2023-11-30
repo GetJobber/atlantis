@@ -12,6 +12,7 @@
   transition: background var(--timing-base) ease;
   appearance: none;
   align-items: center;
+  justify-content: space-between;
   gap: var(--space-small);
 }
 
