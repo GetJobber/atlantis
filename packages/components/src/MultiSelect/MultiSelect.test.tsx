@@ -231,14 +231,14 @@ describe("when selecting an option", () => {
       expect(screen.getByLabelText("Errors")).toBeChecked();
     });
 
-    it("should call the provided callback when using tab and spacebar keys", async () => {
+    it("should call the provided callback when using tab and Enter keys", async () => {
       await userEvent.click(screen.getByTestId("multi-select"));
 
       await userEvent.tab();
       fireEvent(
         screen.getByTestId("dropdown-menu"),
         new KeyboardEvent("keydown", {
-          key: " ",
+          key: "Enter",
           bubbles: true,
           cancelable: false,
         }),
