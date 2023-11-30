@@ -112,14 +112,17 @@ export function MultiSelect({
   }, [options]);
 
   return (
-    <div ref={multiSelectContainer} className={styles.multiSelectContainer}>
+    <div
+      ref={multiSelectContainer}
+      className={styles.multiSelectContainer}
+      onKeyDown={handleKeydown}
+    >
       <div
         data-testid="multi-select"
         className={multiSelectClass}
         onClick={handleMenuVisibility}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
-        onKeyDown={handleKeydown}
         tabIndex={0}
         ref={multiSelectRef}
         role="button"
