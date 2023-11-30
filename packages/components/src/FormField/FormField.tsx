@@ -9,13 +9,16 @@ import React, {
 } from "react";
 import { v1 as uuidv1 } from "uuid";
 import { Controller, useForm, useFormContext } from "react-hook-form";
+import { useShowClear } from "@jobber/hooks";
 import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.css";
 import { FormFieldWrapper } from "./FormFieldWrapper";
 import { FormFieldPostFix } from "./FormFieldPostFix";
+import { ClearAction } from "./ClearAction";
 
 // Added 13th statement to accommodate getErrorMessage function
-/*eslint max-statements: ["error", 13]*/
+/*eslint max-statements: ["error", 15]*/
+// eslint-disable-next-line max-statements
 export function FormField(props: FormFieldProps) {
   const {
     actionsRef,
@@ -42,7 +45,10 @@ export function FormField(props: FormFieldProps) {
     onFocus,
     onBlur,
     onValidation,
+    clearable = "never",
   } = props;
+
+  const [focused, setFocused] = useState(false);
 
   const {
     control,
@@ -80,6 +86,23 @@ export function FormField(props: FormFieldProps) {
   const message = errors[controlledName]?.message;
   const error = getErrorMessage();
   useEffect(() => handleValidation(), [error]);
+
+  const showClear = useShowClear({
+    clearable,
+    multiline: false,
+    focused,
+    hasValue: Boolean(value),
+    disabled,
+  });
+
+  console.log({
+    clearable,
+    multiline: false,
+    focused,
+    hasValue: Boolean(value),
+    disabled,
+    value,
+  });
 
   return (
     <Controller
@@ -157,10 +180,20 @@ export function FormField(props: FormFieldProps) {
                     ref={inputRef as MutableRefObject<HTMLInputElement>}
                   />
                   {loading && <FormFieldPostFix variation="spinner" />}
+                  {showClear && (
+                    <ClearAction
+                      onClick={() => handleClear()}
+                      // hasMarginRight={type === "time"}
+                    />
+                  )}
                   {children}
                 </>
               );
           }
+        }
+
+        function handleClear() {
+          // setValue(controlledName, "");
         }
 
         function handleChange(
@@ -200,11 +233,13 @@ export function FormField(props: FormFieldProps) {
             setTimeout(() => readonly && (target as HTMLInputElement).select());
           }
           onFocus && onFocus();
+          setFocused(true);
         }
 
         function handleBlur() {
           onBlur && onBlur();
           onControllerBlur();
+          setFocused(false);
         }
       }}
     />

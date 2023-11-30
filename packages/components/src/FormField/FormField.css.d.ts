@@ -24,6 +24,7 @@ declare const styles: {
   readonly "affixLabel": string;
   readonly "description": string;
   readonly "clearInput": string;
+  readonly "addedMargin": string;
 };
 export = styles;
 

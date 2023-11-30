@@ -1,9 +1,8 @@
 import { ChangeEvent, ReactNode, RefObject } from "react";
 import { RegisterOptions } from "react-hook-form";
 import { XOR } from "ts-xor";
+import { Clearable } from "@jobber/hooks";
 import { IconNames } from "../Icon";
-
-export type Clearable = "never" | "while-editing" | "always";
 
 export type FormFieldTypes =
   | "text"

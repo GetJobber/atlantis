@@ -75,6 +75,5 @@ Event.args = {
 
 export const Clearable = EventTemplate.bind({});
 Clearable.args = {
-  defaultValue: new CivilTime(2, 35),
   clearable: "always",
 };
