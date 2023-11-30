@@ -26,6 +26,7 @@ export function ProgressBarStepped({
               isCompleted && styles.completedStep,
               lastStep && { marginRight: 0 },
             ]}
+            testID={"progress-step"}
           ></View>
         );
       })}
