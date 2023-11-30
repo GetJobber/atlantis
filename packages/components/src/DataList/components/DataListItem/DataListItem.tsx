@@ -55,9 +55,12 @@ export function DataListItem<T extends DataListObject>({
         </DataListItemInternal>
 
         <AnimatePresence>
-          {showMenu && hasActions && !hasInLayoutActions && (
-            <InternalDataListItemActions actions={actions} />
-          )}
+          {showMenu &&
+            hasActions &&
+            !hasInLayoutActions &&
+            !shouldShowContextMenu && (
+              <InternalDataListItemActions actions={actions} />
+            )}
 
           <DataListActionsMenu
             key={item.id}
