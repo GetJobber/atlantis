@@ -1,15 +1,7 @@
 import React, { useState } from "react";
-import {
-  cleanup,
-  fireEvent,
-  render,
-  screen,
-  within,
-} from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MultiSelect } from ".";
-
-afterEach(cleanup);
 
 const Component = () => {
   const [options, setOptions] = useState([
@@ -239,14 +231,14 @@ describe("when selecting an option", () => {
       expect(screen.getByLabelText("Errors")).toBeChecked();
     });
 
-    it("should call the provided callback when using tab and spacebar keys", async () => {
+    it("should call the provided callback when using tab and Enter keys", async () => {
       await userEvent.click(screen.getByTestId("multi-select"));
 
       await userEvent.tab();
       fireEvent(
         screen.getByTestId("dropdown-menu"),
         new KeyboardEvent("keydown", {
-          key: " ",
+          key: "Enter",
           bubbles: true,
           cancelable: false,
         }),

@@ -1,14 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { PropsWithChildren } from "react";
-import { cleanup, renderHook } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react-hooks";
 import {
   AtlantisContext,
   AtlantisContextProps,
   atlantisContextDefaultValues,
   useAtlantisContext,
 } from "./AtlantisContext";
-
-afterEach(cleanup);
 
 const providerValues: AtlantisContextProps = {
   dateFormat: "MM/DD/YYYY",

@@ -1,5 +1,5 @@
 import React from "react";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { Page } from ".";
 import { SectionProps } from "../Menu";
 
@@ -20,8 +20,6 @@ jest.mock("@jobber/hooks", () => {
     },
   };
 });
-
-afterEach(cleanup);
 
 it("renders a Page", () => {
   const { container } = render(

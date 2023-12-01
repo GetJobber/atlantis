@@ -15,8 +15,6 @@ export interface ChipSuffixProps extends PropsWithChildren {
   readonly value?: string;
 }
 
-export const allowedSuffixIcons = ["cross", "add", "checkmark"];
-
 export function ChipSuffix({
   children,
   className,
@@ -57,3 +55,5 @@ export function ChipSuffix({
     </span>
   );
 }
+
+export const allowedSuffixIcons = ["cross", "add", "checkmark", "arrowDown"];

@@ -12,6 +12,7 @@ it("renders a regular input for text and numbers", () => {
       >
         <div
           class="wrapper"
+          data-testid="Form-Field-Wrapper"
         >
           <div
             class="inputWrapper"
@@ -50,6 +51,7 @@ it("renders a textarea", () => {
       >
         <div
           class="wrapper textarea"
+          data-testid="Form-Field-Wrapper"
         >
           <div
             class="inputWrapper"
@@ -91,6 +93,7 @@ it("renders a textarea with 4 rows", () => {
       >
         <div
           class="wrapper textarea"
+          data-testid="Form-Field-Wrapper"
         >
           <div
             class="inputWrapper"

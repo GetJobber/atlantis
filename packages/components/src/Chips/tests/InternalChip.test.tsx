@@ -1,10 +1,8 @@
 import React from "react";
-import { cleanup, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { InternalChip } from "../InternalChip";
 import { Icon } from "../../Icon";
-
-afterEach(cleanup);
 
 it("should render a div chip when onClick is not present", () => {
   render(<InternalChip label="Yo!" />);

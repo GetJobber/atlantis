@@ -1,8 +1,6 @@
 import React from "react";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { Content } from ".";
-
-afterEach(cleanup);
 
 it("renders a Content", () => {
   const { queryByText } = render(<Content>Wazaaaaa</Content>);

@@ -1,9 +1,7 @@
 import React from "react";
-import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
+import { fireEvent, render, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Tooltip } from ".";
-
-afterEach(cleanup);
 
 it("shouldn't show the tooltip", async () => {
   const message = "Imma not tip the tool";

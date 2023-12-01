@@ -11,6 +11,7 @@
 .swatch {
   position: relative;
   height: var(--space-extravagant);
+  box-sizing: border-box;
   margin-bottom: var(--space-small);
 }
 

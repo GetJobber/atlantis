@@ -65,7 +65,7 @@ export interface InputTextProps {
   /**
    * Determines what keyboard is shown
    */
-  keyboard?:
+  readonly keyboard?:
     | "default"
     | "numeric"
     | "phone-pad"
@@ -97,24 +97,26 @@ export interface InputTextProps {
    * Simplified callback that only provides the new value
    * @param newValue
    */
-  onChangeText?: (newValue: string) => void;
+  readonly onChangeText?: (newValue: string) => void;
 
   /**
    * Callback that is called when the text input's submit button is pressed
    * @param event
    */
-  onSubmitEditing?: (event?: SyntheticEvent) => void;
+  readonly onSubmitEditing?: (event?: SyntheticEvent) => void;
 
   /**
    * Callback that is called when the text input is focused
    * @param event
    */
-  onFocus?: (event?: NativeSyntheticEvent<TextInputFocusEventData>) => void;
+  readonly onFocus?: (
+    event?: NativeSyntheticEvent<TextInputFocusEventData>,
+  ) => void;
 
   /**
    * Callback that is called when the text input is blurred
    */
-  onBlur?: () => void;
+  readonly onBlur?: () => void;
 
   /**
    * VoiceOver will read this string when a user selects the associated element
@@ -133,7 +135,7 @@ export interface InputTextProps {
   readonly autoCorrect?: boolean;
 
   /**
-   *  Determines where to autocapitalize
+   * Determines where to autocapitalize
    */
   readonly autoCapitalize?: "characters" | "words" | "sentences" | "none";
 
@@ -186,8 +188,10 @@ export interface InputTextProps {
    * "input" is a function that transform the value to the string format that should be shown to the user
    * "output" is a function that transform the string representation of the value to the value that is sent to onChange and the form
    */
-  transform?: {
+  readonly transform?: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     input?: (v: any) => string | undefined;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     output?: (v: string | undefined) => any;
   };
 
@@ -203,7 +207,7 @@ export interface InputTextProps {
   /**
    * Used to locate this view in end-to-end tests
    */
-  testID?: string;
+  readonly testID?: string;
 
   /**
    * Use secure text entry
@@ -452,7 +456,14 @@ function trimWhitespace(
   if (!field.value || !field.value.trim) {
     return;
   }
+
   const trimmedInput = field.value.trim();
+
+  if (trimmedInput === field.value) {
+    // avoid re-renders when nothing changed
+    return;
+  }
+
   onChangeText?.(trimmedInput);
   field.onChange(trimmedInput);
 }
@@ -486,5 +497,6 @@ function useMiniLabel(internalValue: string): {
   useEffect(() => {
     setHasMiniLabel(Boolean(internalValue));
   }, [internalValue]);
+
   return { hasMiniLabel, setHasMiniLabel };
 }

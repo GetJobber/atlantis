@@ -25,6 +25,7 @@ Basic.args = {
 
 const ControlledTemplate: ComponentStory<typeof Checkbox> = args => {
   const [checked, setChecked] = useState(false);
+
   return (
     <Checkbox
       {...args}
@@ -83,11 +84,12 @@ const ControlledCheckboxGroupTemplate: ComponentStory<
       mustard: false,
     },
   });
+
   return (
     <CheckboxGroup
       {...args}
       state={checkboxGroupState}
-      onChange={(state: any) => setCheckboxGroupState(state)}
+      onChange={(state: unknown) => setCheckboxGroupState(state)}
     >
       <Checkbox name="mustard" label="Mustard" />
       <Checkbox name="relish" label="Relish" />

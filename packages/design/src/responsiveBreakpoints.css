@@ -1,5 +1,5 @@
-@custom-media --small-screens-and-below (width < 490px);
-@custom-media --small-screens-and-up (width >= 490px);
-@custom-media --medium-screens-and-up (width >= 768px);
-@custom-media --large-screens-and-up (width >= 1080px);
-@custom-media --extra-large-screens-and-up (width >= 1440px);
+@custom-media --small-screens-and-below (max-width: 489px);
+@custom-media --small-screens-and-up (min-width: 490px);
+@custom-media --medium-screens-and-up (min-width: 768px);
+@custom-media --large-screens-and-up (min-width: 1080px);
+@custom-media --extra-large-screens-and-up (min-width: 1440px);

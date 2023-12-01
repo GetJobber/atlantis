@@ -1,8 +1,6 @@
 import React from "react";
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { Banner } from ".";
-
-afterEach(cleanup);
 
 it("renders a success banner", () => {
   const { container } = render(<Banner type="success">Success</Banner>);

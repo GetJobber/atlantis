@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  cleanup,
-  fireEvent,
-  render,
-  waitFor,
-} from "@testing-library/react-native";
+import { fireEvent, render, waitFor } from "@testing-library/react-native";
 import { Host } from "react-native-portalize";
 import { FormProvider, useForm } from "react-hook-form";
 import { InputTime } from "./InputTime";
@@ -12,7 +7,6 @@ import * as atlantisContext from "../AtlantisContext/AtlantisContext";
 import { Button } from "../Button";
 
 afterEach(() => {
-  cleanup();
   jest.spyOn(atlantisContext, "useAtlantisContext").mockRestore();
 });
 
@@ -192,6 +186,7 @@ const mockOnSubmit = jest.fn();
 const saveButtonText = "Submit";
 
 const requiredError = "This is required";
+
 function SimpleFormWithProvider({ children, defaultValues }) {
   const formMethods = useForm({
     reValidateMode: "onChange",

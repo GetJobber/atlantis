@@ -2,6 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import styles from "./ProgressBar.css";
 import sizes from "./Sizes.css";
+import { ProgressBarStepped } from "./ProgressBarStepped";
 
 interface ProgressBarProps {
   /**
@@ -19,15 +20,33 @@ interface ProgressBarProps {
    * @default base
    */
   readonly size?: keyof typeof sizes;
+
+  /**
+   * Set the variation of the progress bar
+   * @default progress
+   */
+  readonly variation?: "progress" | "stepped";
 }
 
 export function ProgressBar({
   currentStep,
   totalSteps,
   size = "base",
+  variation = "progress",
 }: ProgressBarProps) {
   const percentage = (currentStep / totalSteps) * 100;
   const progressBarClassName = classnames(styles.ProgressBar, sizes[size]);
+
+  if (variation === "stepped") {
+    return (
+      <ProgressBarStepped
+        currentStep={currentStep}
+        totalSteps={totalSteps}
+        percentage={percentage}
+        size={size}
+      />
+    );
+  }
 
   return (
     <progress

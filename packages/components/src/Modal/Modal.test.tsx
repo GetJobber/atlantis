@@ -1,9 +1,12 @@
 import React from "react";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { Modal } from ".";
 import styles from "./Modal.css";
 
-afterEach(cleanup);
+test('modal contains aria role of "dialog"', async () => {
+  const { findByRole } = render(<Modal open>Content</Modal>);
+  expect(await findByRole("dialog")).toBeInTheDocument();
+});
 
 test("modal shows the children and a close button", () => {
   const title = "Dis be a title";

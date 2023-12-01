@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { RadioGroup, RadioOption } from ".";
-
-afterEach(cleanup);
 
 test("renders a RadioGroup", () => {
   const { container } = render(<MockRadioGroup />);
@@ -109,6 +107,7 @@ interface MockProps {
 function MockRadioGroup({ onChange }: MockProps) {
   const [value, setValue] = useState("one");
   const [valueTwo, setValueTwo] = useState("one");
+
   return (
     <>
       <RadioGroup

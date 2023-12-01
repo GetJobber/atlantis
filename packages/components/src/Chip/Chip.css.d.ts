@@ -13,6 +13,7 @@ declare const styles: {
   readonly "clickableSuffix": string;
   readonly "chipContent": string;
   readonly "truncateGradient": string;
+  readonly "chipLabelRef": string;
 };
 export = styles;
 

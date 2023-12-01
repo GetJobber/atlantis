@@ -3,6 +3,376 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.66.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.66.4...@jobber/components@4.66.5) (2023-12-01)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.66.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.66.3...@jobber/components@4.66.4) (2023-11-30)
+
+
+### Bug Fixes
+
+* **components:** multiselect preventing space bar from being recognized ([#1665](https://github.com/GetJobber/atlantis/issues/1665)) ([f920fda](https://github.com/GetJobber/atlantis/commit/f920fda1d4b60fe1fea0be2785b9bf327393d3e2))
+
+
+
+
+
+## [4.66.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.66.2...@jobber/components@4.66.3) (2023-11-30)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.66.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.66.1...@jobber/components@4.66.2) (2023-11-30)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.66.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.66.0...@jobber/components@4.66.1) (2023-11-30)
+
+
+### Bug Fixes
+
+* **components:** Fix stepped variation of progress bar ([#1663](https://github.com/GetJobber/atlantis/issues/1663)) ([56f9608](https://github.com/GetJobber/atlantis/commit/56f96087537a2722a6c4a7cffc203a20035d42d3))
+
+
+
+
+
+# [4.66.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.65.0...@jobber/components@4.66.0) (2023-11-29)
+
+
+### Features
+
+* **components:** Add stepped variation of progress bar ([#1653](https://github.com/GetJobber/atlantis/issues/1653)) ([c253c34](https://github.com/GetJobber/atlantis/commit/c253c34ecd06432beb431ab6b6964eaa9722c968))
+
+
+
+
+
+# [4.65.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.64.2...@jobber/components@4.65.0) (2023-11-29)
+
+
+### Features
+
+* **design:** update hover colors for common surfaces [JOB-82570] ([#1545](https://github.com/GetJobber/atlantis/issues/1545)) ([6d8795a](https://github.com/GetJobber/atlantis/commit/6d8795afad3133fe2c74de29e17d629787561554))
+
+
+
+
+
+## [4.64.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.64.1...@jobber/components@4.64.2) (2023-11-29)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.64.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.64.0...@jobber/components@4.64.1) (2023-11-29)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [4.64.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.63.0...@jobber/components@4.64.0) (2023-11-28)
+
+
+### Bug Fixes
+
+* **components:** Prevent data list from navigating within the link when opening the menu ([#1657](https://github.com/GetJobber/atlantis/issues/1657)) ([c819238](https://github.com/GetJobber/atlantis/commit/c819238c436773fc502bb0fe274b4eaadf81f673))
+
+
+### Features
+
+* **components:** Add css changes to show the placeholder label to the form field [JOB-83555] ([#1654](https://github.com/GetJobber/atlantis/issues/1654)) ([fee6712](https://github.com/GetJobber/atlantis/commit/fee6712082ec543517ab714130f71e11d824961d))
+
+
+
+
+
+# [4.63.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.62.0...@jobber/components@4.63.0) (2023-11-24)
+
+
+### Features
+
+* DataList batch selection for select all with unknown IDs ([#1650](https://github.com/GetJobber/atlantis/issues/1650)) ([73ed768](https://github.com/GetJobber/atlantis/commit/73ed768307d13aabd50b5f79fb74f28737fd127a))
+
+
+
+
+
+# [4.62.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.61.0...@jobber/components@4.62.0) (2023-11-23)
+
+
+### Features
+
+* **components:** add missing role to modal component ([#1619](https://github.com/GetJobber/atlantis/issues/1619)) ([ae02c3f](https://github.com/GetJobber/atlantis/commit/ae02c3fb7af5023979934acfdd6cf2565bf26f3e))
+
+
+
+
+
+# [4.61.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.14...@jobber/components@4.61.0) (2023-11-22)
+
+
+### Features
+
+* **components:** Adding onBlur and onFocus support to Web <Select /> ([#1644](https://github.com/GetJobber/atlantis/issues/1644)) ([259598a](https://github.com/GetJobber/atlantis/commit/259598ac323fbff7259952ce236223b3a9210f73))
+
+
+
+
+
+## [4.60.14](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.13...@jobber/components@4.60.14) (2023-11-22)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.60.13](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.12...@jobber/components@4.60.13) (2023-11-21)
+
+
+### Bug Fixes
+
+* **components:** fix Chip transition state ([#1648](https://github.com/GetJobber/atlantis/issues/1648)) ([6a479a2](https://github.com/GetJobber/atlantis/commit/6a479a2f7d0a4017fda7ed386db23a98a5925cd4))
+
+
+
+
+
+## [4.60.12](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.11...@jobber/components@4.60.12) (2023-11-20)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.60.11](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.10...@jobber/components@4.60.11) (2023-11-20)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.60.10](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.9...@jobber/components@4.60.10) (2023-11-20)
+
+
+### Bug Fixes
+
+* **components:** DataList filters gap ([#1646](https://github.com/GetJobber/atlantis/issues/1646)) ([1f96fa0](https://github.com/GetJobber/atlantis/commit/1f96fa097d5369361a98c868c8662b4a63662aea))
+
+
+
+
+
+## [4.60.9](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.8...@jobber/components@4.60.9) (2023-11-20)
+
+
+### Bug Fixes
+
+* **components:** fix Chip, Combobox, and DataList focus states [JOB-82715] ([#1636](https://github.com/GetJobber/atlantis/issues/1636)) ([979b53e](https://github.com/GetJobber/atlantis/commit/979b53e34b1e16cbbb7de53184c1d9eb42dba8d7))
+
+
+
+
+
+## [4.60.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.7...@jobber/components@4.60.8) (2023-11-16)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.60.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.6...@jobber/components@4.60.7) (2023-11-16)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.60.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.5...@jobber/components@4.60.6) (2023-11-16)
+
+
+### Bug Fixes
+
+* remove @use-it/event-listener dependency and use regular event handler attachment api. ([#1630](https://github.com/GetJobber/atlantis/issues/1630)) ([9453814](https://github.com/GetJobber/atlantis/commit/9453814837699d4a1caae8b32caf65c7ddd3b92a))
+
+
+
+
+
+## [4.60.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.4...@jobber/components@4.60.5) (2023-11-15)
+
+
+### Bug Fixes
+
+* **components:** resolve transition flicker on DataList "tag count" element ([#1637](https://github.com/GetJobber/atlantis/issues/1637)) ([f3e33e7](https://github.com/GetJobber/atlantis/commit/f3e33e789dd32baeff93d7480b8d0fce8efa72bb))
+
+
+
+
+
+## [4.60.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.3...@jobber/components@4.60.4) (2023-11-15)
+
+
+### Bug Fixes
+
+* **components:** Refactor DataListSort to use Combobox ([#1638](https://github.com/GetJobber/atlantis/issues/1638)) ([ba1675f](https://github.com/GetJobber/atlantis/commit/ba1675f2ff6ba34a55e3612ba7c8b382176ea74d))
+
+
+
+
+
+## [4.60.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.2...@jobber/components@4.60.3) (2023-11-15)
+
+
+### Bug Fixes
+
+* **components:** Ensure DataList renders the list item on safari ([#1639](https://github.com/GetJobber/atlantis/issues/1639)) ([eaff341](https://github.com/GetJobber/atlantis/commit/eaff341b11428b1c36dd560a547b93ae196eafd2))
+
+
+
+
+
+## [4.60.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.1...@jobber/components@4.60.2) (2023-11-14)
+
+
+### Bug Fixes
+
+* **components:** Ensure DataList sorting gets cleared in a predictable manner ([#1635](https://github.com/GetJobber/atlantis/issues/1635)) ([f3f6aea](https://github.com/GetJobber/atlantis/commit/f3f6aea032ccc4cf72bee65b625f5791576bf9d5))
+
+
+
+
+
+## [4.60.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.60.0...@jobber/components@4.60.1) (2023-11-13)
+
+
+### Bug Fixes
+
+* **components:** Make pseudo-elements avoid pointer events on Combobox ([#1632](https://github.com/GetJobber/atlantis/issues/1632)) ([3776138](https://github.com/GetJobber/atlantis/commit/3776138f548307d763692131dfcac92625eff9ef))
+
+
+
+
+
+# [4.60.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.59.0...@jobber/components@4.60.0) (2023-11-08)
+
+
+### Features
+
+* **components:** Optional DataList action ([#1626](https://github.com/GetJobber/atlantis/issues/1626)) ([e97e8d8](https://github.com/GetJobber/atlantis/commit/e97e8d853d30cf30b6264cca1adf52b23ce99d64))
+
+
+
+
+
+# [4.59.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.58.5...@jobber/components@4.59.0) (2023-11-07)
+
+
+### Features
+
+* **components:** Refactor ComboboxContent to ComboboxOption ([#1614](https://github.com/GetJobber/atlantis/issues/1614)) ([3762ea5](https://github.com/GetJobber/atlantis/commit/3762ea5fee086209e8dd2b11503c714af696cee1))
+
+
+
+
+
+## [4.58.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.58.4...@jobber/components@4.58.5) (2023-11-07)
+
+
+### Bug Fixes
+
+* **components:** remove useragent styling from Combobox search [JOB-82086] ([#1625](https://github.com/GetJobber/atlantis/issues/1625)) ([91069b3](https://github.com/GetJobber/atlantis/commit/91069b3180efba45efb1294c87a8157af5873a13))
+
+
+
+
+
+## [4.58.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.58.3...@jobber/components@4.58.4) (2023-11-07)
+
+
+### Bug Fixes
+
+* **components:** Fix Chip gradient on Safari ([#1627](https://github.com/GetJobber/atlantis/issues/1627)) ([2924cb2](https://github.com/GetJobber/atlantis/commit/2924cb2f1660dfb3f9a46eddedeca7d59c972e46))
+
+
+
+
+
+## [4.58.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.58.2...@jobber/components@4.58.3) (2023-11-07)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.58.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.58.1...@jobber/components@4.58.2) (2023-11-03)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.58.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.58.0...@jobber/components@4.58.1) (2023-11-01)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [4.58.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.57.1...@jobber/components@4.58.0) (2023-10-31)
+
+
+### Features
+
+* **components:** Make Combobox heading prop optional ([#1618](https://github.com/GetJobber/atlantis/issues/1618)) ([144aa80](https://github.com/GetJobber/atlantis/commit/144aa8086d91bca60fc10b953d149667cc41818e))
+
+
+
+
+
+## [4.57.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.57.0...@jobber/components@4.57.1) (2023-10-31)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [4.57.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.56.0...@jobber/components@4.57.0) (2023-10-30)
+
+
+### Features
+
+* **components:** Implement option and deprecate content ([#1616](https://github.com/GetJobber/atlantis/issues/1616)) ([4efbcbe](https://github.com/GetJobber/atlantis/commit/4efbcbed2acd8c888e7f69efe4ac8efa0398db1e))
+
+
+
+
+
 # [4.56.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.55.3...@jobber/components@4.56.0) (2023-10-27)
 
 

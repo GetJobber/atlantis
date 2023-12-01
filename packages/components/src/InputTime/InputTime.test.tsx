@@ -1,9 +1,7 @@
 import React from "react";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { CivilTime } from "@std-proposal/temporal";
 import { InputTime } from ".";
-
-afterEach(cleanup);
 
 it("renders a InputTime", () => {
   const { container } = render(<InputTime />);
@@ -14,6 +12,7 @@ it("renders a InputTime", () => {
       >
         <div
           class="wrapper"
+          data-testid="Form-Field-Wrapper"
         >
           <div
             class="inputWrapper"
@@ -46,6 +45,7 @@ it("renders an initial time when given 'defaultValue'", () => {
       >
         <div
           class="wrapper"
+          data-testid="Form-Field-Wrapper"
         >
           <div
             class="inputWrapper"
@@ -78,6 +78,7 @@ it("renders correctly in a readonly state", () => {
       >
         <div
           class="wrapper"
+          data-testid="Form-Field-Wrapper"
         >
           <div
             class="inputWrapper"
@@ -111,6 +112,7 @@ it("adds a error border when invalid", () => {
       >
         <div
           class="wrapper"
+          data-testid="Form-Field-Wrapper"
         >
           <div
             class="inputWrapper"
@@ -142,6 +144,7 @@ it("should set the value when given 'value' and 'onChange'", () => {
       >
         <div
           class="wrapper invalid"
+          data-testid="Form-Field-Wrapper"
         >
           <div
             class="inputWrapper"
