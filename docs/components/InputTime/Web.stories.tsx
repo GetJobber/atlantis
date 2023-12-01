@@ -47,6 +47,7 @@ const EventTemplate: ComponentStory<typeof InputTime> = args => {
 
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
+  placeholder: "Start time",
   defaultValue: new CivilTime(2, 35),
 };
 
@@ -73,7 +74,8 @@ Event.args = {
   placeholder: "Start time",
 };
 
-export const Clearable = EventTemplate.bind({});
+export const Clearable = BasicTemplate.bind({});
 Clearable.args = {
+  placeholder: "Start time",
   clearable: "always",
 };

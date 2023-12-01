@@ -71,6 +71,8 @@ export function FormField(props: FormFieldProps) {
     name ? name : `generatedName--${identifier}`,
   );
 
+  const fieldValue = watch(controlledName);
+
   useEffect(() => {
     if (value != undefined) {
       setValue(controlledName, value);
@@ -91,7 +93,7 @@ export function FormField(props: FormFieldProps) {
     clearable,
     multiline: false,
     focused,
-    hasValue: Boolean(value),
+    hasValue: Boolean(fieldValue),
     disabled,
   });
 
@@ -99,7 +101,7 @@ export function FormField(props: FormFieldProps) {
     clearable,
     multiline: false,
     focused,
-    hasValue: Boolean(value),
+    hasValue: Boolean(fieldValue),
     disabled,
     value,
   });
@@ -183,7 +185,7 @@ export function FormField(props: FormFieldProps) {
                   {showClear && (
                     <ClearAction
                       onClick={() => handleClear()}
-                      // hasMarginRight={type === "time"}
+                      hasMarginRight={type === "time"}
                     />
                   )}
                   {children}
@@ -193,7 +195,8 @@ export function FormField(props: FormFieldProps) {
         }
 
         function handleClear() {
-          // setValue(controlledName, "");
+          console.log("handleClear", controlledName);
+          setValue(controlledName, "");
         }
 
         function handleChange(
