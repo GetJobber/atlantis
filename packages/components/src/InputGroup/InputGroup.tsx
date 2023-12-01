@@ -18,6 +18,7 @@ export function InputGroup({
   if (isInvalidGroupNesting(children)) return <></>;
 
   const className = classnames(styles.inputGroup, styles[flowDirection]);
+
   return <div className={className}>{children}</div>;
 }
 
@@ -29,8 +30,9 @@ function isInvalidGroupNesting(childs: ReactElement | ReactElement[]): boolean {
     ) {
       console.error(
         `ERROR: InputGroup not rendered: nesting 'flowDirection="vertical"' columns not supported.`,
-        `https://atlantis.getjobber.com/components/input-group#nested-example`,
+        `https://atlantis.getjobber.com/?path=/story/components-forms-and-inputs-inputgroup-web--nested`,
       );
+
       return true;
     }
 
