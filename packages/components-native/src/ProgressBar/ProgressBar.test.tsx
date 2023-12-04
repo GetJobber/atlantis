@@ -43,7 +43,14 @@ it("renders green CompletedProgress bar when 1 or more jobs is completed", () =>
 
 describe("with stepped variation", () => {
   beforeEach(() => {
-    render(<ProgressBar total={3} current={2} variation={"stepped"} />);
+    render(
+      <ProgressBar
+        total={3}
+        current={2}
+        inProgress={1}
+        variation={"stepped"}
+      />,
+    );
   });
   it("renders the correct number of steps", () => {
     const stepElements = screen.getAllByTestId("progress-step");
@@ -62,5 +69,12 @@ describe("with stepped variation", () => {
       step => !step.props.style.includes(styles.completedStep),
     );
     expect(incompleteSteps).toHaveLength(1);
+  });
+  it("renders the correct number of inProgress steps", () => {
+    const stepElements = screen.getAllByTestId("progress-step");
+    const inProgressSteps = stepElements.filter(step =>
+      step.props.style.includes(styles.inProgressStep),
+    );
+    expect(inProgressSteps).toHaveLength(1);
   });
 });
