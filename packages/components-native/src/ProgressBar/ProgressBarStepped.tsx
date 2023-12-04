@@ -7,6 +7,7 @@ interface ProgressBarSteppedProps {
   readonly current: number;
   readonly color?: string;
   readonly loading?: boolean;
+  readonly inProgress?: number;
 }
 
 export function ProgressBarStepped({
@@ -14,6 +15,7 @@ export function ProgressBarStepped({
   current,
   color,
   loading,
+  inProgress,
 }: ProgressBarSteppedProps) {
   return (
     <View style={[styles.progressBarContainer, { height: 10 }]}>
@@ -21,6 +23,7 @@ export function ProgressBarStepped({
         const step = index + 1;
         const isCompleted = step <= current;
         const lastStep = step === total;
+        const inProgressSteps = current + (inProgress || 0);
 
         return (
           <View
@@ -29,6 +32,10 @@ export function ProgressBarStepped({
               styles.step,
               { ...(color && { backgroundColor: color }) },
               !loading && isCompleted && styles.completedStep,
+              !loading &&
+                !isCompleted &&
+                step <= inProgressSteps &&
+                styles.inProgressStep,
               lastStep && { marginRight: 0 },
             ]}
             testID={"progress-step"}

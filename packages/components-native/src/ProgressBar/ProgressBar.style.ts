@@ -32,4 +32,7 @@ export const styles = StyleSheet.create({
   completedStep: {
     backgroundColor: tokens["color-interactive"],
   },
+  inProgressStep: {
+    backgroundColor: tokens["color-informative"],
+  },
 });
