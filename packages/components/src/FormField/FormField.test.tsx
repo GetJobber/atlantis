@@ -380,4 +380,22 @@ describe("FormField", () => {
       });
     });
   });
+
+  describe("when clearable", () => {
+    it("should clear the search when the clear is used", () => {
+      const setValue = jest.fn();
+
+      const { getByTestId } = render(
+        <FormField
+          placeholder={"I am a placeholder"}
+          value={"I am a value"}
+          clearable="always"
+          onChange={setValue}
+        />,
+      );
+      const clearButton = getByTestId("ATL-Input-Clear");
+      fireEvent.click(clearButton);
+      expect(setValue).toHaveBeenCalledWith("");
+    });
+  });
 });

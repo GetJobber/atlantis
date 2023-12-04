@@ -15,8 +15,6 @@ export function ClearAction({
   onClick,
   hasMarginRight = false,
 }: ClearActionProps): JSX.Element {
-  console.log("ClearAction");
-
   return (
     <button
       className={classnames(styles.clearInput, {
