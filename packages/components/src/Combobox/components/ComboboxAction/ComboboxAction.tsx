@@ -30,7 +30,7 @@ export function ComboboxAction(props: ComboboxActionProps) {
         <Typography
           element="span"
           size="base"
-          textColor="green"
+          textColor="interactive"
           fontWeight="semiBold"
         >
           {computedLabel}
