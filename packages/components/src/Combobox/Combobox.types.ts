@@ -217,5 +217,9 @@ export interface ComboboxActionProps {
   /**
    * The label text of the action.
    */
-  readonly label: string;
+  readonly label: string | ((param: ComboboxActionLabelParam) => string);
+}
+
+export interface ComboboxActionLabelParam {
+  readonly searchValue: string;
 }

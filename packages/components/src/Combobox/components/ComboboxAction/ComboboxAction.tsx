@@ -1,16 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./ComboboxAction.css";
 import { Typography } from "../../../Typography";
 import { ComboboxActionProps } from "../../Combobox.types";
+import { ComboboxContext } from "../../ComboboxProvider";
 
 export function ComboboxAction(props: ComboboxActionProps): JSX.Element {
+  const { searchValue } = useContext(ComboboxContext);
+  const computedLabel =
+    typeof props.label === "string"
+      ? props.label
+      : props.label({ searchValue });
+
   return (
     <div className={styles.actionContainer}>
       <button
         className={styles.actionButton}
         onClick={props.onClick}
         type="button"
-        aria-label={props.label}
       >
         <Typography
           element="span"
@@ -18,7 +24,7 @@ export function ComboboxAction(props: ComboboxActionProps): JSX.Element {
           textColor="green"
           fontWeight="semiBold"
         >
-          {props.label}
+          {computedLabel}
         </Typography>
       </button>
     </div>
