@@ -217,9 +217,16 @@ export interface ComboboxActionProps {
   /**
    * The label text of the action.
    */
-  readonly label: string | ((param: ComboboxActionLabelParam) => string);
+  readonly label: string | ((param: ComboboxActionCallbackParam) => string);
+
+  /**
+   * Determine if the action is visible for a given item.
+   */
+  readonly visible?:
+    | boolean
+    | ((param: ComboboxActionCallbackParam) => boolean);
 }
 
-export interface ComboboxActionLabelParam {
+export interface ComboboxActionCallbackParam {
   readonly searchValue: string;
 }
