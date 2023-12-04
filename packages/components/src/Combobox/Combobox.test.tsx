@@ -213,7 +213,12 @@ describe("Actions", () => {
     await userEvent.click(screen.getByRole("combobox"));
     await userEvent.type(screen.getByPlaceholderText("Search"), "Bilbo");
 
-    expect(screen.getByText("Add Bilbo")).toBeInTheDocument();
+    const action = screen.getByText("Add Bilbo");
+    expect(action).toBeInTheDocument();
+    await userEvent.click(action);
+    expect(handleAction).toHaveBeenCalledWith(expect.anything(), {
+      searchValue: "Bilbo",
+    });
   });
 
   it("should not show the action when there is no search value", async () => {
@@ -222,6 +227,7 @@ describe("Actions", () => {
     await userEvent.click(screen.getByRole("combobox"));
 
     expect(screen.queryByText("Add Bilbo")).not.toBeInTheDocument();
+    expect(screen.queryByText("Add ")).not.toBeInTheDocument();
   });
 });
 
