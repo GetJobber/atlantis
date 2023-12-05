@@ -1,5 +1,4 @@
-import { useShowClear } from "./useShowClear";
-import { Clearable } from "..";
+import { Clearable, useShowClear } from "./useShowClear";
 
 interface UseShowClearParameters {
   clearable: Clearable;

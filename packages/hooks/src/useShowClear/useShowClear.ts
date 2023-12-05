@@ -1,4 +1,4 @@
-import { Clearable } from "../InputFieldWrapper";
+export type Clearable = "never" | "while-editing" | "always";
 
 interface UseShowClearParameters {
   clearable: Clearable;
@@ -18,10 +18,12 @@ export function useShowClear({
   if (multiline && clearable !== "never") {
     throw new Error("Multiline inputs can not be clearable");
   }
+
   // Do not show if there is no value
   if (!hasValue || clearable === "never" || disabled) {
     return false;
   }
+
   switch (clearable) {
     case "while-editing":
       return focused;
