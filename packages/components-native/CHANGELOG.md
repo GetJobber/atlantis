@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.50.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.49.2...@jobber/components-native@0.50.0) (2023-12-05)
+
+
+### Features
+
+* **hooks:** Move useShowClear to @jobber/hooks ([#1675](https://github.com/GetJobber/atlantis/issues/1675)) ([7764bb5](https://github.com/GetJobber/atlantis/commit/7764bb5a68b9ff8e43c5dc386d3829f4c8e46160))
+
+
+
+
+
 ## [0.49.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.49.1...@jobber/components-native@0.49.2) (2023-12-05)
 
 **Note:** Version bump only for package @jobber/components-native
