@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.67.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.66.7...@jobber/components@4.67.0) (2023-12-05)
+
+
+### Features
+
+* **components:** expose search term on combobox action ([#1673](https://github.com/GetJobber/atlantis/issues/1673)) ([ebaa01f](https://github.com/GetJobber/atlantis/commit/ebaa01f781cc5cfb53b6f2944f772bb9c4f40086))
+
+
+
+
+
 ## [4.66.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.66.6...@jobber/components@4.66.7) (2023-12-05)
 
 **Note:** Version bump only for package @jobber/components
