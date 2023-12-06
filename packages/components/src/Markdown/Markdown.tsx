@@ -1,5 +1,9 @@
-import React, { DetailedHTMLProps, HTMLAttributes } from "react";
-import ReactMarkdown from "react-markdown";
+import React, {
+  DetailedHTMLProps,
+  HTMLAttributes,
+  PropsWithChildren,
+} from "react";
+import ReactMarkdown from "markdown-to-jsx";
 import { Text } from "../Text";
 import { Emphasis } from "../Emphasis";
 import { Heading } from "../Heading";
@@ -22,46 +26,62 @@ interface MarkdownProps {
    */
   readonly basicUsage?: boolean;
 }
+const NoSpan = ({ children }: PropsWithChildren) => children;
 
-export function Markdown({ content, externalLink, basicUsage }: MarkdownProps) {
-  const props = {
-    ...(basicUsage && {
-      disallowedElements: [
-        "p",
-        "h1",
-        "h2",
-        "h3",
-        "h4",
-        "h5",
-        "h6",
-        "table",
-        "ul",
-        "li",
-        "code",
-        "image",
-      ],
-      unwrapDisallowed: true,
-    }),
-  };
-
+export function Markdown({
+  content,
+  externalLink,
+  basicUsage,
+  ...props
+}: MarkdownProps) {
   const Tag = basicUsage ? React.Fragment : Content;
+  const overrides = basicUsage
+    ? {
+        p: NoSpan,
+        h1: NoSpan,
+        div: NoSpan,
+        h2: NoSpan,
+        h3: NoSpan,
+        h4: NoSpan,
+        h5: NoSpan,
+        h6: NoSpan,
+        table: NoSpan,
+        ul: NoSpan,
+        li: NoSpan,
+        code: NoSpan,
+        strong: renderStrong,
+        em: renderEmphasis,
+        image: NoSpan,
+        a: {
+          component: ({ children, ...rest }: PropsWithChildren) => (
+            <a {...rest}>{children}</a>
+          ),
+          props: { target: externalLink ? "_blank" : undefined },
+        },
+      }
+    : {
+        p: renderParagraph,
+        strong: renderStrong,
+        span: NoSpan,
+        div: NoSpan,
+        em: renderEmphasis,
+        h1: renderHeading(1),
+        h2: renderHeading(2),
+        h3: renderHeading(3),
+        h4: renderHeading(4),
+        h5: renderHeading(5),
+        h6: renderHeading(6),
+        a: {
+          component: ({ children, ...rest }: PropsWithChildren) => (
+            <a {...rest}>{children}</a>
+          ),
+          props: { target: externalLink ? "_blank" : undefined },
+        },
+      };
 
   return (
     <Tag>
-      <ReactMarkdown
-        {...props}
-        linkTarget={externalLink ? "_blank" : undefined}
-        components={{
-          p: renderParagraph,
-          strong: renderStrong,
-          em: renderEmphasis,
-          h1: renderHeading(1),
-          h2: renderHeading(2),
-          h3: renderHeading(3),
-          h4: renderHeading(4),
-          h5: renderHeading(5),
-        }}
-      >
+      <ReactMarkdown {...props} options={{ overrides, forceBlock: true }}>
         {content}
       </ReactMarkdown>
     </Tag>
@@ -82,7 +102,7 @@ function renderEmphasis({ children }: HTMLProps) {
   return <Emphasis variation="italic">{children}</Emphasis>;
 }
 
-function renderHeading(level: 1 | 2 | 3 | 4 | 5) {
+function renderHeading(level: 1 | 2 | 3 | 4 | 5 | 6) {
   function buildHeading({ children }: HTMLProps) {
     return <Heading level={level}>{children}</Heading>;
   }

@@ -111,7 +111,9 @@ exports[`renders Level 6 Heading Component 1`] = `
   <div
     class="padded base"
   >
-    <h6>
+    <h6
+      class="base bold small uppercase heading"
+    >
       Heading
     </h6>
   </div>
@@ -137,64 +139,62 @@ exports[`renders a combination of Markdown components 1`] = `
   <div
     class="padded base"
   >
-    <h1
-      class="base black jumbo heading"
-    >
-      This is a paragraph.
-    </h1>
-    
-
-    <p
-      class="base regular base text"
-    >
-      The paragraph has some 
-      <b
-        class="base bold"
+    <div>
+      <h1
+        class="base black jumbo heading"
       >
-        bold text
-      </b>
-       and some 
-      <em
-        class="base regular italic"
+        This is a paragraph.
+      </h1>
+      <p
+        class="base regular base text"
       >
-        italicized text
-      </em>
-      .
-    </p>
-    
-
-    <p
-      class="base regular base text"
-    >
-      This is the end of this paragraph.
-    </p>
+          The paragraph has some 
+        <b
+          class="base bold"
+        >
+          bold text
+        </b>
+         and some 
+        <em
+          class="base regular italic"
+        >
+          italicized text
+        </em>
+        .
+      </p>
+      <p
+        class="base regular base text"
+      >
+          This is the end of this paragraph.
+      </p>
+    </div>
   </div>
 </div>
 `;
 
 exports[`renders a without headings, paragraph, and wrapping content 1`] = `
 <div>
-  No heading should show up
-  
-
-  This should just be pure string with 
-  <b
-    class="base bold"
-  >
-    bold text
-  </b>
-   and some 
-  <em
-    class="base regular italic"
-  >
-    italicized text
-  </em>
-  
-and of course a 
-  <a
-    href="http://to.somewhere"
-  >
-    link
-  </a>
+  <div>
+    No heading should show up
+      This should just be pure string with 
+    <b
+      class="base bold"
+    >
+      bold text
+    </b>
+     and some 
+    <em
+      class="base regular italic"
+    >
+      italicized text
+    </em>
+    
+  and of course a 
+    <a
+      href="http://to.somewhere"
+    >
+      link
+    </a>
+  </div>
 </div>
 `;

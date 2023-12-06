@@ -1,6 +1,5 @@
 import classNames from "classnames";
-import React from "react";
-import { ReactElement } from "react-markdown/lib/react-markdown";
+import React, { ReactElement } from "react";
 import { AnimatedSwitcher } from "../../../AnimatedSwitcher";
 import { Text } from "../../../Text";
 import { Button } from "../../../Button";
