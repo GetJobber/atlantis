@@ -10,12 +10,15 @@ import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.css";
 import { AffixIcon, AffixLabel } from "./FormFieldAffix";
 import { FormFieldDescription } from "./FormFieldDescription";
+import { ClearAction } from "./components/ClearAction";
 import { InputValidation } from "../InputValidation";
 
 interface FormFieldWrapperProps extends FormFieldProps {
   readonly error: string;
   readonly identifier: string;
   readonly descriptionIdentifier: string;
+  readonly showClear?: boolean;
+  readonly onClear?: () => void;
 }
 
 interface LabelPadding {
@@ -41,6 +44,8 @@ export function FormFieldWrapper({
   disabled,
   inline,
   identifier,
+  showClear,
+  onClear,
 }: PropsWithChildren<FormFieldWrapperProps>) {
   const wrapperClasses = classnames(
     styles.wrapper,
@@ -106,10 +111,11 @@ export function FormFieldWrapper({
 
           {prefix?.label && <AffixLabel {...prefix} labelRef={prefixRef} />}
           <div className={styles.childrenWrapper}>{children}</div>
-          {suffix?.label && (
-            <AffixLabel {...suffix} labelRef={suffixRef} variation="suffix" />
-          )}
         </div>
+        {suffix?.label && (
+          <AffixLabel {...suffix} labelRef={suffixRef} variation="suffix" />
+        )}
+        {showClear && <ClearAction onClick={() => onClear && onClear()} />}
         {suffix?.icon && (
           <AffixIcon {...suffix} variation="suffix" size={size} />
         )}

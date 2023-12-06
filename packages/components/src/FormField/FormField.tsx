@@ -9,13 +9,13 @@ import React, {
 } from "react";
 import { v1 as uuidv1 } from "uuid";
 import { Controller, useForm, useFormContext } from "react-hook-form";
+import { useShowClear } from "@jobber/hooks";
 import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.css";
 import { FormFieldWrapper } from "./FormFieldWrapper";
 import { FormFieldPostFix } from "./FormFieldPostFix";
 
-// Added 13th statement to accommodate getErrorMessage function
-/*eslint max-statements: ["error", 13]*/
+// eslint-disable-next-line max-statements
 export function FormField(props: FormFieldProps) {
   const {
     actionsRef,
@@ -42,6 +42,7 @@ export function FormField(props: FormFieldProps) {
     onFocus,
     onBlur,
     onValidation,
+    clearable = "never",
   } = props;
 
   const {
@@ -56,6 +57,7 @@ export function FormField(props: FormFieldProps) {
 
   const [identifier] = useState(uuidv1());
   const [descriptionIdentifier] = useState(`descriptionUUID--${uuidv1()}`);
+  const [focused, setFocused] = useState(false);
   /**
    * Generate a name if one is not supplied, this is the name
    * that will be used for react-hook-form and not neccessarily
@@ -71,6 +73,8 @@ export function FormField(props: FormFieldProps) {
     }
   }, [value, watch(controlledName)]);
 
+  const fieldValue = watch(controlledName);
+
   useImperativeHandle(actionsRef, () => ({
     setValue: newValue => {
       setValue(controlledName, newValue, { shouldValidate: true });
@@ -80,6 +84,14 @@ export function FormField(props: FormFieldProps) {
   const message = errors[controlledName]?.message;
   const error = getErrorMessage();
   useEffect(() => handleValidation(), [error]);
+
+  const showClear = useShowClear({
+    clearable,
+    multiline: false,
+    focused,
+    hasValue: Boolean(fieldValue),
+    disabled,
+  });
 
   return (
     <Controller
@@ -122,6 +134,8 @@ export function FormField(props: FormFieldProps) {
             error={error}
             identifier={identifier}
             descriptionIdentifier={descriptionIdentifier}
+            showClear={showClear}
+            onClear={handleClear}
           >
             {renderField()}
           </FormFieldWrapper>
@@ -163,6 +177,12 @@ export function FormField(props: FormFieldProps) {
           }
         }
 
+        function handleClear() {
+          handleBlur();
+          setValue(controlledName, undefined, { shouldValidate: true });
+          onChange && onChange("");
+        }
+
         function handleChange(
           event: ChangeEvent<
             HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -199,12 +219,15 @@ export function FormField(props: FormFieldProps) {
           if ((target as HTMLInputElement).select) {
             setTimeout(() => readonly && (target as HTMLInputElement).select());
           }
+
+          setFocused(true);
           onFocus && onFocus();
         }
 
         function handleBlur() {
           onBlur && onBlur();
           onControllerBlur();
+          setFocused(false);
         }
       }}
     />
