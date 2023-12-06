@@ -18,7 +18,6 @@ export function ClearAction({ onClick }: ClearActionProps): JSX.Element {
         onMouseDown={event => event.preventDefault()}
         onClick={onClick}
         type="button"
-        data-testid="ATL-Input-Clear"
         aria-label="Clear input"
       >
         <Icon name="remove" size="small" />

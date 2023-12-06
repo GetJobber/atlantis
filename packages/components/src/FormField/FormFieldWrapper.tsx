@@ -17,8 +17,8 @@ interface FormFieldWrapperProps extends FormFieldProps {
   readonly error: string;
   readonly identifier: string;
   readonly descriptionIdentifier: string;
-  readonly showClear?: boolean;
-  readonly onClear?: () => void;
+  readonly showClear: boolean | undefined;
+  readonly onClear: () => void;
 }
 
 interface LabelPadding {
@@ -44,7 +44,7 @@ export function FormFieldWrapper({
   disabled,
   inline,
   identifier,
-  showClear,
+  showClear = false,
   onClear,
 }: PropsWithChildren<FormFieldWrapperProps>) {
   const wrapperClasses = classnames(
@@ -115,7 +115,7 @@ export function FormFieldWrapper({
         {suffix?.label && (
           <AffixLabel {...suffix} labelRef={suffixRef} variation="suffix" />
         )}
-        {showClear && <ClearAction onClick={() => onClear && onClear()} />}
+        {showClear && <ClearAction onClick={onClear} />}
         {suffix?.icon && (
           <AffixIcon {...suffix} variation="suffix" size={size} />
         )}
