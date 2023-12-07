@@ -24,12 +24,26 @@ export function useInternalChipDismissible({
 
   const { liveAnnounce } = useLiveAnnounce();
 
+  const getNextSiblings = (target: HTMLElement) => {
+    let nextElementToFocus = target.nextElementSibling;
+    let prevElementToFocus = target.previousElementSibling;
+
+    if (nextElementToFocus instanceof HTMLSpanElement) {
+      nextElementToFocus = nextElementToFocus.nextElementSibling;
+    }
+
+    if (prevElementToFocus instanceof HTMLSpanElement) {
+      prevElementToFocus = prevElementToFocus.previousElementSibling;
+    }
+
+    return { nextElementToFocus, prevElementToFocus };
+  };
+
   const actions = {
     handleChipRemove: (value: string) => {
       return () => {
         liveAnnounce(`${value} Removed`);
         onChange(selected?.filter(val => val !== value) || []);
-        onClick && onClick({} as MouseEvent<HTMLInputElement>, value);
       };
     },
 
@@ -38,6 +52,7 @@ export function useInternalChipDismissible({
 
     handleChipClick: (value: string) => {
       if (onClick === undefined) return;
+      console.log("hi??");
 
       return (event: MouseEvent<HTMLButtonElement>) => onClick(event, value);
     },
@@ -52,20 +67,19 @@ export function useInternalChipDismissible({
       const isInputAndHasValue =
         target instanceof HTMLInputElement && target.value;
       if (isInputAndHasValue) return;
-
-      const nextElementToFocus = target.nextElementSibling;
-      const prevElementToFocus = target.previousElementSibling;
+      const { prevElementToFocus, nextElementToFocus } =
+        getNextSiblings(target);
 
       if (
         event.key === "ArrowLeft" &&
-        prevElementToFocus instanceof HTMLElement
+        prevElementToFocus instanceof HTMLDivElement
       ) {
         prevElementToFocus.focus();
       }
 
       if (
         event.key === "ArrowRight" &&
-        nextElementToFocus instanceof HTMLElement
+        nextElementToFocus instanceof HTMLDivElement
       ) {
         nextElementToFocus.focus();
       }

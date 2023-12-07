@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styles from "./InternalChip.css";
 import { ChipSingleSelectProps } from "./ChipsTypes";
 import { Chip } from "../Chip";
@@ -15,6 +15,10 @@ export function InternalChipSingleSelect({
   onChange,
   onClick,
 }: InternalChipChoiceProps) {
+  const id = useMemo(() => {
+    return "random-radio-id" + Math.random();
+  }, [children]);
+
   return (
     <div className={styles.wrapper} data-testid="singleselect-chips">
       {React.Children.map(children, child => {
@@ -26,7 +30,7 @@ export function InternalChipSingleSelect({
             <input
               type="radio"
               checked={isSelected}
-              tabIndex={-1}
+              name={id}
               className={styles.input}
               onClick={handleClick(child?.props.value || "")}
               onKeyUp={handleKeyUp(isSelected, child?.props.value || "")}
@@ -37,7 +41,8 @@ export function InternalChipSingleSelect({
             />
             <Chip
               label={child?.props.label || ""}
-              role="option"
+              role={isSelected ? "option" : undefined}
+              tabIndex={-1}
               mode="form"
               disabled={child?.props.disabled}
             >
@@ -57,7 +62,9 @@ export function InternalChipSingleSelect({
     if (!active) return;
 
     return (
-      event: React.KeyboardEvent<HTMLInputElement | HTMLButtonElement>,
+      event: React.KeyboardEvent<
+        HTMLInputElement | HTMLButtonElement | HTMLDivElement
+      >,
     ) => {
       if (event.key === " ") {
         // Wait for DOM changes before applying the new change.

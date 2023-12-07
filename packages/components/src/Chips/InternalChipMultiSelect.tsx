@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styles from "./InternalChip.css";
 import { ChipMultiSelectProps } from "./ChipsTypes";
 import { Chip } from "../Chip";
@@ -15,6 +15,10 @@ export function InternalChipMultiSelect({
   onChange,
   onClick,
 }: InternalChipChoiceMultipleProps) {
+  const id = useMemo(() => {
+    return "random-checkbox-id" + Math.random();
+  }, [children]);
+
   return (
     <div className={styles.wrapper} data-testid="multiselect-chips">
       {React.Children.map(children, chip => {
@@ -26,6 +30,7 @@ export function InternalChipMultiSelect({
           <label>
             <input
               type="checkbox"
+              name={id}
               checked={isChipActive}
               className={styles.input}
               onClick={chip && handleClick(chip.props.value)}
@@ -33,7 +38,12 @@ export function InternalChipMultiSelect({
               disabled={chip?.props.disabled}
             />
             {chip && (
-              <Chip {...chip.props} mode="form">
+              <Chip
+                {...chip.props}
+                mode="form"
+                tabIndex={-1}
+                role={isChipActive ? "option" : undefined}
+              >
                 <Chip.Suffix>
                   {isChipActive && (
                     <Icon name="checkmark" size="small" color="heading" />

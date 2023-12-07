@@ -47,7 +47,7 @@ export const Chip = ({
   );
 
   return (
-    <Tooltip message={tooltipMessage}>
+    <Tooltip message={tooltipMessage} noTabIndex>
       <Tag
         className={classes}
         onClick={(ev: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) =>

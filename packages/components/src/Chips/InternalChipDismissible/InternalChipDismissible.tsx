@@ -35,11 +35,13 @@ export function InternalChipDismissible(props: InternalChipDismissibleProps) {
             inVal: string | number | undefined,
             event: React.MouseEvent<HTMLButtonElement>,
           ) => handleChipClick(inVal as string)?.(event)}
+          onKeyDown={handleChipKeyDown(chip.value)}
           value={chip.label}
           role="radio"
           data-testid={props.dataTestId || "remove-chip-button"}
           ariaLabel={`${chip.label}. Press delete or backspace to remove ${chip.label}`}
           tabIndex={0}
+          mode="form"
         >
           <Chip.Suffix
             onKeyDown={(event: React.KeyboardEvent<HTMLButtonElement>) =>

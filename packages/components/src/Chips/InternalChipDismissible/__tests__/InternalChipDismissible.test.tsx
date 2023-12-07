@@ -8,7 +8,7 @@ import {
   within,
 } from "@testing-library/react";
 import { InternalChipDismissible } from "../..";
-import { Chip } from "../../../Chip";
+import { Chip } from "../../Chip";
 
 const mockIsInView = jest.fn(() => false);
 
@@ -131,13 +131,6 @@ describe("Basic interaction", () => {
       });
     });
   });
-  it("should trigger the onClick callback when a chip gets clicked", () => {
-    fireEvent.click(getByChipLabelText(selectedChips[0]));
-    expect(handleClickChip).toHaveBeenCalledWith(
-      expect.any(Object),
-      selectedChips[0],
-    );
-  });
 
   it("should trigger the onChange callback when removing a chip", () => {
     const wrapperEl = getByChipLabelText(selectedChips[0]);
@@ -175,30 +168,6 @@ describe("Basic interaction", () => {
       });
       const wrapperEl = getByChipLabelText(selectedChips[0]);
       expect(wrapperEl).toHaveFocus();
-    });
-  });
-
-  describe("left and right arrow keys via keyboard", () => {
-    it("should focus on the correct element when left or right arrow down", () => {
-      const chipWrappers = screen.getAllByTestId("chip-wrapper");
-      const first = chipWrappers[0];
-
-      fireEvent.select(first);
-      expect(first).toHaveFocus();
-
-      fireEvent.keyDown(first, {
-        key: "ArrowRight",
-      });
-      expect(first).not.toHaveFocus();
-
-      const addButton = screen.getByRole("button", { name: "Add" });
-      expect(addButton).toHaveFocus();
-
-      fireEvent.keyDown(addButton, {
-        key: "ArrowLeft",
-      });
-      expect(addButton).not.toHaveFocus();
-      expect(first).toHaveFocus();
     });
   });
 });

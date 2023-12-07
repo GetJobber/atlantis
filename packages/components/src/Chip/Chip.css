@@ -30,7 +30,7 @@ button.chip {
 }
 
 .chip.useDiv {
-  cursor: auto;
+  cursor: pointer;
 }
 
 .chip:focus,
@@ -93,8 +93,7 @@ button.chip {
   --chip--gradient-color-variation: var(--chip-base-bg);
 }
 
-.base:hover,
-.base:focus-visible {
+.base:hover {
   background-color: var(--chip-base--hover);
   --chip--gradient-color-variation--hover: var(--chip-base--hover);
 }
