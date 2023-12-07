@@ -4,6 +4,7 @@
   --button--color-surface: var(--color-surface);
   --button--color-surface--hover: var(--color-surface--background);
   --button--color-primaryLabel: var(--color-white);
+  --button--radius: var(--radius-larger);
 
   --button--duration-loading: var(--timing-loading--extended);
 }
@@ -14,7 +15,7 @@
   box-sizing: border-box;
   margin: 0;
   border: var(--border-base) solid var(--button--color-variation);
-  border-radius: var(--radius-base);
+  border-radius: var(--button--radius);
   color: var(--button--color-variation);
   -webkit-font-smoothing: antialiased;
   letter-spacing: var(--typography--letterSpacing-loose);
