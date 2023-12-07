@@ -228,6 +228,7 @@ function getLabelVariation(
   } else if (focused) {
     return "interactive";
   }
+
   return "subdued";
 }
 
@@ -278,10 +279,10 @@ function Placeholder({
   labelVariation,
   hasMiniLabel,
 }: {
-  placeholder?: string;
-  styleOverride: StyleProp<TextStyle>;
-  labelVariation: TextVariation;
-  hasMiniLabel: boolean;
+  readonly placeholder?: string;
+  readonly styleOverride: StyleProp<TextStyle>;
+  readonly labelVariation: TextVariation;
+  readonly hasMiniLabel: boolean;
 }) {
   return (
     <>

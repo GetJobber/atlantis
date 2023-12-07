@@ -262,6 +262,32 @@ const ComboboxSingleSelection: ComponentStory<typeof Combobox> = args => {
   );
 };
 
+const DynamicButton: ComponentStory<typeof Combobox> = args => {
+  const [selected, setSelected] = useState<ComboboxOption[]>([]);
+
+  return (
+    <Combobox
+      {...args}
+      onSelect={setSelected}
+      selected={selected}
+      label="Teammates"
+    >
+      <Combobox.Option id="1" label="Search" />
+      <Combobox.Option id="2" label="Something" />
+      <Combobox.Option id="3" label="That's not" />
+      <Combobox.Option id="4" label="There" />
+
+      <Combobox.Action
+        visible={({ searchValue }) => Boolean(searchValue)}
+        label={({ searchValue }) => `Add ${searchValue} as teammate`}
+        onClick={(_, { searchValue }) => {
+          alert(`Added ${searchValue} as teammate`);
+        }}
+      />
+    </Combobox>
+  );
+};
+
 export const ClearSelection = ComboboxClearSelection.bind({});
 ClearSelection.args = {};
 
@@ -275,4 +301,7 @@ export const MultiSelect = ComboboxMultiSelection.bind({});
 MultiSelect.args = {};
 
 export const SingleSelect = ComboboxSingleSelection.bind({});
+SingleSelect.args = {};
+
+export const DynamicAction = DynamicButton.bind({});
 SingleSelect.args = {};

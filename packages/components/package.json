@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "4.66.5",
+  "version": "4.67.1",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,9 +19,9 @@
     "dist/*"
   ],
   "dependencies": {
-    "@jobber/design": "^0.50.0",
+    "@jobber/design": "^0.51.0",
     "@jobber/formatters": "*",
-    "@jobber/hooks": "^2.7.2",
+    "@jobber/hooks": "^2.8.0",
     "@popperjs/core": "^2.0.6",
     "@std-proposal/temporal": "0.0.1",
     "@tanstack/react-table": "8.5.13",
@@ -38,7 +38,7 @@
     "framer-motion": "6.3.16",
     "lodash": "^4.17.21",
     "react-countdown": "^2.3.2",
-    "react-datepicker": "^4.10.0",
+    "react-datepicker": "~4.10.0",
     "react-dropzone": "^11.0.2",
     "react-hook-form": "^7.43.7",
     "react-markdown": "^8.0.3",
