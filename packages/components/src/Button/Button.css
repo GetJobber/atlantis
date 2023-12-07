@@ -1,6 +1,6 @@
 :root {
-  --button--color-variation: var(--color-interactive);
-  --button--color-variation--hover: var(--color-interactive--hover);
+  --button--color-variation: black;
+  --button--color-variation--hover: darkgrey;
   --button--color-surface: var(--color-surface);
   --button--color-surface--hover: var(--color-surface--background);
   --button--color-primaryLabel: var(--color-white);
