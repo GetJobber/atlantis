@@ -1,5 +1,6 @@
 import React from "react";
 // eslint-disable-next-line import/no-internal-modules
+import supportsTime from "time-input-polyfill/supportsTime";
 import { InputTimeSafari } from "./InputTimeSafari";
 import {
   civilTimeToHTMLTime,
@@ -7,12 +8,6 @@ import {
 } from "./civilTimeConversions";
 import { InputTimeProps } from "./InputTimeProps";
 import { FormField, FormFieldProps } from "../FormField";
-
-let supportsTime: unknown;
-
-if (typeof document !== "undefined") {
-  supportsTime = import("time-input-polyfill/supportsTime");
-}
 
 export function InputTime({
   defaultValue,
