@@ -1,7 +1,6 @@
 /* eslint-disable max-statements */
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import uniq from "lodash/uniq";
 import { useCollectionQuery } from "@jobber/hooks/useCollectionQuery";
 import {
   DataList,
@@ -46,6 +45,18 @@ export default {
 } as ComponentMeta<typeof DataList>;
 
 const Template: ComponentStory<typeof DataList> = args => {
+  const [tags, setTags] = useState<string[]>([
+    "tag 1",
+    "tag 2",
+    "tag 3",
+    "tag 4",
+    "tag 5",
+    "tag 6",
+    "tag 7",
+    "tag 8",
+    "tag 9",
+  ]);
+
   const { data, nextPage, loadingNextPage, loadingInitialContent } =
     useCollectionQuery<ListQueryType>({
       query: LIST_QUERY,
@@ -62,7 +73,7 @@ const Template: ComponentStory<typeof DataList> = args => {
 
   const items = data?.allPeople.edges || [];
   const totalCount = data?.allPeople.totalCount || null;
-  const mappedData = items.map(({ node }) => ({
+  const mappedData = items.slice(0, 1).map(({ node }) => ({
     id: node.id,
     label: node.name,
     species: node.species?.name,
@@ -70,13 +81,7 @@ const Template: ComponentStory<typeof DataList> = args => {
     gender: (
       <InlineLabel color={getColor(node.gender)}>{node.gender}</InlineLabel>
     ),
-    tags: uniq([
-      node.birthYear,
-      ...(node.hairColor?.split(", ") || []),
-      ...(node.skinColor?.split(", ") || []),
-      ...node.homeworld.climates,
-      ...node.homeworld.terrains,
-    ]),
+    tags: tags,
     homePopulation: node.homeworld.population?.toLocaleString(),
     lastActivity: new Date(node.created),
   }));
@@ -85,203 +90,229 @@ const Template: ComponentStory<typeof DataList> = args => {
   const [sortingState, setSortingState] = useState<DataListSorting>();
 
   return (
-    <DataList
-      {...args}
-      loadingState={getLoadingState()}
-      totalCount={totalCount}
-      data={(args.data as typeof mappedData) || mappedData}
-      headers={{
-        label: "Name",
-        home: "Home world",
-        tags: "Attributes",
-        gender: "Gender",
-        lastActivity: "Last activity",
-      }}
-      onLoadMore={nextPage}
-      selected={selected}
-      onSelect={setSelected}
-      onSelectAll={setSelected}
-      sorting={{
-        state: sortingState,
-        onSort: sorting => {
-          console.log(sorting);
-          setSortingState(sorting);
-        },
-        sortable: ["label", "home", "lastActivity"],
-      }}
-    >
-      <DataList.Filters>
-        <Button
-          label="Filter gender"
-          variation="subtle"
-          icon="add"
-          iconOnRight={true}
-          onClick={() => alert("Run filter by gender query")}
-        />
-        <Button
-          label="Filter attributes"
-          variation="subtle"
-          icon="add"
-          iconOnRight={true}
-          onClick={() => alert("Run filter by attributes query")}
-        />
-        <DatePicker
-          onChange={date => alert(`Filter by created date: ${date}`)}
-          activator={
-            <Button
-              icon="calendar"
-              ariaLabel="Select date"
-              variation="subtle"
-            />
-          }
-        />
-      </DataList.Filters>
+    <div>
+      <button
+        onClick={() => setTags(["tag 1", "tag 2", "tag 3"])}
+        type="button"
+      >
+        change tags
+      </button>
+      <button
+        onClick={() =>
+          setTags([
+            "tag 1",
+            "tag 2",
+            "tag 3",
+            "tag 4",
+            "tag 5",
+            "tag 6",
+            "tag 7",
+            "tag 8",
+            "tag 9",
+          ])
+        }
+        type="button"
+      >
+        change back
+      </button>
+      <DataList
+        {...args}
+        loadingState={getLoadingState()}
+        totalCount={totalCount}
+        data={(args.data as typeof mappedData) || mappedData}
+        headers={{
+          label: "Name",
+          home: "Home world",
+          tags: "Attributes",
+          gender: "Gender",
+          lastActivity: "Last activity",
+        }}
+        onLoadMore={nextPage}
+        selected={selected}
+        onSelect={setSelected}
+        onSelectAll={setSelected}
+        sorting={{
+          state: sortingState,
+          onSort: sorting => {
+            console.log(sorting);
+            setSortingState(sorting);
+          },
+          sortable: ["label", "home", "lastActivity"],
+        }}
+      >
+        <DataList.Filters>
+          <Button
+            label="Filter gender"
+            variation="subtle"
+            icon="add"
+            iconOnRight={true}
+            onClick={() => alert("Run filter by gender query")}
+          />
+          <Button
+            label="Filter attributes"
+            variation="subtle"
+            icon="add"
+            iconOnRight={true}
+            onClick={() => alert("Run filter by attributes query")}
+          />
+          <DatePicker
+            onChange={date => alert(`Filter by created date: ${date}`)}
+            activator={
+              <Button
+                icon="calendar"
+                ariaLabel="Select date"
+                variation="subtle"
+              />
+            }
+          />
+        </DataList.Filters>
 
-      <DataList.Search
-        onSearch={search => console.log(search)}
-        placeholder="Search characters..."
-      />
+        <DataList.Search
+          onSearch={search => console.log(search)}
+          placeholder="Search characters..."
+        />
 
-      <DataList.ItemActions onClick={handleActionClick}>
-        <DataList.ItemAction
-          visible={item => item.species !== "Droid"}
-          icon="edit"
-          label="Edit"
-          onClick={handleActionClick}
-        />
-        <DataList.ItemAction
-          icon="sendMessage"
-          label={item => `Message ${item.label}`}
-          onClick={handleActionClick}
-        />
-        <DataList.ItemAction
-          label="Create new..."
-          onClick={handleActionClick}
-        />
-        <DataList.ItemAction
-          label="Add attribute..."
-          onClick={handleActionClick}
-        />
-        <DataList.ItemAction
-          icon="trash"
-          label="Delete"
-          destructive={true}
-          onClick={handleActionClick}
-        />
-      </DataList.ItemActions>
+        <DataList.ItemActions onClick={handleActionClick}>
+          <DataList.ItemAction
+            visible={item => item.species !== "Droid"}
+            icon="edit"
+            label="Edit"
+            onClick={handleActionClick}
+          />
+          <DataList.ItemAction
+            icon="sendMessage"
+            label={item => `Message ${item.label}`}
+            onClick={handleActionClick}
+          />
+          <DataList.ItemAction
+            label="Create new..."
+            onClick={handleActionClick}
+          />
+          <DataList.ItemAction
+            label="Add attribute..."
+            onClick={handleActionClick}
+          />
+          <DataList.ItemAction
+            icon="trash"
+            label="Delete"
+            destructive={true}
+            onClick={handleActionClick}
+          />
+        </DataList.ItemActions>
 
-      <DataList.BatchActions>
-        <DataList.BatchAction
-          icon="edit"
-          label="Edit"
-          onClick={handleBulkActionClick}
-        />
-        <DataList.BatchAction
-          icon="sendMessage"
-          label="Message"
-          onClick={handleBulkActionClick}
-        />
-        <DataList.BatchAction
-          label="Create new..."
-          icon="add"
-          onClick={handleBulkActionClick}
-        />
-        <DataList.BatchAction
-          label="Add attribute..."
-          onClick={handleBulkActionClick}
-        />
-        <DataList.BatchAction
-          icon="trash"
-          label="Delete"
-          destructive={true}
-          onClick={handleBulkActionClick}
-        />
-      </DataList.BatchActions>
+        <DataList.BatchActions>
+          <DataList.BatchAction
+            icon="edit"
+            label="Edit"
+            onClick={handleBulkActionClick}
+          />
+          <DataList.BatchAction
+            icon="sendMessage"
+            label="Message"
+            onClick={handleBulkActionClick}
+          />
+          <DataList.BatchAction
+            label="Create new..."
+            icon="add"
+            onClick={handleBulkActionClick}
+          />
+          <DataList.BatchAction
+            label="Add attribute..."
+            onClick={handleBulkActionClick}
+          />
+          <DataList.BatchAction
+            icon="trash"
+            label="Delete"
+            destructive={true}
+            onClick={handleBulkActionClick}
+          />
+        </DataList.BatchActions>
 
-      <DataList.Layout size="md">
-        {(item: DataListItemType<typeof mappedData>) => (
-          <Grid alignItems="center">
-            <Grid.Cell size={{ xs: 5 }}>
-              <Grid alignItems="center">
-                <Grid.Cell size={{ xs: 6 }}>
-                  {item.label}
-                  {item.species}
-                </Grid.Cell>
-                <Grid.Cell size={{ xs: 6 }}>{item.home}</Grid.Cell>
-              </Grid>
-            </Grid.Cell>
-            <Grid.Cell size={{ xs: 4 }}>{item.tags}</Grid.Cell>
-            <Grid.Cell size={{ xs: 1 }}>{item.gender}</Grid.Cell>
-            <Grid.Cell size={{ xs: 2 }}>
+        <DataList.Layout size="md">
+          {(item: DataListItemType<typeof mappedData>) => (
+            <Grid alignItems="center">
+              <Grid.Cell size={{ xs: 5 }}>
+                <Grid alignItems="center">
+                  <Grid.Cell size={{ xs: 6 }}>
+                    {item.label}
+                    {item.species}
+                  </Grid.Cell>
+                  <Grid.Cell size={{ xs: 6 }}>{item.home}</Grid.Cell>
+                </Grid>
+              </Grid.Cell>
+              <Grid.Cell size={{ xs: 4 }}>{item.tags}</Grid.Cell>
+              <Grid.Cell size={{ xs: 1 }}>{item.gender}</Grid.Cell>
+              <Grid.Cell size={{ xs: 2 }}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    textAlign: "right",
+                  }}
+                >
+                  {item.lastActivity}
+                </div>
+              </Grid.Cell>
+            </Grid>
+          )}
+        </DataList.Layout>
+
+        <DataList.Layout size="xs">
+          {(item: DataListItemType<typeof mappedData>) => (
+            <Content spacing="small">
               <div
                 style={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  textAlign: "right",
+                  display: "grid",
+                  gridTemplateColumns: item.species
+                    ? "max-content auto max-content"
+                    : "auto max-content",
+                  gap: 8,
+                  alignItems: "center",
+                }}
+              >
+                {item.label}
+                {item.species}
+                {item.gender}
+              </div>
+              {item.tags}
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "auto max-content",
+                  gap: 8,
+                  alignItems: "center",
                 }}
               >
                 {item.lastActivity}
+                <DataList.LayoutActions />
               </div>
-            </Grid.Cell>
-          </Grid>
-        )}
-      </DataList.Layout>
+            </Content>
+          )}
+        </DataList.Layout>
 
-      <DataList.Layout size="xs">
-        {(item: DataListItemType<typeof mappedData>) => (
-          <Content spacing="small">
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: item.species
-                  ? "max-content auto max-content"
-                  : "auto max-content",
-                gap: 8,
-                alignItems: "center",
-              }}
-            >
-              {item.label}
-              {item.species}
-              {item.gender}
-            </div>
-            {item.tags}
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "auto max-content",
-                gap: 8,
-                alignItems: "center",
-              }}
-            >
-              {item.lastActivity}
-              <DataList.LayoutActions />
-            </div>
-          </Content>
-        )}
-      </DataList.Layout>
+        <DataList.EmptyState
+          type="empty"
+          message="Character list is looking empty"
+          action={
+            <Button
+              label="New character"
+              onClick={() => alert("Create a new character")}
+            />
+          }
+        />
 
-      <DataList.EmptyState
-        type="empty"
-        message="Character list is looking empty"
-        action={
-          <Button
-            label="New character"
-            onClick={() => alert("Create a new character")}
-          />
-        }
-      />
-
-      <DataList.EmptyState
-        type="filtered"
-        message="No results for selected filters"
-        action={
-          <Button
-            label="Clear filters"
-            onClick={() => alert("Filters cleared")}
-          />
-        }
-      />
-    </DataList>
+        <DataList.EmptyState
+          type="filtered"
+          message="No results for selected filters"
+          action={
+            <Button
+              label="Clear filters"
+              onClick={() => alert("Filters cleared")}
+            />
+          }
+        />
+      </DataList>
+    </div>
   );
 
   function handleActionClick(item: (typeof mappedData)[number]) {
