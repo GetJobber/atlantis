@@ -3,7 +3,7 @@ import React, {
   HTMLAttributes,
   PropsWithChildren,
 } from "react";
-import ReactMarkdown from "markdown-to-jsx";
+import ReactMarkdown, { MarkdownToJSX } from "markdown-to-jsx";
 import { Text } from "../Text";
 import { Emphasis } from "../Emphasis";
 import { Heading } from "../Heading";
@@ -26,7 +26,10 @@ interface MarkdownProps {
    */
   readonly basicUsage?: boolean;
 }
-const NoSpan = ({ children }: PropsWithChildren) => children;
+const NoSpan = {
+  component: ({ children }: PropsWithChildren) => <>{children}</>,
+  props: {},
+};
 
 export function Markdown({
   content,
@@ -35,53 +38,60 @@ export function Markdown({
   ...props
 }: MarkdownProps) {
   const Tag = basicUsage ? React.Fragment : Content;
-  const overrides = basicUsage
-    ? {
-        p: NoSpan,
-        h1: NoSpan,
-        div: NoSpan,
-        h2: NoSpan,
-        h3: NoSpan,
-        h4: NoSpan,
-        h5: NoSpan,
-        h6: NoSpan,
-        table: NoSpan,
-        ul: NoSpan,
-        li: NoSpan,
-        code: NoSpan,
-        strong: renderStrong,
-        em: renderEmphasis,
-        image: NoSpan,
-        a: {
-          component: ({ children, ...rest }: PropsWithChildren) => (
-            <a {...rest}>{children}</a>
-          ),
-          props: { target: externalLink ? "_blank" : undefined },
-        },
-      }
-    : {
-        p: renderParagraph,
-        strong: renderStrong,
-        span: NoSpan,
-        div: NoSpan,
-        em: renderEmphasis,
-        h1: renderHeading(1),
-        h2: renderHeading(2),
-        h3: renderHeading(3),
-        h4: renderHeading(4),
-        h5: renderHeading(5),
-        h6: renderHeading(6),
-        a: {
-          component: ({ children, ...rest }: PropsWithChildren) => (
-            <a {...rest}>{children}</a>
-          ),
-          props: { target: externalLink ? "_blank" : undefined },
-        },
-      };
+  const basicOverrides: MarkdownToJSX.Overrides = {
+    p: NoSpan,
+    h1: NoSpan,
+    div: NoSpan,
+    h2: NoSpan,
+    h3: NoSpan,
+    h4: NoSpan,
+    h5: NoSpan,
+    h6: NoSpan,
+    table: NoSpan,
+    ul: NoSpan,
+    li: NoSpan,
+    code: (children, ...args) => <code {...args}>{children}</code>,
+    strong: renderStrong,
+    em: renderEmphasis,
+    image: NoSpan,
+    a: {
+      component: ({ children, ...rest }: PropsWithChildren) => (
+        <a {...rest}>{children}</a>
+      ),
+      props: { target: externalLink ? "_blank" : undefined },
+    },
+  };
+
+  const defaultOverrides: MarkdownToJSX.Overrides = {
+    code: (children, ...args) => <code {...args}>{children}</code>,
+    p: renderParagraph,
+    strong: renderStrong,
+    span: NoSpan,
+    div: NoSpan,
+    em: renderEmphasis,
+    h1: renderHeading(1),
+    h2: renderHeading(2),
+    h3: renderHeading(3),
+    h4: renderHeading(4),
+    h5: renderHeading(5),
+    h6: renderHeading(6),
+    a: {
+      component: ({ children, ...rest }: PropsWithChildren) => (
+        <a {...rest}>{children}</a>
+      ),
+      props: { target: externalLink ? "_blank" : undefined },
+    },
+  };
 
   return (
     <Tag>
-      <ReactMarkdown {...props} options={{ overrides, forceBlock: true }}>
+      <ReactMarkdown
+        {...props}
+        options={{
+          overrides: basicUsage ? basicOverrides : defaultOverrides,
+          forceBlock: true,
+        }}
+      >
         {content}
       </ReactMarkdown>
     </Tag>
