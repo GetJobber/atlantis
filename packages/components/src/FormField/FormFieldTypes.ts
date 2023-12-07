@@ -119,7 +119,7 @@ export interface CommonFormFieldProps {
    * Add a clear action on the input that clears the value.
    *
    * You should always use `while-editing` if you want the input to be
-   * clearable. if the input value isn't editable (i.e. `InputDateTime`) you can
+   * clearable. if the input value isn't editable (i.e. `InputTime`) you can
    * set it to `always`.
    */
   readonly clearable?: Clearable;

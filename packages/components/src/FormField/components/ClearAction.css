@@ -20,6 +20,16 @@
   align-items: center;
 }
 
-.addedMargin {
-  margin-right: var(--space-large);
+.clearInput:focus {
+  outline: none;
+}
+
+.clearInput:hover,
+.clearInput:focus-visible {
+  outline: none;
+  background-color: var(--color-surface--background);
+}
+
+.clearInput:focus-visible {
+  box-shadow: var(--shadow-focus);
 }
