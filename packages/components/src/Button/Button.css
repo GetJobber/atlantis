@@ -60,8 +60,8 @@ a.button:active {
 /* Variation */
 
 .work {
-  --button--color-variation: var(--color-interactive);
-  --button--color-variation--hover: var(--color-interactive--hover);
+  --button--color-variation: black;
+  --button--color-variation--hover: darkGrey;
 }
 
 .learning {
