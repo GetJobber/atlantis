@@ -22,7 +22,7 @@ it("renders a InputTime", () => {
             >
               <input
                 class="input"
-                id="123e4567-e89b-12d3-a456-426655440001"
+                id=":r0:"
                 type="time"
                 value=""
               />
@@ -55,7 +55,7 @@ it("renders an initial time when given 'defaultValue'", () => {
             >
               <input
                 class="input"
-                id="123e4567-e89b-12d3-a456-426655440007"
+                id=":r2:"
                 type="time"
                 value="11:23"
               />
@@ -88,7 +88,7 @@ it("renders correctly in a readonly state", () => {
             >
               <input
                 class="input"
-                id="123e4567-e89b-12d3-a456-426655440009"
+                id=":r4:"
                 readonly=""
                 type="time"
                 value="11:23"
@@ -122,7 +122,7 @@ it("adds a error border when invalid", () => {
             >
               <input
                 class="input"
-                id="123e4567-e89b-12d3-a456-426655440015"
+                id=":r6:"
                 readonly=""
                 type="time"
                 value="11:23"
@@ -154,7 +154,7 @@ it("should set the value when given 'value' and 'onChange'", () => {
             >
               <input
                 class="input"
-                id="123e4567-e89b-12d3-a456-426655440021"
+                id=":r8:"
                 type="time"
                 value=""
               />

@@ -4,18 +4,16 @@ import React, {
   KeyboardEvent,
   MutableRefObject,
   useEffect,
+  useId,
   useImperativeHandle,
   useState,
 } from "react";
-import { v1 as uuidv1 } from "uuid";
 import { Controller, useForm, useFormContext } from "react-hook-form";
 import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.css";
 import { FormFieldWrapper } from "./FormFieldWrapper";
 import { FormFieldPostFix } from "./FormFieldPostFix";
 
-// Added 13th statement to accommodate getErrorMessage function
-/*eslint max-statements: ["error", 13]*/
 export function FormField(props: FormFieldProps) {
   const {
     actionsRef,
@@ -54,16 +52,8 @@ export function FormField(props: FormFieldProps) {
     : // If there isn't a Form Context being provided, get a form for this field.
       useForm({ mode: "onTouched" });
 
-  const [identifier] = useState(uuidv1());
-  const [descriptionIdentifier] = useState(`descriptionUUID--${uuidv1()}`);
-  /**
-   * Generate a name if one is not supplied, this is the name
-   * that will be used for react-hook-form and not neccessarily
-   * attached to the DOM
-   */
-  const [controlledName] = useState(
-    name ? name : `generatedName--${identifier}`,
-  );
+  const { controlledName, identifier, descriptionIdentifier } =
+    getNamesAndIds(name);
 
   useEffect(() => {
     if (value != undefined) {
@@ -234,3 +224,20 @@ function setAutocomplete(
 
   return autocompleteSetting;
 }
+
+const getNamesAndIds = (name?: string) => {
+  const identifierId = useId();
+  const [identifier] = useState(identifierId);
+  const descriptionId = useId();
+  const [descriptionIdentifier] = useState(`descriptionUUID--${descriptionId}`);
+  /**
+   * Generate a name if one is not supplied, this is the name
+   * that will be used for react-hook-form and not neccessarily
+   * attached to the DOM
+   */
+  const [controlledName] = useState(
+    name ? name : `generatedName--${identifier}`,
+  );
+
+  return { descriptionIdentifier, controlledName, identifier };
+};
