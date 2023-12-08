@@ -4,11 +4,10 @@ import React, {
   RefObject,
   createRef,
   useEffect,
-  useLayoutEffect,
+  useId,
   useRef,
   useState,
 } from "react";
-import { v1 as uuidv1 } from "uuid";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
@@ -18,6 +17,7 @@ import styles from "./Menu.css";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
 import { Icon } from "../Icon";
+import { useSafeLayoutEffect } from "../InputText/useSafeLayoutEffect";
 
 const variation = {
   overlayStartStop: { opacity: 0 },
@@ -69,11 +69,11 @@ export function Menu({ activator, items }: MenuProps) {
     horizontal: "right",
   });
   const wrapperRef = createRef<HTMLDivElement>();
-  const buttonID = uuidv1();
-  const menuID = uuidv1();
+  const buttonID = useId();
+  const menuID = useId();
 
   useOnKeyDown(handleKeyboardShortcut, ["Escape"]);
-  useLayoutEffect(() => {
+  useSafeLayoutEffect(() => {
     if (wrapperRef.current) {
       const bounds = wrapperRef.current.getBoundingClientRect();
       const newPosition = { ...position };
@@ -213,7 +213,7 @@ export function Menu({ activator, items }: MenuProps) {
 }
 
 interface SectionHeaderProps {
-  text: string;
+  readonly text: string;
 }
 
 function SectionHeader({ text }: SectionHeaderProps) {
@@ -236,17 +236,17 @@ export interface ActionProps {
   /**
    * Action label
    */
-  label: string;
+  readonly label: string;
 
   /**
    * Parent Section Label
    */
-  sectionLabel?: string;
+  readonly sectionLabel?: string;
 
   /**
    * Visual cue for the action label
    */
-  icon?: IconNames;
+  readonly icon?: IconNames;
 
   /**
    * Callback when an action gets clicked
@@ -256,7 +256,7 @@ export interface ActionProps {
   /**
    * Focus on the action when rendered
    */
-  shouldFocus?: boolean;
+  readonly shouldFocus?: boolean;
 }
 
 function Action({
