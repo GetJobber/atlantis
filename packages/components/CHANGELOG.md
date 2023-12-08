@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.67.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.67.3...@jobber/components@4.67.4) (2023-12-08)
+
+
+### Bug Fixes
+
+* **components:** Fix DataList tags counter overflow ([#1680](https://github.com/GetJobber/atlantis/issues/1680)) ([ce99e57](https://github.com/GetJobber/atlantis/commit/ce99e57f3dcb66bc3e63feb2fab98d5036635e10))
+
+
+
+
+
 ## [4.67.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.67.2...@jobber/components@4.67.3) (2023-12-08)
 
 **Note:** Version bump only for package @jobber/components
