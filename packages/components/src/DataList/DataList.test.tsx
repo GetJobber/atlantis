@@ -13,11 +13,7 @@ import {
   DATA_LOAD_MORE_TEST_ID,
   EMPTY_FILTER_RESULTS_MESSAGE,
 } from "./DataList.const";
-import {
-  DataListItemType,
-  DataListProps,
-  DataListSorting,
-} from "./DataList.types";
+import { DataListItemType, DataListProps } from "./DataList.types";
 import { DATALIST_TOTALCOUNT_TEST_ID } from "./components/DataListTotalCount";
 import {
   DATALIST_LOADINGSTATE_ROW_TEST_ID,
@@ -409,14 +405,9 @@ describe("DataList", () => {
       );
     }
 
-    it("should show the sorting arrows when the header is clicked", () => {
+    it("should show always show sorting arrows", () => {
       const mockOnSort = jest.fn();
-      const expectedSorting: DataListSorting = {
-        order: "asc",
-        key: "name",
-      };
-
-      const { rerender } = render(
+      render(
         <MockSortingLayout
           sorting={{
             sortable: ["name"],
@@ -425,26 +416,6 @@ describe("DataList", () => {
           }}
         />,
       );
-
-      expect(
-        screen.queryByTestId(SORTING_ICON_TEST_ID),
-      ).not.toBeInTheDocument();
-
-      const nameHeader = screen.getByText(mockHeaders.name);
-      fireEvent.click(nameHeader);
-
-      expect(mockOnSort).toHaveBeenCalledWith(expectedSorting);
-
-      rerender(
-        <MockSortingLayout
-          sorting={{
-            sortable: ["name"],
-            onSort: mockOnSort,
-            state: expectedSorting,
-          }}
-        />,
-      );
-
       expect(screen.queryByTestId(SORTING_ICON_TEST_ID)).toBeInTheDocument();
     });
   });

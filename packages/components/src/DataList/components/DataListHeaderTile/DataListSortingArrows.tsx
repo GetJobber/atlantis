@@ -2,10 +2,11 @@ import React from "react";
 import styles from "./DataListSortingArrows.css";
 
 interface DataListSortingArrowsProps {
-  readonly order?: "asc" | "desc";
+  readonly order?: "asc" | "desc" | "none";
 }
 
 export const SORTING_ICON_TEST_ID = "ATL-DataList-Sorting-Icon";
+
 export function DataListSortingArrows({ order }: DataListSortingArrowsProps) {
   return (
     <div className={styles.sortIcon} data-testid={SORTING_ICON_TEST_ID}>
