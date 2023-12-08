@@ -1,6 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
+import { ClientOnly } from "@jobber/components/LightBox/ClientOnly";
 import styles from "./ComboboxContent.css";
 import { ComboboxContentSearch } from "./ComboboxContentSearch";
 import { ComboboxContentList } from "./ComboboxContentList";
@@ -83,5 +84,10 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     </div>
   );
 
-  return ReactDOM.createPortal(template, document.body);
+  return (
+    <ClientOnly>
+      {typeof document !== "undefined" &&
+        ReactDOM.createPortal(template, document.body)}
+    </ClientOnly>
+  );
 }
