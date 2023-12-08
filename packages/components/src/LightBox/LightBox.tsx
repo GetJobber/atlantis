@@ -7,6 +7,7 @@ import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import styles from "./LightBox.css";
+import { ClientOnly } from "./ClientOnly";
 import { ButtonDismiss } from "../ButtonDismiss";
 import { Button } from "../Button";
 
@@ -48,6 +49,7 @@ interface LightBoxProps {
 }
 
 const swipeConfidenceThreshold = 10000;
+
 const swipePower = (offset: number, velocity: number) => {
   return Math.abs(offset) * velocity;
 };
@@ -167,7 +169,9 @@ export function LightBox({
     </>
   );
 
-  return ReactDOM.createPortal(template, document.body);
+  return (
+    <ClientOnly>{ReactDOM.createPortal(template, document.body)}</ClientOnly>
+  );
 
   function handleMovePrevious() {
     setDirection(-1);
@@ -200,7 +204,7 @@ export function LightBox({
 }
 
 interface NavButtonProps {
-  onClick: () => void;
+  readonly onClick: () => void;
 }
 
 function PreviousButton({ onClick }: NavButtonProps) {
