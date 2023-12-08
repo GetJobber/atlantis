@@ -14,7 +14,7 @@
   overflow: hidden;
   white-space: nowrap;
   flex-wrap: wrap;
-  gap: var(--space-small);
+  gap: var(--space-smaller);
 }
 
 .tagsMask {
