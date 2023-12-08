@@ -10,6 +10,7 @@ import sizes from "./Sizes.css";
 import { Heading } from "../Heading";
 import { Button, ButtonProps } from "../Button";
 import { ButtonDismiss } from "../ButtonDismiss";
+import { ClientOnly } from "../LightBox/ClientOnly";
 
 export interface ModalProps {
   /**
@@ -94,7 +95,12 @@ export function Modal({
     </AnimatePresence>
   );
 
-  return ReactDOM.createPortal(template, document.body);
+  return (
+    <ClientOnly>
+      {typeof document !== "undefined" &&
+        ReactDOM.createPortal(template, document.body)}
+    </ClientOnly>
+  );
 
   function handleRequestClose() {
     if (open && onRequestClose) {

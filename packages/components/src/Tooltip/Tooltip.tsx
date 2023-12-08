@@ -9,6 +9,7 @@ import ReactDOM from "react-dom";
 import { motion } from "framer-motion";
 import styles from "./Tooltip.css";
 import { useTooltipPositioning } from "./useTooltipPositioning";
+import { ClientOnly } from "../LightBox/ClientOnly";
 
 const variation = {
   startOrStop: { scale: 0.6, opacity: 0 },
@@ -47,36 +48,38 @@ export function Tooltip({ message, children }: TooltipProps) {
     <>
       <span className={styles.shadowActivator} ref={shadowRef} />
       {children}
-      <TooltipPortal>
-        {show && Boolean(message) && (
-          <div
-            className={toolTipClassNames}
-            style={popperStyles.popper}
-            ref={setTooltipRef}
-            role="tooltip"
-            {...attributes.popper}
-          >
-            <motion.div
-              className={styles.tooltip}
-              variants={variation}
-              initial="startOrStop"
-              animate="done"
-              exit="startOrStop"
-              transition={{
-                damping: 50,
-                stiffness: 500,
-              }}
+      <ClientOnly>
+        <TooltipPortal>
+          {show && Boolean(message) && (
+            <div
+              className={toolTipClassNames}
+              style={popperStyles.popper}
+              ref={setTooltipRef}
+              role="tooltip"
+              {...attributes.popper}
             >
-              <p className={styles.tooltipMessage}>{message}</p>
-              <div
-                ref={setArrowRef}
-                style={popperStyles.arrow}
-                className={styles.arrow}
-              />
-            </motion.div>
-          </div>
-        )}
-      </TooltipPortal>
+              <motion.div
+                className={styles.tooltip}
+                variants={variation}
+                initial="startOrStop"
+                animate="done"
+                exit="startOrStop"
+                transition={{
+                  damping: 50,
+                  stiffness: 500,
+                }}
+              >
+                <p className={styles.tooltipMessage}>{message}</p>
+                <div
+                  ref={setArrowRef}
+                  style={popperStyles.arrow}
+                  className={styles.arrow}
+                />
+              </motion.div>
+            </div>
+          )}
+        </TooltipPortal>
+      </ClientOnly>
     </>
   );
 
@@ -133,9 +136,14 @@ export function Tooltip({ message, children }: TooltipProps) {
 }
 
 interface TooltipPortalProps {
-  children: ReactNode;
+  readonly children: ReactNode;
 }
 
 function TooltipPortal({ children }: TooltipPortalProps) {
-  return ReactDOM.createPortal(children, document.body);
+  return typeof document !== "undefined" ? (
+    ReactDOM.createPortal(children, document.body)
+  ) : (
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    <></>
+  );
 }
