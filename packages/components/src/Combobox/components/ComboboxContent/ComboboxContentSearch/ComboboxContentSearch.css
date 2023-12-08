@@ -42,5 +42,9 @@
 }
 
 .clearSearch:focus {
+  outline: transparent;
+}
+
+.clearSearch:focus-visible {
   box-shadow: var(--shadow-focus);
 }
