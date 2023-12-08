@@ -50,7 +50,11 @@ export function Flex({
         [styles[`${gap}Gap`]]: Boolean(gap),
         [styles[`${align}Align`]]: Boolean(align),
       })}
-      style={generateGridStylesFromTemplate(direction, template)}
+      style={
+        typeof document !== "undefined"
+          ? generateGridStylesFromTemplate(direction, template)
+          : {}
+      }
     >
       {children}
     </div>
