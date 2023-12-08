@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.67.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.67.4...@jobber/components@4.67.5) (2023-12-08)
+
+
+### Bug Fixes
+
+* **components:** Clean up interactive state colors in combobox ([#1679](https://github.com/GetJobber/atlantis/issues/1679)) ([9aa2433](https://github.com/GetJobber/atlantis/commit/9aa243369b8b14be58a1da9e792d3cc754aa10b3))
+* **components:** update spacing of DataList bulk header actions ([#1676](https://github.com/GetJobber/atlantis/issues/1676)) ([080c07c](https://github.com/GetJobber/atlantis/commit/080c07cb01bf6842de106c51f167120ec2a168a9))
+
+
+
+
+
 ## [4.67.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.67.3...@jobber/components@4.67.4) (2023-12-08)
 
 
