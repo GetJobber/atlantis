@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.67.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.67.1...@jobber/components@4.67.2) (2023-12-08)
+
+
+### Bug Fixes
+
+* **components:** remove gradient on scroll from top and bottom of Combobox [JOB-79443] ([#1678](https://github.com/GetJobber/atlantis/issues/1678)) ([0e56148](https://github.com/GetJobber/atlantis/commit/0e561480c26ae3bb9b3c6e349ec7219245e235e1))
+
+
+
+
+
 ## [4.67.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.67.0...@jobber/components@4.67.1) (2023-12-05)
 
 **Note:** Version bump only for package @jobber/components
