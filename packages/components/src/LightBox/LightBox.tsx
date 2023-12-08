@@ -170,7 +170,10 @@ export function LightBox({
   );
 
   return (
-    <ClientOnly>{ReactDOM.createPortal(template, document.body)}</ClientOnly>
+    <ClientOnly>
+      {typeof document !== "undefined" &&
+        ReactDOM.createPortal(template, document.body)}
+    </ClientOnly>
   );
 
   function handleMovePrevious() {
