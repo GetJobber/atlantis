@@ -1,4 +1,4 @@
-import React, { RefObject, useEffect, useLayoutEffect, useState } from "react";
+import React, { RefObject, useEffect, useState } from "react";
 import classnames from "classnames";
 import { createPortal } from "react-dom";
 import { usePopper } from "react-popper";
@@ -8,6 +8,7 @@ import styles from "./Autocomplete.css";
 import { Text } from "../Text";
 import { Icon } from "../Icon";
 import { Heading } from "../Heading";
+import { useSafeLayoutEffect } from "../InputText/useSafeLayoutEffect";
 
 enum IndexChange {
   Previous = -1,
@@ -173,7 +174,7 @@ function useRepositionMenu(attachTo: MenuProps["attachTo"], visible = false) {
     ],
   });
 
-  useLayoutEffect(() => {
+  useSafeLayoutEffect(() => {
     popper?.update?.();
   }, [visible]);
 

@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React from "react";
 import TimePolyfill from "time-input-polyfill";
 import debounce from "lodash/debounce";
 import { InputTimeProps } from "./InputTimeProps";
@@ -7,6 +7,7 @@ import {
   htmlTimeToCivilTime,
 } from "./civilTimeConversions";
 import { FormField } from "../FormField";
+import { useSafeLayoutEffect } from "../InputText/useSafeLayoutEffect";
 
 interface PolyfilledInputElement extends HTMLInputElement {
   polyfill: { update: () => void };
@@ -23,7 +24,7 @@ export function InputTimeSafari({
   const changeHandler = generateEventHandler(debouncedHandleChange);
   const blurHandler = generateEventHandler(handleChange);
 
-  useLayoutEffect(() => {
+  useSafeLayoutEffect(() => {
     const input = inputTime.current as PolyfilledInputElement;
 
     new TimePolyfill(input);
@@ -47,7 +48,7 @@ export function InputTimeSafari({
     };
   }, []);
 
-  useLayoutEffect(() => {
+  useSafeLayoutEffect(() => {
     const input = inputTime.current as PolyfilledInputElement;
 
     if (value) {

@@ -1,15 +1,11 @@
-import React, {
-  ReactElement,
-  ReactNode,
-  useLayoutEffect,
-  useState,
-} from "react";
+import React, { ReactElement, ReactNode, useState } from "react";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
 import { motion } from "framer-motion";
 import styles from "./Tooltip.css";
 import { useTooltipPositioning } from "./useTooltipPositioning";
 import { ClientOnly } from "../LightBox/ClientOnly";
+import { useSafeLayoutEffect } from "../InputText/useSafeLayoutEffect";
 
 const variation = {
   startOrStop: { scale: 0.6, opacity: 0 },
@@ -124,7 +120,7 @@ export function Tooltip({ message, children }: TooltipProps) {
       }
     };
 
-    useLayoutEffect(() => {
+    useSafeLayoutEffect(() => {
       injectAttributes();
       addListeners();
 
