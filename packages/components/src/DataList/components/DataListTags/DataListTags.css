@@ -4,7 +4,7 @@
 
 .tags {
   --inline-label-height: calc(
-    var(--typography--fontSize-small) * 1.5 + calc(var(--space-smaller) * 1.5) *
+    var(--typography--fontSize-small) * 1.5 + calc(var(--space-smaller) * 1.25) *
       2
   );
 
