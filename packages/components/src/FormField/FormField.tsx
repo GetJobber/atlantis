@@ -42,6 +42,7 @@ export function FormField(props: FormFieldProps) {
     onFocus,
     onBlur,
     onValidation,
+    clearable = "never",
   } = props;
 
   const {
@@ -122,6 +123,8 @@ export function FormField(props: FormFieldProps) {
             error={error}
             identifier={identifier}
             descriptionIdentifier={descriptionIdentifier}
+            clearable={clearable}
+            onClear={handleClear}
           >
             {renderField()}
           </FormFieldWrapper>
@@ -163,6 +166,13 @@ export function FormField(props: FormFieldProps) {
           }
         }
 
+        function handleClear() {
+          handleBlur();
+          setValue(controlledName, undefined, { shouldValidate: true });
+          onChange && onChange("");
+          inputRef?.current?.focus();
+        }
+
         function handleChange(
           event: ChangeEvent<
             HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -199,6 +209,7 @@ export function FormField(props: FormFieldProps) {
           if ((target as HTMLInputElement).select) {
             setTimeout(() => readonly && (target as HTMLInputElement).select());
           }
+
           onFocus && onFocus();
         }
 

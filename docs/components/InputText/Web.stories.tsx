@@ -38,3 +38,9 @@ Loading.args = {
   name: "phoneNumber",
   loading: true,
 };
+
+export const Clearable = BasicTemplate.bind({});
+Clearable.args = {
+  name: "name",
+  clearable: "always",
+};

@@ -72,3 +72,9 @@ export const Event = EventTemplate.bind({});
 Event.args = {
   placeholder: "Start time",
 };
+
+export const Clearable = EventTemplate.bind({});
+Clearable.args = {
+  placeholder: "Start Time",
+  clearable: "always",
+};

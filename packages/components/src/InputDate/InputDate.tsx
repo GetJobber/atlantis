@@ -10,7 +10,7 @@ import {
 import { DatePicker } from "../DatePicker";
 
 interface InputDateProps
-  extends CommonFormFieldProps,
+  extends Omit<CommonFormFieldProps, "clearable">,
     Pick<
       FormFieldProps,
       | "readonly"
@@ -42,6 +42,7 @@ interface InputDateProps
 
 export function InputDate(inputProps: InputDateProps) {
   const formFieldActionsRef = useRef<FieldActionsRef>(null);
+
   return (
     <DatePicker
       selected={inputProps.value}

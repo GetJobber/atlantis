@@ -14,6 +14,7 @@ export interface InputTimeProps
       | "onValidation"
       | "placeholder"
       | "size"
+      | "clearable"
     >,
     Pick<
       FormFieldProps,
