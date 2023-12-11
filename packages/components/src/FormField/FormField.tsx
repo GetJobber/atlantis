@@ -14,7 +14,8 @@ import styles from "./FormField.css";
 import { FormFieldWrapper } from "./FormFieldWrapper";
 import { FormFieldPostFix } from "./FormFieldPostFix";
 
-// eslint-disable-next-line max-statements
+// Added 13th statement to accommodate getErrorMessage function
+/*eslint max-statements: ["error", 13]*/
 export function FormField(props: FormFieldProps) {
   const {
     actionsRef,
