@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.68.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.67.6...@jobber/components@4.68.0) (2023-12-11)
+
+
+### Features
+
+* **components:** Add clearable prop to inputs ([#1677](https://github.com/GetJobber/atlantis/issues/1677)) ([439d26d](https://github.com/GetJobber/atlantis/commit/439d26d9ba78d7a4c75be26f8f58ec54c7d82dc2))
+
+
+
+
+
 ## [4.67.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.67.5...@jobber/components@4.67.6) (2023-12-11)
 
 
