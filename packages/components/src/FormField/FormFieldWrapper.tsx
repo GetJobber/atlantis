@@ -6,6 +6,7 @@ import React, {
   useState,
 } from "react";
 import classnames from "classnames";
+import { Clearable, useShowClear } from "@jobber/hooks";
 import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.css";
 import { AffixIcon, AffixLabel } from "./FormFieldAffix";
@@ -17,7 +18,7 @@ interface FormFieldWrapperProps extends FormFieldProps {
   readonly error: string;
   readonly identifier: string;
   readonly descriptionIdentifier: string;
-  readonly showClear: boolean | undefined;
+  readonly clearable: Clearable;
   readonly onClear: () => void;
 }
 
@@ -44,7 +45,7 @@ export function FormFieldWrapper({
   disabled,
   inline,
   identifier,
-  showClear = false,
+  clearable,
   onClear,
 }: PropsWithChildren<FormFieldWrapperProps>) {
   const wrapperClasses = classnames(
@@ -86,8 +87,30 @@ export function FormFieldWrapper({
     setLabelStyle(getAffixPaddding);
   }, [value]);
 
+  const [focused, setFocused] = useState(false);
+
+  const showClear = useShowClear({
+    clearable,
+    multiline: type === "textarea",
+    focused,
+    hasValue: Boolean(value),
+    disabled,
+  });
+
   return (
-    <div className={containerClasses}>
+    <div
+      className={containerClasses}
+      onFocus={() => setFocused(true)}
+      onBlur={() => {
+        // Uses the nextTick to check if the clear button is focused.
+        // Otherwise, it will say that the body is the activeElement.
+        setTimeout(() => {
+          if (document.activeElement?.ariaLabel === "Clear input") return;
+
+          setFocused(false);
+        });
+      }}
+    >
       <div
         className={wrapperClasses}
         style={wrapperInlineStyle}
