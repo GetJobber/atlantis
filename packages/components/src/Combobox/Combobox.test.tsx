@@ -206,6 +206,31 @@ describe("Combobox Single Select", () => {
   });
 });
 
+describe("Actions", () => {
+  it("should show the action when there is a search value", async () => {
+    renderCombobox();
+
+    await userEvent.click(screen.getByRole("combobox"));
+    await userEvent.type(screen.getByPlaceholderText("Search"), "Bilbo");
+
+    const action = screen.getByText("Add Bilbo");
+    expect(action).toBeInTheDocument();
+    await userEvent.click(action);
+    expect(handleAction).toHaveBeenCalledWith(expect.anything(), {
+      searchValue: "Bilbo",
+    });
+  });
+
+  it("should not show the action when there is no search value", async () => {
+    renderCombobox();
+
+    await userEvent.click(screen.getByRole("combobox"));
+
+    expect(screen.queryByText("Add Bilbo")).not.toBeInTheDocument();
+    expect(screen.queryByText("Add ")).not.toBeInTheDocument();
+  });
+});
+
 describe("Combobox Multiselect", () => {
   it("should not close the menu when selecting the value", async () => {
     renderMultiSelectCombobox();
@@ -416,6 +441,11 @@ function renderCombobox() {
       <Combobox.Option id="1" label="Bilbo Baggins" />
       <Combobox.Option id="2" label="Frodo Baggins" />
       <Combobox.Action label="Add Teammate" onClick={handleAction} />
+      <Combobox.Action
+        visible={({ searchValue }) => Boolean(searchValue)}
+        label={({ searchValue }) => `Add ${searchValue}`}
+        onClick={handleAction}
+      />
     </Combobox>,
   );
 }

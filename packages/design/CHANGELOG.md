@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.51.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.50.0...@jobber/design@0.51.0) (2023-12-05)
+
+
+### Features
+
+* **components:** add 'pinned' and 'unPinned' icons — (Minor) Feature Release ([#1674](https://github.com/GetJobber/atlantis/issues/1674)) ([4b83847](https://github.com/GetJobber/atlantis/commit/4b838477c04fe71aa17ddaf2e89b68242d2350d2))
+
+
+
+
+
 # [0.50.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.49.0...@jobber/design@0.50.0) (2023-11-29)
 
 

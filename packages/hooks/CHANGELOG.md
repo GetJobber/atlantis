@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.7.3...@jobber/hooks@2.8.0) (2023-12-05)
+
+
+### Features
+
+* **hooks:** Move useShowClear to @jobber/hooks ([#1675](https://github.com/GetJobber/atlantis/issues/1675)) ([7764bb5](https://github.com/GetJobber/atlantis/commit/7764bb5a68b9ff8e43c5dc386d3829f4c8e46160))
+
+
+
+
+
+## [2.7.3](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.7.2...@jobber/hooks@2.7.3) (2023-12-01)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
 ## [2.7.2](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.7.1...@jobber/hooks@2.7.2) (2023-11-16)
 
 

@@ -12,7 +12,8 @@ export interface ProgressBarProps {
   readonly current: number;
 
   /**
-   * The number of items in progress (not completed, but to be less than the total)
+   * The number of items in progress (not completed, but to be less than the total);
+   * not applicable with stepped variation
    */
   readonly inProgress?: number;
 
@@ -31,4 +32,10 @@ export interface ProgressBarProps {
    * Component to render above the progress bar.
    */
   readonly header?: ReactNode;
+
+  /**
+   * Set the variation of the progress bar
+   * @default progress
+   */
+  readonly variation?: "progress" | "stepped";
 }

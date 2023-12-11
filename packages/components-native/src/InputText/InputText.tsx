@@ -25,15 +25,12 @@ import {
 } from "react-hook-form";
 import { IconNames } from "@jobber/design";
 import identity from "lodash/identity";
+import { Clearable, useShowClear } from "@jobber/hooks";
 import { styles } from "./InputText.style";
 import { useInputAccessoriesContext } from "./context";
 import { useFormController } from "../hooks";
 import { InputFieldStyleOverride } from "../InputFieldWrapper/InputFieldWrapper";
-import {
-  Clearable,
-  InputFieldWrapper,
-  useShowClear,
-} from "../InputFieldWrapper";
+import { InputFieldWrapper } from "../InputFieldWrapper";
 import { commonInputStyles } from "../InputFieldWrapper/CommonInputStyles.style";
 
 export interface InputTextProps {

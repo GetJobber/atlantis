@@ -212,10 +212,24 @@ export interface ComboboxActionProps {
   /**
    * The function to call when the action is clicked.
    */
-  onClick(event: React.MouseEvent<HTMLButtonElement>): void;
+  onClick(
+    event: React.MouseEvent<HTMLButtonElement>,
+    options: ComboboxActionCallbackOptions,
+  ): void;
 
   /**
    * The label text of the action.
    */
-  readonly label: string;
+  readonly label: string | ((options: ComboboxActionCallbackOptions) => string);
+
+  /**
+   * Determine if the action is visible for a given item.
+   */
+  readonly visible?:
+    | boolean
+    | ((options: ComboboxActionCallbackOptions) => boolean);
+}
+
+export interface ComboboxActionCallbackOptions {
+  readonly searchValue: string;
 }

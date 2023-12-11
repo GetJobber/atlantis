@@ -306,7 +306,7 @@ export interface DataListActionProps<T extends DataListObject> {
   /**
    * The label of the action
    */
-  readonly label: string;
+  readonly label: string | ((item: T) => string);
 
   /**
    * The icon beside the label
