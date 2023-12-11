@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.67.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.67.5...@jobber/components@4.67.6) (2023-12-11)
+
+
+### Bug Fixes
+
+* **components:** Fix DataList hidden tags sliver showing up ([#1683](https://github.com/GetJobber/atlantis/issues/1683)) ([b25472d](https://github.com/GetJobber/atlantis/commit/b25472d2f8bdb4d04484a59792af519a6e5a48e5))
+
+
+
+
+
 ## [4.67.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.67.4...@jobber/components@4.67.5) (2023-12-08)
 
 
