@@ -15,7 +15,7 @@
 
 .option:hover,
 .option:focus-visible {
-  background-color: var(--color-surface--background);
+  background-color: var(--color-surface--hover);
 }
 
 .option:focus,
