@@ -6,7 +6,7 @@ import React, {
   useState,
 } from "react";
 import classnames from "classnames";
-import { Clearable, useShowClear } from "@jobber/hooks";
+import { useShowClear } from "@jobber/hooks";
 import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.css";
 import { AffixIcon, AffixLabel } from "./FormFieldAffix";
@@ -18,7 +18,7 @@ interface FormFieldWrapperProps extends FormFieldProps {
   readonly error: string;
   readonly identifier: string;
   readonly descriptionIdentifier: string;
-  readonly clearable: Clearable;
+  readonly clearable: "never" | "always";
   readonly onClear: () => void;
 }
 
@@ -101,15 +101,7 @@ export function FormFieldWrapper({
     <div
       className={containerClasses}
       onFocus={() => setFocused(true)}
-      onBlur={() => {
-        // Uses the nextTick to check if the clear button is focused.
-        // Otherwise, it will say that the body is the activeElement.
-        setTimeout(() => {
-          if (document.activeElement?.ariaLabel === "Clear input") return;
-
-          setFocused(false);
-        });
-      }}
+      onBlur={() => setFocused(false)}
     >
       <div
         className={wrapperClasses}
