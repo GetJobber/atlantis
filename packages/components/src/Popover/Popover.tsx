@@ -9,7 +9,7 @@ export interface PopoverProps {
    * Element the Popover will attach to and point at. A `useRef` must be attached to an html element
    * and passed as an attachTo prop in order for the Popover to function properly
    */
-  readonly attachTo: Element | React.RefObject<Element | null>;
+  readonly attachTo: HTMLElement | React.RefObject<HTMLElement | null>;
 
   /**
    * Popover content.
@@ -43,7 +43,7 @@ export function Popover({
   const [popperElement, setPopperElement] = useState<HTMLElement | null>();
   const [arrowElement, setArrowElement] = useState<HTMLElement | null>();
   const { styles: popperStyles, attributes } = usePopper(
-    attachTo instanceof Element ? attachTo : attachTo.current,
+    attachTo instanceof HTMLElement ? attachTo : attachTo.current,
     popperElement,
     {
       modifiers: buildModifiers(arrowElement),
@@ -96,5 +96,6 @@ function buildModifiers(arrowElement: HTMLElement | undefined | null) {
       },
     },
   ];
+
   return modifiers;
 }
