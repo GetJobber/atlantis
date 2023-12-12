@@ -15,7 +15,7 @@ import { useAssert } from "@jobber/hooks/useAssert";
 ```ts
 const child: ReactElement = <Avatar initials="JBR" />;
 // Make sure the child can only be an <Icon /> component
-useAssert(child.type !== Icon, "You can only pass in an <Icon /> child");
+useSafeAssert(child.type !== Icon, "You can only pass in an <Icon /> child");
 ```
 
 ## Warn
@@ -26,7 +26,7 @@ in a `warn: true` param. This will throw a warning on your browser console.
 ```ts
 const url: string = "http://getjobber.com";
 // Make sure the url always starts with https://
-useAssert(url.startsWith("http://"), "Please pass in an `https://` url", {
+useSafeAssert(url.startsWith("http://"), "Please pass in an `https://` url", {
   warn: true,
 });
 ```
