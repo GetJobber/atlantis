@@ -6,7 +6,7 @@ import React, {
   useState,
 } from "react";
 import classnames from "classnames";
-import { useShowClear } from "@jobber/hooks";
+import { useShowClear } from "@jobber/hooks/useShowClear";
 import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.css";
 import { AffixIcon, AffixLabel } from "./FormFieldAffix";
