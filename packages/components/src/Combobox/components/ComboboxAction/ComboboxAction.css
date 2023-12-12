@@ -25,7 +25,7 @@
 .actionButton:hover,
 .actionButton:focus-visible {
   outline: none;
-  background-color: var(--color-surface--background);
+  background-color: var(--color-surface--hover);
 }
 
 .actionButton:focus-visible {

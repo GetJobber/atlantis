@@ -6,16 +6,20 @@ import React, {
   useState,
 } from "react";
 import classnames from "classnames";
+import { useShowClear } from "@jobber/hooks";
 import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.css";
 import { AffixIcon, AffixLabel } from "./FormFieldAffix";
 import { FormFieldDescription } from "./FormFieldDescription";
+import { ClearAction } from "./components/ClearAction";
 import { InputValidation } from "../InputValidation";
 
 interface FormFieldWrapperProps extends FormFieldProps {
   readonly error: string;
   readonly identifier: string;
   readonly descriptionIdentifier: string;
+  readonly clearable: "never" | "always";
+  readonly onClear: () => void;
 }
 
 interface LabelPadding {
@@ -41,6 +45,8 @@ export function FormFieldWrapper({
   disabled,
   inline,
   identifier,
+  clearable,
+  onClear,
 }: PropsWithChildren<FormFieldWrapperProps>) {
   const wrapperClasses = classnames(
     styles.wrapper,
@@ -81,8 +87,22 @@ export function FormFieldWrapper({
     setLabelStyle(getAffixPaddding);
   }, [value]);
 
+  const [focused, setFocused] = useState(false);
+
+  const showClear = useShowClear({
+    clearable,
+    multiline: type === "textarea",
+    focused,
+    hasValue: Boolean(value),
+    disabled,
+  });
+
   return (
-    <div className={containerClasses}>
+    <div
+      className={containerClasses}
+      onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
+    >
       <div
         className={wrapperClasses}
         style={wrapperInlineStyle}
@@ -106,10 +126,11 @@ export function FormFieldWrapper({
 
           {prefix?.label && <AffixLabel {...prefix} labelRef={prefixRef} />}
           <div className={styles.childrenWrapper}>{children}</div>
-          {suffix?.label && (
-            <AffixLabel {...suffix} labelRef={suffixRef} variation="suffix" />
-          )}
         </div>
+        {suffix?.label && (
+          <AffixLabel {...suffix} labelRef={suffixRef} variation="suffix" />
+        )}
+        {showClear && <ClearAction onClick={onClear} />}
         {suffix?.icon && (
           <AffixIcon {...suffix} variation="suffix" size={size} />
         )}

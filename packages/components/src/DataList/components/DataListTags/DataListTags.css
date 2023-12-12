@@ -3,11 +3,18 @@
 }
 
 .tags {
+  --inline-label-height: calc(
+    var(--typography--fontSize-small) * 1.5 + calc(var(--space-smaller) * 1.25) *
+      2
+  );
+
   display: flex;
   z-index: var(--elevation-default);
+  max-height: calc(var(--inline-label-height) * 2);
   overflow: hidden;
-  gap: var(--space-small);
   white-space: nowrap;
+  flex-wrap: wrap;
+  gap: var(--space-smaller);
 }
 
 .tagsMask {

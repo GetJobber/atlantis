@@ -3,6 +3,81 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.68.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.68.0...@jobber/components@4.68.1) (2023-12-12)
+
+
+### Bug Fixes
+
+* **components:** Always show sort icons on Datalist [JOB-82902] ([#1682](https://github.com/GetJobber/atlantis/issues/1682)) ([c893b3e](https://github.com/GetJobber/atlantis/commit/c893b3ed38f95427ca71a6763037af5f7b28e245))
+
+
+
+
+
+# [4.68.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.67.6...@jobber/components@4.68.0) (2023-12-11)
+
+
+### Features
+
+* **components:** Add clearable prop to inputs ([#1677](https://github.com/GetJobber/atlantis/issues/1677)) ([439d26d](https://github.com/GetJobber/atlantis/commit/439d26d9ba78d7a4c75be26f8f58ec54c7d82dc2))
+
+
+
+
+
+## [4.67.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.67.5...@jobber/components@4.67.6) (2023-12-11)
+
+
+### Bug Fixes
+
+* **components:** Fix DataList hidden tags sliver showing up ([#1683](https://github.com/GetJobber/atlantis/issues/1683)) ([b25472d](https://github.com/GetJobber/atlantis/commit/b25472d2f8bdb4d04484a59792af519a6e5a48e5))
+
+
+
+
+
+## [4.67.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.67.4...@jobber/components@4.67.5) (2023-12-08)
+
+
+### Bug Fixes
+
+* **components:** Clean up interactive state colors in combobox ([#1679](https://github.com/GetJobber/atlantis/issues/1679)) ([9aa2433](https://github.com/GetJobber/atlantis/commit/9aa243369b8b14be58a1da9e792d3cc754aa10b3))
+* **components:** update spacing of DataList bulk header actions ([#1676](https://github.com/GetJobber/atlantis/issues/1676)) ([080c07c](https://github.com/GetJobber/atlantis/commit/080c07cb01bf6842de106c51f167120ec2a168a9))
+
+
+
+
+
+## [4.67.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.67.3...@jobber/components@4.67.4) (2023-12-08)
+
+
+### Bug Fixes
+
+* **components:** Fix DataList tags counter overflow ([#1680](https://github.com/GetJobber/atlantis/issues/1680)) ([ce99e57](https://github.com/GetJobber/atlantis/commit/ce99e57f3dcb66bc3e63feb2fab98d5036635e10))
+
+
+
+
+
+## [4.67.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.67.2...@jobber/components@4.67.3) (2023-12-08)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.67.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.67.1...@jobber/components@4.67.2) (2023-12-08)
+
+
+### Bug Fixes
+
+* **components:** remove gradient on scroll from top and bottom of Combobox [JOB-79443] ([#1678](https://github.com/GetJobber/atlantis/issues/1678)) ([0e56148](https://github.com/GetJobber/atlantis/commit/0e561480c26ae3bb9b3c6e349ec7219245e235e1))
+
+
+
+
+
 ## [4.67.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.67.0...@jobber/components@4.67.1) (2023-12-05)
 
 **Note:** Version bump only for package @jobber/components
