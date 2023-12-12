@@ -30,9 +30,11 @@ export function DataListHeaderTile<T extends DataListObject>({
       onClick={handleOnClick}
     >
       <Text maxLines="single">{headers[headerKey]}</Text>
-      {sortingState?.key === headerKey && (
+      {sortingState?.key === headerKey ? (
         <DataListSortingArrows order={sortingState.order} />
-      )}
+      ) : sortingState?.key !== headerKey && isSortable ? (
+        <DataListSortingArrows order="none" />
+      ) : null}
     </Tag>
   );
 
