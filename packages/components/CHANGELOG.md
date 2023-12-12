@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.68.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.68.1...@jobber/components@4.68.2) (2023-12-12)
+
+
+### Bug Fixes
+
+* **components:** Import useShowClear directly from the folder in FormFieldWrapper ([#1684](https://github.com/GetJobber/atlantis/issues/1684)) ([bb53587](https://github.com/GetJobber/atlantis/commit/bb535872cac44e6fd219d4d2bac4b80b5cb86c8e))
+
+
+
+
+
 ## [4.68.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.68.0...@jobber/components@4.68.1) (2023-12-12)
 
 
