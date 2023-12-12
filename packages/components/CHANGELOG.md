@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.68.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.68.0...@jobber/components@4.68.1) (2023-12-12)
+
+
+### Bug Fixes
+
+* **components:** Always show sort icons on Datalist [JOB-82902] ([#1682](https://github.com/GetJobber/atlantis/issues/1682)) ([c893b3e](https://github.com/GetJobber/atlantis/commit/c893b3ed38f95427ca71a6763037af5f7b28e245))
+
+
+
+
+
 # [4.68.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.67.6...@jobber/components@4.68.0) (2023-12-11)
 
 
