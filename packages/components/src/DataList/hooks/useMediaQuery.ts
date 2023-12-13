@@ -1,31 +1,45 @@
-import React from "react";
+import { useEffect, useState } from "react";
 
-type MediaQuery = `(${string}:${string})`;
+function useUnSafeMediaQuery(CSSMediaQuery: string) {
+  /**
+   * matchMedia have had full support for browsers since 2012 but jest, being a
+   * lite version of a DOM, doesn't support it.
+   *
+   * Instead of the consumers mocking matchMedia on every usage of DataList,
+   * we can just return true to mimic the largest screen we support.
+   *
+   * In the event that the consumer wants to test the DataList on different
+   * screen sizes, they can use the `mockViewportWidth` function from
+   * `@jobber/components/useBreakpoints`.
+   */
+  if (window.matchMedia === undefined) return true;
 
-function getSnapshot(query: MediaQuery) {
-  return window.matchMedia(query).matches;
-}
-
-function subscribe(onChange: () => void, query: MediaQuery) {
-  const mql = window.matchMedia(query);
-  mql.addEventListener("change", onChange);
-
-  return () => mql.removeEventListener("change", onChange);
-}
-
-export function useMediaQuery(query: MediaQuery) {
-  if (typeof window === "undefined" || window.matchMedia === undefined) {
-    return true;
-  }
-
-  const subscribeMediaQuery = React.useCallback(
-    (onChange: () => void) => subscribe(onChange, query),
-    [query],
+  const [matches, setMatches] = useState(
+    window.matchMedia(CSSMediaQuery).matches,
   );
 
-  const matches = React.useSyncExternalStore(subscribeMediaQuery, () =>
-    getSnapshot(query),
-  );
+  useEffect(() => {
+    const media = window.matchMedia(CSSMediaQuery);
+
+    if (media.matches !== matches) {
+      setMatches(media.matches);
+    }
+
+    const listener = () => setMatches(media.matches);
+    media.addEventListener("change", listener);
+
+    return () => media.removeEventListener("change", listener);
+  }, [CSSMediaQuery]);
 
   return matches;
 }
+
+const canUseDom = !!(
+  typeof window !== "undefined" &&
+  window.document &&
+  window.document.createElement
+);
+
+// safe to disable eslint here because we want a function that does nothing
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+export const useMediaQuery = canUseDom ? useUnSafeMediaQuery : () => {};
