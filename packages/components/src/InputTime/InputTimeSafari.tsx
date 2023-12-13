@@ -1,5 +1,4 @@
 import React from "react";
-import TimePolyfill from "time-input-polyfill";
 import debounce from "lodash/debounce";
 import { InputTimeProps } from "./InputTimeProps";
 import {
@@ -25,42 +24,49 @@ export function InputTimeSafari({
   const blurHandler = generateEventHandler(handleChange);
 
   useSafeLayoutEffect(() => {
-    const input = inputTime.current as PolyfilledInputElement;
+    const setupTimePolyfill = async () => {
+      const input = inputTime.current as PolyfilledInputElement;
+      const { TimePolyfill } = await import("./TimeInputPolyfill.client");
+      new TimePolyfill(input);
 
-    new TimePolyfill(input);
+      if (value && input.polyfill) {
+        input.value = civilTimeToHTMLTime(value);
+        input.polyfill?.update();
+      }
 
-    if (value) {
-      input.value = civilTimeToHTMLTime(value);
-      input.polyfill.update();
-    }
+      if (defaultValue && input.polyfill) {
+        input.value = civilTimeToHTMLTime(defaultValue);
+        input.polyfill?.update();
+      }
 
-    if (defaultValue) {
-      input.value = civilTimeToHTMLTime(defaultValue);
-      input.polyfill.update();
-    }
-
-    input.addEventListener("change", changeHandler);
-    input.addEventListener("blur", blurHandler);
+      input.addEventListener("change", changeHandler);
+      input.addEventListener("blur", blurHandler);
+    };
+    setupTimePolyfill();
 
     return () => {
       window.removeEventListener("change", changeHandler);
       window.removeEventListener("blur", blurHandler);
     };
-  }, []);
+  }, [(inputTime.current as PolyfilledInputElement)?.polyfill]);
 
   useSafeLayoutEffect(() => {
     const input = inputTime.current as PolyfilledInputElement;
 
-    if (value) {
+    if (value && input.polyfill) {
       input.value = civilTimeToHTMLTime(value);
       input.polyfill.update();
     }
 
-    if (defaultValue) {
+    if (defaultValue && input.polyfill) {
       input.value = civilTimeToHTMLTime(defaultValue);
       input.polyfill.update();
     }
-  }, [value, defaultValue]);
+  }, [
+    value,
+    defaultValue,
+    (inputTime.current as PolyfilledInputElement)?.polyfill,
+  ]);
 
   return <FormField inputRef={inputTime} type="time" {...params} />;
 

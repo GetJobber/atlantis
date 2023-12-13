@@ -23,6 +23,7 @@ it("renders a InputTime", () => {
               <input
                 class="input"
                 id=":r0:"
+                placeholder="hh:mm"
                 type="time"
                 value=""
               />

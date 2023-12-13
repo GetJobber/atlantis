@@ -86,6 +86,11 @@ interface InputFileProps {
   readonly variation?: "dropzone" | "button";
 
   /**
+   * Name of the InputFile
+   */
+  readonly name?: string;
+
+  /**
    * Size of the InputFile
    * @default "base"
    */
@@ -161,6 +166,7 @@ export function InputFile({
   allowMultiple = false,
   allowedTypes = "all",
   getUploadParams,
+  name,
   onUploadStart,
   onUploadProgress,
   onUploadComplete,
@@ -193,7 +199,7 @@ export function InputFile({
       {...getRootProps({ className: dropZone })}
       tabIndex={variation === "button" ? -1 : 0}
     >
-      <input {...getInputProps()} />
+      <input name={name} {...getInputProps()} />
 
       {variation === "dropzone" && (
         <Content spacing="small">

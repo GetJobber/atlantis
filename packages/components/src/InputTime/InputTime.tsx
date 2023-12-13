@@ -1,41 +1,20 @@
 import React from "react";
-// eslint-disable-next-line import/no-internal-modules
-import supportsTime from "time-input-polyfill/supportsTime";
-import { InputTimeSafari } from "./InputTimeSafari";
-import {
-  civilTimeToHTMLTime,
-  htmlTimeToCivilTime,
-} from "./civilTimeConversions";
 import { InputTimeProps } from "./InputTimeProps";
-import { FormField, FormFieldProps } from "../FormField";
+import { InternalInputTime } from "./InternalInputTime";
+import { ClientOnly } from "../LightBox/ClientOnly";
 
-export function InputTime({
-  defaultValue,
-  value,
-  onChange,
-  ...params
-}: InputTimeProps) {
-  const handleChange = (newValue: string) => {
-    onChange && onChange(htmlTimeToCivilTime(newValue));
-  };
+const canUseDom = !!(
+  typeof window !== "undefined" &&
+  window.document &&
+  window.document.createElement
+);
 
-  if (supportsTime) {
-    const fieldProps: FormFieldProps = {
-      onChange: handleChange,
-      ...(defaultValue && { defaultValue: civilTimeToHTMLTime(defaultValue) }),
-      ...(!defaultValue && { value: civilTimeToHTMLTime(value) }),
-      ...params,
-    };
-
-    return <FormField type="time" {...fieldProps} />;
-  } else {
-    return (
-      <InputTimeSafari
-        defaultValue={defaultValue}
-        value={value}
-        onChange={onChange}
-        {...params}
-      />
-    );
-  }
+function InputTimeSafe(props: InputTimeProps) {
+  return (
+    <ClientOnly>
+      <InternalInputTime {...props} />
+    </ClientOnly>
+  );
 }
+
+export const InputTime = canUseDom ? InputTimeSafe : () => null;

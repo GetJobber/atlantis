@@ -12,6 +12,7 @@ import { Pagination } from "./Pagination";
 import { PaginationType, SortingType } from "./types";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
+import { ClientOnly } from "../LightBox/ClientOnly";
 
 export interface DataTableProps<T> {
   /**
@@ -75,7 +76,7 @@ export interface DataTableProps<T> {
   readonly loading?: boolean;
 }
 
-export function DataTable<T extends object>({
+function InternalDataTable<T extends object>({
   data,
   columns,
   pagination,
@@ -147,5 +148,13 @@ export function DataTable<T extends object>({
         />
       )}
     </div>
+  );
+}
+
+export function DataTable<T extends object>(props: DataTableProps<T>) {
+  return (
+    <ClientOnly>
+      <InternalDataTable {...props} />
+    </ClientOnly>
   );
 }
