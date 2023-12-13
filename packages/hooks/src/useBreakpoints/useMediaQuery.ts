@@ -14,7 +14,9 @@ function subscribe(onChange: () => void, query: MediaQuery) {
 }
 
 export function useMediaQuery(query: MediaQuery) {
-  if (window.matchMedia === undefined) return true;
+  if (typeof window === "undefined" || window.matchMedia === undefined) {
+    return true;
+  }
 
   const subscribeMediaQuery = React.useCallback(
     (onChange: () => void) => subscribe(onChange, query),
