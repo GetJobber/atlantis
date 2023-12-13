@@ -6,8 +6,7 @@
   margin-top: var(--space-small);
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-larger);
-  overflow: scroll;
-  overflow-y: auto;
+  overflow: auto;
   background: var(--color-surface);
 }
 
