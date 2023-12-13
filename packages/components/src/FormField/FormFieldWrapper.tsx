@@ -126,10 +126,10 @@ export function FormFieldWrapper({
 
           {prefix?.label && <AffixLabel {...prefix} labelRef={prefixRef} />}
           <div className={styles.childrenWrapper}>{children}</div>
+          {suffix?.label && (
+            <AffixLabel {...suffix} labelRef={suffixRef} variation="suffix" />
+          )}
         </div>
-        {suffix?.label && (
-          <AffixLabel {...suffix} labelRef={suffixRef} variation="suffix" />
-        )}
         {showClear && <ClearAction onClick={onClear} />}
         {suffix?.icon && (
           <AffixIcon {...suffix} variation="suffix" size={size} />
