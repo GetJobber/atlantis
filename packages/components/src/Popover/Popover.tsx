@@ -3,13 +3,14 @@ import { usePopper } from "react-popper";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import classes from "./Popover.css";
 import { ButtonDismiss } from "../ButtonDismiss";
+import { ClientOnly } from "../LightBox/ClientOnly";
 
 export interface PopoverProps {
   /**
    * Element the Popover will attach to and point at. A `useRef` must be attached to an html element
    * and passed as an attachTo prop in order for the Popover to function properly
    */
-  readonly attachTo: HTMLElement | React.RefObject<HTMLElement | null>;
+  readonly attachTo: Element | React.RefObject<HTMLElement | null>;
 
   /**
    * Popover content.
@@ -33,7 +34,7 @@ export interface PopoverProps {
   readonly preferredPlacement?: "top" | "bottom" | "left" | "right" | "auto";
 }
 
-export function Popover({
+function PopoverInternal({
   onRequestClose,
   children,
   attachTo,
@@ -43,7 +44,7 @@ export function Popover({
   const [popperElement, setPopperElement] = useState<HTMLElement | null>();
   const [arrowElement, setArrowElement] = useState<HTMLElement | null>();
   const { styles: popperStyles, attributes } = usePopper(
-    attachTo instanceof HTMLElement ? attachTo : attachTo.current,
+    attachTo instanceof Element ? attachTo : attachTo.current,
     popperElement,
     {
       modifiers: buildModifiers(arrowElement),
@@ -76,6 +77,12 @@ export function Popover({
     </>
   );
 }
+
+export const Popover = (props: PopoverProps) => (
+  <ClientOnly>
+    <PopoverInternal {...props} />
+  </ClientOnly>
+);
 
 function buildModifiers(arrowElement: HTMLElement | undefined | null) {
   const modifiers = [

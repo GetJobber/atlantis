@@ -3,6 +3,7 @@ import React, { CSSProperties, PropsWithChildren } from "react";
 import classnames from "classnames";
 import { ColumnKeys, Direction, Spacing } from "./Flex.types";
 import styles from "./Flex.css";
+import { useSafeLayoutEffect } from "../InputText/useSafeLayoutEffect";
 
 interface FlexProps extends PropsWithChildren {
   /**
@@ -44,17 +45,18 @@ export function Flex({
   gap = "base",
   template,
 }: FlexProps) {
+  const [style, setStyle] = React.useState<CSSProperties>({});
+  useSafeLayoutEffect(() => {
+    setStyle(generateGridStylesFromTemplate(direction, template));
+  }, [direction, template]);
+
   return (
     <div
       className={classnames(styles.flexible, {
         [styles[`${gap}Gap`]]: Boolean(gap),
         [styles[`${align}Align`]]: Boolean(align),
       })}
-      style={
-        typeof document !== "undefined"
-          ? generateGridStylesFromTemplate(direction, template)
-          : {}
-      }
+      style={style}
     >
       {children}
     </div>

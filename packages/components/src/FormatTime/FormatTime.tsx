@@ -1,5 +1,6 @@
 import React from "react";
 import { CivilTime } from "@std-proposal/temporal";
+import { ClientOnly } from "../LightBox/ClientOnly";
 
 interface FormatTimeProps {
   /**
@@ -15,7 +16,7 @@ interface FormatTimeProps {
   readonly use24HourClock?: boolean;
 }
 
-export function FormatTime({
+function FormatTimeInternal({
   time: inputTime,
   use24HourClock,
 }: FormatTimeProps) {
@@ -44,10 +45,18 @@ export function FormatTime({
   return <>{formatCivilTime(dateObject, use24HourClock)}</>;
 }
 
+export const FormatTime = (props: FormatTimeProps) => (
+  <ClientOnly>
+    <FormatTimeInternal {...props} />
+  </ClientOnly>
+);
+
 function formatCivilTime(date: Date, use24HourClock?: boolean) {
-  return date.toLocaleTimeString(navigator.language, {
-    hourCycle: use24HourClock ? "h23" : "h12",
-    minute: "2-digit",
-    hour: "numeric",
-  });
+  return typeof navigator !== "undefined"
+    ? date.toLocaleTimeString(navigator.language, {
+        hourCycle: use24HourClock ? "h23" : "h12",
+        minute: "2-digit",
+        hour: "numeric",
+      })
+    : "";
 }
