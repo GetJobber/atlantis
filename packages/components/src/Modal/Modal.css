@@ -10,7 +10,7 @@
   }
 }
 
-:root :global(.jobber_retheme) {
+:root :global(.jobber-retheme) {
   --modal--shadow: var(--shadow-base);
 
   @media (--medium-screens-and-up) {
@@ -76,7 +76,7 @@
   background-color: var(--color-surface--background);
 }
 
-:global(.jobber_retheme) .header {
+:global(.jobber-retheme) .header {
   background-color: transparent;
 }
 
@@ -85,7 +85,7 @@
  * the <Content /> padding
  */
 
-:global(.jobber_retheme) .header + * {
+:global(.jobber-retheme) .header + * {
   padding-top: 0;
 }
 
