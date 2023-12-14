@@ -177,10 +177,13 @@ it("should call the onChange function when the component is modified", () => {
   const { container } = render(
     <InputTime value={new CivilTime(2, 35)} onChange={changeHandler} />,
   );
+  const input = container.querySelector("input");
 
-  fireEvent.change(container.querySelector("input"), {
-    target: { value: newValue },
-  });
+  if (input) {
+    fireEvent.change(input, {
+      target: { value: newValue },
+    });
+  }
 
   expect(changeHandler).toHaveBeenCalledWith(newCivilTime);
 });
