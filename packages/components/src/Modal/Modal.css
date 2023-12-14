@@ -80,7 +80,7 @@
   background-color: transparent;
 }
 
-:global(.jobber-retheme) h3 {
+:global(.jobber-retheme) .header h3 {
   font-size: var(--typography--fontSize-largest);
 }
 
