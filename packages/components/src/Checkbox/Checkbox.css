@@ -52,6 +52,7 @@
 
 :global(.jobber-retheme) .checkBox {
   border-color: var(--color-border);
+  border-radius: calc(var(--radius-base) / 2);
 }
 
 :global(.jobber-retheme) .checkBox:hover {
