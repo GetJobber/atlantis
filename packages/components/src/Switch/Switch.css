@@ -123,6 +123,8 @@
   cursor: not-allowed;
 }
 
+/* This is in a correct position and order */
+/* stylelint-disable-next-line no-descending-specificity */
 .disabled .pip {
   border-color: var(--color-disabled--secondary);
 }
