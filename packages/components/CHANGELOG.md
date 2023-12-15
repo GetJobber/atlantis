@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.68.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.68.4...@jobber/components@4.68.5) (2023-12-15)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.68.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.68.3...@jobber/components@4.68.4) (2023-12-13)
+
+
+### Bug Fixes
+
+* **components:** update combobox list to use overflow: auto rather than scroll ([#1687](https://github.com/GetJobber/atlantis/issues/1687)) ([974b5fc](https://github.com/GetJobber/atlantis/commit/974b5fcf0fa64bd69ec6e7ccb9a257e50ab8b3ef))
+
+
+
+
+
+## [4.68.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.68.2...@jobber/components@4.68.3) (2023-12-13)
+
+
+### Bug Fixes
+
+* **components:** Fix suffix placement inside InputFieldWrapper ([#1685](https://github.com/GetJobber/atlantis/issues/1685)) ([bf641d9](https://github.com/GetJobber/atlantis/commit/bf641d9a47bfd7c00e29e6af67915560df82e19a))
+
+
+
+
+
 ## [4.68.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.68.1...@jobber/components@4.68.2) (2023-12-12)
 
 
