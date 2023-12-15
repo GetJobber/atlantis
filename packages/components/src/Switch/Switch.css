@@ -117,14 +117,15 @@
   background-color: var(--color-surface);
 }
 
-.disabled {
-  border-color: var(--color-disabled--secondary);
-  background-color: var(--color-surface--background);
-  cursor: not-allowed;
-}
-
-/* This is in a correct position and order */
+/* Moving this up overwrites disabled styling */
 /* stylelint-disable-next-line no-descending-specificity */
 .disabled .pip {
   border-color: var(--color-disabled--secondary);
+}
+
+.disabled,
+:global(.jobber-retheme) .disabled {
+  border-color: var(--color-disabled--secondary);
+  background-color: var(--color-disabled--secondary);
+  cursor: not-allowed;
 }
