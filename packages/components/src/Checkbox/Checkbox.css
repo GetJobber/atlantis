@@ -52,10 +52,21 @@
 
 :global(.jobber-retheme) .checkBox {
   border-color: var(--color-border);
-  border-radius: calc(var(--radius-base) / 2);
+  border-radius: var(--radius-small);
 }
 
-:global(.jobber-retheme) .checkBox:hover {
+.input.indeterminate + .checkBox,
+.input:checked + .checkBox {
+  border-color: var(--color-interactive);
+  background-color: var(--color-interactive);
+}
+
+.input:focus-visible + .checkBox {
+  box-shadow: var(--shadow-focus);
+}
+
+:global(.jobber-retheme) .checkBox:hover,
+:global(.jobber-retheme) .checkbox:hover .checkBox {
   border-color: var(--color-interactive);
 }
 
@@ -65,16 +76,6 @@
 
 .disabled .checkBox > * {
   opacity: 0;
-}
-
-.input.indeterminate + .checkBox,
-.input:checked + .checkBox {
-  border-color: var(--color-interactive);
-  background-color: var(--color-interactive);
-}
-
-.input:focus + .checkBox {
-  box-shadow: var(--shadow-focus);
 }
 
 .disabled .input.indeterminate + .checkBox,
