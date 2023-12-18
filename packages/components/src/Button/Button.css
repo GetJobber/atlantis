@@ -134,6 +134,13 @@ a.button:active {
   fill: var(--button--color-variation--hover);
 }
 
+:global(.jobber-retheme) .secondary:hover,
+:global(.jobber-retheme) .subtle.primary:hover,
+:global(.jobber-retheme) .secondary:focus-visible,
+:global(.jobber-retheme) .subtle.primary:focus-visible {
+  border-color: var(--button--color-variation--hover);
+}
+
 .subtle.secondary {
   background-color: var(--button--color-surface);
 }
@@ -157,6 +164,17 @@ a.tertiary:focus-visible,
 a.subtle.secondary:hover,
 a.subtle.secondary:focus-visible {
   border-color: transparent;
+}
+
+:global(.jobber-retheme) .tertiary:hover,
+:global(.jobber-retheme) .tertiary:focus-visible,
+:global(.jobber-retheme) a.tertiary:hover,
+:global(.jobber-retheme) a.tertiary:focus-visible,
+:global(.jobber-retheme) .subtle.secondary:hover,
+:global(.jobber-retheme) .subtle.secondary:focus-visible,
+:global(.jobber-retheme) a.subtle.secondary:hover,
+:global(.jobber-retheme) a.subtle.secondary:focus-visible {
+  border-color: var(--button--color-variation--hover);
 }
 
 .subtle.tertiary {
