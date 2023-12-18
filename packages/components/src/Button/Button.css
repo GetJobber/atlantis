@@ -2,8 +2,8 @@
   --button--color-variation: var(--color-interactive);
   --button--color-variation--hover: var(--color-interactive--hover);
   --button--color-surface: var(--color-surface);
-  --button--color-surface--hover: var(--color-surface--background);
-  --button--color-primaryLabel: var(--color-white);
+  --button--color-surface--hover: var(--color-surface--hover);
+  --button--color-primaryLabel: var(--color-surface);
 
   --button--duration-loading: var(--timing-loading--extended);
 }
@@ -23,11 +23,15 @@
   vertical-align: middle;
   background-color: var(--button--color-surface);
   cursor: pointer;
-  transition: all var(--timing-base);
+  transition: all var(--timing-base) ease-out;
   appearance: none;
   fill: var(--button--color-variation);
   align-items: center;
   justify-content: center;
+}
+
+:global(.jobber-retheme) .button {
+  min-height: calc(var(--base-unit) * 2.5);
 }
 
 .button * {
@@ -36,10 +40,17 @@
   /* required to over-ride very specific fill from <Icon> */
 }
 
+:global(.jobber-retheme) .button * {
+  font-weight: 600 !important;
+  line-height: 1;
+  letter-spacing: 0;
+  /* post-retheme this can move into the TSX on L177 */
+}
+
 .button:hover,
 a.button:hover,
-.button:focus,
-a.button:focus,
+.button:focus-visible,
+a.button:focus-visible,
 .button:active,
 a.button:active {
   border-color: var(--button--color-variation--hover);
@@ -48,12 +59,12 @@ a.button:active {
   background-color: var(--button--color-surface--hover);
 }
 
-.button:focus,
-a.button:focus,
+.button:focus-visible,
+a.button:focus-visible,
 .button:active,
 a.button:active {
   box-shadow: var(--shadow-focus);
-  outline: none;
+  outline: transparent;
 }
 
 /* Variation */
@@ -66,6 +77,11 @@ a.button:active {
 .learning {
   --button--color-variation: var(--color-informative);
   --button--color-variation--hover: var(--color-informative--onSurface);
+}
+
+:global(.jobber-retheme) .learning {
+  --button--color-variation: var(--color-interactive--subtle);
+  --button--color-variation--hover: var(--color-interactive--subtle--hover);
 }
 
 .destructive {
@@ -84,14 +100,14 @@ a.button:active {
 
 .primary:not(.subtle, .disabled),
 .primary:not(.subtle, .disabled):hover,
-.primary:not(.subtle, .disabled):focus {
+.primary:not(.subtle, .disabled):focus-visible {
   color: var(--button--color-primaryLabel);
   background-color: var(--button--color-variation);
   fill: var(--button--color-primaryLabel);
 }
 
 .primary:not(.subtle, .disabled):hover,
-.primary:not(.subtle, .disabled):focus {
+.primary:not(.subtle, .disabled):focus-visible {
   background-color: var(--button--color-variation--hover);
 }
 
@@ -106,11 +122,23 @@ a.button:active {
   border-color: var(--button--color-variation);
 }
 
+:global(.jobber-retheme) .secondary,
+:global(.jobber-retheme) .subtle.primary {
+  border-color: var(--color-border);
+}
+
 .subtle.primary:hover,
-.subtle.primary:focus {
+.subtle.primary:focus-visible {
   color: var(--button--color-variation--hover);
   background-color: var(--button--color-surface--hover);
   fill: var(--button--color-variation--hover);
+}
+
+:global(.jobber-retheme) .secondary:hover,
+:global(.jobber-retheme) .subtle.primary:hover,
+:global(.jobber-retheme) .secondary:focus-visible,
+:global(.jobber-retheme) .subtle.primary:focus-visible {
+  border-color: var(--button--color-variation--hover);
 }
 
 .subtle.secondary {
@@ -123,19 +151,30 @@ a.button:active {
 }
 
 .subtle.secondary:hover,
-.subtle.secondary:focus {
+.subtle.secondary:focus-visible {
   background-color: var(--button--color-surface--hover);
 }
 
 .tertiary:hover,
-.tertiary:focus,
+.tertiary:focus-visible,
 a.tertiary:hover,
-a.tertiary:focus,
+a.tertiary:focus-visible,
 .subtle.secondary:hover,
-.subtle.secondary:focus,
+.subtle.secondary:focus-visible,
 a.subtle.secondary:hover,
-a.subtle.secondary:focus {
+a.subtle.secondary:focus-visible {
   border-color: transparent;
+}
+
+:global(.jobber-retheme) .tertiary:hover,
+:global(.jobber-retheme) .tertiary:focus-visible,
+:global(.jobber-retheme) a.tertiary:hover,
+:global(.jobber-retheme) a.tertiary:focus-visible,
+:global(.jobber-retheme) .subtle.secondary:hover,
+:global(.jobber-retheme) .subtle.secondary:focus-visible,
+:global(.jobber-retheme) a.subtle.secondary:hover,
+:global(.jobber-retheme) a.subtle.secondary:focus-visible {
+  border-color: var(--button--color-variation--hover);
 }
 
 .subtle.tertiary {
@@ -144,9 +183,9 @@ a.subtle.secondary:focus {
 }
 
 .subtle.tertiary:hover,
-.subtle.tertiary:focus,
+.subtle.tertiary:focus-visible,
 a.subtle.tertiary:hover,
-a.subtle.tertiary:focus {
+a.subtle.tertiary:focus-visible {
   border-color: transparent;
   color: var(--color-interactive--subtle--hover);
   fill: var(--color-interactive--subtle--hover);
@@ -175,9 +214,17 @@ a.button.disabled:hover {
   letter-spacing: 0;
 }
 
+:global(.jobber-retheme) .small {
+  min-height: calc(var(--base-unit) * 1.5);
+  padding: 0 calc(var(--space-base) - var(--space-smaller));
+}
+
 .base {
-  min-height: calc(var(--base-unit) * 2.25);
-  padding: 0 calc(var(--space-base) - 4px);
+  padding: 0 calc(var(--space-base) - var(--space-smaller));
+}
+
+:global(.jobber-retheme) .base {
+  padding: 0 var(--space-base);
 }
 
 .large {
@@ -185,7 +232,16 @@ a.button.disabled:hover {
   padding: 0 var(--space-base);
 }
 
+:global(.jobber-retheme) .large {
+  min-height: calc(var(--base-unit) * 3);
+  padding: 0 calc(var(--space-base) + var(--space-smaller));
+}
+
 /* Icon */
+
+.button svg {
+  flex-shrink: 0;
+}
 
 .onlyIcon {
   width: calc(var(--base-unit) * 2.25);
@@ -200,27 +256,40 @@ a.button.disabled:hover {
   width: calc(var(--space-base) * 2.25);
 }
 
+:global(.jobber-retheme) .onlyIcon.base {
+  width: calc(var(--space-base) * 2.5);
+}
+
 .onlyIcon.large {
   width: calc(var(--space-large) * 2);
 }
 
 .hasIconAndLabel {
   width: auto;
+  gap: var(--space-small);
 }
 
+:global(.jobber-retheme) .hasIconAndLabel {
+  gap: var(--space-smaller);
+}
+
+/* Don't want to move things that will update after re-theme */
+/* stylelint-disable-next-line no-descending-specificity */
 .hasIconAndLabel > * {
   text-align: start;
 }
 
-.hasIconAndLabel > *:first-child {
-  flex-shrink: 0;
-  margin-right: var(--space-small);
+.iconOnRight > *:first-child {
+  order: 1;
 }
 
-.iconOnRight > *:first-child {
-  margin-left: var(--space-small);
-  margin-right: 0;
-  order: 1;
+:global(.jobber-retheme) .hasIconAndLabel > *:first-child {
+  margin-left: calc(var(--space-smaller) * -1);
+}
+
+:global(.jobber-retheme) .iconOnRight > *:first-child {
+  margin-left: 0;
+  margin-right: calc(var(--space-smaller) * -1);
 }
 
 .fullWidth {
