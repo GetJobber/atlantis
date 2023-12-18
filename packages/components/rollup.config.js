@@ -15,7 +15,7 @@ export default {
     }),
     postcss({
       modules: {
-        generateScopedName: "[hash:base64]",
+        generateScopedName: "[name]__[local]--[retheme]",
         globalModulePaths: [/node_modules/],
       },
       autoModules: false,
