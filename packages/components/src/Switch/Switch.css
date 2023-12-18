@@ -129,13 +129,26 @@
   background-color: var(--color-disabled);
 }
 
-.disabled,
-:global(.jobber-retheme) .disabled {
+.disabled {
   border-color: var(--color-disabled--secondary);
+  background-color: var(--color-surface--background);
+  cursor: not-allowed;
+}
+
+:global(.jobber-retheme) .disabled {
+  border-color: var(--color-disabled);
   background-color: var(--color-surface);
   cursor: not-allowed;
 }
 
+:global(.jobber-retheme) .isChecked.disabled {
+  background-color: var(--color-disabled);
+}
+
+:global(.jobber-retheme) .isChecked.disabled .pip {
+  background-color: var(--color-surface);
+}
+
 :global(.jobber-retheme) .disabled:hover {
-  border-color: var(--color-disabled--secondary);
+  border-color: var(--color-disabled);
 }
