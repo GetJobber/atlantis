@@ -88,6 +88,7 @@
 }
 
 :global(.jobber-retheme) .sectionHeader h6 {
+  /* can move into the Typography component post re-theme */
   font-size: var(--typography--fontSize-base);
   font-weight: 600;
   text-transform: none;
@@ -117,10 +118,12 @@
 }
 
 :global(.jobber-retheme) .action span {
+  /* can move into the Typography component post re-theme */
   font-weight: 600;
 }
 
 :global(.jobber-retheme) .icon svg {
+  /* can move into the Icon component post re-theme */
   fill: var(--color-interactive--subtle);
 }
 
