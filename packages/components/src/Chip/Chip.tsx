@@ -16,11 +16,12 @@ export const Chip = ({
   invalid,
   label,
   value,
+  dataTestID,
   onClick,
   onKeyDown,
   children,
   role = "button",
-  tabIndex = 0,
+  tabIndex,
   variation = "base",
 }: ChipProps): JSX.Element => {
   const classes = classnames(styles.chip, {
@@ -41,19 +42,21 @@ export const Chip = ({
     label,
     heading,
   );
+  const Tag = onClick ? "button" : "div";
 
   return (
-    <Tooltip message={tooltipMessage}>
-      <button
+    <Tooltip message={tooltipMessage} setTabIndex={false}>
+      <Tag
         className={classes}
-        onClick={(ev: React.MouseEvent<HTMLButtonElement>) =>
+        onClick={(ev: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) =>
           onClick && onClick(value, ev)
         }
         tabIndex={tabIndex}
         onKeyDown={onKeyDown}
-        aria-label={ariaLabel || label}
+        aria-label={ariaLabel}
         disabled={disabled}
         role={role}
+        data-testid={dataTestID}
         type="button"
       >
         {prefix}
@@ -79,7 +82,7 @@ export const Chip = ({
           )}
         </div>
         {suffix}
-      </button>
+      </Tag>
     </Tooltip>
   );
 };

@@ -1,5 +1,4 @@
 import { MouseEvent, ReactElement } from "react";
-import { XOR } from "ts-xor";
 import { ChipProps } from "./Chip";
 
 interface ChipFoundationProps {
@@ -62,7 +61,7 @@ export interface ChipDismissibleProps extends ChipFoundationProps {
   /**
    * Use a custom activator to trigger the Chip option selector
    */
-  readonly activator?: ReactElement;
+  readonly activator?: ReactElement | undefined;
 
   /**
    * Adds a loading indicator
@@ -96,7 +95,6 @@ export interface ChipDismissibleProps extends ChipFoundationProps {
   onLoadMore?(searchValue: string): void;
 }
 
-export type ChipsProps = XOR<
-  ChipSingleSelectProps,
-  XOR<ChipMultiSelectProps, ChipDismissibleProps>
->;
+export type ChipsProps =
+  | ChipSingleSelectProps
+  | (ChipMultiSelectProps | ChipDismissibleProps);

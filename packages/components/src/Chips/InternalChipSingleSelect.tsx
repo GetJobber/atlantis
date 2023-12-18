@@ -2,6 +2,7 @@ import React, { KeyboardEvent, MouseEvent, useId } from "react";
 import styles from "./InternalChip.css";
 import { InternalChip } from "./InternalChip";
 import { ChipSingleSelectProps } from "./ChipsTypes";
+import { Icon } from "../Icon";
 
 type InternalChipChoiceProps = Pick<
   ChipSingleSelectProps,
@@ -34,7 +35,15 @@ export function InternalChipSingleSelect({
               }}
               disabled={child.props.disabled}
             />
-            <InternalChip {...child.props} active={isSelected} />
+            <InternalChip
+              {...child.props}
+              {...(isSelected
+                ? {
+                    suffix: <Icon size="small" name="checkmark" />,
+                  }
+                : {})}
+              active={isSelected}
+            />
           </label>
         );
       })}
