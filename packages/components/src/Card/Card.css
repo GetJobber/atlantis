@@ -1,16 +1,31 @@
 :root {
   --card--accent-color: var(--color-grey);
   --card--base-padding: var(--space-base);
+  --card--border: var(--border-base) solid var(--color-border);
+  --card--header-background: var(--color-surface--background);
 }
 
 .card {
-  --card--border-color: var(--color-border);
   display: block;
   width: 100%;
-  border: var(--border-base) solid var(--card--border-color);
+  border: var(--card--border);
   border-radius: var(--radius-base);
   outline-color: var(--color-focus);
   background-color: var(--color-surface);
+}
+
+.card:active {
+  outline: 0;
+}
+
+:root :global(.jobber-retheme) .card:not(.clickable) {
+  --card--base-padding: var(--space-base);
+  --card--border: none;
+  --card--header-background: transparent;
+
+  @media (--medium-screens-and-up) {
+    --card--base-padding: 0;
+  }
 }
 
 /* Adjust `Content` components public padding to match the cards */
@@ -23,10 +38,6 @@
 
 .card > * > * {
   --public-content--padding: 0;
-}
-
-.card:active {
-  outline: 0;
 }
 
 .accent {
@@ -42,7 +53,8 @@
 }
 
 .clickable {
-  --card--border-color: transparent;
+  --card--border: none;
+
   box-shadow: var(--shadow-base);
   color: inherit;
   text-decoration: inherit;
@@ -58,8 +70,22 @@
 .header {
   display: flex;
   padding: var(--card--base-padding);
-  background-color: var(--color-surface--background);
+  background-color: var(--card--header-background);
   justify-content: space-between;
   align-items: flex-start;
   gap: var(--space-small);
+}
+
+:global(.jobber-retheme) .header {
+  padding: var(--card--base-padding);
+  padding-bottom: 0;
+
+  @media (--medium-screens-and-up) {
+    padding: var(--space-base) 0;
+  }
+}
+
+:global(.jobber-retheme) .header h3 {
+  font-family: var(--typography--fontFamily-normal);
+  font-size: var(--typography--fontSize-largest);
 }
