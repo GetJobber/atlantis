@@ -43,6 +43,7 @@
 :global(.jobber-retheme) .button * {
   font-weight: 600 !important;
   line-height: 1;
+  letter-spacing: none;
   /* post-retheme this can move into the TSX on L177 */
 }
 
@@ -196,6 +197,7 @@ a.button.disabled:hover {
 }
 
 :global(.jobber-retheme) .small {
+  min-height: calc(var(--base-unit) * 1.5);
   padding: 0 calc(var(--space-base) - var(--space-smaller));
 }
 
@@ -213,6 +215,7 @@ a.button.disabled:hover {
 }
 
 :global(.jobber-retheme) .large {
+  min-height: calc(var(--base-unit) * 3);
   padding: 0 calc(var(--space-base) + var(--space-smaller));
 }
 
@@ -245,6 +248,11 @@ a.button.disabled:hover {
 
 .hasIconAndLabel {
   width: auto;
+  gap: var(--space-small);
+}
+
+:global(.jobber-retheme) .hasIconAndLabel {
+  gap: var(--space-smaller);
 }
 
 /* Don't want to move things that will update after re-theme */
@@ -253,15 +261,17 @@ a.button.disabled:hover {
   text-align: start;
 }
 
-.hasIconAndLabel > *:first-child {
-  flex-shrink: 0;
-  margin-right: var(--space-small);
+.iconOnRight > *:first-child {
+  order: 1;
 }
 
-.iconOnRight > *:first-child {
-  margin-left: var(--space-small);
-  margin-right: 0;
-  order: 1;
+:global(.jobber-retheme) .hasIconAndLabel > *:first-child {
+  margin-left: calc(var(--space-smaller) * -1);
+}
+
+:global(.jobber-retheme) .iconOnRight > *:first-child {
+  margin-left: 0;
+  margin-right: calc(var(--space-smaller) * -1);
 }
 
 .fullWidth {
