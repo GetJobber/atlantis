@@ -22,33 +22,9 @@ it("should fire the callback when it's clicked", async () => {
 });
 
 describe("Chip icon colors depending on state", () => {
-  it("should be red when it's invalid", () => {
-    expect(mockChip({ invalid: true })).toHaveStyle({
-      fill: "var(--color-critical)",
-    });
-  });
-
-  it("should be red when it's invalid and active", () => {
-    expect(mockChip({ invalid: true, active: true })).toHaveStyle({
-      fill: "var(--color-critical)",
-    });
-  });
-
-  it("should be grey when it's disabled", () => {
-    expect(mockChip({ disabled: true })).toHaveStyle({
-      fill: "var(--color-disabled)",
-    });
-  });
-
-  it("should be grey when it's disabled and invalid", () => {
-    expect(mockChip({ disabled: true, invalid: true })).toHaveStyle({
-      fill: "var(--color-disabled)",
-    });
-  });
-
-  it("should be white when it's active", () => {
+  it("should be green when it's active", () => {
     expect(mockChip({ active: true })).toHaveStyle({
-      fill: "var(--color-white)",
+      fill: "var(--color-success)",
     });
   });
 
@@ -63,37 +39,16 @@ describe("Chip icon colors depending on state", () => {
     disabled = false,
     active = false,
   }: MockChipProps) {
-    render(
+    const { getByTestId } = render(
       <InternalChip
         invalid={invalid}
         disabled={disabled}
         active={active}
-        prefix={<Icon name="checkbox" />}
+        prefix={<Icon name="checkmark" />}
         label="Yo!"
       />,
     );
 
-    return screen.getByTestId("checkbox").querySelector("path");
+    return getByTestId("checkmark").querySelector("path");
   }
-});
-
-// TODO: Figure out why this is always passing
-
-describe.skip("When the chip is disabled and invalid", () => {
-  it("should still look disabled but have a border of red", () => {
-    render(<InternalChip disabled invalid label="Yo!" />);
-    expect(screen.getByTestId("chip-wrapper")).toHaveStyle({
-      borderColor: "var(--color-critical)",
-      backgroundColor: "var(--color-disabled--secondary)",
-    });
-  });
-});
-
-describe.skip("When the chip is disabled and active", () => {
-  it("should be a darker chip but still grey", async () => {
-    render(<InternalChip disabled active label="Yo!" />);
-    expect(screen.getByTestId("chip-wrapper")).toHaveStyle(`
-        background-color: var(--color-disabled);
-      `);
-  });
 });

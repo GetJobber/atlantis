@@ -17,7 +17,7 @@ export function ComboboxTrigger({
     <Chip
       variation={hasSelection ? "base" : "subtle"}
       label={hasSelection ? selectedLabel : ""}
-      ariaLabel={label}
+      ariaLabel={hasSelection ? selectedLabel : ""}
       heading={label}
       onClick={() => {
         if (open) {
