@@ -64,7 +64,7 @@
 
 .section {
   padding: var(--space-small) 0;
-  border-bottom: var(--border-base) dotted var(--color-border);
+  border-bottom: var(--border-base) solid var(--color-border);
 }
 
 .section:first-of-type {
@@ -80,8 +80,22 @@
   padding: var(--space-small);
 }
 
+:global(.jobber-retheme) .sectionHeader {
+  display: flex;
+  align-items: center;
+  min-height: var(--space-largest);
+  padding: var(--space-small) var(--space-base);
+}
+
+:global(.jobber-retheme) .sectionHeader h6 {
+  font-size: var(--typography--fontSize-base);
+  font-weight: 600;
+  text-transform: none;
+}
+
 .action {
   display: flex;
+  gap: var(--space-base);
   width: 100%;
   padding: var(--space-small);
   border: none;
@@ -91,14 +105,23 @@
   align-items: center;
 }
 
+:global(.jobber-retheme) .action {
+  gap: var(--space-small);
+  padding: var(--space-small) calc(var(--space-small) + var(--space-smaller));
+}
+
 .action:hover,
-.action:focus {
+.action:focus-visible {
   background-color: var(--color-surface--hover);
   outline-color: var(--color-focus);
 }
 
-.icon {
-  margin-right: var(--space-base);
+:global(.jobber-retheme) .action span {
+  font-weight: 600;
+}
+
+:global(.jobber-retheme) .icon svg {
+  fill: var(--color-interactive--subtle);
 }
 
 .overlay {

@@ -56,6 +56,10 @@
   clip-path: polygon(-4px -4px, 15.3px 0, 0 15.3px);
 }
 
+:global(.jobber-retheme) .arrow {
+  display: none;
+}
+
 .popover[data-popper-placement^="top"] > .arrow {
   bottom: -5px;
 }
