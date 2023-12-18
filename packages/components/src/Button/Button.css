@@ -43,7 +43,7 @@
 :global(.jobber-retheme) .button * {
   font-weight: 600 !important;
   line-height: 1;
-  letter-spacing: none;
+  letter-spacing: 0;
   /* post-retheme this can move into the TSX on L177 */
 }
 
