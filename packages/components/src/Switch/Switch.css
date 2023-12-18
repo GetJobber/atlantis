@@ -30,7 +30,7 @@
 :global(.jobber-retheme) .track {
   width: var(--space-largest);
   height: var(--space-large);
-  border-color: var(--color-interactive);
+  border-color: var(--color-border);
   border-width: var(--border-thick);
   background-color: var(--color-surface);
   align-items: center;
@@ -41,12 +41,14 @@
   outline: none;
 }
 
-.isChecked {
+:global(.jobber-retheme) .track:hover,
+:global(.jobber-retheme) .track:focus-visible {
   border-color: var(--color-interactive);
-  background-color: var(--color-interactive);
 }
 
+.isChecked,
 :global(.jobber-retheme) .isChecked {
+  border-color: var(--color-interactive);
   background-color: var(--color-interactive);
 }
 
@@ -123,9 +125,17 @@
   border-color: var(--color-disabled--secondary);
 }
 
+:global(.jobber-retheme) .disabled .pip {
+  background-color: var(--color-disabled);
+}
+
 .disabled,
 :global(.jobber-retheme) .disabled {
   border-color: var(--color-disabled--secondary);
-  background-color: var(--color-disabled--secondary);
+  background-color: var(--color-surface);
   cursor: not-allowed;
+}
+
+:global(.jobber-retheme) .disabled:hover {
+  border-color: var(--color-disabled--secondary);
 }
