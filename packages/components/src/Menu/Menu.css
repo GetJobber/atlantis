@@ -3,6 +3,8 @@
 }
 
 .wrapper {
+  --menu-space: var(--space-small);
+  --menu-offset: var(--space-smallest);
   display: inline-block;
   position: relative;
 }
@@ -14,8 +16,8 @@
   z-index: var(--elevation-menu);
   width: 100%;
   max-height: 72vh;
-  padding: var(--space-small);
-  padding-bottom: calc(env(safe-area-inset-bottom) + var(--space-small));
+  padding: var(--menu-space);
+  padding-bottom: calc(env(safe-area-inset-bottom) + var(--menu-space));
   border-radius: var(--radius-base) var(--radius-base) 0 0;
   -webkit-overflow-scrolling: touch;
   overflow-y: scroll;
@@ -26,7 +28,7 @@
     left: auto;
     width: calc(var(--base-unit) * 12.5);
     box-shadow: var(--shadow-base);
-    padding: var(--space-small);
+    padding: var(--menu-space);
     border: var(--border-base) solid var(--color-border);
     border-radius: var(--radius-base);
     overflow: auto;
@@ -36,7 +38,7 @@
 .above {
   @media (--small-screens-and-up) {
     bottom: 100%;
-    margin-bottom: var(--space-smallest);
+    margin-bottom: var(--menu-offset);
   }
 }
 
@@ -44,7 +46,7 @@
   @media (--small-screens-and-up) {
     top: 100%;
     bottom: auto;
-    margin-top: var(--space-smallest);
+    margin-top: var(--menu-offset);
   }
 }
 
@@ -63,7 +65,7 @@
 }
 
 .section {
-  padding: var(--space-small) 0;
+  padding: var(--menu-space) 0;
   border-bottom: var(--border-base) solid var(--color-border);
 }
 
@@ -77,20 +79,19 @@
 }
 
 .sectionHeader {
-  padding: var(--space-small);
+  padding: var(--menu-space);
 }
 
 :global(.jobber-retheme) .sectionHeader {
   display: flex;
   align-items: center;
-  min-height: var(--space-largest);
-  padding: var(--space-small) var(--space-base);
+  padding: calc(var(--menu-space) * 1.5) var(--menu-space);
 }
 
 :global(.jobber-retheme) .sectionHeader h6 {
   /* can move into the Typography component post re-theme */
   font-size: var(--typography--fontSize-base);
-  font-weight: 600;
+  font-weight: 400;
   text-transform: none;
 }
 
@@ -98,7 +99,7 @@
   display: flex;
   gap: var(--space-base);
   width: 100%;
-  padding: var(--space-small);
+  padding: var(--menu-space);
   border: none;
   border-radius: var(--radius-base);
   background-color: transparent;
@@ -107,8 +108,7 @@
 }
 
 :global(.jobber-retheme) .action {
-  gap: var(--space-small);
-  padding: var(--space-small) calc(var(--space-small) + var(--space-smaller));
+  gap: var(--menu-space);
 }
 
 .action:hover,
@@ -119,6 +119,7 @@
 
 :global(.jobber-retheme) .action span {
   /* can move into the Typography component post re-theme */
+  color: var(--color-text--secondary);
   font-weight: 600;
 }
 
