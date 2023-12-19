@@ -60,6 +60,7 @@ export function InternalDataListSearch() {
           onChange={debouncedSearch}
           prefix={{ icon: "search" }}
           size="small"
+          clearable="always"
         />
       </div>
 
