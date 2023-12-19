@@ -35,9 +35,6 @@
   --public-content--padding: var(--card--base-padding);
 }
 
-/* post-retheme this entire arrow section can be deleted
- * as it should be removed from the TSX file */
-
 .arrow {
   visibility: hidden;
 }
