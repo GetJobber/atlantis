@@ -150,6 +150,10 @@ a.button:active {
   border-color: transparent;
 }
 
+:global(.jobber-retheme) .tertiary {
+  border-color: var(--color-border);
+}
+
 .subtle.secondary:hover,
 .subtle.secondary:focus-visible {
   background-color: var(--button--color-surface--hover);
