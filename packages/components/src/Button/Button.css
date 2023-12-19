@@ -173,11 +173,7 @@ a.subtle.secondary:focus-visible {
 :global(.jobber-retheme) .tertiary:hover,
 :global(.jobber-retheme) .tertiary:focus-visible,
 :global(.jobber-retheme) a.tertiary:hover,
-:global(.jobber-retheme) a.tertiary:focus-visible,
-:global(.jobber-retheme) .subtle.secondary:hover,
-:global(.jobber-retheme) .subtle.secondary:focus-visible,
-:global(.jobber-retheme) a.subtle.secondary:hover,
-:global(.jobber-retheme) a.subtle.secondary:focus-visible {
+:global(.jobber-retheme) a.tertiary:focus-visible {
   border-color: var(--button--color-variation--hover);
 }
 
