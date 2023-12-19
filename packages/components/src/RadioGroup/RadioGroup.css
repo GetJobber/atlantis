@@ -58,7 +58,7 @@
   background-color: var(--color-interactive);
 }
 
-.input:focus:checked + .label:before {
+.input:focus-visible:checked + .label:before {
   box-shadow: var(--radio--checked-shadow), var(--shadow-focus);
 }
 
