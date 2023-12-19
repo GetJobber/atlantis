@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.68.12](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.68.11...@jobber/components@4.68.12) (2023-12-19)
+
+
+### Bug Fixes
+
+* **components:** tertiary button border and radio focus state ([#1696](https://github.com/GetJobber/atlantis/issues/1696)) ([37e51d0](https://github.com/GetJobber/atlantis/commit/37e51d0fb6bdbac22382f7287d57e6a60cb74a3b))
+
+
+
+
+
 ## [4.68.11](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.68.10...@jobber/components@4.68.11) (2023-12-18)
 
 **Note:** Version bump only for package @jobber/components
