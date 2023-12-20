@@ -8,7 +8,7 @@
   background-color: var(--color-success);
 }
 
-.destructive {
+.error {
   background-color: var(--color-destructive);
 }
 
@@ -16,6 +16,6 @@
   background-color: var(--color-warning);
 }
 
-.informative {
+.notice {
   background-color: var(--color-informative);
 }

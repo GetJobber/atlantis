@@ -1,9 +1,9 @@
 declare const styles: {
   readonly "wrapper": string;
   readonly "success": string;
-  readonly "destructive": string;
+  readonly "error": string;
   readonly "warning": string;
-  readonly "informative": string;
+  readonly "notice": string;
 };
 export = styles;
 

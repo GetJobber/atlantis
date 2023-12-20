@@ -4,19 +4,19 @@ import classNames from "classnames";
 import { getAtlantisConfig } from "@jobber/components/utils/getAtlantisConfig";
 import styles from "./BannerIcon.css";
 import { Icon } from "../../../Icon";
+import { BannerType } from "../../Banner.types";
 
 export interface BannerIconProps {
-  readonly icon?: IconNames;
+  readonly icon: IconNames;
+  readonly type: BannerType;
 }
 
-export function BannerIcon({ icon }: BannerIconProps) {
+export function BannerIcon({ icon, type }: BannerIconProps) {
   const { JOBBER_RETHEME } = getAtlantisConfig();
-
-  if (!icon) return null;
 
   if (JOBBER_RETHEME) {
     return (
-      <span className={classNames(styles.wrapper)}>
+      <span className={classNames(styles.wrapper, styles[type])}>
         <Icon name={icon} color={"white"} />
       </span>
     );

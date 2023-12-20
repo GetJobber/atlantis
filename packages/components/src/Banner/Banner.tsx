@@ -88,7 +88,7 @@ export function Banner({
       role={type === "error" ? "alert" : "status"}
     >
       <div className={styles.bannerContent}>
-        {bannerIcon && <BannerIcon icon={bannerIcon} />}
+        {bannerIcon && <BannerIcon icon={bannerIcon} type={type} />}
 
         <div className={styles.bannerChildren}>
           <BannerChildren>{children}</BannerChildren>
@@ -103,7 +103,6 @@ export function Banner({
 
       {dismissible && (
         <button
-          type="button"
           className={styles.closeButton}
           onClick={handleClose}
           aria-label="Close this notification"
