@@ -36,7 +36,7 @@ export function InputTime({
         type="time"
         {...fieldProps}
         onKeyUp={e => {
-          setTypedTime(prev => prev + e.key);
+          !isNaN(parseInt(e.key, 10)) && setTypedTime(prev => prev + e.key);
         }}
       />
     );

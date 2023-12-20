@@ -2,19 +2,7 @@ import debounce from "lodash/debounce";
 import { useCallback, useEffect, useState } from "react";
 import { InputTimeProps } from "../InputTimeProps";
 
-const hour12to24Hours: Record<string, number | undefined> = {
-  "1": 13,
-  "2": 14,
-  "3": 15,
-  "4": 16,
-  "5": 17,
-  "6": 18,
-  "7": 19,
-  "8": 20,
-};
-
-const LANGUAGE = navigator.language;
-const IS_12_HOUR_FORMAT = Intl.DateTimeFormat(LANGUAGE, {
+const IS_12_HOUR_FORMAT = Intl.DateTimeFormat(navigator.language, {
   hour: "numeric",
 }).resolvedOptions().hour12;
 
@@ -27,24 +15,22 @@ export function useTimePredict({ value, handleChange }: UseTimePredictProps) {
 
   const handleKeyup = useCallback(
     debounce(() => {
-      if (value) {
-        return;
-      }
+      if (value) return;
 
-      let predictedHour: number = 1;
-
-      if (IS_12_HOUR_FORMAT) {
-        predictedHour = predict12Hours(typedTime);
-      }
-
-      handleChange(`${predictedHour}:00`);
-    }, 200),
+      const predictedHour = predictHours(typedTime);
+      handleChange(`${formatHour(predictedHour)}:00`);
+    }, 300),
     [typedTime, value, handleChange],
   );
 
   useEffect(() => {
     if (typedTime !== "0") {
       handleKeyup();
+
+      // Immediately if user types any number but 1 and it's in a 12 hour format
+      if (IS_12_HOUR_FORMAT && typedTime !== "1") {
+        handleKeyup.flush();
+      }
     }
 
     return handleKeyup.cancel;
@@ -55,13 +41,29 @@ export function useTimePredict({ value, handleChange }: UseTimePredictProps) {
   };
 }
 
-function predict12Hours(time: string) {
+function predictHours(time: string) {
   const today = new Date();
   const currentHour = today.getHours();
 
   if (time === "1") {
     return currentHour + 1;
-  } else {
-    return hour12to24Hours[parseInt(time, 10)] || parseInt(time, 10);
+  } else if (time === "24" || time === "00") {
+    return 0;
   }
+
+  const parsedTime = parseInt(time, 10);
+
+  if (parsedTime > 12 || parsedTime > currentHour) {
+    return parsedTime;
+  }
+
+  return parsedTime + 12;
+}
+
+function formatHour(time: number) {
+  if (time.toString().length === 1) {
+    return `0${time}`;
+  }
+
+  return time;
 }
