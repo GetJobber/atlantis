@@ -13,7 +13,7 @@ interface UseTimePredictProps extends Pick<InputTimeProps, "value"> {
 export function useTimePredict({ value, handleChange }: UseTimePredictProps) {
   const [typedTime, setTypedTime] = useState<string>("");
 
-  const handleKeyup = useCallback(
+  const predictTime = useCallback(
     debounce(() => {
       if (value) return;
 
@@ -25,15 +25,15 @@ export function useTimePredict({ value, handleChange }: UseTimePredictProps) {
 
   useEffect(() => {
     if (typedTime !== "0") {
-      handleKeyup();
+      predictTime();
 
-      // Immediately if user types any number but 1 and it's in a 12 hour format
-      if (IS_12_HOUR_FORMAT && typedTime !== "1") {
-        handleKeyup.flush();
+      // Immediately predict if user types any number but 1 and it's in a 12 hour format
+      if ((IS_12_HOUR_FORMAT && typedTime !== "1") || typedTime.length === 2) {
+        predictTime.flush();
       }
     }
 
-    return handleKeyup.cancel;
+    return predictTime.cancel;
   }, [typedTime]);
 
   return {
@@ -41,23 +41,33 @@ export function useTimePredict({ value, handleChange }: UseTimePredictProps) {
   };
 }
 
+// eslint-disable-next-line max-statements
 function predictHours(time: string) {
   const today = new Date();
   const currentHour = today.getHours();
+  const parsedTime = parseInt(time, 10);
 
-  if (time === "1") {
-    return currentHour + 1;
-  } else if (time === "24" || time === "00") {
+  if (IS_12_HOUR_FORMAT && parsedTime === 1 && currentHour < 12) {
+    return currentHour < 10 ? 10 : currentHour + 1;
+  }
+
+  if (!IS_12_HOUR_FORMAT && (parsedTime === 1 || parsedTime === 2)) {
+    if (parsedTime === 1) {
+      return currentHour < 10 || currentHour >= 20 ? 10 : currentHour + 1;
+    } else {
+      return currentHour < 20 ? 20 : currentHour + 1;
+    }
+  }
+
+  if (parsedTime === 24 || time === "00") {
     return 0;
   }
 
-  const parsedTime = parseInt(time, 10);
-
-  if (parsedTime > 12 || parsedTime > currentHour) {
-    return parsedTime;
+  if (IS_12_HOUR_FORMAT && parsedTime < 12 && !(parsedTime > 7)) {
+    return parsedTime + 12;
   }
 
-  return parsedTime + 12;
+  return parsedTime;
 }
 
 function formatHour(time: number) {
