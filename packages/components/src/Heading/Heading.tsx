@@ -6,7 +6,7 @@ interface HeadingProps {
   /**
    * @default 5
    */
-  readonly level: 1 | 2 | 3 | 4 | 5 | 6 | "extra";
+  readonly level: 1 | 2 | 3 | 4 | 5 | 6;
   readonly children: ReactNode;
 }
 
