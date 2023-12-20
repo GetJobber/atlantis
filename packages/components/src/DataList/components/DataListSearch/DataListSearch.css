@@ -32,7 +32,6 @@
     position: static;
     visibility: visible;
     width: auto;
-    max-width: calc(var(--base-unit) * 13);
     padding: 0;
     background-color: transparent;
     opacity: 1;
