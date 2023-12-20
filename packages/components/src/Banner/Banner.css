@@ -60,10 +60,6 @@
   }
 }
 
-:global(.jobber-retheme) .bannerAction {
-  align-self: center;
-}
-
 .closeButton {
   margin: calc(var(--space-smallest) * -1) 0;
   padding: var(--space-smallest);
