@@ -2,21 +2,20 @@ import React, { ReactNode } from "react";
 import { Typography, TypographyOptions } from "../Typography";
 import { getAtlantisConfig } from "../utils/getAtlantisConfig";
 
+type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
+
 interface HeadingProps {
   /**
    * @default 5
    */
-  readonly level: 1 | 2 | 3 | 4 | 5 | 6;
+  readonly level: HeadingLevel;
   readonly children: ReactNode;
 }
 
-export interface LevelMap {
-  [level: string]: TypographyOptions;
-}
+export type LevelMap = Record<HeadingLevel, TypographyOptions>;
 
 export function Heading({ level = 5, children }: HeadingProps) {
-  const config = getAtlantisConfig();
-  const inRetheme = config?.JOBBER_RETHEME;
+  const { JOBBER_RETHEME: inRetheme } = getAtlantisConfig();
 
   const levelMap: LevelMap = {
     1: {

@@ -1,7 +1,11 @@
 // For retheme purposes only.
 // This will be removed once the retheme is out of the experiment.
-export function getAtlantisConfig(): typeof window.ATLANTIS_CONFIG {
+export function getAtlantisConfig() {
+  let JOBBER_RETHEME = false;
+
   if (typeof window !== "undefined") {
-    return window.ATLANTIS_CONFIG;
+    JOBBER_RETHEME = document.body.classList.contains("jobber-retheme");
   }
+
+  return { JOBBER_RETHEME };
 }
