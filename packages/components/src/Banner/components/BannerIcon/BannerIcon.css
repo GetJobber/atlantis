@@ -1,0 +1,21 @@
+.wrapper {
+  padding: var(--space-smaller);
+  border-radius: var(--radius-circle);
+  background-color: var(--color-surface--background);
+}
+
+.success {
+  background-color: var(--color-success);
+}
+
+.destructive {
+  background-color: var(--color-destructive);
+}
+
+.warning {
+  background-color: var(--color-warning);
+}
+
+.informative {
+  background-color: var(--color-informative);
+}
