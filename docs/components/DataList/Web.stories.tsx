@@ -107,7 +107,17 @@ const Template: ComponentStory<typeof DataList> = args => {
           console.log(sorting);
           setSortingState(sorting);
         },
-        sortable: ["label", "home", "lastActivity"],
+        sortable: [
+          {
+            key: "label",
+            options: ["First Name (a-z)", "First Name (z-a)"],
+          },
+          {
+            key: "home",
+            options: ["Home (a-z)", "Home (z-a)"],
+          },
+          "lastActivity",
+        ],
       }}
     >
       <DataList.Filters>

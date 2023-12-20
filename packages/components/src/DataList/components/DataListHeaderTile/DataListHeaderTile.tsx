@@ -16,11 +16,30 @@ export function DataListHeaderTile<T extends DataListObject>({
   headerKey,
 }: DataListHeaderTileProps<T>) {
   const { sorting } = useDataListContext();
+  const [isDropdownVisible, setIsDropdownVisible] = React.useState(false);
 
-  const isSortable = sorting?.sortable.includes(headerKey);
+  const sortable = sorting?.sortable as (
+    | string
+    | { key: string; options: string[] }
+  )[];
+
+  const sortableItem = sortable?.find(
+    (item: string | { key: string; options: string[] }) =>
+      typeof item === "object" ? item.key === headerKey : item === headerKey,
+  );
+  // const isSortable = sorting?.sortable.includes(headerKey);
+  const isSortable = Boolean(sortableItem);
   const sortingState = sorting?.state;
 
   const Tag = isSortable ? "button" : "div";
+
+  const handleSelectClick = (event: React.MouseEvent) => {
+    event.stopPropagation();
+  };
+
+  const handleSelectChange = () => {
+    setIsDropdownVisible(false);
+  };
 
   return (
     <Tag
@@ -30,6 +49,13 @@ export function DataListHeaderTile<T extends DataListObject>({
       onClick={handleOnClick}
     >
       <Text maxLines="single">{headers[headerKey]}</Text>
+      {isDropdownVisible && typeof sortableItem === "object" && (
+        <select onClick={handleSelectClick} onChange={handleSelectChange}>
+          {sortableItem.options.map(option => (
+            <option key={option}>{option}</option>
+          ))}
+        </select>
+      )}
       {sortingState?.key === headerKey ? (
         <DataListSortingArrows order={sortingState.order} />
       ) : sortingState?.key !== headerKey && isSortable ? (
@@ -57,5 +83,6 @@ export function DataListHeaderTile<T extends DataListObject>({
     if (!isSortable) return;
 
     toggleSorting(headerKey);
+    setIsDropdownVisible(!isDropdownVisible);
   }
 }
