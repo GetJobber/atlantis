@@ -123,7 +123,7 @@
   font-weight: 600;
 }
 
-:global(.jobber-retheme) .icon svg {
+:global(.jobber-retheme) .icon path {
   /* can move into the Icon component post re-theme */
   fill: var(--color-interactive--subtle);
 }
