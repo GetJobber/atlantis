@@ -9,6 +9,13 @@
   align-items: center;
 }
 
+:global(.jobber-retheme) .banner {
+  padding: calc(var(--space-base) - var(--space-smaller)) var(--space-base);
+  border: var(--border-base) solid var(--color-border);
+  border-radius: var(--radius-base);
+  background-color: var(--color-surface);
+}
+
 .bannerChildren > a {
   color: var(--color-text);
 }
@@ -51,6 +58,10 @@
     width: 100%;
     margin-top: var(--space-small);
   }
+}
+
+:global(.jobber-retheme) .bannerAction {
+  align-self: center;
 }
 
 .closeButton {
