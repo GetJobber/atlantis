@@ -17,7 +17,7 @@ export function BannerIcon({ icon, type }: BannerIconProps) {
   if (JOBBER_RETHEME) {
     return (
       <span className={classNames(styles.wrapper, styles[type])}>
-        <Icon name={icon} color={"white"} />
+        <Icon name={icon} color={"white"} size="small" />
       </span>
     );
   }
