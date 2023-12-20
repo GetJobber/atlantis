@@ -44,6 +44,7 @@ export function Banner({
   icon,
   onDismiss,
 }: BannerProps) {
+  const { JOBBER_RETHEME } = getAtlantisConfig();
   const [showBanner, setShowBanner] = useState(true);
   const bannerIcon = icon || getBannerIcon(type);
 
@@ -107,7 +108,10 @@ export function Banner({
           onClick={handleClose}
           aria-label="Close this notification"
         >
-          <Icon name="cross" color={iconColors[type]} />
+          <Icon
+            name="cross"
+            color={JOBBER_RETHEME ? "interactiveSubtle" : iconColors[type]}
+          />
         </button>
       )}
     </div>
