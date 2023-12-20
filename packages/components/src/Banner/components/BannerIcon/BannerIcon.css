@@ -1,0 +1,22 @@
+.wrapper {
+  display: inline-flex;
+  padding: var(--space-smaller);
+  border-radius: var(--radius-circle);
+  background-color: var(--color-surface--background);
+}
+
+.success {
+  background-color: var(--color-success);
+}
+
+.error {
+  background-color: var(--color-destructive);
+}
+
+.warning {
+  background-color: var(--color-warning);
+}
+
+.notice {
+  background-color: var(--color-informative);
+}
