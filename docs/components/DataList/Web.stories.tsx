@@ -110,7 +110,12 @@ const Template: ComponentStory<typeof DataList> = args => {
         sortable: [
           {
             key: "label",
-            options: ["First Name (a-z)", "First Name (z-a)"],
+            options: [
+              "First Name (a-z)",
+              "First Name (z-a)",
+              "Last Name (a-z)",
+              "Last Name (z-a)",
+            ],
           },
           {
             key: "home",

@@ -82,7 +82,10 @@ export function DataListHeaderTile<T extends DataListObject>({
   function handleOnClick() {
     if (!isSortable) return;
 
-    toggleSorting(headerKey);
-    setIsDropdownVisible(!isDropdownVisible);
+    if (typeof sortableItem === "string") {
+      toggleSorting(headerKey);
+    } else {
+      setIsDropdownVisible(!isDropdownVisible);
+    }
   }
 }
