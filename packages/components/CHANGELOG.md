@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.68.17](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.68.16...@jobber/components@4.68.17) (2023-12-21)
+
+
+### Bug Fixes
+
+* **components:** wrap DataTable empty state in valid DOM elements ([#1698](https://github.com/GetJobber/atlantis/issues/1698)) ([441e468](https://github.com/GetJobber/atlantis/commit/441e4688bab92d3bd7470db885d9a7c60793ff2f))
+
+
+
+
+
 ## [4.68.16](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.68.15...@jobber/components@4.68.16) (2023-12-21)
 
 **Note:** Version bump only for package @jobber/components
