@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import styles from "./DataList.css";
 import { DataListTotalCount } from "./components/DataListTotalCount";
 import { DataListLoadingState } from "./components/DataListLoadingState";
@@ -56,10 +56,14 @@ export function DataList<T extends DataListObject>({
   sorting,
   ...props
 }: DataListProps<T>) {
-  const [layoutBreakpoints, setLayoutBreakpoints] = useState<Breakpoints[]>([]);
   const [layouts, setLayouts] = useState<{
     [Breakpoint in Breakpoints]?: LayoutRenderer<DataListObject>;
   }>({});
+
+  const layoutBreakpoints = useMemo(
+    () => sortBreakpoints(Object.keys(layouts) as Breakpoints[]),
+    [layouts],
+  );
 
   const searchComponent = getCompoundComponent<DataListSearchProps>(
     props.children,
@@ -94,7 +98,6 @@ export function DataList<T extends DataListObject>({
         itemActionComponent,
         bulkActionsComponent,
         layoutBreakpoints,
-        registerLayoutBreakpoints,
         layouts,
         registerLayout,
         ...props,
@@ -106,10 +109,6 @@ export function DataList<T extends DataListObject>({
       <InternalDataList />
     </DataListContext.Provider>
   );
-
-  function registerLayoutBreakpoints(size: Breakpoints) {
-    setLayoutBreakpoints(prev => sortBreakpoints([...prev, size]));
-  }
 
   function registerLayout(
     size: Breakpoints,
