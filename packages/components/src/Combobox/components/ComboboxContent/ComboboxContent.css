@@ -10,6 +10,10 @@
   background: var(--color-surface);
 }
 
+:global(.jobber-retheme) .content {
+  border-radius: var(--radius-base);
+}
+
 /* CAUTION: Tests for content visibility assume this class' presence hides the content
 * so please be careful if you change this class name, or the css rules within.
 */

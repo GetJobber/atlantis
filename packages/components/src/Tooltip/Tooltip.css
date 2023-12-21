@@ -24,6 +24,10 @@
   background-color: var(--tooltip--surface);
 }
 
+:global(.jobber-retheme) .tooltip {
+  border-radius: var(--radius-base);
+}
+
 .tooltip .arrow,
 .tooltip .arrow::after {
   width: var(--tooltip--arrow-size);
