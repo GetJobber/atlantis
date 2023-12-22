@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.68.18](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.68.17...@jobber/components@4.68.18) (2023-12-22)
+
+
+### Bug Fixes
+
+* **components:** Fix th cell padding in DataTable ([#1703](https://github.com/GetJobber/atlantis/issues/1703)) ([32ad861](https://github.com/GetJobber/atlantis/commit/32ad861d7728625ee64a1427db38410fe4f56a19))
+
+
+
+
+
 ## [4.68.17](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.68.16...@jobber/components@4.68.17) (2023-12-21)
 
 
