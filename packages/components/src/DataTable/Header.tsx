@@ -6,10 +6,10 @@ import styles from "./DataTable.css";
 import { SortingType } from "./types";
 
 interface HeaderProps<T> {
-  table: Table<T>;
-  stickyHeader?: boolean;
-  sorting?: SortingType;
-  onRowClick?: (row: Row<T>) => void;
+  readonly table: Table<T>;
+  readonly stickyHeader?: boolean;
+  readonly sorting?: SortingType;
+  readonly onRowClick?: (row: Row<T>) => void;
 }
 
 export function Header<T extends object>({
@@ -19,12 +19,23 @@ export function Header<T extends object>({
   onRowClick,
 }: HeaderProps<T>) {
   const stickyClass = classNames({ [styles.stickyHeader]: stickyHeader });
+
   return (
     <thead className={stickyClass}>
       {table.getHeaderGroups().map(headerGroup => (
         <tr key={headerGroup.id}>
           {headerGroup.headers.map(header => {
             const isSorting = sorting && header.column.getCanSort();
+            const headingCellInlineStyle: React.CSSProperties = {
+              width: header.getSize(),
+              minWidth: header.column.columnDef.minSize,
+              maxWidth: header.column.columnDef.maxSize,
+            };
+
+            if (isSorting) {
+              headingCellInlineStyle.paddingRight = 0;
+            }
+
             return (
               <th
                 key={header.id}
@@ -39,26 +50,19 @@ export function Header<T extends object>({
                 onClick={
                   sorting ? header.column.getToggleSortingHandler() : undefined
                 }
-                style={{
-                  width: header.getSize(),
-                  minWidth: header.column.columnDef.minSize,
-                  maxWidth: header.column.columnDef.maxSize,
-                  paddingRight: isSorting ? 0 : "inherit",
-                }}
+                style={headingCellInlineStyle}
               >
                 {header.isPlaceholder ? null : (
                   <div>
-                    <>
-                      {flexRender(
-                        header.column.columnDef.header,
-                        header.getContext(),
+                    {flexRender(
+                      header.column.columnDef.header,
+                      header.getContext(),
+                    )}
+                    {header.column.getCanSort() &&
+                      sorting &&
+                      !header.column.getIsSorted() && (
+                        <SortIcon direction={SortDirection.equilibrium} />
                       )}
-                      {header.column.getCanSort() &&
-                        sorting &&
-                        !header.column.getIsSorted() && (
-                          <SortIcon direction={SortDirection.equilibrium} />
-                        )}
-                    </>
                     {
                       {
                         asc: <SortIcon direction={SortDirection.ascending} />,

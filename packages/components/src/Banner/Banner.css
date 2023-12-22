@@ -9,6 +9,13 @@
   align-items: center;
 }
 
+:global(.jobber-retheme) .banner {
+  padding: calc(var(--space-base) - var(--space-smaller)) var(--space-base);
+  border: var(--border-base) solid var(--color-border);
+  border-radius: var(--radius-base);
+  background-color: var(--color-surface);
+}
+
 .bannerChildren > a {
   color: var(--color-text);
 }

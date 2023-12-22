@@ -5,10 +5,10 @@ import styles from "./DataTable.css";
 import { BodyLoading } from "./BodyLoading";
 
 interface BodyProps<T> {
-  table: Table<T>;
-  onRowClick?: (row: Row<T>) => void;
-  emptyState?: ReactNode | ReactNode[];
-  loading: boolean;
+  readonly table: Table<T>;
+  readonly onRowClick?: (row: Row<T>) => void;
+  readonly emptyState?: ReactNode | ReactNode[];
+  readonly loading: boolean;
 }
 
 export function Body<T extends object>({
@@ -64,7 +64,16 @@ export function Body<T extends object>({
           })}
         </tbody>
       ) : (
-        <div className={classNames(styles.emptyState)}>{emptyState}</div>
+        <tbody>
+          <tr className={bodyRowClasses}>
+            <td
+              colSpan={table.getAllColumns().length}
+              className={classNames(styles.emptyState)}
+            >
+              {emptyState}
+            </td>
+          </tr>
+        </tbody>
       )}
     </>
   );

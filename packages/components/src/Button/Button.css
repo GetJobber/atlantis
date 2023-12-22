@@ -215,8 +215,12 @@ a.button.disabled:hover {
 }
 
 :global(.jobber-retheme) .small {
-  min-height: calc(var(--base-unit) * 1.5);
-  padding: 0 calc(var(--space-base) - var(--space-smaller));
+  min-height: var(--space-large);
+  padding: var(--space-small) calc(var(--space-base) - var(--space-smaller));
+}
+
+:global(.jobber-retheme) .small span {
+  font-size: var(--typography--fontSize-base);
 }
 
 .base {

@@ -3,6 +3,71 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.68.18](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.68.17...@jobber/components@4.68.18) (2023-12-22)
+
+
+### Bug Fixes
+
+* **components:** Fix th cell padding in DataTable ([#1703](https://github.com/GetJobber/atlantis/issues/1703)) ([32ad861](https://github.com/GetJobber/atlantis/commit/32ad861d7728625ee64a1427db38410fe4f56a19))
+
+
+
+
+
+## [4.68.17](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.68.16...@jobber/components@4.68.17) (2023-12-21)
+
+
+### Bug Fixes
+
+* **components:** wrap DataTable empty state in valid DOM elements ([#1698](https://github.com/GetJobber/atlantis/issues/1698)) ([441e468](https://github.com/GetJobber/atlantis/commit/441e4688bab92d3bd7470db885d9a7c60793ff2f))
+
+
+
+
+
+## [4.68.16](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.68.15...@jobber/components@4.68.16) (2023-12-21)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.68.15](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.68.14...@jobber/components@4.68.15) (2023-12-20)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.68.14](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.68.13...@jobber/components@4.68.14) (2023-12-20)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.68.13](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.68.12...@jobber/components@4.68.13) (2023-12-19)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.68.12](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.68.11...@jobber/components@4.68.12) (2023-12-19)
+
+
+### Bug Fixes
+
+* **components:** tertiary button border and radio focus state ([#1696](https://github.com/GetJobber/atlantis/issues/1696)) ([37e51d0](https://github.com/GetJobber/atlantis/commit/37e51d0fb6bdbac22382f7287d57e6a60cb74a3b))
+
+
+
+
+
 ## [4.68.11](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.68.10...@jobber/components@4.68.11) (2023-12-18)
 
 **Note:** Version bump only for package @jobber/components
