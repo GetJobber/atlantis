@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.69.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.68.18...@jobber/components@4.69.0) (2023-12-22)
+
+
+### Features
+
+* **components:** Add clearable to DataList Search ([#1697](https://github.com/GetJobber/atlantis/issues/1697)) ([d758217](https://github.com/GetJobber/atlantis/commit/d758217f7d8b4144777b657f3bccc2589fcf53da))
+
+
+
+
+
 ## [4.68.18](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.68.17...@jobber/components@4.68.18) (2023-12-22)
 
 
