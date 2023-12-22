@@ -27,9 +27,9 @@
 
 .headerFilters {
   display: grid;
-  padding: var(--space-small) 0;
+  padding: calc(var(--space-small) + var(--space-smaller)) 0;
   gap: var(--space-small);
-  grid-template-columns: auto max-content;
+  grid-template-columns: auto fit-content(calc(var(--base-unit) * 14));
 }
 
 .headerTitles {
