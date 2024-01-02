@@ -9,11 +9,13 @@ import { DataListHeader, DataListObject } from "../../DataList.types";
 interface DataListHeaderTileProps<T extends DataListObject> {
   readonly headers: DataListHeader<T>;
   readonly headerKey: string;
+  readonly onSortOptionSelected?: (key: string, order: string) => void;
 }
 
 export function DataListHeaderTile<T extends DataListObject>({
   headers,
   headerKey,
+  onSortOptionSelected,
 }: DataListHeaderTileProps<T>) {
   const { sorting } = useDataListContext();
   const [isDropdownVisible, setIsDropdownVisible] = React.useState(false);
@@ -37,9 +39,12 @@ export function DataListHeaderTile<T extends DataListObject>({
     event.stopPropagation();
   };
 
-  const handleSelectChange = () => {
+  function handleSelectChange(event: React.ChangeEvent<HTMLSelectElement>) {
+    const selectedOption = event.target.value;
+    console.log("Selected Option:", selectedOption);
+    onSortOptionSelected?.(headerKey, selectedOption);
     setIsDropdownVisible(false);
-  };
+  }
 
   return (
     <Tag

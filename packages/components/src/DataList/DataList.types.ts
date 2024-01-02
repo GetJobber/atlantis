@@ -116,6 +116,8 @@ export interface DataListProps<T extends DataListObject> {
     readonly onSort: (sorting?: DataListSorting) => void;
   };
 
+  readonly onSortOptionSelected?: (option: string) => void;
+
   /**
    * The list of Selected Item ids
    */
