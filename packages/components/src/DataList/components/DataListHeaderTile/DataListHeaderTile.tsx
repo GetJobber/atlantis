@@ -35,10 +35,12 @@ export function DataListHeaderTile<T extends DataListObject>({
 
   const Tag = isSortable ? "button" : "div";
 
+  // without this I'm not able to click anything within the dropdown after opening it
   const handleSelectClick = (event: React.MouseEvent) => {
     event.stopPropagation();
   };
 
+  // handle change event of dropdown, calls onSortOptionSelected callback then hides dropdown
   function handleSelectChange(event: React.ChangeEvent<HTMLSelectElement>) {
     const selectedOption = event.target.value;
     console.log("Selected Option:", selectedOption);
@@ -54,6 +56,7 @@ export function DataListHeaderTile<T extends DataListObject>({
       onClick={handleOnClick}
     >
       <Text maxLines="single">{headers[headerKey]}</Text>
+      {/* if sortableItem is an object, show dropdown, renders each option in the array */}
       {isDropdownVisible && typeof sortableItem === "object" && (
         <select onClick={handleSelectClick} onChange={handleSelectChange}>
           {sortableItem.options.map(option => (
@@ -87,6 +90,7 @@ export function DataListHeaderTile<T extends DataListObject>({
   function handleOnClick() {
     if (!isSortable) return;
 
+    // if sortableItem is a string, toggle sorting, if it's an object, show dropdown
     if (typeof sortableItem === "string") {
       toggleSorting(headerKey);
     } else {
