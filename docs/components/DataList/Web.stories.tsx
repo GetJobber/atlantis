@@ -114,18 +114,78 @@ const Template: ComponentStory<typeof DataList> = args => {
               {
                 label: "First Name (a-z)",
                 callback: () => sortingFunction(),
+                order: "asc",
               },
               {
                 label: "First Name (z-a)",
                 callback: () => sortingFunction(),
+                order: "desc",
+              },
+              {
+                label: "Company Name (a-z)",
+                callback: () => sortingFunction(),
+                order: "asc",
+              },
+              {
+                label: "Company Name (z-a)",
+                callback: () => sortingFunction(),
+                order: "desc",
               },
             ],
           },
           {
             key: "home",
             options: [
-              { label: "Home (a-z)", callback: () => sortingFunction() },
-              { label: "Home (z-a)", callback: () => sortingFunction() },
+              {
+                label: "Home (a-z)",
+                callback: () => sortingFunction(),
+                order: "asc",
+              },
+              {
+                label: "Home (z-a)",
+                callback: () => sortingFunction(),
+                order: "desc",
+              },
+              {
+                label: "City (a-z)",
+                callback: () => sortingFunction(),
+                order: "asc",
+              },
+              {
+                label: "City (z-a)",
+                callback: () => sortingFunction(),
+                order: "desc",
+              },
+              {
+                label: "Province (a-z)",
+                callback: () => sortingFunction(),
+                order: "asc",
+              },
+              {
+                label: "Province (z-a)",
+                callback: () => sortingFunction(),
+                order: "desc",
+              },
+              {
+                label: "Zip (a-z)",
+                callback: () => sortingFunction(),
+                order: "asc",
+              },
+              {
+                label: "Zip (z-a)",
+                callback: () => sortingFunction(),
+                order: "desc",
+              },
+              {
+                label: "Country (a-z)",
+                callback: () => sortingFunction(),
+                order: "asc",
+              },
+              {
+                label: "Country (z-a)",
+                callback: () => sortingFunction(),
+                order: "desc",
+              },
             ],
           },
           { key: "lastActivity" },

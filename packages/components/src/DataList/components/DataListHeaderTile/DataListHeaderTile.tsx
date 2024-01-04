@@ -4,7 +4,11 @@ import styles from "./DataListHeaderTile.css";
 import { DataListSortingArrows } from "./DataListSortingArrows";
 import { Text } from "../../../Text";
 import { useDataListContext } from "../../context/DataListContext";
-import { DataListHeader, DataListObject } from "../../DataList.types";
+import {
+  DataListHeader,
+  DataListObject,
+  SortableOption,
+} from "../../DataList.types";
 
 interface DataListHeaderTileProps<T extends DataListObject> {
   readonly headers: DataListHeader<T>;
@@ -17,6 +21,8 @@ export function DataListHeaderTile<T extends DataListObject>({
 }: DataListHeaderTileProps<T>) {
   const { sorting } = useDataListContext();
   const [isDropdownVisible, setIsDropdownVisible] = React.useState(false);
+  const [sortingDirection, setSortingDirection] =
+    React.useState<SortableOption | null>(null);
 
   const sortableItem = sorting?.sortable.find(item => item.key === headerKey);
   const isSortable = Boolean(sortableItem);
@@ -32,7 +38,13 @@ export function DataListHeaderTile<T extends DataListObject>({
   // handle change event of dropdown, then hides dropdown
   function handleSelectChange(event: React.ChangeEvent<HTMLSelectElement>) {
     const selectedOption = event.target.value;
+    const selectedDirection = sortableItem?.options?.find(
+      (option: SortableOption) => option.label === selectedOption,
+    );
+
+    setSortingDirection(selectedDirection || null);
     console.log("Selected Option:", selectedOption);
+    console.log("Sorting Direction:", selectedDirection);
     setIsDropdownVisible(false);
   }
 
@@ -45,7 +57,11 @@ export function DataListHeaderTile<T extends DataListObject>({
     >
       <Text maxLines="single">{headers[headerKey]}</Text>
       {isSortable && sortableItem?.options && isDropdownVisible && (
-        <select onClick={handleSelectClick} onChange={handleSelectChange}>
+        <select
+          onClick={handleSelectClick}
+          onChange={handleSelectChange}
+          value={sortingDirection?.label || ""}
+        >
           {sortableItem?.options?.map((option, index) => (
             <option key={index} value={option.label}>
               {option.label}
@@ -54,7 +70,9 @@ export function DataListHeaderTile<T extends DataListObject>({
         </select>
       )}
       {sortingState?.key === headerKey ? (
-        <DataListSortingArrows order={sortingState.order} />
+        <DataListSortingArrows
+          order={sortingDirection?.order || sortingState.order}
+        />
       ) : sortingState?.key !== headerKey && isSortable ? (
         <DataListSortingArrows order="none" />
       ) : null}

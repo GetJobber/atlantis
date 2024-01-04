@@ -51,6 +51,12 @@ export interface DataListSorting {
   readonly order: "asc" | "desc";
 }
 
+export interface SortableOption {
+  label: string;
+  callback: () => void;
+  order?: "asc" | "desc";
+}
+
 export interface DataListProps<T extends DataListObject> {
   /**
    * The data to render in the DataList.
@@ -113,11 +119,7 @@ export interface DataListProps<T extends DataListObject> {
   readonly sorting?: {
     readonly sortable: {
       key: string;
-      options?: {
-        label: string;
-        callback: () => void;
-        order?: "asc" | "desc";
-      }[];
+      options?: SortableOption[];
     }[];
     readonly state: DataListSorting | undefined;
     readonly onSort: (sorting?: DataListSorting) => void;
