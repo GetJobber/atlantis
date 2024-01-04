@@ -1,10 +1,44 @@
 const webpack = require("webpack");
 const path = require("path");
 
+export type Options = {
+  modulesToTranspile?: string[];
+  modulesToAlias?: { [key: string]: string };
+  babelPlugins?: string[];
+  projectRoot?: string;
+};
+
+export const getBabelPlugins = (options: Options) => {
+  return ['react-native-web', "react-native-reanimated/plugin"];
+};
+
+const getModule = (name: string) => path.join('node_modules', name);
+
+// copied from https://github.com/expo/expo-cli/blob/master/packages/webpack-config/src/loaders/createBabelLoader.ts
+const DEFAULT_INCLUDES = [
+  getModule('react-native'),
+  getModule('react-navigation'),
+  getModule('expo'),
+  getModule('unimodules'),
+  getModule('@react'),
+  getModule('@expo'),
+  getModule('@use-expo'),
+  getModule('@unimodules'),
+  getModule('native-base'),
+  getModule('styled-components'),
+];
+
+const DEFAULT_EXCLUDES = [
+  '/node_modules',
+  '/bower_components',
+  '/.expo/',
+  // Prevent transpiling webpack generated files.
+  '(webpack)',
+];
+
+
 const config = {
   stories: [
-    "../packages/**/*.stories.mdx",
-    "../packages/**/*.stories.@(js|jsx|ts|tsx)",
     "../docs/**/*.stories.mdx",
     "../docs/**/*.stories.@(js|jsx|ts|tsx)",
   ],
@@ -18,18 +52,10 @@ const config = {
         transcludeMarkdown: true,
       },
     },
-    {
-      name: "@storybook/addon-react-native-web",
-      options: {
-        modulesToTranspile: ["react-native-reanimated"],
-        babelPlugins: [
-          "react-native-reanimated/plugin"],
-      },
-    },
   ],
   features: { buildStoriesJson: true },
-  framework: "@storybook/react",
-  webpackFinal: async config => {
+  framework: "@storybook/react-webpack5",
+  webpackFinal: async (config, options) => {
     config.plugins = [
       ...config.plugins,
 
@@ -39,7 +65,13 @@ const config = {
         path.join(__dirname, "__mocks__/react-native-gesture-handler.tsx"),
       ),
       new webpack.EnvironmentPlugin({ JEST_WORKER_ID: null }),
-      new webpack.DefinePlugin({ process: { env: {} } })
+      new webpack.DefinePlugin({ process: { env: {} } }),
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify(
+          process.env.NODE_ENV || 'development',
+        ),
+        __DEV__: process.env.NODE_ENV !== 'production' || true,
+      }),
     ];
 
     /**
@@ -77,6 +109,58 @@ const config = {
         packageCssRule,
         atlantisCssRule,
       ];
+
+      const babelPlugins = getBabelPlugins(options);
+      const root = options.projectRoot ?? process.cwd();
+      const userModules = ["react-native-reanimated"]?.map(getModule) ?? [];
+      const modules = [...DEFAULT_INCLUDES, ...userModules];
+
+      // fix for uncompiled react-native dependencies
+      config.module.rules.push({
+        test: /\.(js|jsx|ts|tsx)$/,
+        loader: 'babel-loader',
+        // include logic copied from https://github.com/expo/expo-cli/blob/master/packages/webpack-config/src/loaders/createBabelLoader.ts
+        include(filename: string) {
+          if (!filename) {
+            return false;
+          }
+
+          for (const possibleModule of modules) {
+            if (filename.includes(path.normalize(possibleModule))) {
+              return true;
+            }
+          }
+
+          if (filename.includes(root)) {
+            for (const excluded of DEFAULT_EXCLUDES) {
+              if (filename.includes(path.normalize(excluded))) {
+                return false;
+              }
+            }
+            return true;
+          }
+          return false;
+        },
+        options: {
+          root,
+          presets: [
+            [
+              'module:metro-react-native-babel-preset',
+              {
+                useTransformReactJSXExperimental: true,
+              },
+            ],
+            [
+              '@babel/preset-react',
+              {
+                runtime: 'automatic',
+              },
+            ],
+            ['@babel/preset-env', { modules: false }]
+          ],
+          plugins: [...babelPlugins, '@babel/plugin-proposal-class-properties'],
+        },
+      });
     }
 
     /**
@@ -142,7 +226,19 @@ const config = {
       mdxUtils: path.resolve(__dirname, "components"),
       "@atlantis": path.resolve(__dirname, "../"),
     });
-
+    config.resolve.extensions = [
+      '.web.js',
+      '.web.jsx',
+      '.web.ts',
+      '.web.tsx',
+      ...config.resolve.extensions,
+    ];
+    const userAliases = options.modulesToAlias ?? {};
+    config.resolve.alias = {
+      'react-native$': 'react-native-web',
+      ...config.resolve.alias,
+      ...userAliases,
+    };
     // Return the altered config
     return config;
   },

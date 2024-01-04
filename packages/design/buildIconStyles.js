@@ -11,7 +11,7 @@ const transform = require("css-to-react-native-transform").default;
 const foundation = fs.readFileSync("./foundation.css");
 const icon = fs.readFileSync("src/icons/Icon.css");
 const size = fs.readFileSync("src/icons/Sizes.css");
-const color = fs.readFileSync("src/icons/Colors.css");
+const color = fs.readFileSync("src/icons/IconColors.css");
 
 const allCss = [foundation, icon, size, color].join("\n");
 
@@ -37,6 +37,7 @@ postcss({
       function (err) {
         if (err) {
           console.log("An error occurred while writing JSON object to File.");
+
           return console.log(err);
         }
         console.log("JSON file has been saved.");

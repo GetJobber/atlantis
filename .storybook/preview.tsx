@@ -11,6 +11,7 @@ import { StoryDetails } from "./components/StoryDetails";
 
 import "@jobber/design/foundation.css";
 import "./assets/css/preview.css";
+import { Unstyled } from "@storybook/addon-docs";
 
 try {
   require("@jobber/fonts");
@@ -50,7 +51,7 @@ export const parameters = {
   },
   docs: {
     components: {
-      wrapper: props => <Content>{props.children}</Content>,
+      wrapper: props => <Unstyled><Content>{props.children}</Content></Unstyled>,
       h1: props => <Header {...props} level={1} />,
       h2: props => <Header {...props} level={2} isTOC />,
       h3: props => <Header {...props} level={3} />,

@@ -2,14 +2,14 @@ import React from "react";
 import { render } from "@testing-library/react";
 import * as sbAPI from "@storybook/api";
 import { Playground } from "./Playground";
+jest.mock('@storybook/api', () => ({
+  ...jest.requireActual('@storybook/api'),
+  useStorybookApi: jest.fn(),
+}));
 
-const sbAPISpy = jest.spyOn<Partial<sbAPI.API>, "useStorybookApi">(
-  sbAPI,
-  "useStorybookApi",
-);
 
 afterEach(() => {
-  sbAPISpy.mockReset();
+  jest.resetAllMocks()
 });
 
 describe("Playground", () => {
@@ -36,7 +36,7 @@ describe("Playground", () => {
   });
 
   it("should render nothing when there's no story data", () => {
-    sbAPISpy.mockImplementation(() => ({
+    (sbAPI.useStorybookApi as jest.Mock).mockImplementation(() => ({
       emit: jest.fn(),
       getCurrentStoryData: () => undefined,
     }));
@@ -289,7 +289,7 @@ function mockStoryData({
   parameters,
   ...rest
 }: MockStoryDataType) {
-  sbAPISpy.mockImplementation(() => ({
+  (sbAPI.useStorybookApi as jest.Mock).mockImplementation(() => ({
     emit: jest.fn(),
     getCurrentStoryData: () => ({
       type: "story",
