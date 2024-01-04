@@ -36,6 +36,43 @@ exports[`Post Requests renders an InputFile 1`] = `
 </div>
 `;
 
+exports[`Post Requests renders an InputFile with custom accepted MIME types 1`] = `
+<div>
+  <div
+    class="dropZoneBase dropZone"
+    role="button"
+    tabindex="0"
+  >
+    <input
+      accept="image/png,image/jpg,application/pdf"
+      autocomplete="off"
+      style="display: none;"
+      tabindex="-1"
+      type="file"
+    />
+    <div
+      class="padded small"
+    >
+      <button
+        class="button small work secondary"
+        type="button"
+      >
+        <span
+          class="base extraBold small base"
+        >
+          Upload File
+        </span>
+      </button>
+      <p
+        class="base regular small textSecondary"
+      >
+        or drag a file here to upload
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Post Requests renders an InputFile with multiple images allowed 1`] = `
 <div>
   <div

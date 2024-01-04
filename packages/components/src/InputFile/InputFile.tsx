@@ -103,10 +103,18 @@ interface InputFileProps {
    *
    * @param "images" - only accepts all types of image
    * @param "basicImages" - only accepts png, jpg and jpeg
+   * @param "custom" - uses `acceptedMIMETypes` as the list of allowed types
    *
    * @default "all"
    */
-  readonly allowedTypes?: "all" | "images" | "basicImages";
+  readonly allowedTypes?: "all" | "images" | "basicImages" | "custom";
+
+  /**
+   * List of allowed MIME types.
+   *
+   * @default [] (empty array) - pass in the list of allowed MIME types when using `allowedTypes="custom"`
+   */
+  readonly acceptedMIMETypes?: string[];
 
   /**
    * Allow for multiple files to be selected for upload.
@@ -161,6 +169,7 @@ export function InputFile({
   buttonLabel: providedButtonLabel,
   allowMultiple = false,
   allowedTypes = "all",
+  acceptedMIMETypes = [],
   getUploadParams,
   onUploadStart,
   onUploadProgress,
@@ -175,7 +184,10 @@ export function InputFile({
     options.accept = "image/*";
   } else if (allowedTypes === "basicImages") {
     options.accept = "image/png, image/jpg, image/jpeg";
+  } else if (allowedTypes === "custom") {
+    options.accept = acceptedMIMETypes.join(",");
   }
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone(options);
 
   const { buttonLabel, hintText } = getLabels(
