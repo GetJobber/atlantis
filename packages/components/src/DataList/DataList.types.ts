@@ -111,17 +111,17 @@ export interface DataListProps<T extends DataListObject> {
    * `onSort`: The callback function when the user sorting a column.
    */
   readonly sorting?: {
-    // if item is a string, it is a header in dataList that is sortable asc desc
-    // if item is an object, the header is the dropdown with multiple sorting options
-    readonly sortable: (string | { key: string; options: string[] })[];
+    readonly sortable: {
+      key: string;
+      options?: {
+        label: string;
+        callback: () => void;
+        order?: "asc" | "desc";
+      }[];
+    }[];
     readonly state: DataListSorting | undefined;
     readonly onSort: (sorting?: DataListSorting) => void;
   };
-
-  /**
-   * Callback when a custom sort option is selected.
-   */
-  readonly onSortOptionSelected?: (option: string) => void;
 
   /**
    * The list of Selected Item ids

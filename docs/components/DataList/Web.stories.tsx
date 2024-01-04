@@ -111,17 +111,24 @@ const Template: ComponentStory<typeof DataList> = args => {
           {
             key: "label",
             options: [
-              "First Name (a-z)",
-              "First Name (z-a)",
-              "Last Name (a-z)",
-              "Last Name (z-a)",
+              {
+                label: "First Name (a-z)",
+                callback: () => sortingFunction(),
+              },
+              {
+                label: "First Name (z-a)",
+                callback: () => sortingFunction(),
+              },
             ],
           },
           {
             key: "home",
-            options: ["Home (a-z)", "Home (z-a)"],
+            options: [
+              { label: "Home (a-z)", callback: () => sortingFunction() },
+              { label: "Home (z-a)", callback: () => sortingFunction() },
+            ],
           },
-          "lastActivity",
+          { key: "lastActivity" },
         ],
       }}
     >

@@ -54,7 +54,6 @@ import { Spinner } from "../Spinner";
 export function DataList<T extends DataListObject>({
   selected = [],
   sorting,
-  onSortOptionSelected,
   ...props
 }: DataListProps<T>) {
   const [layoutBreakpoints, setLayoutBreakpoints] = useState<Breakpoints[]>([]);
@@ -102,7 +101,6 @@ export function DataList<T extends DataListObject>({
         selected,
         // T !== DataListObject
         sorting: sorting as DataListProps<DataListObject>["sorting"],
-        onSortOptionSelected,
       }}
     >
       <InternalDataList />
