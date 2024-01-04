@@ -68,9 +68,8 @@
     "@jobber/generators": "*",
     "@jobber/stylelint-config": "*",
     "@react-native-community/datetimepicker": "^7.1.0",
-    "storybook":"7.6.7",
     "@storybook/addon-actions": "7.6.7",
-    "@storybook/addon-designs":"7.0.7",
+    "@storybook/addon-designs": "7.0.7",
     "@storybook/addon-docs": "7.6.7",
     "@storybook/addon-essentials": "7.6.7",
     "@storybook/addon-interactions": "7.6.7",
@@ -78,8 +77,8 @@
     "@storybook/addons": "7.6.7",
     "@storybook/api": "7.6.7",
     "@storybook/react": "7.6.7",
-    "@storybook/react-webpack5": "7.6.0-alpha.4",
     "@storybook/react-native": "7.6.7-alpha.1",
+    "@storybook/react-webpack5": "7.6.0-alpha.4",
     "@storybook/testing-library": "0.2.2",
     "@storybook/theming": "7.6.7",
     "@testing-library/jest-dom": "^5.16.5",
@@ -143,6 +142,7 @@
     "react-native-web": "^0.18.12",
     "react-router-dom": "^5.3.4",
     "react-test-renderer": "^18.2.0",
+    "storybook": "7.6.7",
     "style-loader": "^0.23.1",
     "stylelint": "^14.2.0",
     "stylelint-junit-formatter": "^0.2.1",
@@ -168,6 +168,7 @@
   ],
   "dependencies": {
     "@std-proposal/temporal": "0.0.1",
+    "@storybook/components": "^7.6.7",
     "jest-environment-jsdom": "^29.5.0"
   },
   "optionalDependencies": {
