@@ -1,7 +1,14 @@
-import React, { ComponentProps, PropsWithChildren, ReactNode } from "react";
-import { Canvas, Markdown } from "@storybook/addon-docs";
+import React, {
+  ComponentProps,
+  FC,
+  PropsWithChildren,
+  ReactNode,
+  useEffect,
+  useRef,
+} from "react";
+import { Canvas, Markdown, Source } from "@storybook/addon-docs";
+import { Code } from "@storybook/components";
 import { Heading } from "@jobber/components/Heading";
-import { Text } from "@jobber/components/Text";
 import "@jobber/design/foundation.css";
 import { Content } from "@jobber/components/Content";
 
@@ -74,32 +81,76 @@ export function CustomCanvas({ children, ...props }: CustomCanvasProps) {
     </Canvas>
   );
 }
-const NoWrapper = ({ children }: PropsWithChildren) => <>{children}</>;
+
+export const CodeOrSourceMdx: FC<
+  PropsWithChildren<{ readonly className?: string }>
+> = ({ className, children, ...rest }) => {
+  // markdown-to-jsx does not add className to inline code
+  if (
+    typeof className !== "string" &&
+    (typeof children !== "string" || !(children as string).match(/[\n\r]/g))
+  ) {
+    return <Code>{children}</Code>;
+  }
+  // className: "lang-jsx"
+  const language = className && className.split("-");
+
+  return (
+    <Source
+      language={(language && language[1]) || "text"}
+      format={false}
+      code={children as string}
+      {...rest}
+    />
+  );
+};
 
 export const MarkdownWrapper = ({
   children,
 }: {
   readonly children: string;
 }) => {
+  const wrapper = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (wrapper.current) {
+      wrapper.current.innerHTML = wrapper.current.innerHTML.replace(
+        /^<div>(.*)<\/div>$/s,
+        "$1",
+      );
+    }
+  }, [wrapper]);
+
   return (
-    <Markdown
-      options={{
-        overrides: {
-          NoWrapper,
+    <div ref={wrapper}>
+      <Markdown
+        options={{
           wrapper: props => <Content>{props.children}</Content>,
-          h1: { component: props => <Heading level={1} {...props} /> },
-          h2: { component: props => <Heading level={2} {...props} /> },
-          h3: { component: props => <Heading level={3} {...props} /> },
-          h4: { component: props => <Heading level={4} {...props} /> },
-          h5: { component: props => <Heading level={5} {...props} /> },
-          h6: { component: props => <Heading level={6} {...props} /> },
-          p: props => <Text {...props} />,
-          inlineCode: props => <InlineCode {...props} />,
-          Canvas: CustomCanvas,
-        },
-      }}
-    >
-      {children}
-    </Markdown>
+          overrides: {
+            h1: { component: props => <Heading level={1} {...props} /> },
+            h2: { component: props => <Heading level={2} {...props} /> },
+            h3: { component: props => <Heading level={3} {...props} /> },
+            h4: { component: props => <Heading level={4} {...props} /> },
+            h5: { component: props => <Heading level={5} {...props} /> },
+            h6: { component: props => <Heading level={6} {...props} /> },
+            blockquote: {
+              component: props => (
+                <blockquote
+                  {...props}
+                  style={{
+                    margin: "16px 0px",
+                    borderLeft: `4px solid rgb(221, 221, 221)`,
+                    padding: "0 15px",
+                  }}
+                />
+              ),
+            },
+            code: CodeOrSourceMdx,
+            Canvas: CustomCanvas,
+          },
+        }}
+      >
+        {children}
+      </Markdown>
+    </div>
   );
 };
