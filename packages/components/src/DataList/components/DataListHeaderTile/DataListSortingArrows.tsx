@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./DataListSortingArrows.css";
 
-export interface DataListSortingArrowsProps {
+interface DataListSortingArrowsProps {
   readonly order?: "asc" | "desc" | "none";
 }
 
