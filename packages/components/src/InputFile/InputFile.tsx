@@ -138,6 +138,11 @@ interface InputFileProps {
    * Upload event handler. Triggered on upload completion.
    */
   onUploadComplete?(file: FileUpload): void;
+
+  /**
+   *  Upload event handler. Triggered on upload error.
+   */
+  onUploadError?(error: Error): void;
 }
 
 interface CreateAxiosConfigParams extends Omit<UploadParams, "key"> {
@@ -165,6 +170,7 @@ export function InputFile({
   onUploadStart,
   onUploadProgress,
   onUploadComplete,
+  onUploadError,
 }: InputFileProps) {
   const options: DropzoneOptions = {
     multiple: allowMultiple,
@@ -229,7 +235,9 @@ export function InputFile({
       key = uuidv1(),
       fields = {},
       httpMethod = "POST",
-    } = await getUploadParams(file);
+    } = await getUploadParams(file).catch((e: Error) => {
+      onUploadError && onUploadError(e);
+    });
 
     const fileUpload = getFileUpload(file, key, url);
     onUploadStart && onUploadStart({ ...fileUpload });
@@ -254,7 +262,7 @@ export function InputFile({
       file,
       handleUploadProgress,
     });
-    axios.request(axiosConfig).then(handleUploadComplete);
+    axios.request(axiosConfig).then(handleUploadComplete).catch(onUploadError);
   }
 }
 
