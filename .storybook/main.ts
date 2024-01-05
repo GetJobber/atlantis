@@ -46,13 +46,7 @@ const config = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
-    {
-      name: "@storybook/addon-docs",
-      options: {
-        transcludeMarkdown: true,
-      },
-    },
-  ],
+ ],
   features: { buildStoriesJson: true },
   framework: "@storybook/react-webpack5",
   webpackFinal: async (config, options) => {
@@ -243,5 +237,4 @@ const config = {
     return config;
   },
 };
-
-module.exports = config;
+export default config;
