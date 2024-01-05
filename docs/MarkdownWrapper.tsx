@@ -6,8 +6,9 @@ import React, {
   useEffect,
   useRef,
 } from "react";
-import { Canvas, Markdown, Source } from "@storybook/addon-docs";
+import { Canvas, Source } from "@storybook/addon-docs";
 import { Code } from "@storybook/components";
+import { Markdown } from "@storybook/blocks";
 import { Heading } from "@jobber/components/Heading";
 import "@jobber/design/foundation.css";
 import { Content } from "@jobber/components/Content";
@@ -111,6 +112,8 @@ export const MarkdownWrapper = ({
   readonly children: string;
 }) => {
   const wrapper = useRef<HTMLDivElement>(null);
+  const [content, setContent] = React.useState<string>("");
+
   useEffect(() => {
     if (wrapper.current) {
       wrapper.current.innerHTML = wrapper.current.innerHTML.replace(
@@ -120,18 +123,30 @@ export const MarkdownWrapper = ({
     }
   }, [wrapper]);
 
+  useEffect(() => {
+    // The Source component from storybook does not render properly
+    // when the code is provided on initial render.
+    // By moving it to a useEffect the Source component renders properly.
+    setContent(children);
+  }, [children]);
+
   return (
     <div ref={wrapper}>
       <Markdown
         options={{
           wrapper: props => <Content>{props.children}</Content>,
           overrides: {
-            h1: { component: props => <Heading level={1} {...props} /> },
-            h2: { component: props => <Heading level={2} {...props} /> },
-            h3: { component: props => <Heading level={3} {...props} /> },
-            h4: { component: props => <Heading level={4} {...props} /> },
-            h5: { component: props => <Heading level={5} {...props} /> },
-            h6: { component: props => <Heading level={6} {...props} /> },
+            h1: { component: props => <Header level={1} {...props} /> },
+            h2: { component: props => <Header level={2} {...props} isTOC /> },
+            h3: { component: props => <Header level={3} {...props} /> },
+            h4: { component: props => <Header level={4} {...props} /> },
+            h5: { component: props => <Header level={5} {...props} /> },
+            h6: { component: props => <Header level={6} {...props} /> },
+            a: {
+              component: props => (
+                <a {...props} style={{ textDecoration: "none" }} />
+              ),
+            },
             blockquote: {
               component: props => (
                 <blockquote
@@ -144,12 +159,12 @@ export const MarkdownWrapper = ({
                 />
               ),
             },
-            code: CodeOrSourceMdx,
-            Canvas: CustomCanvas,
+            code: { component: CodeOrSourceMdx },
+            Canvas: { component: CustomCanvas },
           },
         }}
       >
-        {children}
+        {content}
       </Markdown>
     </div>
   );

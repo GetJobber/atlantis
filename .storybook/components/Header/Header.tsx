@@ -1,6 +1,5 @@
 import React, { PropsWithChildren } from "react";
 import { Heading } from "@jobber/components/Heading";
-import { Unstyled } from "@storybook/addon-docs";
 
 interface HeaderProps {
   readonly id: string;
