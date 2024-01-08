@@ -23,11 +23,14 @@ export function useTimePredict({ value, handleChange }: UseTimePredictProps) {
     [typedTime, value, handleChange],
   );
 
+  /**
+   * Predict time when user types
+   */
   useEffect(() => {
-    if (typedTime !== "0") {
+    if (typedTime && typedTime !== "0") {
       predictTime();
 
-      // Immediately predict if user types any number but 1 and it's in a 12 hour format
+      // Immediately predict if user types any number except for 1 and it's in a 12 hour format
       if ((IS_12_HOUR_FORMAT && typedTime !== "1") || typedTime.length === 2) {
         predictTime.flush();
       }
@@ -35,6 +38,13 @@ export function useTimePredict({ value, handleChange }: UseTimePredictProps) {
 
     return predictTime.cancel;
   }, [typedTime]);
+
+  /**
+   * Reset typed time when the value changed
+   */
+  useEffect(() => {
+    setTypedTime("");
+  }, [value]);
 
   return {
     setTypedTime,
@@ -63,7 +73,7 @@ function predictHours(time: string) {
     return 0;
   }
 
-  if (IS_12_HOUR_FORMAT && parsedTime < 12 && !(parsedTime > 7)) {
+  if (IS_12_HOUR_FORMAT && parsedTime < 12 && !(parsedTime > 6)) {
     return parsedTime + 12;
   }
 

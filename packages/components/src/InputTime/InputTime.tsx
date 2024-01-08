@@ -16,11 +16,6 @@ export function InputTime({
   onChange,
   ...params
 }: InputTimeProps) {
-  const handleChange = (newValue: string) => {
-    onChange && onChange(htmlTimeToCivilTime(newValue));
-    setTypedTime("");
-  };
-
   const { setTypedTime } = useTimePredict({ value, handleChange });
 
   if (supportsTime) {
@@ -49,5 +44,9 @@ export function InputTime({
         {...params}
       />
     );
+  }
+
+  function handleChange(newValue: string) {
+    onChange?.(htmlTimeToCivilTime(newValue));
   }
 }
