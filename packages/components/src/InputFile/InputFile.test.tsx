@@ -136,6 +136,48 @@ describe("Post Requests", () => {
       expect(handleComplete).toHaveBeenCalledTimes(1);
     });
   });
+
+  describe("when component fails to get upload params", () => {
+    it("calls onError callback", async () => {
+      const fetchParams = jest.fn(() => Promise.reject("error"));
+      const handleError = jest.fn();
+
+      const { container } = render(
+        <InputFile getUploadParams={fetchParams} onUploadError={handleError} />,
+      );
+      const input = container.querySelector("input[type=file]");
+
+      fireEvent.change(input, { target: { files: [testFile] } });
+
+      await waitFor(() => {
+        expect(handleError).toHaveBeenCalledWith(
+          new Error("Failed to get upload params"),
+        );
+      });
+    });
+  });
+
+  describe("when the component fails to upload", () => {
+    it("calls onError callback", async () => {
+      const fetchParams = jest.fn(fetchUploadParams);
+      const handleError = jest.fn();
+
+      (axios.request as jest.Mock).mockReturnValue(Promise.reject("error"));
+
+      const { container } = render(
+        <InputFile getUploadParams={fetchParams} onUploadError={handleError} />,
+      );
+      const input = container.querySelector("input[type=file]");
+
+      fireEvent.change(input, { target: { files: [testFile] } });
+
+      await waitFor(() => {
+        expect(handleError).toHaveBeenCalledWith(
+          new Error("Failed to upload file"),
+        );
+      });
+    });
+  });
 });
 
 describe("PUT requests", () => {

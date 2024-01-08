@@ -122,7 +122,7 @@ interface InputFileProps {
    * More info is available at:
    * https://atlantis.getjobber.com/?path=/docs/components-forms-and-inputs-inputfile-docs--page#getuploadparams
    */
-  getUploadParams(file: File): UploadParams | Promise<UploadParams>;
+  getUploadParams(file: File): Promise<UploadParams>;
 
   /**
    * Upload event handler. Triggered on upload start.
@@ -230,14 +230,17 @@ export function InputFile({
   }
 
   async function uploadFile(file: File) {
-    const {
-      url,
-      key = uuidv1(),
-      fields = {},
-      httpMethod = "POST",
-    } = await getUploadParams(file).catch((e: Error) => {
-      onUploadError && onUploadError(e);
-    });
+    let params;
+
+    try {
+      params = await getUploadParams(file);
+    } catch {
+      onUploadError && onUploadError(new Error("Failed to get upload params"));
+
+      return;
+    }
+
+    const { url, key = uuidv1(), fields = {}, httpMethod = "POST" } = params;
 
     const fileUpload = getFileUpload(file, key, url);
     onUploadStart && onUploadStart({ ...fileUpload });
@@ -262,7 +265,12 @@ export function InputFile({
       file,
       handleUploadProgress,
     });
-    axios.request(axiosConfig).then(handleUploadComplete).catch(onUploadError);
+    axios
+      .request(axiosConfig)
+      .then(handleUploadComplete)
+      .catch(() => {
+        onUploadError && onUploadError(new Error("Failed to upload file"));
+      });
   }
 }
 
