@@ -178,6 +178,35 @@ describe("Post Requests", () => {
       });
     });
   });
+
+  describe("when a validator is provided and validation fails", () => {
+    it("shows the validation message", async () => {
+      function pngFileValidator(file: File) {
+        if (file.name.endsWith(".png")) {
+          return {
+            code: "wrong-file-type",
+            message: "Only .png files are allowed",
+          };
+        }
+
+        return null;
+      }
+
+      const { container } = render(
+        <InputFile
+          getUploadParams={fetchUploadParams}
+          validator={pngFileValidator}
+        />,
+      );
+      const input = container.querySelector("input[type=file]");
+
+      fireEvent.change(input, { target: { files: [testFile] } });
+
+      await waitFor(() => {
+        expect(container).toContainHTML("Only .png files are allowed");
+      });
+    });
+  });
 });
 
 describe("PUT requests", () => {

@@ -1,9 +1,10 @@
 import React, { useCallback } from "react";
 import classnames from "classnames";
-import { DropzoneOptions, useDropzone } from "react-dropzone";
+import { DropzoneOptions, FileError, useDropzone } from "react-dropzone";
 import axios, { AxiosRequestConfig } from "axios";
 import { v1 as uuidv1 } from "uuid";
 import styles from "./InputFile.css";
+import { InputValidation } from "../InputValidation";
 import { Button } from "../Button";
 import { Content } from "../Content";
 import { Typography } from "../Typography";
@@ -143,6 +144,13 @@ interface InputFileProps {
    *  Upload event handler. Triggered on upload error.
    */
   onUploadError?(error: Error): void;
+
+  /**
+   * Pass a custom validator function that will be called when a file is dropped.
+   */
+  readonly validator?: <T extends File>(
+    file: T,
+  ) => FileError | FileError[] | null;
 }
 
 interface CreateAxiosConfigParams extends Omit<UploadParams, "key"> {
@@ -160,6 +168,17 @@ interface CreateAxiosConfigParams extends Omit<UploadParams, "key"> {
   handleUploadProgress(progress: any): void;
 }
 
+function pngFileValidator(file: File) {
+  if (!file.name.endsWith(".png")) {
+    return {
+      code: "wrong-file-type",
+      message: "Only .png files are allowed",
+    };
+  }
+
+  return null;
+}
+
 export function InputFile({
   variation = "dropzone",
   size = "base",
@@ -171,10 +190,12 @@ export function InputFile({
   onUploadProgress,
   onUploadComplete,
   onUploadError,
+  validator = pngFileValidator,
 }: InputFileProps) {
   const options: DropzoneOptions = {
     multiple: allowMultiple,
     onDrop: useCallback(handleDrop, []),
+    validator: validator && useCallback(validator, []),
   };
 
   if (allowedTypes === "images") {
@@ -182,7 +203,18 @@ export function InputFile({
   } else if (allowedTypes === "basicImages") {
     options.accept = "image/png, image/jpg, image/jpeg";
   }
-  const { getRootProps, getInputProps, isDragActive } = useDropzone(options);
+  const { getRootProps, getInputProps, isDragActive, fileRejections } =
+    useDropzone(options);
+  const validationErrors = fileRejections?.map(({ file, errors }) => {
+    return errors.map(error => {
+      return (
+        <InputValidation
+          message={file.name + "\n" + error.message}
+          key={file.name}
+        />
+      );
+    });
+  });
 
   const { buttonLabel, hintText } = getLabels(
     providedButtonLabel,
@@ -209,6 +241,7 @@ export function InputFile({
               {hintText}
             </Typography>
           )}
+          {validationErrors}
         </Content>
       )}
 
