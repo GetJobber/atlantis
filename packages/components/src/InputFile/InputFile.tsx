@@ -103,18 +103,11 @@ interface InputFileProps {
    *
    * @param "images" - only accepts all types of image
    * @param "basicImages" - only accepts png, jpg and jpeg
-   * @param "custom" - uses `acceptedMIMETypes` as the list of allowed types
+   * @param "string[]" - accept a specific list of MIME types
    *
    * @default "all"
    */
-  readonly allowedTypes?: "all" | "images" | "basicImages" | "custom";
-
-  /**
-   * List of allowed MIME types.
-   *
-   * @default [] (empty array) - pass in the list of allowed MIME types when using `allowedTypes="custom"`
-   */
-  readonly acceptedMIMETypes?: string[];
+  readonly allowedTypes?: "all" | "images" | "basicImages" | string[];
 
   /**
    * Allow for multiple files to be selected for upload.
@@ -169,7 +162,6 @@ export function InputFile({
   buttonLabel: providedButtonLabel,
   allowMultiple = false,
   allowedTypes = "all",
-  acceptedMIMETypes = [],
   getUploadParams,
   onUploadStart,
   onUploadProgress,
@@ -184,8 +176,8 @@ export function InputFile({
     options.accept = "image/*";
   } else if (allowedTypes === "basicImages") {
     options.accept = "image/png, image/jpg, image/jpeg";
-  } else if (allowedTypes === "custom") {
-    options.accept = acceptedMIMETypes.join(",");
+  } else if (Array.isArray(allowedTypes)) {
+    options.accept = allowedTypes.join(",");
   }
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone(options);
@@ -306,7 +298,7 @@ function createAxiosConfig({
 function getLabels(
   providedButtonLabel: string | undefined,
   multiple: boolean,
-  allowedTypes: string,
+  allowedTypes: string | string[],
 ) {
   let buttonLabel = multiple ? "Upload Files" : "Upload File";
   let hintText = multiple

@@ -42,8 +42,7 @@ describe("Post Requests", () => {
   it("renders an InputFile with custom accepted MIME types", () => {
     const { container } = render(
       <InputFile
-        allowedTypes="custom"
-        acceptedMIMETypes={["image/png", "image/jpg", "application/pdf"]}
+        allowedTypes={["image/png", "image/jpg", "application/pdf"]}
         getUploadParams={fetchUploadParams}
       />,
     );
