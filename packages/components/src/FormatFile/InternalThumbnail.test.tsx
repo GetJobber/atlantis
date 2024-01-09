@@ -6,7 +6,6 @@ import { InternalThumbnail } from "@jobber/components/FormatFile/InternalThumbna
 
 afterEach(() => {
   jest.clearAllMocks();
-  // jest.resetModules();
 });
 
 function renderInternalThumbnail(file: FileUpload) {
@@ -44,7 +43,6 @@ describe("InternalThumbnail", () => {
   });
 
   it("renders the HEIC image thumbnail in Safari", async () => {
-    // deviceDetect.isSafari = jest.fn().mockReturnValue(true);
     jest.replaceProperty(deviceDetect, "isSafari", true);
     const file: FileUpload = {
       key: "abc",
