@@ -168,12 +168,7 @@ export function InputFile({
 }: InputFileProps) {
   const options: DropzoneOptions = {
     multiple: allowMultiple,
-    onDrop: useCallback(handleDrop, [
-      getUploadParams,
-      onUploadStart,
-      onUploadProgress,
-      onUploadComplete,
-    ]),
+    onDrop: useCallback(handleDrop, [uploadFile]),
   };
 
   if (allowedTypes === "images") {
