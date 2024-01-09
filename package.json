@@ -168,8 +168,7 @@
   ],
   "dependencies": {
     "@std-proposal/temporal": "0.0.1",
-    "jest-environment-jsdom": "^29.5.0",
-    "react-device-detect": "^2.2.3"
+    "jest-environment-jsdom": "^29.5.0"
   },
   "optionalDependencies": {
     "@jobber/fonts": "^1.1.0"
