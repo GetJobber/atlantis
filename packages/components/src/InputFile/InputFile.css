@@ -22,3 +22,8 @@
   border-color: var(--color-focus);
   background-color: var(--color-surface--hover);
 }
+
+.validationErrors {
+  display: flex;
+  justify-content: center;
+}

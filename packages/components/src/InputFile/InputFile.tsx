@@ -168,17 +168,6 @@ interface CreateAxiosConfigParams extends Omit<UploadParams, "key"> {
   handleUploadProgress(progress: any): void;
 }
 
-function pngFileValidator(file: File) {
-  if (!file.name.endsWith(".png")) {
-    return {
-      code: "wrong-file-type",
-      message: "Only .png files are allowed",
-    };
-  }
-
-  return null;
-}
-
 export function InputFile({
   variation = "dropzone",
   size = "base",
@@ -190,7 +179,7 @@ export function InputFile({
   onUploadProgress,
   onUploadComplete,
   onUploadError,
-  validator = pngFileValidator,
+  validator,
 }: InputFileProps) {
   const options: DropzoneOptions = {
     multiple: allowMultiple,
@@ -241,7 +230,9 @@ export function InputFile({
               {hintText}
             </Typography>
           )}
-          {validationErrors}
+          {fileRejections?.length > 0 && (
+            <div className={styles.validationErrors}>{validationErrors}</div>
+          )}
         </Content>
       )}
 
