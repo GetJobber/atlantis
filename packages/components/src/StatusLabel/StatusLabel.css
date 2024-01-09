@@ -1,5 +1,5 @@
 :root {
-  --statusLabel-icon-diameter: calc(var(--space-base) - var(--space-smaller));
+  --statusLabel-icon-diameter: 10px;
 }
 
 .statusLabelRow {
@@ -14,7 +14,7 @@
   width: var(--statusLabel-icon-diameter);
   height: var(--statusLabel-icon-diameter);
   margin-top: var(--space-minuscule);
-  border-radius: var(--radius-base);
+  border-radius: 3px;
   background-color: var(--color-success);
   flex-shrink: 0;
 }
