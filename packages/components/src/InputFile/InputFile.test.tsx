@@ -46,7 +46,11 @@ describe("Post Requests", () => {
         getUploadParams={fetchUploadParams}
       />,
     );
-    expect(container).toMatchSnapshot();
+    const input = container.querySelector("input[type=file]");
+    expect(input).toHaveAttribute(
+      "accept",
+      "image/png,image/jpg,application/pdf",
+    );
   });
 
   it("renders an InputFile with only images allowed", () => {
