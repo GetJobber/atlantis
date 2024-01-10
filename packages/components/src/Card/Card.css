@@ -19,13 +19,7 @@
 }
 
 :root :global(.jobber-retheme) .card:not(.clickable) {
-  --card--base-padding: var(--space-base);
-  --card--border: none;
   --card--header-background: transparent;
-
-  @media (--medium-screens-and-up) {
-    --card--base-padding: 0;
-  }
 }
 
 /* Adjust `Content` components public padding to match the cards */
@@ -44,12 +38,20 @@
   border-top-width: 0;
 }
 
+:global(.jobber-retheme) .accent {
+  border-top-width: 1px;
+}
+
 .accent::before {
   content: " ";
   display: block;
   margin: 0 calc(-1 * var(--border-base));
   border-top: 0.5rem solid var(--card--accent-color);
   border-radius: var(--radius-base) var(--radius-base) 0 0;
+}
+
+:global(.jobber-retheme) .accent::before {
+  display: none;
 }
 
 .clickable {
@@ -77,12 +79,7 @@
 }
 
 :global(.jobber-retheme) .header {
-  padding: var(--card--base-padding);
   padding-bottom: 0;
-
-  @media (--medium-screens-and-up) {
-    padding: var(--space-base) 0;
-  }
 }
 
 :global(.jobber-retheme) .header h3 {
