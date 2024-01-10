@@ -1,11 +1,11 @@
 import React from "react";
 import classNames from "classnames";
-import { isSafari } from "react-device-detect";
 import styles from "./InternalThumbnail.css";
 import { InternalThumbnailImage } from "./InternalThumbnailImage";
 import { Icon, IconNames } from "../Icon";
 import { FileUpload } from "../InputFile";
 import { Typography } from "../Typography";
+import { isSafari } from "../utils/getClientBrowser";
 
 interface InternalThumbnailProps {
   readonly compact?: boolean;
@@ -23,7 +23,10 @@ export function InternalThumbnail({
   const hasName = Boolean(name) && compact;
   const nonHeicImage = !type.startsWith("image/heic");
 
-  if (type.startsWith("image/") && (nonHeicImage || isSafari)) {
+  if (
+    type.startsWith("image/") &&
+    (nonHeicImage || isSafari(window.navigator.userAgent))
+  ) {
     return <InternalThumbnailImage file={file} />;
   }
 

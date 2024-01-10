@@ -1,8 +1,8 @@
 import { render } from "@testing-library/react";
 import React from "react";
-import * as deviceDetect from "react-device-detect";
 import { FileUpload } from "@jobber/components/InputFile";
 import { InternalThumbnail } from "@jobber/components/FormatFile/InternalThumbnail";
+import * as browserUtilities from "../utils/getClientBrowser";
 
 afterEach(() => {
   jest.clearAllMocks();
@@ -43,7 +43,7 @@ describe("InternalThumbnail", () => {
   });
 
   it("renders the HEIC image thumbnail in Safari", async () => {
-    jest.replaceProperty(deviceDetect, "isSafari", true);
+    jest.spyOn(browserUtilities, "isSafari").mockReturnValue(true);
     const file: FileUpload = {
       key: "abc",
       name: "heic_image_of_something.heic",
