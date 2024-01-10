@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.70.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.69.2...@jobber/components@4.70.0) (2024-01-10)
+
+
+### Features
+
+* **components:** Add better typescript types for to prop on Button ([#1715](https://github.com/GetJobber/atlantis/issues/1715)) ([cb7d6ea](https://github.com/GetJobber/atlantis/commit/cb7d6ea9ff025177ef1ee50e186406fa22952342))
+
+
+
+
+
 ## [4.69.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.69.1...@jobber/components@4.69.2) (2024-01-09)
 
 **Note:** Version bump only for package @jobber/components
