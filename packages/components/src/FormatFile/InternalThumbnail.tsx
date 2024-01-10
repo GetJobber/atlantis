@@ -22,11 +22,10 @@ export function InternalThumbnail({
   const iconName = getIconNameFromType(type);
   const hasName = Boolean(name) && compact;
   const nonHeicImage = !type.startsWith("image/heic");
+  const userAgent =
+    typeof document === "undefined" ? "" : window.navigator.userAgent;
 
-  if (
-    type.startsWith("image/") &&
-    (nonHeicImage || isSafari(window.navigator.userAgent))
-  ) {
+  if (type.startsWith("image/") && (nonHeicImage || isSafari(userAgent))) {
     return <InternalThumbnailImage file={file} />;
   }
 
