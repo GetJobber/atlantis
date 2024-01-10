@@ -49,7 +49,7 @@ export default {
     "react-hook-form",
     "react-router-dom",
     "react-dom",
-    "react-markdown",
+    "markdown-to-jsx",
     "react-countdown",
     "react-popper",
     "react-datepicker",
