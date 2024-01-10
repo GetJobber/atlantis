@@ -5,6 +5,10 @@
   background-color: var(--color-surface--background);
 }
 
+:global(.jobber-retheme) .wrapper {
+  align-self: center;
+}
+
 .success {
   background-color: var(--color-success);
 }
