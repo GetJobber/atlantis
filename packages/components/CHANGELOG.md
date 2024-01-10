@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.71.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.70.1...@jobber/components@4.71.0) (2024-01-10)
+
+
+### Features
+
+* Add support for providing your own of acceptable file types to upload for InputFile ([#1708](https://github.com/GetJobber/atlantis/issues/1708)) ([be6e7a3](https://github.com/GetJobber/atlantis/commit/be6e7a3f24177932cb11d00b55f0ba8aff3612bc))
+
+
+
+
+
 ## [4.70.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.70.0...@jobber/components@4.70.1) (2024-01-10)
 
 
