@@ -37,6 +37,11 @@
   justify-content: space-between;
 }
 
+:global(.jobber-retheme) .toolbar {
+  color: var(--color-text--secondary);
+  background-color: var(--color-surface--background);
+}
+
 .title {
   display: inline-flex;
   align-items: center;

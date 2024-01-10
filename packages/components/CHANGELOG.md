@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.70.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.70.0...@jobber/components@4.70.1) (2024-01-10)
+
+
+### Bug Fixes
+
+* **components:** InputFile update the useCallback dependency array [85395] ([#1709](https://github.com/GetJobber/atlantis/issues/1709)) ([7b603de](https://github.com/GetJobber/atlantis/commit/7b603defe70c857d9724f5349f12a59bc625ffb6))
+
+
+
+
+
+# [4.70.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.69.2...@jobber/components@4.70.0) (2024-01-10)
+
+
+### Features
+
+* **components:** Add better typescript types for to prop on Button ([#1715](https://github.com/GetJobber/atlantis/issues/1715)) ([cb7d6ea](https://github.com/GetJobber/atlantis/commit/cb7d6ea9ff025177ef1ee50e186406fa22952342))
+
+
+
+
+
+## [4.69.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.69.1...@jobber/components@4.69.2) (2024-01-09)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.69.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.69.0...@jobber/components@4.69.1) (2024-01-04)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 # [4.69.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.68.18...@jobber/components@4.69.0) (2023-12-22)
 
 
