@@ -4,9 +4,13 @@ import { Text } from "../Text";
 import { Emphasis } from "../Emphasis";
 import { Heading } from "../Heading";
 
-// Basic prevents the use of paragraph and h1 elements while wrapping
-// strong, and em in Atlantis styles. Anchor tags can be
-// made to open in a new tab via the externalLink prop.
+/**
+ * Basic prevents the use of paragraph and h1 elements while wrapping
+ * strong, and em in Atlantis styles. Anchor tags can be
+ * made to open in a new tab via the externalLink prop.
+ * @param externalLink Will open any anchor tags in a new tab.
+ * @returns
+ */
 function basicOverrides(externalLink?: boolean) {
   return {
     p: ({ children }) => <>{children}</>,
@@ -17,8 +21,12 @@ function basicOverrides(externalLink?: boolean) {
   } as MarkdownToJSX.Overrides;
 }
 
-// This is setup to mimic the output of our old react-markdown setup for compatibility purposes.
-// We sub in Atlantis components here for most of the markdown elements.
+/**
+ * This is setup to mimic the output of our old react-markdown setup for compatibility purposes.
+ * We sub in Atlantis components here for most of the markdown elements.
+ * @param externalLink Will open any anchor tags in a new tab.
+ * @returns MarkdownToJSX.Overrides
+ */
 function defaultOverrides(externalLink?: boolean) {
   return {
     p: ({ children }) => <Text>{children}</Text>,
@@ -36,6 +44,11 @@ function defaultOverrides(externalLink?: boolean) {
   } as MarkdownToJSX.Overrides;
 }
 
+/**
+ * Simple wrapper to open anchor tags in a new tab if externalLink is true.
+ * @param props
+ * @returns
+ */
 function renderAnchor({
   children,
   externalLink,
@@ -48,14 +61,29 @@ function renderAnchor({
   );
 }
 
+/**
+ * Renders Atlantis' Empahsis component with the bold variation.
+ * @param props
+ * @returns
+ */
 function renderStrong({ children }: PropsWithChildren) {
   return <Emphasis variation="bold">{children}</Emphasis>;
 }
 
+/**
+ * Renders Atlantis' Empahsis component with the italic variation.
+ * @param props
+ * @returns
+ */
 function renderEmphasis({ children }: PropsWithChildren) {
   return <Emphasis variation="italic">{children}</Emphasis>;
 }
 
+/**
+ * Renders Atlantis' Heading component with the specified level.
+ * @param level Heading Level to render
+ * @returns
+ */
 function renderHeading(level: 1 | 2 | 3 | 4 | 5) {
   function buildHeading({ children }: PropsWithChildren) {
     return <Heading level={level}>{children}</Heading>;
