@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.71.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.71.4...@jobber/components@4.71.5) (2024-01-11)
+
+
+### Bug Fixes
+
+* **components:** Fix DataList Small Breakpoint DataListHeader Visibility ([#1720](https://github.com/GetJobber/atlantis/issues/1720)) ([cd2e912](https://github.com/GetJobber/atlantis/commit/cd2e912e352d23ed7eef3f1191d8458894d927eb))
+
+
+
+
+
 ## [4.71.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.71.3...@jobber/components@4.71.4) (2024-01-11)
 
 
