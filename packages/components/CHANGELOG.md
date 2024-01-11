@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.71.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.71.1...@jobber/components@4.71.2) (2024-01-11)
+
+
+### Bug Fixes
+
+* **components:** Bring back card border and padding for retheme ([#1719](https://github.com/GetJobber/atlantis/issues/1719)) ([40d1595](https://github.com/GetJobber/atlantis/commit/40d1595ea2a27a0c699a47c2e028e564aa791505))
+
+
+
+
+
 ## [4.71.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.71.0...@jobber/components@4.71.1) (2024-01-10)
 
 **Note:** Version bump only for package @jobber/components
