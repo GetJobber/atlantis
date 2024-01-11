@@ -102,8 +102,9 @@ function predict12Hours(parsedTime: number, currentHour: number) {
 function predict24Hours(time: string, parsedTime: number, currentHour: number) {
   /**
    * Typing 1 could be predicted from 10 to 19.
+   * Typing 01 skips this logic and sets the time to 01:00.
    */
-  if (parsedTime === 1) {
+  if (parsedTime === 1 && time !== "01") {
     if (currentHour < 10 || currentHour > 19) {
       return 10;
     } else {
@@ -113,8 +114,9 @@ function predict24Hours(time: string, parsedTime: number, currentHour: number) {
 
   /**
    * Typing 2 could be predicted from 20 to 24.
+   * Typing 02 skips this logic and sets the time to 02:00.
    */
-  if (parsedTime === 2) {
+  if (parsedTime === 2 && time !== "02") {
     if (currentHour < 20) {
       return 20;
     } else {
