@@ -1,25 +1,29 @@
 import debounce from "lodash/debounce";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { InputTimeProps } from "../InputTimeProps";
-
-const IS_12_HOUR_FORMAT = Intl.DateTimeFormat(navigator.language, {
-  hour: "numeric",
-}).resolvedOptions().hour12;
 
 interface UseTimePredictProps extends Pick<InputTimeProps, "value"> {
   readonly handleChange: (value: string) => void;
 }
 
+const DEBOUNCE_TIME = 300;
+
 export function useTimePredict({ value, handleChange }: UseTimePredictProps) {
+  const IS_12_HOUR_FORMAT = useRef(
+    Intl.DateTimeFormat(navigator.language, {
+      hour: "numeric",
+    }).resolvedOptions().hour12,
+  );
+
   const [typedTime, setTypedTime] = useState<string>("");
 
   const predictTime = useCallback(
     debounce(() => {
       if (value) return;
 
-      const predictedHour = predictHours(typedTime);
+      const predictedHour = predictHours(typedTime, IS_12_HOUR_FORMAT.current);
       handleChange(`${formatHour(predictedHour)}:00`);
-    }, 300),
+    }, DEBOUNCE_TIME),
     [typedTime, value, handleChange],
   );
 
@@ -52,16 +56,16 @@ export function useTimePredict({ value, handleChange }: UseTimePredictProps) {
 }
 
 // eslint-disable-next-line max-statements
-function predictHours(time: string) {
+function predictHours(time: string, is12HourFormat = false) {
   const today = new Date();
   const currentHour = today.getHours();
   const parsedTime = parseInt(time, 10);
 
-  if (IS_12_HOUR_FORMAT && parsedTime === 1 && currentHour < 12) {
+  if (is12HourFormat && parsedTime === 1 && currentHour < 12) {
     return currentHour < 10 ? 10 : currentHour + 1;
   }
 
-  if (!IS_12_HOUR_FORMAT && (parsedTime === 1 || parsedTime === 2)) {
+  if (!is12HourFormat && (parsedTime === 1 || parsedTime === 2)) {
     if (parsedTime === 1) {
       return currentHour < 10 || currentHour >= 20 ? 10 : currentHour + 1;
     } else {
@@ -73,7 +77,7 @@ function predictHours(time: string) {
     return 0;
   }
 
-  if (IS_12_HOUR_FORMAT && parsedTime < 12 && !(parsedTime > 6)) {
+  if (is12HourFormat && parsedTime < 12 && !(parsedTime > 6)) {
     return parsedTime + 12;
   }
 
