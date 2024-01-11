@@ -326,17 +326,3 @@
 .description {
   margin-top: var(--space-smaller);
 }
-
-.timeInputLabel:focus-within input::-webkit-datetime-edit-hour-field {
-  border-bottom: 1px solid var(--color-text);
-  background-color: var(--color-lightBlue--lighter);
-  -webkit-text-fill-color: var(--color-lightBlue--lighter);
-}
-
-.timeInputLabel:focus-within input::-webkit-datetime-edit-minute-field,
-.timeInputLabel:focus-within input::-webkit-datetime-edit-ampm-field,
-.timeInputLabel:focus-within input::-webkit-datetime-edit-meridiem-field {
-  border-bottom: 1px solid var(--color-text);
-  background-color: transparent;
-  -webkit-text-fill-color: var(--field--background-color);
-}
