@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.71.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.71.5...@jobber/components@4.71.6) (2024-01-11)
+
+
+### Bug Fixes
+
+* **components:** static thumbnails for HEIC in all browsers but safari (fixes forever loading thumbnail for HEIC) [84773] ([#1712](https://github.com/GetJobber/atlantis/issues/1712)) ([da2feaa](https://github.com/GetJobber/atlantis/commit/da2feaaa8377867f9651617538bb377f317c3820))
+
+
+
+
+
 ## [4.71.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.71.4...@jobber/components@4.71.5) (2024-01-11)
 
 
