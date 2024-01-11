@@ -1,14 +1,3 @@
-.wrapper {
-  display: inline-flex;
-  padding: var(--space-smaller);
-  border-radius: var(--radius-circle);
-  background-color: var(--color-surface--background);
-}
-
-:global(.jobber-retheme) .wrapper {
-  align-self: center;
-}
-
 .success {
   background-color: var(--color-success);
 }
