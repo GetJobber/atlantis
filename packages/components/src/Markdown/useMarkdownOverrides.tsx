@@ -62,7 +62,7 @@ function renderAnchor({
 }
 
 /**
- * Renders the Atlantis Empahsis component with the bold variation.
+ * Renders the Atlantis Emphasis component with the bold variation.
  * @param props
  * @returns
  */
@@ -71,7 +71,7 @@ function renderStrong({ children }: PropsWithChildren) {
 }
 
 /**
- * Renders the Atlantis Empahsis component with the italic variation.
+ * Renders the Atlantis Emphasis component with the italic variation.
  * @param props
  * @returns
  */
@@ -92,7 +92,7 @@ function renderHeading(level: 1 | 2 | 3 | 4 | 5) {
   return buildHeading;
 }
 
-// Quick toggle to decide bteewen basic and default overrides
+// Quick toggle to decide between basic and default overrides
 // and to pass along our decision to make the link external
 // or not.
 export function useMarkdownOverrides(
