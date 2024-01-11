@@ -4,11 +4,7 @@ import styles from "./DataListHeaderTile.css";
 import { DataListSortingArrows } from "./DataListSortingArrows";
 import { Text } from "../../../Text";
 import { useDataListContext } from "../../context/DataListContext";
-import {
-  DataListHeader,
-  DataListObject,
-  SortableOptions,
-} from "../../DataList.types";
+import { DataListHeader, DataListObject } from "../../DataList.types";
 
 interface DataListHeaderTileProps<T extends DataListObject> {
   readonly headers: DataListHeader<T>;
@@ -37,17 +33,17 @@ export function DataListHeaderTile<T extends DataListObject>({
     >
       <Text maxLines="single">{headers[headerKey]}</Text>
       {isSortable && sortableItem?.options && isDropDownOpen && (
-        <select
-          onClick={handleSelectClick}
-          onChange={handleSelectChange}
-          // value={sortingDirection?.label || ""}
-        >
+        <ul className={styles.optionsList}>
           {sortableItem?.options?.map((option, index) => (
-            <option key={index} value={option.label}>
+            <li
+              className={styles.option}
+              key={index}
+              onClick={() => handleSelectChange(option)}
+            >
               {option.label}
-            </option>
+            </li>
           ))}
-        </select>
+        </ul>
       )}
       {sortingState?.key === headerKey ? (
         <DataListSortingArrows order={sortingState.order} />
@@ -85,22 +81,14 @@ export function DataListHeaderTile<T extends DataListObject>({
     }
   }
 
-  function handleSelectClick(event: React.MouseEvent) {
-    event.stopPropagation();
-  }
-
-  function handleSelectChange(event: React.ChangeEvent<HTMLSelectElement>) {
-    const selectedOption = event.target.value;
-    const selectedDirection = sortableItem?.options?.find(
-      (option: SortableOptions) => option.label === selectedOption,
-    );
-
-    if (selectedDirection && sortableItem) {
-      toggleSorting(sortableItem.key, selectedDirection.order);
+  function handleSelectChange(selectedOption: {
+    label: string;
+    order: "asc" | "desc";
+  }) {
+    if (sortableItem) {
+      toggleSorting(sortableItem.key, selectedOption.order);
     }
 
-    console.log("Selected Option:", selectedOption);
-    console.log("Sorting Direction:", selectedDirection);
     setIsDropDownOpen(false);
   }
 }

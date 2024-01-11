@@ -1,5 +1,6 @@
 .headerLabel {
   display: flex;
+  position: relative;
   align-items: center;
   padding: 0;
   border: none;
@@ -17,4 +18,39 @@
 
 .sortable {
   cursor: pointer;
+}
+
+.optionsList {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding: var(--space-small) 0;
+  border-radius: var(--radius-larger);
+  border: var(--border-base) solid var(--color-border);
+  margin-top: var(--space-smaller);
+  max-width: var(--popover--width);
+  box-shadow: var(--shadow-base);
+  align-items: flex-start;
+  background: var(--color-surface);
+}
+
+.option {
+  display: flex;
+  list-style: none;
+  white-space: nowrap;
+  font-family: var(--typography--fontFamily-normal);
+  font-size: var(--typography--fontSize-base);
+  font-weight: 500;
+  box-sizing: border-box;
+  min-height: calc((var(--space-largest) - var(--space-smaller)));
+  align-items: center;
+  margin: 0 var(--space-small);
+  padding: var(--space-small);
+  cursor: pointer;
+}
+
+.option:hover,
+.option:focus-visible {
+  background-color: var(--color-surface--hover);
+  border-radius: var(--radius-large);
 }
