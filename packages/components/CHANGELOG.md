@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.71.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.71.3...@jobber/components@4.71.4) (2024-01-11)
+
+
+### Bug Fixes
+
+* **components:** Hide anything overflowing the dataTable ([#1722](https://github.com/GetJobber/atlantis/issues/1722)) ([98dd362](https://github.com/GetJobber/atlantis/commit/98dd36242b616fccd16db8678731edd1a4bb9300))
+
+
+
+
+
 ## [4.71.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.71.2...@jobber/components@4.71.3) (2024-01-11)
 
 
