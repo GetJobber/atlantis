@@ -5,6 +5,7 @@ import { InternalThumbnailImage } from "./InternalThumbnailImage";
 import { Icon, IconNames } from "../Icon";
 import { FileUpload } from "../InputFile";
 import { Typography } from "../Typography";
+import { isSafari } from "../utils/getClientBrowser";
 
 interface InternalThumbnailProps {
   readonly compact?: boolean;
@@ -20,8 +21,11 @@ export function InternalThumbnail({
   const { name, type } = file;
   const iconName = getIconNameFromType(type);
   const hasName = Boolean(name) && compact;
+  const nonHeicImage = !type.startsWith("image/heic");
+  const userAgent =
+    typeof document === "undefined" ? "" : window.navigator.userAgent;
 
-  if (type.startsWith("image/")) {
+  if (type.startsWith("image/") && (nonHeicImage || isSafari(userAgent))) {
     return <InternalThumbnailImage file={file} />;
   }
 
@@ -45,7 +49,7 @@ export function InternalThumbnail({
 }
 
 function getIconNameFromType(mimeType: string): IconNames {
-  if (mimeType.startsWith("image/")) return "camera";
+  if (mimeType.startsWith("image/")) return "image";
   if (mimeType.startsWith("video/")) return "video";
 
   switch (mimeType) {
