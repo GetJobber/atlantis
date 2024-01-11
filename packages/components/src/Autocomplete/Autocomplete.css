@@ -45,7 +45,6 @@
   align-items: center;
   padding: var(--space-small);
   border: none;
-  border-radius: var(--radius-base);
   text-align: left;
   list-style: none;
   background-color: transparent;
