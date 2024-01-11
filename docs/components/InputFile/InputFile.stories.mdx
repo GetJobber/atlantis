@@ -58,3 +58,30 @@ updating an array of `FileUpload`s based on their `key` as uploads progress.
  */
 export function updateFiles(updatedFile: FileUpload, files: FileUpload[]);
 ```
+
+### validator
+
+InputFile can accept a `validator` function as a prop. This will allow you to
+reject or accept file uploads based on your needs. The value of the function
+must accept a File and return `null` when it is accepted or an error object when
+rejected.
+
+For example, the code below only accepts .PNG files that are less than 2MB in
+size.
+
+```ts
+function pngFileValidator(file: File) {
+  if (!file.name.endsWith(".png")) {
+    return {
+      code: "wrong-file-type",
+      message: "Only .png files are allowed",
+    };
+  } else if (file.size > 2000000) {
+    return {
+      code: "file-too-big",
+      message: "The file is too big. Try using a smaller image",
+    };
+  }
+  return null;
+}
+```

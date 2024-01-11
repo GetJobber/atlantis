@@ -202,7 +202,7 @@ export function InputFile({
     return errors.map(error => {
       return (
         <InputValidation
-          message={file.name + "\n" + error.message}
+          message={`${file.name} ${error.message}`}
           key={`${file.name}${error.code}`}
         />
       );
