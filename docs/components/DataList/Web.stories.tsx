@@ -107,7 +107,27 @@ const Template: ComponentStory<typeof DataList> = args => {
           console.log(sorting);
           setSortingState(sorting);
         },
-        sortable: ["label", "home", "lastActivity"],
+        sortable: [
+          {
+            key: "label",
+            options: [
+              { label: "First name (a-z)", order: "asc" },
+              { label: "First name (z-a)", order: "desc" },
+              { label: "Last name (a-z)", order: "asc" },
+              { label: "Last name (z-a)", order: "desc" },
+            ],
+          },
+          {
+            key: "home",
+            options: [
+              { label: "Home world (a-z)", order: "asc" },
+              { label: "Home world (z-a)", order: "desc" },
+              { label: "Population (a-z)", order: "asc" },
+              { label: "Population (z-a)", order: "desc" },
+            ],
+          },
+          { key: "lastActivity" },
+        ],
       }}
     >
       <DataList.Filters>

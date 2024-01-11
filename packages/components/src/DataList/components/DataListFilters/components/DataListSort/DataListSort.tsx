@@ -44,7 +44,7 @@ export function DataListSort() {
   function getSortByOptions() {
     const options = sortable.reduce(
       (acc: Record<"label" | "value", string>[], sort) => {
-        const label = headers[sort];
+        const label = headers[sort.key];
         if (!label) return acc;
 
         if (label === "Last activity") {

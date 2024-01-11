@@ -4,7 +4,11 @@ import styles from "./DataListHeaderTile.css";
 import { DataListSortingArrows } from "./DataListSortingArrows";
 import { Text } from "../../../Text";
 import { useDataListContext } from "../../context/DataListContext";
-import { DataListHeader, DataListObject } from "../../DataList.types";
+import {
+  DataListHeader,
+  DataListObject,
+  SortableOptions,
+} from "../../DataList.types";
 
 interface DataListHeaderTileProps<T extends DataListObject> {
   readonly headers: DataListHeader<T>;
@@ -16,8 +20,10 @@ export function DataListHeaderTile<T extends DataListObject>({
   headerKey,
 }: DataListHeaderTileProps<T>) {
   const { sorting } = useDataListContext();
+  const [isDropDownOpen, setIsDropDownOpen] = React.useState(false);
 
-  const isSortable = sorting?.sortable.includes(headerKey);
+  const sortableItem = sorting?.sortable.find(item => item.key === headerKey);
+  const isSortable = Boolean(sortableItem);
   const sortingState = sorting?.state;
 
   const Tag = isSortable ? "button" : "div";
@@ -30,6 +36,19 @@ export function DataListHeaderTile<T extends DataListObject>({
       onClick={handleOnClick}
     >
       <Text maxLines="single">{headers[headerKey]}</Text>
+      {isSortable && sortableItem?.options && isDropDownOpen && (
+        <select
+          onClick={handleSelectClick}
+          onChange={handleSelectChange}
+          // value={sortingDirection?.label || ""}
+        >
+          {sortableItem?.options?.map((option, index) => (
+            <option key={index} value={option.label}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      )}
       {sortingState?.key === headerKey ? (
         <DataListSortingArrows order={sortingState.order} />
       ) : sortingState?.key !== headerKey && isSortable ? (
@@ -56,6 +75,25 @@ export function DataListHeaderTile<T extends DataListObject>({
   function handleOnClick() {
     if (!isSortable) return;
 
-    toggleSorting(headerKey);
+    if (sortableItem?.options) {
+      setIsDropDownOpen(!isDropDownOpen);
+    } else {
+      toggleSorting(headerKey);
+    }
+  }
+
+  function handleSelectClick(event: React.MouseEvent) {
+    event.stopPropagation();
+  }
+
+  function handleSelectChange(event: React.ChangeEvent<HTMLSelectElement>) {
+    const selectedOption = event.target.value;
+    const selectedDirection = sortableItem?.options?.find(
+      (option: SortableOptions) => option.label === selectedOption,
+    );
+
+    console.log("Selected Option:", selectedOption);
+    console.log("Sorting Direction:", selectedDirection);
+    setIsDropDownOpen(false);
   }
 }
