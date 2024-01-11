@@ -1,12 +1,6 @@
-import React, {
-  DetailedHTMLProps,
-  HTMLAttributes,
-  PropsWithChildren,
-} from "react";
-import ReactMarkdown, { MarkdownToJSX } from "markdown-to-jsx";
-import { Text } from "../Text";
-import { Emphasis } from "../Emphasis";
-import { Heading } from "../Heading";
+import React from "react";
+import MarkdownToJSX from "markdown-to-jsx";
+import { useMarkdownOverrides } from "./useMarkdownOverrides";
 import { Content } from "../Content";
 
 interface MarkdownProps {
@@ -26,11 +20,19 @@ interface MarkdownProps {
    */
   readonly basicUsage?: boolean;
 }
-const NoSpan = {
-  component: ({ children }: PropsWithChildren) => <>{children}</>,
-  props: {},
-};
 
+/**
+ *
+ *  Our Markdown component is a thin, opinionated wrapper around markdown-to-jsx. It
+ *  used to be a wrapper around react-markdown, but we switched to
+ *  markdown-to-jsx because it has better support for server-side rendering.
+ *  If you need more control over the markdown rendering, you can use
+ *  markdown-to-jsx directly with a modified version of the configs found in
+ *  useMarkdownOverrides.tsx.
+ *
+ * @param props
+ * @returns
+ */
 export function Markdown({ content, externalLink, basicUsage }: MarkdownProps) {
   const props = {
     ...(basicUsage && {
@@ -53,91 +55,27 @@ export function Markdown({ content, externalLink, basicUsage }: MarkdownProps) {
   };
 
   const Tag = basicUsage ? React.Fragment : Content;
-  const basicOverrides: MarkdownToJSX.Overrides = {
-    p: NoSpan,
-    h1: NoSpan,
-    div: NoSpan,
-    h2: NoSpan,
-    h3: NoSpan,
-    h4: NoSpan,
-    h5: NoSpan,
-    h6: NoSpan,
-    table: NoSpan,
-    ul: NoSpan,
-    li: NoSpan,
-    code: ({ children, ...args }: PropsWithChildren) => (
-      <code {...args}>{children}</code>
-    ),
-    strong: renderStrong,
-    em: renderEmphasis,
-    image: NoSpan,
-    a: {
-      component: ({ children, ...rest }: PropsWithChildren) => (
-        <a {...rest}>{children}</a>
-      ),
-      props: { target: externalLink ? "_blank" : undefined },
-    },
-  };
-  const defaultOverrides: MarkdownToJSX.Overrides = {
-    code: ({ children, ...args }: PropsWithChildren) => (
-      <code {...args}>{children}</code>
-    ),
-    p: renderParagraph,
-    strong: renderStrong,
-    span: NoSpan,
-    div: NoSpan,
-    em: renderEmphasis,
-    h1: renderHeading(1),
-    h2: renderHeading(2),
-    h3: renderHeading(3),
-    h4: renderHeading(4),
-    h5: renderHeading(5),
-    h6: {
-      component: ({ children }: PropsWithChildren) => <h6>{children}</h6>,
-    },
-    a: {
-      component: ({ children, ...rest }: PropsWithChildren) => (
-        <a {...rest}>{children}</a>
-      ),
-      props: { target: externalLink ? "_blank" : undefined },
-    },
-  };
+
+  const overrides = useMarkdownOverrides(externalLink, basicUsage);
 
   return (
     <Tag>
-      <ReactMarkdown
+      <MarkdownToJSX
         {...props}
         linkTarget={externalLink ? "_blank" : undefined}
         options={{
+          // We wrap the content in a fragment to avoid the extra div that
+          // markdown-to-jsx adds by default.
           wrapper: React.Fragment,
-          overrides: basicUsage ? basicOverrides : defaultOverrides,
+          // Force markdown-to-jsx to render the content as a block element.
+          // This is necessary to avoid the extra span that markdown-to-jsx
+          // adds by default.
           forceBlock: true,
+          overrides,
         }}
       >
         {content}
-      </ReactMarkdown>
+      </MarkdownToJSX>
     </Tag>
   );
-}
-
-type HTMLProps = DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>;
-
-function renderParagraph({ children }: HTMLProps) {
-  return <Text>{children}</Text>;
-}
-
-function renderStrong({ children }: HTMLProps) {
-  return <Emphasis variation="bold">{children}</Emphasis>;
-}
-
-function renderEmphasis({ children }: HTMLProps) {
-  return <Emphasis variation="italic">{children}</Emphasis>;
-}
-
-function renderHeading(level: 1 | 2 | 3 | 4 | 5) {
-  function buildHeading({ children }: HTMLProps) {
-    return <Heading level={level}>{children}</Heading>;
-  }
-
-  return buildHeading;
 }
