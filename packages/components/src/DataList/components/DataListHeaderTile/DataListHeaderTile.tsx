@@ -57,18 +57,21 @@ export function DataListHeaderTile<T extends DataListObject>({
     </Tag>
   );
 
-  function toggleSorting(sortingKey: string) {
+  function toggleSorting(sortingKey: string, order?: "asc" | "desc") {
     const isSameKey = sortingKey === sortingState?.key;
 
-    if (isSameKey && sortingState?.order === "desc") {
+    if (isSameKey && sortingState?.order === "desc" && order !== "asc") {
       sorting?.onSort(undefined);
 
       return;
     }
 
+    const newOrder =
+      order || (isSameKey && sortingState?.order === "asc" ? "desc" : "asc");
+
     sorting?.onSort({
-      order: isSameKey && sortingState?.order === "asc" ? "desc" : "asc",
       key: sortingKey,
+      order: newOrder,
     });
   }
 
@@ -91,6 +94,10 @@ export function DataListHeaderTile<T extends DataListObject>({
     const selectedDirection = sortableItem?.options?.find(
       (option: SortableOptions) => option.label === selectedOption,
     );
+
+    if (selectedDirection && sortableItem) {
+      toggleSorting(sortableItem.key, selectedDirection.order);
+    }
 
     console.log("Selected Option:", selectedOption);
     console.log("Sorting Direction:", selectedDirection);
