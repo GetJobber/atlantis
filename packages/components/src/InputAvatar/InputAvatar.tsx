@@ -13,7 +13,7 @@ interface InputAvatarProps extends Omit<AvatarProps, "size"> {
    * More info is available at:
    * https://atlantis.getjobber.com/?path=/docs/components-forms-and-inputs-inputfile-docs--page#getuploadparams
    */
-  getUploadParams(file: File): Promise<UploadParams>;
+  getUploadParams(file: File): UploadParams | Promise<UploadParams>;
 
   /**
    * Triggered when an image is changed.

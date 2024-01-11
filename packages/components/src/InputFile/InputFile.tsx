@@ -124,7 +124,7 @@ interface InputFileProps {
    * More info is available at:
    * https://atlantis.getjobber.com/?path=/docs/components-forms-and-inputs-inputfile-docs--page#getuploadparams
    */
-  getUploadParams(file: File): Promise<UploadParams>;
+  getUploadParams(file: File): UploadParams | Promise<UploadParams>;
 
   /**
    * Upload event handler. Triggered on upload start.
@@ -184,7 +184,7 @@ export function InputFile({
 }: InputFileProps) {
   const options: DropzoneOptions = {
     multiple: allowMultiple,
-    onDrop: useCallback(handleDrop, []),
+    onDrop: useCallback(handleDrop, [uploadFile]),
     validator: validator && useCallback(validator, []),
   };
 
@@ -203,7 +203,7 @@ export function InputFile({
       return (
         <InputValidation
           message={file.name + "\n" + error.message}
-          key={file.name}
+          key={`${file.name}${error.code}`}
         />
       );
     });
