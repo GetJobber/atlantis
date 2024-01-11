@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.71.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.71.2...@jobber/components@4.71.3) (2024-01-11)
+
+
+### Bug Fixes
+
+* align center banner icon on retheme ([#1718](https://github.com/GetJobber/atlantis/issues/1718)) ([88a873b](https://github.com/GetJobber/atlantis/commit/88a873bfe2364a389a050dfb72591ce7adeecdcc))
+
+
+
+
+
 ## [4.71.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.71.1...@jobber/components@4.71.2) (2024-01-11)
 
 
