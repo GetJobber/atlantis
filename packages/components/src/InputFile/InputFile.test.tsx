@@ -39,6 +39,20 @@ describe("Post Requests", () => {
     expect(container).toMatchSnapshot();
   });
 
+  it("renders an InputFile with custom accepted MIME types", () => {
+    const { container } = render(
+      <InputFile
+        allowedTypes={["image/png", "image/jpg", "application/pdf"]}
+        getUploadParams={fetchUploadParams}
+      />,
+    );
+    const input = container.querySelector("input[type=file]");
+    expect(input).toHaveAttribute(
+      "accept",
+      "image/png,image/jpg,application/pdf",
+    );
+  });
+
   it("renders an InputFile with only images allowed", () => {
     const { container } = render(
       <InputFile allowedTypes="images" getUploadParams={fetchUploadParams} />,
