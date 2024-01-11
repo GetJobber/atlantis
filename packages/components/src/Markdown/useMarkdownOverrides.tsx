@@ -62,7 +62,7 @@ function renderAnchor({
 }
 
 /**
- * Renders Atlantis' Empahsis component with the bold variation.
+ * Renders the Atlantis Empahsis component with the bold variation.
  * @param props
  * @returns
  */
@@ -71,7 +71,7 @@ function renderStrong({ children }: PropsWithChildren) {
 }
 
 /**
- * Renders Atlantis' Empahsis component with the italic variation.
+ * Renders the Atlantis Empahsis component with the italic variation.
  * @param props
  * @returns
  */
@@ -80,7 +80,7 @@ function renderEmphasis({ children }: PropsWithChildren) {
 }
 
 /**
- * Renders Atlantis' Heading component with the specified level.
+ * Renders the Atlantis Heading component with the specified level.
  * @param level Heading Level to render
  * @returns
  */
