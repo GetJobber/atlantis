@@ -95,8 +95,17 @@ function predict12Hours(parsedTime: number, currentHour: number) {
     return parsedTime + 12;
   }
 
+  /**
+   * Typing 13-15 predicts that the user want the 2nd number as the minute interval.
+   */
   if (parsedTime > 12 && parsedTime <= 15) {
-    return parsedTime * 10;
+    const timeArray = parsedTime.toString().split("").map(Number); // 13 -> [1, 3]
+    const convertToHoursAndMinutes = timeArray.map((time, i) => {
+      if (i === 0) return time + 12; // 1 -> 13 as 1PM
+      if (i === 1) return time * 10; // 3 -> 30 as 30 minutes
+    });
+
+    return Number(convertToHoursAndMinutes.join("")); // [13, 30] -> 1330
   }
 
   /**
