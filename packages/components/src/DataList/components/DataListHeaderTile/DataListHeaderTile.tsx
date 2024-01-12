@@ -17,6 +17,11 @@ export function DataListHeaderTile<T extends DataListObject>({
 }: DataListHeaderTileProps<T>) {
   const { sorting } = useDataListContext();
   const [isDropDownOpen, setIsDropDownOpen] = React.useState(false);
+  // new state variable to keep track of selected option
+  const [selectedSortOption, setSelectedSortOption] = React.useState<{
+    label: string;
+    order: "asc" | "desc";
+  } | null>(null);
 
   const sortableItem = sorting?.sortable.find(item => item.key === headerKey);
   const isSortable = Boolean(sortableItem);
@@ -36,7 +41,11 @@ export function DataListHeaderTile<T extends DataListObject>({
         <ul className={styles.optionsList}>
           {sortableItem?.options?.map((option, index) => (
             <li
-              className={styles.option}
+              className={
+                option.label === selectedSortOption?.label
+                  ? `${styles.option} ${styles.optionSelected}`
+                  : styles.option
+              }
               key={index}
               onClick={() => handleSelectChange(option)}
             >
@@ -88,6 +97,7 @@ export function DataListHeaderTile<T extends DataListObject>({
     if (sortableItem) {
       toggleSorting(sortableItem.key, selectedOption.order);
     }
+    setSelectedSortOption(selectedOption);
 
     setIsDropDownOpen(false);
   }

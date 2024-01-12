@@ -24,33 +24,34 @@
   position: absolute;
   top: 100%;
   left: 0;
-  padding: var(--space-small) 0;
-  border-radius: var(--radius-larger);
-  border: var(--border-base) solid var(--color-border);
-  margin-top: var(--space-smaller);
   max-width: var(--popover--width);
   box-shadow: var(--shadow-base);
-  align-items: flex-start;
+  margin-top: var(--space-smaller);
+  padding: var(--space-small) 0;
+  border: var(--border-base) solid var(--color-border);
+  border-radius: var(--radius-larger);
   background: var(--color-surface);
+  align-items: flex-start;
 }
 
 .option {
   display: flex;
-  list-style: none;
-  white-space: nowrap;
+  min-height: calc((var(--space-largest) - var(--space-smaller)));
+  box-sizing: border-box;
+  margin: 0 var(--space-small);
+  padding: var(--space-small);
   font-family: var(--typography--fontFamily-normal);
   font-size: var(--typography--fontSize-base);
   font-weight: 500;
-  box-sizing: border-box;
-  min-height: calc((var(--space-largest) - var(--space-smaller)));
-  align-items: center;
-  margin: 0 var(--space-small);
-  padding: var(--space-small);
+  white-space: nowrap;
+  list-style: none;
   cursor: pointer;
+  align-items: center;
 }
 
 .option:hover,
-.option:focus-visible {
-  background-color: var(--color-surface--hover);
+.option:focus-visible,
+.optionSelected {
   border-radius: var(--radius-large);
+  background-color: var(--color-surface--hover);
 }
