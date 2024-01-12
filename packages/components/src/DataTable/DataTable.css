@@ -61,6 +61,11 @@
   background-color: var(--color-surface);
 }
 
+.pinFirstColumn tbody tr td.emptyStateCell {
+  display: table-cell;
+  position: initial;
+}
+
 .pinFirstColumn th:first-child::after,
 .pinFirstColumn td:first-child::after {
   content: "";
