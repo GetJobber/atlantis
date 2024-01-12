@@ -87,14 +87,14 @@ function predict12Hours(parsedTime: number, currentHour: number) {
   }
 
   /**
-   * Typing 1-6 predicts that the user want that exact hour on the afternoon.
+   * Typing 1-5 predicts that the user want that exact hour on the afternoon.
    */
-  if (parsedTime <= 6) {
+  if (parsedTime <= 5) {
     return parsedTime + 12;
   }
 
   /**
-   * Anything after 6 will be predicted to be set as AM.
+   * Anything after 5 will be predicted to be set as AM.
    */
   return parsedTime;
 }
