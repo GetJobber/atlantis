@@ -21,8 +21,7 @@ export function useTimePredict({ value, handleChange }: UseTimePredictProps) {
     debounce(() => {
       if (value) return;
 
-      const predictedHour = predictHours(typedTime, IS_12_HOUR_FORMAT.current);
-      handleChange(`${formatHour(predictedHour)}:00`);
+      handleChange(predictHours(typedTime, IS_12_HOUR_FORMAT.current));
     }, DEBOUNCE_TIME),
     [typedTime, value, handleChange],
   );
@@ -63,12 +62,15 @@ function predictHours(time: string, is12HourFormat = false) {
   const today = new Date();
   const currentHour = today.getHours();
   const parsedTime = parseInt(time, 10);
+  let predictedTime: number;
 
   if (is12HourFormat) {
-    return predict12Hours(parsedTime, currentHour);
+    predictedTime = predict12Hours(parsedTime, currentHour);
+  } else {
+    predictedTime = predict24Hours(time, parsedTime, currentHour);
   }
 
-  return predict24Hours(time, parsedTime, currentHour);
+  return formatHour(predictedTime);
 }
 
 function predict12Hours(parsedTime: number, currentHour: number) {
@@ -91,6 +93,10 @@ function predict12Hours(parsedTime: number, currentHour: number) {
    */
   if (parsedTime <= 5) {
     return parsedTime + 12;
+  }
+
+  if (parsedTime > 12 && parsedTime <= 15) {
+    return parsedTime * 10;
   }
 
   /**
@@ -136,9 +142,17 @@ function predict24Hours(time: string, parsedTime: number, currentHour: number) {
 }
 
 function formatHour(time: number) {
-  if (time.toString().length === 1) {
-    return `0${time}`;
+  if (time > 99) {
+    const splitTime = time.toString().split("");
+    if (splitTime.length === 3) splitTime.unshift("0"); // 130 -> 0130
+    splitTime.splice(2, 0, ":"); // 0130 -> 01:30
+
+    return splitTime.join("");
   }
 
-  return time;
+  if (time < 10) {
+    return `0${time}:00`;
+  }
+
+  return `${time}:00`;
 }
