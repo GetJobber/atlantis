@@ -50,9 +50,11 @@
 }
 
 .option:hover,
-.option:focus-visible,
-.optionSelected {
+.option:focus-visible {
   border-radius: var(--radius-large);
   background-color: var(--color-surface--hover);
+}
+
+.optionSelected {
   gap: var(--space-smaller);
 }
