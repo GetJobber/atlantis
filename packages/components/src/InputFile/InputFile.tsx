@@ -217,38 +217,41 @@ export function InputFile({
   const dropZone = classnames(styles.dropZoneBase, {
     [styles.dropZone]: variation === "dropzone",
     [styles.active]: isDragActive,
+    [styles.error]: fileRejections?.length > 0,
   });
 
   return (
-    <div
-      {...getRootProps({ className: dropZone })}
-      tabIndex={variation === "button" ? -1 : 0}
-    >
-      <input {...getInputProps()} />
+    <>
+      <div
+        {...getRootProps({ className: dropZone })}
+        tabIndex={variation === "button" ? -1 : 0}
+      >
+        <input {...getInputProps()} />
 
-      {variation === "dropzone" && (
-        <Content spacing="small">
-          <Button label={buttonLabel} size="small" type="secondary" />
-          {size === "base" && (
-            <Typography size="small" textColor="textSecondary">
-              {hintText}
-            </Typography>
-          )}
-          {fileRejections?.length > 0 && (
-            <div className={styles.validationErrors}>{validationErrors}</div>
-          )}
-        </Content>
-      )}
+        {variation === "dropzone" && (
+          <Content spacing="small">
+            <Button label={buttonLabel} size="small" type="secondary" />
+            {size === "base" && (
+              <Typography size="small" textColor="textSecondary">
+                {hintText}
+              </Typography>
+            )}
+          </Content>
+        )}
 
-      {variation === "button" && (
-        <Button
-          label={buttonLabel}
-          size={size}
-          type="secondary"
-          fullWidth={true}
-        />
+        {variation === "button" && (
+          <Button
+            label={buttonLabel}
+            size={size}
+            type="secondary"
+            fullWidth={true}
+          />
+        )}
+      </div>
+      {fileRejections?.length > 0 && (
+        <div className={styles.validationErrors}>{validationErrors}</div>
       )}
-    </div>
+    </>
   );
 
   function handleDrop(acceptedFiles: File[]) {

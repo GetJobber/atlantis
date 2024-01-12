@@ -23,6 +23,10 @@
   background-color: var(--color-surface--hover);
 }
 
+.dropZone.error {
+  border: var(--color-critical) dashed var(--border-thick);
+}
+
 .validationErrors {
   display: flex;
   justify-content: center;
