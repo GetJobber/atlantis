@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.71.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.71.6...@jobber/components@4.71.7) (2024-01-12)
+
+
+### Bug Fixes
+
+* **components:** DataTable empty state should span full width with pinFirstColumn enabled [85639] ([#1716](https://github.com/GetJobber/atlantis/issues/1716)) ([1a6e466](https://github.com/GetJobber/atlantis/commit/1a6e466d7eedb0c3d582936dd754e842bfe3714e))
+
+
+
+
+
 ## [4.71.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.71.5...@jobber/components@4.71.6) (2024-01-11)
 
 
