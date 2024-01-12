@@ -70,6 +70,10 @@ export function DataListHeaderTile<T extends DataListObject>({
     const isSameKey = sortingKey === sortingState?.key;
 
     if (isSameKey && sortingState?.order === "desc" && order !== "asc") {
+      if (order === "desc") {
+        return;
+      }
+
       sorting?.onSort(undefined);
 
       return;
