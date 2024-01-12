@@ -1,5 +1,6 @@
 import React from "react";
 import classnames from "classnames";
+import { Icon } from "@jobber/components/Icon";
 import styles from "./DataListHeaderTile.css";
 import { DataListSortingArrows } from "./DataListSortingArrows";
 import { Text } from "../../../Text";
@@ -50,6 +51,9 @@ export function DataListHeaderTile<T extends DataListObject>({
               onClick={() => handleSelectChange(option)}
             >
               {option.label}
+              {option.label === selectedSortOption?.label && (
+                <Icon name="checkmark" color="blue" />
+              )}
             </li>
           ))}
         </ul>

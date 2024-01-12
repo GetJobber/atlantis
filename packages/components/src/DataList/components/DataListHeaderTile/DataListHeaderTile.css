@@ -54,4 +54,5 @@
 .optionSelected {
   border-radius: var(--radius-large);
   background-color: var(--color-surface--hover);
+  gap: var(--space-smaller);
 }
