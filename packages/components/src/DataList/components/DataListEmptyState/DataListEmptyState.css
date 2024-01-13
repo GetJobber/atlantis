@@ -47,6 +47,10 @@
   background-color: var(--color-surface--background);
 }
 
+.fakeDataCell:nth-last-of-type(-n + 2) {
+  display: none;
+}
+
 @media only screen and (min-width: 768px) {
   .fakeDataRow {
     grid-template-columns: 1fr 1fr 1fr 1fr;
