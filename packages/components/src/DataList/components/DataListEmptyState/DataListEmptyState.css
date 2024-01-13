@@ -1,5 +1,6 @@
 .emptyStateWrapper {
   display: flex;
+  position: relative;
   box-sizing: border-box;
   padding: var(--space-base);
   justify-content: center;
@@ -7,4 +8,51 @@
   row-gap: var(--space-base);
   align-items: center;
   flex: 1;
+}
+
+.emptyStateWrapper h3 {
+  text-align: center;
+}
+
+.fakeData {
+  display: flex;
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  padding: var(--space-base) var(--space-small);
+  gap: var(--space-base);
+  flex-direction: column;
+}
+
+.fakeDataRow {
+  grid-template-columns: repeat(2, 1fr);
+  display: grid;
+  width: 100%;
+  gap: var(--space-base);
+  opacity: 0.6;
+}
+
+.fakeDataRow:nth-of-type(2) {
+  opacity: 0.4;
+}
+
+.fakeDataRow:nth-of-type(3) {
+  opacity: 0.2;
+}
+
+.fakeDataCell {
+  height: var(--data-list--minimum-item-height);
+  border-radius: var(--radius-base);
+  background-color: var(--color-surface--background);
+}
+
+@media only screen and (min-width: 768px) {
+  .fakeDataRow {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .fakeDataCell:nth-last-of-type(-n + 2) {
+    display: block;
+  }
 }

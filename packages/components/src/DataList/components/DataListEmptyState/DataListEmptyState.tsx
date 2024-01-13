@@ -2,6 +2,7 @@ import React, { ReactElement, cloneElement, useContext } from "react";
 import styles from "./DataListEmptyState.css";
 import { DataListContext } from "../../context/DataListContext";
 import { DataListEmptyStateProps } from "../../DataList.types";
+import { Heading } from "../../../Heading";
 import { Text } from "../../../Text";
 import { Button, ButtonProps } from "../../../Button";
 import {
@@ -20,12 +21,41 @@ export function InternalDataListEmptyState() {
     useContext(DataListContext);
   const { message, action } = getMessages();
 
-  return (
-    <div className={styles.emptyStateWrapper}>
-      <Text align="center">{message}</Text>
-      {renderButton(action)}
-    </div>
-  );
+  if (filtered) {
+    return (
+      <div className={styles.emptyStateWrapper}>
+        <Text align="center">{message}</Text>
+        {renderButton(action)}
+      </div>
+    );
+  } else {
+    return (
+      <div className={styles.emptyStateWrapper}>
+        <div className={styles.fakeData}>
+          <div className={styles.fakeDataRow}>
+            <div className={styles.fakeDataCell}></div>
+            <div className={styles.fakeDataCell}></div>
+            <div className={styles.fakeDataCell}></div>
+            <div className={styles.fakeDataCell}></div>
+          </div>
+          <div className={styles.fakeDataRow}>
+            <div className={styles.fakeDataCell}></div>
+            <div className={styles.fakeDataCell}></div>
+            <div className={styles.fakeDataCell}></div>
+            <div className={styles.fakeDataCell}></div>
+          </div>
+          <div className={styles.fakeDataRow}>
+            <div className={styles.fakeDataCell}></div>
+            <div className={styles.fakeDataCell}></div>
+            <div className={styles.fakeDataCell}></div>
+            <div className={styles.fakeDataCell}></div>
+          </div>
+        </div>
+        <Heading level={3}>{message}</Heading>
+        {renderButton(action)}
+      </div>
+    );
+  }
 
   function getMessages() {
     const { defaultEmptyState, filteredEmptyState } =
@@ -50,7 +80,8 @@ function renderButton(action?: ReactElement<ButtonProps>) {
   if (action) {
     if (action.type === Button) {
       return cloneElement(action, {
-        variation: action.props.variation || "subtle",
+        variation: action.props.variation,
+        type: action.props.type || "secondary",
       });
     }
 
