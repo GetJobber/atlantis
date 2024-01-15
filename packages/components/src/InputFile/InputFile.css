@@ -24,7 +24,7 @@
 }
 
 .dropZone.error {
-  border: var(--color-critical) dashed var(--border-thick);
+  border-color: var(--color-critical);
 }
 
 .validationErrors {
