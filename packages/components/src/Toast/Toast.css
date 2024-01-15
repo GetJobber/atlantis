@@ -46,6 +46,14 @@
   margin-left: var(--space-base);
 }
 
+:global(.jobber-retheme) .button svg path {
+  fill: var(--color-greyBlue--light);
+}
+
+:global(.jobber-retheme) .button:hover svg path {
+  fill: var(--color-greyBlue);
+}
+
 .action {
   margin-left: var(--space-small);
 }
