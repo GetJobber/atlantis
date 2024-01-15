@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.71.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.71.7...@jobber/components@4.71.8) (2024-01-15)
+
+
+### Bug Fixes
+
+* **components:** Adapt toast and menu for retheme [JOB-86410] ([#1724](https://github.com/GetJobber/atlantis/issues/1724)) ([e3f15f8](https://github.com/GetJobber/atlantis/commit/e3f15f84cc197766f93e4db8fba84f049f6364d5))
+
+
+
+
+
 ## [4.71.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.71.6...@jobber/components@4.71.7) (2024-01-12)
 
 
