@@ -69,7 +69,7 @@ rejected.
 For example, the code below only accepts files that are less than 2MB in size.
 
 ```ts
-function pngFileValidator(file: File) {
+function fileSizeValidator(file: File) {
   if (file.size > 2000000) {
     return {
       code: "file-too-big",
