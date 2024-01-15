@@ -1,9 +1,10 @@
 import React, { useCallback } from "react";
 import classnames from "classnames";
-import { DropzoneOptions, useDropzone } from "react-dropzone";
+import { DropzoneOptions, FileError, useDropzone } from "react-dropzone";
 import axios, { AxiosRequestConfig } from "axios";
 import { v1 as uuidv1 } from "uuid";
 import styles from "./InputFile.css";
+import { InputValidation } from "../InputValidation";
 import { Button } from "../Button";
 import { Content } from "../Content";
 import { Typography } from "../Typography";
@@ -139,6 +140,18 @@ interface InputFileProps {
    * Upload event handler. Triggered on upload completion.
    */
   onUploadComplete?(file: FileUpload): void;
+
+  /**
+   *  Upload event handler. Triggered on upload error.
+   */
+  onUploadError?(error: Error): void;
+
+  /**
+   * Pass a custom validator function that will be called when a file is dropped.
+   */
+  readonly validator?: <T extends File>(
+    file: T,
+  ) => FileError | FileError[] | null;
 }
 
 interface CreateAxiosConfigParams extends Omit<UploadParams, "key"> {
@@ -166,10 +179,13 @@ export function InputFile({
   onUploadStart,
   onUploadProgress,
   onUploadComplete,
+  onUploadError,
+  validator,
 }: InputFileProps) {
   const options: DropzoneOptions = {
     multiple: allowMultiple,
     onDrop: useCallback(handleDrop, [uploadFile]),
+    validator: validator && useCallback(validator, []),
   };
 
   if (allowedTypes === "images") {
@@ -180,7 +196,18 @@ export function InputFile({
     options.accept = allowedTypes.join(",");
   }
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone(options);
+  const { getRootProps, getInputProps, isDragActive, fileRejections } =
+    useDropzone(options);
+  const validationErrors = fileRejections?.map(({ file, errors }) => {
+    return errors.map(error => {
+      return (
+        <InputValidation
+          message={`${file.name} ${error.message}`}
+          key={`${file.name}${error.code}`}
+        />
+      );
+    });
+  });
 
   const { buttonLabel, hintText } = getLabels(
     providedButtonLabel,
@@ -190,35 +217,41 @@ export function InputFile({
   const dropZone = classnames(styles.dropZoneBase, {
     [styles.dropZone]: variation === "dropzone",
     [styles.active]: isDragActive,
+    [styles.error]: fileRejections?.length > 0,
   });
 
   return (
-    <div
-      {...getRootProps({ className: dropZone })}
-      tabIndex={variation === "button" ? -1 : 0}
-    >
-      <input {...getInputProps()} />
+    <>
+      <div
+        {...getRootProps({ className: dropZone })}
+        tabIndex={variation === "button" ? -1 : 0}
+      >
+        <input {...getInputProps()} />
 
-      {variation === "dropzone" && (
-        <Content spacing="small">
-          <Button label={buttonLabel} size="small" type="secondary" />
-          {size === "base" && (
-            <Typography size="small" textColor="textSecondary">
-              {hintText}
-            </Typography>
-          )}
-        </Content>
-      )}
+        {variation === "dropzone" && (
+          <Content spacing="small">
+            <Button label={buttonLabel} size="small" type="secondary" />
+            {size === "base" && (
+              <Typography size="small" textColor="textSecondary">
+                {hintText}
+              </Typography>
+            )}
+          </Content>
+        )}
 
-      {variation === "button" && (
-        <Button
-          label={buttonLabel}
-          size={size}
-          type="secondary"
-          fullWidth={true}
-        />
+        {variation === "button" && (
+          <Button
+            label={buttonLabel}
+            size={size}
+            type="secondary"
+            fullWidth={true}
+          />
+        )}
+      </div>
+      {fileRejections?.length > 0 && (
+        <div className={styles.validationErrors}>{validationErrors}</div>
       )}
-    </div>
+    </>
   );
 
   function handleDrop(acceptedFiles: File[]) {
@@ -228,12 +261,17 @@ export function InputFile({
   }
 
   async function uploadFile(file: File) {
-    const {
-      url,
-      key = uuidv1(),
-      fields = {},
-      httpMethod = "POST",
-    } = await getUploadParams(file);
+    let params;
+
+    try {
+      params = await getUploadParams(file);
+    } catch {
+      onUploadError && onUploadError(new Error("Failed to get upload params"));
+
+      return;
+    }
+
+    const { url, key = uuidv1(), fields = {}, httpMethod = "POST" } = params;
 
     const fileUpload = getFileUpload(file, key, url);
     onUploadStart && onUploadStart({ ...fileUpload });
@@ -258,7 +296,12 @@ export function InputFile({
       file,
       handleUploadProgress,
     });
-    axios.request(axiosConfig).then(handleUploadComplete);
+    axios
+      .request(axiosConfig)
+      .then(handleUploadComplete)
+      .catch(() => {
+        onUploadError && onUploadError(new Error("Failed to upload file"));
+      });
   }
 }
 
