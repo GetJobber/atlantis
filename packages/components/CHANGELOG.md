@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.72.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.71.8...@jobber/components@4.72.0) (2024-01-15)
+
+
+### Features
+
+* Added Error State and onErrorCallback for InputFile ([#1710](https://github.com/GetJobber/atlantis/issues/1710)) ([3c45a25](https://github.com/GetJobber/atlantis/commit/3c45a252fa511a41e343279c3f3b39078aaf450b))
+
+
+
+
+
 ## [4.71.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.71.7...@jobber/components@4.71.8) (2024-01-15)
 
 
