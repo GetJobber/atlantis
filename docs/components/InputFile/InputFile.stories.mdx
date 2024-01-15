@@ -66,22 +66,25 @@ reject or accept file uploads based on your needs. The value of the function
 must accept a File and return `null` when it is accepted or an error object when
 rejected.
 
-For example, the code below only accepts .PNG files that are less than 2MB in
-size.
+For example, the code below only accepts files that are less than 2MB in size.
 
 ```ts
 function pngFileValidator(file: File) {
-  if (!file.name.endsWith(".png")) {
-    return {
-      code: "wrong-file-type",
-      message: "Only .png files are allowed",
-    };
-  } else if (file.size > 2000000) {
+  if (file.size > 2000000) {
     return {
       code: "file-too-big",
       message: "The file is too big. Try using a smaller image",
     };
   }
+
   return null;
 }
 ```
+
+#### Notes
+
+If you would like to restrict specific file types, it is advised that you use
+the `allowedTypes` property instead of the `validator` property. Using
+`allowTypes` will allow the OS know what type of files the uploader is expecting
+before the user can upload their file. The invalid files will be shown as
+greyed-out as a result of this behaviour.
