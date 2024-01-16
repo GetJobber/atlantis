@@ -39,6 +39,8 @@ describe("ComboboxContent Header", () => {
         [],
         [],
         true,
+        true,
+        false,
       );
 
       expect(queryByText("Select all")).not.toBeInTheDocument();
@@ -61,7 +63,13 @@ describe("ComboboxContent Header", () => {
     });
 
     it("should not render when options do not exist", () => {
-      const { queryByTestId } = renderComboboxContent([], [], false);
+      const { queryByTestId } = renderComboboxContent(
+        [],
+        [],
+        false,
+        true,
+        false,
+      );
 
       expect(queryByTestId("ATL-Combobox-Header")).not.toBeInTheDocument();
     });
@@ -73,6 +81,7 @@ function renderComboboxContent(
   selected: ComboboxOption[] = [],
   multiSelect = false,
   open = true,
+  hadInitialOptions = true,
   searchValue = "",
 ) {
   return render(
@@ -83,6 +92,7 @@ function renderComboboxContent(
       shouldScroll={{ current: false }}
       open={open}
       selected={selected}
+      searchValue=""
     >
       <ComboboxContent
         selected={selected}
@@ -95,6 +105,7 @@ function renderComboboxContent(
         setOpen={setOpen}
         options={options}
         multiselect={multiSelect}
+        hadInitialOptions={hadInitialOptions}
       />
     </ComboboxContextProvider>,
   );

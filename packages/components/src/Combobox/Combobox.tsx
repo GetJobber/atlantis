@@ -34,9 +34,11 @@ export function Combobox(props: ComboboxProps): JSX.Element {
     setOpen,
     handleClose,
     handleSelection,
+    filteredOptions,
   } = useCombobox(
     props.selected,
     props.onSelect,
+    options,
     props.onClose,
     props.multiSelect,
     props.onSearchChange,
@@ -76,7 +78,8 @@ export function Combobox(props: ComboboxProps): JSX.Element {
           wrapperRef={wrapperRef}
           open={open}
           setOpen={setOpen}
-          options={options}
+          options={filteredOptions}
+          hadInitialOptions={options.length > 0}
         />
       </div>
     </ComboboxContextProvider>

@@ -132,6 +132,11 @@ export interface ComboboxContentProps {
    * The full set of options for the Combobox in the shape of data, not elements.
    */
   readonly options: ComboboxOption[];
+
+  /**
+   * Was the Combobox provided with initial options, prior to filtering.
+   */
+  readonly hadInitialOptions: boolean;
 }
 
 export interface ComboboxSearchProps {

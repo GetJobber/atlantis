@@ -22,11 +22,13 @@ type UseComboboxReturn = {
   selectedOptions: ComboboxOption[];
   selectedStateSetter: (selection: ComboboxOption[]) => void;
   shouldScroll: MutableRefObject<boolean>;
+  filteredOptions: ComboboxOption[];
 } & UseMakeComboboxHandlersReturn;
 
 export function useCombobox(
   selected: ComboboxOption[],
   onSelect: (selection: ComboboxOption[]) => void,
+  options: ComboboxOption[],
   onClose?: () => void,
   multiSelect?: boolean,
   onSearchChange?: (searchValue: string) => void,
@@ -36,6 +38,8 @@ export function useCombobox(
   const shouldScroll = useRef<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
+  const [filteredOptions, setFilteredOptions] =
+    useState<ComboboxOption[]>(options);
 
   const searchChangeCallback = useCallback(
     debounce(
@@ -45,9 +49,22 @@ export function useCombobox(
     [],
   );
 
+  const debouncedFilterOptions = useCallback(
+    debounce((value: string) => {
+      const filtered = options.filter(option => {
+        return option.label.toLowerCase().includes(value.toLowerCase());
+      });
+
+      setFilteredOptions(filtered);
+    }, debounceTime),
+    [],
+  );
+
   useEffect(() => {
     if (onSearchChange) {
       searchChangeCallback(searchValue);
+    } else {
+      debouncedFilterOptions(searchValue);
     }
   }, [searchValue]);
 
@@ -72,5 +89,6 @@ export function useCombobox(
     shouldScroll,
     handleClose,
     handleSelection,
+    filteredOptions,
   };
 }

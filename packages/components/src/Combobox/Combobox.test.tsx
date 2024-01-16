@@ -437,6 +437,7 @@ function renderCombobox() {
       multiSelect={mockMultiSelectValue()}
       selected={mockSelectedValue()}
       onSelect={handleSelect}
+      debounce={0}
     >
       <Combobox.Option id="1" label="Bilbo Baggins" />
       <Combobox.Option id="2" label="Frodo Baggins" />
