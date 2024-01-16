@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 import React from "react";
 import classnames from "classnames";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
@@ -27,6 +28,7 @@ export function DataListHeaderTile<T extends DataListObject>({
     React.useState<SortableOptions | null>(null);
 
   const optionsListRef = useFocusTrap<HTMLUListElement>(isDropDownOpen);
+  const dataListHeaderTileRef = React.useRef(null);
 
   const sortableItem = sorting?.sortable.find(item => item.key === headerKey);
   const isSortable = Boolean(sortableItem);
@@ -40,6 +42,7 @@ export function DataListHeaderTile<T extends DataListObject>({
         [styles.sortable]: isSortable,
       })}
       onClick={handleOnClick}
+      ref={dataListHeaderTileRef}
     >
       <Text maxLines="single">{headers[headerKey]}</Text>
       {isSortable && sortableItem?.options && isDropDownOpen && (
@@ -47,8 +50,9 @@ export function DataListHeaderTile<T extends DataListObject>({
           options={sortableItem.options}
           selectedOption={selectedSortOption}
           onSelectChange={handleSelectChange}
-          optionsListRef={optionsListRef}
           onClose={() => setIsDropDownOpen(false)}
+          optionsListRef={optionsListRef}
+          dataListHeaderTileRef={dataListHeaderTileRef}
         />
       )}
       {sortingState?.key === headerKey ? (

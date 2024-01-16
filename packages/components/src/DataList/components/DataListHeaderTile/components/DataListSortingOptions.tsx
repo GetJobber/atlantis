@@ -8,8 +8,9 @@ interface DataListSortingOptionsProps {
   readonly options: SortableOptions[];
   readonly selectedOption: SortableOptions | null;
   readonly onSelectChange: (selectedOption: SortableOptions) => void;
-  readonly optionsListRef: React.RefObject<HTMLUListElement>;
   readonly onClose: () => void;
+  readonly optionsListRef: React.RefObject<HTMLUListElement>;
+  readonly dataListHeaderTileRef: React.RefObject<HTMLElement>;
 }
 
 export function DataListSortingOptions({
@@ -18,6 +19,7 @@ export function DataListSortingOptions({
   onSelectChange,
   optionsListRef,
   onClose,
+  dataListHeaderTileRef,
 }: DataListSortingOptionsProps) {
   useOnKeyDown(() => onClose(), "Escape");
 
@@ -27,7 +29,7 @@ export function DataListSortingOptions({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [optionsListRef, onClose]);
+  }, [optionsListRef, dataListHeaderTileRef, onClose]);
 
   return (
     <ul className={styles.optionsList} ref={optionsListRef}>
@@ -59,10 +61,14 @@ export function DataListSortingOptions({
   }
 
   function handleClickOutside(event: MouseEvent) {
-    if (
-      optionsListRef.current &&
-      !optionsListRef.current.contains(event.target as Node)
-    ) {
+    const isClickInsideOptions = optionsListRef.current?.contains(
+      event.target as Node,
+    );
+    const isClickInsideHeader = dataListHeaderTileRef.current?.contains(
+      event.target as Node,
+    );
+
+    if (!isClickInsideOptions && !isClickInsideHeader) {
       onClose();
     }
   }
