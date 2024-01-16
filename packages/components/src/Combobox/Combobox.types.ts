@@ -48,6 +48,12 @@ export interface ComboboxProps {
    * The Chip heading for the trigger
    */
   readonly label?: string;
+
+  /**
+   * Should the Combobox display the loading state. Primarily used in conjunction with async operations and
+   * onSearchChange fetching options.
+   */
+  readonly loading?: boolean;
 }
 
 export interface ComboboxActivatorProps {
@@ -137,6 +143,11 @@ export interface ComboboxContentProps {
    * Was the Combobox provided with initial options, prior to filtering.
    */
   readonly hadInitialOptions: boolean;
+
+  /**
+   * Should loading state be shown.
+   */
+  readonly loading?: boolean;
 }
 
 export interface ComboboxSearchProps {
@@ -221,6 +232,11 @@ export interface ComboboxListProps {
    * The noun to be used in the empty state message.
    */
   readonly subjectNoun?: string;
+
+  /**
+   * Should loading state be shown.
+   */
+  readonly loading?: boolean;
 }
 
 export interface ComboboxActionProps {

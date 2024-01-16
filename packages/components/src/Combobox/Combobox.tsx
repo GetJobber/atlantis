@@ -80,6 +80,7 @@ export function Combobox(props: ComboboxProps): JSX.Element {
           setOpen={setOpen}
           options={filteredOptions}
           hadInitialOptions={options.length > 0}
+          loading={props.loading}
         />
       </div>
     </ComboboxContextProvider>

@@ -58,6 +58,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         optionsListRef={optionsListRef}
         searchValue={props.searchValue}
         subjectNoun={props.subjectNoun}
+        loading={props.loading}
       />
       {props.actionElements && (
         <div className={styles.actions} role="group">

@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import classnames from "classnames";
 import { Text } from "@jobber/components/Text";
+import { Glimmer } from "@jobber/components/Glimmer";
 import styles from "./ComboboxContentList.css";
 import { ComboboxListProps } from "../../../Combobox.types";
 import { ComboboxOption } from "../../ComboboxOption/ComboboxOption";
 
 export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
   const [listScrollState, setlistScrollState] = useState("");
+  const showOptions = !props.showEmptyState && !props.loading;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,7 +61,7 @@ export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
           aria-multiselectable={props.multiselect}
           ref={props.optionsListRef}
         >
-          {!props.showEmptyState &&
+          {showOptions &&
             props.options.map(option => {
               return (
                 <ComboboxOption
@@ -69,6 +71,11 @@ export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
                 />
               );
             })}
+          {props.loading && (
+            <div className={styles.loadingContainer}>
+              <Glimmer size="larger" />
+            </div>
+          )}
         </ul>
       )}
       {!props.showEmptyState && props.options.length === 0 && (
