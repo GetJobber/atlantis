@@ -42,6 +42,7 @@ export function FormField(props: FormFieldProps) {
     onFocus,
     onBlur,
     onValidation,
+    onKeyUp,
     clearable = "never",
   } = props;
 
@@ -158,6 +159,7 @@ export function FormField(props: FormFieldProps) {
                     max={max}
                     min={min}
                     ref={inputRef as MutableRefObject<HTMLInputElement>}
+                    onKeyUp={onKeyUp}
                   />
                   {loading && <FormFieldPostFix variation="spinner" />}
                   {children}
