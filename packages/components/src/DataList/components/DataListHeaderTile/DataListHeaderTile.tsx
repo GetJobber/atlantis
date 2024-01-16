@@ -1,11 +1,16 @@
 import React from "react";
 import classnames from "classnames";
-import { Icon } from "@jobber/components/Icon";
+import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import styles from "./DataListHeaderTile.css";
 import { DataListSortingArrows } from "./DataListSortingArrows";
+import { DataListSortingOptions } from "./components/DataListSortingOptions";
 import { Text } from "../../../Text";
 import { useDataListContext } from "../../context/DataListContext";
-import { DataListHeader, DataListObject } from "../../DataList.types";
+import {
+  DataListHeader,
+  DataListObject,
+  SortableOptions,
+} from "../../DataList.types";
 
 interface DataListHeaderTileProps<T extends DataListObject> {
   readonly headers: DataListHeader<T>;
@@ -18,11 +23,10 @@ export function DataListHeaderTile<T extends DataListObject>({
 }: DataListHeaderTileProps<T>) {
   const { sorting } = useDataListContext();
   const [isDropDownOpen, setIsDropDownOpen] = React.useState(false);
-  // new state variable to keep track of selected option
-  const [selectedSortOption, setSelectedSortOption] = React.useState<{
-    label: string;
-    order: "asc" | "desc";
-  } | null>(null);
+  const [selectedSortOption, setSelectedSortOption] =
+    React.useState<SortableOptions | null>(null);
+
+  const optionsListRef = useFocusTrap<HTMLUListElement>(isDropDownOpen);
 
   const sortableItem = sorting?.sortable.find(item => item.key === headerKey);
   const isSortable = Boolean(sortableItem);
@@ -39,24 +43,13 @@ export function DataListHeaderTile<T extends DataListObject>({
     >
       <Text maxLines="single">{headers[headerKey]}</Text>
       {isSortable && sortableItem?.options && isDropDownOpen && (
-        <ul className={styles.optionsList}>
-          {sortableItem?.options?.map((option, index) => (
-            <li
-              className={
-                option.label === selectedSortOption?.label
-                  ? `${styles.option} ${styles.optionSelected}`
-                  : styles.option
-              }
-              key={index}
-              onClick={() => handleSelectChange(option)}
-            >
-              {option.label}
-              {option.label === selectedSortOption?.label && (
-                <Icon name="checkmark" color="blue" />
-              )}
-            </li>
-          ))}
-        </ul>
+        <DataListSortingOptions
+          options={sortableItem.options}
+          selectedOption={selectedSortOption}
+          onSelectChange={handleSelectChange}
+          optionsListRef={optionsListRef}
+          onClose={() => setIsDropDownOpen(false)}
+        />
       )}
       {sortingState?.key === headerKey ? (
         <DataListSortingArrows order={sortingState.order} />
@@ -68,23 +61,20 @@ export function DataListHeaderTile<T extends DataListObject>({
 
   function toggleSorting(sortingKey: string, order?: "asc" | "desc") {
     const isSameKey = sortingKey === sortingState?.key;
+    const isDescending = sortingState?.order === "desc";
 
-    if (isSameKey && sortingState?.order === "desc" && order !== "asc") {
-      if (order === "desc") {
-        return;
-      }
-
+    if (isSameKey && isDescending && order !== "asc") {
+      if (order === "desc") return;
       sorting?.onSort(undefined);
 
       return;
     }
 
-    const newOrder =
-      order || (isSameKey && sortingState?.order === "asc" ? "desc" : "asc");
+    const sortingOrder = order || (isSameKey && !isDescending ? "desc" : "asc");
 
     sorting?.onSort({
       key: sortingKey,
-      order: newOrder,
+      order: sortingOrder,
     });
   }
 
@@ -98,10 +88,7 @@ export function DataListHeaderTile<T extends DataListObject>({
     }
   }
 
-  function handleSelectChange(selectedOption: {
-    label: string;
-    order: "asc" | "desc";
-  }) {
+  function handleSelectChange(selectedOption: SortableOptions) {
     if (sortableItem) {
       toggleSorting(sortableItem.key, selectedOption.order);
     }

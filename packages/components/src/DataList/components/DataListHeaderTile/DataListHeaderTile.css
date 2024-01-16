@@ -36,6 +36,7 @@
 
 .option {
   display: flex;
+  min-width: calc(var(--space-largest) * 3.5);
   min-height: calc((var(--space-largest) - var(--space-smaller)));
   box-sizing: border-box;
   margin: 0 var(--space-small);
@@ -47,12 +48,17 @@
   list-style: none;
   cursor: pointer;
   align-items: center;
+  justify-content: space-between;
 }
 
 .option:hover,
 .option:focus-visible {
   border-radius: var(--radius-large);
   background-color: var(--color-surface--hover);
+}
+
+.option:focus-visible {
+  box-shadow: var(--shadow-focus);
 }
 
 .optionSelected {
