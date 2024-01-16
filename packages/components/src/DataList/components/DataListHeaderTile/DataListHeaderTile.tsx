@@ -59,6 +59,7 @@ export function DataListHeaderTile<T extends DataListObject>({
     </Tag>
   );
 
+  // adjusts sorting state
   function toggleSorting(sortingKey: string, order?: "asc" | "desc") {
     const isSameKey = sortingKey === sortingState?.key;
     const isDescending = sortingState?.order === "desc";
@@ -78,6 +79,8 @@ export function DataListHeaderTile<T extends DataListObject>({
     });
   }
 
+  // toggle sorting if the header is sortable
+  // otherwise toggle the dropdown
   function handleOnClick() {
     if (!isSortable) return;
 
@@ -88,6 +91,7 @@ export function DataListHeaderTile<T extends DataListObject>({
     }
   }
 
+  // updating selected option, trigger sorting, manage dropdown state
   function handleSelectChange(selectedOption: SortableOptions) {
     if (sortableItem) {
       toggleSorting(sortableItem.key, selectedOption.order);

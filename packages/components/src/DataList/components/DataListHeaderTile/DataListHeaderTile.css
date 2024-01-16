@@ -52,7 +52,7 @@
 }
 
 .option:hover,
-.option:focus-visible {
+.option:focus {
   border-radius: var(--radius-large);
   background-color: var(--color-surface--hover);
 }
