@@ -35,6 +35,16 @@ export interface ComboboxProps {
   readonly onClose?: () => void;
 
   /**
+   * Callback function invoked on Combobox search input change. Receives the current search value as an argument.
+   */
+  readonly onSearchChange?: (searchValue: string) => void;
+
+  /**
+   * The amount of time in ms to debounce the search input change. Defaults to 300ms.
+   */
+  readonly debounce?: number;
+
+  /**
    * The Chip heading for the trigger
    */
   readonly label?: string;

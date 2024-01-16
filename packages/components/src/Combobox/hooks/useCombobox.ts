@@ -1,4 +1,12 @@
-import React, { Dispatch, MutableRefObject, useRef, useState } from "react";
+import React, {
+  Dispatch,
+  MutableRefObject,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import debounce from "lodash/debounce";
 import {
   UseMakeComboboxHandlersReturn,
   useMakeComboboxHandlers,
@@ -21,11 +29,27 @@ export function useCombobox(
   onSelect: (selection: ComboboxOption[]) => void,
   onClose?: () => void,
   multiSelect?: boolean,
+  onSearchChange?: (searchValue: string) => void,
+  debounceTime: number = 300,
 ): UseComboboxReturn {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const shouldScroll = useRef<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
+
+  const searchChangeCallback = useCallback(
+    debounce(
+      (value: string) => onSearchChange && onSearchChange(value),
+      debounceTime,
+    ),
+    [],
+  );
+
+  useEffect(() => {
+    if (onSearchChange) {
+      searchChangeCallback(searchValue);
+    }
+  }, [searchValue]);
 
   const { handleClose, handleSelection } = useMakeComboboxHandlers(
     setOpen,

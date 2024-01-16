@@ -239,6 +239,7 @@ const ComboboxSingleSelection: ComponentStory<typeof Combobox> = args => {
       onSelect={setSelected}
       selected={selected}
       label="Teammates"
+      onSearchChange={searchValue => console.log("SEARCH VALUE " + searchValue)}
     >
       <Combobox.Option id="1" label="Bilbo Baggins" />
       <Combobox.Option id="2" label="Frodo Baggins" />
