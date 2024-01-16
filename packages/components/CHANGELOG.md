@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.73.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.72.0...@jobber/components@4.73.0) (2024-01-16)
+
+
+### Features
+
+* Input time auto fill ([#1700](https://github.com/GetJobber/atlantis/issues/1700)) ([77c3048](https://github.com/GetJobber/atlantis/commit/77c304841534a7cd4c1520e119c9bd8fddcac695))
+
+
+
+
+
 # [4.72.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.71.8...@jobber/components@4.72.0) (2024-01-15)
 
 
