@@ -14,7 +14,13 @@ const mockContextValue = {
   ...defaultValues,
   headers: { label: "Label", address: "Address", phone: "Phone" },
   sorting: {
-    sortable: [...sortableKeys],
+    sortable: sortableKeys.map(key => ({
+      key,
+      options: [
+        { label: `${key} (A-Z)`, order: "asc" },
+        { label: `${key} (Z-A)`, order: "desc" },
+      ],
+    })),
     state: undefined,
     onSort: handleSort,
   },
