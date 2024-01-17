@@ -42,9 +42,13 @@ export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
               );
             })}
           {props.loading && (
-            <div className={styles.loadingContainer}>
-              <Glimmer size="larger" />
-            </div>
+            <>
+              {Array.from({ length: 5 }).map((_, index) => (
+                <div className={styles.loadingContainer} key={index}>
+                  <Glimmer shape="rectangle" size="small" />
+                </div>
+              ))}
+            </>
           )}
         </ul>
       )}
