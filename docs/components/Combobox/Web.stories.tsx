@@ -303,12 +303,16 @@ const ComboboxCustomSearch: ComponentStory<typeof Combobox> = args => {
   const mockQuery = (query: string) => {
     return new Promise<ComboboxOption[]>(resolve => {
       setTimeout(() => {
-        resolve([
-          { id: "5", label: `Patrick ${query}` },
-          { id: "6", label: `Roland ${query}` },
-          { id: "7", label: `Twyla ${query}` },
-          { id: "8", label: `Stevie ${query}` },
-        ]);
+        if (query === "no") {
+          resolve([]);
+        } else {
+          resolve([
+            { id: "5", label: `Patrick ${query}` },
+            { id: "6", label: `Roland ${query}` },
+            { id: "7", label: `Twyla ${query}` },
+            { id: "8", label: `Stevie ${query}` },
+          ]);
+        }
       }, 500);
     });
   };

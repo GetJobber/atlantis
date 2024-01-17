@@ -38,7 +38,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         handleSearchChange={props.handleSearchChange}
       />
 
-      {props.multiselect && props.hadInitialOptions && (
+      {props.multiselect && props.showNoResults && (
         <ComboboxContentHeader
           hasOptionsVisible={props.options.length > 0}
           subjectNoun={props.subjectNoun}
@@ -53,7 +53,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       )}
       <ComboboxContentList
         multiselect={props.multiselect}
-        showEmptyState={!props.hadInitialOptions}
+        showEmptyState={!props.showNoResults}
         options={props.options}
         selected={props.selected}
         optionsListRef={optionsListRef}
