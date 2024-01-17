@@ -80,10 +80,10 @@ function renderComboboxContentList(
       setOpen={jest.fn()}
       handleClose={jest.fn()}
       selectionHandler={jest.fn()}
-      multiselect={false}
       shouldScroll={{ current: false }}
       open={true}
       selected={[]}
+      searchValue=""
     >
       <ComboboxContentList
         multiselect={false}
