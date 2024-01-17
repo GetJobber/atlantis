@@ -2,7 +2,7 @@ import React from "react";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { Icon } from "@jobber/components/Icon";
-import styles from "../DataListHeaderTile.css";
+import styles from "./DataListSortingOptions.css";
 import { SortableOptions } from "../../../DataList.types";
 
 interface DataListSortingOptionsProps {
@@ -18,8 +18,8 @@ export function DataListSortingOptions({
   options,
   selectedOption,
   onSelectChange,
-  optionsListRef,
   onClose,
+  optionsListRef,
   dataListHeaderTileRef,
 }: DataListSortingOptionsProps) {
   useRefocusOnActivator(!optionsListRef.current);
