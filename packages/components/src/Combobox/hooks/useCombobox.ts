@@ -21,7 +21,7 @@ type UseComboboxReturn = {
   selectedOptions: ComboboxOption[];
   selectedStateSetter: (selection: ComboboxOption[]) => void;
   shouldScroll: MutableRefObject<boolean>;
-  filteredOptions: ComboboxOption[];
+  internalFilteredOptions: ComboboxOption[];
   handleSearchChange: (value: string) => void;
 } & UseMakeComboboxHandlersReturn;
 
@@ -38,7 +38,7 @@ export function useCombobox(
   const shouldScroll = useRef<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
-  const [filteredOptions, setFilteredOptions] =
+  const [internalFilteredOptions, setInternalFilteredOptions] =
     useState<ComboboxOption[]>(options);
 
   const searchChangeCallback = useCallback(
@@ -55,7 +55,7 @@ export function useCombobox(
         return option.label.toLowerCase().includes(value.toLowerCase());
       });
 
-      setFilteredOptions(filtered);
+      setInternalFilteredOptions(filtered);
     }, debounceTime),
     [],
   );
@@ -81,7 +81,7 @@ export function useCombobox(
     shouldScroll,
     handleClose,
     handleSelection,
-    filteredOptions,
+    internalFilteredOptions,
     handleSearchChange: onSearchChange
       ? searchChangeCallback
       : debouncedFilterOptions,

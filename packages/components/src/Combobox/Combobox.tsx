@@ -34,7 +34,7 @@ export function Combobox(props: ComboboxProps): JSX.Element {
     setOpen,
     handleClose,
     handleSelection,
-    filteredOptions,
+    internalFilteredOptions,
     handleSearchChange,
   } = useCombobox(
     props.selected,
@@ -79,7 +79,7 @@ export function Combobox(props: ComboboxProps): JSX.Element {
           wrapperRef={wrapperRef}
           open={open}
           setOpen={setOpen}
-          options={filteredOptions}
+          options={props.onSearchChange ? options : internalFilteredOptions}
           hadInitialOptions={options.length > 0}
           loading={props.loading}
           handleSearchChange={handleSearchChange}
