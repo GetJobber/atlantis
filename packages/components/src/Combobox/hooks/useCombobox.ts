@@ -2,7 +2,6 @@ import React, {
   Dispatch,
   MutableRefObject,
   useCallback,
-  useEffect,
   useRef,
   useState,
 } from "react";
@@ -23,6 +22,7 @@ type UseComboboxReturn = {
   selectedStateSetter: (selection: ComboboxOption[]) => void;
   shouldScroll: MutableRefObject<boolean>;
   filteredOptions: ComboboxOption[];
+  handleSearchChange: (value: string) => void;
 } & UseMakeComboboxHandlersReturn;
 
 export function useCombobox(
@@ -60,14 +60,6 @@ export function useCombobox(
     [],
   );
 
-  useEffect(() => {
-    if (onSearchChange) {
-      searchChangeCallback(searchValue);
-    } else {
-      debouncedFilterOptions(searchValue);
-    }
-  }, [searchValue]);
-
   const { handleClose, handleSelection } = useMakeComboboxHandlers(
     setOpen,
     setSearchValue,
@@ -90,5 +82,8 @@ export function useCombobox(
     handleClose,
     handleSelection,
     filteredOptions,
+    handleSearchChange: onSearchChange
+      ? searchChangeCallback
+      : debouncedFilterOptions,
   };
 }

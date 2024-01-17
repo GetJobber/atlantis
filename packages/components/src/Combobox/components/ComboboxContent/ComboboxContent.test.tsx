@@ -92,7 +92,7 @@ function renderComboboxContent(
       shouldScroll={{ current: false }}
       open={open}
       selected={selected}
-      searchValue=""
+      searchValue={searchValue}
     >
       <ComboboxContent
         selected={selected}
@@ -106,6 +106,7 @@ function renderComboboxContent(
         options={options}
         multiselect={multiSelect}
         hadInitialOptions={hadInitialOptions}
+        handleSearchChange={jest.fn()}
       />
     </ComboboxContextProvider>,
   );

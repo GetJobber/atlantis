@@ -35,6 +35,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         placeholder={props.subjectNoun}
         searchValue={props.searchValue}
         setSearchValue={props.setSearchValue}
+        handleSearchChange={props.handleSearchChange}
       />
 
       {props.multiselect && props.hadInitialOptions && (

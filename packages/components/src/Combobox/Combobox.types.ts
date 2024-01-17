@@ -120,6 +120,11 @@ export interface ComboboxContentProps {
   readonly setSearchValue: Dispatch<SetStateAction<string>>;
 
   /**
+   * Function called when search input changes.
+   */
+  readonly handleSearchChange: (value: string) => void;
+
+  /**
    * Reference to the wrapping div element of all the Combobox pieces
    */
   readonly wrapperRef: React.RefObject<HTMLDivElement>;
@@ -170,6 +175,11 @@ export interface ComboboxSearchProps {
    * Setter for the search input value.
    */
   setSearchValue: Dispatch<SetStateAction<string>>;
+
+  /**
+   * Function called when search input changes.
+   */
+  readonly handleSearchChange: (value: string) => void;
 }
 
 export interface ComboboxHeaderProps {
