@@ -35,7 +35,7 @@ export interface ComboboxProps {
   readonly onClose?: () => void;
 
   /**
-   * Callback function invoked on Combobox search input change. Receives the current search value as an argument.
+   * Debounced callback function invoked on Combobox search input change. Receives the current search value as an argument.
    */
   readonly onSearchChange?: (searchValue: string) => void;
 
@@ -50,10 +50,14 @@ export interface ComboboxProps {
   readonly label?: string;
 
   /**
-   * Should the Combobox display the loading state. Primarily used in conjunction with async operations and
-   * onSearchChange fetching options.
+   * Should the Combobox display the loading state, only needed when providing custom onSearchChange that has async loading behavior.
    */
   readonly loading?: boolean;
+
+  /**
+   * Did the Combobox have initial options, only needed when providing custom onSearchChange that can alter the passed in options.
+   */
+  readonly hadInitalOptions?: boolean;
 }
 
 export interface ComboboxActivatorProps {
