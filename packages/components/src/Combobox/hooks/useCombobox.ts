@@ -49,16 +49,13 @@ export function useCombobox(
     [],
   );
 
-  const debouncedFilterOptions = useCallback(
-    debounce((value: string) => {
-      const filtered = options.filter(option => {
-        return option.label.toLowerCase().includes(value.toLowerCase());
-      });
+  const debouncedFilterOptions = useCallback((value: string) => {
+    const filtered = options.filter(option => {
+      return option.label.toLowerCase().includes(value.toLowerCase());
+    });
 
-      setInternalFilteredOptions(filtered);
-    }, debounceTime),
-    [],
-  );
+    setInternalFilteredOptions(filtered);
+  }, []);
 
   const { handleClose, handleSelection } = useMakeComboboxHandlers(
     setOpen,

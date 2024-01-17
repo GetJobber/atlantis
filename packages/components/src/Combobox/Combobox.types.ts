@@ -40,7 +40,7 @@ export interface ComboboxProps {
   readonly onSearchChange?: (searchValue: string) => void;
 
   /**
-   * The amount of time in ms to debounce the search input change. Defaults to 300ms.
+   * The amount of time in ms to debounce the onSearchChange callback. Defaults to 300ms.
    */
   readonly debounce?: number;
 
