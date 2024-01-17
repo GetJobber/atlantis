@@ -81,7 +81,7 @@ function renderComboboxContent(
   selected: ComboboxOption[] = [],
   multiSelect = false,
   open = true,
-  showNoResults = true,
+  hadInitialOptions = true,
   searchValue = "",
 ) {
   return render(
@@ -105,7 +105,7 @@ function renderComboboxContent(
         setOpen={setOpen}
         options={options}
         multiselect={multiSelect}
-        showNoResults={showNoResults}
+        hadInitialOptions={hadInitialOptions}
         handleSearchChange={jest.fn()}
       />
     </ComboboxContextProvider>,

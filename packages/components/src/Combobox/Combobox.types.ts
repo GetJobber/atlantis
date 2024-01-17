@@ -50,14 +50,10 @@ export interface ComboboxProps {
   readonly label?: string;
 
   /**
-   * Should the Combobox display the loading state. Only needed when providing custom onSearchChange.
+   * Should the Combobox display the loading state. Primarily used in conjunction with async operations and
+   * onSearchChange fetching options.
    */
   readonly loading?: boolean;
-
-  /**
-   * Should the Combobox display the no search results state over the unpopulated options list state. Only needed when providing custom onSearchChange.
-   */
-  readonly showNoResults?: boolean;
 }
 
 export interface ComboboxActivatorProps {
@@ -149,9 +145,9 @@ export interface ComboboxContentProps {
   readonly options: ComboboxOption[];
 
   /**
-   * Should the Combobox display the no results state over the unpopulated options list state.
+   * Was the Combobox provided with initial options, prior to filtering.
    */
-  readonly showNoResults: boolean;
+  readonly hadInitialOptions: boolean;
 
   /**
    * Should loading state be shown.

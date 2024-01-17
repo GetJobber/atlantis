@@ -80,9 +80,7 @@ export function Combobox(props: ComboboxProps): JSX.Element {
           open={open}
           setOpen={setOpen}
           options={props.onSearchChange ? options : internalFilteredOptions}
-          showNoResults={
-            props.showNoResults ? props.showNoResults : options.length > 0
-          }
+          hadInitialOptions={options.length > 0}
           loading={props.loading}
           handleSearchChange={handleSearchChange}
         />
