@@ -2,6 +2,7 @@
 import React from "react";
 import classnames from "classnames";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
+import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import styles from "./DataListHeaderTile.css";
 import { DataListSortingArrows } from "./DataListSortingArrows";
 import { DataListSortingOptions } from "./components/DataListSortingOptions";
@@ -16,12 +17,15 @@ import {
 interface DataListHeaderTileProps<T extends DataListObject> {
   readonly headers: DataListHeader<T>;
   readonly headerKey: string;
+  readonly visible: boolean;
 }
 
 export function DataListHeaderTile<T extends DataListObject>({
   headers,
   headerKey,
+  visible = false,
 }: DataListHeaderTileProps<T>) {
+  useRefocusOnActivator(visible);
   const { sorting } = useDataListContext();
   const [isDropDownOpen, setIsDropDownOpen] = React.useState(false);
   const [selectedSortOption, setSelectedSortOption] =
@@ -102,6 +106,6 @@ export function DataListHeaderTile<T extends DataListObject>({
     }
     setSelectedSortOption(selectedOption);
 
-    setIsDropDownOpen(false);
+    setIsDropDownOpen(true);
   }
 }

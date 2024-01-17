@@ -1,5 +1,6 @@
 import React from "react";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
+import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { Icon } from "@jobber/components/Icon";
 import styles from "../DataListHeaderTile.css";
 import { SortableOptions } from "../../../DataList.types";
@@ -21,6 +22,7 @@ export function DataListSortingOptions({
   onClose,
   dataListHeaderTileRef,
 }: DataListSortingOptionsProps) {
+  useRefocusOnActivator(!optionsListRef.current);
   useOnKeyDown(() => onClose(), "Escape");
 
   React.useEffect(() => {
