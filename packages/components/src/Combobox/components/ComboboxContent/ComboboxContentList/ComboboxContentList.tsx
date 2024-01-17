@@ -3,49 +3,19 @@ import classnames from "classnames";
 import { Text } from "@jobber/components/Text";
 import { Glimmer } from "@jobber/components/Glimmer";
 import styles from "./ComboboxContentList.css";
-import { ComboboxListProps } from "../../../Combobox.types";
+import {
+  ComboboxListProps,
+  ComboboxOption as ComboboxOptionType,
+} from "../../../Combobox.types";
 import { ComboboxOption } from "../../ComboboxOption/ComboboxOption";
 
 export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
-  const [listScrollState, setlistScrollState] = useState("");
   const showOptions = !props.showEmptyState && !props.loading;
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (props.optionsListRef.current) {
-        const { scrollTop, clientHeight, scrollHeight } =
-          props.optionsListRef.current;
-
-        if (scrollHeight === clientHeight) {
-          setlistScrollState("scrollNone");
-        } else if (scrollTop === 0) {
-          setlistScrollState("scrollTop");
-        } else if (scrollTop + clientHeight === scrollHeight) {
-          setlistScrollState("scrollBottom");
-        } else {
-          setlistScrollState("");
-        }
-      }
-    };
-
-    if (!props.showEmptyState && props.options.length === 0) {
-      handleScroll();
-    }
-
-    if (props.optionsListRef.current) {
-      props.optionsListRef.current.addEventListener("scroll", handleScroll);
-      handleScroll();
-    }
-
-    return () => {
-      if (props.optionsListRef.current) {
-        props.optionsListRef.current.removeEventListener(
-          "scroll",
-          handleScroll,
-        );
-      }
-    };
-  }, [props.options]);
+  const { listScrollState } = useScrollState(
+    props.optionsListRef,
+    props.options,
+    props.showEmptyState,
+  );
 
   return (
     <div
@@ -103,4 +73,48 @@ function getZeroIndexStateText(subjectNoun?: string) {
   }
 
   return "No options yet";
+}
+
+function useScrollState(
+  optionsListRef: React.RefObject<HTMLUListElement>,
+  options: ComboboxOptionType[],
+  showEmptyState: boolean,
+) {
+  const [listScrollState, setlistScrollState] = useState("");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (optionsListRef.current) {
+        const { scrollTop, clientHeight, scrollHeight } =
+          optionsListRef.current;
+
+        if (scrollHeight === clientHeight) {
+          setlistScrollState("scrollNone");
+        } else if (scrollTop === 0) {
+          setlistScrollState("scrollTop");
+        } else if (scrollTop + clientHeight === scrollHeight) {
+          setlistScrollState("scrollBottom");
+        } else {
+          setlistScrollState("");
+        }
+      }
+    };
+
+    if (!showEmptyState && options.length === 0) {
+      handleScroll();
+    }
+
+    if (optionsListRef.current) {
+      optionsListRef.current.addEventListener("scroll", handleScroll);
+      handleScroll();
+    }
+
+    return () => {
+      if (optionsListRef.current) {
+        optionsListRef.current.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, [options]);
+
+  return { listScrollState };
 }
