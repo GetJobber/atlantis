@@ -31,7 +31,7 @@ export function useCombobox(
   options: ComboboxOption[],
   onClose?: () => void,
   multiSelect?: boolean,
-  onSearchChange?: (searchValue: string) => void,
+  onSearch?: (searchValue: string) => void,
   debounceTime: number = 300,
 ): UseComboboxReturn {
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -41,11 +41,8 @@ export function useCombobox(
   const [internalFilteredOptions, setInternalFilteredOptions] =
     useState<ComboboxOption[]>(options);
 
-  const searchChangeCallback = useCallback(
-    debounce(
-      (value: string) => onSearchChange && onSearchChange(value),
-      debounceTime,
-    ),
+  const searchCallback = useCallback(
+    debounce((value: string) => onSearch && onSearch(value), debounceTime),
     [],
   );
 
@@ -79,8 +76,6 @@ export function useCombobox(
     handleClose,
     handleSelection,
     internalFilteredOptions,
-    handleSearchChange: onSearchChange
-      ? searchChangeCallback
-      : debouncedFilterOptions,
+    handleSearchChange: onSearch ? searchCallback : debouncedFilterOptions,
   };
 }

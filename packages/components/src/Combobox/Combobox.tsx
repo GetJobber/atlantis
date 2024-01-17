@@ -42,8 +42,8 @@ export function Combobox(props: ComboboxProps): JSX.Element {
     options,
     props.onClose,
     props.multiSelect,
-    props.onSearchChange,
-    props.debounce,
+    props.onSearch,
+    props.onSearchDebounce,
   );
 
   return (
@@ -79,7 +79,7 @@ export function Combobox(props: ComboboxProps): JSX.Element {
           wrapperRef={wrapperRef}
           open={open}
           setOpen={setOpen}
-          options={props.onSearchChange ? options : internalFilteredOptions}
+          options={props.onSearch ? options : internalFilteredOptions}
           hadInitialOptions={
             props.hadInitalOptions !== undefined
               ? props.hadInitalOptions

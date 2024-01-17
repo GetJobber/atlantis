@@ -37,12 +37,12 @@ export interface ComboboxProps {
   /**
    * Debounced callback function invoked on Combobox search input change. Receives the current search value as an argument.
    */
-  readonly onSearchChange?: (searchValue: string) => void;
+  readonly onSearch?: (searchValue: string) => void;
 
   /**
-   * The amount of time in ms to debounce the onSearchChange callback. Defaults to 300ms.
+   * The amount of time in ms to debounce the onSearch callback. Defaults to 300ms.
    */
-  readonly debounce?: number;
+  readonly onSearchDebounce?: number;
 
   /**
    * The Chip heading for the trigger
@@ -50,12 +50,12 @@ export interface ComboboxProps {
   readonly label?: string;
 
   /**
-   * Should the Combobox display the loading state, only needed when providing custom onSearchChange that has async loading behavior.
+   * Should the Combobox display the loading state, only needed when providing custom onSearch that has async loading behavior.
    */
   readonly loading?: boolean;
 
   /**
-   * Did the Combobox have initial options, only needed when providing custom onSearchChange that can alter the passed in options.
+   * Did the Combobox have initial options, only needed when providing custom onSearch that can alter the passed in options.
    */
   readonly hadInitalOptions?: boolean;
 }

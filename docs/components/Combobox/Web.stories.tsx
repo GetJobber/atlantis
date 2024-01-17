@@ -325,7 +325,7 @@ const ComboboxCustomSearch: ComponentStory<typeof Combobox> = args => {
       label="Teammates"
       multiSelect
       hadInitalOptions={initialOptions.length > 0}
-      onSearchChange={async (term: string) => {
+      onSearch={async (term: string) => {
         setLoading(true);
 
         if (term == "") {
