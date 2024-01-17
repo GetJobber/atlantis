@@ -22,3 +22,12 @@
   border-color: var(--color-focus);
   background-color: var(--color-surface--hover);
 }
+
+.dropZone.error {
+  border-color: var(--color-critical);
+}
+
+.validationErrors {
+  display: flex;
+  flex-direction: column;
+}

@@ -2,7 +2,8 @@ import React from "react";
 import { IconNames } from "@jobber/design";
 import classNames from "classnames";
 import { getAtlantisConfig } from "@jobber/components/utils/getAtlantisConfig";
-import styles from "./BannerIcon.css";
+import iconStyles from "./BannerIcon.css";
+import bannerStyles from "../../Banner.css";
 import { Icon } from "../../../Icon";
 import { BannerType } from "../../Banner.types";
 
@@ -16,7 +17,7 @@ export function BannerIcon({ icon, type }: BannerIconProps) {
 
   if (JOBBER_RETHEME) {
     return (
-      <span className={classNames(styles.wrapper, styles[type])}>
+      <span className={classNames(bannerStyles.iconWrapper, iconStyles[type])}>
         <Icon name={icon} color={"white"} size="small" />
       </span>
     );

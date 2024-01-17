@@ -80,3 +80,14 @@
   outline: none;
   background: rgba(0, 0, 0, 0.05);
 }
+
+.iconWrapper {
+  display: inline-flex;
+  padding: var(--space-smaller);
+  border-radius: var(--radius-circle);
+  background-color: var(--color-surface--background);
+}
+
+:global(.jobber-retheme) .medium .iconWrapper {
+  align-self: center;
+}

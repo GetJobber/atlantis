@@ -18,15 +18,14 @@ export function DataListHeader() {
     headers,
     layoutBreakpoints,
   } = useDataListContext();
-  const { selectedIDs } = useBatchSelect();
+  const { hasAtLeastOneSelected } = useBatchSelect();
 
   const size = getVisibleSize();
   const { layout } = useActiveLayout();
 
   const visible = headerVisibility[size];
-  const noItemsSelected = selectedIDs?.length === 0;
 
-  if ((!visible && noItemsSelected) || !layout) return null;
+  if ((!visible && !hasAtLeastOneSelected) || !layout) return null;
 
   const headerData = generateHeaderElements(headers);
   if (!headerData) return null;
