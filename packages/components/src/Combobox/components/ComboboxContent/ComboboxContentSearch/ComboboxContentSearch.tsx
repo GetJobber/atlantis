@@ -1,10 +1,16 @@
-import React, { useEffect, useRef } from "react";
+import React, { useDeferredValue, useEffect, useRef, useState } from "react";
 import { Icon } from "@jobber/components/Icon";
 import styles from "./ComboboxContentSearch.css";
 import { ComboboxSearchProps } from "../../../Combobox.types";
 
 export function ComboboxContentSearch(props: ComboboxSearchProps): JSX.Element {
   const searchRef = useRef<HTMLInputElement>(null);
+  const [searchTerm, setSearchTerm] = useState(props.searchValue);
+  const deferredSearchTerm = useDeferredValue(searchTerm);
+
+  if (deferredSearchTerm !== props.searchValue) {
+    props.setSearchValue(deferredSearchTerm);
+  }
 
   useEffect(() => {
     if (props.open) {
@@ -23,16 +29,19 @@ export function ComboboxContentSearch(props: ComboboxSearchProps): JSX.Element {
         placeholder={
           props.placeholder ? `Search ${props.placeholder}` : "Search"
         }
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-          handleSearch(event)
-        }
-        value={props.searchValue}
+        onChange={e => {
+          setSearchTerm(e.target.value);
+        }}
+        value={searchTerm}
       />
 
-      {props.searchValue && (
+      {searchTerm && (
         <button
           className={styles.clearSearch}
-          onClick={clearSearch}
+          onClick={() => {
+            setSearchTerm("");
+            searchRef.current?.focus();
+          }}
           type="button"
           data-testid="ATL-Combobox-Content-Search-Clear"
           aria-label="Clear search"
@@ -42,13 +51,4 @@ export function ComboboxContentSearch(props: ComboboxSearchProps): JSX.Element {
       )}
     </div>
   );
-
-  function clearSearch() {
-    props.setSearchValue("");
-    searchRef.current?.focus();
-  }
-
-  function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
-    props.setSearchValue(event.target.value);
-  }
 }
