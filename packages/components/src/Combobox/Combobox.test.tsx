@@ -464,6 +464,7 @@ describe("Combobox Custom onSearch", () => {
 
     await user.type(screen.getByPlaceholderText("Search"), "Val");
     jest.advanceTimersByTime(300);
+    expect(mockOnSearch).toHaveBeenLastCalledWith("Val");
     await user.click(screen.getByTestId("ATL-Combobox-Content-Search-Clear"));
     jest.advanceTimersByTime(300);
 
@@ -491,9 +492,6 @@ describe("Combobox Custom onSearch", () => {
 
     expect(screen.queryAllByTestId("ATL-Glimmer")).toHaveLength(0);
   });
-
-  // implement me once bug is fixed
-  // it("should show the correct header when searching and no results found", () => {});
 
   it("should show the correct message when searching, and no options present", async () => {
     renderCustomOnSearchCombobox(false, true);
