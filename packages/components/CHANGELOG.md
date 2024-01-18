@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.74.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.73.0...@jobber/components@4.74.0) (2024-01-18)
+
+
+### Features
+
+* **components:** Expose all sizing tokens in web Content ([#1730](https://github.com/GetJobber/atlantis/issues/1730)) ([372a7a1](https://github.com/GetJobber/atlantis/commit/372a7a13b469c167cacebde7d289b0eded592e23))
+
+
+
+
+
 # [4.73.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.72.0...@jobber/components@4.73.0) (2024-01-16)
 
 
