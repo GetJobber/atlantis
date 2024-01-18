@@ -19,6 +19,7 @@
   box-sizing: border-box;
   margin: 0 var(--space-small);
   padding: var(--space-small);
+  border-radius: var(--radius-large);
   font-family: var(--typography--fontFamily-normal);
   font-size: var(--typography--fontSize-base);
   font-weight: 500;
@@ -31,7 +32,6 @@
 
 .option:hover,
 .option:focus {
-  border-radius: var(--radius-large);
   background-color: var(--color-surface--hover);
 }
 
