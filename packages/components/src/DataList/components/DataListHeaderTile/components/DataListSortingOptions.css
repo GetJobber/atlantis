@@ -31,6 +31,11 @@
   gap: var(--space-smaller);
 }
 
+:global(.jobber-retheme) .option,
+:global(.jobber-retheme) .optionsList {
+  border-radius: var(--radius-base);
+}
+
 .option:hover,
 .option:focus {
   background-color: var(--color-surface--hover);
