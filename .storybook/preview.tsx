@@ -12,6 +12,7 @@ import { StoryDetails } from "./components/StoryDetails";
 import "@jobber/design/foundation.css";
 import "./assets/css/preview.css";
 import { Unstyled } from "@storybook/addon-docs";
+import { Table } from "@storybook/components";
 
 try {
   require("@jobber/fonts");
@@ -59,6 +60,7 @@ export const parameters = {
       h5: props => <Header {...props} level={5} />,
       p: props => <Text {...props} />,
       inlineCode: props => <InlineCode {...props} />,
+      table: props => <Table {...props} />,
       Canvas: CustomCanvas,
     },
     container: DocsWithSidebar,
