@@ -10,11 +10,12 @@ import {
 import { ComboboxOption } from "../../ComboboxOption/ComboboxOption";
 
 export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
-  const showOptions = !props.showEmptyState && !props.loading;
+  const optionsExist = props.options.length > 0;
+  const showOptions = optionsExist && !props.loading;
+  const hasSearchTerm = props.searchValue.length > 0;
   const { listScrollState } = useScrollState(
     props.optionsListRef,
     props.options,
-    props.showEmptyState,
   );
 
   return (
@@ -24,7 +25,7 @@ export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
         styles[listScrollState as keyof typeof styles],
       )}
     >
-      {!props.showEmptyState && props.options.length > 0 && (
+      {optionsExist && (
         <ul
           className={styles.optionsList}
           role="listbox"
@@ -52,7 +53,8 @@ export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
           )}
         </ul>
       )}
-      {!props.showEmptyState && props.options.length === 0 && (
+
+      {hasSearchTerm && !optionsExist && (
         <div className={styles.filterMessage}>
           <Text variation="subdued">
             No results for {`“${props.searchValue}”`}
@@ -60,7 +62,7 @@ export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
         </div>
       )}
 
-      {props.showEmptyState && (
+      {!hasSearchTerm && !optionsExist && (
         <div className={styles.emptyStateMessage}>
           <Text variation="subdued">
             {getZeroIndexStateText(props.subjectNoun)}
@@ -82,7 +84,6 @@ function getZeroIndexStateText(subjectNoun?: string) {
 function useScrollState(
   optionsListRef: React.RefObject<HTMLUListElement>,
   options: ComboboxOptionType[],
-  showEmptyState: boolean,
 ) {
   const [listScrollState, setlistScrollState] = useState("");
 
@@ -104,7 +105,7 @@ function useScrollState(
       }
     };
 
-    if (!showEmptyState && options.length === 0) {
+    if (options.length === 0) {
       handleScroll();
     }
 

@@ -446,7 +446,7 @@ describe("Combobox Custom onSearch", () => {
     mockOnSearch.mockClear();
   });
   it("should only call the debounced onSearch one, with the correct value", async () => {
-    renderCustomOnSearchCombobox(false, true);
+    renderCustomOnSearchCombobox(false);
 
     await user.type(screen.getByPlaceholderText("Search"), "V");
     await user.type(screen.getByPlaceholderText("Search"), "a");
@@ -460,7 +460,7 @@ describe("Combobox Custom onSearch", () => {
   });
 
   it("should call the debounced onSearch with an empty string when cleared with the clear button", async () => {
-    renderCustomOnSearchCombobox(false, true);
+    renderCustomOnSearchCombobox(false);
 
     await user.type(screen.getByPlaceholderText("Search"), "Val");
     jest.advanceTimersByTime(300);
@@ -471,7 +471,7 @@ describe("Combobox Custom onSearch", () => {
   });
 
   it("should not have option filtering behavior out of the box like the non custom onSearch version", async () => {
-    renderCustomOnSearchCombobox(false, true);
+    renderCustomOnSearchCombobox(false);
 
     await user.type(screen.getByPlaceholderText("Search"), "Value 1");
     jest.advanceTimersByTime(300);
@@ -481,13 +481,13 @@ describe("Combobox Custom onSearch", () => {
   });
 
   it("should show the correct amount of loading glimmers when loading is true", () => {
-    renderCustomOnSearchCombobox(true, true);
+    renderCustomOnSearchCombobox(true);
 
     expect(screen.getAllByTestId("ATL-Glimmer")).toHaveLength(5);
   });
 
   it("should not show the loading glimmers when loading is false", () => {
-    renderCustomOnSearchCombobox(false, true);
+    renderCustomOnSearchCombobox(false);
 
     expect(screen.queryAllByTestId("ATL-Glimmer")).toHaveLength(0);
   });
@@ -495,8 +495,8 @@ describe("Combobox Custom onSearch", () => {
   // implement me once bug is fixed
   // it("should show the correct header when searching and no results found", () => {});
 
-  it("should show the correct message when searching, no results found and opitions existed", async () => {
-    renderCustomOnSearchCombobox(false, true, true);
+  it("should show the correct message when searching, and no options present", async () => {
+    renderCustomOnSearchCombobox(false, true);
 
     await user.type(screen.getByPlaceholderText("Search"), "Value 4");
     jest.advanceTimersByTime(300);
@@ -505,17 +505,8 @@ describe("Combobox Custom onSearch", () => {
     expect(screen.getByText("No results for “Value 4”")).toBeInTheDocument();
   });
 
-  it("should show the correct message when no options provided and searching", async () => {
-    renderCustomOnSearchCombobox(false, false);
-
-    await user.type(screen.getByPlaceholderText("Search"), "Value 1");
-    jest.advanceTimersByTime(300);
-
-    expect(screen.getByText("No options yet")).toBeInTheDocument();
-  });
-
-  it("should show the correct message when no options provided and not searching", () => {
-    renderCustomOnSearchCombobox(false, false, true);
+  it("should show the correct message when no options present and not searching", () => {
+    renderCustomOnSearchCombobox(false, true);
 
     expect(screen.getByText("No options yet")).toBeInTheDocument();
   });
@@ -523,7 +514,6 @@ describe("Combobox Custom onSearch", () => {
 
 function renderCustomOnSearchCombobox(
   loading: boolean,
-  hadInitalOptions: boolean,
   renderWithoutOptions = false,
 ) {
   const options = renderWithoutOptions
@@ -540,7 +530,6 @@ function renderCustomOnSearchCombobox(
       onSelect={handleSelect}
       onSearch={mockOnSearch}
       loading={loading}
-      hadInitalOptions={hadInitalOptions}
     >
       {options.map(option => (
         <Combobox.Option id={option.id} label={option.label} key={option.id} />

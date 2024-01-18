@@ -10,6 +10,7 @@ import { useComboboxAccessibility } from "../../hooks/useComboboxAccessibility";
 import { ComboboxContentProps } from "../../Combobox.types";
 
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
+  const optionsExist = props.options.length > 0;
   const { optionsListRef } = useComboboxContent(props.open, props.selected);
 
   const { popperRef, popperStyles, attributes } = useComboboxAccessibility(
@@ -38,9 +39,9 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         handleSearchChange={props.handleSearchChange}
       />
 
-      {props.multiselect && props.hadInitialOptions && (
+      {props.multiselect && optionsExist && (
         <ComboboxContentHeader
-          hasOptionsVisible={props.options.length > 0}
+          hasOptionsVisible={optionsExist}
           subjectNoun={props.subjectNoun}
           selectedCount={props.selected.length}
           onClearAll={() => {
@@ -53,7 +54,6 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       )}
       <ComboboxContentList
         multiselect={props.multiselect}
-        showEmptyState={!props.hadInitialOptions}
         options={props.options}
         selected={props.selected}
         optionsListRef={optionsListRef}

@@ -53,11 +53,6 @@ export interface ComboboxProps {
    * Should the Combobox display the loading state, only needed when providing custom onSearch that has async loading behavior.
    */
   readonly loading?: boolean;
-
-  /**
-   * Did the Combobox have initial options, only needed when providing custom onSearch that can alter the passed in options.
-   */
-  readonly hadInitalOptions?: boolean;
 }
 
 export interface ComboboxActivatorProps {
@@ -149,11 +144,6 @@ export interface ComboboxContentProps {
   readonly options: ComboboxOption[];
 
   /**
-   * Was the Combobox provided with initial options, prior to filtering.
-   */
-  readonly hadInitialOptions: boolean;
-
-  /**
    * Should loading state be shown.
    */
   readonly loading?: boolean;
@@ -216,11 +206,6 @@ export interface ComboboxListProps {
    * The options to display in the list. May be the full set of the Combobox or could be filtered.
    */
   readonly options: ComboboxOption[];
-
-  /**
-   * Used to determine if the empty state should be shown and given priority over the options list.
-   */
-  readonly showEmptyState: boolean;
 
   /**
    * The currently selected options.
