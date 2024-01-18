@@ -37,11 +37,7 @@ export function DataListSortingOptions({
     <ul className={styles.optionsList} ref={optionsListRef}>
       {options.map((option, index) => (
         <li
-          className={
-            option.label === selectedOption?.label
-              ? `${styles.option} ${styles.optionSelected}`
-              : styles.option
-          }
+          className={styles.option}
           key={index}
           onClick={() => onSelectChange(option)}
           onKeyDown={event => handleKeyDown(event, option)}

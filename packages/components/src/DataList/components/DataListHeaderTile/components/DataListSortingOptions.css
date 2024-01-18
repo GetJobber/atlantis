@@ -28,6 +28,7 @@
   cursor: pointer;
   align-items: center;
   justify-content: space-between;
+  gap: var(--space-smaller);
 }
 
 .option:hover,
@@ -37,8 +38,4 @@
 
 .option:focus-visible {
   box-shadow: var(--shadow-focus);
-}
-
-.optionSelected {
-  gap: var(--space-smaller);
 }
