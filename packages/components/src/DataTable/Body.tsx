@@ -68,9 +68,9 @@ export function Body<T extends object>({
           <tr className={bodyRowClasses}>
             <td
               colSpan={table.getAllColumns().length}
-              className={classNames(styles.emptyState)}
+              className={styles.emptyStateCell}
             >
-              {emptyState}
+              <div className={styles.emptyState}>{emptyState}</div>
             </td>
           </tr>
         </tbody>

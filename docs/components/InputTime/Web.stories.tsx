@@ -4,6 +4,7 @@ import { CivilTime } from "@std-proposal/temporal";
 import { InputTime } from "@jobber/components/InputTime";
 import { Content } from "@jobber/components/Content";
 import { Button } from "@jobber/components/Button";
+import { Flex } from "@jobber/components/Flex";
 
 export default {
   title: "Components/Forms and Inputs/InputTime/Web",
@@ -38,16 +39,24 @@ const EventTemplate: ComponentStory<typeof InputTime> = args => {
 
   return (
     <Content>
-      <InputTime {...args} value={time} onChange={handleChange} />
+      <Flex template={["grow", "shrink"]}>
+        <InputTime {...args} value={time} onChange={handleChange} />
+        <Button label="Reset" size="large" onClick={resetTime} />
+      </Flex>
       <pre>{time && time.toString()}</pre>
-      <Button label="Reset" onClick={resetTime} />
     </Content>
   );
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
+export const Uncontrolled = BasicTemplate.bind({});
+Uncontrolled.args = {
   defaultValue: new CivilTime(2, 35),
+};
+
+export const Controlled = EventTemplate.bind({});
+Controlled.args = {
+  placeholder: "Start time",
+  clearable: "always",
 };
 
 export const Disabled = BasicTemplate.bind({});
@@ -66,15 +75,4 @@ export const Invalid = BasicTemplate.bind({});
 Invalid.args = {
   defaultValue: new CivilTime(2, 35),
   invalid: true,
-};
-
-export const Event = EventTemplate.bind({});
-Event.args = {
-  placeholder: "Start time",
-};
-
-export const Clearable = EventTemplate.bind({});
-Clearable.args = {
-  placeholder: "Start Time",
-  clearable: "always",
 };

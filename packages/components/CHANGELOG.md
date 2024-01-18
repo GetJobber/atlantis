@@ -3,6 +3,162 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.73.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.72.0...@jobber/components@4.73.0) (2024-01-16)
+
+
+### Features
+
+* Input time auto fill ([#1700](https://github.com/GetJobber/atlantis/issues/1700)) ([77c3048](https://github.com/GetJobber/atlantis/commit/77c304841534a7cd4c1520e119c9bd8fddcac695))
+
+
+
+
+
+# [4.72.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.71.8...@jobber/components@4.72.0) (2024-01-15)
+
+
+### Features
+
+* Added Error State and onErrorCallback for InputFile ([#1710](https://github.com/GetJobber/atlantis/issues/1710)) ([3c45a25](https://github.com/GetJobber/atlantis/commit/3c45a252fa511a41e343279c3f3b39078aaf450b))
+
+
+
+
+
+## [4.71.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.71.7...@jobber/components@4.71.8) (2024-01-15)
+
+
+### Bug Fixes
+
+* **components:** Adapt toast and menu for retheme [JOB-86410] ([#1724](https://github.com/GetJobber/atlantis/issues/1724)) ([e3f15f8](https://github.com/GetJobber/atlantis/commit/e3f15f84cc197766f93e4db8fba84f049f6364d5))
+
+
+
+
+
+## [4.71.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.71.6...@jobber/components@4.71.7) (2024-01-12)
+
+
+### Bug Fixes
+
+* **components:** DataTable empty state should span full width with pinFirstColumn enabled [85639] ([#1716](https://github.com/GetJobber/atlantis/issues/1716)) ([1a6e466](https://github.com/GetJobber/atlantis/commit/1a6e466d7eedb0c3d582936dd754e842bfe3714e))
+
+
+
+
+
+## [4.71.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.71.5...@jobber/components@4.71.6) (2024-01-11)
+
+
+### Bug Fixes
+
+* **components:** static thumbnails for HEIC in all browsers but safari (fixes forever loading thumbnail for HEIC) [84773] ([#1712](https://github.com/GetJobber/atlantis/issues/1712)) ([da2feaa](https://github.com/GetJobber/atlantis/commit/da2feaaa8377867f9651617538bb377f317c3820))
+
+
+
+
+
+## [4.71.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.71.4...@jobber/components@4.71.5) (2024-01-11)
+
+
+### Bug Fixes
+
+* **components:** Fix DataList Small Breakpoint DataListHeader Visibility ([#1720](https://github.com/GetJobber/atlantis/issues/1720)) ([cd2e912](https://github.com/GetJobber/atlantis/commit/cd2e912e352d23ed7eef3f1191d8458894d927eb))
+
+
+
+
+
+## [4.71.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.71.3...@jobber/components@4.71.4) (2024-01-11)
+
+
+### Bug Fixes
+
+* **components:** Hide anything overflowing the dataTable ([#1722](https://github.com/GetJobber/atlantis/issues/1722)) ([98dd362](https://github.com/GetJobber/atlantis/commit/98dd36242b616fccd16db8678731edd1a4bb9300))
+
+
+
+
+
+## [4.71.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.71.2...@jobber/components@4.71.3) (2024-01-11)
+
+
+### Bug Fixes
+
+* align center banner icon on retheme ([#1718](https://github.com/GetJobber/atlantis/issues/1718)) ([88a873b](https://github.com/GetJobber/atlantis/commit/88a873bfe2364a389a050dfb72591ce7adeecdcc))
+
+
+
+
+
+## [4.71.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.71.1...@jobber/components@4.71.2) (2024-01-11)
+
+
+### Bug Fixes
+
+* **components:** Bring back card border and padding for retheme ([#1719](https://github.com/GetJobber/atlantis/issues/1719)) ([40d1595](https://github.com/GetJobber/atlantis/commit/40d1595ea2a27a0c699a47c2e028e564aa791505))
+
+
+
+
+
+## [4.71.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.71.0...@jobber/components@4.71.1) (2024-01-10)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [4.71.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.70.1...@jobber/components@4.71.0) (2024-01-10)
+
+
+### Features
+
+* Add support for providing your own of acceptable file types to upload for InputFile ([#1708](https://github.com/GetJobber/atlantis/issues/1708)) ([be6e7a3](https://github.com/GetJobber/atlantis/commit/be6e7a3f24177932cb11d00b55f0ba8aff3612bc))
+
+
+
+
+
+## [4.70.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.70.0...@jobber/components@4.70.1) (2024-01-10)
+
+
+### Bug Fixes
+
+* **components:** InputFile update the useCallback dependency array [85395] ([#1709](https://github.com/GetJobber/atlantis/issues/1709)) ([7b603de](https://github.com/GetJobber/atlantis/commit/7b603defe70c857d9724f5349f12a59bc625ffb6))
+
+
+
+
+
+# [4.70.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.69.2...@jobber/components@4.70.0) (2024-01-10)
+
+
+### Features
+
+* **components:** Add better typescript types for to prop on Button ([#1715](https://github.com/GetJobber/atlantis/issues/1715)) ([cb7d6ea](https://github.com/GetJobber/atlantis/commit/cb7d6ea9ff025177ef1ee50e186406fa22952342))
+
+
+
+
+
+## [4.69.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.69.1...@jobber/components@4.69.2) (2024-01-09)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.69.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.69.0...@jobber/components@4.69.1) (2024-01-04)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 # [4.69.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.68.18...@jobber/components@4.69.0) (2023-12-22)
 
 
