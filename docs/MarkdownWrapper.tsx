@@ -106,6 +106,9 @@ export const CodeOrSourceMdx: FC<
   );
 };
 
+let ignoreNext = false;
+let counter = 0;
+
 export const MarkdownWrapper = ({
   children,
 }: {
@@ -135,7 +138,43 @@ export const MarkdownWrapper = ({
       <Markdown
         options={{
           wrapper: props => <Content>{props.children}</Content>,
+          // This horrific render rule is related to a bug in markdown-to-jsx rendering Markdown Image Links.
+          // They have 3 open issues for this bug: https://github.com/quantizor/markdown-to-jsx/issues/531
+          // If they fix this bug we should be able to just remove this render rule
+          // This is specifically related to the CircleCI badge in the README.md to get it to render properly
+          // If you remove this render rule you will see the CircleCI badge render as a broken image.
+          // If you want to support another image link, it might be better to just fix the bug in markdown-to-jsx for the
+          // community instead of growing this awful hack in our codebase.
+          renderRule(next, node) {
+            if (
+              (node.type == "15" && node.target.includes("circleci")) ||
+              ignoreNext
+            ) {
+              if (node?.children?.length === 1 || ignoreNext) {
+                if (counter === 0) {
+                  ignoreNext = false;
+                } else {
+                  counter -= 1;
+                }
+
+                return null;
+              } else if (node?.children?.length === 2) {
+                counter = 2;
+                ignoreNext = true;
+
+                return (
+                  <a href="https://circleci.com/gh/GetJobber/atlantis/tree/master">
+                    <img src="https://circleci.com/gh/GetJobber/atlantis/tree/master.svg?style=svg" />
+                  </a>
+                );
+              }
+            }
+
+            return next();
+          },
           overrides: {
+            details: { component: "details" },
+            summary: { component: "summary" },
             h1: { component: props => <Header level={1} {...props} /> },
             h2: { component: props => <Header level={2} {...props} isTOC /> },
             h3: { component: props => <Header level={3} {...props} /> },

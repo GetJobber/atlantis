@@ -1,4 +1,4 @@
-import { Canvas, Meta } from "@storybook/addon-docs";
+import { Canvas, Meta, Story } from "@storybook/addon-docs";
 import { useState } from "react";
 import { InputNumber } from "@jobber/components/InputNumber";
 import { Button } from "@jobber/components/Button";
@@ -44,13 +44,27 @@ no value to the user by offering an incrementer.
 ### Disabled
 
 <Canvas>
-  <InputNumber placeholder="SIN Number" value={1234} disabled={true} />
+  <Story name="Disabled">
+    <InputNumber
+      placeholder="SIN Number"
+      value={1234}
+      disabled={true}
+      name="sin"
+    />
+  </Story>
 </Canvas>
 
 ### Read-only
 
 <Canvas>
-  <InputNumber placeholder="Your pin number" value={12345} readonly={true} />
+  <Story name="ReadOnly">
+    <InputNumber
+      placeholder="Your pin number"
+      value={12345}
+      readonly={true}
+      name="pinNumber"
+    />
+  </Story>
 </Canvas>
 
 ### Prefix/suffix
