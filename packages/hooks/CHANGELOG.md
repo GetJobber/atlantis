@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.8.0...@jobber/hooks@2.8.1) (2024-01-22)
+
+
+### Bug Fixes
+
+* **hooks:** Guard useAssert to work with SSR ([#1725](https://github.com/GetJobber/atlantis/issues/1725)) ([d3e1601](https://github.com/GetJobber/atlantis/commit/d3e160113a325a2145cf67124e76f5c6018f2559))
+
+
+
+
+
 # [2.8.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.7.3...@jobber/hooks@2.8.0) (2023-12-05)
 
 
