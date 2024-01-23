@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.75.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.74.2...@jobber/components@4.75.0) (2024-01-23)
+
+
+### Features
+
+* **components:** onSearch Callback Prop for Combobox ([#1727](https://github.com/GetJobber/atlantis/issues/1727)) ([23effc7](https://github.com/GetJobber/atlantis/commit/23effc7df67080046712eaeff6b5879474400b12))
+
+
+
+
+
 ## [4.74.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.74.1...@jobber/components@4.74.2) (2024-01-23)
 
 
