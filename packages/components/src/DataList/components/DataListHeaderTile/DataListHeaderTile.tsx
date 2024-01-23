@@ -11,8 +11,7 @@ import { useDataListContext } from "../../context/DataListContext";
 import {
   DataListHeader,
   DataListObject,
-  DataListSorting,
-  // SortableOptions,
+  SortableOptions,
 } from "../../DataList.types";
 
 interface DataListHeaderTileProps<T extends DataListObject> {
@@ -30,7 +29,7 @@ export function DataListHeaderTile<T extends DataListObject>({
   const { sorting } = useDataListContext();
   const [isDropDownOpen, setIsDropDownOpen] = React.useState(false);
   const [selectedSortOption, setSelectedSortOption] =
-    React.useState<DataListSorting | null>(null);
+    React.useState<SortableOptions | null>(null);
 
   const optionsListRef = useFocusTrap<HTMLUListElement>(isDropDownOpen);
   const dataListHeaderTileRef = React.useRef(null);
@@ -105,7 +104,7 @@ export function DataListHeaderTile<T extends DataListObject>({
     }
   }
 
-  function handleSelectChange(selectedOption: DataListSorting) {
+  function handleSelectChange(selectedOption: SortableOptions) {
     if (sortableItem) {
       toggleSorting(
         sortableItem.key,

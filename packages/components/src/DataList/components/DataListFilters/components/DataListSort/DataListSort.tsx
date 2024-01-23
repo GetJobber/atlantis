@@ -6,9 +6,9 @@ import { Icon } from "@jobber/components/Icon";
 
 export function DataListSort() {
   const { sorting, headers } = useDataListContext();
-  console.log(sorting);
 
   if (!sorting) return null;
+
   const { sortable, state, onSort } = sorting;
 
   const sortByOptions = getSortByOptions();
@@ -18,7 +18,7 @@ export function DataListSort() {
       onSelect={selection => handleKeyChange(selection[0].id.toString())}
       selected={[
         {
-          id: `${state?.key},${state?.order}`,
+          id: `${state?.key},${state?.order},${state?.label}`,
           label: state?.order || "",
         },
       ]}
@@ -47,20 +47,27 @@ export function DataListSort() {
       (acc: Record<"label" | "value", string>[], sort) => {
         const label = headers[sort.key];
         if (!label) return acc;
+        const customOptions = sort.options;
 
-        // if (label === "Last activity") {
-        //   acc.push({
-        //     label: "Last Activity (Newest)",
-        //     value: `${sort.key},desc`,
-        //   });
-        //   acc.push({
-        //     label: "Last Activity (Oldest)",
-        //     value: `${sort.key},asc`,
-        //   });
-        // } else {
-        //   acc.push({ label: `${label} (A-Z)`, value: `${sort.key},asc` });
-        //   acc.push({ label: `${label} (Z-A)`, value: `${sort.key},desc` });
-        // }
+        if (customOptions) {
+          customOptions.forEach(option => {
+            acc.push({
+              label: option.label || "",
+              value: `${sort.key},${option.order},${option.label}`,
+            });
+          });
+
+          return acc;
+        }
+
+        acc.push({
+          label: `${label} (A-Z)`,
+          value: `${sort.key},asc,${label}`,
+        });
+        acc.push({
+          label: `${label} (Z-A)`,
+          value: `${sort.key},desc,${label}`,
+        });
 
         return acc;
       },
@@ -75,7 +82,8 @@ export function DataListSort() {
 
   function getButtonLabel() {
     const selectedOption = sortByOptions.find(
-      option => option.value === `${state?.key},${state?.order}`,
+      option =>
+        option.value === `${state?.key},${state?.order},${state?.label}`,
     );
 
     return selectedOption?.label || "";
@@ -83,8 +91,8 @@ export function DataListSort() {
 
   function handleKeyChange(value?: string) {
     if (value && value !== "none") {
-      const [key, order] = value.split(",");
-      onSort({ key, order: order as "asc" | "desc" });
+      const [key, order, label] = value.split(",");
+      onSort({ key, order: order as "asc" | "desc", label });
 
       return;
     }
