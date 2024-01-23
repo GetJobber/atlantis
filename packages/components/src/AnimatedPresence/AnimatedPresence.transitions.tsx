@@ -34,6 +34,18 @@ export const FROM_RIGHT: Variants = {
   hidden: { x: tokens["space-base"], ...BASE_TRANSITION.hidden },
 };
 
+export const FROM_LEFT_TO_RIGHT: Variants = {
+  initial: { x: -tokens["space-base"], ...BASE_TRANSITION.hidden },
+  visible: { x: 0, ...BASE_TRANSITION.visible },
+  hidden: { x: tokens["space-base"], ...BASE_TRANSITION.hidden },
+};
+
+export const FROM_RIGHT_TO_LEFT: Variants = {
+  initial: { x: tokens["space-base"], ...BASE_TRANSITION.hidden },
+  visible: { x: 0, ...BASE_TRANSITION.visible },
+  hidden: { x: -tokens["space-base"], ...BASE_TRANSITION.hidden },
+};
+
 function toSeconds(ms: number) {
   return ms / 1000;
 }

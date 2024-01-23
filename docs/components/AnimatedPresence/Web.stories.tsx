@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { AnimatedPresence } from "@jobber/components/AnimatedPresence";
+import {
+  AnimatedPresence,
+  AnimatedPresenceTransitions,
+} from "@jobber/components/AnimatedPresence";
 import { Button } from "@jobber/components/Button";
 import { Text } from "@jobber/components/Text";
 import { Card } from "@jobber/components/Card";
@@ -113,10 +116,83 @@ const ListTemplate: ComponentStory<typeof AnimatedPresence> = args => {
   );
 };
 
+const StepperTemplate: ComponentStory<typeof AnimatedPresence> = args => {
+  const [step, setStep] = useState(1);
+  const [transition, setTransition] =
+    useState<AnimatedPresenceTransitions>("fromLeftToRight");
+
+  return (
+    <Content>
+      <Flex template={["shrink", "shrink"]}>
+        <Button
+          label="Previous"
+          disabled={step === 1}
+          onClick={() => {
+            setTransition("fromLeftToRight");
+            // wait a bit before moving pages
+            setTimeout(() => setStep(step - 1), 0);
+          }}
+        />
+        <Button
+          label="Next"
+          disabled={step === 3}
+          onClick={() => {
+            setTransition("fromRightToLeft");
+            // wait a bit before moving pages
+            setTimeout(() => setStep(step + 1), 0);
+          }}
+        />
+      </Flex>
+
+      <AnimatedPresence {...args} transition={transition}>
+        {step === 1 && (
+          <Card>
+            <Content>
+              <Text>Step 1</Text>
+            </Content>
+          </Card>
+        )}
+        {step === 2 && (
+          <Card>
+            <Content>
+              <Text>Step 2</Text>
+            </Content>
+          </Card>
+        )}
+        {step === 3 && (
+          <Card>
+            <Content>
+              <Text>Step 3</Text>
+            </Content>
+          </Card>
+        )}
+      </AnimatedPresence>
+    </Content>
+  );
+};
+
 export const Basic = BasicTemplate.bind({});
-Basic.args = {};
 
 export const List = ListTemplate.bind({});
 List.args = {
   initial: true,
+};
+
+export const Stepper = StepperTemplate.bind({});
+Stepper.args = {
+  transition: "fromLeftToRight",
+  exitBeforeEnter: true,
+};
+Stepper.parameters = {
+  previewTabs: {
+    code: {
+      hidden: false,
+      extraImports: {
+        "@jobber/components/AnimatedPresence": [
+          "AnimatedPresence",
+          "AnimatedPresenceTransitions",
+        ],
+      },
+    },
+  },
 };

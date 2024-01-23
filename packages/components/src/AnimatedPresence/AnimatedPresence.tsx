@@ -3,7 +3,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   FROM_BOTTOM,
   FROM_LEFT,
+  FROM_LEFT_TO_RIGHT,
   FROM_RIGHT,
+  FROM_RIGHT_TO_LEFT,
   FROM_TOP,
   POP_IN,
   TIMING_BASE,
@@ -17,11 +19,31 @@ const transitions = {
   fromLeft: FROM_LEFT,
   fromRight: FROM_RIGHT,
   popIn: POP_IN,
+  fromLeftToRight: FROM_LEFT_TO_RIGHT,
+  fromRightToLeft: FROM_RIGHT_TO_LEFT,
 };
 
+export type AnimatedPresenceTransitions = keyof typeof transitions;
+
 interface AnimatedPresenceProps extends Required<PropsWithChildren> {
-  readonly transition?: keyof typeof transitions;
+  /**
+   * The type of transition you can use.
+   */
+  readonly transition?: AnimatedPresenceTransitions;
+
+  /**
+   * Whether or not to animate the children on mount. By default it's set to false.
+   */
   readonly initial?: boolean;
+
+  /**
+   * If you only have 1 element visible at all times, like a setup wizard or a
+   * page, This ensures the transition between the previous and next elements
+   * doesn't overlap.
+   *
+   * Using this with multiple elements visible at the same time will cause an
+   * unexpected behavior.
+   */
   readonly exitBeforeEnter?: boolean;
 }
 
@@ -31,6 +53,8 @@ export function AnimatedPresence({
   exitBeforeEnter = false,
   children,
 }: AnimatedPresenceProps) {
+  const transitionVariation = transitions[transition];
+  const hasInitialTransition = "initial" in transitionVariation;
   const childCount = Children.count(children);
 
   // Set the initial value to 0 so it staggers the animation on mount when
@@ -49,8 +73,8 @@ export function AnimatedPresence({
         (child, i) =>
           child && (
             <motion.div
-              variants={transitions[transition]}
-              initial="hidden"
+              variants={transitionVariation}
+              initial={hasInitialTransition ? "initial" : "hidden"}
               animate="visible"
               exit="hidden"
               transition={{
