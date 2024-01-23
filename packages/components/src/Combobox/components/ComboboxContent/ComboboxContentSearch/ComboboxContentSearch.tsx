@@ -45,10 +45,12 @@ export function ComboboxContentSearch(props: ComboboxSearchProps): JSX.Element {
 
   function clearSearch() {
     props.setSearchValue("");
+    props.handleSearchChange("");
     searchRef.current?.focus();
   }
 
   function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
-    props.setSearchValue(event.target.value);
+    props.setSearchValue(event.currentTarget.value);
+    props.handleSearchChange(event.currentTarget.value);
   }
 }

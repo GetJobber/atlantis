@@ -1,4 +1,11 @@
-import React, { Dispatch, MutableRefObject, useRef, useState } from "react";
+import React, {
+  Dispatch,
+  MutableRefObject,
+  useCallback,
+  useRef,
+  useState,
+} from "react";
+import debounce from "lodash/debounce";
 import {
   UseMakeComboboxHandlersReturn,
   useMakeComboboxHandlers,
@@ -14,18 +21,38 @@ type UseComboboxReturn = {
   selectedOptions: ComboboxOption[];
   selectedStateSetter: (selection: ComboboxOption[]) => void;
   shouldScroll: MutableRefObject<boolean>;
+  internalFilteredOptions: ComboboxOption[];
+  handleSearchChange: (value: string) => void;
 } & UseMakeComboboxHandlersReturn;
 
 export function useCombobox(
   selected: ComboboxOption[],
   onSelect: (selection: ComboboxOption[]) => void,
+  options: ComboboxOption[],
   onClose?: () => void,
   multiSelect?: boolean,
+  onSearch?: (searchValue: string) => void,
+  debounceTime: number = 300,
 ): UseComboboxReturn {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const shouldScroll = useRef<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
+  const [internalFilteredOptions, setInternalFilteredOptions] =
+    useState<ComboboxOption[]>(options);
+
+  const searchCallback = useCallback(
+    debounce((value: string) => onSearch && onSearch(value), debounceTime),
+    [],
+  );
+
+  const debouncedFilterOptions = useCallback((value: string) => {
+    const filtered = options.filter(option => {
+      return option.label.toLowerCase().includes(value.toLowerCase());
+    });
+
+    setInternalFilteredOptions(filtered);
+  }, []);
 
   const { handleClose, handleSelection } = useMakeComboboxHandlers(
     setOpen,
@@ -48,5 +75,7 @@ export function useCombobox(
     shouldScroll,
     handleClose,
     handleSelection,
+    internalFilteredOptions,
+    handleSearchChange: onSearch ? searchCallback : debouncedFilterOptions,
   };
 }
