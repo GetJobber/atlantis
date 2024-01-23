@@ -90,4 +90,6 @@ export const Basic = BasicTemplate.bind({});
 Basic.args = {};
 
 export const List = ListTemplate.bind({});
-Basic.args = {};
+List.args = {
+  initial: true,
+};

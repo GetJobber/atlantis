@@ -1,4 +1,4 @@
-import React, { Children, PropsWithChildren } from "react";
+import React, { Children, PropsWithChildren, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   FROM_BOTTOM,
@@ -22,17 +22,28 @@ const transitions = {
 interface AnimatedPresenceProps extends Required<PropsWithChildren> {
   readonly transition?: keyof typeof transitions;
   readonly initial?: boolean;
+  readonly exitBeforeEnter?: boolean;
 }
 
 export function AnimatedPresence({
   transition = "fromTop",
   initial = false,
+  exitBeforeEnter = false,
   children,
 }: AnimatedPresenceProps) {
-  const lastChildIndex = usePreviousValue(Children.count(children) - 1);
+  const childCount = Children.count(children);
+
+  // Set the initial value to 0 so it staggers the animation on mount when
+  // initial is true.
+  const [lastChildIndex, setLastChildIndex] = usePreviousValue(0);
+
+  // Whenever the children count changes, update the last index.
+  useEffect(() => {
+    setLastChildIndex(childCount - 1);
+  }, [childCount]);
 
   return (
-    <AnimatePresence initial={initial}>
+    <AnimatePresence initial={initial} exitBeforeEnter={exitBeforeEnter}>
       {Children.map(
         children,
         (child, i) =>
@@ -55,8 +66,10 @@ export function AnimatedPresence({
   );
 
   function generateDelayTime(index: number): number {
+    // Don't add a delay if it's already rendered.
     if (lastChildIndex > index) return 0;
 
+    // Stagger the animation starting after the previous last child index.
     return (index - lastChildIndex) * TIMING_QUICK;
   }
 }
