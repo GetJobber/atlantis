@@ -1,26 +1,26 @@
 import React, { Children, PropsWithChildren, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
-  FROM_BOTTOM,
-  FROM_LEFT,
-  FROM_LEFT_TO_RIGHT,
-  FROM_RIGHT,
-  FROM_RIGHT_TO_LEFT,
-  FROM_TOP,
-  POP_IN,
   TIMING_BASE,
   TIMING_QUICK,
+  fromBottom,
+  fromLeft,
+  fromLeftToRight,
+  fromRight,
+  fromRightToLeft,
+  fromTop,
+  popIn,
 } from "./AnimatedPresence.transitions";
 import { usePreviousValue } from "./hooks/usePreviousValue";
 
 const transitions = {
-  fromBottom: FROM_BOTTOM,
-  fromTop: FROM_TOP,
-  fromLeft: FROM_LEFT,
-  fromRight: FROM_RIGHT,
-  popIn: POP_IN,
-  fromLeftToRight: FROM_LEFT_TO_RIGHT,
-  fromRightToLeft: FROM_RIGHT_TO_LEFT,
+  fromBottom,
+  fromTop,
+  fromLeft,
+  fromRight,
+  popIn,
+  fromLeftToRight,
+  fromRightToLeft,
 };
 
 export type AnimatedPresenceTransitions = keyof typeof transitions;

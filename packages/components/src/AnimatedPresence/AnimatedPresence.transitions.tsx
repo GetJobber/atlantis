@@ -4,46 +4,46 @@ import { Variants } from "framer-motion";
 export const TIMING_QUICK = toSeconds(tokens["timing-quick"]);
 export const TIMING_BASE = toSeconds(tokens["timing-base"]);
 
-const BASE_TRANSITION: Variants = {
+const baseTransition: Variants = {
   visible: { opacity: 1, height: "auto" },
   hidden: { opacity: 0, height: 0 },
 };
 
-export const POP_IN: Variants = {
-  visible: { scale: 1, ...BASE_TRANSITION.visible },
-  hidden: { scale: 0.95, ...BASE_TRANSITION.hidden },
+export const popIn: Variants = {
+  visible: { scale: 1, ...baseTransition.visible },
+  hidden: { scale: 0.95, ...baseTransition.hidden },
 };
 
-export const FROM_TOP: Variants = {
-  visible: { y: 0, ...BASE_TRANSITION.visible },
-  hidden: { y: -tokens["space-base"], ...BASE_TRANSITION.hidden },
+export const fromTop: Variants = {
+  visible: { y: 0, ...baseTransition.visible },
+  hidden: { y: -tokens["space-base"], ...baseTransition.hidden },
 };
 
-export const FROM_BOTTOM: Variants = {
-  visible: { y: 0, ...BASE_TRANSITION.visible },
-  hidden: { y: tokens["space-base"], ...BASE_TRANSITION.hidden },
+export const fromBottom: Variants = {
+  visible: { y: 0, ...baseTransition.visible },
+  hidden: { y: tokens["space-base"], ...baseTransition.hidden },
 };
 
-export const FROM_LEFT: Variants = {
-  visible: { x: 0, ...BASE_TRANSITION.visible },
-  hidden: { x: -tokens["space-base"], ...BASE_TRANSITION.hidden },
+export const fromLeft: Variants = {
+  visible: { x: 0, ...baseTransition.visible },
+  hidden: { x: -tokens["space-base"], ...baseTransition.hidden },
 };
 
-export const FROM_RIGHT: Variants = {
-  visible: { x: 0, ...BASE_TRANSITION.visible },
-  hidden: { x: tokens["space-base"], ...BASE_TRANSITION.hidden },
+export const fromRight: Variants = {
+  visible: { x: 0, ...baseTransition.visible },
+  hidden: { x: tokens["space-base"], ...baseTransition.hidden },
 };
 
-export const FROM_LEFT_TO_RIGHT: Variants = {
-  initial: { x: -tokens["space-base"], ...BASE_TRANSITION.hidden },
-  visible: { x: 0, ...BASE_TRANSITION.visible },
-  hidden: { x: tokens["space-base"], ...BASE_TRANSITION.hidden },
+export const fromLeftToRight: Variants = {
+  initial: { x: -tokens["space-base"], ...baseTransition.hidden },
+  visible: { x: 0, ...baseTransition.visible },
+  hidden: { x: tokens["space-base"], ...baseTransition.hidden },
 };
 
-export const FROM_RIGHT_TO_LEFT: Variants = {
-  initial: { x: tokens["space-base"], ...BASE_TRANSITION.hidden },
-  visible: { x: 0, ...BASE_TRANSITION.visible },
-  hidden: { x: -tokens["space-base"], ...BASE_TRANSITION.hidden },
+export const fromRightToLeft: Variants = {
+  initial: { x: tokens["space-base"], ...baseTransition.hidden },
+  visible: { x: 0, ...baseTransition.visible },
+  hidden: { x: -tokens["space-base"], ...baseTransition.hidden },
 };
 
 function toSeconds(ms: number) {
