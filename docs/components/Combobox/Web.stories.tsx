@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { useQuery } from "@apollo/client";
 import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
 import { Button } from "@jobber/components/Button";
 import { Typography } from "@jobber/components/Typography";
 import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
+import { LIST_QUERY, ListQueryType, apolloClient } from "./storyUtils";
 
 export default {
   title: "Components/Selections/Combobox/Web",
@@ -289,33 +291,16 @@ const DynamicButton: ComponentStory<typeof Combobox> = args => {
 };
 
 const ComboboxCustomSearch: ComponentStory<typeof Combobox> = args => {
-  const initialOptions: ComboboxOption[] = [
-    { id: "1", label: "David" },
-    { id: "2", label: "Johnny" },
-    { id: "3", label: "Moira" },
-    { id: "4", label: "Alexis" },
-  ];
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [displayOptions, setDisplayOptions] =
-    useState<ComboboxOption[]>(initialOptions);
-
-  const mockQuery = (query: string) => {
-    return new Promise<ComboboxOption[]>(resolve => {
-      setTimeout(() => {
-        if (query === "no") {
-          resolve([]);
-        } else {
-          resolve([
-            { id: "5", label: `Patrick ${query}` },
-            { id: "6", label: `Roland ${query}` },
-            { id: "7", label: `Twyla ${query}` },
-            { id: "8", label: `Stevie ${query}` },
-          ]);
-        }
-      }, 500);
-    });
-  };
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const { data, loading } = useQuery<ListQueryType>(LIST_QUERY, {
+    variables: {
+      filter: { name: searchTerm },
+    },
+    fetchPolicy: "network-only",
+    nextFetchPolicy: "cache-first",
+    client: apolloClient,
+  });
 
   return (
     <Combobox
@@ -324,29 +309,11 @@ const ComboboxCustomSearch: ComponentStory<typeof Combobox> = args => {
       selected={selected}
       label="Teammates"
       multiSelect
-      onSearch={async (term: string) => {
-        setLoading(true);
-
-        if (term == "") {
-          setDisplayOptions(initialOptions);
-        } else {
-          const results = await mockQuery(term);
-
-          setDisplayOptions(results);
-        }
-
-        setLoading(false);
-      }}
+      onSearch={setSearchTerm}
       loading={loading}
     >
-      {displayOptions.map(option => {
-        return (
-          <Combobox.Option
-            key={option.id}
-            id={option.id}
-            label={option.label}
-          />
-        );
+      {data?.characters?.results?.map(({ name }) => {
+        return <Combobox.Option key={name} id={name} label={name} />;
       })}
     </Combobox>
   );
