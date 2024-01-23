@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.74.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.74.1...@jobber/components@4.74.2) (2024-01-23)
+
+
+### Bug Fixes
+
+* **components:** Attemping to fix typing issues for Vue-based Atlantis consumption ([#1706](https://github.com/GetJobber/atlantis/issues/1706)) ([69e95ff](https://github.com/GetJobber/atlantis/commit/69e95ff91ec2b5dce04f960ec1a040ab58943f35))
+
+
+
+
+
 ## [4.74.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.74.0...@jobber/components@4.74.1) (2024-01-22)
 
 **Note:** Version bump only for package @jobber/components
