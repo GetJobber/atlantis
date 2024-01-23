@@ -50,7 +50,7 @@ export interface ComboboxProps {
   readonly label?: string;
 
   /**
-   * Should the Combobox display the loading state, only needed when providing custom onSearch that has async loading behavior.
+   * Should the Combobox display the loading state.
    */
   readonly loading?: boolean;
 }
