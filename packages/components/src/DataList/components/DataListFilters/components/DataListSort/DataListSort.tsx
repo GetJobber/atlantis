@@ -6,6 +6,7 @@ import { Icon } from "@jobber/components/Icon";
 
 export function DataListSort() {
   const { sorting, headers } = useDataListContext();
+  console.log(sorting);
 
   if (!sorting) return null;
   const { sortable, state, onSort } = sorting;
@@ -47,19 +48,19 @@ export function DataListSort() {
         const label = headers[sort.key];
         if (!label) return acc;
 
-        if (label === "Last activity") {
-          acc.push({
-            label: "Last Activity (Newest)",
-            value: `${sort.key},desc`,
-          });
-          acc.push({
-            label: "Last Activity (Oldest)",
-            value: `${sort.key},asc`,
-          });
-        } else {
-          acc.push({ label: `${label} (A-Z)`, value: `${sort.key},asc` });
-          acc.push({ label: `${label} (Z-A)`, value: `${sort.key},desc` });
-        }
+        // if (label === "Last activity") {
+        //   acc.push({
+        //     label: "Last Activity (Newest)",
+        //     value: `${sort.key},desc`,
+        //   });
+        //   acc.push({
+        //     label: "Last Activity (Oldest)",
+        //     value: `${sort.key},asc`,
+        //   });
+        // } else {
+        //   acc.push({ label: `${label} (A-Z)`, value: `${sort.key},asc` });
+        //   acc.push({ label: `${label} (Z-A)`, value: `${sort.key},desc` });
+        // }
 
         return acc;
       },

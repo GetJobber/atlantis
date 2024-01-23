@@ -49,12 +49,13 @@ export type DataListHeader<T extends DataListObject> = {
 export interface DataListSorting {
   readonly key: string;
   readonly order: "asc" | "desc";
+  readonly label: string | undefined;
 }
 
-export interface SortableOptions {
-  readonly label: string;
-  readonly order: "asc" | "desc";
-}
+// export interface SortableOptions {
+//   readonly label: string;
+//   readonly order: "asc" | "desc";
+// }
 
 export interface DataListProps<T extends DataListObject> {
   /**
@@ -118,7 +119,7 @@ export interface DataListProps<T extends DataListObject> {
   readonly sorting?: {
     readonly sortable: {
       key: string;
-      options?: SortableOptions[];
+      options?: DataListSorting[];
     }[];
     readonly state: DataListSorting | undefined;
     readonly onSort: (sorting?: DataListSorting) => void;

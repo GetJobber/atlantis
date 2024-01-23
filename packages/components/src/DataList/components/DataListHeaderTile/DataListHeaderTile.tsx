@@ -11,7 +11,8 @@ import { useDataListContext } from "../../context/DataListContext";
 import {
   DataListHeader,
   DataListObject,
-  SortableOptions,
+  DataListSorting,
+  // SortableOptions,
 } from "../../DataList.types";
 
 interface DataListHeaderTileProps<T extends DataListObject> {
@@ -29,7 +30,7 @@ export function DataListHeaderTile<T extends DataListObject>({
   const { sorting } = useDataListContext();
   const [isDropDownOpen, setIsDropDownOpen] = React.useState(false);
   const [selectedSortOption, setSelectedSortOption] =
-    React.useState<SortableOptions | null>(null);
+    React.useState<DataListSorting | null>(null);
 
   const optionsListRef = useFocusTrap<HTMLUListElement>(isDropDownOpen);
   const dataListHeaderTileRef = React.useRef(null);
@@ -67,9 +68,16 @@ export function DataListHeaderTile<T extends DataListObject>({
     </Tag>
   );
 
-  function toggleSorting(sortingKey: string, order?: "asc" | "desc") {
-    const isSameKey = sortingKey === sortingState?.key;
+  function toggleSorting(
+    sortingKey: string,
+    label?: string,
+    order?: "asc" | "desc",
+  ) {
+    const isSameKey =
+      sortingState?.label === label && sortingKey === sortingState?.key;
     const isDescending = sortingState?.order === "desc";
+    // console.log("SORTING STATE", sortingState);
+    console.log(label);
 
     if (isSameKey && isDescending && order !== "asc") {
       if (order === "desc") return;
@@ -82,6 +90,7 @@ export function DataListHeaderTile<T extends DataListObject>({
 
     sorting?.onSort({
       key: sortingKey,
+      label,
       order: sortingOrder,
     });
   }
@@ -92,13 +101,17 @@ export function DataListHeaderTile<T extends DataListObject>({
     if (sortableItem?.options) {
       setIsDropDownOpen(!isDropDownOpen);
     } else {
-      toggleSorting(headerKey);
+      toggleSorting(headerKey, headers[headerKey]);
     }
   }
 
-  function handleSelectChange(selectedOption: SortableOptions) {
+  function handleSelectChange(selectedOption: DataListSorting) {
     if (sortableItem) {
-      toggleSorting(sortableItem.key, selectedOption.order);
+      toggleSorting(
+        sortableItem.key,
+        selectedOption.label,
+        selectedOption.order,
+      );
     }
     setSelectedSortOption(selectedOption);
 
