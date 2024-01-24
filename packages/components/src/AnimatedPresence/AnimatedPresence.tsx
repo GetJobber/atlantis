@@ -49,14 +49,23 @@ interface AnimatedPresenceProps extends Required<PropsWithChildren> {
   readonly exitBeforeEnter?: boolean;
 }
 
-export function AnimatedPresence({
+export function AnimatedPresence(props: AnimatedPresenceProps) {
+  const shouldReduceMotion = useReducedMotion();
+
+  if (shouldReduceMotion) {
+    return <>{props.children}</>;
+  }
+
+  return <InternalAnimatedPresence {...props} />;
+}
+
+function InternalAnimatedPresence({
   transition = "fromTop",
   initial = false,
   exitBeforeEnter = false,
   children,
 }: AnimatedPresenceProps) {
-  const reducedMotion = useReducedMotion();
-  const transitionVariation = reducedMotion ? fade : transitions[transition];
+  const transitionVariation = transitions[transition];
   const hasInitialTransition = "initial" in transitionVariation;
   const childCount = Children.count(children);
 
