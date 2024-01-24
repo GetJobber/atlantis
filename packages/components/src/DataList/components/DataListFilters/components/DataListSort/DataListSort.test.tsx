@@ -10,15 +10,16 @@ import { DataListSort } from "./DataListSort";
 const MENU_TEST_ID = "ATL-Combobox-Content";
 const sortableKeys = ["label", "address"] as const;
 const handleSort = jest.fn();
+const headers = { label: "Label", address: "Address", phone: "Phone" };
 const mockContextValue = {
   ...defaultValues,
-  headers: { label: "Label", address: "Address", phone: "Phone" },
+  headers,
   sorting: {
     sortable: sortableKeys.map(key => ({
       key,
       options: [
-        { label: `${key} (A-Z)`, order: "asc" },
-        { label: `${key} (Z-A)`, order: "desc" },
+        { label: `${headers[key]} (A-Z)`, order: "asc" },
+        { label: `${headers[key]} (Z-A)`, order: "desc" },
       ],
     })),
     state: undefined,
@@ -132,6 +133,7 @@ describe("DataListSort", () => {
 
         expect(handleSort).toHaveBeenCalledWith({
           key: name,
+          label: `${headers[name]} (A-Z)`,
           order: "asc",
         });
       },
@@ -148,6 +150,7 @@ describe("DataListSort", () => {
 
         expect(handleSort).toHaveBeenCalledWith({
           key: name,
+          label: `${headers[name]} (Z-A)`,
           order: "desc",
         });
       },
@@ -162,6 +165,7 @@ describe("DataListSort", () => {
 
       expect(handleSort).toHaveBeenCalledWith({
         key: name,
+        label: `${headers[name]} (A-Z)`,
         order: "asc",
       });
     });

@@ -69,7 +69,7 @@ export function DataListHeaderTile<T extends DataListObject>({
 
   function toggleSorting(
     sortingKey: string,
-    label?: string,
+    label: string,
     order?: "asc" | "desc",
   ) {
     const isSameKey =
@@ -100,7 +100,11 @@ export function DataListHeaderTile<T extends DataListObject>({
     if (sortableItem?.options) {
       setIsDropDownOpen(!isDropDownOpen);
     } else {
-      toggleSorting(headerKey, headers[headerKey]);
+      const headerValue = headers[headerKey];
+
+      if (headerValue !== undefined) {
+        toggleSorting(headerKey, headerValue);
+      }
     }
   }
 

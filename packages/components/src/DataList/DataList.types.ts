@@ -46,10 +46,8 @@ export type DataListHeader<T extends DataListObject> = {
   readonly [K in keyof T]?: string;
 };
 
-export interface DataListSorting {
+export interface DataListSorting extends SortableOptions {
   readonly key: string;
-  readonly order: "asc" | "desc";
-  readonly label: string | undefined;
 }
 
 export interface SortableOptions {
