@@ -75,8 +75,6 @@ export function DataListHeaderTile<T extends DataListObject>({
     const isSameKey =
       sortingState?.label === label && sortingKey === sortingState?.key;
     const isDescending = sortingState?.order === "desc";
-    // console.log("SORTING STATE", sortingState);
-    console.log(label);
 
     if (isSameKey && isDescending && order !== "asc") {
       if (order === "desc") return;
