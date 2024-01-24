@@ -9,6 +9,11 @@ const baseTransition: Variants = {
   hidden: { opacity: 0, height: 0 },
 };
 
+export const fade: Variants = {
+  visible: { opacity: 1 },
+  hidden: { opacity: 0 },
+};
+
 export const popIn: Variants = {
   visible: { scale: 1, ...baseTransition.visible },
   hidden: { scale: 0.95, ...baseTransition.hidden },

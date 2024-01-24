@@ -1,8 +1,9 @@
 import React, { Children, PropsWithChildren, useEffect } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   TIMING_BASE,
   TIMING_QUICK,
+  fade,
   fromBottom,
   fromLeft,
   fromLeftToRight,
@@ -21,6 +22,7 @@ const transitions = {
   popIn,
   fromLeftToRight,
   fromRightToLeft,
+  fade,
 };
 
 export type AnimatedPresenceTransitions = keyof typeof transitions;
@@ -53,7 +55,8 @@ export function AnimatedPresence({
   exitBeforeEnter = false,
   children,
 }: AnimatedPresenceProps) {
-  const transitionVariation = transitions[transition];
+  const reducedMotion = useReducedMotion();
+  const transitionVariation = reducedMotion ? fade : transitions[transition];
   const hasInitialTransition = "initial" in transitionVariation;
   const childCount = Children.count(children);
 
