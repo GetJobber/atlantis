@@ -70,6 +70,7 @@ export function DataListHeaderTile<T extends DataListObject>({
   function toggleSorting(
     sortingKey: string,
     label: string,
+    dataValue: string,
     order?: "asc" | "desc",
   ) {
     const isSameKey =
@@ -88,6 +89,7 @@ export function DataListHeaderTile<T extends DataListObject>({
     sorting?.onSort({
       key: sortingKey,
       label,
+      dataValue,
       order: sortingOrder,
     });
   }
@@ -111,6 +113,7 @@ export function DataListHeaderTile<T extends DataListObject>({
       toggleSorting(
         sortableItem.key,
         selectedOption.label,
+        selectedOption.dataValue,
         selectedOption.order,
       );
     }
