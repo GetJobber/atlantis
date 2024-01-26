@@ -57,3 +57,7 @@
 .scrollNone::after {
   opacity: 0;
 }
+
+.loadingContainer {
+  padding: var(--space-base) var(--space-base);
+}

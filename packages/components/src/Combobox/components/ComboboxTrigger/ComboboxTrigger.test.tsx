@@ -125,6 +125,7 @@ function renderTrigger(
       open={open}
       shouldScroll={{ current: false }}
       selectionHandler={jest.fn()}
+      searchValue=""
     >
       <ComboboxTrigger label={label} selected={selected} />
     </ComboboxContextProvider>,

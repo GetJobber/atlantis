@@ -77,10 +77,10 @@ function renderComboboxActivator(child: ReactElement, open: boolean) {
       setOpen={setOpen}
       handleClose={handleClose}
       selectionHandler={jest.fn()}
-      multiselect={false}
       shouldScroll={{ current: false }}
       open={open}
       selected={[]}
+      searchValue=""
     >
       <ComboboxActivator>{child}</ComboboxActivator>
     </ComboboxContextProvider>,
