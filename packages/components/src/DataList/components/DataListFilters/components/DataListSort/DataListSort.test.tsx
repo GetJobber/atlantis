@@ -19,14 +19,14 @@ const mockContextValue = {
       key,
       options: [
         {
+          id: "selectionAsc",
           label: `${headers[key]} (A-Z)`,
           order: "asc",
-          dataValue: "dataValueAsc",
         },
         {
+          id: "selectionDesc",
           label: `${headers[key]} (Z-A)`,
           order: "desc",
-          dataValue: "dataValueDesc",
         },
       ],
     })),
@@ -141,9 +141,9 @@ describe("DataListSort", () => {
 
         expect(handleSort).toHaveBeenCalledWith({
           key: name,
+          id: "selectionAsc",
           label: `${headers[name]} (A-Z)`,
           order: "asc",
-          dataValue: "dataValueAsc",
         });
       },
     );
@@ -161,7 +161,7 @@ describe("DataListSort", () => {
           key: name,
           label: `${headers[name]} (Z-A)`,
           order: "desc",
-          dataValue: "dataValueDesc",
+          id: "selectionDesc",
         });
       },
     );
@@ -177,7 +177,7 @@ describe("DataListSort", () => {
         key: name,
         label: `${headers[name]} (A-Z)`,
         order: "asc",
-        dataValue: "dataValueAsc",
+        id: "selectionAsc",
       });
     });
 

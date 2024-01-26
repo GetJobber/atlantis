@@ -68,9 +68,9 @@ export function DataListHeaderTile<T extends DataListObject>({
   );
 
   function toggleSorting(
+    id: string,
     sortingKey: string,
     label: string,
-    dataValue: string,
     order?: "asc" | "desc",
   ) {
     const isSameKey =
@@ -87,9 +87,9 @@ export function DataListHeaderTile<T extends DataListObject>({
     const sortingOrder = order || (isSameKey && !isDescending ? "desc" : "asc");
 
     sorting?.onSort({
+      id,
       key: sortingKey,
       label,
-      dataValue,
       order: sortingOrder,
     });
   }
@@ -101,10 +101,10 @@ export function DataListHeaderTile<T extends DataListObject>({
       setIsDropDownOpen(!isDropDownOpen);
     } else {
       const headerValue = headers[headerKey];
+      const id = sortableItem?.options?.[0]?.id || headerKey;
 
       if (headerValue !== undefined) {
-        const dataValue = sortableItem?.options?.[0]?.dataValue || headerKey;
-        toggleSorting(headerKey, headerValue, dataValue);
+        toggleSorting(headerKey, headerValue, id);
       }
     }
   }
@@ -112,9 +112,9 @@ export function DataListHeaderTile<T extends DataListObject>({
   function handleSelectChange(selectedOption: SortableOptions) {
     if (sortableItem) {
       toggleSorting(
+        selectedOption.id,
         sortableItem.key,
         selectedOption.label,
-        selectedOption.dataValue,
         selectedOption.order,
       );
     }

@@ -112,20 +112,20 @@ const Template: ComponentStory<typeof DataList> = args => {
             key: "label",
             options: [
               {
+                id: "firstName",
                 label: "First name (A-Z)",
                 order: "asc",
-                dataValue: "firstName",
               },
               {
+                id: "firstName",
                 label: "First name (Z-A)",
                 order: "desc",
-                dataValue: "firstName",
               },
-              { label: "Last name (A-Z)", order: "asc", dataValue: "lastName" },
+              { id: "lastName", label: "Last name (A-Z)", order: "asc" },
               {
+                id: "lastName",
                 label: "Last name (Z-A)",
                 order: "desc",
-                dataValue: "lastName",
               },
             ],
           },
@@ -133,24 +133,24 @@ const Template: ComponentStory<typeof DataList> = args => {
             key: "home",
             options: [
               {
+                id: "homeWorld",
                 label: "Home world (A-Z)",
                 order: "asc",
-                dataValue: "homeWorld",
               },
               {
+                id: "homeWorld",
                 label: "Home world (Z-A)",
                 order: "desc",
-                dataValue: "homeWorld",
               },
               {
+                id: "homePopulation",
                 label: "Population (A-Z)",
                 order: "asc",
-                dataValue: "homePopulation",
               },
               {
+                id: "homePopulation",
                 label: "Population (Z-A)",
                 order: "desc",
-                dataValue: "homePopulation",
               },
             ],
           },

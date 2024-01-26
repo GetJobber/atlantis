@@ -51,9 +51,9 @@ export interface DataListSorting extends SortableOptions {
 }
 
 export interface SortableOptions {
+  readonly id: string;
   readonly label: string;
   readonly order: "asc" | "desc";
-  readonly dataValue: string;
 }
 
 export interface DataListProps<T extends DataListObject> {

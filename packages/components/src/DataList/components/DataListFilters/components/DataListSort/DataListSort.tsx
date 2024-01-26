@@ -13,7 +13,7 @@ export function DataListSort() {
 
   const sortByOptions = getSortByOptions();
 
-  const selectedSortID = `${state?.key},${state?.order},${state?.label},${state?.dataValue}`;
+  const selectedSortID = `${state?.key},${state?.order},${state?.label},${state?.id}`;
 
   return (
     <Combobox
@@ -55,7 +55,7 @@ export function DataListSort() {
           customOptions.forEach(option => {
             acc.push({
               label: option.label || "",
-              value: `${sort.key},${option.order},${option.label},${option.dataValue}`,
+              value: `${sort.key},${option.order},${option.label},${option.id}`,
             });
           });
 
@@ -91,8 +91,8 @@ export function DataListSort() {
 
   function handleKeyChange(value?: string) {
     if (value && value !== "none") {
-      const [key, order, label, dataValue] = value.split(",");
-      onSort({ key, order: order as "asc" | "desc", label, dataValue });
+      const [key, order, label, id] = value.split(",");
+      onSort({ key, order: order as "asc" | "desc", label, id });
 
       return;
     }
