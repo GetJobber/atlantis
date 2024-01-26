@@ -103,7 +103,8 @@ export function DataListHeaderTile<T extends DataListObject>({
       const headerValue = headers[headerKey];
 
       if (headerValue !== undefined) {
-        toggleSorting(headerKey, headerValue);
+        const dataValue = sortableItem?.options?.[0]?.dataValue || headerKey;
+        toggleSorting(headerKey, headerValue, dataValue);
       }
     }
   }
