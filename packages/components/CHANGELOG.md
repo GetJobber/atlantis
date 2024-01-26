@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.76.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.76.0...@jobber/components@4.76.1) (2024-01-26)
+
+
+### Bug Fixes
+
+* **components:** Prevent ComboBox popover width from expanding [JOB-80990] ([#1738](https://github.com/GetJobber/atlantis/issues/1738)) ([844a666](https://github.com/GetJobber/atlantis/commit/844a666709690344c64711a52fd2098f07b1be20))
+
+
+
+
+
 # [4.76.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.75.0...@jobber/components@4.76.0) (2024-01-24)
 
 
