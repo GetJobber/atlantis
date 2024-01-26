@@ -18,8 +18,16 @@ const mockContextValue = {
     sortable: sortableKeys.map(key => ({
       key,
       options: [
-        { label: `${headers[key]} (A-Z)`, order: "asc" },
-        { label: `${headers[key]} (Z-A)`, order: "desc" },
+        {
+          label: `${headers[key]} (A-Z)`,
+          order: "asc",
+          dataValue: "dataValueAsc",
+        },
+        {
+          label: `${headers[key]} (Z-A)`,
+          order: "desc",
+          dataValue: "dataValueDesc",
+        },
       ],
     })),
     state: undefined,
@@ -135,6 +143,7 @@ describe("DataListSort", () => {
           key: name,
           label: `${headers[name]} (A-Z)`,
           order: "asc",
+          dataValue: "dataValueAsc",
         });
       },
     );
@@ -152,6 +161,7 @@ describe("DataListSort", () => {
           key: name,
           label: `${headers[name]} (Z-A)`,
           order: "desc",
+          dataValue: "dataValueDesc",
         });
       },
     );
@@ -167,6 +177,7 @@ describe("DataListSort", () => {
         key: name,
         label: `${headers[name]} (A-Z)`,
         order: "asc",
+        dataValue: "dataValueAsc",
       });
     });
 
