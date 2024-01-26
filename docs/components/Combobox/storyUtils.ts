@@ -1,14 +1,13 @@
-import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
+import { ApolloClient, InMemoryCache, gql, useQuery } from "@apollo/client";
 
-export interface ListQueryType {
+interface ListQueryType {
   characters: {
     results: {
       name: string;
     }[];
   };
 }
-
-export const LIST_QUERY = gql`
+const LIST_QUERY = gql`
   query ListQuery($filter: FilterCharacter) {
     characters(filter: $filter) {
       results {
@@ -17,8 +16,18 @@ export const LIST_QUERY = gql`
     }
   }
 `;
-
-export const apolloClient = new ApolloClient({
+const apolloClient = new ApolloClient({
   uri: "https://rickandmortyapi.com/graphql",
   cache: new InMemoryCache(),
 });
+
+export function useFakeQuery(searchTerm: string) {
+  return useQuery<ListQueryType>(LIST_QUERY, {
+    variables: {
+      filter: { name: searchTerm },
+    },
+    fetchPolicy: "network-only",
+    nextFetchPolicy: "cache-first",
+    client: apolloClient,
+  });
+}

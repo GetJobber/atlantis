@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { useQuery } from "@apollo/client";
 import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
 import { Button } from "@jobber/components/Button";
 import { Typography } from "@jobber/components/Typography";
 import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
-import { LIST_QUERY, ListQueryType, apolloClient } from "./storyUtils";
+import { useFakeQuery } from "./storyUtils";
 
 export default {
   title: "Components/Selections/Combobox/Web",
@@ -293,14 +292,7 @@ const DynamicButton: ComponentStory<typeof Combobox> = args => {
 const ComboboxCustomSearch: ComponentStory<typeof Combobox> = args => {
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const { data, loading } = useQuery<ListQueryType>(LIST_QUERY, {
-    variables: {
-      filter: { name: searchTerm },
-    },
-    fetchPolicy: "network-only",
-    nextFetchPolicy: "cache-first",
-    client: apolloClient,
-  });
+  const { data, loading } = useFakeQuery(searchTerm);
 
   return (
     <Combobox
@@ -339,3 +331,17 @@ DynamicAction.args = {};
 
 export const CustomSearch = ComboboxCustomSearch.bind({});
 CustomSearch.args = {};
+
+CustomSearch.parameters = {
+  previewTabs: {
+    code: {
+      hidden: false,
+      extraImports: {
+        "./useFakeQuery": ["useFakeQuery"],
+      },
+      files: {
+        "/useFakeQuery.ts": require("!raw-loader!./storyUtils").default,
+      },
+    },
+  },
+};
