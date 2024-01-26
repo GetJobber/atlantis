@@ -4,10 +4,10 @@ import React, {
   RefObject,
   createRef,
   useEffect,
+  useId,
   useRef,
   useState,
 } from "react";
-import { v1 as uuidv1 } from "uuid";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
@@ -69,8 +69,8 @@ export function Menu({ activator, items }: MenuProps) {
     horizontal: "right",
   });
   const wrapperRef = createRef<HTMLDivElement>();
-  const buttonID = uuidv1();
-  const menuID = uuidv1();
+  const buttonID = useId();
+  const menuID = useId();
 
   useOnKeyDown(handleKeyboardShortcut, ["Escape"]);
   useSafeLayoutEffect(() => {

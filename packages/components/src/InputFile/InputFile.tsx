@@ -1,8 +1,7 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useId } from "react";
 import classnames from "classnames";
 import { DropzoneOptions, FileError, useDropzone } from "react-dropzone";
 import axios, { AxiosRequestConfig } from "axios";
-import { v1 as uuidv1 } from "uuid";
 import styles from "./InputFile.css";
 import { InputValidation } from "../InputValidation";
 import { Button } from "../Button";
@@ -56,7 +55,7 @@ export interface UploadParams {
 
   /**
    * Key to identify file.
-   * If unspecified a `uuid` will be used.
+   * If unspecified a `useId` will be used.
    */
   readonly key?: string;
 
@@ -271,7 +270,7 @@ export function InputFile({
       return;
     }
 
-    const { url, key = uuidv1(), fields = {}, httpMethod = "POST" } = params;
+    const { url, key = useId(), fields = {}, httpMethod = "POST" } = params;
 
     const fileUpload = getFileUpload(file, key, url);
     onUploadStart && onUploadStart({ ...fileUpload });
