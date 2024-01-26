@@ -13,12 +13,14 @@ export function DataListSort() {
 
   const sortByOptions = getSortByOptions();
 
+  const selectedSortID = `${state?.key},${state?.order},${state?.label},${state?.dataValue}`;
+
   return (
     <Combobox
       onSelect={selection => handleKeyChange(selection[0].id.toString())}
       selected={[
         {
-          id: `${state?.key},${state?.order},${state?.label},${state?.dataValue}`,
+          id: selectedSortID,
           label: state?.order || "",
         },
       ]}
@@ -81,9 +83,7 @@ export function DataListSort() {
 
   function getButtonLabel() {
     const selectedOption = sortByOptions.find(
-      option =>
-        option.value ===
-        `${state?.key},${state?.order},${state?.label},${state?.dataValue}`,
+      option => option.value === selectedSortID,
     );
 
     return selectedOption?.label || "";
