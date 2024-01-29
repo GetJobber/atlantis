@@ -111,19 +111,47 @@ const Template: ComponentStory<typeof DataList> = args => {
           {
             key: "label",
             options: [
-              { label: "First name (A-Z)", order: "asc" },
-              { label: "First name (Z-A)", order: "desc" },
-              { label: "Last name (A-Z)", order: "asc" },
-              { label: "Last name (Z-A)", order: "desc" },
+              {
+                id: "firstName",
+                label: "First name (A-Z)",
+                order: "asc",
+              },
+              {
+                id: "firstName",
+                label: "First name (Z-A)",
+                order: "desc",
+              },
+              { id: "lastName", label: "Last name (A-Z)", order: "asc" },
+              {
+                id: "lastName",
+                label: "Last name (Z-A)",
+                order: "desc",
+              },
             ],
           },
           {
             key: "home",
             options: [
-              { label: "Home world (A-Z)", order: "asc" },
-              { label: "Home world (Z-A)", order: "desc" },
-              { label: "Population (A-Z)", order: "asc" },
-              { label: "Population (Z-A)", order: "desc" },
+              {
+                id: "homeWorld",
+                label: "Home world (A-Z)",
+                order: "asc",
+              },
+              {
+                id: "homeWorld",
+                label: "Home world (Z-A)",
+                order: "desc",
+              },
+              {
+                id: "homePopulation",
+                label: "Population (A-Z)",
+                order: "asc",
+              },
+              {
+                id: "homePopulation",
+                label: "Population (Z-A)",
+                order: "desc",
+              },
             ],
           },
           { key: "lastActivity" },

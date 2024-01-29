@@ -28,8 +28,6 @@ export function DataListHeaderTile<T extends DataListObject>({
   useRefocusOnActivator(visible);
   const { sorting } = useDataListContext();
   const [isDropDownOpen, setIsDropDownOpen] = React.useState(false);
-  const [selectedSortOption, setSelectedSortOption] =
-    React.useState<SortableOptions | null>(null);
 
   const optionsListRef = useFocusTrap<HTMLUListElement>(isDropDownOpen);
   const dataListHeaderTileRef = React.useRef(null);
@@ -39,6 +37,8 @@ export function DataListHeaderTile<T extends DataListObject>({
   const sortingState = sorting?.state;
 
   const Tag = isSortable ? "button" : "div";
+
+  const selectedOption: SortableOptions | null = sorting?.state || null;
 
   return (
     <Tag
@@ -52,7 +52,7 @@ export function DataListHeaderTile<T extends DataListObject>({
       {isSortable && sortableItem?.options && isDropDownOpen && (
         <DataListSortingOptions
           options={sortableItem.options}
-          selectedOption={selectedSortOption}
+          selectedOption={selectedOption}
           onSelectChange={handleSelectChange}
           onClose={() => setIsDropDownOpen(false)}
           optionsListRef={optionsListRef}
@@ -68,6 +68,7 @@ export function DataListHeaderTile<T extends DataListObject>({
   );
 
   function toggleSorting(
+    id: string,
     sortingKey: string,
     label: string,
     order?: "asc" | "desc",
@@ -86,6 +87,7 @@ export function DataListHeaderTile<T extends DataListObject>({
     const sortingOrder = order || (isSameKey && !isDescending ? "desc" : "asc");
 
     sorting?.onSort({
+      id,
       key: sortingKey,
       label,
       order: sortingOrder,
@@ -99,22 +101,23 @@ export function DataListHeaderTile<T extends DataListObject>({
       setIsDropDownOpen(!isDropDownOpen);
     } else {
       const headerValue = headers[headerKey];
+      const id = sortableItem?.options?.[0]?.id || headerKey;
 
       if (headerValue !== undefined) {
-        toggleSorting(headerKey, headerValue);
+        toggleSorting(id, headerKey, headerValue);
       }
     }
   }
 
-  function handleSelectChange(selectedOption: SortableOptions) {
+  function handleSelectChange(newSortOption: SortableOptions) {
     if (sortableItem) {
       toggleSorting(
+        newSortOption.id,
         sortableItem.key,
-        selectedOption.label,
-        selectedOption.order,
+        newSortOption.label,
+        newSortOption.order,
       );
     }
-    setSelectedSortOption(selectedOption);
 
     setIsDropDownOpen(true);
   }

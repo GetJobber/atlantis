@@ -42,6 +42,7 @@ export function DataListSortingOptions({
           onClick={() => onSelectChange(option)}
           onKeyDown={event => handleKeyDown(event, option)}
           tabIndex={0}
+          data-value={option.id}
         >
           {option.label}
           {option.label === selectedOption?.label && (

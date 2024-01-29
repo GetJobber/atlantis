@@ -18,8 +18,16 @@ const mockContextValue = {
     sortable: sortableKeys.map(key => ({
       key,
       options: [
-        { label: `${headers[key]} (A-Z)`, order: "asc" },
-        { label: `${headers[key]} (Z-A)`, order: "desc" },
+        {
+          id: "selectionAsc",
+          label: `${headers[key]} (A-Z)`,
+          order: "asc",
+        },
+        {
+          id: "selectionDesc",
+          label: `${headers[key]} (Z-A)`,
+          order: "desc",
+        },
       ],
     })),
     state: undefined,
@@ -133,6 +141,7 @@ describe("DataListSort", () => {
 
         expect(handleSort).toHaveBeenCalledWith({
           key: name,
+          id: "selectionAsc",
           label: `${headers[name]} (A-Z)`,
           order: "asc",
         });
@@ -152,6 +161,7 @@ describe("DataListSort", () => {
           key: name,
           label: `${headers[name]} (Z-A)`,
           order: "desc",
+          id: "selectionDesc",
         });
       },
     );
@@ -167,6 +177,7 @@ describe("DataListSort", () => {
         key: name,
         label: `${headers[name]} (A-Z)`,
         order: "asc",
+        id: "selectionAsc",
       });
     });
 
