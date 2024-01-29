@@ -13,14 +13,12 @@ export function DataListSort() {
 
   const sortByOptions = getSortByOptions();
 
-  const selectedSortID = `${state?.key},${state?.order},${state?.label},${state?.id}`;
-
   return (
     <Combobox
       onSelect={selection => handleKeyChange(selection[0].id.toString())}
       selected={[
         {
-          id: selectedSortID,
+          id: getSelectedSortID(),
           label: state?.order || "",
         },
       ]}
@@ -55,7 +53,12 @@ export function DataListSort() {
           customOptions.forEach(option => {
             acc.push({
               label: option.label || "",
-              value: `${sort.key},${option.order},${option.label},${option.id}`,
+              value: JSON.stringify({
+                key: sort.key,
+                order: option.order,
+                label: option.label,
+                id: option.id,
+              }),
             });
           });
 
@@ -63,11 +66,21 @@ export function DataListSort() {
         }
         acc.push({
           label: `${label} (A-Z)`,
-          value: `${sort.key},asc,${label},${sort.key}`,
+          value: JSON.stringify({
+            key: sort.key,
+            order: "asc",
+            label: label,
+            id: sort.key,
+          }),
         });
         acc.push({
           label: `${label} (Z-A)`,
-          value: `${sort.key},desc,${label},${sort.key}`,
+          value: JSON.stringify({
+            key: sort.key,
+            order: "desc",
+            label: label,
+            id: sort.key,
+          }),
         });
 
         return acc;
@@ -83,7 +96,7 @@ export function DataListSort() {
 
   function getButtonLabel() {
     const selectedOption = sortByOptions.find(
-      option => option.value === selectedSortID,
+      option => option.value === getSelectedSortID(),
     );
 
     return selectedOption?.label || "";
@@ -91,12 +104,23 @@ export function DataListSort() {
 
   function handleKeyChange(value?: string) {
     if (value && value !== "none") {
-      const [key, order, label, id] = value.split(",");
+      const { key, order, label, id } = JSON.parse(value);
       onSort({ key, order: order as "asc" | "desc", label, id });
 
       return;
     }
 
     onSort(undefined);
+  }
+
+  function getSelectedSortID() {
+    const selectedSortID = {
+      key: state?.key,
+      order: state?.order,
+      label: state?.label,
+      id: state?.id,
+    };
+
+    return JSON.stringify(selectedSortID);
   }
 }
