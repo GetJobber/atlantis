@@ -38,9 +38,7 @@ export function DataListHeaderTile<T extends DataListObject>({
 
   const Tag = isSortable ? "button" : "div";
 
-  const selectedOption = sorting?.state
-    ? ({ ...sorting?.state } as SortableOptions)
-    : null;
+  const selectedOption: SortableOptions | null = sorting?.state || null;
 
   return (
     <Tag
