@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.53.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.52.0...@jobber/design@0.53.0) (2024-01-29)
+
+
+### Features
+
+* **components:** Add casual and cheerful icons [JOB-87641] ([#1739](https://github.com/GetJobber/atlantis/issues/1739)) ([69a0a31](https://github.com/GetJobber/atlantis/commit/69a0a31fc0244f34445465d7948f074c33bab460))
+
+
+
+
+
 # [0.52.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.51.1...@jobber/design@0.52.0) (2024-01-18)
 
 
