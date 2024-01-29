@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.77.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.76.2...@jobber/components@4.77.0) (2024-01-29)
+
+
+### Features
+
+* **components:** Add data-value to sortable options ([#1734](https://github.com/GetJobber/atlantis/issues/1734)) ([e95a072](https://github.com/GetJobber/atlantis/commit/e95a072ffc6c9f2171caa4c8535ee68f65f756e2))
+
+
+
+
+
 ## [4.76.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.76.1...@jobber/components@4.76.2) (2024-01-29)
 
 
