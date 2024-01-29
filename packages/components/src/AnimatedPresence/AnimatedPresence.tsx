@@ -44,7 +44,7 @@ interface AnimatedPresenceProps extends Required<PropsWithChildren> {
    * doesn't overlap.
    *
    * Using this with multiple elements visible at the same time will cause an
-   * unexpected behavior.
+   * unexpected behavior. So, use it wisely!
    */
   readonly exitBeforeEnter?: boolean;
 }

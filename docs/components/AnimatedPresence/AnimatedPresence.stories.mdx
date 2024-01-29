@@ -17,7 +17,7 @@ useful for UX which has a different part of the UI hidden until the user takes
 an action to show them.
 
 ```tsx
-<AnimatedPresence>{show && <div key="item">Item</div>}</AnimatedPresence>
+<AnimatedPresence>{show && <div>Item</div>}</AnimatedPresence>
 ```
 
 See the
@@ -48,3 +48,10 @@ renders on the screen. See this in action on the
 ```tsx
 <AnimatedPresence initial={true}>...</AnimatedPresence>
 ```
+
+## Accessibility
+
+AnimatedPresence respects the
+[`prefers-reduced-motion`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion)
+setting. If the user has this enabled, the animations will be disabled and the
+elements will show/hide instantly.
