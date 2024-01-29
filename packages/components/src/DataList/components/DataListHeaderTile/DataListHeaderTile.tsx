@@ -28,8 +28,6 @@ export function DataListHeaderTile<T extends DataListObject>({
   useRefocusOnActivator(visible);
   const { sorting } = useDataListContext();
   const [isDropDownOpen, setIsDropDownOpen] = React.useState(false);
-  const [selectedSortOption, setSelectedSortOption] =
-    React.useState<SortableOptions | null>(null);
 
   const optionsListRef = useFocusTrap<HTMLUListElement>(isDropDownOpen);
   const dataListHeaderTileRef = React.useRef(null);
@@ -39,6 +37,10 @@ export function DataListHeaderTile<T extends DataListObject>({
   const sortingState = sorting?.state;
 
   const Tag = isSortable ? "button" : "div";
+
+  const selectedOption = sorting?.state
+    ? ({ ...sorting?.state } as SortableOptions)
+    : null;
 
   return (
     <Tag
@@ -52,7 +54,7 @@ export function DataListHeaderTile<T extends DataListObject>({
       {isSortable && sortableItem?.options && isDropDownOpen && (
         <DataListSortingOptions
           options={sortableItem.options}
-          selectedOption={selectedSortOption}
+          selectedOption={selectedOption}
           onSelectChange={handleSelectChange}
           onClose={() => setIsDropDownOpen(false)}
           optionsListRef={optionsListRef}
@@ -104,21 +106,20 @@ export function DataListHeaderTile<T extends DataListObject>({
       const id = sortableItem?.options?.[0]?.id || headerKey;
 
       if (headerValue !== undefined) {
-        toggleSorting(headerKey, headerValue, id);
+        toggleSorting(id, headerKey, headerValue);
       }
     }
   }
 
-  function handleSelectChange(selectedOption: SortableOptions) {
+  function handleSelectChange(newSortOption: SortableOptions) {
     if (sortableItem) {
       toggleSorting(
-        selectedOption.id,
+        newSortOption.id,
         sortableItem.key,
-        selectedOption.label,
-        selectedOption.order,
+        newSortOption.label,
+        newSortOption.order,
       );
     }
-    setSelectedSortOption(selectedOption);
 
     setIsDropDownOpen(true);
   }
