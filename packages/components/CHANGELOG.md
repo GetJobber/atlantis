@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.76.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.76.1...@jobber/components@4.76.2) (2024-01-29)
+
+
+### Bug Fixes
+
+* **components:** Updating InputTime to remove InputTimeSafari for SSR compatibility (and because we didn't need it anymore) ([#1736](https://github.com/GetJobber/atlantis/issues/1736)) ([3a16172](https://github.com/GetJobber/atlantis/commit/3a161722baf007788cdc98838eeeaa506a11df03))
+
+
+
+
+
 ## [4.76.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.76.0...@jobber/components@4.76.1) (2024-01-26)
 
 
