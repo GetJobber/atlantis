@@ -42,8 +42,8 @@ export function useCombobox(
     useState<ComboboxOption[]>(options);
 
   const searchCallback = useCallback(
-    debounce((value: string) => onSearch && onSearch(value), debounceTime),
-    [],
+    debounce((value: string) => onSearch?.(value), debounceTime),
+    [onSearch, debounceTime],
   );
 
   const debouncedFilterOptions = useCallback((value: string) => {
