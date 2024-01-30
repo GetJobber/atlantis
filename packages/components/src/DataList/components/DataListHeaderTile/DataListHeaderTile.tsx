@@ -38,8 +38,6 @@ export function DataListHeaderTile<T extends DataListObject>({
 
   const Tag = isSortable ? "button" : "div";
 
-  const selectedOption: SortableOptions | null = sorting?.state || null;
-
   return (
     <Tag
       className={classnames(styles.headerLabel, {
@@ -52,7 +50,7 @@ export function DataListHeaderTile<T extends DataListObject>({
       {isSortable && sortableItem?.options && isDropDownOpen && (
         <DataListSortingOptions
           options={sortableItem.options}
-          selectedOption={selectedOption}
+          selectedOption={sorting?.state || null}
           onSelectChange={handleSelectChange}
           onClose={() => setIsDropDownOpen(false)}
           optionsListRef={optionsListRef}
