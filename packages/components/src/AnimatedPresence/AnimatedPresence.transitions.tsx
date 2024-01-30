@@ -5,8 +5,8 @@ export const TIMING_QUICK = toSeconds(tokens["timing-quick"]);
 export const TIMING_BASE = toSeconds(tokens["timing-base"]);
 
 const baseTransition: Variants = {
-  visible: { opacity: 1, height: "auto" },
-  hidden: { opacity: 0, height: 0 },
+  visible: { opacity: 1 },
+  hidden: { opacity: 0 },
 };
 
 export const fade: Variants = {

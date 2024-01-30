@@ -37,16 +37,6 @@ interface AnimatedPresenceProps extends Required<PropsWithChildren> {
    * Whether or not to animate the children on mount. By default it's set to false.
    */
   readonly initial?: boolean;
-
-  /**
-   * If you only have 1 element visible at all times, like a setup wizard or a
-   * page, This ensures the transition between the previous and next elements
-   * doesn't overlap.
-   *
-   * Using this with multiple elements visible at the same time will cause an
-   * unexpected behavior. So, use it wisely!
-   */
-  readonly exitBeforeEnter?: boolean;
 }
 
 export function AnimatedPresence(props: AnimatedPresenceProps) {
@@ -62,7 +52,6 @@ export function AnimatedPresence(props: AnimatedPresenceProps) {
 function InternalAnimatedPresence({
   transition = "fromTop",
   initial = false,
-  exitBeforeEnter = false,
   children,
 }: AnimatedPresenceProps) {
   const transitionVariation = transitions[transition];
@@ -79,12 +68,13 @@ function InternalAnimatedPresence({
   }, [childCount]);
 
   return (
-    <AnimatePresence initial={initial} exitBeforeEnter={exitBeforeEnter}>
+    <AnimatePresence initial={initial} mode="popLayout">
       {Children.map(
         children,
         (child, i) =>
           child && (
             <motion.div
+              layout
               variants={transitionVariation}
               initial={hasInitialTransition ? "initial" : "hidden"}
               animate="visible"
