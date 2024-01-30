@@ -68,9 +68,9 @@ export function DataListHeaderTile<T extends DataListObject>({
   );
 
   function toggleSorting(
-    id: string,
     sortingKey: string,
-    label: string,
+    id?: string,
+    label?: string,
     order?: "asc" | "desc",
   ) {
     const isSameKey =
@@ -112,8 +112,8 @@ export function DataListHeaderTile<T extends DataListObject>({
   function handleSelectChange(newSortOption: SortableOptions) {
     if (sortableItem) {
       toggleSorting(
-        newSortOption.id,
         sortableItem.key,
+        newSortOption.id,
         newSortOption.label,
         newSortOption.order,
       );
