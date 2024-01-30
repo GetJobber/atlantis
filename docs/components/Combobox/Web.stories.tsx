@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
 import { Button } from "@jobber/components/Button";
@@ -187,8 +187,71 @@ const ComboboxEmptyState: ComponentStory<typeof Combobox> = args => {
   );
 };
 
+const multiSelectOptions = [
+  {
+    id: "1",
+    label: "Bilbo Baggins",
+  },
+  {
+    id: "2",
+    label: "Frodo Baggins",
+  },
+  {
+    id: "3",
+    label: "Pippin Took",
+  },
+  {
+    id: "4",
+    label: "Merry Brandybuck",
+  },
+  {
+    id: "5",
+    label: "Sam Gamgee",
+  },
+  {
+    id: "6",
+    label: "Aragorn",
+  },
+];
+
+const multiSelectOptions2 = [
+  {
+    id: "7",
+    label: "Galadriel",
+  },
+  {
+    id: "8",
+    label: "Arwen",
+  },
+  {
+    id: "9",
+    label: "Gandalf",
+  },
+  {
+    id: "10",
+    label: "Legolas",
+  },
+  {
+    id: "11",
+    label: "Gimli",
+  },
+  {
+    id: "12",
+    label: "Samwise Gamgee",
+  },
+  {
+    id: "14",
+    label: "Faramir",
+  },
+];
+
 const ComboboxMultiSelection: ComponentStory<typeof Combobox> = args => {
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
+  const [options, setOptions] = useState<ComboboxOption[]>(multiSelectOptions);
+
+  useEffect(() => {
+    setOptions([...multiSelectOptions, ...multiSelectOptions2]);
+  }, []);
 
   return (
     <Combobox
@@ -200,20 +263,15 @@ const ComboboxMultiSelection: ComponentStory<typeof Combobox> = args => {
       }}
       selected={selected}
     >
-      <Combobox.Option id="1" label="Bilbo Baggins" />
-      <Combobox.Option id="2" label="Frodo Baggins" />
-      <Combobox.Option id="3" label="Pippin Took" />
-      <Combobox.Option id="4" label="Merry Brandybuck" />
-      <Combobox.Option id="5" label="Sam Gamgee" />
-      <Combobox.Option id="6" label="Aragorn" />
-      <Combobox.Option id="7" label="Gimli" />
-      <Combobox.Option id="8" label="Legolas" />
-      <Combobox.Option id="9" label="Gandalf" />
-      <Combobox.Option id="10" label="Gollum" />
-      <Combobox.Option id="11" label="Sauron" />
-      <Combobox.Option id="12" label="Saruman" />
-      <Combobox.Option id="13" label="Elrond" />
-      <Combobox.Option id="14" label="Galadriel" />
+      {options.map(option => {
+        return (
+          <Combobox.Option
+            key={option.id}
+            id={option.id}
+            label={option.label}
+          />
+        );
+      })}
 
       <Combobox.Action
         label="Add Teammate"
