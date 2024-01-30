@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.77.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.77.1...@jobber/components@4.77.2) (2024-01-30)
+
+
+### Bug Fixes
+
+* **components:** Add SortableOptions Partial to DataListSorting ([#1740](https://github.com/GetJobber/atlantis/issues/1740)) ([59be596](https://github.com/GetJobber/atlantis/commit/59be5965ca4944516d306ba905465b26965d8d72))
+
+
+
+
+
 ## [4.77.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.77.0...@jobber/components@4.77.1) (2024-01-29)
 
 **Note:** Version bump only for package @jobber/components
