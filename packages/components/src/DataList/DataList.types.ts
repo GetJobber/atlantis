@@ -51,8 +51,8 @@ export interface DataListSorting extends SortableOptions {
 }
 
 export interface SortableOptions {
-  readonly id: string;
-  readonly label: string;
+  readonly id: string | undefined;
+  readonly label: string | undefined;
   readonly order: "asc" | "desc";
 }
 
