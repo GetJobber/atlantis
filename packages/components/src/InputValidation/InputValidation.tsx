@@ -8,7 +8,7 @@ interface InputValidationProps {
   /**
    * Validation message to be displayed
    */
-  message: string;
+  readonly message: string;
 }
 
 export function InputValidation({ message }: InputValidationProps) {
@@ -21,7 +21,7 @@ export function InputValidation({ message }: InputValidationProps) {
   return (
     <>
       {messages && messages.length > 0 && (
-        <AnimatePresence exitBeforeEnter>
+        <AnimatePresence mode="wait">
           {messages.map(msg => (
             <motion.div
               key={`validation-${msg}`}
