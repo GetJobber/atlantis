@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { render, screen } from "@testing-library/react";
 import { UserEvent, userEvent } from "@testing-library/user-event";
 import { Combobox } from "./Combobox";
@@ -510,6 +510,16 @@ describe("Combobox Custom onSearch", () => {
   });
 });
 
+describe("Combobox option reactiveness", () => {
+  it("should render the correct options when they instantly change", async () => {
+    render(<ImmediatelyAlteredOptionCombobox />);
+    expect(screen.getByText("Bilbo Baggins")).toBeInTheDocument();
+    expect(screen.getByText("Frodo Baggins")).toBeInTheDocument();
+    expect(screen.getByText("Pippin Took")).toBeInTheDocument();
+    expect(screen.getByText("Meriadoc Brandybuck")).toBeInTheDocument();
+  });
+});
+
 function renderCustomOnSearchCombobox(
   loading: boolean,
   renderWithoutOptions = false,
@@ -560,4 +570,45 @@ function renderMultiSelectCombobox() {
   mockMultiSelectValue.mockReturnValueOnce(true);
 
   return renderCombobox();
+}
+
+function ImmediatelyAlteredOptionCombobox() {
+  const firstOptions = [
+    {
+      id: "1",
+      label: "Bilbo Baggins",
+    },
+    {
+      id: "2",
+      label: "Frodo Baggins",
+    },
+  ];
+  const secondOptions = [
+    {
+      id: "3",
+      label: "Pippin Took",
+    },
+    {
+      id: "4",
+      label: "Meriadoc Brandybuck",
+    },
+  ];
+  const [options, setOptions] = useState(firstOptions);
+
+  useEffect(() => {
+    setOptions([...firstOptions, ...secondOptions]);
+  }, []);
+
+  return (
+    <Combobox
+      label={activatorLabel}
+      multiSelect={true}
+      selected={mockSelectedValue()}
+      onSelect={handleSelect}
+    >
+      {options.map(option => (
+        <Combobox.Option id={option.id} label={option.label} key={option.id} />
+      ))}
+    </Combobox>
+  );
 }
