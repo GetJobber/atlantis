@@ -38,8 +38,6 @@ export function DataListHeaderTile<T extends DataListObject>({
 
   const Tag = isSortable ? "button" : "div";
 
-  const selectedOption: SortableOptions | null = sorting?.state || null;
-
   return (
     <Tag
       className={classnames(styles.headerLabel, {
@@ -52,7 +50,7 @@ export function DataListHeaderTile<T extends DataListObject>({
       {isSortable && sortableItem?.options && isDropDownOpen && (
         <DataListSortingOptions
           options={sortableItem.options}
-          selectedOption={selectedOption}
+          selectedOption={sorting?.state || null}
           onSelectChange={handleSelectChange}
           onClose={() => setIsDropDownOpen(false)}
           optionsListRef={optionsListRef}
@@ -68,29 +66,37 @@ export function DataListHeaderTile<T extends DataListObject>({
   );
 
   function toggleSorting(
-    id: string,
-    sortingKey: string,
-    label: string,
-    order?: "asc" | "desc",
+    newSortingKey: string,
+    newId?: string,
+    newLabel?: string,
+    newOrder?: "asc" | "desc",
   ) {
-    const isSameKey =
-      sortingState?.label === label && sortingKey === sortingState?.key;
+    const isSameKey = newSortingKey === sortingState?.key;
     const isDescending = sortingState?.order === "desc";
 
-    if (isSameKey && isDescending && order !== "asc") {
-      if (order === "desc") return;
+    if (isSameKey && isDescending && newOrder === undefined) {
       sorting?.onSort(undefined);
 
       return;
     }
 
-    const sortingOrder = order || (isSameKey && !isDescending ? "desc" : "asc");
+    const sortingOrder =
+      newOrder || (isSameKey && !isDescending ? "desc" : "asc");
 
+    setSorting(newSortingKey, newId, newLabel, sortingOrder);
+  }
+
+  function setSorting(
+    newSortingKey: string,
+    newId?: string,
+    newLabel?: string,
+    newOrder?: "asc" | "desc",
+  ) {
     sorting?.onSort({
-      id,
-      key: sortingKey,
-      label,
-      order: sortingOrder,
+      key: newSortingKey,
+      id: newId,
+      label: newLabel,
+      order: newOrder,
     });
   }
 
@@ -111,9 +117,9 @@ export function DataListHeaderTile<T extends DataListObject>({
 
   function handleSelectChange(newSortOption: SortableOptions) {
     if (sortableItem) {
-      toggleSorting(
-        newSortOption.id,
+      setSorting(
         sortableItem.key,
+        newSortOption.id,
         newSortOption.label,
         newSortOption.order,
       );
