@@ -28,8 +28,6 @@ export function DataListHeaderTile<T extends DataListObject>({
   useRefocusOnActivator(visible);
   const { sorting } = useDataListContext();
   const [isDropDownOpen, setIsDropDownOpen] = React.useState(false);
-  const [selectedSortOption, setSelectedSortOption] =
-    React.useState<SortableOptions | null>(null);
 
   const optionsListRef = useFocusTrap<HTMLUListElement>(isDropDownOpen);
   const dataListHeaderTileRef = React.useRef(null);
@@ -52,7 +50,7 @@ export function DataListHeaderTile<T extends DataListObject>({
       {isSortable && sortableItem?.options && isDropDownOpen && (
         <DataListSortingOptions
           options={sortableItem.options}
-          selectedOption={selectedSortOption}
+          selectedOption={sorting?.state || null}
           onSelectChange={handleSelectChange}
           onClose={() => setIsDropDownOpen(false)}
           optionsListRef={optionsListRef}
@@ -68,27 +66,37 @@ export function DataListHeaderTile<T extends DataListObject>({
   );
 
   function toggleSorting(
-    sortingKey: string,
-    label: string,
-    order?: "asc" | "desc",
+    newSortingKey: string,
+    newId?: string,
+    newLabel?: string,
+    newOrder?: "asc" | "desc",
   ) {
-    const isSameKey =
-      sortingState?.label === label && sortingKey === sortingState?.key;
+    const isSameKey = newSortingKey === sortingState?.key;
     const isDescending = sortingState?.order === "desc";
 
-    if (isSameKey && isDescending && order !== "asc") {
-      if (order === "desc") return;
+    if (isSameKey && isDescending && newOrder === undefined) {
       sorting?.onSort(undefined);
 
       return;
     }
 
-    const sortingOrder = order || (isSameKey && !isDescending ? "desc" : "asc");
+    const sortingOrder =
+      newOrder || (isSameKey && !isDescending ? "desc" : "asc");
 
+    setSorting(newSortingKey, newId, newLabel, sortingOrder);
+  }
+
+  function setSorting(
+    newSortingKey: string,
+    newId?: string,
+    newLabel?: string,
+    newOrder?: "asc" | "desc",
+  ) {
     sorting?.onSort({
-      key: sortingKey,
-      label,
-      order: sortingOrder,
+      key: newSortingKey,
+      id: newId,
+      label: newLabel,
+      order: newOrder,
     });
   }
 
@@ -99,22 +107,23 @@ export function DataListHeaderTile<T extends DataListObject>({
       setIsDropDownOpen(!isDropDownOpen);
     } else {
       const headerValue = headers[headerKey];
+      const id = sortableItem?.options?.[0]?.id || headerKey;
 
       if (headerValue !== undefined) {
-        toggleSorting(headerKey, headerValue);
+        toggleSorting(id, headerKey, headerValue);
       }
     }
   }
 
-  function handleSelectChange(selectedOption: SortableOptions) {
+  function handleSelectChange(newSortOption: SortableOptions) {
     if (sortableItem) {
-      toggleSorting(
+      setSorting(
         sortableItem.key,
-        selectedOption.label,
-        selectedOption.order,
+        newSortOption.id,
+        newSortOption.label,
+        newSortOption.order,
       );
     }
-    setSelectedSortOption(selectedOption);
 
     setIsDropDownOpen(true);
   }

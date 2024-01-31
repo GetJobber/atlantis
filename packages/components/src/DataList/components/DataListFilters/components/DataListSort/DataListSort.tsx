@@ -18,7 +18,7 @@ export function DataListSort() {
       onSelect={selection => handleKeyChange(selection[0].id.toString())}
       selected={[
         {
-          id: `${state?.key},${state?.order},${state?.label}`,
+          id: getSelectedSortID(),
           label: state?.order || "",
         },
       ]}
@@ -53,20 +53,34 @@ export function DataListSort() {
           customOptions.forEach(option => {
             acc.push({
               label: option.label || "",
-              value: `${sort.key},${option.order},${option.label}`,
+              value: JSON.stringify({
+                key: sort.key,
+                order: option.order,
+                label: option.label,
+                id: option.id,
+              }),
             });
           });
 
           return acc;
         }
-
         acc.push({
           label: `${label} (A-Z)`,
-          value: `${sort.key},asc,${label}`,
+          value: JSON.stringify({
+            key: sort.key,
+            order: "asc",
+            label: label,
+            id: sort.key,
+          }),
         });
         acc.push({
           label: `${label} (Z-A)`,
-          value: `${sort.key},desc,${label}`,
+          value: JSON.stringify({
+            key: sort.key,
+            order: "desc",
+            label: label,
+            id: sort.key,
+          }),
         });
 
         return acc;
@@ -82,8 +96,7 @@ export function DataListSort() {
 
   function getButtonLabel() {
     const selectedOption = sortByOptions.find(
-      option =>
-        option.value === `${state?.key},${state?.order},${state?.label}`,
+      option => option.value === getSelectedSortID(),
     );
 
     return selectedOption?.label || "";
@@ -91,12 +104,23 @@ export function DataListSort() {
 
   function handleKeyChange(value?: string) {
     if (value && value !== "none") {
-      const [key, order, label] = value.split(",");
-      onSort({ key, order: order as "asc" | "desc", label });
+      const { key, order, label, id } = JSON.parse(value);
+      onSort({ key, order: order as "asc" | "desc", label, id });
 
       return;
     }
 
     onSort(undefined);
+  }
+
+  function getSelectedSortID() {
+    const selectedSortID = {
+      key: state?.key,
+      order: state?.order,
+      label: state?.label,
+      id: state?.id,
+    };
+
+    return JSON.stringify(selectedSortID);
   }
 }

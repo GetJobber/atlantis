@@ -3,6 +3,69 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.77.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.77.3...@jobber/components@4.77.4) (2024-01-31)
+
+
+### Bug Fixes
+
+* **components:** Ensure Combobox Updates on New Options ([#1744](https://github.com/GetJobber/atlantis/issues/1744)) ([2ba860d](https://github.com/GetJobber/atlantis/commit/2ba860d84af4e1aa1cc59cdc8db8d2197c17a72e))
+
+
+
+
+
+## [4.77.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.77.2...@jobber/components@4.77.3) (2024-01-31)
+
+
+### Bug Fixes
+
+* **components:** Update handling of sorting state ([#1743](https://github.com/GetJobber/atlantis/issues/1743)) ([b6b8dd3](https://github.com/GetJobber/atlantis/commit/b6b8dd3514a9a3eec72e4c6cabe31b1613cfc804))
+
+
+
+
+
+## [4.77.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.77.1...@jobber/components@4.77.2) (2024-01-30)
+
+
+### Bug Fixes
+
+* **components:** Add SortableOptions Partial to DataListSorting ([#1740](https://github.com/GetJobber/atlantis/issues/1740)) ([59be596](https://github.com/GetJobber/atlantis/commit/59be5965ca4944516d306ba905465b26965d8d72))
+
+
+
+
+
+## [4.77.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.77.0...@jobber/components@4.77.1) (2024-01-29)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [4.77.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.76.2...@jobber/components@4.77.0) (2024-01-29)
+
+
+### Features
+
+* **components:** Add data-value to sortable options ([#1734](https://github.com/GetJobber/atlantis/issues/1734)) ([e95a072](https://github.com/GetJobber/atlantis/commit/e95a072ffc6c9f2171caa4c8535ee68f65f756e2))
+
+
+
+
+
+## [4.76.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.76.1...@jobber/components@4.76.2) (2024-01-29)
+
+
+### Bug Fixes
+
+* **components:** Updating InputTime to remove InputTimeSafari for SSR compatibility (and because we didn't need it anymore) ([#1736](https://github.com/GetJobber/atlantis/issues/1736)) ([3a16172](https://github.com/GetJobber/atlantis/commit/3a161722baf007788cdc98838eeeaa506a11df03))
+
+
+
+
+
 ## [4.76.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.76.0...@jobber/components@4.76.1) (2024-01-26)
 
 

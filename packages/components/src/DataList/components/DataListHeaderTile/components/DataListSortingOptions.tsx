@@ -3,11 +3,11 @@ import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { Icon } from "@jobber/components/Icon";
 import styles from "./DataListSortingOptions.css";
-import { SortableOptions } from "../../../DataList.types";
+import { DataListSorting, SortableOptions } from "../../../DataList.types";
 
 interface DataListSortingOptionsProps {
   readonly options: SortableOptions[];
-  readonly selectedOption: SortableOptions | null;
+  readonly selectedOption: DataListSorting | null;
   readonly onSelectChange: (selectedOption: SortableOptions) => void;
   readonly onClose: () => void;
   readonly optionsListRef: React.RefObject<HTMLUListElement>;
@@ -42,6 +42,7 @@ export function DataListSortingOptions({
           onClick={() => onSelectChange(option)}
           onKeyDown={event => handleKeyDown(event, option)}
           tabIndex={0}
+          data-value={option.id}
         >
           {option.label}
           {option.label === selectedOption?.label && (
