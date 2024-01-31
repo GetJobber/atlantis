@@ -97,7 +97,7 @@ function useScrollState(
           setlistScrollState("scrollNone");
         } else if (scrollTop === 0) {
           setlistScrollState("scrollTop");
-        } else if (scrollTop + clientHeight === scrollHeight) {
+        } else if (scrollTop + clientHeight >= scrollHeight) {
           setlistScrollState("scrollBottom");
         } else {
           setlistScrollState("");
