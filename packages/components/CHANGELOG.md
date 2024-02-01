@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.78.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.77.5...@jobber/components@4.78.0) (2024-02-01)
+
+
+### Features
+
+* **components:** Animated presence ([#1733](https://github.com/GetJobber/atlantis/issues/1733)) ([63ab840](https://github.com/GetJobber/atlantis/commit/63ab840655ba8e28418ce87d2f97246f492b3c33))
+
+
+
+
+
 ## [4.77.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.77.4...@jobber/components@4.77.5) (2024-01-31)
 
 **Note:** Version bump only for package @jobber/components
