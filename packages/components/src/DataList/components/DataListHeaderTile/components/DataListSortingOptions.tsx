@@ -1,4 +1,4 @@
-import React from "react";
+import React, { KeyboardEvent, useEffect } from "react";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { Icon } from "@jobber/components/Icon";
@@ -25,7 +25,7 @@ export function DataListSortingOptions({
   useRefocusOnActivator(!optionsListRef.current);
   useOnKeyDown(() => onClose(), "Escape");
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
@@ -35,10 +35,10 @@ export function DataListSortingOptions({
 
   return (
     <ul className={styles.optionsList} ref={optionsListRef}>
-      {options.map((option, index) => (
+      {options.map(option => (
         <li
           className={styles.option}
-          key={index}
+          key={option.id}
           onClick={() => onSelectChange(option)}
           onKeyDown={event => handleKeyDown(event, option)}
           tabIndex={0}
@@ -53,7 +53,7 @@ export function DataListSortingOptions({
     </ul>
   );
 
-  function handleKeyDown(event: React.KeyboardEvent, option: SortableOptions) {
+  function handleKeyDown(event: KeyboardEvent, option: SortableOptions) {
     if (event.key === "Enter") {
       onSelectChange(option);
     }
