@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
 import { Button } from "@jobber/components/Button";
 import { Typography } from "@jobber/components/Typography";
 import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
+import { Glimmer } from "@jobber/components/Glimmer";
 import { useFakeQuery } from "./storyUtils";
 
 export default {
@@ -311,6 +312,139 @@ const ComboboxCustomSearch: ComponentStory<typeof Combobox> = args => {
   );
 };
 
+function LoadMoreTrigger({ callback }: { readonly callback: () => void }) {
+  const loadMoreTriggerRef = useRef<HTMLLIElement>(null);
+
+  useEffect(() => {
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          callback();
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, {
+      root: null,
+      rootMargin: "5px",
+      threshold: 0.5,
+    });
+
+    const element = loadMoreTriggerRef.current;
+
+    if (element) {
+      observer.observe(element);
+    }
+
+    return () => {
+      if (element) {
+        observer.unobserve(element);
+      }
+    };
+  }, []);
+
+  return (
+    <li ref={loadMoreTriggerRef}>
+      <Glimmer size="small" shape="rectangle" />
+    </li>
+  );
+}
+
+const infiniteScrollComboboxOptions = {
+  pageInfo: {
+    totalPages: 2,
+  },
+  pages: [
+    [
+      { id: "1", label: "Bilbo Baggins" },
+      { id: "2", label: "Frodo Baggins" },
+      { id: "3", label: "Pippin Took" },
+      { id: "4", label: "Merry Brandybuck" },
+      { id: "5", label: "Sam Gamgee" },
+      { id: "6", label: "Aragorn" },
+      { id: "7", label: "Galadriel" },
+      { id: "8", label: "Arwen" },
+      { id: "9", label: "Gandalf" },
+      { id: "10", label: "Legolas" },
+      { id: "11", label: "Gimli" },
+      { id: "12", label: "Samwise Gamgee" },
+      { id: "14", label: "Faramir" },
+    ],
+    [
+      { id: "15", label: "Spiderman" },
+      { id: "16", label: "Batman" },
+      { id: "17", label: "Superman" },
+      { id: "18", label: "Wonder Woman" },
+      { id: "19", label: "Iron Man" },
+      { id: "20", label: "Captain America" },
+      { id: "21", label: "Thor" },
+      { id: "22", label: "Hulk" },
+      { id: "23", label: "Black Widow" },
+      { id: "24", label: "Spider-Woman" },
+    ],
+  ],
+};
+
+const ComboboxInfiniteScroll: ComponentStory<typeof Combobox> = args => {
+  const [page, setPage] = useState<number>(1);
+  const [selected, setSelected] = useState<ComboboxOption[]>([]);
+  const [options, setOptions] = useState<ComboboxOption[]>(
+    infiniteScrollComboboxOptions.pages[0],
+  );
+  const [loadingMore, setLoadingMore] = useState<boolean>(false);
+
+  const addMoreOptions = () => {
+    setLoadingMore(true);
+    setTimeout(() => {
+      setOptions([...options, ...infiniteScrollComboboxOptions.pages[page]]);
+      setPage(page + 1);
+      setLoadingMore(false);
+    }, 1000);
+  };
+
+  const hasNextPage = page < infiniteScrollComboboxOptions.pageInfo.totalPages;
+
+  return (
+    <Combobox
+      {...args}
+      multiSelect
+      label="Teammates"
+      onSelect={selection => {
+        setSelected(selection);
+      }}
+      selected={selected}
+      loadMoreTrigger={
+        hasNextPage ? (
+          loadingMore ? (
+            <li>
+              <Glimmer shape="rectangle" />
+            </li>
+          ) : (
+            <LoadMoreTrigger callback={addMoreOptions} />
+          )
+        ) : undefined
+      }
+    >
+      {options.map(option => (
+        <Combobox.Option key={option.id} id={option.id} label={option.label} />
+      ))}
+
+      <Combobox.Action
+        label="Add Teammate"
+        onClick={() => {
+          alert("Added a new teammate ✅");
+        }}
+      />
+      <Combobox.Action
+        label="Manage Teammates"
+        onClick={() => {
+          alert("Managed teammates 👍");
+        }}
+      />
+    </Combobox>
+  );
+};
+
 export const ClearSelection = ComboboxClearSelection.bind({});
 ClearSelection.args = {};
 
@@ -330,6 +464,9 @@ export const DynamicAction = DynamicButton.bind({});
 DynamicAction.args = {};
 
 export const CustomSearch = ComboboxCustomSearch.bind({});
+CustomSearch.args = {};
+
+export const InfiniteScroll = ComboboxInfiniteScroll.bind({});
 CustomSearch.args = {};
 
 CustomSearch.parameters = {
