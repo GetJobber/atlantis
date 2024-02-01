@@ -57,11 +57,11 @@ export function DataListHeaderTile<T extends DataListObject>({
           dataListHeaderTileRef={dataListHeaderTileRef}
         />
       )}
-      {sortingState?.key === headerKey ? (
-        <DataListSortingArrows order={sortingState.order} />
-      ) : sortingState?.key !== headerKey && isSortable ? (
-        <DataListSortingArrows order="none" />
-      ) : null}
+      {isSortable && (
+        <DataListSortingArrows
+          order={sortingState?.key === headerKey ? sortingState.order : "none"}
+        />
+      )}
     </Tag>
   );
 
