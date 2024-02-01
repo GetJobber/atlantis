@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.78.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.78.0...@jobber/components@4.78.1) (2024-02-01)
+
+
+### Bug Fixes
+
+* **components:** Gracefully handle longer content in Combobox options [JOB-87773] ([#1745](https://github.com/GetJobber/atlantis/issues/1745)) ([a4e7130](https://github.com/GetJobber/atlantis/commit/a4e71309f2467279076f736d824d0629da491e74))
+
+
+
+
+
 # [4.78.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.77.5...@jobber/components@4.78.0) (2024-02-01)
 
 
