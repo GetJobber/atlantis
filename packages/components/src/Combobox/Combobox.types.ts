@@ -47,7 +47,7 @@ export interface ComboboxProps {
   /**
    * Trigger to load more options. When provided, the Combobox will display a trigger at the bottom of the list of currently visible options.
    */
-  readonly loadMoreTrigger?: ReactElement;
+  readonly listEndEnhancer?: ReactElement;
 
   /**
    * The Chip heading for the trigger
@@ -131,7 +131,7 @@ export interface ComboboxContentProps {
   /**
    * Trigger to load more options. When provided, the Combobox will display a trigger at the bottom of the list of currently visible options.
    */
-  readonly loadMoreTrigger?: ReactElement;
+  readonly listEndEnhancer?: ReactElement;
 
   /**
    * Reference to the wrapping div element of all the Combobox pieces
@@ -220,7 +220,7 @@ export interface ComboboxListProps {
   /**
    * Trigger to load more options. When provided, the Combobox will display a trigger at the bottom of the list of currently visible options.
    */
-  readonly loadMoreTrigger?: ReactElement;
+  readonly listEndEnhancer?: ReactElement;
 
   /**
    * The currently selected options.

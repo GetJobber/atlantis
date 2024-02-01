@@ -312,14 +312,31 @@ const ComboboxCustomSearch: ComponentStory<typeof Combobox> = args => {
   );
 };
 
-function LoadMoreTrigger({ callback }: { readonly callback: () => void }) {
-  const loadMoreTriggerRef = useRef<HTMLLIElement>(null);
+function LoadMoreTrigger({
+  show,
+  loading,
+  onLoadMore,
+}: {
+  readonly show: boolean;
+  readonly loading: boolean;
+  readonly onLoadMore: () => void;
+}) {
+  if (!show) return null;
+
+  if (loading) {
+    return (
+      <div>
+        <Glimmer size="small" shape="rectangle" />
+      </div>
+    );
+  }
+  const loadMoreTriggerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          callback();
+          onLoadMore();
         }
       });
     };
@@ -344,9 +361,9 @@ function LoadMoreTrigger({ callback }: { readonly callback: () => void }) {
   }, []);
 
   return (
-    <li ref={loadMoreTriggerRef}>
+    <div ref={loadMoreTriggerRef}>
       <Glimmer size="small" shape="rectangle" />
-    </li>
+    </div>
   );
 }
 
@@ -413,16 +430,12 @@ const ComboboxInfiniteScroll: ComponentStory<typeof Combobox> = args => {
         setSelected(selection);
       }}
       selected={selected}
-      loadMoreTrigger={
-        hasNextPage ? (
-          loadingMore ? (
-            <li>
-              <Glimmer shape="rectangle" />
-            </li>
-          ) : (
-            <LoadMoreTrigger callback={addMoreOptions} />
-          )
-        ) : undefined
+      listEndEnhancer={
+        <LoadMoreTrigger
+          show={hasNextPage}
+          loading={loadingMore}
+          onLoadMore={addMoreOptions}
+        />
       }
     >
       {options.map(option => (

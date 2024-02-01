@@ -587,7 +587,7 @@ function renderInfiniteScrollCombobox(hasLoadMoreTrigger = true) {
       label={activatorLabel}
       selected={mockSelectedValue()}
       onSelect={handleSelect}
-      loadMoreTrigger={
+      listEndEnhancer={
         hasLoadMoreTrigger ? <div>Load more options</div> : undefined
       }
     >
