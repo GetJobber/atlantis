@@ -1,7 +1,7 @@
 import React, {
   Dispatch,
   MutableRefObject,
-  useCallback,
+  useMemo,
   useRef,
   useState,
 } from "react";
@@ -40,8 +40,8 @@ export function useCombobox(
   const [open, setOpen] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
 
-  const searchCallback = useCallback(
-    debounce((value: string) => onSearch?.(value), debounceTime),
+  const searchCallback = useMemo(
+    () => debounce((value: string) => onSearch?.(value), debounceTime),
     [onSearch, debounceTime],
   );
 
