@@ -45,6 +45,11 @@ export interface ComboboxProps {
   readonly onSearchDebounce?: number;
 
   /**
+   * Trigger to load more options. When provided, the Combobox will display a trigger at the bottom of the list of currently visible options.
+   */
+  readonly loadMoreTrigger?: ReactElement;
+
+  /**
    * The Chip heading for the trigger
    */
   readonly label?: string;
@@ -122,6 +127,11 @@ export interface ComboboxContentProps {
    * Function called when search input changes.
    */
   readonly handleSearchChange: (value: string) => void;
+
+  /**
+   * Trigger to load more options. When provided, the Combobox will display a trigger at the bottom of the list of currently visible options.
+   */
+  readonly loadMoreTrigger?: ReactElement;
 
   /**
    * Reference to the wrapping div element of all the Combobox pieces
@@ -206,6 +216,11 @@ export interface ComboboxListProps {
    * The options to display in the list. May be the full set of the Combobox or could be filtered.
    */
   readonly options: ComboboxOption[];
+
+  /**
+   * Trigger to load more options. When provided, the Combobox will display a trigger at the bottom of the list of currently visible options.
+   */
+  readonly loadMoreTrigger?: ReactElement;
 
   /**
    * The currently selected options.

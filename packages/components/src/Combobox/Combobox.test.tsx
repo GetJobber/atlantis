@@ -520,6 +520,21 @@ describe("Combobox option reactiveness", () => {
   });
 });
 
+describe("Infinite scroll", () => {
+  it("should show the load more trigger when it is present", async () => {
+    renderInfiniteScrollCombobox();
+    await userEvent.click(screen.getByRole("combobox"));
+    expect(screen.getByText("Load more options")).toBeInTheDocument();
+    expect(screen.getByText("Bilbo Baggins")).toBeInTheDocument();
+  });
+
+  it("should not show the load more trigger when it is not present", async () => {
+    renderInfiniteScrollCombobox(false);
+    await userEvent.click(screen.getByRole("combobox"));
+    expect(screen.getByText("Bilbo Baggins")).toBeInTheDocument();
+  });
+});
+
 function renderCustomOnSearchCombobox(
   loading: boolean,
   renderWithoutOptions = false,
@@ -562,6 +577,22 @@ function renderCombobox() {
         label={({ searchValue }) => `Add ${searchValue}`}
         onClick={handleAction}
       />
+    </Combobox>,
+  );
+}
+
+function renderInfiniteScrollCombobox(hasLoadMoreTrigger = true) {
+  return render(
+    <Combobox
+      label={activatorLabel}
+      selected={mockSelectedValue()}
+      onSelect={handleSelect}
+      loadMoreTrigger={
+        hasLoadMoreTrigger ? <div>Load more options</div> : undefined
+      }
+    >
+      <Combobox.Option id="1" label="Bilbo Baggins" />
+      <Combobox.Option id="2" label="Frodo Baggins" />
     </Combobox>,
   );
 }

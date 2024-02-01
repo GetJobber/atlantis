@@ -51,6 +51,7 @@ export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
               ))}
             </>
           )}
+          {props.loadMoreTrigger}
         </ul>
       )}
 
