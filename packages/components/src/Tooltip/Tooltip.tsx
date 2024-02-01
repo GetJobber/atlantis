@@ -1,12 +1,8 @@
-import React, {
-  ReactElement,
-  ReactNode,
-  useLayoutEffect,
-  useState,
-} from "react";
+import React, { ReactElement, ReactNode, useState } from "react";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
 import { motion } from "framer-motion";
+import { useLayoutEffect } from "@jobber/hooks";
 import styles from "./Tooltip.css";
 import { useTooltipPositioning } from "./useTooltipPositioning";
 

@@ -6,6 +6,7 @@ export * from "./useFocusTrap";
 export * from "./useFormState";
 export * from "./useInView";
 export * from "./useIsMounted";
+export * from "./useLayoutEffect";
 export * from "./useLiveAnnounce";
 export * from "./useOnKeyDown";
 export * from "./usePasswordStrength";

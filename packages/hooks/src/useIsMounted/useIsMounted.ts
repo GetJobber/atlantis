@@ -1,4 +1,5 @@
-import { useLayoutEffect, useRef } from "react";
+import { useRef } from "react";
+import { useLayoutEffect } from "../useLayoutEffect";
 
 /**
  * Why does this work?
@@ -21,6 +22,7 @@ export function useIsMounted(): { current: boolean } {
 
   useLayoutEffect(() => {
     isMounted.current = true;
+
     return () => {
       isMounted.current = false;
     };
