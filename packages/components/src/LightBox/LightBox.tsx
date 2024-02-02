@@ -1,11 +1,12 @@
 /* eslint-disable max-statements */
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, PanInfo, motion } from "framer-motion";
-import ReactDOM from "react-dom";
+import { createPortal } from "react-dom";
 import debounce from "lodash/debounce";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
+import { useIsMounted } from "@jobber/hooks";
 import styles from "./LightBox.css";
 import { ButtonDismiss } from "../ButtonDismiss";
 import { Button } from "../Button";
@@ -48,6 +49,7 @@ interface LightBoxProps {
 }
 
 const swipeConfidenceThreshold = 10000;
+
 const swipePower = (offset: number, velocity: number) => {
   return Math.abs(offset) * velocity;
 };
@@ -97,6 +99,7 @@ export function LightBox({
     handleMovePrevious,
     debounceDuration,
   );
+  const mounted = useIsMounted();
 
   useRefocusOnActivator(open);
 
@@ -167,7 +170,7 @@ export function LightBox({
     </>
   );
 
-  return ReactDOM.createPortal(template, document.body);
+  return mounted ? createPortal(template, document.body) : template;
 
   function handleMovePrevious() {
     setDirection(-1);
@@ -200,7 +203,7 @@ export function LightBox({
 }
 
 interface NavButtonProps {
-  onClick: () => void;
+  readonly onClick: () => void;
 }
 
 function PreviousButton({ onClick }: NavButtonProps) {

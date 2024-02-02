@@ -1,6 +1,7 @@
 import React from "react";
 import classnames from "classnames";
-import ReactDOM from "react-dom";
+import { useIsMounted } from "@jobber/hooks";
+import { createPortal } from "react-dom";
 import styles from "./ComboboxContent.css";
 import { ComboboxContentSearch } from "./ComboboxContentSearch";
 import { ComboboxContentList } from "./ComboboxContentList";
@@ -12,6 +13,7 @@ import { ComboboxContentProps } from "../../Combobox.types";
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   const optionsExist = props.options.length > 0;
   const { optionsListRef } = useComboboxContent(props.open, props.selected);
+  const mounted = useIsMounted();
 
   const { popperRef, popperStyles, attributes } = useComboboxAccessibility(
     props.handleSelection,
@@ -78,5 +80,5 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     </div>
   );
 
-  return ReactDOM.createPortal(template, document.body);
+  return mounted ? createPortal(template, document.body) : template;
 }
