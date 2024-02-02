@@ -6,7 +6,6 @@ import React, {
   useState,
 } from "react";
 import debounce from "lodash/debounce";
-import noop from "lodash/noop";
 import {
   UseMakeComboboxHandlersReturn,
   useMakeComboboxHandlers,
@@ -23,7 +22,7 @@ type UseComboboxReturn = {
   selectedStateSetter: (selection: ComboboxOption[]) => void;
   shouldScroll: MutableRefObject<boolean>;
   internalFilteredOptions: ComboboxOption[];
-  handleSearchChange: (value: string) => void;
+  debouncedOnSearch?: (value: string) => void;
 } & UseMakeComboboxHandlersReturn;
 
 export function useCombobox(
@@ -40,7 +39,7 @@ export function useCombobox(
   const [open, setOpen] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
 
-  const searchCallback = useMemo(
+  const debouncedSearchCallback = useMemo(
     () => debounce((value: string) => onSearch?.(value), debounceTime),
     [onSearch, debounceTime],
   );
@@ -71,6 +70,6 @@ export function useCombobox(
     handleClose,
     handleSelection,
     internalFilteredOptions,
-    handleSearchChange: onSearch ? searchCallback : noop,
+    debouncedOnSearch: onSearch ? debouncedSearchCallback : undefined,
   };
 }

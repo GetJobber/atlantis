@@ -24,7 +24,7 @@ export function ComboboxContentSearch(props: ComboboxSearchProps): JSX.Element {
           props.placeholder ? `Search ${props.placeholder}` : "Search"
         }
         onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-          handleSearch(event)
+          updateSearch(event.currentTarget.value)
         }
         value={props.searchValue}
       />
@@ -43,14 +43,13 @@ export function ComboboxContentSearch(props: ComboboxSearchProps): JSX.Element {
     </div>
   );
 
-  function clearSearch() {
-    props.setSearchValue("");
-    props.handleSearchChange("");
-    searchRef.current?.focus();
+  function updateSearch(value: string) {
+    props.setSearchValue(value);
+    props.handleSearchChange?.(value);
   }
 
-  function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
-    props.setSearchValue(event.currentTarget.value);
-    props.handleSearchChange(event.currentTarget.value);
+  function clearSearch() {
+    updateSearch("");
+    searchRef.current?.focus();
   }
 }
