@@ -1,5 +1,5 @@
 /* eslint-disable max-statements */
-import React from "react";
+import React, { useRef, useState } from "react";
 import classnames from "classnames";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
@@ -27,10 +27,10 @@ export function DataListHeaderTile<T extends DataListObject>({
 }: DataListHeaderTileProps<T>) {
   useRefocusOnActivator(visible);
   const { sorting } = useDataListContext();
-  const [isDropDownOpen, setIsDropDownOpen] = React.useState(false);
+  const [isDropDownOpen, setIsDropDownOpen] = useState(false);
 
   const optionsListRef = useFocusTrap<HTMLUListElement>(isDropDownOpen);
-  const dataListHeaderTileRef = React.useRef(null);
+  const dataListHeaderTileRef = useRef(null);
 
   const sortableItem = sorting?.sortable.find(item => item.key === headerKey);
   const isSortable = Boolean(sortableItem);
