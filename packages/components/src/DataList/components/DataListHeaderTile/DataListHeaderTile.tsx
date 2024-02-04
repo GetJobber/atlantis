@@ -69,20 +69,17 @@ export function DataListHeaderTile<T extends DataListObject>({
     newSortingKey: string,
     newId?: string,
     newLabel?: string,
-    newOrder?: "asc" | "desc",
   ) {
     const isSameKey = newSortingKey === sortingState?.key;
     const isDescending = sortingState?.order === "desc";
 
-    if (isSameKey && isDescending && newOrder === undefined) {
+    if (isSameKey && isDescending) {
       sorting?.onSort(undefined);
 
       return;
     }
 
-    const sortingOrder =
-      newOrder || (isSameKey && !isDescending ? "desc" : "asc");
-
+    const sortingOrder = isSameKey ? "desc" : "asc";
     setSorting(newSortingKey, newId, newLabel, sortingOrder);
   }
 
