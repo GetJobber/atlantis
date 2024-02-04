@@ -82,7 +82,10 @@ const Template: ComponentStory<typeof DataList> = args => {
   }));
 
   const [selected, setSelected] = useState<DataListSelectedType<string>>();
-  const [sortingState, setSortingState] = useState<DataListSorting>();
+  const [sortingState, setSortingState] = useState<DataListSorting>({
+    key: "lastActivity",
+    order: "desc",
+  });
 
   return (
     <DataList

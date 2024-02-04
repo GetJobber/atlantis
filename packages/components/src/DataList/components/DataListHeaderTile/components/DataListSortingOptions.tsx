@@ -60,14 +60,11 @@ export function DataListSortingOptions({
   }
 
   function handleClickOutside(event: MouseEvent) {
-    const isClickInsideOptions = optionsListRef.current?.contains(
-      event.target as Node,
-    );
-    const isClickInsideHeader = dataListHeaderTileRef.current?.contains(
-      event.target as Node,
-    );
+    const isClickInside =
+      optionsListRef.current?.contains(event.target as Node) ||
+      dataListHeaderTileRef.current?.contains(event.target as Node);
 
-    if (!isClickInsideOptions && !isClickInsideHeader) {
+    if (!isClickInside) {
       onClose();
     }
   }
