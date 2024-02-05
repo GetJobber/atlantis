@@ -124,6 +124,28 @@ activator. The data will still be returned via callback.
 When using a custom activator, the selections will only be returned as data
 keeping the choice of how to display the data flexible.
 
+### Custom onSearch
+
+The `onSearch` prop allows you to hook into the Combobox's search input and
+receive what the user has typed. This callback is debounced by 300ms by default
+but can be configured with the `onSearchDebounce` prop.
+
+When using this callback, we no longer filter the options as a user types.
+Everything is left up to the `onSearch` callback and accompanying code to
+implement.
+
+An example use case here would be using the search term to fire off a request to
+fetch the appropriate data for that term. It is recommended to use the `loading`
+prop while fetching & filtering the new data. The loading state will display a
+static amount of `Glimmer` components. Then updating `loading` once the new data
+has been fetched and the `Combobox.Option`s have been replaced with the new
+ones.
+
+Note that the component does not cache the initial options when using
+`onSearch`. If new data was fetched and replaced the inital options on search
+then a user clears the search, either with the clear button or deleting the
+term, the initial options would need to be restored manually.
+
 ## Content guidelines
 
 Combobox is designed to handle lists of selectable options, so the component is

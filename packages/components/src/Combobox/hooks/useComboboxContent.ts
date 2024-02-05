@@ -3,21 +3,15 @@ import { ComboboxOption } from "../Combobox.types";
 import { ComboboxContext } from "../ComboboxProvider";
 
 interface useComboboxContent {
-  filteredOptions: ComboboxOption[];
   optionsListRef: React.RefObject<HTMLUListElement>;
 }
 
 export function useComboboxContent(
-  options: ComboboxOption[],
   open: boolean,
   selected: ComboboxOption[],
-  searchValue: string,
 ): useComboboxContent {
   const { shouldScroll } = useContext(ComboboxContext);
   const optionsListRef = useRef<HTMLUListElement>(null);
-  const filteredOptions = options.filter(option =>
-    option.label.toLowerCase().includes(searchValue.toLowerCase()),
-  );
 
   useEffect(() => {
     if (open && shouldScroll.current && optionsListRef.current) {
@@ -34,7 +28,6 @@ export function useComboboxContent(
   }, [open, selected]);
 
   return {
-    filteredOptions,
     optionsListRef,
   };
 }

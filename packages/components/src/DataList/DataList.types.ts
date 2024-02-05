@@ -46,9 +46,19 @@ export type DataListHeader<T extends DataListObject> = {
   readonly [K in keyof T]?: string;
 };
 
-export interface DataListSorting {
+export interface DataListSorting extends Partial<SortableOptions> {
   readonly key: string;
+}
+
+export interface SortableOptions {
+  readonly id: string;
+  readonly label: string;
   readonly order: "asc" | "desc";
+}
+
+export interface DataListSortable {
+  readonly key: string;
+  readonly options?: SortableOptions[];
 }
 
 export interface DataListProps<T extends DataListObject> {
@@ -111,7 +121,7 @@ export interface DataListProps<T extends DataListObject> {
    * `onSort`: The callback function when the user sorting a column.
    */
   readonly sorting?: {
-    readonly sortable: (keyof DataListHeader<T>)[];
+    readonly sortable: DataListSortable[];
     readonly state: DataListSorting | undefined;
     readonly onSort: (sorting?: DataListSorting) => void;
   };

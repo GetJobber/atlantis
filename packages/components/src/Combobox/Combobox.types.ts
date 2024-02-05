@@ -35,9 +35,24 @@ export interface ComboboxProps {
   readonly onClose?: () => void;
 
   /**
+   * Debounced callback function invoked on Combobox search input change. Receives the current search value as an argument.
+   */
+  readonly onSearch?: (searchValue: string) => void;
+
+  /**
+   * The amount of time in ms to debounce the onSearch callback. Defaults to 300ms.
+   */
+  readonly onSearchDebounce?: number;
+
+  /**
    * The Chip heading for the trigger
    */
   readonly label?: string;
+
+  /**
+   * Should the Combobox display the loading state.
+   */
+  readonly loading?: boolean;
 }
 
 export interface ComboboxActivatorProps {
@@ -104,6 +119,11 @@ export interface ComboboxContentProps {
   readonly setSearchValue: Dispatch<SetStateAction<string>>;
 
   /**
+   * Function called when search input changes.
+   */
+  readonly handleSearchChange: (value: string) => void;
+
+  /**
    * Reference to the wrapping div element of all the Combobox pieces
    */
   readonly wrapperRef: React.RefObject<HTMLDivElement>;
@@ -122,6 +142,11 @@ export interface ComboboxContentProps {
    * The full set of options for the Combobox in the shape of data, not elements.
    */
   readonly options: ComboboxOption[];
+
+  /**
+   * Should loading state be shown.
+   */
+  readonly loading?: boolean;
 }
 
 export interface ComboboxSearchProps {
@@ -144,6 +169,11 @@ export interface ComboboxSearchProps {
    * Setter for the search input value.
    */
   setSearchValue: Dispatch<SetStateAction<string>>;
+
+  /**
+   * Function called when search input changes.
+   */
+  readonly handleSearchChange: (value: string) => void;
 }
 
 export interface ComboboxHeaderProps {
@@ -178,11 +208,6 @@ export interface ComboboxListProps {
   readonly options: ComboboxOption[];
 
   /**
-   * Used to determine if the empty state should be shown and given priority over the options list.
-   */
-  readonly showEmptyState: boolean;
-
-  /**
    * The currently selected options.
    */
   readonly selected: ComboboxOption[];
@@ -206,6 +231,11 @@ export interface ComboboxListProps {
    * The noun to be used in the empty state message.
    */
   readonly subjectNoun?: string;
+
+  /**
+   * Should loading state be shown.
+   */
+  readonly loading?: boolean;
 }
 
 export interface ComboboxActionProps {

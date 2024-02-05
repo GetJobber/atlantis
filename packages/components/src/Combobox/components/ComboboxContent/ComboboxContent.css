@@ -1,7 +1,6 @@
 .content {
   z-index: var(--elevation-tooltip);
-  max-width: var(--popover--width);
-  min-width: calc(var(--space-extravagant) * 3.75);
+  width: calc(var(--space-extravagant) * 3.75);
   box-shadow: var(--shadow-base);
   margin-top: var(--space-small);
   border: var(--border-base) solid var(--color-border);

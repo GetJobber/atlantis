@@ -1,11 +1,35 @@
-.base > :not(:last-child) {
-  margin-bottom: var(--space-base);
+.minuscule > :not(:last-child) {
+  margin-bottom: var(--space-minuscule);
+}
+
+.smallest > :not(:last-child) {
+  margin-bottom: var(--space-smallest);
+}
+
+.smaller > :not(:last-child) {
+  margin-bottom: var(--space-smaller);
 }
 
 .small > :not(:last-child) {
   margin-bottom: var(--space-small);
 }
 
+.base > :not(:last-child) {
+  margin-bottom: var(--space-base);
+}
+
 .large > :not(:last-child) {
   margin-bottom: var(--space-large);
+}
+
+.larger > :not(:last-child) {
+  margin-bottom: var(--space-larger);
+}
+
+.largest > :not(:last-child) {
+  margin-bottom: var(--space-largest);
+}
+
+.extravagant > :not(:last-child) {
+  margin-bottom: var(--space-extravagant);
 }
