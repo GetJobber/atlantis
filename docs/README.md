@@ -72,17 +72,17 @@ This following list has installation links for each package:
 
 These are the core packages you'll need to build with Atlantis:
 
-- [Components](/packages/components)
-- [Design](/packages/design)
-- [Hooks](/packages/hooks)
+- [Components](?path=/docs/packages-components--page)
+- [Design](?path=/docs/packages-design--page)
+- [Hooks](?path=/docs/packages-hooks--page)
 
 ### Tooling and configuration
 
 If you're looking to build documentation and tooling using Atlantis' development
 standards, these packages will be useful:
 
-- [EsLint configuration](/packages/eslint-config)
-- [StyleLint configuration](/packages/stylelint-config)
+- [EsLint configuration](?path=/docs/packages-eslint-config--page)
+- [StyleLint configuration](?path=/docs/packages-stylelint-config--page)
 
 ## Generating a component
 
