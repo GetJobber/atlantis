@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.78.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.78.1...@jobber/components@4.78.2) (2024-02-02)
+
+
+### Bug Fixes
+
+* **components:** Extract and Export Sortable Type  ([#1748](https://github.com/GetJobber/atlantis/issues/1748)) ([14929ab](https://github.com/GetJobber/atlantis/commit/14929abb08b388e374855ba4c199bae2cbad2405))
+
+
+
+
+
 ## [4.78.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.78.0...@jobber/components@4.78.1) (2024-02-01)
 
 
