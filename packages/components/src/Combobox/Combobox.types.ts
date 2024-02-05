@@ -119,9 +119,9 @@ export interface ComboboxContentProps {
   readonly setSearchValue: Dispatch<SetStateAction<string>>;
 
   /**
-   * Function called when search input changes.
+   * Extra onSearch function called when search input changes.
    */
-  readonly handleSearchChange: (value: string) => void;
+  readonly handleSearchChange?: (value: string) => void;
 
   /**
    * Reference to the wrapping div element of all the Combobox pieces
@@ -171,9 +171,9 @@ export interface ComboboxSearchProps {
   setSearchValue: Dispatch<SetStateAction<string>>;
 
   /**
-   * Function called when search input changes.
+   * Extra onSearch function called when search input changes.
    */
-  readonly handleSearchChange: (value: string) => void;
+  readonly handleSearchChange?: (value: string) => void;
 }
 
 export interface ComboboxHeaderProps {
