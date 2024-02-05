@@ -410,7 +410,7 @@ describe("DataList", () => {
       render(
         <MockSortingLayout
           sorting={{
-            sortable: ["name"],
+            sortable: [{ key: "name" }],
             onSort: mockOnSort,
             state: undefined,
           }}

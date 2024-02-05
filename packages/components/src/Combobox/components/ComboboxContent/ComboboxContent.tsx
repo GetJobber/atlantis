@@ -11,17 +11,11 @@ import { ComboboxContentProps } from "../../Combobox.types";
 
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   const optionsExist = props.options.length > 0;
-
-  const { filteredOptions, optionsListRef } = useComboboxContent(
-    props.options,
-    props.open,
-    props.selected,
-    props.searchValue,
-  );
+  const { optionsListRef } = useComboboxContent(props.open, props.selected);
 
   const { popperRef, popperStyles, attributes } = useComboboxAccessibility(
     props.handleSelection,
-    filteredOptions,
+    props.options,
     optionsListRef,
     props.open,
     props.wrapperRef,
@@ -42,29 +36,30 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         placeholder={props.subjectNoun}
         searchValue={props.searchValue}
         setSearchValue={props.setSearchValue}
+        handleSearchChange={props.handleSearchChange}
       />
 
       {props.multiselect && optionsExist && (
         <ComboboxContentHeader
-          hasOptionsVisible={filteredOptions.length > 0}
+          hasOptionsVisible={optionsExist}
           subjectNoun={props.subjectNoun}
           selectedCount={props.selected.length}
           onClearAll={() => {
             props.selectedStateSetter([]);
           }}
           onSelectAll={() => {
-            props.selectedStateSetter(filteredOptions);
+            props.selectedStateSetter(props.options);
           }}
         />
       )}
       <ComboboxContentList
         multiselect={props.multiselect}
-        showEmptyState={!optionsExist}
-        options={filteredOptions}
+        options={props.options}
         selected={props.selected}
         optionsListRef={optionsListRef}
         searchValue={props.searchValue}
         subjectNoun={props.subjectNoun}
+        loading={props.loading}
       />
       {props.actionElements && (
         <div className={styles.actions} role="group">

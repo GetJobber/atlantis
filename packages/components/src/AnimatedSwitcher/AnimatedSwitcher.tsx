@@ -49,7 +49,7 @@ export function AnimatedSwitcher({
   const { key, transition, child, duration } = getChildData();
 
   return (
-    <AnimatePresence exitBeforeEnter initial={false}>
+    <AnimatePresence mode="wait" initial={false}>
       <motion.div
         ref={setRef}
         key={key}
@@ -73,6 +73,7 @@ export function AnimatedSwitcher({
 
   function getChildData() {
     let data = { key: `${initialChild.type}_1`, child: initialChild };
+
     if (switched) {
       data = { key: `${switchTo.type}_2`, child: switchTo };
     }
@@ -87,11 +88,13 @@ export function AnimatedSwitcher({
   function getTransitionType(): Variants {
     if (isSwitchingBetweenIcons) {
       if (switched) return SPIN_COUNTER_CLOCK_WISE;
+
       return SPIN_CLOCK_WISE;
     } else if (type === "fade") {
       return FADE;
     } else {
       if (switched) return SLIDE_IN_UP;
+
       return SLIDE_IN_DOWN;
     }
   }

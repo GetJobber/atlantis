@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { render, screen } from "@testing-library/react";
-import { userEvent } from "@testing-library/user-event";
+import { UserEvent, userEvent } from "@testing-library/user-event";
 import { Combobox } from "./Combobox";
 import { ComboboxOption } from "./Combobox.types";
 import { COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE } from "./hooks/useComboboxValidation";
@@ -18,6 +18,9 @@ const handleAction = jest.fn();
 const handleSelect = jest.fn();
 const mockSelectedValue = jest.fn<ComboboxOption[], []>().mockReturnValue([]);
 const mockMultiSelectValue = jest.fn().mockReturnValue(false);
+const mockOnSearch = jest.fn();
+
+let user: UserEvent;
 
 afterEach(() => {
   handleAction.mockClear();
@@ -430,6 +433,119 @@ describe("Combobox Compound Component Validation", () => {
   });
 });
 
+describe("Combobox Custom onSearch", () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+    user = userEvent.setup({
+      advanceTimers: jest.advanceTimersByTime,
+    });
+  });
+
+  afterEach(() => {
+    jest.useRealTimers();
+    mockOnSearch.mockClear();
+  });
+  it("should only call the debounced onSearch one, with the correct value", async () => {
+    renderCustomOnSearchCombobox(false);
+
+    await user.type(screen.getByPlaceholderText("Search"), "V");
+    await user.type(screen.getByPlaceholderText("Search"), "a");
+    await user.type(screen.getByPlaceholderText("Search"), "l");
+
+    jest.advanceTimersByTime(200);
+    expect(mockOnSearch).not.toHaveBeenCalled();
+    jest.advanceTimersByTime(300);
+    expect(mockOnSearch).toHaveBeenCalledTimes(1);
+    expect(mockOnSearch).toHaveBeenCalledWith("Val");
+  });
+
+  it("should call the debounced onSearch with an empty string when cleared with the clear button", async () => {
+    renderCustomOnSearchCombobox(false);
+
+    await user.type(screen.getByPlaceholderText("Search"), "Val");
+    jest.advanceTimersByTime(300);
+    expect(mockOnSearch).toHaveBeenLastCalledWith("Val");
+    await user.click(screen.getByTestId("ATL-Combobox-Content-Search-Clear"));
+    jest.advanceTimersByTime(300);
+
+    expect(mockOnSearch).toHaveBeenLastCalledWith("");
+  });
+
+  it("should not have option filtering behavior out of the box like the non custom onSearch version", async () => {
+    renderCustomOnSearchCombobox(false);
+
+    await user.type(screen.getByPlaceholderText("Search"), "Value 1");
+    jest.advanceTimersByTime(300);
+
+    expect(screen.queryByText("API Value 1")).toBeInTheDocument();
+    expect(screen.queryByText("API Value 2")).toBeInTheDocument();
+  });
+
+  it("should show the correct amount of loading glimmers when loading is true", () => {
+    renderCustomOnSearchCombobox(true);
+
+    expect(screen.getAllByTestId("ATL-Glimmer")).toHaveLength(5);
+  });
+
+  it("should not show the loading glimmers when loading is false", () => {
+    renderCustomOnSearchCombobox(false);
+
+    expect(screen.queryAllByTestId("ATL-Glimmer")).toHaveLength(0);
+  });
+
+  it("should show the correct message when searching, and no options present", async () => {
+    renderCustomOnSearchCombobox(false, true);
+
+    await user.type(screen.getByPlaceholderText("Search"), "Value 4");
+    jest.advanceTimersByTime(300);
+
+    // heads up these quotes are tricky and cause the test to not pass if they don't match exactly
+    expect(screen.getByText("No results for “Value 4”")).toBeInTheDocument();
+  });
+
+  it("should show the correct message when no options present and not searching", () => {
+    renderCustomOnSearchCombobox(false, true);
+
+    expect(screen.getByText("No options yet")).toBeInTheDocument();
+  });
+});
+
+describe("Combobox option reactiveness", () => {
+  it("should render the correct options when they instantly change", async () => {
+    render(<ImmediatelyAlteredOptionCombobox />);
+    expect(screen.getByText("Bilbo Baggins")).toBeInTheDocument();
+    expect(screen.getByText("Frodo Baggins")).toBeInTheDocument();
+    expect(screen.getByText("Pippin Took")).toBeInTheDocument();
+    expect(screen.getByText("Meriadoc Brandybuck")).toBeInTheDocument();
+  });
+});
+
+function renderCustomOnSearchCombobox(
+  loading: boolean,
+  renderWithoutOptions = false,
+) {
+  const options = renderWithoutOptions
+    ? []
+    : [
+        { id: "1", label: "API Value 1" },
+        { id: "2", label: "API Value 2" },
+      ];
+
+  return render(
+    <Combobox
+      multiSelect
+      selected={mockSelectedValue()}
+      onSelect={handleSelect}
+      onSearch={mockOnSearch}
+      loading={loading}
+    >
+      {options.map(option => (
+        <Combobox.Option id={option.id} label={option.label} key={option.id} />
+      ))}
+    </Combobox>,
+  );
+}
+
 function renderCombobox() {
   return render(
     <Combobox
@@ -454,4 +570,45 @@ function renderMultiSelectCombobox() {
   mockMultiSelectValue.mockReturnValueOnce(true);
 
   return renderCombobox();
+}
+
+function ImmediatelyAlteredOptionCombobox() {
+  const firstOptions = [
+    {
+      id: "1",
+      label: "Bilbo Baggins",
+    },
+    {
+      id: "2",
+      label: "Frodo Baggins",
+    },
+  ];
+  const secondOptions = [
+    {
+      id: "3",
+      label: "Pippin Took",
+    },
+    {
+      id: "4",
+      label: "Meriadoc Brandybuck",
+    },
+  ];
+  const [options, setOptions] = useState(firstOptions);
+
+  useEffect(() => {
+    setOptions([...firstOptions, ...secondOptions]);
+  }, []);
+
+  return (
+    <Combobox
+      label={activatorLabel}
+      multiSelect={true}
+      selected={mockSelectedValue()}
+      onSelect={handleSelect}
+    >
+      {options.map(option => (
+        <Combobox.Option id={option.id} label={option.label} key={option.id} />
+      ))}
+    </Combobox>
+  );
 }

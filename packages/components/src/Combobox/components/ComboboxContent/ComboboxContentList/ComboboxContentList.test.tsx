@@ -18,43 +18,20 @@ describe("ComboboxContentList", () => {
     expect(queryByText("No Options yet")).not.toBeInTheDocument();
   });
 
-  describe("when showEmptyState is true", () => {
-    it("should render a generic message if no options nor subjectNoun are provided", () => {
-      const { getByText } = renderComboboxContentList([], [], true);
+  describe("when no options are present", () => {
+    it("should render a generic message if no subjectNoun provided", () => {
+      const { getByText } = renderComboboxContentList([], []);
 
       expect(getByText("No options yet")).toBeInTheDocument();
     });
 
-    it("should render a message if no options are provided and a subjectNoun is provided", () => {
-      const { getByText } = renderComboboxContentList(
-        [],
-        [],
-        true,
-        "",
-        "Plumbus",
-      );
+    it("should render a message if a subjectNoun is provided", () => {
+      const { getByText } = renderComboboxContentList([], [], "", "Plumbus");
       expect(getByText("You don't have any Plumbus yet")).toBeInTheDocument();
     });
-    it("should render a message if no options are provided and a search term is entered", () => {
-      const { getByText } = renderComboboxContentList(
-        [],
-        [],
-        true,
-        "Frederick",
-      );
-      expect(getByText("No options yet")).toBeInTheDocument();
-    });
-  });
-
-  describe("when showEmptyState is false", () => {
-    it("should render a message if no options are provided and a search term is entered", () => {
-      const { getByText } = renderComboboxContentList(
-        [],
-        [],
-        false,
-        "Frederick",
-      );
-      expect(getByText("No results for “Frederick”")).toBeInTheDocument();
+    it("should render a message if a search term is entered", () => {
+      const { getByText } = renderComboboxContentList([], [], "Frederick");
+      expect(getByText(/No results for “Frederick”/)).toBeInTheDocument();
     });
   });
 });
@@ -71,7 +48,6 @@ function renderComboboxContentList(
     },
   ],
   selected: ComboboxOption[] = [],
-  showEmptyState = false,
   searchValue = "",
   subjectNoun?: string,
 ) {
@@ -80,15 +56,14 @@ function renderComboboxContentList(
       setOpen={jest.fn()}
       handleClose={jest.fn()}
       selectionHandler={jest.fn()}
-      multiselect={false}
       shouldScroll={{ current: false }}
       open={true}
       selected={[]}
+      searchValue=""
     >
       <ComboboxContentList
         multiselect={false}
         options={options}
-        showEmptyState={showEmptyState}
         selected={selected}
         optionsListRef={{ current: null }}
         searchValue={searchValue}
