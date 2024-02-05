@@ -15,6 +15,8 @@ function setViewportWidth(newWidth: number) {
         matches: matches,
         media: query,
         onchange: null,
+        addListener: jest.fn(), // Deprecated but some packages use it
+        removeListener: jest.fn(), // Deprecated but some packages use it
         addEventListener: jest.fn(),
         removeEventListener: jest.fn(),
         dispatchEvent: jest.fn(),
