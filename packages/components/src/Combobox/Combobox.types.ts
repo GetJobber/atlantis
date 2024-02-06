@@ -45,9 +45,9 @@ export interface ComboboxProps {
   readonly onSearchDebounce?: number;
 
   /**
-   * Trigger to load more options. When provided, the Combobox will display a trigger at the bottom of the list of currently visible options.
+   * Callback to load more options, this is called when the user scrolls to the bottom of the list.
    */
-  readonly listEndEnhancer?: ReactElement;
+  readonly onLoadMore?: () => void;
 
   /**
    * The Chip heading for the trigger
@@ -129,9 +129,9 @@ export interface ComboboxContentProps {
   readonly handleSearchChange: (value: string) => void;
 
   /**
-   * Trigger to load more options. When provided, the Combobox will display a trigger at the bottom of the list of currently visible options.
+   * Callback to load more options, this is called when the user scrolls to the bottom of the list.
    */
-  readonly listEndEnhancer?: ReactElement;
+  readonly onLoadMore?: () => void;
 
   /**
    * Reference to the wrapping div element of all the Combobox pieces
@@ -218,11 +218,6 @@ export interface ComboboxListProps {
   readonly options: ComboboxOption[];
 
   /**
-   * Trigger to load more options. When provided, the Combobox will display a trigger at the bottom of the list of currently visible options.
-   */
-  readonly listEndEnhancer?: ReactElement;
-
-  /**
    * The currently selected options.
    */
   readonly selected: ComboboxOption[];
@@ -251,6 +246,11 @@ export interface ComboboxListProps {
    * Should loading state be shown.
    */
   readonly loading?: boolean;
+
+  /**
+   * Callback to load more options, this is called when the user scrolls to the bottom of the list.
+   */
+  readonly onLoadMore?: () => void;
 }
 
 export interface ComboboxActionProps {

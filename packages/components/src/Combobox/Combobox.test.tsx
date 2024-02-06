@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { render, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import { UserEvent, userEvent } from "@testing-library/user-event";
+import { mockIntersectionObserver } from "jsdom-testing-mocks";
 import { Combobox } from "./Combobox";
 import { ComboboxOption } from "./Combobox.types";
 import { COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE } from "./hooks/useComboboxValidation";
@@ -19,6 +20,7 @@ const handleSelect = jest.fn();
 const mockSelectedValue = jest.fn<ComboboxOption[], []>().mockReturnValue([]);
 const mockMultiSelectValue = jest.fn().mockReturnValue(false);
 const mockOnSearch = jest.fn();
+const observer = mockIntersectionObserver();
 
 let user: UserEvent;
 
@@ -521,17 +523,17 @@ describe("Combobox option reactiveness", () => {
 });
 
 describe("Infinite scroll", () => {
-  it("should show the load more trigger when it is present", async () => {
-    renderInfiniteScrollCombobox();
-    await userEvent.click(screen.getByRole("combobox"));
-    expect(screen.getByText("Load more options")).toBeInTheDocument();
-    expect(screen.getByText("Bilbo Baggins")).toBeInTheDocument();
-  });
-
-  it("should not show the load more trigger when it is not present", async () => {
-    renderInfiniteScrollCombobox(false);
+  it("should trigger the load more callback at the bottom of the list if a callback is provided", async () => {
+    const mockLoadMore = jest.fn();
+    renderInfiniteScrollCombobox(mockLoadMore);
     await userEvent.click(screen.getByRole("combobox"));
     expect(screen.getByText("Bilbo Baggins")).toBeInTheDocument();
+    const loadMoreTrigger = screen.getByTestId("ATL-Loadmore-Trigger");
+    expect(loadMoreTrigger).toBeInTheDocument();
+    act(() => {
+      observer.enterNode(loadMoreTrigger);
+    });
+    expect(mockLoadMore).toHaveBeenCalledTimes(1);
   });
 });
 
@@ -581,15 +583,13 @@ function renderCombobox() {
   );
 }
 
-function renderInfiniteScrollCombobox(hasLoadMoreTrigger = true) {
+function renderInfiniteScrollCombobox(loadMoreCallback?: () => void) {
   return render(
     <Combobox
       label={activatorLabel}
       selected={mockSelectedValue()}
       onSelect={handleSelect}
-      listEndEnhancer={
-        hasLoadMoreTrigger ? <div>Load more options</div> : undefined
-      }
+      onLoadMore={loadMoreCallback}
     >
       <Combobox.Option id="1" label="Bilbo Baggins" />
       <Combobox.Option id="2" label="Frodo Baggins" />

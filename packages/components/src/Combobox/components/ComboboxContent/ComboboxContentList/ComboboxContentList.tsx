@@ -2,16 +2,17 @@ import React, { useEffect, useState } from "react";
 import classnames from "classnames";
 import { Text } from "@jobber/components/Text";
 import { Glimmer } from "@jobber/components/Glimmer";
+import { Spinner } from "@jobber/components/Spinner";
 import styles from "./ComboboxContentList.css";
 import {
   ComboboxListProps,
   ComboboxOption as ComboboxOptionType,
 } from "../../../Combobox.types";
 import { ComboboxOption } from "../../ComboboxOption/ComboboxOption";
+import { ComboboxLoadMore } from "../ComboboxLoadMore";
 
 export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
   const optionsExist = props.options.length > 0;
-  const showOptions = optionsExist && !props.loading;
   const hasSearchTerm = props.searchValue.length > 0;
   const { listScrollState } = useScrollState(
     props.optionsListRef,
@@ -32,17 +33,17 @@ export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
           aria-multiselectable={props.multiselect}
           ref={props.optionsListRef}
         >
-          {showOptions &&
-            props.options.map(option => {
-              return (
-                <ComboboxOption
-                  key={option.id}
-                  id={option.id}
-                  label={option.label}
-                />
-              );
-            })}
-          {props.loading && (
+          {props.options.map(option => {
+            return (
+              <ComboboxOption
+                key={option.id}
+                id={option.id}
+                label={option.label}
+              />
+            );
+          })}
+
+          {props.loading && !optionsExist && (
             <>
               {Array.from({ length: 5 }).map((_, index) => (
                 <div className={styles.loadingContainer} key={index}>
@@ -51,7 +52,16 @@ export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
               ))}
             </>
           )}
-          {props.listEndEnhancer}
+          {props.onLoadMore && (
+            <ComboboxLoadMore
+              onLoadMore={props.onLoadMore}
+              loading={props.loading}
+            >
+              <div className={styles.loadingContainer}>
+                <Spinner size="small" />
+              </div>
+            </ComboboxLoadMore>
+          )}
         </ul>
       )}
 
