@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
 import { Button } from "@jobber/components/Button";
 import { Typography } from "@jobber/components/Typography";
 import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
-import { Glimmer } from "@jobber/components/Glimmer";
 import { useFakeQuery } from "./storyUtils";
 
 export default {
@@ -312,61 +311,6 @@ const ComboboxCustomSearch: ComponentStory<typeof Combobox> = args => {
   );
 };
 
-function LoadMoreTrigger({
-  show,
-  loading,
-  onLoadMore,
-}: {
-  readonly show: boolean;
-  readonly loading: boolean;
-  readonly onLoadMore: () => void;
-}) {
-  if (!show) return null;
-
-  if (loading) {
-    return (
-      <div>
-        <Glimmer size="small" shape="rectangle" />
-      </div>
-    );
-  }
-  const loadMoreTriggerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          onLoadMore();
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(handleIntersection, {
-      root: null,
-      rootMargin: "5px",
-      threshold: 0.5,
-    });
-
-    const element = loadMoreTriggerRef.current;
-
-    if (element) {
-      observer.observe(element);
-    }
-
-    return () => {
-      if (element) {
-        observer.unobserve(element);
-      }
-    };
-  }, []);
-
-  return (
-    <div ref={loadMoreTriggerRef}>
-      <Glimmer size="small" shape="rectangle" />
-    </div>
-  );
-}
-
 const infiniteScrollComboboxOptions = {
   pageInfo: {
     totalPages: 2,
@@ -409,8 +353,10 @@ const ComboboxInfiniteScroll: ComponentStory<typeof Combobox> = args => {
     infiniteScrollComboboxOptions.pages[0],
   );
   const [loadingMore, setLoadingMore] = useState<boolean>(false);
+  const hasNextPage = page < infiniteScrollComboboxOptions.pageInfo.totalPages;
 
   const addMoreOptions = () => {
+    if (!hasNextPage || loadingMore) return;
     setLoadingMore(true);
     setTimeout(() => {
       setOptions([...options, ...infiniteScrollComboboxOptions.pages[page]]);
@@ -419,41 +365,20 @@ const ComboboxInfiniteScroll: ComponentStory<typeof Combobox> = args => {
     }, 1000);
   };
 
-  const hasNextPage = page < infiniteScrollComboboxOptions.pageInfo.totalPages;
-
   return (
     <Combobox
       {...args}
-      multiSelect
       label="Teammates"
       onSelect={selection => {
         setSelected(selection);
       }}
       selected={selected}
-      listEndEnhancer={
-        <LoadMoreTrigger
-          show={hasNextPage}
-          loading={loadingMore}
-          onLoadMore={addMoreOptions}
-        />
-      }
+      onLoadMore={addMoreOptions}
+      loading={loadingMore}
     >
       {options.map(option => (
         <Combobox.Option key={option.id} id={option.id} label={option.label} />
       ))}
-
-      <Combobox.Action
-        label="Add Teammate"
-        onClick={() => {
-          alert("Added a new teammate ✅");
-        }}
-      />
-      <Combobox.Action
-        label="Manage Teammates"
-        onClick={() => {
-          alert("Managed teammates 👍");
-        }}
-      />
     </Combobox>
   );
 };
