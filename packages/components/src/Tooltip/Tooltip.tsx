@@ -21,9 +21,15 @@ interface TooltipProps {
    * Tooltip text
    */
   readonly message: string;
+
+  readonly setTabIndex?: boolean;
 }
 
-export function Tooltip({ message, children }: TooltipProps) {
+export function Tooltip({
+  message,
+  children,
+  setTabIndex = true,
+}: TooltipProps) {
   const [show, setShow] = useState(false);
 
   const {
@@ -97,7 +103,10 @@ export function Tooltip({ message, children }: TooltipProps) {
         // This is to avoid having to add those attribute as a prop on every
         // component we have.
         activator.setAttribute("aria-description", message);
-        activator.setAttribute("tabindex", "0"); // enable focus
+
+        if (setTabIndex) {
+          activator.setAttribute("tabindex", "0"); // enable focus
+        }
       }
     };
 
