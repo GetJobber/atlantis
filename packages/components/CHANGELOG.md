@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.79.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.78.4...@jobber/components@4.79.0) (2024-02-08)
+
+
+### Features
+
+* **components:** Add support for load more trigger to combobox ([#1746](https://github.com/GetJobber/atlantis/issues/1746)) ([406f7c9](https://github.com/GetJobber/atlantis/commit/406f7c9f5fcdc5eb3a84f994a5a2c27766949249))
+
+
+
+
+
 ## [4.78.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.78.3...@jobber/components@4.78.4) (2024-02-05)
 
 **Note:** Version bump only for package @jobber/components
