@@ -405,7 +405,7 @@ export const CustomSearch = ComboboxCustomSearch.bind({});
 CustomSearch.args = {};
 
 export const InfiniteScroll = ComboboxInfiniteScroll.bind({});
-CustomSearch.args = {};
+InfiniteScroll.args = {};
 
 CustomSearch.parameters = {
   previewTabs: {
