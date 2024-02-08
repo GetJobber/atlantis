@@ -131,7 +131,7 @@ export function Select({
       invalid={invalid || !!error}
       hasValue={hasValue}
       styleOverride={{
-        container: { borderBottomWidth: undefined },
+        container: { paddingLeft: undefined },
       }}
     >
       <View

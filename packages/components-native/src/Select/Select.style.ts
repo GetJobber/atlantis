@@ -9,6 +9,8 @@ export const styles = StyleSheet.create({
       flexDirection: "column",
       justifyContent: "flex-end",
       minHeight: tokens["space-largest"] + tokens["border-base"],
+      marginVertical: 0,
+      borderWidth: 0,
     },
   ]),
 
@@ -20,6 +22,7 @@ export const styles = StyleSheet.create({
       paddingBottom: tokens["space-smaller"],
       minHeight: 0,
       minWidth: "100%",
+      paddingRight: tokens["space-small"],
     },
   ]),
 

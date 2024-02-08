@@ -192,9 +192,7 @@ describe("InputFieldWrapper", () => {
         includeHiddenElements: true,
       });
 
-      expect(placeholder.props.style).toContainEqual(
-        typographyStyles.interactive,
-      );
+      expect(placeholder.props.style).toContainEqual(typographyStyles.subdued);
       expect(placeholder.props.style).toContainEqual(
         typographyStyles.defaultSize,
       );

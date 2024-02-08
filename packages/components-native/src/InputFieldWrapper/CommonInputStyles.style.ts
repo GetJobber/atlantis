@@ -30,8 +30,9 @@ export const commonInputStyles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     width: "100%",
-    borderColor: tokens["color-grey"],
+    borderColor: tokens["color-border"],
     borderStyle: "solid",
-    borderBottomWidth: tokens["border-base"],
+    borderWidth: tokens["border-base"],
+    paddingLeft: tokens["space-base"],
   },
 });
