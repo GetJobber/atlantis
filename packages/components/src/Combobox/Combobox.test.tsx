@@ -483,15 +483,25 @@ describe("Combobox Custom onSearch", () => {
     expect(screen.queryByText("API Value 2")).toBeInTheDocument();
   });
 
-  it("should show the correct amount of loading glimmers when loading is true", () => {
-    renderCustomOnSearchCombobox(true);
+  it("should show the correct number of loading glimmers if loading is true and options don't exist", () => {
+    renderCustomOnSearchCombobox(true, true);
 
+    expect(screen.queryByLabelText("loading")).not.toBeInTheDocument();
+    expect(screen.queryByText("No options yet")).not.toBeInTheDocument();
     expect(screen.getAllByTestId("ATL-Glimmer")).toHaveLength(5);
   });
 
-  it("should not show the loading glimmers when loading is false", () => {
+  it("should show the loading indicator when loading is true and options exist", () => {
+    renderCustomOnSearchCombobox(true);
+
+    expect(screen.getByLabelText("loading")).toBeInTheDocument();
+    expect(screen.queryAllByTestId("ATL-Glimmer")).toHaveLength(0);
+  });
+
+  it("should not show the loading indicator when loading is false", () => {
     renderCustomOnSearchCombobox(false);
 
+    expect(screen.queryByLabelText("loading")).not.toBeInTheDocument();
     expect(screen.queryAllByTestId("ATL-Glimmer")).toHaveLength(0);
   });
 
@@ -505,7 +515,7 @@ describe("Combobox Custom onSearch", () => {
     expect(screen.getByText("No results for “Value 4”")).toBeInTheDocument();
   });
 
-  it("should show the correct message when no options present and not searching", () => {
+  it("should show the correct message when no options present, not loading and not searching", () => {
     renderCustomOnSearchCombobox(false, true);
 
     expect(screen.getByText("No options yet")).toBeInTheDocument();
@@ -528,7 +538,7 @@ describe("Infinite scroll", () => {
     renderInfiniteScrollCombobox(mockLoadMore);
     await userEvent.click(screen.getByRole("combobox"));
     expect(screen.getByText("Bilbo Baggins")).toBeInTheDocument();
-    const loadMoreTrigger = screen.getByTestId("ATL-Loadmore-Trigger");
+    const loadMoreTrigger = screen.getByTestId("ATL-Combobox-Loadmore-Trigger");
     expect(loadMoreTrigger).toBeInTheDocument();
     act(() => {
       observer.enterNode(loadMoreTrigger);

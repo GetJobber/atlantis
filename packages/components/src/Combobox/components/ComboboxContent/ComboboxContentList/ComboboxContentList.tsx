@@ -43,29 +43,33 @@ export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
             );
           })}
 
-          {props.loading && !optionsExist && (
-            <>
-              {Array.from({ length: 5 }).map((_, index) => (
-                <div className={styles.loadingContainer} key={index}>
-                  <Glimmer shape="rectangle" size="small" />
-                </div>
-              ))}
-            </>
-          )}
-          {props.onLoadMore && (
-            <ComboboxLoadMore
-              onLoadMore={props.onLoadMore}
-              loading={props.loading}
+          {props.loading && optionsExist && (
+            <div
+              className={classnames([
+                styles.loadingContainer,
+                styles.hasOptions,
+              ])}
             >
-              <div className={styles.loadingContainer}>
-                <Spinner size="small" />
-              </div>
-            </ComboboxLoadMore>
+              <Spinner size="small" />
+            </div>
+          )}
+
+          {props.onLoadMore && (
+            <ComboboxLoadMore onLoadMore={props.onLoadMore} />
           )}
         </ul>
       )}
+      {props.loading && !optionsExist && (
+        <>
+          {Array.from({ length: 5 }).map((_, index) => (
+            <div className={styles.loadingContainer} key={index}>
+              <Glimmer shape="rectangle" size="small" />
+            </div>
+          ))}
+        </>
+      )}
 
-      {hasSearchTerm && !optionsExist && (
+      {hasSearchTerm && !props.loading && !optionsExist && (
         <div className={styles.filterMessage}>
           <Text variation="subdued">
             No results for {`“${props.searchValue}”`}
@@ -73,7 +77,7 @@ export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
         </div>
       )}
 
-      {!hasSearchTerm && !optionsExist && (
+      {!hasSearchTerm && !props.loading && !optionsExist && (
         <div className={styles.emptyStateMessage}>
           <Text variation="subdued">
             {getZeroIndexStateText(props.subjectNoun)}

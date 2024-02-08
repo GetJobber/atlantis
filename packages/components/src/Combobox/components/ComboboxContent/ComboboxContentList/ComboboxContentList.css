@@ -5,6 +5,7 @@
 
 .optionsList {
   display: flex;
+
   max-height: calc(var(--space-small) * 33.33);
   margin: 0;
   padding: 0;
@@ -60,4 +61,16 @@
 
 .loadingContainer {
   padding: var(--space-base) var(--space-base);
+}
+
+.loadingContainer.hasOptions {
+  display: flex;
+  justify-content: center;
+
+  position: fixed;
+  bottom: 0;
+
+  width: 100%;
+
+  padding: var(--space-base) 0;
 }

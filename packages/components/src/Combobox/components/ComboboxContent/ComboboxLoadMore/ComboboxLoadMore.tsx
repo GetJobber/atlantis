@@ -1,18 +1,23 @@
-import React from "react";
-import { Spinner } from "@jobber/components/Spinner";
-import { ComboboxLoadMoreTrigger } from "./ComboboxLoadMoreTrigger";
+import React, { useEffect } from "react";
+import { useInView } from "@jobber/hooks/useInView";
+import styles from "./ComboboxLoadMore.css";
 
 interface ComboboxLoadMoreProps extends React.PropsWithChildren {
   readonly onLoadMore: () => void;
-  readonly loading: boolean | undefined;
 }
 
-export function ComboboxLoadMore({
-  children,
-  loading,
-  onLoadMore,
-}: ComboboxLoadMoreProps) {
-  if (loading) return children ? <>{children}</> : <Spinner size="small" />;
+export function ComboboxLoadMore({ onLoadMore }: ComboboxLoadMoreProps) {
+  const [inViewRef, isInView] = useInView<HTMLDivElement>();
 
-  return <ComboboxLoadMoreTrigger onLoadMore={onLoadMore} />;
+  useEffect(() => {
+    isInView && onLoadMore?.();
+  }, [isInView]);
+
+  return (
+    <div
+      data-testid="ATL-Combobox-Loadmore-Trigger"
+      ref={inViewRef}
+      className={styles.trigger}
+    />
+  );
 }
