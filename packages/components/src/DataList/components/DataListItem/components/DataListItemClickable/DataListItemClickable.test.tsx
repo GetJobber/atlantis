@@ -1,7 +1,6 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { BrowserRouter } from "react-router-dom";
 import { DataListObject } from "@jobber/components/DataList/DataList.types";
 import {
   DataListContext,
@@ -124,66 +123,21 @@ describe("DataListItemClickable", () => {
       expect(handleClick).toHaveBeenCalledWith(expectedItem);
     });
   });
-
-  describe("To prop", () => {
-    it("should render an `a` tag", async () => {
-      mockItemActionComponent.mockReturnValueOnce(
-        <DataListItemActions to="/getjobber.com" />,
-      );
-
-      renderComponent();
-
-      const target = screen.getByText(content);
-      expect(target).toBeInstanceOf(HTMLAnchorElement);
-      expect(target).toHaveAttribute("href", "/getjobber.com");
-
-      await userEvent.click(target);
-      expect(handleClick).not.toHaveBeenCalled();
-    });
-
-    it("should render an `a` tag with a callback url", () => {
-      mockItemActionComponent.mockReturnValueOnce(
-        <DataListItemActions to={item => `/getjobber.com/${item.id}`} />,
-      );
-
-      renderComponent();
-
-      const target = screen.getByText(content);
-      expect(target).toBeInstanceOf(HTMLAnchorElement);
-      expect(target).toHaveAttribute("href", "/getjobber.com/1");
-    });
-
-    it("should still fire onClick if it exists", async () => {
-      mockItemActionComponent.mockReturnValueOnce(
-        <DataListItemActions to="/getjobber.com" onClick={handleClick} />,
-      );
-
-      renderComponent();
-      const target = screen.getByText(content);
-      expect(target).toBeInstanceOf(HTMLAnchorElement);
-
-      await userEvent.click(target);
-      expect(handleClick).toHaveBeenCalledTimes(1);
-      expect(handleClick).toHaveBeenCalledWith(expectedItem);
-    });
-  });
 });
 
 function renderComponent() {
   return render(
-    <BrowserRouter>
-      <DataListContext.Provider
-        value={{
-          ...defaultValues,
-          itemActionComponent: mockItemActionComponent(),
-        }}
+    <DataListContext.Provider
+      value={{
+        ...defaultValues,
+        itemActionComponent: mockItemActionComponent(),
+      }}
+    >
+      <DataListLayoutActionsContext.Provider
+        value={{ activeItem: mockActiveItem() }}
       >
-        <DataListLayoutActionsContext.Provider
-          value={{ activeItem: mockActiveItem() }}
-        >
-          <DataListItemClickable>{content}</DataListItemClickable>
-        </DataListLayoutActionsContext.Provider>
-      </DataListContext.Provider>
-    </BrowserRouter>,
+        <DataListItemClickable>{content}</DataListItemClickable>
+      </DataListLayoutActionsContext.Provider>
+    </DataListContext.Provider>,
   );
 }

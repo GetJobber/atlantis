@@ -1,7 +1,6 @@
 import React from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
-import { Link, LinkProps } from "react-router-dom";
 import { IconNames } from "@jobber/design";
 import styles from "./Button.css";
 import { Icon } from "../Icon";
@@ -51,12 +50,7 @@ interface ButtonAnchorProps extends ButtonFoundationProps {
   readonly url?: string;
 }
 
-interface ButtonLinkProps<S = unknown> extends ButtonFoundationProps {
-  /**
-   * Used for client side routing. Only use when inside a routed component.
-   */
-  readonly to?: LinkProps<S>["to"];
-}
+interface ButtonLinkProps extends ButtonFoundationProps {}
 
 interface BaseActionProps extends ButtonFoundationProps {
   readonly variation?: "work" | "learning" | "subtle" | "destructive";
@@ -119,7 +113,6 @@ export function Button(props: ButtonProps) {
     size = "base",
     type = "primary",
     url,
-    to,
     variation = "work",
     submit,
   } = props;
@@ -145,7 +138,7 @@ export function Button(props: ButtonProps) {
     ...(!disabled && { onClick: onClick }),
     ...(!disabled && { onMouseDown: onMouseDown }),
     ...(external && { target: "_blank" }),
-    ...(url === undefined && to === undefined && { type: buttonType }),
+    ...(url === undefined && { type: buttonType }),
     "aria-controls": ariaControls,
     "aria-haspopup": ariaHaspopup,
     "aria-expanded": ariaExpanded,
@@ -154,14 +147,6 @@ export function Button(props: ButtonProps) {
   };
 
   const buttonInternals = <ButtonInternals {...props} />;
-
-  if (to) {
-    return (
-      <Link {...tagProps} to={to}>
-        {buttonInternals}
-      </Link>
-    );
-  }
 
   const Tag = url ? "a" : "button";
 

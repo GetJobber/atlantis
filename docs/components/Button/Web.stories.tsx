@@ -1,6 +1,5 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { Button } from "@jobber/components/Button";
 import { Form } from "@jobber/components/Form";
 import { InputNumber } from "@jobber/components/InputNumber";
@@ -27,42 +26,6 @@ export const Basic = BasicTemplate.bind({});
 Basic.args = {
   label: "New Job",
   onClick: () => alert("👍"),
-};
-
-const RoutingTemplate: ComponentStory<typeof Button> = () => (
-  <Router basename="/components/button">
-    <Button label="Home" to="/" />
-    <Button label="Office" to="/office" />
-    <Button label="Dentist" to="/dentist" />
-    <hr />
-    <Switch>
-      <Route exact path="/">
-        This is my home, time to get cozy.
-      </Route>
-      <Route exact path="/office">
-        This is my office, time to get to work.
-      </Route>
-      <Route exact path="/dentist">
-        This is the dentist, time to get my teeth fixed.
-      </Route>
-    </Switch>
-  </Router>
-);
-
-export const ClientSideRouting = RoutingTemplate.bind({});
-ClientSideRouting.parameters = {
-  previewTabs: {
-    code: {
-      hidden: false,
-      extraImports: {
-        "react-router-dom": [
-          "Route",
-          { name: "BrowserRouter", alias: "Router" },
-          "Switch",
-        ],
-      },
-    },
-  },
 };
 
 const FormTemplate: ComponentStory<typeof Button> = () => (

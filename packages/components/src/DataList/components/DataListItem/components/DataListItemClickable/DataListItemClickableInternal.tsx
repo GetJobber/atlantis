@@ -1,5 +1,4 @@
 import React, { PropsWithChildren } from "react";
-import { Link } from "react-router-dom";
 import {
   DataListItemActionsProps,
   DataListObject,
@@ -10,7 +9,6 @@ import { useDataListLayoutActionsContext } from "../../../DataListLayoutActions/
 export function DataListItemClickableInternal<T extends DataListObject>({
   onClick,
   url,
-  to,
   children,
 }: PropsWithChildren<
   Pick<DataListItemActionsProps<T>, "onClick" | "url" | "to">
@@ -19,21 +17,9 @@ export function DataListItemClickableInternal<T extends DataListObject>({
 
   if (!activeItem) return <>{children}</>;
 
-  if (to) {
-    const computedTo = typeof to === "string" ? to : to(activeItem);
-    return (
-      <Link
-        className={styles.listItemClickable}
-        to={computedTo}
-        onClick={handleClick}
-      >
-        {children}
-      </Link>
-    );
-  }
-
   if (url) {
     const href = typeof url === "string" ? url : url(activeItem);
+
     return (
       <a className={styles.listItemClickable} href={href} onClick={handleClick}>
         {children}

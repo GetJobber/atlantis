@@ -104,7 +104,6 @@ export default {
   external: [
     "react",
     "react-hook-form",
-    "react-router-dom",
     "react-dom",
     "react-markdown",
     "react-countdown",
