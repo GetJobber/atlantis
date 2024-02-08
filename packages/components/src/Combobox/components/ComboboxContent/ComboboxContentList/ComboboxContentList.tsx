@@ -3,6 +3,7 @@ import classnames from "classnames";
 import { Text } from "@jobber/components/Text";
 import { Glimmer } from "@jobber/components/Glimmer";
 import { Spinner } from "@jobber/components/Spinner";
+import { AnimatedPresence } from "@jobber/components/AnimatedPresence";
 import styles from "./ComboboxContentList.css";
 import {
   ComboboxListProps,
@@ -43,16 +44,15 @@ export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
             );
           })}
 
-          {props.loading && optionsExist && (
-            <div
-              className={classnames([
-                styles.loadingContainer,
-                styles.hasOptions,
-              ])}
-            >
-              <Spinner size="small" />
-            </div>
-          )}
+          <div
+            className={classnames([styles.loadingContainer, styles.hasOptions])}
+          >
+            <AnimatedPresence transition="fromBottom">
+              {Boolean(props.loading && optionsExist) && (
+                <Spinner size="small" />
+              )}
+            </AnimatedPresence>
+          </div>
 
           {props.onLoadMore && (
             <ComboboxLoadMore onLoadMore={props.onLoadMore} />
