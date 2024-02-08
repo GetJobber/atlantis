@@ -80,7 +80,7 @@ export const styles = StyleSheet.create({
   suffixLabel: {
     justifyContent: "center",
     paddingTop: tokens["space-minuscule"],
-    paddingRight: tokens["space-base"],
+    paddingRight: tokens["space-small"],
   },
   suffixIconMargin: {
     marginLeft: tokens["space-small"] + tokens["space-smaller"],
