@@ -17,6 +17,7 @@ import { InputValidation } from "../InputValidation";
 interface FormFieldWrapperProps extends FormFieldProps {
   readonly error: string;
   readonly identifier: string;
+  readonly miniLabel?: boolean;
   readonly descriptionIdentifier: string;
   readonly clearable: "never" | "always";
   readonly onClear: () => void;
@@ -42,6 +43,7 @@ export function FormFieldWrapper({
   max,
   maxLength,
   type,
+  miniLabel,
   disabled,
   inline,
   identifier,
@@ -54,10 +56,11 @@ export function FormFieldWrapper({
     align && styles[align],
     {
       [styles.miniLabel]:
-        (placeholder && value !== "") ||
+        (placeholder && !!value) ||
         (placeholder && type === "select") ||
         // Naively assume that if the the type is tel, it is the InputPhoneNumber
-        (placeholder && type === "tel"),
+        (placeholder && type === "tel") ||
+        miniLabel,
       [styles.textarea]: type === "textarea",
       [styles.select]: type === "select",
       [styles.invalid]: invalid ?? error,

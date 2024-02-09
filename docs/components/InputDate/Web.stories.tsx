@@ -11,8 +11,17 @@ export default {
   },
 } as ComponentMeta<typeof InputDate>;
 
+const PureTemplate: ComponentStory<typeof InputDate> = args => {
+  const [date, setDate] = useState<Date>();
+
+  return (
+    <InputDate {...args} value={date} onChange={(d: Date) => d && setDate(d)} />
+  );
+};
+
 const BasicTemplate: ComponentStory<typeof InputDate> = args => {
   const [date, setDate] = useState(new Date("11/11/2011"));
+
   return <InputDate {...args} value={date} onChange={setDate} />;
 };
 
@@ -25,6 +34,7 @@ const MinMaxTemplate: ComponentStory<typeof InputDate> = args => {
   const minDate = new Date("11/06/2011");
   const maxDate = new Date("11/25/2011");
   const [date, setDate] = useState(new Date("11/11/2011"));
+
   return (
     <InputDate
       {...args}
@@ -39,4 +49,10 @@ const MinMaxTemplate: ComponentStory<typeof InputDate> = args => {
 export const MinMax = MinMaxTemplate.bind({});
 MinMax.args = {
   placeholder: "Start Date",
+};
+
+export const Pure = PureTemplate.bind({});
+Pure.args = {
+  placeholder: "Start Date",
+  pure: true,
 };

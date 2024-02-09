@@ -13,18 +13,20 @@ interface InputPasswordProps
       | "validations"
       | "defaultValue"
     > {
-  value?: string;
+  readonly value?: string;
   onChange?(newValue: string): void;
   /**
    * Display toggle to change the visibility of the password input
    * @default false
    */
-  hasVisibility?: boolean;
+  readonly hasVisibility?: boolean;
 }
 
 export function InputPassword(props: InputPasswordProps) {
   const { hasVisibility = false } = props;
   const [visible, setVisibility] = useState(false);
+  const [miniLabel, setMiniLabel] = useState(!!props.defaultValue);
+
   return (
     <FormField
       {...props}
@@ -35,12 +37,14 @@ export function InputPassword(props: InputPasswordProps) {
           onClick: () => setVisibility(!visible),
         },
       })}
+      miniLabel={miniLabel}
       type={visible ? "text" : "password"}
       onChange={handleChange}
     />
   );
 
   function handleChange(newValue: string) {
+    setMiniLabel(!!newValue);
     props.onChange && props.onChange(newValue);
   }
 }
