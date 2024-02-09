@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.79.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.79.0...@jobber/components@4.79.1) (2024-02-09)
+
+
+### Bug Fixes
+
+* ensure loading spinner shows up on combobox when actions are there ([#1754](https://github.com/GetJobber/atlantis/issues/1754)) ([f87aa80](https://github.com/GetJobber/atlantis/commit/f87aa80c4b0c44437cd71866cd2c8839e459b16a))
+
+
+
+
+
 # [4.79.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.78.4...@jobber/components@4.79.0) (2024-02-08)
 
 
