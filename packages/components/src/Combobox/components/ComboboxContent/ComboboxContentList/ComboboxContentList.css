@@ -66,11 +66,11 @@
 .loadingContainer.hasOptions {
   display: flex;
   justify-content: center;
-
-  position: fixed;
+  position: sticky;
   bottom: 0;
-
-  width: 100%;
-
   padding: var(--space-base) 0;
+}
+
+.loadingContainer.hasOptions:empty {
+  display: none;
 }
