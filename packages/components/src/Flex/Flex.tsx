@@ -1,6 +1,7 @@
 import React, { CSSProperties, PropsWithChildren } from "react";
 // import chunk from "lodash/chunk";
 import classnames from "classnames";
+import { useLayoutEffect } from "@jobber/hooks";
 import { ColumnKeys, Direction, Spacing } from "./Flex.types";
 import styles from "./Flex.css";
 
@@ -44,13 +45,18 @@ export function Flex({
   gap = "base",
   template,
 }: FlexProps) {
+  const [style, setStyle] = React.useState<CSSProperties>({});
+  useLayoutEffect(() => {
+    setStyle(generateGridStylesFromTemplate(direction, template));
+  }, [direction, template]);
+
   return (
     <div
       className={classnames(styles.flexible, {
         [styles[`${gap}Gap`]]: Boolean(gap),
         [styles[`${align}Align`]]: Boolean(align),
       })}
-      style={generateGridStylesFromTemplate(direction, template)}
+      style={style}
     >
       {children}
     </div>

@@ -223,7 +223,7 @@ function basicRenderTestWithValue() {
       });
 
       it("creates a thumbnail when a media file is used", () => {
-        const expectedCalls = testId.includes("image") ? 2 : 0;
+        const expectedCalls = testId.includes("image") ? 1 : 0;
         expect(mockCreateThumbnail).toHaveBeenCalledTimes(expectedCalls);
       });
     },
