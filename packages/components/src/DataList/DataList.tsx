@@ -83,8 +83,6 @@ export function DataList<T extends DataListObject>({
     props.children,
     DataListBulkActions,
   );
-
-  // are filterComponent or searchComponent truthy?
   const shouldRenderStickyHeader = !!filterComponent || !!searchComponent;
 
   return (
