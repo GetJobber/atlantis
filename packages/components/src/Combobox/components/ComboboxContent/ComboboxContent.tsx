@@ -46,8 +46,6 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
           selectedCount={props.selected.length}
           onClearAll={() => {
             props.selectedStateSetter([]);
-            props.setSearchValue("");
-            props.handleSearchChange("");
           }}
           onSelectAll={() => {
             props.selectedStateSetter(props.options);
