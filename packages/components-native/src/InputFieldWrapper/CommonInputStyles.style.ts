@@ -34,5 +34,6 @@ export const commonInputStyles = StyleSheet.create({
     borderColor: tokens["color-border"],
     borderStyle: "solid",
     borderWidth: tokens["border-base"],
+    borderRadius: tokens["radius-base"],
   },
 });
