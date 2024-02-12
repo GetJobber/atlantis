@@ -11,7 +11,7 @@ export const commonInputStyles = StyleSheet.create({
     fontFamily: typographyStyles.baseRegularRegular.fontFamily,
     fontSize: typographyStyles.defaultSize.fontSize,
     letterSpacing: typographyStyles.baseLetterSpacing.letterSpacing,
-    minHeight: tokens["space-largest"],
+    minHeight: tokens["space-largest"] + tokens["space-small"],
     padding: 0,
   },
 
@@ -24,15 +24,15 @@ export const commonInputStyles = StyleSheet.create({
   },
 
   container: {
+    paddingLeft: tokens["space-base"],
     marginVertical: tokens["space-smaller"],
     backgroundColor: tokens["color-surface"],
-    minHeight: tokens["space-largest"],
+    minHeight: tokens["space-largest"] + tokens["space-small"],
     flexDirection: "row",
     justifyContent: "space-between",
     width: "100%",
     borderColor: tokens["color-border"],
     borderStyle: "solid",
     borderWidth: tokens["border-base"],
-    paddingLeft: tokens["space-base"],
   },
 });

@@ -7,8 +7,8 @@ export const styles = StyleSheet.create({
     commonInputStyles.container,
     {
       flexDirection: "column",
-      justifyContent: "flex-end",
-      minHeight: tokens["space-largest"] + tokens["border-base"],
+      justifyContent: "center",
+      minHeight: tokens["space-largest"] + tokens["space-small"],
       marginVertical: 0,
       borderWidth: 0,
     },
@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
     {
       flexDirection: "row",
       flexGrow: 0,
-      paddingBottom: tokens["space-smaller"],
+      paddingTop: tokens["space-smaller"],
       minHeight: 0,
       minWidth: "100%",
       paddingRight: tokens["space-small"],
@@ -32,6 +32,9 @@ export const styles = StyleSheet.create({
   },
 
   icon: {
+    position: "absolute",
+    bottom: "50%",
+    right: tokens["space-small"],
     flexGrow: 0,
     flexShrink: 0,
   },

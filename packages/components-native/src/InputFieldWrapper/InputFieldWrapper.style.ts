@@ -23,7 +23,9 @@ export const styles = StyleSheet.create({
   label: {
     // for placeholder
     position: "absolute",
-    top: typographyStyles.smallSize.fontSize,
+    display: "flex",
+    justifyContent: "center",
+    top: 0,
     right: 0,
     bottom: 0,
     left: 0,
@@ -31,7 +33,7 @@ export const styles = StyleSheet.create({
 
   miniLabel: {
     top: 0,
-    paddingTop: tokens["space-smallest"],
+    paddingTop: tokens["space-small"] - tokens["space-smallest"],
     backgroundColor: tokens["color-surface"],
     maxHeight:
       (typographyStyles.smallSize.lineHeight || 0) + tokens["space-smaller"],

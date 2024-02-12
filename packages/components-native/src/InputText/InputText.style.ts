@@ -4,22 +4,25 @@ import { typographyStyles } from "../Typography";
 
 export const styles = StyleSheet.create({
   inputPaddingTop: {
-    paddingTop: typographyStyles.smallSize.fontSize,
+    paddingTop:
+      (typographyStyles.smallSize.fontSize || 0) +
+      tokens["space-smaller"] +
+      tokens["space-smallest"],
   },
 
   multiLineInput: {
-    paddingTop: tokens["space-base"] - tokens["space-smallest"],
-    paddingBottom: tokens["space-smaller"],
+    paddingTop: 0,
     lineHeight: typographyStyles.defaultSize.lineHeight,
   },
 
   multiLineInputWithMini: {
-    paddingTop: tokens["space-large"],
+    paddingTop: tokens["space-large"] + tokens["space-smallest"],
+    paddingBottom: tokens["space-smaller"] + tokens["space-smallest"],
   },
 
   multilineInputiOS: {
     // for placeholder
     paddingTop:
-      (typographyStyles.smallSize.fontSize || 0) + tokens["space-smallest"],
+      (typographyStyles.defaultSize.fontSize || 0) + tokens["space-smallest"],
   },
 });
