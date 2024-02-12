@@ -116,8 +116,9 @@ export function Button({
     styles[size],
     styles[variation],
     styles[type],
-    disabled && styles.disabled,
     type === "secondary" && variation === "cancel" && styles.cancelSecondary,
+    disabled && styles.disabled,
+    disabled && type === "tertiary" && styles.disabledTertiary,
   ];
 
   // attempts to use Pressable caused problems.  When a ScrollView contained
