@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
 
   multiLineInputWithMini: {
     paddingTop: tokens["space-large"] + tokens["space-smallest"],
-    paddingBottom: tokens["space-smaller"] - tokens["space-smallest"],
+    paddingBottom: tokens["space-small"] - tokens["space-smallest"],
   },
 
   multilineInputiOS: {
