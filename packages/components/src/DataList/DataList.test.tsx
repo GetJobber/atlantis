@@ -166,10 +166,12 @@ describe("DataList", () => {
   describe("Layout", () => {
     const layoutWrapper = "layout-wrapper";
     const layoutItem = "layout-item";
+    const mockOnSearch = jest.fn();
 
     beforeEach(() => {
       render(
         <DataList data={mockData} headers={mockHeaders}>
+          <DataList.Search onSearch={mockOnSearch} />
           <DataList.Layout>
             {(item: DataListItemType<typeof mockData>) => (
               <div data-testid={layoutWrapper}>
@@ -313,6 +315,7 @@ describe("DataList", () => {
       }) => {
         const layout1Wrapper = "layout1-wrapper";
         const layout2Wrapper = "layout2-wrapper";
+        const mockOnSearch = jest.fn();
         setUpMediaQueries(mockedQueries);
         render(
           <DataList
@@ -320,6 +323,7 @@ describe("DataList", () => {
             headers={mockHeaders}
             headerVisibility={headerVisibility}
           >
+            <DataList.Search onSearch={mockOnSearch} />
             <DataList.Layout size={layoutSize1}>
               {(item: DataListItemType<typeof mockData>) => (
                 <div data-testid={layout1Wrapper}>
@@ -346,6 +350,8 @@ describe("DataList", () => {
   });
 
   describe("Header", () => {
+    const mockOnSearch = jest.fn();
+
     function renderLayout(
       headerVisibility?: DataListProps<
         (typeof mockData)[0]
@@ -359,6 +365,7 @@ describe("DataList", () => {
           headerVisibility={headerVisibility}
           sorting={sorting}
         >
+          <DataList.Search onSearch={mockOnSearch} />
           <DataList.Layout>
             {(item: DataListItemType<typeof mockData>) => (
               <div>{item.name}</div>
@@ -389,6 +396,8 @@ describe("DataList", () => {
   });
 
   describe("Sorting", () => {
+    const mockOnSearch = jest.fn();
+
     function MockSortingLayout({
       sorting,
     }: {
@@ -396,6 +405,7 @@ describe("DataList", () => {
     }) {
       return (
         <DataList data={mockData} headers={mockHeaders} sorting={sorting}>
+          <DataList.Search onSearch={mockOnSearch} />
           <DataList.Layout>
             {(item: DataListItemType<typeof mockData>) => (
               <div>{item.name}</div>
@@ -566,6 +576,7 @@ describe("DataList", () => {
     it("should show the StatusBar when it's provided", () => {
       const bannerText =
         "Something went wrong. Refresh or check your internet connection.";
+      const mockOnSearch = jest.fn();
       render(
         <DataList
           data={Array.from({ length: MAX_DATA_COUNT + 1 }, (_, id) => ({
@@ -573,6 +584,7 @@ describe("DataList", () => {
           }))}
           headers={{ id: "ID" }}
         >
+          <DataList.Search onSearch={mockOnSearch} />
           <DataList.StatusBar>
             <Banner type="error" icon="alert">
               {bannerText}
