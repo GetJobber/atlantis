@@ -4,6 +4,7 @@ import { IconColorNames, IconNames } from "@jobber/design";
 import { XOR } from "ts-xor";
 import { styles } from "./Button.style";
 import { InternalButtonLoading } from "./components/InternalButtonLoading";
+import { ButtonLabelOverrides } from "./components/ButtonLabelOverrides";
 import { ButtonSize, ButtonType, ButtonVariation } from "./types";
 import { ActionLabel, ActionLabelVariation } from "../ActionLabel";
 import { Icon } from "../Icon";
@@ -110,12 +111,13 @@ export function Button({
 }: ButtonProps): JSX.Element {
   const buttonStyle = [
     styles.button,
-    styles[variation],
-    styles[type],
-    styles[size],
-    disabled && styles.disabled,
     fullHeight && styles.fullHeight,
     fullWidth && styles.reducedPaddingForFullWidth,
+    styles[size],
+    styles[variation],
+    styles[type],
+    disabled && styles.disabled,
+    type === "secondary" && variation === "cancel" && styles.cancelSecondary,
   ];
 
   // attempts to use Pressable caused problems.  When a ScrollView contained
@@ -153,13 +155,15 @@ export function Button({
           )}
           {label && (
             <View style={styles.labelStyle}>
-              <ActionLabel
-                variation={getActionLabelVariation(variation, type)}
-                disabled={disabled}
-                align={icon ? "start" : undefined}
-              >
-                {label}
-              </ActionLabel>
+              <ButtonLabelOverrides underlined={type === "tertiary"}>
+                <ActionLabel
+                  variation={getActionLabelVariation(variation, type)}
+                  disabled={disabled}
+                  align={icon ? "start" : undefined}
+                >
+                  {label}
+                </ActionLabel>
+              </ButtonLabelOverrides>
             </View>
           )}
         </View>
