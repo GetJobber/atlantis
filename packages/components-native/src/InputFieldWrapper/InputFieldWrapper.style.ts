@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
     paddingTop: tokens["space-small"] - tokens["space-smallest"],
     backgroundColor: tokens["color-surface"],
     maxHeight:
-      (typographyStyles.smallSize.lineHeight || 0) + tokens["space-smaller"],
+      (typographyStyles.defaultSize.lineHeight || 0) + tokens["space-smaller"],
     zIndex: 1,
   },
   // Prevents the miniLabel from cutting off the ClearAction button
@@ -55,7 +55,7 @@ export const styles = StyleSheet.create({
   },
 
   fieldAffixMiniLabel: {
-    paddingTop: 0,
+    paddingTop: tokens["space-small"] - tokens["space-smallest"],
     // @ts-expect-error tsc-ci
     top: typographyStyles.smallSize.fontSize / 2,
     right: 0,

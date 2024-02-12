@@ -13,6 +13,7 @@ export const styles = StyleSheet.create({
   multiLineInput: {
     paddingTop: 0,
     lineHeight: typographyStyles.defaultSize.lineHeight,
+    paddingRight: tokens["space-base"] - tokens["space-smallest"],
   },
 
   multiLineInputWithMini: {

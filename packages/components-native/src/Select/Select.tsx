@@ -151,15 +151,13 @@ export function Select({
           <View
             style={[styles.container, (invalid || !!error) && styles.invalid]}
           >
-            {label && (
-              <Text
-                level="textSupporting"
-                variation={textVariation}
-                hideFromScreenReader={true}
-              >
-                {label}
-              </Text>
-            )}
+            <Text
+              level="textSupporting"
+              variation={textVariation}
+              hideFromScreenReader={true}
+            >
+              {label}
+            </Text>
 
             <View style={styles.input}>
               <View style={styles.value}>
