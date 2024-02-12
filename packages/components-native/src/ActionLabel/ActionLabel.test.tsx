@@ -5,7 +5,7 @@ import { ActionLabel } from "./ActionLabel";
 import { tokens } from "../utils/design";
 
 const defaultStyles = {
-  fontFamily: "inter-extrabold",
+  fontFamily: "inter-semibold",
   color: tokens["color-interactive"],
   textAlign: "center",
   fontSize: tokens["typography--fontSize-base"],
