@@ -83,6 +83,7 @@ export function DataList<T extends DataListObject>({
     props.children,
     DataListBulkActions,
   );
+  const shouldRenderStickyHeader = !!filterComponent || !!searchComponent;
 
   return (
     <DataListContext.Provider
@@ -103,7 +104,7 @@ export function DataList<T extends DataListObject>({
         sorting: sorting as DataListProps<DataListObject>["sorting"],
       }}
     >
-      <InternalDataList />
+      <InternalDataList shouldRenderStickyHeader={shouldRenderStickyHeader} />
     </DataListContext.Provider>
   );
 
@@ -122,7 +123,11 @@ export function DataList<T extends DataListObject>({
   }
 }
 
-function InternalDataList() {
+function InternalDataList({
+  shouldRenderStickyHeader,
+}: {
+  readonly shouldRenderStickyHeader: boolean;
+}) {
   const {
     data,
     title,
@@ -149,16 +154,18 @@ function InternalDataList() {
       heading as per the design requirements */}
       <div ref={backToTopRef} />
 
-      <DataListStickyHeader>
-        <div className={styles.headerFilters}>
-          <InternalDataListFilters />
-          <InternalDataListSearch />
-        </div>
+      {shouldRenderStickyHeader && (
+        <DataListStickyHeader>
+          <div className={styles.headerFilters}>
+            <InternalDataListFilters />
+            <InternalDataListSearch />
+          </div>
 
-        <InternalDataListStatusBar />
+          <InternalDataListStatusBar />
 
-        <DataListHeader />
-      </DataListStickyHeader>
+          <DataListHeader />
+        </DataListStickyHeader>
+      )}
 
       {initialLoading && <DataListLoadingState />}
 
