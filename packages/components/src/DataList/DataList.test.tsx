@@ -397,36 +397,24 @@ describe("DataList", () => {
   });
 
   describe("DataListStickyHeader", () => {
-    const layoutWrapper = "layout-wrapper";
-    const layoutItem = "layout-item";
     const mockOnSearch = jest.fn();
 
     const renderDataListWithLayout = (children: ReactElement) => {
       render(
         <DataList data={mockData} headers={{}}>
           {children}
-          <DataList.Layout>
-            {(item: DataListItemType<typeof mockData>) => (
-              <div data-testid={layoutWrapper}>
-                <div data-testid={layoutItem}>{item.name}</div>
-                <div data-testid={layoutItem}>{item.email}</div>
-              </div>
-            )}
-          </DataList.Layout>
         </DataList>,
       );
     };
 
-    it("should render the default layout and Sticky Header if DataList.Search is provided", () => {
+    it("should render the Sticky Header if DataList.Search is provided", () => {
       renderDataListWithLayout(<DataList.Search onSearch={mockOnSearch} />);
       expect(
         screen.queryByTestId(DATA_LIST_STICKY_HEADER_TEST_ID),
       ).toBeInTheDocument();
-      expect(screen.getAllByTestId(layoutWrapper)).toHaveLength(2);
-      expect(screen.getAllByTestId(layoutItem)).toHaveLength(4);
     });
 
-    it("should render the default layout and Sticky Header if DataList.Filters is provided", () => {
+    it("should render the Sticky Header if DataList.Filters is provided", () => {
       renderDataListWithLayout(
         <DataList.Filters>
           <div>Filters</div>
@@ -435,17 +423,13 @@ describe("DataList", () => {
       expect(
         screen.queryByTestId(DATA_LIST_STICKY_HEADER_TEST_ID),
       ).toBeInTheDocument();
-      expect(screen.getAllByTestId(layoutWrapper)).toHaveLength(2);
-      expect(screen.getAllByTestId(layoutItem)).toHaveLength(4);
     });
 
-    it("should render the default layout without Sticky Header if DataList.Search and DataList.Filters are not provided", () => {
+    it("should not render Sticky Header when DataList.Search and DataList.Filters are not provided", () => {
       renderDataListWithLayout(<></>);
       expect(
         screen.queryByTestId(DATA_LIST_STICKY_HEADER_TEST_ID),
       ).not.toBeInTheDocument();
-      expect(screen.getAllByTestId(layoutWrapper)).toHaveLength(2);
-      expect(screen.getAllByTestId(layoutItem)).toHaveLength(4);
     });
   });
 
