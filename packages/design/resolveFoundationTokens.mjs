@@ -1,13 +1,9 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-const fs = require("fs");
-// eslint-disable-next-line import/no-internal-modules
-const customPropertiesObject = require("./src/foundation.js");
-// eslint-disable-next-line import/no-internal-modules
-const { getShadowStyles } = require("./src/getMobileShadows.js");
-// eslint-disable-next-line import/no-internal-modules
-const { getMobileLineHeights } = require("./src/getMobileLineHeights");
-// eslint-disable-next-line import/no-internal-modules
-const { getMobileFontSizes } = require("./src/getMobileFontSizes");
+/* eslint-disable import/no-internal-modules */
+import { writeFile } from "fs";
+import { customProperties } from "./src/foundation.mjs";
+import { getShadowStyles } from "./src/getMobileShadows.mjs";
+import { getMobileLineHeights } from "./src/getMobileLineHeights.mjs";
+import { getMobileFontSizes } from "./src/getMobileFontSizes.mjs";
 
 const regexExpressions = {
   cssVars: /var\((.*)\)/,
@@ -19,32 +15,27 @@ const regexExpressions = {
   extractTimeNumber: /(\d+)ms/,
 };
 
-const customProperties = customPropertiesObject.customProperties;
-
 const resolvedCssVars = getResolvedCSSVars(customProperties);
 
 const jsonContent =
   "export const tokens = " + JSON.stringify(resolvedCssVars, undefined, 2);
 
-fs.writeFile("./foundation.js", jsonContent, "utf8", function (err) {
+writeFile("./foundation.js", jsonContent, "utf8", function (err) {
   if (err) {
     console.log("An error occured while writing JSON object to File.");
+
     return console.log(err);
   }
 });
 const scssColors = getResolvedSCSSVariables(resolvedCssVars);
 
-fs.writeFile(
-  "./foundation.scss",
-  scssColors.join("\n"),
-  "utf-8",
-  function (err) {
-    if (err) {
-      console.log("An error occured while writing SCSS to File.");
-      return console.log(err);
-    }
-  },
-);
+writeFile("./foundation.scss", scssColors.join("\n"), "utf-8", function (err) {
+  if (err) {
+    console.log("An error occured while writing SCSS to File.");
+
+    return console.log(err);
+  }
+});
 writeMobileFoundationFiles();
 
 /**
@@ -111,6 +102,7 @@ function handleCalc(calcRegexResult) {
     "return " +
       finalExpression.replace(regexExpressions.removeAllNonNumerals, ""),
   )();
+
   return isSpacingValue(calculatedValue)
     ? parseFloat(calculatedValue)
     : calculatedValue;
@@ -122,6 +114,7 @@ function handleTiming(timeNumberResult) {
 
 function handleRbga(rgbaVarRegexResult) {
   let resolved = "rgba(" + resolveCSSToken(rgbaVarRegexResult[1]);
+
   if (rgbaVarRegexResult[2]) {
     resolved += "," + rgbaVarRegexResult[2];
   }
@@ -137,6 +130,7 @@ function handleExpressionsInCalc(calcRegexResult) {
   varGroups &&
     varGroups.forEach(group => {
       const cssVariableRegexResult = regexExpressions.cssVars.exec(group);
+
       if (cssVariableRegexResult) {
         finalExpression = resolveCssVarsInExpression({
           group,
@@ -145,6 +139,7 @@ function handleExpressionsInCalc(calcRegexResult) {
         });
       }
     });
+
   return finalExpression;
 }
 
@@ -156,6 +151,7 @@ function resolveCssVarsInExpression({
   const cssVariable = cssVariableRegexResult[1];
   const realValue = resolveCSSToken(cssVariable);
   const unresolvedCssVariable = group;
+
   return finalExpression.replace(unresolvedCssVariable, realValue);
 }
 
@@ -167,9 +163,11 @@ function isSpacingValue(value) {
 
 function getResolvedCSSVars(cssProperties) {
   const allKeys = Object.keys(cssProperties);
+
   return allKeys.reduce((acc, key) => {
     const newKey = key.replace("--", "");
     acc[newKey] = resolveCSSToken(key);
+
     return acc;
   }, {});
 }
@@ -246,6 +244,7 @@ function getPropertyValue(cssVar) {
     }
     case "size": {
       const suffix = customPropertyValue.includes("%") ? "%" : "px";
+
       return `${resolvedCssVars[cssVar]}${suffix}`;
     }
     case "shadow":
@@ -262,6 +261,7 @@ function getPropertyValue(cssVar) {
  */
 function removeNewLines(text) {
   if (!text) return text;
+
   return text.replace(/(\r\n|\n|\r)/gm, "");
 }
 
@@ -292,37 +292,35 @@ function writeMobileFoundationFiles() {
     undefined,
     2,
   )}`;
-  fs.writeFile(
+  writeFile(
     "./foundation.android.js",
     androidFoundationsExportString,
     "utf-8",
     err => {
       if (err) {
         console.log("An error occured while writing Android Foundation File.");
+
         return console.log(err);
       }
       console.log("Wrote Android Foundations file");
     },
   );
-  fs.writeFile(
-    "./foundation.ios.js",
-    iOSFoundationsExportString,
-    "utf-8",
-    err => {
-      if (err) {
-        console.log("An error occured while writing iOS Foundation File.");
-        return console.log(err);
-      }
-      console.log("Wrote iOS Foundations file");
-    },
-  );
-  fs.writeFile(
+  writeFile("./foundation.ios.js", iOSFoundationsExportString, "utf-8", err => {
+    if (err) {
+      console.log("An error occured while writing iOS Foundation File.");
+
+      return console.log(err);
+    }
+    console.log("Wrote iOS Foundations file");
+  });
+  writeFile(
     "./foundation.native.js",
     iOSFoundationsExportString,
     "utf-8",
     err => {
       if (err) {
         console.log("An error occured while writing iOS Foundation File.");
+
         return console.log(err);
       }
       console.log("Wrote Native Foundations file");

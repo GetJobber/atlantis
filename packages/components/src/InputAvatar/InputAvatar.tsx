@@ -100,3 +100,4 @@ function Centered({ children }: PropsWithChildren) {
   // Note: this HIGHLY experimental Centered component is applying margin.
   return <div className={styles.centered}>{children}</div>;
 }
+export default InputAvatar;

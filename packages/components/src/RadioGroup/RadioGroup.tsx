@@ -1,5 +1,4 @@
-import React, { ReactElement } from "react";
-import { v1 as uuidv1 } from "uuid";
+import React, { ReactElement, useId } from "react";
 import { InternalRadioOption } from "./RadioOption";
 import styles from "./RadioGroup.css";
 
@@ -37,7 +36,7 @@ export function RadioGroup({
   value,
   ariaLabel,
   onChange,
-  name = uuidv1(),
+  name = useId(),
 }: RadioGroupProps) {
   return (
     <div role="radiogroup" aria-label={ariaLabel} className={styles.radioGroup}>
@@ -60,3 +59,4 @@ export function RadioGroup({
     }
   }
 }
+export default RadioGroup;

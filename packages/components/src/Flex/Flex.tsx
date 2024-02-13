@@ -77,3 +77,4 @@ function generateGridStylesFromTemplate(
 
   return containerStyles;
 }
+export default Flex;

@@ -92,3 +92,4 @@ export function Combobox(props: ComboboxProps): JSX.Element {
 Combobox.Activator = ComboboxActivator;
 Combobox.Action = ComboboxAction;
 Combobox.Option = ComboboxOptionComponent;
+export default Combobox;

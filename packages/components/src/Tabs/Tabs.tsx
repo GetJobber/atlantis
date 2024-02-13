@@ -150,3 +150,4 @@ export function InternalTab({
     </button>
   );
 }
+export default Tabs;

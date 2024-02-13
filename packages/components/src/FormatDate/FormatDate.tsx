@@ -37,11 +37,14 @@ export function strFormatDate(date: Date, showYear = true) {
     month: "short",
     day: "numeric",
   };
+
   if (showYear) {
     formatOptions = {
       ...formatOptions,
       year: "numeric",
     };
   }
+
   return date.toLocaleDateString(undefined, formatOptions);
 }
+export default FormatDate;

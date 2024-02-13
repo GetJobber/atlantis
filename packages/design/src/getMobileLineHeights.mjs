@@ -1,4 +1,4 @@
-function getMobileLineHeights() {
+export function getMobileLineHeights() {
   return {
     "typography--lineHeight-extravagant": 42,
     "typography--lineHeight-jumbo": 36,
@@ -12,7 +12,3 @@ function getMobileLineHeights() {
     "typography--lineHeight-miniscule": 10,
   };
 }
-
-module.exports = {
-  getMobileLineHeights,
-};

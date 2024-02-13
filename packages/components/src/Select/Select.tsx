@@ -18,3 +18,4 @@ type SelectProps = Pick<
 export function Select(props: SelectProps) {
   return <FormField type="select" {...props} />;
 }
+export default Select;

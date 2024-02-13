@@ -256,3 +256,4 @@ DataList.BatchAction = function DataListBatchAction(
  * Defines a status bar that is rendered between the filters and the header.
  */
 DataList.StatusBar = DataListStatusBar;
+export default DataList;

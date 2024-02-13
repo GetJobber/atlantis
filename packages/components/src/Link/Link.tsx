@@ -25,3 +25,4 @@ export function Link({
     </a>
   );
 }
+export default Link;

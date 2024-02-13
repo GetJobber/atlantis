@@ -59,3 +59,4 @@ export function Heading({ level = 5, children }: HeadingProps) {
 
   return <Typography {...levelMap[level]}>{children}</Typography>;
 }
+export default Heading;

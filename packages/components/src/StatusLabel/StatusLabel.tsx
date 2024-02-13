@@ -57,7 +57,7 @@ export function StatusLabel({
 }
 
 interface StatusLabelIconProps {
-  status: StatusType;
+  readonly status: StatusType;
 }
 
 function StatusLabelIcon({ status }: StatusLabelIconProps) {
@@ -68,3 +68,4 @@ function StatusLabelIcon({ status }: StatusLabelIconProps) {
     />
   );
 }
+export default StatusLabel;

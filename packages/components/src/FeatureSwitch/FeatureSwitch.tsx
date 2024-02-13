@@ -164,3 +164,4 @@ export function FeatureSwitch({
     setSavedIndicator(false);
   }
 }
+export default FeatureSwitch;

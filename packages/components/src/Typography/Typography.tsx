@@ -49,7 +49,7 @@ interface TypographyProps {
   readonly align?: keyof typeof alignment;
   readonly fontFamily?: keyof typeof fontFamilies;
   readonly children: ReactNode;
-  numberOfLines?: number;
+  readonly numberOfLines?: number;
 }
 export type TypographyOptions = Omit<TypographyProps, "children">;
 
@@ -82,6 +82,7 @@ export function Typography({
   );
 
   let truncateLines: CSSProperties | undefined;
+
   if (shouldTruncateText) {
     truncateLines = {
       WebkitLineClamp: numberOfLines,
@@ -95,3 +96,4 @@ export function Typography({
     </Tag>
   );
 }
+export default Typography;

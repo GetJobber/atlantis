@@ -94,3 +94,4 @@ export const Form = forwardRef(function InternalForm(
     element?.focus();
   }
 });
+export default Form;

@@ -1,15 +1,17 @@
-#!/usr/bin/env ts-node  --project ../../tsconfig.bin.json
-
 import { readFileSync, readdirSync, statSync, writeFileSync } from "fs";
-import { join, parse } from "path";
+import { dirname, join, parse } from "path";
+import { fileURLToPath } from "url";
 import { load } from "cheerio";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 const iconFolder = join(__dirname, "../assets/icons");
-const iconMap: { icons: Record<string, string[]> } = {
+const iconMap = {
   icons: {},
 };
 
-const files: string[] = getFiles();
+const files = getFiles();
 files.forEach(file => {
   const iconName = parse(file).name;
   const paths = extractSVGPaths(file);
@@ -26,7 +28,7 @@ writeFileSync(
 export const iconMap = ${JSON.stringify(iconMap, undefined, 2)};`,
 );
 
-function getFiles(dirPath = iconFolder, arrayOfFiles: string[] = []) {
+function getFiles(dirPath = iconFolder, arrayOfFiles = []) {
   const filePaths = readdirSync(dirPath);
   filePaths.forEach(function (file) {
     if (statSync(dirPath + "/" + file).isDirectory()) {
@@ -39,7 +41,7 @@ function getFiles(dirPath = iconFolder, arrayOfFiles: string[] = []) {
   return arrayOfFiles;
 }
 
-function extractSVGPaths(path: string) {
+function extractSVGPaths(path) {
   const data = readFileSync(path, "utf8");
   const $ = load(data, { xmlMode: true });
   const pathSet = $("path");

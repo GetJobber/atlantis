@@ -194,3 +194,4 @@ function getTypeSizes(size: string) {
       return "base";
   }
 }
+export default Button;

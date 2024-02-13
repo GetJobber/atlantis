@@ -5,7 +5,7 @@ interface ButtonDismissProps {
   onClick?(
     event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
   ): void;
-  ariaLabel: string;
+  readonly ariaLabel: string;
 }
 
 export function ButtonDismiss({ onClick, ariaLabel }: ButtonDismissProps) {
@@ -19,3 +19,4 @@ export function ButtonDismiss({ onClick, ariaLabel }: ButtonDismissProps) {
     />
   );
 }
+export default ButtonDismiss;

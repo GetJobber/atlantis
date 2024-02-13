@@ -102,3 +102,4 @@ function Initials({
 
   return <span className={className}>{initials.substr(0, 3)}</span>;
 }
+export default Avatar;

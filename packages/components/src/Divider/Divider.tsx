@@ -31,3 +31,4 @@ export function Divider({
 
   return <div className={className} role="none presentation" />;
 }
+export default Divider;

@@ -100,3 +100,4 @@ export function RecurringSelect({
     });
   }
 }
+export default RecurringSelect;

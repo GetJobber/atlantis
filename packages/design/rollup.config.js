@@ -1,14 +1,12 @@
-/* eslint-disable import/no-default-export */
-import multiInput from "rollup-plugin-multi-input";
-import typescript from "rollup-plugin-typescript2";
+import typescript from "@rollup/plugin-typescript";
 import postcss from "rollup-plugin-postcss";
-import commonjs from "@rollup/plugin-commonjs";
-import copy from "rollup-plugin-copy";
+import postcssImport from "postcss-import";
+import autoprefixer from "autoprefixer";
+import postcssPresetEnv from "postcss-preset-env";
 
 export default {
   input: `src/index.ts`,
   plugins: [
-    multiInput(),
     typescript({
       declarationDir: "dist",
     }),
@@ -16,26 +14,19 @@ export default {
       modules: { generateScopedName: "[hash:base64]" },
       autoModules: false,
       plugins: [
-        require("postcss-import"),
-        require("autoprefixer"),
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
-        require("postcss-preset-env")({
+        postcssImport,
+        autoprefixer,
+        postcssPresetEnv({
           stage: 1,
           preserve: true,
         }),
       ],
     }),
-    commonjs({
-      ignore: [],
-    }),
-    copy({
-      targets: [{ src: "src/icons/*.css.d.ts", dest: "dist/icons" }],
-    }),
   ],
   output: [
     {
       dir: "dist",
-      format: "cjs",
+      format: "esm",
     },
   ],
   external: ["react", "classnames"],

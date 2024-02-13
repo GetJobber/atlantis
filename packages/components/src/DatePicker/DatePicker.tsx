@@ -194,3 +194,4 @@ function useEscapeKeyToCloseDatePicker(
     pickerRef,
   };
 }
+export default DatePicker;

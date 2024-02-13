@@ -33,6 +33,7 @@ export function Icon({ name, color, customColor, size = "base" }: IconProps) {
     color: getIconColor(name, color),
     size,
   });
+
   if (name === "truck") {
     icon = getTruck(pathClassNames, customColor);
   } else {
@@ -40,6 +41,7 @@ export function Icon({ name, color, customColor, size = "base" }: IconProps) {
       <path key={path} className={pathClassNames} d={path} fill={customColor} />
     ));
   }
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -56,6 +58,7 @@ function getIconColor(name: IconNames, color?: IconColorNames) {
   if (name === "truck") {
     return color || "green";
   }
+
   return color;
 }
 
@@ -92,3 +95,4 @@ function getTruck(pathClassNames: string, customColor?: string) {
     </g>
   );
 }
+export default Icon;

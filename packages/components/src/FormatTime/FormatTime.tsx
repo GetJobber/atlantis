@@ -51,3 +51,4 @@ function formatCivilTime(date: Date, use24HourClock?: boolean) {
     hour: "numeric",
   });
 }
+export default FormatTime;

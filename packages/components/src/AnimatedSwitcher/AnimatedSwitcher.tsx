@@ -128,3 +128,4 @@ AnimatedSwitcher.Icon = function AnimatedSwitcherIcon({
     />
   );
 };
+export default AnimatedSwitcher;

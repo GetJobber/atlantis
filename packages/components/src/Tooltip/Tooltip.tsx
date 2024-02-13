@@ -139,3 +139,4 @@ interface TooltipPortalProps {
 function TooltipPortal({ children }: TooltipPortalProps) {
   return ReactDOM.createPortal(children, document.body);
 }
+export default Tooltip;

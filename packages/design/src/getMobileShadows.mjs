@@ -4,7 +4,7 @@
 // Android can only access the shadowColor property and is otherwise reliant on
 // the more opinionated elevation:(https://reactnative.dev/docs/view-style-props#elevation-android).
 
-function getShadowStyles(baseTokens) {
+export function getShadowStyles(baseTokens) {
   const sharedStyles = {
     "shadow-color": baseTokens["color-black"],
     "shadow-color-android": "rgba(0,0,0,0.9)",
@@ -63,9 +63,6 @@ function getShadowStyles(baseTokens) {
     },
   };
   const iOSShadows = sharedShadows;
+
   return { androidShadows, iOSShadows };
 }
-
-module.exports = {
-  getShadowStyles,
-};

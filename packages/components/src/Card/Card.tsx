@@ -68,3 +68,4 @@ export function Card({
     return <div className={className}>{cardContent}</div>;
   }
 }
+export default Card;

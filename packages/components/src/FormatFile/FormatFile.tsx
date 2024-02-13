@@ -126,5 +126,7 @@ function isHoverable({
   } else if (display === "expanded") {
     return Boolean(isComplete && onClick);
   }
+
   return false;
 }
+export default FormatFile;

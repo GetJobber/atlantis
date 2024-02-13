@@ -52,3 +52,4 @@ export function InputTime({
     }
   }
 }
+export default InputTime;

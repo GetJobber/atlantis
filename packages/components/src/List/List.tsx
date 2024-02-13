@@ -16,6 +16,7 @@ interface ListProps {
 
 export function List({ items }: ListProps) {
   const isSectioned = items.some(item => item.section);
+
   if (isSectioned) {
     return <SectionedList items={items} />;
   } else {
@@ -61,3 +62,4 @@ function SectionedList({ items }: ListProps) {
     </ul>
   );
 }
+export default List;

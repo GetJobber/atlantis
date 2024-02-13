@@ -42,3 +42,4 @@ export function DataDump({
     </Card>
   );
 }
+export default DataDump;

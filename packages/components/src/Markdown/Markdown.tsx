@@ -89,3 +89,4 @@ function renderHeading(level: 1 | 2 | 3 | 4 | 5) {
 
   return buildHeading;
 }
+export default Markdown;

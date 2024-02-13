@@ -94,3 +94,4 @@ export function InputDate(inputProps: InputDateProps) {
     />
   );
 }
+export default InputDate;

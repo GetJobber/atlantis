@@ -2,8 +2,8 @@ import React, { ReactNode } from "react";
 import { Typography, TypographyOptions } from "../Typography";
 
 interface EmphasisProps {
-  variation: "bold" | "italic" | "highlight";
-  children: ReactNode;
+  readonly variation: "bold" | "italic" | "highlight";
+  readonly children: ReactNode;
 }
 
 export interface VariationMap {
@@ -19,3 +19,4 @@ export function Emphasis({ variation, children }: EmphasisProps) {
 
   return <Typography {...variationMap[variation]}>{children}</Typography>;
 }
+export default Emphasis;

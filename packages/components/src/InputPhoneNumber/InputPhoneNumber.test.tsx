@@ -7,11 +7,14 @@ const validationMessage = "Phone number must contain 10 or more digits";
 
 jest.mock("framer-motion", () => ({
   motion: {
-    div: require("react").forwardRef(({ children, ...rest }, ref) => (
-      <div {...rest} ref={ref}>
-        {children}
-      </div>
-    )),
+    div: require("react").forwardRef(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ({ children, ...rest }: any, ref: never) => (
+        <div {...rest} ref={ref}>
+          {children}
+        </div>
+      ),
+    ),
   },
   AnimatePresence: jest
     .fn()
@@ -99,6 +102,7 @@ describe("InputPhoneNumber", () => {
 
       function TestInput() {
         const [value, setValue] = useState("");
+
         return <InputPhoneNumber value={value} onChange={setValue} />;
       }
     });

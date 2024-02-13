@@ -1,10 +1,8 @@
-/* eslint-env node */
-/* eslint-disable @typescript-eslint/no-var-requires */
-const fs = require("fs");
-const postcss = require("postcss");
-const postcssExtract = require("@csstools/postcss-extract");
+import { readFileSync, writeFileSync } from "fs";
+import postcss from "postcss";
+import postcssExtract from "@csstools/postcss-extract";
 
-const colors = fs.readFileSync("src/colors.css");
+const foundation = readFileSync("./foundation.css");
 
 postcss([
   postcssExtract({
@@ -14,7 +12,10 @@ postcss([
     results: yourResults => {
       const mappedResults = yourResults.customProperties.reduce(
         (acc, { prop, value }) => {
-          acc[prop] = value;
+          if (!(prop in acc)) {
+            acc[prop] = value;
+          }
+
           return acc;
         },
         {},
@@ -25,9 +26,9 @@ postcss([
         2,
       )}`;
 
-      fs.writeFileSync("colors.js", resultsString);
+      writeFileSync("src/foundation.js", resultsString);
     },
   }),
 ])
-  .process(colors, { from: undefined })
+  .process(foundation, { from: undefined })
   .then();

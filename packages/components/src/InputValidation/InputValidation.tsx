@@ -49,3 +49,4 @@ export function InputValidation({ message }: InputValidationProps) {
     </>
   );
 }
+export default InputValidation;

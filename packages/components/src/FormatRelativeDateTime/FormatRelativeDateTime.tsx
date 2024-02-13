@@ -83,3 +83,4 @@ function showMinutes(minutes: number) {
     return minutes + " minutes ago";
   }
 }
+export default FormatRelativeDateTime;

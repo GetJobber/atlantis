@@ -103,3 +103,4 @@ function getTooltipMessage(
 
 Chip.Prefix = ChipPrefix;
 Chip.Suffix = ChipSuffix;
+export default Chip;

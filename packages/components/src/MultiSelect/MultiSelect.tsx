@@ -139,3 +139,4 @@ export function MultiSelect({
     </div>
   );
 }
+export default MultiSelect;

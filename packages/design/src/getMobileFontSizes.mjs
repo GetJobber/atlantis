@@ -1,4 +1,4 @@
-function getMobileFontSizes() {
+export function getMobileFontSizes() {
   return {
     "typography--fontSize-extravagant": 42,
     "typography--fontSize-jumbo": 32,
@@ -11,7 +11,3 @@ function getMobileFontSizes() {
     "typography--fontSize-smallest": 10,
   };
 }
-
-module.exports = {
-  getMobileFontSizes,
-};

@@ -73,3 +73,4 @@ export function Disclosure({
     setOpen(!currentToggleState);
   }
 }
+export default Disclosure;

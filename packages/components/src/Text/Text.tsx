@@ -2,7 +2,13 @@ import React, { PropsWithChildren } from "react";
 import { Typography, TypographyOptions } from "../Typography";
 
 interface TextProps {
-  maxLines?: "single" | "small" | "base" | "large" | "larger" | "unlimited";
+  readonly maxLines?:
+    | "single"
+    | "small"
+    | "base"
+    | "large"
+    | "larger"
+    | "unlimited";
 
   readonly variation?:
     | "default"
@@ -57,3 +63,4 @@ export function Text({
     </Typography>
   );
 }
+export default Text;

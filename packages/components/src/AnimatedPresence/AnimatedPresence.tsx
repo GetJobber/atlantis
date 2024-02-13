@@ -99,3 +99,4 @@ function InternalAnimatedPresence({
     return (index - lastChildIndex) * TIMING_QUICK;
   }
 }
+export default AnimatedPresence;

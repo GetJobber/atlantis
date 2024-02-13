@@ -39,3 +39,4 @@ function isInvalidGroupNesting(childs: ReactElement | ReactElement[]): boolean {
     return false;
   });
 }
+export default InputGroup;

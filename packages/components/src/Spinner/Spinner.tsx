@@ -32,3 +32,4 @@ export function Spinner({ size = "base", inline }: SpinnerProps) {
     />
   );
 }
+export default Spinner;

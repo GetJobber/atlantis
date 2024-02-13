@@ -14,3 +14,4 @@ export function Chips(props: ChipsProps) {
       return <InternalChipSingleSelect {...props} />;
   }
 }
+export default Chips;

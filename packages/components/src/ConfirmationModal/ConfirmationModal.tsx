@@ -58,6 +58,7 @@ function confirmationModalReducer(
 
     case "confirm":
       state.onConfirm && state.onConfirm();
+
       return {
         ...state,
         open: false,
@@ -65,6 +66,7 @@ function confirmationModalReducer(
 
     case "cancel":
       state.onCancel && state.onCancel();
+
       return {
         ...state,
         open: false,
@@ -275,6 +277,7 @@ export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
 
     event.preventDefault();
     event.stopPropagation();
+
     switch (key) {
       case "Enter": {
         handleAction("confirm")();
@@ -287,3 +290,4 @@ export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
     }
   }
 });
+export default ConfirmationModal;

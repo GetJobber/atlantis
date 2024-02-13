@@ -28,7 +28,6 @@ module.exports = {
         "newlines-between": "never",
       },
     ],
-    "import/no-default-export": "error",
     "import/no-unresolved": ["error", { ignore: [".css$"] }],
     "import/namespace": "error",
     "import/default": "error",

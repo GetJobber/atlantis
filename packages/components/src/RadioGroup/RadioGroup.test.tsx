@@ -44,10 +44,10 @@ test("it should have unique ids on all radio options", () => {
   const { container, getAllByLabelText } = render(<MockRadioGroup />);
   const labels = getAllByLabelText("Two");
   const radio1 = container.querySelector(
-    `input#${labels[0].id}`,
+    `input[id="${labels[0].id}"]`,
   ) as HTMLInputElement;
   const radio2 = container.querySelector(
-    `input#${labels[1].id}`,
+    `input[id="${labels[1].id}"]`,
   ) as HTMLInputElement;
   expect(radio1.checked).toBeFalsy();
   expect(radio2.checked).toBeFalsy();

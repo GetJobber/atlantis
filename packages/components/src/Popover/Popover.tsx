@@ -96,5 +96,7 @@ function buildModifiers(arrowElement: HTMLElement | undefined | null) {
       },
     },
   ];
+
   return modifiers;
 }
+export default Popover;

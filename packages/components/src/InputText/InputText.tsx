@@ -78,18 +78,21 @@ function InputTextInternal(
     },
     blur: () => {
       const input = inputRef.current;
+
       if (input) {
         input.blur();
       }
     },
     focus: () => {
       const input = inputRef.current;
+
       if (input) {
         input.focus();
       }
     },
     scrollIntoView: arg => {
       const input = inputRef.current;
+
       if (input) {
         input.scrollIntoView(arg);
       }
@@ -164,6 +167,7 @@ function InputTextInternal(
 
   function insertText(text: string) {
     const input = inputRef.current;
+
     if (input) {
       insertAtCursor(input, text);
 
@@ -189,3 +193,4 @@ function insertAtCursor(
   input.selectionStart = input.selectionEnd = start + newText.length;
   input.focus();
 }
+export default InputText;

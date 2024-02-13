@@ -4,7 +4,8 @@ import { showToast } from ".";
 
 jest.mock("framer-motion", () => ({
   motion: {
-    div: require("react").forwardRef(({ children, ...rest }, ref) => (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    div: require("react").forwardRef(({ children, ...rest }: any, ref: any) => (
       <div {...rest} ref={ref}>
         {children}
       </div>

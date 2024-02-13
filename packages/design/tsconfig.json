@@ -1,11 +1,15 @@
 {
-  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     // "module": "commonjs",
+    "lib":["ES6"],
     "declaration": true,
     "rootDir": "src",
     "outDir": "dist",
+    "skipLibCheck": true,
+    "types":["react","react-native","jest"],
+    "allowSyntheticDefaultImports": true
   },
   "include": ["src"],
+  "exclude": ["node_modules", "dist"],
   "files": ["src/index.ts"]
 }

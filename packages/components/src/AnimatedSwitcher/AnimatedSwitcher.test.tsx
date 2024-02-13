@@ -28,7 +28,8 @@ function renderComponent(props?: Partial<AnimatedSwitcherProps>) {
 jest.mock("framer-motion", () => ({
   motion: {
     div: require("react").forwardRef(
-      ({ children, variants, transition, ...rest }, ref) => (
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ({ children, variants, transition, ...rest }: any, ref: never) => (
         <div
           {...rest}
           ref={ref}

@@ -37,3 +37,4 @@ export function Content({
 
   return createElement(type, { className }, children);
 }
+export default Content;

@@ -163,3 +163,4 @@ function Actions({ primary, secondary, tertiary }: ActionsProps) {
     </>
   );
 }
+export default Modal;

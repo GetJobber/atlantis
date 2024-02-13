@@ -38,3 +38,4 @@ export function InputEmail(props: InputEmailProps) {
     return true;
   }
 }
+export default InputEmail;

@@ -153,3 +153,4 @@ function BannerChildren({
 
   return <>{children}</>;
 }
+export default Banner;
