@@ -46,8 +46,6 @@ export const styles = StyleSheet.create({
 
   disabled: {
     backgroundColor: tokens["color-disabled--secondary"],
-    borderTopLeftRadius: tokens["radius-large"],
-    borderTopRightRadius: tokens["radius-large"],
   },
 
   fieldAffix: {
