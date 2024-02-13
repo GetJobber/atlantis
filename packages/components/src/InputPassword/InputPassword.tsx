@@ -25,6 +25,7 @@ interface InputPasswordProps
 export function InputPassword(props: InputPasswordProps) {
   const { hasVisibility = false } = props;
   const [visible, setVisibility] = useState(false);
+  const [miniLabel, setMiniLabel] = useState(!!props.defaultValue);
 
   return (
     <FormField
@@ -36,12 +37,14 @@ export function InputPassword(props: InputPasswordProps) {
           onClick: () => setVisibility(!visible),
         },
       })}
+      miniLabel={miniLabel}
       type={visible ? "text" : "password"}
       onChange={handleChange}
     />
   );
 
   function handleChange(newValue: string) {
+    setMiniLabel(!!newValue);
     props.onChange && props.onChange(newValue);
   }
 }

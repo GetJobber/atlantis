@@ -14,8 +14,13 @@ export default {
   },
 } as ComponentMeta<typeof InputNumber>;
 
+const PureTemplate: ComponentStory<typeof InputNumber> = args => {
+  return <InputNumber {...args} />;
+};
+
 const BasicTemplate: ComponentStory<typeof InputNumber> = args => {
   const [value, setValue] = useState(args.value);
+
   return (
     <InputNumber
       {...args}
@@ -44,6 +49,7 @@ Sizes.args = {
 
 const InlineTemplate: ComponentStory<typeof InputNumber> = args => {
   const [value, setValue] = useState(args.value);
+
   return (
     <Text>
       Follow-up after
@@ -68,12 +74,15 @@ Inline.args = {
 
 const FocusTemplate: ComponentStory<typeof InputNumber> = args => {
   const inputNumberRef = useRef<InputNumberRef>(null);
+
   const focusInput = () => {
     inputNumberRef.current?.focus();
   };
+
   const blurInput = () => {
     inputNumberRef.current?.blur();
   };
+
   return (
     <Content>
       <InputNumber {...args} value={5} ref={inputNumberRef} />
@@ -86,3 +95,9 @@ const FocusTemplate: ComponentStory<typeof InputNumber> = args => {
 
 export const FocusAndBlur = FocusTemplate.bind({});
 FocusAndBlur.args = {};
+
+export const Pure = PureTemplate.bind({});
+Pure.args = {
+  pure: true,
+  placeholder: "Number!",
+};

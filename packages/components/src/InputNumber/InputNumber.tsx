@@ -34,7 +34,7 @@ function InputNumberInternal(
   ref: Ref<InputNumberRef>,
 ) {
   const inputRef = createRef<HTMLTextAreaElement | HTMLInputElement>();
-
+  const [miniLabel, setMiniLabel] = React.useState(!!props.defaultValue);
   useImperativeHandle(ref, () => ({
     blur: () => {
       const input = inputRef.current;
@@ -55,6 +55,7 @@ function InputNumberInternal(
   return (
     <FormField
       {...props}
+      miniLabel={miniLabel}
       type="number"
       inputRef={inputRef}
       onChange={handleChange}
@@ -84,6 +85,7 @@ function InputNumberInternal(
   }
 
   function handleChange(newValue: number) {
+    setMiniLabel(!!newValue);
     props.onChange && props.onChange(newValue);
   }
 

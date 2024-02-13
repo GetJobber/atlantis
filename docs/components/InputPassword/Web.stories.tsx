@@ -17,6 +17,7 @@ const BasicTemplate: ComponentStory<typeof InputPassword> = args => (
 
 const ControlledTemplate: ComponentStory<typeof InputPassword> = args => {
   const [value, setValue] = useState("password");
+
   return (
     <InputPassword
       {...args}
@@ -52,4 +53,10 @@ WithError.args = {
       message: "Password must be at least 10 characters",
     },
   },
+};
+
+export const Pure = BasicTemplate.bind({});
+Pure.args = {
+  placeholder: "Password",
+  pure: true,
 };

@@ -43,4 +43,6 @@ export interface InputTimeProps
    * Function called when user changes input value.
    */
   onChange?(newValue?: CivilTime): void;
+
+  pure?: boolean;
 }

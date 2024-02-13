@@ -122,6 +122,11 @@ export interface CommonFormFieldProps {
    * set it to `always`.
    */
   readonly clearable?: "never" | "always";
+  /**
+   * By default we attach to react-hook-form. If you want to use the input
+   * without react-hook-form, you can set this to true.
+   */
+  readonly pure?: boolean;
 }
 
 export interface FormFieldProps extends CommonFormFieldProps {
@@ -226,4 +231,10 @@ export interface FormFieldProps extends CommonFormFieldProps {
    * highlights the the field red if an error message shows up.
    */
   readonly validations?: RegisterOptions;
+}
+
+export interface FormFieldPureProps extends FormFieldProps {
+  message?: string;
+  pure?: boolean;
+  miniLabel?: boolean;
 }

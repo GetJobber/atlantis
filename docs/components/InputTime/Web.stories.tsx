@@ -76,3 +76,9 @@ Invalid.args = {
   defaultValue: new CivilTime(2, 35),
   invalid: true,
 };
+
+export const Pure = BasicTemplate.bind({});
+Pure.args = {
+  defaultValue: new CivilTime(2, 35),
+  pure: true,
+};

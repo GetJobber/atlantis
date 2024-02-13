@@ -42,5 +42,13 @@ Loading.args = {
 export const Clearable = BasicTemplate.bind({});
 Clearable.args = {
   name: "name",
+  placeholder: "Name!",
   clearable: "always",
+};
+
+export const Pure = BasicTemplate.bind({});
+Pure.args = {
+  name: "name",
+  placeholder: "Name!",
+  pure: true,
 };

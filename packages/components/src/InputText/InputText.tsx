@@ -10,7 +10,7 @@ import {
   CommonFormFieldProps,
   FieldActionsRef,
   FormField,
-  FormFieldProps,
+  FormFieldPureProps,
 } from "../FormField";
 
 export interface RowRange {
@@ -21,7 +21,7 @@ export interface RowRange {
 interface BaseProps
   extends CommonFormFieldProps,
     Pick<
-      FormFieldProps,
+      FormFieldPureProps,
       | "maxLength"
       | "readonly"
       | "autocomplete"
@@ -69,7 +69,7 @@ function InputTextInternal(
 ) {
   const inputRef = useRef<HTMLTextAreaElement | HTMLInputElement>(null);
   const actionsRef = useRef<FieldActionsRef>(null);
-
+  const [miniLabel, setMiniLabel] = React.useState(!!props.defaultValue);
   const rowRange = getRowRange();
 
   useImperativeHandle(ref, () => ({
@@ -108,6 +108,7 @@ function InputTextInternal(
   return (
     <FormField
       {...props}
+      miniLabel={miniLabel}
       type={props.multiline ? "textarea" : "text"}
       inputRef={inputRef}
       actionsRef={actionsRef}
@@ -118,6 +119,7 @@ function InputTextInternal(
 
   function handleChange(newValue: string) {
     props.onChange && props.onChange(newValue);
+    setMiniLabel(!!newValue);
 
     if (inputRef && inputRef.current instanceof HTMLTextAreaElement) {
       resize(inputRef.current);

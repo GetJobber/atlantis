@@ -15,7 +15,25 @@ const BasicTemplate: ComponentStory<typeof InputEmail> = args => (
   <InputEmail {...args} />
 );
 
+const PureTemplate: ComponentStory<typeof InputEmail> = args => {
+  const [value, setValue] = React.useState(args.defaultValue || "");
+
+  return (
+    <InputEmail
+      {...args}
+      value={value}
+      onChange={(e: string) => setValue(e as string)}
+    />
+  );
+};
+
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
   placeholder: "Enter your email",
+};
+
+export const Pure = PureTemplate.bind({});
+Pure.args = {
+  placeholder: "Enter your email",
+  pure: true,
 };
