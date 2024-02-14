@@ -118,9 +118,4 @@ export const styles = StyleSheet.create({
     borderColor: tokens["color-disabled--secondary"],
     backgroundColor: tokens["color-disabled--secondary"],
   },
-
-  disabledTertiary: {
-    borderColor: "transparent",
-    backgroundColor: "transparent",
-  },
 });

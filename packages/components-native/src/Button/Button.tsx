@@ -115,7 +115,6 @@ export function Button({
     styles[type],
     type === "secondary" && variation === "cancel" && styles.cancelSecondary,
     disabled && styles.disabled,
-    disabled && type === "tertiary" && styles.disabledTertiary,
     fullWidth && styles.reducedPaddingForFullWidth,
     fullHeight && styles.fullHeight,
   ];
