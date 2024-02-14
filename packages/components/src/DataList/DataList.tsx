@@ -165,8 +165,8 @@ function InternalDataList({
             <InternalDataListSearch />
           </div>
 
-          <DataListHeader />
           <InternalDataListStatusBar />
+          <DataListHeader />
         </DataListStickyHeader>
       )}
 
