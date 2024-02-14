@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.81.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.80.0...@jobber/components@4.81.0) (2024-02-14)
+
+
+### Features
+
+* **components:** Render DataListStickyHeader when headers are present ([#1758](https://github.com/GetJobber/atlantis/issues/1758)) ([eb383ac](https://github.com/GetJobber/atlantis/commit/eb383ac890d8721b4a1c73f692e48ac6ff728e02))
+
+
+
+
+
 # [4.80.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.79.2...@jobber/components@4.80.0) (2024-02-13)
 
 
