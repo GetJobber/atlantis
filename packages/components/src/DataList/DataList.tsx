@@ -162,10 +162,10 @@ function InternalDataList({
           </div>
 
           <InternalDataListStatusBar />
-
-          <DataListHeader />
         </DataListStickyHeader>
       )}
+
+      <DataListHeader />
 
       {initialLoading && <DataListLoadingState />}
 
