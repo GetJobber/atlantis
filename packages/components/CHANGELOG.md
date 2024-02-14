@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.80.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.79.2...@jobber/components@4.80.0) (2024-02-13)
+
+
+### Features
+
+* **components:** Conditionally render DataListStickyHeader based on presence of children ([#1755](https://github.com/GetJobber/atlantis/issues/1755)) ([64ec3d4](https://github.com/GetJobber/atlantis/commit/64ec3d448349202d95fefecc2d66a9547d44031a))
+
+
+
+
+
+## [4.79.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.79.1...@jobber/components@4.79.2) (2024-02-12)
+
+
+### Bug Fixes
+
+* **components:** clearing search term in Combobox after clicking on clear button  ([#1756](https://github.com/GetJobber/atlantis/issues/1756)) ([057eafb](https://github.com/GetJobber/atlantis/commit/057eafb8e0aeeac0ec0abf32dea8c8e68139dd5a))
+
+
+
+
+
 ## [4.79.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.79.0...@jobber/components@4.79.1) (2024-02-09)
 
 

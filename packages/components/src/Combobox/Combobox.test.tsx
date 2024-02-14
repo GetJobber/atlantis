@@ -385,6 +385,7 @@ describe("Combobox Multiselect", () => {
           selected={[]}
           onSelect={handleSelect}
           onClose={handleClose}
+          onSearch={mockOnSearch}
         >
           <Combobox.Option id="1" label="Bilbo Baggins" />
           <Combobox.Option id="2" label="Frodo Baggins" />
@@ -398,6 +399,14 @@ describe("Combobox Multiselect", () => {
       await userEvent.click(screen.getByTestId(OVERLAY_TEST_ID));
 
       expect(handleClose).toHaveBeenCalledTimes(1);
+    });
+
+    it("should call onSearch with correct params when closing", async () => {
+      await userEvent.click(screen.getByRole("combobox"));
+      await userEvent.click(screen.getByTestId(OVERLAY_TEST_ID));
+      expect(screen.getByTestId(MENU_TEST_ID)).toHaveClass("hidden");
+
+      expect(mockOnSearch).toHaveBeenCalledWith("");
     });
   });
 });
