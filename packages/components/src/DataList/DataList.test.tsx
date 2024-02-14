@@ -399,7 +399,7 @@ describe("DataList", () => {
   describe("DataListStickyHeader", () => {
     const mockOnSearch = jest.fn();
 
-    const renderDataListWithLayout = (children: ReactElement) => {
+    const renderDataList = (children: ReactElement) => {
       render(
         <DataList data={mockData} headers={{}}>
           {children}
@@ -407,15 +407,23 @@ describe("DataList", () => {
       );
     };
 
+    const renderDataListWithHeaders = (children: ReactElement) => {
+      render(
+        <DataList data={mockData} headers={mockHeaders}>
+          {children}
+        </DataList>,
+      );
+    };
+
     it("should render the Sticky Header if DataList.Search is provided", () => {
-      renderDataListWithLayout(<DataList.Search onSearch={mockOnSearch} />);
+      renderDataList(<DataList.Search onSearch={mockOnSearch} />);
       expect(
         screen.queryByTestId(DATA_LIST_STICKY_HEADER_TEST_ID),
       ).toBeInTheDocument();
     });
 
     it("should render the Sticky Header if DataList.Filters is provided", () => {
-      renderDataListWithLayout(
+      renderDataList(
         <DataList.Filters>
           <div>Filters</div>
         </DataList.Filters>,
@@ -425,8 +433,15 @@ describe("DataList", () => {
       ).toBeInTheDocument();
     });
 
-    it("should not render Sticky Header when DataList.Search and DataList.Filters are not provided", () => {
-      renderDataListWithLayout(<></>);
+    it("should render the Sticky Header when Headers are provided", () => {
+      renderDataListWithHeaders(<></>);
+      expect(
+        screen.queryByTestId(DATA_LIST_STICKY_HEADER_TEST_ID),
+      ).toBeInTheDocument();
+    });
+
+    it("should not render Sticky Header when DataList.Search, DataList.Filters or no Headers are not provided", () => {
+      renderDataList(<></>);
       expect(
         screen.queryByTestId(DATA_LIST_STICKY_HEADER_TEST_ID),
       ).not.toBeInTheDocument();

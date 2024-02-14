@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 import React, { useRef, useState } from "react";
 import styles from "./DataList.css";
 import { DataListTotalCount } from "./components/DataListTotalCount";
@@ -83,7 +84,10 @@ export function DataList<T extends DataListObject>({
     props.children,
     DataListBulkActions,
   );
-  const shouldRenderStickyHeader = !!filterComponent || !!searchComponent;
+  const headerCount = Object.keys(props.headers).length;
+
+  const shouldRenderStickyHeader =
+    !!filterComponent || !!searchComponent || headerCount > 0;
 
   return (
     <DataListContext.Provider
@@ -162,7 +166,6 @@ function InternalDataList({
           </div>
 
           <InternalDataListStatusBar />
-
           <DataListHeader />
         </DataListStickyHeader>
       )}
