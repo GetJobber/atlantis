@@ -159,6 +159,7 @@ function InternalInputTime({
         clearable={canClearTime}
         disabled={disabled}
         invalid={invalid}
+        focused={showPicker}
         placeholder={placeholder ?? t("time")}
         prefix={showIcon ? { icon: "timer" } : undefined}
         value={formattedTime}

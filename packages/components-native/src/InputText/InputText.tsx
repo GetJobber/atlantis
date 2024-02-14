@@ -377,8 +377,8 @@ function InputTextInternal(
           styles.inputPaddingTop,
           !hasMiniLabel && commonInputStyles.inputEmpty,
           disabled && commonInputStyles.inputDisabled,
-          multiline && Platform.OS === "ios" && styles.multilineInputiOS,
           multiline && styles.multiLineInput,
+          multiline && Platform.OS === "ios" && styles.multilineInputiOS,
           multiline && hasMiniLabel && styles.multiLineInputWithMini,
           styleOverride?.inputText,
         ]}
