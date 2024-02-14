@@ -99,7 +99,10 @@ describe("Button", () => {
         borderColor: tokens["color-border"],
       },
     ],
-    ["tertiary", { bgColor: "transparent" }],
+    [
+      "tertiary",
+      { bgColor: tokens["color-surface"], borderColor: "transparent" },
+    ],
   ])("renders a %s Button", (type, { bgColor, borderColor }) => {
     const { buttonStyle } = renderButton(
       <Button label={type} type={type} onPress={jest.fn()} />,

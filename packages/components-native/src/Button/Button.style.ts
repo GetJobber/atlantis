@@ -108,11 +108,8 @@ export const styles = StyleSheet.create({
   },
 
   tertiary: {
-    backgroundColor: "transparent",
+    backgroundColor: tokens["color-surface"],
     borderColor: "transparent",
-    paddingHorizontal: 0,
-    paddingVertical: 0,
-    minHeight: "auto",
   },
 
   /* Disabled */
