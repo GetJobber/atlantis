@@ -87,7 +87,7 @@ export function DataList<T extends DataListObject>({
   const headerCount = Object.keys(props.headers).length;
 
   const shouldRenderStickyHeader =
-    !!filterComponent || !!searchComponent || !!(headerCount > 0);
+    !!filterComponent || !!searchComponent || headerCount > 0;
 
   return (
     <DataListContext.Provider
