@@ -2,9 +2,9 @@ import { StyleSheet } from "react-native";
 import { tokens } from "../utils/design";
 
 const iconTranslateY = tokens["space-large"] / 2;
-const buttonRadius = tokens["radius-large"];
-export const baseButtonHeight = tokens["space-base"] * 3.5;
-export const smallButtonHeight = tokens["space-base"] * 2.25;
+const buttonRadius = tokens["radius-base"];
+export const baseButtonHeight = tokens["space-base"] * 3;
+export const smallButtonHeight = tokens["space-base"] * 2.5;
 
 export const styles = StyleSheet.create({
   fullHeight: {
@@ -91,7 +91,11 @@ export const styles = StyleSheet.create({
   /* Cancel is special because, by default, it's styled as a secondary button */
   cancel: {
     backgroundColor: tokens["color-surface"],
-    borderColor: tokens["color-interactive--subtle"],
+    borderColor: tokens["color-border"],
+  },
+
+  cancelSecondary: {
+    borderColor: "transparent",
   },
 
   /* Types */
@@ -100,11 +104,12 @@ export const styles = StyleSheet.create({
 
   secondary: {
     backgroundColor: tokens["color-surface"],
+    borderColor: tokens["color-border"],
   },
 
   tertiary: {
     backgroundColor: tokens["color-surface"],
-    borderColor: tokens["color-surface"],
+    borderColor: "transparent",
   },
 
   /* Disabled */

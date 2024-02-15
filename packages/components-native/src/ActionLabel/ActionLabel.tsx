@@ -64,6 +64,7 @@ function getColor(variation: ActionLabelVariation, disabled: boolean) {
   if (disabled) {
     return "disabled";
   }
+
   if (variation) {
     return variation;
   }
@@ -76,7 +77,7 @@ function getFontWeight(type: ActionLabelType) {
     return "bold";
   }
 
-  return "extraBold";
+  return "semiBold";
 }
 
 function getLetterSpacing(type: ActionLabelType) {
