@@ -18,11 +18,7 @@ import {
   TextInputProps,
   TextStyle,
 } from "react-native";
-import {
-  ControllerRenderProps,
-  FieldValues,
-  RegisterOptions,
-} from "react-hook-form";
+import { RegisterOptions } from "react-hook-form";
 import { IconNames } from "@jobber/design";
 import identity from "lodash/identity";
 import { Clearable, useShowClear } from "@jobber/hooks";
@@ -427,7 +423,6 @@ function InputTextInternal(
      * https://github.com/facebook/react-native/issues/36521#issuecomment-1555421134
      */
     const removedIOSCharValue = isIOS ? value.replace(/\uFFFC/g, "") : value;
-    const newValue = outputTransform(removedIOSCharValue);
     updateFormAndState(removedIOSCharValue);
   }
 
@@ -452,6 +447,7 @@ function InputTextInternal(
     const newValue = outputTransform(rawValue);
     onChangeText?.(newValue);
     field.onChange(newValue);
+  }
 }
 
 function trimWhitespace(
@@ -493,7 +489,6 @@ function useTextInputRef({ ref, onClear }: UseTextInputRefProps) {
 
 function useMiniLabel(internalValue: string): {
   hasMiniLabel: boolean;
-  setHasMiniLabel: React.Dispatch<React.SetStateAction<boolean>>;
 } {
   const [hasMiniLabel, setHasMiniLabel] = useState(Boolean(internalValue));
   useEffect(() => {

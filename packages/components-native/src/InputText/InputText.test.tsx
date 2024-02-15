@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   RenderAPI,
   fireEvent,
@@ -6,6 +6,7 @@ import {
   waitFor,
 } from "@testing-library/react-native";
 import { Platform, TextStyle } from "react-native";
+import { FormProvider, useForm } from "react-hook-form";
 import { InputText, InputTextProps } from "./InputText";
 import { InputAccessoriesProvider } from "./context";
 import {
@@ -525,6 +526,107 @@ describe("InputText", () => {
         flattenedStyle.letterSpacing,
       );
       expect(styleOverride.inputText.color).toEqual(flattenedStyle.color);
+    });
+  });
+});
+
+describe("Transform", () => {
+  const base64Transformer = {
+    input: (a: string | undefined) => {
+      if (!a) return a;
+
+      return atob(a);
+    },
+    output: (a: string | undefined) => {
+      if (!a) return a;
+
+      return btoa(a);
+    },
+  };
+
+  describe("when working with controlled components", () => {
+    it("form state gets corect value during change", () => {
+      const a11yLabel = "Test InputText";
+      const onFormValueUpdate = jest.fn();
+      const { getByLabelText } = renderInputText({
+        onChangeText: onFormValueUpdate,
+        accessibilityLabel: a11yLabel,
+        transform: base64Transformer,
+      });
+      const input = getByLabelText(a11yLabel);
+      fireEvent.changeText(input, "New value ");
+      expect(onFormValueUpdate).toHaveBeenCalledWith("TmV3IHZhbHVlIA==");
+    });
+
+    it("form state gets corect value on blur", () => {
+      const a11yLabel = "Test InputText";
+      const onFormValueUpdate = jest.fn();
+      const { getByLabelText } = renderInputText({
+        onChangeText: onFormValueUpdate,
+        accessibilityLabel: a11yLabel,
+        transform: base64Transformer,
+      });
+      const input = getByLabelText(a11yLabel);
+      fireEvent.changeText(input, "New value ");
+      fireEvent(input, "blur");
+      expect(onFormValueUpdate).toHaveBeenCalledTimes(2);
+      expect(onFormValueUpdate).toHaveBeenLastCalledWith("TmV3IHZhbHVl");
+    });
+  });
+
+  describe("When working with uncontrolled components", () => {
+    const onFormValueUpdate = jest.fn();
+    beforeEach(jest.clearAllMocks);
+
+    function FormWrapper({ children }: { readonly children: React.ReactNode }) {
+      const form = useForm();
+      useEffect(() => {
+        return form.watch((value, { name, type }) => {
+          console.log(value, name, type);
+          console.log("value", value);
+          onFormValueUpdate(value);
+        }).unsubscribe;
+      }, [form]);
+
+      return <FormProvider {...form}>{children}</FormProvider>;
+    }
+
+    it("change handler gets corect value during change", () => {
+      const a11yLabel = "Test InputText";
+      const { getByLabelText } = render(
+        <FormWrapper>
+          <InputText
+            name="test"
+            accessibilityLabel={a11yLabel}
+            defaultValue=""
+            transform={base64Transformer}
+          />
+        </FormWrapper>,
+      );
+      const input = getByLabelText(a11yLabel);
+      fireEvent.changeText(input, "New value ");
+      expect(onFormValueUpdate).toHaveBeenCalledWith({
+        test: "TmV3IHZhbHVlIA==",
+      });
+    });
+    it("change handler gets corect value on blur", () => {
+      const a11yLabel = "Test InputText";
+      const { getByLabelText } = render(
+        <FormWrapper>
+          <InputText
+            name="test"
+            accessibilityLabel={a11yLabel}
+            transform={base64Transformer}
+          />
+        </FormWrapper>,
+      );
+      const input = getByLabelText(a11yLabel);
+      fireEvent.changeText(input, "New value ");
+      fireEvent(input, "blur");
+      expect(onFormValueUpdate).toHaveBeenCalledTimes(2);
+      expect(onFormValueUpdate).toHaveBeenLastCalledWith({
+        test: "TmV3IHZhbHVl",
+      });
     });
   });
 });
