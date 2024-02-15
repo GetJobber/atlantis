@@ -10,7 +10,7 @@ const defaultStyles = {
   textAlign: "center",
   fontSize: tokens["typography--fontSize-base"],
   lineHeight: tokens["typography--lineHeight-tight"],
-  letterSpacing: tokens["typography--letterSpacing-loose"],
+  letterSpacing: tokens["typography--letterSpacing-base"],
 };
 
 describe("ActionLabel", () => {

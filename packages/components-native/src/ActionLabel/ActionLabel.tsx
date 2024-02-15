@@ -51,7 +51,6 @@ export function ActionLabel({
       fontWeight={getFontWeight(type)}
       align={align}
       lineHeight="tight"
-      letterSpacing={getLetterSpacing(type)}
       maxFontScaleSize={tokens["typography--fontSize-large"]}
       selectable={false}
     >
@@ -78,12 +77,4 @@ function getFontWeight(type: ActionLabelType) {
   }
 
   return "semiBold";
-}
-
-function getLetterSpacing(type: ActionLabelType) {
-  if (type === "cardTitle") {
-    return "base";
-  }
-
-  return "loose";
 }
