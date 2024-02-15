@@ -64,7 +64,7 @@ exports[`StatusLabel alignment when alignment prop set to "end" should match sna
       [
         {
           "backgroundColor": "rgb(125, 176, 14)",
-          "borderRadius": 2,
+          "borderRadius": 3,
           "height": 12,
           "marginTop": 3,
           "width": 12,
@@ -143,7 +143,7 @@ exports[`StatusLabel alignment when alignment prop set to default ("start") shou
       [
         {
           "backgroundColor": "rgb(125, 176, 14)",
-          "borderRadius": 2,
+          "borderRadius": 3,
           "height": 12,
           "marginTop": 3,
           "width": 12,
@@ -222,7 +222,7 @@ exports[`StatusLabel status when status prop set to "critical" should match snap
       [
         {
           "backgroundColor": "rgb(125, 176, 14)",
-          "borderRadius": 2,
+          "borderRadius": 3,
           "height": 12,
           "marginTop": 3,
           "width": 12,
@@ -301,7 +301,7 @@ exports[`StatusLabel status when status prop set to "inactive" should match snap
       [
         {
           "backgroundColor": "rgb(125, 176, 14)",
-          "borderRadius": 2,
+          "borderRadius": 3,
           "height": 12,
           "marginTop": 3,
           "width": 12,
@@ -380,7 +380,7 @@ exports[`StatusLabel status when status prop set to "informative" should match s
       [
         {
           "backgroundColor": "rgb(125, 176, 14)",
-          "borderRadius": 2,
+          "borderRadius": 3,
           "height": 12,
           "marginTop": 3,
           "width": 12,
@@ -459,7 +459,7 @@ exports[`StatusLabel status when status prop set to "warning" should match snaps
       [
         {
           "backgroundColor": "rgb(125, 176, 14)",
-          "borderRadius": 2,
+          "borderRadius": 3,
           "height": 12,
           "marginTop": 3,
           "width": 12,
@@ -538,7 +538,7 @@ exports[`StatusLabel status when status prop set to default ("success") should m
       [
         {
           "backgroundColor": "rgb(125, 176, 14)",
-          "borderRadius": 2,
+          "borderRadius": 3,
           "height": 12,
           "marginTop": 3,
           "width": 12,
