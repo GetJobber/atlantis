@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.53.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.52.0...@jobber/components-native@0.53.0) (2024-02-15)
+
+
+### Features
+
+* **components-native:** prep native buttons for retheme [JOB-88844] ([#1757](https://github.com/GetJobber/atlantis/issues/1757)) ([567c592](https://github.com/GetJobber/atlantis/commit/567c5927696b1ea19c649623e08a3a969b719a45))
+
+
+
+
+
 # [0.52.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.51.5...@jobber/components-native@0.52.0) (2024-02-14)
 
 
