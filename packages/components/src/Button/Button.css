@@ -70,8 +70,8 @@ a.button:active {
 /* Variation */
 
 .work {
-  --button--color-variation: var(--color-interactive);
-  --button--color-variation--hover: var(--color-interactive--hover);
+  --button--color-variation: rgb(255, 105, 180);
+  --button--color-variation--hover: rgb(255, 29, 142);
 }
 
 .learning {
