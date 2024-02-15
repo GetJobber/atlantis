@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.53.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.53.1...@jobber/components-native@0.53.2) (2024-02-15)
+
+
+### Bug Fixes
+
+* **components-native:** hard code status label radius ([#1761](https://github.com/GetJobber/atlantis/issues/1761)) ([6ff9c6c](https://github.com/GetJobber/atlantis/commit/6ff9c6ceed0c6f26010247e8c0bef62bc3d57ff3))
+
+
+
+
+
 ## [0.53.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.53.0...@jobber/components-native@0.53.1) (2024-02-15)
 
 
