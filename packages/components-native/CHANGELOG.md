@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.53.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.53.0...@jobber/components-native@0.53.1) (2024-02-15)
+
+
+### Bug Fixes
+
+* **components-native:** remove action label letter spacing ([#1760](https://github.com/GetJobber/atlantis/issues/1760)) ([990b664](https://github.com/GetJobber/atlantis/commit/990b6644979ddcc394e6b30d6e777de58701d62e))
+
+
+
+
+
 # [0.53.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.52.0...@jobber/components-native@0.53.0) (2024-02-15)
 
 
