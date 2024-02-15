@@ -283,7 +283,7 @@ function InputTextInternal(
 
   const hasValue = internalValue !== "" && internalValue !== undefined;
   const [focused, setFocused] = useState(false);
-  const { hasMiniLabel, setHasMiniLabel } = useMiniLabel(internalValue);
+  const { hasMiniLabel } = useMiniLabel(internalValue);
 
   const textInputRef = useTextInputRef({ ref, onClear: handleClear });
 
@@ -408,7 +408,7 @@ function InputTextInternal(
           setFocused(false);
           onBlur?.();
           field.onBlur();
-          trimWhitespace(field, onChangeText);
+          trimWhitespace(inputTransform(field.value), updateFormAndState);
         }}
         ref={(instance: TextInput) => {
           // RHF wants us to do it this way
@@ -428,9 +428,7 @@ function InputTextInternal(
      */
     const removedIOSCharValue = isIOS ? value.replace(/\uFFFC/g, "") : value;
     const newValue = outputTransform(removedIOSCharValue);
-    setHasMiniLabel(Boolean(newValue));
-    onChangeText?.(newValue);
-    field.onChange(newValue);
+    updateFormAndState(removedIOSCharValue);
   }
 
   function handleClear() {
@@ -444,25 +442,32 @@ function InputTextInternal(
       handleOnFocusNext();
     }
   }
+
+  /**
+   * Updates both the form value and the onChangeText callback
+   * Ensuring that the tranform output function is called
+   * @param rawValue value to be sent to form state and onChangeText callback
+   */
+  function updateFormAndState(rawValue: string) {
+    const newValue = outputTransform(rawValue);
+    onChangeText?.(newValue);
+    field.onChange(newValue);
 }
 
 function trimWhitespace(
-  field: ControllerRenderProps<FieldValues, string>,
-  onChangeText?: (newValue: string) => void,
+  inputValue: string | undefined,
+  onChangeText: (newValue: string) => void,
 ) {
-  if (!field.value || !field.value.trim) {
+  if (!inputValue || !inputValue.trim) {
     return;
   }
+  const trimmedInput = inputValue.trim();
 
-  const trimmedInput = field.value.trim();
-
-  if (trimmedInput === field.value) {
-    // avoid re-renders when nothing changed
-    return;
+  if (trimmedInput === inputValue) {
+    return; // no changes, avoid re-renders
   }
 
-  onChangeText?.(trimmedInput);
-  field.onChange(trimmedInput);
+  onChangeText(trimmedInput);
 }
 
 interface UseTextInputRefProps {
@@ -495,5 +500,5 @@ function useMiniLabel(internalValue: string): {
     setHasMiniLabel(Boolean(internalValue));
   }, [internalValue]);
 
-  return { hasMiniLabel, setHasMiniLabel };
+  return { hasMiniLabel };
 }
