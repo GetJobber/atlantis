@@ -394,6 +394,65 @@ describe("DataList", () => {
       expect(screen.queryByText(mockHeaders.name)).not.toBeInTheDocument();
       expect(screen.queryByText(mockHeaders.email)).not.toBeInTheDocument();
     });
+
+    it("should render the sorting arrows when sorting is specified", () => {
+      renderLayout(undefined, {
+        sortable: [{ key: "name" }],
+        onSort: jest.fn(),
+        state: undefined,
+      });
+      expect(screen.queryByTestId(SORTING_ICON_TEST_ID)).toBeInTheDocument();
+    });
+
+    it("should not render the sorting arrows when sorting is not specified", () => {
+      renderLayout();
+      expect(
+        screen.queryByTestId(SORTING_ICON_TEST_ID),
+      ).not.toBeInTheDocument();
+    });
+
+    it("should trigger the onSort when the header is clicked", () => {
+      const mockOnSort = jest.fn();
+      renderLayout(undefined, {
+        sortable: [{ key: "name" }],
+        onSort: mockOnSort,
+        state: undefined,
+      });
+
+      fireEvent.click(screen.getByText(mockHeaders.name));
+      expect(mockOnSort).toHaveBeenCalled();
+    });
+
+    it("should render custom options when sorting is specified", () => {
+      const mockOnSort = jest.fn();
+
+      renderLayout(undefined, {
+        sortable: [
+          {
+            key: "name",
+            options: [
+              { id: "name", label: "Ascending", order: "asc" },
+              { id: "name", label: "Descending", order: "desc" },
+            ],
+          },
+        ],
+        onSort: mockOnSort,
+        state: undefined,
+      });
+
+      fireEvent.click(screen.getByText(mockHeaders.name));
+      expect(screen.getByText("Ascending")).toBeInTheDocument();
+      expect(screen.getByText("Descending")).toBeInTheDocument();
+
+      fireEvent.click(screen.getByText("Ascending"));
+
+      expect(mockOnSort).toHaveBeenCalledWith({
+        key: "name",
+        id: "name",
+        label: "Ascending",
+        order: "asc",
+      });
+    });
   });
 
   describe("DataListStickyHeader", () => {
