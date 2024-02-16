@@ -34,8 +34,3 @@ export default function MyComponent() {
 
 More information on Atlantis can be found at
 [https://atlantis.getjobber.com](https://atlantis.getjobber.com).
-
-## Further Reading
-
-More information on Atlantis can be found at
-[https://atlantis.getjobber.com](https://atlantis.getjobber.com).
