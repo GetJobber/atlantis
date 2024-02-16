@@ -1,3 +1,4 @@
+/* eslint-disable import/no-internal-modules */
 export { default as AnimatedPresence } from "./AnimatedPresence/AnimatedPresence";
 export { default as AnimatedSwitcher } from "./AnimatedSwitcher/AnimatedSwitcher";
 export { default as Autocomplete } from "./Autocomplete/Autocomplete";
@@ -65,6 +66,7 @@ export { default as Spinner } from "./Spinner/Spinner";
 export { default as StatusLabel } from "./StatusLabel/StatusLabel";
 export { default as Switch } from "./Switch/Switch";
 export { default as Table } from "./Table/Table";
+export { default as Header } from "./Table/Header";
 export { default as Tabs } from "./Tabs/Tabs";
 export { default as Text } from "./Text/Text";
 export { default as Toast } from "./Toast/Toast";
