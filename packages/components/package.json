@@ -2,7 +2,7 @@
   "name": "@jobber/components",
   "version": "4.80.0",
   "license": "MIT",
-  "type":"module",
+  "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -324,7 +324,7 @@
     "color": "^3.1.2",
     "filesize": "^6.1.0",
     "framer-motion": "^11.0.3",
-    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
     "react-countdown": "^2.3.2",
     "react-datepicker": "~4.10.0",
     "react-dropzone": "^11.0.2",
