@@ -6,7 +6,7 @@ import autoprefixer from "autoprefixer";
 import postcssPresetEnv from "postcss-preset-env";
 
 export default {
-  input: `src/index.tsx`,
+  input: [`src/index.tsx`],
   plugins: [
     postcss({
       modules: {
@@ -30,12 +30,13 @@ export default {
     }),
     typescript({
       tsconfig: "./tsconfig.rollup.json",
+      outputToFilesystem: true,
       noEmitOnError: true,
     }),
   ],
   output: [
     {
-      file: "dist/index.js",
+      file: "dist/index.mjs",
       format: "esm",
     },
   ],
