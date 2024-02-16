@@ -39,7 +39,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         handleSearchChange={props.handleSearchChange}
       />
 
-      {props.multiselect && optionsExist && (
+      {((props.multiselect && optionsExist) || props.selected.length) && (
         <ComboboxContentHeader
           hasOptionsVisible={optionsExist}
           subjectNoun={props.subjectNoun}
