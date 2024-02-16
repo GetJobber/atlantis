@@ -106,3 +106,5 @@ export function InternalRadioOption({
     onChange(value);
   }
 }
+
+export default RadioOption;

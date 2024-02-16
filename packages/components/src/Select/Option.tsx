@@ -24,4 +24,4 @@ function SelectOption({ children, disabled, value }: InputSelectProps) {
  * component is called Option internally. We have opened an issue with them
  * to find out more information.
  */
-export { SelectOption as Option };
+export { SelectOption as Option, SelectOption as default };
