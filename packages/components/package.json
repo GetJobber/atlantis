@@ -5,295 +5,295 @@
   "type":"module",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.js"
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
     },
     "./AnimatedPresence": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/AnimatedPresence/index.d.ts"
     },
     "./AnimatedSwitcher": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/AnimatedSwitcher/index.d.ts"
     },
     "./Autocomplete": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Autocomplete/index.d.ts"
     },
     "./Avatar": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Avatar/index.d.ts"
     },
     "./Banner": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Banner/index.d.ts"
     },
     "./Button": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Button/index.d.ts"
     },
     "./ButtonDismiss": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/ButtonDismiss/index.d.ts"
     },
     "./Card": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Card/index.d.ts"
     },
     "./Checkbox": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Checkbox/index.d.ts"
     },
     "./Chip": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Chip/index.d.ts"
     },
     "./Chips": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Chips/index.d.ts"
     },
     "./Combobox": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Combobox/index.d.ts"
     },
     "./ConfirmationModal": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/ConfirmationModal/index.d.ts"
     },
     "./Content": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Content/index.d.ts"
     },
     "./Countdown": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Countdown/index.d.ts"
     },
     "./DataDump": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/DataDump/index.d.ts"
     },
     "./DataList": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/DataList/index.d.ts"
     },
     "./DataTable": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/DataTable/index.d.ts"
     },
     "./DatePicker": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/DatePicker/index.d.ts"
     },
     "./DescriptionList": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/DescriptionList/index.d.ts"
     },
     "./Disclosure": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Disclosure/index.d.ts"
     },
     "./Divider": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Divider/index.d.ts"
     },
     "./Drawer": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Drawer/index.d.ts"
     },
     "./Emphasis": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Emphasis/index.d.ts"
     },
     "./FeatureSwitch": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/FeatureSwitch/index.d.ts"
     },
     "./Flex": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Flex/index.d.ts"
     },
     "./Form": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Form/index.d.ts"
     },
     "./FormField": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/FormField/index.d.ts"
     },
     "./FormatDate": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/FormatDate/index.d.ts"
     },
     "./FormatEmail": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/FormatEmail/index.d.ts"
     },
     "./FormatFile": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/FormatFile/index.d.ts"
     },
     "./FormatRelativeDateTime": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/FormatRelativeDateTime/index.d.ts"
     },
     "./FormatTime": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/FormatTime/index.d.ts"
     },
     "./Gallery": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Gallery/index.d.ts"
     },
     "./Glimmer": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Glimmer/index.d.ts"
     },
     "./Grid": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Grid/index.d.ts"
     },
     "./Heading": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Heading/index.d.ts"
     },
     "./Icon": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Icon/index.d.ts"
     },
     "./InlineLabel": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/InlineLabel/index.d.ts"
     },
     "./InputAvatar": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/InputAvatar/index.d.ts"
     },
     "./InputDate": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/InputDate/index.d.ts"
     },
     "./InputEmail": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/InputEmail/index.d.ts"
     },
     "./InputFile": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/InputFile/index.d.ts"
     },
     "./InputGroup": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/InputGroup/index.d.ts"
     },
     "./InputNumber": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/InputNumber/index.d.ts"
     },
     "./InputPassword": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/InputPassword/index.d.ts"
     },
     "./InputPhoneNumber": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/InputPhoneNumber/index.d.ts"
     },
     "./InputText": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/InputText/index.d.ts"
     },
     "./InputTime": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/InputTime/index.d.ts"
     },
     "./InputValidation": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/InputValidation/index.d.ts"
     },
     "./LightBox": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/LightBox/index.d.ts"
     },
     "./Link": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Link/index.d.ts"
     },
     "./List": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/List/index.d.ts"
     },
     "./Markdown": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Markdown/index.d.ts"
     },
     "./Menu": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Menu/index.d.ts"
     },
     "./Modal": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Modal/index.d.ts"
     },
     "./MultiSelect": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/MultiSelect/index.d.ts"
     },
     "./Page": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Page/index.d.ts"
     },
     "./Popover": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Popover/index.d.ts"
     },
     "./ProgressBar": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/ProgressBar/index.d.ts"
     },
     "./RadioGroup": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/RadioGroup/index.d.ts"
     },
     "./RecurringSelect": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/RecurringSelect/index.d.ts"
     },
     "./Select": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Select/index.d.ts"
     },
     "./Spinner": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Spinner/index.d.ts"
     },
     "./StatusLabel": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/StatusLabel/index.d.ts"
     },
     "./Switch": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Switch/index.d.ts"
     },
     "./Table": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Table/index.d.ts"
     },
     "./Tabs": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Tabs/index.d.ts"
     },
     "./Text": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Text/index.d.ts"
     },
     "./Toast": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Toast/index.d.ts"
     },
     "./Tooltip": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Tooltip/index.d.ts"
     },
     "./Typography": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "types": "./dist/Typography/index.d.ts"
     }
   },
