@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.54.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.53.2...@jobber/components-native@0.54.0) (2024-02-16)
+
+
+### Features
+
+* **components-native:** Update Heading styles ([#1765](https://github.com/GetJobber/atlantis/issues/1765)) ([91e4e3c](https://github.com/GetJobber/atlantis/commit/91e4e3ca09a4ac1d3ee3f9e710efa2cacc00c89b))
+
+
+
+
+
 ## [0.53.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.53.1...@jobber/components-native@0.53.2) (2024-02-15)
 
 
