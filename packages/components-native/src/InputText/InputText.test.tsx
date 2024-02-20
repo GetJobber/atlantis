@@ -582,8 +582,6 @@ describe("Transform", () => {
       const form = useForm();
       useEffect(() => {
         return form.watch((value, { name, type }) => {
-          console.log(value, name, type);
-          console.log("value", value);
           onFormValueUpdate(value);
         }).unsubscribe;
       }, [form]);
