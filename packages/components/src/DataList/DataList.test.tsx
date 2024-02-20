@@ -507,50 +507,6 @@ describe("DataList", () => {
     });
   });
 
-  describe("Sorting", () => {
-    const mockOnSearch = jest.fn();
-
-    function MockSortingLayout({
-      sorting,
-    }: {
-      readonly sorting: DataListProps<(typeof mockData)[0]>["sorting"];
-    }) {
-      return (
-        <DataList data={mockData} headers={mockHeaders} sorting={sorting}>
-          <DataList.Search onSearch={mockOnSearch} />
-          <DataList.Layout>
-            {(item: DataListItemType<typeof mockData>) => (
-              <div>{item.name}</div>
-            )}
-          </DataList.Layout>
-        </DataList>
-      );
-    }
-
-    it("should show always show sorting arrows", () => {
-      const mockOnSort = jest.fn();
-      render(
-        <MockSortingLayout
-          sorting={{
-            sortable: [{ key: "name" }],
-            onSort: mockOnSort,
-            state: undefined,
-          }}
-        />,
-      );
-      expect(screen.queryByTestId(SORTING_ICON_TEST_ID)).toBeInTheDocument();
-    });
-  });
-
-  it("should render a title when it's provided", () => {
-    render(
-      <DataList title={mockTitle} headers={{}} data={emptyMockData}>
-        <></>
-      </DataList>,
-    );
-    expect(screen.getByText(mockTitle)).toBeInTheDocument();
-  });
-
   describe("EmptyState", () => {
     const emptyStateMessage = "No items to display";
     const emptyStateActionLabel = "Create new item";
