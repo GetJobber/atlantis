@@ -581,7 +581,7 @@ describe("Transform", () => {
     function FormWrapper({ children }: { readonly children: React.ReactNode }) {
       const form = useForm();
       useEffect(() => {
-        return form.watch((value, { name, type }) => {
+        return form.watch(value => {
           onFormValueUpdate(value);
         }).unsubscribe;
       }, [form]);
