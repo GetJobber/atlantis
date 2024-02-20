@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.54.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.54.0...@jobber/components-native@0.54.1) (2024-02-20)
+
+
+### Bug Fixes
+
+* **components-native:** Apply input transform in InputText before trim [OPS-20241] ([#1764](https://github.com/GetJobber/atlantis/issues/1764)) ([84a1938](https://github.com/GetJobber/atlantis/commit/84a1938826229292da59d7c2ddb06dfa2879e9c7))
+
+
+
+
+
 # [0.54.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.53.2...@jobber/components-native@0.54.0) (2024-02-16)
 
 
