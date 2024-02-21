@@ -12,7 +12,7 @@ exports[`when Heading called with Subtitle variation should match snapshot 1`] =
   style={
     [
       {
-        "fontFamily": "jobberpro-xbd",
+        "fontFamily": "inter-bold",
       },
       {
         "color": "rgb(1, 41, 57)",
@@ -45,7 +45,7 @@ exports[`when Heading called with an alignment should match snapshot 1`] = `
   style={
     [
       {
-        "fontFamily": "jobberpro-xbd",
+        "fontFamily": "inter-bold",
       },
       {
         "color": "rgb(1, 41, 57)",
@@ -79,7 +79,7 @@ exports[`when Heading called with maxLines should match snapshot 1`] = `
   style={
     [
       {
-        "fontFamily": "jobberpro-xbd",
+        "fontFamily": "inter-bold",
       },
       {
         "color": "rgb(1, 41, 57)",
@@ -112,7 +112,7 @@ exports[`when Heading called with reverseTheme should match snapshot 1`] = `
   style={
     [
       {
-        "fontFamily": "jobberpro-xbd",
+        "fontFamily": "inter-bold",
       },
       {
         "color": "rgba(255, 255, 255, 1)",
@@ -213,7 +213,7 @@ exports[`when Heading called with text as the only prop should match snapshot 1`
   style={
     [
       {
-        "fontFamily": "jobberpro-xbd",
+        "fontFamily": "inter-bold",
       },
       {
         "color": "rgb(1, 41, 57)",
@@ -247,7 +247,7 @@ exports[`when Heading called with title variation should match snapshot 1`] = `
   style={
     [
       {
-        "fontFamily": "jobberpro-blk",
+        "fontFamily": "jobberpro-xbd",
       },
       {
         "color": "rgb(1, 41, 57)",

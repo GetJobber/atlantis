@@ -11,3 +11,7 @@
   background-color: var(--color-surface);
   gap: var(--space-smaller);
 }
+
+:global(.jobber-retheme) .menu {
+  border-radius: var(--radius-base);
+}

@@ -3,6 +3,112 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.54.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.54.0...@jobber/components-native@0.54.1) (2024-02-20)
+
+
+### Bug Fixes
+
+* **components-native:** Apply input transform in InputText before trim [OPS-20241] ([#1764](https://github.com/GetJobber/atlantis/issues/1764)) ([84a1938](https://github.com/GetJobber/atlantis/commit/84a1938826229292da59d7c2ddb06dfa2879e9c7))
+
+
+
+
+
+# [0.54.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.53.2...@jobber/components-native@0.54.0) (2024-02-16)
+
+
+### Features
+
+* **components-native:** Update Heading styles ([#1765](https://github.com/GetJobber/atlantis/issues/1765)) ([91e4e3c](https://github.com/GetJobber/atlantis/commit/91e4e3ca09a4ac1d3ee3f9e710efa2cacc00c89b))
+
+
+
+
+
+## [0.53.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.53.1...@jobber/components-native@0.53.2) (2024-02-15)
+
+
+### Bug Fixes
+
+* **components-native:** hard code status label radius ([#1761](https://github.com/GetJobber/atlantis/issues/1761)) ([6ff9c6c](https://github.com/GetJobber/atlantis/commit/6ff9c6ceed0c6f26010247e8c0bef62bc3d57ff3))
+
+
+
+
+
+## [0.53.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.53.0...@jobber/components-native@0.53.1) (2024-02-15)
+
+
+### Bug Fixes
+
+* **components-native:** remove action label letter spacing ([#1760](https://github.com/GetJobber/atlantis/issues/1760)) ([990b664](https://github.com/GetJobber/atlantis/commit/990b6644979ddcc394e6b30d6e777de58701d62e))
+
+
+
+
+
+# [0.53.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.52.0...@jobber/components-native@0.53.0) (2024-02-15)
+
+
+### Features
+
+* **components-native:** prep native buttons for retheme [JOB-88844] ([#1757](https://github.com/GetJobber/atlantis/issues/1757)) ([567c592](https://github.com/GetJobber/atlantis/commit/567c5927696b1ea19c649623e08a3a969b719a45))
+
+
+
+
+
+# [0.52.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.51.5...@jobber/components-native@0.52.0) (2024-02-14)
+
+
+### Features
+
+* **components-native:** JOB-88274 Prep inputs for retheme ([#1753](https://github.com/GetJobber/atlantis/issues/1753)) ([7604a4d](https://github.com/GetJobber/atlantis/commit/7604a4d717f58cc0ce9175dec9b9f11008be5b1c))
+
+
+
+
+
+## [0.51.5](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.51.4...@jobber/components-native@0.51.5) (2024-02-05)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.51.4](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.51.3...@jobber/components-native@0.51.4) (2024-01-29)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.51.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.51.2...@jobber/components-native@0.51.3) (2024-01-22)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.51.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.51.1...@jobber/components-native@0.51.2) (2024-01-18)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.51.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.51.0...@jobber/components-native@0.51.1) (2023-12-18)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
 # [0.51.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.50.0...@jobber/components-native@0.51.0) (2023-12-05)
 
 

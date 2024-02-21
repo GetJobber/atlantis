@@ -204,6 +204,8 @@ export interface FormFieldProps extends CommonFormFieldProps {
    */
   onBlur?(): void;
 
+  onKeyUp?(event: React.KeyboardEvent<HTMLInputElement>): void;
+
   /**
    * Exclusively for textareas. Specifies the visible height of a textarea.
    */

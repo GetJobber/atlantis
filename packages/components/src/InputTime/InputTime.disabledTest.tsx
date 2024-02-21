@@ -1,189 +1,37 @@
 import React from "react";
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { CivilTime } from "@std-proposal/temporal";
 import { InputTime } from ".";
 
-it("renders a InputTime", () => {
-  const { container } = render(<InputTime />);
-  expect(container).toMatchInlineSnapshot(`
-    <div>
-      <div
-        class="container"
-      >
-        <div
-          class="wrapper"
-          data-testid="Form-Field-Wrapper"
-        >
-          <div
-            class="inputWrapper"
-          >
-            <div
-              class="childrenWrapper"
-            >
-              <input
-                class="input"
-                id=":r0:"
-                placeholder="hh:mm"
-                type="time"
-                value=""
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  `);
-});
+describe("InputTime", () => {
+  it("renders an initial time when given 'defaultValue'", () => {
+    render(<InputTime defaultValue={new CivilTime(11, 23)} />);
+    expect(screen.getByDisplayValue("11:23")).toBeInTheDocument();
+  });
 
-it("renders an initial time when given 'defaultValue'", () => {
-  const { container } = render(
-    <InputTime defaultValue={new CivilTime(11, 23)} />,
-  );
-  expect(container).toMatchInlineSnapshot(`
-    <div>
-      <div
-        class="container"
-      >
-        <div
-          class="wrapper"
-          data-testid="Form-Field-Wrapper"
-        >
-          <div
-            class="inputWrapper"
-          >
-            <div
-              class="childrenWrapper"
-            >
-              <input
-                class="input"
-                id=":r2:"
-                type="time"
-                value="11:23"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  `);
-});
+  it("renders correctly in a readonly state", () => {
+    render(<InputTime defaultValue={new CivilTime(10, 25)} readonly={true} />);
+    expect(screen.getByDisplayValue("10:25")).toHaveAttribute("readonly");
+  });
 
-it("renders correctly in a readonly state", () => {
-  const { container } = render(
-    <InputTime value={new CivilTime(11, 23)} readonly={true} />,
-  );
-  expect(container).toMatchInlineSnapshot(`
-    <div>
-      <div
-        class="container"
-      >
-        <div
-          class="wrapper"
-          data-testid="Form-Field-Wrapper"
-        >
-          <div
-            class="inputWrapper"
-          >
-            <div
-              class="childrenWrapper"
-            >
-              <input
-                class="input"
-                id=":r4:"
-                readonly=""
-                type="time"
-                value="11:23"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  `);
-});
+  it("should set the value when given 'value'", () => {
+    render(<InputTime value={new CivilTime(12, 30)} />);
+    expect(screen.getByDisplayValue("12:30")).toBeInTheDocument();
+  });
 
-it("adds a error border when invalid", () => {
-  const { container } = render(
-    <InputTime value={new CivilTime(11, 23)} readonly={true} />,
-  );
-  expect(container).toMatchInlineSnapshot(`
-    <div>
-      <div
-        class="container"
-      >
-        <div
-          class="wrapper"
-          data-testid="Form-Field-Wrapper"
-        >
-          <div
-            class="inputWrapper"
-          >
-            <div
-              class="childrenWrapper"
-            >
-              <input
-                class="input"
-                id=":r6:"
-                readonly=""
-                type="time"
-                value="11:23"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  `);
-});
+  it("should call the onChange function when the component is modified", () => {
+    const newValue = "05:32";
+    // The event value get converted to a CivilTime inside the component.
+    const newCivilTime = new CivilTime(5, 32);
 
-it("should set the value when given 'value' and 'onChange'", () => {
-  const { container } = render(<InputTime invalid />);
-  expect(container).toMatchInlineSnapshot(`
-    <div>
-      <div
-        class="container"
-      >
-        <div
-          class="wrapper invalid"
-          data-testid="Form-Field-Wrapper"
-        >
-          <div
-            class="inputWrapper"
-          >
-            <div
-              class="childrenWrapper"
-            >
-              <input
-                class="input"
-                id=":r8:"
-                type="time"
-                value=""
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  `);
-});
+    const changeHandler = jest.fn();
 
-it("should call the onChange function when the component is modified", () => {
-  const newValue = "05:32";
-  // The event value get converted to a CivilTime inside the component.
-  const newCivilTime = new CivilTime(5, 32);
+    render(<InputTime value={new CivilTime(2, 35)} onChange={changeHandler} />);
 
-  const changeHandler = jest.fn();
-
-  const { container } = render(
-    <InputTime value={new CivilTime(2, 35)} onChange={changeHandler} />,
-  );
-  const input = container.querySelector("input");
-
-  if (input) {
-    fireEvent.change(input, {
+    fireEvent.change(screen.getByDisplayValue("02:35"), {
       target: { value: newValue },
     });
-  }
 
-  expect(changeHandler).toHaveBeenCalledWith(newCivilTime);
+    expect(changeHandler).toHaveBeenCalledWith(newCivilTime);
+  });
 });
