@@ -119,7 +119,7 @@
     "jest-junit": "^15.0.0",
     "lerna": "^6.5.1",
     "lint-staged": "^9.4.2",
-    "lodash-es": "^4.17.21",
+    "lodash": "^4.17.21",
     "metro-react-native-babel-preset": "^0.76.0",
     "plop": "^2.5.3",
     "postcss": "^8.4.21",
