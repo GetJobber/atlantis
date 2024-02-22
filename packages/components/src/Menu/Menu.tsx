@@ -4,7 +4,6 @@ import React, {
   RefObject,
   createRef,
   useEffect,
-  useLayoutEffect,
   useRef,
   useState,
 } from "react";
@@ -14,6 +13,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { IconNames } from "@jobber/design";
+import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import styles from "./Menu.css";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
@@ -73,7 +73,7 @@ export function Menu({ activator, items }: MenuProps) {
   const menuID = uuidv1();
 
   useOnKeyDown(handleKeyboardShortcut, ["Escape"]);
-  useLayoutEffect(() => {
+  useSafeLayoutEffect(() => {
     if (wrapperRef.current) {
       const bounds = wrapperRef.current.getBoundingClientRect();
       const newPosition = { ...position };
@@ -213,7 +213,7 @@ export function Menu({ activator, items }: MenuProps) {
 }
 
 interface SectionHeaderProps {
-  text: string;
+  readonly text: string;
 }
 
 function SectionHeader({ text }: SectionHeaderProps) {
@@ -236,17 +236,17 @@ export interface ActionProps {
   /**
    * Action label
    */
-  label: string;
+  readonly label: string;
 
   /**
    * Parent Section Label
    */
-  sectionLabel?: string;
+  readonly sectionLabel?: string;
 
   /**
    * Visual cue for the action label
    */
-  icon?: IconNames;
+  readonly icon?: IconNames;
 
   /**
    * Callback when an action gets clicked
@@ -256,7 +256,7 @@ export interface ActionProps {
   /**
    * Focus on the action when rendered
    */
-  shouldFocus?: boolean;
+  readonly shouldFocus?: boolean;
 }
 
 function Action({
