@@ -1,5 +1,5 @@
 import React, { Children, ReactElement, isValidElement } from "react";
-import { useSafeAssert } from "@jobber/hooks/useAssert";
+import { useAssert } from "@jobber/hooks/useAssert";
 import { ComboboxActivator } from "../components/ComboboxActivator";
 import {
   ComboboxOption,
@@ -35,7 +35,7 @@ export function useComboboxValidation(children?: ComboboxProps["children"]): {
 
   const shouldThrowTriggerError = isInvalid(activatorElements);
 
-  useSafeAssert(shouldThrowTriggerError, COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
+  useAssert(shouldThrowTriggerError, COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
 
   return {
     optionElements,

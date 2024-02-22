@@ -1,6 +1,18 @@
 .radioGroup {
+  --radio--checked-thickness: var(--border-thicker);
+  --radio-diameter: var(--space-base);
+  --radio--checked-shadow: 0px 0px 0px var(--space-minuscule)
+    var(--color-interactive--hover);
   display: inline-flex;
   flex-direction: column;
+}
+
+:global(.jobber-retheme) .radioGroup {
+  --radio--checked-thickness: calc(
+    var(--border-thicker) + var(--space-smallest)
+  );
+  --radio-diameter: calc(var(--space-base) + var(--space-smaller));
+  --radio--checked-shadow: 0px 0px 0px var(--space-minuscule) transparent;
 }
 
 .input {
@@ -19,31 +31,35 @@
 .input + .label::before {
   content: "";
   display: block;
-  width: var(--space-base);
-  height: var(--space-base);
+  width: var(--radio-diameter);
+  height: var(--radio-diameter);
   box-sizing: border-box;
   margin: var(--space-smallest) var(--space-small) 0 0;
   border: var(--border-thick) solid var(--color-interactive);
   border-radius: 100%;
   background-color: var(--color-surface);
-  transition: all var(--timing-base);
+  transition: all var(--timing-quick) ease-out;
   flex-shrink: 0;
 }
 
-.input:focus + .label:before {
-  box-shadow: var(--shadow-focus);
+:global(.jobber-retheme) .input + .label::before {
+  margin-top: 0;
+  border-color: var(--color-border);
 }
 
-.input:focus:checked + .label:before {
-  box-shadow: 0px 0px 0px var(--space-minuscule) var(--color-interactive--hover),
-    var(--shadow-focus);
+.input:hover + .label::before {
+  border-color: var(--color-interactive);
 }
 
 .input:checked + .label::before {
-  box-shadow: 0px 0px 0px var(--space-minuscule) var(--color-interactive--hover);
+  box-shadow: var(--radio--checked-shadow);
   border-color: var(--color-interactive--hover);
-  border-width: var(--border-thicker);
+  border-width: var(--radio--checked-thickness);
   background-color: var(--color-interactive);
+}
+
+.input:focus-visible:checked + .label:before {
+  box-shadow: var(--radio--checked-shadow), var(--shadow-focus);
 }
 
 .input[disabled] + .label {
@@ -55,16 +71,26 @@
   border-color: var(--color-disabled--secondary);
 }
 
+:global(.jobber-retheme) .input:checked + .label::before {
+  border-color: var(--color-interactive);
+  background-color: var(--color-surface);
+}
+
 .input[disabled]:checked + .label::before {
-  box-shadow: 0px 0px 0px var(--space-minuscule) var(--color-disabled);
-  border-color: var(--color-grey);
-  background-color: var(--color-disabled--secondary);
+  --radio--checked-shadow: 0px 0px 0px var(--space-minuscule)
+    var(--color-disabled);
+  border-color: var(--color-disabled);
 }
 
 .description,
 .children {
   margin-bottom: var(--space-small);
-  padding-left: var(--space-large);
+  padding-left: calc(var(--radio-diameter) + var(--space-small));
+}
+
+:global(.jobber-retheme) .description,
+:global(.jobber-retheme) .children {
+  margin-top: calc(var(--space-smaller) * -1);
 }
 
 .input[disabled] + .label + .description > p {

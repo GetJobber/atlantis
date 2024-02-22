@@ -174,6 +174,7 @@ function InternalInputDate({
   return (
     <>
       <InputPressable
+        focused={showPicker}
         clearable={canClearDate}
         disabled={disabled}
         invalid={invalid}

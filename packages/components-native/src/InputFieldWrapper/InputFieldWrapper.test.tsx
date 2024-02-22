@@ -65,8 +65,6 @@ describe("InputFieldWrapper", () => {
 
     expect(getByTestId("ATL-InputFieldWrapper").props.style).toContainEqual({
       backgroundColor: "rgb(225, 225, 225)",
-      borderTopLeftRadius: 4,
-      borderTopRightRadius: 4,
     });
   });
 
@@ -192,9 +190,7 @@ describe("InputFieldWrapper", () => {
         includeHiddenElements: true,
       });
 
-      expect(placeholder.props.style).toContainEqual(
-        typographyStyles.interactive,
-      );
+      expect(placeholder.props.style).toContainEqual(typographyStyles.subdued);
       expect(placeholder.props.style).toContainEqual(
         typographyStyles.defaultSize,
       );

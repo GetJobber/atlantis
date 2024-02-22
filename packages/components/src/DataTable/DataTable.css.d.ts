@@ -3,6 +3,7 @@ declare const styles: {
   readonly "tableContainer": string;
   readonly "table": string;
   readonly "pinFirstColumn": string;
+  readonly "emptyStateCell": string;
   readonly "stickyHeader": string;
   readonly "pinFirstHeaderSortable": string;
   readonly "sortableColumn": string;

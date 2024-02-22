@@ -4,6 +4,10 @@
   --switch--borderOffset: calc(var(--border-base) * 2);
 }
 
+:root :global(.jobber-retheme) {
+  --switch--pipSize: var(--space-base);
+}
+
 .track,
 .track * {
   box-sizing: border-box;
@@ -23,12 +27,27 @@
   appearance: none;
 }
 
-.track:focus {
+:global(.jobber-retheme) .track {
+  width: var(--space-largest);
+  height: var(--space-large);
+  border-color: var(--color-border);
+  border-width: var(--border-thick);
+  background-color: var(--color-surface);
+  align-items: center;
+}
+
+.track:focus-visible {
   box-shadow: var(--shadow-focus);
   outline: none;
 }
 
-.isChecked {
+:global(.jobber-retheme) .track:hover,
+:global(.jobber-retheme) .track:focus-visible {
+  border-color: var(--color-interactive);
+}
+
+.isChecked,
+:global(.jobber-retheme) .isChecked {
   border-color: var(--color-interactive);
   background-color: var(--color-interactive);
 }
@@ -42,8 +61,16 @@
   align-items: center;
 }
 
+:global(.jobber-retheme) .toggle {
+  margin-left: -37px;
+}
+
 .isChecked .toggle {
   margin-left: calc(-1 * var(--switch--borderOffset));
+}
+
+:global(.jobber-retheme) .isChecked .toggle {
+  margin-left: -13px;
 }
 
 .label {
@@ -65,6 +92,10 @@
   padding-right: var(--space-small);
 }
 
+:global(.jobber-retheme) .label {
+  opacity: 0;
+}
+
 .pip {
   flex: 0 0 auto;
   width: var(--switch--pipSize);
@@ -72,10 +103,30 @@
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-circle);
   background-color: var(--color-surface);
+  transition: all var(--timing-quick) ease-out;
+}
+
+:global(.jobber-retheme) .pip {
+  border: none;
+  background-color: var(--color-interactive--subtle);
 }
 
 .isChecked .pip {
   border-color: var(--color-green);
+}
+
+:global(.jobber-retheme) .isChecked .pip {
+  background-color: var(--color-surface);
+}
+
+/* Moving this up overwrites disabled styling */
+/* stylelint-disable-next-line no-descending-specificity */
+.disabled .pip {
+  border-color: var(--color-disabled--secondary);
+}
+
+:global(.jobber-retheme) .disabled .pip {
+  background-color: var(--color-disabled);
 }
 
 .disabled {
@@ -84,6 +135,20 @@
   cursor: not-allowed;
 }
 
-.disabled .pip {
-  border-color: var(--color-disabled--secondary);
+:global(.jobber-retheme) .disabled {
+  border-color: var(--color-disabled);
+  background-color: var(--color-surface);
+  cursor: not-allowed;
+}
+
+:global(.jobber-retheme) .isChecked.disabled {
+  background-color: var(--color-disabled);
+}
+
+:global(.jobber-retheme) .isChecked.disabled .pip {
+  background-color: var(--color-surface);
+}
+
+:global(.jobber-retheme) .disabled:hover {
+  border-color: var(--color-disabled);
 }

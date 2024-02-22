@@ -18,6 +18,10 @@
   transition: all var(--timing-base);
 }
 
+:global(.jobber-retheme) .actionButton {
+  border-radius: var(--radius-base);
+}
+
 .actionButton:focus {
   outline: none;
 }

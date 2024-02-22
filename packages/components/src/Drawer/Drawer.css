@@ -3,6 +3,10 @@
   --drawer--base-padding: var(--space-base);
 }
 
+:global(.jobber-retheme) {
+  --drawer--base-padding: var(--space-large);
+}
+
 .container {
   display: none;
   position: fixed;
@@ -30,6 +34,11 @@
   }
 }
 
+:global(.jobber-retheme) .container {
+  box-shadow: var(--shadow-base);
+  border-top-left-radius: var(--radius-base);
+}
+
 .drawer {
   display: flex;
   position: relative;
@@ -39,6 +48,10 @@
   border: var(--border-base) solid var(--color-border);
   background-color: var(--color-surface);
   flex-direction: column;
+}
+
+:global(.jobber-retheme) .drawer {
+  border-top-left-radius: var(--radius-base);
 }
 
 .open {
@@ -51,6 +64,11 @@
   background-color: var(--color-surface--background);
   justify-content: space-between;
   align-items: center;
+}
+
+:global(.jobber-retheme) .header {
+  padding: var(--space-base) var(--space-base) 0 var(--drawer--base-padding);
+  background-color: transparent;
 }
 
 .contentScroll {

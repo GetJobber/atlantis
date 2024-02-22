@@ -9,12 +9,7 @@ export function useAssert(
   message: string,
   options?: Options,
 ) {
-  if (
-    typeof process !== "undefined" &&
-    typeof process.env !== "undefined" &&
-    process.env.NODE_ENV !== "production" &&
-    shouldShow
-  ) {
+  if (process?.env?.NODE_ENV !== "production" && shouldShow) {
     if (options?.warn) {
       console.warn(message);
     } else {

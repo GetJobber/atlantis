@@ -5,6 +5,7 @@ declare const styles: {
   readonly "medium": string;
   readonly "bannerAction": string;
   readonly "closeButton": string;
+  readonly "iconWrapper": string;
 };
 export = styles;
 

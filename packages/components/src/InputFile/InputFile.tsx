@@ -1,8 +1,9 @@
 import React, { useCallback, useId } from "react";
 import classnames from "classnames";
-import { DropzoneOptions, useDropzone } from "react-dropzone";
+import { DropzoneOptions, FileError, useDropzone } from "react-dropzone";
 import axios, { AxiosRequestConfig } from "axios";
 import styles from "./InputFile.css";
+import { InputValidation } from "../InputValidation";
 import { Button } from "../Button";
 import { Content } from "../Content";
 import { Typography } from "../Typography";
@@ -107,10 +108,11 @@ interface InputFileProps {
    *
    * @param "images" - only accepts all types of image
    * @param "basicImages" - only accepts png, jpg and jpeg
+   * @param "string[]" - accept a specific list of MIME types
    *
    * @default "all"
    */
-  readonly allowedTypes?: "all" | "images" | "basicImages";
+  readonly allowedTypes?: "all" | "images" | "basicImages" | string[];
 
   /**
    * Allow for multiple files to be selected for upload.
@@ -142,6 +144,18 @@ interface InputFileProps {
    * Upload event handler. Triggered on upload completion.
    */
   onUploadComplete?(file: FileUpload): void;
+
+  /**
+   *  Upload event handler. Triggered on upload error.
+   */
+  onUploadError?(error: Error): void;
+
+  /**
+   * Pass a custom validator function that will be called when a file is dropped.
+   */
+  readonly validator?: <T extends File>(
+    file: T,
+  ) => FileError | FileError[] | null;
 }
 
 interface CreateAxiosConfigParams extends Omit<UploadParams, "key"> {
@@ -159,6 +173,7 @@ interface CreateAxiosConfigParams extends Omit<UploadParams, "key"> {
   handleUploadProgress(progress: any): void;
 }
 
+// eslint-disable-next-line max-statements
 export function InputFile({
   variation = "dropzone",
   size = "base",
@@ -166,23 +181,39 @@ export function InputFile({
   allowMultiple = false,
   allowedTypes = "all",
   getUploadParams,
-  name,
   onUploadStart,
   onUploadProgress,
   onUploadComplete,
+  onUploadError,
+  validator,
 }: InputFileProps) {
   const id = useId();
   const options: DropzoneOptions = {
     multiple: allowMultiple,
-    onDrop: useCallback(handleDrop, []),
+    onDrop: useCallback(handleDrop, [uploadFile]),
+    validator: validator && useCallback(validator, []),
   };
 
   if (allowedTypes === "images") {
     options.accept = "image/*";
   } else if (allowedTypes === "basicImages") {
     options.accept = "image/png, image/jpg, image/jpeg";
+  } else if (Array.isArray(allowedTypes)) {
+    options.accept = allowedTypes.join(",");
   }
-  const { getRootProps, getInputProps, isDragActive } = useDropzone(options);
+
+  const { getRootProps, getInputProps, isDragActive, fileRejections } =
+    useDropzone(options);
+  const validationErrors = fileRejections?.map(({ file, errors }) => {
+    return errors.map(error => {
+      return (
+        <InputValidation
+          message={`${file.name} ${error.message}`}
+          key={`${file.name}${error.code}`}
+        />
+      );
+    });
+  });
 
   const { buttonLabel, hintText } = getLabels(
     providedButtonLabel,
@@ -192,35 +223,41 @@ export function InputFile({
   const dropZone = classnames(styles.dropZoneBase, {
     [styles.dropZone]: variation === "dropzone",
     [styles.active]: isDragActive,
+    [styles.error]: fileRejections?.length > 0,
   });
 
   return (
-    <div
-      {...getRootProps({ className: dropZone })}
-      tabIndex={variation === "button" ? -1 : 0}
-    >
-      <input name={name} {...getInputProps()} />
+    <>
+      <div
+        {...getRootProps({ className: dropZone })}
+        tabIndex={variation === "button" ? -1 : 0}
+      >
+        <input {...getInputProps()} />
 
-      {variation === "dropzone" && (
-        <Content spacing="small">
-          <Button label={buttonLabel} size="small" type="secondary" />
-          {size === "base" && (
-            <Typography size="small" textColor="textSecondary">
-              {hintText}
-            </Typography>
-          )}
-        </Content>
-      )}
+        {variation === "dropzone" && (
+          <Content spacing="small">
+            <Button label={buttonLabel} size="small" type="secondary" />
+            {size === "base" && (
+              <Typography size="small" textColor="textSecondary">
+                {hintText}
+              </Typography>
+            )}
+          </Content>
+        )}
 
-      {variation === "button" && (
-        <Button
-          label={buttonLabel}
-          size={size}
-          type="secondary"
-          fullWidth={true}
-        />
+        {variation === "button" && (
+          <Button
+            label={buttonLabel}
+            size={size}
+            type="secondary"
+            fullWidth={true}
+          />
+        )}
+      </div>
+      {fileRejections?.length > 0 && (
+        <div className={styles.validationErrors}>{validationErrors}</div>
       )}
-    </div>
+    </>
   );
 
   function handleDrop(acceptedFiles: File[]) {
@@ -230,12 +267,17 @@ export function InputFile({
   }
 
   async function uploadFile(file: File) {
-    const {
-      url,
-      key = id,
-      fields = {},
-      httpMethod = "POST",
-    } = await getUploadParams(file);
+    let params;
+
+    try {
+      params = await getUploadParams(file);
+    } catch {
+      onUploadError && onUploadError(new Error("Failed to get upload params"));
+
+      return;
+    }
+
+    const { url, key = id, fields = {}, httpMethod = "POST" } = params;
 
     const fileUpload = getFileUpload(file, key, url);
     onUploadStart && onUploadStart({ ...fileUpload });
@@ -260,7 +302,12 @@ export function InputFile({
       file,
       handleUploadProgress,
     });
-    axios.request(axiosConfig).then(handleUploadComplete);
+    axios
+      .request(axiosConfig)
+      .then(handleUploadComplete)
+      .catch(() => {
+        onUploadError && onUploadError(new Error("Failed to upload file"));
+      });
   }
 }
 
@@ -300,7 +347,7 @@ function createAxiosConfig({
 function getLabels(
   providedButtonLabel: string | undefined,
   multiple: boolean,
-  allowedTypes: string,
+  allowedTypes: string | string[],
 ) {
   let buttonLabel = multiple ? "Upload Files" : "Upload File";
   let hintText = multiple

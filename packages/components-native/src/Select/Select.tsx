@@ -131,7 +131,7 @@ export function Select({
       invalid={invalid || !!error}
       hasValue={hasValue}
       styleOverride={{
-        container: { borderBottomWidth: undefined },
+        container: { paddingLeft: undefined },
       }}
     >
       <View
@@ -151,15 +151,13 @@ export function Select({
           <View
             style={[styles.container, (invalid || !!error) && styles.invalid]}
           >
-            {label && (
-              <Text
-                level="textSupporting"
-                variation={textVariation}
-                hideFromScreenReader={true}
-              >
-                {label}
-              </Text>
-            )}
+            <Text
+              level="textSupporting"
+              variation={textVariation}
+              hideFromScreenReader={true}
+            >
+              {label}
+            </Text>
 
             <View style={styles.input}>
               <View style={styles.value}>

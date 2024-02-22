@@ -7,6 +7,10 @@
   --public-field--top-right-radius: var(--radius-base);
   --public-field--bottom-left-radius: var(--radius-base);
   --public-field--bottom-right-radius: var(--radius-base);
+
+  --field--placeholder-color: var(--color-greyBlue--light);
+  --field--value-color: var(--color-heading);
+  --field--border-color: var(--color-border);
 }
 
 .container {
@@ -17,7 +21,6 @@
  * Wrapper
  **/
 .wrapper {
-  --field--placeholder-color: var(--color-greyBlue--light);
   --field--placeholder-offset: 50%;
   --field--placeholder-transform: -50%;
 
@@ -30,10 +33,8 @@
   --field--padding-left: var(--space-base);
   --field--padding-right: var(--space-base);
 
-  --field--value-color: var(--color-heading);
   --field--value-lineHeight: calc(var(--base-unit) * 1.25);
 
-  --field--border-color: var(--color-border);
   --field--background-color: var(--color-surface);
 
   --field--base-elevation: var(--elevation-base);

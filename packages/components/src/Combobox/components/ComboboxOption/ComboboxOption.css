@@ -1,5 +1,6 @@
 .option {
   display: flex;
+  flex-shrink: 0;
   min-height: calc((var(--space-largest) - var(--space-smaller)));
   box-sizing: border-box;
   margin: 0 var(--space-small);
@@ -11,6 +12,10 @@
   transition: all var(--timing-base);
   justify-content: space-between;
   align-items: center;
+}
+
+:global(.jobber-retheme) .option {
+  border-radius: var(--radius-base);
 }
 
 .option:hover,

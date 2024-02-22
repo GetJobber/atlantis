@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "4.68.2",
+  "version": "4.81.1",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,9 +19,9 @@
     "dist/*"
   ],
   "dependencies": {
-    "@jobber/design": "^0.51.0",
+    "@jobber/design": "^0.53.0",
     "@jobber/formatters": "*",
-    "@jobber/hooks": "^2.8.0",
+    "@jobber/hooks": "^2.8.2",
     "@popperjs/core": "^2.0.6",
     "@std-proposal/temporal": "0.0.1",
     "@tanstack/react-table": "8.5.13",
@@ -35,7 +35,7 @@
     "classnames": "^2.3.2",
     "color": "^3.1.2",
     "filesize": "^6.1.0",
-    "framer-motion": "6.3.16",
+    "framer-motion": "^11.0.3",
     "lodash": "^4.17.21",
     "react-countdown": "^2.3.2",
     "markdown-to-jsx": "^7.3.2",
@@ -68,6 +68,7 @@
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^8.3.0",
     "rollup": "^2.79.1",
+    "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-multi-input": "^1.4.1",
     "rollup-plugin-postcss": "^4.0.2",
     "typed-css-modules": "^0.7.0",

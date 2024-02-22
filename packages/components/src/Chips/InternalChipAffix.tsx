@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { useSafeAssert } from "@jobber/hooks/useAssert";
+import { useAssert } from "@jobber/hooks/useAssert";
 import { ChipButtonProps, InternalChipButton } from "./InternalChipButton";
 import styles from "./InternalChip.css";
 import { InternalChipProps } from "./ChipTypes";
@@ -59,7 +59,7 @@ export function InternalChipAffix({
     const isIcon = affix?.type === Icon || false;
     const isChipButton = affix?.type === InternalChipButton || false;
 
-    useSafeAssert(
+    useAssert(
       !!affix && !(isAvatar || isIcon || isChipButton),
       `Prefix prop only accepts "<Avatar />" or "<Icon />" component. You have "${affix?.type}".`,
     );

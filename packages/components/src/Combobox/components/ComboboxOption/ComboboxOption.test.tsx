@@ -97,6 +97,7 @@ function renderOption(
       open={true}
       shouldScroll={{ current: false }}
       selectionHandler={onSelect}
+      searchValue=""
     >
       <ComboboxOptionComponent label={label} id={id} />
     </ComboboxContextProvider>,

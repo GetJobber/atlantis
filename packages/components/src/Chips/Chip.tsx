@@ -1,5 +1,5 @@
 import React from "react";
-import { useSafeAssert } from "@jobber/hooks/useAssert";
+import { useAssert } from "@jobber/hooks/useAssert";
 import { InternalChipProps } from "./ChipTypes";
 
 export interface ChipProps
@@ -14,7 +14,7 @@ export interface ChipProps
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function Chip(props: ChipProps) {
   // Throw error when <Chip /> gets used outside of the <Chips />
-  useSafeAssert(true, "`<Chip>` component can only be used inside `<Chips>`");
+  useAssert(true, "`<Chip>` component can only be used inside `<Chips>`");
 
   return <></>;
 }

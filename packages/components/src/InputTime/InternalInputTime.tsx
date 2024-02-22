@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 // eslint-disable-next-line import/no-internal-modules
-import { InputTimeSafari } from "./InputTimeSafari";
 import {
   civilTimeToHTMLTime,
   htmlTimeToCivilTime,
@@ -14,38 +13,16 @@ export function InternalInputTime({
   onChange,
   ...params
 }: InputTimeProps) {
-  const [supportsTime, setSupportsTime] = useState(false);
-
   const handleChange = (newValue: string) => {
     onChange && onChange(htmlTimeToCivilTime(newValue));
   };
-  useEffect(() => {
-    const getTime = async () => {
-      const { supportsTime: externalSupportsTime } = await import(
-        "./SupportsTimePolyfill"
-      );
-      setSupportsTime(externalSupportsTime as unknown as boolean);
-    };
-    getTime();
-  }, []);
 
-  if (supportsTime) {
-    const fieldProps: FormFieldProps = {
-      onChange: onChange && handleChange,
-      ...(defaultValue && { defaultValue: civilTimeToHTMLTime(defaultValue) }),
-      ...(!defaultValue && onChange && { value: civilTimeToHTMLTime(value) }),
-      ...params,
-    };
+  const fieldProps: FormFieldProps = {
+    onChange: onChange && handleChange,
+    ...(defaultValue && { defaultValue: civilTimeToHTMLTime(defaultValue) }),
+    ...(!defaultValue && onChange && { value: civilTimeToHTMLTime(value) }),
+    ...params,
+  };
 
-    return <FormField type="time" {...fieldProps} />;
-  } else {
-    return (
-      <InputTimeSafari
-        defaultValue={defaultValue}
-        value={value}
-        onChange={onChange}
-        {...params}
-      />
-    );
-  }
+  return <FormField type="time" {...fieldProps} />;
 }
