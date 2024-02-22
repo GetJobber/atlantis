@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useLayoutEffect } from "../useLayoutEffect";
+import { useSafeLayoutEffect } from "../useSafeLayoutEffect";
 
 /**
  * Why does this work?
@@ -20,7 +20,7 @@ import { useLayoutEffect } from "../useLayoutEffect";
 export function useIsMounted(): { current: boolean } {
   const isMounted = useRef(false);
 
-  useLayoutEffect(() => {
+  useSafeLayoutEffect(() => {
     isMounted.current = true;
 
     return () => {

@@ -1,6 +1,6 @@
 import React, { Ref, forwardRef, useImperativeHandle, useRef } from "react";
 import { XOR } from "ts-xor";
-import { useLayoutEffect } from "@jobber/hooks";
+import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import {
   CommonFormFieldProps,
   FieldActionsRef,
@@ -94,7 +94,7 @@ function InputTextInternal(
     },
   }));
 
-  useLayoutEffect(() => {
+  useSafeLayoutEffect(() => {
     if (inputRef && inputRef.current instanceof HTMLTextAreaElement) {
       resize(inputRef.current);
     }

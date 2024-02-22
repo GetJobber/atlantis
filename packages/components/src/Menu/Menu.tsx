@@ -13,7 +13,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { IconNames } from "@jobber/design";
-import { useLayoutEffect } from "@jobber/hooks";
+import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import styles from "./Menu.css";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
@@ -73,7 +73,7 @@ export function Menu({ activator, items }: MenuProps) {
   const menuID = uuidv1();
 
   useOnKeyDown(handleKeyboardShortcut, ["Escape"]);
-  useLayoutEffect(() => {
+  useSafeLayoutEffect(() => {
     if (wrapperRef.current) {
       const bounds = wrapperRef.current.getBoundingClientRect();
       const newPosition = { ...position };

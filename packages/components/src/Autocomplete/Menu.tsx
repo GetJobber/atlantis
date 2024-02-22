@@ -3,7 +3,7 @@ import classnames from "classnames";
 import { createPortal } from "react-dom";
 import { usePopper } from "react-popper";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
-import { useLayoutEffect } from "@jobber/hooks";
+import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import { AnyOption, Option } from "./Option";
 import styles from "./Autocomplete.css";
 import { Text } from "../Text";
@@ -174,7 +174,7 @@ function useRepositionMenu(attachTo: MenuProps["attachTo"], visible = false) {
     ],
   });
 
-  useLayoutEffect(() => {
+  useSafeLayoutEffect(() => {
     popper?.update?.();
   }, [visible]);
 
