@@ -1,5 +1,6 @@
 .option {
   display: flex;
+  flex-shrink: 0;
   min-height: calc((var(--space-largest) - var(--space-smaller)));
   box-sizing: border-box;
   margin: 0 var(--space-small);

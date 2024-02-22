@@ -1,5 +1,5 @@
 /* eslint-disable max-statements */
-import React from "react";
+import React, { useRef, useState } from "react";
 import classnames from "classnames";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
@@ -27,10 +27,10 @@ export function DataListHeaderTile<T extends DataListObject>({
 }: DataListHeaderTileProps<T>) {
   useRefocusOnActivator(visible);
   const { sorting } = useDataListContext();
-  const [isDropDownOpen, setIsDropDownOpen] = React.useState(false);
+  const [isDropDownOpen, setIsDropDownOpen] = useState(false);
 
   const optionsListRef = useFocusTrap<HTMLUListElement>(isDropDownOpen);
-  const dataListHeaderTileRef = React.useRef(null);
+  const dataListHeaderTileRef = useRef(null);
 
   const sortableItem = sorting?.sortable.find(item => item.key === headerKey);
   const isSortable = Boolean(sortableItem);
@@ -57,11 +57,11 @@ export function DataListHeaderTile<T extends DataListObject>({
           dataListHeaderTileRef={dataListHeaderTileRef}
         />
       )}
-      {sortingState?.key === headerKey ? (
-        <DataListSortingArrows order={sortingState.order} />
-      ) : sortingState?.key !== headerKey && isSortable ? (
-        <DataListSortingArrows order="none" />
-      ) : null}
+      {isSortable && (
+        <DataListSortingArrows
+          order={sortingState?.key === headerKey ? sortingState.order : "none"}
+        />
+      )}
     </Tag>
   );
 
@@ -69,20 +69,17 @@ export function DataListHeaderTile<T extends DataListObject>({
     newSortingKey: string,
     newId?: string,
     newLabel?: string,
-    newOrder?: "asc" | "desc",
   ) {
     const isSameKey = newSortingKey === sortingState?.key;
     const isDescending = sortingState?.order === "desc";
 
-    if (isSameKey && isDescending && newOrder === undefined) {
+    if (isSameKey && isDescending) {
       sorting?.onSort(undefined);
 
       return;
     }
 
-    const sortingOrder =
-      newOrder || (isSameKey && !isDescending ? "desc" : "asc");
-
+    const sortingOrder = isSameKey ? "desc" : "asc";
     setSorting(newSortingKey, newId, newLabel, sortingOrder);
   }
 
@@ -106,12 +103,8 @@ export function DataListHeaderTile<T extends DataListObject>({
     if (sortableItem?.options) {
       setIsDropDownOpen(!isDropDownOpen);
     } else {
-      const headerValue = headers[headerKey];
       const id = sortableItem?.options?.[0]?.id || headerKey;
-
-      if (headerValue !== undefined) {
-        toggleSorting(id, headerKey, headerValue);
-      }
+      toggleSorting(id, headerKey, headers[headerKey]);
     }
   }
 
