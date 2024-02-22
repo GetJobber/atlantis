@@ -1,6 +1,6 @@
 import React, { Ref, forwardRef, useImperativeHandle, useRef } from "react";
 import { XOR } from "ts-xor";
-import { useSafeLayoutEffect } from "./useSafeLayoutEffect";
+import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import {
   CommonFormFieldProps,
   FieldActionsRef,

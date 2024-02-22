@@ -1,9 +1,9 @@
 import React, { CSSProperties, PropsWithChildren } from "react";
 // import chunk from "lodash/chunk";
 import classnames from "classnames";
+import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import { ColumnKeys, Direction, Spacing } from "./Flex.types";
 import styles from "./Flex.css";
-import { useSafeLayoutEffect } from "../InputText/useSafeLayoutEffect";
 
 interface FlexProps extends PropsWithChildren {
   /**

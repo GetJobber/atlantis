@@ -13,11 +13,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { IconNames } from "@jobber/design";
+import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import styles from "./Menu.css";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
 import { Icon } from "../Icon";
-import { useSafeLayoutEffect } from "../InputText/useSafeLayoutEffect";
 
 const variation = {
   overlayStartStop: { opacity: 0 },

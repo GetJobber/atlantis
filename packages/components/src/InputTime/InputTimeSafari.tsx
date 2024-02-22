@@ -1,12 +1,12 @@
 import React from "react";
 import debounce from "lodash/debounce";
+import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import { InputTimeProps } from "./InputTimeProps";
 import {
   civilTimeToHTMLTime,
   htmlTimeToCivilTime,
 } from "./civilTimeConversions";
 import { FormField } from "../FormField";
-import { useSafeLayoutEffect } from "../InputText/useSafeLayoutEffect";
 
 interface PolyfilledInputElement extends HTMLInputElement {
   polyfill: { update: () => void };
