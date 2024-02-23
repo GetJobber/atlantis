@@ -35,13 +35,13 @@ export interface BannerProps {
   readonly children?: ReactElement | ReactElement[] | string;
 
   /**
-   * **Deprecated**: Use `children` with a `<TextList level="textSupporting" />` instead
+   * **Deprecated**: Use `children` with a `<TextList level="text" />` instead
    * @deprecated
    */
   readonly details?: string[];
 
   /**
-   * **Deprecated**: Use either `children` with a `<Text level="textSupporting" />` or a `string` instead
+   * **Deprecated**: Use either `children` with a `<Text level="text" />` or a `string` instead
    * @deprecated
    */
   readonly text?: string;

@@ -1,5 +1,6 @@
 import React, { ReactElement } from "react";
 import { Pressable, View } from "react-native";
+import { IconNames } from "@jobber/design";
 import { BannerProps } from "./types";
 import { BannerTypeStyles } from "./constants";
 import { styles } from "./Banner.style";
@@ -17,6 +18,8 @@ export function Banner({
   children,
   icon,
 }: BannerProps): JSX.Element {
+  const bannerIcon = icon || getBannerIcon(type);
+
   return (
     <Pressable
       style={[styles.container, BannerTypeStyles[type].styles]}
@@ -25,17 +28,17 @@ export function Banner({
     >
       <Content childSpacing="small">
         <View style={styles.bannerContent}>
-          {icon && <BannerIcon icon={icon} />}
+          {bannerIcon && <BannerIcon icon={bannerIcon} type={type} />}
           <View style={styles.contentContainer}>
             <View style={styles.childrenContainer}>
               <BannerChildren>{children}</BannerChildren>
             </View>
             {text && (
               <View style={styles.textContainer}>
-                <Text level="textSupporting">{text}</Text>
+                <Text level="text">{text}</Text>
               </View>
             )}
-            {details && <TextList items={details} level="textSupporting" />}
+            {details && <TextList items={details} level="text" />}
           </View>
         </View>
         {action && <ActionLabel align="start">{action.label}</ActionLabel>}
@@ -47,13 +50,26 @@ export function Banner({
 function BannerChildren({
   children,
 }: {
-  children?: ReactElement | ReactElement[] | string;
+  readonly children?: ReactElement | ReactElement[] | string;
 }): JSX.Element {
   if (!children) return <></>;
 
   if (children && typeof children === "string") {
-    return <Text level="textSupporting">{children}</Text>;
+    return <Text level="text">{children}</Text>;
   }
 
   return <>{children}</>;
+}
+
+function getBannerIcon(
+  type: keyof typeof BannerTypeStyles,
+): IconNames | undefined {
+  switch (type) {
+    case "notice":
+      return "starburst";
+    case "warning":
+      return "help";
+    case "error":
+      return "alert";
+  }
 }

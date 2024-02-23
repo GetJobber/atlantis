@@ -29,12 +29,11 @@ const ErrorDetailsTemplate: ComponentStory<typeof Banner> = args => {
     "This client already exists",
     "This phone number doesn't receive SMS",
   ];
+
   return (
     <Banner {...args}>
-      <Text level="textSupporting">
-        There was an error submitting your form:
-      </Text>
-      <TextList level="textSupporting" items={listItems} />
+      <Text level="text">There was an error submitting your form:</Text>
+      <TextList level="text" items={listItems} />
     </Banner>
   );
 };
