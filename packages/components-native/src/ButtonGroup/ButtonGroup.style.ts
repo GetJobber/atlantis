@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
   button: {
     flexBasis: tokens["space-largest"],
     flexGrow: 1,
-    paddingRight: tokens["space-smaller"],
+    paddingRight: tokens["space-small"],
   },
   moreButton: {
     flexBasis: tokens["space-largest"],
