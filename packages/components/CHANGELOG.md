@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.81.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.81.3...@jobber/components@4.81.4) (2024-02-23)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.81.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.81.2...@jobber/components@4.81.3) (2024-02-22)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.81.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.81.1...@jobber/components@4.81.2) (2024-02-22)
+
+
+### Bug Fixes
+
+* **components:** Always show clear when there are selected options in ComboBox ([#1768](https://github.com/GetJobber/atlantis/issues/1768)) ([40b71b1](https://github.com/GetJobber/atlantis/commit/40b71b16dcdd187942a1b70feecdaf820bb66ea4))
+
+
+
+
+
 ## [4.81.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.81.0...@jobber/components@4.81.1) (2024-02-20)
 
 **Note:** Version bump only for package @jobber/components

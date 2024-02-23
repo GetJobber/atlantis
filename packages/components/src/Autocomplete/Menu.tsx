@@ -3,12 +3,12 @@ import classnames from "classnames";
 import { createPortal } from "react-dom";
 import { usePopper } from "react-popper";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
+import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import { AnyOption, Option } from "./Option";
 import styles from "./Autocomplete.css";
 import { Text } from "../Text";
 import { Icon } from "../Icon";
 import { Heading } from "../Heading";
-import { useSafeLayoutEffect } from "../InputText/useSafeLayoutEffect";
 
 enum IndexChange {
   Previous = -1,
