@@ -6,11 +6,11 @@ export const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     justifyContent: "flex-end",
+    gap: tokens["space-small"],
   },
   button: {
     flexBasis: tokens["space-largest"],
     flexGrow: 1,
-    paddingRight: tokens["space-small"],
   },
   moreButton: {
     flexBasis: tokens["space-largest"],
