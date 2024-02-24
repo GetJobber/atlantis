@@ -8,14 +8,6 @@ export const styles = StyleSheet.create({
     borderStyle: "solid",
     borderWidth: tokens["border-base"],
     borderRadius: tokens["radius-base"],
-  },
-  error: {
-    backgroundColor: tokens["color-surface"],
-  },
-  warning: {
-    backgroundColor: tokens["color-surface"],
-  },
-  notice: {
     backgroundColor: tokens["color-surface"],
   },
   bannerContent: {
@@ -32,7 +24,4 @@ export const styles = StyleSheet.create({
   textContainer: {
     marginTop: tokens["space-minuscule"],
   },
-  // bannerIcon: {
-  //   paddingRight: tokens["space-small"],
-  // },
 });
