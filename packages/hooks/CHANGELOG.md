@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.3](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.8.2...@jobber/hooks@2.8.3) (2024-02-22)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+## [2.8.2](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.8.1...@jobber/hooks@2.8.2) (2024-02-05)
+
+
+### Bug Fixes
+
+* **hooks:** support add and remove listener on mockViewportWidth ([#1750](https://github.com/GetJobber/atlantis/issues/1750)) ([829303c](https://github.com/GetJobber/atlantis/commit/829303cb27b60c5d746bec81fd94e64e535e0923))
+
+
+
+
+
 ## [2.8.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.8.0...@jobber/hooks@2.8.1) (2024-01-22)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "4.77.5",
+  "version": "4.81.4",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,9 +19,9 @@
     "dist/*"
   ],
   "dependencies": {
-    "@jobber/design": "^0.53.0",
+    "@jobber/design": "^0.54.0",
     "@jobber/formatters": "*",
-    "@jobber/hooks": "^2.8.1",
+    "@jobber/hooks": "^2.8.3",
     "@popperjs/core": "^2.0.6",
     "@std-proposal/temporal": "0.0.1",
     "@tanstack/react-table": "8.5.13",
@@ -31,7 +31,7 @@
     "@types/react-router": "5.1.7",
     "@types/react-router-dom": "^5.3.3",
     "@types/uuid": "^8.3.3",
-    "axios": "^0.21.2",
+    "axios": "^1.6.0",
     "classnames": "^2.3.2",
     "color": "^3.1.2",
     "filesize": "^6.1.0",

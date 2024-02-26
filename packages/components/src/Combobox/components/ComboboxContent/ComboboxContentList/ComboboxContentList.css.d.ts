@@ -7,6 +7,7 @@ declare const styles: {
   readonly "scrollNone": string;
   readonly "scrollBottom": string;
   readonly "loadingContainer": string;
+  readonly "hasOptions": string;
 };
 export = styles;
 

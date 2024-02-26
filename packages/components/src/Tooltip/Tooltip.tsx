@@ -1,13 +1,9 @@
-import React, {
-  ReactElement,
-  ReactNode,
-  useLayoutEffect,
-  useState,
-} from "react";
+import React, { ReactElement, ReactNode, useState } from "react";
 import classnames from "classnames";
 import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import { useIsMounted } from "@jobber/hooks";
+import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import styles from "./Tooltip.css";
 import { useTooltipPositioning } from "./useTooltipPositioning";
 
@@ -125,7 +121,7 @@ export function Tooltip({ message, children }: TooltipProps) {
       }
     };
 
-    useLayoutEffect(() => {
+    useSafeLayoutEffect(() => {
       injectAttributes();
       addListeners();
 
