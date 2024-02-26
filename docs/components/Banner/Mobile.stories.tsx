@@ -14,18 +14,28 @@ export default {
 
 const BasicTemplate: ComponentStory<typeof Banner> = () => (
   <Content>
-    <Banner type="notice">Your import is in progress</Banner>
-    <Banner type="warning">Your trial is about to end</Banner>
-    <Banner type="error">There was an error with your import</Banner>
+    <Banner type="notice">
+      <Text>Your import is in progress</Text>
+    </Banner>
+    <Banner type="warning">
+      <Text>Your trial is about to end</Text>
+    </Banner>
+    <Banner type="error">
+      <Text>There was an error with your import</Text>
+    </Banner>
   </Content>
 );
 
 const ActionsTemplate: ComponentStory<typeof Banner> = args => (
-  <Banner {...args}>Your trial has been extended!</Banner>
+  <Banner {...args}>
+    <Text>Your trial has been extended!</Text>
+  </Banner>
 );
 
 const ErrorTemplate: ComponentStory<typeof Banner> = args => (
-  <Banner {...args}>Currently offline. Functionality is limited.</Banner>
+  <Banner {...args}>
+    <Text>Currently offline. Functionality is limited.</Text>
+  </Banner>
 );
 
 const ErrorDetailsTemplate: ComponentStory<typeof Banner> = args => {

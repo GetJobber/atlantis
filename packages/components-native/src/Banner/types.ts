@@ -41,7 +41,7 @@ export interface BannerProps {
   readonly details?: string[];
 
   /**
-   * **Deprecated**: Use either `children` with a `<Text level="text" />` or a `string` instead
+   * **Deprecated**: Use `children` with a `<Text level="text" />`
    * @deprecated
    */
   readonly text?: string;

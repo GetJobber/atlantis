@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { Pressable, View } from "react-native";
+import { Pressable, Text as RNText, View } from "react-native";
 import { IconNames } from "@jobber/design";
 import { BannerProps, BannerTypes } from "./types";
 import { styles } from "./Banner.style";
@@ -8,6 +8,7 @@ import { Content } from "../Content";
 import { Text } from "../Text";
 import { TextList } from "../TextList";
 import { ActionLabel } from "../ActionLabel";
+import { Typography } from "../Typography";
 
 export function Banner({
   action,
@@ -30,7 +31,17 @@ export function Banner({
           {bannerIcon && <BannerIcon icon={bannerIcon} type={type} />}
           <View style={styles.contentContainer}>
             <View style={styles.childrenContainer}>
-              <BannerChildren>{children}</BannerChildren>
+              <BannerChildren>
+                <RNText>
+                  {children}
+                  {action && (
+                    <RNText>
+                      <Typography> | </Typography>
+                      <ActionLabel align="start">{action.label}</ActionLabel>
+                    </RNText>
+                  )}
+                </RNText>
+              </BannerChildren>
             </View>
             {text && (
               <View style={styles.textContainer}>
@@ -40,7 +51,6 @@ export function Banner({
             {details && <TextList items={details} level="text" />}
           </View>
         </View>
-        {action && <ActionLabel align="start">{action.label}</ActionLabel>}
       </Content>
     </Pressable>
   );
