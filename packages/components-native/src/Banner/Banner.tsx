@@ -1,8 +1,7 @@
 import React, { ReactElement } from "react";
 import { Pressable, View } from "react-native";
 import { IconNames } from "@jobber/design";
-import { BannerProps } from "./types";
-import { BannerTypeStyles } from "./constants";
+import { BannerProps, BannerTypes } from "./types";
 import { styles } from "./Banner.style";
 import { BannerIcon } from "./components/BannerIcon/BannerIcon";
 import { Content } from "../Content";
@@ -22,7 +21,7 @@ export function Banner({
 
   return (
     <Pressable
-      style={[styles.container, BannerTypeStyles[type].styles]}
+      style={[styles.container]}
       accessibilityRole="alert"
       onPress={action?.onPress}
     >
@@ -61,9 +60,7 @@ function BannerChildren({
   return <>{children}</>;
 }
 
-function getBannerIcon(
-  type: keyof typeof BannerTypeStyles,
-): IconNames | undefined {
+function getBannerIcon(type: BannerTypes): IconNames | undefined {
   switch (type) {
     case "notice":
       return "starburst";
