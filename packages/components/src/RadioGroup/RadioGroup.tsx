@@ -26,7 +26,7 @@ interface RadioGroupProps {
    * The name of the radio group, that links the radio options back up
    * to the group.
    *
-   * @default uuid
+   * @default useId()
    */
   readonly name?: string;
 }

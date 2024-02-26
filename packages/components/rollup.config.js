@@ -117,7 +117,6 @@ export default {
     "color",
     "framer-motion",
     "classnames",
-    "uuid",
     new RegExp("lodash/.*"),
     "@std-proposal/temporal",
     "@jobber/design",
