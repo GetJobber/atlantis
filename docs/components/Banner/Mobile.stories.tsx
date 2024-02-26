@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Banner, Text, TextList } from "@jobber/components-native";
+import { Banner, Content, Text, TextList } from "@jobber/components-native";
 
 export default {
   title: "Components/Status and Feedback/Banner/Mobile",
@@ -12,8 +12,12 @@ export default {
   },
 } as ComponentMeta<typeof Banner>;
 
-const BasicTemplate: ComponentStory<typeof Banner> = args => (
-  <Banner {...args}>Your import is in progress</Banner>
+const BasicTemplate: ComponentStory<typeof Banner> = () => (
+  <Content>
+    <Banner type="notice">Your import is in progress</Banner>
+    <Banner type="warning">Your trial is about to end</Banner>
+    <Banner type="error">There was an error with your import</Banner>
+  </Content>
 );
 
 const ActionsTemplate: ComponentStory<typeof Banner> = args => (

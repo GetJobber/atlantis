@@ -12,7 +12,7 @@ export interface BannerIconProps {
 
 export function BannerIcon({ icon, type }: BannerIconProps): JSX.Element {
   return (
-    <View style={[styles.bannerIcon, styles[type]]}>
+    <View style={[styles.bannerIcon, styles[type]]} testID="ATL-Banner-Icon">
       <Icon name={icon} color="white" size="small" />
     </View>
   );

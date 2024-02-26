@@ -1,30 +1,36 @@
 import React from "react";
 import { render } from "@testing-library/react-native";
 import { Banner } from ".";
-import { tokens } from "../utils/design";
 
 describe("Banner", () => {
   it("renders an error Banner", () => {
-    const { getByText, getByRole } = render(
+    const { getByText, getByTestId } = render(
       <Banner type="error" text="An error happened" />,
     );
-    const alertPressable = getByRole("alert");
+
+    const icon = getByTestId("ATL-Banner-Icon");
     expect(getByText("An error happened")).toBeDefined();
-    expect(alertPressable.props.style).toContainEqual({
-      backgroundColor: tokens["color-critical--surface"],
-    });
+    expect(icon.props.children.props.name).toBe("alert");
   });
 
   it("renders a warning Banner", () => {
-    const { getByText, getByRole } = render(
+    const { getByText, getByTestId } = render(
       <Banner type="warning" text="Here is a warning" />,
     );
 
-    const alertPressable = getByRole("alert");
+    const icon = getByTestId("ATL-Banner-Icon");
     expect(getByText("Here is a warning")).toBeDefined();
-    expect(alertPressable.props.style).toContainEqual({
-      backgroundColor: tokens["color-warning--surface"],
-    });
+    expect(icon.props.children.props.name).toBe("help");
+  });
+
+  it("renders a notice Banner", () => {
+    const { getByText, getByTestId } = render(
+      <Banner type="notice" text="Notice me" />,
+    );
+
+    const icon = getByTestId("ATL-Banner-Icon");
+    expect(getByText("Notice me")).toBeDefined();
+    expect(icon.props.children.props.name).toBe("starburst");
   });
 
   it("renders a Banner with details", () => {
