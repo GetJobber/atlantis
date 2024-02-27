@@ -76,6 +76,7 @@ export function Glimmer({
   return (
     <div
       aria-busy="true"
+      role="status"
       className={className}
       data-testid={GLIMMER_TEST_ID}
       style={{ width }}
@@ -103,6 +104,7 @@ Glimmer.Header = function GlimmerHeader({
     4: "base",
     5: "small",
   };
+
   return (
     <div className={styles.header} data-testid={GLIMMER_HEADER_TEST_ID}>
       <Glimmer size={headerSize[level]} {...props} />
@@ -153,6 +155,7 @@ Glimmer.Button = function GlimmerButton({
   const buttonClassNames = classnames(styles.button, {
     [styles.buttonFill]: fullWidth,
   });
+
   return (
     <div className={buttonClassNames} data-testid={GLIMMER_BUTTON_TEST_ID}>
       <Glimmer {...props} size="auto" />
