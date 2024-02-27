@@ -24,4 +24,10 @@ export const styles = StyleSheet.create({
   textContainer: {
     marginTop: tokens["space-minuscule"],
   },
+  fullWidth: {
+    width: "100%",
+  },
+  bannerChildrenContent: {
+    marginBottom: tokens["space-small"],
+  },
 });

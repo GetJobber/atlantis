@@ -1,6 +1,6 @@
-import React, { ReactElement } from "react";
+import React, { PropsWithChildren, ReactElement } from "react";
 import { Pressable, Text as RNText, View } from "react-native";
-import { IconNames } from "@jobber/design";
+import { IconNames, tokens } from "@jobber/design";
 import { BannerProps, BannerTypes } from "./types";
 import { styles } from "./Banner.style";
 import { BannerIcon } from "./components/BannerIcon/BannerIcon";
@@ -20,6 +20,10 @@ export function Banner({
 }: BannerProps): JSX.Element {
   const bannerIcon = icon || getBannerIcon(type);
 
+  const shouldFlow =
+    Boolean(React.Children.count(children) === 1 && !text && !details) ||
+    Boolean(text && !details && !children);
+
   return (
     <Pressable
       style={[styles.container]}
@@ -31,24 +35,25 @@ export function Banner({
           {bannerIcon && <BannerIcon icon={bannerIcon} type={type} />}
           <View style={styles.contentContainer}>
             <View style={styles.childrenContainer}>
-              <BannerChildren>
-                <RNText>
-                  {children}
-                  {action && (
-                    <RNText>
-                      <Typography> | </Typography>
-                      <ActionLabel align="start">{action.label}</ActionLabel>
-                    </RNText>
-                  )}
-                </RNText>
-              </BannerChildren>
+              <WrappingElement shouldFlow={shouldFlow}>
+                <BannerChildren>{children}</BannerChildren>
+
+                {text && (
+                  <View style={styles.textContainer}>
+                    <Text level="text">{text}</Text>
+                  </View>
+                )}
+
+                {details && <TextList items={details} level="text" />}
+
+                {action && (
+                  <RNText>
+                    {shouldFlow && <Typography> | </Typography>}
+                    <ActionLabel align="start">{action.label}</ActionLabel>
+                  </RNText>
+                )}
+              </WrappingElement>
             </View>
-            {text && (
-              <View style={styles.textContainer}>
-                <Text level="text">{text}</Text>
-              </View>
-            )}
-            {details && <TextList items={details} level="text" />}
           </View>
         </View>
       </Content>
@@ -56,11 +61,7 @@ export function Banner({
   );
 }
 
-function BannerChildren({
-  children,
-}: {
-  readonly children?: ReactElement | ReactElement[] | string;
-}): JSX.Element {
+function BannerChildren({ children }: PropsWithChildren): JSX.Element {
   if (!children) return <></>;
 
   if (children && typeof children === "string") {
@@ -68,6 +69,23 @@ function BannerChildren({
   }
 
   return <>{children}</>;
+}
+
+function WrappingElement({
+  shouldFlow,
+  children,
+}: PropsWithChildren<{
+  readonly shouldFlow: boolean;
+}>): ReactElement {
+  if (shouldFlow) {
+    return <RNText testID="ATL-Banner-RNText">{children}</RNText>;
+  }
+
+  return (
+    <View testID="ATL-Banner-View" style={{ gap: tokens["space-small"] }}>
+      {children}
+    </View>
+  );
 }
 
 function getBannerIcon(type: BannerTypes): IconNames | undefined {
