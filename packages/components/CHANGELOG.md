@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.82.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.81.5...@jobber/components@4.82.0) (2024-02-27)
+
+
+### Features
+
+* **components:** Adds a role of status to the Glimmer component  ([#1781](https://github.com/GetJobber/atlantis/issues/1781)) ([09dda51](https://github.com/GetJobber/atlantis/commit/09dda51aafcb2565707f8ef69ff53c73ee93f868))
+
+
+
+
+
+## [4.81.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.81.4...@jobber/components@4.81.5) (2024-02-27)
+
+
+### Bug Fixes
+
+* **components:** keep ComboboxContentHeader label and action aligned across themes ([#1782](https://github.com/GetJobber/atlantis/issues/1782)) ([06bf0c0](https://github.com/GetJobber/atlantis/commit/06bf0c0410725e6ef18deeb6779d98a32703c022))
+
+
+
+
+
 ## [4.81.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.81.3...@jobber/components@4.81.4) (2024-02-23)
 
 **Note:** Version bump only for package @jobber/components
