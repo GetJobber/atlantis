@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import { useIsMounted } from "@jobber/hooks";
+import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import { createPortal } from "react-dom";
 import styles from "./ComboboxContent.css";
 import { ComboboxContentSearch } from "./ComboboxContentSearch";

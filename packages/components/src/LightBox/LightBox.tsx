@@ -6,7 +6,7 @@ import debounce from "lodash/debounce";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
-import { useIsMounted } from "@jobber/hooks";
+import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import styles from "./LightBox.css";
 import { ButtonDismiss } from "../ButtonDismiss";
 import { Button } from "../Button";

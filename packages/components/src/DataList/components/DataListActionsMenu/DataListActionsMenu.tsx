@@ -10,7 +10,7 @@ import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { createPortal } from "react-dom";
 import { tokens } from "@jobber/design";
-import { useIsMounted } from "@jobber/hooks";
+import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import styles from "./DataListActionsMenu.css";
 import { TRANSITION_DELAY_IN_SECONDS } from "../../DataList.const";
 

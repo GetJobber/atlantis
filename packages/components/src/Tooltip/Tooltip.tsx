@@ -2,7 +2,7 @@ import React, { ReactElement, ReactNode, useState } from "react";
 import classnames from "classnames";
 import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
-import { useIsMounted } from "@jobber/hooks";
+import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import styles from "./Tooltip.css";
 import { useTooltipPositioning } from "./useTooltipPositioning";
