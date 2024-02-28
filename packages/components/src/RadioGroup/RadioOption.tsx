@@ -68,8 +68,7 @@ export function InternalRadioOption({
   children,
   onChange,
 }: InternalRadioOptionProps) {
-  const id = useId();
-  const inputId = `${value.toString()}_${id}`;
+  const inputId = `${value.toString()}_${useId()}`;
   const shouldRenderIndependentChildren = label && children;
 
   return (

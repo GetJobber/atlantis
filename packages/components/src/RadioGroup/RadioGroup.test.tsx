@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { fireEvent, render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { RadioGroup, RadioOption } from ".";
 
 test("renders a RadioGroup", () => {
@@ -40,18 +41,13 @@ test("it should be able to disable options", () => {
   expect(container.querySelector(`[value="bear"]`)).toBeDisabled();
 });
 
-test("it should have unique ids on all radio options", () => {
-  const { container, getAllByLabelText } = render(<MockRadioGroup />);
-  const labels = getAllByLabelText("Two");
-  const radio1 = container.querySelector(
-    `input[id="${labels[0].id}"]`,
-  ) as HTMLInputElement;
-  const radio2 = container.querySelector(
-    `input[id="${labels[1].id}"]`,
-  ) as HTMLInputElement;
-  expect(radio1.checked).toBeFalsy();
+test("it should have unique ids on all radio options", async () => {
+  const { getAllByRole } = render(<MockRadioGroup />);
+  const radio1 = getAllByRole("radio")[0] as HTMLInputElement;
+  const radio2 = getAllByRole("radio")[1] as HTMLInputElement;
+  expect(radio1.checked).toBeTruthy();
   expect(radio2.checked).toBeFalsy();
-  fireEvent.click(labels[1]);
+  await userEvent.click(radio2);
   expect(radio1.checked).toBeFalsy();
   expect(radio2.checked).toBeTruthy();
 });
