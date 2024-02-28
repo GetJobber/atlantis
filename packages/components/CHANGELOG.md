@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.83.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.83.0...@jobber/components@4.83.1) (2024-02-28)
+
+
+### Bug Fixes
+
+* **components:** Removing uuid in web and replacing with useId ([#1737](https://github.com/GetJobber/atlantis/issues/1737)) ([5e9398b](https://github.com/GetJobber/atlantis/commit/5e9398b0ab195d899cde89954a5515b86a563699))
+
+
+
+
+
 # [4.83.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.82.0...@jobber/components@4.83.0) (2024-02-27)
 
 
