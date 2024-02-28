@@ -129,7 +129,7 @@ describe("Banner", () => {
       expect(tree.getByText("etc")).toBeDefined();
     });
 
-    it("should render a Typography bar when there is an action prop", () => {
+    it("should render a Typography bar when there is an action prop but no details", () => {
       const { getByText } = render(
         <Banner
           type="error"
@@ -140,6 +140,20 @@ describe("Banner", () => {
 
       expect(getByText("Reconnect")).toBeDefined();
       expect(getByText("|")).toBeDefined();
+    });
+
+    it("should not render a Typography bar when there are action and details props", () => {
+      const { getByText, queryByText } = render(
+        <Banner
+          type="error"
+          text="You are disconnected"
+          details={["details"]}
+          action={{ label: "Reconnect", onPress: jest.fn() }}
+        />,
+      );
+
+      expect(getByText("Reconnect")).toBeDefined();
+      expect(queryByText("|")).toBeNull();
     });
   });
 });

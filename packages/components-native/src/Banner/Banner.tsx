@@ -38,11 +38,7 @@ export function Banner({
               <WrappingElement shouldFlow={shouldFlow}>
                 <BannerChildren>{children}</BannerChildren>
 
-                {text && (
-                  <View style={styles.textContainer}>
-                    <Text level="text">{text}</Text>
-                  </View>
-                )}
+                {text && <Text level="text">{text}</Text>}
 
                 {details && <TextList items={details} level="text" />}
 
