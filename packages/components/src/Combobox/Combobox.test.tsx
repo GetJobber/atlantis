@@ -176,7 +176,7 @@ describe("Combobox Single Select", () => {
     it("should show the label", () => {
       expect(screen.getByText(activatorLabel)).toBeInTheDocument();
       expect(
-        screen.getByRole("combobox", { name: selectedValue.label }),
+        screen.getByRole("combobox", { name: activatorLabel }),
       ).toBeInTheDocument();
     });
 
@@ -429,6 +429,8 @@ describe("Combobox Compound Component Validation", () => {
   });
 
   it("throws an error when there are multiple Combobox Activators present", () => {
+    // This keeps the testing console clean
+    console.error = jest.fn();
     expect(() =>
       render(
         <Combobox label={activatorLabel} selected={[]} onSelect={jest.fn()}>
