@@ -44,7 +44,7 @@ export function Banner({
 
                 {action && (
                   <RNText>
-                    {shouldFlow && <Typography> | </Typography>}
+                    {shouldFlow && <Typography color="subdued"> | </Typography>}
                     <ActionLabel align="start">{action.label}</ActionLabel>
                   </RNText>
                 )}
