@@ -2,7 +2,6 @@ import React, { ReactElement, ReactNode, useState } from "react";
 import classnames from "classnames";
 import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
-import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import styles from "./Tooltip.css";
 import { useTooltipPositioning } from "./useTooltipPositioning";
@@ -134,7 +133,9 @@ interface TooltipPortalProps {
 }
 
 function TooltipPortal({ children }: TooltipPortalProps) {
-  const mounted = useIsMounted();
-
-  return mounted ? createPortal(children, document.body) : <>children</>;
+  return globalThis?.document ? (
+    createPortal(children, document.body)
+  ) : (
+    <>children</>
+  );
 }
