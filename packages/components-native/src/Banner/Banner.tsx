@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, ReactElement } from "react";
 import { Pressable, Text as RNText, View } from "react-native";
-import { IconNames, tokens } from "@jobber/design";
+import { IconNames } from "@jobber/design";
 import { BannerProps, BannerTypes } from "./types";
 import { styles } from "./Banner.style";
 import { BannerIcon } from "./components/BannerIcon/BannerIcon";
@@ -78,7 +78,7 @@ function WrappingElement({
   }
 
   return (
-    <View testID="ATL-Banner-View" style={{ gap: tokens["space-small"] }}>
+    <View testID="ATL-Banner-View" style={styles.contentSpacing}>
       {children}
     </View>
   );

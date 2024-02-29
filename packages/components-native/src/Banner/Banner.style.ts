@@ -30,4 +30,7 @@ export const styles = StyleSheet.create({
   bannerChildrenContent: {
     marginBottom: tokens["space-small"],
   },
+  contentSpacing: {
+    gap: tokens["space-small"],
+  },
 });
