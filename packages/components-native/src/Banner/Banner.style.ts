@@ -6,8 +6,7 @@ export const styles = StyleSheet.create({
     width: "100%",
     borderColor: tokens["color-border"],
     borderStyle: "solid",
-    borderWidth: tokens["border-base"],
-    borderRadius: tokens["radius-base"],
+    borderBottomWidth: tokens["border-base"],
     backgroundColor: tokens["color-surface"],
   },
   bannerContent: {
