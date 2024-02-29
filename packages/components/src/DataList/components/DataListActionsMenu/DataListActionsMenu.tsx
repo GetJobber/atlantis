@@ -70,7 +70,9 @@ export function DataListActionsMenu({
     </AnimatePresence>
   );
 
-  return mounted ? createPortal(actionsMenu, document.body) : actionsMenu;
+  return mounted.current
+    ? createPortal(actionsMenu, document.body)
+    : actionsMenu;
 
   function handleClick(event: MouseEvent<HTMLDivElement>): void {
     // Prevent menu from firing the parent's onClick event when it is nested

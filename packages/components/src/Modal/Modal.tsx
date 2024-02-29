@@ -96,7 +96,7 @@ export function Modal({
     </AnimatePresence>
   );
 
-  return mounted ? createPortal(template, document.body) : template;
+  return mounted.current ? createPortal(template, document.body) : template;
 
   function handleRequestClose() {
     if (open && onRequestClose) {

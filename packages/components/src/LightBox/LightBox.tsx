@@ -170,7 +170,7 @@ export function LightBox({
     </>
   );
 
-  return mounted ? createPortal(template, document.body) : template;
+  return mounted.current ? createPortal(template, document.body) : template;
 
   function handleMovePrevious() {
     setDirection(-1);

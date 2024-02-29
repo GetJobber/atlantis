@@ -22,6 +22,7 @@ interface TooltipProps {
 
 export function Tooltip({ message, children }: TooltipProps) {
   const [show, setShow] = useState(false);
+  const mounted = useIsMounted();
 
   const {
     attributes,
@@ -44,36 +45,38 @@ export function Tooltip({ message, children }: TooltipProps) {
     <>
       <span className={styles.shadowActivator} ref={shadowRef} />
       {children}
-      <TooltipPortal>
-        {show && Boolean(message) && (
-          <div
-            className={toolTipClassNames}
-            style={popperStyles.popper}
-            ref={setTooltipRef}
-            role="tooltip"
-            {...attributes.popper}
-          >
-            <motion.div
-              className={styles.tooltip}
-              variants={variation}
-              initial="startOrStop"
-              animate="done"
-              exit="startOrStop"
-              transition={{
-                damping: 50,
-                stiffness: 500,
-              }}
+      {mounted.current ? (
+        <TooltipPortal>
+          {show && Boolean(message) && (
+            <div
+              className={toolTipClassNames}
+              style={popperStyles.popper}
+              ref={setTooltipRef}
+              role="tooltip"
+              {...attributes.popper}
             >
-              <p className={styles.tooltipMessage}>{message}</p>
-              <div
-                ref={setArrowRef}
-                style={popperStyles.arrow}
-                className={styles.arrow}
-              />
-            </motion.div>
-          </div>
-        )}
-      </TooltipPortal>
+              <motion.div
+                className={styles.tooltip}
+                variants={variation}
+                initial="startOrStop"
+                animate="done"
+                exit="startOrStop"
+                transition={{
+                  damping: 50,
+                  stiffness: 500,
+                }}
+              >
+                <p className={styles.tooltipMessage}>{message}</p>
+                <div
+                  ref={setArrowRef}
+                  style={popperStyles.arrow}
+                  className={styles.arrow}
+                />
+              </motion.div>
+            </div>
+          )}
+        </TooltipPortal>
+      ) : null}
     </>
   );
 
@@ -134,7 +137,5 @@ interface TooltipPortalProps {
 }
 
 function TooltipPortal({ children }: TooltipPortalProps) {
-  const mounted = useIsMounted();
-
-  return mounted ? createPortal(children, document.body) : <>children</>;
+  return createPortal(children, document.body);
 }

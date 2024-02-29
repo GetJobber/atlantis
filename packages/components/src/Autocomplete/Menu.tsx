@@ -110,7 +110,7 @@ export function Menu({
     </div>
   );
 
-  return mounted ? createPortal(menu, document.body) : menu;
+  return mounted.current ? createPortal(menu, document.body) : menu;
 
   function setupKeyListeners() {
     useEffect(() => {
