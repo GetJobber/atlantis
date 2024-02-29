@@ -6,7 +6,6 @@ import debounce from "lodash/debounce";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
-import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import styles from "./LightBox.css";
 import { ButtonDismiss } from "../ButtonDismiss";
 import { Button } from "../Button";
@@ -99,7 +98,6 @@ export function LightBox({
     handleMovePrevious,
     debounceDuration,
   );
-  const mounted = useIsMounted();
 
   useRefocusOnActivator(open);
 
@@ -170,7 +168,9 @@ export function LightBox({
     </>
   );
 
-  return mounted ? createPortal(template, document.body) : template;
+  return globalThis?.document
+    ? createPortal(template, document.body)
+    : template;
 
   function handleMovePrevious() {
     setDirection(-1);
