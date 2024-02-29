@@ -3,6 +3,7 @@ import classnames from "classnames";
 import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
+import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import styles from "./Tooltip.css";
 import { useTooltipPositioning } from "./useTooltipPositioning";
 
@@ -133,9 +134,7 @@ interface TooltipPortalProps {
 }
 
 function TooltipPortal({ children }: TooltipPortalProps) {
-  return globalThis?.document ? (
-    createPortal(children, document.body)
-  ) : (
-    <>children</>
-  );
+  const mounted = useIsMounted();
+
+  return mounted ? createPortal(children, document.body) : <>children</>;
 }

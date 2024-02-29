@@ -10,6 +10,7 @@ import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { createPortal } from "react-dom";
 import { tokens } from "@jobber/design";
+import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import styles from "./DataListActionsMenu.css";
 import { TRANSITION_DELAY_IN_SECONDS } from "../../DataList.const";
 
@@ -34,6 +35,7 @@ export function DataListActionsMenu({
   children,
 }: PropsWithChildren<DataListActionsMenuProps>) {
   const [ref, setRef] = useState<HTMLDivElement | null>();
+  const mounted = useIsMounted();
 
   useRefocusOnActivator(visible);
   const focusTrapRef = useFocusTrap<HTMLDivElement>(visible);
@@ -68,9 +70,7 @@ export function DataListActionsMenu({
     </AnimatePresence>
   );
 
-  return globalThis?.document
-    ? createPortal(actionsMenu, document.body)
-    : actionsMenu;
+  return mounted ? createPortal(actionsMenu, document.body) : actionsMenu;
 
   function handleClick(event: MouseEvent<HTMLDivElement>): void {
     // Prevent menu from firing the parent's onClick event when it is nested

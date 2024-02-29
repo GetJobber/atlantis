@@ -4,6 +4,7 @@ import { createPortal } from "react-dom";
 import { usePopper } from "react-popper";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
+import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import { AnyOption, Option } from "./Option";
 import styles from "./Autocomplete.css";
 import { Text } from "../Text";
@@ -57,7 +58,7 @@ export function Menu({
   setupKeyListeners();
 
   useEffect(() => setHighlightedIndex(initialHighlight), [options]);
-
+  const mounted = useIsMounted();
   const menu = (
     <div
       className={classnames(styles.options, { [styles.visible]: visible })}
@@ -109,7 +110,7 @@ export function Menu({
     </div>
   );
 
-  return globalThis?.document ? createPortal(menu, document.body) : menu;
+  return mounted ? createPortal(menu, document.body) : menu;
 
   function setupKeyListeners() {
     useEffect(() => {
