@@ -239,7 +239,6 @@ export interface DataListContextProps<T extends DataListObject>
   readonly bulkActionsComponent?: ReactElement<DataListItemActionsProps<T>>;
 
   readonly layoutBreakpoints: Breakpoints[];
-  readonly registerLayoutBreakpoints: (breakpoint: Breakpoints) => void;
 
   readonly layouts: {
     readonly [Breakpoint in Breakpoints]?: LayoutRenderer<T>;

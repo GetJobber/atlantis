@@ -15,6 +15,7 @@ on:
         - Force Publish Components & Design
         - Force Publish Hooks
         - Force Publish All
+        - Force Publish Components-native
 
 jobs:
   trigger_pre_release_build:
