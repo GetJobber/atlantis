@@ -5,6 +5,7 @@
 
 .optionsList {
   display: flex;
+
   max-height: calc(var(--space-small) * 33.33);
   margin: 0;
   padding: 0;
@@ -56,4 +57,20 @@
 .scrollBottom::after,
 .scrollNone::after {
   opacity: 0;
+}
+
+.loadingContainer {
+  padding: var(--space-base) var(--space-base);
+}
+
+.loadingContainer.hasOptions {
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  bottom: 0;
+  padding: var(--space-base) 0;
+}
+
+.loadingContainer.hasOptions:empty {
+  display: none;
 }

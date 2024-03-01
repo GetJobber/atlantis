@@ -104,6 +104,7 @@ export function Banner({
 
       {dismissible && (
         <button
+          type="button"
           className={styles.closeButton}
           onClick={handleClose}
           aria-label="Close this notification"

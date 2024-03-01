@@ -1,5 +1,6 @@
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import React from "react";
+import userEvent from "@testing-library/user-event";
 import { ComboboxTrigger } from "./ComboboxTrigger";
 import { ComboboxContextProvider } from "../../ComboboxProvider";
 import { ComboboxOption } from "../../Combobox.types";
@@ -14,42 +15,36 @@ afterEach(() => {
 
 describe("ComboboxTrigger", () => {
   describe("when open is false", () => {
-    it("calls setOpen", () => {
-      const { getByRole } = renderTrigger();
-      const trigger = getByRole("combobox");
+    it("calls setOpen", async () => {
+      renderTrigger();
+      const trigger = screen.getByRole("combobox");
 
-      fireEvent.click(trigger);
+      await userEvent.click(trigger);
       expect(setOpen).toHaveBeenCalled();
     });
   });
 
   describe("when open is true", () => {
-    it("calls onClose", () => {
-      const { getByRole } = renderTrigger(true);
-      const trigger = getByRole("combobox");
+    it("calls onClose", async () => {
+      renderTrigger(true);
+      const trigger = screen.getByRole("combobox");
 
-      fireEvent.click(trigger);
+      await userEvent.click(trigger);
       expect(handleClose).toHaveBeenCalled();
     });
   });
 
-  it("has role 'combobox'", () => {
-    const { getByRole } = renderTrigger();
-
-    expect(getByRole("combobox")).toBeInTheDocument();
-  });
-
   describe("before selection", () => {
     it("renders a ComboboxTrigger with a label", () => {
-      const { getByText } = renderTrigger(false, [], "Teammates");
+      renderTrigger(false, [], "Teammates");
 
-      expect(getByText("Teammates")).toBeInTheDocument();
+      expect(screen.getByText("Teammates")).toBeInTheDocument();
     });
 
     it("renders a ComboboxTrigger with a 'Select' label if no label is provided", () => {
-      const { getByText } = renderTrigger();
+      renderTrigger();
 
-      expect(getByText("Select")).toBeInTheDocument();
+      expect(screen.getByText("Select")).toBeInTheDocument();
     });
 
     it("renders a Chip with a suffix", () => {
@@ -61,27 +56,25 @@ describe("ComboboxTrigger", () => {
     });
 
     it("renders a Chip with 'subtle' variation", () => {
-      const { getByRole } = renderTrigger();
+      renderTrigger();
 
-      expect(getByRole("combobox")).toHaveClass("subtle");
+      expect(screen.getByRole("combobox")).toHaveClass("subtle");
     });
   });
 
   describe("after selection", () => {
     afterEach(cleanup);
     it("renders a Chip with 'base' variation", () => {
-      const { getByRole } = renderTrigger(true, [
-        { id: "1", label: "Michael" },
-      ]);
+      renderTrigger(true, [{ id: "1", label: "Michael" }]);
 
-      const trigger = getByRole("combobox");
+      const trigger = screen.getByRole("combobox");
 
       expect(trigger).toHaveClass("base");
       expect(trigger).toHaveTextContent("Michael");
     });
 
     it("renders ComboboxTrigger with a label and selected options", () => {
-      const { getByRole } = renderTrigger(
+      renderTrigger(
         true,
         [
           { id: "1", label: "Michael" },
@@ -89,14 +82,14 @@ describe("ComboboxTrigger", () => {
         ],
         "Teammates",
       );
-      const trigger = getByRole("combobox");
+      const trigger = screen.getByRole("combobox");
 
       expect(trigger).toHaveTextContent("Teammates");
       expect(trigger).toHaveTextContent("Michael");
     });
 
     it("renders ComboboxTrigger with multiple selected options joined by a comma", () => {
-      const { getByRole } = renderTrigger(
+      renderTrigger(
         true,
         [
           { id: "1", label: "Michael" },
@@ -105,9 +98,23 @@ describe("ComboboxTrigger", () => {
         undefined,
       );
 
-      const trigger = getByRole("combobox");
+      const trigger = screen.getByRole("combobox");
 
       expect(trigger).toHaveTextContent("Michael, Leatherface");
+    });
+  });
+
+  describe("accessibility", () => {
+    it("has role 'combobox'", () => {
+      renderTrigger();
+
+      expect(screen.getByRole("combobox")).toBeInTheDocument();
+    });
+
+    it("has the label as its accessible name", () => {
+      renderTrigger(false, [{ id: "1", label: "Michael" }], "Teammates");
+
+      expect(screen.getByRole("combobox")).toHaveAccessibleName("Teammates");
     });
   });
 });
@@ -125,6 +132,7 @@ function renderTrigger(
       open={open}
       shouldScroll={{ current: false }}
       selectionHandler={jest.fn()}
+      searchValue=""
     >
       <ComboboxTrigger label={label} selected={selected} />
     </ComboboxContextProvider>,

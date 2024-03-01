@@ -5,6 +5,7 @@ import { Button } from "@jobber/components/Button";
 import { Typography } from "@jobber/components/Typography";
 import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
+import { useFakeQuery } from "./storyUtils";
 
 export default {
   title: "Components/Selections/Combobox/Web",
@@ -288,6 +289,100 @@ const DynamicButton: ComponentStory<typeof Combobox> = args => {
   );
 };
 
+const ComboboxCustomSearch: ComponentStory<typeof Combobox> = args => {
+  const [selected, setSelected] = useState<ComboboxOption[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const { data, loading } = useFakeQuery(searchTerm);
+
+  return (
+    <Combobox
+      {...args}
+      onSelect={setSelected}
+      selected={selected}
+      label="Teammates"
+      multiSelect
+      onSearch={setSearchTerm}
+      loading={loading}
+    >
+      {data?.characters?.results?.map(({ name }) => {
+        return <Combobox.Option key={name} id={name} label={name} />;
+      })}
+    </Combobox>
+  );
+};
+
+const infiniteScrollComboboxOptions = {
+  pageInfo: {
+    totalPages: 2,
+  },
+  pages: [
+    [
+      { id: "1", label: "Bilbo Baggins" },
+      { id: "2", label: "Frodo Baggins" },
+      { id: "3", label: "Pippin Took" },
+      { id: "4", label: "Merry Brandybuck" },
+      { id: "5", label: "Sam Gamgee" },
+      { id: "6", label: "Aragorn" },
+      { id: "7", label: "Galadriel" },
+      { id: "8", label: "Arwen" },
+      { id: "9", label: "Gandalf" },
+      { id: "10", label: "Legolas" },
+      { id: "11", label: "Gimli" },
+      { id: "12", label: "Samwise Gamgee" },
+      { id: "14", label: "Faramir" },
+    ],
+    [
+      { id: "15", label: "Spiderman" },
+      { id: "16", label: "Batman" },
+      { id: "17", label: "Superman" },
+      { id: "18", label: "Wonder Woman" },
+      { id: "19", label: "Iron Man" },
+      { id: "20", label: "Captain America" },
+      { id: "21", label: "Thor" },
+      { id: "22", label: "Hulk" },
+      { id: "23", label: "Black Widow" },
+      { id: "24", label: "Spider-Woman" },
+    ],
+  ],
+};
+
+const ComboboxInfiniteScroll: ComponentStory<typeof Combobox> = args => {
+  const [page, setPage] = useState<number>(1);
+  const [selected, setSelected] = useState<ComboboxOption[]>([]);
+  const [options, setOptions] = useState<ComboboxOption[]>(
+    infiniteScrollComboboxOptions.pages[0],
+  );
+  const [loadingMore, setLoadingMore] = useState<boolean>(false);
+  const hasNextPage = page < infiniteScrollComboboxOptions.pageInfo.totalPages;
+
+  const addMoreOptions = () => {
+    if (!hasNextPage || loadingMore) return;
+    setLoadingMore(true);
+    setTimeout(() => {
+      setOptions([...options, ...infiniteScrollComboboxOptions.pages[page]]);
+      setPage(page + 1);
+      setLoadingMore(false);
+    }, 1000);
+  };
+
+  return (
+    <Combobox
+      {...args}
+      label="Teammates"
+      onSelect={selection => {
+        setSelected(selection);
+      }}
+      selected={selected}
+      onLoadMore={addMoreOptions}
+      loading={loadingMore}
+    >
+      {options.map(option => (
+        <Combobox.Option key={option.id} id={option.id} label={option.label} />
+      ))}
+    </Combobox>
+  );
+};
+
 export const ClearSelection = ComboboxClearSelection.bind({});
 ClearSelection.args = {};
 
@@ -304,4 +399,24 @@ export const SingleSelect = ComboboxSingleSelection.bind({});
 SingleSelect.args = {};
 
 export const DynamicAction = DynamicButton.bind({});
-SingleSelect.args = {};
+DynamicAction.args = {};
+
+export const CustomSearch = ComboboxCustomSearch.bind({});
+CustomSearch.args = {};
+
+export const InfiniteScroll = ComboboxInfiniteScroll.bind({});
+InfiniteScroll.args = {};
+
+CustomSearch.parameters = {
+  previewTabs: {
+    code: {
+      hidden: false,
+      extraImports: {
+        "./useFakeQuery": ["useFakeQuery"],
+      },
+      files: {
+        "/useFakeQuery.ts": require("!raw-loader!./storyUtils").default,
+      },
+    },
+  },
+};

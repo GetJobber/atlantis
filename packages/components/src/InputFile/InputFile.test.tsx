@@ -39,6 +39,20 @@ describe("Post Requests", () => {
     expect(container).toMatchSnapshot();
   });
 
+  it("renders an InputFile with custom accepted MIME types", () => {
+    const { container } = render(
+      <InputFile
+        allowedTypes={["image/png", "image/jpg", "application/pdf"]}
+        getUploadParams={fetchUploadParams}
+      />,
+    );
+    const input = container.querySelector("input[type=file]");
+    expect(input).toHaveAttribute(
+      "accept",
+      "image/png,image/jpg,application/pdf",
+    );
+  });
+
   it("renders an InputFile with only images allowed", () => {
     const { container } = render(
       <InputFile allowedTypes="images" getUploadParams={fetchUploadParams} />,
@@ -134,6 +148,77 @@ describe("Post Requests", () => {
 
       expect(handleStart).toHaveBeenCalledTimes(1);
       expect(handleComplete).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe("when component fails to get upload params", () => {
+    it("calls onError callback", async () => {
+      const fetchParams = jest.fn(() => Promise.reject("error"));
+      const handleError = jest.fn();
+
+      const { container } = render(
+        <InputFile getUploadParams={fetchParams} onUploadError={handleError} />,
+      );
+      const input = container.querySelector("input[type=file]");
+
+      fireEvent.change(input, { target: { files: [testFile] } });
+
+      await waitFor(() => {
+        expect(handleError).toHaveBeenCalledWith(
+          new Error("Failed to get upload params"),
+        );
+      });
+    });
+  });
+
+  describe("when the component fails to upload", () => {
+    it("calls onError callback", async () => {
+      const fetchParams = jest.fn(fetchUploadParams);
+      const handleError = jest.fn();
+
+      (axios.request as jest.Mock).mockReturnValue(Promise.reject("error"));
+
+      const { container } = render(
+        <InputFile getUploadParams={fetchParams} onUploadError={handleError} />,
+      );
+      const input = container.querySelector("input[type=file]");
+
+      fireEvent.change(input, { target: { files: [testFile] } });
+
+      await waitFor(() => {
+        expect(handleError).toHaveBeenCalledWith(
+          new Error("Failed to upload file"),
+        );
+      });
+    });
+  });
+
+  describe("when a validator is provided and validation fails", () => {
+    it("shows the validation message", async () => {
+      function pngFileValidator(file: File) {
+        if (file.name.endsWith(".png")) {
+          return {
+            code: "wrong-file-type",
+            message: "Only .png files are allowed",
+          };
+        }
+
+        return null;
+      }
+
+      const { container } = render(
+        <InputFile
+          getUploadParams={fetchUploadParams}
+          validator={pngFileValidator}
+        />,
+      );
+      const input = container.querySelector("input[type=file]");
+
+      fireEvent.change(input, { target: { files: [testFile] } });
+
+      await waitFor(() => {
+        expect(container).toContainHTML("Only .png files are allowed");
+      });
     });
   });
 });

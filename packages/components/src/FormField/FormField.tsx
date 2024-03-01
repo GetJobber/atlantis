@@ -4,10 +4,10 @@ import React, {
   KeyboardEvent,
   MutableRefObject,
   useEffect,
+  useId,
   useImperativeHandle,
   useState,
 } from "react";
-import { v1 as uuidv1 } from "uuid";
 import { Controller, useForm, useFormContext } from "react-hook-form";
 import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.css";
@@ -42,6 +42,7 @@ export function FormField(props: FormFieldProps) {
     onFocus,
     onBlur,
     onValidation,
+    onKeyUp,
     clearable = "never",
   } = props;
 
@@ -55,8 +56,8 @@ export function FormField(props: FormFieldProps) {
     : // If there isn't a Form Context being provided, get a form for this field.
       useForm({ mode: "onTouched" });
 
-  const [identifier] = useState(uuidv1());
-  const [descriptionIdentifier] = useState(`descriptionUUID--${uuidv1()}`);
+  const [identifier] = useState(useId());
+  const [descriptionIdentifier] = useState(`descriptionUUID--${useId()}`);
   /**
    * Generate a name if one is not supplied, this is the name
    * that will be used for react-hook-form and not neccessarily
@@ -158,6 +159,7 @@ export function FormField(props: FormFieldProps) {
                     max={max}
                     min={min}
                     ref={inputRef as MutableRefObject<HTMLInputElement>}
+                    onKeyUp={onKeyUp}
                   />
                   {loading && <FormFieldPostFix variation="spinner" />}
                   {children}
