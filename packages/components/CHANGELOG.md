@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.84.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.84.0...@jobber/components@4.84.1) (2024-03-01)
+
+
+### Bug Fixes
+
+* **components:** prevent multiple breakpoints being registered within DataList ([#1704](https://github.com/GetJobber/atlantis/issues/1704)) ([920a494](https://github.com/GetJobber/atlantis/commit/920a494f981ae4b130347e07ea394ae4c37e8c06))
+
+
+
+
+
 # [4.84.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.83.1...@jobber/components@4.84.0) (2024-03-01)
 
 
