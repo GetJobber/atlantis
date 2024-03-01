@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Banner, Text, TextList } from "@jobber/components-native";
+import { Banner, Content, Text, TextList } from "@jobber/components-native";
 
 export default {
   title: "Components/Status and Feedback/Banner/Mobile",
@@ -12,16 +12,30 @@ export default {
   },
 } as ComponentMeta<typeof Banner>;
 
-const BasicTemplate: ComponentStory<typeof Banner> = args => (
-  <Banner {...args}>Your import is in progress</Banner>
+const BasicTemplate: ComponentStory<typeof Banner> = () => (
+  <Content>
+    <Banner type="notice">
+      <Text>Your import is in progress</Text>
+    </Banner>
+    <Banner type="warning">
+      <Text>Your trial is about to end</Text>
+    </Banner>
+    <Banner type="error">
+      <Text>There was an error with your import</Text>
+    </Banner>
+  </Content>
 );
 
 const ActionsTemplate: ComponentStory<typeof Banner> = args => (
-  <Banner {...args}>Your trial has been extended!</Banner>
+  <Banner {...args}>
+    <Text>Your trial has been extended!</Text>
+  </Banner>
 );
 
 const ErrorTemplate: ComponentStory<typeof Banner> = args => (
-  <Banner {...args}>Currently offline. Functionality is limited.</Banner>
+  <Banner {...args}>
+    <Text>Currently offline. Functionality is limited.</Text>
+  </Banner>
 );
 
 const ErrorDetailsTemplate: ComponentStory<typeof Banner> = args => {
@@ -29,12 +43,11 @@ const ErrorDetailsTemplate: ComponentStory<typeof Banner> = args => {
     "This client already exists",
     "This phone number doesn't receive SMS",
   ];
+
   return (
     <Banner {...args}>
-      <Text level="textSupporting">
-        There was an error submitting your form:
-      </Text>
-      <TextList level="textSupporting" items={listItems} />
+      <Text level="text">There was an error submitting your form:</Text>
+      <TextList level="text" items={listItems} />
     </Banner>
   );
 };

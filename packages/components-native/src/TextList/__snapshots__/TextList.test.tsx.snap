@@ -5,7 +5,7 @@ exports[`TextList when the bulletItems is provided displays the text list 1`] = 
   style={
     {
       "flexDirection": "column",
-      "marginTop": 8,
+      "width": "100%",
     }
   }
 >
