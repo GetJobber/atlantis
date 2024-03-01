@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.56.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.55.0...@jobber/components-native@0.56.0) (2024-03-01)
+
+
+### Features
+
+* **components-native:** Update ButtonGroup styles ([#1777](https://github.com/GetJobber/atlantis/issues/1777)) ([3bb818c](https://github.com/GetJobber/atlantis/commit/3bb818c4cd9183354d535b6ec594091157b508c9))
+
+
+
+
+
 # [0.55.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.54.4...@jobber/components-native@0.55.0) (2024-03-01)
 
 
