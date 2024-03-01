@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.8.3...@jobber/hooks@2.9.0) (2024-03-01)
+
+
+### Features
+
+* **components:** Added accessible name for combobox trigger ([#1786](https://github.com/GetJobber/atlantis/issues/1786)) ([3280713](https://github.com/GetJobber/atlantis/commit/32807139ee436f45839edd261620e359d156cc80))
+
+
+
+
+
 ## [2.8.3](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.8.2...@jobber/hooks@2.8.3) (2024-02-22)
 
 **Note:** Version bump only for package @jobber/hooks
