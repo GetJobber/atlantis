@@ -1,5 +1,5 @@
-import { screen } from "@testing-library/react";
+import * as ComboboxOptionPom from "./components/ComboboxOption/ComboboxOption.pom";
 
 export function getOption(label: string) {
-  return screen.getByText(label).parentElement as HTMLElement;
+  return ComboboxOptionPom.getOption(label);
 }
