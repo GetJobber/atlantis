@@ -1,14 +1,9 @@
 import React from "react";
 import classnames from "classnames";
 import styles from "./StatusLabel.css";
+import { StatusType } from "./StatusType";
 import { Text } from "../Text";
-
-export type StatusType =
-  | "success"
-  | "warning"
-  | "critical"
-  | "inactive"
-  | "informative";
+import { StatusIndicator } from "../StatusIndicator/StatusIndicator";
 
 export interface StatusLabelType {
   readonly statusLabel: string;
@@ -48,23 +43,10 @@ export function StatusLabel({
 
   return (
     <div role="status" className={containerClassNames}>
-      <StatusLabelIcon status={status} />
+      <StatusIndicator status={status} />
       <Text size="small" align={alignment}>
         {label}
       </Text>
     </div>
-  );
-}
-
-interface StatusLabelIconProps {
-  status: StatusType;
-}
-
-function StatusLabelIcon({ status }: StatusLabelIconProps) {
-  return (
-    <div
-      style={{ backgroundColor: `var(--color-${status}` }}
-      className={styles.statusIndicator}
-    />
   );
 }

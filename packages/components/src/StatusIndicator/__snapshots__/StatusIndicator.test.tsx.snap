@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a critical status indicator 1`] = `
+<div>
+  <div
+    class="statusIndicator"
+  />
+</div>
+`;
+
+exports[`renders a informative status indicator 1`] = `
+<div>
+  <div
+    class="statusIndicator"
+  />
+</div>
+`;
+
+exports[`renders a success status indicator 1`] = `
+<div>
+  <div
+    class="statusIndicator"
+  />
+</div>
+`;
+
+exports[`renders a warning status indicator 1`] = `
+<div>
+  <div
+    class="statusIndicator"
+  />
+</div>
+`;
+
+exports[`renders an inactive status indicator 1`] = `
+<div>
+  <div
+    class="statusIndicator"
+  />
+</div>
+`;
