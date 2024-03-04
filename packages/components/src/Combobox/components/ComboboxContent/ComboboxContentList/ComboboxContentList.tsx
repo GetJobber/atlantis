@@ -40,6 +40,7 @@ export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
                 key={option.id}
                 id={option.id}
                 label={option.label}
+                prefix={option.prefix}
               />
             );
           })}
