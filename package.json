@@ -74,6 +74,7 @@
     "@storybook/addon-essentials": "7.6.7",
     "@storybook/addon-interactions": "7.6.7",
     "@storybook/addon-links": "7.6.7",
+    "@storybook/addon-mdx-gfm": "^7.6.10",
     "@storybook/addon-react-native-web": "^0.0.21",
     "@storybook/addons": "7.6.7",
     "@storybook/api": "7.6.7",

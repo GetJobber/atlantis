@@ -5,6 +5,7 @@ import { Button } from "@jobber/components/Button";
 import { Typography } from "@jobber/components/Typography";
 import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
+import { useFakeQuery } from "./storyUtils";
 
 export default {
   title: "Components/Selections/Combobox/Web",
@@ -288,6 +289,28 @@ const DynamicButton: ComponentStory<typeof Combobox> = args => {
   );
 };
 
+const ComboboxCustomSearch: ComponentStory<typeof Combobox> = args => {
+  const [selected, setSelected] = useState<ComboboxOption[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const { data, loading } = useFakeQuery(searchTerm);
+
+  return (
+    <Combobox
+      {...args}
+      onSelect={setSelected}
+      selected={selected}
+      label="Teammates"
+      multiSelect
+      onSearch={setSearchTerm}
+      loading={loading}
+    >
+      {data?.characters?.results?.map(({ name }) => {
+        return <Combobox.Option key={name} id={name} label={name} />;
+      })}
+    </Combobox>
+  );
+};
+
 export const ClearSelection = ComboboxClearSelection.bind({});
 ClearSelection.args = {};
 
@@ -304,4 +327,21 @@ export const SingleSelect = ComboboxSingleSelection.bind({});
 SingleSelect.args = {};
 
 export const DynamicAction = DynamicButton.bind({});
-SingleSelect.args = {};
+DynamicAction.args = {};
+
+export const CustomSearch = ComboboxCustomSearch.bind({});
+CustomSearch.args = {};
+
+CustomSearch.parameters = {
+  previewTabs: {
+    code: {
+      hidden: false,
+      extraImports: {
+        "./useFakeQuery": ["useFakeQuery"],
+      },
+      files: {
+        "/useFakeQuery.ts": require("./storyUtils").default,
+      },
+    },
+  },
+};

@@ -30,7 +30,7 @@ export function ComboboxOption(props: ComboboxOptionProps) {
       className={classnames(styles.option)}
     >
       {props.label}
-      {isSelected && <Icon name="checkmark" color="blue" />}
+      <div>{isSelected && <Icon name="checkmark" color="blue" />}</div>
     </li>
   );
 }

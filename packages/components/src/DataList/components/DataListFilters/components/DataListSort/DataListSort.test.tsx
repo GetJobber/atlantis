@@ -10,11 +10,26 @@ import { DataListSort } from "./DataListSort";
 const MENU_TEST_ID = "ATL-Combobox-Content";
 const sortableKeys = ["label", "address"] as const;
 const handleSort = jest.fn();
+const headers = { label: "Label", address: "Address", phone: "Phone" };
 const mockContextValue = {
   ...defaultValues,
-  headers: { label: "Label", address: "Address", phone: "Phone" },
+  headers,
   sorting: {
-    sortable: [...sortableKeys],
+    sortable: sortableKeys.map(key => ({
+      key,
+      options: [
+        {
+          id: "selectionAsc",
+          label: `${headers[key]} (A-Z)`,
+          order: "asc",
+        },
+        {
+          id: "selectionDesc",
+          label: `${headers[key]} (Z-A)`,
+          order: "desc",
+        },
+      ],
+    })),
     state: undefined,
     onSort: handleSort,
   },
@@ -126,6 +141,8 @@ describe("DataListSort", () => {
 
         expect(handleSort).toHaveBeenCalledWith({
           key: name,
+          id: "selectionAsc",
+          label: `${headers[name]} (A-Z)`,
           order: "asc",
         });
       },
@@ -142,7 +159,9 @@ describe("DataListSort", () => {
 
         expect(handleSort).toHaveBeenCalledWith({
           key: name,
+          label: `${headers[name]} (Z-A)`,
           order: "desc",
+          id: "selectionDesc",
         });
       },
     );
@@ -156,7 +175,9 @@ describe("DataListSort", () => {
 
       expect(handleSort).toHaveBeenCalledWith({
         key: name,
+        label: `${headers[name]} (A-Z)`,
         order: "asc",
+        id: "selectionAsc",
       });
     });
 
