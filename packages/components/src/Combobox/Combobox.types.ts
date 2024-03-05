@@ -80,9 +80,9 @@ export interface ComboboxOption {
    */
   label: string;
 
-  // /**
-  //  * An optional component to be displayed before the label.
-  //  */
+  /**
+   * An optional component to be displayed before the label.
+   */
   prefix?: React.ReactElement;
 }
 
