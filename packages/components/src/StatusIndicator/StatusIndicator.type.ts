@@ -1,4 +1,4 @@
-export type StatusType =
+export type StatusIndicatorType =
   | "success"
   | "warning"
   | "critical"

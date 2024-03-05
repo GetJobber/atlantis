@@ -1,8 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
-import { StatusIndicator, type StatusType } from "./StatusIndicator";
+import { StatusIndicator } from "./StatusIndicator";
+import type { StatusIndicatorType } from "./StatusIndicator.type";
 
-const statuses: StatusType[] = [
+const statuses: StatusIndicatorType[] = [
   "success",
   "warning",
   "critical",
@@ -10,10 +11,13 @@ const statuses: StatusType[] = [
   "informative",
 ];
 
-it.each(statuses)(`renders a %s status indicator`, (status: StatusType) => {
-  render(<StatusIndicator status={status} />);
+it.each(statuses)(
+  `renders a %s status indicator`,
+  (status: StatusIndicatorType) => {
+    render(<StatusIndicator status={status} />);
 
-  expect(
-    screen.getByTestId(`ATL-Status-Indicator-${status}`),
-  ).toBeInTheDocument();
-});
+    expect(
+      screen.getByTestId(`ATL-Status-Indicator-${status}`),
+    ).toBeInTheDocument();
+  },
+);

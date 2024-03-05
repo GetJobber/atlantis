@@ -1,13 +1,13 @@
 import React from "react";
 import classnames from "classnames";
 import styles from "./StatusLabel.css";
-import { StatusType } from "./StatusType";
+import { StatusIndicatorType } from "../StatusIndicator/StatusIndicator.type";
 import { Text } from "../Text";
 import { StatusIndicator } from "../StatusIndicator/StatusIndicator";
 
 export interface StatusLabelType {
   readonly statusLabel: string;
-  readonly statusType?: StatusType;
+  readonly statusType?: StatusIndicatorType;
 }
 
 interface StatusLabelProps {
@@ -28,7 +28,7 @@ interface StatusLabelProps {
    *
    * @default "inactive"
    */
-  readonly status: StatusType;
+  readonly status: StatusIndicatorType;
 }
 
 export function StatusLabel({

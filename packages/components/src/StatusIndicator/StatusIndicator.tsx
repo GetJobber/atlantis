@@ -1,15 +1,9 @@
 import React from "react";
 import styles from "./StatusIndicator.css";
-
-export type StatusType =
-  | "success"
-  | "warning"
-  | "critical"
-  | "inactive"
-  | "informative";
+import { StatusIndicatorType } from "./StatusIndicator.type";
 
 interface StatusIndicatorProps {
-  readonly status: StatusType;
+  readonly status: StatusIndicatorType;
 }
 
 export function StatusIndicator({ status }: StatusIndicatorProps) {
