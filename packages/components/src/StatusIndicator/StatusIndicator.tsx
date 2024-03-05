@@ -14,9 +14,10 @@ interface StatusIndicatorProps {
 
 export function StatusIndicator({ status }: StatusIndicatorProps) {
   return (
-    <div
-      style={{ backgroundColor: `var(--color-${status}` }}
+    <span
+      style={{ backgroundColor: `var(--color-${status})` }}
       className={styles.statusIndicator}
+      data-testid={`ATL-Status-Indicator-${status}`}
     />
   );
 }

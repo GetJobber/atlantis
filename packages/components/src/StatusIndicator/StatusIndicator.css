@@ -1,4 +1,5 @@
 .statusIndicator {
+  display: inline-block;
   width: var(--statusLabel-icon-diameter);
   height: var(--statusLabel-icon-diameter);
   margin-top: var(--space-minuscule);
