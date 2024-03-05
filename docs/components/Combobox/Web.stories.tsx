@@ -224,16 +224,8 @@ const ComboboxPrefixOptions: ComponentStory<typeof Combobox> = args => {
         label="Legolas"
         prefix={<StatusIndicator status="warning" />}
       />
-      <Combobox.Option
-        id="6"
-        label="Gandalf"
-        prefix={<StatusIndicator status="inactive" />}
-      />
-      <Combobox.Option
-        id="7"
-        label="Aragorn"
-        prefix={<StatusIndicator status="informative" />}
-      />
+      <Combobox.Option id="6" label="Gandalf" />
+      <Combobox.Option id="7" label="Aragorn" />-
       <Combobox.Option
         id="8"
         label="Boromir"
