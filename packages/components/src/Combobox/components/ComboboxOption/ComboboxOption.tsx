@@ -31,7 +31,7 @@ export function ComboboxOption(props: ComboboxOptionProps) {
       }
       className={classnames(styles.option)}
     >
-      <Flex template={["shrink", "grow"]}>
+      <Flex template={props.prefix ? ["shrink", "grow"] : ["grow"]}>
         {props.prefix}
 
         {props.label}
