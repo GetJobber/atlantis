@@ -6,10 +6,14 @@ exports[`renders a critical StatusLabel 1`] = `
     class="statusLabelRow"
     role="status"
   >
-    <span
+    <div
       class="statusIndicator"
-      data-testid="ATL-Status-Indicator-critical"
-    />
+    >
+      <span
+        class="statusIndicator"
+        data-testid="ATL-Status-Indicator-critical"
+      />
+    </div>
     <p
       class="base regular small text"
     >
@@ -25,10 +29,14 @@ exports[`renders a successful StatusLabel 1`] = `
     class="statusLabelRow"
     role="status"
   >
-    <span
+    <div
       class="statusIndicator"
-      data-testid="ATL-Status-Indicator-success"
-    />
+    >
+      <span
+        class="statusIndicator"
+        data-testid="ATL-Status-Indicator-success"
+      />
+    </div>
     <p
       class="base regular small text"
     >
@@ -44,10 +52,14 @@ exports[`renders a warning StatusLabel 1`] = `
     class="statusLabelRow"
     role="status"
   >
-    <span
+    <div
       class="statusIndicator"
-      data-testid="ATL-Status-Indicator-warning"
-    />
+    >
+      <span
+        class="statusIndicator"
+        data-testid="ATL-Status-Indicator-warning"
+      />
+    </div>
     <p
       class="base regular small text"
     >
@@ -63,10 +75,14 @@ exports[`renders an end-aligned StatusLabel 1`] = `
     class="statusLabelRow labelTextEndAligned"
     role="status"
   >
-    <span
+    <div
       class="statusIndicator"
-      data-testid="ATL-Status-Indicator-informative"
-    />
+    >
+      <span
+        class="statusIndicator"
+        data-testid="ATL-Status-Indicator-informative"
+      />
+    </div>
     <p
       class="base regular small text end"
     >
@@ -82,10 +98,14 @@ exports[`renders an inactive StatusLabel 1`] = `
     class="statusLabelRow"
     role="status"
   >
-    <span
+    <div
       class="statusIndicator"
-      data-testid="ATL-Status-Indicator-inactive"
-    />
+    >
+      <span
+        class="statusIndicator"
+        data-testid="ATL-Status-Indicator-inactive"
+      />
+    </div>
     <p
       class="base regular small text"
     >
@@ -101,10 +121,14 @@ exports[`renders an informative StatusLabel 1`] = `
     class="statusLabelRow"
     role="status"
   >
-    <span
+    <div
       class="statusIndicator"
-      data-testid="ATL-Status-Indicator-informative"
-    />
+    >
+      <span
+        class="statusIndicator"
+        data-testid="ATL-Status-Indicator-informative"
+      />
+    </div>
     <p
       class="base regular small text"
     >

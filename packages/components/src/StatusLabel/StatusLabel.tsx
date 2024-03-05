@@ -43,7 +43,10 @@ export function StatusLabel({
 
   return (
     <div role="status" className={containerClassNames}>
-      <StatusIndicator status={status} />
+      <div className={styles.statusIndicator}>
+        <StatusIndicator status={status} />
+      </div>
+
       <Text size="small" align={alignment}>
         {label}
       </Text>
