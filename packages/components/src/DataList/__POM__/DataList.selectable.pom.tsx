@@ -4,6 +4,7 @@ import { userEvent } from "@testing-library/user-event";
 import { DataList } from "../DataList";
 import { DataListSelectedType } from "../DataList.types";
 
+const mockOnSearch = jest.fn();
 const mockData = [
   { id: 1, label: "Jake Peralta" },
   { id: 2, label: "Amy Santiago" },
@@ -26,6 +27,7 @@ function ControlledDataList() {
       onSelect={setSelected}
       onSelectAll={setSelected}
     >
+      <DataList.Search onSearch={mockOnSearch} />
       <DataList.Layout>{item => <div>{item.label}</div>}</DataList.Layout>
     </DataList>
   );
