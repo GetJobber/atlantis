@@ -24,7 +24,7 @@ jobs:
             deps
             design
             docx
-            eslint
+            eslint-config
             formatters
             generators
             hooks
