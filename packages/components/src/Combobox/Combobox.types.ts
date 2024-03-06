@@ -79,6 +79,11 @@ export interface ComboboxOption {
    * The value to be visually displayed in the Combobox options list.
    */
   label: string;
+
+  /**
+   * An optional component to be displayed before the label.
+   */
+  prefix?: React.ReactElement;
 }
 
 export interface ComboboxContentProps {
