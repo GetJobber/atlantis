@@ -8,7 +8,12 @@ exports[`renders a critical StatusLabel 1`] = `
   >
     <div
       class="statusIndicator"
-    />
+    >
+      <span
+        class="statusIndicator"
+        data-testid="ATL-Status-Indicator-critical"
+      />
+    </div>
     <p
       class="base regular small text"
     >
@@ -26,7 +31,12 @@ exports[`renders a successful StatusLabel 1`] = `
   >
     <div
       class="statusIndicator"
-    />
+    >
+      <span
+        class="statusIndicator"
+        data-testid="ATL-Status-Indicator-success"
+      />
+    </div>
     <p
       class="base regular small text"
     >
@@ -44,7 +54,12 @@ exports[`renders a warning StatusLabel 1`] = `
   >
     <div
       class="statusIndicator"
-    />
+    >
+      <span
+        class="statusIndicator"
+        data-testid="ATL-Status-Indicator-warning"
+      />
+    </div>
     <p
       class="base regular small text"
     >
@@ -62,7 +77,12 @@ exports[`renders an end-aligned StatusLabel 1`] = `
   >
     <div
       class="statusIndicator"
-    />
+    >
+      <span
+        class="statusIndicator"
+        data-testid="ATL-Status-Indicator-informative"
+      />
+    </div>
     <p
       class="base regular small text end"
     >
@@ -80,7 +100,12 @@ exports[`renders an inactive StatusLabel 1`] = `
   >
     <div
       class="statusIndicator"
-    />
+    >
+      <span
+        class="statusIndicator"
+        data-testid="ATL-Status-Indicator-inactive"
+      />
+    </div>
     <p
       class="base regular small text"
     >
@@ -98,7 +123,12 @@ exports[`renders an informative StatusLabel 1`] = `
   >
     <div
       class="statusIndicator"
-    />
+    >
+      <span
+        class="statusIndicator"
+        data-testid="ATL-Status-Indicator-informative"
+      />
+    </div>
     <p
       class="base regular small text"
     >
