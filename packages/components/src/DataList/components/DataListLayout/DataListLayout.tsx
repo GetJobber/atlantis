@@ -11,10 +11,11 @@ export function DataListLayout<T extends DataListObject>({
   children,
   size = "xs",
 }: DataListLayoutProps<T>) {
-  const { registerLayout, loadingState } = useDataListContext<T>();
+  const { registerLayout, loadingState, layouts } = useDataListContext<T>();
   const { activeBreakpoint } = useActiveLayout();
 
   useEffect(() => {
+    if (layouts[size]) return;
     registerLayout(size, children);
   }, [size, children]);
 

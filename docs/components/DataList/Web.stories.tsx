@@ -14,6 +14,7 @@ import { InlineLabel, InlineLabelColors } from "@jobber/components/InlineLabel";
 import { Content } from "@jobber/components/Content";
 import { Button } from "@jobber/components/Button";
 import { DatePicker } from "@jobber/components/DatePicker";
+import { Glimmer } from "@jobber/components/Glimmer";
 import { LIST_QUERY, ListQueryType, apolloClient } from "./storyUtils";
 
 export default {
@@ -61,6 +62,7 @@ const Template: ComponentStory<typeof DataList> = args => {
     });
 
   const items = data?.allPeople.edges || [];
+
   const totalCount = data?.allPeople.totalCount || null;
   const mappedData = items.map(({ node }) => ({
     id: node.id,
@@ -83,253 +85,261 @@ const Template: ComponentStory<typeof DataList> = args => {
 
   const [selected, setSelected] = useState<DataListSelectedType<string>>();
   const [sortingState, setSortingState] = useState<DataListSorting>();
+  const [loading, setLoading] = useState(true);
 
   return (
-    <DataList
-      {...args}
-      loadingState={getLoadingState()}
-      totalCount={totalCount}
-      data={(args.data as typeof mappedData) || mappedData}
-      headers={{
-        label: "Name",
-        home: "Home world",
-        tags: "Attributes",
-        gender: "Gender",
-        lastActivity: "Last activity",
-      }}
-      onLoadMore={nextPage}
-      selected={selected}
-      onSelect={setSelected}
-      onSelectAll={setSelected}
-      sorting={{
-        state: sortingState,
-        onSort: sorting => {
-          console.log(sorting);
-          setSortingState(sorting);
-        },
-        sortable: [
-          {
-            key: "label",
-            options: [
-              {
-                id: "firstName",
-                label: "First name (A-Z)",
-                order: "asc",
-              },
-              {
-                id: "firstName",
-                label: "First name (Z-A)",
-                order: "desc",
-              },
-              { id: "lastName", label: "Last name (A-Z)", order: "asc" },
-              {
-                id: "lastName",
-                label: "Last name (Z-A)",
-                order: "desc",
-              },
-            ],
+    <div>
+      <button onClick={() => setLoading(!loading)}>Toggle loading</button>
+      <DataList
+        {...args}
+        loadingState={getLoadingState()}
+        totalCount={totalCount}
+        data={(args.data as typeof mappedData) || mappedData}
+        headers={{
+          label: "Name",
+          home: "Home world",
+          tags: "Attributes",
+          gender: "Gender",
+          lastActivity: "Last activity",
+        }}
+        onLoadMore={nextPage}
+        selected={selected}
+        onSelect={setSelected}
+        onSelectAll={setSelected}
+        sorting={{
+          state: sortingState,
+          onSort: sorting => {
+            console.log(sorting);
+            setSortingState(sorting);
           },
-          {
-            key: "home",
-            options: [
-              {
-                id: "homeWorld",
-                label: "Home world (A-Z)",
-                order: "asc",
-              },
-              {
-                id: "homeWorld",
-                label: "Home world (Z-A)",
-                order: "desc",
-              },
-              {
-                id: "homePopulation",
-                label: "Population (A-Z)",
-                order: "asc",
-              },
-              {
-                id: "homePopulation",
-                label: "Population (Z-A)",
-                order: "desc",
-              },
-            ],
-          },
-          { key: "lastActivity" },
-        ],
-      }}
-    >
-      <DataList.Filters>
-        <Button
-          label="Filter gender"
-          variation="subtle"
-          icon="add"
-          iconOnRight={true}
-          onClick={() => alert("Run filter by gender query")}
-        />
-        <Button
-          label="Filter attributes"
-          variation="subtle"
-          icon="add"
-          iconOnRight={true}
-          onClick={() => alert("Run filter by attributes query")}
-        />
-        <DatePicker
-          onChange={date => alert(`Filter by created date: ${date}`)}
-          activator={
-            <Button
-              icon="calendar"
-              ariaLabel="Select date"
-              variation="subtle"
-            />
-          }
-        />
-      </DataList.Filters>
+          sortable: [
+            {
+              key: "label",
+              options: [
+                {
+                  id: "firstName",
+                  label: "First name (A-Z)",
+                  order: "asc",
+                },
+                {
+                  id: "firstName",
+                  label: "First name (Z-A)",
+                  order: "desc",
+                },
+                { id: "lastName", label: "Last name (A-Z)", order: "asc" },
+                {
+                  id: "lastName",
+                  label: "Last name (Z-A)",
+                  order: "desc",
+                },
+              ],
+            },
+            {
+              key: "home",
+              options: [
+                {
+                  id: "homeWorld",
+                  label: "Home world (A-Z)",
+                  order: "asc",
+                },
+                {
+                  id: "homeWorld",
+                  label: "Home world (Z-A)",
+                  order: "desc",
+                },
+                {
+                  id: "homePopulation",
+                  label: "Population (A-Z)",
+                  order: "asc",
+                },
+                {
+                  id: "homePopulation",
+                  label: "Population (Z-A)",
+                  order: "desc",
+                },
+              ],
+            },
+            { key: "lastActivity" },
+          ],
+        }}
+      >
+        <DataList.Filters>
+          <Button
+            label="Filter gender"
+            variation="subtle"
+            icon="add"
+            iconOnRight={true}
+            onClick={() => alert("Run filter by gender query")}
+          />
+          <Button
+            label="Filter attributes"
+            variation="subtle"
+            icon="add"
+            iconOnRight={true}
+            onClick={() => alert("Run filter by attributes query")}
+          />
+          <DatePicker
+            onChange={date => alert(`Filter by created date: ${date}`)}
+            activator={
+              <Button
+                icon="calendar"
+                ariaLabel="Select date"
+                variation="subtle"
+              />
+            }
+          />
+        </DataList.Filters>
 
-      <DataList.Search
-        onSearch={search => console.log(search)}
-        placeholder="Search characters..."
-      />
+        <DataList.Search
+          onSearch={search => console.log(search)}
+          placeholder="Search characters..."
+        />
 
-      <DataList.ItemActions onClick={handleActionClick}>
-        <DataList.ItemAction
-          visible={item => item.species !== "Droid"}
-          icon="edit"
-          label="Edit"
-          onClick={handleActionClick}
-        />
-        <DataList.ItemAction
-          icon="sendMessage"
-          label={item => `Message ${item.label}`}
-          onClick={handleActionClick}
-        />
-        <DataList.ItemAction
-          label="Create new..."
-          onClick={handleActionClick}
-        />
-        <DataList.ItemAction
-          label="Add attribute..."
-          onClick={handleActionClick}
-        />
-        <DataList.ItemAction
-          icon="trash"
-          label="Delete"
-          destructive={true}
-          onClick={handleActionClick}
-        />
-      </DataList.ItemActions>
+        <DataList.ItemActions onClick={handleActionClick}>
+          <DataList.ItemAction
+            visible={item => item.species !== "Droid"}
+            icon="edit"
+            label="Edit"
+            onClick={handleActionClick}
+          />
+          <DataList.ItemAction
+            icon="sendMessage"
+            label={item => `Message ${item.label}`}
+            onClick={handleActionClick}
+          />
+          <DataList.ItemAction
+            label="Create new..."
+            onClick={handleActionClick}
+          />
+          <DataList.ItemAction
+            label="Add attribute..."
+            onClick={handleActionClick}
+          />
+          <DataList.ItemAction
+            icon="trash"
+            label="Delete"
+            destructive={true}
+            onClick={handleActionClick}
+          />
+        </DataList.ItemActions>
 
-      <DataList.BatchActions>
-        <DataList.BatchAction
-          icon="edit"
-          label="Edit"
-          onClick={handleBulkActionClick}
-        />
-        <DataList.BatchAction
-          icon="sendMessage"
-          label="Message"
-          onClick={handleBulkActionClick}
-        />
-        <DataList.BatchAction
-          label="Create new..."
-          icon="add"
-          onClick={handleBulkActionClick}
-        />
-        <DataList.BatchAction
-          label="Add attribute..."
-          onClick={handleBulkActionClick}
-        />
-        <DataList.BatchAction
-          icon="trash"
-          label="Delete"
-          destructive={true}
-          onClick={handleBulkActionClick}
-        />
-      </DataList.BatchActions>
+        <DataList.BatchActions>
+          <DataList.BatchAction
+            icon="edit"
+            label="Edit"
+            onClick={handleBulkActionClick}
+          />
+          <DataList.BatchAction
+            icon="sendMessage"
+            label="Message"
+            onClick={handleBulkActionClick}
+          />
+          <DataList.BatchAction
+            label="Create new..."
+            icon="add"
+            onClick={handleBulkActionClick}
+          />
+          <DataList.BatchAction
+            label="Add attribute..."
+            onClick={handleBulkActionClick}
+          />
+          <DataList.BatchAction
+            icon="trash"
+            label="Delete"
+            destructive={true}
+            onClick={handleBulkActionClick}
+          />
+        </DataList.BatchActions>
 
-      <DataList.Layout size="md">
-        {(item: DataListItemType<typeof mappedData>) => (
-          <Grid alignItems="center">
-            <Grid.Cell size={{ xs: 5 }}>
+        <DataList.Layout size="md">
+          {(item: DataListItemType<typeof mappedData>) => {
+            if (loading) return <Glimmer />;
+
+            return (
               <Grid alignItems="center">
-                <Grid.Cell size={{ xs: 6 }}>
-                  {item.label}
-                  {item.species}
+                <Grid.Cell size={{ xs: 5 }}>
+                  <Grid alignItems="center">
+                    <Grid.Cell size={{ xs: 6 }}>
+                      {item.label}
+                      {item.species}
+                    </Grid.Cell>
+                    <Grid.Cell size={{ xs: 6 }}>{item.home}</Grid.Cell>
+                  </Grid>
                 </Grid.Cell>
-                <Grid.Cell size={{ xs: 6 }}>{item.home}</Grid.Cell>
+                <Grid.Cell size={{ xs: 4 }}>{item.tags}</Grid.Cell>
+                <Grid.Cell size={{ xs: 1 }}>{item.gender}</Grid.Cell>
+                <Grid.Cell size={{ xs: 2 }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "flex-end",
+                      textAlign: "right",
+                    }}
+                  >
+                    {item.lastActivity}
+                  </div>
+                </Grid.Cell>
               </Grid>
-            </Grid.Cell>
-            <Grid.Cell size={{ xs: 4 }}>{item.tags}</Grid.Cell>
-            <Grid.Cell size={{ xs: 1 }}>{item.gender}</Grid.Cell>
-            <Grid.Cell size={{ xs: 2 }}>
+            );
+          }}
+        </DataList.Layout>
+
+        <DataList.Layout size="xs">
+          {(item: DataListItemType<typeof mappedData>) => (
+            <Content spacing="small">
               <div
                 style={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  textAlign: "right",
+                  display: "grid",
+                  gridTemplateColumns: item.species
+                    ? "max-content auto max-content"
+                    : "auto max-content",
+                  gap: 8,
+                  alignItems: "center",
+                }}
+              >
+                {item.label}
+                {item.species}
+                {item.gender}
+              </div>
+              {item.tags}
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "auto max-content",
+                  gap: 8,
+                  alignItems: "center",
                 }}
               >
                 {item.lastActivity}
+                <DataList.LayoutActions />
               </div>
-            </Grid.Cell>
-          </Grid>
-        )}
-      </DataList.Layout>
+            </Content>
+          )}
+        </DataList.Layout>
 
-      <DataList.Layout size="xs">
-        {(item: DataListItemType<typeof mappedData>) => (
-          <Content spacing="small">
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: item.species
-                  ? "max-content auto max-content"
-                  : "auto max-content",
-                gap: 8,
-                alignItems: "center",
-              }}
-            >
-              {item.label}
-              {item.species}
-              {item.gender}
-            </div>
-            {item.tags}
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "auto max-content",
-                gap: 8,
-                alignItems: "center",
-              }}
-            >
-              {item.lastActivity}
-              <DataList.LayoutActions />
-            </div>
-          </Content>
-        )}
-      </DataList.Layout>
+        <DataList.EmptyState
+          type="empty"
+          message="Character list is looking empty"
+          action={
+            <Button
+              label="New character"
+              onClick={() => alert("Create a new character")}
+            />
+          }
+        />
 
-      <DataList.EmptyState
-        type="empty"
-        message="Character list is looking empty"
-        action={
-          <Button
-            label="New character"
-            onClick={() => alert("Create a new character")}
-          />
-        }
-      />
-
-      <DataList.EmptyState
-        type="filtered"
-        message="No results for selected filters"
-        action={
-          <Button
-            label="Clear filters"
-            onClick={() => alert("Filters cleared")}
-          />
-        }
-      />
-    </DataList>
+        <DataList.EmptyState
+          type="filtered"
+          message="No results for selected filters"
+          action={
+            <Button
+              label="Clear filters"
+              onClick={() => alert("Filters cleared")}
+            />
+          }
+        />
+      </DataList>
+    </div>
   );
 
   function handleActionClick(item: (typeof mappedData)[number]) {
