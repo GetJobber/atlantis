@@ -14,12 +14,12 @@ it("renders an object as a list of key value pairs", () => {
   expect(container).toMatchSnapshot();
 });
 
-it("allows duplicate terms when an optional key value as part of the data set", () => {
+it("allows duplicate terms", () => {
   const { container } = render(
     <DescriptionList
       data={[
-        ["Issued", "2018-12-08", "1"],
-        ["Issued", "2019-01-06", "2"],
+        ["Issued", "2018-12-08"],
+        ["Issued", "2019-01-06"],
       ]}
     />,
   );

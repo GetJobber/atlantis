@@ -8,14 +8,14 @@ interface DescriptionListProps {
    * the second value is the string to display as the definition,
    * and the third value is an optional key to use as the React key in scenarios where the display value is not unique for all elements in the data set.
    */
-  readonly data: [string, string | ReactNode, string?][];
+  readonly data: [string, string | ReactNode][];
 }
 
 export function DescriptionList({ data }: DescriptionListProps) {
   return (
     <dl className={styles.descriptionList}>
-      {data.map(([term, description, key]) => (
-        <div key={key || term} className={styles.termGroup}>
+      {data.map(([term, description], i) => (
+        <div key={`${term}-${i}`} className={styles.termGroup}>
           <Typography element="dt" textColor="heading" size="base">
             {term}
           </Typography>
