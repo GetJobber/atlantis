@@ -82,6 +82,7 @@ export function Combobox(props: ComboboxProps): JSX.Element {
           options={props.onSearch ? options : internalFilteredOptions}
           loading={props.loading}
           handleSearchChange={handleSearchChange}
+          onLoadMore={props.onLoadMore}
         />
       </div>
     </ComboboxContextProvider>

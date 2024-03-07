@@ -23,6 +23,11 @@ export interface InputPressableProps {
   readonly disabled?: boolean;
 
   /**
+   * Indicates if the input is focused
+   */
+  readonly focused?: boolean;
+
+  /**
    * Indicates if there is an validation error
    */
   readonly error?: FieldError;
@@ -95,6 +100,7 @@ export function InputPressableInternal(
     suffix,
     clearable = "never",
     onClear,
+    focused,
   }: InputPressableProps,
   ref: Ref<InputPressableRef>,
 ): JSX.Element {
@@ -119,7 +125,7 @@ export function InputPressableInternal(
       suffix={suffix}
       hasValue={hasValue}
       hasMiniLabel={hasMiniLabel}
-      focused={false}
+      focused={focused}
       error={error}
       invalid={invalid}
       placeholder={placeholder}

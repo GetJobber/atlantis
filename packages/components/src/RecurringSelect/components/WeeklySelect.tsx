@@ -1,12 +1,11 @@
-import React from "react";
-import { v1 as uuidv1 } from "uuid";
+import React, { useId } from "react";
 import styles from "./WeeklySelect.css";
 import checkboxStyles from "../DateCellCheckbox.css";
 import { WeekDay } from "../types";
 
 interface WeeklySelectProps {
-  disabled: boolean;
-  selectedDays: Set<WeekDay>;
+  readonly disabled: boolean;
+  readonly selectedDays: Set<WeekDay>;
   onChange(selectedDays: Set<WeekDay>): void;
 }
 const weekDays = [0, 1, 2, 3, 4, 5, 6];
@@ -32,7 +31,7 @@ export function WeeklySelect({
     <div className={styles.container}>
       {weekDays.map(weekDay => {
         const isSelected = selectedDays.has(weekDay);
-        const inputId = uuidv1();
+        const inputId = useId();
 
         return (
           <div key={`${weekDay}`} className={checkboxStyles.checkboxWrapper}>

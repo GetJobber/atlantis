@@ -74,7 +74,7 @@ describe("Button", () => {
       "cancel",
       {
         bgColor: tokens["color-white"],
-        borderColor: tokens["color-interactive--subtle"],
+        borderColor: tokens["color-border"],
       },
     ],
     ["destructive", { bgColor: tokens["color-destructive"] }],
@@ -96,10 +96,13 @@ describe("Button", () => {
       "secondary",
       {
         bgColor: tokens["color-white"],
-        borderColor: tokens["color-interactive"],
+        borderColor: tokens["color-border"],
       },
     ],
-    ["tertiary", { bgColor: tokens["color-white"] }],
+    [
+      "tertiary",
+      { bgColor: tokens["color-surface"], borderColor: "transparent" },
+    ],
   ])("renders a %s Button", (type, { bgColor, borderColor }) => {
     const { buttonStyle } = renderButton(
       <Button label={type} type={type} onPress={jest.fn()} />,

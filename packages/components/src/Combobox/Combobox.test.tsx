@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { render, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import { UserEvent, userEvent } from "@testing-library/user-event";
+import { mockIntersectionObserver } from "jsdom-testing-mocks";
 import { Combobox } from "./Combobox";
 import { ComboboxOption } from "./Combobox.types";
 import { COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE } from "./hooks/useComboboxValidation";
@@ -19,6 +20,7 @@ const handleSelect = jest.fn();
 const mockSelectedValue = jest.fn<ComboboxOption[], []>().mockReturnValue([]);
 const mockMultiSelectValue = jest.fn().mockReturnValue(false);
 const mockOnSearch = jest.fn();
+const observer = mockIntersectionObserver();
 
 let user: UserEvent;
 
@@ -174,7 +176,7 @@ describe("Combobox Single Select", () => {
     it("should show the label", () => {
       expect(screen.getByText(activatorLabel)).toBeInTheDocument();
       expect(
-        screen.getByRole("combobox", { name: selectedValue.label }),
+        screen.getByRole("combobox", { name: activatorLabel }),
       ).toBeInTheDocument();
     });
 
@@ -383,6 +385,7 @@ describe("Combobox Multiselect", () => {
           selected={[]}
           onSelect={handleSelect}
           onClose={handleClose}
+          onSearch={mockOnSearch}
         >
           <Combobox.Option id="1" label="Bilbo Baggins" />
           <Combobox.Option id="2" label="Frodo Baggins" />
@@ -396,6 +399,14 @@ describe("Combobox Multiselect", () => {
       await userEvent.click(screen.getByTestId(OVERLAY_TEST_ID));
 
       expect(handleClose).toHaveBeenCalledTimes(1);
+    });
+
+    it("should call onSearch with correct params when closing", async () => {
+      await userEvent.click(screen.getByRole("combobox"));
+      await userEvent.click(screen.getByTestId(OVERLAY_TEST_ID));
+      expect(screen.getByTestId(MENU_TEST_ID)).toHaveClass("hidden");
+
+      expect(mockOnSearch).toHaveBeenCalledWith("");
     });
   });
 });
@@ -418,6 +429,8 @@ describe("Combobox Compound Component Validation", () => {
   });
 
   it("throws an error when there are multiple Combobox Activators present", () => {
+    // This keeps the testing console clean
+    console.error = jest.fn();
     expect(() =>
       render(
         <Combobox label={activatorLabel} selected={[]} onSelect={jest.fn()}>
@@ -481,15 +494,25 @@ describe("Combobox Custom onSearch", () => {
     expect(screen.queryByText("API Value 2")).toBeInTheDocument();
   });
 
-  it("should show the correct amount of loading glimmers when loading is true", () => {
-    renderCustomOnSearchCombobox(true);
+  it("should show the correct number of loading glimmers if loading is true and options don't exist", () => {
+    renderCustomOnSearchCombobox(true, true);
 
+    expect(screen.queryByLabelText("loading")).not.toBeInTheDocument();
+    expect(screen.queryByText("No options yet")).not.toBeInTheDocument();
     expect(screen.getAllByTestId("ATL-Glimmer")).toHaveLength(5);
   });
 
-  it("should not show the loading glimmers when loading is false", () => {
+  it("should show the loading indicator when loading is true and options exist", () => {
+    renderCustomOnSearchCombobox(true);
+
+    expect(screen.getByLabelText("loading")).toBeInTheDocument();
+    expect(screen.queryAllByTestId("ATL-Glimmer")).toHaveLength(0);
+  });
+
+  it("should not show the loading indicator when loading is false", () => {
     renderCustomOnSearchCombobox(false);
 
+    expect(screen.queryByLabelText("loading")).not.toBeInTheDocument();
     expect(screen.queryAllByTestId("ATL-Glimmer")).toHaveLength(0);
   });
 
@@ -503,7 +526,7 @@ describe("Combobox Custom onSearch", () => {
     expect(screen.getByText("No results for “Value 4”")).toBeInTheDocument();
   });
 
-  it("should show the correct message when no options present and not searching", () => {
+  it("should show the correct message when no options present, not loading and not searching", () => {
     renderCustomOnSearchCombobox(false, true);
 
     expect(screen.getByText("No options yet")).toBeInTheDocument();
@@ -517,6 +540,21 @@ describe("Combobox option reactiveness", () => {
     expect(screen.getByText("Frodo Baggins")).toBeInTheDocument();
     expect(screen.getByText("Pippin Took")).toBeInTheDocument();
     expect(screen.getByText("Meriadoc Brandybuck")).toBeInTheDocument();
+  });
+});
+
+describe("Infinite scroll", () => {
+  it("should trigger the load more callback at the bottom of the list if a callback is provided", async () => {
+    const mockLoadMore = jest.fn();
+    renderInfiniteScrollCombobox(mockLoadMore);
+    await userEvent.click(screen.getByRole("combobox"));
+    expect(screen.getByText("Bilbo Baggins")).toBeInTheDocument();
+    const loadMoreTrigger = screen.getByTestId("ATL-Combobox-Loadmore-Trigger");
+    expect(loadMoreTrigger).toBeInTheDocument();
+    act(() => {
+      observer.enterNode(loadMoreTrigger);
+    });
+    expect(mockLoadMore).toHaveBeenCalledTimes(1);
   });
 });
 
@@ -562,6 +600,20 @@ function renderCombobox() {
         label={({ searchValue }) => `Add ${searchValue}`}
         onClick={handleAction}
       />
+    </Combobox>,
+  );
+}
+
+function renderInfiniteScrollCombobox(loadMoreCallback?: () => void) {
+  return render(
+    <Combobox
+      label={activatorLabel}
+      selected={mockSelectedValue()}
+      onSelect={handleSelect}
+      onLoadMore={loadMoreCallback}
+    >
+      <Combobox.Option id="1" label="Bilbo Baggins" />
+      <Combobox.Option id="2" label="Frodo Baggins" />
     </Combobox>,
   );
 }

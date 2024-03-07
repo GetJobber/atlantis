@@ -4,19 +4,15 @@ import { tokens } from "../utils/design";
 export const styles = StyleSheet.create({
   container: {
     width: "100%",
-  },
-  error: {
-    backgroundColor: tokens["color-critical--surface"],
-  },
-  warning: {
-    backgroundColor: tokens["color-warning--surface"],
-  },
-  notice: {
-    backgroundColor: tokens["color-informative--surface"],
+    borderColor: tokens["color-border"],
+    borderStyle: "solid",
+    borderBottomWidth: tokens["border-base"],
+    backgroundColor: tokens["color-surface"],
   },
   bannerContent: {
     flexDirection: "row",
     alignItems: "flex-start",
+    gap: tokens["space-small"] + tokens["space-smaller"],
   },
   contentContainer: {
     flex: 1,
@@ -27,7 +23,13 @@ export const styles = StyleSheet.create({
   textContainer: {
     marginTop: tokens["space-minuscule"],
   },
-  bannerIcon: {
-    paddingRight: tokens["space-small"],
+  fullWidth: {
+    width: "100%",
+  },
+  bannerChildrenContent: {
+    marginBottom: tokens["space-small"],
+  },
+  contentSpacing: {
+    gap: tokens["space-small"],
   },
 });

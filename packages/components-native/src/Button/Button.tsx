@@ -110,12 +110,13 @@ export function Button({
 }: ButtonProps): JSX.Element {
   const buttonStyle = [
     styles.button,
+    styles[size],
     styles[variation],
     styles[type],
-    styles[size],
+    type === "secondary" && variation === "cancel" && styles.cancelSecondary,
     disabled && styles.disabled,
-    fullHeight && styles.fullHeight,
     fullWidth && styles.reducedPaddingForFullWidth,
+    fullHeight && styles.fullHeight,
   ];
 
   // attempts to use Pressable caused problems.  When a ScrollView contained

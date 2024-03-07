@@ -3,6 +3,162 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.84.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.84.0...@jobber/components@4.84.1) (2024-03-01)
+
+
+### Bug Fixes
+
+* **components:** prevent multiple breakpoints being registered within DataList ([#1704](https://github.com/GetJobber/atlantis/issues/1704)) ([920a494](https://github.com/GetJobber/atlantis/commit/920a494f981ae4b130347e07ea394ae4c37e8c06))
+
+
+
+
+
+# [4.84.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.83.1...@jobber/components@4.84.0) (2024-03-01)
+
+
+### Features
+
+* **components:** Added accessible name for combobox trigger ([#1786](https://github.com/GetJobber/atlantis/issues/1786)) ([3280713](https://github.com/GetJobber/atlantis/commit/32807139ee436f45839edd261620e359d156cc80))
+
+
+
+
+
+## [4.83.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.83.0...@jobber/components@4.83.1) (2024-02-28)
+
+
+### Bug Fixes
+
+* **components:** Removing uuid in web and replacing with useId ([#1737](https://github.com/GetJobber/atlantis/issues/1737)) ([5e9398b](https://github.com/GetJobber/atlantis/commit/5e9398b0ab195d899cde89954a5515b86a563699))
+
+
+
+
+
+# [4.83.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.82.0...@jobber/components@4.83.0) (2024-02-27)
+
+
+### Features
+
+* **components:** Bring back card accent in retheme ([#1784](https://github.com/GetJobber/atlantis/issues/1784)) ([5f13558](https://github.com/GetJobber/atlantis/commit/5f13558c0685db9dc1725fc9129a1d9b50a46127))
+
+
+
+
+
+# [4.82.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.81.5...@jobber/components@4.82.0) (2024-02-27)
+
+
+### Features
+
+* **components:** Adds a role of status to the Glimmer component  ([#1781](https://github.com/GetJobber/atlantis/issues/1781)) ([09dda51](https://github.com/GetJobber/atlantis/commit/09dda51aafcb2565707f8ef69ff53c73ee93f868))
+
+
+
+
+
+## [4.81.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.81.4...@jobber/components@4.81.5) (2024-02-27)
+
+
+### Bug Fixes
+
+* **components:** keep ComboboxContentHeader label and action aligned across themes ([#1782](https://github.com/GetJobber/atlantis/issues/1782)) ([06bf0c0](https://github.com/GetJobber/atlantis/commit/06bf0c0410725e6ef18deeb6779d98a32703c022))
+
+
+
+
+
+## [4.81.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.81.3...@jobber/components@4.81.4) (2024-02-23)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.81.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.81.2...@jobber/components@4.81.3) (2024-02-22)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.81.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.81.1...@jobber/components@4.81.2) (2024-02-22)
+
+
+### Bug Fixes
+
+* **components:** Always show clear when there are selected options in ComboBox ([#1768](https://github.com/GetJobber/atlantis/issues/1768)) ([40b71b1](https://github.com/GetJobber/atlantis/commit/40b71b16dcdd187942a1b70feecdaf820bb66ea4))
+
+
+
+
+
+## [4.81.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.81.0...@jobber/components@4.81.1) (2024-02-20)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [4.81.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.80.0...@jobber/components@4.81.0) (2024-02-14)
+
+
+### Features
+
+* **components:** Render DataListStickyHeader when headers are present ([#1758](https://github.com/GetJobber/atlantis/issues/1758)) ([eb383ac](https://github.com/GetJobber/atlantis/commit/eb383ac890d8721b4a1c73f692e48ac6ff728e02))
+
+
+
+
+
+# [4.80.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.79.2...@jobber/components@4.80.0) (2024-02-13)
+
+
+### Features
+
+* **components:** Conditionally render DataListStickyHeader based on presence of children ([#1755](https://github.com/GetJobber/atlantis/issues/1755)) ([64ec3d4](https://github.com/GetJobber/atlantis/commit/64ec3d448349202d95fefecc2d66a9547d44031a))
+
+
+
+
+
+## [4.79.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.79.1...@jobber/components@4.79.2) (2024-02-12)
+
+
+### Bug Fixes
+
+* **components:** clearing search term in Combobox after clicking on clear button  ([#1756](https://github.com/GetJobber/atlantis/issues/1756)) ([057eafb](https://github.com/GetJobber/atlantis/commit/057eafb8e0aeeac0ec0abf32dea8c8e68139dd5a))
+
+
+
+
+
+## [4.79.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.79.0...@jobber/components@4.79.1) (2024-02-09)
+
+
+### Bug Fixes
+
+* ensure loading spinner shows up on combobox when actions are there ([#1754](https://github.com/GetJobber/atlantis/issues/1754)) ([f87aa80](https://github.com/GetJobber/atlantis/commit/f87aa80c4b0c44437cd71866cd2c8839e459b16a))
+
+
+
+
+
+# [4.79.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.78.4...@jobber/components@4.79.0) (2024-02-08)
+
+
+### Features
+
+* **components:** Add support for load more trigger to combobox ([#1746](https://github.com/GetJobber/atlantis/issues/1746)) ([406f7c9](https://github.com/GetJobber/atlantis/commit/406f7c9f5fcdc5eb3a84f994a5a2c27766949249))
+
+
+
+
+
 ## [4.78.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.78.3...@jobber/components@4.78.4) (2024-02-05)
 
 **Note:** Version bump only for package @jobber/components

@@ -17,7 +17,7 @@ exports[`renders a Select with many options 1`] = `
         >
           <select
             class="input"
-            id="123e4567-e89b-12d3-a456-426655440005"
+            id=":r4:"
           >
             <option>
               Foo
@@ -71,7 +71,7 @@ exports[`renders a Select with no options 1`] = `
         >
           <select
             class="input"
-            id="123e4567-e89b-12d3-a456-426655440001"
+            id=":r0:"
           />
           <span
             class="postfix"
@@ -112,7 +112,7 @@ exports[`renders a Select with one option 1`] = `
         >
           <select
             class="input"
-            id="123e4567-e89b-12d3-a456-426655440003"
+            id=":r2:"
           >
             <option>
               Foo
@@ -157,7 +157,7 @@ exports[`renders correctly as large 1`] = `
         >
           <select
             class="input"
-            id="123e4567-e89b-12d3-a456-426655440009"
+            id=":r8:"
           >
             <option>
               Foo
@@ -202,7 +202,7 @@ exports[`renders correctly as small 1`] = `
         >
           <select
             class="input"
-            id="123e4567-e89b-12d3-a456-426655440007"
+            id=":r6:"
           >
             <option>
               Foo
@@ -248,7 +248,7 @@ exports[`renders correctly when disabled 1`] = `
           <select
             class="input"
             disabled=""
-            id="123e4567-e89b-12d3-a456-426655440011"
+            id=":ra:"
           >
             <option>
               Foo
@@ -293,7 +293,7 @@ exports[`renders correctly when invalid 1`] = `
         >
           <select
             class="input"
-            id="123e4567-e89b-12d3-a456-426655440013"
+            id=":rc:"
           >
             <option>
               Foo
