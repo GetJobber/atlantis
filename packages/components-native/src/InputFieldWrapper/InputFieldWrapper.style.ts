@@ -34,6 +34,7 @@ export const styles = StyleSheet.create({
   miniLabel: {
     top: 0,
     paddingTop: tokens["space-small"] - tokens["space-smallest"],
+    backgroundColor: tokens["color-surface"],
     maxHeight:
       (typographyStyles.defaultSize.lineHeight || 0) + tokens["space-smaller"],
     zIndex: 1,
