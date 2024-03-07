@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.85.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.85.0...@jobber/components@4.85.1) (2024-03-06)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [4.85.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.84.1...@jobber/components@4.85.0) (2024-03-06)
+
+
+### Bug Fixes
+
+* **components:** Fix button label and icon alignment when inside a modal ([#1789](https://github.com/GetJobber/atlantis/issues/1789)) ([80ab639](https://github.com/GetJobber/atlantis/commit/80ab639e958984394d4ed472020af6215b5f23bc))
+
+
+### Features
+
+* **components:** Allow a prefix element on ComboBox.Option. Promote internal StatusLabel to StatusIndicator, top level component  ([#1788](https://github.com/GetJobber/atlantis/issues/1788)) ([5859dab](https://github.com/GetJobber/atlantis/commit/5859dabecd371df182c569c0ca4118827b61dba8))
+
+
+
+
+
 ## [4.84.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.84.0...@jobber/components@4.84.1) (2024-03-01)
 
 

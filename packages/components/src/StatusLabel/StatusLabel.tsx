@@ -1,18 +1,13 @@
 import React from "react";
 import classnames from "classnames";
 import styles from "./StatusLabel.css";
+import { StatusIndicatorType } from "../StatusIndicator/StatusIndicator.type";
 import { Text } from "../Text";
-
-export type StatusType =
-  | "success"
-  | "warning"
-  | "critical"
-  | "inactive"
-  | "informative";
+import { StatusIndicator } from "../StatusIndicator/StatusIndicator";
 
 export interface StatusLabelType {
   readonly statusLabel: string;
-  readonly statusType?: StatusType;
+  readonly statusType?: StatusIndicatorType;
 }
 
 interface StatusLabelProps {
@@ -33,7 +28,7 @@ interface StatusLabelProps {
    *
    * @default "inactive"
    */
-  readonly status: StatusType;
+  readonly status: StatusIndicatorType;
 }
 
 export function StatusLabel({
@@ -48,23 +43,13 @@ export function StatusLabel({
 
   return (
     <div role="status" className={containerClassNames}>
-      <StatusLabelIcon status={status} />
+      <div className={styles.statusIndicator}>
+        <StatusIndicator status={status} />
+      </div>
+
       <Text size="small" align={alignment}>
         {label}
       </Text>
     </div>
-  );
-}
-
-interface StatusLabelIconProps {
-  status: StatusType;
-}
-
-function StatusLabelIcon({ status }: StatusLabelIconProps) {
-  return (
-    <div
-      style={{ backgroundColor: `var(--color-${status}` }}
-      className={styles.statusIndicator}
-    />
   );
 }
