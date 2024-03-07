@@ -15,13 +15,13 @@ import { typographyStyles } from "../../../Typography";
 import { styles } from "../../InputFieldWrapper.style";
 
 export interface SuffixLabelProps {
-  focused: boolean;
-  disabled?: boolean;
-  hasMiniLabel: boolean;
-  inputInvalid?: boolean;
-  label: string;
-  hasLeftMargin?: boolean;
-  styleOverride?: StyleProp<TextStyle>;
+  readonly focused: boolean;
+  readonly disabled?: boolean;
+  readonly hasMiniLabel: boolean;
+  readonly inputInvalid?: boolean;
+  readonly label: string;
+  readonly hasLeftMargin?: boolean;
+  readonly styleOverride?: StyleProp<TextStyle>;
 }
 
 export const suffixLabelTestId = "ATL-InputFieldWrapper-SuffixLabel";
@@ -71,13 +71,13 @@ export function SuffixLabel({
 }
 
 export interface SuffixIconProps {
-  focused: boolean;
-  disabled?: boolean;
-  hasMiniLabel: boolean;
-  inputInvalid?: boolean;
-  icon: IconNames;
-  hasLeftMargin?: boolean;
-  onPress?: () => void;
+  readonly focused: boolean;
+  readonly disabled?: boolean;
+  readonly hasMiniLabel: boolean;
+  readonly inputInvalid?: boolean;
+  readonly icon: IconNames;
+  readonly hasLeftMargin?: boolean;
+  readonly onPress?: () => void;
 }
 
 export function SuffixIcon({

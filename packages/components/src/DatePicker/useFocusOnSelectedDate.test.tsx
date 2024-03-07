@@ -19,7 +19,7 @@ describe("useFocusOnSelectedDate hook", () => {
 });
 
 interface TestComponentProps {
-  hasSelectedDay?: boolean;
+  readonly hasSelectedDay?: boolean;
 }
 
 function TestComponent({ hasSelectedDay }: TestComponentProps) {

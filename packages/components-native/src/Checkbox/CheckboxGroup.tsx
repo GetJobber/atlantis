@@ -17,9 +17,9 @@ interface CommonCheckboxGroupProps extends Omit<CheckboxProps, "onChange"> {
   /**
    * Checkbox items
    */
-  children: CheckboxElement[];
+  readonly children: CheckboxElement[];
 
-  state?: CheckboxGroupState;
+  readonly state?: CheckboxGroupState;
 
   onChange?(groupChecks: CheckboxGroupState): void;
 }
@@ -38,6 +38,7 @@ export type CheckboxGroupProps = XOR<
   UncontrolledCheckboxGroupProps,
   ControlledCheckboxGroupProps
 >;
+
 export function CheckboxGroup({
   children,
   state,
@@ -57,6 +58,7 @@ export function CheckboxGroup({
       </CheckboxGroupInternal>
     );
   }
+
   if (name) {
     return (
       <FormField name={name}>
@@ -114,6 +116,7 @@ function CheckboxGroupInternal({
   ): React.ReactElement<CheckboxProps> {
     const name = throwErrorIfItHasNoName(checkbox.props.name);
     const childDisabled = disabled || checkbox.props.disabled;
+
     const childrenHandleChange = (checked: boolean) => {
       const childrenNextValue = {
         ...actualCheckedValues.childrenChecked,
@@ -126,6 +129,7 @@ function CheckboxGroupInternal({
         parentChecked: parentNextValue,
       });
     };
+
     return React.cloneElement(checkbox, {
       onChange: childrenHandleChange,
       checked: actualCheckedValues.childrenChecked[name],
@@ -141,6 +145,7 @@ function CheckboxGroupInternal({
     }
 
     const name = throwErrorIfItHasNoName(child.props.name);
+
     return {
       ...childCheckboxObject,
       [name]: cloneChildCheckbox(child),
@@ -153,9 +158,11 @@ function CheckboxGroupInternal({
     childName: string,
   ): boolean {
     const currentCheckbox = checkboxObject[childName];
+
     if (currentCheckbox?.props?.disabled) {
       return acc;
     }
+
     return acc && value;
   }
 
@@ -174,6 +181,7 @@ function CheckboxGroupInternal({
                 actualCheckedValues.childrenChecked,
                 (acc, currentCheckboxValue, childName) => {
                   const currentCheckbox = checkboxObject[childName];
+
                   return currentCheckbox?.props?.disabled
                     ? {
                         ...acc,
@@ -215,11 +223,13 @@ function throwErrorIfItHasNoName(name?: string): string {
       "You must provide a name to checkboxes in a checkbox group",
     );
   }
+
   return name;
 }
 
 function checkIndeterminateStatus(checkedValues: CheckboxGroupState): boolean {
   const checkedValuesAsArray = Object.values(checkedValues.childrenChecked);
+
   if (checkedValuesAsArray.length === 1) {
     return false;
   }

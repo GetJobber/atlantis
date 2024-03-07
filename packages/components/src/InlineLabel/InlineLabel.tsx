@@ -24,13 +24,13 @@ interface InlineLabelProps {
    * The size of the label
    * @default base
    */
-  size?: "base" | "large" | "larger";
+  readonly size?: "base" | "large" | "larger";
   /**
    * The color of the label
    * @default "greyBlue"
    */
-  color?: InlineLabelColors;
-  children: ReactNode;
+  readonly color?: InlineLabelColors;
+  readonly children: ReactNode;
 }
 
 interface SizeMapProps {

@@ -147,5 +147,6 @@ function getFontWeight({
 }: Pick<TextProps, "level" | "emphasis">): BaseWeight {
   if (emphasis === "strong") return "semiBold";
   if (level === "textSupporting") return "medium";
+
   return "regular";
 }

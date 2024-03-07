@@ -12,6 +12,7 @@ export function SelectInternalPicker({
   onChange,
 }: SelectInternalPickerProps): JSX.Element {
   if (disabled) return <>{children}</>;
+
   if (isIOS14AndUp()) {
     return (
       <SelectPressable>

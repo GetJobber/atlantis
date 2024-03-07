@@ -16,6 +16,7 @@ export function CardHeader({
   const heading = title || header;
 
   if (React.isValidElement(heading)) return <>{heading}</>;
+
   if (heading) {
     const titleString = typeof heading === "string" ? heading : heading.title;
 
@@ -37,6 +38,7 @@ function renderHeaderAction(action?: ActionProps) {
       ...action.props,
       size: "small",
     } as ButtonProps;
+
     return action && <Button {...props} />;
   }
 

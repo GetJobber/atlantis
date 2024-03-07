@@ -65,6 +65,7 @@ function getElevationStyle(elevation: elevationProp) {
   if (elevation === "none") {
     return undefined;
   }
+
   return styles[`${elevation}Elevation`];
 }
 
@@ -85,39 +86,37 @@ export function Card({
         testID={testID}
       >
         {header && (
-          <>
-            <InternalCardHeader
-              onPress={header.onPress}
-              testID={`${testID}Header`}
-              collapsable={!!children}
-            >
-              <View style={styles.headerTitle}>
-                <Typography
-                  color="heading"
-                  fontFamily="base"
-                  fontWeight="bold"
-                  size="default"
-                  lineHeight="base"
-                  accessibilityRole="header"
-                >
-                  {header.title}
-                </Typography>
-              </View>
-              <View style={styles.actionItem}>
-                {!!header.actionItem?.label && (
-                  <View style={styles.actionLabel}>
-                    <ActionLabel type="cardTitle">
-                      {header.actionItem.label}
-                    </ActionLabel>
-                  </View>
-                )}
+          <InternalCardHeader
+            onPress={header.onPress}
+            testID={`${testID}Header`}
+            collapsable={!!children}
+          >
+            <View style={styles.headerTitle}>
+              <Typography
+                color="heading"
+                fontFamily="base"
+                fontWeight="bold"
+                size="default"
+                lineHeight="base"
+                accessibilityRole="header"
+              >
+                {header.title}
+              </Typography>
+            </View>
+            <View style={styles.actionItem}>
+              {!!header.actionItem?.label && (
+                <View style={styles.actionLabel}>
+                  <ActionLabel type="cardTitle">
+                    {header.actionItem.label}
+                  </ActionLabel>
+                </View>
+              )}
 
-                {header.actionItem?.iconName && (
-                  <Icon name={header.actionItem.iconName} color="interactive" />
-                )}
-              </View>
-            </InternalCardHeader>
-          </>
+              {header.actionItem?.iconName && (
+                <Icon name={header.actionItem.iconName} color="interactive" />
+              )}
+            </View>
+          </InternalCardHeader>
         )}
         {children}
         {footer && (

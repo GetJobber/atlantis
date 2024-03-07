@@ -15,6 +15,7 @@ export default {
 
 const BasicTemplate: ComponentStory<typeof Disclosure> = args => {
   const [open, setOpen] = useState(false);
+
   return <Disclosure {...args} open={open} onToggle={() => setOpen(!open)} />;
 };
 

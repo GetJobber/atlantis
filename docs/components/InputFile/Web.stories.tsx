@@ -31,6 +31,7 @@ export default {
 
 const StatefulTemplate: ComponentStory<typeof InputFile> = args => {
   const [files, setFiles] = useState<FileUpload[]>([]);
+
   return (
     <>
       <InputFile
@@ -44,6 +45,7 @@ const StatefulTemplate: ComponentStory<typeof InputFile> = args => {
       ))}
     </>
   );
+
   function handleUpload(file: FileUpload) {
     setFiles(oldFiles => updateFiles(file, oldFiles));
   }

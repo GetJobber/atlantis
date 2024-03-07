@@ -14,6 +14,7 @@ import { Content } from "../Content";
 import { Text } from "../Text";
 
 jest.unmock("../hooks/useIsScreenReaderEnabled");
+
 function fireLayoutEvent(childrenContent: ReactTestInstance) {
   fireEvent(childrenContent, "onLayout", {
     nativeEvent: {

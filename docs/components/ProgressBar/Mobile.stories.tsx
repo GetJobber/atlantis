@@ -24,6 +24,7 @@ const BasicTemplate: ComponentStory<typeof ProgressBar> = args => (
 const WithHeaderTemplate: ComponentStory<typeof ProgressBar> = args => {
   const [step, setStep] = useState(1);
   const totalSteps = 6;
+
   return (
     <ProgressBar
       {...args}

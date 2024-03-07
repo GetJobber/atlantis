@@ -29,6 +29,7 @@ Basic.args = {
 
 const ControlledTemplate: ComponentStory<typeof Switch> = args => {
   const [value, setValue] = useState(false);
+
   return (
     <Content>
       <Button onPress={() => setValue(!value)} label="Toggle Switch" />
