@@ -26,6 +26,7 @@ export default {
 
 const BasicTemplate: ComponentStory<typeof Chips> = args => {
   const [selected, setSelected] = useState<string>();
+
   return (
     <Content>
       <Text>
@@ -58,6 +59,7 @@ Basic.args = {};
 
 const MultiSelectTemplate: ComponentStory<typeof Chips> = args => {
   const [selected, setSelected] = useState<string[]>([]);
+
   return (
     <Content>
       <Text>
@@ -91,6 +93,7 @@ const SelectionTemplate: ComponentStory<typeof Chips> = args => {
     handleSelect,
     handleCustomAdd,
   } = useFakeOptionQuery();
+
   return (
     <Chips
       {...args}
@@ -121,8 +124,7 @@ Selection.parameters = {
         "./useFakeOptionQuery": ["useFakeOptionQuery"],
       },
       files: {
-        "/useFakeOptionQuery.ts": require("!raw-loader!./utils/storyUtils")
-          .default,
+        "/useFakeOptionQuery.ts": require("./utils/storyUtils").default,
       },
     },
   },

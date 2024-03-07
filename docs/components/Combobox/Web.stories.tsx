@@ -471,7 +471,7 @@ CustomSearch.parameters = {
         "./useFakeQuery": ["useFakeQuery"],
       },
       files: {
-        "/useFakeQuery.ts": require("!raw-loader!./storyUtils").default,
+        "/useFakeQuery.ts": require("./storyUtils").default,
       },
     },
   },
