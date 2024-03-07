@@ -12,6 +12,7 @@ interface DataListSortingOptionsProps {
   readonly onClose: () => void;
   readonly optionsListRef: React.RefObject<HTMLUListElement>;
   readonly dataListHeaderTileRef: React.RefObject<HTMLElement>;
+  readonly labelId: string;
 }
 
 export function DataListSortingOptions({
@@ -21,6 +22,7 @@ export function DataListSortingOptions({
   onClose,
   optionsListRef,
   dataListHeaderTileRef,
+  labelId: label,
 }: DataListSortingOptionsProps) {
   useRefocusOnActivator(!optionsListRef.current);
   useOnKeyDown(() => onClose(), "Escape");
@@ -34,7 +36,12 @@ export function DataListSortingOptions({
   }, [optionsListRef, dataListHeaderTileRef, onClose]);
 
   return (
-    <ul className={styles.optionsList} ref={optionsListRef}>
+    <ul
+      className={styles.optionsList}
+      ref={optionsListRef}
+      role="listbox"
+      aria-labelledby={label}
+    >
       {options.map(option => (
         <li
           className={styles.option}
@@ -43,6 +50,7 @@ export function DataListSortingOptions({
           onKeyDown={event => handleKeyDown(event, option)}
           tabIndex={0}
           data-value={option.id}
+          role="option"
         >
           {option.label}
           {option.label === selectedOption?.label && (

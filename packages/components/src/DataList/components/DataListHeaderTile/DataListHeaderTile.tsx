@@ -37,6 +37,7 @@ export function DataListHeaderTile<T extends DataListObject>({
   const sortingState = sorting?.state;
 
   const Tag = isSortable ? "button" : "div";
+  const headerId = `${headerKey}-label`;
 
   return (
     <Tag
@@ -45,6 +46,8 @@ export function DataListHeaderTile<T extends DataListObject>({
       })}
       onClick={handleOnClick}
       ref={dataListHeaderTileRef}
+      aria-label={isSortable ? `Sort by ${headers[headerKey]}` : undefined}
+      id={headerId}
     >
       <Text maxLines="single">{headers[headerKey]}</Text>
       {isSortable && sortableItem?.options && isDropDownOpen && (
@@ -55,6 +58,7 @@ export function DataListHeaderTile<T extends DataListObject>({
           onClose={() => setIsDropDownOpen(false)}
           optionsListRef={optionsListRef}
           dataListHeaderTileRef={dataListHeaderTileRef}
+          labelId={headerId}
         />
       )}
       {isSortable && (
