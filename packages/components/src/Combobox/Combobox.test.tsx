@@ -416,6 +416,7 @@ describe("Combobox Compound Component Validation", () => {
   it("renders without error if the correct count and composition of elements are present", () => {
     expect(renderCombobox).not.toThrow();
   });
+
   it("renders without error when there is a ComboboxActivator", () => {
     expect(() =>
       render(
@@ -427,6 +428,7 @@ describe("Combobox Compound Component Validation", () => {
       ),
     ).not.toThrow();
   });
+
   it("throws an error when there are multiple Combobox Activators present", () => {
     // This keeps the testing console clean
     jest.spyOn(console, "error").mockImplementation(() => {
