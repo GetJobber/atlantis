@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.85.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.85.1...@jobber/components@4.85.2) (2024-03-07)
+
+
+### Bug Fixes
+
+* **components:** Fix DataListLayout not rerendering ([#1790](https://github.com/GetJobber/atlantis/issues/1790)) ([3f8bfd9](https://github.com/GetJobber/atlantis/commit/3f8bfd9839c0a6370fa25f501bf70b7d7f90483e))
+
+
+
+
+
 ## [4.85.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.85.0...@jobber/components@4.85.1) (2024-03-06)
 
 **Note:** Version bump only for package @jobber/components
