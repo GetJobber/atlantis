@@ -416,6 +416,17 @@ describe("Combobox Compound Component Validation", () => {
   it("renders without error if the correct count and composition of elements are present", () => {
     expect(renderCombobox).not.toThrow();
   });
+  it("renders without error when there is a ComboboxActivator", () => {
+    expect(() =>
+      render(
+        <Combobox label={activatorLabel} selected={[]} onSelect={jest.fn()}>
+          <Combobox.Activator>
+            <Button label="Click me" />
+          </Combobox.Activator>
+        </Combobox>,
+      ),
+    ).not.toThrow();
+  });
   it("throws an error when there are multiple Combobox Activators present", () => {
     // This keeps the testing console clean
     jest.spyOn(console, "error").mockImplementation(() => {
@@ -434,17 +445,6 @@ describe("Combobox Compound Component Validation", () => {
       ),
     ).toThrow(COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
     jest.spyOn(console, "error").mockRestore();
-  });
-  it("renders without error when there is a ComboboxActivator", () => {
-    expect(() =>
-      render(
-        <Combobox label={activatorLabel} selected={[]} onSelect={jest.fn()}>
-          <Combobox.Activator>
-            <Button label="Click me" />
-          </Combobox.Activator>
-        </Combobox>,
-      ),
-    ).not.toThrow();
   });
 });
 
