@@ -431,9 +431,9 @@ describe("Combobox Compound Component Validation", () => {
 
   it("throws an error when there are multiple Combobox Activators present", () => {
     // This keeps the testing console clean
-    jest.spyOn(console, "error").mockImplementation(() => {
-      return;
-    });
+    const consoleErrorSpy = jest
+      .spyOn(console, "error")
+      .mockImplementation(() => ({}));
     expect(() =>
       render(
         <Combobox label={activatorLabel} selected={[]} onSelect={jest.fn()}>
@@ -446,7 +446,7 @@ describe("Combobox Compound Component Validation", () => {
         </Combobox>,
       ),
     ).toThrow(COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
-    jest.spyOn(console, "error").mockRestore();
+    consoleErrorSpy.mockRestore();
   });
 });
 
