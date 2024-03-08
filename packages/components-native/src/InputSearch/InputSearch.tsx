@@ -54,6 +54,7 @@ function SearchInputInternal(
 
   useEffect(() => {
     delayedSearch(value);
+
     return delayedSearch.cancel;
   }, [value, delayedSearch]);
 

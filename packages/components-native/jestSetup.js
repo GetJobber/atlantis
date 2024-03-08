@@ -2,6 +2,7 @@ import React from "react";
 
 jest.mock("./dist/src/hooks", () => {
   const actualHooks = jest.requireActual("./dist/src/hooks");
+
   return { ...actualHooks, useIsScreenReaderEnabled: () => false };
 });
 
@@ -18,6 +19,7 @@ jest.mock("./dist/src/Button/components/InternalButtonLoading", () => {
 jest.mock("react-native-reanimated", () => {
   const reanimated = require("react-native-reanimated/mock");
   const timing = () => ({ start: () => undefined });
+
   return {
     ...reanimated,
     default: {

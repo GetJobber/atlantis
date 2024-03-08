@@ -70,11 +70,13 @@ export function Gallery({ files, size = "base", max, onDelete }: GalleryProps) {
 
   function handleLightboxOpen(index: number) {
     const fileToImageIndex = filesToImageIndex[index];
+
     if (fileToImageIndex !== undefined) {
       setLightboxIndex(fileToImageIndex);
       setLightboxOpen(true);
     }
   }
+
   function handleLightboxClose() {
     setLightboxOpen(false);
   }

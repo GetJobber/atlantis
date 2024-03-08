@@ -14,11 +14,9 @@ export default {
 } as ComponentMeta<typeof Chip>;
 
 const BasicTemplate: ComponentStory<typeof Chip> = args => (
-  <>
-    <View style={{ display: "flex", flexDirection: "row" }}>
-      <Chip {...args} />
-    </View>
-  </>
+  <View style={{ display: "flex", flexDirection: "row" }}>
+    <Chip {...args} />
+  </View>
 );
 
 export const Basic = BasicTemplate.bind({});
@@ -30,43 +28,41 @@ Basic.args = {
 };
 
 const AccentTemplate: ComponentStory<typeof Chip> = args => (
-  <>
-    <View style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
-      <Chip {...args} />
-      <Chip
-        label="Select requests"
-        accent="request"
-        icon="request"
-        onPress={() => alert("Requests")}
-        accessibilityLabel={"Select Requests"}
-        isActive={true}
-      />
-      <Chip
-        label="Select quotes"
-        accent="quote"
-        icon="quote"
-        onPress={() => alert("Quotes")}
-        accessibilityLabel={"Select Quotes"}
-        isActive={true}
-      />
-      <Chip
-        label="Select jobs"
-        accent="job"
-        icon="job"
-        onPress={() => alert("Jobs")}
-        accessibilityLabel={"Select Jobs"}
-        isActive={true}
-      />
-      <Chip
-        label="Select invoices"
-        accent="invoice"
-        icon="invoice"
-        onPress={() => alert("Invoices")}
-        accessibilityLabel={"Select Invoices"}
-        isActive={true}
-      />
-    </View>
-  </>
+  <View style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
+    <Chip {...args} />
+    <Chip
+      label="Select requests"
+      accent="request"
+      icon="request"
+      onPress={() => alert("Requests")}
+      accessibilityLabel={"Select Requests"}
+      isActive={true}
+    />
+    <Chip
+      label="Select quotes"
+      accent="quote"
+      icon="quote"
+      onPress={() => alert("Quotes")}
+      accessibilityLabel={"Select Quotes"}
+      isActive={true}
+    />
+    <Chip
+      label="Select jobs"
+      accent="job"
+      icon="job"
+      onPress={() => alert("Jobs")}
+      accessibilityLabel={"Select Jobs"}
+      isActive={true}
+    />
+    <Chip
+      label="Select invoices"
+      accent="invoice"
+      icon="invoice"
+      onPress={() => alert("Invoices")}
+      accessibilityLabel={"Select Invoices"}
+      isActive={true}
+    />
+  </View>
 );
 
 export const Accent = AccentTemplate.bind({});

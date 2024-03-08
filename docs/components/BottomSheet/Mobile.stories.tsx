@@ -22,6 +22,7 @@ export default {
 
 const BasicTemplate: ComponentStory<typeof BottomSheet> = args => {
   const bottomSheetRef = useRef<BottomSheetRef>(null);
+
   return (
     <>
       <BottomSheet {...args} ref={bottomSheetRef}>

@@ -2,7 +2,7 @@ import React, { ReactNode, useRef } from "react";
 
 interface ClickableCardProps {
   onClick(event: React.MouseEvent<HTMLElement>): void;
-  className: string;
+  readonly className: string;
   readonly children: ReactNode | ReactNode[];
 }
 
@@ -41,6 +41,7 @@ export function CardClickable({
 
   function handleKeyup(event: React.KeyboardEvent<HTMLDivElement>) {
     const shouldClick = event.key === ENTER_KEY || event.key === SPACEBAR_KEY;
+
     if (shouldClick && isCardFocused()) {
       cardRef.current?.click();
     }

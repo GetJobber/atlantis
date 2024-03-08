@@ -56,6 +56,7 @@ export function Content({
       // In order to get spacing between the children, we apply the child spacing on each of
       // the children except for the first (top) child
       const childStyle = index !== 0 ? [childContainerStyle] : [];
+
       return (
         <View key={index} style={[styles.childWrapper, ...childStyle]}>
           {child}
