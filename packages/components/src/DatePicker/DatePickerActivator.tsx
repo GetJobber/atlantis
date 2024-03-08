@@ -47,6 +47,7 @@ function InternalActivator(
   if (activator) {
     if (isValidElement(activator)) {
       const isAComponent = typeof activator.type === "function";
+
       return cloneElement(activator, {
         ...newActivatorProps,
         ...(isAComponent && { fullWidth: fullWidth }),

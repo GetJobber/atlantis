@@ -31,6 +31,7 @@ const images = [
 
 const BasicTemplate: ComponentStory<typeof LightBox> = args => {
   const [isOpen, setIsOpen] = useState(false);
+
   return (
     <>
       <Button label="Click me!" onClick={() => setIsOpen(true)} />

@@ -16,6 +16,7 @@ export default {
 
 const BasicTemplate: ComponentStory<typeof AnimatedSwitcher> = args => {
   const [switched, setSwitched] = useState(args.switched || false);
+
   return (
     <AnimatedSwitcher
       {...args}
@@ -40,6 +41,7 @@ Basic.args = {};
 
 const IconTemplate: ComponentStory<typeof AnimatedSwitcher> = args => {
   const [switched, setSwitched] = useState(false);
+
   return (
     <div>
       <div

@@ -22,5 +22,6 @@ export function uniqueEdges(edges: Edge[]): Edge[] {
       edge,
     );
   });
+
   return Array.from(result.values());
 }

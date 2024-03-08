@@ -61,6 +61,7 @@ function getSizeCSSVariables(size: GridCellProps["size"]) {
     }
 
     breakpointsObj[`--gridCell--size-${currentSize}`] = columnSize;
+
     return breakpointsObj;
   };
 }

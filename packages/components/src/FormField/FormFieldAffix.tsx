@@ -7,8 +7,8 @@ import { Button } from "../Button";
 import { Icon } from "../Icon";
 
 interface AffixLabelProps extends Affix {
-  labelRef: RefObject<HTMLDivElement>;
-  variation?: "prefix" | "suffix";
+  readonly labelRef: RefObject<HTMLDivElement>;
+  readonly variation?: "prefix" | "suffix";
 }
 
 export function AffixLabel({

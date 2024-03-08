@@ -16,6 +16,7 @@ export default {
 
 const BasicTemplate: ComponentStory<typeof InputNumber> = args => {
   const [value, setValue] = useState(args.value);
+
   return (
     <InputNumber
       {...args}
@@ -44,6 +45,7 @@ Sizes.args = {
 
 const InlineTemplate: ComponentStory<typeof InputNumber> = args => {
   const [value, setValue] = useState(args.value);
+
   return (
     <Text>
       Follow-up after
@@ -68,12 +70,15 @@ Inline.args = {
 
 const FocusTemplate: ComponentStory<typeof InputNumber> = args => {
   const inputNumberRef = useRef<InputNumberRef>(null);
+
   const focusInput = () => {
     inputNumberRef.current?.focus();
   };
+
   const blurInput = () => {
     inputNumberRef.current?.blur();
   };
+
   return (
     <Content>
       <InputNumber {...args} value={5} ref={inputNumberRef} />

@@ -13,6 +13,7 @@ export function handlePress(onChange: SelectInternalPickerProps["onChange"]) {
 export function isIOS14AndUp(): boolean {
   if (Platform.OS === "ios") {
     const majorVersionIOS = parseInt(Platform.Version, 10);
+
     return majorVersionIOS >= 14;
   }
 

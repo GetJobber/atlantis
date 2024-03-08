@@ -82,6 +82,7 @@ function getHorizontalPosition(
   if (menuPositionHorizontal === "menuRight") {
     getRightPosition(pos, activatorLayout, windowWidth, menuPadding, menuWidth);
   }
+
   if (menuPositionHorizontal === "menuLeft") {
     getLeftPosition(pos, activatorLayout, windowWidth, menuPadding, menuWidth);
   }

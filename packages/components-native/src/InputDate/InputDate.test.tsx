@@ -139,6 +139,7 @@ describe("InputDate", () => {
   const saveButtonText = "Submit";
 
   const requiredError = "This is required";
+
   function SimpleFormWithProvider({ children, defaultValues }) {
     const formMethods = useForm({
       reValidateMode: "onChange",
