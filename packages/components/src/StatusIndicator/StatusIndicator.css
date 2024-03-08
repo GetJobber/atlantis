@@ -1,0 +1,8 @@
+.statusIndicator {
+  display: inline-block;
+  width: var(--statusLabel-icon-diameter);
+  height: var(--statusLabel-icon-diameter);
+  border-radius: 3px;
+  background-color: var(--color-success);
+  flex-shrink: 0;
+}

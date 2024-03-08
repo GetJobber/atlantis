@@ -2,10 +2,10 @@ import React, {
   ChangeEvent,
   KeyboardEvent,
   useEffect,
+  useId,
   useRef,
   useState,
 } from "react";
-import { v1 as uuidV1 } from "uuid";
 import debounce from "lodash/debounce";
 import { useLiveAnnounce } from "@jobber/hooks/useLiveAnnounce";
 import {
@@ -15,8 +15,6 @@ import {
 import { Icon } from "../../../Icon";
 import { ChipProps } from "../../Chip";
 
-const menuId = uuidV1();
-
 // eslint-disable-next-line max-statements
 export function useInternalChipDismissibleInput({
   options,
@@ -25,6 +23,7 @@ export function useInternalChipDismissibleInput({
   onOptionSelect,
   onSearch,
 }: ChipDismissibleInputProps) {
+  const menuId = useId();
   const [allOptions, setAllOptions] = useState<
     ChipDismissibleInputOptionProps[]
   >([]);
@@ -89,6 +88,7 @@ export function useInternalChipDismissibleInput({
     handleSelectOption: (selected: typeof computed.activeOption) => {
       if (allOptions.length === 0) return;
       const setValue = selected.custom ? onCustomOptionSelect : onOptionSelect;
+
       if (setValue) {
         setValue(selected.value);
         liveAnnounce(`${selected.label} Added`);
@@ -120,6 +120,7 @@ export function useInternalChipDismissibleInput({
           // If there's no text left to delete,
           // and delete is pressed again, focus on a chip instead.
           const target = computed.inputRef.current?.previousElementSibling;
+
           if (target instanceof HTMLElement) {
             target.focus();
           }

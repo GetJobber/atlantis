@@ -7,6 +7,7 @@ import React, {
   useState,
 } from "react";
 import styles from "./DataListStickyHeader.css";
+import { DATA_LIST_STICKY_HEADER_TEST_ID } from "../../DataList.const";
 
 export function DataListStickyHeader({ children }: PropsWithChildren<object>) {
   const [isStuck, setIsStuck] = useState(false);
@@ -29,6 +30,7 @@ export function DataListStickyHeader({ children }: PropsWithChildren<object>) {
 
   return (
     <div
+      data-testid={DATA_LIST_STICKY_HEADER_TEST_ID}
       ref={ref}
       className={classNames(styles.header, { [styles.stuck]: isStuck })}
     >

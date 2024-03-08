@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.55.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.54.0...@jobber/design@0.55.0) (2024-03-06)
+
+
+### Features
+
+* **components:** Swap twitter bird with X icon ([#1774](https://github.com/GetJobber/atlantis/issues/1774)) ([0fc9e41](https://github.com/GetJobber/atlantis/commit/0fc9e41eb867b5a830ef25ce62c5af0b1cd5a4de))
+
+
+
+
+
+# [0.54.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.53.0...@jobber/design@0.54.0) (2024-02-23)
+
+
+### Features
+
+* Add unscheduled icon ([#1770](https://github.com/GetJobber/atlantis/issues/1770)) ([ca0b83d](https://github.com/GetJobber/atlantis/commit/ca0b83d5489056396a451034a4f540a02ce40089))
+
+
+
+
+
 # [0.53.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.52.0...@jobber/design@0.53.0) (2024-01-29)
 
 
