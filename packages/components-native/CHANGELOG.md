@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.56.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.56.1...@jobber/components-native@0.56.2) (2024-03-07)
+
+
+### Bug Fixes
+
+* **components-native:** Fix MiniLabel background overflowing border ([#1795](https://github.com/GetJobber/atlantis/issues/1795)) ([f595b62](https://github.com/GetJobber/atlantis/commit/f595b62fbaad637fde6eeb6c4264006fd203e7a9))
+
+
+
+
+
 ## [0.56.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.56.0...@jobber/components-native@0.56.1) (2024-03-06)
 
 **Note:** Version bump only for package @jobber/components-native
