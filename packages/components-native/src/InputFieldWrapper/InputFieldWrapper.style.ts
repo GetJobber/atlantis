@@ -35,6 +35,7 @@ export const styles = StyleSheet.create({
     top: 0,
     paddingTop: tokens["space-small"] - tokens["space-smallest"],
     backgroundColor: tokens["color-surface"],
+    marginRight: tokens["space-small"],
     maxHeight:
       (typographyStyles.defaultSize.lineHeight || 0) + tokens["space-smaller"],
     zIndex: 1,

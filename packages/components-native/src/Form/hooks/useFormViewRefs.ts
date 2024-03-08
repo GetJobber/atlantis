@@ -15,6 +15,7 @@ export function useFormViewRefs(): UseFormViewRefsReturn {
   const scrollToTop = useCallback(() => {
     scrollViewRef.current?.scrollToPosition(0, 0);
   }, [scrollViewRef]);
+
   return {
     scrollViewRef: scrollViewRef,
     bottomViewRef,

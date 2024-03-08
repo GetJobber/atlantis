@@ -96,5 +96,6 @@ function buildModifiers(arrowElement: HTMLElement | undefined | null) {
       },
     },
   ];
+
   return modifiers;
 }

@@ -45,5 +45,6 @@ async function fetchData(url: string) {
   const response = await fetch(url);
   const { results, next } = await response.json();
   const options: string[] = results.map((data: { name: string }) => data.name);
+
   return { options, next };
 }

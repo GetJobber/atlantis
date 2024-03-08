@@ -116,6 +116,7 @@ function getActionIconColour(
   if (actionIconColour === "subtle") {
     return "interactiveSubtle";
   }
+
   return actionIconColour;
 }
 
@@ -127,5 +128,6 @@ function getActionIcon(icon: ActionIconNames): IconNames {
   } else if (icon === "editpencil") {
     return "edit";
   }
+
   return icon;
 }

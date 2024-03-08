@@ -116,6 +116,7 @@ function TestInputMask({
   ...props
 }: Partial<InputMaskProps>) {
   const [value, setValue] = useState("");
+
   return (
     <InputMask pattern={pattern} {...props}>
       <FormField

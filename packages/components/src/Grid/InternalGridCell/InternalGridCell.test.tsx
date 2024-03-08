@@ -66,5 +66,6 @@ describe("GridCell", () => {
  */
 function getCssVar(cssVar: string): string {
   const element = screen.getByTestId(GRID_CELL_TEST_ID);
+
   return window.getComputedStyle(element).getPropertyValue(cssVar);
 }

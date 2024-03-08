@@ -78,14 +78,12 @@ describe("when a component is wrapped in a FormField within a Form", () => {
           >
             {field => {
               return (
-                <>
-                  <InputText
-                    name={field.name}
-                    accessibilityLabel={inputAccessibilityLabel}
-                    value={field.value}
-                    onChangeText={field.onChange}
-                  />
-                </>
+                <InputText
+                  name={field.name}
+                  accessibilityLabel={inputAccessibilityLabel}
+                  value={field.value}
+                  onChangeText={field.onChange}
+                />
               );
             }}
           </FormField>

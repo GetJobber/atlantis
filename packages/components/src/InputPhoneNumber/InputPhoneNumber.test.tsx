@@ -99,6 +99,7 @@ describe("InputPhoneNumber", () => {
 
       function TestInput() {
         const [value, setValue] = useState("");
+
         return <InputPhoneNumber value={value} onChange={setValue} />;
       }
     });

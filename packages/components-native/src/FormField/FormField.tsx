@@ -11,7 +11,7 @@ interface FormFieldProps<T> {
   /**
    * Name of the field.
    */
-  name: string;
+  readonly name: string;
 
   /**
    * The initial value of the form field.
@@ -21,7 +21,7 @@ interface FormFieldProps<T> {
   /**
    * Children to render.
    */
-  children: (
+  readonly children: (
     field: ControllerRenderProps<FieldValues, string>,
     error?: FieldError,
   ) => React.ReactNode;
