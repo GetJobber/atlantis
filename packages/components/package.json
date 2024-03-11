@@ -2,13 +2,13 @@
   "name": "@jobber/components",
   "version": "4.85.3",
   "license": "MIT",
-  "main": "dist/index.esm.js",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type":"module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.esm.js"
+      "import": "./dist/index.js"
     }
   },
   "scripts": {
