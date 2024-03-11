@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.57.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.56.3...@jobber/components-native@0.57.0) (2024-03-11)
+
+
+### Features
+
+* **components-native:** Update Button learning variation style ([#1798](https://github.com/GetJobber/atlantis/issues/1798)) ([8dbef79](https://github.com/GetJobber/atlantis/commit/8dbef79375c3c3f4c8d966323bb18d15e88fb01a))
+
+
+
+
+
 ## [0.56.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.56.2...@jobber/components-native@0.56.3) (2024-03-08)
 
 
