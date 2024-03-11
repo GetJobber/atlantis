@@ -32,6 +32,7 @@ Basic.args = {
 const OnCompleteTemplate: ComponentStory<typeof Countdown> = args => {
   const [start, setStart] = useState(false);
   const inTenSeconds = new Date(new Date().getTime() + 10 * 1000);
+
   return (
     <div>
       <Button label={"Start Timer"} onClick={() => setStart(true)} />

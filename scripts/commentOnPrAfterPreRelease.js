@@ -3,8 +3,10 @@ module.exports = async ({ github, context, core }) => {
   const repo = context.repo.repo;
 
   const prs = await getPRs({ github, repo, owner, ref: context.ref });
+
   if (prs.length === 0) {
     core.info("No PRs found");
+
     return;
   }
   await createOrUpdateComment({
@@ -31,6 +33,7 @@ async function generatePRComment({
       github,
       owner,
     });
+
     return failedBuildString;
   }
   const summaryFileJson = JSON.parse(process.env.SUMMARY_JSON_STRING);
@@ -38,18 +41,21 @@ async function generatePRComment({
   const releaseString = summaryFileJson
     .map(releaseSummary => {
       const { packageName, version } = releaseSummary;
+
       return `  - ${packageName}@${version}\n`;
     })
     .join("");
   const webPackagesString = getInstallPackageString(
     summaryFileJson.filter(releaseSummary => {
       const { packageName } = releaseSummary;
+
       return packageName !== "@jobber/components-native";
     }),
   );
   const mobilePackagesString = getInstallPackageString(
     summaryFileJson.filter(releaseSummary => {
       const { packageName } = releaseSummary;
+
       return packageName !== "@jobber/components";
     }),
   );
@@ -69,6 +75,7 @@ async function getPRs({ github, repo, owner, ref }) {
     owner,
     head: `${owner}:${ref}`,
   });
+
   return response.data.map(pr => pr.number);
 }
 
@@ -118,6 +125,7 @@ function quotePreviousComment(previousCommentBody) {
   if (!previousCommentBody) {
     return "";
   }
+
   return previousCommentBody
     .split("\n")
     .map(commentBodyLine => {
@@ -130,6 +138,7 @@ function getInstallPackageString(packages) {
   return packages
     .map(releaseSummary => {
       const { packageName, version } = releaseSummary;
+
       return `${packageName}@${version}`;
     })
     .join(" ");
@@ -153,5 +162,6 @@ async function handleBuildFailure({
   const previousBuildStatus = quotedPreviousComment
     ? `\nPrevious build information:\n${quotedPreviousComment}`
     : "";
+
   return `Could not publish Pre-release for ${process.env.COMMIT_SHA}. [View Logs](${workflowRunUrl})\nThe problem is likely in the \`NPM Publish\` or \`NPM CI\` step in the \`Trigger Pre-release Build\` Job.\n${previousBuildStatus}.\n `;
 }

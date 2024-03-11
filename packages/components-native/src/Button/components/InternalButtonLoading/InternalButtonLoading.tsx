@@ -71,6 +71,7 @@ function getLoadingPattern({
 }: InternalButtonLoadingProps): string {
   if (variation === "cancel") return darkPattern;
   if (type === "primary") return lightPattern;
+
   return darkPattern;
 }
 

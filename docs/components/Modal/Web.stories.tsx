@@ -68,16 +68,20 @@ const ActionTemplate: ComponentStory<typeof Modal> = args => {
       <Button label="Open Modal" onClick={toggleModal} />
     </>
   );
+
   function toggleModal() {
     setModalOpen(!modalOpen);
   }
+
   function handlePrimaryAction() {
     alert(value + " ✅");
     setModalOpen(false);
   }
+
   function handleSecondaryAction() {
     setModalOpen(false);
   }
+
   function handleTertiaryAction() {
     alert("❌");
   }

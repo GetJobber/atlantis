@@ -3,7 +3,7 @@ import styles from "./Cell.css";
 import { Cell } from "./Cell";
 
 export interface CellNumericProps {
-  value: number | string;
+  readonly value: number | string;
 }
 
 export function CellNumeric({ value }: CellNumericProps) {

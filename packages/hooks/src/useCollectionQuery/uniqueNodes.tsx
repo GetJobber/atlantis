@@ -8,5 +8,6 @@ export function uniqueNodes(nodes: Node[]): Node[] {
   nodes.forEach(node => {
     result.set(`${node.__typename}-${node.id}`, node);
   });
+
   return Array.from(result.values());
 }

@@ -76,9 +76,11 @@ export function InputMask({
 
     if (!strict && isOverCharLimit) {
       setIsMasking(false);
+
       return cleanValueChars.join("");
     } else {
       setIsMasking(true);
+
       return patternChars.reduce(
         getMaskedValue(cleanValueChars, specialChars),
         "",
@@ -111,6 +113,7 @@ function getMaskedValue(cleanVal: number[], specialChars: string[]) {
     if (specialChars.includes(nextCharacter)) return result + nextCharacter;
 
     const nextValue = cleanVal.shift();
+
     return result + nextValue;
   };
 }

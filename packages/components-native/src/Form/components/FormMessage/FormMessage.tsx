@@ -37,6 +37,7 @@ export const FormMessage = (): JSX.Element => {
   }
 
   const lastMessage = data[data.length - 1];
+
   return <InternalFormMessage data={lastMessage} onRequestClose={close} />;
 };
 

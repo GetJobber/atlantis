@@ -79,6 +79,7 @@ function Label({ as, disabled }: LabelProps) {
     } else if (as === "On") {
       return "white";
     }
+
     return "greyBlue";
   };
 
