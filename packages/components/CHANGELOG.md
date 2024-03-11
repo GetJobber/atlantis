@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.85.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.85.2...@jobber/components@4.85.3) (2024-03-08)
+
+
+### Bug Fixes
+
+* **eslint:** Cleanup lint warnings ([#1796](https://github.com/GetJobber/atlantis/issues/1796)) ([3e0c770](https://github.com/GetJobber/atlantis/commit/3e0c770eca0964636f79831016dbbe25926ae951))
+
+
+
+
+
 ## [4.85.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.85.1...@jobber/components@4.85.2) (2024-03-07)
 
 
