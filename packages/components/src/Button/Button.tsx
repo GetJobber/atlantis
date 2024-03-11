@@ -53,7 +53,9 @@ interface ButtonAnchorProps extends ButtonFoundationProps {
 
 interface ButtonLinkProps<S = unknown> extends ButtonFoundationProps {
   /**
-   * Used for client side routing. Only use when inside a routed component.
+   * **Deprecated**: to will be removed in the next major version
+   * Use shared ButtonLink component from Jobber instead
+   * @deprecated
    */
   readonly to?: LinkProps<S>["to"];
 }
