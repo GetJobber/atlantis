@@ -1,19 +1,13 @@
-/* eslint-disable import/no-default-export */
-import multiInput from "rollup-plugin-multi-input";
 import typescript from "@rollup/plugin-typescript";
 import postcss from "rollup-plugin-postcss";
-import commonjs from "@rollup/plugin-commonjs";
-import copy from "rollup-plugin-copy";
+import postcssImport from "postcss-import";
+import autoprefixer from "autoprefixer";
+import postcssPresetEnv from "postcss-preset-env";
 
+// eslint-disable-next-line import/no-default-export
 export default {
-  input: `src/*/index.{ts,tsx}`,
+  input: `src/index.tsx`,
   plugins: [
-    multiInput(),
-    typescript({
-      tsconfig: "./tsconfig.rollup.json",
-      declarationDir: "dist",
-      noEmitOnError: true,
-    }),
     postcss({
       modules: {
         generateScopedName: "[hash:base64]",
@@ -21,83 +15,33 @@ export default {
       },
       autoModules: false,
       plugins: [
-        require("postcss-import"),
-        require("autoprefixer"),
-        require("@csstools/postcss-global-data")({
-          files: [
-            require.resolve("@jobber/design/foundation.css"),
-            require.resolve("@jobber/design/src/responsiveBreakpoints.css"),
+        postcssImport({
+          path: [
+            "@jobber/design/foundation.css",
+            "@jobber/design/src/responsiveBreakpoints.css",
           ],
         }),
-        require("postcss-preset-env")({
+        autoprefixer,
+        postcssPresetEnv({
           stage: 1,
           preserve: true,
         }),
       ],
     }),
-    commonjs({
-      ignore: ["time-input-polyfill", "time-input-polyfill/supportsTime"],
-    }),
-    copy({
-      targets: [
-        { src: "src/Card/colors.css.d.ts", dest: "dist/Card" },
-        { src: "src/Content/Spacing.css.d.ts", dest: "dist/Content" },
-        { src: "src/Gallery/Gallery.css.d.ts", dest: "dist/Gallery" },
-        { src: "src/Grid/GridAlign.css.d.ts", dest: "dist/Grid" },
-        { src: "src/Modal/Sizes.css.d.ts", dest: "dist/Modal" },
-        { src: "src/ProgressBar/Sizes.css.d.ts", dest: "dist/ProgressBar" },
-        {
-          src: "src/Typography/css/Emphasis.css.d.ts",
-          dest: "dist/Typography/css",
-        },
-        {
-          src: "src/Typography/css/FontFamilies.css.d.ts",
-          dest: "dist/Typography/css",
-        },
-        {
-          src: "src/Typography/css/FontSizes.css.d.ts",
-          dest: "dist/Typography/css",
-        },
-        {
-          src: "src/Typography/css/FontWeights.css.d.ts",
-          dest: "dist/Typography/css",
-        },
-        {
-          src: "src/Typography/css/TextAlignment.css.d.ts",
-          dest: "dist/Typography/css",
-        },
-        {
-          src: "src/Typography/css/TextCases.css.d.ts",
-          dest: "dist/Typography/css",
-        },
-        {
-          src: "src/Typography/css/TextColors.css.d.ts",
-          dest: "dist/Typography/css",
-        },
-        {
-          src: "src/Typography/css/Truncate.css.d.ts",
-          dest: "dist/Typography/css",
-        },
-        {
-          src: "src/Typography/css/Typography.css.d.ts",
-          dest: "dist/Typography/css",
-        },
-        { src: "src/Glimmer/style/Shape.css.d.ts", dest: "dist/Glimmer/style" },
-        { src: "src/Glimmer/style/Sizes.css.d.ts", dest: "dist/Glimmer/style" },
-        {
-          src: "src/Glimmer/style/Timing.css.d.ts",
-          dest: "dist/Glimmer/style",
-        },
-        {
-          src: "src/Combobox/components/ComboboxContent/ComboboxContentList/ComboboxContent.css.d.ts",
-          dest: "dist/Combobox/components/ComboboxContent/ComboboxContentList",
-        },
-      ],
+
+    typescript({
+      tsconfig: "./tsconfig.rollup.json",
+      outputToFilesystem: true,
+      noEmitOnError: true,
     }),
   ],
   output: [
     {
-      dir: "dist",
+      file: "dist/index.esm.js",
+      format: "esm",
+    },
+    {
+      file: "dist/index.cjs.js",
       format: "cjs",
     },
   ],

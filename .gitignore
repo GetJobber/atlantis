@@ -3,6 +3,7 @@ coverage
 dist
 node_modules
 .npmrc
+.rollup.cache
 **/tsconfig.tsbuildinfo
 **/tsconfig.rollup.tsbuildinfo
 .DS_Store
