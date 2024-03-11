@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.85.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.85.3...@jobber/components@4.85.4) (2024-03-11)
+
+
+### Bug Fixes
+
+* **components:** Fix an improper console mock in a test ([#1792](https://github.com/GetJobber/atlantis/issues/1792)) ([0d28222](https://github.com/GetJobber/atlantis/commit/0d28222d25c290d034948a0e0fc245cef5288e31))
+
+
+
+
+
 ## [4.85.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.85.2...@jobber/components@4.85.3) (2024-03-08)
 
 
