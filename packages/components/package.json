@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "type":"commonjs",
+  "type":"module",
   "version": "4.85.3",
   "license": "MIT",
   "main": "dist/index.js",
