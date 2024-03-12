@@ -2,12 +2,301 @@
   "name": "@jobber/components",
   "version": "4.85.3",
   "license": "MIT",
-  "main": "dist/index.mjs",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./AnimatedPresence": {
+      "import": "./dist/AnimatedPresence/index.mjs",
+      "require": "./dist/AnimatedPresence/index.js"
+    },
+    "./AnimatedSwitcher": {
+      "import": "./dist/AnimatedSwitcher/index.mjs",
+      "require": "./dist/AnimatedSwitcher/index.js"
+    },
+    "./Autocomplete": {
+      "import": "./dist/Autocomplete/index.mjs",
+      "require": "./dist/Autocomplete/index.js"
+    },
+    "./Avatar": {
+      "import": "./dist/Avatar/index.mjs",
+      "require": "./dist/Avatar/index.js"
+    },
+    "./Banner": {
+      "import": "./dist/Banner/index.mjs",
+      "require": "./dist/Banner/index.js"
+    },
+    "./Button": {
+      "import": "./dist/Button/index.mjs",
+      "require": "./dist/Button/index.js"
+    },
+    "./ButtonDismiss": {
+      "import": "./dist/ButtonDismiss/index.mjs",
+      "require": "./dist/ButtonDismiss/index.js"
+    },
+    "./Card": {
+      "import": "./dist/Card/index.mjs",
+      "require": "./dist/Card/index.js"
+    },
+    "./Checkbox": {
+      "import": "./dist/Checkbox/index.mjs",
+      "require": "./dist/Checkbox/index.js"
+    },
+    "./Chip": {
+      "import": "./dist/Chip/index.mjs",
+      "require": "./dist/Chip/index.js"
+    },
+    "./Chips": {
+      "import": "./dist/Chips/index.mjs",
+      "require": "./dist/Chips/index.js"
+    },
+    "./Combobox": {
+      "import": "./dist/Combobox/index.mjs",
+      "require": "./dist/Combobox/index.js"
+    },
+    "./ConfirmationModal": {
+      "import": "./dist/ConfirmationModal/index.mjs",
+      "require": "./dist/ConfirmationModal/index.js"
+    },
+    "./Content": {
+      "import": "./dist/Content/index.mjs",
+      "require": "./dist/Content/index.js"
+    },
+    "./Countdown": {
+      "import": "./dist/Countdown/index.mjs",
+      "require": "./dist/Countdown/index.js"
+    },
+    "./DataDump": {
+      "import": "./dist/DataDump/index.mjs",
+      "require": "./dist/DataDump/index.js"
+    },
+    "./DataList": {
+      "import": "./dist/DataList/index.mjs",
+      "require": "./dist/DataList/index.js"
+    },
+    "./DataTable": {
+      "import": "./dist/DataTable/index.mjs",
+      "require": "./dist/DataTable/index.js"
+    },
+    "./DatePicker": {
+      "import": "./dist/DatePicker/index.mjs",
+      "require": "./dist/DatePicker/index.js"
+    },
+    "./DescriptionList": {
+      "import": "./dist/DescriptionList/index.mjs",
+      "require": "./dist/DescriptionList/index.js"
+    },
+    "./Disclosure": {
+      "import": "./dist/Disclosure/index.mjs",
+      "require": "./dist/Disclosure/index.js"
+    },
+    "./Divider": {
+      "import": "./dist/Divider/index.mjs",
+      "require": "./dist/Divider/index.js"
+    },
+    "./Drawer": {
+      "import": "./dist/Drawer/index.mjs",
+      "require": "./dist/Drawer/index.js"
+    },
+    "./Emphasis": {
+      "import": "./dist/Emphasis/index.mjs",
+      "require": "./dist/Emphasis/index.js"
+    },
+    "./FeatureSwitch": {
+      "import": "./dist/FeatureSwitch/index.mjs",
+      "require": "./dist/FeatureSwitch/index.js"
+    },
+    "./Flex": {
+      "import": "./dist/Flex/index.mjs",
+      "require": "./dist/Flex/index.js"
+    },
+    "./Form": {
+      "import": "./dist/Form/index.mjs",
+      "require": "./dist/Form/index.js"
+    },
+    "./FormField": {
+      "import": "./dist/FormField/index.mjs",
+      "require": "./dist/FormField/index.js"
+    },
+    "./FormatDate": {
+      "import": "./dist/FormatDate/index.mjs",
+      "require": "./dist/FormatDate/index.js"
+    },
+    "./FormatEmail": {
+      "import": "./dist/FormatEmail/index.mjs",
+      "require": "./dist/FormatEmail/index.js"
+    },
+    "./FormatFile": {
+      "import": "./dist/FormatFile/index.mjs",
+      "require": "./dist/FormatFile/index.js"
+    },
+    "./FormatRelativeDateTime": {
+      "import": "./dist/FormatRelativeDateTime/index.mjs",
+      "require": "./dist/FormatRelativeDateTime/index.js"
+    },
+    "./FormatTime": {
+      "import": "./dist/FormatTime/index.mjs",
+      "require": "./dist/FormatTime/index.js"
+    },
+    "./Gallery": {
+      "import": "./dist/Gallery/index.mjs",
+      "require": "./dist/Gallery/index.js"
+    },
+    "./Glimmer": {
+      "import": "./dist/Glimmer/index.mjs",
+      "require": "./dist/Glimmer/index.js"
+    },
+    "./Grid": {
+      "import": "./dist/Grid/index.mjs",
+      "require": "./dist/Grid/index.js"
+    },
+    "./Heading": {
+      "import": "./dist/Heading/index.mjs",
+      "require": "./dist/Heading/index.js"
+    },
+    "./Icon": {
+      "import": "./dist/Icon/index.mjs",
+      "require": "./dist/Icon/index.js"
+    },
+    "./InlineLabel": {
+      "import": "./dist/InlineLabel/index.mjs",
+      "require": "./dist/InlineLabel/index.js"
+    },
+    "./InputAvatar": {
+      "import": "./dist/InputAvatar/index.mjs",
+      "require": "./dist/InputAvatar/index.js"
+    },
+    "./InputDate": {
+      "import": "./dist/InputDate/index.mjs",
+      "require": "./dist/InputDate/index.js"
+    },
+    "./InputEmail": {
+      "import": "./dist/InputEmail/index.mjs",
+      "require": "./dist/InputEmail/index.js"
+    },
+    "./InputFile": {
+      "import": "./dist/InputFile/index.mjs",
+      "require": "./dist/InputFile/index.js"
+    },
+    "./InputGroup": {
+      "import": "./dist/InputGroup/index.mjs",
+      "require": "./dist/InputGroup/index.js"
+    },
+    "./InputNumber": {
+      "import": "./dist/InputNumber/index.mjs",
+      "require": "./dist/InputNumber/index.js"
+    },
+    "./InputPassword": {
+      "import": "./dist/InputPassword/index.mjs",
+      "require": "./dist/InputPassword/index.js"
+    },
+    "./InputPhoneNumber": {
+      "import": "./dist/InputPhoneNumber/index.mjs",
+      "require": "./dist/InputPhoneNumber/index.js"
+    },
+    "./InputText": {
+      "import": "./dist/InputText/index.mjs",
+      "require": "./dist/InputText/index.js"
+    },
+    "./InputTime": {
+      "import": "./dist/InputTime/index.mjs",
+      "require": "./dist/InputTime/index.js"
+    },
+    "./InputValidation": {
+      "import": "./dist/InputValidation/index.mjs",
+      "require": "./dist/InputValidation/index.js"
+    },
+    "./LightBox": {
+      "import": "./dist/LightBox/index.mjs",
+      "require": "./dist/LightBox/index.js"
+    },
+    "./Link": {
+      "import": "./dist/Link/index.mjs",
+      "require": "./dist/Link/index.js"
+    },
+    "./List": {
+      "import": "./dist/List/index.mjs",
+      "require": "./dist/List/index.js"
+    },
+    "./Markdown": {
+      "import": "./dist/Markdown/index.mjs",
+      "require": "./dist/Markdown/index.js"
+    },
+    "./Menu": {
+      "import": "./dist/Menu/index.mjs",
+      "require": "./dist/Menu/index.js"
+    },
+    "./Modal": {
+      "import": "./dist/Modal/index.mjs",
+      "require": "./dist/Modal/index.js"
+    },
+    "./MultiSelect": {
+      "import": "./dist/MultiSelect/index.mjs",
+      "require": "./dist/MultiSelect/index.js"
+    },
+    "./Page": {
+      "import": "./dist/Page/index.mjs",
+      "require": "./dist/Page/index.js"
+    },
+    "./Popover": {
+      "import": "./dist/Popover/index.mjs",
+      "require": "./dist/Popover/index.js"
+    },
+    "./ProgressBar": {
+      "import": "./dist/ProgressBar/index.mjs",
+      "require": "./dist/ProgressBar/index.js"
+    },
+    "./RadioGroup": {
+      "import": "./dist/RadioGroup/index.mjs",
+      "require": "./dist/RadioGroup/index.js"
+    },
+    "./RecurringSelect": {
+      "import": "./dist/RecurringSelect/index.mjs",
+      "require": "./dist/RecurringSelect/index.js"
+    },
+    "./Select": {
+      "import": "./dist/Select/index.mjs",
+      "require": "./dist/Select/index.js"
+    },
+    "./Spinner": {
+      "import": "./dist/Spinner/index.mjs",
+      "require": "./dist/Spinner/index.js"
+    },
+    "./StatusLabel": {
+      "import": "./dist/StatusLabel/index.mjs",
+      "require": "./dist/StatusLabel/index.js"
+    },
+    "./Switch": {
+      "import": "./dist/Switch/index.mjs",
+      "require": "./dist/Switch/index.js"
+    },
+    "./Table": {
+      "import": "./dist/Table/index.mjs",
+      "require": "./dist/Table/index.js"
+    },
+    "./Tabs": {
+      "import": "./dist/Tabs/index.mjs",
+      "require": "./dist/Tabs/index.js"
+    },
+    "./Text": {
+      "import": "./dist/Text/index.mjs",
+      "require": "./dist/Text/index.js"
+    },
+    "./Toast": {
+      "import": "./dist/Toast/index.mjs",
+      "require": "./dist/Toast/index.js"
+    },
+    "./Tooltip": {
+      "import": "./dist/Tooltip/index.mjs",
+      "require": "./dist/Tooltip/index.js"
+    },
+    "./Typography": {
+      "import": "./dist/Typography/index.mjs",
+      "require": "./dist/Typography/index.js"
     }
   },
   "scripts": {
