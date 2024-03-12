@@ -1,88 +1,19 @@
+/* eslint-disable import/no-default-export */
+import multiInput from "rollup-plugin-multi-input";
 import typescript from "@rollup/plugin-typescript";
 import postcss from "rollup-plugin-postcss";
-import postcssImport from "postcss-import";
-import autoprefixer from "autoprefixer";
-import postcssPresetEnv from "postcss-preset-env";
+import commonjs from "@rollup/plugin-commonjs";
+import copy from "rollup-plugin-copy";
 
-// eslint-disable-next-line import/no-default-export
 export default {
-  input: {
-    index: "src/index.tsx",
-    AnimatedPresence: "src/AnimatedPresence/index.ts",
-    AnimatedSwitcher: "src/AnimatedSwitcher/index.ts",
-    Autocomplete: "src/Autocomplete/index.ts",
-    Avatar: "src/Avatar/index.ts",
-    Banner: "src/Banner/index.ts",
-    Button: "src/Button/index.ts",
-    ButtonDismiss: "src/ButtonDismiss/index.ts",
-    Card: "src/Card/index.ts",
-    Checkbox: "src/Checkbox/index.ts",
-    Chip: "src/Chip/index.ts",
-    Chips: "src/Chips/index.ts",
-    Combobox: "src/Combobox/index.ts",
-    ConfirmationModal: "src/ConfirmationModal/index.ts",
-    Content: "src/Content/index.ts",
-    Countdown: "src/Countdown/index.ts",
-    DataDump: "src/DataDump/index.ts",
-    DataList: "src/DataList/index.ts",
-    DataTable: "src/DataTable/index.ts",
-    DatePicker: "src/DatePicker/index.ts",
-    DescriptionList: "src/DescriptionList/index.ts",
-    Disclosure: "src/Disclosure/index.ts",
-    Divider: "src/Divider/index.ts",
-    Drawer: "src/Drawer/index.ts",
-    Emphasis: "src/Emphasis/index.ts",
-    FeatureSwitch: "src/FeatureSwitch/index.ts",
-    Flex: "src/Flex/index.ts",
-    Form: "src/Form/index.ts",
-    FormField: "src/FormField/index.ts",
-    FormatDate: "src/FormatDate/index.ts",
-    FormatEmail: "src/FormatEmail/index.ts",
-    FormatFile: "src/FormatFile/index.ts",
-    FormatRelativeDateTime: "src/FormatRelativeDateTime/index.ts",
-    FormatTime: "src/FormatTime/index.ts",
-    Gallery: "src/Gallery/index.ts",
-    Glimmer: "src/Glimmer/index.ts",
-    Grid: "src/Grid/index.ts",
-    Heading: "src/Heading/index.ts",
-    Icon: "src/Icon/index.ts",
-    InlineLabel: "src/InlineLabel/index.ts",
-    InputAvatar: "src/InputAvatar/index.ts",
-    InputDate: "src/InputDate/index.ts",
-    InputEmail: "src/InputEmail/index.ts",
-    InputFile: "src/InputFile/index.ts",
-    InputGroup: "src/InputGroup/index.ts",
-    InputNumber: "src/InputNumber/index.ts",
-    InputPassword: "src/InputPassword/index.ts",
-    InputPhoneNumber: "src/InputPhoneNumber/index.ts",
-    InputText: "src/InputText/index.ts",
-    InputTime: "src/InputTime/index.ts",
-    InputValidation: "src/InputValidation/index.ts",
-    LightBox: "src/LightBox/index.ts",
-    Link: "src/Link/index.ts",
-    List: "src/List/index.ts",
-    Markdown: "src/Markdown/index.ts",
-    Menu: "src/Menu/index.ts",
-    Modal: "src/Modal/index.ts",
-    MultiSelect: "src/MultiSelect/index.ts",
-    Page: "src/Page/index.ts",
-    Popover: "src/Popover/index.ts",
-    ProgressBar: "src/ProgressBar/index.ts",
-    RadioGroup: "src/RadioGroup/index.ts",
-    RecurringSelect: "src/RecurringSelect/index.ts",
-    Select: "src/Select/index.ts",
-    Spinner: "src/Spinner/index.ts",
-    StatusIndicator: "src/StatusIndicator/index.ts",
-    StatusLabel: "src/StatusLabel/index.ts",
-    Switch: "src/Switch/index.ts",
-    Table: "src/Table/index.ts",
-    Tabs: "src/Tabs/index.ts",
-    Text: "src/Text/index.ts",
-    Toast: "src/Toast/index.ts",
-    Tooltip: "src/Tooltip/index.ts",
-    Typography: "src/Typography/index.ts",
-  },
+  input: `src/**/*index.{ts,tsx}`,
   plugins: [
+    multiInput(),
+    typescript({
+      tsconfig: "./tsconfig.rollup.json",
+      declarationDir: "dist",
+      noEmitOnError: true,
+    }),
     postcss({
       modules: {
         generateScopedName: "[hash:base64]",
@@ -90,36 +21,90 @@ export default {
       },
       autoModules: false,
       plugins: [
-        postcssImport({
-          path: [
-            "@jobber/design/foundation.css",
-            "@jobber/design/src/responsiveBreakpoints.css",
+        require("postcss-import"),
+        require("autoprefixer"),
+        require("@csstools/postcss-global-data")({
+          files: [
+            require.resolve("@jobber/design/foundation.css"),
+            require.resolve("@jobber/design/src/responsiveBreakpoints.css"),
           ],
         }),
-        autoprefixer,
-        postcssPresetEnv({
+        require("postcss-preset-env")({
           stage: 1,
           preserve: true,
         }),
       ],
     }),
-
-    typescript({
-      tsconfig: "./tsconfig.rollup.json",
-      outputToFilesystem: true,
-      noEmitOnError: true,
+    commonjs({
+      ignore: ["time-input-polyfill", "time-input-polyfill/supportsTime"],
+    }),
+    copy({
+      targets: [
+        { src: "src/Card/colors.css.d.ts", dest: "dist/Card" },
+        { src: "src/Content/Spacing.css.d.ts", dest: "dist/Content" },
+        { src: "src/Gallery/Gallery.css.d.ts", dest: "dist/Gallery" },
+        { src: "src/Grid/GridAlign.css.d.ts", dest: "dist/Grid" },
+        { src: "src/Modal/Sizes.css.d.ts", dest: "dist/Modal" },
+        { src: "src/ProgressBar/Sizes.css.d.ts", dest: "dist/ProgressBar" },
+        {
+          src: "src/Typography/css/Emphasis.css.d.ts",
+          dest: "dist/Typography/css",
+        },
+        {
+          src: "src/Typography/css/FontFamilies.css.d.ts",
+          dest: "dist/Typography/css",
+        },
+        {
+          src: "src/Typography/css/FontSizes.css.d.ts",
+          dest: "dist/Typography/css",
+        },
+        {
+          src: "src/Typography/css/FontWeights.css.d.ts",
+          dest: "dist/Typography/css",
+        },
+        {
+          src: "src/Typography/css/TextAlignment.css.d.ts",
+          dest: "dist/Typography/css",
+        },
+        {
+          src: "src/Typography/css/TextCases.css.d.ts",
+          dest: "dist/Typography/css",
+        },
+        {
+          src: "src/Typography/css/TextColors.css.d.ts",
+          dest: "dist/Typography/css",
+        },
+        {
+          src: "src/Typography/css/Truncate.css.d.ts",
+          dest: "dist/Typography/css",
+        },
+        {
+          src: "src/Typography/css/Typography.css.d.ts",
+          dest: "dist/Typography/css",
+        },
+        { src: "src/Glimmer/style/Shape.css.d.ts", dest: "dist/Glimmer/style" },
+        { src: "src/Glimmer/style/Sizes.css.d.ts", dest: "dist/Glimmer/style" },
+        {
+          src: "src/Glimmer/style/Timing.css.d.ts",
+          dest: "dist/Glimmer/style",
+        },
+        {
+          src: "src/Combobox/components/ComboboxContent/ComboboxContentList/ComboboxContent.css.d.ts",
+          dest: "dist/Combobox/components/ComboboxContent/ComboboxContentList",
+        },
+      ],
     }),
   ],
   output: [
     {
       dir: "dist",
       entryFileNames: "[name].js",
-      format: "esm",
+      format: "cjs",
     },
     {
       dir: "dist",
-      entryFileNames: "[name].cjs",
-      format: "cjs",
+      entryFileNames: "[name].mjs",
+      format: "esm",
     },
   ],
   external: [

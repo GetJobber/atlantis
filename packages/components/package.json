@@ -8,7 +8,8 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "require":"./dist/index.js",
+      "import": "./dist/index.mjs"
     }
   },
   "scripts": {
@@ -20,7 +21,12 @@
     "prepack": "npm run entryPoints:build",
     "postpack": "npm run entryPoints:clean"
   },
-  "files": ["dist","README.md","LICENSE","package.json"],
+  "files": [
+    "*.js",
+    "*.mjs",
+    "*.d.ts",
+    "dist/*"
+  ],
   "dependencies": {
     "@jobber/design": "^0.55.1",
     "@jobber/formatters": "*",
