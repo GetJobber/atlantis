@@ -1,5 +1,6 @@
 {
   "name": "@jobber/hooks",
+  "type":"module",
   "version": "2.9.1",
   "license": "MIT",
   "main": "./dist/index.js",
