@@ -104,7 +104,7 @@ export default {
   output: [
     {
       dir: "dist",
-      entryFileNames: "[name].js",
+      entryFileNames: "[name].cjs",
       format: "cjs",
     },
     {
