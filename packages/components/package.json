@@ -1,5 +1,6 @@
 {
   "name": "@jobber/components",
+  "type":"commonjs",
   "version": "4.85.3",
   "license": "MIT",
   "main": "dist/index.js",
@@ -8,6 +9,7 @@
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
+      "types":"./dist/index.d.mts",
       "require": "./dist/index.js"
     },
     "./AnimatedPresence": {

@@ -92,7 +92,13 @@ export default {
           src: "src/Combobox/components/ComboboxContent/ComboboxContentList/ComboboxContent.css.d.ts",
           dest: "dist/Combobox/components/ComboboxContent/ComboboxContentList",
         },
+        {
+          src: "dist/index.d.ts",
+          dest: "dist",
+          rename: "index.d.mts",
+        },
       ],
+      hook: "writeBundle",
     }),
   ],
   output: [
