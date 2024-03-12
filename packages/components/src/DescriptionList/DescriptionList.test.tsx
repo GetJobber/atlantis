@@ -15,6 +15,8 @@ it("renders an object as a list of key value pairs", () => {
 });
 
 it("allows duplicate terms", () => {
+  const logSpy = jest.spyOn(global.console, "error");
+
   const { container } = render(
     <DescriptionList
       data={[
@@ -24,6 +26,7 @@ it("allows duplicate terms", () => {
     />,
   );
   expect(container).toMatchSnapshot();
+  expect(logSpy).toHaveBeenCalledTimes(0);
 });
 
 it("renders an object as a list of key value pairs with an element", () => {
