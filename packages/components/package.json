@@ -13,290 +13,362 @@
       "require": "./dist/index.js"
     },
     "./AnimatedPresence": {
+      "types": "./dist/AnimatedPresence/index.d.ts",
       "import": "./dist/AnimatedPresence/index.mjs",
       "require": "./dist/AnimatedPresence/index.js"
     },
     "./AnimatedSwitcher": {
+      "types": "./dist/AnimatedSwitcher/index.d.ts",
       "import": "./dist/AnimatedSwitcher/index.mjs",
       "require": "./dist/AnimatedSwitcher/index.js"
     },
     "./Autocomplete": {
+      "types": "./dist/Autocomplete/index.d.ts",
       "import": "./dist/Autocomplete/index.mjs",
       "require": "./dist/Autocomplete/index.js"
     },
     "./Avatar": {
+      "types": "./dist/Avatar/index.d.ts",
       "import": "./dist/Avatar/index.mjs",
       "require": "./dist/Avatar/index.js"
     },
     "./Banner": {
+      "types": "./dist/Banner/index.d.ts",
       "import": "./dist/Banner/index.mjs",
       "require": "./dist/Banner/index.js"
     },
     "./Button": {
+      "types": "./dist/Button/index.d.ts",
       "import": "./dist/Button/index.mjs",
       "require": "./dist/Button/index.js"
     },
     "./ButtonDismiss": {
+      "types": "./dist/ButtonDismiss/index.d.ts",
       "import": "./dist/ButtonDismiss/index.mjs",
       "require": "./dist/ButtonDismiss/index.js"
     },
     "./Card": {
+      "types": "./dist/Card/index.d.ts",
       "import": "./dist/Card/index.mjs",
       "require": "./dist/Card/index.js"
     },
     "./Checkbox": {
+      "types": "./dist/Checkbox/index.d.ts",
       "import": "./dist/Checkbox/index.mjs",
       "require": "./dist/Checkbox/index.js"
     },
     "./Chip": {
+      "types": "./dist/Chip/index.d.ts",
       "import": "./dist/Chip/index.mjs",
       "require": "./dist/Chip/index.js"
     },
     "./Chips": {
+      "types": "./dist/Chips/index.d.ts",
       "import": "./dist/Chips/index.mjs",
       "require": "./dist/Chips/index.js"
     },
     "./Combobox": {
+      "types": "./dist/Combobox/index.d.ts",
       "import": "./dist/Combobox/index.mjs",
       "require": "./dist/Combobox/index.js"
     },
     "./ConfirmationModal": {
+      "types": "./dist/ConfirmationModal/index.d.ts",
       "import": "./dist/ConfirmationModal/index.mjs",
       "require": "./dist/ConfirmationModal/index.js"
     },
     "./Content": {
+      "types": "./dist/Content/index.d.ts",
       "import": "./dist/Content/index.mjs",
       "require": "./dist/Content/index.js"
     },
     "./Countdown": {
+      "types": "./dist/Countdown/index.d.ts",
       "import": "./dist/Countdown/index.mjs",
       "require": "./dist/Countdown/index.js"
     },
     "./DataDump": {
+      "types": "./dist/DataDump/index.d.ts",
       "import": "./dist/DataDump/index.mjs",
       "require": "./dist/DataDump/index.js"
     },
     "./DataList": {
+      "types": "./dist/DataList/index.d.ts",
       "import": "./dist/DataList/index.mjs",
       "require": "./dist/DataList/index.js"
     },
     "./DataTable": {
+      "types": "./dist/DataTable/index.d.ts",
       "import": "./dist/DataTable/index.mjs",
       "require": "./dist/DataTable/index.js"
     },
     "./DatePicker": {
+      "types": "./dist/DatePicker/index.d.ts",
       "import": "./dist/DatePicker/index.mjs",
       "require": "./dist/DatePicker/index.js"
     },
     "./DescriptionList": {
+      "types": "./dist/DescriptionList/index.d.ts",
       "import": "./dist/DescriptionList/index.mjs",
       "require": "./dist/DescriptionList/index.js"
     },
     "./Disclosure": {
+      "types": "./dist/Disclosure/index.d.ts",
       "import": "./dist/Disclosure/index.mjs",
       "require": "./dist/Disclosure/index.js"
     },
     "./Divider": {
+      "types": "./dist/Divider/index.d.ts",
       "import": "./dist/Divider/index.mjs",
       "require": "./dist/Divider/index.js"
     },
     "./Drawer": {
+      "types": "./dist/Drawer/index.d.ts",
       "import": "./dist/Drawer/index.mjs",
       "require": "./dist/Drawer/index.js"
     },
     "./Emphasis": {
+      "types": "./dist/Emphasis/index.d.ts",
       "import": "./dist/Emphasis/index.mjs",
       "require": "./dist/Emphasis/index.js"
     },
     "./FeatureSwitch": {
+      "types": "./dist/FeatureSwitch/index.d.ts",
       "import": "./dist/FeatureSwitch/index.mjs",
       "require": "./dist/FeatureSwitch/index.js"
     },
     "./Flex": {
+      "types": "./dist/Flex/index.d.ts",
       "import": "./dist/Flex/index.mjs",
       "require": "./dist/Flex/index.js"
     },
     "./Form": {
+      "types": "./dist/Form/index.d.ts",
       "import": "./dist/Form/index.mjs",
       "require": "./dist/Form/index.js"
     },
     "./FormField": {
+      "types": "./dist/FormField/index.d.ts",
       "import": "./dist/FormField/index.mjs",
       "require": "./dist/FormField/index.js"
     },
     "./FormatDate": {
+      "types": "./dist/FormatDate/index.d.ts",
       "import": "./dist/FormatDate/index.mjs",
       "require": "./dist/FormatDate/index.js"
     },
     "./FormatEmail": {
+      "types": "./dist/FormatEmail/index.d.ts",
       "import": "./dist/FormatEmail/index.mjs",
       "require": "./dist/FormatEmail/index.js"
     },
     "./FormatFile": {
+      "types": "./dist/FormatFile/index.d.ts",
       "import": "./dist/FormatFile/index.mjs",
       "require": "./dist/FormatFile/index.js"
     },
     "./FormatRelativeDateTime": {
+      "types": "./dist/FormatRelativeDateTime/index.d.ts",
       "import": "./dist/FormatRelativeDateTime/index.mjs",
       "require": "./dist/FormatRelativeDateTime/index.js"
     },
     "./FormatTime": {
+      "types": "./dist/FormatTime/index.d.ts",
       "import": "./dist/FormatTime/index.mjs",
       "require": "./dist/FormatTime/index.js"
     },
     "./Gallery": {
+      "types": "./dist/Gallery/index.d.ts",
       "import": "./dist/Gallery/index.mjs",
       "require": "./dist/Gallery/index.js"
     },
     "./Glimmer": {
+      "types": "./dist/Glimmer/index.d.ts",
       "import": "./dist/Glimmer/index.mjs",
       "require": "./dist/Glimmer/index.js"
     },
     "./Grid": {
+      "types": "./dist/Grid/index.d.ts",
       "import": "./dist/Grid/index.mjs",
       "require": "./dist/Grid/index.js"
     },
     "./Heading": {
+      "types": "./dist/Heading/index.d.ts",
       "import": "./dist/Heading/index.mjs",
       "require": "./dist/Heading/index.js"
     },
     "./Icon": {
+      "types": "./dist/Icon/index.d.ts",
       "import": "./dist/Icon/index.mjs",
       "require": "./dist/Icon/index.js"
     },
     "./InlineLabel": {
+      "types": "./dist/InlineLabel/index.d.ts",
       "import": "./dist/InlineLabel/index.mjs",
       "require": "./dist/InlineLabel/index.js"
     },
     "./InputAvatar": {
+      "types": "./dist/InputAvatar/index.d.ts",
       "import": "./dist/InputAvatar/index.mjs",
       "require": "./dist/InputAvatar/index.js"
     },
     "./InputDate": {
+      "types": "./dist/InputDate/index.d.ts",
       "import": "./dist/InputDate/index.mjs",
       "require": "./dist/InputDate/index.js"
     },
     "./InputEmail": {
+      "types": "./dist/InputEmail/index.d.ts",
       "import": "./dist/InputEmail/index.mjs",
       "require": "./dist/InputEmail/index.js"
     },
     "./InputFile": {
+      "types": "./dist/InputFile/index.d.ts",
       "import": "./dist/InputFile/index.mjs",
       "require": "./dist/InputFile/index.js"
     },
     "./InputGroup": {
+      "types": "./dist/InputGroup/index.d.ts",
       "import": "./dist/InputGroup/index.mjs",
       "require": "./dist/InputGroup/index.js"
     },
     "./InputNumber": {
+      "types": "./dist/InputNumber/index.d.ts",
       "import": "./dist/InputNumber/index.mjs",
       "require": "./dist/InputNumber/index.js"
     },
     "./InputPassword": {
+      "types": "./dist/InputPassword/index.d.ts",
       "import": "./dist/InputPassword/index.mjs",
       "require": "./dist/InputPassword/index.js"
     },
     "./InputPhoneNumber": {
+      "types": "./dist/InputPhoneNumber/index.d.ts",
       "import": "./dist/InputPhoneNumber/index.mjs",
       "require": "./dist/InputPhoneNumber/index.js"
     },
     "./InputText": {
+      "types": "./dist/InputText/index.d.ts",
       "import": "./dist/InputText/index.mjs",
       "require": "./dist/InputText/index.js"
     },
     "./InputTime": {
+      "types": "./dist/InputTime/index.d.ts",
       "import": "./dist/InputTime/index.mjs",
       "require": "./dist/InputTime/index.js"
     },
     "./InputValidation": {
+      "types": "./dist/InputValidation/index.d.ts",
       "import": "./dist/InputValidation/index.mjs",
       "require": "./dist/InputValidation/index.js"
     },
     "./LightBox": {
+      "types": "./dist/LightBox/index.d.ts",
       "import": "./dist/LightBox/index.mjs",
       "require": "./dist/LightBox/index.js"
     },
     "./Link": {
+      "types": "./dist/Link/index.d.ts",
       "import": "./dist/Link/index.mjs",
       "require": "./dist/Link/index.js"
     },
     "./List": {
+      "types": "./dist/List/index.d.ts",
       "import": "./dist/List/index.mjs",
       "require": "./dist/List/index.js"
     },
     "./Markdown": {
+      "types": "./dist/Markdown/index.d.ts",
       "import": "./dist/Markdown/index.mjs",
       "require": "./dist/Markdown/index.js"
     },
     "./Menu": {
+      "types": "./dist/Menu/index.d.ts",
       "import": "./dist/Menu/index.mjs",
       "require": "./dist/Menu/index.js"
     },
     "./Modal": {
+      "types": "./dist/Modal/index.d.ts",
       "import": "./dist/Modal/index.mjs",
       "require": "./dist/Modal/index.js"
     },
     "./MultiSelect": {
+      "types": "./dist/MultiSelect/index.d.ts",
       "import": "./dist/MultiSelect/index.mjs",
       "require": "./dist/MultiSelect/index.js"
     },
     "./Page": {
+      "types": "./dist/Page/index.d.ts",
       "import": "./dist/Page/index.mjs",
       "require": "./dist/Page/index.js"
     },
     "./Popover": {
+      "types": "./dist/Popover/index.d.ts",
       "import": "./dist/Popover/index.mjs",
       "require": "./dist/Popover/index.js"
     },
     "./ProgressBar": {
+      "types": "./dist/ProgressBar/index.d.ts",
       "import": "./dist/ProgressBar/index.mjs",
       "require": "./dist/ProgressBar/index.js"
     },
     "./RadioGroup": {
+      "types": "./dist/RadioGroup/index.d.ts",
       "import": "./dist/RadioGroup/index.mjs",
       "require": "./dist/RadioGroup/index.js"
     },
     "./RecurringSelect": {
+      "types": "./dist/RecurringSelect/index.d.ts",
       "import": "./dist/RecurringSelect/index.mjs",
       "require": "./dist/RecurringSelect/index.js"
     },
     "./Select": {
+      "types": "./dist/Select/index.d.ts",
       "import": "./dist/Select/index.mjs",
       "require": "./dist/Select/index.js"
     },
     "./Spinner": {
+      "types": "./dist/Spinner/index.d.ts",
       "import": "./dist/Spinner/index.mjs",
       "require": "./dist/Spinner/index.js"
     },
     "./StatusLabel": {
+      "types": "./dist/StatusLabel/index.d.ts",
       "import": "./dist/StatusLabel/index.mjs",
       "require": "./dist/StatusLabel/index.js"
     },
     "./Switch": {
+      "types": "./dist/Switch/index.d.ts",
       "import": "./dist/Switch/index.mjs",
       "require": "./dist/Switch/index.js"
     },
     "./Table": {
+      "types": "./dist/Table/index.d.ts",
       "import": "./dist/Table/index.mjs",
       "require": "./dist/Table/index.js"
     },
     "./Tabs": {
+      "types": "./dist/Tabs/index.d.ts",
       "import": "./dist/Tabs/index.mjs",
       "require": "./dist/Tabs/index.js"
     },
     "./Text": {
+      "types": "./dist/Text/index.d.ts",
       "import": "./dist/Text/index.mjs",
       "require": "./dist/Text/index.js"
     },
     "./Toast": {
+      "types": "./dist/Toast/index.d.ts",
       "import": "./dist/Toast/index.mjs",
       "require": "./dist/Toast/index.js"
     },
     "./Tooltip": {
+      "types": "./dist/Tooltip/index.d.ts",
       "import": "./dist/Tooltip/index.mjs",
       "require": "./dist/Tooltip/index.js"
     },
     "./Typography": {
+      "types": "./dist/Typography/index.d.ts",
       "import": "./dist/Typography/index.mjs",
       "require": "./dist/Typography/index.js"
     }
