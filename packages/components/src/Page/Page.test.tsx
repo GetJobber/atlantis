@@ -3,9 +3,12 @@ import { fireEvent, render } from "@testing-library/react";
 import { Page } from ".";
 import { SectionProps } from "../Menu";
 
-jest.mock("@jobber/hooks", () => {
+jest.mock("@jobber/hooks/useResizeObserver", () => {
   return {
-    ...(jest.requireActual("@jobber/hooks") as Record<string, unknown>),
+    ...(jest.requireActual("@jobber/hooks/useResizeObserver") as Record<
+      string,
+      unknown
+    >),
     useResizeObserver: () => [
       { current: undefined },
       { width: 1000, height: 100 },

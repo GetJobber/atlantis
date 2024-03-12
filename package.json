@@ -90,6 +90,7 @@
     "@types/history": "^4.7.6",
     "@types/jest": "^29.5.0",
     "@types/lodash": "^4.14.149",
+    "@types/lodash-es": "^4.17.12",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@types/react-router-dom": "^5.3.3",
@@ -168,7 +169,8 @@
   ],
   "dependencies": {
     "@std-proposal/temporal": "0.0.1",
-    "jest-environment-jsdom": "^29.5.0"
+    "jest-environment-jsdom": "^29.5.0",
+    "lodash-es": "^4.17.21"
   },
   "optionalDependencies": {
     "@jobber/fonts": "^1.1.0"

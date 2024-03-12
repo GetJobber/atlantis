@@ -1,5 +1,5 @@
 import React, { Ref, forwardRef, useEffect, useRef, useState } from "react";
-import debounce from "lodash/debounce";
+import debounce from "lodash-es/debounce";
 import { XOR } from "ts-xor";
 import styles from "./Autocomplete.css";
 import { Menu } from "./Menu";

@@ -1,5 +1,5 @@
 import { KeyboardEvent, MouseEvent, useRef } from "react";
-import sortBy from "lodash/sortBy";
+import sortBy from "lodash-es/sortBy";
 import { useLiveAnnounce } from "@jobber/hooks/useLiveAnnounce";
 import { InternalChipDismissibleProps } from "../InternalChipDismissibleTypes";
 

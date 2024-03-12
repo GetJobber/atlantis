@@ -5,7 +5,8 @@ import {
   SubscribeToMoreOptions,
   useQuery,
 } from "@apollo/client";
-import cloneDeep from "lodash/cloneDeep";
+// eslint-disable-next-line import/no-internal-modules
+import cloneDeep from "lodash-es/cloneDeep";
 import { useCallback, useEffect, useState } from "react";
 import { config } from "@jobber/formatters";
 import { Node, uniqueNodes } from "./uniqueNodes";

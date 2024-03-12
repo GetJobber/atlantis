@@ -102,6 +102,7 @@
     "@testing-library/react-hooks": "^7.0.0",
     "@testing-library/user-event": "^14.5.1",
     "@types/lodash": "4.14.136",
+    "@types/lodash-es": "4.17.12",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@types/uuid": "^8.3.3",
@@ -112,6 +113,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.20",
+    "lodash-es":"4.17.21",
     "resize-observer-polyfill": "^1.5.1",
     "ts-xor": "^1.0.8",
     "use-resize-observer": "^6.1.0",
