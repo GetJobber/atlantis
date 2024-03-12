@@ -1,42 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`allows duplicate terms 1`] = `
-<div>
-  <dl
-    class="descriptionList"
-  >
-    <div
-      class="termGroup"
-    >
-      <dt
-        class="base regular base heading"
-      >
-        Issued
-      </dt>
-      <dd
-        class="base regular base text"
-      >
-        2018-12-08
-      </dd>
-    </div>
-    <div
-      class="termGroup"
-    >
-      <dt
-        class="base regular base heading"
-      >
-        Issued
-      </dt>
-      <dd
-        class="base regular base text"
-      >
-        2019-01-06
-      </dd>
-    </div>
-  </dl>
-</div>
-`;
-
 exports[`renders an object as a list of key value pairs 1`] = `
 <div>
   <dl
