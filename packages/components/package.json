@@ -2,13 +2,12 @@
   "name": "@jobber/components",
   "version": "4.85.3",
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "type":"module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "require":"./dist/index.js",
       "import": "./dist/index.mjs"
     }
   },
