@@ -5,7 +5,7 @@ import { Typography } from "../Typography";
 interface DescriptionListProps {
   /**
    * A tuple where the first item is the string to display as the term
-   * and the second value is the string to display as the definition,
+   * and the second value is the string to display as the definition
    */
   readonly data: [string, string | ReactNode][];
 }
