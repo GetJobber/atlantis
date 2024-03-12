@@ -4,9 +4,8 @@ import { Typography } from "../Typography";
 
 interface DescriptionListProps {
   /**
-   * A tuple where the first item is the string to display as the term,
-   * the second value is the string to display as the definition,
-   * and the third value is an optional key to use as the React key in scenarios where the display value is not unique for all elements in the data set.
+   * A tuple where the first item is the string to display as the term
+   * and the second value is the string to display as the definition,
    */
   readonly data: [string, string | ReactNode][];
 }
