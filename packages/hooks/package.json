@@ -1,10 +1,26 @@
 {
   "name": "@jobber/hooks",
-  "type":"module",
+  "type": "module",
   "version": "2.9.1",
   "license": "MIT",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.js",
+  "types": "./dist/index.d.ts",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./useAssert": {
+      "types": "./dist/useAssert/index.d.ts",
+      "import": "./dist/useAssert/index.js",
+      "require": "./useAssert.js"
+    },
+    "./useBool": {
+      "types": "./dist/useBool/index.d.ts",
+      "import": "./dist/useBool/index.js",
+      "require": "./useBool.js"
+    }
+  },
   "scripts": {
     "build": "tsc --project . --skipLibCheck",
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
