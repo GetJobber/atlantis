@@ -129,7 +129,6 @@ export default {
     "color",
     "framer-motion",
     "classnames",
-    new RegExp("lodash/.*"),
     "@std-proposal/temporal",
     "@jobber/design",
     "@jobber/design/foundation",

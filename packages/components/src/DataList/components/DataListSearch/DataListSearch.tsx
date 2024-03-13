@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useCallback, useRef, useState } from "react";
-import { debounce } from "lodash";
 import classNames from "classnames";
 import { tokens } from "@jobber/design";
 import styles from "./DataListSearch.css";
@@ -11,6 +11,19 @@ import { AnimatedSwitcher } from "../../../AnimatedSwitcher";
 import { DataListSearchProps } from "../../DataList.types";
 
 export const DATA_LIST_SEARCH_TEST_ID = "ATL-DataList-Search-input-wrapper";
+
+const debounce = (func: any, delay: any, { leading }: any = {}) => {
+  let timerId: any;
+
+  return (...args: any) => {
+    if (!timerId && leading) {
+      func(...args);
+    }
+    clearTimeout(timerId);
+
+    timerId = setTimeout(() => func(...args), delay);
+  };
+};
 
 // This component is meant to capture the props of the DataList.Search
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

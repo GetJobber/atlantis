@@ -1,5 +1,4 @@
 import React, { createContext, useContext } from "react";
-import { noop } from "lodash";
 import { DataListContextProps, DataListObject } from "../../DataList.types";
 
 export const defaultValues: DataListContextProps<DataListObject> = {
@@ -16,7 +15,8 @@ export const defaultValues: DataListContextProps<DataListObject> = {
     lg: children => <>{children}</>,
     xl: children => <>{children}</>,
   },
-  registerLayout: noop,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  registerLayout: () => {},
 };
 
 export const DataListContext =

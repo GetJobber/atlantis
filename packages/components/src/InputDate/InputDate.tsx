@@ -1,4 +1,4 @@
-import { omit } from "lodash";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useRef } from "react";
 import {
   CommonFormFieldProps,
@@ -39,6 +39,13 @@ interface InputDateProps
    */
   readonly minDate?: Date;
 }
+
+const omit = (obj: any, props: any) => {
+  obj = { ...obj };
+  props.forEach((prop: any) => delete obj[prop]);
+
+  return obj;
+};
 
 export function InputDate(inputProps: InputDateProps) {
   const formFieldActionsRef = useRef<FieldActionsRef>(null);

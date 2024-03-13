@@ -1,8 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useMemo, useState } from "react";
 // Importing the polyfilled version of ResizeObserver
 // eslint-disable-next-line import/no-internal-modules
 import useResizeObserverPackage from "use-resize-observer/polyfilled";
-import { throttle } from "lodash";
 
 export const Breakpoints = {
   base: 640,
@@ -23,6 +23,31 @@ interface ResizeObserverProps {
 }
 
 const wait = 100;
+
+function throttle<T extends (...args: any[]) => any>(
+  func: T,
+  waiti: number,
+): T {
+  let timeout: NodeJS.Timeout | null = null;
+  let args: Parameters<T> | null = null;
+
+  const throttled = (...newArgs: Parameters<T>) => {
+    args = newArgs;
+
+    if (!timeout) {
+      timeout = setTimeout(() => {
+        if (args) {
+          func(...args);
+          args = null;
+        }
+
+        timeout = null;
+      }, waiti);
+    }
+  };
+
+  return throttled as T;
+}
 
 export function useResizeObserver<T extends HTMLElement>({
   widths = Breakpoints,

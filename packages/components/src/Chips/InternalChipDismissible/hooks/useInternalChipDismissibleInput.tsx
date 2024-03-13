@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, {
   ChangeEvent,
   KeyboardEvent,
@@ -6,7 +7,6 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { debounce } from "lodash";
 import { useLiveAnnounce } from "../../../hooks/useLiveAnnounce";
 import {
   ChipDismissibleInputOptionProps,
@@ -14,6 +14,19 @@ import {
 } from "../InternalChipDismissibleTypes";
 import { Icon } from "../../../Icon";
 import { ChipProps } from "../../Chip";
+
+const debounce = (func: any, delay: any, { leading }: any = {}) => {
+  let timerId: any;
+
+  return (...args: any) => {
+    if (!timerId && leading) {
+      func(...args);
+    }
+    clearTimeout(timerId);
+
+    timerId = setTimeout(() => func(...args), delay);
+  };
+};
 
 // eslint-disable-next-line max-statements
 export function useInternalChipDismissibleInput({

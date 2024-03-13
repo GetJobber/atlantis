@@ -1,8 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable max-statements */
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, PanInfo, motion } from "framer-motion";
 import ReactDOM from "react-dom";
-import { debounce } from "lodash";
 import styles from "./LightBox.css";
 import { useRefocusOnActivator } from "../hooks/useRefocusOnActivator";
 import { useFocusTrap } from "../hooks/useFocusTrap";
@@ -83,6 +83,19 @@ const imageTransition = {
 // We're doing this to prevent a bug from framer-motion
 // https://github.com/framer/motion/issues/1769
 const debounceDuration = 250;
+
+const debounce = (func: any, delay: any, { leading }: any = {}) => {
+  let timerId: any;
+
+  return (...args: any) => {
+    if (!timerId && leading) {
+      func(...args);
+    }
+    clearTimeout(timerId);
+
+    timerId = setTimeout(() => func(...args), delay);
+  };
+};
 
 export function LightBox({
   open,

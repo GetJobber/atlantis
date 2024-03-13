@@ -5,7 +5,6 @@ import {
   SubscribeToMoreOptions,
   useQuery,
 } from "@apollo/client";
-import { cloneDeep } from "lodash";
 import { useCallback, useEffect, useState } from "react";
 import { config } from "@jobber/formatters";
 import { Node, uniqueNodes } from "./uniqueNodes";
@@ -237,7 +236,7 @@ export function useCollectionQuery<TQuery, TSubscription = undefined>({
  * 3. We want to keep the interface to this hook as simple and easy to use as possible
  *
  * The alternative approaches that were rejected:
- * 1. We replace the getCollectionByPath with a keyPath string. (Eg. "data.conversation.message") and then we use lodash
+ * 1. We replace the getCollectionByPath with a keyPath string. (Eg. "data.conversation.message") and then we use
  *    `get` and `set` which should remove all the object manipulation. But, this approach loses us the type safety that
  *    getCollectionByPath gives us
  * 2. We could add a setCollection function to the list of arguments for this hook. This leaves us with type safety but
@@ -249,7 +248,7 @@ function fetchMoreUpdateQueryHandler<TQuery>(
   getCollectionByPath: GetCollectionByPathFunction<TQuery>,
 ): TQuery {
   const nextCollection = getCollectionByPath(fetchMoreResult);
-  const output = cloneDeep(prev);
+  const output = structuredClone(prev);
   const outputCollection = getCollectionByPath(output);
 
   if (outputCollection === undefined || nextCollection === undefined) {
@@ -271,7 +270,7 @@ function fetchMoreUpdateQueryHandler<TQuery>(
   }
 
   Object.assign(outputCollection, {
-    pageInfo: cloneDeep(nextCollection.pageInfo),
+    pageInfo: structuredClone(nextCollection.pageInfo),
     ...getTotalCount(nextCollection.totalCount),
   });
 
@@ -286,7 +285,7 @@ function subscribeToMoreHandler<TQuery, TSubscription>(
   getNodeByPath: GetNodeByPath<TSubscription>,
 ): TQuery {
   const node = getNodeByPath(subscriptionData);
-  const output = cloneDeep(prev);
+  const output = structuredClone(prev);
   const outputCollection = getCollectionByPath(output);
 
   if (outputCollection == undefined || node == undefined) return output;
@@ -312,7 +311,7 @@ function subscribeToMoreHandler<TQuery, TSubscription>(
   }
 
   Object.assign(outputCollection, {
-    pageInfo: cloneDeep(outputCollection.pageInfo),
+    pageInfo: structuredClone(outputCollection.pageInfo),
     ...getTotalCount(outputCollection.totalCount, 1),
   });
 

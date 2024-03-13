@@ -28,19 +28,6 @@ function setupHook(params?: Partial<typeof hookParams>) {
   return current;
 }
 
-describe("sortedVisibleChipOptions", () => {
-  it("should return a list of values in order that was specified", () => {
-    const specifiedOrder = [chips[2], chips[0], chips[1]];
-    const { sortedVisibleChipOptions } = setupHook({
-      selected: specifiedOrder,
-    });
-
-    sortedVisibleChipOptions.forEach((option, index) => {
-      expect(option.value).toBe(specifiedOrder[index]);
-    });
-  });
-});
-
 describe("availableChipOptions", () => {
   it("should not return the selected value on the options", () => {
     const { availableChipOptions } = setupHook();

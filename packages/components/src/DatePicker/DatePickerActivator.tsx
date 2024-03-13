@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, {
   ChangeEvent,
   ReactElement,
@@ -7,9 +8,14 @@ import React, {
   isValidElement,
 } from "react";
 import { ReactDatePickerProps } from "react-datepicker";
-import { omit } from "lodash";
 import { Button } from "../Button";
 
+const omit = (obj: any, props: any) => {
+  obj = { ...obj };
+  props.forEach((prop: any) => delete obj[prop]);
+
+  return obj;
+};
 export interface DatePickerActivatorProps
   extends Pick<
     ReactDatePickerProps,
@@ -51,7 +57,6 @@ function InternalActivator(
       return cloneElement(activator, {
         ...newActivatorProps,
         ...(isAComponent && { fullWidth: fullWidth }),
-        // @ts-expect-error - Issue with react types not including `ref` in
         // cloneElement. https://github.com/DefinitelyTyped/DefinitelyTyped/issues/40888
         ref,
       });

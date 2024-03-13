@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect } from "react";
-import { debounce } from "lodash";
 import classNames from "classnames";
 import styles from "./InternalChipDismissible.css";
 import { ChipDismissibleInputProps } from "./InternalChipDismissibleTypes";
@@ -12,6 +12,19 @@ import {
 import { Text } from "../../Text";
 import { Button } from "../../Button";
 import { Spinner } from "../../Spinner";
+
+const debounce = (func: any, delay: any, { leading }: any = {}) => {
+  let timerId: any;
+
+  return (...args: any) => {
+    if (!timerId && leading) {
+      func(...args);
+    }
+    clearTimeout(timerId);
+
+    timerId = setTimeout(() => func(...args), delay);
+  };
+};
 
 export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
   const {

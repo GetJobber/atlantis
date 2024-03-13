@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, {
   Dispatch,
   MutableRefObject,
@@ -5,12 +6,27 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { debounce, noop } from "lodash";
 import {
   UseMakeComboboxHandlersReturn,
   useMakeComboboxHandlers,
 } from "./useMakeComboboxHandlers";
 import { ComboboxOption } from "../Combobox.types";
+
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+const noop = () => {};
+
+const debounce = (func: any, delay: any, { leading }: any = {}) => {
+  let timerId: any;
+
+  return (...args: any) => {
+    if (!timerId && leading) {
+      func(...args);
+    }
+    clearTimeout(timerId);
+
+    timerId = setTimeout(() => func(...args), delay);
+  };
+};
 
 type UseComboboxReturn = {
   wrapperRef: React.RefObject<HTMLDivElement>;

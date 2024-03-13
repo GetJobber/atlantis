@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { Ref, forwardRef, useEffect, useRef, useState } from "react";
-import { debounce } from "lodash";
 import { XOR } from "ts-xor";
 import styles from "./Autocomplete.css";
 import { Menu } from "./Menu";
@@ -7,6 +7,18 @@ import { AnyOption, GroupOption, Option } from "./Option";
 import { InputText, InputTextRef } from "../InputText";
 import { FormFieldProps } from "../FormField";
 
+const debounce = (func: any, delay: any, { leading }: any = {}) => {
+  let timerId: any;
+
+  return (...args: any) => {
+    if (!timerId && leading) {
+      func(...args);
+    }
+    clearTimeout(timerId);
+
+    timerId = setTimeout(() => func(...args), delay);
+  };
+};
 type OptionCollection = XOR<Option[], GroupOption[]>;
 
 interface AutocompleteProps

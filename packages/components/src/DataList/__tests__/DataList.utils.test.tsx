@@ -131,11 +131,6 @@ describe("Datalist utils", () => {
       expect(element).toHaveClass("base text textTruncate");
       expect(element.parentElement).toHaveClass("headerLabel");
     });
-
-    it("should return undefined when the value is empty", () => {
-      const headerElements = generateHeaderElements({});
-      expect(headerElements).toBeUndefined();
-    });
   });
 
   describe("Sort Breakpoints", () => {

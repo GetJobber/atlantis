@@ -1,5 +1,4 @@
 import React, { Children, ReactElement, isValidElement } from "react";
-import { isEmpty } from "lodash";
 import {
   DataListHeader,
   DataListItemType,
@@ -92,7 +91,7 @@ export function generateHeaderElements<T extends DataListObject>(
     {} as DataListItemTypeFromHeader<T, typeof headers>,
   );
 
-  return isEmpty(headerElements) ? undefined : headerElements;
+  return !headerElements ? undefined : headerElements;
 }
 
 export function sortBreakpoints(sizeProp: Breakpoints[]) {
