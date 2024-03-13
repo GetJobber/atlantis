@@ -1,3 +1,27 @@
+:root {
+  --labelBackgroundColor: var(--color-success--surface);
+}
+
+.success {
+  --labelBackgroundColor: var(--color-success--surface);
+}
+
+.warning {
+  --labelBackgroundColor: var(--color-warning--surface);
+}
+
+.critical {
+  --labelBackgroundColor: var(--color-critical--surface);
+}
+
+.inactive {
+  --labelBackgroundColor: var(--color-inactive--surface);
+}
+
+.informative {
+  --labelBackgroundColor: var(--color-informative--surface);
+}
+
 .statusLabelRow {
   display: flex;
   width: fit-content;
@@ -6,6 +30,7 @@
   flex-direction: row;
   flex-wrap: nowrap;
   gap: 6px;
+  background-color: var(--labelBackgroundColor);
 }
 
 /* Reset the <Text> line height so we can reliably get 24px tall */
@@ -20,24 +45,4 @@
 .statusIndicatorWrapper {
   display: flex;
   padding-top: 2px;
-}
-
-.success {
-  background-color: var(--color-success--surface);
-}
-
-.warning {
-  background-color: var(--color-warning--surface);
-}
-
-.critical {
-  background-color: var(--color-critical--surface);
-}
-
-.inactive {
-  background-color: var(--color-inactive--surface);
-}
-
-.informative {
-  background-color: var(--color-informative--surface);
 }
