@@ -1,5 +1,5 @@
 import React, { Children, ReactElement, isValidElement } from "react";
-import isEmpty from "lodash-es/isEmpty";
+import { isEmpty } from "lodash";
 import {
   DataListHeader,
   DataListItemType,

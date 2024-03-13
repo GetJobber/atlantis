@@ -5,8 +5,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import debounce from "lodash-es/debounce";
-import noop from "lodash-es/noop";
+import { debounce, noop } from "lodash";
 import {
   UseMakeComboboxHandlersReturn,
   useMakeComboboxHandlers,

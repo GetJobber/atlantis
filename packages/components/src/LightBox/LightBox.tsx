@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, PanInfo, motion } from "framer-motion";
 import ReactDOM from "react-dom";
-import debounce from "lodash-es/debounce";
+import { debounce } from "lodash";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";

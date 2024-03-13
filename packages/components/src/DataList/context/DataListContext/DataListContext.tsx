@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from "react";
-import noop from "lodash-es/noop";
+import { noop } from "lodash";
 import { DataListContextProps, DataListObject } from "../../DataList.types";
 
 export const defaultValues: DataListContextProps<DataListObject> = {

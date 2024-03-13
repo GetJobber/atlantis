@@ -1,4 +1,4 @@
-import noop from "lodash-es/noop";
+import { noop } from "lodash";
 import { createContext, useContext } from "react";
 import { DataListLayoutContextProps } from "@jobber/components/DataList/DataList.types";
 

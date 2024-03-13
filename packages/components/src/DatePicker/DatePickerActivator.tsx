@@ -7,7 +7,7 @@ import React, {
   isValidElement,
 } from "react";
 import { ReactDatePickerProps } from "react-datepicker";
-import omit from "lodash-es/omit";
+import { omit } from "lodash";
 import { Button } from "../Button";
 
 export interface DatePickerActivatorProps
@@ -55,8 +55,10 @@ function InternalActivator(
         // cloneElement. https://github.com/DefinitelyTyped/DefinitelyTyped/issues/40888
         ref,
       });
-    } else {
+    } else if (typeof activator === "function") {
       return activator(props);
+    } else {
+      return activator;
     }
   } else {
     return (
