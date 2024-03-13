@@ -1,10 +1,6 @@
 import { ColumnDef, Row, useReactTable } from "@tanstack/react-table";
 import classNames from "classnames";
 import React, { LegacyRef, ReactNode } from "react";
-import {
-  Breakpoints,
-  useResizeObserver,
-} from "@jobber/hooks/useResizeObserver";
 import { Body } from "./Body";
 import { createTableSettings } from "./createTableSettings";
 import styles from "./DataTable.css";
@@ -12,6 +8,7 @@ import { Pagination } from "./Pagination";
 import { PaginationType, SortingType } from "./types";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
+import { Breakpoints, useResizeObserver } from "../hooks/useResizeObserver";
 
 export interface DataTableProps<T> {
   /**
@@ -143,7 +140,8 @@ export function DataTable<T extends object>({
               : table.getCoreRowModel().rows.length
           }
           loading={loading}
-          onPageChange={() => ref.current?.scrollTo(0, 0)}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          onPageChange={() => (ref as any).current?.scrollTo(0, 0)}
         />
       )}
     </div>

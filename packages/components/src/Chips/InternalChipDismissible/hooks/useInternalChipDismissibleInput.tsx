@@ -7,7 +7,7 @@ import React, {
   useState,
 } from "react";
 import { debounce } from "lodash";
-import { useLiveAnnounce } from "@jobber/hooks/useLiveAnnounce";
+import { useLiveAnnounce } from "../../../hooks/useLiveAnnounce";
 import {
   ChipDismissibleInputOptionProps,
   ChipDismissibleInputProps,

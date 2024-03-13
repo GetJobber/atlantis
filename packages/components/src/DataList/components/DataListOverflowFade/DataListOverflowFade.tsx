@@ -1,8 +1,8 @@
 import React from "react";
-import { useInView } from "@jobber/hooks/useInView";
 import classNames from "classnames";
 import { CONTAINER_TEST_ID } from "./DataListOverflowFade.const";
 import styles from "./DataListOverflowFade.css";
+import { useInView } from "../../../hooks/useInView";
 
 interface DataListOverflowFadeProps {
   readonly children: React.ReactNode;

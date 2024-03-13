@@ -1,11 +1,11 @@
 import React, { ReactNode, useState } from "react";
 import classnames from "classnames";
 import { IconColorNames, IconNames } from "@jobber/design";
-import { useResizeObserver } from "@jobber/hooks/useResizeObserver";
 import styles from "./Banner.css";
 import types from "./notificationTypes.css";
 import { BannerIcon } from "./components/BannerIcon";
 import { BannerType } from "./Banner.types";
+import { useResizeObserver } from "../hooks/useResizeObserver";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
 import { Button, ButtonProps } from "../Button";

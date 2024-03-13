@@ -2,9 +2,9 @@ import React, { ReactElement, ReactNode, useState } from "react";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
 import { motion } from "framer-motion";
-import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import styles from "./Tooltip.css";
 import { useTooltipPositioning } from "./useTooltipPositioning";
+import { useSafeLayoutEffect } from "../hooks/useSafeLayoutEffect";
 
 const variation = {
   startOrStop: { scale: 0.6, opacity: 0 },

@@ -2,13 +2,11 @@ import React, { ReactNode } from "react";
 import ReactDOM from "react-dom";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  useFocusTrap,
-  useOnKeyDown,
-  useRefocusOnActivator,
-} from "@jobber/hooks";
 import styles from "./Modal.css";
 import sizes from "./Sizes.css";
+import { useRefocusOnActivator } from "../hooks/useRefocusOnActivator";
+import { useOnKeyDown } from "../hooks/useOnKeyDown";
+import { useFocusTrap } from "../hooks/useFocusTrap";
 import { Heading } from "../Heading";
 import { Button, ButtonProps } from "../Button";
 import { ButtonDismiss } from "../ButtonDismiss";

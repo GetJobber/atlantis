@@ -389,9 +389,10 @@
     "dist/*"
   ],
   "dependencies": {
+    "@apollo/client": "3.9.6",
+    "@apollo/react-testing": "4.0.0",
     "@jobber/design": "^0.55.1",
     "@jobber/formatters": "*",
-    "@jobber/hooks": "2.9.2-CJS-to-ESM.19",
     "@popperjs/core": "^2.0.6",
     "@std-proposal/temporal": "0.0.1",
     "@tanstack/react-table": "8.5.13",
@@ -414,7 +415,10 @@
     "react-popper": "^2.2.5",
     "react-router-dom": "^5.3.4",
     "time-input-polyfill": "^1.0.7",
-    "ts-xor": "^1.0.8"
+    "ts-xor": "^1.0.8",
+    "use-resize-observer": "^9.1.0",
+    "uuid": "^9.0.1",
+    "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
     "@csstools/postcss-global-data": "^1.0.3",
@@ -442,9 +446,10 @@
     "typescript": "^4.9.5"
   },
   "peerDependencies": {
+    "@apollo/client": "3.9.6",
+    "@apollo/react-testing": "4.0.0",
     "react": "^18",
-    "react-dom": "^18",
-    "@jobber/hooks":"2.9.1"
+    "react-dom": "^18"
   },
   "browserslist": [
     "last 1 version",

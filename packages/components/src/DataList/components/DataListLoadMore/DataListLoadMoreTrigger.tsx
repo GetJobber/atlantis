@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { useInView } from "@jobber/hooks/useInView";
 import styles from "./DataListLoadMore.css";
+import { useInView } from "../../../hooks/useInView";
 import { useDataListContext } from "../../context/DataListContext";
 import { DATA_LOAD_MORE_TEST_ID } from "../../DataList.const";
 

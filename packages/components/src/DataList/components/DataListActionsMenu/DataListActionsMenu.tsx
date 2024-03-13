@@ -5,14 +5,12 @@ import React, {
   useState,
 } from "react";
 import { AnimatePresence, Variants, motion } from "framer-motion";
-import {
-  useFocusTrap,
-  useOnKeyDown,
-  useRefocusOnActivator,
-} from "@jobber/hooks";
 import { createPortal } from "react-dom";
 import { tokens } from "@jobber/design";
 import styles from "./DataListActionsMenu.css";
+import { useFocusTrap } from "../../../hooks/useFocusTrap";
+import { useOnKeyDown } from "../../../hooks/useOnKeyDown";
+import { useRefocusOnActivator } from "../../../hooks/useRefocusOnActivator";
 import { TRANSITION_DELAY_IN_SECONDS } from "../../DataList.const";
 
 interface DataListActionsMenuProps {

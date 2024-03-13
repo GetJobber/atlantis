@@ -6,12 +6,12 @@ import React, {
   useState,
 } from "react";
 import classnames from "classnames";
-import { useShowClear } from "@jobber/hooks/useShowClear";
 import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.css";
 import { AffixIcon, AffixLabel } from "./FormFieldAffix";
 import { FormFieldDescription } from "./FormFieldDescription";
 import { ClearAction } from "./components/ClearAction";
+import { useShowClear } from "../hooks/useShowClear";
 import { InputValidation } from "../InputValidation";
 
 interface FormFieldWrapperProps extends FormFieldProps {

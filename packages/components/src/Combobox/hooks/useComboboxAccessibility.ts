@@ -1,7 +1,8 @@
 import { useContext, useEffect, useRef } from "react";
-import { useFocusTrap, useRefocusOnActivator } from "@jobber/hooks";
 import { usePopper } from "react-popper";
-import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
+import { useRefocusOnActivator } from "../../hooks/useRefocusOnActivator";
+import { useFocusTrap } from "../../hooks/useFocusTrap";
+import { useOnKeyDown } from "../../hooks/useOnKeyDown";
 import { ComboboxOption } from "../Combobox.types";
 import { ComboboxContext } from "../ComboboxProvider";
 

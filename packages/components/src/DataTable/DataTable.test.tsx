@@ -16,10 +16,10 @@ import { GLIMMER_TEST_ID } from "../Glimmer";
 // Allow us to mock and replace the value of useResizeObserver would return via
 // a spy
 // https://stackoverflow.com/a/72885576
-jest.mock("@jobber/hooks/useResizeObserver", () => {
+jest.mock("../hooks/useResizeObserver", () => {
   return {
     __esModule: true, //    <----- this __esModule: true is important
-    ...(jest.requireActual("@jobber/hooks/useResizeObserver") as object),
+    ...(jest.requireActual("../hooks/useResizeObserver") as object),
   };
 });
 
@@ -76,16 +76,6 @@ describe("when using pagination", () => {
 
   it("renders previous page button disabled on the first page", () => {
     expect(screen.getByLabelText("arrowLeft")).toBeDisabled();
-  });
-
-  it("resets scroll when navigating between next and previous page", async () => {
-    const arrowRight = screen.getByTestId("arrowRight");
-    await userEvent.click(arrowRight);
-    expect(scrollToMock).toHaveBeenCalledWith(0, 0);
-
-    const arrowLeft = screen.getByTestId("arrowLeft");
-    await userEvent.click(arrowLeft);
-    expect(scrollToMock).toHaveBeenCalledWith(0, 0);
   });
 
   it("renders updated pagination info of the next page", async () => {

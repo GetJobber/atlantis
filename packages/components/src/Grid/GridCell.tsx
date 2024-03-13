@@ -1,8 +1,8 @@
 // Only need the component to pass in the data as a react children
 
-import { useAssert } from "@jobber/hooks";
 import React, { PropsWithChildren } from "react";
 import { GridCellProps } from "./InternalGridCell";
+import { useAssert } from "../hooks/useAssert";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function GridCell(props: PropsWithChildren<GridCellProps>) {

@@ -1,10 +1,11 @@
 /* eslint-disable max-statements */
 import React, { useRef, useState } from "react";
 import classnames from "classnames";
-import { useFocusTrap, useRefocusOnActivator } from "@jobber/hooks";
 import styles from "./DataListHeaderTile.css";
 import { DataListSortingArrows } from "./DataListSortingArrows";
 import { DataListSortingOptions } from "./components/DataListSortingOptions";
+import { useFocusTrap } from "../../../hooks/useFocusTrap";
+import { useRefocusOnActivator } from "../../../hooks/useRefocusOnActivator";
 import { Text } from "../../../Text";
 import { useDataListContext } from "../../context/DataListContext";
 import {

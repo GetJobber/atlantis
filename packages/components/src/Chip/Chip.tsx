@@ -1,11 +1,11 @@
 import React from "react";
 import classnames from "classnames";
-import { useInView } from "@jobber/hooks/useInView";
 import styles from "./Chip.css";
 import { ChipPrefix } from "./components/ChipPrefix/Chip.Prefix";
 import { ChipSuffix } from "./components/ChipSuffix/Chip.Suffix";
 import { ChipProps } from "./Chip.types";
 import { useChildComponent } from "./hooks/useChildComponent";
+import { useInView } from "../hooks/useInView";
 import { Typography } from "../Typography";
 import { Tooltip } from "../Tooltip";
 

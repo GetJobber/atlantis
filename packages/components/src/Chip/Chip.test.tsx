@@ -6,7 +6,7 @@ import styles from "./Chip.css";
 import { Avatar } from "../Avatar";
 
 let mockIsInView = jest.fn(() => true);
-jest.mock("@jobber/hooks/useInView", () => ({
+jest.mock("../hooks/useInView", () => ({
   useInView: () => [{ current: null }, mockIsInView()],
 }));
 

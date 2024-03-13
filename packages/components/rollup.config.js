@@ -134,7 +134,6 @@ export default {
     "@jobber/design",
     "@jobber/design/foundation",
     "@jobber/formatters",
-    new RegExp("@jobber/hooks/.*"),
     "zxcvbn",
     "use-resize-observer/polyfilled",
     "@apollo/client",

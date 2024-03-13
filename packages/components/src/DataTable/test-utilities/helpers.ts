@@ -1,8 +1,9 @@
-import * as jobberHooks from "@jobber/hooks/useResizeObserver";
+import * as jobberHooks from "../../hooks/useResizeObserver";
 
 export const mockContainerWidth = (exactWidth?: number) => {
   jest.spyOn(jobberHooks, "useResizeObserver").mockReturnValue([
-    { current: null },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    { current: null } as any,
     {
       width: 1200,
       height: 800,

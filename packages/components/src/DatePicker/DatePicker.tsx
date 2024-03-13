@@ -2,7 +2,6 @@ import React, { ReactElement, useEffect, useRef, useState } from "react";
 import classnames from "classnames";
 import ReactDatePicker from "react-datepicker";
 import { XOR } from "ts-xor";
-import { useRefocusOnActivator } from "@jobber/hooks";
 import styles from "./DatePicker.css";
 import { DatePickerCustomHeader } from "./DatePickerCustomHeader";
 import {
@@ -10,6 +9,7 @@ import {
   DatePickerActivatorProps,
 } from "./DatePickerActivator";
 import { useFocusOnSelectedDate } from "./useFocusOnSelectedDate";
+import { useRefocusOnActivator } from "../hooks/useRefocusOnActivator";
 
 interface BaseDatePickerProps {
   /**
