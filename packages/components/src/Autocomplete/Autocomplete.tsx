@@ -112,8 +112,6 @@ function AutocompleteInternal(
 
   useEffect(() => {
     delayedSearch();
-
-    return delayedSearch.cancel;
   }, [inputText]);
 
   useEffect(() => {

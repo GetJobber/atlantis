@@ -1,4 +1,4 @@
-import { debounce } from "lodash";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useCallback, useEffect, useRef, useState } from "react";
 import { InputTimeProps } from "../InputTimeProps";
 
@@ -7,6 +7,19 @@ interface UseTimePredictProps extends Pick<InputTimeProps, "value"> {
 }
 
 const DEBOUNCE_TIME = 300;
+
+const debounce = (func: any, delay: any, { leading }: any = {}) => {
+  let timerId: any;
+
+  return (...args: any) => {
+    if (!timerId && leading) {
+      func(...args);
+    }
+    clearTimeout(timerId);
+
+    timerId = setTimeout(() => func(...args), delay);
+  };
+};
 
 export function useTimePredict({ value, handleChange }: UseTimePredictProps) {
   const IS_12_HOUR_FORMAT = useRef(
@@ -36,14 +49,7 @@ export function useTimePredict({ value, handleChange }: UseTimePredictProps) {
      */
     if (typedTime && typedTime !== "0") {
       predictTime();
-
-      if ((IS_12_HOUR_FORMAT && typedTime !== "1") || typedTime.length === 2) {
-        // Immediately predict the hour
-        predictTime.flush();
-      }
     }
-
-    return predictTime.cancel;
   }, [typedTime]);
 
   /**
