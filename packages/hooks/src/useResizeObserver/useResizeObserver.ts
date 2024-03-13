@@ -2,8 +2,7 @@ import { useMemo, useState } from "react";
 // Importing the polyfilled version of ResizeObserver
 // eslint-disable-next-line import/no-internal-modules
 import useResizeObserverPackage from "use-resize-observer/polyfilled";
-// eslint-disable-next-line import/no-internal-modules
-import throttle from "lodash-es/throttle";
+import { throttle } from "lodash";
 
 export const Breakpoints = {
   base: 640,

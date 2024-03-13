@@ -20,7 +20,6 @@ import {
 } from "react-native";
 import { RegisterOptions } from "react-hook-form";
 import { IconNames } from "@jobber/design";
-import identity from "lodash/identity";
 import { Clearable, useShowClear } from "@jobber/hooks/useShowClear";
 import { styles } from "./InputText.style";
 import { useInputAccessoriesContext } from "./context";
@@ -220,6 +219,10 @@ export interface InputTextProps {
    */
   readonly styleOverride?: InputTextStyleOverride;
 }
+
+const identity = (item: unknown) => {
+  return item as string;
+};
 
 interface InputTextStyleOverride extends InputFieldStyleOverride {
   inputText?: StyleProp<TextStyle>;

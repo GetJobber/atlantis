@@ -130,7 +130,6 @@ export default {
     "framer-motion",
     "classnames",
     new RegExp("lodash/.*"),
-    new RegExp("lodash-es/.*"),
     "@std-proposal/temporal",
     "@jobber/design",
     "@jobber/design/foundation",

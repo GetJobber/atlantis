@@ -1,7 +1,7 @@
 /**
  * For playground purposes only.
  */
-import uniq from "lodash/uniq";
+import { uniq } from "lodash";
 import { useEffect, useState } from "react";
 
 export function useFakeOptionQuery() {

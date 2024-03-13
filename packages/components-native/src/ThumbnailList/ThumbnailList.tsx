@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import isNil from "lodash/isNil";
+import { isNil } from "lodash";
 import { RowCount, ThumbnailListProps } from "./types";
 import { styles } from "./ThumbnailList.style";
 import { File, FormatFile } from "../FormatFile";

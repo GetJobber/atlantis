@@ -1,7 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import get from "lodash-es/get";
-import groupBy from "lodash-es/groupBy";
+import { get, groupBy } from "lodash";
 import styles from "./List.css";
 import sectionStyles from "./SectionHeader.css";
 import { ListItem, ListItemProps } from "./ListItem";

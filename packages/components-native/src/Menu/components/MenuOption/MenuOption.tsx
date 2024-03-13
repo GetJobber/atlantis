@@ -1,6 +1,6 @@
 import React from "react";
 import { Pressable, View } from "react-native";
-import capitalize from "lodash/capitalize";
+import { capitalize } from "lodash";
 import { styles } from "./MenuOption.style";
 import { MenuOptionInternalProps } from "../../types";
 import { tokens } from "../../../utils/design";

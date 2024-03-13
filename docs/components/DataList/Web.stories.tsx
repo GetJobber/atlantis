@@ -1,7 +1,7 @@
 /* eslint-disable max-statements */
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import uniq from "lodash/uniq";
+import { uniq } from "lodash";
 import { useCollectionQuery } from "@jobber/hooks/useCollectionQuery";
 import {
   DataList,

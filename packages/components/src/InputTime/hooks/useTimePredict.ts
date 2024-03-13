@@ -1,4 +1,4 @@
-import debounce from "lodash/debounce";
+import { debounce } from "lodash";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { InputTimeProps } from "../InputTimeProps";
 

@@ -13,12 +13,14 @@ import { Switch } from "../Switch";
 import { Option, Select } from "../Select";
 import { InputText } from "../InputText";
 
-jest.mock("lodash/debounce", () => {
-  return jest.fn(fn => {
-    fn.cancel = jest.fn();
+jest.mock("lodash", () => {
+  return {
+    debounce: jest.fn(fn => {
+      fn.cancel = jest.fn();
 
-    return fn;
-  });
+      return fn;
+    }),
+  };
 });
 
 const onSubmitMock = jest.fn().mockImplementation(() => {

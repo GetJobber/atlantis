@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useState } from "react";
-import debounce from "lodash/debounce";
+import { debounce } from "lodash";
 import classNames from "classnames";
 import { tokens } from "@jobber/design";
 import styles from "./DataListSearch.css";

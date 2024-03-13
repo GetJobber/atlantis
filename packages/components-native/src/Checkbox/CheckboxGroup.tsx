@@ -1,7 +1,6 @@
 import React, { Fragment, useReducer } from "react";
 import { View } from "react-native";
-import isEmpty from "lodash/isEmpty";
-import reduce from "lodash/reduce";
+import { isEmpty, reduce } from "lodash";
 import { XOR } from "ts-xor";
 import { styles } from "./CheckboxGroup.style";
 import { Checkbox, CheckboxProps } from "./Checkbox";

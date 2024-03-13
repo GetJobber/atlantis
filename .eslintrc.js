@@ -29,12 +29,7 @@ module.exports = {
     "no-restricted-imports": [
       "error",
       {
-        paths: [
-          {
-            name: "lodash",
-            message: "Import [module] from lodash/[module] instead.",
-          },
-        ],
+        paths: [],
       },
     ],
     "import/no-internal-modules": [
