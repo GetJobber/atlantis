@@ -5,7 +5,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
-import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import styles from "./Modal.css";
 import sizes from "./Sizes.css";
 import { Heading } from "../Heading";
@@ -45,7 +44,6 @@ export function Modal({
   useRefocusOnActivator(open);
   const modalRef = useFocusTrap<HTMLDivElement>(open);
   useOnKeyDown(handleRequestClose, "Escape");
-  const mounted = useIsMounted();
 
   const template = (
     <AnimatePresence>
@@ -96,7 +94,7 @@ export function Modal({
     </AnimatePresence>
   );
 
-  return mounted.current
+  return globalThis?.document
     ? ReactDOM.createPortal(template, document.body)
     : template;
 
