@@ -443,7 +443,8 @@
   },
   "peerDependencies": {
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "@jobber/hooks":"2.9.1"
   },
   "browserslist": [
     "last 1 version",
