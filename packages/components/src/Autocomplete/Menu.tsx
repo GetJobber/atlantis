@@ -4,6 +4,7 @@ import { createPortal } from "react-dom";
 import { usePopper } from "react-popper";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
+import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import { AnyOption, Option } from "./Option";
 import styles from "./Autocomplete.css";
 import { Text } from "../Text";
@@ -26,6 +27,9 @@ interface MenuProps {
   onOptionSelect(chosenOption: Option): void;
 }
 
+// Adding useIsMounted is what tipped this to 13 statements.
+// Any additions beyond useIsMounted should probably see this component refactored a bit
+// eslint-disable-next-line max-statements
 export function Menu({
   visible,
   options,
@@ -54,6 +58,8 @@ export function Menu({
   setupKeyListeners();
 
   useEffect(() => setHighlightedIndex(initialHighlight), [options]);
+
+  const mounted = useIsMounted();
 
   const menu = (
     <div
@@ -106,7 +112,7 @@ export function Menu({
     </div>
   );
 
-  return createPortal(menu, document.body);
+  return mounted.current ? createPortal(menu, document.body) : menu;
 
   function setupKeyListeners() {
     useEffect(() => {
