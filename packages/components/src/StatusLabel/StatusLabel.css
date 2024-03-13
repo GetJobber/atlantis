@@ -24,35 +24,20 @@
 
 .success {
   background-color: var(--color-success--surface);
-  p {
-    color: var(--color-success--onSurface);
-  }
 }
 
 .warning {
   background-color: var(--color-warning--surface);
-  p {
-    color: var(--color-warning--onSurface);
-  }
 }
 
 .critical {
   background-color: var(--color-critical--surface);
-  p {
-    color: var(--color-critical--onSurface);
-  }
 }
 
 .inactive {
   background-color: var(--color-inactive--surface);
-  p {
-    color: var(--color-inactive--onSurface);
-  }
 }
 
 .informative {
   background-color: var(--color-informative--surface);
-  p {
-    color: var(--color-informative--onSurface);
-  }
 }
