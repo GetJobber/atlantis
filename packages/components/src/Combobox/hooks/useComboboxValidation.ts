@@ -1,5 +1,5 @@
 import React, { Children, ReactElement, isValidElement } from "react";
-import { useAssert } from "@jobber/hooks/useAssert";
+import { useAssert } from "@jobber/hooks";
 import { ComboboxActivator } from "../components/ComboboxActivator";
 import {
   ComboboxOption,
