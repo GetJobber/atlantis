@@ -11,7 +11,7 @@ import React, {
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
-import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
+import { useRefocusOnActivator } from "@jobber/hooks";
 import { IconNames } from "@jobber/design";
 import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import styles from "./Menu.css";

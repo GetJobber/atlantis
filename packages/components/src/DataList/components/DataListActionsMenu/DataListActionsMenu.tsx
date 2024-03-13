@@ -5,9 +5,11 @@ import React, {
   useState,
 } from "react";
 import { AnimatePresence, Variants, motion } from "framer-motion";
-import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
-import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
-import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
+import {
+  useFocusTrap,
+  useOnKeyDown,
+  useRefocusOnActivator,
+} from "@jobber/hooks";
 import { createPortal } from "react-dom";
 import { tokens } from "@jobber/design";
 import styles from "./DataListActionsMenu.css";

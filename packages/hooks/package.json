@@ -9,8 +9,7 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": "./dist/index.js"
     },
     "./useAssert": {
       "types": "./dist/useAssert/index.d.ts",
@@ -29,57 +28,57 @@
     },
     "./useFocusTrap": {
       "types": "./dist/useFocusTrap/index.d.ts",
-      "import": "./dist/useFocusTrap/index.js",
+      "import": "./dist/useFocusTrap/useFocusTrap.js",
       "require": "./dist/useFocusTrap/index.cjs"
     },
     "./useFormState": {
       "types": "./dist/useFormState/index.d.ts",
-      "import": "./dist/useFormState/index.js",
+      "import": "./dist/useFormState/useFormState.js",
       "require": "./dist/useFormState/index.cjs"
     },
     "./useInView": {
       "types": "./dist/useInView/index.d.ts",
-      "import": "./dist/useInView/index.js",
+      "import": "./dist/useInView/useInView.js",
       "require": "./dist/useInView/index.cjs"
     },
     "./useIsMounted": {
       "types": "./dist/useIsMounted/index.d.ts",
-      "import": "./dist/useIsMounted/index.js",
+      "import": "./dist/useIsMounted/useIsMounted.js",
       "require": "./dist/useIsMounted/index.cjs"
     },
     "./useLiveAnnounce": {
       "types": "./dist/useLiveAnnounce/index.d.ts",
-      "import": "./dist/useLiveAnnounce/index.js",
+      "import": "./dist/useLiveAnnounce/useLiveAnnounce.js",
       "require": "./dist/useLiveAnnounce/index.cjs"
     },
     "./useOnKeyDown": {
       "types": "./dist/useOnKeyDown/index.d.ts",
-      "import": "./dist/useOnKeyDown/index.js",
+      "import": "./dist/useOnKeyDown/useOnKeyDown.js",
       "require": "./dist/useOnKeyDown/index.cjs"
     },
     "./usePasswordStrength": {
       "types": "./dist/usePasswordStrength/index.d.ts",
-      "import": "./dist/usePasswordStrength/index.js",
+      "import": "./dist/usePasswordStrength/usePasswordStrength.js",
       "require": "./dist/usePasswordStrength/index.cjs"
     },
     "./useRefocusOnActivator": {
       "types": "./dist/useRefocusOnActivator/index.d.ts",
-      "import": "./dist/useRefocusOnActivator/index.js",
+      "import": "./dist/useRefocusOnActivator/useRefocusOnActivator.js",
       "require": "./dist/useRefocusOnActivator/index.cjs"
     },
     "./useResizeObserver": {
       "types": "./dist/useResizeObserver/index.d.ts",
-      "import": "./dist/useResizeObserver/index.js",
+      "import": "./dist/useResizeObserver/useResizeObserver.js",
       "require": "./dist/useResizeObserver/index.cjs"
     },
     "./useSafeLayoutEffect": {
       "types": "./dist/useSafeLayoutEffect/index.d.ts",
-      "import": "./dist/useSafeLayoutEffect/index.js",
+      "import": "./dist/useSafeLayoutEffect/useSafeLayoutEffect.js",
       "require": "./dist/useSafeLayoutEffect/index.cjs"
     },
     "./useShowClear": {
       "types": "./dist/useShowClear/index.d.ts",
-      "import": "./dist/useShowClear/index.js",
+      "import": "./dist/useShowClear/useShowClear.js",
       "require": "./dist/useShowClear/index.cjs"
     }
   },
