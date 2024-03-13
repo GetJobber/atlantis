@@ -14,17 +14,17 @@
     },
     "./useAssert": {
       "types": "./dist/useAssert/index.d.ts",
-      "import": "./dist/useAssert/index.js",
+      "import": "./dist/useAssert/useAssert.js",
       "require": "./dist/useAssert/index.cjs"
     },
     "./useBreakpoints": {
       "types": "./dist/useBreakpoints/index.d.ts",
-      "import": "./dist/useBreakpoints/index.js",
+      "import": "./dist/useBreakpoints/useBreakpoints.js",
       "require": "./dist/useBreakpoints/index.cjs"
     },
     "./useCollectionQuery": {
       "types": "./dist/useCollectionQuery/index.d.ts",
-      "import": "./dist/useCollectionQuery/index.js",
+      "import": "./dist/useCollectionQuery/useCollectionQuery.js",
       "require": "./dist/useCollectionQuery/index.cjs"
     },
     "./useFocusTrap": {

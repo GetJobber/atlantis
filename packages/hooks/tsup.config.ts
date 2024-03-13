@@ -8,6 +8,7 @@ export default defineConfig({
     "src/useBool/index.ts",
     "src/useBreakpoints/index.ts",
     "src/useCollectionQuery/index.ts",
+    "src/useFormState/index.ts",
     "src/useFocusTrap/index.ts",
     "src/useInView/index.ts",
     "src/useIsMounted/index.ts",
