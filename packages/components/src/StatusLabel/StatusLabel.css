@@ -1,20 +1,58 @@
-:root {
-  --statusLabel-icon-diameter: 10px;
-}
-
 .statusLabelRow {
   display: flex;
+  width: fit-content;
+  padding: 6px 10px 6px 8px;
+  border-radius: 12px;
   flex-direction: row;
   flex-wrap: nowrap;
-  gap: var(--space-small);
-  width: fit-content;
+  gap: 6px;
+}
+
+/* Reset the <Text> line height so we can reliably get 24px tall */
+.statusLabelRow p {
+  line-height: 1;
 }
 
 .labelTextEndAligned {
   flex-direction: row-reverse;
 }
 
-.statusIndicator {
-  display: inline-flex;
-  padding-top: var(--space-minuscule);
+.statusIndicatorWrapper {
+  display: flex;
+  padding-top: 2px;
+}
+
+.success {
+  background-color: var(--color-success--surface);
+  p {
+    color: var(--color-success--onSurface);
+  }
+}
+
+.warning {
+  background-color: var(--color-warning--surface);
+  p {
+    color: var(--color-warning--onSurface);
+  }
+}
+
+.critical {
+  background-color: var(--color-critical--surface);
+  p {
+    color: var(--color-critical--onSurface);
+  }
+}
+
+.inactive {
+  background-color: var(--color-inactive--surface);
+  p {
+    color: var(--color-inactive--onSurface);
+  }
+}
+
+.informative {
+  background-color: var(--color-informative--surface);
+  p {
+    color: var(--color-informative--onSurface);
+  }
 }

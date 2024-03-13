@@ -38,12 +38,13 @@ export function StatusLabel({
 }: StatusLabelProps): JSX.Element {
   const containerClassNames = classnames(
     styles.statusLabelRow,
+    styles[status],
     alignment === "end" && styles.labelTextEndAligned,
   );
 
   return (
     <div role="status" className={containerClassNames}>
-      <div className={styles.statusIndicator}>
+      <div className={styles.statusIndicatorWrapper}>
         <StatusIndicator status={status} />
       </div>
 
