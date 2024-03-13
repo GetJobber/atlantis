@@ -1,7 +1,5 @@
 # 🔱 Atlantis
 
-[![CircleCI](https://circleci.com/gh/GetJobber/atlantis/tree/master.svg?style=svg)](https://circleci.com/gh/GetJobber/atlantis/tree/master)
-
 ## What is Atlantis?
 
 > Design systems enable teams to build better products faster by making design
@@ -152,9 +150,9 @@ npm run lint:css
 npm run lint:ts
 ```
 
-If you want to troubleshoot linting errors in CircleCI, try running locally
-first to find the error. If that doesn't work you can open the artifacts for the
-linting step. To find the errors causing the failure, search for `Error - `.
+If you want to troubleshoot linting errors in CI, try running locally first to
+find the error. If that doesn't work you can open the artifacts for the linting
+step. To find the errors causing the failure, search for `Error - `.
 
 ## Repo structure
 
