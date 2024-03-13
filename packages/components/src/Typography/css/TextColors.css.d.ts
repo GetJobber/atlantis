@@ -12,6 +12,7 @@ declare const styles: {
   readonly "heading": string;
   readonly "text": string;
   readonly "textSecondary": string;
+  readonly "inactive": string;
   readonly "critical": string;
   readonly "warning": string;
   readonly "informative": string;
