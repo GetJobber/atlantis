@@ -3,12 +3,13 @@ import typescript from "@rollup/plugin-typescript";
 import postcss from "rollup-plugin-postcss";
 import commonjs from "@rollup/plugin-commonjs";
 import copy from "rollup-plugin-copy";
-import { nodeResolve } from '@rollup/plugin-node-resolve';
-import postcssimport from 'postcss-import';
-import autoprefixer from 'autoprefixer'
-import tools from '@csstools/postcss-global-data';
-import presetenv from 'postcss-preset-env'
-import multiInput from 'rollup-plugin-multi-input';
+import { nodeResolve } from "@rollup/plugin-node-resolve";
+import postcssimport from "postcss-import";
+import autoprefixer from "autoprefixer";
+import tools from "@csstools/postcss-global-data";
+import presetenv from "postcss-preset-env";
+import multiInput from "rollup-plugin-multi-input";
+
 export default {
   input: `src/**/index.{ts,tsx}`,
   plugins: [
@@ -28,7 +29,7 @@ export default {
       plugins: [
         postcssimport,
         autoprefixer,
-       
+
         presetenv({
           stage: 1,
           preserve: true,
@@ -98,14 +99,14 @@ export default {
           rename: "index.d.mts",
         },
       ],
-      hook: 'writeBundle'
+      hook: "writeBundle",
     }),
   ],
   output: [
     {
       dir: "dist",
       entryFileNames: "[name].cjs",
-      exports:'named',
+      exports: "named",
       format: "cjs",
     },
     {
@@ -119,8 +120,6 @@ export default {
     "react-hook-form",
     "react-router-dom",
     "react-dom",
-    "react-markdown",
-    "react-countdown",
     "react-popper",
     "react-datepicker",
     "react-dom/client",
