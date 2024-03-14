@@ -121,7 +121,6 @@ export default {
     "react-router-dom",
     "react-dom",
     "react-popper",
-    "react-datepicker",
     "react-dom/client",
     "axios",
     "filesize",
