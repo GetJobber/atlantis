@@ -14,6 +14,38 @@ it("renders an object as a list of key value pairs", () => {
   expect(container).toMatchSnapshot();
 });
 
+it("allows duplicate terms", () => {
+  const { getAllByText } = render(
+    <DescriptionList
+      data={[
+        ["Issued", "2018-12-08"],
+        ["Issued", "2019-01-06"],
+      ]}
+    />,
+  );
+  expect(getAllByText("Issued")).toHaveLength(2);
+});
+
+it("does not throw a key error when duplicate terms are used", () => {
+  const logSpy = jest.spyOn(global.console, "error");
+
+  render(
+    <DescriptionList
+      data={[
+        ["Issued", "2018-12-08"],
+        ["Issued", "2019-01-06"],
+      ]}
+    />,
+  );
+  expect(logSpy).not.toHaveBeenCalledWith(
+    expect.stringContaining(
+      "Warning: Encountered two children with the same key",
+    ),
+    expect.anything(),
+    expect.anything(),
+  );
+});
+
 it("renders an object as a list of key value pairs with an element", () => {
   const { container } = render(
     <DescriptionList

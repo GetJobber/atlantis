@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.56.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.55.1...@jobber/design@0.56.0) (2024-03-13)
+
+
+### Features
+
+* **design:** JOB-91365 Update client icons using color-teal to use the client semantic color ([#1803](https://github.com/GetJobber/atlantis/issues/1803)) ([c85b27e](https://github.com/GetJobber/atlantis/commit/c85b27e6987f90cfd13a630bd8f2d5713acdbd88))
+
+
+
+
+
 ## [0.55.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.55.0...@jobber/design@0.55.1) (2024-03-08)
 
 
