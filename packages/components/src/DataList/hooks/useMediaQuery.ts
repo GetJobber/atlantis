@@ -12,14 +12,16 @@ export function useMediaQuery(CSSMediaQuery: string) {
    * screen sizes, they can use the `mockViewportWidth` function from
    * `@jobber/components/useBreakpoints`.
    */
-  if (window.matchMedia === undefined) return true;
+  if (typeof window !== "undefined" && window?.matchMedia === undefined) {
+    return true;
+  }
 
   const [matches, setMatches] = useState(
-    window.matchMedia(CSSMediaQuery).matches,
+    window?.matchMedia(CSSMediaQuery).matches,
   );
 
   useEffect(() => {
-    const media = window.matchMedia(CSSMediaQuery);
+    const media = window?.matchMedia(CSSMediaQuery);
 
     if (media.matches !== matches) {
       setMatches(media.matches);

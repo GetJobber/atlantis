@@ -1,14 +1,19 @@
 /* eslint-disable import/no-default-export */
-import multiInput from "rollup-plugin-multi-input";
 import typescript from "@rollup/plugin-typescript";
 import postcss from "rollup-plugin-postcss";
 import commonjs from "@rollup/plugin-commonjs";
 import copy from "rollup-plugin-copy";
-
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+import postcssimport from 'postcss-import';
+import autoprefixer from 'autoprefixer'
+import tools from '@csstools/postcss-global-data';
+import presetenv from 'postcss-preset-env'
+import multiInput from 'rollup-plugin-multi-input';
 export default {
-  input: `src/*/index.{ts,tsx}`,
+  input: `src/**/index.{ts,tsx}`,
   plugins: [
-    multiInput(),
+    nodeResolve(),
+    multiInput.default(),
     typescript({
       tsconfig: "./tsconfig.rollup.json",
       declarationDir: "dist",
@@ -21,15 +26,10 @@ export default {
       },
       autoModules: false,
       plugins: [
-        require("postcss-import"),
-        require("autoprefixer"),
-        require("@csstools/postcss-global-data")({
-          files: [
-            require.resolve("@jobber/design/foundation.css"),
-            require.resolve("@jobber/design/src/responsiveBreakpoints.css"),
-          ],
-        }),
-        require("postcss-preset-env")({
+        postcssimport,
+        autoprefixer,
+       
+        presetenv({
           stage: 1,
           preserve: true,
         }),
@@ -92,13 +92,26 @@ export default {
           src: "src/Combobox/components/ComboboxContent/ComboboxContentList/ComboboxContent.css.d.ts",
           dest: "dist/Combobox/components/ComboboxContent/ComboboxContentList",
         },
+        {
+          src: "dist/index.d.ts",
+          dest: "dist",
+          rename: "index.d.mts",
+        },
       ],
+      hook: 'writeBundle'
     }),
   ],
   output: [
     {
       dir: "dist",
+      entryFileNames: "[name].cjs",
+      exports:'named',
       format: "cjs",
+    },
+    {
+      dir: "dist",
+      entryFileNames: "[name].mjs",
+      format: "esm",
     },
   ],
   external: [
@@ -110,22 +123,18 @@ export default {
     "react-countdown",
     "react-popper",
     "react-datepicker",
-    "react-dropzone",
     "react-dom/client",
     "axios",
     "filesize",
     "color",
     "framer-motion",
     "classnames",
-    new RegExp("lodash/.*"),
     "@std-proposal/temporal",
     "@jobber/design",
+    "@jobber/hooks",
     "@jobber/design/foundation",
     "@jobber/formatters",
-    new RegExp("@jobber/hooks/.*"),
     "zxcvbn",
-    "use-resize-observer/polyfilled",
-    "@apollo/client",
     "@tanstack/react-table",
   ],
 };
