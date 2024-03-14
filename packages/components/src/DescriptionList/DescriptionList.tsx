@@ -13,8 +13,8 @@ interface DescriptionListProps {
 export function DescriptionList({ data }: DescriptionListProps) {
   return (
     <dl className={styles.descriptionList}>
-      {data.map(([term, description]) => (
-        <div key={term} className={styles.termGroup}>
+      {data.map(([term, description], i) => (
+        <div key={`${term}-${i}`} className={styles.termGroup}>
           <Typography element="dt" textColor="heading" size="base">
             {term}
           </Typography>

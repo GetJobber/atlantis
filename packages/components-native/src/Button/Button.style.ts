@@ -79,8 +79,8 @@ export const styles = StyleSheet.create({
   },
 
   learning: {
-    backgroundColor: tokens["color-informative"],
-    borderColor: tokens["color-informative"],
+    backgroundColor: tokens["color-interactive--subtle"],
+    borderColor: tokens["color-interactive--subtle"],
   },
 
   destructive: {
