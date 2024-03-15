@@ -54,7 +54,6 @@ interface ButtonAnchorProps extends ButtonFoundationProps {
 interface ButtonLinkProps<S = unknown> extends ButtonFoundationProps {
   /**
    * **Deprecated**: to will be removed in the next major version
-   * Use shared ButtonLink component from Jobber instead
    * @deprecated
    */
   readonly to?: LinkProps<S>["to"];
