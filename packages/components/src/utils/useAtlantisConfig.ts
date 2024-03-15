@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
+import { useState } from "react";
 
 // For retheme purposes only.
 
@@ -6,7 +7,7 @@ import { useEffect, useState } from "react";
 export function useAtlantisConfig() {
   const [JOBBER_RETHEME, setJOBBER_RETHEME] = useState(false);
 
-  useEffect(() => {
+  useSafeLayoutEffect(() => {
     setJOBBER_RETHEME(document.body.classList.contains("jobber-retheme"));
   }, []);
 
