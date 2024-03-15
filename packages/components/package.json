@@ -332,6 +332,11 @@
       "import": "./dist/Spinner/index.mjs",
       "require": "./dist/Spinner/index.cjs"
     },
+    "./StatusIndicator": {
+      "types": "./dist/StatusIndicator/index.d.ts",
+      "import": "./dist/StatusIndicator/index.mjs",
+      "require": "./dist/StatusIndicator/index.cjs"
+    },
     "./StatusLabel": {
       "types": "./dist/StatusLabel/index.d.ts",
       "import": "./dist/StatusLabel/index.mjs",
