@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.86.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.86.0...@jobber/components@4.86.1) (2024-03-15)
+
+
+### Bug Fixes
+
+* **components:** Remove subdued text from DataList ([#1808](https://github.com/GetJobber/atlantis/issues/1808)) ([b5aae70](https://github.com/GetJobber/atlantis/commit/b5aae700d34fca11eb11be8101c43cab5a4ee378))
+
+
+
+
+
 # [4.86.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.85.6...@jobber/components@4.86.0) (2024-03-15)
 
 
