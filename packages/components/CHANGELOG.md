@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.86.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.85.6...@jobber/components@4.86.0) (2024-03-15)
+
+
+### Features
+
+* **components:** Restyle web statusLabel ([#1802](https://github.com/GetJobber/atlantis/issues/1802)) ([701ae1f](https://github.com/GetJobber/atlantis/commit/701ae1f5f3cb20c63681da586778fcd47bc7cc73))
+
+
+
+
+
+## [4.85.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.85.5...@jobber/components@4.85.6) (2024-03-14)
+
+
+### Bug Fixes
+
+* **components:** Allow duplicated terms on DescriptionList data tuple [1767] ([#1771](https://github.com/GetJobber/atlantis/issues/1771)) ([8025a42](https://github.com/GetJobber/atlantis/commit/8025a42d2bfd5d8cf9f717882f8ed04fbf8a25a0))
+
+
+
+
+
 ## [4.85.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.85.4...@jobber/components@4.85.5) (2024-03-13)
 
 **Note:** Version bump only for package @jobber/components
