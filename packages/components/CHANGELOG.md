@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.86.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.86.1...@jobber/components@4.86.2) (2024-03-15)
+
+
+### Bug Fixes
+
+* **components:** Use unique item key in DataListSortingOptions ([#1807](https://github.com/GetJobber/atlantis/issues/1807)) ([75ea842](https://github.com/GetJobber/atlantis/commit/75ea84225a497c452ae4e80fb53c93ed573fb35b))
+
+
+
+
+
 ## [4.86.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.86.0...@jobber/components@4.86.1) (2024-03-15)
 
 
