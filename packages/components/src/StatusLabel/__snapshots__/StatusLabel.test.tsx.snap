@@ -3,11 +3,11 @@
 exports[`renders a critical StatusLabel 1`] = `
 <div>
   <div
-    class="statusLabelRow"
+    class="statusLabelRow critical"
     role="status"
   >
     <div
-      class="statusIndicator"
+      class="statusIndicatorWrapper"
     >
       <span
         class="statusIndicator"
@@ -15,7 +15,7 @@ exports[`renders a critical StatusLabel 1`] = `
       />
     </div>
     <p
-      class="base regular small text"
+      class="base regular small critical"
     >
       Foo
     </p>
@@ -26,11 +26,11 @@ exports[`renders a critical StatusLabel 1`] = `
 exports[`renders a successful StatusLabel 1`] = `
 <div>
   <div
-    class="statusLabelRow"
+    class="statusLabelRow success"
     role="status"
   >
     <div
-      class="statusIndicator"
+      class="statusIndicatorWrapper"
     >
       <span
         class="statusIndicator"
@@ -38,7 +38,7 @@ exports[`renders a successful StatusLabel 1`] = `
       />
     </div>
     <p
-      class="base regular small text"
+      class="base regular small success"
     >
       Foo
     </p>
@@ -49,11 +49,11 @@ exports[`renders a successful StatusLabel 1`] = `
 exports[`renders a warning StatusLabel 1`] = `
 <div>
   <div
-    class="statusLabelRow"
+    class="statusLabelRow warning"
     role="status"
   >
     <div
-      class="statusIndicator"
+      class="statusIndicatorWrapper"
     >
       <span
         class="statusIndicator"
@@ -61,7 +61,7 @@ exports[`renders a warning StatusLabel 1`] = `
       />
     </div>
     <p
-      class="base regular small text"
+      class="base regular small warning"
     >
       Foo
     </p>
@@ -72,11 +72,11 @@ exports[`renders a warning StatusLabel 1`] = `
 exports[`renders an end-aligned StatusLabel 1`] = `
 <div>
   <div
-    class="statusLabelRow labelTextEndAligned"
+    class="statusLabelRow informative labelTextEndAligned"
     role="status"
   >
     <div
-      class="statusIndicator"
+      class="statusIndicatorWrapper"
     >
       <span
         class="statusIndicator"
@@ -84,7 +84,7 @@ exports[`renders an end-aligned StatusLabel 1`] = `
       />
     </div>
     <p
-      class="base regular small text end"
+      class="base regular small informative end"
     >
       Foo
     </p>
@@ -95,11 +95,11 @@ exports[`renders an end-aligned StatusLabel 1`] = `
 exports[`renders an inactive StatusLabel 1`] = `
 <div>
   <div
-    class="statusLabelRow"
+    class="statusLabelRow inactive"
     role="status"
   >
     <div
-      class="statusIndicator"
+      class="statusIndicatorWrapper"
     >
       <span
         class="statusIndicator"
@@ -107,7 +107,7 @@ exports[`renders an inactive StatusLabel 1`] = `
       />
     </div>
     <p
-      class="base regular small text"
+      class="base regular small inactive"
     >
       Foo
     </p>
@@ -118,11 +118,11 @@ exports[`renders an inactive StatusLabel 1`] = `
 exports[`renders an informative StatusLabel 1`] = `
 <div>
   <div
-    class="statusLabelRow"
+    class="statusLabelRow informative"
     role="status"
   >
     <div
-      class="statusIndicator"
+      class="statusIndicatorWrapper"
     >
       <span
         class="statusIndicator"
@@ -130,7 +130,7 @@ exports[`renders an informative StatusLabel 1`] = `
       />
     </div>
     <p
-      class="base regular small text"
+      class="base regular small informative"
     >
       Foo
     </p>
