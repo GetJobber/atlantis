@@ -444,14 +444,15 @@
     "rollup": "^4.13.0",
     "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-multi-input": "^1.4.1",
+    "rollup-plugin-polyfill-node": "^0.13.0",
     "rollup-plugin-postcss": "^4.0.2",
     "typed-css-modules": "^0.7.0",
     "typescript": "^4.9.5"
   },
   "peerDependencies": {
+    "@jobber/hooks": "2.9.2-CJS-to-ESM.7",
     "react": "^18",
-    "react-dom": "^18",
-    "@jobber/hooks":"2.9.2-CJS-to-ESM.7"
+    "react-dom": "^18"
   },
   "browserslist": [
     "last 1 version",

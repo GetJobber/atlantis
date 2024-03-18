@@ -9,10 +9,12 @@ import autoprefixer from "autoprefixer";
 import tools from "@csstools/postcss-global-data";
 import presetenv from "postcss-preset-env";
 import multiInput from "rollup-plugin-multi-input";
+import nodePolyfills from "rollup-plugin-polyfill-node";
 
 export default {
   input: `src/**/index.{ts,tsx}`,
   plugins: [
+    nodePolyfills(),
     nodeResolve(),
     multiInput.default(),
     typescript({
@@ -29,7 +31,12 @@ export default {
       plugins: [
         postcssimport,
         autoprefixer,
-
+        tools({
+          files: [
+            "../design/foundation.css",
+            "../design/src/responsiveBreakpoints.css",
+          ],
+        }),
         presetenv({
           stage: 1,
           preserve: true,
