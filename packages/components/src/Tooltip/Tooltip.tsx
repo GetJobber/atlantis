@@ -1,12 +1,9 @@
-import React, {
-  ReactElement,
-  ReactNode,
-  useLayoutEffect,
-  useState,
-} from "react";
+import React, { ReactElement, ReactNode, useState } from "react";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
 import { motion } from "framer-motion";
+import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
+import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import styles from "./Tooltip.css";
 import { useTooltipPositioning } from "./useTooltipPositioning";
 
@@ -25,6 +22,7 @@ interface TooltipProps {
 
 export function Tooltip({ message, children }: TooltipProps) {
   const [show, setShow] = useState(false);
+  const mounted = useIsMounted();
 
   const {
     attributes,
@@ -47,36 +45,38 @@ export function Tooltip({ message, children }: TooltipProps) {
     <>
       <span className={styles.shadowActivator} ref={shadowRef} />
       {children}
-      <TooltipPortal>
-        {show && Boolean(message) && (
-          <div
-            className={toolTipClassNames}
-            style={popperStyles.popper}
-            ref={setTooltipRef}
-            role="tooltip"
-            {...attributes.popper}
-          >
-            <motion.div
-              className={styles.tooltip}
-              variants={variation}
-              initial="startOrStop"
-              animate="done"
-              exit="startOrStop"
-              transition={{
-                damping: 50,
-                stiffness: 500,
-              }}
+      {mounted.current ? (
+        <TooltipPortal>
+          {show && Boolean(message) && (
+            <div
+              className={toolTipClassNames}
+              style={popperStyles.popper}
+              ref={setTooltipRef}
+              role="tooltip"
+              {...attributes.popper}
             >
-              <p className={styles.tooltipMessage}>{message}</p>
-              <div
-                ref={setArrowRef}
-                style={popperStyles.arrow}
-                className={styles.arrow}
-              />
-            </motion.div>
-          </div>
-        )}
-      </TooltipPortal>
+              <motion.div
+                className={styles.tooltip}
+                variants={variation}
+                initial="startOrStop"
+                animate="done"
+                exit="startOrStop"
+                transition={{
+                  damping: 50,
+                  stiffness: 500,
+                }}
+              >
+                <p className={styles.tooltipMessage}>{message}</p>
+                <div
+                  ref={setArrowRef}
+                  style={popperStyles.arrow}
+                  className={styles.arrow}
+                />
+              </motion.div>
+            </div>
+          )}
+        </TooltipPortal>
+      ) : null}
     </>
   );
 
@@ -121,7 +121,7 @@ export function Tooltip({ message, children }: TooltipProps) {
       }
     };
 
-    useLayoutEffect(() => {
+    useSafeLayoutEffect(() => {
       injectAttributes();
       addListeners();
 

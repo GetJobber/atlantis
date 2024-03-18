@@ -46,9 +46,11 @@ Invalid.args = {
 
 const ClearableTemplate: ComponentStory<typeof InputFieldWrapper> = args => {
   const [value, setValue] = useState("cucumber");
+
   function handleClear() {
     setValue("");
   }
+
   return (
     <InputFieldWrapper {...args} onClear={handleClear}>
       <Text>{value}</Text>

@@ -100,21 +100,21 @@ function getHeadingStyle(
   const headingLevelToStyle: Record<HeadingLevel, HeadingStyle> = {
     title: {
       fontFamily: "display",
-      fontWeight: "black",
+      fontWeight: "extraBold",
       size: "jumbo",
       lineHeight: "jumbo",
       color: variation,
     },
     subtitle: {
-      fontFamily: "display",
-      fontWeight: "extraBold",
+      fontFamily: "base",
+      fontWeight: "bold",
       size: "largest",
       lineHeight: "largest",
       color: variation,
     },
     heading: {
-      fontFamily: "display",
-      fontWeight: "extraBold",
+      fontFamily: "base",
+      fontWeight: "bold",
       size: "larger",
       lineHeight: "large",
       color: variation,

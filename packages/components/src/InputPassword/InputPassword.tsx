@@ -13,18 +13,19 @@ interface InputPasswordProps
       | "validations"
       | "defaultValue"
     > {
-  value?: string;
+  readonly value?: string;
   onChange?(newValue: string): void;
   /**
    * Display toggle to change the visibility of the password input
    * @default false
    */
-  hasVisibility?: boolean;
+  readonly hasVisibility?: boolean;
 }
 
 export function InputPassword(props: InputPasswordProps) {
   const { hasVisibility = false } = props;
   const [visible, setVisibility] = useState(false);
+
   return (
     <FormField
       {...props}

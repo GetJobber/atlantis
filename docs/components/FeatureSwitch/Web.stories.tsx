@@ -14,9 +14,11 @@ export default {
 
 const BasicTemplate: ComponentStory<typeof FeatureSwitch> = args => {
   const [featureEnabled, setFeatureEnabled] = useState(true);
+
   function handleSwitch(newValue) {
     setFeatureEnabled(newValue);
   }
+
   return (
     <FeatureSwitch
       {...args}

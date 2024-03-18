@@ -11,4 +11,5 @@ export * from "./useOnKeyDown";
 export * from "./usePasswordStrength";
 export * from "./useRefocusOnActivator";
 export * from "./useResizeObserver";
+export * from "./useSafeLayoutEffect";
 export * from "./useShowClear";

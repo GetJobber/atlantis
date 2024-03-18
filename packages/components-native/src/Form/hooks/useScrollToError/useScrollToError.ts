@@ -33,6 +33,7 @@ export function useScrollToError<T extends FieldValues>({
   // went up.
   const hasBeenSubmitted = submitCounter < submitCount;
   if (!hasBeenSubmitted) return;
+
   if (isScreenReaderEnabled) {
     manuallyScrollToElement();
     Keyboard.dismiss();
@@ -44,6 +45,7 @@ export function useScrollToError<T extends FieldValues>({
 
   function defaultAutoScroll() {
     if (isValid) return;
+
     try {
       focusInputWithRHF(errors, setFocus);
     } catch {

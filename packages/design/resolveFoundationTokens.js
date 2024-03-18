@@ -29,6 +29,7 @@ const jsonContent =
 fs.writeFile("./foundation.js", jsonContent, "utf8", function (err) {
   if (err) {
     console.log("An error occured while writing JSON object to File.");
+
     return console.log(err);
   }
 });
@@ -41,6 +42,7 @@ fs.writeFile(
   function (err) {
     if (err) {
       console.log("An error occured while writing SCSS to File.");
+
       return console.log(err);
     }
   },
@@ -111,6 +113,7 @@ function handleCalc(calcRegexResult) {
     "return " +
       finalExpression.replace(regexExpressions.removeAllNonNumerals, ""),
   )();
+
   return isSpacingValue(calculatedValue)
     ? parseFloat(calculatedValue)
     : calculatedValue;
@@ -122,6 +125,7 @@ function handleTiming(timeNumberResult) {
 
 function handleRbga(rgbaVarRegexResult) {
   let resolved = "rgba(" + resolveCSSToken(rgbaVarRegexResult[1]);
+
   if (rgbaVarRegexResult[2]) {
     resolved += "," + rgbaVarRegexResult[2];
   }
@@ -137,6 +141,7 @@ function handleExpressionsInCalc(calcRegexResult) {
   varGroups &&
     varGroups.forEach(group => {
       const cssVariableRegexResult = regexExpressions.cssVars.exec(group);
+
       if (cssVariableRegexResult) {
         finalExpression = resolveCssVarsInExpression({
           group,
@@ -145,6 +150,7 @@ function handleExpressionsInCalc(calcRegexResult) {
         });
       }
     });
+
   return finalExpression;
 }
 
@@ -156,6 +162,7 @@ function resolveCssVarsInExpression({
   const cssVariable = cssVariableRegexResult[1];
   const realValue = resolveCSSToken(cssVariable);
   const unresolvedCssVariable = group;
+
   return finalExpression.replace(unresolvedCssVariable, realValue);
 }
 
@@ -167,9 +174,11 @@ function isSpacingValue(value) {
 
 function getResolvedCSSVars(cssProperties) {
   const allKeys = Object.keys(cssProperties);
+
   return allKeys.reduce((acc, key) => {
     const newKey = key.replace("--", "");
     acc[newKey] = resolveCSSToken(key);
+
     return acc;
   }, {});
 }
@@ -246,6 +255,7 @@ function getPropertyValue(cssVar) {
     }
     case "size": {
       const suffix = customPropertyValue.includes("%") ? "%" : "px";
+
       return `${resolvedCssVars[cssVar]}${suffix}`;
     }
     case "shadow":
@@ -262,6 +272,7 @@ function getPropertyValue(cssVar) {
  */
 function removeNewLines(text) {
   if (!text) return text;
+
   return text.replace(/(\r\n|\n|\r)/gm, "");
 }
 
@@ -299,6 +310,7 @@ function writeMobileFoundationFiles() {
     err => {
       if (err) {
         console.log("An error occured while writing Android Foundation File.");
+
         return console.log(err);
       }
       console.log("Wrote Android Foundations file");
@@ -311,6 +323,7 @@ function writeMobileFoundationFiles() {
     err => {
       if (err) {
         console.log("An error occured while writing iOS Foundation File.");
+
         return console.log(err);
       }
       console.log("Wrote iOS Foundations file");
@@ -323,6 +336,7 @@ function writeMobileFoundationFiles() {
     err => {
       if (err) {
         console.log("An error occured while writing iOS Foundation File.");
+
         return console.log(err);
       }
       console.log("Wrote Native Foundations file");

@@ -24,6 +24,7 @@ export default {
 
 const BasicTemplate: ComponentStory<typeof Drawer> = args => {
   const [drawerOpen, setDrawerOpen] = useState(args.open);
+
   return (
     <DrawerGrid>
       <Page title="Page" width="fill" intro="">

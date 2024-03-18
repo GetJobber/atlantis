@@ -6,8 +6,8 @@ import { Glimmer } from "../../../Glimmer";
 export const DATALIST_TOTALCOUNT_TEST_ID = "ATL-DataList-TotalCount";
 
 interface DataListTotalCountProps {
-  totalCount?: number | null;
-  loading?: boolean;
+  readonly totalCount?: number | null;
+  readonly loading?: boolean;
 }
 
 export function DataListTotalCount({

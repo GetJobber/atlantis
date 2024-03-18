@@ -13,6 +13,7 @@ export default {
 
 const BasicTemplate: ComponentStory<typeof InputPhoneNumber> = args => {
   const [value, setValue] = useState(args.value);
+
   return <InputPhoneNumber {...args} value={value} onChange={setValue} />;
 };
 

@@ -59,18 +59,21 @@ export function getLoadingState(
       loadingStatus: "Initial Loading",
     };
   }
+
   if (loadingRefresh) {
     return {
       loading: true,
       loadingStatus: "Refreshing",
     };
   }
+
   if (loadingNextPage) {
     return {
       loading: true,
       loadingStatus: "Fetching More",
     };
   }
+
   return {
     loading: false,
     loadingStatus: "Loaded",

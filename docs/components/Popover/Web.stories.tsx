@@ -18,6 +18,7 @@ export default {
 const BasicTemplate: ComponentStory<typeof Popover> = args => {
   const divRef = useRef<HTMLSpanElement>(null);
   const [showPopover, setShowPopover] = useState(args.open);
+
   return (
     <>
       <span ref={divRef}>
@@ -43,6 +44,7 @@ export const Basic = BasicTemplate.bind({});
 const InformationalTemplate: ComponentStory<typeof Popover> = args => {
   const newFeatureButton = useRef<HTMLSpanElement>(null);
   const [showPopover, setShowPopover] = useState(true);
+
   return (
     <>
       <span ref={newFeatureButton}>

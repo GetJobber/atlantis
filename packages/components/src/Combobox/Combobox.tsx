@@ -19,6 +19,7 @@ export function Combobox(props: ComboboxProps): JSX.Element {
       optionElements?.map(option => ({
         id: option.props.id,
         label: option.props.label,
+        prefix: option.props.prefix,
       })) || [],
     [optionElements],
   );

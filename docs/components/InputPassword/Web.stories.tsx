@@ -17,6 +17,7 @@ const BasicTemplate: ComponentStory<typeof InputPassword> = args => (
 
 const ControlledTemplate: ComponentStory<typeof InputPassword> = args => {
   const [value, setValue] = useState("password");
+
   return (
     <InputPassword
       {...args}
