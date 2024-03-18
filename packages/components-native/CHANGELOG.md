@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.58.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.57.1...@jobber/components-native@0.58.0) (2024-03-15)
+
+
+### Features
+
+* **components-native:** Bump peerDependency for react-native-reanimated to also accept v3 ([#1787](https://github.com/GetJobber/atlantis/issues/1787)) ([de5968f](https://github.com/GetJobber/atlantis/commit/de5968fe9503f504eac34787d174cb65bef93415))
+
+
+
+
+
 ## [0.57.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.57.0...@jobber/components-native@0.57.1) (2024-03-13)
 
 **Note:** Version bump only for package @jobber/components-native

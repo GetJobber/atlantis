@@ -94,7 +94,9 @@ export function Modal({
     </AnimatePresence>
   );
 
-  return ReactDOM.createPortal(template, document.body);
+  return globalThis?.document
+    ? ReactDOM.createPortal(template, document.body)
+    : template;
 
   function handleRequestClose() {
     if (open && onRequestClose) {
