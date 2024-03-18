@@ -38,6 +38,8 @@ interface InputDateProps
    * The minimum selectable date.
    */
   readonly minDate?: Date;
+
+  readonly variant?: "dialog" | "combobox";
 }
 
 export function InputDate(inputProps: InputDateProps) {
@@ -56,14 +58,17 @@ export function InputDate(inputProps: InputDateProps) {
       activator={activatorProps => {
         const { onChange, onClick, value } = activatorProps;
         const newActivatorProps = omit(activatorProps, ["activator"]);
-
-        const suffix = {
-          icon: "calendar",
-          ...(onClick && {
-            onClick: onClick,
-            ariaLabel: "Show calendar",
-          }),
-        } as Suffix;
+        const suffix =
+          inputProps.variant === "combobox"
+            ? ({
+                icon: "arrowDown",
+                ariaLabel: "Show calendar",
+              } as Suffix)
+            : ({
+                icon: "calendar",
+                ariaLabel: "Show calendar",
+                onClick: onClick && onClick,
+              } as Suffix);
 
         // Set form field to formatted date string immediately, to avoid validations
         //  triggering incorrectly when it blurs (to handle the datepicker UI click)
@@ -84,6 +89,14 @@ export function InputDate(inputProps: InputDateProps) {
               onFocus={() => {
                 inputProps.onFocus && inputProps.onFocus();
                 activatorProps.onFocus && activatorProps.onFocus();
+              }}
+              onKeyUp={event => {
+                if (
+                  inputProps.variant === "combobox" &&
+                  event.key === "ArrowDown"
+                ) {
+                  activatorProps.onClick?.();
+                }
               }}
               actionsRef={formFieldActionsRef}
               suffix={suffix}

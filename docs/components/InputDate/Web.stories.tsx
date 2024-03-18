@@ -42,3 +42,9 @@ export const MinMax = MinMaxTemplate.bind({});
 MinMax.args = {
   placeholder: "Start Date",
 };
+
+export const ComboboxVariant = BasicTemplate.bind({});
+ComboboxVariant.args = {
+  variant: "combobox",
+  placeholder: "Start Date",
+};
