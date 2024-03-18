@@ -14,9 +14,7 @@ export function InternalThumbnailImage({ file }: InternalThumbnailImageProps) {
   const [imageLoaded, setImageLoaded] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!imageSource) {
-      src().then(url => setImageSource(url));
-    }
+    src().then(url => setImageSource(url));
   }, []);
 
   return (
