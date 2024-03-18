@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import { Typography, TypographyOptions } from "../Typography";
-import { getAtlantisConfig } from "../utils/getAtlantisConfig";
+import { useAtlantisConfig } from "../utils/useAtlantisConfig";
 
 type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
@@ -15,7 +15,7 @@ interface HeadingProps {
 export type LevelMap = Record<HeadingLevel, TypographyOptions>;
 
 export function Heading({ level = 5, children }: HeadingProps) {
-  const { JOBBER_RETHEME: inRetheme } = getAtlantisConfig();
+  const { JOBBER_RETHEME: inRetheme } = useAtlantisConfig();
 
   const levelMap: LevelMap = {
     1: {
