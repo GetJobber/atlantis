@@ -450,7 +450,6 @@
     "typescript": "^4.9.5"
   },
   "peerDependencies": {
-    "@jobber/hooks": "^2.9.1",
     "react": "^18",
     "react-dom": "^18"
   },
