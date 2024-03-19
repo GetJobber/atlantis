@@ -5,11 +5,11 @@ import { useEffect, useState } from "react";
  */
 export function useMediaQuery(CSSMediaQuery: string) {
   const [matches, setMatches] = useState(
-    window?.matchMedia(CSSMediaQuery).matches,
+    window.matchMedia(CSSMediaQuery).matches,
   );
 
   useEffect(() => {
-    const media = window?.matchMedia(CSSMediaQuery);
+    const media = window.matchMedia(CSSMediaQuery);
 
     if (media.matches !== matches) {
       setMatches(media.matches);
