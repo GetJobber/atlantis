@@ -1,4 +1,7 @@
 /* eslint-disable import/no-default-export */
+import path from "path";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 import typescript from "@rollup/plugin-typescript";
 import postcss from "rollup-plugin-postcss";
 import commonjs from "@rollup/plugin-commonjs";
@@ -10,11 +13,26 @@ import tools from "@csstools/postcss-global-data";
 import presetenv from "postcss-preset-env";
 import multiInput from "rollup-plugin-multi-input";
 import nodePolyfills from "rollup-plugin-polyfill-node";
+import alias from "@rollup/plugin-alias";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 export default {
   input: `src/**/index.{ts,tsx}`,
   plugins: [
     nodePolyfills(),
+    alias({
+      entries: [
+        {
+          find: /@jobber\/hooks\/(.*)/,
+          replacement: (_, p1) =>
+            path.resolve(
+              __dirname,
+              `../../node_modules/@jobber/hooks/dist/${p1}/${p1}.js`,
+            ),
+        },
+      ],
+    }),
     nodeResolve(),
     multiInput.default(),
     typescript({
@@ -136,7 +154,6 @@ export default {
     "classnames",
     "@std-proposal/temporal",
     "@jobber/design",
-    "@jobber/hooks",
     "@jobber/design/foundation",
     "@jobber/formatters",
     "zxcvbn",
