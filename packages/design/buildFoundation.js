@@ -17,6 +17,7 @@ postcss([
           if (!(prop in acc)) {
             acc[prop] = value;
           }
+
           return acc;
         },
         {},

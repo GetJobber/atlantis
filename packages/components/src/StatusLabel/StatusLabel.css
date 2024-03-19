@@ -1,24 +1,48 @@
 :root {
-  --statusLabel-icon-diameter: 10px;
+  --labelBackgroundColor: var(--color-success--surface);
+}
+
+.success {
+  --labelBackgroundColor: var(--color-success--surface);
+}
+
+.warning {
+  --labelBackgroundColor: var(--color-warning--surface);
+}
+
+.critical {
+  --labelBackgroundColor: var(--color-critical--surface);
+}
+
+.inactive {
+  --labelBackgroundColor: var(--color-inactive--surface);
+}
+
+.informative {
+  --labelBackgroundColor: var(--color-informative--surface);
 }
 
 .statusLabelRow {
   display: flex;
+  width: fit-content;
+  padding: 0.375rem 0.625rem 0.375rem 0.5rem;
+  border-radius: 0.75rem;
   flex-direction: row;
   flex-wrap: nowrap;
-  gap: var(--space-small);
-  width: fit-content;
+  gap: 0.375rem;
+  background-color: var(--labelBackgroundColor);
 }
 
-.statusIndicator {
-  width: var(--statusLabel-icon-diameter);
-  height: var(--statusLabel-icon-diameter);
-  margin-top: var(--space-minuscule);
-  border-radius: 3px;
-  background-color: var(--color-success);
-  flex-shrink: 0;
+/* Reset the <Text> line height so we can reliably get 24px tall */
+.statusLabelRow p {
+  line-height: 1;
 }
 
 .labelTextEndAligned {
   flex-direction: row-reverse;
+}
+
+.statusIndicatorWrapper {
+  display: flex;
+  padding-top: 0.125rem;
 }

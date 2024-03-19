@@ -21,7 +21,7 @@ export interface InputNumberProps
       | "prefix"
       | "suffix"
     > {
-  value?: number;
+  readonly value?: number;
 }
 
 export interface InputNumberRef {
@@ -38,12 +38,14 @@ function InputNumberInternal(
   useImperativeHandle(ref, () => ({
     blur: () => {
       const input = inputRef.current;
+
       if (input) {
         input.blur();
       }
     },
     focus: () => {
       const input = inputRef.current;
+
       if (input) {
         input.focus();
       }

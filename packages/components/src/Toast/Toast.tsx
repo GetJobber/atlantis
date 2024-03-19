@@ -117,6 +117,7 @@ export function Toast({
 
     if (time < min) return min;
     if (time > max) return max;
+
     return time;
   }
 

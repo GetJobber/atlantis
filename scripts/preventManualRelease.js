@@ -37,6 +37,7 @@ function getAllPublicPackages() {
   const packages = getAllPackages();
   const publicPackages = packages.filter(file => {
     const { private } = require(file);
+
     return !private;
   });
 

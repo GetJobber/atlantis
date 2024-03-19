@@ -78,7 +78,7 @@ describe("Button", () => {
       },
     ],
     ["destructive", { bgColor: tokens["color-destructive"] }],
-    ["learning", { bgColor: tokens["color-informative"] }],
+    ["learning", { bgColor: tokens["color-interactive--subtle"] }],
   ])("renders a %s Button", (variation, { bgColor, borderColor }) => {
     const { buttonStyle } = renderButton(
       <Button label={variation} variation={variation} onPress={jest.fn()} />,
@@ -218,7 +218,7 @@ describe("Button", () => {
         variation: "learning",
         type: "secondary",
       });
-      expect(iconColor).toBe(tokens["color-informative"]);
+      expect(iconColor).toBe(tokens["color-interactive--subtle"]);
       expect(textColor).toBe(iconColor);
     });
 

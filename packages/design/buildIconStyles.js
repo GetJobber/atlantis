@@ -37,6 +37,7 @@ postcss({
       function (err) {
         if (err) {
           console.log("An error occurred while writing JSON object to File.");
+
           return console.log(err);
         }
         console.log("JSON file has been saved.");

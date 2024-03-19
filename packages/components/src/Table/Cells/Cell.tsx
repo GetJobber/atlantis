@@ -3,8 +3,8 @@ import classnames from "classnames";
 import styles from "./Cell.css";
 
 interface CellProps {
-  children?: ReactNode | ReactNode[];
-  align?: "left" | "center" | "right";
+  readonly children?: ReactNode | ReactNode[];
+  readonly align?: "left" | "center" | "right";
 }
 
 export function Cell({ children, align = "left" }: CellProps) {

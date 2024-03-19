@@ -97,9 +97,11 @@ export function Chip({
 
   const accessibilityState = useMemo(() => {
     const checkableRoles = ["radio", "switch", "togglebutton", "checkbox"];
+
     if (checkableRoles.includes(accessibilityRole)) {
       return { checked: isActive };
     }
+
     return {};
   }, [accessibilityRole, isActive]);
 

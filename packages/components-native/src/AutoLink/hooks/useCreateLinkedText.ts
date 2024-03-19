@@ -21,6 +21,7 @@ export function useCreateLinkedText({
 
       const token = generateToken();
       matches[token] = match;
+
       return token;
     },
   });

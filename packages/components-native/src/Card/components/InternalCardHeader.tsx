@@ -16,6 +16,7 @@ export function InternalCardHeader({
   collapsable,
 }: InternalCardHeaderProps): JSX.Element {
   const conditionalChildStyling = collapsable ? undefined : styles.noChildren;
+
   if (onPress) {
     return (
       <Pressable

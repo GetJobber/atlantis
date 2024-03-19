@@ -50,8 +50,12 @@
   color: var(--color-text--secondary);
 }
 
+.inactive {
+  color: var(--color-inactive--onSurface);
+}
+
 .critical {
-  color: var(--color-critical);
+  color: var(--color-critical--onSurface);
 }
 
 .warning {

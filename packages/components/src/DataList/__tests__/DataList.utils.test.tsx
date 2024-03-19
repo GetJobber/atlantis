@@ -62,7 +62,7 @@ describe("Datalist utils", () => {
       `);
     });
 
-    it("should generate a subdued Text component for any random key", () => {
+    it("should generate Text component for any random key", () => {
       const elementList = generateListItemElement({
         id: 1,
         randomKeyThatIsntNormal: "I am a normal text",
@@ -70,9 +70,7 @@ describe("Datalist utils", () => {
 
       // Snapshot needs updating? See comment #1 above the `describe`.
       expect(elementList.randomKeyThatIsntNormal).toMatchInlineSnapshot(`
-        <Text
-          variation="subdued"
-        >
+        <Text>
           I am a normal text
         </Text>
       `);
@@ -104,14 +102,12 @@ describe("Datalist utils", () => {
       expect(elementList.element).toMatchInlineSnapshot(`<div />`);
     });
 
-    it("should generate the correct element", () => {
+    it("should generate the correct element for a date", () => {
       const elementList = generateListItemElement({ id: 1, date });
 
       // Snapshot needs updating? See comment #1 above the `describe`.
       expect(elementList.date).toMatchInlineSnapshot(`
-        <Text
-          variation="subdued"
-        >
+        <Text>
           <FormatDate
             date={2001-01-01T00:00:00.000Z}
           />

@@ -24,7 +24,7 @@ export interface FormatFileProps<T> {
   /**
    * File upload details object. Can be a File or a FileUpload
    */
-  file: T;
+  readonly file: T;
 
   /**
    * Accessibility label
@@ -38,25 +38,25 @@ export interface FormatFileProps<T> {
   /**
    * A function which handles the onTap event.
    */
-  onTap?: (file: T) => void;
+  readonly onTap?: (file: T) => void;
   /**
    * A function to be called on "Remove" Bottom Sheet Option press
    */
-  onRemove?: () => void;
+  readonly onRemove?: () => void;
 
   /**
    * Handler for the "Preview" Bottom Sheet Option press
    */
-  onPreviewPress?: (formattedFile: FormattedFile) => void;
+  readonly onPreviewPress?: (formattedFile: FormattedFile) => void;
   /**
    * A file type to show at Bottom Sheet options
    */
-  bottomSheetOptionsSuffix?: BottomSheetOptionsSuffix;
+  readonly bottomSheetOptionsSuffix?: BottomSheetOptionsSuffix;
 
   /**
    * Uses a grid layout when multi-file upload is supported
    */
-  styleInGrid?: boolean;
+  readonly styleInGrid?: boolean;
 
   /**
    * A reference to the element in the rendered output
@@ -75,17 +75,17 @@ type FormatFileInternalProps = Omit<
   FormatFileProps<File | FileUpload>,
   "file" | "onTap"
 > & {
-  file: FormattedFile;
-  onTap: () => void;
+  readonly file: FormattedFile;
+  readonly onTap: () => void;
 };
 
 interface FormatFileContentProps {
-  accessibilityLabel?: string;
-  file: FormattedFile;
-  showOverlay: boolean;
-  styleInGrid: boolean;
-  onUploadComplete: () => void;
-  isMedia: boolean;
+  readonly accessibilityLabel?: string;
+  readonly file: FormattedFile;
+  readonly showOverlay: boolean;
+  readonly styleInGrid: boolean;
+  readonly onUploadComplete: () => void;
+  readonly isMedia: boolean;
 }
 
 function FormatFileContent({
@@ -288,6 +288,7 @@ function FormatFileInternal({
   function handleOnPress() {
     if (showOverlay || !onRemove) {
       onTap();
+
       return;
     }
 

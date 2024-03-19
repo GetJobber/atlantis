@@ -100,6 +100,7 @@ function AutocompleteInternal(
 
   useEffect(() => {
     delayedSearch();
+
     return delayedSearch.cancel;
   }, [inputText]);
 
@@ -135,6 +136,7 @@ function AutocompleteInternal(
 
   function updateInput(newText: string) {
     setInputText(newText);
+
     if (newText === "") {
       setOptions(mapToOptions(initialOptions));
     }
@@ -156,6 +158,7 @@ function AutocompleteInternal(
 
   function handleInputChange(newText: string) {
     updateInput(newText);
+
     if (allowFreeForm) {
       onChange({ label: newText });
     }
@@ -163,6 +166,7 @@ function AutocompleteInternal(
 
   function handleInputBlur() {
     setMenuVisible(false);
+
     if (value == undefined || value.label !== inputText) {
       setInputText("");
       onChange(undefined);
@@ -172,6 +176,7 @@ function AutocompleteInternal(
 
   function handleInputFocus() {
     setMenuVisible(true);
+
     if (onFocus) {
       onFocus();
     }
@@ -181,9 +186,11 @@ function AutocompleteInternal(
 function mapToOptions(items: AnyOption[]) {
   return items.reduce(function (result: AnyOption[], item) {
     result = result.concat([item]);
+
     if (item.options) {
       result = result.concat(item.options);
     }
+
     return result;
   }, []);
 }

@@ -61,6 +61,7 @@ export function BaseSwitch({
         return tokens["color-surface--background"];
       }
     }
+
     return undefined; //use default iOS
   }
 
