@@ -14,7 +14,9 @@
   list-style: none;
   cursor: pointer;
   outline-color: none;
-  transition: background var(--timing-quick), box-shadow var(--timing-base);
+  transition:
+    background var(--timing-quick),
+    box-shadow var(--timing-base);
 }
 
 .summary::-webkit-details-marker {
