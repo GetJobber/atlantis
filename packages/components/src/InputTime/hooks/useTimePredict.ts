@@ -10,9 +10,12 @@ const DEBOUNCE_TIME = 300;
 
 export function useTimePredict({ value, handleChange }: UseTimePredictProps) {
   const IS_12_HOUR_FORMAT = useRef(
-    Intl.DateTimeFormat(navigator.language, {
-      hour: "numeric",
-    }).resolvedOptions().hour12,
+    Intl.DateTimeFormat(
+      typeof navigator !== "undefined" ? navigator.language : "en-US",
+      {
+        hour: "numeric",
+      },
+    ).resolvedOptions().hour12,
   );
 
   const [typedTime, setTypedTime] = useState<string>("");

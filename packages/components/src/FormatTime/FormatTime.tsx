@@ -45,9 +45,12 @@ export function FormatTime({
 }
 
 function formatCivilTime(date: Date, use24HourClock?: boolean) {
-  return date.toLocaleTimeString(navigator.language, {
-    hourCycle: use24HourClock ? "h23" : "h12",
-    minute: "2-digit",
-    hour: "numeric",
-  });
+  return date.toLocaleTimeString(
+    typeof navigator !== "undefined" ? navigator.language : "en-US",
+    {
+      hourCycle: use24HourClock ? "h23" : "h12",
+      minute: "2-digit",
+      hour: "numeric",
+    },
+  );
 }
