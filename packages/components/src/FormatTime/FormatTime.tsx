@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CivilTime } from "@std-proposal/temporal";
 
 interface FormatTimeProps {
@@ -20,28 +20,32 @@ export function FormatTime({
   use24HourClock,
 }: FormatTimeProps) {
   let dateObject: Date;
+  const [civilTime, setCivilTime] = useState("");
 
-  if (inputTime instanceof Date) {
-    dateObject = inputTime;
-  } else if (typeof inputTime === "string") {
-    dateObject = new Date(inputTime);
-  } else {
-    const currentDate = new Date();
-    const currentYear = currentDate.getFullYear();
-    const currentMonth = currentDate.getMonth();
-    const currentDay = currentDate.getDay();
-    dateObject = new Date(
-      currentYear,
-      currentMonth,
-      currentDay,
-      inputTime.hour,
-      inputTime.minute,
-      inputTime.second,
-      inputTime.millisecond,
-    );
-  }
+  useEffect(() => {
+    if (inputTime instanceof Date) {
+      dateObject = inputTime;
+    } else if (typeof inputTime === "string") {
+      dateObject = new Date(inputTime);
+    } else {
+      const currentDate = new Date();
+      const currentYear = currentDate.getFullYear();
+      const currentMonth = currentDate.getMonth();
+      const currentDay = currentDate.getDay();
+      dateObject = new Date(
+        currentYear,
+        currentMonth,
+        currentDay,
+        inputTime.hour,
+        inputTime.minute,
+        inputTime.second,
+        inputTime.millisecond,
+      );
+    }
+    setCivilTime(formatCivilTime(dateObject, use24HourClock));
+  }, [inputTime]);
 
-  return <>{formatCivilTime(dateObject, use24HourClock)}</>;
+  return <>{civilTime}</>;
 }
 
 function formatCivilTime(date: Date, use24HourClock?: boolean) {
