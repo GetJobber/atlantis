@@ -12,6 +12,7 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
+    "./styles": "./dist/styles.css",
     "./AnimatedPresence": {
       "types": "./dist/AnimatedPresence/index.d.ts",
       "import": "./dist/AnimatedPresence/index.mjs",
