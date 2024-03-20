@@ -1,22 +1,6 @@
-import { useCallback, useSyncExternalStore } from "react";
+import { useEffect, useState } from "react";
 
-type MediaQuery = `(${string}:${string})`;
-
-export const mediaQueryStore = {
-  subscribe(onChange: () => void, query: MediaQuery) {
-    const matchMedia = window.matchMedia(query);
-    matchMedia.addEventListener("change", onChange);
-
-    return () => {
-      matchMedia.removeEventListener("change", onChange);
-    };
-  },
-  getSnapshot(query: MediaQuery) {
-    return () => window.matchMedia(query).matches;
-  },
-};
-
-export function useMediaQuery(query: MediaQuery) {
+export function useMediaQuery(CSSMediaQuery: string) {
   /**
    * matchMedia have had full support for browsers since 2012 but jest, being a
    * lite version of a DOM, doesn't support it.
@@ -28,22 +12,24 @@ export function useMediaQuery(query: MediaQuery) {
    * screen sizes, they can use the `mockViewportWidth` function from
    * `@jobber/components/useBreakpoints`.
    */
-  if (
-    typeof window === "undefined" ||
-    typeof window.matchMedia === "undefined"
-  ) {
-    return true;
-  }
-  const subscribeMediaQuery = useCallback(
-    (onChange: () => void) => mediaQueryStore.subscribe(onChange, query),
-    [query],
+  if (window.matchMedia === undefined) return true;
+
+  const [matches, setMatches] = useState(
+    window.matchMedia(CSSMediaQuery).matches,
   );
 
-  const matches = useSyncExternalStore(
-    subscribeMediaQuery,
-    mediaQueryStore.getSnapshot(query),
-    () => true,
-  );
+  useEffect(() => {
+    const media = window.matchMedia(CSSMediaQuery);
+
+    if (media.matches !== matches) {
+      setMatches(media.matches);
+    }
+
+    const listener = () => setMatches(media.matches);
+    media.addEventListener("change", listener);
+
+    return () => media.removeEventListener("change", listener);
+  }, [CSSMediaQuery]);
 
   return matches;
 }
