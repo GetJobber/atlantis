@@ -1,6 +1,22 @@
-import { useEffect, useState } from "react";
+import { useCallback, useSyncExternalStore } from "react";
 
-export function useMediaQuery(CSSMediaQuery: string) {
+type MediaQuery = `(${string}:${string})`;
+
+export const mediaQueryStore = {
+  subscribe(onChange: () => void, query: MediaQuery) {
+    const matchMedia = window.matchMedia(query);
+    matchMedia.addEventListener("change", onChange);
+
+    return () => {
+      matchMedia.removeEventListener("change", onChange);
+    };
+  },
+  getSnapshot(query: MediaQuery) {
+    return () => window.matchMedia(query).matches;
+  },
+};
+
+export function useMediaQuery(query: MediaQuery) {
   /**
    * matchMedia have had full support for browsers since 2012 but jest, being a
    * lite version of a DOM, doesn't support it.
@@ -14,22 +30,16 @@ export function useMediaQuery(CSSMediaQuery: string) {
    */
   if (window.matchMedia === undefined) return true;
 
-  const [matches, setMatches] = useState(
-    window.matchMedia(CSSMediaQuery).matches,
+  const subscribeMediaQuery = useCallback(
+    (onChange: () => void) => mediaQueryStore.subscribe(onChange, query),
+    [query],
   );
 
-  useEffect(() => {
-    const media = window.matchMedia(CSSMediaQuery);
-
-    if (media.matches !== matches) {
-      setMatches(media.matches);
-    }
-
-    const listener = () => setMatches(media.matches);
-    media.addEventListener("change", listener);
-
-    return () => media.removeEventListener("change", listener);
-  }, [CSSMediaQuery]);
+  const matches = useSyncExternalStore(
+    subscribeMediaQuery,
+    mediaQueryStore.getSnapshot(query),
+    () => true,
+  );
 
   return matches;
 }
