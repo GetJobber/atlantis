@@ -24,6 +24,7 @@ function setupHook(params?: Partial<typeof hookParams>) {
   } = renderHook(() =>
     useInternalChipDismissible({ ...hookParams, ...params }),
   );
+
   return current;
 }
 

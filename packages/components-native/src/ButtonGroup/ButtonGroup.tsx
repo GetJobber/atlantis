@@ -86,6 +86,7 @@ export function ButtonGroup({
       {secondaryActions.length > 0 && (
         <View style={styles.moreButton}>
           <Button
+            type="secondary"
             icon={"more"}
             accessibilityLabel={t("more")}
             onPress={handlePress(openBottomSheet)}

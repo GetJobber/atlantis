@@ -24,6 +24,7 @@ export const gapStyles = StyleSheet.create(
     if (space !== "none") paddingLeft = tokens[`space-${space}`];
 
     gapObj[space] = { paddingLeft };
+
     return gapObj;
   }, {} as Record<Spacing, ViewStyle>),
 );

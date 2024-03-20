@@ -110,12 +110,13 @@ export function Button({
 }: ButtonProps): JSX.Element {
   const buttonStyle = [
     styles.button,
+    styles[size],
     styles[variation],
     styles[type],
-    styles[size],
+    type === "secondary" && variation === "cancel" && styles.cancelSecondary,
     disabled && styles.disabled,
-    fullHeight && styles.fullHeight,
     fullWidth && styles.reducedPaddingForFullWidth,
+    fullHeight && styles.fullHeight,
   ];
 
   // attempts to use Pressable caused problems.  When a ScrollView contained
@@ -178,7 +179,7 @@ function getActionLabelVariation(
 
   switch (variation) {
     case "learning":
-      return "learning";
+      return "subtle";
     case "destructive":
       return "destructive";
     case "cancel":
@@ -203,7 +204,7 @@ function getIconColorVariation(
 
   switch (variation) {
     case "learning":
-      return "informative";
+      return "interactiveSubtle";
     case "destructive":
       return "destructive";
     case "cancel":

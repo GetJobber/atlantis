@@ -11,5 +11,6 @@ interface FormatEmailProps {
 
 export function FormatEmail({ email }: FormatEmailProps) {
   const className = classnames(styles.email);
+
   return <address className={className}>{email}</address>;
 }

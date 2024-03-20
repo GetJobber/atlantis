@@ -29,5 +29,6 @@ export function createUseCreateThumbnail(createThumbnail: CreateThumbnail): {
     },
     [createThumbnail],
   );
+
   return { useCreateThumbnail };
 }

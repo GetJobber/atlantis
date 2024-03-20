@@ -34,6 +34,7 @@ const options = [
 const BasicTemplate: ComponentStory<typeof Autocomplete> = args => {
   const basicOptions = args.initialOptions;
   const [value, setValue] = useState<Option | undefined>();
+
   return (
     <Autocomplete
       {...args}
@@ -49,11 +50,13 @@ const BasicTemplate: ComponentStory<typeof Autocomplete> = args => {
       }}
     />
   );
+
   function getOptions(text: string) {
     if (text === "") {
       return basicOptions;
     }
     const filterRegex = new RegExp(text, "i");
+
     return basicOptions.filter(option => option.label.match(filterRegex));
   }
 };
@@ -80,6 +83,7 @@ const withDetailsOptions = [
 const WithDetailsTemplate: ComponentStory<typeof Autocomplete> = args => {
   const detailsOptions = args.initialOptions;
   const [value, setValue] = useState<Option | undefined>();
+
   return (
     <Autocomplete
       {...args}
@@ -88,11 +92,13 @@ const WithDetailsTemplate: ComponentStory<typeof Autocomplete> = args => {
       getOptions={getOptions}
     />
   );
+
   function getOptions(text: string) {
     if (text === "") {
       return detailsOptions;
     }
     const filterRegex = new RegExp(text, "i");
+
     return detailsOptions.filter(option => option.label.match(filterRegex));
   }
 };
@@ -123,6 +129,7 @@ const SectionHeadingOptions = [
 const SectionHeadingTemplate: ComponentStory<typeof Autocomplete> = args => {
   const headingOptions = args.initialOptions;
   const [value, setValue] = useState<Option | undefined>();
+
   return (
     <Autocomplete
       {...args}
@@ -131,11 +138,13 @@ const SectionHeadingTemplate: ComponentStory<typeof Autocomplete> = args => {
       getOptions={getOptions}
     />
   );
+
   function getOptions(text: string) {
     if (text === "") {
       return headingOptions;
     }
     const filterRegex = new RegExp(text, "i");
+
     return headingOptions.map(section => ({
       ...section,
       options: section.options.filter(option =>
@@ -148,6 +157,7 @@ const SectionHeadingTemplate: ComponentStory<typeof Autocomplete> = args => {
 const SetAValueTemplate: ComponentStory<typeof Autocomplete> = args => {
   const valueOptions = args.initialOptions;
   const [value, setValue] = useState<Option | undefined>(valueOptions[0]);
+
   return (
     <>
       <pre>{JSON.stringify(value, undefined, 2)}</pre>
@@ -171,11 +181,13 @@ const SetAValueTemplate: ComponentStory<typeof Autocomplete> = args => {
       />
     </>
   );
+
   function getOptions(text: string) {
     if (text === "") {
       return valueOptions;
     }
     const filterRegex = new RegExp(text, "i");
+
     return valueOptions.filter(option => option.label.match(filterRegex));
   }
 };

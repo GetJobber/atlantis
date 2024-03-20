@@ -40,6 +40,7 @@ const ToastContainer = forwardRef(ToastInternal);
 function ToasterOven(props: ToastProps) {
   const toastRef = useRef() as MutableRefObject<ToastRef>;
   useEffect(() => toastRef.current.add(props));
+
   return <ToastContainer ref={toastRef} />;
 }
 

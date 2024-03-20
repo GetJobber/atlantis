@@ -1,11 +1,6 @@
-import React, {
-  Ref,
-  forwardRef,
-  useImperativeHandle,
-  useLayoutEffect,
-  useRef,
-} from "react";
+import React, { Ref, forwardRef, useImperativeHandle, useRef } from "react";
 import { XOR } from "ts-xor";
+import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import {
   CommonFormFieldProps,
   FieldActionsRef,
@@ -78,25 +73,28 @@ function InputTextInternal(
     },
     blur: () => {
       const input = inputRef.current;
+
       if (input) {
         input.blur();
       }
     },
     focus: () => {
       const input = inputRef.current;
+
       if (input) {
         input.focus();
       }
     },
     scrollIntoView: arg => {
       const input = inputRef.current;
+
       if (input) {
         input.scrollIntoView(arg);
       }
     },
   }));
 
-  useLayoutEffect(() => {
+  useSafeLayoutEffect(() => {
     if (inputRef && inputRef.current instanceof HTMLTextAreaElement) {
       resize(inputRef.current);
     }
@@ -164,6 +162,7 @@ function InputTextInternal(
 
   function insertText(text: string) {
     const input = inputRef.current;
+
     if (input) {
       insertAtCursor(input, text);
 

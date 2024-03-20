@@ -9,7 +9,7 @@ import { BannerType } from "./Banner.types";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
 import { Button, ButtonProps } from "../Button";
-import { getAtlantisConfig } from "../utils/getAtlantisConfig";
+import { useAtlantisConfig } from "../utils/useAtlantisConfig";
 
 interface BannerProps {
   readonly children: ReactNode;
@@ -44,7 +44,7 @@ export function Banner({
   icon,
   onDismiss,
 }: BannerProps) {
-  const { JOBBER_RETHEME } = getAtlantisConfig();
+  const { JOBBER_RETHEME } = useAtlantisConfig();
   const [showBanner, setShowBanner] = useState(true);
   const bannerIcon = icon || getBannerIcon(type);
 
@@ -125,7 +125,7 @@ export function Banner({
 }
 
 function getBannerIcon(type: BannerType): IconNames | undefined {
-  const { JOBBER_RETHEME } = getAtlantisConfig();
+  const { JOBBER_RETHEME } = useAtlantisConfig();
   if (!JOBBER_RETHEME) return;
 
   switch (type) {

@@ -15,12 +15,12 @@ import { typographyStyles } from "../../../Typography";
 import { styles } from "../../InputFieldWrapper.style";
 
 export interface PrefixLabelProps {
-  focused: boolean;
-  disabled?: boolean;
-  hasMiniLabel: boolean;
-  inputInvalid: boolean;
-  label: string;
-  styleOverride?: StyleProp<TextStyle>;
+  readonly focused: boolean;
+  readonly disabled?: boolean;
+  readonly hasMiniLabel: boolean;
+  readonly inputInvalid: boolean;
+  readonly label: string;
+  readonly styleOverride?: StyleProp<TextStyle>;
 }
 
 export const prefixLabelTestId = "ATL-InputFieldWrapper-PrefixLabel";
@@ -68,12 +68,12 @@ export function PrefixLabel({
 }
 
 export interface PrefixIconProps {
-  focused: boolean;
-  disabled?: boolean;
-  hasMiniLabel: boolean;
-  inputInvalid?: boolean;
-  icon: IconNames;
-  styleOverride?: StyleProp<ViewStyle>;
+  readonly focused: boolean;
+  readonly disabled?: boolean;
+  readonly hasMiniLabel: boolean;
+  readonly inputInvalid?: boolean;
+  readonly icon: IconNames;
+  readonly styleOverride?: StyleProp<ViewStyle>;
 }
 
 export function PrefixIcon({

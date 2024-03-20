@@ -23,7 +23,9 @@ export const styles = StyleSheet.create({
   label: {
     // for placeholder
     position: "absolute",
-    top: typographyStyles.smallSize.fontSize,
+    display: "flex",
+    justifyContent: "center",
+    top: 0,
     right: 0,
     bottom: 0,
     left: 0,
@@ -31,10 +33,11 @@ export const styles = StyleSheet.create({
 
   miniLabel: {
     top: 0,
-    paddingTop: tokens["space-smallest"],
+    paddingTop: tokens["space-small"] - tokens["space-smallest"],
     backgroundColor: tokens["color-surface"],
+    marginRight: tokens["space-small"],
     maxHeight:
-      (typographyStyles.smallSize.lineHeight || 0) + tokens["space-smaller"],
+      (typographyStyles.defaultSize.lineHeight || 0) + tokens["space-smaller"],
     zIndex: 1,
   },
   // Prevents the miniLabel from cutting off the ClearAction button
@@ -44,8 +47,6 @@ export const styles = StyleSheet.create({
 
   disabled: {
     backgroundColor: tokens["color-disabled--secondary"],
-    borderTopLeftRadius: tokens["radius-large"],
-    borderTopRightRadius: tokens["radius-large"],
   },
 
   fieldAffix: {
@@ -53,7 +54,7 @@ export const styles = StyleSheet.create({
   },
 
   fieldAffixMiniLabel: {
-    paddingTop: 0,
+    paddingTop: tokens["space-small"] - tokens["space-smallest"],
     // @ts-expect-error tsc-ci
     top: typographyStyles.smallSize.fontSize / 2,
     right: 0,
@@ -74,11 +75,13 @@ export const styles = StyleSheet.create({
 
   suffixIcon: {
     justifyContent: "center",
+    paddingRight: tokens["space-small"],
   },
 
   suffixLabel: {
     justifyContent: "center",
     paddingTop: tokens["space-minuscule"],
+    paddingRight: tokens["space-small"],
   },
   suffixIconMargin: {
     marginLeft: tokens["space-small"] + tokens["space-smaller"],

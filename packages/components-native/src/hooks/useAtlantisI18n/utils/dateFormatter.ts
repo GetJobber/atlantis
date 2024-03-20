@@ -13,6 +13,7 @@ export function dateFormatter(
   { locale, timeZone }: DateFormatterOptions,
 ): string {
   const zonedTime = utcToZonedTime(date, timeZone);
+
   return format(zonedTime, dateTimeFormat, {
     locale: getDateFnsLocale(locale),
   });

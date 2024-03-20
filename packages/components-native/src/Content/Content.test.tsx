@@ -39,6 +39,7 @@ function setupContent(
   const parentView = container.getByLabelText("contentView");
   const contentView = getContentComponent(parentView);
   const contentChildren = getContentChildren(contentView);
+
   return { ...container, parentView, contentView, contentChildren };
 }
 

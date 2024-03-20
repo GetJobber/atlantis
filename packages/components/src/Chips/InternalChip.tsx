@@ -54,6 +54,7 @@ export function InternalChip({
   function isTruncated() {
     const truncateParentHeight = truncateRef?.parentElement?.offsetHeight || 0;
     const truncateChildHeight = truncateRef?.offsetHeight || 0;
+
     return truncateChildHeight >= truncateParentHeight * 2;
   }
 }

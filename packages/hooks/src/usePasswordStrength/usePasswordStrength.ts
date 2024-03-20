@@ -11,6 +11,7 @@ export function usePasswordStrength(password: string, dictionary?: string[]) {
     () => calculateStrength(password, dictionary),
     [password, dictionary],
   );
+
   return {
     guesses,
     score,

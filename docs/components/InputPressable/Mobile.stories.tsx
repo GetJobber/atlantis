@@ -18,9 +18,11 @@ const BasicTemplate: ComponentStory<typeof InputPressable> = args => (
 
 const ClearableTemplate: ComponentStory<typeof InputPressable> = args => {
   const [value, setValue] = useState("Cucumber");
+
   function handleClear() {
     setValue("");
   }
+
   return <InputPressable {...args} value={value} onClear={handleClear} />;
 };
 

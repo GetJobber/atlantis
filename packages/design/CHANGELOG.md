@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.56.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.55.1...@jobber/design@0.56.0) (2024-03-13)
+
+
+### Features
+
+* **design:** JOB-91365 Update client icons using color-teal to use the client semantic color ([#1803](https://github.com/GetJobber/atlantis/issues/1803)) ([c85b27e](https://github.com/GetJobber/atlantis/commit/c85b27e6987f90cfd13a630bd8f2d5713acdbd88))
+
+
+
+
+
+## [0.55.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.55.0...@jobber/design@0.55.1) (2024-03-08)
+
+
+### Bug Fixes
+
+* **eslint:** Cleanup lint warnings ([#1796](https://github.com/GetJobber/atlantis/issues/1796)) ([3e0c770](https://github.com/GetJobber/atlantis/commit/3e0c770eca0964636f79831016dbbe25926ae951))
+
+
+
+
+
+# [0.55.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.54.0...@jobber/design@0.55.0) (2024-03-06)
+
+
+### Features
+
+* **components:** Swap twitter bird with X icon ([#1774](https://github.com/GetJobber/atlantis/issues/1774)) ([0fc9e41](https://github.com/GetJobber/atlantis/commit/0fc9e41eb867b5a830ef25ce62c5af0b1cd5a4de))
+
+
+
+
+
+# [0.54.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.53.0...@jobber/design@0.54.0) (2024-02-23)
+
+
+### Features
+
+* Add unscheduled icon ([#1770](https://github.com/GetJobber/atlantis/issues/1770)) ([ca0b83d](https://github.com/GetJobber/atlantis/commit/ca0b83d5489056396a451034a4f540a02ce40089))
+
+
+
+
+
 # [0.53.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.52.0...@jobber/design@0.53.0) (2024-01-29)
 
 

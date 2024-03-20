@@ -5,6 +5,7 @@ import { mockIntersectionObserver } from "jsdom-testing-mocks";
 import { Combobox } from "./Combobox";
 import { ComboboxOption } from "./Combobox.types";
 import { COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE } from "./hooks/useComboboxValidation";
+import * as POM from "./Combobox.pom";
 import { Button } from "../Button";
 
 // jsdom is missing this implementation
@@ -110,7 +111,7 @@ describe("Combobox", () => {
     it("should focus the first option when pressing the down arrow", async () => {
       await userEvent.click(screen.getByRole("combobox"));
       await userEvent.keyboard("{arrowdown}");
-      expect(screen.getByText("Bilbo Baggins")).toHaveFocus();
+      expect(POM.getOption("Bilbo Baggins")).toHaveFocus();
     });
 
     it("should focus the last option with excessive down arrow presses", async () => {
@@ -122,13 +123,13 @@ describe("Combobox", () => {
       await userEvent.keyboard("{arrowdown}");
       await userEvent.keyboard("{arrowdown}");
       await userEvent.keyboard("{arrowdown}");
-      expect(screen.getByText("Frodo Baggins")).toHaveFocus();
+      expect(POM.getOption("Frodo Baggins")).toHaveFocus();
     });
 
     it("should focus the first option with up arrow key press", async () => {
       await userEvent.click(screen.getByRole("combobox"));
       await userEvent.keyboard("{arrowup}");
-      expect(screen.getByText("Bilbo Baggins")).toHaveFocus();
+      expect(POM.getOption("Bilbo Baggins")).toHaveFocus();
     });
 
     it("should fire the onSelect callback when pressing the enter key", async () => {
@@ -145,7 +146,7 @@ describe("Combobox", () => {
       await userEvent.click(screen.getByRole("combobox"));
       await userEvent.type(screen.getByPlaceholderText("Search"), "Frodo");
       await userEvent.keyboard("{arrowdown}");
-      expect(screen.getByText("Frodo Baggins")).toHaveFocus();
+      expect(POM.getOption("Frodo Baggins")).toHaveFocus();
     });
   });
 
@@ -176,7 +177,7 @@ describe("Combobox Single Select", () => {
     it("should show the label", () => {
       expect(screen.getByText(activatorLabel)).toBeInTheDocument();
       expect(
-        screen.getByRole("combobox", { name: selectedValue.label }),
+        screen.getByRole("combobox", { name: activatorLabel }),
       ).toBeInTheDocument();
     });
 
@@ -270,11 +271,11 @@ describe("Combobox Multiselect", () => {
     renderMultiSelectCombobox();
 
     expect(screen.getByText(activatorLabel)).toBeInTheDocument();
-    expect(screen.getByText("Bilbo Baggins")).toHaveAttribute(
+    expect(POM.getOption("Bilbo Baggins")).toHaveAttribute(
       "aria-selected",
       "true",
     );
-    expect(screen.getByText("Frodo Baggins")).toHaveAttribute(
+    expect(POM.getOption("Frodo Baggins")).toHaveAttribute(
       "aria-selected",
       "true",
     );
@@ -385,6 +386,7 @@ describe("Combobox Multiselect", () => {
           selected={[]}
           onSelect={handleSelect}
           onClose={handleClose}
+          onSearch={mockOnSearch}
         >
           <Combobox.Option id="1" label="Bilbo Baggins" />
           <Combobox.Option id="2" label="Frodo Baggins" />
@@ -398,6 +400,14 @@ describe("Combobox Multiselect", () => {
       await userEvent.click(screen.getByTestId(OVERLAY_TEST_ID));
 
       expect(handleClose).toHaveBeenCalledTimes(1);
+    });
+
+    it("should call onSearch with correct params when closing", async () => {
+      await userEvent.click(screen.getByRole("combobox"));
+      await userEvent.click(screen.getByTestId(OVERLAY_TEST_ID));
+      expect(screen.getByTestId(MENU_TEST_ID)).toHaveClass("hidden");
+
+      expect(mockOnSearch).toHaveBeenCalledWith("");
     });
   });
 });
@@ -420,6 +430,10 @@ describe("Combobox Compound Component Validation", () => {
   });
 
   it("throws an error when there are multiple Combobox Activators present", () => {
+    // This keeps the testing console clean
+    const consoleErrorSpy = jest
+      .spyOn(console, "error")
+      .mockImplementation(() => ({}));
     expect(() =>
       render(
         <Combobox label={activatorLabel} selected={[]} onSelect={jest.fn()}>
@@ -432,6 +446,7 @@ describe("Combobox Compound Component Validation", () => {
         </Combobox>,
       ),
     ).toThrow(COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
+    consoleErrorSpy.mockRestore();
   });
 });
 
