@@ -13,6 +13,7 @@
       "require": "./dist/index.cjs"
     },
     "./styles": "./dist/styles.css",
+    "./dist/styles.css": "./dist/styles.css",
     "./AnimatedPresence": {
       "types": "./dist/AnimatedPresence/index.d.ts",
       "import": "./dist/AnimatedPresence/index.mjs",
