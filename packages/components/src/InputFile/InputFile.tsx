@@ -183,7 +183,7 @@ export function InputFile({
 }: InputFileProps) {
   const options: DropzoneOptions = {
     multiple: allowMultiple,
-    onDrop: useCallback(handleDrop, [uploadFile]),
+    onDrop: handleDrop,
     validator: validator && useCallback(validator, []),
   };
 
