@@ -41,6 +41,8 @@ export default {
       noEmitOnError: true,
     }),
     postcss({
+      extract: "styles.css",
+      inject: false,
       modules: {
         generateScopedName: "[hash:base64]",
         globalModulePaths: [/node_modules/],
