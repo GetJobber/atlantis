@@ -8,6 +8,7 @@ jest.mock("../InputFieldWrapper", () => ({
   ...jest.requireActual("../InputFieldWrapper"),
   InputFieldWrapper: function Mock(props: InputFieldWrapperProps) {
     MockInputFieldWrapper(props);
+
     return jest.requireActual("../InputFieldWrapper").InputFieldWrapper(props);
   },
 }));

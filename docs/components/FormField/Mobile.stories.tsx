@@ -32,6 +32,7 @@ const BasicTemplate: ComponentStory<typeof FormField> = args => {
 
 const WithValidationsTemplate: ComponentStory<typeof FormField> = args => {
   const methods = useForm({ mode: "onChange" });
+
   return (
     <FormProvider {...methods}>
       <FormField

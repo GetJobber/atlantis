@@ -44,11 +44,13 @@ export function Countdown({
 }: CountdownProps) {
   const date = useMemo(() => {
     let initDate: Date;
+
     if (inputDate instanceof CivilDate) {
       initDate = new Date(inputDate.year, inputDate.month - 1, inputDate.day);
     } else {
       initDate = new Date(inputDate);
     }
+
     return initDate;
   }, [inputDate]);
 
@@ -69,8 +71,8 @@ export function Countdown({
 }
 
 interface RenderedCountdownProps extends CountdownRenderProps {
-  granularity?: GranularityOptions;
-  showUnits?: boolean;
+  readonly granularity?: GranularityOptions;
+  readonly showUnits?: boolean;
 }
 
 function RenderedCountdown({
@@ -79,6 +81,7 @@ function RenderedCountdown({
   showUnits,
 }: RenderedCountdownProps) {
   const { days, hours, minutes, seconds } = formatted;
+
   return <>{buildTime()}</>;
 
   function buildTime() {
@@ -152,5 +155,6 @@ function timeFormatter(
       }`;
     }
   });
+
   return substr;
 }

@@ -15,6 +15,7 @@ export default {
 
 const BasicTemplate: ComponentStory<typeof Checkbox> = args => {
   const [checked, setChecked] = useState(true);
+
   return <Checkbox {...args} checked={checked} onChange={setChecked} />;
 };
 
@@ -25,6 +26,7 @@ Basic.args = {
 
 const IndeterminateTemplate: ComponentStory<typeof Checkbox> = () => {
   const [items, setItems] = useState([true, false, false]);
+
   return (
     <>
       <Checkbox
@@ -46,6 +48,7 @@ const IndeterminateTemplate: ComponentStory<typeof Checkbox> = () => {
       </ul>
     </>
   );
+
   function toggleIndex(index: number) {
     return (newValue: boolean) => {
       const updatedItems = Array.from(items);
@@ -53,6 +56,7 @@ const IndeterminateTemplate: ComponentStory<typeof Checkbox> = () => {
       setItems(updatedItems);
     };
   }
+
   function toggleAll(newValue: boolean) {
     setItems(Array(items.length).fill(newValue));
   }
@@ -76,6 +80,7 @@ Disabled.args = {
 
 const ChildrenAsLabelTemplate: ComponentStory<typeof Checkbox> = args => {
   const [checked, setChecked] = useState(false);
+
   return (
     <Checkbox {...args} checked={checked} onChange={setChecked}>
       <Text>

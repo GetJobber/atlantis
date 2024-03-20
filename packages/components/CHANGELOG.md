@@ -3,6 +3,99 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.87.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.0...@jobber/components@4.87.1) (2024-03-19)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [4.87.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.86.2...@jobber/components@4.87.0) (2024-03-18)
+
+
+### Features
+
+* **components:** Guard Portal Usages for Remix ([#1801](https://github.com/GetJobber/atlantis/issues/1801)) ([185c749](https://github.com/GetJobber/atlantis/commit/185c7490ca3de8865c7ca67d20462767372c262f))
+
+
+
+
+
+## [4.86.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.86.1...@jobber/components@4.86.2) (2024-03-15)
+
+
+### Bug Fixes
+
+* **components:** Use unique item key in DataListSortingOptions ([#1807](https://github.com/GetJobber/atlantis/issues/1807)) ([75ea842](https://github.com/GetJobber/atlantis/commit/75ea84225a497c452ae4e80fb53c93ed573fb35b))
+
+
+
+
+
+## [4.86.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.86.0...@jobber/components@4.86.1) (2024-03-15)
+
+
+### Bug Fixes
+
+* **components:** Remove subdued text from DataList ([#1808](https://github.com/GetJobber/atlantis/issues/1808)) ([b5aae70](https://github.com/GetJobber/atlantis/commit/b5aae700d34fca11eb11be8101c43cab5a4ee378))
+
+
+
+
+
+# [4.86.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.85.6...@jobber/components@4.86.0) (2024-03-15)
+
+
+### Features
+
+* **components:** Restyle web statusLabel ([#1802](https://github.com/GetJobber/atlantis/issues/1802)) ([701ae1f](https://github.com/GetJobber/atlantis/commit/701ae1f5f3cb20c63681da586778fcd47bc7cc73))
+
+
+
+
+
+## [4.85.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.85.5...@jobber/components@4.85.6) (2024-03-14)
+
+
+### Bug Fixes
+
+* **components:** Allow duplicated terms on DescriptionList data tuple [1767] ([#1771](https://github.com/GetJobber/atlantis/issues/1771)) ([8025a42](https://github.com/GetJobber/atlantis/commit/8025a42d2bfd5d8cf9f717882f8ed04fbf8a25a0))
+
+
+
+
+
+## [4.85.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.85.4...@jobber/components@4.85.5) (2024-03-13)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.85.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.85.3...@jobber/components@4.85.4) (2024-03-11)
+
+
+### Bug Fixes
+
+* **components:** Fix an improper console mock in a test ([#1792](https://github.com/GetJobber/atlantis/issues/1792)) ([0d28222](https://github.com/GetJobber/atlantis/commit/0d28222d25c290d034948a0e0fc245cef5288e31))
+
+
+
+
+
+## [4.85.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.85.2...@jobber/components@4.85.3) (2024-03-08)
+
+
+### Bug Fixes
+
+* **eslint:** Cleanup lint warnings ([#1796](https://github.com/GetJobber/atlantis/issues/1796)) ([3e0c770](https://github.com/GetJobber/atlantis/commit/3e0c770eca0964636f79831016dbbe25926ae951))
+
+
+
+
+
 ## [4.85.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.85.1...@jobber/components@4.85.2) (2024-03-07)
 
 

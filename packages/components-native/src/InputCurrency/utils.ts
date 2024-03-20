@@ -1,5 +1,6 @@
 export function countDecimal(value: number): number {
   const convertedValue = value.toString();
+
   if (convertedValue.includes(".")) {
     return convertedValue.split(".")[1].length;
   }
@@ -12,10 +13,13 @@ export function limitInputWholeDigits(
   maxInputLength: number,
 ): number {
   let convertedValue = value.toString();
+
   if (convertedValue.length > maxInputLength) {
     convertedValue = convertedValue.slice(0, maxInputLength);
+
     return parseFloat(convertedValue);
   }
+
   return value;
 }
 
@@ -32,19 +36,23 @@ export function configureDecimal(
   const precision = 10 ** targetDecimalPlaces;
   const convertedValue =
     Math.round(parseFloat(transformedValue) * precision) / precision;
+
   return convertedValue;
 }
 
 export function convertToNumber(value: string): string | number {
   const regexValidation = /^[0-9]*$/;
+
   if (value?.match?.(regexValidation)) {
     return parseFloat(value);
   }
+
   return value;
 }
 
 export const checkLastChar = (stringValue: string): boolean => {
   const lastChar = stringValue[stringValue.length - 1];
+
   return Boolean(Number(stringValue)) && lastChar !== "0" && lastChar !== ".";
 };
 
@@ -85,6 +93,7 @@ export const parseGivenInput = (
     wholeIntegerValue = splittedValue[0];
     decimalNumbers = getDecimalNumbers(value, decimalSeparator);
   }
+
   return [decimalCount, wholeIntegerValue, decimalNumbers];
 };
 

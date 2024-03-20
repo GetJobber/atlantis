@@ -2,7 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import styles from "./StatusLabel.css";
 import { StatusIndicatorType } from "../StatusIndicator/StatusIndicator.type";
-import { Text } from "../Text";
+import { Typography } from "../Typography";
 import { StatusIndicator } from "../StatusIndicator/StatusIndicator";
 
 export interface StatusLabelType {
@@ -38,18 +38,19 @@ export function StatusLabel({
 }: StatusLabelProps): JSX.Element {
   const containerClassNames = classnames(
     styles.statusLabelRow,
+    styles[status],
     alignment === "end" && styles.labelTextEndAligned,
   );
 
   return (
     <div role="status" className={containerClassNames}>
-      <div className={styles.statusIndicator}>
+      <div className={styles.statusIndicatorWrapper}>
         <StatusIndicator status={status} />
       </div>
 
-      <Text size="small" align={alignment}>
+      <Typography size="small" textColor={status} align={alignment}>
         {label}
-      </Text>
+      </Typography>
     </div>
   );
 }

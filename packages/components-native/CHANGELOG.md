@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.58.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.57.1...@jobber/components-native@0.58.0) (2024-03-15)
+
+
+### Features
+
+* **components-native:** Bump peerDependency for react-native-reanimated to also accept v3 ([#1787](https://github.com/GetJobber/atlantis/issues/1787)) ([de5968f](https://github.com/GetJobber/atlantis/commit/de5968fe9503f504eac34787d174cb65bef93415))
+
+
+
+
+
+## [0.57.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.57.0...@jobber/components-native@0.57.1) (2024-03-13)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+# [0.57.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.56.3...@jobber/components-native@0.57.0) (2024-03-11)
+
+
+### Features
+
+* **components-native:** Update Button learning variation style ([#1798](https://github.com/GetJobber/atlantis/issues/1798)) ([8dbef79](https://github.com/GetJobber/atlantis/commit/8dbef79375c3c3f4c8d966323bb18d15e88fb01a))
+
+
+
+
+
+## [0.56.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.56.2...@jobber/components-native@0.56.3) (2024-03-08)
+
+
+### Bug Fixes
+
+* **eslint:** Cleanup lint warnings ([#1796](https://github.com/GetJobber/atlantis/issues/1796)) ([3e0c770](https://github.com/GetJobber/atlantis/commit/3e0c770eca0964636f79831016dbbe25926ae951))
+
+
+
+
+
 ## [0.56.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.56.1...@jobber/components-native@0.56.2) (2024-03-07)
 
 

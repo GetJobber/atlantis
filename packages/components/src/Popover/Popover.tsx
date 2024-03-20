@@ -43,7 +43,7 @@ export function Popover({
   const [popperElement, setPopperElement] = useState<HTMLElement | null>();
   const [arrowElement, setArrowElement] = useState<HTMLElement | null>();
   const { styles: popperStyles, attributes } = usePopper(
-    attachTo instanceof Element ? attachTo : attachTo.current,
+    isHTMLElement(attachTo) ? attachTo : attachTo.current,
     popperElement,
     {
       modifiers: buildModifiers(arrowElement),
@@ -96,5 +96,11 @@ function buildModifiers(arrowElement: HTMLElement | undefined | null) {
       },
     },
   ];
+
   return modifiers;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function isHTMLElement(el: any): el is Element {
+  return globalThis?.document && el instanceof Element;
 }

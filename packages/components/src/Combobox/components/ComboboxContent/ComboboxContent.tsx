@@ -79,5 +79,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     </div>
   );
 
-  return ReactDOM.createPortal(template, document.body);
+  return globalThis?.document
+    ? ReactDOM.createPortal(template, document.body)
+    : template;
 }

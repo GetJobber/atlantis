@@ -8,7 +8,7 @@ export function wrapper(mocks: MockedResponse[]) {
   function ApolloMockedProvider({
     children,
   }: {
-    children: React.ReactElement;
+    readonly children: React.ReactElement;
   }) {
     return (
       <MockedProvider addTypename={true} mocks={mocks}>
