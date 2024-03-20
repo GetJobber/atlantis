@@ -4,6 +4,7 @@ import { InputDate } from ".";
 import { Modal } from "../Modal";
 import { Button } from "../Button";
 import { Text } from "../Text";
+import * as atlantisContext from "../AtlantisContext/AtlantisContext";
 
 it("renders a blank form by default", () => {
   const { getByDisplayValue, queryByText } = render(
@@ -194,6 +195,68 @@ describe("when InputDate is used within a Modal", () => {
 
     expect(getByText("Test Modal Content")).toBeInTheDocument();
     expect(queryByText("15")).not.toBeInTheDocument();
+  });
+});
+
+describe("dateFormat pattern", () => {
+  afterEach(() => {
+    jest.spyOn(atlantisContext, "useAtlantisContext").mockRestore();
+  });
+
+  it("should display MM/DD/YYYY when dateFormat is 'P'", () => {
+    jest.spyOn(atlantisContext, "useAtlantisContext").mockReturnValue({
+      ...atlantisContext.atlantisContextDefaultValues,
+      dateFormat: "P",
+    });
+    const expectedDate = "05/24/2023";
+    const date = new Date(2023, 4, 24).toISOString();
+    const changeHandler = jest.fn();
+    const { queryByDisplayValue } = render(
+      <InputDate value={new Date(date)} onChange={changeHandler} />,
+    );
+    expect(queryByDisplayValue(expectedDate)).toBeInTheDocument();
+  });
+
+  it("should display mmmm d, yyyy when dateFormat is 'PP'", () => {
+    jest.spyOn(atlantisContext, "useAtlantisContext").mockReturnValue({
+      ...atlantisContext.atlantisContextDefaultValues,
+      dateFormat: "PP",
+    });
+    const expectedDate = "Feb 20, 2023";
+    const date = new Date(2023, 1, 20).toISOString();
+    const changeHandler = jest.fn();
+    const { queryByDisplayValue } = render(
+      <InputDate value={new Date(date)} onChange={changeHandler} />,
+    );
+    expect(queryByDisplayValue(expectedDate)).toBeInTheDocument();
+  });
+
+  it("should display mmmmm d, yyyy when dateFormat is 'PPP'", () => {
+    jest.spyOn(atlantisContext, "useAtlantisContext").mockReturnValue({
+      ...atlantisContext.atlantisContextDefaultValues,
+      dateFormat: "PPP",
+    });
+    const expectedDate = "July 7th, 2023";
+    const date = new Date(2023, 6, 7).toISOString();
+    const changeHandler = jest.fn();
+    const { queryByDisplayValue } = render(
+      <InputDate value={new Date(date)} onChange={changeHandler} />,
+    );
+    expect(queryByDisplayValue(expectedDate)).toBeInTheDocument();
+  });
+
+  it("should display dddd, mmmmm d, yyyy when dateFormat is 'PPPP'", () => {
+    jest.spyOn(atlantisContext, "useAtlantisContext").mockReturnValue({
+      ...atlantisContext.atlantisContextDefaultValues,
+      dateFormat: "PPPP",
+    });
+    const expectedDate = "Thursday, June 22nd, 2023";
+    const date = new Date(2023, 5, 22).toISOString();
+    const changeHandler = jest.fn();
+    const { queryByDisplayValue } = render(
+      <InputDate value={new Date(date)} onChange={changeHandler} />,
+    );
+    expect(queryByDisplayValue(expectedDate)).toBeInTheDocument();
   });
 });
 
