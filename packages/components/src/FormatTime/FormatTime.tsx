@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { CivilTime } from "@std-proposal/temporal";
 
 interface FormatTimeProps {
@@ -20,41 +20,34 @@ export function FormatTime({
   use24HourClock,
 }: FormatTimeProps) {
   let dateObject: Date;
-  const [civilTime, setCivilTime] = useState("");
 
-  useEffect(() => {
-    if (inputTime instanceof Date) {
-      dateObject = inputTime;
-    } else if (typeof inputTime === "string") {
-      dateObject = new Date(inputTime);
-    } else {
-      const currentDate = new Date();
-      const currentYear = currentDate.getFullYear();
-      const currentMonth = currentDate.getMonth();
-      const currentDay = currentDate.getDay();
-      dateObject = new Date(
-        currentYear,
-        currentMonth,
-        currentDay,
-        inputTime.hour,
-        inputTime.minute,
-        inputTime.second,
-        inputTime.millisecond,
-      );
-    }
-    setCivilTime(formatCivilTime(dateObject, use24HourClock));
-  }, [inputTime]);
+  if (inputTime instanceof Date) {
+    dateObject = inputTime;
+  } else if (typeof inputTime === "string") {
+    dateObject = new Date(inputTime);
+  } else {
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth();
+    const currentDay = currentDate.getDay();
+    dateObject = new Date(
+      currentYear,
+      currentMonth,
+      currentDay,
+      inputTime.hour,
+      inputTime.minute,
+      inputTime.second,
+      inputTime.millisecond,
+    );
+  }
 
-  return <>{civilTime}</>;
+  return <>{formatCivilTime(dateObject, use24HourClock)}</>;
 }
 
 function formatCivilTime(date: Date, use24HourClock?: boolean) {
-  return date.toLocaleTimeString(
-    typeof navigator !== "undefined" ? navigator.language : "en-US",
-    {
-      hourCycle: use24HourClock ? "h23" : "h12",
-      minute: "2-digit",
-      hour: "numeric",
-    },
-  );
+  return date.toLocaleTimeString(navigator.language, {
+    hourCycle: use24HourClock ? "h23" : "h12",
+    minute: "2-digit",
+    hour: "numeric",
+  });
 }
