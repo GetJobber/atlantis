@@ -4,12 +4,12 @@ module.exports = {
   plugins: [
     "stylelint-prettier",
     "stylelint-order",
-    "stylelint-color-format",
     "stylelint-declaration-block-no-ignored-properties",
   ],
   rules: {
     "prettier/prettier": true,
-    "color-format/format": { format: "rgb" },
+    "color-named": "never",
+    "color-no-hex": true,
     "plugin/declaration-block-no-ignored-properties": true,
     "order/properties-order": require("./properties-order"),
     "alpha-value-notation": "number",
