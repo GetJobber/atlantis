@@ -6,10 +6,8 @@
   "dependencies": {
     "prettier": "^3.2.5",
     "style-search": "^0.1.0",
-    "stylelint-color-format": "^0.2.0",
-    "stylelint-config-css-modules": "^1.4.0",
-    "stylelint-config-recommended": "^14.0.0",
-    "stylelint-config-standard": "^18.3.0",
+    "stylelint-config-css-modules": "^4.4.0",
+    "stylelint-config-standard": "^36.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.0.0",
     "stylelint-order": "^6.0.4",
     "stylelint-prettier": "^5.0.0"
