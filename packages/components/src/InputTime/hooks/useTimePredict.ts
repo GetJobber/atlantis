@@ -1,5 +1,5 @@
 import debounce from "lodash/debounce";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { InputTimeProps } from "../InputTimeProps";
 
 interface UseTimePredictProps extends Pick<InputTimeProps, "value"> {
@@ -9,11 +9,7 @@ interface UseTimePredictProps extends Pick<InputTimeProps, "value"> {
 const DEBOUNCE_TIME = 300;
 
 export function useTimePredict({ value, handleChange }: UseTimePredictProps) {
-  const IS_12_HOUR_FORMAT = useRef(
-    Intl.DateTimeFormat(navigator.language, {
-      hour: "numeric",
-    }).resolvedOptions().hour12,
-  );
+  const [IS_12_HOUR_FORMAT, set12HourFormat] = useState(false);
 
   const [typedTime, setTypedTime] = useState<string>("");
 
@@ -21,10 +17,20 @@ export function useTimePredict({ value, handleChange }: UseTimePredictProps) {
     debounce(() => {
       if (value) return;
 
-      handleChange(predictHours(typedTime, IS_12_HOUR_FORMAT.current));
+      handleChange(predictHours(typedTime, IS_12_HOUR_FORMAT));
     }, DEBOUNCE_TIME),
-    [typedTime, value, handleChange],
+    [typedTime, value, handleChange, IS_12_HOUR_FORMAT],
   );
+
+  useEffect(() => {
+    set12HourFormat(
+      Boolean(
+        Intl.DateTimeFormat(navigator.language, {
+          hour: "numeric",
+        }).resolvedOptions().hour12,
+      ),
+    );
+  }, []);
 
   /**
    * Predict the hour when user types a number
