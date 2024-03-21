@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.87.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.5...@jobber/components@4.87.6) (2024-03-21)
+
+
+### Bug Fixes
+
+* **components:** Make useMediaQuery SSR Friendly ([#1814](https://github.com/GetJobber/atlantis/issues/1814)) ([8f9ff88](https://github.com/GetJobber/atlantis/commit/8f9ff882741e0c7cbe83c2405422bb1dbf877d9e))
+
+
+
+
+
 ## [4.87.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.4...@jobber/components@4.87.5) (2024-03-21)
 
 
