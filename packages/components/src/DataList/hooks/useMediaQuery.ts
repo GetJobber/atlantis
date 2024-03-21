@@ -28,7 +28,12 @@ export function useMediaQuery(query: MediaQuery) {
    * screen sizes, they can use the `mockViewportWidth` function from
    * `@jobber/components/useBreakpoints`.
    */
-  if (window.matchMedia === undefined) return true;
+  if (
+    typeof window === "undefined" ||
+    typeof window.matchMedia === "undefined"
+  ) {
+    return true;
+  }
 
   const subscribeMediaQuery = useCallback(
     (onChange: () => void) => mediaQueryStore.subscribe(onChange, query),
