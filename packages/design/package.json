@@ -40,7 +40,7 @@
     "autoprefixer": "^9.5.1",
     "cheerio": "^1.0.0-rc.12",
     "css-to-react-native-transform": "^2.0.0",
-    "postcss": "^8.4.21",
+    "postcss": "^8.4.31",
     "postcss-calc": "^8.2.3",
     "postcss-cli": "^10.1.0",
     "postcss-custom-properties": "^13.1.4",
