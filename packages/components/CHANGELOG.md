@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.87.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.4...@jobber/components@4.87.5) (2024-03-21)
+
+
+### Bug Fixes
+
+* **components:** InternalThumbnailImage to support SSR ([#1810](https://github.com/GetJobber/atlantis/issues/1810)) ([f7a9936](https://github.com/GetJobber/atlantis/commit/f7a9936e89e5e2769014ba3fbbc5cc660b9bf4e3))
+
+
+
+
+
 ## [4.87.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.3...@jobber/components@4.87.4) (2024-03-21)
 
 **Note:** Version bump only for package @jobber/components
