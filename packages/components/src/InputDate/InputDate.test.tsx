@@ -139,6 +139,7 @@ it("doesn't display the calendar when input is focused with keyboard", () => {
 
   expect(queryByText("15")).not.toBeInTheDocument();
 });
+
 it("doesn't display the calendar when calendar button is focused with keyboard", () => {
   const date = "11/11/2011";
   const changeHandler = jest.fn();
@@ -257,6 +258,60 @@ describe("dateFormat pattern", () => {
       <InputDate value={new Date(date)} onChange={changeHandler} />,
     );
     expect(queryByDisplayValue(expectedDate)).toBeInTheDocument();
+  });
+});
+
+describe("showIcon prop", () => {
+  it("should display the calendar icon when set to true", () => {
+    const date = "11/11/2011";
+    const changeHandler = jest.fn();
+    const { getByRole } = render(
+      <InputDate
+        value={new Date(date)}
+        onChange={changeHandler}
+        showIcon={true}
+      />,
+    );
+    expect(getByRole("button")).toBeDefined();
+  });
+
+  it("should display the calendar icon when set to undefined", () => {
+    const date = "11/11/2011";
+    const changeHandler = jest.fn();
+    const { getByRole } = render(
+      <InputDate value={new Date(date)} onChange={changeHandler} />,
+    );
+    expect(getByRole("button")).toBeDefined();
+  });
+
+  it("should not display the calendar icon when set to false", () => {
+    const date = "11/11/2011";
+    const changeHandler = jest.fn();
+    const { queryByRole } = render(
+      <InputDate
+        value={new Date(date)}
+        onChange={changeHandler}
+        showIcon={false}
+      />,
+    );
+    expect(queryByRole("button")).toBeNull();
+  });
+
+  it("should show mini calendar when set to false and down arrow is pressed", () => {
+    const date = "11/11/2011";
+    const changeHandler = jest.fn();
+    const { getByText, getByDisplayValue } = render(
+      <InputDate
+        value={new Date(date)}
+        onChange={changeHandler}
+        showIcon={false}
+      />,
+    );
+    const input = getByDisplayValue(date);
+
+    fireEvent.keyUp(input, { key: "ArrowDown" });
+
+    expect(getByText("15")).toBeInTheDocument();
   });
 });
 

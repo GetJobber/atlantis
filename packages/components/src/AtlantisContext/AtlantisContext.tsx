@@ -18,18 +18,6 @@ export interface AtlantisContextProps {
   readonly timeZone: string;
 
   /**
-   * Determines how the component behaves when the app is online or offline.
-   * This is set to `true` by default. If your usage doesn't require a different
-   * experience, you can leave this as-is.
-   */
-  readonly isOnline: boolean;
-
-  /**
-   * Log errors to rollbar
-   */
-  readonly onLogError: (message: string) => void;
-
-  /**
    * Grabs the decimal separator and group separator based on locale
    */
   readonly floatSeparators: Record<"decimal" | "group", string>;
@@ -54,13 +42,6 @@ export interface AtlantisContextProps {
    * @default "en"
    */
   readonly locale: string;
-
-  /**
-   * The `setHeaderHeight` method allows you to set the height of the app header in Atlantis.
-   * Adjusting this height is essential for ensuring the correct positioning and alignment of various elements within the app.
-   * By setting this value accurately, Atlantis can dynamically adjust the layout of its components based on the specified header height.
-   */
-  readonly setHeaderHeight: (height: number) => void;
 }
 
 export const atlantisContextDefaultValues: AtlantisContextProps = {
@@ -68,17 +49,10 @@ export const atlantisContextDefaultValues: AtlantisContextProps = {
   // The system time is "p"
   timeFormat: "p",
   timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-  isOnline: true,
-  onLogError: _ => {
-    return;
-  },
   floatSeparators: { group: ",", decimal: "." },
   currencySymbol: "$",
   headerHeight: 0,
   locale: "en",
-  setHeaderHeight: _ => {
-    return;
-  },
 };
 
 export const AtlantisContext = createContext(atlantisContextDefaultValues);

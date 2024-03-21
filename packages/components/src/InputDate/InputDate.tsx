@@ -38,6 +38,12 @@ interface InputDateProps
    * The minimum selectable date.
    */
   readonly minDate?: Date;
+
+  /**
+   * Whether to show the calendar icon
+   * @default true
+   */
+  readonly showIcon?: boolean;
 }
 
 export function InputDate(inputProps: InputDateProps) {
@@ -57,13 +63,14 @@ export function InputDate(inputProps: InputDateProps) {
         const { onChange, onClick, value } = activatorProps;
         const newActivatorProps = omit(activatorProps, ["activator"]);
 
-        const suffix = {
-          icon: "calendar",
-          ...(onClick && {
-            onClick: onClick,
-            ariaLabel: "Show calendar",
-          }),
-        } as Suffix;
+        const suffix =
+          inputProps.showIcon !== false
+            ? ({
+                icon: "calendar",
+                ariaLabel: "Show calendar",
+                onClick: onClick && onClick,
+              } as Suffix)
+            : {};
 
         // Set form field to formatted date string immediately, to avoid validations
         //  triggering incorrectly when it blurs (to handle the datepicker UI click)
@@ -84,6 +91,14 @@ export function InputDate(inputProps: InputDateProps) {
               onFocus={() => {
                 inputProps.onFocus && inputProps.onFocus();
                 activatorProps.onFocus && activatorProps.onFocus();
+              }}
+              onKeyUp={event => {
+                if (
+                  inputProps.showIcon === false &&
+                  event.key === "ArrowDown"
+                ) {
+                  activatorProps.onClick?.();
+                }
               }}
               actionsRef={formFieldActionsRef}
               suffix={suffix}
