@@ -89,6 +89,26 @@ describe("DataListItem", () => {
         "--actions-menu-y": `${clientY}px`,
       });
     });
+
+    it("should not show a context menu when the actions are hidden", async () => {
+      mockItemActionComponent.mockReturnValueOnce(
+        <DataListItemActions onClick={handleItemClick}>
+          <DataListAction label="Edit" visible={() => false} />
+          <DataListAction label="Email" visible={() => false} />
+        </DataListItemActions>,
+      );
+
+      renderComponent();
+
+      const listItemEl = screen.getByText(listItem);
+      await userEvent.hover(listItemEl);
+      fireEvent.contextMenu(listItemEl);
+
+      expect(screen.queryByRole("menu")).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole("button", { name: "More actions" }),
+      ).not.toBeInTheDocument();
+    });
   });
 
   describe("In-layout action", () => {

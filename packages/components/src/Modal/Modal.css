@@ -10,6 +10,17 @@
   }
 }
 
+:root :global(.jobber-retheme) {
+  --modal--shadow: var(--shadow-base);
+
+  @media (--medium-screens-and-up) {
+    --modal--padding-horizontal: var(--space-large);
+    --modal--padding-vertical: var(--space-large);
+    --modal--padding: var(--modal--padding-vertical)
+      var(--modal--padding-horizontal);
+  }
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -33,14 +44,15 @@
 
 .modal {
   position: relative;
-  flex: 0 0 auto;
   width: 100%;
   max-width: var(--modal--width);
+  box-shadow: var(--modal--shadow);
   margin: auto;
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
-  outline-color: var(--color-focus);
   background-color: var(--color-surface);
+  flex: 0 0 auto;
+  outline-color: var(--color-focus);
 }
 
 /* Adjust `Content` and `Tab` components public padding to match the modal */
@@ -62,6 +74,24 @@
   align-items: center;
   padding: var(--modal--padding);
   background-color: var(--color-surface--background);
+}
+
+:global(.jobber-retheme) .header {
+  background-color: transparent;
+}
+
+:global(.jobber-retheme) .header h3 {
+  font-family: var(--typography--fontFamily-normal);
+  font-size: var(--typography--fontSize-largest);
+}
+
+/**
+ * Ensure there's no extra padding top on the next element. This mostly negates
+ * the <Content /> padding
+ */
+
+:global(.jobber-retheme) .header + * {
+  padding-top: 0;
 }
 
 .closeButton {
@@ -95,14 +125,16 @@
   order: 2; /* 1 */
 }
 
+/* This is in a correct position and order */
+/* stylelint-disable-next-line no-descending-specificity */
 .rightAction > * {
   margin-left: var(--space-small);
 }
 
-.rightAction *:first-child {
+.rightAction > *:first-child {
   order: 2; /* 1 */
 }
 
-.rightAction *:nth-child(2) {
+.rightAction > *:nth-child(2) {
   order: 1; /* 1 */
 }

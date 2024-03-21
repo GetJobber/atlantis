@@ -3,7 +3,8 @@ import DateTimePicker from "react-native-modal-datetime-picker";
 import { Platform } from "react-native";
 import { FieldError, UseControllerProps } from "react-hook-form";
 import { XOR } from "ts-xor";
-import { Clearable, InputFieldWrapperProps } from "../InputFieldWrapper";
+import { Clearable } from "@jobber/hooks";
+import { InputFieldWrapperProps } from "../InputFieldWrapper";
 import { FormField } from "../FormField";
 import { InputPressable } from "../InputPressable";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
@@ -154,6 +155,7 @@ function InternalInputDate({
 
   const date = useMemo(() => {
     if (typeof value === "string") return new Date(value);
+
     return value;
   }, [value]);
 
@@ -172,6 +174,7 @@ function InternalInputDate({
   return (
     <>
       <InputPressable
+        focused={showPicker}
         clearable={canClearDate}
         disabled={disabled}
         invalid={invalid}

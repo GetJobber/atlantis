@@ -1,8 +1,6 @@
 import React from "react";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { Divider } from ".";
-
-afterEach(cleanup);
 
 describe("Divider", () => {
   it("should render", () => {

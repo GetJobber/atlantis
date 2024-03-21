@@ -1,46 +1,24 @@
 import React from "react";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
-import {
-  ComboboxContentProps,
-  ComboboxOption,
-} from "@jobber/components/Combobox/Combobox.types";
 import styles from "./ComboboxContent.css";
 import { ComboboxContentSearch } from "./ComboboxContentSearch";
 import { ComboboxContentList } from "./ComboboxContentList";
 import { ComboboxContentHeader } from "./ComboboxContentHeader";
-import { ComboboxContext } from "../../ComboboxProvider";
 import { useComboboxContent } from "../../hooks/useComboboxContent";
 import { useComboboxAccessibility } from "../../hooks/useComboboxAccessibility";
+import { ComboboxContentProps } from "../../Combobox.types";
 
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
-  const { open, setOpen, wrapperRef, multiselect } =
-    React.useContext(ComboboxContext);
   const optionsExist = props.options.length > 0;
-
-  const {
-    searchValue,
-    setSearchValue,
-    setFirstSelectedElement,
-    filteredOptions,
-    optionsListRef,
-    selectedOptions,
-    optionsSelectionHandler,
-  } = useComboboxContent(
-    props.options,
-    open,
-    props.selected,
-    props.onClose,
-    props.onSelect,
-  );
+  const { optionsListRef } = useComboboxContent(props.open, props.selected);
 
   const { popperRef, popperStyles, attributes } = useComboboxAccessibility(
-    handleSelection,
-    filteredOptions,
+    props.handleSelection,
+    props.options,
     optionsListRef,
-    open,
-    setOpen,
-    wrapperRef,
+    props.open,
+    props.wrapperRef,
   );
 
   const template = (
@@ -49,89 +27,59 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       id="ATL-Combobox-Content"
       data-testid="ATL-Combobox-Content"
       tabIndex={0}
-      className={classnames(styles.content, { [styles.hidden]: !open })}
+      className={classnames(styles.content, { [styles.hidden]: !props.open })}
       style={popperStyles.popper}
       {...attributes.popper}
     >
       <ComboboxContentSearch
-        open={open}
+        open={props.open}
         placeholder={props.subjectNoun}
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
+        searchValue={props.searchValue}
+        setSearchValue={props.setSearchValue}
+        handleSearchChange={props.handleSearchChange}
       />
 
-      {multiselect && optionsExist && (
+      {props.multiselect && (optionsExist || props.selected.length > 0) && (
         <ComboboxContentHeader
-          hasOptionsVisible={filteredOptions.length > 0}
+          hasOptionsVisible={optionsExist}
           subjectNoun={props.subjectNoun}
-          selectedCount={selectedOptions.length}
+          selectedCount={props.selected.length}
           onClearAll={() => {
-            optionsSelectionHandler([]);
+            props.selectedStateSetter([]);
           }}
           onSelectAll={() => {
-            optionsSelectionHandler(filteredOptions);
+            props.selectedStateSetter(props.options);
           }}
         />
       )}
-
       <ComboboxContentList
-        multiselect={multiselect}
-        showEmptyState={!optionsExist}
-        options={filteredOptions}
-        selected={selectedOptions}
+        multiselect={props.multiselect}
+        options={props.options}
+        selected={props.selected}
         optionsListRef={optionsListRef}
-        setFirstSelectedElement={setFirstSelectedElement}
-        selectionHandler={handleSelection}
-        searchValue={searchValue}
+        searchValue={props.searchValue}
         subjectNoun={props.subjectNoun}
+        loading={props.loading}
+        onLoadMore={props.onLoadMore}
       />
-      {props.children && (
+      {props.actionElements && (
         <div className={styles.actions} role="group">
-          {React.Children.toArray(props.children).map(
-            (child, index, childrenArray) => (
-              <div
-                key={index}
-                className={classnames({
-                  [styles.actionPadding]: index === childrenArray.length - 1,
-                })}
-              >
-                {child}
-              </div>
-            ),
-          )}
+          {props.actionElements.map((child, index, childrenArray) => (
+            <div
+              key={index}
+              className={classnames({
+                [styles.actionPadding]: index === childrenArray.length - 1,
+              })}
+            >
+              {child}
+            </div>
+          ))}
         </div>
       )}
     </div>
   );
 
-  return ReactDOM.createPortal(template, document.body);
-
-  function handleSelection(selection: ComboboxOption) {
-    if (multiselect) {
-      handleMultiSelect(optionsSelectionHandler, selectedOptions, selection);
-    } else {
-      handleSingleSelect(optionsSelectionHandler, selection);
-    }
-  }
-
-  function handleSingleSelect(
-    selectCallback: (selected: ComboboxOption[]) => void,
-    selection: ComboboxOption,
-  ) {
-    selectCallback([selection]);
-    setSearchValue("");
-    setOpen(false);
-  }
-}
-
-function handleMultiSelect(
-  selectCallback: (selected: ComboboxOption[]) => void,
-  selected: ComboboxOption[],
-  selection: ComboboxOption,
-) {
-  if (selected.some(s => s.id === selection.id)) {
-    selectCallback(selected.filter(s => s.id !== selection.id));
-  } else {
-    selectCallback([...selected, selection]);
-  }
+  return globalThis?.document
+    ? ReactDOM.createPortal(template, document.body)
+    : template;
 }

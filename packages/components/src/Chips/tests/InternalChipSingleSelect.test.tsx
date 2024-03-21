@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  cleanup,
   fireEvent,
   render,
   screen,
@@ -32,8 +31,6 @@ beforeEach(() => {
     </InternalChipSingleSelect>,
   );
 });
-
-afterEach(cleanup);
 
 it("should have a label and a checkbox", () => {
   const component = screen.getByTestId("singleselect-chips");

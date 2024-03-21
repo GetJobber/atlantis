@@ -1,8 +1,10 @@
-import React, { RefObject, useEffect, useLayoutEffect, useState } from "react";
+import React, { RefObject, useEffect, useState } from "react";
 import classnames from "classnames";
-import useEventListener from "@use-it/event-listener";
 import { createPortal } from "react-dom";
 import { usePopper } from "react-popper";
+import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
+import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
+import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import { AnyOption, Option } from "./Option";
 import styles from "./Autocomplete.css";
 import { Text } from "../Text";
@@ -25,6 +27,9 @@ interface MenuProps {
   onOptionSelect(chosenOption: Option): void;
 }
 
+// Adding useIsMounted is what tipped this to 13 statements.
+// Any additions beyond useIsMounted should probably see this component refactored a bit
+// eslint-disable-next-line max-statements
 export function Menu({
   visible,
   options,
@@ -54,6 +59,8 @@ export function Menu({
 
   useEffect(() => setHighlightedIndex(initialHighlight), [options]);
 
+  const mounted = useIsMounted();
+
   const menu = (
     <div
       className={classnames(styles.options, { [styles.visible]: visible })}
@@ -66,6 +73,7 @@ export function Menu({
           [styles.active]: index === highlightedIndex,
           [styles.separator]: addSeparators,
         });
+
         if (isGroup(option)) {
           return (
             <div key={option.label} className={styles.heading}>
@@ -73,6 +81,7 @@ export function Menu({
             </div>
           );
         }
+
         return (
           <button
             className={optionClass}
@@ -103,7 +112,7 @@ export function Menu({
     </div>
   );
 
-  return createPortal(menu, document.body);
+  return mounted.current ? createPortal(menu, document.body) : menu;
 
   function setupKeyListeners() {
     useEffect(() => {
@@ -114,35 +123,38 @@ export function Menu({
       });
     }, [highlightedIndex]);
 
-    useOnKeyDown("ArrowDown", (event: KeyboardEvent) => {
+    useOnKeyDown((event: KeyboardEvent) => {
       const indexChange = arrowKeyPress(event, IndexChange.Next);
+
       if (indexChange) {
         setHighlightedIndex(
           Math.min(options.length - 1, highlightedIndex + indexChange),
         );
       }
-    });
+    }, "ArrowDown");
 
-    useOnKeyDown("ArrowUp", (event: KeyboardEvent) => {
+    useOnKeyDown((event: KeyboardEvent) => {
       const indexChange = arrowKeyPress(event, IndexChange.Previous);
+
       if (indexChange) {
         setHighlightedIndex(Math.max(0, highlightedIndex + indexChange));
       }
-    });
+    }, "ArrowUp");
 
-    useOnKeyDown("Enter", (event: KeyboardEvent) => {
+    useOnKeyDown((event: KeyboardEvent) => {
       if (!visible) return;
       if (isGroup(options[highlightedIndex])) return;
 
       event.preventDefault();
       onOptionSelect(options[highlightedIndex]);
-    });
+    }, "Enter");
   }
 
   function arrowKeyPress(event: KeyboardEvent, direction: number) {
     if (!visible) return;
     event.preventDefault();
     const requestedIndex = options[highlightedIndex + direction];
+
     return requestedIndex && isGroup(requestedIndex)
       ? direction + direction
       : direction;
@@ -153,23 +165,9 @@ function isOptionSelected(selectedOption: Option | undefined, option: Option) {
   return selectedOption && selectedOption.value === option.value;
 }
 
-// Split this out into a hooks package.
-function useOnKeyDown(
-  keyName: string,
-  handler: (event: KeyboardEvent) => boolean | void,
-) {
-  // Pending: https://github.com/donavon/use-event-listener/pull/12
-  // The types in useEventListener mistakenly require a SyntheticEvent for the passed generic.
-  useEventListener("keydown", event => {
-    const newEvent = event as unknown as KeyboardEvent;
-    if (newEvent.key === keyName) {
-      handler(newEvent);
-    }
-  });
-}
-
 function isGroup(option: AnyOption) {
   if (option.options) return true;
+
   return false;
 }
 
@@ -182,7 +180,7 @@ function useRepositionMenu(attachTo: MenuProps["attachTo"], visible = false) {
     ],
   });
 
-  useLayoutEffect(() => {
+  useSafeLayoutEffect(() => {
     popper?.update?.();
   }, [visible]);
 

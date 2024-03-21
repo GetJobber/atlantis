@@ -18,22 +18,15 @@ import {
   TextInputProps,
   TextStyle,
 } from "react-native";
-import {
-  ControllerRenderProps,
-  FieldValues,
-  RegisterOptions,
-} from "react-hook-form";
+import { RegisterOptions } from "react-hook-form";
 import { IconNames } from "@jobber/design";
 import identity from "lodash/identity";
+import { Clearable, useShowClear } from "@jobber/hooks";
 import { styles } from "./InputText.style";
 import { useInputAccessoriesContext } from "./context";
 import { useFormController } from "../hooks";
 import { InputFieldStyleOverride } from "../InputFieldWrapper/InputFieldWrapper";
-import {
-  Clearable,
-  InputFieldWrapper,
-  useShowClear,
-} from "../InputFieldWrapper";
+import { InputFieldWrapper } from "../InputFieldWrapper";
 import { commonInputStyles } from "../InputFieldWrapper/CommonInputStyles.style";
 
 export interface InputTextProps {
@@ -65,7 +58,7 @@ export interface InputTextProps {
   /**
    * Determines what keyboard is shown
    */
-  keyboard?:
+  readonly keyboard?:
     | "default"
     | "numeric"
     | "phone-pad"
@@ -97,24 +90,26 @@ export interface InputTextProps {
    * Simplified callback that only provides the new value
    * @param newValue
    */
-  onChangeText?: (newValue: string) => void;
+  readonly onChangeText?: (newValue: string) => void;
 
   /**
    * Callback that is called when the text input's submit button is pressed
    * @param event
    */
-  onSubmitEditing?: (event?: SyntheticEvent) => void;
+  readonly onSubmitEditing?: (event?: SyntheticEvent) => void;
 
   /**
    * Callback that is called when the text input is focused
    * @param event
    */
-  onFocus?: (event?: NativeSyntheticEvent<TextInputFocusEventData>) => void;
+  readonly onFocus?: (
+    event?: NativeSyntheticEvent<TextInputFocusEventData>,
+  ) => void;
 
   /**
    * Callback that is called when the text input is blurred
    */
-  onBlur?: () => void;
+  readonly onBlur?: () => void;
 
   /**
    * VoiceOver will read this string when a user selects the associated element
@@ -133,7 +128,7 @@ export interface InputTextProps {
   readonly autoCorrect?: boolean;
 
   /**
-   *  Determines where to autocapitalize
+   * Determines where to autocapitalize
    */
   readonly autoCapitalize?: "characters" | "words" | "sentences" | "none";
 
@@ -186,8 +181,10 @@ export interface InputTextProps {
    * "input" is a function that transform the value to the string format that should be shown to the user
    * "output" is a function that transform the string representation of the value to the value that is sent to onChange and the form
    */
-  transform?: {
+  readonly transform?: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     input?: (v: any) => string | undefined;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     output?: (v: string | undefined) => any;
   };
 
@@ -203,7 +200,7 @@ export interface InputTextProps {
   /**
    * Used to locate this view in end-to-end tests
    */
-  testID?: string;
+  readonly testID?: string;
 
   /**
    * Use secure text entry
@@ -282,7 +279,7 @@ function InputTextInternal(
 
   const hasValue = internalValue !== "" && internalValue !== undefined;
   const [focused, setFocused] = useState(false);
-  const { hasMiniLabel, setHasMiniLabel } = useMiniLabel(internalValue);
+  const { hasMiniLabel } = useMiniLabel(internalValue);
 
   const textInputRef = useTextInputRef({ ref, onClear: handleClear });
 
@@ -376,8 +373,8 @@ function InputTextInternal(
           styles.inputPaddingTop,
           !hasMiniLabel && commonInputStyles.inputEmpty,
           disabled && commonInputStyles.inputDisabled,
-          multiline && Platform.OS === "ios" && styles.multilineInputiOS,
           multiline && styles.multiLineInput,
+          multiline && Platform.OS === "ios" && styles.multilineInputiOS,
           multiline && hasMiniLabel && styles.multiLineInputWithMini,
           styleOverride?.inputText,
         ]}
@@ -407,7 +404,7 @@ function InputTextInternal(
           setFocused(false);
           onBlur?.();
           field.onBlur();
-          trimWhitespace(field, onChangeText);
+          trimWhitespace(inputTransform(field.value), updateFormAndState);
         }}
         ref={(instance: TextInput) => {
           // RHF wants us to do it this way
@@ -426,10 +423,7 @@ function InputTextInternal(
      * https://github.com/facebook/react-native/issues/36521#issuecomment-1555421134
      */
     const removedIOSCharValue = isIOS ? value.replace(/\uFFFC/g, "") : value;
-    const newValue = outputTransform(removedIOSCharValue);
-    setHasMiniLabel(Boolean(newValue));
-    onChangeText?.(newValue);
-    field.onChange(newValue);
+    updateFormAndState(removedIOSCharValue);
   }
 
   function handleClear() {
@@ -443,18 +437,33 @@ function InputTextInternal(
       handleOnFocusNext();
     }
   }
+
+  /**
+   * Updates both the form value and the onChangeText callback
+   * Ensuring that the tranform output function is called
+   * @param rawValue value to be sent to form state and onChangeText callback
+   */
+  function updateFormAndState(rawValue: string) {
+    const newValue = outputTransform(rawValue);
+    onChangeText?.(newValue);
+    field.onChange(newValue);
+  }
 }
 
 function trimWhitespace(
-  field: ControllerRenderProps<FieldValues, string>,
-  onChangeText?: (newValue: string) => void,
+  inputValue: string | undefined,
+  onChangeText: (newValue: string) => void,
 ) {
-  if (!field.value || !field.value.trim) {
+  if (!inputValue || !inputValue.trim) {
     return;
   }
-  const trimmedInput = field.value.trim();
-  onChangeText?.(trimmedInput);
-  field.onChange(trimmedInput);
+  const trimmedInput = inputValue.trim();
+
+  if (trimmedInput === inputValue) {
+    return; // no changes, avoid re-renders
+  }
+
+  onChangeText(trimmedInput);
 }
 
 interface UseTextInputRefProps {
@@ -480,11 +489,11 @@ function useTextInputRef({ ref, onClear }: UseTextInputRefProps) {
 
 function useMiniLabel(internalValue: string): {
   hasMiniLabel: boolean;
-  setHasMiniLabel: React.Dispatch<React.SetStateAction<boolean>>;
 } {
   const [hasMiniLabel, setHasMiniLabel] = useState(Boolean(internalValue));
   useEffect(() => {
     setHasMiniLabel(Boolean(internalValue));
   }, [internalValue]);
-  return { hasMiniLabel, setHasMiniLabel };
+
+  return { hasMiniLabel };
 }

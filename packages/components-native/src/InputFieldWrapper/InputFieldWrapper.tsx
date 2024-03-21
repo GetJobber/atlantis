@@ -146,12 +146,7 @@ export function InputFieldWrapper({
           >
             <Placeholder
               placeholder={placeholder}
-              labelVariation={getLabelVariation(
-                error,
-                invalid,
-                focused,
-                disabled,
-              )}
+              labelVariation={getLabelVariation(error, invalid, disabled)}
               hasMiniLabel={hasMiniLabel}
               styleOverride={styleOverride?.placeholderText}
             />
@@ -218,16 +213,14 @@ export function InputFieldWrapper({
 function getLabelVariation(
   error?: FieldError,
   invalid?: boolean | string,
-  focused?: boolean,
   disabled?: boolean,
 ): TextVariation {
   if (invalid || error) {
     return "error";
   } else if (disabled) {
     return "disabled";
-  } else if (focused) {
-    return "interactive";
   }
+
   return "subdued";
 }
 
@@ -278,10 +271,10 @@ function Placeholder({
   labelVariation,
   hasMiniLabel,
 }: {
-  placeholder?: string;
-  styleOverride: StyleProp<TextStyle>;
-  labelVariation: TextVariation;
-  hasMiniLabel: boolean;
+  readonly placeholder?: string;
+  readonly styleOverride: StyleProp<TextStyle>;
+  readonly labelVariation: TextVariation;
+  readonly hasMiniLabel: boolean;
 }) {
   return (
     <>

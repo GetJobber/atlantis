@@ -101,7 +101,7 @@ function BottomSheetInternal(
   }
 }
 
-function Header({ heading }: { heading: string }) {
+function Header({ heading }: { readonly heading: string }) {
   return (
     <View style={styles.header}>
       <Heading level={"subtitle"}>{heading}</Heading>
@@ -113,8 +113,8 @@ function Footer({
   cancellable,
   onCancel,
 }: {
-  cancellable: boolean;
-  onCancel: () => void;
+  readonly cancellable: boolean;
+  readonly onCancel: () => void;
 }) {
   const insets = useSafeAreaInsets();
   const { t } = useAtlantisI18n();

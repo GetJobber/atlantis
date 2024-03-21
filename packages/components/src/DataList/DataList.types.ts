@@ -46,9 +46,19 @@ export type DataListHeader<T extends DataListObject> = {
   readonly [K in keyof T]?: string;
 };
 
-export interface DataListSorting {
+export interface DataListSorting extends Partial<SortableOptions> {
   readonly key: string;
+}
+
+export interface SortableOptions {
+  readonly id: string;
+  readonly label: string;
   readonly order: "asc" | "desc";
+}
+
+export interface DataListSortable {
+  readonly key: string;
+  readonly options?: SortableOptions[];
 }
 
 export interface DataListProps<T extends DataListObject> {
@@ -111,23 +121,52 @@ export interface DataListProps<T extends DataListObject> {
    * `onSort`: The callback function when the user sorting a column.
    */
   readonly sorting?: {
-    readonly sortable: (keyof DataListHeader<T>)[];
+    readonly sortable: DataListSortable[];
     readonly state: DataListSorting | undefined;
     readonly onSort: (sorting?: DataListSorting) => void;
   };
 
   /**
-   * Callback when an item checkbox is clicked.
-   */
-  readonly onSelect?: (items: T["id"][]) => void;
-
-  /**
    * The list of Selected Item ids
    */
-  readonly selected?: T["id"][];
+  readonly selected?: DataListSelectedType<T["id"]>;
 
-  readonly onSelectAll?: () => void;
+  /**
+   * Callback when an item checkbox is clicked.
+   */
+  readonly onSelect?: (selected: DataListSelectedType<T["id"]>) => void;
+
+  /**
+   * Callback when the select all checkbox is clicked.
+   */
+  readonly onSelectAll?: (selected: DataListSelectedType<T["id"]>) => void;
 }
+
+/**
+ * Select all items in the DataList except the ones in the unselected array.
+ *
+ * This is used in scenarios where we need to select all items in the DataList
+ * but couldn't query all the ID's. So instead of feeding all the ID's to the
+ * DataList, we set all checkboxes to be checked except for the items that are
+ * in the unselected array.
+ */
+export interface DataListSelectedAllType<
+  T extends DataListObject = DataListObject,
+> {
+  /**
+   * The total number of selected items in the DataList.
+   */
+  readonly totalCount: number;
+
+  /**
+   * Track the ID's of the unchecked items.
+   */
+  readonly unselected: T["id"][];
+}
+
+export type DataListSelectedType<
+  T extends string | number = DataListObject["id"],
+> = T[] | DataListSelectedAllType;
 
 export type LayoutRenderer<T extends DataListObject> = (
   item: DataListItemType<T[]>,
@@ -200,7 +239,6 @@ export interface DataListContextProps<T extends DataListObject>
   readonly bulkActionsComponent?: ReactElement<DataListItemActionsProps<T>>;
 
   readonly layoutBreakpoints: Breakpoints[];
-  readonly registerLayoutBreakpoints: (breakpoint: Breakpoints) => void;
 
   readonly layouts: {
     readonly [Breakpoint in Breakpoints]?: LayoutRenderer<T>;
@@ -277,7 +315,7 @@ export interface DataListActionProps<T extends DataListObject> {
   /**
    * The label of the action
    */
-  readonly label: string;
+  readonly label: string | ((item: T) => string);
 
   /**
    * The icon beside the label
@@ -288,6 +326,11 @@ export interface DataListActionProps<T extends DataListObject> {
    * Adjust the styling of an action label and icon to be more destructive.
    */
   readonly destructive?: boolean;
+
+  /**
+   * Determine if the action is visible for a given item.
+   */
+  readonly visible?: (item: T) => boolean;
 
   /**
    * The callback function when the action is clicked.
@@ -310,7 +353,7 @@ export interface DataListActionsProps<T extends DataListObject> {
 }
 
 export interface DataListBulkActionProps
-  extends DataListActionProps<DataListObject> {
+  extends Omit<DataListActionProps<DataListObject>, "visible"> {
   /**
    * The callback function when the action is clicked.
    */

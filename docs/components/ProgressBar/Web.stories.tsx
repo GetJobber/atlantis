@@ -20,6 +20,7 @@ const BasicTemplate: ComponentStory<typeof ProgressBar> = args => (
 const WithStateTemplate: ComponentStory<typeof ProgressBar> = args => {
   const [step, setStep] = useState(2);
   const totalSteps = 4;
+
   return (
     <Content>
       <Button
@@ -44,3 +45,6 @@ Basic.args = {
 
 export const WithState = WithStateTemplate.bind({});
 WithState.args = {};
+
+export const WithSteppedVariation = WithStateTemplate.bind({});
+WithSteppedVariation.args = { variation: "stepped" };

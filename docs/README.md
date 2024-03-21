@@ -1,7 +1,5 @@
 # 🔱 Atlantis
 
-[![CircleCI](https://circleci.com/gh/GetJobber/atlantis/tree/master.svg?style=svg)](https://circleci.com/gh/GetJobber/atlantis/tree/master)
-
 ## What is Atlantis?
 
 > Design systems enable teams to build better products faster by making design
@@ -72,17 +70,17 @@ This following list has installation links for each package:
 
 These are the core packages you'll need to build with Atlantis:
 
-- [Components](/packages/components)
-- [Design](/packages/design)
-- [Hooks](/packages/hooks)
+- [Components](?path=/docs/packages-components--page)
+- [Design](?path=/docs/packages-design--page)
+- [Hooks](?path=/docs/packages-hooks--page)
 
 ### Tooling and configuration
 
 If you're looking to build documentation and tooling using Atlantis' development
 standards, these packages will be useful:
 
-- [EsLint configuration](/packages/eslint-config)
-- [StyleLint configuration](/packages/stylelint-config)
+- [EsLint configuration](?path=/docs/packages-eslint-config--page)
+- [StyleLint configuration](?path=/docs/packages-stylelint-config--page)
 
 ## Generating a component
 
@@ -152,9 +150,9 @@ npm run lint:css
 npm run lint:ts
 ```
 
-If you want to troubleshoot linting errors in CircleCI, try running locally
-first to find the error. If that doesn't work you can open the artifacts for the
-linting step. To find the errors causing the failure, search for `Error - `.
+If you want to troubleshoot linting errors in CI, try running locally first to
+find the error. If that doesn't work you can open the artifacts for the linting
+step. To find the errors causing the failure, search for `Error - `.
 
 ## Repo structure
 

@@ -107,6 +107,7 @@ export function useCollectionQuery<TQuery, TSubscription = undefined>({
   const isMounted = useIsMounted();
   const [loadingRefresh, setLoadingRefresh] = useState<boolean>(false);
   const [loadingNextPage, setLoadingNextPage] = useState<boolean>(false);
+  const [hookError, setHookError] = useState<ApolloError | undefined>();
   const loadingInitialContent = loading && !loadingRefresh && !loadingNextPage;
   const isSearching = !!queryOptions?.variables?.searchTerm;
 
@@ -151,6 +152,7 @@ export function useCollectionQuery<TQuery, TSubscription = undefined>({
     }
 
     setLoadingNextPage(true);
+    setHookError(undefined);
 
     fetchMore({
       variables: {
@@ -159,7 +161,10 @@ export function useCollectionQuery<TQuery, TSubscription = undefined>({
       updateQuery: (prev, { fetchMoreResult }) =>
         fetchMoreUpdateQueryHandler(prev, fetchMoreResult, getCollectionByPath),
     })
-      .catch(err => config.errorNotifier("FetchMore Error", err))
+      .catch(err => {
+        config.errorNotifier("FetchMore Error", err);
+        setHookError(err);
+      })
       .finally(() => {
         if (isMounted.current) {
           setLoadingNextPage(false);
@@ -182,6 +187,9 @@ export function useCollectionQuery<TQuery, TSubscription = undefined>({
 
       const subscriptionOptions = subscription.options || {};
 
+      // Reset this state so we can handle errors from the subscription
+      setHookError(undefined);
+
       return subscribeToMore<TSubscription>({
         ...subscriptionOptions,
         document: subscription.document,
@@ -193,7 +201,10 @@ export function useCollectionQuery<TQuery, TSubscription = undefined>({
             subscriptionData?.data,
             subscription.getNodeByPath,
           ),
-        onError: err => config.errorNotifier("Subscribe to More Error", err),
+        onError: err => {
+          config.errorNotifier("Subscribe to More Error", err);
+          setHookError(err as ApolloError);
+        },
       });
     },
     // Disabling this linter so we can force this only run once. If we didn't
@@ -202,9 +213,11 @@ export function useCollectionQuery<TQuery, TSubscription = undefined>({
     [queryOptions?.variables?.searchTerm],
   );
 
+  const combinedError = error || hookError;
+
   return {
     data,
-    error,
+    error: combinedError,
     refresh,
     loadingRefresh,
     nextPage,
@@ -249,6 +262,7 @@ function fetchMoreUpdateQueryHandler<TQuery>(
       nextCollection.nodes,
     );
   }
+
   if (outputCollection.edges && nextCollection.edges) {
     outputCollection.edges = getUpdatedEdges(
       outputCollection.edges,
@@ -288,6 +302,7 @@ function subscribeToMoreHandler<TQuery, TSubscription>(
       false,
     );
   }
+
   if (outputCollection.edges) {
     outputCollection.edges = getUpdatedEdges(
       outputCollection.edges,
@@ -344,6 +359,7 @@ function getUpdatedEdges(
   const newEdges = appendToEnd
     ? [...prevEdges, ...nextEdges]
     : [...nextEdges, ...prevEdges];
+
   return uniqueEdges(newEdges);
 }
 
@@ -355,5 +371,6 @@ function getUpdatedNodes(
   const newNodes = appendToEnd
     ? [...prevNodes, ...nextNodes]
     : [...nextNodes, ...prevNodes];
+
   return uniqueNodes(newNodes);
 }

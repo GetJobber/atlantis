@@ -18,13 +18,22 @@
   transition: all var(--timing-base);
 }
 
-.actionButton:focus {
-  box-shadow: var(--shadow-focus);
-  background-color: var(--color-surface--background);
+:global(.jobber-retheme) .actionButton {
+  border-radius: var(--radius-base);
 }
 
-.actionButton:hover {
-  background-color: var(--color-surface--background);
+.actionButton:focus {
+  outline: none;
+}
+
+.actionButton:hover,
+.actionButton:focus-visible {
+  outline: none;
+  background-color: var(--color-surface--hover);
+}
+
+.actionButton:focus-visible {
+  box-shadow: var(--shadow-focus);
 }
 
 .actionButton span {

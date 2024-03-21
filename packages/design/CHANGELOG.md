@@ -3,6 +3,157 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.56.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.55.1...@jobber/design@0.56.0) (2024-03-13)
+
+
+### Features
+
+* **design:** JOB-91365 Update client icons using color-teal to use the client semantic color ([#1803](https://github.com/GetJobber/atlantis/issues/1803)) ([c85b27e](https://github.com/GetJobber/atlantis/commit/c85b27e6987f90cfd13a630bd8f2d5713acdbd88))
+
+
+
+
+
+## [0.55.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.55.0...@jobber/design@0.55.1) (2024-03-08)
+
+
+### Bug Fixes
+
+* **eslint:** Cleanup lint warnings ([#1796](https://github.com/GetJobber/atlantis/issues/1796)) ([3e0c770](https://github.com/GetJobber/atlantis/commit/3e0c770eca0964636f79831016dbbe25926ae951))
+
+
+
+
+
+# [0.55.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.54.0...@jobber/design@0.55.0) (2024-03-06)
+
+
+### Features
+
+* **components:** Swap twitter bird with X icon ([#1774](https://github.com/GetJobber/atlantis/issues/1774)) ([0fc9e41](https://github.com/GetJobber/atlantis/commit/0fc9e41eb867b5a830ef25ce62c5af0b1cd5a4de))
+
+
+
+
+
+# [0.54.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.53.0...@jobber/design@0.54.0) (2024-02-23)
+
+
+### Features
+
+* Add unscheduled icon ([#1770](https://github.com/GetJobber/atlantis/issues/1770)) ([ca0b83d](https://github.com/GetJobber/atlantis/commit/ca0b83d5489056396a451034a4f540a02ce40089))
+
+
+
+
+
+# [0.53.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.52.0...@jobber/design@0.53.0) (2024-01-29)
+
+
+### Features
+
+* **components:** Add casual and cheerful icons [JOB-87641] ([#1739](https://github.com/GetJobber/atlantis/issues/1739)) ([69a0a31](https://github.com/GetJobber/atlantis/commit/69a0a31fc0244f34445465d7948f074c33bab460))
+
+
+
+
+
+# [0.52.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.51.1...@jobber/design@0.52.0) (2024-01-18)
+
+
+### Features
+
+* **components:** Expose all sizing tokens in web Content ([#1730](https://github.com/GetJobber/atlantis/issues/1730)) ([372a7a1](https://github.com/GetJobber/atlantis/commit/372a7a13b469c167cacebde7d289b0eded592e23))
+
+
+
+
+
+## [0.51.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.51.0...@jobber/design@0.51.1) (2023-12-18)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+# [0.51.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.50.0...@jobber/design@0.51.0) (2023-12-05)
+
+
+### Features
+
+* **components:** add 'pinned' and 'unPinned' icons — (Minor) Feature Release ([#1674](https://github.com/GetJobber/atlantis/issues/1674)) ([4b83847](https://github.com/GetJobber/atlantis/commit/4b838477c04fe71aa17ddaf2e89b68242d2350d2))
+
+
+
+
+
+# [0.50.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.49.0...@jobber/design@0.50.0) (2023-11-29)
+
+
+### Features
+
+* **design:** update hover colors for common surfaces [JOB-82570] ([#1545](https://github.com/GetJobber/atlantis/issues/1545)) ([6d8795a](https://github.com/GetJobber/atlantis/commit/6d8795afad3133fe2c74de29e17d629787561554))
+
+
+
+
+
+# [0.49.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.48.0...@jobber/design@0.49.0) (2023-11-29)
+
+
+### Features
+
+* **design:** add tag icon  ([#1659](https://github.com/GetJobber/atlantis/issues/1659)) ([c55764f](https://github.com/GetJobber/atlantis/commit/c55764f18ad0fbb56360c244b7ba88e78bccc961))
+
+
+
+
+
+# [0.48.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.47.2...@jobber/design@0.48.0) (2023-11-29)
+
+
+### Features
+
+* **components:** add 'starHalf' icon  — (Minor) Feature Release ([#1660](https://github.com/GetJobber/atlantis/issues/1660)) ([68f8200](https://github.com/GetJobber/atlantis/commit/68f8200efd9c4817fd792937ca4034a3f15d86b2))
+
+
+
+
+
+## [0.47.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.47.1...@jobber/design@0.47.2) (2023-11-21)
+
+
+### Bug Fixes
+
+* **components:** fix Chip transition state ([#1648](https://github.com/GetJobber/atlantis/issues/1648)) ([6a479a2](https://github.com/GetJobber/atlantis/commit/6a479a2f7d0a4017fda7ed386db23a98a5925cd4))
+
+
+
+
+
+## [0.47.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.47.0...@jobber/design@0.47.1) (2023-11-16)
+
+
+### Bug Fixes
+
+* breakpoints and viewport mock ([#1642](https://github.com/GetJobber/atlantis/issues/1642)) ([c1e5042](https://github.com/GetJobber/atlantis/commit/c1e50422a7cfec36effaf7c27b322d68fd5c70b5))
+
+
+
+
+
+# [0.47.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.46.0...@jobber/design@0.47.0) (2023-11-03)
+
+
+### Features
+
+* **design:** Add Marketing Icon ([#1522](https://github.com/GetJobber/atlantis/issues/1522)) ([64da4d5](https://github.com/GetJobber/atlantis/commit/64da4d55704159e3ac7edba8dafa7c309b51335d))
+
+
+
+
+
 # [0.46.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.45.0...@jobber/design@0.46.0) (2023-10-05)
 
 

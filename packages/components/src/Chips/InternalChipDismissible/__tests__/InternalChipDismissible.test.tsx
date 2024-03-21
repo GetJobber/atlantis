@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   act,
-  cleanup,
   fireEvent,
   render,
   screen,
@@ -53,8 +52,6 @@ describe("Basic interaction", () => {
 
     await popperUpdate();
   });
-
-  afterEach(cleanup);
 
   it("should only render the selected chip on the UI", () => {
     const wrapperEl = screen.getByTestId("dismissible-chips");

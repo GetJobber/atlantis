@@ -1,46 +1,52 @@
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import { usePopper } from "react-popper";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
-import { ComboboxOption } from "@jobber/components/Combobox/Combobox.types";
+import { ComboboxOption } from "../Combobox.types";
+import { ComboboxContext } from "../ComboboxProvider";
 
+// eslint-disable-next-line max-statements
 export function useComboboxAccessibility(
   selectionCallback: (selection: ComboboxOption) => void,
   filteredOptions: ComboboxOption[],
   optionsListRef: React.RefObject<HTMLUListElement>,
   open: boolean,
-  setOpen: (open: boolean) => void,
   wrapperRef: React.RefObject<HTMLDivElement>,
 ): {
   popperRef: React.RefObject<HTMLDivElement>;
   popperStyles: { [key: string]: React.CSSProperties };
   attributes: { [key: string]: { [key: string]: string } | undefined };
 } {
+  const { handleClose } = useContext(ComboboxContext);
   const hasOptionsVisible = open && filteredOptions.length > 0;
   const focusedIndex = useRef<number | null>(null);
 
   useRefocusOnActivator(open);
 
   const popperRef = useFocusTrap<HTMLDivElement>(open);
-  const { styles: popperStyles, attributes } = usePopper(
-    wrapperRef.current,
-    popperRef.current,
-    {
-      modifiers: [
-        {
-          name: "flip",
-          options: {
-            fallbackPlacements: ["top-start"],
-          },
+  const {
+    styles: popperStyles,
+    attributes,
+    update,
+  } = usePopper(wrapperRef.current, popperRef.current, {
+    modifiers: [
+      {
+        name: "flip",
+        options: {
+          fallbackPlacements: ["top-start"],
         },
-      ],
-      placement: "bottom-start",
-    },
-  );
+      },
+    ],
+    placement: "bottom-start",
+  });
 
   useEffect(() => {
     focusedIndex.current = null;
+
+    if (open) {
+      update?.();
+    }
   }, [open, filteredOptions.length]);
 
   useEffect(() => {
@@ -55,7 +61,7 @@ export function useComboboxAccessibility(
 
   useOnKeyDown(() => {
     if (open) {
-      setOpen(false);
+      handleClose();
     }
   }, "Escape");
 

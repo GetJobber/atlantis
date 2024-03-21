@@ -11,7 +11,7 @@ import { Heading } from "../Heading";
 import { Button, ButtonProps } from "../Button";
 import { ButtonDismiss } from "../ButtonDismiss";
 
-interface ModalProps {
+export interface ModalProps {
   /**
    * @default false
    */
@@ -48,7 +48,12 @@ export function Modal({
   const template = (
     <AnimatePresence>
       {open && (
-        <div ref={modalRef} className={styles.container} tabIndex={0}>
+        <div
+          ref={modalRef}
+          role="dialog"
+          className={styles.container}
+          tabIndex={0}
+        >
           <motion.div
             key={styles.overlay}
             className={styles.overlay}
@@ -89,7 +94,9 @@ export function Modal({
     </AnimatePresence>
   );
 
-  return ReactDOM.createPortal(template, document.body);
+  return globalThis?.document
+    ? ReactDOM.createPortal(template, document.body)
+    : template;
 
   function handleRequestClose() {
     if (open && onRequestClose) {
@@ -99,8 +106,8 @@ export function Modal({
 }
 
 interface HeaderProps {
-  title: string;
-  dismissible?: boolean;
+  readonly title: string;
+  readonly dismissible?: boolean;
   onRequestClose?(): void;
 }
 
@@ -117,9 +124,9 @@ function Header({ title, dismissible, onRequestClose }: HeaderProps) {
 }
 
 interface ActionsProps {
-  primary?: ButtonProps;
-  secondary?: ButtonProps;
-  tertiary?: ButtonProps;
+  readonly primary?: ButtonProps;
+  readonly secondary?: ButtonProps;
+  readonly tertiary?: ButtonProps;
 }
 
 function Actions({ primary, secondary, tertiary }: ActionsProps) {

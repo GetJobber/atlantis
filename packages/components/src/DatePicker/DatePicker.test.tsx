@@ -1,9 +1,7 @@
 import React from "react";
-import { act, cleanup, fireEvent, render } from "@testing-library/react";
+import { act, fireEvent, render } from "@testing-library/react";
 import ReactDatePicker from "react-datepicker";
 import { DatePicker } from "./DatePicker";
-
-afterEach(cleanup);
 
 beforeEach(() => {
   /**
@@ -107,7 +105,7 @@ it("should call onMonthChange when the user switches month", async () => {
 
 describe("ESC key behavior", () => {
   const handleEscape = jest.fn();
-  const handleKeyDown = (e: any) => e.key === "Escape" && handleEscape();
+  const handleKeyDown = (e: unknown) => e.key === "Escape" && handleEscape();
   beforeEach(() => {
     window.addEventListener("keydown", handleKeyDown);
   });

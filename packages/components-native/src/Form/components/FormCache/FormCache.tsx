@@ -3,11 +3,12 @@ import { FieldValues, useFormContext, useWatch } from "react-hook-form";
 import omit from "lodash/omit";
 
 interface FormCacheProps<T extends FieldValues> {
-  localCacheId?: string | string[];
-  localCacheKey?: string;
-  localCacheExclude?: string[];
-  setLocalCache: (data: T) => void;
+  readonly localCacheId?: string | string[];
+  readonly localCacheKey?: string;
+  readonly localCacheExclude?: string[];
+  readonly setLocalCache: (data: T) => void;
 }
+
 export function FormCache<T extends FieldValues>({
   localCacheExclude,
   localCacheKey,

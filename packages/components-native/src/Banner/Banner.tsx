@@ -1,13 +1,14 @@
-import React, { ReactElement } from "react";
-import { Pressable, View } from "react-native";
-import { BannerProps } from "./types";
-import { BannerTypeStyles } from "./constants";
+import React, { PropsWithChildren, ReactElement } from "react";
+import { Pressable, Text as RNText, View } from "react-native";
+import { IconNames } from "@jobber/design";
+import { BannerProps, BannerTypes } from "./types";
 import { styles } from "./Banner.style";
 import { BannerIcon } from "./components/BannerIcon/BannerIcon";
 import { Content } from "../Content";
 import { Text } from "../Text";
 import { TextList } from "../TextList";
 import { ActionLabel } from "../ActionLabel";
+import { Typography } from "../Typography";
 
 export function Banner({
   action,
@@ -17,43 +18,79 @@ export function Banner({
   children,
   icon,
 }: BannerProps): JSX.Element {
+  const bannerIcon = icon || getBannerIcon(type);
+
+  const shouldFlow =
+    Boolean(React.Children.count(children) === 1 && !text && !details) ||
+    Boolean(text && !details && !children);
+
   return (
     <Pressable
-      style={[styles.container, BannerTypeStyles[type].styles]}
+      style={[styles.container]}
       accessibilityRole="alert"
       onPress={action?.onPress}
     >
       <Content childSpacing="small">
         <View style={styles.bannerContent}>
-          {icon && <BannerIcon icon={icon} />}
+          {bannerIcon && <BannerIcon icon={bannerIcon} type={type} />}
           <View style={styles.contentContainer}>
             <View style={styles.childrenContainer}>
-              <BannerChildren>{children}</BannerChildren>
+              <WrappingElement shouldFlow={shouldFlow}>
+                <BannerChildren>{children}</BannerChildren>
+
+                {text && <Text level="text">{text}</Text>}
+
+                {details && <TextList items={details} level="text" />}
+
+                {action && (
+                  <RNText>
+                    {shouldFlow && <Typography color="subdued"> | </Typography>}
+                    <ActionLabel align="start">{action.label}</ActionLabel>
+                  </RNText>
+                )}
+              </WrappingElement>
             </View>
-            {text && (
-              <View style={styles.textContainer}>
-                <Text level="textSupporting">{text}</Text>
-              </View>
-            )}
-            {details && <TextList items={details} level="textSupporting" />}
           </View>
         </View>
-        {action && <ActionLabel align="start">{action.label}</ActionLabel>}
       </Content>
     </Pressable>
   );
 }
 
-function BannerChildren({
-  children,
-}: {
-  children?: ReactElement | ReactElement[] | string;
-}): JSX.Element {
+function BannerChildren({ children }: PropsWithChildren): JSX.Element {
   if (!children) return <></>;
 
   if (children && typeof children === "string") {
-    return <Text level="textSupporting">{children}</Text>;
+    return <Text level="text">{children}</Text>;
   }
 
   return <>{children}</>;
+}
+
+function WrappingElement({
+  shouldFlow,
+  children,
+}: PropsWithChildren<{
+  readonly shouldFlow: boolean;
+}>): ReactElement {
+  if (shouldFlow) {
+    return <RNText testID="ATL-Banner-RNText">{children}</RNText>;
+  }
+
+  return (
+    <View testID="ATL-Banner-View" style={styles.contentSpacing}>
+      {children}
+    </View>
+  );
+}
+
+function getBannerIcon(type: BannerTypes): IconNames | undefined {
+  switch (type) {
+    case "notice":
+      return "starburst";
+    case "warning":
+      return "help";
+    case "error":
+      return "alert";
+  }
 }

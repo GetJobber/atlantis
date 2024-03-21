@@ -1,9 +1,7 @@
 import React from "react";
-import { cleanup, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Switch } from ".";
-
-afterEach(cleanup);
 
 it("renders a Switch", () => {
   const { container } = render(<Switch ariaLabel="Toggle me" />);

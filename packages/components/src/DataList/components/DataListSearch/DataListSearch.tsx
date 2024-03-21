@@ -41,7 +41,7 @@ export function InternalDataListSearch() {
 
   return (
     <div
-      className={classNames({
+      className={classNames(styles.wrapper, {
         [styles.withNoFilters]: !filterComponent && !sorting,
       })}
     >
@@ -59,7 +59,7 @@ export function InternalDataListSearch() {
           placeholder={getPlaceholder()}
           onChange={debouncedSearch}
           prefix={{ icon: "search" }}
-          size="small"
+          clearable="always"
         />
       </div>
 
@@ -90,6 +90,7 @@ export function InternalDataListSearch() {
   function getPlaceholder(): string | undefined {
     if (placeholder) return placeholder;
     if (title) return `Search ${title}...`;
+
     return `Search...`;
   }
 

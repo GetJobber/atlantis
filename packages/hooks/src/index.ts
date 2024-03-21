@@ -1,4 +1,5 @@
 export * from "./useAssert";
+export * from "./useBool";
 export * from "./useBreakpoints";
 export * from "./useCollectionQuery";
 export * from "./useFocusTrap";
@@ -10,3 +11,5 @@ export * from "./useOnKeyDown";
 export * from "./usePasswordStrength";
 export * from "./useRefocusOnActivator";
 export * from "./useResizeObserver";
+export * from "./useSafeLayoutEffect";
+export * from "./useShowClear";

@@ -1,2 +1,8 @@
 export * from "./DataList";
-export { DataListItemType, DataListSorting } from "./DataList.types";
+export {
+  DataListItemType,
+  DataListSorting,
+  DataListSortable,
+  DataListSelectedType,
+  DataListSelectedAllType,
+} from "./DataList.types";

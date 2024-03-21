@@ -9,6 +9,7 @@ describe("ComboboxContentSearch", () => {
         placeholder="Bloop"
         searchValue=""
         open={true}
+        handleSearchChange={jest.fn()}
         setSearchValue={jest.fn()}
       />,
     );
@@ -19,6 +20,7 @@ describe("ComboboxContentSearch", () => {
       <ComboboxContentSearch
         searchValue=""
         open={true}
+        handleSearchChange={jest.fn()}
         setSearchValue={jest.fn()}
       />,
     );
@@ -31,6 +33,7 @@ describe("ComboboxContentSearch", () => {
       <ComboboxContentSearch
         searchValue=""
         open={true}
+        handleSearchChange={jest.fn()}
         setSearchValue={setSearchValue}
       />,
     );
@@ -45,6 +48,7 @@ describe("ComboboxContentSearch", () => {
       <ComboboxContentSearch
         searchValue="Rumplestiltskin"
         open={true}
+        handleSearchChange={jest.fn()}
         setSearchValue={setSearchValue}
       />,
     );
@@ -58,6 +62,7 @@ describe("ComboboxContentSearch", () => {
       <ComboboxContentSearch
         searchValue="Rumplestiltskin"
         open={true}
+        handleSearchChange={jest.fn()}
         setSearchValue={setSearchValue}
       />,
     );
@@ -71,6 +76,7 @@ describe("ComboboxContentSearch", () => {
       <ComboboxContentSearch
         searchValue="Rumplestiltskin"
         open={true}
+        handleSearchChange={jest.fn()}
         setSearchValue={jest.fn()}
       />,
     );
@@ -84,6 +90,7 @@ describe("ComboboxContentSearch", () => {
       <ComboboxContentSearch
         searchValue=""
         open={true}
+        handleSearchChange={jest.fn()}
         setSearchValue={jest.fn()}
       />,
     );

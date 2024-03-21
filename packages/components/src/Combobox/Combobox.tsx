@@ -1,28 +1,95 @@
-import React from "react";
-import { ComboboxProps } from "@jobber/components/Combobox/Combobox.types";
+import React, { useMemo } from "react";
+import { ComboboxProps } from "./Combobox.types";
 import { ComboboxContent } from "./components/ComboboxContent";
 import { ComboboxAction } from "./components/ComboboxAction";
 import { ComboboxContextProvider } from "./ComboboxProvider";
-import {
-  ComboboxTriggerButton,
-  ComboboxTriggerChip,
-} from "./components/ComboboxTrigger";
+import { ComboboxTrigger } from "./components/ComboboxTrigger";
+import { ComboboxOption as ComboboxOptionComponent } from "./components/ComboboxOption/ComboboxOption";
+import styles from "./Combobox.css";
+import { useCombobox } from "./hooks/useCombobox";
+import { ComboboxActivator } from "./components/ComboboxActivator";
 import { useComboboxValidation } from "./hooks/useComboboxValidation";
 
-export const Combobox = (props: ComboboxProps): JSX.Element => {
-  const { contentElement, triggerElement } = useComboboxValidation(
-    props.children,
+export function Combobox(props: ComboboxProps): JSX.Element {
+  const { optionElements, triggerElement, actionElements } =
+    useComboboxValidation(props.children);
+
+  const options = useMemo(
+    () =>
+      optionElements?.map(option => ({
+        id: option.props.id,
+        label: option.props.label,
+        prefix: option.props.prefix,
+      })) || [],
+    [optionElements],
+  );
+
+  const {
+    selectedOptions,
+    selectedStateSetter,
+    shouldScroll,
+    wrapperRef,
+    searchValue,
+    setSearchValue,
+    open,
+    setOpen,
+    handleClose,
+    handleSelection,
+    internalFilteredOptions,
+    handleSearchChange,
+  } = useCombobox(
+    props.selected,
+    props.onSelect,
+    options,
+    props.onClose,
+    props.multiSelect,
+    props.onSearch,
+    props.onSearchDebounce,
   );
 
   return (
-    <ComboboxContextProvider multiselect={props.multiSelect}>
-      {triggerElement}
-      {contentElement}
+    <ComboboxContextProvider
+      selected={selectedOptions}
+      selectionHandler={handleSelection}
+      open={open}
+      setOpen={setOpen}
+      handleClose={handleClose}
+      shouldScroll={shouldScroll}
+      searchValue={searchValue}
+    >
+      <div ref={wrapperRef} className={styles.wrapper}>
+        {open && (
+          <div
+            className={styles.overlay}
+            onClick={() => handleClose()}
+            data-testid="ATL-Combobox-Overlay"
+          />
+        )}
+        {triggerElement || (
+          <ComboboxTrigger label={props.label} selected={props.selected} />
+        )}
+        <ComboboxContent
+          multiselect={props.multiSelect}
+          subjectNoun={props.subjectNoun}
+          selected={selectedOptions}
+          actionElements={actionElements}
+          selectedStateSetter={selectedStateSetter}
+          handleSelection={handleSelection}
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+          wrapperRef={wrapperRef}
+          open={open}
+          setOpen={setOpen}
+          options={props.onSearch ? options : internalFilteredOptions}
+          loading={props.loading}
+          handleSearchChange={handleSearchChange}
+          onLoadMore={props.onLoadMore}
+        />
+      </div>
     </ComboboxContextProvider>
   );
-};
+}
 
-Combobox.TriggerButton = ComboboxTriggerButton;
-Combobox.TriggerChip = ComboboxTriggerChip;
-Combobox.Content = ComboboxContent;
+Combobox.Activator = ComboboxActivator;
 Combobox.Action = ComboboxAction;
+Combobox.Option = ComboboxOptionComponent;

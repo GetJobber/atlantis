@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import classNames from "classnames";
 import styles from "./DataListTags.css";
 import { InlineLabel } from "../../../InlineLabel";
 import { Text } from "../../../Text";
@@ -11,9 +12,12 @@ export function DataListTags({ items }: DataListTagsProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [visibleIndex, setVisibleIndex] = useState<boolean[]>([]);
   const visibleItems = visibleIndex.filter(Boolean).length;
+  const shouldShowTagCount = Boolean(visibleItems);
 
   useEffect(() => {
     if (!window.IntersectionObserver) return;
+
+    setVisibleIndex([]);
 
     const observer = new IntersectionObserver(handleIntersection, {
       root: ref.current,
@@ -29,14 +33,19 @@ export function DataListTags({ items }: DataListTagsProps) {
   }, [items]);
 
   return (
-    <div className={styles.tags} ref={ref}>
-      {items.filter(Boolean).map((tag, index) => (
-        <div key={tag} data-tag-element={index}>
-          <InlineLabel>{tag}</InlineLabel>
-        </div>
-      ))}
-
-      {Boolean(visibleItems) && (
+    <div className={styles.tagWrapper} ref={ref}>
+      <div
+        className={classNames(styles.tags, {
+          [styles.tagsMask]: shouldShowTagCount,
+        })}
+      >
+        {items.filter(Boolean).map((tag, index) => (
+          <div key={tag} data-tag-element={index}>
+            <InlineLabel>{tag}</InlineLabel>
+          </div>
+        ))}
+      </div>
+      {shouldShowTagCount && (
         <div className={styles.tagCount}>
           <Text>+{visibleItems}</Text>
         </div>
@@ -55,6 +64,7 @@ export function DataListTags({ items }: DataListTagsProps) {
       setVisibleIndex(prevState => {
         const newState = [...prevState];
         newState[indexNumber] = entry.intersectionRatio !== 1;
+
         return newState;
       });
     });
@@ -71,5 +81,6 @@ function buildIntersectionThreshold(items: DataListTagsProps["items"]) {
   }
 
   thresholds.push(0);
+
   return thresholds;
 }

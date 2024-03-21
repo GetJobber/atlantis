@@ -88,6 +88,11 @@ export interface SelectProps {
    * The validations that will mark this component as invalid
    */
   readonly validations?: RegisterOptions;
+
+  /**
+   * Used to locate this view in end-to-end tests.
+   */
+  readonly testID?: string;
 }
 
 export function Select({
@@ -103,6 +108,7 @@ export function Select({
   validations,
   accessibilityLabel,
   name,
+  testID,
 }: SelectProps): JSX.Element {
   const { field, error } = useFormController({
     name,
@@ -125,11 +131,11 @@ export function Select({
       invalid={invalid || !!error}
       hasValue={hasValue}
       styleOverride={{
-        container: { borderBottomWidth: undefined },
+        container: { paddingLeft: undefined },
       }}
     >
       <View
-        testID="ATL-Select"
+        testID={getTestID(testID)}
         accessible={true}
         accessibilityLabel={getA11yLabel()}
         accessibilityValue={{ text: getValue() }}
@@ -145,15 +151,13 @@ export function Select({
           <View
             style={[styles.container, (invalid || !!error) && styles.invalid]}
           >
-            {label && (
-              <Text
-                level="textSupporting"
-                variation={textVariation}
-                hideFromScreenReader={true}
-              >
-                {label}
-              </Text>
-            )}
+            <Text
+              level="textSupporting"
+              variation={textVariation}
+              hideFromScreenReader={true}
+            >
+              {label}
+            </Text>
 
             <View style={styles.input}>
               <View style={styles.value}>
@@ -187,6 +191,7 @@ export function Select({
   function getA11yLabel(): string | undefined {
     let text = [accessibilityLabel || label, assistiveText];
     text = text.filter(Boolean);
+
     return text.join(", ");
   }
 
@@ -219,6 +224,7 @@ export function Select({
     const options = getOptions();
 
     const activeValue = options.find(option => option.isActive);
+
     return activeValue?.label || placeholder || t("Select.emptyValue");
   }
 }
@@ -229,7 +235,16 @@ function getTextVariation({
 }: Pick<SelectProps, "invalid" | "disabled">): TextVariation {
   if (invalid) return "error";
   if (disabled) return "disabled";
+
   return "subdued";
+}
+
+function getTestID(testID?: string): string {
+  if (testID) {
+    return `ATL-${testID}-Select`;
+  }
+
+  return "ATL-Select";
 }
 
 export function Option({ children }: SelectOption): JSX.Element {

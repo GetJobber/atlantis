@@ -1,11 +1,9 @@
 import React, { MutableRefObject, useRef } from "react";
-import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
+import { fireEvent, render, waitFor } from "@testing-library/react";
 import { useFormState } from "@jobber/hooks/useFormState";
 import { Form, FormRef } from ".";
 import { InputText } from "../InputText";
 import { Text } from "../Text";
-
-afterEach(cleanup);
 
 test("calls the submit handler if the form is valid", async () => {
   const submitHandler = jest.fn();
@@ -175,6 +173,7 @@ interface MockFormValidateProps {
 
 function MockFormValidate({ onSubmit }: MockFormValidateProps) {
   const formRef = useRef() as MutableRefObject<FormRef>;
+
   return (
     <>
       <Form onSubmit={onSubmit} ref={formRef}>

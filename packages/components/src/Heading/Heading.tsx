@@ -1,36 +1,39 @@
 import React, { ReactNode } from "react";
 import { Typography, TypographyOptions } from "../Typography";
+import { useAtlantisConfig } from "../utils/useAtlantisConfig";
+
+type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
 interface HeadingProps {
   /**
    * @default 5
    */
-  readonly level: 1 | 2 | 3 | 4 | 5 | 6;
+  readonly level: HeadingLevel;
   readonly children: ReactNode;
 }
 
-export interface LevelMap {
-  [level: string]: TypographyOptions;
-}
+export type LevelMap = Record<HeadingLevel, TypographyOptions>;
 
 export function Heading({ level = 5, children }: HeadingProps) {
+  const { JOBBER_RETHEME: inRetheme } = useAtlantisConfig();
+
   const levelMap: LevelMap = {
     1: {
       element: "h1",
       size: "jumbo",
-      fontWeight: "black",
+      fontWeight: inRetheme ? "extraBold" : "black",
       textColor: "heading",
     },
     2: {
       element: "h2",
       size: "largest",
-      fontWeight: "black",
+      fontWeight: inRetheme ? "bold" : "black",
       textColor: "heading",
     },
     3: {
       element: "h3",
       size: "larger",
-      fontWeight: "extraBold",
+      fontWeight: inRetheme ? "bold" : "extraBold",
       textColor: "heading",
     },
     4: {
@@ -49,7 +52,7 @@ export function Heading({ level = 5, children }: HeadingProps) {
       element: "h6",
       size: "small",
       textCase: "uppercase",
-      fontWeight: "bold",
+      fontWeight: inRetheme ? "semiBold" : "bold",
       textColor: "heading",
     },
   };

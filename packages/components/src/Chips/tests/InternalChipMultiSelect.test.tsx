@@ -1,5 +1,5 @@
 import React from "react";
-import { cleanup, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { InternalChipMultiSelect } from "../InternalChipMultiSelect";
 import { Chip } from "..";
@@ -25,8 +25,6 @@ beforeEach(() => {
     </InternalChipMultiSelect>,
   );
 });
-
-afterEach(cleanup);
 
 it("should have a label and a checkbox", () => {
   const component = screen.getByTestId("multiselect-chips");

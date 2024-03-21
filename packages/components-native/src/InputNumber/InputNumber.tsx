@@ -36,12 +36,14 @@ function InputNumberInternal(props: InputNumberProps, ref: Ref<InputTextRef>) {
     }
   };
   const { t } = useAtlantisI18n();
+
   const handleChange = (newValue: number | string | undefined) => {
     props.onChange?.(newValue);
   };
 
   const { inputTransform: convertToString, outputTransform: convertToNumber } =
     useNumberTransform(props.value);
+
   return (
     <InputText
       {...props}
@@ -69,10 +71,12 @@ function hasPeriodAtEnd(value: string) {
   // matches patterns like ".", "0.", "12.", "+1.", and "-0."
   return !!value?.match(/^[-+]?[0-9]*\.$/);
 }
+
 function hasScientificNotationAtEnd(value: string) {
   // matches patterns like "1e", "+2e", "1.2e" and "-3e"
   return !!value?.match(/^[-+]?[0-9]+(\.?[0-9]+)?e$/);
 }
+
 function hasPlusMinusAtEnd(value: string) {
   // matches "+" and "-"
   return !!value?.match(/^[-+]+$/);
@@ -92,6 +96,7 @@ export function shouldShowUserValue(value: string): boolean {
   ];
   const isSpecial = (v: string) =>
     specialCasesFn.reduce((acc, fn) => acc || fn(v), false);
+
   return isSpecial(value);
 }
 
@@ -105,9 +110,11 @@ export function useNumberTransform(controlledValue: number | undefined): {
 
   const convertToNumber = (newValue: string) => {
     setTypedValue(newValue);
+
     if (newValue?.match?.(NUMBER_VALIDATION_REGEX)) {
       return parseFloat(newValue);
     }
+
     return newValue;
   };
 
@@ -115,6 +122,7 @@ export function useNumberTransform(controlledValue: number | undefined): {
     if (shouldShowUserValue(typedValue)) {
       return typedValue;
     }
+
     return internalValue?.toString() || undefined;
   };
 

@@ -15,6 +15,8 @@ function setViewportWidth(newWidth: number) {
         matches: matches,
         media: query,
         onchange: null,
+        addListener: jest.fn(), // Deprecated but some packages use it
+        removeListener: jest.fn(), // Deprecated but some packages use it
         addEventListener: jest.fn(),
         removeEventListener: jest.fn(),
         dispatchEvent: jest.fn(),
@@ -52,23 +54,17 @@ function cleanup() {
 }
 
 export function isQueryMatching(query: string) {
-  const match = query.match(/(\w+)\s*(<|<=|>|>=|=)\s*(\d+)/);
+  const match = query.match(/(min-width|max-width):\s*(\d+)/);
   if (!match) return false;
 
   const { innerWidth } = window;
-  const [, , operator, value] = match;
+  const [, operator, value] = match;
   const breakpoint = parseInt(value, 10);
 
   switch (operator) {
-    case "<":
-      return innerWidth < breakpoint;
-    case "<=":
+    case "max-width":
       return innerWidth <= breakpoint;
-    case ">":
-      return innerWidth > breakpoint;
-    case ">=":
+    case "min-width":
       return innerWidth >= breakpoint;
-    case "=":
-      return innerWidth === breakpoint;
   }
 }

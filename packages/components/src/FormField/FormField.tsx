@@ -4,10 +4,10 @@ import React, {
   KeyboardEvent,
   MutableRefObject,
   useEffect,
+  useId,
   useImperativeHandle,
   useState,
 } from "react";
-import { v1 as uuidv1 } from "uuid";
 import { Controller, useForm, useFormContext } from "react-hook-form";
 import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.css";
@@ -42,6 +42,8 @@ export function FormField(props: FormFieldProps) {
     onFocus,
     onBlur,
     onValidation,
+    onKeyUp,
+    clearable = "never",
   } = props;
 
   const {
@@ -54,8 +56,8 @@ export function FormField(props: FormFieldProps) {
     : // If there isn't a Form Context being provided, get a form for this field.
       useForm({ mode: "onTouched" });
 
-  const [identifier] = useState(uuidv1());
-  const [descriptionIdentifier] = useState(`descriptionUUID--${uuidv1()}`);
+  const [identifier] = useState(useId());
+  const [descriptionIdentifier] = useState(`descriptionUUID--${useId()}`);
   /**
    * Generate a name if one is not supplied, this is the name
    * that will be used for react-hook-form and not neccessarily
@@ -104,14 +106,14 @@ export function FormField(props: FormFieldProps) {
           readOnly: readonly,
           inputMode: keyboard,
           onChange: handleChange,
+          onBlur: handleBlur,
+          onFocus: handleFocus,
           ...(description &&
             !inline && { "aria-describedby": descriptionIdentifier }),
         };
 
         const textFieldProps = {
           ...fieldProps,
-          onBlur: handleBlur,
-          onFocus: handleFocus,
           onKeyDown: handleKeyDown,
         };
 
@@ -122,6 +124,8 @@ export function FormField(props: FormFieldProps) {
             error={error}
             identifier={identifier}
             descriptionIdentifier={descriptionIdentifier}
+            clearable={clearable}
+            onClear={handleClear}
           >
             {renderField()}
           </FormFieldWrapper>
@@ -155,12 +159,20 @@ export function FormField(props: FormFieldProps) {
                     max={max}
                     min={min}
                     ref={inputRef as MutableRefObject<HTMLInputElement>}
+                    onKeyUp={onKeyUp}
                   />
                   {loading && <FormFieldPostFix variation="spinner" />}
                   {children}
                 </>
               );
           }
+        }
+
+        function handleClear() {
+          handleBlur();
+          setValue(controlledName, undefined, { shouldValidate: true });
+          onChange && onChange("");
+          inputRef?.current?.focus();
         }
 
         function handleChange(
@@ -190,10 +202,16 @@ export function FormField(props: FormFieldProps) {
         }
 
         function handleFocus(
-          event: FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+          event: FocusEvent<
+            HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+          >,
         ) {
           const target = event.currentTarget;
-          setTimeout(() => readonly && target.select());
+
+          if ((target as HTMLInputElement).select) {
+            setTimeout(() => readonly && (target as HTMLInputElement).select());
+          }
+
           onFocus && onFocus();
         }
 

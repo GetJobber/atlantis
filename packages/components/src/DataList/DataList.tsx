@@ -1,4 +1,5 @@
-import React, { useRef, useState } from "react";
+/* eslint-disable max-statements */
+import React, { useMemo, useRef, useState } from "react";
 import styles from "./DataList.css";
 import { DataListTotalCount } from "./components/DataListTotalCount";
 import { DataListLoadingState } from "./components/DataListLoadingState";
@@ -44,6 +45,10 @@ import {
   DATA_LIST_FILTERING_SPINNER_TEST_ID,
 } from "./DataList.const";
 import { DataListBulkActions } from "./components/DataListBulkActions";
+import {
+  DataListStatusBar,
+  InternalDataListStatusBar,
+} from "./components/DataListStatusBar";
 import { Heading } from "../Heading";
 import { Spinner } from "../Spinner";
 
@@ -52,10 +57,14 @@ export function DataList<T extends DataListObject>({
   sorting,
   ...props
 }: DataListProps<T>) {
-  const [layoutBreakpoints, setLayoutBreakpoints] = useState<Breakpoints[]>([]);
   const [layouts, setLayouts] = useState<{
     [Breakpoint in Breakpoints]?: LayoutRenderer<DataListObject>;
   }>({});
+
+  const layoutBreakpoints = useMemo(
+    () => sortBreakpoints(Object.keys(layouts) as Breakpoints[]),
+    [layouts],
+  );
 
   const searchComponent = getCompoundComponent<DataListSearchProps>(
     props.children,
@@ -79,6 +88,10 @@ export function DataList<T extends DataListObject>({
     props.children,
     DataListBulkActions,
   );
+  const headerCount = Object.keys(props.headers).length;
+
+  const shouldRenderStickyHeader =
+    !!filterComponent || !!searchComponent || headerCount > 0;
 
   return (
     <DataListContext.Provider
@@ -90,7 +103,6 @@ export function DataList<T extends DataListObject>({
         itemActionComponent,
         bulkActionsComponent,
         layoutBreakpoints,
-        registerLayoutBreakpoints,
         layouts,
         registerLayout,
         ...props,
@@ -99,13 +111,9 @@ export function DataList<T extends DataListObject>({
         sorting: sorting as DataListProps<DataListObject>["sorting"],
       }}
     >
-      <InternalDataList />
+      <InternalDataList shouldRenderStickyHeader={shouldRenderStickyHeader} />
     </DataListContext.Provider>
   );
-
-  function registerLayoutBreakpoints(size: Breakpoints) {
-    setLayoutBreakpoints(prev => sortBreakpoints([...prev, size]));
-  }
 
   function registerLayout(
     size: Breakpoints,
@@ -118,7 +126,11 @@ export function DataList<T extends DataListObject>({
   }
 }
 
-function InternalDataList() {
+function InternalDataList({
+  shouldRenderStickyHeader,
+}: {
+  readonly shouldRenderStickyHeader: boolean;
+}) {
   const {
     data,
     title,
@@ -145,14 +157,17 @@ function InternalDataList() {
       heading as per the design requirements */}
       <div ref={backToTopRef} />
 
-      <DataListStickyHeader>
-        <div className={styles.headerFilters}>
-          <InternalDataListFilters />
-          <InternalDataListSearch />
-        </div>
+      {shouldRenderStickyHeader && (
+        <DataListStickyHeader>
+          <div className={styles.headerFilters}>
+            <InternalDataListFilters />
+            <InternalDataListSearch />
+          </div>
 
-        <DataListHeader />
-      </DataListStickyHeader>
+          <InternalDataListStatusBar />
+          <DataListHeader />
+        </DataListStickyHeader>
+      )}
 
       {initialLoading && <DataListLoadingState />}
 
@@ -226,22 +241,27 @@ DataList.Search = DataListSearch;
 DataList.ItemActions = DataListItemActions;
 
 /**
- * Defines the group actions you could do on multiple DataList items.
- */
-DataList.BulkActions = DataListBulkActions;
-
-/**
  * Defines the action in a DataList. This should be used inside the
  * DataListItemActions component.
  */
 DataList.ItemAction = DataListAction;
 
 /**
+ * Defines the group actions you could do on multiple DataList items.
+ */
+DataList.BatchActions = DataListBulkActions;
+
+/**
  * Defines the batch action in a DataList. This should be used inside the
- * DataListBulkActions component.
+ * DataListBatchActions component.
  */
 DataList.BatchAction = function DataListBatchAction(
   props: DataListBulkActionProps,
 ) {
   return <DataListAction {...props} />;
 };
+
+/**
+ * Defines a status bar that is rendered between the filters and the header.
+ */
+DataList.StatusBar = DataListStatusBar;

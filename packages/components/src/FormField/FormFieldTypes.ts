@@ -113,6 +113,15 @@ export interface CommonFormFieldProps {
    * Set the component to the given value.
    */
   readonly value?: string | number | Date;
+
+  /**
+   * Add a clear action on the input that clears the value.
+   *
+   * You should always use `while-editing` if you want the input to be
+   * clearable. if the input value isn't editable (i.e. `InputTime`) you can
+   * set it to `always`.
+   */
+  readonly clearable?: "never" | "always";
 }
 
 export interface FormFieldProps extends CommonFormFieldProps {
@@ -194,6 +203,8 @@ export interface FormFieldProps extends CommonFormFieldProps {
    * Blur callback.
    */
   onBlur?(): void;
+
+  onKeyUp?(event: React.KeyboardEvent<HTMLInputElement>): void;
 
   /**
    * Exclusively for textareas. Specifies the visible height of a textarea.

@@ -17,6 +17,7 @@ export function ClearAction({
   hasMarginRight = false,
 }: ClearActionProps): JSX.Element {
   const { t } = useAtlantisI18n();
+
   return (
     <Pressable
       style={[styles.container, hasMarginRight && styles.addedMargin]}

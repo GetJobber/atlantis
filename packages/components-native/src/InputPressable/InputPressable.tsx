@@ -2,13 +2,9 @@ import React, { Ref, forwardRef, useEffect, useState } from "react";
 import { IconNames } from "@jobber/design";
 import { FieldError } from "react-hook-form";
 import { Text as NativeText, Pressable } from "react-native";
+import { Clearable, useShowClear } from "@jobber/hooks";
 import { styles } from "./InputPressable.style";
-import {
-  Clearable,
-  InputFieldWrapper,
-  commonInputStyles,
-  useShowClear,
-} from "../InputFieldWrapper";
+import { InputFieldWrapper, commonInputStyles } from "../InputFieldWrapper";
 
 export interface InputPressableProps {
   /**
@@ -25,6 +21,11 @@ export interface InputPressableProps {
    * Disables input selection
    */
   readonly disabled?: boolean;
+
+  /**
+   * Indicates if the input is focused
+   */
+  readonly focused?: boolean;
 
   /**
    * Indicates if there is an validation error
@@ -99,6 +100,7 @@ export function InputPressableInternal(
     suffix,
     clearable = "never",
     onClear,
+    focused,
   }: InputPressableProps,
   ref: Ref<InputPressableRef>,
 ): JSX.Element {
@@ -123,7 +125,7 @@ export function InputPressableInternal(
       suffix={suffix}
       hasValue={hasValue}
       hasMiniLabel={hasMiniLabel}
-      focused={false}
+      focused={focused}
       error={error}
       invalid={invalid}
       placeholder={placeholder}

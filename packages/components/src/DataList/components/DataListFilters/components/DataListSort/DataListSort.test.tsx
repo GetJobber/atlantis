@@ -5,22 +5,37 @@ import {
   DataListContext,
   defaultValues,
 } from "@jobber/components/DataList/context/DataListContext";
-import { DataListSorting } from "@jobber/components/DataList/DataList.types";
 import { DataListSort } from "./DataListSort";
 
+const MENU_TEST_ID = "ATL-Combobox-Content";
 const sortableKeys = ["label", "address"] as const;
 const handleSort = jest.fn();
+const headers = { label: "Label", address: "Address", phone: "Phone" };
 const mockContextValue = {
   ...defaultValues,
-  headers: { label: "Label", address: "Address", phone: "Phone" },
+  headers,
   sorting: {
-    sortable: [...sortableKeys],
+    sortable: sortableKeys.map(key => ({
+      key,
+      options: [
+        {
+          id: "selectionAsc",
+          label: `${headers[key]} (A-Z)`,
+          order: "asc",
+        },
+        {
+          id: "selectionDesc",
+          label: `${headers[key]} (Z-A)`,
+          order: "desc",
+        },
+      ],
+    })),
     state: undefined,
     onSort: handleSort,
   },
 };
 
-const buttonLabel = "Sort by";
+const buttonLabel = "Sort |";
 
 afterEach(() => {
   handleSort.mockClear();
@@ -34,9 +49,7 @@ describe("DataListSort", () => {
       </DataListContext.Provider>,
     );
 
-    expect(
-      screen.getByRole("button", { name: buttonLabel }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole("combobox")).toBeInTheDocument();
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
 
@@ -52,7 +65,7 @@ describe("DataListSort", () => {
     ).not.toBeInTheDocument();
   });
 
-  describe("Popover", () => {
+  describe("Combobox", () => {
     beforeEach(async () => {
       render(
         <DataListContext.Provider value={mockContextValue}>
@@ -60,23 +73,16 @@ describe("DataListSort", () => {
         </DataListContext.Provider>,
       );
 
-      await userEvent.click(screen.getByRole("button", { name: buttonLabel }));
+      await userEvent.click(screen.getByRole("combobox"));
     });
 
-    it("should render a popover when the button is clicked", () => {
-      expect(screen.getByRole("dialog")).toBeInTheDocument();
+    it("should render a listbox when the button is clicked", () => {
+      expect(screen.getByRole("listbox")).toBeInTheDocument();
     });
 
     it("should close the popover when the button is clicked again", async () => {
-      await userEvent.click(screen.getByRole("button", { name: buttonLabel }));
-      expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
-    });
-
-    it("should close the popover when the close button is pressed", async () => {
-      await userEvent.click(
-        screen.getByRole("button", { name: "Close dialog" }),
-      );
-      expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+      await userEvent.click(screen.getByRole("combobox"));
+      expect(screen.getByTestId(MENU_TEST_ID)).toHaveClass("hidden");
     });
   });
 
@@ -88,27 +94,28 @@ describe("DataListSort", () => {
         </DataListContext.Provider>,
       );
 
-      await userEvent.click(screen.getByRole("button", { name: buttonLabel }));
+      await userEvent.click(screen.getByRole("combobox"));
     });
 
-    it.each(sortableKeys)("should render a chip for %s", name => {
-      expect(
-        screen.getByRole("radio", { name: mockContextValue.headers[name] }),
-      ).toBeInTheDocument();
-    });
+    it.each(sortableKeys)(
+      "should render ascending and descending chip for %s",
+      name => {
+        expect(
+          screen.getByRole("option", {
+            name: `${mockContextValue.headers[name]} (A-Z)`,
+          }),
+        ).toBeInTheDocument();
+
+        expect(
+          screen.getByRole("option", {
+            name: `${mockContextValue.headers[name]} (Z-A)`,
+          }),
+        ).toBeInTheDocument();
+      },
+    );
 
     it("should render a chip for none", () => {
-      expect(screen.getByRole("radio", { name: "None" })).toBeInTheDocument();
-    });
-
-    it("should render a chip for ascending and descending and they're disabled", () => {
-      const ascendingRadio = screen.getByRole("radio", { name: "Ascending" });
-      expect(ascendingRadio).toBeInTheDocument();
-      expect(ascendingRadio).toBeDisabled();
-
-      const descendingRadio = screen.getByRole("radio", { name: "Descending" });
-      expect(descendingRadio).toBeInTheDocument();
-      expect(descendingRadio).toBeDisabled();
+      expect(screen.getByRole("option", { name: "None" })).toBeInTheDocument();
     });
   });
 
@@ -120,63 +127,63 @@ describe("DataListSort", () => {
         </DataListContext.Provider>,
       );
 
-      await userEvent.click(screen.getByRole("button", { name: buttonLabel }));
+      await userEvent.click(screen.getByRole("combobox"));
     });
+
+    it.each(sortableKeys)(
+      "should call onSort with %s ascending",
+      async name => {
+        await userEvent.click(
+          screen.getByRole("option", {
+            name: `${mockContextValue.headers[name]} (A-Z)`,
+          }),
+        );
+
+        expect(handleSort).toHaveBeenCalledWith({
+          key: name,
+          id: "selectionAsc",
+          label: `${headers[name]} (A-Z)`,
+          order: "asc",
+        });
+      },
+    );
+
+    it.each(sortableKeys)(
+      "should call onSort with %s descending",
+      async name => {
+        await userEvent.click(
+          screen.getByRole("option", {
+            name: `${mockContextValue.headers[name]} (Z-A)`,
+          }),
+        );
+
+        expect(handleSort).toHaveBeenCalledWith({
+          key: name,
+          label: `${headers[name]} (Z-A)`,
+          order: "desc",
+          id: "selectionDesc",
+        });
+      },
+    );
 
     it.each(sortableKeys)("should call onSort with %s", async name => {
       await userEvent.click(
-        screen.getByRole("radio", { name: mockContextValue.headers[name] }),
+        screen.getByRole("option", {
+          name: `${mockContextValue.headers[name]} (A-Z)`,
+        }),
       );
 
       expect(handleSort).toHaveBeenCalledWith({
         key: name,
+        label: `${headers[name]} (A-Z)`,
         order: "asc",
+        id: "selectionAsc",
       });
     });
 
     it("should call onSort with undefined when none is clicked", async () => {
-      await userEvent.click(screen.getByRole("radio", { name: "None" }));
+      await userEvent.click(screen.getByRole("option", { name: "None" }));
       expect(handleSort).toHaveBeenCalledWith(undefined);
-    });
-  });
-
-  describe("'Ordered by' change", () => {
-    const initialSortingState: DataListSorting = {
-      key: "label",
-      order: "asc",
-    };
-
-    beforeEach(async () => {
-      render(
-        <DataListContext.Provider
-          value={{
-            ...mockContextValue,
-            sorting: {
-              ...mockContextValue.sorting,
-              state: initialSortingState,
-            },
-          }}
-        >
-          <DataListSort />
-        </DataListContext.Provider>,
-      );
-
-      await userEvent.click(
-        screen.getByRole("button", { name: RegExp(buttonLabel, "i") }),
-      );
-    });
-
-    it("should call not call onSort when you're selecting the already selected value", async () => {
-      await userEvent.click(screen.getByRole("radio", { name: "Ascending" }));
-      expect(handleSort).not.toHaveBeenCalled();
-    });
-
-    it("should call onSort with the new direction", async () => {
-      await userEvent.click(screen.getByRole("radio", { name: "Descending" }));
-      expect(handleSort).toHaveBeenCalledWith({
-        ...initialSortingState,
-        order: "desc",
-      });
     });
   });
 });

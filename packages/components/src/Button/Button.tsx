@@ -1,7 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
-import { Link } from "react-router-dom";
+import { Link, LinkProps } from "react-router-dom";
 import { IconNames } from "@jobber/design";
 import styles from "./Button.css";
 import { Icon } from "../Icon";
@@ -51,11 +51,12 @@ interface ButtonAnchorProps extends ButtonFoundationProps {
   readonly url?: string;
 }
 
-interface ButtonLinkProps extends ButtonFoundationProps {
+interface ButtonLinkProps<S = unknown> extends ButtonFoundationProps {
   /**
-   * Used for client side routing. Only use when inside a routed component.
+   * **Deprecated**: to will be removed in the next major version
+   * @deprecated
    */
-  readonly to?: string;
+  readonly to?: LinkProps<S>["to"];
 }
 
 interface BaseActionProps extends ButtonFoundationProps {

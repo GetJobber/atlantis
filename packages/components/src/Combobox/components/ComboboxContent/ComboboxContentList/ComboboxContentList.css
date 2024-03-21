@@ -5,52 +5,34 @@
 
 .optionsList {
   display: flex;
+
   max-height: calc(var(--space-small) * 33.33);
   margin: 0;
   padding: 0;
-  overflow: scroll;
+  overflow: auto;
   list-style: none;
   flex-direction: column;
   gap: var(--space-smaller);
 }
-
-.option {
-  display: flex;
-  min-height: calc((var(--space-largest) - var(--space-smaller)));
-  box-sizing: border-box;
-  margin: 0 var(--space-small);
-  padding: var(--space-small);
-  border-radius: var(--radius-large);
-  color: var(--color-heading);
-  font-weight: 500;
-  cursor: pointer;
-  transition: all var(--timing-base);
-  justify-content: space-between;
-  align-items: center;
-}
-
-.option:hover,
-.option:focus {
-  background-color: var(--color-surface--background);
-}
-
-.option:focus {
-  box-shadow: var(--shadow-focus);
-}
-
 .filterMessage,
 .emptyStateMessage {
   padding: var(--space-small) var(--space-base);
 }
 
+.container::before,
 .container::after {
   content: "";
   display: block;
   position: absolute;
   right: 0;
-  bottom: var(--space-small);
   left: 0;
   height: var(--space-base);
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.container::after {
+  bottom: var(--space-small);
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0) 0%,
@@ -59,16 +41,36 @@
 }
 
 .container::before {
-  content: "";
-  display: block;
-  position: absolute;
   top: var(--space-small);
-  right: 0;
-  left: 0;
-  height: var(--space-base);
   background: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 1),
     rgba(255, 255, 255, 0)
   );
+}
+
+.scrollTop::before,
+.scrollNone::before {
+  opacity: 0;
+}
+
+.scrollBottom::after,
+.scrollNone::after {
+  opacity: 0;
+}
+
+.loadingContainer {
+  padding: var(--space-base) var(--space-base);
+}
+
+.loadingContainer.hasOptions {
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  bottom: 0;
+  padding: var(--space-base) 0;
+}
+
+.loadingContainer.hasOptions:empty {
+  display: none;
 }

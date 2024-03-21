@@ -57,6 +57,48 @@ describe("DataListAction", () => {
     await userEvent.click(button);
     expect(handleClick).toHaveBeenCalledWith(mockItem);
   });
+
+  it("should render the correct label when a callback is passed", async () => {
+    const value = { activeItem: { id: 1 } };
+    const mockLabel = jest.fn(() => "Edit");
+
+    render(
+      <DataListLayoutActionsContext.Provider value={value}>
+        <DataListAction label={mockLabel} />
+      </DataListLayoutActionsContext.Provider>,
+    );
+
+    expect(screen.getByRole("button", { name: "Edit" })).toBeInTheDocument();
+    expect(mockLabel).toHaveBeenCalledWith(value.activeItem);
+  });
+
+  describe("Action visibility", () => {
+    const value = { activeItem: { id: 1 } };
+
+    it("should render the action if the visibility prop is returning true", () => {
+      const mockVisibility = jest.fn(() => true);
+      render(
+        <DataListLayoutActionsContext.Provider value={value}>
+          <DataListAction label={name} visible={mockVisibility} />
+        </DataListLayoutActionsContext.Provider>,
+      );
+
+      expect(screen.getByRole("button", { name })).toBeInTheDocument();
+      expect(mockVisibility).toHaveBeenCalledWith(value.activeItem);
+    });
+
+    it("should not render the action if the visibility prop is returning false", () => {
+      const mockVisibility = jest.fn(() => false);
+      render(
+        <DataListLayoutActionsContext.Provider value={value}>
+          <DataListAction label={name} visible={mockVisibility} />
+        </DataListLayoutActionsContext.Provider>,
+      );
+
+      expect(screen.queryByRole("button", { name })).not.toBeInTheDocument();
+      expect(mockVisibility).toHaveBeenCalledWith(value.activeItem);
+    });
+  });
 });
 
 function renderComponent() {

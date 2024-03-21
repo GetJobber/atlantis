@@ -12,13 +12,14 @@ it("renders a regular input for text and numbers", () => {
       >
         <div
           class="wrapper"
+          data-testid="Form-Field-Wrapper"
         >
           <div
             class="inputWrapper"
           >
             <label
               class="label"
-              for="123e4567-e89b-12d3-a456-426655440001"
+              for=":r0:"
             >
               Favourite colour
             </label>
@@ -27,7 +28,7 @@ it("renders a regular input for text and numbers", () => {
             >
               <input
                 class="input"
-                id="123e4567-e89b-12d3-a456-426655440001"
+                id=":r0:"
                 type="text"
                 value=""
               />
@@ -50,13 +51,14 @@ it("renders a textarea", () => {
       >
         <div
           class="wrapper textarea"
+          data-testid="Form-Field-Wrapper"
         >
           <div
             class="inputWrapper"
           >
             <label
               class="label"
-              for="123e4567-e89b-12d3-a456-426655440003"
+              for=":r2:"
             >
               Describe your favourite colour?
             </label>
@@ -65,7 +67,7 @@ it("renders a textarea", () => {
             >
               <textarea
                 class="input"
-                id="123e4567-e89b-12d3-a456-426655440003"
+                id=":r2:"
                 rows="3"
               />
             </div>
@@ -91,13 +93,14 @@ it("renders a textarea with 4 rows", () => {
       >
         <div
           class="wrapper textarea"
+          data-testid="Form-Field-Wrapper"
         >
           <div
             class="inputWrapper"
           >
             <label
               class="label"
-              for="123e4567-e89b-12d3-a456-426655440005"
+              for=":r4:"
             >
               Describe your favourite colour?
             </label>
@@ -106,7 +109,7 @@ it("renders a textarea with 4 rows", () => {
             >
               <textarea
                 class="input"
-                id="123e4567-e89b-12d3-a456-426655440005"
+                id=":r4:"
                 rows="4"
               />
             </div>

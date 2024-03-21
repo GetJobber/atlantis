@@ -6,16 +6,20 @@ import React, {
   useState,
 } from "react";
 import classnames from "classnames";
+import { useShowClear } from "@jobber/hooks/useShowClear";
 import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.css";
 import { AffixIcon, AffixLabel } from "./FormFieldAffix";
 import { FormFieldDescription } from "./FormFieldDescription";
+import { ClearAction } from "./components/ClearAction";
 import { InputValidation } from "../InputValidation";
 
 interface FormFieldWrapperProps extends FormFieldProps {
-  error: string;
-  identifier: string;
-  descriptionIdentifier: string;
+  readonly error: string;
+  readonly identifier: string;
+  readonly descriptionIdentifier: string;
+  readonly clearable: "never" | "always";
+  readonly onClear: () => void;
 }
 
 interface LabelPadding {
@@ -41,6 +45,8 @@ export function FormFieldWrapper({
   disabled,
   inline,
   identifier,
+  clearable,
+  onClear,
 }: PropsWithChildren<FormFieldWrapperProps>) {
   const wrapperClasses = classnames(
     styles.wrapper,
@@ -50,7 +56,6 @@ export function FormFieldWrapper({
       [styles.miniLabel]:
         (placeholder && value !== "") ||
         (placeholder && type === "select") ||
-        (placeholder && type === "time") ||
         // Naively assume that if the the type is tel, it is the InputPhoneNumber
         (placeholder && type === "tel"),
       [styles.textarea]: type === "textarea",
@@ -58,6 +63,8 @@ export function FormFieldWrapper({
       [styles.invalid]: invalid ?? error,
       [styles.disabled]: disabled,
       [styles.maxLength]: maxLength,
+      [styles.timeInputLabel]:
+        placeholder && type === "time" && placeholder && value === "",
     },
   );
   const containerClasses = classnames(styles.container, {
@@ -80,9 +87,27 @@ export function FormFieldWrapper({
     setLabelStyle(getAffixPaddding);
   }, [value]);
 
+  const [focused, setFocused] = useState(false);
+
+  const showClear = useShowClear({
+    clearable,
+    multiline: type === "textarea",
+    focused,
+    hasValue: Boolean(value),
+    disabled,
+  });
+
   return (
-    <div className={containerClasses}>
-      <div className={wrapperClasses} style={wrapperInlineStyle}>
+    <div
+      className={containerClasses}
+      onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
+    >
+      <div
+        className={wrapperClasses}
+        style={wrapperInlineStyle}
+        data-testid="Form-Field-Wrapper"
+      >
         {prefix?.icon && <AffixIcon {...prefix} size={size} />}
         <div className={styles.inputWrapper}>
           {placeholder && (
@@ -105,6 +130,7 @@ export function FormFieldWrapper({
             <AffixLabel {...suffix} labelRef={suffixRef} variation="suffix" />
           )}
         </div>
+        {showClear && <ClearAction onClick={onClear} />}
         {suffix?.icon && (
           <AffixIcon {...suffix} variation="suffix" size={size} />
         )}

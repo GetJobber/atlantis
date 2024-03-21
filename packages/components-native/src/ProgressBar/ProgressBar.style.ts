@@ -22,4 +22,17 @@ export const styles = StyleSheet.create({
     height: "100%",
     borderRadius: 100,
   },
+  step: {
+    flex: 1,
+    marginRight: tokens["space-small"],
+    height: "100%",
+    borderRadius: 100,
+    borderColor: "rgba(255,255,255,0.3)",
+  },
+  completedStep: {
+    backgroundColor: tokens["color-interactive"],
+  },
+  inProgressStep: {
+    backgroundColor: tokens["color-informative"],
+  },
 });

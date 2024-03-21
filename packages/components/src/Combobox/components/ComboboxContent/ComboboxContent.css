@@ -1,14 +1,16 @@
 .content {
   z-index: var(--elevation-tooltip);
-  max-width: var(--popover--width);
-  min-width: calc(var(--space-extravagant) * 3.75);
+  width: calc(var(--space-extravagant) * 3.75);
   box-shadow: var(--shadow-base);
   margin-top: var(--space-small);
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-larger);
-  overflow: scroll;
-  overflow-y: auto;
+  overflow: auto;
   background: var(--color-surface);
+}
+
+:global(.jobber-retheme) .content {
+  border-radius: var(--radius-base);
 }
 
 /* CAUTION: Tests for content visibility assume this class' presence hides the content
@@ -17,6 +19,15 @@
 .content.hidden {
   display: none;
   visibility: hidden;
+}
+
+.content:focus,
+.content:focus-visible {
+  outline: none;
+}
+
+.content:focus-visible {
+  box-shadow: var(--shadow-focus);
 }
 
 .actions {

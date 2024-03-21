@@ -4,6 +4,8 @@
 }
 
 .wrapper {
+  --data-list--minimum-item-height: calc(var(--base-unit) * 3.5);
+
   display: flex;
   flex-direction: column;
   position: relative;
@@ -25,9 +27,13 @@
 
 .headerFilters {
   display: grid;
-  padding: var(--space-small) 0;
+  padding: calc(var(--space-small) + var(--space-smaller)) 0;
   gap: var(--space-small);
-  grid-template-columns: auto max-content;
+  grid-template-columns: auto fit-content(calc(var(--base-unit) * 14));
+}
+
+.headerFilters:empty {
+  display: none;
 }
 
 .headerTitles {
@@ -40,7 +46,9 @@
 }
 
 .batchSelectContainer {
+  --data-list--header-actions-gap: var(--space-small);
   display: flex;
+  gap: var(--data-list--header-actions-gap);
 
   @media (--small-screens-and-below) {
     justify-content: space-between;
@@ -57,7 +65,7 @@
   display: flex;
   margin: calc(var(--space-small) * -1) 0;
   align-items: center;
-  gap: var(--space-smaller);
+  gap: var(--data-list--header-actions-gap);
 }
 
 /*
@@ -71,15 +79,22 @@
   transition: all var(--timing-base);
 }
 
+.listItem,
+.listItemClickable {
+  display: grid;
+  grid-template-columns: minmax(0px, auto);
+  min-height: var(--data-list--minimum-item-height);
+  align-items: center;
+}
+
 .listItem.active,
 .listItem:hover,
 .listItem:focus-within {
-  --data-list-item-active-color: var(--color-surface--background);
+  --data-list-item-active-color: var(--color-surface--hover);
   background-color: var(--data-list-item-active-color);
 }
 
 .listItemClickable {
-  display: block;
   margin: calc(var(--space-small) * -1) 0;
   padding: var(--space-small) 0;
   border: none;
@@ -87,6 +102,15 @@
   text-decoration: none;
   background-color: transparent;
   cursor: pointer;
+}
+
+/**
+ * Reset CSS properties on focus to ensure we only have the focus state on the
+ * parent .listItem
+ */
+.listItemClickable:focus {
+  outline: none;
+  background-color: transparent;
 }
 
 /**

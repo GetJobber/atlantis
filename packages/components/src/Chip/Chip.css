@@ -1,24 +1,33 @@
+:root {
+  --chip--gradient-color-variation: var(--chip-base-bg);
+  --chip--gradient-color-variation--hover: var(--chip-base--hover);
+}
+
 .chip {
   --chip-height: 40px;
   --chip-radius: 20px;
-  --chip-disabled--bg: var(--color-grey--lighter);
-  --chip-bar-color: var(--color-greyBlue--light);
-  --chip-base-bg: var(--color-greyBlue--lightest);
-  --chip-base--hover: var(--color-greyBlue--lighter);
+  --chip-base-bg: var(--color-surface--background);
+  --chip-base--hover: var(--color-surface--background--hover);
   display: flex;
   position: relative;
   height: var(--chip-height);
+  min-width: 0;
   padding: var(--space-small) var(--base-unit);
   border: var(--border-base) solid transparent;
   border-radius: var(--chip-radius);
   color: var(--color-heading);
   text-align: left;
   cursor: pointer;
-  transition: all var(--ease-both) var(--timing-quick);
+  transition: all var(--timing-base);
   align-items: center;
 }
 
-.chip:focus {
+.chip:focus,
+.chip:focus-visible {
+  outline: none;
+}
+
+.chip:focus-visible {
   box-shadow: var(--shadow-focus);
 }
 
@@ -44,11 +53,6 @@
   justify-content: center;
 }
 
-.chip .suffix:hover,
-.chip .prefix:hover {
-  background-color: var(--color-disabled);
-}
-
 .chip .prefix.empty,
 .chip .suffix.empty {
   display: none;
@@ -58,7 +62,7 @@
   width: var(--space-minuscule);
   height: var(--base-unit);
   margin: 0 var(--space-small);
-  background-color: var(--chip-bar-color);
+  background-color: var(--color-text--secondary);
 }
 
 .chip .selected {
@@ -70,38 +74,75 @@
   border: var(--border-base) solid transparent;
   color: var(--color-heading);
   background-color: var(--chip-base-bg);
+  --chip--gradient-color-variation: var(--chip-base-bg);
 }
+
 .base:hover,
-.base:focus {
+.base:focus-visible {
   background-color: var(--chip-base--hover);
+  --chip--gradient-color-variation--hover: var(--chip-base--hover);
 }
 
 .invalid,
 .invalid:hover,
-.invalid:focus,
+.invalid:focus-visible,
 .subtle.invalid,
 .subtle.invalid:hover,
-.subtle.invalid:focus {
+.subtle.invalid:focus-visible {
   border: var(--border-base) solid var(--color-critical);
   background-color: var(--color-critical--surface);
+  --chip--gradient-color-variation: var(--color-critical--surface);
+  --chip--gradient-color-variation--hover: var(--color-critical--surface);
+}
+
+.invalid:hover,
+.invalid:focus-visible,
+.subtle.invalid:hover,
+.subtle.invalid:focus-visible {
+  background-color: var(--color-surface--background--hover);
+  --chip--gradient-color-variation: var(--color-surface--background--hover);
+  --chip--gradient-color-variation--hover: var(
+    --color-surface--background--hover
+  );
 }
 
 .subtle {
-  border: var(--border-base) solid var(--color-disabled--secondary);
+  border: var(--border-base) solid var(--color-border);
   background-color: var(--color-surface);
+  --chip--gradient-color-variation: var(--color-surface);
 }
+
+/* CAUTION: Order is important here since
+* there is are different styles for subtle:focus and subtle:hover
+* and we want hover to take priority
+*/
+
+.subtle:focus-visible {
+  --chip--gradient-color-variation--hover: var(--color-surface);
+}
+
 .subtle:hover {
   border: var(--border-base) solid var(--chip-base-bg);
   background-color: var(--chip-base-bg);
+  --chip--gradient-color-variation--hover: var(--chip-base-bg);
+}
+
+.invalid.disabled,
+.invalid.disabled:hover,
+.invalid.disabled:focus-visible {
+  background-color: var(--color-disabled--secondary);
+  cursor: auto;
 }
 
 .disabled,
 .disabled:hover,
-.disabled:focus {
-  border: var(--border-base) solid var(--chip-disabled--bg);
+.disabled:focus-visible {
+  border: var(--border-base) solid var(--color-disabled--secondary);
   color: var(--color-disabled);
-  background-color: var(--chip-disabled--bg);
+  background-color: var(--color-disabled--secondary);
   cursor: auto;
+  --chip--gradient-color-variation: var(--color-disabled--secondary);
+  --chip--gradient-color-variation--hover: var(--color-disabled--secondary);
 }
 
 .disabled .chipBar {
@@ -109,5 +150,52 @@
 }
 
 .chip.disabled .suffix {
-  background-color: var(--color-disabled);
+  background-color: var(--color-disabled--secondary);
+}
+
+.chip.disabled .suffix path {
+  fill: var(--color-disabled);
+}
+
+.chipContent {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  flex-wrap: nowrap;
+}
+
+.chipContent > * {
+  flex: 0 0 auto;
+}
+
+.chipContent > p {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.truncateGradient {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--space-base);
+  height: 100%;
+  background: linear-gradient(
+    to left,
+    var(--chip--gradient-color-variation) 5%,
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.chip:focus-visible .truncateGradient,
+.chip:hover .truncateGradient {
+  background: linear-gradient(
+    to left,
+    var(--chip--gradient-color-variation--hover) 5%,
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.chipLabelRef {
+  display: inline-block;
+  width: 1px;
 }

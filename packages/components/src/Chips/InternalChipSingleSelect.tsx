@@ -1,5 +1,4 @@
-import React, { KeyboardEvent, MouseEvent } from "react";
-import { v1 as uuidv1 } from "uuid";
+import React, { KeyboardEvent, MouseEvent, useId } from "react";
 import styles from "./InternalChip.css";
 import { InternalChip } from "./InternalChip";
 import { ChipSingleSelectProps } from "./ChipsTypes";
@@ -12,7 +11,7 @@ type InternalChipChoiceProps = Pick<
 export function InternalChipSingleSelect({
   children,
   selected,
-  name = uuidv1(),
+  name = useId(),
   onChange,
   onClick,
 }: InternalChipChoiceProps) {
@@ -20,6 +19,7 @@ export function InternalChipSingleSelect({
     <div className={styles.wrapper} data-testid="singleselect-chips">
       {React.Children.map(children, child => {
         const isSelected = child.props.value === selected;
+
         return (
           <label>
             <input
