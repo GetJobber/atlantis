@@ -30,7 +30,7 @@ export function useMediaQuery(query: MediaQuery) {
    */
   if (
     typeof window === "undefined" ||
-    typeof window?.matchMedia === "undefined"
+    typeof window.matchMedia === "undefined"
   ) {
     return true;
   }
