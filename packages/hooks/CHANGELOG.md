@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.3](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.9.2...@jobber/hooks@2.9.3) (2024-03-20)
+
+
+### Bug Fixes
+
+* **components:** Revert Make useMediaQuery SSR Friendly ([#1813](https://github.com/GetJobber/atlantis/issues/1813)) ([e6923be](https://github.com/GetJobber/atlantis/commit/e6923beed4deb172fe465ff219d7a0874711f55d)), closes [#1797](https://github.com/GetJobber/atlantis/issues/1797)
+
+
+
+
+
+## [2.9.2](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.9.1...@jobber/hooks@2.9.2) (2024-03-20)
+
+
+### Bug Fixes
+
+* **components:** Make useMediaQuery SSR Friendly ([#1797](https://github.com/GetJobber/atlantis/issues/1797)) ([7925681](https://github.com/GetJobber/atlantis/commit/79256814b004c49214813e225f3fa32f769c7103))
+
+
+
+
+
 ## [2.9.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.9.0...@jobber/hooks@2.9.1) (2024-03-08)
 
 
