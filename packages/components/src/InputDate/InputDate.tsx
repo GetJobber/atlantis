@@ -44,6 +44,11 @@ interface InputDateProps
    * @default true
    */
   readonly showIcon?: boolean;
+
+  /**
+   * Text to display instead of a date value
+   */
+  readonly emptyValuePlaceholder?: string;
 }
 
 export function InputDate(inputProps: InputDateProps) {
@@ -102,6 +107,7 @@ export function InputDate(inputProps: InputDateProps) {
               }}
               actionsRef={formFieldActionsRef}
               suffix={suffix}
+              emptyValuePlaceholder={inputProps.emptyValuePlaceholder}
             />
           </div>
         );

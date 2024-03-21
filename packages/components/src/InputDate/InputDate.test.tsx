@@ -315,6 +315,29 @@ describe("showIcon prop", () => {
   });
 });
 
+it("should display the selected date when emptyValuePlaceholder is undefined", () => {
+  const date = "11/11/2011";
+  const changeHandler = jest.fn();
+  const { queryByDisplayValue } = render(
+    <InputDate value={new Date(date)} onChange={changeHandler} />,
+  );
+
+  expect(queryByDisplayValue(date)).toBeInTheDocument();
+});
+
+it("should display emptyValuePlaceholder when set", () => {
+  const changeHandler = jest.fn();
+  const expectedDisplayValue = "Unscheduled";
+  const { queryByDisplayValue } = render(
+    <InputDate
+      onChange={changeHandler}
+      emptyValuePlaceholder={expectedDisplayValue}
+    />,
+  );
+
+  expect(queryByDisplayValue(expectedDisplayValue)).toBeInTheDocument();
+});
+
 function NestedTestComponent(props: { readonly date: string }): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
   const changeHandler = jest.fn();

@@ -28,13 +28,6 @@ export interface AtlantisContextProps {
   readonly currencySymbol: string;
 
   /**
-   * The `headerHeight` property represents the height of the app header in Atlantis.
-   * It plays a crucial role in determining the positioning of various elements within the app.
-   * By accurately defining this value, Atlantis can effectively calculate the layout and alignment of its components.
-   */
-  readonly headerHeight: number;
-
-  /**
    * Change the locale of the components. This updates the strings that comes
    * with the components, updates the date and time formats, and/or the
    * native 3rd-party packages.
@@ -51,7 +44,6 @@ export const atlantisContextDefaultValues: AtlantisContextProps = {
   timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
   floatSeparators: { group: ",", decimal: "." },
   currencySymbol: "$",
-  headerHeight: 0,
   locale: "en",
 };
 

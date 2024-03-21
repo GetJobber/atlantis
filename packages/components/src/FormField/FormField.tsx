@@ -44,11 +44,12 @@ export function FormField(props: FormFieldProps) {
     onValidation,
     onKeyUp,
     clearable = "never",
+    emptyValuePlaceholder,
   } = props;
 
   const {
     control,
-    formState: { errors },
+    formState: { errors, isDirty },
     setValue,
     watch,
   } = useFormContext() != undefined
@@ -68,7 +69,9 @@ export function FormField(props: FormFieldProps) {
   );
 
   useEffect(() => {
-    if (value != undefined) {
+    if (emptyValuePlaceholder && !isDirty) {
+      setValue(controlledName, emptyValuePlaceholder);
+    } else if (value != undefined) {
       setValue(controlledName, value);
     }
   }, [value, watch(controlledName)]);
