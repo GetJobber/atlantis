@@ -21,13 +21,17 @@ export function useTimePredict({ value, handleChange }: UseTimePredictProps) {
     }, DEBOUNCE_TIME),
     [typedTime, value, handleChange, IS_12_HOUR_FORMAT],
   );
+
   useEffect(() => {
     set12HourFormat(
-      !!Intl.DateTimeFormat(navigator.language, {
-        hour: "numeric",
-      }).resolvedOptions().hour12,
+      Boolean(
+        Intl.DateTimeFormat(navigator.language, {
+          hour: "numeric",
+        }).resolvedOptions().hour12,
+      ),
     );
   }, []);
+
   /**
    * Predict the hour when user types a number
    */
