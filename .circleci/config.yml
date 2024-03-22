@@ -104,7 +104,7 @@ jobs:
     steps:
       - *attach_workspace
       - run: mkdir -p reports/junit
-      - run: npm run lint:css -- --custom-formatter node_modules/stylelint-junit-formatter > reports/junit/css-lint-results.xml
+      - run: npm run lint:css -- --custom-formatter node_modules/stylelint-junit-formatter/index.js > reports/junit/css-lint-results.xml
       - store_test_results:
           path: reports/junit
       - store_artifacts:
