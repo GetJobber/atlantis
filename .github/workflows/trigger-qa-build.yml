@@ -16,6 +16,7 @@ on:
         - Force Publish Hooks
         - Force Publish All
         - Force Publish Components-native
+        - Force Publish Stylelint-config
 
 jobs:
   trigger_pre_release_build:
@@ -60,6 +61,8 @@ jobs:
             FORCE_PUBLISH_SETTINGS="--force-publish @jobber/components,@jobber/design"
             elif [ "$PUBLISH_SETTING" == "Force Publish Hooks" ]; then
             FORCE_PUBLISH_SETTINGS="--force-publish @jobber/hooks"
+            elif [ "$PUBLISH_SETTING" == "Force Publish Stylelint-config" ]; then
+            FORCE_PUBLISH_SETTINGS="--force-publish @jobber/stylelint-config"
             else
             FORCE_PUBLISH_SETTINGS="--force-publish"
             fi
