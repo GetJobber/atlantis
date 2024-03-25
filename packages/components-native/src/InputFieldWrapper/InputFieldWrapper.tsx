@@ -201,7 +201,8 @@ export function InputFieldWrapper({
             </View>
           )}
         </View>
-        {toolbar && <View style={styles.toolbar}>{toolbar}</View>}
+
+        {toolbar && focused && <View style={styles.toolbar}>{toolbar}</View>}
       </View>
       {assistiveText && !error && !invalid && (
         <Text
