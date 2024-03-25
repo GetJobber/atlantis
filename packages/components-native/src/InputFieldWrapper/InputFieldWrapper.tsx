@@ -88,6 +88,11 @@ export interface InputFieldWrapperProps {
    * Custom styling to override default style of the input field
    */
   readonly styleOverride?: InputFieldStyleOverride;
+
+  /**
+   * Add a toolbar below the input field for actions like rewriting the text.
+   */
+  readonly toolbar?: React.ReactNode;
 }
 
 export function InputFieldWrapper({
@@ -105,6 +110,7 @@ export function InputFieldWrapper({
   onClear,
   showClearAction = false,
   styleOverride,
+  toolbar,
 }: InputFieldWrapperProps): JSX.Element {
   fieldAffixRequiredPropsCheck([prefix, suffix]);
   const handleClear = onClear ?? noopClear;
@@ -195,6 +201,7 @@ export function InputFieldWrapper({
             </View>
           )}
         </View>
+        {toolbar && <View style={styles.toolbar}>{toolbar}</View>}
       </View>
       {assistiveText && !error && !invalid && (
         <Text
