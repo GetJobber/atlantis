@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.87.9](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.8...@jobber/components@4.87.9) (2024-03-25)
+
+
+### Bug Fixes
+
+* **components:** Make FormatTime work on SSR environments ([#1824](https://github.com/GetJobber/atlantis/issues/1824)) ([7fb8961](https://github.com/GetJobber/atlantis/commit/7fb8961e5cf61163c377dd84e2476f0f57bb17ba))
+
+
+
+
+
 ## [4.87.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.7...@jobber/components@4.87.8) (2024-03-22)
 
 **Note:** Version bump only for package @jobber/components
