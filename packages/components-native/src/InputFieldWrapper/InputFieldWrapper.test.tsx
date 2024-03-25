@@ -226,4 +226,38 @@ describe("InputFieldWrapper", () => {
       );
     });
   });
+
+  describe("Toolbar", () => {
+    it("renders a toolbar on focused", () => {
+      const { getByText } = renderInputFieldWrapper({
+        focused: true,
+        toolbar: <Text>I am a tool</Text>,
+      });
+      expect(getByText("I am a tool")).toBeDefined();
+    });
+
+    it("does not render a toolbar when not focused", () => {
+      const { queryByText } = renderInputFieldWrapper({
+        focused: false,
+        toolbar: <Text>I am a tool</Text>,
+      });
+      expect(queryByText("I am a tool")).toBeNull();
+    });
+
+    it("does not render a toolbar when focused and toolbar is not provided", () => {
+      const { getByText, queryByText, rerender } = renderInputFieldWrapper({
+        focused: true,
+        toolbar: <Text>I am a tool</Text>,
+      });
+      expect(getByText("I am a tool")).toBeDefined();
+
+      rerender(
+        <InputFieldWrapper focused={true}>
+          <Text>Test</Text>
+        </InputFieldWrapper>,
+      );
+
+      expect(queryByText("I am a tool")).toBeNull();
+    });
+  });
 });
