@@ -57,7 +57,7 @@ export function InputMask({
   const inputMask = (
     <div className={styles.mask} aria-hidden="true">
       <span className={styles.hiddenValue}>{stringifiedValue}</span>
-      {placeholderValue}
+      <span>{placeholderValue}</span>
     </div>
   );
 
