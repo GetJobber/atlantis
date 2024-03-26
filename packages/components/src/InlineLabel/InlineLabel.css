@@ -5,28 +5,28 @@
 .base {
   padding: calc(var(--space-smaller) * 1.5) calc(var(--space-small) * 1.25);
   border-radius: var(--radius-large);
+}
 
-  span {
-    line-height: 0.75rem;
-  }
+.base span {
+  line-height: 0.75rem;
 }
 
 .large {
   padding: calc(var(--space-small) * 1.25) calc(var(--space-small) * 1.5);
   border-radius: var(--radius-larger);
+}
 
-  span {
-    line-height: 1rem;
-  }
+.large span {
+  line-height: 1rem;
 }
 
 .larger {
   padding: calc(var(--space-small) * 1.5) calc(var(--space-base));
   border-radius: var(--radius-larger);
+}
 
-  span {
-    line-height: 1rem;
-  }
+.larger span {
+  line-height: 1rem;
 }
 
 .greyBlue {
