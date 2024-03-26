@@ -28,6 +28,7 @@ it("fires onChange with the new value when you click a date", () => {
   fireEvent.click(selectDate);
   expect(changeHandler).toHaveBeenCalledWith(new Date(newDate));
 });
+
 it("shouldn't call onChange with the new value when you click a disabled date", () => {
   const date = "11/11/2011";
   const minDate = "11/9/2011";
