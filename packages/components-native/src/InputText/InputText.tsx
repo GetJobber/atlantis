@@ -25,11 +25,15 @@ import { Clearable, useShowClear } from "@jobber/hooks";
 import { styles } from "./InputText.style";
 import { useInputAccessoriesContext } from "./context";
 import { useFormController } from "../hooks";
-import { InputFieldStyleOverride } from "../InputFieldWrapper/InputFieldWrapper";
+import {
+  InputFieldStyleOverride,
+  InputFieldWrapperProps,
+} from "../InputFieldWrapper/InputFieldWrapper";
 import { InputFieldWrapper } from "../InputFieldWrapper";
 import { commonInputStyles } from "../InputFieldWrapper/CommonInputStyles.style";
 
-export interface InputTextProps {
+export interface InputTextProps
+  extends Pick<InputFieldWrapperProps, "toolbar"> {
   /**
    * Highlights the field red and shows message below (if string) to indicate an error
    */
@@ -260,6 +264,7 @@ function InputTextInternal(
     testID,
     secureTextEntry,
     styleOverride,
+    toolbar,
   }: InputTextProps,
   ref: Ref<InputTextRef>,
 ) {
@@ -361,6 +366,7 @@ function InputTextInternal(
       onClear={handleClear}
       showClearAction={showClear}
       styleOverride={styleOverride}
+      toolbar={toolbar}
     >
       <TextInput
         inputAccessoryViewID={inputAccessoryID || undefined}

@@ -4,7 +4,12 @@ import { tokens } from "../utils/design";
 import { typographyStyles } from "../Typography";
 
 export const styles = StyleSheet.create({
-  container: StyleSheet.flatten([commonInputStyles.container]),
+  container: StyleSheet.flatten([
+    commonInputStyles.container,
+    {
+      flexDirection: "column",
+    },
+  ]),
 
   inputContainer: {
     flexDirection: "row",
@@ -83,14 +88,23 @@ export const styles = StyleSheet.create({
     paddingTop: tokens["space-minuscule"],
     paddingRight: tokens["space-small"],
   },
+
   suffixIconMargin: {
     marginLeft: tokens["space-small"] + tokens["space-smaller"],
   },
+
   suffixLabelMargin: {
     marginLeft: tokens["space-smallest"],
   },
+
   inputEndContainer: {
     flexDirection: "row",
     zIndex: 1,
+  },
+
+  toolbar: {
+    flexDirection: "row",
+    gap: tokens["space-small"],
+    paddingBottom: tokens["space-small"],
   },
 });
