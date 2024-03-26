@@ -13,16 +13,8 @@ const providerValues: AtlantisContextProps = {
   timeFormat: "hh:mm a",
   timeZone: "America/Edmonton",
   locale: "en",
-  isOnline: false,
-  onLogError: _ => {
-    return;
-  },
   floatSeparators: { decimal: ".", group: "," },
   currencySymbol: "€",
-  headerHeight: 50,
-  setHeaderHeight: _ => {
-    return;
-  },
 };
 
 describe("AtlantisContext", () => {

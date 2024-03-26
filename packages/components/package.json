@@ -33,8 +33,6 @@
     "axios": "^1.6.0",
     "classnames": "^2.3.2",
     "color": "^3.1.2",
-    "date-fns": "^2.30.0",
-    "date-fns-tz": "^2.0.1",
     "filesize": "^6.1.0",
     "framer-motion": "^11.0.3",
     "lodash": "^4.17.21",
@@ -75,7 +73,9 @@
   },
   "peerDependencies": {
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "date-fns": "^2.0.0",
+    "date-fns-tz": "^2.0.0"
   },
   "browserslist": [
     "last 1 version",

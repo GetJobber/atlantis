@@ -1,5 +1,5 @@
 import omit from "lodash/omit";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import {
   CommonFormFieldProps,
   FieldActionsRef,
@@ -67,7 +67,9 @@ export function InputDate(inputProps: InputDateProps) {
       activator={activatorProps => {
         const { onChange, onClick, value } = activatorProps;
         const newActivatorProps = omit(activatorProps, ["activator"]);
-
+        const [showEmptyPlaceholder, setShowEmptyPlaceholder] = useState(
+          !value,
+        );
         const suffix =
           inputProps.showIcon !== false
             ? ({
@@ -87,11 +89,18 @@ export function InputDate(inputProps: InputDateProps) {
             <FormField
               {...newActivatorProps}
               {...inputProps}
-              value={value}
-              onChange={(_, event) => onChange && onChange(event)}
+              value={
+                showEmptyPlaceholder ? inputProps.emptyValuePlaceholder : value
+              }
+              placeholder={inputProps.placeholder}
+              onChange={(_, event) => {
+                onChange && onChange(event);
+                setShowEmptyPlaceholder(false);
+              }}
               onBlur={() => {
                 inputProps.onBlur && inputProps.onBlur();
                 activatorProps.onBlur && activatorProps.onBlur();
+                setShowEmptyPlaceholder(!value);
               }}
               onFocus={() => {
                 inputProps.onFocus && inputProps.onFocus();

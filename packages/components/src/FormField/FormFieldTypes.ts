@@ -226,6 +226,4 @@ export interface FormFieldProps extends CommonFormFieldProps {
    * highlights the the field red if an error message shows up.
    */
   readonly validations?: RegisterOptions;
-
-  readonly emptyValuePlaceholder?: string;
 }
