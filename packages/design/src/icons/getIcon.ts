@@ -22,6 +22,7 @@ export type IconNames =
   | keyof typeof iconMap.icons
   | "longArrowUp"
   | "longArrowDown"
+  | "longArrowRight"
   | "remove"
   | "thumbsDown"
   | "truck";
@@ -49,6 +50,7 @@ export function getIcon({ name, color, size = "base" }: IconProps) {
   const svgClassNames = classnames(styles.icon, sizes[size], {
     [styles.longArrowUp]: name === "longArrowUp",
     [styles.longArrowDown]: name === "longArrowDown",
+    [styles.longArrowRight]: name === "longArrowRight",
     [styles.thumbsDown]: name === "thumbsDown",
     [styles.runningTimer]: name === "runningTimer",
   });
@@ -74,9 +76,11 @@ function getPaths(name: IconNames) {
 function mapToCorrectIcon(name: IconNames) {
   switch (name) {
     case "longArrowUp":
-      return "backArrow";
+      return "longArrowLeft";
     case "longArrowDown":
-      return "backArrow";
+      return "longArrowLeft";
+    case "longArrowRight":
+      return "longArrowLeft";
     case "remove":
       return "cross";
     case "thumbsDown":
