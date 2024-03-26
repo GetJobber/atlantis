@@ -383,11 +383,7 @@
   "scripts": {
     "build": "rollup --config",
     "bootstrap": "npm run clean; npm run build",
-    "clean": "rm -rf dist/* tsconfig.rollup.tsbuildinfo",
-    "entryPoints:build": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts",
-    "entryPoints:clean": "npm run entryPoints:build clean",
-    "prepack": "npm run entryPoints:build",
-    "postpack": "npm run entryPoints:clean"
+    "clean": "rm -rf dist/* tsconfig.rollup.tsbuildinfo"
   },
   "files": [
     "*.js",
