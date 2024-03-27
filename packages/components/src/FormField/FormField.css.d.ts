@@ -9,13 +9,13 @@ declare const styles: {
   readonly "disabled": string;
   readonly "small": string;
   readonly "inline": string;
+  readonly "select": string;
   readonly "center": string;
   readonly "right": string;
   readonly "maxLength": string;
   readonly "inputWrapper": string;
   readonly "childrenWrapper": string;
   readonly "input": string;
-  readonly "select": string;
   readonly "label": string;
   readonly "postfix": string;
   readonly "affixIcon": string;

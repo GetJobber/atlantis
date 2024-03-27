@@ -3,6 +3,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Option, Select } from "@jobber/components/Select";
 import { Divider } from "@jobber/components/Divider";
 import { Content } from "@jobber/components/Content";
+import { Flex } from "@jobber/components/Flex";
 
 export default {
   title: "Components/Selections/Select/Web",
@@ -26,6 +27,17 @@ const BasicTemplate: ComponentStory<typeof Select> = args => (
     <Option value="quincy">Quincy</Option>
     <Option value="peppa">Peppa Pig</Option>
   </Select>
+);
+
+const InlineTemplate: ComponentStory<typeof Select> = args => (
+  <Flex template={["shrink", "shrink"]}>
+    <p>My best Friend: </p>
+    <Select {...args}>
+      <Option value="tony">Tony</Option>
+      <Option value="quincy">Quincy</Option>
+      <Option value="peppa">Peppa Pig</Option>
+    </Select>
+  </Flex>
 );
 
 const SizesTemplate: ComponentStory<typeof Select> = args => {
@@ -93,6 +105,12 @@ Basic.args = {
 export const Sizes = SizesTemplate.bind({});
 Sizes.args = {
   placeholder: "Pick a friend",
+};
+
+export const Inline = InlineTemplate.bind({});
+Inline.args = {
+  inline: true,
+  size: "small",
 };
 
 export const InitialValue = InitialValueTemplate.bind({});

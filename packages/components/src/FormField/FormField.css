@@ -130,6 +130,10 @@
   width: auto;
 }
 
+.inline .select select {
+  padding-right: calc(var(--field--padding-right) + var(--base-unit) * 2);
+}
+
 .center {
   --field--textAlign: center;
 }
