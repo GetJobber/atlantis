@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
   container: StyleSheet.flatten([
     commonInputStyles.container,
     {
-      flexDirection: "column",
+      flexWrap: "wrap",
     },
   ]),
 
@@ -103,6 +103,7 @@ export const styles = StyleSheet.create({
   },
 
   toolbar: {
+    flexBasis: "100%",
     flexDirection: "row",
     gap: tokens["space-small"],
     paddingBottom: tokens["space-small"],
