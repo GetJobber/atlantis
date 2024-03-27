@@ -45,6 +45,11 @@ export interface InputTextProps
   readonly disabled?: boolean;
 
   /**
+   * Makes the input read-only
+   */
+  readonly readonly?: boolean;
+
+  /**
    * Name of the input.
    */
   readonly name?: string;
@@ -237,6 +242,7 @@ function InputTextInternal(
   {
     invalid,
     disabled,
+    readonly = false,
     name,
     placeholder,
     assistiveText,
@@ -386,6 +392,8 @@ function InputTextInternal(
           multiline && hasMiniLabel && styles.multiLineInputWithMini,
           styleOverride?.inputText,
         ]}
+        // @ts-expect-error - does exist on 0.71 and up https://github.com/facebook/react-native/pull/39281
+        readOnly={readonly}
         editable={!disabled}
         keyboardType={keyboard}
         value={inputTransform(internalValue)}
