@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
     position: "relative",
     width: "100%",
     height: tokens["space-base"],
+    borderRadius: tokens["radius-base"],
   },
 
   shine: {

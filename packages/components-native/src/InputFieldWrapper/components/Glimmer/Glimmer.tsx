@@ -4,14 +4,18 @@ import Svg, { Defs, LinearGradient, Rect, Stop } from "react-native-svg";
 import { shineWidth, styles } from "./Glimmer.style";
 import { tokens } from "../../../utils/design";
 
-export function Glimmer() {
+interface GlimmerProps {
+  readonly width?: number | `${number}%`;
+}
+
+export function Glimmer({ width }: GlimmerProps) {
   const leftPosition = useRef(new Animated.Value(-shineWidth)).current;
-  const [width, setWidth] = useState(0);
+  const [parentWidth, setParentWidth] = useState(0);
 
   useEffect(() => {
     const shine = Animated.loop(
       Animated.timing(leftPosition, {
-        toValue: width + shineWidth,
+        toValue: parentWidth + shineWidth,
         duration: tokens["timing-loading--extended"],
         easing: Easing.ease,
         useNativeDriver: true,
@@ -21,10 +25,10 @@ export function Glimmer() {
     shine.start();
 
     return shine.stop;
-  }, [width]);
+  }, [parentWidth]);
 
   return (
-    <View style={styles.container} onLayout={getWidth}>
+    <View style={[styles.container, { width }]} onLayout={getWidth}>
       <Animated.View
         style={[styles.shine, { transform: [{ translateX: leftPosition }] }]}
       >
@@ -49,6 +53,6 @@ export function Glimmer() {
   );
 
   function getWidth(event: LayoutChangeEvent) {
-    setWidth(event.nativeEvent.layout.width);
+    setParentWidth(event.nativeEvent.layout.width);
   }
 }
