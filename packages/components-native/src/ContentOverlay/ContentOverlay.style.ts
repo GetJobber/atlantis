@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import { tokens } from "../utils/design";
 
-const modalBorderRadius = tokens["radius-larger"];
+const modalBorderRadius = tokens["radius-base"];
 const titleOffsetFromHandle = tokens["space-base"];
 
 export const styles = StyleSheet.create({
