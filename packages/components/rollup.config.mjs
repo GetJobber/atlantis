@@ -1,35 +1,63 @@
 /* eslint-disable import/no-default-export */
-import multiInput from "rollup-plugin-multi-input";
+import path from "path";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 import typescript from "@rollup/plugin-typescript";
 import postcss from "rollup-plugin-postcss";
 import commonjs from "@rollup/plugin-commonjs";
 import copy from "rollup-plugin-copy";
+import { nodeResolve } from "@rollup/plugin-node-resolve";
+import postcssimport from "postcss-import";
+import autoprefixer from "autoprefixer";
+import tools from "@csstools/postcss-global-data";
+import presetenv from "postcss-preset-env";
+import multiInput from "rollup-plugin-multi-input";
+import nodePolyfills from "rollup-plugin-polyfill-node";
+import alias from "@rollup/plugin-alias";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 export default {
-  input: `src/*/index.{ts,tsx}`,
+  input: `src/**/index.{ts,tsx}`,
   plugins: [
-    multiInput(),
+    nodePolyfills(),
+    alias({
+      entries: [
+        {
+          find: /@jobber\/hooks\/(.*)/,
+          replacement: (_, p1) =>
+            path.resolve(
+              __dirname,
+              `../../node_modules/@jobber/hooks/dist/${p1}/${p1}.js`,
+            ),
+        },
+      ],
+    }),
+    nodeResolve(),
+    multiInput.default(),
     typescript({
       tsconfig: "./tsconfig.rollup.json",
       declarationDir: "dist",
       noEmitOnError: true,
     }),
     postcss({
+      extract: "styles.css",
+      inject: false,
       modules: {
         generateScopedName: "[hash:base64]",
         globalModulePaths: [/node_modules/],
       },
       autoModules: false,
       plugins: [
-        require("postcss-import"),
-        require("autoprefixer"),
-        require("@csstools/postcss-global-data")({
+        postcssimport,
+        autoprefixer,
+        tools({
           files: [
-            require.resolve("@jobber/design/foundation.css"),
-            require.resolve("@jobber/design/src/responsiveBreakpoints.css"),
+            "../design/foundation.css",
+            "../design/src/responsiveBreakpoints.css",
           ],
         }),
-        require("postcss-preset-env")({
+        presetenv({
           stage: 1,
           preserve: true,
         }),
@@ -92,13 +120,26 @@ export default {
           src: "src/Combobox/components/ComboboxContent/ComboboxContentList/ComboboxContent.css.d.ts",
           dest: "dist/Combobox/components/ComboboxContent/ComboboxContentList",
         },
+        {
+          src: "dist/index.d.ts",
+          dest: "dist",
+          rename: "index.d.mts",
+        },
       ],
+      hook: "writeBundle",
     }),
   ],
   output: [
     {
       dir: "dist",
+      entryFileNames: "[name].cjs",
+      exports: "named",
       format: "cjs",
+    },
+    {
+      dir: "dist",
+      entryFileNames: "[name].mjs",
+      format: "esm",
     },
   ],
   external: [
@@ -106,26 +147,18 @@ export default {
     "react-hook-form",
     "react-router-dom",
     "react-dom",
-    "react-markdown",
-    "react-countdown",
     "react-popper",
-    "react-datepicker",
-    "react-dropzone",
     "react-dom/client",
     "axios",
     "filesize",
     "color",
     "framer-motion",
     "classnames",
-    new RegExp("lodash/.*"),
     "@std-proposal/temporal",
     "@jobber/design",
     "@jobber/design/foundation",
     "@jobber/formatters",
-    new RegExp("@jobber/hooks/.*"),
     "zxcvbn",
-    "use-resize-observer/polyfilled",
-    "@apollo/client",
     "@tanstack/react-table",
   ],
 };
