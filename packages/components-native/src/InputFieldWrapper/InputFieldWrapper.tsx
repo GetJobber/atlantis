@@ -93,6 +93,11 @@ export interface InputFieldWrapperProps {
    * Add a toolbar below the input field for actions like rewriting the text.
    */
   readonly toolbar?: React.ReactNode;
+
+  /**
+   * Change the behaviour of when the toolbar becomes visible.
+   */
+  readonly toolbarVisibility?: "always" | "while-editing";
 }
 
 export function InputFieldWrapper({
@@ -111,11 +116,14 @@ export function InputFieldWrapper({
   showClearAction = false,
   styleOverride,
   toolbar,
+  toolbarVisibility = "while-editing",
 }: InputFieldWrapperProps): JSX.Element {
   fieldAffixRequiredPropsCheck([prefix, suffix]);
   const handleClear = onClear ?? noopClear;
   warnIfClearActionWithNoOnClear(onClear, showClearAction);
   const inputInvalid = Boolean(invalid) || Boolean(error);
+  const isToolbarVisible =
+    toolbar && (toolbarVisibility === "always" || focused);
 
   return (
     <ErrorMessageWrapper message={getMessage({ invalid, error })}>
@@ -202,7 +210,7 @@ export function InputFieldWrapper({
           )}
         </View>
 
-        {toolbar && focused && <View style={styles.toolbar}>{toolbar}</View>}
+        {isToolbarVisible && <View style={styles.toolbar}>{toolbar}</View>}
       </View>
       {assistiveText && !error && !invalid && (
         <Text

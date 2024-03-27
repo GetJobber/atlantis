@@ -259,5 +259,14 @@ describe("InputFieldWrapper", () => {
 
       expect(queryByText("I am a tool")).toBeNull();
     });
+
+    it("renders a toolbar when toolbarVisibility is always", () => {
+      const { getByText } = renderInputFieldWrapper({
+        focused: false,
+        toolbar: <Text>I am a tool</Text>,
+        toolbarVisibility: "always",
+      });
+      expect(getByText("I am a tool")).toBeDefined();
+    });
   });
 });

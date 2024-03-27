@@ -33,7 +33,7 @@ import { InputFieldWrapper } from "../InputFieldWrapper";
 import { commonInputStyles } from "../InputFieldWrapper/CommonInputStyles.style";
 
 export interface InputTextProps
-  extends Pick<InputFieldWrapperProps, "toolbar"> {
+  extends Pick<InputFieldWrapperProps, "toolbar" | "toolbarVisibility"> {
   /**
    * Highlights the field red and shows message below (if string) to indicate an error
    */
@@ -265,6 +265,7 @@ function InputTextInternal(
     secureTextEntry,
     styleOverride,
     toolbar,
+    toolbarVisibility,
   }: InputTextProps,
   ref: Ref<InputTextRef>,
 ) {
@@ -367,6 +368,7 @@ function InputTextInternal(
       showClearAction={showClear}
       styleOverride={styleOverride}
       toolbar={toolbar}
+      toolbarVisibility={toolbarVisibility}
     >
       <TextInput
         inputAccessoryViewID={inputAccessoryID || undefined}

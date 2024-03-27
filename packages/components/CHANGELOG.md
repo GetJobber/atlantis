@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.87.10](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.8...@jobber/components@4.87.10) (2024-03-26)
+
+
+### Bug Fixes
+
+* **components:** Make FormatTime work on SSR environments ([#1824](https://github.com/GetJobber/atlantis/issues/1824)) ([7fb8961](https://github.com/GetJobber/atlantis/commit/7fb8961e5cf61163c377dd84e2476f0f57bb17ba))
+* **components:** stop InputPhoneNumber crashing page when it's translated with a Google Translate browser extension  — Patch Release ([#1828](https://github.com/GetJobber/atlantis/issues/1828)) ([8b33ed5](https://github.com/GetJobber/atlantis/commit/8b33ed5c4795f2d6ae46bdfcdaef3318715c5620))
+
+
+
+
+
 ## [4.87.9](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.8...@jobber/components@4.87.9) (2024-03-25)
 
 
