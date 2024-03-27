@@ -35,7 +35,10 @@ export function DataListItem<T extends DataListObject>({
 
   const { actions, hasActions } = useGetItemActions<T>(item);
   const isContextMenuVisible = Boolean(contextPosition);
+
   const shouldShowContextMenu = showMenu && isContextMenuVisible && hasActions;
+  const shouldShowHoverMenu =
+    showMenu && hasActions && !hasInLayoutActions && !shouldShowContextMenu;
 
   return (
     <DataListLayoutActionsContext.Provider value={{ activeItem: item }}>
@@ -55,7 +58,7 @@ export function DataListItem<T extends DataListObject>({
         </DataListItemInternal>
 
         <AnimatePresence>
-          {showMenu && hasActions && !hasInLayoutActions && (
+          {shouldShowHoverMenu && (
             <InternalDataListItemActions actions={actions} />
           )}
 
