@@ -6,7 +6,7 @@ import { Text } from "../Text";
 
 describe("ActionItem", () => {
   const pressHandler = jest.fn();
-  const defaultActionIcon = "arrowRight";
+  const defaultActionIcon = "longArrowRight";
 
   beforeEach(() => {
     jest.resetAllMocks();
