@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  padding-left: var(--space-base);
+  background-color: var(--color-surface);
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label {
+  flex: 1;
+}
