@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.61.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.60.0...@jobber/components-native@0.61.0) (2024-03-26)
+
+
+### Features
+
+* **components-native:** implement toolbar visibility ([#1831](https://github.com/GetJobber/atlantis/issues/1831)) ([42cf820](https://github.com/GetJobber/atlantis/commit/42cf820c7d81f6af44b4f11096964aa61eb47f9a))
+
+
+
+
+
+# [0.60.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.58.3...@jobber/components-native@0.60.0) (2024-03-26)
+
+
+### Features
+
+* **components-native:** add input toolbar ([#1826](https://github.com/GetJobber/atlantis/issues/1826)) ([4634b26](https://github.com/GetJobber/atlantis/commit/4634b264d0e325a37c370958316bf5822975774f))
+
+
+
+
+
 # [0.59.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.58.3...@jobber/components-native@0.59.0) (2024-03-25)
 
 
