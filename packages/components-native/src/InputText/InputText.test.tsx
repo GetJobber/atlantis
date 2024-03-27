@@ -75,6 +75,22 @@ describe("InputText", () => {
       );
     });
 
+    describe("Editable", () => {
+      it.each([
+        [false, { readonly: true, disabled: true }],
+        [false, { readonly: true, disabled: false }],
+        [false, { readonly: false, disabled: true }],
+        [true, { readonly: false, disabled: false }],
+      ])("sets the editable to %s", (expected, props) => {
+        const { getByTestId } = renderInputText({
+          testID: "InputText",
+          ...props,
+        });
+
+        expect(getByTestId("InputText").props.editable).toBe(expected);
+      });
+    });
+
     it("renders a InputText with placeholder", () => {
       const props = { placeholder: "Foobar" };
       renderInputText(props);
