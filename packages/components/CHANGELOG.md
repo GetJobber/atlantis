@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.88.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.10...@jobber/components@4.88.0) (2024-03-27)
+
+
+### Features
+
+* **components:** Make inlineLabel sizing match statusLabel ([#1823](https://github.com/GetJobber/atlantis/issues/1823)) ([866fb15](https://github.com/GetJobber/atlantis/commit/866fb15c8747bfa09ee2d6a5e072175bc5d76ccf))
+
+
+
+
+
 ## [4.87.10](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.8...@jobber/components@4.87.10) (2024-03-26)
 
 
