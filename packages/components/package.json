@@ -73,7 +73,9 @@
   },
   "peerDependencies": {
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "date-fns": "^2.0.0",
+    "date-fns-tz": "^2.0.0"
   },
   "browserslist": [
     "last 1 version",
