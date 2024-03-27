@@ -315,7 +315,7 @@ describe("showIcon prop", () => {
   });
 });
 
-it("should display the selected date when emptyValuePlaceholder is undefined", () => {
+it("should display the selected date when emptyValueLabel is undefined", () => {
   const date = "11/11/2011";
   const changeHandler = jest.fn();
   const { queryByDisplayValue } = render(
@@ -325,13 +325,13 @@ it("should display the selected date when emptyValuePlaceholder is undefined", (
   expect(queryByDisplayValue(date)).toBeInTheDocument();
 });
 
-it("should display emptyValuePlaceholder when set", () => {
+it("should display emptyValueLabel when set", () => {
   const changeHandler = jest.fn();
   const expectedDisplayValue = "Unscheduled";
   const { queryByDisplayValue } = render(
     <InputDate
       onChange={changeHandler}
-      emptyValuePlaceholder={expectedDisplayValue}
+      emptyValueLabel={expectedDisplayValue}
     />,
   );
 

@@ -48,7 +48,7 @@ interface InputDateProps
   /**
    * Text to display instead of a date value
    */
-  readonly emptyValuePlaceholder?: string;
+  readonly emptyValueLabel?: string;
 }
 
 export function InputDate(inputProps: InputDateProps) {
@@ -89,9 +89,7 @@ export function InputDate(inputProps: InputDateProps) {
             <FormField
               {...newActivatorProps}
               {...inputProps}
-              value={
-                showEmptyPlaceholder ? inputProps.emptyValuePlaceholder : value
-              }
+              value={showEmptyPlaceholder ? inputProps.emptyValueLabel : value}
               placeholder={inputProps.placeholder}
               onChange={(_, event) => {
                 onChange && onChange(event);
