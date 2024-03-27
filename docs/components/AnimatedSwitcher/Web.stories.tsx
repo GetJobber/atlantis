@@ -61,7 +61,7 @@ const IconTemplate: ComponentStory<typeof AnimatedSwitcher> = args => {
         <AnimatedSwitcher.Icon
           switched={switched}
           initialIcon="menu"
-          switchToIcon="longArrowRight"
+          switchToIcon="longArrowLeft"
         />
         <AnimatedSwitcher.Icon
           switched={switched}
