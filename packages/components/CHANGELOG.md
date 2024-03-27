@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.89.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.88.0...@jobber/components@4.89.0) (2024-03-27)
+
+
+### Features
+
+* **components:** Update InputDate to customize date format, calendar icon and displayed value ([#1817](https://github.com/GetJobber/atlantis/issues/1817)) ([5c196d5](https://github.com/GetJobber/atlantis/commit/5c196d596fe528cff3cc95cf8d436d517939a108))
+
+
+
+
+
 # [4.88.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.10...@jobber/components@4.88.0) (2024-03-27)
 
 
