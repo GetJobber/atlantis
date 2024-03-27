@@ -77,7 +77,7 @@ export function InputDate(inputProps: InputDateProps) {
                 ariaLabel: "Show calendar",
                 onClick: onClick && onClick,
               } as Suffix)
-            : {};
+            : undefined;
 
         // Set form field to formatted date string immediately, to avoid validations
         //  triggering incorrectly when it blurs (to handle the datepicker UI click)
@@ -116,7 +116,6 @@ export function InputDate(inputProps: InputDateProps) {
               }}
               actionsRef={formFieldActionsRef}
               suffix={suffix}
-              emptyValuePlaceholder={inputProps.emptyValuePlaceholder}
             />
           </div>
         );
