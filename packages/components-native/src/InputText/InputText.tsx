@@ -45,6 +45,11 @@ export interface InputTextProps
   readonly disabled?: boolean;
 
   /**
+   * Makes the input read-only
+   */
+  readonly readonly?: boolean;
+
+  /**
    * Name of the input.
    */
   readonly name?: string;
@@ -266,6 +271,7 @@ function InputTextInternal(
     styleOverride,
     toolbar,
     toolbarVisibility,
+    readonly,
   }: InputTextProps,
   ref: Ref<InputTextRef>,
 ) {
@@ -386,7 +392,7 @@ function InputTextInternal(
           multiline && hasMiniLabel && styles.multiLineInputWithMini,
           styleOverride?.inputText,
         ]}
-        editable={!disabled}
+        editable={!(disabled || readonly)}
         keyboardType={keyboard}
         value={inputTransform(internalValue)}
         autoFocus={autoFocus}
