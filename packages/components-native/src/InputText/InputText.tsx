@@ -242,6 +242,7 @@ function InputTextInternal(
   {
     invalid,
     disabled,
+    readonly = false,
     name,
     placeholder,
     assistiveText,
@@ -271,7 +272,6 @@ function InputTextInternal(
     styleOverride,
     toolbar,
     toolbarVisibility,
-    readonly,
   }: InputTextProps,
   ref: Ref<InputTextRef>,
 ) {
@@ -392,7 +392,9 @@ function InputTextInternal(
           multiline && hasMiniLabel && styles.multiLineInputWithMini,
           styleOverride?.inputText,
         ]}
-        editable={!(disabled || readonly)}
+        // @ts-expect-error - does exist on 0.71 and up https://github.com/facebook/react-native/pull/39281
+        readOnly={readonly}
+        editable={!disabled}
         keyboardType={keyboard}
         value={inputTransform(internalValue)}
         autoFocus={autoFocus}

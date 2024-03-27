@@ -75,19 +75,14 @@ describe("InputText", () => {
       );
     });
 
-    describe("Editable", () => {
-      it.each([
-        [false, { readonly: true, disabled: true }],
-        [false, { readonly: true, disabled: false }],
-        [false, { readonly: false, disabled: true }],
-        [true, { readonly: false, disabled: false }],
-      ])("sets the editable to %s", (expected, props) => {
+    describe("readonly", () => {
+      it.each([[false], [true]])("sets the readOnly to %s", expected => {
         const { getByTestId } = renderInputText({
           testID: "InputText",
-          ...props,
+          readonly: expected,
         });
 
-        expect(getByTestId("InputText").props.editable).toBe(expected);
+        expect(getByTestId("InputText").props.readOnly).toBe(expected);
       });
     });
 
