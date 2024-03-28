@@ -66,3 +66,20 @@ it("renders a Heading 5", () => {
     </div>
   `);
 });
+
+it("renders a non heading inline element", () => {
+  const { container } = render(
+    <Heading level={5} element="span">
+      Dis be a span
+    </Heading>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <span
+        class="base bold base heading"
+      >
+        Dis be a span
+      </span>
+    </div>
+  `);
+});
