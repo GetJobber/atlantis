@@ -11,7 +11,7 @@ interface HeadingProps {
   readonly level: HeadingLevel;
   readonly children: ReactNode;
   /**
-   * @default "p"
+   * Allows overriding of the element rendered. Defaults to the heading specified with level.
    */
   readonly element?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
 }
