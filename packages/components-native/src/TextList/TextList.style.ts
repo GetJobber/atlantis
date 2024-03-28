@@ -3,8 +3,8 @@ import { tokens } from "../utils/design";
 
 export const styles = StyleSheet.create({
   details: {
+    width: "100%",
     flexDirection: "column",
-    marginTop: tokens["space-small"],
   },
   detail: {
     flexDirection: "row",

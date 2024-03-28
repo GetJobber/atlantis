@@ -17,6 +17,7 @@ export default {
 
 const BasicTemplate: ComponentStory<typeof ConfirmationModal> = args => {
   const [open, setOpen] = useState(false);
+
   return (
     <>
       <Button label="Open" onClick={() => setOpen(true)} />
@@ -44,6 +45,7 @@ const ControlledTemplate: ComponentStory<typeof ConfirmationModal> = args => {
       name: "Donald",
     },
   ];
+
   return (
     <>
       {users.map(user => {
@@ -72,6 +74,7 @@ const ControlledTemplate: ComponentStory<typeof ConfirmationModal> = args => {
 
 const DestructiveTemplate: ComponentStory<typeof ConfirmationModal> = args => {
   const [open, setOpen] = useState(false);
+
   return (
     <>
       <Button

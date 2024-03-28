@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.4](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.9.3...@jobber/hooks@2.9.4) (2024-03-21)
+
+
+### Bug Fixes
+
+* **components:** Make useMediaQuery SSR Friendly ([#1814](https://github.com/GetJobber/atlantis/issues/1814)) ([8f9ff88](https://github.com/GetJobber/atlantis/commit/8f9ff882741e0c7cbe83c2405422bb1dbf877d9e))
+
+
+
+
+
+## [2.9.3](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.9.2...@jobber/hooks@2.9.3) (2024-03-20)
+
+
+### Bug Fixes
+
+* **components:** Revert Make useMediaQuery SSR Friendly ([#1813](https://github.com/GetJobber/atlantis/issues/1813)) ([e6923be](https://github.com/GetJobber/atlantis/commit/e6923beed4deb172fe465ff219d7a0874711f55d)), closes [#1797](https://github.com/GetJobber/atlantis/issues/1797)
+
+
+
+
+
+## [2.9.2](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.9.1...@jobber/hooks@2.9.2) (2024-03-20)
+
+
+### Bug Fixes
+
+* **components:** Make useMediaQuery SSR Friendly ([#1797](https://github.com/GetJobber/atlantis/issues/1797)) ([7925681](https://github.com/GetJobber/atlantis/commit/79256814b004c49214813e225f3fa32f769c7103))
+
+
+
+
+
+## [2.9.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.9.0...@jobber/hooks@2.9.1) (2024-03-08)
+
+
+### Bug Fixes
+
+* **eslint:** Cleanup lint warnings ([#1796](https://github.com/GetJobber/atlantis/issues/1796)) ([3e0c770](https://github.com/GetJobber/atlantis/commit/3e0c770eca0964636f79831016dbbe25926ae951))
+
+
+
+
+
+# [2.9.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.8.3...@jobber/hooks@2.9.0) (2024-03-01)
+
+
+### Features
+
+* **components:** Added accessible name for combobox trigger ([#1786](https://github.com/GetJobber/atlantis/issues/1786)) ([3280713](https://github.com/GetJobber/atlantis/commit/32807139ee436f45839edd261620e359d156cc80))
+
+
+
+
+
 ## [2.8.3](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.8.2...@jobber/hooks@2.8.3) (2024-02-22)
 
 **Note:** Version bump only for package @jobber/hooks

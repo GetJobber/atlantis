@@ -16,6 +16,7 @@ export default {
 
 const BasicTemplate: ComponentStory<typeof DatePicker> = args => {
   const [date, setDate] = useState(new Date("01/01/2021"));
+
   return (
     <Content>
       <DatePicker {...args} selected={date} onChange={setDate} />
@@ -53,6 +54,7 @@ export const MinDateMaxDate = MinMaxTemplate.bind({});
 
 const CustomActivatorTemplate: ComponentStory<typeof DatePicker> = args => {
   const [date, setDate] = useState(args.selected);
+
   return (
     <Content>
       <DatePicker
@@ -78,6 +80,7 @@ const RestrictedDateRateTemplate: ComponentStory<typeof DatePicker> = args => {
     new Date("01/22/2023"),
     new Date("02/22/2023"),
   ];
+
   return (
     <Content>
       <DatePicker

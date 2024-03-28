@@ -3,6 +3,302 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.90.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.89.0...@jobber/components@4.90.0) (2024-03-28)
+
+
+### Features
+
+* **components:** Heading can accept an element prop to override the numbered heading element ([#1834](https://github.com/GetJobber/atlantis/issues/1834)) ([1e7b208](https://github.com/GetJobber/atlantis/commit/1e7b208e2f4426d9e866d781051c1c459307bb1b))
+
+
+
+
+
+# [4.89.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.88.0...@jobber/components@4.89.0) (2024-03-27)
+
+
+### Features
+
+* **components:** Update InputDate to customize date format, calendar icon and displayed value ([#1817](https://github.com/GetJobber/atlantis/issues/1817)) ([5c196d5](https://github.com/GetJobber/atlantis/commit/5c196d596fe528cff3cc95cf8d436d517939a108))
+
+
+
+
+
+# [4.88.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.10...@jobber/components@4.88.0) (2024-03-27)
+
+
+### Features
+
+* **components:** Make inlineLabel sizing match statusLabel ([#1823](https://github.com/GetJobber/atlantis/issues/1823)) ([866fb15](https://github.com/GetJobber/atlantis/commit/866fb15c8747bfa09ee2d6a5e072175bc5d76ccf))
+
+
+
+
+
+## [4.87.10](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.8...@jobber/components@4.87.10) (2024-03-26)
+
+
+### Bug Fixes
+
+* **components:** Make FormatTime work on SSR environments ([#1824](https://github.com/GetJobber/atlantis/issues/1824)) ([7fb8961](https://github.com/GetJobber/atlantis/commit/7fb8961e5cf61163c377dd84e2476f0f57bb17ba))
+* **components:** stop InputPhoneNumber crashing page when it's translated with a Google Translate browser extension  — Patch Release ([#1828](https://github.com/GetJobber/atlantis/issues/1828)) ([8b33ed5](https://github.com/GetJobber/atlantis/commit/8b33ed5c4795f2d6ae46bdfcdaef3318715c5620))
+
+
+
+
+
+## [4.87.9](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.8...@jobber/components@4.87.9) (2024-03-25)
+
+
+### Bug Fixes
+
+* **components:** Make FormatTime work on SSR environments ([#1824](https://github.com/GetJobber/atlantis/issues/1824)) ([7fb8961](https://github.com/GetJobber/atlantis/commit/7fb8961e5cf61163c377dd84e2476f0f57bb17ba))
+
+
+
+
+
+## [4.87.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.7...@jobber/components@4.87.8) (2024-03-22)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.87.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.6...@jobber/components@4.87.7) (2024-03-21)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.87.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.5...@jobber/components@4.87.6) (2024-03-21)
+
+
+### Bug Fixes
+
+* **components:** Make useMediaQuery SSR Friendly ([#1814](https://github.com/GetJobber/atlantis/issues/1814)) ([8f9ff88](https://github.com/GetJobber/atlantis/commit/8f9ff882741e0c7cbe83c2405422bb1dbf877d9e))
+
+
+
+
+
+## [4.87.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.4...@jobber/components@4.87.5) (2024-03-21)
+
+
+### Bug Fixes
+
+* **components:** InternalThumbnailImage to support SSR ([#1810](https://github.com/GetJobber/atlantis/issues/1810)) ([f7a9936](https://github.com/GetJobber/atlantis/commit/f7a9936e89e5e2769014ba3fbbc5cc660b9bf4e3))
+
+
+
+
+
+## [4.87.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.3...@jobber/components@4.87.4) (2024-03-21)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.87.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.2...@jobber/components@4.87.3) (2024-03-20)
+
+
+### Bug Fixes
+
+* **components:** Revert Make useMediaQuery SSR Friendly ([#1813](https://github.com/GetJobber/atlantis/issues/1813)) ([e6923be](https://github.com/GetJobber/atlantis/commit/e6923beed4deb172fe465ff219d7a0874711f55d)), closes [#1797](https://github.com/GetJobber/atlantis/issues/1797)
+
+
+
+
+
+## [4.87.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.1...@jobber/components@4.87.2) (2024-03-20)
+
+
+### Bug Fixes
+
+* **components:** Make useMediaQuery SSR Friendly ([#1797](https://github.com/GetJobber/atlantis/issues/1797)) ([7925681](https://github.com/GetJobber/atlantis/commit/79256814b004c49214813e225f3fa32f769c7103))
+
+
+
+
+
+## [4.87.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.0...@jobber/components@4.87.1) (2024-03-19)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [4.87.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.86.2...@jobber/components@4.87.0) (2024-03-18)
+
+
+### Features
+
+* **components:** Guard Portal Usages for Remix ([#1801](https://github.com/GetJobber/atlantis/issues/1801)) ([185c749](https://github.com/GetJobber/atlantis/commit/185c7490ca3de8865c7ca67d20462767372c262f))
+
+
+
+
+
+## [4.86.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.86.1...@jobber/components@4.86.2) (2024-03-15)
+
+
+### Bug Fixes
+
+* **components:** Use unique item key in DataListSortingOptions ([#1807](https://github.com/GetJobber/atlantis/issues/1807)) ([75ea842](https://github.com/GetJobber/atlantis/commit/75ea84225a497c452ae4e80fb53c93ed573fb35b))
+
+
+
+
+
+## [4.86.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.86.0...@jobber/components@4.86.1) (2024-03-15)
+
+
+### Bug Fixes
+
+* **components:** Remove subdued text from DataList ([#1808](https://github.com/GetJobber/atlantis/issues/1808)) ([b5aae70](https://github.com/GetJobber/atlantis/commit/b5aae700d34fca11eb11be8101c43cab5a4ee378))
+
+
+
+
+
+# [4.86.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.85.6...@jobber/components@4.86.0) (2024-03-15)
+
+
+### Features
+
+* **components:** Restyle web statusLabel ([#1802](https://github.com/GetJobber/atlantis/issues/1802)) ([701ae1f](https://github.com/GetJobber/atlantis/commit/701ae1f5f3cb20c63681da586778fcd47bc7cc73))
+
+
+
+
+
+## [4.85.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.85.5...@jobber/components@4.85.6) (2024-03-14)
+
+
+### Bug Fixes
+
+* **components:** Allow duplicated terms on DescriptionList data tuple [1767] ([#1771](https://github.com/GetJobber/atlantis/issues/1771)) ([8025a42](https://github.com/GetJobber/atlantis/commit/8025a42d2bfd5d8cf9f717882f8ed04fbf8a25a0))
+
+
+
+
+
+## [4.85.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.85.4...@jobber/components@4.85.5) (2024-03-13)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.85.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.85.3...@jobber/components@4.85.4) (2024-03-11)
+
+
+### Bug Fixes
+
+* **components:** Fix an improper console mock in a test ([#1792](https://github.com/GetJobber/atlantis/issues/1792)) ([0d28222](https://github.com/GetJobber/atlantis/commit/0d28222d25c290d034948a0e0fc245cef5288e31))
+
+
+
+
+
+## [4.85.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.85.2...@jobber/components@4.85.3) (2024-03-08)
+
+
+### Bug Fixes
+
+* **eslint:** Cleanup lint warnings ([#1796](https://github.com/GetJobber/atlantis/issues/1796)) ([3e0c770](https://github.com/GetJobber/atlantis/commit/3e0c770eca0964636f79831016dbbe25926ae951))
+
+
+
+
+
+## [4.85.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.85.1...@jobber/components@4.85.2) (2024-03-07)
+
+
+### Bug Fixes
+
+* **components:** Fix DataListLayout not rerendering ([#1790](https://github.com/GetJobber/atlantis/issues/1790)) ([3f8bfd9](https://github.com/GetJobber/atlantis/commit/3f8bfd9839c0a6370fa25f501bf70b7d7f90483e))
+
+
+
+
+
+## [4.85.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.85.0...@jobber/components@4.85.1) (2024-03-06)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [4.85.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.84.1...@jobber/components@4.85.0) (2024-03-06)
+
+
+### Bug Fixes
+
+* **components:** Fix button label and icon alignment when inside a modal ([#1789](https://github.com/GetJobber/atlantis/issues/1789)) ([80ab639](https://github.com/GetJobber/atlantis/commit/80ab639e958984394d4ed472020af6215b5f23bc))
+
+
+### Features
+
+* **components:** Allow a prefix element on ComboBox.Option. Promote internal StatusLabel to StatusIndicator, top level component  ([#1788](https://github.com/GetJobber/atlantis/issues/1788)) ([5859dab](https://github.com/GetJobber/atlantis/commit/5859dabecd371df182c569c0ca4118827b61dba8))
+
+
+
+
+
+## [4.84.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.84.0...@jobber/components@4.84.1) (2024-03-01)
+
+
+### Bug Fixes
+
+* **components:** prevent multiple breakpoints being registered within DataList ([#1704](https://github.com/GetJobber/atlantis/issues/1704)) ([920a494](https://github.com/GetJobber/atlantis/commit/920a494f981ae4b130347e07ea394ae4c37e8c06))
+
+
+
+
+
+# [4.84.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.83.1...@jobber/components@4.84.0) (2024-03-01)
+
+
+### Features
+
+* **components:** Added accessible name for combobox trigger ([#1786](https://github.com/GetJobber/atlantis/issues/1786)) ([3280713](https://github.com/GetJobber/atlantis/commit/32807139ee436f45839edd261620e359d156cc80))
+
+
+
+
+
+## [4.83.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.83.0...@jobber/components@4.83.1) (2024-02-28)
+
+
+### Bug Fixes
+
+* **components:** Removing uuid in web and replacing with useId ([#1737](https://github.com/GetJobber/atlantis/issues/1737)) ([5e9398b](https://github.com/GetJobber/atlantis/commit/5e9398b0ab195d899cde89954a5515b86a563699))
+
+
+
+
+
+# [4.83.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.82.0...@jobber/components@4.83.0) (2024-02-27)
+
+
+### Features
+
+* **components:** Bring back card accent in retheme ([#1784](https://github.com/GetJobber/atlantis/issues/1784)) ([5f13558](https://github.com/GetJobber/atlantis/commit/5f13558c0685db9dc1725fc9129a1d9b50a46127))
+
+
+
+
+
 # [4.82.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.81.5...@jobber/components@4.82.0) (2024-02-27)
 
 

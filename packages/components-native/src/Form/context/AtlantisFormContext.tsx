@@ -4,6 +4,7 @@ import { AtlantisFormContextProps } from "./types";
 export const atlantisFormContextDefaultValues = {
   useConfirmBeforeBack: () => {
     const ref = useRef(() => undefined);
+
     return ref;
   },
   useInternalFormLocalCache: () => ({

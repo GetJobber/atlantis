@@ -15,6 +15,7 @@ export default {
 
 const BasicTemplate: ComponentStory<typeof InputValidation> = args => {
   const [validationMessages, setValidationMessages] = useState(args.message);
+
   return (
     <>
       <Text>

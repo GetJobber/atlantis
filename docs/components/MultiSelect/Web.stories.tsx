@@ -20,6 +20,7 @@ const BasicTemplate: ComponentStory<typeof MultiSelect> = args => {
     { label: "Warnings", checked: true },
     { label: "Ignored", checked: true },
   ]);
+
   return (
     <MultiSelect {...args} options={options} onOptionsChange={setOptions} />
   );
@@ -30,6 +31,7 @@ const SizesTemplate: ComponentStory<typeof MultiSelect> = args => {
     { label: "Small", checked: false },
     { label: "Large", checked: false },
   ]);
+
   return (
     <Content>
       <MultiSelect

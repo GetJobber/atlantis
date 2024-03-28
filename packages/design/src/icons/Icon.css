@@ -20,7 +20,7 @@
 .clients,
 .company,
 .property {
-  fill: var(--color-teal);
+  fill: var(--color-client);
 }
 
 .job,

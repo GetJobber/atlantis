@@ -22,6 +22,7 @@ export default {
 
 const BasicTemplate: ComponentStory<typeof ContentOverlay> = args => {
   const contentOverlayRef = useRef<ContentOverlayRef>(null);
+
   return (
     <View
       style={{

@@ -1,17 +1,19 @@
 import React from "react";
-import { IconNames, tokens } from "@jobber/design";
+import { IconNames } from "@jobber/design";
 import { View } from "react-native";
+import { styles } from "./BannerIcon.style";
 import { Icon } from "../../../Icon";
-import { styles } from "../../Banner.style";
+import { BannerTypes } from "../../types";
 
 export interface BannerIconProps {
-  icon: IconNames;
+  readonly icon: IconNames;
+  readonly type: BannerTypes;
 }
 
-export function BannerIcon({ icon }: BannerIconProps): JSX.Element {
+export function BannerIcon({ icon, type }: BannerIconProps): JSX.Element {
   return (
-    <View style={styles.bannerIcon}>
-      <Icon name={icon} customColor={tokens["color-text"]} />
+    <View style={[styles.bannerIcon, styles[type]]} testID="ATL-Banner-Icon">
+      <Icon name={icon} color="white" size="small" />
     </View>
   );
 }

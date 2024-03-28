@@ -238,7 +238,7 @@
   padding-top: var(--field--padding-top);
   /* Remove padding on right to make use of the entire width */
   padding-right: 0;
-  transform: translateY(--field--placeholder-transform);
+  transform: translateY(var(--field--placeholder-transform));
 }
 
 .miniLabel .label,

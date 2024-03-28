@@ -29,6 +29,7 @@ function renderChildren(children: ActionItemElement | ActionItemElement[]) {
 
   return childArray.map((child, index) => {
     const isSubsequentChild = index !== 0;
+
     return (
       <View key={index}>
         {isSubsequentChild && (
