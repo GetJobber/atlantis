@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.62.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.61.2...@jobber/components-native@0.62.0) (2024-03-28)
+
+
+### Features
+
+* **components-native:** BREAKING CHANGE: Move react-native-svg to peerDependencies ([#1830](https://github.com/GetJobber/atlantis/issues/1830)) ([6e0a086](https://github.com/GetJobber/atlantis/commit/6e0a0864cee5f490d4d17fc839a5a1ca08d9f966))
+
+
+
+
+
 ## [0.61.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.61.1...@jobber/components-native@0.61.2) (2024-03-28)
 
 
