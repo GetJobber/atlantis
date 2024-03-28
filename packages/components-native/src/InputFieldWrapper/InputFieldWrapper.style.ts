@@ -11,6 +11,11 @@ export const styles = StyleSheet.create({
     },
   ]),
 
+  field: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+
   inputContainer: {
     flexDirection: "row",
     flex: 1,
