@@ -147,7 +147,7 @@ describe("InputFieldWrapper", () => {
       const container = getByTestId("ATL-InputFieldWrapper");
       expect(container.props.style).toContainEqual({
         ...commonInputStyles.container,
-        flexWrap: "wrap",
+        flexDirection: "column",
       });
     });
 

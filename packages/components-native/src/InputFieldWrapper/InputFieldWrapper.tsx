@@ -13,9 +13,11 @@ import { styles } from "./InputFieldWrapper.style";
 import { PrefixIcon, PrefixLabel } from "./components/Prefix/Prefix";
 import { SuffixIcon, SuffixLabel } from "./components/Suffix/Suffix";
 import { ClearAction } from "./components/ClearAction";
+import { Glimmer } from "./components/Glimmer/Glimmer";
 import { ErrorMessageWrapper } from "../ErrorMessageWrapper";
 import { TextVariation, typographyStyles } from "../Typography";
 import { Text } from "../Text";
+import { ActivityIndicator } from "../ActivityIndicator";
 
 export type Clearable = "never" | "while-editing" | "always";
 
@@ -98,6 +100,16 @@ export interface InputFieldWrapperProps {
    * Change the behaviour of when the toolbar becomes visible.
    */
   readonly toolbarVisibility?: "always" | "while-editing";
+
+  /**
+   * Show loading indicator.
+   */
+  readonly loading?: boolean | "glimmer";
+
+  /**
+   * Change the type of loading indicator to spinner or glimmer.
+   */
+  readonly loadingType?: "spinner" | "glimmer";
 }
 
 export function InputFieldWrapper({
@@ -117,6 +129,8 @@ export function InputFieldWrapper({
   styleOverride,
   toolbar,
   toolbarVisibility = "while-editing",
+  loading = false,
+  loadingType = "spinner",
 }: InputFieldWrapperProps): JSX.Element {
   fieldAffixRequiredPropsCheck([prefix, suffix]);
   const handleClear = onClear ?? noopClear;
@@ -124,6 +138,9 @@ export function InputFieldWrapper({
   const inputInvalid = Boolean(invalid) || Boolean(error);
   const isToolbarVisible =
     toolbar && (toolbarVisibility === "always" || focused);
+
+  const showLoadingSpinner = loading && loadingType === "spinner";
+  const showLoadingGlimmer = loading && loadingType === "glimmer";
 
   return (
     <ErrorMessageWrapper message={getMessage({ invalid, error })}>
@@ -176,7 +193,24 @@ export function InputFieldWrapper({
             />
           )}
           {children}
-          {(showClearAction || suffix?.label || suffix?.icon) && (
+
+          {showLoadingGlimmer && (
+            <View
+              style={[
+                styles.loadingGlimmers,
+                hasValue && styles.loadingGlimmersHasValue,
+              ]}
+            >
+              <Glimmer width="80%" />
+              <Glimmer />
+              <Glimmer width="70%" />
+            </View>
+          )}
+
+          {(showClearAction ||
+            suffix?.label ||
+            suffix?.icon ||
+            showLoadingSpinner) && (
             <View style={styles.inputEndContainer}>
               {showClearAction && (
                 <ClearAction
@@ -194,6 +228,11 @@ export function InputFieldWrapper({
                   hasLeftMargin={!showClearAction}
                   styleOverride={styleOverride?.suffixLabel}
                 />
+              )}
+              {showLoadingSpinner && (
+                <View style={styles.loadingSpinner}>
+                  <ActivityIndicator />
+                </View>
               )}
               {suffix?.icon && (
                 <SuffixIcon
