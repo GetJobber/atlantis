@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.90.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.89.0...@jobber/components@4.90.0) (2024-03-28)
+
+
+### Features
+
+* **components:** Heading can accept an element prop to override the numbered heading element ([#1834](https://github.com/GetJobber/atlantis/issues/1834)) ([1e7b208](https://github.com/GetJobber/atlantis/commit/1e7b208e2f4426d9e866d781051c1c459307bb1b))
+
+
+
+
+
 # [4.89.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.88.0...@jobber/components@4.89.0) (2024-03-27)
 
 

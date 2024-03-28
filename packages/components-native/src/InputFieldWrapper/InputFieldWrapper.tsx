@@ -230,11 +230,13 @@ export function InputFieldWrapper({
                     styleOverride={styleOverride?.suffixLabel}
                   />
                 )}
+
                 {showLoadingSpinner && (
                   <View style={styles.loadingSpinner}>
                     <ActivityIndicator />
                   </View>
                 )}
+
                 {suffix?.icon && (
                   <SuffixIcon
                     disabled={disabled}

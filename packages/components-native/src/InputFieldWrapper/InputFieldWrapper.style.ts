@@ -13,6 +13,7 @@ export const styles = StyleSheet.create({
 
   field: {
     flexDirection: "row",
+    alignItems: "center",
   },
 
   inputContainer: {
