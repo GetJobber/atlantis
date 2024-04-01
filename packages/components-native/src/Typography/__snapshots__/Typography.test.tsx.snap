@@ -379,7 +379,7 @@ exports[`renders text with green color 1`] = `
         "fontFamily": "inter-regular",
       },
       {
-        "color": "rgb(125, 176, 14)",
+        "color": "hsl(107, 65%, 31%)",
       },
       {
         "textAlign": "left",
@@ -676,7 +676,7 @@ exports[`renders text with reverseTheme false with reversible color 1`] = `
         "fontFamily": "inter-regular",
       },
       {
-        "color": "rgb(81, 114, 9)",
+        "color": "hsl(131, 69%, 18%)",
       },
       {
         "textAlign": "left",
@@ -709,7 +709,7 @@ exports[`renders text with reverseTheme true with reversible color 1`] = `
         "fontFamily": "inter-regular",
       },
       {
-        "color": "rgb(125, 176, 14)",
+        "color": "hsl(107, 65%, 31%)",
       },
       {
         "textAlign": "left",
