@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.90.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.89.0...@jobber/components@4.90.0) (2024-03-28)
+
+
+### Features
+
+* **components:** Heading can accept an element prop to override the numbered heading element ([#1834](https://github.com/GetJobber/atlantis/issues/1834)) ([1e7b208](https://github.com/GetJobber/atlantis/commit/1e7b208e2f4426d9e866d781051c1c459307bb1b))
+
+
+
+
+
+# [4.89.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.88.0...@jobber/components@4.89.0) (2024-03-27)
+
+
+### Features
+
+* **components:** Update InputDate to customize date format, calendar icon and displayed value ([#1817](https://github.com/GetJobber/atlantis/issues/1817)) ([5c196d5](https://github.com/GetJobber/atlantis/commit/5c196d596fe528cff3cc95cf8d436d517939a108))
+
+
+
+
+
+# [4.88.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.10...@jobber/components@4.88.0) (2024-03-27)
+
+
+### Features
+
+* **components:** Make inlineLabel sizing match statusLabel ([#1823](https://github.com/GetJobber/atlantis/issues/1823)) ([866fb15](https://github.com/GetJobber/atlantis/commit/866fb15c8747bfa09ee2d6a5e072175bc5d76ccf))
+
+
+
+
+
 ## [4.87.10](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.8...@jobber/components@4.87.10) (2024-03-26)
 
 

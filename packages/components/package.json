@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "4.87.10",
+  "version": "4.90.0",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.cjs",
@@ -453,6 +453,8 @@
     "typescript": "^4.9.5"
   },
   "peerDependencies": {
+    "date-fns": "^2.0.0",
+    "date-fns-tz": "^2.0.0",
     "react": "^18",
     "react-dom": "^18"
   },
