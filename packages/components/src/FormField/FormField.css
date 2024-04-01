@@ -10,7 +10,7 @@
 
   --field--placeholder-color: var(--color-greyBlue--light);
   --field--value-color: var(--color-heading);
-  --field--border-color: var(--color-border);
+  --field--border-color: var(--color-blue--lighter);
 }
 
 .container {
