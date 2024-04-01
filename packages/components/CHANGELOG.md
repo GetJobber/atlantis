@@ -3,6 +3,108 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.90.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.89.0...@jobber/components@4.90.0) (2024-03-28)
+
+
+### Features
+
+* **components:** Heading can accept an element prop to override the numbered heading element ([#1834](https://github.com/GetJobber/atlantis/issues/1834)) ([1e7b208](https://github.com/GetJobber/atlantis/commit/1e7b208e2f4426d9e866d781051c1c459307bb1b))
+
+
+
+
+
+# [4.89.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.88.0...@jobber/components@4.89.0) (2024-03-27)
+
+
+### Features
+
+* **components:** Update InputDate to customize date format, calendar icon and displayed value ([#1817](https://github.com/GetJobber/atlantis/issues/1817)) ([5c196d5](https://github.com/GetJobber/atlantis/commit/5c196d596fe528cff3cc95cf8d436d517939a108))
+
+
+
+
+
+# [4.88.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.10...@jobber/components@4.88.0) (2024-03-27)
+
+
+### Features
+
+* **components:** Make inlineLabel sizing match statusLabel ([#1823](https://github.com/GetJobber/atlantis/issues/1823)) ([866fb15](https://github.com/GetJobber/atlantis/commit/866fb15c8747bfa09ee2d6a5e072175bc5d76ccf))
+
+
+
+
+
+## [4.87.10](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.8...@jobber/components@4.87.10) (2024-03-26)
+
+
+### Bug Fixes
+
+* **components:** Make FormatTime work on SSR environments ([#1824](https://github.com/GetJobber/atlantis/issues/1824)) ([7fb8961](https://github.com/GetJobber/atlantis/commit/7fb8961e5cf61163c377dd84e2476f0f57bb17ba))
+* **components:** stop InputPhoneNumber crashing page when it's translated with a Google Translate browser extension  — Patch Release ([#1828](https://github.com/GetJobber/atlantis/issues/1828)) ([8b33ed5](https://github.com/GetJobber/atlantis/commit/8b33ed5c4795f2d6ae46bdfcdaef3318715c5620))
+
+
+
+
+
+## [4.87.9](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.8...@jobber/components@4.87.9) (2024-03-25)
+
+
+### Bug Fixes
+
+* **components:** Make FormatTime work on SSR environments ([#1824](https://github.com/GetJobber/atlantis/issues/1824)) ([7fb8961](https://github.com/GetJobber/atlantis/commit/7fb8961e5cf61163c377dd84e2476f0f57bb17ba))
+
+
+
+
+
+## [4.87.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.7...@jobber/components@4.87.8) (2024-03-22)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.87.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.6...@jobber/components@4.87.7) (2024-03-21)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.87.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.5...@jobber/components@4.87.6) (2024-03-21)
+
+
+### Bug Fixes
+
+* **components:** Make useMediaQuery SSR Friendly ([#1814](https://github.com/GetJobber/atlantis/issues/1814)) ([8f9ff88](https://github.com/GetJobber/atlantis/commit/8f9ff882741e0c7cbe83c2405422bb1dbf877d9e))
+
+
+
+
+
+## [4.87.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.4...@jobber/components@4.87.5) (2024-03-21)
+
+
+### Bug Fixes
+
+* **components:** InternalThumbnailImage to support SSR ([#1810](https://github.com/GetJobber/atlantis/issues/1810)) ([f7a9936](https://github.com/GetJobber/atlantis/commit/f7a9936e89e5e2769014ba3fbbc5cc660b9bf4e3))
+
+
+
+
+
+## [4.87.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.3...@jobber/components@4.87.4) (2024-03-21)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 ## [4.87.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.87.2...@jobber/components@4.87.3) (2024-03-20)
 
 

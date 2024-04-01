@@ -1,18 +1,32 @@
 .inlineLabel {
   display: inline-flex;
-  border-radius: var(--radius-large);
 }
 
 .base {
   padding: calc(var(--space-smaller) * 1.5) calc(var(--space-small) * 1.25);
+  border-radius: var(--radius-large);
+}
+
+.base span {
+  line-height: 0.75rem;
 }
 
 .large {
-  padding: calc(var(--space-smaller) * 1.5) calc(var(--space-small) * 1.25);
+  padding: calc(var(--space-small) * 1.25) calc(var(--space-small) * 1.5);
+  border-radius: var(--radius-larger);
+}
+
+.large span {
+  line-height: 1rem;
 }
 
 .larger {
-  padding: calc(var(--space-small) * 1.25) calc(var(--space-smaller) * 3.5);
+  padding: calc(var(--space-small) * 1.5) calc(var(--space-base));
+  border-radius: var(--radius-larger);
+}
+
+.larger span {
+  line-height: 1rem;
 }
 
 .greyBlue {

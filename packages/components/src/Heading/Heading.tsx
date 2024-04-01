@@ -10,11 +10,15 @@ interface HeadingProps {
    */
   readonly level: HeadingLevel;
   readonly children: ReactNode;
+  /**
+   * Allows overriding of the element rendered. Defaults to the heading specified with level.
+   */
+  readonly element?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
 }
 
 export type LevelMap = Record<HeadingLevel, TypographyOptions>;
 
-export function Heading({ level = 5, children }: HeadingProps) {
+export function Heading({ level = 5, children, element }: HeadingProps) {
   const { JOBBER_RETHEME: inRetheme } = useAtlantisConfig();
 
   const levelMap: LevelMap = {
@@ -57,5 +61,12 @@ export function Heading({ level = 5, children }: HeadingProps) {
     },
   };
 
-  return <Typography {...levelMap[level]}>{children}</Typography>;
+  return (
+    <Typography
+      {...levelMap[level]}
+      element={element || levelMap[level].element}
+    >
+      {children}
+    </Typography>
+  );
 }
