@@ -2,18 +2,13 @@
   display: flex;
   position: relative;
   box-shadow: var(--shadow-base);
-  padding: var(--space-base);
-  color: var(--color-text);
-  background-color: var(--color-surface--background);
-  gap: var(--space-small);
-  align-items: center;
-}
-
-:global(.jobber-retheme) .banner {
   padding: calc(var(--space-base) - var(--space-smaller)) var(--space-base);
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
+  color: var(--color-text);
   background-color: var(--color-surface);
+  gap: var(--space-small);
+  align-items: center;
 }
 
 .bannerChildren > a {
@@ -88,6 +83,6 @@
   background-color: var(--color-surface--background);
 }
 
-:global(.jobber-retheme) .medium .iconWrapper {
+.medium .iconWrapper {
   align-self: center;
 }

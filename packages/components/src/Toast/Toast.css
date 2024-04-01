@@ -32,28 +32,20 @@
 
 .slice {
   display: flex;
+  gap: var(--space-base);
   align-items: center;
   padding: calc(var(--space-small) / 1.25) var(--space-base);
   border-radius: var(--radius-base);
   background: var(--color-surface--reverse);
 }
 
-.icon {
-  margin-right: var(--space-base);
+/* Use of !important to make the button icon visible in
+   the reverse color scheme of Toast */
+
+.button * path {
+  fill: var(--color-greyBlue--light) !important;
 }
 
-.button {
-  margin-left: var(--space-base);
-}
-
-:global(.jobber-retheme) .button svg path {
-  fill: var(--color-greyBlue--light);
-}
-
-:global(.jobber-retheme) .button:hover svg path {
-  fill: var(--color-greyBlue);
-}
-
-.action {
-  margin-left: var(--space-small);
+.button:hover * path {
+  fill: var(--color-greyBlue) !important;
 }

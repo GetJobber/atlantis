@@ -5,17 +5,13 @@
   box-sizing: border-box;
   margin: 0 var(--space-small);
   padding: var(--space-small);
-  border-radius: var(--radius-large);
+  border-radius: var(--radius-base);
   color: var(--color-heading);
   font-weight: 500;
   cursor: pointer;
   transition: all var(--timing-base);
   justify-content: space-between;
   align-items: center;
-}
-
-:global(.jobber-retheme) .option {
-  border-radius: var(--radius-base);
 }
 
 .option:hover,

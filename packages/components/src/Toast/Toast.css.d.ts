@@ -3,9 +3,7 @@ declare const styles: {
   readonly "container": string;
   readonly "toast": string;
   readonly "slice": string;
-  readonly "icon": string;
   readonly "button": string;
-  readonly "action": string;
 };
 export = styles;
 

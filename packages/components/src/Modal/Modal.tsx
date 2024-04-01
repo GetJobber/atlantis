@@ -114,7 +114,7 @@ interface HeaderProps {
 function Header({ title, dismissible, onRequestClose }: HeaderProps) {
   return (
     <div className={styles.header} data-testid="modal-header">
-      <Heading level={3}>{title}</Heading>
+      <Heading level={2}>{title}</Heading>
 
       {dismissible && (
         <ButtonDismiss onClick={onRequestClose} ariaLabel="Close modal" />

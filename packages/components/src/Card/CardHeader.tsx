@@ -22,7 +22,7 @@ export function CardHeader({
 
     return (
       <div className={styles.header}>
-        {titleString && <Heading level={3}>{titleString}</Heading>}
+        {titleString && <Heading level={2}>{titleString}</Heading>}
         {typeof heading === "object" && renderHeaderAction(heading?.action)}
       </div>
     );

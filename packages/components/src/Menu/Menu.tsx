@@ -221,10 +221,9 @@ function SectionHeader({ text }: SectionHeaderProps) {
     <div className={styles.sectionHeader} aria-hidden={true}>
       <Typography
         element="h6"
-        size="small"
-        textCase="uppercase"
+        size="base"
         textColor="textSecondary"
-        fontWeight="bold"
+        fontWeight="regular"
       >
         {text}
       </Typography>
@@ -284,12 +283,12 @@ function Action({
       onClick={onClick}
       ref={actionButtonRef}
     >
-      {icon && (
-        <span className={styles.icon}>
-          <Icon name={icon} />
-        </span>
-      )}
-      <Typography element="span" size="base" textColor="text">
+      {icon && <Icon name={icon} color="interactiveSubtle" />}
+      <Typography
+        element="span"
+        fontWeight="semiBold"
+        textColor="textSecondary"
+      >
         {sectionLabel && (
           <span className={styles.screenReaderOnly}>{sectionLabel}</span>
         )}

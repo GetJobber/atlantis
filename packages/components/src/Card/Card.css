@@ -2,7 +2,7 @@
   --card--accent-color: var(--color-grey);
   --card--base-padding: var(--space-base);
   --card--border: var(--border-base) solid var(--color-border);
-  --card--header-background: var(--color-surface--background);
+  --card--header-background: transparent;
 }
 
 .card {
@@ -16,10 +16,6 @@
 
 .card:active {
   outline: 0;
-}
-
-:root :global(.jobber-retheme) .card:not(.clickable) {
-  --card--header-background: transparent;
 }
 
 /* Adjust `Content` components public padding to match the cards */
@@ -64,17 +60,9 @@
 .header {
   display: flex;
   padding: var(--card--base-padding);
+  padding-bottom: 0;
   background-color: var(--card--header-background);
   justify-content: space-between;
   align-items: flex-start;
   gap: var(--space-small);
-}
-
-:global(.jobber-retheme) .header {
-  padding-bottom: 0;
-}
-
-:global(.jobber-retheme) .header h3 {
-  font-family: var(--typography--fontFamily-normal);
-  font-size: var(--typography--fontSize-largest);
 }

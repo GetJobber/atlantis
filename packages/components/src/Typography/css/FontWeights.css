@@ -19,12 +19,8 @@
 }
 
 .extraBold {
-  font-family: var(--typography--fontFamily-display);
-  font-weight: 800;
-}
-
-:global(.jobber-retheme) .extraBold {
   font-family: var(--typography--fontFamily-normal);
+  font-weight: 800;
 }
 
 .black {
