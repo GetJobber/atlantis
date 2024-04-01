@@ -67,9 +67,7 @@ export function InputDate(inputProps: InputDateProps) {
       activator={activatorProps => {
         const { onChange, onClick, value } = activatorProps;
         const newActivatorProps = omit(activatorProps, ["activator"]);
-        const [showEmptyPlaceholder, setShowEmptyPlaceholder] = useState(
-          !value,
-        );
+        const [isFocused, setIsFocused] = useState(false);
         const suffix =
           inputProps.showIcon !== false
             ? ({
@@ -91,20 +89,22 @@ export function InputDate(inputProps: InputDateProps) {
             <FormField
               {...newActivatorProps}
               {...inputProps}
-              value={showEmptyPlaceholder ? inputProps.emptyValueLabel : value}
+              value={
+                !value && !isFocused ? inputProps.emptyValueLabel || "" : value
+              }
               placeholder={inputProps.placeholder}
               onChange={(_, event) => {
                 onChange && onChange(event);
-                setShowEmptyPlaceholder(false);
               }}
               onBlur={() => {
                 inputProps.onBlur && inputProps.onBlur();
                 activatorProps.onBlur && activatorProps.onBlur();
-                setShowEmptyPlaceholder(!value);
+                setIsFocused(false);
               }}
               onFocus={() => {
                 inputProps.onFocus && inputProps.onFocus();
                 activatorProps.onFocus && activatorProps.onFocus();
+                setIsFocused(true);
               }}
               onKeyUp={event => {
                 if (
