@@ -35,6 +35,9 @@ interface GlimmerProps {
   readonly width?: number | `${number}%`;
 }
 
+export const GLIMMER_TEST_ID = "ATL-Glimmer";
+export const GLIMMER_SHINE_TEST_ID = "ATL-Glimmer-Shine";
+
 export function Glimmer({
   width,
   shape = "rectangle",
@@ -71,9 +74,11 @@ export function Glimmer({
         { width },
       ]}
       onLayout={getWidth}
+      testID={GLIMMER_TEST_ID}
     >
       <Animated.View
         style={[styles.shine, { transform: [{ translateX: leftPosition }] }]}
+        testID={GLIMMER_SHINE_TEST_ID}
       >
         <Svg>
           <Defs>

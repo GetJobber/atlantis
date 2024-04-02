@@ -416,6 +416,7 @@ function InputTextInternal(
         blurOnSubmit={shouldBlurOnSubmit}
         accessibilityLabel={accessibilityLabel || placeholder}
         accessibilityHint={accessibilityHint}
+        accessibilityState={{ busy: loading }}
         secureTextEntry={secureTextEntry}
         {...androidA11yProps}
         onFocus={event => {

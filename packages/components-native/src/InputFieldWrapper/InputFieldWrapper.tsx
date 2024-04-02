@@ -104,13 +104,18 @@ export interface InputFieldWrapperProps {
   /**
    * Show loading indicator.
    */
-  readonly loading?: boolean | "glimmer";
+  readonly loading?: boolean;
 
   /**
    * Change the type of loading indicator to spinner or glimmer.
    */
   readonly loadingType?: "spinner" | "glimmer";
 }
+
+export const INPUT_FIELD_WRAPPER_GLIMMERS_TEST_ID =
+  "ATL-InputFieldWrapper-Glimmers";
+export const INPUT_FIELD_WRAPPER_SPINNER_TEST_ID =
+  "ATL-InputFieldWrapper-Spinner";
 
 export function InputFieldWrapper({
   invalid,
@@ -197,6 +202,7 @@ export function InputFieldWrapper({
 
             {showLoadingGlimmer && (
               <View
+                testID={INPUT_FIELD_WRAPPER_GLIMMERS_TEST_ID}
                 style={[
                   styles.loadingGlimmers,
                   hasValue && styles.loadingGlimmersHasValue,
@@ -233,7 +239,9 @@ export function InputFieldWrapper({
 
                 {showLoadingSpinner && (
                   <View style={styles.loadingSpinner}>
-                    <ActivityIndicator />
+                    <ActivityIndicator
+                      testID={INPUT_FIELD_WRAPPER_SPINNER_TEST_ID}
+                    />
                   </View>
                 )}
 
