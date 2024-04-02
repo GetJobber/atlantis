@@ -1,6 +1,8 @@
 import React, { useCallback, useRef, useState } from "react";
 import {
+  Keyboard,
   LayoutRectangle,
+  Platform,
   Pressable,
   View,
   useWindowDimensions,
@@ -33,7 +35,7 @@ export function Menu({ menuOptions, customActivator }: MenuProps): JSX.Element {
     }
   }, [screenInfo, activatorLayout]);
 
-  const activatorOnPress = (onPress?: () => void) => {
+  const openMenu = () => {
     menuButtonRef.current?.measureInWindow(
       (x: number, y: number, width: number, height: number) => {
         activatorLayout.current = {
@@ -44,9 +46,21 @@ export function Menu({ menuOptions, customActivator }: MenuProps): JSX.Element {
         };
         findMenuLayout();
         setOpen(true);
-        onPress && onPress();
       },
     );
+  };
+
+  const activatorOnPress = (onPress?: () => void) => {
+    onPress && onPress();
+
+    if (Keyboard.isVisible()) {
+      onKeyboardHide(() => {
+        openMenu();
+      });
+      Keyboard.dismiss();
+    } else {
+      openMenu();
+    }
   };
 
   return (
@@ -112,4 +126,20 @@ function useScreenInformation() {
   const { height: windowHeight } = useSafeAreaFrame();
 
   return { headerHeight, windowWidth, windowHeight };
+}
+
+function onKeyboardHide(callback: () => void) {
+  const isKeyboardEventSupported =
+    Platform.OS !== "android" ||
+    // Android versions >10 (API >29) support this event
+    (Platform.OS === "android" && Platform.Version > 29);
+
+  if (isKeyboardEventSupported) {
+    const listener = Keyboard.addListener("keyboardDidHide", () => {
+      listener.remove();
+      callback();
+    });
+  } else {
+    callback();
+  }
 }
