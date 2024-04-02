@@ -4,7 +4,7 @@ import Svg, { Defs, LinearGradient, Rect, Stop } from "react-native-svg";
 import { shineWidth, styles } from "./Glimmer.style";
 import { sizeStyles } from "./Glimmer.size.style";
 import { shapeStyles } from "./Glimmer.shape.style";
-import { tokens } from "../../../utils/design";
+import { tokens } from "../utils/design";
 
 interface GlimmerProps {
   readonly shape?: keyof typeof shapeStyles;

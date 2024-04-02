@@ -13,7 +13,7 @@ import { styles } from "./InputFieldWrapper.style";
 import { PrefixIcon, PrefixLabel } from "./components/Prefix/Prefix";
 import { SuffixIcon, SuffixLabel } from "./components/Suffix/Suffix";
 import { ClearAction } from "./components/ClearAction";
-import { Glimmer } from "./components/Glimmer/Glimmer";
+import { Glimmer } from "../Glimmer/Glimmer";
 import { ErrorMessageWrapper } from "../ErrorMessageWrapper";
 import { TextVariation, typographyStyles } from "../Typography";
 import { Text } from "../Text";

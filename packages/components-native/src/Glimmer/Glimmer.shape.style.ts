@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { tokens } from "../../../utils/design";
+import { tokens } from "../utils/design";
 
 export const shapeStyles = StyleSheet.create({
   rectangle: {
