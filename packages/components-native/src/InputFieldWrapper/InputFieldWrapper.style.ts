@@ -121,18 +121,20 @@ export const styles = StyleSheet.create({
 
   loadingGlimmers: {
     position: "absolute",
-    top: tokens["space-base"] + tokens["space-smaller"],
+    top: tokens["space-base"],
     bottom: tokens["space-base"],
     left: 0,
     right: 0,
-    gap: tokens["space-smaller"],
+    gap: tokens["space-small"],
+    paddingTop: tokens["space-small"],
     paddingRight: tokens["space-large"],
     backgroundColor: tokens["color-surface"],
     overflow: "hidden",
   },
 
   loadingGlimmersHasValue: {
-    top: tokens["space-larger"],
+    top: tokens["space-large"],
+    paddingTop: tokens["space-base"] - tokens["space-smaller"],
     bottom: tokens["space-smaller"],
   },
 });

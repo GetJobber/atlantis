@@ -208,9 +208,9 @@ export function InputFieldWrapper({
                   hasValue && styles.loadingGlimmersHasValue,
                 ]}
               >
-                <Glimmer width="80%" />
-                <Glimmer />
-                <Glimmer width="70%" />
+                <Glimmer size="small" width="80%" />
+                <Glimmer size="small" />
+                <Glimmer size="small" width="70%" />
               </View>
             )}
 
