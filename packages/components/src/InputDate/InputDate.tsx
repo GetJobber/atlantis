@@ -1,5 +1,5 @@
 import omit from "lodash/omit";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   CommonFormFieldProps,
   FieldActionsRef,
@@ -81,7 +81,9 @@ export function InputDate(inputProps: InputDateProps) {
 
         // Set form field to formatted date string immediately, to avoid validations
         //  triggering incorrectly when it blurs (to handle the datepicker UI click)
-        value && formFieldActionsRef.current?.setValue(value);
+        useEffect(() => {
+          value && formFieldActionsRef.current?.setValue(value);
+        }, [value]);
 
         return (
           // We prevent the picker from opening on focus for keyboard navigation, so to maintain a good UX for mouse users we want to open the picker on click

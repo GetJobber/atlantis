@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.90.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.90.0...@jobber/components@4.90.1) (2024-04-02)
+
+
+### Bug Fixes
+
+* **components:** Fixing issue with InputDate causing an additional render ([#1820](https://github.com/GetJobber/atlantis/issues/1820)) ([ebab6fd](https://github.com/GetJobber/atlantis/commit/ebab6fd03e5e5a8197d4f7b4347bc73a377bd47f))
+
+
+
+
+
 # [4.90.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.89.0...@jobber/components@4.90.0) (2024-03-28)
 
 
