@@ -6,10 +6,32 @@ import { sizeStyles } from "./Glimmer.size.style";
 import { shapeStyles } from "./Glimmer.shape.style";
 import { tokens } from "../utils/design";
 
+export type GlimmerShapes = keyof typeof shapeStyles;
+export type GlimmerSizes = keyof typeof sizeStyles;
+export type GlimmerTimings = "base" | "fast";
+
 interface GlimmerProps {
-  readonly shape?: keyof typeof shapeStyles;
-  readonly size?: keyof typeof sizeStyles;
-  readonly timing?: "base" | "fast";
+  /**
+   * Sets the size of the glimmer.
+   */
+  readonly shape?: GlimmerShapes;
+
+  /**
+   * Sets the shape of the glimmer.
+   *
+   * If you need a specific width, use the `width` prop.
+   */
+  readonly size?: GlimmerSizes;
+
+  /**
+   * Control how fast the shine moves from left to right. This is useful when
+   * the glimmer is used on smaller spaces.
+   */
+  readonly timing?: GlimmerTimings;
+
+  /**
+   * Adjust the width of the glimmer in px or % values.
+   */
   readonly width?: number | `${number}%`;
 }
 
