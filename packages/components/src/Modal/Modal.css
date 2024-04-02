@@ -95,11 +95,7 @@
 }
 
 .closeButton {
-  padding: 0;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  appearance: none;
+  align-self: flex-start;
 }
 
 .actionBar {

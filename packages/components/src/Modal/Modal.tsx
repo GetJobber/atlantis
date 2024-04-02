@@ -117,7 +117,9 @@ function Header({ title, dismissible, onRequestClose }: HeaderProps) {
       <Heading level={3}>{title}</Heading>
 
       {dismissible && (
-        <ButtonDismiss onClick={onRequestClose} ariaLabel="Close modal" />
+        <div className={styles.closeButton}>
+          <ButtonDismiss onClick={onRequestClose} ariaLabel="Close modal" />
+        </div>
       )}
     </div>
   );
