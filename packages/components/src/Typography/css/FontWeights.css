@@ -19,7 +19,7 @@
 }
 
 .extraBold {
-  font-family: var(--typography--fontFamily-normal);
+  font-family: var(--typography--fontFamily-display);
   font-weight: 800;
 }
 

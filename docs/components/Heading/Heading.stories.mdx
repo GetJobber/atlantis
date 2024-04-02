@@ -55,6 +55,17 @@ as a stylistic reference to the
 For introductory text after a page title, or paragraph text for body copy, use
 [Text](../?path=/docs/components-text-and-typography-text-docs--page).
 
+## Accessibility
+
+In the web, HTML heading levels (h1, h2, h3, etc) correspond with document
+structure for assistive technology. Designers should strive to use the right
+level of heading visually to create an appropriate hierarchy, but in cases where
+this is not desired you can still specify the correct semantic level of Heading
+using the `element` property.
+
+In mobile, assistive technology only picks up on whether or not a typographic
+element is a heading or not, so the `element` property is not exposed.
+
 ## Platform considerations
 
 There are a few caveats around copying text on Android and iOS that you can read
