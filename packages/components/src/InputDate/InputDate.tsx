@@ -82,6 +82,7 @@ export function InputDate(inputProps: InputDateProps) {
         useEffect(() => {
           value && formFieldActionsRef.current?.setValue(value);
         }, [value]);
+        const showEmptyValueLabel = !value && !isFocused;
 
         return (
           // We prevent the picker from opening on focus for keyboard navigation, so to maintain a good UX for mouse users we want to open the picker on click
@@ -90,7 +91,7 @@ export function InputDate(inputProps: InputDateProps) {
               {...newActivatorProps}
               {...inputProps}
               value={
-                !value && !isFocused ? inputProps.emptyValueLabel || "" : value
+                showEmptyValueLabel ? inputProps.emptyValueLabel || "" : value
               }
               placeholder={inputProps.placeholder}
               onChange={(_, event) => {
