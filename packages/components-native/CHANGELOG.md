@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.62.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.61.2...@jobber/components-native@0.62.0) (2024-03-28)
+
+
+### Features
+
+* **components-native:** BREAKING CHANGE: Move react-native-svg to peerDependencies ([#1830](https://github.com/GetJobber/atlantis/issues/1830)) ([6e0a086](https://github.com/GetJobber/atlantis/commit/6e0a0864cee5f490d4d17fc839a5a1ca08d9f966))
+
+
+
+
+
+## [0.61.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.61.1...@jobber/components-native@0.61.2) (2024-03-28)
+
+
+### Bug Fixes
+
+* **components-native:** ensure prefix is beside the input ([#1836](https://github.com/GetJobber/atlantis/issues/1836)) ([5b952a6](https://github.com/GetJobber/atlantis/commit/5b952a698dfb50b9335fb6adc71533db9b950dfb))
+
+
+
+
+
+## [0.61.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.61.0...@jobber/components-native@0.61.1) (2024-03-27)
+
+
+### Bug Fixes
+
+* allow readonly prop on input text native ([#1832](https://github.com/GetJobber/atlantis/issues/1832)) ([f1e815b](https://github.com/GetJobber/atlantis/commit/f1e815b80a8ab97e2115b38cabb7d6f63aee1793))
+
+
+
+
+
 # [0.61.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.60.0...@jobber/components-native@0.61.0) (2024-03-26)
 
 

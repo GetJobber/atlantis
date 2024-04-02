@@ -137,77 +137,79 @@ export function InputFieldWrapper({
           styleOverride?.container,
         ]}
       >
-        {prefix?.icon && (
-          <PrefixIcon
-            disabled={disabled}
-            focused={focused}
-            hasMiniLabel={hasMiniLabel}
-            inputInvalid={inputInvalid}
-            icon={prefix.icon}
-          />
-        )}
-        <View style={[styles.inputContainer]}>
-          <View
-            style={[
-              !!placeholder && styles.label,
-              hasMiniLabel && styles.miniLabel,
-              disabled && styles.disabled,
-              hasMiniLabel &&
-                showClearAction &&
-                styles.miniLabelShowClearAction,
-            ]}
-            pointerEvents="none"
-          >
-            <Placeholder
-              placeholder={placeholder}
-              labelVariation={getLabelVariation(error, invalid, disabled)}
-              hasMiniLabel={hasMiniLabel}
-              styleOverride={styleOverride?.placeholderText}
-            />
-          </View>
-          {prefix?.label && hasValue && (
-            <PrefixLabel
+        <View style={styles.field}>
+          {prefix?.icon && (
+            <PrefixIcon
               disabled={disabled}
               focused={focused}
               hasMiniLabel={hasMiniLabel}
               inputInvalid={inputInvalid}
-              label={prefix.label}
-              styleOverride={styleOverride?.prefixLabel}
+              icon={prefix.icon}
             />
           )}
-          {children}
-          {(showClearAction || suffix?.label || suffix?.icon) && (
-            <View style={styles.inputEndContainer}>
-              {showClearAction && (
-                <ClearAction
-                  hasMarginRight={!!suffix?.icon || !!suffix?.label}
-                  onPress={handleClear}
-                />
-              )}
-              {suffix?.label && hasValue && (
-                <SuffixLabel
-                  disabled={disabled}
-                  focused={focused}
-                  hasMiniLabel={hasMiniLabel}
-                  inputInvalid={inputInvalid}
-                  label={suffix.label}
-                  hasLeftMargin={!showClearAction}
-                  styleOverride={styleOverride?.suffixLabel}
-                />
-              )}
-              {suffix?.icon && (
-                <SuffixIcon
-                  disabled={disabled}
-                  focused={focused}
-                  hasMiniLabel={hasMiniLabel}
-                  hasLeftMargin={!!(!showClearAction || suffix?.label)}
-                  inputInvalid={inputInvalid}
-                  icon={suffix.icon}
-                  onPress={suffix.onPress}
-                />
-              )}
+          <View style={[styles.inputContainer]}>
+            <View
+              style={[
+                !!placeholder && styles.label,
+                hasMiniLabel && styles.miniLabel,
+                disabled && styles.disabled,
+                hasMiniLabel &&
+                  showClearAction &&
+                  styles.miniLabelShowClearAction,
+              ]}
+              pointerEvents="none"
+            >
+              <Placeholder
+                placeholder={placeholder}
+                labelVariation={getLabelVariation(error, invalid, disabled)}
+                hasMiniLabel={hasMiniLabel}
+                styleOverride={styleOverride?.placeholderText}
+              />
             </View>
-          )}
+            {prefix?.label && hasValue && (
+              <PrefixLabel
+                disabled={disabled}
+                focused={focused}
+                hasMiniLabel={hasMiniLabel}
+                inputInvalid={inputInvalid}
+                label={prefix.label}
+                styleOverride={styleOverride?.prefixLabel}
+              />
+            )}
+            {children}
+            {(showClearAction || suffix?.label || suffix?.icon) && (
+              <View style={styles.inputEndContainer}>
+                {showClearAction && (
+                  <ClearAction
+                    hasMarginRight={!!suffix?.icon || !!suffix?.label}
+                    onPress={handleClear}
+                  />
+                )}
+                {suffix?.label && hasValue && (
+                  <SuffixLabel
+                    disabled={disabled}
+                    focused={focused}
+                    hasMiniLabel={hasMiniLabel}
+                    inputInvalid={inputInvalid}
+                    label={suffix.label}
+                    hasLeftMargin={!showClearAction}
+                    styleOverride={styleOverride?.suffixLabel}
+                  />
+                )}
+                {suffix?.icon && (
+                  <SuffixIcon
+                    disabled={disabled}
+                    focused={focused}
+                    hasMiniLabel={hasMiniLabel}
+                    hasLeftMargin={!!(!showClearAction || suffix?.label)}
+                    inputInvalid={inputInvalid}
+                    icon={suffix.icon}
+                    onPress={suffix.onPress}
+                  />
+                )}
+              </View>
+            )}
+          </View>
         </View>
 
         {isToolbarVisible && <View style={styles.toolbar}>{toolbar}</View>}
