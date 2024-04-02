@@ -2,13 +2,23 @@ import React, { useEffect, useRef, useState } from "react";
 import { Animated, Easing, LayoutChangeEvent, View } from "react-native";
 import Svg, { Defs, LinearGradient, Rect, Stop } from "react-native-svg";
 import { shineWidth, styles } from "./Glimmer.style";
+import { sizeStyles } from "./Glimmer.size.style";
+import { shapeStyles } from "./Glimmer.shape.style";
 import { tokens } from "../../../utils/design";
 
 interface GlimmerProps {
+  readonly shape?: keyof typeof shapeStyles;
+  readonly size?: keyof typeof sizeStyles;
+  readonly timing?: "base" | "fast";
   readonly width?: number | `${number}%`;
 }
 
-export function Glimmer({ width }: GlimmerProps) {
+export function Glimmer({
+  width,
+  shape = "rectangle",
+  size = "base",
+  timing = "base",
+}: GlimmerProps) {
   const leftPosition = useRef(new Animated.Value(-shineWidth)).current;
   const [parentWidth, setParentWidth] = useState(0);
 
@@ -16,7 +26,10 @@ export function Glimmer({ width }: GlimmerProps) {
     const shine = Animated.loop(
       Animated.timing(leftPosition, {
         toValue: parentWidth + shineWidth,
-        duration: tokens["timing-loading--extended"],
+        duration:
+          timing === "base"
+            ? tokens["timing-loading--extended"]
+            : tokens["timing-loading"],
         easing: Easing.ease,
         useNativeDriver: true,
       }),
@@ -28,7 +41,15 @@ export function Glimmer({ width }: GlimmerProps) {
   }, [parentWidth]);
 
   return (
-    <View style={[styles.container, { width }]} onLayout={getWidth}>
+    <View
+      style={[
+        styles.container,
+        sizeStyles[size],
+        shapeStyles[shape],
+        { width },
+      ]}
+      onLayout={getWidth}
+    >
       <Animated.View
         style={[styles.shine, { transform: [{ translateX: leftPosition }] }]}
       >
