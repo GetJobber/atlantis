@@ -24,6 +24,11 @@
       "import": "./dist/AnimatedSwitcher/index.mjs",
       "require": "./dist/AnimatedSwitcher/index.cjs"
     },
+    "./AtlantisContext": {
+      "types": "./dist/AtlantisContext/index.d.ts",
+      "import": "./dist/AtlantisContext/index.mjs",
+      "require": "./dist/AtlantisContext/index.cjs"
+    },
     "./Autocomplete": {
       "types": "./dist/Autocomplete/index.d.ts",
       "import": "./dist/Autocomplete/index.mjs",

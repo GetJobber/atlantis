@@ -1,5 +1,6 @@
 export * from "./AnimatedPresence";
 export * from "./AnimatedSwitcher";
+export * from "./AtlantisContext";
 export { Autocomplete } from "./Autocomplete";
 export * from "./Avatar";
 export * from "./Banner";
