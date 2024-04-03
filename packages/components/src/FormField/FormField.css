@@ -45,12 +45,14 @@
   display: flex;
   width: 100%;
   height: var(--field--height);
+  resize: vertical;
   border: var(--border-base) solid var(--field--border-color);
   border-radius: var(--radius-base);
   border-top-right-radius: var(--public-field--top-right-radius);
   border-bottom-right-radius: var(--public-field--bottom-right-radius);
   border-bottom-left-radius: var(--public-field--bottom-left-radius);
   border-top-left-radius: var(--public-field--top-left-radius);
+  overflow: scroll;
   color: var(--field--value-color);
   font-size: var(--typography--fontSize-base);
   background-color: var(--field--background-color);
@@ -193,7 +195,8 @@
 }
 
 .textarea .input {
-  resize: vertical;
+  display: block;
+  resize: none;
 }
 
 .select .input {

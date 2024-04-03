@@ -64,6 +64,7 @@ function InputTextInternal(
 ) {
   const inputRef = useRef<HTMLTextAreaElement | HTMLInputElement>(null);
   const actionsRef = useRef<FieldActionsRef>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   const rowRange = getRowRange();
 
@@ -95,16 +96,19 @@ function InputTextInternal(
   }));
 
   useSafeLayoutEffect(() => {
-    if (inputRef && inputRef.current instanceof HTMLTextAreaElement) {
-      resize(inputRef.current);
+    if (wrapperRef && wrapperRef.current instanceof HTMLDivElement) {
+      // we don't want this if we are letting it be as big as it needs to be....
+      // do we move this to the parent element instead?
+      resize(wrapperRef.current);
     }
-  }, [inputRef.current]);
+  }, [wrapperRef.current]);
 
   return (
     <FormField
       {...props}
       type={props.multiline ? "textarea" : "text"}
       inputRef={inputRef}
+      wrapperRef={wrapperRef}
       actionsRef={actionsRef}
       onChange={handleChange}
       rows={rowRange.min}
@@ -114,8 +118,8 @@ function InputTextInternal(
   function handleChange(newValue: string) {
     props.onChange && props.onChange(newValue);
 
-    if (inputRef && inputRef.current instanceof HTMLTextAreaElement) {
-      resize(inputRef.current);
+    if (wrapperRef && wrapperRef.current instanceof HTMLDivElement) {
+      resize(wrapperRef.current);
     }
   }
 
@@ -129,21 +133,21 @@ function InputTextInternal(
     }
   }
 
-  function resize(textArea: HTMLTextAreaElement) {
+  function resize(div: HTMLDivElement) {
     if (rowRange.min === rowRange.max) return;
 
-    textArea.style.height = "auto";
-    textArea.style.height = textAreaHeight(textArea) + "px";
+    div.style.height = "auto";
+    div.style.height = divHeight(div) + "px";
   }
 
-  function textAreaHeight(textArea: HTMLTextAreaElement) {
+  function divHeight(div: HTMLDivElement) {
     const {
       lineHeight,
       borderBottomWidth,
       borderTopWidth,
       paddingBottom,
       paddingTop,
-    } = window.getComputedStyle(textArea);
+    } = window.getComputedStyle(div);
 
     const maxHeight =
       rowRange.max * parseFloat(lineHeight) +
@@ -153,7 +157,7 @@ function InputTextInternal(
       parseFloat(paddingBottom);
 
     const scrollHeight =
-      textArea.scrollHeight +
+      div.scrollHeight +
       parseFloat(borderTopWidth) +
       parseFloat(borderBottomWidth);
 

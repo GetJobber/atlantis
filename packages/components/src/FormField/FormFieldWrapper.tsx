@@ -47,6 +47,7 @@ export function FormFieldWrapper({
   identifier,
   clearable,
   onClear,
+  wrapperRef,
 }: PropsWithChildren<FormFieldWrapperProps>) {
   const wrapperClasses = classnames(
     styles.wrapper,
@@ -106,6 +107,7 @@ export function FormFieldWrapper({
       <div
         className={wrapperClasses}
         style={wrapperInlineStyle}
+        ref={wrapperRef}
         data-testid="Form-Field-Wrapper"
       >
         {prefix?.icon && <AffixIcon {...prefix} size={size} />}
