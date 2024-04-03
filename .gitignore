@@ -9,3 +9,4 @@ node_modules
 .idea
 storybook-static
 .rollup.cache
+jobber-*.tgz
