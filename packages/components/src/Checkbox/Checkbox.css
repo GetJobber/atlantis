@@ -1,5 +1,8 @@
-.checkbox {
-  --checkbox-size: 20px;
+.checkBoxParent {
+  --checkbox--size: 20px;
+  --checkbox--border--checked: var(--color-interactive);
+  --checkbox--border--unchecked: var(--color-border);
+  --checkbox--border--hover: var(--color-interactive);
   display: inline-block;
 }
 
@@ -11,6 +14,9 @@
 }
 
 .disabled {
+  --checkbox--border--checked: var(--color-disabled--secondary);
+  --checkbox--border--unchecked: var(--color-disabled--secondary);
+  --checkbox--border--hover: var(--color-disabled--secondary);
   cursor: not-allowed;
 }
 
@@ -31,10 +37,10 @@
 
 .checkBox {
   display: flex;
-  width: var(--checkbox-size);
-  height: var(--checkbox-size);
+  width: var(--checkbox--size);
+  height: var(--checkbox--size);
   box-sizing: border-box;
-  border: var(--border-thick) solid var(--color-border);
+  border: var(--border-thick) solid var(--checkbox--border--unchecked);
   border-radius: var(--radius-small);
   background-color: var(--color-surface);
   transition: all var(--timing-quick) ease-out;
@@ -42,23 +48,19 @@
   align-items: center;
 }
 
-.disabled .checkBox {
-  border-color: var(--color-disabled--secondary);
+.checkBox:hover,
+.checkBoxParent:hover .checkBox {
+  border-color: var(--checkbox--border--hover);
 }
 
 .input.indeterminate + .checkBox,
 .input:checked + .checkBox {
-  border-color: var(--color-interactive);
+  border-color: var(--checkbox--border--checked);
   background-color: var(--color-interactive);
 }
 
 .input:focus-visible + .checkBox {
   box-shadow: var(--shadow-focus);
-}
-
-.checkBox:hover,
-.checkbox:hover .checkBox {
-  border-color: var(--color-interactive);
 }
 
 .disabled p {
@@ -71,7 +73,6 @@
 
 .disabled .input.indeterminate + .checkBox,
 .disabled .input:checked + .checkBox {
-  border-color: var(--color-disabled--secondary);
   background-color: var(--color-disabled--secondary);
 }
 
@@ -87,5 +88,5 @@
 
 .description {
   margin-bottom: var(--space-small);
-  padding-left: calc(var(--checkbox-size) + var(--space-small));
+  padding-left: calc(var(--checkbox--size) + var(--space-small));
 }
