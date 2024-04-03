@@ -1,5 +1,5 @@
 :root {
-  --modal--width: calc(var(--base-unit) * 37.5);
+  --modal--width: 600px;
   --modal--padding-horizontal: var(--space-base);
   --modal--padding-vertical: var(--space-base);
   --modal--padding: var(--modal--padding-vertical)

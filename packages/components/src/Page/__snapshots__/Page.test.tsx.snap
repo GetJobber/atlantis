@@ -32,7 +32,7 @@ exports[`When actions are provided renders a Page with action buttons and a menu
                 type="button"
               >
                 <span
-                  class="base extraBold base base"
+                  class="base semiBold base base"
                 >
                   Send Food
                 </span>
@@ -46,7 +46,7 @@ exports[`When actions are provided renders a Page with action buttons and a menu
                 type="button"
               >
                 <span
-                  class="base extraBold base base"
+                  class="base semiBold base base"
                 >
                   Send Drink
                 </span>
@@ -78,7 +78,7 @@ exports[`When actions are provided renders a Page with action buttons and a menu
                     />
                   </svg>
                   <span
-                    class="base extraBold base base"
+                    class="base semiBold base base"
                   >
                     More Actions
                   </span>

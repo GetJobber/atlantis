@@ -70,6 +70,10 @@
   color: var(--color-success--onSurface);
 }
 
+.interactive {
+  color: var(--color-interactive);
+}
+
 .disabled {
   color: var(--color-disabled);
 }

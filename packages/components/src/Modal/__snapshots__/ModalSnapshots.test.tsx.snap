@@ -19,11 +19,11 @@ exports[`Button Variations modal shows with primary learning button 1`] = `
         class="header"
         data-testid="modal-header"
       >
-        <h3
-          class="base extraBold larger heading"
+        <h2
+          class="base bold largest heading"
         >
           Teaching Modal
-        </h3>
+        </h2>
         <button
           aria-label="Close modal"
           class="button base onlyIcon subtle tertiary"
@@ -41,7 +41,7 @@ exports[`Button Variations modal shows with primary learning button 1`] = `
             />
           </svg>
           <span
-            class="base extraBold base base"
+            class="base semiBold base base"
           />
         </button>
       </div>
@@ -57,7 +57,7 @@ exports[`Button Variations modal shows with primary learning button 1`] = `
             type="button"
           >
             <span
-              class="base extraBold base base"
+              class="base semiBold base base"
             >
               I Would Like to Know More
             </span>
@@ -67,7 +67,7 @@ exports[`Button Variations modal shows with primary learning button 1`] = `
             type="button"
           >
             <span
-              class="base extraBold base base"
+              class="base semiBold base base"
             >
               Nevermind
             </span>
