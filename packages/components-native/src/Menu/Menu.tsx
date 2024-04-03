@@ -53,10 +53,10 @@ export function Menu({ menuOptions, customActivator }: MenuProps): JSX.Element {
   const activatorOnPress = (onPress?: () => void) => {
     onPress && onPress();
 
-    if (Keyboard.isVisible()) {
-      onKeyboardHide(() => {
-        openMenu();
-      });
+    if (Platform.OS === "ios" && Keyboard.isVisible()) {
+      // On iOS, the keyboard height causes problems with the menu positioning logic.
+      // Wait until the keyboard is fully hidden before we show the menu.
+      onKeyboardDidHide(openMenu);
       Keyboard.dismiss();
     } else {
       openMenu();
@@ -128,18 +128,9 @@ function useScreenInformation() {
   return { headerHeight, windowWidth, windowHeight };
 }
 
-function onKeyboardHide(callback: () => void) {
-  const isKeyboardEventSupported =
-    Platform.OS !== "android" ||
-    // Android versions >10 (API >29) support this event
-    (Platform.OS === "android" && Platform.Version > 29);
-
-  if (isKeyboardEventSupported) {
-    const listener = Keyboard.addListener("keyboardDidHide", () => {
-      listener.remove();
-      callback();
-    });
-  } else {
+function onKeyboardDidHide(callback: () => void) {
+  const listener = Keyboard.addListener("keyboardDidHide", () => {
+    listener.remove();
     callback();
-  }
+  });
 }
