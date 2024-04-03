@@ -25,7 +25,7 @@ it("renders a card", () => {
 
   expect(container.firstChild).toHaveClass("card accent green");
   expect(container.firstChild?.firstChild).toHaveClass("header");
-  expect(getByRole("heading")).toHaveClass("base bold larger heading");
+  expect(getByRole("heading")).toHaveClass("base bold largest heading");
   expect(getByText("The Undiscovered Country")).toBeDefined();
   expect(getByText("This is the card content.")).toBeDefined();
 });
