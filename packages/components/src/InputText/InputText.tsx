@@ -96,12 +96,17 @@ function InputTextInternal(
   }));
 
   useSafeLayoutEffect(() => {
-    if (wrapperRef && wrapperRef.current instanceof HTMLDivElement) {
+    if (
+      wrapperRef &&
+      wrapperRef.current instanceof HTMLDivElement &&
+      inputRef.current &&
+      inputRef.current instanceof HTMLTextAreaElement
+    ) {
       // we don't want this if we are letting it be as big as it needs to be....
       // do we move this to the parent element instead?
-      resize(wrapperRef.current);
+      resize(wrapperRef.current, inputRef.current);
     }
-  }, [wrapperRef.current]);
+  }, [wrapperRef.current, inputRef.current]);
 
   return (
     <FormField
@@ -118,8 +123,13 @@ function InputTextInternal(
   function handleChange(newValue: string) {
     props.onChange && props.onChange(newValue);
 
-    if (wrapperRef && wrapperRef.current instanceof HTMLDivElement) {
-      resize(wrapperRef.current);
+    if (
+      wrapperRef &&
+      wrapperRef.current instanceof HTMLDivElement &&
+      inputRef.current &&
+      inputRef.current instanceof HTMLTextAreaElement
+    ) {
+      resize(wrapperRef.current, inputRef.current);
     }
   }
 
@@ -133,21 +143,21 @@ function InputTextInternal(
     }
   }
 
-  function resize(div: HTMLDivElement) {
+  function resize(div: HTMLDivElement, textArea: HTMLTextAreaElement) {
     if (rowRange.min === rowRange.max) return;
 
     div.style.height = "auto";
-    div.style.height = divHeight(div) + "px";
+    div.style.height = textAreaHeight(textArea) + "px";
   }
 
-  function divHeight(div: HTMLDivElement) {
+  function textAreaHeight(textArea: HTMLTextAreaElement) {
     const {
       lineHeight,
       borderBottomWidth,
       borderTopWidth,
       paddingBottom,
       paddingTop,
-    } = window.getComputedStyle(div);
+    } = window.getComputedStyle(textArea);
 
     const maxHeight =
       rowRange.max * parseFloat(lineHeight) +
@@ -157,7 +167,7 @@ function InputTextInternal(
       parseFloat(paddingBottom);
 
     const scrollHeight =
-      div.scrollHeight +
+      textArea.scrollHeight +
       parseFloat(borderTopWidth) +
       parseFloat(borderBottomWidth);
 
