@@ -71,7 +71,6 @@
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: var(--modal--padding);
   background-color: var(--color-surface--background);
 }
@@ -95,7 +94,8 @@
 }
 
 .closeButton {
-  align-self: flex-start;
+  margin-top: -6px;
+  margin-right: -6px;
 }
 
 .actionBar {
