@@ -40,6 +40,9 @@ interface MultiSelectProps {
   readonly size?: "small" | "large";
 }
 
+// TODO: Remove me. This is a comment in an underused component to convince lerna to do a major version update when we asked nicely.
+// Please remove me soon.
+
 // eslint-disable-next-line max-statements
 export function MultiSelect({
   defaultLabel,
