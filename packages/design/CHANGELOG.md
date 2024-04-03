@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.56.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.56.1...@jobber/design@0.56.2) (2024-04-03)
+
+
+### Reverts
+
+* Revert "build(components)!: Adding ESM Build + Changing CSS Export Pattern BREAKING CHANGE" (#1846) ([da5942c](https://github.com/GetJobber/atlantis/commit/da5942c7753ad87078bf8ed7a3948b3a7a4009d0)), closes [#1846](https://github.com/GetJobber/atlantis/issues/1846)
+
+
+
+
+
 ## [0.56.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.56.0...@jobber/design@0.56.1) (2024-04-03)
 
 **Note:** Version bump only for package @jobber/design
