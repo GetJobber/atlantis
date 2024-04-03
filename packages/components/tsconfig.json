@@ -11,7 +11,7 @@
     "outDir": "dist",
     "paths": {
       "@jobber/hooks/*": [
-        "../../packages/hooks/src/*"
+        "../../packages/hooks/dist/*"
       ],
       "@jobber/components/*": [
         "./src/*"
