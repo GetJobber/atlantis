@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.63.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.62.4...@jobber/components-native@0.63.0) (2024-04-03)
+
+
+### Features
+
+* **components-native:** implement glimmer and add loading state to native inputs ([#1842](https://github.com/GetJobber/atlantis/issues/1842)) ([36620c6](https://github.com/GetJobber/atlantis/commit/36620c6a2be8a8cdecf3e0466442996cec4a72a0))
+
+
+
+
+
 ## [0.62.4](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.62.3...@jobber/components-native@0.62.4) (2024-04-03)
 
 **Note:** Version bump only for package @jobber/components-native
