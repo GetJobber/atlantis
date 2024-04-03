@@ -1,14 +1,14 @@
 /* eslint-disable import/no-default-export */
-const multiInput = require("rollup-plugin-multi-input");
-const typescript = require("rollup-plugin-typescript2");
-const postcss = require("rollup-plugin-postcss");
-const commonjs = require("@rollup/plugin-commonjs");
-const copy = require("rollup-plugin-copy");
+import multiInput from "rollup-plugin-multi-input";
+import typescript from "rollup-plugin-typescript2";
+import postcss from "rollup-plugin-postcss";
+import commonjs from "@rollup/plugin-commonjs";
+import copy from "rollup-plugin-copy";
 
-module.exports = {
+export default {
   input: `src/index.ts`,
   plugins: [
-    multiInput.default(),
+    multiInput(),
     typescript({
       declarationDir: "dist",
     }),
