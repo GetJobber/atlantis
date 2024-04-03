@@ -71,7 +71,7 @@ it("renders a non heading inline element", () => {
   const { container } = render(
     <Heading level={5} element="span">
       Dis be a span
-    </Heading>
+    </Heading>,
   );
   expect(container).toMatchInlineSnapshot(`
     <div>
