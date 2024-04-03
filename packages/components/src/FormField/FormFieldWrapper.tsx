@@ -48,6 +48,8 @@ export function FormFieldWrapper({
   clearable,
   onClear,
   wrapperRef,
+  toolbar,
+  toolbarRef,
 }: PropsWithChildren<FormFieldWrapperProps>) {
   const wrapperClasses = classnames(
     styles.wrapper,
@@ -127,7 +129,14 @@ export function FormFieldWrapper({
           )}
 
           {prefix?.label && <AffixLabel {...prefix} labelRef={prefixRef} />}
-          <div className={styles.childrenWrapper}>{children}</div>
+          <div className={styles.childrenWrapper}>
+            {children}
+            {toolbar && (
+              <div className={styles.toolbar} ref={toolbarRef}>
+                {toolbar}
+              </div>
+            )}
+          </div>
           {suffix?.label && (
             <AffixLabel {...suffix} labelRef={suffixRef} variation="suffix" />
           )}

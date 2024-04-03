@@ -52,7 +52,9 @@
   border-bottom-right-radius: var(--public-field--bottom-right-radius);
   border-bottom-left-radius: var(--public-field--bottom-left-radius);
   border-top-left-radius: var(--public-field--top-left-radius);
-  overflow: scroll;
+  overflow-x: hidden;
+  /* overflow: scroll; */
+  overflow-y: auto;
   color: var(--field--value-color);
   font-size: var(--typography--fontSize-base);
   background-color: var(--field--background-color);
@@ -163,8 +165,10 @@
 }
 
 .childrenWrapper {
+  display: flex;
   position: relative;
   flex: 1;
+  flex-direction: column;
 }
 
 /**
@@ -194,6 +198,8 @@
   outline: none;
 }
 
+/* hidden makes it unusable at times */
+/* scroll adds double scrollbars */
 .textarea .input {
   display: block;
   resize: none;
@@ -328,4 +334,12 @@
 
 .description {
   margin-top: var(--space-smaller);
+}
+
+.toolbar {
+  display: flex;
+  height: 60px;
+  margin: var(--space-base);
+  background-color: rgba(34, 153, 221, 0.1);
+  flex: 0 0 auto;
 }

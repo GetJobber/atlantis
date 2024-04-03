@@ -30,6 +30,8 @@ interface BaseProps
       | "defaultValue"
       | "prefix"
       | "suffix"
+      | "toolbar"
+      | "toolbarVisibility"
     > {
   multiline?: boolean;
 }
@@ -58,6 +60,8 @@ interface MultilineProps extends BaseProps {
 
 type InputTextPropOptions = XOR<BaseProps, MultilineProps>;
 
+// TODO refactor so not neeeded
+// eslint-disable-next-line max-statements
 function InputTextInternal(
   props: InputTextPropOptions,
   ref: Ref<InputTextRef>,
@@ -65,6 +69,7 @@ function InputTextInternal(
   const inputRef = useRef<HTMLTextAreaElement | HTMLInputElement>(null);
   const actionsRef = useRef<FieldActionsRef>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const toolbarRef = useRef<HTMLDivElement>(null);
 
   const rowRange = getRowRange();
 
@@ -100,13 +105,13 @@ function InputTextInternal(
       wrapperRef &&
       wrapperRef.current instanceof HTMLDivElement &&
       inputRef.current &&
-      inputRef.current instanceof HTMLTextAreaElement
+      inputRef.current instanceof HTMLTextAreaElement &&
+      toolbarRef &&
+      toolbarRef.current instanceof HTMLDivElement
     ) {
-      // we don't want this if we are letting it be as big as it needs to be....
-      // do we move this to the parent element instead?
-      resize(wrapperRef.current, inputRef.current);
+      resize(wrapperRef.current, inputRef.current, toolbarRef.current);
     }
-  }, [wrapperRef.current, inputRef.current]);
+  }, [wrapperRef.current, inputRef.current, toolbarRef.current]);
 
   return (
     <FormField
@@ -114,6 +119,7 @@ function InputTextInternal(
       type={props.multiline ? "textarea" : "text"}
       inputRef={inputRef}
       wrapperRef={wrapperRef}
+      toolbarRef={toolbarRef}
       actionsRef={actionsRef}
       onChange={handleChange}
       rows={rowRange.min}
@@ -127,9 +133,11 @@ function InputTextInternal(
       wrapperRef &&
       wrapperRef.current instanceof HTMLDivElement &&
       inputRef.current &&
-      inputRef.current instanceof HTMLTextAreaElement
+      inputRef.current instanceof HTMLTextAreaElement &&
+      toolbarRef &&
+      toolbarRef.current instanceof HTMLDivElement
     ) {
-      resize(wrapperRef.current, inputRef.current);
+      resize(wrapperRef.current, inputRef.current, toolbarRef.current);
     }
   }
 
@@ -143,11 +151,22 @@ function InputTextInternal(
     }
   }
 
-  function resize(div: HTMLDivElement, textArea: HTMLTextAreaElement) {
+  function resize(
+    div: HTMLDivElement,
+    textArea: HTMLTextAreaElement,
+    toolbar: HTMLDivElement,
+  ) {
+    console.log("resize");
     if (rowRange.min === rowRange.max) return;
 
     div.style.height = "auto";
-    div.style.height = textAreaHeight(textArea) + "px";
+    // ew, fix
+    console.log(textAreaHeight(textArea));
+    div.style.height =
+      textAreaHeight(textArea) +
+      (toolbar.getClientRects()[0].height +
+        parseInt(window.getComputedStyle(toolbar).marginTop, 10) * 2) +
+      "px";
   }
 
   function textAreaHeight(textArea: HTMLTextAreaElement) {

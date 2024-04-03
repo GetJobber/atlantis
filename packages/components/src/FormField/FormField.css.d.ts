@@ -23,6 +23,7 @@ declare const styles: {
   readonly "hasAction": string;
   readonly "affixLabel": string;
   readonly "description": string;
+  readonly "toolbar": string;
 };
 export = styles;
 

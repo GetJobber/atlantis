@@ -1,6 +1,7 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { InputText } from "@jobber/components/InputText";
+import { Button } from "@jobber/components/Button";
 
 export default {
   title: "Components/Forms and Inputs/InputText/Web",
@@ -11,7 +12,32 @@ export default {
 } as ComponentMeta<typeof InputText>;
 
 const BasicTemplate: ComponentStory<typeof InputText> = args => {
-  return <InputText {...args} />;
+  return (
+    <InputText
+      {...args}
+      toolbar={
+        <div
+          style={{
+            display: "flex",
+            flexBasis: "100%",
+            justifyContent: "space-between",
+          }}
+        >
+          <Button
+            label="Rewrite"
+            icon="sparkles"
+            onClick={() => console.log("rewriting")}
+          />
+          <Button
+            label="Submit"
+            icon="sms"
+            iconOnRight
+            onClick={() => console.log("submitting")}
+          />
+        </div>
+      }
+    />
+  );
 };
 
 export const Basic = BasicTemplate.bind({});
