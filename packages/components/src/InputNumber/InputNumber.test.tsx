@@ -19,13 +19,17 @@ it("renders an input type number", () => {
             <div
               class="childrenWrapper"
             >
-              <input
-                class="input"
-                id=":r0:"
-                name="generatedName--:r0:"
-                type="number"
-                value="123"
-              />
+              <div
+                style="position: relative;"
+              >
+                <input
+                  class="input"
+                  id=":r0:"
+                  name="generatedName--:r0:"
+                  type="number"
+                  value="123"
+                />
+              </div>
             </div>
           </div>
         </div>

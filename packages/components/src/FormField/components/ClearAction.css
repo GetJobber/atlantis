@@ -1,12 +1,6 @@
-.clearContainer {
-  display: flex;
-  align-items: center;
-  padding-left: var(--space-small);
-}
-
 .clearInput {
   display: flex;
-  position: relative;
+  position: absolute;
   right: var(--space-small);
   z-index: var(--elevation-tooltip);
   width: var(--space-large);
@@ -18,6 +12,7 @@
   cursor: pointer;
   justify-content: center;
   align-items: center;
+  transform: translateY(50%);
 }
 
 .clearInput:focus {

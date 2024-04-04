@@ -15,12 +15,16 @@ exports[`FormField when small renders 1`] = `
         <div
           class="childrenWrapper"
         >
-          <input
-            class="input"
-            id=":r8:"
-            type="text"
-            value=""
-          />
+          <div
+            style="position: relative;"
+          >
+            <input
+              class="input"
+              id=":r8:"
+              type="text"
+              value=""
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -43,12 +47,16 @@ exports[`FormField with no props renders 1`] = `
         <div
           class="childrenWrapper"
         >
-          <input
-            class="input"
-            id=":r0:"
-            type="text"
-            value=""
-          />
+          <div
+            style="position: relative;"
+          >
+            <input
+              class="input"
+              id=":r0:"
+              type="text"
+              value=""
+            />
+          </div>
         </div>
       </div>
     </div>

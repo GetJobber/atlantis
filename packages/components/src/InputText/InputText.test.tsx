@@ -26,12 +26,16 @@ it("renders a regular input for text and numbers", () => {
             <div
               class="childrenWrapper"
             >
-              <input
-                class="input"
-                id=":r0:"
-                type="text"
-                value=""
-              />
+              <div
+                style="position: relative;"
+              >
+                <input
+                  class="input"
+                  id=":r0:"
+                  type="text"
+                  value=""
+                />
+              </div>
             </div>
           </div>
         </div>
