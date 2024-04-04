@@ -1,1 +1,1 @@
-export { MultiSelect } from "./MultiSelect";
+export { MultiSelect, newVariable } from "./MultiSelect";
