@@ -48,6 +48,7 @@ export function FormFieldWrapper({
   clearable,
   onClear,
   toolbar,
+  toolbarVisibility = "while-editing",
 }: PropsWithChildren<FormFieldWrapperProps>) {
   const wrapperClasses = classnames(
     styles.wrapper,
@@ -90,6 +91,8 @@ export function FormFieldWrapper({
   }, [value]);
 
   const [focused, setFocused] = useState(false);
+  const isToolbarVisible =
+    toolbar && (toolbarVisibility === "always" || focused);
 
   const showClear = useShowClear({
     clearable,
@@ -131,7 +134,9 @@ export function FormFieldWrapper({
           <div className={styles.childrenWrapper}>
             {children}
 
-            {toolbar && <div className={styles.toolbar}>{toolbar}</div>}
+            {isToolbarVisible && (
+              <div className={styles.toolbar}>{toolbar}</div>
+            )}
           </div>
 
           {suffix?.label && (

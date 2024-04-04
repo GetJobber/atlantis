@@ -229,5 +229,5 @@ export interface FormFieldProps extends CommonFormFieldProps {
 
   readonly toolbar?: React.ReactNode;
 
-  readonly toolbarVisibility?: boolean;
+  readonly toolbarVisibility?: "always" | "while-editing";
 }
