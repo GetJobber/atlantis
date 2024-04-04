@@ -467,11 +467,12 @@
     "react-popper":"^2",
     "lodash":"^4",
     "axios":"^1",
-    "filesize":"^10",
+    "filesize":"^6",
     "color":"^4",
     "framer-motion":"^11",
     "classnames":"^2",
     "@std-proposal/temporal":"^0",
+    "@jobber/hooks": "^2",
     "zxcvbn":"^4",
     "@tanstack/react-table":"^8"
   },
