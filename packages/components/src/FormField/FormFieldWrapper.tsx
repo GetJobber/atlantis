@@ -125,7 +125,13 @@ export function FormFieldWrapper({
           )}
 
           {prefix?.label && <AffixLabel {...prefix} labelRef={prefixRef} />}
-          <div className={styles.childrenWrapper}>{children}</div>
+
+          <div className={styles.childrenWrapper}>
+            {children}
+
+            <div className={styles.toolbar}>Toolbar baby!</div>
+          </div>
+
           {suffix?.label && (
             <AffixLabel {...suffix} labelRef={suffixRef} variation="suffix" />
           )}

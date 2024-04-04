@@ -132,8 +132,11 @@ function InputTextInternal(
   function resize(textArea: HTMLTextAreaElement) {
     if (rowRange.min === rowRange.max) return;
 
-    textArea.style.height = "auto";
-    textArea.style.height = textAreaHeight(textArea) + "px";
+    const parent = textArea.parentElement as HTMLElement;
+
+    textArea.style.flexBasis = "auto";
+    parent.style.height = "auto";
+    textArea.style.flexBasis = textAreaHeight(textArea) + "px";
   }
 
   function textAreaHeight(textArea: HTMLTextAreaElement) {

@@ -18,6 +18,11 @@ export const Basic = BasicTemplate.bind({});
 Basic.args = {
   name: "age",
   placeholder: "Age in words",
+  multiline: true,
+  rows: {
+    min: 4,
+    max: 8,
+  },
 };
 
 export const Multiline = BasicTemplate.bind({});
