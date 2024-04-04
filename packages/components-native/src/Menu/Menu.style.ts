@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     backgroundColor: tokens["color-surface"],
     paddingHorizontal: tokens["space-small"],
     paddingVertical: tokens["space-small"] + tokens["space-smallest"],
-    borderRadius: tokens["radius-larger"],
+    borderRadius: tokens["radius-base"],
     width: menuWidth,
     ...tokens["shadow-high"],
   },

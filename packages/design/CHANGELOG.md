@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.57.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.56.4...@jobber/design@0.57.0) (2024-04-04)
+
+
+### Features
+
+* **components:** BREAKING CHANGE: Revert - Updating Atlantis to support ESM + Injected CSS ([#1852](https://github.com/GetJobber/atlantis/issues/1852)) ([f2df68f](https://github.com/GetJobber/atlantis/commit/f2df68f2a4218f9c2f1e56b361879e6ab348a487))
+* **components:** BREAKING CHANGE: Updating Atlantis to support ESM + Injected CSS ([#1849](https://github.com/GetJobber/atlantis/issues/1849)) ([0dd025f](https://github.com/GetJobber/atlantis/commit/0dd025f992ac92439e20ca5657ce2703083fcf3a))
+* **design:** Create longArrowRight and rename backArrow ([#1837](https://github.com/GetJobber/atlantis/issues/1837)) ([0c63ed5](https://github.com/GetJobber/atlantis/commit/0c63ed54278250751d48c82f23ff9fe39e857fe7))
+
+
+
+
+
+## [0.56.4](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.56.3...@jobber/design@0.56.4) (2024-04-03)
+
+
+### Reverts
+
+* Revert "feat!: BREAKING CHANGE Adding ESM Build + Changing CSS Export Pattern" (#1848) ([2a7a36e](https://github.com/GetJobber/atlantis/commit/2a7a36ec982811da9c767a7b54003db1088d5af6)), closes [#1848](https://github.com/GetJobber/atlantis/issues/1848)
+
+
+
+
+
+## [0.56.3](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.56.2...@jobber/design@0.56.3) (2024-04-03)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.56.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.56.1...@jobber/design@0.56.2) (2024-04-03)
+
+
+### Reverts
+
+* Revert "build(components)!: Adding ESM Build + Changing CSS Export Pattern BREAKING CHANGE" (#1846) ([da5942c](https://github.com/GetJobber/atlantis/commit/da5942c7753ad87078bf8ed7a3948b3a7a4009d0)), closes [#1846](https://github.com/GetJobber/atlantis/issues/1846)
+
+
+
+
+
+## [0.56.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.56.0...@jobber/design@0.56.1) (2024-04-03)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
 # [0.56.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.55.1...@jobber/design@0.56.0) (2024-03-13)
 
 

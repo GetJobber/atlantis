@@ -13,9 +13,11 @@ import { styles } from "./InputFieldWrapper.style";
 import { PrefixIcon, PrefixLabel } from "./components/Prefix/Prefix";
 import { SuffixIcon, SuffixLabel } from "./components/Suffix/Suffix";
 import { ClearAction } from "./components/ClearAction";
+import { Glimmer } from "../Glimmer/Glimmer";
 import { ErrorMessageWrapper } from "../ErrorMessageWrapper";
 import { TextVariation, typographyStyles } from "../Typography";
 import { Text } from "../Text";
+import { ActivityIndicator } from "../ActivityIndicator";
 
 export type Clearable = "never" | "while-editing" | "always";
 
@@ -98,7 +100,22 @@ export interface InputFieldWrapperProps {
    * Change the behaviour of when the toolbar becomes visible.
    */
   readonly toolbarVisibility?: "always" | "while-editing";
+
+  /**
+   * Show loading indicator.
+   */
+  readonly loading?: boolean;
+
+  /**
+   * Change the type of loading indicator to spinner or glimmer.
+   */
+  readonly loadingType?: "spinner" | "glimmer";
 }
+
+export const INPUT_FIELD_WRAPPER_GLIMMERS_TEST_ID =
+  "ATL-InputFieldWrapper-Glimmers";
+export const INPUT_FIELD_WRAPPER_SPINNER_TEST_ID =
+  "ATL-InputFieldWrapper-Spinner";
 
 export function InputFieldWrapper({
   invalid,
@@ -117,6 +134,8 @@ export function InputFieldWrapper({
   styleOverride,
   toolbar,
   toolbarVisibility = "while-editing",
+  loading = false,
+  loadingType = "spinner",
 }: InputFieldWrapperProps): JSX.Element {
   fieldAffixRequiredPropsCheck([prefix, suffix]);
   const handleClear = onClear ?? noopClear;
@@ -124,6 +143,9 @@ export function InputFieldWrapper({
   const inputInvalid = Boolean(invalid) || Boolean(error);
   const isToolbarVisible =
     toolbar && (toolbarVisibility === "always" || focused);
+
+  const showLoadingSpinner = loading && loadingType === "spinner";
+  const showLoadingGlimmer = loading && loadingType === "glimmer";
 
   return (
     <ErrorMessageWrapper message={getMessage({ invalid, error })}>
@@ -177,7 +199,25 @@ export function InputFieldWrapper({
               />
             )}
             {children}
-            {(showClearAction || suffix?.label || suffix?.icon) && (
+
+            {showLoadingGlimmer && (
+              <View
+                testID={INPUT_FIELD_WRAPPER_GLIMMERS_TEST_ID}
+                style={[
+                  styles.loadingGlimmers,
+                  hasValue && styles.loadingGlimmersHasValue,
+                ]}
+              >
+                <Glimmer size="small" width="80%" />
+                <Glimmer size="small" />
+                <Glimmer size="small" width="70%" />
+              </View>
+            )}
+
+            {(showClearAction ||
+              suffix?.label ||
+              suffix?.icon ||
+              showLoadingSpinner) && (
               <View style={styles.inputEndContainer}>
                 {showClearAction && (
                   <ClearAction
@@ -196,6 +236,15 @@ export function InputFieldWrapper({
                     styleOverride={styleOverride?.suffixLabel}
                   />
                 )}
+
+                {showLoadingSpinner && (
+                  <View style={styles.loadingSpinner}>
+                    <ActivityIndicator
+                      testID={INPUT_FIELD_WRAPPER_SPINNER_TEST_ID}
+                    />
+                  </View>
+                )}
+
                 {suffix?.icon && (
                   <SuffixIcon
                     disabled={disabled}

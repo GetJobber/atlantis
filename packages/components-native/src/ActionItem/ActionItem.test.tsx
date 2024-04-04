@@ -6,7 +6,7 @@ import { Text } from "../Text";
 
 describe("ActionItem", () => {
   const pressHandler = jest.fn();
-  const defaultActionIcon = "arrowRight";
+  const defaultActionIcon = "longArrowRight";
 
   beforeEach(() => {
     jest.resetAllMocks();
@@ -63,7 +63,7 @@ describe("ActionItem", () => {
       expect(queryByTestId(defaultActionIcon)).toBeFalsy();
     });
 
-    it("should display arrowRight icon when edit name is used", () => {
+    it("should display longArrowRight icon when edit name is used", () => {
       const iconName = "edit";
       const { getByTestId } = render(
         <ActionItem onPress={pressHandler} actionIcon={iconName} />,
