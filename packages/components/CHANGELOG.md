@@ -3,6 +3,91 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.91.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.91.0...@jobber/components@4.91.1) (2024-04-04)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [4.91.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.90.6...@jobber/components@4.91.0) (2024-04-04)
+
+
+### Bug Fixes
+
+* **components:** Update modal close button to stay fixed ([#1843](https://github.com/GetJobber/atlantis/issues/1843)) ([ba7d098](https://github.com/GetJobber/atlantis/commit/ba7d0982e11da9d6f5e017ef0a2aaa7030788e4d))
+
+
+### Features
+
+* **components:** BREAKING CHANGE: Revert - Updating Atlantis to support ESM + Injected CSS ([#1852](https://github.com/GetJobber/atlantis/issues/1852)) ([f2df68f](https://github.com/GetJobber/atlantis/commit/f2df68f2a4218f9c2f1e56b361879e6ab348a487))
+* **components:** BREAKING CHANGE: Updating Atlantis to support ESM + Injected CSS ([#1849](https://github.com/GetJobber/atlantis/issues/1849)) ([0dd025f](https://github.com/GetJobber/atlantis/commit/0dd025f992ac92439e20ca5657ce2703083fcf3a))
+
+
+
+
+
+## [4.90.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.90.5...@jobber/components@4.90.6) (2024-04-03)
+
+
+### Reverts
+
+* Revert "feat!: BREAKING CHANGE Adding ESM Build + Changing CSS Export Pattern" (#1848) ([2a7a36e](https://github.com/GetJobber/atlantis/commit/2a7a36ec982811da9c767a7b54003db1088d5af6)), closes [#1848](https://github.com/GetJobber/atlantis/issues/1848)
+
+
+
+
+
+## [4.90.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.90.4...@jobber/components@4.90.5) (2024-04-03)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.90.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.90.3...@jobber/components@4.90.4) (2024-04-03)
+
+
+### Reverts
+
+* Revert "build(components)!: Adding ESM Build + Changing CSS Export Pattern BREAKING CHANGE" (#1846) ([da5942c](https://github.com/GetJobber/atlantis/commit/da5942c7753ad87078bf8ed7a3948b3a7a4009d0)), closes [#1846](https://github.com/GetJobber/atlantis/issues/1846)
+
+
+
+
+
+## [4.90.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.90.2...@jobber/components@4.90.3) (2024-04-03)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.90.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.90.1...@jobber/components@4.90.2) (2024-04-02)
+
+
+### Bug Fixes
+
+* **components:** Fix when InputDate's emptyValueLabel is updated ([#1838](https://github.com/GetJobber/atlantis/issues/1838)) ([eaa0e61](https://github.com/GetJobber/atlantis/commit/eaa0e61ca5e0ca7f8ab24b0f44a72ae5456abc99))
+
+
+
+
+
+## [4.90.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.90.0...@jobber/components@4.90.1) (2024-04-02)
+
+
+### Bug Fixes
+
+* **components:** Fixing issue with InputDate causing an additional render ([#1820](https://github.com/GetJobber/atlantis/issues/1820)) ([ebab6fd](https://github.com/GetJobber/atlantis/commit/ebab6fd03e5e5a8197d4f7b4347bc73a377bd47f))
+
+
+
+
+
 # [4.90.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.89.0...@jobber/components@4.90.0) (2024-03-28)
 
 

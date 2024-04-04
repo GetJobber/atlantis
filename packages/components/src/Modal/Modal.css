@@ -65,7 +65,6 @@
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: var(--modal--padding);
   background-color: transparent;
 }
@@ -80,11 +79,8 @@
 }
 
 .closeButton {
-  padding: 0;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  appearance: none;
+  margin-top: -6px;
+  margin-right: -6px;
 }
 
 .actionBar {
