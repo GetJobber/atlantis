@@ -59,6 +59,7 @@ export function FormFieldWrapper({
         (placeholder && type === "select") ||
         // Naively assume that if the the type is tel, it is the InputPhoneNumber
         (placeholder && type === "tel"),
+      [styles.text]: type === "textarea" || type === "text",
       [styles.textarea]: type === "textarea",
       [styles.select]: type === "select",
       [styles.invalid]: invalid ?? error,

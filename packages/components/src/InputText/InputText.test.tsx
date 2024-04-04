@@ -11,7 +11,7 @@ it("renders a regular input for text and numbers", () => {
         class="container"
       >
         <div
-          class="wrapper"
+          class="wrapper text"
           data-testid="Form-Field-Wrapper"
         >
           <div
@@ -50,7 +50,7 @@ it("renders a textarea", () => {
         class="container"
       >
         <div
-          class="wrapper textarea"
+          class="wrapper text textarea"
           data-testid="Form-Field-Wrapper"
         >
           <div
@@ -92,7 +92,7 @@ it("renders a textarea with 4 rows", () => {
         class="container"
       >
         <div
-          class="wrapper textarea"
+          class="wrapper text textarea"
           data-testid="Form-Field-Wrapper"
         >
           <div

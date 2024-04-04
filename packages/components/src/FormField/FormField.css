@@ -44,7 +44,6 @@
 
   display: flex;
   width: 100%;
-  height: var(--field--height);
   border: var(--border-base) solid var(--field--border-color);
   border-radius: var(--radius-base);
   border-top-right-radius: var(--public-field--top-right-radius);
@@ -85,7 +84,7 @@
   --field--padding-top: calc(var(--space-large) + var(--space-smaller));
 }
 
-.wrapper.textarea {
+.wrapper.text {
   --field--placeholder-offset: 0;
   --field--placeholder-transform: 0;
   height: auto;
@@ -239,13 +238,16 @@
   transition: all var(--timing-quick);
 }
 
+.text .label {
+  padding-top: var(--field--padding-top);
+  transform: translateY(var(--field--placeholder-transform));
+}
+
 .textarea .label {
   /* Changes the width so that the scrollbar on the textarea doesn't get cut off */
   width: calc(100% - var(--field--padding-right));
-  padding-top: var(--field--padding-top);
   /* Remove padding on right to make use of the entire width */
   padding-right: 0;
-  transform: translateY(var(--field--placeholder-transform));
 }
 
 .miniLabel .label,
@@ -253,7 +255,7 @@
   font-size: var(--typography--fontSize-small);
 }
 
-.textarea.miniLabel .label {
+.text.miniLabel .label {
   padding-top: var(--space-smallest);
   background-color: var(--field--background-color);
 }

@@ -9,7 +9,7 @@ exports[`it should display headers when headers are passed in 1`] = `
       class="container"
     >
       <div
-        class="wrapper"
+        class="wrapper text"
         data-testid="Form-Field-Wrapper"
       >
         <div
@@ -48,7 +48,7 @@ exports[`renders an Autocomplete 1`] = `
       class="container"
     >
       <div
-        class="wrapper"
+        class="wrapper text"
         data-testid="Form-Field-Wrapper"
       >
         <div
