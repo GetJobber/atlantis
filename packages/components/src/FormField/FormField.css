@@ -45,6 +45,10 @@
   display: flex;
   width: 100%;
   height: var(--field--height);
+  /* this needs to be based off the min amount of lines + the size of the toolbar */
+  /* except only when the toolbar is shown, which might be always or only on focus */
+  /* therefore this style needs to be inline in the JSX */
+  min-height: calc(2 * var(--space-extravagant)) !important;
   resize: vertical;
   border: var(--border-base) solid var(--field--border-color);
   border-radius: var(--radius-base);
@@ -203,6 +207,8 @@
 .textarea .input {
   display: block;
   resize: none;
+  /* padding-bottom: 15px; */
+  scroll-padding-bottom: 15px;
 }
 
 .select .input {
@@ -338,8 +344,24 @@
 
 .toolbar {
   display: flex;
+  position: relative;
   height: 60px;
-  margin: var(--space-base);
+  margin: 0 var(--space-base) var(--space-base) var(--space-base);
   background-color: rgba(34, 153, 221, 0.1);
   flex: 0 0 auto;
+}
+
+.toolbar::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: calc(-1 * var(--space-base));
+  z-index: 2;
+  width: 100%;
+  height: var(--space-base);
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--color-surface--background) 60%
+  );
 }
