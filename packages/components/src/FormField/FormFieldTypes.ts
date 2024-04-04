@@ -227,7 +227,13 @@ export interface FormFieldProps extends CommonFormFieldProps {
    */
   readonly validations?: RegisterOptions;
 
+  /**
+   * Toolbar to render content below the input.
+   */
   readonly toolbar?: React.ReactNode;
 
+  /**
+   * Determines the visibility of the toolbar.
+   */
   readonly toolbarVisibility?: "always" | "while-editing";
 }
