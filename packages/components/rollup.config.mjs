@@ -156,6 +156,7 @@ export default {
     "framer-motion",
     "classnames",
     "@std-proposal/temporal",
+    "@jobber/hooks",
     "@jobber/design",
     "@jobber/design/foundation",
     "@jobber/formatters",
