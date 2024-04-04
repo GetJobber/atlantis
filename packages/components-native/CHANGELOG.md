@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.65.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.64.0...@jobber/components-native@0.65.0) (2024-04-04)
+
+
+### Features
+
+* **design:** Create longArrowRight and rename backArrow ([#1837](https://github.com/GetJobber/atlantis/issues/1837)) ([0c63ed5](https://github.com/GetJobber/atlantis/commit/0c63ed54278250751d48c82f23ff9fe39e857fe7))
+
+
+
+
+
 # [0.64.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.63.0...@jobber/components-native@0.64.0) (2024-04-04)
 
 
