@@ -150,6 +150,7 @@ export default {
     "react-popper",
     "react-dom/client",
     "axios",
+    "lodash",
     "filesize",
     "color",
     "framer-motion",

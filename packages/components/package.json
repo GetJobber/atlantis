@@ -461,7 +461,21 @@
     "date-fns": "^2.0.0",
     "date-fns-tz": "^2.0.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-hook-form":"^7",
+    "react-router-dom":"^6",
+    "react-dom":"^18",
+    "react-popper":"^2",
+    "lodash":"^4",
+    "@jobber/hooks":"^2",
+    "axios":"^1",
+    "filesize":"^10",
+    "color":"^4",
+    "framer-motion":"^11",
+    "classnames":"^2",
+    "@std-proposal/temporal":"^0",
+    "@jobber/formatters":"^0",
+    "zxcvbn":"^4",
+    "@tanstack/react-table":"^8"
   },
   "browserslist": [
     "last 1 version",
