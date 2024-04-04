@@ -171,7 +171,6 @@
   position: relative;
   z-index: var(--field--base-elevation);
   width: 100%;
-  /* height: 100%; */
   padding-top: var(--field--padding-top);
   padding-bottom: var(--field--padding-bottom);
   padding-left: var(--field--padding-left);
@@ -195,7 +194,6 @@
   display: flex;
   flex-direction: column;
   min-height: var(--field--height);
-  /* Move the resizing on the parent */
   resize: vertical;
   overflow-x: auto;
 }
