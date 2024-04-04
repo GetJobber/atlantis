@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.64.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.63.0...@jobber/components-native@0.64.0) (2024-04-04)
+
+
+### Features
+
+* **components-native:** Adjust menu visibility on iOS ([#1845](https://github.com/GetJobber/atlantis/issues/1845)) ([a497423](https://github.com/GetJobber/atlantis/commit/a497423f95d0e6af2f20ea7e8942afe83d2db39f))
+
+
+
+
+
 # [0.63.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.62.4...@jobber/components-native@0.63.0) (2024-04-03)
 
 

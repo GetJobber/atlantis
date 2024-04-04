@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.91.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.90.6...@jobber/components@4.91.0) (2024-04-04)
+
+
+### Bug Fixes
+
+* **components:** Update modal close button to stay fixed ([#1843](https://github.com/GetJobber/atlantis/issues/1843)) ([ba7d098](https://github.com/GetJobber/atlantis/commit/ba7d0982e11da9d6f5e017ef0a2aaa7030788e4d))
+
+
+### Features
+
+* **components:** BREAKING CHANGE: Revert - Updating Atlantis to support ESM + Injected CSS ([#1852](https://github.com/GetJobber/atlantis/issues/1852)) ([f2df68f](https://github.com/GetJobber/atlantis/commit/f2df68f2a4218f9c2f1e56b361879e6ab348a487))
+* **components:** BREAKING CHANGE: Updating Atlantis to support ESM + Injected CSS ([#1849](https://github.com/GetJobber/atlantis/issues/1849)) ([0dd025f](https://github.com/GetJobber/atlantis/commit/0dd025f992ac92439e20ca5657ce2703083fcf3a))
+
+
+
+
+
 ## [4.90.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.90.5...@jobber/components@4.90.6) (2024-04-03)
 
 
