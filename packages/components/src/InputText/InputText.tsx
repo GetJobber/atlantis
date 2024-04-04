@@ -30,6 +30,8 @@ interface BaseProps
       | "defaultValue"
       | "prefix"
       | "suffix"
+      | "toolbar"
+      | "toolbarVisibility"
     > {
   multiline?: boolean;
 }

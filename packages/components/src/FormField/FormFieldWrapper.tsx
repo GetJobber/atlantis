@@ -47,6 +47,7 @@ export function FormFieldWrapper({
   identifier,
   clearable,
   onClear,
+  toolbar,
 }: PropsWithChildren<FormFieldWrapperProps>) {
   const wrapperClasses = classnames(
     styles.wrapper,
@@ -129,7 +130,7 @@ export function FormFieldWrapper({
           <div className={styles.childrenWrapper}>
             {children}
 
-            <div className={styles.toolbar}>Toolbar baby!</div>
+            {toolbar && <div className={styles.toolbar}>{toolbar}</div>}
           </div>
 
           {suffix?.label && (
