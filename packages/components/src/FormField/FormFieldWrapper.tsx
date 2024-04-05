@@ -94,7 +94,7 @@ export function FormFieldWrapper({
     setLabelStyle(getAffixPaddding);
   }, [value]);
 
-  const { focused, wrapperRef } = useFormFieldFocus();
+  const { focused, inputWrapperRef } = useFormFieldFocus();
 
   const showClear = useShowClear({
     clearable,
@@ -116,10 +116,9 @@ export function FormFieldWrapper({
         className={wrapperClasses}
         style={wrapperInlineStyle}
         data-testid="Form-Field-Wrapper"
-        ref={wrapperRef}
       >
         {prefix?.icon && <AffixIcon {...prefix} size={size} />}
-        <div className={styles.inputWrapper}>
+        <div ref={inputWrapperRef} className={styles.inputWrapper}>
           {placeholder && (
             <label
               className={styles.label}
@@ -152,6 +151,7 @@ export function FormFieldWrapper({
                     duration: tokens["timing-base"] / 1000,
                     ease: "easeInOut",
                   }}
+                  tabIndex={-1}
                   className={styles.toolbar}
                 >
                   {toolbar}
