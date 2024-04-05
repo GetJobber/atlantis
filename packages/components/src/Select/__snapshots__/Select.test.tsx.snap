@@ -14,6 +14,7 @@ exports[`renders a Select with many options 1`] = `
       >
         <div
           class="childrenWrapper"
+          tabindex="-1"
         >
           <select
             class="input"
@@ -68,6 +69,7 @@ exports[`renders a Select with no options 1`] = `
       >
         <div
           class="childrenWrapper"
+          tabindex="-1"
         >
           <select
             class="input"
@@ -109,6 +111,7 @@ exports[`renders a Select with one option 1`] = `
       >
         <div
           class="childrenWrapper"
+          tabindex="-1"
         >
           <select
             class="input"
@@ -154,6 +157,7 @@ exports[`renders correctly as large 1`] = `
       >
         <div
           class="childrenWrapper"
+          tabindex="-1"
         >
           <select
             class="input"
@@ -199,6 +203,7 @@ exports[`renders correctly as small 1`] = `
       >
         <div
           class="childrenWrapper"
+          tabindex="-1"
         >
           <select
             class="input"
@@ -244,6 +249,7 @@ exports[`renders correctly when disabled 1`] = `
       >
         <div
           class="childrenWrapper"
+          tabindex="-1"
         >
           <select
             class="input"
@@ -290,6 +296,7 @@ exports[`renders correctly when invalid 1`] = `
       >
         <div
           class="childrenWrapper"
+          tabindex="-1"
         >
           <select
             class="input"

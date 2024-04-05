@@ -341,7 +341,7 @@
 .toolbar {
   display: flex;
   position: relative;
-  padding: var(--space-small) var(--field--padding-right) var(--space-small)
+  margin: var(--space-small) var(--field--padding-right) var(--space-small)
     var(--field--padding-left);
 }
 

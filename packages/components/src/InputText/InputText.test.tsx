@@ -25,6 +25,7 @@ it("renders a regular input for text and numbers", () => {
             </label>
             <div
               class="childrenWrapper"
+              tabindex="-1"
             >
               <div
                 style="position: relative;"
@@ -68,6 +69,7 @@ it("renders a textarea", () => {
             </label>
             <div
               class="childrenWrapper"
+              tabindex="-1"
             >
               <textarea
                 class="input"
@@ -110,6 +112,7 @@ it("renders a textarea with 4 rows", () => {
             </label>
             <div
               class="childrenWrapper"
+              tabindex="-1"
             >
               <textarea
                 class="input"

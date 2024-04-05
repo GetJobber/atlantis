@@ -14,6 +14,7 @@ exports[`FormField when small renders 1`] = `
       >
         <div
           class="childrenWrapper"
+          tabindex="-1"
         >
           <div
             style="position: relative;"
@@ -46,6 +47,7 @@ exports[`FormField with no props renders 1`] = `
       >
         <div
           class="childrenWrapper"
+          tabindex="-1"
         >
           <div
             style="position: relative;"

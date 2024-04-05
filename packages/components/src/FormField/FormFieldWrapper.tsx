@@ -135,7 +135,7 @@ export function FormFieldWrapper({
 
           {prefix?.label && <AffixLabel {...prefix} labelRef={prefixRef} />}
 
-          <div className={styles.childrenWrapper}>
+          <div className={styles.childrenWrapper} tabIndex={-1}>
             {children}
             <AnimatePresence>
               {isToolbarVisible && (
@@ -144,7 +144,7 @@ export function FormFieldWrapper({
                   initial={animationInitial}
                   animate={{
                     opacity: 1,
-                    height: "50px",
+                    height: "auto",
                   }}
                   exit={{ opacity: 0, height: 0 }}
                   transition={{

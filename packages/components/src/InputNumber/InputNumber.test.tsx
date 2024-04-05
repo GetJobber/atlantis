@@ -18,6 +18,7 @@ it("renders an input type number", () => {
           >
             <div
               class="childrenWrapper"
+              tabindex="-1"
             >
               <div
                 style="position: relative;"
