@@ -7,11 +7,14 @@ import React, {
 } from "react";
 import classnames from "classnames";
 import { useShowClear } from "@jobber/hooks/useShowClear";
+import { AnimatePresence, motion } from "framer-motion";
+import { tokens } from "@jobber/design";
 import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.css";
 import { AffixIcon, AffixLabel } from "./FormFieldAffix";
 import { FormFieldDescription } from "./FormFieldDescription";
 import { ClearAction } from "./components/ClearAction";
+import { useToolbar } from "./hooks/useToolbar";
 import { InputValidation } from "../InputValidation";
 
 interface FormFieldWrapperProps extends FormFieldProps {
@@ -91,8 +94,6 @@ export function FormFieldWrapper({
   }, [value]);
 
   const [focused, setFocused] = useState(false);
-  const isToolbarVisible =
-    toolbar && (toolbarVisibility === "always" || focused);
 
   const showClear = useShowClear({
     clearable,
@@ -100,6 +101,11 @@ export function FormFieldWrapper({
     focused,
     hasValue: Boolean(value),
     disabled,
+  });
+
+  const { isToolbarVisible, animationInitial } = useToolbar({
+    focused,
+    toolbarVisibility,
   });
 
   return (
@@ -133,10 +139,26 @@ export function FormFieldWrapper({
 
           <div className={styles.childrenWrapper}>
             {children}
-
-            {isToolbarVisible && (
-              <div className={styles.toolbar}>{toolbar}</div>
-            )}
+            <AnimatePresence>
+              {isToolbarVisible && (
+                <motion.div
+                  key="toolbar"
+                  initial={animationInitial}
+                  animate={{
+                    opacity: 1,
+                    height: "50px",
+                  }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{
+                    duration: tokens["timing-base"] / 1000,
+                    ease: "easeInOut",
+                  }}
+                  className={styles.toolbar}
+                >
+                  {toolbar}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           {suffix?.label && (

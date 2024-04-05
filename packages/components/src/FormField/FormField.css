@@ -195,7 +195,7 @@
   flex-direction: column;
   min-height: var(--field--height);
   resize: vertical;
-  overflow-x: auto;
+  overflow: auto;
 }
 
 .textarea .input {
