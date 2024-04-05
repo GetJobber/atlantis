@@ -17,7 +17,7 @@ exports[`it should display headers when headers are passed in 1`] = `
         >
           <label
             class="label"
-            for=":r7:"
+            for=":r6:"
           >
             placeholder_name
           </label>
@@ -30,7 +30,7 @@ exports[`it should display headers when headers are passed in 1`] = `
               <input
                 autocomplete="off"
                 class="input"
-                id=":r7:"
+                id=":r6:"
                 type="text"
                 value=""
               />
