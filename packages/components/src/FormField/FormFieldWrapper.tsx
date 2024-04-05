@@ -15,6 +15,7 @@ import { AffixIcon, AffixLabel } from "./FormFieldAffix";
 import { FormFieldDescription } from "./FormFieldDescription";
 import { ClearAction } from "./components/ClearAction";
 import { useToolbar } from "./hooks/useToolbar";
+import { useFormFieldFocus } from "./hooks/useFormFieldFocus";
 import { InputValidation } from "../InputValidation";
 
 interface FormFieldWrapperProps extends FormFieldProps {
@@ -93,7 +94,7 @@ export function FormFieldWrapper({
     setLabelStyle(getAffixPaddding);
   }, [value]);
 
-  const [focused, setFocused] = useState(false);
+  const { focused, wrapperRef } = useFormFieldFocus();
 
   const showClear = useShowClear({
     clearable,
@@ -110,15 +111,12 @@ export function FormFieldWrapper({
   });
 
   return (
-    <div
-      className={containerClasses}
-      onFocus={() => setFocused(true)}
-      onBlur={() => setFocused(false)}
-    >
+    <div className={containerClasses}>
       <div
         className={wrapperClasses}
         style={wrapperInlineStyle}
         data-testid="Form-Field-Wrapper"
+        ref={wrapperRef}
       >
         {prefix?.icon && <AffixIcon {...prefix} size={size} />}
         <div className={styles.inputWrapper}>
