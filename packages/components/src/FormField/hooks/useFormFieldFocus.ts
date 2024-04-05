@@ -33,7 +33,7 @@ export function useFormFieldFocus(): UseFormFieldFocus {
       inputWrapperRef.current?.removeEventListener("focusin", handleFocusIn);
       inputWrapperRef.current?.removeEventListener("focusout", handleFocusOut);
     };
-  }, []);
+  }, [inputWrapperRef.current]);
 
   return {
     focused,

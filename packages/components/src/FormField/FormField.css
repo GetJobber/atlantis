@@ -349,8 +349,8 @@
   content: "";
   display: block;
   position: absolute;
-  top: calc(-1 * var(--space-base));
-  right: var(--space-base);
+  top: calc(-1.25 * var(--space-base));
+  right: 0;
   left: 0;
   z-index: 2;
   height: var(--space-base);
