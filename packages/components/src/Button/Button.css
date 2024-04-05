@@ -158,6 +158,7 @@ a.tertiary:focus-visible {
 a.subtle.tertiary:hover,
 a.subtle.tertiary:focus-visible {
   color: var(--color-interactive--subtle--hover);
+  background-color: var(--color-surface--hover);
   fill: var(--color-interactive--subtle--hover);
 }
 
