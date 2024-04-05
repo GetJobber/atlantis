@@ -126,7 +126,10 @@ a.button:active {
 }
 
 .tertiary {
-  border-color: var(--color-border);
+  border-color: transparent;
+  text-decoration: underline;
+  text-decoration-thickness: var(--border-thick);
+  text-underline-offset: var(--space-smallest);
 }
 
 .subtle.secondary:hover,
@@ -137,15 +140,12 @@ a.button:active {
 .subtle.secondary:hover,
 .subtle.secondary:focus-visible,
 a.subtle.secondary:hover,
-a.subtle.secondary:focus-visible {
-  border-color: transparent;
-}
-
+a.subtle.secondary:focus-visible,
 .tertiary:hover,
 .tertiary:focus-visible,
 a.tertiary:hover,
 a.tertiary:focus-visible {
-  border-color: var(--button--color-variation--hover);
+  border-color: transparent;
 }
 
 .subtle.tertiary {
@@ -157,7 +157,6 @@ a.tertiary:focus-visible {
 .subtle.tertiary:focus-visible,
 a.subtle.tertiary:hover,
 a.subtle.tertiary:focus-visible {
-  border-color: transparent;
   color: var(--color-interactive--subtle--hover);
   fill: var(--color-interactive--subtle--hover);
 }
