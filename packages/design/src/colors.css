@@ -105,13 +105,13 @@
   --color-yellow: rgb(209, 185, 46);
   --color-yellow--light: rgb(231, 213, 87);
   --color-yellow--lighter: rgb(241, 231, 159);
-  --color-yellow--lightest: hsl(53, 62%, 95%);
+  --color-yellow--lightest: rgb(250, 248, 234);
   --color-yellow--dark: rgb(91, 79, 6);
 
   --color-red: rgb(199, 20, 0);
   --color-red--light: rgb(233, 141, 119);
   --color-red--lighter: rgb(255, 206, 194);
-  --color-red--lightest: hsl(11, 63%, 95%);
+  --color-red--lightest: rgb(250, 237, 234);
   --color-red--dark: rgb(87, 9, 0);
 
   --color-grey: rgb(181, 181, 181);
@@ -130,7 +130,7 @@
   --color-lightBlue: rgb(60, 162, 224);
   --color-lightBlue--light: rgb(119, 190, 233);
   --color-lightBlue--lighter: rgb(177, 218, 243);
-  --color-lightBlue--lightest: hsl(205, 60%, 96%);
+  --color-lightBlue--lightest: rgb(239, 246, 251);
   --color-lightBlue--dark: rgb(17, 66, 85);
 
   --color-purple: rgb(136, 112, 196);
@@ -151,7 +151,7 @@
   --color-teal--lightest: rgb(226, 243, 239);
   --color-teal--dark: rgb(40, 112, 95);
 
-  --color-orange: hsl(33, 77%, 52%);
+  --color-orange: rgb(227, 142, 38);
   --color-orange--light: rgb(247, 182, 102);
   --color-orange--lighter: rgb(250, 213, 167);
   --color-orange--lightest: rgb(253, 239, 222);
