@@ -26,10 +26,7 @@ export default {
         {
           find: /@jobber\/hooks\/(.*)/,
           replacement: (_, p1) =>
-            path.resolve(
-              __dirname,
-              `../../node_modules/@jobber/hooks/dist/${p1}/${p1}.js`,
-            ),
+            path.resolve(__dirname, `../hooks/dist/${p1}/${p1}.js`),
         },
       ],
     }),
