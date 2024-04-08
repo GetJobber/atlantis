@@ -9,7 +9,6 @@ import ReactGA from "react-ga4";
 
 import "./assets/css/manager.css";
 import "@jobber/design/foundation.css";
-// import "https://cdn.jobber.com/fonts/fonts.css";
 
 const link = document.createElement("link");
 link.setAttribute("rel", "shortcut icon");
