@@ -81,7 +81,7 @@
 
 :global(.jobber-retheme) .header h3 {
   font-family: var(--typography--fontFamily-normal);
-  font-size: var(--typography--fontSize-largest);
+  font-size: var(--typography--fontSize-larger);
 }
 
 /**
