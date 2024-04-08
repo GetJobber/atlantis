@@ -8,6 +8,10 @@ import {
   commonInputStyles,
 } from ".";
 import { styles } from "./InputFieldWrapper.style";
+import {
+  INPUT_FIELD_WRAPPER_GLIMMERS_TEST_ID,
+  INPUT_FIELD_WRAPPER_SPINNER_TEST_ID,
+} from "./InputFieldWrapper";
 import { typographyStyles } from "../Typography";
 
 const mockLabel = { label: "$" };
@@ -31,6 +35,7 @@ function renderWithSuffixLabel(hasValue: boolean): RenderAPI {
 }
 
 const clearInput = "Clear input";
+// eslint-disable-next-line max-statements
 describe("InputFieldWrapper", () => {
   it("renders an invalid InputFieldWrapper", () => {
     const { getByTestId } = renderInputFieldWrapper({ invalid: true });
@@ -267,6 +272,31 @@ describe("InputFieldWrapper", () => {
         toolbarVisibility: "always",
       });
       expect(getByText("I am a tool")).toBeDefined();
+    });
+  });
+
+  describe("Loading state", () => {
+    it("does not render any loading indicators", () => {
+      const { queryByTestId } = renderInputFieldWrapper({});
+      expect(queryByTestId(INPUT_FIELD_WRAPPER_SPINNER_TEST_ID)).toBeNull();
+      expect(queryByTestId(INPUT_FIELD_WRAPPER_GLIMMERS_TEST_ID)).toBeNull();
+    });
+
+    it("renders a loading spinner by default when loading is true and loadingType is not set", () => {
+      const { getByTestId, queryByTestId } = renderInputFieldWrapper({
+        loading: true,
+      });
+      expect(getByTestId(INPUT_FIELD_WRAPPER_SPINNER_TEST_ID)).toBeDefined();
+      expect(queryByTestId(INPUT_FIELD_WRAPPER_GLIMMERS_TEST_ID)).toBeNull();
+    });
+
+    it("renders a glimmer when loading is true and loadingType is glimmer", () => {
+      const { getByTestId, queryByTestId } = renderInputFieldWrapper({
+        loading: true,
+        loadingType: "glimmer",
+      });
+      expect(getByTestId(INPUT_FIELD_WRAPPER_GLIMMERS_TEST_ID)).toBeDefined();
+      expect(queryByTestId(INPUT_FIELD_WRAPPER_SPINNER_TEST_ID)).toBeNull();
     });
   });
 });

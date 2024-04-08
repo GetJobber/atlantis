@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.57.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.56.4...@jobber/design@0.57.0) (2024-04-04)
+
+
+### Features
+
+* **components:** BREAKING CHANGE: Revert - Updating Atlantis to support ESM + Injected CSS ([#1852](https://github.com/GetJobber/atlantis/issues/1852)) ([f2df68f](https://github.com/GetJobber/atlantis/commit/f2df68f2a4218f9c2f1e56b361879e6ab348a487))
+* **components:** BREAKING CHANGE: Updating Atlantis to support ESM + Injected CSS ([#1849](https://github.com/GetJobber/atlantis/issues/1849)) ([0dd025f](https://github.com/GetJobber/atlantis/commit/0dd025f992ac92439e20ca5657ce2703083fcf3a))
+* **design:** Create longArrowRight and rename backArrow ([#1837](https://github.com/GetJobber/atlantis/issues/1837)) ([0c63ed5](https://github.com/GetJobber/atlantis/commit/0c63ed54278250751d48c82f23ff9fe39e857fe7))
+
+
+
+
+
 ## [0.56.4](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.56.3...@jobber/design@0.56.4) (2024-04-03)
 
 

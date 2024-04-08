@@ -118,12 +118,7 @@ function getLeftPosition(
   } else if (overflowRight) {
     pos.right = 0;
   } else {
-    pos.right =
-      windowWidth -
-      activatorLayout.x -
-      activatorLayout.width +
-      activatorLayout.width / 2 -
-      menuHorizontalPadding;
+    pos.right = windowWidth - activatorLayout.x - activatorLayout.width;
   }
 }
 
@@ -147,6 +142,6 @@ function getRightPosition(
   } else if (overflowLeft) {
     pos.left = 0;
   } else {
-    pos.left = activatorLayout.x + activatorLayout.width / 2 - menuPadding;
+    pos.left = activatorLayout.x;
   }
 }
