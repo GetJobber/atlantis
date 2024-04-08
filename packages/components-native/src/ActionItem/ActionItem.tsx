@@ -124,7 +124,7 @@ type ActionIconNames = IconNames | "editpencil";
 
 function getActionIcon(icon: ActionIconNames): IconNames {
   if (icon === "edit") {
-    return "arrowRight";
+    return "longArrowRight";
   } else if (icon === "editpencil") {
     return "edit";
   }
