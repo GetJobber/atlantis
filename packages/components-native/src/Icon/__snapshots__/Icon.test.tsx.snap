@@ -209,7 +209,7 @@ exports[`renders quote icon with themed color 1`] = `
       },
       {
         "display": "flex",
-        "fill": "hsl(79, 85%, 37%)",
+        "fill": "rgb(124, 175, 14)",
         "height": 24,
         "verticalAlign": "middle",
         "width": 24,
