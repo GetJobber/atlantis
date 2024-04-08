@@ -18,7 +18,7 @@ exports[`renders a Switch with defaultValue false 1`] = `
   onGestureHandlerStateChange={[Function]}
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
-  onTintColor="hsl(107, 65%, 31%)"
+  onTintColor="rgb(50, 130, 28)"
   style={
     [
       {
@@ -26,12 +26,12 @@ exports[`renders a Switch with defaultValue false 1`] = `
         "width": 51,
       },
       {
-        "backgroundColor": "hsl(45, 24%, 93%)",
+        "backgroundColor": "rgb(241, 239, 233)",
         "borderRadius": 16,
       },
     ]
   }
-  tintColor="hsl(45, 24%, 93%)"
+  tintColor="rgb(241, 239, 233)"
   value={false}
 />
 `;
@@ -54,7 +54,7 @@ exports[`renders a Switch with defaultValue true 1`] = `
   onGestureHandlerStateChange={[Function]}
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
-  onTintColor="hsl(107, 65%, 31%)"
+  onTintColor="rgb(50, 130, 28)"
   style={
     [
       {
@@ -62,12 +62,12 @@ exports[`renders a Switch with defaultValue true 1`] = `
         "width": 51,
       },
       {
-        "backgroundColor": "hsl(45, 24%, 93%)",
+        "backgroundColor": "rgb(241, 239, 233)",
         "borderRadius": 16,
       },
     ]
   }
-  tintColor="hsl(45, 24%, 93%)"
+  tintColor="rgb(241, 239, 233)"
   value={true}
 />
 `;
@@ -90,7 +90,7 @@ exports[`renders a Switch with value false 1`] = `
   onGestureHandlerStateChange={[Function]}
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
-  onTintColor="hsl(107, 65%, 31%)"
+  onTintColor="rgb(50, 130, 28)"
   style={
     [
       {
@@ -98,12 +98,12 @@ exports[`renders a Switch with value false 1`] = `
         "width": 51,
       },
       {
-        "backgroundColor": "hsl(45, 24%, 93%)",
+        "backgroundColor": "rgb(241, 239, 233)",
         "borderRadius": 16,
       },
     ]
   }
-  tintColor="hsl(45, 24%, 93%)"
+  tintColor="rgb(241, 239, 233)"
   value={false}
 />
 `;
@@ -126,7 +126,7 @@ exports[`renders a Switch with value true 1`] = `
   onGestureHandlerStateChange={[Function]}
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
-  onTintColor="hsl(107, 65%, 31%)"
+  onTintColor="rgb(50, 130, 28)"
   style={
     [
       {
@@ -134,12 +134,12 @@ exports[`renders a Switch with value true 1`] = `
         "width": 51,
       },
       {
-        "backgroundColor": "hsl(45, 24%, 93%)",
+        "backgroundColor": "rgb(241, 239, 233)",
         "borderRadius": 16,
       },
     ]
   }
-  tintColor="hsl(45, 24%, 93%)"
+  tintColor="rgb(241, 239, 233)"
   value={true}
 />
 `;
@@ -162,7 +162,7 @@ exports[`renders a disabled Switch with value false 1`] = `
   onGestureHandlerStateChange={[Function]}
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
-  onTintColor="hsl(107, 65%, 31%)"
+  onTintColor="rgb(50, 130, 28)"
   style={
     [
       {
@@ -170,12 +170,12 @@ exports[`renders a disabled Switch with value false 1`] = `
         "width": 51,
       },
       {
-        "backgroundColor": "hsl(45, 24%, 93%)",
+        "backgroundColor": "rgb(241, 239, 233)",
         "borderRadius": 16,
       },
     ]
   }
-  tintColor="hsl(45, 24%, 93%)"
+  tintColor="rgb(241, 239, 233)"
   value={false}
 />
 `;
@@ -198,7 +198,7 @@ exports[`renders a disabled Switch with value true 1`] = `
   onGestureHandlerStateChange={[Function]}
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
-  onTintColor="hsl(107, 65%, 31%)"
+  onTintColor="rgb(50, 130, 28)"
   style={
     [
       {
@@ -206,12 +206,12 @@ exports[`renders a disabled Switch with value true 1`] = `
         "width": 51,
       },
       {
-        "backgroundColor": "hsl(45, 24%, 93%)",
+        "backgroundColor": "rgb(241, 239, 233)",
         "borderRadius": 16,
       },
     ]
   }
-  tintColor="hsl(45, 24%, 93%)"
+  tintColor="rgb(241, 239, 233)"
   value={true}
 />
 `;

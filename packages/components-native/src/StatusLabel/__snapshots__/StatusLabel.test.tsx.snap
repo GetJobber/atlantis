@@ -34,7 +34,7 @@ exports[`StatusLabel alignment when alignment prop set to "end" should match sna
             "fontFamily": "inter-medium",
           },
           {
-            "color": "hsl(197, 20%, 38%)",
+            "color": "rgb(78, 105, 116)",
           },
           {
             "textAlign": "right",
@@ -63,14 +63,14 @@ exports[`StatusLabel alignment when alignment prop set to "end" should match sna
     style={
       [
         {
-          "backgroundColor": "hsl(107, 65%, 31%)",
+          "backgroundColor": "rgb(50, 130, 28)",
           "borderRadius": 3,
           "height": 12,
           "marginTop": 3,
           "width": 12,
         },
         {
-          "backgroundColor": "hsl(107, 65%, 31%)",
+          "backgroundColor": "rgb(50, 130, 28)",
         },
       ]
     }
@@ -113,7 +113,7 @@ exports[`StatusLabel alignment when alignment prop set to default ("start") shou
             "fontFamily": "inter-medium",
           },
           {
-            "color": "hsl(197, 20%, 38%)",
+            "color": "rgb(78, 105, 116)",
           },
           {
             "textAlign": "right",
@@ -142,14 +142,14 @@ exports[`StatusLabel alignment when alignment prop set to default ("start") shou
     style={
       [
         {
-          "backgroundColor": "hsl(107, 65%, 31%)",
+          "backgroundColor": "rgb(50, 130, 28)",
           "borderRadius": 3,
           "height": 12,
           "marginTop": 3,
           "width": 12,
         },
         {
-          "backgroundColor": "hsl(107, 65%, 31%)",
+          "backgroundColor": "rgb(50, 130, 28)",
         },
       ]
     }
@@ -192,7 +192,7 @@ exports[`StatusLabel status when status prop set to "critical" should match snap
             "fontFamily": "inter-medium",
           },
           {
-            "color": "hsl(197, 20%, 38%)",
+            "color": "rgb(78, 105, 116)",
           },
           {
             "textAlign": "right",
@@ -221,14 +221,14 @@ exports[`StatusLabel status when status prop set to "critical" should match snap
     style={
       [
         {
-          "backgroundColor": "hsl(107, 65%, 31%)",
+          "backgroundColor": "rgb(50, 130, 28)",
           "borderRadius": 3,
           "height": 12,
           "marginTop": 3,
           "width": 12,
         },
         {
-          "backgroundColor": "hsl(6, 100%, 39%)",
+          "backgroundColor": "rgb(199, 20, 0)",
         },
       ]
     }
@@ -271,7 +271,7 @@ exports[`StatusLabel status when status prop set to "inactive" should match snap
             "fontFamily": "inter-medium",
           },
           {
-            "color": "hsl(197, 20%, 38%)",
+            "color": "rgb(78, 105, 116)",
           },
           {
             "textAlign": "right",
@@ -300,14 +300,14 @@ exports[`StatusLabel status when status prop set to "inactive" should match snap
     style={
       [
         {
-          "backgroundColor": "hsl(107, 65%, 31%)",
+          "backgroundColor": "rgb(50, 130, 28)",
           "borderRadius": 3,
           "height": 12,
           "marginTop": 3,
           "width": 12,
         },
         {
-          "backgroundColor": "hsl(197, 97%, 11%)",
+          "backgroundColor": "rgb(1, 40, 55)",
         },
       ]
     }
@@ -350,7 +350,7 @@ exports[`StatusLabel status when status prop set to "informative" should match s
             "fontFamily": "inter-medium",
           },
           {
-            "color": "hsl(197, 20%, 38%)",
+            "color": "rgb(78, 105, 116)",
           },
           {
             "textAlign": "right",
@@ -379,7 +379,7 @@ exports[`StatusLabel status when status prop set to "informative" should match s
     style={
       [
         {
-          "backgroundColor": "hsl(107, 65%, 31%)",
+          "backgroundColor": "rgb(50, 130, 28)",
           "borderRadius": 3,
           "height": 12,
           "marginTop": 3,
@@ -429,7 +429,7 @@ exports[`StatusLabel status when status prop set to "warning" should match snaps
             "fontFamily": "inter-medium",
           },
           {
-            "color": "hsl(197, 20%, 38%)",
+            "color": "rgb(78, 105, 116)",
           },
           {
             "textAlign": "right",
@@ -458,14 +458,14 @@ exports[`StatusLabel status when status prop set to "warning" should match snaps
     style={
       [
         {
-          "backgroundColor": "hsl(107, 65%, 31%)",
+          "backgroundColor": "rgb(50, 130, 28)",
           "borderRadius": 3,
           "height": 12,
           "marginTop": 3,
           "width": 12,
         },
         {
-          "backgroundColor": "hsl(51, 64%, 50%)",
+          "backgroundColor": "rgb(209, 185, 46)",
         },
       ]
     }
@@ -508,7 +508,7 @@ exports[`StatusLabel status when status prop set to default ("success") should m
             "fontFamily": "inter-medium",
           },
           {
-            "color": "hsl(197, 20%, 38%)",
+            "color": "rgb(78, 105, 116)",
           },
           {
             "textAlign": "right",
@@ -537,14 +537,14 @@ exports[`StatusLabel status when status prop set to default ("success") should m
     style={
       [
         {
-          "backgroundColor": "hsl(107, 65%, 31%)",
+          "backgroundColor": "rgb(50, 130, 28)",
           "borderRadius": 3,
           "height": 12,
           "marginTop": 3,
           "width": 12,
         },
         {
-          "backgroundColor": "hsl(107, 65%, 31%)",
+          "backgroundColor": "rgb(50, 130, 28)",
         },
       ]
     }
