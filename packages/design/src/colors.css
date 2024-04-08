@@ -58,39 +58,39 @@
   --color-overlay--dimmed: rgba(var(--color-white--rgb), 0.6);
 
   /* Brand */
-  --color-brand: hsl(79, 85%, 37%);
+  --color-brand: rgb(124, 175, 14);
   --color-brand--highlight: rgb(132, 234, 0);
 
   /* Jobber Workflow Colors */
-  --color-request: hsl(33, 45%, 50%);
-  --color-quote: hsl(349, 40%, 46%);
-  --color-job: hsl(107, 65%, 31%);
-  --color-visit: hsl(107, 65%, 31%);
+  --color-request: rgb(185, 133, 70);
+  --color-quote: rgb(164, 70, 88);
+  --color-job: var(--color-green);
+  --color-visit: var(--color-job);
   --color-task: var(--color-navy);
   --color-event: var(--color-yellow);
-  --color-invoice: hsl(209, 49%, 38%);
-  --color-payments: hsl(209, 49%, 38%);
+  --color-invoice: rgb(49, 98, 144);
+  --color-payments: var(--color-invoice);
 
   --color-client: var(--color-blue);
 
   /* Jobber Base Palette */
-  --color-blue: hsl(197, 97%, 11%);
-  --color-blue--light: hsl(197, 20%, 38%);
-  --color-blue--lighter: hsl(198, 13%, 57%);
-  --color-blue--lightest: hsl(195, 12%, 87%);
-  --color-blue--dark: hsl(197, 95%, 7%);
+  --color-blue: rgb(1, 40, 55);
+  --color-blue--light: rgb(78, 105, 116);
+  --color-blue--lighter: rgb(131, 151, 160);
+  --color-blue--lightest: rgb(218, 224, 226);
+  --color-blue--dark: rgb(1, 25, 35);
 
-  --color-taupe: hsl(45, 24%, 93%);
-  --color-taupe--light: hsl(48, 18%, 98%);
-  --color-taupe--dark: hsl(49, 23%, 88%);
+  --color-taupe: rgb(241, 239, 233);
+  --color-taupe--light: rgb(251, 250, 249);
+  --color-taupe--dark: rgb(231, 229, 217);
 
-  --color-green: hsl(107, 65%, 31%);
-  --color-green--light: hsl(107, 30%, 49%);
-  --color-green--lighter: hsl(108, 29%, 81%);
-  --color-green--lightest: hsl(96, 36%, 95%);
-  --color-green--dark: hsl(131, 69%, 18%);
+  --color-green: rgb(50, 130, 28);
+  --color-green--light: rgb(104, 162, 87);
+  --color-green--lighter: rgb(198, 221, 192);
+  --color-green--lightest: rgb(241, 247, 238);
+  --color-green--dark: rgb(14, 78, 26);
 
-  --color-lime: rgb(153, 193, 70);
+  --color-lime: rgb(153, 194, 71);
   --color-lime--light: rgb(184, 212, 126);
   --color-lime--lighter: rgb(214, 230, 181);
   --color-lime--lightest: rgb(240, 246, 227);
@@ -102,17 +102,17 @@
   --color-yellowGreen--lightest: rgb(245, 246, 222);
   --color-yellowGreen--dark: rgb(122, 128, 21);
 
-  --color-yellow: hsl(51, 64%, 50%);
+  --color-yellow: rgb(209, 185, 46);
   --color-yellow--light: rgb(231, 213, 87);
   --color-yellow--lighter: rgb(241, 231, 159);
   --color-yellow--lightest: hsl(53, 62%, 95%);
-  --color-yellow--dark: hsl(52, 87%, 19%);
+  --color-yellow--dark: rgb(91, 79, 6);
 
-  --color-red: hsl(6, 100%, 39%);
+  --color-red: rgb(199, 20, 0);
   --color-red--light: rgb(233, 141, 119);
   --color-red--lighter: rgb(255, 206, 194);
   --color-red--lightest: hsl(11, 63%, 95%);
-  --color-red--dark: hsl(6, 100%, 17%);
+  --color-red--dark: rgb(87, 9, 0);
 
   --color-grey: rgb(181, 181, 181);
   --color-grey--light: rgb(203, 203, 203);
@@ -131,7 +131,7 @@
   --color-lightBlue--light: rgb(119, 190, 233);
   --color-lightBlue--lighter: rgb(177, 218, 243);
   --color-lightBlue--lightest: hsl(205, 60%, 96%);
-  --color-lightBlue--dark: hsl(197, 67%, 20%);
+  --color-lightBlue--dark: rgb(17, 66, 85);
 
   --color-purple: rgb(136, 112, 196);
   --color-purple--light: rgb(172, 155, 214);
