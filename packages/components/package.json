@@ -473,6 +473,9 @@
     "classnames":"^2",
     "@std-proposal/temporal":"^0",
     "@jobber/hooks": "^2",
+    "@apollo/client": "^3",
+    "react-markdown":"^8",
+    "react-countdown":"^2",
     "zxcvbn":"^4",
     "@tanstack/react-table":"^8"
   },

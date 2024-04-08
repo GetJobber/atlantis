@@ -1,7 +1,6 @@
 /* eslint-disable import/no-default-export */
-import path from "path";
 import { fileURLToPath } from "url";
-import { dirname } from "path";
+import { dirname, resolve } from "path";
 import typescript from "@rollup/plugin-typescript";
 import postcss from "rollup-plugin-postcss";
 import commonjs from "@rollup/plugin-commonjs";
@@ -26,7 +25,7 @@ export default {
         {
           find: /@jobber\/hooks\/(.*)/,
           replacement: (_, p1) =>
-            path.resolve(__dirname, `../hooks/dist/${p1}/${p1}.js`),
+            resolve(__dirname, `../hooks/dist/${p1}/${p1}.js`),
         },
       ],
     }),
@@ -153,6 +152,9 @@ export default {
     "framer-motion",
     "classnames",
     "@std-proposal/temporal",
+    "@apollo/client",
+    "react-markdown",
+    "react-countdown",
     "@jobber/design",
     "@jobber/design/foundation",
     "@jobber/formatters",
