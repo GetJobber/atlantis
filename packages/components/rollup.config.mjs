@@ -153,7 +153,6 @@ export default {
     "classnames",
     "@std-proposal/temporal",
     "@apollo/client",
-    "react-markdown",
     "react-countdown",
     "@jobber/design",
     "@jobber/design/foundation",
