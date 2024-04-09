@@ -53,7 +53,7 @@ export function Heading({ level = 5, children, element }: HeadingProps) {
       element: "h6",
       size: "small",
       textCase: "uppercase",
-      fontWeight: "semiBold",
+      fontWeight: "bold",
       textColor: "heading",
     },
   };

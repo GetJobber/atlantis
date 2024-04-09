@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.92.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.91.1...@jobber/components@4.92.0) (2024-04-09)
+
+
+### Features
+
+* **components:** Update Headings to match retheme design ([#1857](https://github.com/GetJobber/atlantis/issues/1857)) ([47a99c7](https://github.com/GetJobber/atlantis/commit/47a99c7eb54d1b7466949c58619786cdb19415d4))
+
+
+
+
+
 ## [4.91.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.91.0...@jobber/components@4.91.1) (2024-04-04)
 
 **Note:** Version bump only for package @jobber/components

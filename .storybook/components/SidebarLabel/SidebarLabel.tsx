@@ -1,10 +1,10 @@
 import React, { MouseEvent, useEffect, useRef } from "react";
 import { useStorybookApi } from "@storybook/api";
-import { alphaComponents } from "./alphaComponents";
+import { alphaComponents, alphaMobileComponents } from "./alphaComponents";
 
 export function SidebarLabel(label: Record<string, any>) {
   const ref = useRef<HTMLSpanElement>(null);
-  const { selectStory, getCurrentStoryData } = useStorybookApi();
+  const { selectStory, getCurrentStoryData, getData } = useStorybookApi();
   const currentStory = getCurrentStoryData();
 
   useEffect(() => {
@@ -21,10 +21,20 @@ export function SidebarLabel(label: Record<string, any>) {
     }
   }, []);
 
+
+  let markAsAlpha = alphaComponents.includes(label.name);
+
+  if (label.name === "Mobile") {
+    const parent = getData(label.parent);
+    if (alphaMobileComponents.includes(parent.name)) {
+      markAsAlpha = true;
+    }
+  }
+
   return (
     <span ref={ref} onClick={handleClick}>
       {label.name}
-      {alphaComponents.includes(label.name) && (
+      {markAsAlpha && (
         <span
           style={{
             marginLeft: "var(--space-small)",
