@@ -19,11 +19,11 @@ exports[`renders a simple ConfirmationModal 1`] = `
         class="header"
         data-testid="modal-header"
       >
-        <h3
-          class="base extraBold larger heading"
+        <h2
+          class="base black largest heading"
         >
           Should we?
-        </h3>
+        </h2>
       </div>
       <div
         class="padded base"
