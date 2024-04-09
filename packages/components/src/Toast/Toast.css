@@ -32,9 +32,10 @@
 
 .slice {
   display: flex;
-  gap: var(--space-base);
+  gap: var(--space-small);
   align-items: center;
-  padding: calc(var(--space-small) / 1.25) var(--space-base);
+  padding: var(--space-smaller) var(--space-smaller) var(--space-smaller);
+  padding-left: calc(var(--space-small) + var(--space-smaller));
   border-radius: var(--radius-base);
   background: var(--color-surface--reverse);
 }
@@ -43,7 +44,7 @@
    the reverse color scheme of Toast */
 
 .button * path {
-  fill: var(--color-greyBlue--light) !important;
+  fill: var(--color-text--secondary) !important;
 }
 
 .button:hover * path {
