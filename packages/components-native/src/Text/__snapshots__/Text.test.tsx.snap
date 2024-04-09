@@ -49,7 +49,7 @@ exports[`renders text supporting with variation success 1`] = `
         "fontFamily": "inter-medium",
       },
       {
-        "color": "rgb(81, 114, 9)",
+        "color": "rgb(14, 78, 26)",
       },
       {
         "textAlign": "left",
@@ -83,7 +83,7 @@ exports[`renders text supporting with variation success reverseTheme true 1`] = 
         "fontFamily": "inter-medium",
       },
       {
-        "color": "rgb(125, 176, 14)",
+        "color": "rgb(50, 130, 28)",
       },
       {
         "textAlign": "left",
@@ -255,7 +255,7 @@ exports[`renders text with error variation 1`] = `
         "fontFamily": "inter-regular",
       },
       {
-        "color": "rgb(201, 66, 33)",
+        "color": "rgb(199, 20, 0)",
       },
       {
         "textAlign": "left",
@@ -289,7 +289,7 @@ exports[`renders text with error variation reverseTheme true 1`] = `
         "fontFamily": "inter-regular",
       },
       {
-        "color": "rgb(201, 66, 33)",
+        "color": "rgb(199, 20, 0)",
       },
       {
         "textAlign": "left",
@@ -323,7 +323,7 @@ exports[`renders text with info variation 1`] = `
         "fontFamily": "inter-regular",
       },
       {
-        "color": "rgb(39, 105, 146)",
+        "color": "rgb(17, 66, 85)",
       },
       {
         "textAlign": "left",
@@ -459,7 +459,7 @@ exports[`renders text with subdued variation 1`] = `
         "fontFamily": "inter-regular",
       },
       {
-        "color": "rgb(77, 105, 116)",
+        "color": "rgb(78, 105, 116)",
       },
       {
         "textAlign": "left",
@@ -493,7 +493,7 @@ exports[`renders text with success variation 1`] = `
         "fontFamily": "inter-regular",
       },
       {
-        "color": "rgb(81, 114, 9)",
+        "color": "rgb(14, 78, 26)",
       },
       {
         "textAlign": "left",
@@ -527,7 +527,7 @@ exports[`renders text with success variation reverseTheme true 1`] = `
         "fontFamily": "inter-regular",
       },
       {
-        "color": "rgb(125, 176, 14)",
+        "color": "rgb(50, 130, 28)",
       },
       {
         "textAlign": "left",
@@ -561,7 +561,7 @@ exports[`renders text with warn variation 1`] = `
         "fontFamily": "inter-regular",
       },
       {
-        "color": "rgb(144, 127, 10)",
+        "color": "rgb(91, 79, 6)",
       },
       {
         "textAlign": "left",

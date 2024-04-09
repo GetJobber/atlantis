@@ -70,9 +70,9 @@ exports[`renders a thumbnail component with attachments 1`] = `
             style={
               [
                 {
-                  "backgroundColor": "rgb(238, 240, 242)",
-                  "borderColor": "rgb(217, 223, 225)",
-                  "borderRadius": 2,
+                  "backgroundColor": "rgb(241, 239, 233)",
+                  "borderColor": "rgb(218, 224, 226)",
+                  "borderRadius": 8,
                   "borderWidth": 1,
                   "marginBottom": 8,
                 },

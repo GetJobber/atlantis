@@ -209,7 +209,7 @@ exports[`renders quote icon with themed color 1`] = `
       },
       {
         "display": "flex",
-        "fill": "rgb(125, 176, 14)",
+        "fill": "rgb(124, 175, 14)",
         "height": 24,
         "verticalAlign": "middle",
         "width": 24,
@@ -228,7 +228,7 @@ exports[`renders quote icon with themed color 1`] = `
   <RNSVGGroup
     fill={
       {
-        "payload": 4286427150,
+        "payload": 4286361358,
         "type": 0,
       }
     }
@@ -242,7 +242,7 @@ exports[`renders quote icon with themed color 1`] = `
       d="M14 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-2 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0Z"
       fill={
         {
-          "payload": 4286427150,
+          "payload": 4286361358,
           "type": 0,
         }
       }
@@ -256,7 +256,7 @@ exports[`renders quote icon with themed color 1`] = `
       d="M3.586 6C3.196 6.39 3 6.902 3 7.414c0 .512.195 1.024.586 1.414l.99.991C4.315 10.554 4 11.175 4 12a7 7 0 0 0 7 7h9v1a1 1 0 1 0 2 0v-2a1 1 0 0 0-1-1h-3v-5a7 7 0 0 0-7-7c-.825 0-1.446.314-2.18.577l-.992-.991A1.994 1.994 0 0 0 6.414 4c-.512 0-1.023.195-1.414.586L3.586 6Zm3.393.565A7.041 7.041 0 0 0 5.565 7.98L5 7.414 6.414 6l.565.565ZM11 7a5 5 0 0 1 5 5v5h-5a5 5 0 0 1 0-10Z"
       fill={
         {
-          "payload": 4286427150,
+          "payload": 4286361358,
           "type": 0,
         }
       }
