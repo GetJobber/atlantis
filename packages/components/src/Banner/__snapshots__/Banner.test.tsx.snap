@@ -48,26 +48,30 @@ exports[`renders a banner with a primary 'learning' action when the type is 'not
         </button>
       </div>
     </div>
-    <button
-      aria-label="Dismiss notification"
-      class="button base onlyIcon subtle tertiary"
-      type="button"
+    <div
+      class="closeButton"
     >
-      <svg
-        class="Z6OfUI2sH34- TphtDHcwxDc-"
-        data-testid="remove"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
+      <button
+        aria-label="Dismiss notification"
+        class="button base onlyIcon subtle tertiary"
+        type="button"
       >
-        <path
-          class=""
-          d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
+        <svg
+          class="Z6OfUI2sH34- TphtDHcwxDc-"
+          data-testid="remove"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            class=""
+            d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
+          />
+        </svg>
+        <span
+          class="base semiBold base base"
         />
-      </svg>
-      <span
-        class="base semiBold base base"
-      />
-    </button>
+      </button>
+    </div>
   </div>
 </div>
 `;
@@ -120,26 +124,30 @@ exports[`renders a banner with a primary action 1`] = `
         </button>
       </div>
     </div>
-    <button
-      aria-label="Dismiss notification"
-      class="button base onlyIcon subtle tertiary"
-      type="button"
+    <div
+      class="closeButton"
     >
-      <svg
-        class="Z6OfUI2sH34- TphtDHcwxDc-"
-        data-testid="remove"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
+      <button
+        aria-label="Dismiss notification"
+        class="button base onlyIcon subtle tertiary"
+        type="button"
       >
-        <path
-          class=""
-          d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
+        <svg
+          class="Z6OfUI2sH34- TphtDHcwxDc-"
+          data-testid="remove"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            class=""
+            d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
+          />
+        </svg>
+        <span
+          class="base semiBold base base"
         />
-      </svg>
-      <span
-        class="base semiBold base base"
-      />
-    </button>
+      </button>
+    </div>
   </div>
 </div>
 `;
@@ -178,26 +186,30 @@ exports[`renders a notice banner 1`] = `
         </p>
       </div>
     </div>
-    <button
-      aria-label="Dismiss notification"
-      class="button base onlyIcon subtle tertiary"
-      type="button"
+    <div
+      class="closeButton"
     >
-      <svg
-        class="Z6OfUI2sH34- TphtDHcwxDc-"
-        data-testid="remove"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
+      <button
+        aria-label="Dismiss notification"
+        class="button base onlyIcon subtle tertiary"
+        type="button"
       >
-        <path
-          class=""
-          d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
+        <svg
+          class="Z6OfUI2sH34- TphtDHcwxDc-"
+          data-testid="remove"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            class=""
+            d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
+          />
+        </svg>
+        <span
+          class="base semiBold base base"
         />
-      </svg>
-      <span
-        class="base semiBold base base"
-      />
-    </button>
+      </button>
+    </div>
   </div>
 </div>
 `;
@@ -236,26 +248,30 @@ exports[`renders a success banner 1`] = `
         </p>
       </div>
     </div>
-    <button
-      aria-label="Dismiss notification"
-      class="button base onlyIcon subtle tertiary"
-      type="button"
+    <div
+      class="closeButton"
     >
-      <svg
-        class="Z6OfUI2sH34- TphtDHcwxDc-"
-        data-testid="remove"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
+      <button
+        aria-label="Dismiss notification"
+        class="button base onlyIcon subtle tertiary"
+        type="button"
       >
-        <path
-          class=""
-          d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
+        <svg
+          class="Z6OfUI2sH34- TphtDHcwxDc-"
+          data-testid="remove"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            class=""
+            d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
+          />
+        </svg>
+        <span
+          class="base semiBold base base"
         />
-      </svg>
-      <span
-        class="base semiBold base base"
-      />
-    </button>
+      </button>
+    </div>
   </div>
 </div>
 `;
@@ -298,26 +314,30 @@ exports[`renders a warning banner 1`] = `
         </p>
       </div>
     </div>
-    <button
-      aria-label="Dismiss notification"
-      class="button base onlyIcon subtle tertiary"
-      type="button"
+    <div
+      class="closeButton"
     >
-      <svg
-        class="Z6OfUI2sH34- TphtDHcwxDc-"
-        data-testid="remove"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
+      <button
+        aria-label="Dismiss notification"
+        class="button base onlyIcon subtle tertiary"
+        type="button"
       >
-        <path
-          class=""
-          d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
+        <svg
+          class="Z6OfUI2sH34- TphtDHcwxDc-"
+          data-testid="remove"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            class=""
+            d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
+          />
+        </svg>
+        <span
+          class="base semiBold base base"
         />
-      </svg>
-      <span
-        class="base semiBold base base"
-      />
-    </button>
+      </button>
+    </div>
   </div>
 </div>
 `;
@@ -360,26 +380,30 @@ exports[`renders an error banner 1`] = `
         </p>
       </div>
     </div>
-    <button
-      aria-label="Dismiss notification"
-      class="button base onlyIcon subtle tertiary"
-      type="button"
+    <div
+      class="closeButton"
     >
-      <svg
-        class="Z6OfUI2sH34- TphtDHcwxDc-"
-        data-testid="remove"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
+      <button
+        aria-label="Dismiss notification"
+        class="button base onlyIcon subtle tertiary"
+        type="button"
       >
-        <path
-          class=""
-          d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
+        <svg
+          class="Z6OfUI2sH34- TphtDHcwxDc-"
+          data-testid="remove"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            class=""
+            d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
+          />
+        </svg>
+        <span
+          class="base semiBold base base"
         />
-      </svg>
-      <span
-        class="base semiBold base base"
-      />
-    </button>
+      </button>
+    </div>
   </div>
 </div>
 `;

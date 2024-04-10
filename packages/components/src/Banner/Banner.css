@@ -57,23 +57,11 @@
 
 .closeButton {
   margin: calc(var(--space-smallest) * -1) 0;
-  padding: var(--space-smallest);
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  appearance: none;
-  flex: 0;
   align-self: flex-start;
-}
 
-.closeButton:hover {
-  background: rgba(0, 0, 0, 0.025);
-}
-
-.closeButton:focus {
-  box-shadow: var(--shadow-focus);
-  outline: none;
-  background: rgba(0, 0, 0, 0.05);
+  @media (--small-screens-and-below) {
+    margin: calc(var(--space-small) * -1) 0;
+  }
 }
 
 .iconWrapper {

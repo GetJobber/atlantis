@@ -89,10 +89,12 @@ export function Banner({
       </div>
 
       {dismissible && (
-        <ButtonDismiss
-          ariaLabel={"Dismiss notification"}
-          onClick={handleClose}
-        />
+        <div className={styles.closeButton}>
+          <ButtonDismiss
+            ariaLabel={"Dismiss notification"}
+            onClick={handleClose}
+          />
+        </div>
       )}
     </div>
   );
