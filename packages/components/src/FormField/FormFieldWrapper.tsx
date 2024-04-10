@@ -95,7 +95,7 @@ export function FormFieldWrapper({
     setLabelStyle(getAffixPaddding);
   }, [value]);
 
-  const { focused, inputWrapperRef } = useFormFieldFocus();
+  const { focused } = useFormFieldFocus({ wrapperRef });
 
   const showClear = useShowClear({
     clearable,
@@ -121,7 +121,7 @@ export function FormFieldWrapper({
       >
         <div className={styles.horizontalWrapper}>
           {prefix?.icon && <AffixIcon {...prefix} size={size} />}
-          <div ref={inputWrapperRef} className={styles.inputWrapper}>
+          <div className={styles.inputWrapper}>
             {placeholder && (
               <label
                 className={styles.label}

@@ -1,14 +1,17 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 interface UseFormFieldFocus {
   focused: boolean;
-  inputWrapperRef: React.RefObject<HTMLDivElement>;
 }
 
-export function useFormFieldFocus(): UseFormFieldFocus {
-  const [focused, setFocused] = useState(false);
+interface UseFormFieldFocusProps {
+  wrapperRef?: React.RefObject<HTMLDivElement>;
+}
 
-  const inputWrapperRef = useRef<HTMLDivElement>(null);
+export function useFormFieldFocus(
+  props: UseFormFieldFocusProps,
+): UseFormFieldFocus {
+  const [focused, setFocused] = useState(false);
 
   useEffect(() => {
     function handleFocusIn() {
@@ -17,7 +20,7 @@ export function useFormFieldFocus(): UseFormFieldFocus {
 
     function handleFocusOut() {
       setTimeout(() => {
-        const focusedElementWithinWrapper = inputWrapperRef.current?.contains(
+        const focusedElementWithinWrapper = props.wrapperRef?.current?.contains(
           document.activeElement,
         );
 
@@ -26,17 +29,19 @@ export function useFormFieldFocus(): UseFormFieldFocus {
         }
       }, 1);
     }
-    inputWrapperRef.current?.addEventListener("focusin", handleFocusIn);
-    inputWrapperRef.current?.addEventListener("focusout", handleFocusOut);
+    props.wrapperRef?.current?.addEventListener("focusin", handleFocusIn);
+    props.wrapperRef?.current?.addEventListener("focusout", handleFocusOut);
 
     return () => {
-      inputWrapperRef.current?.removeEventListener("focusin", handleFocusIn);
-      inputWrapperRef.current?.removeEventListener("focusout", handleFocusOut);
+      props.wrapperRef?.current?.removeEventListener("focusin", handleFocusIn);
+      props.wrapperRef?.current?.removeEventListener(
+        "focusout",
+        handleFocusOut,
+      );
     };
-  }, [inputWrapperRef.current]);
+  }, [props.wrapperRef?.current]);
 
   return {
     focused,
-    inputWrapperRef,
   };
 }
