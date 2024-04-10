@@ -2,7 +2,6 @@
   --card--accent-color: var(--color-grey);
   --card--base-padding: var(--space-base);
   --card--border: var(--border-base) solid var(--color-border);
-  --card--header-background: transparent;
 }
 
 .card {
@@ -61,7 +60,6 @@
   display: flex;
   padding: var(--card--base-padding);
   padding-bottom: 0;
-  background-color: var(--card--header-background);
   justify-content: space-between;
   align-items: flex-start;
   gap: var(--space-small);
