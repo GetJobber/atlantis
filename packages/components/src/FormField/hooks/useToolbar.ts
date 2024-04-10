@@ -8,18 +8,20 @@ interface UseToolBarProps {
 
 interface UseToolbar {
   isToolbarVisible: boolean;
-  animationInitial: boolean | { opacity: number; height: number };
+  toolbarAnimationEnd: { opacity: number; height: number };
+  toolbarAnimationStart: { opacity: number; height: string | number };
 }
 
 export function useToolbar(props: UseToolBarProps): UseToolbar {
   const isToolbarVisible =
     props.toolbar !== undefined &&
     (props.toolbarVisibility === "always" || props.focused);
-  const animationInitial =
-    props.toolbarVisibility === "always" ? false : { opacity: 0, height: 0 };
+  const toolbarAnimationEnd = { opacity: 0, height: 0 };
+  const toolbarAnimationStart = { opacity: 1, height: "auto" };
 
   return {
     isToolbarVisible,
-    animationInitial,
+    toolbarAnimationEnd,
+    toolbarAnimationStart,
   };
 }

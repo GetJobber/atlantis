@@ -105,11 +105,12 @@ export function FormFieldWrapper({
     disabled,
   });
 
-  const { isToolbarVisible, animationInitial } = useToolbar({
-    focused,
-    toolbar,
-    toolbarVisibility,
-  });
+  const { isToolbarVisible, toolbarAnimationEnd, toolbarAnimationStart } =
+    useToolbar({
+      focused,
+      toolbar,
+      toolbarVisibility,
+    });
 
   return (
     <div className={containerClasses}>
@@ -151,16 +152,15 @@ export function FormFieldWrapper({
             <AffixIcon {...suffix} variation="suffix" size={size} />
           )}
         </div>
-        <AnimatePresence>
+        <AnimatePresence
+          initial={toolbarVisibility === "always" ? false : true}
+        >
           {isToolbarVisible && (
             <motion.div
               key="toolbar"
-              initial={animationInitial}
-              animate={{
-                opacity: 1,
-                height: "auto",
-              }}
-              exit={{ opacity: 0, height: 0 }}
+              initial={toolbarAnimationEnd}
+              animate={toolbarAnimationStart}
+              exit={toolbarAnimationEnd}
               transition={{
                 duration: tokens["timing-base"] / 1000,
                 ease: "easeInOut",
