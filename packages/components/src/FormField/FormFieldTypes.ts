@@ -145,6 +145,8 @@ export interface FormFieldProps extends CommonFormFieldProps {
     HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
   >;
 
+  wrapperRef?: RefObject<HTMLDivElement>;
+
   /**
    * Initial value of the input. Only use this when you need to pre-populate
    * the field with a data that is not controlled by the components state. If a

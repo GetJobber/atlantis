@@ -53,6 +53,7 @@ export function FormFieldWrapper({
   onClear,
   toolbar,
   toolbarVisibility = "while-editing",
+  wrapperRef,
 }: PropsWithChildren<FormFieldWrapperProps>) {
   const wrapperClasses = classnames(
     styles.wrapper,
@@ -116,58 +117,61 @@ export function FormFieldWrapper({
         className={wrapperClasses}
         style={wrapperInlineStyle}
         data-testid="Form-Field-Wrapper"
+        ref={wrapperRef}
       >
-        {prefix?.icon && <AffixIcon {...prefix} size={size} />}
-        <div ref={inputWrapperRef} className={styles.inputWrapper}>
-          {placeholder && (
-            <label
-              className={styles.label}
-              htmlFor={identifier}
-              style={
-                prefixRef?.current || suffixRef?.current
-                  ? labelStyle
-                  : undefined
-              }
-            >
-              {placeholder}
-            </label>
-          )}
+        <div className={styles.horizontalWrapper}>
+          {prefix?.icon && <AffixIcon {...prefix} size={size} />}
+          <div ref={inputWrapperRef} className={styles.inputWrapper}>
+            {placeholder && (
+              <label
+                className={styles.label}
+                htmlFor={identifier}
+                style={
+                  prefixRef?.current || suffixRef?.current
+                    ? labelStyle
+                    : undefined
+                }
+              >
+                {placeholder}
+              </label>
+            )}
 
-          {prefix?.label && <AffixLabel {...prefix} labelRef={prefixRef} />}
+            {prefix?.label && <AffixLabel {...prefix} labelRef={prefixRef} />}
 
-          <div className={styles.childrenWrapper} tabIndex={-1}>
-            {children}
-            <AnimatePresence>
-              {isToolbarVisible && (
-                <motion.div
-                  key="toolbar"
-                  initial={animationInitial}
-                  animate={{
-                    opacity: 1,
-                    height: "auto",
-                  }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{
-                    duration: tokens["timing-base"] / 1000,
-                    ease: "easeInOut",
-                  }}
-                  tabIndex={-1}
-                  className={styles.toolbar}
-                >
-                  {toolbar}
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <div className={styles.childrenWrapper} tabIndex={-1}>
+              {children}
+            </div>
+
+            {suffix?.label && (
+              <AffixLabel {...suffix} labelRef={suffixRef} variation="suffix" />
+            )}
           </div>
-
-          {suffix?.label && (
-            <AffixLabel {...suffix} labelRef={suffixRef} variation="suffix" />
+          {showClear && <ClearAction onClick={onClear} />}
+          {suffix?.icon && (
+            <AffixIcon {...suffix} variation="suffix" size={size} />
           )}
         </div>
-        {showClear && <ClearAction onClick={onClear} />}
-        {suffix?.icon && (
-          <AffixIcon {...suffix} variation="suffix" size={size} />
-        )}
+        <AnimatePresence>
+          {isToolbarVisible && (
+            <motion.div
+              key="toolbar"
+              initial={animationInitial}
+              animate={{
+                opacity: 1,
+                height: "auto",
+              }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{
+                duration: tokens["timing-base"] / 1000,
+                ease: "easeInOut",
+              }}
+              tabIndex={-1}
+              className={styles.toolbar}
+            >
+              {toolbar}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
       {description && !inline && (
         <FormFieldDescription

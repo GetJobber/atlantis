@@ -1,10 +1,12 @@
 declare const styles: {
   readonly "container": string;
   readonly "wrapper": string;
+  readonly "horizontalWrapper": string;
   readonly "timeInputLabel": string;
   readonly "miniLabel": string;
   readonly "large": string;
   readonly "text": string;
+  readonly "textarea": string;
   readonly "invalid": string;
   readonly "disabled": string;
   readonly "small": string;
@@ -15,7 +17,6 @@ declare const styles: {
   readonly "inputWrapper": string;
   readonly "childrenWrapper": string;
   readonly "input": string;
-  readonly "textarea": string;
   readonly "select": string;
   readonly "label": string;
   readonly "postfix": string;

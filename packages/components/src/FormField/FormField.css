@@ -43,6 +43,7 @@
   --field--postfix-action-elevation: calc(var(--field--base-elevation) + 2);
 
   display: flex;
+  flex-direction: column;
   width: 100%;
   border: var(--border-base) solid var(--field--border-color);
   border-radius: var(--radius-base);
@@ -63,6 +64,13 @@
   position: relative;
   z-index: var(--field--base-elevation);
   box-shadow: var(--shadow-focus);
+}
+
+.horizontalWrapper {
+  display: flex;
+  width: 100%;
+  height: var(--field--height);
+  flex: 1;
 }
 
 .timeInputLabel:not(:focus-within) input {
@@ -87,8 +95,14 @@
 .wrapper.text {
   --field--placeholder-offset: 0;
   --field--placeholder-transform: 0;
-  height: auto;
+  /* flex-direction: column; */
   min-height: auto;
+  /* height: auto; */
+}
+
+.wrapper.textarea {
+  resize: vertical;
+  overflow: auto;
 }
 
 .invalid,
@@ -192,10 +206,8 @@
 
 .textarea .childrenWrapper {
   display: flex;
-  flex-direction: column;
   min-height: var(--field--height);
-  resize: vertical;
-  overflow: auto;
+  flex-direction: column;
 }
 
 .textarea .input {
@@ -255,6 +267,9 @@
 
 .text.miniLabel .label {
   padding-top: var(--space-smallest);
+}
+
+.textarea.miniLabel .label {
   background-color: var(--field--background-color);
 }
 
@@ -293,19 +308,6 @@
   padding: 0 var(--field--padding-right) 0 var(--field--padding-left);
 }
 
-@supports (aspect-ratio: 1/1) {
-  .affixIcon {
-    /*
-     * disabling property-no-unknown here as this is a real property
-     * that stylelint just doesn't know about. We may be able to remove
-     * this when we update our stylelint to not care about IE11.
-     */
-    /* stylelint-disable-next-line property-no-unknown */
-    aspect-ratio: 1/1;
-    padding: 0;
-  }
-}
-
 .affixIcon.suffix {
   margin: 0 0 0 calc(var(--field--padding-right) * -1);
 }
@@ -341,8 +343,6 @@
 .toolbar {
   display: flex;
   position: relative;
-  margin: var(--space-small) var(--field--padding-right) var(--space-small)
-    var(--field--padding-left);
 }
 
 .toolbar::before {
