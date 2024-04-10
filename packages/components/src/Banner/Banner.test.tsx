@@ -51,7 +51,7 @@ test("should call the handler with a number value", () => {
     </Banner>,
   );
 
-  fireEvent.click(getByLabelText("Close this notification"));
+  fireEvent.click(getByLabelText("Dismiss notification"));
   expect(changeHandler).toHaveBeenCalledTimes(1);
 });
 
