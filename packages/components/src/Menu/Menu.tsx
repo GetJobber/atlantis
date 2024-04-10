@@ -283,7 +283,7 @@ function Action({
       onClick={onClick}
       ref={actionButtonRef}
     >
-      {icon && <Icon name={icon} color="interactiveSubtle" />}
+      {icon && <Icon name={icon} />}
       <Typography
         element="span"
         fontWeight="semiBold"
