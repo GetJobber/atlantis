@@ -343,6 +343,7 @@
 .toolbar {
   display: flex;
   position: relative;
+  margin: var(--space-small) var(--space-base) var(--space-base) var(--space-base);
 }
 
 .toolbar::before {

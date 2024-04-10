@@ -166,9 +166,8 @@ export function FormFieldWrapper({
                 ease: "easeInOut",
               }}
               tabIndex={-1}
-              className={styles.toolbar}
             >
-              {toolbar}
+              <div className={styles.toolbar}>{toolbar}</div>
             </motion.div>
           )}
         </AnimatePresence>
