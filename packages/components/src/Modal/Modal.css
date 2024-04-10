@@ -79,11 +79,6 @@
   background-color: transparent;
 }
 
-:global(.jobber-retheme) .header h3 {
-  font-family: var(--typography--fontFamily-normal);
-  font-size: var(--typography--fontSize-largest);
-}
-
 /**
  * Ensure there's no extra padding top on the next element. This mostly negates
  * the <Content /> padding

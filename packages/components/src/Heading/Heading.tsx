@@ -56,7 +56,7 @@ export function Heading({ level = 5, children, element }: HeadingProps) {
       element: "h6",
       size: "small",
       textCase: "uppercase",
-      fontWeight: inRetheme ? "semiBold" : "bold",
+      fontWeight: "bold",
       textColor: "heading",
     },
   };
