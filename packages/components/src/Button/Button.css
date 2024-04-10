@@ -213,14 +213,14 @@ a.button.disabled:hover {
   text-align: start;
 }
 
+.hasIconAndLabel > *:first-child {
+  margin-left: calc(var(--space-smaller) * -1);
+}
+
 .iconOnRight > *:first-child {
   order: 1;
   margin-left: 0;
   margin-right: calc(var(--space-smaller) * -1);
-}
-
-.hasIconAndLabel > *:first-child {
-  margin-left: calc(var(--space-smaller) * -1);
 }
 
 .fullWidth {
