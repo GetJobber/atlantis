@@ -35,6 +35,7 @@ export function DataListHeaderTile<T extends DataListObject>({
   const sortableItem = sorting?.sortable.find(item => item.key === headerKey);
   const isSortable = Boolean(sortableItem);
   const sortingState = sorting?.state;
+  const sortOptions = sortableItem?.options || [];
 
   const Tag = isSortable ? "button" : "div";
 
@@ -47,9 +48,9 @@ export function DataListHeaderTile<T extends DataListObject>({
       ref={dataListHeaderTileRef}
     >
       <Text maxLines="single">{headers[headerKey]}</Text>
-      {isSortable && sortableItem?.options && isDropDownOpen && (
+      {isSortable && sortOptions.length > 2 && isDropDownOpen && (
         <DataListSortingOptions
-          options={sortableItem.options}
+          options={sortOptions}
           selectedOption={sorting?.state || null}
           onSelectChange={handleSelectChange}
           onClose={() => setIsDropDownOpen(false)}
