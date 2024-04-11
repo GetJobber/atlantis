@@ -395,22 +395,6 @@ describe("DataList", () => {
       expect(screen.queryByText(mockHeaders.email)).not.toBeInTheDocument();
     });
 
-    it("should render the sorting arrows when sorting is specified", () => {
-      renderLayout(undefined, {
-        sortable: [{ key: "name" }],
-        onSort: jest.fn(),
-        state: undefined,
-      });
-      expect(screen.queryByTestId(SORTING_ICON_TEST_ID)).toBeInTheDocument();
-    });
-
-    it("should not render the sorting arrows when sorting is not specified", () => {
-      renderLayout();
-      expect(
-        screen.queryByTestId(SORTING_ICON_TEST_ID),
-      ).not.toBeInTheDocument();
-    });
-
     it("should trigger the onSort when the header is clicked", () => {
       const mockOnSort = jest.fn();
       renderLayout(undefined, {
@@ -423,34 +407,90 @@ describe("DataList", () => {
       expect(mockOnSort).toHaveBeenCalled();
     });
 
-    it("should render custom options when sorting is specified", () => {
-      const mockOnSort = jest.fn();
+    it("should not render the sorting arrows when sorting is not specified", () => {
+      renderLayout();
+      expect(
+        screen.queryByTestId(SORTING_ICON_TEST_ID),
+      ).not.toBeInTheDocument();
+    });
 
-      renderLayout(undefined, {
-        sortable: [
-          {
-            key: "name",
-            options: [
-              { id: "name", label: "Ascending", order: "asc" },
-              { id: "name", label: "Descending", order: "desc" },
-            ],
-          },
-        ],
-        onSort: mockOnSort,
-        state: undefined,
+    describe("when sorting is specified", () => {
+      it("should render the sorting arrows", () => {
+        renderLayout(undefined, {
+          sortable: [{ key: "name" }],
+          onSort: jest.fn(),
+          state: undefined,
+        });
+        expect(screen.queryByTestId(SORTING_ICON_TEST_ID)).toBeInTheDocument();
       });
 
-      fireEvent.click(screen.getByText(mockHeaders.name));
-      expect(screen.getByText("Ascending")).toBeInTheDocument();
-      expect(screen.getByText("Descending")).toBeInTheDocument();
+      it("shouldn't render custom options when there are 2 or less custom options", () => {
+        const mockOnSort = jest.fn();
 
-      fireEvent.click(screen.getByText("Ascending"));
+        renderLayout(undefined, {
+          sortable: [
+            {
+              key: "name",
+              options: [
+                { id: "name", label: "Ascending", order: "asc" },
+                { id: "name", label: "Descending", order: "desc" },
+              ],
+            },
+          ],
+          onSort: mockOnSort,
+          state: undefined,
+        });
 
-      expect(mockOnSort).toHaveBeenCalledWith({
-        key: "name",
-        id: "name",
-        label: "Ascending",
-        order: "asc",
+        fireEvent.click(screen.getByText(mockHeaders.name));
+        expect(screen.getByText("Ascending")).not.toBeInTheDocument();
+        expect(screen.getByText("Descending")).not.toBeInTheDocument();
+      });
+
+      it("should render custom options when there more than 2 custom options", () => {
+        const mockOnSort = jest.fn();
+
+        renderLayout(undefined, {
+          sortable: [
+            {
+              key: "name",
+              options: [
+                {
+                  id: "firstName",
+                  label: "First Name Ascending",
+                  order: "asc",
+                },
+                {
+                  id: "firstName",
+                  label: "First Name Descending",
+                  order: "desc",
+                },
+                { id: "lastName", label: "Last Name Ascending", order: "asc" },
+                {
+                  id: "lastName",
+                  label: "Last Name Descending",
+                  order: "desc",
+                },
+              ],
+            },
+          ],
+          onSort: mockOnSort,
+          state: undefined,
+        });
+
+        fireEvent.click(screen.getByText(mockHeaders.name));
+        expect(screen.getByText("First Name Ascending")).toBeInTheDocument();
+        expect(screen.getByText("First Name Descending")).toBeInTheDocument();
+        expect(screen.getByText("Last Name Ascending")).toBeInTheDocument();
+        expect(screen.getByText("Last Name Descending")).toBeInTheDocument();
+
+        fireEvent.click(screen.getByText("Ascending"));
+
+        expect(mockOnSort).toHaveBeenCalledWith({
+          key: "name",
+          id: "name",
+          label: "Ascending",
+          order: "asc",
+        });
       });
     });
   });
