@@ -442,8 +442,8 @@ describe("DataList", () => {
         });
 
         fireEvent.click(screen.getByText(mockHeaders.name));
-        expect(screen.getByText("Ascending")).not.toBeInTheDocument();
-        expect(screen.getByText("Descending")).not.toBeInTheDocument();
+        expect(screen.queryByText("Ascending")).not.toBeInTheDocument();
+        expect(screen.queryByText("Descending")).not.toBeInTheDocument();
       });
 
       it("should render custom options when there more than 2 custom options", () => {
@@ -483,12 +483,12 @@ describe("DataList", () => {
         expect(screen.getByText("Last Name Ascending")).toBeInTheDocument();
         expect(screen.getByText("Last Name Descending")).toBeInTheDocument();
 
-        fireEvent.click(screen.getByText("Ascending"));
+        fireEvent.click(screen.getByText("Last Name Ascending"));
 
         expect(mockOnSort).toHaveBeenCalledWith({
           key: "name",
-          id: "name",
-          label: "Ascending",
+          id: "lastName",
+          label: "Last Name Ascending",
           order: "asc",
         });
       });
