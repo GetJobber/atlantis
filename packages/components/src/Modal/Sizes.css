@@ -1,9 +1,9 @@
 .small {
   --modal--padding: var(--space-base);
   --public-tab--inset: var(--space-base);
-  max-width: calc(var(--base-unit) * 25);
+  max-width: 400px;
 }
 
 .large {
-  max-width: calc(var(--base-unit) * 58.75);
+  max-width: 940px;
 }

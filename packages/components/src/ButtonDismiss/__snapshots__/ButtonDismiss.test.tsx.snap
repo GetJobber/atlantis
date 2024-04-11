@@ -19,7 +19,7 @@ exports[`renders a ButtonDismiss 1`] = `
       />
     </svg>
     <span
-      class="base extraBold base base"
+      class="base semiBold base base"
     />
   </button>
 </div>

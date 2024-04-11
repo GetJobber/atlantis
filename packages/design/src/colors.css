@@ -36,12 +36,14 @@
   --color-inactive--surface: var(--color-greyBlue--lightest);
   --color-inactive--onSurface: var(--color-blue);
 
-  /* Typography */
+  /* Typography + Iconography */
   --color-heading: var(--color-blue);
   --color-text: var(--color-greyBlue--dark);
   --color-text--secondary: var(--color-blue--light);
   --color-text--reverse: var(--color-white);
   --color-text--reverse--secondary: var(--color-greyBlue--lighter);
+
+  --color-icon: var(--color-blue);
 
   /* Surfaces and Borders */
   --color-surface: var(--color-white);

@@ -1,10 +1,9 @@
-.checkbox {
-  --checkbox-size: var(--space-base);
+.checkBoxParent {
+  --checkbox--size: 20px;
+  --checkbox--border--checked: var(--color-interactive);
+  --checkbox--border--unchecked: var(--color-border);
+  --checkbox--border--hover: var(--color-interactive);
   display: inline-block;
-}
-
-:global(.jobber-retheme) .checkbox {
-  --checkbox-size: calc(var(--space-base) + var(--space-smaller));
 }
 
 .wrapper {
@@ -15,6 +14,9 @@
 }
 
 .disabled {
+  --checkbox--border--checked: var(--color-disabled--secondary);
+  --checkbox--border--unchecked: var(--color-disabled--secondary);
+  --checkbox--border--hover: var(--color-disabled--secondary);
   cursor: not-allowed;
 }
 
@@ -35,39 +37,30 @@
 
 .checkBox {
   display: flex;
-  width: var(--checkbox-size);
-  height: var(--checkbox-size);
+  width: var(--checkbox--size);
+  height: var(--checkbox--size);
   box-sizing: border-box;
-  border: var(--border-thick) solid var(--color-interactive);
-  border-radius: var(--radius-base);
+  border: var(--border-thick) solid var(--checkbox--border--unchecked);
+  border-radius: var(--radius-small);
   background-color: var(--color-surface);
   transition: all var(--timing-quick) ease-out;
   justify-content: center;
   align-items: center;
 }
 
-.disabled .checkBox {
-  border-color: var(--color-disabled--secondary);
-}
-
-:global(.jobber-retheme) .checkBox {
-  border-color: var(--color-border);
-  border-radius: var(--radius-small);
+.checkBox:hover,
+.checkBoxParent:hover .checkBox {
+  border-color: var(--checkbox--border--hover);
 }
 
 .input.indeterminate + .checkBox,
 .input:checked + .checkBox {
-  border-color: var(--color-interactive);
+  border-color: var(--checkbox--border--checked);
   background-color: var(--color-interactive);
 }
 
 .input:focus-visible + .checkBox {
   box-shadow: var(--shadow-focus);
-}
-
-:global(.jobber-retheme) .checkBox:hover,
-:global(.jobber-retheme) .checkbox:hover .checkBox {
-  border-color: var(--color-interactive);
 }
 
 .disabled p {
@@ -80,7 +73,6 @@
 
 .disabled .input.indeterminate + .checkBox,
 .disabled .input:checked + .checkBox {
-  border-color: var(--color-disabled--secondary);
   background-color: var(--color-disabled--secondary);
 }
 
@@ -91,13 +83,10 @@
 
 .label {
   margin: 0 var(--space-small);
-}
-
-:global(.jobber-retheme) .label {
   margin-top: var(--space-smallest);
 }
 
 .description {
   margin-bottom: var(--space-small);
-  padding-left: calc(var(--checkbox-size) + var(--space-small));
+  padding-left: calc(var(--checkbox--size) + var(--space-small));
 }

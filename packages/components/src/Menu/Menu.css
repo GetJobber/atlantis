@@ -79,25 +79,14 @@
 }
 
 .sectionHeader {
-  padding: var(--menu-space);
-}
-
-:global(.jobber-retheme) .sectionHeader {
   display: flex;
   align-items: center;
   padding: calc(var(--menu-space) * 1.5) var(--menu-space);
 }
 
-:global(.jobber-retheme) .sectionHeader h6 {
-  /* can move into the Typography component post re-theme */
-  font-size: var(--typography--fontSize-base);
-  font-weight: 400;
-  text-transform: none;
-}
-
 .action {
   display: flex;
-  gap: var(--space-base);
+  gap: var(--menu-space);
   width: 100%;
   padding: var(--menu-space);
   border: none;
@@ -107,25 +96,15 @@
   align-items: center;
 }
 
-:global(.jobber-retheme) .action {
-  gap: var(--menu-space);
-}
-
 .action:hover,
 .action:focus-visible {
   background-color: var(--color-surface--hover);
   outline-color: var(--color-focus);
 }
 
-:global(.jobber-retheme) .action span {
-  /* can move into the Typography component post re-theme */
-  color: var(--color-text--secondary);
-  font-weight: 600;
-}
-
-:global(.jobber-retheme) .icon path {
-  /* can move into the Icon component post re-theme */
-  fill: var(--color-interactive--subtle);
+.action span {
+  /* match appearance of Button labels */
+  -webkit-font-smoothing: antialiased;
 }
 
 .overlay {
