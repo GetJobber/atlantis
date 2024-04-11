@@ -150,7 +150,7 @@ export function FormField(props: FormFieldProps) {
               );
             default:
               return (
-                <div style={{ position: "relative" }}>
+                <>
                   <input
                     {...textFieldProps}
                     autoComplete={setAutocomplete(autocomplete)}
@@ -163,7 +163,7 @@ export function FormField(props: FormFieldProps) {
                   />
                   {loading && <FormFieldPostFix variation="spinner" />}
                   {children}
-                </div>
+                </>
               );
           }
         }
