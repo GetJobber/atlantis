@@ -170,16 +170,16 @@ workflows:
             - install_dependencies
       - lint_javascript:
           requires:
-            - install_dependencies
+            - check_for_manual_release
       - lint_css:
           requires:
-            - install_dependencies
+            - check_for_manual_release
       - test:
           requires:
-            - install_dependencies
+            - check_for_manual_release
       - build_docs:
           requires:
-            - install_dependencies
+            - check_for_manual_release
       - release:
           filters:
             branches:
