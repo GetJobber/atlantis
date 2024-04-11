@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.0.2...@jobber/components@5.1.0) (2024-04-11)
+
+
+### Features
+
+* **components:** adds ability to provide "preferredPlacement" for Tooltip ([#1844](https://github.com/GetJobber/atlantis/issues/1844)) ([efda527](https://github.com/GetJobber/atlantis/commit/efda527f823ece0695ac0536b27d9c50e9a5d5e5))
+
+
+
+
+
 ## [5.0.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.0.1...@jobber/components@5.0.2) (2024-04-11)
 
 **Note:** Version bump only for package @jobber/components
