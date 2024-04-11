@@ -3,6 +3,87 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.65.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.65.1...@jobber/components-native@0.65.2) (2024-04-11)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.65.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.65.0...@jobber/components-native@0.65.1) (2024-04-11)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+# [0.65.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.64.0...@jobber/components-native@0.65.0) (2024-04-04)
+
+
+### Features
+
+* **design:** Create longArrowRight and rename backArrow ([#1837](https://github.com/GetJobber/atlantis/issues/1837)) ([0c63ed5](https://github.com/GetJobber/atlantis/commit/0c63ed54278250751d48c82f23ff9fe39e857fe7))
+
+
+
+
+
+# [0.64.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.63.0...@jobber/components-native@0.64.0) (2024-04-04)
+
+
+### Features
+
+* **components-native:** Adjust menu visibility on iOS ([#1845](https://github.com/GetJobber/atlantis/issues/1845)) ([a497423](https://github.com/GetJobber/atlantis/commit/a497423f95d0e6af2f20ea7e8942afe83d2db39f))
+
+
+
+
+
+# [0.63.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.62.4...@jobber/components-native@0.63.0) (2024-04-03)
+
+
+### Features
+
+* **components-native:** implement glimmer and add loading state to native inputs ([#1842](https://github.com/GetJobber/atlantis/issues/1842)) ([36620c6](https://github.com/GetJobber/atlantis/commit/36620c6a2be8a8cdecf3e0466442996cec4a72a0))
+
+
+
+
+
+## [0.62.4](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.62.3...@jobber/components-native@0.62.4) (2024-04-03)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.62.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.62.2...@jobber/components-native@0.62.3) (2024-04-03)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.62.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.62.1...@jobber/components-native@0.62.2) (2024-04-03)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.62.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.62.0...@jobber/components-native@0.62.1) (2024-04-03)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
 # [0.62.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.61.2...@jobber/components-native@0.62.0) (2024-03-28)
 
 

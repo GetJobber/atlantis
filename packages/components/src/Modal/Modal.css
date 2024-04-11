@@ -71,18 +71,12 @@
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: var(--modal--padding);
   background-color: var(--color-surface--background);
 }
 
 :global(.jobber-retheme) .header {
   background-color: transparent;
-}
-
-:global(.jobber-retheme) .header h3 {
-  font-family: var(--typography--fontFamily-normal);
-  font-size: var(--typography--fontSize-largest);
 }
 
 /**
@@ -95,11 +89,8 @@
 }
 
 .closeButton {
-  padding: 0;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  appearance: none;
+  margin-top: -6px;
+  margin-right: -6px;
 }
 
 .actionBar {

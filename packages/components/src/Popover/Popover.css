@@ -57,25 +57,25 @@
 }
 
 .popover[data-popper-placement^="top"] > .arrow {
-  bottom: -5px;
+  padding-bottom: -5px;
 }
 .popover[data-popper-placement^="top"] > .arrow::before {
   transform: rotate(-135deg);
 }
 
 .popover[data-popper-placement^="bottom"] > .arrow {
-  top: -7px;
+  padding-top: -7px;
 }
 
 .popover[data-popper-placement^="left"] > .arrow {
-  right: -5px;
+  padding-right: -5px;
 }
 .popover[data-popper-placement^="left"] > .arrow::before {
   transform: rotate(135deg);
 }
 
 .popover[data-popper-placement^="right"] > .arrow {
-  left: -7px;
+  padding-left: -7px;
 }
 .popover[data-popper-placement^="right"] > .arrow::before {
   transform: rotate(-45deg);
