@@ -14,14 +14,14 @@ it("renders an input type number", () => {
           data-testid="Form-Field-Wrapper"
         >
           <div
-            class="inputWrapper"
+            class="horizontalWrapper"
           >
             <div
-              class="childrenWrapper"
-              tabindex="-1"
+              class="inputWrapper"
             >
               <div
-                style="position: relative;"
+                class="childrenWrapper"
+                tabindex="-1"
               >
                 <input
                   class="input"

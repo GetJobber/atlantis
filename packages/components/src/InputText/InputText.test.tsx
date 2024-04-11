@@ -15,20 +15,20 @@ it("renders a regular input for text and numbers", () => {
           data-testid="Form-Field-Wrapper"
         >
           <div
-            class="inputWrapper"
+            class="horizontalWrapper"
           >
-            <label
-              class="label"
-              for=":r0:"
-            >
-              Favourite colour
-            </label>
             <div
-              class="childrenWrapper"
-              tabindex="-1"
+              class="inputWrapper"
             >
+              <label
+                class="label"
+                for=":r0:"
+              >
+                Favourite colour
+              </label>
               <div
-                style="position: relative;"
+                class="childrenWrapper"
+                tabindex="-1"
               >
                 <input
                   class="input"
@@ -59,23 +59,27 @@ it("renders a textarea", () => {
           data-testid="Form-Field-Wrapper"
         >
           <div
-            class="inputWrapper"
+            class="horizontalWrapper"
           >
-            <label
-              class="label"
-              for=":r2:"
-            >
-              Describe your favourite colour?
-            </label>
             <div
-              class="childrenWrapper"
-              tabindex="-1"
+              class="inputWrapper"
             >
-              <textarea
-                class="input"
-                id=":r2:"
-                rows="3"
-              />
+              <label
+                class="label"
+                for=":r2:"
+              >
+                Describe your favourite colour?
+              </label>
+              <div
+                class="childrenWrapper"
+                tabindex="-1"
+              >
+                <textarea
+                  class="input"
+                  id=":r2:"
+                  rows="3"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -102,23 +106,27 @@ it("renders a textarea with 4 rows", () => {
           data-testid="Form-Field-Wrapper"
         >
           <div
-            class="inputWrapper"
+            class="horizontalWrapper"
           >
-            <label
-              class="label"
-              for=":r4:"
-            >
-              Describe your favourite colour?
-            </label>
             <div
-              class="childrenWrapper"
-              tabindex="-1"
+              class="inputWrapper"
             >
-              <textarea
-                class="input"
-                id=":r4:"
-                rows="4"
-              />
+              <label
+                class="label"
+                for=":r4:"
+              >
+                Describe your favourite colour?
+              </label>
+              <div
+                class="childrenWrapper"
+                tabindex="-1"
+              >
+                <textarea
+                  class="input"
+                  id=":r4:"
+                  rows="4"
+                />
+              </div>
             </div>
           </div>
         </div>

@@ -13,20 +13,20 @@ exports[`it should display headers when headers are passed in 1`] = `
         data-testid="Form-Field-Wrapper"
       >
         <div
-          class="inputWrapper"
+          class="horizontalWrapper"
         >
-          <label
-            class="label"
-            for=":r6:"
-          >
-            placeholder_name
-          </label>
           <div
-            class="childrenWrapper"
-            tabindex="-1"
+            class="inputWrapper"
           >
+            <label
+              class="label"
+              for=":r6:"
+            >
+              placeholder_name
+            </label>
             <div
-              style="position: relative;"
+              class="childrenWrapper"
+              tabindex="-1"
             >
               <input
                 autocomplete="off"
@@ -57,20 +57,20 @@ exports[`renders an Autocomplete 1`] = `
         data-testid="Form-Field-Wrapper"
       >
         <div
-          class="inputWrapper"
+          class="horizontalWrapper"
         >
-          <label
-            class="label"
-            for=":r0:"
-          >
-            placeholder_name
-          </label>
           <div
-            class="childrenWrapper"
-            tabindex="-1"
+            class="inputWrapper"
           >
+            <label
+              class="label"
+              for=":r0:"
+            >
+              placeholder_name
+            </label>
             <div
-              style="position: relative;"
+              class="childrenWrapper"
+              tabindex="-1"
             >
               <input
                 autocomplete="off"
