@@ -11,6 +11,8 @@
   --field--placeholder-color: var(--color-greyBlue--light);
   --field--value-color: var(--color-heading);
   --field--border-color: var(--color-border);
+
+  --postfix-right: var(--space-base);
 }
 
 .container {
@@ -117,12 +119,14 @@
   --field--padding-top: var(--space-small);
   --field--padding-bottom: var(--space-small);
   --field--height: calc(var(--space-larger) + var(--space-smaller));
+  --postfix-right: calc(var(--space-small) + var(--space-smaller));
 }
 
 .large {
   --field--padding-left: var(--space-large);
   --field--padding-right: var(--space-large);
   --field--height: calc(var(--space-extravagant));
+  --postfix-right: var(--space-large);
 }
 
 .inline {
@@ -269,7 +273,7 @@
 .postfix {
   position: absolute;
   top: 50%;
-  right: var(--space-small);
+  right: var(--postfix-right);
   z-index: var(--field--postfix-elevation);
   transform: translateY(-50%);
 }
