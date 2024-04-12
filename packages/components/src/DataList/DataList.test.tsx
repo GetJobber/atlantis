@@ -442,6 +442,13 @@ describe("DataList", () => {
         });
 
         fireEvent.click(screen.getByText(mockHeaders.name));
+        expect(mockOnSort).toHaveBeenCalledWith({
+          key: "name",
+          id: "name",
+          label: "Name",
+          order: "asc",
+        });
+
         expect(screen.queryByText("Ascending")).not.toBeInTheDocument();
         expect(screen.queryByText("Descending")).not.toBeInTheDocument();
       });

@@ -101,10 +101,10 @@ export function DataListHeaderTile<T extends DataListObject>({
   function handleOnClick() {
     if (!isSortable) return;
 
-    if (sortableItem?.options) {
+    if (sortOptions.length > 2) {
       setIsDropDownOpen(!isDropDownOpen);
     } else {
-      const id = sortableItem?.options?.[0]?.id || headerKey;
+      const id = sortOptions[0]?.id || headerKey;
       toggleSorting(id, headerKey, headers[headerKey]);
     }
   }
