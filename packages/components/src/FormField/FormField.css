@@ -269,7 +269,7 @@
 .postfix {
   position: absolute;
   top: 50%;
-  right: var(--space-base);
+  right: var(--space-small);
   z-index: var(--field--postfix-elevation);
   transform: translateY(-50%);
 }
