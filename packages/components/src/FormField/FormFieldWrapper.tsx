@@ -167,7 +167,12 @@ export function FormFieldWrapper({
               }}
               tabIndex={-1}
             >
-              <div className={styles.toolbar}>{toolbar}</div>
+              <div
+                className={styles.toolbar}
+                data-testid="ATL-InputText-Toolbar"
+              >
+                {toolbar}
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
