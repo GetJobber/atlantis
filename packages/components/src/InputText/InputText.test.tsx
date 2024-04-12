@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { InputText } from ".";
 import { InputTextRef } from "./InputText";
 
@@ -204,4 +204,67 @@ test("it should scroll into view input text", () => {
 
   textRef.current?.scrollIntoView();
   expect(scrollIntoViewMock).toHaveBeenCalled();
+});
+
+describe("toolbar", () => {
+  describe("without toolbar", () => {
+    it("should not render toolbar", () => {
+      render(<InputText placeholder="Favourite colour" />);
+      expect(
+        screen.queryByTestId("ATL-InputText-Toolbar"),
+      ).not.toBeInTheDocument();
+    });
+  });
+  describe("with toolbar and toolbarVisibility always", () => {
+    it("should always render toolbar", () => {
+      render(
+        <InputText
+          placeholder="Favourite movie"
+          toolbar={<h1>Bar Of Tool</h1>}
+          toolbarVisibility="always"
+        />,
+      );
+      expect(screen.getByTestId("ATL-InputText-Toolbar")).toBeInTheDocument();
+    });
+  });
+
+  describe("with toolbar and toolbarVisibility focus-within", () => {
+    it("should only render toolbar when focused", () => {
+      render(
+        <InputText
+          placeholder="Favourite movie"
+          toolbar={<h1>Bar Of Tool</h1>}
+        />,
+      );
+      expect(
+        screen.queryByTestId("ATL-InputText-Toolbar"),
+      ).not.toBeInTheDocument();
+
+      const input = screen.getByLabelText("Favourite movie");
+      fireEvent.focus(input);
+
+      expect(screen.getByTestId("ATL-InputText-Toolbar")).toBeInTheDocument();
+    });
+  });
+  describe("with multiline", () => {
+    describe("with toolbar and toolbarVisibility focus-within", () => {
+      it("should only render toolbar when focused", () => {
+        render(
+          <InputText
+            placeholder="Favourite movie"
+            toolbar={<h1>Bar Of Tool</h1>}
+            multiline
+          />,
+        );
+        expect(
+          screen.queryByTestId("ATL-InputText-Toolbar"),
+        ).not.toBeInTheDocument();
+
+        const input = screen.getByLabelText("Favourite movie");
+        fireEvent.focus(input);
+
+        expect(screen.getByTestId("ATL-InputText-Toolbar")).toBeInTheDocument();
+      });
+    });
+  });
 });
