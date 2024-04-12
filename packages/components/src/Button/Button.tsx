@@ -175,7 +175,7 @@ function ButtonInternals({ label, icon, size = "base" }: ButtonProps) {
       {icon && <Icon name={icon} size={size} />}
       <Typography
         element="span"
-        fontWeight="extraBold"
+        fontWeight="semiBold"
         fontFamily="base"
         size={getTypeSizes(size)}
       >
@@ -188,7 +188,7 @@ function ButtonInternals({ label, icon, size = "base" }: ButtonProps) {
 function getTypeSizes(size: string) {
   switch (size) {
     case "small":
-      return "small";
+      return "base";
     case "large":
       return "large";
     default:
