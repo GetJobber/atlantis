@@ -4,13 +4,9 @@
   box-shadow: var(--shadow-base);
   margin-top: var(--space-small);
   border: var(--border-base) solid var(--color-border);
-  border-radius: var(--radius-larger);
+  border-radius: var(--radius-base);
   overflow: auto;
   background: var(--color-surface);
-}
-
-:global(.jobber-retheme) .content {
-  border-radius: var(--radius-base);
 }
 
 /* CAUTION: Tests for content visibility assume this class' presence hides the content
