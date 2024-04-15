@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.1.1...@jobber/components@5.1.2) (2024-04-15)
+
+
+### Bug Fixes
+
+* **components:** Leave space for down arrow in Select inline variant ([#1783](https://github.com/GetJobber/atlantis/issues/1783)) ([d0aa3a7](https://github.com/GetJobber/atlantis/commit/d0aa3a782a6a3eb406f0c4288bb34cc8b60a61ba))
+
+
+
+
+
 ## [5.1.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.1.0...@jobber/components@5.1.1) (2024-04-12)
 
 **Note:** Version bump only for package @jobber/components
