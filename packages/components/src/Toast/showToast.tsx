@@ -15,23 +15,29 @@ import { Toast, ToastProps, ToastRef } from "./Toast";
 import styles from "./Toast.css";
 
 const targetId = "atlantis-toast-element";
-let target = document.querySelector(`#${targetId}`);
+let target =
+  typeof document !== "undefined" && document.querySelector(`#${targetId}`);
 
-if (!target) {
+if (typeof document !== "undefined" && !target) {
   target = document.createElement("div");
   target.id = targetId;
   target.classList.add(styles.wrapper);
   document.body.appendChild(target);
 }
 
-const root = createRoot(target);
+const root = target && createRoot(target);
 
 export function showToast(props: ToastProps) {
   // Ensure target and body is still there when rendering the toast. This is due
   // to an issue with ReactDOM createRoot assuming document is always there and
   // Jest taking the document down.
-  if (document.body.contains(target)) {
-    root.render(<ToasterOven {...props} />);
+  if (
+    target &&
+    typeof document !== "undefined" &&
+    document.body.contains(target) &&
+    root
+  ) {
+    root?.render(<ToasterOven {...props} />);
   }
 }
 
