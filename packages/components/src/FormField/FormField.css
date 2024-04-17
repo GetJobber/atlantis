@@ -134,12 +134,6 @@
   width: auto;
 }
 
-/* .select select,
-.right select,
-.select .label {
-  padding-right: calc(var(--field--padding-right) + var(--base-unit) * 2);
-} */
-
 .center {
   --field--textAlign: center;
 }
