@@ -56,7 +56,7 @@ interface HeaderProps {
 function Header({ title, onRequestClose }: HeaderProps) {
   return (
     <div className={styles.header} data-testid="drawer-header">
-      <Heading level={3}>{title}</Heading>
+      <Heading level={2}>{title}</Heading>
       <ButtonDismiss
         onClick={onRequestClose}
         ariaLabel={`Close ${title || "drawer"}`}

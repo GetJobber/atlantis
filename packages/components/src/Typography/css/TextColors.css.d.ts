@@ -17,6 +17,7 @@ declare const styles: {
   readonly "warning": string;
   readonly "informative": string;
   readonly "success": string;
+  readonly "interactive": string;
   readonly "disabled": string;
 };
 export = styles;

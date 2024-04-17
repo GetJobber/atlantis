@@ -3,6 +3,74 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.1.2...@jobber/components@5.1.3) (2024-04-17)
+
+
+### Bug Fixes
+
+* **components:** Select improvements ([#1867](https://github.com/GetJobber/atlantis/issues/1867)) ([4526cae](https://github.com/GetJobber/atlantis/commit/4526caecca1261dd391bef8051c7076ca0449192))
+
+
+
+
+
+## [5.1.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.1.1...@jobber/components@5.1.2) (2024-04-15)
+
+
+### Bug Fixes
+
+* **components:** Leave space for down arrow in Select inline variant ([#1783](https://github.com/GetJobber/atlantis/issues/1783)) ([d0aa3a7](https://github.com/GetJobber/atlantis/commit/d0aa3a782a6a3eb406f0c4288bb34cc8b60a61ba))
+
+
+
+
+
+## [5.1.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.1.0...@jobber/components@5.1.1) (2024-04-12)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [5.1.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.0.2...@jobber/components@5.1.0) (2024-04-11)
+
+
+### Features
+
+* **components:** adds ability to provide "preferredPlacement" for Tooltip ([#1844](https://github.com/GetJobber/atlantis/issues/1844)) ([efda527](https://github.com/GetJobber/atlantis/commit/efda527f823ece0695ac0536b27d9c50e9a5d5e5))
+
+
+
+
+
+## [5.0.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.0.1...@jobber/components@5.0.2) (2024-04-11)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [5.0.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.92.0...@jobber/components@5.0.1) (2024-04-11)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [4.92.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.91.1...@jobber/components@4.92.0) (2024-04-09)
+
+
+### Features
+
+* **components:** Update Headings to match retheme design ([#1857](https://github.com/GetJobber/atlantis/issues/1857)) ([47a99c7](https://github.com/GetJobber/atlantis/commit/47a99c7eb54d1b7466949c58619786cdb19415d4))
+
+
+
+
+
 ## [4.91.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.91.0...@jobber/components@4.91.1) (2024-04-04)
 
 **Note:** Version bump only for package @jobber/components

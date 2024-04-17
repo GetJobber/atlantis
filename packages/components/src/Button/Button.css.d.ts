@@ -2,8 +2,8 @@ declare const styles: {
   readonly "button": string;
   readonly "work": string;
   readonly "learning": string;
-  readonly "destructive": string;
   readonly "subtle": string;
+  readonly "destructive": string;
   readonly "primary": string;
   readonly "disabled": string;
   readonly "secondary": string;

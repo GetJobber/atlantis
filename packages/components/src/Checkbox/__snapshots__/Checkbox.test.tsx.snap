@@ -6,7 +6,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 1`]
   "baseElement": <body>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -53,7 +53,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 1`]
   </body>,
   "container": <div>
     <div
-      class="checkbox"
+      class="checkBoxParent"
     >
       <label
         class="wrapper"
@@ -157,7 +157,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 2`]
   "baseElement": <body>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -203,7 +203,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 2`]
     </div>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -249,7 +249,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 2`]
   </body>,
   "container": <div>
     <div
-      class="checkbox"
+      class="checkBoxParent"
     >
       <label
         class="wrapper"
@@ -352,7 +352,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
   "baseElement": <body>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -398,7 +398,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
     </div>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -443,7 +443,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
     </div>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -490,7 +490,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
   </body>,
   "container": <div>
     <div
-      class="checkbox"
+      class="checkBoxParent"
     >
       <label
         class="wrapper"
@@ -594,7 +594,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
   "baseElement": <body>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -640,7 +640,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
     </div>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -685,7 +685,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
     </div>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -731,7 +731,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
     </div>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -777,7 +777,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
   </body>,
   "container": <div>
     <div
-      class="checkbox"
+      class="checkBoxParent"
     >
       <label
         class="wrapper"
@@ -880,7 +880,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
   "baseElement": <body>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -926,7 +926,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
     </div>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -971,7 +971,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
     </div>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -1017,7 +1017,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
     </div>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -1062,7 +1062,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
     </div>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -1109,7 +1109,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
   </body>,
   "container": <div>
     <div
-      class="checkbox"
+      class="checkBoxParent"
     >
       <label
         class="wrapper"
@@ -1213,7 +1213,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
   "baseElement": <body>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -1259,7 +1259,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
     </div>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -1304,7 +1304,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
     </div>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -1350,7 +1350,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
     </div>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -1395,7 +1395,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
     </div>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -1441,7 +1441,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
     </div>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -1487,7 +1487,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
   </body>,
   "container": <div>
     <div
-      class="checkbox"
+      class="checkBoxParent"
     >
       <label
         class="wrapper"
@@ -1590,7 +1590,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
   "baseElement": <body>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -1636,7 +1636,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
     </div>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -1681,7 +1681,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
     </div>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -1727,7 +1727,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
     </div>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -1772,7 +1772,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
     </div>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -1818,7 +1818,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
     </div>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -1863,7 +1863,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
     </div>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -1910,7 +1910,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
   </body>,
   "container": <div>
     <div
-      class="checkbox"
+      class="checkBoxParent"
     >
       <label
         class="wrapper"
@@ -2014,7 +2014,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
   "baseElement": <body>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -2060,7 +2060,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
     </div>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -2105,7 +2105,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
     </div>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -2151,7 +2151,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
     </div>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -2196,7 +2196,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
     </div>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -2242,7 +2242,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
     </div>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -2287,7 +2287,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
     </div>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -2333,7 +2333,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
     </div>
     <div>
       <div
-        class="checkbox"
+        class="checkBoxParent"
       >
         <label
           class="wrapper"
@@ -2379,7 +2379,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
   </body>,
   "container": <div>
     <div
-      class="checkbox"
+      class="checkBoxParent"
     >
       <label
         class="wrapper"

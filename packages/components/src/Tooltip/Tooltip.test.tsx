@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent, render, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Tooltip } from ".";
 
@@ -118,4 +118,29 @@ describe("with a message of an empty string", () => {
     const visibleTooltip = document.querySelector("div[role='tooltip']");
     expect(visibleTooltip).toBeNull();
   });
+});
+
+describe("with a preferred placement", () => {
+  it.each(["top", "bottom", "left", "right"] as const)(
+    "should show the tooltip on the %s",
+    async placement => {
+      const message = "Tipping the tool on the right";
+      const content = "Hover on me";
+      const contentID = "hover-on-me";
+
+      render(
+        <Tooltip message={message} preferredPlacement={placement}>
+          <div data-testid={contentID}>{content}</div>
+        </Tooltip>,
+      );
+
+      const tooltipContent = screen.getByTestId(contentID);
+      await userEvent.hover(tooltipContent);
+
+      const tooltip = screen.getByRole("tooltip");
+
+      expect(tooltip).toHaveAttribute("data-popper-placement", placement);
+      expect(tooltip).toHaveClass(placement);
+    },
+  );
 });
