@@ -134,10 +134,6 @@
   width: auto;
 }
 
-.inline .select select {
-  padding-right: calc(var(--field--padding-right) + var(--base-unit) * 2);
-}
-
 .center {
   --field--textAlign: center;
 }
@@ -234,6 +230,12 @@
   pointer-events: none;
   transform: translateY(var(--field--placeholder-transform));
   transition: all var(--timing-quick);
+}
+
+.select select,
+.right select,
+.select .label {
+  padding-right: calc(var(--field--padding-right) + var(--base-unit) * 2);
 }
 
 .textarea .label {
