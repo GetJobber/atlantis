@@ -95,9 +95,7 @@
 .wrapper.text {
   --field--placeholder-offset: 0;
   --field--placeholder-transform: 0;
-  /* flex-direction: column; */
   min-height: auto;
-  /* height: auto; */
 }
 
 .wrapper.textarea {
@@ -354,7 +352,7 @@
   top: calc(-1.25 * var(--space-base));
   right: 0;
   left: 0;
-  z-index: 2;
+  z-index: var(--elevation-base);
   height: var(--space-base);
   background: linear-gradient(to bottom, transparent, var(--color-surface) 60%);
 }
