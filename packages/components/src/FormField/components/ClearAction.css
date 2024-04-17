@@ -1,6 +1,6 @@
 .clearInput {
   display: flex;
-  position: absolute;
+  position: relative;
   right: var(--space-small);
   z-index: var(--elevation-tooltip);
   width: var(--space-large);
