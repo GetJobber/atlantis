@@ -39,6 +39,7 @@
 .chip .suffix {
   margin-left: var(--space-small);
   margin-right: calc(-1 * var(--space-small));
+  background-color: var(--color-surface);
 }
 
 .chip .prefix,
@@ -48,7 +49,6 @@
   height: var(--space-large);
   flex-shrink: 0;
   border-radius: var(--radius-circle);
-  background-color: var(--color-surface);
   align-items: center;
   justify-content: center;
 }
