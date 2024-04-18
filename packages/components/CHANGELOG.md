@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.1.3...@jobber/components@5.1.4) (2024-04-18)
+
+
+### Bug Fixes
+
+* **components:** remove Chip prefix background [JOB-92493] ([#1868](https://github.com/GetJobber/atlantis/issues/1868)) ([ddcd363](https://github.com/GetJobber/atlantis/commit/ddcd363278042349b75947449ce3762fdb7321b9))
+
+
+
+
+
 ## [5.1.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.1.2...@jobber/components@5.1.3) (2024-04-17)
 
 
