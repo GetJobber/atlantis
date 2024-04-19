@@ -130,7 +130,7 @@ export interface FormFieldProps extends CommonFormFieldProps {
   /**
    * Determines if the input should be auto-focused, using the HTML attribute
    */
-  readonly autoFocus?: boolean;
+  readonly autofocus?: boolean;
 
   /**
    * Determines if browser form autocomplete is enabled.

@@ -17,6 +17,7 @@ interface BaseProps
   extends CommonFormFieldProps,
     Pick<
       FormFieldProps,
+      | "autofocus"
       | "maxLength"
       | "readonly"
       | "autocomplete"
@@ -32,7 +33,6 @@ interface BaseProps
       | "suffix"
     > {
   multiline?: boolean;
-  autoFocus?: boolean;
 }
 
 export interface InputTextRef {

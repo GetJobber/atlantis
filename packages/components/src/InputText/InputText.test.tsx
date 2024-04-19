@@ -182,7 +182,7 @@ describe("focusing", () => {
     const placeholder = "Got milk?";
 
     const { getByLabelText } = render(
-      <InputText placeholder={placeholder} autoFocus />,
+      <InputText placeholder={placeholder} autofocus />,
     );
 
     expect(getByLabelText(placeholder)).toHaveFocus();

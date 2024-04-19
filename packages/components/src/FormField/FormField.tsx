@@ -44,7 +44,7 @@ export function FormField(props: FormFieldProps) {
     onValidation,
     onKeyUp,
     clearable = "never",
-    autoFocus,
+    autofocus,
   } = props;
 
   const {
@@ -109,13 +109,14 @@ export function FormField(props: FormFieldProps) {
           onChange: handleChange,
           onBlur: handleBlur,
           onFocus: handleFocus,
+          autoFocus: autofocus,
           ...(description &&
             !inline && { "aria-describedby": descriptionIdentifier }),
         };
 
         const textFieldProps = {
           ...fieldProps,
-          autoFocus,
+          autoFocus: autofocus,
           onKeyDown: handleKeyDown,
         };
 
