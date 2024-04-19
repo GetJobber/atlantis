@@ -44,6 +44,7 @@ export function FormField(props: FormFieldProps) {
     onValidation,
     onKeyUp,
     clearable = "never",
+    autoFocus,
   } = props;
 
   const {
@@ -114,6 +115,7 @@ export function FormField(props: FormFieldProps) {
 
         const textFieldProps = {
           ...fieldProps,
+          autoFocus,
           onKeyDown: handleKeyDown,
         };
 

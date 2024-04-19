@@ -32,6 +32,7 @@ interface BaseProps
       | "suffix"
     > {
   multiline?: boolean;
+  autoFocus?: boolean;
 }
 
 export interface InputTextRef {
