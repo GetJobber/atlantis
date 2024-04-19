@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.1.4...@jobber/components@5.1.5) (2024-04-19)
+
+
+### Bug Fixes
+
+* **components:** SSR Fixes ([#1866](https://github.com/GetJobber/atlantis/issues/1866)) ([af94eec](https://github.com/GetJobber/atlantis/commit/af94eece492bcc81ddd483127c700b44b66ec3ed))
+
+
+
+
+
 ## [5.1.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.1.3...@jobber/components@5.1.4) (2024-04-18)
 
 
