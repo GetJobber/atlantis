@@ -148,7 +148,7 @@ interface TooltipPortalProps {
 function TooltipPortal({ children }: TooltipPortalProps) {
   const mounted = useIsMounted();
 
-  if (!mounted) {
+  if (!mounted?.current) {
     return null;
   }
 
