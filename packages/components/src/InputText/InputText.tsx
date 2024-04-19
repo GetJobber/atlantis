@@ -30,6 +30,8 @@ interface BaseProps
       | "defaultValue"
       | "prefix"
       | "suffix"
+      | "toolbar"
+      | "toolbarVisibility"
     > {
   multiline?: boolean;
 }
@@ -64,6 +66,7 @@ function InputTextInternal(
 ) {
   const inputRef = useRef<HTMLTextAreaElement | HTMLInputElement>(null);
   const actionsRef = useRef<FieldActionsRef>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   const rowRange = getRowRange();
 
@@ -95,10 +98,15 @@ function InputTextInternal(
   }));
 
   useSafeLayoutEffect(() => {
-    if (inputRef && inputRef.current instanceof HTMLTextAreaElement) {
-      resize(inputRef.current);
+    if (
+      inputRef &&
+      inputRef.current instanceof HTMLTextAreaElement &&
+      wrapperRef &&
+      wrapperRef.current instanceof HTMLDivElement
+    ) {
+      resize(inputRef.current, wrapperRef.current);
     }
-  }, [inputRef.current]);
+  }, [inputRef.current, wrapperRef.current]);
 
   return (
     <FormField
@@ -106,6 +114,7 @@ function InputTextInternal(
       type={props.multiline ? "textarea" : "text"}
       inputRef={inputRef}
       actionsRef={actionsRef}
+      wrapperRef={wrapperRef}
       onChange={handleChange}
       rows={rowRange.min}
     />
@@ -114,8 +123,13 @@ function InputTextInternal(
   function handleChange(newValue: string) {
     props.onChange && props.onChange(newValue);
 
-    if (inputRef && inputRef.current instanceof HTMLTextAreaElement) {
-      resize(inputRef.current);
+    if (
+      inputRef &&
+      inputRef.current instanceof HTMLTextAreaElement &&
+      wrapperRef &&
+      wrapperRef?.current instanceof HTMLDivElement
+    ) {
+      resize(inputRef.current, wrapperRef.current);
     }
   }
 
@@ -129,11 +143,12 @@ function InputTextInternal(
     }
   }
 
-  function resize(textArea: HTMLTextAreaElement) {
+  function resize(textArea: HTMLTextAreaElement, wrapper: HTMLDivElement) {
     if (rowRange.min === rowRange.max) return;
 
-    textArea.style.height = "auto";
-    textArea.style.height = textAreaHeight(textArea) + "px";
+    textArea.style.flexBasis = "auto";
+    wrapper.style.height = "auto";
+    textArea.style.flexBasis = textAreaHeight(textArea) + "px";
   }
 
   function textAreaHeight(textArea: HTMLTextAreaElement) {

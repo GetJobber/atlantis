@@ -145,6 +145,8 @@ export interface FormFieldProps extends CommonFormFieldProps {
     HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
   >;
 
+  wrapperRef?: RefObject<HTMLDivElement>;
+
   /**
    * Initial value of the input. Only use this when you need to pre-populate
    * the field with a data that is not controlled by the components state. If a
@@ -226,4 +228,14 @@ export interface FormFieldProps extends CommonFormFieldProps {
    * highlights the the field red if an error message shows up.
    */
   readonly validations?: RegisterOptions;
+
+  /**
+   * Toolbar to render content below the input.
+   */
+  readonly toolbar?: React.ReactNode;
+
+  /**
+   * Determines the visibility of the toolbar.
+   */
+  readonly toolbarVisibility?: "always" | "while-editing";
 }

@@ -1,9 +1,11 @@
 declare const styles: {
   readonly "container": string;
   readonly "wrapper": string;
+  readonly "horizontalWrapper": string;
   readonly "timeInputLabel": string;
   readonly "miniLabel": string;
   readonly "large": string;
+  readonly "text": string;
   readonly "textarea": string;
   readonly "invalid": string;
   readonly "disabled": string;
@@ -23,6 +25,7 @@ declare const styles: {
   readonly "hasAction": string;
   readonly "affixLabel": string;
   readonly "description": string;
+  readonly "toolbar": string;
 };
 export = styles;
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { InputText } from ".";
 import { InputTextRef } from "./InputText";
 
@@ -11,27 +11,32 @@ it("renders a regular input for text and numbers", () => {
         class="container"
       >
         <div
-          class="wrapper"
+          class="wrapper text"
           data-testid="Form-Field-Wrapper"
         >
           <div
-            class="inputWrapper"
+            class="horizontalWrapper"
           >
-            <label
-              class="label"
-              for=":r0:"
-            >
-              Favourite colour
-            </label>
             <div
-              class="childrenWrapper"
+              class="inputWrapper"
             >
-              <input
-                class="input"
-                id=":r0:"
-                type="text"
-                value=""
-              />
+              <label
+                class="label"
+                for=":r0:"
+              >
+                Favourite colour
+              </label>
+              <div
+                class="childrenWrapper"
+                tabindex="-1"
+              >
+                <input
+                  class="input"
+                  id=":r0:"
+                  type="text"
+                  value=""
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -50,26 +55,31 @@ it("renders a textarea", () => {
         class="container"
       >
         <div
-          class="wrapper textarea"
+          class="wrapper text textarea"
           data-testid="Form-Field-Wrapper"
         >
           <div
-            class="inputWrapper"
+            class="horizontalWrapper"
           >
-            <label
-              class="label"
-              for=":r2:"
-            >
-              Describe your favourite colour?
-            </label>
             <div
-              class="childrenWrapper"
+              class="inputWrapper"
             >
-              <textarea
-                class="input"
-                id=":r2:"
-                rows="3"
-              />
+              <label
+                class="label"
+                for=":r2:"
+              >
+                Describe your favourite colour?
+              </label>
+              <div
+                class="childrenWrapper"
+                tabindex="-1"
+              >
+                <textarea
+                  class="input"
+                  id=":r2:"
+                  rows="3"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -92,26 +102,31 @@ it("renders a textarea with 4 rows", () => {
         class="container"
       >
         <div
-          class="wrapper textarea"
+          class="wrapper text textarea"
           data-testid="Form-Field-Wrapper"
         >
           <div
-            class="inputWrapper"
+            class="horizontalWrapper"
           >
-            <label
-              class="label"
-              for=":r4:"
-            >
-              Describe your favourite colour?
-            </label>
             <div
-              class="childrenWrapper"
+              class="inputWrapper"
             >
-              <textarea
-                class="input"
-                id=":r4:"
-                rows="4"
-              />
+              <label
+                class="label"
+                for=":r4:"
+              >
+                Describe your favourite colour?
+              </label>
+              <div
+                class="childrenWrapper"
+                tabindex="-1"
+              >
+                <textarea
+                  class="input"
+                  id=":r4:"
+                  rows="4"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -189,4 +204,67 @@ test("it should scroll into view input text", () => {
 
   textRef.current?.scrollIntoView();
   expect(scrollIntoViewMock).toHaveBeenCalled();
+});
+
+describe("toolbar", () => {
+  describe("without toolbar", () => {
+    it("should not render toolbar", () => {
+      render(<InputText placeholder="Favourite colour" />);
+      expect(
+        screen.queryByTestId("ATL-InputText-Toolbar"),
+      ).not.toBeInTheDocument();
+    });
+  });
+  describe("with toolbar and toolbarVisibility always", () => {
+    it("should always render toolbar", () => {
+      render(
+        <InputText
+          placeholder="Favourite movie"
+          toolbar={<h1>Bar Of Tool</h1>}
+          toolbarVisibility="always"
+        />,
+      );
+      expect(screen.getByTestId("ATL-InputText-Toolbar")).toBeInTheDocument();
+    });
+  });
+
+  describe("with toolbar and toolbarVisibility focus-within", () => {
+    it("should only render toolbar when focused", () => {
+      render(
+        <InputText
+          placeholder="Favourite movie"
+          toolbar={<h1>Bar Of Tool</h1>}
+        />,
+      );
+      expect(
+        screen.queryByTestId("ATL-InputText-Toolbar"),
+      ).not.toBeInTheDocument();
+
+      const input = screen.getByLabelText("Favourite movie");
+      fireEvent.focus(input);
+
+      expect(screen.getByTestId("ATL-InputText-Toolbar")).toBeInTheDocument();
+    });
+  });
+  describe("with multiline", () => {
+    describe("with toolbar and toolbarVisibility focus-within", () => {
+      it("should only render toolbar when focused", () => {
+        render(
+          <InputText
+            placeholder="Favourite movie"
+            toolbar={<h1>Bar Of Tool</h1>}
+            multiline
+          />,
+        );
+        expect(
+          screen.queryByTestId("ATL-InputText-Toolbar"),
+        ).not.toBeInTheDocument();
+
+        const input = screen.getByLabelText("Favourite movie");
+        fireEvent.focus(input);
+
+        expect(screen.getByTestId("ATL-InputText-Toolbar")).toBeInTheDocument();
+      });
+    });
+  });
 });
