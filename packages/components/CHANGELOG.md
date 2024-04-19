@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.2.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.1.5...@jobber/components@5.2.0) (2024-04-19)
+
+
+### Features
+
+* **components:** Add Toolbar to InputText ([#1856](https://github.com/GetJobber/atlantis/issues/1856)) ([6d67082](https://github.com/GetJobber/atlantis/commit/6d67082723a8a2fdca9ef80a8f7762d0d17c0da2))
+
+
+
+
+
 ## [5.1.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.1.4...@jobber/components@5.1.5) (2024-04-19)
 
 
