@@ -128,6 +128,11 @@ export interface FormFieldProps extends CommonFormFieldProps {
   actionsRef?: RefObject<FieldActionsRef>;
 
   /**
+   * Determines if the input should be auto-focused, using the HTML attribute
+   */
+  readonly autoFocus?: boolean;
+
+  /**
    * Determines if browser form autocomplete is enabled.
    * Note that "one-time-code" is experimental and should not be used without
    * consultation. "address-line1" and "address-line2" are
