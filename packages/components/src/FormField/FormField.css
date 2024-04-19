@@ -351,8 +351,8 @@
 .toolbar {
   display: flex;
   position: relative;
-  margin: var(--space-small) var(--space-base) var(--space-base)
-    var(--space-base);
+  margin: var(--space-small) var(--field--padding-right) var(--space-base)
+    var(--field--padding-left);
 }
 
 .toolbar::before {
