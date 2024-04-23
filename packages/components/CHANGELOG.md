@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.3.0...@jobber/components@5.3.1) (2024-04-23)
+
+
+### Bug Fixes
+
+* **components:** update small button sizing ([#1871](https://github.com/GetJobber/atlantis/issues/1871)) ([4a48a84](https://github.com/GetJobber/atlantis/commit/4a48a84939eabac29da80fd91f6afb8074d54700))
+
+
+
+
+
 # [5.3.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.2.0...@jobber/components@5.3.0) (2024-04-23)
 
 
