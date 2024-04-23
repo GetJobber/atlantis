@@ -180,8 +180,8 @@ a.button.disabled:hover {
 /* Sizes */
 
 .small {
-  --button--size: 24px;
-  padding: var(--space-small) calc(var(--space-base) - var(--space-smaller));
+  --button--size: 32px;
+  padding: var(--space-smaller) calc(var(--space-base) - var(--space-smaller));
 }
 
 .base {
