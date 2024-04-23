@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.2.0...@jobber/components@5.3.0) (2024-04-23)
+
+
+### Features
+
+* **components:** Add autofocus support for InputText (JOB-94181) ([#1869](https://github.com/GetJobber/atlantis/issues/1869)) ([d422990](https://github.com/GetJobber/atlantis/commit/d422990aea0971954a113b82b7823dd30a30a5d6))
+
+
+
+
+
 # [5.2.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.1.5...@jobber/components@5.2.0) (2024-04-19)
 
 
