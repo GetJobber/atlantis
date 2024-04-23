@@ -179,17 +179,29 @@ test("it should handle inserting text", () => {
   expect(changeHandler).toHaveBeenCalledWith(secondResult);
 });
 
-test("it should focus input text", () => {
-  const placeholder = "Got milk?";
+describe("focusing", () => {
+  test("it should focus input text", () => {
+    const placeholder = "Got milk?";
 
-  const textRef = React.createRef<InputTextRef>();
+    const textRef = React.createRef<InputTextRef>();
 
-  const { getByLabelText } = render(
-    <InputText placeholder={placeholder} ref={textRef} />,
-  );
+    const { getByLabelText } = render(
+      <InputText placeholder={placeholder} ref={textRef} />,
+    );
 
-  textRef.current?.focus();
-  expect(getByLabelText(placeholder)).toHaveFocus();
+    textRef.current?.focus();
+    expect(getByLabelText(placeholder)).toHaveFocus();
+  });
+
+  test("it supports the autofocus attribute", async () => {
+    const placeholder = "Got milk?";
+
+    const { getByLabelText } = render(
+      <InputText placeholder={placeholder} autofocus />,
+    );
+
+    expect(getByLabelText(placeholder)).toHaveFocus();
+  });
 });
 
 test("it should scroll into view input text", () => {
