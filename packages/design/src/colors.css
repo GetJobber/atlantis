@@ -2,8 +2,8 @@
   /* Jobber Semantic Layer */
 
   /* Interactive and States */
-  --color-interactive: var(--color-green);
-  --color-interactive--hover: var(--color-green--dark);
+  --color-interactive: var(--color-base-green--600);
+  --color-interactive--hover: var(--color-base-green--700);
   --color-destructive: var(--color-red);
   --color-destructive--hover: var(--color-red--dark);
   --color-interactive--subtle: var(--color-blue);
@@ -20,11 +20,11 @@
   --color-critical--surface: var(--color-red--lightest);
   --color-critical--onSurface: var(--color-red--dark);
 
-  --color-warning: var(--color-yellow);
+  --color-warning: var(--color-base-yellow--400);
   --color-warning--surface: var(--color-yellow--lightest);
   --color-warning--onSurface: var(--color-yellow--dark);
 
-  --color-success: var(--color-green);
+  --color-success: var(--color-base-green--600);
   --color-success--surface: var(--color-green--lightest);
   --color-success--onSurface: var(--color-green--dark);
 
@@ -64,9 +64,9 @@
   --color-brand--highlight: rgb(132, 234, 0);
 
   /* Jobber Workflow Colors */
-  --color-request: rgb(185, 133, 70);
-  --color-quote: rgb(164, 70, 88);
-  --color-job: var(--color-green);
+  --color-request: var(--color-base-orange--600);
+  --color-quote: var(--color-base-pink--700);
+  --color-job: var(--color-base-green--500);
   --color-visit: var(--color-job);
   --color-task: var(--color-navy);
   --color-event: var(--color-yellow);
@@ -83,11 +83,11 @@
   --color-blue--dark: rgb(1, 25, 35);
 
   --color-taupe: rgb(241, 239, 233);
-  --color-taupe--light: rgb(247, 246, 243);
+  --color-taupe--light: rgb(252, 250, 244);
   --color-taupe--dark: rgb(231, 229, 217);
 
-  --color-green: rgb(50, 130, 28);
-  --color-green--light: rgb(104, 162, 87);
+  --color-green: var(--color-base-green--600);
+  --color-green--light: var(--color-base-green--500);
   --color-green--lighter: rgb(198, 221, 192);
   --color-green--lightest: rgb(241, 247, 238);
   --color-green--dark: rgb(14, 78, 26);
@@ -159,11 +159,11 @@
   --color-orange--lightest: rgb(253, 239, 222);
   --color-orange--dark: rgb(158, 98, 23);
 
-  --color-brown: rgb(130, 107, 70);
+  --color-brown: var(--color-base-orange-800);
   --color-brown--light: rgb(168, 151, 126);
   --color-brown--lighter: rgb(205, 196, 181);
   --color-brown--lightest: rgb(236, 233, 227);
-  --color-brown--dark: rgb(85, 70, 46);
+  --color-brown--dark: var(--color-base-orange-900);
 
   --color-navy: rgb(75, 106, 150);
   --color-navy--light: rgb(129, 151, 182);
@@ -182,4 +182,103 @@
 
   --color-black--rgb: 0, 0, 0;
   --color-black: rgba(var(--color-black--rgb), 1);
+
+  --color-base-taupe--100: rgb(249, 248, 246);
+  --color-base-taupe--200: rgb(240, 239, 232);
+  --color-base-taupe--300: rgb(223, 221, 210);
+  --color-base-taupe--400: rgb(183, 181, 172);
+  --color-base-taupe--500: rgb(150, 148, 141);
+  --color-base-taupe--600: rgb(120, 118, 113);
+  --color-base-taupe--700: rgb(90, 89, 85);
+  --color-base-taupe--800: rgb(61, 60, 58);
+  --color-base-taupe--900: rgb(39, 38, 37);
+  --color-base-taupe--1000: rgb(29, 28, 27);
+
+  --color-base-red--100: rgb(253, 248, 247);
+  --color-base-red--200: rgb(250, 235, 233);
+  --color-base-red--300: rgb(246, 215, 212);
+  --color-base-red--400: rgb(233, 164, 156);
+  --color-base-red--500: rgb(222, 119, 107);
+  --color-base-red--600: rgb(210, 68, 52);
+  --color-base-red--700: rgb(178, 18, 0);
+  --color-base-red--800: rgb(124, 12, 0);
+  --color-base-red--900: rgb(82, 8, 0);
+  --color-base-red--1000: rgb(62, 6, 0);
+
+  --color-base-green--100: rgb(245, 249, 244);
+  --color-base-green--200: rgb(232, 241, 230);
+  --color-base-green--300: rgb(210, 227, 205);
+  --color-base-green--400: rgb(152, 192, 141);
+  --color-base-green--500: rgb(103, 163, 87);
+  --color-base-green--600: rgb(57, 134, 36);
+  --color-base-green--700: rgb(39, 102, 22);
+  --color-base-green--800: rgb(27, 69, 15);
+  --color-base-green--900: rgb(17, 44, 10);
+  --color-base-green--1000: rgb(12, 32, 7);
+
+  --color-base-blue--100: rgb(248, 249, 250);
+  --color-base-blue--200: rgb(237, 240, 241);
+  --color-base-blue--300: rgb(217, 223, 226);
+  --color-base-blue--400: rgb(169, 183, 188);
+  --color-base-blue--500: rgb(132, 151, 159);
+  --color-base-blue--600: rgb(97, 122, 132);
+  --color-base-blue--700: rgb(63, 93, 106);
+  --color-base-blue--800: rgb(29, 64, 79);
+  --color-base-blue--900: rgb(3, 42, 58);
+  --color-base-blue--1000: rgb(1, 31, 44);
+
+  --color-base-yellow--100: rgb(251, 248, 235);
+  --color-base-yellow--200: rgb(245, 240, 209);
+  --color-base-yellow--300: rgb(234, 223, 159);
+  --color-base-yellow--400: rgb(205, 181, 45);
+  --color-base-yellow--500: rgb(168, 148, 37);
+  --color-base-yellow--600: rgb(134, 118, 29);
+  --color-base-yellow--700: rgb(101, 89, 22);
+  --color-base-yellow--800: rgb(68, 60, 15);
+  --color-base-yellow--900: rgb(44, 39, 10);
+  --color-base-yellow--1000: rgb(32, 28, 7);
+
+  --color-base-lime--100: rgb(248, 251, 242);
+  --color-base-lime--200: rgb(234, 242, 217);
+  --color-base-lime--300: rgb(210, 228, 172);
+  --color-base-lime--400: rgb(154, 194, 68);
+  --color-base-lime--500: rgb(115, 162, 13);
+  --color-base-lime--600: rgb(92, 129, 10);
+  --color-base-lime--700: rgb(69, 97, 8);
+  --color-base-lime--800: rgb(47, 66, 5);
+  --color-base-lime--900: rgb(30, 42, 3);
+  --color-base-lime--1000: rgb(22, 31, 3);
+
+  --color-base-lightBlue--100: rgb(242, 249, 254);
+  --color-base-lightBlue--200: rgb(226, 241, 253);
+  --color-base-lightBlue--300: rgb(193, 226, 252);
+  --color-base-lightBlue--400: rgb(114, 188, 247);
+  --color-base-lightBlue--500: rgb(57, 154, 232);
+  --color-base-lightBlue--600: rgb(45, 122, 184);
+  --color-base-lightBlue--700: rgb(34, 92, 139);
+  --color-base-lightBlue--800: rgb(23, 63, 94);
+  --color-base-lightBlue--900: rgb(15, 40, 61);
+  --color-base-lightBlue--1000: rgb(11, 29, 44);
+
+  --color-base-pink--100: rgb(252, 248, 249);
+  --color-base-pink--200: rgb(246, 237, 239);
+  --color-base-pink--300: rgb(237, 217, 221);
+  --color-base-pink--400: rgb(213, 170, 178);
+  --color-base-pink--500: rgb(194, 131, 143);
+  --color-base-pink--600: rgb(176, 93, 109);
+  --color-base-pink--700: rgb(145, 62, 78);
+  --color-base-pink--800: rgb(98, 42, 53);
+  --color-base-pink--900: rgb(64, 27, 35);
+  --color-base-pink--1000: rgb(47, 20, 25);
+
+  --color-base-orange--100: rgb(253, 249, 243);
+  --color-base-orange--200: rgb(250, 236, 218);
+  --color-base-orange--300: rgb(246, 217, 183);
+  --color-base-orange--400: rgb(233, 168, 88);
+  --color-base-orange--500: rgb(209, 130, 35);
+  --color-base-orange--600: rgb(166, 104, 28);
+  --color-base-orange--700: rgb(125, 78, 21);
+  --color-base-orange--800: rgb(86, 54, 14);
+  --color-base-orange--900: rgb(55, 34, 9);
+  --color-base-orange--1000: rgb(40, 25, 7);
 }
