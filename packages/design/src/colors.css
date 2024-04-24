@@ -37,20 +37,20 @@
   --color-inactive--onSurface: var(--color-blue);
 
   /* Typography + Iconography */
-  --color-heading: var(--color-blue);
-  --color-text: var(--color-greyBlue--dark);
-  --color-text--secondary: var(--color-blue--light);
+  --color-heading: var(--color-base-blue--900);
+  --color-text: var(--color-base-blue--800);
+  --color-text--secondary: var(--color-base-blue--600);
   --color-text--reverse: var(--color-white);
-  --color-text--reverse--secondary: var(--color-greyBlue--lighter);
+  --color-text--reverse--secondary: var(--color-base-blue--300);
 
-  --color-icon: var(--color-blue);
+  --color-icon: var(--color-base-blue--800);
 
   /* Surfaces and Borders */
   --color-surface: var(--color-white);
-  --color-surface--hover: var(--color-taupe);
+  --color-surface--hover: var(--color-base-taupe--200);
   --color-surface--active: var(--color-blue--lightest);
-  --color-surface--background: var(--color-taupe);
-  --color-surface--background--hover: var(--color-taupe--dark);
+  --color-surface--background: var(--color-base-taupe--200);
+  --color-surface--background--hover: var(--color-base-taupe--300);
   --color-surface--reverse: var(--color-blue);
 
   --color-border: var(--color-blue--lightest);
@@ -60,20 +60,20 @@
   --color-overlay--dimmed: rgba(var(--color-white--rgb), 0.6);
 
   /* Brand */
-  --color-brand: rgb(124, 175, 14);
-  --color-brand--highlight: rgb(132, 234, 0);
+  --color-brand: var(--color-base-lime--500);
+  --color-brand--highlight: hsl(86, 100%, 46%);
 
   /* Jobber Workflow Colors */
   --color-request: var(--color-base-orange--600);
   --color-quote: var(--color-base-pink--700);
   --color-job: var(--color-base-green--500);
   --color-visit: var(--color-job);
-  --color-task: var(--color-navy);
-  --color-event: var(--color-yellow);
-  --color-invoice: rgb(49, 98, 144);
+  --color-task: var(--color-base-lightBlue--800);
+  --color-event: var(--color-base-yellow--400);
+  --color-invoice: var(--color-base-lightBlue--700);
   --color-payments: var(--color-invoice);
 
-  --color-client: var(--color-blue);
+  --color-client: var(--color-base-taupe--700);
 
   /* Jobber Base Palette */
   --color-blue: rgb(1, 40, 55);
@@ -92,11 +92,11 @@
   --color-green--lightest: rgb(241, 247, 238);
   --color-green--dark: rgb(14, 78, 26);
 
-  --color-lime: rgb(153, 194, 71);
-  --color-lime--light: rgb(184, 212, 126);
-  --color-lime--lighter: rgb(214, 230, 181);
-  --color-lime--lightest: rgb(240, 246, 227);
-  --color-lime--dark: rgb(99, 125, 46);
+  --color-lime: var(--color-base-lime--500);
+  --color-lime--light: var(--color-base-lime--400);
+  --color-lime--lighter: var(--color-base-lime--300);
+  --color-lime--lightest: var(--color-base-lime--200);
+  --color-lime--dark: var(--color-base-lime--700);
 
   --color-yellowGreen: rgb(187, 197, 32);
   --color-yellowGreen--light: rgb(207, 214, 99);
