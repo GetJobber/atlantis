@@ -4,41 +4,41 @@
   /* Interactive and States */
   --color-interactive: var(--color-base-green--600);
   --color-interactive--hover: var(--color-base-green--700);
-  --color-destructive: var(--color-red);
-  --color-destructive--hover: var(--color-red--dark);
-  --color-interactive--subtle: var(--color-blue);
-  --color-interactive--subtle--hover: var(--color-blue--dark);
+  --color-destructive: var(--color-base-red--600);
+  --color-destructive--hover: var(--color-base-red--700);
+  --color-interactive--subtle: var(--color-base-blue--800);
+  --color-interactive--subtle--hover: var(--color-base-blue--900);
 
-  --color-disabled: var(--color-grey);
-  --color-disabled--secondary: var(--color-grey--lighter);
+  --color-disabled: var(--color-base-taupe--600);
+  --color-disabled--secondary: var(--color-base-taupe--400);
 
-  --color-focus: var(--color-blue--lighter);
+  --color-focus: var(--color-base-blue--500);
 
   /* Status Colours */
 
-  --color-critical: var(--color-red);
-  --color-critical--surface: var(--color-red--lightest);
-  --color-critical--onSurface: var(--color-red--dark);
+  --color-critical: var(--color-base-red--600);
+  --color-critical--surface: var(--color-base-red--200);
+  --color-critical--onSurface: var(--color-base-red--800);
 
   --color-warning: var(--color-base-yellow--400);
-  --color-warning--surface: var(--color-yellow--lightest);
-  --color-warning--onSurface: var(--color-yellow--dark);
+  --color-warning--surface: var(--color-base-yellow--200);
+  --color-warning--onSurface: var(--color-base-yellow--600);
 
   --color-success: var(--color-base-green--600);
-  --color-success--surface: var(--color-green--lightest);
-  --color-success--onSurface: var(--color-green--dark);
+  --color-success--surface: var(--color-base-green--200);
+  --color-success--onSurface: var(--color-base-green--800);
 
-  --color-informative: var(--color-lightBlue);
-  --color-informative--surface: var(--color-lightBlue--lightest);
-  --color-informative--onSurface: var(--color-lightBlue--dark);
+  --color-informative: var(--color-base-lightBlue--500);
+  --color-informative--surface: var(--color-base-lightBlue--200);
+  --color-informative--onSurface: var(--color-base-lightBlue--700);
 
-  --color-inactive: var(--color-blue);
-  --color-inactive--surface: var(--color-greyBlue--lightest);
-  --color-inactive--onSurface: var(--color-blue);
+  --color-inactive: var(--color-base-blue--700);
+  --color-inactive--surface: var(--color-base-blue--200);
+  --color-inactive--onSurface: var(--color-base-blue--900);
 
   /* Typography + Iconography */
   --color-heading: var(--color-base-blue--900);
-  --color-text: var(--color-base-blue--800);
+  --color-text: var(--color-base-taupe--800);
   --color-text--secondary: var(--color-base-blue--600);
   --color-text--reverse: var(--color-white);
   --color-text--reverse--secondary: var(--color-base-blue--300);
@@ -51,7 +51,7 @@
   --color-surface--active: var(--color-blue--lightest);
   --color-surface--background: var(--color-base-taupe--200);
   --color-surface--background--hover: var(--color-base-taupe--300);
-  --color-surface--reverse: var(--color-blue);
+  --color-surface--reverse: var(--color-base-blue-900);
 
   --color-border: var(--color-blue--lightest);
   --color-border--section: var(--color-blue);
@@ -66,7 +66,7 @@
   /* Jobber Workflow Colors */
   --color-request: var(--color-base-orange--600);
   --color-quote: var(--color-base-pink--700);
-  --color-job: var(--color-base-green--500);
+  --color-job: var(--color-base-green--600);
   --color-visit: var(--color-job);
   --color-task: var(--color-base-lightBlue--800);
   --color-event: var(--color-base-yellow--400);
