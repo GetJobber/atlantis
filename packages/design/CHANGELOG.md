@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.58.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.57.3...@jobber/design@0.58.0) (2024-04-24)
+
+
+### Features
+
+* **design:** add semantic value for subtle backgrounds ([#1874](https://github.com/GetJobber/atlantis/issues/1874)) ([4845fb1](https://github.com/GetJobber/atlantis/commit/4845fb138598c8c67091e34dcf95d5c0b2fd03da))
+
+
+
+
+
 ## [0.57.3](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.57.2...@jobber/design@0.57.3) (2024-04-24)
 
 **Note:** Version bump only for package @jobber/design
