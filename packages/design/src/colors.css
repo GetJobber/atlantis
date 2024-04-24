@@ -51,7 +51,7 @@
   --color-surface--active: var(--color-blue--lightest);
   --color-surface--background: var(--color-base-taupe--200);
   --color-surface--background--hover: var(--color-base-taupe--300);
-  --color-surface--reverse: var(--color-base-blue-900);
+  --color-surface--reverse: var(--color-base-blue--900);
 
   --color-border: var(--color-blue--lightest);
   --color-border--section: var(--color-blue);
