@@ -51,6 +51,7 @@
   --color-surface--active: var(--color-blue--lightest);
   --color-surface--background: var(--color-taupe);
   --color-surface--background--hover: var(--color-taupe--dark);
+  --color-surface--background--subtle: var(--color-taupe--light);
   --color-surface--reverse: var(--color-blue);
 
   --color-border: var(--color-blue--lightest);
