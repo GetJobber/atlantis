@@ -6,7 +6,7 @@ import React, {
   useState,
 } from "react";
 import classnames from "classnames";
-import { useShowClear } from "@jobber/hooks/useShowClear";
+import { Clearable, useShowClear } from "@jobber/hooks/useShowClear";
 import { AnimatePresence, motion } from "framer-motion";
 import { tokens } from "@jobber/design";
 import { FormFieldProps } from "./FormFieldTypes";
@@ -22,7 +22,7 @@ interface FormFieldWrapperProps extends FormFieldProps {
   readonly error: string;
   readonly identifier: string;
   readonly descriptionIdentifier: string;
-  readonly clearable: "never" | "always";
+  readonly clearable: Clearable;
   readonly onClear: () => void;
 }
 

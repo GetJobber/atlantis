@@ -1,6 +1,7 @@
 import { ChangeEvent, ReactNode, RefObject } from "react";
 import { RegisterOptions } from "react-hook-form";
 import { XOR } from "ts-xor";
+import { Clearable } from "@jobber/hooks/src/useShowClear";
 import { IconNames } from "../Icon";
 
 export type FormFieldTypes =
@@ -121,7 +122,7 @@ export interface CommonFormFieldProps {
    * clearable. if the input value isn't editable (i.e. `InputTime`) you can
    * set it to `always`.
    */
-  readonly clearable?: "never" | "always";
+  readonly clearable?: Clearable;
 }
 
 export interface FormFieldProps extends CommonFormFieldProps {
