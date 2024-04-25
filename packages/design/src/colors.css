@@ -48,13 +48,14 @@
   /* Surfaces and Borders */
   --color-surface: var(--color-white);
   --color-surface--hover: var(--color-base-taupe--200);
-  --color-surface--active: var(--color-blue--lightest);
+  --color-surface--active: var(--color-base-taupe--300);
   --color-surface--background: var(--color-base-taupe--200);
   --color-surface--background--hover: var(--color-base-taupe--300);
+  --color-surface--background--subtle: var(--color-taupe--100);
   --color-surface--reverse: var(--color-base-blue--900);
 
-  --color-border: var(--color-blue--lightest);
-  --color-border--section: var(--color-blue);
+  --color-border: var(--color-base-blue--300);
+  --color-border--section: var(--color-base-blue--900);
 
   --color-overlay: rgba(var(--color-black--rgb), 0.32);
   --color-overlay--dimmed: rgba(var(--color-white--rgb), 0.6);
@@ -76,15 +77,15 @@
   --color-client: var(--color-base-taupe--700);
 
   /* Jobber Base Palette */
-  --color-blue: rgb(1, 40, 55);
+  --color-blue: var(--color-base-blue--900);
   --color-blue--light: rgb(78, 105, 116);
   --color-blue--lighter: rgb(131, 151, 160);
-  --color-blue--lightest: rgb(218, 224, 226);
-  --color-blue--dark: rgb(1, 25, 35);
+  --color-blue--lightest: var(--color-base-blue--300);
+  --color-blue--dark: var(--color-base-blue--1000);
 
-  --color-taupe: rgb(241, 239, 233);
-  --color-taupe--light: rgb(252, 250, 244);
-  --color-taupe--dark: rgb(231, 229, 217);
+  --color-taupe: var(--color-base-taupe--200);
+  --color-taupe--light: var(--color-base-taupe--100);
+  --color-taupe--dark: var(--color-base-taupe--300);
 
   --color-green: var(--color-base-green--600);
   --color-green--light: var(--color-base-green--500);
