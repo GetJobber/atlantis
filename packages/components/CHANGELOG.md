@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.3.3...@jobber/components@5.3.4) (2024-04-25)
+
+
+### Bug Fixes
+
+* **components:** Allow InputText Default Value to be Clearable ([#1875](https://github.com/GetJobber/atlantis/issues/1875)) ([7026d86](https://github.com/GetJobber/atlantis/commit/7026d862ffe4bd3710d3917a9558be4565a67f16))
+
+
+
+
+
 ## [5.3.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.3.2...@jobber/components@5.3.3) (2024-04-24)
 
 **Note:** Version bump only for package @jobber/components
