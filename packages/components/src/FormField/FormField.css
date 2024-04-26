@@ -70,9 +70,12 @@
 
 .horizontalWrapper {
   display: flex;
-  width: 100%;
   height: var(--field--height);
   flex: 1;
+}
+
+.textarea .horizontalWrapper {
+  margin-right: var(--field--padding-right);
 }
 
 .timeInputLabel:not(:focus-within) input {
@@ -216,6 +219,7 @@
   flex: 1;
   resize: none;
   scroll-padding-bottom: var(--space-base);
+  padding-right: 0;
 }
 
 .select .input {
