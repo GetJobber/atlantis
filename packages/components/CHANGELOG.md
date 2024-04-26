@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.3.4...@jobber/components@5.3.5) (2024-04-26)
+
+
+### Bug Fixes
+
+* **components:** Input Text Safari Resize Handle ([#1876](https://github.com/GetJobber/atlantis/issues/1876)) ([9e87818](https://github.com/GetJobber/atlantis/commit/9e8781847cdb0f38ea1c4553c6631b1ef21c9de2))
+
+
+
+
+
 ## [5.3.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.3.3...@jobber/components@5.3.4) (2024-04-25)
 
 
