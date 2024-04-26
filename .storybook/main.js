@@ -119,9 +119,6 @@ const config = {
                 require("postcss-preset-env")({
                   stage: 1,
                   preserve: true,
-                  features: {
-                    'color-functional-notation': false
-                  }
                 }),
               ],
             },
