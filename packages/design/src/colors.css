@@ -184,7 +184,7 @@
   --color-black--rgb: 0, 0, 0;
   --color-black: rgba(var(--color-black--rgb), 1);
 
-  --color-base-taupe--100: hsl(40deg, 20%, 97%);
+  --color-base-taupe--100: hsl(45deg, 20%, 97%);
   --color-base-taupe--200: hsl(53deg, 21%, 93%);
   --color-base-taupe--300: hsl(51deg, 17%, 85%);
   --color-base-taupe--400: hsl(49deg, 7%, 70%);
