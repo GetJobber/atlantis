@@ -9,8 +9,8 @@
   --color-interactive--subtle: var(--color-base-blue--800);
   --color-interactive--subtle--hover: var(--color-base-blue--900);
 
-  --color-disabled: var(--color-base-taupe--600);
-  --color-disabled--secondary: var(--color-base-taupe--300);
+  --color-disabled: var(--color-base-grey--400);
+  --color-disabled--secondary: var(--color-base-grey--200);
 
   --color-focus: var(--color-base-blue--500);
 
@@ -48,11 +48,13 @@
   /* Surfaces and Borders */
   --color-surface: var(--color-white);
   --color-surface--hover: var(--color-base-taupe--200);
-  --color-surface--active: var(--color-base-taupe--300);
   --color-surface--background: var(--color-base-taupe--200);
-  --color-surface--background--hover: var(--color-base-taupe--300);
+  --color-surface--background--hover: var(--color-base-taupe--400);
   --color-surface--background--subtle: var(--color-taupe--100);
-  --color-surface--reverse: var(--color-base-blue--900);
+  --color-surface--background--subtle--hover: var(--color-taupe--300);
+  --color-surface--reverse: var(--color-base-blue--800);
+
+  --color-surface--active: var(--color-base-taupe--300);
 
   --color-border: var(--color-base-blue--300);
   --color-border--section: var(--color-base-blue--900);
@@ -78,8 +80,8 @@
 
   /* Jobber Base Palette */
   --color-blue: var(--color-base-blue--900);
-  --color-blue--light: rgb(78, 105, 116);
-  --color-blue--lighter: rgb(131, 151, 160);
+  --color-blue--light: var(--color-base-blue--700);
+  --color-blue--lighter: var(--color-base-blue--500);
   --color-blue--lightest: var(--color-base-blue--300);
   --color-blue--dark: var(--color-base-blue--1000);
 
@@ -89,9 +91,9 @@
 
   --color-green: var(--color-base-green--600);
   --color-green--light: var(--color-base-green--500);
-  --color-green--lighter: rgb(198, 221, 192);
-  --color-green--lightest: rgb(241, 247, 238);
-  --color-green--dark: rgb(14, 78, 26);
+  --color-green--lighter: var(--color-base-green--400);
+  --color-green--lightest: var(--color-base-green--200);
+  --color-green--dark: var(--color-base-green--800);
 
   --color-lime: var(--color-base-lime--500);
   --color-lime--light: var(--color-base-lime--400);
@@ -99,11 +101,11 @@
   --color-lime--lightest: var(--color-base-lime--200);
   --color-lime--dark: var(--color-base-lime--700);
 
-  --color-yellowGreen: rgb(187, 197, 32);
-  --color-yellowGreen--light: rgb(207, 214, 99);
-  --color-yellowGreen--lighter: rgb(228, 232, 166);
-  --color-yellowGreen--lightest: rgb(245, 246, 222);
-  --color-yellowGreen--dark: rgb(122, 128, 21);
+  --color-yellowGreen: var(--color-base-lime--500);
+  --color-yellowGreen--light: var(--color-base-lime--400);
+  --color-yellowGreen--lighter: var(--color-base-lime--300);
+  --color-yellowGreen--lightest: var(--color-base-lime--200);
+  --color-yellowGreen--dark: var(--color-base-lime--600);
 
   --color-yellow: var(--color-base-yellow--400);
   --color-yellow--light: var(--color-base-yellow--300);
@@ -117,18 +119,18 @@
   --color-red--lightest: var(--color-base-red--200);
   --color-red--dark: var(--color-base-red--800);
 
-  --color-grey: rgb(181, 181, 181);
-  --color-grey--light: rgb(203, 203, 203);
-  --color-grey--lighter: rgb(225, 225, 225);
-  --color-grey--lightest: rgb(244, 244, 244);
-  --color-grey--dark: rgb(118, 118, 118);
+  --color-grey: var(--color-base-grey--400);
+  --color-grey--light: var(--color-base-grey--300);
+  --color-grey--lighter: var(--color-base-grey--200);
+  --color-grey--lightest: var(--color-base-grey--100);
+  --color-grey--dark: var(--color-base-grey--600);
 
   --color-greyBlue--rgb: 101, 120, 132;
-  --color-greyBlue: rgba(var(--color-greyBlue--rgb), 1);
-  --color-greyBlue--light: rgb(147, 161, 169);
-  --color-greyBlue--lighter: rgb(193, 201, 206);
-  --color-greyBlue--lightest: rgb(238, 240, 242);
-  --color-greyBlue--dark: rgb(66, 78, 86);
+  --color-greyBlue: var(--color-base-blue--600);
+  --color-greyBlue--light: var(--color-base-blue--500);
+  --color-greyBlue--lighter: var(--color-base-blue--400);
+  --color-greyBlue--lightest: var(--color-base-blue--200);
+  --color-greyBlue--dark: var(--color-base-greyBlue--800);
 
   --color-lightBlue: var(--color-base-lightBlue--500);
   --color-lightBlue--light: var(--color-base-lightBlue--400);
@@ -142,11 +144,11 @@
   --color-purple--lightest: rgb(237, 234, 246);
   --color-purple--dark: var(--color-base-pink--900);
 
-  --color-pink: rgb(179, 96, 150);
-  --color-pink--light: rgb(202, 144, 182);
-  --color-pink--lighter: rgb(225, 191, 213);
-  --color-pink--lightest: rgb(244, 231, 239);
-  --color-pink--dark: rgb(116, 62, 98);
+  --color-pink: var(--color-base-pink--600);
+  --color-pink--light: var(--color-base-pink--500);
+  --color-pink--lighter: var(--color-base-pink--400);
+  --color-pink--lightest: var(--color-base-pink--200);
+  --color-pink--dark: var(--color-base-pink--800);
 
   --color-teal: rgb(62, 173, 146);
   --color-teal--light: rgb(120, 198, 179);
@@ -183,6 +185,17 @@
 
   --color-black--rgb: 0, 0, 0;
   --color-black: rgba(var(--color-black--rgb), 1);
+
+  --colr-base-grey--100: hsl(0deg, 0%, 97%);
+  --colr-base-grey--200: hsl(0deg, 0%, 93%);
+  --colr-base-grey--300: hsl(0deg, 0%, 87%);
+  --colr-base-grey--400: hsl(0deg, 0%, 72%);
+  --colr-base-grey--500: hsl(0deg, 0%, 58%);
+  --colr-base-grey--600: hsl(0deg, 0%, 47%);
+  --colr-base-grey--700: hsl(0deg, 0%, 35%);
+  --colr-base-grey--800: hsl(0deg, 0%, 24%);
+  --colr-base-grey--900: hsl(0deg, 0%, 15%);
+  --colr-base-grey--1000: hsl(0deg, 0%, 11%);
 
   --color-base-taupe--100: hsl(45, 20%, 97%);
   --color-base-taupe--200: hsl(53, 21%, 93%);

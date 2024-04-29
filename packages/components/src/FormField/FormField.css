@@ -8,9 +8,9 @@
   --public-field--bottom-left-radius: var(--radius-base);
   --public-field--bottom-right-radius: var(--radius-base);
 
-  --field--placeholder-color: var(--color-greyBlue--light);
+  --field--placeholder-color: var(--color-base-blue--600);
   --field--value-color: var(--color-heading);
-  --field--border-color: var(--color-border);
+  --field--border-color: var(--color-base-blue--500);
 
   --postfix-right: var(--space-base);
 }
