@@ -10,7 +10,7 @@
   --color-interactive--subtle--hover: var(--color-base-blue--900);
 
   --color-disabled: var(--color-base-taupe--600);
-  --color-disabled--secondary: var(--color-base-taupe--400);
+  --color-disabled--secondary: var(--color-base-taupe--300);
 
   --color-focus: var(--color-base-blue--500);
 
@@ -136,11 +136,11 @@
   --color-lightBlue--lightest: var(--color-base-lightBlue--200);
   --color-lightBlue--dark: var(--color-base-lightBlue--600);
 
-  --color-purple: var(--color-pink--800);
+  --color-purple: var(--color-base-pink--800);
   --color-purple--light: rgb(172, 155, 214);
   --color-purple--lighter: rgb(207, 198, 231);
   --color-purple--lightest: rgb(237, 234, 246);
-  --color-purple--dark: var(--color-pink--900);
+  --color-purple--dark: var(--color-base-pink--900);
 
   --color-pink: rgb(179, 96, 150);
   --color-pink--light: rgb(202, 144, 182);
@@ -161,7 +161,7 @@
   --color-orange--dark: var(--color-base-orange--600);
 
   --color-brown: var(--color-base-orange--700);
-  --color-brown--light: var(--color-orange--600);
+  --color-brown--light: var(--color-base-orange--600);
   --color-brown--lighter: var(--color-base-taupe--300);
   --color-brown--lightest: var(--color-base-taupe-200);
   --color-brown--dark: var(--color-base-orange--800);
