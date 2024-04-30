@@ -74,10 +74,6 @@
   flex: 1;
 }
 
-.textarea .horizontalWrapper {
-  margin-right: var(--field--padding-right);
-}
-
 .timeInputLabel:not(:focus-within) input {
   color: var(--field--background-color);
   -webkit-text-fill-color: var(--field--background-color);
@@ -106,6 +102,11 @@
 .wrapper.textarea {
   resize: vertical;
   overflow: auto;
+}
+
+.wrapper.textarea.safari {
+  overflow: unset;
+  overflow-x: scroll;
 }
 
 .invalid,
@@ -219,7 +220,6 @@
   flex: 1;
   resize: none;
   scroll-padding-bottom: var(--space-base);
-  padding-right: 0;
 }
 
 .select .input {
