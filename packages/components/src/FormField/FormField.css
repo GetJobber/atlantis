@@ -106,7 +106,7 @@
 
 .wrapper.textarea.safari {
   overflow: unset;
-  overflow-x: scroll;
+  overflow-y: scroll;
 }
 
 .invalid,
