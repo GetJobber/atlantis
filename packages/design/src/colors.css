@@ -130,7 +130,7 @@
   --color-greyBlue--light: var(--color-base-blue--500);
   --color-greyBlue--lighter: var(--color-base-blue--400);
   --color-greyBlue--lightest: var(--color-base-blue--200);
-  --color-greyBlue--dark: var(--color-base-greyBlue--800);
+  --color-greyBlue--dark: var(--color-base-blue--800);
 
   --color-lightBlue: var(--color-base-lightBlue--500);
   --color-lightBlue--light: var(--color-base-lightBlue--400);
