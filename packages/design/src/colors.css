@@ -186,16 +186,16 @@
   --color-black--rgb: 0, 0, 0;
   --color-black: rgba(var(--color-black--rgb), 1);
 
-  --color-base-grey--100: hsl(0deg, 0%, 97%);
-  --color-base-grey--200: hsl(0deg, 0%, 93%);
-  --color-base-grey--300: hsl(0deg, 0%, 87%);
-  --color-base-grey--400: hsl(0deg, 0%, 72%);
-  --color-base-grey--500: hsl(0deg, 0%, 58%);
-  --color-base-grey--600: hsl(0deg, 0%, 47%);
-  --color-base-grey--700: hsl(0deg, 0%, 35%);
-  --color-base-grey--800: hsl(0deg, 0%, 24%);
-  --color-base-grey--900: hsl(0deg, 0%, 15%);
-  --color-base-grey--1000: hsl(0deg, 0%, 11%);
+  --color-base-grey--100: hsl(0, 0%, 97%);
+  --color-base-grey--200: hsl(0, 0%, 93%);
+  --color-base-grey--300: hsl(0, 0%, 87%);
+  --color-base-grey--400: hsl(0, 0%, 72%);
+  --color-base-grey--500: hsl(0, 0%, 58%);
+  --color-base-grey--600: hsl(0, 0%, 47%);
+  --color-base-grey--700: hsl(0, 0%, 35%);
+  --color-base-grey--800: hsl(0, 0%, 24%);
+  --color-base-grey--900: hsl(0, 0%, 15%);
+  --color-base-grey--1000: hsl(0, 0%, 11%);
 
   --color-base-taupe--100: hsl(45, 20%, 97%);
   --color-base-taupe--200: hsl(53, 21%, 93%);
