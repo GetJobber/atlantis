@@ -49,7 +49,7 @@
   --color-surface: var(--color-white);
   --color-surface--hover: var(--color-base-taupe--200);
   --color-surface--background: var(--color-base-taupe--200);
-  --color-surface--background--hover: var(--color-base-taupe--400);
+  --color-surface--background--hover: var(--color-base-taupe--300);
   --color-surface--background--subtle: var(--color-taupe--100);
   --color-surface--background--subtle--hover: var(--color-taupe--300);
   --color-surface--reverse: var(--color-base-blue--800);

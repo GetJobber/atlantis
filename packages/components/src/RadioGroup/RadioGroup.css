@@ -26,7 +26,7 @@
   height: var(--radio-diameter);
   box-sizing: border-box;
   margin-right: var(--space-small);
-  border: var(--border-thick) solid var(--color-border);
+  border: var(--border-thick) solid var(--field--border-color);
   border-radius: 100%;
   background-color: var(--color-surface);
   transition: all var(--timing-quick) ease-out;
