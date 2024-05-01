@@ -68,13 +68,36 @@
 
   /* Jobber Workflow Colors */
   --color-request: var(--color-base-orange--600);
+  --color-request--surface: var(--color-base-orange--200);
+  --color-request--onSurface: var(--color-base-orange--800);
+
   --color-quote: var(--color-base-pink--700);
+  --color-quote--surface: var(--color-base-pink--200);
+  --color-quote--onSurface: var(--color-base-pink--800);
+
   --color-job: var(--color-base-green--600);
-  --color-visit: var(--color-job);
+  --color-job--surface: var(--color-base-green--200);
+  --color-job--onSurface: var(--color-base-green--700);
+
   --color-task: var(--color-base-lightBlue--800);
-  --color-event: var(--color-base-yellow--400);
+  --color-task--surface: var(--color-base-blue--200);
+  --color-task--onSurface: var(--color-base-blue--800);
+
   --color-invoice: var(--color-base-lightBlue--700);
+  --color-invoice--surface: var(--color-base-lightBlue--200);
+  --color-invoice--onSurface: var(--color-base-lightBlue--800);
+
+  --color-visit: var(--color-job);
+  --color-visit--surface: var(--color-job--surface);
+  --color-visit--onSurface: var(--color-job--onSurface);
+
+  --color-event: var(--color-base-yellow--400);
+  --color-event--surface: var(--color-base-yellow--200);
+  --color-event--onSurface: var(--color-base-yellow--700);
+
   --color-payments: var(--color-invoice);
+  --color-payments--surface: var(--color-invoice--surface);
+  --color-payments--onSurface: var(--color-invoice--surface);
 
   --color-client: var(--color-base-taupe--700);
 
