@@ -51,7 +51,9 @@ Horizontal.args = {
 };
 
 const CustomActivatorTemplate: ComponentStory<typeof Menu> = args => (
-  <Menu {...args} activator={<Button label="My Fancy Menu" />} />
+  <div style={{ width: "200px", height: "100px", overflow: "hidden" }}>
+    <Menu {...args} activator={<Button label="My Fancy Menu" />} />
+  </div>
 );
 
 export const CustomActivator = CustomActivatorTemplate.bind({});

@@ -10,6 +10,8 @@
 }
 
 .menu {
+  --menu-space: var(--space-small);
+  --menu-offset: var(--space-smallest);
   position: fixed;
   bottom: 0;
   left: 0;

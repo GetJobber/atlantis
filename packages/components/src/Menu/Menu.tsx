@@ -2,7 +2,6 @@ import React, {
   MouseEvent,
   ReactElement,
   RefObject,
-  createRef,
   useEffect,
   useId,
   useRef,
@@ -13,7 +12,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { IconNames } from "@jobber/design";
-import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
+import { usePopper } from "react-popper";
+import { useIsMounted } from "@jobber/hooks/useIsMounted";
+import ReactDOM from "react-dom";
 import styles from "./Menu.css";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
@@ -31,11 +32,6 @@ const variation = {
   },
   done: { opacity: 1, y: 0 },
 };
-
-interface Position {
-  vertical: "above" | "below";
-  horizontal: "left" | "right";
-}
 
 export interface MenuProps {
   /**
@@ -64,35 +60,31 @@ export interface SectionProps {
 export function Menu({ activator, items }: MenuProps) {
   const [visible, setVisible] = useState(false);
   const fullWidth = activator?.props?.fullWidth || false;
-  const [position, setPosition] = useState<Position>({
-    vertical: "below",
-    horizontal: "right",
-  });
-  const wrapperRef = createRef<HTMLDivElement>();
+  // const wrapper = useRef<HTMLDivElement>(null);
+  // const [wrapper, setWrapper] = useState<HTMLDivElement | null>(null);
+  const shadowRef = useRef<HTMLSpanElement>(null);
+
   const buttonID = useId();
   const menuID = useId();
 
   useOnKeyDown(handleKeyboardShortcut, ["Escape"]);
-  useSafeLayoutEffect(() => {
-    if (wrapperRef.current) {
-      const bounds = wrapperRef.current.getBoundingClientRect();
-      const newPosition = { ...position };
-
-      if (bounds.top <= window.innerHeight / 2) {
-        newPosition.vertical = "below";
-      } else {
-        newPosition.vertical = "above";
-      }
-
-      if (bounds.left <= window.innerWidth / 2) {
-        newPosition.horizontal = "right";
-      } else {
-        newPosition.horizontal = "left";
-      }
-
-      setPosition(newPosition);
-    }
-  }, [visible, fullWidth]);
+  const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
+  const {
+    styles: popperStyles,
+    attributes,
+    state,
+  } = usePopper(shadowRef.current?.nextElementSibling, popperElement, {
+    placement: "bottom",
+    modifiers: [
+      { name: "flip", options: { fallbackPlacements: ["bottom"] } },
+      {
+        name: "offset",
+        options: {
+          offset: [0, 0],
+        },
+      },
+    ],
+  });
   useRefocusOnActivator(visible);
 
   if (!activator) {
@@ -106,12 +98,13 @@ export function Menu({ activator, items }: MenuProps) {
     );
   }
 
+  // position related
   const menuClasses = classnames(
     styles.menu,
-    position.vertical === "above" && styles.above,
-    position.vertical === "below" && styles.below,
-    position.horizontal === "left" && styles.left,
-    position.horizontal === "right" && styles.right,
+    state?.placement === "top" && styles.above,
+    state?.placement === "bottom" && styles.below,
+    // position.horizontal === "left" && styles.left,
+    // position.horizontal === "right" && styles.right,
   );
 
   const wrapperClasses = classnames(styles.wrapper, {
@@ -119,11 +112,8 @@ export function Menu({ activator, items }: MenuProps) {
   });
 
   return (
-    <div
-      className={wrapperClasses}
-      ref={wrapperRef}
-      onClick={handleParentClick}
-    >
+    <div className={wrapperClasses} onClick={handleParentClick}>
+      <span ref={shadowRef} style={{ display: "none" }} />
       {React.cloneElement(activator, {
         onClick: toggle(activator.props.onClick),
         id: buttonID,
@@ -131,55 +121,63 @@ export function Menu({ activator, items }: MenuProps) {
         ariaExpanded: visible,
         ariaHaspopup: true,
       })}
-      <AnimatePresence>
-        {visible && (
-          <>
-            <motion.div
-              className={styles.overlay}
-              onClick={toggle()}
-              variants={variation}
-              initial="overlayStartStop"
-              animate="done"
-              exit="overlayStartStop"
-              transition={{
-                type: "tween",
-                duration: 0.15,
-              }}
-            />
-            <motion.div
-              className={menuClasses}
-              role="menu"
-              aria-labelledby={buttonID}
-              id={menuID}
-              onClick={hide}
-              variants={variation}
-              initial="startOrStop"
-              animate="done"
-              exit="startOrStop"
-              custom={position}
-              transition={{
-                type: "tween",
-                duration: 0.25,
-              }}
-            >
-              {items.map((item, key: number) => (
-                <div key={key} className={styles.section}>
-                  {item.header && <SectionHeader text={item.header} />}
+      <MenuPortal>
+        <AnimatePresence>
+          {visible && (
+            <>
+              <motion.div
+                className={styles.overlay}
+                onClick={toggle()}
+                variants={variation}
+                initial="overlayStartStop"
+                animate="done"
+                exit="overlayStartStop"
+                transition={{
+                  type: "tween",
+                  duration: 0.15,
+                }}
+              />
+              <div
+                ref={setPopperElement}
+                {...attributes.popper}
+                style={popperStyles.popper}
+              >
+                <motion.div
+                  className={menuClasses}
+                  role="menu"
+                  aria-labelledby={buttonID}
+                  id={menuID}
+                  onClick={hide}
+                  variants={variation}
+                  initial="startOrStop"
+                  animate="done"
+                  exit="startOrStop"
+                  // custom={position}
+                  transition={{
+                    type: "tween",
+                    duration: 0.25,
+                  }}
+                >
+                  {items.map((item, key: number) => (
+                    <div key={key} className={styles.section}>
+                      {item.header && <SectionHeader text={item.header} />}
 
-                  {item.actions.map((action, index) => (
-                    <Action
-                      sectionLabel={item.header}
-                      key={action.label}
-                      shouldFocus={key === 0 && index === 0}
-                      {...action}
-                    />
+                      {item.actions.map((action, index) => (
+                        <Action
+                          sectionLabel={item.header}
+                          key={action.label}
+                          shouldFocus={key === 0 && index === 0}
+                          {...action}
+                        />
+                      ))}
+                    </div>
                   ))}
-                </div>
-              ))}
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+                </motion.div>
+              </div>
+            </>
+          )}
+        </AnimatePresence>
+      </MenuPortal>
     </div>
   );
 
@@ -296,4 +294,14 @@ function Action({
       </Typography>
     </button>
   );
+}
+
+function MenuPortal({ children }: { readonly children: React.ReactElement }) {
+  const mounted = useIsMounted();
+
+  if (!mounted?.current) {
+    return null;
+  }
+
+  return ReactDOM.createPortal(children, document.body);
 }
