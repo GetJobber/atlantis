@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.3.5...@jobber/components@5.3.6) (2024-05-03)
+
+
+### Bug Fixes
+
+* **components:** use semantic values in combobox ([#1880](https://github.com/GetJobber/atlantis/issues/1880)) ([b4d6c45](https://github.com/GetJobber/atlantis/commit/b4d6c45feb6c14afd28ad1035dd086d0ff4d4d64))
+
+
+
+
+
 ## [5.3.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.3.4...@jobber/components@5.3.5) (2024-04-26)
 
 
