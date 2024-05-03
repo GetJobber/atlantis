@@ -6,6 +6,10 @@
   position: relative;
 }
 
+.popperContainer {
+  z-index: var(--elevation-menu);
+}
+
 .menu {
   --menu-space: var(--space-small);
   --menu-offset: var(--space-smallest);

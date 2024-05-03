@@ -141,6 +141,7 @@ export function Menu({ activator, items }: MenuProps) {
                 ref={setPopperElement}
                 {...attributes.popper}
                 style={popperStyles.popper}
+                className={styles.popperContainer}
               >
                 <motion.div
                   className={menuClasses}
