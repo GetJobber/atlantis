@@ -50,13 +50,14 @@
   --color-surface--hover: var(--color-base-taupe--200);
   --color-surface--background: var(--color-base-taupe--200);
   --color-surface--background--hover: var(--color-base-taupe--300);
-  --color-surface--background--subtle: var(--color-taupe--100);
-  --color-surface--background--subtle--hover: var(--color-taupe--300);
+  --color-surface--background--subtle: var(--color-base-taupe--100);
+  --color-surface--background--subtle--hover: var(--color-base-taupe--300);
   --color-surface--reverse: var(--color-base-blue--800);
 
   --color-surface--active: var(--color-base-taupe--300);
 
   --color-border: var(--color-base-blue--300);
+  --color-border--interactive: var(--color-base-blue--500);
   --color-border--section: var(--color-base-blue--900);
 
   --color-overlay: rgba(var(--color-black--rgb), 0.32);
@@ -205,9 +206,7 @@
 
   --color-white--rgb: 255, 255, 255;
   --color-white: rgba(var(--color-white--rgb), 1);
-
-  --color-black--rgb: 0, 0, 0;
-  --color-black: rgba(var(--color-black--rgb), 1);
+  --color-base-white: var(--color-white);
 
   --color-base-grey--100: hsl(0, 0%, 97%);
   --color-base-grey--200: hsl(0, 0%, 93%);
@@ -219,6 +218,10 @@
   --color-base-grey--800: hsl(0, 0%, 24%);
   --color-base-grey--900: hsl(0, 0%, 15%);
   --color-base-grey--1000: hsl(0, 0%, 11%);
+
+  --color-black--rgb: 0, 0, 0;
+  --color-black: rgba(var(--color-black--rgb), 1);
+  --color-base-black: var(--color-black);
 
   --color-base-taupe--100: hsl(45, 20%, 97%);
   --color-base-taupe--200: hsl(53, 21%, 93%);
