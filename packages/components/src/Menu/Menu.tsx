@@ -74,9 +74,15 @@ export function Menu({ activator, items }: MenuProps) {
     attributes,
     state,
   } = usePopper(shadowRef.current?.nextElementSibling, popperElement, {
-    placement: "bottom",
+    placement: "bottom-start",
     modifiers: [
-      { name: "flip", options: { fallbackPlacements: ["bottom"] } },
+      {
+        name: "flip",
+        options: {
+          // fallbackPlacements: ["top-start"]
+          flipVariations: true,
+        },
+      },
       {
         name: "offset",
         options: {
@@ -99,13 +105,7 @@ export function Menu({ activator, items }: MenuProps) {
   }
 
   // position related
-  const menuClasses = classnames(
-    styles.menu,
-    state?.placement === "top" && styles.above,
-    state?.placement === "bottom" && styles.below,
-    // position.horizontal === "left" && styles.left,
-    // position.horizontal === "right" && styles.right,
-  );
+  const menuClasses = classnames(styles.menu);
 
   const wrapperClasses = classnames(styles.wrapper, {
     [styles.fullWidth]: fullWidth,
