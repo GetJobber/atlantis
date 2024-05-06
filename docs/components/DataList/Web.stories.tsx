@@ -110,6 +110,7 @@ const Template: ComponentStory<typeof DataList> = args => {
         sortable: [
           {
             key: "label",
+            sortType: "dropdown",
             options: [
               {
                 id: "firstName",
@@ -131,6 +132,7 @@ const Template: ComponentStory<typeof DataList> = args => {
           },
           {
             key: "home",
+            sortType: "dropdown",
             options: [
               {
                 id: "homeWorld",
@@ -154,7 +156,22 @@ const Template: ComponentStory<typeof DataList> = args => {
               },
             ],
           },
-          { key: "lastActivity" },
+          {
+            key: "lastActivity",
+            sortType: "toggle",
+            options: [
+              {
+                id: "lastActivity",
+                label: "Last activity (Newest first)",
+                order: "desc",
+              },
+              {
+                id: "lastActivity",
+                label: "Last activity (Oldest first)",
+                order: "asc",
+              },
+            ],
+          },
         ],
       }}
     >

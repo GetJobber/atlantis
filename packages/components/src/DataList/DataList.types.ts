@@ -58,6 +58,7 @@ export interface SortableOptions {
 
 export interface DataListSortable {
   readonly key: string;
+  readonly sortType: "toggle" | "dropdown";
   readonly options?: SortableOptions[];
 }
 

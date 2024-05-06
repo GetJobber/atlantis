@@ -100,7 +100,7 @@ export function DataListHeaderTile<T extends DataListObject>({
   function handleOnClick() {
     if (!isSortable) return;
 
-    if (sortableItem?.options) {
+    if (sortableItem?.sortType === "dropdown") {
       setIsDropDownOpen(!isDropDownOpen);
     } else {
       const id = sortableItem?.options?.[0]?.id || headerKey;
