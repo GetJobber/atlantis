@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.3.7...@jobber/components@5.3.8) (2024-05-06)
+
+
+### Bug Fixes
+
+* **components:** Reduce Scope of Safari Scrollbar Issue ([#1877](https://github.com/GetJobber/atlantis/issues/1877)) ([382ffe4](https://github.com/GetJobber/atlantis/commit/382ffe49c03a4165d44a72c32ab54fe0efbdd25a))
+
+
+
+
+
 ## [5.3.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.3.6...@jobber/components@5.3.7) (2024-05-06)
 
 **Note:** Version bump only for package @jobber/components
