@@ -1,0 +1,26 @@
+import { Canvas, Meta, Source, Story } from "@storybook/addon-docs";
+import * as hooks from ".";
+
+<Meta title="Hooks/useWindowDimensions" />
+
+# useWindowDimensions
+
+`useWindowDimensions` is a hook that allows you to get the dimensions of the
+window. Very much like the React Native hook by the same name.
+
+```tsx
+import { useWindowDimensions } from "@jobber/hooks/useWindowDimensions";
+```
+
+<Canvas withToolbar>
+  <Story name="useWindowDimensions">
+    {() => {
+      const { width } = useWindowDimensions();
+
+      useEffect(() => {
+        console.log({ width })
+      }, [width])
+    }}
+
+  </Story>
+</Canvas>
