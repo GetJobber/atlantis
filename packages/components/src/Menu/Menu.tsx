@@ -19,6 +19,7 @@ import styles from "./Menu.css";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
 import { Icon } from "../Icon";
+import { focusAttribute } from "../FormField/hooks/useFormFieldFocus";
 
 const variation = {
   overlayStartStop: { opacity: 0 },
@@ -110,9 +111,6 @@ export function Menu({ activator, items }: MenuProps) {
   const wrapperClasses = classnames(styles.wrapper, {
     [styles.fullWidth]: fullWidth,
   });
-  const focusAttribute = {
-    "data-atl-maintain-portal-focus": "true",
-  };
 
   return (
     <div className={wrapperClasses} onClick={handleParentClick}>
