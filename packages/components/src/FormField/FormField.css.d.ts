@@ -3,6 +3,7 @@ declare const styles: {
   readonly "wrapper": string;
   readonly "horizontalWrapper": string;
   readonly "textarea": string;
+  readonly "safari": string;
   readonly "timeInputLabel": string;
   readonly "miniLabel": string;
   readonly "large": string;
