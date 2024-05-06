@@ -110,6 +110,9 @@ export function Menu({ activator, items }: MenuProps) {
   const wrapperClasses = classnames(styles.wrapper, {
     [styles.fullWidth]: fullWidth,
   });
+  const focusAttribute = {
+    "data-atl-maintain-portal-focus": "true",
+  };
 
   return (
     <div className={wrapperClasses} onClick={handleParentClick}>
@@ -142,6 +145,7 @@ export function Menu({ activator, items }: MenuProps) {
                 {...attributes.popper}
                 style={popperStyles.popper}
                 className={styles.popperContainer}
+                {...focusAttribute}
               >
                 <motion.div
                   className={menuClasses}

@@ -2,6 +2,7 @@ import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { InputText } from "@jobber/components/InputText";
 import { Button } from "@jobber/components/Button";
+import { Menu } from "@jobber/components/Menu";
 
 export default {
   title: "Components/Forms and Inputs/InputText/Web",
@@ -12,7 +13,49 @@ export default {
 } as ComponentMeta<typeof InputText>;
 
 const BasicTemplate: ComponentStory<typeof InputText> = args => {
-  return <InputText {...args} />;
+  const [show, setShow] = React.useState(false);
+
+  return (
+    <InputText
+      {...args}
+      toolbar={
+        <Menu
+          items={[
+            {
+              actions: [
+                {
+                  label: "Edit",
+                  icon: "edit",
+                  onClick: () => {
+                    alert("✏️");
+                  },
+                },
+              ],
+            },
+            {
+              header: "Send as...",
+              actions: [
+                {
+                  label: "Text Message",
+                  icon: "sms",
+                  onClick: () => {
+                    alert("📱");
+                  },
+                },
+                {
+                  label: "Email",
+                  icon: "email",
+                  onClick: () => {
+                    alert("📨");
+                  },
+                },
+              ],
+            },
+          ]}
+        />
+      }
+    />
+  );
 };
 
 export const Basic = BasicTemplate.bind({});
