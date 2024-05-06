@@ -70,7 +70,7 @@ export function FormFieldWrapper({
         (placeholder && type === "tel"),
       [styles.text]: type === "textarea" || type === "text",
       [styles.textarea]: type === "textarea",
-      [styles.safari]: isSafari && type === "textarea" && !toolbar,
+      [styles.safari]: isSafari && type === "textarea",
       [styles.select]: type === "select",
       [styles.invalid]: invalid ?? error,
       [styles.disabled]: disabled,
