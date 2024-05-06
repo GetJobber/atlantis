@@ -74,6 +74,10 @@
   flex: 1;
 }
 
+.textarea.safari .horizontalWrapper {
+  margin-right: var(--field--padding-right);
+}
+
 .timeInputLabel:not(:focus-within) input {
   color: var(--field--background-color);
   -webkit-text-fill-color: var(--field--background-color);
@@ -102,11 +106,6 @@
 .wrapper.textarea {
   resize: vertical;
   overflow: auto;
-}
-
-.wrapper.textarea.safari {
-  overflow: unset;
-  overflow-y: scroll;
 }
 
 .invalid,
@@ -231,6 +230,10 @@
 .input:-webkit-autofill:focus,
 .input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px var(--color-surface) inset !important;
+}
+
+.textarea.safari .input {
+  padding-right: 0;
 }
 
 /**
