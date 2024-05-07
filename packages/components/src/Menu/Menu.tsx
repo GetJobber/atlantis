@@ -11,6 +11,7 @@ import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
+import { useWindowDimensions } from "@jobber/hooks/useWindowDimensions";
 import { IconNames } from "@jobber/design";
 import { usePopper } from "react-popper";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
@@ -61,37 +62,44 @@ export interface SectionProps {
 export function Menu({ activator, items }: MenuProps) {
   const [visible, setVisible] = useState(false);
   const fullWidth = activator?.props?.fullWidth || false;
-  // const wrapper = useRef<HTMLDivElement>(null);
-  // const [wrapper, setWrapper] = useState<HTMLDivElement | null>(null);
   const shadowRef = useRef<HTMLSpanElement>(null);
+  const { width } = useWindowDimensions();
 
   const buttonID = useId();
   const menuID = useId();
 
   useOnKeyDown(handleKeyboardShortcut, ["Escape"]);
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
-  const {
-    styles: popperStyles,
-    attributes,
-    state,
-  } = usePopper(shadowRef.current?.nextElementSibling, popperElement, {
-    placement: "bottom-start",
-    modifiers: [
-      {
-        name: "flip",
-        options: {
-          // fallbackPlacements: ["top-start"]
-          flipVariations: true,
+  const { styles: popperStyles, attributes } = usePopper(
+    shadowRef.current?.nextElementSibling,
+    popperElement,
+    {
+      placement: "bottom-start",
+      modifiers: [
+        {
+          name: "flip",
+          options: {
+            // fallbackPlacements: ["top-start"]
+            flipVariations: true,
+          },
         },
-      },
-      {
-        name: "offset",
-        options: {
-          offset: [0, 0],
+        {
+          name: "offset",
+          options: {
+            offset: [0, 0],
+          },
         },
-      },
-    ],
-  });
+      ],
+    },
+  );
+  const positionAttributes =
+    width > 489
+      ? {
+          ...attributes.popper,
+          style: popperStyles.popper,
+        }
+      : {};
+
   useRefocusOnActivator(visible);
 
   if (!activator) {
@@ -140,9 +148,8 @@ export function Menu({ activator, items }: MenuProps) {
               />
               <div
                 ref={setPopperElement}
-                {...attributes.popper}
-                style={popperStyles.popper}
                 className={styles.popperContainer}
+                {...positionAttributes}
                 {...focusAttribute}
               >
                 <motion.div
