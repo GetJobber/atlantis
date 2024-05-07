@@ -96,7 +96,7 @@ export function Menu({ activator, items }: MenuProps) {
         {
           name: "offset",
           options: {
-            offset: [0, 0],
+            offset: [0, 2],
           },
         },
       ],
