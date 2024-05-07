@@ -1,5 +1,6 @@
-import { Canvas, Meta, Source, Story } from "@storybook/addon-docs";
-import * as hooks from ".";
+import { Canvas, Meta, Story } from "@storybook/addon-docs";
+import { useEffect } from "react";
+import * as hooks from "./useWindowDimensions";
 
 <Meta title="Hooks/useWindowDimensions" />
 
@@ -15,12 +16,11 @@ import { useWindowDimensions } from "@jobber/hooks/useWindowDimensions";
 <Canvas withToolbar>
   <Story name="useWindowDimensions">
     {() => {
-      const { width } = useWindowDimensions();
-
+      const { width } = hooks.useWindowDimensions();
       useEffect(() => {
-        console.log({ width })
-      }, [width])
+        console.log({ width });
+      }, [width]);
+      return <h1>useWindowDimensions</h1>;
     }}
-
   </Story>
 </Canvas>
