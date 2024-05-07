@@ -23,12 +23,13 @@ import { Typography } from "../Typography";
 import { Icon } from "../Icon";
 import { focusAttribute } from "../FormField/hooks/useFormFieldFocus";
 
+const SMALL_SCREEN_BREAKPOINT = 489;
+
 const variation = {
   overlayStartStop: { opacity: 0 },
-  startOrStop: (position: string) => {
+  startOrStop: () => {
     let y = 10;
 
-    if (position === "below") y *= -1;
     if (window.innerWidth < 640) y = 150;
 
     return { opacity: 0, y };
@@ -62,7 +63,6 @@ export interface SectionProps {
 // eslint-disable-next-line max-statements
 export function Menu({ activator, items }: MenuProps) {
   const [visible, setVisible] = useState(false);
-  const fullWidth = activator?.props?.fullWidth || false;
   const shadowRef = useRef<HTMLSpanElement>(null);
   const menuRef = useFocusTrap<HTMLDivElement>(visible);
 
@@ -71,7 +71,15 @@ export function Menu({ activator, items }: MenuProps) {
   const buttonID = useId();
   const menuID = useId();
 
+  const fullWidth = activator?.props?.fullWidth || false;
+
+  const wrapperClasses = classnames(styles.wrapper, {
+    [styles.fullWidth]: fullWidth,
+  });
+
   useOnKeyDown(handleKeyboardShortcut, ["Escape"]);
+  useRefocusOnActivator(visible);
+
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
   const { styles: popperStyles, attributes } = usePopper(
     shadowRef.current?.nextElementSibling,
@@ -82,7 +90,6 @@ export function Menu({ activator, items }: MenuProps) {
         {
           name: "flip",
           options: {
-            // fallbackPlacements: ["top-start"]
             flipVariations: true,
           },
         },
@@ -96,14 +103,12 @@ export function Menu({ activator, items }: MenuProps) {
     },
   );
   const positionAttributes =
-    width > 489
+    width > SMALL_SCREEN_BREAKPOINT
       ? {
           ...attributes.popper,
           style: popperStyles.popper,
         }
       : {};
-
-  useRefocusOnActivator(visible);
 
   if (!activator) {
     activator = (
@@ -116,16 +121,9 @@ export function Menu({ activator, items }: MenuProps) {
     );
   }
 
-  // position related
-  const menuClasses = classnames(styles.menu);
-
-  const wrapperClasses = classnames(styles.wrapper, {
-    [styles.fullWidth]: fullWidth,
-  });
-
   return (
     <div className={wrapperClasses} onClick={handleParentClick}>
-      <span ref={shadowRef} style={{ display: "none" }} />
+      <span ref={shadowRef} className={styles.shadowRef} />
       {React.cloneElement(activator, {
         onClick: toggle(activator.props.onClick),
         id: buttonID,
@@ -156,7 +154,7 @@ export function Menu({ activator, items }: MenuProps) {
                 {...focusAttribute}
               >
                 <motion.div
-                  className={menuClasses}
+                  className={styles.menu}
                   role="menu"
                   aria-labelledby={buttonID}
                   id={menuID}
