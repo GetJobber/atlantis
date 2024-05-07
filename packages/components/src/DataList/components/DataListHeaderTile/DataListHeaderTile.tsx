@@ -102,7 +102,7 @@ export function DataListHeaderTile<T extends DataListObject>({
 
     if (sortableItem?.sortType === "dropdown") {
       setIsDropDownOpen(!isDropDownOpen);
-    } else if (sortableItem?.sortType === "toggle") {
+    } else {
       const id = sortableItem?.options?.[0]?.id || headerKey;
       toggleSorting(id, headerKey, headers[headerKey]);
     }
