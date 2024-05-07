@@ -16,6 +16,7 @@ import { IconNames } from "@jobber/design";
 import { usePopper } from "react-popper";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import ReactDOM from "react-dom";
+import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import styles from "./Menu.css";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
@@ -63,6 +64,8 @@ export function Menu({ activator, items }: MenuProps) {
   const [visible, setVisible] = useState(false);
   const fullWidth = activator?.props?.fullWidth || false;
   const shadowRef = useRef<HTMLSpanElement>(null);
+  const menuRef = useFocusTrap<HTMLDivElement>(visible);
+
   const { width } = useWindowDimensions();
 
   const buttonID = useId();
@@ -162,7 +165,7 @@ export function Menu({ activator, items }: MenuProps) {
                   initial="startOrStop"
                   animate="done"
                   exit="startOrStop"
-                  // custom={position}
+                  ref={menuRef}
                   transition={{
                     type: "tween",
                     duration: 0.25,
