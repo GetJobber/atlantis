@@ -153,37 +153,39 @@ export function Menu({ activator, items }: MenuProps) {
                 {...positionAttributes}
                 {...focusAttribute}
               >
-                <motion.div
-                  className={styles.menu}
-                  role="menu"
-                  aria-labelledby={buttonID}
-                  id={menuID}
-                  onClick={hide}
-                  variants={variation}
-                  initial="startOrStop"
-                  animate="done"
-                  exit="startOrStop"
-                  ref={menuRef}
-                  transition={{
-                    type: "tween",
-                    duration: 0.25,
-                  }}
-                >
-                  {items.map((item, key: number) => (
-                    <div key={key} className={styles.section}>
-                      {item.header && <SectionHeader text={item.header} />}
+                {items.length > 0 && (
+                  <motion.div
+                    className={styles.menu}
+                    role="menu"
+                    aria-labelledby={buttonID}
+                    id={menuID}
+                    onClick={hide}
+                    variants={variation}
+                    initial="startOrStop"
+                    animate="done"
+                    exit="startOrStop"
+                    ref={menuRef}
+                    transition={{
+                      type: "tween",
+                      duration: 0.25,
+                    }}
+                  >
+                    {items.map((item, key: number) => (
+                      <div key={key} className={styles.section}>
+                        {item.header && <SectionHeader text={item.header} />}
 
-                      {item.actions.map((action, index) => (
-                        <Action
-                          sectionLabel={item.header}
-                          key={action.label}
-                          shouldFocus={key === 0 && index === 0}
-                          {...action}
-                        />
-                      ))}
-                    </div>
-                  ))}
-                </motion.div>
+                        {item.actions.map((action, index) => (
+                          <Action
+                            sectionLabel={item.header}
+                            key={action.label}
+                            shouldFocus={key === 0 && index === 0}
+                            {...action}
+                          />
+                        ))}
+                      </div>
+                    ))}
+                  </motion.div>
+                )}
               </div>
             </>
           )}
