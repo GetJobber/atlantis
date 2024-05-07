@@ -2,7 +2,6 @@ import React, {
   MouseEvent,
   ReactElement,
   RefObject,
-  useEffect,
   useId,
   useRef,
   useState,
@@ -57,7 +56,7 @@ export interface SectionProps {
   /**
    * List of actions.
    */
-  actions: Omit<ActionProps, "shouldFocus">[];
+  actions: ActionProps[];
 }
 
 // eslint-disable-next-line max-statements
@@ -174,11 +173,10 @@ export function Menu({ activator, items }: MenuProps) {
                       <div key={key} className={styles.section}>
                         {item.header && <SectionHeader text={item.header} />}
 
-                        {item.actions.map((action, index) => (
+                        {item.actions.map(action => (
                           <Action
                             sectionLabel={item.header}
                             key={action.label}
-                            shouldFocus={key === 0 && index === 0}
                             {...action}
                           />
                         ))}
@@ -262,28 +260,10 @@ export interface ActionProps {
    * Callback when an action gets clicked
    */
   onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
-
-  /**
-   * Focus on the action when rendered
-   */
-  readonly shouldFocus?: boolean;
 }
 
-function Action({
-  label,
-  sectionLabel,
-  icon,
-  onClick,
-  shouldFocus = false,
-}: ActionProps) {
+function Action({ label, sectionLabel, icon, onClick }: ActionProps) {
   const actionButtonRef = useRef() as RefObject<HTMLButtonElement>;
-
-  useEffect(() => {
-    if (shouldFocus) {
-      // Focus on the next tick to allow useRefocusOnActivator to initialize
-      setTimeout(() => actionButtonRef.current?.focus(), 0);
-    }
-  }, [shouldFocus]);
 
   return (
     <button
