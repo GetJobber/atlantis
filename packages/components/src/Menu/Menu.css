@@ -78,9 +78,11 @@
 .action:hover,
 .action:focus {
   background-color: var(--color-surface--hover);
-  outline-color: var(--color-focus);
 }
 
+.action:focus-visible {
+  outline-color: var(--color-focus);
+}
 .action span {
   /* match appearance of Button labels */
   -webkit-font-smoothing: antialiased;
