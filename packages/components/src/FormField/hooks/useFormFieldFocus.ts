@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useActiveElement } from "./useActiveElement";
 
 interface UseFormFieldFocus {
   focused: boolean;
@@ -61,21 +62,3 @@ export function useFormFieldFocus(
     focused,
   };
 }
-
-const useActiveElement = () => {
-  const [active, setActive] = useState(document.activeElement);
-
-  const handleFocusIn = () => {
-    setActive(document.activeElement);
-  };
-
-  useEffect(() => {
-    document.addEventListener("focusin", handleFocusIn);
-
-    return () => {
-      document.removeEventListener("focusin", handleFocusIn);
-    };
-  }, []);
-
-  return active;
-};
