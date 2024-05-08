@@ -65,7 +65,6 @@ export interface SectionProps {
 export function Menu({ activator, items }: MenuProps) {
   const [visible, setVisible] = useState(false);
   const shadowRef = useRef<HTMLSpanElement>(null);
-  const menuRef = useFocusTrap<HTMLDivElement>(visible);
 
   const { width } = useWindowDimensions();
 
@@ -79,7 +78,10 @@ export function Menu({ activator, items }: MenuProps) {
   });
 
   useOnKeyDown(handleKeyboardShortcut, ["Escape"]);
+
+  // useRefocusOnActivator must come before useFocusTrap for them both to work
   useRefocusOnActivator(visible);
+  const menuRef = useFocusTrap<HTMLDivElement>(visible);
 
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
   const {
@@ -165,8 +167,8 @@ export function Menu({ activator, items }: MenuProps) {
                     initial="startOrStop"
                     animate="done"
                     exit="startOrStop"
-                    ref={menuRef}
                     custom={state?.placement}
+                    ref={menuRef}
                     transition={{
                       type: "tween",
                       duration: 0.25,
