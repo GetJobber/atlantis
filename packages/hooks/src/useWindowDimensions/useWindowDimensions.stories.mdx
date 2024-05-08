@@ -17,10 +17,7 @@ import { useWindowDimensions } from "@jobber/hooks/useWindowDimensions";
   <Story name="useWindowDimensions">
     {() => {
       const { width } = hooks.useWindowDimensions();
-      useEffect(() => {
-        console.log({ width });
-      }, [width]);
-      return <h1>useWindowDimensions</h1>;
+      return <h1>Width is {`${width}`}</h1>;
     }}
   </Story>
 </Canvas>
