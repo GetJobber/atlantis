@@ -162,12 +162,12 @@ const Template: ComponentStory<typeof DataList> = args => {
             options: [
               {
                 id: "lastActivity",
-                label: "Last activity (Newest first)",
+                label: "Last activity (Newest)",
                 order: "desc",
               },
               {
                 id: "lastActivity",
-                label: "Last activity (Oldest first)",
+                label: "Last activity (Oldest)",
                 order: "asc",
               },
             ],

@@ -64,24 +64,6 @@ export function DataListSort() {
 
           return acc;
         }
-        // acc.push({
-        //   label: `${label} (A-Z)`,
-        //   value: JSON.stringify({
-        //     key: sort.key,
-        //     order: "asc",
-        //     label: label,
-        //     id: sort.key,
-        //   }),
-        // });
-        // acc.push({
-        //   label: `${label} (Z-A)`,
-        //   value: JSON.stringify({
-        //     key: sort.key,
-        //     order: "desc",
-        //     label: label,
-        //     id: sort.key,
-        //   }),
-        // });
 
         return acc;
       },
