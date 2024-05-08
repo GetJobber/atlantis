@@ -13,8 +13,6 @@ export default {
 } as ComponentMeta<typeof InputText>;
 
 const BasicTemplate: ComponentStory<typeof InputText> = args => {
-  const [show, setShow] = React.useState(false);
-
   return (
     <InputText
       {...args}
