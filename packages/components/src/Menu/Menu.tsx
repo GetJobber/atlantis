@@ -23,12 +23,14 @@ import { Icon } from "../Icon";
 import { focusAttribute } from "../FormField/hooks/useFormFieldFocus";
 
 const SMALL_SCREEN_BREAKPOINT = 489;
+const MENU_OFFSET = 6;
 
 const variation = {
   overlayStartStop: { opacity: 0 },
-  startOrStop: () => {
+  startOrStop: (placement: string | undefined) => {
     let y = 10;
 
+    if (placement?.indexOf("bottom") !== -1) y *= -1;
     if (window.innerWidth < 640) y = 150;
 
     return { opacity: 0, y };
@@ -80,27 +82,27 @@ export function Menu({ activator, items }: MenuProps) {
   useRefocusOnActivator(visible);
 
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
-  const { styles: popperStyles, attributes } = usePopper(
-    shadowRef.current?.nextElementSibling,
-    popperElement,
-    {
-      placement: "bottom-start",
-      modifiers: [
-        {
-          name: "flip",
-          options: {
-            flipVariations: true,
-          },
+  const {
+    styles: popperStyles,
+    attributes,
+    state,
+  } = usePopper(shadowRef.current?.nextElementSibling, popperElement, {
+    placement: "bottom-start",
+    modifiers: [
+      {
+        name: "flip",
+        options: {
+          flipVariations: true,
         },
-        {
-          name: "offset",
-          options: {
-            offset: [0, 2],
-          },
+      },
+      {
+        name: "offset",
+        options: {
+          offset: [0, MENU_OFFSET],
         },
-      ],
-    },
-  );
+      },
+    ],
+  });
   const positionAttributes =
     width > SMALL_SCREEN_BREAKPOINT
       ? {
@@ -164,6 +166,7 @@ export function Menu({ activator, items }: MenuProps) {
                     animate="done"
                     exit="startOrStop"
                     ref={menuRef}
+                    custom={state?.placement}
                     transition={{
                       type: "tween",
                       duration: 0.25,
