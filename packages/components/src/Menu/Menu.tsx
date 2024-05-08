@@ -20,7 +20,7 @@ import styles from "./Menu.css";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
 import { Icon } from "../Icon";
-import { focusAttribute } from "../FormField/hooks/useFormFieldFocus";
+import { formFieldFocusAttribute } from "../FormField/hooks/useFormFieldFocus";
 
 const SMALL_SCREEN_BREAKPOINT = 489;
 const MENU_OFFSET = 6;
@@ -154,7 +154,7 @@ export function Menu({ activator, items }: MenuProps) {
                 ref={setPopperElement}
                 className={styles.popperContainer}
                 {...positionAttributes}
-                {...focusAttribute}
+                {...formFieldFocusAttribute}
               >
                 {items.length > 0 && (
                   <motion.div

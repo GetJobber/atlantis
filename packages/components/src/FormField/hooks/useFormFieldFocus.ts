@@ -9,10 +9,10 @@ interface UseFormFieldFocusProps {
   wrapperRef?: React.RefObject<HTMLDivElement>;
 }
 
-const FOCUS_DATA_ATTRIBUTE = "data-atl-maintain-portal-focus";
+const PORTAL_FOCUS_ATTRIBUTE_NAME = "data-atl-maintain-portal-focus";
 
-export const focusAttribute = {
-  [FOCUS_DATA_ATTRIBUTE]: "true",
+export const formFieldFocusAttribute = {
+  [PORTAL_FOCUS_ATTRIBUTE_NAME]: "true",
 };
 
 export function useFormFieldFocus(
@@ -36,7 +36,7 @@ export function useFormFieldFocus(
         document.activeElement,
       );
       const focusException = activeElementRef.current?.closest(
-        `[${FOCUS_DATA_ATTRIBUTE}='true']`,
+        `[${PORTAL_FOCUS_ATTRIBUTE_NAME}='true']`,
       );
 
       if (!focusedElementWithinWrapper && !focusException) {
