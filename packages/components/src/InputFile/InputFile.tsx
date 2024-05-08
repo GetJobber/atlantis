@@ -42,6 +42,11 @@ export interface FileUpload {
   readonly uploadUrl?: string;
 
   /**
+   * The signed id of the ActiveStorage blob.
+   */
+  readonly signedId?: string;
+
+  /**
    * The data url of the file.
    */
   src(): Promise<string>;
@@ -77,6 +82,11 @@ export interface UploadParams {
    * @default "POST"
    */
   readonly httpMethod?: "POST" | "PUT";
+
+  /**
+   * The signed id of the ActiveStorage blob.
+   */
+  readonly signedId?: string;
 }
 
 interface InputFileProps {
@@ -275,9 +285,10 @@ export function InputFile({
       key = generateId(),
       fields = {},
       httpMethod = "POST",
+      signedId,
     } = params;
 
-    const fileUpload = getFileUpload(file, key, url);
+    const fileUpload = getFileUpload(file, key, url, signedId);
     onUploadStart && onUploadStart({ ...fileUpload });
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -368,6 +379,7 @@ function getFileUpload(
   file: File,
   key: string,
   uploadUrl?: string,
+  signedId?: string,
 ): FileUpload {
   return {
     key: key,
@@ -377,6 +389,7 @@ function getFileUpload(
     progress: 0,
     src: getSrc,
     uploadUrl,
+    signedId,
   };
 
   function getSrc() {
