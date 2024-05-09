@@ -224,6 +224,7 @@ function SectionHeader({ text }: SectionHeaderProps) {
         size="base"
         textColor="textSecondary"
         fontWeight="regular"
+        textCase="none"
       >
         {text}
       </Typography>

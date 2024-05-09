@@ -74,7 +74,7 @@
   flex: 1;
 }
 
-.textarea .horizontalWrapper {
+.textarea.safari .horizontalWrapper {
   margin-right: var(--field--padding-right);
 }
 
@@ -219,7 +219,6 @@
   flex: 1;
   resize: none;
   scroll-padding-bottom: var(--space-base);
-  padding-right: 0;
 }
 
 .select .input {
@@ -231,6 +230,10 @@
 .input:-webkit-autofill:focus,
 .input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px var(--color-surface) inset !important;
+}
+
+.textarea.safari .input {
+  padding-right: 0;
 }
 
 /**
