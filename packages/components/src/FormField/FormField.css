@@ -10,7 +10,7 @@
 
   --field--placeholder-color: var(--color-base-blue--600);
   --field--value-color: var(--color-heading);
-  --field--border-color: var(--color-base-blue--500);
+  --field--border-color: var(--color-border);
 
   --postfix-right: var(--space-base);
 }
