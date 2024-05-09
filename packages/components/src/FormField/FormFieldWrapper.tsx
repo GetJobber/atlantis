@@ -6,7 +6,7 @@ import React, {
   useState,
 } from "react";
 import classnames from "classnames";
-import { useShowClear } from "@jobber/hooks/useShowClear";
+import { Clearable, useShowClear } from "@jobber/hooks/useShowClear";
 import { AnimatePresence, motion } from "framer-motion";
 import { tokens } from "@jobber/design";
 import { FormFieldProps } from "./FormFieldTypes";
@@ -16,13 +16,14 @@ import { FormFieldDescription } from "./FormFieldDescription";
 import { ClearAction } from "./components/ClearAction";
 import { useToolbar } from "./hooks/useToolbar";
 import { useFormFieldFocus } from "./hooks/useFormFieldFocus";
+import { useIsSafari } from "./hooks/useIsSafari";
 import { InputValidation } from "../InputValidation";
 
 interface FormFieldWrapperProps extends FormFieldProps {
   readonly error: string;
   readonly identifier: string;
   readonly descriptionIdentifier: string;
-  readonly clearable: "never" | "always";
+  readonly clearable: Clearable;
   readonly onClear: () => void;
 }
 
@@ -31,6 +32,7 @@ interface LabelPadding {
   paddingRight: number | string | undefined;
 }
 
+// eslint-disable-next-line max-statements
 export function FormFieldWrapper({
   align,
   description,
@@ -55,6 +57,7 @@ export function FormFieldWrapper({
   toolbarVisibility = "while-editing",
   wrapperRef,
 }: PropsWithChildren<FormFieldWrapperProps>) {
+  const isSafari = useIsSafari();
   const wrapperClasses = classnames(
     styles.wrapper,
     size && styles[size],
@@ -67,6 +70,7 @@ export function FormFieldWrapper({
         (placeholder && type === "tel"),
       [styles.text]: type === "textarea" || type === "text",
       [styles.textarea]: type === "textarea",
+      [styles.safari]: isSafari && type === "textarea",
       [styles.select]: type === "select",
       [styles.invalid]: invalid ?? error,
       [styles.disabled]: disabled,

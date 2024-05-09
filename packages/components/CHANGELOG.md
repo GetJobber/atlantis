@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.3.7...@jobber/components@5.3.8) (2024-05-06)
+
+
+### Bug Fixes
+
+* **components:** Reduce Scope of Safari Scrollbar Issue ([#1877](https://github.com/GetJobber/atlantis/issues/1877)) ([382ffe4](https://github.com/GetJobber/atlantis/commit/382ffe49c03a4165d44a72c32ab54fe0efbdd25a))
+
+
+
+
+
+## [5.3.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.3.6...@jobber/components@5.3.7) (2024-05-06)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [5.3.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.3.5...@jobber/components@5.3.6) (2024-05-03)
+
+
+### Bug Fixes
+
+* **components:** use semantic values in combobox ([#1880](https://github.com/GetJobber/atlantis/issues/1880)) ([b4d6c45](https://github.com/GetJobber/atlantis/commit/b4d6c45feb6c14afd28ad1035dd086d0ff4d4d64))
+
+
+
+
+
+## [5.3.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.3.4...@jobber/components@5.3.5) (2024-04-26)
+
+
+### Bug Fixes
+
+* **components:** Input Text Safari Resize Handle ([#1876](https://github.com/GetJobber/atlantis/issues/1876)) ([9e87818](https://github.com/GetJobber/atlantis/commit/9e8781847cdb0f38ea1c4553c6631b1ef21c9de2))
+
+
+
+
+
+## [5.3.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.3.3...@jobber/components@5.3.4) (2024-04-25)
+
+
+### Bug Fixes
+
+* **components:** Allow InputText Default Value to be Clearable ([#1875](https://github.com/GetJobber/atlantis/issues/1875)) ([7026d86](https://github.com/GetJobber/atlantis/commit/7026d862ffe4bd3710d3917a9558be4565a67f16))
+
+
+
+
+
 ## [5.3.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.3.2...@jobber/components@5.3.3) (2024-04-24)
 
 **Note:** Version bump only for package @jobber/components

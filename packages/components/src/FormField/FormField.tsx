@@ -173,7 +173,7 @@ export function FormField(props: FormFieldProps) {
 
         function handleClear() {
           handleBlur();
-          setValue(controlledName, undefined, { shouldValidate: true });
+          setValue(controlledName, "", { shouldValidate: true });
           onChange && onChange("");
           inputRef?.current?.focus();
         }
