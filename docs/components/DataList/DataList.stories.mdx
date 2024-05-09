@@ -304,3 +304,53 @@ want to inform the user about something related to the Datalist.
   </DataList.StatusBar>
 </DataList>
 ```
+
+### Sorting
+
+The `sorting` prop is an object that configures the sorting functionality of the
+DataList.
+
+The `state` property is an object that holds the current sorting state of the
+DataList. The `onSort` property is a function that is called when the user
+clicks on a sortable column. Lastly, `sortable` is an array that holds
+information about which columns are sortable.
+
+Each column is identified by a `key` and will have a `sortType` property that
+can be either `dropdown` or `toggle`. The `options` property is an array of
+objects that will define the sorting options for the column.
+
+```tsx
+<DataList
+  sorting={{
+    state: sortingState,
+    onSort: sorting => {
+      setSortingState(sorting);
+    },
+    sortable: [
+      {
+        key: "label",
+        sortType: "dropdown",
+        options: [
+          {
+            id: "firstName",
+            label: "First name (A-Z)",
+            order: "asc",
+          },
+          {
+            id: "firstName",
+            label: "First name (Z-A)",
+            order: "desc",
+          },
+          { id: "lastName",
+            label: "Last name (A-Z)",
+            order: "asc"
+          },
+          {
+            id: "lastName",
+            label: "Last name (Z-A)",
+            order: "desc",
+          },
+        ],
+      },
+    ],
+```
