@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Ref, forwardRef } from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
 import { Link, LinkProps } from "react-router-dom";
@@ -100,7 +100,10 @@ export type ButtonProps = XOR<
   > &
   XOR<ButtonIconProps, ButtonLabelProps>;
 
-export function Button(props: ButtonProps) {
+export const Button = forwardRef(function Button(
+  props: ButtonProps,
+  ref: Ref<HTMLAnchorElement | HTMLButtonElement>,
+) {
   const {
     ariaControls,
     ariaHaspopup,
@@ -158,7 +161,7 @@ export function Button(props: ButtonProps) {
 
   if (to) {
     return (
-      <Link {...tagProps} to={to}>
+      <Link {...tagProps} to={to} ref={ref as Ref<HTMLAnchorElement>}>
         {buttonInternals}
       </Link>
     );
@@ -166,8 +169,12 @@ export function Button(props: ButtonProps) {
 
   const Tag = url ? "a" : "button";
 
-  return <Tag {...tagProps}>{buttonInternals}</Tag>;
-}
+  return (
+    <Tag {...tagProps} ref={ref as unknown as string}>
+      {buttonInternals}
+    </Tag>
+  );
+});
 
 function ButtonInternals({ label, icon, size = "base" }: ButtonProps) {
   return (
