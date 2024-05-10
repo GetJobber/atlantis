@@ -1,5 +1,7 @@
 import React, { DetailedHTMLProps, HTMLAttributes } from "react";
 import ReactMarkdown from "react-markdown";
+import { NormalComponents } from "react-markdown/lib/complex-types";
+import { SpecialComponents } from "react-markdown/lib/ast-to-react";
 import { Text } from "../Text";
 import { Emphasis } from "../Emphasis";
 import { Heading } from "../Heading";
@@ -21,9 +23,18 @@ interface MarkdownProps {
    * `[link name](url)`
    */
   readonly basicUsage?: boolean;
+
+  readonly components?: Partial<
+    Omit<NormalComponents, keyof SpecialComponents> & SpecialComponents
+  >;
 }
 
-export function Markdown({ content, externalLink, basicUsage }: MarkdownProps) {
+export function Markdown({
+  content,
+  externalLink,
+  basicUsage,
+  components,
+}: MarkdownProps) {
   const props = {
     ...(basicUsage && {
       disallowedElements: [
@@ -60,6 +71,7 @@ export function Markdown({ content, externalLink, basicUsage }: MarkdownProps) {
           h3: renderHeading(3),
           h4: renderHeading(4),
           h5: renderHeading(5),
+          ...components,
         }}
       >
         {content}
