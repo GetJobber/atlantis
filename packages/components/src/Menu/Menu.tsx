@@ -30,7 +30,7 @@ const variation = {
   startOrStop: (placement: string | undefined) => {
     let y = 10;
 
-    if (placement?.indexOf("bottom") !== -1) y *= -1;
+    if (placement?.includes("bottom")) y *= -1;
     if (window.innerWidth < 640) y = 150;
 
     return { opacity: 0, y };
