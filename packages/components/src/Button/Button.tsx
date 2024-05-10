@@ -27,6 +27,7 @@ interface ButtonFoundationProps {
   readonly label?: string;
   readonly loading?: boolean;
   readonly size?: "small" | "base" | "large";
+  readonly value?: string;
   onClick?(
     event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
   ): void;
@@ -121,6 +122,7 @@ export function Button(props: ButtonProps) {
     type = "primary",
     url,
     to,
+    value,
     variation = "work",
     submit,
   } = props;
@@ -142,6 +144,7 @@ export function Button(props: ButtonProps) {
     className: buttonClassNames,
     disabled,
     id,
+    value,
     ...(!disabled && { href: url }),
     ...(!disabled && { onClick: onClick }),
     ...(!disabled && { onMouseDown: onMouseDown }),
