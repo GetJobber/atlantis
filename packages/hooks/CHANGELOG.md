@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.6](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.9.5...@jobber/hooks@2.9.6) (2024-05-10)
+
+
+### Bug Fixes
+
+* **components:** Portal Menu Content ([#1881](https://github.com/GetJobber/atlantis/issues/1881)) ([8ec006c](https://github.com/GetJobber/atlantis/commit/8ec006c69a02883e1578e9c78d3249c2374fb6f6))
+
+
+
+
+
 ## [2.9.5](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.9.4...@jobber/hooks@2.9.5) (2024-04-11)
 
 **Note:** Version bump only for package @jobber/hooks

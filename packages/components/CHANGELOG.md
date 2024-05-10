@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.4.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.4.0...@jobber/components@5.4.1) (2024-05-10)
+
+
+### Bug Fixes
+
+* **components:** Portal Menu Content ([#1881](https://github.com/GetJobber/atlantis/issues/1881)) ([8ec006c](https://github.com/GetJobber/atlantis/commit/8ec006c69a02883e1578e9c78d3249c2374fb6f6))
+
+
+
+
+
 # [5.4.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.3.8...@jobber/components@5.4.0) (2024-05-10)
 
 
