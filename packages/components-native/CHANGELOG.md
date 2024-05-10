@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.66.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.65.5...@jobber/components-native@0.66.0) (2024-05-10)
+
+
+### Features
+
+* **design:** overhaul the base color palette ([#1873](https://github.com/GetJobber/atlantis/issues/1873)) ([942f1a2](https://github.com/GetJobber/atlantis/commit/942f1a2ea7920358576b6bf7f5f2bad04273fa0c))
+
+
+
+
+
 ## [0.65.5](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.65.4...@jobber/components-native@0.65.5) (2024-04-24)
 
 **Note:** Version bump only for package @jobber/components-native

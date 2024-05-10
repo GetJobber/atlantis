@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.3.8...@jobber/components@5.4.0) (2024-05-10)
+
+
+### Features
+
+* **components:** add textCase=none to Typography ([#1884](https://github.com/GetJobber/atlantis/issues/1884)) ([b230bcd](https://github.com/GetJobber/atlantis/commit/b230bcd16c752608feaa65fcb159480738220fde))
+* **design:** overhaul the base color palette ([#1873](https://github.com/GetJobber/atlantis/issues/1873)) ([942f1a2](https://github.com/GetJobber/atlantis/commit/942f1a2ea7920358576b6bf7f5f2bad04273fa0c))
+
+
+
+
+
 ## [5.3.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.3.7...@jobber/components@5.3.8) (2024-05-06)
 
 
