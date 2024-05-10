@@ -67,3 +67,37 @@ it("renders a without headings, paragraph, and wrapping content", () => {
   );
   expect(container).toMatchSnapshot();
 });
+
+describe("custom components", () => {
+  it("uses the provided components for the generated HTML", () => {
+    const { queryByTestId } = render(
+      <Markdown
+        content="This is a [link](http://to.somewhere)"
+        components={{
+          a: ({ href, children }) => (
+            <a href={href} data-testid="foo-bar">
+              {children}
+            </a>
+          ),
+        }}
+      />,
+    );
+
+    expect(queryByTestId("foo-bar")).not.toBeNull();
+  });
+
+  it("overrides the default components", () => {
+    const { queryByTestId } = render(
+      <Markdown
+        content="# A heading"
+        components={{
+          // Make all h1's be h2's
+          h1: ({ children }) => <h2 data-testid="foo-bar">{children}</h2>,
+        }}
+      />,
+    );
+
+    expect(queryByTestId("foo-bar")).not.toBeNull();
+    expect(queryByTestId("foo-bar")?.nodeName).toEqual("H2");
+  });
+});
