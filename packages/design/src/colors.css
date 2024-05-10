@@ -2,151 +2,177 @@
   /* Jobber Semantic Layer */
 
   /* Interactive and States */
-  --color-interactive: var(--color-green);
-  --color-interactive--hover: var(--color-green--dark);
-  --color-destructive: var(--color-red);
-  --color-destructive--hover: var(--color-red--dark);
-  --color-interactive--subtle: var(--color-blue);
-  --color-interactive--subtle--hover: var(--color-blue--dark);
+  --color-interactive: var(--color-base-green--600);
+  --color-interactive--hover: var(--color-base-green--700);
+  --color-destructive: var(--color-base-red--600);
+  --color-destructive--hover: var(--color-base-red--700);
+  --color-interactive--subtle: var(--color-base-blue--800);
+  --color-interactive--subtle--hover: var(--color-base-blue--900);
 
-  --color-disabled: var(--color-grey);
-  --color-disabled--secondary: var(--color-grey--lighter);
+  --color-disabled: var(--color-base-grey--400);
+  --color-disabled--secondary: var(--color-base-grey--200);
 
-  --color-focus: var(--color-blue--lighter);
+  --color-focus: var(--color-base-blue--500);
 
   /* Status Colours */
 
-  --color-critical: var(--color-red);
-  --color-critical--surface: var(--color-red--lightest);
-  --color-critical--onSurface: var(--color-red--dark);
+  --color-critical: var(--color-base-red--600);
+  --color-critical--surface: var(--color-base-red--200);
+  --color-critical--onSurface: var(--color-base-red--800);
 
-  --color-warning: var(--color-yellow);
-  --color-warning--surface: var(--color-yellow--lightest);
-  --color-warning--onSurface: var(--color-yellow--dark);
+  --color-warning: var(--color-base-yellow--400);
+  --color-warning--surface: var(--color-base-yellow--200);
+  --color-warning--onSurface: var(--color-base-yellow--700);
 
-  --color-success: var(--color-green);
-  --color-success--surface: var(--color-green--lightest);
-  --color-success--onSurface: var(--color-green--dark);
+  --color-success: var(--color-base-green--600);
+  --color-success--surface: var(--color-base-green--200);
+  --color-success--onSurface: var(--color-base-green--800);
 
-  --color-informative: var(--color-lightBlue);
-  --color-informative--surface: var(--color-lightBlue--lightest);
-  --color-informative--onSurface: var(--color-lightBlue--dark);
+  --color-informative: var(--color-base-lightBlue--500);
+  --color-informative--surface: var(--color-base-lightBlue--200);
+  --color-informative--onSurface: var(--color-base-lightBlue--700);
 
-  --color-inactive: var(--color-blue);
-  --color-inactive--surface: var(--color-greyBlue--lightest);
-  --color-inactive--onSurface: var(--color-blue);
+  --color-inactive: var(--color-base-blue--700);
+  --color-inactive--surface: var(--color-base-blue--200);
+  --color-inactive--onSurface: var(--color-base-blue--900);
 
   /* Typography + Iconography */
-  --color-heading: var(--color-blue);
-  --color-text: var(--color-greyBlue--dark);
-  --color-text--secondary: var(--color-blue--light);
+  --color-heading: var(--color-base-blue--900);
+  --color-text: var(--color-base-blue--800);
+  --color-text--secondary: var(--color-base-blue--600);
   --color-text--reverse: var(--color-white);
-  --color-text--reverse--secondary: var(--color-greyBlue--lighter);
+  --color-text--reverse--secondary: var(--color-base-blue--300);
 
-  --color-icon: var(--color-blue);
+  --color-icon: var(--color-base-blue--800);
 
   /* Surfaces and Borders */
   --color-surface: var(--color-white);
-  --color-surface--hover: var(--color-taupe);
-  --color-surface--active: var(--color-blue--lightest);
-  --color-surface--background: var(--color-taupe);
-  --color-surface--background--hover: var(--color-taupe--dark);
-  --color-surface--background--subtle: var(--color-taupe--light);
-  --color-surface--reverse: var(--color-blue);
+  --color-surface--hover: var(--color-base-taupe--200);
+  --color-surface--background: var(--color-base-taupe--200);
+  --color-surface--background--hover: var(--color-base-taupe--300);
+  --color-surface--background--subtle: var(--color-base-taupe--100);
+  --color-surface--background--subtle--hover: var(--color-base-taupe--300);
+  --color-surface--reverse: var(--color-base-blue--900);
 
-  --color-border: var(--color-blue--lightest);
-  --color-border--section: var(--color-blue);
+  --color-surface--active: var(--color-base-taupe--300);
+
+  --color-border: var(--color-base-blue--300);
+  --color-border--interactive: var(--color-base-blue--500);
+  --color-border--section: var(--color-base-blue--900);
 
   --color-overlay: rgba(var(--color-black--rgb), 0.32);
   --color-overlay--dimmed: rgba(var(--color-white--rgb), 0.6);
 
   /* Brand */
-  --color-brand: rgb(124, 175, 14);
-  --color-brand--highlight: rgb(132, 234, 0);
+  --color-brand: var(--color-base-lime--500);
+  --color-brand--highlight: hsl(86, 100%, 46%);
 
   /* Jobber Workflow Colors */
-  --color-request: rgb(185, 133, 70);
-  --color-quote: rgb(164, 70, 88);
-  --color-job: var(--color-green);
-  --color-visit: var(--color-job);
-  --color-task: var(--color-navy);
-  --color-event: var(--color-yellow);
-  --color-invoice: rgb(49, 98, 144);
-  --color-payments: var(--color-invoice);
+  --color-request: var(--color-base-orange--600);
+  --color-request--surface: var(--color-base-orange--200);
+  --color-request--onSurface: var(--color-base-orange--800);
 
-  --color-client: var(--color-blue);
+  --color-quote: var(--color-base-pink--700);
+  --color-quote--surface: var(--color-base-pink--200);
+  --color-quote--onSurface: var(--color-base-pink--800);
+
+  --color-job: var(--color-base-green--600);
+  --color-job--surface: var(--color-base-green--200);
+  --color-job--onSurface: var(--color-base-green--700);
+
+  --color-task: var(--color-base-lightBlue--800);
+  --color-task--surface: var(--color-base-blue--200);
+  --color-task--onSurface: var(--color-base-blue--800);
+
+  --color-invoice: var(--color-base-lightBlue--700);
+  --color-invoice--surface: var(--color-base-lightBlue--200);
+  --color-invoice--onSurface: var(--color-base-lightBlue--800);
+
+  --color-visit: var(--color-job);
+  --color-visit--surface: var(--color-job--surface);
+  --color-visit--onSurface: var(--color-job--onSurface);
+
+  --color-event: var(--color-base-yellow--400);
+  --color-event--surface: var(--color-base-yellow--200);
+  --color-event--onSurface: var(--color-base-yellow--700);
+
+  --color-payments: var(--color-invoice);
+  --color-payments--surface: var(--color-invoice--surface);
+  --color-payments--onSurface: var(--color-invoice--surface);
+
+  --color-client: var(--color-base-taupe--700);
 
   /* Jobber Base Palette */
-  --color-blue: rgb(1, 40, 55);
-  --color-blue--light: rgb(78, 105, 116);
-  --color-blue--lighter: rgb(131, 151, 160);
-  --color-blue--lightest: rgb(218, 224, 226);
-  --color-blue--dark: rgb(1, 25, 35);
+  --color-blue: var(--color-base-blue--900);
+  --color-blue--light: var(--color-base-blue--700);
+  --color-blue--lighter: var(--color-base-blue--500);
+  --color-blue--lightest: var(--color-base-blue--300);
+  --color-blue--dark: var(--color-base-blue--1000);
 
-  --color-taupe: rgb(241, 239, 233);
-  --color-taupe--light: rgb(252, 250, 244);
-  --color-taupe--dark: rgb(231, 229, 217);
+  --color-taupe: var(--color-base-taupe--200);
+  --color-taupe--light: var(--color-base-taupe--100);
+  --color-taupe--dark: var(--color-base-taupe--300);
 
-  --color-green: rgb(50, 130, 28);
-  --color-green--light: rgb(104, 162, 87);
-  --color-green--lighter: rgb(198, 221, 192);
-  --color-green--lightest: rgb(241, 247, 238);
-  --color-green--dark: rgb(14, 78, 26);
+  --color-green: var(--color-base-green--600);
+  --color-green--light: var(--color-base-green--500);
+  --color-green--lighter: var(--color-base-green--400);
+  --color-green--lightest: var(--color-base-green--200);
+  --color-green--dark: var(--color-base-green--800);
 
-  --color-lime: rgb(153, 194, 71);
-  --color-lime--light: rgb(184, 212, 126);
-  --color-lime--lighter: rgb(214, 230, 181);
-  --color-lime--lightest: rgb(240, 246, 227);
-  --color-lime--dark: rgb(99, 125, 46);
+  --color-lime: var(--color-base-lime--500);
+  --color-lime--light: var(--color-base-lime--400);
+  --color-lime--lighter: var(--color-base-lime--300);
+  --color-lime--lightest: var(--color-base-lime--200);
+  --color-lime--dark: var(--color-base-lime--700);
 
-  --color-yellowGreen: rgb(187, 197, 32);
-  --color-yellowGreen--light: rgb(207, 214, 99);
-  --color-yellowGreen--lighter: rgb(228, 232, 166);
-  --color-yellowGreen--lightest: rgb(245, 246, 222);
-  --color-yellowGreen--dark: rgb(122, 128, 21);
+  --color-yellowGreen: var(--color-base-lime--500);
+  --color-yellowGreen--light: var(--color-base-lime--400);
+  --color-yellowGreen--lighter: var(--color-base-lime--300);
+  --color-yellowGreen--lightest: var(--color-base-lime--200);
+  --color-yellowGreen--dark: var(--color-base-lime--600);
 
-  --color-yellow: rgb(209, 185, 46);
-  --color-yellow--light: rgb(231, 213, 87);
-  --color-yellow--lighter: rgb(241, 231, 159);
-  --color-yellow--lightest: rgb(250, 248, 234);
-  --color-yellow--dark: rgb(91, 79, 6);
+  --color-yellow: var(--color-base-yellow--400);
+  --color-yellow--light: var(--color-base-yellow--300);
+  --color-yellow--lighter: var(--color-base-yellow--200);
+  --color-yellow--lightest: var(--color-base-yellow--100);
+  --color-yellow--dark: var(--color-base-yellow--600);
 
-  --color-red: rgb(199, 20, 0);
-  --color-red--light: rgb(233, 141, 119);
-  --color-red--lighter: rgb(255, 206, 194);
-  --color-red--lightest: rgb(250, 237, 234);
-  --color-red--dark: rgb(87, 9, 0);
+  --color-red: var(--color-base-red--600);
+  --color-red--light: var(--color-base-red--400);
+  --color-red--lighter: var(--color-base-red--300);
+  --color-red--lightest: var(--color-base-red--200);
+  --color-red--dark: var(--color-base-red--800);
 
-  --color-grey: rgb(181, 181, 181);
-  --color-grey--light: rgb(203, 203, 203);
-  --color-grey--lighter: rgb(225, 225, 225);
-  --color-grey--lightest: rgb(244, 244, 244);
-  --color-grey--dark: rgb(118, 118, 118);
+  --color-grey: var(--color-base-grey--400);
+  --color-grey--light: var(--color-base-grey--300);
+  --color-grey--lighter: var(--color-base-grey--200);
+  --color-grey--lightest: var(--color-base-grey--100);
+  --color-grey--dark: var(--color-base-grey--600);
 
   --color-greyBlue--rgb: 101, 120, 132;
-  --color-greyBlue: rgba(var(--color-greyBlue--rgb), 1);
-  --color-greyBlue--light: rgb(147, 161, 169);
-  --color-greyBlue--lighter: rgb(193, 201, 206);
-  --color-greyBlue--lightest: rgb(238, 240, 242);
-  --color-greyBlue--dark: rgb(66, 78, 86);
+  --color-greyBlue: var(--color-base-blue--600);
+  --color-greyBlue--light: var(--color-base-blue--500);
+  --color-greyBlue--lighter: var(--color-base-blue--400);
+  --color-greyBlue--lightest: var(--color-base-blue--200);
+  --color-greyBlue--dark: var(--color-base-blue--800);
 
-  --color-lightBlue: rgb(60, 162, 224);
-  --color-lightBlue--light: rgb(119, 190, 233);
-  --color-lightBlue--lighter: rgb(177, 218, 243);
-  --color-lightBlue--lightest: rgb(239, 246, 251);
-  --color-lightBlue--dark: rgb(17, 66, 85);
+  --color-lightBlue: var(--color-base-lightBlue--500);
+  --color-lightBlue--light: var(--color-base-lightBlue--400);
+  --color-lightBlue--lighter: var(--color-base-lightBlue--300);
+  --color-lightBlue--lightest: var(--color-base-lightBlue--200);
+  --color-lightBlue--dark: var(--color-base-lightBlue--600);
 
-  --color-purple: rgb(136, 112, 196);
+  --color-purple: var(--color-base-pink--800);
   --color-purple--light: rgb(172, 155, 214);
   --color-purple--lighter: rgb(207, 198, 231);
   --color-purple--lightest: rgb(237, 234, 246);
-  --color-purple--dark: rgb(88, 73, 127);
+  --color-purple--dark: var(--color-base-pink--900);
 
-  --color-pink: rgb(179, 96, 150);
-  --color-pink--light: rgb(202, 144, 182);
-  --color-pink--lighter: rgb(225, 191, 213);
-  --color-pink--lightest: rgb(244, 231, 239);
-  --color-pink--dark: rgb(116, 62, 98);
+  --color-pink: var(--color-base-pink--600);
+  --color-pink--light: var(--color-base-pink--500);
+  --color-pink--lighter: var(--color-base-pink--400);
+  --color-pink--lightest: var(--color-base-pink--200);
+  --color-pink--dark: var(--color-base-pink--800);
 
   --color-teal: rgb(62, 173, 146);
   --color-teal--light: rgb(120, 198, 179);
@@ -154,23 +180,23 @@
   --color-teal--lightest: rgb(226, 243, 239);
   --color-teal--dark: rgb(40, 112, 95);
 
-  --color-orange: rgb(227, 142, 38);
-  --color-orange--light: rgb(247, 182, 102);
-  --color-orange--lighter: rgb(250, 213, 167);
-  --color-orange--lightest: rgb(253, 239, 222);
-  --color-orange--dark: rgb(158, 98, 23);
+  --color-orange: var(--color-base-orange--500);
+  --color-orange--light: var(--color-base-orange--400);
+  --color-orange--lighter: var(--color-base-orange--300);
+  --color-orange--lightest: var(--color-base-orange--200);
+  --color-orange--dark: var(--color-base-orange--600);
 
-  --color-brown: rgb(130, 107, 70);
-  --color-brown--light: rgb(168, 151, 126);
-  --color-brown--lighter: rgb(205, 196, 181);
-  --color-brown--lightest: rgb(236, 233, 227);
-  --color-brown--dark: rgb(85, 70, 46);
+  --color-brown: var(--color-base-orange--700);
+  --color-brown--light: var(--color-base-orange--600);
+  --color-brown--lighter: var(--color-base-taupe--300);
+  --color-brown--lightest: var(--color-base-taupe-200);
+  --color-brown--dark: var(--color-base-orange--800);
 
-  --color-navy: rgb(75, 106, 150);
-  --color-navy--light: rgb(129, 151, 182);
-  --color-navy--lighter: rgb(183, 195, 213);
-  --color-navy--lightest: rgb(228, 233, 239);
-  --color-navy--dark: rgb(49, 69, 98);
+  --color-navy: var(--color-base-lightBlue--700);
+  --color-navy--light: var(--color-base-lightBlue--600);
+  --color-navy--lighter: var(--color-base-blue--300);
+  --color-navy--lightest: var(--color-base-blue--200);
+  --color-navy--dark: var(--color-base-lightBlue--800);
 
   --color-indigo: rgb(85, 106, 203);
   --color-indigo--light: rgb(136, 151, 219);
@@ -180,7 +206,119 @@
 
   --color-white--rgb: 255, 255, 255;
   --color-white: rgba(var(--color-white--rgb), 1);
+  --color-base-white: var(--color-white);
+
+  --color-base-grey--100: hsl(0, 0%, 97%);
+  --color-base-grey--200: hsl(0, 0%, 93%);
+  --color-base-grey--300: hsl(0, 0%, 87%);
+  --color-base-grey--400: hsl(0, 0%, 72%);
+  --color-base-grey--500: hsl(0, 0%, 58%);
+  --color-base-grey--600: hsl(0, 0%, 47%);
+  --color-base-grey--700: hsl(0, 0%, 35%);
+  --color-base-grey--800: hsl(0, 0%, 24%);
+  --color-base-grey--900: hsl(0, 0%, 15%);
+  --color-base-grey--1000: hsl(0, 0%, 11%);
 
   --color-black--rgb: 0, 0, 0;
   --color-black: rgba(var(--color-black--rgb), 1);
+  --color-base-black: var(--color-black);
+
+  --color-base-taupe--100: hsl(45, 20%, 97%);
+  --color-base-taupe--200: hsl(53, 21%, 93%);
+  --color-base-taupe--300: hsl(51, 17%, 85%);
+  --color-base-taupe--400: hsl(49, 7%, 70%);
+  --color-base-taupe--500: hsl(47, 4%, 57%);
+  --color-base-taupe--600: hsl(43, 3%, 46%);
+  --color-base-taupe--700: hsl(48, 3%, 34%);
+  --color-base-taupe--800: hsl(40, 3%, 23%);
+  --color-base-taupe--900: hsl(30, 3%, 15%);
+  --color-base-taupe--1000: hsl(30, 4%, 11%);
+
+  --color-base-red--100: hsl(10, 60%, 98%);
+  --color-base-red--200: hsl(7, 63%, 95%);
+  --color-base-red--300: hsl(5, 65%, 90%);
+  --color-base-red--400: hsl(6, 64%, 76%);
+  --color-base-red--500: hsl(6, 64%, 65%);
+  --color-base-red--600: hsl(6, 64%, 51%);
+  --color-base-red--700: hsl(6, 100%, 35%);
+  --color-base-red--800: hsl(6, 100%, 24%);
+  --color-base-red--900: hsl(6, 100%, 16%);
+  --color-base-red--1000: hsl(6, 100%, 12%);
+
+  --color-base-green--100: hsl(108, 29%, 97%);
+  --color-base-green--200: hsl(109, 28%, 92%);
+  --color-base-green--300: hsl(106, 28%, 85%);
+  --color-base-green--400: hsl(107, 29%, 65%);
+  --color-base-green--500: hsl(107, 30%, 49%);
+  --color-base-green--600: hsl(107, 58%, 33%);
+  --color-base-green--700: hsl(107, 65%, 24%);
+  --color-base-green--800: hsl(107, 64%, 16%);
+  --color-base-green--900: hsl(108, 63%, 11%);
+  --color-base-green--1000: hsl(108, 64%, 8%);
+
+  --color-base-blue--100: hsl(210, 17%, 98%);
+  --color-base-blue--200: hsl(195, 12%, 94%);
+  --color-base-blue--300: hsl(200, 13%, 87%);
+  --color-base-blue--400: hsl(196, 12%, 70%);
+  --color-base-blue--500: hsl(198, 12%, 57%);
+  --color-base-blue--600: hsl(197, 15%, 45%);
+  --color-base-blue--700: hsl(198, 25%, 33%);
+  --color-base-blue--800: hsl(198, 35%, 21%);
+  --color-base-blue--900: hsl(197, 90%, 12%);
+  --color-base-blue--1000: hsl(198, 96%, 9%);
+
+  --color-base-yellow--100: hsl(49, 67%, 95%);
+  --color-base-yellow--200: hsl(52, 64%, 89%);
+  --color-base-yellow--300: hsl(51, 64%, 77%);
+  --color-base-yellow--400: hsl(51, 64%, 49%);
+  --color-base-yellow--500: hsl(51, 64%, 40%);
+  --color-base-yellow--600: hsl(51, 64%, 32%);
+  --color-base-yellow--700: hsl(51, 64%, 24%);
+  --color-base-yellow--800: hsl(51, 64%, 16%);
+  --color-base-yellow--900: hsl(51, 63%, 11%);
+  --color-base-yellow--1000: hsl(50, 64%, 8%);
+
+  --color-base-lime--100: hsl(80, 53%, 97%);
+  --color-base-lime--200: hsl(79, 49%, 90%);
+  --color-base-lime--300: hsl(79, 51%, 78%);
+  --color-base-lime--400: hsl(79, 51%, 51%);
+  --color-base-lime--500: hsl(79, 85%, 34%);
+  --color-base-lime--600: hsl(79, 86%, 27%);
+  --color-base-lime--700: hsl(79, 85%, 21%);
+  --color-base-lime--800: hsl(79, 86%, 14%);
+  --color-base-lime--900: hsl(78, 87%, 9%);
+  --color-base-lime--1000: hsl(79, 82%, 7%);
+
+  --color-base-lightBlue--100: hsl(205, 86%, 97%);
+  --color-base-lightBlue--200: hsl(207, 87%, 94%);
+  --color-base-lightBlue--300: hsl(206, 91%, 87%);
+  --color-base-lightBlue--400: hsl(207, 89%, 71%);
+  --color-base-lightBlue--500: hsl(207, 79%, 57%);
+  --color-base-lightBlue--600: hsl(207, 61%, 45%);
+  --color-base-lightBlue--700: hsl(207, 61%, 34%);
+  --color-base-lightBlue--800: hsl(206, 61%, 23%);
+  --color-base-lightBlue--900: hsl(207, 61%, 15%);
+  --color-base-lightBlue--1000: hsl(207, 60%, 11%);
+
+  --color-base-pink--100: hsl(345, 40%, 98%);
+  --color-base-pink--200: hsl(347, 33%, 95%);
+  --color-base-pink--300: hsl(348, 36%, 89%);
+  --color-base-pink--400: hsl(349, 34%, 75%);
+  --color-base-pink--500: hsl(349, 34%, 64%);
+  --color-base-pink--600: hsl(348, 34%, 53%);
+  --color-base-pink--700: hsl(348, 40%, 41%);
+  --color-base-pink--800: hsl(348, 40%, 27%);
+  --color-base-pink--900: hsl(347, 41%, 18%);
+  --color-base-pink--1000: hsl(349, 40%, 13%);
+
+  --color-base-orange--100: hsl(36, 71%, 97%);
+  --color-base-orange--200: hsl(34, 76%, 92%);
+  --color-base-orange--300: hsl(32, 78%, 84%);
+  --color-base-orange--400: hsl(33, 77%, 63%);
+  --color-base-orange--500: hsl(33, 71%, 48%);
+  --color-base-orange--600: hsl(33, 71%, 38%);
+  --color-base-orange--700: hsl(33, 71%, 29%);
+  --color-base-orange--800: hsl(33, 72%, 20%);
+  --color-base-orange--900: hsl(33, 72%, 13%);
+  --color-base-orange--1000: hsl(33, 70%, 9%);
 }
