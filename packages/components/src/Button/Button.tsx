@@ -26,6 +26,7 @@ interface ButtonFoundationProps {
   readonly id?: string;
   readonly label?: string;
   readonly loading?: boolean;
+  readonly name?: string;
   readonly size?: "small" | "base" | "large";
   readonly value?: string;
   onClick?(
@@ -115,6 +116,7 @@ export function Button(props: ButtonProps) {
     iconOnRight,
     id,
     loading,
+    name,
     onClick,
     onMouseDown,
     role,
@@ -144,6 +146,7 @@ export function Button(props: ButtonProps) {
     className: buttonClassNames,
     disabled,
     id,
+    name,
     value,
     ...(!disabled && { href: url }),
     ...(!disabled && { onClick: onClick }),
