@@ -51,10 +51,7 @@ Horizontal.args = {
 };
 
 const CustomActivatorTemplate: ComponentStory<typeof Menu> = args => (
-  <>
-    <div style={{ height: "600px" }}></div>
-    <Menu {...args} activator={<Button label="My Fancy Menu" />} />
-  </>
+  <Menu {...args} activator={<Button label="My Fancy Menu" />} />
 );
 
 export const CustomActivator = CustomActivatorTemplate.bind({});
