@@ -70,9 +70,12 @@
 
 .horizontalWrapper {
   display: flex;
-  width: 100%;
   height: var(--field--height);
   flex: 1;
+}
+
+.textarea.safari .horizontalWrapper {
+  margin-right: var(--field--padding-right);
 }
 
 .timeInputLabel:not(:focus-within) input {
@@ -227,6 +230,10 @@
 .input:-webkit-autofill:focus,
 .input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px var(--color-surface) inset !important;
+}
+
+.textarea.safari .input {
+  padding-right: 0;
 }
 
 /**
