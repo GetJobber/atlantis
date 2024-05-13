@@ -42,7 +42,7 @@ function InternalActivator(
   ref: Ref<HTMLElement>,
 ) {
   const { activator, fullWidth } = props;
-  const newActivatorProps = omit(props, ["activator", "fullWidth", "value"]);
+  const newActivatorProps = omit(props, ["activator", "fullWidth"]);
 
   if (activator) {
     if (isValidElement(activator)) {
@@ -56,10 +56,12 @@ function InternalActivator(
         ref,
       });
     } else {
-      return (activator as React.FunctionComponent)(props);
+      // @ts-ignore - TODO: Fix Types
+      return activator(props);
     }
   } else {
     return (
+      // @ts-ignore - TODO: Fix Types
       <Button
         variation="work"
         type="tertiary"
