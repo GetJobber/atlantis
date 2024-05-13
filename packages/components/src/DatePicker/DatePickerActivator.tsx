@@ -56,7 +56,6 @@ function InternalActivator(
         ref,
       });
     } else {
-      // @ts-expect-error this is mistyped elsewhere as ReactElement.
       return activator(props);
     }
   } else {
