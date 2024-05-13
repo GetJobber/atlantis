@@ -26,9 +26,7 @@ interface ButtonFoundationProps {
   readonly id?: string;
   readonly label?: string;
   readonly loading?: boolean;
-  readonly name?: string;
   readonly size?: "small" | "base" | "large";
-  readonly value?: string;
   onClick?(
     event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
   ): void;
@@ -83,6 +81,16 @@ interface SubmitButtonProps
    * Allows the button to submit a form
    */
   submit: boolean;
+
+  /**
+   * Allows a name to be set (for Form submission) if button is of type submit
+   */
+  name?: string;
+
+  /**
+   * Allows a value to be set (for Form submission) if button is of type submit
+   */
+  value?: string;
 }
 
 interface BasicButtonProps extends ButtonFoundationProps {
