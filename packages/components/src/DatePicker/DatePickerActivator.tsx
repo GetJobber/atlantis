@@ -56,12 +56,12 @@ function InternalActivator(
         ref,
       });
     } else {
-      // @ts-ignore - TODO: Fix Types
+      // @ts-expect-error - TODO: Fix Types
       return activator(props);
     }
   } else {
     return (
-      // @ts-ignore - TODO: Fix Types
+      // @ts-expect-error - TODO: Fix Types
       <Button
         variation="work"
         type="tertiary"
