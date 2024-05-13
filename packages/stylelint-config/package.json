@@ -4,15 +4,17 @@
   "license": "MIT",
   "main": "stylelint.config.js",
   "dependencies": {
-    "prettier": "^2.4.1",
     "style-search": "^0.1.0",
     "stylelint-config-css-modules": "^4.4.0",
     "stylelint-config-standard": "^36.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.8.0",
-    "stylelint-order": "^6.0.4",
-    "stylelint-prettier": "^2.0.0"
+    "stylelint-order": "^6.0.4"
   },
   "peerDependencies": {
     "stylelint": "^16.2.1"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5",
+    "stylelint-prettier": "^5.0.0"
   }
 }
