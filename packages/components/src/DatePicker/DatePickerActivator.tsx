@@ -42,7 +42,7 @@ function InternalActivator(
   ref: Ref<HTMLElement>,
 ) {
   const { activator, fullWidth } = props;
-  const newActivatorProps = omit(props, ["activator", "fullWidth"]);
+  const newActivatorProps = omit(props, ["activator", "fullWidth", "value"]);
 
   if (activator) {
     if (isValidElement(activator)) {
@@ -56,7 +56,7 @@ function InternalActivator(
         ref,
       });
     } else {
-      return activator(props);
+      return (activator as React.FunctionComponent)(props);
     }
   } else {
     return (
