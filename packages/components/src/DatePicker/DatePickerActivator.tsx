@@ -56,12 +56,12 @@ function InternalActivator(
         ref,
       });
     } else {
-      // @ts-expect-error - TODO: Fix Types
+      // @ts-expect-error this is mistyped elsewhere as ReactElement.
       return activator(props);
     }
   } else {
     return (
-      // @ts-expect-error - TODO: Fix Types
+      // @ts-expect-error - we need to desctructure the newActivatorProps with more care to XOR prop types.
       <Button
         variation="work"
         type="tertiary"
