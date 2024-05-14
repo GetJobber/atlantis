@@ -134,6 +134,7 @@ exports[`renders a Page 1`] = `
           Improve job completion rates, stop chasing payments, and boost your customer service by automatically communicating with your clients at key points before, during, and after a job. Read more about Notifications by visiting our 
           <a
             href="https://help.getjobber.com/hc/en-us/articles/115009737128"
+            rel="noreferrer"
           >
             Help Center
           </a>
