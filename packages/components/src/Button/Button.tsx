@@ -71,8 +71,10 @@ interface DestructiveActionProps extends ButtonFoundationProps {
 
 interface SubmitActionProps
   extends Omit<ButtonFoundationProps, "external" | "onClick"> {
-  readonly type?: "primary";
+  readonly name?: string;
   readonly submit: boolean;
+  readonly type?: "primary";
+  readonly value?: string;
 }
 
 interface SubmitButtonProps
@@ -114,6 +116,7 @@ export function Button(props: ButtonProps) {
     iconOnRight,
     id,
     loading,
+    name,
     onClick,
     onMouseDown,
     role,
@@ -121,6 +124,7 @@ export function Button(props: ButtonProps) {
     type = "primary",
     url,
     to,
+    value,
     variation = "work",
     submit,
   } = props;
@@ -142,6 +146,7 @@ export function Button(props: ButtonProps) {
     className: buttonClassNames,
     disabled,
     id,
+    ...(submit && { name, value }),
     ...(!disabled && { href: url }),
     ...(!disabled && { onClick: onClick }),
     ...(!disabled && { onMouseDown: onMouseDown }),
