@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.5.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.4.2...@jobber/components@5.5.0) (2024-05-14)
+
+
+### Features
+
+* **components:** Add name and value props to Button ([#1886](https://github.com/GetJobber/atlantis/issues/1886)) ([d825c1e](https://github.com/GetJobber/atlantis/commit/d825c1eab72a7e694e8a0f7550c7532df3d210ed))
+
+
+
+
+
 ## [5.4.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.4.1...@jobber/components@5.4.2) (2024-05-13)
 
 **Note:** Version bump only for package @jobber/components
