@@ -69,16 +69,14 @@ interface DestructiveActionProps extends ButtonFoundationProps {
   readonly type?: "primary" | "secondary" | "tertiary";
 }
 
-interface SubmitActionProps
-  extends Omit<ButtonFoundationProps, "external" | "onClick"> {
+interface SubmitActionProps extends Omit<ButtonFoundationProps, "external"> {
   readonly name?: string;
   readonly submit: boolean;
-  readonly type?: "primary";
+  readonly type?: "primary" | "secondary" | "tertiary";
   readonly value?: string;
 }
 
-interface SubmitButtonProps
-  extends Omit<ButtonFoundationProps, "external" | "onClick"> {
+interface SubmitButtonProps extends Omit<ButtonFoundationProps, "external"> {
   /**
    * Allows the button to submit a form
    */
