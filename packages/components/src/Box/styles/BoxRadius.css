@@ -1,0 +1,19 @@
+.radius-small {
+  border-radius: var(--radius-small);
+}
+
+.radius-base {
+  border-radius: var(--radius-base);
+}
+
+.radius-large {
+  border-radius: var(--radius-large);
+}
+
+.radius-larger {
+  border-radius: var(--radius-larger);
+}
+
+.radius-circle {
+  border-radius: var(--radius-circle);
+}

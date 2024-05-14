@@ -1,0 +1,24 @@
+.border {
+  border-color: var(--color-border);
+  border-style: solid;
+}
+
+.border-base {
+  border-width: var(--box-border);
+}
+
+.border-top {
+  border-top-width: var(--box-border-top);
+}
+
+.border-right {
+  border-right-width: var(--box-border-right);
+}
+
+.border-bottom {
+  border-bottom-width: var(--box-border-bottom);
+}
+
+.border-left {
+  border-left-width: var(--box-border-left);
+}
