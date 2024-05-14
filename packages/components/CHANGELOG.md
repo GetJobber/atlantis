@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.5.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.5.0...@jobber/components@5.5.1) (2024-05-14)
+
+
+### Bug Fixes
+
+* **components:** Allow type on submit action button ([#1889](https://github.com/GetJobber/atlantis/issues/1889)) ([176ab22](https://github.com/GetJobber/atlantis/commit/176ab22b3a614cbe92529f8bc08e0e06ada2489d))
+
+
+
+
+
 # [5.5.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.4.2...@jobber/components@5.5.0) (2024-05-14)
 
 
