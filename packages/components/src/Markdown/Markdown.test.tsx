@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import React from "react";
 import { Markdown } from ".";
 
@@ -68,36 +68,30 @@ it("renders a without headings, paragraph, and wrapping content", () => {
   expect(container).toMatchSnapshot();
 });
 
-describe("custom components", () => {
-  it("uses the provided components for the generated HTML", () => {
-    const { queryByTestId } = render(
+describe("links", () => {
+  it("calls the callback when onLinkClick is provided", () => {
+    const onLinkClick = jest.fn();
+    const link = "http://to.somewhere/";
+    const { queryByText } = render(
       <Markdown
-        content="This is a [link](http://to.somewhere)"
-        components={{
-          a: ({ href, children }) => (
-            <a href={href} data-testid="foo-bar">
-              {children}
-            </a>
-          ),
-        }}
+        content={`This is a [link](${link})`}
+        onLinkClick={onLinkClick}
       />,
     );
 
-    expect(queryByTestId("foo-bar")).not.toBeNull();
+    fireEvent.click(queryByText("link") as HTMLElement);
+
+    expect(onLinkClick).toHaveBeenCalledTimes(1);
+    expect((onLinkClick.mock.calls[0][0] as HTMLAnchorElement).href).toBe(link);
   });
 
-  it("overrides the default components", () => {
-    const { queryByTestId } = render(
-      <Markdown
-        content="# A heading"
-        components={{
-          // Make all h1's be h2's
-          h1: ({ children }) => <h2 data-testid="foo-bar">{children}</h2>,
-        }}
-      />,
+  it("opens links in a new tab when externalLink is true", () => {
+    const link = "http://to.somewhere/";
+    const { queryByText } = render(
+      <Markdown content={`This [link](${link})`} externalLink />,
     );
 
-    expect(queryByTestId("foo-bar")).not.toBeNull();
-    expect(queryByTestId("foo-bar")?.nodeName).toEqual("H2");
+    expect((queryByText("link") as HTMLAnchorElement).target).toBe("_blank");
+    expect((queryByText("link") as HTMLAnchorElement).href).toBe(link);
   });
 });
