@@ -193,6 +193,7 @@ exports[`renders a without headings, paragraph, and wrapping content 1`] = `
 and of course a 
   <a
     href="http://to.somewhere"
+    rel="noreferrer"
   >
     link
   </a>

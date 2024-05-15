@@ -89,6 +89,7 @@ exports[`renders a full FeatureSwitch 1`] = `
             Send a 
             <a
               href="www.fakeurl.com"
+              rel="noreferrer"
               target="_blank"
             >
               notification
