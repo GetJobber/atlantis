@@ -18,7 +18,7 @@ export default {
 
 const BasicTemplate: ComponentStory<typeof Flex> = args => (
   <Flex {...args}>
-    <Flex alignItems="start" template={["shrink", "grow"]}>
+    <Flex align="start" template={["shrink", "grow"]}>
       <Icon name="quote" />
       <Content spacing="small">
         <Flex template={["grow", "shrink"]}>
@@ -35,15 +35,4 @@ const BasicTemplate: ComponentStory<typeof Flex> = args => (
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
   template: ["grow", "shrink"],
-};
-
-export const JustifyContent: ComponentStory<typeof Flex> = args => (
-  <Flex {...args}>
-    <div style={{ height: 20 }}>Left</div>
-    <div style={{ height: 30 }}>Center</div>
-    <div style={{ height: 40 }}>Right</div>
-  </Flex>
-);
-JustifyContent.args = {
-  template: [],
 };
