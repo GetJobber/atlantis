@@ -54,7 +54,7 @@
   border-bottom-left-radius: var(--public-field--bottom-left-radius);
   border-top-left-radius: var(--public-field--top-left-radius);
   color: var(--field--value-color);
-  font-size: var(--typography--fontSize-base);
+  font-size: var(--base-unit);
   background-color: var(--field--background-color);
 }
 
