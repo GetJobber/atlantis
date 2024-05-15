@@ -57,8 +57,22 @@ export interface SortableOptions {
 }
 
 export interface DataListSortable {
+  /**
+   * The key of the sortable column.
+   */
   readonly key: string;
-  readonly options?: SortableOptions[];
+
+  /**
+   * The type of sorting on the column. Toggle will show the sorting arrows
+   * on the column header. Dropdown will show a menu with the sorting
+   * options.
+   */
+  readonly sortType: "toggle" | "dropdown";
+
+  /**
+   * The sorting options, containing id, label and order.
+   */
+  readonly options: SortableOptions[];
 }
 
 export interface DataListProps<T extends DataListObject> {
