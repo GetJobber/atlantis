@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.5.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.5.1...@jobber/components@5.5.2) (2024-05-15)
+
+
+### Reverts
+
+* Revert "fix(components): Portal Menu Content" ([#1891](https://github.com/GetJobber/atlantis/issues/1891)) ([ad35140](https://github.com/GetJobber/atlantis/commit/ad35140afe6ac6756cf5167e29d9f94ef4b68286)), closes [#1881](https://github.com/GetJobber/atlantis/issues/1881)
+
+
+
+
+
 ## [5.5.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.5.0...@jobber/components@5.5.1) (2024-05-14)
 
 
