@@ -74,6 +74,21 @@ These are the core packages you'll need to build with Atlantis:
 - [Design](?path=/docs/packages-design--page)
 - [Hooks](?path=/docs/packages-hooks--page)
 
+#### Installing specific versions
+
+Once a package is installed, update that package to the latest version by
+running:
+
+```sh
+npm install @jobber/{package}@latest
+```
+
+or if you want a specific version:
+
+```sh
+npm install @jobber/{package}@{version}
+```
+
 ### Tooling and configuration
 
 If you're looking to build documentation and tooling using Atlantis' development
