@@ -73,7 +73,7 @@ interface SubmitActionProps
   extends Omit<ButtonFoundationProps, "external" | "onClick"> {
   readonly name?: string;
   readonly submit: boolean;
-  readonly type?: "primary";
+  readonly type?: "primary" | "secondary" | "tertiary";
   readonly value?: string;
 }
 
