@@ -14,6 +14,8 @@ module.exports = {
     }),
     postcss({
       modules: { generateScopedName: "[hash:base64]" },
+      extract: "design.css",
+      inject: false,
       autoModules: false,
       plugins: [
         require("postcss-import"),
