@@ -58,9 +58,6 @@ exports[`When actions are provided renders a Page with action buttons and a menu
               <div
                 class="wrapper"
               >
-                <span
-                  class="shadowRef"
-                />
                 <button
                   aria-controls=":r1:"
                   aria-expanded="false"

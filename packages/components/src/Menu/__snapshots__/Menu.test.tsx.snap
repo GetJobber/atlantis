@@ -5,9 +5,6 @@ exports[`Menu renders 1`] = `
   <div
     class="wrapper"
   >
-    <span
-      class="shadowRef"
-    />
     <button
       aria-controls=":r1:"
       aria-expanded="false"
@@ -42,9 +39,6 @@ exports[`Menu with custom activator renders 1`] = `
   <div
     class="wrapper"
   >
-    <span
-      class="shadowRef"
-    />
     <button
       aria-controls=":rc:"
       aria-expanded="false"
