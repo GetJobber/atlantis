@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.5.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.5.2...@jobber/components@5.5.3) (2024-05-15)
+
+
+### Bug Fixes
+
+* **components:** Remove hardcoded labels in DataListSort ([#1883](https://github.com/GetJobber/atlantis/issues/1883)) ([882990e](https://github.com/GetJobber/atlantis/commit/882990e67dec1bae8abb35e24ab7d4c182eecf1a))
+
+
+
+
+
 ## [5.5.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.5.1...@jobber/components@5.5.2) (2024-05-15)
 
 
