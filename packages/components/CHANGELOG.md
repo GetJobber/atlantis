@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.6.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.5.3...@jobber/components@5.6.0) (2024-05-15)
+
+
+### Features
+
+* **components:** Add support for link click listener for Markdown component (JOB-96041) ([#1888](https://github.com/GetJobber/atlantis/issues/1888)) ([a23480e](https://github.com/GetJobber/atlantis/commit/a23480e0a19443f3c437f74c152723154f541100))
+
+
+
+
+
 ## [5.5.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.5.2...@jobber/components@5.5.3) (2024-05-15)
 
 
