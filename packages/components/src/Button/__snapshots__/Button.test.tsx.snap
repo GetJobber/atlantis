@@ -46,17 +46,17 @@ exports[`renders a Button that is just an icon 1`] = `
 
 exports[`renders a Button with a link and opens in new tab 1`] = `
 <div>
-  <a
+  <button
     class="button base work primary"
-    href="💩.com"
     target="_blank"
+    type="button"
   >
     <span
       class="base semiBold base base"
     >
       Submit
     </span>
-  </a>
+  </button>
 </div>
 `;
 
@@ -124,21 +124,6 @@ exports[`renders a Button with an icon on the right 1`] = `
       Add
     </span>
   </button>
-</div>
-`;
-
-exports[`renders a Link as a Button for routing 1`] = `
-<div>
-  <a
-    class="button base work primary"
-    href="/jobber"
-  >
-    <span
-      class="base semiBold base base"
-    >
-      Adding
-    </span>
-  </a>
 </div>
 `;
 

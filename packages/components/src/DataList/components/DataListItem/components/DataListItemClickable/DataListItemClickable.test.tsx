@@ -1,7 +1,6 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { BrowserRouter } from "react-router-dom";
 import { DataListObject } from "@jobber/components/DataList/DataList.types";
 import {
   DataListContext,
@@ -171,19 +170,17 @@ describe("DataListItemClickable", () => {
 
 function renderComponent() {
   return render(
-    <BrowserRouter>
-      <DataListContext.Provider
-        value={{
-          ...defaultValues,
-          itemActionComponent: mockItemActionComponent(),
-        }}
+    <DataListContext.Provider
+      value={{
+        ...defaultValues,
+        itemActionComponent: mockItemActionComponent(),
+      }}
+    >
+      <DataListLayoutActionsContext.Provider
+        value={{ activeItem: mockActiveItem() }}
       >
-        <DataListLayoutActionsContext.Provider
-          value={{ activeItem: mockActiveItem() }}
-        >
-          <DataListItemClickable>{content}</DataListItemClickable>
-        </DataListLayoutActionsContext.Provider>
-      </DataListContext.Provider>
-    </BrowserRouter>,
+        <DataListItemClickable>{content}</DataListItemClickable>
+      </DataListLayoutActionsContext.Provider>
+    </DataListContext.Provider>,
   );
 }

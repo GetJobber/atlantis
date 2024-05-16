@@ -1,7 +1,6 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
-import { Link, LinkProps } from "react-router-dom";
 import { IconNames } from "@jobber/design";
 import styles from "./Button.css";
 import { Icon } from "../Icon";
@@ -18,6 +17,7 @@ interface ButtonFoundationProps {
   readonly ariaControls?: string;
   readonly ariaHaspopup?: boolean;
   readonly ariaExpanded?: boolean;
+  readonly children?: ReactNode | ReactNode[];
   readonly disabled?: boolean;
   readonly external?: boolean;
   readonly fullWidth?: boolean;
@@ -49,14 +49,6 @@ interface ButtonAnchorProps extends ButtonFoundationProps {
    * Used to create an 'href' on an anchor tag.
    */
   readonly url?: string;
-}
-
-interface ButtonLinkProps<S = unknown> extends ButtonFoundationProps {
-  /**
-   * **Deprecated**: to will be removed in the next major version
-   * @deprecated
-   */
-  readonly to?: LinkProps<S>["to"];
 }
 
 interface BaseActionProps extends ButtonFoundationProps {
@@ -96,10 +88,7 @@ export type ButtonProps = XOR<
   BaseActionProps,
   XOR<DestructiveActionProps, SubmitActionProps>
 > &
-  XOR<
-    XOR<SubmitButtonProps, BasicButtonProps>,
-    XOR<ButtonLinkProps, ButtonAnchorProps>
-  > &
+  XOR<XOR<SubmitButtonProps, BasicButtonProps>, ButtonAnchorProps> &
   XOR<ButtonIconProps, ButtonLabelProps>;
 
 export function Button(props: ButtonProps) {
@@ -122,8 +111,6 @@ export function Button(props: ButtonProps) {
     role,
     size = "base",
     type = "primary",
-    url,
-    to,
     value,
     variation = "work",
     submit,
@@ -147,11 +134,10 @@ export function Button(props: ButtonProps) {
     disabled,
     id,
     ...(submit && { name, value }),
-    ...(!disabled && { href: url }),
     ...(!disabled && { onClick: onClick }),
     ...(!disabled && { onMouseDown: onMouseDown }),
     ...(external && { target: "_blank" }),
-    ...(url === undefined && to === undefined && { type: buttonType }),
+    type: buttonType,
     "aria-controls": ariaControls,
     "aria-haspopup": ariaHaspopup,
     "aria-expanded": ariaExpanded,
@@ -161,31 +147,32 @@ export function Button(props: ButtonProps) {
 
   const buttonInternals = <ButtonInternals {...props} />;
 
-  if (to) {
-    return (
-      <Link {...tagProps} to={to}>
-        {buttonInternals}
-      </Link>
-    );
-  }
-
-  const Tag = url ? "a" : "button";
-
-  return <Tag {...tagProps}>{buttonInternals}</Tag>;
+  // (it does have one)
+  // eslint-disable-next-line react/button-has-type
+  return <button {...tagProps}>{buttonInternals}</button>;
 }
 
-function ButtonInternals({ label, icon, size = "base" }: ButtonProps) {
+function ButtonInternals({
+  children,
+  label,
+  icon,
+  size = "base",
+}: ButtonProps) {
   return (
     <>
       {icon && <Icon name={icon} size={size} />}
-      <Typography
-        element="span"
-        fontWeight="semiBold"
-        fontFamily="base"
-        size={getTypeSizes(size)}
-      >
-        {label}
-      </Typography>
+      {!children ? (
+        <Typography
+          element="span"
+          fontWeight="semiBold"
+          fontFamily="base"
+          size={getTypeSizes(size)}
+        >
+          {label}
+        </Typography>
+      ) : (
+        children
+      )}
     </>
   );
 }

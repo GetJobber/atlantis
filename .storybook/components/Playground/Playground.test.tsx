@@ -196,34 +196,6 @@ describe("Playground", () => {
       );
     });
 
-    it("should allow aliases for extra imports parameter", () => {
-      mockStoryData({
-        // @ts-expect-error - Storybook API types does allow this
-        parameters: {
-          previewTabs: {
-            code: {
-              extraImports: {
-                "react-router-dom": ["Router"],
-              },
-            },
-          },
-        },
-        sourceCode: `args => (
-        <Router basename="/components/button">
-          <Content>Sup!</Content>
-        </Router>)`,
-      });
-      const { container } = render(<Playground />);
-
-      expect(container).toHaveTextContent(
-        'import { Router } from "react-router-dom";',
-      );
-
-      expect(container).not.toHaveTextContent(
-        `import { Router } from "@jobber/components/Router`,
-      );
-    });
-
     it("should allow imports of subcomponents of @jobber/components", () => {
       mockStoryData({
         // @ts-expect-error - Storybook API types does allow this
@@ -231,7 +203,6 @@ describe("Playground", () => {
           previewTabs: {
             code: {
               extraImports: {
-                "react-router-dom": ["Router"],
                 "@jobber/components/Drawer": ["DrawerGrid"],
               },
             },

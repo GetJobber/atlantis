@@ -411,8 +411,6 @@
     "@types/color": "^3.0.1",
     "@types/lodash": "^4.14.136",
     "@types/react-datepicker": "^4.8.0",
-    "@types/react-router": "5.1.7",
-    "@types/react-router-dom": "^5.3.3",
     "axios": "^1.6.0",
     "classnames": "^2.3.2",
     "color": "^3.1.2",
@@ -425,7 +423,6 @@
     "react-hook-form": "^7.43.7",
     "react-markdown": "^8.0.3",
     "react-popper": "^2.2.5",
-    "react-router-dom": "^5.3.4",
     "time-input-polyfill": "^1.0.7",
     "ts-xor": "^1.0.8"
   },
@@ -474,7 +471,6 @@
     "react-dom": "^18",
     "react-hook-form": "^7",
     "react-popper": "^2",
-    "react-router-dom": "^6",
     "zxcvbn": "^4"
   },
   "browserslist": [
