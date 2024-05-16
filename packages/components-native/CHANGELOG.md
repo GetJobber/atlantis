@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.67.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.66.2...@jobber/components-native@0.67.0) (2024-05-16)
+
+
+### Features
+
+* **components-native:** Export typography max font scaling in components-native ([#1895](https://github.com/GetJobber/atlantis/issues/1895)) ([70f4ee7](https://github.com/GetJobber/atlantis/commit/70f4ee7978bb83f9a5f29fbdd7c0486656f60c7e))
+
+
+
+
+
 ## [0.66.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.66.1...@jobber/components-native@0.66.2) (2024-05-15)
 
 **Note:** Version bump only for package @jobber/components-native
