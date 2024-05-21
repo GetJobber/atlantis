@@ -3,6 +3,7 @@
   --popover--padding: var(--space-base);
   --popover--width: calc(var(--base-unit) * 21.875);
   --dismiss--button-padding: calc(var(--base-unit) / 4);
+  --popover--position--offset: -7px;
 }
 
 .header {
@@ -57,25 +58,25 @@
 }
 
 .popover[data-popper-placement^="top"] > .arrow {
-  padding-bottom: -5px;
+  bottom: var(--popover--position--offset);
 }
 .popover[data-popper-placement^="top"] > .arrow::before {
   transform: rotate(-135deg);
 }
 
 .popover[data-popper-placement^="bottom"] > .arrow {
-  padding-top: -7px;
+  top: var(--popover--position--offset);
 }
 
 .popover[data-popper-placement^="left"] > .arrow {
-  padding-right: -5px;
+  right: var(--popover--position--offset);
 }
 .popover[data-popper-placement^="left"] > .arrow::before {
   transform: rotate(135deg);
 }
 
 .popover[data-popper-placement^="right"] > .arrow {
-  padding-left: -7px;
+  left: var(--popover--position--offset);
 }
 .popover[data-popper-placement^="right"] > .arrow::before {
   transform: rotate(-45deg);
