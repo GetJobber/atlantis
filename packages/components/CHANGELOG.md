@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.6.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.6.0...@jobber/components@5.6.1) (2024-05-21)
+
+
+### Bug Fixes
+
+* **components:** Fix popover arrow placement location ([#1897](https://github.com/GetJobber/atlantis/issues/1897)) ([ae6d10c](https://github.com/GetJobber/atlantis/commit/ae6d10c2903f268313ef1c935ee25814453a12f3))
+
+
+
+
+
 # [5.6.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.5.3...@jobber/components@5.6.0) (2024-05-15)
 
 
