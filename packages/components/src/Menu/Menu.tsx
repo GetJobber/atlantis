@@ -90,6 +90,7 @@ export function Menu({ activator, items }: MenuProps) {
     state,
   } = usePopper(shadowRef.current?.nextElementSibling, popperElement, {
     placement: "bottom-start",
+    strategy: "fixed",
     modifiers: [
       {
         name: "flip",
