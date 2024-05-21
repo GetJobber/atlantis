@@ -3,18 +3,21 @@
 }
 
 .wrapper {
-  --menu-space: var(--space-small);
-  --menu-offset: var(--space-smallest);
-  display: inline-block;
   position: relative;
 }
 
-.menu {
-  position: fixed;
-  bottom: 0;
-  left: 0;
+.popperContainer {
   z-index: var(--elevation-menu);
-  width: 100%;
+}
+
+.shadowRef {
+  display: none;
+}
+
+.menu {
+  --menu-space: var(--space-small);
+  --menu-offset: var(--space-smallest);
+  z-index: var(--elevation-menu);
   max-height: 72vh;
   box-shadow: var(--shadow-base);
   padding: var(--menu-space);
@@ -24,43 +27,19 @@
   overflow-y: scroll;
   background-color: var(--color-surface);
 
+  @media (--small-screens-and-below) {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
   @media (--small-screens-and-up) {
-    position: absolute;
-    left: auto;
     width: calc(var(--base-unit) * 12.5);
     padding: var(--menu-space);
     border: var(--border-base) solid var(--color-border);
     border-radius: var(--radius-base);
     overflow: auto;
-  }
-}
-
-.above {
-  @media (--small-screens-and-up) {
-    bottom: 100%;
-    margin-bottom: var(--menu-offset);
-  }
-}
-
-.below {
-  @media (--small-screens-and-up) {
-    top: 100%;
-    bottom: auto;
-    margin-top: var(--menu-offset);
-  }
-}
-
-.left {
-  @media (--small-screens-and-up) {
-    right: 0;
-    left: auto;
-  }
-}
-
-.right {
-  @media (--small-screens-and-up) {
-    right: auto;
-    left: 0;
   }
 }
 
@@ -97,11 +76,13 @@
 }
 
 .action:hover,
-.action:focus-visible {
+.action:focus {
   background-color: var(--color-surface--hover);
-  outline-color: var(--color-focus);
 }
 
+.action:focus-visible {
+  outline-color: var(--color-focus);
+}
 .action span {
   /* match appearance of Button labels */
   -webkit-font-smoothing: antialiased;
