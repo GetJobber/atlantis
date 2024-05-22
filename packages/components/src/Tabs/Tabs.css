@@ -20,6 +20,7 @@
   position: absolute;
   top: 0;
   bottom: 0;
+  z-index: var(--elevation-base);
   width: 24px;
 }
 
@@ -37,8 +38,11 @@
   display: flex;
   margin: 0;
   margin-bottom: calc(-1 * var(--border-base));
+  padding: 0;
+  border-bottom: solid var(--border-base) var(--color-border);
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  gap: var(--space-large);
 }
 
 ul.tabRow {
@@ -47,35 +51,43 @@ ul.tabRow {
 
 .tabRow li {
   display: flex;
+  position: relative;
   list-style: none;
 }
 
 .tab {
-  flex: 0 0 auto;
   height: var(--tab--height);
   margin: 0;
-  padding-left: var(--public-tab--inset);
-  padding-right: var(--public-tab--inset);
-  border: solid var(--border-base) var(--color-border);
-  border-left-width: 0;
+  padding: var(--space-smaller) var(--space-small);
+  border: none;
   outline: none;
+  color: var(--color-text--secondary);
   background: var(--color-surface);
   cursor: pointer;
   transition: all var(--timing-base);
+  flex: 0 0 auto;
 }
 
-.tab:hover,
-.tab:focus {
-  background-color: var(--color-surface--hover);
+.tab.selected,
+.tab:not(.selected):hover,
+.tab:not(.selected):focus {
+  color: var(--color-heading);
 }
 
-.tab:focus span {
-  box-shadow: var(--shadow-focus);
+.tab:not(.selected):focus-within {
+  outline: none;
+  background: var(--color-surface--hover);
 }
 
-.selected {
-  border-top-color: var(--color-interactive);
-  border-bottom-color: var(--color-surface);
+.selected::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: var(--space-smaller);
+  background-color: var(--color-interactive);
 }
 
 .selected:focus {
