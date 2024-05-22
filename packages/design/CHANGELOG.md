@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.60.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.59.0...@jobber/design@0.60.0) (2024-05-22)
+
+
+### Features
+
+* **components:** visual refinements for add, plus and plus2 [JOB-93171] ([#1896](https://github.com/GetJobber/atlantis/issues/1896)) ([e631a5c](https://github.com/GetJobber/atlantis/commit/e631a5ce61b228c28059899d7782dba376cbf280))
+
+
+
+
+
 # [0.59.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.58.0...@jobber/design@0.59.0) (2024-05-10)
 
 
