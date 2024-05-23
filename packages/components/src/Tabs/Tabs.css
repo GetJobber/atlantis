@@ -54,7 +54,7 @@ ul.tabRow {
   display: flex;
   position: relative;
   list-style: none;
-  flex: 1 0 auto;
+  flex: 0 0 fit-content;
 }
 
 .tab {
