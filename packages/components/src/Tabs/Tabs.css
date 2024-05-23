@@ -11,7 +11,8 @@
 
 .overflow {
   position: relative;
-  border-bottom: solid var(--border-base) var(--color-border);
+  padding-left: var(--public-tab--inset);
+  padding-right: var(--public-tab--inset);
 }
 
 .overflowRight:after,
@@ -21,16 +22,16 @@
   top: 0;
   bottom: 0;
   z-index: var(--elevation-base);
-  width: 24px;
+  width: var(--space-large);
 }
 
 .overflowRight:after {
-  right: 0;
+  right: var(--public-tab--inset);
   box-shadow: inset -16px 0 16px -16px rgba(var(--color-black--rgb), 0.25);
 }
 
 .overflowLeft:before {
-  left: 0;
+  left: var(--public-tab--inset);
   box-shadow: inset 16px 0 16px -16px rgba(var(--color-black--rgb), 0.25);
 }
 
