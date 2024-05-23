@@ -22,7 +22,7 @@ import { Typography } from "../Typography";
 import { Icon } from "../Icon";
 import { formFieldFocusAttribute } from "../FormField/hooks/useFormFieldFocus";
 
-const SMALL_SCREEN_BREAKPOINT = 489;
+const SMALL_SCREEN_BREAKPOINT = 490;
 const MENU_OFFSET = 6;
 
 const variation = {
@@ -31,7 +31,7 @@ const variation = {
     let y = 10;
 
     if (placement?.includes("bottom")) y *= -1;
-    if (window.innerWidth < 640) y = 150;
+    if (window.innerWidth < SMALL_SCREEN_BREAKPOINT) y = 150;
 
     return { opacity: 0, y };
   },
@@ -107,7 +107,7 @@ export function Menu({ activator, items }: MenuProps) {
     ],
   });
   const positionAttributes =
-    width > SMALL_SCREEN_BREAKPOINT
+    width >= SMALL_SCREEN_BREAKPOINT
       ? {
           ...attributes.popper,
           style: popperStyles.popper,
