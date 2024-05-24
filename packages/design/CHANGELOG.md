@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.60.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.60.0...@jobber/design@0.60.1) (2024-05-24)
+
+
+### Bug Fixes
+
+* **design:** Reduce Shadow Radius for MobileShadows ([#1900](https://github.com/GetJobber/atlantis/issues/1900)) ([d781644](https://github.com/GetJobber/atlantis/commit/d7816446caf96232806d9d566ed9ba12740fda3f))
+
+
+
+
+
 # [0.60.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.59.0...@jobber/design@0.60.0) (2024-05-22)
 
 

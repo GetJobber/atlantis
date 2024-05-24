@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "5.7.0",
+  "version": "5.7.1",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.cjs",
@@ -402,7 +402,7 @@
     "dist/*"
   ],
   "dependencies": {
-    "@jobber/design": "^0.60.0",
+    "@jobber/design": "^0.60.1",
     "@jobber/formatters": "^0.3.0",
     "@jobber/hooks": "^2.9.7",
     "@popperjs/core": "^2.0.6",
