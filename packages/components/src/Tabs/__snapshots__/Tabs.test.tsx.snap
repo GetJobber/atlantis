@@ -22,11 +22,15 @@ exports[`Tabs renders Tabs 1`] = `
             type="button"
           >
             <span
-              class="base regular base green"
+              class="base semiBold large"
             >
               Eggs
             </span>
           </button>
+        </li>
+        <li
+          role="presentation"
+        >
           <button
             class="tab"
             id="Cheese"
@@ -34,7 +38,7 @@ exports[`Tabs renders Tabs 1`] = `
             type="button"
           >
             <span
-              class="base regular base heading"
+              class="base semiBold large"
             >
               Cheese
             </span>
