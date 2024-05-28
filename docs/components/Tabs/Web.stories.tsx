@@ -76,7 +76,7 @@ const WithTabChangeCallbackTemplate: ComponentStory<typeof Tabs> = args => {
           wide range of flavors, textures, and forms by coagulation of the milk
           protein casein.
         </Tab>
-        <Tab label="Berries">
+        <Tab label="Fruit">
           🍓 A berry is a small, pulpy, and often edible fruit. Typically,
           berries are juicy, rounded, brightly colored, sweet, sour or tart, and
           do not have a stone or pit.
