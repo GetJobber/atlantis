@@ -7,7 +7,7 @@
 }
 
 .popperContainer {
-  z-index: var(--elevation-menu);
+  z-index: var(--elevation-modal);
 }
 
 .shadowRef {
