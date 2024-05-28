@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.8](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.9.7...@jobber/hooks@2.9.8) (2024-05-28)
+
+
+### Bug Fixes
+
+* **components:** Portalled Menu Take 2 ([#1898](https://github.com/GetJobber/atlantis/issues/1898)) ([a9f2865](https://github.com/GetJobber/atlantis/commit/a9f286502a94e8cf10279a7ba8778dab4792a1f2)), closes [#1891](https://github.com/GetJobber/atlantis/issues/1891)
+
+
+
+
+
 ## [2.9.7](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.9.6...@jobber/hooks@2.9.7) (2024-05-15)
 
 
