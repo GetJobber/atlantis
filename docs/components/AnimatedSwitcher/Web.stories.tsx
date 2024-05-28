@@ -22,26 +22,15 @@ const BasicTemplate: ComponentStory<typeof AnimatedSwitcher> = args => {
       {...args}
       switched={switched}
       initialChild={
-        <>
-          <Button label="Mark complete" onClick={() => setSwitched(true)} />
-          <Button label="Mark complete" onClick={() => setSwitched(true)} />
-        </>
+        <Button label="Mark complete" onClick={() => setSwitched(true)} />
       }
       switchTo={
-        <>
-          <Button
-            icon="checkmark"
-            label="Complete"
-            type="secondary"
-            onClick={() => setSwitched(false)}
-          />
-          <Button
-            icon="checkmark"
-            label="Complete"
-            type="secondary"
-            onClick={() => setSwitched(false)}
-          />
-        </>
+        <Button
+          icon="checkmark"
+          label="Complete"
+          type="secondary"
+          onClick={() => setSwitched(false)}
+        />
       }
     />
   );
