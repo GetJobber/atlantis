@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.7.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.7.3...@jobber/components@5.7.4) (2024-05-28)
+
+
+### Bug Fixes
+
+* **components:** Increase zIndex for Menu ([#1906](https://github.com/GetJobber/atlantis/issues/1906)) ([adee137](https://github.com/GetJobber/atlantis/commit/adee137fef162a0e4be2a192433fbbf3d7be661c))
+
+
+
+
+
 ## [5.7.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.7.2...@jobber/components@5.7.3) (2024-05-28)
 
 
