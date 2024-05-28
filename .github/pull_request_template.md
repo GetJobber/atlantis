@@ -72,6 +72,9 @@
 
 <!-- How to test your changes. -->
 
+Changes can be
+[tested via Pre-release](https://github.com/GetJobber/atlantis/actions/workflows/trigger-qa-build.yml)
+
 ---
 
 [In Atlantis we use Github's built in pull request reviews](https://help.github.com/en/articles/about-pull-request-reviews).
