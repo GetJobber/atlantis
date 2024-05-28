@@ -70,14 +70,10 @@
 
 ## Testing
 
-### Take 2
-
 <!-- How to test your changes. -->
 
-- [ ] This has been QA'd by the PR owner
-- [ ] This has been QA'd by an approver
-- [ ] Any component changes have been
-      [tested via Pre-release](https://github.com/GetJobber/atlantis/actions/workflows/trigger-qa-build.yml)
+Changes can be
+[tested via Pre-release](https://github.com/GetJobber/atlantis/actions/workflows/trigger-qa-build.yml)
 
 ---
 
