@@ -17,7 +17,7 @@
 .menu {
   --menu-space: var(--space-small);
   --menu-offset: var(--space-smallest);
-  z-index: var(--elevation-menu);
+  z-index: var(--elevation-modal);
   max-height: 72vh;
   box-shadow: var(--shadow-base);
   padding: var(--menu-space);
@@ -94,7 +94,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: var(--elevation-menu);
+  z-index: var(--elevation-modal);
   background-color: var(--color-overlay);
 
   @media (--small-screens-and-up) {
