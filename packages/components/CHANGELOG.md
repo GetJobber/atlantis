@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.7.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.7.4...@jobber/components@5.7.5) (2024-05-29)
+
+
+### Bug Fixes
+
+* **components:** Menu Small Screen zIndex Layering  ([#1907](https://github.com/GetJobber/atlantis/issues/1907)) ([2152ad1](https://github.com/GetJobber/atlantis/commit/2152ad1d9c3dc58164a1f3524da76ecda0f64861))
+
+
+
+
+
 ## [5.7.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.7.3...@jobber/components@5.7.4) (2024-05-28)
 
 
