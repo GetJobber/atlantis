@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.67.4](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.67.3...@jobber/components-native@0.67.4) (2024-05-29)
+
+
+### Bug Fixes
+
+* **components-native:** Dismiss keyboard on Date and Time Picker being opened ([#1902](https://github.com/GetJobber/atlantis/issues/1902)) ([f8d64b6](https://github.com/GetJobber/atlantis/commit/f8d64b6413e7f8c6bf6e34b1d3f5d3b68e505988))
+
+
+
+
+
 ## [0.67.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.67.2...@jobber/components-native@0.67.3) (2024-05-28)
 
 **Note:** Version bump only for package @jobber/components-native
