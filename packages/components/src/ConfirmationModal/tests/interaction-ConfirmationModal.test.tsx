@@ -54,7 +54,7 @@ test("simple ConfirmationModal should cancel", () => {
   expect(requestCloseHandler).toHaveBeenCalled();
 });
 
-test("confirm action should not happen during a render cycle", () => {
+test("confirm action should not happen during a render cycle and cause a React warning", () => {
   jest.spyOn(console, "error");
 
   function StatefulWrapper() {
