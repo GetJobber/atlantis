@@ -73,6 +73,7 @@
 
 .left .tooltip .arrow {
   right: var(--tooltip--offset);
+  margin-top: var(--space-smallest);
 }
 
 .right {
@@ -85,6 +86,7 @@
 
 .right .tooltip .arrow {
   left: var(--tooltip--offset);
+  margin-top: var(--space-smallest);
 }
 
 .tooltipMessage {

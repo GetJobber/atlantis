@@ -26,6 +26,12 @@ export function useTooltipPositioning({
           name: "arrow",
           options: { element: arrowElement },
         },
+        {
+          name: "offset",
+          options: {
+            offset: [3.5, 0],
+          },
+        },
       ],
     },
   );
