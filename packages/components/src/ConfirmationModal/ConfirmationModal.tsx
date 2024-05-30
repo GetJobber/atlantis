@@ -258,9 +258,9 @@ export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
   function handleAction(type: "confirm" | "cancel") {
     return () => {
       if (type === "confirm") {
-        state.onConfirm && state.onConfirm();
+        state.onConfirm?.();
       } else if (type === "cancel") {
-        state.onCancel && state.onCancel();
+        state.onCancel?.();
       }
 
       dispatch({ type });
