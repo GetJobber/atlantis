@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.7.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.7.6...@jobber/components@5.7.7) (2024-05-30)
+
+
+### Bug Fixes
+
+* **components:** Animated switcher ([#1905](https://github.com/GetJobber/atlantis/issues/1905)) ([f116598](https://github.com/GetJobber/atlantis/commit/f1165980db54dd7d0385e7efdedcd14f8e0f7837))
+
+
+
+
+
 ## [5.7.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.7.5...@jobber/components@5.7.6) (2024-05-30)
 
 
