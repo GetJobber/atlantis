@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.7.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.7.5...@jobber/components@5.7.6) (2024-05-30)
+
+
+### Bug Fixes
+
+* **components:** fixes a bug where we call setState inside of the react render cycle ([#1901](https://github.com/GetJobber/atlantis/issues/1901)) ([f4aa8ae](https://github.com/GetJobber/atlantis/commit/f4aa8aef012ac06f40dc99662cb0b1fdb8f45c6f))
+
+
+
+
+
 ## [5.7.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.7.4...@jobber/components@5.7.5) (2024-05-29)
 
 
