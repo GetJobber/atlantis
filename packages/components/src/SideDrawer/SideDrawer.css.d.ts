@@ -1,5 +1,5 @@
 declare const styles: {
-  readonly "container": string;
+  readonly "drawer": string;
   readonly "header": string;
   readonly "headerActions": string;
   readonly "hideWhenEmpty": string;

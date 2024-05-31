@@ -1,4 +1,8 @@
-.container {
+:root {
+  --sideDrawer--base-padding: var(--space-base);
+}
+
+.drawer {
   display: flex;
   position: fixed;
   top: 0;
@@ -13,12 +17,18 @@
   flex-direction: column;
 }
 
+/* Adjust `Content` components public padding to match the cards */
+
+.drawer > * {
+  --public-content--padding: var(--sideDrawer--base-padding);
+}
+
 .header {
   display: flex;
   position: sticky;
   top: 0;
   z-index: var(--elevation-base);
-  padding: var(--space-base);
+  padding: var(--sideDrawer--base-padding);
   border-bottom: var(--border-base) solid var(--color-border);
   background-color: var(--color-surface);
   flex-direction: column;

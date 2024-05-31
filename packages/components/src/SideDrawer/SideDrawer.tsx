@@ -54,7 +54,7 @@ export function SideDrawer({
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
-            className={styles.container}
+            className={styles.drawer}
             ref={setRef}
             role="dialog"
             variants={variants}
