@@ -62,6 +62,7 @@ export * from "./ProgressBar";
 export * from "./RadioGroup";
 export * from "./RecurringSelect";
 export * from "./Select";
+export * from "./SideDrawer";
 export * from "./Spinner";
 export * from "./StatusIndicator";
 export * from "./StatusLabel";
