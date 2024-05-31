@@ -73,7 +73,10 @@ export interface FormProps<T extends FieldValues, SubmitResponseType> {
   onBeforeSubmit?: (data: FormValues<T>) => Promise<boolean>;
 
   /**
-   * A callback function that handles the submission of form data
+   * A callback function that handles the submission of form data.
+   * If errors happen during submission, the error must not be caught and handled without throwing it again.
+   * If no error is thrown, the onSubmitSuccess callback will be called.
+   * If an error is thrown, the onSubmitError callback will be called.
    */
   onSubmit: (data: FormValues<T>) => Promise<SubmitResponseType>;
 
