@@ -43,6 +43,14 @@ export function SideDrawer({
         toolbarPortal: ref?.querySelector(toolbarPortalSelector),
       }}
     >
+      {open && (
+        <button
+          type="button"
+          aria-label="Close"
+          onClick={onRequestClose}
+          className={styles.overlay}
+        />
+      )}
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
