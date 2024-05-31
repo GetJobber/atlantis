@@ -1,7 +1,8 @@
 import React, { useId, useState } from "react";
 import type { PropsWithChildren } from "react";
 import { createPortal } from "react-dom";
-import classNames from "classnames";
+import { AnimatePresence, Variants, motion } from "framer-motion";
+import { tokens } from "@jobber/design";
 import { SideDrawerActions } from "./SideDrawerActions";
 import { SideDrawerContext } from "./SideDrawerContext";
 import { SideDrawerTitle } from "./SideDrawerTitle";
@@ -15,6 +16,11 @@ interface SideDrawerProps extends PropsWithChildren {
   readonly open: boolean;
 }
 
+const variants: Variants = {
+  hidden: { x: "100%" },
+  visible: { x: 0, transitionEnd: { x: 0 } },
+};
+
 export function SideDrawer({
   children,
   onRequestClose,
@@ -27,7 +33,7 @@ export function SideDrawer({
 
   const container = globalThis.document?.body || null;
 
-  if (!container || !open) return null;
+  if (!container) return null;
 
   return createPortal(
     <SideDrawerContext.Provider
@@ -37,38 +43,49 @@ export function SideDrawer({
         toolbarPortal: ref?.querySelector(toolbarPortalSelector),
       }}
     >
-      <div
-        className={classNames(styles.container, open && styles.open)}
-        ref={setRef}
-        role="dialog"
-      >
-        <div className={styles.header}>
-          <Flex template={["grow", "shrink"]}>
-            <div data-portal-id={titlePortalId} />
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            className={styles.container}
+            ref={setRef}
+            role="dialog"
+            variants={variants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            transition={{
+              duration: tokens["timing-base"] / 1000,
+            }}
+          >
+            <div className={styles.header}>
+              <Flex template={["grow", "shrink"]}>
+                <div data-portal-id={titlePortalId} />
 
-            <div className={styles.headerActions}>
+                <div className={styles.headerActions}>
+                  <div
+                    className={styles.hideWhenEmpty}
+                    data-portal-id={actionsPortalId}
+                  />
+                  <Button
+                    ariaLabel="Close"
+                    icon="cross"
+                    onClick={onRequestClose}
+                    type="secondary"
+                    variation="subtle"
+                  />
+                </div>
+              </Flex>
+
               <div
                 className={styles.hideWhenEmpty}
-                data-portal-id={actionsPortalId}
-              />
-              <Button
-                ariaLabel="Close Message Center"
-                icon="cross"
-                onClick={onRequestClose}
-                type="secondary"
-                variation="subtle"
+                data-portal-id={toolbarPortalId}
               />
             </div>
-          </Flex>
 
-          <div
-            className={styles.hideWhenEmpty}
-            data-portal-id={toolbarPortalId}
-          />
-        </div>
-
-        {children}
-      </div>
+            {children}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </SideDrawerContext.Provider>,
     container,
   );

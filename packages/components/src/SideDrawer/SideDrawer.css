@@ -7,16 +7,10 @@
   width: 100%;
   height: 100%;
   max-width: 420px;
+  box-shadow: var(--shadow-base);
   overflow-y: auto;
   background-color: var(--color-surface);
-  transform: translateX(calc(100% + var(--space-smaller)));
-  transition: transform var(--timing-base) ease-in-out;
   flex-direction: column;
-}
-
-.container.open {
-  box-shadow: var(--shadow-base);
-  transform: translateX(0);
 }
 
 .header {
