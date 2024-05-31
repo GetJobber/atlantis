@@ -12,8 +12,15 @@ import { Button } from "../Button";
 import { Flex } from "../Flex";
 
 interface SideDrawerProps extends PropsWithChildren {
-  readonly onRequestClose: () => void;
+  /**
+   * Whether or not the drawer is open.
+   */
   readonly open: boolean;
+
+  /**
+   * Callback function to close the drawer.
+   */
+  readonly onRequestClose: () => void;
 }
 
 const variants: Variants = {
