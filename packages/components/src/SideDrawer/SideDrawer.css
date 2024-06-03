@@ -22,7 +22,6 @@
 .container {
   display: flex;
   height: 100%;
-  box-shadow: var(--shadow-base);
   overflow-y: auto;
   background-color: var(--sideDrawer--background);
   flex-direction: column;
@@ -38,15 +37,19 @@
   top: 0;
   z-index: var(--elevation-base);
   padding: var(--sideDrawer--base-padding);
-  border-bottom: var(--border-base) solid var(--color-border);
   background-color: var(--sideDrawer--background);
   flex-direction: column;
   gap: var(--space-base);
+  transition: box-shadow var(--timing-base) ease-in-out;
 }
 
 .headerActions {
   display: flex;
   margin-right: calc(-1 * var(--space-small));
+}
+
+.hasShadow {
+  box-shadow: var(--shadow-base);
 }
 
 .hideWhenEmpty:empty {

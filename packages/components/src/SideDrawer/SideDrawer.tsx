@@ -6,6 +6,7 @@ import { tokens } from "@jobber/design";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import classNames from "classnames";
+import { useInView } from "@jobber/hooks/useInView";
 import { SideDrawerActions } from "./SideDrawerActions";
 import { SideDrawerContext } from "./SideDrawerContext";
 import { SideDrawerTitle } from "./SideDrawerTitle";
@@ -49,6 +50,7 @@ export function SideDrawer({
 
   useRefocusOnActivator(open);
   const sideDrawerRef = useFocusTrap<HTMLDivElement>(open);
+  const [shadowRef, hideShadow] = useInView<HTMLDivElement>();
 
   const container = globalThis.document?.body || null;
 
@@ -86,13 +88,18 @@ export function SideDrawer({
             <div
               ref={sideDrawerRef}
               role="dialog"
-              className={classNames(styles.container, {
+              className={classNames(styles.container, styles.hasShadow, {
                 [styles.subtle]: variation === "subtle",
               })}
               tabIndex={0}
               onKeyUp={handleKeyUp}
             >
-              <div className={styles.header}>
+              <div ref={shadowRef} />
+              <div
+                className={classNames(styles.header, {
+                  [styles.hasShadow]: !hideShadow,
+                })}
+              >
                 <Flex template={["grow", "shrink"]}>
                   <div data-portal-id={titlePortalId} />
 
