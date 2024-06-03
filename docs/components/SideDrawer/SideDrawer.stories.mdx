@@ -74,3 +74,18 @@ just implement it as a direct child of the `SideDrawer`.
   </SideDrawer.Toolbar>
 </SideDrawer>
 ```
+
+### Back Button
+
+SideDrawer also comes with a back button that you can use and add to the UI
+before the title. Use this when the user can navigate back to the previous
+SideSheet content.
+
+```tsx
+<SideDrawer>
+  <SideDrawer.BackButton onClick={handleClick} />
+  <SideDrawer.Title>My Title</SideDrawer.Title>
+</SideDrawer>
+```
+
+<ArgsTable of={SideDrawer.BackButton} />
