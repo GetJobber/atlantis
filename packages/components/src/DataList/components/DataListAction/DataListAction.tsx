@@ -14,7 +14,7 @@ export function DataListAction<T extends DataListObject>({
   destructive,
   visible = () => true,
   onClick,
-  url,
+  actionUrl,
 }: DataListActionProps<T>) {
   const { activeItem } = useDataListLayoutActionsContext<T>();
 
@@ -35,10 +35,10 @@ export function DataListAction<T extends DataListObject>({
     }
   }
 
-  if (url) {
+  if (actionUrl) {
     return (
       <a
-        href={url}
+        href={actionUrl}
         target="_blank"
         rel="noopener noreferrer"
         className={`${styles.action} ${styles.actionLink}`}

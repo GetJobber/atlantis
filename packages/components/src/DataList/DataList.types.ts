@@ -354,7 +354,7 @@ export interface DataListActionProps<T extends DataListObject> {
   /**
    * The URL to navigate to when the action is clicked.
    */
-  readonly url?: string;
+  readonly actionUrl?: string;
 }
 
 export interface DataListActionsProps<T extends DataListObject> {
