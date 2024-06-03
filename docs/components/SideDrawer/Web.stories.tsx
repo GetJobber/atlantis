@@ -11,6 +11,7 @@ import { InlineLabel } from "@jobber/components/InlineLabel";
 import { Flex } from "@jobber/components/Flex";
 import { Emphasis } from "@jobber/components/Emphasis";
 import { InputText } from "@jobber/components/InputText";
+import { useBool } from "@jobber/hooks/useBool";
 
 export default {
   title: "Components/Overlays/SideDrawer/Web",
@@ -212,6 +213,44 @@ const ToolbarTemplate: ComponentStory<typeof SideDrawer> = args => {
   );
 };
 
+const BackButtonTemplate: ComponentStory<typeof SideDrawer> = args => {
+  const [sideDrawerOpen, setSideDrawerOpen] = useState(args.open);
+  const [showDeeperPage, goForward, goBack] = useBool(true);
+
+  return (
+    <>
+      <Button
+        onClick={() => setSideDrawerOpen(true)}
+        label="Open Side Drawer"
+      />
+      <SideDrawer
+        {...args}
+        open={sideDrawerOpen}
+        onRequestClose={() => setSideDrawerOpen(false)}
+      >
+        {!showDeeperPage && (
+          <Content>
+            <SideDrawer.Title>Go forward</SideDrawer.Title>
+            <Text>Ok, now go forward to see the back button again</Text>
+            <Button label="Go Forward" onClick={goForward} />
+          </Content>
+        )}
+
+        {showDeeperPage && (
+          <Content>
+            <SideDrawer.Title>Go Back</SideDrawer.Title>
+            <SideDrawer.BackButton onClick={goBack} />
+            <Text>
+              You can add a back button to the header by adding a
+              SideDrawer.BackButton component.
+            </Text>
+          </Content>
+        )}
+      </SideDrawer>
+    </>
+  );
+};
+
 export const Basic = BasicTemplate.bind({});
 Basic.args = { open: true };
 
@@ -223,3 +262,6 @@ CustomTitle.args = { open: true };
 
 export const Toolbar = ToolbarTemplate.bind({});
 Toolbar.args = { open: true };
+
+export const BackButton = BackButtonTemplate.bind({});
+BackButton.args = { open: true };

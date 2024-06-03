@@ -74,6 +74,21 @@ describe("SideDrawer", () => {
     expect(screen.getByPlaceholderText("Input")).toBeInTheDocument();
   });
 
+  it("should render the back button", async () => {
+    const handleClick = jest.fn();
+    render(
+      <SideDrawer open={true} onRequestClose={jest.fn()}>
+        <SideDrawer.BackButton onClick={handleClick} />
+      </SideDrawer>,
+    );
+
+    const backButton = screen.getByRole("button", { name: "Back" });
+    expect(backButton).toBeInTheDocument();
+
+    await userEvent.click(backButton);
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+
   describe("When closed", () => {
     const onRequestClose = jest.fn();
 

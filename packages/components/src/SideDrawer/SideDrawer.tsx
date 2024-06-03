@@ -12,6 +12,7 @@ import { SideDrawerContext } from "./SideDrawerContext";
 import { SideDrawerTitle } from "./SideDrawerTitle";
 import { SideDrawerToolbar } from "./SideDrawerToolbar";
 import styles from "./SideDrawer.css";
+import { SideDrawerBackButton } from "./SideDrawerBackButton";
 import { Button } from "../Button";
 import { Flex } from "../Flex";
 
@@ -47,6 +48,7 @@ export function SideDrawer({
   const [toolbarPortalId, toolbarPortalSelector] = usePortalId();
   const [titlePortalId, titlePortalSelector] = usePortalId();
   const [actionsPortalId, actionsPortalSelector] = usePortalId();
+  const [backPortalId, backPortalSelector] = usePortalId();
 
   useRefocusOnActivator(open);
   const sideDrawerRef = useFocusTrap<HTMLDivElement>(open);
@@ -62,14 +64,15 @@ export function SideDrawer({
         actionPortal: ref?.querySelector(actionsPortalSelector),
         titlePortal: ref?.querySelector(titlePortalSelector),
         toolbarPortal: ref?.querySelector(toolbarPortalSelector),
+        backPortal: ref?.querySelector(backPortalSelector),
       }}
     >
       {open && (
         <button
-          type="button"
+          className={styles.overlay}
           aria-label="Close"
           onClick={onRequestClose}
-          className={styles.overlay}
+          type="button"
         />
       )}
       <AnimatePresence initial={false}>
@@ -97,11 +100,14 @@ export function SideDrawer({
               <div ref={shadowRef} />
               <div
                 className={classNames(styles.header, {
-                  [styles.hasShadow]: !hideShadow,
+                  [styles.hasShadow]: shadowRef.current && !hideShadow,
                 })}
               >
                 <Flex template={["grow", "shrink"]}>
-                  <div data-portal-id={titlePortalId} />
+                  <Flex template={["shrink", "grow"]} gap="small">
+                    <div data-portal-id={backPortalId} />
+                    <div data-portal-id={titlePortalId} />
+                  </Flex>
 
                   <div className={styles.headerActions}>
                     <div
@@ -150,3 +156,4 @@ function usePortalId(): [string, string] {
 SideDrawer.Title = SideDrawerTitle;
 SideDrawer.Toolbar = SideDrawerToolbar;
 SideDrawer.Actions = SideDrawerActions;
+SideDrawer.BackButton = SideDrawerBackButton;

@@ -4,6 +4,7 @@ interface SideDrawerContextValue {
   readonly actionPortal?: HTMLElement | null;
   readonly titlePortal?: HTMLElement | null;
   readonly toolbarPortal?: HTMLElement | null;
+  readonly backPortal?: HTMLElement | null;
 }
 
 const SideDrawerContext = createContext<SideDrawerContextValue>({});
