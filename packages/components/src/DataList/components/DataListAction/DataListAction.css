@@ -17,7 +17,7 @@
   gap: var(--space-small);
 }
 
-.actionLink {
+.actionUrl {
   box-sizing: border-box;
   text-decoration: none;
 }

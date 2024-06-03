@@ -41,7 +41,7 @@ export function DataListAction<T extends DataListObject>({
         href={actionUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className={`${styles.action} ${styles.actionLink}`}
+        className={`${styles.action} ${styles.actionUrl}`}
       >
         <Typography textColor={color}>
           <span className={styles.label}>{getActionLabel()}</span>
