@@ -39,7 +39,6 @@ export function DataListAction<T extends DataListObject>({
     return (
       <a
         href={actionUrl}
-        target="_blank"
         rel="noopener noreferrer"
         className={`${styles.action} ${styles.actionUrl}`}
       >

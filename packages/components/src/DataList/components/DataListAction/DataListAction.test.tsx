@@ -84,7 +84,6 @@ describe("DataListAction", () => {
 
     const link = screen.getByRole("link", { name });
     expect(link).toHaveAttribute("href", actionUrl);
-    expect(link).toHaveAttribute("target", "_blank");
   });
 
   describe("Action visibility", () => {
