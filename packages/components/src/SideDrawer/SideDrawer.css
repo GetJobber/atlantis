@@ -13,10 +13,16 @@
   max-width: 420px;
 }
 
-/* Adjust `Content` components public padding to match the cards */
+/* Adjust `Content` components public padding to match the drawer */
 
 .drawer > * {
   --public-content--padding: var(--sideDrawer--base-padding);
+}
+
+/* Remove the nested `Content` components public padding */
+
+.drawer > * > * {
+  --public-content--padding: 0;
 }
 
 .container {
