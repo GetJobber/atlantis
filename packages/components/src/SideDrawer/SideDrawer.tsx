@@ -1,8 +1,10 @@
 import React, { useId, useState } from "react";
-import type { PropsWithChildren } from "react";
+import type { KeyboardEvent, PropsWithChildren } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, Variants, motion } from "framer-motion";
 import { tokens } from "@jobber/design";
+import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
+import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import { SideDrawerActions } from "./SideDrawerActions";
 import { SideDrawerContext } from "./SideDrawerContext";
 import { SideDrawerTitle } from "./SideDrawerTitle";
@@ -38,6 +40,9 @@ export function SideDrawer({
   const [titlePortalId, titlePortalSelector] = usePortalId();
   const [actionsPortalId, actionsPortalSelector] = usePortalId();
 
+  useRefocusOnActivator(open);
+  const sideDrawerRef = useFocusTrap<HTMLDivElement>(open);
+
   const container = globalThis.document?.body || null;
 
   if (!container) return null;
@@ -63,7 +68,6 @@ export function SideDrawer({
           <motion.div
             className={styles.drawer}
             ref={setRef}
-            role="dialog"
             variants={variants}
             initial="hidden"
             animate="visible"
@@ -72,38 +76,52 @@ export function SideDrawer({
               duration: tokens["timing-base"] / 1000,
             }}
           >
-            <div className={styles.header}>
-              <Flex template={["grow", "shrink"]}>
-                <div data-portal-id={titlePortalId} />
+            <div
+              ref={sideDrawerRef}
+              role="dialog"
+              className={styles.container}
+              tabIndex={0}
+              onKeyUp={handleKeyUp}
+            >
+              <div className={styles.header}>
+                <Flex template={["grow", "shrink"]}>
+                  <div data-portal-id={titlePortalId} />
 
-                <div className={styles.headerActions}>
-                  <div
-                    className={styles.hideWhenEmpty}
-                    data-portal-id={actionsPortalId}
-                  />
-                  <Button
-                    ariaLabel="Close"
-                    icon="cross"
-                    onClick={onRequestClose}
-                    type="secondary"
-                    variation="subtle"
-                  />
-                </div>
-              </Flex>
+                  <div className={styles.headerActions}>
+                    <div
+                      className={styles.hideWhenEmpty}
+                      data-portal-id={actionsPortalId}
+                    />
+                    <Button
+                      ariaLabel="Close"
+                      icon="cross"
+                      onClick={onRequestClose}
+                      type="secondary"
+                      variation="subtle"
+                    />
+                  </div>
+                </Flex>
 
-              <div
-                className={styles.hideWhenEmpty}
-                data-portal-id={toolbarPortalId}
-              />
+                <div
+                  className={styles.hideWhenEmpty}
+                  data-portal-id={toolbarPortalId}
+                />
+              </div>
+
+              {children}
             </div>
-
-            {children}
           </motion.div>
         )}
       </AnimatePresence>
     </SideDrawerContext.Provider>,
     container,
   );
+
+  function handleKeyUp(event: KeyboardEvent<HTMLDivElement>): void {
+    if (event.key === "Escape") {
+      onRequestClose();
+    }
+  }
 }
 
 function usePortalId(): [string, string] {

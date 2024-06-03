@@ -1,0 +1,88 @@
+import React from "react";
+import { render, screen, within } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
+import { SideDrawer } from "./SideDrawer";
+
+describe("SideDrawer", () => {
+  it("should not render", () => {
+    render(<SideDrawer open={false} onRequestClose={jest.fn()} />);
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  });
+
+  it("should render when open", () => {
+    render(<SideDrawer open={true} onRequestClose={jest.fn()} />);
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
+  });
+
+  it("should render a string title", () => {
+    render(
+      <SideDrawer open={true} onRequestClose={jest.fn()}>
+        <SideDrawer.Title>Title</SideDrawer.Title>
+      </SideDrawer>,
+    );
+    expect(screen.getByText("Title")).toBeInTheDocument();
+  });
+
+  it("should render a custom title", () => {
+    render(
+      <SideDrawer open={true} onRequestClose={jest.fn()}>
+        <SideDrawer.Title>
+          <pre>Title</pre>
+        </SideDrawer.Title>
+      </SideDrawer>,
+    );
+    expect(screen.getByText("Title")).toBeInstanceOf(HTMLPreElement);
+  });
+
+  it("should render the actions", () => {
+    render(
+      <SideDrawer open={true} onRequestClose={jest.fn()}>
+        <SideDrawer.Actions>
+          <button type="button">Button1</button>
+          <button type="button">Button2</button>
+        </SideDrawer.Actions>
+      </SideDrawer>,
+    );
+
+    expect(screen.getByText("Button1")).toBeInTheDocument();
+    expect(screen.getByText("Button2")).toBeInTheDocument();
+  });
+
+  it("should render a toolbar", () => {
+    render(
+      <SideDrawer open={true} onRequestClose={jest.fn()}>
+        <SideDrawer.Toolbar>
+          <input type="text" placeholder="Input" />
+        </SideDrawer.Toolbar>
+      </SideDrawer>,
+    );
+
+    expect(screen.getByPlaceholderText("Input")).toBeInTheDocument();
+  });
+
+  describe("Close", () => {
+    const onRequestClose = jest.fn();
+
+    beforeEach(() => {
+      render(<SideDrawer open={true} onRequestClose={onRequestClose} />);
+    });
+
+    afterEach(() => {
+      onRequestClose.mockClear();
+    });
+
+    it("should call onRequestClose when clicking the close button", async () => {
+      const dialog = screen.getByRole("dialog");
+      const closeButton = within(dialog).getByLabelText("Close");
+      await userEvent.click(closeButton);
+
+      expect(onRequestClose).toHaveBeenCalledTimes(1);
+    });
+
+    it("should call onRequestClose when pressing the escape key", async () => {
+      await userEvent.keyboard("{Escape}");
+
+      expect(onRequestClose).toHaveBeenCalledTimes(1);
+    });
+  });
+});
