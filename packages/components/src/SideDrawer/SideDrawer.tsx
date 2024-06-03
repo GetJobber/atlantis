@@ -45,10 +45,10 @@ export function SideDrawer({
   variation = "base",
 }: SideDrawerProps) {
   const [ref, setRef] = useState<HTMLDivElement | null>(null);
-  const [toolbarPortalId, toolbarPortalSelector] = usePortalId();
-  const [titlePortalId, titlePortalSelector] = usePortalId();
-  const [actionsPortalId, actionsPortalSelector] = usePortalId();
-  const [backPortalId, backPortalSelector] = usePortalId();
+  const toolbar = usePortalId();
+  const title = usePortalId("title");
+  const actions = usePortalId();
+  const backButton = usePortalId();
 
   useRefocusOnActivator(open);
   const sideDrawerRef = useFocusTrap<HTMLDivElement>(open);
@@ -61,10 +61,10 @@ export function SideDrawer({
   return createPortal(
     <SideDrawerContext.Provider
       value={{
-        actionPortal: ref?.querySelector(actionsPortalSelector),
-        titlePortal: ref?.querySelector(titlePortalSelector),
-        toolbarPortal: ref?.querySelector(toolbarPortalSelector),
-        backPortal: ref?.querySelector(backPortalSelector),
+        actionPortal: ref?.querySelector(actions.selector),
+        titlePortal: ref?.querySelector(title.selector),
+        toolbarPortal: ref?.querySelector(toolbar.selector),
+        backPortal: ref?.querySelector(backButton.selector),
       }}
     >
       {open && (
@@ -105,29 +105,23 @@ export function SideDrawer({
               >
                 <Flex template={["grow", "shrink"]}>
                   <Flex template={["shrink", "grow"]} gap="small">
-                    <div data-portal-id={backPortalId} />
-                    <div data-portal-id={titlePortalId} />
+                    <div {...backButton.attr} />
+                    <div {...title.attr} />
                   </Flex>
 
                   <div className={styles.headerActions}>
-                    <div
-                      className={styles.hideWhenEmpty}
-                      data-portal-id={actionsPortalId}
-                    />
+                    <div className={styles.hideWhenEmpty} {...actions.attr} />
                     <Button
                       ariaLabel="Close"
                       icon="cross"
                       onClick={onRequestClose}
-                      type="tertiary"
+                      type={"tertiary"}
                       variation="subtle"
                     />
                   </div>
                 </Flex>
 
-                <div
-                  className={styles.hideWhenEmpty}
-                  data-portal-id={toolbarPortalId}
-                />
+                <div className={styles.hideWhenEmpty} {...toolbar.attr} />
               </div>
 
               {children}
@@ -146,11 +140,14 @@ export function SideDrawer({
   }
 }
 
-function usePortalId(): [string, string] {
+function usePortalId(prefix?: string) {
   const id = useId();
-  const portalId = `[data-portal-id="${id}"]`;
+  const prefixedId = prefix ? `${prefix}-${id}` : id;
+  const attrKey = "data-side-drawer-slot";
+  const selector = `[${attrKey}="${prefixedId}"]`;
+  const attr = { [attrKey]: prefixedId };
 
-  return [id, portalId];
+  return { id: prefixedId, selector, attr };
 }
 
 SideDrawer.Title = SideDrawerTitle;
