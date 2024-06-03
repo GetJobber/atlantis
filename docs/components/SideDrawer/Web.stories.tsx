@@ -36,6 +36,7 @@ const BasicTemplate: ComponentStory<typeof SideDrawer> = args => {
         label="Open Side Drawer"
       />
       <SideDrawer
+        {...args}
         open={sideDrawerOpen}
         onRequestClose={() => setSideDrawerOpen(false)}
       >
@@ -117,6 +118,7 @@ const ActionTemplate: ComponentStory<typeof SideDrawer> = args => {
         label="Open Side Drawer"
       />
       <SideDrawer
+        {...args}
         open={sideDrawerOpen}
         onRequestClose={() => setSideDrawerOpen(false)}
       >
@@ -154,6 +156,7 @@ const CustomTitleTemplate: ComponentStory<typeof SideDrawer> = args => {
         label="Open Side Drawer"
       />
       <SideDrawer
+        {...args}
         open={sideDrawerOpen}
         onRequestClose={() => setSideDrawerOpen(false)}
       >
@@ -187,6 +190,7 @@ const ToolbarTemplate: ComponentStory<typeof SideDrawer> = args => {
         label="Open Side Drawer"
       />
       <SideDrawer
+        {...args}
         open={sideDrawerOpen}
         onRequestClose={() => setSideDrawerOpen(false)}
       >

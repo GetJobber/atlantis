@@ -14,6 +14,20 @@ describe("SideDrawer", () => {
     expect(screen.getByRole("dialog")).toBeInTheDocument();
   });
 
+  it("should render with a white background", () => {
+    render(<SideDrawer open={true} onRequestClose={jest.fn()} />);
+    const drawer = screen.getByRole("dialog");
+    expect(drawer).toHaveClass("container");
+    expect(drawer).not.toHaveClass("subtle");
+  });
+
+  it("should render with a subtle background", () => {
+    render(
+      <SideDrawer open={true} onRequestClose={jest.fn()} variation="subtle" />,
+    );
+    expect(screen.getByRole("dialog")).toHaveClass("subtle");
+  });
+
   it("should render a string title", () => {
     render(
       <SideDrawer open={true} onRequestClose={jest.fn()}>
@@ -60,7 +74,7 @@ describe("SideDrawer", () => {
     expect(screen.getByPlaceholderText("Input")).toBeInTheDocument();
   });
 
-  describe("Close", () => {
+  describe("When closed", () => {
     const onRequestClose = jest.fn();
 
     beforeEach(() => {

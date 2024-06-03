@@ -5,6 +5,7 @@ import { AnimatePresence, Variants, motion } from "framer-motion";
 import { tokens } from "@jobber/design";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
+import classNames from "classnames";
 import { SideDrawerActions } from "./SideDrawerActions";
 import { SideDrawerContext } from "./SideDrawerContext";
 import { SideDrawerTitle } from "./SideDrawerTitle";
@@ -23,6 +24,11 @@ interface SideDrawerProps extends PropsWithChildren {
    * Callback function to close the drawer.
    */
   readonly onRequestClose: () => void;
+
+  /**
+   * Change the appearance of the drawer.
+   */
+  readonly variation?: "base" | "subtle";
 }
 
 const variants: Variants = {
@@ -34,6 +40,7 @@ export function SideDrawer({
   children,
   onRequestClose,
   open,
+  variation = "base",
 }: SideDrawerProps) {
   const [ref, setRef] = useState<HTMLDivElement | null>(null);
   const [toolbarPortalId, toolbarPortalSelector] = usePortalId();
@@ -79,7 +86,9 @@ export function SideDrawer({
             <div
               ref={sideDrawerRef}
               role="dialog"
-              className={styles.container}
+              className={classNames(styles.container, {
+                [styles.subtle]: variation === "subtle",
+              })}
               tabIndex={0}
               onKeyUp={handleKeyUp}
             >
@@ -96,7 +105,7 @@ export function SideDrawer({
                       ariaLabel="Close"
                       icon="cross"
                       onClick={onRequestClose}
-                      type="secondary"
+                      type="tertiary"
                       variation="subtle"
                     />
                   </div>

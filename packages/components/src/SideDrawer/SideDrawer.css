@@ -1,5 +1,6 @@
 :root {
   --sideDrawer--base-padding: var(--space-base);
+  --sideDrawer--background: var(--color-surface);
 }
 
 .drawer {
@@ -23,8 +24,12 @@
   height: 100%;
   box-shadow: var(--shadow-base);
   overflow-y: auto;
-  background-color: var(--color-surface);
+  background-color: var(--sideDrawer--background);
   flex-direction: column;
+}
+
+.subtle {
+  --sideDrawer--background: var(--color-surface--background--subtle);
 }
 
 .header {
@@ -34,7 +39,7 @@
   z-index: var(--elevation-base);
   padding: var(--sideDrawer--base-padding);
   border-bottom: var(--border-base) solid var(--color-border);
-  background-color: var(--color-surface);
+  background-color: var(--sideDrawer--background);
   flex-direction: column;
   gap: var(--space-base);
 }
