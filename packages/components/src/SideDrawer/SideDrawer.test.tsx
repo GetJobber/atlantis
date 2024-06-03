@@ -114,4 +114,24 @@ describe("SideDrawer", () => {
       expect(onRequestClose).toHaveBeenCalledTimes(1);
     });
   });
+
+  /**
+   * This test ensures that the aria label for Close and Back are present as
+   * we're using them to style the button directly when the title is not present.
+   *
+   * If we couldn't find both buttons, that means the UI will be broken when
+   * scrolling down.
+   */
+  it("should have an aria label for Close and Back", () => {
+    render(
+      <SideDrawer open={true} onRequestClose={jest.fn()}>
+        <SideDrawer.BackButton />
+      </SideDrawer>,
+    );
+
+    const drawer = within(screen.getByRole("dialog"));
+
+    expect(drawer.getByRole("button", { name: "Close" })).toBeInTheDocument();
+    expect(drawer.getByRole("button", { name: "Back" })).toBeInTheDocument();
+  });
 });

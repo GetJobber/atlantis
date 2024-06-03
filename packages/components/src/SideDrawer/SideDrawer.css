@@ -40,16 +40,40 @@
   background-color: var(--sideDrawer--background);
   flex-direction: column;
   gap: var(--space-base);
-  transition: box-shadow var(--timing-base) ease-in-out;
+  transition:
+    box-shadow var(--timing-base) ease-in-out,
+    filter var(--timing-base) ease-in-out;
+}
+
+.hasShadow {
+  box-shadow: var(--shadow-base);
+}
+
+.header:has([data-side-drawer-slot^="title-"]:empty) {
+  padding-bottom: var(--space-smaller);
+  background-color: transparent;
+
+  &.hasShadow {
+    box-shadow: none;
+    filter: drop-shadow(
+      0 0 var(--space-smaller) rgba(var(--color-black--rgb), 0.25)
+    );
+
+    /**
+     * Force the 2 built-in buttons to have a background color when the header
+     * is not present so the drop shadow is applied to the whole button and not
+     * just the icon.
+     */
+    & button[aria-label="Close"],
+    & button[aria-label="Back"] {
+      background-color: var(--color-surface);
+    }
+  }
 }
 
 .headerActions {
   display: flex;
   margin-right: calc(-1 * var(--space-small));
-}
-
-.hasShadow {
-  box-shadow: var(--shadow-base);
 }
 
 .hideWhenEmpty:empty {
