@@ -72,6 +72,21 @@ describe("DataListAction", () => {
     expect(mockLabel).toHaveBeenCalledWith(value.activeItem);
   });
 
+  it("should render an action as a link when an actionUrl is passed", () => {
+    const actionUrl = "https://example.com";
+    render(
+      <DataListLayoutActionsContext.Provider
+        value={{ activeItem: mockActiveItemValue() }}
+      >
+        <DataListAction label={name} actionUrl={actionUrl} />
+      </DataListLayoutActionsContext.Provider>,
+    );
+
+    const link = screen.getByRole("link", { name });
+    expect(link).toHaveAttribute("href", actionUrl);
+    expect(link).toHaveAttribute("target", "_blank");
+  });
+
   describe("Action visibility", () => {
     const value = { activeItem: { id: 1 } };
 
