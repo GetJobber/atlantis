@@ -113,7 +113,7 @@ const BasicTemplate: ComponentStory<typeof SideDrawer> = args => {
                 label="Visit Help Center"
                 variation="subtle"
               />
-              <Button icon="video" label="Save" variation="subtle" />
+              <Button icon="video" label="Watch Video" variation="subtle" />
             </Flex>
             <Button icon="chat" label="Chat With Us" fullWidth={true} />
           </Content>

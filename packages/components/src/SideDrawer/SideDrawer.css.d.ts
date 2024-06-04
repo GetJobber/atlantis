@@ -8,6 +8,7 @@ declare const styles: {
   readonly "headerActions": string;
   readonly "hideWhenEmpty": string;
   readonly "overlay": string;
+  readonly "content": string;
 };
 export = styles;
 

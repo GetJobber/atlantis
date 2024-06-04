@@ -130,7 +130,7 @@ export function SideDrawer({
                 <div className={styles.hideWhenEmpty} {...toolbar.attr} />
               </div>
 
-              {children}
+              <div className={styles.content}>{children}</div>
 
               <div
                 className={classNames(styles.footer, styles.hideWhenEmpty, {

@@ -21,18 +21,6 @@
   flex-direction: column;
 }
 
-/* Adjust `Content` components public padding to match the drawer */
-
-.container > * {
-  --public-content--padding: var(--sideDrawer--base-padding);
-}
-
-/* Remove the nested `Content` components public padding */
-
-.container > * > * {
-  --public-content--padding: 0;
-}
-
 .subtle {
   --sideDrawer--background: var(--color-surface--background--subtle);
 }
@@ -117,4 +105,22 @@
   border: none;
   background-color: transparent;
   appearance: none;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Adjust `Content` components public padding to match the drawer */
+
+.content > * {
+  --public-content--padding: var(--sideDrawer--base-padding);
+}
+
+/* Remove the nested `Content` components public padding */
+
+.content > * > * {
+  --public-content--padding: 0;
 }
