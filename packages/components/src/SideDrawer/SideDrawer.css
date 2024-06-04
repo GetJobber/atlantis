@@ -13,24 +13,24 @@
   max-width: 420px;
 }
 
-/* Adjust `Content` components public padding to match the drawer */
-
-.drawer > * {
-  --public-content--padding: var(--sideDrawer--base-padding);
-}
-
-/* Remove the nested `Content` components public padding */
-
-.drawer > * > * {
-  --public-content--padding: 0;
-}
-
 .container {
   display: flex;
   height: 100%;
   overflow-y: auto;
   background-color: var(--sideDrawer--background);
   flex-direction: column;
+}
+
+/* Adjust `Content` components public padding to match the drawer */
+
+.container > * {
+  --public-content--padding: var(--sideDrawer--base-padding);
+}
+
+/* Remove the nested `Content` components public padding */
+
+.container > * > * {
+  --public-content--padding: 0;
 }
 
 .subtle {
@@ -49,6 +49,11 @@
   transition:
     box-shadow var(--timing-base) ease-in-out,
     filter var(--timing-base) ease-in-out;
+
+  & [data-side-drawer-slot^="back-"]:not(:empty) {
+    margin-left: calc(var(--space-small) * -1);
+    margin-right: var(--space-small);
+  }
 }
 
 .hasShadow {

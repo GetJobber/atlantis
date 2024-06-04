@@ -45,10 +45,10 @@ export function SideDrawer({
   variation = "base",
 }: SideDrawerProps) {
   const [ref, setRef] = useState<HTMLDivElement | null>(null);
-  const toolbar = usePortalId();
-  const title = usePortalId("title");
-  const actions = usePortalId();
-  const backButton = usePortalId();
+  const toolbar = useSlotID();
+  const title = useSlotID("title");
+  const actions = useSlotID();
+  const backButton = useSlotID("back");
 
   useRefocusOnActivator(open);
   const sideDrawerRef = useFocusTrap<HTMLDivElement>(open);
@@ -104,7 +104,7 @@ export function SideDrawer({
                 })}
               >
                 <Flex template={["grow", "shrink"]}>
-                  <Flex template={["shrink", "grow"]} gap="small">
+                  <Flex template={["shrink", "grow"]} gap="none">
                     <div {...backButton.attr} />
                     <div {...title.attr} />
                   </Flex>
@@ -140,7 +140,7 @@ export function SideDrawer({
   }
 }
 
-function usePortalId(prefix?: string) {
+function useSlotID(prefix?: string) {
   const id = useId();
   const prefixedId = prefix ? `${prefix}-${id}` : id;
   const attrKey = "data-side-drawer-slot";
