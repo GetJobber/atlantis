@@ -37,18 +37,22 @@
   --sideDrawer--background: var(--color-surface--background--subtle);
 }
 
-.header {
+.header,
+.footer {
   display: flex;
   position: sticky;
-  top: 0;
   z-index: var(--elevation-base);
   padding: var(--sideDrawer--base-padding);
   background-color: var(--sideDrawer--background);
   flex-direction: column;
-  gap: var(--space-base);
   transition:
     box-shadow var(--timing-base) ease-in-out,
     filter var(--timing-base) ease-in-out;
+}
+
+.header {
+  top: 0;
+  gap: var(--space-base);
 
   & [data-side-drawer-slot^="back-"]:not(:empty) {
     margin-left: calc(var(--space-small) * -1);
@@ -85,6 +89,10 @@
 .headerActions {
   display: flex;
   margin-right: calc(-1 * var(--space-small));
+}
+
+.footer {
+  bottom: 0;
 }
 
 .hideWhenEmpty:empty {

@@ -13,6 +13,7 @@ import { SideDrawerTitle } from "./SideDrawerTitle";
 import { SideDrawerToolbar } from "./SideDrawerToolbar";
 import styles from "./SideDrawer.css";
 import { SideDrawerBackButton } from "./SideDrawerBackButton";
+import { SideDrawerFooter } from "./SideDrawerFooter";
 import { Button } from "../Button";
 import { Flex } from "../Flex";
 
@@ -38,6 +39,7 @@ const variants: Variants = {
   visible: { x: 0, transitionEnd: { x: 0 } },
 };
 
+// eslint-disable-next-line max-statements
 export function SideDrawer({
   children,
   onRequestClose,
@@ -49,10 +51,12 @@ export function SideDrawer({
   const title = useSlotID("title");
   const actions = useSlotID();
   const backButton = useSlotID("back");
+  const footer = useSlotID();
 
   useRefocusOnActivator(open);
   const sideDrawerRef = useFocusTrap<HTMLDivElement>(open);
-  const [shadowRef, hideShadow] = useInView<HTMLDivElement>();
+  const [headerShadowRef, noHeaderShadow] = useInView<HTMLDivElement>();
+  const [footerShadowRef, noFooterShadow] = useInView<HTMLDivElement>();
 
   const container = globalThis.document?.body || null;
 
@@ -65,6 +69,7 @@ export function SideDrawer({
         titlePortal: ref?.querySelector(title.selector),
         toolbarPortal: ref?.querySelector(toolbar.selector),
         backPortal: ref?.querySelector(backButton.selector),
+        footerPortal: ref?.querySelector(footer.selector),
       }}
     >
       {open && (
@@ -97,10 +102,11 @@ export function SideDrawer({
               tabIndex={0}
               onKeyUp={handleKeyUp}
             >
-              <div ref={shadowRef} />
+              <div ref={headerShadowRef} />
               <div
                 className={classNames(styles.header, {
-                  [styles.hasShadow]: shadowRef.current && !hideShadow,
+                  [styles.hasShadow]:
+                    headerShadowRef.current && !noHeaderShadow,
                 })}
               >
                 <Flex template={["grow", "shrink"]}>
@@ -125,6 +131,15 @@ export function SideDrawer({
               </div>
 
               {children}
+
+              <div
+                className={classNames(styles.footer, styles.hideWhenEmpty, {
+                  [styles.hasShadow]:
+                    footerShadowRef.current && !noFooterShadow,
+                })}
+                {...footer.attr}
+              />
+              <div ref={footerShadowRef} />
             </div>
           </motion.div>
         )}
@@ -154,3 +169,4 @@ SideDrawer.Title = SideDrawerTitle;
 SideDrawer.Toolbar = SideDrawerToolbar;
 SideDrawer.Actions = SideDrawerActions;
 SideDrawer.BackButton = SideDrawerBackButton;
+SideDrawer.Footer = SideDrawerFooter;

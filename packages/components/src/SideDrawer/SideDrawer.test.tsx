@@ -89,6 +89,18 @@ describe("SideDrawer", () => {
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
+  it("should render the footer", () => {
+    render(
+      <SideDrawer open={true} onRequestClose={jest.fn()}>
+        <SideDrawer.Footer>Footer</SideDrawer.Footer>
+      </SideDrawer>,
+    );
+
+    const footer = screen.getByText("Footer");
+    expect(footer).toBeInTheDocument();
+    expect(footer).toHaveAttribute("data-side-drawer-slot");
+  });
+
   describe("When closed", () => {
     const onRequestClose = jest.fn();
 
