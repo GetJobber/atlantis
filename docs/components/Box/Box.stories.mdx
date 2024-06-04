@@ -1,11 +1,22 @@
 import { Box } from "@jobber/components/Box";
 
-<Meta title="Components/Layouts and Structure/Box/Docs" component={Box} />
+<Meta
+  title="Components/Layouts and Structure/Box/Docs"
+  component={Box}
+  parameters={{ alpha: true }}
+/>
 
 # Box
 
 A box is a generic way to add structure to your page. Stop reaching for CSS
 Modules to perform basic page layout, and instead use the Box component.
+
+## Alpha State - Use Semantic Colours Please.
+
+The Box component is currently in Alpha status. In particular, we intend to
+fast-follow and restrict any non-semantic color usage. It was faster to roll
+this component with the full colour set for now. We will remove the Alpha status
+when we remove non-semantic colours, and we will warn developers when we do so.
 
 ## Design & Usage guidelines
 
