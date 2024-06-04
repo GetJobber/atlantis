@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from "react";
-import { useActiveElement } from "./useActiveElement";
+import { useEffect, useState } from "react";
 
 interface UseFormFieldFocus {
   focused: boolean;
@@ -19,12 +18,6 @@ export function useFormFieldFocus(
   props: UseFormFieldFocusProps,
 ): UseFormFieldFocus {
   const [focused, setFocused] = useState(false);
-  const activeElement = useActiveElement();
-  const activeElementRef = useRef(activeElement);
-
-  useEffect(() => {
-    activeElementRef.current = activeElement;
-  }, [activeElement]);
 
   function handleFocusIn() {
     setFocused(true);
@@ -33,9 +26,9 @@ export function useFormFieldFocus(
   function handleFocusOut() {
     setTimeout(() => {
       const focusedElementWithinWrapper = props.wrapperRef?.current?.contains(
-        document.activeElement,
+        document?.activeElement,
       );
-      const focusException = activeElementRef.current?.closest(
+      const focusException = document?.activeElement?.closest(
         `[${PORTAL_FOCUS_ATTRIBUTE_NAME}='true']`,
       );
 
@@ -56,7 +49,7 @@ export function useFormFieldFocus(
         handleFocusOut,
       );
     };
-  }, [props.wrapperRef?.current]);
+  }, []);
 
   return {
     focused,
