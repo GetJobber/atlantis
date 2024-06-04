@@ -161,6 +161,7 @@ export function Menu({ activator, items }: MenuProps) {
                   <motion.div
                     className={styles.menu}
                     role="menu"
+                    data-elevation={"elevated"}
                     aria-labelledby={buttonID}
                     id={menuID}
                     onClick={hide}

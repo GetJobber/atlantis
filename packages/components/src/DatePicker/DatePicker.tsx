@@ -123,7 +123,7 @@ export function DatePicker({
   }
 
   return (
-    <div className={wrapperClassName} ref={ref}>
+    <div className={wrapperClassName} ref={ref} data-elevation={"elevated"}>
       <ReactDatePicker
         ref={pickerRef}
         calendarClassName={datePickerClassNames}
