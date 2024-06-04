@@ -2,9 +2,11 @@
   display: flex;
   position: relative;
   box-shadow: var(--shadow-base);
-  padding: var(--space-base);
+  padding: calc(var(--space-base) - var(--space-smaller)) var(--space-base);
+  border: var(--border-base) solid var(--color-border);
+  border-radius: var(--radius-base);
   color: var(--color-text);
-  background-color: var(--color-surface--background);
+  background-color: var(--color-surface);
   gap: var(--space-small);
   align-items: center;
 }
@@ -55,21 +57,20 @@
 
 .closeButton {
   margin: calc(var(--space-smallest) * -1) 0;
-  padding: var(--space-smallest);
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  appearance: none;
-  flex: 0;
   align-self: flex-start;
+
+  @media (--small-screens-and-below) {
+    margin: calc(var(--space-small) * -1) 0;
+  }
 }
 
-.closeButton:hover {
-  background: rgba(0, 0, 0, 0.025);
+.iconWrapper {
+  display: inline-flex;
+  padding: var(--space-smaller);
+  border-radius: var(--radius-circle);
+  background-color: var(--color-surface--background);
 }
 
-.closeButton:focus {
-  box-shadow: var(--shadow-focus);
-  outline: none;
-  background: rgba(0, 0, 0, 0.05);
+.medium .iconWrapper {
+  align-self: center;
 }

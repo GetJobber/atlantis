@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
 import classnames from "classnames";
 import { Icon } from "@jobber/components/Icon";
+import { Flex } from "@jobber/components/Flex";
 import styles from "./ComboboxOption.css";
 import { ComboboxContext } from "../../ComboboxProvider";
 
 export interface ComboboxOptionProps {
   readonly id: string | number;
   readonly label: string;
+  readonly prefix?: React.ReactNode;
 }
 
 export function ComboboxOption(props: ComboboxOptionProps) {
@@ -29,8 +31,13 @@ export function ComboboxOption(props: ComboboxOptionProps) {
       }
       className={classnames(styles.option)}
     >
-      {props.label}
-      {isSelected && <Icon name="checkmark" color="blue" />}
+      <Flex template={props.prefix ? ["shrink", "grow"] : ["grow"]}>
+        {props.prefix}
+
+        {props.label}
+      </Flex>
+
+      <div>{isSelected && <Icon name="checkmark" color="blue" />}</div>
     </li>
   );
 }

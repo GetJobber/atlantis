@@ -5,32 +5,20 @@ import {
   DataListLayoutProps,
   DataListObject,
 } from "@jobber/components/DataList/DataList.types";
-import { useResponsiveSizing } from "@jobber/components/DataList/hooks/useResponsiveSizing";
+import { useActiveLayout } from "../../hooks/useActiveLayout";
 
 export function DataListLayout<T extends DataListObject>({
   children,
   size = "xs",
 }: DataListLayoutProps<T>) {
-  const {
-    layoutBreakpoints,
-    registerLayout,
-    registerLayoutBreakpoints,
-    loadingState,
-  } = useDataListContext<T>();
-  const breakpoints = useResponsiveSizing();
-
-  useEffect(() => {
-    registerLayoutBreakpoints(size);
-  }, [size]);
+  const { registerLayout, loadingState } = useDataListContext<T>();
+  const { activeBreakpoint } = useActiveLayout();
 
   useEffect(() => {
     registerLayout(size, children);
   }, [size, children]);
 
-  const sizeIndex = layoutBreakpoints.indexOf(size);
-  const nextAvailableSize = layoutBreakpoints[sizeIndex + 1];
-
-  const shouldRenderList = breakpoints[size] && !breakpoints[nextAvailableSize];
+  const shouldRenderList = size === activeBreakpoint;
 
   if (loadingState !== "initial" && shouldRenderList) {
     return <DataListItems size={size} />;

@@ -1,6 +1,6 @@
 /* eslint-disable max-statements */
 import { act, fireEvent, render, screen, within } from "@testing-library/react";
-import React from "react";
+import React, { ReactElement } from "react";
 import { configMocks, mockIntersectionObserver } from "jsdom-testing-mocks";
 import userEvent from "@testing-library/user-event";
 import { Banner } from "@jobber/components/Banner";
@@ -10,14 +10,11 @@ import {
   Breakpoints,
   DATA_LIST_FILTERING_SPINNER_TEST_ID,
   DATA_LIST_LOADING_MORE_SPINNER_TEST_ID,
+  DATA_LIST_STICKY_HEADER_TEST_ID,
   DATA_LOAD_MORE_TEST_ID,
   EMPTY_FILTER_RESULTS_MESSAGE,
 } from "./DataList.const";
-import {
-  DataListItemType,
-  DataListProps,
-  DataListSorting,
-} from "./DataList.types";
+import { DataListItemType, DataListProps } from "./DataList.types";
 import { DATALIST_TOTALCOUNT_TEST_ID } from "./components/DataListTotalCount";
 import {
   DATALIST_LOADINGSTATE_ROW_TEST_ID,
@@ -170,10 +167,12 @@ describe("DataList", () => {
   describe("Layout", () => {
     const layoutWrapper = "layout-wrapper";
     const layoutItem = "layout-item";
+    const mockOnSearch = jest.fn();
 
     beforeEach(() => {
       render(
         <DataList data={mockData} headers={mockHeaders}>
+          <DataList.Search onSearch={mockOnSearch} />
           <DataList.Layout>
             {(item: DataListItemType<typeof mockData>) => (
               <div data-testid={layoutWrapper}>
@@ -317,6 +316,7 @@ describe("DataList", () => {
       }) => {
         const layout1Wrapper = "layout1-wrapper";
         const layout2Wrapper = "layout2-wrapper";
+        const mockOnSearch = jest.fn();
         setUpMediaQueries(mockedQueries);
         render(
           <DataList
@@ -324,6 +324,7 @@ describe("DataList", () => {
             headers={mockHeaders}
             headerVisibility={headerVisibility}
           >
+            <DataList.Search onSearch={mockOnSearch} />
             <DataList.Layout size={layoutSize1}>
               {(item: DataListItemType<typeof mockData>) => (
                 <div data-testid={layout1Wrapper}>
@@ -350,6 +351,8 @@ describe("DataList", () => {
   });
 
   describe("Header", () => {
+    const mockOnSearch = jest.fn();
+
     function renderLayout(
       headerVisibility?: DataListProps<
         (typeof mockData)[0]
@@ -363,6 +366,7 @@ describe("DataList", () => {
           headerVisibility={headerVisibility}
           sorting={sorting}
         >
+          <DataList.Search onSearch={mockOnSearch} />
           <DataList.Layout>
             {(item: DataListItemType<typeof mockData>) => (
               <div>{item.name}</div>
@@ -390,72 +394,118 @@ describe("DataList", () => {
       expect(screen.queryByText(mockHeaders.name)).not.toBeInTheDocument();
       expect(screen.queryByText(mockHeaders.email)).not.toBeInTheDocument();
     });
-  });
 
-  describe("Sorting", () => {
-    function MockSortingLayout({
-      sorting,
-    }: {
-      readonly sorting: DataListProps<(typeof mockData)[0]>["sorting"];
-    }) {
-      return (
-        <DataList data={mockData} headers={mockHeaders} sorting={sorting}>
-          <DataList.Layout>
-            {(item: DataListItemType<typeof mockData>) => (
-              <div>{item.name}</div>
-            )}
-          </DataList.Layout>
-        </DataList>
-      );
-    }
+    it("should render the sorting arrows when sorting is specified", () => {
+      renderLayout(undefined, {
+        sortable: [{ key: "name" }],
+        onSort: jest.fn(),
+        state: undefined,
+      });
+      expect(screen.queryByTestId(SORTING_ICON_TEST_ID)).toBeInTheDocument();
+    });
 
-    it("should show the sorting arrows when the header is clicked", () => {
-      const mockOnSort = jest.fn();
-      const expectedSorting: DataListSorting = {
-        order: "asc",
-        key: "name",
-      };
-
-      const { rerender } = render(
-        <MockSortingLayout
-          sorting={{
-            sortable: ["name"],
-            onSort: mockOnSort,
-            state: undefined,
-          }}
-        />,
-      );
-
+    it("should not render the sorting arrows when sorting is not specified", () => {
+      renderLayout();
       expect(
         screen.queryByTestId(SORTING_ICON_TEST_ID),
       ).not.toBeInTheDocument();
+    });
 
-      const nameHeader = screen.getByText(mockHeaders.name);
-      fireEvent.click(nameHeader);
+    it("should trigger the onSort when the header is clicked", () => {
+      const mockOnSort = jest.fn();
+      renderLayout(undefined, {
+        sortable: [{ key: "name" }],
+        onSort: mockOnSort,
+        state: undefined,
+      });
 
-      expect(mockOnSort).toHaveBeenCalledWith(expectedSorting);
+      fireEvent.click(screen.getByText(mockHeaders.name));
+      expect(mockOnSort).toHaveBeenCalled();
+    });
 
-      rerender(
-        <MockSortingLayout
-          sorting={{
-            sortable: ["name"],
-            onSort: mockOnSort,
-            state: expectedSorting,
-          }}
-        />,
-      );
+    it("should render custom options when sorting is specified", () => {
+      const mockOnSort = jest.fn();
 
-      expect(screen.queryByTestId(SORTING_ICON_TEST_ID)).toBeInTheDocument();
+      renderLayout(undefined, {
+        sortable: [
+          {
+            key: "name",
+            sortType: "dropdown",
+            options: [
+              { id: "name", label: "Ascending", order: "asc" },
+              { id: "name", label: "Descending", order: "desc" },
+            ],
+          },
+        ],
+        onSort: mockOnSort,
+        state: undefined,
+      });
+
+      fireEvent.click(screen.getByText(mockHeaders.name));
+      expect(screen.getByText("Ascending")).toBeInTheDocument();
+      expect(screen.getByText("Descending")).toBeInTheDocument();
+
+      fireEvent.click(screen.getByText("Ascending"));
+
+      expect(mockOnSort).toHaveBeenCalledWith({
+        key: "name",
+        id: "name",
+        label: "Ascending",
+        order: "asc",
+      });
     });
   });
 
-  it("should render a title when it's provided", () => {
-    render(
-      <DataList title={mockTitle} headers={{}} data={emptyMockData}>
-        <></>
-      </DataList>,
-    );
-    expect(screen.getByText(mockTitle)).toBeInTheDocument();
+  describe("DataListStickyHeader", () => {
+    const mockOnSearch = jest.fn();
+
+    const renderDataList = (children: ReactElement) => {
+      render(
+        <DataList data={mockData} headers={{}}>
+          {children}
+        </DataList>,
+      );
+    };
+
+    const renderDataListWithHeaders = (children: ReactElement) => {
+      render(
+        <DataList data={mockData} headers={mockHeaders}>
+          {children}
+        </DataList>,
+      );
+    };
+
+    it("should render the Sticky Header if DataList.Search is provided", () => {
+      renderDataList(<DataList.Search onSearch={mockOnSearch} />);
+      expect(
+        screen.queryByTestId(DATA_LIST_STICKY_HEADER_TEST_ID),
+      ).toBeInTheDocument();
+    });
+
+    it("should render the Sticky Header if DataList.Filters is provided", () => {
+      renderDataList(
+        <DataList.Filters>
+          <div>Filters</div>
+        </DataList.Filters>,
+      );
+      expect(
+        screen.queryByTestId(DATA_LIST_STICKY_HEADER_TEST_ID),
+      ).toBeInTheDocument();
+    });
+
+    it("should render the Sticky Header when Headers are provided", () => {
+      renderDataListWithHeaders(<></>);
+      expect(
+        screen.queryByTestId(DATA_LIST_STICKY_HEADER_TEST_ID),
+      ).toBeInTheDocument();
+    });
+
+    it("should not render Sticky Header when DataList.Search, DataList.Filters or no Headers are not provided", () => {
+      renderDataList(<></>);
+      expect(
+        screen.queryByTestId(DATA_LIST_STICKY_HEADER_TEST_ID),
+      ).not.toBeInTheDocument();
+    });
   });
 
   describe("EmptyState", () => {
@@ -595,6 +645,7 @@ describe("DataList", () => {
     it("should show the StatusBar when it's provided", () => {
       const bannerText =
         "Something went wrong. Refresh or check your internet connection.";
+      const mockOnSearch = jest.fn();
       render(
         <DataList
           data={Array.from({ length: MAX_DATA_COUNT + 1 }, (_, id) => ({
@@ -602,6 +653,7 @@ describe("DataList", () => {
           }))}
           headers={{ id: "ID" }}
         >
+          <DataList.Search onSearch={mockOnSearch} />
           <DataList.StatusBar>
             <Banner type="error" icon="alert">
               {bannerText}

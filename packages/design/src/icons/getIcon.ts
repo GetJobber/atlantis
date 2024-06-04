@@ -22,6 +22,8 @@ export type IconNames =
   | keyof typeof iconMap.icons
   | "longArrowUp"
   | "longArrowDown"
+  | "longArrowRight"
+  | "longArrowLeft"
   | "remove"
   | "thumbsDown"
   | "truck";
@@ -49,6 +51,8 @@ export function getIcon({ name, color, size = "base" }: IconProps) {
   const svgClassNames = classnames(styles.icon, sizes[size], {
     [styles.longArrowUp]: name === "longArrowUp",
     [styles.longArrowDown]: name === "longArrowDown",
+    [styles.longArrowRight]: name === "longArrowRight",
+    [styles.longArrowLeft]: name === "longArrowLeft",
     [styles.thumbsDown]: name === "thumbsDown",
     [styles.runningTimer]: name === "runningTimer",
   });
@@ -57,11 +61,13 @@ export function getIcon({ name, color, size = "base" }: IconProps) {
   const paths = getPaths(name);
   const iconSize = name === "truck" ? 1024 : 24;
   const viewBox = `0 0 ${iconSize} ${iconSize}`;
+
   return { svgClassNames, pathClassNames, paths, viewBox } as const;
 }
 
 function getPaths(name: IconNames) {
   const iconName = mapToCorrectIcon(name);
+
   if (iconName === "truck") {
     return [];
   } else {
@@ -75,6 +81,10 @@ function mapToCorrectIcon(name: IconNames) {
       return "backArrow";
     case "longArrowDown":
       return "backArrow";
+    case "longArrowRight":
+      return "backArrow";
+    case "longArrowLeft":
+      return "backArrow";
     case "remove":
       return "cross";
     case "thumbsDown":
@@ -83,6 +93,7 @@ function mapToCorrectIcon(name: IconNames) {
       return name;
   }
 }
+
 function getPathClassNames(name: string, color?: IconColorNames) {
   return classnames(color && colors[color], {
     [styles.person]: name === "person",

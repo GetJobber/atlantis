@@ -7,5 +7,6 @@ export async function getGIF(topic: string) {
   const searchURL = `//api.giphy.com/v1/gifs/random?tag=${topic}&rating=PG&api_key=${gifKey}`;
   const response = await fetch(searchURL);
   const json = await response.json();
+
   return json.data.images.original.url;
 }

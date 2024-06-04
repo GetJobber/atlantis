@@ -3,6 +3,151 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.8](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.9.7...@jobber/hooks@2.9.8) (2024-05-28)
+
+
+### Bug Fixes
+
+* **components:** Portalled Menu Take 2 ([#1898](https://github.com/GetJobber/atlantis/issues/1898)) ([a9f2865](https://github.com/GetJobber/atlantis/commit/a9f286502a94e8cf10279a7ba8778dab4792a1f2)), closes [#1891](https://github.com/GetJobber/atlantis/issues/1891)
+
+
+
+
+
+## [2.9.7](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.9.6...@jobber/hooks@2.9.7) (2024-05-15)
+
+
+### Reverts
+
+* Revert "fix(components): Portal Menu Content" ([#1891](https://github.com/GetJobber/atlantis/issues/1891)) ([ad35140](https://github.com/GetJobber/atlantis/commit/ad35140afe6ac6756cf5167e29d9f94ef4b68286)), closes [#1881](https://github.com/GetJobber/atlantis/issues/1881)
+
+
+
+
+
+## [2.9.6](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.9.5...@jobber/hooks@2.9.6) (2024-05-10)
+
+
+### Bug Fixes
+
+* **components:** Portal Menu Content ([#1881](https://github.com/GetJobber/atlantis/issues/1881)) ([8ec006c](https://github.com/GetJobber/atlantis/commit/8ec006c69a02883e1578e9c78d3249c2374fb6f6))
+
+
+
+
+
+## [2.9.5](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.9.4...@jobber/hooks@2.9.5) (2024-04-11)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+## [2.9.4](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.9.3...@jobber/hooks@2.9.4) (2024-03-21)
+
+
+### Bug Fixes
+
+* **components:** Make useMediaQuery SSR Friendly ([#1814](https://github.com/GetJobber/atlantis/issues/1814)) ([8f9ff88](https://github.com/GetJobber/atlantis/commit/8f9ff882741e0c7cbe83c2405422bb1dbf877d9e))
+
+
+
+
+
+## [2.9.3](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.9.2...@jobber/hooks@2.9.3) (2024-03-20)
+
+
+### Bug Fixes
+
+* **components:** Revert Make useMediaQuery SSR Friendly ([#1813](https://github.com/GetJobber/atlantis/issues/1813)) ([e6923be](https://github.com/GetJobber/atlantis/commit/e6923beed4deb172fe465ff219d7a0874711f55d)), closes [#1797](https://github.com/GetJobber/atlantis/issues/1797)
+
+
+
+
+
+## [2.9.2](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.9.1...@jobber/hooks@2.9.2) (2024-03-20)
+
+
+### Bug Fixes
+
+* **components:** Make useMediaQuery SSR Friendly ([#1797](https://github.com/GetJobber/atlantis/issues/1797)) ([7925681](https://github.com/GetJobber/atlantis/commit/79256814b004c49214813e225f3fa32f769c7103))
+
+
+
+
+
+## [2.9.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.9.0...@jobber/hooks@2.9.1) (2024-03-08)
+
+
+### Bug Fixes
+
+* **eslint:** Cleanup lint warnings ([#1796](https://github.com/GetJobber/atlantis/issues/1796)) ([3e0c770](https://github.com/GetJobber/atlantis/commit/3e0c770eca0964636f79831016dbbe25926ae951))
+
+
+
+
+
+# [2.9.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.8.3...@jobber/hooks@2.9.0) (2024-03-01)
+
+
+### Features
+
+* **components:** Added accessible name for combobox trigger ([#1786](https://github.com/GetJobber/atlantis/issues/1786)) ([3280713](https://github.com/GetJobber/atlantis/commit/32807139ee436f45839edd261620e359d156cc80))
+
+
+
+
+
+## [2.8.3](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.8.2...@jobber/hooks@2.8.3) (2024-02-22)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+## [2.8.2](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.8.1...@jobber/hooks@2.8.2) (2024-02-05)
+
+
+### Bug Fixes
+
+* **hooks:** support add and remove listener on mockViewportWidth ([#1750](https://github.com/GetJobber/atlantis/issues/1750)) ([829303c](https://github.com/GetJobber/atlantis/commit/829303cb27b60c5d746bec81fd94e64e535e0923))
+
+
+
+
+
+## [2.8.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.8.0...@jobber/hooks@2.8.1) (2024-01-22)
+
+
+### Bug Fixes
+
+* **hooks:** Guard useAssert to work with SSR ([#1725](https://github.com/GetJobber/atlantis/issues/1725)) ([d3e1601](https://github.com/GetJobber/atlantis/commit/d3e160113a325a2145cf67124e76f5c6018f2559))
+
+
+
+
+
+# [2.8.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.7.3...@jobber/hooks@2.8.0) (2023-12-05)
+
+
+### Features
+
+* **hooks:** Move useShowClear to @jobber/hooks ([#1675](https://github.com/GetJobber/atlantis/issues/1675)) ([7764bb5](https://github.com/GetJobber/atlantis/commit/7764bb5a68b9ff8e43c5dc386d3829f4c8e46160))
+
+
+
+
+
+## [2.7.3](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.7.2...@jobber/hooks@2.7.3) (2023-12-01)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
 ## [2.7.2](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.7.1...@jobber/hooks@2.7.2) (2023-11-16)
 
 

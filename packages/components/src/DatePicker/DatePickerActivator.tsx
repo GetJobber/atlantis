@@ -47,6 +47,7 @@ function InternalActivator(
   if (activator) {
     if (isValidElement(activator)) {
       const isAComponent = typeof activator.type === "function";
+
       return cloneElement(activator, {
         ...newActivatorProps,
         ...(isAComponent && { fullWidth: fullWidth }),
@@ -59,6 +60,7 @@ function InternalActivator(
     }
   } else {
     return (
+      // @ts-expect-error - we need to desctructure the newActivatorProps with more care to XOR prop types.
       <Button
         variation="work"
         type="tertiary"

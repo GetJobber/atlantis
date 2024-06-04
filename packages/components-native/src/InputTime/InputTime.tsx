@@ -2,13 +2,14 @@ import React, { useMemo, useState } from "react";
 import { FieldError, UseControllerProps } from "react-hook-form";
 import { XOR } from "ts-xor";
 import DateTimePicker from "react-native-modal-datetime-picker";
-import { View } from "react-native";
+import { Keyboard, View } from "react-native";
+import { Clearable } from "@jobber/hooks";
 import { styles } from "./InputTime.style";
 import { getTimeZoneOffsetInMinutes, roundUpToNearestMinutes } from "./utils";
 import { useAtlantisContext } from "../AtlantisContext";
 import { InputPressable } from "../InputPressable";
 import { FormField } from "../FormField";
-import { Clearable, InputFieldWrapperProps } from "../InputFieldWrapper";
+import { InputFieldWrapperProps } from "../InputFieldWrapper";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
 interface InputTimeBaseProps
@@ -158,6 +159,7 @@ function InternalInputTime({
         clearable={canClearTime}
         disabled={disabled}
         invalid={invalid}
+        focused={showPicker}
         placeholder={placeholder ?? t("time")}
         prefix={showIcon ? { icon: "timer" } : undefined}
         value={formattedTime}
@@ -180,6 +182,7 @@ function InternalInputTime({
   );
 
   function showDatePicker() {
+    Keyboard.dismiss();
     setShowPicker(true);
   }
 
@@ -208,10 +211,12 @@ function InternalInputTime({
 
 function getInitialPickerDate(date?: Date | null): Date {
   if (date) return date;
+
   return roundUpToNearestMinutes(new Date(), 30);
 }
 
 function getMinuteInterval(type: InputTimeBaseProps["type"]) {
   if (type === "granular") return 1;
+
   return 5;
 }

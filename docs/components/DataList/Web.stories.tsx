@@ -107,7 +107,72 @@ const Template: ComponentStory<typeof DataList> = args => {
           console.log(sorting);
           setSortingState(sorting);
         },
-        sortable: ["label", "home", "lastActivity"],
+        sortable: [
+          {
+            key: "label",
+            sortType: "dropdown",
+            options: [
+              {
+                id: "firstName",
+                label: "First name (A-Z)",
+                order: "asc",
+              },
+              {
+                id: "firstName",
+                label: "First name (Z-A)",
+                order: "desc",
+              },
+              { id: "lastName", label: "Last name (A-Z)", order: "asc" },
+              {
+                id: "lastName",
+                label: "Last name (Z-A)",
+                order: "desc",
+              },
+            ],
+          },
+          {
+            key: "home",
+            sortType: "dropdown",
+            options: [
+              {
+                id: "homeWorld",
+                label: "Home world (A-Z)",
+                order: "asc",
+              },
+              {
+                id: "homeWorld",
+                label: "Home world (Z-A)",
+                order: "desc",
+              },
+              {
+                id: "homePopulation",
+                label: "Population (A-Z)",
+                order: "asc",
+              },
+              {
+                id: "homePopulation",
+                label: "Population (Z-A)",
+                order: "desc",
+              },
+            ],
+          },
+          {
+            key: "lastActivity",
+            sortType: "toggle",
+            options: [
+              {
+                id: "lastActivity",
+                label: "Last activity (Newest)",
+                order: "desc",
+              },
+              {
+                id: "lastActivity",
+                label: "Last activity (Oldest)",
+                order: "asc",
+              },
+            ],
+          },
+        ],
       }}
     >
       <DataList.Filters>
@@ -151,7 +216,7 @@ const Template: ComponentStory<typeof DataList> = args => {
         />
         <DataList.ItemAction
           icon="sendMessage"
-          label="Message"
+          label={item => `Message ${item.label}`}
           onClick={handleActionClick}
         />
         <DataList.ItemAction

@@ -5,14 +5,19 @@
 }
 
 .sortIcon path {
-  fill: var(--color-greyBlue);
+  fill: var(--color-interactive--subtle);
   transition: all var(--timing-base) ease;
 }
 
 .sortIcon path.active {
-  fill: var(--color-blue);
+  fill: var(--color-heading);
 }
 
 .sortIcon path.inactive {
-  fill: var(--color-greyBlue--lighter);
+  fill: var(--color-inactive--surface);
+}
+
+.sortIcon:hover path {
+  fill: var(--color-interactive--subtle);
+  transition: all var(--timing-base) ease;
 }

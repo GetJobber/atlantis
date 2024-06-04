@@ -2,28 +2,30 @@
   --button--color-variation: var(--color-interactive);
   --button--color-variation--hover: var(--color-interactive--hover);
   --button--color-surface: var(--color-surface);
-  --button--color-surface--hover: var(--color-surface--background);
-  --button--color-primaryLabel: var(--color-white);
+  --button--color-surface--hover: var(--color-surface--hover);
+  --button--color-primaryLabel: var(--color-surface);
 
   --button--duration-loading: var(--timing-loading--extended);
+
+  --button--size: 40px;
 }
 
 .button {
   display: inline-flex;
-  min-height: calc(var(--base-unit) * 2.25);
+  min-height: var(--button--size);
   box-sizing: border-box;
   margin: 0;
   border: var(--border-base) solid var(--button--color-variation);
   border-radius: var(--radius-base);
   color: var(--button--color-variation);
   -webkit-font-smoothing: antialiased;
-  letter-spacing: var(--typography--letterSpacing-loose);
+  line-height: 1;
   text-align: center;
   text-decoration: none;
   vertical-align: middle;
   background-color: var(--button--color-surface);
   cursor: pointer;
-  transition: all var(--timing-base);
+  transition: all var(--timing-base) ease-out;
   appearance: none;
   fill: var(--button--color-variation);
   align-items: center;
@@ -38,8 +40,8 @@
 
 .button:hover,
 a.button:hover,
-.button:focus,
-a.button:focus,
+.button:focus-visible,
+a.button:focus-visible,
 .button:active,
 a.button:active {
   border-color: var(--button--color-variation--hover);
@@ -48,12 +50,12 @@ a.button:active {
   background-color: var(--button--color-surface--hover);
 }
 
-.button:focus,
-a.button:focus,
+.button:focus-visible,
+a.button:focus-visible,
 .button:active,
 a.button:active {
   box-shadow: var(--shadow-focus);
-  outline: none;
+  outline: transparent;
 }
 
 /* Variation */
@@ -63,9 +65,10 @@ a.button:active {
   --button--color-variation--hover: var(--color-interactive--hover);
 }
 
-.learning {
-  --button--color-variation: var(--color-informative);
-  --button--color-variation--hover: var(--color-informative--onSurface);
+.learning,
+.subtle {
+  --button--color-variation: var(--color-interactive--subtle);
+  --button--color-variation--hover: var(--color-interactive--subtle--hover);
 }
 
 .destructive {
@@ -73,25 +76,18 @@ a.button:active {
   --button--color-variation--hover: var(--color-destructive--hover);
 }
 
-/* Subtle is special because, by default, it's styled as a secondary button */
-
-.subtle {
-  --button--color-variation: var(--color-interactive--subtle);
-  --button--color-variation--hover: var(--color-interactive--subtle--hover);
-}
-
 /* Type */
 
 .primary:not(.subtle, .disabled),
 .primary:not(.subtle, .disabled):hover,
-.primary:not(.subtle, .disabled):focus {
+.primary:not(.subtle, .disabled):focus-visible {
   color: var(--button--color-primaryLabel);
   background-color: var(--button--color-variation);
   fill: var(--button--color-primaryLabel);
 }
 
 .primary:not(.subtle, .disabled):hover,
-.primary:not(.subtle, .disabled):focus {
+.primary:not(.subtle, .disabled):focus-visible {
   background-color: var(--button--color-variation--hover);
 }
 
@@ -103,14 +99,21 @@ a.button:active {
 
 .secondary,
 .subtle.primary {
-  border-color: var(--button--color-variation);
+  border-color: var(--color-border);
 }
 
 .subtle.primary:hover,
-.subtle.primary:focus {
+.subtle.primary:focus-visible {
   color: var(--button--color-variation--hover);
   background-color: var(--button--color-surface--hover);
   fill: var(--button--color-variation--hover);
+}
+
+.secondary:hover,
+.subtle.primary:hover,
+.secondary:focus-visible,
+.subtle.primary:focus-visible {
+  border-color: var(--button--color-variation--hover);
 }
 
 .subtle.secondary {
@@ -122,19 +125,26 @@ a.button:active {
   border-color: transparent;
 }
 
+.tertiary {
+  border-color: transparent;
+  text-decoration: underline;
+  text-decoration-thickness: var(--border-thick);
+  text-underline-offset: var(--space-smallest);
+}
+
 .subtle.secondary:hover,
-.subtle.secondary:focus {
+.subtle.secondary:focus-visible {
   background-color: var(--button--color-surface--hover);
 }
 
-.tertiary:hover,
-.tertiary:focus,
-a.tertiary:hover,
-a.tertiary:focus,
 .subtle.secondary:hover,
-.subtle.secondary:focus,
+.subtle.secondary:focus-visible,
 a.subtle.secondary:hover,
-a.subtle.secondary:focus {
+a.subtle.secondary:focus-visible,
+.tertiary:hover,
+.tertiary:focus-visible,
+a.tertiary:hover,
+a.tertiary:focus-visible {
   border-color: transparent;
 }
 
@@ -144,11 +154,11 @@ a.subtle.secondary:focus {
 }
 
 .subtle.tertiary:hover,
-.subtle.tertiary:focus,
+.subtle.tertiary:focus-visible,
 a.subtle.tertiary:hover,
-a.subtle.tertiary:focus {
-  border-color: transparent;
+a.subtle.tertiary:focus-visible {
   color: var(--color-interactive--subtle--hover);
+  background-color: var(--color-surface--hover);
   fill: var(--color-interactive--subtle--hover);
 }
 
@@ -170,42 +180,33 @@ a.button.disabled:hover {
 /* Sizes */
 
 .small {
-  min-height: calc(var(--base-unit) * 1.5);
-  padding: 0 var(--space-small);
-  letter-spacing: 0;
+  --button--size: 32px;
+  padding: var(--space-smaller) calc(var(--space-base) - var(--space-smaller));
 }
 
 .base {
-  min-height: calc(var(--base-unit) * 2.25);
-  padding: 0 calc(var(--space-base) - 4px);
+  padding: 0 var(--space-base);
 }
 
 .large {
-  min-height: calc(var(--base-unit) * 3);
-  padding: 0 var(--space-base);
+  --button--size: 48px;
+  padding: 0 calc(var(--space-base) + var(--space-smaller));
 }
 
 /* Icon */
 
+.button svg {
+  flex-shrink: 0;
+}
+
 .onlyIcon {
-  width: calc(var(--base-unit) * 2.25);
+  width: var(--button--size);
   padding: 0;
-}
-
-.onlyIcon.small {
-  width: calc(var(--space-small) * 3);
-}
-
-.onlyIcon.base {
-  width: calc(var(--space-base) * 2.25);
-}
-
-.onlyIcon.large {
-  width: calc(var(--space-large) * 2);
 }
 
 .hasIconAndLabel {
   width: auto;
+  gap: var(--space-smaller);
 }
 
 .hasIconAndLabel > * {
@@ -213,14 +214,13 @@ a.button.disabled:hover {
 }
 
 .hasIconAndLabel > *:first-child {
-  flex-shrink: 0;
-  margin-right: var(--space-small);
+  margin-left: calc(var(--space-smaller) * -1);
 }
 
 .iconOnRight > *:first-child {
-  margin-left: var(--space-small);
-  margin-right: 0;
   order: 1;
+  margin-left: 0;
+  margin-right: calc(var(--space-smaller) * -1);
 }
 
 .fullWidth {

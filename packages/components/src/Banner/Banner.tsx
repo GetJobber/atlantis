@@ -1,15 +1,13 @@
 import React, { ReactNode, useState } from "react";
 import classnames from "classnames";
-import { IconColorNames, IconNames } from "@jobber/design";
+import { IconNames } from "@jobber/design";
 import { useResizeObserver } from "@jobber/hooks/useResizeObserver";
 import styles from "./Banner.css";
-import types from "./notificationTypes.css";
 import { BannerIcon } from "./components/BannerIcon";
-import { Icon } from "../Icon";
+import { BannerType } from "./Banner.types";
 import { Text } from "../Text";
 import { Button, ButtonProps } from "../Button";
-
-export type BannerType = "notice" | "success" | "warning" | "error";
+import { ButtonDismiss } from "../ButtonDismiss/ButtonDismiss";
 
 interface BannerProps {
   readonly children: ReactNode;
@@ -32,10 +30,6 @@ interface BannerProps {
   onDismiss?(): void;
 }
 
-interface IconColorMap {
-  [variation: string]: IconColorNames;
-}
-
 export function Banner({
   children,
   type,
@@ -45,6 +39,7 @@ export function Banner({
   onDismiss,
 }: BannerProps) {
   const [showBanner, setShowBanner] = useState(true);
+  const bannerIcon = icon || getBannerIcon(type);
 
   const bannerWidths = {
     small: 320,
@@ -55,13 +50,6 @@ export function Banner({
     useResizeObserver<HTMLDivElement>({
       widths: bannerWidths,
     });
-
-  const iconColors: IconColorMap = {
-    notice: "informative",
-    success: "success",
-    warning: "warning",
-    error: "critical",
-  };
 
   if (primaryAction != undefined) {
     primaryAction = Object.assign(
@@ -74,46 +62,59 @@ export function Banner({
     );
   }
 
-  const bannerClassNames = classnames(styles.banner, types[type], {
+  const bannerClassNames = classnames(styles.banner, {
     [styles.medium]: bannerWidth >= bannerWidths.medium,
   });
 
+  if (!showBanner) return null;
+
   return (
-    <>
-      {showBanner && (
-        <div
-          className={bannerClassNames}
-          ref={bannerRef}
-          role={type === "error" ? "alert" : "status"}
-        >
-          <div className={styles.bannerContent}>
-            {icon && <BannerIcon icon={icon} />}
-            <div className={styles.bannerChildren}>
-              <BannerChildren>{children}</BannerChildren>
-            </div>
-            {primaryAction && (
-              <div className={styles.bannerAction}>
-                <Button {...primaryAction} />
-              </div>
-            )}
+    <div
+      className={bannerClassNames}
+      ref={bannerRef}
+      role={type === "error" ? "alert" : "status"}
+    >
+      <div className={styles.bannerContent}>
+        {bannerIcon && <BannerIcon icon={bannerIcon} type={type} />}
+
+        <div className={styles.bannerChildren}>
+          <BannerChildren>{children}</BannerChildren>
+        </div>
+
+        {primaryAction && (
+          <div className={styles.bannerAction}>
+            <Button {...primaryAction} />
           </div>
-          {dismissible && (
-            <button
-              className={styles.closeButton}
-              onClick={handleClose}
-              aria-label="Close this notification"
-            >
-              <Icon name="cross" color={iconColors[type]} />
-            </button>
-          )}
+        )}
+      </div>
+
+      {dismissible && (
+        <div className={styles.closeButton}>
+          <ButtonDismiss
+            ariaLabel={"Dismiss notification"}
+            onClick={handleClose}
+          />
         </div>
       )}
-    </>
+    </div>
   );
 
   function handleClose() {
     setShowBanner(!showBanner);
     onDismiss && onDismiss();
+  }
+}
+
+function getBannerIcon(type: BannerType): IconNames | undefined {
+  switch (type) {
+    case "notice":
+      return "starburst";
+    case "success":
+      return "checkmark";
+    case "warning":
+      return "help";
+    case "error":
+      return "alert";
   }
 }
 

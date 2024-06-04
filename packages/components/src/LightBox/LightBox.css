@@ -31,9 +31,9 @@
   display: flex;
   z-index: var(--elevation-base);
   padding: var(--space-small) var(--space-base);
-  color: var(--color-text--reverse--secondary);
+  color: var(--color-text--secondary);
   font-size: var(--typography--fontSize-large);
-  background-color: var(--color-surface--reverse);
+  background-color: var(--color-surface--background);
   justify-content: space-between;
 }
 

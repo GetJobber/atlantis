@@ -5,6 +5,9 @@ const statusLabelIconDiameter = tokens["space-base"] - tokens["space-smaller"]; 
 
 const indicatorOffset = tokens["space-smallest"] + tokens["space-minuscule"];
 
+// Needs to be hardcoded to 3 as this shouldn't change with the tokens
+const statusLabelRadius = 3;
+
 export const styles = StyleSheet.create({
   statusLabelRow: {
     flexDirection: "row",
@@ -15,7 +18,7 @@ export const styles = StyleSheet.create({
     flexShrink: 1,
   },
   statusLabelIcon: {
-    borderRadius: tokens["radius-base"],
+    borderRadius: statusLabelRadius,
     backgroundColor: tokens["color-success"],
     width: statusLabelIconDiameter,
     height: statusLabelIconDiameter,

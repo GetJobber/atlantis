@@ -20,7 +20,7 @@ it("renders a Heading 2", () => {
   expect(container).toMatchInlineSnapshot(`
     <div>
       <h2
-        class="base black largest heading"
+        class="base bold largest heading"
       >
         Dis be a Heading 2
       </h2>
@@ -33,7 +33,7 @@ it("renders a Heading 3", () => {
   expect(container).toMatchInlineSnapshot(`
     <div>
       <h3
-        class="base extraBold larger heading"
+        class="base bold larger heading"
       >
         Dis be a Heading 3
       </h3>
@@ -63,6 +63,23 @@ it("renders a Heading 5", () => {
       >
         Dis be a Heading 5
       </h5>
+    </div>
+  `);
+});
+
+it("renders a non heading inline element", () => {
+  const { container } = render(
+    <Heading level={5} element="span">
+      Dis be a span
+    </Heading>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <span
+        class="base bold base heading"
+      >
+        Dis be a span
+      </span>
     </div>
   `);
 });

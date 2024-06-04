@@ -1,5 +1,5 @@
 .icon {
-  fill: var(--color-greyBlue);
+  fill: var(--color-icon);
   display: inline-block;
   vertical-align: middle;
 }
@@ -12,6 +12,14 @@
   transform: rotate(-90deg);
 }
 
+.longArrowRight {
+  transform: rotate(180deg);
+}
+
+.longArrowLeft {
+  transform: rotate(0deg);
+}
+
 .thumbsDown {
   transform: scaleY(-1);
 }
@@ -20,7 +28,7 @@
 .clients,
 .company,
 .property {
-  fill: var(--color-teal);
+  fill: var(--color-client);
 }
 
 .job,

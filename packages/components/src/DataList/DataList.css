@@ -27,9 +27,13 @@
 
 .headerFilters {
   display: grid;
-  padding: var(--space-small) 0;
+  padding: calc(var(--space-small) + var(--space-smaller)) 0;
   gap: var(--space-small);
-  grid-template-columns: auto max-content;
+  grid-template-columns: auto fit-content(calc(var(--base-unit) * 14));
+}
+
+.headerFilters:empty {
+  display: none;
 }
 
 .headerTitles {
@@ -42,7 +46,9 @@
 }
 
 .batchSelectContainer {
+  --data-list--header-actions-gap: var(--space-small);
   display: flex;
+  gap: var(--data-list--header-actions-gap);
 
   @media (--small-screens-and-below) {
     justify-content: space-between;
@@ -59,7 +65,7 @@
   display: flex;
   margin: calc(var(--space-small) * -1) 0;
   align-items: center;
-  gap: var(--space-smaller);
+  gap: var(--data-list--header-actions-gap);
 }
 
 /*

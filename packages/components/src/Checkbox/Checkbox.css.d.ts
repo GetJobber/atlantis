@@ -1,5 +1,5 @@
 declare const styles: {
-  readonly "checkbox": string;
+  readonly "checkBoxParent": string;
   readonly "wrapper": string;
   readonly "disabled": string;
   readonly "checkHolder": string;

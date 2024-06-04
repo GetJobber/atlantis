@@ -17,6 +17,7 @@ function getContentComponent(parentView: ReactTestInstance) {
 function getFlexCol(flexRow: ReactTestInstance) {
   return flexRow.children as ReactTestInstance[];
 }
+
 function setUp(props?: FlexProps) {
   const container = render(
     <View accessibilityLabel="contentView">
@@ -33,6 +34,7 @@ function setUp(props?: FlexProps) {
   );
   const flexRow = container.getAllByTestId("ATL-Flex-Row");
   const flexCol = getFlexCol(flexRow[0]);
+
   return { ...container, contentView, flexRow, flexCol };
 }
 

@@ -196,6 +196,21 @@ it("renders a capitalized text", () => {
   `);
 });
 
+it("renders text with no text-transform applied", () => {
+  const { container } = render(
+    <Typography textCase="none">wElL tHiS iS hArD tO tYpE</Typography>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <p
+        class="base regular none"
+      >
+        wElL tHiS iS hArD tO tYpE
+      </p>
+    </div>
+  `);
+});
+
 it("should add textTruncate class when numberOfLines property is passed", () => {
   const { container } = render(
     <Typography numberOfLines={3}>Pretend this is a multiline text</Typography>,

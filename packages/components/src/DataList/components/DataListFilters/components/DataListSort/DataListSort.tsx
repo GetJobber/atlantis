@@ -8,6 +8,7 @@ export function DataListSort() {
   const { sorting, headers } = useDataListContext();
 
   if (!sorting) return null;
+
   const { sortable, state, onSort } = sorting;
 
   const sortByOptions = getSortByOptions();
@@ -17,7 +18,7 @@ export function DataListSort() {
       onSelect={selection => handleKeyChange(selection[0].id.toString())}
       selected={[
         {
-          id: `${state?.key},${state?.order}`,
+          id: getSelectedSortID(),
           label: state?.order || "",
         },
       ]}
@@ -44,15 +45,24 @@ export function DataListSort() {
   function getSortByOptions() {
     const options = sortable.reduce(
       (acc: Record<"label" | "value", string>[], sort) => {
-        const label = headers[sort];
+        const label = headers[sort.key];
         if (!label) return acc;
+        const customOptions = sort.options;
 
-        if (label === "Last activity") {
-          acc.push({ label: "Last Activity (Newest)", value: `${sort},desc` });
-          acc.push({ label: "Last Activity (Oldest)", value: `${sort},asc` });
-        } else {
-          acc.push({ label: `${label} (A-Z)`, value: `${sort},asc` });
-          acc.push({ label: `${label} (Z-A)`, value: `${sort},desc` });
+        if (customOptions) {
+          customOptions.forEach(option => {
+            acc.push({
+              label: option.label || "",
+              value: JSON.stringify({
+                key: sort.key,
+                order: option.order,
+                label: option.label,
+                id: option.id,
+              }),
+            });
+          });
+
+          return acc;
         }
 
         return acc;
@@ -68,7 +78,7 @@ export function DataListSort() {
 
   function getButtonLabel() {
     const selectedOption = sortByOptions.find(
-      option => option.value === `${state?.key},${state?.order}`,
+      option => option.value === getSelectedSortID(),
     );
 
     return selectedOption?.label || "";
@@ -76,12 +86,23 @@ export function DataListSort() {
 
   function handleKeyChange(value?: string) {
     if (value && value !== "none") {
-      const [key, order] = value.split(",");
-      onSort({ key, order: order as "asc" | "desc" });
+      const { key, order, label, id } = JSON.parse(value);
+      onSort({ key, order: order as "asc" | "desc", label, id });
 
       return;
     }
 
     onSort(undefined);
+  }
+
+  function getSelectedSortID() {
+    const selectedSortID = {
+      key: state?.key,
+      order: state?.order,
+      label: state?.label,
+      id: state?.id,
+    };
+
+    return JSON.stringify(selectedSortID);
   }
 }

@@ -6,6 +6,7 @@ export function civilTimeToHTMLTime(civilTime?: CivilTime): string {
   }
 
   const timeString = civilTime.toString();
+
   return timeString.slice(0, 5);
 }
 

@@ -3,6 +3,532 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.67.5](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.67.4...@jobber/components-native@0.67.5) (2024-06-03)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.67.4](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.67.3...@jobber/components-native@0.67.4) (2024-05-29)
+
+
+### Bug Fixes
+
+* **components-native:** Dismiss keyboard on Date and Time Picker being opened ([#1902](https://github.com/GetJobber/atlantis/issues/1902)) ([f8d64b6](https://github.com/GetJobber/atlantis/commit/f8d64b6413e7f8c6bf6e34b1d3f5d3b68e505988))
+
+
+
+
+
+## [0.67.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.67.2...@jobber/components-native@0.67.3) (2024-05-28)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.67.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.67.1...@jobber/components-native@0.67.2) (2024-05-24)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.67.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.67.0...@jobber/components-native@0.67.1) (2024-05-22)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+# [0.67.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.66.2...@jobber/components-native@0.67.0) (2024-05-16)
+
+
+### Features
+
+* **components-native:** Export typography max font scaling in components-native ([#1895](https://github.com/GetJobber/atlantis/issues/1895)) ([70f4ee7](https://github.com/GetJobber/atlantis/commit/70f4ee7978bb83f9a5f29fbdd7c0486656f60c7e))
+
+
+
+
+
+## [0.66.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.66.1...@jobber/components-native@0.66.2) (2024-05-15)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.66.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.66.0...@jobber/components-native@0.66.1) (2024-05-10)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+# [0.66.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.65.5...@jobber/components-native@0.66.0) (2024-05-10)
+
+
+### Features
+
+* **design:** overhaul the base color palette ([#1873](https://github.com/GetJobber/atlantis/issues/1873)) ([942f1a2](https://github.com/GetJobber/atlantis/commit/942f1a2ea7920358576b6bf7f5f2bad04273fa0c))
+
+
+
+
+
+## [0.65.5](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.65.4...@jobber/components-native@0.65.5) (2024-04-24)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.65.4](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.65.3...@jobber/components-native@0.65.4) (2024-04-24)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.65.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.65.2...@jobber/components-native@0.65.3) (2024-04-12)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.65.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.65.1...@jobber/components-native@0.65.2) (2024-04-11)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.65.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.65.0...@jobber/components-native@0.65.1) (2024-04-11)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+# [0.65.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.64.0...@jobber/components-native@0.65.0) (2024-04-04)
+
+
+### Features
+
+* **design:** Create longArrowRight and rename backArrow ([#1837](https://github.com/GetJobber/atlantis/issues/1837)) ([0c63ed5](https://github.com/GetJobber/atlantis/commit/0c63ed54278250751d48c82f23ff9fe39e857fe7))
+
+
+
+
+
+# [0.64.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.63.0...@jobber/components-native@0.64.0) (2024-04-04)
+
+
+### Features
+
+* **components-native:** Adjust menu visibility on iOS ([#1845](https://github.com/GetJobber/atlantis/issues/1845)) ([a497423](https://github.com/GetJobber/atlantis/commit/a497423f95d0e6af2f20ea7e8942afe83d2db39f))
+
+
+
+
+
+# [0.63.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.62.4...@jobber/components-native@0.63.0) (2024-04-03)
+
+
+### Features
+
+* **components-native:** implement glimmer and add loading state to native inputs ([#1842](https://github.com/GetJobber/atlantis/issues/1842)) ([36620c6](https://github.com/GetJobber/atlantis/commit/36620c6a2be8a8cdecf3e0466442996cec4a72a0))
+
+
+
+
+
+## [0.62.4](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.62.3...@jobber/components-native@0.62.4) (2024-04-03)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.62.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.62.2...@jobber/components-native@0.62.3) (2024-04-03)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.62.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.62.1...@jobber/components-native@0.62.2) (2024-04-03)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.62.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.62.0...@jobber/components-native@0.62.1) (2024-04-03)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+# [0.62.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.61.2...@jobber/components-native@0.62.0) (2024-03-28)
+
+
+### Features
+
+* **components-native:** BREAKING CHANGE: Move react-native-svg to peerDependencies ([#1830](https://github.com/GetJobber/atlantis/issues/1830)) ([6e0a086](https://github.com/GetJobber/atlantis/commit/6e0a0864cee5f490d4d17fc839a5a1ca08d9f966))
+
+
+
+
+
+## [0.61.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.61.1...@jobber/components-native@0.61.2) (2024-03-28)
+
+
+### Bug Fixes
+
+* **components-native:** ensure prefix is beside the input ([#1836](https://github.com/GetJobber/atlantis/issues/1836)) ([5b952a6](https://github.com/GetJobber/atlantis/commit/5b952a698dfb50b9335fb6adc71533db9b950dfb))
+
+
+
+
+
+## [0.61.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.61.0...@jobber/components-native@0.61.1) (2024-03-27)
+
+
+### Bug Fixes
+
+* allow readonly prop on input text native ([#1832](https://github.com/GetJobber/atlantis/issues/1832)) ([f1e815b](https://github.com/GetJobber/atlantis/commit/f1e815b80a8ab97e2115b38cabb7d6f63aee1793))
+
+
+
+
+
+# [0.61.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.60.0...@jobber/components-native@0.61.0) (2024-03-26)
+
+
+### Features
+
+* **components-native:** implement toolbar visibility ([#1831](https://github.com/GetJobber/atlantis/issues/1831)) ([42cf820](https://github.com/GetJobber/atlantis/commit/42cf820c7d81f6af44b4f11096964aa61eb47f9a))
+
+
+
+
+
+# [0.60.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.58.3...@jobber/components-native@0.60.0) (2024-03-26)
+
+
+### Features
+
+* **components-native:** add input toolbar ([#1826](https://github.com/GetJobber/atlantis/issues/1826)) ([4634b26](https://github.com/GetJobber/atlantis/commit/4634b264d0e325a37c370958316bf5822975774f))
+
+
+
+
+
+# [0.59.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.58.3...@jobber/components-native@0.59.0) (2024-03-25)
+
+
+### Features
+
+* **components-native:** add input toolbar ([#1826](https://github.com/GetJobber/atlantis/issues/1826)) ([4634b26](https://github.com/GetJobber/atlantis/commit/4634b264d0e325a37c370958316bf5822975774f))
+
+
+
+
+
+## [0.58.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.58.2...@jobber/components-native@0.58.3) (2024-03-21)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.58.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.58.1...@jobber/components-native@0.58.2) (2024-03-20)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.58.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.58.0...@jobber/components-native@0.58.1) (2024-03-20)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+# [0.58.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.57.1...@jobber/components-native@0.58.0) (2024-03-15)
+
+
+### Features
+
+* **components-native:** Bump peerDependency for react-native-reanimated to also accept v3 ([#1787](https://github.com/GetJobber/atlantis/issues/1787)) ([de5968f](https://github.com/GetJobber/atlantis/commit/de5968fe9503f504eac34787d174cb65bef93415))
+
+
+
+
+
+## [0.57.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.57.0...@jobber/components-native@0.57.1) (2024-03-13)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+# [0.57.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.56.3...@jobber/components-native@0.57.0) (2024-03-11)
+
+
+### Features
+
+* **components-native:** Update Button learning variation style ([#1798](https://github.com/GetJobber/atlantis/issues/1798)) ([8dbef79](https://github.com/GetJobber/atlantis/commit/8dbef79375c3c3f4c8d966323bb18d15e88fb01a))
+
+
+
+
+
+## [0.56.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.56.2...@jobber/components-native@0.56.3) (2024-03-08)
+
+
+### Bug Fixes
+
+* **eslint:** Cleanup lint warnings ([#1796](https://github.com/GetJobber/atlantis/issues/1796)) ([3e0c770](https://github.com/GetJobber/atlantis/commit/3e0c770eca0964636f79831016dbbe25926ae951))
+
+
+
+
+
+## [0.56.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.56.1...@jobber/components-native@0.56.2) (2024-03-07)
+
+
+### Bug Fixes
+
+* **components-native:** Fix MiniLabel background overflowing border ([#1795](https://github.com/GetJobber/atlantis/issues/1795)) ([f595b62](https://github.com/GetJobber/atlantis/commit/f595b62fbaad637fde6eeb6c4264006fd203e7a9))
+
+
+
+
+
+## [0.56.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.56.0...@jobber/components-native@0.56.1) (2024-03-06)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+# [0.56.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.55.0...@jobber/components-native@0.56.0) (2024-03-01)
+
+
+### Features
+
+* **components-native:** Update ButtonGroup styles ([#1777](https://github.com/GetJobber/atlantis/issues/1777)) ([3bb818c](https://github.com/GetJobber/atlantis/commit/3bb818c4cd9183354d535b6ec594091157b508c9))
+
+
+
+
+
+# [0.55.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.54.4...@jobber/components-native@0.55.0) (2024-03-01)
+
+
+### Features
+
+* **components-native:** Update Banner styling for retheme ([#1785](https://github.com/GetJobber/atlantis/issues/1785)) ([5a24fc1](https://github.com/GetJobber/atlantis/commit/5a24fc17914690635d3e94df70939e3b51a4583e))
+
+
+
+
+
+## [0.54.4](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.54.3...@jobber/components-native@0.54.4) (2024-03-01)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.54.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.54.2...@jobber/components-native@0.54.3) (2024-02-23)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.54.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.54.1...@jobber/components-native@0.54.2) (2024-02-22)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.54.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.54.0...@jobber/components-native@0.54.1) (2024-02-20)
+
+
+### Bug Fixes
+
+* **components-native:** Apply input transform in InputText before trim [OPS-20241] ([#1764](https://github.com/GetJobber/atlantis/issues/1764)) ([84a1938](https://github.com/GetJobber/atlantis/commit/84a1938826229292da59d7c2ddb06dfa2879e9c7))
+
+
+
+
+
+# [0.54.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.53.2...@jobber/components-native@0.54.0) (2024-02-16)
+
+
+### Features
+
+* **components-native:** Update Heading styles ([#1765](https://github.com/GetJobber/atlantis/issues/1765)) ([91e4e3c](https://github.com/GetJobber/atlantis/commit/91e4e3ca09a4ac1d3ee3f9e710efa2cacc00c89b))
+
+
+
+
+
+## [0.53.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.53.1...@jobber/components-native@0.53.2) (2024-02-15)
+
+
+### Bug Fixes
+
+* **components-native:** hard code status label radius ([#1761](https://github.com/GetJobber/atlantis/issues/1761)) ([6ff9c6c](https://github.com/GetJobber/atlantis/commit/6ff9c6ceed0c6f26010247e8c0bef62bc3d57ff3))
+
+
+
+
+
+## [0.53.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.53.0...@jobber/components-native@0.53.1) (2024-02-15)
+
+
+### Bug Fixes
+
+* **components-native:** remove action label letter spacing ([#1760](https://github.com/GetJobber/atlantis/issues/1760)) ([990b664](https://github.com/GetJobber/atlantis/commit/990b6644979ddcc394e6b30d6e777de58701d62e))
+
+
+
+
+
+# [0.53.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.52.0...@jobber/components-native@0.53.0) (2024-02-15)
+
+
+### Features
+
+* **components-native:** prep native buttons for retheme [JOB-88844] ([#1757](https://github.com/GetJobber/atlantis/issues/1757)) ([567c592](https://github.com/GetJobber/atlantis/commit/567c5927696b1ea19c649623e08a3a969b719a45))
+
+
+
+
+
+# [0.52.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.51.5...@jobber/components-native@0.52.0) (2024-02-14)
+
+
+### Features
+
+* **components-native:** JOB-88274 Prep inputs for retheme ([#1753](https://github.com/GetJobber/atlantis/issues/1753)) ([7604a4d](https://github.com/GetJobber/atlantis/commit/7604a4d717f58cc0ce9175dec9b9f11008be5b1c))
+
+
+
+
+
+## [0.51.5](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.51.4...@jobber/components-native@0.51.5) (2024-02-05)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.51.4](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.51.3...@jobber/components-native@0.51.4) (2024-01-29)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.51.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.51.2...@jobber/components-native@0.51.3) (2024-01-22)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.51.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.51.1...@jobber/components-native@0.51.2) (2024-01-18)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.51.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.51.0...@jobber/components-native@0.51.1) (2023-12-18)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+# [0.51.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.50.0...@jobber/components-native@0.51.0) (2023-12-05)
+
+
+### Features
+
+* **components-native:** Add stepped variation of progress bar for mobile ([#1669](https://github.com/GetJobber/atlantis/issues/1669)) ([d3095f7](https://github.com/GetJobber/atlantis/commit/d3095f7261ff1b3c5005b64dda6f61ac21fc0b95))
+
+
+
+
+
+# [0.50.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.49.2...@jobber/components-native@0.50.0) (2023-12-05)
+
+
+### Features
+
+* **hooks:** Move useShowClear to @jobber/hooks ([#1675](https://github.com/GetJobber/atlantis/issues/1675)) ([7764bb5](https://github.com/GetJobber/atlantis/commit/7764bb5a68b9ff8e43c5dc386d3829f4c8e46160))
+
+
+
+
+
+## [0.49.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.49.1...@jobber/components-native@0.49.2) (2023-12-05)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.49.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.49.0...@jobber/components-native@0.49.1) (2023-12-01)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
 # [0.49.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.48.11...@jobber/components-native@0.49.0) (2023-11-29)
 
 

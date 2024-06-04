@@ -4,7 +4,17 @@ import { tokens } from "../utils/design";
 import { typographyStyles } from "../Typography";
 
 export const styles = StyleSheet.create({
-  container: StyleSheet.flatten([commonInputStyles.container]),
+  container: StyleSheet.flatten([
+    commonInputStyles.container,
+    {
+      flexDirection: "column",
+    },
+  ]),
+
+  field: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
 
   inputContainer: {
     flexDirection: "row",
@@ -23,7 +33,9 @@ export const styles = StyleSheet.create({
   label: {
     // for placeholder
     position: "absolute",
-    top: typographyStyles.smallSize.fontSize,
+    display: "flex",
+    justifyContent: "center",
+    top: 0,
     right: 0,
     bottom: 0,
     left: 0,
@@ -31,10 +43,11 @@ export const styles = StyleSheet.create({
 
   miniLabel: {
     top: 0,
-    paddingTop: tokens["space-smallest"],
+    paddingTop: tokens["space-small"] - tokens["space-smallest"],
     backgroundColor: tokens["color-surface"],
+    marginRight: tokens["space-small"],
     maxHeight:
-      (typographyStyles.smallSize.lineHeight || 0) + tokens["space-smaller"],
+      (typographyStyles.defaultSize.lineHeight || 0) + tokens["space-smaller"],
     zIndex: 1,
   },
   // Prevents the miniLabel from cutting off the ClearAction button
@@ -44,8 +57,6 @@ export const styles = StyleSheet.create({
 
   disabled: {
     backgroundColor: tokens["color-disabled--secondary"],
-    borderTopLeftRadius: tokens["radius-large"],
-    borderTopRightRadius: tokens["radius-large"],
   },
 
   fieldAffix: {
@@ -53,7 +64,7 @@ export const styles = StyleSheet.create({
   },
 
   fieldAffixMiniLabel: {
-    paddingTop: 0,
+    paddingTop: tokens["space-small"] - tokens["space-smallest"],
     // @ts-expect-error tsc-ci
     top: typographyStyles.smallSize.fontSize / 2,
     right: 0,
@@ -74,20 +85,56 @@ export const styles = StyleSheet.create({
 
   suffixIcon: {
     justifyContent: "center",
+    paddingRight: tokens["space-small"],
   },
 
   suffixLabel: {
     justifyContent: "center",
     paddingTop: tokens["space-minuscule"],
+    paddingRight: tokens["space-small"],
   },
+
   suffixIconMargin: {
     marginLeft: tokens["space-small"] + tokens["space-smaller"],
   },
+
   suffixLabelMargin: {
     marginLeft: tokens["space-smallest"],
   },
+
   inputEndContainer: {
     flexDirection: "row",
     zIndex: 1,
+  },
+
+  toolbar: {
+    flexBasis: "100%",
+    flexDirection: "row",
+    gap: tokens["space-small"],
+    paddingBottom: tokens["space-small"],
+  },
+
+  loadingSpinner: {
+    justifyContent: "center",
+    paddingRight: tokens["space-small"],
+  },
+
+  loadingGlimmers: {
+    position: "absolute",
+    top: tokens["space-base"],
+    bottom: tokens["space-base"],
+    left: 0,
+    right: 0,
+    gap: tokens["space-small"],
+    paddingTop: tokens["space-small"],
+    paddingRight: tokens["space-large"],
+    backgroundColor: tokens["color-surface"],
+    overflow: "hidden",
+  },
+
+  loadingGlimmersHasValue: {
+    top: tokens["space-large"],
+    paddingTop: tokens["space-base"] - tokens["space-smaller"],
+    bottom: tokens["space-smaller"],
   },
 });

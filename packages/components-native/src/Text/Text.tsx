@@ -94,7 +94,7 @@ const levelStyles: Record<TextLevel, LevelStyle> = {
 };
 
 const MAX_TEXT_FONT_SIZE_SCALE = 50;
-const maxScaledFontSize: Record<TextLevel, number> = {
+export const TEXT_MAX_SCALED_FONT_SIZES: Record<TextLevel, number> = {
   text: MAX_TEXT_FONT_SIZE_SCALE,
   textSupporting: tokens["typography--fontSize-base"],
 };
@@ -122,7 +122,7 @@ export function Text({
       fontFamily="base"
       fontStyle="regular"
       fontWeight={getFontWeight({ level, emphasis })}
-      maxFontScaleSize={maxFontScaleSize || maxScaledFontSize[level]}
+      maxFontScaleSize={maxFontScaleSize || TEXT_MAX_SCALED_FONT_SIZES[level]}
       selectable={selectable}
       {...{
         ...levelStyles[level],
@@ -147,5 +147,6 @@ function getFontWeight({
 }: Pick<TextProps, "level" | "emphasis">): BaseWeight {
   if (emphasis === "strong") return "semiBold";
   if (level === "textSupporting") return "medium";
+
   return "regular";
 }

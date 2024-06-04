@@ -1,5 +1,5 @@
 import omit from "lodash/omit";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   CommonFormFieldProps,
   FieldActionsRef,
@@ -10,7 +10,7 @@ import {
 import { DatePicker } from "../DatePicker";
 
 interface InputDateProps
-  extends CommonFormFieldProps,
+  extends Omit<CommonFormFieldProps, "clearable">,
     Pick<
       FormFieldProps,
       | "readonly"
@@ -38,10 +38,22 @@ interface InputDateProps
    * The minimum selectable date.
    */
   readonly minDate?: Date;
+
+  /**
+   * Whether to show the calendar icon
+   * @default true
+   */
+  readonly showIcon?: boolean;
+
+  /**
+   * Text to display instead of a date value
+   */
+  readonly emptyValueLabel?: string;
 }
 
 export function InputDate(inputProps: InputDateProps) {
   const formFieldActionsRef = useRef<FieldActionsRef>(null);
+
   return (
     <DatePicker
       selected={inputProps.value}
@@ -55,18 +67,22 @@ export function InputDate(inputProps: InputDateProps) {
       activator={activatorProps => {
         const { onChange, onClick, value } = activatorProps;
         const newActivatorProps = omit(activatorProps, ["activator"]);
-
-        const suffix = {
-          icon: "calendar",
-          ...(onClick && {
-            onClick: onClick,
-            ariaLabel: "Show calendar",
-          }),
-        } as Suffix;
+        const [isFocused, setIsFocused] = useState(false);
+        const suffix =
+          inputProps.showIcon !== false
+            ? ({
+                icon: "calendar",
+                ariaLabel: "Show calendar",
+                onClick: onClick && onClick,
+              } as Suffix)
+            : undefined;
 
         // Set form field to formatted date string immediately, to avoid validations
         //  triggering incorrectly when it blurs (to handle the datepicker UI click)
-        value && formFieldActionsRef.current?.setValue(value);
+        useEffect(() => {
+          value && formFieldActionsRef.current?.setValue(value);
+        }, [value]);
+        const showEmptyValueLabel = !value && !isFocused;
 
         return (
           // We prevent the picker from opening on focus for keyboard navigation, so to maintain a good UX for mouse users we want to open the picker on click
@@ -74,15 +90,30 @@ export function InputDate(inputProps: InputDateProps) {
             <FormField
               {...newActivatorProps}
               {...inputProps}
-              value={value}
-              onChange={(_, event) => onChange && onChange(event)}
+              value={
+                showEmptyValueLabel ? inputProps.emptyValueLabel || "" : value
+              }
+              placeholder={inputProps.placeholder}
+              onChange={(_, event) => {
+                onChange && onChange(event);
+              }}
               onBlur={() => {
                 inputProps.onBlur && inputProps.onBlur();
                 activatorProps.onBlur && activatorProps.onBlur();
+                setIsFocused(false);
               }}
               onFocus={() => {
                 inputProps.onFocus && inputProps.onFocus();
                 activatorProps.onFocus && activatorProps.onFocus();
+                setIsFocused(true);
+              }}
+              onKeyUp={event => {
+                if (
+                  inputProps.showIcon === false &&
+                  event.key === "ArrowDown"
+                ) {
+                  activatorProps.onClick?.();
+                }
               }}
               actionsRef={formFieldActionsRef}
               suffix={suffix}

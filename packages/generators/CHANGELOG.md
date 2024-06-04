@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.8.2...@jobber/generators@0.9.0) (2024-02-05)
+
+
+### Features
+
+* **generators:** Modifying css naming pattern in component generator to follow css modules convention [JOB-87530] ([#1751](https://github.com/GetJobber/atlantis/issues/1751)) ([8885605](https://github.com/GetJobber/atlantis/commit/8885605f2b5ffadff1e0accfea684782047f6400))
+
+
+
+
+
+## [0.8.2](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.8.1...@jobber/generators@0.8.2) (2023-12-01)
+
+**Note:** Version bump only for package @jobber/generators
+
+
+
+
+
 ## [0.8.1](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.8.0...@jobber/generators@0.8.1) (2023-10-31)
 
 **Note:** Version bump only for package @jobber/generators

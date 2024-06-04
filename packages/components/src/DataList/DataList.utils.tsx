@@ -66,12 +66,12 @@ export function generateListItemElement<T extends DataListObject>(item: T) {
       acc[key] = currentItem;
     } else if (currentItem instanceof Date) {
       acc[key] = (
-        <Text variation="subdued">
+        <Text>
           <FormatDate date={currentItem} />
         </Text>
       );
     } else {
-      acc[key] = <Text variation="subdued">{currentItem}</Text>;
+      acc[key] = <Text>{currentItem}</Text>;
     }
 
     return acc;
@@ -87,7 +87,7 @@ export function generateHeaderElements<T extends DataListObject>(
   const headerElements = Object.keys(headers).reduce(
     (acc, key) => ({
       ...acc,
-      [key]: <DataListHeaderTile headers={headers} headerKey={key} />,
+      [key]: <DataListHeaderTile headers={headers} headerKey={key} visible />,
     }),
     {} as DataListItemTypeFromHeader<T, typeof headers>,
   );

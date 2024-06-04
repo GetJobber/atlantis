@@ -2,40 +2,41 @@ import React, {
   MouseEvent,
   ReactElement,
   RefObject,
-  createRef,
-  useEffect,
-  useLayoutEffect,
+  useId,
   useRef,
   useState,
 } from "react";
-import { v1 as uuidv1 } from "uuid";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
+import { useWindowDimensions } from "@jobber/hooks/useWindowDimensions";
 import { IconNames } from "@jobber/design";
+import { usePopper } from "react-popper";
+import { useIsMounted } from "@jobber/hooks/useIsMounted";
+import ReactDOM from "react-dom";
+import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import styles from "./Menu.css";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
 import { Icon } from "../Icon";
+import { formFieldFocusAttribute } from "../FormField/hooks/useFormFieldFocus";
+
+const SMALL_SCREEN_BREAKPOINT = 490;
+const MENU_OFFSET = 6;
 
 const variation = {
   overlayStartStop: { opacity: 0 },
-  startOrStop: (position: string) => {
+  startOrStop: (placement: string | undefined) => {
     let y = 10;
 
-    if (position === "below") y *= -1;
-    if (window.innerWidth < 640) y = 150;
+    if (placement?.includes("bottom")) y *= -1;
+    if (window.innerWidth < SMALL_SCREEN_BREAKPOINT) y = 150;
 
     return { opacity: 0, y };
   },
   done: { opacity: 1, y: 0 },
 };
-
-interface Position {
-  vertical: "above" | "below";
-  horizontal: "left" | "right";
-}
 
 export interface MenuProps {
   /**
@@ -57,43 +58,61 @@ export interface SectionProps {
   /**
    * List of actions.
    */
-  actions: Omit<ActionProps, "shouldFocus">[];
+  actions: ActionProps[];
 }
 
 // eslint-disable-next-line max-statements
 export function Menu({ activator, items }: MenuProps) {
   const [visible, setVisible] = useState(false);
+  const shadowRef = useRef<HTMLSpanElement>(null);
+
+  const { width } = useWindowDimensions();
+
+  const buttonID = useId();
+  const menuID = useId();
+
   const fullWidth = activator?.props?.fullWidth || false;
-  const [position, setPosition] = useState<Position>({
-    vertical: "below",
-    horizontal: "right",
+
+  const wrapperClasses = classnames(styles.wrapper, {
+    [styles.fullWidth]: fullWidth,
   });
-  const wrapperRef = createRef<HTMLDivElement>();
-  const buttonID = uuidv1();
-  const menuID = uuidv1();
 
   useOnKeyDown(handleKeyboardShortcut, ["Escape"]);
-  useLayoutEffect(() => {
-    if (wrapperRef.current) {
-      const bounds = wrapperRef.current.getBoundingClientRect();
-      const newPosition = { ...position };
 
-      if (bounds.top <= window.innerHeight / 2) {
-        newPosition.vertical = "below";
-      } else {
-        newPosition.vertical = "above";
-      }
-
-      if (bounds.left <= window.innerWidth / 2) {
-        newPosition.horizontal = "right";
-      } else {
-        newPosition.horizontal = "left";
-      }
-
-      setPosition(newPosition);
-    }
-  }, [visible, fullWidth]);
+  // useRefocusOnActivator must come before useFocusTrap for them both to work
   useRefocusOnActivator(visible);
+  const menuRef = useFocusTrap<HTMLDivElement>(visible);
+
+  const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
+  const {
+    styles: popperStyles,
+    attributes,
+    state,
+  } = usePopper(shadowRef.current?.nextElementSibling, popperElement, {
+    placement: "bottom-start",
+    strategy: "fixed",
+    modifiers: [
+      {
+        name: "flip",
+        options: {
+          flipVariations: true,
+        },
+      },
+      {
+        name: "offset",
+        options: {
+          offset: [0, MENU_OFFSET],
+        },
+      },
+    ],
+  });
+  const positionAttributes =
+    width >= SMALL_SCREEN_BREAKPOINT
+      ? {
+          ...attributes.popper,
+          style: popperStyles.popper,
+        }
+      : {};
 
   if (!activator) {
     activator = (
@@ -106,24 +125,9 @@ export function Menu({ activator, items }: MenuProps) {
     );
   }
 
-  const menuClasses = classnames(
-    styles.menu,
-    position.vertical === "above" && styles.above,
-    position.vertical === "below" && styles.below,
-    position.horizontal === "left" && styles.left,
-    position.horizontal === "right" && styles.right,
-  );
-
-  const wrapperClasses = classnames(styles.wrapper, {
-    [styles.fullWidth]: fullWidth,
-  });
-
   return (
-    <div
-      className={wrapperClasses}
-      ref={wrapperRef}
-      onClick={handleParentClick}
-    >
+    <div className={wrapperClasses} onClick={handleParentClick}>
+      <span ref={shadowRef} className={styles.shadowRef} />
       {React.cloneElement(activator, {
         onClick: toggle(activator.props.onClick),
         id: buttonID,
@@ -131,55 +135,66 @@ export function Menu({ activator, items }: MenuProps) {
         ariaExpanded: visible,
         ariaHaspopup: true,
       })}
-      <AnimatePresence>
-        {visible && (
-          <>
-            <motion.div
-              className={styles.overlay}
-              onClick={toggle()}
-              variants={variation}
-              initial="overlayStartStop"
-              animate="done"
-              exit="overlayStartStop"
-              transition={{
-                type: "tween",
-                duration: 0.15,
-              }}
-            />
-            <motion.div
-              className={menuClasses}
-              role="menu"
-              aria-labelledby={buttonID}
-              id={menuID}
-              onClick={hide}
-              variants={variation}
-              initial="startOrStop"
-              animate="done"
-              exit="startOrStop"
-              custom={position}
-              transition={{
-                type: "tween",
-                duration: 0.25,
-              }}
-            >
-              {items.map((item, key: number) => (
-                <div key={key} className={styles.section}>
-                  {item.header && <SectionHeader text={item.header} />}
+      <MenuPortal>
+        <AnimatePresence>
+          {visible && (
+            <>
+              <motion.div
+                className={styles.overlay}
+                onClick={toggle()}
+                variants={variation}
+                initial="overlayStartStop"
+                animate="done"
+                exit="overlayStartStop"
+                transition={{
+                  type: "tween",
+                  duration: 0.15,
+                }}
+              />
+              <div
+                ref={setPopperElement}
+                className={styles.popperContainer}
+                {...positionAttributes}
+                {...formFieldFocusAttribute}
+              >
+                {items.length > 0 && (
+                  <motion.div
+                    className={styles.menu}
+                    role="menu"
+                    aria-labelledby={buttonID}
+                    id={menuID}
+                    onClick={hide}
+                    variants={variation}
+                    initial="startOrStop"
+                    animate="done"
+                    exit="startOrStop"
+                    custom={state?.placement}
+                    ref={menuRef}
+                    transition={{
+                      type: "tween",
+                      duration: 0.25,
+                    }}
+                  >
+                    {items.map((item, key: number) => (
+                      <div key={key} className={styles.section}>
+                        {item.header && <SectionHeader text={item.header} />}
 
-                  {item.actions.map((action, index) => (
-                    <Action
-                      sectionLabel={item.header}
-                      key={action.label}
-                      shouldFocus={key === 0 && index === 0}
-                      {...action}
-                    />
-                  ))}
-                </div>
-              ))}
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+                        {item.actions.map(action => (
+                          <Action
+                            sectionLabel={item.header}
+                            key={action.label}
+                            {...action}
+                          />
+                        ))}
+                      </div>
+                    ))}
+                  </motion.div>
+                )}
+              </div>
+            </>
+          )}
+        </AnimatePresence>
+      </MenuPortal>
     </div>
   );
 
@@ -213,7 +228,7 @@ export function Menu({ activator, items }: MenuProps) {
 }
 
 interface SectionHeaderProps {
-  text: string;
+  readonly text: string;
 }
 
 function SectionHeader({ text }: SectionHeaderProps) {
@@ -221,10 +236,10 @@ function SectionHeader({ text }: SectionHeaderProps) {
     <div className={styles.sectionHeader} aria-hidden={true}>
       <Typography
         element="h6"
-        size="small"
-        textCase="uppercase"
+        size="base"
         textColor="textSecondary"
-        fontWeight="bold"
+        fontWeight="regular"
+        textCase="none"
       >
         {text}
       </Typography>
@@ -236,44 +251,26 @@ export interface ActionProps {
   /**
    * Action label
    */
-  label: string;
+  readonly label: string;
 
   /**
    * Parent Section Label
    */
-  sectionLabel?: string;
+  readonly sectionLabel?: string;
 
   /**
    * Visual cue for the action label
    */
-  icon?: IconNames;
+  readonly icon?: IconNames;
 
   /**
    * Callback when an action gets clicked
    */
   onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
-
-  /**
-   * Focus on the action when rendered
-   */
-  shouldFocus?: boolean;
 }
 
-function Action({
-  label,
-  sectionLabel,
-  icon,
-  onClick,
-  shouldFocus = false,
-}: ActionProps) {
+function Action({ label, sectionLabel, icon, onClick }: ActionProps) {
   const actionButtonRef = useRef() as RefObject<HTMLButtonElement>;
-
-  useEffect(() => {
-    if (shouldFocus) {
-      // Focus on the next tick to allow useRefocusOnActivator to initialize
-      setTimeout(() => actionButtonRef.current?.focus(), 0);
-    }
-  }, [shouldFocus]);
 
   return (
     <button
@@ -284,12 +281,12 @@ function Action({
       onClick={onClick}
       ref={actionButtonRef}
     >
-      {icon && (
-        <span className={styles.icon}>
-          <Icon name={icon} />
-        </span>
-      )}
-      <Typography element="span" size="base" textColor="text">
+      {icon && <Icon name={icon} />}
+      <Typography
+        element="span"
+        fontWeight="semiBold"
+        textColor="textSecondary"
+      >
         {sectionLabel && (
           <span className={styles.screenReaderOnly}>{sectionLabel}</span>
         )}
@@ -297,4 +294,14 @@ function Action({
       </Typography>
     </button>
   );
+}
+
+function MenuPortal({ children }: { readonly children: React.ReactElement }) {
+  const mounted = useIsMounted();
+
+  if (!mounted?.current) {
+    return null;
+  }
+
+  return ReactDOM.createPortal(children, document.body);
 }

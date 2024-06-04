@@ -6,10 +6,8 @@
 .chip {
   --chip-height: 40px;
   --chip-radius: 20px;
-  --chip-disabled--bg: var(--color-grey--lighter);
-  --chip-bar-color: var(--color-greyBlue--light);
-  --chip-base-bg: var(--color-greyBlue--lightest);
-  --chip-base--hover: var(--color-greyBlue--lighter);
+  --chip-base-bg: var(--color-surface--background);
+  --chip-base--hover: var(--color-surface--background--hover);
   display: flex;
   position: relative;
   height: var(--chip-height);
@@ -41,6 +39,7 @@
 .chip .suffix {
   margin-left: var(--space-small);
   margin-right: calc(-1 * var(--space-small));
+  background-color: var(--color-surface);
 }
 
 .chip .prefix,
@@ -50,7 +49,6 @@
   height: var(--space-large);
   flex-shrink: 0;
   border-radius: var(--radius-circle);
-  background-color: var(--color-surface);
   align-items: center;
   justify-content: center;
 }
@@ -64,7 +62,7 @@
   width: var(--space-minuscule);
   height: var(--base-unit);
   margin: 0 var(--space-small);
-  background-color: var(--chip-bar-color);
+  background-color: var(--color-text--secondary);
 }
 
 .chip .selected {
@@ -97,8 +95,19 @@
   --chip--gradient-color-variation--hover: var(--color-critical--surface);
 }
 
+.invalid:hover,
+.invalid:focus-visible,
+.subtle.invalid:hover,
+.subtle.invalid:focus-visible {
+  background-color: var(--color-surface--background--hover);
+  --chip--gradient-color-variation: var(--color-surface--background--hover);
+  --chip--gradient-color-variation--hover: var(
+    --color-surface--background--hover
+  );
+}
+
 .subtle {
-  border: var(--border-base) solid var(--color-disabled--secondary);
+  border: var(--border-base) solid var(--color-border);
   background-color: var(--color-surface);
   --chip--gradient-color-variation: var(--color-surface);
 }
@@ -118,15 +127,22 @@
   --chip--gradient-color-variation--hover: var(--chip-base-bg);
 }
 
+.invalid.disabled,
+.invalid.disabled:hover,
+.invalid.disabled:focus-visible {
+  background-color: var(--color-disabled--secondary);
+  cursor: auto;
+}
+
 .disabled,
 .disabled:hover,
 .disabled:focus-visible {
-  border: var(--border-base) solid var(--chip-disabled--bg);
+  border: var(--border-base) solid var(--color-disabled--secondary);
   color: var(--color-disabled);
-  background-color: var(--chip-disabled--bg);
+  background-color: var(--color-disabled--secondary);
   cursor: auto;
-  --chip--gradient-color-variation: var(--chip-disabled--bg);
-  --chip--gradient-color-variation--hover: var(--chip-disabled--bg);
+  --chip--gradient-color-variation: var(--color-disabled--secondary);
+  --chip--gradient-color-variation--hover: var(--color-disabled--secondary);
 }
 
 .disabled .chipBar {
@@ -134,7 +150,11 @@
 }
 
 .chip.disabled .suffix {
-  background-color: var(--color-disabled);
+  background-color: var(--color-disabled--secondary);
+}
+
+.chip.disabled .suffix path {
+  fill: var(--color-disabled);
 }
 
 .chipContent {

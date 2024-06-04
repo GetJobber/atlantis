@@ -2,6 +2,7 @@
   position: relative;
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
+  overflow: hidden;
 }
 
 .tableContainer {
@@ -58,6 +59,11 @@
   z-index: 1;
   height: calc(var(--space-largest) + var(--space-smaller));
   background-color: var(--color-surface);
+}
+
+.pinFirstColumn tbody tr td.emptyStateCell {
+  display: table-cell;
+  position: initial;
 }
 
 .pinFirstColumn th:first-child::after,

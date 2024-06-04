@@ -54,6 +54,35 @@ test("simple ConfirmationModal should cancel", () => {
   expect(requestCloseHandler).toHaveBeenCalled();
 });
 
+test("confirm action should not happen during a render cycle and cause a React warning", () => {
+  jest.spyOn(console, "error");
+
+  function StatefulWrapper() {
+    const [foo, setFoo] = React.useState(true);
+
+    return (
+      <>
+        {foo ? "FOO TRUE" : "FOO FALSE"}
+        <ConfirmationModal
+          title="Should we?"
+          message="Do something…"
+          open={true}
+          confirmLabel="We Shall"
+          onConfirm={() => setFoo(false)}
+          onCancel={() => null}
+          onRequestClose={() => null}
+        />
+      </>
+    );
+  }
+
+  const { getByText } = render(<StatefulWrapper />);
+
+  fireEvent.click(getByText("We Shall"));
+  expect(getByText("FOO FALSE")).toBeInTheDocument();
+  expect(console.error).not.toHaveBeenCalled();
+});
+
 describe("using keyboard shortcuts", () => {
   describe("while focused on actions", () => {
     it("should perform the shortcut if ctrl or meta key is also pressed", () => {

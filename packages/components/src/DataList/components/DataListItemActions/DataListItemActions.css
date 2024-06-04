@@ -7,7 +7,7 @@
   box-shadow: var(--shadow-base);
   padding: var(--space-smaller);
   border: var(--border-base) solid var(--color-border);
-  border-radius: var(--radius-larger);
+  border-radius: var(--radius-base);
   background-color: var(--color-surface);
   gap: var(--space-smaller);
 }

@@ -82,16 +82,14 @@ export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
     <div className={styles.tabs}>
       <div className={overflowClassNames}>
         <ul role="tablist" className={styles.tabRow} ref={tabRow}>
-          <li role="presentation">
-            {React.Children.map(children, (tab, index) => (
-              <InternalTab
-                label={tab.props.label}
-                selected={activeTab === index}
-                activateTab={activateTab(index)}
-                onClick={tab.props.onClick}
-              />
-            ))}
-          </li>
+          {React.Children.map(children, (tab, index) => (
+            <InternalTab
+              label={tab.props.label}
+              selected={activeTab === index}
+              activateTab={activateTab(index)}
+              onClick={tab.props.onClick}
+            />
+          ))}
         </ul>
       </div>
       <section
@@ -131,22 +129,23 @@ export function InternalTab({
   },
 }: InternalTabProps) {
   const className = classnames(styles.tab, { [styles.selected]: selected });
-  const color = selected ? "green" : "heading";
 
   return (
-    <button
-      type="button"
-      role="tab"
-      id={label}
-      className={className}
-      onClick={event => {
-        activateTab();
-        onClick(event);
-      }}
-    >
-      <Typography element="span" size="base" textColor={color}>
-        {label}
-      </Typography>
-    </button>
+    <li role="presentation">
+      <button
+        type="button"
+        role="tab"
+        id={label}
+        className={className}
+        onClick={event => {
+          activateTab();
+          onClick(event);
+        }}
+      >
+        <Typography element="span" size="large" fontWeight="semiBold">
+          {label}
+        </Typography>
+      </button>
+    </li>
   );
 }

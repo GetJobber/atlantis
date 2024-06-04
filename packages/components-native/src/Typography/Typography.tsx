@@ -207,6 +207,7 @@ function getFontStyle(
     fontWeight,
   )}`;
   const fontStyling = styles[styleKey];
+
   if (fontStyling) {
     return fontStyling;
   } else {
@@ -234,6 +235,7 @@ function getColorStyle(color?: TextColor, reverseTheme?: boolean) {
     return styles.greyBlue;
   }
   const colorStyleKey = `${color}${reverseTheme ? "Reverse" : ""}`;
+
   return styles[`${colorStyleKey}`];
 }
 
@@ -248,10 +250,13 @@ function getSizeAndHeightStyle(
   lineHeightOverwrite?: LineHeight,
 ) {
   const fontSize = styles[`${textSize}Size`];
+
   if (lineHeightOverwrite) {
     const lineHeight = styles[`${lineHeightOverwrite}LineHeight`];
+
     return StyleSheet.flatten([fontSize, lineHeight]);
   }
+
   return fontSize;
 }
 

@@ -8,6 +8,7 @@ jest.mock("react-native/Libraries/Modal/Modal", () => MockModal);
 jest.mock("react-native-reanimated", () => {
   const reanimated = require("react-native-reanimated/mock");
   const timing = () => ({ start: () => undefined });
+
   return {
     ...reanimated,
     default: {

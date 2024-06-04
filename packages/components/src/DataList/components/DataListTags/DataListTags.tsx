@@ -17,6 +17,8 @@ export function DataListTags({ items }: DataListTagsProps) {
   useEffect(() => {
     if (!window.IntersectionObserver) return;
 
+    setVisibleIndex([]);
+
     const observer = new IntersectionObserver(handleIntersection, {
       root: ref.current,
       threshold: buildIntersectionThreshold(items),

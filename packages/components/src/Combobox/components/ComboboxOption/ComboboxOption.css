@@ -1,10 +1,11 @@
 .option {
   display: flex;
+  flex-shrink: 0;
   min-height: calc((var(--space-largest) - var(--space-smaller)));
   box-sizing: border-box;
   margin: 0 var(--space-small);
   padding: var(--space-small);
-  border-radius: var(--radius-large);
+  border-radius: var(--radius-base);
   color: var(--color-heading);
   font-weight: 500;
   cursor: pointer;
@@ -15,7 +16,7 @@
 
 .option:hover,
 .option:focus-visible {
-  background-color: var(--color-surface--background);
+  background-color: var(--color-surface--hover);
 }
 
 .option:focus,

@@ -1,0 +1,40 @@
+.optionsList {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  max-width: var(--popover--width);
+  box-shadow: var(--shadow-base);
+  margin-top: var(--space-smaller);
+  padding: var(--space-small);
+  border: var(--border-base) solid var(--color-border);
+  border-radius: var(--radius-base);
+  background: var(--color-surface);
+  align-items: flex-start;
+}
+
+.option {
+  display: flex;
+  min-width: 168px;
+  min-height: 40px;
+  box-sizing: border-box;
+  padding: var(--space-small);
+  border-radius: var(--radius-small);
+  font-family: var(--typography--fontFamily-normal);
+  font-size: var(--typography--fontSize-base);
+  font-weight: 500;
+  white-space: nowrap;
+  list-style: none;
+  cursor: pointer;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-smaller);
+}
+
+.option:hover,
+.option:focus {
+  background-color: var(--color-surface--hover);
+}
+
+.option:focus-visible {
+  box-shadow: var(--shadow-focus);
+}

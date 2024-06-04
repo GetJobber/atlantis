@@ -46,9 +46,33 @@ export type DataListHeader<T extends DataListObject> = {
   readonly [K in keyof T]?: string;
 };
 
-export interface DataListSorting {
+export interface DataListSorting extends Partial<SortableOptions> {
   readonly key: string;
+}
+
+export interface SortableOptions {
+  readonly id: string;
+  readonly label: string;
   readonly order: "asc" | "desc";
+}
+
+export interface DataListSortable {
+  /**
+   * The key of the sortable column.
+   */
+  readonly key: string;
+
+  /**
+   * The type of sorting on the column. Toggle will show the sorting arrows
+   * on the column header. Dropdown will show a menu with the sorting
+   * options.
+   */
+  readonly sortType: "toggle" | "dropdown";
+
+  /**
+   * The sorting options, containing id, label and order.
+   */
+  readonly options: SortableOptions[];
 }
 
 export interface DataListProps<T extends DataListObject> {
@@ -111,7 +135,7 @@ export interface DataListProps<T extends DataListObject> {
    * `onSort`: The callback function when the user sorting a column.
    */
   readonly sorting?: {
-    readonly sortable: (keyof DataListHeader<T>)[];
+    readonly sortable: DataListSortable[];
     readonly state: DataListSorting | undefined;
     readonly onSort: (sorting?: DataListSorting) => void;
   };
@@ -229,7 +253,6 @@ export interface DataListContextProps<T extends DataListObject>
   readonly bulkActionsComponent?: ReactElement<DataListItemActionsProps<T>>;
 
   readonly layoutBreakpoints: Breakpoints[];
-  readonly registerLayoutBreakpoints: (breakpoint: Breakpoints) => void;
 
   readonly layouts: {
     readonly [Breakpoint in Breakpoints]?: LayoutRenderer<T>;
@@ -306,7 +329,7 @@ export interface DataListActionProps<T extends DataListObject> {
   /**
    * The label of the action
    */
-  readonly label: string;
+  readonly label: string | ((item: T) => string);
 
   /**
    * The icon beside the label

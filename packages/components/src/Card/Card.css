@@ -1,16 +1,20 @@
 :root {
   --card--accent-color: var(--color-grey);
   --card--base-padding: var(--space-base);
+  --card--border: var(--border-base) solid var(--color-border);
 }
 
 .card {
-  --card--border-color: var(--color-border);
   display: block;
   width: 100%;
-  border: var(--border-base) solid var(--card--border-color);
+  border: var(--card--border);
   border-radius: var(--radius-base);
   outline-color: var(--color-focus);
   background-color: var(--color-surface);
+}
+
+.card:active {
+  outline: 0;
 }
 
 /* Adjust `Content` components public padding to match the cards */
@@ -25,10 +29,6 @@
   --public-content--padding: 0;
 }
 
-.card:active {
-  outline: 0;
-}
-
 .accent {
   border-top-width: 0;
 }
@@ -37,12 +37,13 @@
   content: " ";
   display: block;
   margin: 0 calc(-1 * var(--border-base));
-  border-top: 0.5rem solid var(--card--accent-color);
+  border-top: 0.375rem solid var(--card--accent-color);
   border-radius: var(--radius-base) var(--radius-base) 0 0;
 }
 
 .clickable {
-  --card--border-color: transparent;
+  --card--border: none;
+
   box-shadow: var(--shadow-base);
   color: inherit;
   text-decoration: inherit;
@@ -58,7 +59,7 @@
 .header {
   display: flex;
   padding: var(--card--base-padding);
-  background-color: var(--color-surface--background);
+  padding-bottom: 0;
   justify-content: space-between;
   align-items: flex-start;
   gap: var(--space-small);

@@ -8,8 +8,10 @@
   padding-right: calc(var(--space-large) * 2.25);
   border: none;
   border-bottom: var(--border-base) solid var(--color-border);
+  color: var(--field-value-color);
   font-family: var(--typography--fontFamily-normal);
   font-size: var(--typography--fontSize-base);
+  background-color: var(--color-surface);
 }
 
 .searchInput::-webkit-search-decoration,
@@ -42,5 +44,9 @@
 }
 
 .clearSearch:focus {
+  outline: transparent;
+}
+
+.clearSearch:focus-visible {
   box-shadow: var(--shadow-focus);
 }

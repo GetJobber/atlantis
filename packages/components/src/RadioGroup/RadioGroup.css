@@ -1,4 +1,7 @@
 .radioGroup {
+  --radio--checked-thickness: 6px;
+  --radio-diameter: 20px;
+  --radio--checked-shadow: 0px 0px 0px var(--space-minuscule) transparent;
   display: inline-flex;
   flex-direction: column;
 }
@@ -19,31 +22,29 @@
 .input + .label::before {
   content: "";
   display: block;
-  width: var(--space-base);
-  height: var(--space-base);
+  width: var(--radio-diameter);
+  height: var(--radio-diameter);
   box-sizing: border-box;
-  margin: var(--space-smallest) var(--space-small) 0 0;
-  border: var(--border-thick) solid var(--color-interactive);
+  margin-right: var(--space-small);
+  border: var(--border-thick) solid var(--color-border);
   border-radius: 100%;
   background-color: var(--color-surface);
-  transition: all var(--timing-base);
+  transition: all var(--timing-quick) ease-out;
   flex-shrink: 0;
 }
 
-.input:focus + .label:before {
-  box-shadow: var(--shadow-focus);
-}
-
-.input:focus:checked + .label:before {
-  box-shadow: 0px 0px 0px var(--space-minuscule) var(--color-interactive--hover),
-    var(--shadow-focus);
+.input:hover + .label::before {
+  border-color: var(--color-interactive);
 }
 
 .input:checked + .label::before {
-  box-shadow: 0px 0px 0px var(--space-minuscule) var(--color-interactive--hover);
-  border-color: var(--color-interactive--hover);
-  border-width: var(--border-thicker);
-  background-color: var(--color-interactive);
+  border-color: var(--color-interactive);
+  border-width: var(--radio--checked-thickness);
+  background-color: var(--color-surface);
+}
+
+.input:focus-visible:checked + .label:before {
+  box-shadow: var(--shadow-focus);
 }
 
 .input[disabled] + .label {
@@ -56,15 +57,16 @@
 }
 
 .input[disabled]:checked + .label::before {
-  box-shadow: 0px 0px 0px var(--space-minuscule) var(--color-disabled);
-  border-color: var(--color-grey);
-  background-color: var(--color-disabled--secondary);
+  --radio--checked-shadow: 0px 0px 0px var(--space-minuscule)
+    var(--color-disabled);
+  border-color: var(--color-disabled);
 }
 
 .description,
 .children {
+  margin-top: calc(var(--space-smaller) * -1);
   margin-bottom: var(--space-small);
-  padding-left: var(--space-large);
+  padding-left: calc(var(--radio-diameter) + var(--space-small));
 }
 
 .input[disabled] + .label + .description > p {

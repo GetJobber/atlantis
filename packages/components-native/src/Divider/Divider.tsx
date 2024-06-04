@@ -17,5 +17,6 @@ export function Divider({ size = "base" }: DividerProps): JSX.Element {
     size === "large" && styles.large,
     size === "largest" && styles.largest,
   ];
+
   return <View testID="Divider" style={style} />;
 }

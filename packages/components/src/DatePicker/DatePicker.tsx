@@ -10,6 +10,7 @@ import {
   DatePickerActivatorProps,
 } from "./DatePickerActivator";
 import { useFocusOnSelectedDate } from "./useFocusOnSelectedDate";
+import { useAtlantisContext } from "../AtlantisContext";
 
 interface BaseDatePickerProps {
   /**
@@ -82,6 +83,7 @@ interface DatePickerInlineProps extends BaseDatePickerProps {
 
 type DatePickerProps = XOR<DatePickerModalProps, DatePickerInlineProps>;
 
+/*eslint max-statements: ["error", 13]*/
 export function DatePicker({
   onChange,
   onMonthChange,
@@ -98,6 +100,7 @@ export function DatePicker({
 }: DatePickerProps) {
   const { ref, focusOnSelectedDate } = useFocusOnSelectedDate();
   const [open, setOpen] = useState(false);
+  const { dateFormat } = useAtlantisContext();
   const wrapperClassName = classnames(styles.datePickerWrapper, {
     // react-datepicker uses this class name to not close the date picker when
     // the activator is clicked
@@ -140,7 +143,14 @@ export function DatePicker({
         renderCustomHeader={props => <DatePickerCustomHeader {...props} />}
         onCalendarOpen={handleCalendarOpen}
         onCalendarClose={handleCalendarClose}
-        dateFormat={["P", "PP", "PPP", "MMM dd yyyy", "MMMM dd yyyy"]}
+        dateFormat={[
+          dateFormat,
+          "P",
+          "PP",
+          "PPP",
+          "MMM dd yyyy",
+          "MMMM dd yyyy",
+        ]}
         highlightDates={highlightDates}
         onMonthChange={onMonthChange}
       />

@@ -1,7 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
-import { Link } from "react-router-dom";
+import { Link, LinkProps } from "react-router-dom";
 import { IconNames } from "@jobber/design";
 import styles from "./Button.css";
 import { Icon } from "../Icon";
@@ -51,11 +51,12 @@ interface ButtonAnchorProps extends ButtonFoundationProps {
   readonly url?: string;
 }
 
-interface ButtonLinkProps extends ButtonFoundationProps {
+interface ButtonLinkProps<S = unknown> extends ButtonFoundationProps {
   /**
-   * Used for client side routing. Only use when inside a routed component.
+   * **Deprecated**: to will be removed in the next major version
+   * @deprecated
    */
-  readonly to?: string;
+  readonly to?: LinkProps<S>["to"];
 }
 
 interface BaseActionProps extends ButtonFoundationProps {
@@ -70,8 +71,10 @@ interface DestructiveActionProps extends ButtonFoundationProps {
 
 interface SubmitActionProps
   extends Omit<ButtonFoundationProps, "external" | "onClick"> {
-  readonly type?: "primary";
+  readonly name?: string;
   readonly submit: boolean;
+  readonly type?: "primary" | "secondary" | "tertiary";
+  readonly value?: string;
 }
 
 interface SubmitButtonProps
@@ -113,6 +116,7 @@ export function Button(props: ButtonProps) {
     iconOnRight,
     id,
     loading,
+    name,
     onClick,
     onMouseDown,
     role,
@@ -120,6 +124,7 @@ export function Button(props: ButtonProps) {
     type = "primary",
     url,
     to,
+    value,
     variation = "work",
     submit,
   } = props;
@@ -141,6 +146,7 @@ export function Button(props: ButtonProps) {
     className: buttonClassNames,
     disabled,
     id,
+    ...(submit && { name, value }),
     ...(!disabled && { href: url }),
     ...(!disabled && { onClick: onClick }),
     ...(!disabled && { onMouseDown: onMouseDown }),
@@ -174,7 +180,7 @@ function ButtonInternals({ label, icon, size = "base" }: ButtonProps) {
       {icon && <Icon name={icon} size={size} />}
       <Typography
         element="span"
-        fontWeight="extraBold"
+        fontWeight="semiBold"
         fontFamily="base"
         size={getTypeSizes(size)}
       >
@@ -187,7 +193,7 @@ function ButtonInternals({ label, icon, size = "base" }: ButtonProps) {
 function getTypeSizes(size: string) {
   switch (size) {
     case "small":
-      return "small";
+      return "base";
     case "large":
       return "large";
     default:

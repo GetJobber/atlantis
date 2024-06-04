@@ -43,5 +43,6 @@ export function calculateWidth(total: number, current: number): number {
   const curr = Math.max(0, current);
 
   if (curr >= total) return 100;
+
   return (curr / total) * 100;
 }

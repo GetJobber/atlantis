@@ -15,6 +15,7 @@ postcss([
       const mappedResults = yourResults.customProperties.reduce(
         (acc, { prop, value }) => {
           acc[prop] = value;
+
           return acc;
         },
         {},

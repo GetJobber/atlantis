@@ -21,6 +21,7 @@ export function DataListItemClickableInternal<T extends DataListObject>({
 
   if (to) {
     const computedTo = typeof to === "string" ? to : to(activeItem);
+
     return (
       <Link
         className={styles.listItemClickable}
@@ -34,6 +35,7 @@ export function DataListItemClickableInternal<T extends DataListObject>({
 
   if (url) {
     const href = typeof url === "string" ? url : url(activeItem);
+
     return (
       <a className={styles.listItemClickable} href={href} onClick={handleClick}>
         {children}
