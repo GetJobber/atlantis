@@ -75,6 +75,20 @@ just implement it as a direct child of the `SideDrawer`.
 </SideDrawer>
 ```
 
+### Footer
+
+The `SideDrawer.Footer` component is used to render a fixed bar at the bottom of
+the SideDrawer. This is great for elements such as buttons that should always be
+visible to the user.
+
+```tsx
+<SideDrawer>
+  <SideDrawer.Footer>
+    <Button label="Save" fullWidth={true} />
+  </SideDrawer.Footer>
+</SideDrawer>
+```
+
 ### Back Button
 
 SideDrawer also comes with a back button that you can use and add to the UI

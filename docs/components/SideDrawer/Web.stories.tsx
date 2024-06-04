@@ -104,6 +104,20 @@ const BasicTemplate: ComponentStory<typeof SideDrawer> = args => {
             and do not have a stone or pit.
           </Tab>
         </Tabs>
+
+        <SideDrawer.Footer>
+          <Content>
+            <Flex template={["grow", "grow"]}>
+              <Button
+                icon="help"
+                label="Visit Help Center"
+                variation="subtle"
+              />
+              <Button icon="video" label="Save" variation="subtle" />
+            </Flex>
+            <Button icon="chat" label="Chat With Us" fullWidth={true} />
+          </Content>
+        </SideDrawer.Footer>
       </SideDrawer>
     </>
   );
