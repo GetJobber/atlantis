@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.7.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.7.7...@jobber/components@5.7.8) (2024-06-04)
+
+
+### Bug Fixes
+
+* **components:** Fix Menu Focus Logic ([#1912](https://github.com/GetJobber/atlantis/issues/1912)) ([7fd6fdd](https://github.com/GetJobber/atlantis/commit/7fd6fdd237e9509ac4bb4337158fe9a9e7161213))
+
+
+
+
+
 ## [5.7.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.7.6...@jobber/components@5.7.7) (2024-05-30)
 
 
