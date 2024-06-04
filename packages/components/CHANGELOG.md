@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.7.9](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.7.8...@jobber/components@5.7.9) (2024-06-04)
+
+
+### Bug Fixes
+
+* **components:** hide hover menu when context menu shows up ([#1667](https://github.com/GetJobber/atlantis/issues/1667)) ([87e8fff](https://github.com/GetJobber/atlantis/commit/87e8fff600ae88602ca2543503dbb892ff6e8074))
+
+
+
+
+
 ## [5.7.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.7.7...@jobber/components@5.7.8) (2024-06-04)
 
 
