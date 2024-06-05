@@ -6,8 +6,8 @@
 .searchInput {
   --transition-properties: var(--timing-base) ease-in-out;
   --button-offset: calc(var(--space-largest) - var(--space-smaller));
-  display: none;
 
+  display: none;
   position: absolute;
   top: 50%;
   right: var(--button-offset);
