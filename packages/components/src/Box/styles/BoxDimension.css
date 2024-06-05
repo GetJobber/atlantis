@@ -1,0 +1,21 @@
+.height-auto {
+  height: auto;
+}
+
+.width-auto {
+  width: auto;
+}
+
+.height-shrink,
+.width-shrink {
+  min-width: 0;
+  min-height: 0;
+  flex: 0 0 auto;
+}
+
+.height-grow,
+.width-grow {
+  min-width: 0;
+  min-height: 0;
+  flex: 1 1 auto;
+}

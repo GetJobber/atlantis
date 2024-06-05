@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.8.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.7.9...@jobber/components@5.8.0) (2024-06-05)
+
+
+### Features
+
+* **components:** Box Component ([#1890](https://github.com/GetJobber/atlantis/issues/1890)) ([a28c774](https://github.com/GetJobber/atlantis/commit/a28c7746ea9842363967a8a1f51d70a60fa76055))
+
+
+
+
+
+## [5.7.9](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.7.8...@jobber/components@5.7.9) (2024-06-04)
+
+
+### Bug Fixes
+
+* **components:** hide hover menu when context menu shows up ([#1667](https://github.com/GetJobber/atlantis/issues/1667)) ([87e8fff](https://github.com/GetJobber/atlantis/commit/87e8fff600ae88602ca2543503dbb892ff6e8074))
+
+
+
+
+
+## [5.7.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.7.7...@jobber/components@5.7.8) (2024-06-04)
+
+
+### Bug Fixes
+
+* **components:** Fix Menu Focus Logic ([#1912](https://github.com/GetJobber/atlantis/issues/1912)) ([7fd6fdd](https://github.com/GetJobber/atlantis/commit/7fd6fdd237e9509ac4bb4337158fe9a9e7161213))
+
+
+
+
+
+## [5.7.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.7.6...@jobber/components@5.7.7) (2024-05-30)
+
+
+### Bug Fixes
+
+* **components:** Animated switcher ([#1905](https://github.com/GetJobber/atlantis/issues/1905)) ([f116598](https://github.com/GetJobber/atlantis/commit/f1165980db54dd7d0385e7efdedcd14f8e0f7837))
+
+
+
+
+
 ## [5.7.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.7.5...@jobber/components@5.7.6) (2024-05-30)
 
 

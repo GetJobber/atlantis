@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "5.7.6",
+  "version": "5.8.0",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.cjs",
@@ -43,6 +43,11 @@
       "types": "./dist/Banner/index.d.ts",
       "import": "./dist/Banner/index.mjs",
       "require": "./dist/Banner/index.cjs"
+    },
+    "./Box": {
+      "types": "./dist/Box/index.d.ts",
+      "import": "./dist/Box/index.mjs",
+      "require": "./dist/Box/index.cjs"
     },
     "./Button": {
       "types": "./dist/Button/index.d.ts",
