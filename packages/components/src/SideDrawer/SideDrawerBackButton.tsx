@@ -13,7 +13,7 @@ export function SideDrawerBackButton({
   return createPortal(
     <Button
       ariaLabel="Back"
-      icon="arrowLeft"
+      icon="longArrowLeft"
       variation="subtle"
       type="tertiary"
       onClick={onClick}
