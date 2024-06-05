@@ -1,0 +1,9 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.preserve-white-space {
+  white-space: pre-wrap;
+}

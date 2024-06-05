@@ -44,6 +44,11 @@
       "import": "./dist/Banner/index.mjs",
       "require": "./dist/Banner/index.cjs"
     },
+    "./Box": {
+      "types": "./dist/Box/index.d.ts",
+      "import": "./dist/Box/index.mjs",
+      "require": "./dist/Box/index.cjs"
+    },
     "./Button": {
       "types": "./dist/Button/index.d.ts",
       "import": "./dist/Button/index.mjs",
