@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.8.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.7.9...@jobber/components@5.8.0) (2024-06-05)
+
+
+### Features
+
+* **components:** Box Component ([#1890](https://github.com/GetJobber/atlantis/issues/1890)) ([a28c774](https://github.com/GetJobber/atlantis/commit/a28c7746ea9842363967a8a1f51d70a60fa76055))
+
+
+
+
+
 ## [5.7.9](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.7.8...@jobber/components@5.7.9) (2024-06-04)
 
 
