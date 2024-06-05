@@ -11,11 +11,11 @@
 
 .datePicker:global(.react-datepicker) {
   --datepicker-cell-size: calc(var(--space-base) * 2.375);
-  background-color: var(--color-surface);
   box-shadow: var(--shadow-base);
   border-color: var(--color-border);
   border-radius: var(--radius-base);
   font-family: var(--typography--fontFamily-normal);
+  background-color: var(--color-surface);
 }
 
 .datePicker.inline {
