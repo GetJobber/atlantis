@@ -6,6 +6,7 @@
 .searchInput {
   --transition-properties: var(--timing-base) ease-in-out;
   --button-offset: calc(var(--space-largest) - var(--space-smaller));
+  display: none;
 
   position: absolute;
   top: 50%;
@@ -16,16 +17,22 @@
   background-color: var(--color-surface);
   opacity: 0;
   transform: translateY(-50%);
-  transition:
-    opacity var(--transition-properties),
-    width var(--transition-properties),
-    visibility var(--transition-properties);
+  transition: opacity var(--transition-properties),
+    width var(--transition-properties), visibility var(--transition-properties);
+
+  @media (--medium-screens-and-up) {
+    display: block;
+  }
 }
 
 .searchInputVisible {
   visibility: visible;
   width: calc(100% - var(--button-offset));
   opacity: 1;
+}
+
+.searchInputVisible.searchInput {
+  display: block;
 }
 
 .searchInput,
