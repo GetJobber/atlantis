@@ -52,7 +52,7 @@ export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
 
   const activeTabProps = (React.Children.toArray(children) as ReactElement[])[
     activeTab
-  ].props;
+  ]?.props;
 
   const handleOverflowing = () => {
     if (tabRow.current) {
@@ -78,6 +78,12 @@ export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
     };
   });
 
+  useEffect(() => {
+    if (activeTabInitialValue !== activeTab) {
+      setActiveTab(activeTabInitialValue);
+    }
+  }, [React.Children.count(children)]);
+
   return (
     <div className={styles.tabs}>
       <div className={overflowClassNames}>
@@ -95,9 +101,9 @@ export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
       <section
         role="tabpanel"
         className={styles.tabContent}
-        aria-label={activeTabProps.label}
+        aria-label={activeTabProps?.label}
       >
-        {activeTabProps.children}
+        {activeTabProps?.children}
       </section>
     </div>
   );
