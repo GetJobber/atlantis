@@ -1,11 +1,13 @@
 import React, { useId, useState } from "react";
 import type { KeyboardEvent, PropsWithChildren } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, Variants, motion } from "framer-motion";
 import { tokens } from "@jobber/design";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import classNames from "classnames";
 import { useInView } from "@jobber/hooks/useInView";
+import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import { SideDrawerActions } from "./SideDrawerActions";
 import { SideDrawerContext } from "./SideDrawerContext";
 import { SideDrawerTitle } from "./SideDrawerTitle";
@@ -15,7 +17,6 @@ import { SideDrawerBackButton } from "./SideDrawerBackButton";
 import { SideDrawerFooter } from "./SideDrawerFooter";
 import { Button } from "../Button";
 import { Flex } from "../Flex";
-import { SSRSafePortal } from "../utils/SSRSafePortal";
 
 interface SideDrawerProps extends PropsWithChildren {
   /**
@@ -53,91 +54,95 @@ export function SideDrawer({
   const [headerShadowRef, noHeaderShadow] = useInView<HTMLDivElement>();
   const [footerShadowRef, noFooterShadow] = useInView<HTMLDivElement>();
 
-  return (
-    <SSRSafePortal>
-      <SideDrawerContext.Provider
-        value={{
-          actionPortal: ref?.querySelector(actions.selector),
-          titlePortal: ref?.querySelector(title.selector),
-          toolbarPortal: ref?.querySelector(toolbar.selector),
-          backPortal: ref?.querySelector(backButton.selector),
-          footerPortal: ref?.querySelector(footer.selector),
-        }}
-      >
-        {open && (
-          <button
-            className={styles.overlay}
-            aria-label="Close"
-            onClick={onRequestClose}
-            type="button"
-          />
-        )}
-        <AnimatePresence initial={false}>
-          {open && (
-            <motion.div
-              className={styles.drawer}
-              ref={setRef}
-              variants={variants}
-              initial="hidden"
-              animate="visible"
-              exit="hidden"
-              transition={{
-                duration: tokens["timing-base"] / 1000,
-              }}
-            >
-              <div
-                ref={sideDrawerRef}
-                role="dialog"
-                className={classNames(styles.container, styles.hasShadow, {
-                  [styles.subtle]: variation === "subtle",
-                })}
-                tabIndex={0}
-                onKeyUp={handleKeyUp}
-              >
-                <div ref={headerShadowRef} />
-                <div
-                  className={classNames(styles.header, {
-                    [styles.hasShadow]:
-                      headerShadowRef.current && !noHeaderShadow,
-                  })}
-                >
-                  <Flex template={["grow", "shrink"]}>
-                    <Flex template={["shrink", "grow"]} gap="none">
-                      <div {...backButton.attr} />
-                      <div {...title.attr} />
-                    </Flex>
+  const container = globalThis.document?.body || null;
+  const isMounted = useIsMounted();
 
-                    <div className={styles.headerActions}>
-                      <div className={styles.hideWhenEmpty} {...actions.attr} />
-                      <Button
-                        ariaLabel="Close"
-                        icon="cross"
-                        onClick={onRequestClose}
-                        type={"tertiary"}
-                        variation="subtle"
-                      />
-                    </div>
+  if (!isMounted.current && !container) return null;
+
+  return createPortal(
+    <SideDrawerContext.Provider
+      value={{
+        actionPortal: ref?.querySelector(actions.selector),
+        titlePortal: ref?.querySelector(title.selector),
+        toolbarPortal: ref?.querySelector(toolbar.selector),
+        backPortal: ref?.querySelector(backButton.selector),
+        footerPortal: ref?.querySelector(footer.selector),
+      }}
+    >
+      {open && (
+        <button
+          className={styles.overlay}
+          aria-label="Close"
+          onClick={onRequestClose}
+          type="button"
+        />
+      )}
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            className={styles.drawer}
+            ref={setRef}
+            variants={variants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            transition={{
+              duration: tokens["timing-base"] / 1000,
+            }}
+          >
+            <div
+              ref={sideDrawerRef}
+              role="dialog"
+              className={classNames(styles.container, styles.hasShadow, {
+                [styles.subtle]: variation === "subtle",
+              })}
+              tabIndex={0}
+              onKeyUp={handleKeyUp}
+            >
+              <div ref={headerShadowRef} />
+              <div
+                className={classNames(styles.header, {
+                  [styles.hasShadow]:
+                    headerShadowRef.current && !noHeaderShadow,
+                })}
+              >
+                <Flex template={["grow", "shrink"]}>
+                  <Flex template={["shrink", "grow"]} gap="none">
+                    <div {...backButton.attr} />
+                    <div {...title.attr} />
                   </Flex>
 
-                  <div className={styles.hideWhenEmpty} {...toolbar.attr} />
-                </div>
+                  <div className={styles.headerActions}>
+                    <div className={styles.hideWhenEmpty} {...actions.attr} />
+                    <Button
+                      ariaLabel="Close"
+                      icon="cross"
+                      onClick={onRequestClose}
+                      type={"tertiary"}
+                      variation="subtle"
+                    />
+                  </div>
+                </Flex>
 
-                <div className={styles.content}>{children}</div>
-
-                <div
-                  className={classNames(styles.footer, styles.hideWhenEmpty, {
-                    [styles.hasShadow]:
-                      footerShadowRef.current && !noFooterShadow,
-                  })}
-                  {...footer.attr}
-                />
-                <div ref={footerShadowRef} />
+                <div className={styles.hideWhenEmpty} {...toolbar.attr} />
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </SideDrawerContext.Provider>
-    </SSRSafePortal>
+
+              <div className={styles.content}>{children}</div>
+
+              <div
+                className={classNames(styles.footer, styles.hideWhenEmpty, {
+                  [styles.hasShadow]:
+                    footerShadowRef.current && !noFooterShadow,
+                })}
+                {...footer.attr}
+              />
+              <div ref={footerShadowRef} />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </SideDrawerContext.Provider>,
+    container,
   );
 
   function handleKeyUp(event: KeyboardEvent<HTMLDivElement>): void {
