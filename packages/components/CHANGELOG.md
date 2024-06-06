@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.9.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.8.0...@jobber/components@5.9.0) (2024-06-05)
+
+
+### Features
+
+* **components:** add side drawer ([#1909](https://github.com/GetJobber/atlantis/issues/1909)) ([6f55a35](https://github.com/GetJobber/atlantis/commit/6f55a35f56ec0569d827d929678ad7fe70a93cbe))
+
+
+
+
+
+# [5.8.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.7.9...@jobber/components@5.8.0) (2024-06-05)
+
+
+### Features
+
+* **components:** Box Component ([#1890](https://github.com/GetJobber/atlantis/issues/1890)) ([a28c774](https://github.com/GetJobber/atlantis/commit/a28c7746ea9842363967a8a1f51d70a60fa76055))
+
+
+
+
+
 ## [5.7.9](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.7.8...@jobber/components@5.7.9) (2024-06-04)
 
 
