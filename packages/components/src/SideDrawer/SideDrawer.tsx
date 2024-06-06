@@ -7,6 +7,7 @@ import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import classNames from "classnames";
 import { useInView } from "@jobber/hooks/useInView";
+import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import { SideDrawerActions } from "./SideDrawerActions";
 import { SideDrawerContext } from "./SideDrawerContext";
 import { SideDrawerTitle } from "./SideDrawerTitle";
@@ -54,8 +55,9 @@ export function SideDrawer({
   const [footerShadowRef, noFooterShadow] = useInView<HTMLDivElement>();
 
   const container = globalThis.document?.body || null;
+  const isMounted = useIsMounted();
 
-  if (!container) return null;
+  if (!isMounted.current && !container) return null;
 
   return createPortal(
     <SideDrawerContext.Provider
