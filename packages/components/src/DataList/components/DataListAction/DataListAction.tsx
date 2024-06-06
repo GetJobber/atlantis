@@ -41,6 +41,7 @@ export function DataListAction<T extends DataListObject>({
         href={actionUrl}
         rel="noopener noreferrer"
         className={`${styles.action} ${styles.actionUrl}`}
+        onClick={handleClick}
       >
         <Typography textColor={color}>
           <span className={styles.label}>{getActionLabel()}</span>
