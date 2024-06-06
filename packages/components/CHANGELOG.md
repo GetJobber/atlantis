@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.10.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.9.0...@jobber/components@5.10.0) (2024-06-06)
+
+
+### Features
+
+* **components:** Add url to DataList.ItemAction ([#1910](https://github.com/GetJobber/atlantis/issues/1910)) ([86c36c9](https://github.com/GetJobber/atlantis/commit/86c36c93e1a74a8024aad93d8b94a2075103354f))
+
+
+
+
+
 # [5.9.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.8.0...@jobber/components@5.9.0) (2024-06-05)
 
 
