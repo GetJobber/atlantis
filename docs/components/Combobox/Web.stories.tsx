@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
+import {
+  Combobox,
+  ComboboxCustomActivatorProps,
+  ComboboxOption,
+} from "@jobber/components/Combobox";
 import { Button } from "@jobber/components/Button";
 import { Typography } from "@jobber/components/Typography";
 import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
 import { StatusIndicator } from "@jobber/components/StatusIndicator";
+import { Flex } from "@jobber/components/Flex";
+import { Avatar } from "@jobber/components/Avatar";
+import { Text } from "@jobber/components/Text";
+import { Switch } from "@jobber/components/Switch";
 import { useFakeQuery } from "./storyUtils";
 
 export default {
@@ -476,3 +484,102 @@ CustomSearch.parameters = {
     },
   },
 };
+
+const ComboboxSuperCustomActivator: ComponentStory<typeof Combobox> = args => {
+  const [selected, setSelected] = useState<ComboboxOption[]>([]);
+  const SuperActivator = getSuperActivator({
+    selected,
+    setSelected,
+  });
+
+  return (
+    <Combobox
+      {...args}
+      multiSelect
+      label="Teammates"
+      onSelect={selection => {
+        setSelected(selection);
+      }}
+      selected={selected}
+    >
+      <Combobox.Activator customActivator={SuperActivator} />
+      <Combobox.Option id="1" label="Bilbo Baggins" />
+      <Combobox.Option id="2" label="Frodo Baggins" />
+      <Combobox.Option id="3" label="Pippin Took" />
+      <Combobox.Option id="4" label="Merry Brandybuck" />
+      <Combobox.Option id="5" label="Sam Gamgee" />
+      <Combobox.Option id="6" label="Aragorn" />
+      <Combobox.Option id="7" label="Gimli" />
+      <Combobox.Option id="8" label="Legolas" />
+      <Combobox.Option id="9" label="Gandalf" />
+      <Combobox.Option id="10" label="Gollum" />
+      <Combobox.Option id="11" label="Sauron" />
+      <Combobox.Option id="12" label="Saruman" />
+      <Combobox.Option id="13" label="Elrond" />
+      <Combobox.Option id="14" label="Galadriel" />
+
+      <Combobox.Action
+        label="Add Teammate"
+        onClick={() => {
+          alert("Added a new teammate ✅");
+        }}
+      />
+      <Combobox.Action
+        label="Manage Teammates"
+        onClick={() => {
+          alert("Managed teammates 👍");
+        }}
+      />
+    </Combobox>
+  );
+};
+
+export const SuperCustomActivator = ComboboxSuperCustomActivator.bind({});
+SuperCustomActivator.args = {};
+
+function getSuperActivator({
+  selected,
+  setSelected,
+}: {
+  selected: ComboboxOption[];
+  setSelected: (selected: ComboboxOption[]) => void;
+}) {
+  function SuperActivator(props: ComboboxCustomActivatorProps) {
+    const trimmedAmount = selected.filter((_, i) => i < 3);
+    const moreCount = selected.length - trimmedAmount.length;
+
+    return (
+      <Flex
+        template={["shrink", "shrink", "shrink", "shrink", "shrink", "shrink"]}
+        direction="row"
+      >
+        <Switch value={props.open} onChange={value => props.setOpen(value)} />
+
+        {trimmedAmount.map(({ label }) => {
+          const initials = label
+            .split(" ")
+            .map(word => word[0])
+            .join("");
+
+          return (
+            <div key={label}>
+              <Avatar key={label} initials={initials} />
+            </div>
+          );
+        })}
+        {moreCount > 0 && <Text>...</Text>}
+        {selected.length !== 0 && (
+          <Button
+            icon="remove"
+            variation="subtle"
+            type="tertiary"
+            onClick={() => setSelected([])}
+            ariaLabel="remove"
+          />
+        )}
+      </Flex>
+    );
+  }
+
+  return SuperActivator;
+}

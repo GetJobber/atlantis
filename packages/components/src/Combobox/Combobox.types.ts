@@ -60,8 +60,17 @@ export interface ComboboxProps {
   readonly loading?: boolean;
 }
 
+export interface ComboboxCustomActivatorProps {
+  setOpen: (open: boolean) => void;
+  open: boolean;
+  handleClose: () => void;
+}
+
 export interface ComboboxActivatorProps {
-  readonly children: React.ReactElement;
+  readonly children?: React.ReactElement;
+  readonly customActivator?: (
+    props: ComboboxCustomActivatorProps,
+  ) => React.ReactElement;
 }
 
 export interface ComboboxTriggerProps

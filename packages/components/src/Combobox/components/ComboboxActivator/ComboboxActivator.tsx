@@ -7,7 +7,7 @@ import { ComboboxActivatorProps } from "../../Combobox.types";
 export function ComboboxActivator(props: ComboboxActivatorProps) {
   const { handleClose, open, setOpen } = React.useContext(ComboboxContext);
 
-  if (props.children.type === Button || props.children.type === Chip) {
+  if (props.children?.type === Button || props.children?.type === Chip) {
     return React.cloneElement(props.children, {
       role: "combobox",
       onClick: () => {
@@ -18,7 +18,19 @@ export function ComboboxActivator(props: ComboboxActivatorProps) {
         }
       },
     });
+  } else if (props.customActivator) {
+    return (
+      <div role="combobox" aria-expanded={open}>
+        {props.customActivator({ setOpen, open, handleClose })}
+      </div>
+    );
   }
 
-  return props.children;
+  return null;
+}
+
+export interface ComboboxCustomActivatorProps {
+  setOpen: (open: boolean) => void;
+  open: boolean;
+  handleClose: () => void;
 }
