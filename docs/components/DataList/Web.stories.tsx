@@ -233,6 +233,10 @@ const Template: ComponentStory<typeof DataList> = args => {
           destructive={true}
           onClick={handleActionClick}
         />
+        <DataList.ItemAction
+          label="Go to Jobber.com"
+          actionUrl="https://www.jobber.com"
+        />
       </DataList.ItemActions>
 
       <DataList.BatchActions>

@@ -350,6 +350,11 @@ export interface DataListActionProps<T extends DataListObject> {
    * The callback function when the action is clicked.
    */
   readonly onClick?: (data: T) => void;
+
+  /**
+   * The URL to navigate to when the action is clicked.
+   */
+  readonly actionUrl?: string;
 }
 
 export interface DataListActionsProps<T extends DataListObject> {
