@@ -15,6 +15,15 @@ const omelet = (
   </Tabs>
 );
 
+const originalClientWidth = Object.getOwnPropertyDescriptor(
+  HTMLElement.prototype,
+  "clientWidth",
+);
+const originalScrollWidth = Object.getOwnPropertyDescriptor(
+  HTMLElement.prototype,
+  "scrollWidth",
+);
+
 describe("Tabs", () => {
   it("renders Tabs", () => {
     const { container } = render(omelet);
@@ -96,5 +105,48 @@ describe("Tabs", () => {
 
     expect(queryByText("🍳")).toBeInTheDocument();
     expect(queryByText("🧀")).not.toBeInTheDocument();
+  });
+
+  describe("overflow", () => {
+    beforeAll(() => {
+      Object.defineProperty(HTMLElement.prototype, "clientWidth", {
+        configurable: true,
+        value: 500,
+      });
+      Object.defineProperty(HTMLElement.prototype, "scrollWidth", {
+        configurable: true,
+        value: 600,
+      });
+    });
+
+    afterAll(() => {
+      if (originalClientWidth && originalScrollWidth) {
+        Object.defineProperty(
+          HTMLElement.prototype,
+          "clientWidth",
+          originalClientWidth,
+        );
+        Object.defineProperty(
+          HTMLElement.prototype,
+          "scrollWidth",
+          originalScrollWidth,
+        );
+      }
+    });
+    it("adds the overflowRight class when tabs overflow without scrolling to end", () => {
+      const manyTabs = Array.from({ length: 10 }, (_, i) => (
+        <Tab key={i} label={`Tab ${i}`}>
+          <p>Content {i}</p>
+        </Tab>
+      ));
+
+      const { container } = render(<Tabs>{manyTabs.map(tab => tab)}</Tabs>);
+
+      expect(
+        container?.firstElementChild?.firstElementChild?.classList?.contains(
+          "overflowRight",
+        ),
+      ).toBe(true);
+    });
   });
 });

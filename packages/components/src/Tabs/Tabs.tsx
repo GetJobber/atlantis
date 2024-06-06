@@ -1,13 +1,7 @@
-import React, {
-  MutableRefObject,
-  ReactElement,
-  ReactNode,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { ReactElement, ReactNode, useEffect, useState } from "react";
 import classnames from "classnames";
 import styles from "./Tabs.css";
+import { useTabsOverflow } from "./hooks/useTabsOverflow";
 import { Typography } from "../Typography";
 
 interface TabsProps {
@@ -31,10 +25,7 @@ export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
   const activeTabInitialValue =
     defaultTab < React.Children.count(children) ? defaultTab : 0;
   const [activeTab, setActiveTab] = useState(activeTabInitialValue);
-  const [overflowRight, setOverflowRight] = useState(false);
-  const [overflowLeft, setOverflowLeft] = useState(false);
-  const tabRow = useRef() as MutableRefObject<HTMLUListElement>;
-
+  const { overflowRight, overflowLeft, tabRow } = useTabsOverflow();
   const overflowClassNames = classnames(styles.overflow, {
     [styles.overflowRight]: overflowRight,
     [styles.overflowLeft]: overflowLeft,
@@ -53,30 +44,6 @@ export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
   const activeTabProps = (React.Children.toArray(children) as ReactElement[])[
     activeTab
   ]?.props;
-
-  const handleOverflowing = () => {
-    if (tabRow.current) {
-      const scrollWidth = tabRow.current.scrollWidth;
-      const clientWidth = tabRow.current.clientWidth;
-      const maxScroll = scrollWidth - clientWidth;
-      const scrollPos = tabRow.current.scrollLeft;
-
-      if (scrollWidth > clientWidth) {
-        setOverflowRight(scrollPos >= 0 && scrollPos != maxScroll);
-        setOverflowLeft(scrollPos > 0 && scrollPos < scrollWidth);
-      }
-    }
-  };
-
-  useEffect(() => {
-    handleOverflowing();
-    tabRow.current &&
-      tabRow.current.addEventListener("scroll", handleOverflowing);
-
-    return () => {
-      window.removeEventListener("scroll", handleOverflowing);
-    };
-  });
 
   useEffect(() => {
     if (activeTabInitialValue !== activeTab) {
