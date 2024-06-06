@@ -1,0 +1,29 @@
+.base {
+  margin: var(--box-margin, 0);
+}
+
+.horizontal {
+  margin-left: var(--box-margin-horizontal);
+  margin-right: var(--box-margin-horizontal);
+}
+
+.vertical {
+  margin-top: var(--box-margin-vertical);
+  margin-bottom: var(--box-margin-vertical);
+}
+
+.top {
+  margin-top: var(--box-margin-top);
+}
+
+.right {
+  margin-right: var(--box-margin-right);
+}
+
+.bottom {
+  margin-bottom: var(--box-margin-bottom);
+}
+
+.left {
+  margin-left: var(--box-margin-left);
+}

@@ -1,0 +1,35 @@
+.gap-minuscule {
+  gap: var(--space-minuscule);
+}
+
+.gap-smallest {
+  gap: var(--space-smallest);
+}
+
+.gap-smaller {
+  gap: var(--space-smaller);
+}
+
+.gap-small {
+  gap: var(--space-small);
+}
+
+.gap-base {
+  gap: var(--space-base);
+}
+
+.gap-large {
+  gap: var(--space-large);
+}
+
+.gap-larger {
+  gap: var(--space-larger);
+}
+
+.gap-largest {
+  gap: var(--space-largest);
+}
+
+.gap-extravagant {
+  gap: var(--space-extravagant);
+}
