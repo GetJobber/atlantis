@@ -39,7 +39,6 @@ const variants: Variants = {
   visible: { x: 0, transitionEnd: { x: 0 } },
 };
 
-// eslint-disable-next-line max-statements
 export function SideDrawer({
   children,
   onRequestClose,
@@ -47,11 +46,7 @@ export function SideDrawer({
   variation = "base",
 }: SideDrawerProps) {
   const [ref, setRef] = useState<HTMLDivElement | null>(null);
-  const toolbar = useSlotID();
-  const title = useSlotID("title");
-  const actions = useSlotID();
-  const backButton = useSlotID("back");
-  const footer = useSlotID();
+  const { toolbar, title, actions, backButton, footer } = useSlotIDs();
 
   useRefocusOnActivator(open);
   const sideDrawerRef = useFocusTrap<HTMLDivElement>(open);
@@ -154,6 +149,16 @@ export function SideDrawer({
       onRequestClose();
     }
   }
+}
+
+function useSlotIDs() {
+  const toolbar = useSlotID();
+  const title = useSlotID("title");
+  const actions = useSlotID();
+  const backButton = useSlotID("back");
+  const footer = useSlotID();
+
+  return { toolbar, title, actions, backButton, footer };
 }
 
 function useSlotID(prefix?: string) {
