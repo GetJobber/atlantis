@@ -149,4 +149,79 @@ describe("Tabs", () => {
       ).toBe(true);
     });
   });
+
+  describe("dynamic tabs", () => {
+    function buildTabs(length: number) {
+      return Array.from({ length }, (_, i) => (
+        <Tab key={i} label={`Tab ${i}`}>
+          <p>Content {i}</p>
+        </Tab>
+      ));
+    }
+
+    it("when number of tabs grows, the active tab doesn't change", () => {
+      const manyTabs = buildTabs(10);
+      const { getByText, queryByText, rerender } = render(
+        <Tabs>{manyTabs.map(tab => tab)}</Tabs>,
+      );
+
+      fireEvent.click(getByText("Tab 9"));
+      expect(queryByText("Content 9")).toBeInTheDocument();
+
+      const manyNewTabs = buildTabs(15);
+      rerender(<Tabs>{manyNewTabs.map(tab => tab)}</Tabs>);
+
+      expect(queryByText("Content 9")).toBeInTheDocument();
+    });
+
+    it("when number of tabs doesn't change, the active tab doesn't change", () => {
+      const manyTabs = buildTabs(10);
+      const { getByText, queryByText, rerender } = render(
+        <Tabs>{manyTabs.map(tab => tab)}</Tabs>,
+      );
+
+      fireEvent.click(getByText("Tab 9"));
+      expect(queryByText("Content 9")).toBeInTheDocument();
+
+      const manyNewTabs = buildTabs(10);
+      rerender(<Tabs>{manyNewTabs.map(tab => tab)}</Tabs>);
+
+      expect(queryByText("Content 9")).toBeInTheDocument();
+    });
+
+    it("when the number of tabs shrinks and defaultTab is specified, the active tab is reset to defaultTab", () => {
+      const defaultTab = 2;
+      const manyTabs = buildTabs(10);
+      const { getByText, queryByText, rerender } = render(
+        <Tabs defaultTab={defaultTab}>{manyTabs.map(tab => tab)}</Tabs>,
+      );
+
+      fireEvent.click(getByText("Tab 9"));
+      expect(queryByText("Content 9")).toBeInTheDocument();
+
+      const manyNewTabs = buildTabs(5);
+      rerender(
+        <Tabs defaultTab={defaultTab}>{manyNewTabs.map(tab => tab)}</Tabs>,
+      );
+
+      expect(queryByText("Content 9")).not.toBeInTheDocument();
+      expect(queryByText(`Content ${defaultTab}`)).toBeInTheDocument();
+    });
+
+    it("when the number of tabs shrinks and defaultTab is not specified, the active tab is reset to the first tab", () => {
+      const manyTabs = buildTabs(10);
+      const { getByText, queryByText, rerender } = render(
+        <Tabs>{manyTabs.map(tab => tab)}</Tabs>,
+      );
+
+      fireEvent.click(getByText("Tab 9"));
+      expect(queryByText("Content 9")).toBeInTheDocument();
+
+      const manyNewTabs = buildTabs(5);
+      rerender(<Tabs>{manyNewTabs.map(tab => tab)}</Tabs>);
+
+      expect(queryByText("Content 9")).not.toBeInTheDocument();
+      expect(queryByText("Content 0")).toBeInTheDocument();
+    });
+  });
 });
