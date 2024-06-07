@@ -3,6 +3,9 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Page } from "@jobber/components/Page";
 import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
+import { StatusLabel } from "@jobber/components/StatusLabel";
+import { Heading } from "@jobber/components/Heading";
+import { Flex } from "@jobber/components/Flex";
 
 export default {
   title: "Components/Layouts and Structure/Page/Web",
@@ -19,6 +22,17 @@ const BasicTemplate: ComponentStory<typeof Page> = args => (
       <Text>Page content here</Text>
     </Content>
   </Page>
+);
+
+const htmlElement = (
+  <Flex template={["shrink", "shrink"]}>
+    <Heading level={1}>Notifications</Heading>
+    <StatusLabel
+      label={"Success"}
+      alignment={"start"}
+      status={"success"}
+    ></StatusLabel>
+  </Flex>
 );
 
 export const Basic = BasicTemplate.bind({});
@@ -72,6 +86,13 @@ export const WithSubtitle = BasicTemplate.bind({});
 WithSubtitle.args = {
   title: "Notifications",
   subtitle: "Notify me of all the work",
+  intro:
+    "Improve job completion rates, stop chasing payments, and boost your customer service by automatically communicating with your clients at key points before, during, and after a job. Read more about Notifications by visiting our [Help Center](https://help.getjobber.com/hc/en-us).",
+};
+
+export const WithCustomTitle = BasicTemplate.bind({});
+WithCustomTitle.args = {
+  title: htmlElement,
   intro:
     "Improve job completion rates, stop chasing payments, and boost your customer service by automatically communicating with your clients at key points before, during, and after a job. Read more about Notifications by visiting our [Help Center](https://help.getjobber.com/hc/en-us).",
 };
