@@ -9,7 +9,7 @@ import classNames from "classnames";
 import { useInView } from "@jobber/hooks/useInView";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import { SideDrawerActions } from "./SideDrawerActions";
-import { RegisteredComponents, SideDrawerContext } from "./SideDrawerContext";
+import { SideDrawerContext } from "./SideDrawerContext";
 import { SideDrawerTitle } from "./SideDrawerTitle";
 import { SideDrawerToolbar } from "./SideDrawerToolbar";
 import styles from "./SideDrawer.css";
@@ -53,7 +53,6 @@ export function SideDrawer({
   scrollDirection,
 }: SideDrawerProps) {
   const [ref, setRef] = useState<HTMLDivElement | null>(null);
-  const [components, setComponents] = useState<RegisteredComponents>({});
   const { toolbar, title, actions, backButton, footer } = useSlotIDs();
 
   useRefocusOnActivator(open);
@@ -74,17 +73,6 @@ export function SideDrawer({
         toolbarPortal: ref?.querySelector(toolbar.selector),
         backPortal: ref?.querySelector(backButton.selector),
         footerPortal: ref?.querySelector(footer.selector),
-        components,
-        registerComponent: options => {
-          setComponents(prev => ({ ...prev, ...options }));
-        },
-        unRegisterComponent: key => {
-          setComponents(prev => {
-            delete prev[key];
-
-            return prev;
-          });
-        },
       }}
     >
       {open && (
@@ -127,25 +115,7 @@ export function SideDrawer({
               >
                 <Flex template={["grow", "shrink"]}>
                   <Flex template={["shrink", "grow"]} gap="none">
-                    <div>
-                      <AnimatePresence>
-                        {Boolean(components.backButton) && (
-                          <motion.div
-                            initial={{ width: 0, opacity: 0 }}
-                            animate={{ width: "auto", opacity: 1 }}
-                            exit={{ width: 0, opacity: 0 }}
-                          >
-                            <Button
-                              ariaLabel="Back"
-                              icon="longArrowLeft"
-                              variation="subtle"
-                              type="tertiary"
-                              {...components.backButton}
-                            />
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
+                    <div {...backButton.attr} />
                     <div {...title.attr} />
                   </Flex>
 
