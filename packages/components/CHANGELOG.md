@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.10.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.10.0...@jobber/components@5.10.1) (2024-06-07)
+
+
+### Bug Fixes
+
+* **components:** Allow Button variation prop combined with submit prop ([#1894](https://github.com/GetJobber/atlantis/issues/1894)) ([ffb8e40](https://github.com/GetJobber/atlantis/commit/ffb8e40d41590e190a8d696996f8a11e242b62d4))
+
+
+
+
+
 # [5.10.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.9.0...@jobber/components@5.10.0) (2024-06-06)
 
 
