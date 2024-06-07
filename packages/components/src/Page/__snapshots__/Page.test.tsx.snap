@@ -150,3 +150,36 @@ exports[`renders a Page 1`] = `
   </div>
 </div>
 `;
+
+exports[`when title is a component renders a Page with a component title 1`] = `
+<div>
+  <div
+    class="page standard"
+  >
+    <div
+      class="padded base"
+    >
+      <div
+        class="padded base"
+      >
+        <div
+          class="titleBar small medium large"
+        >
+          <div>
+            <h3>
+              <strong>
+                Notifications as a custom component
+              </strong>
+            </h3>
+          </div>
+        </div>
+      </div>
+      <div
+        class="padded base"
+      >
+        Sup
+      </div>
+    </div>
+  </div>
+</div>
+`;
