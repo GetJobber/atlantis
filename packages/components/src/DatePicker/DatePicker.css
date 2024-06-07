@@ -15,6 +15,7 @@
   border-color: var(--color-border);
   border-radius: var(--radius-base);
   font-family: var(--typography--fontFamily-normal);
+  background-color: var(--color-surface);
 }
 
 .datePicker.inline {
