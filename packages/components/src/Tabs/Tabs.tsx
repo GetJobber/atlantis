@@ -79,7 +79,7 @@ export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
   });
 
   useEffect(() => {
-    if (activeTabInitialValue !== activeTab) {
+    if (activeTab > (React.Children.count(children) - 1)) {
       setActiveTab(activeTabInitialValue);
     }
   }, [React.Children.count(children)]);
