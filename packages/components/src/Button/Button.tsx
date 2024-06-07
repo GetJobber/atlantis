@@ -70,7 +70,7 @@ interface DestructiveActionProps extends ButtonFoundationProps {
 }
 
 interface SubmitActionProps
-  extends Omit<ButtonFoundationProps, "external" | "onClick"> {
+  extends Omit<BaseActionProps, "external" | "onClick"> {
   readonly name?: string;
   readonly submit: boolean;
   readonly type?: "primary" | "secondary" | "tertiary";
