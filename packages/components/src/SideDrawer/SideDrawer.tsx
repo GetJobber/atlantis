@@ -33,6 +33,11 @@ interface SideDrawerProps extends PropsWithChildren {
    * Change the appearance of the drawer.
    */
   readonly variation?: "base" | "subtle";
+
+  /**
+   * Change the scrolling direction of the drawer. Useful for chat-like interfaces.
+   */
+  readonly scrollDirection?: "normal" | "reverse";
 }
 
 const variants: Variants = {
@@ -45,6 +50,7 @@ export function SideDrawer({
   onRequestClose,
   open,
   variation = "base",
+  scrollDirection,
 }: SideDrawerProps) {
   const [ref, setRef] = useState<HTMLDivElement | null>(null);
   const { toolbar, title, actions, backButton, footer } = useSlotIDs();
@@ -80,7 +86,9 @@ export function SideDrawer({
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
-            className={styles.drawer}
+            className={classNames(styles.drawer, {
+              [styles.reverseScroll]: scrollDirection === "reverse",
+            })}
             ref={setRef}
             variants={variants}
             initial="hidden"
@@ -99,7 +107,6 @@ export function SideDrawer({
               tabIndex={0}
               onKeyUp={handleKeyUp}
             >
-              <div ref={headerShadowRef} />
               <div
                 className={classNames(styles.header, {
                   [styles.hasShadow]:
@@ -127,7 +134,19 @@ export function SideDrawer({
                 <div className={styles.hideWhenEmpty} {...toolbar.attr} />
               </div>
 
-              <div className={styles.content}>{children}</div>
+              <div className={styles.content}>
+                <div
+                  className={styles.headerShadowListener}
+                  ref={headerShadowRef}
+                />
+
+                {children}
+
+                <div
+                  className={styles.footerShadowListener}
+                  ref={footerShadowRef}
+                />
+              </div>
 
               <div
                 className={classNames(styles.footer, styles.hideWhenEmpty, {
@@ -136,7 +155,6 @@ export function SideDrawer({
                 })}
                 {...footer.attr}
               />
-              <div ref={footerShadowRef} />
             </div>
           </motion.div>
         )}
