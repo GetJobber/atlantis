@@ -47,6 +47,7 @@ export function DataListActionsMenu({
         <div ref={focusTrapRef} onClick={handleClick}>
           <motion.div
             role="menu"
+            data-elevation={"elevated"}
             ref={setRef}
             variants={variants}
             initial="hidden"

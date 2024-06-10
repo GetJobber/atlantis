@@ -85,6 +85,7 @@ export function SideDrawer({
           <motion.div
             className={styles.drawer}
             ref={setRef}
+            data-elevation={"elevated"}
             variants={variants}
             initial="hidden"
             animate="visible"
