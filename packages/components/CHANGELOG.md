@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.11.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.10.1...@jobber/components@5.11.0) (2024-06-10)
+
+
+### Features
+
+* **components:** add elevation attribute to elevated UI elements [JOB-97584] ([#1914](https://github.com/GetJobber/atlantis/issues/1914)) ([339fe96](https://github.com/GetJobber/atlantis/commit/339fe968c1a6625fee99a9a3a9025de53d433236))
+
+
+
+
+
 ## [5.10.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.10.0...@jobber/components@5.10.1) (2024-06-07)
 
 
