@@ -56,6 +56,7 @@ export function Combobox(props: ComboboxProps): JSX.Element {
       handleClose={handleClose}
       shouldScroll={shouldScroll}
       searchValue={searchValue}
+      label={props.label}
     >
       <div ref={wrapperRef} className={styles.wrapper}>
         {open && (
