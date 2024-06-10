@@ -10,10 +10,9 @@ import { Typography } from "@jobber/components/Typography";
 import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
 import { StatusIndicator } from "@jobber/components/StatusIndicator";
-import { Flex } from "@jobber/components/Flex";
 import { Avatar } from "@jobber/components/Avatar";
 import { Text } from "@jobber/components/Text";
-import { Switch } from "@jobber/components/Switch";
+import { CustomChip } from "./CustomChip";
 import { useFakeQuery } from "./storyUtils";
 
 export default {
@@ -485,12 +484,54 @@ CustomSearch.parameters = {
   },
 };
 
-const ComboboxSuperCustomActivator: ComponentStory<typeof Combobox> = args => {
+const AdvancedComboboxCustomActivatorTemplate: ComponentStory<
+  typeof Combobox
+> = args => {
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
-  const SuperActivator = getSuperActivator({
-    selected,
-    setSelected,
-  });
+
+  function SuperActivator(props: ComboboxCustomActivatorProps) {
+    const trimmedAmount = selected.filter((_, i) => i < 3);
+    const moreCount = selected.length - trimmedAmount.length;
+
+    return (
+      <CustomChip
+        label="Test"
+        onClick={() => props.setOpen(true)}
+        ariaControls={props.ariaControls}
+        ariaExpanded={props.ariaExpanded}
+      >
+        <>
+          {trimmedAmount.map(({ label }) => {
+            const initials = label
+              .split(" ")
+              .map(word => word[0])
+              .join("");
+
+            return (
+              <div key={label}>
+                <Avatar key={label} size="small" initials={initials} />
+              </div>
+            );
+          })}
+          {moreCount > 0 && <Text>...</Text>}
+          {selected.length !== 0 && (
+            <Button
+              icon="remove"
+              variation="subtle"
+              size="small"
+              type="tertiary"
+              onClick={e => {
+                e.stopPropagation();
+                setSelected([]);
+                props.setOpen(false);
+              }}
+              ariaLabel="remove"
+            />
+          )}
+        </>
+      </CustomChip>
+    );
+  }
 
   return (
     <Combobox
@@ -502,7 +543,7 @@ const ComboboxSuperCustomActivator: ComponentStory<typeof Combobox> = args => {
       }}
       selected={selected}
     >
-      <Combobox.Activator customActivator={SuperActivator} />
+      <Combobox.Activator>{SuperActivator}</Combobox.Activator>
       <Combobox.Option id="1" label="Bilbo Baggins" />
       <Combobox.Option id="2" label="Frodo Baggins" />
       <Combobox.Option id="3" label="Pippin Took" />
@@ -534,52 +575,6 @@ const ComboboxSuperCustomActivator: ComponentStory<typeof Combobox> = args => {
   );
 };
 
-export const SuperCustomActivator = ComboboxSuperCustomActivator.bind({});
-SuperCustomActivator.args = {};
-
-function getSuperActivator({
-  selected,
-  setSelected,
-}: {
-  selected: ComboboxOption[];
-  setSelected: (selected: ComboboxOption[]) => void;
-}) {
-  function SuperActivator(props: ComboboxCustomActivatorProps) {
-    const trimmedAmount = selected.filter((_, i) => i < 3);
-    const moreCount = selected.length - trimmedAmount.length;
-
-    return (
-      <Flex
-        template={["shrink", "shrink", "shrink", "shrink", "shrink", "shrink"]}
-        direction="row"
-      >
-        <Switch value={props.open} onChange={value => props.setOpen(value)} />
-
-        {trimmedAmount.map(({ label }) => {
-          const initials = label
-            .split(" ")
-            .map(word => word[0])
-            .join("");
-
-          return (
-            <div key={label}>
-              <Avatar key={label} initials={initials} />
-            </div>
-          );
-        })}
-        {moreCount > 0 && <Text>...</Text>}
-        {selected.length !== 0 && (
-          <Button
-            icon="remove"
-            variation="subtle"
-            type="tertiary"
-            onClick={() => setSelected([])}
-            ariaLabel="remove"
-          />
-        )}
-      </Flex>
-    );
-  }
-
-  return SuperActivator;
-}
+export const AdvancedComboboxCustomActivator =
+  AdvancedComboboxCustomActivatorTemplate.bind({});
+AdvancedComboboxCustomActivator.args = {};
