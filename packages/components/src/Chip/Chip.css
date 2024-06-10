@@ -107,7 +107,7 @@
 }
 
 .subtle {
-  border: var(--border-base) solid var(--color-border);
+  border: var(--border-base) solid var(--color-border--interactive);
   background-color: var(--color-surface);
   --chip--gradient-color-variation: var(--color-surface);
 }

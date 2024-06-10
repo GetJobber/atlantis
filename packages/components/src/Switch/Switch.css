@@ -16,7 +16,7 @@
   width: var(--switch--width);
   height: calc(var(--switch--width) / 2);
   padding: 0;
-  border: var(--border-thick) solid var(--color-border);
+  border: var(--border-thick) solid var(--color-border--interactive);
   border-radius: var(--switch--pipSize);
   overflow: hidden;
   line-height: normal;
