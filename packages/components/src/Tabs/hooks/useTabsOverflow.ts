@@ -24,7 +24,6 @@ export function useTabsOverflow(): UseTabsOverflow {
       const clientWidth = tabRow.current.clientWidth;
       const maxScroll = scrollWidth - clientWidth;
       const scrollPos = tabRow.current.scrollLeft;
-      console.log(scrollWidth, clientWidth);
 
       setOverflowRight(scrollPos >= 0 && scrollPos != maxScroll);
       setOverflowLeft(scrollPos > 0 && scrollPos < scrollWidth);
