@@ -98,7 +98,7 @@
 
   --color-payments: var(--color-invoice);
   --color-payments--surface: var(--color-invoice--surface);
-  --color-payments--onSurface: var(--color-invoice--surface);
+  --color-payments--onSurface: var(--color-invoice--onSurface);
 
   --color-client: var(--color-base-taupe--700);
 
