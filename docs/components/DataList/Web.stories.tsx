@@ -14,6 +14,8 @@ import { InlineLabel, InlineLabelColors } from "@jobber/components/InlineLabel";
 import { Content } from "@jobber/components/Content";
 import { Button } from "@jobber/components/Button";
 import { DatePicker } from "@jobber/components/DatePicker";
+import { Chip } from "@jobber/components/Chip";
+import { Icon } from "@jobber/components/Icon";
 import { LIST_QUERY, ListQueryType, apolloClient } from "./storyUtils";
 
 export default {
@@ -176,28 +178,30 @@ const Template: ComponentStory<typeof DataList> = args => {
       }}
     >
       <DataList.Filters>
-        <Button
-          label="Filter gender"
-          variation="subtle"
-          icon="add"
-          iconOnRight={true}
+        <Chip
+          label={"Filter gender"}
           onClick={() => alert("Run filter by gender query")}
-        />
-        <Button
-          label="Filter attributes"
-          variation="subtle"
-          icon="add"
-          iconOnRight={true}
+        >
+          <Chip.Suffix>
+            <Icon name="add" size="small" />
+          </Chip.Suffix>
+        </Chip>
+        <Chip
+          label={"Filter attributes"}
           onClick={() => alert("Run filter by attributes query")}
-        />
+        >
+          <Chip.Suffix>
+            <Icon name="add" size="small" />
+          </Chip.Suffix>
+        </Chip>
         <DatePicker
           onChange={date => alert(`Filter by created date: ${date}`)}
           activator={
-            <Button
-              icon="calendar"
-              ariaLabel="Select date"
-              variation="subtle"
-            />
+            <Chip label="Select date">
+              <Chip.Prefix>
+                <Icon name="calendar" />
+              </Chip.Prefix>
+            </Chip>
           }
         />
       </DataList.Filters>
