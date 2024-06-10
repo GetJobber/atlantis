@@ -99,7 +99,7 @@ a.button:active {
 
 .secondary,
 .subtle.primary {
-  border-color: var(--color-border);
+  border-color: var(--color-border--interactive);
 }
 
 .subtle.primary:hover,
