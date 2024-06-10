@@ -364,9 +364,9 @@ const Template: ComponentStory<typeof DataList> = args => {
   function getColor(gender: string): InlineLabelColors | undefined {
     switch (gender) {
       case "male":
-        return "lightBlue";
+        return "orange";
       case "female":
-        return "pink";
+        return "green";
       default:
         return "greyBlue";
     }
@@ -382,13 +382,13 @@ const Template: ComponentStory<typeof DataList> = args => {
 
 export const Basic = Template.bind({});
 Basic.args = {
-  title: "All Characters",
+  title: "All characters",
   headerVisibility: { xs: false, md: true },
 };
 
 export const EmptyState = Template.bind({});
 EmptyState.args = {
   data: [],
-  title: "All Characters",
+  title: "All characters",
   headerVisibility: { xs: false, md: true },
 };
