@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
+import {
+  Combobox,
+  ComboboxCustomActivatorProps,
+  ComboboxOption,
+} from "@jobber/components/Combobox";
 import { Button } from "@jobber/components/Button";
 import { Typography } from "@jobber/components/Typography";
 import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
 import { StatusIndicator } from "@jobber/components/StatusIndicator";
+import { Avatar } from "@jobber/components/Avatar";
+import { Text } from "@jobber/components/Text";
+import { CustomChip } from "./CustomChip";
 import { useFakeQuery } from "./storyUtils";
 
 export default {
@@ -476,3 +483,98 @@ CustomSearch.parameters = {
     },
   },
 };
+
+const AdvancedComboboxCustomActivatorTemplate: ComponentStory<
+  typeof Combobox
+> = args => {
+  const [selected, setSelected] = useState<ComboboxOption[]>([]);
+
+  function SuperActivator(props: ComboboxCustomActivatorProps) {
+    const trimmedAmount = selected.filter((_, i) => i < 3);
+    const moreCount = selected.length - trimmedAmount.length;
+
+    return (
+      <CustomChip
+        label="Test"
+        onClick={() => props.setOpen(true)}
+        ariaControls={props.ariaControls}
+        ariaExpanded={props.ariaExpanded}
+      >
+        <>
+          {trimmedAmount.map(({ label }) => {
+            const initials = label
+              .split(" ")
+              .map(word => word[0])
+              .join("");
+
+            return (
+              <div key={label}>
+                <Avatar key={label} size="small" initials={initials} />
+              </div>
+            );
+          })}
+          {moreCount > 0 && <Text>...</Text>}
+          {selected.length !== 0 && (
+            <Button
+              icon="remove"
+              variation="subtle"
+              size="small"
+              type="tertiary"
+              onClick={e => {
+                e.stopPropagation();
+                setSelected([]);
+                props.setOpen(false);
+              }}
+              ariaLabel="remove"
+            />
+          )}
+        </>
+      </CustomChip>
+    );
+  }
+
+  return (
+    <Combobox
+      {...args}
+      multiSelect
+      label="Teammates"
+      onSelect={selection => {
+        setSelected(selection);
+      }}
+      selected={selected}
+    >
+      <Combobox.Activator>{SuperActivator}</Combobox.Activator>
+      <Combobox.Option id="1" label="Bilbo Baggins" />
+      <Combobox.Option id="2" label="Frodo Baggins" />
+      <Combobox.Option id="3" label="Pippin Took" />
+      <Combobox.Option id="4" label="Merry Brandybuck" />
+      <Combobox.Option id="5" label="Sam Gamgee" />
+      <Combobox.Option id="6" label="Aragorn" />
+      <Combobox.Option id="7" label="Gimli" />
+      <Combobox.Option id="8" label="Legolas" />
+      <Combobox.Option id="9" label="Gandalf" />
+      <Combobox.Option id="10" label="Gollum" />
+      <Combobox.Option id="11" label="Sauron" />
+      <Combobox.Option id="12" label="Saruman" />
+      <Combobox.Option id="13" label="Elrond" />
+      <Combobox.Option id="14" label="Galadriel" />
+
+      <Combobox.Action
+        label="Add Teammate"
+        onClick={() => {
+          alert("Added a new teammate ✅");
+        }}
+      />
+      <Combobox.Action
+        label="Manage Teammates"
+        onClick={() => {
+          alert("Managed teammates 👍");
+        }}
+      />
+    </Combobox>
+  );
+};
+
+export const AdvancedComboboxCustomActivator =
+  AdvancedComboboxCustomActivatorTemplate.bind({});
+AdvancedComboboxCustomActivator.args = {};

@@ -10,6 +10,7 @@ export interface ComboboxProviderProps {
   readonly handleClose: () => void;
   readonly shouldScroll: MutableRefObject<boolean>;
   readonly searchValue: string;
+  readonly label?: string;
 }
 
 export const ComboboxContext = React.createContext(

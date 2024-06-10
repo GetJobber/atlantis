@@ -1,0 +1,125 @@
+:root {
+  --chip--gradient-color-variation: var(--chip-base-bg);
+  --chip--gradient-color-variation--hover: var(--chip-base--hover);
+}
+
+.chip {
+  --chip-height: 40px;
+  --chip-radius: 20px;
+  --chip-base-bg: var(--color-surface--background);
+  --chip-base--hover: var(--color-surface--background--hover);
+  display: flex;
+  position: relative;
+  height: var(--chip-height);
+  min-width: 0;
+  padding: var(--space-small) var(--base-unit);
+  border: var(--border-base) solid transparent;
+  border-radius: var(--chip-radius);
+  color: var(--color-heading);
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--timing-base);
+  align-items: center;
+}
+
+.chip:focus,
+.chip:focus-visible {
+  outline: none;
+}
+
+.chip:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+
+.chip .prefix {
+  margin-left: calc(-1 * var(--space-small));
+  margin-right: var(--space-small);
+}
+
+.chip .suffix {
+  margin-left: var(--space-small);
+  margin-right: calc(-1 * var(--space-small));
+  background-color: var(--color-surface);
+}
+
+.chip .prefix,
+.chip .suffix {
+  display: flex;
+  width: var(--space-large);
+  height: var(--space-large);
+  flex-shrink: 0;
+  border-radius: var(--radius-circle);
+  align-items: center;
+  justify-content: center;
+}
+
+.chip .chipBar {
+  width: var(--space-minuscule);
+  height: var(--base-unit);
+  margin: 0 var(--space-small);
+  background-color: var(--color-text--secondary);
+}
+
+.chip .selected {
+  border-radius: var(--radius-circle);
+  background-color: var(--color-surface);
+}
+
+.base {
+  border: var(--border-base) solid transparent;
+  color: var(--color-heading);
+  background-color: var(--chip-base-bg);
+  --chip--gradient-color-variation: var(--chip-base-bg);
+}
+
+.base:hover,
+.base:focus-visible,
+.base:focus-within {
+  background-color: var(--chip-base--hover);
+  --chip--gradient-color-variation--hover: var(--chip-base--hover);
+}
+
+.chipContent {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: var(--space-small);
+}
+
+.chipContent > * {
+  flex: 0 0 auto;
+}
+
+.chipContent > p {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.truncateGradient {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--space-base);
+  height: 100%;
+  background: linear-gradient(
+    to left,
+    var(--chip--gradient-color-variation) 5%,
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.chip:focus-visible .truncateGradient,
+.chip:hover .truncateGradient {
+  background: linear-gradient(
+    to left,
+    var(--chip--gradient-color-variation--hover) 5%,
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.chipLabelRef {
+  display: inline-block;
+  width: 1px;
+}
