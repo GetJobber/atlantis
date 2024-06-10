@@ -1,7 +1,7 @@
 .checkBoxParent {
   --checkbox--size: 20px;
   --checkbox--border--checked: var(--color-interactive);
-  --checkbox--border--unchecked: var(var(--color-border--interactive));
+  --checkbox--border--unchecked: var(--color-border--interactive);
   --checkbox--border--hover: var(--color-interactive);
   display: inline-block;
 }
