@@ -1,7 +1,7 @@
-import React, { HTMLAttributes, useEffect, useId, useState } from "react";
+import React, { useId, useState } from "react";
 import type { KeyboardEvent, PropsWithChildren } from "react";
 import { createPortal } from "react-dom";
-import { AnimatePresence, Variants, motion, useAnimate } from "framer-motion";
+import { AnimatePresence, Variants, motion } from "framer-motion";
 import { tokens } from "@jobber/design";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
@@ -9,11 +9,7 @@ import classNames from "classnames";
 import { useInView } from "@jobber/hooks/useInView";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import { SideDrawerActions } from "./SideDrawerActions";
-import {
-  RegisteredComponents,
-  SideDrawerContext,
-  useSideDrawerContext,
-} from "./SideDrawerContext";
+import { RegisteredComponents, SideDrawerContext } from "./SideDrawerContext";
 import { SideDrawerTitle } from "./SideDrawerTitle";
 import { SideDrawerToolbar } from "./SideDrawerToolbar";
 import styles from "./SideDrawer.css";
@@ -103,6 +99,7 @@ export function SideDrawer({
               [styles.reverseScroll]: scrollDirection === "reverse",
             })}
             ref={setRef}
+            data-elevation={"elevated"}
             variants={variants}
             initial="hidden"
             animate="visible"
@@ -128,7 +125,12 @@ export function SideDrawer({
               >
                 <Flex template={["grow", "shrink"]}>
                   <Flex template={["shrink", "grow"]} gap="none">
-                    <BackButtonContainer {...backButton.attr} />
+                    <div
+                      className={classNames(styles.backButton, {
+                        [styles.backButtonVisible]: components.backButton,
+                      })}
+                      {...backButton.attr}
+                    />
                     <div {...title.attr} />
                   </Flex>
 
@@ -181,39 +183,6 @@ export function SideDrawer({
       onRequestClose();
     }
   }
-}
-const transition = {
-  duration: tokens["timing-base"] / 1000,
-  ease: "easeInOut",
-} as const;
-const BUTTON_WIDTH = 40;
-
-function BackButtonContainer(props: HTMLAttributes<HTMLDivElement>) {
-  const { components } = useSideDrawerContext();
-  const [scope, animate] = useAnimate<HTMLDivElement>();
-
-  useEffect(() => {
-    if (components.backButton) {
-      animate(
-        scope.current,
-        {
-          width: [0, BUTTON_WIDTH],
-          opacity: [0, 1],
-          x: [-tokens["space-small"], 0],
-        },
-        transition,
-      );
-    }
-
-    // Fire exit animation on cleanup
-    return () => {
-      if (components.backButton && scope.current) {
-        animate(scope.current, { width: [BUTTON_WIDTH, 0] }, transition);
-      }
-    };
-  }, [components.backButton]);
-
-  return <div ref={scope} {...props} />;
 }
 
 function useSlotIDs() {

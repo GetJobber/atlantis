@@ -12,6 +12,8 @@ declare const styles: {
   readonly "reverseScroll": string;
   readonly "headerShadowListener": string;
   readonly "footerShadowListener": string;
+  readonly "backButton": string;
+  readonly "backButtonVisible": string;
 };
 export = styles;
 

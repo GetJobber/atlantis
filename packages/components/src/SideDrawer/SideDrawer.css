@@ -141,3 +141,21 @@
     order: -1;
   }
 }
+
+.backButton {
+  --transition: var(--timing-base) ease-in-out;
+
+  width: 0;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition:
+    width var(--transition),
+    transform var(--transition),
+    opacity var(--transition);
+
+  &.backButtonVisible {
+    width: 40px;
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
