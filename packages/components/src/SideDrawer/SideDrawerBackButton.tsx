@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { useSideDrawerContext } from "./SideDrawerContext";
 import { Button, ButtonProps } from "../Button";
@@ -6,7 +6,16 @@ import { Button, ButtonProps } from "../Button";
 export function SideDrawerBackButton({
   onClick,
 }: Pick<ButtonProps, "onClick">) {
-  const { backPortal } = useSideDrawerContext();
+  const { backPortal, registerComponent, unRegisterComponent } =
+    useSideDrawerContext();
+
+  useEffect(() => {
+    registerComponent("backButton");
+
+    return () => {
+      unRegisterComponent("backButton");
+    };
+  }, [registerComponent, unRegisterComponent]);
 
   if (!backPortal) return null;
 
