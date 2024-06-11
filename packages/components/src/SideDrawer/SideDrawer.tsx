@@ -190,7 +190,7 @@ const BUTTON_WIDTH = 40;
 
 function BackButtonContainer(props: HTMLAttributes<HTMLDivElement>) {
   const { components } = useSideDrawerContext();
-  const [scope, animate] = useAnimate();
+  const [scope, animate] = useAnimate<HTMLDivElement>();
 
   useEffect(() => {
     if (components.backButton) {
@@ -203,9 +203,14 @@ function BackButtonContainer(props: HTMLAttributes<HTMLDivElement>) {
         },
         transition,
       );
-    } else {
-      animate(scope.current, { width: [BUTTON_WIDTH, 0] }, transition);
     }
+
+    // Fire exit animation on cleanup
+    return () => {
+      if (components.backButton && scope.current) {
+        animate(scope.current, { width: [BUTTON_WIDTH, 0] }, transition);
+      }
+    };
   }, [components.backButton]);
 
   return <div ref={scope} {...props} />;
