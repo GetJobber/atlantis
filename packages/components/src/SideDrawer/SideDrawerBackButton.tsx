@@ -15,7 +15,7 @@ export function SideDrawerBackButton({
     return () => {
       unRegisterComponent("backButton");
     };
-  }, [registerComponent, unRegisterComponent]);
+  }, []);
 
   if (!backPortal) return null;
 
