@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.61.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.60.1...@jobber/design@0.61.0) (2024-06-11)
+
+
+### Features
+
+* **components:** update interactive borders and avatar [JOB-97530] ([#1924](https://github.com/GetJobber/atlantis/issues/1924)) ([533a06f](https://github.com/GetJobber/atlantis/commit/533a06f7a264031ce1d1a8dde2f2a19199619ede))
+
+
+
+
+
 ## [0.60.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.60.0...@jobber/design@0.60.1) (2024-05-24)
 
 

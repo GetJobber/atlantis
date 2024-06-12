@@ -113,6 +113,7 @@ export function DropDownMenu({ options, setOptions }: DropDownMenuProps) {
   return (
     <ul
       data-testid="dropdown-menu"
+      data-elevation={"elevated"}
       className={styles.dropDownMenuContainer}
       ref={menuDiv}
       onKeyDown={handleKeyDown}

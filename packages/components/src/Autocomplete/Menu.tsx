@@ -66,6 +66,7 @@ export function Menu({
       className={classnames(styles.options, { [styles.visible]: visible })}
       ref={setMenuRef}
       style={{ ...popperStyles.popper, width: targetWidth }}
+      data-elevation={"elevated"}
       {...attributes.popper}
     >
       {options.map((option, index) => {

@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.12.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.11.0...@jobber/components@5.12.0) (2024-06-11)
+
+
+### Features
+
+* **components:** update interactive borders and avatar [JOB-97530] ([#1924](https://github.com/GetJobber/atlantis/issues/1924)) ([533a06f](https://github.com/GetJobber/atlantis/commit/533a06f7a264031ce1d1a8dde2f2a19199619ede))
+* side drawer improvements ([#1926](https://github.com/GetJobber/atlantis/issues/1926)) ([07e1580](https://github.com/GetJobber/atlantis/commit/07e15808def0de76dfd696dac6e25b9874d244c3))
+
+
+
+
+
+# [5.11.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.10.1...@jobber/components@5.11.0) (2024-06-10)
+
+
+### Features
+
+* **components:** add elevation attribute to elevated UI elements [JOB-97584] ([#1914](https://github.com/GetJobber/atlantis/issues/1914)) ([339fe96](https://github.com/GetJobber/atlantis/commit/339fe968c1a6625fee99a9a3a9025de53d433236))
+
+
+
+
+
+## [5.10.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.10.0...@jobber/components@5.10.1) (2024-06-07)
+
+
+### Bug Fixes
+
+* **components:** Allow Button variation prop combined with submit prop ([#1894](https://github.com/GetJobber/atlantis/issues/1894)) ([ffb8e40](https://github.com/GetJobber/atlantis/commit/ffb8e40d41590e190a8d696996f8a11e242b62d4))
+
+
+
+
+
+# [5.10.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.9.0...@jobber/components@5.10.0) (2024-06-06)
+
+
+### Features
+
+* **components:** Add url to DataList.ItemAction ([#1910](https://github.com/GetJobber/atlantis/issues/1910)) ([86c36c9](https://github.com/GetJobber/atlantis/commit/86c36c93e1a74a8024aad93d8b94a2075103354f))
+
+
+
+
+
 # [5.9.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.8.0...@jobber/components@5.9.0) (2024-06-05)
 
 
