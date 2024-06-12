@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.12.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.12.0...@jobber/components@5.12.1) (2024-06-12)
+
+
+### Bug Fixes
+
+* **components:** Handle dynamic number of Tab children ([#1917](https://github.com/GetJobber/atlantis/issues/1917)) ([388f027](https://github.com/GetJobber/atlantis/commit/388f027b7d6837d787387f9b016d274561a1d458))
+
+
+
+
+
 # [5.12.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.11.0...@jobber/components@5.12.0) (2024-06-11)
 
 
