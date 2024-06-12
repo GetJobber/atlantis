@@ -15,6 +15,7 @@ export default {
 
 const BasicTemplate: ComponentStory<typeof InputSearch> = args => {
   const [value, setValue] = useState("");
+
   return (
     <InputSearch
       {...args}

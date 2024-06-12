@@ -2,10 +2,12 @@ import React from "react";
 import { fireEvent, render, waitFor } from "@testing-library/react-native";
 import { Host } from "react-native-portalize";
 import { FormProvider, useForm } from "react-hook-form";
+import { Keyboard } from "react-native";
 import { InputTime } from "./InputTime";
 import * as atlantisContext from "../AtlantisContext/AtlantisContext";
 import { Button } from "../Button";
 
+const keyboardDismissSpy = jest.spyOn(Keyboard, "dismiss");
 afterEach(() => {
   jest.spyOn(atlantisContext, "useAtlantisContext").mockRestore();
 });
@@ -102,6 +104,7 @@ describe("With emptyValueLabel", () => {
   });
 });
 
+// eslint-disable-next-line max-statements
 describe("Time picker", () => {
   const placeholder = "Tap me";
   const handleChange = jest.fn();
@@ -141,6 +144,11 @@ describe("Time picker", () => {
 
     fireEvent.press(screen.getByLabelText("Confirm"));
     expect(handleChange).toHaveBeenCalledWith(expect.any(Date));
+  });
+
+  it("should dismiss the keyboard when the time picker is opened", () => {
+    renderTimePicker();
+    expect(keyboardDismissSpy).toHaveBeenCalled();
   });
 
   it("should be a time picker", () => {

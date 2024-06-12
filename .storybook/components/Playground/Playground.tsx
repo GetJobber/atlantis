@@ -13,6 +13,7 @@ import { PlaygroundWarning } from "./PlaygroundWarning";
 import { PlaygroundImports } from "./types";
 import { THIRD_PARTY_PACKAGE_VERSIONS } from "./constants";
 import { formatCode } from "./utils";
+//import css from '!!raw-loader!@jobber/components/dist/styles.css';
 
 export function Playground() {
   const { getCurrentStoryData, emit } = useStorybookApi();
@@ -57,6 +58,7 @@ export function Playground() {
       files={{
         "/App.tsx": getAppJsCode(),
         "/Example.tsx": getExampleJsCode(),
+      //  "/styles.css":css,
         ...parameters?.previewTabs?.code?.files,
       }}
     >

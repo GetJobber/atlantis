@@ -44,6 +44,7 @@ export function FormField(props: FormFieldProps) {
     onValidation,
     onKeyUp,
     clearable = "never",
+    autofocus,
   } = props;
 
   const {
@@ -108,12 +109,14 @@ export function FormField(props: FormFieldProps) {
           onChange: handleChange,
           onBlur: handleBlur,
           onFocus: handleFocus,
+          autoFocus: autofocus,
           ...(description &&
             !inline && { "aria-describedby": descriptionIdentifier }),
         };
 
         const textFieldProps = {
           ...fieldProps,
+          autoFocus: autofocus,
           onKeyDown: handleKeyDown,
         };
 
@@ -170,7 +173,7 @@ export function FormField(props: FormFieldProps) {
 
         function handleClear() {
           handleBlur();
-          setValue(controlledName, undefined, { shouldValidate: true });
+          setValue(controlledName, "", { shouldValidate: true });
           onChange && onChange("");
           inputRef?.current?.focus();
         }

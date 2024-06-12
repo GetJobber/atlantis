@@ -26,6 +26,7 @@ export default {
 const BasicTemplate: ComponentStory<typeof Form> = args => {
   const [{ isDirty, isValid }, setFormState] = useFormState();
   const [first, setFirst] = useState("");
+
   return (
     <Form
       {...args}
@@ -71,6 +72,7 @@ const BasicTemplate: ComponentStory<typeof Form> = args => {
 
 const OnStateChangeTemplate: ComponentStory<typeof Form> = args => {
   const [formState, setFormState] = useFormState();
+
   return (
     <>
       <Form
@@ -100,6 +102,7 @@ const OnStateChangeTemplate: ComponentStory<typeof Form> = args => {
 
 const TriggeringSubmissionTemplate: ComponentStory<typeof Form> = args => {
   const formRef = useRef<FormRef>(null);
+
   return (
     <Content>
       <Form {...args} onSubmit={() => alert("Submitted 🎉🎉🎉")} ref={formRef}>

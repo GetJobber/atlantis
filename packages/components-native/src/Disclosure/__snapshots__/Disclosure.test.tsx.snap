@@ -58,14 +58,14 @@ exports[`renders a Disclosure with a header and a content when open is true 1`] 
         collapsable={false}
         maxFontSizeMultiplier={3.125}
         selectable={true}
-        selectionColor="rgb(132, 234, 0)"
+        selectionColor="hsl(86, 100%, 46%)"
         style={
           [
             {
               "fontFamily": "inter-regular",
             },
             {
-              "color": "rgb(66, 78, 86)",
+              "color": "hsl(198, 35%, 21%)",
             },
             {
               "textAlign": "left",
@@ -99,7 +99,7 @@ exports[`renders a Disclosure with a header and a content when open is true 1`] 
           style={
             {
               "display": "flex",
-              "fill": "rgb(181, 181, 181)",
+              "fill": "hsl(0, 0%, 72%)",
               "height": 24,
               "verticalAlign": "middle",
               "width": 24,
@@ -110,25 +110,23 @@ exports[`renders a Disclosure with a header and a content when open is true 1`] 
         >
           <Path
             d="M16.297 14.709a.996.996 0 0 0 1.41-.001.994.994 0 0 0 0-1.41l-5-5.005a.998.998 0 0 0-1.415 0l-5 5a.994.994 0 0 0 0 1.41.996.996 0 0 0 1.411.001L12 10.416l4.297 4.293Z"
-            fill="rgb(181, 181, 181)"
+            fill="hsl(0, 0%, 72%)"
           />
         </SVGMock>
       </View>
     </View>
   </View>
   <RCTScrollView
+    collapsable={false}
     scrollEnabled={false}
+    scrollEventThrottle={0.0001}
     showsHorizontalScrollIndicator={false}
     showsVerticalScrollIndicator={false}
     style={
-      [
-        {
-          "paddingTop": 8,
-        },
-        {
-          "height": 100,
-        },
-      ]
+      {
+        "height": 100,
+        "paddingTop": 8,
+      }
     }
   >
     <View>
@@ -143,14 +141,14 @@ exports[`renders a Disclosure with a header and a content when open is true 1`] 
           collapsable={false}
           maxFontSizeMultiplier={3.125}
           selectable={true}
-          selectionColor="rgb(132, 234, 0)"
+          selectionColor="hsl(86, 100%, 46%)"
           style={
             [
               {
                 "fontFamily": "inter-regular",
               },
               {
-                "color": "rgb(66, 78, 86)",
+                "color": "hsl(198, 35%, 21%)",
               },
               {
                 "textAlign": "left",
@@ -231,14 +229,14 @@ exports[`renders a Disclosure with a header and with a content of size 0 when cl
         collapsable={false}
         maxFontSizeMultiplier={3.125}
         selectable={true}
-        selectionColor="rgb(132, 234, 0)"
+        selectionColor="hsl(86, 100%, 46%)"
         style={
           [
             {
               "fontFamily": "inter-regular",
             },
             {
-              "color": "rgb(66, 78, 86)",
+              "color": "hsl(198, 35%, 21%)",
             },
             {
               "textAlign": "left",
@@ -272,7 +270,7 @@ exports[`renders a Disclosure with a header and with a content of size 0 when cl
           style={
             {
               "display": "flex",
-              "fill": "rgb(181, 181, 181)",
+              "fill": "hsl(0, 0%, 72%)",
               "height": 24,
               "verticalAlign": "middle",
               "width": 24,
@@ -283,25 +281,23 @@ exports[`renders a Disclosure with a header and with a content of size 0 when cl
         >
           <Path
             d="M16.297 14.709a.996.996 0 0 0 1.41-.001.994.994 0 0 0 0-1.41l-5-5.005a.998.998 0 0 0-1.415 0l-5 5a.994.994 0 0 0 0 1.41.996.996 0 0 0 1.411.001L12 10.416l4.297 4.293Z"
-            fill="rgb(181, 181, 181)"
+            fill="hsl(0, 0%, 72%)"
           />
         </SVGMock>
       </View>
     </View>
   </View>
   <RCTScrollView
+    collapsable={false}
     scrollEnabled={false}
+    scrollEventThrottle={0.0001}
     showsHorizontalScrollIndicator={false}
     showsVerticalScrollIndicator={false}
     style={
-      [
-        {
-          "paddingTop": 8,
-        },
-        {
-          "height": 0,
-        },
-      ]
+      {
+        "height": 0,
+        "paddingTop": 8,
+      }
     }
   >
     <View>
@@ -316,14 +312,14 @@ exports[`renders a Disclosure with a header and with a content of size 0 when cl
           collapsable={false}
           maxFontSizeMultiplier={3.125}
           selectable={true}
-          selectionColor="rgb(132, 234, 0)"
+          selectionColor="hsl(86, 100%, 46%)"
           style={
             [
               {
                 "fontFamily": "inter-regular",
               },
               {
-                "color": "rgb(66, 78, 86)",
+                "color": "hsl(198, 35%, 21%)",
               },
               {
                 "textAlign": "left",
@@ -404,14 +400,14 @@ exports[`should not render the caret when the Disclosure is empty 1`] = `
         collapsable={false}
         maxFontSizeMultiplier={3.125}
         selectable={true}
-        selectionColor="rgb(132, 234, 0)"
+        selectionColor="hsl(86, 100%, 46%)"
         style={
           [
             {
               "fontFamily": "inter-regular",
             },
             {
-              "color": "rgb(66, 78, 86)",
+              "color": "hsl(198, 35%, 21%)",
             },
             {
               "textAlign": "left",
@@ -431,18 +427,16 @@ exports[`should not render the caret when the Disclosure is empty 1`] = `
     </View>
   </View>
   <RCTScrollView
+    collapsable={false}
     scrollEnabled={false}
+    scrollEventThrottle={0.0001}
     showsHorizontalScrollIndicator={false}
     showsVerticalScrollIndicator={false}
     style={
-      [
-        {
-          "paddingTop": 8,
-        },
-        {
-          "height": 0,
-        },
-      ]
+      {
+        "height": 0,
+        "paddingTop": 8,
+      }
     }
   >
     <View>
@@ -457,14 +451,14 @@ exports[`should not render the caret when the Disclosure is empty 1`] = `
           collapsable={false}
           maxFontSizeMultiplier={3.125}
           selectable={true}
-          selectionColor="rgb(132, 234, 0)"
+          selectionColor="hsl(86, 100%, 46%)"
           style={
             [
               {
                 "fontFamily": "inter-regular",
               },
               {
-                "color": "rgb(66, 78, 86)",
+                "color": "hsl(198, 35%, 21%)",
               },
               {
                 "textAlign": "left",

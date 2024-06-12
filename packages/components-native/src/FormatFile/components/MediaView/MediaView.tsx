@@ -11,12 +11,12 @@ import { useAtlantisFormatFileContext } from "../../context/FormatFileContext";
 import { useAtlantisI18n } from "../../../hooks/useAtlantisI18n";
 
 interface MediaViewProps {
-  accessibilityLabel?: string;
-  showOverlay: boolean;
-  showError: boolean;
-  file: FormattedFile;
-  styleInGrid: boolean;
-  onUploadComplete: () => void;
+  readonly accessibilityLabel?: string;
+  readonly showOverlay: boolean;
+  readonly showError: boolean;
+  readonly file: FormattedFile;
+  readonly styleInGrid: boolean;
+  readonly onUploadComplete: () => void;
 }
 
 export function MediaView({
@@ -68,11 +68,11 @@ export function MediaView({
 }
 
 interface OverlayProps {
-  isLoading: boolean;
-  showOverlay: boolean;
-  hasError: boolean;
-  file: FormattedFile;
-  onUploadComplete: () => void;
+  readonly isLoading: boolean;
+  readonly showOverlay: boolean;
+  readonly hasError: boolean;
+  readonly file: FormattedFile;
+  readonly onUploadComplete: () => void;
 }
 
 function Overlay({
@@ -104,9 +104,9 @@ function Overlay({
 }
 
 interface ProgressOverlayProps {
-  status: StatusCode;
-  progress: number;
-  onUploadComplete: () => void;
+  readonly status: StatusCode;
+  readonly progress: number;
+  readonly onUploadComplete: () => void;
 }
 
 function ProgressOverlay({
@@ -115,6 +115,7 @@ function ProgressOverlay({
   onUploadComplete,
 }: ProgressOverlayProps) {
   const freezeProgressBar = status !== StatusCode.Completed && progress >= 0.9;
+
   return (
     <View
       style={[styles.imageBackground, styles.overlay]}

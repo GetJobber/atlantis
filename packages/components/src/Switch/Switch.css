@@ -1,11 +1,8 @@
 :root {
-  --switch--pipSize: calc(var(--space-base) * 1.875);
+  --switch--width: 48px;
+  --switch--pipSize: 16px;
   --switch--labelWidth: calc(var(--switch--pipSize) * 1.3);
-  --switch--borderOffset: calc(var(--border-base) * 2);
-}
-
-:root :global(.jobber-retheme) {
-  --switch--pipSize: var(--space-base);
+  --switch--borderOffset: var(--border-thick);
 }
 
 .track,
@@ -16,23 +13,16 @@
 
 .track {
   display: inline-flex;
-  width: calc(var(--switch--labelWidth) + var(--switch--pipSize));
+  width: var(--switch--width);
+  height: calc(var(--switch--width) / 2);
   padding: 0;
-  border: var(--border-base) solid var(--color-border);
+  border: var(--border-thick) solid var(--color-border--interactive);
   border-radius: var(--switch--pipSize);
   overflow: hidden;
   line-height: normal;
-  background-color: var(--color-surface--background);
+  background-color: var(--color-surface);
   cursor: pointer;
   appearance: none;
-}
-
-:global(.jobber-retheme) .track {
-  width: var(--space-largest);
-  height: var(--space-large);
-  border-color: var(--color-border);
-  border-width: var(--border-thick);
-  background-color: var(--color-surface);
   align-items: center;
 }
 
@@ -41,13 +31,12 @@
   outline: none;
 }
 
-:global(.jobber-retheme) .track:hover,
-:global(.jobber-retheme) .track:focus-visible {
+.track:hover,
+.track:focus-visible {
   border-color: var(--color-interactive);
 }
 
-.isChecked,
-:global(.jobber-retheme) .isChecked {
+.isChecked {
   border-color: var(--color-interactive);
   background-color: var(--color-interactive);
 }
@@ -55,22 +44,14 @@
 .toggle {
   display: flex;
   position: relative;
-  margin-left: calc(-1 * var(--switch--labelWidth));
+  margin-left: calc(var(--switch--width) / -2);
   pointer-events: none;
   flex: 1 1 100%;
   align-items: center;
 }
 
-:global(.jobber-retheme) .toggle {
-  margin-left: -37px;
-}
-
 .isChecked .toggle {
-  margin-left: calc(-1 * var(--switch--borderOffset));
-}
-
-:global(.jobber-retheme) .isChecked .toggle {
-  margin-left: -13px;
+  margin-left: 0;
 }
 
 .label {
@@ -82,6 +63,7 @@
   pointer-events: none;
   align-items: center;
   justify-content: center;
+  opacity: 0;
 }
 
 .label:first-of-type {
@@ -92,63 +74,40 @@
   padding-right: var(--space-small);
 }
 
-:global(.jobber-retheme) .label {
-  opacity: 0;
-}
-
 .pip {
   flex: 0 0 auto;
   width: var(--switch--pipSize);
   height: var(--switch--pipSize);
-  border: var(--border-base) solid var(--color-border);
+  border: none;
   border-radius: var(--radius-circle);
-  background-color: var(--color-surface);
+  background-color: var(--color-interactive--subtle);
   transition: all var(--timing-quick) ease-out;
 }
 
-:global(.jobber-retheme) .pip {
-  border: none;
-  background-color: var(--color-interactive--subtle);
-}
-
 .isChecked .pip {
-  border-color: var(--color-green);
-}
-
-:global(.jobber-retheme) .isChecked .pip {
+  border-color: var(--color-interactive);
   background-color: var(--color-surface);
 }
 
-/* Moving this up overwrites disabled styling */
-/* stylelint-disable-next-line no-descending-specificity */
 .disabled .pip {
   border-color: var(--color-disabled--secondary);
-}
-
-:global(.jobber-retheme) .disabled .pip {
   background-color: var(--color-disabled);
 }
 
 .disabled {
-  border-color: var(--color-disabled--secondary);
-  background-color: var(--color-surface--background);
-  cursor: not-allowed;
-}
-
-:global(.jobber-retheme) .disabled {
   border-color: var(--color-disabled);
   background-color: var(--color-surface);
   cursor: not-allowed;
 }
 
-:global(.jobber-retheme) .isChecked.disabled {
+.isChecked.disabled {
   background-color: var(--color-disabled);
 }
 
-:global(.jobber-retheme) .isChecked.disabled .pip {
+.isChecked.disabled .pip {
   background-color: var(--color-surface);
 }
 
-:global(.jobber-retheme) .disabled:hover {
+.disabled:hover {
   border-color: var(--color-disabled);
 }

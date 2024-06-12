@@ -31,5 +31,6 @@ export function useOfflineHandler(): (
     },
     [t],
   );
+
   return handleOfflineSubmit;
 }

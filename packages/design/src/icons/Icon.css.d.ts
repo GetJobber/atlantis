@@ -2,6 +2,8 @@ declare const styles: {
   readonly "icon": string;
   readonly "longArrowUp": string;
   readonly "longArrowDown": string;
+  readonly "longArrowRight": string;
+  readonly "longArrowLeft": string;
   readonly "thumbsDown": string;
   readonly "person": string;
   readonly "clients": string;

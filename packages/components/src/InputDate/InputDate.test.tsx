@@ -4,6 +4,7 @@ import { InputDate } from ".";
 import { Modal } from "../Modal";
 import { Button } from "../Button";
 import { Text } from "../Text";
+import * as atlantisContext from "../AtlantisContext/AtlantisContext";
 
 it("renders a blank form by default", () => {
   const { getByDisplayValue, queryByText } = render(
@@ -28,6 +29,7 @@ it("fires onChange with the new value when you click a date", () => {
   fireEvent.click(selectDate);
   expect(changeHandler).toHaveBeenCalledWith(new Date(newDate));
 });
+
 it("shouldn't call onChange with the new value when you click a disabled date", () => {
   const date = "11/11/2011";
   const minDate = "11/9/2011";
@@ -137,6 +139,7 @@ it("doesn't display the calendar when input is focused with keyboard", () => {
 
   expect(queryByText("15")).not.toBeInTheDocument();
 });
+
 it("doesn't display the calendar when calendar button is focused with keyboard", () => {
   const date = "11/11/2011";
   const changeHandler = jest.fn();
@@ -194,6 +197,145 @@ describe("when InputDate is used within a Modal", () => {
     expect(getByText("Test Modal Content")).toBeInTheDocument();
     expect(queryByText("15")).not.toBeInTheDocument();
   });
+});
+
+describe("dateFormat pattern", () => {
+  afterEach(() => {
+    jest.spyOn(atlantisContext, "useAtlantisContext").mockRestore();
+  });
+
+  it("should display MM/DD/YYYY when dateFormat is 'P'", () => {
+    jest.spyOn(atlantisContext, "useAtlantisContext").mockReturnValue({
+      ...atlantisContext.atlantisContextDefaultValues,
+      dateFormat: "P",
+    });
+    const expectedDate = "05/24/2023";
+    const date = new Date(2023, 4, 24).toISOString();
+    const changeHandler = jest.fn();
+    const { queryByDisplayValue } = render(
+      <InputDate value={new Date(date)} onChange={changeHandler} />,
+    );
+    expect(queryByDisplayValue(expectedDate)).toBeInTheDocument();
+  });
+
+  it("should display mmmm d, yyyy when dateFormat is 'PP'", () => {
+    jest.spyOn(atlantisContext, "useAtlantisContext").mockReturnValue({
+      ...atlantisContext.atlantisContextDefaultValues,
+      dateFormat: "PP",
+    });
+    const expectedDate = "Feb 20, 2023";
+    const date = new Date(2023, 1, 20).toISOString();
+    const changeHandler = jest.fn();
+    const { queryByDisplayValue } = render(
+      <InputDate value={new Date(date)} onChange={changeHandler} />,
+    );
+    expect(queryByDisplayValue(expectedDate)).toBeInTheDocument();
+  });
+
+  it("should display mmmmm d, yyyy when dateFormat is 'PPP'", () => {
+    jest.spyOn(atlantisContext, "useAtlantisContext").mockReturnValue({
+      ...atlantisContext.atlantisContextDefaultValues,
+      dateFormat: "PPP",
+    });
+    const expectedDate = "July 7th, 2023";
+    const date = new Date(2023, 6, 7).toISOString();
+    const changeHandler = jest.fn();
+    const { queryByDisplayValue } = render(
+      <InputDate value={new Date(date)} onChange={changeHandler} />,
+    );
+    expect(queryByDisplayValue(expectedDate)).toBeInTheDocument();
+  });
+
+  it("should display dddd, mmmmm d, yyyy when dateFormat is 'PPPP'", () => {
+    jest.spyOn(atlantisContext, "useAtlantisContext").mockReturnValue({
+      ...atlantisContext.atlantisContextDefaultValues,
+      dateFormat: "PPPP",
+    });
+    const expectedDate = "Thursday, June 22nd, 2023";
+    const date = new Date(2023, 5, 22).toISOString();
+    const changeHandler = jest.fn();
+    const { queryByDisplayValue } = render(
+      <InputDate value={new Date(date)} onChange={changeHandler} />,
+    );
+    expect(queryByDisplayValue(expectedDate)).toBeInTheDocument();
+  });
+});
+
+describe("showIcon prop", () => {
+  it("should display the calendar icon when set to true", () => {
+    const date = "11/11/2011";
+    const changeHandler = jest.fn();
+    const { getByRole } = render(
+      <InputDate
+        value={new Date(date)}
+        onChange={changeHandler}
+        showIcon={true}
+      />,
+    );
+    expect(getByRole("button")).toBeDefined();
+  });
+
+  it("should display the calendar icon when set to undefined", () => {
+    const date = "11/11/2011";
+    const changeHandler = jest.fn();
+    const { getByRole } = render(
+      <InputDate value={new Date(date)} onChange={changeHandler} />,
+    );
+    expect(getByRole("button")).toBeDefined();
+  });
+
+  it("should not display the calendar icon when set to false", () => {
+    const date = "11/11/2011";
+    const changeHandler = jest.fn();
+    const { queryByRole } = render(
+      <InputDate
+        value={new Date(date)}
+        onChange={changeHandler}
+        showIcon={false}
+      />,
+    );
+    expect(queryByRole("button")).toBeNull();
+  });
+
+  it("should show mini calendar when set to false and down arrow is pressed", () => {
+    const date = "11/11/2011";
+    const changeHandler = jest.fn();
+    const { getByText, getByDisplayValue } = render(
+      <InputDate
+        value={new Date(date)}
+        onChange={changeHandler}
+        showIcon={false}
+      />,
+    );
+    const input = getByDisplayValue(date);
+
+    fireEvent.keyUp(input, { key: "ArrowDown" });
+
+    expect(getByText("15")).toBeInTheDocument();
+  });
+});
+
+it("should display the selected date when emptyValueLabel is undefined", () => {
+  const date = "11/11/2011";
+  const changeHandler = jest.fn();
+  const { queryByDisplayValue } = render(
+    <InputDate value={new Date(date)} onChange={changeHandler} />,
+  );
+
+  expect(queryByDisplayValue(date)).toBeInTheDocument();
+});
+
+it("should display emptyValueLabel when set", () => {
+  const changeHandler = jest.fn();
+  const expectedDisplayValue = "Unscheduled";
+  const { queryByDisplayValue } = render(
+    <InputDate
+      onChange={changeHandler}
+      emptyValueLabel={expectedDisplayValue}
+    />,
+  );
+
+  expect(queryByDisplayValue(expectedDisplayValue)).toBeInTheDocument();
 });
 
 function NestedTestComponent(props: { readonly date: string }): JSX.Element {

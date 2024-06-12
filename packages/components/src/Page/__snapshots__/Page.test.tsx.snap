@@ -32,7 +32,7 @@ exports[`When actions are provided renders a Page with action buttons and a menu
                 type="button"
               >
                 <span
-                  class="base extraBold base base"
+                  class="base semiBold base base"
                 >
                   Send Food
                 </span>
@@ -46,7 +46,7 @@ exports[`When actions are provided renders a Page with action buttons and a menu
                 type="button"
               >
                 <span
-                  class="base extraBold base base"
+                  class="base semiBold base base"
                 >
                   Send Drink
                 </span>
@@ -58,6 +58,9 @@ exports[`When actions are provided renders a Page with action buttons and a menu
               <div
                 class="wrapper"
               >
+                <span
+                  class="shadowRef"
+                />
                 <button
                   aria-controls=":r1:"
                   aria-expanded="false"
@@ -78,7 +81,7 @@ exports[`When actions are provided renders a Page with action buttons and a menu
                     />
                   </svg>
                   <span
-                    class="base extraBold base base"
+                    class="base semiBold base base"
                   >
                     More Actions
                   </span>
@@ -131,6 +134,7 @@ exports[`renders a Page 1`] = `
           Improve job completion rates, stop chasing payments, and boost your customer service by automatically communicating with your clients at key points before, during, and after a job. Read more about Notifications by visiting our 
           <a
             href="https://help.getjobber.com/hc/en-us/articles/115009737128"
+            rel="noreferrer"
           >
             Help Center
           </a>

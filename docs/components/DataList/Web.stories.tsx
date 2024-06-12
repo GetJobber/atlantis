@@ -115,6 +115,7 @@ const DataListStory = (args: {
         sortable: [
           {
             key: "label",
+            sortType: "dropdown",
             options: [
               {
                 id: "firstName",
@@ -136,6 +137,7 @@ const DataListStory = (args: {
           },
           {
             key: "home",
+            sortType: "dropdown",
             options: [
               {
                 id: "homeWorld",
@@ -159,7 +161,22 @@ const DataListStory = (args: {
               },
             ],
           },
-          { key: "lastActivity" },
+          {
+            key: "lastActivity",
+            sortType: "toggle",
+            options: [
+              {
+                id: "lastActivity",
+                label: "Last activity (Newest)",
+                order: "desc",
+              },
+              {
+                id: "lastActivity",
+                label: "Last activity (Oldest)",
+                order: "asc",
+              },
+            ],
+          },
         ],
       }}
     >
@@ -220,6 +237,10 @@ const DataListStory = (args: {
           label="Delete"
           destructive={true}
           onClick={handleActionClick}
+        />
+        <DataList.ItemAction
+          label="Go to Jobber.com"
+          actionUrl="https://www.jobber.com"
         />
       </DataList.ItemActions>
 

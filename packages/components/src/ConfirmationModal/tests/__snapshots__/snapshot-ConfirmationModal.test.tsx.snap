@@ -19,11 +19,11 @@ exports[`renders a simple ConfirmationModal 1`] = `
         class="header"
         data-testid="modal-header"
       >
-        <h3
-          class="base extraBold larger heading"
+        <h2
+          class="base bold largest heading"
         >
           Should we?
-        </h3>
+        </h2>
       </div>
       <div
         class="padded base"
@@ -49,7 +49,7 @@ exports[`renders a simple ConfirmationModal 1`] = `
             type="button"
           >
             <span
-              class="base extraBold base base"
+              class="base semiBold base base"
             >
               We Shall
             </span>
@@ -59,7 +59,7 @@ exports[`renders a simple ConfirmationModal 1`] = `
             type="button"
           >
             <span
-              class="base extraBold base base"
+              class="base semiBold base base"
             >
               Cancel
             </span>

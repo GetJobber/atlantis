@@ -179,7 +179,7 @@ function getActionLabelVariation(
 
   switch (variation) {
     case "learning":
-      return "learning";
+      return "subtle";
     case "destructive":
       return "destructive";
     case "cancel":
@@ -204,7 +204,7 @@ function getIconColorVariation(
 
   switch (variation) {
     case "learning":
-      return "informative";
+      return "interactiveSubtle";
     case "destructive":
       return "destructive";
     case "cancel":

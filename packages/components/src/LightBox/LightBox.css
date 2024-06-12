@@ -31,15 +31,10 @@
   display: flex;
   z-index: var(--elevation-base);
   padding: var(--space-small) var(--space-base);
-  color: var(--color-text--reverse--secondary);
-  font-size: var(--typography--fontSize-large);
-  background-color: var(--color-surface--reverse);
-  justify-content: space-between;
-}
-
-:global(.jobber-retheme) .toolbar {
   color: var(--color-text--secondary);
+  font-size: var(--typography--fontSize-large);
   background-color: var(--color-surface--background);
+  justify-content: space-between;
 }
 
 .title {

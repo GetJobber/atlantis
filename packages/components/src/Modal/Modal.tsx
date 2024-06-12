@@ -94,7 +94,9 @@ export function Modal({
     </AnimatePresence>
   );
 
-  return ReactDOM.createPortal(template, document.body);
+  return globalThis?.document
+    ? ReactDOM.createPortal(template, document.body)
+    : template;
 
   function handleRequestClose() {
     if (open && onRequestClose) {
@@ -112,10 +114,12 @@ interface HeaderProps {
 function Header({ title, dismissible, onRequestClose }: HeaderProps) {
   return (
     <div className={styles.header} data-testid="modal-header">
-      <Heading level={3}>{title}</Heading>
+      <Heading level={2}>{title}</Heading>
 
       {dismissible && (
-        <ButtonDismiss onClick={onRequestClose} ariaLabel="Close modal" />
+        <div className={styles.closeButton}>
+          <ButtonDismiss onClick={onRequestClose} ariaLabel="Close modal" />
+        </div>
       )}
     </div>
   );

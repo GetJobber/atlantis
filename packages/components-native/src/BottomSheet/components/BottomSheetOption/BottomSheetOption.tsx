@@ -14,8 +14,9 @@ export interface BottomSheetOptionProps {
   readonly textAlign?: TextAlign;
   readonly destructive?: boolean;
   readonly textTransform?: "none" | "capitalize";
-  onPress: () => void;
+  readonly onPress: () => void;
 }
+
 export function BottomSheetOption({
   text,
   icon,
@@ -27,6 +28,7 @@ export function BottomSheetOption({
 }: BottomSheetOptionProps): JSX.Element {
   const destructiveColor = "critical";
   const textVariation = destructive ? destructiveColor : "subdued";
+
   return (
     <TouchableOpacity
       style={styles.bottomSheetOption}

@@ -20,6 +20,7 @@ export function MenuOption({
 }: MenuOptionInternalProps): JSX.Element {
   const destructiveColor = "critical";
   const textVariation = destructive ? destructiveColor : "heading";
+
   return (
     <View testID="ATL-MENU-OPTIONS">
       <Pressable

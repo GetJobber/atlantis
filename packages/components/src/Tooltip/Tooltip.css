@@ -20,12 +20,8 @@
   position: relative;
   max-width: calc(var(--base-unit) * 15);
   padding: calc(var(--space-base) - var(--space-smallest)) var(--space-base);
-  border-radius: var(--radius-larger);
-  background-color: var(--tooltip--surface);
-}
-
-:global(.jobber-retheme) .tooltip {
   border-radius: var(--radius-base);
+  background-color: var(--tooltip--surface);
 }
 
 .tooltip .arrow,
@@ -43,38 +39,52 @@
   transform: rotate(45deg);
 }
 
-.above {
+.top {
   padding-bottom: var(--space-small);
 }
 
-.above .tooltip {
+.top .tooltip {
   transform-origin: bottom center;
 }
 
-.above .tooltip .arrow {
+.top .tooltip .arrow {
   bottom: var(--tooltip--offset);
 }
 
-.above .tooltip .arrow::after {
-  border-top-width: 0;
-  border-left-width: 0;
-}
-
-.below {
+.bottom {
   padding-top: var(--space-small);
 }
 
-.below .tooltip {
+.bottom .tooltip {
   transform-origin: top center;
 }
 
-.below .tooltip .arrow {
+.bottom .tooltip .arrow {
   top: var(--tooltip--offset);
 }
 
-.below .tooltip .arrow::after {
-  border-bottom-width: 0;
-  border-right-width: 0;
+.left {
+  padding-right: var(--space-small);
+}
+
+.left .tooltip {
+  transform-origin: right center;
+}
+
+.left .tooltip .arrow {
+  right: var(--tooltip--offset);
+}
+
+.right {
+  padding-left: var(--space-small);
+}
+
+.right .tooltip {
+  transform-origin: left center;
+}
+
+.right .tooltip .arrow {
+  left: var(--tooltip--offset);
 }
 
 .tooltipMessage {

@@ -41,14 +41,14 @@ exports[`TextList when the bulletItems is provided displays the text list 1`] = 
           collapsable={false}
           maxFontSizeMultiplier={3.125}
           selectable={true}
-          selectionColor="rgb(132, 234, 0)"
+          selectionColor="hsl(86, 100%, 46%)"
           style={
             [
               {
                 "fontFamily": "inter-regular",
               },
               {
-                "color": "rgb(66, 78, 86)",
+                "color": "hsl(198, 35%, 21%)",
               },
               {
                 "textAlign": "left",
@@ -80,14 +80,14 @@ exports[`TextList when the bulletItems is provided displays the text list 1`] = 
             collapsable={false}
             maxFontSizeMultiplier={3.125}
             selectable={true}
-            selectionColor="rgb(132, 234, 0)"
+            selectionColor="hsl(86, 100%, 46%)"
             style={
               [
                 {
                   "fontFamily": "inter-regular",
                 },
                 {
-                  "color": "rgb(66, 78, 86)",
+                  "color": "hsl(198, 35%, 21%)",
                 },
                 {
                   "textAlign": "left",
@@ -132,14 +132,14 @@ exports[`TextList when the bulletItems is provided displays the text list 1`] = 
           collapsable={false}
           maxFontSizeMultiplier={3.125}
           selectable={true}
-          selectionColor="rgb(132, 234, 0)"
+          selectionColor="hsl(86, 100%, 46%)"
           style={
             [
               {
                 "fontFamily": "inter-regular",
               },
               {
-                "color": "rgb(66, 78, 86)",
+                "color": "hsl(198, 35%, 21%)",
               },
               {
                 "textAlign": "left",
@@ -171,14 +171,14 @@ exports[`TextList when the bulletItems is provided displays the text list 1`] = 
             collapsable={false}
             maxFontSizeMultiplier={3.125}
             selectable={true}
-            selectionColor="rgb(132, 234, 0)"
+            selectionColor="hsl(86, 100%, 46%)"
             style={
               [
                 {
                   "fontFamily": "inter-regular",
                 },
                 {
-                  "color": "rgb(66, 78, 86)",
+                  "color": "hsl(198, 35%, 21%)",
                 },
                 {
                   "textAlign": "left",

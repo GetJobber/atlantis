@@ -75,6 +75,10 @@ If the user can address the errors, inform them how to do so in the banner.
 Otherwise, a generic message informing the user that something went wrong is an
 appropriate fallback.
 
+Note: When a server-side error happens, inside the `onSubmit` function, an error
+must be thrown. Throwing an error inside the `onSubmit` function will ensure
+that your `onSubmitError` function is called instead of your `onSubmitSuccess`.
+
 #### Client-side errors
 
 Client-side errors are issues that we can catch and inform the user of before

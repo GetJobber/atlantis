@@ -430,6 +430,7 @@ describe("DataList", () => {
         sortable: [
           {
             key: "name",
+            sortType: "dropdown",
             options: [
               { id: "name", label: "Ascending", order: "asc" },
               { id: "name", label: "Descending", order: "desc" },

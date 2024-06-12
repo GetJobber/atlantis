@@ -15,7 +15,7 @@
   color: var(--color-heading);
   font-size: var(--avatar-size);
   -webkit-font-smoothing: antialiased;
-  background: no-repeat center center var(--color-greyBlue);
+  background: no-repeat center center var(--color-base-blue--600);
   background-size: cover;
 }
 
@@ -34,7 +34,7 @@
 }
 
 .isDark {
-  color: var(--color-text--reverse);
+  color: var(--color-base-white);
 }
 
 .initials {
@@ -49,7 +49,7 @@
 .hasBorder {
   width: calc(var(--avatar-size) - (var(--avatar-border-size) * 2));
   height: calc(var(--avatar-size) - (var(--avatar-border-size) * 2));
-  box-shadow: 0 0 0 var(--border-thick) var(--color-white) inset;
+  box-shadow: 0 0 0 var(--border-thick) var(--color-surface) inset;
   border-style: solid;
   border-width: var(--avatar-border-size);
 }

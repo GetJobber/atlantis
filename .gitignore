@@ -8,3 +8,5 @@ node_modules
 .DS_Store
 .idea
 storybook-static
+.rollup.cache
+jobber-*.tgz

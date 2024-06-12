@@ -9,10 +9,12 @@ function setupHook() {
 
   function TestComponent() {
     Object.assign(returnVal, useLiveAnnounce());
+
     return <></>;
   }
 
   const { rerender } = render(<TestComponent />);
+
   return { ...returnVal, rerenderComponent: () => rerender(<TestComponent />) };
 }
 

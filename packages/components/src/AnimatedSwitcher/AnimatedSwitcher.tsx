@@ -72,10 +72,13 @@ export function AnimatedSwitcher({
   }
 
   function getChildData() {
-    let data = { key: `${initialChild.type}_1`, child: initialChild };
+    let data = {
+      key: `${initialChild.type.toString()}_1`,
+      child: initialChild,
+    };
 
     if (switched) {
-      data = { key: `${switchTo.type}_2`, child: switchTo };
+      data = { key: `${switchTo.type.toString()}_2`, child: switchTo };
     }
 
     return {

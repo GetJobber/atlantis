@@ -11,15 +11,11 @@
   min-height: calc((var(--space-largest) - var(--space-small)));
   padding: var(--space-small) 0;
   border: none;
-  border-radius: var(--radius-large);
+  border-radius: var(--radius-base);
   text-align: left;
   background-color: var(--color-surface);
   cursor: pointer;
   transition: all var(--timing-base);
-}
-
-:global(.jobber-retheme) .actionButton {
-  border-radius: var(--radius-base);
 }
 
 .actionButton:focus {

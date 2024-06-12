@@ -69,5 +69,6 @@ function getElements<T extends HTMLElement>(ref: T) {
 
   const firstElement = elements[0];
   const lastElement = elements[elements.length - 1];
+
   return { firstElement, lastElement };
 }

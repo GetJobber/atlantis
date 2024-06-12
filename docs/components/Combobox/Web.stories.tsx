@@ -5,6 +5,7 @@ import { Button } from "@jobber/components/Button";
 import { Typography } from "@jobber/components/Typography";
 import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
+import { StatusIndicator } from "@jobber/components/StatusIndicator";
 import { useFakeQuery } from "./storyUtils";
 
 export default {
@@ -182,6 +183,58 @@ const ComboboxEmptyState: ComponentStory<typeof Combobox> = args => {
         onClick={() => {
           alert("Added a new teammate ✅");
         }}
+      />
+    </Combobox>
+  );
+};
+
+const ComboboxPrefixOptions: ComponentStory<typeof Combobox> = args => {
+  const [selected, setSelected] = useState<ComboboxOption[]>([]);
+
+  return (
+    <Combobox
+      {...args}
+      label="The Fellowship"
+      subjectNoun="fellows"
+      onSelect={setSelected}
+      selected={selected}
+    >
+      <Combobox.Option
+        id="1"
+        label="Bilbo"
+        prefix={<StatusIndicator status="success" />}
+      />
+      <Combobox.Option
+        id="2"
+        label="Samwise"
+        prefix={<StatusIndicator status="success" />}
+      />
+      <Combobox.Option
+        id="3"
+        label="Pippin"
+        prefix={<StatusIndicator status="success" />}
+      />
+      <Combobox.Option
+        id="4"
+        label="Merry"
+        prefix={<StatusIndicator status="success" />}
+      />
+      <Combobox.Option
+        id="5"
+        label="Legolas"
+        prefix={<StatusIndicator status="warning" />}
+      />
+      <Combobox.Option id="6" label="Gandalf" />
+      <Combobox.Option id="7" label="Aragorn" />-
+      <Combobox.Option
+        id="8"
+        label="Boromir"
+        prefix={<StatusIndicator status="informative" />}
+      />
+      <Combobox.Option
+        id="9"
+        label="Gimli"
+        prefix={<StatusIndicator status="critical" />}
       />
     </Combobox>
   );
@@ -391,6 +444,9 @@ CustomActivator.args = {};
 
 export const EmptyState = ComboboxEmptyState.bind({});
 EmptyState.args = {};
+
+export const PrefixOptions = ComboboxPrefixOptions.bind({});
+PrefixOptions.args = {};
 
 export const MultiSelect = ComboboxMultiSelection.bind({});
 MultiSelect.args = {};
