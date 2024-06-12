@@ -1,7 +1,6 @@
 import React from "react";
 import { addons, types } from "@storybook/addons";
 import { STORY_CHANGED, STORY_ERRORED, STORY_MISSING } from '@storybook/core-events';
-import { SidebarLabel } from "./components/SidebarLabel";
 import theme from "./theme";
 import favicon from "./assets/favicon.svg";
 import { Playground } from "./components/Playground";
@@ -33,7 +32,6 @@ addons.setConfig({
       "packages",
       "changelog",
     ],
-    renderLabel: SidebarLabel,
   },
 });
 
