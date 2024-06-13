@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.12.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.12.1...@jobber/components@5.12.2) (2024-06-13)
+
+
+### Bug Fixes
+
+* side drawer scroll overflow to auto ([#1928](https://github.com/GetJobber/atlantis/issues/1928)) ([5aafd10](https://github.com/GetJobber/atlantis/commit/5aafd10a181cecc3dc3a527ea616cbdc321d87bb))
+
+
+
+
+
 ## [5.12.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.12.0...@jobber/components@5.12.1) (2024-06-12)
 
 
