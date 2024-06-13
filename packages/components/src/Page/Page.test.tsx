@@ -34,24 +34,6 @@ it("renders a Page", () => {
   expect(container).toMatchSnapshot();
 });
 
-describe("when title is a component", () => {
-  it("renders a Page with a component title", () => {
-    const { container } = render(
-      <Page
-        title={
-          <h3>
-            <strong>Notifications as a custom component</strong>
-          </h3>
-        }
-      >
-        Sup
-      </Page>,
-    );
-
-    expect(container).toMatchSnapshot();
-  });
-});
-
 describe("When actions are provided", () => {
   it("renders a Page with action buttons and a menu", () => {
     const sampleActionMenu: SectionProps[] = [

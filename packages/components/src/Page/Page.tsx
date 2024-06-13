@@ -18,9 +18,9 @@ interface PageFoundationProps {
   readonly children: ReactNode | ReactNode[];
 
   /**
-   * Title of the page. This will be formatted as a heading if it is a string.
+   * Title of the page.
    */
-  readonly title: ReactNode;
+  readonly title: string;
 
   /**
    * Subtitle of the page.
@@ -126,11 +126,7 @@ export function Page({
         <Content>
           <div className={titleBarClasses} ref={titleBarRef}>
             <div>
-              {typeof title === "string" ? (
-                <Heading level={1}>{title}</Heading>
-              ) : (
-                title
-              )}
+              <Heading level={1}>{title}</Heading>
               {subtitle && (
                 <div className={styles.subtitle}>
                   <Text size="large" variation="subdued">
