@@ -30,7 +30,7 @@ exports[`renders blue inProgress bar when 1 or more jobs is in progress 1`] = `
             "width": "100%",
           },
           {
-            "backgroundColor": "rgb(238, 240, 242)",
+            "backgroundColor": "hsl(53, 21%, 93%)",
             "width": "100%",
           },
         ]
@@ -49,7 +49,7 @@ exports[`renders blue inProgress bar when 1 or more jobs is in progress 1`] = `
             "width": "100%",
           },
           {
-            "backgroundColor": "rgb(60, 162, 224)",
+            "backgroundColor": "hsl(207, 79%, 57%)",
             "width": "0%",
           },
         ]
@@ -68,7 +68,7 @@ exports[`renders blue inProgress bar when 1 or more jobs is in progress 1`] = `
             "width": "100%",
           },
           {
-            "backgroundColor": "rgb(125, 176, 14)",
+            "backgroundColor": "hsl(107, 58%, 33%)",
             "width": "0%",
           },
         ]
@@ -108,7 +108,7 @@ exports[`renders green CompletedProgress bar when 1 or more jobs is completed 1`
             "width": "100%",
           },
           {
-            "backgroundColor": "rgb(238, 240, 242)",
+            "backgroundColor": "hsl(53, 21%, 93%)",
             "width": "100%",
           },
         ]
@@ -127,7 +127,7 @@ exports[`renders green CompletedProgress bar when 1 or more jobs is completed 1`
             "width": "100%",
           },
           {
-            "backgroundColor": "rgb(125, 176, 14)",
+            "backgroundColor": "hsl(107, 58%, 33%)",
             "width": "50%",
           },
         ]

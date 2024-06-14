@@ -14,18 +14,23 @@ it("renders an input type number", () => {
           data-testid="Form-Field-Wrapper"
         >
           <div
-            class="inputWrapper"
+            class="horizontalWrapper"
           >
             <div
-              class="childrenWrapper"
+              class="inputWrapper"
             >
-              <input
-                class="input"
-                id=":r0:"
-                name="generatedName--:r0:"
-                type="number"
-                value="123"
-              />
+              <div
+                class="childrenWrapper"
+                tabindex="-1"
+              >
+                <input
+                  class="input"
+                  id=":r0:"
+                  name="generatedName--:r0:"
+                  type="number"
+                  value="123"
+                />
+              </div>
             </div>
           </div>
         </div>

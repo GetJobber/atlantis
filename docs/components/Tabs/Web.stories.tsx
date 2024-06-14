@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Tab, Tabs } from "@jobber/components/Tabs";
 
@@ -60,7 +60,7 @@ const WithDefaultTabTemplate: ComponentStory<typeof Tabs> = args => (
 );
 
 const WithTabChangeCallbackTemplate: ComponentStory<typeof Tabs> = args => {
-  const [tab, setTab] = React.useState(args.defaultTab ?? 0);
+  const [tab, setTab] = useState(args.defaultTab ?? 0);
 
   return (
     <div>

@@ -137,7 +137,7 @@ export function Checkbox({
         };
 
         return (
-          <div className={styles.checkbox}>
+          <div className={styles.checkBoxParent}>
             <label className={wrapperClassName}>
               <span className={styles.checkHolder}>
                 <input
@@ -150,7 +150,7 @@ export function Checkbox({
                   onFocus={onFocus}
                 />
                 <span className={styles.checkBox}>
-                  <Icon name={iconName} size="small" color="white" />
+                  <Icon name={iconName} color="surface" />
                 </span>
               </span>
 

@@ -15,11 +15,11 @@
   height: inherit;
   padding-left: var(--inset);
   padding-right: var(--inset);
-  border: var(--border-base) solid var(--color-border);
+  border: var(--border-base) solid var(--color-border--interactive);
   border-radius: var(--radius-base);
-  color: var(--color-blue);
+  color: var(--color-heading);
   font-size: 14px;
-  background-color: transparent;
+  background-color: inherit;
   appearance: none;
 }
 

@@ -1,0 +1,29 @@
+.base {
+  padding: var(--box-padding, 0);
+}
+
+.horizontal {
+  padding-left: var(--box-padding-horizontal);
+  padding-right: var(--box-padding-horizontal);
+}
+
+.vertical {
+  padding-top: var(--box-padding-vertical);
+  padding-bottom: var(--box-padding-vertical);
+}
+
+.top {
+  padding-top: var(--box-padding-top);
+}
+
+.right {
+  padding-right: var(--box-padding-right);
+}
+
+.bottom {
+  padding-bottom: var(--box-padding-bottom);
+}
+
+.left {
+  padding-left: var(--box-padding-left);
+}

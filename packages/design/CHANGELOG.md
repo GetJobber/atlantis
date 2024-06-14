@@ -3,6 +3,85 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.61.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.60.1...@jobber/design@0.61.0) (2024-06-11)
+
+
+### Features
+
+* **components:** update interactive borders and avatar [JOB-97530] ([#1924](https://github.com/GetJobber/atlantis/issues/1924)) ([533a06f](https://github.com/GetJobber/atlantis/commit/533a06f7a264031ce1d1a8dde2f2a19199619ede))
+
+
+
+
+
+## [0.60.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.60.0...@jobber/design@0.60.1) (2024-05-24)
+
+
+### Bug Fixes
+
+* **design:** Reduce Shadow Radius for MobileShadows ([#1900](https://github.com/GetJobber/atlantis/issues/1900)) ([d781644](https://github.com/GetJobber/atlantis/commit/d7816446caf96232806d9d566ed9ba12740fda3f))
+
+
+
+
+
+# [0.60.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.59.0...@jobber/design@0.60.0) (2024-05-22)
+
+
+### Features
+
+* **components:** visual refinements for add, plus and plus2 [JOB-93171] ([#1896](https://github.com/GetJobber/atlantis/issues/1896)) ([e631a5c](https://github.com/GetJobber/atlantis/commit/e631a5ce61b228c28059899d7782dba376cbf280))
+
+
+
+
+
+# [0.59.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.58.0...@jobber/design@0.59.0) (2024-05-10)
+
+
+### Features
+
+* **design:** overhaul the base color palette ([#1873](https://github.com/GetJobber/atlantis/issues/1873)) ([942f1a2](https://github.com/GetJobber/atlantis/commit/942f1a2ea7920358576b6bf7f5f2bad04273fa0c))
+
+
+
+
+
+# [0.58.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.57.3...@jobber/design@0.58.0) (2024-04-24)
+
+
+### Features
+
+* **design:** add semantic value for subtle backgrounds ([#1874](https://github.com/GetJobber/atlantis/issues/1874)) ([4845fb1](https://github.com/GetJobber/atlantis/commit/4845fb138598c8c67091e34dcf95d5c0b2fd03da))
+
+
+
+
+
+## [0.57.3](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.57.2...@jobber/design@0.57.3) (2024-04-24)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.57.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.57.1...@jobber/design@0.57.2) (2024-04-12)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.57.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.57.0...@jobber/design@0.57.1) (2024-04-11)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
 # [0.57.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.56.4...@jobber/design@0.57.0) (2024-04-04)
 
 

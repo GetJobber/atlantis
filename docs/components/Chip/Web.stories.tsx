@@ -45,7 +45,7 @@ const PrefixTemplate: ComponentStory<typeof Chip> = props => {
     <Content>
       <Chip {...props} onClick={() => alert("you clicked me!")}>
         <Chip.Prefix>
-          <Icon name="cross" size="small" />
+          <Icon name="home" size="small" />
         </Chip.Prefix>
       </Chip>
     </Content>

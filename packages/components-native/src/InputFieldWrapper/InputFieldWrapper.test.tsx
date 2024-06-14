@@ -69,7 +69,7 @@ describe("InputFieldWrapper", () => {
     const { getByTestId } = renderInputFieldWrapper({ disabled: true });
 
     expect(getByTestId("ATL-InputFieldWrapper").props.style).toContainEqual({
-      backgroundColor: "rgb(225, 225, 225)",
+      backgroundColor: "hsl(0, 0%, 93%)",
     });
   });
 

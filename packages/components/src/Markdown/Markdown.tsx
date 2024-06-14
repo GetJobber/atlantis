@@ -21,9 +21,21 @@ interface MarkdownProps {
    * `[link name](url)`
    */
   readonly basicUsage?: boolean;
+
+  /**
+   *
+   * Callback that gets called when a link in the text is clicked.
+   * @param target the target element that was clicked
+   */
+  readonly onLinkClick?: (target: HTMLAnchorElement) => void;
 }
 
-export function Markdown({ content, externalLink, basicUsage }: MarkdownProps) {
+export function Markdown({
+  content,
+  externalLink,
+  basicUsage,
+  onLinkClick,
+}: MarkdownProps) {
   const props = {
     ...(basicUsage && {
       disallowedElements: [
@@ -60,6 +72,7 @@ export function Markdown({ content, externalLink, basicUsage }: MarkdownProps) {
           h3: renderHeading(3),
           h4: renderHeading(4),
           h5: renderHeading(5),
+          a: renderLink(onLinkClick, !!externalLink),
         }}
       >
         {content}
@@ -88,4 +101,29 @@ function renderHeading(level: 1 | 2 | 3 | 4 | 5) {
   }
 
   return buildHeading;
+}
+
+function renderLink(
+  onLinkClick: ((target: HTMLAnchorElement) => void) | undefined,
+  externalLink: boolean,
+) {
+  // eslint-disable-next-line react/display-name
+  return ({
+    children,
+    href,
+  }: React.DetailedHTMLProps<
+    React.AnchorHTMLAttributes<HTMLAnchorElement>,
+    HTMLAnchorElement
+  >) => (
+    <a
+      href={href}
+      onClick={event => {
+        return onLinkClick?.(event.target as HTMLAnchorElement);
+      }}
+      target={externalLink ? "_blank" : undefined}
+      rel="noreferrer"
+    >
+      {children}
+    </a>
+  );
 }

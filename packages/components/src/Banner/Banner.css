@@ -2,18 +2,13 @@
   display: flex;
   position: relative;
   box-shadow: var(--shadow-base);
-  padding: var(--space-base);
-  color: var(--color-text);
-  background-color: var(--color-surface--background);
-  gap: var(--space-small);
-  align-items: center;
-}
-
-:global(.jobber-retheme) .banner {
   padding: calc(var(--space-base) - var(--space-smaller)) var(--space-base);
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
+  color: var(--color-text);
   background-color: var(--color-surface);
+  gap: var(--space-small);
+  align-items: center;
 }
 
 .bannerChildren > a {
@@ -62,23 +57,11 @@
 
 .closeButton {
   margin: calc(var(--space-smallest) * -1) 0;
-  padding: var(--space-smallest);
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  appearance: none;
-  flex: 0;
   align-self: flex-start;
-}
 
-.closeButton:hover {
-  background: rgba(0, 0, 0, 0.025);
-}
-
-.closeButton:focus {
-  box-shadow: var(--shadow-focus);
-  outline: none;
-  background: rgba(0, 0, 0, 0.05);
+  @media (--small-screens-and-below) {
+    margin: calc(var(--space-small) * -1) 0;
+  }
 }
 
 .iconWrapper {
@@ -88,6 +71,6 @@
   background-color: var(--color-surface--background);
 }
 
-:global(.jobber-retheme) .medium .iconWrapper {
+.medium .iconWrapper {
   align-self: center;
 }

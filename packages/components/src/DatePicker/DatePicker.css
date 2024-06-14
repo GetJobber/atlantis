@@ -15,6 +15,7 @@
   border-color: var(--color-border);
   border-radius: var(--radius-base);
   font-family: var(--typography--fontFamily-normal);
+  background-color: var(--color-surface);
 }
 
 .datePicker.inline {
@@ -124,9 +125,13 @@
 }
 
 .datePicker
-  :global(.react-datepicker__day--disabled.react-datepicker__day--outside-month):hover,
+  :global(
+    .react-datepicker__day--disabled.react-datepicker__day--outside-month
+  ):hover,
 .datePicker
-  :global(.react-datepicker__day--disabled.react-datepicker__day--outside-month):focus {
+  :global(
+    .react-datepicker__day--disabled.react-datepicker__day--outside-month
+  ):focus {
   box-shadow: none;
   background: var(--color-disabled--secondary);
 }

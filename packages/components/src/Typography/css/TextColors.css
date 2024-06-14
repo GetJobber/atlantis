@@ -55,7 +55,7 @@
 }
 
 .critical {
-  color: var(--color-critical--onSurface);
+  color: var(--color-critical);
 }
 
 .warning {
@@ -68,6 +68,10 @@
 
 .success {
   color: var(--color-success--onSurface);
+}
+
+.interactive {
+  color: var(--color-interactive);
 }
 
 .disabled {

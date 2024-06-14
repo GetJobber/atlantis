@@ -26,6 +26,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       ref={popperRef}
       id="ATL-Combobox-Content"
       data-testid="ATL-Combobox-Content"
+      data-elevation={"elevated"}
       tabIndex={0}
       className={classnames(styles.content, { [styles.hidden]: !props.open })}
       style={popperStyles.popper}
