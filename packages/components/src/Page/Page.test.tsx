@@ -186,4 +186,20 @@ describe("When intro is provided with links", () => {
     expect(renderedLink.textContent).toBe("click me, I dare you");
     expect(renderedLink.getAttribute("target")).toBe("_blank");
   });
+
+  describe("When titleMetaData is provided", () => {
+    it("renders the title with metadata", () => {
+      const { container } = render(
+        <Page
+          title="The Eye"
+          titleMetaData={<>Extra component by the title</>}
+          intro="Huh, guess so."
+        >
+          Sup
+        </Page>,
+      );
+
+      expect(container).toMatchSnapshot();
+    });
+  });
 });
