@@ -23,6 +23,11 @@
   appearance: none;
 }
 
+.select select {
+  color: var(--field--value-color);
+  background-color: inherit;
+}
+
 /**
  * Hides arrow in IE10 and up, the arrow is replaced by a custom font later on
  */
