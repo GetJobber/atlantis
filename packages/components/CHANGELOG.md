@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.12.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.12.3...@jobber/components@5.12.4) (2024-06-14)
+
+
+### Bug Fixes
+
+* Add css to style href in link component ([#1931](https://github.com/GetJobber/atlantis/issues/1931)) ([2fd1d83](https://github.com/GetJobber/atlantis/commit/2fd1d8379c2e7003ea452622c118e89f38044d39))
+
+
+
+
+
 ## [5.12.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.12.2...@jobber/components@5.12.3) (2024-06-14)
 
 
