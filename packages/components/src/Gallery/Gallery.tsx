@@ -22,7 +22,10 @@ export function Gallery({ files, size = "base", max, onDelete }: GalleryProps) {
           return (
             <FormatFile
               key={file.key}
-              file={{ ...file, src: () => Promise.resolve(file.src) }}
+              file={{
+                ...file,
+                src: () => Promise.resolve(file.thumbnailSrc || file.src),
+              }}
               display="compact"
               displaySize={size}
               onClick={() => {
@@ -32,6 +35,7 @@ export function Gallery({ files, size = "base", max, onDelete }: GalleryProps) {
             />
           );
         })}
+
         {max && files.length > max && !displayPastMax && (
           <div
             className={classNames(
