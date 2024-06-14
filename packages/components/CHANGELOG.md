@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.12.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.12.2...@jobber/components@5.12.3) (2024-06-14)
+
+
+### Bug Fixes
+
+* **components:** allow Select background to work in dark modes ([#1930](https://github.com/GetJobber/atlantis/issues/1930)) ([4f3b978](https://github.com/GetJobber/atlantis/commit/4f3b978118b8f58fb4e12b044532c9d2fdf1c4e6))
+
+
+
+
+
 ## [5.12.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.12.1...@jobber/components@5.12.2) (2024-06-13)
 
 
