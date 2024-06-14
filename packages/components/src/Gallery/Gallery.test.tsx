@@ -175,7 +175,7 @@ describe("when a non-image is clicked", () => {
 
 describe("Thumbnails", () => {
   it.each(files.map(file => [file.name, file.thumbnailSrc]))(
-    "should display the thumbnailSrc as thumbnails for %s",
+    "should use the thumbnailSrc as the image source for %s",
     async (fileName, src) => {
       const { getByAltText } = render(<Gallery files={files} />);
       const thumbnailImage = getByAltText(fileName);
@@ -187,7 +187,7 @@ describe("Thumbnails", () => {
   );
 
   it.each(files.map(file => [file.name, file.src]))(
-    "should display the src as thumbnails for %s when thumbnailSrc is not provided",
+    "should use the src as image source for %s when thumbnailSrc is not provided",
     async (fileName, src) => {
       const { getByAltText } = render(
         <Gallery
