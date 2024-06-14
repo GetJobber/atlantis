@@ -265,19 +265,33 @@ export interface ActionProps {
   readonly icon?: IconNames;
 
   /**
+   * Visual style for the action button
+   */
+  readonly buttonVariation?: "default" | "destructive";
+
+  /**
    * Callback when an action gets clicked
    */
   onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
 }
 
-function Action({ label, sectionLabel, icon, onClick }: ActionProps) {
+function Action({
+  label,
+  sectionLabel,
+  icon,
+  buttonVariation,
+  onClick,
+}: ActionProps) {
   const actionButtonRef = useRef() as RefObject<HTMLButtonElement>;
+  const buttonClasses = classnames(styles.action, {
+    [styles.destructive]: buttonVariation === "destructive",
+  });
 
   return (
     <button
       role="menuitem"
       type="button"
-      className={styles.action}
+      className={buttonClasses}
       key={label}
       onClick={onClick}
       ref={actionButtonRef}
