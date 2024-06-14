@@ -1,4 +1,5 @@
 import React, { PropsWithChildren } from "react";
+import { Typography } from "../Typography";
 
 export interface LinkProps {
   readonly url: string;
@@ -15,13 +16,15 @@ export function Link({
   external = false,
 }: PropsWithChildren<LinkProps>) {
   return (
-    <a
-      href={url}
-      {...(external && { target: "_blank" })}
-      {...(ariaLabel && { "aria-label": ariaLabel })}
-      {...(ariaExpanded && { "aria-expanded": ariaExpanded })}
-    >
-      {children}
-    </a>
+    <Typography textColor="interactive">
+      <a
+        href={url}
+        {...(external && { target: "_blank" })}
+        {...(ariaLabel && { "aria-label": ariaLabel })}
+        {...(ariaExpanded && { "aria-expanded": ariaExpanded })}
+      >
+        {children}
+      </a>
+    </Typography>
   );
 }
