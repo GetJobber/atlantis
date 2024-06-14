@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.13.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.12.4...@jobber/components@5.13.0) (2024-06-14)
+
+
+### Features
+
+* allow thumbnails on gallery ([#1933](https://github.com/GetJobber/atlantis/issues/1933)) ([9f3fb15](https://github.com/GetJobber/atlantis/commit/9f3fb158a502ad83408f295a683a0f6c06fe34f3))
+
+
+
+
+
 ## [5.12.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.12.3...@jobber/components@5.12.4) (2024-06-14)
 
 
