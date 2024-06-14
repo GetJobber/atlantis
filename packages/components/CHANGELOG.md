@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.14.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.13.0...@jobber/components@5.14.0) (2024-06-14)
+
+
+### Features
+
+* on error callback on image files in format file ([#1934](https://github.com/GetJobber/atlantis/issues/1934)) ([4dca1ae](https://github.com/GetJobber/atlantis/commit/4dca1aed1740f06c0e235b2a359e2b5d59517df7))
+
+
+
+
+
 # [5.13.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.12.4...@jobber/components@5.13.0) (2024-06-14)
 
 
