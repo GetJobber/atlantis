@@ -23,6 +23,10 @@
   appearance: none;
 }
 
+.select option {
+  background-color: var(--field--background-color);
+}
+
 /**
  * Hides arrow in IE10 and up, the arrow is replaced by a custom font later on
  */
