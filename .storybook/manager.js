@@ -10,12 +10,6 @@ import ReactGA from "react-ga4";
 import "./assets/css/manager.css";
 import "@jobber/design/foundation.css";
 
-try {
-  require("@jobber/fonts");
-} catch {
-  console.log("Jobber fonts not found");
-}
-
 const link = document.createElement("link");
 link.setAttribute("rel", "shortcut icon");
 link.setAttribute("href", favicon);
