@@ -24,7 +24,6 @@
 }
 
 .select option {
-  text-decoration-skip: box-decoration;
   background-color: var(--field--background-color);
 }
 
