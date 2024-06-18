@@ -48,7 +48,8 @@ export function Banner({
 }: BannerProps) {
   const [showBanner, setShowBanner] = useState(true);
   const bannerIcon = icon || getBannerIcon(type);
-  const visible = controlledVisiblity ?? true;
+  const controlledVisible = controlledVisiblity ?? true;
+  const visible = controlledVisible && showBanner;
 
   const bannerWidths = {
     small: 320,
@@ -75,7 +76,7 @@ export function Banner({
     [styles.medium]: bannerWidth >= bannerWidths.medium,
   });
 
-  if (!showBanner || !visible) return null;
+  if (!visible) return null;
 
   return (
     <div
