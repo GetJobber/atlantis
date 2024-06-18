@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import classnames from "classnames";
 import { IconNames } from "@jobber/design";
 import { useResizeObserver } from "@jobber/hooks/useResizeObserver";
@@ -34,7 +34,7 @@ interface BannerProps {
    * When provided, the banner's visibility is controlled by this value.
    * @default undefined
    */
-  readonly controlledVisiblity?: boolean;
+  readonly visible?: boolean;
 }
 
 export function Banner({
@@ -44,12 +44,21 @@ export function Banner({
   dismissible = true,
   icon,
   onDismiss,
-  controlledVisiblity,
+  visible,
 }: BannerProps) {
-  const [showBanner, setShowBanner] = useState(true);
+  const localStateManagement = typeof visible === "undefined";
+
+  const [showBanner, setShowBanner] = useState(
+    localStateManagement ? true : visible,
+  );
+
+  useEffect(() => {
+    if (typeof visible === "boolean") {
+      setShowBanner(visible);
+    }
+  }, [visible]);
+
   const bannerIcon = icon || getBannerIcon(type);
-  const visible =
-    typeof controlledVisiblity === "undefined" ? true : controlledVisiblity;
 
   const bannerWidths = {
     small: 320,
@@ -76,7 +85,7 @@ export function Banner({
     [styles.medium]: bannerWidth >= bannerWidths.medium,
   });
 
-  if (!showBanner || !visible) return null;
+  if (!showBanner) return null;
 
   return (
     <div
@@ -110,7 +119,7 @@ export function Banner({
   );
 
   function handleClose() {
-    if (typeof controlledVisiblity === "undefined") {
+    if (localStateManagement) {
       setShowBanner(!showBanner);
     }
     onDismiss?.();

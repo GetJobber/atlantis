@@ -144,13 +144,13 @@ it("adds a role of alert for error banners", () => {
   expect(getByRole("alert")).toBeInstanceOf(HTMLDivElement);
 });
 
-it("doesn't hide the banner when controlledVisibility is true", () => {
+it("doesn't hide the banner when visible is true", () => {
   const onDismissMock = jest.fn();
   const { getByLabelText, getByText } = render(
     <Banner
       type="warning"
       dismissible={true}
-      controlledVisiblity={true}
+      visible={true}
       onDismiss={onDismissMock}
     >
       Foo
@@ -160,4 +160,86 @@ it("doesn't hide the banner when controlledVisibility is true", () => {
   fireEvent.click(getByLabelText("Dismiss notification"));
   expect(onDismissMock).toHaveBeenCalledTimes(1);
   expect(getByText("Foo")).toBeVisible();
+});
+
+it("hides the banner when visible flips to false", () => {
+  const onDismissMock = jest.fn();
+  const { queryByText, getByText, rerender } = render(
+    <Banner
+      type="warning"
+      dismissible={true}
+      visible={true}
+      onDismiss={onDismissMock}
+    >
+      Foo
+    </Banner>,
+  );
+  expect(getByText("Foo")).toBeVisible();
+  rerender(
+    <Banner
+      type="warning"
+      dismissible={true}
+      visible={false}
+      onDismiss={onDismissMock}
+    >
+      Foo
+    </Banner>,
+  );
+  expect(queryByText("Foo")).toBeNull();
+});
+
+it("Still shows the banner when moving from undefined to true", () => {
+  const onDismissMock = jest.fn();
+  const { rerender, getByText } = render(
+    <Banner type="warning" dismissible={true} onDismiss={onDismissMock}>
+      Foo
+    </Banner>,
+  );
+
+  rerender(
+    <Banner
+      type="warning"
+      dismissible={true}
+      visible={true}
+      onDismiss={onDismissMock}
+    >
+      Foo
+    </Banner>,
+  );
+
+  expect(getByText("Foo")).toBeVisible();
+});
+
+it("Hides the banner when moving from undefined to false", () => {
+  const onDismissMock = jest.fn();
+  const { rerender, queryByText } = render(
+    <Banner type="warning" dismissible={true} onDismiss={onDismissMock}>
+      Foo
+    </Banner>,
+  );
+
+  rerender(
+    <Banner
+      type="warning"
+      dismissible={true}
+      visible={false}
+      onDismiss={onDismissMock}
+    >
+      Foo
+    </Banner>,
+  );
+
+  expect(queryByText("Foo")).toBeNull();
+});
+
+it("Hides the banner when dismiss is clicked", () => {
+  const { queryByText, getByLabelText } = render(
+    <Banner type="warning" dismissible={true}>
+      Foo
+    </Banner>,
+  );
+
+  fireEvent.click(getByLabelText("Dismiss notification"));
+
+  expect(queryByText("Foo")).toBeNull();
 });
