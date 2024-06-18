@@ -23,6 +23,7 @@ export function DataListItemActionsOverflow<T extends DataListObject>({
           icon="more"
           ariaLabel="More actions"
           type="secondary"
+          size="small"
           variation="subtle"
           onClick={handleMoreClick}
         />

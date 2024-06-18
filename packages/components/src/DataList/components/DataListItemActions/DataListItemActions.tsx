@@ -21,8 +21,8 @@ export function DataListItemActions<T extends DataListObject>(
 }
 
 const variants: Variants = {
-  hidden: { opacity: 0, y: 10 },
-  visible: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: 0 },
+  visible: { opacity: 1, y: 4 },
 };
 
 interface InternalDataListItemActionsProps<T extends DataListObject> {

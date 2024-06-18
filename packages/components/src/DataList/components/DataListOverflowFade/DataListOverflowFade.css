@@ -16,7 +16,7 @@
 }
 
 .overflowItems {
-  gap: var(--space-small);
+  gap: var(--space-smaller);
 }
 
 .overflowGrid {
