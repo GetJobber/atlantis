@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.15.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.14.2...@jobber/components@5.15.0) (2024-06-18)
+
+
+### Features
+
+* **components:** Allow Banner dismiss to be controlled ([#1936](https://github.com/GetJobber/atlantis/issues/1936)) ([e5d4ac3](https://github.com/GetJobber/atlantis/commit/e5d4ac36c7d934d699034940cee93c17e556d367))
+
+
+
+
+
 ## [5.14.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.14.1...@jobber/components@5.14.2) (2024-06-18)
 
 
