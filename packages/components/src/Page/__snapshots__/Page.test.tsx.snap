@@ -15,11 +15,16 @@ exports[`When actions are provided renders a Page with action buttons and a menu
           class="titleBar small medium large"
         >
           <div>
-            <h1
-              class="base black jumbo heading"
+            <div
+              class="flexible baseGap centerAlign"
+              style="grid-template-columns: max-content max-content;"
             >
-              Notifications
-            </h1>
+              <h1
+                class="base black jumbo heading"
+              >
+                Notifications
+              </h1>
+            </div>
           </div>
           <div
             class="actionGroup"
@@ -121,11 +126,16 @@ exports[`renders a Page 1`] = `
           class="titleBar small medium large"
         >
           <div>
-            <h1
-              class="base black jumbo heading"
+            <div
+              class="flexible baseGap centerAlign"
+              style="grid-template-columns: max-content max-content;"
             >
-              Notifications
-            </h1>
+              <h1
+                class="base black jumbo heading"
+              >
+                Notifications
+              </h1>
+            </div>
           </div>
         </div>
         <p

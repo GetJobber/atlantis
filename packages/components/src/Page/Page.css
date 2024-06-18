@@ -86,3 +86,7 @@
 .titleBar .subtitle {
   margin-bottom: var(--space-base);
 }
+
+.titleRowAlignment {
+  align-items: center;
+}

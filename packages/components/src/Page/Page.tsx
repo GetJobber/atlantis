@@ -5,6 +5,7 @@ import {
   Breakpoints,
   useResizeObserver,
 } from "@jobber/hooks/useResizeObserver";
+import { Flex } from "@jobber/components/Flex";
 import styles from "./Page.css";
 import { Heading } from "../Heading";
 import { Text } from "../Text";
@@ -21,6 +22,12 @@ interface PageFoundationProps {
    * Title of the page.
    */
   readonly title: string;
+
+  /**
+   * TitleMetaData component to be displayed
+   * next to the title.
+   */
+  readonly titleMetaData?: ReactNode;
 
   /**
    * Subtitle of the page.
@@ -80,6 +87,7 @@ export type PageProps = XOR<PageFoundationProps, PageWithIntroProps>;
 // eslint-disable-next-line max-statements
 export function Page({
   title,
+  titleMetaData,
   intro,
   externalIntroLinks,
   subtitle,
@@ -126,7 +134,10 @@ export function Page({
         <Content>
           <div className={titleBarClasses} ref={titleBarRef}>
             <div>
-              <Heading level={1}>{title}</Heading>
+              <Flex template={["shrink", "shrink"]}>
+                <Heading level={1}>{title}</Heading>
+                {titleMetaData}
+              </Flex>
               {subtitle && (
                 <div className={styles.subtitle}>
                   <Text size="large" variation="subdued">
