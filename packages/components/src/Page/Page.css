@@ -22,6 +22,9 @@
 
 .titleBar h1 {
   flex: 0 1 auto;
+}
+
+.titleRow {
   margin-bottom: var(--space-base);
 }
 
@@ -85,8 +88,4 @@
 
 .titleBar .subtitle {
   margin-bottom: var(--space-base);
-}
-
-.titleRowAlignment {
-  align-items: center;
 }

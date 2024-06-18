@@ -134,10 +134,12 @@ export function Page({
         <Content>
           <div className={titleBarClasses} ref={titleBarRef}>
             <div>
-              <Flex template={["shrink", "shrink"]}>
-                <Heading level={1}>{title}</Heading>
-                {titleMetaData}
-              </Flex>
+              <div className={styles.titleRow}>
+                <Flex template={["shrink", "shrink"]}>
+                  <Heading level={1}>{title}</Heading>
+                  {titleMetaData}
+                </Flex>
+              </div>
               {subtitle && (
                 <div className={styles.subtitle}>
                   <Text size="large" variation="subdued">
