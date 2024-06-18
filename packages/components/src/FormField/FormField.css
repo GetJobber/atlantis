@@ -329,6 +329,7 @@
 
 .affixIcon.suffix {
   margin: 0 0 0 calc(var(--field--padding-right) * -1);
+  padding-left: var(--space-small);
 }
 
 .affixIcon.hasAction {
