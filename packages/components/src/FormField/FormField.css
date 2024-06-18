@@ -263,6 +263,10 @@
   padding-right: calc(var(--field--padding-right) + var(--base-unit) * 2);
 }
 
+.select option {
+  background-color: var(--field--background-color);
+}
+
 .text .label {
   padding-top: var(--field--padding-top);
   transform: translateY(var(--field--placeholder-transform));
