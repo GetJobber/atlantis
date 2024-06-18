@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.14.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.14.1...@jobber/components@5.14.2) (2024-06-18)
+
+
+### Bug Fixes
+
+* **components:** update options in FormField ([#1937](https://github.com/GetJobber/atlantis/issues/1937)) ([4a5d666](https://github.com/GetJobber/atlantis/commit/4a5d6660f057783406d631f0652c6a6568d5d0c9))
+
+
+
+
+
 ## [5.14.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.14.0...@jobber/components@5.14.1) (2024-06-17)
 
 
