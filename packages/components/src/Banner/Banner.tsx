@@ -48,8 +48,7 @@ export function Banner({
 }: BannerProps) {
   const [showBanner, setShowBanner] = useState(true);
   const bannerIcon = icon || getBannerIcon(type);
-  const visible =
-    typeof controlledVisiblity === "undefined" ? true : controlledVisiblity;
+  const visible = controlledVisiblity ?? true;
 
   const bannerWidths = {
     small: 320,
