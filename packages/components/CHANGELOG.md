@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.15.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.15.0...@jobber/components@5.15.1) (2024-06-18)
+
+
+### Bug Fixes
+
+* **components:** Adjust style of section headings in autocomplete ([#1929](https://github.com/GetJobber/atlantis/issues/1929)) ([beacf93](https://github.com/GetJobber/atlantis/commit/beacf9333cd924d1b78c57eaf6abbd61c120ee07))
+
+
+
+
+
 # [5.15.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.14.2...@jobber/components@5.15.0) (2024-06-18)
 
 
