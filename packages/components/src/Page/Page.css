@@ -25,7 +25,11 @@
 }
 
 .titleRow {
+  display: flex;
   margin-bottom: var(--space-base);
+  flex-wrap: wrap;
+  gap: var(--space-base);
+  align-items: center;
 }
 
 .titleBar > .actionGroup {

@@ -18,16 +18,11 @@ exports[`When actions are provided renders a Page with action buttons and a menu
             <div
               class="titleRow"
             >
-              <div
-                class="flexible baseGap centerAlign"
-                style="grid-template-columns: max-content max-content;"
+              <h1
+                class="base black jumbo heading"
               >
-                <h1
-                  class="base black jumbo heading"
-                >
-                  Notifications
-                </h1>
-              </div>
+                Notifications
+              </h1>
             </div>
           </div>
           <div
@@ -133,16 +128,11 @@ exports[`renders a Page 1`] = `
             <div
               class="titleRow"
             >
-              <div
-                class="flexible baseGap centerAlign"
-                style="grid-template-columns: max-content max-content;"
+              <h1
+                class="base black jumbo heading"
               >
-                <h1
-                  class="base black jumbo heading"
-                >
-                  Notifications
-                </h1>
-              </div>
+                Notifications
+              </h1>
             </div>
           </div>
         </div>

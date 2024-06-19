@@ -5,7 +5,6 @@ import {
   Breakpoints,
   useResizeObserver,
 } from "@jobber/hooks/useResizeObserver";
-import { Flex } from "@jobber/components/Flex";
 import styles from "./Page.css";
 import { Heading } from "../Heading";
 import { Text } from "../Text";
@@ -135,10 +134,8 @@ export function Page({
           <div className={titleBarClasses} ref={titleBarRef}>
             <div>
               <div className={styles.titleRow}>
-                <Flex template={["shrink", "shrink"]}>
-                  <Heading level={1}>{title}</Heading>
-                  {titleMetaData}
-                </Flex>
+                <Heading level={1}>{title}</Heading>
+                {titleMetaData}
               </div>
               {subtitle && (
                 <div className={styles.subtitle}>
