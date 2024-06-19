@@ -8,14 +8,18 @@ import React, {
   useImperativeHandle,
   useState,
 } from "react";
-import { Controller, useForm, useFormContext } from "react-hook-form";
+import {
+  Controller,
+  FieldErrors,
+  useForm,
+  useFormContext,
+} from "react-hook-form";
+import get from "lodash/get";
 import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.css";
 import { FormFieldWrapper } from "./FormFieldWrapper";
 import { FormFieldPostFix } from "./FormFieldPostFix";
 
-// Added 13th statement to accommodate getErrorMessage function
-/*eslint max-statements: ["error", 13]*/
 export function FormField(props: FormFieldProps) {
   const {
     actionsRef,
@@ -80,8 +84,7 @@ export function FormField(props: FormFieldProps) {
     },
   }));
 
-  const message = errors[controlledName]?.message;
-  const error = getErrorMessage();
+  const error = extractErrorMessage(errors, controlledName);
   useEffect(() => handleValidation(), [error]);
 
   return (
@@ -226,14 +229,6 @@ export function FormField(props: FormFieldProps) {
     />
   );
 
-  function getErrorMessage() {
-    if (typeof message === "string") {
-      return message;
-    }
-
-    return "";
-  }
-
   function handleValidation() {
     onValidation && onValidation(error);
   }
@@ -249,4 +244,14 @@ function setAutocomplete(
   }
 
   return autocompleteSetting;
+}
+
+function extractErrorMessage(errors: FieldErrors, fieldName: string): string {
+  // we use lodash.get to access nested properties
+  // nested properties have a format of `parent.0.child`
+  // react-hook-form recommends it themselves at
+  // https://www.react-hook-form.com/advanced-usage/#ErrorMessages
+  const error = get(errors, fieldName);
+
+  return String(error?.message || "");
 }
