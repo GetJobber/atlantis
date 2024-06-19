@@ -88,7 +88,7 @@ CustomActivator.args = {
         {
           label: "Delete",
           icon: "trash",
-          buttonVariation: "destructive",
+          destructive: true,
           onClick: () => {
             alert("🗑️");
           },

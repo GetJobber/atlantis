@@ -267,7 +267,7 @@ export interface ActionProps {
   /**
    * Visual style for the action button
    */
-  readonly buttonVariation?: "default" | "destructive";
+  readonly destructive?: boolean;
 
   /**
    * Callback when an action gets clicked
@@ -279,12 +279,12 @@ function Action({
   label,
   sectionLabel,
   icon,
-  buttonVariation,
+  destructive,
   onClick,
 }: ActionProps) {
   const actionButtonRef = useRef() as RefObject<HTMLButtonElement>;
   const buttonClasses = classnames(styles.action, {
-    [styles.destructive]: buttonVariation === "destructive",
+    [styles.destructive]: destructive,
   });
 
   return (
@@ -296,7 +296,9 @@ function Action({
       onClick={onClick}
       ref={actionButtonRef}
     >
-      {icon && <Icon name={icon} />}
+      {icon && (
+        <Icon color={destructive ? "destructive" : undefined} name={icon} />
+      )}
       <Typography
         element="span"
         fontWeight="semiBold"
