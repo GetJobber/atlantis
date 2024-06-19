@@ -10,11 +10,10 @@ import React, {
 } from "react";
 import {
   Controller,
-  FieldErrors,
+  useController,
   useForm,
   useFormContext,
 } from "react-hook-form";
-import get from "lodash/get";
 import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.css";
 import { FormFieldWrapper } from "./FormFieldWrapper";
@@ -51,15 +50,11 @@ export function FormField(props: FormFieldProps) {
     autofocus,
   } = props;
 
-  const {
-    control,
-    formState: { errors },
-    setValue,
-    watch,
-  } = useFormContext() != undefined
-    ? useFormContext()
-    : // If there isn't a Form Context being provided, get a form for this field.
-      useForm({ mode: "onTouched" });
+  const { control, setValue, watch } =
+    useFormContext() != undefined
+      ? useFormContext()
+      : // If there isn't a Form Context being provided, get a form for this field.
+        useForm({ mode: "onTouched" });
 
   const [identifier] = useState(useId());
   const [descriptionIdentifier] = useState(`descriptionUUID--${useId()}`);
@@ -84,7 +79,11 @@ export function FormField(props: FormFieldProps) {
     },
   }));
 
-  const error = extractErrorMessage(errors, controlledName);
+  const {
+    fieldState: { error },
+  } = useController({ name: controlledName, control });
+  const errorMessage = error?.message || "";
+
   useEffect(() => handleValidation(), [error]);
 
   return (
@@ -127,7 +126,7 @@ export function FormField(props: FormFieldProps) {
           <FormFieldWrapper
             {...props}
             value={rest.value}
-            error={error}
+            error={errorMessage}
             identifier={identifier}
             descriptionIdentifier={descriptionIdentifier}
             clearable={clearable}
@@ -230,7 +229,7 @@ export function FormField(props: FormFieldProps) {
   );
 
   function handleValidation() {
-    onValidation && onValidation(error);
+    onValidation && onValidation(errorMessage);
   }
 }
 
@@ -244,14 +243,4 @@ function setAutocomplete(
   }
 
   return autocompleteSetting;
-}
-
-function extractErrorMessage(errors: FieldErrors, fieldName: string): string {
-  // we use lodash.get to access nested properties
-  // nested properties have a format of `parent.0.child`
-  // react-hook-form recommends it themselves at
-  // https://www.react-hook-form.com/advanced-usage/#ErrorMessages
-  const error = get(errors, fieldName);
-
-  return String(error?.message || "");
 }
