@@ -8,12 +8,7 @@ import React, {
   useImperativeHandle,
   useState,
 } from "react";
-import {
-  Controller,
-  useController,
-  useForm,
-  useFormContext,
-} from "react-hook-form";
+import { Controller, useForm, useFormContext } from "react-hook-form";
 import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.css";
 import { FormFieldWrapper } from "./FormFieldWrapper";
@@ -79,13 +74,6 @@ export function FormField(props: FormFieldProps) {
     },
   }));
 
-  const {
-    fieldState: { error },
-  } = useController({ name: controlledName, control });
-  const errorMessage = error?.message || "";
-
-  useEffect(() => handleValidation(), [errorMessage]);
-
   return (
     <Controller
       control={control}
@@ -99,7 +87,12 @@ export function FormField(props: FormFieldProps) {
           name: controllerName,
           ...rest
         },
+        fieldState: { error },
       }) => {
+        const errorMessage = error?.message || "";
+
+        useEffect(() => handleValidation(errorMessage), [errorMessage]);
+
         const fieldProps = {
           ...rest,
           id: identifier,
@@ -228,7 +221,7 @@ export function FormField(props: FormFieldProps) {
     />
   );
 
-  function handleValidation() {
+  function handleValidation(errorMessage: string) {
     onValidation && onValidation(errorMessage);
   }
 }
