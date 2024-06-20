@@ -15,8 +15,8 @@ interface Action {
 }
 
 interface ButtonAction {
-  action?: Action;
-  type: ButtonType;
+  readonly action?: Action;
+  readonly type: ButtonType;
 }
 
 function ButtonAction({ action, type }: ButtonAction) {

@@ -1,6 +1,5 @@
 import React, { ReactNode } from "react";
 import { Typography, TypographyOptions } from "../Typography";
-import { getAtlantisConfig } from "../utils/getAtlantisConfig";
 
 type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
@@ -10,30 +9,32 @@ interface HeadingProps {
    */
   readonly level: HeadingLevel;
   readonly children: ReactNode;
+  /**
+   * Allows overriding of the element rendered. Defaults to the heading specified with level.
+   */
+  readonly element?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
 }
 
 export type LevelMap = Record<HeadingLevel, TypographyOptions>;
 
-export function Heading({ level = 5, children }: HeadingProps) {
-  const { JOBBER_RETHEME: inRetheme } = getAtlantisConfig();
-
+export function Heading({ level = 5, children, element }: HeadingProps) {
   const levelMap: LevelMap = {
     1: {
       element: "h1",
       size: "jumbo",
-      fontWeight: inRetheme ? "extraBold" : "black",
+      fontWeight: "black",
       textColor: "heading",
     },
     2: {
       element: "h2",
       size: "largest",
-      fontWeight: inRetheme ? "bold" : "black",
+      fontWeight: "bold",
       textColor: "heading",
     },
     3: {
       element: "h3",
       size: "larger",
-      fontWeight: inRetheme ? "bold" : "extraBold",
+      fontWeight: "bold",
       textColor: "heading",
     },
     4: {
@@ -52,10 +53,17 @@ export function Heading({ level = 5, children }: HeadingProps) {
       element: "h6",
       size: "small",
       textCase: "uppercase",
-      fontWeight: inRetheme ? "semiBold" : "bold",
+      fontWeight: "bold",
       textColor: "heading",
     },
   };
 
-  return <Typography {...levelMap[level]}>{children}</Typography>;
+  return (
+    <Typography
+      {...levelMap[level]}
+      element={element || levelMap[level].element}
+    >
+      {children}
+    </Typography>
+  );
 }

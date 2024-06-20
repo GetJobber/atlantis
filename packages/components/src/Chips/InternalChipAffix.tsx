@@ -18,6 +18,7 @@ export function InternalChipAffix({
   disabled,
 }: InternalChipAffixProps) {
   assertProps();
+
   if (affix?.type === Avatar) {
     return <Avatar {...(affix.props as AvatarProps)} size="small" />;
   }
@@ -49,6 +50,7 @@ export function InternalChipAffix({
     if (disabled && !active) return "disabled";
     if (invalid && !disabled) return "critical";
     if (active) return "white";
+
     return;
   }
 

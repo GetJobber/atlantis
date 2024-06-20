@@ -67,9 +67,7 @@ export function Toast({
           }}
         >
           <div className={styles.slice}>
-            <div className={styles.icon}>
-              <Icon color={icon.color} name={icon.name} />
-            </div>
+            <Icon color={icon.color} name={icon.name} />
 
             <Typography element="span" size="large">
               {message}
@@ -117,6 +115,7 @@ export function Toast({
 
     if (time < min) return min;
     if (time > max) return max;
+
     return time;
   }
 

@@ -1,1 +1,2 @@
-export const alphaComponents = ["DataList", "Combobox"];
+export const alphaComponents = ["DataList", "Combobox", "Box", "SideDrawer"];
+export const alphaMobileComponents = ["Menu"]

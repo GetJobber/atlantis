@@ -24,6 +24,7 @@ export const Basic = BasicTemplate.bind({});
 
 const ControlledTemplate: ComponentStory<typeof Switch> = args => {
   const [value, setValue] = useState(false);
+
   return (
     <>
       <Button onClick={() => setValue(!value)} label="Controlled Example" />

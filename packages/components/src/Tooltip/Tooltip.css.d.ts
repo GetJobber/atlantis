@@ -3,8 +3,10 @@ declare const styles: {
   readonly "tooltipWrapper": string;
   readonly "tooltip": string;
   readonly "arrow": string;
-  readonly "above": string;
-  readonly "below": string;
+  readonly "top": string;
+  readonly "bottom": string;
+  readonly "left": string;
+  readonly "right": string;
   readonly "tooltipMessage": string;
 };
 export = styles;

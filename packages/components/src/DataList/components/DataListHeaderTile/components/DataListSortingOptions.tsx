@@ -38,7 +38,7 @@ export function DataListSortingOptions({
       {options.map(option => (
         <li
           className={styles.option}
-          key={option.id}
+          key={`${option.id}${option.order}`}
           onClick={() => onSelectChange(option)}
           onKeyDown={event => handleKeyDown(event, option)}
           tabIndex={0}

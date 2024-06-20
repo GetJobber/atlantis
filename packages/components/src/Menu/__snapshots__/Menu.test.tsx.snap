@@ -5,12 +5,15 @@ exports[`Menu renders 1`] = `
   <div
     class="wrapper"
   >
+    <span
+      class="shadowRef"
+    />
     <button
-      aria-controls="123e4567-e89b-12d3-a456-426655440004"
+      aria-controls=":r1:"
       aria-expanded="false"
       aria-haspopup="true"
       class="button base hasIconAndLabel work secondary fullWidth"
-      id="123e4567-e89b-12d3-a456-426655440003"
+      id=":r0:"
       type="button"
     >
       <svg
@@ -25,7 +28,7 @@ exports[`Menu renders 1`] = `
         />
       </svg>
       <span
-        class="base extraBold base base"
+        class="base semiBold base base"
       >
         More Actions
       </span>
@@ -39,16 +42,19 @@ exports[`Menu with custom activator renders 1`] = `
   <div
     class="wrapper"
   >
+    <span
+      class="shadowRef"
+    />
     <button
-      aria-controls="123e4567-e89b-12d3-a456-426655440040"
+      aria-controls=":rc:"
       aria-expanded="false"
       aria-haspopup="true"
       class="button base work primary"
-      id="123e4567-e89b-12d3-a456-426655440039"
+      id=":rb:"
       type="button"
     >
       <span
-        class="base extraBold base base"
+        class="base semiBold base base"
       >
         Menu
       </span>

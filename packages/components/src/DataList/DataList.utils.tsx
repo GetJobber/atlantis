@@ -66,12 +66,12 @@ export function generateListItemElement<T extends DataListObject>(item: T) {
       acc[key] = currentItem;
     } else if (currentItem instanceof Date) {
       acc[key] = (
-        <Text variation="subdued">
+        <Text>
           <FormatDate date={currentItem} />
         </Text>
       );
     } else {
-      acc[key] = <Text variation="subdued">{currentItem}</Text>;
+      acc[key] = <Text>{currentItem}</Text>;
     }
 
     return acc;

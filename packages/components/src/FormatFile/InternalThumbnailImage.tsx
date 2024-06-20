@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classNames from "classnames";
 import styles from "./InternalThumbnailImage.css";
 import { FileUpload } from "../InputFile";
@@ -13,9 +13,9 @@ export function InternalThumbnailImage({ file }: InternalThumbnailImageProps) {
   const [imageSource, setImageSource] = useState<string>();
   const [imageLoaded, setImageLoaded] = useState<boolean>(false);
 
-  if (!imageSource) {
+  useEffect(() => {
     src().then(url => setImageSource(url));
-  }
+  }, []);
 
   return (
     <>
@@ -23,6 +23,7 @@ export function InternalThumbnailImage({ file }: InternalThumbnailImageProps) {
 
       <img
         src={imageSource}
+        onError={file.onImageLoadError}
         onLoad={handleImageLoad}
         alt={name}
         data-testid="internalThumbnailImage"

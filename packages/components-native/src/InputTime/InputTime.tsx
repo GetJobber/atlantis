@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import { FieldError, UseControllerProps } from "react-hook-form";
 import { XOR } from "ts-xor";
 import DateTimePicker from "react-native-modal-datetime-picker";
-import { View } from "react-native";
+import { Keyboard, View } from "react-native";
 import { Clearable } from "@jobber/hooks";
 import { styles } from "./InputTime.style";
 import { getTimeZoneOffsetInMinutes, roundUpToNearestMinutes } from "./utils";
@@ -159,6 +159,7 @@ function InternalInputTime({
         clearable={canClearTime}
         disabled={disabled}
         invalid={invalid}
+        focused={showPicker}
         placeholder={placeholder ?? t("time")}
         prefix={showIcon ? { icon: "timer" } : undefined}
         value={formattedTime}
@@ -181,6 +182,7 @@ function InternalInputTime({
   );
 
   function showDatePicker() {
+    Keyboard.dismiss();
     setShowPicker(true);
   }
 

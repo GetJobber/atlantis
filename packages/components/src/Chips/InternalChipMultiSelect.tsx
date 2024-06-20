@@ -19,6 +19,7 @@ export function InternalChipMultiSelect({
     <div className={styles.wrapper} data-testid="multiselect-chips">
       {React.Children.map(children, chip => {
         const isChipActive = isChipSelected(chip.props.value);
+
         return (
           <label>
             <input
@@ -76,6 +77,7 @@ export function InternalChipMultiSelect({
     //
     // DO NOT COPY!
     if (!show) return;
+
     return <Icon name="checkmark" />;
   }
 }

@@ -27,6 +27,7 @@ export default {
 
 const BasicTemplate: ComponentStory<typeof RadioGroup> = args => {
   const [company, setCompany] = useState("apple");
+
   return (
     <RadioGroup
       {...args}
@@ -44,6 +45,7 @@ const BasicTemplate: ComponentStory<typeof RadioGroup> = args => {
 const DisabledTemplate: ComponentStory<typeof RadioGroup> = args => {
   const [company, setCompany] = useState("apple");
   const [checked, setChecked] = useState(true);
+
   return (
     <Content spacing="large">
       <RadioGroup
@@ -69,6 +71,7 @@ const DisabledTemplate: ComponentStory<typeof RadioGroup> = args => {
 
 const DescriptionTemplate: ComponentStory<typeof RadioGroup> = args => {
   const [company, setCompany] = useState("apple");
+
   return (
     <RadioGroup
       {...args}

@@ -51,6 +51,7 @@ export function useFormController<T>({
   // TODO: Add support for two-part identifiers (e.g. "property.province")
   const fieldIdentifiers = fieldName.split(".");
   let error: FieldError | undefined;
+
   if (fieldIdentifiers.length === 3) {
     const [section, item, identifier] = fieldIdentifiers;
     error = errors[section]?.[item]?.[identifier];
@@ -64,5 +65,6 @@ export function useFormController<T>({
 function useControlName(name?: string): UseControllerReturn["field"]["name"] {
   const [identifier] = useState(v1());
   const prefix = `generatedName--${identifier}`;
+
   return `${name || prefix}` as const;
 }

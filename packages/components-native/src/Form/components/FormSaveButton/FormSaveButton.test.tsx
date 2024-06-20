@@ -16,11 +16,11 @@ interface TestSecondaryActionProp {
   destructive?: boolean;
 }
 interface TestFormSaveButtonProps {
-  primaryAction: () => Promise<void>;
-  loading: boolean;
-  label?: string;
-  secondaryAction?: TestSecondaryActionProp[];
-  setSecondaryActionLoading: (bool: boolean) => void;
+  readonly primaryAction: () => Promise<void>;
+  readonly loading: boolean;
+  readonly label?: string;
+  readonly secondaryAction?: TestSecondaryActionProp[];
+  readonly setSecondaryActionLoading: (bool: boolean) => void;
 }
 jest.mock("react-hook-form", () => ({
   ...jest.requireActual("react-hook-form"),

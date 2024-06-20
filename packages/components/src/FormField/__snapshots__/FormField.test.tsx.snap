@@ -10,17 +10,22 @@ exports[`FormField when small renders 1`] = `
       data-testid="Form-Field-Wrapper"
     >
       <div
-        class="inputWrapper"
+        class="horizontalWrapper"
       >
         <div
-          class="childrenWrapper"
+          class="inputWrapper"
         >
-          <input
-            class="input"
-            id="123e4567-e89b-12d3-a456-426655440009"
-            type="text"
-            value=""
-          />
+          <div
+            class="childrenWrapper"
+            tabindex="-1"
+          >
+            <input
+              class="input"
+              id=":r8:"
+              type="text"
+              value=""
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -38,17 +43,22 @@ exports[`FormField with no props renders 1`] = `
       data-testid="Form-Field-Wrapper"
     >
       <div
-        class="inputWrapper"
+        class="horizontalWrapper"
       >
         <div
-          class="childrenWrapper"
+          class="inputWrapper"
         >
-          <input
-            class="input"
-            id="123e4567-e89b-12d3-a456-426655440001"
-            type="text"
-            value=""
-          />
+          <div
+            class="childrenWrapper"
+            tabindex="-1"
+          >
+            <input
+              class="input"
+              id=":r0:"
+              type="text"
+              value=""
+            />
+          </div>
         </div>
       </div>
     </div>

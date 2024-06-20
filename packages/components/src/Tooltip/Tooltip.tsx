@@ -1,14 +1,12 @@
-import React, {
-  ReactElement,
-  ReactNode,
-  useLayoutEffect,
-  useState,
-} from "react";
+import React, { ReactElement, ReactNode, useState } from "react";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
 import { motion } from "framer-motion";
+import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
+import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import styles from "./Tooltip.css";
 import { useTooltipPositioning } from "./useTooltipPositioning";
+import { Placement } from "./Tooltip.types";
 
 const variation = {
   startOrStop: { scale: 0.6, opacity: 0 },
@@ -21,9 +19,18 @@ interface TooltipProps {
    * Tooltip text
    */
   readonly message: string;
+  /**
+   * Describes the preferred placement of the Popover.
+   * @default 'top'
+   */
+  readonly preferredPlacement?: Placement;
 }
 
-export function Tooltip({ message, children }: TooltipProps) {
+export function Tooltip({
+  message,
+  children,
+  preferredPlacement = "top",
+}: TooltipProps) {
   const [show, setShow] = useState(false);
 
   const {
@@ -33,14 +40,16 @@ export function Tooltip({ message, children }: TooltipProps) {
     styles: popperStyles,
     setArrowRef,
     setTooltipRef,
-  } = useTooltipPositioning();
+  } = useTooltipPositioning({ preferredPlacement: preferredPlacement });
 
   initializeListeners();
 
   const toolTipClassNames = classnames(
     styles.tooltipWrapper,
-    placement === "bottom" && styles.below,
-    placement === "top" && styles.above,
+    placement === "bottom" && styles.bottom,
+    placement === "top" && styles.top,
+    placement === "left" && styles.left,
+    placement === "right" && styles.right,
   );
 
   return (
@@ -121,7 +130,7 @@ export function Tooltip({ message, children }: TooltipProps) {
       }
     };
 
-    useLayoutEffect(() => {
+    useSafeLayoutEffect(() => {
       injectAttributes();
       addListeners();
 
@@ -133,9 +142,15 @@ export function Tooltip({ message, children }: TooltipProps) {
 }
 
 interface TooltipPortalProps {
-  children: ReactNode;
+  readonly children: ReactNode;
 }
 
 function TooltipPortal({ children }: TooltipPortalProps) {
+  const mounted = useIsMounted();
+
+  if (!mounted?.current) {
+    return null;
+  }
+
   return ReactDOM.createPortal(children, document.body);
 }

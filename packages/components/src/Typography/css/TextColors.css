@@ -50,6 +50,10 @@
   color: var(--color-text--secondary);
 }
 
+.inactive {
+  color: var(--color-inactive--onSurface);
+}
+
 .critical {
   color: var(--color-critical);
 }
@@ -64,6 +68,10 @@
 
 .success {
   color: var(--color-success--onSurface);
+}
+
+.interactive {
+  color: var(--color-interactive);
 }
 
 .disabled {

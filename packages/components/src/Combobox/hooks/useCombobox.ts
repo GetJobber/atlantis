@@ -53,6 +53,7 @@ export function useCombobox(
     onSelect,
     multiSelect,
     onClose,
+    onSearch,
   );
 
   const internalFilteredOptions = options.filter(option =>

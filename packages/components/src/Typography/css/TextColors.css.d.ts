@@ -12,10 +12,12 @@ declare const styles: {
   readonly "heading": string;
   readonly "text": string;
   readonly "textSecondary": string;
+  readonly "inactive": string;
   readonly "critical": string;
   readonly "warning": string;
   readonly "informative": string;
   readonly "success": string;
+  readonly "interactive": string;
   readonly "disabled": string;
 };
 export = styles;

@@ -93,6 +93,7 @@ function getSvgStyle(classNames = ""): SvgProps["style"] & FillProps {
     ...colorsClassMap,
   };
   const svgStyle = getStylesForClassNames(classNames.split(" "), classMap);
+
   return { ...svgStyle, display: "flex" };
 }
 

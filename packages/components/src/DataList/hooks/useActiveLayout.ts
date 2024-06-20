@@ -11,5 +11,6 @@ export function useActiveLayout() {
     layoutBreakpoints[0];
 
   const layout = layouts[activeBreakpoint];
+
   return { layout, activeBreakpoint };
 }

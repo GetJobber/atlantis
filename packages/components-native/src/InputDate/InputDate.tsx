@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import DateTimePicker from "react-native-modal-datetime-picker";
-import { Platform } from "react-native";
+import { Keyboard, Platform } from "react-native";
 import { FieldError, UseControllerProps } from "react-hook-form";
 import { XOR } from "ts-xor";
 import { Clearable } from "@jobber/hooks";
@@ -174,6 +174,7 @@ function InternalInputDate({
   return (
     <>
       <InputPressable
+        focused={showPicker}
         clearable={canClearDate}
         disabled={disabled}
         invalid={invalid}
@@ -203,6 +204,7 @@ function InternalInputDate({
   );
 
   function showDatePicker() {
+    Keyboard.dismiss();
     setShowPicker(true);
   }
 

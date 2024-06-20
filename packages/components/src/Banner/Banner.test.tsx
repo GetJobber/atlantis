@@ -7,9 +7,11 @@ it("renders a success banner", () => {
   expect(container).toMatchSnapshot();
 });
 
-it("adds an error class to error banners", () => {
-  const { getByRole } = render(<Banner type="error">Fail</Banner>);
-  expect(getByRole("alert").classList).toContain("error");
+it("renders an error banner", () => {
+  const { container } = render(
+    <Banner type="error">Something went wrong</Banner>,
+  );
+  expect(container).toMatchSnapshot();
 });
 
 it("renders a notice banner", () => {
@@ -28,7 +30,7 @@ it("renders without close button", () => {
       Foo
     </Banner>,
   );
-  expect(queryByLabelText("Close this notification")).toBeNull();
+  expect(queryByLabelText("Dismiss notification")).toBeNull();
 });
 
 it("renders with close button", () => {
@@ -37,7 +39,7 @@ it("renders with close button", () => {
       Foo
     </Banner>,
   );
-  expect(queryByLabelText("Close this notification")).toBeTruthy();
+  expect(queryByLabelText("Dismiss notification")).toBeTruthy();
 });
 
 test("should call the handler with a number value", () => {
@@ -49,7 +51,7 @@ test("should call the handler with a number value", () => {
     </Banner>,
   );
 
-  fireEvent.click(getByLabelText("Close this notification"));
+  fireEvent.click(getByLabelText("Dismiss notification"));
   expect(changeHandler).toHaveBeenCalledTimes(1);
 });
 
@@ -137,7 +139,25 @@ it("adds a role of status by default", () => {
   expect(getByRole("status")).toBeInstanceOf(HTMLDivElement);
 });
 
-it("adds a role of error for error banners", () => {
+it("adds a role of alert for error banners", () => {
   const { getByRole } = render(<Banner type="error">Bruce</Banner>);
   expect(getByRole("alert")).toBeInstanceOf(HTMLDivElement);
+});
+
+it("doesn't hide the banner when controlledVisibility is true", () => {
+  const onDismissMock = jest.fn();
+  const { getByLabelText, getByText } = render(
+    <Banner
+      type="warning"
+      dismissible={true}
+      controlledVisiblity={true}
+      onDismiss={onDismissMock}
+    >
+      Foo
+    </Banner>,
+  );
+
+  fireEvent.click(getByLabelText("Dismiss notification"));
+  expect(onDismissMock).toHaveBeenCalledTimes(1);
+  expect(getByText("Foo")).toBeVisible();
 });

@@ -14,17 +14,19 @@ export function useMakeComboboxHandlers(
   selectedStateSetter: (selected: ComboboxOption[]) => void,
   multiSelect?: boolean,
   onClose?: () => void,
+  onSearch?: (searchValue: string) => void,
 ): UseMakeComboboxHandlersReturn {
   const handleClose = useCallback(() => {
     setOpen(false);
     setSearchValue("");
 
+    onSearch && onSearch("");
     onClose && onClose();
 
     if (selectedOptions.length > 0) {
       shouldScroll.current = true;
     }
-  }, [setOpen, setSearchValue, onClose, selectedOptions.length]);
+  }, [setOpen, setSearchValue, onClose, onSearch, selectedOptions.length]);
 
   const handleSelection = useCallback(
     (selection: ComboboxOption) => {

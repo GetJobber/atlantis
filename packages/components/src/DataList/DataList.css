@@ -32,6 +32,10 @@
   grid-template-columns: auto fit-content(calc(var(--base-unit) * 14));
 }
 
+.headerFilters:empty {
+  display: none;
+}
+
 .headerTitles {
   display: flex;
   flex-direction: column;

@@ -3,12 +3,12 @@ import { fireEvent, render } from "@testing-library/react";
 import { Modal } from ".";
 import styles from "./Modal.css";
 
-test('modal contains aria role of "dialog"', async () => {
+it('modal contains aria role of "dialog"', async () => {
   const { findByRole } = render(<Modal open>Content</Modal>);
   expect(await findByRole("dialog")).toBeInTheDocument();
 });
 
-test("modal shows the children and a close button", () => {
+it("modal shows the children and a close button", () => {
   const title = "Dis be a title";
   const content = "Dis be a content 🎉";
   const handleClose = jest.fn();
@@ -26,12 +26,12 @@ test("modal shows the children and a close button", () => {
   expect(handleClose).toHaveBeenCalledTimes(1);
 });
 
-test("modal without a title doesn't show the header", () => {
+it("modal without a title doesn't show the header", () => {
   const { queryByTestId } = render(<Modal open={true}>Content</Modal>);
   expect(queryByTestId("modal-header")).toBeNull();
 });
 
-test("modal doesn't show up", () => {
+it("modal doesn't show up", () => {
   const title = "Dis be a title";
   const content = "Dis be a content 🎉";
   const { queryByText } = render(<Modal title={title}>{content}</Modal>);
@@ -39,7 +39,7 @@ test("modal doesn't show up", () => {
   expect(queryByText(content)).toBeNull();
 });
 
-test("modal shows the action buttons", () => {
+it("modal shows the action buttons", () => {
   const handlePrimaryAction = jest.fn();
   const handleSecondaryAction = jest.fn();
   const handleTertiaryAction = jest.fn();
@@ -65,7 +65,7 @@ test("modal shows the action buttons", () => {
   expect(handleTertiaryAction).toHaveBeenCalledTimes(1);
 });
 
-test("modal fires onRequestClose when pressing the escape key", () => {
+it("modal fires onRequestClose when pressing the escape key", () => {
   const handleClose = jest.fn();
 
   const { getByLabelText } = render(
@@ -78,7 +78,7 @@ test("modal fires onRequestClose when pressing the escape key", () => {
   expect(handleClose).toHaveBeenCalledTimes(1);
 });
 
-test("modal gets focused once it opens", () => {
+it("modal gets focused once it opens", () => {
   const title = "Dis be a title";
   const content = "Dis be a content 🎉";
   const handleClose = jest.fn();
@@ -95,4 +95,25 @@ test("modal gets focused once it opens", () => {
 
   const containerEl = baseElement.querySelector(`.${styles.container}`);
   expect(containerEl).toHaveFocus();
+});
+
+it("modal shows with primary learning button", () => {
+  const { baseElement } = render(
+    <Modal
+      title="Teaching Modal"
+      open={true}
+      primaryAction={{
+        label: "I Would Like to Know More",
+        variation: "learning",
+      }}
+      secondaryAction={{
+        label: "Nevermind",
+      }}
+    >
+      Learn a lesson?
+    </Modal>,
+  );
+  const learningButton = baseElement.querySelector(".learning.primary");
+  expect(learningButton).toBeTruthy();
+  expect(learningButton).toHaveTextContent("I Would Like to Know More");
 });

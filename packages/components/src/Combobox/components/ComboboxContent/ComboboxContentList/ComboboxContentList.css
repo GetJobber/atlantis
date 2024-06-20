@@ -5,6 +5,7 @@
 
 .optionsList {
   display: flex;
+
   max-height: calc(var(--space-small) * 33.33);
   margin: 0;
   padding: 0;
@@ -34,17 +35,17 @@
   bottom: var(--space-small);
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgb(255, 255, 255) 100%
+    transparent 0%,
+    var(--color-surface) 100%
   );
 }
 
 .container::before {
   top: var(--space-small);
   background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 1),
-    rgba(255, 255, 255, 0)
+    180deg,
+    var(--color-surface) 0%,
+    transparent 100%
   );
 }
 
@@ -60,4 +61,16 @@
 
 .loadingContainer {
   padding: var(--space-base) var(--space-base);
+}
+
+.loadingContainer.hasOptions {
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  bottom: 0;
+  padding: var(--space-base) 0;
+}
+
+.loadingContainer.hasOptions:empty {
+  display: none;
 }

@@ -2,16 +2,18 @@ import React, { useEffect, useState } from "react";
 import classnames from "classnames";
 import { Text } from "@jobber/components/Text";
 import { Glimmer } from "@jobber/components/Glimmer";
+import { Spinner } from "@jobber/components/Spinner";
+import { AnimatedPresence } from "@jobber/components/AnimatedPresence";
 import styles from "./ComboboxContentList.css";
 import {
   ComboboxListProps,
   ComboboxOption as ComboboxOptionType,
 } from "../../../Combobox.types";
 import { ComboboxOption } from "../../ComboboxOption/ComboboxOption";
+import { ComboboxLoadMore } from "../ComboboxLoadMore";
 
 export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
   const optionsExist = props.options.length > 0;
-  const showOptions = optionsExist && !props.loading;
   const hasSearchTerm = props.searchValue.length > 0;
   const { listScrollState } = useScrollState(
     props.optionsListRef,
@@ -32,29 +34,43 @@ export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
           aria-multiselectable={props.multiselect}
           ref={props.optionsListRef}
         >
-          {showOptions &&
-            props.options.map(option => {
-              return (
-                <ComboboxOption
-                  key={option.id}
-                  id={option.id}
-                  label={option.label}
-                />
-              );
-            })}
-          {props.loading && (
-            <>
-              {Array.from({ length: 5 }).map((_, index) => (
-                <div className={styles.loadingContainer} key={index}>
-                  <Glimmer shape="rectangle" size="small" />
-                </div>
-              ))}
-            </>
+          {props.options.map(option => {
+            return (
+              <ComboboxOption
+                key={option.id}
+                id={option.id}
+                label={option.label}
+                prefix={option.prefix}
+              />
+            );
+          })}
+
+          <div
+            className={classnames([styles.loadingContainer, styles.hasOptions])}
+          >
+            <AnimatedPresence transition="fromBottom">
+              {Boolean(props.loading && optionsExist) && (
+                <Spinner size="small" />
+              )}
+            </AnimatedPresence>
+          </div>
+
+          {props.onLoadMore && (
+            <ComboboxLoadMore onLoadMore={props.onLoadMore} />
           )}
         </ul>
       )}
+      {props.loading && !optionsExist && (
+        <>
+          {Array.from({ length: 5 }).map((_, index) => (
+            <div className={styles.loadingContainer} key={index}>
+              <Glimmer shape="rectangle" size="small" />
+            </div>
+          ))}
+        </>
+      )}
 
-      {hasSearchTerm && !optionsExist && (
+      {hasSearchTerm && !props.loading && !optionsExist && (
         <div className={styles.filterMessage}>
           <Text variation="subdued">
             No results for {`“${props.searchValue}”`}
@@ -62,7 +78,7 @@ export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
         </div>
       )}
 
-      {!hasSearchTerm && !optionsExist && (
+      {!hasSearchTerm && !props.loading && !optionsExist && (
         <div className={styles.emptyStateMessage}>
           <Text variation="subdued">
             {getZeroIndexStateText(props.subjectNoun)}

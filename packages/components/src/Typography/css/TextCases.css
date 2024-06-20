@@ -9,3 +9,7 @@
 .capitalize {
   text-transform: capitalize;
 }
+
+.none {
+  text-transform: none;
+}

@@ -1,7 +1,6 @@
 import React from "react";
 import { addons, types } from "@storybook/addons";
 import { STORY_CHANGED, STORY_ERRORED, STORY_MISSING } from '@storybook/core-events';
-import { SidebarLabel } from "./components/SidebarLabel";
 import theme from "./theme";
 import favicon from "./assets/favicon.svg";
 import { Playground } from "./components/Playground";
@@ -27,20 +26,22 @@ addons.setConfig({
       "packages",
       "changelog",
     ],
-    renderLabel: SidebarLabel,
   },
 });
 
-addons.register("code/tab", () => {
-  addons.add("code", {
-    type: types.TAB,
-    title: "Code",
-    route: ({ storyId, refId }) =>
-      `/code/${[refId, storyId].filter(Boolean).join("_")}`,
-    match: ({ viewMode }) => viewMode === "code",
-    render: ({ key, active }) => <>{active && <Playground key={key} />}</>,
-  });
-});
+// Code tab is not working properly after Storybook 7 upgrade
+// TEMPORARILY DISABLING
+//
+// addons.register("code/tab", () => {
+//   addons.add("code", {
+//     type: types.TAB,
+//     title: "Code",
+//     route: ({ storyId, refId }) =>
+//       `/code/${[refId, storyId].filter(Boolean).join("_")}`,
+//     match: ({ viewMode }) => viewMode === "code",
+//     render: ({ key, active }) => <>{active && <Playground key={key} />}</>,
+//   });
+// });
 
 addons.register('google-analytics', (api) => {
   ReactGA.initialize("G-V1N3TQVQB5");

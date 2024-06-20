@@ -14,12 +14,6 @@ import "./assets/css/preview.css";
 import { Unstyled } from "@storybook/addon-docs";
 import { Table } from "@storybook/components";
 
-try {
-  require("@jobber/fonts");
-} catch {
-  console.log("Jobber fonts not found");
-}
-
 export const parameters = {
   viewMode: "docs",
   previewTabs: { code: { hidden: true } },

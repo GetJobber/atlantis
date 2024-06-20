@@ -4,10 +4,10 @@ import React, {
   KeyboardEvent,
   MutableRefObject,
   useEffect,
+  useId,
   useImperativeHandle,
   useState,
 } from "react";
-import { v1 as uuidv1 } from "uuid";
 import { Controller, useForm, useFormContext } from "react-hook-form";
 import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.css";
@@ -44,6 +44,7 @@ export function FormField(props: FormFieldProps) {
     onValidation,
     onKeyUp,
     clearable = "never",
+    autofocus,
   } = props;
 
   const {
@@ -56,8 +57,8 @@ export function FormField(props: FormFieldProps) {
     : // If there isn't a Form Context being provided, get a form for this field.
       useForm({ mode: "onTouched" });
 
-  const [identifier] = useState(uuidv1());
-  const [descriptionIdentifier] = useState(`descriptionUUID--${uuidv1()}`);
+  const [identifier] = useState(useId());
+  const [descriptionIdentifier] = useState(`descriptionUUID--${useId()}`);
   /**
    * Generate a name if one is not supplied, this is the name
    * that will be used for react-hook-form and not neccessarily
@@ -108,12 +109,14 @@ export function FormField(props: FormFieldProps) {
           onChange: handleChange,
           onBlur: handleBlur,
           onFocus: handleFocus,
+          autoFocus: autofocus,
           ...(description &&
             !inline && { "aria-describedby": descriptionIdentifier }),
         };
 
         const textFieldProps = {
           ...fieldProps,
+          autoFocus: autofocus,
           onKeyDown: handleKeyDown,
         };
 
@@ -170,7 +173,7 @@ export function FormField(props: FormFieldProps) {
 
         function handleClear() {
           handleBlur();
-          setValue(controlledName, undefined, { shouldValidate: true });
+          setValue(controlledName, "", { shouldValidate: true });
           onChange && onChange("");
           inputRef?.current?.focus();
         }

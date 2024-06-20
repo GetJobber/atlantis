@@ -36,6 +36,11 @@ export interface GalleryProps {
 export interface File
   extends Pick<FileUpload, "key" | "name" | "type" | "size" | "progress"> {
   /**
+   * The thumbnail url of the file.
+   */
+  readonly thumbnailSrc?: string;
+
+  /**
    * The data url of the file.
    */
   readonly src: string;

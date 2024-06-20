@@ -55,7 +55,7 @@ interface HeadingProps<T extends HeadingLevel>
   readonly allowFontScaling?: boolean;
 }
 
-const maxScaledFontSize: Record<HeadingLevel, number> = {
+export const HEADING_MAX_SCALED_FONT_SIZE: Record<HeadingLevel, number> = {
   subHeading: tokens["typography--fontSize-base"] * 1.375,
   heading: tokens["typography--fontSize-base"] * 1.5,
   subtitle: tokens["typography--fontSize-base"] * 1.5,
@@ -85,7 +85,7 @@ export function Heading<T extends HeadingLevel = "heading">({
         maxLines,
         allowFontScaling,
       }}
-      maxFontScaleSize={maxScaledFontSize[level as HeadingLevel]}
+      maxFontScaleSize={HEADING_MAX_SCALED_FONT_SIZE[level as HeadingLevel]}
       selectable={selectable}
     >
       {children}
@@ -100,21 +100,21 @@ function getHeadingStyle(
   const headingLevelToStyle: Record<HeadingLevel, HeadingStyle> = {
     title: {
       fontFamily: "display",
-      fontWeight: "black",
+      fontWeight: "extraBold",
       size: "jumbo",
       lineHeight: "jumbo",
       color: variation,
     },
     subtitle: {
-      fontFamily: "display",
-      fontWeight: "extraBold",
+      fontFamily: "base",
+      fontWeight: "bold",
       size: "largest",
       lineHeight: "largest",
       color: variation,
     },
     heading: {
-      fontFamily: "display",
-      fontWeight: "extraBold",
+      fontFamily: "base",
+      fontWeight: "bold",
       size: "larger",
       lineHeight: "large",
       color: variation,

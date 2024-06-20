@@ -56,7 +56,7 @@ exports[`renders Level 2 Heading Component 1`] = `
     class="padded base"
   >
     <h2
-      class="base black largest heading"
+      class="base bold largest heading"
     >
       Heading 2
     </h2>
@@ -70,7 +70,7 @@ exports[`renders Level 3 Heading Component 1`] = `
     class="padded base"
   >
     <h3
-      class="base extraBold larger heading"
+      class="base bold larger heading"
     >
       Heading 3
     </h3>
@@ -193,6 +193,7 @@ exports[`renders a without headings, paragraph, and wrapping content 1`] = `
 and of course a 
   <a
     href="http://to.somewhere"
+    rel="noreferrer"
   >
     link
   </a>

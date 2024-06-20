@@ -1,7 +1,6 @@
 import React from "react";
 import { IconNames } from "@jobber/design";
 import classNames from "classnames";
-import { getAtlantisConfig } from "@jobber/components/utils/getAtlantisConfig";
 import iconStyles from "./BannerIcon.css";
 import bannerStyles from "../../Banner.css";
 import { Icon } from "../../../Icon";
@@ -13,15 +12,9 @@ export interface BannerIconProps {
 }
 
 export function BannerIcon({ icon, type }: BannerIconProps) {
-  const { JOBBER_RETHEME } = getAtlantisConfig();
-
-  if (JOBBER_RETHEME) {
-    return (
-      <span className={classNames(bannerStyles.iconWrapper, iconStyles[type])}>
-        <Icon name={icon} color={"white"} size="small" />
-      </span>
-    );
-  }
-
-  return <Icon name={icon} color={"greyBlueDark"} />;
+  return (
+    <span className={classNames(bannerStyles.iconWrapper, iconStyles[type])}>
+      <Icon name={icon} color={"surface"} size="small" />
+    </span>
+  );
 }

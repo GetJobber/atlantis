@@ -1,6 +1,5 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useId } from "react";
 import { XOR } from "ts-xor";
-import { v1 as uuidv1 } from "uuid";
 import styles from "./RadioGroup.css";
 import { Text } from "../Text";
 
@@ -69,8 +68,9 @@ export function InternalRadioOption({
   children,
   onChange,
 }: InternalRadioOptionProps) {
-  const inputId = `${value.toString()}_${uuidv1()}`;
+  const inputId = `${value.toString()}_${useId()}`;
   const shouldRenderIndependentChildren = label && children;
+
   return (
     <div>
       <input

@@ -1,18 +1,13 @@
 import React from "react";
 import classnames from "classnames";
 import styles from "./StatusLabel.css";
-import { Text } from "../Text";
-
-export type StatusType =
-  | "success"
-  | "warning"
-  | "critical"
-  | "inactive"
-  | "informative";
+import { StatusIndicatorType } from "../StatusIndicator/StatusIndicator.type";
+import { Typography } from "../Typography";
+import { StatusIndicator } from "../StatusIndicator/StatusIndicator";
 
 export interface StatusLabelType {
   readonly statusLabel: string;
-  readonly statusType?: StatusType;
+  readonly statusType?: StatusIndicatorType;
 }
 
 interface StatusLabelProps {
@@ -33,7 +28,7 @@ interface StatusLabelProps {
    *
    * @default "inactive"
    */
-  readonly status: StatusType;
+  readonly status: StatusIndicatorType;
 }
 
 export function StatusLabel({
@@ -43,28 +38,19 @@ export function StatusLabel({
 }: StatusLabelProps): JSX.Element {
   const containerClassNames = classnames(
     styles.statusLabelRow,
+    styles[status],
     alignment === "end" && styles.labelTextEndAligned,
   );
 
   return (
     <div role="status" className={containerClassNames}>
-      <StatusLabelIcon status={status} />
-      <Text size="small" align={alignment}>
+      <div className={styles.statusIndicatorWrapper}>
+        <StatusIndicator status={status} />
+      </div>
+
+      <Typography size="small" textColor={status} align={alignment}>
         {label}
-      </Text>
+      </Typography>
     </div>
-  );
-}
-
-interface StatusLabelIconProps {
-  status: StatusType;
-}
-
-function StatusLabelIcon({ status }: StatusLabelIconProps) {
-  return (
-    <div
-      style={{ backgroundColor: `var(--color-${status}` }}
-      className={styles.statusIndicator}
-    />
   );
 }

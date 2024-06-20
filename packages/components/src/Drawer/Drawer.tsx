@@ -29,35 +29,34 @@ export function Drawer({
   id,
 }: DrawerProps) {
   const drawerClassNames = classnames(styles.container, open && styles.open);
+
   return (
-    <>
-      <aside
-        className={drawerClassNames}
-        data-testid="drawer-container"
-        aria-label={title}
-        aria-hidden={!open}
-        id={id}
-      >
-        <div className={styles.drawer}>
-          <Header title={title} onRequestClose={onRequestClose} />
-          <div className={styles.contentScroll}>
-            <div className={styles.content}>{children}</div>
-          </div>
+    <aside
+      className={drawerClassNames}
+      data-testid="drawer-container"
+      aria-label={title}
+      aria-hidden={!open}
+      id={id}
+    >
+      <div className={styles.drawer}>
+        <Header title={title} onRequestClose={onRequestClose} />
+        <div className={styles.contentScroll}>
+          <div className={styles.content}>{children}</div>
         </div>
-      </aside>
-    </>
+      </div>
+    </aside>
   );
 }
 
 interface HeaderProps {
-  title: string;
+  readonly title: string;
   onRequestClose?(): void;
 }
 
 function Header({ title, onRequestClose }: HeaderProps) {
   return (
     <div className={styles.header} data-testid="drawer-header">
-      <Heading level={3}>{title}</Heading>
+      <Heading level={2}>{title}</Heading>
       <ButtonDismiss
         onClick={onRequestClose}
         ariaLabel={`Close ${title || "drawer"}`}

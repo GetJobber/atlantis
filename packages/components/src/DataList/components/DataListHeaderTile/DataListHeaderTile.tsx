@@ -80,7 +80,12 @@ export function DataListHeaderTile<T extends DataListObject>({
     }
 
     const sortingOrder = isSameKey ? "desc" : "asc";
-    setSorting(newSortingKey, newId, newLabel, sortingOrder);
+    const label =
+      sortableItem?.options?.find(option => {
+        return option.order === sortingOrder;
+      })?.label || newLabel;
+
+    setSorting(newSortingKey, newId, label, sortingOrder);
   }
 
   function setSorting(
@@ -100,7 +105,7 @@ export function DataListHeaderTile<T extends DataListObject>({
   function handleOnClick() {
     if (!isSortable) return;
 
-    if (sortableItem?.options) {
+    if (sortableItem?.sortType === "dropdown") {
       setIsDropDownOpen(!isDropDownOpen);
     } else {
       const id = sortableItem?.options?.[0]?.id || headerKey;

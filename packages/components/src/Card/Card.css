@@ -2,7 +2,6 @@
   --card--accent-color: var(--color-grey);
   --card--base-padding: var(--space-base);
   --card--border: var(--border-base) solid var(--color-border);
-  --card--header-background: var(--color-surface--background);
 }
 
 .card {
@@ -16,10 +15,6 @@
 
 .card:active {
   outline: 0;
-}
-
-:root :global(.jobber-retheme) .card:not(.clickable) {
-  --card--header-background: transparent;
 }
 
 /* Adjust `Content` components public padding to match the cards */
@@ -38,20 +33,12 @@
   border-top-width: 0;
 }
 
-:global(.jobber-retheme) .accent {
-  border-top-width: 1px;
-}
-
 .accent::before {
   content: " ";
   display: block;
   margin: 0 calc(-1 * var(--border-base));
-  border-top: 0.5rem solid var(--card--accent-color);
+  border-top: 0.375rem solid var(--card--accent-color);
   border-radius: var(--radius-base) var(--radius-base) 0 0;
-}
-
-:global(.jobber-retheme) .accent::before {
-  display: none;
 }
 
 .clickable {
@@ -72,17 +59,8 @@
 .header {
   display: flex;
   padding: var(--card--base-padding);
-  background-color: var(--card--header-background);
+  padding-bottom: 0;
   justify-content: space-between;
   align-items: flex-start;
   gap: var(--space-small);
-}
-
-:global(.jobber-retheme) .header {
-  padding-bottom: 0;
-}
-
-:global(.jobber-retheme) .header h3 {
-  font-family: var(--typography--fontFamily-normal);
-  font-size: var(--typography--fontSize-largest);
 }
