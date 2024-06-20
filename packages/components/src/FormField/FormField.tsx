@@ -73,6 +73,7 @@ export function FormField(props: FormFieldProps) {
       setValue(controlledName, newValue, { shouldValidate: true });
     },
   }));
+  console.log("Form field rerendering");
 
   return (
     <Controller
@@ -91,7 +92,11 @@ export function FormField(props: FormFieldProps) {
       }) => {
         const errorMessage = error?.message || "";
 
-        useEffect(() => handleValidation(errorMessage), [errorMessage]);
+        console.log("controller rerendering");
+        useEffect(() => {
+          console.log("useEffect");
+          handleValidation(errorMessage);
+        }, [errorMessage]);
 
         const fieldProps = {
           ...rest,
@@ -222,6 +227,7 @@ export function FormField(props: FormFieldProps) {
   );
 
   function handleValidation(errorMessage: string) {
+    console.log("handling validation");
     onValidation && onValidation(errorMessage);
   }
 }

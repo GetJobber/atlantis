@@ -15,11 +15,13 @@ export default {
 
 const BasicTemplate: ComponentStory<typeof InputValidation> = args => {
   const [validationMessages, setValidationMessages] = useState(args.message);
+  const [name, setName] = useState("Jeff");
+  console.log("higher up component rerendering");
 
   return (
     <>
       <Text>
-        My name is
+        My name is {name}
         <InputText
           validations={{
             required: {
@@ -31,13 +33,16 @@ const BasicTemplate: ComponentStory<typeof InputValidation> = args => {
               message: "Have you considered a better name, like Jeff?",
             },
           }}
-          onValidation={message => setValidationMessages(message)}
+          onValidation={() => console.log("On validation")}
           size="small"
           inline={true}
           maxLength={4}
         />
       </Text>
       {validationMessages && <InputValidation message={validationMessages} />}
+      <button onClick={() => setName(name === "Jeff" ? "Jim" : "Jeff")}>
+        Change
+      </button>
     </>
   );
 };
