@@ -23,6 +23,7 @@ export function InternalThumbnailImage({ file }: InternalThumbnailImageProps) {
 
       <img
         src={imageSource}
+        onError={file.onImageLoadError}
         onLoad={handleImageLoad}
         alt={name}
         data-testid="internalThumbnailImage"

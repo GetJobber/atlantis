@@ -24,7 +24,7 @@
 
 .options h5 {
   padding: var(--space-small) 0 var(--space-smaller) var(--space-small);
-  border-bottom: var(--border-base) solid var(--color-border--section);
+  border-bottom: var(--border-base) solid var(--color-border);
 }
 
 .options.visible {
@@ -68,7 +68,7 @@
   outline-color: transparent;
 }
 
-.autocomplete .heading:not(:first-child) {
+.options .heading:not(:first-child) {
   padding-top: var(--space-small);
 }
 

@@ -3,6 +3,91 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.15.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.15.1...@jobber/components@5.15.2) (2024-06-18)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [5.15.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.15.0...@jobber/components@5.15.1) (2024-06-18)
+
+
+### Bug Fixes
+
+* **components:** Adjust style of section headings in autocomplete ([#1929](https://github.com/GetJobber/atlantis/issues/1929)) ([beacf93](https://github.com/GetJobber/atlantis/commit/beacf9333cd924d1b78c57eaf6abbd61c120ee07))
+
+
+
+
+
+# [5.15.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.14.2...@jobber/components@5.15.0) (2024-06-18)
+
+
+### Features
+
+* **components:** Allow Banner dismiss to be controlled ([#1936](https://github.com/GetJobber/atlantis/issues/1936)) ([e5d4ac3](https://github.com/GetJobber/atlantis/commit/e5d4ac36c7d934d699034940cee93c17e556d367))
+
+
+
+
+
+## [5.14.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.14.1...@jobber/components@5.14.2) (2024-06-18)
+
+
+### Bug Fixes
+
+* **components:** update options in FormField ([#1937](https://github.com/GetJobber/atlantis/issues/1937)) ([4a5d666](https://github.com/GetJobber/atlantis/commit/4a5d6660f057783406d631f0652c6a6568d5d0c9))
+
+
+
+
+
+## [5.14.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.14.0...@jobber/components@5.14.1) (2024-06-17)
+
+
+### Bug Fixes
+
+* **components:** make `Select` options readable in dark mode ([#1935](https://github.com/GetJobber/atlantis/issues/1935)) ([31d8b05](https://github.com/GetJobber/atlantis/commit/31d8b05687a3291eccbf68cd442fcefab12519d3))
+
+
+
+
+
+# [5.14.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.13.0...@jobber/components@5.14.0) (2024-06-14)
+
+
+### Features
+
+* on error callback on image files in format file ([#1934](https://github.com/GetJobber/atlantis/issues/1934)) ([4dca1ae](https://github.com/GetJobber/atlantis/commit/4dca1aed1740f06c0e235b2a359e2b5d59517df7))
+
+
+
+
+
+# [5.13.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.12.4...@jobber/components@5.13.0) (2024-06-14)
+
+
+### Features
+
+* allow thumbnails on gallery ([#1933](https://github.com/GetJobber/atlantis/issues/1933)) ([9f3fb15](https://github.com/GetJobber/atlantis/commit/9f3fb158a502ad83408f295a683a0f6c06fe34f3))
+
+
+
+
+
+## [5.12.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.12.3...@jobber/components@5.12.4) (2024-06-14)
+
+
+### Bug Fixes
+
+* Add css to style href in link component ([#1931](https://github.com/GetJobber/atlantis/issues/1931)) ([2fd1d83](https://github.com/GetJobber/atlantis/commit/2fd1d8379c2e7003ea452622c118e89f38044d39))
+
+
+
+
+
 ## [5.12.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.12.2...@jobber/components@5.12.3) (2024-06-14)
 
 
