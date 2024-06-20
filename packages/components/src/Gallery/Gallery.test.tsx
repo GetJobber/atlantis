@@ -9,6 +9,7 @@ const files = [
     type: "image/png",
     size: 213402324,
     progress: 1,
+    thumbnailSrc: "https://source.unsplash.com/50x50",
     src: "https://source.unsplash.com/250x250",
   },
   {
@@ -17,6 +18,7 @@ const files = [
     type: "image/png",
     size: 124525234,
     progress: 1,
+    thumbnailSrc: "https://source.unsplash.com/50x50",
     src: "https://source.unsplash.com/250x250",
   },
   {
@@ -25,6 +27,7 @@ const files = [
     type: "image/png",
     size: 233411234,
     progress: 1,
+    thumbnailSrc: "https://source.unsplash.com/50x50",
     src: "https://source.unsplash.com/250x250",
   },
   {
@@ -33,6 +36,7 @@ const files = [
     type: "image/png",
     size: 233411234,
     progress: 1,
+    thumbnailSrc: "https://source.unsplash.com/50x50",
     src: "https://source.unsplash.com/250x250",
   },
   {
@@ -41,6 +45,7 @@ const files = [
     type: "image/png",
     size: 233411234,
     progress: 1,
+    thumbnailSrc: "https://source.unsplash.com/50x50",
     src: "https://source.unsplash.com/250x250",
   },
 ];
@@ -166,4 +171,34 @@ describe("when a non-image is clicked", () => {
       expect(window.open).toHaveBeenCalledWith(pdfSrc, "_blank");
     });
   });
+});
+
+describe("Thumbnails", () => {
+  it.each(files.map(file => [file.name, file.thumbnailSrc]))(
+    "should use the thumbnailSrc as the image source for %s",
+    async (fileName, src) => {
+      const { getByAltText } = render(<Gallery files={files} />);
+      const thumbnailImage = getByAltText(fileName);
+
+      await waitFor(() => {
+        expect(thumbnailImage).toHaveAttribute("src", src);
+      });
+    },
+  );
+
+  it.each(files.map(file => [file.name, file.src]))(
+    "should use the src as image source for %s when thumbnailSrc is not provided",
+    async (fileName, src) => {
+      const { getByAltText } = render(
+        <Gallery
+          files={files.map(file => ({ ...file, thumbnailSrc: undefined }))}
+        />,
+      );
+      const thumbnailImage = getByAltText(fileName);
+
+      await waitFor(() => {
+        expect(thumbnailImage).toHaveAttribute("src", src);
+      });
+    },
+  );
 });
