@@ -84,7 +84,7 @@ export function FormField(props: FormFieldProps) {
   } = useController({ name: controlledName, control });
   const errorMessage = error?.message || "";
 
-  useEffect(() => handleValidation(), [error]);
+  useEffect(() => handleValidation(), [errorMessage]);
 
   return (
     <Controller
