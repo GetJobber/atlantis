@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.16.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.15.2...@jobber/components@5.16.0) (2024-06-20)
+
+
+### Features
+
+* Add button variation option to actions buttons in the Menu component (JOB-98306) ([#1932](https://github.com/GetJobber/atlantis/issues/1932)) ([5740abf](https://github.com/GetJobber/atlantis/commit/5740abfd0841c15bd53704d0e975d377bc223e77))
+
+
+
+
+
 ## [5.15.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.15.1...@jobber/components@5.15.2) (2024-06-18)
 
 **Note:** Version bump only for package @jobber/components
