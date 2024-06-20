@@ -29,16 +29,19 @@ addons.setConfig({
   },
 });
 
-addons.register("code/tab", () => {
-  addons.add("code", {
-    type: types.TAB,
-    title: "Code",
-    route: ({ storyId, refId }) =>
-      `/code/${[refId, storyId].filter(Boolean).join("_")}`,
-    match: ({ viewMode }) => viewMode === "code",
-    render: ({ key, active }) => <>{active && <Playground key={key} />}</>,
-  });
-});
+// Code tab is not working properly after Storybook 7 upgrade
+// TEMPORARILY DISABLING
+//
+// addons.register("code/tab", () => {
+//   addons.add("code", {
+//     type: types.TAB,
+//     title: "Code",
+//     route: ({ storyId, refId }) =>
+//       `/code/${[refId, storyId].filter(Boolean).join("_")}`,
+//     match: ({ viewMode }) => viewMode === "code",
+//     render: ({ key, active }) => <>{active && <Playground key={key} />}</>,
+//   });
+// });
 
 addons.register('google-analytics', (api) => {
   ReactGA.initialize("G-V1N3TQVQB5");
