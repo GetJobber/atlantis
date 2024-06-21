@@ -86,7 +86,7 @@ export function FormField(props: FormFieldProps) {
   } = useController({
     name: controlledName,
     control,
-    rules: { ...validations },
+    rules: validations,
     defaultValue: value ?? defaultValue ?? "",
   });
 
