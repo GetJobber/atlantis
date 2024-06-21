@@ -10,10 +10,14 @@
 }
 
 .sortIcon path.inactive {
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
 .sortIcon path.active,
 .sortIcon:hover path {
   opacity: 1;
+}
+
+.sortIcon:hover path.inactive {
+  opacity: 0.6;
 }
