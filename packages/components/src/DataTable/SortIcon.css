@@ -2,13 +2,16 @@
   padding-right: var(--space-small);
 }
 .sortIcon path {
-  fill: var(--color-greyBlue);
-}
-
-.sortIcon path.active {
-  fill: var(--color-blue);
+  fill: var(--color-interactive--subtle);
+  opacity: 0.5;
+  transition: opacity var(--timing-base) ease;
 }
 
 .sortIcon path.inactive {
-  fill: var(--color-greyBlue--lighter);
+  opacity: 0.5;
+}
+
+.sortIcon path.active,
+.sortIcon:hover path {
+  opacity: 1;
 }

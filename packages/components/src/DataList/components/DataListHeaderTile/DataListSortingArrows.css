@@ -6,18 +6,14 @@
 
 .sortIcon path {
   fill: var(--color-interactive--subtle);
-  transition: all var(--timing-base) ease;
-}
-
-.sortIcon path.active {
-  fill: var(--color-heading);
+  transition: opacity var(--timing-base) ease;
 }
 
 .sortIcon path.inactive {
-  fill: var(--color-inactive--surface);
+  opacity: 0.5;
 }
 
+.sortIcon path.active,
 .sortIcon:hover path {
-  fill: var(--color-interactive--subtle);
-  transition: all var(--timing-base) ease;
+  opacity: 1;
 }
