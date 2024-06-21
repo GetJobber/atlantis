@@ -74,6 +74,9 @@ export function FormField(props: FormFieldProps) {
     },
   }));
 
+  const [errorMessage, setErrorMessage] = useState("");
+  useEffect(() => handleValidation(errorMessage), [errorMessage]);
+
   return (
     <Controller
       control={control}
@@ -89,9 +92,7 @@ export function FormField(props: FormFieldProps) {
         },
         fieldState: { error },
       }) => {
-        const errorMessage = error?.message || "";
-
-        useEffect(() => handleValidation(errorMessage), [errorMessage]);
+        setErrorMessage(error?.message || "");
 
         const fieldProps = {
           ...rest,
@@ -221,8 +222,8 @@ export function FormField(props: FormFieldProps) {
     />
   );
 
-  function handleValidation(errorMessage: string) {
-    onValidation && onValidation(errorMessage);
+  function handleValidation(message: string) {
+    onValidation && onValidation(message);
   }
 }
 
