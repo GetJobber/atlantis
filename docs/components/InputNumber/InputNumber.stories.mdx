@@ -25,18 +25,20 @@ no value to the user by offering an incrementer.
 ## Controlled
 
 <Canvas>
-  {() => {
-    const [value, setValue] = useState(30);
-    return (
-      <InputNumber
-        value={value}
-        max={32}
-        min={0}
-        onChange={setValue}
-        placeholder="Age"
-      />
-    );
-  }}
+  <Story name="Controlled">
+    {() => {
+      const [value, setValue] = useState(30);
+      return (
+        <InputNumber
+          value={value}
+          max={32}
+          min={0}
+          onChange={setValue}
+          placeholder="Age"
+        />
+      );
+    }}
+  </Story>
 </Canvas>
 
 ## States
@@ -81,23 +83,25 @@ no value to the user by offering an incrementer.
 ## Focus & blur
 
 <Canvas>
-  {() => {
-    const inputNumberRef = React.createRef();
-    const focusInput = () => {
-      inputNumberRef.current.focus();
-    };
-    const blurInput = () => {
-      inputNumberRef.current.blur();
-    };
-    return (
-      <Content>
-        <InputNumber value={5} ref={inputNumberRef} />
-        <Button label="Focus input" onClick={focusInput} />
-        <br />
-        <Button label="Blur input" onClick={blurInput} />
-      </Content>
-    );
-  }}
+  <Story name="Focus & Blur">
+    {() => {
+      const inputNumberRef = React.createRef();
+      const focusInput = () => {
+        inputNumberRef.current.focus();
+      };
+      const blurInput = () => {
+        inputNumberRef.current.blur();
+      };
+      return (
+        <Content>
+          <InputNumber value={5} ref={inputNumberRef} />
+          <Button label="Focus input" onClick={focusInput} />
+          <br />
+          <Button label="Blur input" onClick={blurInput} />
+        </Content>
+      );
+    }}
+  </Story>
 </Canvas>
 
 ## Using onValidation
