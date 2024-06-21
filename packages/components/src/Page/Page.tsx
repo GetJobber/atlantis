@@ -133,10 +133,14 @@ export function Page({
         <Content>
           <div className={titleBarClasses} ref={titleBarRef}>
             <div>
-              <div className={styles.titleRow}>
+              {titleMetaData ? (
+                <div className={styles.titleRow}>
+                  <Heading level={1}>{title}</Heading>
+                  {titleMetaData}
+                </div>
+              ) : (
                 <Heading level={1}>{title}</Heading>
-                {titleMetaData}
-              </div>
+              )}
               {subtitle && (
                 <div className={styles.subtitle}>
                   <Text size="large" variation="subdued">

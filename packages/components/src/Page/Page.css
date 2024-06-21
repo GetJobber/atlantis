@@ -22,6 +22,7 @@
 
 .titleBar h1 {
   flex: 0 1 auto;
+  margin-bottom: var(--space-base);
 }
 
 .titleRow {
@@ -30,6 +31,10 @@
   flex-wrap: wrap;
   gap: var(--space-base);
   align-items: center;
+}
+
+.titleRow h1 {
+  margin-bottom: 0;
 }
 
 .titleBar > .actionGroup {

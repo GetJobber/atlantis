@@ -15,15 +15,11 @@ exports[`When actions are provided renders a Page with action buttons and a menu
           class="titleBar small medium large"
         >
           <div>
-            <div
-              class="titleRow"
+            <h1
+              class="base black jumbo heading"
             >
-              <h1
-                class="base black jumbo heading"
-              >
-                Notifications
-              </h1>
-            </div>
+              Notifications
+            </h1>
           </div>
           <div
             class="actionGroup"
@@ -125,15 +121,11 @@ exports[`renders a Page 1`] = `
           class="titleBar small medium large"
         >
           <div>
-            <div
-              class="titleRow"
+            <h1
+              class="base black jumbo heading"
             >
-              <h1
-                class="base black jumbo heading"
-              >
-                Notifications
-              </h1>
-            </div>
+              Notifications
+            </h1>
           </div>
         </div>
         <p
