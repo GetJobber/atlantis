@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  act,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { FormField } from ".";
 import { Form } from "../Form/Form";
 
@@ -279,7 +273,7 @@ describe("FormField", () => {
 
     describe("when nested/structured", () => {
       it("should display errors", async () => {
-        const { getByText } = render(
+        const { findByText, getByText } = render(
           <Form onSubmit={jest.fn()}>
             <FormField
               name="parent.0.child"
@@ -295,11 +289,9 @@ describe("FormField", () => {
           </Form>,
         );
 
-        await act(async () => {
-          fireEvent.click(getByText("Submit"));
-        });
+        fireEvent.click(getByText("Submit"));
 
-        expect(getByText("field foo is required")).toBeInTheDocument();
+        expect(await findByText("field foo is required")).toBeInTheDocument();
       });
     });
 
