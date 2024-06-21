@@ -92,7 +92,9 @@ export function FormField(props: FormFieldProps) {
         },
         fieldState: { error },
       }) => {
-        setErrorMessage(error?.message || "");
+        if (errorMessage !== (error?.message || "")) {
+          setErrorMessage(error?.message || "");
+        }
 
         const fieldProps = {
           ...rest,
