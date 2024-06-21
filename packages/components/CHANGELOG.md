@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.16.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.16.0...@jobber/components@5.16.1) (2024-06-21)
+
+
+### Bug Fixes
+
+* **components:** handle nested input names in form inputs ([#1942](https://github.com/GetJobber/atlantis/issues/1942)) ([90b35be](https://github.com/GetJobber/atlantis/commit/90b35be274e984e5a9504aa054dcdb81380dca7a))
+
+
+
+
+
 # [5.16.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.15.2...@jobber/components@5.16.0) (2024-06-20)
 
 
