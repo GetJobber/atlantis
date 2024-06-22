@@ -1,7 +1,7 @@
 .popover {
   --popover--padding: var(--space-base);
   --popover-content--base-padding: var(--space-base);
-  --popover--width: calc(var(--base-unit) * 21.875);
+  --popover--width: 350px;
   --dismiss--button-padding: calc(var(--base-unit) / 4);
   --popover--position--offset: -7px;
 

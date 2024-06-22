@@ -1,6 +1,7 @@
 .avatar {
   --avatar-size: calc(var(--base-unit) * 2);
   --avatar-border-size: var(--border-base);
+
   display: flex;
   align-items: center;
   justify-content: center;
