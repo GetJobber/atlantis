@@ -1,5 +1,13 @@
-:root {
+.statusLabelRow {
   --labelBackgroundColor: var(--color-success--surface);
+  display: flex;
+  width: fit-content;
+  padding: 0.375rem 0.625rem 0.375rem 0.5rem;
+  border-radius: 0.75rem;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 0.375rem;
+  background-color: var(--labelBackgroundColor);
 }
 
 .success {
@@ -20,17 +28,6 @@
 
 .informative {
   --labelBackgroundColor: var(--color-informative--surface);
-}
-
-.statusLabelRow {
-  display: flex;
-  width: fit-content;
-  padding: 0.375rem 0.625rem 0.375rem 0.5rem;
-  border-radius: 0.75rem;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  gap: 0.375rem;
-  background-color: var(--labelBackgroundColor);
 }
 
 /* Reset the <Text> line height so we can reliably get 24px tall */

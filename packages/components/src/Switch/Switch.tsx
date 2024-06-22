@@ -39,7 +39,7 @@ export function Switch({
     }
   };
 
-  const className = classnames(styles.track, {
+  const className = classnames(styles.track, styles.switch, {
     [styles.isChecked]: value,
     [styles.disabled]: disabled,
   });

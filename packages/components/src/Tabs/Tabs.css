@@ -1,10 +1,11 @@
 :root {
-  --tab--height: calc(var(--space-larger) + var(--space-small));
-  --tab--inset: var(--space-base);
   --public-tab--inset: var(--tab--inset);
 }
 
 .tabs {
+  --tab--height: 40px;
+  --tab--inset: var(--space-base);
+
   display: block;
   width: 100%;
 }

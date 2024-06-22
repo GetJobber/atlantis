@@ -1,9 +1,19 @@
-:root {
-  --card--base-padding: var(--space-base);
+.popover {
   --popover--padding: var(--space-base);
+  --popover-content--base-padding: var(--space-base);
   --popover--width: calc(var(--base-unit) * 21.875);
   --dismiss--button-padding: calc(var(--base-unit) / 4);
   --popover--position--offset: -7px;
+
+  z-index: var(--elevation-tooltip);
+  width: max-content;
+  max-width: var(--popover--width);
+  box-shadow: var(--shadow-base);
+  border: var(--border-base) solid var(--color-border);
+  border-radius: var(--radius-base);
+  font-size: var(--typography--fontSize-base);
+  line-height: normal;
+  background: var(--color-surface);
 }
 
 .header {
@@ -20,20 +30,8 @@
   text-align: right;
 }
 
-.popover {
-  z-index: var(--elevation-tooltip);
-  width: max-content;
-  max-width: var(--popover--width);
-  box-shadow: var(--shadow-base);
-  border: var(--border-base) solid var(--color-border);
-  border-radius: var(--radius-base);
-  font-size: var(--typography--fontSize-base);
-  line-height: normal;
-  background: var(--color-surface);
-}
-
 .popover > * {
-  --public-content--padding: var(--card--base-padding);
+  --public-content--padding: var(--popover-content--base-padding);
 }
 
 .arrow {
