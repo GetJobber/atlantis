@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.68.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.67.6...@jobber/components-native@0.68.0) (2024-06-24)
+
+
+### Features
+
+* **components-native:** Add testID prop to components-native Icon ([#1943](https://github.com/GetJobber/atlantis/issues/1943)) ([85faba9](https://github.com/GetJobber/atlantis/commit/85faba97f811420792ebe5bf3b91bbf8c79b2c19))
+
+
+
+
+
 ## [0.67.6](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.67.5...@jobber/components-native@0.67.6) (2024-06-11)
 
 **Note:** Version bump only for package @jobber/components-native
