@@ -64,6 +64,7 @@ interface CommonButtonProps {
    */
   readonly icon?: IconNames;
 
+  //comment
   /**
    * Accessibility label for the component. This is required for components that
    * have an `icon` but not a `label`.
