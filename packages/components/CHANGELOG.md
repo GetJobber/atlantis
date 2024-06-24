@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.17.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.16.1...@jobber/components@5.17.0) (2024-06-24)
+
+
+### Features
+
+* **components:** Update Page component to accept a titleMetaData component [JOB-97759] ([#1941](https://github.com/GetJobber/atlantis/issues/1941)) ([908e21b](https://github.com/GetJobber/atlantis/commit/908e21b033075bb2a2b5346113a6f238756f8bbb))
+
+
+
+
+
 ## [5.16.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.16.0...@jobber/components@5.16.1) (2024-06-21)
 
 
