@@ -72,6 +72,7 @@
   display: flex;
   height: var(--field--height);
   flex: 1;
+  border-radius: inherit;
 }
 
 .textarea.safari .horizontalWrapper {
@@ -176,11 +177,13 @@
   position: relative;
   /* Ensure input stays with the rest of the element stack */
   z-index: var(--elevation-default);
+  border-radius: inherit;
 }
 
 .childrenWrapper {
   position: relative;
   flex: 1;
+  border-radius: inherit;
 }
 
 /**
@@ -196,6 +199,7 @@
   padding-right: var(--field--padding-right);
   border: none;
   border-radius: 0;
+  border-radius: inherit;
   color: inherit;
   font-family: inherit;
   font-size: inherit;
