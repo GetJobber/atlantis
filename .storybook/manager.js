@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { addons, types } from "@storybook/addons";
 import { STORY_CHANGED, STORY_ERRORED, STORY_MISSING } from '@storybook/core-events';
 import theme from "./theme";
@@ -29,19 +29,31 @@ addons.setConfig({
   },
 });
 
-// Code tab is not working properly after Storybook 7 upgrade
-// TEMPORARILY DISABLING
-//
-// addons.register("code/tab", () => {
-//   addons.add("code", {
-//     type: types.TAB,
-//     title: "Code",
-//     route: ({ storyId, refId }) =>
-//       `/code/${[refId, storyId].filter(Boolean).join("_")}`,
-//     match: ({ viewMode }) => viewMode === "code",
-//     render: ({ key, active }) => <>{active && <Playground key={key} />}</>,
-//   });
-// });
+addons.register("code/tab", () => {
+  addons.add("code", {
+    type: types.TAB,
+    title: "Code",
+    route: ({ storyId, refId, ...other }) =>
+      `/code/${[refId, storyId].filter(Boolean).join("_")}`,
+    match: ({ viewMode }) => viewMode === "code",
+    render: ({ active }) => {
+      useEffect(() => {
+        if (active) {
+          // This works around a storybook bug where an ancestor div is marked as hidden and causes the entire
+          // toolbar and code tab to be invisible. They fixed the real problem in V8 but did not backport to V7.
+          // https://github.com/storybookjs/storybook/issues/25322
+          const div = document.querySelector("#storybook-panel-root").parentElement.parentElement.parentElement;
+          div.hidden = false;
+        }
+      }, [active]);
+
+      if (!active) {
+        return null;
+      }
+      return <Playground />;
+    },
+  });
+});
 
 addons.register('google-analytics', (api) => {
   ReactGA.initialize("G-V1N3TQVQB5");
