@@ -23,7 +23,6 @@ export function showToast(props: ToastProps) {
   // Jest taking the document down.
   if (!globalThis.document) return;
   let target = globalThis.document.querySelector(`#${targetId}`);
-  console.log("document found");
 
   if (!target) {
     target = globalThis.document.createElement("div");
