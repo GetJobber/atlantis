@@ -1,6 +1,6 @@
 import process from "process";
 import React, { useEffect } from "react";
-import { Story, useStorybookApi } from "@storybook/api";
+import { type API as Story, useStorybookApi } from "@storybook/manager-api";
 import {
   SandpackCodeEditor,
   SandpackPreview,

@@ -1,5 +1,5 @@
 import React, { MouseEvent, useEffect, useRef } from "react";
-import { useStorybookApi } from "@storybook/api";
+import { useStorybookApi } from "@storybook/manager-api";
 import { alphaComponents, alphaMobileComponents } from "./alphaComponents";
 
 export function SidebarLabel(label?: Record<string, any>) {

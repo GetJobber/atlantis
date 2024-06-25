@@ -1,9 +1,9 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import * as sbAPI from "@storybook/api";
+import * as sbAPI from "@storybook/manager-api";
 import { Playground } from "./Playground";
-jest.mock('@storybook/api', () => ({
-  ...jest.requireActual('@storybook/api'),
+jest.mock('@storybook/manager-api', () => ({
+  ...jest.requireActual('@storybook/manager-api'),
   useStorybookApi: jest.fn(),
 }));
 
