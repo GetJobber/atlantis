@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.18.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.17.0...@jobber/components@5.18.0) (2024-06-24)
+
+
+### Features
+
+* **components:** Add testID prop to components Icon ([#1927](https://github.com/GetJobber/atlantis/issues/1927)) ([eb804df](https://github.com/GetJobber/atlantis/commit/eb804df153f01a29a2a87126aa07b87d1866ca85))
+
+
+
+
+
 # [5.17.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.16.1...@jobber/components@5.17.0) (2024-06-24)
 
 
