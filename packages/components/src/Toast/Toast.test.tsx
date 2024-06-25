@@ -22,7 +22,7 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  jest.runOnlyPendingTimers();
+  act(() => jest.runOnlyPendingTimers());
   jest.useRealTimers();
 });
 
@@ -31,9 +31,16 @@ const successMessage =
 const infoMessage = "Bland Toast";
 const errorMessage = "Errorful should last inbetween min-max";
 
-it("creates the toasts target div", () => {
-  render(<MockToast />);
+it("creates exactly one toasts target div", () => {
+  const { getByText, getAllByText } = render(<MockToast />);
+  fireEvent.click(getByText("Success"));
+
   expect(document.querySelector("#atlantis-toast-element")).toBeInTheDocument();
+
+  fireEvent.click(getByText("Success"));
+  expect(getAllByText(successMessage)).toHaveLength(2);
+
+  expect(document.querySelectorAll("#atlantis-toast-element")).toHaveLength(1);
 });
 
 it("renders a Slice of Toast when the 'showToast' method is called", () => {
