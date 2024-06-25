@@ -1,7 +1,8 @@
-import React from "react";
+import React, { StrictMode } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { InputText } from "@jobber/components/InputText";
 import { Button } from "@jobber/components/Button";
+import { Form } from "@jobber/components/Form";
 
 export default {
   title: "Components/Forms and Inputs/InputText/Web",
@@ -69,4 +70,28 @@ export const Clearable = BasicTemplate.bind({});
 Clearable.args = {
   name: "name",
   clearable: "always",
+};
+
+export const Multiple = () => {
+  return (
+    <StrictMode>
+      <Form>
+        <InputText
+          name="firstName"
+          validations={{
+            required: "Required",
+          }}
+          placeholder="First Name"
+        />
+        <InputText
+          placeholder="Last Name"
+          validations={{
+            required: "Required",
+          }}
+        />
+
+        <button type="submit">Submit</button>
+      </Form>
+    </StrictMode>
+  );
 };

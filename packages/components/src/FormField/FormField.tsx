@@ -6,7 +6,6 @@ import React, {
   useEffect,
   useId,
   useImperativeHandle,
-  useState,
 } from "react";
 import { useController, useForm, useFormContext } from "react-hook-form";
 import { FormFieldProps } from "./FormFieldTypes";
@@ -16,6 +15,8 @@ import { FormFieldPostFix } from "./FormFieldPostFix";
 
 // eslint-disable-next-line max-statements
 export function FormField(props: FormFieldProps) {
+  const id = useId();
+
   const {
     actionsRef,
     autocomplete = true,
@@ -29,7 +30,7 @@ export function FormField(props: FormFieldProps) {
     max,
     maxLength,
     min,
-    name,
+    name: nameProp,
     readonly,
     rows,
     loading,
@@ -52,39 +53,31 @@ export function FormField(props: FormFieldProps) {
       : // If there isn't a Form Context being provided, get a form for this field.
         useForm({ mode: "onTouched" });
 
-  const [identifier] = useState(useId());
-  const [descriptionIdentifier] = useState(`descriptionUUID--${useId()}`);
+  const descriptionIdentifier = `descriptionUUID--${id}`;
   /**
    * Generate a name if one is not supplied, this is the name
    * that will be used for react-hook-form and not neccessarily
    * attached to the DOM
    */
-  const [controlledName] = useState(
-    name ? name : `generatedName--${identifier}`,
-  );
+  const name = nameProp ?? `generatedName--${id}`;
 
   useEffect(() => {
     if (value != undefined) {
-      setValue(controlledName, value);
+      setValue(name, value);
     }
-  }, [value, watch(controlledName)]);
+  }, [value, watch(name)]);
 
   useImperativeHandle(actionsRef, () => ({
     setValue: newValue => {
-      setValue(controlledName, newValue, { shouldValidate: true });
+      setValue(name, newValue, { shouldValidate: true });
     },
   }));
 
   const {
-    field: {
-      onChange: onControllerChange,
-      onBlur: onControllerBlur,
-      name: controllerName,
-      ...rest
-    },
+    field: { onChange: onControllerChange, onBlur: onControllerBlur, ...rest },
     fieldState: { error },
   } = useController({
-    name: controlledName,
+    name,
     control,
     rules: validations,
     defaultValue: value ?? defaultValue ?? "",
@@ -95,9 +88,9 @@ export function FormField(props: FormFieldProps) {
 
   const fieldProps = {
     ...rest,
-    id: identifier,
+    id,
+    name: validations || nameProp ? name : undefined,
     className: styles.input,
-    name: (validations || name) && controllerName,
     disabled: disabled,
     readOnly: readonly,
     inputMode: keyboard,
@@ -120,7 +113,7 @@ export function FormField(props: FormFieldProps) {
       {...props}
       value={rest.value}
       error={errorMessage}
-      identifier={identifier}
+      identifier={id}
       descriptionIdentifier={descriptionIdentifier}
       clearable={clearable}
       onClear={handleClear}
@@ -168,7 +161,7 @@ export function FormField(props: FormFieldProps) {
 
   function handleClear() {
     handleBlur();
-    setValue(controlledName, "", { shouldValidate: true });
+    setValue(name, "", { shouldValidate: true });
     onChange && onChange("");
     inputRef?.current?.focus();
   }

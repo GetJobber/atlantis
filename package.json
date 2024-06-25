@@ -40,7 +40,8 @@
     "start": "npm run storybook",
     "storybook": "export NODE_OPTIONS=--openssl-legacy-provider && start-storybook -p 6005",
     "storybook:build": "export NODE_OPTIONS=--openssl-legacy-provider && build-storybook",
-    "test": "jest"
+    "test": "jest",
+    "typecheck": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
