@@ -21,10 +21,6 @@ const config: StorybookConfig = {
       },
     },
   ],
-  docs:{
-    autodocs:true,
-   
-  },
   features: { buildStoriesJson: true },
   framework: "@storybook/react-webpack5",
   webpackFinal: async (config, options) => {
@@ -81,7 +77,7 @@ const config: StorybookConfig = {
       ];
 
     }
- 
+
     if (!config.module) { config.module = {} }
     if (!config.module.rules) { config.module.rules = [] }
 
