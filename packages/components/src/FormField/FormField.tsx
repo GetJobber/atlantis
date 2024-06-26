@@ -6,7 +6,6 @@ import React, {
   useEffect,
   useId,
   useImperativeHandle,
-  useState,
 } from "react";
 import { useController, useForm, useFormContext } from "react-hook-form";
 import { FormFieldProps } from "./FormFieldTypes";
@@ -72,7 +71,7 @@ function FormFieldInternal(props: FormFieldInternalProps) {
    * that will be used for react-hook-form and not neccessarily
    * attached to the DOM
    */
-  const [controlledName] = useState(name ? name : `generatedName--${id}`);
+  const controlledName = name ? name : `generatedName--${id}`;
 
   useEffect(() => {
     if (value != undefined) {
