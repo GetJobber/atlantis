@@ -14,8 +14,21 @@ import styles from "./FormField.css";
 import { FormFieldWrapper } from "./FormFieldWrapper";
 import { FormFieldPostFix } from "./FormFieldPostFix";
 
-// eslint-disable-next-line max-statements
 export function FormField(props: FormFieldProps) {
+  // Warning: do not move useId into FormFieldInternal. This must be here to avoid
+  // a problem where useId isn't stable across multiple StrictMode renders.
+  // https://github.com/facebook/react/issues/27103
+  const id = useId();
+
+  return <FormFieldInternal {...props} id={id} />;
+}
+
+type FormFieldInternalProps = FormFieldProps & {
+  readonly id: string;
+};
+
+// eslint-disable-next-line max-statements
+function FormFieldInternal(props: FormFieldInternalProps) {
   const {
     actionsRef,
     autocomplete = true,
@@ -23,6 +36,7 @@ export function FormField(props: FormFieldProps) {
     defaultValue,
     description,
     disabled,
+    id,
     inputRef,
     inline,
     keyboard,
@@ -52,16 +66,13 @@ export function FormField(props: FormFieldProps) {
       : // If there isn't a Form Context being provided, get a form for this field.
         useForm({ mode: "onTouched" });
 
-  const [identifier] = useState(useId());
-  const [descriptionIdentifier] = useState(`descriptionUUID--${useId()}`);
+  const descriptionIdentifier = `descriptionUUID--${id}`;
   /**
    * Generate a name if one is not supplied, this is the name
    * that will be used for react-hook-form and not neccessarily
    * attached to the DOM
    */
-  const [controlledName] = useState(
-    name ? name : `generatedName--${identifier}`,
-  );
+  const [controlledName] = useState(name ? name : `generatedName--${id}`);
 
   useEffect(() => {
     if (value != undefined) {
@@ -95,7 +106,7 @@ export function FormField(props: FormFieldProps) {
 
   const fieldProps = {
     ...rest,
-    id: identifier,
+    id,
     className: styles.input,
     name: (validations || name) && controllerName,
     disabled: disabled,
@@ -120,7 +131,7 @@ export function FormField(props: FormFieldProps) {
       {...props}
       value={rest.value}
       error={errorMessage}
-      identifier={identifier}
+      identifier={id}
       descriptionIdentifier={descriptionIdentifier}
       clearable={clearable}
       onClear={handleClear}
