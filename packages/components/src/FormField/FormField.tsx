@@ -42,7 +42,7 @@ function FormFieldInternal(props: FormFieldInternalProps) {
     max,
     maxLength,
     min,
-    name,
+    name: nameProp,
     readonly,
     rows,
     loading,
@@ -71,30 +71,25 @@ function FormFieldInternal(props: FormFieldInternalProps) {
    * that will be used for react-hook-form and not neccessarily
    * attached to the DOM
    */
-  const controlledName = name ? name : `generatedName--${id}`;
+  const name = nameProp ? nameProp : `generatedName--${id}`;
 
   useEffect(() => {
     if (value != undefined) {
-      setValue(controlledName, value);
+      setValue(name, value);
     }
-  }, [value, watch(controlledName)]);
+  }, [value, watch(name)]);
 
   useImperativeHandle(actionsRef, () => ({
     setValue: newValue => {
-      setValue(controlledName, newValue, { shouldValidate: true });
+      setValue(name, newValue, { shouldValidate: true });
     },
   }));
 
   const {
-    field: {
-      onChange: onControllerChange,
-      onBlur: onControllerBlur,
-      name: controllerName,
-      ...rest
-    },
+    field: { onChange: onControllerChange, onBlur: onControllerBlur, ...rest },
     fieldState: { error },
   } = useController({
-    name: controlledName,
+    name,
     control,
     rules: validations,
     defaultValue: value ?? defaultValue ?? "",
@@ -107,7 +102,7 @@ function FormFieldInternal(props: FormFieldInternalProps) {
     ...rest,
     id,
     className: styles.input,
-    name: (validations || name) && controllerName,
+    name: (validations || nameProp) && name,
     disabled: disabled,
     readOnly: readonly,
     inputMode: keyboard,
@@ -178,7 +173,7 @@ function FormFieldInternal(props: FormFieldInternalProps) {
 
   function handleClear() {
     handleBlur();
-    setValue(controlledName, "", { shouldValidate: true });
+    setValue(name, "", { shouldValidate: true });
     onChange && onChange("");
     inputRef?.current?.focus();
   }
