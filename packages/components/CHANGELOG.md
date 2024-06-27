@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.18.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.18.0...@jobber/components@5.18.1) (2024-06-27)
+
+
+### Bug Fixes
+
+* **components:** InputText corners are white when autofilling a field on chrome ([#1949](https://github.com/GetJobber/atlantis/issues/1949)) ([9bffa84](https://github.com/GetJobber/atlantis/commit/9bffa84c95be89a60845215a74d40ee52d41f6a6))
+
+
+
+
+
 # [5.18.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.17.0...@jobber/components@5.18.0) (2024-06-24)
 
 
