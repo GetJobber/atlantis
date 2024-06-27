@@ -1,9 +1,6 @@
-:root {
+.chip {
   --chip--gradient-color-variation: var(--chip-base-bg);
   --chip--gradient-color-variation--hover: var(--chip-base--hover);
-}
-
-.chip {
   --chip-height: 40px;
   --chip-radius: 20px;
   --chip-base-bg: var(--color-surface--background);

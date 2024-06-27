@@ -177,67 +177,67 @@ const AllTemplate: ComponentStory<typeof Chip> = () => {
           <Typography>Base Default</Typography>
           <Chip label="Chip Label">
             <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
+              <Icon name="cross" size="small" color="interactiveSubtle" />
             </Chip.Suffix>
           </Chip>
           <Typography>Base Disabled</Typography>
           <Chip label="Chip Label" disabled>
             <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
+              <Icon name="cross" size="small" color="interactiveSubtle" />
             </Chip.Suffix>
           </Chip>
           <Typography>Subtle</Typography>
           <Chip label="Chip Label" variation="subtle">
             <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
+              <Icon name="cross" size="small" color="interactiveSubtle" />
             </Chip.Suffix>
           </Chip>
           <Typography>Subtle Disabled</Typography>
           <Chip label="Chip Label" variation="subtle" disabled>
             <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
+              <Icon name="cross" size="small" color="interactiveSubtle" />
             </Chip.Suffix>
           </Chip>
           <Typography>Invalid</Typography>
           <Chip label="Chip Label" invalid>
             <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
+              <Icon name="cross" size="small" color="interactiveSubtle" />
             </Chip.Suffix>
           </Chip>
           <Typography>Invalid Disabled</Typography>
           <Chip label="Chip Label" invalid disabled>
             <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
+              <Icon name="cross" size="small" color="interactiveSubtle" />
             </Chip.Suffix>
           </Chip>
           <Typography>Subtle Invalid</Typography>
           <Chip label="Chip Label" variation="subtle" invalid>
             <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
+              <Icon name="cross" size="small" color="interactiveSubtle" />
             </Chip.Suffix>
           </Chip>
           <Typography>Subtle Invalid Disabled</Typography>
           <Chip label="Chip Label" variation="subtle" invalid disabled>
             <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
+              <Icon name="cross" size="small" color="interactiveSubtle" />
             </Chip.Suffix>
           </Chip>
           <Typography>Base Heading</Typography>
           <Chip label="Chip Label" heading="Heading">
             <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
+              <Icon name="cross" size="small" color="interactiveSubtle" />
             </Chip.Suffix>
           </Chip>
           <Typography>Base Heading Disabled</Typography>
           <Chip label="Chip Label" heading="Heading" disabled>
             <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
+              <Icon name="cross" size="small" color="interactiveSubtle" />
             </Chip.Suffix>
           </Chip>
           <Typography>Subtle Heading</Typography>
           <Chip label="Chip Label" heading="Heading" variation="subtle">
             <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
+              <Icon name="cross" size="small" color="interactiveSubtle" />
             </Chip.Suffix>
           </Chip>
           <Typography>Subtle Heading Disabled</Typography>
@@ -248,13 +248,13 @@ const AllTemplate: ComponentStory<typeof Chip> = () => {
             disabled
           >
             <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
+              <Icon name="cross" size="small" color="interactiveSubtle" />
             </Chip.Suffix>
           </Chip>
           <Typography>Invalid Heading</Typography>
           <Chip label="Chip Label" heading="Heading" variation="subtle" invalid>
             <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
+              <Icon name="cross" size="small" color="interactiveSubtle" />
             </Chip.Suffix>
           </Chip>
           <Typography>Invalid Heading Disabled</Typography>
@@ -266,7 +266,7 @@ const AllTemplate: ComponentStory<typeof Chip> = () => {
             disabled
           >
             <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
+              <Icon name="cross" size="small" color="interactiveSubtle" />
             </Chip.Suffix>
           </Chip>
         </div>
@@ -278,7 +278,7 @@ const AllTemplate: ComponentStory<typeof Chip> = () => {
               <Avatar initials="st" size="small" />
             </Chip.Prefix>
             <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
+              <Icon name="cross" size="small" color="interactiveSubtle" />
             </Chip.Suffix>
           </Chip>
           <Typography>Base Disabled</Typography>
@@ -287,7 +287,7 @@ const AllTemplate: ComponentStory<typeof Chip> = () => {
               <Avatar initials="st" size="small" />
             </Chip.Prefix>
             <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
+              <Icon name="cross" size="small" color="interactiveSubtle" />
             </Chip.Suffix>
           </Chip>
           <Typography>Subtle</Typography>
@@ -296,7 +296,7 @@ const AllTemplate: ComponentStory<typeof Chip> = () => {
               <Avatar initials="st" size="small" />
             </Chip.Prefix>
             <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
+              <Icon name="cross" size="small" color="interactiveSubtle" />
             </Chip.Suffix>
           </Chip>
           <Typography>Subtle Disabled</Typography>
@@ -305,7 +305,7 @@ const AllTemplate: ComponentStory<typeof Chip> = () => {
               <Avatar initials="st" size="small" />
             </Chip.Prefix>
             <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
+              <Icon name="cross" size="small" color="interactiveSubtle" />
             </Chip.Suffix>
           </Chip>
           <Typography>Invalid</Typography>
@@ -314,7 +314,7 @@ const AllTemplate: ComponentStory<typeof Chip> = () => {
               <Avatar initials="st" size="small" />
             </Chip.Prefix>
             <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
+              <Icon name="cross" size="small" color="interactiveSubtle" />
             </Chip.Suffix>
           </Chip>
           <Typography>Invalid Disabled</Typography>
@@ -323,7 +323,7 @@ const AllTemplate: ComponentStory<typeof Chip> = () => {
               <Avatar initials="st" size="small" />
             </Chip.Prefix>
             <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
+              <Icon name="cross" size="small" color="interactiveSubtle" />
             </Chip.Suffix>
           </Chip>
           <Typography>Subtle Invalid</Typography>
@@ -332,7 +332,7 @@ const AllTemplate: ComponentStory<typeof Chip> = () => {
               <Avatar initials="st" size="small" />
             </Chip.Prefix>
             <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
+              <Icon name="cross" size="small" color="interactiveSubtle" />
             </Chip.Suffix>
           </Chip>
           <Typography>Subtle Invalid Disabled</Typography>
@@ -341,7 +341,7 @@ const AllTemplate: ComponentStory<typeof Chip> = () => {
               <Avatar initials="st" size="small" />
             </Chip.Prefix>
             <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
+              <Icon name="cross" size="small" color="interactiveSubtle" />
             </Chip.Suffix>
           </Chip>
           <Typography>Base Heading</Typography>
@@ -350,7 +350,7 @@ const AllTemplate: ComponentStory<typeof Chip> = () => {
               <Avatar initials="st" size="small" />
             </Chip.Prefix>
             <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
+              <Icon name="cross" size="small" color="interactiveSubtle" />
             </Chip.Suffix>
           </Chip>
           <Typography>Base Heading Disabled</Typography>
@@ -359,7 +359,7 @@ const AllTemplate: ComponentStory<typeof Chip> = () => {
               <Avatar initials="st" size="small" />
             </Chip.Prefix>
             <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
+              <Icon name="cross" size="small" color="interactiveSubtle" />
             </Chip.Suffix>
           </Chip>
           <Typography>Subtle Heading</Typography>
@@ -368,7 +368,7 @@ const AllTemplate: ComponentStory<typeof Chip> = () => {
               <Avatar initials="st" size="small" />
             </Chip.Prefix>
             <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
+              <Icon name="cross" size="small" color="interactiveSubtle" />
             </Chip.Suffix>
           </Chip>
           <Typography>Subtle Heading Disabled</Typography>
@@ -382,7 +382,7 @@ const AllTemplate: ComponentStory<typeof Chip> = () => {
               <Avatar initials="st" size="small" />
             </Chip.Prefix>
             <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
+              <Icon name="cross" size="small" color="interactiveSubtle" />
             </Chip.Suffix>
           </Chip>
           <Typography>Invalid Heading</Typography>
@@ -391,7 +391,7 @@ const AllTemplate: ComponentStory<typeof Chip> = () => {
               <Avatar initials="st" size="small" />
             </Chip.Prefix>
             <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
+              <Icon name="cross" size="small" color="interactiveSubtle" />
             </Chip.Suffix>
           </Chip>
           <Typography>Invalid Heading Disabled</Typography>
@@ -406,7 +406,7 @@ const AllTemplate: ComponentStory<typeof Chip> = () => {
               <Avatar initials="st" size="small" />
             </Chip.Prefix>
             <Chip.Suffix>
-              <Icon name="cross" size="small" color="blue" />
+              <Icon name="cross" size="small" color="interactiveSubtle" />
             </Chip.Suffix>
           </Chip>
         </div>

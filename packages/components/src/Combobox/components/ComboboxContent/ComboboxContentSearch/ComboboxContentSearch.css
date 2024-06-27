@@ -8,10 +8,15 @@
   padding-right: calc(var(--space-large) * 2.25);
   border: none;
   border-bottom: var(--border-base) solid var(--color-border);
-  color: var(--field-value-color);
+  color: var(--field--value-color);
   font-family: var(--typography--fontFamily-normal);
   font-size: var(--typography--fontSize-base);
   background-color: var(--color-surface);
+}
+
+.searchInput::placeholder {
+  color: var(--field--placeholder-color);
+  opacity: 1;
 }
 
 .searchInput::-webkit-search-decoration,
