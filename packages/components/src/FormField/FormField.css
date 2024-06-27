@@ -195,7 +195,7 @@
   padding-left: var(--field--padding-left);
   padding-right: var(--field--padding-right);
   border: none;
-  border-radius: 0;
+  border-radius: var(--radius-base);
   color: inherit;
   font-family: inherit;
   font-size: inherit;
