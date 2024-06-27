@@ -11,6 +11,11 @@ export const styles = StyleSheet.create({
     },
   ]),
 
+  field: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+
   inputContainer: {
     flexDirection: "row",
     flex: 1,
@@ -103,8 +108,33 @@ export const styles = StyleSheet.create({
   },
 
   toolbar: {
+    flexBasis: "100%",
     flexDirection: "row",
     gap: tokens["space-small"],
     paddingBottom: tokens["space-small"],
+  },
+
+  loadingSpinner: {
+    justifyContent: "center",
+    paddingRight: tokens["space-small"],
+  },
+
+  loadingGlimmers: {
+    position: "absolute",
+    top: tokens["space-base"],
+    bottom: tokens["space-base"],
+    left: 0,
+    right: 0,
+    gap: tokens["space-small"],
+    paddingTop: tokens["space-small"],
+    paddingRight: tokens["space-large"],
+    backgroundColor: tokens["color-surface"],
+    overflow: "hidden",
+  },
+
+  loadingGlimmersHasValue: {
+    top: tokens["space-large"],
+    paddingTop: tokens["space-base"] - tokens["space-smaller"],
+    bottom: tokens["space-smaller"],
   },
 });

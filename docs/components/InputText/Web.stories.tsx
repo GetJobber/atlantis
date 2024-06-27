@@ -1,6 +1,7 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { InputText } from "@jobber/components/InputText";
+import { Button } from "@jobber/components/Button";
 
 export default {
   title: "Components/Forms and Inputs/InputText/Web",
@@ -25,6 +26,31 @@ Multiline.args = {
   defaultValue: "Rocinante",
   multiline: true,
   rows: { min: 1, max: 5 },
+};
+
+export const Toolbar = BasicTemplate.bind({});
+Toolbar.args = {
+  placeholder: "Hakunamatata",
+  multiline: true,
+  rows: { min: 1, max: 5 },
+  toolbar: (
+    <div
+      style={{
+        display: "flex",
+        width: "100%",
+        justifyContent: "space-between",
+      }}
+    >
+      <Button label="Rewrite" size="small" icon="sparkles" fullWidth={false} />
+      <Button
+        ariaLabel="Undo"
+        size="small"
+        icon="redo"
+        type="tertiary"
+        fullWidth={false}
+      />
+    </div>
+  ),
 };
 
 export const Readonly = BasicTemplate.bind({});

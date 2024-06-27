@@ -1,28 +1,42 @@
 .inlineLabel {
   display: inline-flex;
-  border-radius: var(--radius-large);
 }
 
 .base {
   padding: calc(var(--space-smaller) * 1.5) calc(var(--space-small) * 1.25);
+  border-radius: var(--radius-large);
+}
+
+.base span {
+  line-height: 0.75rem;
 }
 
 .large {
-  padding: calc(var(--space-smaller) * 1.5) calc(var(--space-small) * 1.25);
+  padding: calc(var(--space-small) * 1.25) calc(var(--space-small) * 1.5);
+  border-radius: var(--radius-larger);
+}
+
+.large span {
+  line-height: 1rem;
 }
 
 .larger {
-  padding: calc(var(--space-small) * 1.25) calc(var(--space-smaller) * 3.5);
+  padding: calc(var(--space-small) * 1.5) calc(var(--space-base));
+  border-radius: var(--radius-larger);
+}
+
+.larger span {
+  line-height: 1rem;
 }
 
 .greyBlue {
-  color: var(--color-greyBlue--dark);
-  background-color: var(--color-greyBlue--lightest);
+  color: var(--color-heading);
+  background-color: var(--color-inactive--surface);
 }
 
 .red {
-  color: var(--color-red--dark);
-  background-color: var(--color-red--lightest);
+  color: var(--color-critical--onSurface);
+  background-color: var(--color-critical--surface);
 }
 
 .orange {
@@ -30,24 +44,28 @@
   background-color: var(--color-orange--lightest);
 }
 
-.green {
-  color: var(--color-green--dark);
-  background-color: var(--color-green--lightest);
+.green,
+.success {
+  color: var(--color-success--onSurface);
+  background-color: var(--color-success--surface);
 }
 
-.blue {
-  color: var(--color-blue--dark);
-  background-color: var(--color-blue--lightest);
+.blue,
+.inactive {
+  color: var(--color-inactive--onSurface);
+  background-color: var(--color-inactive--surface);
 }
 
-.navy {
-  color: var(--color-navy--dark);
-  background-color: var(--color-navy--lightest);
+.navy,
+.task {
+  color: var(--color-task--onSurface);
+  background-color: var(--color-task--surface);
 }
 
-.yellow {
-  color: var(--color-yellow--dark);
-  background-color: var(--color-yellow--lightest);
+.yellow,
+.warning {
+  color: var(--color-warning--onSurface);
+  background-color: var(--color-warning--surface);
 }
 
 .lime {
@@ -55,14 +73,16 @@
   background-color: var(--color-lime--lightest);
 }
 
-.purple {
-  color: var(--color-purple--dark);
-  background-color: var(--color-purple--lightest);
+.purple,
+.invoice {
+  color: var(--color-invoice--onSurface);
+  background-color: var(--color-invoice--surface);
 }
 
-.pink {
-  color: var(--color-pink--dark);
-  background-color: var(--color-pink--lightest);
+.pink,
+.quote {
+  color: var(--color-quote--onSurface);
+  background-color: var(--color-quote--surface);
 }
 
 .teal {
@@ -70,22 +90,25 @@
   background-color: var(--color-teal--lightest);
 }
 
-.yellowGreen {
-  color: var(--color-yellowGreen--dark);
-  background-color: var(--color-yellowGreen--lightest);
+.yellowGreen,
+.job {
+  color: var(--color-job--onSurface);
+  background-color: var(--color-job--surface);
 }
 
 .blueDark {
-  color: var(--color-white);
-  background-color: var(--color-blue--light);
+  color: var(--color-text--reverse--secondary);
+  background-color: var(--color-surface--reverse);
 }
 
-.lightBlue {
-  color: var(--color-lightBlue--dark);
-  background-color: var(--color-lightBlue--lightest);
+.lightBlue,
+.informative {
+  color: var(--color-informative--onSurface);
+  background-color: var(--color-informative--surface);
 }
 
-.indigo {
-  color: var(--color-indigo--dark);
-  background-color: var(--color-indigo--lightest);
+.indigo,
+.request {
+  color: var(--color-request--onSurface);
+  background-color: var(--color-request--surface);
 }

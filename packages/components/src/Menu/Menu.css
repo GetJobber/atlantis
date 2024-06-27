@@ -3,18 +3,21 @@
 }
 
 .wrapper {
-  --menu-space: var(--space-small);
-  --menu-offset: var(--space-smallest);
-  display: inline-block;
   position: relative;
 }
 
+.popperContainer {
+  z-index: var(--elevation-modal);
+}
+
+.shadowRef {
+  display: none;
+}
+
 .menu {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: var(--elevation-menu);
-  width: 100%;
+  --menu-space: var(--space-small);
+  --menu-offset: var(--space-smallest);
+  z-index: var(--elevation-modal);
   max-height: 72vh;
   box-shadow: var(--shadow-base);
   padding: var(--menu-space);
@@ -24,43 +27,19 @@
   overflow-y: scroll;
   background-color: var(--color-surface);
 
+  @media (--small-screens-and-below) {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
   @media (--small-screens-and-up) {
-    position: absolute;
-    left: auto;
     width: calc(var(--base-unit) * 12.5);
     padding: var(--menu-space);
     border: var(--border-base) solid var(--color-border);
     border-radius: var(--radius-base);
     overflow: auto;
-  }
-}
-
-.above {
-  @media (--small-screens-and-up) {
-    bottom: 100%;
-    margin-bottom: var(--menu-offset);
-  }
-}
-
-.below {
-  @media (--small-screens-and-up) {
-    top: 100%;
-    bottom: auto;
-    margin-top: var(--menu-offset);
-  }
-}
-
-.left {
-  @media (--small-screens-and-up) {
-    right: 0;
-    left: auto;
-  }
-}
-
-.right {
-  @media (--small-screens-and-up) {
-    right: auto;
-    left: 0;
   }
 }
 
@@ -79,25 +58,14 @@
 }
 
 .sectionHeader {
-  padding: var(--menu-space);
-}
-
-:global(.jobber-retheme) .sectionHeader {
   display: flex;
   align-items: center;
   padding: calc(var(--menu-space) * 1.5) var(--menu-space);
 }
 
-:global(.jobber-retheme) .sectionHeader h6 {
-  /* can move into the Typography component post re-theme */
-  font-size: var(--typography--fontSize-base);
-  font-weight: 400;
-  text-transform: none;
-}
-
 .action {
   display: flex;
-  gap: var(--space-base);
+  gap: var(--menu-space);
   width: 100%;
   padding: var(--menu-space);
   border: none;
@@ -107,25 +75,21 @@
   align-items: center;
 }
 
-:global(.jobber-retheme) .action {
-  gap: var(--menu-space);
+.action:hover,
+.action:focus {
+  background-color: var(--color-surface--hover);
 }
 
-.action:hover,
 .action:focus-visible {
-  background-color: var(--color-surface--hover);
   outline-color: var(--color-focus);
 }
-
-:global(.jobber-retheme) .action span {
-  /* can move into the Typography component post re-theme */
-  color: var(--color-text--secondary);
-  font-weight: 600;
+.action span {
+  /* match appearance of Button labels */
+  -webkit-font-smoothing: antialiased;
 }
 
-:global(.jobber-retheme) .icon path {
-  /* can move into the Icon component post re-theme */
-  fill: var(--color-interactive--subtle);
+.action.destructive > span {
+  color: var(--color-destructive);
 }
 
 .overlay {
@@ -134,7 +98,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: var(--elevation-menu);
+  z-index: var(--elevation-modal);
   background-color: var(--color-overlay);
 
   @media (--small-screens-and-up) {

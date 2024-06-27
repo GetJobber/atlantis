@@ -12,12 +12,6 @@ import { StoryDetails } from "./components/StoryDetails";
 import "@jobber/design/foundation.css";
 import "./assets/css/preview.css";
 
-try {
-  require("@jobber/fonts");
-} catch {
-  console.log("Jobber fonts not found");
-}
-
 export const parameters = {
   viewMode: "docs",
   previewTabs: { code: { hidden: true } },

@@ -1,6 +1,7 @@
 import React from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { FormField } from ".";
+import { Form } from "../Form/Form";
 
 // eslint-disable-next-line max-statements
 describe("FormField", () => {
@@ -267,6 +268,30 @@ describe("FormField", () => {
           <FormField placeholder="foo" name="dillan" />,
         );
         expect(getByLabelText("foo")).toHaveAttribute("name", "dillan");
+      });
+    });
+
+    describe("when nested/structured", () => {
+      it("should display errors", async () => {
+        const { findByText, getByText } = render(
+          <Form onSubmit={jest.fn()}>
+            <FormField
+              name="parent.0.child"
+              placeholder="foo"
+              validations={{
+                required: {
+                  value: true,
+                  message: "field foo is required",
+                },
+              }}
+            />
+            <button type="submit">Submit</button>,
+          </Form>,
+        );
+
+        fireEvent.click(getByText("Submit"));
+
+        expect(await findByText("field foo is required")).toBeInTheDocument();
       });
     });
 

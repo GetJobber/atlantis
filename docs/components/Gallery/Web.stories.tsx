@@ -22,7 +22,8 @@ const files = [
     type: "image/png",
     size: 213402324,
     progress: 1,
-    src: "https://picsum.photos/250",
+    thumbnailSrc: "https://picsum.photos/250",
+    src: "https://picsum.photos/550",
   },
   {
     key: "def",
@@ -30,7 +31,8 @@ const files = [
     type: "image/png",
     size: 124525234,
     progress: 1,
-    src: "https://picsum.photos/250",
+    thumbnailSrc: "https://picsum.photos/250",
+    src: "https://picsum.photos/550",
   },
   {
     key: "efg",
@@ -38,7 +40,8 @@ const files = [
     type: "image/png",
     size: 233411234,
     progress: 1,
-    src: "https://picsum.photos/250",
+    thumbnailSrc: "https://picsum.photos/250",
+    src: "https://picsum.photos/550",
   },
   {
     key: "jkl",
@@ -46,7 +49,8 @@ const files = [
     type: "image/png",
     size: 233411234,
     progress: 1,
-    src: "https://picsum.photos/250",
+    thumbnailSrc: "https://picsum.photos/250",
+    src: "https://picsum.photos/550",
   },
   {
     key: "mno",
@@ -54,7 +58,8 @@ const files = [
     type: "image/png",
     size: 233411234,
     progress: 1,
-    src: "https://picsum.photos/250",
+    thumbnailSrc: "https://picsum.photos/250",
+    src: "https://picsum.photos/550",
   },
   {
     key: "pqr",
@@ -62,7 +67,8 @@ const files = [
     type: "image/png",
     size: 233411234,
     progress: 1,
-    src: "https://picsum.photos/250",
+    thumbnailSrc: "https://picsum.photos/250",
+    src: "https://picsum.photos/550",
   },
   {
     key: "pQ=",
@@ -70,7 +76,8 @@ const files = [
     type: "image/png",
     size: 233411234,
     progress: 1,
-    src: "https://picsum.photos/250",
+    thumbnailSrc: "https://picsum.photos/250",
+    src: "https://picsum.photos/550",
   },
   {
     key: "fGr",
@@ -78,7 +85,8 @@ const files = [
     type: "image/png",
     size: 233411234,
     progress: 1,
-    src: "https://picsum.photos/250",
+    thumbnailSrc: "https://picsum.photos/250",
+    src: "https://picsum.photos/550",
   },
   {
     key: "AM=",
@@ -86,7 +94,8 @@ const files = [
     type: "image/png",
     size: 233411234,
     progress: 1,
-    src: "https://picsum.photos/250",
+    thumbnailSrc: "https://picsum.photos/250",
+    src: "https://picsum.photos/550",
   },
 ];
 

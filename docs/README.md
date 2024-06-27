@@ -24,7 +24,6 @@ To install Atlantis locally for development:
 ```sh
 git clone git@github.com:GetJobber/atlantis.git
 cd atlantis
-./scripts/pre-install.sh
 npm install
 ```
 
@@ -73,6 +72,21 @@ These are the core packages you'll need to build with Atlantis:
 - [Components](?path=/docs/packages-components--page)
 - [Design](?path=/docs/packages-design--page)
 - [Hooks](?path=/docs/packages-hooks--page)
+
+#### Installing specific versions
+
+Once a package is installed, update that package to the latest version by
+running:
+
+```sh
+npm install @jobber/{package}@latest
+```
+
+or if you want a specific version:
+
+```sh
+npm install @jobber/{package}@{version}
+```
 
 ### Tooling and configuration
 

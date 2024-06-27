@@ -36,3 +36,13 @@ it("renders star icon with custom color", () => {
   const { container } = render(<Icon name="star" customColor="#f33323" />);
   expect(container).toMatchSnapshot();
 });
+
+it("applies testID prop to svg element", () => {
+  const { getByTestId } = render(<Icon name="star" testID="star-icon" />);
+  expect(getByTestId("star-icon")).toBeInTheDocument();
+});
+
+it("applies name prop as testID when testID prop is not provided", () => {
+  const { getByTestId } = render(<Icon name="star" />);
+  expect(getByTestId("star")).toBeInTheDocument();
+});

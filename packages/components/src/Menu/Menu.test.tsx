@@ -169,8 +169,5 @@ it("should focus first action item from the menu when activated", async () => {
 
   fireEvent.click(getByRole("button"));
   const firstMenuItem = screen.getAllByRole("menuitem")[0];
-  expect(firstMenuItem).not.toHaveFocus();
-  jest.runAllTimers();
   expect(firstMenuItem).toHaveFocus();
-  jest.useRealTimers();
 });

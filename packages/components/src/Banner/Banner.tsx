@@ -1,15 +1,13 @@
 import React, { ReactNode, useState } from "react";
 import classnames from "classnames";
-import { IconColorNames, IconNames } from "@jobber/design";
+import { IconNames } from "@jobber/design";
 import { useResizeObserver } from "@jobber/hooks/useResizeObserver";
 import styles from "./Banner.css";
-import types from "./notificationTypes.css";
 import { BannerIcon } from "./components/BannerIcon";
 import { BannerType } from "./Banner.types";
-import { Icon } from "../Icon";
 import { Text } from "../Text";
 import { Button, ButtonProps } from "../Button";
-import { useAtlantisConfig } from "../utils/useAtlantisConfig";
+import { ButtonDismiss } from "../ButtonDismiss/ButtonDismiss";
 
 interface BannerProps {
   readonly children: ReactNode;
@@ -29,11 +27,14 @@ interface BannerProps {
    * Adds an icon to the left of the banner content
    */
   readonly icon?: IconNames;
-  onDismiss?(): void;
-}
 
-interface IconColorMap {
-  [variation: string]: IconColorNames;
+  onDismiss?(): void;
+
+  /**
+   * When provided, the banner's visibility is controlled by this value.
+   * @default undefined
+   */
+  readonly controlledVisiblity?: boolean;
 }
 
 export function Banner({
@@ -43,10 +44,12 @@ export function Banner({
   dismissible = true,
   icon,
   onDismiss,
+  controlledVisiblity,
 }: BannerProps) {
-  const { JOBBER_RETHEME } = useAtlantisConfig();
   const [showBanner, setShowBanner] = useState(true);
   const bannerIcon = icon || getBannerIcon(type);
+  const controlledVisible = controlledVisiblity ?? true;
+  const visible = controlledVisible && showBanner;
 
   const bannerWidths = {
     small: 320,
@@ -57,13 +60,6 @@ export function Banner({
     useResizeObserver<HTMLDivElement>({
       widths: bannerWidths,
     });
-
-  const iconColors: IconColorMap = {
-    notice: "informative",
-    success: "success",
-    warning: "warning",
-    error: "critical",
-  };
 
   if (primaryAction != undefined) {
     primaryAction = Object.assign(
@@ -76,11 +72,11 @@ export function Banner({
     );
   }
 
-  const bannerClassNames = classnames(styles.banner, types[type], {
+  const bannerClassNames = classnames(styles.banner, {
     [styles.medium]: bannerWidth >= bannerWidths.medium,
   });
 
-  if (!showBanner) return null;
+  if (!visible) return null;
 
   return (
     <div
@@ -103,31 +99,25 @@ export function Banner({
       </div>
 
       {dismissible && (
-        <button
-          type="button"
-          className={styles.closeButton}
-          onClick={handleClose}
-          aria-label="Close this notification"
-        >
-          <Icon
-            name="cross"
-            color={JOBBER_RETHEME ? "interactiveSubtle" : iconColors[type]}
+        <div className={styles.closeButton}>
+          <ButtonDismiss
+            ariaLabel={"Dismiss notification"}
+            onClick={handleClose}
           />
-        </button>
+        </div>
       )}
     </div>
   );
 
   function handleClose() {
-    setShowBanner(!showBanner);
-    onDismiss && onDismiss();
+    if (typeof controlledVisiblity === "undefined") {
+      setShowBanner(!showBanner);
+    }
+    onDismiss?.();
   }
 }
 
 function getBannerIcon(type: BannerType): IconNames | undefined {
-  const { JOBBER_RETHEME } = useAtlantisConfig();
-  if (!JOBBER_RETHEME) return;
-
   switch (type) {
     case "notice":
       return "starburst";

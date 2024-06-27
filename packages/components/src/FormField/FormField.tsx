@@ -8,14 +8,13 @@ import React, {
   useImperativeHandle,
   useState,
 } from "react";
-import { Controller, useForm, useFormContext } from "react-hook-form";
+import { useController, useForm, useFormContext } from "react-hook-form";
 import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.css";
 import { FormFieldWrapper } from "./FormFieldWrapper";
 import { FormFieldPostFix } from "./FormFieldPostFix";
 
-// Added 13th statement to accommodate getErrorMessage function
-/*eslint max-statements: ["error", 13]*/
+// eslint-disable-next-line max-statements
 export function FormField(props: FormFieldProps) {
   const {
     actionsRef,
@@ -44,17 +43,14 @@ export function FormField(props: FormFieldProps) {
     onValidation,
     onKeyUp,
     clearable = "never",
+    autofocus,
   } = props;
 
-  const {
-    control,
-    formState: { errors },
-    setValue,
-    watch,
-  } = useFormContext() != undefined
-    ? useFormContext()
-    : // If there isn't a Form Context being provided, get a form for this field.
-      useForm({ mode: "onTouched" });
+  const { control, setValue, watch } =
+    useFormContext() != undefined
+      ? useFormContext()
+      : // If there isn't a Form Context being provided, get a form for this field.
+        useForm({ mode: "onTouched" });
 
   const [identifier] = useState(useId());
   const [descriptionIdentifier] = useState(`descriptionUUID--${useId()}`);
@@ -79,160 +75,151 @@ export function FormField(props: FormFieldProps) {
     },
   }));
 
-  const message = errors[controlledName]?.message;
-  const error = getErrorMessage();
-  useEffect(() => handleValidation(), [error]);
+  const {
+    field: {
+      onChange: onControllerChange,
+      onBlur: onControllerBlur,
+      name: controllerName,
+      ...rest
+    },
+    fieldState: { error },
+  } = useController({
+    name: controlledName,
+    control,
+    rules: validations,
+    defaultValue: value ?? defaultValue ?? "",
+  });
+
+  const errorMessage = error?.message || "";
+  useEffect(() => handleValidation(errorMessage), [errorMessage]);
+
+  const fieldProps = {
+    ...rest,
+    id: identifier,
+    className: styles.input,
+    name: (validations || name) && controllerName,
+    disabled: disabled,
+    readOnly: readonly,
+    inputMode: keyboard,
+    onChange: handleChange,
+    onBlur: handleBlur,
+    onFocus: handleFocus,
+    autoFocus: autofocus,
+    ...(description &&
+      !inline && { "aria-describedby": descriptionIdentifier }),
+  };
+
+  const textFieldProps = {
+    ...fieldProps,
+    autoFocus: autofocus,
+    onKeyDown: handleKeyDown,
+  };
 
   return (
-    <Controller
-      control={control}
-      name={controlledName}
-      rules={{ ...validations }}
-      defaultValue={value ?? defaultValue ?? ""}
-      render={({
-        field: {
-          onChange: onControllerChange,
-          onBlur: onControllerBlur,
-          name: controllerName,
-          ...rest
-        },
-      }) => {
-        const fieldProps = {
-          ...rest,
-          id: identifier,
-          className: styles.input,
-          name: (validations || name) && controllerName,
-          disabled: disabled,
-          readOnly: readonly,
-          inputMode: keyboard,
-          onChange: handleChange,
-          onBlur: handleBlur,
-          onFocus: handleFocus,
-          ...(description &&
-            !inline && { "aria-describedby": descriptionIdentifier }),
-        };
-
-        const textFieldProps = {
-          ...fieldProps,
-          onKeyDown: handleKeyDown,
-        };
-
-        return (
-          <FormFieldWrapper
-            {...props}
-            value={rest.value}
-            error={error}
-            identifier={identifier}
-            descriptionIdentifier={descriptionIdentifier}
-            clearable={clearable}
-            onClear={handleClear}
-          >
-            {renderField()}
-          </FormFieldWrapper>
-        );
-
-        function renderField() {
-          switch (type) {
-            case "select":
-              return (
-                <>
-                  <select {...fieldProps}>{children}</select>
-                  <FormFieldPostFix variation="select" />
-                </>
-              );
-            case "textarea":
-              return (
-                <textarea
-                  {...textFieldProps}
-                  rows={rows}
-                  ref={inputRef as MutableRefObject<HTMLTextAreaElement>}
-                />
-              );
-            default:
-              return (
-                <>
-                  <input
-                    {...textFieldProps}
-                    autoComplete={setAutocomplete(autocomplete)}
-                    type={type}
-                    maxLength={maxLength}
-                    max={max}
-                    min={min}
-                    ref={inputRef as MutableRefObject<HTMLInputElement>}
-                    onKeyUp={onKeyUp}
-                  />
-                  {loading && <FormFieldPostFix variation="spinner" />}
-                  {children}
-                </>
-              );
-          }
-        }
-
-        function handleClear() {
-          handleBlur();
-          setValue(controlledName, undefined, { shouldValidate: true });
-          onChange && onChange("");
-          inputRef?.current?.focus();
-        }
-
-        function handleChange(
-          event: ChangeEvent<
-            HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-          >,
-        ) {
-          let newValue: string | number;
-          newValue = event.currentTarget.value;
-
-          if (type === "number" && newValue.length > 0) {
-            newValue = parseFloat(newValue);
-          }
-
-          onChange && onChange(newValue, event);
-          onControllerChange(event);
-        }
-
-        function handleKeyDown(
-          event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>,
-        ) {
-          if (!onEnter) return;
-          if (event.key !== "Enter") return;
-          if (event.shiftKey || event.ctrlKey) return;
-          event.preventDefault();
-          onEnter && onEnter(event);
-        }
-
-        function handleFocus(
-          event: FocusEvent<
-            HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-          >,
-        ) {
-          const target = event.currentTarget;
-
-          if ((target as HTMLInputElement).select) {
-            setTimeout(() => readonly && (target as HTMLInputElement).select());
-          }
-
-          onFocus && onFocus();
-        }
-
-        function handleBlur() {
-          onBlur && onBlur();
-          onControllerBlur();
-        }
-      }}
-    />
+    <FormFieldWrapper
+      {...props}
+      value={rest.value}
+      error={errorMessage}
+      identifier={identifier}
+      descriptionIdentifier={descriptionIdentifier}
+      clearable={clearable}
+      onClear={handleClear}
+    >
+      {renderField()}
+    </FormFieldWrapper>
   );
 
-  function getErrorMessage() {
-    if (typeof message === "string") {
-      return message;
+  function renderField() {
+    switch (type) {
+      case "select":
+        return (
+          <>
+            <select {...fieldProps}>{children}</select>
+            <FormFieldPostFix variation="select" />
+          </>
+        );
+      case "textarea":
+        return (
+          <textarea
+            {...textFieldProps}
+            rows={rows}
+            ref={inputRef as MutableRefObject<HTMLTextAreaElement>}
+          />
+        );
+      default:
+        return (
+          <>
+            <input
+              {...textFieldProps}
+              autoComplete={setAutocomplete(autocomplete)}
+              type={type}
+              maxLength={maxLength}
+              max={max}
+              min={min}
+              ref={inputRef as MutableRefObject<HTMLInputElement>}
+              onKeyUp={onKeyUp}
+            />
+            {loading && <FormFieldPostFix variation="spinner" />}
+            {children}
+          </>
+        );
     }
-
-    return "";
   }
 
-  function handleValidation() {
-    onValidation && onValidation(error);
+  function handleClear() {
+    handleBlur();
+    setValue(controlledName, "", { shouldValidate: true });
+    onChange && onChange("");
+    inputRef?.current?.focus();
+  }
+
+  function handleChange(
+    event: ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) {
+    let newValue: string | number;
+    newValue = event.currentTarget.value;
+
+    if (type === "number" && newValue.length > 0) {
+      newValue = parseFloat(newValue);
+    }
+
+    onChange && onChange(newValue, event);
+    onControllerChange(event);
+  }
+
+  function handleKeyDown(
+    event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
+    if (!onEnter) return;
+    if (event.key !== "Enter") return;
+    if (event.shiftKey || event.ctrlKey) return;
+    event.preventDefault();
+    onEnter && onEnter(event);
+  }
+
+  function handleFocus(
+    event: FocusEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) {
+    const target = event.currentTarget;
+
+    if ((target as HTMLInputElement).select) {
+      setTimeout(() => readonly && (target as HTMLInputElement).select());
+    }
+
+    onFocus && onFocus();
+  }
+
+  function handleBlur() {
+    onBlur && onBlur();
+    onControllerBlur();
+  }
+
+  function handleValidation(message: string) {
+    onValidation && onValidation(message);
   }
 }
 

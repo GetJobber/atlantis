@@ -1,5 +1,6 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
+import { StatusLabel } from "@jobber/components/StatusLabel";
 import { Page } from ".";
 import { SectionProps } from "../Menu";
 
@@ -185,5 +186,28 @@ describe("When intro is provided with links", () => {
     const renderedLink = getByRole("link");
     expect(renderedLink.textContent).toBe("click me, I dare you");
     expect(renderedLink.getAttribute("target")).toBe("_blank");
+  });
+});
+
+describe("When titleMetaData is provided", () => {
+  it("should render the component", () => {
+    const titleMetaDataTestId = "titleMetaDataTestId";
+    const pageTitle = "The greatest page";
+
+    const { getByText, getByTestId } = render(
+      <Page
+        title={pageTitle}
+        titleMetaData={
+          <div data-testid={titleMetaDataTestId}>
+            <StatusLabel label={"Success"} status={"success"} />
+          </div>
+        }
+      >
+        Sup
+      </Page>,
+    );
+
+    expect(getByText(pageTitle)).toBeDefined();
+    expect(getByTestId(titleMetaDataTestId)).toBeDefined();
   });
 });

@@ -33,7 +33,10 @@ import { InputFieldWrapper } from "../InputFieldWrapper";
 import { commonInputStyles } from "../InputFieldWrapper/CommonInputStyles.style";
 
 export interface InputTextProps
-  extends Pick<InputFieldWrapperProps, "toolbar"> {
+  extends Pick<
+    InputFieldWrapperProps,
+    "toolbar" | "toolbarVisibility" | "loading" | "loadingType"
+  > {
   /**
    * Highlights the field red and shows message below (if string) to indicate an error
    */
@@ -43,6 +46,11 @@ export interface InputTextProps
    * Disable the input
    */
   readonly disabled?: boolean;
+
+  /**
+   * Makes the input read-only
+   */
+  readonly readonly?: boolean;
 
   /**
    * Name of the input.
@@ -237,6 +245,7 @@ function InputTextInternal(
   {
     invalid,
     disabled,
+    readonly = false,
     name,
     placeholder,
     assistiveText,
@@ -265,6 +274,9 @@ function InputTextInternal(
     secureTextEntry,
     styleOverride,
     toolbar,
+    toolbarVisibility,
+    loading,
+    loadingType,
   }: InputTextProps,
   ref: Ref<InputTextRef>,
 ) {
@@ -367,6 +379,9 @@ function InputTextInternal(
       showClearAction={showClear}
       styleOverride={styleOverride}
       toolbar={toolbar}
+      toolbarVisibility={toolbarVisibility}
+      loading={loading}
+      loadingType={loadingType}
     >
       <TextInput
         inputAccessoryViewID={inputAccessoryID || undefined}
@@ -383,7 +398,10 @@ function InputTextInternal(
           multiline && Platform.OS === "ios" && styles.multilineInputiOS,
           multiline && hasMiniLabel && styles.multiLineInputWithMini,
           styleOverride?.inputText,
+          loading && loadingType === "glimmer" && { color: "transparent" },
         ]}
+        // @ts-expect-error - does exist on 0.71 and up https://github.com/facebook/react-native/pull/39281
+        readOnly={readonly}
         editable={!disabled}
         keyboardType={keyboard}
         value={inputTransform(internalValue)}
@@ -398,6 +416,7 @@ function InputTextInternal(
         blurOnSubmit={shouldBlurOnSubmit}
         accessibilityLabel={accessibilityLabel || placeholder}
         accessibilityHint={accessibilityHint}
+        accessibilityState={{ busy: loading }}
         secureTextEntry={secureTextEntry}
         {...androidA11yProps}
         onFocus={event => {

@@ -13,9 +13,11 @@ import { styles } from "./InputFieldWrapper.style";
 import { PrefixIcon, PrefixLabel } from "./components/Prefix/Prefix";
 import { SuffixIcon, SuffixLabel } from "./components/Suffix/Suffix";
 import { ClearAction } from "./components/ClearAction";
+import { Glimmer } from "../Glimmer/Glimmer";
 import { ErrorMessageWrapper } from "../ErrorMessageWrapper";
 import { TextVariation, typographyStyles } from "../Typography";
 import { Text } from "../Text";
+import { ActivityIndicator } from "../ActivityIndicator";
 
 export type Clearable = "never" | "while-editing" | "always";
 
@@ -93,7 +95,27 @@ export interface InputFieldWrapperProps {
    * Add a toolbar below the input field for actions like rewriting the text.
    */
   readonly toolbar?: React.ReactNode;
+
+  /**
+   * Change the behaviour of when the toolbar becomes visible.
+   */
+  readonly toolbarVisibility?: "always" | "while-editing";
+
+  /**
+   * Show loading indicator.
+   */
+  readonly loading?: boolean;
+
+  /**
+   * Change the type of loading indicator to spinner or glimmer.
+   */
+  readonly loadingType?: "spinner" | "glimmer";
 }
+
+export const INPUT_FIELD_WRAPPER_GLIMMERS_TEST_ID =
+  "ATL-InputFieldWrapper-Glimmers";
+export const INPUT_FIELD_WRAPPER_SPINNER_TEST_ID =
+  "ATL-InputFieldWrapper-Spinner";
 
 export function InputFieldWrapper({
   invalid,
@@ -111,11 +133,19 @@ export function InputFieldWrapper({
   showClearAction = false,
   styleOverride,
   toolbar,
+  toolbarVisibility = "while-editing",
+  loading = false,
+  loadingType = "spinner",
 }: InputFieldWrapperProps): JSX.Element {
   fieldAffixRequiredPropsCheck([prefix, suffix]);
   const handleClear = onClear ?? noopClear;
   warnIfClearActionWithNoOnClear(onClear, showClearAction);
   const inputInvalid = Boolean(invalid) || Boolean(error);
+  const isToolbarVisible =
+    toolbar && (toolbarVisibility === "always" || focused);
+
+  const showLoadingSpinner = loading && loadingType === "spinner";
+  const showLoadingGlimmer = loading && loadingType === "glimmer";
 
   return (
     <ErrorMessageWrapper message={getMessage({ invalid, error })}>
@@ -129,80 +159,109 @@ export function InputFieldWrapper({
           styleOverride?.container,
         ]}
       >
-        {prefix?.icon && (
-          <PrefixIcon
-            disabled={disabled}
-            focused={focused}
-            hasMiniLabel={hasMiniLabel}
-            inputInvalid={inputInvalid}
-            icon={prefix.icon}
-          />
-        )}
-        <View style={[styles.inputContainer]}>
-          <View
-            style={[
-              !!placeholder && styles.label,
-              hasMiniLabel && styles.miniLabel,
-              disabled && styles.disabled,
-              hasMiniLabel &&
-                showClearAction &&
-                styles.miniLabelShowClearAction,
-            ]}
-            pointerEvents="none"
-          >
-            <Placeholder
-              placeholder={placeholder}
-              labelVariation={getLabelVariation(error, invalid, disabled)}
-              hasMiniLabel={hasMiniLabel}
-              styleOverride={styleOverride?.placeholderText}
-            />
-          </View>
-          {prefix?.label && hasValue && (
-            <PrefixLabel
+        <View style={styles.field}>
+          {prefix?.icon && (
+            <PrefixIcon
               disabled={disabled}
               focused={focused}
               hasMiniLabel={hasMiniLabel}
               inputInvalid={inputInvalid}
-              label={prefix.label}
-              styleOverride={styleOverride?.prefixLabel}
+              icon={prefix.icon}
             />
           )}
-          {children}
-          {(showClearAction || suffix?.label || suffix?.icon) && (
-            <View style={styles.inputEndContainer}>
-              {showClearAction && (
-                <ClearAction
-                  hasMarginRight={!!suffix?.icon || !!suffix?.label}
-                  onPress={handleClear}
-                />
-              )}
-              {suffix?.label && hasValue && (
-                <SuffixLabel
-                  disabled={disabled}
-                  focused={focused}
-                  hasMiniLabel={hasMiniLabel}
-                  inputInvalid={inputInvalid}
-                  label={suffix.label}
-                  hasLeftMargin={!showClearAction}
-                  styleOverride={styleOverride?.suffixLabel}
-                />
-              )}
-              {suffix?.icon && (
-                <SuffixIcon
-                  disabled={disabled}
-                  focused={focused}
-                  hasMiniLabel={hasMiniLabel}
-                  hasLeftMargin={!!(!showClearAction || suffix?.label)}
-                  inputInvalid={inputInvalid}
-                  icon={suffix.icon}
-                  onPress={suffix.onPress}
-                />
-              )}
+          <View style={[styles.inputContainer]}>
+            <View
+              style={[
+                !!placeholder && styles.label,
+                hasMiniLabel && styles.miniLabel,
+                disabled && styles.disabled,
+                hasMiniLabel &&
+                  showClearAction &&
+                  styles.miniLabelShowClearAction,
+              ]}
+              pointerEvents="none"
+            >
+              <Placeholder
+                placeholder={placeholder}
+                labelVariation={getLabelVariation(error, invalid, disabled)}
+                hasMiniLabel={hasMiniLabel}
+                styleOverride={styleOverride?.placeholderText}
+              />
             </View>
-          )}
+            {prefix?.label && hasValue && (
+              <PrefixLabel
+                disabled={disabled}
+                focused={focused}
+                hasMiniLabel={hasMiniLabel}
+                inputInvalid={inputInvalid}
+                label={prefix.label}
+                styleOverride={styleOverride?.prefixLabel}
+              />
+            )}
+            {children}
+
+            {showLoadingGlimmer && (
+              <View
+                testID={INPUT_FIELD_WRAPPER_GLIMMERS_TEST_ID}
+                style={[
+                  styles.loadingGlimmers,
+                  hasValue && styles.loadingGlimmersHasValue,
+                ]}
+              >
+                <Glimmer size="small" width="80%" />
+                <Glimmer size="small" />
+                <Glimmer size="small" width="70%" />
+              </View>
+            )}
+
+            {(showClearAction ||
+              suffix?.label ||
+              suffix?.icon ||
+              showLoadingSpinner) && (
+              <View style={styles.inputEndContainer}>
+                {showClearAction && (
+                  <ClearAction
+                    hasMarginRight={!!suffix?.icon || !!suffix?.label}
+                    onPress={handleClear}
+                  />
+                )}
+                {suffix?.label && hasValue && (
+                  <SuffixLabel
+                    disabled={disabled}
+                    focused={focused}
+                    hasMiniLabel={hasMiniLabel}
+                    inputInvalid={inputInvalid}
+                    label={suffix.label}
+                    hasLeftMargin={!showClearAction}
+                    styleOverride={styleOverride?.suffixLabel}
+                  />
+                )}
+
+                {showLoadingSpinner && (
+                  <View style={styles.loadingSpinner}>
+                    <ActivityIndicator
+                      testID={INPUT_FIELD_WRAPPER_SPINNER_TEST_ID}
+                    />
+                  </View>
+                )}
+
+                {suffix?.icon && (
+                  <SuffixIcon
+                    disabled={disabled}
+                    focused={focused}
+                    hasMiniLabel={hasMiniLabel}
+                    hasLeftMargin={!!(!showClearAction || suffix?.label)}
+                    inputInvalid={inputInvalid}
+                    icon={suffix.icon}
+                    onPress={suffix.onPress}
+                  />
+                )}
+              </View>
+            )}
+          </View>
         </View>
 
-        {toolbar && focused && <View style={styles.toolbar}>{toolbar}</View>}
+        {isToolbarVisible && <View style={styles.toolbar}>{toolbar}</View>}
       </View>
       {assistiveText && !error && !invalid && (
         <Text
