@@ -66,7 +66,7 @@ it("renders a textarea", () => {
             >
               <label
                 class="label"
-                for=":r2:"
+                for=":r1:"
               >
                 Describe your favourite colour?
               </label>
@@ -76,7 +76,7 @@ it("renders a textarea", () => {
               >
                 <textarea
                   class="input"
-                  id=":r2:"
+                  id=":r1:"
                   rows="3"
                 />
               </div>
@@ -113,7 +113,7 @@ it("renders a textarea with 4 rows", () => {
             >
               <label
                 class="label"
-                for=":r4:"
+                for=":r2:"
               >
                 Describe your favourite colour?
               </label>
@@ -123,7 +123,7 @@ it("renders a textarea with 4 rows", () => {
               >
                 <textarea
                   class="input"
-                  id=":r4:"
+                  id=":r2:"
                   rows="4"
                 />
               </div>
