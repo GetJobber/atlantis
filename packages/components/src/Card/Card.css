@@ -1,10 +1,8 @@
-:root {
+.card {
   --card--accent-color: var(--color-grey);
   --card--base-padding: var(--space-base);
   --card--border: var(--border-base) solid var(--color-border);
-}
 
-.card {
   display: block;
   width: 100%;
   border: var(--card--border);

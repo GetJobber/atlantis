@@ -1,9 +1,7 @@
-:root {
+.drawer {
   --sideDrawer--base-padding: var(--space-base);
   --sideDrawer--background: var(--color-surface);
-}
 
-.drawer {
   position: fixed;
   top: 0;
   right: 0;

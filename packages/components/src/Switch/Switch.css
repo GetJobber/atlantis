@@ -1,4 +1,4 @@
-:root {
+.switch {
   --switch--width: 48px;
   --switch--pipSize: 16px;
   --switch--labelWidth: calc(var(--switch--pipSize) * 1.3);

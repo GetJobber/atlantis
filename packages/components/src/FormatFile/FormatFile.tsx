@@ -48,7 +48,7 @@ export function FormatFile({
 }: FormatFileProps) {
   const isComplete = file.progress >= 1;
   const fileSize = getHumanReadableFileSize(file.size);
-  const wrapperClassNames = classnames(styles[display], {
+  const wrapperClassNames = classnames(styles[display], styles.formatFile, {
     [styles[displaySize]]: display === "compact",
   });
 

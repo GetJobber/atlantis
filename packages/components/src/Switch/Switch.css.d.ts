@@ -1,4 +1,5 @@
 declare const styles: {
+  readonly "switch": string;
   readonly "track": string;
   readonly "isChecked": string;
   readonly "toggle": string;

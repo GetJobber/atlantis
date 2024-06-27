@@ -1,4 +1,5 @@
 declare const styles: {
+  readonly "formatFile": string;
   readonly "expanded": string;
   readonly "compact": string;
   readonly "wrapper": string;
