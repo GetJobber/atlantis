@@ -4,7 +4,7 @@ const fs = require("fs");
 const postcss = require("postcss");
 const postcssExtract = require("@csstools/postcss-extract");
 
-const colors = fs.readFileSync("src/colors.css");
+const colors = fs.readFileSync("src/maincolors.css");
 
 postcss([
   postcssExtract({

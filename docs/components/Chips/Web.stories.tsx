@@ -124,8 +124,7 @@ Selection.parameters = {
         "./useFakeOptionQuery": ["useFakeOptionQuery"],
       },
       files: {
-        "/useFakeOptionQuery.ts": require("!raw-loader!./utils/storyUtils")
-          .default,
+        "/useFakeOptionQuery.ts": require("./utils/storyUtils").default,
       },
     },
   },

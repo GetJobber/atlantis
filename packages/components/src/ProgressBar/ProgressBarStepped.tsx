@@ -1,7 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import styles from "./ProgressBar.css";
-import sizes from "./Sizes.css";
+import sizes from "./ProgressBarSizes.css";
 
 interface ProgressBarSteppedProps {
   readonly currentStep: number;

@@ -1,7 +1,7 @@
 import classnames from "classnames";
 import styles from "./Icon.css";
 import sizes from "./Sizes.css";
-import colors from "./Colors.css";
+import colors from "./IconColors.css";
 import { iconMap } from "./iconMap";
 
 export const iconClassMap = getInvertedClassMap(styles);

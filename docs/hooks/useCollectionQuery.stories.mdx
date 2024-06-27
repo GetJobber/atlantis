@@ -3,7 +3,7 @@ import { List } from "@jobber/components/List";
 import { Button } from "@jobber/components/Button";
 import { Spinner } from "@jobber/components/Spinner";
 import { InlineLabel } from "@jobber/components/InlineLabel";
-import * as hooks from ".";
+import * as hooks from "@atlantis/packages/hooks/src";
 import {
   LIST_QUERY,
   apolloClient,
@@ -11,7 +11,7 @@ import {
   propsList,
   returnValues,
   subscriptionPropsList,
-} from "./mdxUtils";
+} from "@atlantis/packages/hooks/src/useCollectionQuery/mdxUtils";
 
 <Meta title="Hooks/useCollectionQuery" component={hooks.useCollectionQuery} />
 

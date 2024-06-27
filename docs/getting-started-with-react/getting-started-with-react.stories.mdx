@@ -1,4 +1,4 @@
-import { Canvas, Meta } from "@storybook/addon-docs";
+import { Canvas, Meta, Story } from "@storybook/addon-docs";
 import { useState } from "react";
 import { Card } from "@jobber/components/Card";
 import { Content } from "@jobber/components/Content";
@@ -11,16 +11,6 @@ import { getGIF, loadingGIF } from "./getGIF";
 # Getting Started with React
 
 ## Things to know.
-
-<!--
-- We will reference Typescript in this guide.
-  - https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html
-  - https://create-react-app.dev/docs/getting-started#creating-a-typescript-app
-  - Why Typescript?
-- We will reference functional components. Older class components are still
-  around and you will see them in some guides but we should prefer functional
-  components.
--->
 
 ## What is React
 
@@ -99,23 +89,25 @@ For this example we are going to build a card that allows you to enter a topic
 and then search for a related gif.
 
 <Canvas>
-  {() => {
-    const [topic, setTopic] = useState();
-    const [url, setURL] = useState();
-    return (
-      <Card title="Gif Gift">
-        <Content>
-          <InputText value={topic} onChange={setTopic} placeholder="Topic" />
-          <Button label="Search" fullWidth={true} onClick={gifSearch} />
-          <center>{url && <img src={url} />}</center>
-        </Content>
-      </Card>
-    );
-    async function gifSearch() {
-      setURL(loadingGIF);
-      setURL(await getGIF(topic));
-    }
-  }}
+  <Story name="Composing Components">
+    {() => {
+      const [topic, setTopic] = useState();
+      const [url, setURL] = useState();
+      return (
+        <Card title="Gif Gift">
+          <Content>
+            <InputText value={topic} onChange={setTopic} placeholder="Topic" />
+            <Button label="Search" fullWidth={true} onClick={gifSearch} />
+            <center>{url && <img src={url} />}</center>
+          </Content>
+        </Card>
+      );
+      async function gifSearch() {
+        setURL(loadingGIF);
+        setURL(await getGIF(topic));
+      }
+    }}
+  </Story>
 </Canvas>
 
 > **Note:**
