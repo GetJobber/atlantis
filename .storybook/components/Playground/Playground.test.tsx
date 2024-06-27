@@ -279,7 +279,7 @@ describe("Playground", () => {
   });
 });
 
-interface MockStoryDataType extends Partial<sbAPI.Story> {
+interface MockStoryDataType extends Partial<sbAPI.API> {
   title?: string;
   sourceCode?: string;
 }
@@ -289,13 +289,56 @@ function mockStoryData({
   parameters,
   ...rest
 }: MockStoryDataType) {
+  const trimmedSourceCode = sourceCode.trim();
+  const numberOfLines = trimmedSourceCode.split("\n").length;
+
   (sbAPI.useStorybookApi as jest.Mock).mockImplementation(() => ({
     emit: jest.fn(),
     getCurrentStoryData: () => ({
       type: "story",
       title: "Components/Web",
+      name: "My Story Name",
       ...rest,
-      parameters: { ...parameters, storySource: { source: sourceCode } },
+      parameters: {
+        ...parameters,
+        storySource: {
+          locationsMap: {
+            "my-story-name": {
+              // These lines must match the location/index of the story source within the MockStorySourceCode
+              startBody: { line: 18 },
+              // Single line stories always have the same endBody line number as the startBody.
+              endBody: { line: numberOfLines === 1 ? 18 : 17 + numberOfLines }
+            }
+          },
+          source: MockStorySourceCode.replace('___REPLACE_WITH_MOCK_SOURCE___', trimmedSourceCode)
+        }
+      },
     }),
   }));
 }
+
+const MockStorySourceCode = `
+import React from "react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
+
+export default {
+  title: "Components/Actions/SomeComponent/Web",
+  component: SomeComponent,
+  parameters: {
+    viewMode: "story",
+    previewTabs: { code: { hidden: false } },
+  },
+  decorators: [
+    // Workaround Storybook's wrapping flex parent that make everything full width
+    story => <div>{story()}</div>,
+  ],
+} as ComponentMeta<typeof SomeComponent>;
+
+const BasicTemplate: ComponentStory<typeof SomeComponent> = ___REPLACE_WITH_MOCK_SOURCE___
+
+export const Basic = BasicTemplate.bind({});
+Basic.args = {
+  label: "New Job",
+  onClick: () => alert("👍"),
+};
+`;

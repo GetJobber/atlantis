@@ -75,11 +75,21 @@ const config: StorybookConfig = {
         packageCssRule,
         atlantisCssRule,
       ];
-
     }
 
     if (!config.module) { config.module = {} }
     if (!config.module.rules) { config.module.rules = [] }
+
+    config.module.rules.push({
+      test: /\.stories\.tsx?$/,
+      use: [
+        {
+          loader: require.resolve("@storybook/source-loader"),
+          options: { parser: "typescript" },
+        },
+      ],
+      enforce: "pre",
+    });
 
     /**
      * Generate css types on `.css` file save,

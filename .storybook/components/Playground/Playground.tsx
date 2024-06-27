@@ -1,5 +1,5 @@
 import process from "process";
-import React, { useEffect } from "react";
+import React from "react";
 import { type API as Story, useStorybookApi } from "@storybook/manager-api";
 import {
   SandpackCodeEditor,
@@ -8,7 +8,6 @@ import {
 } from "@codesandbox/sandpack-react";
 import dedent from "ts-dedent";
 import "./Playground.css";
-import { STORY_CHANGED } from "@storybook/core-events";
 import { PlaygroundWarning } from "./PlaygroundWarning";
 import { PlaygroundImports } from "./types";
 import { THIRD_PARTY_PACKAGE_VERSIONS } from "./constants";
@@ -16,27 +15,20 @@ import { formatCode } from "./utils";
 //import css from '!!raw-loader!@jobber/components/dist/styles.css';
 
 export function Playground() {
-  const { getCurrentStoryData, emit } = useStorybookApi();
+  const { getCurrentStoryData } = useStorybookApi();
   const activeStory = getCurrentStoryData() as Story | undefined;
-
-  useEffect(() => {
-    // Emit story changed so GA can track it as a page change. This mimics the
-    // default behaviour of Canvas and Docs tab.
-    emit(STORY_CHANGED);
-  }, []);
-
   if (!activeStory) {
-    return <></>;
+    return null;
   }
 
-  const { isComponentStory, importsString, extraDependencies, canPreview } =
+  const { isComponentStory, importsString, storySource, extraDependencies, canPreview } =
     getPlaygroundInfo(activeStory);
 
   if (!isComponentStory) {
     return <div className="codeUnavailable" data-testid="code-unavailable" />;
   }
 
-  const { parameters, args } = activeStory;
+  const { parameters } = activeStory;
 
   return (
     <SandpackProvider
@@ -79,7 +71,7 @@ export function Playground() {
   function getExampleJsCode(): string {
     const exampleComponent = dedent`
       export function Example() {
-        ${getSourceCode(args, parameters)}
+        ${storySource}
       }
     `;
 
@@ -89,48 +81,62 @@ export function Playground() {
   }
 }
 
-function getPlaygroundInfo({ parameters, type, title }: Story) {
+function getPlaygroundInfo({ args, parameters, type, title, name }: Story) {
   const isComponentsNative = title.includes("/Mobile");
-  const importsString = getImportStrings(parameters, isComponentsNative);
+  const storySource = getSourceCode(name, args, parameters) || "";
+  const importsString = getImportStrings(storySource, parameters, isComponentsNative);
 
   return {
     isComponentsNative,
     importsString,
-    isComponentStory: type === "story" && title.startsWith("Components/"),
+    storySource,
+    isComponentStory: type === "story" && title.startsWith("Components/") && storySource,
     extraDependencies: getExtraDependencies(parameters),
     canPreview: Boolean(importsString) && !isComponentsNative,
   };
 }
 
 function getSourceCode(
+  storyName: string,
   args: Story["args"],
   parameters: Story["parameters"],
 ): string | undefined {
-  if (parameters && "storySource" in parameters) {
-    let sourceCode: string | undefined;
+  const storyNameID = storyName.replaceAll(" ", "-").toLowerCase();
+  const sourceLocation = parameters?.storySource?.locationsMap?.[storyNameID];
+  const storySource = parameters?.storySource?.source;
 
-    const rawSourceCode = parameters.storySource.source;
-    const isBracketFunction = rawSourceCode.startsWith("args => {");
+  if (sourceLocation && storySource) {
+    const allStoryLines = storySource.split("\n");
 
+    let currentStorySource = allStoryLines
+      .slice(sourceLocation.startBody.line-1, sourceLocation.endBody.line)
+      .join("\n")
+      .trim();
+
+    // remove everything up until the return value
+    currentStorySource = currentStorySource.replace(/.*= (args|\(\)) =>/g, "").trim();
+
+    const isBracketFunction = currentStorySource.startsWith("{");
     if (isBracketFunction) {
-      // remove "args => " and the first and last bracket
-      sourceCode = rawSourceCode.replace("args => ", "").slice(1, -1);
+      // remove the start/end brackets
+      currentStorySource = currentStorySource.replace(/(^{|};?$)/g, "");
     } else {
       // find the first < and last >
-      const sourceCodeArr = RegExp("<((.*|\\n)*)>", "m").exec(rawSourceCode);
-      sourceCode = dedent`return ${sourceCodeArr?.[0]}`;
+      const sourceCodeArr = RegExp("<((.*|\\n)*)>", "m").exec(currentStorySource);
+      currentStorySource = dedent`return ${sourceCodeArr?.[0]}`;
     }
+
     const { attributes } = getAttributeProps(args);
 
-    if (sourceCode) {
-      Array.from(sourceCode.matchAll(/args\.(\w+)/g)).forEach(match => {
-        sourceCode = sourceCode?.replace(
+    if (currentStorySource) {
+      Array.from(currentStorySource.matchAll(/args\.(\w+)/g)).forEach(match => {
+        currentStorySource = currentStorySource?.replace(
           match[0],
           getArgValue(args?.[match[1]]),
         );
       });
 
-      return sourceCode
+      return currentStorySource
         ?.replace(new RegExp(" {...args}", "g"), attributes)
         .replace(new RegExp("(args)", "g"), getArgValue(args))
         .replace("{children}", args?.children);
@@ -139,14 +145,15 @@ function getSourceCode(
 }
 
 function getImportStrings(
+  storySource: string,
   parameters: Story["parameters"],
   isComponentsNative: boolean,
 ): string {
   const extraDependencyImports = getExtraDependencyImports(parameters);
 
-  if (parameters && "storySource" in parameters) {
+  if (storySource) {
     const { componentNames, hookNames } = parseSourceStringForImports(
-      parameters.storySource.source,
+      storySource,
       extraDependencyImports.componentNames,
     );
 
