@@ -306,8 +306,7 @@ function mockStoryData({
             "my-story-name": {
               // These lines must match the location/index of the story source within the MockStorySourceCode
               startBody: { line: 18 },
-              // Single line stories always have the same endBody line number as the startBody.
-              endBody: { line: numberOfLines === 1 ? 18 : 17 + numberOfLines }
+              endBody: { line: 17 + numberOfLines }
             }
           },
           source: MockStorySourceCode.replace('___REPLACE_WITH_MOCK_SOURCE___', trimmedSourceCode)
