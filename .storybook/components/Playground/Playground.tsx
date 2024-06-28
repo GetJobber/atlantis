@@ -12,7 +12,6 @@ import { PlaygroundWarning } from "./PlaygroundWarning";
 import { PlaygroundImports } from "./types";
 import { THIRD_PARTY_PACKAGE_VERSIONS } from "./constants";
 import { formatCode } from "./utils";
-//import css from '!!raw-loader!@jobber/components/dist/styles.css';
 
 export function Playground() {
   const { getCurrentStoryData } = useStorybookApi();
@@ -50,7 +49,6 @@ export function Playground() {
       files={{
         "/App.tsx": getAppJsCode(),
         "/Example.tsx": getExampleJsCode(),
-      //  "/styles.css":css,
         ...parameters?.previewTabs?.code?.files,
       }}
     >
@@ -270,6 +268,7 @@ function getArgValue(args: unknown): string {
 function getAppJsCode(): string {
   return dedent`
     import "@jobber/design/foundation.css";
+    import "@jobber/components/dist/styles.css";
     import { Example } from "./Example";
 
     export default function App() {
