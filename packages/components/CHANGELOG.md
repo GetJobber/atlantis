@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.19.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.18.1...@jobber/components@5.19.0) (2024-07-02)
+
+
+### Features
+
+* **components:** SSR support for toast ([#1948](https://github.com/GetJobber/atlantis/issues/1948)) ([966940b](https://github.com/GetJobber/atlantis/commit/966940b2ec2bcec736f6488821be56b6cfb52aa6))
+
+
+
+
+
 ## [5.18.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.18.0...@jobber/components@5.18.1) (2024-06-27)
 
 
