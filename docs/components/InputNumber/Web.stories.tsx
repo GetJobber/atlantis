@@ -71,20 +71,17 @@ Inline.args = {
 const FocusTemplate: ComponentStory<typeof InputNumber> = args => {
   const inputNumberRef = useRef<InputNumberRef>(null);
 
-  const focusInput = () => {
-    inputNumberRef.current?.focus();
-  };
-
-  const blurInput = () => {
-    inputNumberRef.current?.blur();
-  };
+  function toggleInputFocus(shouldFocus = true) {
+    const action = shouldFocus ? "focus" : "blur";
+    inputNumberRef.current?.[action]();
+  }
 
   return (
     <Content>
       <InputNumber {...args} value={5} ref={inputNumberRef} />
-      <Button label="Focus input" onClick={focusInput} />
+      <Button label="Focus input" onClick={() => toggleInputFocus(true)} />
       <br />
-      <Button label="Blur input" onClick={blurInput} />
+      <Button label="Blur input" onClick={() => toggleInputFocus(false)} />
     </Content>
   );
 };
