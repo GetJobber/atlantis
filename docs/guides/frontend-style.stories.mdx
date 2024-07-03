@@ -254,11 +254,10 @@ type MyInterface = {
 
 Wherever possible use Atlantis `design` tokens.
 
-### Spacing (magins and padding)
+### Spacing (margins and padding)
 
-For spacing units (margins and padding), use the appropriate
-[Spacing](../?path=/docs/design-spacing--page) values. Do not use rems, ems, or
-hard-coded pixel values.
+Use the appropriate [Spacing](../?path=/docs/design-spacing--page) values for
+spacing. Do not use rems, ems, or hard-coded pixel values.
 
 If you require a space that is larger than the Spacing values, or falls
 somewhere in between, use the CSS `calc` function with Atlantis spacing values
@@ -290,9 +289,10 @@ in a custom property in your file.
 
 ### Size (width and height)
 
-In most cases, the dimensions (width and height) of an individual component will
-be determined by the content and spacing. However, sometimes you'll reasonably
-want to say something like "this component should be a minimum of 280px wide".
+In most cases, the size (width and height) of an individual component is
+implicitly determined by the content and spacing. However, sometimes you'll
+reasonably need to explicitly define rules like "this component should be a
+minimum of 280px wide".
 
 Do not use spacing tokens to define size - just provide the specific value. To
 reduce the "magic" of the number, you can declare this value in a CSS custom
