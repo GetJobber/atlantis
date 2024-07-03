@@ -38,10 +38,16 @@ Invalid.args = {
   placeholder: "Give a whole number",
 };
 
-export const Sizes = BasicTemplate.bind({});
-Sizes.args = {
-  size: "small",
+const SizesTemplate: ComponentStory<typeof InputNumber> = () => {
+  return (
+    <Content>
+      <InputNumber size="small" value={100} />
+      <InputNumber size="large" value={1000} />
+    </Content>
+  );
 };
+
+export const Sizes = SizesTemplate.bind({});
 
 const InlineTemplate: ComponentStory<typeof InputNumber> = args => {
   const [value, setValue] = useState(args.value);
@@ -88,3 +94,57 @@ const FocusTemplate: ComponentStory<typeof InputNumber> = args => {
 
 export const FocusAndBlur = FocusTemplate.bind({});
 FocusAndBlur.args = {};
+
+const ReadonlyTemplate: ComponentStory<typeof InputNumber> = args => {
+  return <InputNumber {...args} />;
+};
+
+export const Readonly = ReadonlyTemplate.bind({});
+Readonly.args = {
+  placeholder: "Your pin number",
+  value: 12345,
+  readonly: true,
+};
+
+const DisabledTemplate: ComponentStory<typeof InputNumber> = args => {
+  return <InputNumber {...args} />;
+};
+
+export const Disabled = DisabledTemplate.bind({});
+Disabled.args = {
+  placeholder: "SIN number",
+  value: 12345,
+  disabled: true,
+};
+
+const PrefixAndSuffixTemplate: ComponentStory<typeof InputNumber> = args => {
+  return <InputNumber {...args} />;
+};
+
+export const PrefixAndSuffix = PrefixAndSuffixTemplate.bind({});
+PrefixAndSuffix.args = {
+  suffix: { label: ".00" },
+  prefix: { label: "$", icon: "invoice" },
+  placeholder: "Invoice total",
+  defaultValue: "100000",
+};
+
+const ControlledTemplate: ComponentStory<typeof InputNumber> = args => {
+  const [value, setValue] = useState(args.value);
+
+  return (
+    <Content>
+      <InputNumber
+        {...args}
+        value={value}
+        onChange={(newValue: number) => setValue(newValue)}
+      />
+      <Button label="Reset" onClick={() => setValue(args.value)} />
+    </Content>
+  );
+};
+
+export const Controlled = ControlledTemplate.bind({});
+Controlled.args = {
+  value: 10,
+};
