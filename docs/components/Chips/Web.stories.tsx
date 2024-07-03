@@ -119,7 +119,7 @@ Selection.args = {
 Selection.parameters = {
   previewTabs: {
     code: {
-      hidden: false,
+      hidden: true,
       extraImports: {
         "./useFakeOptionQuery": ["useFakeOptionQuery"],
       },
