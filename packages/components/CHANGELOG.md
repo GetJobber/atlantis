@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.19.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.19.0...@jobber/components@5.19.1) (2024-07-03)
+
+
+### Bug Fixes
+
+* **components:** Update FormField to avoid useId StrictMode problem ([#1950](https://github.com/GetJobber/atlantis/issues/1950)) ([03d22be](https://github.com/GetJobber/atlantis/commit/03d22bed22bcfe2acfe109763ac9abf12f604501))
+
+
+
+
+
 # [5.19.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.18.1...@jobber/components@5.19.0) (2024-07-02)
 
 
