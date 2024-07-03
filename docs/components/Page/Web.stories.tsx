@@ -1,5 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { StatusLabel } from "@jobber/components";
 import { Page } from "@jobber/components/Page";
 import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
@@ -19,6 +20,10 @@ const BasicTemplate: ComponentStory<typeof Page> = args => (
       <Text>Page content here</Text>
     </Content>
   </Page>
+);
+
+const titleMetaData = (
+  <StatusLabel label={"In Progress"} alignment={"start"} status={"warning"} />
 );
 
 export const Basic = BasicTemplate.bind({});
@@ -68,10 +73,20 @@ WithActions.args = {
   ],
 };
 
-export const WithSubtitle = BasicTemplate.bind({});
-WithSubtitle.args = {
+export const WithIntro = BasicTemplate.bind({});
+WithIntro.args = {
   title: "Notifications",
   subtitle: "Notify me of all the work",
   intro:
     "Improve job completion rates, stop chasing payments, and boost your customer service by automatically communicating with your clients at key points before, during, and after a job. Read more about Notifications by visiting our [Help Center](https://help.getjobber.com/hc/en-us).",
+  externalIntroLinks: true,
+};
+
+export const WithAdditionalTitleFields = BasicTemplate.bind({});
+WithAdditionalTitleFields.args = {
+  title: "Kitchen Renovation Project",
+  subtitle: "Everything but the Kitchen Sink",
+  titleMetaData: titleMetaData,
+  intro:
+    "**Building the greatest kitchen one will ever see**. The _entire_ kitchen will be redone for this renovation.",
 };

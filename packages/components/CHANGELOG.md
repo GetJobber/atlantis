@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.19.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.19.0...@jobber/components@5.19.1) (2024-07-03)
+
+
+### Bug Fixes
+
+* **components:** Update FormField to avoid useId StrictMode problem ([#1950](https://github.com/GetJobber/atlantis/issues/1950)) ([03d22be](https://github.com/GetJobber/atlantis/commit/03d22bed22bcfe2acfe109763ac9abf12f604501))
+
+
+
+
+
+# [5.19.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.18.1...@jobber/components@5.19.0) (2024-07-02)
+
+
+### Features
+
+* **components:** SSR support for toast ([#1948](https://github.com/GetJobber/atlantis/issues/1948)) ([966940b](https://github.com/GetJobber/atlantis/commit/966940b2ec2bcec736f6488821be56b6cfb52aa6))
+
+
+
+
+
+## [5.18.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.18.0...@jobber/components@5.18.1) (2024-06-27)
+
+
+### Bug Fixes
+
+* **components:** InputText corners are white when autofilling a field on chrome ([#1949](https://github.com/GetJobber/atlantis/issues/1949)) ([9bffa84](https://github.com/GetJobber/atlantis/commit/9bffa84c95be89a60845215a74d40ee52d41f6a6))
+
+
+
+
+
+# [5.18.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.17.0...@jobber/components@5.18.0) (2024-06-24)
+
+
+### Features
+
+* **components:** Add testID prop to components Icon ([#1927](https://github.com/GetJobber/atlantis/issues/1927)) ([eb804df](https://github.com/GetJobber/atlantis/commit/eb804df153f01a29a2a87126aa07b87d1866ca85))
+
+
+
+
+
+# [5.17.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.16.1...@jobber/components@5.17.0) (2024-06-24)
+
+
+### Features
+
+* **components:** Update Page component to accept a titleMetaData component [JOB-97759] ([#1941](https://github.com/GetJobber/atlantis/issues/1941)) ([908e21b](https://github.com/GetJobber/atlantis/commit/908e21b033075bb2a2b5346113a6f238756f8bbb))
+
+
+
+
+
 ## [5.16.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.16.0...@jobber/components@5.16.1) (2024-06-21)
 
 
