@@ -2,9 +2,12 @@ import React from "react";
 import { fireEvent, render, waitFor } from "@testing-library/react-native";
 import { Host } from "react-native-portalize";
 import { FormProvider, useForm } from "react-hook-form";
+import { Keyboard } from "react-native";
 import { InputDate } from "./InputDate";
 import { Button } from "../Button";
 import * as atlantisContext from "../AtlantisContext/AtlantisContext";
+
+const keyboardDismissSpy = jest.spyOn(Keyboard, "dismiss");
 
 describe("InputDate", () => {
   describe("Visuals", () => {
@@ -133,6 +136,11 @@ describe("InputDate", () => {
 
       fireEvent.press(screen.getByLabelText("Confirm"));
       expect(handleChange).toHaveBeenCalledWith(expect.any(Date));
+    });
+
+    it("should dismiss the keyboard when the date picker is opened", () => {
+      renderDatePicker();
+      expect(keyboardDismissSpy).toHaveBeenCalled();
     });
   });
   const mockOnSubmit = jest.fn();

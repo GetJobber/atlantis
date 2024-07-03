@@ -36,7 +36,7 @@ function getShadowStyles(baseTokens) {
         height: baseTokens["space-minuscule"],
       },
       shadowOpacity: 0.16,
-      shadowRadius: baseTokens["radius-large"],
+      shadowRadius: baseTokens["radius-small"],
       elevation: sharedStyles["elevation-shadow-base"],
     },
     "shadow-high": {

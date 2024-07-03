@@ -35,8 +35,8 @@
     "publish:prerelease": "lerna publish --canary --dist-tag next --preid pre",
     "publish:prerelease:force": "npm run publish:prerelease -- --force-publish",
     "publish:prerelease:githubAction": "lerna publish --canary --summary-file --dist-tag next",
-    "release-the-kraken": "npm ci -omit=optional && lerna publish",
-    "release:unpublished-package": "npm ci -omit=optional && lerna publish from-package",
+    "release-the-kraken": "npm ci && lerna publish",
+    "release:unpublished-package": "npm ci && lerna publish from-package",
     "start": "npm run storybook",
     "storybook": "export NODE_OPTIONS=--openssl-legacy-provider && start-storybook -p 6005",
     "storybook:build": "export NODE_OPTIONS=--openssl-legacy-provider && build-storybook",
@@ -140,12 +140,13 @@
     "react-native-portalize": "^1.0.7",
     "react-native-reanimated": "^3.7.1",
     "react-native-safe-area-context": "^4.5.2",
+    "react-native-svg": "^15.1.0",
     "react-native-web": "^0.18.12",
     "react-router-dom": "^5.3.4",
     "react-test-renderer": "^18.2.0",
     "storybook-addon-designs": "^6.3.1",
     "style-loader": "^0.23.1",
-    "stylelint": "^14.2.0",
+    "stylelint": "^16.2.1",
     "stylelint-junit-formatter": "^0.2.1",
     "subscriptions-transport-ws": "^0.11.0",
     "ts-dedent": "^2.2.0",
@@ -169,9 +170,6 @@
   "dependencies": {
     "@std-proposal/temporal": "0.0.1",
     "jest-environment-jsdom": "^29.5.0"
-  },
-  "optionalDependencies": {
-    "@jobber/fonts": "^1.1.0"
   },
   "engines": {
     "node": "18",

@@ -1,13 +1,7 @@
-import React, {
-  MutableRefObject,
-  ReactElement,
-  ReactNode,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { ReactElement, ReactNode, useEffect, useState } from "react";
 import classnames from "classnames";
 import styles from "./Tabs.css";
+import { useTabsOverflow } from "./hooks/useTabsOverflow";
 import { Typography } from "../Typography";
 
 interface TabsProps {
@@ -31,10 +25,7 @@ export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
   const activeTabInitialValue =
     defaultTab < React.Children.count(children) ? defaultTab : 0;
   const [activeTab, setActiveTab] = useState(activeTabInitialValue);
-  const [overflowRight, setOverflowRight] = useState(false);
-  const [overflowLeft, setOverflowLeft] = useState(false);
-  const tabRow = useRef() as MutableRefObject<HTMLUListElement>;
-
+  const { overflowRight, overflowLeft, tabRow } = useTabsOverflow();
   const overflowClassNames = classnames(styles.overflow, {
     [styles.overflowRight]: overflowRight,
     [styles.overflowLeft]: overflowLeft,
@@ -52,54 +43,34 @@ export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
 
   const activeTabProps = (React.Children.toArray(children) as ReactElement[])[
     activeTab
-  ].props;
-
-  const handleOverflowing = () => {
-    if (tabRow.current) {
-      const scrollWidth = tabRow.current.scrollWidth;
-      const clientWidth = tabRow.current.clientWidth;
-      const maxScroll = scrollWidth - clientWidth;
-      const scrollPos = tabRow.current.scrollLeft;
-
-      if (scrollWidth > clientWidth) {
-        setOverflowRight(scrollPos >= 0 && scrollPos != maxScroll);
-        setOverflowLeft(scrollPos > 0 && scrollPos < scrollWidth);
-      }
-    }
-  };
+  ]?.props;
 
   useEffect(() => {
-    handleOverflowing();
-    tabRow.current &&
-      tabRow.current.addEventListener("scroll", handleOverflowing);
-
-    return () => {
-      window.removeEventListener("scroll", handleOverflowing);
-    };
-  });
+    if (activeTab > React.Children.count(children) - 1) {
+      setActiveTab(activeTabInitialValue);
+    }
+  }, [React.Children.count(children)]);
 
   return (
     <div className={styles.tabs}>
       <div className={overflowClassNames}>
         <ul role="tablist" className={styles.tabRow} ref={tabRow}>
-          <li role="presentation">
-            {React.Children.map(children, (tab, index) => (
-              <InternalTab
-                label={tab.props.label}
-                selected={activeTab === index}
-                activateTab={activateTab(index)}
-                onClick={tab.props.onClick}
-              />
-            ))}
-          </li>
+          {React.Children.map(children, (tab, index) => (
+            <InternalTab
+              label={tab.props.label}
+              selected={activeTab === index}
+              activateTab={activateTab(index)}
+              onClick={tab.props.onClick}
+            />
+          ))}
         </ul>
       </div>
       <section
         role="tabpanel"
         className={styles.tabContent}
-        aria-label={activeTabProps.label}
+        aria-label={activeTabProps?.label}
       >
-        {activeTabProps.children}
+        {activeTabProps?.children}
       </section>
     </div>
   );
@@ -131,22 +102,23 @@ export function InternalTab({
   },
 }: InternalTabProps) {
   const className = classnames(styles.tab, { [styles.selected]: selected });
-  const color = selected ? "green" : "heading";
 
   return (
-    <button
-      type="button"
-      role="tab"
-      id={label}
-      className={className}
-      onClick={event => {
-        activateTab();
-        onClick(event);
-      }}
-    >
-      <Typography element="span" size="base" textColor={color}>
-        {label}
-      </Typography>
-    </button>
+    <li role="presentation">
+      <button
+        type="button"
+        role="tab"
+        id={label}
+        className={className}
+        onClick={event => {
+          activateTab();
+          onClick(event);
+        }}
+      >
+        <Typography element="span" size="large" fontWeight="semiBold">
+          {label}
+        </Typography>
+      </button>
+    </li>
   );
 }

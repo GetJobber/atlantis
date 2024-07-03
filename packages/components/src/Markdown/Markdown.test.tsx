@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import React from "react";
 import { Markdown } from ".";
 
@@ -66,4 +66,32 @@ it("renders a without headings, paragraph, and wrapping content", () => {
     <Markdown content={content} basicUsage={true} />,
   );
   expect(container).toMatchSnapshot();
+});
+
+describe("links", () => {
+  it("calls the callback when onLinkClick is provided", () => {
+    const onLinkClick = jest.fn();
+    const link = "http://to.somewhere/";
+    const { queryByText } = render(
+      <Markdown
+        content={`This is a [link](${link})`}
+        onLinkClick={onLinkClick}
+      />,
+    );
+
+    fireEvent.click(queryByText("link") as HTMLElement);
+
+    expect(onLinkClick).toHaveBeenCalledTimes(1);
+    expect((onLinkClick.mock.calls[0][0] as HTMLAnchorElement).href).toBe(link);
+  });
+
+  it("opens links in a new tab when externalLink is true", () => {
+    const link = "http://to.somewhere/";
+    const { queryByText } = render(
+      <Markdown content={`This [link](${link})`} externalLink />,
+    );
+
+    expect((queryByText("link") as HTMLAnchorElement).target).toBe("_blank");
+    expect((queryByText("link") as HTMLAnchorElement).href).toBe(link);
+  });
 });

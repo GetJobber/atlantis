@@ -6,19 +6,24 @@ import React, {
   useState,
 } from "react";
 import classnames from "classnames";
-import { useShowClear } from "@jobber/hooks/useShowClear";
+import { Clearable, useShowClear } from "@jobber/hooks/useShowClear";
+import { AnimatePresence, motion } from "framer-motion";
+import { tokens } from "@jobber/design";
 import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.css";
 import { AffixIcon, AffixLabel } from "./FormFieldAffix";
 import { FormFieldDescription } from "./FormFieldDescription";
 import { ClearAction } from "./components/ClearAction";
+import { useToolbar } from "./hooks/useToolbar";
+import { useFormFieldFocus } from "./hooks/useFormFieldFocus";
+import { useIsSafari } from "./hooks/useIsSafari";
 import { InputValidation } from "../InputValidation";
 
 interface FormFieldWrapperProps extends FormFieldProps {
   readonly error: string;
   readonly identifier: string;
   readonly descriptionIdentifier: string;
-  readonly clearable: "never" | "always";
+  readonly clearable: Clearable;
   readonly onClear: () => void;
 }
 
@@ -27,6 +32,7 @@ interface LabelPadding {
   paddingRight: number | string | undefined;
 }
 
+// eslint-disable-next-line max-statements
 export function FormFieldWrapper({
   align,
   description,
@@ -47,7 +53,11 @@ export function FormFieldWrapper({
   identifier,
   clearable,
   onClear,
+  toolbar,
+  toolbarVisibility = "while-editing",
+  wrapperRef,
 }: PropsWithChildren<FormFieldWrapperProps>) {
+  const isSafari = useIsSafari();
   const wrapperClasses = classnames(
     styles.wrapper,
     size && styles[size],
@@ -58,7 +68,9 @@ export function FormFieldWrapper({
         (placeholder && type === "select") ||
         // Naively assume that if the the type is tel, it is the InputPhoneNumber
         (placeholder && type === "tel"),
+      [styles.text]: type === "textarea" || type === "text",
       [styles.textarea]: type === "textarea",
+      [styles.safari]: isSafari && type === "textarea",
       [styles.select]: type === "select",
       [styles.invalid]: invalid ?? error,
       [styles.disabled]: disabled,
@@ -87,7 +99,7 @@ export function FormFieldWrapper({
     setLabelStyle(getAffixPaddding);
   }, [value]);
 
-  const [focused, setFocused] = useState(false);
+  const { focused } = useFormFieldFocus({ wrapperRef });
 
   const showClear = useShowClear({
     clearable,
@@ -97,43 +109,77 @@ export function FormFieldWrapper({
     disabled,
   });
 
+  const { isToolbarVisible, toolbarAnimationEnd, toolbarAnimationStart } =
+    useToolbar({
+      focused,
+      toolbar,
+      toolbarVisibility,
+    });
+
   return (
-    <div
-      className={containerClasses}
-      onFocus={() => setFocused(true)}
-      onBlur={() => setFocused(false)}
-    >
+    <div className={containerClasses}>
       <div
         className={wrapperClasses}
         style={wrapperInlineStyle}
         data-testid="Form-Field-Wrapper"
+        ref={wrapperRef}
       >
-        {prefix?.icon && <AffixIcon {...prefix} size={size} />}
-        <div className={styles.inputWrapper}>
-          {placeholder && (
-            <label
-              className={styles.label}
-              htmlFor={identifier}
-              style={
-                prefixRef?.current || suffixRef?.current
-                  ? labelStyle
-                  : undefined
-              }
-            >
-              {placeholder}
-            </label>
-          )}
+        <div className={styles.horizontalWrapper}>
+          {prefix?.icon && <AffixIcon {...prefix} size={size} />}
+          <div className={styles.inputWrapper}>
+            {placeholder && (
+              <label
+                className={styles.label}
+                htmlFor={identifier}
+                style={
+                  prefixRef?.current || suffixRef?.current
+                    ? labelStyle
+                    : undefined
+                }
+              >
+                {placeholder}
+              </label>
+            )}
 
-          {prefix?.label && <AffixLabel {...prefix} labelRef={prefixRef} />}
-          <div className={styles.childrenWrapper}>{children}</div>
-          {suffix?.label && (
-            <AffixLabel {...suffix} labelRef={suffixRef} variation="suffix" />
+            {prefix?.label && <AffixLabel {...prefix} labelRef={prefixRef} />}
+
+            <div className={styles.childrenWrapper} tabIndex={-1}>
+              {children}
+            </div>
+
+            {suffix?.label && (
+              <AffixLabel {...suffix} labelRef={suffixRef} variation="suffix" />
+            )}
+          </div>
+          {showClear && <ClearAction onClick={onClear} />}
+          {suffix?.icon && (
+            <AffixIcon {...suffix} variation="suffix" size={size} />
           )}
         </div>
-        {showClear && <ClearAction onClick={onClear} />}
-        {suffix?.icon && (
-          <AffixIcon {...suffix} variation="suffix" size={size} />
-        )}
+        <AnimatePresence
+          initial={toolbarVisibility === "always" ? false : true}
+        >
+          {isToolbarVisible && (
+            <motion.div
+              key="toolbar"
+              initial={toolbarAnimationEnd}
+              animate={toolbarAnimationStart}
+              exit={toolbarAnimationEnd}
+              transition={{
+                duration: tokens["timing-base"] / 1000,
+                ease: "easeInOut",
+              }}
+              tabIndex={-1}
+            >
+              <div
+                className={styles.toolbar}
+                data-testid="ATL-InputText-Toolbar"
+              >
+                {toolbar}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
       {description && !inline && (
         <FormFieldDescription

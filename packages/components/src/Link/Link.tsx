@@ -1,4 +1,5 @@
 import React, { PropsWithChildren } from "react";
+import styles from "./Link.css";
 
 export interface LinkProps {
   readonly url: string;
@@ -20,6 +21,7 @@ export function Link({
       {...(external && { target: "_blank" })}
       {...(ariaLabel && { "aria-label": ariaLabel })}
       {...(ariaExpanded && { "aria-expanded": ariaExpanded })}
+      className={styles.link}
     >
       {children}
     </a>

@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.8](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.9.7...@jobber/hooks@2.9.8) (2024-05-28)
+
+
+### Bug Fixes
+
+* **components:** Portalled Menu Take 2 ([#1898](https://github.com/GetJobber/atlantis/issues/1898)) ([a9f2865](https://github.com/GetJobber/atlantis/commit/a9f286502a94e8cf10279a7ba8778dab4792a1f2)), closes [#1891](https://github.com/GetJobber/atlantis/issues/1891)
+
+
+
+
+
+## [2.9.7](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.9.6...@jobber/hooks@2.9.7) (2024-05-15)
+
+
+### Reverts
+
+* Revert "fix(components): Portal Menu Content" ([#1891](https://github.com/GetJobber/atlantis/issues/1891)) ([ad35140](https://github.com/GetJobber/atlantis/commit/ad35140afe6ac6756cf5167e29d9f94ef4b68286)), closes [#1881](https://github.com/GetJobber/atlantis/issues/1881)
+
+
+
+
+
+## [2.9.6](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.9.5...@jobber/hooks@2.9.6) (2024-05-10)
+
+
+### Bug Fixes
+
+* **components:** Portal Menu Content ([#1881](https://github.com/GetJobber/atlantis/issues/1881)) ([8ec006c](https://github.com/GetJobber/atlantis/commit/8ec006c69a02883e1578e9c78d3249c2374fb6f6))
+
+
+
+
+
+## [2.9.5](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.9.4...@jobber/hooks@2.9.5) (2024-04-11)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+## [2.9.4](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.9.3...@jobber/hooks@2.9.4) (2024-03-21)
+
+
+### Bug Fixes
+
+* **components:** Make useMediaQuery SSR Friendly ([#1814](https://github.com/GetJobber/atlantis/issues/1814)) ([8f9ff88](https://github.com/GetJobber/atlantis/commit/8f9ff882741e0c7cbe83c2405422bb1dbf877d9e))
+
+
+
+
+
 ## [2.9.3](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.9.2...@jobber/hooks@2.9.3) (2024-03-20)
 
 

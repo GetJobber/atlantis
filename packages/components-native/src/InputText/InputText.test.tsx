@@ -75,6 +75,17 @@ describe("InputText", () => {
       );
     });
 
+    describe("readonly", () => {
+      it.each([[false], [true]])("sets the readOnly to %s", expected => {
+        const { getByTestId } = renderInputText({
+          testID: "InputText",
+          readonly: expected,
+        });
+
+        expect(getByTestId("InputText").props.readOnly).toBe(expected);
+      });
+    });
+
     it("renders a InputText with placeholder", () => {
       const props = { placeholder: "Foobar" };
       renderInputText(props);

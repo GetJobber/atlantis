@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { InputText } from "@jobber/components-native";
+import { Button, InputText } from "@jobber/components-native";
 
 export default {
   title: "Components/Forms and Inputs/InputText/Mobile",
@@ -25,4 +25,28 @@ Invalid.args = {
   placeholder: "What is your favorite fruit?",
   defaultValue: "Tomato",
   invalid: "That's not a fruit",
+};
+
+export const Toolbar = BasicTemplate.bind({});
+Toolbar.args = {
+  placeholder: "Write your message",
+  toolbar: (
+    <>
+      <Button
+        label="Rewrite"
+        size="small"
+        icon="sparkles"
+        variation="cancel"
+        fullWidth={false}
+      />
+      <Button
+        accessibilityLabel="Undo"
+        size="small"
+        icon="redo"
+        type="tertiary"
+        variation="cancel"
+        fullWidth={false}
+      />
+    </>
+  ),
 };

@@ -6,6 +6,7 @@ import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import styles from "./Tooltip.css";
 import { useTooltipPositioning } from "./useTooltipPositioning";
+import { Placement } from "./Tooltip.types";
 
 const variation = {
   startOrStop: { scale: 0.6, opacity: 0 },
@@ -18,11 +19,19 @@ interface TooltipProps {
    * Tooltip text
    */
   readonly message: string;
+  /**
+   * Describes the preferred placement of the Popover.
+   * @default 'top'
+   */
+  readonly preferredPlacement?: Placement;
 }
 
-export function Tooltip({ message, children }: TooltipProps) {
+export function Tooltip({
+  message,
+  children,
+  preferredPlacement = "top",
+}: TooltipProps) {
   const [show, setShow] = useState(false);
-  const mounted = useIsMounted();
 
   const {
     attributes,
@@ -31,52 +40,52 @@ export function Tooltip({ message, children }: TooltipProps) {
     styles: popperStyles,
     setArrowRef,
     setTooltipRef,
-  } = useTooltipPositioning();
+  } = useTooltipPositioning({ preferredPlacement: preferredPlacement });
 
   initializeListeners();
 
   const toolTipClassNames = classnames(
     styles.tooltipWrapper,
-    placement === "bottom" && styles.below,
-    placement === "top" && styles.above,
+    placement === "bottom" && styles.bottom,
+    placement === "top" && styles.top,
+    placement === "left" && styles.left,
+    placement === "right" && styles.right,
   );
 
   return (
     <>
       <span className={styles.shadowActivator} ref={shadowRef} />
       {children}
-      {mounted.current ? (
-        <TooltipPortal>
-          {show && Boolean(message) && (
-            <div
-              className={toolTipClassNames}
-              style={popperStyles.popper}
-              ref={setTooltipRef}
-              role="tooltip"
-              {...attributes.popper}
+      <TooltipPortal>
+        {show && Boolean(message) && (
+          <div
+            className={toolTipClassNames}
+            style={popperStyles.popper}
+            ref={setTooltipRef}
+            role="tooltip"
+            {...attributes.popper}
+          >
+            <motion.div
+              className={styles.tooltip}
+              variants={variation}
+              initial="startOrStop"
+              animate="done"
+              exit="startOrStop"
+              transition={{
+                damping: 50,
+                stiffness: 500,
+              }}
             >
-              <motion.div
-                className={styles.tooltip}
-                variants={variation}
-                initial="startOrStop"
-                animate="done"
-                exit="startOrStop"
-                transition={{
-                  damping: 50,
-                  stiffness: 500,
-                }}
-              >
-                <p className={styles.tooltipMessage}>{message}</p>
-                <div
-                  ref={setArrowRef}
-                  style={popperStyles.arrow}
-                  className={styles.arrow}
-                />
-              </motion.div>
-            </div>
-          )}
-        </TooltipPortal>
-      ) : null}
+              <p className={styles.tooltipMessage}>{message}</p>
+              <div
+                ref={setArrowRef}
+                style={popperStyles.arrow}
+                className={styles.arrow}
+              />
+            </motion.div>
+          </div>
+        )}
+      </TooltipPortal>
     </>
   );
 
@@ -133,9 +142,15 @@ export function Tooltip({ message, children }: TooltipProps) {
 }
 
 interface TooltipPortalProps {
-  children: ReactNode;
+  readonly children: ReactNode;
 }
 
 function TooltipPortal({ children }: TooltipPortalProps) {
+  const mounted = useIsMounted();
+
+  if (!mounted?.current) {
+    return null;
+  }
+
   return ReactDOM.createPortal(children, document.body);
 }

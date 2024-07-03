@@ -16,8 +16,10 @@
   background-color: var(--color-surface);
   opacity: 0;
   transform: translateY(-50%);
-  transition: opacity var(--transition-properties),
-    width var(--transition-properties), visibility var(--transition-properties);
+  transition:
+    opacity var(--transition-properties),
+    width var(--transition-properties),
+    visibility var(--transition-properties);
 }
 
 .searchInputVisible {

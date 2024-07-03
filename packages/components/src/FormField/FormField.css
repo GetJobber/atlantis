@@ -8,9 +8,11 @@
   --public-field--bottom-left-radius: var(--radius-base);
   --public-field--bottom-right-radius: var(--radius-base);
 
-  --field--placeholder-color: var(--color-greyBlue--light);
+  --field--placeholder-color: var(--color-base-blue--600);
   --field--value-color: var(--color-heading);
-  --field--border-color: var(--color-border);
+  --field--border-color: var(--color-border--interactive);
+
+  --postfix-right: var(--space-base);
 }
 
 .container {
@@ -43,8 +45,8 @@
   --field--postfix-action-elevation: calc(var(--field--base-elevation) + 2);
 
   display: flex;
+  flex-direction: column;
   width: 100%;
-  height: var(--field--height);
   border: var(--border-base) solid var(--field--border-color);
   border-radius: var(--radius-base);
   border-top-right-radius: var(--public-field--top-right-radius);
@@ -66,6 +68,16 @@
   box-shadow: var(--shadow-focus);
 }
 
+.horizontalWrapper {
+  display: flex;
+  height: var(--field--height);
+  flex: 1;
+}
+
+.textarea.safari .horizontalWrapper {
+  margin-right: var(--field--padding-right);
+}
+
 .timeInputLabel:not(:focus-within) input {
   color: var(--field--background-color);
   -webkit-text-fill-color: var(--field--background-color);
@@ -85,11 +97,15 @@
   --field--padding-top: calc(var(--space-large) + var(--space-smaller));
 }
 
-.wrapper.textarea {
+.wrapper.text {
   --field--placeholder-offset: 0;
   --field--placeholder-transform: 0;
-  height: auto;
   min-height: auto;
+}
+
+.wrapper.textarea {
+  resize: vertical;
+  overflow: auto;
 }
 
 .invalid,
@@ -117,12 +133,14 @@
   --field--padding-top: var(--space-small);
   --field--padding-bottom: var(--space-small);
   --field--height: calc(var(--space-larger) + var(--space-smaller));
+  --postfix-right: calc(var(--space-small) + var(--space-smaller));
 }
 
 .large {
   --field--padding-left: var(--space-large);
   --field--padding-right: var(--space-large);
   --field--height: calc(var(--space-extravagant));
+  --postfix-right: var(--space-large);
 }
 
 .inline {
@@ -172,13 +190,12 @@
   position: relative;
   z-index: var(--field--base-elevation);
   width: 100%;
-  height: 100%;
   padding-top: var(--field--padding-top);
   padding-bottom: var(--field--padding-bottom);
   padding-left: var(--field--padding-left);
   padding-right: var(--field--padding-right);
   border: none;
-  border-radius: 0;
+  border-radius: var(--radius-base);
   color: inherit;
   font-family: inherit;
   font-size: inherit;
@@ -192,8 +209,16 @@
   outline: none;
 }
 
+.textarea .childrenWrapper {
+  display: flex;
+  min-height: var(--field--height);
+  flex-direction: column;
+}
+
 .textarea .input {
-  resize: vertical;
+  flex: 1;
+  resize: none;
+  scroll-padding-bottom: var(--space-base);
 }
 
 .select .input {
@@ -205,6 +230,10 @@
 .input:-webkit-autofill:focus,
 .input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px var(--color-surface) inset !important;
+}
+
+.textarea.safari .input {
+  padding-right: 0;
 }
 
 /**
@@ -228,13 +257,26 @@
   transition: all var(--timing-quick);
 }
 
+.select select,
+.right select,
+.select .label {
+  padding-right: calc(var(--field--padding-right) + var(--base-unit) * 2);
+}
+
+.select option {
+  background-color: var(--field--background-color);
+}
+
+.text .label {
+  padding-top: var(--field--padding-top);
+  transform: translateY(var(--field--placeholder-transform));
+}
+
 .textarea .label {
   /* Changes the width so that the scrollbar on the textarea doesn't get cut off */
   width: calc(100% - var(--field--padding-right));
-  padding-top: var(--field--padding-top);
   /* Remove padding on right to make use of the entire width */
   padding-right: 0;
-  transform: translateY(--field--placeholder-transform);
 }
 
 .miniLabel .label,
@@ -242,8 +284,11 @@
   font-size: var(--typography--fontSize-small);
 }
 
-.textarea.miniLabel .label {
+.text.miniLabel .label {
   padding-top: var(--space-smallest);
+}
+
+.textarea.miniLabel .label {
   background-color: var(--field--background-color);
 }
 
@@ -265,7 +310,7 @@
 .postfix {
   position: absolute;
   top: 50%;
-  right: var(--space-base);
+  right: var(--postfix-right);
   z-index: var(--field--postfix-elevation);
   transform: translateY(-50%);
 }
@@ -280,19 +325,6 @@
   justify-content: center;
   margin: 0 calc(var(--field--padding-left) * -1) 0 0;
   padding: 0 var(--field--padding-right) 0 var(--field--padding-left);
-}
-
-@supports (aspect-ratio: 1/1) {
-  .affixIcon {
-    /*
-     * disabling property-no-unknown here as this is a real property
-     * that stylelint just doesn't know about. We may be able to remove
-     * this when we update our stylelint to not care about IE11.
-     */
-    /* stylelint-disable-next-line property-no-unknown */
-    aspect-ratio: 1/1;
-    padding: 0;
-  }
 }
 
 .affixIcon.suffix {
@@ -325,4 +357,23 @@
 
 .description {
   margin-top: var(--space-smaller);
+}
+
+.toolbar {
+  display: flex;
+  position: relative;
+  margin: var(--space-small) var(--field--padding-right) var(--space-base)
+    var(--field--padding-left);
+}
+
+.toolbar::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: calc(-1.25 * var(--space-base));
+  right: 0;
+  left: 0;
+  z-index: var(--elevation-base);
+  height: var(--space-base);
+  background: linear-gradient(to bottom, transparent, var(--color-surface) 60%);
 }

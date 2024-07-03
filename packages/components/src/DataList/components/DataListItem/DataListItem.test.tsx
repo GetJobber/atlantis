@@ -73,7 +73,7 @@ describe("DataListItem", () => {
       });
     });
 
-    it("should render a context menu when right clicked", async () => {
+    it("should render a context menu when right clicked and hide the hover menu", async () => {
       renderComponent();
 
       const listItemEl = screen.getByText(listItem);
@@ -88,6 +88,10 @@ describe("DataListItem", () => {
         "--actions-menu-x": `${clientX}px`,
         "--actions-menu-y": `${clientY}px`,
       });
+
+      expect(
+        screen.queryByRole("button", { name: "More actions" }),
+      ).toBeInTheDocument();
     });
 
     it("should not show a context menu when the actions are hidden", async () => {
