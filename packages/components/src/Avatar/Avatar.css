@@ -1,5 +1,9 @@
+:root {
+  --public--avatar-size: 32px;
+}
+
 .avatar {
-  --avatar-size: 32px;
+  --avatar-size: var(--public--avatar-size);
   --avatar-border-size: var(--border-base);
 
   display: flex;
