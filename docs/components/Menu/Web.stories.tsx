@@ -85,6 +85,14 @@ CustomActivator.args = {
             alert("📨");
           },
         },
+        {
+          label: "Delete",
+          icon: "trash",
+          destructive: true,
+          onClick: () => {
+            alert("🗑️");
+          },
+        },
       ],
     },
   ],

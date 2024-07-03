@@ -2,7 +2,6 @@
 coverage
 dist
 node_modules
-.npmrc
 **/tsconfig.tsbuildinfo
 **/tsconfig.rollup.tsbuildinfo
 .DS_Store

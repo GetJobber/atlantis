@@ -143,3 +143,21 @@ it("adds a role of alert for error banners", () => {
   const { getByRole } = render(<Banner type="error">Bruce</Banner>);
   expect(getByRole("alert")).toBeInstanceOf(HTMLDivElement);
 });
+
+it("doesn't hide the banner when controlledVisibility is true", () => {
+  const onDismissMock = jest.fn();
+  const { getByLabelText, getByText } = render(
+    <Banner
+      type="warning"
+      dismissible={true}
+      controlledVisiblity={true}
+      onDismiss={onDismissMock}
+    >
+      Foo
+    </Banner>,
+  );
+
+  fireEvent.click(getByLabelText("Dismiss notification"));
+  expect(onDismissMock).toHaveBeenCalledTimes(1);
+  expect(getByText("Foo")).toBeVisible();
+});

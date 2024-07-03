@@ -37,3 +37,13 @@ it("renders quote icon with themed color", () => {
   const tree = render(<Icon name="quote" color="brand" />).toJSON();
   expect(tree).toMatchSnapshot();
 });
+
+it("applies testID prop to svg element", () => {
+  const { getByTestId } = render(<Icon name="home" testID="home-icon" />);
+  expect(getByTestId("home-icon")).toBeDefined();
+});
+
+it("applies name prop as testID when testID prop is not provided", () => {
+  const { getByTestId } = render(<Icon name="home" />);
+  expect(getByTestId("home")).toBeDefined();
+});

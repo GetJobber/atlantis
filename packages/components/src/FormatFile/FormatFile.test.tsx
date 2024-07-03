@@ -1,5 +1,11 @@
 import React from "react";
-import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "@testing-library/react";
 import { FormatFile } from ".";
 import { GLIMMER_TEST_ID } from "../Glimmer";
 
@@ -132,6 +138,43 @@ describe("when the format file is a thumbnail", () => {
       const thumbnailImage = await findByRole("img");
 
       expect(thumbnailImage.parentElement?.className).toContain("large");
+    });
+  });
+});
+
+describe("Image Load Error Callback", () => {
+  const errorCallback = jest.fn();
+  const testImage = {
+    key: "123",
+    name: "Funky Corn",
+    type: "image/jpeg",
+    size: 1024,
+    progress: 1,
+    src: () => Promise.resolve("https://example.com/funky-corn.jpeg"),
+    onImageLoadError: errorCallback,
+  };
+
+  afterEach(() => {
+    errorCallback.mockClear();
+  });
+
+  it("should call the error callback when the image fails to load", async () => {
+    render(<FormatFile file={testImage} />);
+
+    fireEvent.error(screen.getByAltText(testImage.name));
+
+    await waitFor(() => {
+      expect(errorCallback).toHaveBeenCalled();
+    });
+  });
+
+  it("should not call the error callback when the image loads successfully", async () => {
+    render(<FormatFile file={testImage} />);
+
+    fireEvent.load(screen.getByAltText(testImage.name));
+
+    await waitFor(() => {
+      expect(errorCallback).not.toHaveBeenCalled();
     });
   });
 });

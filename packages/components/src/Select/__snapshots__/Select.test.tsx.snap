@@ -21,7 +21,7 @@ exports[`renders a Select with many options 1`] = `
           >
             <select
               class="input"
-              id=":r4:"
+              id=":r2:"
             >
               <option>
                 Foo
@@ -126,7 +126,7 @@ exports[`renders a Select with one option 1`] = `
           >
             <select
               class="input"
-              id=":r2:"
+              id=":r1:"
             >
               <option>
                 Foo
@@ -176,7 +176,7 @@ exports[`renders correctly as large 1`] = `
           >
             <select
               class="input"
-              id=":r8:"
+              id=":r4:"
             >
               <option>
                 Foo
@@ -226,7 +226,7 @@ exports[`renders correctly as small 1`] = `
           >
             <select
               class="input"
-              id=":r6:"
+              id=":r3:"
             >
               <option>
                 Foo
@@ -277,7 +277,7 @@ exports[`renders correctly when disabled 1`] = `
             <select
               class="input"
               disabled=""
-              id=":ra:"
+              id=":r5:"
             >
               <option>
                 Foo
@@ -327,7 +327,7 @@ exports[`renders correctly when invalid 1`] = `
           >
             <select
               class="input"
-              id=":rc:"
+              id=":r6:"
             >
               <option>
                 Foo

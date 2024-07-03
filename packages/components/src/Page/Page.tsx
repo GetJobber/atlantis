@@ -23,6 +23,12 @@ interface PageFoundationProps {
   readonly title: string;
 
   /**
+   * TitleMetaData component to be displayed
+   * next to the title.
+   */
+  readonly titleMetaData?: ReactNode;
+
+  /**
    * Subtitle of the page.
    */
   readonly subtitle?: string;
@@ -80,6 +86,7 @@ export type PageProps = XOR<PageFoundationProps, PageWithIntroProps>;
 // eslint-disable-next-line max-statements
 export function Page({
   title,
+  titleMetaData,
   intro,
   externalIntroLinks,
   subtitle,
@@ -126,7 +133,14 @@ export function Page({
         <Content>
           <div className={titleBarClasses} ref={titleBarRef}>
             <div>
-              <Heading level={1}>{title}</Heading>
+              {titleMetaData ? (
+                <div className={styles.titleRow}>
+                  <Heading level={1}>{title}</Heading>
+                  {titleMetaData}
+                </div>
+              ) : (
+                <Heading level={1}>{title}</Heading>
+              )}
               {subtitle && (
                 <div className={styles.subtitle}>
                   <Text size="large" variation="subdued">
