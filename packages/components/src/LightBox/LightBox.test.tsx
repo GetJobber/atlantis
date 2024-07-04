@@ -108,7 +108,7 @@ test("Lightbox displays the selected imageIndex", () => {
 });
 
 describe("print styles", () => {
-  test("toggles the atlantisLightboxActive class on the html element", () => {
+  test("toggles the atlantisLightBoxActive class on the html element", () => {
     const props = {
       images: [
         {
@@ -124,12 +124,12 @@ describe("print styles", () => {
 
     rerender(<LightBox open={true} {...props} />);
     expect(document.documentElement.classList).toContain(
-      "atlantisLightboxActive",
+      "atlantisLightBoxActive",
     );
 
     rerender(<LightBox open={false} {...props} />);
     expect(document.documentElement.classList).not.toContain(
-      "atlantisLightboxActive",
+      "atlantisLightBoxActive",
     );
   });
 });

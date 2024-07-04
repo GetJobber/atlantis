@@ -3,7 +3,7 @@
  * When the user tries to print the page, this prevents the LightBox content
  * from being duplicated multiple times.
  */
-:global(html.atlantisLightboxActive) {
+:global(html.atlantisLightBoxActive) {
   @media print {
     overflow: hidden;
 

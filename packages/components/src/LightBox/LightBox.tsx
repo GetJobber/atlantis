@@ -247,9 +247,9 @@ function NextButton({ onClick }: NavButtonProps) {
 function togglePrintStyles(open: boolean) {
   try {
     if (open) {
-      document.documentElement.classList.add("atlantisLightboxActive");
+      document.documentElement.classList.add("atlantisLightBoxActive");
     } else {
-      document.documentElement.classList.remove("atlantisLightboxActive");
+      document.documentElement.classList.remove("atlantisLightBoxActive");
     }
   } catch (error) {
     console.error(error);
