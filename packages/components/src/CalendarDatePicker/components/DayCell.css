@@ -1,11 +1,13 @@
 .container {
   display: flex;
-  height: 34px;
-  border-top: 2px solid var(--color-surface);
-  border-bottom: 2px solid var(--color-surface);
+  height: 36px;
   justify-content: center;
   align-items: center;
   flex: 1 1 0px;
+}
+
+.container:focus-visible {
+  outline: none;
 }
 
 .cell {
@@ -22,30 +24,74 @@
   justify-content: center;
 }
 
-.container:focus > .cell:not(.selected),
-.container.focus > .cell:not(.selected) {
-  color: var(--color-text);
+.today .cell {
+  position: relative;
+  overflow: visible;
+}
+
+.today .cell span::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: calc(50% - 2px);
+  width: 4px;
+  height: 4px;
+  border-radius: 5px;
+  background-color: var(--color-text);
+}
+
+.today .disabled span::after {
+  background-color: var(--color-disabled);
+}
+
+.today .highlighted span::after {
+  background-color: var(--color-text);
+}
+
+.today .selected span::after {
+  background-color: var(--color-surface);
+}
+
+.rollover {
+  background-color: var(--color-surface--background);
+}
+
+.rolloverEnd {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.rolloverStart {
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.cell:not(.disabled):not(.selected):hover {
   background-color: var(--color-surface--hover);
 }
 
-.cell:not(.disabled):not(.selected):not(.outOfRange):hover {
+.container:focus > .cell:not(.selected) {
   background-color: var(--color-surface--hover);
+}
+
+.container:focus > .cell:not(.selected):not(.disabled),
+.container.tabbable > .cell:not(.selected):not(.disabled) {
+  color: var(--color-text);
 }
 
 .selected {
-  border-color: var(--color-green);
+  border-color: var(--color-visit);
   color: var(--color-surface);
-  background-color: var(--color-green);
+  background-color: var(--color-visit);
 }
 
-.selected:hover {
+.selected:hover,
+.container:focus .selected {
   background-color: var(--color-interactive--hover);
 }
 
 .range-none .highlighted {
-  border-color: var(--color-green);
-  border-style: solid;
-  border-width: 1px;
+  background-color: var(--color-green--lighter);
 }
 
 .range-none .highlighted:hover {
@@ -57,7 +103,7 @@
   color: var(--color-disabled);
 }
 
-.range-none {
+.range-none:not(.rollover, .rolloverStart, .rolloverEnd) {
   background: none;
 }
 

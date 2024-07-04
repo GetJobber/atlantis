@@ -28,7 +28,7 @@ export const startOfWeek = (date: Date): Date => {
   return startOfDay(new Date(date.setDate(diff)));
 };
 
-export const datesAreEqual = (date1: Date, date2: Date): boolean => {
+export const isSameDay = (date1: Date, date2: Date): boolean => {
   return (
     date1.getDate() === date2.getDate() &&
     date1.getMonth() === date2.getMonth() &&

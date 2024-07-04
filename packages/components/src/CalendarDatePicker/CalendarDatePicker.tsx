@@ -1,5 +1,5 @@
 import React, {
-  Ref,
+  type Ref,
   forwardRef,
   useCallback,
   useEffect,
@@ -7,7 +7,7 @@ import React, {
   useMemo,
   useRef,
 } from "react";
-import { XOR } from "ts-xor";
+import type { XOR } from "ts-xor";
 import { CalendarDatePickerHeader } from "./components/CalendarDatePickerHeader";
 import { CalendarDatePickerGrid } from "./components/CalendarDatePickerGrid";
 
@@ -37,21 +37,22 @@ interface SingleDateSelection {
     method: "click" | "enter" | "space",
   ) => void;
 }
-export interface CalendarDatePickerBaseProps {
-  readonly highlightedDates?: Date[];
-  readonly minDate?: Date;
-  readonly maxDate?: Date;
-  readonly weekStartsOnMonday?: boolean;
-  readonly focusonSelectedDate?: boolean;
-  readonly translations?: {
-    readonly previousMonth?: string;
-    readonly nextMonth?: string;
-    readonly chooseDate?: string;
-    readonly highlightedLabelSuffix?: string;
-  };
-  readonly onMonthChange?: (date: Date) => void;
-  readonly onClickOutside?: (event: MouseEvent) => void;
-}
+export type CalendarDatePickerBaseProps = Readonly<{
+  highlightedDates?: Date[];
+  minDate?: Date;
+  maxDate?: Date;
+  weekStartsOnMonday?: boolean;
+  focusonSelectedDate?: boolean;
+  translations?: Readonly<{
+    "Previous month"?: string;
+    "Next month"?: string;
+    "Choose date"?: string;
+    highlighted?: string;
+    Choose?: string;
+  }>;
+  onMonthChange?: (date: Date) => void;
+  onClickOutside?: (event: MouseEvent) => void;
+}>;
 
 export type CalendarDatePickerProps = CalendarDatePickerBaseProps &
   XOR<MultiDateSelection, XOR<RangeDateSelection, SingleDateSelection>>;
@@ -127,6 +128,7 @@ export const CalendarDatePicker = forwardRef(function CalendarDatePicker(
           ?.focus();
       }
     }
+    // No effect dependencies as this effect should only run on first render regardless of dependencies
   }, []);
 
   return (
@@ -198,7 +200,7 @@ export const CalendarMultiDatePickerComponent = forwardRef<
         document.removeEventListener("mouseup", listener);
       };
     }
-  }, [onClickOutside, elRef.current]);
+  }, [onClickOutside]);
 
   return (
     <div ref={elRef}>

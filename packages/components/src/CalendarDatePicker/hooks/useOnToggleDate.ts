@@ -1,15 +1,15 @@
-import { Dispatch, SetStateAction, useCallback } from "react";
-import { datesAreEqual } from "../utils";
+import { isSameDay } from "date-fns";
+import { type Dispatch, type SetStateAction, useCallback } from "react";
 
 export function useOnToggleDate({
   selected,
   range,
-  setFocusedDate,
+  setTabbableDate,
   onChange,
 }: {
   selected: Date[];
   range: boolean | undefined;
-  setFocusedDate: Dispatch<SetStateAction<Date>>;
+  setTabbableDate: Dispatch<SetStateAction<Date>>;
   onChange?: (dates: Date[], method: "click" | "enter" | "space") => void;
 }) {
   return useCallback(
@@ -18,10 +18,10 @@ export function useOnToggleDate({
       method: "click" | "enter" | "space",
       isSelected?: boolean,
     ) {
-      setFocusedDate(date);
+      setTabbableDate(date);
 
       if (isSelected === undefined) {
-        isSelected = selected.some(dt => datesAreEqual(dt, date));
+        isSelected = selected.some(dt => isSameDay(dt, date));
       }
 
       if (range) {
@@ -38,13 +38,13 @@ export function useOnToggleDate({
         }
       } else if (isSelected) {
         onChange?.(
-          selected.filter(dt => !datesAreEqual(dt, date)),
+          selected.filter(dt => !isSameDay(dt, date)),
           method,
         );
       } else {
         onChange?.([...selected, date], method);
       }
     },
-    [onChange, setFocusedDate, selected, range],
+    [onChange, setTabbableDate, selected, range],
   );
 }

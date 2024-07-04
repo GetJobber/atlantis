@@ -1,18 +1,19 @@
 import React, { useCallback, useMemo } from "react";
+import { Button } from "@jobber/components/Button";
+// eslint-disable-next-line no-restricted-imports
+import { Typography } from "@jobber/components/Typography";
 import classNames from "./CalendarDatePickerHeader.css";
-import { Button } from "../../Button";
-import { Typography } from "../../Typography";
 import { addMonths } from "../utils";
 
-interface CaleanderDatePickerHeaderProps {
-  readonly month: number;
-  readonly year: number;
-  readonly onChange?: (date: Date) => void;
-  readonly translations?: {
-    readonly previousMonth?: string;
-    readonly nextMonth?: string;
-  };
-}
+type CaleanderDatePickerHeaderProps = Readonly<{
+  month: number;
+  year: number;
+  onChange?: (date: Date) => void;
+  translations?: Readonly<{
+    "Previous month"?: string;
+    "Next month"?: string;
+  }>;
+}>;
 
 export const CalendarDatePickerHeader = ({
   onChange,
@@ -42,14 +43,16 @@ export const CalendarDatePickerHeader = ({
       </div>
       <Button
         type="tertiary"
+        variation="subtle"
         icon="arrowLeft"
-        ariaLabel={translations?.previousMonth || "Previous month"}
+        ariaLabel={translations?.["Previous month"] || "Previous month"}
         onClick={onPreviousMonth}
       />
       <Button
         type="tertiary"
+        variation="subtle"
         icon="arrowRight"
-        ariaLabel={translations?.nextMonth || "Next month"}
+        ariaLabel={translations?.["Next month"] || "Next month"}
         onClick={onNextMonth}
       />
     </div>

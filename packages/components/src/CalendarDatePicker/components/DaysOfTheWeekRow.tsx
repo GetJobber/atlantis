@@ -1,6 +1,6 @@
 import React from "react";
+import { Text } from "@jobber/components/Text";
 import classNames from "./DaysOfTheWeekRow.css";
-import { Text } from "../../Text";
 import { addDays } from "../utils";
 
 const getFirstDayOfTheWeekDate = (weekStartsOnMonday: boolean) => {
@@ -26,9 +26,9 @@ export const DaysOfTheWeekRow = ({
 
   const firstDayOfTheWeek = getFirstDayOfTheWeekDate(!!weekStartsOnMonday);
 
-  const row = Array.from({ length: 7 }).map((_, index) => (
-    <div className={classNames.cell} key={index} role="row">
-      <Text>{formatter.format(addDays(firstDayOfTheWeek, index))}</Text>
+  const row = Array.from({ length: 7 }).map((_, days) => (
+    <div className={classNames.cell} key={days} role="row">
+      <Text>{formatter.format(addDays(firstDayOfTheWeek, days))}</Text>
     </div>
   ));
 

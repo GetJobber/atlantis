@@ -1,13 +1,18 @@
-import { Dispatch, KeyboardEvent, SetStateAction, useCallback } from "react";
+import {
+  type Dispatch,
+  type KeyboardEvent,
+  type SetStateAction,
+  useCallback,
+} from "react";
 import { addMonths, isValidDate } from "../utils";
 
 export function useGridKeyboardControl({
-  setFocusedDate,
+  setTabbableDate,
   onToggle,
   minDate,
   maxDate,
 }: {
-  setFocusedDate: Dispatch<SetStateAction<Date>>;
+  setTabbableDate: Dispatch<SetStateAction<Date>>;
   onToggle: (date: Date, method: "click" | "enter" | "space") => void;
   minDate?: Date;
   maxDate?: Date;
@@ -34,29 +39,35 @@ export function useGridKeyboardControl({
           break;
         }
         case "ArrowUp":
+          event.preventDefault();
           navigateDays(-7);
           break;
         case "ArrowDown":
+          event.preventDefault();
           navigateDays(7);
           break;
         case "ArrowLeft":
+          event.preventDefault();
           navigateDays(-1);
           break;
         case "ArrowRight":
+          event.preventDefault();
           navigateDays(1);
           break;
         case "PageUp":
+          event.preventDefault();
           navigateMonths(event.shiftKey ? -12 : -1);
           break;
         case "PageDown":
+          event.preventDefault();
           navigateMonths(event.shiftKey ? 12 : 1);
       }
     },
-    [setFocusedDate, onToggle, minDate, maxDate],
+    [onToggle, minDate, maxDate],
   );
 
   function navigateDays(days: number) {
-    setFocusedDate(current => {
+    setTabbableDate(current => {
       const next = new Date(current);
       next.setDate(next.getDate() + days);
 
@@ -65,6 +76,6 @@ export function useGridKeyboardControl({
   }
 
   function navigateMonths(months: number) {
-    setFocusedDate(current => addMonths(current, months));
+    setTabbableDate(current => addMonths(current, months));
   }
 }

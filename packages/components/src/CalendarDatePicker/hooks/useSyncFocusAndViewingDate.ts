@@ -1,36 +1,35 @@
 import {
-  Dispatch,
-  SetStateAction,
+  type Dispatch,
+  type SetStateAction,
   useEffect,
   useLayoutEffect,
   useRef,
 } from "react";
-import { addMonths } from "../utils";
 
 export function useSyncFocusAndViewingDate({
-  focusedDate,
+  tabbableDate,
   viewingDate,
-  setFocusedDate,
+  setTabbableDate,
   onMonthChange,
 }: {
-  focusedDate: Date;
+  tabbableDate: Date;
   viewingDate: Date;
-  setFocusedDate: Dispatch<SetStateAction<Date>>;
+  setTabbableDate: Dispatch<SetStateAction<Date>>;
   onMonthChange?: (date: Date) => void;
 }) {
   const ref = useRef({
-    focusedDate,
+    tabbableDate,
     viewingDate,
     onMonthChange,
-    setFocusedDate,
+    setTabbableDate,
   });
 
   useLayoutEffect(() => {
     ref.current = {
-      focusedDate,
+      tabbableDate,
       viewingDate,
       onMonthChange,
-      setFocusedDate,
+      setTabbableDate,
     };
   });
 
@@ -40,21 +39,26 @@ export function useSyncFocusAndViewingDate({
    */
   useEffect(() => {
     if (
-      focusedDate.getMonth() !== ref.current.viewingDate.getMonth() ||
-      focusedDate.getFullYear() !== ref.current.viewingDate.getFullYear()
+      tabbableDate.getMonth() !== ref.current.viewingDate.getMonth() ||
+      tabbableDate.getFullYear() !== ref.current.viewingDate.getFullYear()
     ) {
-      ref.current.onMonthChange?.(focusedDate);
+      ref.current.onMonthChange?.(tabbableDate);
     }
-  }, [focusedDate]);
+  }, [tabbableDate]);
 
   /**
    * If the user has clicked "Previous month" or "Next month" we need to
    * update the focused date to the new month.
    */
   useEffect(() => {
-    if (viewingDate.getMonth() !== ref.current.focusedDate.getMonth()) {
-      ref.current.setFocusedDate(current =>
-        addMonths(current, viewingDate.getMonth() - current.getMonth()),
+    if (viewingDate.getMonth() !== ref.current.tabbableDate.getMonth()) {
+      ref.current.setTabbableDate(
+        current =>
+          new Date(
+            viewingDate.getFullYear(),
+            viewingDate.getMonth(),
+            current.getDate(),
+          ),
       );
     }
   }, [viewingDate]);

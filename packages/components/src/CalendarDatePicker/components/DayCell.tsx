@@ -1,76 +1,65 @@
 import React, { useEffect, useRef } from "react";
 import combineClassNames from "classnames";
+import { endOfMonth, isSameDay } from "date-fns";
 import classNames from "./DayCell.css";
 
-interface DayCellProps {
+type DayCellProps = Readonly<{
   /**
    * Flag indicating if the cell falls with in the month being viewed
    */
-  readonly inMonth: boolean;
+  inMonth: boolean;
   /**
    * The date of the cell
    */
-  readonly date: number;
+  date: number;
   /**
    * Whether the date / cell is currently selected or not
    */
-  readonly selected: boolean;
+  selected: boolean;
   /**
    * Flag indicating the cell represents the current date
    */
-  readonly isCurrentDate: boolean;
+  isCurrentDate: boolean;
   /**
    * Flag indicating the cell represents a highlighted date
    */
-  readonly highlighted: boolean;
+  highlighted: boolean;
   /**
    * Flag indicating the cell represents a disabled date
    */
-  readonly disabled: boolean;
+  disabled: boolean;
   /**
    * Indicates where the cell falls in a range of dates when selecting a range
    */
-  readonly range: "start" | "end" | "between" | "none";
+  range: "start" | "end" | "between" | "none";
   /**
-   * Flag indicating if the cell has received focus via keyboard navigation
+   * Flag indicating if the cell can be tabbed to or from
    */
-  readonly hasFocus: boolean;
+  tabbable: boolean;
   /**
    * Callback for clicking the cell
    */
-  readonly onToggle: () => void;
+  onToggle: () => void;
   /**
-   * The suffix to append to the date label when the cell is highlighted.
-   * Is "highlighted" by default.
+   * Translations for the component
    */
-  readonly highlightedLabelSuffix: string | undefined;
-}
+  translations?: Readonly<{
+    highlighted?: string;
+    "Choose date"?: string;
+    Choose?: string;
+  }>;
+}>;
 
-export const DayCell = ({ inMonth, range, ...props }: DayCellProps) =>
-  inMonth ? (
-    <GridCell {...props} range={range} />
-  ) : (
-    <OutOfRangeCell range={range} />
-  );
-
-const OutOfRangeCell = ({ range }: Pick<DayCellProps, "range">) => (
-  <div
-    className={combineClassNames(
-      classNames.container,
-      classNames[`range-${range}`],
-    )}
-  >
-    <div
-      className={combineClassNames(classNames.cell, classNames.outOfRange)}
-    />
-  </div>
+export const DayCell = ({ range, ...props }: DayCellProps) => (
+  <GridCell {...props} range={range} />
 );
 
 /**
  * A date cell in the calendar
  */
-const GridCell = (props: Omit<DayCellProps, "inMonth">): JSX.Element => {
+const GridCell = (props: DayCellProps): JSX.Element => {
   const dt = new Date(props.date);
+  const lastDayOfTheMonth = endOfMonth(dt);
 
   const cell = (
     <div className={propsBasedClassNames()}>
@@ -83,26 +72,35 @@ const GridCell = (props: Omit<DayCellProps, "inMonth">): JSX.Element => {
 
   useEffect(() => {
     if (
-      props.hasFocus &&
+      props.tabbable &&
       document.activeElement?.getAttribute("role") === "gridcell"
     ) {
       ref.current?.focus();
     }
-  }, [props.hasFocus, ref.current]);
+  }, [props.tabbable]);
 
   return (
     <div
       ref={ref}
       role="gridcell"
-      tabIndex={props.hasFocus ? 0 : -1}
+      tabIndex={props.tabbable ? 0 : -1}
       aria-selected={props.selected}
       aria-disabled={props.disabled}
       data-date={`${dt.getFullYear()}-${dt.getMonth() + 1}-${dt.getDate()}`}
       onClick={props.disabled ? undefined : props.onToggle}
       className={combineClassNames(
         classNames.container,
+        isSameDay(dt, new Date()) ? classNames.today : "",
         classNames[`range-${props.range}`],
-        props.hasFocus ? classNames.focus : "",
+        props.tabbable ? classNames.tabbable : "",
+        props.inMonth ? "" : classNames.rollover,
+        props.inMonth
+          ? ""
+          : dt.getDate() === 1
+          ? classNames.rolloverStart
+          : dt.getDate() === lastDayOfTheMonth.getDate()
+          ? classNames.rolloverEnd
+          : "",
       )}
     >
       {cell}
@@ -114,9 +112,9 @@ const GridCell = (props: Omit<DayCellProps, "inMonth">): JSX.Element => {
       dateStyle: "medium",
     });
 
-    return `${formatter.format(dt)}${
+    return `${props.translations?.Choose || "Choose"} ${formatter.format(dt)}${
       props.highlighted
-        ? `, ${props.highlightedLabelSuffix || "highlighted"}`
+        ? `, ${props.translations?.highlighted || "highlighted"}`
         : ""
     }`;
   }

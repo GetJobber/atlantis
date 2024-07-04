@@ -1,11 +1,12 @@
+/* eslint-disable import/no-internal-modules */
 import React, { useMemo, useRef, useState } from "react";
 import { DaysOfTheWeekRow } from "./DaysOfTheWeekRow";
 import { DayCell } from "./DayCell";
 import { WeekRow } from "./WeekRow";
 import {
   addDays,
-  datesAreEqual,
   endOfMonth,
+  isSameDay,
   startOfDay,
   startOfMonth,
   startOfWeek,
@@ -15,24 +16,22 @@ import { useSyncFocusAndViewingDate } from "../hooks/useSyncFocusAndViewingDate"
 import { useOnToggleDate } from "../hooks/useOnToggleDate";
 import { useHighlightedDatesGroupedByTimeStamp } from "../hooks/useHighlightedDatesGroupedByTimeStamp";
 
-interface CalendarDatePickerGridProps {
-  readonly selected?: Date[];
-  readonly viewingDate: Date;
-  readonly minDate?: Date;
-  readonly maxDate?: Date;
-  readonly highlightedDates: Date[];
-  readonly weekStartsOnMonday: boolean;
-  readonly translations?: {
-    readonly highlightedLabelSuffix?: string;
-    readonly chooseDate?: string;
-  };
-  readonly range: boolean;
-  readonly onChange?: (
-    date: Date[],
-    method: "click" | "enter" | "space",
-  ) => void;
-  readonly onMonthChange?: (date: Date) => void;
-}
+type CalendarDatePickerGridProps = Readonly<{
+  selected?: Date[];
+  viewingDate: Date;
+  minDate?: Date;
+  maxDate?: Date;
+  highlightedDates: Date[];
+  weekStartsOnMonday: boolean;
+  translations?: Readonly<{
+    highlighted?: string;
+    "Choose date"?: string;
+    Choose?: string;
+  }>;
+  range: boolean;
+  onChange?: (date: Date[], method: "click" | "enter" | "space") => void;
+  onMonthChange?: (date: Date) => void;
+}>;
 
 export const CalendarDatePickerGrid = ({
   selected = [],
@@ -46,7 +45,7 @@ export const CalendarDatePickerGrid = ({
   onChange,
   onMonthChange,
 }: CalendarDatePickerGridProps): JSX.Element => {
-  const [focusedDate, setFocusedDate] = useState<Date>(
+  const [tabbableDate, setTabbableDate] = useState<Date>(
     selected[0] || viewingDate,
   );
 
@@ -54,7 +53,7 @@ export const CalendarDatePickerGrid = ({
     selected,
     range,
     onChange,
-    setFocusedDate,
+    setTabbableDate,
   });
 
   const grid = useRowsAndCells({
@@ -65,20 +64,20 @@ export const CalendarDatePickerGrid = ({
     weekStartsOnMonday,
     range,
     viewingDate,
-    focusedDate,
-    highlightedLabelSuffix: translations?.highlightedLabelSuffix,
+    tabbableDate,
+    translations,
     onToggle,
   });
 
   const onKeyDown = useGridKeyboardControl({
-    setFocusedDate,
+    setTabbableDate,
     onToggle,
   });
 
   useSyncFocusAndViewingDate({
     viewingDate,
-    focusedDate,
-    setFocusedDate,
+    tabbableDate,
+    setTabbableDate,
     onMonthChange,
   });
 
@@ -89,7 +88,7 @@ export const CalendarDatePickerGrid = ({
       role="grid"
       onKeyDown={onKeyDown}
       id={id}
-      aria-label={translations?.chooseDate || "Choose date"}
+      aria-label={translations?.["Choose date"] || "Choose date"}
     >
       {grid}
     </div>
@@ -104,9 +103,9 @@ function useRowsAndCells({
   maxDate,
   highlightedDates,
   weekStartsOnMonday,
-  highlightedLabelSuffix,
+  translations,
   range,
-  focusedDate,
+  tabbableDate,
   onToggle,
 }: {
   viewingDate: Date;
@@ -115,9 +114,9 @@ function useRowsAndCells({
   maxDate?: Date;
   highlightedDates: Date[];
   weekStartsOnMonday: boolean;
-  highlightedLabelSuffix: string | undefined;
+  translations: CalendarDatePickerGridProps["translations"];
   range: boolean;
-  focusedDate: Date;
+  tabbableDate: Date;
   onToggle: (
     date: Date,
     method: "click" | "enter" | "space",
@@ -166,9 +165,9 @@ function useRowsAndCells({
       // The date for this cell
       const dateOfCell = addDays(startDate, x * 7 + y);
       const isInCurrentMonth = dateOfCell.getMonth() === month;
-      const isCurrentDate = datesAreEqual(dateOfCell, currentDate);
+      const isCurrentDate = isSameDay(dateOfCell, currentDate);
       const isSelected = selected
-        ? selected.some(date => datesAreEqual(dateOfCell, date))
+        ? selected.some(date => isSameDay(dateOfCell, date))
         : false;
 
       const isDisabled =
@@ -188,11 +187,11 @@ function useRowsAndCells({
           onToggle={onToggleCell}
           highlighted={mapOfHighlightedDates[dateOfCell.getTime()]}
           disabled={!!isDisabled}
-          highlightedLabelSuffix={highlightedLabelSuffix}
+          translations={translations}
           range={
             range ? getRangeIndicatorForCell(dateOfCell, selected) : "none"
           }
-          hasFocus={focusedDate.getDate() === dateOfCell.getDate()}
+          tabbable={isSameDay(dateOfCell, tabbableDate)}
         />,
       );
     }
@@ -205,9 +204,9 @@ function useRowsAndCells({
 function getRangeIndicatorForCell(date: Date, selected: Date[]) {
   const [start, end] = selected;
 
-  if (start && datesAreEqual(date, start)) {
+  if (start && isSameDay(date, start)) {
     return "start";
-  } else if (end && datesAreEqual(date, end)) {
+  } else if (end && isSameDay(date, end)) {
     return "end";
   } else if (start && end && date > start && date < end) {
     return "between";

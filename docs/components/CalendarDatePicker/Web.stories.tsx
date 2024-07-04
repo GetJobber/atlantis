@@ -54,7 +54,7 @@ const MultiDateSelectionTemplate: ComponentStory<
   const highlightDates = useMemo(
     () =>
       Array.from({ length: 10 }).map((_, index) =>
-        add(new Date(), { days: index }),
+        add(add(new Date(), { days: 2 }), { days: index }),
       ),
     [],
   );
