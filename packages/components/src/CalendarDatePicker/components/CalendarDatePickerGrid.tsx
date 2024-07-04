@@ -131,7 +131,7 @@ function useRowsAndCells({
   const mapOfHighlightedDates =
     useHighlightedDatesGroupedByTimeStamp(highlightedDates);
 
-  const { currentDate, month, lastDateOfTheMonth, startDate } = useMemo(() => {
+  const { month, lastDateOfTheMonth, startDate } = useMemo(() => {
     const firstDayOfTheMonth = startOfMonth(viewingDate);
 
     const initialStartDate = addDays(
@@ -166,7 +166,6 @@ function useRowsAndCells({
       // The date for this cell
       const dateOfCell = addDays(startDate, x * 7 + y);
       const isInCurrentMonth = dateOfCell.getMonth() === month;
-      const isCurrentDate = isSameDay(dateOfCell, currentDate);
       const isSelected = selected
         ? selected.some(date => isSameDay(dateOfCell, date))
         : false;
@@ -184,7 +183,6 @@ function useRowsAndCells({
           date={dateOfCell.getTime()}
           inMonth={isInCurrentMonth}
           selected={isSelected}
-          isCurrentDate={isCurrentDate}
           onToggle={onToggleCell}
           highlighted={mapOfHighlightedDates[dateOfCell.getTime()]}
           disabled={!!isDisabled}

@@ -16,10 +16,6 @@ type DayCellProps = Readonly<{
    */
   selected: boolean;
   /**
-   * Flag indicating the cell represents the current date
-   */
-  isCurrentDate: boolean;
-  /**
    * Flag indicating the cell represents a highlighted date
    */
   highlighted: boolean;
