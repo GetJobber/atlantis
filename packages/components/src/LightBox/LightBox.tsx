@@ -1,5 +1,5 @@
 /* eslint-disable max-statements */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, PanInfo, motion } from "framer-motion";
 import ReactDOM from "react-dom";
 import debounce from "lodash/debounce";
@@ -100,6 +100,7 @@ export function LightBox({
     debounceDuration,
   );
   const mounted = useIsMounted();
+  const prevOpen = useRef(open);
 
   useRefocusOnActivator(open);
 
@@ -116,6 +117,11 @@ export function LightBox({
   useEffect(() => {
     setCurrentImageIndex(imageIndex);
   }, [imageIndex, open]);
+
+  if (prevOpen.current !== open) {
+    prevOpen.current = open;
+    togglePrintStyles(open);
+  }
 
   const template = (
     <>
@@ -236,4 +242,16 @@ function NextButton({ onClick }: NavButtonProps) {
       />
     </div>
   );
+}
+
+function togglePrintStyles(open: boolean) {
+  try {
+    if (open) {
+      document.documentElement.classList.add("atlantisLightboxActive");
+    } else {
+      document.documentElement.classList.remove("atlantisLightboxActive");
+    }
+  } catch (error) {
+    console.error(error);
+  }
 }
