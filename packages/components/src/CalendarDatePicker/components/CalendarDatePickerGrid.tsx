@@ -88,6 +88,7 @@ export const CalendarDatePickerGrid = ({
       role="grid"
       onKeyDown={onKeyDown}
       id={id}
+      data-range={range}
       aria-label={translations?.["Choose date"] || "Choose date"}
     >
       {grid}

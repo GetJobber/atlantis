@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import combineClassNames from "classnames";
 import { endOfMonth, isSameDay } from "date-fns";
 import classNames from "./DayCell.css";
 
@@ -62,7 +61,7 @@ const GridCell = (props: DayCellProps): JSX.Element => {
   const lastDayOfTheMonth = endOfMonth(dt);
 
   const cell = (
-    <div className={propsBasedClassNames()}>
+    <div className={classNames.cell}>
       <span className={classNames.accessibleLabel}>{accessibleLabel()}</span>
       <span aria-hidden="true">{dt.getDate()}</span>
     </div>
@@ -87,21 +86,22 @@ const GridCell = (props: DayCellProps): JSX.Element => {
       aria-selected={props.selected}
       aria-disabled={props.disabled}
       data-date={`${dt.getFullYear()}-${dt.getMonth() + 1}-${dt.getDate()}`}
-      onClick={props.disabled ? undefined : props.onToggle}
-      className={combineClassNames(
-        classNames.container,
-        isSameDay(dt, new Date()) ? classNames.today : "",
-        classNames[`range-${props.range}`],
-        props.tabbable ? classNames.tabbable : "",
-        props.inMonth ? "" : classNames.rollover,
+      data-today={isSameDay(dt, new Date())}
+      data-range={props.range}
+      data-selection={
+        props.disabled ? "disabled" : props.selected ? "selected" : "unselected"
+      }
+      data-rollover={
         props.inMonth
-          ? ""
+          ? "none"
           : dt.getDate() === 1
-          ? classNames.rolloverStart
+          ? "start"
           : dt.getDate() === lastDayOfTheMonth.getDate()
-          ? classNames.rolloverEnd
-          : "",
-      )}
+          ? "end"
+          : "between"
+      }
+      onClick={props.disabled ? undefined : props.onToggle}
+      className={classNames.container}
     >
       {cell}
     </div>
@@ -117,16 +117,5 @@ const GridCell = (props: DayCellProps): JSX.Element => {
         ? `, ${props.translations?.highlighted || "highlighted"}`
         : ""
     }`;
-  }
-
-  function propsBasedClassNames() {
-    return combineClassNames(
-      classNames.cell,
-      !props.disabled && props.selected ? classNames.selected : "",
-      !props.disabled && !props.selected && props.highlighted
-        ? classNames.highlighted
-        : "",
-      props.disabled ? classNames.disabled : "",
-    );
   }
 };

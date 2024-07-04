@@ -1,5 +1,6 @@
 .container {
   display: flex;
+  position: relative;
   height: 36px;
   justify-content: center;
   align-items: center;
@@ -14,7 +15,7 @@
   display: flex;
   width: 32px;
   height: 32px;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   border: 0;
   border-color: transparent;
   border-radius: var(--radius-circle);
@@ -24,94 +25,50 @@
   justify-content: center;
 }
 
-.today .cell {
-  position: relative;
-  overflow: visible;
+/* Selection: Disabled, Selected, or Unselected */
+.container[data-selection="selected"] .cell {
+  color: var(--color-text--reverse);
+  background-color: var(--color-green);
 }
 
-.today .cell span::after {
-  content: "";
-  position: absolute;
-  bottom: 4px;
-  left: calc(50% - 2px);
-  width: 4px;
-  height: 4px;
-  border-radius: 5px;
-  background-color: var(--color-text);
+.container[data-selection="disabled"] .cell {
+  color: var(--color-disabled);
 }
 
-.today .disabled span::after {
-  background-color: var(--color-disabled);
-}
-
-.today .highlighted span::after {
-  background-color: var(--color-text);
-}
-
-.today .selected span::after {
-  background-color: var(--color-surface);
-}
-
-.rollover {
+/* Rollover */
+.container:is(
+    [data-rollover="start"],
+    [data-rollover="between"],
+    [data-rollover="end"]
+  ) {
   background-color: var(--color-surface--background);
 }
 
-.rolloverEnd {
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-
-.rolloverStart {
+.container[data-rollover="start"] {
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
 }
 
-.cell:not(.disabled):not(.selected):hover {
-  background-color: var(--color-surface--hover);
+.container[data-rollover="end"] {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
-.container:focus > .cell:not(.selected) {
-  background-color: var(--color-surface--hover);
+/* Range selection */
+.container:is(
+    [data-range="start"],
+    [data-range="between"],
+    [data-range="end"]
+  ) {
+  box-sizing: border-box;
+  border-top: 2px solid var(--color-surface);
+  border-bottom: 2px solid var(--color-surface);
 }
-
-.container:focus > .cell:not(.selected):not(.disabled),
-.container.tabbable > .cell:not(.selected):not(.disabled) {
-  color: var(--color-text);
-}
-
-.selected {
-  border-color: var(--color-visit);
-  color: var(--color-surface);
-  background-color: var(--color-visit);
-}
-
-.selected:hover,
-.container:focus .selected {
-  background-color: var(--color-interactive--hover);
-}
-
-.range-none .highlighted {
-  background-color: var(--color-green--lighter);
-}
-
-.range-none .highlighted:hover {
-  border-color: var(--color-interactive--hover);
-  background-color: var(--color-surface--hover);
-}
-
-.disabled {
-  color: var(--color-disabled);
-}
-
-.range-none:not(.rollover, .rolloverStart, .rolloverEnd) {
-  background: none;
-}
-
-.range-between {
+.container[data-range="between"] {
   background-color: var(--color-green--lightest);
 }
 
-.range-start {
+.container[data-range="start"] {
   background: linear-gradient(
     90deg,
     transparent 50%,
@@ -119,12 +76,98 @@
   );
 }
 
-.range-end {
+.container[data-range="end"] {
   background: linear-gradient(
     90deg,
     var(--color-green--lightest) 50%,
     transparent 50%
   );
+}
+
+/* Range selection + Rollover */
+.container:not([data-rollover="none"]):not([data-range="none"]) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.container[data-range="end"] + .container[data-rollover="between"] {
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.container:not([data-rollover="none"]):has(
+    + .container:not([data-rollover="none"])[data-range="start"]
+  ) {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+/* Hover & Focus */
+.container:is(:focus, :hover) .cell {
+  background-color: var(--color-surface--hover);
+}
+
+.container[data-selection="selected"]:is(:focus, :hover) .cell {
+  background-color: var(--color-interactive--hover);
+}
+
+.container:not([data-selection="selected"]):is(
+    [data-rollover="start"],
+    [data-rollover="between"],
+    [data-rollover="end"]
+  ):is(:focus, :hover)
+  .cell {
+  background-color: var(--color-surface);
+}
+
+.container[data-rollover]:is(
+    [data-range="start"],
+    [data-range="between"],
+    [data-range="end"]
+  ):is(:focus, :hover)
+  .cell {
+  color: var(--color-text--reverse);
+  background-color: var(--color-interactive--hover);
+}
+
+/* Current date indicator */
+.container[data-today="true"] .cell span::after {
+  content: "";
+  position: absolute;
+  bottom: 6px;
+  left: calc(50% - 2px);
+  width: 4px;
+  height: 4px;
+  border-radius: 5px;
+  background-color: var(--color-text);
+}
+
+.container[data-today="true"]:not([data-range="none"]) span::after {
+  bottom: 4px;
+}
+
+.container[data-today="true"][data-selection="disabled"] span::after {
+  background-color: var(--color-disabled);
+}
+
+.container[data-today="true"] .highlighted span::after {
+  background-color: var(--color-text);
+}
+
+.container[data-today="true"][data-selection="selected"] span::after {
+  background-color: var(--color-surface);
+}
+
+/* Hover, Focus + Current date indicator */
+.container[data-today="true"]:is(:focus, :hover):is(
+    [data-selection="selected"],
+    :not([data-range="none"])
+  )
+  .cell
+  span::after {
+  background-color: var(--color-surface);
 }
 
 .accessibleLabel {
