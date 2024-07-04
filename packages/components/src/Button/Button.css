@@ -1,14 +1,15 @@
 :root {
-  --button--color-variation: var(--color-interactive);
-  --button--color-variation--hover: var(--color-interactive--hover);
+  --public--button--color-variation: var(--color-interactive);
+  --public--button--color-variation--hover: var(--color-interactive--hover);
+}
+
+.button {
   --button--color-surface: var(--color-surface);
   --button--color-surface--hover: var(--color-surface--hover);
   --button--color-primaryLabel: var(--color-surface);
   --button--duration-loading: var(--timing-loading--extended);
   --button--size: 40px;
-}
 
-.button {
   display: inline-flex;
   min-height: var(--button--size);
   box-sizing: border-box;
