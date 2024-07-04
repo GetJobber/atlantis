@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { add, startOfMonth } from "date-fns";
+import { add, endOfMonth, startOfMonth } from "date-fns";
 import { Content } from "@jobber/components/Content";
 import { CalendarDatePicker } from "@jobber/components/CalendarDatePicker";
 
@@ -18,13 +18,9 @@ const SingleDateSelectionTemplate: ComponentStory<
 > = args => {
   const [date, setDate] = useState<Date | undefined>();
 
-  const highlightDates = useMemo(
-    () =>
-      Array.from({ length: 10 }).map((_, index) =>
-        add(new Date(), { days: index }),
-      ),
-    [],
-  );
+  const highlightDates = Array.from({ length: 10 })
+    .map((_, index) => add(new Date(), { days: index }))
+    .concat(endOfMonth(new Date()));
 
   return (
     <Content>

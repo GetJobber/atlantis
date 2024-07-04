@@ -89,7 +89,13 @@ const GridCell = (props: DayCellProps): JSX.Element => {
       data-today={isSameDay(dt, new Date())}
       data-range={props.range}
       data-selection={
-        props.disabled ? "disabled" : props.selected ? "selected" : "unselected"
+        props.disabled
+          ? "disabled"
+          : props.selected
+          ? "selected"
+          : props.highlighted
+          ? "highlighted"
+          : "unselected"
       }
       data-rollover={
         props.inMonth
