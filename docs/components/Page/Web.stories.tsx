@@ -90,3 +90,11 @@ WithAdditionalTitleFields.args = {
   intro:
     "**Building the greatest kitchen one will ever see**. The _entire_ kitchen will be redone for this renovation.",
 };
+
+WithAdditionalTitleFields.parameters = {
+  previewTabs: {
+    code: {
+      hidden: true,
+    },
+  },
+};
