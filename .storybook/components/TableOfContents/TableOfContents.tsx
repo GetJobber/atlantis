@@ -21,9 +21,16 @@ export function TableOfContents({ githubInfo }: TableOfContentsProps) {
   const [headings, setHeadings] = useState<Element[]>([]);
 
   useEffect(() => {
-    const anchors = Array.from(document.querySelectorAll("[data-toc='true']"));
-    if (anchors.length < 2) return;
-    setHeadings(anchors);
+    // We need to wait for the DOM to be ready before we can query for the
+    // headings in storybook7 (I think things are lazy loaded now). 
+    // We also need to wait for the next animation frame to ensure
+    // that the headings have been rendered.
+    requestAnimationFrame(() => {
+      const anchors = Array.from(document.querySelectorAll("[data-toc='true']"));
+      if (anchors.length < 2) return;
+      setHeadings(anchors);
+    })
+
   }, []);
 
   return (

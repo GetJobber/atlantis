@@ -53,7 +53,7 @@ has broken the plane of the view. A good example for web would be
 export function Value({ of: type }) {
   const styles = getComputedStyle(document.documentElement);
   const getValue = styles.getPropertyValue(`--elevation-${type}`);
-  return <React.Fragment>{getValue}</React.Fragment>;
+  return <div>{getValue}</div>;
 }
 
 ### Z-index elevation

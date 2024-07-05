@@ -42,6 +42,6 @@
   },
   "peerDependencies": {
     "@apollo/client": "^3.0.0",
-    "react": "^18"
+    "react": "18.2.0"
   }
 }
