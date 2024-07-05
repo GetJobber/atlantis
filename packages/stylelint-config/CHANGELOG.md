@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/GetJobber/atlantis/compare/@jobber/stylelint-config@0.6.0...@jobber/stylelint-config@0.7.0) (2024-07-05)
+
+
+### Features
+
+* Storybook7 Upgrade ([#1711](https://github.com/GetJobber/atlantis/issues/1711)) ([7923df3](https://github.com/GetJobber/atlantis/commit/7923df325cae63a5476d997f577efd3e123dbe54))
+
+
+
+
+
 # [0.6.0](https://github.com/GetJobber/atlantis/compare/@jobber/stylelint-config@0.5.0...@jobber/stylelint-config@0.6.0) (2024-03-22)
 
 

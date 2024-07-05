@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.9.8...@jobber/hooks@2.10.0) (2024-07-05)
+
+
+### Features
+
+* Storybook7 Upgrade ([#1711](https://github.com/GetJobber/atlantis/issues/1711)) ([7923df3](https://github.com/GetJobber/atlantis/commit/7923df325cae63a5476d997f577efd3e123dbe54))
+
+
+
+
+
 ## [2.9.8](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.9.7...@jobber/hooks@2.9.8) (2024-05-28)
 
 

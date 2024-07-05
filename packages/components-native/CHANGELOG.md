@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.69.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.68.0...@jobber/components-native@0.69.0) (2024-07-05)
+
+
+### Features
+
+* Storybook7 Upgrade ([#1711](https://github.com/GetJobber/atlantis/issues/1711)) ([7923df3](https://github.com/GetJobber/atlantis/commit/7923df325cae63a5476d997f577efd3e123dbe54))
+
+
+
+
+
 # [0.68.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.67.6...@jobber/components-native@0.68.0) (2024-06-24)
 
 

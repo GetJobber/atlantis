@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/GetJobber/atlantis/compare/@jobber/eslint-config@0.12.0...@jobber/eslint-config@0.13.0) (2024-07-05)
+
+
+### Features
+
+* Storybook7 Upgrade ([#1711](https://github.com/GetJobber/atlantis/issues/1711)) ([7923df3](https://github.com/GetJobber/atlantis/commit/7923df325cae63a5476d997f577efd3e123dbe54))
+
+
+
+
+
 # [0.12.0](https://github.com/GetJobber/atlantis/compare/@jobber/eslint-config@0.11.0...@jobber/eslint-config@0.12.0) (2023-11-20)
 
 
