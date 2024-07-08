@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.20.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.1...@jobber/components@5.20.2) (2024-07-08)
+
+
+### Bug Fixes
+
+* **components:** Gallery handle HEIC and SVG images properly  ([#1938](https://github.com/GetJobber/atlantis/issues/1938)) ([2f84126](https://github.com/GetJobber/atlantis/commit/2f84126b3b4cfad7eb3adb7649f3cb68c5f20b0e))
+
+
+
+
+
 ## [5.20.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.0...@jobber/components@5.20.1) (2024-07-08)
 
 
