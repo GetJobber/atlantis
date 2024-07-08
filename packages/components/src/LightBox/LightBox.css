@@ -1,3 +1,20 @@
+/**
+ * This class is added to the root html element when opening a LightBox.
+ * When the user tries to print the page, this prevents the LightBox content
+ * from being duplicated multiple times.
+ */
+:global(html.atlantisLightBoxActive) {
+  @media print {
+    overflow: hidden;
+
+    body {
+      position: absolute;
+      height: 100%;
+      overflow: hidden;
+    }
+  }
+}
+
 .next,
 .prev {
   display: flex;
