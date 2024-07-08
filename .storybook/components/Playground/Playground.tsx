@@ -1,6 +1,6 @@
 import process from "process";
-import React from "react";
-import { type API as Story, useStorybookApi } from "@storybook/manager-api";
+import React, { useEffect } from "react";
+import { Story, useStorybookApi } from "@storybook/api";
 import {
   SandpackCodeEditor,
   SandpackPreview,
@@ -8,26 +8,35 @@ import {
 } from "@codesandbox/sandpack-react";
 import dedent from "ts-dedent";
 import "./Playground.css";
+import { STORY_CHANGED } from "@storybook/core-events";
 import { PlaygroundWarning } from "./PlaygroundWarning";
 import { PlaygroundImports } from "./types";
 import { THIRD_PARTY_PACKAGE_VERSIONS } from "./constants";
 import { formatCode } from "./utils";
+import css from '!!raw-loader!@jobber/components/dist/styles.css';
 
 export function Playground() {
-  const { getCurrentStoryData } = useStorybookApi();
+  const { getCurrentStoryData, emit } = useStorybookApi();
   const activeStory = getCurrentStoryData() as Story | undefined;
+
+  useEffect(() => {
+    // Emit story changed so GA can track it as a page change. This mimics the
+    // default behaviour of Canvas and Docs tab.
+    emit(STORY_CHANGED);
+  }, []);
+
   if (!activeStory) {
-    return null;
+    return <></>;
   }
 
-  const { isComponentStory, importsString, storySource, extraDependencies, canPreview } =
+  const { isComponentStory, importsString, extraDependencies, canPreview } =
     getPlaygroundInfo(activeStory);
 
   if (!isComponentStory) {
     return <div className="codeUnavailable" data-testid="code-unavailable" />;
   }
 
-  const { parameters } = activeStory;
+  const { parameters, args } = activeStory;
 
   return (
     <SandpackProvider
@@ -49,6 +58,7 @@ export function Playground() {
       files={{
         "/App.tsx": getAppJsCode(),
         "/Example.tsx": getExampleJsCode(),
+        "/styles.css":css,
         ...parameters?.previewTabs?.code?.files,
       }}
     >
@@ -69,7 +79,7 @@ export function Playground() {
   function getExampleJsCode(): string {
     const exampleComponent = dedent`
       export function Example() {
-        ${storySource}
+        ${getSourceCode(args, parameters)}
       }
     `;
 
@@ -79,62 +89,48 @@ export function Playground() {
   }
 }
 
-function getPlaygroundInfo({ args, parameters, type, title, name }: Story) {
+function getPlaygroundInfo({ parameters, type, title }: Story) {
   const isComponentsNative = title.includes("/Mobile");
-  const storySource = getSourceCode(name, args, parameters) || "";
-  const importsString = getImportStrings(storySource, parameters, isComponentsNative);
+  const importsString = getImportStrings(parameters, isComponentsNative);
 
   return {
     isComponentsNative,
     importsString,
-    storySource,
-    isComponentStory: type === "story" && title.startsWith("Components/") && storySource,
+    isComponentStory: type === "story" && title.startsWith("Components/"),
     extraDependencies: getExtraDependencies(parameters),
     canPreview: Boolean(importsString) && !isComponentsNative,
   };
 }
 
 function getSourceCode(
-  storyName: string,
   args: Story["args"],
   parameters: Story["parameters"],
 ): string | undefined {
-  const storyNameID = storyName.replaceAll(" ", "-").toLowerCase();
-  const sourceLocation = parameters?.storySource?.locationsMap?.[storyNameID];
-  const storySource = parameters?.storySource?.source;
+  if (parameters && "storySource" in parameters) {
+    let sourceCode: string | undefined;
 
-  if (sourceLocation && storySource) {
-    const allStoryLines = storySource.split("\n");
+    const rawSourceCode = parameters.storySource.source;
+    const isBracketFunction = rawSourceCode.startsWith("args => {");
 
-    let currentStorySource = allStoryLines
-      .slice(sourceLocation.startBody.line-1, sourceLocation.endBody.line)
-      .join("\n")
-      .trim();
-
-    // remove everything up until the return value
-    currentStorySource = currentStorySource.replace(/.*= (args|\(\)) =>/g, "").trim();
-
-    const isBracketFunction = currentStorySource.startsWith("{");
     if (isBracketFunction) {
-      // remove the start/end brackets
-      currentStorySource = currentStorySource.replace(/(^{|};?$)/g, "");
+      // remove "args => " and the first and last bracket
+      sourceCode = rawSourceCode.replace("args => ", "").slice(1, -1);
     } else {
       // find the first < and last >
-      const sourceCodeArr = RegExp("<((.*|\\n)*)>", "m").exec(currentStorySource);
-      currentStorySource = dedent`return ${sourceCodeArr?.[0]}`;
+      const sourceCodeArr = RegExp("<((.*|\\n)*)>", "m").exec(rawSourceCode);
+      sourceCode = dedent`return ${sourceCodeArr?.[0]}`;
     }
-
     const { attributes } = getAttributeProps(args);
 
-    if (currentStorySource) {
-      Array.from(currentStorySource.matchAll(/args\.(\w+)/g)).forEach(match => {
-        currentStorySource = currentStorySource?.replace(
+    if (sourceCode) {
+      Array.from(sourceCode.matchAll(/args\.(\w+)/g)).forEach(match => {
+        sourceCode = sourceCode?.replace(
           match[0],
           getArgValue(args?.[match[1]]),
         );
       });
 
-      return currentStorySource
+      return sourceCode
         ?.replace(new RegExp(" {...args}", "g"), attributes)
         .replace(new RegExp("(args)", "g"), getArgValue(args))
         .replace("{children}", args?.children);
@@ -143,15 +139,14 @@ function getSourceCode(
 }
 
 function getImportStrings(
-  storySource: string,
   parameters: Story["parameters"],
   isComponentsNative: boolean,
 ): string {
   const extraDependencyImports = getExtraDependencyImports(parameters);
 
-  if (storySource) {
+  if (parameters && "storySource" in parameters) {
     const { componentNames, hookNames } = parseSourceStringForImports(
-      storySource,
+      parameters.storySource.source,
       extraDependencyImports.componentNames,
     );
 
@@ -268,7 +263,6 @@ function getArgValue(args: unknown): string {
 function getAppJsCode(): string {
   return dedent`
     import "@jobber/design/foundation.css";
-    import "@jobber/components/dist/styles.css";
     import { Example } from "./Example";
 
     export default function App() {

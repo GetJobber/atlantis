@@ -5,7 +5,7 @@ import { Emphasis } from "@jobber/components/Emphasis";
 import { Content } from "@jobber/components/Content";
 import { Checkbox } from "@jobber/components/Checkbox";
 import { InputText } from "@jobber/components/InputText";
-import { Body, Cell, Header, Row, Table } from "@jobber/components/Table";
+import { Cell, Header, Row, Table } from "@jobber/components/Table";
 import { Tab, Tabs } from "@jobber/components/Tabs";
 import { tokens } from "@jobber/design/foundation.native.js";
 
@@ -88,18 +88,16 @@ labels, and more!
         <Cell>Renders</Cell>
         <Cell align="right">Data</Cell>
       </Header>
-      <Body>
-        <Row>
-          <Cell>Data point</Cell>
-          <Cell>More data</Cell>
-          <Cell align="right">$280</Cell>
-        </Row>
-        <Row>
-          <Cell>Another data point</Cell>
-          <Cell>Additional values</Cell>
-          <Cell align="right">$200</Cell>
-        </Row>
-      </Body>
+      <Row>
+        <Cell>Data point</Cell>
+        <Cell>More data</Cell>
+        <Cell align="right">$280</Cell>
+      </Row>
+      <Row>
+        <Cell>Another data point</Cell>
+        <Cell>Additional values</Cell>
+        <Cell align="right">$200</Cell>
+      </Row>
     </Table>
   </Content>
 </Canvas>

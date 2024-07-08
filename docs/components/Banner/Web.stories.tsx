@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Banner } from "@jobber/components/Banner";
 import { Button } from "@jobber/components/Button";
@@ -54,7 +54,7 @@ const SuccessTemplate: ComponentStory<typeof Banner> = args => (
 );
 
 const ControlledTemplate: ComponentStory<typeof Banner> = args => {
-  const [showBanner, setShowBanner] = useState(true);
+  const [showBanner, setShowBanner] = React.useState(true);
 
   return (
     <>

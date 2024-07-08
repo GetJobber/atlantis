@@ -1,4 +1,4 @@
-import { Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Canvas, Meta } from "@storybook/addon-docs";
 import { useState } from "react";
 import { InputText } from "@jobber/components/InputText";
 import { Content } from "@jobber/components/Content";
@@ -19,19 +19,17 @@ Input text is used in forms that accept short or long answers from users.
 Use this to allow users to provide short answers.
 
 <Canvas>
-  <Story name="Controlled">
-    {() => {
-      const [age, setAge] = useState("Veintisiete");
-      return (
-        <InputText
-          value={age}
-          onChange={setAge}
-          name="age"
-          placeholder="Age in words"
-        />
-      );
-    }}
-  </Story>
+  {() => {
+    const [age, setAge] = useState("Veintisiete");
+    return (
+      <InputText
+        value={age}
+        onChange={setAge}
+        name="age"
+        placeholder="Age in words"
+      />
+    );
+  }}
 </Canvas>
 
 ### Multiline
@@ -43,13 +41,11 @@ For web, you can set a minimum and maximum number of rows. See:
 [Web/rows example](?path=/story/components-forms-and-inputs-inputtext-web--multiline).
 
 <Canvas>
-  <Story name="Multiline">
-    <InputText
-      multiline={true}
-      placeholder="Describe your age"
-      name="describeAge"
-    />
-  </Story>
+  <InputText
+    multiline={true}
+    placeholder="Describe your age"
+    name="describeAge"
+  />
 </Canvas>
 
 ### Prefix/suffix
@@ -113,32 +109,30 @@ This includes, but is not limited to:
   you can pass an object of callback functions to validate all of them.
 
 <Canvas>
-  <Story name="Validation">
-    {() => {
-      return (
-        <InputText
-          placeholder="What's your age"
-          name="age"
-          validations={{
-            required: {
-              value: true,
-              message: "You have to tell us your age",
-            },
-            validate: validations,
-          }}
-        />
-      );
-      function validations(val) {
-        if (val.length > 0 && !isNaN(val)) {
-          return "Type your age in words please.";
-        }
-        if (val.length >= 10) {
-          return "That seems too old.";
-        }
-        return true;
+  {() => {
+    return (
+      <InputText
+        name="age"
+        placeholder="What's your age"
+        validations={{
+          required: {
+            value: true,
+            message: "You have to tell us your age",
+          },
+          validate: validations,
+        }}
+      />
+    );
+    function validations(val) {
+      if (val.length > 0 && !isNaN(val)) {
+        return "Type your age in words please.";
       }
-    }}
-  </Story>
+      if (val.length >= 10) {
+        return "That seems too old.";
+      }
+      return true;
+    }
+  }}
 </Canvas>
 
 ## States
@@ -146,13 +140,12 @@ This includes, but is not limited to:
 ### Disabled
 
 <Canvas>
-  <Story name="disabled">
-    <InputText
-      placeholder="Credit card"
-      value="**** **** **** 1234"
-      disabled={true}
-    />
-  </Story>
+  <InputText
+    placeholder="Credit card"
+    value="**** **** **** 1234"
+    disabled={true}
+    name="creditCard"
+  />
 </Canvas>
 
 ### Invalid
@@ -162,7 +155,12 @@ See:
 [Mobile/invalid example](?path=/story/components-forms-and-inputs-inputtext-mobile--invalid).
 
 <Canvas>
-  <InputText placeholder="Email" value="atlantis" invalid={true} />
+  <InputText
+    placeholder="Email"
+    value="atlantis"
+    invalid={true}
+    name="emailAddress"
+  />
 </Canvas>
 
 ### Keyboard
@@ -170,7 +168,11 @@ See:
 Determine what default keyboard appears on mobile.
 
 <Canvas>
-  <InputText placeholder="Describe your age" keyboard="numeric" />
+  <InputText
+    placeholder="Describe your age"
+    name="describeAge"
+    keyboard="numeric"
+  />
 </Canvas>
 
 ### Using onValidation (Web)

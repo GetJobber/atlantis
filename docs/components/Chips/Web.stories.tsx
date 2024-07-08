@@ -119,12 +119,13 @@ Selection.args = {
 Selection.parameters = {
   previewTabs: {
     code: {
-      hidden: true,
+      hidden: false,
       extraImports: {
         "./useFakeOptionQuery": ["useFakeOptionQuery"],
       },
       files: {
-        "/useFakeOptionQuery.ts": require("./utils/storyUtils").default,
+        "/useFakeOptionQuery.ts": require("!raw-loader!./utils/storyUtils")
+          .default,
       },
     },
   },

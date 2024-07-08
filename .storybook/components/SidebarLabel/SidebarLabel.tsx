@@ -1,8 +1,8 @@
 import React, { MouseEvent, useEffect, useRef } from "react";
-import { useStorybookApi } from "@storybook/manager-api";
+import { useStorybookApi } from "@storybook/api";
 import { alphaComponents, alphaMobileComponents } from "./alphaComponents";
 
-export function SidebarLabel(label?: Record<string, any>) {
+export function SidebarLabel(label: Record<string, any>) {
   const ref = useRef<HTMLSpanElement>(null);
   const { selectStory, getCurrentStoryData, getData } = useStorybookApi();
   const currentStory = getCurrentStoryData();
@@ -13,7 +13,6 @@ export function SidebarLabel(label?: Record<string, any>) {
     // Automatically expand the first level components group by initiating a
     // click that relies on event bubbling on component mount.
     if (
-      label &&
       label.id.startsWith("components") &&
       label.depth === 1 &&
       parentElement?.getAttribute("aria-expanded") === "false"
@@ -23,10 +22,10 @@ export function SidebarLabel(label?: Record<string, any>) {
   }, []);
 
 
-  let markAsAlpha = alphaComponents.includes(label?.name);
+  let markAsAlpha = alphaComponents.includes(label.name);
 
-  if (label?.name === "Mobile") {
-    const parent = getData(label?.parent);
+  if (label.name === "Mobile") {
+    const parent = getData(label.parent);
     if (alphaMobileComponents.includes(parent.name)) {
       markAsAlpha = true;
     }
@@ -34,7 +33,7 @@ export function SidebarLabel(label?: Record<string, any>) {
 
   return (
     <span ref={ref} onClick={handleClick}>
-      {label?.name}
+      {label.name}
       {markAsAlpha && (
         <span
           style={{
@@ -52,7 +51,7 @@ export function SidebarLabel(label?: Record<string, any>) {
   );
 
   function handleClick(event: MouseEvent<HTMLSpanElement>) {
-    if (!label?.children) return;
+    if (!label.children) return;
     const targetID = label.children[0];
 
     if (

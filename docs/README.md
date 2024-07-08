@@ -200,48 +200,52 @@ to learn how.
 Atlantis uses [Lerna](https://github.com/lerna/lerna) and will automatically
 publish whenever a pull request is merged.
 
-### Manual Release Instructions
-
-Follow [semver](https://semver.org) when choosing versions.
-
-```sh
-npm run release-the-kraken
-```
-
-### Publishing a failed release to NPM
-
-In some cases, the automatic release may successfully bump the version and add a
-[changelog](https://atlantis.getjobber.com/packages-components-changelog) but
-fail to publish to NPM. If this happens and you're one of the Atlantis NPM
-collaborators, run the code below to send unpublished versions to NPM.
-
-```sh
-npm run release:unpublished-package
-```
+<details>
+<summary>Manual Release Instructions</summary>
+<p>Follow <a href="https://semver.org" target="_blank">semver</a> when choosing versions.</p>
+<code>npm run release-the-kraken</code>
+</details>
+<details>
+<summary>Publishing a failed release to NPM</summary>
+<p>
+  In some cases, the automatic release may successfully bump the version and add
+  a <a href="https://atlantis.getjobber.com/packages-components-changelog">changelog</a> but
+  fail to publish to NPM. If this happens and you're one of the Atlantis NPM
+  collaborators, run the code below to send unpublished versions to NPM.
+</p>
+<code>npm run release:unpublished-package</code>
+</details>
 
 ## Pre-release
 
-### Releasing manually (Team Atlantis Only)
+<details>
+<summary>Releasing manually (Team Atlantis Only)</summary>
 
 ```sh
 npm run publish:prerelease
 ```
 
-### Releasing with dependency changes
+</details>
+
+<details>
+<summary>Releasing with dependency changes</summary>
 
 Lerna automatically determines which package changed and can be released.
 However, if you've only changed/added/updated an NPM package, Lerna won't count
 that as a releasable "change". The script below should allow you to create a
 prerelease for package changes.
 
-```sh
+```
 npm run publish:prerelease:force @jobber/components
 ```
 
 _NOTE: You can replace `@jobber/components` with the package you want to
 prerelease or remove it to prerelease all of them._
 
-### Using Github Actions to Publish a Pre-release
+</details>
+
+<details>
+<summary>Using Github Actions to Publish a Pre-release</summary>
 
 It is possible to generate Pre-releases through GitHub Actions.
 
@@ -260,20 +264,22 @@ _NOTE: You can only do 1 pre-release per commit. If you trigger another
 pre-release on a previously published commit, it will fail. This also happens on
 forced pre-release._
 
+</details>
+
 ## Local testing
 
 If you're not sharing your changes with your peers yet and want a quicker way to
 check your changes, you can run `npm run pack {{scope}}` from the root folder
 against one of the workspaces.
 
-```sh
+```
 npm run pack @jobber/components
 ```
 
 That will create a `jobber-components-{{version}}.tgz` file on the root. You can
 then install it on your project.
 
-```sh
+```
 npm i your/path/to/atlantis/repo/jobber-components-{{version}}.tgz
 ```
 
