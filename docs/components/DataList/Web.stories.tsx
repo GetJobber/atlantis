@@ -1,7 +1,7 @@
 /* eslint-disable max-statements */
 import React, { useState } from "react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import uniq from "lodash/uniq";
-import { Meta, StoryObj } from "@storybook/react";
 import { useCollectionQuery } from "@jobber/hooks/useCollectionQuery";
 import {
   DataList,
@@ -43,14 +43,9 @@ export default {
       );
     },
   ],
-} as Meta<typeof DataList>;
+} as ComponentMeta<typeof DataList>;
 
-const DataListStory = (args: {
-  data?: unknown;
-  title: string;
-  headerVisibility?: { xs: boolean; md: boolean };
-  loadingState?: "initial" | "filtering" | "loadingMore" | "none";
-}) => {
+const Template: ComponentStory<typeof DataList> = args => {
   const { data, nextPage, loadingNextPage, loadingInitialContent } =
     useCollectionQuery<ListQueryType>({
       query: LIST_QUERY,
@@ -385,21 +380,15 @@ const DataListStory = (args: {
   }
 };
 
-export const Basic: StoryObj<typeof DataList> = {
-  render: () => (
-    <DataListStory
-      title="All Characters"
-      headerVisibility={{ xs: false, md: true }}
-    />
-  ),
+export const Basic = Template.bind({});
+Basic.args = {
+  title: "All Characters",
+  headerVisibility: { xs: false, md: true },
 };
 
-export const EmptyState: StoryObj<typeof DataList> = {
-  render: () => (
-    <DataListStory
-      data={[]}
-      title="All Characters"
-      headerVisibility={{ xs: false, md: true }}
-    />
-  ),
+export const EmptyState = Template.bind({});
+EmptyState.args = {
+  data: [],
+  title: "All Characters",
+  headerVisibility: { xs: false, md: true },
 };

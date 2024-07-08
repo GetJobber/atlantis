@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { addons, types } from "@storybook/addons";
 import { STORY_CHANGED, STORY_ERRORED, STORY_MISSING } from '@storybook/core-events';
+import { SidebarLabel } from "./components/SidebarLabel";
 import theme from "./theme";
 import favicon from "./assets/favicon.svg";
 import { Playground } from "./components/Playground";
@@ -26,6 +27,7 @@ addons.setConfig({
       "packages",
       "changelog",
     ],
+    renderLabel: SidebarLabel,
   },
 });
 
@@ -33,25 +35,10 @@ addons.register("code/tab", () => {
   addons.add("code", {
     type: types.TAB,
     title: "Code",
-    route: ({ storyId, refId, ...other }) =>
+    route: ({ storyId, refId }) =>
       `/code/${[refId, storyId].filter(Boolean).join("_")}`,
     match: ({ viewMode }) => viewMode === "code",
-    render: ({ active }) => {
-      useEffect(() => {
-        if (active) {
-          // This works around a storybook bug where an ancestor div is marked as hidden and causes the entire
-          // toolbar and code tab to be invisible. They fixed the real problem in V8 but did not backport to V7.
-          // https://github.com/storybookjs/storybook/issues/25322
-          const div = document.querySelector("#storybook-panel-root").parentElement.parentElement.parentElement;
-          div.hidden = false;
-        }
-      }, [active]);
-
-      if (!active) {
-        return null;
-      }
-      return <Playground />;
-    },
+    render: ({ key, active }) => <>{active && <Playground key={key} />}</>,
   });
 });
 

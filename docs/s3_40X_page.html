@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Generating Preview</title>
+    <meta http-equiv="refresh" content="12" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Anonymous+Pro:400,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        height: 100%;
+        color: #eee;
+        font-family: "Anonymous Pro", monospace;
+        background-color: #37474f;
+      }
+
+      .content {
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        text-align: center;
+      }
+
+      .spinner {
+        width: 250px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Spinners */
+
+      /* KEYFRAMES */
+
+      @keyframes spin {
+        from {
+          transform: rotate(0);
+        }
+        to {
+          transform: rotate(359deg);
+        }
+      }
+
+      @keyframes configure-clockwise {
+        0% {
+          transform: rotate(0);
+        }
+        25% {
+          transform: rotate(90deg);
+        }
+        50% {
+          transform: rotate(180deg);
+        }
+        75% {
+          transform: rotate(270deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes configure-xclockwise {
+        0% {
+          transform: rotate(45deg);
+        }
+        25% {
+          transform: rotate(-45deg);
+        }
+        50% {
+          transform: rotate(-135deg);
+        }
+        75% {
+          transform: rotate(-225deg);
+        }
+        100% {
+          transform: rotate(-315deg);
+        }
+      }
+
+      @keyframes pulse {
+        from {
+          opacity: 1;
+          transform: scale(1);
+        }
+        to {
+          opacity: 0.25;
+          transform: scale(0.75);
+        }
+      }
+
+      /* GRID STYLING */
+
+      * {
+        box-sizing: border-box;
+      }
+
+      /* SOLAR SYSTEM */
+
+      .solar-system {
+        width: 250px;
+        height: 250px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .orbit {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #ffffffa5;
+        border-radius: 50%;
+      }
+
+      .earth-orbit {
+        width: 165px;
+        height: 165px;
+        -webkit-animation: spin 12s linear 0s infinite;
+      }
+
+      .venus-orbit {
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 6s linear 0s infinite;
+      }
+
+      .mercury-orbit {
+        width: 90px;
+        height: 90px;
+        -webkit-animation: spin 3s linear 0s infinite;
+      }
+
+      .planet {
+        position: absolute;
+        top: -5px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #3ff9dc;
+      }
+
+      .sun {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background-color: #ffab91;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="content">
+      <div class="spinner">
+        <div class="spinner-box">
+          <div class="solar-system">
+            <div class="earth-orbit orbit">
+              <div class="planet earth"></div>
+              <div class="venus-orbit orbit">
+                <div class="planet venus"></div>
+                <div class="mercury-orbit orbit">
+                  <div class="planet mercury"></div>
+                  <div class="sun"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>Generating Preview</h2>
+      <p>Your docs should be ready soon.</p>
+    </div>
+  </body>
+</html>

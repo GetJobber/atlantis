@@ -13,29 +13,25 @@ export default {
       code: {
         hidden: false,
         extraImports: {
-          "@jobber/components/Chip": [
-            "Chip",
-            "ChipDismissible",
-            "ChipSelectable",
-          ],
+          "@jobber/components/Chip": ["Chip"],
         },
       },
     },
   },
 } as ComponentMeta<typeof Chip>;
 
-const BasicTemplate: ComponentStory<typeof Chip> = args => {
+const BasicTemplate: ComponentStory<typeof Chip> = props => {
   return (
     <Content>
-      <Chip {...args} onClick={() => alert("you clicked me!")} />
+      <Chip {...props} onClick={() => alert("you clicked me!")} />
     </Content>
   );
 };
 
-const SuffixTemplate: ComponentStory<typeof Chip> = args => {
+const SuffixTemplate: ComponentStory<typeof Chip> = props => {
   return (
     <Content>
-      <Chip {...args} onClick={() => alert("you clicked me!")}>
+      <Chip {...props} onClick={() => alert("you clicked me!")}>
         <Chip.Suffix>
           <Icon name="cross" size="small" />
         </Chip.Suffix>
@@ -44,10 +40,10 @@ const SuffixTemplate: ComponentStory<typeof Chip> = args => {
   );
 };
 
-const PrefixTemplate: ComponentStory<typeof Chip> = args => {
+const PrefixTemplate: ComponentStory<typeof Chip> = props => {
   return (
     <Content>
-      <Chip {...args} onClick={() => alert("you clicked me!")}>
+      <Chip {...props} onClick={() => alert("you clicked me!")}>
         <Chip.Prefix>
           <Icon name="home" size="small" />
         </Chip.Prefix>
@@ -56,24 +52,24 @@ const PrefixTemplate: ComponentStory<typeof Chip> = args => {
   );
 };
 
-const DismissibleTemplate: ComponentStory<typeof Chip> = args => {
+const DismissibleTemplate: ComponentStory<typeof Chip> = props => {
   return (
     <Content>
       <ChipDismissible
-        {...args}
+        {...props}
         onClick={() => alert("now you can remove me!")}
       />
     </Content>
   );
 };
 
-const SelectableTemplate: ComponentStory<typeof Chip> = args => {
+const SelectableTemplate: ComponentStory<typeof Chip> = props => {
   const [selected, setSelected] = useState(false);
 
   return (
     <Content>
       <ChipSelectable
-        {...args}
+        {...props}
         selected={selected}
         onClick={() => setSelected(previousValue => !previousValue)}
       />
@@ -81,7 +77,7 @@ const SelectableTemplate: ComponentStory<typeof Chip> = args => {
   );
 };
 
-const TruncatingTemplate: ComponentStory<typeof Chip> = args => {
+const TruncatingTemplate: ComponentStory<typeof Chip> = props => {
   return (
     <Content>
       <div
@@ -100,7 +96,7 @@ const TruncatingTemplate: ComponentStory<typeof Chip> = args => {
           label="Short label"
           onClick={() => alert("now you can remove me!")}
         />
-        <Chip {...args} invalid onClick={() => alert("you clicked me!")}>
+        <Chip {...props} invalid onClick={() => alert("you clicked me!")}>
           <Chip.Suffix>
             <Icon name="cross" size="small" />
           </Chip.Suffix>
