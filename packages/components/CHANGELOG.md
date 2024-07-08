@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.20.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.2...@jobber/components@5.20.3) (2024-07-08)
+
+
+### Bug Fixes
+
+* **components:** Prevent LightBox from duplicating content when the page is printed ([#1951](https://github.com/GetJobber/atlantis/issues/1951)) ([b3f375b](https://github.com/GetJobber/atlantis/commit/b3f375b522d4aae42e114ca7d31b622820628dc0))
+
+
+
+
+
 ## [5.20.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.1...@jobber/components@5.20.2) (2024-07-08)
 
 
