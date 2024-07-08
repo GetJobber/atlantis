@@ -463,23 +463,15 @@ CustomSearch.args = {};
 export const InfiniteScroll = ComboboxInfiniteScroll.bind({});
 InfiniteScroll.args = {};
 
-InfiniteScroll.parameters = {
-  previewTabs: {
-    code: {
-      hidden: true,
-    },
-  },
-};
-
 CustomSearch.parameters = {
   previewTabs: {
     code: {
-      hidden: true,
+      hidden: false,
       extraImports: {
         "./useFakeQuery": ["useFakeQuery"],
       },
       files: {
-        "/useFakeQuery.ts": require("./storyUtils").default,
+        "/useFakeQuery.ts": require("!raw-loader!./storyUtils").default,
       },
     },
   },

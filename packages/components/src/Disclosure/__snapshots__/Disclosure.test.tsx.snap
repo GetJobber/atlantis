@@ -26,7 +26,7 @@ exports[`renders a Disclosure 1`] = `
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              class="b--UClBpmy0-"
+              class="kBAjqBTXEsI-"
               d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
             />
           </svg>

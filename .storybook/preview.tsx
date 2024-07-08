@@ -11,8 +11,6 @@ import { StoryDetails } from "./components/StoryDetails";
 
 import "@jobber/design/foundation.css";
 import "./assets/css/preview.css";
-import { Unstyled } from "@storybook/addon-docs";
-import { Table } from "@storybook/components";
 
 export const parameters = {
   viewMode: "docs",
@@ -46,7 +44,7 @@ export const parameters = {
   },
   docs: {
     components: {
-      wrapper: props => <Unstyled><Content>{props.children}</Content></Unstyled>,
+      wrapper: props => <Content>{props.children}</Content>,
       h1: props => <Header {...props} level={1} />,
       h2: props => <Header {...props} level={2} isTOC />,
       h3: props => <Header {...props} level={3} />,
@@ -54,7 +52,6 @@ export const parameters = {
       h5: props => <Header {...props} level={5} />,
       p: props => <Text {...props} />,
       inlineCode: props => <InlineCode {...props} />,
-      table: props => <Table {...props} />,
       Canvas: CustomCanvas,
     },
     container: DocsWithSidebar,
