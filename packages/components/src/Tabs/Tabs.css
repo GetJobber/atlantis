@@ -1,10 +1,10 @@
 :root {
-  --public-tab--inset: var(--tab--inset);
+  --public-tab--inset: var(--space-base);
 }
 
 .tabs {
   --tab--height: 40px;
-  --tab--inset: var(--space-base);
+  --tab--vertical-inset: var(--space-base);
 
   display: block;
   width: 100%;
@@ -98,8 +98,8 @@ ul.tabRow {
 }
 
 .tabContent {
-  padding-top: var(--tab--inset);
-  padding-bottom: var(--tab--inset);
+  padding-top: var(--tab--vertical-inset);
+  padding-bottom: var(--tab--vertical-inset);
   padding-left: var(--public-tab--inset);
   padding-right: var(--public-tab--inset);
 }
