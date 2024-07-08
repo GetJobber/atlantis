@@ -1,6 +1,5 @@
 .formatFile {
   --file-card--background-color: var(--color-surface);
-  --file-card--border-color: var(--color-border);
   --file-card--base-padding: var(--space-small);
 }
 
