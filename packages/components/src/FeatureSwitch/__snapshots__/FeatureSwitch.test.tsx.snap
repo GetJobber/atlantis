@@ -116,7 +116,7 @@ exports[`renders a full FeatureSwitch 1`] = `
         <button
           aria-checked="true"
           aria-label="Send a [notification](www.fakeurl.com) to your _client_ following up on an **outstanding quote**."
-          class="track isChecked"
+          class="track switch isChecked"
           role="switch"
           type="button"
         >

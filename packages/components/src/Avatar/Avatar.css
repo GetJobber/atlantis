@@ -1,9 +1,11 @@
 :root {
-  --avatar-size: calc(var(--base-unit) * 2);
-  --avatar-border-size: var(--border-base);
+  --public--avatar-size: 32px;
 }
 
 .avatar {
+  --avatar-size: var(--public--avatar-size);
+  --avatar-border-size: var(--border-base);
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,14 +27,15 @@
 }
 
 .large {
-  --avatar-size: calc(var(--base-unit) * 4.5);
+  --avatar-size: 72px;
   --avatar-border-size: var(--border-thick);
 }
 
 .small {
-  --avatar-size: calc(var(--base-unit) * 1.5);
+  --avatar-size: 24px;
 }
 
+/* isDark is dynamic and applies only when background is dark */
 .isDark {
   color: var(--color-base-white);
 }
