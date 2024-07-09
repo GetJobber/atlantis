@@ -400,7 +400,6 @@ function InputTextInternal(
           styleOverride?.inputText,
           loading && loadingType === "glimmer" && { color: "transparent" },
         ]}
-        // @ts-expect-error - does exist on 0.71 and up https://github.com/facebook/react-native/pull/39281
         readOnly={readonly}
         editable={!disabled}
         keyboardType={keyboard}
