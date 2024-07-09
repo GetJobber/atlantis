@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.20.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.3...@jobber/components@5.20.4) (2024-07-09)
+
+
+### Bug Fixes
+
+* **components:** make DataList and DataTable sorting interactions match ([#1945](https://github.com/GetJobber/atlantis/issues/1945)) ([21d900e](https://github.com/GetJobber/atlantis/commit/21d900e1b408bb6fa6ef96534fcc353c41caf105))
+
+
+
+
+
 ## [5.20.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.2...@jobber/components@5.20.3) (2024-07-08)
 
 
