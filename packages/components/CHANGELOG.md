@@ -3,6 +3,342 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.20.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.4...@jobber/components@5.20.5) (2024-07-09)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [5.20.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.3...@jobber/components@5.20.4) (2024-07-09)
+
+
+### Bug Fixes
+
+* **components:** make DataList and DataTable sorting interactions match ([#1945](https://github.com/GetJobber/atlantis/issues/1945)) ([21d900e](https://github.com/GetJobber/atlantis/commit/21d900e1b408bb6fa6ef96534fcc353c41caf105))
+
+
+
+
+
+## [5.20.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.2...@jobber/components@5.20.3) (2024-07-08)
+
+
+### Bug Fixes
+
+* **components:** Prevent LightBox from duplicating content when the page is printed ([#1951](https://github.com/GetJobber/atlantis/issues/1951)) ([b3f375b](https://github.com/GetJobber/atlantis/commit/b3f375b522d4aae42e114ca7d31b622820628dc0))
+
+
+
+
+
+## [5.20.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.1...@jobber/components@5.20.2) (2024-07-08)
+
+
+### Bug Fixes
+
+* **components:** Gallery handle HEIC and SVG images properly  ([#1938](https://github.com/GetJobber/atlantis/issues/1938)) ([2f84126](https://github.com/GetJobber/atlantis/commit/2f84126b3b4cfad7eb3adb7649f3cb68c5f20b0e))
+
+
+
+
+
+## [5.20.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.0...@jobber/components@5.20.1) (2024-07-08)
+
+
+### Reverts
+
+* "feat: Storybook7 Upgrade" ([#1954](https://github.com/GetJobber/atlantis/issues/1954)) ([0854202](https://github.com/GetJobber/atlantis/commit/0854202ae850439c514f5ce1f129f2e584fe0efb)), closes [#1711](https://github.com/GetJobber/atlantis/issues/1711)
+
+
+
+
+
+# [5.20.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.19.1...@jobber/components@5.20.0) (2024-07-05)
+
+
+### Features
+
+* Storybook7 Upgrade ([#1711](https://github.com/GetJobber/atlantis/issues/1711)) ([7923df3](https://github.com/GetJobber/atlantis/commit/7923df325cae63a5476d997f577efd3e123dbe54))
+
+
+
+
+
+## [5.19.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.19.0...@jobber/components@5.19.1) (2024-07-03)
+
+
+### Bug Fixes
+
+* **components:** Update FormField to avoid useId StrictMode problem ([#1950](https://github.com/GetJobber/atlantis/issues/1950)) ([03d22be](https://github.com/GetJobber/atlantis/commit/03d22bed22bcfe2acfe109763ac9abf12f604501))
+
+
+
+
+
+# [5.19.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.18.1...@jobber/components@5.19.0) (2024-07-02)
+
+
+### Features
+
+* **components:** SSR support for toast ([#1948](https://github.com/GetJobber/atlantis/issues/1948)) ([966940b](https://github.com/GetJobber/atlantis/commit/966940b2ec2bcec736f6488821be56b6cfb52aa6))
+
+
+
+
+
+## [5.18.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.18.0...@jobber/components@5.18.1) (2024-06-27)
+
+
+### Bug Fixes
+
+* **components:** InputText corners are white when autofilling a field on chrome ([#1949](https://github.com/GetJobber/atlantis/issues/1949)) ([9bffa84](https://github.com/GetJobber/atlantis/commit/9bffa84c95be89a60845215a74d40ee52d41f6a6))
+
+
+
+
+
+# [5.18.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.17.0...@jobber/components@5.18.0) (2024-06-24)
+
+
+### Features
+
+* **components:** Add testID prop to components Icon ([#1927](https://github.com/GetJobber/atlantis/issues/1927)) ([eb804df](https://github.com/GetJobber/atlantis/commit/eb804df153f01a29a2a87126aa07b87d1866ca85))
+
+
+
+
+
+# [5.17.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.16.1...@jobber/components@5.17.0) (2024-06-24)
+
+
+### Features
+
+* **components:** Update Page component to accept a titleMetaData component [JOB-97759] ([#1941](https://github.com/GetJobber/atlantis/issues/1941)) ([908e21b](https://github.com/GetJobber/atlantis/commit/908e21b033075bb2a2b5346113a6f238756f8bbb))
+
+
+
+
+
+## [5.16.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.16.0...@jobber/components@5.16.1) (2024-06-21)
+
+
+### Bug Fixes
+
+* **components:** handle nested input names in form inputs ([#1942](https://github.com/GetJobber/atlantis/issues/1942)) ([90b35be](https://github.com/GetJobber/atlantis/commit/90b35be274e984e5a9504aa054dcdb81380dca7a))
+
+
+
+
+
+# [5.16.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.15.2...@jobber/components@5.16.0) (2024-06-20)
+
+
+### Features
+
+* Add button variation option to actions buttons in the Menu component (JOB-98306) ([#1932](https://github.com/GetJobber/atlantis/issues/1932)) ([5740abf](https://github.com/GetJobber/atlantis/commit/5740abfd0841c15bd53704d0e975d377bc223e77))
+
+
+
+
+
+## [5.15.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.15.1...@jobber/components@5.15.2) (2024-06-18)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [5.15.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.15.0...@jobber/components@5.15.1) (2024-06-18)
+
+
+### Bug Fixes
+
+* **components:** Adjust style of section headings in autocomplete ([#1929](https://github.com/GetJobber/atlantis/issues/1929)) ([beacf93](https://github.com/GetJobber/atlantis/commit/beacf9333cd924d1b78c57eaf6abbd61c120ee07))
+
+
+
+
+
+# [5.15.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.14.2...@jobber/components@5.15.0) (2024-06-18)
+
+
+### Features
+
+* **components:** Allow Banner dismiss to be controlled ([#1936](https://github.com/GetJobber/atlantis/issues/1936)) ([e5d4ac3](https://github.com/GetJobber/atlantis/commit/e5d4ac36c7d934d699034940cee93c17e556d367))
+
+
+
+
+
+## [5.14.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.14.1...@jobber/components@5.14.2) (2024-06-18)
+
+
+### Bug Fixes
+
+* **components:** update options in FormField ([#1937](https://github.com/GetJobber/atlantis/issues/1937)) ([4a5d666](https://github.com/GetJobber/atlantis/commit/4a5d6660f057783406d631f0652c6a6568d5d0c9))
+
+
+
+
+
+## [5.14.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.14.0...@jobber/components@5.14.1) (2024-06-17)
+
+
+### Bug Fixes
+
+* **components:** make `Select` options readable in dark mode ([#1935](https://github.com/GetJobber/atlantis/issues/1935)) ([31d8b05](https://github.com/GetJobber/atlantis/commit/31d8b05687a3291eccbf68cd442fcefab12519d3))
+
+
+
+
+
+# [5.14.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.13.0...@jobber/components@5.14.0) (2024-06-14)
+
+
+### Features
+
+* on error callback on image files in format file ([#1934](https://github.com/GetJobber/atlantis/issues/1934)) ([4dca1ae](https://github.com/GetJobber/atlantis/commit/4dca1aed1740f06c0e235b2a359e2b5d59517df7))
+
+
+
+
+
+# [5.13.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.12.4...@jobber/components@5.13.0) (2024-06-14)
+
+
+### Features
+
+* allow thumbnails on gallery ([#1933](https://github.com/GetJobber/atlantis/issues/1933)) ([9f3fb15](https://github.com/GetJobber/atlantis/commit/9f3fb158a502ad83408f295a683a0f6c06fe34f3))
+
+
+
+
+
+## [5.12.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.12.3...@jobber/components@5.12.4) (2024-06-14)
+
+
+### Bug Fixes
+
+* Add css to style href in link component ([#1931](https://github.com/GetJobber/atlantis/issues/1931)) ([2fd1d83](https://github.com/GetJobber/atlantis/commit/2fd1d8379c2e7003ea452622c118e89f38044d39))
+
+
+
+
+
+## [5.12.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.12.2...@jobber/components@5.12.3) (2024-06-14)
+
+
+### Bug Fixes
+
+* **components:** allow Select background to work in dark modes ([#1930](https://github.com/GetJobber/atlantis/issues/1930)) ([4f3b978](https://github.com/GetJobber/atlantis/commit/4f3b978118b8f58fb4e12b044532c9d2fdf1c4e6))
+
+
+
+
+
+## [5.12.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.12.1...@jobber/components@5.12.2) (2024-06-13)
+
+
+### Bug Fixes
+
+* side drawer scroll overflow to auto ([#1928](https://github.com/GetJobber/atlantis/issues/1928)) ([5aafd10](https://github.com/GetJobber/atlantis/commit/5aafd10a181cecc3dc3a527ea616cbdc321d87bb))
+
+
+
+
+
+## [5.12.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.12.0...@jobber/components@5.12.1) (2024-06-12)
+
+
+### Bug Fixes
+
+* **components:** Handle dynamic number of Tab children ([#1917](https://github.com/GetJobber/atlantis/issues/1917)) ([388f027](https://github.com/GetJobber/atlantis/commit/388f027b7d6837d787387f9b016d274561a1d458))
+
+
+
+
+
+# [5.12.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.11.0...@jobber/components@5.12.0) (2024-06-11)
+
+
+### Features
+
+* **components:** update interactive borders and avatar [JOB-97530] ([#1924](https://github.com/GetJobber/atlantis/issues/1924)) ([533a06f](https://github.com/GetJobber/atlantis/commit/533a06f7a264031ce1d1a8dde2f2a19199619ede))
+* side drawer improvements ([#1926](https://github.com/GetJobber/atlantis/issues/1926)) ([07e1580](https://github.com/GetJobber/atlantis/commit/07e15808def0de76dfd696dac6e25b9874d244c3))
+
+
+
+
+
+# [5.11.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.10.1...@jobber/components@5.11.0) (2024-06-10)
+
+
+### Features
+
+* **components:** add elevation attribute to elevated UI elements [JOB-97584] ([#1914](https://github.com/GetJobber/atlantis/issues/1914)) ([339fe96](https://github.com/GetJobber/atlantis/commit/339fe968c1a6625fee99a9a3a9025de53d433236))
+
+
+
+
+
+## [5.10.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.10.0...@jobber/components@5.10.1) (2024-06-07)
+
+
+### Bug Fixes
+
+* **components:** Allow Button variation prop combined with submit prop ([#1894](https://github.com/GetJobber/atlantis/issues/1894)) ([ffb8e40](https://github.com/GetJobber/atlantis/commit/ffb8e40d41590e190a8d696996f8a11e242b62d4))
+
+
+
+
+
+# [5.10.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.9.0...@jobber/components@5.10.0) (2024-06-06)
+
+
+### Features
+
+* **components:** Add url to DataList.ItemAction ([#1910](https://github.com/GetJobber/atlantis/issues/1910)) ([86c36c9](https://github.com/GetJobber/atlantis/commit/86c36c93e1a74a8024aad93d8b94a2075103354f))
+
+
+
+
+
+# [5.9.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.8.0...@jobber/components@5.9.0) (2024-06-05)
+
+
+### Features
+
+* **components:** add side drawer ([#1909](https://github.com/GetJobber/atlantis/issues/1909)) ([6f55a35](https://github.com/GetJobber/atlantis/commit/6f55a35f56ec0569d827d929678ad7fe70a93cbe))
+
+
+
+
+
+# [5.8.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.7.9...@jobber/components@5.8.0) (2024-06-05)
+
+
+### Features
+
+* **components:** Box Component ([#1890](https://github.com/GetJobber/atlantis/issues/1890)) ([a28c774](https://github.com/GetJobber/atlantis/commit/a28c7746ea9842363967a8a1f51d70a60fa76055))
+
+
+
+
+
+## [5.7.9](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.7.8...@jobber/components@5.7.9) (2024-06-04)
+
+
+### Bug Fixes
+
+* **components:** hide hover menu when context menu shows up ([#1667](https://github.com/GetJobber/atlantis/issues/1667)) ([87e8fff](https://github.com/GetJobber/atlantis/commit/87e8fff600ae88602ca2543503dbb892ff6e8074))
+
+
+
+
+
 ## [5.7.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.7.7...@jobber/components@5.7.8) (2024-06-04)
 
 

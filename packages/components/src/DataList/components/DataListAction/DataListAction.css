@@ -17,6 +17,11 @@
   gap: var(--space-small);
 }
 
+.actionUrl {
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
 .action:hover,
 .action:focus {
   background-color: var(--color-surface--hover);

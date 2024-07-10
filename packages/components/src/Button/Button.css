@@ -1,23 +1,22 @@
 :root {
-  --button--color-variation: var(--color-interactive);
-  --button--color-variation--hover: var(--color-interactive--hover);
-  --button--color-surface: var(--color-surface);
-  --button--color-surface--hover: var(--color-surface--hover);
-  --button--color-primaryLabel: var(--color-surface);
-
-  --button--duration-loading: var(--timing-loading--extended);
-
-  --button--size: 40px;
+  --public--button--color-variation: var(--color-interactive);
+  --public--button--color-variation--hover: var(--color-interactive--hover);
 }
 
 .button {
+  --button--color-surface: var(--color-surface);
+  --button--color-surface--hover: var(--color-surface--hover);
+  --button--color-primaryLabel: var(--color-surface);
+  --button--duration-loading: var(--timing-loading--extended);
+  --button--size: 40px;
+
   display: inline-flex;
   min-height: var(--button--size);
   box-sizing: border-box;
   margin: 0;
-  border: var(--border-base) solid var(--button--color-variation);
+  border: var(--border-base) solid var(--public--button--color-variation);
   border-radius: var(--radius-base);
-  color: var(--button--color-variation);
+  color: var(--public--button--color-variation);
   -webkit-font-smoothing: antialiased;
   line-height: 1;
   text-align: center;
@@ -27,7 +26,7 @@
   cursor: pointer;
   transition: all var(--timing-base) ease-out;
   appearance: none;
-  fill: var(--button--color-variation);
+  fill: var(--public--button--color-variation);
   align-items: center;
   justify-content: center;
 }
@@ -44,9 +43,9 @@ a.button:hover,
 a.button:focus-visible,
 .button:active,
 a.button:active {
-  border-color: var(--button--color-variation--hover);
-  color: var(--button--color-variation--hover);
-  fill: var(--button--color-variation--hover);
+  border-color: var(--public--button--color-variation--hover);
+  color: var(--public--button--color-variation--hover);
+  fill: var(--public--button--color-variation--hover);
   background-color: var(--button--color-surface--hover);
 }
 
@@ -61,19 +60,21 @@ a.button:active {
 /* Variation */
 
 .work {
-  --button--color-variation: var(--color-interactive);
-  --button--color-variation--hover: var(--color-interactive--hover);
+  --public--button--color-variation: var(--color-interactive);
+  --public--button--color-variation--hover: var(--color-interactive--hover);
 }
 
 .learning,
 .subtle {
-  --button--color-variation: var(--color-interactive--subtle);
-  --button--color-variation--hover: var(--color-interactive--subtle--hover);
+  --public--button--color-variation: var(--color-interactive--subtle);
+  --public--button--color-variation--hover: var(
+    --color-interactive--subtle--hover
+  );
 }
 
 .destructive {
-  --button--color-variation: var(--color-destructive);
-  --button--color-variation--hover: var(--color-destructive--hover);
+  --public--button--color-variation: var(--color-destructive);
+  --public--button--color-variation--hover: var(--color-destructive--hover);
 }
 
 /* Type */
@@ -82,38 +83,38 @@ a.button:active {
 .primary:not(.subtle, .disabled):hover,
 .primary:not(.subtle, .disabled):focus-visible {
   color: var(--button--color-primaryLabel);
-  background-color: var(--button--color-variation);
+  background-color: var(--public--button--color-variation);
   fill: var(--button--color-primaryLabel);
 }
 
 .primary:not(.subtle, .disabled):hover,
 .primary:not(.subtle, .disabled):focus-visible {
-  background-color: var(--button--color-variation--hover);
+  background-color: var(--public--button--color-variation--hover);
 }
 
 .subtle.primary {
-  color: var(--button--color-variation);
-  fill: var(--button--color-variation);
+  color: var(--public--button--color-variation);
+  fill: var(--public--button--color-variation);
   background-color: var(--button--color-surface);
 }
 
 .secondary,
 .subtle.primary {
-  border-color: var(--color-border);
+  border-color: var(--color-border--interactive);
 }
 
 .subtle.primary:hover,
 .subtle.primary:focus-visible {
-  color: var(--button--color-variation--hover);
+  color: var(--public--button--color-variation--hover);
   background-color: var(--button--color-surface--hover);
-  fill: var(--button--color-variation--hover);
+  fill: var(--public--button--color-variation--hover);
 }
 
 .secondary:hover,
 .subtle.primary:hover,
 .secondary:focus-visible,
 .subtle.primary:focus-visible {
-  border-color: var(--button--color-variation--hover);
+  border-color: var(--public--button--color-variation--hover);
 }
 
 .subtle.secondary {

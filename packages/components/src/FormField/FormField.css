@@ -10,7 +10,7 @@
 
   --field--placeholder-color: var(--color-base-blue--600);
   --field--value-color: var(--color-heading);
-  --field--border-color: var(--color-border);
+  --field--border-color: var(--color-border--interactive);
 
   --postfix-right: var(--space-base);
 }
@@ -195,7 +195,7 @@
   padding-left: var(--field--padding-left);
   padding-right: var(--field--padding-right);
   border: none;
-  border-radius: 0;
+  border-radius: var(--radius-base);
   color: inherit;
   font-family: inherit;
   font-size: inherit;
@@ -261,6 +261,10 @@
 .right select,
 .select .label {
   padding-right: calc(var(--field--padding-right) + var(--base-unit) * 2);
+}
+
+.select option {
+  background-color: var(--field--background-color);
 }
 
 .text .label {

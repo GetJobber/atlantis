@@ -1,9 +1,11 @@
 :root {
-  --avatar-size: calc(var(--base-unit) * 2);
-  --avatar-border-size: var(--border-base);
+  --public--avatar-size: 32px;
 }
 
 .avatar {
+  --avatar-size: var(--public--avatar-size);
+  --avatar-border-size: var(--border-base);
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,7 +17,7 @@
   color: var(--color-heading);
   font-size: var(--avatar-size);
   -webkit-font-smoothing: antialiased;
-  background: no-repeat center center var(--color-greyBlue);
+  background: no-repeat center center var(--color-base-blue--600);
   background-size: cover;
 }
 
@@ -25,16 +27,17 @@
 }
 
 .large {
-  --avatar-size: calc(var(--base-unit) * 4.5);
+  --avatar-size: 72px;
   --avatar-border-size: var(--border-thick);
 }
 
 .small {
-  --avatar-size: calc(var(--base-unit) * 1.5);
+  --avatar-size: 24px;
 }
 
+/* isDark is dynamic and applies only when background is dark */
 .isDark {
-  color: var(--color-text--reverse);
+  color: var(--color-base-white);
 }
 
 .initials {
@@ -49,7 +52,7 @@
 .hasBorder {
   width: calc(var(--avatar-size) - (var(--avatar-border-size) * 2));
   height: calc(var(--avatar-size) - (var(--avatar-border-size) * 2));
-  box-shadow: 0 0 0 var(--border-thick) var(--color-white) inset;
+  box-shadow: 0 0 0 var(--border-thick) var(--color-surface) inset;
   border-style: solid;
   border-width: var(--avatar-border-size);
 }

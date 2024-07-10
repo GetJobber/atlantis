@@ -254,34 +254,79 @@ type MyInterface = {
 
 Wherever possible use Atlantis `design` tokens.
 
-### Units
+### Spacing (margins and padding)
 
-For size units, use the appropriate
-[Spacing](../?path=/docs/design-spacing--page) variables. Do not use rems, ems,
-or hard-coded pixel values, as Atlantis is built using variables to allow for
-consistent re-flow as the browser scales.
+Use the appropriate [Spacing](../?path=/docs/design-spacing--page) values for
+spacing. Do not use rems, ems, or hard-coded pixel values.
 
-If you require a size that is larger than the Spacing variables, or falls
+If you require a space that is larger than the Spacing values, or falls
 somewhere in between, use the CSS `calc` function with Atlantis spacing values
-in a custom property in your file to avoid magic numbers.
+in a custom property in your file.
 
 #### ✅ Do
 
 ```css
-:root {
-  --drawer-width: calc(var(--space-base) * 17.5);
+.myComponent {
+  padding: var(--space-small) var(--space-base);
 }
 
-.container {
-  width: var(--drawer-width);
+.myComponent.large {
+  padding: calc(var(--space-small) + var(--space-smaller)) var(--space-large);
 }
 ```
 
 #### ❌ Don't
 
 ```css
-.container {
-  width: 280px;
+.myComponent {
+  padding: 0.5rem 1rem;
+}
+
+.myComponent.large {
+  padding: 0.75rem 2rem;
+}
+```
+
+### Size (width and height)
+
+In most cases, the size (width and height) of an individual component is
+implicitly determined by the content and spacing. However, sometimes you'll
+reasonably need to explicitly define rules like "this component should be a
+minimum of 280px wide".
+
+Do not use spacing tokens to define size - just provide the specific value. To
+reduce the "magic" of the number, you can declare this value in a CSS custom
+property to re-use and manipulate throughout the component.
+
+#### ✅ Do
+
+```css
+.drawerContainer {
+  --drawer-width: 280px;
+}
+
+.drawer {
+  width: var(--drawer-width);
+}
+
+.drawer.large {
+  --drawer-width: 400px;
+}
+```
+
+#### ❌ Don't
+
+```css
+.drawerContainer {
+  --drawer-width: calc(var(--space-base) * 17.5);
+}
+
+.drawer {
+  width: var(--drawer-width);
+}
+
+.drawer.large {
+  --drawer-width: calc(var(--space-base) * 25);
 }
 ```
 
@@ -312,4 +357,40 @@ a {
 }
 
 // this will select every `<a>` element in the project
+```
+
+### Component-level variables
+
+CSS custom properties can be used to define component-level variables. This
+allows you to define a value once and use it throughout the component. Consider
+the scope of these variables when you create and use one in your component.
+
+#### Private variables (most common)
+
+In most cases, you will want to define component variables on the parent of the
+component's DOM structure to prevent accidental styling leaks.
+
+```css
+.myComponent {
+  --myComponent--width: 72px;
+}
+```
+
+#### Public variables (⚠️ use with caution)
+
+If other Atlantis components, or consumers of Atlantis, shoud need to manipulate
+a value, then it should be set on `:root` and prefixed with `--public--`. These
+should represent relatively rare use cases, and should be used sparingly.
+
+```css
+.root {
+  --public--myComponent--width: 72px;
+}
+
+.myComponent {
+  width: var(--public--myComponent--width);
+}
+
+// this will allow anyone in a project consuming Atlantis to modify the width of the component
+// without needing to modify the component itself
 ```

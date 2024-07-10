@@ -22,7 +22,7 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  jest.runOnlyPendingTimers();
+  act(() => jest.runOnlyPendingTimers());
   jest.useRealTimers();
 });
 
@@ -31,9 +31,16 @@ const successMessage =
 const infoMessage = "Bland Toast";
 const errorMessage = "Errorful should last inbetween min-max";
 
-it("creates the toasts target div", () => {
-  render(<MockToast />);
+it("creates exactly one toasts target div", () => {
+  const { getByText, getAllByText } = render(<MockToast />);
+  fireEvent.click(getByText("Success"));
+
   expect(document.querySelector("#atlantis-toast-element")).toBeInTheDocument();
+
+  fireEvent.click(getByText("Success"));
+  expect(getAllByText(successMessage)).toHaveLength(2);
+
+  expect(document.querySelectorAll("#atlantis-toast-element")).toHaveLength(1);
 });
 
 it("renders a Slice of Toast when the 'showToast' method is called", () => {
@@ -78,7 +85,7 @@ it("sets a timer and clears the Slice after a certain amount of time", async () 
   expect(setTimeout).toHaveBeenCalled();
   expect(await findAllByText(infoMessage)).toHaveLength(1);
 
-  await act(() => {
+  act(() => {
     jest.runAllTimers();
   });
 
@@ -96,7 +103,7 @@ it("stops and starts the timer when the item is hover toggled", async () => {
 
   fireEvent.mouseEnter(getByText("Bland Toast"));
 
-  await act(() => {
+  act(() => {
     jest.advanceTimersByTime(10000);
   });
 
@@ -104,7 +111,7 @@ it("stops and starts the timer when the item is hover toggled", async () => {
 
   fireEvent.mouseLeave(getByText("Bland Toast"));
 
-  await act(() => {
+  act(() => {
     jest.advanceTimersByTime(10000);
   });
 

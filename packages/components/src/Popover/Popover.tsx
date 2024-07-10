@@ -57,6 +57,7 @@ export function Popover({
       {open && (
         <div
           role="dialog"
+          data-elevation={"elevated"}
           ref={setPopperElement}
           style={popperStyles.popper}
           className={classes.popover}

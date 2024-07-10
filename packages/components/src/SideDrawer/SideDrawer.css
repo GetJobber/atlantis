@@ -1,0 +1,159 @@
+.drawer {
+  --sideDrawer--base-padding: var(--space-base);
+  --sideDrawer--background: var(--color-surface);
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: var(--elevation-modal);
+  width: 100%;
+  height: 100%;
+  max-width: 420px;
+}
+
+.container,
+.drawer,
+.header,
+.content,
+.footer {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  height: 100%;
+  background-color: var(--sideDrawer--background);
+}
+
+.subtle {
+  --sideDrawer--background: var(--color-surface--background--subtle);
+}
+
+.header,
+.footer {
+  position: sticky;
+  z-index: var(--elevation-base);
+  padding: var(--sideDrawer--base-padding);
+  background-color: var(--sideDrawer--background);
+  transition:
+    box-shadow var(--timing-base) ease-in-out,
+    filter var(--timing-base) ease-in-out;
+}
+
+.header {
+  top: 0;
+  gap: var(--space-base);
+
+  & [data-side-drawer-slot^="back-"]:not(:empty) {
+    margin-left: calc(var(--space-small) * -1);
+    margin-right: var(--space-small);
+  }
+}
+
+.hasShadow {
+  box-shadow: var(--shadow-base);
+}
+
+.footer.hasShadow {
+  box-shadow:
+    0px var(--space-minuscule) var(--space-smaller) 0px
+      rgba(var(--color-black--rgb), 0.1),
+    0px -2px 12px 0px rgba(var(--color-black--rgb), 0.05);
+}
+
+.header:has([data-side-drawer-slot^="title-"]:empty) {
+  padding-bottom: var(--space-smaller);
+  background-color: transparent;
+
+  &.hasShadow {
+    box-shadow: none;
+    filter: drop-shadow(
+      0 0 var(--space-smaller) rgba(var(--color-black--rgb), 0.25)
+    );
+
+    /**
+     * Force the 2 built-in buttons to have a background color when the header
+     * is not present so the drop shadow is applied to the whole button and not
+     * just the icon.
+     */
+    & button[aria-label="Close"],
+    & button[aria-label="Back"] {
+      background-color: var(--color-surface);
+    }
+  }
+}
+
+.headerActions {
+  display: flex;
+  margin-right: calc(-1 * var(--space-small));
+}
+
+.footer {
+  bottom: 0;
+}
+
+.hideWhenEmpty:empty {
+  display: none;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: var(--elevation-modal);
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  appearance: none;
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Adjust `Content` components public padding to match the drawer */
+
+.content > * {
+  --public-content--padding: var(--sideDrawer--base-padding);
+}
+
+/* Remove the nested `Content` components public padding */
+
+.content > * > * {
+  --public-content--padding: 0;
+}
+
+.reverseScroll {
+  & .content {
+    flex-direction: column-reverse;
+  }
+
+  & .headerShadowListener {
+    order: 1;
+  }
+
+  & .footerShadowListener {
+    order: -1;
+  }
+}
+
+.backButton {
+  --transition: var(--timing-base) ease-in-out;
+
+  width: 0;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition:
+    width var(--transition),
+    transform var(--transition),
+    opacity var(--transition);
+
+  &.backButtonVisible {
+    width: 40px;
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
