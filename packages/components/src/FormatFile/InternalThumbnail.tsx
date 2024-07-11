@@ -21,11 +21,8 @@ export function InternalThumbnail({
   const { name, type } = file;
   const iconName = getIconNameFromType(type);
   const hasName = Boolean(name) && compact;
-  const nonHeicImage = !type.startsWith("image/heic");
-  const userAgent =
-    typeof document === "undefined" ? "" : window.navigator.userAgent;
 
-  if (type.startsWith("image/") && (nonHeicImage || isSafari(userAgent))) {
+  if (type.startsWith("image/") && isSupportedImageType(file)) {
     return <InternalThumbnailImage file={file} />;
   }
 
@@ -60,4 +57,13 @@ function getIconNameFromType(mimeType: string): IconNames {
     default:
       return "file";
   }
+}
+
+function isSupportedImageType(file: FileUpload) {
+  const userAgent =
+    typeof document === "undefined" ? "" : window.navigator.userAgent;
+  const nonHeicImage = !file.type.startsWith("image/heic");
+  const nonSVGImage = !file.type.startsWith("image/svg");
+
+  return (nonHeicImage || isSafari(userAgent)) && nonSVGImage;
 }

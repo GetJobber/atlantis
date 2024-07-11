@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.1](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.10.0...@jobber/generators@0.10.1) (2024-07-08)
+
+
+### Reverts
+
+* "feat: Storybook7 Upgrade" ([#1954](https://github.com/GetJobber/atlantis/issues/1954)) ([0854202](https://github.com/GetJobber/atlantis/commit/0854202ae850439c514f5ce1f129f2e584fe0efb)), closes [#1711](https://github.com/GetJobber/atlantis/issues/1711)
+
+
+
+
+
 # [0.10.0](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.9.0...@jobber/generators@0.10.0) (2024-07-05)
 
 

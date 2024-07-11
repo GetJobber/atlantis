@@ -3,7 +3,7 @@
 exports[`renders a FormatFile 1`] = `
 <div>
   <div
-    class="expanded"
+    class="expanded formatFile"
   >
     <div
       aria-busy="false"

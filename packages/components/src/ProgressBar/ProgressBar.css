@@ -1,5 +1,5 @@
-:root {
-  --progress-bar--height: var(--space-base);
+.ProgressBar {
+  --progress-bar--height: 16px;
 }
 
 progress.ProgressBar[value] {

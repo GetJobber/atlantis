@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.20.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.4...@jobber/components@5.20.5) (2024-07-09)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [5.20.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.3...@jobber/components@5.20.4) (2024-07-09)
+
+
+### Bug Fixes
+
+* **components:** make DataList and DataTable sorting interactions match ([#1945](https://github.com/GetJobber/atlantis/issues/1945)) ([21d900e](https://github.com/GetJobber/atlantis/commit/21d900e1b408bb6fa6ef96534fcc353c41caf105))
+
+
+
+
+
+## [5.20.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.2...@jobber/components@5.20.3) (2024-07-08)
+
+
+### Bug Fixes
+
+* **components:** Prevent LightBox from duplicating content when the page is printed ([#1951](https://github.com/GetJobber/atlantis/issues/1951)) ([b3f375b](https://github.com/GetJobber/atlantis/commit/b3f375b522d4aae42e114ca7d31b622820628dc0))
+
+
+
+
+
+## [5.20.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.1...@jobber/components@5.20.2) (2024-07-08)
+
+
+### Bug Fixes
+
+* **components:** Gallery handle HEIC and SVG images properly  ([#1938](https://github.com/GetJobber/atlantis/issues/1938)) ([2f84126](https://github.com/GetJobber/atlantis/commit/2f84126b3b4cfad7eb3adb7649f3cb68c5f20b0e))
+
+
+
+
+
+## [5.20.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.0...@jobber/components@5.20.1) (2024-07-08)
+
+
+### Reverts
+
+* "feat: Storybook7 Upgrade" ([#1954](https://github.com/GetJobber/atlantis/issues/1954)) ([0854202](https://github.com/GetJobber/atlantis/commit/0854202ae850439c514f5ce1f129f2e584fe0efb)), closes [#1711](https://github.com/GetJobber/atlantis/issues/1711)
+
+
+
+
+
 # [5.20.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.19.1...@jobber/components@5.20.0) (2024-07-05)
 
 
