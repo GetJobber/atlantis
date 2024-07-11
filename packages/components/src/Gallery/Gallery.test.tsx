@@ -1,5 +1,6 @@
 import React from "react";
 import { fireEvent, render, waitFor } from "@testing-library/react";
+import * as browserUtilities from "@jobber/components/utils/getClientBrowser";
 import { Gallery } from ".";
 
 const files = [
@@ -171,6 +172,38 @@ describe("when a non-image is clicked", () => {
       expect(window.open).toHaveBeenCalledWith(pdfSrc, "_blank");
     });
   });
+});
+
+it("renders the appropriate thumbnail(icon) for an HEIC image not in Safari", async () => {
+  const heicFile = {
+    key: "123",
+    name: "sample.heic",
+    type: "image/heic",
+    size: 5000,
+    progress: 1,
+    src: "https://source.unsplash.com/250x250",
+  };
+  const { findByTestId } = render(<Gallery files={[heicFile]} />);
+
+  expect(await findByTestId("image")).toBeDefined();
+});
+
+it("renders the HEIC image thumbnail in Safari", async () => {
+  jest.spyOn(browserUtilities, "isSafari").mockReturnValue(true);
+  const heicFile = {
+    key: "123",
+    name: "sample.heic",
+    type: "image/heic",
+    size: 5000,
+    progress: 1,
+    src: "https://source.unsplash.com/250x250",
+  };
+  const { findByAltText } = render(<Gallery files={[heicFile]} />);
+  const imageElement = await findByAltText("sample.heic");
+  expect(imageElement).toHaveAttribute(
+    "src",
+    "https://source.unsplash.com/250x250",
+  );
 });
 
 describe("Thumbnails", () => {

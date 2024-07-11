@@ -1,11 +1,11 @@
 .smaller {
-  --progress-bar--height: var(--space-smaller);
+  --progress-bar--height: 4px;
 }
 
 .small {
-  --progress-bar--height: var(--space-small);
+  --progress-bar--height: 8px;
 }
 
 .base {
-  --progress-bar--height: var(--space-base);
+  --progress-bar--height: 16px;
 }
