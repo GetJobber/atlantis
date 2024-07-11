@@ -72,7 +72,7 @@
     "@react-native-community/datetimepicker": ">=6.7.0",
     "date-fns": "^2.0.0",
     "date-fns-tz": "*",
-    "react": "18.2.0",
+    "react": "^18.2.0",
     "react-intl": "^6.4.2",
     "react-native": ">=0.69.2",
     "react-native-gesture-handler": ">=2.10.0",

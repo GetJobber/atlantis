@@ -121,7 +121,7 @@ You will be able to select the platform you want to create the component.
 ? Component Name: ExampleComponent
 ? Generate for:
 > Web
-> React native
+> React Native
 > Both
 
 ✔  +! 5 files added
