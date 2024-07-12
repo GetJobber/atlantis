@@ -150,7 +150,7 @@ follow the following format.
 `<TYPE>(<optional SCOPE>): <conditionally BREAKING CHANGE:> <description>`
 
 Want help with your pull request title? We have a
-[tool to help](https://atlantis.getjobber.com/?path=/docs/guides-pull-request-title-generator--page).
+[tool to help](../?path=/docs/guides-pull-request-title-generator--docs).
 
 ##### Requesting review
 
@@ -196,10 +196,10 @@ changes._
 ### Code and sandbox
 
 Some components, like
-[Card](?path=/code/components-layouts-and-structure-card-web--basic), includes a
-"Code" tab on the top right of the screen. This is turned off by default. To
-turn this feature on, add a `parameter` of `previewTabs.code.hidden` and set it
-to `false` on your stories meta.
+[Card](../?path=/code/components-layouts-and-structure-card-web--basic),
+includes a "Code" tab on the top right of the screen. This is turned off by
+default. To turn this feature on, add a `parameter` of `previewTabs.code.hidden`
+and set it to `false` on your stories meta.
 
 ```ts
 export default {
