@@ -69,9 +69,9 @@ This following list has installation links for each package:
 
 These are the core packages you'll need to build with Atlantis:
 
-- [Components](?path=/docs/packages-components--page)
-- [Design](?path=/docs/packages-design--page)
-- [Hooks](?path=/docs/packages-hooks--page)
+- [Components](../?path=/docs/packages-components--docs)
+- [Design](../?path=/docs/packages-design--docs)
+- [Hooks](../?path=/docs/packages-hooks--docs)
 
 #### Installing specific versions
 
@@ -93,8 +93,8 @@ npm install @jobber/{package}@{version}
 If you're looking to build documentation and tooling using Atlantis' development
 standards, these packages will be useful:
 
-- [EsLint configuration](?path=/docs/packages-eslint-config--page)
-- [StyleLint configuration](?path=/docs/packages-stylelint-config--page)
+- [EsLint configuration](../?path=/docs/packages-eslint-config--docs)
+- [StyleLint configuration](../?path=/docs/packages-stylelint-config--docs)
 
 ## Generating a component
 
@@ -192,8 +192,7 @@ For more information on how the packages are bootstrapped, check out
 ## Contributing
 
 Everyone is a friend of Atlantis and we welcome pull requests. See the
-[contribution guidelines](https://atlantis.getjobber.com/?path=/docs/contributing--page)
-to learn how.
+[contribution guidelines](../?path=/docs/contributing--docs) to learn how.
 
 ## Publishing
 
@@ -211,9 +210,9 @@ npm run release-the-kraken
 ### Publishing a failed release to NPM
 
 In some cases, the automatic release may successfully bump the version and add a
-[changelog](https://atlantis.getjobber.com/packages-components-changelog) but
-fail to publish to NPM. If this happens and you're one of the Atlantis NPM
-collaborators, run the code below to send unpublished versions to NPM.
+[changelog](../?path=/docs/changelog-components--docs) but fail to publish to
+NPM. If this happens and you're one of the Atlantis NPM collaborators, run the
+code below to send unpublished versions to NPM.
 
 ```sh
 npm run release:unpublished-package
