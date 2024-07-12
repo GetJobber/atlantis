@@ -1,6 +1,11 @@
+import { Combobox } from "@jobber/components/Combobox";
 import { Meta } from "@storybook/addon-docs";
 
-<Meta title="Components/Selections/Combobox" parameters={{ alpha: true }} />
+<Meta
+  title="Components/Selections/Combobox"
+  component={Combobox}
+  parameters={{ alpha: true }}
+/>
 
 # Combobox
 
@@ -180,9 +185,9 @@ search query.
 
 - The activator can be actioned with `space` or `return`
 - The Comobox confines tabbing to within itself while it's open using
-  [useFocusTrap](https://atlantis.getjobber.com/?path=/docs/hooks-usefocustrap--use-focus-trap)
+  [useFocusTrap](../?path=/docs/hooks-usefocustrap--docs)
 - Pressing `esc` will close the Combobox and return focus to the activator using
-  [useRefocusOnActivator](https://atlantis.getjobber.com/?path=/docs/hooks-userefocusonactivator--use-refocus-on-activator)
+  [useRefocusOnActivator](../?path=/docs/hooks-userefocusonactivator--docs)
 - The search input is automatically focused when the Combobox opens. The button
   to clear the input can be focused with `tab`
 - The options list is navigated with the `up` and `down` arrow keys, and
