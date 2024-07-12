@@ -2,7 +2,7 @@ import { ArgsTable, Canvas, Meta, Source } from "@storybook/addon-docs";
 import { Tab, Tabs } from "@jobber/components/Tabs";
 import { Glimmer } from "@jobber/components/Glimmer";
 
-<Meta title="Components/Status and Feedback/Glimmer/Docs" component={Glimmer} />
+<Meta title="Components/Status and Feedback/Glimmer" component={Glimmer} />
 
 # Glimmer
 
@@ -34,13 +34,25 @@ A pre-made block can be used to indicate a certain component.
 export const semanticComponent = [Glimmer.Header, Glimmer.Text, Glimmer.Button];
 
 <Tabs>
-  {semanticComponent.map((Component, i) => (
-    <Tab key={i} label={Component.displayName}>
-      <Source code={`<${Component.displayName} />`} />
-      <Canvas withSource="none">
-        <Component />
-      </Canvas>
-      <ArgsTable of={Component} />
-    </Tab>
-  ))}
+  <Tab label={"Glimmer.Header"}>
+    <Source code={"Glimmer.Header"} />
+    <Canvas withSource="none">
+      <Glimmer.Header />
+    </Canvas>
+    <ArgsTable of={Glimmer.Header} />
+  </Tab>
+  <Tab label={"Glimmer.Text"}>
+    <Source code={"Glimmer.Text"} />
+    <Canvas withSource="none">
+      <Glimmer.Text />
+    </Canvas>
+    <ArgsTable of={Glimmer.Text} />
+  </Tab>
+  <Tab label={"Glimmer.Button"}>
+    <Source code={"Glimmer.Button"} />
+    <Canvas withSource="none">
+      <Glimmer.Button />
+    </Canvas>
+    <ArgsTable of={Glimmer.Button} />
+  </Tab>
 </Tabs>
