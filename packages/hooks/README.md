@@ -13,7 +13,7 @@ Shared hooks for components in Atlantis.
 - [useOnKeyDown](../?path=/docs/hooks-useonkeydown--docs)
 - [usePasswordStrength](../?path=/docs/hooks-usepasswordstrength--docs)
 - [useRefocusOnActivator](../?path=/docs/hooks-userefocusonactivator--docs)
-- [useResizeObserver](../?path=/docs/packages-hooks--docs)
+- [useResizeObserver](../?path=/docs/hooks-useresizeobserver--docs)
 - [useWindowDimensions](../?path=/docs/hooks-usewindowdimensions--docs)
 
 ## Installing
