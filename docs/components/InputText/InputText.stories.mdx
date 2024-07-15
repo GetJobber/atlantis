@@ -3,10 +3,7 @@ import { useState } from "react";
 import { InputText } from "@jobber/components/InputText";
 import { Content } from "@jobber/components/Content";
 
-<Meta
-  title="Components/Forms and Inputs/InputText/Docs"
-  component={InputText}
-/>
+<Meta title="Components/Forms and Inputs/InputText" component={InputText} />
 
 # Input Text
 
@@ -40,7 +37,7 @@ Use this to allow users to provide long answers. The default number of rows is
 three. Note that `loading={true}` is unimplemented for multiline input text.
 
 For web, you can set a minimum and maximum number of rows. See:
-[Web/rows example](?path=/story/components-forms-and-inputs-inputtext-web--multiline).
+[Web/rows example](../?path=/story/components-forms-and-inputs-inputtext-web--multiline).
 
 <Canvas>
   <Story name="Multiline">
@@ -94,7 +91,7 @@ but minimizes the need for it as the user should be set up for success by proper
 guidance pre-submission before any "bad" data gets to the server.
 
 Follow the
-[product vocabulary](../?path=/docs/content-product-vocabulary--page#general-phrasing)
+[product vocabulary](../?path=/docs/content-product-vocabulary--docs#general-phrasing)
 for guidance on writing helpful error messages.
 
 Atlantis utilizes [React Hook Forms](https://react-hook-form.com/) to handle
@@ -159,7 +156,7 @@ This includes, but is not limited to:
 
 For mobile, you can pass a string to the `invalid` prop to display an error.
 See:
-[Mobile/invalid example](?path=/story/components-forms-and-inputs-inputtext-mobile--invalid).
+[Mobile/invalid example](../?path=/story/components-forms-and-inputs-inputtext-mobile--invalid).
 
 <Canvas>
   <InputText placeholder="Email" value="atlantis" invalid={true} />
@@ -177,5 +174,5 @@ Determine what default keyboard appears on mobile.
 
 If you need to capture the error message and render it outside of the component.
 Read the
-[InputValidation](../?path=/docs/components-forms-and-inputs-inputvalidation-docs--page)
+[InputValidation](../?path=/docs/components-forms-and-inputs-inputvalidation--docs)
 documentation.

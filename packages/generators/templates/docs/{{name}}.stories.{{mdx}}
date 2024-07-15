@@ -24,7 +24,7 @@ The {{name}} will... _Add a brief description of the design and usage of the com
   What type of content does this component present (documents, text, images, other components)?
   What is the recommended, or expected, amount of content? What is the components’ behaviour when
   the provided content diverges from what is expected (image aspect ratio, amount of text, video
-  vs audio, filesize)? Are there any important references to the [Product Vocabulary](https://atlantis.getjobber.com/?path=/docs/content-product-vocabulary--page)
+  vs audio, filesize)? Are there any important references to the [Product Vocabulary](https://atlantis.getjobber.com/?path=/docs/content-product-vocabulary--docs)
   that should be made regarding this component? What happens when content is unavailable or unreliable
   (poor connection, empty states, flaky GPS data?)
 -->
