@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.20.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.5...@jobber/components@5.20.6) (2024-07-15)
+
+
+### Reverts
+
+* revert: "feat: Storybook7 Upgrade" ([#1956](https://github.com/GetJobber/atlantis/issues/1956)) ([1e82e48](https://github.com/GetJobber/atlantis/commit/1e82e48f69d4fa8a8d2db46daba6dcf3b6d87111)), closes [#1952](https://github.com/GetJobber/atlantis/issues/1952) [#1953](https://github.com/GetJobber/atlantis/issues/1953) [#1957](https://github.com/GetJobber/atlantis/issues/1957)
+
+
+
+
+
 ## [5.20.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.4...@jobber/components@5.20.5) (2024-07-09)
 
 **Note:** Version bump only for package @jobber/components

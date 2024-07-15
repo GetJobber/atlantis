@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.10.2](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.10.1...@jobber/hooks@2.10.2) (2024-07-15)
+
+
+### Reverts
+
+* revert: "feat: Storybook7 Upgrade" ([#1956](https://github.com/GetJobber/atlantis/issues/1956)) ([1e82e48](https://github.com/GetJobber/atlantis/commit/1e82e48f69d4fa8a8d2db46daba6dcf3b6d87111)), closes [#1952](https://github.com/GetJobber/atlantis/issues/1952) [#1953](https://github.com/GetJobber/atlantis/issues/1953) [#1957](https://github.com/GetJobber/atlantis/issues/1957)
+
+
+
+
+
 ## [2.10.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.10.0...@jobber/hooks@2.10.1) (2024-07-08)
 
 
