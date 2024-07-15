@@ -69,9 +69,9 @@ This following list has installation links for each package:
 
 These are the core packages you'll need to build with Atlantis:
 
-- [Components](?path=/docs/packages-components--page)
-- [Design](?path=/docs/packages-design--page)
-- [Hooks](?path=/docs/packages-hooks--page)
+- [Components](../?path=/docs/packages-components--docs)
+- [Design](../?path=/docs/packages-design--docs)
+- [Hooks](../?path=/docs/packages-hooks--docs)
 
 #### Installing specific versions
 
@@ -93,8 +93,8 @@ npm install @jobber/{package}@{version}
 If you're looking to build documentation and tooling using Atlantis' development
 standards, these packages will be useful:
 
-- [EsLint configuration](?path=/docs/packages-eslint-config--page)
-- [StyleLint configuration](?path=/docs/packages-stylelint-config--page)
+- [EsLint configuration](../?path=/docs/packages-eslint-config--docs)
+- [StyleLint configuration](../?path=/docs/packages-stylelint-config--docs)
 
 ## Generating a component
 
@@ -121,7 +121,7 @@ You will be able to select the platform you want to create the component.
 ? Component Name: ExampleComponent
 ? Generate for:
 > Web
-> React native
+> React Native
 > Both
 
 ✔  +! 5 files added
@@ -192,60 +192,55 @@ For more information on how the packages are bootstrapped, check out
 ## Contributing
 
 Everyone is a friend of Atlantis and we welcome pull requests. See the
-[contribution guidelines](https://atlantis.getjobber.com/?path=/docs/contributing--page)
-to learn how.
+[contribution guidelines](../?path=/docs/contributing--docs) to learn how.
 
 ## Publishing
 
 Atlantis uses [Lerna](https://github.com/lerna/lerna) and will automatically
 publish whenever a pull request is merged.
 
-<details>
-<summary>Manual Release Instructions</summary>
-<p>Follow <a href="https://semver.org" target="_blank">semver</a> when choosing versions.</p>
-<code>npm run release-the-kraken</code>
-</details>
-<details>
-<summary>Publishing a failed release to NPM</summary>
-<p>
-  In some cases, the automatic release may successfully bump the version and add
-  a <a href="https://atlantis.getjobber.com/packages-components-changelog">changelog</a> but
-  fail to publish to NPM. If this happens and you're one of the Atlantis NPM
-  collaborators, run the code below to send unpublished versions to NPM.
-</p>
-<code>npm run release:unpublished-package</code>
-</details>
+### Manual Release Instructions
+
+Follow [semver](https://semver.org) when choosing versions.
+
+```sh
+npm run release-the-kraken
+```
+
+### Publishing a failed release to NPM
+
+In some cases, the automatic release may successfully bump the version and add a
+[changelog](../?path=/docs/changelog-components--docs) but fail to publish to
+NPM. If this happens and you're one of the Atlantis NPM collaborators, run the
+code below to send unpublished versions to NPM.
+
+```sh
+npm run release:unpublished-package
+```
 
 ## Pre-release
 
-<details>
-<summary>Releasing manually (Team Atlantis Only)</summary>
+### Releasing manually (Team Atlantis Only)
 
 ```sh
 npm run publish:prerelease
 ```
 
-</details>
-
-<details>
-<summary>Releasing with dependency changes</summary>
+### Releasing with dependency changes
 
 Lerna automatically determines which package changed and can be released.
 However, if you've only changed/added/updated an NPM package, Lerna won't count
 that as a releasable "change". The script below should allow you to create a
 prerelease for package changes.
 
-```
+```sh
 npm run publish:prerelease:force @jobber/components
 ```
 
 _NOTE: You can replace `@jobber/components` with the package you want to
 prerelease or remove it to prerelease all of them._
 
-</details>
-
-<details>
-<summary>Using Github Actions to Publish a Pre-release</summary>
+### Using Github Actions to Publish a Pre-release
 
 It is possible to generate Pre-releases through GitHub Actions.
 
@@ -264,22 +259,20 @@ _NOTE: You can only do 1 pre-release per commit. If you trigger another
 pre-release on a previously published commit, it will fail. This also happens on
 forced pre-release._
 
-</details>
-
 ## Local testing
 
 If you're not sharing your changes with your peers yet and want a quicker way to
 check your changes, you can run `npm run pack {{scope}}` from the root folder
 against one of the workspaces.
 
-```
+```sh
 npm run pack @jobber/components
 ```
 
 That will create a `jobber-components-{{version}}.tgz` file on the root. You can
 then install it on your project.
 
-```
+```sh
 npm i your/path/to/atlantis/repo/jobber-components-{{version}}.tgz
 ```
 

@@ -23,18 +23,16 @@ We use `base` as our default whenever possible when a property has a set range
 of outcomes. This can be seen in..
 
 - the `size` properties of
-  [Button](../?path=/docs/components-actions-button-docs--page),
-  [Avatar](../?path=/docs/components-images-and-icons-avatar-docs--page),
-  [InputText](../?path=/docs/components-forms-and-inputs-inputtext-docs--page),
-  [Text](../?path=/docs/components-text-and-typography-text-docs--page),
-  [ProgressBar](../?path=/docs/components-status-and-feedback-progressbar-docs--page),
-  [Spinner](../?path=/docs/components-status-and-feedback-spinner-docs--page),
-  etc;
-- `maxLines` of
-  [Text](../?path=/docs/components-text-and-typography-text-docs--page)
-- values of [Shadow](../?path=/docs/design-elevations--page),
-  [Spacing](../?path=/docs/design-spacing--page),
-  [Border Radius](../?path=/docs/design-borders--page) design tokens
+  [Button](../?path=/docs/components-actions-button--docs),
+  [Avatar](../?path=/docs/components-images-and-icons-avatar--docs),
+  [InputText](../?path=/docs/components-forms-and-inputs-inputtext--docs),
+  [Text](../?path=/docs/components-text-and-typography-text--docs),
+  [ProgressBar](../?path=/docs/components-status-and-feedback-progressbar--docs),
+  [Spinner](../?path=/docs/components-status-and-feedback-spinner--docs), etc;
+- `maxLines` of [Text](../?path=/docs/components-text-and-typography-text--docs)
+- values of [Shadow](../?path=/docs/design-elevations--docs),
+  [Spacing](../?path=/docs/design-spacing--docs),
+  [Border Radius](../?path=/docs/design-borders--docs) design tokens
 
 This allows us to set an expectation of the base (or most common) use case when
 a prop is in action.
@@ -44,10 +42,9 @@ a prop is in action.
 If a component has `open` and `closed` states, use a boolean property named
 `open`.
 
-This can be seen in
-[Modal](../?path=/docs/components-overlays-modal-docs--page),
-[Drawer](../?path=/docs/components-layouts-and-structure-drawer-docs--page), and
-[Popover](../?path=/docs/components-overlays-popover--popover).
+This can be seen in [Modal](../?path=/docs/components-overlays-modal--docs),
+[Drawer](../?path=/docs/components-layouts-and-structure-drawer--docs), and
+[Popover](../?path=/docs/components-overlays-popover--docs).
 
 ## Typescript
 
@@ -98,10 +95,6 @@ Missing rationale and disabling rules for a whole file.
 /* eslint-disable max-statements */
 import React, { ReactText, useState } from "react";
 ```
-
-<!--
-### Choosing Libraries
--->
 
 ### Use XOR over Unions for conditional properties
 
@@ -194,69 +187,13 @@ type MyInterface = {
 };
 ```
 
-<!--
-## React
-
-## Testing
-
-### `toBeNull`
-
-#### ✅ Do
-
-```ts
-
-```
-
-#### ❌ Don't
-
-```ts
-
-```
-
----
-
-### `it` vs `test`
-
-#### ✅ Do
-
-```ts
-
-```
-
-#### ❌ Don't
-
-```ts
-
-```
-
----
-
-### Snapshots
-
-#### ✅ Do
-
-```ts
-
-```
-
-#### ❌ Don't
-
-```ts
-
-```
-
-## Mobile Specific
-
-## Web Specific
--->
-
 ## CSS
 
 Wherever possible use Atlantis `design` tokens.
 
 ### Spacing (margins and padding)
 
-Use the appropriate [Spacing](../?path=/docs/design-spacing--page) values for
+Use the appropriate [Spacing](../?path=/docs/design-spacing--docs) values for
 spacing. Do not use rems, ems, or hard-coded pixel values.
 
 If you require a space that is larger than the Spacing values, or falls
