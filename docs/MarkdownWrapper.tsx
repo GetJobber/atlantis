@@ -7,7 +7,7 @@ import React, {
   useRef,
 } from "react";
 import { Canvas, Source } from "@storybook/addon-docs";
-import { Markdown } from "@storybook/blocks";
+import { AnchorMdx, Markdown } from "@storybook/blocks";
 import { Code } from "@storybook/components";
 import { Heading } from "@jobber/components/Heading";
 import { Content } from "@jobber/components/Content";
@@ -198,7 +198,7 @@ export const MarkdownWrapper = ({
             h6: { component: props => <Header level={6} {...props} /> },
             a: {
               component: props => (
-                <a {...props} style={{ textDecoration: "none" }} />
+                <AnchorMdx {...props} style={{ textDecoration: "none" }} />
               ),
             },
             blockquote: {
