@@ -127,9 +127,10 @@ component once your proposal is approved.
 
 ### Implement a proposal
 
-All components should start with a proposal. One of our Guiding Principles is to
-start all components with documentation. Once your proposal has been approved,
-proceed to contribute code to Atlantis to make it a reality!
+All components should start with a proposal. One of our
+[Guiding Principles](#guiding-principles) is to start all components with
+documentation. Once your proposal has been approved, proceed to contribute code
+to Atlantis to make it a reality!
 
 #### Contributing code
 
@@ -195,7 +196,7 @@ changes._
 ### Code and sandbox
 
 Some components, like
-[Card](../?path=/code/components-layouts-and-structure-card-web--basic),
+[Card](../?path=/story/components-layouts-and-structure-card-web--basic),
 includes a "Code" tab on the top right of the screen. This is turned off by
 default. To turn this feature on, add a `parameter` of `previewTabs.code.hidden`
 and set it to `false` on your stories meta.
