@@ -25,6 +25,18 @@
   margin-bottom: var(--space-base);
 }
 
+.titleRow {
+  display: flex;
+  margin-bottom: var(--space-base);
+  flex-wrap: wrap;
+  gap: var(--space-base);
+  align-items: center;
+}
+
+.titleRow h1 {
+  margin-bottom: 0;
+}
+
 .titleBar > .actionGroup {
   flex: 1 0 auto;
 }

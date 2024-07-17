@@ -46,7 +46,7 @@ export function DataListSortingOptions({
         >
           {option.label}
           {option.label === selectedOption?.label && (
-            <Icon name="checkmark" color="blue" />
+            <Icon name="checkmark" color="interactiveSubtle" />
           )}
         </li>
       ))}

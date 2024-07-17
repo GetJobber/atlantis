@@ -32,6 +32,11 @@ export interface IconProps {
    * Sets a custom color for the icon. Can be a rgb() or hex value.
    */
   readonly customColor?: string;
+
+  /**
+   * Used to locate this view in end-to-end tests
+   */
+  readonly testID?: string;
 }
 
 export function Icon({
@@ -39,6 +44,7 @@ export function Icon({
   color,
   size = "base",
   customColor,
+  testID,
 }: IconProps): JSX.Element {
   const { svgClassNames, pathClassNames, paths, viewBox } = getIcon({
     name,
@@ -67,7 +73,7 @@ export function Icon({
   });
 
   return (
-    <Svg style={svgStyle} testID={name} viewBox={viewBox}>
+    <Svg style={svgStyle} testID={testID || name} viewBox={viewBox}>
       {icon}
     </Svg>
   );

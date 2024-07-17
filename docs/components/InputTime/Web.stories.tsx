@@ -26,12 +26,8 @@ const BasicTemplate: ComponentStory<typeof InputTime> = args => (
   <InputTime {...args} />
 );
 
-const EventTemplate: ComponentStory<typeof InputTime> = args => {
+const ControlledTemplate: ComponentStory<typeof InputTime> = args => {
   const [time, setTime] = useState<CivilTime>();
-
-  const resetTime = () => {
-    setTime(undefined);
-  };
 
   const handleChange = (newTime: CivilTime) => {
     setTime(newTime);
@@ -41,7 +37,7 @@ const EventTemplate: ComponentStory<typeof InputTime> = args => {
     <Content>
       <Flex template={["grow", "shrink"]}>
         <InputTime {...args} value={time} onChange={handleChange} />
-        <Button label="Reset" size="large" onClick={resetTime} />
+        <Button label="Reset" size="large" onClick={() => setTime(false)} />
       </Flex>
       <pre>{time && time.toString()}</pre>
     </Content>
@@ -53,7 +49,7 @@ Uncontrolled.args = {
   defaultValue: new CivilTime(2, 35),
 };
 
-export const Controlled = EventTemplate.bind({});
+export const Controlled = ControlledTemplate.bind({});
 Controlled.args = {
   placeholder: "Start time",
   clearable: "always",

@@ -1,9 +1,7 @@
-:root {
+.container {
   --drawer-width: 280px;
   --drawer--base-padding: var(--space-large);
-}
 
-.container {
   display: none;
   position: fixed;
   top: 0;

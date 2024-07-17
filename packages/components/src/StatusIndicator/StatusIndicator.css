@@ -1,8 +1,6 @@
-:root {
-  --statusLabel-icon-diameter: 8px;
-}
-
 .statusIndicator {
+  --statusLabel-icon-diameter: 8px;
+
   display: inline-block;
   width: var(--statusLabel-icon-diameter);
   height: var(--statusLabel-icon-diameter);

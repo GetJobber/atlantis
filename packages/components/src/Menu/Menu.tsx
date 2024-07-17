@@ -265,24 +265,40 @@ export interface ActionProps {
   readonly icon?: IconNames;
 
   /**
+   * Visual style for the action button
+   */
+  readonly destructive?: boolean;
+
+  /**
    * Callback when an action gets clicked
    */
   onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
 }
 
-function Action({ label, sectionLabel, icon, onClick }: ActionProps) {
+function Action({
+  label,
+  sectionLabel,
+  icon,
+  destructive,
+  onClick,
+}: ActionProps) {
   const actionButtonRef = useRef() as RefObject<HTMLButtonElement>;
+  const buttonClasses = classnames(styles.action, {
+    [styles.destructive]: destructive,
+  });
 
   return (
     <button
       role="menuitem"
       type="button"
-      className={styles.action}
+      className={buttonClasses}
       key={label}
       onClick={onClick}
       ref={actionButtonRef}
     >
-      {icon && <Icon name={icon} />}
+      {icon && (
+        <Icon color={destructive ? "destructive" : undefined} name={icon} />
+      )}
       <Typography
         element="span"
         fontWeight="semiBold"

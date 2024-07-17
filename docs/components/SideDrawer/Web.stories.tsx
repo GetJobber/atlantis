@@ -19,9 +19,12 @@ export default {
   parameters: {
     viewMode: "story",
     previewTabs: {
-      code: { hidden: false },
-      extraImports: {
-        "@jobber/components/Tabs": ["Tabs", "Tab"],
+      code: {
+        hidden: false,
+        extraImports: {
+          "@jobber/hooks": ["useBool"],
+          "@jobber/components/Tabs": ["Tabs", "Tab"],
+        },
       },
     },
   },

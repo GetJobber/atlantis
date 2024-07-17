@@ -1,0 +1,11 @@
+.smaller {
+  --progress-bar--height: 4px;
+}
+
+.small {
+  --progress-bar--height: 8px;
+}
+
+.base {
+  --progress-bar--height: 16px;
+}
