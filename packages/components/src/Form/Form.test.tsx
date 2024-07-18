@@ -1,6 +1,7 @@
 import React, { MutableRefObject, useRef } from "react";
 import { fireEvent, render, waitFor } from "@testing-library/react";
 import { useFormState } from "@jobber/hooks/useFormState";
+import { userEvent } from "@testing-library/user-event";
 import { Form, FormRef } from ".";
 import { InputText } from "../InputText";
 import { Text } from "../Text";
@@ -152,14 +153,20 @@ it("should focus on the first errored field", async () => {
 
   const input = getByLabelText("test form");
   const inputTwo = getByLabelText("test input");
-  fireEvent.click(getByText("submit"));
+
+  inputTwo.focus();
+  await waitFor(() => {
+    expect(inputTwo).toHaveFocus();
+  });
+
+  userEvent.click(getByText("submit"));
 
   await waitFor(() => {
     expect(input).toHaveFocus();
   });
 
   fireEvent.change(input, { target: { value: "hello" } });
-  fireEvent.click(getByText("submit"));
+  userEvent.click(getByText("submit"));
 
   await waitFor(() => {
     expect(inputTwo).toHaveFocus();
