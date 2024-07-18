@@ -1,4 +1,4 @@
-`# 🔱 Atlantis
+# 🔱 Atlantis
 
 ## What is Atlantis?
 
