@@ -10,12 +10,8 @@ import { Banner } from "@jobber/components/Banner";
 
 # Box
 
-<Banner variation="warning">
-  The Box component is currently in Alpha status. In particular, we intend to
-  fast-follow and restrict any non-semantic color usage. It was faster to roll
-  this component with the full colour set for now. We will remove the Alpha
-  status when we remove non-semantic colours, and we will warn developers when
-  we do so.
+<Banner type="warning" dismissible={false}>
+  The Box component is currently in Alpha status and breaking changes may occur
 </Banner>
 
 A box is a generic way to add structure to your page. Stop reaching for CSS
@@ -138,3 +134,13 @@ Box supports objects for some of its props, including padding and margin
     Left Margin?
   </Box>
 </Canvas>
+
+## Notes
+
+A key consideration of the Alpha status of this component is whether it should
+restrict any non-semantic color usage. It was faster to roll this component with
+the full colour set for now.
+
+We will remove the Alpha status when we finalize the decision on the API for
+color usage and how we might allow for flexibility while ensuring the component
+defaults to respecting theme/modes.
