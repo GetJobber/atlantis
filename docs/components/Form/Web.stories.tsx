@@ -4,6 +4,7 @@ import { useFormState } from "@jobber/hooks";
 import { Form, FormRef } from "@jobber/components/Form";
 import { Content } from "@jobber/components/Content";
 import { InputText } from "@jobber/components/InputText";
+import { Text } from "@jobber/components/Text";
 import { Button } from "@jobber/components/Button";
 
 export default {
@@ -24,49 +25,46 @@ export default {
 } as ComponentMeta<typeof Form>;
 
 const BasicTemplate: ComponentStory<typeof Form> = args => {
-  const [{ isDirty, isValid }, setFormState] = useFormState();
   const [first, setFirst] = useState("");
 
   return (
-    <Form
-      {...args}
-      onSubmit={() => alert("Submitted 🎉🎉🎉")}
-      onStateChange={setFormState}
-    >
-      <Content>
-        <InputText
-          placeholder="First Name"
-          name="firstName"
-          value={first}
-          onChange={(value: string) => setFirst(value)}
-          validations={{
-            required: {
-              value: true,
-              message: "Tell us your name",
-            },
-            minLength: {
-              value: 3,
-              message: "Your name is too short.",
-            },
-          }}
-        />
-        <InputText
-          placeholder="Last Name"
-          name="lastName"
-          validations={{
-            required: {
-              value: true,
-              message: "Tell us your last name.",
-            },
-          }}
-        />
-        <Button
-          label="Submit Form"
-          submit={true}
-          disabled={!isDirty || !isValid}
-        />
-      </Content>
-    </Form>
+    <div style={{ width: "100%", height: "2800px" }}>
+      <Text>
+        Focus Last Name input without touching the first name field. Then submit
+      </Text>
+      <Form {...args} onSubmit={() => alert("Submitted 🎉🎉🎉")}>
+        <Content>
+          <InputText
+            placeholder="First Name"
+            name="firstName"
+            value={first}
+            onChange={(value: string) => setFirst(value)}
+            validations={{
+              required: {
+                value: true,
+                message: "Tell us your name",
+              },
+              minLength: {
+                value: 3,
+                message: "Your name is too short.",
+              },
+            }}
+          />
+          <InputText
+            placeholder="Last Name"
+            name="lastName"
+            validations={{
+              required: {
+                value: true,
+                message: "Tell us your last name.",
+              },
+            }}
+          />
+          <InputText placeholder="Middle Name (no validations)" name="mid" />
+          <Button label="Submit Form" submit />
+        </Content>
+      </Form>
+    </div>
   );
 };
 
