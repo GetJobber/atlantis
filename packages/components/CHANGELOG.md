@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.20.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.6...@jobber/components@5.20.7) (2024-07-18)
+
+
+### Bug Fixes
+
+* reduce gap on input suffixes ([#1940](https://github.com/GetJobber/atlantis/issues/1940)) ([0bb39e6](https://github.com/GetJobber/atlantis/commit/0bb39e60e8224bc296170fe1513ea78ae8d960f8))
+
+
+
+
+
 ## [5.20.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.5...@jobber/components@5.20.6) (2024-07-15)
 
 
