@@ -36,7 +36,7 @@ const SuffixTemplate: ComponentStory<typeof Chip> = args => {
   return (
     <Content>
       <Chip {...args} onClick={() => alert("you clicked me!")}>
-        <Chip.Suffix>
+        <Chip.Suffix onClick={() => alert("you clicked the suffix!")}>
           <Icon name="cross" size="small" />
         </Chip.Suffix>
       </Chip>
