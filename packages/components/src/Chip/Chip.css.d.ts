@@ -1,5 +1,6 @@
 declare const styles: {
   readonly "chip": string;
+  readonly "suffixClick": string;
   readonly "prefix": string;
   readonly "suffix": string;
   readonly "empty": string;

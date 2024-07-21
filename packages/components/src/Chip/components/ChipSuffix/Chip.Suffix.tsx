@@ -8,6 +8,7 @@ export function ChipSuffix({
   children,
   className,
   onClick: onSuffixClick,
+  testID,
 }: ChipSuffixProps) {
   let singleChild = useChildComponent(children, d => d.type === Icon);
 
@@ -15,53 +16,38 @@ export function ChipSuffix({
     singleChild = undefined;
   }
 
-  // Common props for both span and button to avoid repetition
-  const commonProps = {
-    className: classNames(
-      styles.suffix,
-      className,
-      !singleChild && styles.empty,
-    ),
-    children: singleChild,
-  };
-
-  return onSuffixClick ? (
-    <button
-      {...commonProps}
-      onClick={ev => {
-        ev.stopPropagation(); // Prevent the event from bubbling up
-        onSuffixClick(ev);
-      }}
-      type="button" // Specify the button type for accessibility
-      aria-label="Suffix button" // Provide an accessible label
-    />
-  ) : (
-    <span {...commonProps} />
-  );
+  if (onSuffixClick) {
+    return (
+      <button
+        className={styles.suffixClick}
+        onClick={ev => {
+          ev.stopPropagation();
+          onSuffixClick(ev);
+        }}
+        data-testid={testID}
+      >
+        {singleChild}
+      </button>
+    );
+  } else {
+    return (
+      <span
+        className={classNames(
+          styles.suffix,
+          className,
+          !singleChild && styles.empty,
+        )}
+      >
+        {singleChild}
+      </span>
+    );
+  }
 }
-
-//   return (
-//     <span
-//       className={classNames(
-//         styles.suffix,
-//         className,
-//         !singleChild && styles.empty,
-//       )}
-//        onClick={(ev) => {
-//         ev.stopPropagation(); // Prevent the event from bubbling up to the Chip's onClick
-//         if (onSuffixClick) {
-//           onSuffixClick(ev);
-//         }
-//       }}
-//     >
-//       {singleChild}
-//     </span>
-//   );
-// }
 
 export interface ChipSuffixProps extends PropsWithChildren {
   readonly className?: string;
-  readonly onClick?: (ev: React.MouseEvent<HTMLSpanElement>) => void;
+  readonly testID?: string;
+  readonly onClick?: (ev: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export const allowedSuffixIcons = ["cross", "add", "checkmark", "arrowDown"];

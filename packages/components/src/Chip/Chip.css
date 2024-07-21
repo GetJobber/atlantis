@@ -31,12 +31,21 @@
   box-shadow: var(--shadow-focus);
 }
 
+.chip .suffixClick:focus,
+.chip .suffixClick:focus-visible {
+  box-shadow: var(--shadow-focus);
+  /* Use the same box-shadow as the chip */
+  outline: none;
+  /* Remove default outline */
+}
+
 .chip .prefix {
   margin-left: calc(-1 * var(--space-small));
   margin-right: var(--space-small);
 }
 
-.chip .suffix {
+.chip .suffix,
+.chip .suffixClick {
   margin-left: var(--space-small);
   margin-right: calc(-1 * var(--space-small));
   background-color: var(--color-surface);
@@ -51,6 +60,17 @@
   border-radius: var(--radius-circle);
   align-items: center;
   justify-content: center;
+}
+
+.chip .suffixClick {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-large);
+  height: var(--space-large);
+  border-radius: var(--radius-circle);
+  padding: 0;
+  border: none;
 }
 
 .chip .prefix.empty,
@@ -101,9 +121,7 @@
 .subtle.invalid:focus-visible {
   background-color: var(--color-surface--background--hover);
   --chip--gradient-color-variation: var(--color-surface--background--hover);
-  --chip--gradient-color-variation--hover: var(
-    --color-surface--background--hover
-  );
+  --chip--gradient-color-variation--hover: var(--color-surface--background--hover);
 }
 
 .subtle {
@@ -164,11 +182,11 @@
   flex-wrap: nowrap;
 }
 
-.chipContent > * {
+.chipContent>* {
   flex: 0 0 auto;
 }
 
-.chipContent > p {
+.chipContent>p {
   overflow: hidden;
   white-space: nowrap;
 }
@@ -179,20 +197,16 @@
   right: 0;
   width: var(--space-base);
   height: 100%;
-  background: linear-gradient(
-    to left,
-    var(--chip--gradient-color-variation) 5%,
-    rgba(255, 255, 255, 0)
-  );
+  background: linear-gradient(to left,
+      var(--chip--gradient-color-variation) 5%,
+      rgba(255, 255, 255, 0));
 }
 
 .chip:focus-visible .truncateGradient,
 .chip:hover .truncateGradient {
-  background: linear-gradient(
-    to left,
-    var(--chip--gradient-color-variation--hover) 5%,
-    rgba(255, 255, 255, 0)
-  );
+  background: linear-gradient(to left,
+      var(--chip--gradient-color-variation--hover) 5%,
+      rgba(255, 255, 255, 0));
 }
 
 .chipLabelRef {
