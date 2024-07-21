@@ -121,7 +121,9 @@
 .subtle.invalid:focus-visible {
   background-color: var(--color-surface--background--hover);
   --chip--gradient-color-variation: var(--color-surface--background--hover);
-  --chip--gradient-color-variation--hover: var(--color-surface--background--hover);
+  --chip--gradient-color-variation--hover: var(
+    --color-surface--background--hover
+  );
 }
 
 .subtle {
@@ -182,11 +184,11 @@
   flex-wrap: nowrap;
 }
 
-.chipContent>* {
+.chipContent > * {
   flex: 0 0 auto;
 }
 
-.chipContent>p {
+.chipContent > p {
   overflow: hidden;
   white-space: nowrap;
 }
@@ -197,16 +199,20 @@
   right: 0;
   width: var(--space-base);
   height: 100%;
-  background: linear-gradient(to left,
-      var(--chip--gradient-color-variation) 5%,
-      rgba(255, 255, 255, 0));
+  background: linear-gradient(
+    to left,
+    var(--chip--gradient-color-variation) 5%,
+    rgba(255, 255, 255, 0)
+  );
 }
 
 .chip:focus-visible .truncateGradient,
 .chip:hover .truncateGradient {
-  background: linear-gradient(to left,
-      var(--chip--gradient-color-variation--hover) 5%,
-      rgba(255, 255, 255, 0));
+  background: linear-gradient(
+    to left,
+    var(--chip--gradient-color-variation--hover) 5%,
+    rgba(255, 255, 255, 0)
+  );
 }
 
 .chipLabelRef {
