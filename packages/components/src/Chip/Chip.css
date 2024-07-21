@@ -31,6 +31,24 @@
   box-shadow: var(--shadow-focus);
 }
 
+.chip .suffixClick {
+  display: flex;
+  width: var(--space-large);
+  height: var(--space-large);
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-circle);
+  align-items: center;
+  justify-content: center;
+}
+
+.chip .suffix,
+.chip .suffixClick {
+  margin-left: var(--space-small);
+  margin-right: calc(-1 * var(--space-small));
+  background-color: var(--color-surface);
+}
+
 .chip .suffixClick:focus,
 .chip .suffixClick:focus-visible {
   box-shadow: var(--shadow-focus);
@@ -44,13 +62,6 @@
   margin-right: var(--space-small);
 }
 
-.chip .suffix,
-.chip .suffixClick {
-  margin-left: var(--space-small);
-  margin-right: calc(-1 * var(--space-small));
-  background-color: var(--color-surface);
-}
-
 .chip .prefix,
 .chip .suffix {
   display: flex;
@@ -60,17 +71,6 @@
   border-radius: var(--radius-circle);
   align-items: center;
   justify-content: center;
-}
-
-.chip .suffixClick {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--space-large);
-  height: var(--space-large);
-  border-radius: var(--radius-circle);
-  padding: 0;
-  border: none;
 }
 
 .chip .prefix.empty,
