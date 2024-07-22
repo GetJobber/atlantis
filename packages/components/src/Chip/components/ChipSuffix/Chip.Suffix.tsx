@@ -7,8 +7,9 @@ import styles from "../../Chip.css";
 export function ChipSuffix({
   children,
   className,
-  onClick: onSuffixClick,
+  onClick: onClickSuffix,
   testID,
+  ariaLabel,
 }: ChipSuffixProps) {
   let singleChild = useChildComponent(children, d => d.type === Icon);
 
@@ -16,15 +17,16 @@ export function ChipSuffix({
     singleChild = undefined;
   }
 
-  if (onSuffixClick) {
+  if (onClickSuffix) {
     return (
       <button
-        className={styles.suffixClick}
-        onClick={ev => {
-          ev.stopPropagation();
-          onSuffixClick(ev);
+        className={styles.clickableSuffix}
+        onClick={event => {
+          event.stopPropagation();
+          onClickSuffix(event);
         }}
         data-testid={testID}
+        aria-label={ariaLabel}
       >
         {singleChild}
       </button>
@@ -47,7 +49,8 @@ export function ChipSuffix({
 export interface ChipSuffixProps extends PropsWithChildren {
   readonly className?: string;
   readonly testID?: string;
-  readonly onClick?: (ev: React.MouseEvent<HTMLButtonElement>) => void;
+  readonly ariaLabel?: string;
+  readonly onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export const allowedSuffixIcons = ["cross", "add", "checkmark", "arrowDown"];

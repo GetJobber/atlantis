@@ -27,43 +27,22 @@
   outline: none;
 }
 
-.chip:focus-visible {
-  box-shadow: var(--shadow-focus);
-}
-
-.chip .suffixClick {
-  display: flex;
-  width: var(--space-large);
-  height: var(--space-large);
+.chip .clickableSuffix {
   padding: 0;
   border: none;
-  border-radius: var(--radius-circle);
-  align-items: center;
-  justify-content: center;
+  cursor: pointer;
 }
 
 .chip .suffix,
-.chip .suffixClick {
+.chip .clickableSuffix {
   margin-left: var(--space-small);
   margin-right: calc(-1 * var(--space-small));
   background-color: var(--color-surface);
 }
 
-.chip .suffixClick:focus,
-.chip .suffixClick:focus-visible {
-  box-shadow: var(--shadow-focus);
-  /* Use the same box-shadow as the chip */
-  outline: none;
-  /* Remove default outline */
-}
-
-.chip .prefix {
-  margin-left: calc(-1 * var(--space-small));
-  margin-right: var(--space-small);
-}
-
 .chip .prefix,
-.chip .suffix {
+.chip .suffix,
+.chip .clickableSuffix {
   display: flex;
   width: var(--space-large);
   height: var(--space-large);
@@ -71,6 +50,16 @@
   border-radius: var(--radius-circle);
   align-items: center;
   justify-content: center;
+}
+
+.chip:focus-visible,
+.chip .clickableSuffix:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+
+.chip .prefix {
+  margin-left: calc(-1 * var(--space-small));
+  margin-right: var(--space-small);
 }
 
 .chip .prefix.empty,

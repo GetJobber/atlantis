@@ -35,8 +35,11 @@ const BasicTemplate: ComponentStory<typeof Chip> = args => {
 const SuffixTemplate: ComponentStory<typeof Chip> = args => {
   return (
     <Content>
-      <Chip {...args} onClick={() => alert("you clicked me!")}>
-        <Chip.Suffix onClick={() => alert("you clicked the suffix!")}>
+      <Chip {...args} onClick={() => alert("you clicked the Chip!")}>
+        <Chip.Suffix
+          onClick={() => alert("you clicked the suffix!")}
+          ariaLabel="dismiss"
+        >
           <Icon name="cross" size="small" />
         </Chip.Suffix>
       </Chip>
