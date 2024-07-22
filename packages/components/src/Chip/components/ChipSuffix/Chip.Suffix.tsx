@@ -27,6 +27,7 @@ export function ChipSuffix({
         }}
         data-testid={testID}
         aria-label={ariaLabel}
+        type="button"
       >
         {singleChild}
       </button>
