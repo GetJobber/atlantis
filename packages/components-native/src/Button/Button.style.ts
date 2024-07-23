@@ -30,6 +30,7 @@ export const styles = StyleSheet.create({
     borderRadius: buttonRadius,
     borderWidth: tokens["border-base"],
     paddingVertical: tokens["space-small"],
+    backgroundColor: tokens["color-interactive"],
   },
 
   base: {

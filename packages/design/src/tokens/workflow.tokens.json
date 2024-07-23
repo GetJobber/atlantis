@@ -1,0 +1,64 @@
+{
+    "color": {
+      "request": {
+        "_": {
+          "surface": {"value": "{color.base.orange._.200}"},
+          "onSurface": {"value": "{color.base.orange._.800}"}
+        },
+        "value": "{color.base.orange._.600}"
+      },
+      "quote": {
+        "_": {
+          "surface": {"value": "{color.base.pink._.200}"},
+          "onSurface": {"value": "{color.base.pink._.800}"}
+        },
+        "value": "{color.base.pink._.700}"
+      },
+      "job": {
+        "_": {
+          "surface": {"value": "{color.base.green._.200}"},
+          "onSurface": {"value": "{color.base.green._.700}"}
+        },
+        "value": "{color.base.green._.600}"
+      },
+      "task": {
+        "_": {
+          "surface": {"value": "{color.base.blue._.200}"},
+          "onSurface": {"value": "{color.base.blue._.900}"}
+        },
+        "value": "{color.base.blue._.800}"
+      },
+      "invoice": {
+        "_": {
+          "surface": {"value": "{color.base.lightBlue._.200}"},
+          "onSurface": {"value": "{color.base.lightBlue._.800}"}
+        },
+        "value": "{color.base.lightBlue._.700}"
+      },
+      "visit": {
+        "_": {
+          "surface": {"value": "{color.job._.surface}"},
+          "onSurface": {"value": "{color.job._.onSurface}"}
+        },
+        "value": "{color.job}"
+      },
+      "event": {
+        "_": {
+          "surface": {"value": "{color.base.yellow._.200}"},
+          "onSurface": {"value": "{color.base.yellow._.700}"}
+        },
+        "value": "{color.base.yellow._.400}"
+      },
+      "payments": {
+        "_": {
+          "surface": {"value": "{color.invoice._.surface}"},
+          "onSurface": {"value": "{color.invoice._.surface}"}
+        },
+        "value": "{color.invoice}"
+      },
+      "client": {
+        "value": "{color.base.taupe._.700}"
+      }
+    }
+  }
+  

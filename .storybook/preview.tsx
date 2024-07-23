@@ -1,7 +1,7 @@
 import React from "react";
 import { Text } from "@jobber/components/Text";
 import { Content } from "@jobber/components/Content";
-import { tokens } from "@jobber/design/foundation";
+import { tokens } from "@jobber/design";
 import { Header } from "./components/Header";
 import { InlineCode } from "./components/InlineCode";
 import { DocsWithSidebar } from "./components/DocsWithSidebar";
@@ -9,7 +9,7 @@ import { CustomCanvas } from "./components/CustomCanvas";
 import { SBProvider } from "./components/SBProvider";
 import { StoryDetails } from "./components/StoryDetails";
 
-import "@jobber/design/foundation.css";
+import "../packages/design/dist/foundation.css";
 import "./assets/css/preview.css";
 import { Unstyled } from "@storybook/addon-docs";
 import { Table } from "@storybook/components";

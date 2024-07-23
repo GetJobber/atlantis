@@ -1,12 +1,13 @@
 {
     "compilerOptions": {
         "outDir": "./dist",
-        "module": "ESNext",
-        "moduleResolution": "node",
+        "module": "NodeNext",
         "allowSyntheticDefaultImports": true,
-        "target": "es6",
+        "moduleResolution": "NodeNext",
+        "target": "ESNext",
         "declaration": true,
         "resolveJsonModule": true,
+        "allowImportingTsExtensions": true,
         "noEmit": true,
         "skipLibCheck": true,
         "strict": true
@@ -15,7 +16,6 @@
         "esm": true
     },
     "include": [
-        "src/index.ts",
-        "src/**/*.d.ts"
+        "**/*"
     ]
 }

@@ -1,5 +1,5 @@
 import { create } from "@storybook/theming";
-import { tokens } from "@jobber/design/foundation.js";
+import { tokens } from "@jobber/design";
 
 // eslint-disable-next-line import/no-default-export
 export default create({

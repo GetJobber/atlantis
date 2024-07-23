@@ -53,7 +53,7 @@ export function Glimmer({
         toValue: parentWidth + shineWidth,
         duration:
           timing === "base"
-            ? tokens["timing-loading--extended"]
+            ? tokens["timing-loadingExtended"]
             : tokens["timing-loading"],
         easing: Easing.ease,
         useNativeDriver: true,

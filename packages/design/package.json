@@ -1,10 +1,34 @@
 {
   "name": "@jobber/design",
-  "version": "0.62.2",
+  "version": "1.0.0",
   "description": "Design foundation for the Jobber Atlantis Design System",
   "license": "MIT",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require":"./dist/index.mjs",
+      "import": "./dist/index.mjs"
+    },
+    "./foundation.css": {
+      "import": "./dist/foundation.css"
+    },
+    "./tokens": {
+      "import": "./dist/tokens.web.js"
+    },
+    "./androidtokens": {
+      "types": "./dist/tokens.mobile.d.ts",
+      "import": "./dist/tokens.android.js"
+    },
+    "./dist/tokens.android.js": {
+      "types": "./dist/tokens.mobile.d.ts",
+      "import": "./dist/tokens.android.js"
+    },
+    "./dist/tokens.ios.js": {
+      "types": "./dist/tokens.mobile.d.ts",
+      "import": "./dist/tokens.ios.js"
+    }
+  },
   "files": [
     "dist/*",
     "*.css",
@@ -12,47 +36,29 @@
     "icons/*"
   ],
   "scripts": {
-    "build": "npm run build:iconMap && npm run build:css && npm run build:css:icons && npm run build:colors && npm run build:cssTypes && npm run build:foundation && npm run build:iconCssStyle && npm run build:rollup",
-    "build:rollup": "rollup --config",
-    "build:css": "postcss src/foundation.css --output foundation.css --use postcss-import",
-    "build:css:icons": "postcss src/icons/*.css --dir icons/ --use postcss-import",
-    "build:ts": "tsc --project .",
-    "build:cssTypes": "tcm src/icons",
-    "build:colors": "node buildColors.js",
-    "build:foundation": "node buildFoundation.js && node resolveFoundationTokens.js && npm run build:foundationTypes && npm run build:addFoundationExceptions && npm run build:removeTempFiles",
-    "build:foundationTypes": "tsc --declaration --emitDeclarationOnly --allowJs foundation.js foundation.native.js foundation.android.js foundation.ios.js --outDir . --skipLibCheck",
-    "build:addFoundationExceptions": "./scripts/addFoundationExceptions.sh",
-    "build:removeTempFiles": "rm -f src/foundation.js && ./scripts/removeFoundationTempFiles.sh",
-    "build:iconMap": "ts-node --project ../../tsconfig.bin.json scripts/generateIconMap.ts",
-    "build:iconCssStyle": "node buildIconStyles.js && npm run build:iconCssStyleTypes",
-    "build:iconCssStyleTypes": "tsc --declaration --emitDeclarationOnly --allowJs src/icons/iconStyles.ts --outDir ./src/icons --skipLibCheck",
+    "build:design": "rollup -c rollup.config.mjs",
+    "generate:iconMap": "tsx src/scripts/buildIconMap.ts",
+    "generate:tokenCSS": "tsx src/scripts/buildTokens.ts",
+    "generate:assets": "npm run generate:iconMap && npm run generate:tokenCSS",
+    "build": "mkdir -p dist && npm run generate:assets && npm run build:design",
+    "watch": "mkdir -p dist & chokidar \"**/*.ts\" \"**/*.json\" \"**/*.svg\"-c \"npm run generate:assets && npm run build:design\"",
     "clean": "rm -rf dist/* icons/* src/icons/iconMap.ts colors.js foundation.* iconStyles.* tsconfig.tsbuildinfo",
     "bootstrap": "npm run clean && npm run build"
   },
-  "dependencies": {
-    "classnames": "^2.3.2"
-  },
   "devDependencies": {
-    "@csstools/postcss-extract": "^2.0.1",
-    "@csstools/postcss-global-data": "^1.0.3",
-    "@rollup/plugin-commonjs": "^24.0.1",
-    "@types/node": "^18.15.7",
-    "autoprefixer": "^9.5.1",
-    "cheerio": "^1.0.0-rc.12",
-    "css-to-react-native-transform": "^2.0.0",
-    "postcss": "^8.4.21",
-    "postcss-calc": "^8.2.3",
-    "postcss-cli": "^10.1.0",
-    "postcss-custom-properties": "^13.1.4",
-    "postcss-import": "^15.1.0",
-    "postcss-preset-env": "^8.3.0",
-    "rollup": "^4.13.0",
-    "rollup-plugin-copy": "^3.5.0",
-    "rollup-plugin-multi-input": "^1.4.1",
-    "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-typescript2": "^0.36.0",
-    "svgo": "^3.0.2",
-    "typed-css-modules": "^0.7.0",
-    "typescript": "^4.9.5"
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/jsdom": "^21.1.7",
+    "jsdom": "^24.1.0",
+    "postcss": "^8.4.39",
+    "postcss-calc": "^10.0.0",
+    "postcss-cli": "^11.0.0",
+    "postcss-import": "^16.1.0",
+    "swc-node": "^1.0.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.4"
   }
 }

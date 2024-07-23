@@ -1,0 +1,12 @@
+{
+    "timing": {
+      "quick": {"value": "100ms"},
+      "base": {"value": "200ms"},
+      "slow": {"value": "300ms"},
+      "slower": {"value": "400ms"},
+      "slowest": {"value": "500ms"},
+      "loading": {"value": "1000ms"},
+      "loadingExtended": {"value": "2000ms"}
+    }
+  }
+  

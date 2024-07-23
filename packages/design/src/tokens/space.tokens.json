@@ -1,0 +1,32 @@
+{
+    "space": {
+      "minuscule": {
+        "value": "calc({base.unit} / 16)"
+      },
+      "smallest": {
+        "value": "calc({base.unit} / 8)"
+      },
+      "smaller": {
+        "value": "calc({base.unit} / 4)"
+      },
+      "small": {
+        "value": "calc({base.unit} / 2)"
+      },
+      "base": {
+        "value": "calc({base.unit} * 1)"
+      },
+      "large": {
+        "value": "calc({base.unit} * 1.5)"
+      },
+      "larger": {
+        "value": "calc({base.unit} * 2)"
+      },
+      "largest": {
+        "value": "calc({base.unit} * 3)"
+      },
+      "extravagant": {
+        "value": "calc({base.unit} * 4)"
+      }
+    }
+  }
+  
