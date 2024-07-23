@@ -13,13 +13,13 @@
     "source.fixAll.eslint": "explicit",
     "source.fixAll.stylelint": "explicit"
   },
-  "eslint.enable": true,
-  "eslint.packageManager": "npm",
-  "eslint.format.enable": true,
+  "eslint.enable": false,
+  "eslint.format.enable": false,
   "eslint.options": {
     "extensions": [
       ".js",
       ".jsx",
+      ".css",
       ".md",
       ".mdx",
       ".ts",
@@ -29,13 +29,14 @@
   "eslint.validate": [
     "markdown",
     "mdx",
+    "css",
     "javascript",
     "javascriptreact",
     "typescript",
     "typescriptreact"
   ],
   "peacock.color": "#F4E465",
-  "prettier.enable": false,
+  "prettier.enable": true,
   "workbench.colorCustomizations": {
     "statusBar.background": "#f4e465",
     "statusBarItem.hoverBackground": "#f1dc35",

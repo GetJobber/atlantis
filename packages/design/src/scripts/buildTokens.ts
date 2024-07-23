@@ -4,15 +4,11 @@ import { buildFullCSS, parseToObject } from "./generation.ts";
 const writeMobileTokens = () => {
   const androidTokens = parseToObject("android");
   writeFile("dist/tokens.android.js", androidTokens);
-  writeFile("src/tokens.mobile.ts", androidTokens);
-  writeFile(
-    "../components-native/src/utils/design/tokens.android.ts",
-    androidTokens,
-  );
+  writeFile("src/tokens.android.ts", androidTokens);
 
   const iosTokens = parseToObject("ios");
   writeFile("dist/tokens.ios.js", iosTokens);
-  writeFile("../components-native/src/utils/design/tokens.ios.ts", iosTokens);
+  writeFile("src/tokens.ios.ts", iosTokens);
 };
 
 export const writeTokenFile = () => {

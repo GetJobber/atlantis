@@ -1,12 +1,25 @@
 {
-    "elevation": {
-      "default": {"value": 0},
-      "base": {"value": 1},
-      "menu": {"value": 6},
-      "datepicker": {"value": 6},
-      "modal": {"value": 1001},
-      "tooltip": {"value": 1002},
-      "toast": {"value": 1003}
+  "elevation": {
+    "default": {
+      "value": 0
+    },
+    "base": {
+      "value": 1
+    },
+    "menu": {
+      "value": 6
+    },
+    "datepicker": {
+      "value": 6
+    },
+    "modal": {
+      "value": 1001
+    },
+    "tooltip": {
+      "value": 1002
+    },
+    "toast": {
+      "value": 1003
     }
   }
-  
+}

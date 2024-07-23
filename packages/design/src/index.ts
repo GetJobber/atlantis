@@ -8,7 +8,7 @@ import mobileTokens from "./tokens.mobile";
 export type Tokens = typeof tokens;
 export type MobileTokens = typeof mobileTokens;
 
-export { tokens, mobileTokens };
+export { tokens, mobileTokens, iconMap };
 
 interface IconProps {
   /** The icon to show.  */
@@ -70,7 +70,9 @@ export function getIcon({ name, color, size = "base" }: IconProps) {
     ...iconFill,
   };
   const { paths, iconSize } = getPaths(name);
-  const colorStyle = (iconColors.tokens as any)[color || ""];
+  const colorStyle = (iconColors.tokens as Record<string, string | object>)[
+    color || ""
+  ];
   const viewBox = `0 0 ${iconSize} ${iconSize}`;
   const pathClassNames = colorStyle;
 

@@ -2,7 +2,7 @@ import { readFile, readdir, writeFile } from "fs/promises";
 import { dirname, extname, join } from "path";
 import { JSDOM } from "jsdom";
 
-const processFiles = files => {
+const processFiles = async (files: Array<string>, iconDir: string) => {
   const svgFiles = files.filter(file => extname(file) === ".svg");
   const iconMap: Record<string, Array<string>> = {};
 
@@ -13,8 +13,8 @@ const processFiles = files => {
     const document = DOM.window.document;
     const paths = document.querySelectorAll("path");
     const pathAttributes = Array.from(paths).map(
-      (path: { attributes: { d: { value: string } } }) =>
-        path.attributes.d.value,
+      (path: SVGPathElement) =>
+        (path.attributes as unknown as { d: { value: string } }).d.value,
     );
     iconMap[file.replace(".svg", "")] = pathAttributes;
   }
@@ -28,8 +28,7 @@ export const getIconMap = async () => {
 
   try {
     const files = await readdir(iconDir);
-
-    processFiles(files);
+    const iconMap = await processFiles(files, iconDir);
 
     return { icons: iconMap };
   } catch (err) {

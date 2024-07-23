@@ -1,17 +1,16 @@
 {
-    "border": {
-      "base": {
-        "value": "{space.minuscule}"
-      },
-      "thick": {
-        "value": "{space.smallest}"
-      },
-      "thicker": {
-        "value": "{space.smaller}"
-      },
-      "thickest": {
-        "value": "{space.small}"
-      }
+  "border": {
+    "base": {
+      "value": "{space.minuscule}"
+    },
+    "thick": {
+      "value": "{space.smallest}"
+    },
+    "thicker": {
+      "value": "{space.smaller}"
+    },
+    "thickest": {
+      "value": "{space.small}"
     }
   }
-  
+}

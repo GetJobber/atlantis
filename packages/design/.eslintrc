@@ -1,5 +1,9 @@
 {
     "rules": {
-        "import/no-internal-modules": "off"
+        "import/no-internal-modules": "off",
+        "eslint-plugin-import/no-default-export": "off"
+    },
+    "env": {
+        "jest": true
     }
 }

@@ -2,4 +2,6 @@ dist/
 node_modules/
 tokens.web.ts
 tokens.mobile.ts
+tokens.android.ts
+tokens.ios.ts
 icon.map.ts

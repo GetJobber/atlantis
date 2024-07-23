@@ -85,15 +85,15 @@ To use `tokens` with React Native, add the following to the file containing your
 project's global styling:
 
 ```ts
-// Import from `foundation.native` instead of `foundation` because foundation
-// would resolve the typescript for the web foundation instead of the React Native version.
-import { tokens as mobileFoundationBase } from "@jobber/design/foundation.native";
+import { tokens as mobileFoundationBase } from "@jobber/design";
 import { Platform } from "react-native";
+import AndroidTokens from "./tokens.android";
+import IOSTokens from "./tokens.ios";
 
-const tokens: typeof mobileFoundationBase = Platform.select({
-  ios: () => require("@jobber/design/foundation.ios").tokens,
-  android: () => require("@jobber/design/foundation.android").tokens,
-  default: () => require("@jobber/design/foundation.native").tokens,
+export const tokens: typeof AndroidTokens = Platform.select({
+  ios: () => IOSTokens,
+  android: () => AndroidTokens,
+  default: () => AndroidTokens,
 })();
 
 export const GlobalStyling = {

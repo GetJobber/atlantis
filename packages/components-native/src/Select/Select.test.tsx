@@ -1,6 +1,6 @@
 import React from "react";
 import { RenderAPI, fireEvent, render } from "@testing-library/react-native";
-import { tokens } from "@jobber/design/foundation";
+import { tokens } from "@jobber/design";
 import { AccessibilityInfo } from "react-native";
 import { Option, Select } from ".";
 import { SelectInternalPicker } from "./components/SelectInternalPicker";

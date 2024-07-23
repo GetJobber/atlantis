@@ -1,20 +1,19 @@
 {
-    "radius": {
-      "base": {
-        "value": "8px"
-      },
-      "small": {
-        "value": "calc({radius.base} / 2)"
-      },
-      "large": {
-        "value": "calc({radius.base} * 2)"
-      },
-      "larger": {
-        "value": "calc({radius.base} * 3)"
-      },
-      "circle": {
-        "value": "100%"
-      }
+  "radius": {
+    "base": {
+      "value": "8px"
+    },
+    "small": {
+      "value": "calc({radius.base} / 2)"
+    },
+    "large": {
+      "value": "calc({radius.base} * 2)"
+    },
+    "larger": {
+      "value": "calc({radius.base} * 3)"
+    },
+    "circle": {
+      "value": "100%"
     }
   }
-  
+}

@@ -2,7 +2,7 @@ import React from "react";
 import { fireEvent, render } from "@testing-library/react-native";
 import { Host } from "react-native-portalize";
 import { View } from "react-native";
-import { tokens } from "@jobber/design/foundation";
+import { tokens } from "@jobber/design";
 import { Menu, MenuOptionProps, MenuProps } from ".";
 import { Icon } from "../Icon";
 import { Button } from "../Button";

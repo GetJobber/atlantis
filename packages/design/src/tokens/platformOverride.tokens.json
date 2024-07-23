@@ -1,135 +1,212 @@
 {
-    "platformOverrides": {
-      "ios": {
-        "typography": {
-          "_": {
-            "fontSize": {
-              "extravagant": {"value": 42},
-              "jumbo": {"value": 32},
-              "largest": {"value": 24},
-              "larger": {"value": 20},
-              "large": {"value": 18},
-              "base": {"value": 16},
-              "small": {"value": 14},
-              "smaller": {"value": 12},
-              "smallest": {"value": 10}
+  "platformOverrides": {
+    "ios": {
+      "radius": {
+        "circle": {
+          "value": 100
+        }
+      },
+      "typography": {
+        "_": {
+          "fontSize": {
+            "extravagant": {
+              "value": 42
             },
-            "lineHeight": {
-              "large": {"value": 22},
-              "base": {"value": 20},
-              "tight": {"value": 18},
-              "tighter": {"value": 16},
-              "tightest": {"value": 14},
-              "miniscule": {"value": 10},
-              "extravagant": {"value": 42},
-              "jumbo": {"value": 36},
-              "largest": {"value": 28},
-              "larger": {"value": 24}
-            }
-          }
-        },
-        "shadow": {
-          "low": {
-            "value": {
-              "shadowColor": "rgba(0, 0, 0, 1)",
-              "shadowOffset": {
-                "width": 0,
-                "height": 1
-              },
-              "shadowOpacity": 0.2,
-              "shadowRadius": 1,
-              "elevation": 2
+            "jumbo": {
+              "value": 32
+            },
+            "largest": {
+              "value": 24
+            },
+            "larger": {
+              "value": 20
+            },
+            "large": {
+              "value": 18
+            },
+            "base": {
+              "value": 16
+            },
+            "small": {
+              "value": 14
+            },
+            "smaller": {
+              "value": 12
+            },
+            "smallest": {
+              "value": 10
             }
           },
-          "base": {
-            "value": {
-              "shadowColor": "rgba(0, 0, 0, 1)",
-              "shadowOffset": {
-                "width": 0,
-                "height": 1
-              },
-              "shadowOpacity": 0.16,
-              "shadowRadius": 4,
-              "elevation": 6
-            }
-          },
-          "high": {
-            "value": {
-              "shadowColor": "rgba(0, 0, 0, 1)",
-              "shadowOffset": {
-                "width": 0,
-                "height": 8
-              },
-              "shadowOpacity": 0.125,
-              "shadowRadius": 16,
-              "elevation": 12
+          "lineHeight": {
+            "large": {
+              "value": 22
+            },
+            "base": {
+              "value": 20
+            },
+            "tight": {
+              "value": 18
+            },
+            "tighter": {
+              "value": 16
+            },
+            "tightest": {
+              "value": 14
+            },
+            "minuscule": {
+              "value": 10
+            },
+            "extravagant": {
+              "value": 42
+            },
+            "jumbo": {
+              "value": 36
+            },
+            "largest": {
+              "value": 28
+            },
+            "larger": {
+              "value": 24
             }
           }
         }
       },
-      "android": {
-        "typography": {
-          "_": {
-            "fontSize": {
-              "extravagant": {"value": 42},
-              "jumbo": {"value": 32},
-              "largest": {"value": 24},
-              "larger": {"value": 20},
-              "large": {"value": 18},
-              "base": {"value": 16},
-              "small": {"value": 14},
-              "smaller": {"value": 12},
-              "smallest": {"value": 10}
+      "shadow": {
+        "low": {
+          "value": {
+            "shadowColor": "rgba(0, 0, 0, 1)",
+            "shadowOffset": {
+              "width": 0,
+              "height": 1
             },
-            "lineHeight": {
-              "large": {"value": 22},
-              "base": {"value": 20},
-              "tight": {"value": 18},
-              "tighter": {"value": 16},
-              "tightest": {"value": 14},
-              "miniscule": {"value": 10}
-            }
+            "shadowOpacity": 0.2,
+            "shadowRadius": 1,
+            "elevation": 2
           }
         },
-        "shadow": {
-          "low": {
-            "value": {
-              "shadowColor": "rgba(0, 0, 0, 1)",
-              "shadowOffset": {
-                "width": 0,
-                "height": 1
-              },
-              "shadowOpacity": 0.2,
-              "shadowRadius": 1,
-              "elevation": 2
+        "base": {
+          "value": {
+            "shadowColor": "rgba(0, 0, 0, 1)",
+            "shadowOffset": {
+              "width": 0,
+              "height": 1
+            },
+            "shadowOpacity": 0.16,
+            "shadowRadius": 4,
+            "elevation": 6
+          }
+        },
+        "high": {
+          "value": {
+            "shadowColor": "rgba(0, 0, 0, 1)",
+            "shadowOffset": {
+              "width": 0,
+              "height": 8
+            },
+            "shadowOpacity": 0.125,
+            "shadowRadius": 16,
+            "elevation": 12
+          }
+        }
+      }
+    },
+    "android": {
+      "radius": {
+        "circle": {
+          "value": 100
+        }
+      },
+      "typography": {
+        "_": {
+          "fontSize": {
+            "extravagant": {
+              "value": 42
+            },
+            "jumbo": {
+              "value": 32
+            },
+            "largest": {
+              "value": 24
+            },
+            "larger": {
+              "value": 20
+            },
+            "large": {
+              "value": 18
+            },
+            "base": {
+              "value": 16
+            },
+            "small": {
+              "value": 14
+            },
+            "smaller": {
+              "value": 12
+            },
+            "smallest": {
+              "value": 10
             }
           },
-          "base": {
-            "value": {
-              "shadowColor": "rgba(0,0,0,0.9)",
-              "shadowOffset": {
-                "width": 0,
-                "height": 1
-              },
-              "shadowOpacity": 0.16,
-              "shadowRadius": 4,
-              "elevation": 6
+          "lineHeight": {
+            "large": {
+              "value": 22
+            },
+            "base": {
+              "value": 20
+            },
+            "tight": {
+              "value": 18
+            },
+            "tighter": {
+              "value": 16
+            },
+            "tightest": {
+              "value": 14
+            },
+            "minuscule": {
+              "value": 10
             }
-          },
-          "high": {
-            "value": {
-              "shadowColor": "rgba(0,0,0,0.5)",
-              "shadowOffset": {
-                "width": 0,
-                "height": 8
-              },
-              "shadowOpacity": 0.125,
-              "shadowRadius": 16,
-              "elevation": 12
-            }
+          }
+        }
+      },
+      "shadow": {
+        "low": {
+          "value": {
+            "shadowColor": "rgba(0, 0, 0, 1)",
+            "shadowOffset": {
+              "width": 0,
+              "height": 1
+            },
+            "shadowOpacity": 0.2,
+            "shadowRadius": 1,
+            "elevation": 2
+          }
+        },
+        "base": {
+          "value": {
+            "shadowColor": "rgba(0,0,0,0.9)",
+            "shadowOffset": {
+              "width": 0,
+              "height": 1
+            },
+            "shadowOpacity": 0.16,
+            "shadowRadius": 4,
+            "elevation": 6
+          }
+        },
+        "high": {
+          "value": {
+            "shadowColor": "rgba(0,0,0,0.5)",
+            "shadowOffset": {
+              "width": 0,
+              "height": 8
+            },
+            "shadowOpacity": 0.125,
+            "shadowRadius": 16,
+            "elevation": 12
           }
         }
       }
     }
   }
-  
+}

@@ -1,7 +1,10 @@
 {
-    "opacity": {
-      "overlay": {"value": 0.8},
-      "pressed": {"value": 0.6}
+  "opacity": {
+    "overlay": {
+      "value": 0.8
+    },
+    "pressed": {
+      "value": 0.6
     }
   }
-  
+}

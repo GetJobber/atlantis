@@ -39,7 +39,6 @@ const calcEach = (tokens: Tokens, includeSemiColon = true) => {
         finalResults[key] = lineSplit[1]
           .trim()
           .replace("px", "")
-          .replace("%", "")
           .replace("ms", "");
       }
     }
