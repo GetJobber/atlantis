@@ -64,4 +64,15 @@ describe("Chip Suffix", () => {
     container.querySelector("button")?.click();
     expect(onClick).toHaveBeenCalled();
   });
+
+  it("renders a testID when onClick is passed", () => {
+    const onClick = jest.fn();
+    const { getByTestId } = render(
+      <Chip.Suffix onClick={onClick} testID="ATL-Chip-Suffix">
+        <Icon name="cross" />
+      </Chip.Suffix>,
+    );
+
+    expect(getByTestId("ATL-Chip-Suffix")).toBeInTheDocument();
+  });
 });
