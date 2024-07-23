@@ -1,145 +1,145 @@
 export const iconColors = {
   tokens: {
     white: {
-      value: '{color.white}',
+      value: "{color.white}",
     },
     grey: {
-      value: '{color.grey}',
+      value: "{color.grey}",
     },
     greyBlue: {
-      value: '{color.greyBlue}',
+      value: "{color.greyBlue}",
     },
     greyBlueDark: {
-      value: '{color.greyBlue._.dark}',
+      value: "{color.greyBlue._.dark}",
     },
     greyBlueLighter: {
-      value: '{color.greyBlue._.lighter}',
+      value: "{color.greyBlue._.lighter}",
     },
     blue: {
-      value: '{color.blue}',
+      value: "{color.blue}",
     },
     lightBlue: {
-      value: '{color.lightBlue}',
+      value: "{color.lightBlue}",
     },
     green: {
-      value: '{color.green}',
+      value: "{color.green}",
     },
     yellow: {
-      value: '{color.yellow}',
+      value: "{color.yellow}",
     },
     red: {
-      value: '{color.red}',
+      value: "{color.red}",
     },
     navy: {
-      value: '{color.navy}',
+      value: "{color.navy}",
     },
     orange: {
-      value: '{color.orange}',
+      value: "{color.orange}",
     },
     interactive: {
-      value: '{color.interactive}',
+      value: "{color.interactive}",
     },
     interactiveHover: {
-      value: '{color.interactive._.hover}',
+      value: "{color.interactive._.hover}",
     },
     destructive: {
-      value: '{color.destructive}',
+      value: "{color.destructive}",
     },
     destructiveHover: {
-      value: '{color.destructive._.hover}',
+      value: "{color.destructive._.hover}",
     },
     interactiveSubtle: {
-      value: '{color.interactive._.subtle}',
+      value: "{color.interactive._.subtle}",
     },
     interactiveSubtleHover: {
-      value: '{color.interactive._.subtle._.hover}',
+      value: "{color.interactive._.subtle._.hover}",
     },
     disabled: {
-      value: '{color.disabled}',
+      value: "{color.disabled}",
     },
     disabledSecondary: {
-      value: '{color.disabled._.secondary}',
+      value: "{color.disabled._.secondary}",
     },
     focus: {
-      value: '{color.focus}',
+      value: "{color.focus}",
     },
     critical: {
-      value: '{color.critical}',
+      value: "{color.critical}",
     },
     criticalSurface: {
-      value: '{color.critical._.surface}',
+      value: "{color.critical._.surface}",
     },
     criticalOnSurface: {
-      value: '{color.critical._.onSurface}',
+      value: "{color.critical._.onSurface}",
     },
     warning: {
-      value: '{color.warning}',
+      value: "{color.warning}",
     },
     warningSurface: {
-      value: '{color.warning._.surface}',
+      value: "{color.warning._.surface}",
     },
     warningOnSurface: {
-      value: '{color.warning._.onSurface}',
+      value: "{color.warning._.onSurface}",
     },
     success: {
-      value: '{color.success}',
+      value: "{color.success}",
     },
     successOnSurface: {
-      value: '{color.success._.onSurface}',
+      value: "{color.success._.onSurface}",
     },
     informative: {
-      value: '{color.informative}',
+      value: "{color.informative}",
     },
     informativeSurface: {
-      value: '{color.informative._.surface}',
+      value: "{color.informative._.surface}",
     },
     informativeOnSurface: {
-      value: '{color.informative._.onSurface}',
+      value: "{color.informative._.onSurface}",
     },
     inactive: {
-      value: '{color.inactive}',
+      value: "{color.inactive}",
     },
     inactiveSurface: {
-      value: '{color.inactive._.surface}',
+      value: "{color.inactive._.surface}",
     },
     inactiveOnSurface: {
-      value: '{color.inactive._.onSurface}',
+      value: "{color.inactive._.onSurface}",
     },
     heading: {
-      value: '{color.heading}',
+      value: "{color.heading}",
     },
     text: {
-      value: '{color.text}',
+      value: "{color.text}",
     },
     textSecondary: {
-      value: '{color.text._.secondary}',
+      value: "{color.text._.secondary}",
     },
     textReverse: {
-      value: '{color.text._.reverse}',
+      value: "{color.text._.reverse}",
     },
     textReverseSecondary: {
-      value: '{color.text._.reverse._.secondary}',
+      value: "{color.text._.reverse._.secondary}",
     },
     surface: {
-      value: '{color.surface}',
+      value: "{color.surface}",
     },
     surfaceHover: {
-      value: '{color.surface._.hover}',
+      value: "{color.surface._.hover}",
     },
     surfaceActive: {
-      value: '{color.surface._.active}',
+      value: "{color.surface._.active}",
     },
     surfaceBackground: {
-      value: '{color.surface._.background}',
+      value: "{color.surface._.background}",
     },
     surfaceReverse: {
-      value: '{color.surface._.reverse}',
+      value: "{color.surface._.reverse}",
     },
     brand: {
-      value: '{color.brand}',
+      value: "{color.brand}",
     },
     brandHighlight: {
-      value: '{color.brand._.highlight}',
+      value: "{color.brand._.highlight}",
     },
   },
 };
