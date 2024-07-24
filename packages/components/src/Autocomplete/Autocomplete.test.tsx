@@ -57,9 +57,7 @@ it("renders an Autocomplete", async () => {
     />,
   );
 
-  await waitFor(() => {
-    expect(container).toMatchSnapshot();
-  });
+  expect(container).toMatchSnapshot();
 });
 
 test("it should call the getOptions handler with the new value", async () => {
@@ -110,9 +108,7 @@ test("it should display headers when headers are passed in", async () => {
     />,
   );
 
-  await waitFor(() => {
-    expect(container).toMatchSnapshot();
-  });
+  expect(container).toMatchSnapshot();
 });
 
 test("it should call the handler skipping headings when an option is selected", async () => {
@@ -149,9 +145,7 @@ it("should remove the menu when blurred", async () => {
 
   await userEvent.click(input);
 
-  await waitFor(() => {
-    expect(screen.getByText("option_0")).toBeInstanceOf(HTMLParagraphElement);
-  });
+  expect(screen.getByText("option_0")).toBeInstanceOf(HTMLParagraphElement);
 
   await userEvent.tab();
 
@@ -241,9 +235,7 @@ it("passes the invalid prop to the InputText", async () => {
 
   const invalid = container.querySelector(".invalid");
 
-  await waitFor(() => {
-    expect(invalid).toBeInstanceOf(HTMLDivElement);
-  });
+  expect(invalid).toBeInstanceOf(HTMLDivElement);
 });
 
 test("it should focus input text", async () => {
@@ -289,8 +281,6 @@ test("it should scroll into view input text", async () => {
     />,
   );
 
-  await waitFor(() => {
-    textRef.current?.scrollIntoView();
-  });
+  textRef.current?.scrollIntoView();
   expect(scrollIntoViewMock).toHaveBeenCalled();
 });
