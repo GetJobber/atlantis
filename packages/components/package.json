@@ -407,9 +407,6 @@
     "dist/*"
   ],
   "dependencies": {
-    "@jobber/design": "*",
-    "@jobber/formatters": "*",
-    "@jobber/hooks": "*",
     "@popperjs/core": "^2.0.6",
     "@std-proposal/temporal": "0.0.1",
     "@tanstack/react-table": "8.5.13",
@@ -470,7 +467,7 @@
     "axios": "^1",
     "classnames": "^2",
     "color": "^4",
-    "date-fns": "^2.0.0",
+    "date-fns": "^2.30.0",
     "date-fns-tz": "^2.0.0",
     "filesize": "^6",
     "framer-motion": "^11",

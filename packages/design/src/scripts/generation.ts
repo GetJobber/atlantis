@@ -47,29 +47,41 @@ const calcEach = (tokens: Tokens, includeSemiColon = true) => {
   return finalResults;
 };
 */
-export type TokenType = "dimension" | "number" | "color" | "fontFamily";
+export type TokenType =
+  | "dimension"
+  | "number"
+  | "color"
+  | "fontFamily"
+  | "percentage"
+  | "duration";
 
-/*
-Not yet implemented.
 const transformValue = (
   value: string | number | object,
   activeType: TokenType,
   outputType: "css" | "js" = "css",
 ) => {
-  const transformed = value;
+  let transformed = value;
 
-  console.log(
-    "attempt to transform:",
-    value,
-    " from",
-    activeType,
-    " to ",
-    outputType,
-  );
+  if (activeType === "duration") {
+    if (outputType === "js" && typeof value === "string") {
+      transformed = value.replace("ms", "");
+    }
+  }
+
+  if (activeType === "dimension") {
+    if (outputType === "js" && typeof value === "string") {
+      transformed = value.replace("px", "");
+    }
+  }
+
+  if (activeType === "percentage") {
+    if (outputType === "js" && typeof value === "string") {
+      transformed = value.replace("%", "");
+    }
+  }
 
   return transformed;
 };
-*/
 export type TokenTree = Record<
   string,
   string | { $value: string } | object | number
@@ -77,19 +89,33 @@ export type TokenTree = Record<
 export type Token = string | object | number;
 export type Tokens = Record<string, Token>;
 
+const getActiveType = (
+  key: string,
+  activeType: string,
+  tokens: Tokens,
+): TokenType => {
+  if (key === "$type") {
+    activeType = tokens[key] as TokenType;
+  }
+
+  if (tokens.$type) {
+    activeType = tokens.$type as string;
+  }
+
+  return activeType as TokenType;
+};
+
 const recurseTokenTree = (
   tokens: TokenTree,
   keyIn = "",
   tokenList: Record<string, Token>,
   activeType: TokenType = "dimension",
   transform = true,
+  outputType: "css" | "js" = "css" as const,
 ) => {
   for (const [key] of Object.entries(tokens)) {
     let token: Tokens = {};
-
-    if (key === "$type") {
-      activeType = tokens[key] as TokenType;
-    }
+    activeType = getActiveType(key, activeType, tokens);
 
     if (!key.startsWith("$")) {
       const passedKey = keyIn ? keyIn + "-" + key : key;
@@ -99,18 +125,13 @@ const recurseTokenTree = (
         tokenList,
         activeType,
         transform,
+        outputType,
       );
     } else if (key === "$value") {
-      /* 
-      Not Yet Implemented. We can do transforms based on the env being generated for and the type of token.
-     return {
-        [keyIn]: transform
-          ? transformValue(tokens[key], activeType)
-          : tokens[key],
-      }; */
-
       return {
-        [keyIn]: tokens[key],
+        [keyIn]: transform
+          ? transformValue(tokens[key], activeType, outputType)
+          : tokens[key],
       };
     }
     const tokenKey = Object.keys(token)[0];
@@ -123,14 +144,24 @@ const recurseTokenTree = (
   return tokenList;
 };
 
-const getOverrides = (platform?: "ios" | "android") => {
+const getOverrides = (
+  platform?: "ios" | "android",
+  outputType: "css" | "js" = "css",
+) => {
   let overrides = {};
 
   [PlatformOverrides].forEach(root => {
     if (root.platformOverrides && platform) {
       overrides = {
         ...overrides,
-        ...recurseTokenTree(root.platformOverrides[platform], "", {}),
+        ...recurseTokenTree(
+          root.platformOverrides[platform],
+          "",
+          {},
+          undefined,
+          true,
+          outputType,
+        ),
       };
     }
   });
@@ -172,28 +203,42 @@ export const parseTokenVariables = (
   return { ...rawTokens, ...parsedTokens };
 };
 
-export const getRawTokens = () => {
+export const getRawTokens = (
+  transform = true,
+  outputType: "css" | "js" = "css",
+) => {
   const rawTokens: Record<string, string | number> = {
     ["base-unit"]: baseUnit,
-    ...transformRootToTokens(BorderTokens),
-    ...transformRootToTokens(BaseColourTokens),
-    ...transformRootToTokens(ColourTokens),
-    ...transformRootToTokens(SemanticColourTokens),
-    ...transformRootToTokens(WorkflowTokens),
-    ...transformRootToTokens(RadiusTokens),
-    ...transformRootToTokens(SpaceTokens),
-    ...transformRootToTokens(ShadowTokens),
-    ...transformRootToTokens(TimingTokens),
-    ...transformRootToTokens(OpacityTokens),
-    ...transformRootToTokens(ElevationTokens),
-    ...transformRootToTokens(TypographyTokens),
+    ...transformRootToTokens(BorderTokens, transform, outputType),
+    ...transformRootToTokens(BaseColourTokens, transform, outputType),
+    ...transformRootToTokens(ColourTokens, transform, outputType),
+    ...transformRootToTokens(SemanticColourTokens, transform, outputType),
+    ...transformRootToTokens(WorkflowTokens, transform, outputType),
+    ...transformRootToTokens(RadiusTokens, transform, outputType),
+    ...transformRootToTokens(SpaceTokens, transform, outputType),
+    ...transformRootToTokens(ShadowTokens, transform, outputType),
+    ...transformRootToTokens(TimingTokens, transform, outputType),
+    ...transformRootToTokens(OpacityTokens, transform, outputType),
+    ...transformRootToTokens(ElevationTokens, transform, outputType),
+    ...transformRootToTokens(TypographyTokens, transform, outputType),
   };
 
   return rawTokens;
 };
 
-const transformRootToTokens = (tokens: TokenTree) => {
-  const baseTokens = recurseTokenTree(tokens, "", {});
+const transformRootToTokens = (
+  tokens: TokenTree,
+  transform = true,
+  outputType: "css" | "js" = "css",
+) => {
+  const baseTokens = recurseTokenTree(
+    tokens,
+    "",
+    {},
+    undefined,
+    transform,
+    outputType,
+  );
 
   return baseTokens;
 };
@@ -266,7 +311,7 @@ export const convertJSTokensToCSS = (css: Tokens) => {
 };
 
 export const buildFullCSS = () => {
-  const allTokens = getRawTokens();
+  const allTokens = getRawTokens(true, "css");
   const css = parseTokensToCSS(allTokens);
   const currentDir = dirname(import.meta.url.replace("file://", ""));
   const prefixFile = join(currentDir, "..", "styles", "prefixStyles.css");
@@ -296,12 +341,12 @@ export const parseAllTokenVariables = (rawTokens: Tokens) => {
 export const parseToJs = (
   platform: "web" | "ios" | "android" = "web",
 ): Record<string, string> => {
-  const finalTokens = parseAllTokenVariables(getRawTokens());
+  const finalTokens = parseAllTokenVariables(getRawTokens(true, "js"));
 
   let overrides = {};
 
   if (platform !== "web") {
-    overrides = getOverrides(platform);
+    overrides = getOverrides(platform, "js");
   }
 
   return { ...finalTokens, ...overrides };
@@ -355,8 +400,12 @@ export const tokenMap = {
   dark: DarkTokens,
 };
 
-export const buildTokenSubset = (tokenNames: Array<TokenTypes>) => {
-  const controlTokens = parseTokenNames(tokenNames);
+export const buildTokenSubset = (
+  tokenNames: Array<TokenTypes>,
+  transform: boolean,
+  outputType: "js" | "css",
+) => {
+  const controlTokens = parseTokenNames(tokenNames, transform, outputType);
   const allTokens = parseToJs("web");
   const myTokens: Record<string, string> = {};
   controlTokens.forEach(tokenName => {
@@ -368,13 +417,15 @@ export const buildTokenSubset = (tokenNames: Array<TokenTypes>) => {
 
 export const parseTokens = (
   types: Array<TokenTypes>,
+  transform: boolean,
+  outputType: "js" | "css",
 ): Record<string, string | number> => {
   let parsedTokens: Record<string, string | number> = {};
   types.forEach(type => {
     parsedTokens = {
       ["base-unit"]: baseUnit,
       ...parsedTokens,
-      ...transformRootToTokens(tokenMap[type]),
+      ...transformRootToTokens(tokenMap[type], transform, outputType),
     };
   });
 
@@ -411,16 +462,21 @@ export const convertRawTokensToThemeFile = (
   return convertJSTokensToTheme(cssTokens, theme);
 };
 
-export const parseTokenNames = (types: Array<TokenTypes>) => {
-  const parsedTokens = parseTokens(types);
+export const parseTokenNames = (
+  types: Array<TokenTypes>,
+  transform: boolean,
+  outputType: "js" | "css",
+) => {
+  const parsedTokens = parseTokens(types, transform, outputType);
 
   return Object.keys(parsedTokens);
 };
 
 export const convertJSTokensToObjectString = (
   jsTokens: Record<string, string | number>,
+  esm = true,
 ) => {
-  let jsTokensString = `export default {\n`;
+  let jsTokensString = esm ? `export default {\n` : `module.exports ={\n`;
 
   for (const [key, value] of Object.entries(jsTokens)) {
     if (typeof value === "object") {

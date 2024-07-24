@@ -9,7 +9,7 @@ import { CustomCanvas } from "./components/CustomCanvas";
 import { SBProvider } from "./components/SBProvider";
 import { StoryDetails } from "./components/StoryDetails";
 
-import "../packages/design/dist/foundation.css";
+import "@atlantis/packages/design/foundation.css";
 import "./assets/css/preview.css";
 import { Unstyled } from "@storybook/addon-docs";
 import { Table } from "@storybook/components";

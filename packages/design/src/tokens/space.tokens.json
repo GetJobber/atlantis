@@ -15,7 +15,7 @@
       "$value": "8px"
     },
     "base": {
-      "$value": "{base.unit}"
+      "$value": "16px"
     },
     "large": {
       "$value": "24px"

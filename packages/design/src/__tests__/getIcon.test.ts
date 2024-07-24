@@ -9,9 +9,9 @@ describe("Hello!", () => {
     expect(svgStyle).toStrictEqual({
       display: "inline-block",
       fill: "{color.icon}",
-      height: "calc({base.unit} * 1.5)",
+      height: 24,
       verticalAlign: "middle",
-      width: "calc({base.unit} * 1.5)",
+      width: 24,
     });
     expect(paths).toEqual(iconMap.icons[name]);
     expect(viewBox).toBe("0 0 24 24");
@@ -25,9 +25,9 @@ describe("Hello!", () => {
     expect(svgStyle).toStrictEqual({
       display: "inline-block",
       fill: "{color.icon}",
-      height: "calc({base.unit} * 1.5)",
+      height: 24,
       verticalAlign: "middle",
-      width: "calc({base.unit} * 1.5)",
+      width: 24,
     });
     expect(paths).toEqual(iconMap.icons[name]);
     expect(viewBox).toBe("0 0 24 24");
@@ -43,9 +43,9 @@ describe("Hello!", () => {
     expect(svgStyle).toStrictEqual({
       display: "inline-block",
       fill: "{color.icon}",
-      height: "calc({base.unit} * 2)",
+      height: 32,
       verticalAlign: "middle",
-      width: "calc({base.unit} * 2)",
+      width: 32,
     });
     expect(paths).toEqual(iconMap.icons[name]);
     expect(viewBox).toBe("0 0 24 24");
@@ -60,10 +60,10 @@ describe("Hello!", () => {
     expect(svgStyle).toStrictEqual({
       display: "inline-block",
       fill: "{color.icon}",
-      height: "calc({base.unit} * 1.5)",
+      height: 24,
       transform: "scaleY(-1)",
       verticalAlign: "middle",
-      width: "calc({base.unit} * 1.5)",
+      width: 24,
     });
     expect(paths).toEqual(iconMap.icons[mappedName]);
     expect(viewBox).toBe("0 0 24 24");
@@ -79,9 +79,9 @@ describe("Hello!", () => {
     expect(svgStyle).toStrictEqual({
       display: "inline-block",
       fill: "{color.icon}",
-      height: "{base.unit}",
+      height: 16,
       verticalAlign: "middle",
-      width: "{base.unit}",
+      width: 16,
     });
     expect(paths).toEqual(iconMap.icons[name]);
     expect(viewBox).toBe("0 0 24 24");
@@ -95,9 +95,9 @@ describe("Hello!", () => {
     expect(svgStyle).toStrictEqual({
       display: "inline-block",
       fill: "{color.icon}",
-      height: "calc({base.unit} * 1.5)",
+      height: 24,
       verticalAlign: "middle",
-      width: "calc({base.unit} * 1.5)",
+      width: 24,
     });
     expect(paths).toEqual([]);
     expect(viewBox).toBe("0 0 1024 1024");
@@ -115,9 +115,9 @@ describe("Hello!", () => {
       animationTimingFunction: "linear",
       display: "inline-block",
       fill: "{color.icon}",
-      height: "calc({base.unit} * 1.5)",
+      height: 24,
       verticalAlign: "middle",
-      width: "calc({base.unit} * 1.5)",
+      width: 24,
     });
   });
 });

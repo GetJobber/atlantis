@@ -1,6 +1,8 @@
 dist/
 node_modules/
 foundation.css
+colors.mjs
+colors.cjs
 colors.js
 assets
 icon.map.ts

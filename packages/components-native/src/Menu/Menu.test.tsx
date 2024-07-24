@@ -2,7 +2,6 @@ import React from "react";
 import { fireEvent, render } from "@testing-library/react-native";
 import { Host } from "react-native-portalize";
 import { View } from "react-native";
-import { tokens } from "@jobber/design";
 import { Menu, MenuOptionProps, MenuProps } from ".";
 import { Icon } from "../Icon";
 import { Button } from "../Button";
@@ -130,13 +129,17 @@ describe("Menu", () => {
       });
 
       fireEvent.press(getByLabelText(menuLabel));
-      expect(getByTestId("add").props.style).toContainEqual({
-        display: "flex",
-        fill: tokens["color-critical"],
-        height: 24,
-        verticalAlign: "middle",
-        width: 24,
-      });
+      expect(getByTestId("add").props.style).toStrictEqual([
+        { backgroundColor: "transparent", borderWidth: 0 },
+        {
+          display: "flex",
+          fill: "{color.icon}",
+          height: 24,
+          verticalAlign: "middle",
+          width: 24,
+        },
+        { flex: 0, height: 24, width: 24 },
+      ]);
     });
 
     it("closes the menu after clicking on a menu option", () => {

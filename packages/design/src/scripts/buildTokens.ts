@@ -20,26 +20,31 @@ const writeMobileTokens = () => {
 };
 
 const writeColorTokens = () => {
-  const colorTokens = buildTokenSubset(["color"]);
+  const jsColorTokens = buildTokenSubset(["color"], true, "js");
+  const cssColorTokens = buildTokenSubset(["color"], true, "css");
   writeFile(
     "src/assets/tokens.color.ts",
-    convertJSTokensToObjectString(colorTokens),
+    convertJSTokensToObjectString(jsColorTokens),
   );
-  writeFile("colors.js", convertJSTokensToObjectString(colorTokens));
-  writeFile("dist/color.css", convertJSTokensToCSS(colorTokens));
-  const semanticTokens = buildTokenSubset(["semantic-color"]);
+  writeFile("colors.mjs", convertJSTokensToObjectString(jsColorTokens, true));
+  writeFile("colors.cjs", convertJSTokensToObjectString(jsColorTokens, false));
+  writeFile("dist/color.css", convertJSTokensToCSS(cssColorTokens));
+  const jsSemanticTokens = buildTokenSubset(["semantic-color"], true, "js");
+  const cssSemanticTokens = buildTokenSubset(["semantic-color"], true, "css");
+
   writeFile(
     "src/assets/tokens.semantic.ts",
-    convertJSTokensToObjectString(semanticTokens),
+    convertJSTokensToObjectString(jsSemanticTokens),
   );
-  writeFile("dist/semantic.css", convertJSTokensToCSS(semanticTokens));
+  writeFile("dist/semantic.css", convertJSTokensToCSS(cssSemanticTokens));
 };
 
 const writeDarkModeTokens = () => {
-  const darkTokens = parseTokens(["dark"]);
-  const jsTokens = convertRawTokensToJSFile(darkTokens);
-  const cssTokens = convertRawTokensToCSSFile(darkTokens);
-  const darkModeTokens = convertRawTokensToThemeFile(darkTokens, "dark");
+  const cssDarkTokens = parseTokens(["dark"], true, "css");
+  const jsDarkTokens = parseTokens(["dark"], true, "js");
+  const jsTokens = convertRawTokensToJSFile(jsDarkTokens);
+  const cssTokens = convertRawTokensToCSSFile(cssDarkTokens);
+  const darkModeTokens = convertRawTokensToThemeFile(cssDarkTokens, "dark");
 
   writeFile("src/assets/tokens.dark.ts", jsTokens);
   writeFile("dist/dark.theme.css", cssTokens);

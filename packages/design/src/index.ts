@@ -70,6 +70,7 @@ const getPaths = (name: keyof typeof iconMap.icons | ExtraIconNames) => {
   return { paths, iconSize };
 };
 
+// eslint-disable-next-line max-statements
 export function getIcon({ name, color, size = "base" }: IconProps) {
   const iconStyle = iconStyles.icon;
   const iconSizeStyle = iconSizes.tokens[size];
@@ -90,9 +91,9 @@ export function getIcon({ name, color, size = "base" }: IconProps) {
     color || ""
   ];
   const viewBox = `0 0 ${iconSize} ${iconSize}`;
-  const pathClassNames = colorStyle;
+  const pathStyle = { fill: (colorStyle as { value: string })?.value };
 
-  return { svgStyle, pathClassNames, paths, viewBox } as const;
+  return { svgStyle, pathStyle, paths, viewBox } as const;
 }
 
 export type ExtraIconNames =

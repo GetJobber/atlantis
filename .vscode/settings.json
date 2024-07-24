@@ -13,7 +13,7 @@
     "source.fixAll.eslint": "explicit",
     "source.fixAll.stylelint": "explicit"
   },
-  "eslint.enable": false,
+  "eslint.enable": true,
   "eslint.format.enable": false,
   "eslint.options": {
     "extensions": [

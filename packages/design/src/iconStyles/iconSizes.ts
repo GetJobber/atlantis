@@ -1,16 +1,16 @@
 export const iconSizes = {
   tokens: {
     small: {
-      width: "{base.unit}" as unknown as number,
-      height: "{base.unit}" as unknown as number,
+      width: 16,
+      height: 16,
     },
     base: {
-      width: "calc({base.unit} * 1.5)" as unknown as number,
-      height: "calc({base.unit} * 1.5)" as unknown as number,
+      width: 24,
+      height: 24,
     },
     large: {
-      width: "calc({base.unit} * 2)" as unknown as number,
-      height: "calc({base.unit} * 2)" as unknown as number,
+      width: 32,
+      height: 32,
     },
   },
 };

@@ -10,10 +10,10 @@ export const iconColors = {
       value: "{color.greyBlue}",
     },
     greyBlueDark: {
-      value: "{color.greyBlue._.dark}",
+      value: "{color.greyBlue-.dark}",
     },
     greyBlueLighter: {
-      value: "{color.greyBlue._.lighter}",
+      value: "{color.greyBlue-.lighter}",
     },
     blue: {
       value: "{color.blue}",
@@ -40,25 +40,25 @@ export const iconColors = {
       value: "{color.interactive}",
     },
     interactiveHover: {
-      value: "{color.interactive._.hover}",
+      value: "{color.interactive-.hover}",
     },
     destructive: {
       value: "{color.destructive}",
     },
     destructiveHover: {
-      value: "{color.destructive._.hover}",
+      value: "{color.destructive-.hover}",
     },
     interactiveSubtle: {
-      value: "{color.interactive._.subtle}",
+      value: "{color.interactive-.subtle}",
     },
     interactiveSubtleHover: {
-      value: "{color.interactive._.subtle._.hover}",
+      value: "{color.interactive-.subtle-.hover}",
     },
     disabled: {
       value: "{color.disabled}",
     },
     disabledSecondary: {
-      value: "{color.disabled._.secondary}",
+      value: "{color.disabled-.secondary}",
     },
     focus: {
       value: "{color.focus}",
@@ -67,43 +67,43 @@ export const iconColors = {
       value: "{color.critical}",
     },
     criticalSurface: {
-      value: "{color.critical._.surface}",
+      value: "{color.critical-.surface}",
     },
     criticalOnSurface: {
-      value: "{color.critical._.onSurface}",
+      value: "{color.critical-.onSurface}",
     },
     warning: {
       value: "{color.warning}",
     },
     warningSurface: {
-      value: "{color.warning._.surface}",
+      value: "{color.warning-.surface}",
     },
     warningOnSurface: {
-      value: "{color.warning._.onSurface}",
+      value: "{color.warning-.onSurface}",
     },
     success: {
       value: "{color.success}",
     },
     successOnSurface: {
-      value: "{color.success._.onSurface}",
+      value: "{color.success-.onSurface}",
     },
     informative: {
       value: "{color.informative}",
     },
     informativeSurface: {
-      value: "{color.informative._.surface}",
+      value: "{color.informative-.surface}",
     },
     informativeOnSurface: {
-      value: "{color.informative._.onSurface}",
+      value: "{color.informative-.onSurface}",
     },
     inactive: {
       value: "{color.inactive}",
     },
     inactiveSurface: {
-      value: "{color.inactive._.surface}",
+      value: "{color.inactive-.surface}",
     },
     inactiveOnSurface: {
-      value: "{color.inactive._.onSurface}",
+      value: "{color.inactive-.onSurface}",
     },
     heading: {
       value: "{color.heading}",
@@ -112,34 +112,34 @@ export const iconColors = {
       value: "{color.text}",
     },
     textSecondary: {
-      value: "{color.text._.secondary}",
+      value: "{color.text-.secondary}",
     },
     textReverse: {
-      value: "{color.text._.reverse}",
+      value: "{color.text-.reverse}",
     },
     textReverseSecondary: {
-      value: "{color.text._.reverse._.secondary}",
+      value: "{color.text-.reverse-.secondary}",
     },
     surface: {
       value: "{color.surface}",
     },
     surfaceHover: {
-      value: "{color.surface._.hover}",
+      value: "{color.surface-.hover}",
     },
     surfaceActive: {
-      value: "{color.surface._.active}",
+      value: "{color.surface-.active}",
     },
     surfaceBackground: {
-      value: "{color.surface._.background}",
+      value: "{color.surface-.background}",
     },
     surfaceReverse: {
-      value: "{color.surface._.reverse}",
+      value: "{color.surface-.reverse}",
     },
     brand: {
       value: "{color.brand}",
     },
     brandHighlight: {
-      value: "{color.brand._.highlight}",
+      value: "{color.brand-.highlight}",
     },
   },
 };
