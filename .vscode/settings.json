@@ -19,7 +19,6 @@
     "extensions": [
       ".js",
       ".jsx",
-      ".css",
       ".md",
       ".mdx",
       ".ts",
@@ -29,14 +28,13 @@
   "eslint.validate": [
     "markdown",
     "mdx",
-    "css",
     "javascript",
     "javascriptreact",
     "typescript",
     "typescriptreact"
   ],
   "peacock.color": "#F4E465",
-  "prettier.enable": true,
+  "prettier.enable": false,
   "workbench.colorCustomizations": {
     "statusBar.background": "#f4e465",
     "statusBarItem.hoverBackground": "#f1dc35",
