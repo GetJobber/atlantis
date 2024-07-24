@@ -15,6 +15,7 @@ import BorderTokens from "../tokens/border.tokens.json" assert { type: "json" };
 import SpaceTokens from "../tokens/space.tokens.json" assert { type: "json" };
 import ShadowTokens from "../tokens/shadow.tokens.json" assert { type: "json" };
 import DarkTokens from "../tokens/dark.tokens.json" assert { type: "json" };
+import DarkElevatedTokens from "../tokens/darkElevated.tokens.json" assert { type: "json" };
 import PlatformOverrides from "../tokens/platformOverride.tokens.json" assert { type: "json" };
 
 export const baseUnit = "16px";
@@ -286,7 +287,15 @@ export const parseTokensToCSS = (rawTokens: Tokens) => {
   return cssTokens;
 };
 
-export const convertJSTokensToTheme = (css: Tokens, theme: string) => {
+export const convertJSTokensToTheme = (
+  css: Tokens,
+  theme: string,
+  layers: Array<{
+    key: string;
+    value: string;
+    tokens: Record<string, string | number>;
+  }>,
+) => {
   let rootCSS = ` @media screen {\n
  :root[data-theme="${theme}"] {\n
  `;
@@ -294,7 +303,16 @@ export const convertJSTokensToTheme = (css: Tokens, theme: string) => {
   for (const [i] of Object.entries(css)) {
     rootCSS += `  --${i}: ${css[i]};\n`;
   }
-  rootCSS += `}\n}\n`;
+  rootCSS += `}\n`;
+  layers.forEach(layer => {
+    rootCSS += `[${layer.key}="${layer.value}"]{\n`;
+
+    for (const [i] of Object.entries(layer.tokens)) {
+      rootCSS += `  --${i}: ${layer.tokens[i]};\n`;
+    }
+    rootCSS += `}\n`;
+  });
+  rootCSS += `}\n`;
 
   return rootCSS;
 };
@@ -398,6 +416,7 @@ export const tokenMap = {
   border: BorderTokens,
   "base-color": BaseColourTokens,
   dark: DarkTokens,
+  "dark-elevated": DarkElevatedTokens,
 };
 
 export const buildTokenSubset = (
@@ -456,10 +475,15 @@ export const convertRawTokensToCSSFile = (
 export const convertRawTokensToThemeFile = (
   tokens: Record<string, string | number>,
   theme: string,
+  layers: Array<{
+    key: string;
+    value: string;
+    tokens: Record<string, string | number>;
+  }>,
 ) => {
   const cssTokens = parseTokensToCSS(tokens);
 
-  return convertJSTokensToTheme(cssTokens, theme);
+  return convertJSTokensToTheme(cssTokens, theme, layers);
 };
 
 export const parseTokenNames = (

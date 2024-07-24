@@ -1,0 +1,42 @@
+{
+    "color": {
+        "surface": {
+            "$value": "{color.base.blue-.800}"
+        },
+        "surface-": {
+            "hover": {
+                "$value": "{color.base.blue-.700}"
+            },
+            "active": {
+                "$value": "{color.base.blue-.600}"
+            }
+        },
+        "background": {
+            "$value": "{color.base.blue-.900}"
+        },
+        "background-": {
+            "hover": {
+                "$value": "{color.base.blue-.800}"
+            },
+            "subtle": {
+                "$value": "{color.base.blue-.700}"
+            }
+        },
+        "border": {
+            "$value": "{color.base.blue-.700}"
+        },
+        "border-": {
+            "section": {
+                "$value": "{color.base.blue-.300}"
+            }
+        },
+        "text": {
+            "$value": "{color.base.blue-.100}"
+        },
+        "text-": {
+            "secondary": {
+                "$value": "{color.base.blue-.300}"
+            }
+        }
+    }
+}

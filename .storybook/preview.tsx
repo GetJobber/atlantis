@@ -10,6 +10,7 @@ import { SBProvider } from "./components/SBProvider";
 import { StoryDetails } from "./components/StoryDetails";
 
 import "@atlantis/packages/design/foundation.css";
+import "@atlantis/packages/design/dist/dark.mode.css";
 import "./assets/css/preview.css";
 import { Unstyled } from "@storybook/addon-docs";
 import { Table } from "@storybook/components";
@@ -63,9 +64,15 @@ export const parameters = {
 
 export const decorators = [
   Story => (
+    <div style={{ backgroundColor: 'var(--color-surface)' }}>
     <SBProvider>
       <Story />
     </SBProvider>
+    </div>
   ),
-  (Story, context) => <StoryDetails Story={Story} context={context} />,
+  (Story, context) => 
+    <div style={{ backgroundColor: 'var(--color-surface)' }}>
+    <StoryDetails Story={Story} context={context} />
+    </div>
+  ,
 ];

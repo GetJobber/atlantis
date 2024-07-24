@@ -9,6 +9,7 @@ import {
   convertRawTokensToThemeFile,
   parseToObject,
   parseTokens,
+  parseTokensToCSS,
 } from "./generation.ts";
 
 const writeMobileTokens = () => {
@@ -41,10 +42,17 @@ const writeColorTokens = () => {
 
 const writeDarkModeTokens = () => {
   const cssDarkTokens = parseTokens(["dark"], true, "css");
+  const cssDarkElevatedTokens = parseTokens(["dark-elevated"], true, "css");
   const jsDarkTokens = parseTokens(["dark"], true, "js");
   const jsTokens = convertRawTokensToJSFile(jsDarkTokens);
   const cssTokens = convertRawTokensToCSSFile(cssDarkTokens);
-  const darkModeTokens = convertRawTokensToThemeFile(cssDarkTokens, "dark");
+  const darkModeTokens = convertRawTokensToThemeFile(cssDarkTokens, "dark", [
+    {
+      key: "data-elevation",
+      value: "elevated",
+      tokens: parseTokensToCSS(cssDarkElevatedTokens),
+    },
+  ]);
 
   writeFile("src/assets/tokens.dark.ts", jsTokens);
   writeFile("dist/dark.theme.css", cssTokens);
