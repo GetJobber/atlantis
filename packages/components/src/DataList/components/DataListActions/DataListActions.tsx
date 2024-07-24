@@ -55,6 +55,7 @@ export function DataListActions<T extends DataListObject>({
                 }
               }}
               type="secondary"
+              size="small"
               variation="subtle"
             />
           </Tooltip>

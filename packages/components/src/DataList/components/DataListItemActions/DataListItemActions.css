@@ -1,7 +1,7 @@
 .menu {
   display: flex;
   position: absolute;
-  top: calc(var(--space-small) * -1);
+  top: var(--space-larger);
   right: 0;
   z-index: var(--elevation-menu);
   box-shadow: var(--shadow-base);
