@@ -2,3 +2,6 @@ dist/
 node_modules/
 foundation.css
 colors.js
+assets
+icon.map.ts
+tokens.web.ts

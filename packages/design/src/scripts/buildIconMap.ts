@@ -40,7 +40,7 @@ export const getIconMap = async () => {
 export const generateIconMapFile = () => {
   getIconMap().then(iconMap => {
     const iconMapString = JSON.stringify(iconMap, null, 2);
-    writeFile("src/icon.map.ts", "export default " + iconMapString);
+    writeFile("src/assets/icon.map.ts", "export default " + iconMapString);
     writeFile("dist/icon.map.js", "export default " + iconMapString);
   });
 };

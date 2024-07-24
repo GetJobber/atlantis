@@ -53,7 +53,7 @@ export const writeTokenFile = () => {
   writeFile("foundation.css", cssString);
 
   const jsTokens = parseToObject("web");
-  writeFile("src/tokens.web.ts", jsTokens);
+  writeFile("src/assets/tokens.web.ts", jsTokens);
 
   writeMobileTokens();
   writeColorTokens();
