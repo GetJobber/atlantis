@@ -53,6 +53,10 @@
   justify-content: center;
 }
 
+.clickableSuffix:hover {
+  background-color: var(--color-surface--hover);
+}
+
 .chip:focus-visible,
 .chip .clickableSuffix:focus-visible {
   box-shadow: var(--shadow-focus);
