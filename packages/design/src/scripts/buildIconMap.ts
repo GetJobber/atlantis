@@ -1,4 +1,4 @@
-import { readFile, readdir, writeFile } from "fs/promises";
+import { mkdir, readFile, readdir, writeFile } from "fs/promises";
 import { dirname, extname, join } from "path";
 import { JSDOM } from "jsdom";
 
@@ -40,6 +40,7 @@ export const getIconMap = async () => {
 export const generateIconMapFile = () => {
   getIconMap().then(iconMap => {
     const iconMapString = JSON.stringify(iconMap, null, 2);
+    mkdir("src/assets", { recursive: true });
     writeFile("src/assets/icon.map.ts", "export default " + iconMapString);
     writeFile("dist/icon.map.js", "export default " + iconMapString);
   });
