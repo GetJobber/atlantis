@@ -13,38 +13,34 @@ export function ChipSuffix({
 }: ChipSuffixProps) {
   let singleChild = useChildComponent(children, d => d.type === Icon);
 
+  const handleClick = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    event.stopPropagation();
+    onClickSuffix?.(event);
+  };
+
+  const isClickable = Boolean(onClickSuffix);
+
   if (!allowedSuffixIcons.includes(singleChild?.props?.name)) {
     singleChild = undefined;
   }
 
-  if (onClickSuffix) {
-    return (
-      <button
-        className={styles.clickableSuffix}
-        onClick={event => {
-          event.stopPropagation();
-          onClickSuffix(event);
-        }}
-        data-testid={testID}
-        aria-label={ariaLabel}
-        type="button"
-      >
-        {singleChild}
-      </button>
-    );
-  } else {
-    return (
-      <span
-        className={classNames(
-          styles.suffix,
-          className,
-          !singleChild && styles.empty,
-        )}
-      >
-        {singleChild}
-      </span>
-    );
-  }
+  const tagProps = {
+    className: classNames(
+      isClickable ? styles.clickableSuffix : styles.suffix,
+      className,
+      !singleChild && styles.empty,
+    ),
+    onClick: isClickable ? handleClick : undefined,
+    type: isClickable ? ("button" as const) : undefined,
+    "data-testid": testID,
+    "aria-label": ariaLabel,
+  };
+
+  const Tag = onClickSuffix ? "button" : "span";
+
+  return <Tag {...tagProps}>{singleChild}</Tag>;
 }
 
 export interface ChipSuffixProps extends PropsWithChildren {
