@@ -13,23 +13,23 @@ import {
 
 const writeMobileTokens = () => {
   const androidTokens = parseToObject("android");
-  writeFile("src/generated/tokens.android.ts", androidTokens);
+  writeFile("src/assets/tokens.android.ts", androidTokens);
 
   const iosTokens = parseToObject("ios");
-  writeFile("src/generated/tokens.ios.ts", iosTokens);
+  writeFile("src/assets/tokens.ios.ts", iosTokens);
 };
 
 const writeColorTokens = () => {
   const colorTokens = buildTokenSubset(["color"]);
   writeFile(
-    "src/generated/tokens.color.ts",
+    "src/assets/tokens.color.ts",
     convertJSTokensToObjectString(colorTokens),
   );
   writeFile("colors.js", convertJSTokensToObjectString(colorTokens));
   writeFile("dist/color.css", convertJSTokensToCSS(colorTokens));
   const semanticTokens = buildTokenSubset(["semantic-color"]);
   writeFile(
-    "src/generated/tokens.semantic.ts",
+    "src/assets/tokens.semantic.ts",
     convertJSTokensToObjectString(semanticTokens),
   );
   writeFile("dist/semantic.css", convertJSTokensToCSS(semanticTokens));
@@ -41,7 +41,7 @@ const writeDarkModeTokens = () => {
   const cssTokens = convertRawTokensToCSSFile(darkTokens);
   const darkModeTokens = convertRawTokensToThemeFile(darkTokens, "dark");
 
-  writeFile("src/generated/tokens.dark.ts", jsTokens);
+  writeFile("src/assets/tokens.dark.ts", jsTokens);
   writeFile("dist/dark.theme.css", cssTokens);
   writeFile("dist/dark.mode.css", darkModeTokens);
 };

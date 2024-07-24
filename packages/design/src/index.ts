@@ -1,12 +1,12 @@
 import { iconStyles } from "./iconStyles/iconStyles";
 import { iconSizes } from "./iconStyles/iconSizes";
 import { iconColors } from "./iconStyles/iconColours";
-import iconMap from "./generated/icon.map";
-import webTokens from "./generated/tokens.web";
-import androidTokens from "./generated/tokens.android";
-import iosTokens from "./generated/tokens.ios";
-import colors from "./generated/tokens.color";
-import semantic from "./generated/tokens.semantic";
+import iconMap from "./assets/icon.map";
+import webTokens from "./assets/tokens.web";
+import androidTokens from "./assets/tokens.android";
+import iosTokens from "./assets/tokens.ios";
+import colors from "./assets/tokens.color";
+import semantic from "./assets/tokens.semantic";
 
 type WebTokens = typeof webTokens;
 type MobileTokens = typeof androidTokens;

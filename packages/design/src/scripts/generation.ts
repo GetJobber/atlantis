@@ -49,6 +49,8 @@ const calcEach = (tokens: Tokens, includeSemiColon = true) => {
 */
 export type TokenType = "dimension" | "number" | "color" | "fontFamily";
 
+/*
+Not yet implemented.
 const transformValue = (
   value: string | number | object,
   activeType: TokenType,
@@ -67,7 +69,7 @@ const transformValue = (
 
   return transformed;
 };
-
+*/
 export type TokenTree = Record<
   string,
   string | { $value: string } | object | number
@@ -99,10 +101,16 @@ const recurseTokenTree = (
         transform,
       );
     } else if (key === "$value") {
-      return {
+      /* 
+      Not Yet Implemented. We can do transforms based on the env being generated for and the type of token.
+     return {
         [keyIn]: transform
           ? transformValue(tokens[key], activeType)
           : tokens[key],
+      }; */
+
+      return {
+        [keyIn]: tokens[key],
       };
     }
     const tokenKey = Object.keys(token)[0];
