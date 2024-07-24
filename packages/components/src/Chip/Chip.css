@@ -25,7 +25,7 @@
 .chip:focus,
 .chip:focus-visible,
 .clickableSuffix:focus-visible {
-  outline: none;
+  outline: transparent;
 }
 
 .chip .clickableSuffix {
