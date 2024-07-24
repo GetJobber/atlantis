@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     preset: 'ts-jest',
     testEnvironment: 'node',
     // If you're using ECMAScript modules, you might need the following configuration

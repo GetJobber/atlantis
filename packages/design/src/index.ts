@@ -1,14 +1,30 @@
 import { iconStyles } from "./iconStyles/iconStyles";
 import { iconSizes } from "./iconStyles/iconSizes";
 import { iconColors } from "./iconStyles/iconColours";
-import iconMap from "./icon.map";
-import tokens from "./tokens.web";
-import mobileTokens from "./tokens.mobile";
+import iconMap from "./generated/icon.map";
+import webTokens from "./generated/tokens.web";
+import androidTokens from "./generated/tokens.android";
+import iosTokens from "./generated/tokens.ios";
+import colors from "./generated/tokens.color";
+import semantic from "./generated/tokens.semantic";
 
-export type Tokens = typeof tokens;
-export type MobileTokens = typeof mobileTokens;
+type WebTokens = typeof webTokens;
+type MobileTokens = typeof androidTokens;
 
-export { tokens, mobileTokens, iconMap };
+export {
+  webTokens as tokens,
+  webTokens,
+  androidTokens,
+  iosTokens,
+  iconMap,
+  iconStyles,
+  iconSizes,
+  iconColors,
+  type WebTokens,
+  type MobileTokens,
+  colors,
+  semantic,
+};
 
 interface IconProps {
   /** The icon to show.  */

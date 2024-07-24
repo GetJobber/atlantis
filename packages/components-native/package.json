@@ -36,8 +36,8 @@
     "build:clean": "rm -rf ./dist"
   },
   "dependencies": {
-    "@jobber/design": "^0.62.2",
-    "@jobber/hooks": "^2.10.2",
+    "@jobber/design": "*",
+    "@jobber/hooks": "*",
     "@react-native-clipboard/clipboard": "^1.11.2",
     "@react-native-picker/picker": "^2.4.10",
     "autolinker": "^4.0.0",

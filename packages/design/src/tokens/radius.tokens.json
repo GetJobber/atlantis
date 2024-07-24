@@ -1,19 +1,22 @@
 {
   "radius": {
+    "$type": "dimension",
+    "$description": "Radius tokens. These are used to define the border radius of elements. Feel free to use these directly.",
     "base": {
-      "value": "8px"
+      "$value": "8px"
     },
     "small": {
-      "value": "calc({radius.base} / 2)"
+      "$value": "4px"
     },
     "large": {
-      "value": "calc({radius.base} * 2)"
+      "$value": "16px"
     },
     "larger": {
-      "value": "calc({radius.base} * 3)"
+      "$value": "24px"
     },
     "circle": {
-      "value": "100%"
+      "$type": "percentage",
+      "$value": "100%"
     }
   }
 }

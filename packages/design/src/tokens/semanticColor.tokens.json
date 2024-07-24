@@ -1,160 +1,162 @@
 {
   "color": {
+    "$type": "color",
+    "$description": "Semantic color tokens. These are used to define the color of elements based on their semantic meaning. Use these tokens to style your components.",
     "interactive": {
-      "_": {
-        "hover": {
-          "value": "{color.base.green._.700}"
-        },
-        "subtle": {
-          "_": {
-            "hover": {
-              "value": "{color.base.blue._.900}"
-            }
-          },
-          "value": "{color.base.blue._.800}"
-        }
+      "$value": "{color.base.green-.600}"
+    },
+    "interactive-": {
+      "hover": {
+        "$value": "{color.base.green-.700}"
       },
-      "value": "{color.base.green._.600}"
+      "subtle": {
+        "$value": "{color.base.blue-.800}"
+      },
+      "subtle-": {
+        "hover": {
+          "$value": "{color.base.blue-.900}"
+        }
+      }
     },
     "destructive": {
-      "_": {
-        "hover": {
-          "value": "{color.base.red._.700}"
-        }
-      },
-      "value": "{color.base.red._.600}"
+      "$value": "{color.base.red-.600}"
+    },
+    "destructive-": {
+      "hover": {
+        "$value": "{color.base.red-.700}"
+      }
     },
     "disabled": {
-      "_": {
-        "secondary": {
-          "value": "{color.base.grey._.200}"
-        }
-      },
-      "value": "{color.base.grey._.400}"
+      "$value": "{color.base.grey-.400}"
+    },
+    "disabled-": {
+      "secondary": {
+        "$value": "{color.base.grey-.200}"
+      }
     },
     "focus": {
-      "value": "{color.base.blue._.500}"
+      "$value": "{color.base.blue-.500}"
     },
     "critical": {
-      "_": {
-        "surface": {
-          "value": "{color.base.red._.200}"
-        },
-        "onSurface": {
-          "value": "{color.base.red._.800}"
-        }
+      "$value": "{color.base.red-.600}"
+    },
+    "critical-": {
+      "surface": {
+        "$value": "{color.base.red-.200}"
       },
-      "value": "{color.base.red._.600}"
+      "onSurface": {
+        "$value": "{color.base.red-.800}"
+      }
     },
     "warning": {
-      "_": {
-        "surface": {
-          "value": "{color.base.yellow._.200}"
-        },
-        "onSurface": {
-          "value": "{color.base.yellow._.700}"
-        }
+      "$value": "{color.base.yellow-.400}"
+    },
+    "warning-": {
+      "surface": {
+        "$value": "{color.base.yellow-.200}"
       },
-      "value": "{color.base.yellow._.400}"
+      "onSurface": {
+        "$value": "{color.base.yellow-.700}"
+      }
     },
     "success": {
-      "_": {
-        "surface": {
-          "value": "{color.base.green._.200}"
-        },
-        "onSurface": {
-          "value": "{color.base.green._.800}"
-        }
+      "$value": "{color.base.green-.600}"
+    },
+    "success-": {
+      "surface": {
+        "$value": "{color.base.green-.200}"
       },
-      "value": "{color.base.green._.600}"
+      "onSurface": {
+        "$value": "{color.base.green-.800}"
+      }
     },
     "informative": {
-      "_": {
-        "surface": {
-          "value": "{color.base.lightBlue._.200}"
-        },
-        "onSurface": {
-          "value": "{color.base.lightBlue._.700}"
-        }
+      "$value": "{color.base.lightBlue-.500}"
+    },
+    "informative-": {
+      "surface": {
+        "$value": "{color.base.lightBlue-.200}"
       },
-      "value": "{color.base.lightBlue._.500}"
+      "onSurface": {
+        "$value": "{color.base.lightBlue-.700}"
+      }
     },
     "inactive": {
-      "_": {
-        "surface": {
-          "value": "{color.base.blue._.200}"
-        },
-        "onSurface": {
-          "value": "{color.base.blue._.900}"
-        }
+      "$value": "{color.base.blue-.700}"
+    },
+    "inactive-": {
+      "surface": {
+        "$value": "{color.base.blue-.200}"
       },
-      "value": "{color.base.blue._.700}"
+      "onSurface": {
+        "$value": "{color.base.blue-.900}"
+      }
     },
     "heading": {
-      "value": "{color.base.blue._.900}"
+      "$value": "{color.base.blue-.900}"
     },
     "text": {
-      "_": {
-        "secondary": {
-          "value": "{color.base.blue._.600}"
-        },
-        "reverse": {
-          "_": {
-            "secondary": {
-              "value": "{color.base.blue._.300}"
-            }
-          },
-          "value": "{color.white}"
-        }
+      "$value": "{color.base.blue-.800}"
+    },
+    "text-": {
+      "secondary": {
+        "$value": "{color.base.blue-.600}"
       },
-      "value": "{color.base.blue._.800}"
+      "reverse": {
+        "$value": "{color.white}"
+      },
+      "reverse-": {
+        "secondary": {
+          "$value": "{color.base.blue-.300}"
+        }
+      }
     },
     "icon": {
-      "value": "{color.base.blue._.800}"
+      "$value": "{color.base.blue-.800}"
     },
     "surface": {
-      "_": {
-        "hover": {
-          "value": "{color.base.taupe._.200}"
-        },
-        "reverse": {
-          "value": "{color.base.blue._.900}"
-        },
-        "active": {
-          "value": "{color.base.taupe._.300}"
-        },
-        "background": {
-          "_": {
-            "hover": {
-              "value": "{color.base.taupe._.300}"
-            },
-            "subtle": {
-              "_": {
-                "hover": {
-                  "value": "{color.base.taupe._.300}"
-                }
-              },
-              "value": "{color.base.taupe._.100}"
-            }
-          },
-          "value": "{color.base.taupe._.200}"
-        }
+      "$value": "{color.white}"
+    },
+    "surface-": {
+      "hover": {
+        "$value": "{color.base.taupe-.200}"
       },
-      "value": "{color.white}"
+      "reverse": {
+        "$value": "{color.base.blue-.900}"
+      },
+      "active": {
+        "$value": "{color.base.taupe-.300}"
+      },
+      "background": {
+        "$value": "{color.base.taupe-.200}"
+      },
+      "background-": {
+        "hover": {
+          "$value": "{color.base.taupe-.300}"
+        },
+        "subtle": {
+          "$value": "{color.base.taupe-.100}"
+        },
+        "subtle-": {
+          "hover": {
+            "$value": "{color.base.taupe-.300}"
+          }
+        }
+      }
     },
     "border": {
-      "_": {
-        "interactive": {
-          "value": "{color.base.blue._.300}"
-        },
-        "section": {
-          "value": "{color.base.blue._.900}"
-        }
+      "$value": "{color.base.blue-.300}"
+    },
+    "border-": {
+      "interactive": {
+        "$value": "{color.base.blue-.300}"
       },
-      "value": "{color.base.blue._.300}"
+      "section": {
+        "$value": "{color.base.blue-.900}"
+      }
     },
     "brand": {
-      "value": "{color.base.lime._.500}"
+      "$value": "{color.base.lime-.500}"
     }
   }
 }

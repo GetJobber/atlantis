@@ -43,7 +43,7 @@
     "generate:assets": "npm run generate:iconMap && npm run generate:tokenCSS",
     "build": "mkdir -p dist && npm run generate:assets && npm run build:design",
     "watch": "mkdir -p dist & chokidar \"**/*.ts\" \"**/*.json\" \"**/*.svg\"-c \"npm run generate:assets && npm run build:design\"",
-    "clean": "rm -rf dist/* icons/* src/icons/iconMap.ts colors.js foundation.* iconStyles.* tsconfig.tsbuildinfo",
+    "clean": "rm -rf dist/*",
     "bootstrap": "npm run clean && npm run build"
   },
   "devDependencies": {

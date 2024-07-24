@@ -1,0 +1,14 @@
+{
+    "color": {
+        "$type": "color",
+        "$description:": "Color tokens for the dark theme.",
+        "interactive": {
+            "$value": "{color.brand-.highlight}"
+        },
+        "interactive-": {
+            "hover": {
+                "$value": "hsl(86,94%,58%)"
+            }
+        }
+    }
+}

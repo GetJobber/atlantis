@@ -1,64 +1,97 @@
 {
-    "color": {
-      "request": {
-        "_": {
-          "surface": {"value": "{color.base.orange._.200}"},
-          "onSurface": {"value": "{color.base.orange._.800}"}
-        },
-        "value": "{color.base.orange._.600}"
+  "color": {
+    "$type": "color",
+    "$description": "Semantic color tokens, only to be used in the workflow section?",
+    "request": {
+      "$value": "{color.base.orange-.600}"
+    },
+    "request-": {
+      "surface": {
+        "$value": "{color.base.orange-.200}"
       },
-      "quote": {
-        "_": {
-          "surface": {"value": "{color.base.pink._.200}"},
-          "onSurface": {"value": "{color.base.pink._.800}"}
-        },
-        "value": "{color.base.pink._.700}"
-      },
-      "job": {
-        "_": {
-          "surface": {"value": "{color.base.green._.200}"},
-          "onSurface": {"value": "{color.base.green._.700}"}
-        },
-        "value": "{color.base.green._.600}"
-      },
-      "task": {
-        "_": {
-          "surface": {"value": "{color.base.blue._.200}"},
-          "onSurface": {"value": "{color.base.blue._.900}"}
-        },
-        "value": "{color.base.blue._.800}"
-      },
-      "invoice": {
-        "_": {
-          "surface": {"value": "{color.base.lightBlue._.200}"},
-          "onSurface": {"value": "{color.base.lightBlue._.800}"}
-        },
-        "value": "{color.base.lightBlue._.700}"
-      },
-      "visit": {
-        "_": {
-          "surface": {"value": "{color.job._.surface}"},
-          "onSurface": {"value": "{color.job._.onSurface}"}
-        },
-        "value": "{color.job}"
-      },
-      "event": {
-        "_": {
-          "surface": {"value": "{color.base.yellow._.200}"},
-          "onSurface": {"value": "{color.base.yellow._.700}"}
-        },
-        "value": "{color.base.yellow._.400}"
-      },
-      "payments": {
-        "_": {
-          "surface": {"value": "{color.invoice._.surface}"},
-          "onSurface": {"value": "{color.invoice._.surface}"}
-        },
-        "value": "{color.invoice}"
-      },
-      "client": {
-        "value": "{color.base.taupe._.700}"
+      "onSurface": {
+        "$value": "{color.base.orange-.800}"
       }
+    },
+    "quote": {
+      "$value": "{color.base.pink-.700}"
+    },
+    "quote-": {
+      "surface": {
+        "$value": "{color.base.pink-.200}"
+      },
+      "onSurface": {
+        "$value": "{color.base.pink-.800}"
+      }
+    },
+    "job": {
+      "$value": "{color.base.green-.600}"
+    },
+    "job-": {
+      "surface": {
+        "$value": "{color.base.green-.200}"
+      },
+      "onSurface": {
+        "$value": "{color.base.green-.700}"
+      }
+    },
+    "task": {
+      "$value": "{color.base.blue-.800}"
+    },
+    "task-": {
+      "surface": {
+        "$value": "{color.base.blue-.200}"
+      },
+      "onSurface": {
+        "$value": "{color.base.blue-.900}"
+      }
+    },
+    "invoice": {
+      "$value": "{color.base.lightBlue-.700}"
+    },
+    "invoice-": {
+      "surface": {
+        "$value": "{color.base.lightBlue-.200}"
+      },
+      "onSurface": {
+        "$value": "{color.base.lightBlue-.800}"
+      }
+    },
+    "visit": {
+      "$value": "{color.job}"
+    },
+    "visit-": {
+      "surface": {
+        "$value": "{color.job-.surface}"
+      },
+      "onSurface": {
+        "$value": "{color.job-.onSurface}"
+      }
+    },
+    "event": {
+      "$value": "{color.base.yellow-.400}"
+    },
+    "event-": {
+      "surface": {
+        "$value": "{color.base.yellow-.200}"
+      },
+      "onSurface": {
+        "$value": "{color.base.yellow-.700}"
+      }
+    },
+    "payments": {
+      "$value": "{color.invoice}"
+    },
+    "payments-": {
+      "surface": {
+        "$value": "{color.invoice-.surface}"
+      },
+      "onSurface": {
+        "$value": "{color.invoice-.surface}"
+      }
+    },
+    "client": {
+      "$value": "{color.base.taupe-.700}"
     }
   }
-  
+}

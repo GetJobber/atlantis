@@ -1,31 +1,33 @@
 {
   "space": {
+    "$type": "dimension",
+    "$description": "Space tokens. These are used to define the space between elements. Feel free to use these directly, but only as a space token. Do not use these as a dimension token.",
     "minuscule": {
-      "value": "calc({base.unit} / 16)"
+      "$value": "1px"
     },
     "smallest": {
-      "value": "calc({base.unit} / 8)"
+      "$value": "2px"
     },
     "smaller": {
-      "value": "calc({base.unit} / 4)"
+      "$value": "4px"
     },
     "small": {
-      "value": "calc({base.unit} / 2)"
+      "$value": "8px"
     },
     "base": {
-      "value": "calc({base.unit} * 1)"
+      "$value": "{base.unit}"
     },
     "large": {
-      "value": "calc({base.unit} * 1.5)"
+      "$value": "24px"
     },
     "larger": {
-      "value": "calc({base.unit} * 2)"
+      "$value": "32px"
     },
     "largest": {
-      "value": "calc({base.unit} * 3)"
+      "$value": "48px"
     },
     "extravagant": {
-      "value": "calc({base.unit} * 4)"
+      "$value": "64px"
     }
   }
 }

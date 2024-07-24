@@ -1,25 +1,27 @@
 {
   "elevation": {
+    "$type": "number",
+    "$description": "Elevation tokens. These are used to define the z-index of elements. Feel free to use these directly.",
     "default": {
-      "value": 0
+      "$value": 0
     },
     "base": {
-      "value": 1
+      "$value": 1
     },
     "menu": {
-      "value": 6
+      "$value": 6
     },
     "datepicker": {
-      "value": 6
+      "$value": 6
     },
     "modal": {
-      "value": 1001
+      "$value": 1001
     },
     "tooltip": {
-      "value": 1002
+      "$value": 1002
     },
     "toast": {
-      "value": 1003
+      "$value": 1003
     }
   }
 }

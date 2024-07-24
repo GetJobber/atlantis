@@ -1,7 +1,7 @@
 import { dirname, join } from "path";
 import { readFileSync } from "fs";
-import postcss from "postcss";
-import calc from "postcss-calc";
+//import postcss from "postcss";
+//import calc from "postcss-calc";
 import TimingTokens from "../tokens/timing.tokens.json" assert { type: "json" };
 import OpacityTokens from "../tokens/opacity.tokens.json" assert { type: "json" };
 import ElevationTokens from "../tokens/elevation.tokens.json" assert { type: "json" };
@@ -9,23 +9,23 @@ import BaseColourTokens from "../tokens/baseColor.tokens.json" assert { type: "j
 import ColourTokens from "../tokens/color.tokens.json" assert { type: "json" };
 import SemanticColourTokens from "../tokens/semanticColor.tokens.json" assert { type: "json" };
 import WorkflowTokens from "../tokens/workflow.tokens.json" assert { type: "json" };
-import TypographyBaseTokens from "../tokens/typographyBase.tokens.json" assert { type: "json" };
-import TypographyCalculatedTokens from "../tokens/typographyCalculated.tokens.json" assert { type: "json" };
+import TypographyTokens from "../tokens/typography.tokens.json" assert { type: "json" };
 import RadiusTokens from "../tokens/radius.tokens.json" assert { type: "json" };
 import BorderTokens from "../tokens/border.tokens.json" assert { type: "json" };
 import SpaceTokens from "../tokens/space.tokens.json" assert { type: "json" };
 import ShadowTokens from "../tokens/shadow.tokens.json" assert { type: "json" };
+import DarkTokens from "../tokens/dark.tokens.json" assert { type: "json" };
 import PlatformOverrides from "../tokens/platformOverride.tokens.json" assert { type: "json" };
 
 export const baseUnit = "16px";
 
+/*
 const calcEach = (tokens: Tokens, includeSemiColon = true) => {
   const css = Object.keys(tokens)
     .map(key => `--${key}: ${tokens[key]}${includeSemiColon ? ";" : ""}`)
     .join("\n");
   const cssRoot = postcss.parse(`:root{\n${css}\n}`);
 
-  /** @ts-expect-error Something is wrong with the calc types. This works. */
   const result = postcss([calc({})]).process(cssRoot, { from: undefined }).css;
   const results = result.split("\n");
   const finalResults: Record<string, string> = {};
@@ -46,29 +46,70 @@ const calcEach = (tokens: Tokens, includeSemiColon = true) => {
 
   return finalResults;
 };
+*/
+export type TokenType = "dimension" | "number" | "color" | "fontFamily";
 
-type TokenTree = Record<string, string | { value: string } | object>;
-type Token = string | object;
-type Tokens = Record<string, Token>;
+const transformValue = (
+  value: string | number | object,
+  activeType: TokenType,
+  outputType: "css" | "js" = "css",
+) => {
+  const transformed = value;
+
+  console.log(
+    "attempt to transform:",
+    value,
+    " from",
+    activeType,
+    " to ",
+    outputType,
+  );
+
+  return transformed;
+};
+
+export type TokenTree = Record<
+  string,
+  string | { $value: string } | object | number
+>;
+export type Token = string | object | number;
+export type Tokens = Record<string, Token>;
 
 const recurseTokenTree = (
   tokens: TokenTree,
   keyIn = "",
   tokenList: Record<string, Token>,
+  activeType: TokenType = "dimension",
+  transform = true,
 ) => {
   for (const [key] of Object.entries(tokens)) {
     let token: Tokens = {};
 
-    if (key !== "value" && key !== "_") {
+    if (key === "$type") {
+      activeType = tokens[key] as TokenType;
+    }
+
+    if (!key.startsWith("$")) {
       const passedKey = keyIn ? keyIn + "-" + key : key;
-      token = recurseTokenTree(tokens[key] as Tokens, passedKey, tokenList);
-    } else if (key === "value") {
-      return { [keyIn]: tokens[key] };
-    } else if (key === "_") {
-      token = recurseTokenTree(tokens[key] as Tokens, keyIn + "-", tokenList);
+      token = recurseTokenTree(
+        tokens[key] as Tokens,
+        passedKey,
+        tokenList,
+        activeType,
+        transform,
+      );
+    } else if (key === "$value") {
+      return {
+        [keyIn]: transform
+          ? transformValue(tokens[key], activeType)
+          : tokens[key],
+      };
     }
     const tokenKey = Object.keys(token)[0];
-    tokenList[tokenKey] = token[tokenKey];
+
+    if (tokenKey && typeof token[tokenKey] !== "undefined") {
+      tokenList[tokenKey] = token[tokenKey];
+    }
   }
 
   return tokenList;
@@ -89,8 +130,10 @@ const getOverrides = (platform?: "ios" | "android") => {
   return overrides;
 };
 
-const parseTokenVariables = (rawTokens: Record<string, string>) => {
-  const parsedTokens: Record<string, string> = {};
+export const parseTokenVariables = (
+  rawTokens: Record<string, string | number>,
+): Record<string, string | number> => {
+  const parsedTokens: Record<string, string | number> = {};
 
   for (const [key, token] of Object.entries(rawTokens)) {
     if (typeof token === "string") {
@@ -104,10 +147,15 @@ const parseTokenVariables = (rawTokens: Record<string, string>) => {
             .replace(/\./g, "-");
 
           const value = rawTokens[tokenKey];
-          parsedTokens[key] = rawTokens[key].replace(
-            new RegExp(match, "g"),
-            value,
-          );
+
+          if (typeof value === "string" && typeof rawTokens[key] === "string") {
+            parsedTokens[key] = rawTokens[key].replace(
+              new RegExp(match, "g"),
+              value,
+            );
+          } else {
+            parsedTokens[key] = rawTokens[key] as number;
+          }
         });
       }
     }
@@ -117,7 +165,7 @@ const parseTokenVariables = (rawTokens: Record<string, string>) => {
 };
 
 export const getRawTokens = () => {
-  const rawTokens: Tokens = {
+  const rawTokens: Record<string, string | number> = {
     ["base-unit"]: baseUnit,
     ...transformRootToTokens(BorderTokens),
     ...transformRootToTokens(BaseColourTokens),
@@ -130,8 +178,7 @@ export const getRawTokens = () => {
     ...transformRootToTokens(TimingTokens),
     ...transformRootToTokens(OpacityTokens),
     ...transformRootToTokens(ElevationTokens),
-    ...transformRootToTokens(TypographyBaseTokens),
-    ...transformRootToTokens(TypographyCalculatedTokens),
+    ...transformRootToTokens(TypographyTokens),
   };
 
   return rawTokens;
@@ -168,8 +215,7 @@ const swapCSSTokens = (rawTokens: Tokens) => {
   return { ...rawTokens, ...newTokens };
 };
 
-export const parseTokensToCSS = () => {
-  const rawTokens = getRawTokens();
+export const parseTokensToCSS = (rawTokens: Tokens) => {
   let cssTokens = swapCSSTokens(rawTokens);
   let keepGoing = false;
 
@@ -187,14 +233,20 @@ export const parseTokensToCSS = () => {
   return cssTokens;
 };
 
-export const buildFullCSS = () => {
-  const css = parseTokensToCSS();
-  const currentDir = dirname(import.meta.url.replace("file://", ""));
-  const prefixFile = join(currentDir, "..", "styles", "prefixStyles.css");
-  const suffixFile = join(currentDir, "..", "styles", "suffixStyles.css");
+export const convertJSTokensToTheme = (css: Tokens, theme: string) => {
+  let rootCSS = ` @media screen {\n
+ :root[data-theme="${theme}"] {\n
+ `;
 
-  const prefixStyles = readFileSync(prefixFile, "utf8");
-  const suffixStyles = readFileSync(suffixFile, "utf8");
+  for (const [i] of Object.entries(css)) {
+    rootCSS += `  --${i}: ${css[i]};\n`;
+  }
+  rootCSS += `}\n}\n`;
+
+  return rootCSS;
+};
+
+export const convertJSTokensToCSS = (css: Tokens) => {
   let rootCSS = `:root {\n`;
 
   for (const [i] of Object.entries(css)) {
@@ -202,13 +254,24 @@ export const buildFullCSS = () => {
   }
   rootCSS += `}\n`;
 
+  return rootCSS;
+};
+
+export const buildFullCSS = () => {
+  const allTokens = getRawTokens();
+  const css = parseTokensToCSS(allTokens);
+  const currentDir = dirname(import.meta.url.replace("file://", ""));
+  const prefixFile = join(currentDir, "..", "styles", "prefixStyles.css");
+  const suffixFile = join(currentDir, "..", "styles", "suffixStyles.css");
+
+  const prefixStyles = readFileSync(prefixFile, "utf8");
+  const suffixStyles = readFileSync(suffixFile, "utf8");
+  const rootCSS = convertJSTokensToCSS(css);
+
   return `${prefixStyles}\n${rootCSS}\n\n${suffixStyles}`;
 };
 
-export const parseToJs = (
-  platform: "web" | "ios" | "android" = "web",
-): Record<string, string> => {
-  const rawTokens = getRawTokens();
+export const parseAllTokenVariables = (rawTokens: Tokens) => {
   let finalTokens: Tokens = { ...rawTokens };
   let hasObjectLeft = false;
 
@@ -218,7 +281,14 @@ export const parseToJs = (
       return typeof value == "string" && value.includes("{");
     });
   } while (hasObjectLeft);
-  const calced = calcEach(finalTokens, false);
+
+  return finalTokens;
+};
+
+export const parseToJs = (
+  platform: "web" | "ios" | "android" = "web",
+): Record<string, string> => {
+  const finalTokens = parseAllTokenVariables(getRawTokens());
 
   let overrides = {};
 
@@ -226,7 +296,7 @@ export const parseToJs = (
     overrides = getOverrides(platform);
   }
 
-  return { ...calced, ...overrides };
+  return { ...finalTokens, ...overrides };
 };
 
 function isNumber(value: unknown) {
@@ -260,9 +330,88 @@ function traverseObjectAndPrint(obj: Tokens): string {
   return result + "\n";
 }
 
-export const parseToObject = (platform: "web" | "ios" | "android") => {
-  const jsTokens = parseToJs(platform);
+export type TokenTypes = keyof typeof tokenMap;
+export const tokenMap = {
+  color: ColourTokens,
+  "semantic-color": SemanticColourTokens,
+  workflow: WorkflowTokens,
+  radius: RadiusTokens,
+  space: SpaceTokens,
+  shadow: ShadowTokens,
+  timing: TimingTokens,
+  opacity: OpacityTokens,
+  elevation: ElevationTokens,
+  typography: TypographyTokens,
+  border: BorderTokens,
+  "base-color": BaseColourTokens,
+  dark: DarkTokens,
+};
 
+export const buildTokenSubset = (tokenNames: Array<TokenTypes>) => {
+  const controlTokens = parseTokenNames(tokenNames);
+  const allTokens = parseToJs("web");
+  const myTokens: Record<string, string> = {};
+  controlTokens.forEach(tokenName => {
+    myTokens[tokenName] = allTokens[tokenName];
+  });
+
+  return myTokens;
+};
+
+export const parseTokens = (
+  types: Array<TokenTypes>,
+): Record<string, string | number> => {
+  let parsedTokens: Record<string, string | number> = {};
+  types.forEach(type => {
+    parsedTokens = {
+      ["base-unit"]: baseUnit,
+      ...parsedTokens,
+      ...transformRootToTokens(tokenMap[type]),
+    };
+  });
+
+  return parsedTokens;
+};
+
+export const convertRawTokensToJSFile = (
+  tokens: Record<string, string | number>,
+) => {
+  const allTokens = getRawTokens();
+  const piece = parseTokenVariables({ ...allTokens, ...tokens });
+  const myTokens: Record<string, string | number> = {};
+  Object.keys(tokens).forEach(tokenName => {
+    myTokens[tokenName] = piece[tokenName];
+  });
+
+  return convertJSTokensToObjectString(myTokens);
+};
+
+export const convertRawTokensToCSSFile = (
+  tokens: Record<string, string | number>,
+) => {
+  const cssTokens = parseTokensToCSS(tokens);
+
+  return convertJSTokensToCSS(cssTokens);
+};
+
+export const convertRawTokensToThemeFile = (
+  tokens: Record<string, string | number>,
+  theme: string,
+) => {
+  const cssTokens = parseTokensToCSS(tokens);
+
+  return convertJSTokensToTheme(cssTokens, theme);
+};
+
+export const parseTokenNames = (types: Array<TokenTypes>) => {
+  const parsedTokens = parseTokens(types);
+
+  return Object.keys(parsedTokens);
+};
+
+export const convertJSTokensToObjectString = (
+  jsTokens: Record<string, string | number>,
+) => {
   let jsTokensString = `export default {\n`;
 
   for (const [key, value] of Object.entries(jsTokens)) {
@@ -280,6 +429,12 @@ export const parseToObject = (platform: "web" | "ios" | "android") => {
   return jsTokensString;
 };
 
+export const parseToObject = (platform: "web" | "ios" | "android") => {
+  const jsTokens = parseToJs(platform);
+
+  return convertJSTokensToObjectString(jsTokens);
+};
+
 export const parseTokensToValues = () => {
   return parseToJs();
 };
@@ -290,19 +445,4 @@ export const parseTokensToAndroid = () => {
 
 export const parseTokensToIOS = () => {
   return parseToJs("ios");
-};
-
-export const getColorTokens = () => {
-  const css = parseTokensToCSS();
-  const keys = Object.keys(css).filter(token => {
-    if (token.includes("color")) {
-      return true;
-    }
-  });
-  const vals: Tokens = {};
-  keys.forEach(key => {
-    vals[key] = css[key];
-  });
-
-  return vals;
 };
