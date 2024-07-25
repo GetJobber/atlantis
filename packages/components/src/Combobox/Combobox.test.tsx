@@ -25,6 +25,15 @@ const observer = mockIntersectionObserver();
 
 let user: UserEvent;
 
+// Mock popper to avoid forceUpdate causing act warnings with testing-library.
+jest.mock("@popperjs/core", () => ({
+  createPopper: () => ({
+    destroy: jest.fn(),
+    forceUpdate: jest.fn(),
+    update: jest.fn(),
+  }),
+}));
+
 afterEach(() => {
   handleAction.mockClear();
   handleSelect.mockClear();
