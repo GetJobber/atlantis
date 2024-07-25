@@ -1,13 +1,22 @@
 import React, { useRef } from "react";
-import { RenderResult, act, fireEvent, render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { Popover } from ".";
 import { PopoverProps } from "./Popover";
 
-let rendered: RenderResult;
 const content = "Test Content";
 
+// Mock popper to avoid forceUpdate causing act warnings with testing-library.
+jest.mock("@popperjs/core", () => ({
+  createPopper: () => ({
+    destroy: jest.fn(),
+    forceUpdate: jest.fn(),
+    update: jest.fn(),
+  }),
+}));
+
 const PopoverTestComponent = (props: Omit<PopoverProps, "attachTo">) => {
-  const divRef = useRef();
+  const divRef = useRef(null);
 
   return (
     <>
@@ -22,29 +31,20 @@ const PopoverTestComponent = (props: Omit<PopoverProps, "attachTo">) => {
 it("should render a Popover with the content and dismiss button", async () => {
   const handleClose = jest.fn();
 
-  await act(async () => {
-    rendered = render(
-      <PopoverTestComponent open={true} onRequestClose={handleClose}>
-        {content}
-      </PopoverTestComponent>,
-    );
-  });
+  render(
+    <PopoverTestComponent open={true} onRequestClose={handleClose}>
+      {content}
+    </PopoverTestComponent>,
+  );
 
-  const { queryByText, queryByLabelText } = rendered;
+  expect(screen.queryByText(content)).toBeInstanceOf(HTMLElement);
 
-  expect(queryByText(content)).toBeInstanceOf(HTMLElement);
-
-  fireEvent.click(queryByLabelText("Close dialog"));
+  await userEvent.click(screen.getByLabelText("Close dialog"));
   expect(handleClose).toHaveBeenCalledTimes(1);
 });
 
 it("shouldn't render a popover when open is false", async () => {
-  await act(async () => {
-    rendered = render(
-      <PopoverTestComponent open={false}>{content}</PopoverTestComponent>,
-    );
-  });
+  render(<PopoverTestComponent open={false}>{content}</PopoverTestComponent>);
 
-  const { queryByText } = rendered;
-  expect(queryByText(content)).toBeNull();
+  expect(screen.queryByText(content)).toBeNull();
 });
