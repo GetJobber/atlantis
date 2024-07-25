@@ -1,6 +1,7 @@
 import React from "react";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import ReactDatePicker from "react-datepicker";
+import userEvent from "@testing-library/user-event";
 import { DatePicker } from "./DatePicker";
 
 // Mock popper to avoid forceUpdate causing act warnings with testing-library.
@@ -37,8 +38,10 @@ it("renders only a button by default", () => {
 it("returns the dates from onChange", async () => {
   const changeHandler = jest.fn();
   render(<DatePicker selected={new Date()} onChange={changeHandler} />);
-  fireEvent.click(screen.getByLabelText("Open Datepicker"));
-  fireEvent.click(screen.getByText("15"));
+
+  jest.useRealTimers();
+  await userEvent.click(screen.getByLabelText("Open Datepicker"));
+  await userEvent.click(screen.getByText("15"));
 
   expect(changeHandler).toHaveBeenCalledWith(expect.any(Date));
 });
@@ -53,9 +56,11 @@ it("should not call onChange handler if date is disabled", async () => {
       onChange={changeHandler}
     />,
   );
-  fireEvent.click(screen.getByLabelText("Open Datepicker"));
-  fireEvent.click(screen.getByText("2"));
-  fireEvent.click(screen.getByText("21"));
+
+  jest.useRealTimers();
+  await userEvent.click(screen.getByLabelText("Open Datepicker"));
+  await userEvent.click(screen.getByText("2"));
+  await userEvent.click(screen.getByText("21"));
 
   expect(changeHandler).not.toHaveBeenCalled();
 });
@@ -68,7 +73,8 @@ it("allows for a custom activator to open the DatePicker", async () => {
       activator={<div>Activate me</div>}
     />,
   );
-  fireEvent.click(screen.getByText("Activate me"));
+  jest.useRealTimers();
+  await userEvent.click(screen.getByText("Activate me"));
 
   expect(screen.getByText("15")).toBeInstanceOf(HTMLDivElement);
 });
@@ -101,15 +107,17 @@ it("should call onMonthChange when the user switches month", async () => {
     />,
   );
 
-  fireEvent.click(screen.getByLabelText("Open Datepicker"));
-  fireEvent.click(screen.getByLabelText("Next Month"));
+  jest.useRealTimers();
+  await userEvent.click(screen.getByLabelText("Open Datepicker"));
+  await userEvent.click(screen.getByLabelText("Next Month"));
 
   expect(monthChangeHandler).toHaveBeenCalledWith(expect.any(Date));
 });
 
 describe("ESC key behavior", () => {
   const handleEscape = jest.fn();
-  const handleKeyDown = (e: unknown) => e.key === "Escape" && handleEscape();
+  const handleKeyDown = (e: { key: string }) =>
+    e.key === "Escape" && handleEscape();
   beforeEach(() => {
     window.addEventListener("keydown", handleKeyDown);
   });
@@ -124,12 +132,11 @@ describe("ESC key behavior", () => {
     );
     // Open the picker
     const button = screen.getByRole("button", { name: /open datepicker/i });
-    fireEvent.click(button);
+    jest.useRealTimers();
+    await userEvent.click(button);
 
-    const nextMonthButton = screen.getByRole("button", { name: /next month/i });
-    nextMonthButton.focus();
     // Close the picker with ESC
-    fireEvent.keyDown(nextMonthButton, { key: "Escape", code: "Escape" });
+    await userEvent.keyboard("{Escape}");
 
     expect(
       screen.queryByRole("button", { name: /next month/i }),
@@ -141,11 +148,13 @@ describe("ESC key behavior", () => {
 describe("Ensure ReactDatePicker CSS class names exists", () => {
   it("should have the click outside class", async () => {
     render(<ReactDatePicker onChange={jest.fn} />);
+    jest.useRealTimers();
+
     const input = screen.getByRole("textbox");
     const className = "react-datepicker-ignore-onclickoutside";
 
     expect(input).not.toHaveClass(className);
-    fireEvent.focus(input);
+    await userEvent.tab();
     expect(input).toHaveClass(className);
   });
 
@@ -175,7 +184,8 @@ describe("Ensure ReactDatePicker CSS class names exists", () => {
             onChange={jest.fn}
           />,
         );
-        fireEvent.focus(screen.getByRole("textbox"));
+        jest.useRealTimers();
+        await userEvent.tab();
         expect(container.querySelector(className)).toBeTruthy();
       });
     });
