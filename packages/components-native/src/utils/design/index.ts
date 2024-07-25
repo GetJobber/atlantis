@@ -1,9 +1,8 @@
 import { Platform } from "react-native";
-import AndroidTokens from "./tokens.android";
-import IOSTokens from "./tokens.ios";
+import { androidTokens, iosTokens } from "@jobber/design";
 
-export const tokens: typeof AndroidTokens = Platform.select({
-  ios: () => IOSTokens,
-  android: () => AndroidTokens,
-  default: () => AndroidTokens,
+export const tokens: typeof iosTokens = Platform.select({
+  ios: () => iosTokens,
+  android: () => androidTokens,
+  default: () => androidTokens,
 })();

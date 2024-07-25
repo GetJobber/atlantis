@@ -7,3 +7,15 @@ colors.js
 assets
 icon.map.ts
 tokens.web.ts
+foundation.android.*
+foundation.ios.*
+foundation.native.*
+foundation.scss
+foundation.js
+foundation.d.ts
+Icon.css
+IconColors.css
+Sizes.css
+src/icons/iconMap.ts
+src/icons/iconStyles.d.ts
+src/icons/iconStyles.ts
