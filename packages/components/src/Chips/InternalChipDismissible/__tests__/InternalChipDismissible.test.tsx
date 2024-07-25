@@ -1,16 +1,19 @@
 import React, { useState } from "react";
-import {
-  act,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-  within,
-} from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { InternalChipDismissible } from "..";
 import { Chip } from "../..";
 
 const mockIsInView = jest.fn(() => false);
+
+// Mock popper to avoid forceUpdate causing act warnings with testing-library.
+jest.mock("@popperjs/core", () => ({
+  createPopper: () => ({
+    destroy: jest.fn(),
+    forceUpdate: jest.fn(),
+    update: jest.fn(),
+  }),
+}));
 
 jest.mock("../hooks/useInView", () => ({
   useInView: () => ({ isInView: mockIsInView() }),
@@ -33,8 +36,6 @@ describe("Basic interaction", () => {
   const selectedChips = ["Amazing"];
 
   beforeEach(async () => {
-    await popperUpdate();
-
     render(
       <InternalChipDismissible
         selected={selectedChips}
@@ -49,8 +50,6 @@ describe("Basic interaction", () => {
         ))}
       </InternalChipDismissible>,
     );
-
-    await popperUpdate();
   });
 
   it("should only render the selected chip on the UI", () => {
@@ -70,8 +69,8 @@ describe("Basic interaction", () => {
   describe("Open Menu", () => {
     let wrapperEl: HTMLElement;
 
-    beforeEach(() => {
-      fireEvent.click(screen.getByLabelText("Add"));
+    beforeEach(async () => {
+      await userEvent.click(screen.getByLabelText("Add"));
       wrapperEl = screen.getByTestId("chip-menu");
     });
 
@@ -87,9 +86,9 @@ describe("Basic interaction", () => {
         });
     });
 
-    it("should trigger the onChange callback when you select from available options", () => {
+    it("should trigger the onChange callback when you select from available options", async () => {
       const target = chips[chips.length - 1];
-      fireEvent.click(screen.getByText(target));
+      await userEvent.click(screen.getByText(target));
 
       expect(handleChange).toHaveBeenCalledWith([...selectedChips, target]);
       expect(handleCustomAdd).not.toHaveBeenCalled();
@@ -97,21 +96,17 @@ describe("Basic interaction", () => {
 
     it("should trigger the onSearch callback when you type on the input", async () => {
       const value = "🌮";
-      fireEvent.change(screen.getByRole("combobox"), {
-        target: { value: value },
-      });
+      await userEvent.type(screen.getByRole("combobox"), value);
 
       await waitFor(() => expect(handleSearch).toHaveBeenCalledWith(value));
     });
 
     it("should only trigger the onCustomAdd callback when you select the custom option", async () => {
       const value = "🌮";
-      fireEvent.change(screen.getByRole("combobox"), {
-        target: { value: value },
-      });
+      await userEvent.type(screen.getByRole("combobox"), value);
 
-      await waitFor(() => {
-        fireEvent.click(screen.getByText(value));
+      await waitFor(async () => {
+        await userEvent.click(screen.getByText(value));
         expect(handleCustomAdd).toHaveBeenCalledWith(value);
         expect(handleChange).not.toHaveBeenCalled();
       });
@@ -132,8 +127,8 @@ describe("Basic interaction", () => {
     });
   });
 
-  it("should trigger the onClick callback when a chip gets clicked", () => {
-    fireEvent.click(getByChipLabelText(selectedChips[0]));
+  it("should trigger the onClick callback when a chip gets clicked", async () => {
+    await userEvent.click(getByChipLabelText(selectedChips[0]));
     expect(handleClickChip).toHaveBeenCalledWith(
       expect.any(Object),
       selectedChips[0],
@@ -141,58 +136,54 @@ describe("Basic interaction", () => {
   });
 
   //
-  it("should trigger the onChange callback when removing a chip", () => {
+  it("should trigger the onChange callback when removing a chip", async () => {
     const wrapperEl = getByChipLabelText(selectedChips[0]);
 
-    fireEvent.click(within(wrapperEl).getByTestId("remove-chip-button"));
+    await userEvent.click(within(wrapperEl).getByTestId("remove-chip-button"));
 
     expect(handleChange).toHaveBeenCalledWith([]);
   });
 
   describe("delete via keyboard", () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       const addButton = screen.getByRole("button", { name: "Add" });
-      fireEvent.click(addButton);
+      await userEvent.click(addButton);
     });
 
-    it("should add the highlighted option on enter", () => {
-      fireEvent.keyDown(screen.queryByRole("combobox"), { key: "Enter" });
+    it("should add the highlighted option on enter", async () => {
+      await userEvent.keyboard("{Enter}");
       expect(handleChange).toHaveBeenCalledWith([...selectedChips, chips[1]]);
       expect(handleCustomAdd).not.toHaveBeenCalled();
     });
 
-    it("should add the highlighted option on tab", () => {
-      fireEvent.keyDown(screen.queryByRole("combobox"), { key: "Tab" });
+    it("should add the highlighted option on tab", async () => {
+      await userEvent.tab();
       expect(handleChange).toHaveBeenCalledWith([...selectedChips, chips[1]]);
       expect(handleCustomAdd).not.toHaveBeenCalled();
     });
 
-    it("should focus on the last selected chip on input backspace", () => {
-      fireEvent.keyDown(screen.queryByRole("combobox"), { key: "Backspace" });
+    it("should focus on the last selected chip on input backspace", async () => {
+      await userEvent.keyboard("{Backspace}");
       const wrapperEl = getByChipLabelText(selectedChips[0]);
       expect(wrapperEl).toHaveFocus();
     });
   });
 
   describe("left and right arrow keys via keyboard", () => {
-    it("should focus on the correct element when left or right arrow down", () => {
+    it("should focus on the correct element when left or right arrow down", async () => {
       const chipWrappers = screen.getAllByTestId("chip-wrapper");
       const first = chipWrappers[0];
 
-      fireEvent.select(first);
+      await userEvent.tab();
       expect(first).toHaveFocus();
 
-      fireEvent.keyDown(first, {
-        key: "ArrowRight",
-      });
+      await userEvent.keyboard("{ArrowRight}");
       expect(first).not.toHaveFocus();
 
       const addButton = screen.getByRole("button", { name: "Add" });
       expect(addButton).toHaveFocus();
 
-      fireEvent.keyDown(addButton, {
-        key: "ArrowLeft",
-      });
+      await userEvent.keyboard("{ArrowLeft}");
       expect(addButton).not.toHaveFocus();
       expect(first).toHaveFocus();
     });
@@ -226,9 +217,10 @@ describe("Deleting a chip", () => {
     render(<MockChips />);
 
     const first = getByChipLabelText("chip");
-    first.focus();
+    await userEvent.tab();
     expect(first).toHaveFocus();
-    fireEvent.keyDown(first, { key: "Backspace" });
+
+    await userEvent.keyboard("{Backspace}");
     expect(first).not.toBeInTheDocument();
 
     const second = getByChipLabelText("chip2");
@@ -240,18 +232,12 @@ describe("Deleting a chip", () => {
     render(<MockChips />);
 
     const second = getByChipLabelText("chip2");
-    second.focus();
+    await userEvent.tab();
     expect(second).toHaveFocus();
-    fireEvent.keyDown(second, { key: "Backspace" });
+    await userEvent.keyboard("{Backspace}");
     expect(second).not.toBeInTheDocument();
 
     const first = getByChipLabelText("chip2");
     expect(first).toHaveFocus();
   });
 });
-
-async function popperUpdate() {
-  // Wait for the Popper update() so jest doesn't throw an act warning
-  // https://github.com/popperjs/react-popper/issues/350
-  await act(async () => undefined);
-}
