@@ -262,16 +262,18 @@ export const getRawTokens = (
 ) => {
   const allTokens = CompleteTokenList;
 
-  let tokenssz = {};
+  let rawTokens = {
+    "base-unit": baseUnit,
+  };
 
   allTokens.forEach(tokenFile => {
-    tokenssz = {
-      ...tokenssz,
+    rawTokens = {
+      ...rawTokens,
       ...transformRootToTokens(tokenFile, transform, outputType),
     };
   });
 
-  return tokenssz;
+  return rawTokens;
 };
 
 /**
