@@ -213,8 +213,8 @@ export const replaceStandardTokenWithCSSCustomProperty = (
             match
               .replace(/_/g, "")
               .replace(/\./g, "-")
-              .replace("}", ")")
-              .replace("{", "(--");
+              .replace(/\}/g, ")")
+              .replace(/\{/g, "(--");
           newTokens[key] = value.replace(new RegExp(match, "g"), tokenKey);
         });
       }

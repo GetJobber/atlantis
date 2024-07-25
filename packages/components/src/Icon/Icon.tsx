@@ -49,9 +49,9 @@ export function Icon({
     const tokenAsString = typeof token === "string" ? token : token?.toString();
 
     return tokenAsString
-      ?.replace("{", "var(--")
-      .replace(".", "-")
-      .replace("}", ")");
+      ?.replace(/\{/g, "var(--")
+      .replace(/\./g, "-")
+      .replace(/\}/, ")");
   };
   svgStyle.fill = tokenStyleToCss(svgStyle.fill);
 
