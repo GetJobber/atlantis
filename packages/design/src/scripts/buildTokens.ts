@@ -1,75 +1,68 @@
 import { writeFile } from "fs/promises";
 import {
   buildFullCSS,
-  buildTokenSubset,
-  convertJSTokensToCSS,
-  convertJSTokensToObjectString,
   convertRawTokensToCSSFile,
   convertRawTokensToJSFile,
   convertRawTokensToThemeFile,
-  parseToObject,
+  createCSSFileFromSubset,
+  createTokenFileContentsForCSS,
+  createTokenFileContentsForPlatform,
+  createTokenFileFromSubset,
   parseTokens,
-  parseTokensToCSS,
-} from "./generation.ts";
+} from "./tokenServices/tokenConvienence.ts";
 
 const writeMobileTokens = () => {
-  const androidTokens = parseToObject("android");
+  const androidTokens = createTokenFileContentsForPlatform("android");
   writeFile("src/assets/tokens.android.ts", androidTokens);
 
-  const iosTokens = parseToObject("ios");
+  const iosTokens = createTokenFileContentsForPlatform("ios");
   writeFile("src/assets/tokens.ios.ts", iosTokens);
 };
 
 const writeColorTokens = () => {
-  const jsColorTokens = buildTokenSubset(["color"], true, "js");
-  const cssColorTokens = buildTokenSubset(["color"], true, "css");
-  writeFile(
-    "src/assets/tokens.color.ts",
-    convertJSTokensToObjectString(jsColorTokens),
-  );
-  writeFile(
-    "dist/colors.mjs",
-    convertJSTokensToObjectString(jsColorTokens, true),
-  );
-  writeFile(
-    "dist/colors.cjs",
-    convertJSTokensToObjectString(jsColorTokens, false),
-  );
-  writeFile("dist/color.css", convertJSTokensToCSS(cssColorTokens));
-  const jsSemanticTokens = buildTokenSubset(["semantic-color"], true, "js");
-  const cssSemanticTokens = buildTokenSubset(["semantic-color"], true, "css");
+  const jsFileContents = createTokenFileFromSubset(["color"]);
+  writeFile("src/assets/tokens.color.ts", jsFileContents);
+  writeFile("dist/colors.mjs", jsFileContents);
+  writeFile("dist/colors.cjs", jsFileContents);
 
-  writeFile(
-    "src/assets/tokens.semantic.ts",
-    convertJSTokensToObjectString(jsSemanticTokens),
-  );
-  writeFile("dist/semantic.css", convertJSTokensToCSS(cssSemanticTokens));
+  const cssFileContents = createCSSFileFromSubset(["color"]);
+  writeFile("dist/color.css", cssFileContents);
+
+  const semanticJSCotent = createTokenFileFromSubset(["semantic-color"]);
+  writeFile("src/assets/tokens.semantic.ts", semanticJSCotent);
+
+  const semanticCSSContent = createCSSFileFromSubset(["semantic-color"]);
+  writeFile("dist/semantic.css", semanticCSSContent);
 };
 
 const writeDarkModeTokens = () => {
   const cssDarkTokens = parseTokens(["dark"], true, "css");
-  const cssDarkElevatedTokens = parseTokens(["dark-elevated"], true, "css");
-  const jsDarkTokens = parseTokens(["dark"], true, "js");
-  const jsTokens = convertRawTokensToJSFile(jsDarkTokens);
-  const cssTokens = convertRawTokensToCSSFile(cssDarkTokens);
+
+  const cssDarkElevatedContent = createTokenFileContentsForCSS([
+    "dark-elevated",
+  ]);
   const darkModeTokens = convertRawTokensToThemeFile(cssDarkTokens, "dark", [
     {
       key: "data-elevation",
       value: "elevated",
-      tokens: parseTokensToCSS(cssDarkElevatedTokens),
+      tokens: cssDarkElevatedContent,
     },
   ]);
-
-  writeFile("src/assets/tokens.dark.ts", jsTokens);
-  writeFile("dist/dark.theme.css", cssTokens);
   writeFile("dist/dark.mode.css", darkModeTokens);
+
+  const jsDarkTokens = parseTokens(["dark"], true, "js");
+  const jsTokens = convertRawTokensToJSFile(jsDarkTokens);
+  writeFile("src/assets/tokens.dark.ts", jsTokens);
+
+  const cssTokens = convertRawTokensToCSSFile(cssDarkTokens);
+  writeFile("dist/dark.theme.css", cssTokens);
 };
 
 export const writeTokenFile = () => {
   const cssString = buildFullCSS();
   writeFile("dist/foundation.css", cssString);
 
-  const jsTokens = parseToObject("web");
+  const jsTokens = createTokenFileContentsForPlatform("web");
   writeFile("src/assets/tokens.web.ts", jsTokens);
 
   writeMobileTokens();

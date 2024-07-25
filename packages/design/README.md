@@ -101,3 +101,5 @@ export const GlobalStyling = {
   ...otherStyles,
 };
 ```
+
+## For How The Platform Works see HOWTHISWORKS.md
