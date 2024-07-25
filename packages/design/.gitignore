@@ -13,6 +13,7 @@ foundation.native.*
 foundation.scss
 foundation.js
 foundation.d.ts
+foundation.css.d.ts
 Icon.css
 IconColors.css
 Sizes.css

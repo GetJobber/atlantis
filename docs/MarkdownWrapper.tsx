@@ -11,7 +11,7 @@ import { AnchorMdx, Markdown } from "@storybook/blocks";
 import { Code } from "@storybook/components";
 import { Heading } from "@jobber/components/Heading";
 import { Content } from "@jobber/components/Content";
-import "@atlantis/packages/design/foundation.css";
+import "@jobber/design/foundation.css";
 
 /**
  * Maybe you're asking yourself, why is this file here?.

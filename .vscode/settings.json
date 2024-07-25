@@ -14,7 +14,7 @@
     "source.fixAll.stylelint": "explicit"
   },
   "eslint.enable": true,
-  "eslint.format.enable": false,
+  "eslint.format.enable": true,
   "eslint.options": {
     "extensions": [
       ".js",

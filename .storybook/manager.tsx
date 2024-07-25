@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { addons, types } from "@storybook/addons";
 import { STORY_CHANGED, STORY_ERRORED, STORY_MISSING } from '@storybook/core-events';
-import {lightTheme,darkTheme} from "./theme";
+import {lightTheme} from "./theme";
 import favicon from "./assets/favicon.svg";
 import { Playground } from "./components/Playground";
 import ReactGA from "react-ga4";
-import {ToggleTheme} from './components/ToggleTheme';
+import {ToggleTheme} from './components/ToggleTheme/ToggleTheme';
 
 import "./assets/css/manager.css";
 import "@jobber/design/foundation.css";
@@ -53,7 +53,7 @@ addons.register("code/tab", () => {
           // toolbar and code tab to be invisible. They fixed the real problem in V8 but did not backport to V7.
           // https://github.com/storybookjs/storybook/issues/25322
           const rootElem = document.querySelector("#storybook-panel-root")
-          if (rootElem && rootElem.parentElement?.parentElement?.parentElement){
+          if (rootElem?.parentElement?.parentElement?.parentElement){
             rootElem.parentElement.parentElement.parentElement.hidden = false;
           }
         }

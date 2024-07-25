@@ -27,8 +27,14 @@ const writeColorTokens = () => {
     "src/assets/tokens.color.ts",
     convertJSTokensToObjectString(jsColorTokens),
   );
-  writeFile("colors.mjs", convertJSTokensToObjectString(jsColorTokens, true));
-  writeFile("colors.cjs", convertJSTokensToObjectString(jsColorTokens, false));
+  writeFile(
+    "dist/colors.mjs",
+    convertJSTokensToObjectString(jsColorTokens, true),
+  );
+  writeFile(
+    "dist/colors.cjs",
+    convertJSTokensToObjectString(jsColorTokens, false),
+  );
   writeFile("dist/color.css", convertJSTokensToCSS(cssColorTokens));
   const jsSemanticTokens = buildTokenSubset(["semantic-color"], true, "js");
   const cssSemanticTokens = buildTokenSubset(["semantic-color"], true, "css");
@@ -61,9 +67,7 @@ const writeDarkModeTokens = () => {
 
 export const writeTokenFile = () => {
   const cssString = buildFullCSS();
-  writeFile("foundation.css", cssString);
   writeFile("dist/foundation.css", cssString);
-  writeFile("foundation.css", cssString);
 
   const jsTokens = parseToObject("web");
   writeFile("src/assets/tokens.web.ts", jsTokens);

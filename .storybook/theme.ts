@@ -1,5 +1,5 @@
 import { create } from "@storybook/theming";
-import { tokens } from "@jobber/design";
+import { tokens } from "@jobber/design/foundation.js";
 
 // eslint-disable-next-line import/no-default-export
 export const lightTheme = create({

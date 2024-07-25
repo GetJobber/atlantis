@@ -17,17 +17,26 @@
       "require": "./dist/index.cjs",
       "import": "./dist/index.mjs"
     },
+    "./foundation.js": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    },
     "./foundation.css": {
-      "import": "./foundation.css",
-      "require:": "./foundation.css"
+      "import": "./dist/foundation.css",
+      "require": "./dist/foundation.css"
+    },
+    "./dark.mode.css": {
+      "import": "./dist/dark.mode.css",
+      "require": "./dist/dark.mode.css"
     },
     "./colors": {
-      "import": "./colors.mjs",
-      "require:": "./colors.cjs"
+      "import": "./dist/colors.mjs",
+      "require:": "./dist/colors.cjs"
     },
     "./colors.js": {
-      "import": "./colors.mjs",
-      "require:": "./colors.cjs"
+      "import": "./dist/colors.mjs",
+      "require:": "./dist/colors.cjs"
     }
   },
   "files": [
