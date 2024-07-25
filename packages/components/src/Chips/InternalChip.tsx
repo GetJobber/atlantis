@@ -1,14 +1,9 @@
-import React, { useState } from "react";
-import classnames from "classnames";
-import styles from "./InternalChip.css";
+import React from "react";
 import { InternalChipProps } from "./ChipTypes";
-import { InternalChipAffix } from "./InternalChipAffix";
-import { Typography } from "../Typography";
-import { Tooltip } from "../Tooltip";
+import { Chip } from "../Chip";
 
 export function InternalChip({
   label,
-  active = false,
   disabled = false,
   invalid = false,
   prefix,
@@ -18,35 +13,21 @@ export function InternalChip({
   onClick,
   onKeyDown,
 }: InternalChipProps) {
-  const [truncateRef, setTruncateRef] = useState<HTMLElement | null>();
-  const isClickable = onClick && !disabled;
-  const classNames = classnames(styles.chip, {
-    [styles.clickable]: isClickable,
-    [styles.active]: active,
-    [styles.disabled]: disabled,
-    [styles.invalid]: invalid,
-    [styles.hasPrefix]: prefix,
-    [styles.hasSuffix]: suffix,
-  });
-  const affixProps = { active, invalid, disabled };
-  const Tag = onClick ? "button" : "div";
-
-  const chip = (
-    <Tag
-      className={classNames}
-      {...(isClickable && { onClick, disabled })}
+  return (
+    <Chip
+      disabled={disabled}
+      invalid={invalid}
       onKeyDown={onKeyDown}
-      data-testid="chip-wrapper"
-      aria-label={ariaLabel}
+      dataTestID="chip-wrapper"
+      ariaLabel={ariaLabel}
       tabIndex={tabIndex}
       role={tabIndex !== undefined ? "option" : undefined}
+      onClick={onClick ? (_, ev) => onClick(ev) : undefined}
+      label={label}
     >
-      <InternalChipAffix affix={prefix} {...affixProps} />
-      <Typography element="span" numberOfLines={1} size="base">
-        <span ref={setTruncateRef}>{label}</span>
-      </Typography>
-      <InternalChipAffix affix={suffix} {...affixProps} />
-    </Tag>
+      {prefix && <Chip.Prefix>{prefix}</Chip.Prefix>}
+      {suffix && <Chip.Suffix>{suffix}</Chip.Suffix>}
+    </Chip>
   );
 
   return isTruncated() ? <Tooltip message={label}>{chip}</Tooltip> : chip;

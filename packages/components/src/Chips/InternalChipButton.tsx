@@ -39,7 +39,7 @@ export function InternalChipButton({
       aria-disabled={disabled}
       data-testid="remove-chip-button"
     >
-      <Icon name={icon} color={getColor()} />
+      <Icon size="small" name={icon} color={getColor()} />
     </div>
   );
 
