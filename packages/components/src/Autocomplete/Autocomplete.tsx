@@ -1,11 +1,11 @@
 import React, { Ref, forwardRef, useEffect, useRef, useState } from "react";
-import debounce from "lodash/debounce";
 import { XOR } from "ts-xor";
 import styles from "./Autocomplete.css";
 import { Menu } from "./Menu";
 import { AnyOption, GroupOption, Option } from "./Option";
 import { InputText, InputTextRef } from "../InputText";
 import { FormFieldProps } from "../FormField";
+import { useDebounce } from "../utils/useDebounce";
 
 type OptionCollection = XOR<Option[], GroupOption[]>;
 
@@ -95,13 +95,10 @@ function AutocompleteInternal(
   const [menuVisible, setMenuVisible] = useState(false);
   const [inputText, setInputText] = useState(value?.label ?? "");
   const autocompleteRef = useRef(null);
-
-  const delayedSearch = debounce(updateSearch, debounceRate);
+  const delayedSearch = useDebounce(updateSearch, debounceRate);
 
   useEffect(() => {
     delayedSearch();
-
-    return delayedSearch.cancel;
   }, [inputText]);
 
   useEffect(() => {
