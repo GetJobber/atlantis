@@ -1,3 +1,4 @@
+import { MAX_DEPTH } from "./tokenConstants.ts";
 import type {
   OverrideTokenTree,
   ParsedTokens,
@@ -7,6 +8,12 @@ import type {
   Tokens,
   TransformValue,
 } from "./tokenTypes.ts";
+
+let recurseCounter = 0;
+
+export const resetRecurseCounter = () => {
+  recurseCounter = 0;
+};
 
 /**
  *
@@ -136,6 +143,14 @@ export const recurseTokenTree = (
   transform = true,
   outputType: "css" | "js" = "css" as const,
 ) => {
+  recurseCounter += 1;
+
+  if (recurseCounter > MAX_DEPTH) {
+    throw new Error(
+      `Maximum depth of ${MAX_DEPTH} nested groups reached. Are you missing a $value key?`,
+    );
+  }
+
   for (const [key] of Object.entries(tokens)) {
     let token: Tokens = {};
     activeType = getActiveType(key, activeType, tokens);
@@ -157,12 +172,18 @@ export const recurseTokenTree = (
           : tokens[key],
       };
     }
-    // There is only one key in the token object, so we can just grab the first key
-    const tokenKey = Object.keys(token)[0];
+    tokenList = extractTokenFromObject(token, tokenList);
+  }
 
-    if (tokenKey && typeof token[tokenKey] !== "undefined") {
-      tokenList[tokenKey] = token[tokenKey];
-    }
+  return tokenList;
+};
+
+export const extractTokenFromObject = (token: Tokens, tokenList: Tokens) => {
+  // There is only one key in the token object, so we can just grab the first key
+  const tokenKey = Object.keys(token)[0];
+
+  if (tokenKey && typeof token[tokenKey] !== "undefined") {
+    tokenList[tokenKey] = token[tokenKey];
   }
 
   return tokenList;
@@ -240,7 +261,7 @@ export const parseOverrides = (
   outputType: "css" | "js" = "css",
 ) => {
   let overrides = {};
-
+  recurseCounter = 0;
   [Overrides].forEach(root => {
     if (root.platformOverrides && platform) {
       overrides = {

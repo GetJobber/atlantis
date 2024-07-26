@@ -5,6 +5,7 @@ import {
   parseTokensToCSS,
   parseTokensToCSS as parseTokensToCustomPropertyJS,
   recurseTokenTree,
+  resetRecurseCounter,
 } from "./tokenParsing.ts";
 import {
   convertJSTokensToCSS,
@@ -241,6 +242,8 @@ export const transformRootToTokens = (
   transform = true,
   outputType: "css" | "js" = "css",
 ) => {
+  resetRecurseCounter();
+
   return recurseTokenTree(tokens, "", {}, undefined, transform, outputType);
 };
 

@@ -10,6 +10,7 @@ import {
   createTokenFileFromSubset,
   parseTokens,
 } from "./tokenServices/tokenConvienence.ts";
+import { resetRecurseCounter } from "./tokenServices/tokenParsing.ts";
 
 const writeMobileTokens = () => {
   const androidTokens = createTokenFileContentsForPlatform("android");
@@ -59,9 +60,11 @@ const writeDarkModeTokens = () => {
 };
 
 export const writeTokenFile = () => {
+  resetRecurseCounter();
   const cssString = buildFullCSS();
   writeFile("dist/foundation.css", cssString);
 
+  resetRecurseCounter();
   const jsTokens = createTokenFileContentsForPlatform("web");
   writeFile("src/assets/tokens.web.ts", jsTokens);
 

@@ -51,7 +51,7 @@ export function Icon({
     return tokenAsString
       ?.replace(/\{/g, "var(--")
       .replace(/\./g, "-")
-      .replace(/\}/, ")");
+      .replace(/\}/g, ")");
   };
   svgStyle.fill = tokenStyleToCss(svgStyle.fill);
 
