@@ -408,9 +408,7 @@
   ],
   "dependencies": {
     "@jobber/design": "^0.62.2",
-    "@jobber/design": "^0.62.2",
     "@jobber/formatters": "^0.3.0",
-    "@jobber/hooks": "^2.10.2",
     "@jobber/hooks": "^2.10.2",
     "@popperjs/core": "^2.0.6",
     "@std-proposal/temporal": "0.0.1",
