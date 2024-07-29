@@ -123,9 +123,9 @@ const handleRecurseError = (e: Error) => {
  * 
  * recurseTokenTree(
     YOUR_LOADED_TOKENS,
-    "", <-- We will this empty string to build up the key names as we recurse
-    {}, <-- The list of tokens we are building will be loaded into this object
-    undefined, <-- The active type. Since we're just starting, this is undefined. This will be filled in as we recurse.
+    "", <-- We will use this empty string to build up the key names as we recurse/go down the tree
+    {}, <-- The list of tokens we are building will be loaded into this object as we recurse
+    undefined, <-- The active type. Since we're just starting, this is undefined. This will be filled in and passed down as we recurse.
     transform, <-- Should we transform the final value?
     outputType, <-- If we are transforming, should we transform for CSS or JS. This can change what we transform the value into.
   );
