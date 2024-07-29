@@ -5,7 +5,6 @@ import {
   parseTokensToCSS,
   parseTokensToCSS as parseTokensToCustomPropertyJS,
   recurseTokenTree,
-  resetRecurseCounter,
 } from "./tokenParsing.ts";
 import {
   convertJSTokensToCSS,
@@ -109,9 +108,15 @@ export const createTokenSubset = (tokenNames: Array<TokenTypes>) => {
 };
 
 export const createTokenFileContentsForCSS = (types: Array<TokenTypes>) => {
-  const cssDarkElevatedTokens = parseTokens(types, true, "css");
+  const parsedTokens = parseTokens(types, true, "css");
 
-  return parseTokensToCSS(cssDarkElevatedTokens);
+  return parseTokensToCSS(parsedTokens);
+};
+
+export const createTokenFileContentsForJS = (types: Array<TokenTypes>) => {
+  const jsTokens = parseTokens(types, true, "js");
+
+  return parseTokensToCSS(jsTokens);
 };
 
 export const createTokenFileFromSubset = (subset: Array<TokenTypes>) => {
@@ -242,8 +247,6 @@ export const transformRootToTokens = (
   transform = true,
   outputType: "css" | "js" = "css",
 ) => {
-  resetRecurseCounter();
-
   return recurseTokenTree(tokens, "", {}, undefined, transform, outputType);
 };
 
@@ -283,6 +286,8 @@ export const getRawTokens = (
  * This is an opinionated function. It accepts no parameters. It's a one-stop-shop for generating the complete Atlantis CSS Foundation File.
  *
  * Call this function, it returns the full css, ready for writing to a file.
+ *
+ * Instead of making changes to this function for your own needs, consider building your own function that calls the functions this function calls.
  *
  * @returns The complete Atlantis CSS Foundation File. This file contains all the tokens in the correct order, with the correct CSS to load them.
  */

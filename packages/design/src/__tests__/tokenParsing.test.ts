@@ -1,8 +1,7 @@
-import { MAX_DEPTH, baseUnit } from "../scripts/tokenServices/tokenConstants";
+import { baseUnit } from "../scripts/tokenServices/tokenConstants";
 import {
   parseOverrides,
   recurseTokenTree,
-  resetRecurseCounter,
 } from "../scripts/tokenServices/tokenParsing";
 import { ParsedTokens } from "../scripts/tokenServices/tokenTypes";
 import {
@@ -152,14 +151,13 @@ describe("Token Override Parsing", () => {
     }
 
     expect(message).toBe(
-      `Maximum depth of ${MAX_DEPTH} nested groups reached. Are you missing a $value key?`,
+      `Maximum recursion depth reached. Are you missing a $value key in your token structure?`,
     );
   });
 });
 
 describe("Token Parsing", () => {
   it("Can parse a basic token", () => {
-    resetRecurseCounter();
     const tokens = recurseTokenTree(
       { color: { $type: "color", $value: "red" } },
       "",
@@ -173,7 +171,6 @@ describe("Token Parsing", () => {
 
   it("Can parse a slightly more advanced token", () => {
     const color = "green";
-    resetRecurseCounter();
     const tokens = recurseTokenTree(
       { color: { $type: "color", background: { $value: color } } },
       "",
@@ -186,7 +183,6 @@ describe("Token Parsing", () => {
   });
   it("Can parse an even more advanced token", () => {
     const color = "#333";
-    resetRecurseCounter();
     const tokens = recurseTokenTree(
       {
         color: {

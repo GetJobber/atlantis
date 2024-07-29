@@ -1,4 +1,3 @@
-import { MAX_DEPTH } from "./tokenConstants.ts";
 import type {
   OverrideTokenTree,
   ParsedTokens,
@@ -8,12 +7,6 @@ import type {
   Tokens,
   TransformValue,
 } from "./tokenTypes.ts";
-
-let recurseCounter = 0;
-
-export const resetRecurseCounter = () => {
-  recurseCounter = 0;
-};
 
 /**
  *
@@ -73,6 +66,16 @@ export const getActiveType = (
   }
 
   return activeType as TokenType;
+};
+
+const handleRecurseError = (e: Error) => {
+  if (e.message.includes("Maximum")) {
+    throw new Error(
+      `Maximum recursion depth reached. Are you missing a $value key in your token structure?`,
+    );
+  } else {
+    console.log("EEEVCCVv", e);
+  }
 };
 
 /**
@@ -143,28 +146,25 @@ export const recurseTokenTree = (
   transform = true,
   outputType: "css" | "js" = "css" as const,
 ) => {
-  recurseCounter += 1;
-
-  if (recurseCounter > MAX_DEPTH) {
-    throw new Error(
-      `Maximum depth of ${MAX_DEPTH} nested groups reached. Are you missing a $value key?`,
-    );
-  }
-
   for (const [key] of Object.entries(tokens)) {
     let token: Tokens = {};
     activeType = getActiveType(key, activeType, tokens);
 
     if (!key.startsWith("$")) {
       const passedKey = keyIn ? keyIn + "-" + key : key;
-      token = recurseTokenTree(
-        tokens[key] as Tokens,
-        passedKey,
-        tokenList,
-        activeType,
-        transform,
-        outputType,
-      );
+
+      try {
+        token = recurseTokenTree(
+          tokens[key] as Tokens,
+          passedKey,
+          tokenList,
+          activeType,
+          transform,
+          outputType,
+        );
+      } catch (e) {
+        handleRecurseError(e as Error);
+      }
     } else if (key === "$value") {
       return {
         [keyIn]: transform
@@ -261,7 +261,6 @@ export const parseOverrides = (
   outputType: "css" | "js" = "css",
 ) => {
   let overrides = {};
-  recurseCounter = 0;
   [Overrides].forEach(root => {
     if (root.platformOverrides && platform) {
       overrides = {
