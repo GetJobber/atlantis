@@ -71,6 +71,7 @@
     "postcss-calc": "^10.0.0",
     "postcss-cli": "^11.0.0",
     "postcss-import": "^16.1.0",
+    "rollup": "^4.13.0",
     "swc-node": "^1.0.0",
     "ts-jest": "^29.2.3",
     "ts-node": "^10.9.2",
