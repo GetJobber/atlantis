@@ -6,15 +6,6 @@ import { Chip } from "../..";
 
 const mockIsInView = jest.fn(() => false);
 
-// Mock popper to avoid forceUpdate causing act warnings with testing-library.
-jest.mock("@popperjs/core", () => ({
-  createPopper: () => ({
-    destroy: jest.fn(),
-    forceUpdate: jest.fn(),
-    update: jest.fn(),
-  }),
-}));
-
 jest.mock("../hooks/useInView", () => ({
   useInView: () => ({ isInView: mockIsInView() }),
 }));

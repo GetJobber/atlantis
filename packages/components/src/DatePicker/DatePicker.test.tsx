@@ -4,15 +4,6 @@ import ReactDatePicker from "react-datepicker";
 import userEvent from "@testing-library/user-event";
 import { DatePicker } from "./DatePicker";
 
-// Mock popper to avoid forceUpdate causing act warnings with testing-library.
-jest.mock("@popperjs/core", () => ({
-  createPopper: () => ({
-    destroy: jest.fn(),
-    forceUpdate: jest.fn(),
-    update: jest.fn(),
-  }),
-}));
-
 beforeEach(() => {
   /**
    * We need to mock our date because DatePicker sets an initial date

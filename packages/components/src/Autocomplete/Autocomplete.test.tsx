@@ -4,15 +4,6 @@ import userEvent from "@testing-library/user-event";
 import { AnyOption, Autocomplete } from ".";
 import { InputTextRef } from "../InputText";
 
-// Mock popper to avoid forceUpdate causing act warnings with testing-library.
-jest.mock("@popperjs/core", () => ({
-  createPopper: () => ({
-    destroy: jest.fn(),
-    forceUpdate: jest.fn(),
-    update: jest.fn(),
-  }),
-}));
-
 function returnOptions(options: AnyOption[]) {
   return async () => {
     return Promise.resolve(options);

@@ -4,15 +4,6 @@ import userEvent from "@testing-library/user-event";
 import { Menu } from ".";
 import { Button } from "../Button";
 
-// Mock popper to avoid forceUpdate causing act warnings with testing-library.
-jest.mock("@popperjs/core", () => ({
-  createPopper: () => ({
-    destroy: jest.fn(),
-    forceUpdate: jest.fn(),
-    update: jest.fn(),
-  }),
-}));
-
 describe("Menu", () => {
   it("renders", () => {
     const { container } = render(

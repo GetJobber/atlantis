@@ -6,15 +6,6 @@ import { PopoverProps } from "./Popover";
 
 const content = "Test Content";
 
-// Mock popper to avoid forceUpdate causing act warnings with testing-library.
-jest.mock("@popperjs/core", () => ({
-  createPopper: () => ({
-    destroy: jest.fn(),
-    forceUpdate: jest.fn(),
-    update: jest.fn(),
-  }),
-}));
-
 const PopoverTestComponent = (props: Omit<PopoverProps, "attachTo">) => {
   const divRef = useRef(null);
 
