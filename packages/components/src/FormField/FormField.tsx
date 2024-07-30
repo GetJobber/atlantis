@@ -58,12 +58,10 @@ function FormFieldInternal(props: FormFieldInternalProps) {
     clearable = "never",
     autofocus,
   } = props;
-
+  const formContext = useFormContext();
+  // If there isn't a Form Context being provided, get a form for this field.
   const { control, setValue, watch } =
-    useFormContext() != undefined
-      ? useFormContext()
-      : // If there isn't a Form Context being provided, get a form for this field.
-        useForm({ mode: "onTouched" });
+    formContext ?? useForm({ mode: "onTouched" });
 
   const descriptionIdentifier = `descriptionUUID--${id}`;
   /**
@@ -148,7 +146,14 @@ function FormFieldInternal(props: FormFieldInternalProps) {
           <textarea
             {...textFieldProps}
             rows={rows}
-            ref={inputRef as MutableRefObject<HTMLTextAreaElement>}
+            ref={ref => {
+              if (inputRef) {
+                (
+                  inputRef as MutableRefObject<HTMLTextAreaElement | null>
+                ).current = ref;
+              }
+              rest.ref(ref);
+            }}
           />
         );
       default:
@@ -161,7 +166,14 @@ function FormFieldInternal(props: FormFieldInternalProps) {
               maxLength={maxLength}
               max={max}
               min={min}
-              ref={inputRef as MutableRefObject<HTMLInputElement>}
+              ref={ref => {
+                if (inputRef) {
+                  (
+                    inputRef as MutableRefObject<HTMLInputElement | null>
+                  ).current = ref;
+                }
+                rest.ref(ref);
+              }}
               onKeyUp={onKeyUp}
             />
             {loading && <FormFieldPostFix variation="spinner" />}

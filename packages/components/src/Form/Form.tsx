@@ -36,7 +36,7 @@ export const Form = forwardRef(function InternalForm(
     trigger,
     handleSubmit,
     formState: { isDirty, isValid, errors },
-    getValues,
+    setFocus,
   } = methods;
 
   useEffect(
@@ -88,14 +88,7 @@ export const Form = forwardRef(function InternalForm(
 
   function errorHandler(errs: FieldErrors<FieldValues>) {
     const errorKeys = Object.keys(errs);
-    const formValues = getValues();
-    const fieldNames = Object.keys(formValues);
 
-    const firstErrName = fieldNames.find(name => errorKeys.includes(name));
-    const element = document.querySelector(
-      `[name="${firstErrName}"]`,
-    ) as HTMLElement;
-
-    element?.focus();
+    setFocus(errorKeys[0]);
   }
 });
