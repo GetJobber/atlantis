@@ -3,6 +3,8 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Tooltip } from ".";
 
+// We automatically mock popper (__mocks__/@popperjs/core.js), but in this test suite
+// we are verifying certain behaviours that require popper to be active.
 jest.unmock("@popperjs/core");
 
 it("shouldn't show the tooltip", async () => {
