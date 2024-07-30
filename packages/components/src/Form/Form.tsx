@@ -5,12 +5,7 @@ import React, {
   useEffect,
   useImperativeHandle,
 } from "react";
-import {
-  FieldErrors,
-  FieldValues,
-  FormProvider,
-  useForm,
-} from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 
 export interface FormRef {
   submit(): void;
@@ -31,12 +26,15 @@ export const Form = forwardRef(function InternalForm(
   { onSubmit, children, onStateChange }: FormProps,
   ref: Ref<FormRef>,
 ) {
-  const methods = useForm({ mode: "onTouched" });
+  const methods = useForm({
+    mode: "onTouched",
+    shouldFocusError: true,
+  });
+
   const {
     trigger,
     handleSubmit,
-    formState: { isDirty, isValid, errors },
-    setFocus,
+    formState: { isDirty, isValid },
   } = methods;
 
   useEffect(
@@ -52,13 +50,10 @@ export const Form = forwardRef(function InternalForm(
      * `Form` component.
      */
     submit: async () => {
-      const valid = await trigger();
+      const valid = await trigger(undefined, { shouldFocus: true });
 
       if (valid) {
         submitHandler();
-      } else {
-        trigger();
-        errorHandler(errors);
       }
     },
   }));
@@ -71,7 +66,7 @@ export const Form = forwardRef(function InternalForm(
   const Wrapper = onSubmit ? "form" : "div";
 
   const formProps = {
-    onSubmit: onSubmit && handleSubmit(submitHandler, errorHandler),
+    onSubmit: onSubmit && handleSubmit(submitHandler),
   };
 
   return (
@@ -84,11 +79,5 @@ export const Form = forwardRef(function InternalForm(
 
   function submitHandler() {
     onSubmit && onSubmit();
-  }
-
-  function errorHandler(errs: FieldErrors<FieldValues>) {
-    const errorKeys = Object.keys(errs);
-
-    setFocus(errorKeys[0]);
   }
 });
