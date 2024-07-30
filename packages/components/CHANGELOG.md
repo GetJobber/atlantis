@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.20.9](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.8...@jobber/components@5.20.9) (2024-07-30)
+
+
+### Bug Fixes
+
+* **components:** Mock popper to prevent act warnings in test suites ([#1967](https://github.com/GetJobber/atlantis/issues/1967)) ([bfcb3ba](https://github.com/GetJobber/atlantis/commit/bfcb3ba2cfc0985d223fa671204e56561b570877))
+
+
+
+
+
 ## [5.20.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.7...@jobber/components@5.20.8) (2024-07-25)
 
 **Note:** Version bump only for package @jobber/components
