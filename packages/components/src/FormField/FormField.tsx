@@ -84,7 +84,12 @@ function FormFieldInternal(props: FormFieldInternalProps) {
   }));
 
   const {
-    field: { onChange: onControllerChange, onBlur: onControllerBlur, ...rest },
+    field: {
+      onChange: onControllerChange,
+      onBlur: onControllerBlur,
+      ref: fieldRef,
+      ...rest
+    },
     fieldState: { error },
   } = useController({
     name,
@@ -117,7 +122,7 @@ function FormFieldInternal(props: FormFieldInternalProps) {
     autoFocus: autofocus,
     onKeyDown: handleKeyDown,
   };
-  const fieldRefs = mergeRefs([inputRef, rest.ref]);
+  const inputRefs = mergeRefs([inputRef, fieldRef]);
 
   return (
     <FormFieldWrapper
@@ -143,7 +148,7 @@ function FormFieldInternal(props: FormFieldInternalProps) {
           </>
         );
       case "textarea":
-        return <textarea {...textFieldProps} rows={rows} ref={fieldRefs} />;
+        return <textarea {...textFieldProps} rows={rows} ref={inputRefs} />;
       default:
         return (
           <>
@@ -154,7 +159,7 @@ function FormFieldInternal(props: FormFieldInternalProps) {
               maxLength={maxLength}
               max={max}
               min={min}
-              ref={fieldRefs}
+              ref={inputRefs}
               onKeyUp={onKeyUp}
             />
             {loading && <FormFieldPostFix variation="spinner" />}
