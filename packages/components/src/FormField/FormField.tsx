@@ -2,7 +2,6 @@ import React, {
   ChangeEvent,
   FocusEvent,
   KeyboardEvent,
-  MutableRefObject,
   useEffect,
   useId,
   useImperativeHandle,
@@ -12,6 +11,7 @@ import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.css";
 import { FormFieldWrapper } from "./FormFieldWrapper";
 import { FormFieldPostFix } from "./FormFieldPostFix";
+import { mergeRefs } from "../utils/mergeRefs";
 
 export function FormField(props: FormFieldProps) {
   // Warning: do not move useId into FormFieldInternal. This must be here to avoid
@@ -117,6 +117,7 @@ function FormFieldInternal(props: FormFieldInternalProps) {
     autoFocus: autofocus,
     onKeyDown: handleKeyDown,
   };
+  const fieldRefs = mergeRefs([inputRef, rest.ref]);
 
   return (
     <FormFieldWrapper
@@ -142,20 +143,7 @@ function FormFieldInternal(props: FormFieldInternalProps) {
           </>
         );
       case "textarea":
-        return (
-          <textarea
-            {...textFieldProps}
-            rows={rows}
-            ref={ref => {
-              if (inputRef) {
-                (
-                  inputRef as MutableRefObject<HTMLTextAreaElement | null>
-                ).current = ref;
-              }
-              rest.ref(ref);
-            }}
-          />
-        );
+        return <textarea {...textFieldProps} rows={rows} ref={fieldRefs} />;
       default:
         return (
           <>
@@ -166,14 +154,7 @@ function FormFieldInternal(props: FormFieldInternalProps) {
               maxLength={maxLength}
               max={max}
               min={min}
-              ref={ref => {
-                if (inputRef) {
-                  (
-                    inputRef as MutableRefObject<HTMLInputElement | null>
-                  ).current = ref;
-                }
-                rest.ref(ref);
-              }}
+              ref={fieldRefs}
               onKeyUp={onKeyUp}
             />
             {loading && <FormFieldPostFix variation="spinner" />}
