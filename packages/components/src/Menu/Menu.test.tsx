@@ -1,5 +1,6 @@
 import React from "react";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { Menu } from ".";
 import { Button } from "../Button";
 
@@ -39,7 +40,7 @@ describe("Menu", () => {
         },
       ];
       const { getByRole } = render(<Menu items={actions} />);
-      fireEvent.click(getByRole("button"));
+      await userEvent.click(getByRole("button"));
       await waitFor(() => {
         expect(getByRole("menuitem")).toBeInTheDocument();
       });
@@ -59,8 +60,8 @@ describe("Menu", () => {
       ];
       const { getByRole, queryByRole } = render(<Menu items={actions} />);
 
-      fireEvent.click(getByRole("button"));
-      fireEvent.click(getByRole("menuitem"));
+      await userEvent.click(getByRole("button"));
+      await userEvent.click(getByRole("menuitem"));
       expect(clickHandler).toHaveBeenCalledTimes(1);
       await waitFor(() => {
         expect(queryByRole("menuitem")).not.toBeInTheDocument();
@@ -71,7 +72,7 @@ describe("Menu", () => {
   describe("when menu is opened and escape is pressed", () => {
     const actionLabel = "Text Message";
     it("should close the menu", async () => {
-      const { getByRole, queryByRole, container } = render(
+      const { getByRole, queryByRole } = render(
         <Menu
           items={[
             {
@@ -91,11 +92,8 @@ describe("Menu", () => {
         />,
       );
 
-      fireEvent.click(getByRole("button"));
-      fireEvent.keyDown(container, {
-        key: "Escape",
-        code: "Escape",
-      });
+      await userEvent.click(getByRole("button"));
+      await userEvent.keyboard("{Escape}");
       await waitFor(() => {
         expect(queryByRole("menuitem")).not.toBeInTheDocument();
       });
@@ -128,25 +126,23 @@ describe("Menu", () => {
     });
   });
 
-  it("should passthrough the onClick action", () => {
+  it("should passthrough the onClick action", async () => {
     const clickHandler = jest.fn();
-    const actions = [];
 
     const { getByRole } = render(
       <Menu
         activator={<Button label="Menu" onClick={clickHandler} />}
-        items={actions}
+        items={[]}
       />,
     );
 
-    fireEvent.click(getByRole("button"));
+    await userEvent.click(getByRole("button"));
     expect(clickHandler).toHaveBeenCalledTimes(1);
   });
 });
 
 it("should focus first action item from the menu when activated", async () => {
-  jest.useFakeTimers();
-  const { getByRole } = render(
+  render(
     <Menu
       activator={<Button label="Menu" />}
       items={[
@@ -167,7 +163,7 @@ it("should focus first action item from the menu when activated", async () => {
     />,
   );
 
-  fireEvent.click(getByRole("button"));
+  await userEvent.click(screen.getByRole("button"));
   const firstMenuItem = screen.getAllByRole("menuitem")[0];
   expect(firstMenuItem).toHaveFocus();
 });
