@@ -3,6 +3,8 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Tooltip } from ".";
 
+jest.unmock("@popperjs/core");
+
 it("shouldn't show the tooltip", async () => {
   const message = "Imma not tip the tool";
   const content = "Don't show my tooltip";
