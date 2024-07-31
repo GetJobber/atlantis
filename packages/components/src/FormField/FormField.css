@@ -233,6 +233,8 @@
 }
 
 .textarea.safari .input {
+  margin-top: var(--field--padding-top);
+  padding-top: 0;
   padding-right: 0;
 }
 
