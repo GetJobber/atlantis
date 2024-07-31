@@ -1,9 +1,7 @@
-:root {
+.drawer {
   --sideDrawer--base-padding: var(--space-base);
   --sideDrawer--background: var(--color-surface);
-}
 
-.drawer {
   position: fixed;
   top: 0;
   right: 0;
@@ -13,12 +11,18 @@
   max-width: 420px;
 }
 
-.container {
+.container,
+.drawer,
+.header,
+.content,
+.footer {
   display: flex;
-  height: 100%;
-  overflow-y: auto;
-  background-color: var(--sideDrawer--background);
   flex-direction: column;
+}
+
+.container {
+  height: 100%;
+  background-color: var(--sideDrawer--background);
 }
 
 .subtle {
@@ -27,12 +31,10 @@
 
 .header,
 .footer {
-  display: flex;
   position: sticky;
   z-index: var(--elevation-base);
   padding: var(--sideDrawer--base-padding);
   background-color: var(--sideDrawer--background);
-  flex-direction: column;
   transition:
     box-shadow var(--timing-base) ease-in-out,
     filter var(--timing-base) ease-in-out;
@@ -108,9 +110,8 @@
 }
 
 .content {
-  display: flex;
-  flex-direction: column;
   flex: 1;
+  overflow-y: auto;
 }
 
 /* Adjust `Content` components public padding to match the drawer */
@@ -123,4 +124,36 @@
 
 .content > * > * {
   --public-content--padding: 0;
+}
+
+.reverseScroll {
+  & .content {
+    flex-direction: column-reverse;
+  }
+
+  & .headerShadowListener {
+    order: 1;
+  }
+
+  & .footerShadowListener {
+    order: -1;
+  }
+}
+
+.backButton {
+  --transition: var(--timing-base) ease-in-out;
+
+  width: 0;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition:
+    width var(--transition),
+    transform var(--transition),
+    opacity var(--transition);
+
+  &.backButtonVisible {
+    width: 40px;
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

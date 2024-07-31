@@ -1,5 +1,9 @@
+import { Combobox } from "@jobber/components/Combobox";
+import { Meta } from "@storybook/addon-docs";
+
 <Meta
-  title="Components/Selections/Combobox/Docs"
+  title="Components/Selections/Combobox"
+  component={Combobox}
   parameters={{ alpha: true }}
 />
 
@@ -33,9 +37,9 @@ initiate option selection.
 ##### Default activator
 
 Examples of using a default activator can be found in the
-[single-select](../?path=/code/components-selections-combobox-web--single-select)
+[single-select](../?path=/story/components-selections-combobox-web--single-select)
 and
-[multi-select](../?path=/code/components-selections-combobox-web--multi-select)
+[multi-select](../?path=/story/components-selections-combobox-web--multi-select)
 stories. The label of the default activator can be customized by adding the
 optional `label` prop to Combobox, to better reflect the type of data being
 selected. Otherwise, the default activator label will read "Select".
@@ -49,7 +53,7 @@ The custom activator should be used in any instance where the default activator
 is not suitable. Your custom activator should be a child of
 `<Combobox.Activator />`. An example of using a custom activator can be found in
 the
-[custom activator](../?path=/code/components-selections-combobox-web--custom-activator)
+[custom activator](../?path=/story/components-selections-combobox-web--custom-activator)
 story.
 
 Omitting a custom activator subcomponent will result in the default activator
@@ -150,7 +154,7 @@ Combobox is designed to handle lists of selectable options, so the component is
 text based.
 
 You may customize the activator and action `label`. Refer to the
-[Product Vocabulary](../?path=/docs/content-product-vocabulary--page) for
+[Product Vocabulary](../?path=/docs/content-product-vocabulary--docs) for
 consistency in terminology and naming conventions when setting these values.
 
 You may also set an optional `subjectNoun` for the Combobox content. This will
@@ -160,8 +164,8 @@ of the Combobox, as well as the noun within the search placeholder.
 
 You may include a prefix element to any ComboBox.Option by setting its `prefix`
 prop. This could be a
-[StatusIndicator](../?path=/docs/components-status-and-feedback-statusindicator-docs--page)
-or [Icon](../?path=/docs/components-images-and-icons-icon-docs--page) to provide
+[StatusIndicator](../?path=/docs/components-status-and-feedback-statusindicator--docs)
+or [Icon](../?path=/docs/components-images-and-icons-icon--docs) to provide
 additional context to the option.
 
 ### Empty states
@@ -181,9 +185,9 @@ search query.
 
 - The activator can be actioned with `space` or `return`
 - The Comobox confines tabbing to within itself while it's open using
-  [useFocusTrap](https://atlantis.getjobber.com/?path=/docs/hooks-usefocustrap--use-focus-trap)
+  [useFocusTrap](../?path=/docs/hooks-usefocustrap--docs)
 - Pressing `esc` will close the Combobox and return focus to the activator using
-  [useRefocusOnActivator](https://atlantis.getjobber.com/?path=/docs/hooks-userefocusonactivator--use-refocus-on-activator)
+  [useRefocusOnActivator](../?path=/docs/hooks-userefocusonactivator--docs)
 - The search input is automatically focused when the Combobox opens. The button
   to clear the input can be focused with `tab`
 - The options list is navigated with the `up` and `down` arrow keys, and

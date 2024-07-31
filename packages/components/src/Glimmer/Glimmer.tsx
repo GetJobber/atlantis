@@ -84,7 +84,8 @@ export function Glimmer({
   );
 }
 
-interface GlimmerHeaderProps extends Omit<GlimmerProps, "shape" | "size"> {
+export interface GlimmerHeaderProps
+  extends Omit<GlimmerProps, "shape" | "size"> {
   /**
    * Adjust the size of the `Glimmer.Header`.
    *
@@ -112,7 +113,7 @@ Glimmer.Header = function GlimmerHeader({
   );
 };
 
-interface GlimmerTextProps extends Omit<GlimmerProps, "shape" | "size"> {
+export interface GlimmerTextProps extends Omit<GlimmerProps, "shape" | "size"> {
   /**
    * Set how many lines shows up.
    *
@@ -139,7 +140,8 @@ Glimmer.Text = function GlimmerText({
   );
 };
 
-interface GlimmerButtonProps extends Omit<GlimmerProps, "shape" | "size"> {
+export interface GlimmerButtonProps
+  extends Omit<GlimmerProps, "shape" | "size"> {
   /**
    * Allow `Glimmer.Button` to go full width.
    *

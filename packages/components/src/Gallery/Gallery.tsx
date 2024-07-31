@@ -5,6 +5,7 @@ import { File, GalleryProps } from "./GalleryTypes";
 import { LightBox } from "../LightBox";
 import { FormatFile } from "../FormatFile";
 import { Button } from "../Button";
+import { isSafari } from "../utils/getClientBrowser";
 
 export function Gallery({ files, size = "base", max, onDelete }: GalleryProps) {
   const { images, filesToImageIndex } = generateImagesArray(files);
@@ -22,7 +23,10 @@ export function Gallery({ files, size = "base", max, onDelete }: GalleryProps) {
           return (
             <FormatFile
               key={file.key}
-              file={{ ...file, src: () => Promise.resolve(file.src) }}
+              file={{
+                ...file,
+                src: () => Promise.resolve(file.thumbnailSrc || file.src),
+              }}
               display="compact"
               displaySize={size}
               onClick={() => {
@@ -32,6 +36,7 @@ export function Gallery({ files, size = "base", max, onDelete }: GalleryProps) {
             />
           );
         })}
+
         {max && files.length > max && !displayPastMax && (
           <div
             className={classNames(
@@ -61,7 +66,10 @@ export function Gallery({ files, size = "base", max, onDelete }: GalleryProps) {
   );
 
   function handleThumbnailClicked(index: number) {
-    if (files[index].type.startsWith("image/")) {
+    if (
+      files[index].type.startsWith("image/") &&
+      isSupportedImageType(files[index])
+    ) {
       handleLightboxOpen(index);
     } else {
       window.open(files[index].src, "_blank");
@@ -82,13 +90,22 @@ export function Gallery({ files, size = "base", max, onDelete }: GalleryProps) {
   }
 }
 
+function isSupportedImageType(file: File) {
+  const userAgent =
+    typeof document === "undefined" ? "" : window.navigator.userAgent;
+  const nonHeicImage = !file.type.startsWith("image/heic");
+  const nonSVGImage = !file.type.startsWith("image/svg");
+
+  return (nonHeicImage || isSafari(userAgent)) && nonSVGImage;
+}
+
 function generateImagesArray(files: File[]) {
   const images = [];
   const filesToImageIndex = [];
   let imageIndex = 0;
 
   for (let i = 0; i < files.length; i++) {
-    if (files[i].type.startsWith("image/")) {
+    if (files[i].type.startsWith("image/") && isSupportedImageType(files[i])) {
       images.push({ title: files[i].name, url: files[i].src });
       filesToImageIndex.push(imageIndex);
       imageIndex++;

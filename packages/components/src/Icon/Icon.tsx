@@ -24,9 +24,20 @@ export interface IconProps {
    * Sets a custom color for the icon. Can be a rgb() or hex value.
    */
   readonly customColor?: string;
+
+  /**
+   * Used to locate this view in end-to-end tests
+   */
+  readonly testID?: string;
 }
 
-export function Icon({ name, color, customColor, size = "base" }: IconProps) {
+export function Icon({
+  name,
+  color,
+  customColor,
+  size = "base",
+  testID,
+}: IconProps) {
   let icon;
   const { svgClassNames, pathClassNames, paths, viewBox } = getIcon({
     name,
@@ -47,7 +58,7 @@ export function Icon({ name, color, customColor, size = "base" }: IconProps) {
       xmlns="http://www.w3.org/2000/svg"
       viewBox={viewBox}
       className={svgClassNames}
-      data-testid={name}
+      data-testid={testID || name}
     >
       {icon}
     </svg>

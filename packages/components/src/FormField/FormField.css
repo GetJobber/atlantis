@@ -10,7 +10,7 @@
 
   --field--placeholder-color: var(--color-base-blue--600);
   --field--value-color: var(--color-heading);
-  --field--border-color: var(--color-border);
+  --field--border-color: var(--color-border--interactive);
 
   --postfix-right: var(--space-base);
 }
@@ -195,7 +195,7 @@
   padding-left: var(--field--padding-left);
   padding-right: var(--field--padding-right);
   border: none;
-  border-radius: 0;
+  border-radius: var(--radius-base);
   color: inherit;
   font-family: inherit;
   font-size: inherit;
@@ -263,6 +263,10 @@
   padding-right: calc(var(--field--padding-right) + var(--base-unit) * 2);
 }
 
+.select option {
+  background-color: var(--field--background-color);
+}
+
 .text .label {
   padding-top: var(--field--padding-top);
   transform: translateY(var(--field--placeholder-transform));
@@ -325,6 +329,7 @@
 
 .affixIcon.suffix {
   margin: 0 0 0 calc(var(--field--padding-right) * -1);
+  padding-left: var(--space-small);
 }
 
 .affixIcon.hasAction {

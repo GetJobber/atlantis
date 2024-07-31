@@ -1,14 +1,12 @@
-:root {
-  --tooltip--arrow-size: var(--space-small);
-  --tooltip--offset: calc(-1 * var(--space-smaller));
-  --tooltip--surface: var(--color-surface--reverse);
-}
-
 .shadowActivator {
   display: none;
 }
 
 .tooltipWrapper {
+  --tooltip--arrow-size: 8px;
+  --tooltip--offset: calc(-1 * var(--space-smaller));
+  --tooltip--surface: var(--color-surface--reverse);
+
   display: inline-block;
   position: absolute;
   z-index: var(--elevation-tooltip);
@@ -18,7 +16,7 @@
 .tooltip {
   display: inline-block;
   position: relative;
-  max-width: calc(var(--base-unit) * 15);
+  max-width: 250px;
   padding: calc(var(--space-base) - var(--space-smallest)) var(--space-base);
   border-radius: var(--radius-base);
   background-color: var(--tooltip--surface);

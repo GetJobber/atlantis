@@ -7,8 +7,9 @@ import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import classNames from "classnames";
 import { useInView } from "@jobber/hooks/useInView";
+import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import { SideDrawerActions } from "./SideDrawerActions";
-import { SideDrawerContext } from "./SideDrawerContext";
+import { RegisteredComponents, SideDrawerContext } from "./SideDrawerContext";
 import { SideDrawerTitle } from "./SideDrawerTitle";
 import { SideDrawerToolbar } from "./SideDrawerToolbar";
 import styles from "./SideDrawer.css";
@@ -32,6 +33,11 @@ interface SideDrawerProps extends PropsWithChildren {
    * Change the appearance of the drawer.
    */
   readonly variation?: "base" | "subtle";
+
+  /**
+   * Change the scrolling direction of the drawer. Useful for chat-like interfaces.
+   */
+  readonly scrollDirection?: "normal" | "reverse";
 }
 
 const variants: Variants = {
@@ -39,19 +45,18 @@ const variants: Variants = {
   visible: { x: 0, transitionEnd: { x: 0 } },
 };
 
-// eslint-disable-next-line max-statements
 export function SideDrawer({
   children,
   onRequestClose,
   open,
   variation = "base",
+  scrollDirection,
 }: SideDrawerProps) {
   const [ref, setRef] = useState<HTMLDivElement | null>(null);
-  const toolbar = useSlotID();
-  const title = useSlotID("title");
-  const actions = useSlotID();
-  const backButton = useSlotID("back");
-  const footer = useSlotID();
+  const [components, setComponents] = useState<RegisteredComponents>({
+    backButton: false,
+  });
+  const { toolbar, title, actions, backButton, footer } = useSlotIDs();
 
   useRefocusOnActivator(open);
   const sideDrawerRef = useFocusTrap<HTMLDivElement>(open);
@@ -59,8 +64,9 @@ export function SideDrawer({
   const [footerShadowRef, noFooterShadow] = useInView<HTMLDivElement>();
 
   const container = globalThis.document?.body || null;
+  const isMounted = useIsMounted();
 
-  if (!container) return null;
+  if (!isMounted.current && !container) return null;
 
   return createPortal(
     <SideDrawerContext.Provider
@@ -70,6 +76,11 @@ export function SideDrawer({
         toolbarPortal: ref?.querySelector(toolbar.selector),
         backPortal: ref?.querySelector(backButton.selector),
         footerPortal: ref?.querySelector(footer.selector),
+        components,
+        registerComponent: key =>
+          setComponents(prev => ({ ...prev, [key]: true })),
+        unRegisterComponent: key =>
+          setComponents(prev => ({ ...prev, [key]: false })),
       }}
     >
       {open && (
@@ -80,10 +91,13 @@ export function SideDrawer({
           type="button"
         />
       )}
+
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
-            className={styles.drawer}
+            className={classNames(styles.drawer, {
+              [styles.reverseScroll]: scrollDirection === "reverse",
+            })}
             ref={setRef}
             data-elevation={"elevated"}
             variants={variants}
@@ -103,7 +117,6 @@ export function SideDrawer({
               tabIndex={0}
               onKeyUp={handleKeyUp}
             >
-              <div ref={headerShadowRef} />
               <div
                 className={classNames(styles.header, {
                   [styles.hasShadow]:
@@ -112,7 +125,12 @@ export function SideDrawer({
               >
                 <Flex template={["grow", "shrink"]}>
                   <Flex template={["shrink", "grow"]} gap="none">
-                    <div {...backButton.attr} />
+                    <div
+                      className={classNames(styles.backButton, {
+                        [styles.backButtonVisible]: components.backButton,
+                      })}
+                      {...backButton.attr}
+                    />
                     <div {...title.attr} />
                   </Flex>
 
@@ -131,7 +149,19 @@ export function SideDrawer({
                 <div className={styles.hideWhenEmpty} {...toolbar.attr} />
               </div>
 
-              <div className={styles.content}>{children}</div>
+              <div className={styles.content}>
+                <div
+                  className={styles.headerShadowListener}
+                  ref={headerShadowRef}
+                />
+
+                {children}
+
+                <div
+                  className={styles.footerShadowListener}
+                  ref={footerShadowRef}
+                />
+              </div>
 
               <div
                 className={classNames(styles.footer, styles.hideWhenEmpty, {
@@ -140,7 +170,6 @@ export function SideDrawer({
                 })}
                 {...footer.attr}
               />
-              <div ref={footerShadowRef} />
             </div>
           </motion.div>
         )}
@@ -154,6 +183,16 @@ export function SideDrawer({
       onRequestClose();
     }
   }
+}
+
+function useSlotIDs() {
+  const toolbar = useSlotID();
+  const title = useSlotID("title");
+  const actions = useSlotID();
+  const backButton = useSlotID("back");
+  const footer = useSlotID();
+
+  return { toolbar, title, actions, backButton, footer };
 }
 
 function useSlotID(prefix?: string) {

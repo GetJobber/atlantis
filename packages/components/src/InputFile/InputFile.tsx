@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { SyntheticEvent, useCallback } from "react";
 import classnames from "classnames";
 import { DropzoneOptions, FileError, useDropzone } from "react-dropzone";
 import axios, { AxiosRequestConfig } from "axios";
@@ -45,6 +45,13 @@ export interface FileUpload {
    * The data url of the file.
    */
   src(): Promise<string>;
+
+  /**
+   * Callback for when the image file fails to load.
+   *
+   * This only works for image files.
+   */
+  onImageLoadError?(event: SyntheticEvent<HTMLImageElement>): void;
 }
 
 export interface UploadParams {
@@ -121,7 +128,7 @@ interface InputFileProps {
    * to upload the file.
    *
    * More info is available at:
-   * https://atlantis.getjobber.com/?path=/docs/components-forms-and-inputs-inputfile-docs--page#getuploadparams
+   * https://atlantis.getjobber.com/?path=/docs/components-forms-and-inputs-inputfile--docs#getuploadparams
    */
   getUploadParams(file: File): UploadParams | Promise<UploadParams>;
 

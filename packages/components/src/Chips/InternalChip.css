@@ -17,7 +17,7 @@
   max-width: 100%;
   box-sizing: border-box;
   padding: var(--space-small);
-  border: var(--border-base) solid var(--color-border);
+  border: var(--border-base) solid var(--color-border--interactive);
   border-radius: var(--radius-larger);
   color: var(--color-text--secondary);
   text-align: left;
