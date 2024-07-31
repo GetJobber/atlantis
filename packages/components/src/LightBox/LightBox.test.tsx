@@ -106,3 +106,30 @@ test("Lightbox displays the selected imageIndex", () => {
   expect(queryByText(titleTwo)).toBeInstanceOf(HTMLElement);
   expect(queryByText(title)).toBeNull();
 });
+
+describe("print styles", () => {
+  test("toggles the atlantisLightBoxActive class on the html element", () => {
+    const props = {
+      images: [
+        {
+          title: "title",
+          caption: "caption",
+          url: "",
+        },
+      ],
+      onRequestClose: jest.fn(),
+    };
+
+    const { rerender } = render(<LightBox open={false} {...props} />);
+
+    rerender(<LightBox open={true} {...props} />);
+    expect(document.documentElement.classList).toContain(
+      "atlantisLightBoxActive",
+    );
+
+    rerender(<LightBox open={false} {...props} />);
+    expect(document.documentElement.classList).not.toContain(
+      "atlantisLightBoxActive",
+    );
+  });
+});

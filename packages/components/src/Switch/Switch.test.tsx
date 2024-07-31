@@ -10,7 +10,7 @@ it("renders a Switch", () => {
       <button
         aria-checked="false"
         aria-label="Toggle me"
-        class="track"
+        class="track switch"
         role="switch"
         type="button"
       >
@@ -55,7 +55,7 @@ it("renders a Switch that is turned ON", () => {
       <button
         aria-checked="true"
         aria-label="Toggle me"
-        class="track isChecked"
+        class="track switch isChecked"
         role="switch"
         type="button"
       >
@@ -102,7 +102,7 @@ it("renders a disabled Switch", () => {
       <button
         aria-checked="false"
         aria-label="Can't touch this"
-        class="track disabled"
+        class="track switch disabled"
         disabled=""
         role="switch"
         type="button"

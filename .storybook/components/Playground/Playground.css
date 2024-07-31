@@ -1,8 +1,8 @@
 .sp-wrapper {
-  display: grid;
-  height: 100%;
-  grid-template-columns: auto;
-  grid-auto-rows: minmax(50%, auto);
+  display: grid !important;
+  height: 100% !important;
+  grid-template-columns: auto !important;
+  grid-auto-rows: minmax(50%, auto) !important;
 }
 
 .sp-stack {

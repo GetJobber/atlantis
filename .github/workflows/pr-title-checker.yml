@@ -22,6 +22,7 @@ jobs:
             components
             components-native
             deps
+            deps-dev
             design
             docx
             eslint

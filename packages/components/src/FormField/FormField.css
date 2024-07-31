@@ -195,7 +195,7 @@
   padding-left: var(--field--padding-left);
   padding-right: var(--field--padding-right);
   border: none;
-  border-radius: 0;
+  border-radius: var(--radius-base);
   color: inherit;
   font-family: inherit;
   font-size: inherit;
@@ -329,6 +329,7 @@
 
 .affixIcon.suffix {
   margin: 0 0 0 calc(var(--field--padding-right) * -1);
+  padding-left: var(--space-small);
 }
 
 .affixIcon.hasAction {

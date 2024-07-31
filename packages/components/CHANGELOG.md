@@ -3,6 +3,165 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.20.9](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.8...@jobber/components@5.20.9) (2024-07-30)
+
+
+### Bug Fixes
+
+* **components:** Mock popper to prevent act warnings in test suites ([#1967](https://github.com/GetJobber/atlantis/issues/1967)) ([bfcb3ba](https://github.com/GetJobber/atlantis/commit/bfcb3ba2cfc0985d223fa671204e56561b570877))
+
+
+
+
+
+## [5.20.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.7...@jobber/components@5.20.8) (2024-07-25)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [5.20.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.6...@jobber/components@5.20.7) (2024-07-18)
+
+
+### Bug Fixes
+
+* reduce gap on input suffixes ([#1940](https://github.com/GetJobber/atlantis/issues/1940)) ([0bb39e6](https://github.com/GetJobber/atlantis/commit/0bb39e60e8224bc296170fe1513ea78ae8d960f8))
+
+
+
+
+
+## [5.20.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.5...@jobber/components@5.20.6) (2024-07-15)
+
+
+### Reverts
+
+* revert: "feat: Storybook7 Upgrade" ([#1956](https://github.com/GetJobber/atlantis/issues/1956)) ([1e82e48](https://github.com/GetJobber/atlantis/commit/1e82e48f69d4fa8a8d2db46daba6dcf3b6d87111)), closes [#1952](https://github.com/GetJobber/atlantis/issues/1952) [#1953](https://github.com/GetJobber/atlantis/issues/1953) [#1957](https://github.com/GetJobber/atlantis/issues/1957)
+
+
+
+
+
+## [5.20.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.4...@jobber/components@5.20.5) (2024-07-09)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [5.20.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.3...@jobber/components@5.20.4) (2024-07-09)
+
+
+### Bug Fixes
+
+* **components:** make DataList and DataTable sorting interactions match ([#1945](https://github.com/GetJobber/atlantis/issues/1945)) ([21d900e](https://github.com/GetJobber/atlantis/commit/21d900e1b408bb6fa6ef96534fcc353c41caf105))
+
+
+
+
+
+## [5.20.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.2...@jobber/components@5.20.3) (2024-07-08)
+
+
+### Bug Fixes
+
+* **components:** Prevent LightBox from duplicating content when the page is printed ([#1951](https://github.com/GetJobber/atlantis/issues/1951)) ([b3f375b](https://github.com/GetJobber/atlantis/commit/b3f375b522d4aae42e114ca7d31b622820628dc0))
+
+
+
+
+
+## [5.20.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.1...@jobber/components@5.20.2) (2024-07-08)
+
+
+### Bug Fixes
+
+* **components:** Gallery handle HEIC and SVG images properly  ([#1938](https://github.com/GetJobber/atlantis/issues/1938)) ([2f84126](https://github.com/GetJobber/atlantis/commit/2f84126b3b4cfad7eb3adb7649f3cb68c5f20b0e))
+
+
+
+
+
+## [5.20.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.0...@jobber/components@5.20.1) (2024-07-08)
+
+
+### Reverts
+
+* "feat: Storybook7 Upgrade" ([#1954](https://github.com/GetJobber/atlantis/issues/1954)) ([0854202](https://github.com/GetJobber/atlantis/commit/0854202ae850439c514f5ce1f129f2e584fe0efb)), closes [#1711](https://github.com/GetJobber/atlantis/issues/1711)
+
+
+
+
+
+# [5.20.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.19.1...@jobber/components@5.20.0) (2024-07-05)
+
+
+### Features
+
+* Storybook7 Upgrade ([#1711](https://github.com/GetJobber/atlantis/issues/1711)) ([7923df3](https://github.com/GetJobber/atlantis/commit/7923df325cae63a5476d997f577efd3e123dbe54))
+
+
+
+
+
+## [5.19.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.19.0...@jobber/components@5.19.1) (2024-07-03)
+
+
+### Bug Fixes
+
+* **components:** Update FormField to avoid useId StrictMode problem ([#1950](https://github.com/GetJobber/atlantis/issues/1950)) ([03d22be](https://github.com/GetJobber/atlantis/commit/03d22bed22bcfe2acfe109763ac9abf12f604501))
+
+
+
+
+
+# [5.19.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.18.1...@jobber/components@5.19.0) (2024-07-02)
+
+
+### Features
+
+* **components:** SSR support for toast ([#1948](https://github.com/GetJobber/atlantis/issues/1948)) ([966940b](https://github.com/GetJobber/atlantis/commit/966940b2ec2bcec736f6488821be56b6cfb52aa6))
+
+
+
+
+
+## [5.18.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.18.0...@jobber/components@5.18.1) (2024-06-27)
+
+
+### Bug Fixes
+
+* **components:** InputText corners are white when autofilling a field on chrome ([#1949](https://github.com/GetJobber/atlantis/issues/1949)) ([9bffa84](https://github.com/GetJobber/atlantis/commit/9bffa84c95be89a60845215a74d40ee52d41f6a6))
+
+
+
+
+
+# [5.18.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.17.0...@jobber/components@5.18.0) (2024-06-24)
+
+
+### Features
+
+* **components:** Add testID prop to components Icon ([#1927](https://github.com/GetJobber/atlantis/issues/1927)) ([eb804df](https://github.com/GetJobber/atlantis/commit/eb804df153f01a29a2a87126aa07b87d1866ca85))
+
+
+
+
+
+# [5.17.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.16.1...@jobber/components@5.17.0) (2024-06-24)
+
+
+### Features
+
+* **components:** Update Page component to accept a titleMetaData component [JOB-97759] ([#1941](https://github.com/GetJobber/atlantis/issues/1941)) ([908e21b](https://github.com/GetJobber/atlantis/commit/908e21b033075bb2a2b5346113a6f238756f8bbb))
+
+
+
+
+
 ## [5.16.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.16.0...@jobber/components@5.16.1) (2024-06-21)
 
 
