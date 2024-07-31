@@ -215,16 +215,10 @@
   flex-direction: column;
 }
 
-/* If there's a label, add padding-top to wrapper to account for "absolute" positioned label */
-.inputWrapper:has(.label) .childrenWrapper {
-  padding-top: var(--field--padding-top);
-}
-
 .textarea .input {
   flex: 1;
   resize: none;
   scroll-padding-bottom: var(--space-base);
-  padding-top: 0;
 }
 
 .select .input {
@@ -236,13 +230,6 @@
 .input:-webkit-autofill:focus,
 .input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px var(--color-surface) inset !important;
-}
-
-/* If there's no label, add back padding-top to input */
-.textarea:not(:has(.label)) {
-  .input {
-    padding-top: var(--field--padding-top);
-  }
 }
 
 .textarea.safari .input {
@@ -286,12 +273,19 @@
 }
 
 .textarea .label {
-  padding-right: var(--field--padding-right);
+  /* Changes the width so that the scrollbar on the textarea doesn't get cut off */
+  width: calc(100% - var(--field--padding-right));
+  /* Remove padding on right to make use of the entire width */
+  padding-right: 0;
 }
 
 .miniLabel .label,
 .timeInputLabel:focus-within .label {
   font-size: var(--typography--fontSize-small);
+}
+
+.textarea.safari .label {
+  width: 100%;
 }
 
 .text.miniLabel .label {
