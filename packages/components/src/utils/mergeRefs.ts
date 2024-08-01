@@ -1,5 +1,9 @@
 import { LegacyRef, MutableRefObject, RefCallback } from "react";
 
+/**
+ * Given an array of refs, merge them into a single ref callback.
+ * This is useful for cases where you need to pass a multiple refs to a component.
+ */
 export function mergeRefs<T = unknown>(
   refs: Array<MutableRefObject<T> | LegacyRef<T> | undefined | null>,
 ): RefCallback<T> {
