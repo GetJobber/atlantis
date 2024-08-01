@@ -1,5 +1,5 @@
 import React, { MutableRefObject, useRef } from "react";
-import { fireEvent, render, waitFor } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import { useFormState } from "@jobber/hooks/useFormState";
 import { userEvent } from "@testing-library/user-event";
 import { Form, FormRef } from ".";
@@ -14,9 +14,9 @@ test("calls the submit handler if the form is valid", async () => {
 
   const input = getByLabelText("test form");
   const inputTwo = getByLabelText("test input");
-  fireEvent.change(input, { target: { value: "hello" } });
-  fireEvent.change(inputTwo, { target: { value: "hello" } });
-  fireEvent.click(getByText("submit"));
+  await userEvent.type(input, "hello");
+  await userEvent.type(inputTwo, "hello");
+  await userEvent.click(getByText("submit"));
 
   await waitFor(() => expect(submitHandler).toHaveBeenCalledTimes(1));
 });
@@ -25,7 +25,7 @@ test("does not call the submit handler if the form is invalid", async () => {
   const submitHandler = jest.fn();
   const { getByText } = render(<MockForm onSubmit={submitHandler} />);
 
-  fireEvent.click(getByText("submit"));
+  await userEvent.click(getByText("submit"));
 
   await waitFor(() => expect(submitHandler).not.toHaveBeenCalled());
 });
@@ -34,7 +34,7 @@ test("renders an error message when field is invalid", async () => {
   const submitHandler = jest.fn();
   const { getByText } = render(<MockForm onSubmit={submitHandler} />);
 
-  fireEvent.click(getByText("submit"));
+  await userEvent.click(getByText("submit"));
 
   await waitFor(() =>
     expect(getByText("validation error")).toBeInstanceOf(HTMLParagraphElement),
@@ -61,8 +61,8 @@ test("onStateChange updates state when form is valid", async () => {
   );
 
   const input = getByLabelText("test form");
-  input.focus();
-  fireEvent.change(input, { target: { value: "Bo" } });
+  await userEvent.click(input);
+  await userEvent.type(input, "Bo");
   input.blur();
 
   await waitFor(() => {
@@ -90,17 +90,16 @@ test("updates state with useFormState to proper state", async () => {
   });
 
   const input = getByLabelText("gimme a name");
-  fireEvent.change(input, { target: { value: "Bob" } });
-  input.focus();
+  await userEvent.click(input);
+  await userEvent.type(input, "Bob");
   input.blur();
 
   await waitFor(() => {
     expect(getByText("Dirty: true")).not.toBeNull();
     expect(getByText("Valid: false")).not.toBeNull();
   });
-
-  fireEvent.change(input, { target: { value: "Bobbert" } });
-  input.focus();
+  await userEvent.clear(input);
+  await userEvent.type(input, "Bobbert");
   input.blur();
 
   await waitFor(() => {
@@ -126,8 +125,8 @@ test("submit method can be used to successfully submit the form", async () => {
   );
 
   const input = getByLabelText("test form");
-  fireEvent.change(input, { target: { value: "Bo" } });
-  fireEvent.click(getByText("submit"));
+  await userEvent.type(input, "Bo");
+  await userEvent.click(getByText("submit"));
 
   await waitFor(() => {
     expect(submitHandler).toHaveBeenCalledTimes(1);
@@ -138,7 +137,7 @@ test("submit method can be used to trigger validation from outside the form", as
   const submitHandler = jest.fn();
   const { getByText } = render(<MockFormValidate onSubmit={submitHandler} />);
 
-  fireEvent.click(getByText("submit"));
+  await userEvent.click(getByText("submit"));
 
   await waitFor(() => {
     expect(getByText("validation error")).not.toBeNull();
@@ -154,19 +153,19 @@ it("should focus on the first errored field", async () => {
   const input = getByLabelText("test form");
   const inputTwo = getByLabelText("test input");
 
-  inputTwo.focus();
+  await userEvent.click(inputTwo);
   await waitFor(() => {
     expect(inputTwo).toHaveFocus();
   });
 
-  userEvent.click(getByText("submit"));
+  await userEvent.click(getByText("submit"));
 
   await waitFor(() => {
     expect(input).toHaveFocus();
   });
 
-  fireEvent.change(input, { target: { value: "hello" } });
-  userEvent.click(getByText("submit"));
+  await userEvent.type(input, "hello");
+  await userEvent.click(getByText("submit"));
 
   await waitFor(() => {
     expect(inputTwo).toHaveFocus();
