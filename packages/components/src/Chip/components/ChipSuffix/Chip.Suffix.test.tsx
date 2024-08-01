@@ -1,5 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { Chip } from "../../Chip";
 import styles from "../../Chip.css";
 import { Avatar } from "../../../Avatar";
@@ -32,47 +33,72 @@ describe("Chip Suffix", () => {
     expect(elem).toBeInTheDocument();
   });
 
-  it("renders suffix as button element when onClick is passed", () => {
-    const { container } = render(
-      <Chip.Suffix onClick={jest.fn()}>
-        <Icon name="cross" />
-      </Chip.Suffix>,
-    );
+  describe("when onClick prop is passed", () => {
+    it("should call onClick when suffix is clicked", () => {
+      const onClick = jest.fn();
+      const { getByTestId } = render(
+        <Chip.Suffix onClick={onClick} testID="ATL-Chip-Suffix">
+          <Icon name="cross" />
+        </Chip.Suffix>,
+      );
 
-    expect(container.querySelector("button")).toBeInTheDocument();
-  });
+      getByTestId("ATL-Chip-Suffix")?.click();
+      expect(onClick).toHaveBeenCalledTimes(1);
+    });
 
-  it("renders suffix as a span element when onClick is not passed", () => {
-    const { container } = render(
-      <Chip.Suffix>
-        <Icon name="cross" />
-      </Chip.Suffix>,
-    );
+    it("should call onClick when suffix is keypressed", async () => {
+      const onClick = jest.fn();
+      const { getByTestId } = render(
+        <Chip.Suffix onClick={onClick} testID="ATL-Chip-Suffix">
+          <Icon name="cross" />
+        </Chip.Suffix>,
+      );
 
-    expect(container.querySelector("span")).toBeInTheDocument();
-    expect(container.querySelector("button")).not.toBeInTheDocument();
-  });
+      const spanElement = getByTestId("ATL-Chip-Suffix");
+      expect(spanElement).not.toBeNull();
 
-  it("should call onClick when suffix is clicked when onClick is passed", () => {
-    const onClick = jest.fn();
-    const { container } = render(
-      <Chip.Suffix onClick={onClick}>
-        <Icon name="cross" />
-      </Chip.Suffix>,
-    );
+      if (spanElement) {
+        spanElement.focus();
+        await userEvent.keyboard("{enter}");
+      }
+      expect(onClick).toHaveBeenCalledTimes(1);
+    });
 
-    container.querySelector("button")?.click();
-    expect(onClick).toHaveBeenCalled();
-  });
+    it("renders a testID", () => {
+      const onClick = jest.fn();
+      const { getByTestId } = render(
+        <Chip.Suffix onClick={onClick} testID="ATL-Chip-Suffix">
+          <Icon name="cross" />
+        </Chip.Suffix>,
+      );
 
-  it("renders a testID when onClick is passed", () => {
-    const onClick = jest.fn();
-    const { getByTestId } = render(
-      <Chip.Suffix onClick={onClick} testID="ATL-Chip-Suffix">
-        <Icon name="cross" />
-      </Chip.Suffix>,
-    );
+      expect(getByTestId("ATL-Chip-Suffix")).toBeInTheDocument();
+    });
 
-    expect(getByTestId("ATL-Chip-Suffix")).toBeInTheDocument();
+    it("applies accessible and semantic attributes", () => {
+      const onClick = jest.fn();
+      const { container } = render(
+        <Chip.Suffix onClick={onClick} ariaLabel="dismiss">
+          <Icon name="cross" />
+        </Chip.Suffix>,
+      );
+
+      const chipSuffix = container.querySelector("span");
+      expect(chipSuffix).toHaveAttribute("aria-label", "dismiss");
+      expect(chipSuffix).toHaveAttribute("role", "button");
+    });
+
+    it("should apply the correct styles", () => {
+      const onClick = jest.fn();
+      const { getByTestId } = render(
+        <Chip.Suffix onClick={onClick} testID="ATL-Chip-Suffix">
+          <Icon name="cross" />
+        </Chip.Suffix>,
+      );
+
+      const suffix = getByTestId("ATL-Chip-Suffix");
+      expect(suffix).toHaveClass(styles.clickableSuffix);
+      expect(suffix).not.toHaveClass(styles.suffix);
+    });
   });
 });
