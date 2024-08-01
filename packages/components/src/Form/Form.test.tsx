@@ -6,7 +6,7 @@ import { Form, FormRef } from ".";
 import { InputText } from "../InputText";
 import { Text } from "../Text";
 
-test("calls the submit handler if the form is valid", async () => {
+it("calls the submit handler if the form is valid", async () => {
   const submitHandler = jest.fn();
   const { getByText, getByLabelText } = render(
     <MockForm onSubmit={submitHandler} />,
@@ -21,7 +21,7 @@ test("calls the submit handler if the form is valid", async () => {
   await waitFor(() => expect(submitHandler).toHaveBeenCalledTimes(1));
 });
 
-test("does not call the submit handler if the form is invalid", async () => {
+it("does not call the submit handler if the form is invalid", async () => {
   const submitHandler = jest.fn();
   const { getByText } = render(<MockForm onSubmit={submitHandler} />);
 
@@ -30,7 +30,7 @@ test("does not call the submit handler if the form is invalid", async () => {
   await waitFor(() => expect(submitHandler).not.toHaveBeenCalled());
 });
 
-test("renders an error message when field is invalid", async () => {
+it("renders an error message when field is invalid", async () => {
   const submitHandler = jest.fn();
   const { getByText } = render(<MockForm onSubmit={submitHandler} />);
 
@@ -41,7 +41,7 @@ test("renders an error message when field is invalid", async () => {
   );
 });
 
-test("fires onStateChange when component renders", async () => {
+it("fires onStateChange when component renders", async () => {
   const stateChangeHandler = jest.fn();
   render(<MockForm onSubmit={jest.fn()} onStateChange={stateChangeHandler} />);
 
@@ -54,7 +54,7 @@ test("fires onStateChange when component renders", async () => {
   });
 });
 
-test("onStateChange updates state when form is valid", async () => {
+it("onStateChange updates state when form is valid", async () => {
   const stateChangeHandler = jest.fn();
   const { getByLabelText } = render(
     <MockForm onSubmit={jest.fn()} onStateChange={stateChangeHandler} />,
@@ -73,7 +73,7 @@ test("onStateChange updates state when form is valid", async () => {
   });
 });
 
-test("initializes useFormState with proper state", async () => {
+it("initializes useFormState with proper state", async () => {
   const { getByText } = render(<MockFormWithState />);
   await waitFor(() => {
     expect(getByText("Dirty: false")).not.toBeNull();
@@ -81,7 +81,7 @@ test("initializes useFormState with proper state", async () => {
   });
 });
 
-test("updates state with useFormState to proper state", async () => {
+it("updates state with useFormState to proper state", async () => {
   const { getByText, getByLabelText } = render(<MockFormWithState />);
 
   await waitFor(() => {
@@ -108,17 +108,17 @@ test("updates state with useFormState to proper state", async () => {
   });
 });
 
-test("wraps the form in a form tag when the onSubmit is set", () => {
+it("wraps the form in a form tag when the onSubmit is set", () => {
   const { getByTestId } = render(<Form onSubmit={jest.fn()}>Foo</Form>);
   expect(getByTestId("atlantis-form")).toBeInstanceOf(HTMLFormElement);
 });
 
-test("wraps the form in a div tag when the onSubmit is not set", () => {
+it("wraps the form in a div tag when the onSubmit is not set", () => {
   const { getByTestId } = render(<Form>Foo</Form>);
   expect(getByTestId("atlantis-form")).toBeInstanceOf(HTMLDivElement);
 });
 
-test("submit method can be used to successfully submit the form", async () => {
+it("submit method can be used to successfully submit the form", async () => {
   const submitHandler = jest.fn();
   const { getByText, getByLabelText } = render(
     <MockFormValidate onSubmit={submitHandler} />,
@@ -133,7 +133,7 @@ test("submit method can be used to successfully submit the form", async () => {
   });
 });
 
-test("submit method can be used to trigger validation from outside the form", async () => {
+it("submit method can be used to trigger validation from outside the form", async () => {
   const submitHandler = jest.fn();
   const { getByText } = render(<MockFormValidate onSubmit={submitHandler} />);
 
