@@ -233,8 +233,7 @@
 }
 
 .textarea.safari .input {
-  margin-top: var(--field--padding-top);
-  padding-top: 0;
+  padding-top: var(--field--padding-top);
   padding-right: 0;
 }
 
@@ -287,7 +286,8 @@
 }
 
 .textarea.safari .label {
-  width: 100%;
+  /* Leave space for scrollbar, so that it doesn't get cut off */
+  width: calc(100% - var(--space-smaller));
 }
 
 .text.miniLabel .label {
