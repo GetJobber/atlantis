@@ -77,13 +77,17 @@ describe("Chip Suffix", () => {
 
     it("applies accessible and semantic attributes", () => {
       const onClick = jest.fn();
-      const { container } = render(
-        <Chip.Suffix onClick={onClick} ariaLabel="dismiss">
+      const { getByTestId } = render(
+        <Chip.Suffix
+          onClick={onClick}
+          ariaLabel="dismiss"
+          testID="ATL-Chip-Suffix"
+        >
           <Icon name="cross" />
         </Chip.Suffix>,
       );
 
-      const chipSuffix = container.querySelector("span");
+      const chipSuffix = getByTestId("ATL-Chip-Suffix");
       expect(chipSuffix).toHaveAttribute("aria-label", "dismiss");
       expect(chipSuffix).toHaveAttribute("role", "button");
     });
