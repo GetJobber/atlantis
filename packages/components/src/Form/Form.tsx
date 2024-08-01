@@ -28,7 +28,6 @@ export const Form = forwardRef(function InternalForm(
 ) {
   const methods = useForm({
     mode: "onTouched",
-    shouldFocusError: true,
   });
 
   const {
