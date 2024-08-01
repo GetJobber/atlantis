@@ -62,7 +62,7 @@ it("onStateChange updates state when form is valid", async () => {
 
   const input = getByLabelText("test form");
   await userEvent.type(input, "Bo");
-  input.blur();
+  await userEvent.tab();
 
   await waitFor(() => {
     expect(stateChangeHandler).toHaveBeenCalledWith({
@@ -90,7 +90,7 @@ it("updates state with useFormState to proper state", async () => {
 
   const input = getByLabelText("gimme a name");
   await userEvent.type(input, "Bob");
-  input.blur();
+  await userEvent.tab();
 
   await waitFor(() => {
     expect(getByText("Dirty: true")).not.toBeNull();
@@ -98,7 +98,7 @@ it("updates state with useFormState to proper state", async () => {
   });
   await userEvent.clear(input);
   await userEvent.type(input, "Bobbert");
-  input.blur();
+  await userEvent.tab();
 
   await waitFor(() => {
     expect(getByText("Dirty: true")).not.toBeNull();
