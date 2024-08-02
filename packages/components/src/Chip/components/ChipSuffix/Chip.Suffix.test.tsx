@@ -34,7 +34,7 @@ describe("Chip Suffix", () => {
   });
 
   describe("when onClick prop is passed", () => {
-    it("should call onClick when suffix is clicked", () => {
+    it("should call onClick when suffix is clicked", async () => {
       const onClick = jest.fn();
       const { getByTestId } = render(
         <Chip.Suffix onClick={onClick} testID="ATL-Chip-Suffix">
@@ -42,7 +42,7 @@ describe("Chip Suffix", () => {
         </Chip.Suffix>,
       );
 
-      getByTestId("ATL-Chip-Suffix")?.click();
+      await userEvent.click(getByTestId("ATL-Chip-Suffix"));
       expect(onClick).toHaveBeenCalledTimes(1);
     });
 
