@@ -48,19 +48,14 @@ describe("Chip Suffix", () => {
 
     it("should call onClick when suffix is keypressed", async () => {
       const onClick = jest.fn();
-      const { getByTestId } = render(
+      render(
         <Chip.Suffix onClick={onClick} testID="ATL-Chip-Suffix">
           <Icon name="cross" />
         </Chip.Suffix>,
       );
 
-      const spanElement = getByTestId("ATL-Chip-Suffix");
-      expect(spanElement).toBeInTheDocument();
-
-      if (spanElement) {
-        spanElement.focus();
-        await userEvent.keyboard("{enter}");
-      }
+      await userEvent.tab();
+      await userEvent.keyboard("{enter}");
       expect(onClick).toHaveBeenCalledTimes(1);
     });
 
