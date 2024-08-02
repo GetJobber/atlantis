@@ -55,7 +55,7 @@ describe("Chip Suffix", () => {
       );
 
       const spanElement = getByTestId("ATL-Chip-Suffix");
-      expect(spanElement).not.toBeNull();
+      expect(spanElement).toBeInTheDocument();
 
       if (spanElement) {
         spanElement.focus();
