@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.20.10](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.9...@jobber/components@5.20.10) (2024-08-02)
+
+
+### Bug Fixes
+
+* **components:** Fix form not always focusing first error ([#1970](https://github.com/GetJobber/atlantis/issues/1970)) ([1ffb5ab](https://github.com/GetJobber/atlantis/commit/1ffb5ab5529295f66dc5e01ecd3af4e5d74f5bba))
+
+
+
+
+
 ## [5.20.9](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.8...@jobber/components@5.20.9) (2024-07-30)
 
 
