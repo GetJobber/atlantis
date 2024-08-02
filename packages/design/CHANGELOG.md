@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.63.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.62.2...@jobber/design@0.63.0) (2024-08-02)
+
+
+### Features
+
+* **components:** Adds icons used for automations product, evolves sendMessage icon ([#1972](https://github.com/GetJobber/atlantis/issues/1972)) ([a264acc](https://github.com/GetJobber/atlantis/commit/a264acc4db47a41a00d36476795c02af161f49a0))
+
+
+
+
+
 ## [0.62.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.62.1...@jobber/design@0.62.2) (2024-07-15)
 
 
