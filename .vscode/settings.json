@@ -14,7 +14,6 @@
     "source.fixAll.stylelint": "explicit"
   },
   "eslint.enable": true,
-  "eslint.packageManager": "npm",
   "eslint.format.enable": true,
   "eslint.options": {
     "extensions": [

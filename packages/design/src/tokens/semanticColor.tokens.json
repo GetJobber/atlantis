@@ -1,0 +1,162 @@
+{
+  "color": {
+    "$type": "color",
+    "$description": "Semantic color tokens. These are used to define the color of elements based on their semantic meaning. Use these tokens to style your components.",
+    "interactive": {
+      "$value": "{color.base.green-.600}"
+    },
+    "interactive-": {
+      "hover": {
+        "$value": "{color.base.green-.700}"
+      },
+      "subtle": {
+        "$value": "{color.base.blue-.800}"
+      },
+      "subtle-": {
+        "hover": {
+          "$value": "{color.base.blue-.900}"
+        }
+      }
+    },
+    "destructive": {
+      "$value": "{color.base.red-.600}"
+    },
+    "destructive-": {
+      "hover": {
+        "$value": "{color.base.red-.700}"
+      }
+    },
+    "disabled": {
+      "$value": "{color.base.grey-.400}"
+    },
+    "disabled-": {
+      "secondary": {
+        "$value": "{color.base.grey-.200}"
+      }
+    },
+    "focus": {
+      "$value": "{color.base.blue-.500}"
+    },
+    "critical": {
+      "$value": "{color.base.red-.600}"
+    },
+    "critical-": {
+      "surface": {
+        "$value": "{color.base.red-.200}"
+      },
+      "onSurface": {
+        "$value": "{color.base.red-.800}"
+      }
+    },
+    "warning": {
+      "$value": "{color.base.yellow-.400}"
+    },
+    "warning-": {
+      "surface": {
+        "$value": "{color.base.yellow-.200}"
+      },
+      "onSurface": {
+        "$value": "{color.base.yellow-.700}"
+      }
+    },
+    "success": {
+      "$value": "{color.base.green-.600}"
+    },
+    "success-": {
+      "surface": {
+        "$value": "{color.base.green-.200}"
+      },
+      "onSurface": {
+        "$value": "{color.base.green-.800}"
+      }
+    },
+    "informative": {
+      "$value": "{color.base.lightBlue-.500}"
+    },
+    "informative-": {
+      "surface": {
+        "$value": "{color.base.lightBlue-.200}"
+      },
+      "onSurface": {
+        "$value": "{color.base.lightBlue-.700}"
+      }
+    },
+    "inactive": {
+      "$value": "{color.base.blue-.700}"
+    },
+    "inactive-": {
+      "surface": {
+        "$value": "{color.base.blue-.200}"
+      },
+      "onSurface": {
+        "$value": "{color.base.blue-.900}"
+      }
+    },
+    "heading": {
+      "$value": "{color.base.blue-.900}"
+    },
+    "text": {
+      "$value": "{color.base.blue-.800}"
+    },
+    "text-": {
+      "secondary": {
+        "$value": "{color.base.blue-.600}"
+      },
+      "reverse": {
+        "$value": "{color.white}"
+      },
+      "reverse-": {
+        "secondary": {
+          "$value": "{color.base.blue-.300}"
+        }
+      }
+    },
+    "icon": {
+      "$value": "{color.base.blue-.800}"
+    },
+    "surface": {
+      "$value": "{color.white}"
+    },
+    "surface-": {
+      "hover": {
+        "$value": "{color.base.taupe-.200}"
+      },
+      "reverse": {
+        "$value": "{color.base.blue-.900}"
+      },
+      "active": {
+        "$value": "{color.base.taupe-.300}"
+      },
+      "background": {
+        "$value": "{color.base.taupe-.200}"
+      },
+      "background-": {
+        "hover": {
+          "$value": "{color.base.taupe-.300}"
+        },
+        "subtle": {
+          "$value": "{color.base.taupe-.100}"
+        },
+        "subtle-": {
+          "hover": {
+            "$value": "{color.base.taupe-.300}"
+          }
+        }
+      }
+    },
+    "border": {
+      "$value": "{color.base.blue-.300}"
+    },
+    "border-": {
+      "interactive": {
+        "$value": "{color.base.blue-.300}"
+      },
+      "section": {
+        "$value": "{color.base.blue-.900}"
+      }
+    },
+    "brand": {
+      "$value": "{color.base.lime-.500}"
+    }
+  }
+}

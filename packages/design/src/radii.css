@@ -1,7 +1,0 @@
-:root {
-  --radius-small: calc(var(--radius-base) / 2);
-  --radius-base: 8px;
-  --radius-large: calc(var(--radius-base) * 2);
-  --radius-larger: calc(var(--radius-base) * 3);
-  --radius-circle: 100%;
-}

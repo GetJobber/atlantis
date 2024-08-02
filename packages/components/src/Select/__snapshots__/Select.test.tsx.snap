@@ -40,13 +40,12 @@ exports[`renders a Select with many options 1`] = `
               class="postfix"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="arrowDown"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class=""
                   d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
                 />
               </svg>
@@ -86,13 +85,12 @@ exports[`renders a Select with no options 1`] = `
               class="postfix"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="arrowDown"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class=""
                   d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
                 />
               </svg>
@@ -136,13 +134,12 @@ exports[`renders a Select with one option 1`] = `
               class="postfix"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="arrowDown"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class=""
                   d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
                 />
               </svg>
@@ -186,13 +183,12 @@ exports[`renders correctly as large 1`] = `
               class="postfix"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="arrowDown"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class=""
                   d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
                 />
               </svg>
@@ -236,13 +232,12 @@ exports[`renders correctly as small 1`] = `
               class="postfix"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="arrowDown"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class=""
                   d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
                 />
               </svg>
@@ -287,13 +282,12 @@ exports[`renders correctly when disabled 1`] = `
               class="postfix"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="arrowDown"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class=""
                   d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
                 />
               </svg>
@@ -337,13 +331,12 @@ exports[`renders correctly when invalid 1`] = `
               class="postfix"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="arrowDown"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class=""
                   d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
                 />
               </svg>

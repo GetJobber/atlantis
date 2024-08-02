@@ -1,0 +1,18 @@
+{
+  "border": {
+    "$type": "dimension",
+    "$description": "Border tokens. These are used to define the border width of elements. Feel free to use these directly.",
+    "base": {
+      "$value": "{space.minuscule}"
+    },
+    "thick": {
+      "$value": "{space.smallest}"
+    },
+    "thicker": {
+      "$value": "{space.smaller}"
+    },
+    "thickest": {
+      "$value": "{space.small}"
+    }
+  }
+}

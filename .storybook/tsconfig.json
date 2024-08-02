@@ -10,7 +10,8 @@
   },
   "include": [
     "components",
-    "packages/**/*"
+    "packages/**/*",
+    "./theme.ts"
   ],
   "references": [
     {

@@ -25,6 +25,7 @@ module.exports = {
       Atlantis is a monorepo so we need to use `monorepo-cop` to enforce the
       relative import rule.
      */
+    "import/no-extraneous-dependencies": "off",
     "import/no-relative-parent-imports": "off",
     "no-restricted-imports": [
       "error",

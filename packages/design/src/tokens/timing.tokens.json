@@ -1,0 +1,29 @@
+{
+  "timing": {
+    "$type": "duration",
+    "$description": "Timing tokens. These are used to define the duration of animations. Feel free to use these directly.",
+    "quick": {
+      "$value": "100ms"
+    },
+    "base": {
+      "$value": "200ms"
+    },
+    "slow": {
+      "$value": "300ms"
+    },
+    "slower": {
+      "$value": "400ms"
+    },
+    "slowest": {
+      "$value": "500ms"
+    },
+    "loading": {
+      "$value": "1000ms"
+    },
+    "loading-": {
+      "extended": {
+        "$value": "2000ms"
+      }
+    }
+  }
+}

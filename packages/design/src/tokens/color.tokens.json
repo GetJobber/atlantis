@@ -1,0 +1,268 @@
+{
+  "color": {
+    "$type": "color",
+    "$description": "Color tokens. These map back to the base color tokens. Do not use these tokens directly, we reference these again in our semantic tokens, which you should use.",
+    "blue": {
+      "$value": "{color.base.blue-.900}"
+    },
+    "blue-": {
+      "light": {
+        "$value": "{color.base.blue-.700}"
+      },
+      "lighter": {
+        "$value": "{color.base.blue-.500}"
+      },
+      "lightest": {
+        "$value": "{color.base.blue-.300}"
+      },
+      "dark": {
+        "$value": "{color.base.blue-.1000}"
+      }
+    },
+    "taupe": {
+      "$value": "{color.base.taupe-.200}"
+    },
+    "taupe-": {
+      "light": {
+        "$value": "{color.base.taupe-.100}"
+      },
+      "dark": {
+        "$value": "{color.base.taupe-.300}"
+      }
+    },
+    "green": {
+      "$value": "{color.base.green-.600}"
+    },
+    "green-": {
+      "light": {
+        "$value": "{color.base.green-.500}"
+      },
+      "lighter": {
+        "$value": "{color.base.green-.400}"
+      },
+      "lightest": {
+        "$value": "{color.base.green-.200}"
+      },
+      "dark": {
+        "$value": "{color.base.green-.800}"
+      }
+    },
+    "lime": {
+      "$value": "{color.base.lime-.500}"
+    },
+    "lime-": {
+      "light": {
+        "$value": "{color.base.lime-.400}"
+      },
+      "lighter": {
+        "$value": "{color.base.lime-.300}"
+      },
+      "lightest": {
+        "$value": "{color.base.lime-.200}"
+      },
+      "dark": {
+        "$value": "{color.base.lime-.700}"
+      }
+    },
+    "yellowGreen": {
+      "$value": "{color.base.lime-.500}"
+    },
+    "yellowGreen-": {
+      "light": {
+        "$value": "{color.base.lime-.400}"
+      },
+      "lighter": {
+        "$value": "{color.base.lime-.300}"
+      },
+      "lightest": {
+        "$value": "{color.base.lime-.200}"
+      },
+      "dark": {
+        "$value": "{color.base.lime-.600}"
+      }
+    },
+    "yellow": {
+      "$value": "{color.base.yellow-.400}"
+    },
+    "yellow-": {
+      "light": {
+        "$value": "{color.base.yellow-.300}"
+      },
+      "lighter": {
+        "$value": "{color.base.yellow-.200}"
+      },
+      "lightest": {
+        "$value": "{color.base.yellow-.100}"
+      },
+      "dark": {
+        "$value": "{color.base.yellow-.600}"
+      }
+    },
+    "red": {
+      "$value": "{color.base.red-.600}"
+    },
+    "red-": {
+      "light": {
+        "$value": "{color.base.red-.400}"
+      },
+      "lighter": {
+        "$value": "{color.base.red-.300}"
+      },
+      "lightest": {
+        "$value": "{color.base.red-.200}"
+      },
+      "dark": {
+        "$value": "{color.base.red-.800}"
+      }
+    },
+    "grey": {
+      "$value": "{color.base.grey-.400}"
+    },
+    "grey-": {
+      "light": {
+        "$value": "{color.base.grey-.300}"
+      },
+      "lighter": {
+        "$value": "{color.base.grey-.200}"
+      },
+      "lightest": {
+        "$value": "{color.base.grey-.100}"
+      },
+      "dark": {
+        "$value": "{color.base.grey-.600}"
+      }
+    },
+    "overlay": {
+      "$value": "rgba({color.black-.rgb}, 0.32)"
+    },
+    "overlay-": {
+      "dimmed": {
+        "$value": "rgba({color.white-.rgb}, 0.6)"
+      }
+    },
+    "white": {
+      "$value": "rgba({color.white-.rgb}, 1)"
+    },
+    "black": {
+      "$value": "rgba({color.black-.rgb}, 1)"
+    },
+    "greyBlue": {
+      "$value": "{color.base.blue-.600}"
+    },
+    "greyBlue-": {
+      "light": {
+        "$value": "{color.base.blue-.500}"
+      },
+      "lighter": {
+        "$value": "{color.base.blue-.400}"
+      },
+      "lightest": {
+        "$value": "{color.base.blue-.200}"
+      },
+      "dark": {
+        "$value": "{color.base.blue-.800}"
+      }
+    },
+    "lightBlue": {
+      "$value": "{color.base.lightBlue-.500}"
+    },
+    "lightBlue-": {
+      "light": {
+        "$value": "{color.base.lightBlue-.400}"
+      },
+      "lighter": {
+        "$value": "{color.base.lightBlue-.300}"
+      },
+      "lightest": {
+        "$value": "{color.base.lightBlue-.200}"
+      },
+      "dark": {
+        "$value": "{color.base.lightBlue-.600}"
+      }
+    },
+    "purple": {
+      "$value": "{color.base.pink-.800}"
+    },
+    "purple-": {
+      "dark": {
+        "$value": "{color.base.pink-.900}"
+      }
+    },
+    "pink": {
+      "$value": "{color.base.pink-.600}"
+    },
+    "pink-": {
+      "light": {
+        "$value": "{color.base.pink-.500}"
+      },
+      "lighter": {
+        "$value": "{color.base.pink-.400}"
+      },
+      "lightest": {
+        "$value": "{color.base.pink-.200}"
+      },
+      "dark": {
+        "$value": "{color.base.pink-.800}"
+      }
+    },
+    "orange": {
+      "$value": "{color.base.orange-.500}"
+    },
+    "orange-": {
+      "light": {
+        "$value": "{color.base.orange-.400}"
+      },
+      "lighter": {
+        "$value": "{color.base.orange-.300}"
+      },
+      "lightest": {
+        "$value": "{color.base.orange-.200}"
+      },
+      "dark": {
+        "$value": "{color.base.orange-.600}"
+      }
+    },
+    "brown": {
+      "$value": "{color.base.orange-.700}"
+    },
+    "brown-": {
+      "light": {
+        "$value": "{color.base.orange-.600}"
+      },
+      "lighter": {
+        "$value": "{color.base.taupe-.300}"
+      },
+      "lightest": {
+        "$value": "{color.base.taupe-.200}"
+      },
+      "dark": {
+        "$value": "{color.base.orange-.800}"
+      }
+    },
+    "navy": {
+      "$value": "{color.base.lightBlue-.700}"
+    },
+    "navy-": {
+      "light": {
+        "$value": "{color.base.lightBlue-.600}"
+      },
+      "lighter": {
+        "$value": "{color.base.blue-.300}"
+      },
+      "lightest": {
+        "$value": "{color.base.blue-.200}"
+      },
+      "dark": {
+        "$value": "{color.base.lightBlue-.800}"
+      }
+    },
+    "base": {
+      "white": {
+        "$value": "{color.white}"
+      },
+      "black": {
+        "$value": "{color.black}"
+      }
+    }
+  }
+}

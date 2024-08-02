@@ -1,4 +1,4 @@
-import { tokens } from "@jobber/design/foundation";
+import { tokens } from "@jobber/design";
 import { StyleSheet } from "react-native";
 import { typographyStyles } from "../Typography/Typography.style";
 

@@ -1,0 +1,12 @@
+.rpt2_cache
+coverage
+dist
+node_modules
+**/tsconfig.tsbuildinfo
+**/tsconfig.rollup.tsbuildinfo
+.DS_Store
+.idea
+storybook-static
+.rollup.cache
+jobber-*.tgz
+src/utils/design/tokens.*

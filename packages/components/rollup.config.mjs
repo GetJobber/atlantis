@@ -48,10 +48,7 @@ export default {
         postcssimport,
         autoprefixer,
         tools({
-          files: [
-            "../design/foundation.css",
-            "../design/src/responsiveBreakpoints.css",
-          ],
+          files: ["../design/dist/foundation.css"],
         }),
         presetenv({
           stage: 1,

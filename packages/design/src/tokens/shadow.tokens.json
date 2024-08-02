@@ -1,0 +1,18 @@
+{
+  "shadow": {
+    "$type": "shadow",
+    "$description": "Shadow tokens. These are used to define the shadow of elements. Feel free to use these directly.",
+    "low": {
+      "$value": "0px {space.minuscule} {space.smallest} rgba(0, 0, 0, 0.25), 0px 0px {space.smallest} rgba(0, 0, 0, 0.1)"
+    },
+    "base": {
+      "$value": "0px {space.minuscule} {space.smaller} 0px rgba(0, 0, 0, 0.1), 0px {space.smaller} 12px 0px rgba(0, 0, 0, 0.05)"
+    },
+    "high": {
+      "$value": "0px {space.base} {space.base} 0px rgba(0, 0, 0, 0.075), 0px 0px {space.small} 0px rgba(0, 0, 0, 0.05)"
+    },
+    "focus": {
+      "$value": "0px 0px 0px {space.smallest} {color.surface}, 0px 0px 0px {space.smaller} {color.focus}"
+    }
+  }
+}

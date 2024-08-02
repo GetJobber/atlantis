@@ -11,7 +11,6 @@ import { AnchorMdx, Markdown } from "@storybook/blocks";
 import { Code } from "@storybook/components";
 import { Heading } from "@jobber/components/Heading";
 import { Content } from "@jobber/components/Content";
-
 import "@jobber/design/foundation.css";
 
 /**

@@ -1,9 +1,0 @@
-:root {
-  --timing-quick: 100ms;
-  --timing-base: 200ms;
-  --timing-slow: 300ms;
-  --timing-slower: 400ms;
-  --timing-slowest: 500ms;
-  --timing-loading: 1000ms;
-  --timing-loading--extended: 2000ms;
-}
