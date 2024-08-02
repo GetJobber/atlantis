@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.21.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.10...@jobber/components@5.21.0) (2024-08-02)
+
+
+### Features
+
+* **components:** Add onClick to Chip Suffix ([#1963](https://github.com/GetJobber/atlantis/issues/1963)) ([59eda62](https://github.com/GetJobber/atlantis/commit/59eda621560f223640ab64c93b021b2b98fe650b))
+
+
+
+
+
 ## [5.20.10](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.9...@jobber/components@5.20.10) (2024-08-02)
 
 
