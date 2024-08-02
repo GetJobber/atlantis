@@ -30,21 +30,23 @@ export function ChipSuffix({
     singleChild = undefined;
   }
 
-  const tagProps = {
-    className: classNames(
-      onClick ? styles.clickableSuffix : styles.suffix,
-      className,
-      !singleChild && styles.empty,
-    ),
-    onClick: handleClick,
-    onKeyPress: handleClick,
-    ...(onClick ? { role: "button" } : {}),
-    ...(onClick ? { tabIndex: 0 } : {}),
-    "data-testid": testID,
-    "aria-label": ariaLabel,
-  };
-
-  return <span {...tagProps}>{singleChild}</span>;
+  return (
+    <span
+      className={classNames(
+        onClick ? styles.clickableSuffix : styles.suffix,
+        className,
+        !singleChild && styles.empty,
+      )}
+      onClick={handleClick}
+      onKeyPress={handleClick}
+      role={onClick ? "button" : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      data-testid={testID}
+      aria-label={ariaLabel}
+    >
+      {singleChild}
+    </span>
+  );
 }
 
 export interface ChipSuffixProps extends PropsWithChildren {
