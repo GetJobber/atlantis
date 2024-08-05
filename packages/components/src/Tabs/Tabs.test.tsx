@@ -107,6 +107,21 @@ describe("Tabs", () => {
     expect(queryByText("🧀")).not.toBeInTheDocument();
   });
 
+  it("should navigate tabs with arrow keys", () => {
+    const { getByRole, getAllByRole } = render(omelet);
+
+    const tablist = getByRole("tablist");
+    const [eggsTab, cheeseTab] = getAllByRole("tab");
+
+    // Navigate right
+    fireEvent.keyDown(tablist, { key: "ArrowRight" });
+    expect(cheeseTab).toHaveFocus();
+
+    // Navigate left
+    fireEvent.keyDown(tablist, { key: "ArrowLeft" });
+    expect(eggsTab).toHaveFocus();
+  });
+
   describe("overflow", () => {
     beforeAll(() => {
       Object.defineProperty(HTMLElement.prototype, "clientWidth", {

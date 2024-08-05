@@ -16,9 +16,11 @@ exports[`Tabs renders Tabs 1`] = `
           role="presentation"
         >
           <button
+            aria-selected="true"
             class="tab selected"
             id="Eggs"
             role="tab"
+            tabindex="0"
             type="button"
           >
             <span
@@ -32,9 +34,11 @@ exports[`Tabs renders Tabs 1`] = `
           role="presentation"
         >
           <button
+            aria-selected="false"
             class="tab"
             id="Cheese"
             role="tab"
+            tabindex="-1"
             type="button"
           >
             <span
