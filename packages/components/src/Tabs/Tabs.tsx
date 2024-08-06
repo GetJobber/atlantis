@@ -39,6 +39,7 @@ export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
   });
 
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const panelRefs = useRef<(HTMLElement | null)[]>([]);
 
   const activateTab = (index: number) => {
     return () => {
@@ -52,14 +53,24 @@ export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
   };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLUListElement>) => {
-    if (event.key === "ArrowRight") {
+    const { key, shiftKey } = event;
+
+    if (key === "ArrowRight") {
       setActiveTab(prev => (prev + 1) % React.Children.count(children));
-    } else if (event.key === "ArrowLeft") {
+    } else if (key === "ArrowLeft") {
       setActiveTab(
         prev =>
           (prev - 1 + React.Children.count(children)) %
           React.Children.count(children),
       );
+    } else if (key === "Tab") {
+      event.preventDefault();
+
+      if (shiftKey) {
+        tabRefs.current[activeTab]?.focus();
+      } else {
+        panelRefs.current[activeTab]?.focus();
+      }
     }
   };
 
@@ -71,11 +82,8 @@ export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
     if (activeTab > React.Children.count(children) - 1) {
       setActiveTab(activeTabInitialValue);
     }
-  }, [React.Children.count(children)]);
-
-  useEffect(() => {
     tabRefs.current[activeTab]?.focus();
-  }, [activeTab]);
+  }, [activeTab, React.Children.count(children)]);
 
   return (
     <div className={styles.tabs}>
@@ -88,6 +96,7 @@ export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
         >
           {React.Children.map(children, (tab, index) => (
             <InternalTab
+              key={tab.props.label}
               label={tab.props.label}
               selected={activeTab === index}
               activateTab={activateTab(index)}
@@ -101,6 +110,8 @@ export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
         role="tabpanel"
         className={styles.tabContent}
         aria-label={activeTabProps?.label}
+        tabIndex={0}
+        ref={el => (panelRefs.current[activeTab] = el)}
       >
         {activeTabProps?.children}
       </section>

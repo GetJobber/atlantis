@@ -122,6 +122,20 @@ describe("Tabs", () => {
     expect(eggsTab).toHaveFocus();
   });
 
+  it("should navigate focus correctly between tab and panel on Tab key", () => {
+    const { getByRole, getAllByRole } = render(omelet);
+    const [eggsTab] = getAllByRole("tab");
+    const eggsPanel = getByRole("tabpanel", { name: "Eggs" });
+
+    // Ensure focus starts on the eggs tab
+    eggsTab.focus();
+    expect(eggsTab).toHaveFocus();
+
+    // Press Tab key to move focus to panel
+    fireEvent.keyDown(eggsTab, { key: "Tab" });
+    expect(eggsPanel).toHaveFocus();
+  });
+
   describe("overflow", () => {
     beforeAll(() => {
       Object.defineProperty(HTMLElement.prototype, "clientWidth", {
