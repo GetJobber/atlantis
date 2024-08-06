@@ -7,6 +7,7 @@ import androidTokens from "./assets/tokens.android";
 import iosTokens from "./assets/tokens.ios";
 import colors from "./assets/tokens.color";
 import semantic from "./assets/tokens.semantic";
+import darkTokens from "./assets/tokens.dark";
 
 type WebTokens = typeof webTokens;
 type MobileTokens = typeof androidTokens;
@@ -15,6 +16,7 @@ export {
   webTokens as tokens,
   webTokens,
   androidTokens,
+  darkTokens,
   iosTokens,
   iconMap,
   iconStyles,
