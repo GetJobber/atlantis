@@ -54,6 +54,6 @@ ExpandedWithDelete.args = {
     src: () => Promise.resolve("https://picsum.photos/250"),
   },
   display: "expanded",
-  onDelete: () => alert("Deleted"),
+  onDelete: () => console.log("Deleted"),
   onClick: () => alert("Clicked"),
 };
