@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.21.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.21.1...@jobber/components@5.21.2) (2024-08-06)
+
+
+### Bug Fixes
+
+* **components:** Change label FomField label to have full width ([#1971](https://github.com/GetJobber/atlantis/issues/1971)) ([3c04d47](https://github.com/GetJobber/atlantis/commit/3c04d47c6be337c512584e8c4439c9b84c479764))
+
+
+
+
+
 ## [5.21.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.21.0...@jobber/components@5.21.1) (2024-08-02)
 
 **Note:** Version bump only for package @jobber/components
