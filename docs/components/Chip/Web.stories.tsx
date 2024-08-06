@@ -35,8 +35,23 @@ const BasicTemplate: ComponentStory<typeof Chip> = args => {
 const SuffixTemplate: ComponentStory<typeof Chip> = args => {
   return (
     <Content>
-      <Chip {...args} onClick={() => alert("you clicked me!")}>
+      <Chip {...args} onClick={() => alert("you clicked the Chip!")}>
         <Chip.Suffix>
+          <Icon name="add" size="small" />
+        </Chip.Suffix>
+      </Chip>
+    </Content>
+  );
+};
+
+const ClickableSuffixTemplate: ComponentStory<typeof Chip> = args => {
+  return (
+    <Content>
+      <Chip {...args} onClick={() => alert("you clicked the Chip!")}>
+        <Chip.Suffix
+          onClick={() => alert("you clicked the suffix!")}
+          ariaLabel="dismiss"
+        >
           <Icon name="cross" size="small" />
         </Chip.Suffix>
       </Chip>
@@ -188,6 +203,12 @@ export const Suffix = SuffixTemplate.bind({});
 Suffix.args = {
   ...defaultArgs,
   label: "Chip With Suffix",
+};
+
+export const ClickableSuffix = ClickableSuffixTemplate.bind({});
+ClickableSuffix.args = {
+  ...defaultArgs,
+  label: "Clickable Chip With Suffix",
 };
 
 export const Prefix = PrefixTemplate.bind({});
