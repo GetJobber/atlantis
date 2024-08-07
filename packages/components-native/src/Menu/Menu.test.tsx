@@ -133,7 +133,7 @@ describe("Menu", () => {
         { backgroundColor: "transparent", borderWidth: 0 },
         {
           display: "flex",
-          fill: "",
+          fill: "hsl(6, 64%, 51%)",
           height: 24,
           verticalAlign: "middle",
           width: 24,
