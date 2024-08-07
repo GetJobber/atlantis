@@ -17,7 +17,7 @@ exports[`renders apple icon 1`] = `
       },
       {
         "display": "flex",
-        "fill": "",
+        "fill": "hsl(198, 35%, 21%)",
         "height": 24,
         "verticalAlign": "middle",
         "width": 24,
@@ -36,7 +36,7 @@ exports[`renders apple icon 1`] = `
   <RNSVGGroup
     fill={
       {
-        "payload": 4278190080,
+        "payload": 4280499528,
         "type": 0,
       }
     }
@@ -81,7 +81,7 @@ exports[`renders home icon 1`] = `
       },
       {
         "display": "flex",
-        "fill": "",
+        "fill": "hsl(198, 35%, 21%)",
         "height": 24,
         "verticalAlign": "middle",
         "width": 24,
@@ -100,7 +100,7 @@ exports[`renders home icon 1`] = `
   <RNSVGGroup
     fill={
       {
-        "payload": 4278190080,
+        "payload": 4280499528,
         "type": 0,
       }
     }
@@ -145,7 +145,7 @@ exports[`renders large arrowDown icon 1`] = `
       },
       {
         "display": "flex",
-        "fill": "",
+        "fill": "hsl(198, 35%, 21%)",
         "height": 32,
         "verticalAlign": "middle",
         "width": 32,
@@ -164,7 +164,7 @@ exports[`renders large arrowDown icon 1`] = `
   <RNSVGGroup
     fill={
       {
-        "payload": 4278190080,
+        "payload": 4280499528,
         "type": 0,
       }
     }
@@ -209,7 +209,7 @@ exports[`renders quote icon with themed color 1`] = `
       },
       {
         "display": "flex",
-        "fill": "",
+        "fill": "hsl(348, 40%, 41%)",
         "height": 24,
         "verticalAlign": "middle",
         "width": 24,
@@ -228,7 +228,7 @@ exports[`renders quote icon with themed color 1`] = `
   <RNSVGGroup
     fill={
       {
-        "payload": 4278190080,
+        "payload": 4287774543,
         "type": 0,
       }
     }
@@ -287,7 +287,7 @@ exports[`renders small more icon 1`] = `
       },
       {
         "display": "flex",
-        "fill": "",
+        "fill": "hsl(198, 35%, 21%)",
         "height": 16,
         "verticalAlign": "middle",
         "width": 16,
@@ -306,7 +306,7 @@ exports[`renders small more icon 1`] = `
   <RNSVGGroup
     fill={
       {
-        "payload": 4278190080,
+        "payload": 4280499528,
         "type": 0,
       }
     }
@@ -351,7 +351,7 @@ exports[`renders star icon with custom color 1`] = `
       },
       {
         "display": "flex",
-        "fill": "",
+        "fill": "hsl(198, 35%, 21%)",
         "height": 24,
         "verticalAlign": "middle",
         "width": 24,
@@ -370,7 +370,7 @@ exports[`renders star icon with custom color 1`] = `
   <RNSVGGroup
     fill={
       {
-        "payload": 4278190080,
+        "payload": 4280499528,
         "type": 0,
       }
     }
@@ -415,7 +415,7 @@ exports[`renders thumbsDown icon 1`] = `
       },
       {
         "display": "flex",
-        "fill": "",
+        "fill": "hsl(198, 35%, 21%)",
         "height": 24,
         "transform": "scaleY(-1)",
         "verticalAlign": "middle",
@@ -435,7 +435,7 @@ exports[`renders thumbsDown icon 1`] = `
   <RNSVGGroup
     fill={
       {
-        "payload": 4278190080,
+        "payload": 4280499528,
         "type": 0,
       }
     }
