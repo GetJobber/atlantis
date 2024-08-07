@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.21.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.21.2...@jobber/components@5.21.3) (2024-08-07)
+
+
+### Bug Fixes
+
+* **components:** Adjust z-index of clickable areas in FormatFile ([#1975](https://github.com/GetJobber/atlantis/issues/1975)) ([9f5b31d](https://github.com/GetJobber/atlantis/commit/9f5b31d74b777960b442803658c7cc62d0e11b08))
+
+
+
+
+
 ## [5.21.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.21.1...@jobber/components@5.21.2) (2024-08-06)
 
 
