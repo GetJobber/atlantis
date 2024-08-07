@@ -28,8 +28,16 @@ const writeColorTokens = () => {
   const cssFileContents = createCSSFileFromSubset(["color"]);
   writeFile("dist/color.css", cssFileContents);
 
-  const semanticJSCotent = createTokenFileFromSubset(["semantic-color"]);
-  writeFile("src/assets/tokens.semantic.ts", semanticJSCotent);
+  const semanticJSContent = createTokenFileFromSubset(["semantic-color"]);
+  writeFile("src/assets/tokens.semantic.ts", semanticJSContent);
+
+  const allJSColorContent = createTokenFileFromSubset([
+    "workflow",
+    "semantic-color",
+    "color",
+    "base-color",
+  ]);
+  writeFile("src/assets/tokens.all.colors.ts", allJSColorContent);
 
   const semanticCSSContent = createCSSFileFromSubset(["semantic-color"]);
   writeFile("dist/semantic.css", semanticCSSContent);

@@ -6,6 +6,7 @@ import webTokens from "./assets/tokens.web";
 import androidTokens from "./assets/tokens.android";
 import iosTokens from "./assets/tokens.ios";
 import colors from "./assets/tokens.color";
+import allColors from "./assets/tokens.all.colors";
 import semantic from "./assets/tokens.semantic";
 import darkTokens from "./assets/tokens.dark";
 
@@ -15,6 +16,7 @@ type MobileTokens = typeof androidTokens;
 export {
   webTokens as tokens,
   webTokens,
+  allColors,
   androidTokens,
   darkTokens,
   iosTokens,
@@ -69,31 +71,76 @@ const getPaths = (name: keyof typeof iconMap.icons | ExtraIconNames) => {
 
   const iconSize = name === "truck" ? 1024 : 24;
 
-  return { paths, iconSize };
+  const viewBox = `0 0 ${iconSize} ${iconSize}`;
+
+  return { paths, iconSize, viewBox };
 };
 
-// eslint-disable-next-line max-statements
-export function getIcon({ name, color, size = "base" }: IconProps) {
+const tokenStyleToCss = (token?: string | number) => {
+  const tokenAsString = typeof token === "string" ? token : token?.toString();
+
+  return (
+    tokenAsString
+      ?.replace(/\{/g, "var(--")
+      .replace(/\./g, "-")
+      .replace(/\}/g, ")") || ""
+  );
+};
+
+const tokenStyleToJs = (token?: string) => {
+  const tokenKey =
+    token?.replace(/}/g, "").replace(/{/g, "").replace(/\./g, "-") || "";
+
+  return (allColors as Record<string, string>)[tokenKey] || "";
+};
+
+interface GetIconProps extends IconProps {
+  format?: "css" | "js";
+}
+
+export function buildSVGStyle(
+  name: string,
+  size: "small" | "base" | "large",
+  specialIconStyle: object,
+) {
   const iconStyle = iconStyles.icon;
   const iconSizeStyle = iconSizes.tokens[size];
   const iconFill = iconStyles[name];
-  let specialIconStyle = {};
-
-  if (iconStyles[name]) {
-    specialIconStyle = iconStyles[name];
-  }
   const svgStyle: { fill?: string; width: number; height: number } = {
     ...iconStyle,
     ...iconSizeStyle,
     ...specialIconStyle,
     ...iconFill,
   };
-  const { paths, iconSize } = getPaths(name);
+
+  return svgStyle;
+}
+
+export function getIcon({
+  name,
+  color,
+  size = "base",
+  format = "css",
+}: GetIconProps) {
+  const { paths, viewBox } = getPaths(name);
+  let specialIconStyle = {};
+
+  if (iconStyles[name]) {
+    specialIconStyle = iconStyles[name];
+  }
+  const svgStyle = buildSVGStyle(name, size, specialIconStyle);
   const colorStyle = (iconColors.tokens as Record<string, string | object>)[
     color || ""
   ];
-  const viewBox = `0 0 ${iconSize} ${iconSize}`;
-  const pathStyle = { fill: (colorStyle as { value: string })?.value };
+  const pathStyle = {
+    fill: tokenStyleToCss((colorStyle as { value: string })?.value),
+  };
+  svgStyle.fill = tokenStyleToCss(svgStyle.fill);
+
+  if (format === "js") {
+    pathStyle.fill = tokenStyleToJs((colorStyle as { value: string })?.value);
+    svgStyle.fill = tokenStyleToJs(svgStyle.fill);
+  }
 
   return { svgStyle, pathStyle, paths, viewBox } as const;
 }

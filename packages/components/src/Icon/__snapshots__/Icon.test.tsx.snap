@@ -100,7 +100,7 @@ exports[`renders truck icon 1`] = `
     xmlns="http://www.w3.org/2000/svg"
   >
     <g
-      style="fill: {color.green};"
+      style="fill: var(--color-green);"
       transform="translate(233.000000, 0.000000)"
     >
       <path
