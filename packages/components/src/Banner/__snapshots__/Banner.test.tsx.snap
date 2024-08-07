@@ -14,7 +14,7 @@ exports[`renders a banner with a primary 'learning' action when the type is 'not
       >
         <svg
           data-testid="starburst"
-          style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 16px; height: 16px;"
+          style="fill: var(--color-surface); display: inline-block; vertical-align: middle; width: 16px; height: 16px;"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -89,7 +89,7 @@ exports[`renders a banner with a primary action 1`] = `
       >
         <svg
           data-testid="checkmark"
-          style="fill: var(--color-success); display: inline-block; vertical-align: middle; width: 16px; height: 16px;"
+          style="fill: var(--color-surface); display: inline-block; vertical-align: middle; width: 16px; height: 16px;"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -164,7 +164,7 @@ exports[`renders a notice banner 1`] = `
       >
         <svg
           data-testid="starburst"
-          style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 16px; height: 16px;"
+          style="fill: var(--color-surface); display: inline-block; vertical-align: middle; width: 16px; height: 16px;"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -225,7 +225,7 @@ exports[`renders a success banner 1`] = `
       >
         <svg
           data-testid="checkmark"
-          style="fill: var(--color-success); display: inline-block; vertical-align: middle; width: 16px; height: 16px;"
+          style="fill: var(--color-surface); display: inline-block; vertical-align: middle; width: 16px; height: 16px;"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -286,7 +286,7 @@ exports[`renders a warning banner 1`] = `
       >
         <svg
           data-testid="help"
-          style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 16px; height: 16px;"
+          style="fill: var(--color-surface); display: inline-block; vertical-align: middle; width: 16px; height: 16px;"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -351,7 +351,7 @@ exports[`renders an error banner 1`] = `
       >
         <svg
           data-testid="alert"
-          style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 16px; height: 16px;"
+          style="fill: var(--color-surface); display: inline-block; vertical-align: middle; width: 16px; height: 16px;"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >

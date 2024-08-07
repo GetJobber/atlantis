@@ -99,7 +99,7 @@ exports[`renders a Disclosure with a header and a content when open is true 1`] 
           style={
             {
               "display": "flex",
-              "fill": "{color.icon}",
+              "fill": "hsl(0, 0%, 72%)",
               "height": 24,
               "verticalAlign": "middle",
               "width": 24,
@@ -110,7 +110,7 @@ exports[`renders a Disclosure with a header and a content when open is true 1`] 
         >
           <Path
             d="M16.297 14.709a.996.996 0 0 0 1.41-.001.994.994 0 0 0 0-1.41l-5-5.005a.998.998 0 0 0-1.415 0l-5 5a.994.994 0 0 0 0 1.41.996.996 0 0 0 1.411.001L12 10.416l4.297 4.293Z"
-            fill="{color.icon}"
+            fill="hsl(0, 0%, 72%)"
           />
         </SVGMock>
       </View>
@@ -270,7 +270,7 @@ exports[`renders a Disclosure with a header and with a content of size 0 when cl
           style={
             {
               "display": "flex",
-              "fill": "{color.icon}",
+              "fill": "hsl(0, 0%, 72%)",
               "height": 24,
               "verticalAlign": "middle",
               "width": 24,
@@ -281,7 +281,7 @@ exports[`renders a Disclosure with a header and with a content of size 0 when cl
         >
           <Path
             d="M16.297 14.709a.996.996 0 0 0 1.41-.001.994.994 0 0 0 0-1.41l-5-5.005a.998.998 0 0 0-1.415 0l-5 5a.994.994 0 0 0 0 1.41.996.996 0 0 0 1.411.001L12 10.416l4.297 4.293Z"
-            fill="{color.icon}"
+            fill="hsl(0, 0%, 72%)"
           />
         </SVGMock>
       </View>
