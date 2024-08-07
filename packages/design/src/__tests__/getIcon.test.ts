@@ -8,7 +8,7 @@ describe("Hello!", () => {
     });
     expect(svgStyle).toStrictEqual({
       display: "inline-block",
-      fill: "{color.icon}",
+      fill: "var(--color-icon)",
       height: 24,
       verticalAlign: "middle",
       width: 24,
@@ -24,7 +24,7 @@ describe("Hello!", () => {
     });
     expect(svgStyle).toStrictEqual({
       display: "inline-block",
-      fill: "{color.icon}",
+      fill: "var(--color-icon)",
       height: 24,
       verticalAlign: "middle",
       width: 24,
@@ -42,7 +42,7 @@ describe("Hello!", () => {
     });
     expect(svgStyle).toStrictEqual({
       display: "inline-block",
-      fill: "{color.icon}",
+      fill: "var(--color-icon)",
       height: 32,
       verticalAlign: "middle",
       width: 32,
@@ -59,7 +59,7 @@ describe("Hello!", () => {
     });
     expect(svgStyle).toStrictEqual({
       display: "inline-block",
-      fill: "{color.icon}",
+      fill: "var(--color-icon)",
       height: 24,
       transform: "scaleY(-1)",
       verticalAlign: "middle",
@@ -78,7 +78,7 @@ describe("Hello!", () => {
     });
     expect(svgStyle).toStrictEqual({
       display: "inline-block",
-      fill: "{color.icon}",
+      fill: "var(--color-icon)",
       height: 16,
       verticalAlign: "middle",
       width: 16,
@@ -94,7 +94,7 @@ describe("Hello!", () => {
     });
     expect(svgStyle).toStrictEqual({
       display: "inline-block",
-      fill: "{color.icon}",
+      fill: "var(--color-icon)",
       height: 24,
       verticalAlign: "middle",
       width: 24,
@@ -114,7 +114,7 @@ describe("Hello!", () => {
       animationName: "spinning",
       animationTimingFunction: "linear",
       display: "inline-block",
-      fill: "{color.icon}",
+      fill: "var(--color-icon)",
       height: 24,
       verticalAlign: "middle",
       width: 24,

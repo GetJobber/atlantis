@@ -209,7 +209,7 @@ describe("Button", () => {
     it("renders an icon Button with same color as the Button text", () => {
       const { iconColor, textColor } = getIconAndTextColorFromRender({});
 
-      expect(iconColor).toBe("{color.icon}");
+      expect(iconColor).toBe("rgba(255, 255, 255, 1)");
       expect(textColor).toBe(tokens["color-white"]);
     });
 
@@ -218,7 +218,7 @@ describe("Button", () => {
         variation: "learning",
         type: "secondary",
       });
-      expect(iconColor).toBe("{color.icon}");
+      expect(iconColor).toBe("hsl(198, 35%, 21%)");
       expect(textColor).toBe(tokens["color-interactive--subtle"]);
     });
 
@@ -227,7 +227,7 @@ describe("Button", () => {
         variation: "destructive",
         type: "secondary",
       });
-      expect(iconColor).toBe("{color.icon}");
+      expect(iconColor).toBe("hsl(6, 64%, 51%)");
       expect(textColor).toBe(tokens["color-destructive"]);
     });
 
@@ -236,7 +236,7 @@ describe("Button", () => {
         variation: "cancel",
         type: "tertiary",
       });
-      expect(iconColor).toBe("{color.icon}");
+      expect(iconColor).toBe("hsl(198, 35%, 21%)");
       expect(textColor).toBe("hsl(198, 35%, 21%)");
     });
 
