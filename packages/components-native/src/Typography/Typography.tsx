@@ -146,7 +146,7 @@ function InternalTypography<T extends FontFamily = "base">({
 }: TypographyProps<T>): JSX.Element {
   const sizeAndHeight = getSizeAndHeightStyle(size, lineHeight);
   const style: StyleProp<ViewStyle>[] = [
-    getFontStyle(fontFamily, fontStyle, fontWeight),
+    getFontStyle(fontFamily, fontWeight),
     getColorStyle(color, reverseTheme),
     getAlignStyle(align),
     sizeAndHeight,
@@ -203,14 +203,11 @@ function getScaleMultiplier(maxFontScaleSize = 0, size = 1) {
 
 function getFontStyle(
   fontFamily: FontFamily = "base",
-  fontStyle: FontStyle = "regular",
   fontWeight: FontWeight = "regular",
 ) {
   const defaultBaseFontStyling = styles.baseRegularRegular;
   const defaultDisplayFontStyling = styles.displayRegularBold;
-  const styleKey = `${fontFamily}${capitalize(fontStyle)}${capitalize(
-    fontWeight,
-  )}`;
+  const styleKey = `${fontFamily}Regular${capitalize(fontWeight)}`;
   const fontStyling = styles[styleKey];
 
   if (fontStyling) {

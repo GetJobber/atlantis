@@ -211,7 +211,7 @@ exports[`renders text with bold weight and italic style 1`] = `
   style={
     [
       {
-        "fontFamily": "inter-regular",
+        "fontFamily": "inter-bold",
       },
       {
         "color": "hsl(197, 15%, 45%)",
