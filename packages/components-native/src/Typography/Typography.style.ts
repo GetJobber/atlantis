@@ -64,6 +64,10 @@ export const typographyTokens: { [index: string]: TextStyle } = {
   // { fontFamily }{ fontStyle }{ fontWeight }
   ...fonts,
 
+  italic: {
+    fontStyle: "italic",
+  },
+
   startAlign: {
     textAlign: "left",
   },
