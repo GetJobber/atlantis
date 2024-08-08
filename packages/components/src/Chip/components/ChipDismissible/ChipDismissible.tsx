@@ -7,7 +7,7 @@ export function ChipDismissible(props: ChipProps) {
   return (
     <Chip {...props}>
       <Chip.Suffix>
-        <Icon name="cross" size="small" color="blue" />
+        <Icon name="cross" size="small" color="interactiveSubtle" />
       </Chip.Suffix>
     </Chip>
   );
