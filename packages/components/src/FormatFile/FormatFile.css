@@ -78,7 +78,7 @@
 }
 
 .deleteButton {
-  z-index: 1;
+  z-index: var(--elevation-base);
 }
 
 .expanded .thumbnail {
