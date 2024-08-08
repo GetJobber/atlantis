@@ -106,6 +106,7 @@ export interface TypographyProps<T extends FontFamily>
    * of the TextInput
    */
   readonly hideFromScreenReader?: boolean;
+
   /**
    * Have text styled with strike through
    */
@@ -146,7 +147,7 @@ function InternalTypography<T extends FontFamily = "base">({
 }: TypographyProps<T>): JSX.Element {
   const sizeAndHeight = getSizeAndHeightStyle(size, lineHeight);
   const style: StyleProp<ViewStyle>[] = [
-    getFontStyle(fontFamily, fontWeight),
+    getFontStyle(fontFamily, fontStyle, fontWeight),
     getColorStyle(color, reverseTheme),
     getAlignStyle(align),
     sizeAndHeight,
@@ -203,11 +204,14 @@ function getScaleMultiplier(maxFontScaleSize = 0, size = 1) {
 
 function getFontStyle(
   fontFamily: FontFamily = "base",
+  fontStyle: FontStyle = "regular",
   fontWeight: FontWeight = "regular",
 ) {
   const defaultBaseFontStyling = styles.baseRegularRegular;
   const defaultDisplayFontStyling = styles.displayRegularBold;
-  const styleKey = `${fontFamily}Regular${capitalize(fontWeight)}`;
+  const styleKey = `${fontFamily}${capitalize(fontStyle)}${capitalize(
+    fontWeight,
+  )}`;
   const fontStyling = styles[styleKey];
 
   if (fontStyling) {
