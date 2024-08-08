@@ -106,10 +106,16 @@ export interface TypographyProps<T extends FontFamily>
    * of the TextInput
    */
   readonly hideFromScreenReader?: boolean;
+
   /**
    * Have text styled with strike through
    */
   readonly strikeThrough?: boolean;
+
+  /**
+   * Have text styled with underline
+   */
+  readonly underline?: boolean;
 }
 
 const maxNumberOfLines = {
@@ -142,23 +148,30 @@ function InternalTypography<T extends FontFamily = "base">({
   hideFromScreenReader = false,
   accessibilityRole = "text",
   strikeThrough = false,
+  underline = false,
   selectable = true,
 }: TypographyProps<T>): JSX.Element {
   const sizeAndHeight = getSizeAndHeightStyle(size, lineHeight);
   const style: StyleProp<ViewStyle>[] = [
-    getFontStyle(fontFamily, fontWeight),
+    getFontStyle(fontFamily, fontStyle, fontWeight),
     getColorStyle(color, reverseTheme),
     getAlignStyle(align),
     sizeAndHeight,
     getLetterSpacingStyle(letterSpacing),
   ];
 
-  if (strikeThrough) {
-    style.push(styles.strikeThrough);
-  }
-
+  // If we keep this section directly below this
+  // it would only matter for when we demo the component in the web storybook
   if (fontStyle === "italic") {
     style.push(styles.italic);
+  }
+
+  if (underline && strikeThrough) {
+    style.push(styles.underlineAndStrikeThrough);
+  } else if (strikeThrough) {
+    style.push(styles.strikeThrough);
+  } else if (underline) {
+    style.push(styles.underline);
   }
 
   const numberOfLinesForNativeText = maxNumberOfLines[maxLines];
@@ -203,11 +216,14 @@ function getScaleMultiplier(maxFontScaleSize = 0, size = 1) {
 
 function getFontStyle(
   fontFamily: FontFamily = "base",
+  fontStyle: FontStyle = "regular",
   fontWeight: FontWeight = "regular",
 ) {
   const defaultBaseFontStyling = styles.baseRegularRegular;
   const defaultDisplayFontStyling = styles.displayRegularBold;
-  const styleKey = `${fontFamily}Regular${capitalize(fontWeight)}`;
+  const styleKey = `${fontFamily}${capitalize(fontStyle)}${capitalize(
+    fontWeight,
+  )}`;
   const fontStyling = styles[styleKey];
 
   if (fontStyling) {

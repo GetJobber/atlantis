@@ -66,6 +66,16 @@ interface TextProps
   readonly strikeThrough?: boolean;
 
   /**
+   * Have text styled with underline
+   */
+  readonly underline?: boolean;
+
+  /**
+   * Use italic font style
+   */
+  readonly italic?: boolean;
+
+  /**
    * This will make the text inaccessible to the screen reader.
    * This should be avoided unless there is a good reason.
    * For example this is used in InputText to make it so the label isn't
@@ -110,6 +120,8 @@ export function Text({
   children,
   reverseTheme = false,
   strikeThrough = false,
+  underline = false,
+  italic = false,
   hideFromScreenReader = false,
   maxFontScaleSize,
   selectable,
@@ -120,7 +132,7 @@ export function Text({
     <Typography
       color={variation}
       fontFamily="base"
-      fontStyle="regular"
+      fontStyle={italic ? "italic" : "regular"}
       fontWeight={getFontWeight({ level, emphasis })}
       maxFontScaleSize={maxFontScaleSize || maxScaledFontSize[level]}
       selectable={selectable}
@@ -133,6 +145,8 @@ export function Text({
         reverseTheme,
         maxLines,
         strikeThrough,
+        underline,
+        italic,
         hideFromScreenReader,
       }}
     >

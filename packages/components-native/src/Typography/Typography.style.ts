@@ -32,6 +32,26 @@ const deviceFonts = {
     fontFamily: "inter-extrabold",
   },
 
+  baseItalicRegular: {
+    fontFamily: "inter-italic",
+  },
+
+  baseItalicMedium: {
+    fontFamily: "inter-italic-medium",
+  },
+
+  baseItalicBold: {
+    fontFamily: "inter-italic-bold",
+  },
+
+  baseItalicSemiBold: {
+    fontFamily: "inter-italic-semibold",
+  },
+
+  baseItalicExtraBold: {
+    fontFamily: "inter-italic-extrabold",
+  },
+
   displayRegularBold: {
     fontFamily: "jobberpro-bd",
   },
@@ -366,6 +386,14 @@ export const typographyTokens: { [index: string]: TextStyle } = {
 
   strikeThrough: {
     textDecorationLine: "line-through",
+  },
+
+  underline: {
+    textDecorationLine: "underline",
+  },
+
+  underlineAndStrikeThrough: {
+    textDecorationLine: "underline line-through",
   },
 };
 
