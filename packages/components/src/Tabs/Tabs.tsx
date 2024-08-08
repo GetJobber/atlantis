@@ -1,4 +1,11 @@
-import React, { ReactElement, ReactNode, useEffect, useState } from "react";
+import React, {
+  KeyboardEvent,
+  ReactElement,
+  ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import classnames from "classnames";
 import styles from "./Tabs.css";
 import { useTabsOverflow } from "./hooks/useTabsOverflow";
@@ -31,14 +38,40 @@ export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
     [styles.overflowLeft]: overflowLeft,
   });
 
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const panelRefs = useRef<(HTMLElement | null)[]>([]);
+
   const activateTab = (index: number) => {
     return () => {
       setActiveTab(index);
+      tabRefs.current[index]?.focus();
 
       if (onTabChange) {
         onTabChange(index);
       }
     };
+  };
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLUListElement>) => {
+    const { key, shiftKey } = event;
+
+    if (key === "ArrowRight") {
+      setActiveTab(prev => (prev + 1) % React.Children.count(children));
+    } else if (key === "ArrowLeft") {
+      setActiveTab(
+        prev =>
+          (prev - 1 + React.Children.count(children)) %
+          React.Children.count(children),
+      );
+    } else if (key === "Tab") {
+      event.preventDefault();
+
+      if (shiftKey) {
+        tabRefs.current[activeTab]?.focus();
+      } else {
+        panelRefs.current[activeTab]?.focus();
+      }
+    }
   };
 
   const activeTabProps = (React.Children.toArray(children) as ReactElement[])[
@@ -49,18 +82,26 @@ export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
     if (activeTab > React.Children.count(children) - 1) {
       setActiveTab(activeTabInitialValue);
     }
-  }, [React.Children.count(children)]);
+    tabRefs.current[activeTab]?.focus();
+  }, [activeTab, React.Children.count(children)]);
 
   return (
     <div className={styles.tabs}>
       <div className={overflowClassNames}>
-        <ul role="tablist" className={styles.tabRow} ref={tabRow}>
+        <ul
+          role="tablist"
+          className={styles.tabRow}
+          ref={tabRow}
+          onKeyDown={handleKeyDown}
+        >
           {React.Children.map(children, (tab, index) => (
             <InternalTab
+              key={tab.props.label}
               label={tab.props.label}
               selected={activeTab === index}
               activateTab={activateTab(index)}
               onClick={tab.props.onClick}
+              ref={el => (tabRefs.current[index] = el)}
             />
           ))}
         </ul>
@@ -69,6 +110,8 @@ export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
         role="tabpanel"
         className={styles.tabContent}
         aria-label={activeTabProps?.label}
+        tabIndex={0}
+        ref={el => (panelRefs.current[activeTab] = el)}
       >
         {activeTabProps?.children}
       </section>
@@ -91,16 +134,13 @@ interface InternalTabProps {
   readonly selected: boolean;
   activateTab(): void;
   onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
+  readonly ref?: React.Ref<HTMLButtonElement>;
 }
 
-export function InternalTab({
-  label,
-  selected,
-  activateTab,
-  onClick = () => {
-    return;
-  },
-}: InternalTabProps) {
+export const InternalTab = React.forwardRef<
+  HTMLButtonElement,
+  InternalTabProps
+>(({ label, selected, activateTab, onClick }, ref) => {
   const className = classnames(styles.tab, { [styles.selected]: selected });
 
   return (
@@ -112,8 +152,11 @@ export function InternalTab({
         className={className}
         onClick={event => {
           activateTab();
-          onClick(event);
+          if (onClick) onClick(event);
         }}
+        tabIndex={selected ? 0 : -1}
+        aria-selected={selected}
+        ref={ref}
       >
         <Typography element="span" size="large" fontWeight="semiBold">
           {label}
@@ -121,4 +164,5 @@ export function InternalTab({
       </button>
     </li>
   );
-}
+});
+InternalTab.displayName = "InternalTab";
