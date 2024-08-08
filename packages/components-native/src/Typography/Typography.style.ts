@@ -387,14 +387,6 @@ export const typographyTokens: { [index: string]: TextStyle } = {
   strikeThrough: {
     textDecorationLine: "line-through",
   },
-
-  underline: {
-    textDecorationLine: "underline",
-  },
-
-  underlineAndStrikeThrough: {
-    textDecorationLine: "underline line-through",
-  },
 };
 
 /**

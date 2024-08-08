@@ -66,11 +66,6 @@ interface TextProps
   readonly strikeThrough?: boolean;
 
   /**
-   * Have text styled with underline
-   */
-  readonly underline?: boolean;
-
-  /**
    * Use italic font style
    */
   readonly italic?: boolean;
@@ -120,7 +115,6 @@ export function Text({
   children,
   reverseTheme = false,
   strikeThrough = false,
-  underline = false,
   italic = false,
   hideFromScreenReader = false,
   maxFontScaleSize,
@@ -145,7 +139,6 @@ export function Text({
         reverseTheme,
         maxLines,
         strikeThrough,
-        underline,
         italic,
         hideFromScreenReader,
       }}

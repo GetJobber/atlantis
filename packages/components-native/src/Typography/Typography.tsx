@@ -111,11 +111,6 @@ export interface TypographyProps<T extends FontFamily>
    * Have text styled with strike through
    */
   readonly strikeThrough?: boolean;
-
-  /**
-   * Have text styled with underline
-   */
-  readonly underline?: boolean;
 }
 
 const maxNumberOfLines = {
@@ -148,7 +143,6 @@ function InternalTypography<T extends FontFamily = "base">({
   hideFromScreenReader = false,
   accessibilityRole = "text",
   strikeThrough = false,
-  underline = false,
   selectable = true,
 }: TypographyProps<T>): JSX.Element {
   const sizeAndHeight = getSizeAndHeightStyle(size, lineHeight);
@@ -160,18 +154,12 @@ function InternalTypography<T extends FontFamily = "base">({
     getLetterSpacingStyle(letterSpacing),
   ];
 
-  // If we keep this section directly below this
-  // it would only matter for when we demo the component in the web storybook
-  if (fontStyle === "italic") {
-    style.push(styles.italic);
+  if (strikeThrough) {
+    style.push(styles.strikeThrough);
   }
 
-  if (underline && strikeThrough) {
-    style.push(styles.underlineAndStrikeThrough);
-  } else if (strikeThrough) {
-    style.push(styles.strikeThrough);
-  } else if (underline) {
-    style.push(styles.underline);
+  if (fontStyle === "italic") {
+    style.push(styles.italic);
   }
 
   const numberOfLinesForNativeText = maxNumberOfLines[maxLines];
