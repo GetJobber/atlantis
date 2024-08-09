@@ -235,14 +235,16 @@ export function InputFile({
         <input {...getInputProps()} />
 
         {variation === "dropzone" && (
-          <Content spacing="small">
-            <Button label={buttonLabel} size="small" type="secondary" />
-            {size === "base" && (
-              <Typography size="small" textColor="textSecondary">
-                {hintText}
-              </Typography>
-            )}
-          </Content>
+          <div className={styles.dropzoneContent}>
+            <Content spacing="small">
+              <Button label={buttonLabel} size="small" type="secondary" />
+              {size === "base" && (
+                <Typography size="small" textColor="textSecondary">
+                  {hintText}
+                </Typography>
+              )}
+            </Content>
+          </div>
         )}
 
         {variation === "button" && (
