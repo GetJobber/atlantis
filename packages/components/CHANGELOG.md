@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.22.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.21.3...@jobber/components@5.22.0) (2024-08-09)
+
+
+### Features
+
+* **components:** Update positioning of dropzone content ([#1978](https://github.com/GetJobber/atlantis/issues/1978)) ([76a1425](https://github.com/GetJobber/atlantis/commit/76a142511081b5bf4d3de48d4565e89dc53c66df))
+
+
+
+
+
 ## [5.21.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.21.2...@jobber/components@5.21.3) (2024-08-07)
 
 
