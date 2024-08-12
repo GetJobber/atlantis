@@ -1,4 +1,4 @@
-export const iconStyles: Record<string, Record<string, string>> = {
+export const iconStyles: Record<string, React.CSSProperties> = {
   icon: {
     fill: "{color.icon}",
     display: "inline-block",

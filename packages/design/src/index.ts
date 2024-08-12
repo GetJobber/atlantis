@@ -1,6 +1,6 @@
 import { iconStyles } from "./iconStyles/iconStyles";
 import { iconSizes } from "./iconStyles/iconSizes";
-import { iconColors } from "./iconStyles/iconColours";
+import { iconColors } from "./iconStyles/iconColors";
 import iconMap from "./assets/icon.map";
 import webTokens from "./assets/tokens.web";
 import androidTokens from "./assets/tokens.android";
@@ -82,7 +82,11 @@ export function getIcon({ name, color, size = "base" }: IconProps) {
   if (iconStyles[name]) {
     specialIconStyle = iconStyles[name];
   }
-  const svgStyle: { fill?: string; width: number; height: number } = {
+  const svgStyle: {
+    fill?: string;
+    width: string | number;
+    height: string | number;
+  } = {
     ...iconStyle,
     ...iconSizeStyle,
     ...specialIconStyle,

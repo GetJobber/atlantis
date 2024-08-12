@@ -119,10 +119,13 @@ export const createTokenFileContentsForJS = (types: Array<TokenTypes>) => {
   return parseTokensToCSS(jsTokens);
 };
 
-export const createTokenFileFromSubset = (subset: Array<TokenTypes>) => {
+export const createTokenFileFromSubset = (
+  subset: Array<TokenTypes>,
+  esm = true,
+) => {
   const jsColorTokens = createTokenSubset(subset);
 
-  return convertJSTokensToObjectString(jsColorTokens);
+  return convertJSTokensToObjectString(jsColorTokens, esm);
 };
 
 export const createCSSFileFromSubset = (subset: Array<TokenTypes>) => {
