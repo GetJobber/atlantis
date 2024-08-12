@@ -73,8 +73,6 @@ const handleRecurseError = (e: Error) => {
     throw new Error(
       `Maximum recursion depth reached. Are you missing a $value key in your token structure?`,
     );
-  } else {
-    console.log("EEEVCCVv", e);
   }
 };
 

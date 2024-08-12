@@ -147,7 +147,7 @@ describe("Token Override Parsing", () => {
     try {
       parseOverrides(overrideConfig, "ios");
     } catch (e) {
-      message = e.message;
+      message = (e as Error).message;
     }
 
     expect(message).toBe(

@@ -16,5 +16,5 @@ export interface OverrideTokenTree {
 }
 export type Token = string | object | number;
 export type Tokens = Record<string, Token>;
-export type ParsedTokens = Record<string, string | number>;
 export type ParsedTokenValue = string | number;
+export type ParsedTokens = Record<string, ParsedTokenValue>;
