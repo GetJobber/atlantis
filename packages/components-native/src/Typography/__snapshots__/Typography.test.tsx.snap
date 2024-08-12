@@ -211,7 +211,7 @@ exports[`renders text with bold weight and italic style 1`] = `
   style={
     [
       {
-        "fontFamily": "inter-regular",
+        "fontFamily": "inter-italic-bold",
       },
       {
         "color": "hsl(197, 15%, 45%)",
@@ -225,6 +225,9 @@ exports[`renders text with bold weight and italic style 1`] = `
       },
       {
         "letterSpacing": 0,
+      },
+      {
+        "fontStyle": "italic",
       },
     ]
   }
@@ -409,7 +412,7 @@ exports[`renders text with italic style 1`] = `
   style={
     [
       {
-        "fontFamily": "inter-regular",
+        "fontFamily": "inter-italic",
       },
       {
         "color": "hsl(197, 15%, 45%)",
@@ -423,6 +426,9 @@ exports[`renders text with italic style 1`] = `
       },
       {
         "letterSpacing": 0,
+      },
+      {
+        "fontStyle": "italic",
       },
     ]
   }

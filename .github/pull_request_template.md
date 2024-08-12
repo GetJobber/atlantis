@@ -22,8 +22,12 @@
   SCOPE should be one of:
     - components
     - components-native
+    - deps
+    - deps-dev
     - design
+    - docx
     - eslint
+    - formatters
     - generators
     - hooks
     - stylelint

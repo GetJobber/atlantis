@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.69.4](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.69.3...@jobber/components-native@0.69.4) (2024-08-08)
+
+
+### Bug Fixes
+
+* **components-native:** Add support for italics in Atlantis `Typography` component (JOB-101940) ([#1977](https://github.com/GetJobber/atlantis/issues/1977)) ([93cb197](https://github.com/GetJobber/atlantis/commit/93cb19710c4244c0453dfbb8f13a48110e72fb95)), closes [#1980](https://github.com/GetJobber/atlantis/issues/1980)
+
+
+
+
+
+## [0.69.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.69.2...@jobber/components-native@0.69.3) (2024-08-02)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
 ## [0.69.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.69.1...@jobber/components-native@0.69.2) (2024-07-15)
 
 

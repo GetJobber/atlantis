@@ -37,7 +37,9 @@ export function ComboboxOption(props: ComboboxOptionProps) {
         {props.label}
       </Flex>
 
-      <div>{isSelected && <Icon name="checkmark" color="blue" />}</div>
+      <div>
+        {isSelected && <Icon name="checkmark" color="interactiveSubtle" />}
+      </div>
     </li>
   );
 }
