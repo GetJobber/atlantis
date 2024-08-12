@@ -374,6 +374,11 @@
       "import": "./dist/Text/index.mjs",
       "require": "./dist/Text/index.cjs"
     },
+    "./ThemeContext": {
+      "types": "./dist/ThemeContext/index.d.ts",
+      "import": "./dist/ThemeContext/index.mjs",
+      "require": "./dist/ThemeContext/index.cjs"
+    },
     "./Toast": {
       "types": "./dist/Toast/index.d.ts",
       "import": "./dist/Toast/index.mjs",
