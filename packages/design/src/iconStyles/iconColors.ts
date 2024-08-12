@@ -84,6 +84,9 @@ export const iconColors = {
     success: {
       value: "{color.success}",
     },
+    successSurface: {
+      value: "{color.success-.surface}",
+    },
     successOnSurface: {
       value: "{color.success-.onSurface}",
     },

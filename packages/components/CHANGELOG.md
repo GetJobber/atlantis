@@ -3,6 +3,91 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.22.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.22.0...@jobber/components@5.22.1) (2024-08-12)
+
+
+### Bug Fixes
+
+* **components:** use semantic values in ComboBox and Chip ([#1944](https://github.com/GetJobber/atlantis/issues/1944)) ([30fe51d](https://github.com/GetJobber/atlantis/commit/30fe51d8c3aa923e37bb5b6c664800b68d151dfd))
+
+
+
+
+
+# [5.22.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.21.3...@jobber/components@5.22.0) (2024-08-09)
+
+
+### Features
+
+* **components:** Update positioning of dropzone content ([#1978](https://github.com/GetJobber/atlantis/issues/1978)) ([76a1425](https://github.com/GetJobber/atlantis/commit/76a142511081b5bf4d3de48d4565e89dc53c66df))
+
+
+
+
+
+## [5.21.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.21.2...@jobber/components@5.21.3) (2024-08-07)
+
+
+### Bug Fixes
+
+* **components:** Adjust z-index of clickable areas in FormatFile ([#1975](https://github.com/GetJobber/atlantis/issues/1975)) ([9f5b31d](https://github.com/GetJobber/atlantis/commit/9f5b31d74b777960b442803658c7cc62d0e11b08))
+
+
+
+
+
+## [5.21.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.21.1...@jobber/components@5.21.2) (2024-08-06)
+
+
+### Bug Fixes
+
+* **components:** Change label FomField label to have full width ([#1971](https://github.com/GetJobber/atlantis/issues/1971)) ([3c04d47](https://github.com/GetJobber/atlantis/commit/3c04d47c6be337c512584e8c4439c9b84c479764))
+
+
+
+
+
+## [5.21.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.21.0...@jobber/components@5.21.1) (2024-08-02)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [5.21.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.10...@jobber/components@5.21.0) (2024-08-02)
+
+
+### Features
+
+* **components:** Add onClick to Chip Suffix ([#1963](https://github.com/GetJobber/atlantis/issues/1963)) ([59eda62](https://github.com/GetJobber/atlantis/commit/59eda621560f223640ab64c93b021b2b98fe650b))
+
+
+
+
+
+## [5.20.10](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.9...@jobber/components@5.20.10) (2024-08-02)
+
+
+### Bug Fixes
+
+* **components:** Fix form not always focusing first error ([#1970](https://github.com/GetJobber/atlantis/issues/1970)) ([1ffb5ab](https://github.com/GetJobber/atlantis/commit/1ffb5ab5529295f66dc5e01ecd3af4e5d74f5bba))
+
+
+
+
+
+## [5.20.9](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.8...@jobber/components@5.20.9) (2024-07-30)
+
+
+### Bug Fixes
+
+* **components:** Mock popper to prevent act warnings in test suites ([#1967](https://github.com/GetJobber/atlantis/issues/1967)) ([bfcb3ba](https://github.com/GetJobber/atlantis/commit/bfcb3ba2cfc0985d223fa671204e56561b570877))
+
+
+
+
+
 ## [5.20.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.7...@jobber/components@5.20.8) (2024-07-25)
 
 **Note:** Version bump only for package @jobber/components

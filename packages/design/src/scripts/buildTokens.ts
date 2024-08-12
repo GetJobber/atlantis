@@ -19,11 +19,13 @@ const writeMobileTokens = () => {
   writeFile("src/assets/tokens.ios.ts", iosTokens);
 };
 
+// eslint-disable-next-line max-statements
 const writeColorTokens = () => {
   const jsFileContents = createTokenFileFromSubset(["color"]);
+  const cjsFileContents = createTokenFileFromSubset(["color"], false);
   writeFile("src/assets/tokens.color.ts", jsFileContents);
   writeFile("dist/colors.mjs", jsFileContents);
-  writeFile("dist/colors.cjs", jsFileContents);
+  writeFile("dist/colors.cjs", cjsFileContents);
 
   const cssFileContents = createCSSFileFromSubset(["color"]);
   writeFile("dist/color.css", cssFileContents);

@@ -2,7 +2,6 @@ import React, {
   ChangeEvent,
   FocusEvent,
   KeyboardEvent,
-  MutableRefObject,
   useEffect,
   useId,
   useImperativeHandle,
@@ -12,6 +11,7 @@ import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.css";
 import { FormFieldWrapper } from "./FormFieldWrapper";
 import { FormFieldPostFix } from "./FormFieldPostFix";
+import { mergeRefs } from "../utils/mergeRefs";
 
 export function FormField(props: FormFieldProps) {
   // Warning: do not move useId into FormFieldInternal. This must be here to avoid
@@ -58,12 +58,10 @@ function FormFieldInternal(props: FormFieldInternalProps) {
     clearable = "never",
     autofocus,
   } = props;
-
+  const formContext = useFormContext();
+  // If there isn't a Form Context being provided, get a form for this field.
   const { control, setValue, watch } =
-    useFormContext() != undefined
-      ? useFormContext()
-      : // If there isn't a Form Context being provided, get a form for this field.
-        useForm({ mode: "onTouched" });
+    formContext ?? useForm({ mode: "onTouched" });
 
   const descriptionIdentifier = `descriptionUUID--${id}`;
   /**
@@ -86,7 +84,12 @@ function FormFieldInternal(props: FormFieldInternalProps) {
   }));
 
   const {
-    field: { onChange: onControllerChange, onBlur: onControllerBlur, ...rest },
+    field: {
+      onChange: onControllerChange,
+      onBlur: onControllerBlur,
+      ref: fieldRef,
+      ...rest
+    },
     fieldState: { error },
   } = useController({
     name,
@@ -119,6 +122,7 @@ function FormFieldInternal(props: FormFieldInternalProps) {
     autoFocus: autofocus,
     onKeyDown: handleKeyDown,
   };
+  const inputRefs = mergeRefs([inputRef, fieldRef]);
 
   return (
     <FormFieldWrapper
@@ -144,13 +148,7 @@ function FormFieldInternal(props: FormFieldInternalProps) {
           </>
         );
       case "textarea":
-        return (
-          <textarea
-            {...textFieldProps}
-            rows={rows}
-            ref={inputRef as MutableRefObject<HTMLTextAreaElement>}
-          />
-        );
+        return <textarea {...textFieldProps} rows={rows} ref={inputRefs} />;
       default:
         return (
           <>
@@ -161,7 +159,7 @@ function FormFieldInternal(props: FormFieldInternalProps) {
               maxLength={maxLength}
               max={max}
               min={min}
-              ref={inputRef as MutableRefObject<HTMLInputElement>}
+              ref={inputRefs}
               onKeyUp={onKeyUp}
             />
             {loading && <FormFieldPostFix variation="spinner" />}
