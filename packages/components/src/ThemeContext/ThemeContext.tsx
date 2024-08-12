@@ -47,9 +47,11 @@ export function ThemeContextProvider({
   );
 
   useEffect(() => {
+    if (!globalThis.window) return;
     globalThis.window.addEventListener(THEME_CHANGE_EVENT, handleThemeChange);
 
     return () => {
+      if (!globalThis.window) return;
       globalThis.window.removeEventListener(
         THEME_CHANGE_EVENT,
         handleThemeChange,
@@ -58,7 +60,7 @@ export function ThemeContextProvider({
   }, [handleThemeChange]);
 
   useEffect(() => {
-    if (isEmpty) {
+    if (isEmpty || !globalThis.document) {
       return;
     }
     const newTheme = dequeueThemeChange();
