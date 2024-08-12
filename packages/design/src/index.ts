@@ -106,7 +106,6 @@ export function buildSVGStyle(
   const iconStyle = iconStyles.icon;
   const iconSizeStyle = iconSizes.tokens[size];
   const iconFill = iconStyles[name];
-  let specialIconStyle = {};
 
   if (iconStyles[name]) {
     specialIconStyle = iconStyles[name];
