@@ -22,7 +22,7 @@ const processFiles = async (files: Array<string>, iconDir: string) => {
   return iconMap;
 };
 
-export const getIconMap = async () => {
+const getIconMap = async () => {
   const currentDir = dirname(import.meta.url.replace("file://", ""));
   const iconDir = join(currentDir, "../icons");
 
@@ -37,7 +37,7 @@ export const getIconMap = async () => {
   }
 };
 
-export const generateIconMapFile = () => {
+const generateIconMapFile = () => {
   getIconMap().then(iconMap => {
     const iconMapString = JSON.stringify(iconMap, null, 2);
     mkdir("src/assets", { recursive: true });

@@ -1,24 +1,19 @@
 import typescript from "@rollup/plugin-typescript";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
-import commonjs from "@rollup/plugin-commonjs"; // Import the plugin
-import pluginjson from "@rollup/plugin-json"; // Import the plugin
+import commonjs from "@rollup/plugin-commonjs";
+import pluginjson from "@rollup/plugin-json";
 
 export default {
-  input: "src/index.ts", // Your entry point
+  input: "src/index.ts",
   output: [
     {
-      file: "dist/index.mjs", // ES module format
-      format: "es", // ES module format
+      file: "dist/index.mjs",
+      format: "es",
     },
     {
-      file: "dist/index.cjs", // ES module format
-      format: "cjs", // ES module format
+      file: "dist/index.cjs",
+      format: "cjs",
     },
   ],
-  plugins: [
-    nodeResolve(), // Resolves node modules
-    commonjs(), // Use the plugin
-    pluginjson(),
-    typescript(), // Compiles TypeScript
-  ],
+  plugins: [nodeResolve(), commonjs(), pluginjson(), typescript()],
 };

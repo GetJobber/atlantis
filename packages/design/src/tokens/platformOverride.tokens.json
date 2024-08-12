@@ -164,6 +164,18 @@
           },
           "minuscule": {
             "$value": 10
+          },
+          "extravagant": {
+            "$value": 42
+          },
+          "jumbo": {
+            "$value": 36
+          },
+          "largest": {
+            "$value": 28
+          },
+          "larger": {
+            "$value": 24
           }
         }
       },

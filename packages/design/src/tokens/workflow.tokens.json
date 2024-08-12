@@ -36,14 +36,14 @@
       }
     },
     "task": {
-      "$value": "{color.base.blue-.800}"
+      "$value": "{color.base.lightBlue-.800}"
     },
     "task-": {
       "surface": {
         "$value": "{color.base.blue-.200}"
       },
       "onSurface": {
-        "$value": "{color.base.blue-.900}"
+        "$value": "{color.base.blue-.800}"
       }
     },
     "invoice": {

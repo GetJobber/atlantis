@@ -1,6 +1,6 @@
 import { iconStyles } from "./iconStyles/iconStyles";
 import { iconSizes } from "./iconStyles/iconSizes";
-import { iconColors } from "./iconStyles/iconColours";
+import { iconColors } from "./iconStyles/iconColors";
 import iconMap from "./assets/icon.map";
 import webTokens from "./assets/tokens.web";
 import androidTokens from "./assets/tokens.android";
@@ -106,7 +106,16 @@ export function buildSVGStyle(
   const iconStyle = iconStyles.icon;
   const iconSizeStyle = iconSizes.tokens[size];
   const iconFill = iconStyles[name];
-  const svgStyle: { fill?: string; width: number; height: number } = {
+  let specialIconStyle = {};
+
+  if (iconStyles[name]) {
+    specialIconStyle = iconStyles[name];
+  }
+  const svgStyle: {
+    fill?: string;
+    width: string | number;
+    height: string | number;
+  } = {
     ...iconStyle,
     ...iconSizeStyle,
     ...specialIconStyle,
