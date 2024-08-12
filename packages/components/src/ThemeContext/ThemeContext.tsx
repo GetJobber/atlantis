@@ -47,10 +47,13 @@ export function ThemeContextProvider({
   );
 
   useEffect(() => {
-    window.addEventListener(THEME_CHANGE_EVENT, handleThemeChange);
+    globalThis.window.addEventListener(THEME_CHANGE_EVENT, handleThemeChange);
 
     return () => {
-      window.removeEventListener(THEME_CHANGE_EVENT, handleThemeChange);
+      globalThis.window.removeEventListener(
+        THEME_CHANGE_EVENT,
+        handleThemeChange,
+      );
     };
   }, [handleThemeChange]);
 
@@ -59,7 +62,7 @@ export function ThemeContextProvider({
       return;
     }
     const newTheme = dequeueThemeChange();
-    document.documentElement.dataset.theme = newTheme;
+    globalThis.document.documentElement.dataset.theme = newTheme;
     setInternalTheme(newTheme);
   }, [isEmpty, themeChangeQueue, dequeueThemeChange]);
 

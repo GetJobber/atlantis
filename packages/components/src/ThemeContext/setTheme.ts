@@ -9,5 +9,5 @@ export function setTheme(theme: Theme) {
   const event = new CustomEvent<ThemeChangeDetails>(THEME_CHANGE_EVENT, {
     detail: { theme },
   });
-  window.dispatchEvent(event);
+  globalThis.window.dispatchEvent(event);
 }
