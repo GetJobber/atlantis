@@ -34,7 +34,7 @@ describe("the basic token set", () => {
       ],
     );
     expect(tokens).toContain(
-      '[data-other="enabled"]{\n  --color-beep-boop: red;\n}\n',
+      '[data-other="enabled"] {\n  --color-beep-boop: red;\n}\n',
     );
   });
 
