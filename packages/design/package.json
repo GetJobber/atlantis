@@ -27,6 +27,7 @@
       "import": "./dist/foundation.css",
       "require": "./dist/foundation.css"
     },
+    "./dist/dark.mode.css": "./dist/dark.mode.css",
     "./dark.mode.css": {
       "import": "./dist/dark.mode.css",
       "require": "./dist/dark.mode.css"
