@@ -2,12 +2,28 @@
     "color": {
         "$type": "color",
         "$description:": "Color tokens for the dark theme.",
+        "base": {
+            "blue-": {
+                "700": {
+                    "$value": "hsl(197, 15%, 35%)"
+                },
+                "800": {
+                    "$value": "hsl(197, 18%, 25%)"
+                },
+                "900": {
+                    "$value": "hsl(197, 15%, 18%)"
+                },
+                "1000": {
+                    "$value": "hsl(197, 10%, 10%)"
+                }
+            }
+        },
         "interactive": {
-            "$value": "{color.brand-.highlight}"
+            "$value": "hsl(86, 60%, 50%)"
         },
         "interactive-": {
             "hover": {
-                "$value": "hsl(86,94%,58%)"
+                "$value": "hsl(86, 60%, 60%)"
             },
             "subtle": {
                 "$value": "{color.base.blue-.200}"
@@ -19,11 +35,11 @@
             }
         },
         "destructive": {
-            "$value": "{color.base.red-.600}"
+            "$value": "{color.base.red-.500}"
         },
         "destructive-": {
             "hover": {
-                "$value": "{color.base.red-.500}"
+                "$value": "{color.base.red-.400}"
             }
         },
         "disabled": {
@@ -79,18 +95,18 @@
             }
         },
         "inactive": {
-            "$value": "{color.base.blue-.700}"
+            "$value": "{color.base.blue-.500}"
         },
         "inactive-": {
             "surface": {
-                "$value": "{color.base.blue-.1000}"
+                "$value": "{color.base.blue-.700}"
             },
             "onSurface": {
-                "$value": "{color.base.blue-.300}"
+                "$value": "{color.base.blue-.200}"
             }
         },
         "heading": {
-            "$value": "{color.base.blue-.300}"
+            "$value": "{color.base.blue-.100}"
         },
         "text": {
             "$value": "{color.base.blue-.200}"
