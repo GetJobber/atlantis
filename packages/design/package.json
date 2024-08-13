@@ -22,6 +22,7 @@
       "require": "./dist/index.cjs",
       "import": "./dist/index.mjs"
     },
+    "./dist/foundation.css": "./dist/foundation.css",
     "./foundation.css": {
       "import": "./dist/foundation.css",
       "require": "./dist/foundation.css"
