@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from "react";
 import { act, renderHook, waitFor } from "@testing-library/react";
 import { darkTokens, webTokens } from "@jobber/design";
 import merge from "lodash/merge";
-import { ThemeContextProvider, useThemeContext } from "./ThemeContext";
+import { AtlantisThemeContextProvider, useAtlantisTheme } from "./ThemeContext";
 import { Theme } from "./types";
 import { setTheme } from "./setTheme";
 import { InlineLabel } from "../InlineLabel";
@@ -16,10 +16,10 @@ describe("ThemeContext", () => {
     children,
   }: PropsWithChildren<{ readonly defaultTheme?: Theme }>) {
     return (
-      <ThemeContextProvider defaultTheme={defaultTheme}>
+      <AtlantisThemeContextProvider defaultTheme={defaultTheme}>
         <InlineLabel color="red">Past due</InlineLabel>
         {children}
-      </ThemeContextProvider>
+      </AtlantisThemeContextProvider>
     );
   }
 
@@ -29,7 +29,7 @@ describe("ThemeContext", () => {
   ] as { defaultTheme: Theme; expectedTokens: typeof webTokens }[])(
     "should provide the default theme $defaultTheme tokens",
     ({ defaultTheme, expectedTokens }) => {
-      const results = renderHook(useThemeContext, {
+      const results = renderHook(useAtlantisTheme, {
         wrapper: props => (
           <TestWrapper {...props} defaultTheme={defaultTheme} />
         ),
@@ -43,7 +43,7 @@ describe("ThemeContext", () => {
   );
 
   it("should update the theme and tokens", async () => {
-    const results = renderHook(useThemeContext, {
+    const results = renderHook(useAtlantisTheme, {
       wrapper: props => <TestWrapper {...props} defaultTheme="light" />,
     });
 
@@ -64,10 +64,10 @@ describe("ThemeContext", () => {
   });
 
   it("should update the theme and tokens for all theme providers", async () => {
-    const firstProvider = renderHook(useThemeContext, {
+    const firstProvider = renderHook(useAtlantisTheme, {
       wrapper: props => <TestWrapper {...props} defaultTheme="light" />,
     });
-    const secondProvider = renderHook(useThemeContext, {
+    const secondProvider = renderHook(useAtlantisTheme, {
       wrapper: props => <TestWrapper {...props} defaultTheme="light" />,
     });
 
@@ -82,7 +82,7 @@ describe("ThemeContext", () => {
   });
 
   it("should add a data-theme attribute to the documentElement", async () => {
-    renderHook(useThemeContext, {
+    renderHook(useAtlantisTheme, {
       wrapper: props => <TestWrapper {...props} defaultTheme="dark" />,
     });
     await waitFor(() => {

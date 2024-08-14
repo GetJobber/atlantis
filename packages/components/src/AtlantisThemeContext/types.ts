@@ -1,7 +1,7 @@
 import { tokens } from "@jobber/design";
 import { PropsWithChildren } from "react";
 
-export interface ThemeContextValue {
+export interface AtlantisThemeContextValue {
   /**
    * The theme of the application.
    */
@@ -13,11 +13,16 @@ export interface ThemeContextValue {
   readonly tokens: typeof tokens;
 }
 
-export interface ThemeContextProviderProps extends PropsWithChildren {
+export interface AtlantisThemeContextProviderProps extends PropsWithChildren {
   /**
    * The children to render.
    */
   readonly children: React.ReactNode;
+
+  /**
+   * Ignore theme changes from the context.
+   */
+  readonly ignoreThemeChanges?: boolean;
 
   /**
    * The default theme to use.

@@ -9,26 +9,27 @@ import React, {
 } from "react";
 import merge from "lodash/merge";
 import {
+  AtlantisThemeContextProviderProps,
+  AtlantisThemeContextValue,
   THEME_CHANGE_EVENT,
   Theme,
   ThemeChangeDetails,
-  ThemeContextProviderProps,
-  ThemeContextValue,
 } from "./types";
 import { setTheme } from "./setTheme";
 import { useThemeContextEventQueue } from "./useThemeContextEventQueue";
 
-export const themeContextDefaultValues: ThemeContextValue = {
+export const atlantisThemeContextDefaultValues: AtlantisThemeContextValue = {
   theme: "light",
   tokens: tokens,
 };
 
-const ThemeContext = createContext(themeContextDefaultValues);
+const ThemeContext = createContext(atlantisThemeContextDefaultValues);
 
-export function ThemeContextProvider({
+export function AtlantisThemeContextProvider({
   children,
   defaultTheme = "light",
-}: ThemeContextProviderProps) {
+  ignoreThemeChanges,
+}: AtlantisThemeContextProviderProps) {
   const [internalTheme, setInternalTheme] = useState<Theme>(defaultTheme);
   const { isEmpty, dequeueThemeChange, enqueueThemeChange, themeChangeQueue } =
     useThemeContextEventQueue();
@@ -47,11 +48,11 @@ export function ThemeContextProvider({
   );
 
   useEffect(() => {
-    if (!globalThis.window) return;
+    if (!globalThis.window || ignoreThemeChanges) return;
     globalThis.window.addEventListener(THEME_CHANGE_EVENT, handleThemeChange);
 
     return () => {
-      if (!globalThis.window) return;
+      if (!globalThis.window || ignoreThemeChanges) return;
       globalThis.window.removeEventListener(
         THEME_CHANGE_EVENT,
         handleThemeChange,
@@ -60,7 +61,7 @@ export function ThemeContextProvider({
   }, [handleThemeChange]);
 
   useEffect(() => {
-    if (isEmpty || !globalThis.document) {
+    if (isEmpty || !globalThis.document || ignoreThemeChanges) {
       return;
     }
     const newTheme = dequeueThemeChange();
@@ -79,11 +80,11 @@ export function ThemeContextProvider({
         tokens: currentTokens,
       }}
     >
-      {children}
+      <div data-theme={internalTheme}>{children}</div>
     </ThemeContext.Provider>
   );
 }
 
-export function useThemeContext() {
+export function useAtlantisTheme() {
   return useContext(ThemeContext);
 }
