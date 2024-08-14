@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.23.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.23.0...@jobber/components@5.23.1) (2024-08-14)
+
+
+### Bug Fixes
+
+* **components:** Always show delete button on the FormatFile when on a small screen ([#1983](https://github.com/GetJobber/atlantis/issues/1983)) ([15b66a4](https://github.com/GetJobber/atlantis/commit/15b66a4855d51c65c9cfa76d08b0f398e622debb))
+
+
+
+
+
 # [5.23.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.22.1...@jobber/components@5.23.0) (2024-08-14)
 
 
