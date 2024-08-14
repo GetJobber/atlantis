@@ -1,4 +1,4 @@
-import { writeFileSync } from "fs";
+import { readFileSync, writeFileSync } from "fs";
 import {
   buildFullCSS,
   convertRawTokensToCSSFile,
@@ -58,7 +58,14 @@ const writeDarkModeTokens = () => {
       tokens: cssDarkElevatedContent,
     },
   ]);
-  writeFileSync("dist/dark.mode.css", darkModeTokens);
+  const darkModeSuffixStyles = readFileSync(
+    "src/styles/dark.mode.suffixStyles.css",
+    "utf8",
+  );
+  writeFileSync(
+    "dist/dark.mode.css",
+    `${darkModeTokens}\n${darkModeSuffixStyles}`,
+  );
 
   const jsDarkTokens = parseTokens(["dark"], true, "js");
   const jsTokens = convertRawTokensToJSFile(jsDarkTokens);
