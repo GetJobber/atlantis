@@ -209,7 +209,7 @@ exports[`renders quote icon with themed color 1`] = `
       },
       {
         "display": "flex",
-        "fill": "hsl(79, 85%, 34%)",
+        "fill": "hsl(348, 40%, 41%)",
         "height": 24,
         "verticalAlign": "middle",
         "width": 24,
@@ -228,7 +228,7 @@ exports[`renders quote icon with themed color 1`] = `
   <RNSVGGroup
     fill={
       {
-        "payload": 4285702157,
+        "payload": 4287774543,
         "type": 0,
       }
     }

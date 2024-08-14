@@ -158,9 +158,9 @@ export function getIcon({
 
   if (format === "js") {
     pathStyle.fill = tokenStyleToJs((colorStyle as { value: string })?.value);
-    svgStyle.fill = pathStyle.fill || tokenStyleToJs(svgStyle.fill);
+    svgStyle.fill = tokenStyleToJs(svgStyle.fill);
   } else {
-    svgStyle.fill = pathStyle.fill || tokenStyleToCss(svgStyle.fill);
+    svgStyle.fill = tokenStyleToCss(svgStyle.fill);
   }
 
   return { svgStyle, pathStyle, paths, viewBox } as const;

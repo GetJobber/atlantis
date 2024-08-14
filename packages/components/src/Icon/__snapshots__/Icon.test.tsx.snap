@@ -95,7 +95,7 @@ exports[`renders truck icon 1`] = `
 <div>
   <svg
     data-testid="truck"
-    style="fill: var(--color-green); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+    style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
     viewBox="0 0 1024 1024"
     xmlns="http://www.w3.org/2000/svg"
   >
