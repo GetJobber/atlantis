@@ -99,7 +99,7 @@ exports[`renders a Disclosure with a header and a content when open is true 1`] 
           style={
             {
               "display": "flex",
-              "fill": "hsl(198, 35%, 21%)",
+              "fill": "hsl(0, 0%, 72%)",
               "height": 24,
               "verticalAlign": "middle",
               "width": 24,
@@ -270,7 +270,7 @@ exports[`renders a Disclosure with a header and with a content of size 0 when cl
           style={
             {
               "display": "flex",
-              "fill": "hsl(198, 35%, 21%)",
+              "fill": "hsl(0, 0%, 72%)",
               "height": 24,
               "verticalAlign": "middle",
               "width": 24,

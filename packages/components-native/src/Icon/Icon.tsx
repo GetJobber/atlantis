@@ -37,15 +37,16 @@ export function Icon({
   customColor,
   testID,
 }: IconProps): JSX.Element {
-  const { svgStyle, pathStyle, paths, viewBox } = getIcon({
+  const { svgStyle, paths, viewBox } = getIcon({
     name,
     color,
     size,
     platform: "mobile",
     format: "js",
   });
+
   const icon = paths.map((path: string) => {
-    return <Path key={path} d={path} fill={customColor || pathStyle.fill} />;
+    return <Path key={path} d={path} fill={customColor || svgStyle.fill} />;
   });
 
   return (

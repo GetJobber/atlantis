@@ -163,6 +163,10 @@ export function getIcon({
     svgStyle.fill = tokenStyleToCss(svgStyle.fill);
   }
 
+  if (platform === "mobile" && pathStyle.fill) {
+    svgStyle.fill = pathStyle.fill;
+  }
+
   return { svgStyle, pathStyle, paths, viewBox } as const;
 }
 
