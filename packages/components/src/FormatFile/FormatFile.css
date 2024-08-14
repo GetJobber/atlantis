@@ -137,13 +137,15 @@
   right: var(--space-smaller);
 }
 
-.deleteable ~ .deleteButton {
-  visibility: hidden;
-}
+@media (--medium-screens-and-up) {
+  .deleteable ~ .deleteButton {
+    visibility: hidden;
+  }
 
-.deleteButton:focus-within,
-.deleteButton:hover,
-.deleteable:hover ~ .deleteButton,
-.deleteable:focus ~ .deleteButton {
-  visibility: visible;
+  .deleteButton:focus-within,
+  .deleteButton:hover,
+  .deleteable:hover ~ .deleteButton,
+  .deleteable:focus ~ .deleteButton {
+    visibility: visible;
+  }
 }
