@@ -3,6 +3,11 @@
     "$type": "overrides",
     "$description": "Platform specific overrides. These are used by the system to override for different platforms. Do not use these directly, but instead add your override value below to have it picked up by the system.",
     "ios": {
+      "base": {
+        "unit": {
+          "$value": 16
+        }
+      },
       "radius": {
         "circle": {
           "$value": 100
@@ -111,6 +116,11 @@
       }
     },
     "android": {
+      "base": {
+        "unit": {
+          "$value": 16
+        }
+      },
       "radius": {
         "circle": {
           "$value": 100
