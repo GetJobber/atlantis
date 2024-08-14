@@ -1,4 +1,4 @@
-import { writeFile } from "fs/promises";
+import { writeFileSync } from "fs";
 import {
   buildFullCSS,
   convertRawTokensToCSSFile,
@@ -13,25 +13,25 @@ import {
 
 const writeMobileTokens = () => {
   const androidTokens = createTokenFileContentsForPlatform("android");
-  writeFile("src/assets/tokens.android.ts", androidTokens);
+  writeFileSync("src/assets/tokens.android.ts", androidTokens);
 
   const iosTokens = createTokenFileContentsForPlatform("ios");
-  writeFile("src/assets/tokens.ios.ts", iosTokens);
+  writeFileSync("src/assets/tokens.ios.ts", iosTokens);
 };
 
 // eslint-disable-next-line max-statements
 const writeColorTokens = () => {
   const jsFileContents = createTokenFileFromSubset(["color"]);
   const cjsFileContents = createTokenFileFromSubset(["color"], false);
-  writeFile("src/assets/tokens.color.ts", jsFileContents);
-  writeFile("dist/colors.mjs", jsFileContents);
-  writeFile("dist/colors.cjs", cjsFileContents);
+  writeFileSync("src/assets/tokens.color.ts", jsFileContents);
+  writeFileSync("dist/colors.mjs", jsFileContents);
+  writeFileSync("dist/colors.cjs", cjsFileContents);
 
   const cssFileContents = createCSSFileFromSubset(["color"]);
-  writeFile("dist/color.css", cssFileContents);
+  writeFileSync("dist/color.css", cssFileContents);
 
   const semanticJSContent = createTokenFileFromSubset(["semantic-color"]);
-  writeFile("src/assets/tokens.semantic.ts", semanticJSContent);
+  writeFileSync("src/assets/tokens.semantic.ts", semanticJSContent);
 
   const allJSColorContent = createTokenFileFromSubset([
     "workflow",
@@ -39,10 +39,10 @@ const writeColorTokens = () => {
     "color",
     "base-color",
   ]);
-  writeFile("src/assets/tokens.all.colors.ts", allJSColorContent);
+  writeFileSync("src/assets/tokens.all.colors.ts", allJSColorContent);
 
   const semanticCSSContent = createCSSFileFromSubset(["semantic-color"]);
-  writeFile("dist/semantic.css", semanticCSSContent);
+  writeFileSync("dist/semantic.css", semanticCSSContent);
 };
 
 const writeDarkModeTokens = () => {
@@ -58,22 +58,22 @@ const writeDarkModeTokens = () => {
       tokens: cssDarkElevatedContent,
     },
   ]);
-  writeFile("dist/dark.mode.css", darkModeTokens);
+  writeFileSync("dist/dark.mode.css", darkModeTokens);
 
   const jsDarkTokens = parseTokens(["dark"], true, "js");
   const jsTokens = convertRawTokensToJSFile(jsDarkTokens);
-  writeFile("src/assets/tokens.dark.ts", jsTokens);
+  writeFileSync("src/assets/tokens.dark.ts", jsTokens);
 
   const cssTokens = convertRawTokensToCSSFile(cssDarkTokens);
-  writeFile("dist/dark.theme.css", cssTokens);
+  writeFileSync("dist/dark.theme.css", cssTokens);
 };
 
 export const writeTokenFile = () => {
   const cssString = buildFullCSS();
-  writeFile("dist/foundation.css", cssString);
+  writeFileSync("dist/foundation.css", cssString);
 
   const jsTokens = createTokenFileContentsForPlatform("web");
-  writeFile("src/assets/tokens.web.ts", jsTokens);
+  writeFileSync("src/assets/tokens.web.ts", jsTokens);
 
   writeMobileTokens();
   writeColorTokens();
