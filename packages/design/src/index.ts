@@ -1,4 +1,5 @@
-import { iconStyles } from "./iconStyles/iconStyles";
+import { webIconStyles } from "./iconStyles/iconStyles.web";
+import { mobileIconStyles } from "./iconStyles/iconStyles.mobile";
 import { iconSizes } from "./iconStyles/iconSizes";
 import { iconColors } from "./iconStyles/iconColors";
 import iconMap from "./assets/icon.map";
@@ -21,7 +22,8 @@ export {
   darkTokens,
   iosTokens,
   iconMap,
-  iconStyles,
+  webIconStyles,
+  mobileIconStyles,
   iconSizes,
   iconColors,
   type WebTokens,
@@ -95,17 +97,20 @@ const tokenStyleToJs = (token?: string) => {
 };
 
 interface GetIconProps extends IconProps {
+  platform: "web" | "mobile";
   format?: "css" | "js";
 }
 
-export function buildSVGStyle(
+function buildSVGStyle(
   name: string,
   size: "small" | "base" | "large",
   specialIconStyle: object,
+  platform: "web" | "mobile",
 ) {
-  const iconStyle = iconStyles.icon;
+  const platformIconStyles = getIconStyles(platform);
+  const iconStyle = platformIconStyles.icon;
   const iconSizeStyle = iconSizes.tokens[size];
-  const iconFill = iconStyles[name];
+  const iconFill = platformIconStyles[name];
   const svgStyle: {
     fill?: string;
     width: string | number;
@@ -120,19 +125,30 @@ export function buildSVGStyle(
   return svgStyle;
 }
 
+function getIconStyles(platform: "web" | "mobile") {
+  if (platform === "web") {
+    return webIconStyles;
+  }
+
+  return mobileIconStyles;
+}
+
+// eslint-disable-next-line max-statements
 export function getIcon({
   name,
   color,
+  platform,
   size = "base",
   format = "css",
 }: GetIconProps) {
+  const platformIconStyles = getIconStyles(platform);
   const { paths, viewBox } = getPaths(name);
   let specialIconStyle = {};
 
-  if (iconStyles[name]) {
-    specialIconStyle = iconStyles[name];
+  if (platformIconStyles[name]) {
+    specialIconStyle = platformIconStyles[name];
   }
-  const svgStyle = buildSVGStyle(name, size, specialIconStyle);
+  const svgStyle = buildSVGStyle(name, size, specialIconStyle, platform);
   const colorStyle = (iconColors.tokens as Record<string, string | object>)[
     color || ""
   ];

@@ -417,7 +417,11 @@ exports[`renders thumbsDown icon 1`] = `
         "display": "flex",
         "fill": "hsl(198, 35%, 21%)",
         "height": 24,
-        "transform": "scaleY(-1)",
+        "transform": [
+          {
+            "scaleY": -1,
+          },
+        ],
         "verticalAlign": "middle",
         "width": 24,
       },
@@ -438,16 +442,6 @@ exports[`renders thumbsDown icon 1`] = `
         "payload": 4280499528,
         "type": 0,
       }
-    }
-    matrix={
-      [
-        1,
-        0,
-        0,
-        1,
-        0,
-        0,
-      ]
     }
     propList={
       [

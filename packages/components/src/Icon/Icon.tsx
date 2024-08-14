@@ -43,6 +43,7 @@ export function Icon({
     name,
     color: getIconColor(name, color),
     size,
+    platform: "web",
   });
 
   if (name === "truck") {
