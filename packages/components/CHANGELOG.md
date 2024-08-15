@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.22.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.22.0...@jobber/components@5.22.1) (2024-08-12)
+
+
+### Bug Fixes
+
+* **components:** use semantic values in ComboBox and Chip ([#1944](https://github.com/GetJobber/atlantis/issues/1944)) ([30fe51d](https://github.com/GetJobber/atlantis/commit/30fe51d8c3aa923e37bb5b6c664800b68d151dfd))
+
+
+
+
+
+# [5.22.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.21.3...@jobber/components@5.22.0) (2024-08-09)
+
+
+### Features
+
+* **components:** Update positioning of dropzone content ([#1978](https://github.com/GetJobber/atlantis/issues/1978)) ([76a1425](https://github.com/GetJobber/atlantis/commit/76a142511081b5bf4d3de48d4565e89dc53c66df))
+
+
+
+
+
+## [5.21.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.21.2...@jobber/components@5.21.3) (2024-08-07)
+
+
+### Bug Fixes
+
+* **components:** Adjust z-index of clickable areas in FormatFile ([#1975](https://github.com/GetJobber/atlantis/issues/1975)) ([9f5b31d](https://github.com/GetJobber/atlantis/commit/9f5b31d74b777960b442803658c7cc62d0e11b08))
+
+
+
+
+
 ## [5.21.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.21.1...@jobber/components@5.21.2) (2024-08-06)
 
 

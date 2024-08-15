@@ -48,6 +48,7 @@ const { svgStyle, paths, viewBox } = getIcon({
   name: "dashboard",
   color: "green",
   size: "large",
+  platform: "web",
 });
 ```
 

@@ -32,6 +32,26 @@ const deviceFonts = {
     fontFamily: "inter-extrabold",
   },
 
+  baseItalicRegular: {
+    fontFamily: "inter-italic",
+  },
+
+  baseItalicMedium: {
+    fontFamily: "inter-italic-medium",
+  },
+
+  baseItalicBold: {
+    fontFamily: "inter-italic-bold",
+  },
+
+  baseItalicSemiBold: {
+    fontFamily: "inter-italic-semibold",
+  },
+
+  baseItalicExtraBold: {
+    fontFamily: "inter-italic-extrabold",
+  },
+
   displayRegularBold: {
     fontFamily: "jobberpro-bd",
   },
@@ -63,6 +83,10 @@ export const typographyTokens: { [index: string]: TextStyle } = {
   // This follows a pattern of
   // { fontFamily }{ fontStyle }{ fontWeight }
   ...fonts,
+
+  italic: {
+    fontStyle: "italic",
+  },
 
   startAlign: {
     textAlign: "left",

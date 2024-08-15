@@ -96,7 +96,7 @@ describe("Token Convienence Parsing", () => {
       "my-theme-name",
       [],
     );
-    expect(tokens).toContain(` @media screen {`);
+    expect(tokens).toContain(`@media screen {`);
     expect(tokens).toContain(`my-theme-name`);
     expect(tokens).toContain(`green`);
   });

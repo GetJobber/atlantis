@@ -19,23 +19,20 @@ export const convertJSTokensToTheme = (
     tokens: Record<string, string | number>;
   }>,
 ) => {
-  let rootCSS = ` @media screen {\n
- :root[data-theme="${theme}"] {\n
- `;
+  let rootCSS = `:root[data-theme="${theme}"] {\n@media screen {\n`;
 
   for (const [i] of Object.entries(css)) {
     rootCSS += `  --${i}: ${css[i]};\n`;
   }
-  rootCSS += `}\n`;
   layers.forEach(layer => {
-    rootCSS += `[${layer.key}="${layer.value}"]{\n`;
+    rootCSS += `[${layer.key}="${layer.value}"] {\n`;
 
     for (const [i] of Object.entries(layer.tokens)) {
       rootCSS += `  --${i}: ${layer.tokens[i]};\n`;
     }
     rootCSS += `}\n`;
   });
-  rootCSS += `}\n`;
+  rootCSS += `}\n}`;
 
   return rootCSS;
 };

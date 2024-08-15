@@ -21,7 +21,7 @@ exports[`renders a Disclosure 1`] = `
         >
           <svg
             data-testid="arrowDown"
-            style="fill: var(--color-green); display: inline-block; vertical-align: middle; width: 32px; height: 32px;"
+            style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 32px; height: 32px;"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >

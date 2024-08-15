@@ -17,7 +17,7 @@ it("renders the input validation messages", () => {
         >
           <svg
             data-testid="alert"
-            style="fill: var(--color-critical); display: inline-block; vertical-align: middle; width: 16px; height: 16px;"
+            style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 16px; height: 16px;"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >

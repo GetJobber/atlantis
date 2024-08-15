@@ -77,6 +77,10 @@
   box-shadow: var(--shadow-focus);
 }
 
+.deleteButton {
+  z-index: 1;
+}
+
 .expanded .thumbnail {
   border-right: none;
   border-bottom-left-radius: var(--radius-base);

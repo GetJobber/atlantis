@@ -1,14 +1,14 @@
-import { mkdir, readFile, readdir, writeFile } from "fs/promises";
+import { mkdirSync, readFileSync, readdirSync, writeFileSync } from "fs";
 import { dirname, extname, join } from "path";
 import { JSDOM } from "jsdom";
 
-const processFiles = async (files: Array<string>, iconDir: string) => {
+const processFiles = (files: Array<string>, iconDir: string) => {
   const svgFiles = files.filter(file => extname(file) === ".svg");
   const iconMap: Record<string, Array<string>> = {};
 
   for (const file of svgFiles) {
     const filePath = join(iconDir, file);
-    const content = await readFile(filePath, "utf8");
+    const content = readFileSync(filePath, "utf8");
     const DOM = new JSDOM(content);
     const document = DOM.window.document;
     const paths = document.querySelectorAll("path");
@@ -22,13 +22,13 @@ const processFiles = async (files: Array<string>, iconDir: string) => {
   return iconMap;
 };
 
-const getIconMap = async () => {
+const getIconMap = () => {
   const currentDir = dirname(import.meta.url.replace("file://", ""));
   const iconDir = join(currentDir, "../icons");
 
   try {
-    const files = await readdir(iconDir);
-    const iconMap = await processFiles(files, iconDir);
+    const files = readdirSync(iconDir);
+    const iconMap = processFiles(files, iconDir);
 
     return { icons: iconMap };
   } catch (err) {
@@ -38,12 +38,11 @@ const getIconMap = async () => {
 };
 
 const generateIconMapFile = () => {
-  getIconMap().then(iconMap => {
-    const iconMapString = JSON.stringify(iconMap, null, 2);
-    mkdir("src/assets", { recursive: true });
-    writeFile("src/assets/icon.map.ts", "export default " + iconMapString);
-    writeFile("dist/icon.map.js", "export default " + iconMapString);
-  });
+  const iconMap = getIconMap();
+  const iconMapString = JSON.stringify(iconMap, null, 2);
+  mkdirSync("src/assets", { recursive: true });
+  writeFileSync("src/assets/icon.map.ts", "export default " + iconMapString);
+  writeFileSync("dist/icon.map.js", "export default " + iconMapString);
 };
 
 generateIconMapFile();

@@ -19,7 +19,7 @@ exports[`renders a FormatFile 1`] = `
         >
           <svg
             data-testid="file"
-            style="fill: var(--color-greyBlue); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+            style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
