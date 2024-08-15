@@ -464,7 +464,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
             >
               <svg
                 data-testid="checkmark"
-                style="fill: var(--color-success); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -511,7 +511,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
           >
             <svg
               data-testid="checkmark"
-              style="fill: var(--color-success); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+              style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -706,7 +706,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
             >
               <svg
                 data-testid="checkmark"
-                style="fill: var(--color-success); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -751,7 +751,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
             >
               <svg
                 data-testid="checkmark"
-                style="fill: var(--color-success); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -797,7 +797,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
           >
             <svg
               data-testid="checkmark"
-              style="fill: var(--color-success); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+              style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -992,7 +992,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
             >
               <svg
                 data-testid="checkmark"
-                style="fill: var(--color-success); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -1037,7 +1037,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
             >
               <svg
                 data-testid="checkmark"
-                style="fill: var(--color-success); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -1325,7 +1325,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
             >
               <svg
                 data-testid="checkmark"
-                style="fill: var(--color-success); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -1370,7 +1370,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
             >
               <svg
                 data-testid="checkmark"
-                style="fill: var(--color-success); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -1702,7 +1702,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
             >
               <svg
                 data-testid="checkmark"
-                style="fill: var(--color-success); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -1747,7 +1747,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
             >
               <svg
                 data-testid="checkmark"
-                style="fill: var(--color-success); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -1884,7 +1884,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
             >
               <svg
                 data-testid="checkmark"
-                style="fill: var(--color-success); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -1931,7 +1931,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
           >
             <svg
               data-testid="checkmark"
-              style="fill: var(--color-success); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+              style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -2126,7 +2126,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
             >
               <svg
                 data-testid="checkmark"
-                style="fill: var(--color-success); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -2171,7 +2171,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
             >
               <svg
                 data-testid="checkmark"
-                style="fill: var(--color-success); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -2308,7 +2308,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
             >
               <svg
                 data-testid="checkmark"
-                style="fill: var(--color-success); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -2353,7 +2353,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
             >
               <svg
                 data-testid="checkmark"
-                style="fill: var(--color-success); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -2399,7 +2399,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
           >
             <svg
               data-testid="checkmark"
-              style="fill: var(--color-success); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+              style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >

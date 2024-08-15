@@ -80,7 +80,7 @@ exports[`renders thumbsDown icon 1`] = `
 <div>
   <svg
     data-testid="thumbsDown"
-    style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px; transform: scaleY(-1);"
+    style="transform: scaleY(-1); fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
   >
