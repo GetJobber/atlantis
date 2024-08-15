@@ -2,7 +2,7 @@ export {
   AtlantisThemeContextProvider,
   atlantisThemeContextDefaultValues,
   useAtlantisTheme,
-} from "./ThemeContext";
+} from "./AtlantisThemeContext";
 export {
   THEME_CHANGE_EVENT,
   Theme,
