@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./FormatFile.css";
 import { Button } from "../Button";
 import { ConfirmationModal } from "../ConfirmationModal";
 
@@ -12,7 +13,7 @@ export function FormatFileDeleteButton({ size, onDelete }: DeleteButtonProps) {
   const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
 
   return (
-    <>
+    <div className={styles.deleteButton}>
       <Button
         onClick={() => setDeleteConfirmationOpen(true)}
         variation="destructive"
@@ -30,6 +31,6 @@ export function FormatFileDeleteButton({ size, onDelete }: DeleteButtonProps) {
         onConfirm={() => onDelete?.()}
         onRequestClose={() => setDeleteConfirmationOpen(false)}
       />
-    </>
+    </div>
   );
 }
