@@ -43,22 +43,12 @@ export function Icon({
     name,
     color: getIconColor(name, color),
     size,
+    platform: "web",
   });
-
-  const tokenStyleToCss = (token?: string | number) => {
-    const tokenAsString = typeof token === "string" ? token : token?.toString();
-
-    return tokenAsString
-      ?.replace(/\{/g, "var(--")
-      .replace(/\./g, "-")
-      .replace(/\}/g, ")");
-  };
-  svgStyle.fill = tokenStyleToCss(svgStyle.fill);
 
   if (name === "truck") {
     icon = getTruck(pathStyle, customColor);
   } else {
-    pathStyle.fill = tokenStyleToCss(pathStyle.fill) as string;
     icon = paths.map((path: string) => (
       <path key={path} style={{ ...pathStyle }} d={path} fill={customColor} />
     ));

@@ -1,4 +1,5 @@
-import { iconStyles } from "./iconStyles/iconStyles";
+import { webIconStyles } from "./iconStyles/iconStyles.web";
+import { mobileIconStyles } from "./iconStyles/iconStyles.mobile";
 import { iconSizes } from "./iconStyles/iconSizes";
 import { iconColors } from "./iconStyles/iconColors";
 import iconMap from "./assets/icon.map";
@@ -6,6 +7,7 @@ import webTokens from "./assets/tokens.web";
 import androidTokens from "./assets/tokens.android";
 import iosTokens from "./assets/tokens.ios";
 import colors from "./assets/tokens.color";
+import allColors from "./assets/tokens.all.colors";
 import semantic from "./assets/tokens.semantic";
 import darkTokens from "./assets/tokens.dark";
 
@@ -15,11 +17,13 @@ type MobileTokens = typeof androidTokens;
 export {
   webTokens as tokens,
   webTokens,
+  allColors,
   androidTokens,
   darkTokens,
   iosTokens,
   iconMap,
-  iconStyles,
+  webIconStyles,
+  mobileIconStyles,
   iconSizes,
   iconColors,
   type WebTokens,
@@ -69,35 +73,107 @@ const getPaths = (name: keyof typeof iconMap.icons | ExtraIconNames) => {
 
   const iconSize = name === "truck" ? 1024 : 24;
 
-  return { paths, iconSize };
+  const viewBox = `0 0 ${iconSize} ${iconSize}`;
+
+  return { paths, iconSize, viewBox };
 };
 
-// eslint-disable-next-line max-statements
-export function getIcon({ name, color, size = "base" }: IconProps) {
-  const iconStyle = iconStyles.icon;
-  const iconSizeStyle = iconSizes.tokens[size];
-  const iconFill = iconStyles[name];
-  let specialIconStyle = {};
+const tokenStyleToCss = (token?: string | number) => {
+  const tokenAsString = typeof token === "string" ? token : token?.toString();
 
-  if (iconStyles[name]) {
-    specialIconStyle = iconStyles[name];
-  }
+  return (
+    tokenAsString
+      ?.replace(/\{/g, "var(--")
+      .replace(/\./g, "-")
+      .replace(/\}/g, ")") || ""
+  );
+};
+
+const tokenStyleToJs = (token?: string) => {
+  const tokenKey =
+    token?.replace(/}/g, "").replace(/{/g, "").replace(/\./g, "-") || "";
+
+  return (allColors as Record<string, string>)[tokenKey] || "";
+};
+
+interface GetIconProps extends IconProps {
+  platform: "web" | "mobile";
+  format?: "css" | "js";
+}
+
+function buildSVGStyle(
+  size: "small" | "base" | "large",
+  specialIconStyle: object,
+  platform: "web" | "mobile",
+) {
+  const platformIconStyles = getIconStyles(platform);
+  const iconStyle = platformIconStyles.icon;
+  const iconSizeStyle = iconSizes.tokens[size];
   const svgStyle: {
     fill?: string;
     width: string | number;
     height: string | number;
   } = {
+    ...specialIconStyle,
     ...iconStyle,
     ...iconSizeStyle,
-    ...specialIconStyle,
-    ...iconFill,
   };
-  const { paths, iconSize } = getPaths(name);
-  const colorStyle = (iconColors.tokens as Record<string, string | object>)[
-    color || ""
-  ];
-  const viewBox = `0 0 ${iconSize} ${iconSize}`;
-  const pathStyle = { fill: (colorStyle as { value: string })?.value };
+
+  return svgStyle;
+}
+
+function getIconStyles(platform: "web" | "mobile") {
+  if (platform === "web") {
+    return webIconStyles;
+  }
+
+  return mobileIconStyles;
+}
+
+function buildPathStyle(
+  color: IconProps["color"],
+  specialIconStyle: Record<string, object>,
+) {
+  const colorStyle =
+    color && iconColors.tokens[color] ? iconColors.tokens[color].value : "";
+
+  const fallbackStyle =
+    (typeof specialIconStyle.fill === "string" && specialIconStyle.fill) || "";
+
+  return {
+    fill: colorStyle || fallbackStyle,
+  };
+}
+
+// eslint-disable-next-line max-statements
+export function getIcon({
+  name,
+  color,
+  platform,
+  size = "base",
+  format = "css",
+}: GetIconProps) {
+  const platformIconStyles = getIconStyles(platform);
+  const { paths, viewBox } = getPaths(name);
+  let specialIconStyle = {};
+
+  if (platformIconStyles[name]) {
+    specialIconStyle = platformIconStyles[name];
+  }
+  const svgStyle = buildSVGStyle(size, specialIconStyle, platform);
+  const pathStyle = buildPathStyle(color, specialIconStyle);
+
+  if (format === "js") {
+    pathStyle.fill = tokenStyleToJs(pathStyle.fill);
+    svgStyle.fill = tokenStyleToJs(svgStyle.fill);
+  } else {
+    pathStyle.fill = tokenStyleToCss(pathStyle.fill);
+    svgStyle.fill = tokenStyleToCss(svgStyle.fill);
+  }
+
+  if (platform === "mobile" && pathStyle.fill) {
+    svgStyle.fill = pathStyle.fill;
+  }
 
   return { svgStyle, pathStyle, paths, viewBox } as const;
 }

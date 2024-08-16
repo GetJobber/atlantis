@@ -209,8 +209,8 @@ describe("Button", () => {
     it("renders an icon Button with same color as the Button text", () => {
       const { iconColor, textColor } = getIconAndTextColorFromRender({});
 
-      expect(iconColor).toBe("{color.icon}");
-      expect(textColor).toBe(tokens["color-white"]);
+      expect(iconColor).toBe(tokens["color-white"]);
+      expect(textColor).toBe(iconColor);
     });
 
     it("renders the learning variation and secondary type with icon and label with the same color", () => {
@@ -218,8 +218,8 @@ describe("Button", () => {
         variation: "learning",
         type: "secondary",
       });
-      expect(iconColor).toBe("{color.icon}");
-      expect(textColor).toBe(tokens["color-interactive--subtle"]);
+      expect(iconColor).toBe(tokens["color-interactive--subtle"]);
+      expect(textColor).toBe(iconColor);
     });
 
     it("renders the destructive variation and secondary type with icon and label with the same color", () => {
@@ -227,8 +227,8 @@ describe("Button", () => {
         variation: "destructive",
         type: "secondary",
       });
-      expect(iconColor).toBe("{color.icon}");
-      expect(textColor).toBe(tokens["color-destructive"]);
+      expect(iconColor).toBe(tokens["color-destructive"]);
+      expect(textColor).toBe(iconColor);
     });
 
     it("renders the cancel variation and tertiary type with icon and label with the same color", () => {
@@ -236,8 +236,8 @@ describe("Button", () => {
         variation: "cancel",
         type: "tertiary",
       });
-      expect(iconColor).toBe("{color.icon}");
-      expect(textColor).toBe("hsl(198, 35%, 21%)");
+      expect(iconColor).toBe(tokens["color-interactive--subtle"]);
+      expect(textColor).toBe(iconColor);
     });
 
     it("renders an icon Button if only an icon is passed", () => {

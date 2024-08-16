@@ -41,6 +41,8 @@ export function Icon({
     name,
     color,
     size,
+    platform: "mobile",
+    format: "js",
   });
 
   const icon = paths.map((path: string) => {
