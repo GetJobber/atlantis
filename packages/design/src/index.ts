@@ -102,7 +102,6 @@ interface GetIconProps extends IconProps {
 }
 
 function buildSVGStyle(
-  name: string,
   size: "small" | "base" | "large",
   specialIconStyle: object,
   platform: "web" | "mobile",
@@ -110,16 +109,14 @@ function buildSVGStyle(
   const platformIconStyles = getIconStyles(platform);
   const iconStyle = platformIconStyles.icon;
   const iconSizeStyle = iconSizes.tokens[size];
-  const iconFill = platformIconStyles[name];
   const svgStyle: {
     fill?: string;
     width: string | number;
     height: string | number;
   } = {
+    ...specialIconStyle,
     ...iconStyle,
     ...iconSizeStyle,
-    ...specialIconStyle,
-    ...iconFill,
   };
 
   return svgStyle;
@@ -131,6 +128,21 @@ function getIconStyles(platform: "web" | "mobile") {
   }
 
   return mobileIconStyles;
+}
+
+function buildPathStyle(
+  color: IconProps["color"],
+  specialIconStyle: Record<string, object>,
+) {
+  const colorStyle =
+    color && iconColors.tokens[color] ? iconColors.tokens[color].value : "";
+
+  const fallbackStyle =
+    (typeof specialIconStyle.fill === "string" && specialIconStyle.fill) || "";
+
+  return {
+    fill: colorStyle || fallbackStyle,
+  };
 }
 
 // eslint-disable-next-line max-statements
@@ -148,18 +160,14 @@ export function getIcon({
   if (platformIconStyles[name]) {
     specialIconStyle = platformIconStyles[name];
   }
-  const svgStyle = buildSVGStyle(name, size, specialIconStyle, platform);
-  const colorStyle = (iconColors.tokens as Record<string, string | object>)[
-    color || ""
-  ];
-  const pathStyle = {
-    fill: tokenStyleToCss((colorStyle as { value: string })?.value),
-  };
+  const svgStyle = buildSVGStyle(size, specialIconStyle, platform);
+  const pathStyle = buildPathStyle(color, specialIconStyle);
 
   if (format === "js") {
-    pathStyle.fill = tokenStyleToJs((colorStyle as { value: string })?.value);
+    pathStyle.fill = tokenStyleToJs(pathStyle.fill);
     svgStyle.fill = tokenStyleToJs(svgStyle.fill);
   } else {
+    pathStyle.fill = tokenStyleToCss(pathStyle.fill);
     svgStyle.fill = tokenStyleToCss(svgStyle.fill);
   }
 
