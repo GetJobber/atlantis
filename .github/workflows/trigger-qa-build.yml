@@ -44,10 +44,11 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.JOBBER_NPM_TOKEN }}
           ATLANTIS_BRANCH_NAME_RAW: ${{ github.ref_name }}
+          COMMIT_SHA: ${{ github.sha }}
           PUBLISH_SETTING: ${{ github.event.inputs.workflow }}
         run: |
           # Generates a preId from the branch name. Removes characters that can't be used in a preId
-          ATLANTIS_BRANCH_NAME=$(echo ${ATLANTIS_BRANCH_NAME_RAW:0:10} | sed 's/[_\/]//g')
+          ATLANTIS_BRANCH_NAME=$(echo "${ATLANTIS_BRANCH_NAME_RAW:0:10}-${COMMIT_SHA:0-7}" | sed 's/[_\/]//g')
           if [ "$PUBLISH_SETTING" == "Publish Pre-release (Recommended)" ]; then
             npm run publish:prerelease:githubAction -- --y --preid $ATLANTIS_BRANCH_NAME
           else
