@@ -1,21 +1,19 @@
 import { Meta } from "@storybook/addon-docs";
-import { Tab, Tabs } from "@jobber/components/Tabs";
 
-<Meta title="Components/Selections/Chips" />
+<Meta title="Components/Selections/Chip" />
 
-# Chips
+# Chip
 
-Chips are a flexible component that can be used for the selection of items from
-a group while preserving vertical space in the interface.
+Chip is a flexible component that can be used for 
+- inline single- or multi-selection of items
+- triggering filtering and selection components like [Combobox](../?path=/docs/components-selections-combobox--docs)
+- presenting grouped items that can be added or removed
 
 ## Usage guidelines
 
-The Chip will allow users to make selections in scenarios where vertical space
+Chip allows users to make selections in scenarios where space
 is at a premium. It has three high-level usages: single-select, multi-select,
 and add/dismiss selection.
-
-<Tabs>
-  <Tab label="Web">
 
 ### Single-select
 
@@ -47,7 +45,9 @@ user, leaving all selections blank.
 ### Add/dismiss selection
 
 When the user will be selecting one or more items by inputting their own Chip
-options with, use the dismissible Chip.
+options, use a dismissible Chip. Think of a case like team assignment, where
+the user can add multiple users represented as Chips, and click on the dismiss
+suffix of the Chip to remove a user.
 
 The dismissible Chip allows them to remove previous selections from the Chips.
 Use this option when the full list of possible selections is too great to
@@ -55,36 +55,14 @@ reasonably display in one group of Chip. For example, "all of my phone contacts"
 would be far too many Chip options to present in one group, and would be
 overwhelming for the user to interpret.
 
-This format also allows the user to create their own "freeform" Chip options,
-which they can also remove once added.
-
-  </Tab>
-  <Tab label="Mobile">
-
-### Accent
-
-Chip can be themed to one of Jobber's "workflow" colours in an active state when
-the user may benefit from additional visual indication of the type of workflow
-item selected.
-
-### Dismissible
-
-In cases where there are existing selections that the user may need to remove,
-Chip can display a `cross` Icon signifying that these options can be removed.
-
-### Inactive Background Color
-
-In cases where the Chip is on an area whose background is
-`--color-surface--background`, Chip can be made visible by specifying the
-`inactiveBackgroundColor`.
-
-  </Tab>
-</Tabs>
-
 ## Related components
 
-- [Chip](../?path=/docs/components-selections-chip--docs) is the building block that Chips is built on top of, and has more 
-  flexibility to be used in isolation.
+- [Chips](../?path=/docs/components-selections-chips--docs) is a convenience wrapper
+  that offers the single-select, multi-select, and add/dismiss functionality "out of the box"
+- [Combobox](../?path=/docs/components-selections-combobox--docs) is most commonly
+  triggered by a Chip, but is a separate component
+- [Select](../?path=/docs/components-selections-select--docs) is a simpler single-select
+  "dropdown" that presents as a form element and should be preferred in forms
 - [RadioGroup](../?path=/docs/components-forms-and-inputs-radiogroup--docs)
   should be used to allow the user to select "one-of-many" items (single-select)
   and the labels for the items are longer than 1 or 2 words.
@@ -92,8 +70,8 @@ In cases where the Chip is on an area whose background is
   to allow the user to select "one-or-more-of-many" items (multi-select) and the
   labels for the items are longer than 1 or 2 words.
 - [InlineLabel](../?path=/docs/components-status-and-feedback-inlinelabel--docs)
-  should be used when you just need a rectangular element that displays the
-  status of another element.
+  should be used when you just need a rounded-rectangular element that displays 
+  metadata about an element
 
 ## Content guidelines
 
@@ -103,32 +81,14 @@ type.
 
 ## Accessibility
 
-<Tabs>
-  <Tab label="Web">
-
 Chips should convey to the user whether it is a "checkbox" or "radio" element
 based on single or multi-select. The Chips in this group have the appropriate
 roles and keyboard operation to allow the user to interact as though they are
 dealing with a checkbox or radio button.
 
-If Chips is set for add/dismiss selections, the dismiss button will notify the
+If Chips is set for add/dismiss selections, the dismiss button should notify the
 user that they will "dismiss \{label name\}" upon press.
 
-  </Tab>
-
-  <Tab label="Mobile">
-
-Chip accessibilityRole by default is `radio` so the view containing it should
-have the accessibilityRole `radiogroup`. Chip labels and the state `checked` or
-`not checked` state are read aloud when focused by assistive technology. If an
-Icon is present, it will not be read aloud as Icons are visually decorative in
-the case of a Chip.
-
-If the accessibilityRole is not `radio` the label is read aloud when focused by
-assistive technology.
-
-  </Tab>
-</Tabs>
 
 ## Responsiveness
 
@@ -136,10 +96,12 @@ The Chips themselves will take up as much space as their container allows, and
 the Chips will flow left to right. Chips may re-flow into new rows, or scroll
 out of view in a single row, depending on your use case.
 
+Chip can truncate if its' container is limited in space, but does not inherently
+cap its own width and will default to "hug" its contents.
+
+
 ## Notes
 
-There was some consideration to bring the ability to "accent" Chips with certain
-colors for parity with Jobber's mobile platform, but we will not be implementing
-this is for the web components as of this first iteration of our web Chip. The
-mobile use-case is very specific to a filtering use case that we as of now do
-not anticipate will be required for the web.
+Chip is in the process of being applied to the more opinionated Chips convenience wrapper,
+but by design does not carry the same level of "out of the box" functionality as it is a more
+"atomic" element that can be used outside of those more complex selection flows.
