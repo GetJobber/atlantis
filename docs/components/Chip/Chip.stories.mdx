@@ -26,11 +26,25 @@ Chip is a flexible component that can be used for
 
 ## Usage guidelines
 
+### Variations
+
+The base variation of Chip should be used in most cases. When a lighter-weight approach
+is desired, use the subtle variation.
+
+<Canvas>
+  <Flex template={["shrink", "shrink"]} direction="row" gap="small">
+    <Chip label="Base" />
+    <Chip label="Subtle" variation="subtle" />
+  </Flex>
+</Canvas>
+
+### Selection
+
 Chip allows users to make selections in scenarios where space
 is at a premium. It has three high-level usages: single-select, multi-select,
 and add/dismiss selection.
 
-### Single-select
+#### Single-select
 
 If you need the user to make a selection of a single item from among several
 items, and those items all have short (1–2 word) labels, single-select Chips
@@ -56,7 +70,7 @@ selections blank.
   </Flex>
 </Canvas>
 
-### Multi-select
+#### Multi-select
 
 If you need the user to make a selection of one _or more_ items from amongst
 several items, and those items all have short (1–2 word) labels, a multi-select
@@ -91,7 +105,7 @@ user, leaving all selections blank.
   </Flex>
 </Canvas>
 
-### Add/dismiss selection
+#### Add/dismiss selection
 
 When the user will be selecting one or more items by inputting their own Chip
 options, use a dismissible Chip. Think of a case like team assignment, where
@@ -132,6 +146,19 @@ overwhelming for the user to interpret.
       </Chip.Suffix> 
     </Chip>
   </Flex>
+</Canvas>
+
+### Invalid
+
+If something goes awry with a selection or you otherwise need to convey to the user
+that something's gone wrong in relation to the Chip, you can use the invalid state.
+
+<Canvas>
+  <Chip label="Select team" invalid>
+    <Chip.Prefix>
+      <Icon name="alert" size="small" />
+    </Chip.Prefix> 
+  </Chip>
 </Canvas>
 
 ## Related components
