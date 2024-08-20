@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import {
   AtlantisThemeContextProvider,
-  setTheme,
+  updateTheme,
   useAtlantisTheme,
 } from "@jobber/components/AtlantisThemeContext";
 import { Text } from "@jobber/components/Text";
@@ -43,8 +43,11 @@ function ChildrenComponent({
           direction="row"
           template={["grow", "grow"]}
         >
-          <Button label="Set dark theme" onClick={() => setTheme("dark")} />
-          <Button label="Set light theme" onClick={() => setTheme("light")} />
+          <Button label="Set dark theme" onClick={() => updateTheme("dark")} />
+          <Button
+            label="Set light theme"
+            onClick={() => updateTheme("light")}
+          />
         </Flex>
       </Content>
     </Box>

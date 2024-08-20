@@ -18,7 +18,7 @@ tokens.
 ```tsx
 import {
   AtlantisThemeContextProvider,
-  setTheme,
+  updateTheme,
   useAtlantisTheme,
 } from "@jobber/components/AtlantisThemeContext";
 
@@ -45,13 +45,13 @@ function ThemedComponent() {
           <Text>
             The javascript tokens can be accessed via the tokens object.
           </Text>
-          <Text>The theme can be changed using `setTheme`</Text>
+          <Text>The theme can be changed using `updateTheme`</Text>
           <Button
-            onClick={() => setTheme("light")}
+            onClick={() => updateTheme("light")}
             label="The theme can be changed to light"
           />
           <Button
-            onClick={() => setTheme("dark")}
+            onClick={() => updateTheme("dark")}
             label="The theme can be changed to dark"
           />
         </Content>

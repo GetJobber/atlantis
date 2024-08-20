@@ -15,7 +15,7 @@ import {
   Theme,
   ThemeChangeDetails,
 } from "./types";
-import { setTheme } from "./setTheme";
+import { updateTheme } from "./updateTheme";
 import { useThemeContextEventQueue } from "./useThemeContextEventQueue";
 
 export const atlantisThemeContextDefaultValues: AtlantisThemeContextValue = {
@@ -70,8 +70,10 @@ export function AtlantisThemeContextProvider({
   }, [isEmpty, themeChangeQueue, dequeueThemeChange, ignoreThemeChanges]);
 
   useEffect(() => {
-    setTheme(defaultTheme);
-  }, [defaultTheme]);
+    if (ignoreThemeChanges) return;
+
+    updateTheme(defaultTheme);
+  }, [defaultTheme, ignoreThemeChanges]);
 
   return (
     <ThemeContext.Provider

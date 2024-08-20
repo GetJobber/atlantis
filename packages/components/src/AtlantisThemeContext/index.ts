@@ -10,4 +10,4 @@ export {
   AtlantisThemeContextProviderProps,
   AtlantisThemeContextValue,
 } from "./types";
-export { setTheme } from "./setTheme";
+export { updateTheme } from "./updateTheme";

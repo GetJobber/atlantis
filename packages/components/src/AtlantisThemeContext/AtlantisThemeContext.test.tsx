@@ -7,7 +7,7 @@ import {
   useAtlantisTheme,
 } from "./AtlantisThemeContext";
 import { Theme } from "./types";
-import { setTheme } from "./setTheme";
+import { updateTheme } from "./updateTheme";
 import { InlineLabel } from "../InlineLabel";
 
 const expectedDarkTokens = merge(webTokens, darkTokens);
@@ -53,13 +53,13 @@ describe("ThemeContext", () => {
     const currentTheme = results.result.current.theme;
     expect(currentTheme).toBe("light");
 
-    act(() => setTheme("dark"));
+    act(() => updateTheme("dark"));
     await waitFor(() => {
       expect(results.result.current.theme).toBe("dark");
       expect(results.result.current.tokens).toEqual(expectedDarkTokens);
     });
 
-    act(() => setTheme("light"));
+    act(() => updateTheme("light"));
     await waitFor(() => {
       expect(results.result.current.theme).toBe("light");
       expect(results.result.current.tokens).toEqual(expectedLightTokens);
@@ -74,7 +74,7 @@ describe("ThemeContext", () => {
       wrapper: props => <TestWrapper {...props} defaultTheme="light" />,
     });
 
-    act(() => setTheme("dark"));
+    act(() => updateTheme("dark"));
 
     await waitFor(() => {
       expect(firstProvider.result.current.theme).toBe("dark");
@@ -92,7 +92,7 @@ describe("ThemeContext", () => {
       expect(document.documentElement.dataset.theme).toEqual("dark");
     });
 
-    act(() => setTheme("light"));
+    act(() => updateTheme("light"));
 
     await waitFor(() => {
       expect(document.documentElement.dataset.theme).toEqual("light");
