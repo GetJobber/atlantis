@@ -35,6 +35,7 @@ export function Playground() {
       customSetup={{
         dependencies: {
           "@jobber/components": "latest",
+          "@jobber/design": "latest",
           "@jobber/hooks": "latest",
           "@apollo/client": "^3.0.0",
           graphql: "^15.8.0",
