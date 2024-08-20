@@ -58,7 +58,7 @@ export function AtlantisThemeContextProvider({
         handleThemeChange,
       );
     };
-  }, [handleThemeChange]);
+  }, [handleThemeChange, ignoreThemeChanges]);
 
   useEffect(() => {
     if (isEmpty || !globalThis.document || ignoreThemeChanges) {
@@ -67,7 +67,7 @@ export function AtlantisThemeContextProvider({
     const newTheme = dequeueThemeChange();
     globalThis.document.documentElement.dataset.theme = newTheme;
     setInternalTheme(newTheme);
-  }, [isEmpty, themeChangeQueue, dequeueThemeChange]);
+  }, [isEmpty, themeChangeQueue, dequeueThemeChange, ignoreThemeChanges]);
 
   useEffect(() => {
     setTheme(defaultTheme);
@@ -80,7 +80,9 @@ export function AtlantisThemeContextProvider({
         tokens: currentTokens,
       }}
     >
-      <div data-theme={internalTheme}>{children}</div>
+      <div data-theme={internalTheme} style={{ display: "contents" }}>
+        {children}
+      </div>
     </ThemeContext.Provider>
   );
 }
