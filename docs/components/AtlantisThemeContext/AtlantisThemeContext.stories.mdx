@@ -1,0 +1,62 @@
+import { AtlantisThemeContextProvider } from "@jobber/components/AtlantisThemeContext";
+import { Meta } from "@storybook/addon-docs";
+
+<Meta
+  title="Components/Themes/AtlantisThemeContext"
+  component={AtlantisThemeContextProvider}
+/>
+
+# AtlantisThemeContext
+
+Provides a way to control the theme of Atlantis components and the design
+tokens.
+
+## Design & usage guidelines
+
+### Using the AtlantisThemeContextProvider
+
+```tsx
+import {
+  AtlantisThemeContextProvider,
+  setTheme,
+  useAtlantisTheme,
+} from "@jobber/components/AtlantisThemeContext";
+
+function App() {
+  return (
+    <AtlantisThemeContextProvider>
+      <ThemedComponent />
+    </AtlantisThemeContextProvider>
+  );
+}
+
+function ThemedComponent() {
+  const { theme, tokens } = useAtlantisTheme();
+  return (
+    <Content>
+      <div
+        style={{
+          background: tokens["surface-background"],
+          padding: tokens["space-base"],
+        }}
+      >
+        <Content>
+          <Text>The current theme is: {theme}. </Text>
+          <Text>
+            The javascript tokens can be accessed via the tokens object.
+          </Text>
+          <Text>The theme can be changed using `setTheme`</Text>
+          <Button
+            onClick={() => setTheme("light")}
+            label="The theme can be changed to light"
+          />
+          <Button
+            onClick={() => setTheme("dark")}
+            label="The theme can be changed to dark"
+          />
+        </Content>
+      </div>
+    </Content>
+  );
+}
+```
