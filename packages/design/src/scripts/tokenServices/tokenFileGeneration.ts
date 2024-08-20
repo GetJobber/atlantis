@@ -81,7 +81,7 @@ function traverseObjectAndPrintForJS(obj: Tokens): string {
       result += `    },\n`;
     } else {
       const isNum = isNumber(value);
-      const maybeWrapped = !isNum ? `"${key}"` : value;
+      const maybeWrapped = !isNum ? `"${value}"` : value;
       result += `    "${key}": ${maybeWrapped}, \n`;
     }
   });
