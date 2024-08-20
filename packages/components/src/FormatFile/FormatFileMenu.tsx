@@ -54,7 +54,9 @@ export function FormatFileMenu({ actions }: FormatFileMenuProps) {
               className={styles.menuItem}
               onClick={action.onClick}
             >
-              <Typography textColor="heading">{action.label}</Typography>
+              <Typography fontWeight="medium" textColor="heading">
+                {action.label}
+              </Typography>
               {action.icon && <Icon name={action.icon} />}
             </li>
           ))}

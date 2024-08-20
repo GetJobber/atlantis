@@ -132,7 +132,8 @@
   white-space: nowrap;
 }
 
-.compact .deleteButton {
+.compact .deleteButton,
+.compact .menu {
   position: absolute;
   top: var(--space-smaller);
   right: var(--space-smaller);
@@ -154,17 +155,19 @@
 
 .menuItem {
   display: flex;
+  width: 100%;
   box-sizing: border-box;
   padding: var(--space-small);
   border-radius: var(--radius-small);
-  font-family: var(--typography--fontFamily-normal);
-  font-size: var(--typography--fontSize-base);
-  font-weight: 500;
   white-space: nowrap;
   cursor: pointer;
-  align-items: center;
   justify-content: space-between;
   gap: var(--space-smaller);
+}
+
+.menuItem:hover,
+.menuItem:focus {
+  background-color: var(--color-surface--hover);
 }
 
 @media (--medium-screens-and-up) {
