@@ -299,11 +299,7 @@ function Action({
       {icon && (
         <Icon color={destructive ? "destructive" : undefined} name={icon} />
       )}
-      <Typography
-        element="span"
-        fontWeight="semiBold"
-        textColor="textSecondary"
-      >
+      <Typography element="span" fontWeight="semiBold" textColor="text">
         {sectionLabel && (
           <span className={styles.screenReaderOnly}>{sectionLabel}</span>
         )}
