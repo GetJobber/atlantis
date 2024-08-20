@@ -121,6 +121,7 @@ export default {
           dest: "dist",
           rename: "index.d.mts",
         },
+        { src: "src/utils/meta/meta.json", dest: "dist/utils/meta" },
       ],
       hook: "writeBundle",
     }),
