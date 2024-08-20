@@ -1,4 +1,8 @@
-import { Meta } from "@storybook/addon-docs";
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Chip } from "@jobber/components/Chip";
+import { Avatar } from "@jobber/components/Avatar";
+import { Icon } from "@jobber/components/Icon";
+import { Flex } from "@jobber/components/Flex";
 
 <Meta title="Components/Selections/Chip" />
 
@@ -8,6 +12,17 @@ Chip is a flexible component that can be used for
 - inline single- or multi-selection of items
 - triggering filtering and selection components like [Combobox](../?path=/docs/components-selections-combobox--docs)
 - presenting grouped items that can be added or removed
+
+<Canvas>
+  <Chip label="Gavin Messina">
+    <Chip.Prefix>
+      <Avatar size="small" imageUrl="https://images.unsplash.com/photo-1669475535925-a011d7c31d45?q=80&w=1886&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+    </Chip.Prefix>
+    <Chip.Suffix>
+      <Icon name="cross" size="small" />
+    </Chip.Suffix> 
+  </Chip>
+</Canvas>
 
 ## Usage guidelines
 
@@ -28,6 +43,19 @@ Unlike [Radio](../?path=/docs/components-forms-and-inputs-radiogroup--docs), the
 selected single-select Chip can be de-selected by the user, leaving all
 selections blank.
 
+<Canvas>
+  <Flex template={["shrink", "shrink", "shrink", "shrink"]} direction="row" gap="small">
+    <Chip label="Option 1" variation="subtle" />
+    <Chip label="Option 2">
+      <Chip.Suffix>
+        <Icon name="checkmark" size="small" color="interactiveSubtle" />
+      </Chip.Suffix> 
+    </Chip>
+    <Chip label="Option 3" variation="subtle" />
+    <Chip label="Option 4" variation="subtle" />
+  </Flex>
+</Canvas>
+
 ### Multi-select
 
 If you need the user to make a selection of one _or more_ items from amongst
@@ -42,6 +70,27 @@ a [Checkbox](../?path=/docs/components-selections-checkbox--docs).
 Similar to Checkbox, a selected multi-select Chip can be de-selected by the
 user, leaving all selections blank.
 
+<Canvas>
+  <Flex template={["shrink", "shrink", "shrink", "shrink"]} direction="row" gap="small">
+    <Chip label="Option 1">
+      <Chip.Suffix>
+        <Icon name="checkmark" size="small" color="interactiveSubtle" />
+      </Chip.Suffix> 
+    </Chip>
+    <Chip label="Option 2">
+      <Chip.Suffix>
+        <Icon name="checkmark" size="small" color="interactiveSubtle" />
+      </Chip.Suffix> 
+    </Chip>
+    <Chip label="Option 3" variation="subtle" />
+    <Chip label="Option 4" >
+      <Chip.Suffix>
+        <Icon name="checkmark" size="small" color="interactiveSubtle" />
+      </Chip.Suffix> 
+    </Chip>
+  </Flex>
+</Canvas>
+
 ### Add/dismiss selection
 
 When the user will be selecting one or more items by inputting their own Chip
@@ -54,6 +103,36 @@ Use this option when the full list of possible selections is too great to
 reasonably display in one group of Chip. For example, "all of my phone contacts"
 would be far too many Chip options to present in one group, and would be
 overwhelming for the user to interpret.
+
+<Canvas>
+  <Flex template={["shrink", "shrink", "shrink", "shrink", "shrink"]} direction="row" gap="small">
+    <Chip label="Add" variation="subtle">
+      <Chip.Suffix>
+        <Icon name="add" size="small" color="interactiveSubtle" />
+      </Chip.Suffix> 
+    </Chip>
+    <Chip label="Option 1">
+      <Chip.Suffix>
+        <Icon name="cross" size="small" color="interactiveSubtle" />
+      </Chip.Suffix> 
+    </Chip>
+    <Chip label="Option 2">
+      <Chip.Suffix>
+        <Icon name="cross" size="small" color="interactiveSubtle" />
+      </Chip.Suffix> 
+    </Chip>
+    <Chip label="Option 3"  >
+      <Chip.Suffix>
+        <Icon name="cross" size="small" color="interactiveSubtle" />
+      </Chip.Suffix> 
+    </Chip>
+    <Chip label="Option 4" >
+      <Chip.Suffix>
+        <Icon name="cross" size="small" color="interactiveSubtle" />
+      </Chip.Suffix> 
+    </Chip>
+  </Flex>
+</Canvas>
 
 ## Related components
 
@@ -75,9 +154,13 @@ overwhelming for the user to interpret.
 
 ## Content guidelines
 
-Chip labels should be 1–2 words at most. If any of the options in the group may
-have longer labels, consider Checkbox or Radio as necessary for your selection
-type.
+Chip headings and labels for single- or multi-select should be succinct - ideally 1–2 words. 
+If any of the options in the group may have longer labels, consider Checkbox or Radio as necessary 
+for your selection type.
+
+In cases where a Chip displays name of its selections, such as when used to trigger 
+a Combobox or a date range selector, use the heading to identify the "category" and 
+the label to identify the selected items.
 
 ## Accessibility
 
