@@ -16,18 +16,18 @@ it("renders the input validation messages", () => {
           tabindex="0"
         >
           <svg
-            class="Z6OfUI2sH34- qm8vYTlCGG4-"
             data-testid="alert"
+            style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 16px; height: 16px;"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              class="ZcEgS8HvGfo-"
               d="M12 7a1 1 0 0 0-1 1v5a1 1 0 1 0 2 0V8a1 1 0 0 0-1-1Zm-1 10a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"
+              style="fill: var(--color-critical);"
             />
             <path
-              class="ZcEgS8HvGfo-"
               d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10Zm-2 0a8 8 0 1 0-16 0 8 8 0 0 0 16 0Z"
+              style="fill: var(--color-critical);"
             />
           </svg>
           <p

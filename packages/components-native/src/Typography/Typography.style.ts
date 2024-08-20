@@ -9,7 +9,7 @@ const largerLineHeight = tokens["typography--lineHeight-larger"];
 const largeLineHeight = tokens["typography--lineHeight-large"];
 const baseLineHeight = tokens["typography--lineHeight-base"];
 const tightLineHeight = tokens["typography--lineHeight-tight"];
-const minisculeLineHeight = tokens["typography--lineHeight-miniscule"];
+const minusculeLineHeight = tokens["typography--lineHeight-minuscule"];
 
 const deviceFonts = {
   baseRegularRegular: {
@@ -306,7 +306,7 @@ export const typographyTokens: { [index: string]: TextStyle } = {
 
   smallestSize: {
     fontSize: tokens["typography--fontSize-smallest"],
-    lineHeight: minisculeLineHeight,
+    lineHeight: minusculeLineHeight,
   },
 
   smallerSize: {
