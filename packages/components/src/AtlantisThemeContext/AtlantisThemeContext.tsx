@@ -5,6 +5,7 @@ import React, {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 import merge from "lodash/merge";
@@ -32,6 +33,7 @@ export function AtlantisThemeContextProvider({
   forceThemeForProvider,
 }: AtlantisThemeContextProviderProps) {
   const [internalTheme, setInternalTheme] = useState<Theme>(defaultTheme);
+  const providerWrapperRef = useRef<HTMLDivElement>(null);
   const { isEmpty, dequeueThemeChange, enqueueThemeChange, themeChangeQueue } =
     useThemeContextEventQueue();
 
@@ -42,6 +44,10 @@ export function AtlantisThemeContextProvider({
     },
     [enqueueThemeChange],
   );
+  const updateProviderRef = useCallback((theme: Theme) => {
+    if (!providerWrapperRef.current) return;
+    providerWrapperRef.current.dataset.theme = theme;
+  }, []);
 
   const currentTokens = useMemo(
     () => (internalTheme === "dark" ? merge(tokens, darkTokens) : tokens),
@@ -68,9 +74,11 @@ export function AtlantisThemeContextProvider({
     const newTheme = dequeueThemeChange();
     globalThis.document.documentElement.dataset.theme = newTheme;
     setInternalTheme(newTheme);
+    updateProviderRef(newTheme);
   }, [isEmpty, themeChangeQueue, dequeueThemeChange, forceThemeForProvider]);
 
   useEffect(() => {
+    updateProviderRef(defaultTheme);
     if (forceThemeForProvider) return;
 
     updateTheme(defaultTheme);
@@ -83,7 +91,7 @@ export function AtlantisThemeContextProvider({
         tokens: currentTokens,
       }}
     >
-      <div data-theme={internalTheme} className={styles.atlantisThemeContext}>
+      <div ref={providerWrapperRef} className={styles.atlantisThemeContext}>
         {children}
       </div>
     </ThemeContext.Provider>
