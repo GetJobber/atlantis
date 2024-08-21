@@ -3,6 +3,7 @@ import {
   Breakpoints,
   useResizeObserver,
 } from "@jobber/hooks/useResizeObserver";
+import classnames from "classnames";
 import styles from "./Disclosure.css";
 import { Icon } from "../Icon";
 import { Typography } from "../Typography";
@@ -16,7 +17,7 @@ interface DisclosureProps {
   /**
    * Title for the disclosure pane.
    */
-  readonly title: string;
+  readonly title: string | ReactNode | ReactNode[];
 
   /**
    * This sets the default open state of the disclosure.
@@ -36,6 +37,7 @@ export function Disclosure({
   const [isMounted, setMount] = useState(false);
   const [titleRef, { exactWidth }] = useResizeObserver<HTMLDivElement>();
   const isBelowBreakpoint = exactWidth && exactWidth < Breakpoints.small;
+  const isTitleString = typeof title === "string";
 
   useEffect(() => {
     setMount(true);
@@ -44,15 +46,24 @@ export function Disclosure({
   return (
     <details open={isOpen} onToggle={onToggle} className={styles.details}>
       <summary className={styles.summary}>
-        <div className={styles.summaryWrap} ref={titleRef}>
-          <Typography
-            element="h4"
-            size={isBelowBreakpoint ? "base" : "large"}
-            fontWeight="bold"
-            textColor="heading"
-          >
-            {title}
-          </Typography>
+        <div
+          className={classnames(styles.summaryWrap, {
+            [styles.customSummaryWrap]: !isTitleString,
+          })}
+          ref={titleRef}
+        >
+          {isTitleString ? (
+            <Typography
+              element="h4"
+              size={isBelowBreakpoint ? "base" : "large"}
+              fontWeight="bold"
+              textColor="heading"
+            >
+              {title}
+            </Typography>
+          ) : (
+            title
+          )}
           <span className={styles.arrowIconWrapper}>
             <Icon size="large" name="arrowDown" color="green" />
           </span>
