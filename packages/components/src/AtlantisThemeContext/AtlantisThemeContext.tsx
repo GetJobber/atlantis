@@ -25,7 +25,7 @@ export const atlantisThemeContextDefaultValues: AtlantisThemeContextValue = {
   tokens: tokens,
 };
 
-const ThemeContext = createContext(atlantisThemeContextDefaultValues);
+const AtlantisThemeContext = createContext(atlantisThemeContextDefaultValues);
 
 export function AtlantisThemeContextProvider({
   children,
@@ -85,7 +85,7 @@ export function AtlantisThemeContextProvider({
   }, [defaultTheme, forceThemeForProvider]);
 
   return (
-    <ThemeContext.Provider
+    <AtlantisThemeContext.Provider
       value={{
         theme: internalTheme,
         tokens: currentTokens,
@@ -94,10 +94,10 @@ export function AtlantisThemeContextProvider({
       <div ref={providerWrapperRef} className={styles.atlantisThemeContext}>
         {children}
       </div>
-    </ThemeContext.Provider>
+    </AtlantisThemeContext.Provider>
   );
 }
 
 export function useAtlantisTheme() {
-  return useContext(ThemeContext);
+  return useContext(AtlantisThemeContext);
 }
