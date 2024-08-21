@@ -20,9 +20,9 @@ export interface AtlantisThemeContextProviderProps extends PropsWithChildren {
   readonly children: React.ReactNode;
 
   /**
-   * Ignore theme changes from the context.
+   * Force the theme for this provider to always be the same as the provided defaultTheme.
    */
-  readonly ignoreThemeChanges?: boolean;
+  readonly forceThemeForProvider?: boolean;
 
   /**
    * The default theme to use.

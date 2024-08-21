@@ -101,19 +101,19 @@ const BasicTemplate: ComponentStory<
 export const Basic = BasicTemplate.bind({});
 BasicTemplate.args = {};
 
-const OverrideThemeTemplate: ComponentStory<
+const ForceThemeTemplate: ComponentStory<
   typeof AtlantisThemeContextProvider
 > = args => {
   return (
     <>
-      <AtlantisThemeContextProvider {...args}>
+      <AtlantisThemeContextProvider {...args} defaultTheme="light">
         <ChildrenComponent message="It is possible to have a provider ignore Theme Changes" />
       </AtlantisThemeContextProvider>
-      <AtlantisThemeContextProvider defaultTheme="dark" ignoreThemeChanges>
+      <AtlantisThemeContextProvider defaultTheme="dark" forceThemeForProvider>
         <SecondProviderUsage message="This theme provider will always use the dark theme" />
       </AtlantisThemeContextProvider>
     </>
   );
 };
 
-export const OverrideTheme = OverrideThemeTemplate.bind({});
+export const ForceThemeForProvider = ForceThemeTemplate.bind({});

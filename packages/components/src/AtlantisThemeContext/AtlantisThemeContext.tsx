@@ -29,7 +29,7 @@ const ThemeContext = createContext(atlantisThemeContextDefaultValues);
 export function AtlantisThemeContextProvider({
   children,
   defaultTheme = "light",
-  ignoreThemeChanges,
+  forceThemeForProvider,
 }: AtlantisThemeContextProviderProps) {
   const [internalTheme, setInternalTheme] = useState<Theme>(defaultTheme);
   const { isEmpty, dequeueThemeChange, enqueueThemeChange, themeChangeQueue } =
@@ -49,32 +49,32 @@ export function AtlantisThemeContextProvider({
   );
 
   useEffect(() => {
-    if (!globalThis.window || ignoreThemeChanges) return;
+    if (!globalThis.window || forceThemeForProvider) return;
     globalThis.window.addEventListener(THEME_CHANGE_EVENT, handleThemeChange);
 
     return () => {
-      if (!globalThis.window || ignoreThemeChanges) return;
+      if (!globalThis.window || forceThemeForProvider) return;
       globalThis.window.removeEventListener(
         THEME_CHANGE_EVENT,
         handleThemeChange,
       );
     };
-  }, [handleThemeChange, ignoreThemeChanges]);
+  }, [handleThemeChange, forceThemeForProvider]);
 
   useEffect(() => {
-    if (isEmpty || !globalThis.document || ignoreThemeChanges) {
+    if (isEmpty || !globalThis.document || forceThemeForProvider) {
       return;
     }
     const newTheme = dequeueThemeChange();
     globalThis.document.documentElement.dataset.theme = newTheme;
     setInternalTheme(newTheme);
-  }, [isEmpty, themeChangeQueue, dequeueThemeChange, ignoreThemeChanges]);
+  }, [isEmpty, themeChangeQueue, dequeueThemeChange, forceThemeForProvider]);
 
   useEffect(() => {
-    if (ignoreThemeChanges) return;
+    if (forceThemeForProvider) return;
 
     updateTheme(defaultTheme);
-  }, [defaultTheme, ignoreThemeChanges]);
+  }, [defaultTheme, forceThemeForProvider]);
 
   return (
     <ThemeContext.Provider
