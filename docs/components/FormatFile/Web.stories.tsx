@@ -1,7 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { FormatFile } from "@jobber/components/FormatFile";
-import { Icon } from "@jobber/components/Icon";
 
 export default {
   title: "Components/Images and Icons/FormatFile/Web",
@@ -20,18 +19,18 @@ export const Menu = BasicTemplate.bind({});
 Menu.args = {
   file: {
     key: "abc",
-    name: "image_of_something.png",
     type: "image/png",
     size: 213402324,
     progress: 1,
     src: () => Promise.resolve("https://picsum.photos/250"),
+    name: "image_of_something.png",
   },
   actions: [
     {
       label: "Delete",
       onClick: () => alert("Deleted"),
       icon: "trash",
-      destructive: true,
+      // destructive: true,
     },
     {
       label: "Download",
