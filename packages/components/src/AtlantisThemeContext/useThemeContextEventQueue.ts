@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 import { Theme, ThemeChangeDetails } from "./types";
 
 export function useThemeContextEventQueue() {
@@ -15,10 +15,8 @@ export function useThemeContextEventQueue() {
     return newTheme;
   }, [themeChangeQueue]);
 
-  const isEmpty = useMemo(
-    () => themeChangeQueue.length === 0,
-    [themeChangeQueue],
-  );
+  const isEmpty = themeChangeQueue.length === 0;
+
   const handleThemeChangeEvent = useCallback(
     (event: Event) => {
       const newTheme = (event as CustomEvent<ThemeChangeDetails>).detail.theme;

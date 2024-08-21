@@ -1,10 +1,9 @@
 import { darkTokens, tokens } from "@jobber/design";
 import React, {
+  PropsWithChildren,
   createContext,
   useContext,
   useEffect,
-  useMemo,
-  useRef,
   useState,
 } from "react";
 import merge from "lodash/merge";
@@ -30,12 +29,27 @@ export function AtlantisThemeContextProvider({
   children,
   dangerouslyForceThemeForProvider,
 }: AtlantisThemeContextProviderProps) {
+  if (dangerouslyForceThemeForProvider) {
+    return (
+      <InternalStaticThemeProvider
+        dangerouslyForceThemeForProvider={dangerouslyForceThemeForProvider}
+      >
+        {children}
+      </InternalStaticThemeProvider>
+    );
+  }
+
+  return (
+    <InternalDynamicThemeProvider>{children}</InternalDynamicThemeProvider>
+  );
+}
+
+function InternalDynamicThemeProvider({ children }: PropsWithChildren) {
   const initialTheme: Theme =
-    dangerouslyForceThemeForProvider ??
-    (globalThis.document.documentElement.dataset.theme as Theme) ??
-    "light";
+    (globalThis.document.documentElement.dataset.theme as Theme) ?? "light";
+
   const [internalTheme, setInternalTheme] = useState<Theme>(initialTheme);
-  const providerWrapperRef = useRef<HTMLDivElement>(null);
+  const currentTokens = initialTheme === "dark" ? actualDarkTokens : tokens;
 
   const {
     isEmpty,
@@ -44,37 +58,30 @@ export function AtlantisThemeContextProvider({
     handleThemeChangeEvent,
   } = useThemeContextEventQueue();
 
-  const currentTokens = useMemo(
-    () => (internalTheme === "dark" ? actualDarkTokens : tokens),
-    [internalTheme],
-  );
-
   useEffect(() => {
-    if (!globalThis.window || dangerouslyForceThemeForProvider) return;
+    if (!globalThis.window) return;
     globalThis.window.addEventListener(
       THEME_CHANGE_EVENT,
       handleThemeChangeEvent,
     );
 
     return () => {
-      if (!globalThis.window || dangerouslyForceThemeForProvider) return;
+      if (!globalThis.window) return;
       globalThis.window.removeEventListener(
         THEME_CHANGE_EVENT,
         handleThemeChangeEvent,
       );
     };
-  }, [dangerouslyForceThemeForProvider, handleThemeChangeEvent]);
+  }, [handleThemeChangeEvent]);
 
   useEffect(() => {
-    if (isEmpty || !globalThis.document || dangerouslyForceThemeForProvider) {
+    if (isEmpty || !globalThis.document) {
       return;
     }
 
     const newTheme = dequeueThemeChange();
     setInternalTheme(newTheme);
-    if (!providerWrapperRef.current) return;
-    providerWrapperRef.current.dataset.theme = newTheme;
-  }, [themeChangeQueue, dequeueThemeChange, dangerouslyForceThemeForProvider]);
+  }, [themeChangeQueue, dequeueThemeChange]);
 
   return (
     <AtlantisThemeContext.Provider
@@ -83,7 +90,34 @@ export function AtlantisThemeContextProvider({
         tokens: currentTokens,
       }}
     >
-      <div data-theme={internalTheme} className={styles.atlantisThemeContext}>
+      {children}
+    </AtlantisThemeContext.Provider>
+  );
+}
+
+function InternalStaticThemeProvider({
+  dangerouslyForceThemeForProvider,
+  children,
+}: Required<
+  Pick<
+    AtlantisThemeContextProviderProps,
+    "dangerouslyForceThemeForProvider" | "children"
+  >
+>) {
+  const currentTokens =
+    dangerouslyForceThemeForProvider === "dark" ? actualDarkTokens : tokens;
+
+  return (
+    <AtlantisThemeContext.Provider
+      value={{
+        theme: dangerouslyForceThemeForProvider,
+        tokens: currentTokens,
+      }}
+    >
+      <div
+        data-theme={dangerouslyForceThemeForProvider}
+        className={styles.atlantisThemeContext}
+      >
         {children}
       </div>
     </AtlantisThemeContext.Provider>
