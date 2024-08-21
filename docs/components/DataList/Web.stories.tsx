@@ -74,8 +74,8 @@ const DataListStory = (args: {
     label: node.name,
     species: node.species?.name,
     home: node.homeworld.name,
-    gender: (
-      <InlineLabel color={getColor(node.gender)}>{node.gender}</InlineLabel>
+    eyeColor: (
+      <InlineLabel color={getColor(node.eyeColor)}>{node.eyeColor}</InlineLabel>
     ),
     tags: uniq([
       node.birthYear,
@@ -101,7 +101,7 @@ const DataListStory = (args: {
         label: "Name",
         home: "Home world",
         tags: "Attributes",
-        gender: "Gender",
+        eyeColor: "Eye color",
         lastActivity: "Last activity",
       }}
       onLoadMore={nextPage}
@@ -184,8 +184,8 @@ const DataListStory = (args: {
     >
       <DataList.Filters>
         <Chip
-          label={"Filter gender"}
-          onClick={() => alert("Run filter by gender query")}
+          label={"Filter eye color"}
+          onClick={() => alert("Run filter by eye color query")}
         >
           <Chip.Suffix>
             <Icon name="add" size="small" />
@@ -289,7 +289,7 @@ const DataListStory = (args: {
               </Grid>
             </Grid.Cell>
             <Grid.Cell size={{ xs: 4 }}>{item.tags}</Grid.Cell>
-            <Grid.Cell size={{ xs: 1 }}>{item.gender}</Grid.Cell>
+            <Grid.Cell size={{ xs: 1 }}>{item.eyeColor}</Grid.Cell>
             <Grid.Cell size={{ xs: 2 }}>
               <div
                 style={{
@@ -320,7 +320,7 @@ const DataListStory = (args: {
             >
               {item.label}
               {item.species}
-              {item.gender}
+              {item.eyeColor}
             </div>
             {item.tags}
             <div
@@ -370,15 +370,21 @@ const DataListStory = (args: {
     console.log("You clicked on a bulk action", selected);
   }
 
-  function getColor(gender: string): InlineLabelColors | undefined {
-    switch (gender) {
-      case "male":
-        return "orange";
-      case "female":
-        return "green";
-      default:
-        return "greyBlue";
-    }
+  function getColor(eyeColor: string): InlineLabelColors {
+    const colorMap: { [key: string]: InlineLabelColors } = {
+      blue: "lightBlue",
+      black: "blueDark",
+      yellow: "yellow",
+      red: "red",
+      hazel: "orange",
+      orange: "orange",
+      green: "green",
+      gold: "yellow",
+      pink: "pink",
+      unknown: "greyBlue",
+    };
+
+    return colorMap[eyeColor] || "greyBlue";
   }
 
   function getLoadingState() {
@@ -388,7 +394,6 @@ const DataListStory = (args: {
     return args.loadingState;
   }
 };
-
 
 export const Basic: StoryObj<typeof DataList> = {
   render: () => (
