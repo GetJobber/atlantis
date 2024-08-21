@@ -19,6 +19,7 @@ describe("meta", () => {
   });
 });
 
+// NOTE: Keep this in sync with components/src/utils/meta/meta.test.tsx
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function isComponent(name: string, value: any): boolean {
   const isFirstLetterUppercase = /^[A-Z]/.test(name);
@@ -27,6 +28,7 @@ function isComponent(name: string, value: any): boolean {
   return isFirstLetterUppercase && isFunctionComponent;
 }
 
+// NOTE: Keep this in sync with components/src/utils/meta/meta.test.tsx
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function isContext(value: any): boolean {
   return (
@@ -37,6 +39,7 @@ function isContext(value: any): boolean {
   );
 }
 
+// NOTE: Keep this in sync with components/src/utils/meta/meta.test.tsx
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function isForwardedRef(name: string, value: any): boolean {
   const isFirstLetterUppercase = /^[A-Z]/.test(name);
@@ -49,6 +52,7 @@ function isForwardedRef(name: string, value: any): boolean {
   );
 }
 
+// NOTE: Keep this in sync with components/src/utils/meta/meta.test.tsx
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function isMemoizedComponent(name: string, value: any): boolean {
   const isFirstLetterUppercase = /^[A-Z]/.test(name);
@@ -63,6 +67,7 @@ function isMemoizedComponent(name: string, value: any): boolean {
   );
 }
 
+// NOTE: Keep this in sync with components/src/utils/meta/meta.test.tsx
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function findComponentNamesDeep(objectOrFunction: any, name?: string) {
   const entries = [...Object.entries(objectOrFunction)];
