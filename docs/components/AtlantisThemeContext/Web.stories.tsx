@@ -30,13 +30,19 @@ function ChildrenComponent({
 }: {
   readonly message?: string;
 }) {
-  const { theme } = useAtlantisTheme();
+  const { theme, tokens } = useAtlantisTheme();
 
   return (
     <Box background="surface" padding="base">
       <Content>
         <Text>{message}</Text>
         <Text size="small">Current theme {theme}</Text>
+        <Text size="small">
+          Tokens can be accessed using tokens[token-name]
+        </Text>
+        <Text size="small">
+          For example color-surface: {tokens["color-surface"]}
+        </Text>
         <Flex
           gap="base"
           align="center"
@@ -55,7 +61,7 @@ function ChildrenComponent({
 }
 
 function SecondProviderUsage({
-  message = "ThemeProviders  can set the default theme for all providers on a page. (This one is dark by default)",
+  message = "ThemeProviders can update the theme for all providers on a page. ",
 }: {
   readonly message?: string;
 }) {
@@ -78,6 +84,21 @@ function SecondProviderUsage({
           <InlineLabel color="lightBlue">Sent</InlineLabel>
           <InlineLabel color="lightBlue">Converted</InlineLabel>
         </div>
+        <Flex
+          gap="base"
+          align="center"
+          direction="row"
+          template={["grow", "grow"]}
+        >
+          <Button
+            label="Set dark theme in another provider"
+            onClick={() => updateTheme("dark")}
+          />
+          <Button
+            label="Set light theme in another provider"
+            onClick={() => updateTheme("light")}
+          />
+        </Flex>
       </Content>
     </Box>
   );
@@ -91,7 +112,7 @@ const BasicTemplate: ComponentStory<
       <AtlantisThemeContextProvider {...args}>
         <ChildrenComponent />
       </AtlantisThemeContextProvider>
-      <AtlantisThemeContextProvider defaultTheme="dark">
+      <AtlantisThemeContextProvider>
         <SecondProviderUsage />
       </AtlantisThemeContextProvider>
     </>
@@ -106,10 +127,10 @@ const ForceThemeTemplate: ComponentStory<
 > = args => {
   return (
     <>
-      <AtlantisThemeContextProvider {...args} defaultTheme="light">
+      <AtlantisThemeContextProvider {...args}>
         <ChildrenComponent message="It is possible to have a provider ignore Theme Changes" />
       </AtlantisThemeContextProvider>
-      <AtlantisThemeContextProvider defaultTheme="dark" forceThemeForProvider>
+      <AtlantisThemeContextProvider dangerouslyForceThemeForProvider="dark">
         <SecondProviderUsage message="This theme provider will always use the dark theme" />
       </AtlantisThemeContextProvider>
     </>
@@ -117,3 +138,4 @@ const ForceThemeTemplate: ComponentStory<
 };
 
 export const ForceThemeForProvider = ForceThemeTemplate.bind({});
+ForceThemeForProvider.args = {};
