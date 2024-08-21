@@ -17,6 +17,7 @@ import {
 } from "./types";
 import { updateTheme } from "./updateTheme";
 import { useThemeContextEventQueue } from "./useThemeContextEventQueue";
+import styles from "./AtlantisThemeContext.css";
 
 export const atlantisThemeContextDefaultValues: AtlantisThemeContextValue = {
   theme: "light",
@@ -82,7 +83,7 @@ export function AtlantisThemeContextProvider({
         tokens: currentTokens,
       }}
     >
-      <div data-theme={internalTheme} style={{ display: "contents" }}>
+      <div data-theme={internalTheme} className={styles.atlantisThemeContext}>
         {children}
       </div>
     </ThemeContext.Provider>
