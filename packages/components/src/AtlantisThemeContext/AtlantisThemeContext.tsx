@@ -1,7 +1,6 @@
 import { darkTokens, tokens } from "@jobber/design";
 import React, {
   createContext,
-  useCallback,
   useContext,
   useEffect,
   useMemo,
@@ -14,7 +13,6 @@ import {
   AtlantisThemeContextValue,
   THEME_CHANGE_EVENT,
   Theme,
-  ThemeChangeDetails,
 } from "./types";
 import { updateTheme } from "./updateTheme";
 import { useThemeContextEventQueue } from "./useThemeContextEventQueue";
@@ -34,20 +32,13 @@ export function AtlantisThemeContextProvider({
 }: AtlantisThemeContextProviderProps) {
   const [internalTheme, setInternalTheme] = useState<Theme>(defaultTheme);
   const providerWrapperRef = useRef<HTMLDivElement>(null);
-  const { isEmpty, dequeueThemeChange, enqueueThemeChange, themeChangeQueue } =
-    useThemeContextEventQueue();
 
-  const handleThemeChange = useCallback(
-    (event: Event) => {
-      const newTheme = (event as CustomEvent<ThemeChangeDetails>).detail.theme;
-      enqueueThemeChange(newTheme);
-    },
-    [enqueueThemeChange],
-  );
-  const updateProviderRef = useCallback((theme: Theme) => {
-    if (!providerWrapperRef.current) return;
-    providerWrapperRef.current.dataset.theme = theme;
-  }, []);
+  const {
+    isEmpty,
+    dequeueThemeChange,
+    themeChangeQueue,
+    handleThemeChangeEvent,
+  } = useThemeContextEventQueue();
 
   const currentTokens = useMemo(
     () => (internalTheme === "dark" ? merge(tokens, darkTokens) : tokens),
@@ -56,29 +47,35 @@ export function AtlantisThemeContextProvider({
 
   useEffect(() => {
     if (!globalThis.window || forceThemeForProvider) return;
-    globalThis.window.addEventListener(THEME_CHANGE_EVENT, handleThemeChange);
+    globalThis.window.addEventListener(
+      THEME_CHANGE_EVENT,
+      handleThemeChangeEvent,
+    );
 
     return () => {
       if (!globalThis.window || forceThemeForProvider) return;
       globalThis.window.removeEventListener(
         THEME_CHANGE_EVENT,
-        handleThemeChange,
+        handleThemeChangeEvent,
       );
     };
-  }, [handleThemeChange, forceThemeForProvider]);
+  }, [forceThemeForProvider, handleThemeChangeEvent]);
 
   useEffect(() => {
     if (isEmpty || !globalThis.document || forceThemeForProvider) {
       return;
     }
+
     const newTheme = dequeueThemeChange();
     globalThis.document.documentElement.dataset.theme = newTheme;
+    if (!providerWrapperRef.current) return;
+    providerWrapperRef.current.dataset.theme = newTheme;
     setInternalTheme(newTheme);
-    updateProviderRef(newTheme);
-  }, [isEmpty, themeChangeQueue, dequeueThemeChange, forceThemeForProvider]);
+  }, [themeChangeQueue, dequeueThemeChange, forceThemeForProvider]);
 
   useEffect(() => {
-    updateProviderRef(defaultTheme);
+    if (!providerWrapperRef.current) return;
+    providerWrapperRef.current.dataset.theme = defaultTheme;
     if (forceThemeForProvider) return;
 
     updateTheme(defaultTheme);

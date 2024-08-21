@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from "react";
-import { Theme } from "./types";
+import { Theme, ThemeChangeDetails } from "./types";
 
 export function useThemeContextEventQueue() {
   const [themeChangeQueue, setThemeChangeQueue] = useState<Theme[]>([]);
@@ -10,7 +10,6 @@ export function useThemeContextEventQueue() {
 
   const dequeueThemeChange = useCallback(() => {
     const [newTheme, ...rest] = themeChangeQueue;
-
     setThemeChangeQueue(rest);
 
     return newTheme;
@@ -20,11 +19,19 @@ export function useThemeContextEventQueue() {
     () => themeChangeQueue.length === 0,
     [themeChangeQueue],
   );
+  const handleThemeChangeEvent = useCallback(
+    (event: Event) => {
+      const newTheme = (event as CustomEvent<ThemeChangeDetails>).detail.theme;
+      enqueueThemeChange(newTheme);
+    },
+    [enqueueThemeChange],
+  );
 
   return {
-    isEmpty,
     dequeueThemeChange,
+    isEmpty,
     enqueueThemeChange,
     themeChangeQueue,
+    handleThemeChangeEvent,
   };
 }
