@@ -27,7 +27,7 @@
 }
 
 .vertical {
-  width: var(--space-miniscule);
+  width: var(--space-minuscule);
   height: auto;
   border-right: var(--divider-width) solid var(--divider-color);
 }

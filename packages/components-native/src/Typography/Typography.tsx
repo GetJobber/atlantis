@@ -106,6 +106,7 @@ export interface TypographyProps<T extends FontFamily>
    * of the TextInput
    */
   readonly hideFromScreenReader?: boolean;
+
   /**
    * Have text styled with strike through
    */
@@ -156,6 +157,11 @@ function InternalTypography<T extends FontFamily = "base">({
   if (strikeThrough) {
     style.push(styles.strikeThrough);
   }
+
+  if (fontStyle === "italic") {
+    style.push(styles.italic);
+  }
+
   const numberOfLinesForNativeText = maxNumberOfLines[maxLines];
 
   const text = getTransformedText(children, transform);

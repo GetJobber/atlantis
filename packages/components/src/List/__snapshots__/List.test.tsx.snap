@@ -32,14 +32,14 @@ exports[`renders 1 List item with all the props 1`] = `
               class="icon"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="checkmark"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="b--UClBpmy0- S4fBuUx-A70-"
                   d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  style="fill: var(--color-green);"
                 />
               </svg>
             </div>

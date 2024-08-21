@@ -9,7 +9,7 @@ const largerLineHeight = tokens["typography--lineHeight-larger"];
 const largeLineHeight = tokens["typography--lineHeight-large"];
 const baseLineHeight = tokens["typography--lineHeight-base"];
 const tightLineHeight = tokens["typography--lineHeight-tight"];
-const minisculeLineHeight = tokens["typography--lineHeight-miniscule"];
+const minusculeLineHeight = tokens["typography--lineHeight-minuscule"];
 
 const deviceFonts = {
   baseRegularRegular: {
@@ -30,6 +30,26 @@ const deviceFonts = {
 
   baseRegularExtraBold: {
     fontFamily: "inter-extrabold",
+  },
+
+  baseItalicRegular: {
+    fontFamily: "inter-italic",
+  },
+
+  baseItalicMedium: {
+    fontFamily: "inter-italic-medium",
+  },
+
+  baseItalicBold: {
+    fontFamily: "inter-italic-bold",
+  },
+
+  baseItalicSemiBold: {
+    fontFamily: "inter-italic-semibold",
+  },
+
+  baseItalicExtraBold: {
+    fontFamily: "inter-italic-extrabold",
   },
 
   displayRegularBold: {
@@ -63,6 +83,10 @@ export const typographyTokens: { [index: string]: TextStyle } = {
   // This follows a pattern of
   // { fontFamily }{ fontStyle }{ fontWeight }
   ...fonts,
+
+  italic: {
+    fontStyle: "italic",
+  },
 
   startAlign: {
     textAlign: "left",
@@ -282,7 +306,7 @@ export const typographyTokens: { [index: string]: TextStyle } = {
 
   smallestSize: {
     fontSize: tokens["typography--fontSize-smallest"],
-    lineHeight: minisculeLineHeight,
+    lineHeight: minusculeLineHeight,
   },
 
   smallerSize: {
