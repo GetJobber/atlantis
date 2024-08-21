@@ -1,9 +1,8 @@
 import { IconNames } from "@jobber/design";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import styles from "./FormatFile.css";
 import { Button } from "../Button";
-import { Icon } from "../Icon";
-import { Typography } from "../Typography";
+import { Menu, SectionProps } from "../Menu";
 
 export interface Action {
   readonly icon?: IconNames;
@@ -16,52 +15,29 @@ interface FormatFileMenuProps {
 }
 
 export function FormatFileMenu({ actions }: FormatFileMenuProps) {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleClickOutside = (event: MouseEvent) => {
-    if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-      setIsOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  const items: SectionProps[] = [
+    {
+      actions: actions.map(action => ({
+        label: action.label,
+        icon: action.icon,
+        onClick: action.onClick,
+      })),
+    },
+  ];
 
   return (
-    <div ref={menuRef} className={styles.menu}>
-      <Button
-        onClick={toggleMenu}
-        icon="more"
-        type="secondary"
-        variation="subtle"
-        ariaLabel="Actions Menu"
+    <div className={styles.menu}>
+      <Menu
+        activator={
+          <Button
+            icon="more"
+            type="secondary"
+            variation="subtle"
+            ariaLabel="Actions Menu"
+          />
+        }
+        items={items}
       />
-      {isOpen && (
-        <ul className={styles.menuList}>
-          {actions.map((action, index) => (
-            <li
-              key={index}
-              className={styles.menuItem}
-              onClick={action.onClick}
-            >
-              <Typography fontWeight="medium" textColor="heading">
-                {action.label}
-              </Typography>
-              {action.icon && <Icon name={action.icon} />}
-            </li>
-          ))}
-        </ul>
-      )}
     </div>
   );
 }
