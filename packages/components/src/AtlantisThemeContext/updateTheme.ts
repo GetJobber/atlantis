@@ -10,5 +10,6 @@ export function updateTheme(theme: Theme) {
     detail: { theme },
   });
   if (!globalThis.window) return;
+  globalThis.document.documentElement.setAttribute("data-theme", theme);
   globalThis.window.dispatchEvent(event);
 }
