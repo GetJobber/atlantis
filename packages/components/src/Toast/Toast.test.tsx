@@ -30,6 +30,7 @@ const successMessage =
   "Successful Message that should last the full 5 seconds, it just needs to be 50 characters long";
 const infoMessage = "Bland Toast";
 const errorMessage = "Errorful should last inbetween min-max";
+const uniqueMessage = "Unique Message";
 
 it("creates exactly one toasts target div", () => {
   const { getByText, getAllByText } = render(<MockToast />);
@@ -120,6 +121,19 @@ it("stops and starts the timer when the item is hover toggled", async () => {
   });
 });
 
+it("de-dupes the toasts if we specify an id", () => {
+  const { getByText, queryAllByText } = render(<MockToast />);
+  const duplicateMessage = successMessage;
+
+  fireEvent.click(getByText("Success"));
+  fireEvent.click(getByText("Success"));
+  fireEvent.click(getByText("Prevent Duplicate"));
+  fireEvent.click(getByText("Prevent Duplicate"));
+
+  expect(queryAllByText(duplicateMessage)).toHaveLength(2);
+  expect(queryAllByText(uniqueMessage)).toHaveLength(1);
+});
+
 /**
  * Mocks out an example of Toast for usage in tests
  */
@@ -154,6 +168,16 @@ const MockToast = ({ mockAction }: MockToastProps) => {
         showToast({
           message: errorMessage,
           variation: "error",
+        });
+      },
+    },
+    {
+      label: "Prevent Duplicate",
+      onClick: () => {
+        showToast({
+          id: "this-is-a-unique-id",
+          message: uniqueMessage,
+          variation: "success",
         });
       },
     },

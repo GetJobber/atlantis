@@ -7,6 +7,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { v4 } from "uuid";
 // According to react, it's imported within the package
 // https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis
 // eslint-disable-next-line import/no-internal-modules
@@ -50,19 +51,37 @@ function ToasterOven(props: ToastProps) {
 }
 
 function ToastInternal(_: unknown, ref: Ref<ToastRef>) {
-  const [toastKey, setToastKey] = useState(0);
   const [toasts, setToasts] = useState<ToastProps[]>([]);
 
   useImperativeHandle(ref, () => ({
     add: props => {
-      setToastKey(toastKey + 1);
-      setToasts([
-        {
-          ...props,
-          id: toastKey,
-        },
-        ...toasts,
-      ]);
+      const id = props.id || v4();
+      const alreadyExists = toasts.find(toast => {
+        return toast.id === id;
+      });
+
+      if (alreadyExists) {
+        setToasts(prevState => {
+          return prevState.map(toast => {
+            if (toast.id === id) {
+              return {
+                ...toast,
+                ...props,
+              };
+            }
+
+            return toast;
+          });
+        });
+      } else {
+        setToasts([
+          {
+            ...props,
+            id,
+          },
+          ...toasts,
+        ]);
+      }
     },
   }));
 
