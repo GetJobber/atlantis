@@ -50,13 +50,27 @@ function isForwardedRef(name: string, value: any): boolean {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
+function isMemoizedComponent(name: string, value: any): boolean {
+  const isFirstLetterUppercase = /^[A-Z]/.test(name);
+
+  return (
+    isFirstLetterUppercase &&
+    value &&
+    typeof value === "object" &&
+    typeof value.$$typeof === "symbol" &&
+    value.$$typeof.toString() === "Symbol(react.memo)" &&
+    typeof value.type === "function"
+  );
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function findComponentNamesDeep(objectOrFunction: any, name?: string) {
   const entries = [...Object.entries(objectOrFunction)];
 
   return entries.reduce<string[]>((allNames, [k, v]) => {
     if (isContext(v)) {
       allNames.push(`${k}.Provider`, `${k}.Consumer`);
-    } else if (isForwardedRef(k, v)) {
+    } else if (isForwardedRef(k, v) || isMemoizedComponent(k, v)) {
       allNames.push(k);
     } else if (isComponent(k, v)) {
       const thisName = name ? `${name}.${k}` : k;

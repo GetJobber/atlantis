@@ -62,6 +62,7 @@
     "TextList",
     "ThumbnailList",
     "Toast",
+    "Typography",
     "TypographyGestureDetector"
   ]
 }
