@@ -2,6 +2,7 @@ import { darkTokens, tokens } from "@jobber/design";
 import React, {
   PropsWithChildren,
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useState,
@@ -12,8 +13,8 @@ import {
   AtlantisThemeContextValue,
   THEME_CHANGE_EVENT,
   Theme,
+  ThemeChangeDetails,
 } from "./types";
-import { useThemeContextEventQueue } from "./useThemeContextEventQueue";
 import styles from "./AtlantisThemeContext.css";
 
 export const atlantisThemeContextDefaultValues: AtlantisThemeContextValue = {
@@ -51,12 +52,10 @@ function InternalDynamicThemeProvider({ children }: PropsWithChildren) {
   const [internalTheme, setInternalTheme] = useState<Theme>(initialTheme);
   const currentTokens = initialTheme === "dark" ? actualDarkTokens : tokens;
 
-  const {
-    isEmpty,
-    dequeueThemeChange,
-    themeChangeQueue,
-    handleThemeChangeEvent,
-  } = useThemeContextEventQueue();
+  const handleThemeChangeEvent = useCallback((event: Event) => {
+    const newTheme = (event as CustomEvent<ThemeChangeDetails>).detail.theme;
+    setInternalTheme(newTheme);
+  }, []);
 
   useEffect(() => {
     if (!globalThis.window) return;
@@ -73,15 +72,6 @@ function InternalDynamicThemeProvider({ children }: PropsWithChildren) {
       );
     };
   }, [handleThemeChangeEvent]);
-
-  useEffect(() => {
-    if (isEmpty || !globalThis.document) {
-      return;
-    }
-
-    const newTheme = dequeueThemeChange();
-    setInternalTheme(newTheme);
-  }, [themeChangeQueue, dequeueThemeChange]);
 
   return (
     <AtlantisThemeContext.Provider
