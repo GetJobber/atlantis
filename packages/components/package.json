@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "5.23.1",
+  "version": "5.24.0",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.cjs",
@@ -407,9 +407,7 @@
     "dist/*"
   ],
   "dependencies": {
-    "@jobber/design": "^0.63.0",
     "@jobber/formatters": "^0.3.0",
-    "@jobber/hooks": "^2.10.2",
     "@popperjs/core": "^2.0.6",
     "@std-proposal/temporal": "0.0.1",
     "@tanstack/react-table": "8.5.13",
@@ -470,7 +468,7 @@
     "axios": "^1",
     "classnames": "^2",
     "color": "^4",
-    "date-fns": "^2.0.0",
+    "date-fns": "^2.30.0",
     "date-fns-tz": "^2.0.0",
     "filesize": "^6",
     "framer-motion": "^11",

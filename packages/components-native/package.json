@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components-native",
-  "version": "0.69.4",
+  "version": "0.70.0",
   "license": "MIT",
   "description": "React Native implementation of Atlantis",
   "repository": {
@@ -36,8 +36,6 @@
     "build:clean": "rm -rf ./dist"
   },
   "dependencies": {
-    "@jobber/design": "^0.63.0",
-    "@jobber/hooks": "^2.10.2",
     "@react-native-clipboard/clipboard": "^1.11.2",
     "@react-native-picker/picker": "^2.4.10",
     "autolinker": "^4.0.0",
@@ -70,8 +68,8 @@
   "peerDependencies": {
     "@babel/core": "^7.4.5",
     "@react-native-community/datetimepicker": ">=6.7.0",
-    "date-fns": "^2.0.0",
-    "date-fns-tz": "*",
+    "date-fns": "^2.30.0",
+    "date-fns-tz": "^2.0.0",
     "react": "^18.2.0",
     "react-intl": "^6.4.2",
     "react-native": ">=0.69.2",

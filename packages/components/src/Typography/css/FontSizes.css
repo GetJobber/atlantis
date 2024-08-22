@@ -1,11 +1,11 @@
 .extravagant {
   font-size: var(--typography--fontSize-extravagant);
-  line-height: var(--typography--lineHeight-miniscule);
+  line-height: var(--typography--lineHeight-minuscule);
 }
 
 .jumbo {
   font-size: var(--typography--fontSize-jumbo);
-  line-height: var(--typography--lineHeight-miniscule);
+  line-height: var(--typography--lineHeight-minuscule);
 }
 
 .largest {

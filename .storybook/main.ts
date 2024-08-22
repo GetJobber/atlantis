@@ -112,7 +112,7 @@ const config: StorybookConfig = {
                 require("@csstools/postcss-global-data")({
                   files: [
                     require.resolve(
-                      path.join(__dirname, "../packages/design/foundation.css"),
+                      path.join(__dirname, "../packages/design/dist/foundation.css"),
                     ),
                   ],
                 }),

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.64.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.63.0...@jobber/design@0.64.0) (2024-08-20)
+
+
+### Features
+
+* **design:** BREAKING CHANGE: Complete rebuild of the design token package ([#1965](https://github.com/GetJobber/atlantis/issues/1965)) ([b749502](https://github.com/GetJobber/atlantis/commit/b749502e347a4e14a1c5fcfdbc3114f54bb616f1))
+
+
+
+
+
 # [0.63.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.62.2...@jobber/design@0.63.0) (2024-08-02)
 
 
