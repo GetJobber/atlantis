@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.26.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.25.0...@jobber/components@5.26.0) (2024-08-22)
+
+
+### Features
+
+* **components:** Export component names as meta.json ([#1989](https://github.com/GetJobber/atlantis/issues/1989)) ([5f770d2](https://github.com/GetJobber/atlantis/commit/5f770d29755faae493e4471d16a680d4601ca012))
+
+
+
+
+
 # [5.25.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.24.0...@jobber/components@5.25.0) (2024-08-22)
 
 
