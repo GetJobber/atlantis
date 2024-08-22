@@ -65,7 +65,8 @@ function ThemedComponent() {
 
 In some scenarios you may want to force a theme for specific components
 regardless of the main application theme. This can be done by setting the
-`forceThemeForProvider` prop to `true` on the `AtlantisThemeContextProvider`.
+`dangerouslyOverrideTheme` prop to `<themeToSet>` on the
+`AtlantisThemeContextProvider`.
 
 ```tsx
 import {
@@ -78,7 +79,7 @@ function App() {
   return (
     <AtlantisThemeContextProvider>
       <ThemedComponent />
-      <AtlantisThemeContextProvider defaultTheme="dark" forceThemeForProvider>
+      <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
         <Text>These components will always be dark themed</Text>
         <ThemedComponent />
       </AtlantisThemeContextProvider>
