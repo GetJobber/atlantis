@@ -19,7 +19,7 @@ export const convertJSTokensToTheme = (
     tokens: Record<string, string | number>;
   }>,
 ) => {
-  let rootCSS = `:root[data-theme="${theme}"] {\n@media screen {\n`;
+  let rootCSS = `:root[data-theme="${theme}"],\n div[data-theme="${theme}"] {\n@media screen {\n`;
 
   for (const [i] of Object.entries(css)) {
     rootCSS += `  --${i}: ${css[i]};\n`;

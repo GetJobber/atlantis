@@ -74,3 +74,4 @@ export * from "./Text";
 export * from "./Toast";
 export * from "./Tooltip";
 export * from "./Typography";
+export * from "./AtlantisThemeContext";

@@ -304,6 +304,7 @@ export const buildFullCSS = () => {
   const prefixStyles = readFileSync(prefixFile, "utf8");
   const suffixStyles = readFileSync(suffixFile, "utf8");
   const rootCSS = generateCSSFileFromJSTokens(css);
+  const lightModeRootCSS = `div[data-theme="light"],\n ${rootCSS}`;
 
-  return `${prefixStyles}\n${rootCSS}\n\n${suffixStyles}`;
+  return `${prefixStyles}\n${lightModeRootCSS}\n\n${suffixStyles}`;
 };
