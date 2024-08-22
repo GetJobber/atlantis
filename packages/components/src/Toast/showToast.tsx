@@ -56,32 +56,16 @@ function ToastInternal(_: unknown, ref: Ref<ToastRef>) {
   useImperativeHandle(ref, () => ({
     add: props => {
       const id = props.id || v4();
-      const alreadyExists = toasts.find(toast => {
-        return toast.id === id;
+      const dedupeToasts = toasts.filter(toast => {
+        return toast.id !== id;
       });
-
-      if (alreadyExists) {
-        setToasts(prevState => {
-          return prevState.map(toast => {
-            if (toast.id === id) {
-              return {
-                ...toast,
-                ...props,
-              };
-            }
-
-            return toast;
-          });
-        });
-      } else {
-        setToasts([
-          {
-            ...props,
-            id,
-          },
-          ...toasts,
-        ]);
-      }
+      setToasts([
+        {
+          ...props,
+          id,
+        },
+        ...dedupeToasts,
+      ]);
     },
   }));
 
