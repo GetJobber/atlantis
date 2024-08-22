@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.25.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.24.0...@jobber/components@5.25.0) (2024-08-22)
+
+
+### Features
+
+* **components:** use text color for menu items ([#1987](https://github.com/GetJobber/atlantis/issues/1987)) ([a14b606](https://github.com/GetJobber/atlantis/commit/a14b606a8a56957c8ffc487663c8d4895f1c0143))
+
+
+
+
+
 # [5.24.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.23.1...@jobber/components@5.24.0) (2024-08-20)
 
 
