@@ -30,7 +30,17 @@ describe("ThemeContext", () => {
     );
   }
 
-  it("should update the theme and tokens", async () => {
+  it("should provide the default theme and tokens", () => {
+    const results = renderHook(useAtlantisTheme, {
+      wrapper: (props: AtlantisThemeContextProviderProps) => (
+        <TestWrapper {...props} />
+      ),
+    });
+
+    expect(results.result.current.theme).toBe("light");
+    expect(results.result.current.tokens).toEqual(expectedLightTokens);
+  });
+
     const results = renderHook(useAtlantisTheme, {
       wrapper: (props: AtlantisThemeContextProviderProps) => (
         <TestWrapper {...props} />
