@@ -388,6 +388,11 @@
       "types": "./dist/Typography/index.d.ts",
       "import": "./dist/Typography/index.mjs",
       "require": "./dist/Typography/index.cjs"
+    },
+    "./utils/meta/meta.json": {
+      "types": "./dist/utils/meta/meta.json",
+      "import": "./dist/utils/meta/meta.json",
+      "require": "./dist/utils/meta/meta.json"
     }
   },
   "scripts": {
