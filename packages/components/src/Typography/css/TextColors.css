@@ -74,6 +74,10 @@
   color: var(--color-interactive);
 }
 
+.destructive {
+  color: var(--color-destructive);
+}
+
 .disabled {
   color: var(--color-disabled);
 }
