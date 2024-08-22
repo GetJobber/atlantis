@@ -105,7 +105,7 @@ function InternalStaticThemeProvider({
     >
       <div
         data-theme={dangerouslyOverrideTheme}
-        className={styles.atlantisThemeContext}
+        className={styles.staticThemeProviderWrapper}
       >
         {children}
       </div>

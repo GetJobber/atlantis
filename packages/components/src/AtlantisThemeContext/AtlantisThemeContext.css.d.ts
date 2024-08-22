@@ -1,5 +1,5 @@
 declare const styles: {
-  readonly "atlantisThemeContext": string;
+  readonly "staticThemeProviderWrapper": string;
 };
 export = styles;
 
