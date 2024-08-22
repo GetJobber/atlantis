@@ -10,7 +10,7 @@ import { AtlantisThemeContextProviderProps, Theme } from "./types";
 import { updateTheme } from "./updateTheme";
 import { InlineLabel } from "../InlineLabel";
 
-const expectedDarkTokens = merge(webTokens, darkTokens);
+const expectedDarkTokens = merge({}, webTokens, darkTokens);
 const expectedLightTokens = webTokens;
 
 describe("ThemeContext", () => {
