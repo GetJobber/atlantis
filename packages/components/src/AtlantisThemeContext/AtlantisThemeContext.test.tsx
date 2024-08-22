@@ -38,18 +38,22 @@ describe("ThemeContext", () => {
     });
 
     const currentTheme = results.result.current.theme;
+    const rootHTMLElement =
+      screen.getByTestId("test-wrapper").ownerDocument?.documentElement;
     expect(currentTheme).toBe("light");
+    expect(results.result.current.tokens).toEqual(expectedLightTokens);
 
     act(() => updateTheme("dark"));
-    await waitFor(() => {
-      expect(results.result.current.theme).toBe("dark");
-      expect(results.result.current.tokens).toEqual(expectedDarkTokens);
-    });
+
+    expect(results.result.current.theme).toBe("dark");
+    expect(results.result.current.tokens).toEqual(expectedDarkTokens);
+    expect(rootHTMLElement?.dataset.theme).toBe("dark");
 
     act(() => updateTheme("light"));
     await waitFor(() => {
       expect(results.result.current.theme).toBe("light");
       expect(results.result.current.tokens).toEqual(expectedLightTokens);
+      expect(rootHTMLElement?.dataset.theme).toBe("light");
     });
   });
 
@@ -67,29 +71,29 @@ describe("ThemeContext", () => {
 
     act(() => updateTheme("dark"));
 
-    await waitFor(() => {
-      expect(firstProvider.result.current.theme).toBe("dark");
-      expect(firstProvider.result.current.tokens).toEqual(expectedDarkTokens);
-      expect(secondProvider.result.current.theme).toBe("dark");
-      expect(secondProvider.result.current.tokens).toEqual(expectedDarkTokens);
-    });
+    expect(firstProvider.result.current.theme).toBe("dark");
+    expect(firstProvider.result.current.tokens).toEqual(expectedDarkTokens);
+    expect(secondProvider.result.current.theme).toBe("dark");
+    expect(secondProvider.result.current.tokens).toEqual(expectedDarkTokens);
   });
 
   describe("when theme is forced for provider", () => {
-    it("should add a data-theme attribute to the wrapping element", async () => {
+    it("should add a data-theme attribute for the overriden theme to the wrapping element", async () => {
       renderHook(useAtlantisTheme, {
         wrapper: (props: AtlantisThemeContextProviderProps) => (
           <TestWrapper {...props} dangerouslyOverrideTheme="dark" />
         ),
       });
-      await waitFor(() => {
-        const wrapper = screen.getByTestId("test-wrapper");
-        expect(wrapper.firstElementChild?.getAttribute("data-theme")).toEqual(
-          "dark",
-        );
-      });
+      const wrapper = screen.getByTestId("test-wrapper");
+      expect(wrapper.firstElementChild?.getAttribute("data-theme")).toEqual(
+        "dark",
+      );
 
       act(() => updateTheme("light"));
+
+      expect(wrapper.firstElementChild?.getAttribute("data-theme")).toEqual(
+        "dark",
+      );
     });
 
     it("should not update the theme for other providers", async () => {
@@ -125,10 +129,8 @@ describe("ThemeContext", () => {
 
       act(() => updateTheme("dark"));
 
-      await waitFor(() => {
-        expect(results.result.current.theme).toBe("light");
-        expect(results.result.current.tokens).toEqual(expectedLightTokens);
-      });
+      expect(results.result.current.theme).toBe("light");
+      expect(results.result.current.tokens).toEqual(expectedLightTokens);
     });
 
     it.each([
