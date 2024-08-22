@@ -8,6 +8,7 @@
     "AnimatedSwitcher.Icon",
     "AtlantisContext.Provider",
     "AtlantisContext.Consumer",
+    "AtlantisThemeContextProvider",
     "Avatar",
     "Banner",
     "Box",
