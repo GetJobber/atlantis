@@ -1,5 +1,5 @@
 import React from "react";
-import { act, renderHook, screen, waitFor } from "@testing-library/react";
+import { act, renderHook, screen } from "@testing-library/react";
 import { darkTokens, webTokens } from "@jobber/design";
 import merge from "lodash/merge";
 import {
@@ -41,17 +41,15 @@ describe("ThemeContext", () => {
     expect(results.result.current.tokens).toEqual(expectedLightTokens);
   });
 
+  it("should update the theme and tokens", () => {
     const results = renderHook(useAtlantisTheme, {
       wrapper: (props: AtlantisThemeContextProviderProps) => (
         <TestWrapper {...props} />
       ),
     });
 
-    const currentTheme = results.result.current.theme;
     const rootHTMLElement =
       screen.getByTestId("test-wrapper").ownerDocument?.documentElement;
-    expect(currentTheme).toBe("light");
-    expect(results.result.current.tokens).toEqual(expectedLightTokens);
 
     act(() => updateTheme("dark"));
 
@@ -60,14 +58,12 @@ describe("ThemeContext", () => {
     expect(rootHTMLElement?.dataset.theme).toBe("dark");
 
     act(() => updateTheme("light"));
-    await waitFor(() => {
-      expect(results.result.current.theme).toBe("light");
-      expect(results.result.current.tokens).toEqual(expectedLightTokens);
-      expect(rootHTMLElement?.dataset.theme).toBe("light");
-    });
+    expect(results.result.current.theme).toBe("light");
+    expect(results.result.current.tokens).toEqual(expectedLightTokens);
+    expect(rootHTMLElement?.dataset.theme).toBe("light");
   });
 
-  it("should update the theme and tokens for all theme providers", async () => {
+  it("should update the theme and tokens for all theme providers", () => {
     const firstProvider = renderHook(useAtlantisTheme, {
       wrapper: (props: AtlantisThemeContextProviderProps) => (
         <TestWrapper {...props} />
@@ -88,7 +84,7 @@ describe("ThemeContext", () => {
   });
 
   describe("when theme is forced for provider", () => {
-    it("should add a data-theme attribute for the overriden theme to the wrapping element", async () => {
+    it("should add a data-theme attribute for the overriden theme to the wrapping element", () => {
       renderHook(useAtlantisTheme, {
         wrapper: (props: AtlantisThemeContextProviderProps) => (
           <TestWrapper {...props} dangerouslyOverrideTheme="dark" />
@@ -106,7 +102,7 @@ describe("ThemeContext", () => {
       );
     });
 
-    it("should not update the theme for other providers", async () => {
+    it("should not update the theme for other providers", () => {
       const firstProvider = renderHook(useAtlantisTheme, {
         wrapper: (props: AtlantisThemeContextProviderProps) => (
           <TestWrapper {...props} />
@@ -118,19 +114,14 @@ describe("ThemeContext", () => {
         ),
       });
 
-      await waitFor(() => {
-        expect(firstProvider.result.current.theme).toBe("light");
-        expect(firstProvider.result.current.tokens).toEqual(
-          expectedLightTokens,
-        );
-        expect(secondProvider.result.current.theme).toBe("dark");
-        expect(secondProvider.result.current.tokens).toEqual(
-          expectedDarkTokens,
-        );
-      });
+      expect(firstProvider.result.current.theme).toBe("light");
+      expect(firstProvider.result.current.tokens).toEqual(expectedLightTokens);
+
+      expect(secondProvider.result.current.theme).toBe("dark");
+      expect(secondProvider.result.current.tokens).toEqual(expectedDarkTokens);
     });
 
-    it("should ignore updates to the theme", async () => {
+    it("should ignore updates to the theme", () => {
       const results = renderHook(useAtlantisTheme, {
         wrapper: (props: AtlantisThemeContextProviderProps) => (
           <TestWrapper {...props} dangerouslyOverrideTheme="light" />
