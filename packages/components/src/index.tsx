@@ -1,6 +1,7 @@
 export * from "./AnimatedPresence";
 export * from "./AnimatedSwitcher";
 export * from "./AtlantisContext";
+export * from "./AtlantisThemeContext";
 export { Autocomplete } from "./Autocomplete";
 export * from "./Avatar";
 export * from "./Banner";
@@ -74,4 +75,3 @@ export * from "./Text";
 export * from "./Toast";
 export * from "./Tooltip";
 export * from "./Typography";
-export * from "./AtlantisThemeContext";
