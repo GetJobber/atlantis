@@ -50,7 +50,7 @@ function InternalDynamicThemeProvider({ children }: PropsWithChildren) {
     (globalThis.document.documentElement.dataset.theme as Theme) ?? "light";
 
   const [internalTheme, setInternalTheme] = useState<Theme>(initialTheme);
-  const currentTokens = initialTheme === "dark" ? actualDarkTokens : tokens;
+  const currentTokens = internalTheme === "dark" ? actualDarkTokens : tokens;
 
   const handleThemeChangeEvent = useCallback((event: Event) => {
     const newTheme = (event as CustomEvent<ThemeChangeDetails>).detail.theme;
