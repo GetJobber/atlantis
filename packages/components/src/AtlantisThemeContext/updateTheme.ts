@@ -6,10 +6,11 @@ import { THEME_CHANGE_EVENT, Theme, ThemeChangeDetails } from "./types";
  * Will dispatch a custom event "atlantis.toggle-theme" with the new theme for other providers to subscribe to.
  */
 export function updateTheme(theme: Theme) {
+  if (!globalThis.window) return;
+
   const event = new CustomEvent<ThemeChangeDetails>(THEME_CHANGE_EVENT, {
     detail: { theme },
   });
-  if (!globalThis.window) return;
   globalThis.document.documentElement.setAttribute("data-theme", theme);
   globalThis.window.dispatchEvent(event);
 }
