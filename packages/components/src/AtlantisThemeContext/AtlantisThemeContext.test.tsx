@@ -29,16 +29,36 @@ describe("ThemeContext", () => {
       </div>
     );
   }
-
-  it("should provide the default theme and tokens", () => {
-    const results = renderHook(useAtlantisTheme, {
-      wrapper: (props: AtlantisThemeContextProviderProps) => (
-        <TestWrapper {...props} />
-      ),
+  describe("when the theme is already set on the root element", () => {
+    afterAll(() => {
+      delete globalThis.document.documentElement.dataset.theme;
     });
 
-    expect(results.result.current.theme).toBe("light");
-    expect(results.result.current.tokens).toEqual(expectedLightTokens);
+    it("should use the theme already set", () => {
+      globalThis.document.documentElement.dataset.theme = "dark";
+
+      const results = renderHook(useAtlantisTheme, {
+        wrapper: (props: AtlantisThemeContextProviderProps) => (
+          <TestWrapper {...props} />
+        ),
+      });
+
+      expect(results.result.current.theme).toBe("dark");
+      expect(results.result.current.tokens).toEqual(expectedDarkTokens);
+    });
+  });
+
+  describe("when the theme is not set on the root element", () => {
+    it("should use the light theme theme", () => {
+      const results = renderHook(useAtlantisTheme, {
+        wrapper: (props: AtlantisThemeContextProviderProps) => (
+          <TestWrapper {...props} />
+        ),
+      });
+
+      expect(results.result.current.theme).toBe("light");
+      expect(results.result.current.tokens).toEqual(expectedLightTokens);
+    });
   });
 
   it("should update the theme and tokens", () => {
