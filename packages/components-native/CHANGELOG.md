@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.71.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.71.0...@jobber/components-native@0.71.1) (2024-08-22)
+
+
+### Bug Fixes
+
+* **components:** Sort meta.json ([#1994](https://github.com/GetJobber/atlantis/issues/1994)) ([6fe9fa2](https://github.com/GetJobber/atlantis/commit/6fe9fa244a08dad4ee46537fa247675a8dbdd561))
+
+
+
+
+
 # [0.71.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.70.0...@jobber/components-native@0.71.0) (2024-08-22)
 
 
