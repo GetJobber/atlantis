@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.27.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.26.0...@jobber/components@5.27.0) (2024-08-22)
+
+
+### Bug Fixes
+
+* Fix failing test on master relating meta.json ([#1993](https://github.com/GetJobber/atlantis/issues/1993)) ([9c3382f](https://github.com/GetJobber/atlantis/commit/9c3382fb32f4ed21f7daeeb0884ed52bf805fba2))
+
+
+### Features
+
+* **components:** add theme context provider ([#1981](https://github.com/GetJobber/atlantis/issues/1981)) ([c2902d1](https://github.com/GetJobber/atlantis/commit/c2902d1366d6214f9a7a7bcfe5b66f03beb7d49e))
+
+
+
+
+
 # [5.26.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.25.0...@jobber/components@5.26.0) (2024-08-22)
 
 
