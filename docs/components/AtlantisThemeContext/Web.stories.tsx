@@ -130,7 +130,7 @@ const ForceThemeTemplate: ComponentStory<
       <AtlantisThemeContextProvider {...args}>
         <ChildrenComponent message="It is possible to have a provider ignore Theme Changes" />
       </AtlantisThemeContextProvider>
-      <AtlantisThemeContextProvider dangerouslyForceThemeForProvider="dark">
+      <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
         <SecondProviderUsage message="This theme provider will always use the dark theme" />
       </AtlantisThemeContextProvider>
     </>

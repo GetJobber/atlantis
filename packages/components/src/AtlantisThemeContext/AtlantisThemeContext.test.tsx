@@ -16,12 +16,12 @@ const expectedLightTokens = webTokens;
 describe("ThemeContext", () => {
   function TestWrapper({
     children,
-    dangerouslyForceThemeForProvider,
+    dangerouslyOverrideTheme,
   }: AtlantisThemeContextProviderProps) {
     return (
       <div data-testid="test-wrapper">
         <AtlantisThemeContextProvider
-          dangerouslyForceThemeForProvider={dangerouslyForceThemeForProvider}
+          dangerouslyOverrideTheme={dangerouslyOverrideTheme}
         >
           <InlineLabel color="red">Past due</InlineLabel>
           {children}
@@ -79,7 +79,7 @@ describe("ThemeContext", () => {
     it("should add a data-theme attribute to the wrapping element", async () => {
       renderHook(useAtlantisTheme, {
         wrapper: (props: AtlantisThemeContextProviderProps) => (
-          <TestWrapper {...props} dangerouslyForceThemeForProvider="dark" />
+          <TestWrapper {...props} dangerouslyOverrideTheme="dark" />
         ),
       });
       await waitFor(() => {
@@ -100,7 +100,7 @@ describe("ThemeContext", () => {
       });
       const secondProvider = renderHook(useAtlantisTheme, {
         wrapper: (props: AtlantisThemeContextProviderProps) => (
-          <TestWrapper {...props} dangerouslyForceThemeForProvider="dark" />
+          <TestWrapper {...props} dangerouslyOverrideTheme="dark" />
         ),
       });
 
@@ -119,7 +119,7 @@ describe("ThemeContext", () => {
     it("should ignore updates to the theme", async () => {
       const results = renderHook(useAtlantisTheme, {
         wrapper: (props: AtlantisThemeContextProviderProps) => (
-          <TestWrapper {...props} dangerouslyForceThemeForProvider="light" />
+          <TestWrapper {...props} dangerouslyOverrideTheme="light" />
         ),
       });
 
@@ -135,14 +135,11 @@ describe("ThemeContext", () => {
       { defaultTheme: "light", expectedTokens: expectedLightTokens },
       { defaultTheme: "dark", expectedTokens: expectedDarkTokens },
     ] as { defaultTheme: Theme; expectedTokens: typeof webTokens }[])(
-      "should provide the dangerouslyForceThemeForProvider $defaultTheme tokens",
+      "should provide the dangerouslyOverrideTheme $defaultTheme tokens",
       ({ defaultTheme, expectedTokens }) => {
         const results = renderHook(useAtlantisTheme, {
           wrapper: (props: AtlantisThemeContextProviderProps) => (
-            <TestWrapper
-              {...props}
-              dangerouslyForceThemeForProvider={defaultTheme}
-            />
+            <TestWrapper {...props} dangerouslyOverrideTheme={defaultTheme} />
           ),
         });
 

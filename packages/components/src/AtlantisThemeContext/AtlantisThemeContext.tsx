@@ -28,12 +28,12 @@ const AtlantisThemeContext = createContext(atlantisThemeContextDefaultValues);
 
 export function AtlantisThemeContextProvider({
   children,
-  dangerouslyForceThemeForProvider,
+  dangerouslyOverrideTheme,
 }: AtlantisThemeContextProviderProps) {
-  if (dangerouslyForceThemeForProvider) {
+  if (dangerouslyOverrideTheme) {
     return (
       <InternalStaticThemeProvider
-        dangerouslyForceThemeForProvider={dangerouslyForceThemeForProvider}
+        dangerouslyOverrideTheme={dangerouslyOverrideTheme}
       >
         {children}
       </InternalStaticThemeProvider>
@@ -65,7 +65,6 @@ function InternalDynamicThemeProvider({ children }: PropsWithChildren) {
     );
 
     return () => {
-      if (!globalThis.window) return;
       globalThis.window.removeEventListener(
         THEME_CHANGE_EVENT,
         handleThemeChangeEvent,
@@ -86,26 +85,26 @@ function InternalDynamicThemeProvider({ children }: PropsWithChildren) {
 }
 
 function InternalStaticThemeProvider({
-  dangerouslyForceThemeForProvider,
+  dangerouslyOverrideTheme,
   children,
 }: Required<
   Pick<
     AtlantisThemeContextProviderProps,
-    "dangerouslyForceThemeForProvider" | "children"
+    "dangerouslyOverrideTheme" | "children"
   >
 >) {
   const currentTokens =
-    dangerouslyForceThemeForProvider === "dark" ? actualDarkTokens : tokens;
+    dangerouslyOverrideTheme === "dark" ? actualDarkTokens : tokens;
 
   return (
     <AtlantisThemeContext.Provider
       value={{
-        theme: dangerouslyForceThemeForProvider,
+        theme: dangerouslyOverrideTheme,
         tokens: currentTokens,
       }}
     >
       <div
-        data-theme={dangerouslyForceThemeForProvider}
+        data-theme={dangerouslyOverrideTheme}
         className={styles.atlantisThemeContext}
       >
         {children}

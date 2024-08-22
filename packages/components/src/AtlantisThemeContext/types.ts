@@ -22,7 +22,7 @@ export interface AtlantisThemeContextProviderProps extends PropsWithChildren {
   /**
    * Force the theme for this provider to always be the same as the provided defaultTheme.
    */
-  readonly dangerouslyForceThemeForProvider?: Theme;
+  readonly dangerouslyOverrideTheme?: Theme;
 }
 
 export type Theme = "light" | "dark";
