@@ -12,6 +12,7 @@ describe("meta", () => {
   it("verifies that the meta.json file is up to date", async () => {
     const meta = await fs.readFile(`${__dirname}/meta.json`, "utf-8");
     const allNames = findComponentNamesDeep(allExports);
+    allNames.sort();
 
     expect(JSON.parse(meta)).toStrictEqual({
       exportedComponents: allNames,
