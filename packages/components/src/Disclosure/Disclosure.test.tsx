@@ -1,6 +1,7 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { Disclosure } from ".";
+import { Icon } from "../Icon";
 
 it("renders a Disclosure", () => {
   const { container } = render(
@@ -31,4 +32,24 @@ it("renders a Disclosure that is opened if `defaultOpen` is set", () => {
 
   const detailsElement = queryByRole("group");
   expect(detailsElement.getAttribute("open")).not.toBeNull();
+});
+
+describe("When a custom title is provided", () => {
+  it("renders the custom title", () => {
+    render(
+      <Disclosure
+        title={
+          <>
+            <Icon name="archive" />
+            <span>Custom Title</span>
+          </>
+        }
+      >
+        <span>Content</span>
+      </Disclosure>,
+    );
+
+    expect(screen.getByText("Custom Title")).toBeInTheDocument();
+    expect(screen.getByTestId("archive")).toBeInTheDocument();
+  });
 });
