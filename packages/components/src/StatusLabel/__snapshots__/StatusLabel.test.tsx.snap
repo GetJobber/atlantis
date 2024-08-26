@@ -15,7 +15,7 @@ exports[`renders a critical StatusLabel 1`] = `
       />
     </div>
     <p
-      class="base regular small critical"
+      class="base regular small"
     >
       Foo
     </p>
@@ -38,7 +38,7 @@ exports[`renders a successful StatusLabel 1`] = `
       />
     </div>
     <p
-      class="base regular small success"
+      class="base regular small"
     >
       Foo
     </p>
@@ -61,7 +61,7 @@ exports[`renders a warning StatusLabel 1`] = `
       />
     </div>
     <p
-      class="base regular small warning"
+      class="base regular small"
     >
       Foo
     </p>
@@ -84,7 +84,7 @@ exports[`renders an end-aligned StatusLabel 1`] = `
       />
     </div>
     <p
-      class="base regular small informative end"
+      class="base regular small end"
     >
       Foo
     </p>
@@ -107,7 +107,7 @@ exports[`renders an inactive StatusLabel 1`] = `
       />
     </div>
     <p
-      class="base regular small inactive"
+      class="base regular small"
     >
       Foo
     </p>
@@ -130,7 +130,7 @@ exports[`renders an informative StatusLabel 1`] = `
       />
     </div>
     <p
-      class="base regular small informative"
+      class="base regular small"
     >
       Foo
     </p>
