@@ -52,4 +52,16 @@ describe("When a custom title is provided", () => {
     expect(screen.getByText("Custom Title")).toBeInTheDocument();
     expect(screen.getByTestId("archive")).toBeInTheDocument();
   });
+
+  it("renders the custom title with a custom class", () => {
+    render(
+      <Disclosure title={<span>Custom Title</span>}>
+        <span>Content</span>
+      </Disclosure>,
+    );
+
+    expect(screen.getByText("Custom Title").parentElement).toHaveClass(
+      "customSummaryWrap",
+    );
+  });
 });
