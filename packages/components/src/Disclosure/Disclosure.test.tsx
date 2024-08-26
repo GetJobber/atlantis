@@ -53,15 +53,16 @@ describe("When a custom title is provided", () => {
     expect(screen.getByTestId("archive")).toBeInTheDocument();
   });
 
-  it("renders the custom title with a custom class", () => {
+  it("should not render a custom title if the passed 'title' is a string", () => {
+    const title = "String Title";
+    const customTitleClass = "customSummaryWrap";
     render(
-      <Disclosure title={<span>Custom Title</span>}>
+      <Disclosure title={title}>
         <span>Content</span>
       </Disclosure>,
     );
-
-    expect(screen.getByText("Custom Title").parentElement).toHaveClass(
-      "customSummaryWrap",
+    expect(screen.getByText(title).parentElement).not.toHaveClass(
+      customTitleClass,
     );
   });
 });
