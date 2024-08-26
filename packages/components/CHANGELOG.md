@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.27.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.27.1...@jobber/components@5.27.2) (2024-08-26)
+
+
+### Bug Fixes
+
+* **components:** improve coherence of StatusLabel "critical" variant [JOB-98327] ([#1985](https://github.com/GetJobber/atlantis/issues/1985)) ([00ee2b0](https://github.com/GetJobber/atlantis/commit/00ee2b01957f8304cb2560a433754f413e8c911c))
+
+
+
+
+
 ## [5.27.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.27.0...@jobber/components@5.27.1) (2024-08-22)
 
 
