@@ -88,7 +88,7 @@ interface DisclosureTitleProps {
   readonly size: "base" | "large";
 }
 
-const DisclosureTitle = ({ title, size }: DisclosureTitleProps) => {
+function DisclosureTitle({ title, size }: DisclosureTitleProps) {
   if (typeof title !== "string") return <>{title}</>;
 
   return (
@@ -96,4 +96,4 @@ const DisclosureTitle = ({ title, size }: DisclosureTitleProps) => {
       {title}
     </Typography>
   );
-};
+}
