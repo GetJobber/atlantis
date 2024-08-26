@@ -34,7 +34,15 @@ export function InternalChipMultiSelect({
               {...chip.props}
               active={isChipActive}
               {...(isChipActive
-                ? { suffix: <Icon size="small" name="checkmark" /> }
+                ? {
+                    suffix: (
+                      <Icon
+                        size="small"
+                        name="checkmark"
+                        customColor="interactiveSubtle"
+                      />
+                    ),
+                  }
                 : {})}
             />
           </label>

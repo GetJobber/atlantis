@@ -39,7 +39,13 @@ export function InternalChipSingleSelect({
               {...child.props}
               {...(isSelected
                 ? {
-                    suffix: <Icon size="small" name="checkmark" />,
+                    suffix: (
+                      <Icon
+                        size="small"
+                        name="checkmark"
+                        customColor="interactiveSubtle"
+                      />
+                    ),
                   }
                 : {})}
               active={isSelected}
