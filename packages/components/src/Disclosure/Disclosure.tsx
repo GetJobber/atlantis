@@ -52,18 +52,10 @@ export function Disclosure({
           })}
           ref={titleRef}
         >
-          {isTitleString ? (
-            <Typography
-              element="h4"
-              size={isBelowBreakpoint ? "base" : "large"}
-              fontWeight="bold"
-              textColor="heading"
-            >
-              {title}
-            </Typography>
-          ) : (
-            title
-          )}
+          <DisclosureTitle
+            title={title}
+            size={isBelowBreakpoint ? "base" : "large"}
+          />
           <span className={styles.arrowIconWrapper}>
             <Icon size="large" name="arrowDown" color="green" />
           </span>
@@ -84,3 +76,24 @@ export function Disclosure({
     setOpen(!currentToggleState);
   }
 }
+
+interface DisclosureTitleProps {
+  /**
+   * Title for the disclosure pane.
+   */
+  readonly title: string | ReactNode | ReactNode[];
+  /**
+   * Size when the title is string.
+   */
+  readonly size: "base" | "large";
+}
+
+const DisclosureTitle = ({ title, size }: DisclosureTitleProps) => {
+  if (typeof title !== "string") return <>{title}</>;
+
+  return (
+    <Typography element="h4" size={size} fontWeight="bold" textColor="heading">
+      {title}
+    </Typography>
+  );
+};
