@@ -55,6 +55,7 @@ export function Disclosure({
           <DisclosureTitle
             title={title}
             size={isBelowBreakpoint ? "base" : "large"}
+            isTitleString={isTitleString}
           />
           <span className={styles.arrowIconWrapper}>
             <Icon size="large" name="arrowDown" color="green" />
@@ -86,10 +87,14 @@ interface DisclosureTitleProps {
    * Size when the title is string.
    */
   readonly size: "base" | "large";
+  /**
+   * Whether the title is a string.
+   */
+  readonly isTitleString: boolean;
 }
 
-function DisclosureTitle({ title, size }: DisclosureTitleProps) {
-  if (typeof title !== "string") return <>{title}</>;
+function DisclosureTitle({ title, size, isTitleString }: DisclosureTitleProps) {
+  if (!isTitleString) return <>{title}</>;
 
   return (
     <Typography element="h4" size={size} fontWeight="bold" textColor="heading">
