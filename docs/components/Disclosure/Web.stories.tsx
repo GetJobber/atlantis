@@ -35,7 +35,7 @@ CustomTitle.args = {
   title: (
     <Flex template={["shrink", "grow"]} gap="small">
       <Icon name="sparkles" />
-      <Heading level={5} element="h4">
+      <Heading level={5} element="span">
         Jobber Pro Tips
       </Heading>
     </Flex>

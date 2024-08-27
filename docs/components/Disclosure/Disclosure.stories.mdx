@@ -31,7 +31,14 @@ to change but is not required to.
 ## Content guidelines
 
 - `title` should be informative and label the type of content grouped in the
-  body of the Disclosure
+  body of the Disclosure.
+  - This can either be a string or a React component. If a React component is
+    used (containing multiple children), it should be wrapped in a container
+    element and not a `<Fragment>` to maintain correct UI styling.
+  - The elements passed as a `title` should ideally be of a
+    ["phrasing content"](https://developer.mozilla.org/en-US/docs/Web/HTML/Content_categories#phrasing_content)
+    type to ensure that the title is accessible and can be properly read by
+    screen readers.
 - `children` should be actionable and clear. The contents of a Disclosure can
   be:
   - plain text
