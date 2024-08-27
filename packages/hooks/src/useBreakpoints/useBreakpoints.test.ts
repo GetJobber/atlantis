@@ -6,8 +6,8 @@ const { cleanup, setViewportWidth } = mockViewportWidth();
 
 afterEach(cleanup);
 
-describe.each(["1", "2", "3", "4", "5", "6"])("useBreakpoints", () => {
-  describe.each(["1", "2", "3", "4", "5", "6"])("and up", () => {
+describe("useBreakpoints", () => {
+  describe("and up", () => {
     it("should have the correct breakpoint values on xl size screens", () => {
       setViewportWidth(BREAKPOINT_SIZES.xl);
       const { result } = renderHook(useBreakpoints);
@@ -60,7 +60,7 @@ describe.each(["1", "2", "3", "4", "5", "6"])("useBreakpoints", () => {
     });
   });
 
-  describe.each(["1", "2", "3", "4", "5", "6"])("only", () => {
+  describe("only", () => {
     it("should only set the extraSmallOnly to true on smaller than sm", () => {
       setViewportWidth(BREAKPOINT_SIZES.sm - 1);
       const { result } = renderHook(useBreakpoints);
@@ -110,7 +110,7 @@ describe.each(["1", "2", "3", "4", "5", "6"])("useBreakpoints", () => {
     });
   });
 
-  describe.each(["1", "2", "3", "4", "5", "6"])("in between values", () => {
+  describe("in between values", () => {
     function randomBreakpoint(min: number, max: number) {
       return Math.floor(min + Math.random() * (max - min));
     }
