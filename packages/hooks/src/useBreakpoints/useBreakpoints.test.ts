@@ -1,4 +1,5 @@
 import { renderHook } from "@testing-library/react";
+import random from "lodash/random";
 import { mockViewportWidth } from "./mockViewportWidth";
 import { BREAKPOINT_SIZES, useBreakpoints } from "./useBreakpoints";
 
@@ -112,7 +113,7 @@ describe("useBreakpoints", () => {
 
   describe("in between values", () => {
     function randomBreakpoint(min: number, max: number) {
-      return Math.floor(min + Math.random() * (max - min));
+      return random(min, max - 1);
     }
 
     it("should have the correct breakpoint values on higher than xl size screens", () => {
