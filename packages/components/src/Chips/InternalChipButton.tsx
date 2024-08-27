@@ -64,7 +64,7 @@ export function InternalChipButton({
     if (disabled) return "disabled";
     if (invalid) return "critical";
 
-    return "greyBlue";
+    return "interactiveSubtle";
   }
 
   function handleClick(event: MouseEvent<HTMLDivElement>) {
