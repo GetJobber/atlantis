@@ -129,7 +129,7 @@ describe.each(["1", "2", "3", "4", "5", "6"])("useBreakpoints", () => {
 
     it("should have the correct breakpoint values on lg size screens", () => {
       setViewportWidth(
-        randomBreakpoint(BREAKPOINT_SIZES.lg, BREAKPOINT_SIZES.xl),
+        randomBreakpoint(BREAKPOINT_SIZES.lg, BREAKPOINT_SIZES.xl - 1),
       );
       const { result } = renderHook(useBreakpoints);
 
@@ -144,7 +144,7 @@ describe.each(["1", "2", "3", "4", "5", "6"])("useBreakpoints", () => {
 
     it("should have the correct breakpoint values on md size screens", () => {
       setViewportWidth(
-        randomBreakpoint(BREAKPOINT_SIZES.md, BREAKPOINT_SIZES.lg),
+        randomBreakpoint(BREAKPOINT_SIZES.md, BREAKPOINT_SIZES.lg - 1),
       );
       const { result } = renderHook(useBreakpoints);
 
@@ -159,7 +159,7 @@ describe.each(["1", "2", "3", "4", "5", "6"])("useBreakpoints", () => {
 
     it("should have the correct breakpoint values on sm size screens", () => {
       setViewportWidth(
-        randomBreakpoint(BREAKPOINT_SIZES.sm, BREAKPOINT_SIZES.md),
+        randomBreakpoint(BREAKPOINT_SIZES.sm, BREAKPOINT_SIZES.md - 1),
       );
       const { result } = renderHook(useBreakpoints);
 
