@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.28.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.27.2...@jobber/components@5.28.0) (2024-08-27)
+
+
+### Features
+
+* **components:** allow custom title for Disclosure ([#1992](https://github.com/GetJobber/atlantis/issues/1992)) ([2b6e6cd](https://github.com/GetJobber/atlantis/commit/2b6e6cdb13a3afad9ca85ff163406cac674f1cbd))
+
+
+
+
+
 ## [5.27.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.27.1...@jobber/components@5.27.2) (2024-08-26)
 
 
