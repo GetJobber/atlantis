@@ -59,16 +59,12 @@
  */
 
 .chip:focus,
+.input:focus-visible ~ div[role="option"],
 .input:focus-visible ~ div[role="button"] {
   box-shadow: var(--shadow-focus);
   outline: none;
 }
 
-.chip:focus,
-.input:focus-visible ~ div[role="option"] {
-  box-shadow: var(--shadow-focus);
-  outline: none;
-}
 .clickable:hover,
 .input ~ .chip:not(.active):hover,
 .input:focus ~ .chip:not(.active) {
