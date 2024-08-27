@@ -43,7 +43,7 @@ export function InternalChipSingleSelect({
                       <Icon
                         size="small"
                         name="checkmark"
-                        customColor="interactiveSubtle"
+                        color="interactiveSubtle"
                       />
                     ),
                   }

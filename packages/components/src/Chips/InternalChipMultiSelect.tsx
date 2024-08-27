@@ -39,7 +39,7 @@ export function InternalChipMultiSelect({
                       <Icon
                         size="small"
                         name="checkmark"
-                        customColor="interactiveSubtle"
+                        color="interactiveSubtle"
                       />
                     ),
                   }
