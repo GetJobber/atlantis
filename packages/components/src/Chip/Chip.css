@@ -9,6 +9,7 @@
   position: relative;
   height: var(--chip-height);
   min-width: 0;
+  box-sizing: border-box;
   padding: 0 var(--base-unit);
   border: var(--border-base) solid transparent;
   border-radius: var(--chip-radius);
