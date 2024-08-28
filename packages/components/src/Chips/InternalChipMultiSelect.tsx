@@ -44,6 +44,7 @@ export function InternalChipMultiSelect({
                     ),
                   }
                 : {})}
+              tabIndex={undefined}
             />
           </label>
         );
