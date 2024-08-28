@@ -21,7 +21,7 @@ export const Chip = ({
   onKeyDown,
   children,
   role = "button",
-  tabIndex,
+  tabIndex = 0,
   variation = "base",
 }: ChipProps): JSX.Element => {
   const classes = classnames(styles.chip, {

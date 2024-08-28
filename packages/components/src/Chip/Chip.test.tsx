@@ -52,6 +52,13 @@ describe("Chip", () => {
     expect(getByRole("button")).toBeInstanceOf(HTMLDivElement);
   });
 
+  it("should have a tabIndex of zero if one is not provided", () => {
+    const { getByRole } = render(<Chip label="Test Chip" />);
+
+    expect(getByRole("button")).toHaveAttribute("tabIndex", "0");
+    expect(getByRole("button")).toBeInstanceOf(HTMLDivElement);
+  });
+
   it("should set aria-label if one is provided", () => {
     const { getByRole } = render(
       <Chip label="Test Chip" ariaLabel="Test Label" />,
