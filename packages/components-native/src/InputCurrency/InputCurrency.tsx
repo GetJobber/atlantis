@@ -189,7 +189,7 @@ export function InputCurrency(props: InputCurrencyProps): JSX.Element {
         pattern: {
           value: NUMBER_VALIDATION_REGEX,
           message: t("errors.notANumber"),
-        },
+        } as unknown as undefined,
         ...props.validations,
       }}
       onBlur={() => {

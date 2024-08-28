@@ -63,7 +63,7 @@ export function useComboboxAccessibility(
     if (open) {
       handleClose();
     }
-  }, "Escape");
+  }, {key:"Escape"});
 
   function handleContentKeydown(event: KeyboardEvent) {
     if (!hasOptionsVisible) return;

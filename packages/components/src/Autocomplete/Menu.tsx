@@ -132,7 +132,7 @@ export function Menu({
           Math.min(options.length - 1, highlightedIndex + indexChange),
         );
       }
-    }, "ArrowDown");
+    }, {key:"ArrowDown"});
 
     useOnKeyDown((event: KeyboardEvent) => {
       const indexChange = arrowKeyPress(event, IndexChange.Previous);
@@ -140,7 +140,7 @@ export function Menu({
       if (indexChange) {
         setHighlightedIndex(Math.max(0, highlightedIndex + indexChange));
       }
-    }, "ArrowUp");
+    }, {key:"ArrowUp"});
 
     useOnKeyDown((event: KeyboardEvent) => {
       if (!visible) return;
@@ -148,7 +148,7 @@ export function Menu({
 
       event.preventDefault();
       onOptionSelect(options[highlightedIndex]);
-    }, "Enter");
+    }, {key:"Enter"});
   }
 
   function arrowKeyPress(event: KeyboardEvent, direction: number) {

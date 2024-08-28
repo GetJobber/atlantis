@@ -54,9 +54,9 @@ export function useFormController<T>({
 
   if (fieldIdentifiers.length === 3) {
     const [section, item, identifier] = fieldIdentifiers;
-    error = errors[section]?.[item]?.[identifier];
+    error = (errors[section] as unknown as Record<string,Record<string,FieldError>>)?.[item]?.[identifier];
   } else {
-    error = errors[fieldName];
+    error = errors[fieldName] as FieldError;
   }
 
   return { error, field };

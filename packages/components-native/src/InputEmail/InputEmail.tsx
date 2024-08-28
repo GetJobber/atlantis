@@ -17,7 +17,7 @@ function InputEmailInternal(props: InputEmailProps, ref: Ref<InputTextRef>) {
           value:
             /[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?/,
           message: "Enter a valid email address (email@example.com)",
-        },
+        } as unknown as undefined,
         ...props.validations,
       }}
     />

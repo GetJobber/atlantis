@@ -104,7 +104,7 @@ export function LightBox({
 
   useRefocusOnActivator(open);
 
-  useOnKeyDown(handleRequestClose, "Escape");
+  useOnKeyDown(handleRequestClose, {key:"Escape"});
 
   useOnKeyDown(debouncedHandlePrevious, {
     key: "ArrowLeft",

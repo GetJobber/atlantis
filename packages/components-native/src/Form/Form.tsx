@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FieldValues, FormProvider } from "react-hook-form";
+import { FieldValues, FormProvider, SubmitHandler } from "react-hook-form";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import {
   Keyboard,
@@ -150,7 +150,7 @@ function InternalForm<T extends FieldValues, S>({
 
         <FormBody
           keyboardHeight={calculateSaveButtonOffset()}
-          submit={handleSubmit(internalSubmit)}
+          submit={handleSubmit(internalSubmit as SubmitHandler<T>)}
           isFormSubmitting={isSubmitting}
           saveButtonLabel={saveButtonLabel}
           shouldRenderActionBar={saveButtonPosition === "sticky"}
@@ -193,13 +193,13 @@ function InternalForm<T extends FieldValues, S>({
                     <View style={styles.fixedSaveButton}>
                       {renderStickySection ? (
                         renderStickySection(
-                          handleSubmit(internalSubmit),
+                          handleSubmit(internalSubmit as SubmitHandler<T>),
                           saveButtonLabel,
                           isSubmitting,
                         )
                       ) : (
                         <FormSaveButton
-                          primaryAction={handleSubmit(internalSubmit)}
+                          primaryAction={handleSubmit(internalSubmit as SubmitHandler<T>)}
                           label={saveButtonLabel}
                           loading={isSubmitting}
                           secondaryActions={secondaryActions}
@@ -287,7 +287,7 @@ function InternalForm<T extends FieldValues, S>({
   function handleRetry() {
     clearFormErrors();
 
-    return handleSubmit(internalSubmit)();
+    return handleSubmit(internalSubmit as SubmitHandler<T>)();
   }
 
   function calculateSaveButtonOffset() {

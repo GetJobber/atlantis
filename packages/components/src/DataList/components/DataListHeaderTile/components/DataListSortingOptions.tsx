@@ -23,7 +23,7 @@ export function DataListSortingOptions({
   dataListHeaderTileRef,
 }: DataListSortingOptionsProps) {
   useRefocusOnActivator(!optionsListRef.current);
-  useOnKeyDown(() => onClose(), "Escape");
+  useOnKeyDown(() => onClose(), {key:"Escape"});
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);

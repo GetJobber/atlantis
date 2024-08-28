@@ -227,7 +227,7 @@ export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
     });
   }, [title, message, confirmLabel, cancelLabel, onConfirm, onCancel]);
 
-  useOnKeyDown(handleKeyboardShortcut, ["Escape", "Enter"]);
+  useOnKeyDown(handleKeyboardShortcut, [{key:"Escape"}, {key:"Enter"}]);
 
   return (
     <Modal

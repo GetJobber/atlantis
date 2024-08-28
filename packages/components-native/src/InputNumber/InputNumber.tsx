@@ -60,7 +60,7 @@ function InputNumberInternal(props: InputNumberProps, ref: Ref<InputTextRef>) {
         pattern: {
           value: NUMBER_VALIDATION_REGEX,
           message: t("errors.notANumber"),
-        },
+        } as unknown as undefined,
         ...props.validations,
       }}
     />

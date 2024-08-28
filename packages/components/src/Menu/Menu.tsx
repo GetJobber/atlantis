@@ -77,7 +77,7 @@ export function Menu({ activator, items }: MenuProps) {
     [styles.fullWidth]: fullWidth,
   });
 
-  useOnKeyDown(handleKeyboardShortcut, ["Escape"]);
+  useOnKeyDown(handleKeyboardShortcut, [{key:"Escape"}]);
 
   // useRefocusOnActivator must come before useFocusTrap for them both to work
   useRefocusOnActivator(visible);

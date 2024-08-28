@@ -1,6 +1,8 @@
 import React from "react";
 import Svg, { Path } from "react-native-svg";
 import { IconColorNames, IconNames, IconSizes, getIcon } from "@jobber/design";
+import { StyleProp, ViewStyle } from "react-native";
+import { StyleProps } from "react-native-reanimated";
 
 export interface IconProps {
   /** The icon to show.  */
@@ -51,7 +53,7 @@ export function Icon({
 
   return (
     <Svg
-      style={{ ...svgStyle, display: "flex" }}
+      style={{ ...svgStyle as StyleProps, display: "flex" }}
       testID={testID || name}
       viewBox={viewBox}
     >

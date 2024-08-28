@@ -53,7 +53,7 @@ export function useInternalForm<T extends FieldValues, SubmitResponseType>({
   const formMethods = useForm<T>({
     mode,
     reValidateMode,
-    defaultValues: initialValues,
+    defaultValues: initialValues as any,
     shouldFocusError: false,
   });
 

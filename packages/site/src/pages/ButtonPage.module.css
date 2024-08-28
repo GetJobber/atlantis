@@ -1,0 +1,22 @@
+component-documentation {
+    padding: 20px;
+    display: block;
+}
+
+preview-window {
+    width: 100%;
+    height: 20vh;
+    display: flex;
+    align-items: center;
+}
+
+preview-modifiers {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+preview-modifier {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}

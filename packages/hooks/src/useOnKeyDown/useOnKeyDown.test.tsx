@@ -25,7 +25,7 @@ interface TestComponentProps {
 }
 
 function TestComponent({ callback }: TestComponentProps) {
-  useOnKeyDown(callback, "Enter");
+  useOnKeyDown(callback, {key:'Enter'});
 
   return <>Look at me!</>;
 }

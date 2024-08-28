@@ -10,14 +10,13 @@ import postcssimport from "postcss-import";
 import autoprefixer from "autoprefixer";
 import tools from "@csstools/postcss-global-data";
 import presetenv from "postcss-preset-env";
-import multiInput from "rollup-plugin-multi-input";
 import nodePolyfills from "rollup-plugin-polyfill-node";
 import alias from "@rollup/plugin-alias";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 export default {
-  input: `src/**/index.{ts,tsx}`,
+  input: `src/index.tsx`,
   plugins: [
     nodePolyfills(),
     alias({
@@ -30,9 +29,10 @@ export default {
       ],
     }),
     nodeResolve(),
-    multiInput.default(),
     typescript({
       tsconfig: "./tsconfig.rollup.json",
+      declaration: true,
+      outputToFilesystem: true,
       declarationDir: "dist",
       noEmitOnError: true,
     }),
@@ -130,18 +130,21 @@ export default {
       dir: "dist",
       entryFileNames: "[name].cjs",
       exports: "named",
+      preserveModules: true,
+      preserveModulesRoot: "src",
       format: "cjs",
     },
     {
       dir: "dist",
       entryFileNames: "[name].mjs",
       format: "esm",
+      preserveModules: true,
+      preserveModulesRoot: "src",
     },
   ],
   external: [
     "react",
     "react-hook-form",
-    "react-router-dom",
     "react-dom",
     "react-popper",
     "react-dom/client",

@@ -59,7 +59,8 @@ function getElements<T extends HTMLElement>(ref: T) {
     '[tabindex]:not([tabindex="-1"])',
   ];
   const elements = [
-    ...ref.querySelectorAll<HTMLElement>(focusables.join(", ")),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ...(ref.querySelectorAll<HTMLElement>(focusables.join(", ")) as any),
   ];
 
   // If the ref is focusable, ensure it's the first element to be focused.

@@ -43,7 +43,7 @@ export function Modal({
   const modalClassName = classnames(styles.modal, size && sizes[size]);
   useRefocusOnActivator(open);
   const modalRef = useFocusTrap<HTMLDivElement>(open);
-  useOnKeyDown(handleRequestClose, "Escape");
+  useOnKeyDown(handleRequestClose, {key:"Escape"});
 
   const template = (
     <AnimatePresence>

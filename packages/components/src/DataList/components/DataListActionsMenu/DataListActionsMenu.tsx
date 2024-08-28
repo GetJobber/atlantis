@@ -39,7 +39,7 @@ export function DataListActionsMenu({
 
   useRefocusOnActivator(visible);
   const focusTrapRef = useFocusTrap<HTMLDivElement>(visible);
-  useOnKeyDown(onRequestClose, "Escape");
+  useOnKeyDown(onRequestClose, {key:"Escape"});
 
   const actionsMenu = (
     <AnimatePresence>

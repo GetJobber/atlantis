@@ -1,10 +1,28 @@
 {
-  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "ESNext",
     "rootDir": "src",
-    "outDir": "dist"
+    "outDir": "dist",
+    "target": "ES6",
+    "lib": [
+      "dom",
+      "ESNext",
+    ],
+    "jsx": "react",
+    "declaration": true,
+    "composite": true,
+    "incremental": true,
+    "downlevelIteration": true,
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
   },
-  "include": ["src"],
-  "files": ["src/index.ts"]
+  "include": [
+    "src"
+  ],
+  "files": [
+    "src/index.ts"
+  ]
 }
