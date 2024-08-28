@@ -16,7 +16,7 @@ export const Chip = ({
   invalid,
   label,
   value,
-  dataTestID,
+  testID,
   onClick,
   onKeyDown,
   children,
@@ -56,7 +56,7 @@ export const Chip = ({
         aria-label={ariaLabel}
         disabled={disabled}
         role={role}
-        data-testid={dataTestID}
+        data-testid={testID}
         type="button"
       >
         {prefix}

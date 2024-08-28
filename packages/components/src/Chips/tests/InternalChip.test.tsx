@@ -6,18 +6,20 @@ import { Icon } from "../../Icon";
 
 it("should render a div chip when onClick is not present", () => {
   render(<InternalChip label="Yo!" />);
-  expect(screen.getByTestId("chip-wrapper")).toBeInstanceOf(HTMLDivElement);
+  expect(screen.getByTestId("ATL-InternalChip")).toBeInstanceOf(HTMLDivElement);
 });
 
 it("should render a button chip when onClick is not present", () => {
   render(<InternalChip label="Yo!" onClick={jest.fn()} />);
-  expect(screen.getByTestId("chip-wrapper")).toBeInstanceOf(HTMLButtonElement);
+  expect(screen.getByTestId("ATL-InternalChip")).toBeInstanceOf(
+    HTMLButtonElement,
+  );
 });
 
 it("should fire the callback when it's clicked", async () => {
   const handleClick = jest.fn();
   render(<InternalChip label="Yo!" onClick={handleClick} />);
-  await userEvent.click(screen.getByTestId("chip-wrapper"));
+  await userEvent.click(screen.getByTestId("ATL-InternalChip"));
   expect(handleClick).toHaveBeenCalledTimes(1);
 });
 

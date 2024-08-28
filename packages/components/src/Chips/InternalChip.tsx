@@ -18,7 +18,7 @@ export function InternalChip({
       disabled={disabled}
       invalid={invalid}
       onKeyDown={onKeyDown}
-      dataTestID="chip-wrapper"
+      testID="ATL-InternalChip"
       ariaLabel={ariaLabel}
       tabIndex={tabIndex}
       role={tabIndex !== undefined ? "option" : undefined}

@@ -7,9 +7,9 @@ export interface ChipProps extends PropsWithChildren {
   readonly ariaLabel?: string;
 
   /**
-   * The testing id for the chip if necessary. Defaults to `chip-wrapper`.
+   * The testing id for the chip if necessary.
    */
-  dataTestID?: string;
+  testID?: string;
 
   /**
    * Disables both mouse and keyboard functionality, and updates the visual style of the Chip to appear disabled.
