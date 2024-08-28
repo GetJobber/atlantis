@@ -49,7 +49,7 @@ export const Chip = ({
       <Tag
         className={classes}
         onClick={(ev: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) =>
-          onClick && onClick(value, ev)
+          onClick?.(value, ev)
         }
         tabIndex={tabIndex}
         onKeyDown={onKeyDown}
