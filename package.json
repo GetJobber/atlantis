@@ -68,5 +68,8 @@
   "overrides": {
     "trim": "0.0.3"
   },
-  "engineStrict": true
+  "engineStrict": true,
+  "devDependencies": {
+    "husky": "^9.1.5"
+  }
 }
