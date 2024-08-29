@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.28.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.28.0...@jobber/components@5.28.1) (2024-08-29)
+
+
+### Bug Fixes
+
+* **components:**  Update description of title prop in Disclosure component ([#1998](https://github.com/GetJobber/atlantis/issues/1998)) ([53196d6](https://github.com/GetJobber/atlantis/commit/53196d62aa0fbf83127e3bce2326bed308bf36da))
+
+
+
+
+
 # [5.28.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.27.2...@jobber/components@5.28.0) (2024-08-27)
 
 
