@@ -83,15 +83,9 @@ export function Glimmer({
         <Svg>
           <Defs>
             <LinearGradient id="gradientShine" x1={0} y1={0.5} x2={1} y2={0.5}>
-              <Stop
-                offset="0%"
-                stopColor={tokens["color-surface--background"]}
-              />
+              <Stop offset="0%" stopColor="rgba(255,255,255,0)" />
               <Stop offset="50%" stopColor={tokens["color-surface"]} />
-              <Stop
-                offset="100%"
-                stopColor={tokens["color-surface--background"]}
-              />
+              <Stop offset="100%" stopColor="rgba(255,255,255,0)" />
             </LinearGradient>
           </Defs>
           <Rect fill="url(#gradientShine)" height="100%" width="100%" />
