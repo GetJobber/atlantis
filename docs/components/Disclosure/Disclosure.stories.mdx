@@ -35,11 +35,15 @@ to change but is not required to.
   - This can either be a string or a React component. If a React component is
     used (containing multiple children), it should be wrapped in a container
     element and not a `<Fragment>` to maintain correct UI styling.
-  - The elements passed as a `title` can be any heading content, plain text, or
-    HTML that can be used within a paragraph (AKA
+    - Caveat: The container element should NOT be `<div>` as it would break the
+      semantics of the `<summary>` element. Instead, use a `<span>` or `<p>`
+      tag.
+  - The elements passed as a `title` can be plain text, or HTML that can be used
+    within a paragraph (AKA
     ["phrasing content"](https://developer.mozilla.org/en-US/docs/Web/HTML/Content_categories#phrasing_content))
     to ensure that the title is accessible and can be properly read by screen
-    readers.
+    readers. A heading may also be used but will not be treated as a heading by
+    assistive technologies.
 - `children` should be actionable and clear. The contents of a Disclosure can
   be:
   - plain text
