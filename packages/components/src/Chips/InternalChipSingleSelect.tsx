@@ -49,7 +49,7 @@ export function InternalChipSingleSelect({
                   }
                 : {})}
               active={isSelected}
-              tabIndex={undefined}
+              tabIndex={-1}
             />
           </label>
         );
