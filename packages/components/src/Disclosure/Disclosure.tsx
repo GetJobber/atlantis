@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { ReactElement, ReactNode, useEffect, useState } from "react";
 import {
   Breakpoints,
   useResizeObserver,
@@ -16,8 +16,9 @@ interface DisclosureProps {
 
   /**
    * Title for the disclosure pane.
+   * If ReactElement[] is provided, it must be wrapped in a container element (not a Fragment).
    */
-  readonly title: string | ReactNode | ReactNode[];
+  readonly title: string | ReactElement | ReactElement[];
 
   /**
    * This sets the default open state of the disclosure.
