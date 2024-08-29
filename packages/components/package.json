@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "5.24.0",
+  "version": "5.28.0",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.cjs",
@@ -28,6 +28,11 @@
       "types": "./dist/AtlantisContext/index.d.ts",
       "import": "./dist/AtlantisContext/AtlantisContext.mjs",
       "require": "./dist/AtlantisContext/AtlantisContext.cjs"
+    },
+    "./AtlantisThemeContext": {
+      "types": "./dist/AtlantisThemeContext/index.d.ts",
+      "import": "./dist/AtlantisThemeContext/index.mjs",
+      "require": "./dist/AtlantisThemeContext/index.cjs"
     },
     "./Autocomplete": {
       "types": "./dist/Autocomplete/index.d.ts",
@@ -388,16 +393,19 @@
       "types": "./dist/Typography/index.d.ts",
       "import": "./dist/Typography/Typography.mjs",
       "require": "./dist/Typography/Typography.cjs"
+    },
+    "./utils/meta/meta.json": {
+      "types": "./dist/utils/meta/meta.json",
+      "import": "./dist/utils/meta/meta.json",
+      "require": "./dist/utils/meta/meta.json"
     }
   },
   "scripts": {
-    "build": "rollup --config",
-    "bootstrap": "npm run clean; npm run build",
-    "clean": "rm -rf dist/* tsconfig.rollup.tsbuildinfo",
-    "entryPoints:build": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts",
-    "entryPoints:clean": "npm run entryPoints:build clean",
-    "prepack": "npm run entryPoints:build",
-    "postpack": "npm run entryPoints:clean"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "build": "rollup -c rollup.config.mjs",
+    "watch": "rollup -w -c rollup.config.mjs"
   },
   "files": [
     "*.js",
@@ -454,7 +462,17 @@
     "rollup-plugin-polyfill-node": "^0.13.0",
     "rollup-plugin-postcss": "^4.0.2",
     "typed-css-modules": "^0.7.0",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "@chromatic-com/storybook": "^1.5.0",
+    "storybook": "^8.1.10",
+    "@storybook/addon-essentials": "^8.1.10",
+    "@storybook/addon-interactions": "^8.1.10",
+    "@storybook/addon-links": "^8.1.10",
+    "@storybook/addon-onboarding": "^8.1.10",
+    "@storybook/blocks": "^8.1.10",
+    "@storybook/react": "^8.1.10",
+    "@storybook/react-vite": "^8.1.10",
+    "@storybook/test": "^8.1.10"
   },
   "peerDependencies": {
     "@apollo/client": "3.0.0",

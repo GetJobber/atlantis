@@ -3,6 +3,77 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.28.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.27.2...@jobber/components@5.28.0) (2024-08-27)
+
+
+### Features
+
+* **components:** allow custom title for Disclosure ([#1992](https://github.com/GetJobber/atlantis/issues/1992)) ([2b6e6cd](https://github.com/GetJobber/atlantis/commit/2b6e6cdb13a3afad9ca85ff163406cac674f1cbd))
+
+
+
+
+
+## [5.27.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.27.1...@jobber/components@5.27.2) (2024-08-26)
+
+
+### Bug Fixes
+
+* **components:** improve coherence of StatusLabel "critical" variant [JOB-98327] ([#1985](https://github.com/GetJobber/atlantis/issues/1985)) ([00ee2b0](https://github.com/GetJobber/atlantis/commit/00ee2b01957f8304cb2560a433754f413e8c911c))
+
+
+
+
+
+## [5.27.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.27.0...@jobber/components@5.27.1) (2024-08-22)
+
+
+### Bug Fixes
+
+* **components:** Sort meta.json ([#1994](https://github.com/GetJobber/atlantis/issues/1994)) ([6fe9fa2](https://github.com/GetJobber/atlantis/commit/6fe9fa244a08dad4ee46537fa247675a8dbdd561))
+
+
+
+
+
+# [5.27.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.26.0...@jobber/components@5.27.0) (2024-08-22)
+
+
+### Bug Fixes
+
+* Fix failing test on master relating meta.json ([#1993](https://github.com/GetJobber/atlantis/issues/1993)) ([9c3382f](https://github.com/GetJobber/atlantis/commit/9c3382fb32f4ed21f7daeeb0884ed52bf805fba2))
+
+
+### Features
+
+* **components:** add theme context provider ([#1981](https://github.com/GetJobber/atlantis/issues/1981)) ([c2902d1](https://github.com/GetJobber/atlantis/commit/c2902d1366d6214f9a7a7bcfe5b66f03beb7d49e))
+
+
+
+
+
+# [5.26.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.25.0...@jobber/components@5.26.0) (2024-08-22)
+
+
+### Features
+
+* **components:** Export component names as meta.json ([#1989](https://github.com/GetJobber/atlantis/issues/1989)) ([5f770d2](https://github.com/GetJobber/atlantis/commit/5f770d29755faae493e4471d16a680d4601ca012))
+
+
+
+
+
+# [5.25.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.24.0...@jobber/components@5.25.0) (2024-08-22)
+
+
+### Features
+
+* **components:** use text color for menu items ([#1987](https://github.com/GetJobber/atlantis/issues/1987)) ([a14b606](https://github.com/GetJobber/atlantis/commit/a14b606a8a56957c8ffc487663c8d4895f1c0143))
+
+
+
+
+
 # [5.24.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.23.1...@jobber/components@5.24.0) (2024-08-20)
 
 

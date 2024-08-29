@@ -154,7 +154,7 @@ export const ComponentDocumentation: FC<DocProps> = ({
         <OptionInternal
           key={index}
           value={item}
-          values={values}
+          values={values as any}
           updateValue={updateValue}
         />
       );
@@ -162,7 +162,7 @@ export const ComponentDocumentation: FC<DocProps> = ({
       component = (
         <InputText
           placeholder={item.key}
-          value={values[item.key]}
+          value={values[item.key] as any}
           onChange={val => {
             updateValue('strings', item, val as string);
           }}
@@ -181,7 +181,7 @@ export const ComponentDocumentation: FC<DocProps> = ({
       component = (
         <InputText
           placeholder={item.key}
-          value={values[item.key]}
+          value={values[item.key] as any}
           onChange={val => {
             let func: string | (() => void) = '';
             try {
@@ -210,15 +210,15 @@ export const ComponentDocumentation: FC<DocProps> = ({
           component: 'Component',
         }}
         selected={selected}
-        onSelect={setSelected}
-        onSelectAll={setSelected}>
+        onSelect={setSelected as any}
+        onSelectAll={setSelected as any}>
         <DataList.Search
           onSearch={search => console.log(search)}
           placeholder="Search Props"
         />
 
         <DataList.Layout size="md">
-          {item => (
+          {(item:any) => (
             <Grid gap>
               <Grid.Cell size={{xs: 2}}>
                 <div style={{display: 'flex', alignItems: 'flex'}}>

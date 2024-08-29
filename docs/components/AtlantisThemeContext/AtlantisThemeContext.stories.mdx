@@ -1,0 +1,119 @@
+import { AtlantisThemeContextProvider } from "@jobber/components/AtlantisThemeContext";
+import { Meta } from "@storybook/addon-docs";
+
+<Meta
+  title="Components/Themes/AtlantisThemeContext"
+  component={AtlantisThemeContextProvider}
+/>
+
+# AtlantisThemeContext
+
+Provides a way to control the theme of Atlantis components and the design
+tokens.
+
+## Design & usage guidelines
+
+### Using the AtlantisThemeContextProvider
+
+```tsx
+import {
+  AtlantisThemeContextProvider,
+  updateTheme,
+  useAtlantisTheme,
+} from "@jobber/components/AtlantisThemeContext";
+
+function App() {
+  return (
+    <AtlantisThemeContextProvider>
+      <ThemedComponent />
+    </AtlantisThemeContextProvider>
+  );
+}
+
+function ThemedComponent() {
+  const { theme, tokens } = useAtlantisTheme();
+  return (
+    <Content>
+      <div
+        style={{
+          background: tokens["surface-background"],
+          padding: tokens["space-base"],
+        }}
+      >
+        <Content>
+          <Text>The current theme is: {theme}. </Text>
+          <Text>
+            The javascript tokens can be accessed via the tokens object.
+          </Text>
+          <Text>The theme can be changed using `updateTheme`</Text>
+          <Button
+            onClick={() => updateTheme("light")}
+            label="The theme can be changed to light"
+          />
+          <Button
+            onClick={() => updateTheme("dark")}
+            label="The theme can be changed to dark"
+          />
+        </Content>
+      </div>
+    </Content>
+  );
+}
+```
+
+### Forcing a theme for an AtlantisThemeContextProvider
+
+In some scenarios you may want to force a theme for specific components
+regardless of the main application theme. This can be done by setting the
+`dangerouslyOverrideTheme` prop to `<themeToSet>` on the
+`AtlantisThemeContextProvider`.
+
+```tsx
+import {
+  AtlantisThemeContextProvider,
+  updateTheme,
+  useAtlantisTheme,
+} from "@jobber/components/AtlantisThemeContext";
+
+function App() {
+  return (
+    <AtlantisThemeContextProvider>
+      <ThemedComponent />
+      <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
+        <Text>These components will always be dark themed</Text>
+        <ThemedComponent />
+      </AtlantisThemeContextProvider>
+    </AtlantisThemeContextProvider>
+  );
+}
+
+function ThemedComponent() {
+  const { theme, tokens } = useAtlantisTheme();
+  return (
+    <Content>
+      <div
+        style={{
+          background: tokens["surface-background"],
+          padding: tokens["space-base"],
+        }}
+      >
+        <Content>
+          <Text>The current theme is: {theme}. </Text>
+          <Text>
+            The javascript tokens can be accessed via the tokens object.
+          </Text>
+          <Text>The theme can be changed using `updateTheme`</Text>
+          <Button
+            onClick={() => updateTheme("light")}
+            label="The theme can be changed to light"
+          />
+          <Button
+            onClick={() => updateTheme("dark")}
+            label="The theme can be changed to dark"
+          />
+        </Content>
+      </div>
+    </Content>
+  );
+}
+```

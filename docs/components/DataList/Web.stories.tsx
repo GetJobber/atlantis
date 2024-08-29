@@ -14,6 +14,8 @@ import { InlineLabel, InlineLabelColors } from "@jobber/components/InlineLabel";
 import { Content } from "@jobber/components/Content";
 import { Button } from "@jobber/components/Button";
 import { DatePicker } from "@jobber/components/DatePicker";
+import { Chip } from "@jobber/components/Chip";
+import { Icon } from "@jobber/components/Icon";
 import { LIST_QUERY, ListQueryType, apolloClient } from "./storyUtils";
 
 export default {
@@ -72,8 +74,8 @@ const DataListStory = (args: {
     label: node.name,
     species: node.species?.name,
     home: node.homeworld.name,
-    gender: (
-      <InlineLabel color={getColor(node.gender)}>{node.gender}</InlineLabel>
+    eyeColor: (
+      <InlineLabel color={getColor(node.eyeColor)}>{node.eyeColor}</InlineLabel>
     ),
     tags: uniq([
       node.birthYear,
@@ -99,7 +101,7 @@ const DataListStory = (args: {
         label: "Name",
         home: "Home world",
         tags: "Attributes",
-        gender: "Gender",
+        eyeColor: "Eye color",
         lastActivity: "Last activity",
       }}
       onLoadMore={nextPage}
@@ -181,28 +183,30 @@ const DataListStory = (args: {
       }}
     >
       <DataList.Filters>
-        <Button
-          label="Filter gender"
-          variation="subtle"
-          icon="add"
-          iconOnRight={true}
-          onClick={() => alert("Run filter by gender query")}
-        />
-        <Button
-          label="Filter attributes"
-          variation="subtle"
-          icon="add"
-          iconOnRight={true}
+        <Chip
+          label={"Filter eye color"}
+          onClick={() => alert("Run filter by eye color query")}
+        >
+          <Chip.Suffix>
+            <Icon name="add" size="small" />
+          </Chip.Suffix>
+        </Chip>
+        <Chip
+          label={"Filter attributes"}
           onClick={() => alert("Run filter by attributes query")}
-        />
+        >
+          <Chip.Suffix>
+            <Icon name="add" size="small" />
+          </Chip.Suffix>
+        </Chip>
         <DatePicker
           onChange={date => alert(`Filter by created date: ${date}`)}
           activator={
-            <Button
-              icon="calendar"
-              ariaLabel="Select date"
-              variation="subtle"
-            />
+            <Chip label="Select date">
+              <Chip.Prefix>
+                <Icon name="calendar" />
+              </Chip.Prefix>
+            </Chip>
           }
         />
       </DataList.Filters>
@@ -285,7 +289,7 @@ const DataListStory = (args: {
               </Grid>
             </Grid.Cell>
             <Grid.Cell size={{ xs: 4 }}>{item.tags}</Grid.Cell>
-            <Grid.Cell size={{ xs: 1 }}>{item.gender}</Grid.Cell>
+            <Grid.Cell size={{ xs: 1 }}>{item.eyeColor}</Grid.Cell>
             <Grid.Cell size={{ xs: 2 }}>
               <div
                 style={{
@@ -316,7 +320,7 @@ const DataListStory = (args: {
             >
               {item.label}
               {item.species}
-              {item.gender}
+              {item.eyeColor}
             </div>
             {item.tags}
             <div
@@ -366,15 +370,21 @@ const DataListStory = (args: {
     console.log("You clicked on a bulk action", selected);
   }
 
-  function getColor(gender: string): InlineLabelColors | undefined {
-    switch (gender) {
-      case "male":
-        return "lightBlue";
-      case "female":
-        return "pink";
-      default:
-        return "greyBlue";
-    }
+  function getColor(eyeColor: string): InlineLabelColors {
+    const colorMap: { [key: string]: InlineLabelColors } = {
+      blue: "lightBlue",
+      black: "blueDark",
+      yellow: "yellow",
+      red: "red",
+      hazel: "orange",
+      orange: "orange",
+      green: "green",
+      gold: "yellow",
+      pink: "pink",
+      unknown: "greyBlue",
+    };
+
+    return colorMap[eyeColor] || "greyBlue";
   }
 
   function getLoadingState() {
@@ -388,7 +398,7 @@ const DataListStory = (args: {
 export const Basic: StoryObj<typeof DataList> = {
   render: () => (
     <DataListStory
-      title="All Characters"
+      title="All characters"
       headerVisibility={{ xs: false, md: true }}
     />
   ),
@@ -398,7 +408,7 @@ export const EmptyState: StoryObj<typeof DataList> = {
   render: () => (
     <DataListStory
       data={[]}
-      title="All Characters"
+      title="All characters"
       headerVisibility={{ xs: false, md: true }}
     />
   ),

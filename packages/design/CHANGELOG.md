@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.65.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.64.0...@jobber/design@0.65.0) (2024-08-22)
+
+
+### Features
+
+* **components:** add theme context provider ([#1981](https://github.com/GetJobber/atlantis/issues/1981)) ([c2902d1](https://github.com/GetJobber/atlantis/commit/c2902d1366d6214f9a7a7bcfe5b66f03beb7d49e))
+
+
+
+
+
 # [0.64.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.63.0...@jobber/design@0.64.0) (2024-08-20)
 
 
