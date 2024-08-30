@@ -340,6 +340,7 @@ export type TextVariation =
   | "warn"
   | "info"
   | "disabled"
+  | "destructive"
   | "critical";
 
 export type TextTransform = "uppercase" | "lowercase" | "capitalize" | "none";
