@@ -5,29 +5,38 @@ import styles from "./InternalChip.css";
 import { InternalChipProps } from "./ChipTypes";
 import { Avatar, AvatarProps } from "../Avatar";
 import { Icon, IconProps } from "../Icon";
+import { isComponentType } from "../utils/isComponentType";
 
 interface InternalChipAffixProps
   extends Pick<InternalChipProps, "active" | "invalid" | "disabled"> {
   readonly affix?: ReactElement<AvatarProps | IconProps | ChipButtonProps>;
 }
 
+// eslint-disable-next-line max-statements
 export function InternalChipAffix({
   affix,
   active,
   invalid,
   disabled,
 }: InternalChipAffixProps) {
-  assertProps();
+  const isAvatar = isComponentType(affix, Avatar);
+  const isIcon = isComponentType(affix, Icon);
+  const isChipButton = isComponentType(affix, InternalChipButton);
 
-  if (affix?.type === Avatar) {
+  useAssert(
+    !!affix && !(isAvatar || isIcon || isChipButton),
+    `Prefix prop only accepts "<Avatar />" or "<Icon />" component. You have "${affix?.type}".`,
+  );
+
+  if (isAvatar) {
     return <Avatar {...(affix.props as AvatarProps)} size="small" />;
   }
 
-  if (affix?.type === Icon) {
+  if (isIcon) {
     return renderChipIcon(affix as ReactElement<IconProps>);
   }
 
-  if (affix?.type === InternalChipButton) {
+  if (isChipButton) {
     return <InternalChipButton {...(affix.props as ChipButtonProps)} />;
   }
 
@@ -52,16 +61,5 @@ export function InternalChipAffix({
     if (active) return "white";
 
     return;
-  }
-
-  function assertProps() {
-    const isAvatar = affix?.type === Avatar || false;
-    const isIcon = affix?.type === Icon || false;
-    const isChipButton = affix?.type === InternalChipButton || false;
-
-    useAssert(
-      !!affix && !(isAvatar || isIcon || isChipButton),
-      `Prefix prop only accepts "<Avatar />" or "<Icon />" component. You have "${affix?.type}".`,
-    );
   }
 }
