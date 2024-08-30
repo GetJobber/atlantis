@@ -86,11 +86,13 @@ export function Checkbox({
   onChange,
   onFocus,
 }: CheckboxProps) {
+  const formContext = useFormContext();
+  const form = useForm({ mode: "onTouched" });
   const { control, setValue, watch } =
-    useFormContext() != undefined
-      ? useFormContext()
+    formContext != undefined
+      ? formContext
       : // If there isn't a Form Context being provided, get a form for this field.
-        useForm({ mode: "onTouched" });
+        form;
 
   const [identifier] = useState(useId());
 
