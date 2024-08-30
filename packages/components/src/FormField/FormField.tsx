@@ -59,9 +59,9 @@ function FormFieldInternal(props: FormFieldInternalProps) {
     autofocus,
   } = props;
   const formContext = useFormContext();
+  const form = useForm({ mode: "onTouched" });
   // If there isn't a Form Context being provided, get a form for this field.
-  const { control, setValue, watch } =
-    formContext ?? useForm({ mode: "onTouched" });
+  const { control, setValue, watch } = formContext ?? form;
 
   const descriptionIdentifier = `descriptionUUID--${id}`;
   /**
