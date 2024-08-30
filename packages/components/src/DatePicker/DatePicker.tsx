@@ -116,11 +116,14 @@ export function DatePicker({
     [styles.inline]: inline,
   });
   const { pickerRef } = useEscapeKeyToCloseDatePicker(open, ref);
+  const shouldFocusOnSelectedDate = smartAutofocus && open;
 
-  if (smartAutofocus) {
-    useRefocusOnActivator(open);
-    useEffect(focusOnSelectedDate, [open]);
-  }
+  useRefocusOnActivator(shouldFocusOnSelectedDate);
+  useEffect(() => {
+    if (smartAutofocus) {
+      return focusOnSelectedDate();
+    }
+  }, [open, smartAutofocus]);
 
   return (
     <div className={wrapperClassName} ref={ref} data-elevation={"elevated"}>
