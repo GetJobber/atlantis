@@ -20,27 +20,15 @@ export function DayOfMonthSelect({
     <div className={styles.container}>
       {daysInMonth.map(day => {
         const isSelected = selectedDays.has(day as DayOfMonth);
-        const inputId = useId();
 
         return (
-          <div key={`${day}`} className={checkboxStyles.checkboxWrapper}>
-            <input
-              className={checkboxStyles.dayCheckboxInput}
-              disabled={disabled}
-              type="checkbox"
-              id={`${day}-${inputId}`}
-              onChange={handleChangeDayOfMonth}
-              aria-checked={isSelected}
-              checked={isSelected}
-              value={day}
-            />
-            <label
-              className={checkboxStyles.dayCheckbox}
-              htmlFor={`${day}-${inputId}`}
-            >
-              {`${day === "LAST" ? "Last day" : day}`}
-            </label>
-          </div>
+          <DayInMonth
+            day={day}
+            key={day}
+            disabled={disabled}
+            isSelected={isSelected}
+            handleChangeDayOfMonth={handleChangeDayOfMonth}
+          />
         );
       })}
     </div>
@@ -62,4 +50,39 @@ export function DayOfMonthSelect({
     }
     onChange(next);
   }
+}
+
+function DayInMonth({
+  day,
+  isSelected,
+  disabled,
+  handleChangeDayOfMonth,
+}: {
+  readonly day: number | string;
+  readonly isSelected: boolean;
+  readonly disabled: boolean;
+  handleChangeDayOfMonth(event: React.FormEvent<HTMLInputElement>): void;
+}) {
+  const inputId = useId();
+
+  return (
+    <div key={`${day}`} className={checkboxStyles.checkboxWrapper}>
+      <input
+        className={checkboxStyles.dayCheckboxInput}
+        disabled={disabled}
+        type="checkbox"
+        id={`${day}-${inputId}`}
+        onChange={handleChangeDayOfMonth}
+        aria-checked={isSelected}
+        checked={isSelected}
+        value={day}
+      />
+      <label
+        className={checkboxStyles.dayCheckbox}
+        htmlFor={`${day}-${inputId}`}
+      >
+        {`${day === "LAST" ? "Last day" : day}`}
+      </label>
+    </div>
+  );
 }
