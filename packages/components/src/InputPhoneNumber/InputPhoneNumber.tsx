@@ -39,11 +39,11 @@ export function InputPhoneNumber({
 }: InputPhoneNumberProps) {
   const { placeholder, validations, pattern = "(***) ***-****" } = props;
   const errorSubject = placeholder || "Phone number";
-  const { getValues } =
-    useFormContext() != undefined
-      ? useFormContext()
-      : // If there isn't a Form Context being provided, get a form for this field.
-        useForm({ mode: "onTouched" });
+  const formContext = useFormContext();
+  const form = useForm({ mode: "onTouched" });
+
+  // If there isn't a Form Context being provided, get a form for this field.
+  const { getValues } = formContext ?? form;
 
   return (
     <InputMask pattern={pattern} strict={false}>
