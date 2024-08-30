@@ -33,7 +33,18 @@ export function InternalChipMultiSelect({
             <InternalChip
               {...chip.props}
               active={isChipActive}
-              suffix={checkmarkIcon(isChipActive)}
+              {...(isChipActive
+                ? {
+                    suffix: (
+                      <Icon
+                        size="small"
+                        name="checkmark"
+                        color="interactiveSubtle"
+                      />
+                    ),
+                  }
+                : {})}
+              tabIndex={-1}
             />
           </label>
         );
@@ -68,16 +79,5 @@ export function InternalChipMultiSelect({
     const values = selected;
     const newVal = values.filter(val => val !== value);
     onChange(newVal);
-  }
-
-  function checkmarkIcon(show: boolean) {
-    // Ideally, we should be returning a fragment `<></>` when a function
-    // returns a component / element. However, this one needs to return nothing
-    // to prevent it from randomly rendering a suffix.
-    //
-    // DO NOT COPY!
-    if (!show) return;
-
-    return <Icon name="checkmark" />;
   }
 }

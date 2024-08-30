@@ -24,12 +24,15 @@ interface TooltipProps {
    * @default 'top'
    */
   readonly preferredPlacement?: Placement;
+
+  readonly setTabIndex?: boolean;
 }
 
 export function Tooltip({
   message,
   children,
   preferredPlacement = "top",
+  setTabIndex = true,
 }: TooltipProps) {
   const [show, setShow] = useState(false);
 
@@ -47,6 +50,7 @@ export function Tooltip({
       setShow,
       shadowRef,
       message,
+      setTabIndex,
     });
 
   useSafeLayoutEffect(() => {
@@ -108,10 +112,12 @@ function useInitializeListeners({
   setShow,
   shadowRef,
   message,
+  setTabIndex,
 }: {
-  setShow: (show: boolean) => void;
-  shadowRef: React.RefObject<HTMLSpanElement>;
-  message: string;
+  readonly setShow: (show: boolean) => void;
+  readonly shadowRef: React.RefObject<HTMLSpanElement>;
+  readonly message: string;
+  readonly setTabIndex: boolean;
 }) {
   const showTooltip = () => {
     setShow(true);
@@ -129,7 +135,10 @@ function useInitializeListeners({
       // This is to avoid having to add those attribute as a prop on every
       // component we have.
       activator.setAttribute("aria-description", message);
-      activator.setAttribute("tabindex", "0"); // enable focus
+
+      if (setTabIndex) {
+        activator.setAttribute("tabindex", "0"); // enable focus
+      }
     }
   };
 

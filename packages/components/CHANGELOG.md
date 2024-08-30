@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.29.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.28.1...@jobber/components@5.29.0) (2024-08-29)
+
+
+### Features
+
+* **components:** Separate Chip from Chips Again ([#1995](https://github.com/GetJobber/atlantis/issues/1995)) ([1be6f9e](https://github.com/GetJobber/atlantis/commit/1be6f9e82dc856cfa1676a872832569e7d934afc))
+
+
+
+
+
 ## [5.28.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.28.0...@jobber/components@5.28.1) (2024-08-29)
 
 
