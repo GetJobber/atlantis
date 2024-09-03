@@ -1,13 +1,25 @@
-import {Typography, Content} from '@jobber/components';
-
+import {PageBlock} from '../components/PageBlock';
 export const ComponentsMobile = () => {
   return (
-    <div style={{backgroundColor: 'var(--color-surface'}}>
-      <Content>
-        <Typography size="largest" fontWeight="bold" fontFamily="display">
-          ComponentsMobile
-        </Typography>
-      </Content>
-    </div>
+    <>
+      <PageBlock
+        structure={{
+          header: {
+            title: 'Mobile components',
+            body: 'They are also the best',
+          },
+          body: {
+            title: 'Components',
+            content: [
+              {
+                title: 'Button',
+                to: '/components/mobile/button',
+              },
+             
+            ],
+          },
+        }}
+      />
+    </>
   );
 };

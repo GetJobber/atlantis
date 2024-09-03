@@ -1,4 +1,4 @@
-import {Card, Content, Typography} from '@jobber/components';
+import {Box, Card, Content, Typography} from '@jobber/components';
 import {useNavigate} from 'react-router-dom';
 import image from '../assets/dummy.png';
 import {PropsWithChildren, ReactNode} from 'react';
@@ -28,6 +28,8 @@ export const ComponentWrapper = ({children}: PropsWithChildren) => {
 export const ContentCard = ({title, to, component}: ContentCardProps) => {
   const navigate = useNavigate();
   return (
+    <div style={{maxWidth:'300px', width:'100%', height:'300px', display:'flex'}}>
+
     <Card onClick={() => navigate(to)}>
       {!component ? (
         <img style={{width: '100%'}} src={image} />
@@ -35,8 +37,11 @@ export const ContentCard = ({title, to, component}: ContentCardProps) => {
         <ComponentWrapper>{component()}</ComponentWrapper>
       )}
       <Content>
+        <Box direction='row' alignItems='center'>
         <Typography size="large">{title}</Typography>
+        </Box>
       </Content>
     </Card>
+    </div>
   );
 };

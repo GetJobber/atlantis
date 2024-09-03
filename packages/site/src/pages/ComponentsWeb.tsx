@@ -17,12 +17,7 @@ export const ComponentsWeb = () => {
                 to: '/components/web/button',
                 component: () => <Button label="Button" />,
               },
-              {
-                title: 'Combobox',
-                to: '/components/web/combobox',
-              },
-              {title: 'DataList', to: '/components/web/datalist'},
-              {title: 'Chip', to: '/components/web/chip'},
+             
             ],
           },
         }}

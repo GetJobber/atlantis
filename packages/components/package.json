@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "5.28.0",
+  "version": "5.29.0",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.cjs",
@@ -466,7 +466,7 @@
     "eslint-plugin-storybook": "^0.8.0",
     "glob": "^7.1.4",
     "jsdom-testing-mocks": "^1.9.0",
-    "postcss": "^8.4.21",
+    "postcss": "^8.4.40",
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^8.3.0",
     "rollup": "^4.13.0",

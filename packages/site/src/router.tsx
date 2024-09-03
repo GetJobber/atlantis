@@ -3,20 +3,16 @@ import {WelcomePage} from './pages/WelcomePage';
 import {Layout} from './layout/Layout';
 import {ComponentsWeb} from './pages/ComponentsWeb';
 import {ComponentsMobile} from './pages/ComponentsMobile';
-import {Patterns} from './pages/Patterns';
-import {DesignTokens} from './pages/DesignTokens';
-import {Hooks} from './pages/Hooks';
-import {ContentComp} from './pages/Content';
-import {Linters} from './pages/Linters';
-import {Changelog} from './pages/Changelog';
-import {ButtonPage} from './pages/ButtonPage';
 import { IconNames } from '@jobber/components';
 import { WelcomeGuide } from './pages/WelcomeGuide';
 import { Colors } from './pages/Colors';
+import { ButtonPage } from './pages/ButtonPage';
+import { ButtonMobilePage } from './pages/ButtonMobilePage';
 
 interface MyRouteObject extends NonIndexRouteObject {
   icon: IconNames;
   children?: MyRouteObject[];
+  inNav?: boolean;
 }
 
 export const routes: MyRouteObject[] = [
@@ -49,9 +45,17 @@ export const routes: MyRouteObject[] = [
               element: <ComponentsMobile />,
             },
             {
+              path: '/components/mobile/button',
+              handle: 'MobileButton',
+              icon:'phone',
+              inNav:false,
+              element: <ButtonMobilePage />,
+            },
+            {
               path: '/components/web/button',
-              handle: 'Button',
-              icon: 'checkbox',
+              handle: 'WebButton',
+              icon:'addTag',
+              inNav:false,
               element: <ButtonPage />,
             },
           ],
@@ -62,36 +66,7 @@ export const routes: MyRouteObject[] = [
           icon:'paidInvoice',
           element: <Colors />,
         },
-        {
-          path: '/design-tokens',
-          handle: 'Design Tokens',
-          icon:'directions',
-          element: <DesignTokens />,
-        },
-        {
-          path: '/content',
-          handle: 'Content',
-          icon:'condition',
-          element: <ContentComp />,
-        },
-        {
-          path: '/hooks',
-          handle: 'Hooks',
-          icon:'import',
-          element: <Hooks />,
-        },
-        {
-          path: '/linters',
-          handle: 'Linters',
-          icon:'link',
-          element: <Linters />,
-        },
-        {
-          path: '/changelog',
-          handle: 'Changelog',
-          icon:'checkbox',
-          element: <Changelog />,
-        },
+       
         {
           path: '/welcome-guide',
           handle: 'Welcome Guide',

@@ -40,6 +40,7 @@ export const NavMenu = () => {
             {routes[0].children?.map((route, index) => {
               return route.children ? (
                 route.children.map((subroute, subindex) => {
+                  if (subroute.inNav === false) return;
                   return (
                     <li className={styles.subMenuLink}>
                       <div style={{marginRight: 12}}>
@@ -54,7 +55,7 @@ export const NavMenu = () => {
                     </li>
                   );
                 })
-              ) : (
+              ) : (route.inNav === false ? null :
                 <li className={styles.menuLink}>
                       <div style={{marginRight: 12}}>
                         <Icon name={route.icon} />
@@ -62,7 +63,7 @@ export const NavMenu = () => {
                 <Link key={index} to={route.path ?? '/'}>
                   {route.handle}
                 </Link>
-                </li>
+                </li> 
               );
             })}
           </nav-menu>

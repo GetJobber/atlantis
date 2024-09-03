@@ -90,17 +90,16 @@ const converter = (
   }
   return formatted;
 };
-export const ButtonPage = () => {
+export const ButtonMobilePage = () => {
   const converted = converter(ButtonDocs as any);
 
   return (
     <Flex template={["shrink", "grow"]} align='start'>
       <Box width="70%">
-        <Page title='Button - Web'>
+        <Page title='Button - Mobile'>
 
           <PageWrapper>
             <ComponentDocumentation
-              Component={Button}
               defaultProps={converted}
               defaultValues={{ strings: { label: 'Button!' } }}
               code={`<Button label="Button!" />`}
@@ -115,7 +114,7 @@ export const ButtonPage = () => {
         
           <Box direction='row'>
               <Icon name='sort' />
-            <Link  url="http://localhost:6006/?path=/docs/components-utilities-animatedswitcher-web--docs">
+            <Link  url="http://localhost:6007/?path=/story/components-layouts-and-structure-actionitem-mobile--basic&globals=viewport:mobile1">
            Storybook 
             </Link>
           </Box>
@@ -129,13 +128,13 @@ interface DocProps {
   defaultProps: Array<FormattedProp>;
   defaultValues: Record<string, Record<string, string | number>>;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  Component: any;
+  Component?: any;
   code?: string;
 }
 type ValueStateInternals = Record<string, string | number | (() => void)>;
 type ValueState = Record<string, ValueStateInternals>;
 export const ComponentDocumentation: FC<DocProps> = ({
-  Component,
+  Component = () => <>Mobile Not Yet Implemented</>,
   defaultProps,
   defaultValues,
   code

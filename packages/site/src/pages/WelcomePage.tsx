@@ -14,8 +14,8 @@ export const WelcomePage = () => {
           content: [
             {title: 'Web', to: '/components/web'},
             {title: 'Mobile', to: '/components/mobile'},
-            {title: 'Design Tokens', to: '/design-tokens'},
-            {title: 'Content', to: '/content'},
+            {title: 'Colors', to: '/colors'},
+            {title: 'Welcome Guide', to: '/welcome-guide'},
           ],
         },
       }}
