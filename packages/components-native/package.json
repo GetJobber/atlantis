@@ -80,6 +80,7 @@
     "babel-loader": "^9.1.3",
     "eslint-plugin-storybook": "^0.8.0",
     "fs": "^0.0.1-security",
+    "husky": "^9.1.5",
     "metro-react-native-babel-preset": "^0.76.0",
     "os-browserify": "^0.3.0",
     "react-native-web": "0.19.12",
