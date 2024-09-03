@@ -49,11 +49,6 @@
     "url": "https://github.com/GetJobber/atlantis/issues"
   },
   "homepage": "https://github.com/GetJobber/atlantis#readme",
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "browserslist": [
     "> 1%",
     "last 2 versions",
@@ -70,7 +65,6 @@
   },
   "engineStrict": true,
   "devDependencies": {
-    "concurrently": "^8.2.2",
-    "husky": "^9.1.5"
+    "concurrently": "^8.2.2"
   }
 }
