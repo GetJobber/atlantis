@@ -9,7 +9,7 @@ import { useTooltipPositioning } from "./useTooltipPositioning";
 import { Placement } from "./Tooltip.types";
 
 const variation = {
-  startOrStop: { scale: 0.6, opacity: 0 },
+  startOrStop: { scale: 0.85, opacity: 0 },
   done: { scale: 1, opacity: 1 },
 };
 
@@ -75,8 +75,9 @@ export function Tooltip({
               animate="done"
               exit="startOrStop"
               transition={{
-                damping: 50,
-                stiffness: 500,
+                ease: "easeOut",
+                duration: 0.3,
+                delay: 0.2,
               }}
             >
               <p className={styles.tooltipMessage}>{message}</p>
