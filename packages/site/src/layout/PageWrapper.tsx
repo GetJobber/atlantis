@@ -2,12 +2,12 @@ import {PropsWithChildren} from 'react';
 
 export const PageWrapper = ({children}: PropsWithChildren) => {
   return (
-    <div
+    <main
       style={{
         width: '100%',
         minHeight: '100%',
       }}>
       {children}
-    </div>
+    </main>
   );
 };

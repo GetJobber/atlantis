@@ -20,7 +20,16 @@ import {
   Page,
   Select,
   Switch,
+  Tabs,
+  Tab,
   Text,
+  Cell,
+  Header,
+  Body,
+  Table,
+  Row,
+  Disclosure,
+  Markdown,
 } from '@jobber/components';
 import ButtonDocs from '../docs/Button.docs.json';
 import './ButtonPage.module.css';
@@ -94,9 +103,12 @@ export const ButtonPage = () => {
   const converted = converter(ButtonDocs as any);
 
   return (
-    <Flex template={["shrink", "grow"]} align='start'>
-      <Box width="70%">
-        <Page title='Button - Web'>
+    <Grid>
+      <Grid.Cell size={{ xs: 12, md: 9 }}>
+        <Page 
+          width="fill"
+          title='Button'
+          subtitle='Buttons are a core user interface component, as they allow users to initiate, complete, and reverse actions.'>
 
           <PageWrapper>
             <ComponentDocumentation
@@ -108,20 +120,21 @@ export const ButtonPage = () => {
 
           </PageWrapper>
         </Page>
-      </Box>
-      <Box width="30%" justifyContent='start' padding='largest'>
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 12, md: 3 }}>
         <Content>
-          <Heading level={2}>Links</Heading>
-        
-          <Box direction='row'>
-              <Icon name='sort' />
-            <Link  url="http://localhost:6006/?path=/docs/components-utilities-animatedswitcher-web--docs">
-           Storybook 
-            </Link>
+          <Box padding="base" direction='column'>
+            <Heading level={2}>Links</Heading>
+          
+            <Box direction='row'>
+              <Link url="http://localhost:6006/?path=/docs/components-utilities-animatedswitcher-web--docs">
+            Storybook 
+              </Link>
+            </Box>
           </Box>
         </Content>
-      </Box>
-    </Flex>
+      </Grid.Cell>
+    </Grid>
   );
 };
 
@@ -219,48 +232,322 @@ export const ComponentDocumentation: FC<DocProps> = ({
   });
   return (
     <component-documentation>
-      <Box direction='row'>
+      <Content spacing="large">
+      <Box direction='column' gap="small">
       <preview-window>
         <Component {...mappedProps} />
       </preview-window>
+      <Disclosure title="Code preview">
       <preview-code>
         <InputText multiline value={code} />
       </preview-code>
+      </Disclosure>
       </Box>
-      <DataList
-        data={defaultPropsMapped}
-        headers={{
-          key: 'Key',
-          description: 'Description',
-          component: 'Component',
-        }}
-        selected={selected}
-        onSelect={setSelected as any}
-        onSelectAll={setSelected as any}>
-        <DataList.Search
-          onSearch={search => console.log(search)}
-          placeholder="Search Props"
-        />
+      <Tabs>
+        <Tab label='Design'>
+<Content spacing="large">
+<Heading level={2}>Variants</Heading>
 
-        <DataList.Layout size="md">
-          {(item: any) => (
-            <Grid gap>
-              <Grid.Cell size={{ xs: 2 }}>
-                <div style={{ display: 'flex', alignItems: 'flex' }}>
-                  {item.key}
-                </div>
-              </Grid.Cell>
-              <Grid.Cell size={{ xs: 3 }}>{item.description}</Grid.Cell>
-              <Grid.Cell size={{ xs: 3 }}>{item.component}</Grid.Cell>
-            </Grid>
-          )}
-        </DataList.Layout>
+<Text>The right button to use depends on:</Text>
 
-        <DataList.EmptyState
-          type="filtered"
-          message="No officers found with your search criteria."
-        />
-      </DataList>
+<ul>
+<li>the type of action your user is attempting to complete</li>
+<li>the hierarchy of the interface the button lives in</li>
+</ul>
+
+<Heading level={3}>Work</Heading>
+<Text>"Work" buttons are the default Jobber button style. Use to enable user interactions with the goal of completing work in Jobber.</Text>
+
+<Heading level={4}>Primary</Heading>
+<Text>Use for the single most important action in a view. Examples include the Save Job button, Log In, or the main action in a dialog. There should be one Primary action per view, at most.</Text>
+
+<preview-window>
+  <Button type="primary" label="Save Job" />
+</preview-window>
+
+<Heading level={4}>Secondary</Heading>
+<Text>Use when there is one or more alternative, but less important, action to the primary action</Text>
+
+<preview-window>
+  <Button type="secondary" label="Select File" />
+</preview-window>
+
+<Heading level={4}>Tertiary</Heading>
+<Text>A tertiary button should be used to complete actions within the view such as editing, revealing details, or navigating within the view.</Text>
+
+<preview-window>
+  <Button type="tertiary" label="Edit" icon="edit" />
+</preview-window>
+
+<Heading level={3}>Learning</Heading>
+<Text>Use "learning" buttons to enable user interactions in the goal of learning about Jobber, whether for marketing or coaching purposes.
+</Text>
+
+<Heading level={4}>Primary, Secondary, Tertiary</Heading>
+<Text>The usage pattern for Learning Actions should follow the same logic as Work Actions for all three levels.
+</Text>
+<preview-window>
+    <Button variation='learning' type="primary" label="Upgrade Now" />
+    <Button variation='learning' type="secondary" label="Visit Help Center" />
+    <Button variation='learning' type="tertiary" label="Got It" />
+</preview-window>
+
+<Heading level={3}>Destructive</Heading>
+<Text>"Destructive" actions remove something from Jobber.
+</Text>
+<Heading level={4}>Primary</Heading>
+<Text>A Primary destructive action will permanently destroy an object carrying significant data, such as a job, quote, or client. This destructive action should be contained in a ConfirmationModal triggered by clicking a secondary or tertiary destructive button.
+</Text>
+
+<preview-window>
+  <Button variation="destructive" type="primary" label="Delete Job" />
+</preview-window>
+
+<Heading level={4}>Secondary or Tertiary</Heading>
+
+<Markdown 
+  content='A Secondary or tertiary destructive action will either:
+
+  - destroy an item on an object that can be quickly restored, such as a line item on a job
+  - trigger a dialog to confirm a Primary destructive action' />
+
+<preview-window>
+    <Button variation='destructive' type="secondary" label="Remove Image" />
+    <Button variation='destructive' type="tertiary" icon='trash' ariaLabel="Remove Line Item" />
+</preview-window>
+
+<Heading level={3}>Subtle</Heading>
+
+<Markdown 
+  content='Use a "subtle" button when you want the visual appearance to be more... subtle.
+The subdued color allows these buttons to sit comfortably
+alongside more prominent content.
+
+Think of icon actions in a navigation bar, buttons to dismiss a modal, or opting
+out of completing an action they have triggered.' />
+
+<Text variation='subdued' size="small">Note: This is still known as "Cancel" on mobile. See
+[Mobile/Cancel example](../?path=/story/components-actions-button-mobile--cancel).</Text>
+
+
+<Heading level={4}> Primary, Secondary, and Tertiary</Heading>
+
+<Text>A key distinction between subtle buttons and the other variations is that the
+primary/secondary/tertiary scale is styled differently, but the conceptual
+hierarchy is the same. Notably, the tertiary subtle button has a transparent
+background, allowing it to be <em>extra</em> subtle when placed overtop
+`surface--background` elements such as a Modal header.</Text>
+
+<preview-window>
+        <Button label="Cancel" type="primary" variation="subtle" />
+        <Button label="Dismiss" type="secondary" variation="subtle" />
+        <Button label="Maybe Later" type="tertiary" variation="subtle" />
+    <div
+      style={{
+        padding: "var(--space-base)",
+      }}
+    >
+      <Button
+        variation="subtle"
+        type="tertiary"
+        icon="search"
+        ariaLabel="search"
+      />
+      <Button
+        variation="subtle"
+        type="tertiary"
+        icon="cog"
+        ariaLabel="settings"
+      />
+      <Button
+        variation="subtle"
+        type="tertiary"
+        icon="help"
+        ariaLabel="help"
+      />
+      <Button
+        variation="subtle"
+        type="tertiary"
+        icon="more"
+        ariaLabel="more"
+      />
+    </div>
+</preview-window>
+
+<Heading level={2}>Content guidelines</Heading>
+
+<Markdown 
+  content="Button labels should be title-cased. This means in general, capitalize all words
+with the exception of:
+
+- articles (a, an, the)
+- coordinating conjunctions (but, for)
+- prepositions (at, by, to, etc.)" />
+
+<Table>
+  <Header>
+    <Cell>✅ Do</Cell>
+    <Cell>❌ Don't</Cell>
+  </Header>
+  <Body>
+    <Row>
+      <Cell>Go to Visits</Cell>
+      <Cell>Go To Visits</Cell>
+    </Row>
+    <Row>
+      <Cell>Save Job</Cell>
+      <Cell>SAVE JOB</Cell>
+    </Row>
+  </Body>
+</Table>
+
+<Heading level={3}> & vs and</Heading>
+
+<Markdown 
+  content='If you have a Button with "compound" actions such as "Review & Send" or "Approve
+& Schedule", use an ampersand (&) for brevity and to reduce the likelihood that
+your label will wrap. A non-breaking space should be used between the ampersand
+and the second word so that the ampersand wraps with the second word.' />
+
+<Table>
+  <Header>
+    <Cell>✅ Do</Cell>
+    <Cell>❌ Don't</Cell>
+  </Header>
+  <Body>
+    <Row>
+      <Cell>Review & Send</Cell>
+      <Cell>Review and Send</Cell>
+    </Row>
+    <Row>
+      <Cell>Approve & Schedule</Cell>
+      <Cell>Approve and Schedule</Cell>
+    </Row>
+  </Body>
+</Table>
+
+<Heading level={3}>Disabled</Heading>
+
+<Markdown 
+  content="As a best practice, do not design with disabled button states. This has negative
+impacts on accessibility as well as an increase in complexity for users to
+understand why the interface is disabled and how to resolve it.
+
+With that said, if you simply can't design a flow without a disabled state, this is
+how you disable a button." />
+
+<preview-window>
+  <Button label="Do the Thing" disabled />
+</preview-window>
+
+<Heading level={3}>Sizes</Heading>
+
+<Markdown 
+  content="Buttons come in three sizes. `Base` is the default and should be used for almost
+every use case.
+
+Only use `large` for extremely spacious interfaces such as a login form, and
+`small` when the interface has extremely tight size constraints." />
+
+<preview-window>
+  <Content>
+    <Content>
+      <Button label="Small" size="small" />
+    </Content>
+    <Content>
+      <Button label="Base" />
+    </Content>
+    <Content>
+      <Button label="Large" size="large" />
+    </Content>
+  </Content>
+</preview-window>
+
+<Heading level={3}>Icons</Heading>
+
+<Markdown 
+  content="You can use icons inside the buttons. They can stand-alone, or appear before,
+after, or on top of the button label. They can also be added before or after the
+label.
+
+**Note:** If an icon is used in a stand-alone method, an `ariaLabel` must be
+present to describe the button." 
+/>
+
+<preview-window>
+  <Button type="secondary" icon="user" ariaLabel="I'm a person" />
+  <Button label="More" type="secondary" icon="more" />
+  <Button
+    label="Actions"
+    type="secondary"
+    icon="arrowDown"
+    iconOnRight={true}
+  />
+</preview-window>
+
+<Heading level={3}>Loading</Heading>
+
+<Markdown 
+  content="A way to communicate to the user that a background action is being performed." />
+
+<preview-window>
+  <Button
+    label="Deleting..."
+    type="primary"
+    variation="destructive"
+    loading={true}
+  />
+  <Button
+    label="Loading..."
+    type="tertiary"
+    variation="learning"
+    loading={true}
+  />
+  <Button label="Canceling..." variation="subtle" loading={true} />
+</preview-window>
+
+</Content>
+        </Tab>
+        <Tab label='Code'>
+          <DataList
+          title={"Props"}
+          data={defaultPropsMapped}
+          headers={{
+            key: 'Key',
+            description: 'Description',
+            component: 'Component',
+          }}
+          // selected={selected}
+          // onSelect={setSelected as any}
+          // onSelectAll={setSelected as any}
+          >
+          <DataList.Search
+            onSearch={search => console.log(search)}
+            placeholder="Search Props"
+          />
+
+          <DataList.Layout size="md">
+            {(item: any) => (
+              <Grid gap>
+                <Grid.Cell size={{ xs: 2 }}>
+                  <div style={{ display: 'flex', alignItems: 'flex' }}>
+                    {item.key}
+                  </div>
+                </Grid.Cell>
+                <Grid.Cell size={{ xs: 3 }}>{item.description}</Grid.Cell>
+                <Grid.Cell size={{ xs: 3 }}>{item.component}</Grid.Cell>
+              </Grid>
+            )}
+          </DataList.Layout>
+
+          <DataList.EmptyState
+            type="filtered"
+            message="No props found with your search criteria."
+          />
+        </DataList>
+        </Tab>
+      </Tabs>
+      </Content>
     </component-documentation>
   );
 };
