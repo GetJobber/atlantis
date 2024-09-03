@@ -1,8 +1,8 @@
 .menu {
   display: flex;
   position: absolute;
-  top: var(--space-larger);
   right: 0;
+  bottom: calc(-1 * var(--space-base));
   z-index: var(--elevation-menu);
   box-shadow: var(--shadow-base);
   padding: var(--space-smaller);
