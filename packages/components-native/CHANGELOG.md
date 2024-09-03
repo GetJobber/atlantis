@@ -3,6 +3,69 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.71.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.71.0...@jobber/components-native@0.71.1) (2024-08-22)
+
+
+### Bug Fixes
+
+* **components:** Sort meta.json ([#1994](https://github.com/GetJobber/atlantis/issues/1994)) ([6fe9fa2](https://github.com/GetJobber/atlantis/commit/6fe9fa244a08dad4ee46537fa247675a8dbdd561))
+
+
+
+
+
+# [0.71.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.70.0...@jobber/components-native@0.71.0) (2024-08-22)
+
+
+### Features
+
+* **components:** Export component names as meta.json ([#1989](https://github.com/GetJobber/atlantis/issues/1989)) ([5f770d2](https://github.com/GetJobber/atlantis/commit/5f770d29755faae493e4471d16a680d4601ca012))
+
+
+
+
+
+# [0.70.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.69.4...@jobber/components-native@0.70.0) (2024-08-20)
+
+
+### Features
+
+* **design:** BREAKING CHANGE: Complete rebuild of the design token package ([#1965](https://github.com/GetJobber/atlantis/issues/1965)) ([b749502](https://github.com/GetJobber/atlantis/commit/b749502e347a4e14a1c5fcfdbc3114f54bb616f1))
+
+
+
+
+
+## [0.69.4](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.69.3...@jobber/components-native@0.69.4) (2024-08-08)
+
+
+### Bug Fixes
+
+* **components-native:** Add support for italics in Atlantis `Typography` component (JOB-101940) ([#1977](https://github.com/GetJobber/atlantis/issues/1977)) ([93cb197](https://github.com/GetJobber/atlantis/commit/93cb19710c4244c0453dfbb8f13a48110e72fb95)), closes [#1980](https://github.com/GetJobber/atlantis/issues/1980)
+
+
+
+
+
+## [0.69.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.69.2...@jobber/components-native@0.69.3) (2024-08-02)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.69.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.69.1...@jobber/components-native@0.69.2) (2024-07-15)
+
+
+### Reverts
+
+* revert: "feat: Storybook7 Upgrade" ([#1956](https://github.com/GetJobber/atlantis/issues/1956)) ([1e82e48](https://github.com/GetJobber/atlantis/commit/1e82e48f69d4fa8a8d2db46daba6dcf3b6d87111)), closes [#1952](https://github.com/GetJobber/atlantis/issues/1952) [#1953](https://github.com/GetJobber/atlantis/issues/1953) [#1957](https://github.com/GetJobber/atlantis/issues/1957)
+
+
+
+
+
 ## [0.69.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.69.0...@jobber/components-native@0.69.1) (2024-07-08)
 
 

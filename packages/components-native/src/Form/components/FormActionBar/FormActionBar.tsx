@@ -35,7 +35,8 @@ export function FormActionBar({
   const buttonStyle = StyleSheet.flatten([
     styles.saveButton,
     {
-      position: keyboardHeight > 0 ? "absolute" : "relative",
+      position:
+        keyboardHeight > 0 ? ("absolute" as const) : ("relative" as const),
       bottom: 0,
     },
   ]);
@@ -45,7 +46,6 @@ export function FormActionBar({
   };
 
   return (
-    //@ts-expect-error tsc-ci
     <ReanimatedView style={buttonStyle} onLayout={onLayout}>
       {renderStickySection ? (
         renderStickySection(submit, saveButtonLabel, isFormSubmitting)

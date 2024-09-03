@@ -1,28 +1,19 @@
-.colorbar {
-  display: flex;
-  width: 100%;
-}
-
-.color {
-  flex: 1;
-  text-align: center;
+:root {
+  --swatchSize: 64px;
 }
 
 .swatch {
   position: relative;
+  width: var(--swatchSize);
+  height: var(--swatchSize);
+  box-shadow:
+    0px 0px 0px 2px var(--color-surface),
+    0px 0px 0px 3px var(--color-border);
   box-sizing: border-box;
-  height: var(--space-extravagant);
-  margin-bottom: var(--space-small);
-}
-
-.button {
-  position: absolute;
-  top: var(--space-smaller);
-  right: var(--space-smaller);
+  border-radius: var(--radius-base);
 }
 
 .pre {
-  display: inline-block;
   margin: 0 0 var(--space-smaller);
   padding: var(--space-smallest) var(--space-small);
   border-radius: var(--radius-base);

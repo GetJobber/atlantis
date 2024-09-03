@@ -48,7 +48,7 @@ export function StatusLabel({
         <StatusIndicator status={status} />
       </div>
 
-      <Typography size="small" textColor={status} align={alignment}>
+      <Typography size="small" align={alignment}>
         {label}
       </Typography>
     </div>

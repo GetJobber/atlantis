@@ -1,7 +1,8 @@
 declare const styles: {
   readonly "chip": string;
-  readonly "prefix": string;
+  readonly "clickableSuffix": string;
   readonly "suffix": string;
+  readonly "prefix": string;
   readonly "empty": string;
   readonly "chipBar": string;
   readonly "selected": string;

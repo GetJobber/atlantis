@@ -48,10 +48,7 @@ export default {
         postcssimport,
         autoprefixer,
         tools({
-          files: [
-            "../design/foundation.css",
-            "../design/src/responsiveBreakpoints.css",
-          ],
+          files: ["../design/dist/foundation.css"],
         }),
         presetenv({
           stage: 1,
@@ -64,12 +61,15 @@ export default {
     }),
     copy({
       targets: [
-        { src: "src/Card/colors.css.d.ts", dest: "dist/Card" },
+        { src: "src/Card/cardcolors.css.d.ts", dest: "dist/Card" },
         { src: "src/Content/Spacing.css.d.ts", dest: "dist/Content" },
         { src: "src/Gallery/Gallery.css.d.ts", dest: "dist/Gallery" },
         { src: "src/Grid/GridAlign.css.d.ts", dest: "dist/Grid" },
-        { src: "src/Modal/Sizes.css.d.ts", dest: "dist/Modal" },
-        { src: "src/ProgressBar/Sizes.css.d.ts", dest: "dist/ProgressBar" },
+        { src: "src/Modal/ModalSizes.css.d.ts", dest: "dist/Modal" },
+        {
+          src: "src/ProgressBar/ProgressBarSizes.css.d.ts",
+          dest: "dist/ProgressBar",
+        },
         {
           src: "src/Typography/css/Emphasis.css.d.ts",
           dest: "dist/Typography/css",
@@ -121,6 +121,7 @@ export default {
           dest: "dist",
           rename: "index.d.mts",
         },
+        { src: "src/utils/meta/meta.json", dest: "dist/utils/meta" },
       ],
       hook: "writeBundle",
     }),

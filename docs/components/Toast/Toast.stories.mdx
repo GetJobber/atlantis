@@ -2,7 +2,7 @@ import { Canvas, Meta } from "@storybook/addon-docs";
 import { Button } from "@jobber/components/Button";
 import { Toast, showToast } from "@jobber/components/Toast";
 
-<Meta title="Components/Status and Feedback/Toast/Docs" component={Toast} />
+<Meta title="Components/Status and Feedback/Toast" component={Toast} />
 
 # Toast
 
@@ -23,7 +23,7 @@ Use `Toast` to present non-blocking feedback about the system to a user.
 For more persistent feedback (such as displaying errors), communicating a
 background process that is ongoing, or for feedback that has a longer reading
 length or CTA, use
-[Banner.](../?path=/docs/components-status-and-feedback-banner-docs--page)
+[Banner.](../?path=/docs/components-status-and-feedback-banner--docs)
 
 ### Variation (Web only)
 
@@ -31,16 +31,16 @@ The primary use case for Toast is success messages.
 
 In some cases, an informational Toast may be used to inform the user of some
 background system activity. See
-[Web/Info example](../?path=/code/components-status-and-feedback-toast-web--variation)
+[Web/Info example](../?path=/story/components-status-and-feedback-toast-web--variation)
 
 ### Errors
 
 > Do not use Toast for errors. This is currently an available variation, but
 > should be considered deprecated and not propagated.
 
-Use [Banner](../?path=/docs/components-status-and-feedback-banner-docs--page)
-and, where necessary, targeted error messaging (such as
-[InputValidation](../?path=/docs/components-forms-and-inputs-inputvalidation-docs--page))
+Use [Banner](../?path=/docs/components-status-and-feedback-banner--docs) and,
+where necessary, targeted error messaging (such as
+[InputValidation](../?path=/docs/components-forms-and-inputs-inputvalidation--docs))
 so that the user can appropriately assess and recover from the error.
 
 ## Content guidelines
@@ -49,7 +49,7 @@ The Toast label should be clear and concise, and should not take up more than
 one line.
 
 Use the pattern "action + subject" to maintain
-[active voice](../?path=/docs/content-voice-tone--page#active-voice). The
+[active voice](../?path=/docs/content-voice-tone--docs#active-voice). The
 subject should be specific without overloading too much detail for the user to
 parse at a quick glance.
 
@@ -63,7 +63,7 @@ parse at a quick glance.
   - Examples of action labels: `Undo`, `View`, `Refresh`
 - Toast's label does not require a period
 - Use sentence case, and only capitalize
-  ["branded"](../?path=/docs/content-product-vocabulary--page#jobber-card-reader)
+  ["branded"](../?path=/docs/content-product-vocabulary--docs#jobber-card-reader)
   Jobber features
 
 | ✅ Do      | ❌ Don't                |

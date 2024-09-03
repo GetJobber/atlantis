@@ -1,11 +1,21 @@
 {
-  "extends": "../../tsconfig.base.json",
-  "compilerOptions": {
-    // "module": "commonjs",
-    "declaration": true,
-    "rootDir": "src",
-    "outDir": "dist",
-  },
-  "include": ["src"],
-  "files": ["src/index.ts"]
+    "compilerOptions": {
+        "outDir": "./dist",
+        "module": "ESNext",
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "target": "es6",
+        "declaration": true,
+        "resolveJsonModule": true,
+        "noEmit": true,
+        "skipLibCheck": true,
+        "strict": true
+    },
+    "ts-node": {
+        "esm": true
+    },
+    "include": [
+        "src/index.ts",
+        "src/**/*.d.ts"
+    ]
 }

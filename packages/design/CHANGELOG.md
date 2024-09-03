@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.65.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.64.0...@jobber/design@0.65.0) (2024-08-22)
+
+
+### Features
+
+* **components:** add theme context provider ([#1981](https://github.com/GetJobber/atlantis/issues/1981)) ([c2902d1](https://github.com/GetJobber/atlantis/commit/c2902d1366d6214f9a7a7bcfe5b66f03beb7d49e))
+
+
+
+
+
+# [0.64.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.63.0...@jobber/design@0.64.0) (2024-08-20)
+
+
+### Features
+
+* **design:** BREAKING CHANGE: Complete rebuild of the design token package ([#1965](https://github.com/GetJobber/atlantis/issues/1965)) ([b749502](https://github.com/GetJobber/atlantis/commit/b749502e347a4e14a1c5fcfdbc3114f54bb616f1))
+
+
+
+
+
+# [0.63.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.62.2...@jobber/design@0.63.0) (2024-08-02)
+
+
+### Features
+
+* **components:** Adds icons used for automations product, evolves sendMessage icon ([#1972](https://github.com/GetJobber/atlantis/issues/1972)) ([a264acc](https://github.com/GetJobber/atlantis/commit/a264acc4db47a41a00d36476795c02af161f49a0))
+
+
+
+
+
+## [0.62.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.62.1...@jobber/design@0.62.2) (2024-07-15)
+
+
+### Reverts
+
+* revert: "feat: Storybook7 Upgrade" ([#1956](https://github.com/GetJobber/atlantis/issues/1956)) ([1e82e48](https://github.com/GetJobber/atlantis/commit/1e82e48f69d4fa8a8d2db46daba6dcf3b6d87111)), closes [#1952](https://github.com/GetJobber/atlantis/issues/1952) [#1953](https://github.com/GetJobber/atlantis/issues/1953) [#1957](https://github.com/GetJobber/atlantis/issues/1957)
+
+
+
+
+
 ## [0.62.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.62.0...@jobber/design@0.62.1) (2024-07-08)
 
 

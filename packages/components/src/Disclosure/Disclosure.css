@@ -42,10 +42,12 @@
 .summaryWrap {
   align-items: baseline;
   display: flex;
+  justify-content: space-between;
 }
 
-.summaryWrap h4 {
-  flex: 1 0 0;
+.customSummaryWrap {
+  align-items: center;
+  gap: var(--space-small);
 }
 
 .content {

@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "5.20.5",
+  "version": "5.29.0",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.cjs",
@@ -28,6 +28,11 @@
       "types": "./dist/AtlantisContext/index.d.ts",
       "import": "./dist/AtlantisContext/index.mjs",
       "require": "./dist/AtlantisContext/index.cjs"
+    },
+    "./AtlantisThemeContext": {
+      "types": "./dist/AtlantisThemeContext/index.d.ts",
+      "import": "./dist/AtlantisThemeContext/index.mjs",
+      "require": "./dist/AtlantisThemeContext/index.cjs"
     },
     "./Autocomplete": {
       "types": "./dist/Autocomplete/index.d.ts",
@@ -388,6 +393,11 @@
       "types": "./dist/Typography/index.d.ts",
       "import": "./dist/Typography/index.mjs",
       "require": "./dist/Typography/index.cjs"
+    },
+    "./utils/meta/meta.json": {
+      "types": "./dist/utils/meta/meta.json",
+      "import": "./dist/utils/meta/meta.json",
+      "require": "./dist/utils/meta/meta.json"
     }
   },
   "scripts": {
@@ -407,9 +417,7 @@
     "dist/*"
   ],
   "dependencies": {
-    "@jobber/design": "^0.62.1",
     "@jobber/formatters": "^0.3.0",
-    "@jobber/hooks": "^2.10.1",
     "@popperjs/core": "^2.0.6",
     "@std-proposal/temporal": "0.0.1",
     "@tanstack/react-table": "8.5.13",
@@ -451,7 +459,7 @@
     "copyfiles": "^2.4.1",
     "glob": "^7.1.4",
     "jsdom-testing-mocks": "^1.9.0",
-    "postcss": "^8.4.21",
+    "postcss": "^8.4.40",
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^8.3.0",
     "rollup": "^4.13.0",
@@ -470,12 +478,12 @@
     "axios": "^1",
     "classnames": "^2",
     "color": "^4",
-    "date-fns": "^2.0.0",
+    "date-fns": "^2.30.0",
     "date-fns-tz": "^2.0.0",
     "filesize": "^6",
     "framer-motion": "^11",
     "lodash": "^4",
-    "react": "^18",
+    "react": "^18.2.0",
     "react-dom": "^18",
     "react-hook-form": "^7",
     "react-popper": "^2",

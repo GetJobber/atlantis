@@ -128,7 +128,7 @@ interface InputFileProps {
    * to upload the file.
    *
    * More info is available at:
-   * https://atlantis.getjobber.com/?path=/docs/components-forms-and-inputs-inputfile-docs--page#getuploadparams
+   * https://atlantis.getjobber.com/?path=/docs/components-forms-and-inputs-inputfile--docs#getuploadparams
    */
   getUploadParams(file: File): UploadParams | Promise<UploadParams>;
 
@@ -235,14 +235,16 @@ export function InputFile({
         <input {...getInputProps()} />
 
         {variation === "dropzone" && (
-          <Content spacing="small">
-            <Button label={buttonLabel} size="small" type="secondary" />
-            {size === "base" && (
-              <Typography size="small" textColor="textSecondary">
-                {hintText}
-              </Typography>
-            )}
-          </Content>
+          <div className={styles.dropzoneContent}>
+            <Content spacing="small">
+              <Button label={buttonLabel} size="small" type="secondary" />
+              {size === "base" && (
+                <Typography size="small" textColor="textSecondary">
+                  {hintText}
+                </Typography>
+              )}
+            </Content>
+          </div>
         )}
 
         {variation === "button" && (

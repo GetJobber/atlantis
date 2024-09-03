@@ -1,0 +1,64 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Design/Borders" />
+
+# Borders and Dividers
+
+You may find that a visual indicator is helpful to segment elements in an
+interface. We have elements to help you do so in a consistent way across
+platforms: borders and dividers.
+
+## Borders
+
+### Border Widths
+
+To add a border to an element, use the border-width variables in the component's
+styling to ensure consistent border thickness throughout Jobber.
+
+Border style should be `solid` unless a specific use case calls for some other
+format, such as indicating a dropzone on the
+[`InputFile` component](../?path=/docs/components-forms-and-inputs-inputfile--docs).
+
+export function Example({ of: size }) {
+  const style = {
+    width: "100%",
+    height: "var(--space-minuscule)",
+    borderBottomStyle: "solid",
+    borderBottomWidth: `var(--border-${size})`,
+    borderBottomColor: "var(--color-grey--lighter)",
+  };
+  return <div style={style} />;
+}
+
+| Width               | Visual                    |
+| :------------------ | :------------------------ |
+| `--border-base`     | <Example of="base" />     |
+| `--border-thick`    | <Example of="thick" />    |
+| `--border-thicker`  | <Example of="thicker" />  |
+| `--border-thickest` | <Example of="thickest" /> |
+
+The `base` border width should be used for most use cases (see
+[`Card`](../?path=/docs/components-layouts-and-structure-card--docs) and
+[`List` items](../?path=/docs/components-lists-and-tables-list--docs) for
+in-context examples). You may want to consider thicker borders when the border
+conveys a closing of already-divided sections, such as a
+[`Table` footer](../?path=/docs/components-lists-and-tables-table--docs).
+
+### Border Colors
+
+Borders should use `--color-border)` for most use cases.
+[`List` sections](../?path=/docs/components-lists-and-tables-list--docs#sectioned-list-items),
+[`Table` headers](../?path=/docs/components-lists-and-tables-table--docs) and
+other scenarios where other bordered content is being further subsectioned
+should use `--color-border--section)`.
+
+For accessibility reasons, ensure that color usage is not the only way to
+[convey meaning](https://webaim.org/articles/contrast/#sc141) in an interface.
+
+## Dividers
+
+The
+[`Divider` component](../?path=/docs/components-layouts-and-structure-divider--docs)
+will help you segment sections of content without writing additional styling.
+This component will render a horizontal rule that takes up the full available
+width.

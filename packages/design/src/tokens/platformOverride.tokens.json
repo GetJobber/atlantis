@@ -1,0 +1,232 @@
+{
+  "platformOverrides": {
+    "$type": "overrides",
+    "$description": "Platform specific overrides. These are used by the system to override for different platforms. Do not use these directly, but instead add your override value below to have it picked up by the system.",
+    "ios": {
+      "base": {
+        "unit": {
+          "$value": 16
+        }
+      },
+      "radius": {
+        "circle": {
+          "$value": 100
+        }
+      },
+      "typography-": {
+        "fontSize": {
+          "extravagant": {
+            "$value": 42
+          },
+          "jumbo": {
+            "$value": 32
+          },
+          "largest": {
+            "$value": 24
+          },
+          "larger": {
+            "$value": 20
+          },
+          "large": {
+            "$value": 18
+          },
+          "base": {
+            "$value": 16
+          },
+          "small": {
+            "$value": 14
+          },
+          "smaller": {
+            "$value": 12
+          },
+          "smallest": {
+            "$value": 10
+          }
+        },
+        "lineHeight": {
+          "large": {
+            "$value": 22
+          },
+          "base": {
+            "$value": 20
+          },
+          "tight": {
+            "$value": 18
+          },
+          "tighter": {
+            "$value": 16
+          },
+          "tightest": {
+            "$value": 14
+          },
+          "minuscule": {
+            "$value": 10
+          },
+          "extravagant": {
+            "$value": 42
+          },
+          "jumbo": {
+            "$value": 36
+          },
+          "largest": {
+            "$value": 28
+          },
+          "larger": {
+            "$value": 24
+          }
+        }
+      },
+      "shadow": {
+        "low": {
+          "$value": {
+            "shadowColor": "rgba(0, 0, 0, 1)",
+            "shadowOffset": {
+              "width": 0,
+              "height": 1
+            },
+            "shadowOpacity": 0.2,
+            "shadowRadius": 1,
+            "elevation": 2
+          }
+        },
+        "base": {
+          "$value": {
+            "shadowColor": "rgba(0, 0, 0, 1)",
+            "shadowOffset": {
+              "width": 0,
+              "height": 1
+            },
+            "shadowOpacity": 0.16,
+            "shadowRadius": 4,
+            "elevation": 6
+          }
+        },
+        "high": {
+          "$value": {
+            "shadowColor": "rgba(0, 0, 0, 1)",
+            "shadowOffset": {
+              "width": 0,
+              "height": 8
+            },
+            "shadowOpacity": 0.125,
+            "shadowRadius": 16,
+            "elevation": 12
+          }
+        }
+      }
+    },
+    "android": {
+      "base": {
+        "unit": {
+          "$value": 16
+        }
+      },
+      "radius": {
+        "circle": {
+          "$value": 100
+        }
+      },
+      "typography-": {
+        "fontSize": {
+          "extravagant": {
+            "$value": 42
+          },
+          "jumbo": {
+            "$value": 32
+          },
+          "largest": {
+            "$value": 24
+          },
+          "larger": {
+            "$value": 20
+          },
+          "large": {
+            "$value": 18
+          },
+          "base": {
+            "$value": 16
+          },
+          "small": {
+            "$value": 14
+          },
+          "smaller": {
+            "$value": 12
+          },
+          "smallest": {
+            "$value": 10
+          }
+        },
+        "lineHeight": {
+          "large": {
+            "$value": 22
+          },
+          "base": {
+            "$value": 20
+          },
+          "tight": {
+            "$value": 18
+          },
+          "tighter": {
+            "$value": 16
+          },
+          "tightest": {
+            "$value": 14
+          },
+          "minuscule": {
+            "$value": 10
+          },
+          "extravagant": {
+            "$value": 42
+          },
+          "jumbo": {
+            "$value": 36
+          },
+          "largest": {
+            "$value": 28
+          },
+          "larger": {
+            "$value": 24
+          }
+        }
+      },
+      "shadow": {
+        "low": {
+          "$value": {
+            "shadowColor": "rgba(0, 0, 0, 1)",
+            "shadowOffset": {
+              "width": 0,
+              "height": 1
+            },
+            "shadowOpacity": 0.2,
+            "shadowRadius": 1,
+            "elevation": 2
+          }
+        },
+        "base": {
+          "$value": {
+            "shadowColor": "rgba(0,0,0,0.9)",
+            "shadowOffset": {
+              "width": 0,
+              "height": 1
+            },
+            "shadowOpacity": 0.16,
+            "shadowRadius": 4,
+            "elevation": 6
+          }
+        },
+        "high": {
+          "$value": {
+            "shadowColor": "rgba(0,0,0,0.5)",
+            "shadowOffset": {
+              "width": 0,
+              "height": 8
+            },
+            "shadowOpacity": 0.125,
+            "shadowRadius": 16,
+            "elevation": 12
+          }
+        }
+      }
+    }
+  }
+}

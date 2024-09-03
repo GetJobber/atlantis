@@ -8,6 +8,10 @@ body,
   color: var(--color-text--reverse--secondary) !important;
 }
 
+.sidebar-container .search-field input {
+  border-color: var(--color-border);
+}
+
 .sidebar-container .search-field input:focus {
   color: var(--color-text) !important;
 }
