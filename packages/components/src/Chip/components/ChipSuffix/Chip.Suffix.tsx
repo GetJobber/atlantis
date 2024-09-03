@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from "react";
 import classNames from "classnames";
 import { Icon } from "@jobber/components/Icon";
-import { InternalChipButton } from "../../../Chips";
+import { InternalChipButton } from "../../../Chips/InternalChipButton";
 import { useChildComponent } from "../../hooks";
 import styles from "../../Chip.css";
 
