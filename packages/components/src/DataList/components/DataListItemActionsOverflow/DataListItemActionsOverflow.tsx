@@ -18,7 +18,7 @@ export function DataListItemActionsOverflow<T extends DataListObject>({
 
   return (
     <>
-      <Tooltip message="More actions">
+      <Tooltip message="More actions" preferredPlacement="bottom">
         <Button
           icon="more"
           ariaLabel="More actions"

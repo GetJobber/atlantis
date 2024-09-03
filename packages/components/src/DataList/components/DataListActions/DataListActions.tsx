@@ -43,7 +43,11 @@ export function DataListActions<T extends DataListObject>({
         const actionLabel = getActionLabel();
 
         return (
-          <Tooltip key={actionLabel} message={actionLabel}>
+          <Tooltip
+            key={actionLabel}
+            message={actionLabel}
+            preferredPlacement="bottom"
+          >
             <Button
               icon={props.icon}
               ariaLabel={actionLabel}
