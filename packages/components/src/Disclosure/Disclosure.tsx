@@ -1,8 +1,9 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { ReactElement, ReactNode, useEffect, useState } from "react";
 import {
   Breakpoints,
   useResizeObserver,
 } from "@jobber/hooks/useResizeObserver";
+import classnames from "classnames";
 import styles from "./Disclosure.css";
 import { Icon } from "../Icon";
 import { Typography } from "../Typography";
@@ -15,8 +16,9 @@ interface DisclosureProps {
 
   /**
    * Title for the disclosure pane.
+   * If ReactElement[] is provided, it must be wrapped in a container element (not a Fragment).
    */
-  readonly title: string;
+  readonly title: string | ReactElement | ReactElement[];
 
   /**
    * This sets the default open state of the disclosure.
@@ -36,6 +38,7 @@ export function Disclosure({
   const [isMounted, setMount] = useState(false);
   const [titleRef, { exactWidth }] = useResizeObserver<HTMLDivElement>();
   const isBelowBreakpoint = exactWidth && exactWidth < Breakpoints.small;
+  const isTitleString = typeof title === "string";
 
   useEffect(() => {
     setMount(true);
@@ -44,15 +47,17 @@ export function Disclosure({
   return (
     <details open={isOpen} onToggle={onToggle} className={styles.details}>
       <summary className={styles.summary}>
-        <div className={styles.summaryWrap} ref={titleRef}>
-          <Typography
-            element="h4"
+        <div
+          className={classnames(styles.summaryWrap, {
+            [styles.customSummaryWrap]: !isTitleString,
+          })}
+          ref={titleRef}
+        >
+          <DisclosureTitle
+            title={title}
             size={isBelowBreakpoint ? "base" : "large"}
-            fontWeight="bold"
-            textColor="heading"
-          >
-            {title}
-          </Typography>
+            isTitleString={isTitleString}
+          />
           <span className={styles.arrowIconWrapper}>
             <Icon size="large" name="arrowDown" color="green" />
           </span>
@@ -72,4 +77,29 @@ export function Disclosure({
 
     setOpen(!currentToggleState);
   }
+}
+
+interface DisclosureTitleProps {
+  /**
+   * Title for the disclosure pane.
+   */
+  readonly title: string | ReactNode | ReactNode[];
+  /**
+   * Size when the title is string.
+   */
+  readonly size: "base" | "large";
+  /**
+   * Whether the title is a string.
+   */
+  readonly isTitleString: boolean;
+}
+
+function DisclosureTitle({ title, size, isTitleString }: DisclosureTitleProps) {
+  if (!isTitleString) return <>{title}</>;
+
+  return (
+    <Typography element="h4" size={size} fontWeight="bold" textColor="heading">
+      {title}
+    </Typography>
+  );
 }

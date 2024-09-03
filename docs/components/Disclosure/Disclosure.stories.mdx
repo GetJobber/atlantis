@@ -31,7 +31,19 @@ to change but is not required to.
 ## Content guidelines
 
 - `title` should be informative and label the type of content grouped in the
-  body of the Disclosure
+  body of the Disclosure.
+  - This can either be a string or a React component. If a React component is
+    used (containing multiple children), it should be wrapped in a container
+    element and not a `<Fragment>` to maintain correct UI styling.
+    - Caveat: The container element should NOT be `<div>` as it would break the
+      semantics of the `<summary>` element. Instead, use a `<span>` or `<p>`
+      tag.
+  - The elements passed as a `title` can be plain text, or HTML that can be used
+    within a paragraph (AKA
+    ["phrasing content"](https://developer.mozilla.org/en-US/docs/Web/HTML/Content_categories#phrasing_content))
+    to ensure that the title is accessible and can be properly read by screen
+    readers. A heading may also be used but will not be treated as a heading by
+    assistive technologies.
 - `children` should be actionable and clear. The contents of a Disclosure can
   be:
   - plain text
@@ -43,8 +55,13 @@ to change but is not required to.
 
 - Users should be able to use their keyboard and toggle the component's
   open/close state
-- Headings are permitted in `summary` elements to provide in-page navigational
-  assistance
+- A single Heading element is permitted in `summary` elements, however, it might
+  lose some accessibility benefits, since according to
+  [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/summary#summaries_as_headings):
+  > Warning: Because the `<summary>` element has a default role of button (which
+  > strips all roles from child elements), this example will not work for users
+  > of assistive technologies such as screen readers. The `<h4>` will have its
+  > role removed and thus will not be treated as a heading for these users.
 - Include aria-expanded attribute on the trigger to communicate to assistive
   technology
 - Include aria-controls attribute ties on the trigger to the content it controls

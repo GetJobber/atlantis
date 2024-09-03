@@ -3,6 +3,9 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Disclosure } from "@jobber/components/Disclosure";
 import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
+import { Flex } from "@jobber/components/Flex";
+import { Heading } from "@jobber/components/Heading";
+import { Icon } from "@jobber/components/Icon";
 
 export default {
   title: "Components/Layouts and Structure/Disclosure/Web",
@@ -25,4 +28,16 @@ const BasicTemplate: ComponentStory<typeof Disclosure> = args => (
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
   title: "Advanced instructions",
+};
+
+export const CustomTitle = BasicTemplate.bind({});
+CustomTitle.args = {
+  title: (
+    <Flex template={["shrink", "grow"]} gap="small">
+      <Icon name="sparkles" />
+      <Heading level={5} element="span">
+        Jobber Pro Tips
+      </Heading>
+    </Flex>
+  ),
 };
