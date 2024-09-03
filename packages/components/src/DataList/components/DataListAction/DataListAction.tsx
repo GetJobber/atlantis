@@ -5,7 +5,7 @@ import {
 } from "@jobber/components/DataList/DataList.types";
 import { Typography } from "@jobber/components/Typography";
 import { Icon } from "@jobber/components/Icon";
-import { useDataListLayoutActionsContext } from "@jobber/components/DataList/components/DataListLayoutActions/DataListLayoutContext";
+import { useDataListLayoutActionsContext } from "../DataListLayoutActions/DataListLayoutContext/DataListLayoutContext";
 import styles from "./DataListAction.css";
 
 export function DataListAction<T extends DataListObject>({

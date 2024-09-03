@@ -1,20 +1,32 @@
 .menuLink {
-    padding-left: 6;
-    padding: var(--space-small) var(--space-small);
-    color: var(--color-heading);
-    border-radius: var(--radius-base);
-    margin: 0 var(--space-small) var(--space-smaller) var(--space-small);
     display: flex;
+    margin: 0 var(--space-small) var(--space-smaller) var(--space-small);
+    padding: var(--space-small) var(--space-small);
+    padding-left: 6;
+    border-radius: var(--radius-base);
+    color: var(--color-heading);
     align-items: center;
 }
 
-.menuLink a {
+.subMenuLink {
+    display: flex;
+    margin: 0 var(--space-small) var(--space-smaller) var(--space-base);
+    padding: var(--space-small) var(--space-small);
+    padding-left: 6;
+    border-radius: var(--radius-base);
     color: var(--color-heading);
-    font-weight: 700;
+    align-items: center;
+}
+
+.menuLink a,
+.subMenuLink a {
+    margin: 0;
+    outline: 0;
+    color: var(--color-heading);
     font-size: var(--typography--fontSize-base);
+    font-weight: 700;
     text-decoration: none;
     user-select: none;
-    outline: 0
 }
 
 .subRoute {

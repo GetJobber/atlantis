@@ -1,15 +1,15 @@
 /* eslint-disable import/no-internal-modules */
 import React, { CSSProperties, ReactNode } from "react";
 import classnames from "classnames";
-import styles from "./css/Typography.css";
-import fontSizes from "./css/FontSizes.css";
-import fontWeights from "./css/FontWeights.css";
-import textCases from "./css/TextCases.css";
-import textColors from "./css/TextColors.css";
-import emphasis from "./css/Emphasis.css";
-import truncate from "./css/Truncate.css";
-import alignment from "./css/TextAlignment.css";
-import fontFamilies from "./css/FontFamilies.css";
+import styles from "./css/Typography.module.css";
+import fontSizes from "./css/FontSizes.module.css";
+import fontWeights from "./css/FontWeights.module.css";
+import textCases from "./css/TextCases.module.css";
+import textColors from "./css/TextColors.module.css";
+import emphasis from "./css/Emphasis.module.css";
+import truncate from "./css/Truncate.module.css";
+import alignment from "./css/TextAlignment.module.css";
+import fontFamilies from "./css/FontFamilies.module.css";
 
 interface TypographyProps {
   readonly id?: string;

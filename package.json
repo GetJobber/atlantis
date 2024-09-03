@@ -37,7 +37,7 @@
     "publish:prerelease:githubAction": "lerna publish --canary --summary-file --dist-tag next",
     "release-the-kraken": "npm ci && lerna publish",
     "release:unpublished-package": "npm ci && lerna publish from-package",
-    "start": "npm run dev --workspace @jobber/atlantis-site",
+    "start": "concurrently \"npm run dev --workspace=@jobber/atlantis-site \" \"npm run dev --workspace=@jobber/components\" \"npm run dev --workspace @jobber/components-native\"",
     "test": "jest"
   },
   "repository": {
@@ -70,6 +70,7 @@
   },
   "engineStrict": true,
   "devDependencies": {
+    "concurrently": "^8.2.2",
     "husky": "^9.1.5"
   }
 }

@@ -1,11 +1,11 @@
 import React from "react";
-import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
-import { Breakpoints } from "@jobber/components/DataList/DataList.const";
+import { useDataListContext } from "../../context/DataListContext/DataListContext";
+import { Breakpoints } from "../../DataList.const";
 import {
   generateHeaderElements,
   sortBreakpoints,
-} from "@jobber/components/DataList/DataList.utils";
-import { useResponsiveSizing } from "@jobber/components/DataList/hooks/useResponsiveSizing";
+} from "../../DataList.utils";
+import { useResponsiveSizing } from "../../hooks/useResponsiveSizing";
 import { DataListHeaderCheckbox } from "./DataListHeaderCheckbox";
 import { useActiveLayout } from "../../hooks/useActiveLayout";
 import { useBatchSelect } from "../../hooks/useBatchSelect";

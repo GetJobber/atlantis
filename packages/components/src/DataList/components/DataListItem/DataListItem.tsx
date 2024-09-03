@@ -1,15 +1,15 @@
 import React, { MouseEvent, useMemo, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import classNames from "classnames";
-import { useDataListLayoutContext } from "@jobber/components/DataList/context/DataListLayoutContext";
+import { useDataListLayoutContext } from "../../context/DataListLayoutContext";
 import {
   DataListLayoutProps,
   DataListObject,
 } from "@jobber/components/DataList/DataList.types";
-import { InternalDataListItemActions } from "@jobber/components/DataList/components/DataListItemActions";
-import { DataListActionsMenu } from "@jobber/components/DataList/components/DataListActionsMenu";
-import { DataListLayoutActionsContext } from "@jobber/components/DataList/components/DataListLayoutActions/DataListLayoutContext";
-import { generateListItemElement } from "@jobber/components/DataList/DataList.utils";
+import { InternalDataListItemActions } from "../DataListItemActions";
+import { DataListActionsMenu } from "../DataListActionsMenu";
+import { DataListLayoutActionsContext } from "../DataListLayoutActions/DataListLayoutContext";
+import { generateListItemElement } from "../../DataList.utils";
 import { DataListItemInternal } from "./DataListItemInternal";
 import { DataListItemClickable } from "./components/DataListItemClickable";
 import styles from "../../DataList.css";

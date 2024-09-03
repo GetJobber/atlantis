@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
-import { DataListLayoutContext } from "@jobber/components/DataList/context/DataListLayoutContext";
-import { DataListItem } from "@jobber/components/DataList/components/DataListItem";
+import { useDataListContext } from "../../context/DataListContext";
+import { DataListLayoutContext } from "../../context/DataListLayoutContext";
+import { DataListItem } from "../DataListItem";
 import {
   Breakpoints,
   DataListObject,
-} from "@jobber/components/DataList/DataList.types";
+} from "../../DataList.types";
 
 interface DataListItemsProps {
   readonly size?: Breakpoints;

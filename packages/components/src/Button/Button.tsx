@@ -2,7 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
 import { IconNames } from "@jobber/design";
-import styles from "./Button.css";
+import styles from "./Button.module.css";
 import { Icon } from "../Icon";
 import { Typography } from "../Typography";
 

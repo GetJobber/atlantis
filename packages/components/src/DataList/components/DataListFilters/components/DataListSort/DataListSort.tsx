@@ -1,5 +1,5 @@
 import React from "react";
-import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
+import { useDataListContext } from "../../../../context/DataListContext/DataListContext";
 import { Combobox } from "@jobber/components/Combobox";
 import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";

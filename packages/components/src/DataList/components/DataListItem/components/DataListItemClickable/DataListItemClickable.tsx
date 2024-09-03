@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from "react";
-import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
+import { useDataListContext } from "../../../../context/DataListContext";
 import { DataListItemClickableInternal } from "./DataListItemClickableInternal";
 
 export function DataListItemClickable({ children }: PropsWithChildren<object>) {

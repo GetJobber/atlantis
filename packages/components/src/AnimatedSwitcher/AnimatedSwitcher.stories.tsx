@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {AnimatedSwitcher} from '.';
 import {Button, Text} from '..';
-import type {Meta, StoryObj} from '@storybook/react';
+import {Meta, StoryObj} from '@storybook/react';
 
 const meta: Meta<typeof AnimatedSwitcher> = {
   title: 'Components/Utilities/AnimatedSwitcher/Web',

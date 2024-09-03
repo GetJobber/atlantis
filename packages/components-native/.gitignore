@@ -10,3 +10,4 @@ storybook-static
 .rollup.cache
 jobber-*.tgz
 src/utils/design/tokens.*
+*storybook.log

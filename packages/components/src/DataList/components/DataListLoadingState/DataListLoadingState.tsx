@@ -4,8 +4,8 @@ import {
   DataListItemType,
   DataListObject,
 } from "@jobber/components/DataList/DataList.types";
-import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
-import { useActiveLayout } from "@jobber/components/DataList/hooks/useActiveLayout";
+import { useDataListContext } from "../../context/DataListContext";
+import { useActiveLayout } from "../../hooks/useActiveLayout";
 import styles from "./DataListLoadingState.css";
 
 export const LOADING_STATE_LIMIT_ITEMS = 10;

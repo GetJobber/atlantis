@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { DataListItems } from "@jobber/components/DataList/components/DataListItems";
-import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
+import { DataListItems } from "../DataListItems";
+import { useDataListContext } from "../../context/DataListContext";
 import {
   DataListLayoutProps,
   DataListObject,

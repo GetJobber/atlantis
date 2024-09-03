@@ -7,7 +7,7 @@ export const WelcomePage = () => {
           title: 'Atlantis',
           body: 'Design and build consumer-grade products with this world-class design system',
           ctaLabel: 'Get Started',
-          to: '/web/components',
+          to: '/welcome-guide',
         },
         body: {
           title: 'Packages',
