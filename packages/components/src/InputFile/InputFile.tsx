@@ -123,6 +123,8 @@ interface InputFileProps {
    */
   readonly allowMultiple?: boolean;
 
+  readonly maxFiles?: number;
+
   /**
    * A callback that receives a file object and returns a `UploadParams` needed
    * to upload the file.
@@ -181,6 +183,7 @@ export function InputFile({
   buttonLabel: providedButtonLabel,
   allowMultiple = false,
   allowedTypes = "all",
+  maxFiles,
   getUploadParams,
   onUploadStart,
   onUploadProgress,
@@ -190,6 +193,7 @@ export function InputFile({
 }: InputFileProps) {
   const options: DropzoneOptions = {
     multiple: allowMultiple,
+    maxFiles: maxFiles,
     onDrop: useCallback(handleDrop, [uploadFile]),
     validator: validator && useCallback(validator, []),
   };
