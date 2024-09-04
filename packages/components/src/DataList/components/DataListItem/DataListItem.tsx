@@ -14,6 +14,7 @@ import { DataListItemInternal } from "./DataListItemInternal";
 import { DataListItemClickable } from "./components/DataListItemClickable";
 import styles from "../../DataList.css";
 import { useGetItemActions } from "../../hooks/useGetItemActions";
+import { useDataListContext } from "../../context/DataListContext";
 
 interface DataListItem<T extends DataListObject> {
   readonly item: T;
@@ -27,6 +28,7 @@ export function DataListItem<T extends DataListObject>({
   layout,
 }: DataListItem<T>) {
   const { hasInLayoutActions } = useDataListLayoutContext();
+  const { selected } = useDataListContext();
   const [showMenu, setShowMenu] = useState(false);
   const [contextPosition, setContextPosition] =
     useState<Record<"x" | "y", number>>();
@@ -35,10 +37,16 @@ export function DataListItem<T extends DataListObject>({
 
   const { actions, hasActions } = useGetItemActions<T>(item);
   const isContextMenuVisible = Boolean(contextPosition);
+  const isMultiselectModeActive = !!selected?.length;
 
-  const shouldShowContextMenu = showMenu && isContextMenuVisible && hasActions;
+  const shouldShowContextMenu =
+    showMenu && isContextMenuVisible && hasActions && !isMultiselectModeActive;
   const shouldShowHoverMenu =
-    showMenu && hasActions && !hasInLayoutActions && !shouldShowContextMenu;
+    !isMultiselectModeActive &&
+    showMenu &&
+    hasActions &&
+    !hasInLayoutActions &&
+    !shouldShowContextMenu;
 
   return (
     <DataListLayoutActionsContext.Provider value={{ activeItem: item }}>
@@ -84,7 +92,7 @@ export function DataListItem<T extends DataListObject>({
   }
 
   function handleContextMenu(event: MouseEvent<HTMLDivElement>) {
-    if (!hasActions || isContextMenuVisible) return;
+    if (!hasActions || isContextMenuVisible || isMultiselectModeActive) return;
 
     event.preventDefault();
     setContextPosition({

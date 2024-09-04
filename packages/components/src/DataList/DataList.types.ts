@@ -143,7 +143,7 @@ export interface DataListProps<T extends DataListObject> {
   /**
    * The list of Selected Item ids
    */
-  readonly selected?: DataListSelectedType<T["id"]>;
+  readonly selected?: DataListSelectedType<T["id"]>[];
 
   /**
    * Callback when an item checkbox is clicked.
