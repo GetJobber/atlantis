@@ -53,13 +53,14 @@
   background-color: transparent;
   justify-content: space-between;
   align-items: flex-start;
+  gap: var(--space-base);
 }
 
 .heading {
   margin-top: var(--space-small);
 }
 
-/* Adjust the position of the dismiss button to match Side Drawer */
+/* Make sure the dismiss button doesn't get squished when title is longer */
 .header > button {
   flex-shrink: 0;
 }
