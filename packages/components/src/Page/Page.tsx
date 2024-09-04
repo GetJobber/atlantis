@@ -14,6 +14,10 @@ import { Button, ButtonProps } from "../Button";
 import { Menu, SectionProps } from "../Menu";
 import { Emphasis } from "../Emphasis";
 
+export type ButtonActionProps = ButtonProps & {
+  ref?: React.RefObject<HTMLDivElement>;
+};
+
 interface PageFoundationProps {
   readonly children: ReactNode | ReactNode[];
 
@@ -49,13 +53,13 @@ interface PageFoundationProps {
   /**
    * Page title primary action button settings.
    */
-  readonly primaryAction?: ButtonProps;
+  readonly primaryAction?: ButtonActionProps;
 
   /**
    * Page title secondary action button settings.
    *   Only shown if there is a primaryAction.
    */
-  readonly secondaryAction?: ButtonProps;
+  readonly secondaryAction?: ButtonActionProps;
 
   /**
    * Page title Action menu.
@@ -154,13 +158,16 @@ export function Page({
             {showActionGroup && (
               <div className={styles.actionGroup}>
                 {primaryAction && (
-                  <div className={styles.primaryAction}>
-                    <Button {...primaryAction} />
+                  <div className={styles.primaryAction} ref={primaryAction.ref}>
+                    <Button {...getActionProps(primaryAction)} />
                   </div>
                 )}
                 {secondaryAction && (
-                  <div className={styles.actionButton}>
-                    <Button {...secondaryAction} />
+                  <div
+                    className={styles.actionButton}
+                    ref={secondaryAction.ref}
+                  >
+                    <Button {...getActionProps(secondaryAction)} />
                   </div>
                 )}
                 {showMenu && (
@@ -186,3 +193,10 @@ export function Page({
     </div>
   );
 }
+
+export const getActionProps = (actionProps: ButtonActionProps): ButtonProps => {
+  const buttonProps = { ...actionProps };
+  if (actionProps.ref) delete buttonProps.ref;
+
+  return buttonProps;
+};
