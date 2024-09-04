@@ -2,7 +2,9 @@ import React from "react";
 import { fireEvent, render } from "@testing-library/react";
 import { StatusLabel } from "@jobber/components/StatusLabel";
 import { Page } from ".";
+import { ButtonActionProps, getActionProps } from "./Page";
 import { SectionProps } from "../Menu";
+import { ButtonProps } from "../Button";
 
 jest.mock("@jobber/hooks", () => {
   return {
@@ -105,6 +107,23 @@ describe("When actions are provided", () => {
 
     fireEvent.click(getByText("Second Do"));
     expect(handleSecondaryAction).toHaveBeenCalledTimes(1);
+  });
+
+  describe("getActionProps", () => {
+    it("given action props, it returns the correct props", () => {
+      const buttonActionProps = {
+        label: "Label",
+      } as ButtonProps;
+      const buttonActionWithRefProps = {
+        label: "Label",
+        ref: { current: null },
+      } as ButtonActionProps;
+
+      expect(getActionProps(buttonActionProps)).toEqual(buttonActionProps);
+      expect(getActionProps(buttonActionWithRefProps)).toEqual(
+        buttonActionProps,
+      );
+    });
   });
 });
 
