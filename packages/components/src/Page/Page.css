@@ -39,6 +39,7 @@
 
 .titleBar > .actionGroup {
   flex: 1 0 auto;
+  align-self: baseline;
 }
 
 .titleBar.large,
