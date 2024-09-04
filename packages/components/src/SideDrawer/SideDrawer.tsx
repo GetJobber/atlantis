@@ -123,19 +123,18 @@ export function SideDrawer({
                     headerShadowRef.current && !noHeaderShadow,
                 })}
               >
-                <Flex template={["grow", "shrink"]} align={"start"}>
-                  <Flex
-                    template={["shrink", "grow"]}
-                    align={"start"}
-                    gap="none"
-                  >
+                <Flex template={["grow", "shrink"]} align="start">
+                  <Flex template={["shrink", "grow"]} align="start" gap="none">
                     <div
                       className={classNames(styles.backButton, {
                         [styles.backButtonVisible]: components.backButton,
                       })}
                       {...backButton.attr}
                     />
-                    <div {...title.attr} />
+                    <div
+                      className={classNames(styles.heading)}
+                      {...title.attr}
+                    />
                   </Flex>
 
                   <div className={styles.headerActions}>

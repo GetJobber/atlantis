@@ -2,6 +2,7 @@ declare const styles: {
   readonly "drawer": string;
   readonly "container": string;
   readonly "header": string;
+  readonly "heading": string;
   readonly "content": string;
   readonly "footer": string;
   readonly "subtle": string;
