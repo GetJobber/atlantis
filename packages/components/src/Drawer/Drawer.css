@@ -48,10 +48,17 @@
 
 .header {
   display: flex;
-  padding: var(--space-base) var(--space-base) 0 var(--drawer--base-padding);
+  padding: var(--drawer--base-padding) var(--space-small) 0
+    var(--drawer--base-padding);
   background-color: transparent;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+}
+
+/* Adjust the position of the dismiss button to match Side Drawer */
+.header > button {
+  flex-shrink: 0;
+  margin-top: calc(-1 * var(--space-small));
 }
 
 .contentScroll {
