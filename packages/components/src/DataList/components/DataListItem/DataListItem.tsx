@@ -37,7 +37,7 @@ export function DataListItem<T extends DataListObject>({
 
   const { actions, hasActions } = useGetItemActions<T>(item);
   const isContextMenuVisible = Boolean(contextPosition);
-  const isMultiselectModeActive = !!selected?.length;
+  const isMultiselectModeActive = Array.isArray(selected) && !!selected.length;
 
   const shouldShowContextMenu =
     showMenu && isContextMenuVisible && hasActions && !isMultiselectModeActive;
