@@ -123,8 +123,12 @@ export function SideDrawer({
                     headerShadowRef.current && !noHeaderShadow,
                 })}
               >
-                <Flex template={["grow", "shrink"]}>
-                  <Flex template={["shrink", "grow"]} gap="none">
+                <Flex template={["grow", "shrink"]} align={"start"}>
+                  <Flex
+                    template={["shrink", "grow"]}
+                    align={"start"}
+                    gap="none"
+                  >
                     <div
                       className={classNames(styles.backButton, {
                         [styles.backButtonVisible]: components.backButton,
