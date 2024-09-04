@@ -1,6 +1,6 @@
 .fadeContainer {
-  --overflow-fade--offset: var(--space-smaller);
-  --overflow-fade--negative-offset: calc(var(--overflow-fade--offset) * -1);
+  --overflow-fade--offset: 0;
+  --overflow-fade--negative-offset: 0;
 
   align-self: center;
   position: relative;
@@ -16,7 +16,7 @@
 }
 
 .overflowItems {
-  gap: var(--space-smaller);
+  gap: 0;
 }
 
 .overflowGrid {

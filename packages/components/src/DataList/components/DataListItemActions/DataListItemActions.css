@@ -1,13 +1,14 @@
 .menu {
   display: flex;
   position: absolute;
+  top: -26px;
   right: 0;
-  bottom: calc(-1 * var(--space-base));
   z-index: var(--elevation-menu);
   box-shadow: var(--shadow-base);
-  padding: var(--space-smaller);
+  padding: 0;
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
+  overflow: visible;
   background-color: var(--color-surface);
-  gap: var(--space-smaller);
+  gap: 0;
 }

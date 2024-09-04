@@ -17,7 +17,7 @@
   display: inline-block;
   position: relative;
   max-width: 250px;
-  padding: calc(var(--space-base) - var(--space-smallest)) var(--space-base);
+  padding: var(--space-small) 12px;
   border-radius: var(--radius-base);
   background-color: var(--tooltip--surface);
 }
@@ -88,7 +88,7 @@
 .tooltipMessage {
   margin: 0;
   color: var(--color-text--reverse);
-  font-size: var(--typography--fontSize-base);
-  font-weight: 600;
+  font-size: var(--typography--fontSize-small);
+  font-weight: 500;
   line-height: var(--typography--lineHeight-base);
 }

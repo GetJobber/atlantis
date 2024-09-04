@@ -43,11 +43,7 @@ export function DataListActions<T extends DataListObject>({
         const actionLabel = getActionLabel();
 
         return (
-          <Tooltip
-            key={actionLabel}
-            message={actionLabel}
-            preferredPlacement="bottom"
-          >
+          <Tooltip key={actionLabel} message={actionLabel}>
             <Button
               icon={props.icon}
               ariaLabel={actionLabel}
@@ -58,8 +54,7 @@ export function DataListActions<T extends DataListObject>({
                   (props.onClick as () => void)?.();
                 }
               }}
-              type="secondary"
-              size="small"
+              type="tertiary"
               variation="subtle"
             />
           </Tooltip>
