@@ -175,7 +175,7 @@
   transition: opacity var(--transition-properties);
   --transition-properties: var(--timing-quick) ease-in-out;
 
-  @media (--medium-screens-and-up) {
+  @media (--medium-screens-and-up) and (any-pointer: fine) {
     padding-top: 0;
     opacity: 0;
   }
