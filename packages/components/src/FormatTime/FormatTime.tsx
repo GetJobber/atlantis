@@ -1,5 +1,6 @@
 import React from "react";
 import { CivilTime } from "@std-proposal/temporal";
+import { getTodayDateAtCivilTime } from "../utils/civilTimeConversions";
 
 interface FormatTimeProps {
   /**
@@ -26,25 +27,13 @@ export function FormatTime({
   } else if (typeof inputTime === "string") {
     dateObject = new Date(inputTime);
   } else {
-    const currentDate = new Date();
-    const currentYear = currentDate.getFullYear();
-    const currentMonth = currentDate.getMonth();
-    const currentDay = currentDate.getDay();
-    dateObject = new Date(
-      currentYear,
-      currentMonth,
-      currentDay,
-      inputTime.hour,
-      inputTime.minute,
-      inputTime.second,
-      inputTime.millisecond,
-    );
+    dateObject = getTodayDateAtCivilTime(inputTime);
   }
 
-  return <>{formatCivilTime(dateObject, use24HourClock)}</>;
+  return <>{dateToLocaleTimeString(dateObject, use24HourClock)}</>;
 }
 
-function formatCivilTime(date: Date, use24HourClock?: boolean) {
+function dateToLocaleTimeString(date: Date, use24HourClock?: boolean) {
   const language = globalThis?.navigator ? navigator.language : "en";
 
   return date.toLocaleTimeString(language, {

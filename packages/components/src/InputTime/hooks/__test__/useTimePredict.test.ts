@@ -1,5 +1,5 @@
 import { act, renderHook } from "@testing-library/react";
-import { htmlTimeToCivilTime } from "../../civilTimeConversions";
+import { timeStringToCivilTime } from "../../../utils/civilTimeConversions";
 import { useTimePredict } from "../useTimePredict";
 
 beforeEach(() => {
@@ -12,7 +12,7 @@ describe("useTimePredict", () => {
     const { result } = renderHook(useTimePredict, {
       initialProps: {
         handleChange,
-        value: htmlTimeToCivilTime("12:00"),
+        value: timeStringToCivilTime("12:00"),
       },
     });
 

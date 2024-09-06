@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import { CivilDate } from "@std-proposal/temporal";
 import ReactCountdown, { CountdownRenderProps } from "react-countdown";
 import { computeTimeUnit } from "./computeTimeUnit";
+import { getDateFromCivilDate } from "../utils/civilTimeConversions";
 
 /**
  * Options for deciding how much information is shown to the user
@@ -46,7 +47,7 @@ export function Countdown({
     let initDate: Date;
 
     if (inputDate instanceof CivilDate) {
-      initDate = new Date(inputDate.year, inputDate.month - 1, inputDate.day);
+      initDate = getDateFromCivilDate(inputDate);
     } else {
       initDate = new Date(inputDate);
     }

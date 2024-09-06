@@ -1,5 +1,6 @@
 import React from "react";
 import { CivilDate } from "@std-proposal/temporal";
+import { getDateFromCivilDate } from "../utils/civilTimeConversions";
 
 interface FormatDateProps {
   /**
@@ -26,7 +27,7 @@ export function FormatDate({
   } else if (typeof inputDate === "string") {
     dateObject = new Date(inputDate);
   } else {
-    dateObject = new Date(inputDate.year, inputDate.month - 1, inputDate.day);
+    dateObject = getDateFromCivilDate(inputDate);
   }
 
   return <>{strFormatDate(dateObject, showYear)}</>;
