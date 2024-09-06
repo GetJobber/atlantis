@@ -122,6 +122,10 @@ export default {
           rename: "index.d.mts",
         },
         { src: "src/utils/meta/meta.json", dest: "dist/utils/meta" },
+        {
+          src: "src/utils/meta/extension-components.json",
+          dest: "dist/utils/extension-components",
+        },
       ],
       hook: "writeBundle",
     }),

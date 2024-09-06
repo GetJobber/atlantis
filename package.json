@@ -21,6 +21,7 @@
     "ci:release": "lerna publish --yes",
     "clean": "rm -rf node_modules **/dist packages/**/.rollup.cache storybook-static",
     "generate": "plop -- --path='./packages/components/src/'",
+    "generate-extension-components": "node scripts/generateExtensionComponents.js",
     "lint": "npm run lint:js && npm run lint:css",
     "lerna:clean": "lerna run clean && lerna clean --y && npm run clean",
     "lint:css": "stylelint 'packages/**/*.css' --allow-empty-input --ignore-pattern 'packages/**/dist/**/*.css'",

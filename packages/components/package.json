@@ -398,6 +398,11 @@
       "types": "./dist/utils/meta/meta.json",
       "import": "./dist/utils/meta/meta.json",
       "require": "./dist/utils/meta/meta.json"
+    },
+    "./utils/meta/extension-components.json": {
+      "types": "./dist/utils/meta/extension-components.json",
+      "import": "./dist/utils/meta/extension-components.json",
+      "require": "./dist/utils/meta/extension-components.json"
     }
   },
   "scripts": {
