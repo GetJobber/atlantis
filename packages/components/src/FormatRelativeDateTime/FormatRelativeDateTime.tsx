@@ -1,5 +1,6 @@
 import React from "react";
 import { CivilDateTime } from "@std-proposal/temporal";
+import { getDateTimeFromCivilDateTime } from "../utils/civilTimeConversions";
 
 interface FormatRelativeDateTimeProps {
   /**
@@ -20,7 +21,7 @@ export function FormatRelativeDateTime({
   } else if (typeof inputDate === "string") {
     dateObject = new Date(inputDate);
   } else {
-    dateObject = new Date(inputDate.toJSON());
+    dateObject = getDateTimeFromCivilDateTime(inputDate);
   }
 
   const now = Date.now() / 1000; //seconds
