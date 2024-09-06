@@ -1,223 +1,375 @@
 {
-  "AnimatedPresence": [],
-  "AnimatedSwitcher": [],
-  "AtlantisThemeContext": [],
-  "Autocomplete": [
-    "initialOptions",
-    "placeholder"
-  ],
-  "Avatar": [
-    "color",
-    "imageUrl",
-    "initials",
-    "name",
-    "size"
-  ],
-  "Banner": [
-    "type"
-  ],
-  "Box": [],
-  "Button": [
-    "label",
-    "onClick"
-  ],
-  "ButtonDismiss": [
-    "onClick"
-  ],
-  "Card": [
-    "header"
-  ],
-  "Checkbox": [
-    "label"
-  ],
-  "Chip": [],
-  "Chips": [],
-  "Combobox": [],
-  "ConfirmationModal": [
-    "title",
-    "message"
-  ],
-  "Content": [
-    "spacing"
-  ],
-  "Countdown": [
-    "granularity",
-    "showUnits"
-  ],
-  "DataDump": [
-    "data"
-  ],
-  "DataList": [],
-  "DataTable": [
-    "data",
-    "columns"
-  ],
-  "Datepicker": [],
-  "DescriptionList": [
-    "data",
-    "2018-12-08]",
-    "[Due",
-    "2019-01-06]",
-    "]"
-  ],
-  "Disclosure": [
-    "title"
-  ],
-  "Divider": [],
-  "Drawer": [
-    "id",
-    "title",
-    "open"
-  ],
-  "Emphasis": [
-    "variation"
-  ],
-  "FeatureSwitch": [
-    "title",
-    "description",
-    "hasSaveIndicator"
-  ],
-  "Flex": [
-    "template",
-    "shrink]"
-  ],
-  "Form": [],
-  "FormField": [
-    "placeholder",
-    "type"
-  ],
-  "FormatDate": [
-    "date",
-    "2",
-    "26)"
-  ],
-  "FormatEmail": [
-    "email"
-  ],
-  "FormatFile": [],
-  "FormatRelativeDateTime": [],
-  "FormatTime": [],
-  "Gallery": [
-    "files"
-  ],
-  "Glimmer": [
-    "shape",
-    "size",
-    "timing"
-  ],
-  "Grid": [
-    "gap",
-    "alignItems"
-  ],
-  "Heading": [],
-  "Icon": [
-    "name"
-  ],
-  "InlineLabel": [],
-  "InputAvatar": [
-    "imageUrl",
-    "getUploadParams"
-  ],
-  "InputDate": [
-    "placeholder"
-  ],
-  "InputEmail": [
-    "placeholder"
-  ],
-  "InputFile": [],
-  "InputGroup": [
-    "flowDirection"
-  ],
-  "InputNumber": [
-    "value"
-  ],
-  "InputPassword": [
-    "placeholder"
-  ],
-  "InputPhoneNumber": [
-    "placeholder"
-  ],
-  "InputText": [
-    "name",
-    "placeholder"
-  ],
-  "InputTime": [],
-  "InputValidation": [
-    "message"
-  ],
-  "LightBox": [
-    "images"
-  ],
-  "Link": [
-    "url",
-    "external"
-  ],
-  "List": [
-    "items",
-    "icon",
-    "iconColor",
-    "content",
-    "value",
-    "caption",
-    "2019",
-    "onClick"
-  ],
-  "Markdown": [
-    "externalLink"
-  ],
-  "Menu": [],
-  "Modal": [
-    "title"
-  ],
-  "MultiSelect": [
-    "defaultLabel",
-    "allSelectedLabel"
-  ],
-  "Page": [
-    "title",
-    "intro",
-    "stop chasing payments",
-    "and boost your customer service by automatically communicating with your clients at key points before",
-    "during",
-    "and after a job. Read more about Notifications by visiting our [Help Center](https"
-  ],
-  "Popover": [],
-  "ProgressBar": [
-    "currentStep",
-    "totalSteps"
-  ],
-  "RadioGroup": [],
-  "RecurringSelect": [],
-  "Select": [
-    "placeholder"
-  ],
-  "SideDrawer": [
-    "open"
-  ],
-  "Spinner": [
-    "size"
-  ],
-  "StatusIndicator": [
-    "status"
-  ],
-  "StatusLabel": [
-    "label",
-    "alignment",
-    "status"
-  ],
-  "Switch": [],
-  "Table": [],
-  "Tabs": [
-    "label"
-  ],
-  "Text": [
-    "children"
-  ],
-  "Toast": [
-    "message"
-  ],
-  "Tooltip": [
-    "message"
-  ],
-  "Typography": []
+  "AnimatedPresence": {
+    "props": []
+  },
+  "AnimatedSwitcher": {
+    "props": []
+  },
+  "AtlantisThemeContext": {
+    "props": []
+  },
+  "Autocomplete": {
+    "props": [
+      "initialOptions",
+      "placeholder"
+    ]
+  },
+  "Avatar": {
+    "props": [
+      "color",
+      "imageUrl",
+      "initials",
+      "name",
+      "size"
+    ]
+  },
+  "Banner": {
+    "props": [
+      "type"
+    ]
+  },
+  "Box": {
+    "props": []
+  },
+  "Button": {
+    "props": [
+      "label",
+      "onClick"
+    ]
+  },
+  "ButtonDismiss": {
+    "props": [
+      "onClick"
+    ]
+  },
+  "Card": {
+    "props": [
+      "header"
+    ]
+  },
+  "Checkbox": {
+    "props": [
+      "label"
+    ]
+  },
+  "Chip": {
+    "props": []
+  },
+  "Chips": {
+    "props": []
+  },
+  "Combobox": {
+    "props": []
+  },
+  "ConfirmationModal": {
+    "props": [
+      "title",
+      "message"
+    ]
+  },
+  "Content": {
+    "props": [
+      "spacing"
+    ]
+  },
+  "Countdown": {
+    "props": [
+      "granularity",
+      "showUnits"
+    ]
+  },
+  "DataDump": {
+    "props": [
+      "data"
+    ]
+  },
+  "DataList": {
+    "props": []
+  },
+  "DataTable": {
+    "props": [
+      "data",
+      "columns"
+    ]
+  },
+  "Datepicker": {
+    "props": []
+  },
+  "DescriptionList": {
+    "props": [
+      "data",
+      "2018-12-08]",
+      "[Due",
+      "2019-01-06]",
+      "]"
+    ]
+  },
+  "Disclosure": {
+    "props": [
+      "title"
+    ]
+  },
+  "Divider": {
+    "props": []
+  },
+  "Drawer": {
+    "props": [
+      "id",
+      "title",
+      "open"
+    ]
+  },
+  "Emphasis": {
+    "props": [
+      "variation"
+    ]
+  },
+  "FeatureSwitch": {
+    "props": [
+      "title",
+      "description",
+      "hasSaveIndicator"
+    ]
+  },
+  "Flex": {
+    "props": [
+      "template",
+      "shrink]"
+    ]
+  },
+  "Form": {
+    "props": []
+  },
+  "FormField": {
+    "props": [
+      "placeholder",
+      "type"
+    ]
+  },
+  "FormatDate": {
+    "props": [
+      "date",
+      "2",
+      "26)"
+    ]
+  },
+  "FormatEmail": {
+    "props": [
+      "email"
+    ]
+  },
+  "FormatFile": {
+    "props": []
+  },
+  "FormatRelativeDateTime": {
+    "props": []
+  },
+  "FormatTime": {
+    "props": []
+  },
+  "Gallery": {
+    "props": [
+      "files"
+    ]
+  },
+  "Glimmer": {
+    "props": [
+      "shape",
+      "size",
+      "timing"
+    ]
+  },
+  "Grid": {
+    "props": [
+      "gap",
+      "alignItems"
+    ]
+  },
+  "Heading": {
+    "props": []
+  },
+  "Icon": {
+    "props": [
+      "name"
+    ]
+  },
+  "InlineLabel": {
+    "props": []
+  },
+  "InputAvatar": {
+    "props": [
+      "imageUrl",
+      "getUploadParams"
+    ]
+  },
+  "InputDate": {
+    "props": [
+      "placeholder"
+    ]
+  },
+  "InputEmail": {
+    "props": [
+      "placeholder"
+    ]
+  },
+  "InputFile": {
+    "props": []
+  },
+  "InputGroup": {
+    "props": [
+      "flowDirection"
+    ]
+  },
+  "InputNumber": {
+    "props": [
+      "value"
+    ]
+  },
+  "InputPassword": {
+    "props": [
+      "placeholder"
+    ]
+  },
+  "InputPhoneNumber": {
+    "props": [
+      "placeholder"
+    ]
+  },
+  "InputText": {
+    "props": [
+      "name",
+      "placeholder"
+    ]
+  },
+  "InputTime": {
+    "props": []
+  },
+  "InputValidation": {
+    "props": [
+      "message"
+    ]
+  },
+  "LightBox": {
+    "props": [
+      "images"
+    ]
+  },
+  "Link": {
+    "props": [
+      "url",
+      "external"
+    ]
+  },
+  "List": {
+    "props": [
+      "items",
+      "icon",
+      "iconColor",
+      "content",
+      "value",
+      "caption",
+      "2019",
+      "onClick"
+    ]
+  },
+  "Markdown": {
+    "props": [
+      "externalLink"
+    ]
+  },
+  "Menu": {
+    "props": []
+  },
+  "Modal": {
+    "props": [
+      "title"
+    ]
+  },
+  "MultiSelect": {
+    "props": [
+      "defaultLabel",
+      "allSelectedLabel"
+    ]
+  },
+  "Page": {
+    "props": [
+      "title",
+      "intro",
+      "stop chasing payments",
+      "and boost your customer service by automatically communicating with your clients at key points before",
+      "during",
+      "and after a job. Read more about Notifications by visiting our [Help Center](https"
+    ]
+  },
+  "Popover": {
+    "props": []
+  },
+  "ProgressBar": {
+    "props": [
+      "currentStep",
+      "totalSteps"
+    ]
+  },
+  "RadioGroup": {
+    "props": []
+  },
+  "RecurringSelect": {
+    "props": []
+  },
+  "Select": {
+    "props": [
+      "placeholder"
+    ]
+  },
+  "SideDrawer": {
+    "props": [
+      "open"
+    ]
+  },
+  "Spinner": {
+    "props": [
+      "size"
+    ]
+  },
+  "StatusIndicator": {
+    "props": [
+      "status"
+    ]
+  },
+  "StatusLabel": {
+    "props": [
+      "label",
+      "alignment",
+      "status"
+    ]
+  },
+  "Switch": {
+    "props": []
+  },
+  "Table": {
+    "props": []
+  },
+  "Tabs": {
+    "props": [
+      "label"
+    ]
+  },
+  "Text": {
+    "props": [
+      "children"
+    ]
+  },
+  "Toast": {
+    "props": [
+      "message"
+    ]
+  },
+  "Tooltip": {
+    "props": [
+      "message"
+    ]
+  },
+  "Typography": {
+    "props": []
+  }
 }

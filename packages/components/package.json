@@ -406,7 +406,8 @@
     }
   },
   "scripts": {
-    "build": "rollup --config",
+    "build": "npm run buildExtensionComponents && rollup --config",
+    "buildExtensionComponents": "cd ../../scripts && node generateTemplateComponents.js",
     "bootstrap": "npm run clean; npm run build",
     "clean": "rm -rf dist/* tsconfig.rollup.tsbuildinfo",
     "entryPoints:build": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts",

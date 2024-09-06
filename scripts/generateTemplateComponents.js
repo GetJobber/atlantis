@@ -41,7 +41,7 @@ function generateComponentTemplates() {
         .filter(Boolean);
     }
 
-    result[componentName] = args;
+    result[componentName] = { props: args };
 
     const outputDir = path.join(
       __dirname,
