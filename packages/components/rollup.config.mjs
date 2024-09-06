@@ -124,7 +124,7 @@ export default {
         { src: "src/utils/meta/meta.json", dest: "dist/utils/meta" },
         {
           src: "src/utils/meta/extension-components.json",
-          dest: "dist/utils/extension-components",
+          dest: "dist/utils/meta",
         },
       ],
       hook: "writeBundle",
