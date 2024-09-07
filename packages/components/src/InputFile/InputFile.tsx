@@ -123,6 +123,9 @@ interface InputFileProps {
    */
   readonly allowMultiple?: boolean;
 
+  /**
+   * Maximum number of files that can be uploaded via the dropzone.
+   */
   readonly maxFiles?: number;
 
   /**
@@ -208,16 +211,30 @@ export function InputFile({
 
   const { getRootProps, getInputProps, isDragActive, fileRejections } =
     useDropzone(options);
-  const validationErrors = fileRejections?.map(({ file, errors }) => {
-    return errors.map(error => {
-      return (
-        <InputValidation
-          message={`${file.name} ${error.message}`}
-          key={`${file.name}${error.code}`}
-        />
-      );
+
+  // if error code is "too-many-files" we only want to show one error message
+  // check if the acc array already has a "too-many-files" error
+  // if not, add a new error object with "too-many-files" code to acc array
+  // any other code adds a new error object to acc array (file size)
+  const validationErrors = fileRejections?.reduce((acc, { file, errors }) => {
+    errors.forEach(error => {
+      if (error.code === "too-many-files") {
+        if (!acc.some(e => e.code === "too-many-files")) {
+          acc.push({
+            code: "too-many-files",
+            message: `Cannot exceed a maximum of ${maxFiles} files.`,
+          });
+        }
+      } else {
+        acc.push({
+          code: error.code,
+          message: `${file.name} ${error.message}`,
+        });
+      }
     });
-  });
+
+    return acc;
+  }, [] as { code: string; message: string }[]);
 
   const { buttonLabel, hintText } = getLabels(
     providedButtonLabel,
@@ -260,8 +277,12 @@ export function InputFile({
           />
         )}
       </div>
-      {fileRejections?.length > 0 && (
-        <div className={styles.validationErrors}>{validationErrors}</div>
+      {validationErrors?.length > 0 && (
+        <div className={styles.validationErrors}>
+          {validationErrors.map(error => (
+            <InputValidation message={error.message} key={error.code} />
+          ))}
+        </div>
       )}
     </>
   );

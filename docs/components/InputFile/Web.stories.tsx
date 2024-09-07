@@ -102,3 +102,22 @@ ImagesOnly.args = {
   allowedTypes: "images",
   getUploadParams: () => Promise.resolve({ url: "https://httpbin.org/post" }),
 };
+
+export const MaxFilesLimit = StatefulTemplate.bind({});
+MaxFilesLimit.args = {
+  allowMultiple: true,
+  maxFiles: 3,
+  getUploadParams: () => Promise.resolve({ url: "https://httpbin.org/post" }),
+  validator: file => {
+    const maxSize = 1024 * 1024;
+
+    if (file.size > maxSize) {
+      return {
+        code: "file-too-large",
+        message: `Each file must be under 1MB`,
+      };
+    }
+
+    return null;
+  },
+};
