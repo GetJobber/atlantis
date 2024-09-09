@@ -124,6 +124,11 @@ interface InputFileProps {
   readonly allowMultiple?: boolean;
 
   /**
+   * Support text to display in the dropzone.
+   */
+  readonly supportText?: string;
+
+  /**
    * A callback that receives a file object and returns a `UploadParams` needed
    * to upload the file.
    *
@@ -181,6 +186,7 @@ export function InputFile({
   buttonLabel: providedButtonLabel,
   allowMultiple = false,
   allowedTypes = "all",
+  supportText,
   getUploadParams,
   onUploadStart,
   onUploadProgress,
@@ -239,9 +245,14 @@ export function InputFile({
             <Content spacing="small">
               <Button label={buttonLabel} size="small" type="secondary" />
               {size === "base" && (
-                <Typography size="small" textColor="textSecondary">
-                  {hintText}
-                </Typography>
+                <>
+                  <Typography size="small">{hintText}</Typography>
+                  {supportText && (
+                    <Typography size="small" textColor="textSecondary">
+                      {supportText}
+                    </Typography>
+                  )}
+                </>
               )}
             </Content>
           </div>
@@ -358,14 +369,14 @@ function getLabels(
 ) {
   let buttonLabel = multiple ? "Upload Files" : "Upload File";
   let hintText = multiple
-    ? "or drag files here to upload"
-    : "or drag a file here to upload";
+    ? "Select or drag files here to upload"
+    : "Select or drag a file here to upload";
 
   if (allowedTypes === "images" || allowedTypes === "basicImages") {
     buttonLabel = multiple ? "Upload Images" : "Upload Image";
     hintText = multiple
-      ? "or drag images here to upload"
-      : "or drag an image here to upload";
+      ? "Select or drag images here to upload"
+      : "Select or drag an image here to upload";
   }
 
   if (providedButtonLabel) buttonLabel = providedButtonLabel;

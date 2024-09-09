@@ -63,6 +63,12 @@ const VariationsAndSizesTemplate: ComponentStory<typeof InputFile> = args => {
         getUploadParams={fetchUploadParams}
       />
       <InputFile
+        buttonLabel="Dropzone Uploader with supportText"
+        getUploadParams={fetchUploadParams}
+        allowedTypes="images"
+        supportText="JPEG, HEIC, PNG up to 5MB each"
+      />
+      <InputFile
         size="small"
         getUploadParams={fetchUploadParams}
         buttonLabel="Small Dropzone Uploader"
