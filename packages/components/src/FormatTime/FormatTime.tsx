@@ -1,14 +1,12 @@
 import React from "react";
-import { CivilTime } from "@std-proposal/temporal";
-import { getTodayDateAtCivilTime } from "../utils/civilTimeConversions";
 
 interface FormatTimeProps {
   /**
-   * Civil Time of time to be displayed.
+   * Time (as JS Date) to be displayed.
    *
    * A `string` should be an ISO 8601 format date string.
    */
-  readonly time: CivilTime | Date | string;
+  readonly time: Date | string;
 
   /**
    * Optionally specify clock format. If `undefined` system format will be respected.
@@ -24,10 +22,8 @@ export function FormatTime({
 
   if (inputTime instanceof Date) {
     dateObject = inputTime;
-  } else if (typeof inputTime === "string") {
-    dateObject = new Date(inputTime);
   } else {
-    dateObject = getTodayDateAtCivilTime(inputTime);
+    dateObject = new Date(inputTime);
   }
 
   return <>{dateToLocaleTimeString(dateObject, use24HourClock)}</>;
