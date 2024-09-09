@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { StatusLabel } from "@jobber/components";
 import { Page } from "@jobber/components/Page";
 import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
+import { Popover } from "@jobber/components/Popover";
 
 export default {
   title: "Components/Layouts and Structure/Page/Web",
@@ -22,6 +23,52 @@ const BasicTemplate: ComponentStory<typeof Page> = args => (
   </Page>
 );
 
+const PopoverTemplate: ComponentStory<typeof Page> = args => {
+  const primaryDivRef = useRef(null);
+  const [showPrimaryPopover, setShowPrimaryPopover] = useState(false);
+
+  const secondaryDivRef = useRef(null);
+  const [showSecondaryPopover, setShowSecondaryPopover] = useState(false);
+
+  return (
+    <>
+      <Page
+        primaryAction={{
+          label: "Trigger Food Popover",
+          onClick: () => setShowPrimaryPopover(true),
+          ref: primaryDivRef,
+        }}
+        secondaryAction={{
+          label: "Trigger Drink Popover",
+          onClick: () => setShowSecondaryPopover(true),
+          ref: secondaryDivRef,
+        }}
+        {...args}
+      >
+        <Content>
+          <Text>Page content here</Text>
+        </Content>
+      </Page>
+      <Popover
+        attachTo={primaryDivRef}
+        open={showPrimaryPopover}
+        onRequestClose={() => setShowPrimaryPopover(false)}
+        preferredPlacement="bottom"
+      >
+        <Content>Your food order: 🥨</Content>
+      </Popover>
+      <Popover
+        attachTo={secondaryDivRef}
+        open={showSecondaryPopover}
+        onRequestClose={() => setShowSecondaryPopover(false)}
+        preferredPlacement="bottom"
+      >
+        <Content>Your drink order: 🍹</Content>
+      </Popover>
+    </>
+  );
+};
+
 const titleMetaData = (
   <StatusLabel label={"In Progress"} alignment={"start"} status={"warning"} />
 );
@@ -33,12 +80,10 @@ Basic.args = {
     "Improve job completion rates, stop chasing payments, and boost your customer service by automatically communicating with your clients at key points before, during, and after a job. Read more about Notifications by visiting our [Help Center](https://help.getjobber.com/hc/en-us).",
 };
 
-export const WithActions = BasicTemplate.bind({});
+export const WithActions = PopoverTemplate.bind({});
 WithActions.args = {
   title: "Notification Settings",
   intro: "This isn't just talk. Get into action with some buttons and menus.",
-  primaryAction: { label: "Send Food Alert", onClick: () => alert("🥨") },
-  secondaryAction: { label: "Send Drink Alert", onClick: () => alert("🍹") },
   moreActionsMenu: [
     {
       actions: [

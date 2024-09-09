@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.29.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.29.0...@jobber/components@5.29.1) (2024-09-04)
+
+
+### Bug Fixes
+
+* **components:** Add ref prop to primary and secondary actions on Page component ([#2010](https://github.com/GetJobber/atlantis/issues/2010)) ([bdac7de](https://github.com/GetJobber/atlantis/commit/bdac7de3bf349ea924edfbfe968abccad4498465))
+
+
+
+
+
 # [5.29.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.28.1...@jobber/components@5.29.0) (2024-08-29)
 
 
