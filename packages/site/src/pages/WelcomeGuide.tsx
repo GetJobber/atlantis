@@ -1,5 +1,5 @@
 import {Content, Page} from '@jobber/components';
-import WelcomeGuideContent from './WelcomeGuideContent.mdx'
+import WelcomeGuideContent from '../content/WelcomeGuideContent.mdx'
 export const WelcomeGuide = () => {
   return (
     <div style={{backgroundColor: 'var(--color-surface'}}>

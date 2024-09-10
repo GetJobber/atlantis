@@ -1,4 +1,4 @@
-import {Button} from '@jobber/components';
+import {Button, Chip} from '@jobber/components';
 import {PageBlock} from '../components/PageBlock';
 export const ComponentsWeb = () => {
   return (
@@ -14,10 +14,14 @@ export const ComponentsWeb = () => {
             content: [
               {
                 title: 'Button',
-                to: '/components/web/button',
+                to: '/components/web/Button',
                 component: () => <Button label="Button" />,
               },
-             
+              {
+                title: 'Chip',
+                to: '/components/web/Chip',
+                component: () => <Chip label="Chip" />,
+              },
             ],
           },
         }}

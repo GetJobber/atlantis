@@ -5,7 +5,7 @@ export const shineWidth = tokens["space-largest"];
 
 export const styles = StyleSheet.create({
   container: {
-    backgroundColor: tokens["color-surface--background"],
+    backgroundColor: "rgba(0, 0, 0, 0.05)",
     overflow: "hidden",
     position: "relative",
     width: "100%",

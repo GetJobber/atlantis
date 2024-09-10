@@ -1,5 +1,5 @@
 import {Content, Page} from '@jobber/components';
-import ColorsContent from './content/Colors.content.mdx'
+import ColorsContent from '../content/Colors.content.mdx'
 
 export const Colors = () => {
   return (

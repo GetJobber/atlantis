@@ -7,7 +7,6 @@ import {
 import { PageWrapper } from '../layout/PageWrapper';
 import {
   Box,
-  Button,
   Content,
   DataList,
   Flex,
@@ -20,10 +19,8 @@ import {
   Page,
   Select,
   Switch,
-  Text,
 } from '@jobber/components';
-import ButtonDocs from '../docs/Button.docs.json';
-import './ButtonPage.module.css';
+import './WebComponentPage.module.css';
 interface FormattedProp {
   key: string;
   description: string;
@@ -90,8 +87,7 @@ const converter = (
   }
   return formatted;
 };
-export const ButtonMobilePage = () => {
-  const converted = converter(ButtonDocs as any);
+export const MobileComponentPage = () => {
 
   return (
     <Flex template={["shrink", "grow"]} align='start'>
@@ -100,7 +96,7 @@ export const ButtonMobilePage = () => {
 
           <PageWrapper>
             <ComponentDocumentation
-              defaultProps={converted}
+              defaultProps={[]}
               defaultValues={{ strings: { label: 'Button!' } }}
               code={`<Button label="Button!" />`}
             />
