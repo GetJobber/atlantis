@@ -10,6 +10,7 @@ import emphasis from "./css/Emphasis.css";
 import truncate from "./css/Truncate.css";
 import alignment from "./css/TextAlignment.css";
 import fontFamilies from "./css/FontFamilies.css";
+import underlineStyles from "./css/Underline.css";
 
 interface TypographyProps {
   readonly id?: string;
@@ -50,6 +51,11 @@ interface TypographyProps {
   readonly fontFamily?: keyof typeof fontFamilies;
   readonly children: ReactNode;
   readonly numberOfLines?: number;
+
+  /**
+   * Style of underline for the text
+   */
+  readonly underline?: "solid" | "double" | "dotted" | "dashed" | undefined;
 }
 export type TypographyOptions = Omit<TypographyProps, "children">;
 
@@ -65,6 +71,7 @@ export function Typography({
   emphasisType,
   numberOfLines,
   fontFamily,
+  underline,
 }: TypographyProps) {
   const shouldTruncateText = numberOfLines && numberOfLines > 0;
   const className = classnames(
@@ -76,6 +83,7 @@ export function Typography({
     emphasisType && emphasis[emphasisType],
     fontFamily && fontFamilies[fontFamily],
     shouldTruncateText && truncate.textTruncate,
+    underline && underlineStyles[underline],
     {
       ...(align && { [alignment[align]]: align !== `start` }),
     },
