@@ -868,3 +868,163 @@ exports[`renders text with white color 1`] = `
   Test Text
 </Text>
 `;
+
+exports[`underline renders text with dashed underline 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="hsl(86, 100%, 46%)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "hsl(197, 15%, 45%)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+      {
+        "textDecorationStyle": "dashed",
+      },
+      {
+        "textDecorationColor": "hsl(0, 0%, 87%)",
+        "textDecorationLine": "underline",
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`underline renders text with dotted underline 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="hsl(86, 100%, 46%)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "hsl(197, 15%, 45%)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+      {
+        "textDecorationStyle": "dotted",
+      },
+      {
+        "textDecorationColor": "hsl(0, 0%, 87%)",
+        "textDecorationLine": "underline",
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`underline renders text with double underline 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="hsl(86, 100%, 46%)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "hsl(197, 15%, 45%)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+      {
+        "textDecorationStyle": "double",
+      },
+      {
+        "textDecorationColor": "hsl(0, 0%, 87%)",
+        "textDecorationLine": "underline",
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`underline renders text with solid underline 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="hsl(86, 100%, 46%)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "hsl(197, 15%, 45%)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+      {
+        "textDecorationStyle": "solid",
+      },
+      {
+        "textDecorationColor": "hsl(0, 0%, 87%)",
+        "textDecorationLine": "underline",
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
