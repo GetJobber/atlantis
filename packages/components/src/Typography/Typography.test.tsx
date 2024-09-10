@@ -255,3 +255,26 @@ it("renders a center-aligned text", () => {
     </div>
   `);
 });
+
+describe("underlining", () => {
+  it.each(["solid", "double", "dotted", "dashed"] as const)(
+    `renders %s underline`,
+    underline => {
+      const { container } = render(
+        <Typography underline={underline}>Underline me</Typography>,
+      );
+
+      const snapshot = `
+        <div>
+          <p
+            class="base regular ${underline}"
+          >
+            Underline me
+          </p>
+        </div>
+      `;
+
+      expect(container).toMatchInlineSnapshot(snapshot);
+    },
+  );
+});
