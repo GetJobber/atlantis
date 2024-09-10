@@ -6,14 +6,12 @@ import { useChildComponent } from "../../hooks/index";
 import styles from "../../Chip.css";
 
 export function ChipPrefix({ children }: PropsWithChildren) {
-  const singleChild = useChildComponent(
+  const avatarOrIcon = useChildComponent(
     children,
     d => d.type === Avatar || d.type === Icon,
   );
 
-  return (
-    <span className={classNames(styles.prefix, !singleChild && styles.empty)}>
-      {singleChild}
-    </span>
-  );
+  if (!avatarOrIcon) return children as React.ReactElement;
+
+  return <span className={classNames(styles.prefix)}>{avatarOrIcon}</span>;
 }
