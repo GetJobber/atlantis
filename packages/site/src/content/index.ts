@@ -2,6 +2,7 @@ import { SiteContentItem } from '../types/content'
 import ButtonContent from './Button'
 import ChipContent from './Chip'
 import StatusLabelContent from './StatusLabel'
+import SwitchContent from './Switch'
 
 export const SiteContent: Record<string, SiteContentItem> = {
     Button: {
@@ -12,5 +13,8 @@ export const SiteContent: Record<string, SiteContentItem> = {
     },
     StatusLabel: {
         ...StatusLabelContent
+    },
+    Switch: {
+        ...SwitchContent
     }
 }

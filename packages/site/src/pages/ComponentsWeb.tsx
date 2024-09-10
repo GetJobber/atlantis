@@ -1,4 +1,4 @@
-import {Button, Chip, StatusLabel} from '@jobber/components';
+import {Button, Chip, StatusLabel, Switch} from '@jobber/components';
 import {PageBlock} from '../components/PageBlock';
 export const ComponentsWeb = () => {
   return (
@@ -26,6 +26,11 @@ export const ComponentsWeb = () => {
                 title: 'StatusLabel',
                 to: '/components/web/StatusLabel',
                 component: () => <StatusLabel label='StatusLabel' />,
+              },
+              {
+                title: 'Switch',
+                to: '/components/web/Switch',
+                component: () => <Switch label='StatusLabel' />,
               },
             ],
           },
