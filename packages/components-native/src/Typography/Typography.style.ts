@@ -88,6 +88,11 @@ export const typographyTokens: { [index: string]: TextStyle } = {
     fontStyle: "italic",
   },
 
+  underline: {
+    textDecorationColor: tokens["color-base-grey--300"],
+    textDecorationLine: "underline",
+  },
+
   startAlign: {
     textAlign: "left",
   },

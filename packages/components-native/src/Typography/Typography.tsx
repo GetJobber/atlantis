@@ -7,6 +7,7 @@ import {
   // eslint-disable-next-line no-restricted-imports
   Text,
   TextProps,
+  TextStyle,
   ViewStyle,
 } from "react-native";
 import { TypographyGestureDetector } from "./TypographyGestureDetector";
@@ -84,6 +85,11 @@ export interface TypographyProps<T extends FontFamily>
   readonly fontStyle?: T extends "base" ? BaseStyle : DisplayStyle;
 
   /**
+   * Style of underline for the text
+   */
+  readonly underline?: "solid" | "double" | "dotted" | "dashed" | undefined;
+
+  /**
    * Font weight
    */
   readonly fontWeight?: T extends "base" ? BaseWeight : DisplayWeight;
@@ -124,6 +130,7 @@ const maxNumberOfLines = {
 
 export const Typography = React.memo(InternalTypography);
 
+// eslint-disable-next-line max-statements
 function InternalTypography<T extends FontFamily = "base">({
   fontFamily,
   fontStyle,
@@ -143,6 +150,7 @@ function InternalTypography<T extends FontFamily = "base">({
   hideFromScreenReader = false,
   accessibilityRole = "text",
   strikeThrough = false,
+  underline,
   selectable = true,
 }: TypographyProps<T>): JSX.Element {
   const sizeAndHeight = getSizeAndHeightStyle(size, lineHeight);
@@ -160,6 +168,11 @@ function InternalTypography<T extends FontFamily = "base">({
 
   if (fontStyle === "italic") {
     style.push(styles.italic);
+  }
+
+  if (underline) {
+    const underlineTextStyle: TextStyle = { textDecorationStyle: underline };
+    style.push(underlineTextStyle, styles.underline);
   }
 
   const numberOfLinesForNativeText = maxNumberOfLines[maxLines];
