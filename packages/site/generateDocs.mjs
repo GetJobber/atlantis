@@ -2,7 +2,9 @@ import { parse } from 'react-docgen-typescript';
 import { writeFileSync } from 'fs';
 
 const parseAndWriteDocs = (componentPath, outputPath) => {
+  console.log('parsing component at:',componentPath)
   const documentation = parse(componentPath);
+  console.log('writing documentation to:',outputPath)
   writeFileSync(
     outputPath,
     JSON.stringify(documentation, null),
@@ -15,8 +17,8 @@ const buildPaths = (baseComponentDir, baseOutputDir, componentName) => {
   return { componentPath, outputPath };
 }
 
-const baseComponentDir = `../components/src/`;
-const baseOutputDir = './src/content/';
+const baseComponentDir = `../components/src`;
+const baseOutputDir = './src/content';
 
 const buildComponentDocs = (name) => {
 
@@ -26,3 +28,4 @@ const buildComponentDocs = (name) => {
 
 buildComponentDocs('Button');
 buildComponentDocs('Chip');
+buildComponentDocs('StatusLabel');

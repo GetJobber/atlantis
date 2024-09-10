@@ -9,7 +9,10 @@ import {
   Link,
   Page,
   Tabs,
+  List,
+  Text,
   Tab,
+  Card,
 } from '@jobber/components';
 
 import './WebComponentPage.module.css';
@@ -20,16 +23,17 @@ import { usePageValues } from '../hooks/usePageValues';
 export const WebComponentPage = () => {
   const { name = '' } = useParams<{ name: string }>();
   const PageMeta = SiteContent[name];
-  const Component = PageMeta.component.element;
+  const Component = PageMeta?.component.element;
   const { updateValue, mappedProps } = usePageValues(PageMeta?.component.defaultProps)
   const ComponentContent = PageMeta?.content
   return (
+    PageMeta ?
     <Grid>
       <Grid.Cell size={{ xs: 12, md: 9 }}>
         <Page
           width="fill"
-          title={PageMeta.title}
-          subtitle={PageMeta.description}>
+          title={PageMeta?.title}
+          subtitle={PageMeta?.description}>
           <PageWrapper>
             <component-documentation>
               <Content spacing="large">
@@ -63,7 +67,7 @@ export const WebComponentPage = () => {
           <Box padding="base" direction='column'>
             <Heading level={2}>Links</Heading>
             <Box>
-              {PageMeta.links.map((link, index) => (
+              {PageMeta?.links.map((link, index) => (
                 <Box>
                   <Link key={index} url={link.url}>{link.label}</Link>
                 </Box>
@@ -72,7 +76,32 @@ export const WebComponentPage = () => {
           </Box>
         </Content>
       </Grid.Cell>
-    </Grid>
+    </Grid> : 
+
+            <Page width="fill" title="Component not found">
+      <Box padding="base" direction='column'>
+       
+    <Content>
+        <Heading level={2}>Steps to (possibly) correct</Heading>
+        <Box>
+          <Card>
+          <List items={[
+            {content:'Add new entry to Components Web',id:1, caption:'Make the key you use matches the one in content/index.ts'},
+            {content:'Add a new folder under src/content that matches the key used above and mimics Button or Chip',id:2},
+            {content:'Add an entry to generate new props. Under generateDocs.mjs, add the new key you just used for the folder (componentName)',id:3},
+            {content:'Add a new entry to site/src/content/index.ts that matches your key',id:4},
+            {content:'Remove any Storybook specific components from any copied/moved MDX files',id:4},
+            {content:'Reload this page',id:5},
+            ]}>
+          </List>
+          </Card>
+        </Box>
+        <Box>
+          <Link url='/components/web'>Back to components</Link>
+        </Box>
+    </Content>
+      </Box>
+    </Page>
   );
 };
 
