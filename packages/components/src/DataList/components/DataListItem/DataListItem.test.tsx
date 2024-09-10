@@ -57,6 +57,16 @@ describe("DataListItem", () => {
       });
     });
 
+    it("should not render a menu on hover when at least one option is selected", async () => {
+      renderComponent({ selected: ["1"] });
+
+      const listItemEl = screen.getByText(listItem);
+      await userEvent.hover(listItemEl);
+
+      const menuButton = screen.queryByRole("button", { name: "More actions" });
+      expect(menuButton).not.toBeInTheDocument();
+    });
+
     it("should render a menu when focused and not on blur", async () => {
       renderComponent();
 
@@ -106,7 +116,26 @@ describe("DataListItem", () => {
 
       const listItemEl = screen.getByText(listItem);
       await userEvent.hover(listItemEl);
-      fireEvent.contextMenu(listItemEl);
+      await userEvent.pointer({ keys: "[MouseRight>]", target: listItemEl });
+
+      expect(screen.queryByRole("menu")).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole("button", { name: "More actions" }),
+      ).not.toBeInTheDocument();
+    });
+
+    it("should not show a context menu when at least one item is selected", async () => {
+      mockItemActionComponent.mockReturnValueOnce(
+        <DataListItemActions onClick={handleItemClick}>
+          <DataListAction label="Edit" visible={() => false} />
+          <DataListAction label="Email" visible={() => false} />
+        </DataListItemActions>,
+      );
+
+      renderComponent({ selected: ["1"] });
+
+      const listItemEl = screen.getByText(listItem);
+      await userEvent.pointer({ keys: "[MouseRight>]", target: listItemEl });
 
       expect(screen.queryByRole("menu")).not.toBeInTheDocument();
       expect(
@@ -149,9 +178,11 @@ describe("DataListItem", () => {
   });
 });
 
-function renderComponent() {
+function renderComponent({
+  selected = [],
+}: { readonly selected?: string[] } = {}) {
   return render(
-    <MockMainContextProvider>
+    <MockMainContextProvider selected={selected}>
       <MockLayoutContextProvider>
         <DataListItem item={{ id: 1 }} index={0} layout={mockLayout()} />
       </MockLayoutContextProvider>
@@ -159,11 +190,15 @@ function renderComponent() {
   );
 }
 
-function MockMainContextProvider({ children }: PropsWithChildren<object>) {
+function MockMainContextProvider({
+  children,
+  selected = [],
+}: PropsWithChildren<{ readonly selected?: string[] }>) {
   return (
     <DataListContext.Provider
       value={{
         ...defaultValues,
+        selected,
         itemActionComponent: mockItemActionComponent(),
       }}
     >
