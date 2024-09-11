@@ -3,6 +3,7 @@ import {PageWrapper} from '../layout/PageWrapper';
 import {BodyBlock} from './BodyBlock';
 import {ContentCard} from './ContentCard';
 import {HeaderBlock} from './HeaderBlock';
+import { display } from '../../../components/dist/Typography/css/FontFamilies.css';
 
 interface PageBlockProps {
   structure: {
@@ -23,9 +24,16 @@ export const PageBlock = ({structure}: PageBlockProps) => {
     <PageWrapper>
       <HeaderBlock {...structure.header} />
       <BodyBlock title={structure.body.title}>
-        {structure.body.content.map(content => (
-          <ContentCard {...content} />
-        ))}
+        <div style={{ 
+          display: 'grid', 
+          width: '100%',
+          gridTemplateColumns: '1fr 1fr 1fr', 
+          gap: 'var(--space-base)'
+        }}>
+          {structure.body.content.map(content => (  
+            <ContentCard {...content} />
+          ))}
+        </div>
       </BodyBlock>
     </PageWrapper>
   );

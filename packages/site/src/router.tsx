@@ -37,6 +37,20 @@ export const routes: MyRouteObject[] = [
             handle: 'Web',
             icon: 'company',
             element: <ComponentsWeb />,
+            children: [
+              {
+                path: '/components/web/Chip',
+                handle: 'Chip',
+                icon: 'company',
+                element: <ComponentsWeb />,
+              },
+              {
+                path: '/components/web/Button',
+                handle: 'Button',
+                icon: 'company',
+                element: <ComponentsWeb />,
+              },
+            ],
           },
           {
             path: '/components/mobile',

@@ -4,13 +4,13 @@ component-documentation {
 
 preview-window {
   display: flex;
-  gap: var(--space-small);
   width: 100%;
   box-sizing: border-box;
   padding: var(--space-largest);
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
-  background-color: var(--color-surface--background);
+  background-color: var(--color-surface--background--subtle);
+  gap: var(--space-small);
   align-items: center;
   justify-content: center;
 }

@@ -1,4 +1,4 @@
-import {Typography, Content, Button} from '@jobber/components';
+import { Box, Typography, Content, Button} from '@jobber/components';
 import {useNavigate} from 'react-router-dom';
 
 interface HeaderBlockProps {
@@ -10,37 +10,35 @@ interface HeaderBlockProps {
 export const HeaderBlock = ({title, body, ctaLabel, to}: HeaderBlockProps) => {
   const navigate = useNavigate();
   return (
-    <div
-      style={{
-        padding: 80,
-        color: 'var(--color-surface)',
-        backgroundColor: 'var(--color-brand)',
-      }}>
+    <Box
+      padding="extravagant"
+      background="base-blue--900"
+      >
       <div
         style={{
           width: '100%',
           height: '100%',
-          color: 'var(--color-surface)',
-          backgroundColor: 'var(--color-brand)',
+          color: 'var(--color-base-white)',
           minHeight: '30vh',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
         }}>
-        <Content>
-          <Typography size="extravagant" fontWeight="bold" fontFamily="display">
+        <Content spacing='large'>
+          <Typography element={"h1"} size="extravagant" fontWeight="bold" fontFamily="display">
             {title}
           </Typography>
-          <Typography size="larger">{body}</Typography>
+          <Typography size="large">{body}</Typography>
           {to && ctaLabel && (
             <Button
               type="secondary"
+              size="large"
               label={ctaLabel}
               onClick={() => navigate(to)}
             />
           )}
         </Content>
       </div>
-    </div>
+    </Box>
   );
 };

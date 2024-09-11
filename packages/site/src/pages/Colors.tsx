@@ -4,7 +4,8 @@ import ColorsContent from '../content/Colors.content.mdx'
 export const Colors = () => {
   return (
     <div style={{backgroundColor: 'var(--color-surface'}}>
-      <Page intro='A bit of info about our colors' title='Colors'>
+      <Page intro='Color can provide visual cues for users to navigate and understand an
+interface.' title='Colors'>
       <Content>
         <ColorsContent />
       </Content>
