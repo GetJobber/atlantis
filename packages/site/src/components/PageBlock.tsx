@@ -15,7 +15,7 @@ interface PageBlockProps {
     };
     body: {
       title: string;
-      content: Array<{title: string; to: string; component?: () => ReactNode}>;
+      content: Array<{title: string; to: string; imageURL?: string; component?: () => ReactNode}>;
     };
   };
 }
