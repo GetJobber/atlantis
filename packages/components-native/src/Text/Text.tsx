@@ -71,7 +71,9 @@ interface TextProps
   readonly italic?: boolean;
 
   /**
-   * Underline text
+   * Underline style to use for the text. The non-solid style is only supported
+   * on iOS, as per React Native's Text component's limitations.
+   * https://reactnative.dev/docs/text-style-props#textdecorationstyle-ios
    */
   readonly underline?: "solid" | "dotted";
 

@@ -85,7 +85,9 @@ export interface TypographyProps<T extends FontFamily>
   readonly fontStyle?: T extends "base" ? BaseStyle : DisplayStyle;
 
   /**
-   * Style of underline for the text
+   * Underline style to use for the text. The non-solid style is only supported
+   * on iOS, as per React Native's Text component's limitations.
+   * https://reactnative.dev/docs/text-style-props#textdecorationstyle-ios
    */
   readonly underline?: "solid" | "double" | "dotted" | "dashed" | undefined;
 
