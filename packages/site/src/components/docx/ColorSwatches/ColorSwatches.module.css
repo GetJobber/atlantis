@@ -1,0 +1,14 @@
+.groupTitle {
+  position: relative;
+  margin: var(--space-largest) 0 var(--space-base);
+  color: var(--color-blue);
+  font-family: var(--typography--fontFamily-display);
+  font-size: var(--typography--fontSize-larger);
+  font-weight: 800;
+  line-height: var(--typography--lineHeight-tight);
+  text-transform: capitalize;
+}
+
+.swatchGroup {
+  margin-bottom: var(--space-base);
+}

@@ -1,0 +1,35 @@
+component-documentation {
+  display: block;
+}
+
+preview-window {
+  display: flex;
+  gap: var(--space-small);
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--space-largest);
+  border: var(--border-base) solid var(--color-border);
+  border-radius: var(--radius-base);
+  background-color: var(--color-surface--background);
+  align-items: center;
+  justify-content: center;
+}
+
+preview-modifiers {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+preview-modifier {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+preview-code {
+  display: flex;
+}
+
+preview-code > div > div {
+  height: 100%;
+}
