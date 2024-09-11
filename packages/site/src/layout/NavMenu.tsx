@@ -1,4 +1,4 @@
-import { Icon, InputText} from '@jobber/components';
+import { InputText} from '@jobber/components';
 import {Link} from 'react-router-dom';
 import styles from './navmenu.module.css';
 import {routes} from '../router';
@@ -43,9 +43,6 @@ export const NavMenu = () => {
                   if (subroute.inNav === false) return;
                   return (
                     <li className={styles.subMenuLink} key={subindex}>
-                      <div style={{marginRight: 12}}>
-                        <Icon name={route.icon} />
-                      </div>
                         <Link
                           className={styles.subRoute}
                           to={subroute.path || '/'}
@@ -57,9 +54,6 @@ export const NavMenu = () => {
                 })
               ) : (route.inNav === false ? null :
                 <li className={styles.menuLink} key={index}>
-                      <div style={{marginRight: 12}}>
-                        <Icon name={route.icon} />
-                      </div>
                 <Link key={index} to={route.path ?? '/'}>
                   {route.handle}
                 </Link>

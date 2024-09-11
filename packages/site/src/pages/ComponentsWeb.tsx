@@ -1,4 +1,3 @@
-import {StatusLabel, Switch} from '@jobber/components';
 import {PageBlock} from '../components/PageBlock';
 export const ComponentsWeb = () => {
   return (

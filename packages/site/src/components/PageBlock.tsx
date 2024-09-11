@@ -27,7 +27,8 @@ export const PageBlock = ({structure}: PageBlockProps) => {
         <div style={{ 
           display: 'grid', 
           width: '100%',
-          gridTemplateColumns: '1fr 1fr 1fr', 
+          gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', 
+          gridTemplateRows: 'auto',
           gap: 'var(--space-base)'
         }}>
           {structure.body.content.map(content => (  
