@@ -212,10 +212,6 @@ export function InputFile({
   const { getRootProps, getInputProps, isDragActive, fileRejections } =
     useDropzone(options);
 
-  // if error code is "too-many-files" we only want to show one error message
-  // check if the acc array already has a "too-many-files" error
-  // if not, add a new error object with "too-many-files" code to acc array
-  // any other code adds a new error object to acc array (file size)
   const validationErrors = fileRejections?.reduce((acc, { file, errors }) => {
     errors.forEach(error => {
       if (error.code === "too-many-files") {
