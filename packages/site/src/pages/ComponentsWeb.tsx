@@ -30,12 +30,12 @@ export const ComponentsWeb = () => {
               {
                 title: 'StatusLabel',
                 to: '/components/web/StatusLabel',
-                component: () => <StatusLabel status="success" label='StatusLabel' />,
+                imageURL: '../public/StatusLabel.png',
               },
               {
                 title: 'Switch',
                 to: '/components/web/Switch',
-                component: () => <Switch />,
+                imageURL: '../public/Switch.png',
               },
             ],
           },
