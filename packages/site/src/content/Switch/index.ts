@@ -12,11 +12,11 @@ export default {
         defaultProps:{  }
     },
     title: 'Switch',
-    description: 'Switch is cool too I guess',
+    subtitle: 'Switch is cool too I guess',
     links: [
         {
             label: 'Switch Storybook',
-            url: 'http://localhost:6006/?path=/docs/components-utilities-animatedswitcher-web--docs'
+            url: 'http://localhost:6006/?path=/story/components-selections-switch-web--basic'
         },
     ]
 }
