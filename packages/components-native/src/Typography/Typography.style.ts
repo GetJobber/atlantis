@@ -89,7 +89,7 @@ export const typographyTokens: { [index: string]: TextStyle } = {
   },
 
   underline: {
-    textDecorationColor: tokens["color-base-grey--300"],
+    textDecorationColor: tokens["color-text--secondary"],
     textDecorationLine: "underline",
   },
 

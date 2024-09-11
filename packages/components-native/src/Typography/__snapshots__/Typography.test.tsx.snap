@@ -899,7 +899,7 @@ exports[`underline renders text with dashed underline 1`] = `
         "textDecorationStyle": "dashed",
       },
       {
-        "textDecorationColor": "hsl(0, 0%, 87%)",
+        "textDecorationColor": "hsl(197, 15%, 45%)",
         "textDecorationLine": "underline",
       },
     ]
@@ -939,7 +939,7 @@ exports[`underline renders text with dotted underline 1`] = `
         "textDecorationStyle": "dotted",
       },
       {
-        "textDecorationColor": "hsl(0, 0%, 87%)",
+        "textDecorationColor": "hsl(197, 15%, 45%)",
         "textDecorationLine": "underline",
       },
     ]
@@ -979,7 +979,7 @@ exports[`underline renders text with double underline 1`] = `
         "textDecorationStyle": "double",
       },
       {
-        "textDecorationColor": "hsl(0, 0%, 87%)",
+        "textDecorationColor": "hsl(197, 15%, 45%)",
         "textDecorationLine": "underline",
       },
     ]
@@ -1019,7 +1019,7 @@ exports[`underline renders text with solid underline 1`] = `
         "textDecorationStyle": "solid",
       },
       {
-        "textDecorationColor": "hsl(0, 0%, 87%)",
+        "textDecorationColor": "hsl(197, 15%, 45%)",
         "textDecorationLine": "underline",
       },
     ]

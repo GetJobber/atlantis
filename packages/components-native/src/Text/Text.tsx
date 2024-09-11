@@ -73,7 +73,7 @@ interface TextProps
   /**
    * Underline text
    */
-  readonly underline?: "solid" | "dashed";
+  readonly underline?: "solid" | "dotted";
 
   /**
    * This will make the text inaccessible to the screen reader.
