@@ -31,7 +31,7 @@ export const ContentCard = ({title, to, imageURL, component}: ContentCardProps) 
   return (
     <Card onClick={() => navigate(to)}>
       {!component ? (
-        <img style={{width: '100%'}} src={imageURL} alt={"Preview of" + {title}} />
+        <img style={{width: '100%', mixBlendMode: "multiply"}} src={imageURL} alt={"Preview of" + {title}} />
       ) : (
         <ComponentWrapper>{component()}</ComponentWrapper>
       )}
