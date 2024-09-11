@@ -71,6 +71,11 @@ interface TextProps
   readonly italic?: boolean;
 
   /**
+   * Underline text
+   */
+  readonly underline?: "solid" | "dashed";
+
+  /**
    * This will make the text inaccessible to the screen reader.
    * This should be avoided unless there is a good reason.
    * For example this is used in InputText to make it so the label isn't
@@ -118,6 +123,7 @@ export function Text({
   italic = false,
   hideFromScreenReader = false,
   maxFontScaleSize,
+  underline,
   selectable,
 }: TextProps): JSX.Element {
   const accessibilityRole: TextAccessibilityRole = "text";
@@ -130,6 +136,7 @@ export function Text({
       fontWeight={getFontWeight({ level, emphasis })}
       maxFontScaleSize={maxFontScaleSize || TEXT_MAX_SCALED_FONT_SIZES[level]}
       selectable={selectable}
+      underline={underline}
       {...{
         ...levelStyles[level],
         allowFontScaling,
