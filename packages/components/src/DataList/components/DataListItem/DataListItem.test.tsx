@@ -127,8 +127,8 @@ describe("DataListItem", () => {
     it("should not show a context menu when at least one item is selected", async () => {
       mockItemActionComponent.mockReturnValueOnce(
         <DataListItemActions onClick={handleItemClick}>
-          <DataListAction label="Edit" visible={() => false} />
-          <DataListAction label="Email" visible={() => false} />
+          <DataListAction label="Edit" />
+          <DataListAction label="Email" />
         </DataListItemActions>,
       );
 
