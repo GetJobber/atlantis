@@ -108,3 +108,10 @@ ImagesOnly.args = {
   allowedTypes: "images",
   getUploadParams: () => Promise.resolve({ url: "https://httpbin.org/post" }),
 };
+
+export const SupportText = StatefulTemplate.bind({});
+SupportText.args = {
+  allowMultiple: true,
+  getUploadParams: () => Promise.resolve({ url: "https://httpbin.org/post" }),
+  supportText: "JPEG, HEIC, PNG up to 5MB each",
+};
