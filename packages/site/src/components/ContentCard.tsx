@@ -1,39 +1,23 @@
 import { Card, Content, Heading } from "@jobber/components";
-import { PropsWithChildren, ReactNode } from "react";
 import { useHistory } from "react-router";
-import image from "../assets/dummy.png";
+import { ComponentWrapper } from "./ComponentWrapper";
+import { ContentCardProps } from "../types/components";
 
-interface ContentCardProps {
-  readonly title: string;
-  readonly to: string;
-  readonly component?: () => ReactNode;
-}
-
-export const ComponentWrapper = ({ children }: PropsWithChildren) => {
-  return (
-    <div
-      style={{
-        width: "100%",
-        padding: "var(--space-large)",
-        height: "calc(100% - 57px)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        boxSizing: "border-box",
-      }}
-    >
-      {children}
-    </div>
-  );
-};
-
-export const ContentCard = ({ title, to, component }: ContentCardProps) => {
+export const ContentCard = ({
+  title,
+  to,
+  component,
+  imageURL,
+}: ContentCardProps) => {
   const history = useHistory();
 
   return (
     <Card onClick={() => history.push(to)}>
       {!component ? (
-        <img style={{ width: "100%" }} src={image} />
+        <img
+          style={{ width: "100%", mixBlendMode: "multiply" }}
+          src={imageURL}
+        />
       ) : (
         <ComponentWrapper>{component()}</ComponentWrapper>
       )}

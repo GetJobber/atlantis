@@ -34,9 +34,3 @@ a:focus-visible {
 a:visited {
   color: var(--color-text--secondary);
 }
-
-code {
-  padding: var(--space-smallest);
-  border-radius: var(--radius-small);
-  background-color: var(--color-surface--background);
-}

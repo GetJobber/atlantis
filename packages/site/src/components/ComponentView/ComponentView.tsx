@@ -62,6 +62,11 @@ export const ComponentView = () => {
                       <InputText multiline value={PageMeta?.component.code} />
                     </preview-code>
                   </Tab>
+                  <Tab label="another">
+                    <preview-code>
+                      <InputText multiline value={PageMeta?.component.code} />
+                    </preview-code>
+                  </Tab>
                 </Tabs>
               </Content>
             </component-documentation>

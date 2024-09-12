@@ -1,8 +1,8 @@
-import { ReactNode } from "react";
 import { BodyBlock } from "./BodyBlock";
 import { ContentCard } from "./ContentCard";
 import { HeaderBlock } from "./HeaderBlock";
 import { PageWrapper } from "../layout/PageWrapper";
+import { ContentCardProps } from "../types/components";
 
 interface PageBlockProps {
   readonly structure: {
@@ -14,11 +14,7 @@ interface PageBlockProps {
     };
     body: {
       title: string;
-      content: Array<{
-        title: string;
-        to: string;
-        component?: () => ReactNode;
-      }>;
+      content: ContentCardProps[];
     };
   };
 }
@@ -32,7 +28,8 @@ export const PageBlock = ({ structure }: PageBlockProps) => {
           style={{
             display: "grid",
             width: "100%",
-            gridTemplateColumns: "1fr 1fr 1fr",
+            gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
+            gridTemplateRows: "auto",
             gap: "var(--space-base)",
           }}
         >

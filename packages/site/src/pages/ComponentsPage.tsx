@@ -1,4 +1,3 @@
-import { Button, Chip, StatusLabel, Switch } from "@jobber/components";
 import { PageBlock } from "../components/PageBlock";
 
 export const ComponentsPage = () => {
@@ -15,24 +14,27 @@ export const ComponentsPage = () => {
             {
               title: "Button",
               to: "/components/web/Button",
-              component: () => <Button label="Button" />,
+              imageURL: "/Button.png",
             },
             {
               title: "Chip",
               to: "/components/web/Chip",
-              component: () => <Chip label="Chip" />,
+              imageURL: "/Chip.png",
             },
             {
               title: "StatusLabel",
               to: "/components/web/StatusLabel",
-              component: () => (
-                <StatusLabel label="StatusLabel" status="success" />
-              ),
+              imageURL: "/StatusLabel.png",
             },
             {
               title: "Switch",
               to: "/components/web/Switch",
-              component: () => <Switch />,
+              imageURL: "/Switch.png",
+            },
+            {
+              title: "Disclosure",
+              to: "/components/web/Disclosure",
+              imageURL: "/Disclosure.png",
             },
           ],
         },

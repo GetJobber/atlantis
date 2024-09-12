@@ -24,6 +24,7 @@ export const routes: Array<AtlantisRoute> = [
   {
     path: "/components",
     handle: "Components",
+    exact: true,
     component: ComponentsPage,
   },
   {
