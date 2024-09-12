@@ -36,10 +36,10 @@ const BasicTemplate: ComponentStory<typeof Chips> = args => {
         onChange={setSelected}
         type="singleselect"
       >
-        <Chip label="Amazing" value="Amazing" />
-        <Chip label="Wonderful" value="Wonderful" />
-        <Chip label="Brilliant" value="Brilliant" />
-        <Chip label="Magnificent" value="Magnificent" />
+        <Chip label="Amazing" variation="subtle" value="Amazing" />
+        <Chip label="Wonderful" variation="subtle" value="Wonderful" />
+        <Chip label="Brilliant" variation="subtle" value="Brilliant" />
+        <Chip label="Magnificent" variation="subtle" value="Magnificent" />
       </Chips>
     </Content>
   );
@@ -62,10 +62,10 @@ const MultiSelectTemplate: ComponentStory<typeof Chips> = args => {
         selected={selected}
         onChange={setSelected}
       >
-        <Chip label="Amazing" value="Amazing" />
-        <Chip label="Wonderful" value="Wonderful" />
-        <Chip label="Brilliant" value="Brilliant" />
-        <Chip label="Magnificent" value="Magnificent" />
+        <Chip label="Amazing" variation="subtle" value="Amazing" />
+        <Chip label="Wonderful" variation="subtle" value="Wonderful" />
+        <Chip label="Brilliant" variation="subtle" value="Brilliant" />
+        <Chip label="Magnificent" variation="subtle" value="Magnificent" />
       </Chips>
     </Content>
   );
@@ -97,7 +97,7 @@ const SelectionTemplate: ComponentStory<typeof Chips> = args => {
       onLoadMore={handleLoadMore}
     >
       {options.map(name => (
-        <Chip key={name} label={name} value={name} />
+        <Chip key={name} label={name} variation="subtle" value={name} />
       ))}
     </Chips>
   );
