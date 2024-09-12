@@ -39,7 +39,7 @@ export function InternalChipButton({
       aria-disabled={disabled}
       data-testid="remove-chip-button"
     >
-      <Icon size="small" name={icon} color={getColor()} />
+      <Icon name={icon} color={getColor()} />
     </div>
   );
 
@@ -64,7 +64,7 @@ export function InternalChipButton({
     if (disabled) return "disabled";
     if (invalid) return "critical";
 
-    return "interactiveSubtle";
+    return "greyBlue";
   }
 
   function handleClick(event: MouseEvent<HTMLDivElement>) {
