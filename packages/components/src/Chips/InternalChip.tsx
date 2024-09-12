@@ -12,7 +12,6 @@ export function InternalChip({
   ariaLabel,
   onClick,
   onKeyDown,
-  variation,
 }: InternalChipProps) {
   return (
     <Chip
@@ -21,7 +20,6 @@ export function InternalChip({
       onKeyDown={onKeyDown}
       testID="ATL-InternalChip"
       ariaLabel={ariaLabel}
-      variation={variation}
       tabIndex={tabIndex}
       role={tabIndex !== undefined ? "option" : undefined}
       onClick={onClick ? (_, ev) => onClick(ev) : undefined}
