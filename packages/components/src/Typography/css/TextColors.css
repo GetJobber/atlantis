@@ -50,7 +50,23 @@
   color: var(--color-text--secondary);
 }
 
+.textReverse {
+  color: var(--color-text--reverse);
+}
+
+.textReverseSecondary {
+  color: var(--color-text--reverse--secondary);
+}
+
 .inactive {
+  color: var(--color-inactive--onSurface);
+}
+
+.inactiveSurface {
+  color: var(--color-inactive--surface);
+}
+
+.inactiveOnSurface {
   color: var(--color-inactive--onSurface);
 }
 
@@ -58,7 +74,23 @@
   color: var(--color-critical);
 }
 
+.criticalSurface {
+  color: var(--color-critical--surface);
+}
+
+.criticalOnSurface {
+  color: var(--color-critical--onSurface);
+}
+
 .warning {
+  color: var(--color-warning--onSurface);
+}
+
+.warningSurface {
+  color: var(--color-warning--surface);
+}
+
+.warningOnSurface {
   color: var(--color-warning--onSurface);
 }
 
@@ -66,7 +98,23 @@
   color: var(--color-informative--onSurface);
 }
 
+.informativeSurface {
+  color: var(--color-informative--surface);
+}
+
+.informativeOnSurface {
+  color: var(--color-informative--onSurface);
+}
+
 .success {
+  color: var(--color-success--onSurface);
+}
+
+.successSurface {
+  color: var(--color-success--surface);
+}
+
+.successOnSurface {
   color: var(--color-success--onSurface);
 }
 
@@ -74,10 +122,86 @@
   color: var(--color-interactive);
 }
 
+.interactiveHover {
+  color: var(--color-interactive--hover);
+}
+
+.interactiveSubtle {
+  color: var(--color-interactive--subtle);
+}
+
+.interactiveSubtleHover {
+  color: var(--color-interactive--subtle--hover);
+}
+
 .destructive {
   color: var(--color-destructive);
 }
 
+.destructiveHover {
+  color: var(--color-destructive--hover);
+}
+
 .disabled {
   color: var(--color-disabled);
+}
+
+.disabledSecondary {
+  color: var(--color-disabled--secondary);
+}
+
+.focus {
+  color: var(--color-focus);
+}
+
+.icon {
+  color: var(--color-icon);
+}
+
+.surface {
+  color: var(--color-surface);
+}
+
+.surfaceHover {
+  color: var(--color-surface--hover);
+}
+
+.surfaceReverse {
+  color: var(--color-surface--reverse);
+}
+
+.surfaceActive {
+  color: var(--color-surface--active);
+}
+
+.surfaceBackground {
+  color: var(--color-surface--background);
+}
+
+.surfaceBackgroundHover {
+  color: var(--color-surface--background--hover);
+}
+
+.surfaceBackgroundSubtle {
+  color: var(--color-surface--background--subtle);
+}
+
+.surfaceBackgroundSubtleHover {
+  color: var(--color-surface--background--subtle--hover);
+}
+
+.border {
+  color: var(--color-border);
+}
+
+.borderInteractive {
+  color: var(--color-border--interactive);
+}
+
+.borderSection {
+  color: var(--color-border--section);
+}
+
+.brand {
+  color: var(--color-brand);
 }
