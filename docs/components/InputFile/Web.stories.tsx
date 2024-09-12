@@ -63,10 +63,10 @@ const VariationsAndSizesTemplate: ComponentStory<typeof InputFile> = args => {
         getUploadParams={fetchUploadParams}
       />
       <InputFile
-        buttonLabel="Dropzone Uploader with supportText"
+        buttonLabel="Dropzone Uploader with description"
         getUploadParams={fetchUploadParams}
         allowedTypes="images"
-        supportText="JPEG, HEIC, PNG up to 5MB each"
+        description="JPEG, HEIC, PNG up to 5MB each"
       />
       <InputFile
         size="small"
@@ -109,9 +109,9 @@ ImagesOnly.args = {
   getUploadParams: () => Promise.resolve({ url: "https://httpbin.org/post" }),
 };
 
-export const SupportText = StatefulTemplate.bind({});
-SupportText.args = {
+export const WithDescription = StatefulTemplate.bind({});
+WithDescription.args = {
   allowMultiple: true,
   getUploadParams: () => Promise.resolve({ url: "https://httpbin.org/post" }),
-  supportText: "JPEG, HEIC, PNG up to 5MB each",
+  description: "JPEG, HEIC, PNG up to 5MB each",
 };

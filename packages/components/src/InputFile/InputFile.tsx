@@ -124,9 +124,9 @@ interface InputFileProps {
   readonly allowMultiple?: boolean;
 
   /**
-   * Support text to display in the dropzone.
+   * Further description of the input.
    */
-  readonly supportText?: string;
+  readonly description?: string;
 
   /**
    * A callback that receives a file object and returns a `UploadParams` needed
@@ -186,7 +186,7 @@ export function InputFile({
   buttonLabel: providedButtonLabel,
   allowMultiple = false,
   allowedTypes = "all",
-  supportText,
+  description,
   getUploadParams,
   onUploadStart,
   onUploadProgress,
@@ -247,9 +247,9 @@ export function InputFile({
               {size === "base" && (
                 <>
                   <Typography size="small">{hintText}</Typography>
-                  {supportText && (
+                  {description && (
                     <Typography size="small" textColor="textSecondary">
-                      {supportText}
+                      {description}
                     </Typography>
                   )}
                 </>
