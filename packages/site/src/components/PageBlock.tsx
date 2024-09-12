@@ -28,9 +28,18 @@ export const PageBlock = ({ structure }: PageBlockProps) => {
     <PageWrapper>
       <HeaderBlock {...structure.header} />
       <BodyBlock title={structure.body.title}>
-        {structure.body.content.map((content, index) => (
-          <ContentCard {...content} key={index} />
-        ))}
+        <div
+          style={{
+            display: "grid",
+            width: "100%",
+            gridTemplateColumns: "1fr 1fr 1fr",
+            gap: "var(--space-base)",
+          }}
+        >
+          {structure.body.content.map((content, index) => (
+            <ContentCard {...content} key={index} />
+          ))}
+        </div>
       </BodyBlock>
     </PageWrapper>
   );

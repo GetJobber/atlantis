@@ -11,3 +11,32 @@ h5,
 h6 {
   font-family: var(--typography--fontFamily-display);
 }
+
+a {
+  margin: calc(-1 * var(--space-smallest));
+  padding: var(--space-smallest);
+  border-radius: var(--radius-small);
+  color: var(--color-interactive);
+  transition: all var(--timing-quick) ease-out;
+}
+
+a:hover,
+a:focus {
+  outline: transparent;
+  color: var(--color-interactive--hover);
+  background-color: var(--color-surface--hover);
+}
+
+a:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+
+a:visited {
+  color: var(--color-text--secondary);
+}
+
+code {
+  padding: var(--space-smallest);
+  border-radius: var(--radius-small);
+  background-color: var(--color-surface--background);
+}

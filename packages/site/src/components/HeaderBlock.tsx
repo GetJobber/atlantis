@@ -1,5 +1,5 @@
-import { Button, Content, Typography } from "@jobber/components";
-import { useHistory } from "react-router-dom";
+import { Box, Button, Content, Typography } from "@jobber/components";
+import { useHistory } from "react-router";
 
 interface HeaderBlockProps {
   readonly title: string;
@@ -17,39 +17,38 @@ export const HeaderBlock = ({
   const history = useHistory();
 
   return (
-    <div
-      style={{
-        padding: 80,
-        color: "var(--color-surface)",
-        backgroundColor: "var(--color-brand)",
-      }}
-    >
+    <Box padding="extravagant" background="base-blue--900">
       <div
         style={{
           width: "100%",
           height: "100%",
-          color: "var(--color-surface)",
-          backgroundColor: "var(--color-brand)",
+          color: "var(--color-base-white)",
           minHeight: "30vh",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
         }}
       >
-        <Content>
-          <Typography size="extravagant" fontWeight="bold" fontFamily="display">
+        <Content spacing="large">
+          <Typography
+            element={"h1"}
+            size="extravagant"
+            fontWeight="bold"
+            fontFamily="display"
+          >
             {title}
           </Typography>
-          <Typography size="larger">{body}</Typography>
+          <Typography size="large">{body}</Typography>
           {to && ctaLabel && (
             <Button
               type="secondary"
+              size="large"
               label={ctaLabel}
               onClick={() => history.push(to)}
             />
           )}
         </Content>
       </div>
-    </div>
+    </Box>
   );
 };
