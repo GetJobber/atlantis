@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { ReactNode, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import classnames from "classnames";
 import styles from "./FeatureSwitch.css";
@@ -78,13 +78,18 @@ export function FeatureSwitch({
   hasSaveIndicator = false,
   title,
 }: FeatureSwitchProps) {
+  const [previousEnabled, setPreviousEnabled] = useState(enabled);
   const [savedIndicator, setSavedIndicator] = useState(false);
   const featureContentClassnames = classnames(
     styles.featureContent,
     styles.content,
     enabled && styles.enabled,
   );
-  shouldShowSavedIndicator();
+
+  if (previousEnabled !== enabled) {
+    setSavedIndicator(true);
+    setPreviousEnabled(enabled);
+  }
 
   return (
     <Content>
@@ -150,15 +155,6 @@ export function FeatureSwitch({
       )}
     </Content>
   );
-
-  function shouldShowSavedIndicator() {
-    // Check if the component is mounted
-    const [didMount, setDidMount] = useState(false);
-    useEffect(() => setDidMount(true), []);
-    useEffect(() => {
-      didMount && hasSaveIndicator && setSavedIndicator(true);
-    }, [enabled]);
-  }
 
   function handleAnimationComplete() {
     setSavedIndicator(false);

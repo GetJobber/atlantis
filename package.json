@@ -113,6 +113,7 @@
     "eslint-plugin-mdx": "^1.16.0",
     "eslint-plugin-monorepo-cop": "^1.0.2",
     "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.2",
     "glob": "^7.1.4",
     "graphql": "^15.8.0",
     "graphql-ws": "^5.12.0",

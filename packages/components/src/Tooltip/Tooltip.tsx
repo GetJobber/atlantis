@@ -45,7 +45,22 @@ export function Tooltip({
     setTooltipRef,
   } = useTooltipPositioning({ preferredPlacement: preferredPlacement });
 
-  initializeListeners();
+  const { injectAttributes, addListeners, removeListeners } =
+    useInitializeListeners({
+      setShow,
+      shadowRef,
+      message,
+      setTabIndex,
+    });
+
+  useSafeLayoutEffect(() => {
+    injectAttributes();
+    addListeners();
+
+    return () => {
+      removeListeners();
+    };
+  }, []);
 
   const toolTipClassNames = classnames(
     styles.tooltipWrapper,
@@ -91,60 +106,63 @@ export function Tooltip({
       </TooltipPortal>
     </>
   );
+}
 
-  function initializeListeners() {
-    const showTooltip = () => {
-      setShow(true);
-    };
+function useInitializeListeners({
+  setShow,
+  shadowRef,
+  message,
+  setTabIndex,
+}: {
+  readonly setShow: (show: boolean) => void;
+  readonly shadowRef: React.RefObject<HTMLSpanElement>;
+  readonly message: string;
+  readonly setTabIndex: boolean;
+}) {
+  const showTooltip = () => {
+    setShow(true);
+  };
 
-    const hideTooltip = () => {
-      setShow(false);
-    };
+  const hideTooltip = () => {
+    setShow(false);
+  };
 
-    const injectAttributes = () => {
-      if (shadowRef?.current?.nextElementSibling) {
-        const activator = shadowRef.current.nextElementSibling;
-        // Manually inject "aria-description" and "tabindex" to let the screen
-        // readers read the tooltip message.
-        // This is to avoid having to add those attribute as a prop on every
-        // component we have.
-        activator.setAttribute("aria-description", message);
+  const injectAttributes = () => {
+    if (shadowRef?.current?.nextElementSibling) {
+      const activator = shadowRef.current.nextElementSibling;
+      // Manually inject "aria-description" and "tabindex" to let the screen
+      // readers read the tooltip message.
+      // This is to avoid having to add those attribute as a prop on every
+      // component we have.
+      activator.setAttribute("aria-description", message);
 
-        if (setTabIndex) {
-          activator.setAttribute("tabindex", "0"); // enable focus
-        }
+      if (setTabIndex) {
+        activator.setAttribute("tabindex", "0"); // enable focus
       }
-    };
+    }
+  };
 
-    const addListeners = () => {
-      if (shadowRef?.current?.nextElementSibling) {
-        const activator = shadowRef.current.nextElementSibling;
-        activator.addEventListener("mouseenter", showTooltip);
-        activator.addEventListener("mouseleave", hideTooltip);
-        activator.addEventListener("focus", showTooltip);
-        activator.addEventListener("blur", hideTooltip);
-      }
-    };
+  const addListeners = () => {
+    if (shadowRef?.current?.nextElementSibling) {
+      const activator = shadowRef.current.nextElementSibling;
+      activator.addEventListener("mouseenter", showTooltip);
+      activator.addEventListener("mouseleave", hideTooltip);
+      activator.addEventListener("focus", showTooltip);
+      activator.addEventListener("blur", hideTooltip);
+    }
+  };
 
-    const removeListeners = () => {
-      if (shadowRef?.current?.nextElementSibling) {
-        const activator = shadowRef.current.nextElementSibling;
-        activator.removeEventListener("mouseenter", showTooltip);
-        activator.removeEventListener("mouseleave", hideTooltip);
-        activator.removeEventListener("focus", showTooltip);
-        activator.removeEventListener("blur", hideTooltip);
-      }
-    };
+  const removeListeners = () => {
+    if (shadowRef?.current?.nextElementSibling) {
+      const activator = shadowRef.current.nextElementSibling;
+      activator.removeEventListener("mouseenter", showTooltip);
+      activator.removeEventListener("mouseleave", hideTooltip);
+      activator.removeEventListener("focus", showTooltip);
+      activator.removeEventListener("blur", hideTooltip);
+    }
+  };
 
-    useSafeLayoutEffect(() => {
-      injectAttributes();
-      addListeners();
-
-      return () => {
-        removeListeners();
-      };
-    }, []);
-  }
+  return { injectAttributes, addListeners, removeListeners };
 }
 
 interface TooltipPortalProps {

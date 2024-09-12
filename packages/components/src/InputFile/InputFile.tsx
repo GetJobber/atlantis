@@ -175,6 +175,7 @@ interface CreateAxiosConfigParams extends Omit<UploadParams, "key"> {
   handleUploadProgress(progress: any): void;
 }
 
+// eslint-disable-next-line max-statements
 export function InputFile({
   variation = "dropzone",
   size = "base",
@@ -186,12 +187,15 @@ export function InputFile({
   onUploadProgress,
   onUploadComplete,
   onUploadError,
-  validator,
+  validator: validatorProp,
 }: InputFileProps) {
+  const validator: InputFileProps["validator"] = useCallback<
+    NonNullable<InputFileProps["validator"]>
+  >(file => validatorProp?.(file) || null, []);
   const options: DropzoneOptions = {
     multiple: allowMultiple,
     onDrop: useCallback(handleDrop, [uploadFile]),
-    validator: validator && useCallback(validator, []),
+    validator: validatorProp && validator,
   };
 
   if (allowedTypes === "images") {

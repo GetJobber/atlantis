@@ -4,6 +4,12 @@ type MediaQuery = `(${string}:${string})`;
 
 export const mediaQueryStore = {
   subscribe(onChange: () => void, query: MediaQuery) {
+    if (
+      typeof window === "undefined" ||
+      typeof window.matchMedia === "undefined"
+    ) {
+      return () => undefined;
+    }
     const matchMedia = window.matchMedia(query);
     matchMedia.addEventListener("change", onChange);
 
@@ -12,6 +18,13 @@ export const mediaQueryStore = {
     };
   },
   getSnapshot(query: MediaQuery) {
+    if (
+      typeof window === "undefined" ||
+      typeof window.matchMedia === "undefined"
+    ) {
+      return () => true;
+    }
+
     return () => window.matchMedia(query).matches;
   },
 };
@@ -28,12 +41,6 @@ export function useMediaQuery(query: MediaQuery) {
    * screen sizes, they can use the `mockViewportWidth` function from
    * `@jobber/components/useBreakpoints`.
    */
-  if (
-    typeof window === "undefined" ||
-    typeof window.matchMedia === "undefined"
-  ) {
-    return true;
-  }
 
   const subscribeMediaQuery = useCallback(
     (onChange: () => void) => mediaQueryStore.subscribe(onChange, query),

@@ -15,11 +15,11 @@ export function DataListBulkActions(
 
 export function InternalDataListBulkActions() {
   const { bulkActionsComponent } = useDataListContext();
+  const { sm } = useResponsiveSizing();
+
   if (!bulkActionsComponent) return null;
 
   const { children } = bulkActionsComponent.props;
-
-  const { sm } = useResponsiveSizing();
 
   // Collapse all actions under "More actions" when breakpoint is smaller than sm
   const itemsToExpose = sm ? 3 : 0;

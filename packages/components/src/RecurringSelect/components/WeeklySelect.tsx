@@ -31,29 +31,52 @@ export function WeeklySelect({
     <div className={styles.container}>
       {weekDays.map(weekDay => {
         const isSelected = selectedDays.has(weekDay);
-        const inputId = useId();
 
         return (
-          <div key={`${weekDay}`} className={checkboxStyles.checkboxWrapper}>
-            <input
-              className={checkboxStyles.dayCheckboxInput}
-              disabled={disabled}
-              type="checkbox"
-              onChange={onChangeWeekDays}
-              id={`weekly-select-${weekDay}${inputId}`}
-              aria-checked={isSelected}
-              checked={isSelected}
-              value={weekDay}
-            />
-            <label
-              className={checkboxStyles.dayCheckbox}
-              htmlFor={`weekly-select-${weekDay}${inputId}`}
-            >
-              {`${WeekDay[weekDay].substr(0, 1).toUpperCase()}`}
-            </label>
-          </div>
+          <DayOfWeek
+            weekDay={weekDay}
+            key={weekDay}
+            isSelected={isSelected}
+            disabled={disabled}
+            onChangeWeekDays={onChangeWeekDays}
+          />
         );
       })}
+    </div>
+  );
+}
+
+function DayOfWeek({
+  weekDay,
+  isSelected,
+  disabled,
+  onChangeWeekDays,
+}: {
+  readonly weekDay: WeekDay;
+  readonly isSelected: boolean;
+  readonly disabled: boolean;
+  readonly onChangeWeekDays: (event: React.FormEvent<HTMLInputElement>) => void;
+}) {
+  const inputId = useId();
+
+  return (
+    <div key={`${weekDay}`} className={checkboxStyles.checkboxWrapper}>
+      <input
+        className={checkboxStyles.dayCheckboxInput}
+        disabled={disabled}
+        type="checkbox"
+        onChange={onChangeWeekDays}
+        id={`weekly-select-${weekDay}${inputId}`}
+        aria-checked={isSelected}
+        checked={isSelected}
+        value={weekDay}
+      />
+      <label
+        className={checkboxStyles.dayCheckbox}
+        htmlFor={`weekly-select-${weekDay}${inputId}`}
+      >
+        {`${WeekDay[weekDay].substr(0, 1).toUpperCase()}`}
+      </label>
     </div>
   );
 }

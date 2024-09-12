@@ -9,7 +9,11 @@ const packageAliases = [
 
 module.exports = {
   plugins: ["monorepo-cop", "react"],
-  extends: ["@jobber/eslint-config", "plugin:monorepo-cop/recommended"],
+  extends: [
+    "@jobber/eslint-config",
+    "plugin:monorepo-cop/recommended",
+    "plugin:react-hooks/recommended",
+  ],
   root: true,
   settings: {
     "import/ignore": ["react-native/index"],
