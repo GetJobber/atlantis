@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.30.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.30.0...@jobber/components@5.30.1) (2024-09-13)
+
+
+### Bug Fixes
+
+* **components:** Display Datalist checkbox based on device type instead of breakpoint ([#2013](https://github.com/GetJobber/atlantis/issues/2013)) ([bb59990](https://github.com/GetJobber/atlantis/commit/bb599904cab94591fad13b64569436a8f70728d3))
+
+
+
+
+
 # [5.30.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.29.3...@jobber/components@5.30.0) (2024-09-13)
 
 
