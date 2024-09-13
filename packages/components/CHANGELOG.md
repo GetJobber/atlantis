@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.30.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.29.3...@jobber/components@5.30.0) (2024-09-13)
+
+
+### Features
+
+* **components:** Add description prop to InputFile ([#2019](https://github.com/GetJobber/atlantis/issues/2019)) ([ba5b262](https://github.com/GetJobber/atlantis/commit/ba5b262c123bca26226f86e14931d3a11398b3e1))
+
+
+
+
+
 ## [5.29.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.29.2...@jobber/components@5.29.3) (2024-09-13)
 
 **Note:** Version bump only for package @jobber/components
