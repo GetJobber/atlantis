@@ -3,6 +3,11 @@ body {
   font-family: var(--typography--fontFamily-normal);
 }
 
+h1 {
+  font-size: var(--typography--fontSize-jumbo);
+  font-weight: 800;
+}
+
 h1,
 h2,
 h3,
