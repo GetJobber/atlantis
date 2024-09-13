@@ -125,7 +125,8 @@ function computeUnderlineColor(
   textDecorationColor: string,
   textColor?: keyof typeof textColors,
 ): string | undefined {
-  // Use underline color otherwise if a custom text color is specified, use that
+  // Use the specified underline color if one is provided. If no underline color
+  // is specified, fall back to the text color for the underline.
   if (textDecorationColor) {
     return `var(--${textDecorationColor})`;
   }
