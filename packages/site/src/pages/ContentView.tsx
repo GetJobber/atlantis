@@ -1,20 +1,20 @@
-import { Content, Page } from "@jobber/components";
+import { Box, Content } from "@jobber/components";
 import { ReactNode } from "react";
 
 export const ContentView = ({
   content,
-  intro,
-  title,
 }: {
-  readonly content: ReactNode;
+  readonly content: typeof import("*.md");
   readonly intro: string;
   readonly title: string;
 }) => {
   return (
     <div style={{ backgroundColor: "var(--color-surface" }}>
-      <Page intro={intro} title={title}>
-        <Content>{content}</Content>
-      </Page>
+      <custom-elements>
+        <Box padding={"larger"}>
+          <Content>{content as unknown as ReactNode}</Content>
+        </Box>
+      </custom-elements>
     </div>
   );
 };

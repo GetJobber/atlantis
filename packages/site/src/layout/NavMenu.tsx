@@ -2,7 +2,7 @@ import { Icon, InputText } from "@jobber/components";
 import { Link } from "react-router-dom";
 import styles from "./navmenu.module.css";
 import "./nav-menu.css";
-import { routes } from "./routes";
+import { routes } from "../routes";
 
 export const NavMenu = () => {
   return (

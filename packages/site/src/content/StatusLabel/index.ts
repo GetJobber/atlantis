@@ -1,6 +1,7 @@
 import { StatusLabel } from "@jobber/components";
+// eslint-disable-next-line import/no-unresolved
+import Content from "@atlantis/docs/components/StatusLabel/StatusLabel.stories.mdx";
 import Props from "./StatusLabel.props.json";
-import Content from "../../../../../docs/components/StatusLabel/StatusLabel.stories.mdx";
 
 export default {
   content: Content,

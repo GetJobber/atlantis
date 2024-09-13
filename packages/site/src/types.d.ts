@@ -3,3 +3,4 @@ declare namespace JSX {
     [elemName: string]: object;
   }
 }
+declare module "*.mdx" {}

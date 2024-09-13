@@ -2,9 +2,10 @@ import path from "path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import mdx from "@mdx-js/rollup";
+import remarkGfm from "remark-gfm";
 
 export default defineConfig({
-  plugins: [react(), mdx()],
+  plugins: [react(), mdx({ remarkPlugins: [remarkGfm] })],
   optimizeDeps: {
     include: ["@jobber/formatters", "@jobber/hooks"],
   },
@@ -15,14 +16,9 @@ export default defineConfig({
         __dirname,
         "./src/components/StorybookOverrides",
       ),
-      "mdxUtils/ColorSwatches": path.resolve(
-        __dirname,
-        "./src/components/docx/ColorSwatches",
-      ),
-      "@jobber/docx": path.resolve(
-        __dirname,
-        "./src/components/docx/ColorSwatches",
-      ),
+      mdxUtils: path.resolve(__dirname, "../../.storybook/components"),
+      "@jobber/docx": path.resolve(__dirname, "./src/components/docx"),
+      "@atlantis/docs": path.resolve(__dirname, "../../docs"),
     },
   },
   server: {

@@ -131,7 +131,7 @@ export const ComponentView = () => {
             </Card>
           </Box>
           <Box>
-            <Link url="/components/web">Back to components</Link>
+            <Link url="/components">Back to components</Link>
           </Box>
         </Content>
       </Box>

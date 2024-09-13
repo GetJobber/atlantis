@@ -1,6 +1,7 @@
 import { Chip } from "@jobber/components";
+// eslint-disable-next-line import/no-unresolved
+import Content from "@atlantis/docs/components/Chip/Chip.stories.mdx";
 import Props from "./Chip.props.json";
-import Content from "../../../../../docs/components/Chip/Chip.stories.mdx";
 import { ContentExport } from "../../types/content";
 
 export default {

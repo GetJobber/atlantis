@@ -1,6 +1,7 @@
 import { Button } from "@jobber/components";
+// eslint-disable-next-line import/no-unresolved
+import Content from "@atlantis/docs/components/Button/Button.stories.mdx";
 import Props from "./Button.props.json";
-import Content from "../../../../../docs/components/Button/Button.stories.mdx";
 
 export default {
   content: Content,

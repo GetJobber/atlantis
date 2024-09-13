@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import "@jobber/design/foundation.css";
 import "@jobber/components/dist/styles.css";
 import "./index.css";
-import { MDXProvider } from "@mdx-js/react";
 import { BrowserRouter } from "react-router-dom";
 import { Layout } from "./layout/Layout";
 
@@ -13,11 +12,9 @@ function renderApp() {
   if (root) {
     ReactDOM.createRoot(root).render(
       <React.StrictMode>
-        <MDXProvider>
-          <BrowserRouter>
-            <Layout />
-          </BrowserRouter>
-        </MDXProvider>
+        <BrowserRouter>
+          <Layout />
+        </BrowserRouter>
       </React.StrictMode>,
     );
   }

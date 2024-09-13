@@ -1,6 +1,7 @@
 import { Disclosure } from "@jobber/components";
+// eslint-disable-next-line import/no-unresolved
+import Content from "@atlantis/docs/components/Disclosure/Disclosure.stories.mdx";
 import Props from "./Disclosure.props.json";
-import Content from "../../../../../docs/components/Disclosure/Disclosure.stories.mdx";
 
 export default {
   content: Content,

@@ -34,3 +34,55 @@ a:focus-visible {
 a:visited {
   color: var(--color-text--secondary);
 }
+
+custom-elements {
+  & table {
+    font-size: 16px;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-overflow-scrolling: touch;
+    margin: 16px 0;
+    margin-bottom: 16px;
+    font-size: 14px;
+    line-height: 24px;
+    padding: 0;
+    border-collapse: collapse;
+  }
+
+  & thead {
+
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  & tr {
+    border-top: 1px solid hsla(203, 50%, 30%, 0.15);
+    margin: 0;
+    padding: 0;
+  }
+
+  & tr th {
+
+    font-weight: bold;
+    color: #2E3438;
+    border: 1px solid hsla(203, 50%, 30%, 0.15);
+    margin: 0;
+    padding: 6px 13px;
+  }
+
+  & tr td {
+    border: 1px solid hsla(203, 50%, 30%, 0.15);
+    color: #2E3438;
+    margin: 0;
+    padding: 6px 13px;
+  }
+
+  tr:nth-of-type(2n) {
+    background-color: #F7FAFC;
+  }
+}

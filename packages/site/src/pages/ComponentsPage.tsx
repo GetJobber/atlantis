@@ -13,27 +13,27 @@ export const ComponentsPage = () => {
           content: [
             {
               title: "Button",
-              to: "/components/web/Button",
+              to: "/components/Button",
               imageURL: "/Button.png",
             },
             {
               title: "Chip",
-              to: "/components/web/Chip",
+              to: "/components/Chip",
               imageURL: "/Chip.png",
             },
             {
               title: "StatusLabel",
-              to: "/components/web/StatusLabel",
+              to: "/components/StatusLabel",
               imageURL: "/StatusLabel.png",
             },
             {
               title: "Switch",
-              to: "/components/web/Switch",
+              to: "/components/Switch",
               imageURL: "/Switch.png",
             },
             {
               title: "Disclosure",
-              to: "/components/web/Disclosure",
+              to: "/components/Disclosure",
               imageURL: "/Disclosure.png",
             },
           ],

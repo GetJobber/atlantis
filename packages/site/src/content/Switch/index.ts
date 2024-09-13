@@ -1,6 +1,7 @@
 import { Switch } from "@jobber/components";
+// eslint-disable-next-line import/no-unresolved
+import Content from "@atlantis/docs/components/Switch/Switch.stories.mdx";
 import Props from "./Switch.props.json";
-import Content from "../../../../../docs/components/Switch/Switch.stories.mdx";
 
 export default {
   content: Content,
