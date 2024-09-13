@@ -367,17 +367,15 @@ function getLabels(
   multiple: boolean,
   allowedTypes: string | string[],
 ) {
-  let buttonLabel = multiple ? "Upload Files" : "Upload File";
-  let hintText = multiple
-    ? "Select or drag files here to upload"
-    : "Select or drag a file here to upload";
-
-  if (allowedTypes === "images" || allowedTypes === "basicImages") {
-    buttonLabel = multiple ? "Upload Images" : "Upload Image";
-    hintText = multiple
-      ? "Select or drag images here to upload"
-      : "Select or drag an image here to upload";
-  }
+  const fileType =
+    allowedTypes === "images" || allowedTypes === "basicImages"
+      ? "Image"
+      : "File";
+  let buttonLabel = multiple ? `Upload ${fileType}s` : `Upload ${fileType}`;
+  const fileTypeDeterminer = fileType === "Image" ? "an" : "a";
+  const hintText = multiple
+    ? `Select or drag ${fileType.toLowerCase()}s here to upload`
+    : `Select or drag ${fileTypeDeterminer} ${fileType.toLowerCase()} here to upload`;
 
   if (providedButtonLabel) buttonLabel = providedButtonLabel;
 
