@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import { SegmentedControl } from "@jobber/components";
+import { SegmentedControl } from "@jobber/components/SegmentedControl";
 
 const meta: Meta<typeof SegmentedControl> = {
-  title: "Components/SegmentedControl/Web",
+  title: "Components/Selections/SegmentedControl/Web",
   component: SegmentedControl,
   parameters: {
     viewMode: "story",
