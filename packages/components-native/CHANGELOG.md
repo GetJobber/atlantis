@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.72.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.71.2...@jobber/components-native@0.72.0) (2024-09-12)
+
+
+### Features
+
+* **components-native:** Add underline support to Text/Typography components for mobile (JOB-104505) ([#2022](https://github.com/GetJobber/atlantis/issues/2022)) ([f831aa1](https://github.com/GetJobber/atlantis/commit/f831aa1db5deb9d355353e814637fe60bbe2072a))
+
+
+
+
+
+## [0.71.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.71.1...@jobber/components-native@0.71.2) (2024-09-06)
+
+
+### Bug Fixes
+
+* **components:** match Glimmer mobile styles to web ([#2004](https://github.com/GetJobber/atlantis/issues/2004)) ([013553d](https://github.com/GetJobber/atlantis/commit/013553dc8151796e3e4d3ec514666274830bc6cd))
+
+
+
+
+
 ## [0.71.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.71.0...@jobber/components-native@0.71.1) (2024-08-22)
 
 
