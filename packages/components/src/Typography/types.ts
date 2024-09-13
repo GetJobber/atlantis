@@ -12,4 +12,4 @@ type Color = {
 
 export type UnderlineStyle = "solid" | "double" | "dotted" | "dashed";
 
-export type Underline = `${UnderlineStyle} ${Color}`;
+export type UnderlineStyleWithColor = `${UnderlineStyle} ${Color}`;

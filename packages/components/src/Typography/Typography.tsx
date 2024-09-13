@@ -11,7 +11,7 @@ import truncate from "./css/Truncate.css";
 import alignment from "./css/TextAlignment.css";
 import fontFamilies from "./css/FontFamilies.css";
 import underlineStyles from "./css/Underline.css";
-import { Underline, UnderlineStyle } from "./types";
+import { UnderlineStyle, UnderlineStyleWithColor } from "./types";
 
 interface TypographyProps {
   readonly id?: string;
@@ -61,7 +61,7 @@ interface TypographyProps {
    * @example "solid" for a non-dashed underline of the same color as `textColor`
    * @example "double color-invoice" for a double underline in the specified color
    */
-  readonly underline?: UnderlineStyle | Underline | undefined;
+  readonly underline?: UnderlineStyle | UnderlineStyleWithColor | undefined;
 }
 export type TypographyOptions = Omit<TypographyProps, "children">;
 
