@@ -23,7 +23,8 @@ export const ComponentView = () => {
   const { name = "" } = useParams<{ name: string }>();
   const PageMeta = SiteContent[name];
   const Component = PageMeta?.component.element as () => ReactNode;
-  const { updateValue, mappedProps } = usePageValues(
+  const { updateValue, values, stateValues } = usePageValues(
+    PageMeta?.props,
     PageMeta?.component.defaultProps,
   );
   const ComponentContent = PageMeta?.content as () => ReactNode;
@@ -41,7 +42,7 @@ export const ComponentView = () => {
               <Content spacing="large">
                 <Box direction="column" gap="small">
                   <preview-window>
-                    <Component {...mappedProps} />
+                    <Component {...stateValues} />
                   </preview-window>
                 </Box>
                 <Tabs>
@@ -53,16 +54,11 @@ export const ComponentView = () => {
                   <Tab label="Props">
                     <PropsList
                       defaultProps={PageMeta?.props}
-                      values={mappedProps}
+                      values={values}
                       updateValue={updateValue}
                     />
                   </Tab>
                   <Tab label="Code Editor">
-                    <preview-code>
-                      <InputText multiline value={PageMeta?.component.code} />
-                    </preview-code>
-                  </Tab>
-                  <Tab label="another">
                     <preview-code>
                       <InputText multiline value={PageMeta?.component.code} />
                     </preview-code>

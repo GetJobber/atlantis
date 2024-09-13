@@ -1,13 +1,10 @@
-import { ValueState } from "./services";
-
 export interface ContentExport {
   content: unknown;
   props: unknown;
   component: {
     element: unknown;
-    props: Record<string, unknown>;
     code: string;
-    defaultProps: ValueState;
+    defaultProps: Record<string, unknown>;
   };
   title: string;
   description: string;

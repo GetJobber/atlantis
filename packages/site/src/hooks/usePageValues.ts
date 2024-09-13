@@ -1,42 +1,39 @@
 import { useMemo, useState } from "react";
 import { ValueState, ValueStateInternals } from "../types/services";
 
-export const usePageValues = (defaultProps: ValueState) => {
+export const usePageValues = (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  generatedProps: any,
+  defaultProps: ValueState,
+) => {
   const [values, setValues] = useState<ValueState>(defaultProps);
 
-  const updateValue = (
-    propKey: string,
-    key: { key: string },
-    value: string | (() => void),
-  ) => {
-    setValues(oldValues => {
-      const newValues: ValueState = {
-        ...oldValues,
-      };
-
-      if (!newValues[propKey]) {
-        newValues[propKey] = {};
-      }
-      newValues[propKey][key.key] = value;
-
-      return newValues;
-    });
+  const updateValue = (key: string, value: ValueStateInternals) => {
+    setValues(prev => ({
+      ...prev,
+      [key]: value,
+    }));
   };
-  const mappedProps = useMemo(() => {
-    const mapped: ValueStateInternals = {};
 
-    for (const key in values) {
-      if (!Object.hasOwn(values, key)) {
-        for (const propKey in values[key]) {
-          if (Object.hasOwn(values[key], propKey)) {
-            mapped[propKey] = values[key][propKey];
-          }
-        }
-      }
-    }
+  const mergedValues = useMemo(() => {
+    const mergedProps: Record<string, ValueStateInternals> = {};
+    Object.keys(generatedProps[0]?.props).map(key => {
+      const prop = generatedProps[0].props[key];
 
-    return mapped;
-  }, [values]);
+      const extractedValue = defaultProps[key]
+        ? defaultProps[key]
+        : prop.defaultValue;
+      mergedProps[key] = {
+        value: extractedValue?.value ? extractedValue?.value : extractedValue,
+        type: prop.type.name,
+        required: prop.required,
+        description: prop.description,
+      };
+    });
 
-  return { values, updateValue, mappedProps };
+    return mergedProps;
+  }, [generatedProps, defaultProps, values]);
+  console.log("MERGEE", mergedValues);
+
+  return { values: mergedValues, updateValue, stateValues: values };
 };

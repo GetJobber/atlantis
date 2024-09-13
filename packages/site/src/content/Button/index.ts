@@ -2,15 +2,15 @@ import { Button } from "@jobber/components";
 // eslint-disable-next-line import/no-unresolved
 import Content from "@atlantis/docs/components/Button/Button.stories.mdx";
 import Props from "./Button.props.json";
+import { ContentExport } from "../../types/content";
 
 export default {
   content: Content,
   props: Props,
   component: {
     element: Button,
-    props: { label: "Button" },
+    defaultProps: { label: "Button" },
     code: `<Button label="Button" />`,
-    defaultProps: { strings: { label: "Button!" } },
   },
   title: "Button",
   description:
@@ -29,4 +29,4 @@ export default {
       url: "http://localhost:6006/?path=/docs/components-utilities-animatedswitcher-web--docs",
     },
   ],
-};
+} as ContentExport;

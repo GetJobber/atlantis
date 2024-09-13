@@ -9,9 +9,8 @@ export default {
   props: Props,
   component: {
     element: Chip,
-    props: { label: "Chip" },
+    defaultProps: {},
     code: `<Chip label="Chip" />`,
-    defaultProps: { strings: { label: "Chip!" } },
   },
   title: "Chip",
   description: "Chip is neat.",

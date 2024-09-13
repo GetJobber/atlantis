@@ -1,4 +1,5 @@
 export interface FormattedProp {
+  value: string | number | Date | undefined;
   key: string;
   description: string;
   type: "string" | "boolean" | "option" | "callback" | "unknown";
@@ -15,17 +16,22 @@ export interface DocProps {
 }
 export type ValueStateInternals = Record<
   string,
-  string | number | (() => void)
+  {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    [x: string]: any;
+    type: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    value: any;
+    description: string;
+    required: boolean;
+    key?: string;
+  }
 >;
 export type ValueState = Record<string, ValueStateInternals>;
 export interface OptionInternalProps {
   value: FormattedProp;
   values: ValueStateInternals;
-  updateValue: (
-    propKey: string,
-    key: { key: string },
-    value: string | (() => void),
-  ) => void;
+  updateValue: (key: { key: string }, value: string | (() => void)) => void;
 }
 export interface PropStructure {
   displayName: string;
