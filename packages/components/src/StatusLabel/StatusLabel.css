@@ -1,5 +1,6 @@
 .statusLabelRow {
   --labelBackgroundColor: var(--color-success--surface);
+  --labelTextColor: var(--color-success--onSurface);
 
   display: flex;
   width: fit-content;
@@ -13,26 +14,32 @@
 
 .success {
   --labelBackgroundColor: var(--color-success--surface);
+  --labelTextColor: var(--color-success--onSurface);
 }
 
 .warning {
   --labelBackgroundColor: var(--color-warning--surface);
+  --labelTextColor: var(--color-warning--onSurface);
 }
 
 .critical {
   --labelBackgroundColor: var(--color-critical--surface);
+  --labelTextColor: var(--color-critical--onSurface);
 }
 
 .inactive {
   --labelBackgroundColor: var(--color-inactive--surface);
+  --labelTextColor: var(--color-inactive--onSurface);
 }
 
 .informative {
   --labelBackgroundColor: var(--color-informative--surface);
+  --labelTextColor: var(--color-informative--onSurface);
 }
 
 /* Reset the <Text> line height so we can reliably get 24px tall */
 .statusLabelRow p {
+  color: var(--labelTextColor);
   line-height: 1;
 }
 

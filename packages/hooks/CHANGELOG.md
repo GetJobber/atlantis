@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.10.2...@jobber/hooks@2.11.0) (2024-08-27)
+
+
+### Bug Fixes
+
+* **components:** Fix flakey spec in useBreakpoints ([#1997](https://github.com/GetJobber/atlantis/issues/1997)) ([8fe06a3](https://github.com/GetJobber/atlantis/commit/8fe06a37570870830c9cb443d4a42a7b38b35f6e))
+
+
+### Features
+
+* **design:** BREAKING CHANGE: Complete rebuild of the design token package ([#1965](https://github.com/GetJobber/atlantis/issues/1965)) ([b749502](https://github.com/GetJobber/atlantis/commit/b749502e347a4e14a1c5fcfdbc3114f54bb616f1))
+
+
+
+
+
 ## [2.10.2](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.10.1...@jobber/hooks@2.10.2) (2024-07-15)
 
 

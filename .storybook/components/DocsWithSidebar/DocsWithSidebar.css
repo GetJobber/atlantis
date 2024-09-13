@@ -7,6 +7,13 @@
 .content {
   flex: 1 1 0;
   overflow: auto;
+  background-color: var(--color-surface);
+  background: var(--color-surface);
+}
+
+.content > div {
+  background-color: inherit;
+  background: inherit;
 }
 
 .sidebar {
@@ -16,7 +23,6 @@
   bottom: 0;
   z-index: var(--elevation-menu);
   width: 250px;
-  background-color: var(--color-white);
   transform: translateX(100%);
   transition: all 200ms ease-in-out;
   flex: 0 1 auto;

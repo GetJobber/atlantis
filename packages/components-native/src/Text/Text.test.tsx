@@ -127,6 +127,11 @@ it("renders with strikethrough styling", () => {
   expect(text.toJSON()).toMatchSnapshot();
 });
 
+it("renders with italic styling", () => {
+  const text = render(<Text italic>Test Text</Text>);
+  expect(text.toJSON()).toMatchSnapshot();
+});
+
 it("renders text that is inaccessible", () => {
   const text = render(<Text hideFromScreenReader={true}>Test Text</Text>);
   expect(text.root.props).toEqual(

@@ -48,10 +48,7 @@ export default {
         postcssimport,
         autoprefixer,
         tools({
-          files: [
-            "../design/foundation.css",
-            "../design/src/responsiveBreakpoints.css",
-          ],
+          files: ["../design/dist/foundation.css"],
         }),
         presetenv({
           stage: 1,
@@ -124,6 +121,7 @@ export default {
           dest: "dist",
           rename: "index.d.mts",
         },
+        { src: "src/utils/meta/meta.json", dest: "dist/utils/meta" },
       ],
       hook: "writeBundle",
     }),

@@ -1,5 +1,6 @@
 import React from "react";
-import { fireEvent, render, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { AnyOption, Autocomplete } from ".";
 import { InputTextRef } from "../InputText";
 
@@ -45,7 +46,7 @@ const headingOptions = [
   },
 ];
 
-it("renders an Autocomplete", () => {
+it("renders an Autocomplete", async () => {
   const { container } = render(
     <Autocomplete
       value={undefined}
@@ -65,7 +66,7 @@ test("it should call the getOptions handler with the new value", async () => {
   const changeOptionsHandler = jest.fn();
   changeOptionsHandler.mockReturnValue(Promise.resolve([]));
   const newValue = "new search value";
-  const { getByLabelText } = render(
+  render(
     <Autocomplete
       value={undefined}
       onChange={changeHandler}
@@ -74,17 +75,15 @@ test("it should call the getOptions handler with the new value", async () => {
     />,
   );
 
-  fireEvent.change(getByLabelText(placeholder), {
-    target: { value: newValue },
-  });
+  await userEvent.type(screen.getByLabelText(placeholder), newValue);
   await waitFor(() => {
     expect(changeOptionsHandler).toHaveBeenCalledWith(newValue);
   });
 });
 
-test("it should call the handler when an option is selected", () => {
+test("it should call the handler when an option is selected", async () => {
   const changeHandler = jest.fn();
-  const { getByText, getByRole } = render(
+  render(
     <Autocomplete
       value={undefined}
       onChange={changeHandler}
@@ -93,28 +92,12 @@ test("it should call the handler when an option is selected", () => {
       placeholder="placeholder_name"
     />,
   );
-  fireEvent.focus(getByRole("textbox"));
-  fireEvent(
-    getByText(`option_${options[0].value}`),
-    new KeyboardEvent("keydown", {
-      key: "ArrowDown",
-      bubbles: true,
-      cancelable: false,
-    }),
-  );
-  fireEvent(
-    getByText(`option_${options[0].value}`),
-    new KeyboardEvent("keydown", {
-      key: "Enter",
-      bubbles: true,
-      cancelable: false,
-    }),
-  );
-
+  await userEvent.click(screen.getByRole("textbox"));
+  await userEvent.keyboard("{ArrowDown}{Enter}");
   expect(changeHandler).toHaveBeenCalledWith(options[1]);
 });
 
-test("it should display headers when headers are passed in", () => {
+test("it should display headers when headers are passed in", async () => {
   const { container } = render(
     <Autocomplete
       value={undefined}
@@ -128,9 +111,9 @@ test("it should display headers when headers are passed in", () => {
   expect(container).toMatchSnapshot();
 });
 
-test("it should call the handler skipping headings when an option is selected", () => {
+test("it should call the handler skipping headings when an option is selected", async () => {
   const changeHandler = jest.fn();
-  const { getByRole } = render(
+  render(
     <Autocomplete
       value={undefined}
       onChange={changeHandler}
@@ -139,30 +122,16 @@ test("it should call the handler skipping headings when an option is selected", 
       placeholder="placeholder_name"
     />,
   );
-  fireEvent.focus(getByRole("textbox"));
-  fireEvent(
-    getByRole("textbox"),
-    new KeyboardEvent("keydown", {
-      key: "ArrowDown",
-      bubbles: true,
-      cancelable: false,
-    }),
-  );
-  fireEvent(
-    getByRole("textbox"),
-    new KeyboardEvent("keydown", {
-      key: "Enter",
-      bubbles: true,
-      cancelable: false,
-    }),
-  );
+
+  await userEvent.click(screen.getByRole("textbox"));
+  await userEvent.keyboard("{ArrowDown}{Enter}");
 
   expect(changeHandler).toHaveBeenCalledWith(headingOptions[1].options[0]);
 });
 
 it("should remove the menu when blurred", async () => {
   const changeHandler = jest.fn();
-  const { getByRole, getByText, queryByText } = render(
+  render(
     <Autocomplete
       value={undefined}
       onChange={changeHandler}
@@ -172,24 +141,22 @@ it("should remove the menu when blurred", async () => {
     />,
   );
 
-  const input = getByRole("textbox");
+  const input = screen.getByRole("textbox");
 
-  input.focus();
+  await userEvent.click(input);
 
-  await waitFor(() => {
-    expect(getByText("option_0")).toBeInstanceOf(HTMLParagraphElement);
-  });
+  expect(screen.getByText("option_0")).toBeInstanceOf(HTMLParagraphElement);
 
-  input.blur();
+  await userEvent.tab();
 
   await waitFor(() => {
-    expect(queryByText("option_0")).toBeNull();
+    expect(screen.queryByText("option_0")).toBeNull();
   });
 });
 
 it("should call onBlur callback when blurred", async () => {
   const blurHandler = jest.fn();
-  const { getByRole } = render(
+  render(
     <Autocomplete
       value={undefined}
       onChange={jest.fn()}
@@ -200,9 +167,9 @@ it("should call onBlur callback when blurred", async () => {
     />,
   );
 
-  const input = getByRole("textbox");
-  input.focus();
-  input.blur();
+  const input = screen.getByRole("textbox");
+  await userEvent.click(input);
+  await userEvent.tab();
 
   await waitFor(() => {
     expect(blurHandler).toHaveBeenCalledTimes(1);
@@ -211,7 +178,7 @@ it("should call onBlur callback when blurred", async () => {
 
 it("should call onChange with undefined if allowFreeForm is false and not matched", async () => {
   const changeHandler = jest.fn();
-  const { getByRole } = render(
+  render(
     <Autocomplete
       value={undefined}
       onChange={changeHandler}
@@ -222,17 +189,10 @@ it("should call onChange with undefined if allowFreeForm is false and not matche
     />,
   );
 
-  const input = getByRole("textbox");
-
-  input.focus();
-
-  fireEvent.input(input, {
-    target: {
-      value: "opt",
-    },
-  });
-
-  input.blur();
+  const input = screen.getByRole("textbox");
+  await userEvent.click(input);
+  await userEvent.type(input, "opt");
+  await userEvent.tab();
 
   await waitFor(() => {
     expect(changeHandler).toHaveBeenCalledWith(undefined);
@@ -241,7 +201,7 @@ it("should call onChange with undefined if allowFreeForm is false and not matche
 
 it("sets the input value to blank if allowFreeForm is false and not matched", async () => {
   const changeHandler = jest.fn();
-  const { getByRole } = render(
+  render(
     <Autocomplete
       value={undefined}
       onChange={changeHandler}
@@ -252,24 +212,17 @@ it("sets the input value to blank if allowFreeForm is false and not matched", as
     />,
   );
 
-  const input = getByRole("textbox") as HTMLInputElement;
-
-  input.focus();
-
-  fireEvent.input(input, {
-    target: {
-      value: "opt",
-    },
-  });
-
-  input.blur();
+  const input = screen.getByRole("textbox") as HTMLInputElement;
+  await userEvent.click(input);
+  await userEvent.type(input, "opt");
+  await userEvent.tab();
 
   await waitFor(() => {
     expect(input.value).toBe("");
   });
 });
 
-it("passes the invalid prop to the InputText", () => {
+it("passes the invalid prop to the InputText", async () => {
   const { container } = render(
     <Autocomplete
       value={undefined}
@@ -285,12 +238,12 @@ it("passes the invalid prop to the InputText", () => {
   expect(invalid).toBeInstanceOf(HTMLDivElement);
 });
 
-test("it should focus input text", () => {
+test("it should focus input text", async () => {
   const placeholder = "Got milk?";
 
   const textRef = React.createRef<InputTextRef>();
 
-  const { getByLabelText } = render(
+  render(
     <Autocomplete
       value={undefined}
       onChange={jest.fn()}
@@ -302,11 +255,13 @@ test("it should focus input text", () => {
     />,
   );
 
-  textRef.current?.focus();
-  expect(getByLabelText(placeholder)).toHaveFocus();
+  await waitFor(() => {
+    textRef.current?.focus();
+    expect(screen.getByLabelText(placeholder)).toHaveFocus();
+  });
 });
 
-test("it should scroll into view input text", () => {
+test("it should scroll into view input text", async () => {
   const scrollIntoViewMock = jest.fn();
   window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
 

@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist",
+        "module": "NodeNext",
+        "allowSyntheticDefaultImports": true,
+        "moduleResolution": "NodeNext",
+        "target": "ESNext",
+        "declaration": true,
+        "resolveJsonModule": true,
+        "allowImportingTsExtensions": true,
+        "noEmit": true,
+        "skipLibCheck": true,
+        "strict": true
+    },
+    "include": [
+        "**/*"
+    ]
+}

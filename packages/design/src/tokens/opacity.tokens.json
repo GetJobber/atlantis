@@ -1,0 +1,12 @@
+{
+  "opacity": {
+    "$type": "number",
+    "$description": "Opacity tokens. These are used to define the opacity (fade) of elements. Feel free to use these directly.",
+    "overlay": {
+      "$value": 0.8
+    },
+    "pressed": {
+      "$value": 0.6
+    }
+  }
+}

@@ -1,16 +1,22 @@
 :focus,
 :focus-visible {
-  outline: none;
+  outline: transparent;
 }
 
-a {
+:global(a) {
   color: var(--color-interactive);
   font-family: inherit;
   font-size: inherit;
 }
 
-a:hover {
+:global(a:hover) {
   color: var(--color-interactive--hover);
+}
+
+:global(.sb-show-main code) {
+  border: var(--color-surface--background);
+  color: var(--color-text);
+  background-color: var(--color-surface--background);
 }
 
 :global(.sbdocs-table) {

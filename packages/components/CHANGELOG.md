@@ -3,6 +3,236 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.29.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.29.0...@jobber/components@5.29.1) (2024-09-04)
+
+
+### Bug Fixes
+
+* **components:** Add ref prop to primary and secondary actions on Page component ([#2010](https://github.com/GetJobber/atlantis/issues/2010)) ([bdac7de](https://github.com/GetJobber/atlantis/commit/bdac7de3bf349ea924edfbfe968abccad4498465))
+
+
+
+
+
+# [5.29.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.28.1...@jobber/components@5.29.0) (2024-08-29)
+
+
+### Features
+
+* **components:** Separate Chip from Chips Again ([#1995](https://github.com/GetJobber/atlantis/issues/1995)) ([1be6f9e](https://github.com/GetJobber/atlantis/commit/1be6f9e82dc856cfa1676a872832569e7d934afc))
+
+
+
+
+
+## [5.28.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.28.0...@jobber/components@5.28.1) (2024-08-29)
+
+
+### Bug Fixes
+
+* **components:**  Update description of title prop in Disclosure component ([#1998](https://github.com/GetJobber/atlantis/issues/1998)) ([53196d6](https://github.com/GetJobber/atlantis/commit/53196d62aa0fbf83127e3bce2326bed308bf36da))
+
+
+
+
+
+# [5.28.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.27.2...@jobber/components@5.28.0) (2024-08-27)
+
+
+### Features
+
+* **components:** allow custom title for Disclosure ([#1992](https://github.com/GetJobber/atlantis/issues/1992)) ([2b6e6cd](https://github.com/GetJobber/atlantis/commit/2b6e6cdb13a3afad9ca85ff163406cac674f1cbd))
+
+
+
+
+
+## [5.27.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.27.1...@jobber/components@5.27.2) (2024-08-26)
+
+
+### Bug Fixes
+
+* **components:** improve coherence of StatusLabel "critical" variant [JOB-98327] ([#1985](https://github.com/GetJobber/atlantis/issues/1985)) ([00ee2b0](https://github.com/GetJobber/atlantis/commit/00ee2b01957f8304cb2560a433754f413e8c911c))
+
+
+
+
+
+## [5.27.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.27.0...@jobber/components@5.27.1) (2024-08-22)
+
+
+### Bug Fixes
+
+* **components:** Sort meta.json ([#1994](https://github.com/GetJobber/atlantis/issues/1994)) ([6fe9fa2](https://github.com/GetJobber/atlantis/commit/6fe9fa244a08dad4ee46537fa247675a8dbdd561))
+
+
+
+
+
+# [5.27.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.26.0...@jobber/components@5.27.0) (2024-08-22)
+
+
+### Bug Fixes
+
+* Fix failing test on master relating meta.json ([#1993](https://github.com/GetJobber/atlantis/issues/1993)) ([9c3382f](https://github.com/GetJobber/atlantis/commit/9c3382fb32f4ed21f7daeeb0884ed52bf805fba2))
+
+
+### Features
+
+* **components:** add theme context provider ([#1981](https://github.com/GetJobber/atlantis/issues/1981)) ([c2902d1](https://github.com/GetJobber/atlantis/commit/c2902d1366d6214f9a7a7bcfe5b66f03beb7d49e))
+
+
+
+
+
+# [5.26.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.25.0...@jobber/components@5.26.0) (2024-08-22)
+
+
+### Features
+
+* **components:** Export component names as meta.json ([#1989](https://github.com/GetJobber/atlantis/issues/1989)) ([5f770d2](https://github.com/GetJobber/atlantis/commit/5f770d29755faae493e4471d16a680d4601ca012))
+
+
+
+
+
+# [5.25.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.24.0...@jobber/components@5.25.0) (2024-08-22)
+
+
+### Features
+
+* **components:** use text color for menu items ([#1987](https://github.com/GetJobber/atlantis/issues/1987)) ([a14b606](https://github.com/GetJobber/atlantis/commit/a14b606a8a56957c8ffc487663c8d4895f1c0143))
+
+
+
+
+
+# [5.24.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.23.1...@jobber/components@5.24.0) (2024-08-20)
+
+
+### Features
+
+* **design:** BREAKING CHANGE: Complete rebuild of the design token package ([#1965](https://github.com/GetJobber/atlantis/issues/1965)) ([b749502](https://github.com/GetJobber/atlantis/commit/b749502e347a4e14a1c5fcfdbc3114f54bb616f1))
+
+
+
+
+
+## [5.23.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.23.0...@jobber/components@5.23.1) (2024-08-14)
+
+
+### Bug Fixes
+
+* **components:** Always show delete button on the FormatFile when on a small screen ([#1983](https://github.com/GetJobber/atlantis/issues/1983)) ([15b66a4](https://github.com/GetJobber/atlantis/commit/15b66a4855d51c65c9cfa76d08b0f398e622debb))
+
+
+
+
+
+# [5.23.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.22.1...@jobber/components@5.23.0) (2024-08-14)
+
+
+### Features
+
+* **components:** Use token in FormatFile delete button ([#1979](https://github.com/GetJobber/atlantis/issues/1979)) ([b79fad7](https://github.com/GetJobber/atlantis/commit/b79fad7c858f6638ce2ce874bb4771f41f8d4960))
+
+
+
+
+
+## [5.22.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.22.0...@jobber/components@5.22.1) (2024-08-12)
+
+
+### Bug Fixes
+
+* **components:** use semantic values in ComboBox and Chip ([#1944](https://github.com/GetJobber/atlantis/issues/1944)) ([30fe51d](https://github.com/GetJobber/atlantis/commit/30fe51d8c3aa923e37bb5b6c664800b68d151dfd))
+
+
+
+
+
+# [5.22.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.21.3...@jobber/components@5.22.0) (2024-08-09)
+
+
+### Features
+
+* **components:** Update positioning of dropzone content ([#1978](https://github.com/GetJobber/atlantis/issues/1978)) ([76a1425](https://github.com/GetJobber/atlantis/commit/76a142511081b5bf4d3de48d4565e89dc53c66df))
+
+
+
+
+
+## [5.21.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.21.2...@jobber/components@5.21.3) (2024-08-07)
+
+
+### Bug Fixes
+
+* **components:** Adjust z-index of clickable areas in FormatFile ([#1975](https://github.com/GetJobber/atlantis/issues/1975)) ([9f5b31d](https://github.com/GetJobber/atlantis/commit/9f5b31d74b777960b442803658c7cc62d0e11b08))
+
+
+
+
+
+## [5.21.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.21.1...@jobber/components@5.21.2) (2024-08-06)
+
+
+### Bug Fixes
+
+* **components:** Change label FomField label to have full width ([#1971](https://github.com/GetJobber/atlantis/issues/1971)) ([3c04d47](https://github.com/GetJobber/atlantis/commit/3c04d47c6be337c512584e8c4439c9b84c479764))
+
+
+
+
+
+## [5.21.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.21.0...@jobber/components@5.21.1) (2024-08-02)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [5.21.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.10...@jobber/components@5.21.0) (2024-08-02)
+
+
+### Features
+
+* **components:** Add onClick to Chip Suffix ([#1963](https://github.com/GetJobber/atlantis/issues/1963)) ([59eda62](https://github.com/GetJobber/atlantis/commit/59eda621560f223640ab64c93b021b2b98fe650b))
+
+
+
+
+
+## [5.20.10](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.9...@jobber/components@5.20.10) (2024-08-02)
+
+
+### Bug Fixes
+
+* **components:** Fix form not always focusing first error ([#1970](https://github.com/GetJobber/atlantis/issues/1970)) ([1ffb5ab](https://github.com/GetJobber/atlantis/commit/1ffb5ab5529295f66dc5e01ecd3af4e5d74f5bba))
+
+
+
+
+
+## [5.20.9](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.8...@jobber/components@5.20.9) (2024-07-30)
+
+
+### Bug Fixes
+
+* **components:** Mock popper to prevent act warnings in test suites ([#1967](https://github.com/GetJobber/atlantis/issues/1967)) ([bfcb3ba](https://github.com/GetJobber/atlantis/commit/bfcb3ba2cfc0985d223fa671204e56561b570877))
+
+
+
+
+
+## [5.20.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.7...@jobber/components@5.20.8) (2024-07-25)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 ## [5.20.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.20.6...@jobber/components@5.20.7) (2024-07-18)
 
 

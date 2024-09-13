@@ -1,0 +1,42 @@
+/* Disable linter since we need to style body directly. */
+/* stylelint-disable-next-line selector-max-type */
+body {
+  color: var(--color-text);
+  font-family: var(--typography--fontFamily-normal);
+  font-size: var(--typography--fontSize-base);
+  line-height: var(--typography--lineHeight-larger, 1.5);
+  background-color: var(--color-surface);
+}
+
+@keyframes spinning {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@custom-media --small-screens-and-below (max-width: 489px);
+@custom-media --small-screens-and-up (min-width: 490px);
+@custom-media --medium-screens-and-up (min-width: 768px);
+@custom-media --large-screens-and-up (min-width: 1080px);
+@custom-media --extra-large-screens-and-up (min-width: 1440px);
+
+@media (max-width: 639px) {
+  :root {
+    --typography--fontSize-extravagant: calc(
+      var(--typography--fontSize-large) * 2.5
+    );
+    /* 40 */
+    --typography--fontSize-jumbo: calc(
+      var(--typography--fontSize-large) * 1.75
+    );
+    /* 28 */
+    --typography--fontSize-largest: calc(
+      var(--typography--fontSize-large) * 1.375
+    );
+    /* 22 */
+  }
+}
