@@ -61,7 +61,7 @@ custom-elements {
   }
 
   & tr {
-    border-top: 1px solid hsla(203, 50%, 30%, 0.15);
+    border-top: 1px solid var(--color-border);
     margin: 0;
     padding: 0;
   }
@@ -69,20 +69,17 @@ custom-elements {
   & tr th {
 
     font-weight: bold;
-    color: #2E3438;
-    border: 1px solid hsla(203, 50%, 30%, 0.15);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
     margin: 0;
     padding: 6px 13px;
   }
 
   & tr td {
-    border: 1px solid hsla(203, 50%, 30%, 0.15);
-    color: #2E3438;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
     margin: 0;
     padding: 6px 13px;
   }
 
-  tr:nth-of-type(2n) {
-    background-color: #F7FAFC;
-  }
 }

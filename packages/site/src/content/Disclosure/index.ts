@@ -10,7 +10,7 @@ export default {
     element: Disclosure,
     props: { label: "Disclosure" },
     code: `<Disclosure title="Disclosure">Here are the details contained within the disclosure</Disclosure>`,
-    defaultProps: { strings: { label: "Disclosure!" } },
+    defaultProps: { strings: { title: "Disclosure" } },
   },
   title: "Disclosure",
   description: "Disclosure is neater.",

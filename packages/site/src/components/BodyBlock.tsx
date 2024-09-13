@@ -7,11 +7,7 @@ interface BodyBlockProps extends PropsWithChildren {
 
 export const BodyBlock = ({ children, title }: BodyBlockProps) => {
   return (
-    <div
-      style={{
-        padding: 80,
-      }}
-    >
+    <Box padding={"extravagant"}>
       <Content>
         <Typography size="larger" fontWeight="bold">
           {title}
@@ -20,6 +16,6 @@ export const BodyBlock = ({ children, title }: BodyBlockProps) => {
           {children}
         </Box>
       </Content>
-    </div>
+    </Box>
   );
 };

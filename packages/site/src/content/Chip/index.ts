@@ -10,10 +10,11 @@ export default {
   component: {
     element: Chip,
     defaultProps: {},
-    code: `<Chip label="Chip" />`,
+    code: `<Chip heading="Chip" label="Chip" />`,
   },
   title: "Chip",
-  description: "Chip is neat.",
+  description:
+    "Chip allows selections and actions with a robust variety of content and presentation methods.",
   links: [
     {
       label: "Chip Storybook",

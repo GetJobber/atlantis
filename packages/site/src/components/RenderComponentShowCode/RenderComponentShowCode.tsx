@@ -24,15 +24,21 @@ export const RenderComponentShowCode = ({ children }: PropsWithChildren) => {
         <div
           style={{
             position: "absolute",
-            bottom: "var(--space-base)",
-            right: "var(--space-base)",
+            bottom: "0",
+            right: "0",
           }}
         >
-          <Button type="secondary" label="Show code" onClick={showCode} />
+          <Button
+            type="tertiary"
+            size="small"
+            variation="subtle"
+            label={codeVisible ? "Hide Code" : "Show Code"}
+            onClick={showCode}
+          />
         </div>
       </Box>
       {codeVisible && (
-        <Box background="base-blue--700" padding={"small"}>
+        <Box background="base-blue--800" padding={"small"} radius="base">
           <pre>
             <code className="language-javascript">{code}</code>
           </pre>
