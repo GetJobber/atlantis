@@ -1,5 +1,6 @@
 import React, { PropsWithChildren } from "react";
 import { Typography, TypographyOptions } from "../Typography";
+import { UnderlineStyle, UnderlineStyleWithColor } from "../Typography/types";
 
 interface TextProps {
   readonly maxLines?:
@@ -26,7 +27,7 @@ interface TextProps {
   /**
    * Underline text
    */
-  readonly underline?: "solid" | "dashed" | undefined;
+  readonly underline?: UnderlineStyle | UnderlineStyleWithColor | undefined;
 }
 
 type TextColor = Extract<TypographyOptions, "textColor">;

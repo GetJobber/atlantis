@@ -154,7 +154,8 @@ it("renders underlined text", () => {
   expect(container).toMatchInlineSnapshot(`
     <div>
       <p
-        class="base regular base text dashed"
+        class="base regular base text basicUnderline"
+        style="text-decoration-style: dashed; text-decoration-color: text;"
       >
         Underline me
       </p>
