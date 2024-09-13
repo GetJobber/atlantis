@@ -11,6 +11,7 @@ import truncate from "./css/Truncate.css";
 import alignment from "./css/TextAlignment.css";
 import fontFamilies from "./css/FontFamilies.css";
 import underlineStyles from "./css/Underline.css";
+import { Underline, UnderlineStyle } from "./types";
 
 interface TypographyProps {
   readonly id?: string;
@@ -53,9 +54,14 @@ interface TypographyProps {
   readonly numberOfLines?: number;
 
   /**
-   * Style of underline for the text
+   * The style (and optionally a color) of underline the text is decorated with.
+   * All semantic color tokens (other than the base values) defined in tokens.web
+   * are valid values. If omitted, no underline is applied.
+   *
+   * @example "solid" for a non-dashed underline of the same color as `textColor`
+   * @example "double color-invoice" for a double underline in the specified color
    */
-  readonly underline?: "solid" | "double" | "dotted" | "dashed" | undefined;
+  readonly underline?: UnderlineStyle | Underline | undefined;
 }
 export type TypographyOptions = Omit<TypographyProps, "children">;
 
@@ -83,24 +89,48 @@ export function Typography({
     emphasisType && emphasis[emphasisType],
     fontFamily && fontFamilies[fontFamily],
     shouldTruncateText && truncate.textTruncate,
-    underline && underlineStyles[underline],
+    underline && underlineStyles.basicUnderline,
     {
       ...(align && { [alignment[align]]: align !== `start` }),
     },
   );
 
-  let truncateLines: CSSProperties | undefined;
+  let stylesOverrides: CSSProperties = {};
 
   if (shouldTruncateText) {
-    truncateLines = {
+    stylesOverrides = {
       WebkitLineClamp: numberOfLines,
       WebkitBoxOrient: "vertical",
     };
   }
 
+  if (underline) {
+    const [underlineStyle, underlineColor] = underline.split(" ");
+
+    stylesOverrides.textDecorationStyle = underlineStyle as UnderlineStyle;
+    stylesOverrides.textDecorationColor = computeUnderlineColor(
+      underlineColor,
+      textColor,
+    );
+  }
+
   return (
-    <Tag id={id} className={className} style={truncateLines}>
+    <Tag id={id} className={className} style={stylesOverrides}>
       {children}
     </Tag>
   );
+}
+
+function computeUnderlineColor(
+  textDecorationColor: string,
+  textColor?: keyof typeof textColors,
+): string | undefined {
+  // Use underline color otherwise if a custom text color is specified, use that
+  if (textDecorationColor) {
+    return `var(--${textDecorationColor})`;
+  }
+
+  if (textColor) {
+    return textColors[textColor];
+  }
 }

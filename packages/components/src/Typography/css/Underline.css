@@ -1,19 +1,5 @@
-.solid {
-  text-decoration: underline solid var(--color-base-grey--300);
-  text-underline-offset: 4px;
-}
-
-.double {
-  text-decoration: underline double var(--color-base-grey--300);
-  text-underline-offset: 4px;
-}
-
-.dotted {
-  text-decoration: underline dotted var(--color-base-grey--300);
-  text-underline-offset: 4px;
-}
-
-.dashed {
-  text-decoration: underline dashed var(--color-base-grey--300);
-  text-underline-offset: 4px;
+.basicUnderline {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: var(--space-smaller);
 }
