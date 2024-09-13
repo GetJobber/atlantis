@@ -1,4 +1,5 @@
 import { MouseEvent, ReactElement } from "react";
+import { XOR } from "ts-xor";
 import { ChipProps } from "./Chip";
 
 interface ChipFoundationProps {
@@ -95,6 +96,7 @@ export interface ChipDismissibleProps extends ChipFoundationProps {
   onLoadMore?(searchValue: string): void;
 }
 
-export type ChipsProps =
-  | ChipSingleSelectProps
-  | (ChipMultiSelectProps | ChipDismissibleProps);
+export type ChipsProps = XOR<
+  ChipSingleSelectProps,
+  XOR<ChipMultiSelectProps, ChipDismissibleProps>
+>;

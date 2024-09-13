@@ -162,7 +162,7 @@ describe("Basic interaction", () => {
 
   describe("left and right arrow keys via keyboard", () => {
     it("should focus on the correct element when left or right arrow down", async () => {
-      const chipWrappers = screen.getAllByTestId("ATL-InternalChip");
+      const chipWrappers = screen.getAllByTestId("chip-wrapper");
       const first = chipWrappers[0];
 
       await userEvent.tab();
