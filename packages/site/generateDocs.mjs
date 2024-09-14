@@ -28,6 +28,7 @@ const buildComponentDocs = name => {
 };
 
 buildComponentDocs("Button");
+buildComponentDocs("Checkbox");
 buildComponentDocs("Chip");
 buildComponentDocs("StatusLabel");
 buildComponentDocs("Switch");
