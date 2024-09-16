@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.31.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.30.1...@jobber/components@5.31.0) (2024-09-16)
+
+
+### Features
+
+* **components:** add elevation to DataList item actions ([#2000](https://github.com/GetJobber/atlantis/issues/2000)) ([e969f96](https://github.com/GetJobber/atlantis/commit/e969f96578bef3260bc3962a9c12c9b9f2ea5630))
+* **components:** Add underline support to Typography component for web (JOB-104497) ([#2021](https://github.com/GetJobber/atlantis/issues/2021)) ([4a30070](https://github.com/GetJobber/atlantis/commit/4a30070734f2faa05a57615d5296855eac11aa25))
+
+
+
+
+
 ## [5.30.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.30.0...@jobber/components@5.30.1) (2024-09-13)
 
 
