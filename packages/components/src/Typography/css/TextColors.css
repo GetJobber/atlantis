@@ -1,3 +1,5 @@
+/* Base colors for backwards compatability */
+
 .blue {
   color: var(--color-blue);
 }
@@ -38,6 +40,8 @@
   color: var(--color-white);
 }
 
+/* Typography */
+
 .heading {
   color: var(--color-heading);
 }
@@ -57,6 +61,8 @@
 .textReverseSecondary {
   color: var(--color-text--reverse--secondary);
 }
+
+/* Statuses */
 
 .inactive {
   color: var(--color-inactive--onSurface);
@@ -118,6 +124,8 @@
   color: var(--color-success--onSurface);
 }
 
+/* Interactions */
+
 .interactive {
   color: var(--color-interactive);
 }
@@ -150,56 +158,112 @@
   color: var(--color-disabled--secondary);
 }
 
-.focus {
-  color: var(--color-focus);
+/* Workflow */
+
+.request {
+  color: var(--color-request);
 }
+
+.requestSurface {
+  color: var(--color-request--surface);
+}
+
+.requestOnSurface {
+  color: var(--color-request--onSurface);
+}
+
+.quote {
+  color: var(--color-quote);
+}
+
+.quoteSurface {
+  color: var(--color-quote--surface);
+}
+
+.quoteOnSurface {
+  color: var(--color-quote--onSurface);
+}
+
+.job {
+  color: var(--color-job);
+}
+
+.jobSurface {
+  color: var(--color-job--surface);
+}
+
+.jobOnSurface {
+  color: var(--color-job--onSurface);
+}
+
+.visit {
+  color: var(--color-visit);
+}
+
+.visitSurface {
+  color: var(--color-visit--surface);
+}
+
+.visitOnSurface {
+  color: var(--color-visit--onSurface);
+}
+
+.task {
+  color: var(--color-task);
+}
+
+.taskSurface {
+  color: var(--color-task--surface);
+}
+
+.taskOnSurface {
+  color: var(--color-task--onSurface);
+}
+
+.event {
+  color: var(--color-event);
+}
+
+.eventSurface {
+  color: var(--color-event--surface);
+}
+
+.eventOnSurface {
+  color: var(--color-event--onSurface);
+}
+
+.invoice {
+  color: var(--color-invoice);
+}
+
+.invoiceSurface {
+  color: var(--color-invoice--surface);
+}
+
+.invoiceOnSurface {
+  color: var(--color-invoice--onSurface);
+}
+
+.payments {
+  color: var(--color-payments);
+}
+
+.paymentsSurface {
+  color: var(--color-payments--surface);
+}
+
+.paymentsOnSurface {
+  color: var(--color-payments--onSurface);
+}
+
+.client {
+  color: var(--color-client);
+}
+
+/* Miscellaneous */
 
 .icon {
   color: var(--color-icon);
-}
-
-.surface {
-  color: var(--color-surface);
-}
-
-.surfaceHover {
-  color: var(--color-surface--hover);
-}
-
-.surfaceReverse {
-  color: var(--color-surface--reverse);
-}
-
-.surfaceActive {
-  color: var(--color-surface--active);
-}
-
-.surfaceBackground {
-  color: var(--color-surface--background);
-}
-
-.surfaceBackgroundHover {
-  color: var(--color-surface--background--hover);
-}
-
-.surfaceBackgroundSubtle {
-  color: var(--color-surface--background--subtle);
-}
-
-.surfaceBackgroundSubtleHover {
-  color: var(--color-surface--background--subtle--hover);
-}
-
-.border {
-  color: var(--color-border);
-}
-
-.borderInteractive {
-  color: var(--color-border--interactive);
-}
-
-.borderSection {
-  color: var(--color-border--section);
 }
 
 .brand {
