@@ -141,8 +141,10 @@
   }
 }
 
+.hasActions,
 .selectable,
-.headerTitles .selectable {
+.headerTitles .selectable,
+.headerTitles.hasActions {
   grid-template-columns: max-content minmax(0px, auto);
   column-gap: var(--space-small);
 }
@@ -150,6 +152,10 @@
 .headerTitles .selectable {
   display: grid;
   align-items: center;
+}
+
+.hasActions.selectable {
+  grid-template-columns: max-content minmax(0px, auto) max-content;
 }
 
 .selectAllCheckbox {
@@ -164,11 +170,17 @@
   visibility: visible;
 }
 
+/*
+ * Main List Item Content
+ */
 .listItem .selectable > :first-child {
   order: 2;
 }
 
-.listItem .selectable > :last-child {
+/**
+  Checkbox styles
+*/
+.listItem .selectable:not(.hasActions) > :last-child {
   order: 1;
   padding-top: var(--space-smaller);
   opacity: 1;
@@ -181,9 +193,37 @@
   }
 }
 
-.listItem:hover .selectable > :last-child,
-.listItem:focus-within .selectable > :last-child,
-.listItem .selectable.selected > :last-child {
+/*
+  List Item Actions,
+  Has a checkbox no actions:
+  list main list item content (order 1) -> checkbox (last child)
+
+  Has a checkbox and actions:
+  List main list item content (first child) ->  checkbox (2nd last child) -> actions menu (last child)
+
+  Has no checkbox but actions:
+  List main list item content (first child) -> actions menu (last child)
+*/
+
+/**
+  * Actions styles
+  */
+.listItem .hasActions.selectable > :last-child {
+  display: none;
+  @media (any-pointer: coarse) {
+    order: 3;
+    display: initial;
+    opacity: 1;
+  }
+}
+
+/**
+Checkbox hover styles
+
+*/
+.listItem:hover .selectable > :nth-child(2),
+.listItem:focus-within .selectable > :nth-child(2),
+.listItem .selectable.selected > :nth-child(2) {
   opacity: 1;
 }
 
