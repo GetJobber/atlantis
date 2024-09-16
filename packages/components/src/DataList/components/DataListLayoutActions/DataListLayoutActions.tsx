@@ -11,6 +11,14 @@ import { Glimmer } from "@jobber/components/Glimmer";
 import styles from "./DataListLayoutActions.css";
 
 export function DataListLayoutActions() {
+  return <DataListLayoutActionsInternal />;
+}
+
+export function DataListLayoutActionsInternal({
+  internallyUsed,
+}: {
+  readonly internallyUsed?: boolean;
+}) {
   const { itemActionComponent, loadingState } = useDataListContext();
   const { setHasInLayoutActions } = useDataListLayoutContext();
 
@@ -19,6 +27,8 @@ export function DataListLayoutActions() {
   const hasActions = actions.length > 0;
 
   useEffect(() => {
+    if (internallyUsed) return;
+
     setHasInLayoutActions(hasActions);
 
     return () => {
