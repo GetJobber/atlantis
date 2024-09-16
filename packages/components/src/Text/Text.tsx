@@ -1,6 +1,5 @@
 import React, { PropsWithChildren } from "react";
 import { Typography, TypographyOptions } from "../Typography";
-import { UnderlineStyle, UnderlineStyleWithColor } from "../Typography/types";
 
 interface TextProps {
   readonly maxLines?:
@@ -23,11 +22,6 @@ interface TextProps {
   readonly align?: "start" | "center" | "end";
 
   readonly size?: "small" | "base" | "large";
-
-  /**
-   * Underline text
-   */
-  readonly underline?: UnderlineStyle | UnderlineStyleWithColor | undefined;
 }
 
 type TextColor = Extract<TypographyOptions, "textColor">;
@@ -38,7 +32,6 @@ export function Text({
   align = "start",
   children,
   maxLines = "unlimited",
-  underline,
 }: PropsWithChildren<TextProps>) {
   const textColors = {
     default: "text",
@@ -65,7 +58,6 @@ export function Text({
       size={size}
       numberOfLines={maxLineToNumber[maxLines]}
       align={align}
-      underline={underline}
     >
       {children}
     </Typography>

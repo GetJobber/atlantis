@@ -47,7 +47,7 @@ it("renders a success text", () => {
   `);
 });
 
-it("renders an error text", () => {
+it("renders a error text", () => {
   const { container } = render(<Text variation="error">Name is required</Text>);
   expect(container).toMatchInlineSnapshot(`
     <div>
@@ -75,7 +75,7 @@ it("renders a warning text", () => {
   `);
 });
 
-it("renders an info text", () => {
+it("renders a info text", () => {
   const { container } = render(
     <Text variation="info">
       Drag to rearrange the order that fields show up in Jobber
@@ -123,7 +123,7 @@ it("renders a small text", () => {
   `);
 });
 
-it("renders an end-aligned text", () => {
+it("renders a end-aligned text", () => {
   const { container } = render(<Text align="end">End align me</Text>);
   expect(container).toMatchInlineSnapshot(`
     <div>
@@ -144,20 +144,6 @@ it("renders a center-aligned text", () => {
         class="base regular base text center"
       >
         Center align me
-      </p>
-    </div>
-  `);
-});
-
-it("renders underlined text", () => {
-  const { container } = render(<Text underline="dashed">Underline me</Text>);
-  expect(container).toMatchInlineSnapshot(`
-    <div>
-      <p
-        class="base regular base text basicUnderline"
-        style="text-decoration-style: dashed; text-decoration-color: text;"
-      >
-        Underline me
       </p>
     </div>
   `);
