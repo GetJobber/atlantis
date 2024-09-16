@@ -5,12 +5,11 @@
   --chip-radius: 20px;
   --chip-base-bg: var(--color-surface--background);
   --chip-base--hover: var(--color-surface--background--hover);
-  display: inline-flex;
+  display: flex;
   position: relative;
   height: var(--chip-height);
   min-width: 0;
-  box-sizing: border-box;
-  padding: 0 var(--base-unit);
+  padding: var(--space-small) var(--base-unit);
   border: var(--border-base) solid transparent;
   border-radius: var(--chip-radius);
   color: var(--color-heading);
@@ -89,7 +88,8 @@
   --chip--gradient-color-variation: var(--chip-base-bg);
 }
 
-.base:hover {
+.base:hover,
+.base:focus-visible {
   background-color: var(--chip-base--hover);
   --chip--gradient-color-variation--hover: var(--chip-base--hover);
 }
