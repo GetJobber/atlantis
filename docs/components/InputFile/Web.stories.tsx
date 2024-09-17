@@ -190,7 +190,6 @@ ImagesOnly.args = {
 export const MaxFilesLimit = MaxFilesTemplate.bind({});
 MaxFilesLimit.args = {
   allowMultiple: true,
-  // maxFiles: 3,
   getUploadParams: () => Promise.resolve({ url: "https://httpbin.org/post" }),
 };
 

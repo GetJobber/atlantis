@@ -128,6 +128,11 @@ interface InputFileProps {
    */
   readonly description?: string;
 
+  /**
+   * An object which helps control and validate the number of files being uploaded
+   * via the dropzone.
+   * `maxFilesValidation={{ maxFiles: 3, numberOfCurrentFiles: files.length }}`
+   */
   readonly maxFilesValidation?: {
     /**
      * Maximum number of files that can be uploaded via the dropzone.
@@ -135,7 +140,8 @@ interface InputFileProps {
     readonly maxFiles: number;
 
     /**
-     * Number of files that are currently uploaded.
+     * The current count of uploaded files. This value should be
+     * updated whenever a file is successfully uploaded or removed.
      */
     readonly numberOfCurrentFiles: number;
   };
