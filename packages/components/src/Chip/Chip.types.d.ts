@@ -7,11 +7,6 @@ export interface ChipProps extends PropsWithChildren {
   readonly ariaLabel?: string;
 
   /**
-   * The testing id for the chip if necessary.
-   */
-  testID?: string;
-
-  /**
    * Disables both mouse and keyboard functionality, and updates the visual style of the Chip to appear disabled.
    */
   readonly disabled?: boolean;
@@ -58,15 +53,13 @@ export interface ChipProps extends PropsWithChildren {
    */
   readonly onClick?: (
     value: string | number | undefined,
-    ev: React.MouseEvent<HTMLButtonElement | HTMLDivElement>,
+    ev: React.MouseEvent<HTMLButtonElement>,
   ) => void;
 
   /**
    * Callback. Called when you keydown on Chip. Ships the event, so you can get the key pushed.
    */
-  readonly onKeyDown?: (
-    ev: React.KeyboardEvent<HTMLButtonElement | HTMLDivElement>,
-  ) => void;
+  readonly onKeyDown?: (ev: React.KeyboardEvent<HTMLButtonElement>) => void;
 }
 
 export type ChipVariations = "subtle" | "base";

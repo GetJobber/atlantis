@@ -3,6 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.31.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.30.1...@jobber/components@5.31.0) (2024-09-16)
+
+
+### Features
+
+* **components:** add elevation to DataList item actions ([#2000](https://github.com/GetJobber/atlantis/issues/2000)) ([e969f96](https://github.com/GetJobber/atlantis/commit/e969f96578bef3260bc3962a9c12c9b9f2ea5630))
+* **components:** Add underline support to Typography component for web (JOB-104497) ([#2021](https://github.com/GetJobber/atlantis/issues/2021)) ([4a30070](https://github.com/GetJobber/atlantis/commit/4a30070734f2faa05a57615d5296855eac11aa25))
+
+
+
+
+
+## [5.30.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.30.0...@jobber/components@5.30.1) (2024-09-13)
+
+
+### Bug Fixes
+
+* **components:** Display Datalist checkbox based on device type instead of breakpoint ([#2013](https://github.com/GetJobber/atlantis/issues/2013)) ([bb59990](https://github.com/GetJobber/atlantis/commit/bb599904cab94591fad13b64569436a8f70728d3))
+
+
+
+
+
+# [5.30.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.29.3...@jobber/components@5.30.0) (2024-09-13)
+
+
+### Features
+
+* **components:** Add description prop to InputFile ([#2019](https://github.com/GetJobber/atlantis/issues/2019)) ([ba5b262](https://github.com/GetJobber/atlantis/commit/ba5b262c123bca26226f86e14931d3a11398b3e1))
+
+
+
+
+
+## [5.29.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.29.2...@jobber/components@5.29.3) (2024-09-13)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [5.29.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.29.1...@jobber/components@5.29.2) (2024-09-12)
+
+
+### Reverts
+
+* "feat(components): Separate Chip from Chips Again" ([#2028](https://github.com/GetJobber/atlantis/issues/2028)) ([7f6c94f](https://github.com/GetJobber/atlantis/commit/7f6c94fce86702fc4f464884ca019823d9b4491b)), closes [#1995](https://github.com/GetJobber/atlantis/issues/1995)
+
+
+
+
+
 ## [5.29.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.29.0...@jobber/components@5.29.1) (2024-09-04)
 
 
