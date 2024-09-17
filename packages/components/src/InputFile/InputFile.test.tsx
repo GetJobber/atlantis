@@ -1,5 +1,5 @@
 import React from "react";
-import { render, waitFor, getByText } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import axios from "axios";
 import { userEvent } from "@testing-library/user-event";
 import { InputFile } from ".";
@@ -236,14 +236,14 @@ describe("Post Requests", () => {
 
   describe("when the number of file uploads exceeds maxFiles", () => {
     it("shows the validation message and does not upload files", async () => {
-      const maxFiles = 2;
-      const { container } = render(
+      const { container, getByText } = render(
         <InputFile
           getUploadParams={fetchUploadParams}
-          maxFilesValidation={{ maxFiles, numberOfCurrentFiles: 0 }}
+          maxFilesValidation={{ maxFiles: 2, numberOfCurrentFiles: 0 }}
           allowMultiple={true}
         />,
       );
+
       const input = container.querySelector(
         "input[type=file]",
       ) as HTMLInputElement;
@@ -252,7 +252,7 @@ describe("Post Requests", () => {
 
       await waitFor(() => {
         expect(
-          getByText(container, `Cannot exceed a maximum of ${maxFiles} files.`),
+          getByText("Cannot exceed a maximum of 2 files."),
         ).toBeInTheDocument();
       });
 
