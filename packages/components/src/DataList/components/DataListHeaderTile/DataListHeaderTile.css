@@ -2,8 +2,8 @@
   display: flex;
   position: relative;
   align-items: center;
-  padding: 0 var(--space-smallest);
   margin: 0 calc(-1 * var(--space-smallest));
+  padding: 0 var(--space-smallest);
   border: none;
   border-radius: var(--radius-small);
   background-color: transparent;
