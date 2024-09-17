@@ -39,7 +39,7 @@ export function DataListItem<T extends DataListObject>({
   const isContextMenuVisible = Boolean(contextPosition);
   const isMultiselectModeActive =
     Array.isArray(selected) && selected.length > 0;
-  const hoveringSelectedBypass =
+  const isSingleRowSelected =
     isMultiselectModeActive && selected.length === 1 && selected[0] === item.id;
 
   const shouldShowContextMenu =
