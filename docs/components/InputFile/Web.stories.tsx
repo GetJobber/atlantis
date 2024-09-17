@@ -98,7 +98,7 @@ const MaxFilesTemplate: ComponentStory<typeof InputFile> = args => {
 
   return (
     <>
-      <Heading level={4}>Upload more than 3 files at one time</Heading>
+      <Heading level={4}>Attempt to upload more than 3 files</Heading>
       <InputFile
         {...args}
         onUploadStart={handleUpload}

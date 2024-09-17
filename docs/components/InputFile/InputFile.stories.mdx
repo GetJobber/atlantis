@@ -86,16 +86,25 @@ function fileSizeValidator(file: File) {
 
 ### maxFiles
 
-The `maxFiles` prop sets a limit to the number of files that can be uploaded via
-the dropzone. If the number of files uploaded exceeds the `maxFiles` value, the
-`validator` function will be called, and an error will be displayed to the user.
+The `maxFiles` property in the InputFile component is used to specify the
+maximum number of files that can be uploaded via the dropzone. This property is
+part of the `maxFilesValidation` object, which also includes the
+`numberOfCurrentFiles` property to track the number of files that have already
+been uploaded. When the total number of uploaded files exceeds the `maxFiles`
+limit, the component will display a validation message and prevent additional
+files from being uploaded.
 
-It is up to the consumer of the component to manage state with `maxFiles`. For
-example, if the component allows a maximum of 5 files and 3 files are already
-uploaded, the state should be updated to reflect that only 2 more files can be
-uploaded. In this scenario, if the user tries to upload 3 more files, the
-`validator` function will be called with an error, and those 3 files will be
-rejected.
+The
+[Max Files Limit](../?path=/story/components-forms-and-inputs-inputfile-web--max-files-limit)
+example demonstrates the behaviour of uploading more than `maxFiles`.
+
+```ts
+ <InputFile
+    ...
+    onUploadComplete={handleUpload}
+    maxFilesValidation={{ maxFiles: 3, numberOfCurrentFiles: files.length }}
+  />
+```
 
 `maxFiles` is directly mapped to `react-dropzone`'s `maxFiles` prop, documented
 [here](https://react-dropzone.js.org/#!/Accepting%20specific%20number%20of%20files).
