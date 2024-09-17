@@ -43,6 +43,7 @@ export function InternalDataListItemActions<T extends DataListObject>({
         delay: TRANSITION_DELAY_IN_SECONDS,
       }}
       className={styles.menu}
+      data-elevation={"elevated"}
       onContextMenu={handleContextMenu}
     >
       <DataListActions>{actions}</DataListActions>

@@ -1,0 +1,5 @@
+.basicUnderline {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: var(--space-smaller);
+}

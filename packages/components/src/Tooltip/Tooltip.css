@@ -17,7 +17,7 @@
   display: inline-block;
   position: relative;
   max-width: 250px;
-  padding: var(--space-small) 12px;
+  padding: var(--space-small) calc(var(--space-small) + var(--space-smaller));
   border-radius: var(--radius-base);
   background-color: var(--tooltip--surface);
 }

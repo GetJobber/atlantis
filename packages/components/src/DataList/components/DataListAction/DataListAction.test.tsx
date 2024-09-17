@@ -38,7 +38,7 @@ describe("DataListAction", () => {
     mockDestructiveValue.mockReturnValue(true);
     const { button } = renderComponent();
 
-    expect(button.querySelector("p")).toHaveClass("critical");
+    expect(button.querySelector("p")).toHaveClass("destructive");
   });
 
   it("should not fire the onClick when the item from the context is undefined", async () => {

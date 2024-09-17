@@ -1,7 +1,6 @@
 import React, { PropsWithChildren } from "react";
 import classNames from "classnames";
 import { Icon } from "@jobber/components/Icon";
-import { InternalChipButton } from "@jobber/components/Chips/InternalChipButton";
 import { useChildComponent } from "../../hooks";
 import styles from "../../Chip.css";
 
@@ -12,10 +11,7 @@ export function ChipSuffix({
   testID,
   ariaLabel,
 }: ChipSuffixProps) {
-  let singleChild = useChildComponent(
-    children,
-    d => d.type === Icon || d.type == InternalChipButton,
-  );
+  let singleChild = useChildComponent(children, d => d.type === Icon);
 
   const handleClick = (
     event:
@@ -30,9 +26,7 @@ export function ChipSuffix({
     onClick(event);
   };
 
-  const iconName = singleChild?.props?.name || singleChild?.props?.icon;
-
-  if (!allowedSuffixIcons.includes(iconName)) {
+  if (!allowedSuffixIcons.includes(singleChild?.props?.name)) {
     singleChild = undefined;
   }
 
@@ -66,10 +60,4 @@ export interface ChipSuffixProps extends PropsWithChildren {
   ) => void;
 }
 
-export const allowedSuffixIcons = [
-  "cross",
-  "add",
-  "checkmark",
-  "remove",
-  "arrowDown",
-];
+export const allowedSuffixIcons = ["cross", "add", "checkmark", "arrowDown"];
