@@ -20,7 +20,9 @@ import { DataListAction } from "@jobber/components/DataList/components/DataListA
 import { DataListLayoutActions } from "@jobber/components/DataList/components/DataListLayoutActions";
 import { DataListLayoutActionsContext } from "@jobber/components/DataList/components/DataListLayoutActions/DataListLayoutContext";
 import { DataListItem } from "./DataListItem";
+import { mockUseMediaQuery } from "../../hooks/mockUseMediaQuery";
 
+const { cleanup, setMediaQueryResult } = mockUseMediaQuery();
 const listItem = "I am a list item";
 const handleItemClick = jest.fn();
 const mockLayout = jest.fn().mockReturnValue(() => <div>{listItem}</div>);
@@ -33,15 +35,27 @@ const mockItemActionComponent = jest.fn().mockReturnValue(
   </DataListItemActions>,
 );
 
+function matchIsCoarsePointer(query: string) {
+  return query === "(any-pointer: coarse)";
+}
+
+function setIsCoarsePointer(value: boolean) {
+  setMediaQueryResult(query => matchIsCoarsePointer(query) && value);
+}
+
 afterEach(() => {
   handleItemClick.mockClear();
   mockLayout.mockClear();
   mockSetHasInLayoutActions.mockClear();
   mockItemActionComponent.mockClear();
+  cleanup();
 });
-
 describe("DataListItem", () => {
   describe("Hover/Focus/Context Menu", () => {
+    beforeEach(() => {
+      setIsCoarsePointer(false);
+    });
+
     it("should render a menu when hovered and not on unhover", async () => {
       renderComponent();
 
@@ -146,6 +160,7 @@ describe("DataListItem", () => {
 
   describe("In-layout action", () => {
     beforeEach(() => {
+      setIsCoarsePointer(false);
       mockLayout.mockReturnValueOnce(() => (
         <div>
           {listItem} <DataListLayoutActions />
@@ -176,14 +191,45 @@ describe("DataListItem", () => {
       expect(handleItemClick).not.toHaveBeenCalled();
     });
   });
+
+  describe("touch screen rendering", () => {
+    beforeEach(() => {
+      setIsCoarsePointer(true);
+    });
+
+    describe("in-layout action", () => {
+      it("should render only one action component", async () => {
+        mockLayout.mockReturnValueOnce(() => (
+          <div>
+            {listItem} <DataListLayoutActions />
+          </div>
+        ));
+        renderComponent({ hasInLayoutActions: true });
+        expect(
+          screen.queryAllByRole("button", { name: "More actions" }),
+        ).toHaveLength(1);
+      });
+
+      it("should render an action component if one isn't already rendered", async () => {
+        renderComponent();
+        expect(
+          screen.queryAllByRole("button", { name: "More actions" }),
+        ).toHaveLength(1);
+      });
+    });
+  });
 });
 
 function renderComponent({
   selected = [],
-}: { readonly selected?: string[] } = {}) {
+  hasInLayoutActions = false,
+}: {
+  readonly selected?: string[];
+  readonly hasInLayoutActions?: boolean;
+} = {}) {
   return render(
     <MockMainContextProvider selected={selected}>
-      <MockLayoutContextProvider>
+      <MockLayoutContextProvider hasInLayoutActions={hasInLayoutActions}>
         <DataListItem item={{ id: 1 }} index={0} layout={mockLayout()} />
       </MockLayoutContextProvider>
     </MockMainContextProvider>,
@@ -207,13 +253,16 @@ function MockMainContextProvider({
   );
 }
 
-function MockLayoutContextProvider({ children }: PropsWithChildren<object>) {
+function MockLayoutContextProvider({
+  children,
+  hasInLayoutActions = false,
+}: PropsWithChildren<{ readonly hasInLayoutActions?: boolean }>) {
   return (
     <DataListLayoutContext.Provider
       value={{
         ...layoutDefaultValues,
         isInLayoutProvider: true,
-        hasInLayoutActions: false,
+        hasInLayoutActions,
         setHasInLayoutActions: mockSetHasInLayoutActions,
       }}
     >
