@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import {
   FileUpload,
@@ -53,24 +53,53 @@ const StatefulTemplate: ComponentStory<typeof InputFile> = args => {
 
 const MaxFilesTemplate: ComponentStory<typeof InputFile> = args => {
   const [files, setFiles] = useState<FileUpload[]>([]);
+  const maxFileSize = 5 * 1024 * 1024; // 5 MB
+  const fileSizeValidator = useCallback(
+    (file: File) => {
+      if (file.size > maxFileSize) {
+        return {
+          code: "file-too-large",
+          message: `File size should not exceed ${
+            maxFileSize / (1024 * 1024)
+          } MB.`,
+        };
+      }
+
+      return null;
+    },
+    [maxFileSize],
+  );
 
   return (
-    <Content>
+    <>
       <Heading level={4}>Upload more than 3 files at one time</Heading>
       <InputFile
         {...args}
         onUploadStart={handleUpload}
         onUploadProgress={handleUpload}
         onUploadComplete={handleUpload}
+        maxFilesValidation={{ maxFiles: 3, numberOfCurrentFiles: files.length }}
+        validator={fileSizeValidator}
       />
       {files.map(file => (
-        <FormatFile file={file} key={file.key} />
+        <FormatFile
+          file={file}
+          key={file.key}
+          onDelete={() => {
+            handleDelete(file);
+          }}
+        />
       ))}
-    </Content>
+    </>
   );
 
   function handleUpload(file: FileUpload) {
     setFiles(oldFiles => updateFiles(file, oldFiles));
+  }
+
+  function handleDelete(file: FileUpload) {
+    console.log(file);
+    setFiles(oldFiles => oldFiles.filter(f => f.key !== file.key));
   }
 };
 
@@ -136,8 +165,9 @@ ImagesOnly.args = {
 export const MaxFilesLimit = MaxFilesTemplate.bind({});
 MaxFilesLimit.args = {
   allowMultiple: true,
-  maxFiles: 3,
+  // maxFiles: 3,
   getUploadParams: () => Promise.resolve({ url: "https://httpbin.org/post" }),
+};
 
 export const WithDescription = StatefulTemplate.bind({});
 WithDescription.args = {

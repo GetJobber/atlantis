@@ -124,14 +124,21 @@ interface InputFileProps {
   readonly allowMultiple?: boolean;
 
   /**
-   * Maximum number of files that can be uploaded via the dropzone.
-   */
-  readonly maxFiles?: number;
-  
-  /**
    * Further description of the input.
    */
   readonly description?: string;
+
+  readonly maxFilesValidation?: {
+    /**
+     * Maximum number of files that can be uploaded via the dropzone.
+     */
+    readonly maxFiles: number;
+
+    /**
+     * Number of files that are currently uploaded.
+     */
+    readonly numberOfCurrentFiles: number;
+  };
 
   /**
    * A callback that receives a file object and returns a `UploadParams` needed
@@ -185,14 +192,15 @@ interface CreateAxiosConfigParams extends Omit<UploadParams, "key"> {
   handleUploadProgress(progress: any): void;
 }
 
+/* eslint-disable max-statements */
 export function InputFile({
   variation = "dropzone",
   size = "base",
   buttonLabel: providedButtonLabel,
   allowMultiple = false,
   allowedTypes = "all",
-  maxFiles,
   description,
+  maxFilesValidation,
   getUploadParams,
   onUploadStart,
   onUploadProgress,
@@ -200,11 +208,32 @@ export function InputFile({
   onUploadError,
   validator,
 }: InputFileProps) {
+  const maxFiles = maxFilesValidation?.maxFiles;
+  const numberOfCurrentFiles = maxFilesValidation?.numberOfCurrentFiles;
+
+  const handleValidation = useCallback(
+    (file: File) => {
+      if (
+        maxFiles &&
+        numberOfCurrentFiles &&
+        maxFiles - numberOfCurrentFiles <= 0
+      ) {
+        return {
+          code: "too-many-files",
+          message: `Cannot exceed a maximum of ${maxFiles} files.`,
+        };
+      }
+
+      return validator ? validator(file) : null;
+    },
+    [maxFiles, numberOfCurrentFiles],
+  );
+
   const options: DropzoneOptions = {
     multiple: allowMultiple,
     maxFiles: maxFiles,
     onDrop: useCallback(handleDrop, [uploadFile]),
-    validator: validator && useCallback(validator, []),
+    validator: handleValidation,
   };
 
   if (allowedTypes === "images") {
