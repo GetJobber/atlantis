@@ -15,9 +15,9 @@ export function DataListLayoutActions() {
 }
 
 export function DataListLayoutActionsInternal({
-  internallyUsed,
+  isManagedByDataList,
 }: {
-  readonly internallyUsed?: boolean;
+  readonly isManagedByDataList?: boolean;
 }) {
   const { itemActionComponent, loadingState } = useDataListContext();
   const { setHasInLayoutActions } = useDataListLayoutContext();
@@ -27,7 +27,7 @@ export function DataListLayoutActionsInternal({
   const hasActions = actions.length > 0;
 
   useEffect(() => {
-    if (internallyUsed) return;
+    if (isManagedByDataList) return;
 
     setHasInLayoutActions(hasActions);
 

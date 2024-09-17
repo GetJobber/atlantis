@@ -7,6 +7,7 @@ import styles from "../../DataList.css";
 import { useGetItemActions } from "../../hooks/useGetItemActions";
 import { useDataListLayoutContext } from "../../context/DataListLayoutContext";
 import { DataListLayoutActionsInternal } from "../DataListLayoutActions/DataListLayoutActions";
+import { useMediaQuery } from "../../hooks/useMediaQuery";
 
 interface ListItemInternalProps<T extends DataListObject> {
   readonly children: JSX.Element;
@@ -27,11 +28,11 @@ export function DataListItemInternal<T extends DataListObject>({
   } = useBatchSelect();
   const { hasActions } = useGetItemActions(item);
   const { hasInLayoutActions } = useDataListLayoutContext();
-
+  const isCoarsePointer = useMediaQuery("(pointer: coarse)");
   const classesToApply = classNames({
     [styles.selectable]: canSelect,
     [styles.selected]: hasAtLeastOneSelected,
-    [styles.hasActions]: !hasInLayoutActions && hasActions,
+    [styles.hasActions]: isCoarsePointer && !hasInLayoutActions && hasActions,
   });
 
   return (
@@ -40,8 +41,8 @@ export function DataListItemInternal<T extends DataListObject>({
       {canSelect && (
         <Checkbox checked={getIsChecked()} onChange={handleChange} />
       )}
-      {!hasInLayoutActions && hasActions && (
-        <DataListLayoutActionsInternal internallyUsed={true} />
+      {isCoarsePointer && !hasInLayoutActions && hasActions && (
+        <DataListLayoutActionsInternal isManagedByDataList={true} />
       )}
     </div>
   );
@@ -85,24 +86,3 @@ export function DataListItemInternal<T extends DataListObject>({
     }
   }
 }
-
-// function DataListItemInternalActions<T extends DataListObject>({
-//   item,
-// }: ListItemInternalProps<T>) {
-//   const { hasActions } = useGetItemActions(item);
-//   const {
-//     hasInLayoutActions,
-//     // isDataListAddedActions,
-//     // setIsDataListAddedActions,
-//     setIsInternalUsage,
-//   } = useDataListLayoutContext();
-//   useEffect(() => {
-//     setIsInternalUsage(true);
-//   }, []);
-//   console.log({ hasActions, hasInLayoutActions });
-
-//   return (
-//     !hasInLayoutActions &&
-//     hasActions && <DataListLayoutActionsInternal internallyUsed={true} />
-//   );
-// }
