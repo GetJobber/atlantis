@@ -46,10 +46,10 @@ export function DataListItem<T extends DataListObject>({
     showMenu &&
     isContextMenuVisible &&
     hasActions &&
-    (!isMultiselectModeActive || hoveringSelectedBypass);
+    (!isMultiselectModeActive || isSingleRowSelected);
 
   const shouldShowHoverMenu =
-    (!isMultiselectModeActive || hoveringSelectedBypass) &&
+    (!isMultiselectModeActive || isSingleRowSelected) &&
     showMenu &&
     hasActions &&
     !hasInLayoutActions &&
