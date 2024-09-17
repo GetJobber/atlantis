@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.32.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.31.1...@jobber/components@5.32.0) (2024-09-17)
+
+
+### Features
+
+* **components:** small improvement to focus state of DataList headers ([#2014](https://github.com/GetJobber/atlantis/issues/2014)) ([fb4885d](https://github.com/GetJobber/atlantis/commit/fb4885d7b38f32a769ad0781b3b462824374c185))
+
+
+
+
+
 ## [5.31.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.31.0...@jobber/components@5.31.1) (2024-09-17)
 
 
