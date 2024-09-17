@@ -180,7 +180,8 @@
 /**
   Checkbox styles
 */
-.listItem .selectable:not(.hasActions) > :last-child {
+.listItem .selectable:not(.hasActions) > :last-child,
+.listItem .selectable.hasActions > :nth-child(2) {
   order: 1;
   padding-top: var(--space-smaller);
   opacity: 1;
