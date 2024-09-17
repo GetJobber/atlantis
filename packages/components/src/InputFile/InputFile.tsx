@@ -214,8 +214,8 @@ export function InputFile({
   onUploadError,
   validator,
 }: InputFileProps) {
-  const maxFiles = maxFilesValidation?.maxFiles;
-  const numberOfCurrentFiles = maxFilesValidation?.numberOfCurrentFiles;
+  const maxFiles = maxFilesValidation?.maxFiles || 0;
+  const numberOfCurrentFiles = maxFilesValidation?.numberOfCurrentFiles || 0;
 
   const handleValidation = useCallback(
     (file: File) => {
@@ -237,7 +237,7 @@ export function InputFile({
 
   const options: DropzoneOptions = {
     multiple: allowMultiple,
-    maxFiles: maxFiles,
+    maxFiles: maxFiles - numberOfCurrentFiles,
     onDrop: useCallback(handleDrop, [uploadFile]),
     validator: handleValidation,
   };

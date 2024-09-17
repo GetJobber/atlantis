@@ -123,7 +123,6 @@ const MaxFilesTemplate: ComponentStory<typeof InputFile> = args => {
   }
 
   function handleDelete(file: FileUpload) {
-    console.log(file);
     setFiles(oldFiles => oldFiles.filter(f => f.key !== file.key));
   }
 };
