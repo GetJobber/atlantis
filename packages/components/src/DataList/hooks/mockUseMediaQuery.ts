@@ -4,6 +4,9 @@ export function mockUseMediaQuery() {
 
 const defaultMatchMedia = window.matchMedia;
 
+/**
+ * @param computeMediaQuery A function that takes a media query string and returns a boolean indicating whether the media query should be matched
+ */
 function setMediaQueryResult(computeMediaQuery: (query: string) => boolean) {
   Object.defineProperty(window, "matchMedia", {
     writable: true,

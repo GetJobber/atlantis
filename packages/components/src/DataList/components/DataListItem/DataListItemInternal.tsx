@@ -28,7 +28,7 @@ export function DataListItemInternal<T extends DataListObject>({
   } = useBatchSelect();
   const { hasActions } = useGetItemActions(item);
   const { hasInLayoutActions } = useDataListLayoutContext();
-  const isCoarsePointer = useMediaQuery("(pointer: coarse)");
+  const isCoarsePointer = useMediaQuery("(any-pointer: coarse)");
   const classesToApply = classNames({
     [styles.selectable]: canSelect,
     [styles.selected]: hasAtLeastOneSelected,
