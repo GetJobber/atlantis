@@ -18,7 +18,7 @@ export function MenuOption({
   onPress,
   setOpen,
 }: MenuOptionInternalProps): JSX.Element {
-  const destructiveColor = "critical";
+  const destructiveColor = "destructive";
   const textVariation = destructive ? destructiveColor : "heading";
 
   return (
