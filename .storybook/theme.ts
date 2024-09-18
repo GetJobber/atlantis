@@ -53,11 +53,11 @@ export const darkTheme = create({
   barSelectedColor: tokens["color-base-blue--100"],
 
  // UI
- appBg: '#ddffff',
- appContentBg: 'var(--color-surface)',
- appPreviewBg: 'var(--color-surface)',
- appBorderColor: '#585C6D',
- appBorderRadius: 4,
+  appBg: tokens["color-base-blue--1000"],
+  appContentBg: tokens["color-base-blue--900"],
+  appPreviewBg: tokens["color-base-blue--900"],
+  appBorderColor: tokens["color-base-blue--700"],
+  appBorderRadius: tokens["radius-base"],
 
 
   /**
