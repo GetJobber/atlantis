@@ -6,6 +6,7 @@ export function InternalChip({
   label,
   disabled = false,
   invalid = false,
+  active = false,
   prefix,
   suffix,
   tabIndex,
@@ -21,6 +22,7 @@ export function InternalChip({
       testID="ATL-InternalChip"
       ariaLabel={ariaLabel}
       tabIndex={tabIndex}
+      variation={active ? "base" : "subtle"}
       role={tabIndex !== undefined ? "option" : undefined}
       onClick={onClick ? (_, ev) => onClick(ev) : undefined}
       label={label}
