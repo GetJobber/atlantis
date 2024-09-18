@@ -95,11 +95,7 @@
 }
 
 .invalid,
-.invalid:hover,
-.invalid:focus-visible,
-.subtle.invalid,
-.subtle.invalid:hover,
-.subtle.invalid:focus-visible {
+.subtle.invalid {
   border: var(--border-base) solid var(--color-critical);
   background-color: var(--color-critical--surface);
   --chip--gradient-color-variation: var(--color-critical--surface);
@@ -110,6 +106,7 @@
 .invalid:focus-visible,
 .subtle.invalid:hover,
 .subtle.invalid:focus-visible {
+  border: var(--border-base) solid var(--color-critical);
   background-color: var(--color-surface--background--hover);
   --chip--gradient-color-variation: var(--color-surface--background--hover);
   --chip--gradient-color-variation--hover: var(
