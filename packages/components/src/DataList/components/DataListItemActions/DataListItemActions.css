@@ -5,10 +5,8 @@
   right: 0;
   z-index: var(--elevation-menu);
   box-shadow: var(--shadow-base);
-  padding: 0;
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
-  overflow: visible;
   background-color: var(--color-surface);
-  gap: 0;
+  gap: var(--space-smallest);
 }
