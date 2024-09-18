@@ -48,7 +48,7 @@ describe("DataListBulkActions", () => {
   it("should render the 4 buttons", () => {
     renderComponent();
     const overflowContainer = screen.getByTestId(
-      "ATL-DataListFilters-Container",
+      "ATL-DataListActions",
     );
 
     expect(within(overflowContainer).getAllByRole("button")).toHaveLength(4);
