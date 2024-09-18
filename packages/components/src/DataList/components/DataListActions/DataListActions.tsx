@@ -1,7 +1,6 @@
 import React, { Children, ReactElement, isValidElement } from "react";
 import { Tooltip } from "@jobber/components/Tooltip";
 import { Button } from "@jobber/components/Button";
-import { DataListOverflowFade } from "../DataListOverflowFade";
 import {
   DataListActionProps,
   DataListActionsProps,
@@ -25,7 +24,7 @@ export function DataListActions<T extends DataListObject>({
   childrenArray.splice(0, exposedActions.length);
 
   return (
-    <DataListOverflowFade>
+    <>
       {exposedActions.map(({ props }) => {
         if (props.visible && !props.visible(activeItem)) return null;
         if (!props.icon) return null;
@@ -62,6 +61,6 @@ export function DataListActions<T extends DataListObject>({
       })}
 
       <DataListItemActionsOverflow actions={childrenArray} />
-    </DataListOverflowFade>
+    </>
   );
 }
