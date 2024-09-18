@@ -24,7 +24,7 @@ export function DataListActions<T extends DataListObject>({
   childrenArray.splice(0, exposedActions.length);
 
   return (
-    <span data-testid="ATL-DataListActions">
+    <>
       {exposedActions.map(({ props }) => {
         if (props.visible && !props.visible(activeItem)) return null;
         if (!props.icon) return null;
@@ -61,6 +61,6 @@ export function DataListActions<T extends DataListObject>({
       })}
 
       <DataListItemActionsOverflow actions={childrenArray} />
-    </span>
+    </>
   );
 }

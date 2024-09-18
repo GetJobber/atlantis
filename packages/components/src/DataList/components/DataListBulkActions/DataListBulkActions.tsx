@@ -4,6 +4,7 @@ import { DataListBulkActionsProps } from "../../DataList.types";
 import { useDataListContext } from "../../context/DataListContext";
 import { DataListActions } from "../DataListActions";
 import { useResponsiveSizing } from "../../hooks/useResponsiveSizing";
+import { BULK_ACTIONS_CONTAINER_TEST_ID } from "./DataListBulkActions.const";
 
 // This component is meant to capture the props of the DataList.BulkActions
 export function DataListBulkActions(
@@ -25,7 +26,7 @@ export function InternalDataListBulkActions() {
   const itemsToExpose = sm ? 3 : 0;
 
   return (
-    <div className={styles.bulkActions}>
+    <div data-testid={BULK_ACTIONS_CONTAINER_TEST_ID} className={styles.bulkActions}>
       <DataListActions itemsToExpose={itemsToExpose}>
         {children}
       </DataListActions>

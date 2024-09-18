@@ -10,6 +10,7 @@ import { DataListBulkActions } from ".";
 import { DataListAction } from "../DataListAction";
 import { DataListHeaderCheckbox } from "../DataListHeader/DataListHeaderCheckbox";
 import { BREAKPOINT_SIZES, Breakpoints } from "../../DataList.const";
+import { BULK_ACTIONS_CONTAINER_TEST_ID } from "./DataListBulkActions.const";
 
 const handleEditClick = jest.fn();
 const mockBulkActionsComponent = jest.fn().mockReturnValue(
@@ -48,7 +49,7 @@ describe("DataListBulkActions", () => {
   it("should render the 4 buttons", () => {
     renderComponent();
     const overflowContainer = screen.getByTestId(
-      "ATL-DataListActions",
+      BULK_ACTIONS_CONTAINER_TEST_ID,
     );
 
     expect(within(overflowContainer).getAllByRole("button")).toHaveLength(4);
