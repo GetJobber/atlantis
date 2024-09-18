@@ -33,8 +33,6 @@ export const Chip = ({
   const prefix = useChildComponent(children, d => d.type === Chip.Prefix);
   const suffix = useChildComponent(children, d => d.type === Chip.Suffix);
 
-  const prefixHasContent = !!prefix?.props?.children;
-
   const [labelRef, labelFullyVisible] = useInView<HTMLSpanElement>();
   const [headingRef, headingFullyVisible] = useInView<HTMLSpanElement>();
   const tooltipMessage = getTooltipMessage(
@@ -58,7 +56,7 @@ export const Chip = ({
         role={role}
         type="button"
       >
-        {prefixHasContent && prefix}
+        {prefix}
         <div className={styles.chipContent}>
           {heading && (
             <>

@@ -11,7 +11,7 @@ export function ChipPrefix({ children }: PropsWithChildren) {
     d => d.type === Avatar || d.type === Icon,
   );
 
-  if (!avatarOrIcon) return children as React.ReactElement;
+  if (!avatarOrIcon) return <>{children}</>;
 
   return <span className={classNames(styles.prefix)}>{avatarOrIcon}</span>;
 }
