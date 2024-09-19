@@ -5,7 +5,7 @@ import { Flex } from "@jobber/components/Flex";
 import { Text } from "@jobber/components/Text";
 import { Content } from "@jobber/components/Content";
 import { showToast } from "@jobber/components/Toast";
-import styles from "./ColorSwatches.module.css";
+import styles from "./StorybookColorSwatches.module.css";
 
 interface ColorSwatchesProps {
   readonly colors: string[];
