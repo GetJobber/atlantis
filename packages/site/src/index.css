@@ -88,3 +88,14 @@ custom-elements {
   }
 
 }
+
+pre.root-pre code.root-code {
+  background: var(--color-base-blue--800);
+  color: var(--color-surface);
+}
+
+pre.root-pre {
+  background: var(--color-base-blue--800);
+  padding: var(--space-large);
+  border-radius: var(--radius-base);
+}

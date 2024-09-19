@@ -41,6 +41,11 @@ export const ComponentsPage = () => {
               to: "/components/Disclosure",
               imageURL: "/Disclosure.png",
             },
+            {
+              title: "AnimatedPresence",
+              to: "/components/AnimatedPresence",
+              imageURL: "/Animation.png",
+            },
           ],
         },
       }}

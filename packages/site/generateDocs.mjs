@@ -1,9 +1,14 @@
-import { writeFileSync } from "fs";
+import { mkdirSync, writeFileSync } from "fs";
+import { dirname } from "path";
 import { parse } from "react-docgen-typescript";
 
 const parseAndWriteDocs = (componentPath, outputPath) => {
   console.log("parsing component at:", componentPath);
   const documentation = parse(componentPath);
+
+  const outputDir = dirname(outputPath);
+  mkdirSync(outputDir, { recursive: true });
+
   console.log("writing documentation to:", outputPath);
   writeFileSync(outputPath, JSON.stringify(documentation, null));
 };
@@ -27,9 +32,14 @@ const buildComponentDocs = name => {
   parseAndWriteDocs(componentPath, outputPath);
 };
 
-buildComponentDocs("Button");
-buildComponentDocs("Checkbox");
-buildComponentDocs("Chip");
-buildComponentDocs("StatusLabel");
-buildComponentDocs("Switch");
-buildComponentDocs("Disclosure");
+const components = [
+  "AnimatedPresence",
+  "Button",
+  "Checkbox",
+  "Chip",
+  "Disclosure",
+  "StatusLabel",
+  "Switch",
+];
+
+components.forEach(buildComponentDocs);

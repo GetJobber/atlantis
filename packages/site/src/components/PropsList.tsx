@@ -29,16 +29,7 @@ export const PropsList = ({
             placeholder={item.type as string}
             value={item.value}
             onChange={val => {
-              let func: string | (() => void) = "";
-
-              try {
-                // eslint-disable-next-line no-new-func
-                func = new Function("", `return ${val};`) as () => void;
-              } catch (e) {
-                console.log(e);
-              }
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              updateValue(key, func as any);
+              updateValue(key, val);
             }}
           />
         );
@@ -57,7 +48,7 @@ export const PropsList = ({
           <Switch
             value={item.value}
             onChange={val => {
-              updateValue(key, String(val));
+              updateValue(key, val);
             }}
           />
         );

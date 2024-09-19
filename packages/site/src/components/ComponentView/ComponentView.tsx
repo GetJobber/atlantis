@@ -1,19 +1,22 @@
 import {
   Box,
+  Button,
   Card,
   Content,
   Grid,
   Heading,
-  InputText,
   Link,
   List,
   Page,
   Tab,
   Tabs,
+  showToast,
 } from "@jobber/components";
 import "./ComponentView.css";
 import { useParams } from "react-router";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useMemo } from "react";
+import prism from "prismjs";
+import reactElementToJSXString from "react-element-to-jsx-string";
 import { PageWrapper } from "../../layout/PageWrapper";
 import { SiteContent } from "../../content";
 import { PropsList } from "../PropsList";
@@ -23,11 +26,41 @@ export const ComponentView = () => {
   const { name = "" } = useParams<{ name: string }>();
   const PageMeta = SiteContent[name];
   const Component = PageMeta?.component.element as () => ReactNode;
-  const { updateValue, values, stateValues } = usePageValues(
+  const { updateValue, values, stateValueWithFunction } = usePageValues(
     PageMeta?.props,
     PageMeta?.component.defaultProps,
   );
   const ComponentContent = PageMeta?.content as () => ReactNode;
+
+  const updateStyles = () => {
+    // Tabs fires this update before updating its own DOM.
+    requestAnimationFrame(() => {
+      const pres = document.querySelectorAll(".root-pre");
+      pres.forEach(p => {
+        p.classList.remove("language-tsx");
+        p.classList.add("language-javascript");
+      });
+      const code = document.querySelectorAll(".root-code");
+      code.forEach(p => {
+        p.classList.remove("language-tsx");
+        p.classList.add("language-javascript");
+      });
+      prism.highlightAll();
+    });
+  };
+  useEffect(() => {
+    updateStyles();
+    window.addEventListener("error", e => {
+      if (e.type === "error" && e.message) {
+        showToast({ message: e.message });
+        e.preventDefault();
+      }
+    });
+  }, []);
+
+  const code = useMemo(() => {
+    return reactElementToJSXString(<Component {...stateValueWithFunction} />);
+  }, [stateValueWithFunction]);
 
   return PageMeta ? (
     <Grid>
@@ -42,10 +75,10 @@ export const ComponentView = () => {
               <Content spacing="large">
                 <Box direction="column" gap="small">
                   <preview-window>
-                    <Component {...stateValues} />
+                    <Component {...stateValueWithFunction} />
                   </preview-window>
                 </Box>
-                <Tabs>
+                <Tabs onTabChange={updateStyles}>
                   <Tab label="Design">
                     <Content spacing="large">
                       <ComponentContent />
@@ -58,9 +91,31 @@ export const ComponentView = () => {
                       updateValue={updateValue}
                     />
                   </Tab>
-                  <Tab label="Code Editor">
+                  <Tab label="Code">
                     <preview-code>
-                      <InputText multiline value={PageMeta?.component.code} />
+                      <Box width={"100%"} alignItems="start">
+                        <Box width={"100%"}>
+                          <pre className="root-pre type-javascript">
+                            <code className="root-code type-javascript">
+                              {code}
+                            </code>
+                          </pre>
+                        </Box>
+
+                        <Box width="100%" direction="row" justifyContent="end">
+                          <Button
+                            label="Copy"
+                            type="tertiary"
+                            size="small"
+                            onClick={() => {
+                              navigator.clipboard.writeText(code);
+                              showToast({
+                                message: "Copied code to clipboard",
+                              });
+                            }}
+                          ></Button>
+                        </Box>
+                      </Box>
                     </preview-code>
                   </Tab>
                 </Tabs>

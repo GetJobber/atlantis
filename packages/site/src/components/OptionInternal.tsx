@@ -16,8 +16,6 @@ export const OptionInternal = ({
       }}
     >
       {values.options?.map((option: any, index: any) => {
-        console.log("optin??", option);
-
         return (
           <option key={index} value={option}>
             {option}

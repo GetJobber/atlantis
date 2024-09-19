@@ -3,7 +3,6 @@ export interface ContentExport {
   props: unknown;
   component: {
     element: unknown;
-    code: string;
     defaultProps: Record<string, unknown>;
   };
   title: string;

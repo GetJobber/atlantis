@@ -3,9 +3,18 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import mdx from "@mdx-js/rollup";
 import remarkGfm from "remark-gfm";
+import rehypeAddClasses from "rehype-add-classes";
 
 export default defineConfig({
-  plugins: [react(), mdx({ remarkPlugins: [remarkGfm] })],
+  plugins: [
+    react(),
+    mdx({
+      remarkPlugins: [remarkGfm],
+      rehypePlugins: [
+        [rehypeAddClasses, { pre: "root-pre", code: "root-code" }],
+      ],
+    }),
+  ],
   optimizeDeps: {
     include: ["@jobber/formatters", "@jobber/hooks"],
   },
