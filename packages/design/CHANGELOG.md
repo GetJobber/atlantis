@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.65.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.65.0...@jobber/design@0.65.1) (2024-09-17)
+
+
+### Bug Fixes
+
+* **design:** Update critical color for dark mode ([#2006](https://github.com/GetJobber/atlantis/issues/2006)) ([88254f2](https://github.com/GetJobber/atlantis/commit/88254f22708ca8c7ef60283187e8a9c136210f89))
+
+
+
+
+
 # [0.65.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.64.0...@jobber/design@0.65.0) (2024-08-22)
 
 

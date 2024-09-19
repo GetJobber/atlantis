@@ -3,6 +3,81 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.33.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.32.0...@jobber/components@5.33.0) (2024-09-18)
+
+
+### Features
+
+* **components:** update Chip.Prefix to accept more than Icon and Avatar ([#2020](https://github.com/GetJobber/atlantis/issues/2020)) ([1a6c72c](https://github.com/GetJobber/atlantis/commit/1a6c72ca9eedcefc77d251da360fc426fbd35858))
+
+
+
+
+
+# [5.32.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.31.1...@jobber/components@5.32.0) (2024-09-17)
+
+
+### Features
+
+* **components:** small improvement to focus state of DataList headers ([#2014](https://github.com/GetJobber/atlantis/issues/2014)) ([fb4885d](https://github.com/GetJobber/atlantis/commit/fb4885d7b38f32a769ad0781b3b462824374c185))
+
+
+
+
+
+## [5.31.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.31.0...@jobber/components@5.31.1) (2024-09-17)
+
+
+### Bug Fixes
+
+* **design:** Update critical color for dark mode ([#2006](https://github.com/GetJobber/atlantis/issues/2006)) ([88254f2](https://github.com/GetJobber/atlantis/commit/88254f22708ca8c7ef60283187e8a9c136210f89))
+
+
+
+
+
+# [5.31.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.30.1...@jobber/components@5.31.0) (2024-09-16)
+
+
+### Features
+
+* **components:** add elevation to DataList item actions ([#2000](https://github.com/GetJobber/atlantis/issues/2000)) ([e969f96](https://github.com/GetJobber/atlantis/commit/e969f96578bef3260bc3962a9c12c9b9f2ea5630))
+* **components:** Add underline support to Typography component for web (JOB-104497) ([#2021](https://github.com/GetJobber/atlantis/issues/2021)) ([4a30070](https://github.com/GetJobber/atlantis/commit/4a30070734f2faa05a57615d5296855eac11aa25))
+
+
+
+
+
+## [5.30.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.30.0...@jobber/components@5.30.1) (2024-09-13)
+
+
+### Bug Fixes
+
+* **components:** Display Datalist checkbox based on device type instead of breakpoint ([#2013](https://github.com/GetJobber/atlantis/issues/2013)) ([bb59990](https://github.com/GetJobber/atlantis/commit/bb599904cab94591fad13b64569436a8f70728d3))
+
+
+
+
+
+# [5.30.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.29.3...@jobber/components@5.30.0) (2024-09-13)
+
+
+### Features
+
+* **components:** Add description prop to InputFile ([#2019](https://github.com/GetJobber/atlantis/issues/2019)) ([ba5b262](https://github.com/GetJobber/atlantis/commit/ba5b262c123bca26226f86e14931d3a11398b3e1))
+
+
+
+
+
+## [5.29.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.29.2...@jobber/components@5.29.3) (2024-09-13)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 ## [5.29.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.29.1...@jobber/components@5.29.2) (2024-09-12)
 
 

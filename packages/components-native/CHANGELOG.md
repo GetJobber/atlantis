@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.72.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.72.0...@jobber/components-native@0.72.1) (2024-09-17)
+
+
+### Bug Fixes
+
+* **design:** Update critical color for dark mode ([#2006](https://github.com/GetJobber/atlantis/issues/2006)) ([88254f2](https://github.com/GetJobber/atlantis/commit/88254f22708ca8c7ef60283187e8a9c136210f89))
+
+
+
+
+
 # [0.72.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.71.2...@jobber/components-native@0.72.0) (2024-09-12)
 
 

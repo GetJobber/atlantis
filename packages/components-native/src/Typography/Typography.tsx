@@ -341,6 +341,7 @@ export type TextColor =
   | "textReverse"
   | "textReverseSecondary"
   | "interactive"
+  | "interactiveSubtle"
   | "destructive"
   | "learning"
   | "subtle"
@@ -349,12 +350,14 @@ export type TextColor =
 export type TextVariation =
   | "success"
   | "interactive"
+  | "interactiveSubtle"
   | "error"
   | "base"
   | "subdued"
   | "warn"
   | "info"
   | "disabled"
+  | "destructive"
   | "critical";
 
 export type TextTransform = "uppercase" | "lowercase" | "capitalize" | "none";

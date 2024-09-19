@@ -26,7 +26,7 @@ export function BottomSheetOption({
   textTransform = "capitalize",
   onPress,
 }: BottomSheetOptionProps): JSX.Element {
-  const destructiveColor = "critical";
+  const destructiveColor = "destructive";
   const textVariation = destructive ? destructiveColor : "subdued";
 
   return (

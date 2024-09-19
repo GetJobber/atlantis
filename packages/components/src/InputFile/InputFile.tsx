@@ -124,6 +124,11 @@ interface InputFileProps {
   readonly allowMultiple?: boolean;
 
   /**
+   * Further description of the input.
+   */
+  readonly description?: string;
+
+  /**
    * A callback that receives a file object and returns a `UploadParams` needed
    * to upload the file.
    *
@@ -181,6 +186,7 @@ export function InputFile({
   buttonLabel: providedButtonLabel,
   allowMultiple = false,
   allowedTypes = "all",
+  description,
   getUploadParams,
   onUploadStart,
   onUploadProgress,
@@ -239,9 +245,14 @@ export function InputFile({
             <Content spacing="small">
               <Button label={buttonLabel} size="small" type="secondary" />
               {size === "base" && (
-                <Typography size="small" textColor="textSecondary">
-                  {hintText}
-                </Typography>
+                <>
+                  <Typography size="small">{hintText}</Typography>
+                  {description && (
+                    <Typography size="small" textColor="textSecondary">
+                      {description}
+                    </Typography>
+                  )}
+                </>
               )}
             </Content>
           </div>
@@ -356,17 +367,15 @@ function getLabels(
   multiple: boolean,
   allowedTypes: string | string[],
 ) {
-  let buttonLabel = multiple ? "Upload Files" : "Upload File";
-  let hintText = multiple
-    ? "or drag files here to upload"
-    : "or drag a file here to upload";
-
-  if (allowedTypes === "images" || allowedTypes === "basicImages") {
-    buttonLabel = multiple ? "Upload Images" : "Upload Image";
-    hintText = multiple
-      ? "or drag images here to upload"
-      : "or drag an image here to upload";
-  }
+  const fileType =
+    allowedTypes === "images" || allowedTypes === "basicImages"
+      ? "Image"
+      : "File";
+  let buttonLabel = multiple ? `Upload ${fileType}s` : `Upload ${fileType}`;
+  const fileTypeDeterminer = fileType === "Image" ? "an" : "a";
+  const hintText = multiple
+    ? `Select or drag ${fileType.toLowerCase()}s here to upload`
+    : `Select or drag ${fileTypeDeterminer} ${fileType.toLowerCase()} here to upload`;
 
   if (providedButtonLabel) buttonLabel = providedButtonLabel;
 
