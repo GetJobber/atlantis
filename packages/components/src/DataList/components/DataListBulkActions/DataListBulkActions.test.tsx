@@ -7,10 +7,10 @@ import {
   defaultValues,
 } from "@jobber/components/DataList/context/DataListContext";
 import { DataListBulkActions } from ".";
+import { BULK_ACTIONS_CONTAINER_TEST_ID } from "./DataListBulkActions.const";
 import { DataListAction } from "../DataListAction";
 import { DataListHeaderCheckbox } from "../DataListHeader/DataListHeaderCheckbox";
 import { BREAKPOINT_SIZES, Breakpoints } from "../../DataList.const";
-import { BULK_ACTIONS_CONTAINER_TEST_ID } from "./DataListBulkActions.const";
 
 const handleEditClick = jest.fn();
 const mockBulkActionsComponent = jest.fn().mockReturnValue(
