@@ -12,7 +12,7 @@ import { DataListLayoutActionsContext } from "@jobber/components/DataList/compon
 import { generateListItemElement } from "@jobber/components/DataList/DataList.utils";
 import { DataListItemInternal } from "./DataListItemInternal";
 import { DataListItemClickable } from "./components/DataListItemClickable";
-import styles from "../../DataList.css";
+import styles from "../../DataList.module.css";
 import { useGetItemActions } from "../../hooks/useGetItemActions";
 
 interface DataListItem<T extends DataListObject> {

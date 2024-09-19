@@ -1,5 +1,5 @@
 import React, { KeyboardEvent, MouseEvent, useId } from "react";
-import styles from "./InternalChip.css";
+import styles from "./InternalChip.module.css";
 import { InternalChip } from "./InternalChip";
 import { ChipSingleSelectProps } from "./ChipsTypes";
 

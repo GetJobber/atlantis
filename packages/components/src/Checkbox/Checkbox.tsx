@@ -8,7 +8,7 @@ import React, {
 import classnames from "classnames";
 import { XOR } from "ts-xor";
 import { Controller, useForm, useFormContext } from "react-hook-form";
-import styles from "./Checkbox.css";
+import styles from "./Checkbox.module.css";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
 

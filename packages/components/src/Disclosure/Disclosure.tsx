@@ -4,7 +4,7 @@ import {
   useResizeObserver,
 } from "@jobber/hooks/useResizeObserver";
 import classnames from "classnames";
-import styles from "./Disclosure.css";
+import styles from "./Disclosure.module.css";
 import { Icon } from "../Icon";
 import { Typography } from "../Typography";
 

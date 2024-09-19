@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { Avatar } from "@jobber/components/Avatar";
 import { Icon } from "@jobber/components/Icon";
 import { useChildComponent } from "../../hooks/index";
-import styles from "../../Chip.css";
+import styles from "../../Chip.module.css";
 
 export function ChipPrefix({ children }: PropsWithChildren) {
   const singleChild = useChildComponent(

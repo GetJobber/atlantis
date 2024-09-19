@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classnames from "classnames";
-import styles from "./InternalChip.css";
+import styles from "./InternalChip.module.css";
 import { InternalChipProps } from "./ChipTypes";
 import { InternalChipAffix } from "./InternalChipAffix";
 import { Typography } from "../Typography";

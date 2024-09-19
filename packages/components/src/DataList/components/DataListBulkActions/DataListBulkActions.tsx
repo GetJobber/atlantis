@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./DataListBulkActions.css";
+import styles from "./DataListBulkActions.module.css";
 import { DataListBulkActionsProps } from "../../DataList.types";
 import { useDataListContext } from "../../context/DataListContext";
 import { DataListActions } from "../DataListActions";

@@ -1,7 +1,7 @@
 import React, { CSSProperties } from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
-import styles from "./Avatar.css";
+import styles from "./Avatar.module.css";
 import { isDark } from "./utilities";
 import { Icon } from "../Icon";
 

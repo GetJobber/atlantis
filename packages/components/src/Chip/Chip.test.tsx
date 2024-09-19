@@ -2,7 +2,7 @@ import React from "react";
 import { fireEvent, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Chip } from "./Chip";
-import styles from "./Chip.css";
+import styles from "./Chip.module.css";
 import { Avatar } from "../Avatar";
 
 let mockIsInView = jest.fn(() => true);

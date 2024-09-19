@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from "react";
 import classNames from "classnames";
 import { Icon } from "@jobber/components/Icon";
 import { useChildComponent } from "../../hooks";
-import styles from "../../Chip.css";
+import styles from "../../Chip.module.css";
 
 export function ChipSuffix({
   children,

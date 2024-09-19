@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classnames from "classnames";
-import styles from "./Switch.css";
+import styles from "./Switch.module.css";
 import { Typography } from "../Typography";
 
 interface SwitchProps {

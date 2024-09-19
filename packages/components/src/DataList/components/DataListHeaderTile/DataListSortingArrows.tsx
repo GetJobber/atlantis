@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./DataListSortingArrows.css";
+import styles from "./DataListSortingArrows.module.css";
 
 interface DataListSortingArrowsProps {
   readonly order?: "asc" | "desc" | "none";

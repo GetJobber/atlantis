@@ -1,6 +1,6 @@
 import React from "react";
 import { ActionProps, CardProps } from "./types";
-import styles from "./Card.css";
+import styles from "./Card.module.css";
 import { Heading } from "../Heading";
 import { Button, ButtonProps } from "../Button";
 import { Menu, MenuProps } from "../Menu";

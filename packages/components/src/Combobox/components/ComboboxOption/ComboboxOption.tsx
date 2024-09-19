@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import classnames from "classnames";
 import { Icon } from "@jobber/components/Icon";
 import { Flex } from "@jobber/components/Flex";
-import styles from "./ComboboxOption.css";
+import styles from "./ComboboxOption.module.css";
 import { ComboboxContext } from "../../ComboboxProvider";
 
 export interface ComboboxOptionProps {

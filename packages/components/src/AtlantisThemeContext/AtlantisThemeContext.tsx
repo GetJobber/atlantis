@@ -15,7 +15,7 @@ import {
   Theme,
   ThemeChangeDetails,
 } from "./types";
-import styles from "./AtlantisThemeContext.css";
+import styles from "./AtlantisThemeContext.module.css";
 
 export const atlantisThemeContextDefaultValues: AtlantisThemeContextValue = {
   theme: "light",

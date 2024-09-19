@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import styles from "./InternalThumbnail.css";
+import styles from "./InternalThumbnail.module.css";
 import { InternalThumbnailImage } from "./InternalThumbnailImage";
 import { Icon, IconNames } from "../Icon";
 import { FileUpload } from "../InputFile";

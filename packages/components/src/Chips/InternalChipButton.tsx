@@ -5,7 +5,7 @@ import React, {
   useRef,
 } from "react";
 import { IconNames } from "@jobber/design";
-import styles from "./InternalChip.css";
+import styles from "./InternalChip.module.css";
 import { Icon } from "../Icon";
 
 export interface ChipButtonProps {

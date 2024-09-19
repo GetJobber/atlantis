@@ -1,10 +1,10 @@
 import React from "react";
 import classnames from "classnames";
-import styles from "./Glimmer.css";
+import styles from "./Glimmer.module.css";
 /* eslint-disable import/no-internal-modules */
-import sizes from "./style/Sizes.css";
-import shapes from "./style/Shape.css";
-import timings from "./style/Timing.css";
+import sizes from "./style/Sizes.module.css";
+import shapes from "./style/Shape.module.css";
+import timings from "./style/Timing.module.css";
 /* eslint-enable import/no-internal-modules */
 import { Content } from "../Content";
 

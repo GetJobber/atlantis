@@ -1,6 +1,6 @@
 import React, { MouseEvent, ReactElement } from "react";
 import { Variants, motion } from "framer-motion";
-import styles from "./DataListItemActions.css";
+import styles from "./DataListItemActions.module.css";
 import {
   DataListActionProps,
   DataListItemActionsProps,

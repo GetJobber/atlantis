@@ -1,6 +1,6 @@
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import styles from "./InputValidation.css";
+import styles from "./InputValidation.module.css";
 import { Text } from "../Text";
 import { Icon } from "../Icon";
 

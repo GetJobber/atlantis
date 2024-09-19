@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import classnames from "classnames";
-import styles from "./Drawer.css";
+import styles from "./Drawer.module.css";
 import { Heading } from "../Heading";
 import { ButtonDismiss } from "../ButtonDismiss";
 

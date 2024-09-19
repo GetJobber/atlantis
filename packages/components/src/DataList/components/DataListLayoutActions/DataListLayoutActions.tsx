@@ -8,7 +8,7 @@ import { useDataListContext } from "@jobber/components/DataList/context/DataList
 import { useDataListLayoutContext } from "@jobber/components/DataList/context/DataListLayoutContext";
 import { DataListItemActionsOverflow } from "@jobber/components/DataList/components/DataListItemActionsOverflow";
 import { Glimmer } from "@jobber/components/Glimmer";
-import styles from "./DataListLayoutActions.css";
+import styles from "./DataListLayoutActions.module.css";
 
 export function DataListLayoutActions() {
   const { itemActionComponent, loadingState } = useDataListContext();

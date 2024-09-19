@@ -2,7 +2,7 @@ import React from "react";
 import { Icon } from "@jobber/components/Icon";
 import { Chip } from "../../Chip";
 import { ChipSelectableProps } from "../../Chip.types";
-import styles from "../../Chip.css";
+import styles from "../../Chip.module.css";
 
 export function ChipSelectable({ selected, ...rest }: ChipSelectableProps) {
   return (
