@@ -1,17 +1,7 @@
-.menuLink {
-  display: flex;
-  margin: 0 var(--space-small) var(--space-smaller) var(--space-small);
-  padding: var(--space-small) var(--space-small);
-  padding-left: 6;
-  border-radius: var(--radius-base);
-  color: var(--color-heading);
-  align-items: center;
-}
-
+.menuLink,
 .subMenuLink {
   display: flex;
   margin: 0 var(--space-small) var(--space-smaller) var(--space-base);
-  padding: var(--space-small) var(--space-small);
   padding-left: 6;
   border-radius: var(--radius-base);
   color: var(--color-heading);
@@ -21,12 +11,20 @@
 .menuLink a,
 .subMenuLink a {
   margin: 0;
-  outline: 0;
+  padding: var(--space-small) var(--space-small);
+  outline: transparent;
   color: var(--color-heading);
   font-size: var(--typography--fontSize-base);
   font-weight: 700;
+  width: 100%;
   text-decoration: none;
   user-select: none;
+  transition: all var(--timing-base) ease-out;
+}
+
+.menuLink a:hover,
+.subMenuLink a:hover {
+  background-color: var(--color-surface--background--hover);
 }
 
 .subRoute {

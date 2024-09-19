@@ -10,7 +10,7 @@ preview-window {
   padding: var(--space-largest);
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
-  background-color: var(--color-surface--background);
+  background-color: var(--color-surface);
   align-items: center;
   justify-content: center;
 }

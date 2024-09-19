@@ -17,6 +17,11 @@ export const ComponentsPage = () => {
               imageURL: "/Button.png",
             },
             {
+              title: "Checkbox",
+              to: "/components/Checkbox",
+              imageURL: "/Checkbox.png",
+            },
+            {
               title: "Chip",
               to: "/components/Chip",
               imageURL: "/Chip.png",

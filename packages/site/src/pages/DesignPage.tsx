@@ -6,55 +6,55 @@ export const DesignPage = () => {
       structure={{
         header: {
           title: "Design",
-          body: "What would we do without it?",
+          body: "Design elements and concepts that apply across Jobber's ecosystem",
         },
         body: {
-          title: "Design!",
+          title: "Design",
           content: [
             {
               title: "Animation",
               to: "/content/design/animation",
-              imageURL: "",
+              imageURL: "/Animation.png",
             },
             {
               title: "Borders",
               to: "/content/design/borders",
-              imageURL: "",
+              imageURL: "/Borders.png",
             },
             {
               title: "Breakpoints",
               to: "/content/design/responsive-breakpoint",
-              imageURL: "",
+              imageURL: "/Breakpoints.png",
             },
             {
               title: "Colors",
               to: "/content/design/colors",
-              imageURL: "",
+              imageURL: "/Colors.png",
             },
             {
               title: "Elevations",
               to: "/content/design/elevations",
-              imageURL: "",
+              imageURL: "/Elevations.png",
             },
             {
               title: "Opacity",
               to: "/content/design/opacity",
-              imageURL: "",
+              imageURL: "/Opacity.png",
             },
             {
               title: "Radii",
               to: "/content/design/radii",
-              imageURL: "",
+              imageURL: "/Radii.png",
             },
             {
               title: "Spacing",
               to: "/content/design/spacing",
-              imageURL: "",
+              imageURL: "/Spacing.png",
             },
             {
               title: "Typography",
               to: "/content/design/typography",
-              imageURL: "",
+              imageURL: "/Typography.png",
             },
           ],
         },
