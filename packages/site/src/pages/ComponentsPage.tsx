@@ -12,6 +12,21 @@ export const ComponentsPage = () => {
           title: "Components",
           content: [
             {
+              title: "AnimatedPresence",
+              to: "/components/AnimatedPresence",
+              imageURL: "/Animation.png",
+            },
+            {
+              title: "AnimatedSwitcher",
+              to: "/components/AnimatedSwitcher",
+              imageURL: "/Animation.png",
+            },
+            {
+              title: "Autocomplete",
+              to: "/components/Autocomplete",
+              imageURL: "/Autocomplete.png",
+            },
+            {
               title: "Button",
               to: "/components/Button",
               imageURL: "/Button.png",
@@ -27,6 +42,11 @@ export const ComponentsPage = () => {
               imageURL: "/Chip.png",
             },
             {
+              title: "Disclosure",
+              to: "/components/Disclosure",
+              imageURL: "/Disclosure.png",
+            },
+            {
               title: "StatusLabel",
               to: "/components/StatusLabel",
               imageURL: "/StatusLabel.png",
@@ -35,21 +55,6 @@ export const ComponentsPage = () => {
               title: "Switch",
               to: "/components/Switch",
               imageURL: "/Switch.png",
-            },
-            {
-              title: "Disclosure",
-              to: "/components/Disclosure",
-              imageURL: "/Disclosure.png",
-            },
-            {
-              title: "AnimatedPresence",
-              to: "/components/AnimatedPresence",
-              imageURL: "/Animation.png",
-            },
-            {
-              title: "AnimatedSwitcher",
-              to: "/components/AnimatedSwitcher",
-              imageURL: "/Animation.png",
             },
           ],
         },

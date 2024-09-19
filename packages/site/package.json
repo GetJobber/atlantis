@@ -22,6 +22,7 @@
     "react-element-to-jsx-string": "^15.0.0",
     "react-router": "5.3.4",
     "react-router-dom": "5.3.4",
+    "rehype-rewrite": "^4.0.2",
     "remark-gfm": "^4.0.0"
   },
   "devDependencies": {

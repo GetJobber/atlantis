@@ -35,6 +35,7 @@ const buildComponentDocs = name => {
 const components = [
   "AnimatedPresence",
   "AnimatedSwitcher",
+  "Autocomplete",
   "Button",
   "Checkbox",
   "Chip",

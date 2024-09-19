@@ -4,7 +4,17 @@ import react from "@vitejs/plugin-react";
 import mdx from "@mdx-js/rollup";
 import remarkGfm from "remark-gfm";
 import rehypeAddClasses from "rehype-add-classes";
+import rehypeRewrite from "rehype-rewrite";
 
+const rewriteLink = item => {
+  let newItem = item;
+
+  if (newItem.includes("../?path=/story")) {
+    newItem = newItem.replace("../", "https://atlantis.getjobber.com");
+  }
+
+  return newItem;
+};
 export default defineConfig({
   plugins: [
     react(),
@@ -12,6 +22,22 @@ export default defineConfig({
       remarkPlugins: [remarkGfm],
       rehypePlugins: [
         [rehypeAddClasses, { pre: "root-pre", code: "root-code" }],
+        [
+          rehypeRewrite,
+          {
+            rewrite: node => {
+              if (
+                node.type === "element" &&
+                node.tagName === "a" &&
+                node.properties &&
+                node.properties.href
+              ) {
+                // Rewrite the link as needed
+                node.properties.href = rewriteLink(node.properties.href);
+              }
+            },
+          },
+        ],
       ],
     }),
   ],

@@ -60,7 +60,9 @@ export const ComponentView = () => {
 
   const code = useMemo(() => {
     return Component && stateValueWithFunction
-      ? reactElementToJSXString(<Component {...stateValueWithFunction} />)
+      ? reactElementToJSXString(<Component {...stateValueWithFunction} />, {
+          showFunctions: true,
+        })
       : "";
   }, [stateValueWithFunction]);
 
