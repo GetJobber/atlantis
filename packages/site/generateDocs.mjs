@@ -34,6 +34,7 @@ const buildComponentDocs = name => {
 
 const components = [
   "AnimatedPresence",
+  "AnimatedSwitcher",
   "Button",
   "Checkbox",
   "Chip",

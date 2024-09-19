@@ -59,7 +59,9 @@ export const ComponentView = () => {
   }, []);
 
   const code = useMemo(() => {
-    return reactElementToJSXString(<Component {...stateValueWithFunction} />);
+    return Component && stateValueWithFunction
+      ? reactElementToJSXString(<Component {...stateValueWithFunction} />)
+      : "";
   }, [stateValueWithFunction]);
 
   return PageMeta ? (

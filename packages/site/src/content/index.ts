@@ -1,4 +1,5 @@
 import AnimatedPresenceContent from "./AnimatedPresence";
+import AnimatedSwitcherContent from "./AnimatedSwitcher";
 import ButtonContent from "./Button";
 import ChipContent from "./Chip";
 import CheckboxContent from "./Checkbox";
@@ -10,6 +11,9 @@ import { ContentExport } from "../types/content";
 export const SiteContent: Record<string, ContentExport> = {
   AnimatedPresence: {
     ...AnimatedPresenceContent,
+  },
+  AnimatedSwitcher: {
+    ...AnimatedSwitcherContent,
   },
   Button: {
     ...ButtonContent,
