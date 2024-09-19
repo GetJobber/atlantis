@@ -12,8 +12,8 @@
   --disclosure--interactionOffset: var(--space-small);
   margin-left: calc(-1 * var(--disclosure--interactionOffset));
   margin-right: calc(-1 * var(--disclosure--interactionOffset));
-  padding: var(--space-smaller) var(--disclosure--interactionOffset) var(--space-smallest)
-    var(--disclosure--interactionOffset);
+  padding: var(--space-smaller) var(--disclosure--interactionOffset)
+    var(--space-smallest) var(--disclosure--interactionOffset);
   border: none;
   border-radius: var(--radius-small);
   list-style: none;
