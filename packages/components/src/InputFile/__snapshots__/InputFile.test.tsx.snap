@@ -30,9 +30,9 @@ exports[`Post Requests renders an InputFile 1`] = `
           </span>
         </button>
         <p
-          class="base regular small textSecondary"
+          class="base regular small"
         >
-          or drag a file here to upload
+          Select or drag a file here to upload
         </p>
       </div>
     </div>
@@ -72,9 +72,9 @@ exports[`Post Requests renders an InputFile with multiple images allowed 1`] = `
           </span>
         </button>
         <p
-          class="base regular small textSecondary"
+          class="base regular small"
         >
-          or drag images here to upload
+          Select or drag images here to upload
         </p>
       </div>
     </div>
@@ -113,9 +113,9 @@ exports[`Post Requests renders an InputFile with multiple uploads 1`] = `
           </span>
         </button>
         <p
-          class="base regular small textSecondary"
+          class="base regular small"
         >
-          or drag files here to upload
+          Select or drag files here to upload
         </p>
       </div>
     </div>
@@ -154,9 +154,9 @@ exports[`Post Requests renders an InputFile with only images allowed 1`] = `
           </span>
         </button>
         <p
-          class="base regular small textSecondary"
+          class="base regular small"
         >
-          or drag an image here to upload
+          Select or drag an image here to upload
         </p>
       </div>
     </div>
@@ -194,9 +194,9 @@ exports[`Post Requests renders an InputFile with proper variations 1`] = `
           </span>
         </button>
         <p
-          class="base regular small textSecondary"
+          class="base regular small"
         >
-          or drag a file here to upload
+          Select or drag a file here to upload
         </p>
       </div>
     </div>

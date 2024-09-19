@@ -217,3 +217,16 @@ it("renders text that is inaccessible", () => {
     }),
   );
 });
+
+describe("underline", () => {
+  it.each(["solid", "double", "dotted", "dashed"] as const)(
+    "renders text with %s underline",
+    underlineStyle => {
+      const typography = render(
+        <Typography underline={underlineStyle}>Test Text</Typography>,
+      );
+
+      expect(typography.toJSON()).toMatchSnapshot();
+    },
+  );
+});

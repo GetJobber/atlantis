@@ -51,7 +51,7 @@
             }
         },
         "critical": {
-            "$value": "{color.base.red-.600}"
+            "$value": "{color.base.red-.500}"
         },
         "critical-": {
             "surface": {
