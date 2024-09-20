@@ -11,7 +11,7 @@
   background: var(--color-surface);
 }
 
-.content > div {
+.content>div {
   background-color: inherit;
   background: inherit;
 }

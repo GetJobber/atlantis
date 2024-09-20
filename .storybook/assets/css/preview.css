@@ -10,13 +10,17 @@
 }
 
 :global(a:hover) {
-  color: var(--color-interactive--hover);
+  color: var(--color-red);
 }
 
 :global(.sb-show-main code) {
   border: var(--color-surface--background);
   color: var(--color-text);
   background-color: var(--color-surface--background);
+}
+
+:global(.sb-show-main.sb-main-padded) {
+  padding: 0px;
 }
 
 :global(.sbdocs-table) {
@@ -30,6 +34,10 @@
 :global(.sbdocs-table th) {
   width: 50%;
   background-color: var(--color-surface--background);
+}
+
+:global(.sbdocs-table th) {
+  background-color: red;
 }
 
 :global(.sbdocs.sbdocs-a) {
