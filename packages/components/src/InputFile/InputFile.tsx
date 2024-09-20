@@ -129,6 +129,24 @@ interface InputFileProps {
   readonly description?: string;
 
   /**
+   * An object which helps control and validate the number of files being uploaded
+   * via the dropzone.
+   * `maxFilesValidation={{ maxFiles: 3, numberOfCurrentFiles: files.length }}`
+   */
+  readonly maxFilesValidation?: {
+    /**
+     * Maximum number of files that can be uploaded via the dropzone.
+     */
+    readonly maxFiles: number;
+
+    /**
+     * The current count of uploaded files. This value should be
+     * updated whenever a file is successfully uploaded or removed.
+     */
+    readonly numberOfCurrentFiles: number;
+  };
+
+  /**
    * A callback that receives a file object and returns a `UploadParams` needed
    * to upload the file.
    *
@@ -180,6 +198,7 @@ interface CreateAxiosConfigParams extends Omit<UploadParams, "key"> {
   handleUploadProgress(progress: any): void;
 }
 
+/* eslint-disable max-statements */
 export function InputFile({
   variation = "dropzone",
   size = "base",
@@ -187,6 +206,7 @@ export function InputFile({
   allowMultiple = false,
   allowedTypes = "all",
   description,
+  maxFilesValidation,
   getUploadParams,
   onUploadStart,
   onUploadProgress,
@@ -194,10 +214,32 @@ export function InputFile({
   onUploadError,
   validator,
 }: InputFileProps) {
+  const maxFiles = maxFilesValidation?.maxFiles || 0;
+  const numberOfCurrentFiles = maxFilesValidation?.numberOfCurrentFiles || 0;
+
+  const handleValidation = useCallback(
+    (file: File) => {
+      if (
+        maxFiles &&
+        numberOfCurrentFiles &&
+        maxFiles - numberOfCurrentFiles <= 0
+      ) {
+        return {
+          code: "too-many-files",
+          message: `Cannot exceed a maximum of ${maxFiles} files.`,
+        };
+      }
+
+      return validator ? validator(file) : null;
+    },
+    [maxFiles, numberOfCurrentFiles],
+  );
+
   const options: DropzoneOptions = {
     multiple: allowMultiple,
+    maxFiles: maxFiles - numberOfCurrentFiles,
     onDrop: useCallback(handleDrop, [uploadFile]),
-    validator: validator && useCallback(validator, []),
+    validator: handleValidation,
   };
 
   if (allowedTypes === "images") {
@@ -210,16 +252,26 @@ export function InputFile({
 
   const { getRootProps, getInputProps, isDragActive, fileRejections } =
     useDropzone(options);
-  const validationErrors = fileRejections?.map(({ file, errors }) => {
-    return errors.map(error => {
-      return (
-        <InputValidation
-          message={`${file.name} ${error.message}`}
-          key={`${file.name}${error.code}`}
-        />
-      );
+
+  const validationErrors = fileRejections?.reduce((acc, { file, errors }) => {
+    errors.forEach(error => {
+      if (error.code === "too-many-files") {
+        if (!acc.some(e => e.code === "too-many-files")) {
+          acc.push({
+            code: "too-many-files",
+            message: `Cannot exceed a maximum of ${maxFiles} files.`,
+          });
+        }
+      } else {
+        acc.push({
+          code: error.code,
+          message: `${file.name} ${error.message}`,
+        });
+      }
     });
-  });
+
+    return acc;
+  }, [] as { code: string; message: string }[]);
 
   const { buttonLabel, hintText } = getLabels(
     providedButtonLabel,
@@ -267,8 +319,12 @@ export function InputFile({
           />
         )}
       </div>
-      {fileRejections?.length > 0 && (
-        <div className={styles.validationErrors}>{validationErrors}</div>
+      {validationErrors?.length > 0 && (
+        <div className={styles.validationErrors}>
+          {validationErrors.map(error => (
+            <InputValidation message={error.message} key={error.code} />
+          ))}
+        </div>
       )}
     </>
   );

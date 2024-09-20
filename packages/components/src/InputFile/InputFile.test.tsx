@@ -1,6 +1,7 @@
 import React from "react";
-import { fireEvent, render, waitFor } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import axios from "axios";
+import { userEvent } from "@testing-library/user-event";
 import { InputFile } from ".";
 
 jest.mock("axios", () => {
@@ -15,6 +16,7 @@ const testFile = new File(["🔱 Atlantis"], "atlantis.png", {
   type: "image/png",
 });
 
+// eslint-disable-next-line max-statements
 describe("Post Requests", () => {
   function fetchUploadParams(file: File) {
     return Promise.resolve({
@@ -112,9 +114,11 @@ describe("Post Requests", () => {
         onUploadComplete={handleComplete}
       />,
     );
-    const input = container.querySelector("input[type=file]");
+    const input = container.querySelector(
+      "input[type=file]",
+    ) as HTMLInputElement;
 
-    fireEvent.change(input, { target: { files: [testFile] } });
+    await userEvent.upload(input, testFile);
 
     const baseMatch = {
       key: "atlantis.png",
@@ -159,9 +163,11 @@ describe("Post Requests", () => {
       const { container } = render(
         <InputFile getUploadParams={fetchParams} onUploadError={handleError} />,
       );
-      const input = container.querySelector("input[type=file]");
+      const input = container.querySelector(
+        "input[type=file]",
+      ) as HTMLInputElement;
 
-      fireEvent.change(input, { target: { files: [testFile] } });
+      await userEvent.upload(input, testFile);
 
       await waitFor(() => {
         expect(handleError).toHaveBeenCalledWith(
@@ -176,14 +182,18 @@ describe("Post Requests", () => {
       const fetchParams = jest.fn(fetchUploadParams);
       const handleError = jest.fn();
 
-      (axios.request as jest.Mock).mockReturnValue(Promise.reject("error"));
+      (axios.request as jest.Mock).mockRejectedValue(
+        new Error("Failed to upload file"),
+      );
 
       const { container } = render(
         <InputFile getUploadParams={fetchParams} onUploadError={handleError} />,
       );
-      const input = container.querySelector("input[type=file]");
+      const input = container.querySelector(
+        "input[type=file]",
+      ) as HTMLInputElement;
 
-      fireEvent.change(input, { target: { files: [testFile] } });
+      await userEvent.upload(input, testFile);
 
       await waitFor(() => {
         expect(handleError).toHaveBeenCalledWith(
@@ -212,13 +222,41 @@ describe("Post Requests", () => {
           validator={pngFileValidator}
         />,
       );
-      const input = container.querySelector("input[type=file]");
+      const input = container.querySelector(
+        "input[type=file]",
+      ) as HTMLInputElement;
 
-      fireEvent.change(input, { target: { files: [testFile] } });
+      await userEvent.upload(input, testFile);
 
       await waitFor(() => {
         expect(container).toContainHTML("Only .png files are allowed");
       });
+    });
+  });
+
+  describe("when the number of file uploads exceeds maxFiles", () => {
+    it("shows the validation message and does not upload files", async () => {
+      const { container, getByText } = render(
+        <InputFile
+          getUploadParams={fetchUploadParams}
+          maxFilesValidation={{ maxFiles: 2, numberOfCurrentFiles: 0 }}
+          allowMultiple={true}
+        />,
+      );
+
+      const input = container.querySelector(
+        "input[type=file]",
+      ) as HTMLInputElement;
+
+      await userEvent.upload(input, [testFile, testFile, testFile]);
+
+      await waitFor(() => {
+        expect(
+          getByText("Cannot exceed a maximum of 2 files."),
+        ).toBeInTheDocument();
+      });
+
+      expect(axios.request).not.toHaveBeenCalled();
     });
   });
 });
@@ -250,9 +288,11 @@ describe("PUT requests", () => {
         onUploadComplete={handleComplete}
       />,
     );
-    const input = container.querySelector("input[type=file]");
+    const input = container.querySelector(
+      "input[type=file]",
+    ) as HTMLInputElement;
 
-    fireEvent.change(input, { target: { files: [testFile] } });
+    await userEvent.upload(input, testFile);
 
     await waitFor(() => {
       expect(axios.request).toHaveBeenCalledWith({
