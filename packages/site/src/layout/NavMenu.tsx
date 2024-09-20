@@ -1,10 +1,14 @@
-import { Icon, InputText } from "@jobber/components";
+import { InputText } from "@jobber/components";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import styles from "./navmenu.module.css";
 import "./nav-menu.css";
+import { SearchBox } from "./SearchBox";
 import { routes } from "../routes";
 
 export const NavMenu = () => {
+  const [open, setOpen] = useState(false);
+
   return (
     <div
       style={{
@@ -37,8 +41,15 @@ export const NavMenu = () => {
         &nbsp;
       </div>
       <div style={{ padding: "var(--space-base)" }}>
-        <InputText name="hi" placeholder="Search" />
+        <button
+          onClick={() => setOpen(true)}
+          type="button"
+          style={{ background: "transparent", border: 0 }}
+        >
+          <InputText name="hi" placeholder="Search" />
+        </button>
       </div>
+      <SearchBox open={open} setOpen={setOpen} />
       <ul style={{ listStyleType: "none", padding: 0 }}>
         <nav-menu>
           {routes?.map((route, index) => {
@@ -48,9 +59,6 @@ export const NavMenu = () => {
 
                 return (
                   <li className={styles.subMenuLink} key={subindex}>
-                    <div style={{ marginRight: 12 }}>
-                      <Icon name={route.icon} />
-                    </div>
                     <Link
                       className={styles.subRoute}
                       to={subroute.path || "/"}
