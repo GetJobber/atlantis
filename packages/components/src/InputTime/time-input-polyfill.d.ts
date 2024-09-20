@@ -1,4 +1,4 @@
-// IS THIS POLYFILL NEEDED?
+// TO-DO: IS THIS POLYFILL NEEDED? I THINK IT WAS USED IN THE SAFARI STUFF THAT WAS REMOVED
 // Declaring types for polyfill.
 // eslint-disable-next-line @typescript-eslint/no-extraneous-class
 declare class TimePolyfill {
