@@ -1,8 +1,8 @@
-import { ComponentView } from "./components/ComponentView/ComponentView";
 import { HomePage } from "./pages/HomePage";
 import { ComponentsPage } from "./pages/ComponentsPage";
 import { ContentLoader } from "./components/ContentLoader";
 import { DesignPage } from "./pages/DesignPage";
+import { ComponentView } from "./layout/ComponentView";
 
 interface AtlantisRoute {
   path: string;

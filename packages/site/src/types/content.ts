@@ -3,9 +3,14 @@ export interface ContentExport {
   props: unknown;
   component: {
     element: unknown;
-    defaultProps: Record<string, unknown>;
+    defaultProps: Record<string, string>;
   };
   title: string;
   description: string;
-  links: { label: string; url: string }[];
+  links: ContentExportLinks[];
+}
+
+export interface ContentExportLinks {
+  label: string;
+  url: string;
 }

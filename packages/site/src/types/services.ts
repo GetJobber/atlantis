@@ -1,10 +1,14 @@
-export interface FormattedProp {
-  value: string | number | Date | undefined;
-  key: string;
-  description: string;
-  type: "string" | "boolean" | "option" | "callback" | "unknown";
-  options?: Array<string>;
-  id: string;
+export interface FormattedProp extends ValueStateInternal {
+  id?: string;
+  type:
+    | "string"
+    | "boolean"
+    | "option"
+    | "callback"
+    | "unknown"
+    | { name: string }
+    | string;
+  options?: Array<string | undefined>;
 }
 
 export interface DocProps {
@@ -16,22 +20,23 @@ export interface DocProps {
 }
 export type ValueStateInternals = Record<
   string,
-  {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    [x: string]: any;
-    type: string;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    value: any;
-    description: string;
-    required: boolean;
-    key?: string;
-  }
+  ValueStateInternal | undefined
 >;
+
+export interface ValueStateInternal {
+  type: { name: string; includes?: string } | string;
+  value?: string | number | Date | boolean;
+  description: string;
+  required: boolean;
+  key?: string;
+  defaultValue?: string | number | Date;
+}
+
 export type ValueState = Record<string, ValueStateInternals>;
 export interface OptionInternalProps {
   value: FormattedProp;
-  values: ValueStateInternals;
-  updateValue: (key: { key: string }, value: string | (() => void)) => void;
+  values: FormattedProp;
+  updateValue: (key: string, value: string) => void;
 }
 export interface PropStructure {
   displayName: string;

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Select } from "@jobber/components";
 import { OptionInternalProps } from "../types/services";
 
@@ -12,10 +11,10 @@ export const OptionInternal = ({
       placeholder={value.key}
       value={value.value}
       onChange={val => {
-        updateValue(values.key as any, val as string);
+        updateValue(values.key || "", val as string);
       }}
     >
-      {values.options?.map((option: any, index: any) => {
+      {values.options?.map((option, index) => {
         return (
           <option key={index} value={option}>
             {option}

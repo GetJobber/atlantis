@@ -2,7 +2,6 @@ import { Box, Button, Card } from "@jobber/components";
 import reactElementToJSXString from "react-element-to-jsx-string";
 import { Children, PropsWithChildren, useEffect, useState } from "react";
 import prism from "prismjs";
-import "./RenderComponentShowCode.css";
 
 export const RenderComponentShowCode = ({ children }: PropsWithChildren) => {
   const [codeVisible, setCodeVisible] = useState(false);

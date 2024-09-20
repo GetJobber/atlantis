@@ -1,52 +1,57 @@
 import { DataList, Grid, InputText, Switch } from "@jobber/components";
 import { ReactNode, useMemo, useState } from "react";
 import { OptionInternal } from "./OptionInternal";
-import { ValueStateInternals } from "../types/services";
+import { FormattedProp } from "../types/services";
 
 export const PropsList = ({
   updateValue,
   values,
 }: {
-  readonly updateValue: (
-    key: string,
-    value: string | number | Date | boolean,
-  ) => void;
-  readonly values: ValueStateInternals;
+  readonly updateValue: (key: string, value: string | number | boolean) => void;
+  readonly values: Record<
+    string,
+    { type: string; value: string; description: string; required: boolean }
+  >;
 }) => {
   const [search, setSearch] = useState("");
 
   const defaultPropsMapped = useMemo(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const components: any[] = [];
+    const components: Array<{
+      key: string;
+      description: string;
+      component?: JSX.Element;
+      required?: string;
+      id: string;
+    }> = [];
     Object.keys(values).forEach((key, index) => {
       let component;
       const item = values[key];
 
-      if (item.type.includes("(")) {
+      if (item?.type?.includes?.("(")) {
         component = (
           <InputText
             multiline
             placeholder={item.type as string}
             value={item.value}
             onChange={val => {
-              updateValue(key, val);
+              updateValue(key, val as string);
             }}
           />
         );
-      } else if (item.type === "string") {
+      } else if (item?.type === "string") {
         component = (
           <InputText
-            placeholder={item.value}
+            placeholder={item.value as string}
             value={item.value as string}
             onChange={val => {
-              updateValue(key, val);
+              updateValue(key, val as string);
             }}
           />
         );
-      } else if (item.type === "boolean") {
+      } else if (item?.type === "boolean") {
         component = (
           <Switch
-            value={item.value}
+            value={Boolean(item.value)}
             onChange={val => {
               updateValue(key, val);
             }}
@@ -62,18 +67,23 @@ export const PropsList = ({
           <OptionInternal
             key={index}
             value={item}
-            values={{
-              description: item.description,
-              key: key,
-              options: keys,
-              value: item.value,
-            }}
+            values={
+              {
+                description: item.description,
+                key: key,
+                options: keys,
+                value: item.value,
+                type: item.type,
+                required: item.required,
+              } as FormattedProp
+            }
             updateValue={updateValue}
           />
         );
       }
 
       components.push({
+        id: key,
         key: key,
         description: item.description,
         component,

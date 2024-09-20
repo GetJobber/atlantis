@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "@jobber/design/foundation.css";
 import "@jobber/components/dist/styles.css";
-import "./index.css";
+import "./main.css";
 import { BrowserRouter } from "react-router-dom";
 import { Layout } from "./layout/Layout";
 

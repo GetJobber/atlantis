@@ -2,6 +2,7 @@ import { PropsWithChildren } from "react";
 import { Route, Switch } from "react-router";
 import { NavMenu } from "./NavMenu";
 import { routes } from "../routes";
+import "./code-theme.css";
 
 export const Layout = () => {
   return (

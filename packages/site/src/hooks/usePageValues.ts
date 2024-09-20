@@ -1,37 +1,41 @@
 import { useMemo, useState } from "react";
-import { ValueState, ValueStateInternals } from "../types/services";
+import { ValueStateInternal, ValueStateInternals } from "../types/services";
 
 export const usePageValues = (
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  generatedProps: any,
-  defaultProps: ValueState,
+  generatedProps: Array<{ props: ValueStateInternals }>,
+  defaultProps: Record<string, string | number | boolean | undefined>,
 ) => {
-  const [values, setValues] = useState<ValueState>(defaultProps);
+  const [values, setValues] =
+    useState<Record<string, string | number | boolean | undefined>>(
+      defaultProps,
+    );
 
-  const updateValue = (key: string, value: ValueStateInternals) => {
-    setValues(prev => ({
-      ...prev,
-      [key]: value,
-    }));
+  const updateValue = (
+    key: string,
+    value: string | number | boolean | undefined,
+  ) => {
+    if (key) {
+      setValues(prev => ({
+        ...prev,
+        [key]: value,
+      }));
+    }
   };
 
   const mergedValues = useMemo(() => {
-    const mergedProps: ValueStateInternals = {};
+    const mergedProps: Record<string, ValueStateInternal> = {};
 
     if (generatedProps) {
       Object.keys(generatedProps?.[0]?.props).map(key => {
         const prop = generatedProps?.[0].props[key];
 
         const extractedValue =
-          typeof values[key] !== "undefined" ? values[key] : prop.defaultValue;
+          typeof values[key] !== "undefined" ? values[key] : prop?.defaultValue;
         mergedProps[key] = {
-          value:
-            typeof extractedValue?.value !== "undefined"
-              ? extractedValue?.value
-              : extractedValue,
-          type: prop.type.name,
-          required: prop.required,
-          description: prop.description,
+          value: extractedValue as string,
+          type: (typeof prop?.type !== "string" && prop?.type.name) || "",
+          required: prop?.required || false,
+          description: prop?.description || "",
         };
       });
     }
@@ -39,17 +43,25 @@ export const usePageValues = (
     return mergedProps;
   }, [generatedProps, values]);
 
+  /**
+   * This isn't nice.
+   * We need to convert the functions in the values to actual functions so they're executable.
+   * Do you know of a better way? Let's do that instead!
+   */
   const valuesWithFunctions = useMemo(() => {
-    const mergedProps: ValueState = { ...values };
+    const mergedProps: Record<string, string | undefined | number | boolean> = {
+      ...values,
+    };
 
     for (const key in mergedProps) {
       if (Object.hasOwn(mergedProps, key)) {
         let prop = mergedProps[key];
 
         if (
-          typeof prop?.includes === "function" &&
-          prop?.includes("(") &&
-          prop?.includes("=>")
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          typeof (prop as any).includes === "function" &&
+          (prop as unknown as string)?.includes("(") &&
+          (prop as unknown as string)?.includes("=>")
         ) {
           try {
             // eslint-disable-next-line no-new-func
@@ -72,6 +84,7 @@ export const usePageValues = (
     values: mergedValues,
     updateValue,
     stateValues: values,
-    stateValueWithFunction: valuesWithFunctions,
+    stateValueWithFunction:
+      valuesWithFunctions as unknown as ValueStateInternals,
   };
 };

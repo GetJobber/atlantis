@@ -1,4 +1,4 @@
-import { RenderComponentShowCode } from "./RenderComponentShowCode/RenderComponentShowCode";
+import { RenderComponentShowCode } from "./RenderComponentShowCode";
 
 export const Meta = () => <></>;
 export const Story = () => <></>;
