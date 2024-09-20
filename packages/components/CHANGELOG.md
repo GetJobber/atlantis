@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.34.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.33.0...@jobber/components@5.34.0) (2024-09-20)
+
+
+### Features
+
+* **components:** Add maxFiles prop to InputFile ([#2007](https://github.com/GetJobber/atlantis/issues/2007)) ([69b7622](https://github.com/GetJobber/atlantis/commit/69b7622b65f0d369ffdc8a78b49dd3bd2cbe232f))
+
+
+
+
+
+# [5.33.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.32.0...@jobber/components@5.33.0) (2024-09-18)
+
+
+### Features
+
+* **components:** update Chip.Prefix to accept more than Icon and Avatar ([#2020](https://github.com/GetJobber/atlantis/issues/2020)) ([1a6c72c](https://github.com/GetJobber/atlantis/commit/1a6c72ca9eedcefc77d251da360fc426fbd35858))
+
+
+
+
+
 # [5.32.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.31.1...@jobber/components@5.32.0) (2024-09-17)
 
 

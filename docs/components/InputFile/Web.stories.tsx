@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import {
   FileUpload,
@@ -48,6 +48,82 @@ const StatefulTemplate: ComponentStory<typeof InputFile> = args => {
 
   function handleUpload(file: FileUpload) {
     setFiles(oldFiles => updateFiles(file, oldFiles));
+  }
+};
+
+const FileSizeValidatorTemplate: ComponentStory<typeof InputFile> = args => {
+  const [files, setFiles] = useState<FileUpload[]>([]);
+  const maxFileSize = 2 * 1024 * 1024;
+  const fileSizeValidator = useCallback(
+    (file: File) => {
+      if (file.size > maxFileSize) {
+        return {
+          code: "file-too-large",
+          message: `File size should not exceed ${
+            maxFileSize / (1024 * 1024)
+          } MB.`,
+        };
+      }
+
+      return null;
+    },
+    [maxFileSize],
+  );
+
+  return (
+    <>
+      <Heading level={4}>Attempt to upload an image larger than 2MB</Heading>
+      <InputFile
+        {...args}
+        onUploadStart={handleUpload}
+        onUploadProgress={handleUpload}
+        onUploadComplete={handleUpload}
+        validator={fileSizeValidator}
+        allowedTypes="basicImages"
+        description="JPEG, JPG or PNG up to 2MB each"
+      />
+      {files.map(file => (
+        <FormatFile file={file} key={file.key} />
+      ))}
+    </>
+  );
+
+  function handleUpload(file: FileUpload) {
+    setFiles(oldFiles => updateFiles(file, oldFiles));
+  }
+};
+
+const MaxFilesTemplate: ComponentStory<typeof InputFile> = args => {
+  const [files, setFiles] = useState<FileUpload[]>([]);
+
+  return (
+    <>
+      <Heading level={4}>Attempt to upload more than 3 files</Heading>
+      <InputFile
+        {...args}
+        onUploadStart={handleUpload}
+        onUploadProgress={handleUpload}
+        onUploadComplete={handleUpload}
+        maxFilesValidation={{ maxFiles: 3, numberOfCurrentFiles: files.length }}
+      />
+      {files.map(file => (
+        <FormatFile
+          file={file}
+          key={file.key}
+          onDelete={() => {
+            handleDelete(file);
+          }}
+        />
+      ))}
+    </>
+  );
+
+  function handleUpload(file: FileUpload) {
+    setFiles(oldFiles => updateFiles(file, oldFiles));
+  }
+
+  function handleDelete(file: FileUpload) {
+    setFiles(oldFiles => oldFiles.filter(f => f.key !== file.key));
   }
 };
 
@@ -110,9 +186,21 @@ ImagesOnly.args = {
   getUploadParams: () => Promise.resolve({ url: "https://httpbin.org/post" }),
 };
 
+export const MaxFilesLimit = MaxFilesTemplate.bind({});
+MaxFilesLimit.args = {
+  allowMultiple: true,
+  getUploadParams: () => Promise.resolve({ url: "https://httpbin.org/post" }),
+};
+
 export const WithDescription = StatefulTemplate.bind({});
 WithDescription.args = {
   allowMultiple: true,
   getUploadParams: () => Promise.resolve({ url: "https://httpbin.org/post" }),
   description: "JPEG, HEIC, PNG up to 5MB each",
+};
+
+export const FileSizeValidator = FileSizeValidatorTemplate.bind({});
+FileSizeValidator.args = {
+  allowMultiple: true,
+  getUploadParams: () => Promise.resolve({ url: "https://httpbin.org/post" }),
 };
