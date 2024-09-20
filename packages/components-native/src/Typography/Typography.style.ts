@@ -250,7 +250,7 @@ export const typographyTokens: { [index: string]: TextStyle } = {
     color: tokens["color-critical"],
   },
 
-  criticalSurace: {
+  criticalSurface: {
     color: tokens["color-critical--surface"],
   },
 
@@ -327,10 +327,6 @@ export const typographyTokens: { [index: string]: TextStyle } = {
 
   disabledSecondary: {
     color: tokens["color-disabled--secondary"],
-  },
-
-  surface: {
-    color: tokens["color-surface"],
   },
 
   // Workflow
