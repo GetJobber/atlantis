@@ -4,6 +4,10 @@ import { Checkbox } from "@jobber/components/Checkbox";
 import { DataListObject } from "@jobber/components/DataList/DataList.types";
 import { useBatchSelect } from "@jobber/components/DataList/hooks/useBatchSelect";
 import styles from "../../DataList.css";
+import { useGetItemActions } from "../../hooks/useGetItemActions";
+import { useDataListLayoutContext } from "../../context/DataListLayoutContext";
+import { DataListLayoutActionsInternal } from "../DataListLayoutActions/DataListLayoutActions";
+import { useMediaQuery } from "../../hooks/useMediaQuery";
 
 interface ListItemInternalProps<T extends DataListObject> {
   readonly children: JSX.Element;
@@ -22,16 +26,24 @@ export function DataListItemInternal<T extends DataListObject>({
     selected,
     onSelect,
   } = useBatchSelect();
-  if (!canSelect) return children;
+  const { hasActions } = useGetItemActions(item);
+  const { hasInLayoutActions } = useDataListLayoutContext();
+  const isCoarsePointer = useMediaQuery("(any-pointer: coarse)");
+  const classesToApply = classNames({
+    [styles.selectable]: canSelect,
+    [styles.selected]: hasAtLeastOneSelected,
+    [styles.hasActions]: isCoarsePointer && !hasInLayoutActions && hasActions,
+  });
 
   return (
-    <div
-      className={classNames(styles.selectable, {
-        [styles.selected]: hasAtLeastOneSelected,
-      })}
-    >
+    <div className={classesToApply}>
       {children}
-      <Checkbox checked={getIsChecked()} onChange={handleChange} />
+      {canSelect && (
+        <Checkbox checked={getIsChecked()} onChange={handleChange} />
+      )}
+      {isCoarsePointer && !hasInLayoutActions && hasActions && (
+        <DataListLayoutActionsInternal isManagedByDataList={true} />
+      )}
     </div>
   );
 

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { Children } from "react";
+import classNames from "classnames";
 import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
 import { Breakpoints } from "@jobber/components/DataList/DataList.const";
 import {
@@ -17,8 +18,10 @@ export function DataListHeader() {
     headerVisibility = { xs: true, sm: true, md: true, lg: true, xl: true },
     headers,
     layoutBreakpoints,
+    itemActionComponent,
   } = useDataListContext();
   const { hasAtLeastOneSelected } = useBatchSelect();
+  const hasInLayoutActions = Children.toArray(itemActionComponent).length > 0;
 
   const size = getVisibleSize();
   const { layout } = useActiveLayout();
@@ -31,7 +34,11 @@ export function DataListHeader() {
   if (!headerData) return null;
 
   return (
-    <div className={styles.headerTitles}>
+    <div
+      className={classNames(styles.headerTitles, {
+        [styles.hasActions]: hasInLayoutActions,
+      })}
+    >
       <DataListHeaderCheckbox>{layout(headerData)}</DataListHeaderCheckbox>
     </div>
   );

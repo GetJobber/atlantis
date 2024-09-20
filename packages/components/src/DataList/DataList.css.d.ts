@@ -9,6 +9,7 @@ declare const styles: {
   readonly "listItemClickable": string;
   readonly "active": string;
   readonly "selectable": string;
+  readonly "hasActions": string;
   readonly "selectAllCheckbox": string;
   readonly "visible": string;
   readonly "selected": string;
