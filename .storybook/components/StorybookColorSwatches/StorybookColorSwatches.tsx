@@ -7,12 +7,12 @@ import { Content } from "@jobber/components/Content";
 import { showToast } from "@jobber/components/Toast";
 import styles from "./StorybookColorSwatches.module.css";
 
-interface ColorSwatchesProps {
+interface StorybookColorSwatchesProps {
   readonly colors: string[];
   readonly description?: string;
 }
 
-export function ColorSwatches({ colors }: ColorSwatchesProps) {
+export function StorybookColorSwatches({ colors }: StorybookColorSwatchesProps) {
   return (
     <Content>
       {colors.map((color: string) => (
