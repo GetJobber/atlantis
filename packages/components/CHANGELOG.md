@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.35.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.34.0...@jobber/components@5.35.0) (2024-09-20)
+
+
+### Features
+
+* **components:** improve positioning of DataList actions [JOB-99926] ([#1915](https://github.com/GetJobber/atlantis/issues/1915)) ([68d7d77](https://github.com/GetJobber/atlantis/commit/68d7d779e05cd5598a3fe008397280d66875bf3a))
+
+
+
+
+
 # [5.34.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.33.0...@jobber/components@5.34.0) (2024-09-20)
 
 
