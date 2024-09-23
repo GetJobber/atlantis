@@ -1,6 +1,13 @@
 import { useEffect } from "react";
 import prism from "prismjs";
 
+/**
+ * This is to forcibly remove all 'language-tsx' usages on the page and replace them with 'language-javascript'
+ *
+ * This is for prism, to get proper styling in place.
+ *
+ * @returns {updateStyles}
+ */
 export const useStyleUpdater = () => {
   const updateStyles = () => {
     // Tabs fires this update before updating its own DOM.

@@ -13,13 +13,17 @@ import { useStyleUpdater } from "../hooks/useStyleUpdater";
 import { useErrorCatcher } from "../hooks/useErrorCatcher";
 import { useComponentAndCode } from "../hooks/useComponentAndCode";
 
+/**
+ * Layout for displaying a Component documentation page. This will display the component, props, and code.
+ * This isn't really a Layout component, but it's not really a component component either. We could make a "Views" directory maybe, or a "Template" directory?
+ * @returns ReactNode
+ */
 export const ComponentView = () => {
   const { name = "" } = useParams<{ name: string }>();
   const PageMeta = SiteContent[name];
   useErrorCatcher();
   const { updateStyles } = useStyleUpdater();
-  const { updateValue, stateValues, stateValueWithFunction } =
-    usePageValues(PageMeta);
+  const { stateValues, stateValueWithFunction } = usePageValues(PageMeta);
 
   const ComponentContent = PageMeta.content as () => ReactNode;
 
@@ -53,7 +57,7 @@ export const ComponentView = () => {
                     </Content>
                   </Tab>
                   <Tab label="Props">
-                    <PropsList values={stateValues} updateValue={updateValue} />
+                    <PropsList values={stateValues} />
                   </Tab>
                   <Tab label="Code">
                     <CodeViewer code={code} />

@@ -1,5 +1,11 @@
 import { Box, Button, showToast } from "@jobber/components";
 
+/**
+ * Shows code with a copy button.
+ *
+ * @param param0 {code: string}
+ * @returns ReactNode
+ */
 export const CodeViewer = ({ code }: { readonly code: string }) => {
   return (
     <Box>

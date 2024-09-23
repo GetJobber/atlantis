@@ -4,6 +4,10 @@ import { NavMenu } from "./NavMenu";
 import { routes } from "../routes";
 import "./code-theme.css";
 
+/**
+ * Layout for whole application. This will display the NavMenu and the content of the page.
+ * @returns ReactNode
+ */
 export const Layout = () => {
   return (
     <LayoutWrapper>

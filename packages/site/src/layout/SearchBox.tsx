@@ -12,6 +12,15 @@ import { ContentCard } from "../components/ContentCard";
 import { componentList } from "../componentList";
 import { designList } from "../designList";
 
+/**
+ * Full Page Search Modal
+ *
+ * This lists all the components and design items in the system,
+ * for filtering and searching.
+ *
+ * @param param0 {open,setOpen}
+ * @returns ReactNode
+ */
 export const SearchBox = ({
   open,
   setOpen,

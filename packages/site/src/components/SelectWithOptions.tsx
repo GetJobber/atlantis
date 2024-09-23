@@ -1,12 +1,18 @@
 import { Select } from "@jobber/components";
-import { OptionInternalProps } from "../types/services";
+import { SelectWithOptionsProps } from "../types/services";
 
-export const OptionInternal = ({
+/**
+ * An opinionated wrapper for our Select component. We could just use Select and Options on their own
+ * but this was created to make the code a bit more readable. If this bothers you, feel free to remove it!
+ * @param SelectWithOptionsProps
+ * @returns ReactNode
+ */
+export const SelectWithOptions = ({
   value,
   values,
   keyIn,
   updateValue,
-}: OptionInternalProps) => {
+}: SelectWithOptionsProps) => {
   return (
     <Select
       placeholder={keyIn}

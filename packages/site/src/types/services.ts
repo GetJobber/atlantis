@@ -33,7 +33,7 @@ export interface ValueStateInternal {
 }
 
 export type ValueState = Record<string, ValueStateInternals>;
-export interface OptionInternalProps {
+export interface SelectWithOptionsProps {
   value: string;
   keyIn: string;
   values: Array<string>;

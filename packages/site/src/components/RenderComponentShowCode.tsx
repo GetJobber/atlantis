@@ -3,6 +3,11 @@ import reactElementToJSXString from "react-element-to-jsx-string";
 import { Children, PropsWithChildren, useEffect, useState } from "react";
 import prism from "prismjs";
 
+/**
+ * This is a drop-in replacement for the <Canvas> component from Storybook. It renders the comnent as provided, and then shows the code for that component.
+ * @param param0 {children:ReactNode}
+ * @returns ReactNode
+ */
 export const RenderComponentShowCode = ({ children }: PropsWithChildren) => {
   const [codeVisible, setCodeVisible] = useState(false);
 

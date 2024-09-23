@@ -1,6 +1,11 @@
 import { Box, Content, Heading, Link } from "@jobber/components";
 import { ContentExportLinks } from "../types/content";
 
+/**
+ * Lists some links, typically in the top right corner of the ComponentView.
+ * @param param0 {links: ContentExportLinks[]}
+ * @returns ReactNode
+ */
 export const ComponentLinks = ({
   links,
 }: {

@@ -5,6 +5,11 @@ interface BodyBlockProps extends PropsWithChildren {
   readonly title: string;
 }
 
+/**
+ * A simple opinionated wrapper for a block of content within a PageBlock
+ * @param param0 {children:ReactNode, title: string}
+ * @returns ReactNode
+ */
 export const BodyBlock = ({ children, title }: BodyBlockProps) => {
   return (
     <Box padding={"extravagant"}>

@@ -8,6 +8,10 @@ import {
   Page,
 } from "@jobber/components";
 
+/**
+ * Instructions that show up if a node cannot be found, typically in the ComponentView.
+ * @returns ReactNode
+ */
 export const ComponentNotFound = () => {
   return (
     <Page width="fill" title="Component not found">

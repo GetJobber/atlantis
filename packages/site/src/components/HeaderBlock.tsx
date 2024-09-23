@@ -8,6 +8,14 @@ interface HeaderBlockProps {
   readonly to?: string;
 }
 
+/**
+ * Displays at the top of the home page, and any other main content page.
+ *
+ * A big block of color with a title, body, and a call to action button.
+ *
+ * @param param0 {title:string, body:string, ctaLabel:string, to:string}
+ * @returns ReactNode
+ */
 export const HeaderBlock = ({
   title,
   body,

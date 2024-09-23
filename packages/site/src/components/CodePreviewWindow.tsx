@@ -1,5 +1,10 @@
 import { PropsWithChildren } from "react";
 
+/**
+ * Small wrapping window around the code preview that shows up at the top of the ComponentView (typically)
+ * @param param0 {children: ReactNode}
+ * @returns ReactNode
+ */
 export const CodePreviewWindow = ({ children }: PropsWithChildren) => {
   return (
     <div

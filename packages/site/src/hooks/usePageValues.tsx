@@ -2,21 +2,28 @@ import { useMemo, useState } from "react";
 import { InputText, Switch, Text } from "@jobber/components";
 import { ValueStateInternals } from "../types/services";
 import { ContentExport } from "../types/content";
-import { OptionInternal } from "../components/OptionInternal";
+import { SelectWithOptions } from "../components/SelectWithOptions";
 
+/**
+ * This is doing a few different things.
+ *
+ * 1. Any change to the PropList will call updateValue, which will update the values state.
+ * 2. The stateValues are memoized to prevent re-renders and modified to the DataList format.
+ * 3. Any value that is a straight function is converted to a real function so it can be used in the actual component.
+ * 4. There are two utility functions that may move out of here:
+ *   - isFunction: Checks if a string is a function
+ *  - determineListComponent: Determines what component to use based on the type of the prop
+ * @param meta Content Meta
+ * @returns Values to be used on the ContentView page
+ */
 export const usePageValues = (meta: ContentExport) => {
-  const [values, setValues] = useState<
-    Record<string, string | number | boolean | undefined>
-  >(meta.component.defaultProps);
+  const [values, setValues] = useState(meta.component.defaultProps);
 
-  const updateValue = (
-    key: string,
-    value: string | number | boolean | undefined,
-  ) => {
+  const updateValue = (key: string, value: string | number | boolean) => {
     if (key) {
       setValues(prev => ({
         ...prev,
-        [key]: value,
+        [key]: value as string,
       }));
     }
   };
@@ -31,11 +38,11 @@ export const usePageValues = (meta: ContentExport) => {
           return {
             id: index,
             key,
-            required: prop.required ? "*" : "",
-            description: prop.description,
+            required: prop?.required ? "*" : "",
+            description: prop?.description,
             component: determineListComponent({
               key,
-              type: prop.type.name,
+              type: prop?.type.name || "",
               placeholder: key,
               value: values[key] as string,
               updateValue,
@@ -133,7 +140,7 @@ const determineListComponent = ({
       .map(d => d.trim());
 
     return (
-      <OptionInternal
+      <SelectWithOptions
         value={value}
         keyIn={key}
         values={keys}

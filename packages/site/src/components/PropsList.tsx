@@ -1,18 +1,23 @@
 import { Content, DataList, Grid, InputText } from "@jobber/components";
 import { ReactNode, useState } from "react";
 
+/**
+ * All the Props for a component. This component receives an Array of DataListOptions, and will generate mulitple DataLists as a result.
+ * This is to better support compound components.
+ * @param param0 {values}
+ * @returns
+ */
 export const PropsList = ({
   values,
 }: {
-  readonly updateValue: (key: string, value: string | number | boolean) => void;
   readonly values: Array<{
     name: string;
     props: Array<{
       key: string;
-      description: string;
+      description: string | undefined;
       component: ReactNode;
       required: string;
-      id: string;
+      id: string | number;
     }>;
   }>;
 }) => {

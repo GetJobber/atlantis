@@ -20,6 +20,11 @@ interface PageBlockProps {
   };
 }
 
+/**
+ * Opinionated layout for a page. Has a Header, Body and list of content cards.
+ * @param param0 PageBlockProps
+ * @returns
+ */
 export const PageBlock = ({ structure }: PageBlockProps) => {
   return (
     <PageWrapper>

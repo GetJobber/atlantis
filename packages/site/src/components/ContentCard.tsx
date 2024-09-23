@@ -3,6 +3,12 @@ import { useHistory } from "react-router";
 import { ComponentWrapper } from "./ComponentWrapper";
 import { ContentCardProps } from "../types/components";
 
+/**
+ * Opinionated card for displaying links to our content
+ *
+ * @param param0 {title: string, to: string, component: ReactNode, imageURL: string, onClick: () => void}
+ * @returns ReactNode
+ */
 export const ContentCard = ({
   title,
   to,

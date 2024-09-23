@@ -1,9 +1,22 @@
 import { RenderComponentShowCode } from "./RenderComponentShowCode";
-
+/**
+ * These are to Override uses within Storybook.
+ *
+ * If a component in an MDX file on the Storybook side is giving you issues, this is where you override it.
+ *
+ * You can either hide it like Meta/Story/ArgsTable, or you can replace it with a custom component.
+ *
+ * @returns
+ */
 export const Meta = () => <></>;
 export const Story = () => <></>;
 export const ArgsTable = () => <></>;
 
+/**
+ * Drop-in Replacement for the Figma component from Storybook. Just embeds the Figma document using their embed API.
+ * @param param0 url to Figma document
+ * @returns
+ */
 export const Figma = ({
   url,
 }: {

@@ -1,3 +1,5 @@
+// Gets the storybook URL depending on where you're calling from.
+
 export const getStorybookUrl = (path: string, type = "legacy") => {
   let hostname = "https://atlantis.getjobber.com/";
 

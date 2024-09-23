@@ -5,6 +5,10 @@ import { SearchBox } from "./SearchBox";
 import { routes } from "../routes";
 import { JobberLogo } from "../assets/JobberLogo.svg";
 
+/**
+ * Left side navigation menu for the application.
+ * @returns ReactNode
+ */
 export const NavMenu = () => {
   const [open, setOpen] = useState(false);
 
