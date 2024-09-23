@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.35.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.35.1...@jobber/components@5.35.2) (2024-09-23)
+
+
+### Bug Fixes
+
+* **components:** Keep dismiss on drawers aligned to top when titles wrap ([#2011](https://github.com/GetJobber/atlantis/issues/2011)) ([c866e97](https://github.com/GetJobber/atlantis/commit/c866e97d850ab256acfdcdb47868d154239216ae))
+
+
+
+
+
 ## [5.35.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.35.0...@jobber/components@5.35.1) (2024-09-23)
 
 
