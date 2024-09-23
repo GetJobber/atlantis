@@ -9,6 +9,7 @@ Shared hooks for components in Atlantis.
 - [useCollectionQuery](../?path=/docs/hooks-usecollectionquery--docs)
 - [useFormState](../?path=/docs/hooks-useformstate--docs)
 - [useIsMounted](../?path=/docs/hooks-useismounted--docs)
+- [useOnMount](../?path=/docs/hooks-useonmount--docs)
 - [useLiveAnnounce](../?path=/docs/hooks-useliveannounce--docs)
 - [useOnKeyDown](../?path=/docs/hooks-useonkeydown--docs)
 - [usePasswordStrength](../?path=/docs/hooks-usepasswordstrength--docs)
@@ -18,4 +19,4 @@ Shared hooks for components in Atlantis.
 
 ## Installing
 
-`npm install hooks @jobber/hooks`
+`npm install @jobber/hooks`
