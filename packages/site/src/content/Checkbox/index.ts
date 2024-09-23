@@ -3,6 +3,7 @@ import { Checkbox } from "@jobber/components";
 import Content from "@atlantis/docs/components/Checkbox/Checkbox.stories.mdx";
 import Props from "./Checkbox.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: Content,
@@ -10,7 +11,6 @@ export default {
   component: {
     element: Checkbox,
     defaultProps: { label: "Checkbox" },
-    code: `<Checkbox label="Checkbox" />`,
   },
   title: "Checkbox",
   description:
@@ -18,15 +18,7 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-animatedswitcher-web--docs",
-    },
-    {
-      label: "More Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-animatedswitcher-web--docs",
-    },
-    {
-      label: "Another place entirely!",
-      url: "http://localhost:6006/?path=/docs/components-utilities-animatedswitcher-web--docs",
+      url: getStorybookUrl("?path=/docs/components-selections-checkbox--docs"),
     },
   ],
 } as ContentExport;

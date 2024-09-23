@@ -1,10 +1,10 @@
 import { Autocomplete as AutocompleteRoot } from "@jobber/components";
-// eslint-disable-next-line import/no-unresolved
 import Content from "@atlantis/docs/components/Autocomplete/Autocomplete.stories.mdx";
 import { PropsWithChildren, useState } from "react";
 import { Option } from "@jobber/components/Autocomplete";
 import Props from "./Autocomplete.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export const Autocomplete = (
   props: PropsWithChildren<{
@@ -38,7 +38,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-Autocomplete-web--docs",
+      url: getStorybookUrl(
+        "?path=/story/components-forms-and-inputs-autocomplete-web--basic",
+      ),
     },
   ],
 } as ContentExport;

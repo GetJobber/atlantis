@@ -1,7 +1,7 @@
 import { Switch } from "@jobber/components";
-// eslint-disable-next-line import/no-unresolved
 import Content from "@atlantis/docs/components/Switch/Switch.stories.mdx";
 import Props from "./Switch.props.json";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: Content,
@@ -9,7 +9,6 @@ export default {
   component: {
     element: Switch,
     props: {},
-    code: `<Switch />`,
     defaultProps: {},
   },
   title: "Switch",
@@ -17,7 +16,7 @@ export default {
   links: [
     {
       label: "Switch Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-animatedswitcher-web--docs",
+      url: getStorybookUrl("?path=/docs/components-selections-switch--docs"),
     },
   ],
 };

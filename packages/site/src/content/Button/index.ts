@@ -1,8 +1,8 @@
 import { Button } from "@jobber/components";
-// eslint-disable-next-line import/no-unresolved
 import Content from "@atlantis/docs/components/Button/Button.stories.mdx";
 import Props from "./Button.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: Content,
@@ -17,15 +17,18 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-animatedswitcher-web--docs",
+      url: getStorybookUrl("?path=/docs/components-actions-button--docs"),
     },
     {
-      label: "More Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-animatedswitcher-web--docs",
+      label: "Web - Basic",
+      url: getStorybookUrl("?path=/story/components-actions-button-web--basic"),
     },
+
     {
-      label: "Another place entirely!",
-      url: "http://localhost:6006/?path=/docs/components-utilities-animatedswitcher-web--docs",
+      label: "Mobile - Basic",
+      url: getStorybookUrl(
+        "?path=/story/components-actions-button-mobile--basic",
+      ),
     },
   ],
 } as ContentExport;

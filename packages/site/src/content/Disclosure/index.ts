@@ -1,7 +1,7 @@
 import { Disclosure } from "@jobber/components";
-// eslint-disable-next-line import/no-unresolved
 import Content from "@atlantis/docs/components/Disclosure/Disclosure.stories.mdx";
 import Props from "./Disclosure.props.json";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: Content,
@@ -9,15 +9,16 @@ export default {
   component: {
     element: Disclosure,
     props: { label: "Disclosure" },
-    code: `<Disclosure title="Disclosure">Here are the details contained within the disclosure</Disclosure>`,
-    defaultProps: { strings: { title: "Disclosure" } },
+    defaultProps: { title: "Disclosure" },
   },
   title: "Disclosure",
   description: "Disclosure is neater.",
   links: [
     {
       label: "Disclosure Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-animatedswitcher-web--docs",
+      url: getStorybookUrl(
+        "?path=/docs/components-layouts-and-structure-disclosure--docs",
+      ),
     },
   ],
 };

@@ -2,10 +2,10 @@ import {
   AnimatedSwitcher as AnimatedSwitcherRoot,
   Text,
 } from "@jobber/components";
-// eslint-disable-next-line import/no-unresolved
 import AnimatedSwitcherContent from "@atlantis/docs/components/AnimatedSwitcher/AnimatedSwitcher.stories.mdx";
 import Props from "./AnimatedSwitcher.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: AnimatedSwitcherContent,
@@ -22,7 +22,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-AnimatedSwitcher-web--docs",
+      url: getStorybookUrl(
+        "?path=/docs/components-utilities-animatedswitcher--docs",
+      ),
     },
   ],
 } as ContentExport;

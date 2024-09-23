@@ -1,8 +1,8 @@
 import { Chip } from "@jobber/components";
-// eslint-disable-next-line import/no-unresolved
 import Content from "@atlantis/docs/components/Chip/Chip.stories.mdx";
 import Props from "./Chip.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: Content,
@@ -16,8 +16,8 @@ export default {
     "Chip allows selections and actions with a robust variety of content and presentation methods.",
   links: [
     {
-      label: "Chip Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-animatedswitcher-web--docs",
+      label: "Storybook",
+      url: getStorybookUrl("?path=/docs/components-selections-chip--docs"),
     },
   ],
 } as ContentExport;

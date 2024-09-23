@@ -5,11 +5,11 @@ import {
   Flex,
   Text,
 } from "@jobber/components";
-// eslint-disable-next-line import/no-unresolved
 import AnimatedPresenceContent from "@atlantis/docs/components/AnimatedPresence/AnimatedPresence.stories.mdx";
 import { PropsWithChildren, useState } from "react";
 import Props from "./AnimatedPresence.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export const AnimatedPresence = (props: PropsWithChildren) => {
   const [switched, setSwitched] = useState(false);
@@ -57,7 +57,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-AnimatedPresence-web--docs",
+      url: getStorybookUrl(
+        "?path=/docs/components-utilities-animatedpresence--docs",
+      ),
     },
   ],
 } as ContentExport;
