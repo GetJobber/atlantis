@@ -1,5 +1,6 @@
 .fadeContainer {
   --overflow-fade--offset: var(--space-smaller);
+  --overflow-fade--negative-offset: calc(var(--overflow-fade--offset) * -1);
 
   align-self: center;
   position: relative;
@@ -19,7 +20,7 @@
 }
 
 .overflowGrid {
-  margin: var(--overflow-fade--offset);
+  margin: var(--overflow-fade--negative-offset);
   padding: var(--overflow-fade--offset);
   overflow-x: auto;
   overflow-y: visible;
@@ -45,10 +46,10 @@
 }
 
 .overflowLeft::before {
-  left: var(--overflow-fade--offset);
+  left: var(--overflow-fade--negative-offset);
 }
 
 .overflowRight::after {
   --data-list-overflow-shadow-angle: to left;
-  right: var(--overflow-fade--offset);
+  right: var(--overflow-fade--negative-offset);
 }
