@@ -1,8 +1,0 @@
-nav-menu {
-  display: block;
-}
-
-nav-menu a {
-  display: block;
-  margin-bottom: var(--space-base);
-}

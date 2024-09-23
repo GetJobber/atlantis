@@ -3,7 +3,6 @@
 		"prefix": "componentTemplate",
 		"body": [
 			"import { ${1:ComponentName} } from \"@jobber/components\";",
-			"// eslint-disable-next-line import/no-unresolved",
 			"import Content from \"@atlantis/docs/components/${1:ComponentName}/${1:ComponentName}.stories.mdx\";",
 			"import Props from \"./${1:ComponentName}.props.json\";",
 			"import { ContentExport } from \"../../types/content\";",
