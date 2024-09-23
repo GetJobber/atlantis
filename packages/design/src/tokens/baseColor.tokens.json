@@ -437,20 +437,20 @@
       }
     },
     "teal": {
-      "$value": "rgb(62, 173, 146)"
+      "$value": "{color.base.teal-.500}"
     },
     "teal-": {
       "light": {
-        "$value": "rgb(120, 198, 179)"
+        "$value": "{color.base.teal-.400}"
       },
       "lighter": {
-        "$value": "rgb(178, 222, 211)"
+        "$value": "{color.base.teal-.300}"
       },
       "lightest": {
-        "$value": "rgb(226, 243, 239)"
+        "$value": "{color.base.teal-.200}"
       },
       "dark": {
-        "$value": "rgb(40, 112, 95)"
+        "$value": "{color.base.teal-.700}"
       }
     }
   }
