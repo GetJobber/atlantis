@@ -351,6 +351,10 @@ export const typographyTokens: { [index: string]: TextStyle } = {
     color: tokens["color-quote--surface"],
   },
 
+  quoteOnSurface: {
+    color: tokens["color-quote--onSurface"],
+  },
+
   job: {
     color: tokens["color-job"],
   },
