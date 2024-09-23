@@ -417,7 +417,7 @@ export type TextVariation =
   | "base" // Use "text" instead
   | "subdued" // Use "textSecondary" instead
   | "error" // Use "critical" instead
-  | "warn" // Use "warning" instead
+  | "warn" // Use "warningOnSurface" instead
   | "info"; // Use "informativeOnSurface" instead
 
 export type TextTransform = "uppercase" | "lowercase" | "capitalize" | "none";
