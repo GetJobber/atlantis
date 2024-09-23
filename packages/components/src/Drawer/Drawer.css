@@ -1,6 +1,6 @@
 .container {
   --drawer-width: 280px;
-  --drawer--base-padding: var(--space-large);
+  --drawer--base-padding: var(--space-base);
 
   display: none;
   position: fixed;
@@ -48,10 +48,21 @@
 
 .header {
   display: flex;
-  padding: var(--space-base) var(--space-base) 0 var(--drawer--base-padding);
+  padding: var(--drawer--base-padding) var(--drawer--base-padding) 0
+    var(--drawer--base-padding);
   background-color: transparent;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  gap: var(--space-base);
+}
+
+.heading {
+  margin-top: var(--space-small);
+}
+
+/* Make sure the dismiss button doesn't get squished when title is longer */
+.header > button {
+  flex-shrink: 0;
 }
 
 .contentScroll {
