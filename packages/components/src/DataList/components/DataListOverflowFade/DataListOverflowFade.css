@@ -1,5 +1,5 @@
 .fadeContainer {
-  --overflow-fade--offset: 0;
+  --overflow-fade--offset: var(--space-smaller);
 
   align-self: center;
   position: relative;
