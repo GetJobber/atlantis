@@ -4,17 +4,18 @@ import { OptionInternalProps } from "../types/services";
 export const OptionInternal = ({
   value,
   values,
+  keyIn,
   updateValue,
 }: OptionInternalProps) => {
   return (
     <Select
-      placeholder={value.key}
-      value={value.value}
+      placeholder={keyIn}
+      value={value}
       onChange={val => {
-        updateValue(values.key || "", val as string);
+        updateValue(keyIn || "", val as string);
       }}
     >
-      {values.options?.map((option, index) => {
+      {values.map((option, index) => {
         return (
           <option key={index} value={option}>
             {option}

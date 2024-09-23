@@ -12,17 +12,14 @@ import { SiteContent } from "../content";
 import { useStyleUpdater } from "../hooks/useStyleUpdater";
 import { useErrorCatcher } from "../hooks/useErrorCatcher";
 import { useComponentAndCode } from "../hooks/useComponentAndCode";
-import { ValueStateInternals } from "../types/services";
 
 export const ComponentView = () => {
   const { name = "" } = useParams<{ name: string }>();
   const PageMeta = SiteContent[name];
   useErrorCatcher();
   const { updateStyles } = useStyleUpdater();
-  const { updateValue, values, stateValueWithFunction } = usePageValues(
-    PageMeta.props as Array<{ props: ValueStateInternals }>,
-    PageMeta.component.defaultProps,
-  );
+  const { updateValue, stateValues, stateValueWithFunction } =
+    usePageValues(PageMeta);
 
   const ComponentContent = PageMeta.content as () => ReactNode;
 
@@ -56,20 +53,7 @@ export const ComponentView = () => {
                     </Content>
                   </Tab>
                   <Tab label="Props">
-                    <PropsList
-                      values={
-                        values as unknown as Record<
-                          string,
-                          {
-                            type: string;
-                            value: string;
-                            description: string;
-                            required: boolean;
-                          }
-                        >
-                      }
-                      updateValue={updateValue}
-                    />
+                    <PropsList values={stateValues} updateValue={updateValue} />
                   </Tab>
                   <Tab label="Code">
                     <CodeViewer code={code} />

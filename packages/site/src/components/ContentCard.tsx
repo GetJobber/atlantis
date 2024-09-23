@@ -8,11 +8,17 @@ export const ContentCard = ({
   to,
   component,
   imageURL,
+  onClick,
 }: ContentCardProps) => {
   const history = useHistory();
 
   return (
-    <Card onClick={() => history.push(to)}>
+    <Card
+      onClick={() => {
+        history.push(to);
+        onClick?.();
+      }}
+    >
       {!component ? (
         <img
           style={{ width: "100%", mixBlendMode: "multiply" }}

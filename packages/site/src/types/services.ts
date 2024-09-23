@@ -34,8 +34,9 @@ export interface ValueStateInternal {
 
 export type ValueState = Record<string, ValueStateInternals>;
 export interface OptionInternalProps {
-  value: FormattedProp;
-  values: FormattedProp;
+  value: string;
+  keyIn: string;
+  values: Array<string>;
   updateValue: (key: string, value: string) => void;
 }
 export interface PropStructure {

@@ -10,7 +10,6 @@ export default {
   component: {
     element: Button,
     defaultProps: { label: "Button" },
-    code: `<Button label="Button" />`,
   },
   title: "Button",
   description:

@@ -51,6 +51,11 @@ export default defineConfig({
         __dirname,
         "./src/components/StorybookOverrides",
       ),
+      "@storybook/addon-designs/blocks": path.resolve(
+        __dirname,
+        "./src/components/StorybookOverrides",
+      ),
+
       mdxUtils: path.resolve(__dirname, "../../.storybook/components"),
       "@jobber/docx": path.resolve(__dirname, "./src/components/docx"),
       "@atlantis/docs": path.resolve(__dirname, "../../docs"),

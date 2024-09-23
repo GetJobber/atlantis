@@ -16,7 +16,6 @@ export default {
       initialChild: <Text>Initial!</Text>,
       switchTo: <Text>Swapped!</Text>,
     },
-    code: `<AnimatedSwitcher />`,
   },
   title: "AnimatedSwitcher",
   description: "AnimatedSwitchers are a ...",

@@ -41,8 +41,13 @@ export const SearchBox = ({
     }
   }, [open]);
 
+  const closeModal = () => {
+    setOpen(false);
+    setSearch("");
+  };
+
   return (
-    <Modal open={open} onRequestClose={() => setOpen(false)} title="Search">
+    <Modal open={open} onRequestClose={closeModal} title="Search">
       <Content>
         <InputText
           ref={ref}
@@ -60,6 +65,7 @@ export const SearchBox = ({
                 {filteredComponentList.map(({ title, to, imageURL }, key) => {
                   return (
                     <ContentCard
+                      onClick={closeModal}
                       title={title}
                       to={to}
                       imageURL={imageURL}
@@ -80,6 +86,7 @@ export const SearchBox = ({
                   {filteredDesignList.map(({ title, to, imageURL }, key) => {
                     return (
                       <ContentCard
+                        onClick={closeModal}
                         title={title}
                         to={to}
                         imageURL={imageURL}
