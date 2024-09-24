@@ -1,6 +1,5 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { CivilDate } from "@std-proposal/temporal";
 import { DescriptionList } from "@jobber/components/DescriptionList";
 import { FormatDate } from "@jobber/components/FormatDate";
 
@@ -12,9 +11,6 @@ export default {
     previewTabs: {
       code: {
         hidden: false,
-        extraImports: {
-          "@std-proposal/temporal": ["CivilDate"],
-        },
       },
     },
   },
@@ -36,8 +32,8 @@ const CustomLabelTemplate: ComponentStory<typeof DescriptionList> = args => (
   <DescriptionList
     {...args}
     data={[
-      ["Issued", <FormatDate date={new CivilDate(2018, 12, 8)} key={1} />],
-      ["Due", <FormatDate date={new CivilDate(2019, 1, 6)} key={2} />],
+      ["Issued", <FormatDate date={new Date("2018-12-08")} key={1} />],
+      ["Due", <FormatDate date={new Date("2019-01-06")} key={2} />],
     ]}
   />
 );

@@ -152,7 +152,6 @@ export default {
     "color",
     "framer-motion",
     "classnames",
-    "@std-proposal/temporal",
     "@apollo/client",
     "@jobber/design",
     "@jobber/design/foundation",

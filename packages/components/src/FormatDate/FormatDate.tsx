@@ -1,5 +1,4 @@
 import React from "react";
-import { CivilDate } from "@std-proposal/temporal";
 
 interface FormatDateProps {
   /**
@@ -7,7 +6,7 @@ interface FormatDateProps {
    *
    * A `string` should be an ISO 8601 format date string.
    */
-  readonly date: CivilDate | Date | string;
+  readonly date: Date | string;
 
   /**
    * Boolean to show year or not.
@@ -23,10 +22,8 @@ export function FormatDate({
 
   if (inputDate instanceof Date) {
     dateObject = inputDate;
-  } else if (typeof inputDate === "string") {
-    dateObject = new Date(inputDate);
   } else {
-    dateObject = new Date(inputDate.year, inputDate.month - 1, inputDate.day);
+    dateObject = new Date(inputDate);
   }
 
   return <>{strFormatDate(dateObject, showYear)}</>;

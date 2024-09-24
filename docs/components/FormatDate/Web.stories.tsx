@@ -1,6 +1,5 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { CivilDate } from "@std-proposal/temporal";
 import { FormatDate } from "@jobber/components/FormatDate";
 
 export default {
@@ -22,5 +21,5 @@ const BasicTemplate: ComponentStory<typeof FormatDate> = args => (
 
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
-  date: new CivilDate(2020, 2, 26),
+  date: new Date(),
 };
