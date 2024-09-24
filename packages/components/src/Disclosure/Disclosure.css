@@ -9,11 +9,7 @@
 }
 
 .summary {
-  --disclosure--interactionOffset: var(--space-small);
-  margin-left: calc(-1 * var(--disclosure--interactionOffset));
-  margin-right: calc(-1 * var(--disclosure--interactionOffset));
-  padding: var(--space-smaller) var(--disclosure--interactionOffset)
-    var(--space-smallest) var(--disclosure--interactionOffset);
+  padding: var(--space-smaller) 0 var(--space-smallest) 0;
   border: none;
   border-radius: var(--radius-small);
   list-style: none;
