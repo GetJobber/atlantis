@@ -163,5 +163,5 @@ async function handleBuildFailure({
     ? `\nPrevious build information:\n${quotedPreviousComment}`
     : "";
 
-  return `Could not publish Pre-release for ${process.env.COMMIT_SHA}. [View Logs](${workflowRunUrl})\nThe problem is likely in the \`NPM Publish\` or \`NPM CI\` step in the \`Trigger Pre-release Build\` Job.\n${previousBuildStatus}.\n `;
+  return `Could not publish Pre-release for ${process.env.COMMIT_SHA}. [View Logs](${workflowRunUrl})\nThe problem is likely in the \`NPM Publish\` or \`NPM CI\` step in the \`Trigger Pre-release Build\` Job.\n${previousBuildStatus}.\n For more troubleshooting steps, see the [Pre-release Troubleshooting Guide](https://jobber.atlassian.net/wiki/x/dQFhnw)\n`;
 }
