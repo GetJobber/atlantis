@@ -3,6 +3,7 @@ declare const styles: {
   readonly "drawer": string;
   readonly "open": string;
   readonly "header": string;
+  readonly "heading": string;
   readonly "contentScroll": string;
   readonly "content": string;
 };

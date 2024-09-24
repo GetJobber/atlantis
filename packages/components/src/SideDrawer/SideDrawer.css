@@ -50,6 +50,10 @@
   }
 }
 
+.heading {
+  margin-top: var(--space-small);
+}
+
 .hasShadow {
   box-shadow: var(--shadow-base);
 }
@@ -85,7 +89,6 @@
 
 .headerActions {
   display: flex;
-  margin-right: calc(-1 * var(--space-small));
 }
 
 .footer {

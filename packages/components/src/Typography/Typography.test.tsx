@@ -256,6 +256,23 @@ it("renders a center-aligned text", () => {
   `);
 });
 
+it("renders text in a semantic color", () => {
+  const { container } = render(
+    <Typography textColor="interactiveSubtle">
+      Text in a semantic color
+    </Typography>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <p
+        class="base regular interactiveSubtle"
+      >
+        Text in a semantic color
+      </p>
+    </div>
+  `);
+});
+
 describe("underlining", () => {
   it("renders an underline when a style is specified", () => {
     const { container } = render(
