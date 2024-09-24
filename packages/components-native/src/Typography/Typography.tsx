@@ -365,7 +365,6 @@ export type TextColor =
   | "interactiveSubtleHover"
   | "destructiveHover"
   | "disabledSecondary"
-  | "surface"
 
   // Workflow
   | "request"
