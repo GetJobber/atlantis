@@ -2,24 +2,28 @@ import React, { KeyboardEvent, MouseEvent, useId } from "react";
 import styles from "./InternalChip.css";
 import { InternalChip } from "./InternalChip";
 import { ChipSingleSelectProps } from "./ChipsTypes";
-import { Icon } from "../Icon";
+import { useInternalChips } from "./hooks/UseInternalChip";
 
 type InternalChipChoiceProps = Pick<
   ChipSingleSelectProps,
-  "selected" | "onChange" | "children" | "onClick" | "name"
+  "selected" | "onChange" | "children" | "onClick" | "name" | "hideSuffix"
 >;
 
 export function InternalChipSingleSelect({
   children,
   selected,
   name = useId(),
+  hideSuffix = false,
   onChange,
   onClick,
 }: InternalChipChoiceProps) {
+  const { getSuffixProps } = useInternalChips();
+
   return (
     <div className={styles.wrapper} data-testid="singleselect-chips">
       {React.Children.map(children, child => {
         const isSelected = child.props.value === selected;
+        const suffixProps = getSuffixProps(isSelected, hideSuffix);
 
         return (
           <label>
@@ -37,17 +41,7 @@ export function InternalChipSingleSelect({
             />
             <InternalChip
               {...child.props}
-              {...(isSelected
-                ? {
-                    suffix: (
-                      <Icon
-                        size="small"
-                        name="checkmark"
-                        color="interactiveSubtle"
-                      />
-                    ),
-                  }
-                : {})}
+              {...suffixProps}
               active={isSelected}
               tabIndex={-1}
             />
