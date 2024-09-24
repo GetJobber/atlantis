@@ -1,9 +1,15 @@
 :root {
-  --public-chip-bg-color: var(--color-surface--background);
-  --public-chip-hover-bg-color: var(--color-surface--background--hover);
+  --public-chip-base-active-bg-color: var(--color-surface--background);
+  --public-chip-base-active-hover-bg-color: var(
+    --color-surface--background--hover
+  );
+  --public-chip-base-active-content-color: var(--color-heading);
 }
 
 .chip {
+  --chip-base-bg-color: var(--public-chip-base-active-bg-color);
+  --chip-base-hover-bg-color: var(--public-chip-base-active-hover-bg-color);
+  --chip-base-content-color: var(--public-chip-base-active-content-color);
   --chip-border-color: transparent;
   --chip-height: 40px;
   --chip-radius: 20px;
@@ -18,7 +24,7 @@
   color: var(--color-heading);
   text-align: left;
   background-color: var();
-  background-color: var(--public-chip-bg-color);
+  background-color: var(--chip-base-bg-color);
   cursor: pointer;
   transition: all var(--timing-base);
   align-items: center;
@@ -30,7 +36,7 @@
 .clickableSuffix:focus-visible {
   border: var(--border-base) solid var(--chip-border-color);
   outline: transparent;
-  background-color: var(--public-chip-hover-bg-color);
+  background-color: var(--chip-base-hover-bg-color);
 }
 
 .chip .clickableSuffix {
@@ -43,7 +49,6 @@
 .chip .clickableSuffix {
   margin-left: var(--space-small);
   margin-right: calc(-1 * var(--space-small));
-  /* does this need a var too? */
   background-color: var(--color-surface);
 }
 
@@ -60,7 +65,6 @@
 }
 
 .clickableSuffix:hover {
-  /* same question */
   background-color: var(--color-surface--hover);
 }
 
@@ -83,24 +87,26 @@
   width: var(--space-minuscule);
   height: var(--base-unit);
   margin: 0 var(--space-small);
-  /* same question */
   background-color: var(--color-text--secondary);
 }
 
 .chip .selected {
   border-radius: var(--radius-circle);
-  /* same question */
   background-color: var(--color-surface);
 }
 
 .base {
-  color: var(--color-heading);
+  color: var(--chip-base-content-color);
+}
+
+.base .chipBar {
+  background-color: var(--chip-base-content-color);
 }
 
 .invalid,
 .subtle.invalid {
   --chip-border-color: var(--color-critical);
-  --public-chip-bg-color: var(--color-critical--surface);
+  --chip-base-bg-color: var(--color-critical--surface);
 }
 
 .invalid:hover,
@@ -108,12 +114,12 @@
 .subtle.invalid:hover,
 .subtle.invalid:focus-visible {
   --chip-border-color: var(--color-critical);
-  --public-chip-hover-bg-color: var(--color-surface--background--hover);
+  --chip-base-hover-bg-color: var(--color-surface--background--hover);
 }
 
 .subtle {
   --chip-border-color: var(--color-border--interactive);
-  --public-chip-bg-color: var(--color-surface);
+  --chip-base-bg-color: var(--color-surface);
 }
 
 /* CAUTION: Order is important here since
@@ -124,19 +130,19 @@
 .subtle:focus-visible {
   /* this one looks suspicious */
   /* why does this not match the hover style? */
-  --public-chip-hover-bg-color: var(--color-surface);
+  --chip-base-hover-bg-color: var(--color-surface);
 }
 
 .subtle:hover {
-  --chip-border-color: var(--public-chip-bg-color);
-  --public-chip-hover-bg-color: var(--color-surface--background);
+  --chip-border-color: var(--chip-base-bg-color);
+  --chip-base-hover-bg-color: var(--color-surface--background);
 }
 
 .invalid.disabled,
 .invalid.disabled:hover,
 .invalid.disabled:focus-visible {
-  --public-chip-bg-color: var(--color-disabled--secondary);
-  --public-chip-hover-bg-color: var(--color-disabled--secondary);
+  --chip-base-bg-color: var(--color-disabled--secondary);
+  --chip-base-hover-bg-color: var(--color-disabled--secondary);
   /* fix this for divs when no onClick */
   cursor: auto;
 }
@@ -146,8 +152,8 @@
 .disabled:focus-visible {
   --chip-border-color: var(--color-disabled--secondary);
   color: var(--color-disabled);
-  --public-chip-bg-color: var(--color-disabled--secondary);
-  --public-chip-hover-bg-color: var(--color-disabled--secondary);
+  --chip-base-bg-color: var(--color-disabled--secondary);
+  --chip-base-hover-bg-color: var(--color-disabled--secondary);
   /* also fix this */
   cursor: auto;
 }
@@ -188,7 +194,7 @@
   height: 100%;
   background: linear-gradient(
     to left,
-    var(--public-chip-bg-color) 5%,
+    var(--chip-base-bg-color) 5%,
     rgba(255, 255, 255, 0)
   );
   transition: all var(--timing-base);
@@ -198,7 +204,7 @@
 .chip:hover .truncateGradient {
   background: linear-gradient(
     to left,
-    var(--public-chip-hover-bg-color) 5%,
+    var(--chip-base-hover-bg-color) 5%,
     rgba(255, 255, 255, 0)
   );
 }
