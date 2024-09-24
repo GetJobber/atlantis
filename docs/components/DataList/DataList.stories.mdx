@@ -246,6 +246,112 @@ children and inserts it above the list of items.
 </DataList>
 ```
 
+#### Clearing all filters
+
+##### In all filter groups (e.g. with the "Clear Filters" button)
+
+You can add a button that will clear all the filters by using the combination of
+the `Combobox` and `Button` components (check out the `Code` tab in the "Clear
+All Filters" story for a more elaborate example).
+
+```tsx
+const [groupOneSelectedFilters, setGroupOneSelectedFilters] = useState([]);
+const [groupTwoSelectedFilters, setGroupTwoSelectedFilters] = useState([]);
+
+function removeAllFilters() {
+  setGroupOneSelectedFilters([]);
+  setGroupTwoSelectedFilters([]);
+}
+
+<DataList.Filters>
+  <Combobox
+    label="Filter Group 1"
+    selected={groupOneSelectedFilters}
+    onSelect={handleSelectGroupOneFilters}
+    multiSelect
+  >
+    {groupOneSelectedFilters.map(filter => (
+      <Combobox.Option key={filter} id={filter} label={filter} />
+    ))}
+  </Combobox>
+
+  <Combobox
+    label="Filter Group 2"
+    selected={groupTwoSelectedFilters}
+    multiSelect
+    onSelect={handleSelectGroupOneFilters}
+  >
+    {groupTwoSelectedFilters.map(filter => (
+      <Combobox.Option key={filter} id={filter} label={filter} />
+    ))}
+  </Combobox>
+
+  <Button label="Clear filters" type="tertiary" onClick={removeAllFilters} />
+</DataList.Filters>;
+```
+
+##### Within one filter group (e.g. Suffix on the Chip)
+
+If you'd like to to implement a filter mechanism to clear all filters within one
+group without opening the `Combobox` "dropdown", you could achieve this by using
+`<Combobox.Activator>` and `<Chip>` components (check out the `Code` tab in the
+"Clear All Filters" story for a more elaborate example).
+
+NOTE: You will need to add conditional logic in several places based on whether
+or not anything was selected in a filter group to provide UI and UX similar to a
+standard `DataList` with filters.
+
+```tsx
+const [selectedFilters, setSelectedFilters] = useState([]);
+
+<Combobox
+  label=""
+  selected={selectedFilters}
+  onSelect={setSelectedFilters}
+  multiSelect
+>
+  <Combobox.Activator>
+    <Chip
+      label={
+        selectedFilters.length
+          ? // this will display the selected filters in the Chip
+            selectedFilters.map(({ label }) => label).join(", ")
+          : ""
+      }
+      heading="Your label"
+      // this will change the Chip's appearance based on whether or not
+      // any filters are selected
+      variation={selectedFilters.length ? "base" : "subtle"}
+    >
+      <Chip.Suffix
+        // this will conditionaly add an `onClick` prop (to clear all filters
+        // within the group)
+        {...(selectedFilters.length
+          ? {
+              onClick: () =>
+                handleRemoveIndividualFilterGroup(key as keyof SelectedFilters),
+            }
+          : {})}
+      >
+        <Icon
+          // this will show an "X" or "+" icon based on whether or not any
+          // filters are selected within the group
+          name={selectedFilters.length ? "cross" : "add"}
+          size="small"
+        />
+      </Chip.Suffix>
+    </Chip>
+  </Combobox.Activator>
+
+  {filterOptions.map((option: string) => (
+    <Combobox.Option key={option} id={option} label={option} />
+  ))}
+</Combobox>;
+```
+
+You can also combine both "Clear filter" methods (within one group as well as to
+clear filters in ALL groups) to achieve a desired UX.
+
 ### Search
 
 DataList.Search adds a search input to the list. This is debounced by 500ms.
