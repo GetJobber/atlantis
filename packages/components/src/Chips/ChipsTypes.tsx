@@ -37,6 +37,10 @@ interface ChipFoundationProps {
 export interface ChipSingleSelectProps extends ChipFoundationProps {
   readonly type?: "singleselect";
   readonly selected?: string;
+  /**
+   * Hides the suffix icon on the selected chip
+   */
+  readonly hideSuffix?: boolean;
   onChange(value?: string): void;
 
   /**
@@ -50,6 +54,10 @@ export interface ChipSingleSelectProps extends ChipFoundationProps {
 export interface ChipMultiSelectProps extends ChipFoundationProps {
   readonly type: "multiselect";
   readonly selected: string[];
+  /**
+   * Hides the suffix icon on the selected chip
+   */
+  readonly hideSuffix?: boolean;
   onChange(value: string[]): void;
 }
 
