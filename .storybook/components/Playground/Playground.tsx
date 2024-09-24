@@ -193,7 +193,10 @@ function getSingleModuleImport(
 
 function parseSourceStringForImports(source: string, extraImports: string[]) {
   // Grab the first word after <
-  const matchingComponents = source?.match(/<(\w+)/gm);
+  // and only if there isn't a "use" or "type " in front of it
+  // This is to avoid maptching hook typings (e.g. `useState<SomeInterface>` or `useRef<HTMLDivElement>`)
+  // as well as type definitions (e.g. `type SomeType<T> = { ... }`).
+  const matchingComponents = source?.match(/(?<!use\w*|type\s*\w*)<(\w+)/gm);
 
   const componentNames = matchingComponents
     // replace: remove < and >
