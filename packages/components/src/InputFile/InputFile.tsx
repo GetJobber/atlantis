@@ -5,7 +5,6 @@ import axios, { AxiosRequestConfig } from "axios";
 import styles from "./InputFile.css";
 import {
   BASIC_IMAGE_TYPES,
-  // FileTypes,
   convertToMimeTypes,
   formatMimeTypes,
   mimeTypeToReadable,
