@@ -9,7 +9,7 @@ let handleClickChip: jest.Mock;
 const chips = ["Amazing", "Fabulous", "Magical"];
 const selectedChips = ["Amazing"];
 
-describe("with hideSuffix false", () => {
+describe("with showSelectedSuffix true", () => {
   beforeEach(() => {
     handleChange = jest.fn(value => value);
     handleClickChip = jest.fn((_, value) => value);
@@ -57,12 +57,12 @@ describe("with hideSuffix false", () => {
   });
 });
 
-describe("with hideSuffix true", () => {
+describe("with showSelectedSuffix false", () => {
   beforeEach(() => {
     handleChange = jest.fn(value => value);
     handleClickChip = jest.fn((_, value) => value);
 
-    renderInternalChipMultiSelect(handleChange, handleClickChip, true);
+    renderInternalChipMultiSelect(handleChange, handleClickChip, false);
   });
 
   it("should not show the checkmark", () => {
@@ -73,14 +73,14 @@ describe("with hideSuffix true", () => {
 function renderInternalChipMultiSelect(
   changeHandler: jest.Mock,
   clickHandler: jest.Mock,
-  hideSuffix?: boolean,
+  showSelectedSuffix?: boolean,
 ) {
   return render(
     <InternalChipMultiSelect
       selected={selectedChips}
       onChange={changeHandler}
       onClick={clickHandler}
-      hideSuffix={hideSuffix}
+      showSelectedSuffix={showSelectedSuffix}
     >
       {chips.map(chip => (
         <Chip key={chip} label={chip} value={chip} />

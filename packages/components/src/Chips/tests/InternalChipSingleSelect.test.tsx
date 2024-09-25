@@ -15,7 +15,7 @@ let handleClickChip: jest.Mock;
 const chips = ["Amazing", "Fabulous", "Magical"];
 const selectedChip = "Amazing";
 
-describe("with hideSuffix false", () => {
+describe("with showSelectedSuffix true", () => {
   beforeEach(() => {
     handleChange = jest.fn(value => value);
     handleClickChip = jest.fn((_, value) => value);
@@ -75,12 +75,12 @@ describe("with hideSuffix false", () => {
   });
 });
 
-describe("with hideSuffix true", () => {
+describe("with showSelectedSuffix false", () => {
   beforeEach(() => {
     handleChange = jest.fn(value => value);
     handleClickChip = jest.fn((_, value) => value);
 
-    renderInternalChipSingleSelect(handleChange, handleClickChip, true);
+    renderInternalChipSingleSelect(handleChange, handleClickChip, false);
   });
 
   it("should not render the suffix icon", () => {
@@ -92,14 +92,14 @@ describe("with hideSuffix true", () => {
 function renderInternalChipSingleSelect(
   changeHandler: jest.Mock,
   clickHandler: jest.Mock,
-  hideSuffix?: boolean,
+  showSelectedSuffix?: boolean,
 ) {
   return render(
     <InternalChipSingleSelect
       selected={selectedChip}
       onChange={changeHandler}
       onClick={clickHandler}
-      hideSuffix={hideSuffix}
+      showSelectedSuffix={showSelectedSuffix}
     >
       {chips.map(chip => (
         <Chip key={chip} label={chip} value={chip} />

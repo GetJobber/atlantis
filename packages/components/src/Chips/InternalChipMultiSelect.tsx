@@ -6,13 +6,13 @@ import { useInternalChips } from "./hooks/UseInternalChip";
 
 type InternalChipChoiceMultipleProps = Pick<
   ChipMultiSelectProps,
-  "selected" | "onChange" | "children" | "onClick" | "hideSuffix"
+  "selected" | "onChange" | "children" | "onClick" | "showSelectedSuffix"
 >;
 
 export function InternalChipMultiSelect({
   children,
   selected,
-  hideSuffix = false,
+  showSelectedSuffix = true,
   onChange,
   onClick,
 }: InternalChipChoiceMultipleProps) {
@@ -22,7 +22,7 @@ export function InternalChipMultiSelect({
     <div className={styles.wrapper} data-testid="multiselect-chips">
       {React.Children.map(children, chip => {
         const isChipActive = isChipSelected(chip.props.value);
-        const suffixProps = getSuffixProps(isChipActive, hideSuffix);
+        const suffixProps = getSuffixProps(isChipActive, showSelectedSuffix);
 
         return (
           <label>

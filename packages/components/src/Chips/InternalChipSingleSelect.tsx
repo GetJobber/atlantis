@@ -6,14 +6,19 @@ import { useInternalChips } from "./hooks/UseInternalChip";
 
 type InternalChipChoiceProps = Pick<
   ChipSingleSelectProps,
-  "selected" | "onChange" | "children" | "onClick" | "name" | "hideSuffix"
+  | "selected"
+  | "onChange"
+  | "children"
+  | "onClick"
+  | "name"
+  | "showSelectedSuffix"
 >;
 
 export function InternalChipSingleSelect({
   children,
   selected,
   name = useId(),
-  hideSuffix = false,
+  showSelectedSuffix = true,
   onChange,
   onClick,
 }: InternalChipChoiceProps) {
@@ -23,7 +28,7 @@ export function InternalChipSingleSelect({
     <div className={styles.wrapper} data-testid="singleselect-chips">
       {React.Children.map(children, child => {
         const isSelected = child.props.value === selected;
-        const suffixProps = getSuffixProps(isSelected, hideSuffix);
+        const suffixProps = getSuffixProps(isSelected, showSelectedSuffix);
 
         return (
           <label>

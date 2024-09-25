@@ -38,9 +38,10 @@ export interface ChipSingleSelectProps extends ChipFoundationProps {
   readonly type?: "singleselect";
   readonly selected?: string;
   /**
-   * Hides the suffix icon on the selected chip
+   * Show the checkmark suffix on the selected Chip(s)
+   * defaults to true
    */
-  readonly hideSuffix?: boolean;
+  readonly showSelectedSuffix?: boolean;
   onChange(value?: string): void;
 
   /**
@@ -55,9 +56,10 @@ export interface ChipMultiSelectProps extends ChipFoundationProps {
   readonly type: "multiselect";
   readonly selected: string[];
   /**
-   * Hides the suffix icon on the selected chip
+   * Show the checkmark suffix on the selected Chip(s)
+   * defaults to true
    */
-  readonly hideSuffix?: boolean;
+  readonly showSelectedSuffix?: boolean;
   onChange(value: string[]): void;
 }
 
