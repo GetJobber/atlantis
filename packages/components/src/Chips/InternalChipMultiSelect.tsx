@@ -2,7 +2,7 @@ import React, { MouseEvent } from "react";
 import styles from "./InternalChip.css";
 import { InternalChip } from "./InternalChip";
 import { ChipMultiSelectProps } from "./ChipsTypes";
-import { useInternalChips } from "./hooks/UseInternalChip";
+import { useInternalChips } from "./hooks/useInternalChip";
 
 type InternalChipChoiceMultipleProps = Pick<
   ChipMultiSelectProps,
