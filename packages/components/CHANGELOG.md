@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.35.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.35.1...@jobber/components@5.35.3) (2024-09-24)
+
+
+### Bug Fixes
+
+* **components:** Keep dismiss on drawers aligned to top when titles wrap ([#2011](https://github.com/GetJobber/atlantis/issues/2011)) ([c866e97](https://github.com/GetJobber/atlantis/commit/c866e97d850ab256acfdcdb47868d154239216ae))
+
+
+
+
+
+## [5.35.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.35.1...@jobber/components@5.35.2) (2024-09-23)
+
+
+### Bug Fixes
+
+* **components:** Keep dismiss on drawers aligned to top when titles wrap ([#2011](https://github.com/GetJobber/atlantis/issues/2011)) ([c866e97](https://github.com/GetJobber/atlantis/commit/c866e97d850ab256acfdcdb47868d154239216ae))
+
+
+
+
+
+## [5.35.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.35.0...@jobber/components@5.35.1) (2024-09-23)
+
+
+### Bug Fixes
+
+* **components:** Fix DataListOverflowFade spacing ([#2038](https://github.com/GetJobber/atlantis/issues/2038)) ([d48c9e3](https://github.com/GetJobber/atlantis/commit/d48c9e383c2f3e2736f5c8d5d000b2d39affc647))
+
+
+
+
+
+# [5.35.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.34.0...@jobber/components@5.35.0) (2024-09-20)
+
+
+### Features
+
+* **components:** improve positioning of DataList actions [JOB-99926] ([#1915](https://github.com/GetJobber/atlantis/issues/1915)) ([68d7d77](https://github.com/GetJobber/atlantis/commit/68d7d779e05cd5598a3fe008397280d66875bf3a))
+
+
+
+
+
+# [5.34.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.33.0...@jobber/components@5.34.0) (2024-09-20)
+
+
+### Features
+
+* **components:** Add maxFiles prop to InputFile ([#2007](https://github.com/GetJobber/atlantis/issues/2007)) ([69b7622](https://github.com/GetJobber/atlantis/commit/69b7622b65f0d369ffdc8a78b49dd3bd2cbe232f))
+
+
+
+
+
 # [5.33.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.32.0...@jobber/components@5.33.0) (2024-09-18)
 
 
