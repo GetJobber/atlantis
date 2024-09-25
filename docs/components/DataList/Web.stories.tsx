@@ -614,6 +614,7 @@ export const ClearAllFilters: StoryFn<typeof DataList> = args => {
         <Button
           label="Clear filters"
           type="tertiary"
+          variation="subtle"
           onClick={removeAllFilters}
         />
       </DataList.Filters>
