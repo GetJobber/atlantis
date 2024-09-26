@@ -3,6 +3,12 @@ import classnames from "classnames";
 import { DropzoneOptions, FileError, useDropzone } from "react-dropzone";
 import axios, { AxiosRequestConfig } from "axios";
 import styles from "./InputFile.css";
+import {
+  BASIC_IMAGE_TYPES,
+  convertToMimeTypes,
+  formatMimeTypes,
+  mimeTypeToReadable,
+} from "./FileTypes";
 import { InputValidation } from "../InputValidation";
 import { Button } from "../Button";
 import { Content } from "../Content";
@@ -245,13 +251,17 @@ export function InputFile({
   if (allowedTypes === "images") {
     options.accept = "image/*";
   } else if (allowedTypes === "basicImages") {
-    options.accept = "image/png, image/jpg, image/jpeg";
+    options.accept = convertToMimeTypes(BASIC_IMAGE_TYPES).join(",");
   } else if (Array.isArray(allowedTypes)) {
-    options.accept = allowedTypes.join(",");
+    options.accept = convertToMimeTypes(allowedTypes).join(",");
   }
 
   const { getRootProps, getInputProps, isDragActive, fileRejections } =
     useDropzone(options);
+
+  const allowedTypesString = Array.isArray(allowedTypes)
+    ? formatMimeTypes(allowedTypes.map(mimeTypeToReadable))
+    : allowedTypes;
 
   const validationErrors = fileRejections?.reduce((acc, { file, errors }) => {
     errors.forEach(error => {
@@ -262,6 +272,28 @@ export function InputFile({
             message: `Cannot exceed a maximum of ${maxFiles} files.`,
           });
         }
+      } else if (error.code === "file-invalid-type") {
+        let formatMessage;
+
+        if (allowedTypes === "basicImages") {
+          formatMessage = formatMimeTypes(
+            BASIC_IMAGE_TYPES.map(mimeTypeToReadable),
+          );
+        } else if (allowedTypes === "images") {
+          formatMessage = "an image";
+        } else {
+          formatMessage = allowedTypesString;
+        }
+
+        const message =
+          allowedTypes === "images"
+            ? `${file.name} must be ${formatMessage}.`
+            : `${file.name} must be in ${formatMessage} format.`;
+
+        acc.push({
+          code: error.code,
+          message: message,
+        });
       } else {
         acc.push({
           code: error.code,
