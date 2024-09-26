@@ -23,7 +23,6 @@
   border-radius: var(--chip-radius);
   color: var(--color-heading);
   text-align: left;
-  background-color: var();
   background-color: var(--chip-base-bg-color);
   cursor: pointer;
   transition: all var(--timing-base);
@@ -123,13 +122,11 @@
 }
 
 /* CAUTION: Order is important here since
-* there is are different styles for subtle:focus and subtle:hover
+* there are different styles for subtle:focus and subtle:hover
 * and we want hover to take priority
 */
 
 .subtle:focus-visible {
-  /* this one looks suspicious */
-  /* why does this not match the hover style? */
   --chip-base-hover-bg-color: var(--color-surface);
 }
 
