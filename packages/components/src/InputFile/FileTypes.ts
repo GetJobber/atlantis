@@ -26,7 +26,11 @@ export const convertToMimeTypes = (types: string[]): string[] => {
 };
 
 export function formatMimeTypes(types: string[]): string {
-  if (types.length <= 1) return types.join(", ");
-
-  return `${types.slice(0, -1).join(", ")} or ${types[types.length - 1]}`;
+  if (types.length === 0) {
+    return "";
+  } else if (types.length === 1) {
+    return types[0];
+  } else {
+    return `${types.slice(0, -1).join(", ")} or ${types[types.length - 1]}`;
+  }
 }
