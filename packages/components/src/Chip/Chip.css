@@ -119,15 +119,7 @@
   --chip-base-bg-color: var(--color-surface);
 }
 
-/* CAUTION: Order is important here since
-* there are different styles for subtle:focus and subtle:hover
-* and we want hover to take priority
-*/
-
-.subtle:focus-visible {
-  --chip-base-hover-bg-color: var(--color-surface);
-}
-
+.subtle:focus-visible,
 .subtle:hover {
   --chip-border-color: var(--chip-base-bg-color);
   --chip-base-hover-bg-color: var(--color-surface--background);
