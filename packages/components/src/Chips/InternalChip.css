@@ -13,12 +13,27 @@
 
 /**
  * Interaction
+ *
+ * NOTE:
+ * Since the Chip component is not being focused, rather it's the input
+ * We are copying the styles from the Chip component to ensure the same experience
  */
 
 .input:focus-visible ~ div[role="option"],
 .input:focus-visible ~ div[role="button"] {
   box-shadow: var(--shadow-focus);
   outline: none;
+  background-color: var(--color-surface--background);
+}
+
+.input.invalid:focus-visible ~ div[role="option"],
+.input.invalid:focus-visible ~ div[role="button"] {
+  background-color: var(--color-surface--background--hover);
+}
+
+.input.disabled:focus-visible ~ div[role="option"],
+.input.disabled:focus-visible ~ div[role="button"] {
+  background-color: var(--color-disabled--secondary);
 }
 
 /**

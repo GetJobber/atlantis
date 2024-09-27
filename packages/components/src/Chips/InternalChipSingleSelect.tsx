@@ -1,4 +1,5 @@
 import React, { KeyboardEvent, MouseEvent, useId } from "react";
+import classNames from "classnames";
 import styles from "./InternalChip.css";
 import { InternalChip } from "./InternalChip";
 import { ChipSingleSelectProps } from "./ChipsTypes";
@@ -20,13 +21,17 @@ export function InternalChipSingleSelect({
     <div className={styles.wrapper} data-testid="singleselect-chips">
       {React.Children.map(children, child => {
         const isSelected = child.props.value === selected;
+        const classes = classNames(styles.input, {
+          [styles.disabled]: child.props.disabled,
+          [styles.invalid]: child.props.invalid,
+        });
 
         return (
           <label>
             <input
               type="radio"
               checked={isSelected}
-              className={styles.input}
+              className={classes}
               name={name}
               onClick={handleClick(child.props.value)}
               onKeyUp={handleKeyUp(isSelected, child.props.value)}

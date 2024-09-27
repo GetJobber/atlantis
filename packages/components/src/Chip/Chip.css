@@ -106,6 +106,7 @@
   --chip-base-bg-color: var(--color-critical--surface);
 }
 
+/* If these change, please update InternalChip.css focus-visible rules */
 .invalid:hover,
 .invalid:focus-visible,
 .subtle.invalid:hover,
@@ -119,6 +120,7 @@
   --chip-base-bg-color: var(--color-surface);
 }
 
+/* If these change, please update InternalChip.css focus-visible rules */
 .subtle:focus-visible,
 .subtle:hover {
   --chip-border-color: var(--chip-base-bg-color);
@@ -133,6 +135,7 @@
   cursor: not-allowed;
 }
 
+/* If these change, please update InternalChip.css focus-visible rules */
 .disabled,
 .disabled:hover,
 .disabled:focus-visible {
