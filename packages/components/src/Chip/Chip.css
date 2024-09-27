@@ -1,15 +1,13 @@
 :root {
-  --public-chip-base-active-bg-color: var(--color-surface--background);
-  --public-chip-base-active-hover-bg-color: var(
-    --color-surface--background--hover
-  );
-  --public-chip-base-active-content-color: var(--color-heading);
+  --public-chip-base-bg-color: var(--color-surface--background);
+  --public-chip-base-hover-bg-color: var(--color-surface--background--hover);
+  --public-chip-base-content-color: var(--color-heading);
 }
 
 .chip {
-  --chip-base-bg-color: var(--public-chip-base-active-bg-color);
-  --chip-base-hover-bg-color: var(--public-chip-base-active-hover-bg-color);
-  --chip-base-content-color: var(--public-chip-base-active-content-color);
+  --chip-base-bg-color: var(--public-chip-base-bg-color);
+  --chip-base-hover-bg-color: var(--public-chip-base-hover-bg-color);
+  --chip-base-content-color: var(--public-chip-base-content-color);
   --chip-border-color: transparent;
   --chip-height: 40px;
   --chip-radius: 20px;
@@ -23,7 +21,6 @@
   border-radius: var(--chip-radius);
   color: var(--color-heading);
   text-align: left;
-  background-color: var();
   background-color: var(--chip-base-bg-color);
   cursor: pointer;
   transition: all var(--timing-base);
@@ -109,6 +106,7 @@
   --chip-base-bg-color: var(--color-critical--surface);
 }
 
+/* If these change, please update InternalChip.css focus-visible rules */
 .invalid:hover,
 .invalid:focus-visible,
 .subtle.invalid:hover,
@@ -122,17 +120,8 @@
   --chip-base-bg-color: var(--color-surface);
 }
 
-/* CAUTION: Order is important here since
-* there is are different styles for subtle:focus and subtle:hover
-* and we want hover to take priority
-*/
-
-.subtle:focus-visible {
-  /* this one looks suspicious */
-  /* why does this not match the hover style? */
-  --chip-base-hover-bg-color: var(--color-surface);
-}
-
+/* If these change, please update InternalChip.css focus-visible rules */
+.subtle:focus-visible,
 .subtle:hover {
   --chip-border-color: var(--chip-base-bg-color);
   --chip-base-hover-bg-color: var(--color-surface--background);
@@ -143,9 +132,10 @@
 .invalid.disabled:focus-visible {
   --chip-base-bg-color: var(--color-disabled--secondary);
   --chip-base-hover-bg-color: var(--color-disabled--secondary);
-  cursor: default;
+  cursor: not-allowed;
 }
 
+/* If these change, please update InternalChip.css focus-visible rules */
 .disabled,
 .disabled:hover,
 .disabled:focus-visible {
@@ -153,7 +143,7 @@
   color: var(--color-disabled);
   --chip-base-bg-color: var(--color-disabled--secondary);
   --chip-base-hover-bg-color: var(--color-disabled--secondary);
-  cursor: default;
+  cursor: not-allowed;
 }
 
 .disabled .chipBar {

@@ -1,4 +1,5 @@
 import React, { MouseEvent } from "react";
+import classNames from "classnames";
 import styles from "./InternalChip.css";
 import { InternalChip } from "./InternalChip";
 import { ChipMultiSelectProps } from "./ChipsTypes";
@@ -23,13 +24,17 @@ export function InternalChipMultiSelect({
       {React.Children.map(children, chip => {
         const isChipActive = isChipSelected(chip.props.value);
         const suffixProps = getSuffixProps(isChipActive, showSelectedSuffix);
+        const classes = classNames(styles.input, {
+          [styles.disabled]: chip.props.disabled,
+          [styles.invalid]: chip.props.invalid,
+        });
 
         return (
           <label>
             <input
               type="checkbox"
               checked={isChipActive}
-              className={styles.input}
+              className={classes}
               onClick={handleClick(chip.props.value)}
               onChange={handleChange(chip.props.value)}
               disabled={chip.props.disabled}

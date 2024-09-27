@@ -4,9 +4,9 @@ import { Chip } from "../Chip";
 
 export function InternalChip({
   label,
+  active = false,
   disabled = false,
   invalid = false,
-  active = false,
   prefix,
   suffix,
   tabIndex,

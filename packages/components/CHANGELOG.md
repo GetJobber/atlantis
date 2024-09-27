@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.36.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.35.4...@jobber/components@5.36.0) (2024-09-26)
+
+
+### Features
+
+* **components:** Create FileTypes enum for InputFile and use in validation error ([#2046](https://github.com/GetJobber/atlantis/issues/2046)) ([bc50873](https://github.com/GetJobber/atlantis/commit/bc50873d7770a1c50596baca25608c7676c3e7de))
+
+
+
+
+
+## [5.35.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.35.3...@jobber/components@5.35.4) (2024-09-25)
+
+
+### Bug Fixes
+
+* **components:** update Disclosure focus and hover styling ([#2009](https://github.com/GetJobber/atlantis/issues/2009)) ([12a1ab3](https://github.com/GetJobber/atlantis/commit/12a1ab397ec67d36a46492ed5f7fca4affcac1f8))
+
+
+
+
+
 ## [5.35.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.35.1...@jobber/components@5.35.3) (2024-09-24)
 
 

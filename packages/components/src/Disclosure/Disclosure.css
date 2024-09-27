@@ -11,11 +11,12 @@
 .summary {
   padding: var(--space-smaller) 0 var(--space-smallest) 0;
   border: none;
+  border-radius: var(--radius-small);
   list-style: none;
   cursor: pointer;
-  outline-color: none;
+  outline-color: transparent;
   transition:
-    background var(--timing-quick),
+    background-color var(--timing-base) ease-out,
     box-shadow var(--timing-base);
 }
 
@@ -24,15 +25,18 @@
 }
 
 .summary:hover,
-.summary:focus {
-  background: var(--color-surface--hover);
+.summary:focus-visible {
+  background-color: var(--color-surface--hover);
 }
 
 .summary:focus,
 .summary:active {
-  box-shadow: var(--shadow-focus);
   border: none;
-  outline: none;
+  outline: transparent;
+}
+
+.summary:focus-visible {
+  box-shadow: var(--shadow-focus);
 }
 
 .summary * {

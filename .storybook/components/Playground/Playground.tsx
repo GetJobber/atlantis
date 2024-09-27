@@ -192,17 +192,22 @@ function getSingleModuleImport(
 }
 
 function parseSourceStringForImports(source: string, extraImports: string[]) {
-  // Grab the first word after <
-  const matchingComponents = source?.match(/<(\w+)/gm);
+  // Grab the first word after "<" tag that starts with a capital letter (to avoid matching HTML tags)
+  // only if there isn't a "use" or "type " in front of it (with the help of negative lookahead).
+  // This is to avoid matching hook typings (e.g. `useState<SomeInterface>` or `useRef<HTMLDivElement>`)
+  // as well as TS type definitions (e.g. `type SomeType<T> = { ... }`).
+  const regex = /(?:\W)(?!use\w*|type\s*\w*)<([A-Z]\w+)/gm;
+  const matchingComponents = source?.match(regex);
 
   const componentNames = matchingComponents
     // replace: remove < and >
-    // split: get the first word which is the component name
-    ?.map(component => component.replace(/<|>/g, "").split(" ")[0])
+    // split: get the first word which is the component name (at index 1)
+    // The regex above return components with a space in front of them
+    // (e.g. [' <MyComponent', ' <OtherComponent]). So we need to grab the 2nd element after split.
+    // This is a workaround, since the negative lookbehind is not supported in Cloudflare's JS engine
+    ?.map(component => component.replace(/<|>/g, "").split(" ")[1])
     // Remove duplicates
     .filter((component, index, self) => self.indexOf(component) === index)
-    // Only get components that start with a capital letter. This removes the HTML tags.
-    .filter(component => /[A-Z]/.test(component[0]))
     // Filter out extra imports not in @jobber/components
     .filter(component => !extraImports.includes(component));
 
