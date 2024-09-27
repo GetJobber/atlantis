@@ -143,14 +143,14 @@ To override the appearance of the selected Chip(s) you may use
 [Base Chip Color Overrides](../?path=/docs/components-selections-chip--docs#base-chip-color-overrides)
 since the selected Chip is a Base Chip.
 
-### Chips composition with standalone Chip (Web)
+### Chips composition with standalone Chip
 
 Standalone Chip's `role`, `<Chip.Prefix>`, `<Chip.Suffix>` `heading` and
 `variation` will not work specifically when used within a `Chips`.
 
 If you wish to use a prefix, please use `Chip` from `Chips/Chip`.
 
-eg.
+#### ✅ Do
 
 ```
 import { Chip, Chips } from "@jobber/components/Chips";
@@ -161,10 +161,10 @@ import { Chip, Chips } from "@jobber/components/Chips";
 </Chips>
 ```
 
-Rather than using the standalone implementation.
+#### ❌ Don't
 
 ```
-import { Chip } from "@jobber/components";
+import { Chip, Chips } from "@jobber/components";
 
 ...
 <Chips>
