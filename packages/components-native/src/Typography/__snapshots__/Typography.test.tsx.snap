@@ -734,6 +734,39 @@ exports[`renders text with reverseTheme true with reversible color 1`] = `
 </Text>
 `;
 
+exports[`renders text with semantic color 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="hsl(86, 100%, 46%)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "hsl(197, 90%, 12%)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
 exports[`renders text with small size 1`] = `
 <Text
   accessibilityRole="text"
