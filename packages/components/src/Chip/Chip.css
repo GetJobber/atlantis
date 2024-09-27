@@ -138,7 +138,7 @@
 .invalid.disabled:focus-visible {
   --chip-base-bg-color: var(--color-disabled--secondary);
   --chip-base-hover-bg-color: var(--color-disabled--secondary);
-  cursor: default;
+  cursor: not-allowed;
 }
 
 .disabled,
@@ -148,7 +148,7 @@
   color: var(--color-disabled);
   --chip-base-bg-color: var(--color-disabled--secondary);
   --chip-base-hover-bg-color: var(--color-disabled--secondary);
-  cursor: default;
+  cursor: not-allowed;
 }
 
 .disabled .chipBar {
