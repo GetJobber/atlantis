@@ -41,6 +41,7 @@ const BasicTemplate: ComponentStory<typeof Autocomplete> = args => {
       value={value}
       onChange={newValue => setValue(newValue)}
       getOptions={getOptions}
+      customMatchMarkup={char => <strong>{char}</strong>}
       validations={{
         maxLength: 255,
         required: {
@@ -89,6 +90,9 @@ const WithDetailsTemplate: ComponentStory<typeof Autocomplete> = args => {
       {...args}
       value={value}
       onChange={newValue => setValue(newValue)}
+      customMatchMarkup={char => (
+        <strong style={{ color: "yellow" }}>{char}</strong>
+      )}
       getOptions={getOptions}
     />
   );
@@ -99,7 +103,12 @@ const WithDetailsTemplate: ComponentStory<typeof Autocomplete> = args => {
     }
     const filterRegex = new RegExp(text, "i");
 
-    return detailsOptions.filter(option => option.label.match(filterRegex));
+    return detailsOptions.filter(option => {
+      return (
+        option.label.match(filterRegex) ||
+        option?.description.match(filterRegex)
+      );
+    });
   }
 };
 
@@ -107,7 +116,12 @@ const SectionHeadingOptions = [
   {
     label: "Ships",
     options: [
-      { value: 1, label: "Sulaco" },
+      {
+        value: 1,
+        label: "Sulaco",
+        details: "LV-426",
+        description: "They mostly come at night, mostly.",
+      },
       { value: 2, label: "Nostromo" },
       { value: 3, label: "Serenity" },
       { value: 4, label: "Sleeper Service" },

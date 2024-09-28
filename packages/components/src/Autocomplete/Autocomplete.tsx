@@ -1,7 +1,7 @@
 import React, { Ref, forwardRef, useEffect, useRef, useState } from "react";
 import { XOR } from "ts-xor";
 import styles from "./Autocomplete.css";
-import { Menu } from "./Menu";
+import { MarkupCallback, Menu } from "./Menu";
 import { AnyOption, GroupOption, Option } from "./Option";
 import { InputText, InputTextRef } from "../InputText";
 import { FormFieldProps } from "../FormField";
@@ -36,6 +36,12 @@ interface AutocompleteProps
    * Set Autocomplete value.
    */
   readonly value: Option | undefined;
+
+  /**
+   * Markup to wrap each matching character in the autocomplete options.
+   * Enables highlighting of the matching characters.
+   */
+  readonly customMatchMarkup?: MarkupCallback;
 
   /**
    * Allow the autocomplete to use values not from the drop down menu.
@@ -81,6 +87,7 @@ function AutocompleteInternal(
     allowFreeForm = true,
     size = undefined,
     debounce: debounceRate = 300,
+    customMatchMarkup = undefined,
     onChange,
     getOptions,
     placeholder,
@@ -126,6 +133,8 @@ function AutocompleteInternal(
           options={options}
           selectedOption={value}
           onOptionSelect={handleMenuChange}
+          currentValue={inputText}
+          customMatchMarkup={customMatchMarkup}
         />
       )}
     </div>

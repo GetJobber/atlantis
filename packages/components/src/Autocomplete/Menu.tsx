@@ -10,6 +10,9 @@ import styles from "./Autocomplete.css";
 import { Text } from "../Text";
 import { Icon } from "../Icon";
 import { Heading } from "../Heading";
+import { Typography } from "../Typography";
+
+export type MarkupCallback = (char: string) => JSX.Element;
 
 enum IndexChange {
   Previous = -1,
@@ -20,11 +23,13 @@ interface MenuProps {
   readonly visible: boolean;
   readonly options: Option[];
   readonly selectedOption?: Option;
+  readonly customMatchMarkup?: MarkupCallback;
   /**
    * Element that it's attached to when the menu opens.
    */
   readonly attachTo: RefObject<Element | null>;
   onOptionSelect(chosenOption: Option): void;
+  readonly currentValue: string;
 }
 
 // Adding useIsMounted is what tipped this to 13 statements.
@@ -34,8 +39,10 @@ export function Menu({
   visible,
   options,
   selectedOption,
+  customMatchMarkup,
   onOptionSelect,
   attachTo,
+  currentValue,
 }: MenuProps) {
   const [highlightedIndex, setHighlightedIndex] = useState(0);
   const {
@@ -87,6 +94,7 @@ export function Menu({
           <button
             className={optionClass}
             key={option.value}
+            type="button"
             onMouseDown={onOptionSelect.bind(undefined, option)}
           >
             <div className={styles.icon}>
@@ -96,11 +104,28 @@ export function Menu({
             </div>
             <div className={styles.text}>
               <div className={styles.label}>
-                <Text>{option.label}</Text>
+                {buildMatchingCharMarkup(
+                  option.label,
+                  currentValue,
+                  customMatchMarkup,
+                )}
                 {option.description !== undefined && (
-                  <Text variation="subdued">{option.description}</Text>
+                  // kind of awkward to use here
+                  // I think a lower level matching function that can be used by both one that uses the
+                  // results directly, and one that wraps it with a Text would be better
+                  // I don't think we have to worry about any of this knowing about what type of search has been implemented
+                  // if the results/options are still here, then we can assume they matched
+                  <Text variation="subdued">
+                    {buildMatchingCharMarkup(
+                      option.description,
+                      currentValue,
+                      customMatchMarkup,
+                      "subdued",
+                    )}
+                  </Text>
                 )}
               </div>
+              {/* we can make this match too */}
               {option.details !== undefined && (
                 <div className={styles.details}>
                   <Text>{option.details}</Text>
@@ -188,4 +213,37 @@ function useRepositionMenu(attachTo: MenuProps["attachTo"], visible = false) {
   const targetWidth = attachTo.current?.clientWidth;
 
   return { ...popper, menuRef, setMenuRef, targetWidth };
+}
+
+function buildMatchingCharMarkup(
+  label: string,
+  currentValue: string,
+  markupCallback?: MarkupCallback,
+  variation?: "subdued",
+): React.ReactNode {
+  // need to use semantic tokens for dark mode compatibility
+  // that's one downside of using <b> directly
+  // unless we use it within a context that gives it the correct styles anyway
+
+  // black text with bold kinda works with both though tbh
+  // maybe we don't need to worry about semantic token colored text?
+  if (markupCallback === undefined) {
+    return <Text variation={variation}>{label}</Text>;
+  }
+
+  // we need some aria-label to build the whole word for screen readers
+  // worth noting the screen reader currently doesn't read the options, so we're technically not making it worse
+  const customMatchingMarkup = label
+    .split(new RegExp(`(${currentValue})`, "i"))
+    .map((part, i) =>
+      part.toLowerCase() === currentValue.toLowerCase() ? (
+        React.cloneElement(markupCallback(part), { key: i })
+      ) : (
+        <Typography element="span" key={i} textColor="textSecondary">
+          {part}
+        </Typography>
+      ),
+    );
+
+  return customMatchingMarkup;
 }
