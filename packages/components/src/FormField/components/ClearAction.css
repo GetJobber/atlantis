@@ -22,7 +22,7 @@
 .clearInput:hover,
 .clearInput:focus-visible {
   outline: none;
-  background-color: var(--color-surface--background);
+  background-color: var(--color-surface--background--hover);
 }
 
 .clearInput:focus-visible {
