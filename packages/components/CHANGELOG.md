@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.37.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.36.0...@jobber/components@5.37.0) (2024-09-30)
+
+
+### Features
+
+* **components:** Clearable Autocomplete ([#2050](https://github.com/GetJobber/atlantis/issues/2050)) ([dfd86fb](https://github.com/GetJobber/atlantis/commit/dfd86fb18dee1bf197a6d6acbc078a9d291b18e9))
+
+
+
+
+
 # [5.36.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.35.4...@jobber/components@5.36.0) (2024-09-26)
 
 
