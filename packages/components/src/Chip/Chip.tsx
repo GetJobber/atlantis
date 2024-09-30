@@ -29,6 +29,7 @@ export const Chip = ({
     [styles.base]: variation === "base",
     [styles.subtle]: variation === "subtle",
     [styles.disabled]: disabled,
+    [styles.clickable]: onClick,
   });
 
   const prefix = useChildComponent(children, d => d.type === Chip.Prefix);

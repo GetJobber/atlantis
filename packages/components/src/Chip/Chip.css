@@ -22,17 +22,23 @@
   color: var(--color-heading);
   text-align: left;
   background-color: var(--chip-base-bg-color);
-  cursor: pointer;
   transition: all var(--timing-base);
   align-items: center;
 }
 
-.chip:hover,
-.chip:focus,
-.chip:focus-visible,
+.chip:focus {
+  outline: transparent;
+}
+
+.clickable,
+.clickableSuffix {
+  cursor: pointer;
+}
+
+.clickable:hover,
+.clickable:focus-visible,
 .clickableSuffix:focus-visible {
   border: var(--border-base) solid var(--chip-border-color);
-  outline: transparent;
   background-color: var(--chip-base-hover-bg-color);
 }
 
@@ -65,7 +71,7 @@
   background-color: var(--color-surface--hover);
 }
 
-.chip:focus-visible,
+.clickable:focus-visible,
 .chip .clickableSuffix:focus-visible {
   box-shadow: var(--shadow-focus);
 }
@@ -107,10 +113,10 @@
 }
 
 /* If these change, please update InternalChip.css focus-visible rules */
-.invalid:hover,
-.invalid:focus-visible,
-.subtle.invalid:hover,
-.subtle.invalid:focus-visible {
+.clickable.invalid:hover,
+.clickable.invalid:focus-visible,
+.clickable.subtle.invalid:hover,
+.clickable.subtle.invalid:focus-visible {
   --chip-border-color: var(--color-critical);
   --chip-base-hover-bg-color: var(--color-surface--background--hover);
 }
@@ -121,8 +127,8 @@
 }
 
 /* If these change, please update InternalChip.css focus-visible rules */
-.subtle:focus-visible,
-.subtle:hover {
+.clickable.subtle:focus-visible,
+.clickable.subtle:hover {
   --chip-border-color: var(--chip-base-bg-color);
   --chip-base-hover-bg-color: var(--color-surface--background);
 }
@@ -130,6 +136,7 @@
 .invalid.disabled,
 .invalid.disabled:hover,
 .invalid.disabled:focus-visible {
+  --chip-border-color: var(--color-critical);
   --chip-base-bg-color: var(--color-disabled--secondary);
   --chip-base-hover-bg-color: var(--color-disabled--secondary);
   cursor: not-allowed;
@@ -188,8 +195,8 @@
   transition: all var(--timing-base);
 }
 
-.chip:focus-visible .truncateGradient,
-.chip:hover .truncateGradient {
+.clickable:focus-visible .truncateGradient,
+.clickable:hover .truncateGradient {
   background: linear-gradient(
     to left,
     var(--chip-base-hover-bg-color) 5%,
