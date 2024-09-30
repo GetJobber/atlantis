@@ -11,7 +11,7 @@ export function ChipSelectable({ selected, ...rest }: ChipSelectableProps) {
         <Icon
           name={selected ? "checkmark" : "add"}
           size="small"
-          color={"interactiveSubtle"}
+          color="interactiveSubtle"
         />
       </Chip.Suffix>
     </Chip>
