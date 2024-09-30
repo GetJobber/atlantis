@@ -85,7 +85,7 @@ interface DisclosureTitleProps {
    */
   readonly title: string | ReactNode | ReactNode[];
   /**
-   * Size when the title is string.
+   * Size when the title is a string.
    */
   readonly size: "base" | "large";
   /**
