@@ -90,9 +90,7 @@ const WithDetailsTemplate: ComponentStory<typeof Autocomplete> = args => {
       {...args}
       value={value}
       onChange={newValue => setValue(newValue)}
-      customMatchMarkup={char => (
-        <strong style={{ color: "yellow" }}>{char}</strong>
-      )}
+      customMatchMarkup={char => <strong>{char}</strong>}
       getOptions={getOptions}
     />
   );

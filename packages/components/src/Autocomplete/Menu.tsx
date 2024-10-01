@@ -12,7 +12,7 @@ import { Icon } from "../Icon";
 import { Heading } from "../Heading";
 import { Typography } from "../Typography";
 
-export type MarkupCallback = (char: string) => JSX.Element;
+export type MarkupCallback = (character: string) => JSX.Element;
 
 enum IndexChange {
   Previous = -1,
@@ -104,28 +104,33 @@ export function Menu({
             </div>
             <div className={styles.text}>
               <div className={styles.label}>
-                {buildMatchingCharMarkup(
-                  option.label,
-                  currentValue,
-                  customMatchMarkup,
+                {customMatchMarkup === undefined ? (
+                  // this fallback pattern is repeated
+                  // make it part of the function? or is that doing too much?
+                  <Text>{option.label}</Text>
+                ) : (
+                  buildMatchingCharMarkup(
+                    option.label,
+                    currentValue,
+                    customMatchMarkup,
+                    "text",
+                  )
                 )}
                 {option.description !== undefined && (
-                  // kind of awkward to use here
-                  // I think a lower level matching function that can be used by both one that uses the
-                  // results directly, and one that wraps it with a Text would be better
-                  // I don't think we have to worry about any of this knowing about what type of search has been implemented
-                  // if the results/options are still here, then we can assume they matched
                   <Text variation="subdued">
-                    {buildMatchingCharMarkup(
-                      option.description,
-                      currentValue,
-                      customMatchMarkup,
-                      "subdued",
-                    )}
+                    {/* here's the second one */}
+                    {customMatchMarkup === undefined
+                      ? option.description
+                      : buildMatchingCharMarkup(
+                          option.description,
+                          currentValue,
+                          customMatchMarkup,
+                          "textSecondary",
+                        )}
                   </Text>
                 )}
               </div>
-              {/* we can make this match too */}
+              {/* should this also be highlight-able? */}
               {option.details !== undefined && (
                 <div className={styles.details}>
                   <Text>{option.details}</Text>
@@ -218,18 +223,14 @@ function useRepositionMenu(attachTo: MenuProps["attachTo"], visible = false) {
 function buildMatchingCharMarkup(
   label: string,
   currentValue: string,
-  markupCallback?: MarkupCallback,
-  variation?: "subdued",
+  markupCallback: MarkupCallback,
+  nonMatchTextColor: "textSecondary" | "text",
 ): React.ReactNode {
-  // need to use semantic tokens for dark mode compatibility
-  // that's one downside of using <b> directly
-  // unless we use it within a context that gives it the correct styles anyway
+  // we can rely on the description, which is nested in some "subdued" text to provide the color of the matching text if not provided
+  // however, the label is used directly and it won't inherit any semantic values AKA it'll not work in dark mode
+  // this also means that the matching text will be different colors - one for label, one for description
 
-  // black text with bold kinda works with both though tbh
-  // maybe we don't need to worry about semantic token colored text?
-  if (markupCallback === undefined) {
-    return <Text variation={variation}>{label}</Text>;
-  }
+  // is that good, or do we want it to be built in a way that it's easy for it to look nice?
 
   // we need some aria-label to build the whole word for screen readers
   // worth noting the screen reader currently doesn't read the options, so we're technically not making it worse
@@ -239,7 +240,7 @@ function buildMatchingCharMarkup(
       part.toLowerCase() === currentValue.toLowerCase() ? (
         React.cloneElement(markupCallback(part), { key: i })
       ) : (
-        <Typography element="span" key={i} textColor="textSecondary">
+        <Typography element="span" key={i} textColor={nonMatchTextColor}>
           {part}
         </Typography>
       ),
