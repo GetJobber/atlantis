@@ -12,7 +12,6 @@
   cursor: pointer;
   justify-content: center;
   align-items: center;
-  transform: translateY(50%);
 }
 
 .clearInput:focus {
@@ -22,7 +21,7 @@
 .clearInput:hover,
 .clearInput:focus-visible {
   outline: none;
-  background-color: var(--color-surface--background);
+  background-color: var(--color-surface--background--hover);
 }
 
 .clearInput:focus-visible {

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.37.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.37.0...@jobber/components@5.37.1) (2024-09-30)
+
+
+### Bug Fixes
+
+* **components:** Clear action UI fix ([#2052](https://github.com/GetJobber/atlantis/issues/2052)) ([63b0c9e](https://github.com/GetJobber/atlantis/commit/63b0c9e76c80628e30763bbc69f0060068b62245))
+
+
+
+
+
 # [5.37.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.36.0...@jobber/components@5.37.0) (2024-09-30)
 
 
