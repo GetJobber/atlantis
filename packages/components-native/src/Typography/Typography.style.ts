@@ -93,6 +93,10 @@ export const typographyTokens: { [index: string]: TextStyle } = {
     textDecorationLine: "underline",
   },
 
+  /**
+   * Alignments
+   */
+
   startAlign: {
     textAlign: "left",
   },
@@ -109,9 +113,11 @@ export const typographyTokens: { [index: string]: TextStyle } = {
     textAlign: "justify",
   },
 
-  blue: {
-    color: tokens["color-heading"],
-  },
+  /**
+   * Colors
+   */
+
+  // Base colors for backwards compatibility
 
   blueDark: {
     color: tokens["color-blue--dark"],
@@ -205,12 +211,9 @@ export const typographyTokens: { [index: string]: TextStyle } = {
     color: tokens["color-navy"],
   },
 
+  // Typography
   heading: {
     color: tokens["color-heading"],
-  },
-
-  headingReverse: {
-    color: tokens["color-text--reverse"],
   },
 
   text: {
@@ -229,52 +232,267 @@ export const typographyTokens: { [index: string]: TextStyle } = {
     color: tokens["color-text--reverse--secondary"],
   },
 
-  success: {
-    color: tokens["color-success--onSurface"],
+  // Statuses
+
+  inactive: {
+    color: tokens["color-inactive"],
   },
 
-  error: {
-    color: tokens["color-critical"],
+  inactiveSurface: {
+    color: tokens["color-inactive--surface"],
   },
 
-  base: {
-    color: tokens["color-text"],
-  },
-
-  subdued: {
-    color: tokens["color-text--secondary"],
-  },
-
-  warn: {
-    color: tokens["color-warning--onSurface"],
-  },
-
-  info: {
-    color: tokens["color-informative--onSurface"],
+  inactiveOnSurface: {
+    color: tokens["color-inactive--onSurface"],
   },
 
   critical: {
     color: tokens["color-critical"],
   },
 
-  successReverse: {
-    color: tokens["color-success"],
+  criticalSurface: {
+    color: tokens["color-critical--surface"],
   },
 
-  errorReverse: {
-    color: tokens["color-critical"],
+  criticalOnSurface: {
+    color: tokens["color-critical--onSurface"],
+  },
+
+  warning: {
+    color: tokens["color-warning"],
+  },
+
+  warningSurface: {
+    color: tokens["color-warning--surface"],
+  },
+
+  warningOnSurface: {
+    color: tokens["color-warning--onSurface"],
+  },
+
+  informative: {
+    color: tokens["color-informative"],
+  },
+
+  informativeSurface: {
+    color: tokens["color-informative--surface"],
+  },
+
+  informativeOnSurface: {
+    color: tokens["color-informative--onSurface"],
+  },
+
+  // To be uncommented once success in Deprecated is removed
+  // success: {
+  //   color: tokens["color-success"],
+  // },
+
+  successSurface: {
+    color: tokens["color-success--surface"],
+  },
+
+  successOnSurface: {
+    color: tokens["color-success--onSurface"],
+  },
+
+  // Interactions
+
+  interactive: {
+    color: tokens["color-interactive"],
+  },
+
+  interactiveHover: {
+    color: tokens["color-interactive--hover"],
+  },
+
+  interactiveSubtle: {
+    color: tokens["color-interactive--subtle"],
+  },
+
+  interactiveSubtleHover: {
+    color: tokens["color-interactive--subtle--hover"],
+  },
+
+  destructive: {
+    color: tokens["color-destructive"],
+  },
+
+  destructiveHover: {
+    color: tokens["color-destructive--hover"],
+  },
+
+  disabled: {
+    color: tokens["color-disabled"],
+  },
+
+  disabledSecondary: {
+    color: tokens["color-disabled--secondary"],
+  },
+
+  // Workflow
+
+  request: {
+    color: tokens["color-request"],
+  },
+
+  requestSurface: {
+    color: tokens["color-request--surface"],
+  },
+
+  requestOnSurface: {
+    color: tokens["color-request--onSurface"],
+  },
+
+  quote: {
+    color: tokens["color-quote"],
+  },
+
+  quoteSurface: {
+    color: tokens["color-quote--surface"],
+  },
+
+  quoteOnSurface: {
+    color: tokens["color-quote--onSurface"],
+  },
+
+  job: {
+    color: tokens["color-job"],
+  },
+
+  jobSurface: {
+    color: tokens["color-job--surface"],
+  },
+
+  jobOnSurface: {
+    color: tokens["color-job--onSurface"],
+  },
+
+  visit: {
+    color: tokens["color-visit"],
+  },
+
+  visitSurface: {
+    color: tokens["color-visit--surface"],
+  },
+
+  visitOnSurface: {
+    color: tokens["color-visit--onSurface"],
+  },
+
+  task: {
+    color: tokens["color-task"],
+  },
+
+  taskSurface: {
+    color: tokens["color-task--surface"],
+  },
+
+  taskOnSurface: {
+    color: tokens["color-task--onSurface"],
+  },
+
+  event: {
+    color: tokens["color-event"],
+  },
+
+  eventSurface: {
+    color: tokens["color-event--surface"],
+  },
+
+  eventOnSurface: {
+    color: tokens["color-event--onSurface"],
+  },
+
+  invoice: {
+    color: tokens["color-invoice"],
+  },
+
+  invoiceSurface: {
+    color: tokens["color-invoice--surface"],
+  },
+
+  invoiceOnSurface: {
+    color: tokens["color-invoice--onSurface"],
+  },
+
+  payments: {
+    color: tokens["color-payments"],
+  },
+
+  paymentsSurface: {
+    color: tokens["color-payments--surface"],
+  },
+
+  paymentsOnSurface: {
+    color: tokens["color-payments--onSurface"],
+  },
+
+  client: {
+    color: tokens["color-client"],
+  },
+
+  // Miscellaneous
+
+  icon: {
+    color: tokens["color-icon"],
+  },
+
+  brand: {
+    color: tokens["color-brand"],
+  },
+
+  // Deprecated
+
+  blue: {
+    color: tokens["color-heading"],
+  },
+
+  base: {
+    color: tokens["color-text"],
   },
 
   baseReverse: {
     color: tokens["color-text--reverse"],
   },
 
-  subduedReverse: {
-    color: tokens["color-text--reverse--secondary"],
+  headingReverse: {
+    color: tokens["color-text--reverse"],
+  },
+
+  error: {
+    color: tokens["color-critical"],
+  },
+
+  errorReverse: {
+    color: tokens["color-critical"],
+  },
+
+  success: {
+    color: tokens["color-success--onSurface"],
+  },
+
+  successReverse: {
+    color: tokens["color-success"],
+  },
+
+  warn: {
+    color: tokens["color-warning--onSurface"],
   },
 
   warnReverse: {
     color: tokens["color-warning"],
+  },
+
+  subdued: {
+    color: tokens["color-text--secondary"],
+  },
+
+  subduedReverse: {
+    color: tokens["color-text--reverse--secondary"],
+  },
+
+  info: {
+    color: tokens["color-informative--onSurface"],
   },
 
   infoReverse: {
@@ -283,14 +501,6 @@ export const typographyTokens: { [index: string]: TextStyle } = {
 
   criticalReverse: {
     color: tokens["color-critical"],
-  },
-
-  interactive: {
-    color: tokens["color-interactive"],
-  },
-
-  destructive: {
-    color: tokens["color-destructive"],
   },
 
   learning: {
@@ -305,9 +515,9 @@ export const typographyTokens: { [index: string]: TextStyle } = {
     color: tokens["color-surface"],
   },
 
-  disabled: {
-    color: tokens["color-disabled"],
-  },
+  /**
+   * Sizes
+   */
 
   smallestSize: {
     fontSize: tokens["typography--fontSize-smallest"],
@@ -354,6 +564,10 @@ export const typographyTokens: { [index: string]: TextStyle } = {
     lineHeight: extravagantLineHeight,
   },
 
+  /**
+   * Line Heights
+   */
+
   extravagantLineHeight: {
     lineHeight: extravagantLineHeight,
   },
@@ -380,6 +594,10 @@ export const typographyTokens: { [index: string]: TextStyle } = {
   tightLineHeight: {
     lineHeight: tightLineHeight,
   },
+
+  /**
+   * Letter Spacings
+   */
 
   baseLetterSpacing: {
     letterSpacing: tokens["typography--letterSpacing-base"],

@@ -59,7 +59,7 @@ export function Disclosure({
             isTitleString={isTitleString}
           />
           <span className={styles.arrowIconWrapper}>
-            <Icon size="large" name="arrowDown" color="green" />
+            <Icon name="arrowDown" color="interactive" />
           </span>
         </div>
       </summary>

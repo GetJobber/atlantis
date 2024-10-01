@@ -186,6 +186,13 @@ ImagesOnly.args = {
   getUploadParams: () => Promise.resolve({ url: "https://httpbin.org/post" }),
 };
 
+export const CustomAllowedTypes = StatefulTemplate.bind({});
+CustomAllowedTypes.args = {
+  allowMultiple: true,
+  allowedTypes: ["JPEG", "PNG", "PDF", "DOCX"],
+  getUploadParams: () => Promise.resolve({ url: "https://httpbin.org/post" }),
+};
+
 export const MaxFilesLimit = MaxFilesTemplate.bind({});
 MaxFilesLimit.args = {
   allowMultiple: true,

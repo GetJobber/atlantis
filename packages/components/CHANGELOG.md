@@ -3,6 +3,72 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.37.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.37.0...@jobber/components@5.37.1) (2024-09-30)
+
+
+### Bug Fixes
+
+* **components:** Clear action UI fix ([#2052](https://github.com/GetJobber/atlantis/issues/2052)) ([63b0c9e](https://github.com/GetJobber/atlantis/commit/63b0c9e76c80628e30763bbc69f0060068b62245))
+
+
+
+
+
+# [5.37.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.36.0...@jobber/components@5.37.0) (2024-09-30)
+
+
+### Features
+
+* **components:** Clearable Autocomplete ([#2050](https://github.com/GetJobber/atlantis/issues/2050)) ([dfd86fb](https://github.com/GetJobber/atlantis/commit/dfd86fb18dee1bf197a6d6acbc078a9d291b18e9))
+
+
+
+
+
+# [5.36.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.35.4...@jobber/components@5.36.0) (2024-09-26)
+
+
+### Features
+
+* **components:** Create FileTypes enum for InputFile and use in validation error ([#2046](https://github.com/GetJobber/atlantis/issues/2046)) ([bc50873](https://github.com/GetJobber/atlantis/commit/bc50873d7770a1c50596baca25608c7676c3e7de))
+
+
+
+
+
+## [5.35.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.35.3...@jobber/components@5.35.4) (2024-09-25)
+
+
+### Bug Fixes
+
+* **components:** update Disclosure focus and hover styling ([#2009](https://github.com/GetJobber/atlantis/issues/2009)) ([12a1ab3](https://github.com/GetJobber/atlantis/commit/12a1ab397ec67d36a46492ed5f7fca4affcac1f8))
+
+
+
+
+
+## [5.35.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.35.1...@jobber/components@5.35.3) (2024-09-24)
+
+
+### Bug Fixes
+
+* **components:** Keep dismiss on drawers aligned to top when titles wrap ([#2011](https://github.com/GetJobber/atlantis/issues/2011)) ([c866e97](https://github.com/GetJobber/atlantis/commit/c866e97d850ab256acfdcdb47868d154239216ae))
+
+
+
+
+
+## [5.35.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.35.1...@jobber/components@5.35.2) (2024-09-23)
+
+
+### Bug Fixes
+
+* **components:** Keep dismiss on drawers aligned to top when titles wrap ([#2011](https://github.com/GetJobber/atlantis/issues/2011)) ([c866e97](https://github.com/GetJobber/atlantis/commit/c866e97d850ab256acfdcdb47868d154239216ae))
+
+
+
+
+
 ## [5.35.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.35.0...@jobber/components@5.35.1) (2024-09-23)
 
 
