@@ -1,4 +1,5 @@
 import React, { MouseEvent } from "react";
+import classNames from "classnames";
 import styles from "./InternalChip.css";
 import { InternalChip } from "./InternalChip";
 import { ChipMultiSelectProps } from "./ChipsTypes";
@@ -19,13 +20,18 @@ export function InternalChipMultiSelect({
     <div className={styles.wrapper} data-testid="multiselect-chips">
       {React.Children.map(children, chip => {
         const isChipActive = isChipSelected(chip.props.value);
+        const classes = classNames(styles.input, {
+          [styles.disabled]: chip.props.disabled,
+          [styles.invalid]: chip.props.invalid,
+          [styles.inactive]: !isChipActive,
+        });
 
         return (
           <label>
             <input
               type="checkbox"
               checked={isChipActive}
-              className={styles.input}
+              className={classes}
               onClick={handleClick(chip.props.value)}
               onChange={handleChange(chip.props.value)}
               disabled={chip.props.disabled}
@@ -33,7 +39,18 @@ export function InternalChipMultiSelect({
             <InternalChip
               {...chip.props}
               active={isChipActive}
-              suffix={checkmarkIcon(isChipActive)}
+              {...(isChipActive
+                ? {
+                    suffix: (
+                      <Icon
+                        size="small"
+                        name="checkmark"
+                        color="interactiveSubtle"
+                      />
+                    ),
+                  }
+                : {})}
+              tabIndex={-1}
             />
           </label>
         );
@@ -68,16 +85,5 @@ export function InternalChipMultiSelect({
     const values = selected;
     const newVal = values.filter(val => val !== value);
     onChange(newVal);
-  }
-
-  function checkmarkIcon(show: boolean) {
-    // Ideally, we should be returning a fragment `<></>` when a function
-    // returns a component / element. However, this one needs to return nothing
-    // to prevent it from randomly rendering a suffix.
-    //
-    // DO NOT COPY!
-    if (!show) return;
-
-    return <Icon name="checkmark" />;
   }
 }
