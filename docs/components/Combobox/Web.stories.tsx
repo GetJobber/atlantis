@@ -475,8 +475,8 @@ const ComboboxCloseOnAction: ComponentStory<typeof Combobox> = args => {
   );
 };
 
-export const CloseOnAction = ComboboxCloseOnAction.bind({});
-CloseOnAction.args = {};
+export const CloseOnActionClick = ComboboxCloseOnAction.bind({});
+CloseOnActionClick.args = {};
 
 export const ClearSelection = ComboboxClearSelection.bind({});
 ClearSelection.args = {};
