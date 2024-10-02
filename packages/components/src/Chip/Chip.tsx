@@ -51,7 +51,7 @@ export const Chip = ({
         onClick={(ev: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) =>
           onClick?.(value, ev)
         }
-        tabIndex={tabIndex}
+        tabIndex={disabled ? -1 : tabIndex}
         onKeyDown={onKeyDown}
         aria-label={ariaLabel}
         disabled={disabled}
