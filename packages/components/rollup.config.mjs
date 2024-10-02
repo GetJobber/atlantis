@@ -30,7 +30,7 @@ export default {
       ],
     }),
     nodeResolve(),
-    multiInput.default(),
+    multiInput(),
     typescript({
       tsconfig: "./tsconfig.rollup.json",
       declarationDir: "dist",
