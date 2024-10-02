@@ -23,6 +23,10 @@
 .input:focus-visible ~ div[role="button"] {
   box-shadow: var(--shadow-focus);
   outline: none;
+}
+
+.input.inactive:focus-visible ~ div[role="option"],
+.input.inactive:focus-visible ~ div[role="button"] {
   background-color: var(--color-surface--background);
 }
 

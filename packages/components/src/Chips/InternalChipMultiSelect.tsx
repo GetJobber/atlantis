@@ -23,6 +23,7 @@ export function InternalChipMultiSelect({
         const classes = classNames(styles.input, {
           [styles.disabled]: chip.props.disabled,
           [styles.invalid]: chip.props.invalid,
+          [styles.inactive]: !isChipActive,
         });
 
         return (

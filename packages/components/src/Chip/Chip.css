@@ -92,7 +92,8 @@
   background-color: var(--color-surface);
 }
 
-.base {
+.base,
+.base p {
   color: var(--chip-base-content-color);
 }
 

@@ -24,6 +24,7 @@ export function InternalChipSingleSelect({
         const classes = classNames(styles.input, {
           [styles.disabled]: child.props.disabled,
           [styles.invalid]: child.props.invalid,
+          [styles.inactive]: !isSelected,
         });
 
         return (
