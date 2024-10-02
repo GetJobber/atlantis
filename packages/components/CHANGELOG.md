@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.38.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.37.1...@jobber/components@5.38.0) (2024-10-02)
+
+
+### Features
+
+* **deps:** Update storybook to the latest patch version (7.6.20) ([#2049](https://github.com/GetJobber/atlantis/issues/2049)) ([52b1458](https://github.com/GetJobber/atlantis/commit/52b145833ec3d5452b5d1cf5e2f536a222fc3f1f))
+
+
+
+
+
+## [5.37.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.37.0...@jobber/components@5.37.1) (2024-09-30)
+
+
+### Bug Fixes
+
+* **components:** Clear action UI fix ([#2052](https://github.com/GetJobber/atlantis/issues/2052)) ([63b0c9e](https://github.com/GetJobber/atlantis/commit/63b0c9e76c80628e30763bbc69f0060068b62245))
+
+
+
+
+
+# [5.37.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.36.0...@jobber/components@5.37.0) (2024-09-30)
+
+
+### Features
+
+* **components:** Clearable Autocomplete ([#2050](https://github.com/GetJobber/atlantis/issues/2050)) ([dfd86fb](https://github.com/GetJobber/atlantis/commit/dfd86fb18dee1bf197a6d6acbc078a9d291b18e9))
+
+
+
+
+
 # [5.36.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.35.4...@jobber/components@5.36.0) (2024-09-26)
 
 
