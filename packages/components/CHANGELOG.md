@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.38.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.37.1...@jobber/components@5.38.0) (2024-10-02)
+
+
+### Features
+
+* **deps:** Update storybook to the latest patch version (7.6.20) ([#2049](https://github.com/GetJobber/atlantis/issues/2049)) ([52b1458](https://github.com/GetJobber/atlantis/commit/52b145833ec3d5452b5d1cf5e2f536a222fc3f1f))
+
+
+
+
+
 ## [5.37.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.37.0...@jobber/components@5.37.1) (2024-09-30)
 
 
