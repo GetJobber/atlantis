@@ -7,9 +7,9 @@ import * as hooks from "@atlantis/packages/hooks/src";
 
 # UseOnMount
 
-`useOnMount` should be used to perform a callback once a component mounts. 
-Useful for emitting analytics events, fetching data, or other side effects 
-that should only occur once.
+`useOnMount` should be used to perform a callback once a component mounts.
+Useful for emitting analytics events, fetching data, or other side effects that
+should only occur once.
 
 ```tsx
 import { useOnMount } from "@jobber/hooks/useOnMount";
@@ -23,7 +23,12 @@ import { useOnMount } from "@jobber/hooks/useOnMount";
         hooks.useOnMount(() => {
           setCallbackCallCount(callbackCallCount + 1);
         });
-        return <h4>I am the AlertMountedComponent and my callback has been called {callbackCallCount} time</h4>;
+        return (
+          <h4>
+            I am the AlertMountedComponent and my callback has been called{" "}
+            {callbackCallCount} time
+          </h4>
+        );
       }
       const [shouldMount, setShouldMount] = useState(false);
       let component = <></>;
