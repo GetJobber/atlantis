@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { XOR } from "ts-xor";
 
 type SimpleKeyComparator = KeyboardEvent["key"];
 
@@ -12,7 +11,7 @@ interface VerboseKeyComparator {
   readonly [index: string]: boolean | string | undefined;
 }
 
-type KeyComparator = XOR<VerboseKeyComparator, SimpleKeyComparator>;
+type KeyComparator = VerboseKeyComparator | SimpleKeyComparator;
 
 export function useOnKeyDown(
   callback: (event: KeyboardEvent) => void,
