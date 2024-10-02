@@ -459,16 +459,14 @@ const ComboboxCloseOnAction: ComponentStory<typeof Combobox> = args => {
         {...args}
         onSelect={setSelected}
         selected={selected}
-        label="Teammates"
+        label="Actions"
       >
-        <Combobox.Option id="1" label="Bilbo Baggins" />
-        <Combobox.Option id="2" label="Frodo Baggins" />
-        <Combobox.Option id="3" label="Pippin Took" />
-        <Combobox.Option id="4" label="Merry Brandybuck" />
-        <Combobox.Option id="5" label="Sam Gamgee" />
+        <Combobox.Option id="1" label="Click the action" />
+        <Combobox.Option id="2" label="for a" />
+        <Combobox.Option id="3" label="surprise" />
 
         <Combobox.Action
-          label="Add Teammate"
+          label="Click me"
           onClick={() => setModalOpen(true)}
           closeOnActionClick
         />
