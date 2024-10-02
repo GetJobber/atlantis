@@ -1,54 +1,53 @@
-import React from "react";
-import { fireEvent, render } from "@testing-library/react";
-import { ComboboxAction } from "./ComboboxAction";
+import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import * as POM from "./ComboboxAction.pom";
 
 const onClick = jest.fn();
+const setOpen = jest.fn();
+
+afterEach(() => {
+  onClick.mockClear();
+  setOpen.mockClear();
+});
 
 describe("ComboboxAction", () => {
   it("renders without error", () => {
-    const { getByText } = render(
-      <ComboboxAction label="Label" onClick={onClick} />,
-    );
+    POM.renderComboboxAction([{ label: "Label", onClick }]);
 
-    expect(getByText("Label")).toBeInTheDocument();
+    expect(screen.getByText("Label")).toBeInTheDocument();
   });
 
-  it("calls onClick when clicked", () => {
-    const { getByText } = render(
-      <ComboboxAction onClick={onClick} label="Add a teammate" />,
-    );
+  it("calls onClick when clicked", async () => {
+    POM.renderComboboxAction([{ label: "Add a teammate", onClick }]);
 
-    fireEvent.click(getByText("Add a teammate"));
+    await userEvent.click(screen.getByText("Add a teammate"));
 
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
-  it("can exist in a group of multiple actions", () => {
+  it("can exist in a group of multiple actions", async () => {
     const actions = [
       { label: "Action 1", onClick: jest.fn() },
       { label: "Action 2", onClick: jest.fn() },
       { label: "Action 3", onClick: jest.fn() },
     ];
 
-    const { getByText } = render(
-      <div>
-        {actions.map((action, index) => (
-          <ComboboxAction
-            key={index}
-            onClick={action.onClick}
-            label={action.label}
-          />
-        ))}
-      </div>,
+    POM.renderComboboxAction(actions);
+
+    for (const action of actions) {
+      await userEvent.click(screen.getByText(action.label));
+      expect(action.onClick).toHaveBeenCalledTimes(1);
+    }
+  });
+
+  it("closes the Combobox when closeOnActionClick is true", async () => {
+    POM.renderComboboxAction(
+      [{ label: "Collapse Action", onClick, closeOnActionClick: true }],
+      setOpen,
     );
 
-    actions.forEach(action => {
-      expect(getByText(action.label)).toBeInTheDocument();
-    });
+    await userEvent.click(screen.getByText("Collapse Action"));
 
-    actions.forEach(action => {
-      getByText(action.label).click();
-      expect(action.onClick).toHaveBeenCalledTimes(1);
-    });
+    expect(setOpen).toHaveBeenCalledWith(false);
   });
 });

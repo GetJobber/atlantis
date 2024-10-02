@@ -6,6 +6,9 @@ import { Typography } from "@jobber/components/Typography";
 import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
 import { StatusIndicator } from "@jobber/components/StatusIndicator";
+import { Modal } from "@jobber/components/Modal";
+import { Text } from "@jobber/components/Text";
+import { Content } from "@jobber/components/Content";
 import { useFakeQuery } from "./storyUtils";
 
 export default {
@@ -435,6 +438,47 @@ const ComboboxInfiniteScroll: ComponentStory<typeof Combobox> = args => {
     </Combobox>
   );
 };
+
+const ComboboxCloseOnAction: ComponentStory<typeof Combobox> = args => {
+  const [selected, setSelected] = useState<ComboboxOption[]>([]);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  return (
+    <>
+      <Modal
+        title="Neato!"
+        open={modalOpen}
+        onRequestClose={() => setModalOpen(false)}
+      >
+        <Content>
+          <Text>The Combobox closed when you clicked the action 🎉</Text>
+        </Content>
+      </Modal>
+
+      <Combobox
+        {...args}
+        onSelect={setSelected}
+        selected={selected}
+        label="Teammates"
+      >
+        <Combobox.Option id="1" label="Bilbo Baggins" />
+        <Combobox.Option id="2" label="Frodo Baggins" />
+        <Combobox.Option id="3" label="Pippin Took" />
+        <Combobox.Option id="4" label="Merry Brandybuck" />
+        <Combobox.Option id="5" label="Sam Gamgee" />
+
+        <Combobox.Action
+          label="Add Teammate"
+          onClick={() => setModalOpen(true)}
+          closeOnActionClick
+        />
+      </Combobox>
+    </>
+  );
+};
+
+export const CloseOnAction = ComboboxCloseOnAction.bind({});
+CloseOnAction.args = {};
 
 export const ClearSelection = ComboboxClearSelection.bind({});
 ClearSelection.args = {};
