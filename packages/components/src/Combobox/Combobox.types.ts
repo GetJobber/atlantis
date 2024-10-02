@@ -280,7 +280,7 @@ export interface ComboboxActionProps {
     | ((options: ComboboxActionCallbackOptions) => boolean);
 
   /**
-   * Should the Combobox close when the action is clicked.
+   * Closes the Combobox when the action is clicked.
    * @default false
    */
   readonly closeOnActionClick?: boolean;

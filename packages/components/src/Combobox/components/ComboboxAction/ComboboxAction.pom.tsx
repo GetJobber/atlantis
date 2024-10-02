@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { ComboboxAction as ComboboxActionComponent } from "./ComboboxAction"; // Adjust the import path as needed
+import { ComboboxAction as ComboboxActionComponent } from "./ComboboxAction";
 import { ComboboxContextProvider } from "../../ComboboxProvider";
 
 export function renderComboboxAction(
