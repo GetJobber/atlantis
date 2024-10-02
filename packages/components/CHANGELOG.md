@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.39.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.38.0...@jobber/components@5.39.0) (2024-10-02)
+
+
+### Features
+
+* **components:** Re-separate Chip from Chips w/Background Color Fixes ([#2035](https://github.com/GetJobber/atlantis/issues/2035)) ([7e7d6a6](https://github.com/GetJobber/atlantis/commit/7e7d6a61429609f77f9fe2351252b10217ccf940)), closes [#2028](https://github.com/GetJobber/atlantis/issues/2028)
+
+
+
+
+
 # [5.38.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.37.1...@jobber/components@5.38.0) (2024-10-02)
 
 
