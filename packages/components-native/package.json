@@ -58,7 +58,6 @@
     "@types/lodash.debounce": "^4.0.7",
     "@types/lodash.identity": "^3.0.7",
     "@types/react": "^18.0.28",
-    "@types/react-native": "^0.73.0",
     "@types/react-native-uuid": "^1.4.0",
     "metro-react-native-babel-preset": "^0.76.0",
     "react-test-renderer": "^18.2.0"
