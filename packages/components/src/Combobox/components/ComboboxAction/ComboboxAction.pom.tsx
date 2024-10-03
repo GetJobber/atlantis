@@ -3,12 +3,14 @@ import { render } from "@testing-library/react";
 import { ComboboxAction as ComboboxActionComponent } from "./ComboboxAction";
 import { ComboboxContextProvider } from "../../ComboboxProvider";
 
+interface Action {
+  label: string;
+  onClick: () => void;
+  closeOnActionClick?: boolean;
+}
+
 export function renderComboboxAction(
-  actions: {
-    label: string;
-    onClick: () => void;
-    closeOnActionClick?: boolean;
-  }[],
+  actions: Action[],
   setOpen: (open: boolean) => void = jest.fn(),
 ) {
   return render(
@@ -23,12 +25,7 @@ export function renderComboboxAction(
     >
       <div>
         {actions.map((action, index) => (
-          <ComboboxActionComponent
-            key={index}
-            label={action.label}
-            onClick={action.onClick}
-            closeOnActionClick={action.closeOnActionClick}
-          />
+          <ComboboxActionComponent key={index} {...action} />
         ))}
       </div>
     </ComboboxContextProvider>,
