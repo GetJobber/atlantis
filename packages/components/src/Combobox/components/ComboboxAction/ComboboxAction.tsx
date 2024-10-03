@@ -21,7 +21,7 @@ export function ComboboxAction(props: ComboboxActionProps) {
     typeof props.label === "string" ? props.label : props.label(options);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (props.closeOnActionClick === true) {
+    if (props.closeOnActionClick) {
       setOpen(false);
     }
     props.onClick(e, options);
