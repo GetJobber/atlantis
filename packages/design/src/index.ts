@@ -111,8 +111,8 @@ function buildSVGStyle(
   const iconSizeStyle = iconSizes.tokens[size];
   const svgStyle: {
     fill?: string;
-    width: string | number;
-    height: string | number;
+    width: number;
+    height: number;
   } = {
     ...specialIconStyle,
     ...iconStyle,
