@@ -178,6 +178,12 @@
     "npm": "10"
   },
   "overrides": {
+    "lerna": {
+      "semver": "^5.7.2 || ^6.3.1 || ^7.5.2",
+      "make-dir": {
+        "semver": "^6.3.1"
+      }
+    },
     "trim": "0.0.3"
   },
   "engineStrict": true
