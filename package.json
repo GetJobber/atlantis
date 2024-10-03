@@ -108,7 +108,6 @@
     "eslint": "^8.36.0",
     "eslint-formatter-codeframe": "^7.32.1",
     "eslint-import-resolver-alias": "^1.1.2",
-    "eslint-plugin-jest": "^22.6.4",
     "eslint-plugin-mdx": "^1.16.0",
     "eslint-plugin-monorepo-cop": "^1.0.2",
     "eslint-plugin-react": "^7.33.2",
