@@ -11,14 +11,17 @@ afterEach(() => {
 });
 
 describe("ComboboxAction", () => {
+  const renderAction = actions => {
+    POM.renderComboboxAction(actions, setOpen);
+  };
   it("renders without error", () => {
-    POM.renderComboboxAction([{ label: "Label", onClick }]);
+    renderAction([{ label: "Label", onClick }]);
 
     expect(screen.getByText("Label")).toBeInTheDocument();
   });
 
   it("calls onClick when clicked", async () => {
-    POM.renderComboboxAction([{ label: "Add a teammate", onClick }]);
+    renderAction([{ label: "Add a teammate", onClick }]);
 
     await userEvent.click(screen.getByText("Add a teammate"));
 
@@ -32,7 +35,7 @@ describe("ComboboxAction", () => {
       { label: "Action 3", onClick: jest.fn() },
     ];
 
-    POM.renderComboboxAction(actions);
+    renderAction(actions);
 
     for (const action of actions) {
       await userEvent.click(screen.getByText(action.label));
@@ -41,7 +44,7 @@ describe("ComboboxAction", () => {
   });
 
   it("closes the Combobox when closeOnActionClick is true", async () => {
-    POM.renderComboboxAction(
+    renderAction(
       [{ label: "Collapse Action", onClick, closeOnActionClick: true }],
       setOpen,
     );
