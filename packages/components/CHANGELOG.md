@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.40.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.40.0...@jobber/components@5.40.1) (2024-10-03)
+
+
+### Bug Fixes
+
+* **components:** Remove center alignment in FormField ([#2057](https://github.com/GetJobber/atlantis/issues/2057)) ([7259a09](https://github.com/GetJobber/atlantis/commit/7259a09e191fab94d25e011b8840bbb3458aaf38))
+
+
+
+
+
 # [5.40.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.39.1...@jobber/components@5.40.0) (2024-10-02)
 
 
