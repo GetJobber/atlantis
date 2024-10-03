@@ -2,6 +2,9 @@ import { useRef } from "react";
 import { useSafeLayoutEffect } from "../useSafeLayoutEffect";
 
 /**
+ * If you are using this hook in order to only perform an action once after mounting (for example sending
+ * analytics events), use `useOnMount` instead
+ *
  * Why does this work?
  *
  * The following is from the react docs:
