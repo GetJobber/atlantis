@@ -28,7 +28,6 @@
     "lint:js": "eslint --ext .js,.jsx,.ts,.tsx . --ignore-pattern node_modules/ --ignore-pattern 'packages/design/src/assets/**'",
     "lint:markdown": "prettier --check '**/*.{md,mdx}' --write",
     "pack": "npm run bootstrap && npm pack -w",
-    "plop": "echo '🚧 `npm run plop` is now `npm run generate`'",
     "postinstall": "npm run bootstrap",
     "prestart": "npm run build:hooksIndex",
     "preventManualRelease": "node scripts/preventManualRelease.js",
@@ -122,7 +121,7 @@
     "lint-staged": "^9.4.2",
     "lodash": "^4.17.21",
     "metro-react-native-babel-preset": "^0.76.0",
-    "plop": "^2.5.3",
+    "plop": "^4.0.1",
     "postcss-import": "^12.0.1",
     "postcss-loader": "^4.2.0",
     "postcss-preset-env": "^8.3.0",
@@ -178,7 +177,6 @@
     "npm": "10"
   },
   "overrides": {
-    "braces": "^3.0.3",
     "lerna": {
       "semver": "^5.7.2 || ^6.3.1 || ^7.5.2",
       "make-dir": {
