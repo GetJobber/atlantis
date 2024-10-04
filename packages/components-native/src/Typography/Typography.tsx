@@ -411,9 +411,9 @@ export type TextVariation =
   | "disabled"
   | "destructive"
 
-  // Deprecated (except for when reverseTheme=true)
+  // Deprecated
   | "base" // Use "text" instead
-  | "success" // Use "successOnSurface" instead
+  | "success" // Use "successOnSurface" instead (except for when reverseTheme=true)
   | "subdued" // Use "textSecondary" instead
   | "error" // Use "critical" instead
   | "warn" // Use "warningOnSurface" instead
