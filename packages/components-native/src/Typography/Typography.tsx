@@ -356,7 +356,6 @@ export type TextColor =
   | "informative"
   | "informativeSurface"
   | "informativeOnSurface"
-  | "success"
   | "successSurface"
   | "successOnSurface"
 
