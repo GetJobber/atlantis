@@ -50,9 +50,6 @@
 .clickable:focus {
   background-color: var(--color-surface--hover);
 }
-.clickable:focus-visible {
-  box-shadow: var(--shadow-focus);
-}
 
 .header {
   display: flex;
