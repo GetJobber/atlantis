@@ -40,8 +40,6 @@
 }
 
 .clickable {
-  --card--border: none;
-
   color: inherit;
   text-decoration: inherit;
   cursor: pointer;

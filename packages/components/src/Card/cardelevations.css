@@ -1,3 +1,9 @@
+.lowElevation,
+.baseElevation,
+.highElevation {
+  --card--border: none;
+}
+
 .lowElevation {
   box-shadow: var(--shadow-low);
 }
