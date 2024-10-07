@@ -427,13 +427,13 @@
     },
     "purple-": {
       "light": {
-        "$value": "rgb(172, 155, 214)"
+        "$value": "{color.base.purple-.400}"
       },
       "lighter": {
-        "$value": "rgb(207, 198, 231)"
+        "$value": "{color.base.purple-.300}"
       },
       "lightest": {
-        "$value": "rgb(237, 234, 246)"
+        "$value": "{color.base.purple-.100}"
       }
     },
     "teal": {
