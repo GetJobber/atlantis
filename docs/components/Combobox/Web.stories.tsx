@@ -6,9 +6,8 @@ import { Typography } from "@jobber/components/Typography";
 import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
 import { StatusIndicator } from "@jobber/components/StatusIndicator";
-import { Modal } from "@jobber/components/Modal";
-import { Text } from "@jobber/components/Text";
 import { Content } from "@jobber/components/Content";
+import { Card } from "@jobber/components/Card";
 import { useFakeQuery } from "./storyUtils";
 
 export default {
@@ -439,44 +438,48 @@ const ComboboxInfiniteScroll: ComponentStory<typeof Combobox> = args => {
   );
 };
 
-const ComboboxCloseOnAction: ComponentStory<typeof Combobox> = args => {
+const ComboboxKeepOpenOnActionClick: ComponentStory<typeof Combobox> = args => {
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [chips, setChips] = useState<string[]>([]);
+
+  const handleActionClick = (searchValue: string) => {
+    setChips([...chips, searchValue]);
+  };
 
   return (
-    <>
-      <Modal
-        title="Neato!"
-        open={modalOpen}
-        onRequestClose={() => setModalOpen(false)}
-      >
-        <Content>
-          <Text>The Combobox closed when you clicked the action 🎉</Text>
-        </Content>
-      </Modal>
+    <Card header="Add more friends">
+      <Content>
+        <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+          <Combobox
+            {...args}
+            onSelect={setSelected}
+            selected={selected}
+            label="Add Chip"
+          >
+            <Combobox.Option id="1" label="Search" />
+            <Combobox.Option id="2" label="for a" />
+            <Combobox.Option id="3" label="friend" />
 
-      <Combobox
-        {...args}
-        onSelect={setSelected}
-        selected={selected}
-        label="Actions"
-      >
-        <Combobox.Option id="1" label="Click the action" />
-        <Combobox.Option id="2" label="for a" />
-        <Combobox.Option id="3" label="surprise" />
-
-        <Combobox.Action
-          label="Click me"
-          onClick={() => setModalOpen(true)}
-          closeOnActionClick
-        />
-      </Combobox>
-    </>
+            <Combobox.Action
+              visible={({ searchValue }) => Boolean(searchValue)}
+              label={({ searchValue }) => `Add "${searchValue}" as Chip`}
+              onClick={(_, { searchValue }) => handleActionClick(searchValue)}
+              keepOpenOnActionClick
+            />
+          </Combobox>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+            {chips.map((chip, index) => (
+              <Chip key={index} label={chip} />
+            ))}
+          </div>
+        </div>
+      </Content>
+    </Card>
   );
 };
 
-export const CloseOnActionClick = ComboboxCloseOnAction.bind({});
-CloseOnActionClick.args = {};
+export const KeepOpenOnActionClick = ComboboxKeepOpenOnActionClick.bind({});
+KeepOpenOnActionClick.args = {};
 
 export const ClearSelection = ComboboxClearSelection.bind({});
 ClearSelection.args = {};

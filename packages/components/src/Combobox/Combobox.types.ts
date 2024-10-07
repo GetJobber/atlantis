@@ -280,10 +280,10 @@ export interface ComboboxActionProps {
     | ((options: ComboboxActionCallbackOptions) => boolean);
 
   /**
-   * Closes the Combobox when the action is clicked.
+   * Keeps the Combobox open when the action is clicked.
    * @default false
    */
-  readonly closeOnActionClick?: boolean;
+  readonly keepOpenOnActionClick?: boolean;
 }
 
 export interface ComboboxActionCallbackOptions {

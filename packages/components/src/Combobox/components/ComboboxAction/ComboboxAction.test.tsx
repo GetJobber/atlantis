@@ -43,14 +43,13 @@ describe("ComboboxAction", () => {
     }
   });
 
-  it("closes the Combobox when closeOnActionClick is true", async () => {
-    renderAction(
-      [{ label: "Collapse Action", onClick, closeOnActionClick: true }],
-      setOpen,
-    );
+  it("keeps the Combobox open when keepOpenOnActionClick is true", async () => {
+    renderAction([
+      { label: "Collapse Action", onClick, keepOpenOnActionClick: true },
+    ]);
 
     await userEvent.click(screen.getByText("Collapse Action"));
 
-    expect(setOpen).toHaveBeenCalledWith(false);
+    expect(setOpen).toHaveBeenCalledWith(true);
   });
 });

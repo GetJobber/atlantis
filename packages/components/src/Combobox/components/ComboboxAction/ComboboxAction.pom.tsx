@@ -6,7 +6,7 @@ import { ComboboxContextProvider } from "../../ComboboxProvider";
 interface Action {
   label: string;
   onClick: () => void;
-  closeOnActionClick?: boolean;
+  keepOpenOnActionClick?: boolean;
 }
 
 export function renderComboboxAction(
