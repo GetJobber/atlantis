@@ -2,7 +2,7 @@ import React from "react";
 import { Icon } from "@jobber/components/Icon";
 import { Chip } from "../../Chip";
 import { ChipSelectableProps } from "../../Chip.types";
-import styles from "../../Chip.css";
+import styles from "../../Chip.module.css";
 
 export function ChipSelectable({ selected, ...rest }: ChipSelectableProps) {
   return (
@@ -11,7 +11,7 @@ export function ChipSelectable({ selected, ...rest }: ChipSelectableProps) {
         <Icon
           name={selected ? "checkmark" : "add"}
           size="small"
-          color={selected ? "green" : "blue"}
+          color="interactiveSubtle"
         />
       </Chip.Suffix>
     </Chip>

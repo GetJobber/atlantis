@@ -4,7 +4,7 @@ import {
   DataListItemActionsProps,
   DataListObject,
 } from "@jobber/components/DataList/DataList.types";
-import styles from "../../../../DataList.css";
+import styles from "../../../../DataList.module.css";
 import { useDataListLayoutActionsContext } from "../../../DataListLayoutActions/DataListLayoutContext";
 
 export function DataListItemClickableInternal<T extends DataListObject>({

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./MonthlyDayOfWeekSelect.css";
+import styles from "./MonthlyDayOfWeekSelect.module.css";
 import { WeeklySelect } from "./WeeklySelect";
 import { Text } from "../../Text";
 import { WeekDay } from "../types";

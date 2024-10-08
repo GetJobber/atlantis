@@ -356,7 +356,6 @@ export type TextColor =
   | "informative"
   | "informativeSurface"
   | "informativeOnSurface"
-  | "success"
   | "successSurface"
   | "successOnSurface"
 
@@ -414,6 +413,7 @@ export type TextVariation =
 
   // Deprecated
   | "base" // Use "text" instead
+  | "success" // Use "successOnSurface" instead (except for when reverseTheme=true)
   | "subdued" // Use "textSecondary" instead
   | "error" // Use "critical" instead
   | "warn" // Use "warningOnSurface" instead

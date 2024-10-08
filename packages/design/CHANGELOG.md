@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.66.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.65.1...@jobber/design@0.66.0) (2024-10-07)
+
+
+### Features
+
+* **design:** Add new colors into base palette [JOB-105102] ([#2044](https://github.com/GetJobber/atlantis/issues/2044)) ([0e3ce4d](https://github.com/GetJobber/atlantis/commit/0e3ce4d09fa00f34572fe25f2697cede178a22ac))
+
+
+
+
+
 ## [0.65.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.65.0...@jobber/design@0.65.1) (2024-09-17)
 
 

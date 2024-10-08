@@ -2,7 +2,7 @@ import React, { ReactNode, useState } from "react";
 import classnames from "classnames";
 import { IconNames } from "@jobber/design";
 import { useResizeObserver } from "@jobber/hooks/useResizeObserver";
-import styles from "./Banner.css";
+import styles from "./Banner.module.css";
 import { BannerIcon } from "./components/BannerIcon";
 import { BannerType } from "./Banner.types";
 import { Text } from "../Text";

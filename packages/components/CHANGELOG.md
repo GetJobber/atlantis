@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.40.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.40.1...@jobber/components@5.40.2) (2024-10-08)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [5.40.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.40.0...@jobber/components@5.40.1) (2024-10-03)
+
+
+### Bug Fixes
+
+* **components:** Remove center alignment in FormField ([#2057](https://github.com/GetJobber/atlantis/issues/2057)) ([7259a09](https://github.com/GetJobber/atlantis/commit/7259a09e191fab94d25e011b8840bbb3458aaf38))
+
+
+
+
+
+# [5.40.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.39.1...@jobber/components@5.40.0) (2024-10-02)
+
+
+### Features
+
+* **components:** Make Suffix Optional on Single and Multi Select Chips ([#2047](https://github.com/GetJobber/atlantis/issues/2047)) ([e4b9e06](https://github.com/GetJobber/atlantis/commit/e4b9e064126d9ec6747060afd35770cb2274930c)), closes [#2028](https://github.com/GetJobber/atlantis/issues/2028)
+
+
+
+
+
+## [5.39.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.39.0...@jobber/components@5.39.1) (2024-10-02)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [5.39.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.38.0...@jobber/components@5.39.0) (2024-10-02)
+
+
+### Features
+
+* **components:** Re-separate Chip from Chips w/Background Color Fixes ([#2035](https://github.com/GetJobber/atlantis/issues/2035)) ([7e7d6a6](https://github.com/GetJobber/atlantis/commit/7e7d6a61429609f77f9fe2351252b10217ccf940)), closes [#2028](https://github.com/GetJobber/atlantis/issues/2028)
+
+
+
+
+
+# [5.38.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.37.1...@jobber/components@5.38.0) (2024-10-02)
+
+
+### Features
+
+* **deps:** Update storybook to the latest patch version (7.6.20) ([#2049](https://github.com/GetJobber/atlantis/issues/2049)) ([52b1458](https://github.com/GetJobber/atlantis/commit/52b145833ec3d5452b5d1cf5e2f536a222fc3f1f))
+
+
+
+
+
 ## [5.37.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.37.0...@jobber/components@5.37.1) (2024-09-30)
 
 

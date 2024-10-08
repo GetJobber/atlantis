@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import styles from "./Divider.css";
+import styles from "./Divider.module.css";
 
 interface DividerProps {
   /**
