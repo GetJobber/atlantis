@@ -3,7 +3,7 @@ import classnames from "classnames";
 import { XOR } from "ts-xor";
 import styles from "./Card.module.css";
 import colors from "./cardcolors.module.css";
-import elevations from "./cardelevations.css";
+import elevations from "./CardElevations.module.css";
 import { CardClickable } from "./CardClickable";
 import { CardHeader } from "./CardHeader";
 import { CardProps } from "./types";
