@@ -42,7 +42,6 @@
 .clickable {
   --card--border: none;
 
-  box-shadow: var(--shadow-base);
   color: inherit;
   text-decoration: inherit;
   cursor: pointer;

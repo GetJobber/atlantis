@@ -79,6 +79,12 @@ WithOnClick.args = {
   },
 };
 
+export const WithElevation = BasicTemplate.bind({});
+WithElevation.args = {
+  header: "Company settings",
+  elevation: "base",
+};
+
 const CustomHeaderTemplate: ComponentStory<typeof Card> = args => (
   <Card
     header={

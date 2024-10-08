@@ -1,0 +1,11 @@
+.lowElevation {
+  box-shadow: var(--shadow-low);
+}
+
+.baseElevation {
+  box-shadow: var(--shadow-base);
+}
+
+.highElevation {
+  box-shadow: var(--shadow-high);
+}
