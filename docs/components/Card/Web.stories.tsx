@@ -7,6 +7,8 @@ import { Heading } from "@jobber/components/Heading";
 import { InputGroup } from "@jobber/components/InputGroup";
 import { InputText } from "@jobber/components/InputText";
 import { Button } from "@jobber/components/Button";
+import { Icon } from "@jobber/components/Icon";
+import { Flex } from "@jobber/components/Flex";
 
 export default {
   title: "Components/Layouts and Structure/Card/Web",
@@ -53,7 +55,10 @@ const BasicTemplate: ComponentStory<typeof Card> = args => (
 const ClickTemplate: ComponentStory<typeof Card> = args => (
   <Card {...args}>
     <Content>
-      <Heading level={4}>View all</Heading>
+      <Flex template={["grow", "shrink"]} align="start">
+        <Heading level={4}>View all</Heading>
+        <Icon size="small" name="arrowRight" />
+      </Flex>
       <Text>
         See how our 20+ features can help you organize, impress, and grow.
       </Text>
