@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import classnames from "classnames";
-import styles from "./InlineLabel.css";
+import styles from "./InlineLabel.module.css";
 import { Typography } from "../Typography";
 
 export type InlineLabelColors =

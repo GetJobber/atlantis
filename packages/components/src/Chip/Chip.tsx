@@ -1,7 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import { useInView } from "@jobber/hooks/useInView";
-import styles from "./Chip.css";
+import styles from "./Chip.module.css";
 import { ChipPrefix } from "./components/ChipPrefix/Chip.Prefix";
 import { ChipSuffix } from "./components/ChipSuffix/Chip.Suffix";
 import { ChipProps } from "./Chip.types";

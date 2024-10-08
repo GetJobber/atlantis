@@ -3,7 +3,7 @@ import classnames from "classnames";
 import { XOR } from "ts-xor";
 import { Link, LinkProps } from "react-router-dom";
 import { IconNames } from "@jobber/design";
-import styles from "./Button.css";
+import styles from "./Button.module.css";
 import { Icon } from "../Icon";
 import { Typography } from "../Typography";
 

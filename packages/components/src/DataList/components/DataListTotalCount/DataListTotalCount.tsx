@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./DataListTotalCount.css";
+import styles from "./DataListTotalCount.module.css";
 import { Text } from "../../../Text";
 import { Glimmer } from "../../../Glimmer";
 

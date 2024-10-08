@@ -6,7 +6,7 @@ import {
 import { Typography } from "@jobber/components/Typography";
 import { Icon } from "@jobber/components/Icon";
 import { useDataListLayoutActionsContext } from "@jobber/components/DataList/components/DataListLayoutActions/DataListLayoutContext";
-import styles from "./DataListAction.css";
+import styles from "./DataListAction.module.css";
 
 export function DataListAction<T extends DataListObject>({
   label,

@@ -3,7 +3,7 @@ import classnames from "classnames";
 import ReactDatePicker from "react-datepicker";
 import { XOR } from "ts-xor";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
-import styles from "./DatePicker.css";
+import styles from "./DatePicker.module.css";
 import { DatePickerCustomHeader } from "./DatePickerCustomHeader";
 import {
   DatePickerActivator,

@@ -1,7 +1,7 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import classnames from "classnames";
-import styles from "./FeatureSwitch.css";
+import styles from "./FeatureSwitch.module.css";
 import { Heading } from "../Heading";
 import { Text } from "../Text";
 import { Content } from "../Content";

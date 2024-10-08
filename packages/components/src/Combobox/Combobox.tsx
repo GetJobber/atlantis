@@ -5,7 +5,7 @@ import { ComboboxAction } from "./components/ComboboxAction";
 import { ComboboxContextProvider } from "./ComboboxProvider";
 import { ComboboxTrigger } from "./components/ComboboxTrigger";
 import { ComboboxOption as ComboboxOptionComponent } from "./components/ComboboxOption/ComboboxOption";
-import styles from "./Combobox.css";
+import styles from "./Combobox.module.css";
 import { useCombobox } from "./hooks/useCombobox";
 import { ComboboxActivator } from "./components/ComboboxActivator";
 import { useComboboxValidation } from "./hooks/useComboboxValidation";

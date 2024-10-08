@@ -7,7 +7,7 @@ import {
 } from "@jobber/hooks/useResizeObserver";
 import { Body } from "./Body";
 import { createTableSettings } from "./createTableSettings";
-import styles from "./DataTable.css";
+import styles from "./DataTable.module.css";
 import { Pagination } from "./Pagination";
 import { PaginationType, SortingType } from "./types";
 import { Footer } from "./Footer";

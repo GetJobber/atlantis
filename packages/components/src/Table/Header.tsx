@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import styles from "./Table.css";
+import styles from "./Table.module.css";
 import { Row } from "./Row";
 
 interface HeaderProps {

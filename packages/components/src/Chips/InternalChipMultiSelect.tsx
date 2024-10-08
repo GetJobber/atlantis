@@ -1,6 +1,6 @@
 import React, { MouseEvent } from "react";
 import classNames from "classnames";
-import styles from "./InternalChip.css";
+import styles from "./InternalChip.module.css";
 import { InternalChip } from "./InternalChip";
 import { ChipMultiSelectProps } from "./ChipsTypes";
 import { useInternalChips } from "./hooks/useInternalChip";

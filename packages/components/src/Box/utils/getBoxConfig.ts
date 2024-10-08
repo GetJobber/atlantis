@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import borderStyles from "../styles/BoxBorder.css";
+import borderStyles from "../styles/BoxBorder.module.css";
 
 // Borders
 export const getBorderClassNames = <T>(size: T) =>

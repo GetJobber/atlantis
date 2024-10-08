@@ -1,7 +1,7 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
 import { Modal } from ".";
-import styles from "./Modal.css";
+import styles from "./Modal.module.css";
 
 it('modal contains aria role of "dialog"', async () => {
   const { findByRole } = render(<Modal open>Content</Modal>);
