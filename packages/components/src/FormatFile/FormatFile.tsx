@@ -4,6 +4,7 @@ import getHumanReadableFileSize from "filesize";
 import styles from "./FormatFile.css";
 import { FormatFileDeleteButton } from "./FormatFileDeleteButton";
 import { InternalThumbnail } from "./InternalThumbnail";
+import { Action, FormatFileMenu } from "./FormatFileMenu";
 import { FileUpload } from "../InputFile";
 import { Text } from "../Text";
 import { ProgressBar } from "../ProgressBar";
@@ -37,6 +38,11 @@ interface FormatFileProps {
    * onDelete callback - this function will be called when the delete action is triggered
    */
   onDelete?(): void;
+
+  /**
+   * Actions to display on the file
+   */
+  readonly actions?: Action[];
 }
 
 export function FormatFile({
@@ -45,6 +51,7 @@ export function FormatFile({
   displaySize = "base",
   onDelete,
   onClick,
+  actions,
 }: FormatFileProps) {
   const isComplete = file.progress >= 1;
   const fileSize = getHumanReadableFileSize(file.size);
@@ -108,6 +115,9 @@ export function FormatFile({
             onDelete={onDelete}
           />
         </div>
+      )}
+      {isComplete && actions && actions?.length > 0 && (
+        <FormatFileMenu actions={actions} />
       )}
     </div>
   );

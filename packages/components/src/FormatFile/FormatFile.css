@@ -77,7 +77,8 @@
   box-shadow: var(--shadow-focus);
 }
 
-.deleteButton {
+.deleteButton,
+.menu {
   z-index: var(--elevation-base);
 }
 
@@ -131,10 +132,42 @@
   white-space: nowrap;
 }
 
-.compact .deleteButton {
+.compact .deleteButton,
+.compact .menu {
   position: absolute;
   top: var(--space-smaller);
   right: var(--space-smaller);
+}
+
+.menuList {
+  list-style-type: none;
+  position: absolute;
+  right: 0;
+  max-width: var(--popover--width);
+  box-shadow: var(--shadow-base);
+  margin-top: var(--space-smaller);
+  padding: var(--space-small);
+  border: var(--border-base) solid var(--color-border);
+  border-radius: var(--radius-base);
+  background: var(--color-surface);
+  align-items: flex-start;
+}
+
+.menuItem {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--space-small);
+  border-radius: var(--radius-small);
+  white-space: nowrap;
+  cursor: pointer;
+  justify-content: space-between;
+  gap: var(--space-smaller);
+}
+
+.menuItem:hover,
+.menuItem:focus {
+  background-color: var(--color-surface--hover);
 }
 
 @media (--medium-screens-and-up) {

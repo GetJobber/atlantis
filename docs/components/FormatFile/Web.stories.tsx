@@ -15,6 +15,31 @@ const BasicTemplate: ComponentStory<typeof FormatFile> = args => (
   <FormatFile {...args} />
 );
 
+export const Menu = BasicTemplate.bind({});
+Menu.args = {
+  file: {
+    key: "abc",
+    type: "image/png",
+    size: 213402324,
+    progress: 1,
+    src: () => Promise.resolve("https://picsum.photos/250"),
+    name: "image_of_something.png",
+  },
+  actions: [
+    {
+      label: "Delete",
+      onClick: () => alert("Deleted"),
+      icon: "trash",
+      // destructive: true,
+    },
+    {
+      label: "Download",
+      onClick: () => alert("Downloaded"),
+      icon: "download",
+    },
+  ],
+};
+
 export const Expanded = BasicTemplate.bind({});
 Expanded.args = {
   file: {
