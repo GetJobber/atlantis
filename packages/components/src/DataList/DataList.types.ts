@@ -213,6 +213,8 @@ export interface DataListSearchProps {
   readonly initialValue?: string;
 
   readonly onSearch: (value: string) => void;
+
+  readonly visible?: boolean;
 }
 
 export interface DataListFiltersProps {

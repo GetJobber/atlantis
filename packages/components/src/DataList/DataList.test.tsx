@@ -665,4 +665,38 @@ describe("DataList", () => {
       expect(screen.getByText(bannerText)).toBeInTheDocument();
     });
   });
+  describe("Search", () => {
+    it("should be shown when visible is true", () => {
+      const mockOnSearch = jest.fn();
+      render(
+        <DataList
+          data={Array.from({ length: MAX_DATA_COUNT + 1 }, (_, id) => ({
+            id,
+          }))}
+          headers={{ id: "ID" }}
+        >
+          <DataList.Search onSearch={mockOnSearch} visible={true} />
+        </DataList>,
+      );
+
+      expect(screen.getByLabelText("Close search bar")).toBeInTheDocument();
+    });
+    it("should be hidden when visible is false", () => {
+      const mockOnSearch = jest.fn();
+      render(
+        <DataList
+          data={Array.from({ length: MAX_DATA_COUNT + 1 }, (_, id) => ({
+            id,
+          }))}
+          headers={{ id: "ID" }}
+        >
+          <DataList.Search onSearch={mockOnSearch} visible={false} />
+        </DataList>,
+      );
+
+      expect(
+        screen.queryByLabelText("Close search bar"),
+      ).not.toBeInTheDocument();
+    });
+  });
 });

@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useMemo, useRef, useState } from "react";
 import debounce from "lodash/debounce";
 import classNames from "classnames";
 import { tokens } from "@jobber/design";
@@ -23,10 +23,17 @@ export function DataListSearch(_: DataListSearchProps) {
  */
 export function InternalDataListSearch() {
   const inputRef = useRef<InputTextRef>(null);
-  const [visible, setVisible] = useState(false);
-
   const { searchComponent, filterComponent, sorting, title } =
     useDataListContext();
+
+  const [visibleInternal, setVisibleInternal] = useState(
+    searchComponent?.props.visible,
+  );
+
+  const visible =
+    useMemo(() => {
+      return searchComponent?.props.visible ?? visibleInternal;
+    }, [visibleInternal, searchComponent]) ?? false;
 
   const debouncedSearch = useCallback(
     debounce(
@@ -96,7 +103,7 @@ export function InternalDataListSearch() {
 
   function toggleSearch() {
     const visibility = !visible;
-    setVisible(visibility);
+    setVisibleInternal(visibility);
 
     if (visibility && inputRef.current) {
       setTimeout(inputRef.current.focus, tokens["timing-quick"]);
