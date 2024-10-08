@@ -24,12 +24,15 @@ interface TooltipProps {
    * @default 'top'
    */
   readonly preferredPlacement?: Placement;
+
+  readonly setTabIndex?: boolean;
 }
 
 export function Tooltip({
   message,
   children,
   preferredPlacement = "top",
+  setTabIndex = true,
 }: TooltipProps) {
   const [show, setShow] = useState(false);
 
@@ -107,7 +110,10 @@ export function Tooltip({
         // This is to avoid having to add those attribute as a prop on every
         // component we have.
         activator.setAttribute("aria-description", message);
-        activator.setAttribute("tabindex", "0"); // enable focus
+
+        if (setTabIndex) {
+          activator.setAttribute("tabindex", "0"); // enable focus
+        }
       }
     };
 

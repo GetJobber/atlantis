@@ -3,6 +3,157 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.40.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.40.0...@jobber/components@5.40.1) (2024-10-03)
+
+
+### Bug Fixes
+
+* **components:** Remove center alignment in FormField ([#2057](https://github.com/GetJobber/atlantis/issues/2057)) ([7259a09](https://github.com/GetJobber/atlantis/commit/7259a09e191fab94d25e011b8840bbb3458aaf38))
+
+
+
+
+
+# [5.40.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.39.1...@jobber/components@5.40.0) (2024-10-02)
+
+
+### Features
+
+* **components:** Make Suffix Optional on Single and Multi Select Chips ([#2047](https://github.com/GetJobber/atlantis/issues/2047)) ([e4b9e06](https://github.com/GetJobber/atlantis/commit/e4b9e064126d9ec6747060afd35770cb2274930c)), closes [#2028](https://github.com/GetJobber/atlantis/issues/2028)
+
+
+
+
+
+## [5.39.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.39.0...@jobber/components@5.39.1) (2024-10-02)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [5.39.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.38.0...@jobber/components@5.39.0) (2024-10-02)
+
+
+### Features
+
+* **components:** Re-separate Chip from Chips w/Background Color Fixes ([#2035](https://github.com/GetJobber/atlantis/issues/2035)) ([7e7d6a6](https://github.com/GetJobber/atlantis/commit/7e7d6a61429609f77f9fe2351252b10217ccf940)), closes [#2028](https://github.com/GetJobber/atlantis/issues/2028)
+
+
+
+
+
+# [5.38.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.37.1...@jobber/components@5.38.0) (2024-10-02)
+
+
+### Features
+
+* **deps:** Update storybook to the latest patch version (7.6.20) ([#2049](https://github.com/GetJobber/atlantis/issues/2049)) ([52b1458](https://github.com/GetJobber/atlantis/commit/52b145833ec3d5452b5d1cf5e2f536a222fc3f1f))
+
+
+
+
+
+## [5.37.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.37.0...@jobber/components@5.37.1) (2024-09-30)
+
+
+### Bug Fixes
+
+* **components:** Clear action UI fix ([#2052](https://github.com/GetJobber/atlantis/issues/2052)) ([63b0c9e](https://github.com/GetJobber/atlantis/commit/63b0c9e76c80628e30763bbc69f0060068b62245))
+
+
+
+
+
+# [5.37.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.36.0...@jobber/components@5.37.0) (2024-09-30)
+
+
+### Features
+
+* **components:** Clearable Autocomplete ([#2050](https://github.com/GetJobber/atlantis/issues/2050)) ([dfd86fb](https://github.com/GetJobber/atlantis/commit/dfd86fb18dee1bf197a6d6acbc078a9d291b18e9))
+
+
+
+
+
+# [5.36.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.35.4...@jobber/components@5.36.0) (2024-09-26)
+
+
+### Features
+
+* **components:** Create FileTypes enum for InputFile and use in validation error ([#2046](https://github.com/GetJobber/atlantis/issues/2046)) ([bc50873](https://github.com/GetJobber/atlantis/commit/bc50873d7770a1c50596baca25608c7676c3e7de))
+
+
+
+
+
+## [5.35.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.35.3...@jobber/components@5.35.4) (2024-09-25)
+
+
+### Bug Fixes
+
+* **components:** update Disclosure focus and hover styling ([#2009](https://github.com/GetJobber/atlantis/issues/2009)) ([12a1ab3](https://github.com/GetJobber/atlantis/commit/12a1ab397ec67d36a46492ed5f7fca4affcac1f8))
+
+
+
+
+
+## [5.35.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.35.1...@jobber/components@5.35.3) (2024-09-24)
+
+
+### Bug Fixes
+
+* **components:** Keep dismiss on drawers aligned to top when titles wrap ([#2011](https://github.com/GetJobber/atlantis/issues/2011)) ([c866e97](https://github.com/GetJobber/atlantis/commit/c866e97d850ab256acfdcdb47868d154239216ae))
+
+
+
+
+
+## [5.35.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.35.1...@jobber/components@5.35.2) (2024-09-23)
+
+
+### Bug Fixes
+
+* **components:** Keep dismiss on drawers aligned to top when titles wrap ([#2011](https://github.com/GetJobber/atlantis/issues/2011)) ([c866e97](https://github.com/GetJobber/atlantis/commit/c866e97d850ab256acfdcdb47868d154239216ae))
+
+
+
+
+
+## [5.35.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.35.0...@jobber/components@5.35.1) (2024-09-23)
+
+
+### Bug Fixes
+
+* **components:** Fix DataListOverflowFade spacing ([#2038](https://github.com/GetJobber/atlantis/issues/2038)) ([d48c9e3](https://github.com/GetJobber/atlantis/commit/d48c9e383c2f3e2736f5c8d5d000b2d39affc647))
+
+
+
+
+
+# [5.35.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.34.0...@jobber/components@5.35.0) (2024-09-20)
+
+
+### Features
+
+* **components:** improve positioning of DataList actions [JOB-99926] ([#1915](https://github.com/GetJobber/atlantis/issues/1915)) ([68d7d77](https://github.com/GetJobber/atlantis/commit/68d7d779e05cd5598a3fe008397280d66875bf3a))
+
+
+
+
+
+# [5.34.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.33.0...@jobber/components@5.34.0) (2024-09-20)
+
+
+### Features
+
+* **components:** Add maxFiles prop to InputFile ([#2007](https://github.com/GetJobber/atlantis/issues/2007)) ([69b7622](https://github.com/GetJobber/atlantis/commit/69b7622b65f0d369ffdc8a78b49dd3bd2cbe232f))
+
+
+
+
+
 # [5.33.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.32.0...@jobber/components@5.33.0) (2024-09-18)
 
 

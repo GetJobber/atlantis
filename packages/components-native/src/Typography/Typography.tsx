@@ -310,8 +310,8 @@ export type DisplayStyle = Extract<FontStyle, "regular">;
 
 export type TextColor =
   | TextVariation
+  // Base colors for backwards compatibility
   | "default"
-  | "blue"
   | "blueDark"
   | "white"
   | "green"
@@ -335,30 +335,89 @@ export type TextColor =
   | "tealDark"
   | "indigoDark"
   | "navy"
-  | "text"
+
+  // Typography
   | "heading"
+  | "text"
   | "textSecondary"
   | "textReverse"
   | "textReverseSecondary"
-  | "interactive"
-  | "interactiveSubtle"
-  | "destructive"
-  | "learning"
-  | "subtle"
-  | "onPrimary";
 
+  // Statuses
+  | "inactive"
+  | "inactiveSurface"
+  | "inactiveOnSurface"
+  | "critical"
+  | "criticalSurface"
+  | "criticalOnSurface"
+  | "warning"
+  | "warningSurface"
+  | "warningOnSurface"
+  | "informative"
+  | "informativeSurface"
+  | "informativeOnSurface"
+  | "successSurface"
+  | "successOnSurface"
+
+  // Interactions
+  | "interactiveHover"
+  | "interactiveSubtleHover"
+  | "destructiveHover"
+  | "disabledSecondary"
+
+  // Workflow
+  | "request"
+  | "requestSurface"
+  | "requestOnSurface"
+  | "quote"
+  | "quoteSurface"
+  | "quoteOnSurface"
+  | "job"
+  | "jobSurface"
+  | "jobOnSurface"
+  | "visit"
+  | "visitSurface"
+  | "visitOnSurface"
+  | "task"
+  | "taskSurface"
+  | "taskOnSurface"
+  | "event"
+  | "eventSurface"
+  | "eventOnSurface"
+  | "invoice"
+  | "invoiceSurface"
+  | "invoiceOnSurface"
+  | "payments"
+  | "paymentsSurface"
+  | "paymentsOnSurface"
+  | "client"
+
+  // Deprecated
+  | "blue" // Use "heading" instead
+  | "learning" // Use "informative" instead
+  | "subtle" // Use "interactiveSubtle" instead
+  | "onPrimary"; // Use "subtle" instead
+
+// A subset of colors that can be used with the Text component
 export type TextVariation =
-  | "success"
+  | "text"
+  | "textSecondary"
   | "interactive"
   | "interactiveSubtle"
-  | "error"
-  | "base"
-  | "subdued"
-  | "warn"
-  | "info"
+  | "successOnSurface"
+  | "critical"
+  | "warning"
+  | "informativeOnSurface"
   | "disabled"
   | "destructive"
-  | "critical";
+
+  // Deprecated
+  | "base" // Use "text" instead
+  | "success" // Use "successOnSurface" instead (except for when reverseTheme=true)
+  | "subdued" // Use "textSecondary" instead
+  | "error" // Use "critical" instead
+  | "warn" // Use "warningOnSurface" instead
+  | "info"; // Use "informativeOnSurface" instead
 
 export type TextTransform = "uppercase" | "lowercase" | "capitalize" | "none";
 
