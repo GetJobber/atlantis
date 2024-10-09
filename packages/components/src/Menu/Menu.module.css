@@ -70,6 +70,7 @@
   padding: var(--menu-space);
   border: none;
   border-radius: var(--radius-base);
+  text-align: start;
   background-color: transparent;
   cursor: pointer;
   align-items: center;
@@ -86,6 +87,10 @@
 .action span {
   /* match appearance of Button labels */
   -webkit-font-smoothing: antialiased;
+}
+
+.action svg {
+  flex-shrink: 0;
 }
 
 .action.destructive > span {
