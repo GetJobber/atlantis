@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { Icon } from "@jobber/components/Icon";
 import { InternalChipButton } from "@jobber/components/Chips/InternalChipButton";
 import { useChildComponent } from "../../hooks";
-import styles from "../../Chip.css";
+import styles from "../../Chip.module.css";
 
 export function ChipSuffix({
   children,

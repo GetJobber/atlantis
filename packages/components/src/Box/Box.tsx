@@ -14,9 +14,9 @@ import {
   getPaddingVars,
 } from "./utils/getBoxSpaces";
 import type { BoxProps } from "./Box.types";
-import styles from "./styles/Box.css";
-import gapStyles from "./styles/BoxGap.css";
-import radiusStyles from "./styles/BoxRadius.css";
+import styles from "./styles/Box.module.css";
+import gapStyles from "./styles/BoxGap.module.css";
+import radiusStyles from "./styles/BoxRadius.module.css";
 
 export function Box({
   alignItems,

@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import classnames from "classnames";
-import styles from "./Cell.css";
+import styles from "./Cell.module.css";
 
 interface CellProps {
   readonly children?: ReactNode | ReactNode[];

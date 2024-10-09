@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from "react";
-import styles from "./InternalGridCell.css";
+import styles from "./InternalGridCell.module.css";
 
 /**
  * Breakpoints that we support

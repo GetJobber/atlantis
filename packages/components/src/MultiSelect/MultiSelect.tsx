@@ -7,7 +7,7 @@ import React, {
   useState,
 } from "react";
 import classNames from "classnames";
-import styles from "./MultiSelect.css";
+import styles from "./MultiSelect.module.css";
 import { DropDownMenu } from "./DropDownMenu";
 import { Options } from "./types";
 import { Text } from "../Text";

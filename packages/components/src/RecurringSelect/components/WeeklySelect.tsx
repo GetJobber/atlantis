@@ -1,6 +1,6 @@
 import React, { useId } from "react";
-import styles from "./WeeklySelect.css";
-import checkboxStyles from "../DateCellCheckbox.css";
+import styles from "./WeeklySelect.module.css";
+import checkboxStyles from "../DateCellCheckbox.module.css";
 import { WeekDay } from "../types";
 
 interface WeeklySelectProps {

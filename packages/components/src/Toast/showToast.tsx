@@ -12,7 +12,7 @@ import React, {
 // eslint-disable-next-line import/no-internal-modules
 import { Root, createRoot } from "react-dom/client";
 import { Toast, ToastProps, ToastRef } from "./Toast";
-import styles from "./Toast.css";
+import styles from "./Toast.module.css";
 
 const targetId = "atlantis-toast-element";
 let root: Root | undefined;

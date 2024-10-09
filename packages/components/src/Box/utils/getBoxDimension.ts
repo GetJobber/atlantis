@@ -1,5 +1,5 @@
 import type { BoxDimension } from "../Box.types";
-import styles from "../styles/BoxDimension.css";
+import styles from "../styles/BoxDimension.module.css";
 
 export const getHeightClassName = (value: BoxDimension) =>
   getClassName(value, "height");

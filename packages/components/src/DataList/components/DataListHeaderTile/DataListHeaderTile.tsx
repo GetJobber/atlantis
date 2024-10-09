@@ -3,7 +3,7 @@ import React, { useRef, useState } from "react";
 import classnames from "classnames";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
-import styles from "./DataListHeaderTile.css";
+import styles from "./DataListHeaderTile.module.css";
 import { DataListSortingArrows } from "./DataListSortingArrows";
 import { DataListSortingOptions } from "./components/DataListSortingOptions";
 import { Text } from "../../../Text";

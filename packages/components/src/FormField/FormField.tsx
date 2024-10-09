@@ -8,7 +8,7 @@ import React, {
 } from "react";
 import { useController, useForm, useFormContext } from "react-hook-form";
 import { FormFieldProps } from "./FormFieldTypes";
-import styles from "./FormField.css";
+import styles from "./FormField.module.css";
 import { FormFieldWrapper } from "./FormFieldWrapper";
 import { FormFieldPostFix } from "./FormFieldPostFix";
 import { mergeRefs } from "../utils/mergeRefs";

@@ -1,6 +1,6 @@
 import React, { ReactElement, ReactNode, useEffect, useState } from "react";
 import classnames from "classnames";
-import styles from "./Tabs.css";
+import styles from "./Tabs.module.css";
 import { useTabsOverflow } from "./hooks/useTabsOverflow";
 import { Typography } from "../Typography";
 
