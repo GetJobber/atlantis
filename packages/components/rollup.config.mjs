@@ -29,7 +29,6 @@ export default {
       ],
     }),
     nodeResolve({
-      mainFields: ["module", "main"],
       preferBuiltins: true,
       browser: true,
     }),
