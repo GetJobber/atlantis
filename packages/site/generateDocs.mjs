@@ -10,7 +10,7 @@ const parseAndWriteDocs = (componentPath, outputPath) => {
   mkdirSync(outputDir, { recursive: true });
 
   console.log("writing documentation to:", outputPath);
-  writeFileSync(outputPath, JSON.stringify(documentation, null));
+  writeFileSync(outputPath, JSON.stringify(documentation, null, 2));
 };
 
 const buildPaths = (baseComponentDir, baseOutputDir, componentName) => {
