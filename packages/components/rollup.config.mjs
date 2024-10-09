@@ -19,7 +19,6 @@ const __dirname = dirname(__filename);
 export default {
   input: `src/**/index.{ts,tsx}`,
   plugins: [
-    nodePolyfills(),
     alias({
       entries: [
         {
@@ -30,6 +29,11 @@ export default {
       ],
     }),
     nodeResolve(),
+    commonjs({
+      include: /node_modules/,
+      ignore: ["time-input-polyfill", "time-input-polyfill/supportsTime"],
+    }),
+    nodePolyfills(),
     multiInput.default(),
     typescript({
       tsconfig: "./tsconfig.rollup.json",
@@ -56,9 +60,7 @@ export default {
         }),
       ],
     }),
-    commonjs({
-      ignore: ["time-input-polyfill", "time-input-polyfill/supportsTime"],
-    }),
+
     copy({
       targets: [
         { src: "src/Card/cardcolors.css.d.ts", dest: "dist/Card" },
