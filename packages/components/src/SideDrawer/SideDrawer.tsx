@@ -3,11 +3,13 @@ import type { KeyboardEvent, PropsWithChildren } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, Variants, motion } from "framer-motion";
 import { tokens } from "@jobber/design";
-import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
-import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
+import {
+  useFocusTrap,
+  useInView,
+  useIsMounted,
+  useRefocusOnActivator,
+} from "@jobber/hooks";
 import classNames from "classnames";
-import { useInView } from "@jobber/hooks/useInView";
-import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import { SideDrawerActions } from "./SideDrawerActions";
 import { RegisteredComponents, SideDrawerContext } from "./SideDrawerContext";
 import { SideDrawerTitle } from "./SideDrawerTitle";

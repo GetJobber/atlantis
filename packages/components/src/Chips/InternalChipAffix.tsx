@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { useAssert } from "@jobber/hooks/useAssert";
+import { useAssert } from "@jobber/hooks";
 import { ChipButtonProps, InternalChipButton } from "./InternalChipButton";
 import styles from "./InternalChip.module.css";
 import { InternalChipProps } from "./ChipTypes";

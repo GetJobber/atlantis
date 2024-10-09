@@ -1,10 +1,7 @@
 import React, { ReactNode } from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
-import {
-  Breakpoints,
-  useResizeObserver,
-} from "@jobber/hooks/useResizeObserver";
+import { Breakpoints, useResizeObserver } from "@jobber/hooks";
 import styles from "./Page.module.css";
 import { Heading } from "../Heading";
 import { Text } from "../Text";

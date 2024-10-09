@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { usePopper } from "react-popper";
-import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
+import { useRefocusOnActivator } from "@jobber/hooks";
 import classes from "./Popover.module.css";
 import { ButtonDismiss } from "../ButtonDismiss";
 

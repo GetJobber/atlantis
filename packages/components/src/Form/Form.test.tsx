@@ -1,6 +1,6 @@
 import React, { MutableRefObject, useRef } from "react";
 import { render, waitFor } from "@testing-library/react";
-import { useFormState } from "@jobber/hooks/useFormState";
+import { useFormState } from "@jobber/hooks";
 import { userEvent } from "@testing-library/user-event";
 import { Form, FormRef } from ".";
 import { InputText } from "../InputText";

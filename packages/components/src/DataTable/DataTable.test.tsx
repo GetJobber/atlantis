@@ -16,10 +16,10 @@ import { GLIMMER_TEST_ID } from "../Glimmer";
 // Allow us to mock and replace the value of useResizeObserver would return via
 // a spy
 // https://stackoverflow.com/a/72885576
-jest.mock("@jobber/hooks/useResizeObserver", () => {
+jest.mock("@jobber/hooks", () => {
   return {
     __esModule: true, //    <----- this __esModule: true is important
-    ...(jest.requireActual("@jobber/hooks/useResizeObserver") as object),
+    ...(jest.requireActual("@jobber/hooks") as object),
   };
 });
 

@@ -28,7 +28,11 @@ export default {
         },
       ],
     }),
-    nodeResolve(),
+    nodeResolve({
+      mainFields: ["module", "main"],
+      preferBuiltins: true,
+      browser: true,
+    }),
     commonjs({
       include: /node_modules/,
       ignore: ["time-input-polyfill", "time-input-polyfill/supportsTime"],

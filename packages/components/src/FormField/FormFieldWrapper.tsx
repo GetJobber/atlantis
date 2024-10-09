@@ -6,7 +6,7 @@ import React, {
   useState,
 } from "react";
 import classnames from "classnames";
-import { Clearable, useShowClear } from "@jobber/hooks/useShowClear";
+import { Clearable, useShowClear } from "@jobber/hooks";
 import { AnimatePresence, motion } from "framer-motion";
 import { tokens } from "@jobber/design";
 import { FormFieldProps } from "./FormFieldTypes";

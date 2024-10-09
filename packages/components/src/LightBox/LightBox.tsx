@@ -3,10 +3,12 @@ import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, PanInfo, motion } from "framer-motion";
 import ReactDOM from "react-dom";
 import debounce from "lodash/debounce";
-import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
-import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
-import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
-import { useIsMounted } from "@jobber/hooks/useIsMounted";
+import {
+  useFocusTrap,
+  useIsMounted,
+  useOnKeyDown,
+  useRefocusOnActivator,
+} from "@jobber/hooks";
 import styles from "./LightBox.module.css";
 import { ButtonDismiss } from "../ButtonDismiss";
 import { Button } from "../Button";

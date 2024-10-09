@@ -1,8 +1,5 @@
 import React, { ReactElement, ReactNode, useEffect, useState } from "react";
-import {
-  Breakpoints,
-  useResizeObserver,
-} from "@jobber/hooks/useResizeObserver";
+import { Breakpoints, useResizeObserver } from "@jobber/hooks";
 import classnames from "classnames";
 import styles from "./Disclosure.module.css";
 import { Icon } from "../Icon";
