@@ -19,7 +19,6 @@ export * from "./Countdown";
 export * from "./DataDump";
 export * from "./DataList";
 export { DataTable, createColumnHelper } from "./DataTable";
-export * from "./DatePicker";
 export * from "./DescriptionList";
 export * from "./Disclosure";
 export * from "./Divider";
