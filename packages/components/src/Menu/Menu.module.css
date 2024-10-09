@@ -89,10 +89,6 @@
   -webkit-font-smoothing: antialiased;
 }
 
-.action svg {
-  flex-shrink: 0;
-}
-
 .action.destructive > span {
   color: var(--color-destructive);
 }
