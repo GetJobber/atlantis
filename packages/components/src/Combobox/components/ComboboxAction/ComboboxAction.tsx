@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import styles from "./ComboboxAction.css";
+import styles from "./ComboboxAction.module.css";
 import { Typography } from "../../../Typography";
 import { ComboboxActionProps } from "../../Combobox.types";
 import { ComboboxContext } from "../../ComboboxProvider";

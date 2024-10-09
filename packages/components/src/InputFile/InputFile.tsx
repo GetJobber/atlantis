@@ -2,7 +2,7 @@ import React, { SyntheticEvent, useCallback } from "react";
 import classnames from "classnames";
 import { DropzoneOptions, FileError, useDropzone } from "react-dropzone";
 import axios, { AxiosRequestConfig } from "axios";
-import styles from "./InputFile.css";
+import styles from "./InputFile.module.css";
 import {
   BASIC_IMAGE_TYPES,
   convertToMimeTypes,

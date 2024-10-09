@@ -1,8 +1,8 @@
 import React from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
-import styles from "./Card.css";
-import colors from "./cardcolors.css";
+import styles from "./Card.module.css";
+import colors from "./cardcolors.module.css";
 import { CardClickable } from "./CardClickable";
 import { CardHeader } from "./CardHeader";
 import { CardProps } from "./types";

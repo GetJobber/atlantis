@@ -12,7 +12,7 @@ import { SideDrawerActions } from "./SideDrawerActions";
 import { RegisteredComponents, SideDrawerContext } from "./SideDrawerContext";
 import { SideDrawerTitle } from "./SideDrawerTitle";
 import { SideDrawerToolbar } from "./SideDrawerToolbar";
-import styles from "./SideDrawer.css";
+import styles from "./SideDrawer.module.css";
 import { SideDrawerBackButton } from "./SideDrawerBackButton";
 import { SideDrawerFooter } from "./SideDrawerFooter";
 import { Button } from "../Button";

@@ -1,7 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import getHumanReadableFileSize from "filesize";
-import styles from "./FormatFile.css";
+import styles from "./FormatFile.module.css";
 import { FormatFileDeleteButton } from "./FormatFileDeleteButton";
 import { InternalThumbnail } from "./InternalThumbnail";
 import { FileUpload } from "../InputFile";

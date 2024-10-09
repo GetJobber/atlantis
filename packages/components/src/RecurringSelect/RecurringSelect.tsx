@@ -1,7 +1,7 @@
 import React from "react";
 import { MonthlySelect } from "./components";
 import { CurrentRecurrenceComponent } from "./CurrentRecurrenceComponent";
-import styles from "./RecurringSelect.css";
+import styles from "./RecurringSelect.module.css";
 import {
   DurationPeriod,
   RecurrenceRule,

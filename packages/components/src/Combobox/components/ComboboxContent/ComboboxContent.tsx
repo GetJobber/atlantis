@@ -1,7 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
-import styles from "./ComboboxContent.css";
+import styles from "./ComboboxContent.module.css";
 import { ComboboxContentSearch } from "./ComboboxContentSearch";
 import { ComboboxContentList } from "./ComboboxContentList";
 import { ComboboxContentHeader } from "./ComboboxContentHeader";

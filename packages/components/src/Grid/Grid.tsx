@@ -1,8 +1,8 @@
 import React, { ReactElement } from "react";
 import classNames from "classnames";
 import { GridCellProps, InternalGridCell } from "./InternalGridCell";
-import styles from "./Grid.css";
-import alignments from "./GridAlign.css";
+import styles from "./Grid.module.css";
+import alignments from "./GridAlign.module.css";
 import { GridCell } from "./GridCell";
 
 interface GridProps {

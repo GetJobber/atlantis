@@ -2,7 +2,7 @@ import React, { useCallback, useRef, useState } from "react";
 import debounce from "lodash/debounce";
 import classNames from "classnames";
 import { tokens } from "@jobber/design";
-import styles from "./DataListSearch.css";
+import styles from "./DataListSearch.module.css";
 import { InputText, InputTextRef } from "../../../InputText";
 import { useDataListContext } from "../../context/DataListContext";
 import { SEARCH_DEBOUNCE_DELAY } from "../../DataList.const";
