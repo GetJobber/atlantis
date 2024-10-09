@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.40.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.40.2...@jobber/components@5.40.3) (2024-10-09)
+
+
+### Bug Fixes
+
+* **components:** Fix icons shrinking in enu with longer titles ([#2064](https://github.com/GetJobber/atlantis/issues/2064)) ([a17c235](https://github.com/GetJobber/atlantis/commit/a17c235aa06a4de00ced3e7be639ce2bff88c1e5))
+
+
+
+
+
 ## [5.40.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.40.1...@jobber/components@5.40.2) (2024-10-08)
 
 **Note:** Version bump only for package @jobber/components
