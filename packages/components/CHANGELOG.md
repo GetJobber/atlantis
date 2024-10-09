@@ -8,7 +8,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* **components:** Fix icons shrinking in enu with longer titles ([#2064](https://github.com/GetJobber/atlantis/issues/2064)) ([a17c235](https://github.com/GetJobber/atlantis/commit/a17c235aa06a4de00ced3e7be639ce2bff88c1e5))
+* **components:** Fix icons shrinking in the page menu with longer titles ([#2064](https://github.com/GetJobber/atlantis/issues/2064)) ([a17c235](https://github.com/GetJobber/atlantis/commit/a17c235aa06a4de00ced3e7be639ce2bff88c1e5))
 
 
 
