@@ -283,7 +283,7 @@ export interface ComboboxActionProps {
    * Keeps the Combobox open when the action is clicked.
    * @default false
    */
-  readonly keepOpenOnActionClick?: boolean;
+  readonly keepOpenOnClick?: boolean;
 }
 
 export interface ComboboxActionCallbackOptions {

@@ -43,9 +43,9 @@ describe("ComboboxAction", () => {
     }
   });
 
-  it("keeps the Combobox open when keepOpenOnActionClick is true", async () => {
+  it("keeps the Combobox open when keepOpenOnClick is true", async () => {
     renderAction([
-      { label: "Collapse Action", onClick, keepOpenOnActionClick: true },
+      { label: "Collapse Action", onClick, keepOpenOnClick: true },
     ]);
 
     await userEvent.click(screen.getByText("Collapse Action"));

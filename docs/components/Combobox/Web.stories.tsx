@@ -438,7 +438,7 @@ const ComboboxInfiniteScroll: ComponentStory<typeof Combobox> = args => {
   );
 };
 
-const ComboboxKeepOpenOnActionClick: ComponentStory<typeof Combobox> = args => {
+const ComboboxKeepOpenOnClick: ComponentStory<typeof Combobox> = args => {
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
   const [chips, setChips] = useState<string[]>([]);
 
@@ -464,7 +464,7 @@ const ComboboxKeepOpenOnActionClick: ComponentStory<typeof Combobox> = args => {
               visible={({ searchValue }) => Boolean(searchValue)}
               label={({ searchValue }) => `Add "${searchValue}" as Chip`}
               onClick={(_, { searchValue }) => handleActionClick(searchValue)}
-              keepOpenOnActionClick
+              keepOpenOnClick
             />
           </Combobox>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
@@ -478,8 +478,8 @@ const ComboboxKeepOpenOnActionClick: ComponentStory<typeof Combobox> = args => {
   );
 };
 
-export const KeepOpenOnActionClick = ComboboxKeepOpenOnActionClick.bind({});
-KeepOpenOnActionClick.args = {};
+export const KeepOpenOnClick = ComboboxKeepOpenOnClick.bind({});
+KeepOpenOnClick.args = {};
 
 export const ClearSelection = ComboboxClearSelection.bind({});
 ClearSelection.args = {};
