@@ -5,7 +5,7 @@ import { ComboboxActionProps } from "../../Combobox.types";
 import { ComboboxContext } from "../../ComboboxProvider";
 
 export function ComboboxAction(props: ComboboxActionProps) {
-  const { searchValue, setOpen } = useContext(ComboboxContext);
+  const { searchValue, handleClose } = useContext(ComboboxContext);
 
   if (props.visible) {
     const isVisible =
@@ -21,7 +21,10 @@ export function ComboboxAction(props: ComboboxActionProps) {
     typeof props.label === "string" ? props.label : props.label(options);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setOpen(props.keepOpenOnClick ?? false);
+    if (!props.keepOpenOnClick) {
+      handleClose();
+    }
+
     props.onClick(e, options);
   };
 

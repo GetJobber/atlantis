@@ -3,16 +3,16 @@ import userEvent from "@testing-library/user-event";
 import * as POM from "./ComboboxAction.pom";
 
 const onClick = jest.fn();
-const setOpen = jest.fn();
+const handleClose = jest.fn();
 
 afterEach(() => {
   onClick.mockClear();
-  setOpen.mockClear();
+  handleClose.mockClear();
 });
 
 describe("ComboboxAction", () => {
   const renderAction = actions => {
-    POM.renderComboboxAction(actions, setOpen);
+    POM.renderComboboxAction(actions, handleClose);
   };
   it("renders without error", () => {
     renderAction([{ label: "Label", onClick }]);
@@ -44,12 +44,26 @@ describe("ComboboxAction", () => {
   });
 
   it("keeps the Combobox open when keepOpenOnClick is true", async () => {
-    renderAction([
-      { label: "Collapse Action", onClick, keepOpenOnClick: true },
-    ]);
+    renderAction([{ label: "Action", onClick, keepOpenOnClick: true }]);
 
-    await userEvent.click(screen.getByText("Collapse Action"));
+    await userEvent.click(screen.getByText("Action"));
 
-    expect(setOpen).toHaveBeenCalledWith(true);
+    expect(handleClose).not.toHaveBeenCalled();
+  });
+
+  it("closes the Combobox when keepOpenOnClick is false", async () => {
+    renderAction([{ label: "Action", onClick, keepOpenOnClick: false }]);
+
+    await userEvent.click(screen.getByText("Action"));
+
+    expect(handleClose).toHaveBeenCalledTimes(1);
+  });
+
+  it("closes the Combobox when keepOpenOnClick is not provided", async () => {
+    renderAction([{ label: "Action", onClick }]);
+
+    await userEvent.click(screen.getByText("Action"));
+
+    expect(handleClose).toHaveBeenCalledTimes(1);
   });
 });

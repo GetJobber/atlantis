@@ -11,12 +11,12 @@ interface Action {
 
 export function renderComboboxAction(
   actions: Action[],
-  setOpen: (open: boolean) => void = jest.fn(),
+  handleClose: () => void,
 ) {
   return render(
     <ComboboxContextProvider
-      setOpen={setOpen}
-      handleClose={jest.fn()}
+      setOpen={jest.fn()}
+      handleClose={handleClose}
       selected={[]}
       open={true}
       shouldScroll={{ current: false }}
