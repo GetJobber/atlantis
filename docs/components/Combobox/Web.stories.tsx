@@ -6,6 +6,7 @@ import { Typography } from "@jobber/components/Typography";
 import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
 import { StatusIndicator } from "@jobber/components/StatusIndicator";
+import { Modal } from "@jobber/components/Modal";
 import { useFakeQuery } from "./storyUtils";
 
 export default {
@@ -435,6 +436,62 @@ const ComboboxInfiniteScroll: ComponentStory<typeof Combobox> = args => {
     </Combobox>
   );
 };
+
+const ComboboxRetainFocusOnEscape: ComponentStory<typeof Combobox> = args => {
+  const [selected, setSelected] = useState<ComboboxOption[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
+
+  return (
+    <>
+      <Button label="Open Modal" onClick={handleOpenModal} />
+      <Modal
+        open={isModalOpen}
+        onRequestClose={handleCloseModal}
+        title="Select Teammates"
+      >
+        <Combobox
+          {...args}
+          onSelect={setSelected}
+          selected={selected}
+          label="Teammates"
+        >
+          <Combobox.Option id="1" label="Bilbo Baggins" />
+          <Combobox.Option id="2" label="Frodo Baggins" />
+          <Combobox.Option id="3" label="Pippin Took" />
+          <Combobox.Option id="4" label="Merry Brandybuck" />
+          <Combobox.Option id="5" label="Sam Gamgee" />
+          <Combobox.Option id="6" label="Aragorn" />
+          <Combobox.Option id="7" label="Galadriel" />
+          <Combobox.Option id="8" label="Arwen" />
+          <Combobox.Option id="9" label="Gandalf" />
+          <Combobox.Option id="10" label="Legolas" />
+          <Combobox.Option id="11" label="Gimli" />
+          <Combobox.Option id="12" label="Samwise Gamgee" />
+          <Combobox.Option id="14" label="Faramir" />
+
+          <Combobox.Action
+            label="Add Teammate"
+            onClick={() => {
+              alert("Added a new teammate ✅");
+            }}
+          />
+          <Combobox.Action
+            label="Manage Teammates"
+            onClick={() => {
+              alert("Managed teammates 👍");
+            }}
+          />
+        </Combobox>
+      </Modal>
+    </>
+  );
+};
+
+export const RetainFocusOnEscape = ComboboxRetainFocusOnEscape.bind({});
+RetainFocusOnEscape.args = {};
 
 export const ClearSelection = ComboboxClearSelection.bind({});
 ClearSelection.args = {};
