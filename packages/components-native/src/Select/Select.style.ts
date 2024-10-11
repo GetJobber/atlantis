@@ -44,6 +44,10 @@ export const styles = StyleSheet.create({
     borderColor: tokens["color-critical"],
   },
 
+  assistiveText: {
+    paddingLeft: tokens["space-base"],
+  },
+
   errorMessageWrapperIcon: {
     flex: 0,
     flexBasis: "auto",

@@ -176,13 +176,15 @@ export function Select({
         </SelectInternalPicker>
 
         {assistiveText && (
-          <Text
-            level="textSupporting"
-            variation={textVariation}
-            hideFromScreenReader={true}
-          >
-            {assistiveText}
-          </Text>
+          <View style={styles.assistiveText}>
+            <Text
+              level="textSupporting"
+              variation={textVariation}
+              hideFromScreenReader={true}
+            >
+              {assistiveText}
+            </Text>
+          </View>
         )}
       </View>
     </InputFieldWrapper>
