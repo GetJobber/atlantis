@@ -23,29 +23,22 @@ export const ComponentNotFound = () => {
               <List
                 items={[
                   {
-                    content: "Add new entry to Components Web",
+                    content: "Add new entry to componentList.ts",
                     id: 1,
-                    caption:
-                      "Make the key you use matches the one in content/index.ts",
                   },
                   {
                     content:
-                      "Add a new folder under src/content that matches the key used above and mimics Button or Chip",
+                      "Add a new folder under src/content that matches the title used above. Use Button or Chip as an example",
                     id: 2,
                   },
                   {
                     content:
-                      "Add an entry to generate new props. Under generateDocs.mjs, add the new key you just used for the folder (componentName)",
+                      "Add an entry to generate new props. In generateDocs.mjs, add the new key you just used for the folder (componentName)",
                     id: 3,
                   },
                   {
                     content:
-                      "Add a new entry to site/src/content/index.ts that matches your key",
-                    id: 4,
-                  },
-                  {
-                    content:
-                      "Remove any Storybook specific components from any copied/moved MDX files",
+                      "Add a new entry to site/src/content/index.ts that matches your title",
                     id: 4,
                   },
                   { content: "Reload this page", id: 5 },
