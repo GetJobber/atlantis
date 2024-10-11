@@ -14,7 +14,7 @@ export const useComponentAndCode = (
   meta: ContentExport,
   stateValueWithFunction: ValueStateInternals,
 ) => {
-  const Component = meta.component.element as undefined | (() => JSX.Element);
+  const Component = meta?.component.element as undefined | (() => JSX.Element);
   const code = useMemo(() => {
     return Component && stateValueWithFunction
       ? reactElementToJSXString(<Component {...stateValueWithFunction} />, {

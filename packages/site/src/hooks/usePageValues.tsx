@@ -17,7 +17,7 @@ import { SelectWithOptions } from "../components/SelectWithOptions";
  * @returns Values to be used on the ContentView page
  */
 export const usePageValues = (meta: ContentExport) => {
-  const [values, setValues] = useState(meta.component.defaultProps);
+  const [values, setValues] = useState(meta?.component.defaultProps);
 
   const updateValue = (key: string, value: string | number | boolean) => {
     if (key) {
@@ -29,7 +29,7 @@ export const usePageValues = (meta: ContentExport) => {
   };
 
   const stateValues = useMemo(() => {
-    return meta.props.map(propList => {
+    return meta?.props.map(propList => {
       return {
         name: propList.displayName,
         props: Object.keys(propList.props).map((key, index) => {
@@ -60,10 +60,15 @@ export const usePageValues = (meta: ContentExport) => {
 
   for (const i in values) {
     if (Object.hasOwnProperty.call(values, i)) {
-      valuesWithFunctions[i] = isFunction(values[i] as string)
-        ? // eslint-disable-next-line no-new-func
-          new Function(`return ${values[i]}`)()
-        : values[i];
+      try {
+        valuesWithFunctions[i] = isFunction(values[i] as string)
+          ? // eslint-disable-next-line no-new-func
+            new Function(`return ${values[i]}`)()
+          : values[i];
+      } catch (e) {
+        // intentionally left empty. Errors here are because the user is still typing in their function in the props list
+        // We can console log here, but it results in spam and it's 100% noise.
+      }
     }
   }
 

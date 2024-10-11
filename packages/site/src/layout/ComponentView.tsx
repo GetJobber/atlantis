@@ -25,7 +25,7 @@ export const ComponentView = () => {
   const { updateStyles } = useStyleUpdater();
   const { stateValues, stateValueWithFunction } = usePageValues(PageMeta);
 
-  const ComponentContent = PageMeta.content as () => ReactNode;
+  const ComponentContent = PageMeta?.content as () => ReactNode;
 
   const { Component, code } = useComponentAndCode(
     PageMeta,
