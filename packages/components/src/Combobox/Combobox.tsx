@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useRef } from "react";
 import { ComboboxProps } from "./Combobox.types";
 import { ComboboxContent } from "./components/ComboboxContent";
 import { ComboboxAction } from "./components/ComboboxAction";
@@ -9,6 +9,7 @@ import styles from "./Combobox.module.css";
 import { useCombobox } from "./hooks/useCombobox";
 import { ComboboxActivator } from "./components/ComboboxActivator";
 import { useComboboxValidation } from "./hooks/useComboboxValidation";
+import { useEscapeKey } from "./hooks/useEscapeKey";
 
 export function Combobox(props: ComboboxProps): JSX.Element {
   const { optionElements, triggerElement, actionElements } =
@@ -47,6 +48,10 @@ export function Combobox(props: ComboboxProps): JSX.Element {
     props.onSearchDebounce,
   );
 
+  const activatorRef = useRef<HTMLDivElement>(null);
+
+  useEscapeKey(open, handleClose, activatorRef);
+
   return (
     <ComboboxContextProvider
       selected={selectedOptions}
@@ -65,9 +70,11 @@ export function Combobox(props: ComboboxProps): JSX.Element {
             data-testid="ATL-Combobox-Overlay"
           />
         )}
-        {triggerElement || (
-          <ComboboxTrigger label={props.label} selected={props.selected} />
-        )}
+        <div ref={activatorRef}>
+          {triggerElement || (
+            <ComboboxTrigger label={props.label} selected={props.selected} />
+          )}
+        </div>
         <ComboboxContent
           multiselect={props.multiSelect}
           subjectNoun={props.subjectNoun}
