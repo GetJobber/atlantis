@@ -143,3 +143,14 @@ it("renders an external link card without target attribute", () => {
   expect(getByRole("link")).toHaveAttribute("target", "_blank");
   expect(getByRole("link")).toHaveAttribute("rel", "noopener noreferrer");
 });
+
+it("renders a card with an elevation", () => {
+  const { getByText, container } = render(
+    <Card elevation="base">
+      <p>This is the card content.</p>
+    </Card>,
+  );
+
+  expect(container.firstChild).toHaveClass("card baseElevation");
+  expect(getByText("This is the card content.")).toBeDefined();
+});
