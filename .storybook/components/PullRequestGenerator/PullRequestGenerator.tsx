@@ -33,14 +33,19 @@ export function PullRequestGenerator() {
               <Option value="refactor">doesn't fix a bug or introduce a new feature</Option>
             </Select>
             <Text>in our...</Text>
-            <Select value={type} onChange={(val: string) => setScope(val)}>
+            <Select value={scope} onChange={(val: string) => setScope(val)}>
               <Option value="---">---</Option>
               <Option value="components">component library</Option>
+              <Option value="components-native">component native library</Option>
               <Option value="hooks">hooks library</Option>
               <Option value="design">design foundation system</Option>
-              <Option value="eslint-config">eslint config</Option>
-              <Option value="stylelint-config">stylelint config</Option>
+              <Option value="eslint">eslint config</Option>
+              <Option value="stylelint">stylelint config</Option>
               <Option value="generators">generators</Option>
+              <Option value="formatters">formatters</Option>
+              <Option value="deps">dependencies</Option>
+              <Option value="deps-dev">dev dependencies</Option>
+              <Option value="docx">docx</Option>
             </Select>
           </Content>
           <Divider />
