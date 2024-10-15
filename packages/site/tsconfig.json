@@ -1,0 +1,25 @@
+{
+  "files": [],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@atlantis/docs": [
+        "../../docs"
+      ],
+      "@atlantis/docs/*": [
+        "../../docs/*"
+      ],
+      "react": [
+        "./node_modules/@types/react"
+      ]
+    }
+  },
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
+}
