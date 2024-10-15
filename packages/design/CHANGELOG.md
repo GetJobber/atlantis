@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.67.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.66.0...@jobber/design@0.67.0) (2024-10-15)
+
+
+### Features
+
+* **components:** Update apple icon and Add bank icon [JOB-106774] ([#2073](https://github.com/GetJobber/atlantis/issues/2073)) ([6dd2ae6](https://github.com/GetJobber/atlantis/commit/6dd2ae6c4bcadb5bf32bbe9c04c3762a2b84e181))
+
+
+
+
+
 # [0.66.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.65.1...@jobber/design@0.66.0) (2024-10-07)
 
 
