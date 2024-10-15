@@ -61,8 +61,6 @@ The semi-complete list of design documentation is within `src/designList.ts`
    An argument could be made to move the `src/routes.tsx` into the pages
    directory, but exposing `routes` at the root makes it slightly more
    discoverable.
-1. services -> Currently only a single file in here that is in use in one area.
-   This folder may go away unless we can find a better use for it.
 1. types -> Shared types within the system. If you start to import types from
    another file, hoist the type to the types directory. Good way to prevent
    circular dependencies.
