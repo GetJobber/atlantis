@@ -5,9 +5,5 @@
   "description": "Internal Docs components.",
   "license": "MIT",
   "files": [],
-  "main": "src/index.ts",
-  "scripts": {},
-  "devDependencies": {
-    "react": "^16.8.6"
-  }
+  "main": "src/index.ts"
 }

@@ -448,10 +448,6 @@
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^14.0.0",
-    "@testing-library/react-hooks": "^7.0.2",
-    "@testing-library/user-event": "^14.5.1",
     "@types/glob": "^7.1.1",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
@@ -467,8 +463,7 @@
     "rollup-plugin-multi-input": "^1.4.1",
     "rollup-plugin-polyfill-node": "^0.13.0",
     "rollup-plugin-postcss": "^4.0.2",
-    "typed-css-modules": "^0.7.0",
-    "typescript": "^4.9.5"
+    "typed-css-modules": "^0.7.0"
   },
   "peerDependencies": {
     "@apollo/client": "^3",
