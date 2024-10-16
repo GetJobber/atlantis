@@ -70,6 +70,7 @@
   padding: var(--menu-space);
   border: none;
   border-radius: var(--radius-base);
+  text-align: start;
   background-color: transparent;
   cursor: pointer;
   align-items: center;

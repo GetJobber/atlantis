@@ -6,6 +6,8 @@ import { Typography } from "@jobber/components/Typography";
 import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
 import { StatusIndicator } from "@jobber/components/StatusIndicator";
+import { Content } from "@jobber/components/Content";
+import { Card } from "@jobber/components/Card";
 import { useFakeQuery } from "./storyUtils";
 
 export default {
@@ -435,6 +437,49 @@ const ComboboxInfiniteScroll: ComponentStory<typeof Combobox> = args => {
     </Combobox>
   );
 };
+
+const ComboboxKeepOpenOnClick: ComponentStory<typeof Combobox> = args => {
+  const [selected, setSelected] = useState<ComboboxOption[]>([]);
+  const [chips, setChips] = useState<string[]>([]);
+
+  const handleActionClick = (searchValue: string) => {
+    setChips([...chips, searchValue]);
+  };
+
+  return (
+    <Card header="Add more friends">
+      <Content>
+        <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+          <Combobox
+            {...args}
+            onSelect={setSelected}
+            selected={selected}
+            label="Add Chip"
+          >
+            <Combobox.Option id="1" label="Search" />
+            <Combobox.Option id="2" label="for a" />
+            <Combobox.Option id="3" label="friend" />
+
+            <Combobox.Action
+              visible={({ searchValue }) => Boolean(searchValue)}
+              label={({ searchValue }) => `Add "${searchValue}" as Chip`}
+              onClick={(_, { searchValue }) => handleActionClick(searchValue)}
+              keepOpenOnClick
+            />
+          </Combobox>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+            {chips.map((chip, index) => (
+              <Chip key={index} label={chip} />
+            ))}
+          </div>
+        </div>
+      </Content>
+    </Card>
+  );
+};
+
+export const KeepOpenOnClick = ComboboxKeepOpenOnClick.bind({});
+KeepOpenOnClick.args = {};
 
 export const ClearSelection = ComboboxClearSelection.bind({});
 ClearSelection.args = {};
