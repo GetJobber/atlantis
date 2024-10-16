@@ -2,6 +2,7 @@ import { KeyboardEvent, MouseEvent, ReactElement } from "react";
 import { ChipButtonProps } from "./InternalChipButton";
 import { AvatarProps } from "../Avatar";
 import { IconProps } from "../Icon";
+import { ChipVariations } from "../Chip/Chip.types";
 
 export interface InternalChipProps {
   /**
@@ -68,4 +69,10 @@ export interface InternalChipProps {
    * Callback for keyboard interaction with chips (e.g., chip deletion).
    */
   onKeyDown?(event: KeyboardEvent<HTMLDivElement | HTMLButtonElement>): void;
+
+  /**
+   * Button style variation. Does not affect functionality.
+   * @default "base"
+   */
+  readonly variation?: ChipVariations;
 }
