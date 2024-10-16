@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.43.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.42.0...@jobber/components@5.43.0) (2024-10-16)
+
+
+### Features
+
+* **components:** Add keepOpenOnClick prop to Combobox.Action ([#2055](https://github.com/GetJobber/atlantis/issues/2055)) ([b5adc8f](https://github.com/GetJobber/atlantis/commit/b5adc8f56626cd72000e17a31d80c695e7680d7b))
+
+
+
+
+
 # [5.42.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.41.1...@jobber/components@5.42.0) (2024-10-15)
 
 
