@@ -1,4 +1,4 @@
-import React, { Dispatch, MutableRefObject, SetStateAction } from "react";
+import React, { MutableRefObject } from "react";
 import { ComboboxOption } from "./Combobox.types";
 
 export interface ComboboxProviderProps {
@@ -6,7 +6,7 @@ export interface ComboboxProviderProps {
   readonly selected: ComboboxOption[];
   readonly selectionHandler: (option: ComboboxOption) => void;
   readonly open: boolean;
-  readonly setOpen: Dispatch<SetStateAction<boolean>>;
+  readonly handleOpen: () => void;
   readonly handleClose: () => void;
   readonly shouldScroll: MutableRefObject<boolean>;
   readonly searchValue: string;

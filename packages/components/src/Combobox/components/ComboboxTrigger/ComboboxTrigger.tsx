@@ -8,7 +8,7 @@ export function ComboboxTrigger({
   label = "Select",
   selected,
 }: ComboboxTriggerProps) {
-  const { handleClose, open, setOpen } = React.useContext(ComboboxContext);
+  const { handleClose, open, handleOpen } = React.useContext(ComboboxContext);
 
   const hasSelection = selected.length;
   const selectedLabel = selected.map(option => option.label).join(", ");
@@ -23,7 +23,7 @@ export function ComboboxTrigger({
         if (open) {
           handleClose();
         } else {
-          setOpen(true);
+          handleOpen();
         }
       }}
       role="combobox"

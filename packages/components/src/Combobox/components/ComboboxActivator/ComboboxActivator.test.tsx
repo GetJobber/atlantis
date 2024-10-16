@@ -5,11 +5,11 @@ import { Chip } from "@jobber/components/Chip";
 import { ComboboxActivator } from "./ComboboxActivator";
 import { ComboboxContextProvider } from "../../ComboboxProvider";
 
-const setOpen = jest.fn();
+const handleOpen = jest.fn();
 const handleClose = jest.fn();
 
 afterEach(() => {
-  setOpen.mockClear();
+  handleOpen.mockClear();
   handleClose.mockClear();
 });
 
@@ -29,7 +29,7 @@ describe("ComboboxActivator", () => {
   });
 
   describe("when open is false", () => {
-    it("should call setOpen when the activator is clicked", () => {
+    it("should call handleOpen when the activator is clicked", () => {
       const { getByRole } = renderComboboxActivator(
         <Button label="Teammates" />,
         false,
@@ -38,7 +38,7 @@ describe("ComboboxActivator", () => {
 
       activator.click();
 
-      expect(setOpen).toHaveBeenCalled();
+      expect(handleOpen).toHaveBeenCalled();
     });
   });
   it("can render a Button with role 'combobox' and onClick handler", () => {
@@ -74,7 +74,7 @@ describe("ComboboxActivator", () => {
 function renderComboboxActivator(child: ReactElement, open: boolean) {
   return render(
     <ComboboxContextProvider
-      setOpen={setOpen}
+      handleOpen={handleOpen}
       handleClose={handleClose}
       selectionHandler={jest.fn()}
       shouldScroll={{ current: false }}

@@ -32,7 +32,7 @@ export function useComboboxValidation(children?: ComboboxProps["children"]): {
     ComboboxActivator,
     children,
   );
-
+  console.log(activatorElements[0]);
   const shouldThrowTriggerError = isInvalid(activatorElements);
 
   useAssert(shouldThrowTriggerError, COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);

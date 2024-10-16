@@ -149,11 +149,6 @@ export interface ComboboxContentProps {
   readonly open: boolean;
 
   /**
-   * Setter for the open state of the Combobox.
-   */
-  readonly setOpen: (open: boolean) => void;
-
-  /**
    * The full set of options for the Combobox in the shape of data, not elements.
    */
   readonly options: ComboboxOption[];
