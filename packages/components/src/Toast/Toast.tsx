@@ -9,7 +9,7 @@ import { Typography } from "../Typography";
 interface BaseToastProps {
   readonly variation?: "info" | "success" | "error";
   readonly message: string;
-  readonly id?: number;
+  readonly id?: string | number;
 }
 
 interface ActionToastProps extends BaseToastProps {
