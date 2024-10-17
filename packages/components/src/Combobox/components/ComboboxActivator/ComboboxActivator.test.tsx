@@ -61,13 +61,13 @@ describe("ComboboxActivator", () => {
     expect(activator).toBeInTheDocument();
   });
 
-  it("renders without 'combobox' role if children are not a Chip or Button", () => {
+  it("renders provided element with 'combobox' role if children are not a Chip or Button", () => {
     const { getByText, queryByRole } = renderComboboxActivator(
       <div>Teammates</div>,
       true,
     );
     expect(getByText("Teammates")).toBeInTheDocument();
-    expect(queryByRole("combobox")).not.toBeInTheDocument();
+    expect(queryByRole("combobox")).toBeInTheDocument();
   });
 });
 
