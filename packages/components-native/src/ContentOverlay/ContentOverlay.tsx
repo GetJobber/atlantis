@@ -231,7 +231,7 @@ function ContentOverlayInternal(
             <Heading
               level="subtitle"
               variation={loading ? "subdued" : "heading"}
-              align={shouldShowDismiss ? "start" : "center"}
+              align={"start"}
             >
               {title}
             </Heading>
