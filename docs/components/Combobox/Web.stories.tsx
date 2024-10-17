@@ -8,6 +8,7 @@ import { Icon } from "@jobber/components/Icon";
 import { StatusIndicator } from "@jobber/components/StatusIndicator";
 import { Content } from "@jobber/components/Content";
 import { Card } from "@jobber/components/Card";
+import { Heading } from "@jobber/components/Heading";
 import { useFakeQuery } from "./storyUtils";
 
 export default {
@@ -161,6 +162,33 @@ const ComboboxCustomActivator: ComponentStory<typeof Combobox> = args => {
               <Icon name={"arrowDown"} size={"large"} />
             </Chip.Suffix>
           </Chip>
+        </Combobox.Activator>
+        <Combobox.Option id="1" label="13%" />
+        <Combobox.Option id="2" label="15%" />
+        <Combobox.Option id="3" label="20%" />
+
+        <Combobox.Action
+          label="Add Tax Rate"
+          onClick={() => {
+            alert("Added a new tax rate ✅");
+          }}
+        />
+      </Combobox>
+      <br />
+      <Typography element={"h3"} fontFamily={"display"}>
+        Custom Activator using a div
+      </Typography>
+      <Combobox {...args} onSelect={setSelected} selected={selected}>
+        <Combobox.Activator>
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+            }}
+          >
+            <Heading level={2}>Heading Two</Heading>
+            <Icon name={"arrowDown"} />
+          </div>
         </Combobox.Activator>
         <Combobox.Option id="1" label="13%" />
         <Combobox.Option id="2" label="15%" />
