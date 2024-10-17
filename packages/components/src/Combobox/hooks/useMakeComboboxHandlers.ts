@@ -3,6 +3,7 @@ import { ComboboxOption } from "../Combobox.types";
 
 export interface UseMakeComboboxHandlersReturn {
   handleClose: () => void;
+  handleOpen: () => void;
   handleSelection: (selection: ComboboxOption) => void;
 }
 
@@ -28,6 +29,10 @@ export function useMakeComboboxHandlers(
     }
   }, [setOpen, setSearchValue, onClose, onSearch, selectedOptions.length]);
 
+  const handleOpen = useCallback(() => {
+    setOpen(true);
+  }, [setOpen]);
+
   const handleSelection = useCallback(
     (selection: ComboboxOption) => {
       if (multiSelect) {
@@ -52,6 +57,7 @@ export function useMakeComboboxHandlers(
 
   return {
     handleClose,
+    handleOpen,
     handleSelection,
   };
 }

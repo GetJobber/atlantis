@@ -6,21 +6,21 @@ import { ComboboxContextProvider } from "../../ComboboxProvider";
 import { ComboboxOption } from "../../Combobox.types";
 
 const handleClose = jest.fn();
-const setOpen = jest.fn();
+const handleOpen = jest.fn();
 
 afterEach(() => {
   handleClose.mockClear();
-  setOpen.mockClear();
+  handleOpen.mockClear();
 });
 
 describe("ComboboxTrigger", () => {
   describe("when open is false", () => {
-    it("calls setOpen", async () => {
+    it("calls handleOpen", async () => {
       renderTrigger();
       const trigger = screen.getByRole("combobox");
 
       await userEvent.click(trigger);
-      expect(setOpen).toHaveBeenCalled();
+      expect(handleOpen).toHaveBeenCalled();
     });
   });
 
@@ -126,7 +126,7 @@ function renderTrigger(
 ) {
   return render(
     <ComboboxContextProvider
-      setOpen={setOpen}
+      handleOpen={handleOpen}
       handleClose={handleClose}
       selected={[]}
       open={open}
