@@ -176,7 +176,7 @@ const ComboboxCustomActivator: ComponentStory<typeof Combobox> = args => {
       </Combobox>
       <br />
       <Typography element={"h3"} fontFamily={"display"}>
-        Custom Activator using a div
+        Custom Activator using div and render function
       </Typography>
       <Combobox {...args} onSelect={setSelected} selected={selected}>
         <Combobox.Activator>
