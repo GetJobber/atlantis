@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.43.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.43.1...@jobber/components@5.43.2) (2024-10-18)
+
+
+### Bug Fixes
+
+* **components:** Fixed issue where GridCell could no longer have no children ([#2077](https://github.com/GetJobber/atlantis/issues/2077)) ([8c738f1](https://github.com/GetJobber/atlantis/commit/8c738f1807978a746b7a6960e12047e075e3a1f6))
+
+
+
+
+
 ## [5.43.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.43.0...@jobber/components@5.43.1) (2024-10-16)
 
 **Note:** Version bump only for package @jobber/components
