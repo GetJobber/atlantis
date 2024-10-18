@@ -1,9 +1,10 @@
 /* eslint-env node */
 /* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable import/no-default-export */
 
-const { PathPrompt } = require("inquirer-path");
+import { PathPrompt } from "inquirer-path";
 
-module.exports = function (plop, config) {
+export default (plop, config) => {
   const { basePath, templateGlob } = Object.assign(
     {
       basePath: "packages/components/src",

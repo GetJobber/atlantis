@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.43.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.43.1...@jobber/components@5.43.2) (2024-10-18)
+
+
+### Bug Fixes
+
+* **components:** Fixed issue where GridCell could no longer have no children ([#2077](https://github.com/GetJobber/atlantis/issues/2077)) ([8c738f1](https://github.com/GetJobber/atlantis/commit/8c738f1807978a746b7a6960e12047e075e3a1f6))
+
+
+
+
+
+## [5.43.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.43.0...@jobber/components@5.43.1) (2024-10-16)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [5.43.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.42.0...@jobber/components@5.43.0) (2024-10-16)
+
+
+### Features
+
+* **components:** Add keepOpenOnClick prop to Combobox.Action ([#2055](https://github.com/GetJobber/atlantis/issues/2055)) ([b5adc8f](https://github.com/GetJobber/atlantis/commit/b5adc8f56626cd72000e17a31d80c695e7680d7b))
+
+
+
+
+
+# [5.42.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.41.1...@jobber/components@5.42.0) (2024-10-15)
+
+
+### Features
+
+* **components:** Update apple icon and Add bank icon [JOB-106774] ([#2073](https://github.com/GetJobber/atlantis/issues/2073)) ([6dd2ae6](https://github.com/GetJobber/atlantis/commit/6dd2ae6c4bcadb5bf32bbe9c04c3762a2b84e181))
+
+
+
+
+
+## [5.41.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.41.0...@jobber/components@5.41.1) (2024-10-15)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [5.41.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.40.3...@jobber/components@5.41.0) (2024-10-15)
+
+
+### Features
+
+* **components:** Decouple shadow from clickability [JOB-105101] ([#2054](https://github.com/GetJobber/atlantis/issues/2054)) ([4925956](https://github.com/GetJobber/atlantis/commit/4925956248d6cc03e54fdcbf5309ef4a7371fff4))
+
+
+
+
+
 ## [5.40.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.40.2...@jobber/components@5.40.3) (2024-10-09)
 
 

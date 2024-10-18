@@ -54,18 +54,17 @@ export const styles = StyleSheet.create({
     opacity: 0,
   },
 
-  titleWithoutDismiss: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "center",
-    paddingTop: tokens["space-base"],
-    paddingHorizontal: tokens["space-base"],
-  },
-
-  titleWithDismiss: {
+  title: {
     flex: 1,
     justifyContent: "center",
     paddingLeft: tokens["space-base"],
+  },
+
+  titleWithoutDismiss: {
+    paddingRight: tokens["space-base"],
+  },
+
+  titleWithDismiss: {
     paddingRight: tokens["space-smaller"],
   },
 });
