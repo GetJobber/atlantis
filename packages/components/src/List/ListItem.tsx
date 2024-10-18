@@ -9,7 +9,15 @@ import { Typography } from "../Typography";
 import { Markdown } from "../Markdown";
 import { Emphasis } from "../Emphasis";
 
-export interface ListItemProps {
+export interface BaseListItemProps {
+  /**
+   * The ID of the list item. This will be helpful to know the selected list
+   * items when a batch action is implemented.
+   */
+  readonly id: number | string;
+}
+
+export interface ListItemProps extends BaseListItemProps {
   /**
    * Subdued text under the `content` prop.
    */
@@ -20,7 +28,7 @@ export interface ListItemProps {
    * for a multi line content.
    * This supports basic markdown node types such as `_italic_` and `**bold**`.
    */
-  readonly content: string | string[];
+  readonly content?: string | string[];
 
   /**
    * Shows an icon on the left side of the contents.
@@ -31,12 +39,6 @@ export interface ListItemProps {
    * Changes the color of the icons.
    */
   readonly iconColor?: IconColorNames;
-
-  /**
-   * The ID of the list item. This will be helpful to know the selected list
-   * items when a batch action is implemented.
-   */
-  readonly id: number | string;
 
   /**
    * Highlights the list item with the lightest green icon. This communicates
@@ -112,7 +114,7 @@ export function ListItem({
 
       <div className={styles.info}>
         {title && <Heading level={5}>{title}</Heading>}
-        <Description content={content} />
+        {content && <Description content={content} />}
 
         {caption && (
           <Text variation="subdued">
@@ -134,7 +136,7 @@ export function ListItem({
   );
 }
 
-function Description({ content }: Pick<ListItemProps, "content">) {
+function Description({ content }: Pick<Required<ListItemProps>, "content">) {
   if (content instanceof Array) {
     return (
       <>
