@@ -1,9 +1,178 @@
 import { Meta } from "@storybook/addon-docs";
+import { Card } from "@jobber/components/Card";
+import { List } from "@jobber/components/List";
 
 <Meta title="Components/Lists and Tables/List" />
 
 # List
 
-Displays a collection of objects that are either the same type or related to one
-another, like billing or activity feed. The main purpose of a list is to help
-the user find an object that leads to its full representation.
+The `List` component renders a collection of items in a structured way. It
+supports both [flat lists](#basic-flat-list) and
+[sectioned lists](#sectioned-list), and allows for
+[custom rendering](#custom-rendering-advanced-usage) of list items via a render
+function.
+
+## Design and Usage Guidelines
+
+The `List` component is a great solution if you are looking to display a
+collection of objects that are either the same type or related to one another,
+like billing or activity feed. The main purpose of a list is to help the user
+find an object that leads to its full representation.
+
+The majority of list implementations can be achieved without needing to
+customize rendering. If your items conform to the ListItemProps interface, the
+component will render them automatically with the default behavior.
+
+#### ListItemProps Interface
+
+When using the default rendering, your items must conform to the
+**`ListItemProps`** interface. Here’s a breakdown of the properties:
+
+**Required:**
+
+- **`id`**: A unique identifier for the list item. This is essential to ensure
+  proper rendering and handling of batch actions.
+
+**Optional:**
+
+- **`title`**: A heading or title for the item.
+
+- **`caption`**: Subdued text shown below the main content.
+
+- **`content`**: Main content, either a string or an array of strings. Supports
+  basic markdown (e.g., **bold** and _italic_).
+
+- **`icon`**: An icon to display on the left side of the content.
+
+- **`iconColor`**: Sets the color of the icon.
+
+- **`isActive`**: Highlights the list item to indicate it needs attention.
+
+- **`section`**: Used to group the list items into sections.
+
+- **`url`**: Makes the item clickable, rendering it as a link.
+
+- **`value`**: A numeric or string value aligned to the right of the item.
+
+- **`onClick`**: A callback function triggered when the item is clicked.
+
+#### Basic Flat List
+
+<Canvas>
+  <Card>
+    <List
+      items={[
+        {
+          id: 1,
+          content: "Content",
+          icon: "work",
+          iconColor: "interactive",
+          title: "Title",
+          value: "Value",
+          onClick: () => alert("First list item clicked"),
+        },
+        {
+          id: 2,
+          content: "Content",
+          icon: "work",
+          iconColor: "interactive",
+          title: "Title",
+          value: "Value",
+          onClick: () => alert("Second list item clicked"),
+        },
+      ]}
+    />
+  </Card>
+</Canvas>
+
+#### Sectioned List
+
+If a section field is present in any item, the list will group the items by
+their section and display them under section headers.
+
+<Canvas>
+  <Card>
+    <List
+      items={[
+        {
+          id: 1,
+          content: "Content",
+          icon: "work",
+          iconColor: "interactive",
+          title: "Title",
+          value: "Value",
+          section: "Section 1",
+          onClick: () => alert("First list item clicked"),
+        },
+        {
+          id: 2,
+          content: "Content",
+          icon: "work",
+          iconColor: "interactive",
+          title: "Title",
+          value: "Value",
+          section: "Section 1",
+          onClick: () => alert("Second list item clicked"),
+        },
+        {
+          id: 3,
+          content: "Content",
+          icon: "work",
+          iconColor: "interactive",
+          title: "Title",
+          value: "Value",
+          section: "Section 2",
+          onClick: () => alert("Second list item clicked"),
+        },
+      ]}
+    />
+  </Card>
+</Canvas>
+
+### **Custom Rendering (Advanced Usage)**
+
+If you need more control over the rendering of list items, you can provide a
+**custom render function** using the `customRenderItem` prop. This is useful if
+the default `ListItem` component doesn’t meet your requirements.
+
+**Example: Custom Render Function with Custom Interface**
+
+```tsx
+import { List } from "./List";
+
+interface ProductListItemProps extends BaseListItemProps {
+  readonly name: string;
+  readonly price: string;
+}
+
+const items: ProductListItemProps[] = [
+  { id: 1, name: "Lawn Mower", price: "$250.00" },
+  { id: 2, name: "Hedge Trimmer", price: "$85.00" },
+];
+
+const renderProductItem = (item: ProductListItemProps) => (
+    <Flex template={["shrink", "grow"]} align="start">
+        <Text>{item.price}</Text>
+        <Heading level={4}>{item.name}</Heading>
+    </Flex>
+  </div>
+);
+
+export const CustomRenderExample = () => (
+  <List items={items} customRenderItem={renderProductItem} />
+);
+```
+
+**In this example**:
+
+- We define a custom interface (`ProductListItemProps`) that extends
+  `BaseListItemProps`.
+- The `customRenderItem` function provides complete control over how each item
+  is rendered.
+
+**When to Use Custom Rendering:**
+
+- Use a custom render function when you need complex layouts that the `ListItem`
+  component can’t provide.
+- Create your own interface extending `BaseListItemProps` to define the fields
+  you need.
