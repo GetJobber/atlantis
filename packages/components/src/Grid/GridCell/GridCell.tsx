@@ -19,7 +19,7 @@ export interface GridCellProps {
    * Set how many columns wide the cell is in the grid
    */
   readonly size: { [Breakpoint in Breakpoints]?: ColumnSizes };
-  readonly children: React.ReactNode;
+  readonly children?: React.ReactNode;
 }
 
 const MAX_COLUMNS = 12;
