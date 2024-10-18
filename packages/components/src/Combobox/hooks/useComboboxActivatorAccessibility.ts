@@ -1,17 +1,15 @@
 import { useContext } from "react";
 import { ComboboxContext } from "../ComboboxProvider";
 import { COMBOBOX_MENU_ID } from "../constants";
+import { ComboboxActivatorAccessibility } from "../Combobox.types";
 
-export function useComboboxActivatorAccessibility() {
+export function useComboboxActivatorAccessibility(): ComboboxActivatorAccessibility {
   const { label, open } = useContext(ComboboxContext);
 
   return {
-    htmlAttributes: {
-      "aria-label": label,
-      "aria-expanded": open,
-      "aria-controls": COMBOBOX_MENU_ID,
-      tabindex: 0,
-      role: "combobox",
-    },
+    ariaLabel: label,
+    ariaExpanded: open,
+    ariaControls: COMBOBOX_MENU_ID,
+    role: "combobox",
   };
 }

@@ -180,15 +180,27 @@ const ComboboxCustomActivator: ComponentStory<typeof Combobox> = args => {
       </Typography>
       <Combobox {...args} onSelect={setSelected} selected={selected}>
         <Combobox.Activator>
-          <button
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-            }}
-          >
-            <Heading level={2}>Heading Two</Heading>
-            <Icon name={"arrowDown"} />
-          </button>
+          {activatorAPI => (
+            <div
+              role={activatorAPI.role}
+              tabIndex={0}
+              aria-controls={activatorAPI.ariaControls}
+              aria-expanded={activatorAPI.ariaExpanded}
+              onClick={activatorAPI.toggleOpen}
+              onKeyDown={e => {
+                if (e.key === "Enter" || e.key === " ") {
+                  activatorAPI.toggleOpen();
+                }
+              }}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+              }}
+            >
+              <Heading level={2}>Heading Two</Heading>
+              <Icon name={"arrowDown"} />
+            </div>
+          )}
         </Combobox.Activator>
         <Combobox.Option id="1" label="13%" />
         <Combobox.Option id="2" label="15%" />

@@ -4,6 +4,7 @@ import { Button } from "@jobber/components/Button";
 import { Chip } from "@jobber/components/Chip";
 import { ComboboxActivator } from "./ComboboxActivator";
 import { ComboboxContextProvider } from "../../ComboboxProvider";
+import { ComboboxCustomActivatorProps } from "../../Combobox.types";
 
 const toggleOpen = jest.fn();
 const handleClose = jest.fn();
@@ -63,7 +64,9 @@ describe("ComboboxActivator", () => {
 
   it("renders provided element with 'combobox' role if children are not a Chip or Button", () => {
     const { getByText, queryByRole } = renderComboboxActivator(
-      <div>Teammates</div>,
+      (api: ComboboxCustomActivatorProps) => (
+        <div role={api.role}>Teammates</div>
+      ),
       true,
     );
     expect(getByText("Teammates")).toBeInTheDocument();
@@ -71,7 +74,10 @@ describe("ComboboxActivator", () => {
   });
 });
 
-function renderComboboxActivator(child: ReactElement, open: boolean) {
+function renderComboboxActivator(
+  child: ReactElement | ((args: ComboboxCustomActivatorProps) => JSX.Element),
+  open: boolean,
+) {
   return render(
     <ComboboxContextProvider
       toggleOpen={toggleOpen}
