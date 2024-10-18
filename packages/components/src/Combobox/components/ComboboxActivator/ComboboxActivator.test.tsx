@@ -5,17 +5,17 @@ import { Chip } from "@jobber/components/Chip";
 import { ComboboxActivator } from "./ComboboxActivator";
 import { ComboboxContextProvider } from "../../ComboboxProvider";
 
-const handleOpen = jest.fn();
+const toggleOpen = jest.fn();
 const handleClose = jest.fn();
 
 afterEach(() => {
-  handleOpen.mockClear();
+  toggleOpen.mockClear();
   handleClose.mockClear();
 });
 
 describe("ComboboxActivator", () => {
   describe("when open is true", () => {
-    it("should call handleClose when the activator is clicked", () => {
+    it("should call toggleOpen when the activator is clicked", () => {
       const { getByRole } = renderComboboxActivator(
         <Button label="Teammates" />,
         true,
@@ -24,12 +24,12 @@ describe("ComboboxActivator", () => {
 
       activator.click();
 
-      expect(handleClose).toHaveBeenCalled();
+      expect(toggleOpen).toHaveBeenCalled();
     });
   });
 
   describe("when open is false", () => {
-    it("should call handleOpen when the activator is clicked", () => {
+    it("should call toggleOpen when the activator is clicked", () => {
       const { getByRole } = renderComboboxActivator(
         <Button label="Teammates" />,
         false,
@@ -38,7 +38,7 @@ describe("ComboboxActivator", () => {
 
       activator.click();
 
-      expect(handleOpen).toHaveBeenCalled();
+      expect(toggleOpen).toHaveBeenCalled();
     });
   });
   it("can render a Button with role 'combobox' and onClick handler", () => {
@@ -74,7 +74,7 @@ describe("ComboboxActivator", () => {
 function renderComboboxActivator(child: ReactElement, open: boolean) {
   return render(
     <ComboboxContextProvider
-      handleOpen={handleOpen}
+      toggleOpen={toggleOpen}
       handleClose={handleClose}
       selectionHandler={jest.fn()}
       shouldScroll={{ current: false }}

@@ -3,12 +3,13 @@ import { ComboboxOption } from "../Combobox.types";
 
 export interface UseMakeComboboxHandlersReturn {
   handleClose: () => void;
-  handleOpen: () => void;
   handleSelection: (selection: ComboboxOption) => void;
+  toggleOpen: () => void;
 }
 
 export function useMakeComboboxHandlers(
   setOpen: (open: boolean) => void,
+  open: boolean,
   setSearchValue: (searchValue: string) => void,
   selectedOptions: ComboboxOption[],
   shouldScroll: React.MutableRefObject<boolean>,
@@ -32,6 +33,14 @@ export function useMakeComboboxHandlers(
   const handleOpen = useCallback(() => {
     setOpen(true);
   }, [setOpen]);
+
+  const toggleOpen = useCallback(() => {
+    if (open) {
+      handleClose();
+    } else {
+      handleOpen();
+    }
+  }, [setOpen, open]);
 
   const handleSelection = useCallback(
     (selection: ComboboxOption) => {
@@ -57,8 +66,8 @@ export function useMakeComboboxHandlers(
 
   return {
     handleClose,
-    handleOpen,
     handleSelection,
+    toggleOpen,
   };
 }
 

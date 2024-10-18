@@ -10,6 +10,7 @@ export function useComboboxActivatorAccessibility() {
       "aria-label": label,
       "aria-expanded": open,
       "aria-controls": COMBOBOX_MENU_ID,
+      tabindex: 0,
       role: "combobox",
     },
   };

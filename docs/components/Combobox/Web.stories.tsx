@@ -180,7 +180,7 @@ const ComboboxCustomActivator: ComponentStory<typeof Combobox> = args => {
       </Typography>
       <Combobox {...args} onSelect={setSelected} selected={selected}>
         <Combobox.Activator>
-          <div
+          <button
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -188,7 +188,7 @@ const ComboboxCustomActivator: ComponentStory<typeof Combobox> = args => {
           >
             <Heading level={2}>Heading Two</Heading>
             <Icon name={"arrowDown"} />
-          </div>
+          </button>
         </Combobox.Activator>
         <Combobox.Option id="1" label="13%" />
         <Combobox.Option id="2" label="15%" />

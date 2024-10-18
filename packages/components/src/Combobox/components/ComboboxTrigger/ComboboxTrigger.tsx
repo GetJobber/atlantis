@@ -8,7 +8,7 @@ export function ComboboxTrigger({
   label = "Select",
   selected,
 }: ComboboxTriggerProps) {
-  const { handleClose, open, handleOpen } = React.useContext(ComboboxContext);
+  const { toggleOpen } = React.useContext(ComboboxContext);
 
   const hasSelection = selected.length;
   const selectedLabel = selected.map(option => option.label).join(", ");
@@ -19,13 +19,7 @@ export function ComboboxTrigger({
       label={hasSelection ? selectedLabel : ""}
       ariaLabel={label}
       heading={label}
-      onClick={() => {
-        if (open) {
-          handleClose();
-        } else {
-          handleOpen();
-        }
-      }}
+      onClick={toggleOpen}
       role="combobox"
     >
       {!hasSelection && (

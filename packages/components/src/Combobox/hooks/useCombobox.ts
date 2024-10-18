@@ -44,8 +44,9 @@ export function useCombobox(
     [onSearch, debounceTime],
   );
 
-  const { handleClose, handleOpen, handleSelection } = useMakeComboboxHandlers(
+  const { handleClose, handleSelection, toggleOpen } = useMakeComboboxHandlers(
     setOpen,
+    open,
     setSearchValue,
     selected,
     shouldScroll,
@@ -64,12 +65,12 @@ export function useCombobox(
     searchValue,
     setSearchValue,
     open,
-    handleOpen,
     selectedOptions: selected,
     selectedStateSetter: onSelect,
     shouldScroll,
     handleClose,
     handleSelection,
+    toggleOpen,
     internalFilteredOptions,
     handleSearchChange: onSearch ? searchCallback : noop,
   };
