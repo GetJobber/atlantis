@@ -60,8 +60,44 @@ export interface ComboboxProps {
   readonly loading?: boolean;
 }
 
+export interface ComboboxCustomActivatorProps {
+  /**
+   * Required to describe the expanded state of the Combobox.
+   * Automatically updates as open state is toggled.
+   */
+  ariaExpanded: boolean;
+
+  /**
+   * Required to describe the relationship between the toggle-able Combobox Menu and the activator.
+   */
+  ariaControls: string;
+
+  /**
+   * The aria-label attribute for the Combobox activator.
+   */
+  ariaLabel?: string;
+
+  /**
+   * Required to describe the interactive element which toggles the Combobox's visibility.
+   */
+  role: "combobox";
+
+  /**
+   * Method to toggle the open state of the Combobox.
+   * All callbacks and cleanup will be handled when toggled to closed.
+   */
+  toggleOpen: () => void;
+}
+
+export type ComboboxActivatorAccessibility = Omit<
+  ComboboxCustomActivatorProps,
+  "toggleOpen"
+>;
+
 export interface ComboboxActivatorProps {
-  readonly children: React.ReactElement;
+  readonly children:
+    | React.ReactElement
+    | ((props: ComboboxCustomActivatorProps) => React.ReactElement);
 }
 
 export interface ComboboxTriggerProps
@@ -147,11 +183,6 @@ export interface ComboboxContentProps {
    * Is the Combobox open
    */
   readonly open: boolean;
-
-  /**
-   * Setter for the open state of the Combobox.
-   */
-  readonly setOpen: (open: boolean) => void;
 
   /**
    * The full set of options for the Combobox in the shape of data, not elements.

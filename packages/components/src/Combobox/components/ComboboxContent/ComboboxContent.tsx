@@ -8,6 +8,7 @@ import { ComboboxContentHeader } from "./ComboboxContentHeader";
 import { useComboboxContent } from "../../hooks/useComboboxContent";
 import { useComboboxAccessibility } from "../../hooks/useComboboxAccessibility";
 import { ComboboxContentProps } from "../../Combobox.types";
+import { COMBOBOX_MENU_ID } from "../../constants";
 
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   const optionsExist = props.options.length > 0;
@@ -24,8 +25,8 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   const template = (
     <div
       ref={popperRef}
-      id="ATL-Combobox-Content"
-      data-testid="ATL-Combobox-Content"
+      id={COMBOBOX_MENU_ID}
+      data-testid={COMBOBOX_MENU_ID}
       data-elevation={"elevated"}
       tabIndex={0}
       className={classnames(styles.content, { [styles.hidden]: !props.open })}
