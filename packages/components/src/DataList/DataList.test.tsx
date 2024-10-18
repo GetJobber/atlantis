@@ -14,7 +14,11 @@ import {
   DATA_LOAD_MORE_TEST_ID,
   EMPTY_FILTER_RESULTS_MESSAGE,
 } from "./DataList.const";
-import { DataListItemType, DataListProps } from "./DataList.types";
+import {
+  DataListItemType,
+  DataListProps,
+  DataListSortable,
+} from "./DataList.types";
 import { DATALIST_TOTALCOUNT_TEST_ID } from "./components/DataListTotalCount";
 import {
   DATALIST_LOADINGSTATE_ROW_TEST_ID,
@@ -413,14 +417,28 @@ describe("DataList", () => {
 
     it("should trigger the onSort when the header is clicked", () => {
       const mockOnSort = jest.fn();
+      const mockSortDefinition: DataListSortable = {
+        key: "name",
+        sortType: "toggle",
+        options: [
+          { id: "nameAsc", label: "Ascending", order: "asc" },
+          { id: "nameDesc", label: "Descending", order: "desc" },
+        ],
+      };
+      const expectedOnSortArgument = {
+        key: mockSortDefinition.key,
+        id: mockSortDefinition.options[0].id,
+        label: mockSortDefinition.options[0].label,
+        order: mockSortDefinition.options[0].order,
+      };
       renderLayout(undefined, {
-        sortable: [{ key: "name" }],
+        sortable: [mockSortDefinition],
         onSort: mockOnSort,
         state: undefined,
       });
 
       fireEvent.click(screen.getByText(mockHeaders.name));
-      expect(mockOnSort).toHaveBeenCalled();
+      expect(mockOnSort).toHaveBeenCalledWith(expectedOnSortArgument);
     });
 
     it("should render custom options when sorting is specified", () => {
