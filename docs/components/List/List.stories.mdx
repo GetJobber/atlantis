@@ -20,41 +20,11 @@ like billing or activity feed. The main purpose of a list is to help the user
 find an object that leads to its full representation.
 
 The majority of list implementations can be achieved without needing to
-customize rendering. If your items conform to the ListItemProps interface, the
-component will render them automatically with the default behavior.
+customize rendering. If your items conform to the `ListItemProps` interface, the
+component will render them automatically with the default behavior. The
+`ListItemProps` must be used when using default rendering.
 
-#### ListItemProps Interface
-
-When using the default rendering, your items must conform to the
-**`ListItemProps`** interface. Here’s a breakdown of the properties:
-
-**Required:**
-
-- **`id`**: A unique identifier for the list item. This is essential to ensure
-  proper rendering and handling of batch actions.
-
-**Optional:**
-
-- **`title`**: A heading or title for the item.
-
-- **`caption`**: Subdued text shown below the main content.
-
-- **`content`**: Main content, either a string or an array of strings. Supports
-  basic markdown (e.g., **bold** and _italic_).
-
-- **`icon`**: An icon to display on the left side of the content.
-
-- **`iconColor`**: Sets the color of the icon.
-
-- **`isActive`**: Highlights the list item to indicate it needs attention.
-
-- **`section`**: Used to group the list items into sections.
-
-- **`url`**: Makes the item clickable, rendering it as a link.
-
-- **`value`**: A numeric or string value aligned to the right of the item.
-
-- **`onClick`**: A callback function triggered when the item is clicked.
+**`ListItemProps`** interface.
 
 #### Basic Flat List
 
