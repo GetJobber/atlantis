@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.43.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.43.2...@jobber/components@5.43.3) (2024-10-21)
+
+
+### Bug Fixes
+
+* **components:** DataList toggle sorting header doesn't transpose id and key ([#2069](https://github.com/GetJobber/atlantis/issues/2069)) ([ed36a75](https://github.com/GetJobber/atlantis/commit/ed36a756cf2ca1ae65d3f6eeca087a6a585494fe))
+
+
+
+
+
 ## [5.43.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.43.1...@jobber/components@5.43.2) (2024-10-18)
 
 
