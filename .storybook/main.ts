@@ -100,7 +100,6 @@ const config: StorybookConfig = {
       test: /\.css$/,
       exclude: [/node_modules/, /\.storybook\/assets\/css\/.*\.css$/],
       use: [
-        require.resolve("typed-css-modules-loader"),
         {
           loader: "postcss-loader",
           options: {

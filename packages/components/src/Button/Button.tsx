@@ -56,6 +56,7 @@ interface ButtonLinkProps<S = unknown> extends ButtonFoundationProps {
    * **Deprecated**: to will be removed in the next major version
    * @deprecated
    */
+  // @ts-expect-error We are depcreating and removing, not worth the time to fix this issue
   readonly to?: LinkProps<S>["to"];
 }
 
