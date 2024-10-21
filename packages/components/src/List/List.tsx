@@ -17,7 +17,8 @@ interface ListProps<T extends BaseListItemProps = ListItemProps> {
    */
   readonly items: T[];
   /**
-   * A custom render function
+   * A function that will be called for each item instead of the default
+   * rendering
    */
   readonly customRenderItem?: (item: T) => React.ReactNode;
 }
