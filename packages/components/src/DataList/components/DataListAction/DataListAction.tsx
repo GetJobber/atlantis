@@ -6,7 +6,7 @@ import {
 import { Typography } from "@jobber/components/Typography";
 import { Icon } from "@jobber/components/Icon";
 import { useDataListLayoutActionsContext } from "@jobber/components/DataList/components/DataListLayoutActions/DataListLayoutContext";
-import styles from "./DataListAction.css";
+import styles from "./DataListAction.module.css";
 
 export function DataListAction<T extends DataListObject>({
   label,
@@ -23,7 +23,7 @@ export function DataListAction<T extends DataListObject>({
     return null;
   }
 
-  const color = destructive ? "critical" : "heading";
+  const color = destructive ? "destructive" : "heading";
 
   function getActionLabel() {
     if (typeof label === "string") {

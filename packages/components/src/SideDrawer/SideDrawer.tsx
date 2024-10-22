@@ -12,7 +12,7 @@ import { SideDrawerActions } from "./SideDrawerActions";
 import { RegisteredComponents, SideDrawerContext } from "./SideDrawerContext";
 import { SideDrawerTitle } from "./SideDrawerTitle";
 import { SideDrawerToolbar } from "./SideDrawerToolbar";
-import styles from "./SideDrawer.css";
+import styles from "./SideDrawer.module.css";
 import { SideDrawerBackButton } from "./SideDrawerBackButton";
 import { SideDrawerFooter } from "./SideDrawerFooter";
 import { Button } from "../Button";
@@ -123,15 +123,18 @@ export function SideDrawer({
                     headerShadowRef.current && !noHeaderShadow,
                 })}
               >
-                <Flex template={["grow", "shrink"]}>
-                  <Flex template={["shrink", "grow"]} gap="none">
+                <Flex template={["grow", "shrink"]} align="start">
+                  <Flex template={["shrink", "grow"]} align="start" gap="none">
                     <div
                       className={classNames(styles.backButton, {
                         [styles.backButtonVisible]: components.backButton,
                       })}
                       {...backButton.attr}
                     />
-                    <div {...title.attr} />
+                    <div
+                      className={classNames(styles.heading)}
+                      {...title.attr}
+                    />
                   </Flex>
 
                   <div className={styles.headerActions}>

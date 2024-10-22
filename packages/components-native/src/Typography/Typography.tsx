@@ -7,6 +7,7 @@ import {
   // eslint-disable-next-line no-restricted-imports
   Text,
   TextProps,
+  TextStyle,
   ViewStyle,
 } from "react-native";
 import { TypographyGestureDetector } from "./TypographyGestureDetector";
@@ -84,6 +85,13 @@ export interface TypographyProps<T extends FontFamily>
   readonly fontStyle?: T extends "base" ? BaseStyle : DisplayStyle;
 
   /**
+   * Underline style to use for the text. The non-solid style is only supported
+   * on iOS, as per React Native's Text component's limitations.
+   * https://reactnative.dev/docs/text-style-props#textdecorationstyle-ios
+   */
+  readonly underline?: "solid" | "double" | "dotted" | "dashed" | undefined;
+
+  /**
    * Font weight
    */
   readonly fontWeight?: T extends "base" ? BaseWeight : DisplayWeight;
@@ -124,6 +132,7 @@ const maxNumberOfLines = {
 
 export const Typography = React.memo(InternalTypography);
 
+// eslint-disable-next-line max-statements
 function InternalTypography<T extends FontFamily = "base">({
   fontFamily,
   fontStyle,
@@ -143,6 +152,7 @@ function InternalTypography<T extends FontFamily = "base">({
   hideFromScreenReader = false,
   accessibilityRole = "text",
   strikeThrough = false,
+  underline,
   selectable = true,
 }: TypographyProps<T>): JSX.Element {
   const sizeAndHeight = getSizeAndHeightStyle(size, lineHeight);
@@ -160,6 +170,11 @@ function InternalTypography<T extends FontFamily = "base">({
 
   if (fontStyle === "italic") {
     style.push(styles.italic);
+  }
+
+  if (underline) {
+    const underlineTextStyle: TextStyle = { textDecorationStyle: underline };
+    style.push(underlineTextStyle, styles.underline);
   }
 
   const numberOfLinesForNativeText = maxNumberOfLines[maxLines];
@@ -295,8 +310,8 @@ export type DisplayStyle = Extract<FontStyle, "regular">;
 
 export type TextColor =
   | TextVariation
+  // Base colors for backwards compatibility
   | "default"
-  | "blue"
   | "blueDark"
   | "white"
   | "green"
@@ -320,27 +335,89 @@ export type TextColor =
   | "tealDark"
   | "indigoDark"
   | "navy"
-  | "text"
+
+  // Typography
   | "heading"
+  | "text"
   | "textSecondary"
   | "textReverse"
   | "textReverseSecondary"
-  | "interactive"
-  | "destructive"
-  | "learning"
-  | "subtle"
-  | "onPrimary";
 
+  // Statuses
+  | "inactive"
+  | "inactiveSurface"
+  | "inactiveOnSurface"
+  | "critical"
+  | "criticalSurface"
+  | "criticalOnSurface"
+  | "warning"
+  | "warningSurface"
+  | "warningOnSurface"
+  | "informative"
+  | "informativeSurface"
+  | "informativeOnSurface"
+  | "successSurface"
+  | "successOnSurface"
+
+  // Interactions
+  | "interactiveHover"
+  | "interactiveSubtleHover"
+  | "destructiveHover"
+  | "disabledSecondary"
+
+  // Workflow
+  | "request"
+  | "requestSurface"
+  | "requestOnSurface"
+  | "quote"
+  | "quoteSurface"
+  | "quoteOnSurface"
+  | "job"
+  | "jobSurface"
+  | "jobOnSurface"
+  | "visit"
+  | "visitSurface"
+  | "visitOnSurface"
+  | "task"
+  | "taskSurface"
+  | "taskOnSurface"
+  | "event"
+  | "eventSurface"
+  | "eventOnSurface"
+  | "invoice"
+  | "invoiceSurface"
+  | "invoiceOnSurface"
+  | "payments"
+  | "paymentsSurface"
+  | "paymentsOnSurface"
+  | "client"
+
+  // Deprecated
+  | "blue" // Use "heading" instead
+  | "learning" // Use "informative" instead
+  | "subtle" // Use "interactiveSubtle" instead
+  | "onPrimary"; // Use "subtle" instead
+
+// A subset of colors that can be used with the Text component
 export type TextVariation =
-  | "success"
+  | "text"
+  | "textSecondary"
   | "interactive"
-  | "error"
-  | "base"
-  | "subdued"
-  | "warn"
-  | "info"
+  | "interactiveSubtle"
+  | "successOnSurface"
+  | "critical"
+  | "warning"
+  | "informativeOnSurface"
   | "disabled"
-  | "critical";
+  | "destructive"
+
+  // Deprecated
+  | "base" // Use "text" instead
+  | "success" // Use "successOnSurface" instead (except for when reverseTheme=true)
+  | "subdued" // Use "textSecondary" instead
+  | "error" // Use "critical" instead
+  | "warn" // Use "warningOnSurface" instead
+  | "info"; // Use "informativeOnSurface" instead
 
 export type TextTransform = "uppercase" | "lowercase" | "capitalize" | "none";
 

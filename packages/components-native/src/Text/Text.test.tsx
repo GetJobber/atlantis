@@ -142,3 +142,9 @@ it("renders text that is inaccessible", () => {
     }),
   );
 });
+
+it("renders text with underline styling", () => {
+  const text = render(<Text underline="dashed">Test Text</Text>);
+
+  expect(text.toJSON()).toMatchSnapshot();
+});

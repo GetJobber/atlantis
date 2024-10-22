@@ -2,7 +2,7 @@ import { Row, Table, flexRender } from "@tanstack/react-table";
 import classNames from "classnames";
 import React from "react";
 import { SortDirection, SortIcon } from "./SortIcon";
-import styles from "./DataTable.css";
+import styles from "./DataTable.module.css";
 import { SortingType } from "./types";
 
 interface HeaderProps<T> {

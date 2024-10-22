@@ -1,13 +1,9 @@
 {
   "name": "@jobber/docx",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "private": true,
   "description": "Internal Docs components.",
   "license": "MIT",
   "files": [],
-  "main": "src/index.ts",
-  "scripts": {},
-  "devDependencies": {
-    "react": "^16.8.6"
-  }
+  "main": "src/index.ts"
 }

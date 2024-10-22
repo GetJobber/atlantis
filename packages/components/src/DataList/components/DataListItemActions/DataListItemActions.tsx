@@ -1,6 +1,6 @@
 import React, { MouseEvent, ReactElement } from "react";
 import { Variants, motion } from "framer-motion";
-import styles from "./DataListItemActions.css";
+import styles from "./DataListItemActions.module.css";
 import {
   DataListActionProps,
   DataListItemActionsProps,
@@ -21,8 +21,8 @@ export function DataListItemActions<T extends DataListObject>(
 }
 
 const variants: Variants = {
-  hidden: { opacity: 0, y: 10 },
-  visible: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: 0 },
+  visible: { opacity: 1, y: 4 },
 };
 
 interface InternalDataListItemActionsProps<T extends DataListObject> {
@@ -43,6 +43,7 @@ export function InternalDataListItemActions<T extends DataListObject>({
         delay: TRANSITION_DELAY_IN_SECONDS,
       }}
       className={styles.menu}
+      data-elevation={"elevated"}
       onContextMenu={handleContextMenu}
     >
       <DataListActions>{actions}</DataListActions>

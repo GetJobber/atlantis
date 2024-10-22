@@ -1,0 +1,271 @@
+/* Base colors for backwards compatability */
+
+.blue {
+  color: var(--color-blue);
+}
+
+.grey {
+  color: var(--color-grey);
+}
+
+.greyBlueDark {
+  color: var(--color-greyBlue--dark);
+}
+
+.greyBlue {
+  color: var(--color-greyBlue);
+}
+
+.green {
+  color: var(--color-green);
+}
+
+.red {
+  color: var(--color-red);
+}
+
+.yellow {
+  color: var(--color-yellow);
+}
+
+.yellowDark {
+  color: var(--color-yellow--dark);
+}
+
+.lightBlue {
+  color: var(--color-lightBlue);
+}
+
+.white {
+  color: var(--color-white);
+}
+
+/* Typography */
+
+.heading {
+  color: var(--color-heading);
+}
+
+.text {
+  color: var(--color-text);
+}
+
+.textSecondary {
+  color: var(--color-text--secondary);
+}
+
+.textReverse {
+  color: var(--color-text--reverse);
+}
+
+.textReverseSecondary {
+  color: var(--color-text--reverse--secondary);
+}
+
+/* Statuses */
+
+.inactive {
+  color: var(--color-inactive--onSurface);
+}
+
+.inactiveSurface {
+  color: var(--color-inactive--surface);
+}
+
+.inactiveOnSurface {
+  color: var(--color-inactive--onSurface);
+}
+
+.critical {
+  color: var(--color-critical);
+}
+
+.criticalSurface {
+  color: var(--color-critical--surface);
+}
+
+.criticalOnSurface {
+  color: var(--color-critical--onSurface);
+}
+
+.warning {
+  color: var(--color-warning--onSurface);
+}
+
+.warningSurface {
+  color: var(--color-warning--surface);
+}
+
+.warningOnSurface {
+  color: var(--color-warning--onSurface);
+}
+
+.informative {
+  color: var(--color-informative--onSurface);
+}
+
+.informativeSurface {
+  color: var(--color-informative--surface);
+}
+
+.informativeOnSurface {
+  color: var(--color-informative--onSurface);
+}
+
+.success {
+  color: var(--color-success--onSurface);
+}
+
+.successSurface {
+  color: var(--color-success--surface);
+}
+
+.successOnSurface {
+  color: var(--color-success--onSurface);
+}
+
+/* Interactions */
+
+.interactive {
+  color: var(--color-interactive);
+}
+
+.interactiveHover {
+  color: var(--color-interactive--hover);
+}
+
+.interactiveSubtle {
+  color: var(--color-interactive--subtle);
+}
+
+.interactiveSubtleHover {
+  color: var(--color-interactive--subtle--hover);
+}
+
+.destructive {
+  color: var(--color-destructive);
+}
+
+.destructiveHover {
+  color: var(--color-destructive--hover);
+}
+
+.disabled {
+  color: var(--color-disabled);
+}
+
+.disabledSecondary {
+  color: var(--color-disabled--secondary);
+}
+
+/* Workflow */
+
+.request {
+  color: var(--color-request);
+}
+
+.requestSurface {
+  color: var(--color-request--surface);
+}
+
+.requestOnSurface {
+  color: var(--color-request--onSurface);
+}
+
+.quote {
+  color: var(--color-quote);
+}
+
+.quoteSurface {
+  color: var(--color-quote--surface);
+}
+
+.quoteOnSurface {
+  color: var(--color-quote--onSurface);
+}
+
+.job {
+  color: var(--color-job);
+}
+
+.jobSurface {
+  color: var(--color-job--surface);
+}
+
+.jobOnSurface {
+  color: var(--color-job--onSurface);
+}
+
+.visit {
+  color: var(--color-visit);
+}
+
+.visitSurface {
+  color: var(--color-visit--surface);
+}
+
+.visitOnSurface {
+  color: var(--color-visit--onSurface);
+}
+
+.task {
+  color: var(--color-task);
+}
+
+.taskSurface {
+  color: var(--color-task--surface);
+}
+
+.taskOnSurface {
+  color: var(--color-task--onSurface);
+}
+
+.event {
+  color: var(--color-event);
+}
+
+.eventSurface {
+  color: var(--color-event--surface);
+}
+
+.eventOnSurface {
+  color: var(--color-event--onSurface);
+}
+
+.invoice {
+  color: var(--color-invoice);
+}
+
+.invoiceSurface {
+  color: var(--color-invoice--surface);
+}
+
+.invoiceOnSurface {
+  color: var(--color-invoice--onSurface);
+}
+
+.payments {
+  color: var(--color-payments);
+}
+
+.paymentsSurface {
+  color: var(--color-payments--surface);
+}
+
+.paymentsOnSurface {
+  color: var(--color-payments--onSurface);
+}
+
+.client {
+  color: var(--color-client);
+}
+
+/* Miscellaneous */
+
+.icon {
+  color: var(--color-icon);
+}
+
+.brand {
+  color: var(--color-brand);
+}

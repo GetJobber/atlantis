@@ -1,7 +1,7 @@
 import { Row, Table, flexRender } from "@tanstack/react-table";
 import classNames from "classnames";
 import React, { ReactNode, useCallback } from "react";
-import styles from "./DataTable.css";
+import styles from "./DataTable.module.css";
 import { BodyLoading } from "./BodyLoading";
 
 interface BodyProps<T> {

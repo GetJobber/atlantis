@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import type { BoxProps, Sizes } from "../Box.types";
-import marginStyles from "../styles/BoxMargin.css";
-import paddingStyles from "../styles/BoxPadding.css";
+import marginStyles from "../styles/BoxMargin.module.css";
+import paddingStyles from "../styles/BoxPadding.module.css";
 
 type Size = BoxProps["padding"] | BoxProps["margin"];
 

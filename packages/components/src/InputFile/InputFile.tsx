@@ -2,7 +2,13 @@ import React, { SyntheticEvent, useCallback } from "react";
 import classnames from "classnames";
 import { DropzoneOptions, FileError, useDropzone } from "react-dropzone";
 import axios, { AxiosRequestConfig } from "axios";
-import styles from "./InputFile.css";
+import styles from "./InputFile.module.css";
+import {
+  BASIC_IMAGE_TYPES,
+  convertToMimeTypes,
+  formatMimeTypes,
+  mimeTypeToReadable,
+} from "./FileTypes";
 import { InputValidation } from "../InputValidation";
 import { Button } from "../Button";
 import { Content } from "../Content";
@@ -124,6 +130,29 @@ interface InputFileProps {
   readonly allowMultiple?: boolean;
 
   /**
+   * Further description of the input.
+   */
+  readonly description?: string;
+
+  /**
+   * An object which helps control and validate the number of files being uploaded
+   * via the dropzone.
+   * `maxFilesValidation={{ maxFiles: 3, numberOfCurrentFiles: files.length }}`
+   */
+  readonly maxFilesValidation?: {
+    /**
+     * Maximum number of files that can be uploaded via the dropzone.
+     */
+    readonly maxFiles: number;
+
+    /**
+     * The current count of uploaded files. This value should be
+     * updated whenever a file is successfully uploaded or removed.
+     */
+    readonly numberOfCurrentFiles: number;
+  };
+
+  /**
    * A callback that receives a file object and returns a `UploadParams` needed
    * to upload the file.
    *
@@ -175,12 +204,15 @@ interface CreateAxiosConfigParams extends Omit<UploadParams, "key"> {
   handleUploadProgress(progress: any): void;
 }
 
+/* eslint-disable max-statements */
 export function InputFile({
   variation = "dropzone",
   size = "base",
   buttonLabel: providedButtonLabel,
   allowMultiple = false,
   allowedTypes = "all",
+  description,
+  maxFilesValidation,
   getUploadParams,
   onUploadStart,
   onUploadProgress,
@@ -188,32 +220,90 @@ export function InputFile({
   onUploadError,
   validator,
 }: InputFileProps) {
+  const maxFiles = maxFilesValidation?.maxFiles || 0;
+  const numberOfCurrentFiles = maxFilesValidation?.numberOfCurrentFiles || 0;
+
+  const handleValidation = useCallback(
+    (file: File) => {
+      if (
+        maxFiles &&
+        numberOfCurrentFiles &&
+        maxFiles - numberOfCurrentFiles <= 0
+      ) {
+        return {
+          code: "too-many-files",
+          message: `Cannot exceed a maximum of ${maxFiles} files.`,
+        };
+      }
+
+      return validator ? validator(file) : null;
+    },
+    [maxFiles, numberOfCurrentFiles],
+  );
+
   const options: DropzoneOptions = {
     multiple: allowMultiple,
+    maxFiles: maxFiles - numberOfCurrentFiles,
     onDrop: useCallback(handleDrop, [uploadFile]),
-    validator: validator && useCallback(validator, []),
+    validator: handleValidation,
   };
 
   if (allowedTypes === "images") {
     options.accept = "image/*";
   } else if (allowedTypes === "basicImages") {
-    options.accept = "image/png, image/jpg, image/jpeg";
+    options.accept = convertToMimeTypes(BASIC_IMAGE_TYPES).join(",");
   } else if (Array.isArray(allowedTypes)) {
-    options.accept = allowedTypes.join(",");
+    options.accept = convertToMimeTypes(allowedTypes).join(",");
   }
 
   const { getRootProps, getInputProps, isDragActive, fileRejections } =
     useDropzone(options);
-  const validationErrors = fileRejections?.map(({ file, errors }) => {
-    return errors.map(error => {
-      return (
-        <InputValidation
-          message={`${file.name} ${error.message}`}
-          key={`${file.name}${error.code}`}
-        />
-      );
+
+  const allowedTypesString = Array.isArray(allowedTypes)
+    ? formatMimeTypes(allowedTypes.map(mimeTypeToReadable))
+    : allowedTypes;
+
+  const validationErrors = fileRejections?.reduce((acc, { file, errors }) => {
+    errors.forEach(error => {
+      if (error.code === "too-many-files") {
+        if (!acc.some(e => e.code === "too-many-files")) {
+          acc.push({
+            code: "too-many-files",
+            message: `Cannot exceed a maximum of ${maxFiles} files.`,
+          });
+        }
+      } else if (error.code === "file-invalid-type") {
+        let formatMessage;
+
+        if (allowedTypes === "basicImages") {
+          formatMessage = formatMimeTypes(
+            BASIC_IMAGE_TYPES.map(mimeTypeToReadable),
+          );
+        } else if (allowedTypes === "images") {
+          formatMessage = "an image";
+        } else {
+          formatMessage = allowedTypesString;
+        }
+
+        const message =
+          allowedTypes === "images"
+            ? `${file.name} must be ${formatMessage}.`
+            : `${file.name} must be in ${formatMessage} format.`;
+
+        acc.push({
+          code: error.code,
+          message: message,
+        });
+      } else {
+        acc.push({
+          code: error.code,
+          message: `${file.name} ${error.message}`,
+        });
+      }
     });
-  });
+
+    return acc;
+  }, [] as { code: string; message: string }[]);
 
   const { buttonLabel, hintText } = getLabels(
     providedButtonLabel,
@@ -239,9 +329,14 @@ export function InputFile({
             <Content spacing="small">
               <Button label={buttonLabel} size="small" type="secondary" />
               {size === "base" && (
-                <Typography size="small" textColor="textSecondary">
-                  {hintText}
-                </Typography>
+                <>
+                  <Typography size="small">{hintText}</Typography>
+                  {description && (
+                    <Typography size="small" textColor="textSecondary">
+                      {description}
+                    </Typography>
+                  )}
+                </>
               )}
             </Content>
           </div>
@@ -256,8 +351,12 @@ export function InputFile({
           />
         )}
       </div>
-      {fileRejections?.length > 0 && (
-        <div className={styles.validationErrors}>{validationErrors}</div>
+      {validationErrors?.length > 0 && (
+        <div className={styles.validationErrors}>
+          {validationErrors.map(error => (
+            <InputValidation message={error.message} key={error.code} />
+          ))}
+        </div>
       )}
     </>
   );
@@ -356,17 +455,15 @@ function getLabels(
   multiple: boolean,
   allowedTypes: string | string[],
 ) {
-  let buttonLabel = multiple ? "Upload Files" : "Upload File";
-  let hintText = multiple
-    ? "or drag files here to upload"
-    : "or drag a file here to upload";
-
-  if (allowedTypes === "images" || allowedTypes === "basicImages") {
-    buttonLabel = multiple ? "Upload Images" : "Upload Image";
-    hintText = multiple
-      ? "or drag images here to upload"
-      : "or drag an image here to upload";
-  }
+  const fileType =
+    allowedTypes === "images" || allowedTypes === "basicImages"
+      ? "Image"
+      : "File";
+  let buttonLabel = multiple ? `Upload ${fileType}s` : `Upload ${fileType}`;
+  const fileTypeDeterminer = fileType === "Image" ? "an" : "a";
+  const hintText = multiple
+    ? `Select or drag ${fileType.toLowerCase()}s here to upload`
+    : `Select or drag ${fileTypeDeterminer} ${fileType.toLowerCase()} here to upload`;
 
   if (providedButtonLabel) buttonLabel = providedButtonLabel;
 

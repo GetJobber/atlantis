@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import styles from "./FormatEmail.css";
+import styles from "./FormatEmail.module.css";
 
 interface FormatEmailProps {
   /**

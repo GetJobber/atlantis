@@ -1,5 +1,5 @@
 import React, { ReactElement, cloneElement, useState } from "react";
-import styles from "./InputMask.css";
+import styles from "./InputMask.module.css";
 import { FormFieldProps } from "../FormField";
 
 export interface InputMaskProps {

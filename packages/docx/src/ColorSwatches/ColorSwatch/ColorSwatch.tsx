@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./ColorSwatch.css";
+import styles from "./ColorSwatch.module.css";
 
 interface ColorSwatchProps {
   readonly name: string;

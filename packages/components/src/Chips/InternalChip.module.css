@@ -1,0 +1,94 @@
+/**
+ * Used in the wrapping chips component:
+ * - InternalChipSingleSelect
+ * - InternalChipMultiSelect
+ */
+
+.wrapper {
+  display: flex;
+  gap: var(--space-small);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/**
+ * Interaction
+ *
+ * NOTE:
+ * Since the Chip component is not being focused, rather it's the input
+ * We are copying the styles from the Chip component to ensure the same experience
+ */
+
+.input:focus-visible ~ div[role="option"],
+.input:focus-visible ~ div[role="button"] {
+  box-shadow: var(--shadow-focus);
+  outline: none;
+}
+
+.input.inactive:focus-visible ~ div[role="option"],
+.input.inactive:focus-visible ~ div[role="button"] {
+  background-color: var(--color-surface--background);
+}
+
+.input.invalid:focus-visible ~ div[role="option"],
+.input.invalid:focus-visible ~ div[role="button"] {
+  background-color: var(--color-surface--background--hover);
+}
+
+.input.disabled:focus-visible ~ div[role="option"],
+.input.disabled:focus-visible ~ div[role="button"] {
+  background-color: var(--color-disabled--secondary);
+}
+
+/**
+ * Input checkbox/radio
+ *
+ * Hide checkbox on UI but not screen readers and still allow focus state
+ */
+
+.input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+  white-space: nowrap;
+}
+
+/**
+ * Button
+ */
+
+.button {
+  display: flex;
+  border-radius: var(--radius-base);
+  cursor: pointer;
+  transition: background-color 200ms ease;
+}
+
+.button:hover,
+.button:focus {
+  background-color: var(--color-surface--hover);
+}
+
+.button:focus {
+  box-shadow: var(--shadow-focus);
+  outline: none;
+}
+
+/**
+ * Override icon default colors.
+ *
+ * NOTE: This is a workaround since some icons have default colors that we don't
+ * want to override until the component color prop overrides it.
+ * DO NOT COPY!
+ */
+
+.icon > svg {
+  fill: var(--color-interactive--subtle);
+}
+
+.icon {
+  display: flex;
+}

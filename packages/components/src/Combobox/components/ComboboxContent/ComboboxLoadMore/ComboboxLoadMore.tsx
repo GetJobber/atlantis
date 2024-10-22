@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useInView } from "@jobber/hooks/useInView";
-import styles from "./ComboboxLoadMore.css";
+import styles from "./ComboboxLoadMore.module.css";
 
 interface ComboboxLoadMoreProps {
   readonly onLoadMore: () => void;

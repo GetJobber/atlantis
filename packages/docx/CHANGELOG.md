@@ -1,7 +1,18 @@
-# Changelog
+# Change Log
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [0.4.0](https://github.com/GetJobber/atlantis/compare/@jobber/docx@0.3.1...@jobber/docx@0.4.0) (2024-10-08)
+
+
+### Features
+
+* Upgrade to Node 18 [Feature Branch][JOB-62820] ([#1141](https://github.com/GetJobber/atlantis/issues/1141)) ([8b766cd](https://github.com/GetJobber/atlantis/commit/8b766cd1ebb215610ff3b0babe5d1f05540872b6)), closes [#1142](https://github.com/GetJobber/atlantis/issues/1142) [#1149](https://github.com/GetJobber/atlantis/issues/1149) [#1150](https://github.com/GetJobber/atlantis/issues/1150)
+
+
+
+
 
 ## [0.3.1](https://github.com/GetJobber/atlantis/compare/@jobber/docx@0.3.0...@jobber/docx@0.3.1) (2023-02-28)
 

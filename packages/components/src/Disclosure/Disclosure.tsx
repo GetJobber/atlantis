@@ -4,7 +4,7 @@ import {
   useResizeObserver,
 } from "@jobber/hooks/useResizeObserver";
 import classnames from "classnames";
-import styles from "./Disclosure.css";
+import styles from "./Disclosure.module.css";
 import { Icon } from "../Icon";
 import { Typography } from "../Typography";
 
@@ -59,7 +59,7 @@ export function Disclosure({
             isTitleString={isTitleString}
           />
           <span className={styles.arrowIconWrapper}>
-            <Icon size="large" name="arrowDown" color="green" />
+            <Icon name="arrowDown" color="interactive" />
           </span>
         </div>
       </summary>
@@ -85,7 +85,7 @@ interface DisclosureTitleProps {
    */
   readonly title: string | ReactNode | ReactNode[];
   /**
-   * Size when the title is string.
+   * Size when the title is a string.
    */
   readonly size: "base" | "large";
   /**

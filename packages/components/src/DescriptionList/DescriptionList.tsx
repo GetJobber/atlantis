@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import styles from "./DescriptionList.css";
+import styles from "./DescriptionList.module.css";
 import { Typography } from "../Typography";
 
 interface DescriptionListProps {

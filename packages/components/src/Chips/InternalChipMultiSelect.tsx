@@ -1,31 +1,41 @@
 import React, { MouseEvent } from "react";
-import styles from "./InternalChip.css";
+import classNames from "classnames";
+import styles from "./InternalChip.module.css";
 import { InternalChip } from "./InternalChip";
 import { ChipMultiSelectProps } from "./ChipsTypes";
-import { Icon } from "../Icon";
+import { useInternalChips } from "./hooks/useInternalChip";
 
 type InternalChipChoiceMultipleProps = Pick<
   ChipMultiSelectProps,
-  "selected" | "onChange" | "children" | "onClick"
+  "selected" | "onChange" | "children" | "onClick" | "showSelectedSuffix"
 >;
 
 export function InternalChipMultiSelect({
   children,
   selected,
+  showSelectedSuffix = true,
   onChange,
   onClick,
 }: InternalChipChoiceMultipleProps) {
+  const { getSuffixProps } = useInternalChips();
+
   return (
     <div className={styles.wrapper} data-testid="multiselect-chips">
       {React.Children.map(children, chip => {
         const isChipActive = isChipSelected(chip.props.value);
+        const suffixProps = getSuffixProps(isChipActive, showSelectedSuffix);
+        const classes = classNames(styles.input, {
+          [styles.disabled]: chip.props.disabled,
+          [styles.invalid]: chip.props.invalid,
+          [styles.inactive]: !isChipActive,
+        });
 
         return (
           <label>
             <input
               type="checkbox"
               checked={isChipActive}
-              className={styles.input}
+              className={classes}
               onClick={handleClick(chip.props.value)}
               onChange={handleChange(chip.props.value)}
               disabled={chip.props.disabled}
@@ -33,17 +43,7 @@ export function InternalChipMultiSelect({
             <InternalChip
               {...chip.props}
               active={isChipActive}
-              {...(isChipActive
-                ? {
-                    suffix: (
-                      <Icon
-                        size="small"
-                        name="checkmark"
-                        color="interactiveSubtle"
-                      />
-                    ),
-                  }
-                : {})}
+              {...suffixProps}
               tabIndex={-1}
             />
           </label>

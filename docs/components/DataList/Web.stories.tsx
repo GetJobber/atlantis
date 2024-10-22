@@ -1,7 +1,8 @@
 /* eslint-disable max-statements */
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import uniq from "lodash/uniq";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryFn, StoryObj } from "@storybook/react";
+import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { useCollectionQuery } from "@jobber/hooks/useCollectionQuery";
 import {
   DataList,
@@ -16,9 +17,10 @@ import { Button } from "@jobber/components/Button";
 import { DatePicker } from "@jobber/components/DatePicker";
 import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
+import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
 import { LIST_QUERY, ListQueryType, apolloClient } from "./storyUtils";
 
-export default {
+const meta: Meta = {
   title: "Components/Lists and Tables/DataList/Web",
   component: DataList,
   parameters: {
@@ -45,7 +47,9 @@ export default {
       );
     },
   ],
-} as Meta<typeof DataList>;
+};
+
+export default meta;
 
 const DataListStory = (args: {
   data?: unknown;
@@ -402,6 +406,310 @@ export const Basic: StoryObj<typeof DataList> = {
       headerVisibility={{ xs: false, md: true }}
     />
   ),
+};
+
+export const ClearAllFilters: StoryFn<typeof DataList> = args => {
+  interface SelectedFilters {
+    home: ComboboxOption[];
+    eyeColor: ComboboxOption[];
+  }
+
+  interface Filter {
+    key: keyof SelectedFilters;
+    label: string;
+    options: string[];
+    isSelected: boolean;
+    selectedFilters: ComboboxOption[];
+  }
+
+  type Entries<T> = {
+    [K in keyof T]: [K, T[K]];
+  }[keyof T][];
+
+  const selectedFiltersInitialState: SelectedFilters = {
+    home: [],
+    eyeColor: [],
+  };
+
+  const [selectedFilters, setSelectedFilters] = useState<SelectedFilters>(
+    selectedFiltersInitialState,
+  );
+
+  function removeAllFilters() {
+    setSelectedFilters(selectedFiltersInitialState);
+  }
+
+  function handleRemoveIndividualFilterGroup(type: keyof SelectedFilters) {
+    setSelectedFilters({
+      ...selectedFilters,
+      [type]: [],
+    });
+  }
+
+  function handleSelectFilters(
+    type: keyof SelectedFilters,
+    filters: ComboboxOption[],
+  ) {
+    setSelectedFilters({
+      ...selectedFilters,
+      [type]: filters,
+    });
+  }
+
+  const LIST_QUERY1 = useMemo(
+    () => gql`
+      query ListQuery($cursor: String) {
+        allPeople(first: 10, after: $cursor) {
+          edges {
+            node {
+              created
+              id
+              name
+              eyeColor
+              hairColor
+              skinColor
+              birthYear
+              homeworld {
+                name
+                climates
+                id
+                population
+                terrains
+              }
+              species {
+                name
+                id
+              }
+            }
+            cursor
+          }
+          pageInfo {
+            hasNextPage
+            endCursor
+          }
+          totalCount
+        }
+      }
+    `,
+    [],
+  );
+
+  const apolloClient1 = useMemo(
+    () =>
+      new ApolloClient({
+        uri: "https://swapi-graphql.netlify.app/.netlify/functions/index",
+        cache: new InMemoryCache(),
+      }),
+    [],
+  );
+
+  const { data } = useCollectionQuery<ListQueryType>({
+    query: LIST_QUERY1,
+    queryOptions: {
+      fetchPolicy: "network-only",
+      nextFetchPolicy: "cache-first",
+      client: apolloClient1,
+    },
+
+    getCollectionByPath(items) {
+      return items?.allPeople;
+    },
+  });
+
+  const items = data?.allPeople.edges || [];
+  const totalCount = data?.allPeople.totalCount || null;
+
+  const mappedData = items.map(({ node }) => ({
+    id: node.id,
+    label: node.name,
+    species: node.species?.name,
+    home: node.homeworld.name,
+    eyeColor: node.eyeColor,
+    tags: uniq([
+      node.birthYear,
+      ...(node.hairColor?.split(", ") || []),
+      ...(node.skinColor?.split(", ") || []),
+      ...node.homeworld.climates,
+      ...node.homeworld.terrains,
+    ]),
+    homePopulation: node.homeworld.population?.toLocaleString(),
+    lastActivity: new Date(node.created),
+  }));
+
+  const homeFilters = [...new Set(mappedData.map(({ home }) => home))];
+  const eyeColorFilters = [
+    ...new Set(mappedData.map(({ eyeColor }) => eyeColor)),
+  ];
+
+  const FILTERS_MAP: { [K in keyof SelectedFilters]: Filter } = {
+    home: {
+      key: "home",
+      label: "Home world",
+      options: homeFilters,
+      isSelected: selectedFilters.home.length > 0,
+      selectedFilters: selectedFilters.home,
+    },
+    eyeColor: {
+      key: "eyeColor",
+      label: "Eye color",
+      options: eyeColorFilters,
+      isSelected: selectedFilters.eyeColor.length > 0,
+      selectedFilters: selectedFilters.eyeColor,
+    },
+  };
+
+  return (
+    <DataList {...args} totalCount={totalCount} data={mappedData}>
+      <DataList.Filters>
+        <>
+          {(
+            Object.entries(selectedFilters) as Entries<typeof selectedFilters>
+          ).map(([key, value]) => (
+            <Combobox
+              key={key}
+              label={FILTERS_MAP[key].label}
+              selected={value}
+              onSelect={(filters: ComboboxOption[]) =>
+                handleSelectFilters(key as keyof SelectedFilters, filters)
+              }
+              multiSelect
+            >
+              <Combobox.Activator>
+                <Chip
+                  label={
+                    FILTERS_MAP[key].isSelected
+                      ? FILTERS_MAP[key].selectedFilters
+                          .map(({ label }) => label)
+                          .join(", ")
+                      : ""
+                  }
+                  heading={FILTERS_MAP[key].label}
+                  variation={FILTERS_MAP[key].isSelected ? "base" : "subtle"}
+                >
+                  <Chip.Suffix
+                    {...(FILTERS_MAP[key].isSelected
+                      ? {
+                          onClick: () =>
+                            handleRemoveIndividualFilterGroup(
+                              key as keyof SelectedFilters,
+                            ),
+                        }
+                      : {})}
+                  >
+                    <Icon
+                      name={FILTERS_MAP[key].isSelected ? "cross" : "add"}
+                      size="small"
+                    />
+                  </Chip.Suffix>
+                </Chip>
+              </Combobox.Activator>
+
+              {FILTERS_MAP[key].options.map((option: string) => (
+                <Combobox.Option key={option} id={option} label={option} />
+              ))}
+            </Combobox>
+          ))}
+        </>
+
+        <Button
+          label="Clear filters"
+          type="tertiary"
+          variation="subtle"
+          onClick={removeAllFilters}
+        />
+      </DataList.Filters>
+
+      <DataList.Search
+        onSearch={search => console.log(search)}
+        placeholder="Search data..."
+      />
+
+      <DataList.Layout size="md">
+        {item => (
+          <Grid alignItems="center">
+            <Grid.Cell size={{ xs: 5 }}>
+              <Grid alignItems="center">
+                <Grid.Cell size={{ xs: 6 }}>
+                  {item.label}
+                  {item.species}
+                </Grid.Cell>
+                <Grid.Cell size={{ xs: 6 }}>{item.home}</Grid.Cell>
+              </Grid>
+            </Grid.Cell>
+            <Grid.Cell size={{ xs: 4 }}>{item.tags}</Grid.Cell>
+            <Grid.Cell size={{ xs: 1 }}>{item.eyeColor}</Grid.Cell>
+            <Grid.Cell size={{ xs: 2 }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  textAlign: "right",
+                }}
+              >
+                {item.lastActivity}
+              </div>
+            </Grid.Cell>
+          </Grid>
+        )}
+      </DataList.Layout>
+
+      <DataList.Layout size="xs">
+        {item => (
+          <Content spacing="small">
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: item.species
+                  ? "max-content auto max-content"
+                  : "auto max-content",
+                gap: 8,
+                alignItems: "center",
+              }}
+            >
+              {item.label}
+              {item.species}
+              {item.eyeColor}
+            </div>
+            {item.tags}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "auto max-content",
+                gap: 8,
+                alignItems: "center",
+              }}
+            >
+              {item.lastActivity}
+              <DataList.LayoutActions />
+            </div>
+          </Content>
+        )}
+      </DataList.Layout>
+    </DataList>
+  );
+};
+
+ClearAllFilters.args = {
+  title: "All characters",
+  headerVisibility: { xs: false, md: true },
+  headers: {
+    label: "Name",
+    home: "Home world",
+    tags: "Attributes",
+    eyeColor: "Eye color",
+  },
+};
+ClearAllFilters.parameters = {
+  previewTabs: {
+    code: {
+      hidden: false,
+      extraImports: {
+        lodash: ["uniq"],
+        "@apollo/client": ["gql", "ApolloClient", "InMemoryCache"],
+        "@jobber/hooks/useCollectionQuery": ["useCollectionQuery"],
+      },
+    },
+  },
 };
 
 export const EmptyState: StoryObj<typeof DataList> = {

@@ -2,8 +2,8 @@ import React from "react";
 import classnames from "classnames";
 import get from "lodash/get";
 import groupBy from "lodash/groupBy";
-import styles from "./List.css";
-import sectionStyles from "./SectionHeader.css";
+import styles from "./List.module.css";
+import sectionStyles from "./SectionHeader.module.css";
 import { ListItem, ListItemProps } from "./ListItem";
 import { Typography } from "../Typography";
 

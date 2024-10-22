@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classNames from "classnames";
-import styles from "./Gallery.css";
+import styles from "./Gallery.module.css";
 import { File, GalleryProps } from "./GalleryTypes";
 import { LightBox } from "../LightBox";
 import { FormatFile } from "../FormatFile";

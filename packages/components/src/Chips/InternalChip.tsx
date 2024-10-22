@@ -4,6 +4,7 @@ import { Chip } from "../Chip";
 
 export function InternalChip({
   label,
+  active = false,
   disabled = false,
   invalid = false,
   prefix,
@@ -21,6 +22,7 @@ export function InternalChip({
       testID="ATL-InternalChip"
       ariaLabel={ariaLabel}
       tabIndex={tabIndex}
+      variation={active ? "base" : "subtle"}
       role={tabIndex !== undefined ? "option" : undefined}
       onClick={onClick ? (_, ev) => onClick(ev) : undefined}
       label={label}

@@ -255,3 +255,60 @@ it("renders a center-aligned text", () => {
     </div>
   `);
 });
+
+it("renders text in a semantic color", () => {
+  const { container } = render(
+    <Typography textColor="interactiveSubtle">
+      Text in a semantic color
+    </Typography>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <p
+        class="base regular interactiveSubtle"
+      >
+        Text in a semantic color
+      </p>
+    </div>
+  `);
+});
+
+describe("underlining", () => {
+  it("renders an underline when a style is specified", () => {
+    const { container } = render(
+      <Typography underline={"dashed"}>Underline me</Typography>,
+    );
+
+    const snapshot = `
+        <div>
+          <p
+            class="base regular basicUnderline"
+            style="text-decoration-style: dashed;"
+          >
+            Underline me
+          </p>
+        </div>
+      `;
+
+    expect(container).toMatchInlineSnapshot(snapshot);
+  });
+
+  it("renders an underline with a customizable color", () => {
+    const { container } = render(
+      <Typography underline={"solid color-border"}>Underline me</Typography>,
+    );
+
+    const snapshot = `
+        <div>
+          <p
+            class="base regular basicUnderline"
+            style="text-decoration-style: solid; text-decoration-color: var(--color-border);"
+          >
+            Underline me
+          </p>
+        </div>
+      `;
+
+    expect(container).toMatchInlineSnapshot(snapshot);
+  });
+});

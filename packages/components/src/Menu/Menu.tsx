@@ -16,7 +16,7 @@ import { usePopper } from "react-popper";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import ReactDOM from "react-dom";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
-import styles from "./Menu.css";
+import styles from "./Menu.module.css";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
 import { Icon } from "../Icon";
@@ -297,7 +297,9 @@ function Action({
       ref={actionButtonRef}
     >
       {icon && (
-        <Icon color={destructive ? "destructive" : undefined} name={icon} />
+        <div>
+          <Icon color={destructive ? "destructive" : undefined} name={icon} />
+        </div>
       )}
       <Typography element="span" fontWeight="semiBold" textColor="text">
         {sectionLabel && (

@@ -1,32 +1,47 @@
 import React, { KeyboardEvent, MouseEvent, useId } from "react";
-import styles from "./InternalChip.css";
+import classNames from "classnames";
+import styles from "./InternalChip.module.css";
 import { InternalChip } from "./InternalChip";
 import { ChipSingleSelectProps } from "./ChipsTypes";
-import { Icon } from "../Icon";
+import { useInternalChips } from "./hooks/useInternalChip";
 
 type InternalChipChoiceProps = Pick<
   ChipSingleSelectProps,
-  "selected" | "onChange" | "children" | "onClick" | "name"
+  | "selected"
+  | "onChange"
+  | "children"
+  | "onClick"
+  | "name"
+  | "showSelectedSuffix"
 >;
 
 export function InternalChipSingleSelect({
   children,
   selected,
   name = useId(),
+  showSelectedSuffix = true,
   onChange,
   onClick,
 }: InternalChipChoiceProps) {
+  const { getSuffixProps } = useInternalChips();
+
   return (
     <div className={styles.wrapper} data-testid="singleselect-chips">
       {React.Children.map(children, child => {
         const isSelected = child.props.value === selected;
+        const suffixProps = getSuffixProps(isSelected, showSelectedSuffix);
+        const classes = classNames(styles.input, {
+          [styles.disabled]: child.props.disabled,
+          [styles.invalid]: child.props.invalid,
+          [styles.inactive]: !isSelected,
+        });
 
         return (
           <label>
             <input
               type="radio"
               checked={isSelected}
-              className={styles.input}
+              className={classes}
               name={name}
               onClick={handleClick(child.props.value)}
               onKeyUp={handleKeyUp(isSelected, child.props.value)}
@@ -37,17 +52,7 @@ export function InternalChipSingleSelect({
             />
             <InternalChip
               {...child.props}
-              {...(isSelected
-                ? {
-                    suffix: (
-                      <Icon
-                        size="small"
-                        name="checkmark"
-                        color="interactiveSubtle"
-                      />
-                    ),
-                  }
-                : {})}
+              {...suffixProps}
               active={isSelected}
               tabIndex={-1}
             />
