@@ -9,7 +9,8 @@
 }
 
 .container input[type="radio"] {
-  display: none;
+  position: absolute;
+  left: -999vw;
   cursor: pointer;
 }
 
@@ -33,6 +34,10 @@
   border-radius: var(--radius-base);
   background-color: var(--color-surface);
   transition: var(--timing-base) left ease;
+}
+
+.container input[type="radio"]:focus-visible ~ span {
+  box-shadow: var(--shadow-focus);
 }
 
 .container input[type="radio"]:nth-of-type(1):checked ~ span {

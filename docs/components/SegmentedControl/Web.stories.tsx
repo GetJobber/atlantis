@@ -30,7 +30,7 @@ export const Basic: Story = {
 
     return (
       <SegmentedControl
-        defaultOption={"developer"}
+        defaultOption={"pizza"}
         selectedOption={activeOption}
         onSelectOption={d => {
           setActiveOption(d as BasicSegment);
