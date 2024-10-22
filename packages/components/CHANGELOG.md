@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.44.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.43.3...@jobber/components@5.44.0) (2024-10-22)
+
+
+### Features
+
+* **components:** Allow Fully Custom Combobox Activator ([#2075](https://github.com/GetJobber/atlantis/issues/2075)) ([2332a8f](https://github.com/GetJobber/atlantis/commit/2332a8f9f86dcc2321a214129b1aba537ad5fa12))
+
+
+
+
+
 ## [5.43.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.43.2...@jobber/components@5.43.3) (2024-10-21)
 
 
