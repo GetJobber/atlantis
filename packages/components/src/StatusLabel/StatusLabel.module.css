@@ -5,7 +5,7 @@
   display: flex;
   width: fit-content;
   padding: 0.375rem 0.625rem 0.375rem 0.5rem;
-  border-radius: 0.75rem;
+  border-radius: var(--radius-large);
   flex-direction: row;
   flex-wrap: nowrap;
   gap: 0.375rem;

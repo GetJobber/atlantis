@@ -1,8 +1,9 @@
 import React from "react";
 import { View } from "react-native";
 import { styles } from "./StatusLabel.style";
+import { StatusIndicator } from "../StatusIndicator";
 import { tokens } from "../utils/design";
-import { Text } from "../Text";
+import { Typography } from "../Typography";
 
 export type StatusType =
   | "success"
@@ -28,7 +29,7 @@ interface StatusLabelProps {
   readonly alignment?: "start" | "end";
 
   /**
-   * Status color of the square beside text
+   * Status color of the indicator beside text
    */
   readonly status?: StatusType;
 }
@@ -42,32 +43,20 @@ export function StatusLabel({
     <View
       style={[
         styles.statusLabelRow,
+        { backgroundColor: tokens[`color-${status}--surface`] },
         alignment === "start" && styles.labelTextStartAligned,
       ]}
     >
       <View style={styles.statusLabelText}>
-        <Text align={alignment} level="textSupporting" variation="subdued">
+        <Typography
+          align={alignment}
+          size="smaller"
+          color={`${status}OnSurface`}
+        >
           {text}
-        </Text>
+        </Typography>
       </View>
-      <View style={styles.innerPad} />
-      <StatusLabelIcon status={status} />
+      <StatusIndicator status={status} />
     </View>
-  );
-}
-
-interface StatusLabelIconProps {
-  readonly status: StatusType;
-}
-
-function StatusLabelIcon({ status }: StatusLabelIconProps) {
-  return (
-    <View
-      testID={`${status}LabelIcon`}
-      style={[
-        styles.statusLabelIcon,
-        { backgroundColor: tokens[`color-${status}`] },
-      ]}
-    />
   );
 }

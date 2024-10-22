@@ -1,33 +1,24 @@
 import { StyleSheet } from "react-native";
 import { tokens } from "../utils/design";
 
-const statusLabelIconDiameter = tokens["space-base"] - tokens["space-smaller"]; //12px
-
-const indicatorOffset = tokens["space-smallest"] + tokens["space-minuscule"];
-
-// Needs to be hardcoded to 3 as this shouldn't change with the tokens
-const statusLabelRadius = 3;
-
 export const styles = StyleSheet.create({
   statusLabelRow: {
     flexDirection: "row",
     justifyContent: "flex-end",
+    alignItems: "center",
     flexWrap: "nowrap",
+    flexGrow: 0,
+    flexShrink: 1,
+    gap: tokens["space-smaller"],
+    backgroundColor: tokens["color-success--surface"],
+    borderRadius: tokens["radius-large"],
+    paddingVertical: tokens["space-smaller"],
+    paddingHorizontal: tokens["space-small"],
   },
   statusLabelText: {
     flexShrink: 1,
   },
-  statusLabelIcon: {
-    borderRadius: statusLabelRadius,
-    backgroundColor: tokens["color-success"],
-    width: statusLabelIconDiameter,
-    height: statusLabelIconDiameter,
-    marginTop: indicatorOffset,
-  },
   labelTextStartAligned: {
     flexDirection: "row-reverse",
-  },
-  innerPad: {
-    width: tokens["space-small"],
   },
 });
