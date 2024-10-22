@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
+import {
+  Combobox,
+  ComboboxCustomActivatorProps,
+  ComboboxOption,
+} from "@jobber/components/Combobox";
 import { Button } from "@jobber/components/Button";
 import { Typography } from "@jobber/components/Typography";
 import { Chip } from "@jobber/components/Chip";
@@ -180,7 +184,7 @@ const ComboboxCustomActivator: ComponentStory<typeof Combobox> = args => {
       </Typography>
       <Combobox {...args} onSelect={setSelected} selected={selected}>
         <Combobox.Activator>
-          {activatorAPI => (
+          {(activatorAPI: ComboboxCustomActivatorProps) => (
             <div
               role={activatorAPI.role}
               tabIndex={0}
