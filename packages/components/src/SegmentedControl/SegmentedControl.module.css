@@ -5,6 +5,7 @@
   position: relative;
   min-width: max-content;
   border-radius: var(--radius-base);
+  border: var(--border-base) solid var(--color-border--interactive);
   background-color: var(--color-surface--background);
 }
 
@@ -16,7 +17,7 @@
 
 .container label {
   z-index: 1;
-  padding: 6px 12px;
+  padding: var(--space-smaller) 12px;
   overflow: hidden;
   font-size: var(--typography--fontSize-base);
   font-weight: 600;
@@ -29,8 +30,8 @@
   position: absolute;
   left: 0;
   width: calc(100% / var(--segmentedControl--option-count));
-  height: calc(100% - 2px);
-  border: 1px solid var(--color-border--interactive);
+  height: 100%;
+  box-shadow: var(--shadow-low);
   border-radius: var(--radius-base);
   background-color: var(--color-surface);
   transition: var(--timing-base) left ease;
