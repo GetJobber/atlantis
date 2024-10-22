@@ -14,12 +14,6 @@
           "fileName": "../components/src/Disclosure/Disclosure.tsx",
           "name": "DisclosureProps"
         },
-        "declarations": [
-          {
-            "fileName": "../components/src/Disclosure/Disclosure.tsx",
-            "name": "DisclosureProps"
-          }
-        ],
         "required": true,
         "type": {
           "name": "ReactNode | ReactNode[]"
@@ -33,12 +27,6 @@
           "fileName": "../components/src/Disclosure/Disclosure.tsx",
           "name": "DisclosureProps"
         },
-        "declarations": [
-          {
-            "fileName": "../components/src/Disclosure/Disclosure.tsx",
-            "name": "DisclosureProps"
-          }
-        ],
         "required": true,
         "type": {
           "name": "string | ReactElement<any, string | JSXElementConstructor<any>> | ReactElement<any, string | JSXElementConstructor<any>>[]"
@@ -54,12 +42,6 @@
           "fileName": "../components/src/Disclosure/Disclosure.tsx",
           "name": "DisclosureProps"
         },
-        "declarations": [
-          {
-            "fileName": "../components/src/Disclosure/Disclosure.tsx",
-            "name": "DisclosureProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "boolean"
