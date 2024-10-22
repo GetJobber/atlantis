@@ -12,7 +12,8 @@
     "packages/docx",
     "packages/eslint-config",
     "packages/generators",
-    "packages/stylelint-config"
+    "packages/stylelint-config",
+    "packages/site"
   ],
   "scripts": {
     "build": "npm run storybook:build",
