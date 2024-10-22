@@ -14,12 +14,6 @@
           "fileName": "../components/src/AnimatedPresence/AnimatedPresence.tsx",
           "name": "AnimatedPresenceProps"
         },
-        "declarations": [
-          {
-            "fileName": "../components/src/AnimatedPresence/AnimatedPresence.tsx",
-            "name": "AnimatedPresenceProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "\"fromBottom\" | \"fromTop\" | \"fromLeft\" | \"fromRight\" | \"popIn\" | \"fromLeftToRight\" | \"fromRightToLeft\" | \"fade\""
@@ -33,12 +27,6 @@
           "fileName": "../components/src/AnimatedPresence/AnimatedPresence.tsx",
           "name": "AnimatedPresenceProps"
         },
-        "declarations": [
-          {
-            "fileName": "../components/src/AnimatedPresence/AnimatedPresence.tsx",
-            "name": "AnimatedPresenceProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "boolean"

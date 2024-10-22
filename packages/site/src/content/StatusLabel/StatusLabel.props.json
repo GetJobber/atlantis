@@ -14,12 +14,6 @@
           "fileName": "../components/src/StatusLabel/StatusLabel.tsx",
           "name": "StatusLabelProps"
         },
-        "declarations": [
-          {
-            "fileName": "../components/src/StatusLabel/StatusLabel.tsx",
-            "name": "StatusLabelProps"
-          }
-        ],
         "required": true,
         "type": {
           "name": "string"
@@ -35,12 +29,6 @@
           "fileName": "../components/src/StatusLabel/StatusLabel.tsx",
           "name": "StatusLabelProps"
         },
-        "declarations": [
-          {
-            "fileName": "../components/src/StatusLabel/StatusLabel.tsx",
-            "name": "StatusLabelProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "\"start\" | \"end\""
@@ -56,12 +44,6 @@
           "fileName": "../components/src/StatusLabel/StatusLabel.tsx",
           "name": "StatusLabelProps"
         },
-        "declarations": [
-          {
-            "fileName": "../components/src/StatusLabel/StatusLabel.tsx",
-            "name": "StatusLabelProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "StatusIndicatorType"
