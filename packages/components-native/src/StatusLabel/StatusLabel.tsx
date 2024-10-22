@@ -29,7 +29,7 @@ interface StatusLabelProps {
   readonly alignment?: "start" | "end";
 
   /**
-   * Status color of the indicator beside text
+   * Sets the status colors for the container, label and StatusIndicator
    */
   readonly status?: StatusType;
 }
