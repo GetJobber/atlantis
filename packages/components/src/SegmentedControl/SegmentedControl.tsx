@@ -4,7 +4,7 @@ import React, {
   useEffect,
   useRef,
 } from "react";
-import styles from "./SegmentedControl.css";
+import styles from "./SegmentedControl.module.css";
 import { SegmentedControlProvider } from "./SegmentedControlProvider";
 import { SegmentedControlOption } from "./SegmentedControlOption";
 
