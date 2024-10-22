@@ -7,13 +7,19 @@ interface DataListSortingArrowsProps {
 
 export const SORTING_ICON_TEST_ID = "ATL-DataList-Sorting-Icon";
 
+const SORT_ORDER_MAP = {
+  asc: "ascending",
+  desc: "descending",
+  none: "none",
+} as const;
+
 export function DataListSortingArrows({ order }: DataListSortingArrowsProps) {
   return (
     <div
       className={styles.sortIcon}
       data-testid={SORTING_ICON_TEST_ID}
       aria-label="Sort Icon"
-      aria-sort={order == "asc" ? "ascending" : "descending"}
+      aria-sort={order ? SORT_ORDER_MAP[order] : undefined}
     >
       <svg
         width="24"
