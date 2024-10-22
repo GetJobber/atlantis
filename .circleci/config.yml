@@ -139,6 +139,13 @@ jobs:
       - run:
           command: npm run build
 
+  build_new_docs:
+    <<: *container_config
+    steps:
+      - *attach_workspace
+      - run:
+          command: cd packages/site && npm run generate && npm run build
+
   release:
     <<: *container_config
     steps:
@@ -180,6 +187,9 @@ workflows:
       - build_docs:
           requires:
             - check_for_manual_release
+      - build_new_docs:
+          requires:
+            - check_for_manual_release
       - release:
           filters:
             branches:
@@ -189,3 +199,4 @@ workflows:
             - lint_css
             - test
             - build_docs
+            - build_new_docs
