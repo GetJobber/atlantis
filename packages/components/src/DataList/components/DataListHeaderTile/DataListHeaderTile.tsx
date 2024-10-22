@@ -60,6 +60,7 @@ export function DataListHeaderTile<T extends DataListObject>({
       {isSortable && (
         <DataListSortingArrows
           order={sortingState?.key === headerKey ? sortingState.order : "none"}
+          columnKey={headerKey}
         />
       )}
     </Tag>

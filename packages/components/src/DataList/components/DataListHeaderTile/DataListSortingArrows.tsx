@@ -3,6 +3,7 @@ import styles from "./DataListSortingArrows.module.css";
 
 interface DataListSortingArrowsProps {
   readonly order?: "asc" | "desc" | "none";
+  readonly columnKey?: string;
 }
 
 export const SORTING_ICON_TEST_ID = "ATL-DataList-Sorting-Icon";
@@ -13,12 +14,15 @@ const SORT_ORDER_MAP = {
   none: "none",
 } as const;
 
-export function DataListSortingArrows({ order }: DataListSortingArrowsProps) {
+export function DataListSortingArrows({
+  columnKey,
+  order,
+}: DataListSortingArrowsProps) {
   return (
     <div
       className={styles.sortIcon}
       data-testid={SORTING_ICON_TEST_ID}
-      aria-label="Sort Icon"
+      aria-label={`${columnKey} sort icon`}
       aria-sort={order ? SORT_ORDER_MAP[order] : undefined}
     >
       <svg
