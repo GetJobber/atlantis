@@ -7,11 +7,9 @@ import { ComboboxContextProvider } from "../../ComboboxProvider";
 import { ComboboxCustomActivatorProps } from "../../Combobox.types";
 
 const toggleOpen = jest.fn();
-const handleClose = jest.fn();
 
 afterEach(() => {
   toggleOpen.mockClear();
-  handleClose.mockClear();
 });
 
 describe("ComboboxActivator", () => {
@@ -81,7 +79,7 @@ function renderComboboxActivator(
   return render(
     <ComboboxContextProvider
       toggleOpen={toggleOpen}
-      handleClose={handleClose}
+      handleClose={jest.fn()}
       selectionHandler={jest.fn()}
       shouldScroll={{ current: false }}
       open={open}
