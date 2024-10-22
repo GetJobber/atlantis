@@ -9,8 +9,19 @@ import { SegmentedControlProvider } from "./SegmentedControlProvider";
 import { SegmentedControlOption } from "./SegmentedControlOption";
 
 interface SegmentedControlProps<T> extends PropsWithChildren {
+  /**
+   * The currently selected option
+   */
   readonly selectedOption: T;
+
+  /**
+   * A callback function that is called whenever the selected option changes
+   */
   readonly onSelectOption: (view: T) => void;
+
+  /**
+   * The default option to be selected initially
+   */
   readonly defaultOption: T;
 }
 
