@@ -5,7 +5,7 @@ import mdx from "@mdx-js/rollup";
 import remarkGfm from "remark-gfm";
 import rehypeRewrite from "rehype-rewrite";
 
-const rewriteLink = item => {
+const rewriteLink = (item: string) => {
   let newItem = item;
 
   if (newItem.includes("../?path=/story")) {
@@ -23,7 +23,11 @@ export default defineConfig({
         [
           rehypeRewrite,
           {
-            rewrite: node => {
+            rewrite: (node: {
+              type: string;
+              tagName: string;
+              properties: { href: string };
+            }) => {
               if (
                 node.type === "element" &&
                 node.tagName === "a" &&
@@ -55,7 +59,7 @@ export default defineConfig({
       ),
 
       mdxUtils: path.resolve(__dirname, "../../.storybook/components"),
-      "@jobber/docx": path.resolve(__dirname, "./src/components/docx"),
+      "@jobber/docx": path.resolve(__dirname, "../docx/src"),
       "@atlantis/docs": path.resolve(__dirname, "../../docs"),
     },
   },
