@@ -233,7 +233,7 @@ function RenderProductList({
       style={{
         padding: "16px",
         // If this was outside of Storybook :not(:last-child) would be used
-        borderBottom: listItem.id !== 5 ? "1px solid 	#dadfe2" : "none",
+        borderBottom: listItem.id !== 6 ? "1px solid 	#dadfe2" : "none",
       }}
     >
       <Flex template={["shrink", "grow"]} align="center">
