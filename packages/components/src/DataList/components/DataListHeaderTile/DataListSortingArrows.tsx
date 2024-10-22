@@ -9,7 +9,12 @@ export const SORTING_ICON_TEST_ID = "ATL-DataList-Sorting-Icon";
 
 export function DataListSortingArrows({ order }: DataListSortingArrowsProps) {
   return (
-    <div className={styles.sortIcon} data-testid={SORTING_ICON_TEST_ID}>
+    <div
+      className={styles.sortIcon}
+      data-testid={SORTING_ICON_TEST_ID}
+      aria-label="Sort Icon"
+      aria-sort={order == "asc" ? "ascending" : "descending"}
+    >
       <svg
         width="24"
         height="24"
