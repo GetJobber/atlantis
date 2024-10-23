@@ -24,24 +24,41 @@ const options = [
   { value: "sushi", label: "Sushi" },
   { value: "burgers", label: "Burgers" },
 ];
+
+const emojiMap: Record<BasicSegment, string> = {
+  pizza: "🍕",
+  tacos: "🌮",
+  sushi: "🍣",
+  burgers: "🍔",
+};
 export const Basic: Story = {
   render: () => {
     const [activeOption, setActiveOption] = useState<BasicSegment>("pizza");
 
     return (
-      <SegmentedControl
-        defaultOption={"pizza"}
-        selectedOption={activeOption}
-        onSelectOption={d => {
-          setActiveOption(d as BasicSegment);
-        }}
-      >
-        {options.map(option => (
-          <SegmentedControl.Option key={option.value} value={option.value}>
-            {option.label}
-          </SegmentedControl.Option>
-        ))}
-      </SegmentedControl>
+      <div style={{ textAlign: "center" }}>
+        <SegmentedControl
+          defaultOption={"pizza"}
+          selectedOption={activeOption}
+          onSelectOption={d => {
+            setActiveOption(d as BasicSegment);
+          }}
+        >
+          {options.map(option => (
+            <SegmentedControl.Option key={option.value} value={option.value}>
+              {option.label}
+            </SegmentedControl.Option>
+          ))}
+        </SegmentedControl>
+        <div
+          style={{
+            marginTop: "var(--space-base)",
+            fontSize: "var(--typography--fontSize-jumbo)",
+          }}
+        >
+          {emojiMap[activeOption]}
+        </div>
+      </div>
     );
   },
 };
