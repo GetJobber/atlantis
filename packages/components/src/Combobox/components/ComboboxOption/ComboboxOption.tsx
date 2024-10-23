@@ -4,12 +4,7 @@ import { Icon } from "@jobber/components/Icon";
 import { Flex } from "@jobber/components/Flex";
 import styles from "./ComboboxOption.module.css";
 import { ComboboxContext } from "../../ComboboxProvider";
-
-export interface ComboboxOptionProps {
-  readonly id: string | number;
-  readonly label: string;
-  readonly prefix?: React.ReactNode;
-}
+import { type ComboboxOptionProps } from "../../Combobox.types";
 
 export function ComboboxOption(props: ComboboxOptionProps) {
   const { selected, selectionHandler } = useContext(ComboboxContext);

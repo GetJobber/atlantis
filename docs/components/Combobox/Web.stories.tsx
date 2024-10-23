@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import {
   Combobox,
   ComboboxCustomActivatorProps,
-  ComboboxOption,
+  ComboboxOptionProps,
 } from "@jobber/components/Combobox";
 import { Button } from "@jobber/components/Button";
 import { Typography } from "@jobber/components/Typography";
@@ -29,7 +29,7 @@ export default {
 } as ComponentMeta<typeof Combobox>;
 
 const ComboboxClearSelection: ComponentStory<typeof Combobox> = args => {
-  const [selected, setSelected] = useState<ComboboxOption[]>([
+  const [selected, setSelected] = useState<ComboboxOptionProps[]>([
     {
       id: "1",
       label: "Bilbo Baggins",
@@ -86,7 +86,7 @@ const ComboboxClearSelection: ComponentStory<typeof Combobox> = args => {
 };
 
 const ComboboxCustomActivator: ComponentStory<typeof Combobox> = args => {
-  const [selected, setSelected] = useState<ComboboxOption[]>([]);
+  const [selected, setSelected] = useState<ComboboxOptionProps[]>([]);
 
   return (
     <>
@@ -235,7 +235,7 @@ const ComboboxEmptyState: ComponentStory<typeof Combobox> = args => {
 };
 
 const ComboboxPrefixOptions: ComponentStory<typeof Combobox> = args => {
-  const [selected, setSelected] = useState<ComboboxOption[]>([]);
+  const [selected, setSelected] = useState<ComboboxOptionProps[]>([]);
 
   return (
     <Combobox
@@ -287,7 +287,7 @@ const ComboboxPrefixOptions: ComponentStory<typeof Combobox> = args => {
 };
 
 const ComboboxMultiSelection: ComponentStory<typeof Combobox> = args => {
-  const [selected, setSelected] = useState<ComboboxOption[]>([]);
+  const [selected, setSelected] = useState<ComboboxOptionProps[]>([]);
 
   return (
     <Combobox
@@ -331,7 +331,7 @@ const ComboboxMultiSelection: ComponentStory<typeof Combobox> = args => {
 };
 
 const ComboboxSingleSelection: ComponentStory<typeof Combobox> = args => {
-  const [selected, setSelected] = useState<ComboboxOption[]>([]);
+  const [selected, setSelected] = useState<ComboboxOptionProps[]>([]);
 
   return (
     <Combobox
@@ -363,7 +363,7 @@ const ComboboxSingleSelection: ComponentStory<typeof Combobox> = args => {
 };
 
 const DynamicButton: ComponentStory<typeof Combobox> = args => {
-  const [selected, setSelected] = useState<ComboboxOption[]>([]);
+  const [selected, setSelected] = useState<ComboboxOptionProps[]>([]);
 
   return (
     <Combobox
@@ -389,7 +389,7 @@ const DynamicButton: ComponentStory<typeof Combobox> = args => {
 };
 
 const ComboboxCustomSearch: ComponentStory<typeof Combobox> = args => {
-  const [selected, setSelected] = useState<ComboboxOption[]>([]);
+  const [selected, setSelected] = useState<ComboboxOptionProps[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const { data, loading } = useFakeQuery(searchTerm);
 
@@ -447,8 +447,8 @@ const infiniteScrollComboboxOptions = {
 
 const ComboboxInfiniteScroll: ComponentStory<typeof Combobox> = args => {
   const [page, setPage] = useState<number>(1);
-  const [selected, setSelected] = useState<ComboboxOption[]>([]);
-  const [options, setOptions] = useState<ComboboxOption[]>(
+  const [selected, setSelected] = useState<ComboboxOptionProps[]>([]);
+  const [options, setOptions] = useState<ComboboxOptionProps[]>(
     infiniteScrollComboboxOptions.pages[0],
   );
   const [loadingMore, setLoadingMore] = useState<boolean>(false);
@@ -483,7 +483,7 @@ const ComboboxInfiniteScroll: ComponentStory<typeof Combobox> = args => {
 };
 
 const ComboboxKeepOpenOnClick: ComponentStory<typeof Combobox> = args => {
-  const [selected, setSelected] = useState<ComboboxOption[]>([]);
+  const [selected, setSelected] = useState<ComboboxOptionProps[]>([]);
   const [chips, setChips] = useState<string[]>([]);
 
   const handleActionClick = (searchValue: string) => {

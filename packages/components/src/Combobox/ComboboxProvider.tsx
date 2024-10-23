@@ -1,10 +1,10 @@
 import React, { MutableRefObject } from "react";
-import { ComboboxOption } from "./Combobox.types";
+import { ComboboxOptionProps } from "./Combobox.types";
 
 export interface ComboboxProviderProps {
   readonly children: React.ReactNode;
-  readonly selected: ComboboxOption[];
-  readonly selectionHandler: (option: ComboboxOption) => void;
+  readonly selected: ComboboxOptionProps[];
+  readonly selectionHandler: (option: ComboboxOptionProps) => void;
   readonly open: boolean;
   readonly handleClose: () => void;
   readonly toggleOpen: () => void;

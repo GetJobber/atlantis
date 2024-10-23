@@ -7,7 +7,7 @@ import { AnimatedPresence } from "@jobber/components/AnimatedPresence";
 import styles from "./ComboboxContentList.module.css";
 import {
   ComboboxListProps,
-  ComboboxOption as ComboboxOptionType,
+  ComboboxOptionProps,
 } from "../../../Combobox.types";
 import { ComboboxOption } from "../../ComboboxOption/ComboboxOption";
 import { ComboboxLoadMore } from "../ComboboxLoadMore";
@@ -99,7 +99,7 @@ function getZeroIndexStateText(subjectNoun?: string) {
 
 function useScrollState(
   optionsListRef: React.RefObject<HTMLUListElement>,
-  options: ComboboxOptionType[],
+  options: ComboboxOptionProps[],
 ) {
   const [listScrollState, setlistScrollState] = useState("");
 

@@ -1,13 +1,13 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { ComboboxOption as ComboboxOptionComponent } from "./ComboboxOption";
-import { ComboboxOption } from "../../Combobox.types";
+import { ComboboxOption } from "./ComboboxOption";
+import { ComboboxOptionProps } from "../../Combobox.types";
 import { ComboboxContextProvider } from "../../ComboboxProvider";
 
 export function renderOption(
   id: string | number,
   label: string,
-  selected: ComboboxOption[],
+  selected: ComboboxOptionProps[],
   onSelect = jest.fn(),
 ) {
   return render(
@@ -20,7 +20,7 @@ export function renderOption(
       selectionHandler={onSelect}
       searchValue=""
     >
-      <ComboboxOptionComponent label={label} id={id} />
+      <ComboboxOption label={label} id={id} />
     </ComboboxContextProvider>,
   );
 }

@@ -1,9 +1,9 @@
 import React, { useCallback } from "react";
-import { ComboboxOption } from "../Combobox.types";
+import { ComboboxOptionProps } from "../Combobox.types";
 
 export interface UseMakeComboboxHandlersReturn {
   handleClose: () => void;
-  handleSelection: (selection: ComboboxOption) => void;
+  handleSelection: (selection: ComboboxOptionProps) => void;
   toggleOpen: () => void;
 }
 
@@ -11,9 +11,9 @@ export function useMakeComboboxHandlers(
   setOpen: (open: boolean) => void,
   open: boolean,
   setSearchValue: (searchValue: string) => void,
-  selectedOptions: ComboboxOption[],
+  selectedOptions: ComboboxOptionProps[],
   shouldScroll: React.MutableRefObject<boolean>,
-  selectedStateSetter: (selected: ComboboxOption[]) => void,
+  selectedStateSetter: (selected: ComboboxOptionProps[]) => void,
   multiSelect?: boolean,
   onClose?: () => void,
   onSearch?: (searchValue: string) => void,
@@ -43,7 +43,7 @@ export function useMakeComboboxHandlers(
   }, [setOpen, open]);
 
   const handleSelection = useCallback(
-    (selection: ComboboxOption) => {
+    (selection: ComboboxOptionProps) => {
       if (multiSelect) {
         handleMultiSelect(selectedStateSetter, selectedOptions, selection);
       } else {
@@ -55,8 +55,8 @@ export function useMakeComboboxHandlers(
 
   const handleSingleSelect = useCallback(
     (
-      selectCallback: (selected: ComboboxOption[]) => void,
-      selection: ComboboxOption,
+      selectCallback: (selected: ComboboxOptionProps[]) => void,
+      selection: ComboboxOptionProps,
     ) => {
       selectCallback([selection]);
       handleClose();
@@ -72,9 +72,9 @@ export function useMakeComboboxHandlers(
 }
 
 function handleMultiSelect(
-  selectCallback: (selected: ComboboxOption[]) => void,
-  selected: ComboboxOption[],
-  selection: ComboboxOption,
+  selectCallback: (selected: ComboboxOptionProps[]) => void,
+  selected: ComboboxOptionProps[],
+  selection: ComboboxOptionProps,
 ) {
   if (selected.some(s => s.id === selection.id)) {
     selectCallback(selected.filter(s => s.id !== selection.id));
