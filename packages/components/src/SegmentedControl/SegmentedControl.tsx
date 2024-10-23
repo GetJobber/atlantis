@@ -40,7 +40,7 @@ export function SegmentedControl<T>({
         String(length),
       );
     }
-  }, [children]);
+  }, []);
 
   return (
     <SegmentedControlProvider
