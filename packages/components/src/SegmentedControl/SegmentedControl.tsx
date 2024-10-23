@@ -1,7 +1,7 @@
 import React, {
+  CSSProperties,
   Children,
   type PropsWithChildren,
-  useEffect,
   useRef,
 } from "react";
 import styles from "./SegmentedControl.module.css";
@@ -31,23 +31,22 @@ export function SegmentedControl<T>({
   children,
 }: SegmentedControlProps<T>) {
   const container = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const length = Children.count(children);
-
-    if (container.current) {
-      container.current.style.setProperty(
-        "--segmentedControl--option-count",
-        String(length),
-      );
-    }
-  }, []);
+  const optionCount = Children.count(children);
 
   return (
     <SegmentedControlProvider
       onSelectOption={onSelectOption}
       defaultOption={defaultOption}
     >
-      <div ref={container} className={styles.container}>
+      <div
+        ref={container}
+        className={styles.container}
+        style={
+          {
+            "--segmentedControl--option-count": optionCount,
+          } as CSSProperties
+        }
+      >
         {children}
         <span />
       </div>
