@@ -18,6 +18,8 @@ export interface HeaderActionProps {
   readonly action?: ActionProps;
 }
 
+export type elevationProp = "none" | "low" | "base" | "high";
+
 export interface CardProps {
   /**
    * The `accent`, if provided, will effect the color accent at the top of
@@ -36,4 +38,5 @@ export interface CardProps {
    * The header props of the card.
    */
   readonly header?: string | HeaderActionProps | ReactElement;
+  readonly elevation?: elevationProp;
 }
