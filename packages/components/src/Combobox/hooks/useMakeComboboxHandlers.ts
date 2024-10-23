@@ -40,7 +40,7 @@ export function useMakeComboboxHandlers(
     } else {
       handleOpen();
     }
-  }, [setOpen, open]);
+  }, [open, handleClose, handleOpen]);
 
   const handleSelection = useCallback(
     (selection: ComboboxOption) => {
