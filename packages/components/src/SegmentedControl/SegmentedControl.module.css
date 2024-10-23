@@ -3,7 +3,7 @@
   grid-template-columns: repeat(var(--segmentedControl--option-count), 1fr);
   align-items: center;
   position: relative;
-  min-height: var(--space-larger);
+  min-height: 32px;
   box-sizing: border-box;
   border: var(--border-base) solid var(--color-border--interactive);
   border-radius: var(--radius-base);
