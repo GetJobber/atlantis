@@ -34,7 +34,7 @@ export function Combobox(props: ComboboxProps): JSX.Element {
     open,
     handleClose,
     handleSelection,
-    toggleOpen,
+    handleOpen,
     internalFilteredOptions,
     handleSearchChange,
   } = useCombobox(
@@ -52,7 +52,7 @@ export function Combobox(props: ComboboxProps): JSX.Element {
       selected={selectedOptions}
       selectionHandler={handleSelection}
       open={open}
-      toggleOpen={toggleOpen}
+      handleOpen={handleOpen}
       handleClose={handleClose}
       shouldScroll={shouldScroll}
       searchValue={searchValue}

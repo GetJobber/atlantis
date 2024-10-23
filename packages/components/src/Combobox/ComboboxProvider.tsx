@@ -7,7 +7,7 @@ export interface ComboboxProviderProps {
   readonly selectionHandler: (option: ComboboxOption) => void;
   readonly open: boolean;
   readonly handleClose: () => void;
-  readonly toggleOpen: () => void;
+  readonly handleOpen: () => void;
   readonly shouldScroll: MutableRefObject<boolean>;
   readonly searchValue: string;
   readonly label?: string;

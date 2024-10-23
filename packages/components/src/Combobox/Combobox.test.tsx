@@ -52,11 +52,6 @@ describe("Combobox", () => {
       expect(screen.getByText("Add Teammate")).toBeInTheDocument();
     });
 
-    it("should close the menu when clicking the activator", async () => {
-      await userEvent.click(screen.getByRole("combobox"));
-      expect(screen.getByTestId(MENU_TEST_ID)).toHaveClass("hidden");
-    });
-
     it("should close the menu when clicking outside the menu (which clicks the overlay)", async () => {
       await userEvent.click(screen.getByTestId(OVERLAY_TEST_ID));
       expect(screen.getByTestId(MENU_TEST_ID)).toHaveClass("hidden");
