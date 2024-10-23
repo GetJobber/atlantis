@@ -3,6 +3,8 @@
   grid-template-columns: repeat(var(--segmentedControl--option-count), 1fr);
   align-items: center;
   position: relative;
+  height: var(--space-larger);
+  box-sizing: border-box;
   min-width: max-content;
   border: var(--border-base) solid var(--color-border--interactive);
   border-radius: var(--radius-base);
@@ -16,14 +18,17 @@
 }
 
 .container label {
+  display: flex;
   z-index: 1;
-  padding: var(--space-smaller) 12px;
+  padding: 0 calc(var(--space-base) - var(--space-smaller));
   overflow: hidden;
+  height: 100%;
   font-size: var(--typography--fontSize-base);
   font-weight: 600;
   text-align: center;
   cursor: pointer;
   align-items: center;
+  justify-content: center;
 }
 
 .container span {
