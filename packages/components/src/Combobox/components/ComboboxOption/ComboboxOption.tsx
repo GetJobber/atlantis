@@ -7,6 +7,7 @@ import { ComboboxContext } from "../../ComboboxProvider";
 import { type ComboboxOptionProps } from "../../Combobox.types";
 
 export function ComboboxOption(props: ComboboxOptionProps) {
+  const { customRender, ...contentProps } = props;
   const { selected, selectionHandler } = useContext(ComboboxContext);
 
   const isSelected = selected.some(
@@ -26,6 +27,25 @@ export function ComboboxOption(props: ComboboxOptionProps) {
       }
       className={classnames(styles.option)}
     >
+      {customRender ? (
+        customRender({
+          ...contentProps,
+          isSelected,
+        })
+      ) : (
+        <DefaultContent {...contentProps} isSelected={isSelected} />
+      )}
+    </li>
+  );
+}
+
+type DefaultContentProps = Omit<ComboboxOptionProps, "customRender"> & {
+  readonly isSelected: boolean;
+};
+
+function DefaultContent(props: DefaultContentProps) {
+  return (
+    <>
       <Flex template={props.prefix ? ["shrink", "grow"] : ["grow"]}>
         {props.prefix}
 
@@ -33,8 +53,10 @@ export function ComboboxOption(props: ComboboxOptionProps) {
       </Flex>
 
       <div>
-        {isSelected && <Icon name="checkmark" color="interactiveSubtle" />}
+        {props.isSelected && (
+          <Icon name="checkmark" color="interactiveSubtle" />
+        )}
       </div>
-    </li>
+    </>
   );
 }

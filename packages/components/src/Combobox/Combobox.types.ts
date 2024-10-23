@@ -120,6 +120,16 @@ export interface ComboboxOptionProps {
    * An optional component to be displayed before the label.
    */
   prefix?: React.ReactElement;
+
+  /**
+   * Advanced: A custom render prop to completely control how this option is rendered.
+   * The function receives the option's props, and a boolean indicating if the option is selected.
+   */
+  readonly customRender?: (
+    option: Omit<ComboboxOptionProps, "customRender"> & {
+      isSelected: boolean;
+    },
+  ) => React.ReactNode;
 }
 
 export interface ComboboxContentProps {
