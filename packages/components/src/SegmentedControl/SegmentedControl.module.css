@@ -31,7 +31,7 @@
   left: 0;
   width: calc(100% / var(--segmentedControl--option-count));
   height: 100%;
-  box-shadow: var(--shadow-low);
+  border: var(--color-border--interactive);
   border-radius: var(--radius-base);
   background-color: var(--color-surface);
   transition: var(--timing-base) left ease;
