@@ -83,15 +83,14 @@ export interface ComboboxCustomActivatorProps {
   role: "combobox";
 
   /**
-   * Method to toggle the open state of the Combobox.
-   * All callbacks and cleanup will be handled when toggled to closed.
+   * Method to open the Combobox. Closing is handled by the Combobox itself.
    */
-  toggleOpen: () => void;
+  open: () => void;
 }
 
 export type ComboboxActivatorAccessibility = Omit<
   ComboboxCustomActivatorProps,
-  "toggleOpen"
+  "open"
 >;
 
 export interface ComboboxActivatorProps {

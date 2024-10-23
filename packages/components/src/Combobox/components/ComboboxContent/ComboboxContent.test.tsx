@@ -4,14 +4,14 @@ import { ComboboxContent } from "./ComboboxContent";
 import { ComboboxContextProvider } from "../../ComboboxProvider";
 import { ComboboxOption } from "../../Combobox.types";
 
-const toggleOpen = jest.fn();
+const handleOpen = jest.fn();
 const setSelected = jest.fn();
 const handleSelect = jest.fn();
 const setSearchValue = jest.fn();
 const handleClose = jest.fn();
 
 afterEach(() => {
-  toggleOpen.mockClear();
+  handleOpen.mockClear();
   setSelected.mockClear();
   setSearchValue.mockClear();
   handleSelect.mockClear();
@@ -78,7 +78,7 @@ function renderComboboxContent(
 ) {
   return render(
     <ComboboxContextProvider
-      toggleOpen={toggleOpen}
+      handleOpen={handleOpen}
       handleClose={handleClose}
       selectionHandler={handleSelect}
       shouldScroll={{ current: false }}

@@ -15,7 +15,7 @@ export function renderComboboxAction(
 ) {
   return render(
     <ComboboxContextProvider
-      toggleOpen={jest.fn()}
+      handleOpen={jest.fn()}
       handleClose={handleClose}
       selected={[]}
       open={true}

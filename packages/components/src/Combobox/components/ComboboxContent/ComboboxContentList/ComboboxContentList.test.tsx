@@ -53,7 +53,7 @@ function renderComboboxContentList(
 ) {
   return render(
     <ComboboxContextProvider
-      toggleOpen={jest.fn()}
+      handleOpen={jest.fn()}
       handleClose={jest.fn()}
       selectionHandler={jest.fn()}
       shouldScroll={{ current: false }}
