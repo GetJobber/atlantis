@@ -4,8 +4,8 @@
   align-items: center;
   position: relative;
   min-width: max-content;
-  border-radius: var(--radius-base);
   border: var(--border-base) solid var(--color-border--interactive);
+  border-radius: var(--radius-base);
   background-color: var(--color-surface--background);
 }
 
