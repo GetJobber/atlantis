@@ -297,7 +297,9 @@ function Action({
       ref={actionButtonRef}
     >
       {icon && (
-        <Icon color={destructive ? "destructive" : undefined} name={icon} />
+        <div>
+          <Icon color={destructive ? "destructive" : undefined} name={icon} />
+        </div>
       )}
       <Typography element="span" fontWeight="semiBold" textColor="text">
         {sectionLabel && (
