@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.44.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.44.0...@jobber/components@5.44.1) (2024-10-23)
+
+
+### Bug Fixes
+
+* **components:** JOB-104988 Add accessibility attributes (also helps with testing) ([#2080](https://github.com/GetJobber/atlantis/issues/2080)) ([2bb45af](https://github.com/GetJobber/atlantis/commit/2bb45af7cf920b4cf66c76d53110edf25e009aef))
+
+
+
+
+
 # [5.44.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.43.3...@jobber/components@5.44.0) (2024-10-22)
 
 
