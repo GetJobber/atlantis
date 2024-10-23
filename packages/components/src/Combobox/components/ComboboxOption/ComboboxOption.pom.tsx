@@ -12,7 +12,7 @@ export function renderOption(
 ) {
   return render(
     <ComboboxContextProvider
-      setOpen={jest.fn()}
+      toggleOpen={jest.fn()}
       handleClose={jest.fn()}
       selected={selected}
       open={true}
