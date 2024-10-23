@@ -2,6 +2,7 @@ import React, {
   ChangeEventHandler,
   PropsWithChildren,
   createContext,
+  useCallback,
   useContext,
   useState,
 } from "react";
@@ -39,19 +40,25 @@ export function SegmentedControlProvider<T>({
 }: SegmentedControlProviderProps<T>) {
   const [selectedOption, setSelectedOption] = useState<T>(defaultOption);
 
-  const handleChange: ChangeEventHandler<HTMLInputElement> = event => {
-    setSelectedOption(event.target.value as T);
-    onSelectOption(event.target.value as T);
-  };
+  const handleChange: ChangeEventHandler<HTMLInputElement> = useCallback(
+    event => {
+      const value = event.target.value as T;
+      setSelectedOption(value);
+      onSelectOption(value);
+    },
+    [onSelectOption],
+  );
+
+  const resetToDefaultOption = useCallback(() => {
+    setSelectedOption(defaultOption);
+  }, [defaultOption]);
 
   return (
     <SegmentedControlContext.Provider
       value={{
         handleChange,
         selectedOption,
-        setSelectedOption: () => {
-          setSelectedOption(defaultOption);
-        },
+        setSelectedOption: resetToDefaultOption,
       }}
     >
       {children}
