@@ -1,5 +1,5 @@
 import { MutableRefObject, useContext, useEffect, useRef } from "react";
-import { ComboboxOption } from "../Combobox.types";
+import { ComboboxOptionProps } from "../Combobox.types";
 import { ComboboxContext } from "../ComboboxProvider";
 
 interface useComboboxContent {
@@ -8,7 +8,7 @@ interface useComboboxContent {
 
 export function useComboboxContent(
   open: boolean,
-  selected: ComboboxOption[],
+  selected: ComboboxOptionProps[],
 ): useComboboxContent {
   const { shouldScroll } = useContext(ComboboxContext);
   const optionsListRef = useRef<HTMLUListElement>(null);

@@ -1,13 +1,11 @@
 import React, { Children, ReactElement, isValidElement } from "react";
 import { useAssert } from "@jobber/hooks/useAssert";
 import { ComboboxActivator } from "../components/ComboboxActivator";
-import {
-  ComboboxOption,
-  ComboboxOptionProps,
-} from "../components/ComboboxOption";
+import { ComboboxOption } from "../components/ComboboxOption";
 import {
   ComboboxActionProps,
   ComboboxActivatorProps,
+  ComboboxOptionProps,
   ComboboxProps,
 } from "../Combobox.types";
 import { ComboboxAction } from "../components/ComboboxAction";

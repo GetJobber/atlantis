@@ -17,7 +17,7 @@ import { Button } from "@jobber/components/Button";
 import { DatePicker } from "@jobber/components/DatePicker";
 import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
-import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
+import { Combobox, ComboboxOptionProps } from "@jobber/components/Combobox";
 import { LIST_QUERY, ListQueryType, apolloClient } from "./storyUtils";
 
 const meta: Meta = {
@@ -410,8 +410,8 @@ export const Basic: StoryObj<typeof DataList> = {
 
 export const ClearAllFilters: StoryFn<typeof DataList> = args => {
   interface SelectedFilters {
-    home: ComboboxOption[];
-    eyeColor: ComboboxOption[];
+    home: ComboboxOptionProps[];
+    eyeColor: ComboboxOptionProps[];
   }
 
   interface Filter {
@@ -419,7 +419,7 @@ export const ClearAllFilters: StoryFn<typeof DataList> = args => {
     label: string;
     options: string[];
     isSelected: boolean;
-    selectedFilters: ComboboxOption[];
+    selectedFilters: ComboboxOptionProps[];
   }
 
   type Entries<T> = {
@@ -448,7 +448,7 @@ export const ClearAllFilters: StoryFn<typeof DataList> = args => {
 
   function handleSelectFilters(
     type: keyof SelectedFilters,
-    filters: ComboboxOption[],
+    filters: ComboboxOptionProps[],
   ) {
     setSelectedFilters({
       ...selectedFilters,
@@ -569,7 +569,7 @@ export const ClearAllFilters: StoryFn<typeof DataList> = args => {
               key={key}
               label={FILTERS_MAP[key].label}
               selected={value}
-              onSelect={(filters: ComboboxOption[]) =>
+              onSelect={(filters: ComboboxOptionProps[]) =>
                 handleSelectFilters(key as keyof SelectedFilters, filters)
               }
               multiSelect

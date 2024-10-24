@@ -3,7 +3,7 @@ import React from "react";
 import userEvent from "@testing-library/user-event";
 import { ComboboxTrigger } from "./ComboboxTrigger";
 import { ComboboxContextProvider } from "../../ComboboxProvider";
-import { ComboboxOption } from "../../Combobox.types";
+import { ComboboxOptionProps } from "../../Combobox.types";
 
 const handleOpen = jest.fn();
 
@@ -109,7 +109,7 @@ describe("ComboboxTrigger", () => {
 
 function renderTrigger(
   open = false,
-  selected: ComboboxOption[] = [],
+  selected: ComboboxOptionProps[] = [],
   label?: string,
 ) {
   return render(

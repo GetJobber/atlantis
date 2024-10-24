@@ -16,7 +16,7 @@ export interface ComboboxProps {
   /**
    * The selected options of the Combobox.
    */
-  readonly selected: ComboboxOption[];
+  readonly selected: ComboboxOptionProps[];
 
   /**
    * The encapsulating noun for the content of the combobox. Used
@@ -27,7 +27,7 @@ export interface ComboboxProps {
   /**
    * Callback function invoked upon the selection of an option. Provides the selected option(s) as an argument.
    */
-  readonly onSelect: (selection: ComboboxOption[]) => void;
+  readonly onSelect: (selection: ComboboxOptionProps[]) => void;
 
   /**
    * Callback function invoked upon the Combobox menu closing.
@@ -104,7 +104,7 @@ export interface ComboboxTriggerProps
   readonly label?: string;
 }
 
-export interface ComboboxOption {
+export interface ComboboxOptionProps {
   /**
    * A unique identifier for the option.
    */
@@ -119,13 +119,23 @@ export interface ComboboxOption {
    * An optional component to be displayed before the label.
    */
   prefix?: React.ReactElement;
+
+  /**
+   * Advanced: A custom render prop to completely control how this option is rendered.
+   * The function receives the option's props, and a boolean indicating if the option is selected.
+   */
+  readonly customRender?: (
+    option: Omit<ComboboxOptionProps, "customRender"> & {
+      isSelected: boolean;
+    },
+  ) => React.ReactNode;
 }
 
 export interface ComboboxContentProps {
   /**
    * The selected options of the Combobox.
    */
-  readonly selected: ComboboxOption[];
+  readonly selected: ComboboxOptionProps[];
 
   /**
    * The encapsulating noun for the content of the combobox. Used
@@ -141,12 +151,12 @@ export interface ComboboxContentProps {
   /**
    * State setter for the selected options.
    */
-  readonly selectedStateSetter: (selection: ComboboxOption[]) => void;
+  readonly selectedStateSetter: (selection: ComboboxOptionProps[]) => void;
 
   /**
    * Callback function to be called when an option is selected.
    */
-  readonly handleSelection: (option: ComboboxOption) => void;
+  readonly handleSelection: (option: ComboboxOptionProps) => void;
 
   /**
    * Are multiple selections permitted.
@@ -186,7 +196,7 @@ export interface ComboboxContentProps {
   /**
    * The full set of options for the Combobox in the shape of data, not elements.
    */
-  readonly options: ComboboxOption[];
+  readonly options: ComboboxOptionProps[];
 
   /**
    * Should loading state be shown.
@@ -250,12 +260,12 @@ export interface ComboboxListProps {
   /**
    * The options to display in the list. May be the full set of the Combobox or could be filtered.
    */
-  readonly options: ComboboxOption[];
+  readonly options: ComboboxOptionProps[];
 
   /**
    * The currently selected options.
    */
-  readonly selected: ComboboxOption[];
+  readonly selected: ComboboxOptionProps[];
 
   /**
    * A ref to the list element.
