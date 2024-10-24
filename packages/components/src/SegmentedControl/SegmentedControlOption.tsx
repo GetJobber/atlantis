@@ -44,10 +44,9 @@ export function SegmentedControlOption({
         checked={localChecked}
         value={value}
         onChange={handleChangeLocal}
+        aria-label={ariaLabel}
       />
-      <label htmlFor={inputId} aria-label={ariaLabel}>
-        {children || label}
-      </label>
+      <label htmlFor={inputId}>{children || label}</label>
     </>
   );
 
