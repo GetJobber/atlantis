@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Meta, StoryFn } from "@storybook/react";
-import { SegmentedControl } from "@jobber/components/SegmentedControl";
+import {
+  SegmentedControl,
+  SegmentedControlContext,
+} from "@jobber/components/SegmentedControl";
 import { Icon } from "@jobber/components/Icon";
 
 const meta: Meta = {
@@ -26,40 +29,23 @@ const options = [
   { value: "burgers", label: "Burgers" },
 ];
 
-const emojiMap: Record<BasicSegment, string> = {
-  pizza: "🍕",
-  tacos: "🌮",
-  sushi: "🍣",
-  burgers: "🍔",
-};
-
 export const Basic: Story = () => {
   const [activeOption, setActiveOption] = useState<BasicSegment>("pizza");
 
   return (
-    <div style={{ textAlign: "center" }}>
-      <SegmentedControl
-        defaultOption={"pizza"}
-        selectedOption={activeOption}
-        onSelectOption={d => {
-          setActiveOption(d as BasicSegment);
-        }}
-      >
-        {options.map(option => (
-          <SegmentedControl.Option key={option.value} value={option.value}>
-            {option.label}
-          </SegmentedControl.Option>
-        ))}
-      </SegmentedControl>
-      <div
-        style={{
-          marginTop: "var(--space-base)",
-          fontSize: "var(--typography--fontSize-jumbo)",
-        }}
-      >
-        {emojiMap[activeOption]}
-      </div>
-    </div>
+    <SegmentedControl
+      defaultOption={"pizza"}
+      selectedOption={activeOption}
+      onSelectOption={d => {
+        setActiveOption(d as BasicSegment);
+      }}
+    >
+      {options.map(option => (
+        <SegmentedControl.Option key={option.value} value={option.value}>
+          {option.label}
+        </SegmentedControl.Option>
+      ))}
+    </SegmentedControl>
   );
 };
 
@@ -90,5 +76,32 @@ export const WithIcons: Story = () => {
         <Icon name="chat" />
       </SegmentedControl.Option>
     </SegmentedControl>
+  );
+};
+
+export const AsUncontrolled: Story = () => {
+  const [activeOption, setActiveOption] = useState("pizza");
+
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = e => {
+    setActiveOption(e.target.value);
+  };
+
+  return (
+    <SegmentedControlContext.Provider
+      value={{ handleChange, selectedOption: activeOption }}
+    >
+      <SegmentedControl.Base>
+        <SegmentedControl.Option value="pizza">Pizza</SegmentedControl.Option>
+        <SegmentedControl.Option value="pizza2">
+          Ultra Pizza
+        </SegmentedControl.Option>
+        <SegmentedControl.Option value="pizza3">
+          Mega Pizza
+        </SegmentedControl.Option>
+        <SegmentedControl.Option value="pizza4">
+          Everything Pizza
+        </SegmentedControl.Option>
+      </SegmentedControl.Base>
+    </SegmentedControlContext.Provider>
   );
 };

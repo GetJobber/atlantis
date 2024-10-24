@@ -10,14 +10,12 @@ import React, {
 interface SegmentedControlProviderContext {
   handleChange: ChangeEventHandler<HTMLInputElement>;
   selectedOption: unknown;
-  setSelectedOption: (option: string) => void;
 }
 
 export const SegmentedControlContext =
   createContext<SegmentedControlProviderContext>({
     handleChange: () => ({}),
     selectedOption: null,
-    setSelectedOption: () => ({}),
   });
 
 interface SegmentedControlProviderProps<T> extends PropsWithChildren {
@@ -26,11 +24,9 @@ interface SegmentedControlProviderProps<T> extends PropsWithChildren {
 }
 
 export const useSegmentedControl = () => {
-  const { handleChange, selectedOption, setSelectedOption } = useContext(
-    SegmentedControlContext,
-  );
+  const { handleChange, selectedOption } = useContext(SegmentedControlContext);
 
-  return { handleChange, selectedOption, setSelectedOption };
+  return { handleChange, selectedOption };
 };
 
 export function SegmentedControlProvider<T>({
@@ -49,16 +45,11 @@ export function SegmentedControlProvider<T>({
     [onSelectOption],
   );
 
-  const resetToDefaultOption = useCallback(() => {
-    setSelectedOption(defaultOption);
-  }, [defaultOption]);
-
   return (
     <SegmentedControlContext.Provider
       value={{
         handleChange,
         selectedOption,
-        setSelectedOption: resetToDefaultOption,
       }}
     >
       {children}

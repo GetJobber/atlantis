@@ -2,6 +2,7 @@ import React, {
   CSSProperties,
   Children,
   type PropsWithChildren,
+  forwardRef,
   useRef,
 } from "react";
 import styles from "./SegmentedControl.module.css";
@@ -25,21 +26,13 @@ interface SegmentedControlProps<T> extends PropsWithChildren {
   readonly defaultOption: T;
 }
 
-export function SegmentedControl<T>({
-  onSelectOption,
-  defaultOption,
-  children,
-}: SegmentedControlProps<T>) {
-  const container = useRef<HTMLDivElement>(null);
-  const optionCount = Children.count(children);
+const SegmentedControlBase = forwardRef<HTMLDivElement, PropsWithChildren>(
+  function SegmentedControlBase({ children }, ref) {
+    const optionCount = Children.count(children);
 
-  return (
-    <SegmentedControlProvider
-      onSelectOption={onSelectOption}
-      defaultOption={defaultOption}
-    >
+    return (
       <div
-        ref={container}
+        ref={ref}
         className={styles.container}
         style={
           {
@@ -50,8 +43,26 @@ export function SegmentedControl<T>({
         {children}
         <span />
       </div>
+    );
+  },
+);
+
+export function SegmentedControl<T>({
+  onSelectOption,
+  defaultOption,
+  children,
+}: SegmentedControlProps<T>) {
+  const container = useRef<HTMLDivElement>(null);
+
+  return (
+    <SegmentedControlProvider
+      onSelectOption={onSelectOption}
+      defaultOption={defaultOption}
+    >
+      <SegmentedControlBase ref={container}>{children}</SegmentedControlBase>
     </SegmentedControlProvider>
   );
 }
 
 SegmentedControl.Option = SegmentedControlOption;
+SegmentedControl.Base = SegmentedControlBase;
