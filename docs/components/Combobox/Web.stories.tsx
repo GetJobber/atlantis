@@ -526,7 +526,7 @@ const ComboboxKeepOpenOnClick: ComponentStory<typeof Combobox> = args => {
   );
 };
 
-const ComboboxCustomRender: ComponentStory<typeof Combobox> = args => {
+const ComboboxCustomRenderOptions: ComponentStory<typeof Combobox> = args => {
   const [selected, setSelected] = useState<ComboboxOptionProps[]>([]);
 
   return (
@@ -725,8 +725,8 @@ const ComboboxCustomRender: ComponentStory<typeof Combobox> = args => {
   );
 };
 
-export const CustomRender = ComboboxCustomRender.bind({});
-CustomRender.args = {
+export const CustomRenderOptions = ComboboxCustomRenderOptions.bind({});
+CustomRenderOptions.args = {
   label: "The Fellowship",
   subjectNoun: "fellows",
   multiSelect: true,
