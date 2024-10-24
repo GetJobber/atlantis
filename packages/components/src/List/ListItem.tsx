@@ -9,7 +9,16 @@ import { Typography } from "../Typography";
 import { Markdown } from "../Markdown";
 import { Emphasis } from "../Emphasis";
 
-export interface ListItemProps {
+export interface BaseListItemProps {
+  /**
+   * The ID of the list item. This will be helpful to know the selected list
+   * items when a batch action is implemented.
+   */
+  readonly id: number | string;
+  [key: string]: unknown;
+}
+
+export interface ListItemProps extends BaseListItemProps {
   /**
    * Subdued text under the `content` prop.
    */
@@ -20,7 +29,7 @@ export interface ListItemProps {
    * for a multi line content.
    * This supports basic markdown node types such as `_italic_` and `**bold**`.
    */
-  readonly content: string | string[];
+  readonly content?: string | string[];
 
   /**
    * Shows an icon on the left side of the contents.
@@ -31,12 +40,6 @@ export interface ListItemProps {
    * Changes the color of the icons.
    */
   readonly iconColor?: IconColorNames;
-
-  /**
-   * The ID of the list item. This will be helpful to know the selected list
-   * items when a batch action is implemented.
-   */
-  readonly id: number | string;
 
   /**
    * Highlights the list item with the lightest green icon. This communicates
@@ -73,24 +76,21 @@ export interface ListItemProps {
   ): void;
 }
 
-export function ListItem({
-  caption,
-  content,
-  icon,
-  iconColor,
-  id,
-  isActive,
-  onClick,
-  title,
-  url,
-  value,
-}: ListItemProps) {
+// function isCustomRender<T extends BaseListItemProps = ListItemProps>(item: unknown): item is T {
+//   return "customRender" in item;
+//   }
+
+export function ListItem<T extends BaseListItemProps = ListItemProps>(
+  props: ListItemProps & {
+    readonly customRenderItem?: (item: T) => React.ReactNode;
+  },
+) {
   const actionClasses = classnames(
     styles.action,
-    isActive && styles.isActive,
-    (onClick || url) && styles.hoverable,
+    props.isActive && styles.isActive,
+    (props.onClick || props.url) && styles.hoverable,
   );
-  const Wrapper = url ? "a" : "button";
+  const Wrapper = props.url ? "a" : "button";
 
   const buttonProps = {
     ...(Wrapper === "button" && { role: "button", type: "button" as const }),
@@ -98,43 +98,55 @@ export function ListItem({
 
   return (
     <Wrapper
-      id={id.toString()}
+      id={props.id.toString()}
       className={actionClasses}
-      href={url}
-      onClick={onClick}
+      href={props.url}
+      onClick={props.onClick}
       {...buttonProps}
     >
-      {icon && (
-        <div className={styles.icon}>
-          <Icon name={icon} color={iconColor} />
-        </div>
-      )}
-
-      <div className={styles.info}>
-        {title && <Heading level={5}>{title}</Heading>}
-        <Description content={content} />
-
-        {caption && (
-          <Text variation="subdued">
-            <Typography element="span" size="small" emphasisType="italic">
-              {caption}
-            </Typography>
-          </Text>
-        )}
-      </div>
-
-      {value && (
-        <div className={styles.amount}>
-          <Text>
-            <Emphasis variation="bold">{value}</Emphasis>
-          </Text>
-        </div>
+      {props.customRenderItem ? (
+        props.customRenderItem(props as T)
+      ) : (
+        <DefaultRenderItem {...props} />
       )}
     </Wrapper>
   );
 }
 
-function Description({ content }: Pick<ListItemProps, "content">) {
+function DefaultRenderItem(props: ListItemProps) {
+  return (
+    <>
+      {props.icon && (
+        <div className={styles.icon}>
+          <Icon name={props.icon} color={props.iconColor} />
+        </div>
+      )}
+
+      <div className={styles.info}>
+        {props.title && <Heading level={5}>{props.title}</Heading>}
+        {props.content && <Description content={props.content} />}
+
+        {props.caption && (
+          <Text variation="subdued">
+            <Typography element="span" size="small" emphasisType="italic">
+              {props.caption}
+            </Typography>
+          </Text>
+        )}
+      </div>
+
+      {props.value && (
+        <div className={styles.amount}>
+          <Text>
+            <Emphasis variation="bold">{props.value}</Emphasis>
+          </Text>
+        </div>
+      )}
+    </>
+  );
+}
+
+function Description({ content }: Pick<Required<ListItemProps>, "content">) {
   if (content instanceof Array) {
     return (
       <>
