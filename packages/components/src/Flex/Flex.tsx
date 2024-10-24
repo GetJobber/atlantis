@@ -1,6 +1,7 @@
-import React, { CSSProperties, PropsWithChildren } from "react";
+import React, { CSSProperties, PropsWithChildren, useState } from "react";
 // import chunk from "lodash/chunk";
 import classnames from "classnames";
+import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import { ColumnKeys, Direction, Spacing } from "./Flex.types";
 import styles from "./Flex.module.css";
 
@@ -44,13 +45,19 @@ export function Flex({
   gap = "base",
   template,
 }: FlexProps) {
+  const [style, setStyle] = useState<CSSProperties>({});
+
+  useSafeLayoutEffect(() => {
+    setStyle(generateGridStylesFromTemplate(direction, template));
+  }, [direction, template]);
+
   return (
     <div
       className={classnames(styles.flexible, {
         [styles[`${gap}Gap`]]: Boolean(gap),
         [styles[`${align}Align`]]: Boolean(align),
       })}
-      style={generateGridStylesFromTemplate(direction, template)}
+      style={style}
     >
       {children}
     </div>
