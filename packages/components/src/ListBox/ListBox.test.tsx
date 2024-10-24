@@ -2,7 +2,6 @@ import React from "react";
 import { fireEvent, render } from "@testing-library/react";
 import { ListBox } from ".";
 
-
 it("renders a ListBox", () => {
   const { container } = render(<ListBox text="Foo" />);
   expect(container).toMatchSnapshot();

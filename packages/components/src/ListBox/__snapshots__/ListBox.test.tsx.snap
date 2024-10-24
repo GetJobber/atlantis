@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a ListBox 1`] = `
+<div>
+  <ul
+    aria-multiselectable="false"
+    class="listBox"
+    role="listbox"
+  />
+</div>
+`;
+
+exports[`renders a loud ListBox 1`] = `
+<div>
+  <ul
+    aria-multiselectable="false"
+    class="listBox"
+    role="listbox"
+  />
+</div>
+`;
