@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.73.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.73.2...@jobber/components-native@0.73.3) (2024-10-24)
+
+
+### Bug Fixes
+
+* **components-native:** Assistive text alignment on `Select` ([#2068](https://github.com/GetJobber/atlantis/issues/2068)) ([538e4b2](https://github.com/GetJobber/atlantis/commit/538e4b29f5481a81eb76a03f9a66bd8df407ea0d))
+
+
+
+
+
 ## [0.73.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.73.1...@jobber/components-native@0.73.2) (2024-10-18)
 
 
