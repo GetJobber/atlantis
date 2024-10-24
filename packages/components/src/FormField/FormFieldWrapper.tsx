@@ -156,30 +156,11 @@ export function FormFieldWrapper({
             <AffixIcon {...suffix} variation="suffix" size={size} />
           )}
         </div>
-        <AnimatePresence
-          initial={toolbarVisibility === "always" ? false : true}
-        >
-          {isToolbarVisible && (
-            <motion.div
-              key="toolbar"
-              initial={toolbarAnimationEnd}
-              animate={toolbarAnimationStart}
-              exit={toolbarAnimationEnd}
-              transition={{
-                duration: tokens["timing-base"] / 1000,
-                ease: "easeInOut",
-              }}
-              tabIndex={-1}
-            >
-              <div
-                className={styles.toolbar}
-                data-testid="ATL-InputText-Toolbar"
-              >
-                {toolbar}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {toolbar && (
+          <div className={styles.toolbar} data-testid="ATL-InputText-Toolbar">
+            {toolbar}
+          </div>
+        )}
       </div>
       {description && !inline && (
         <FormFieldDescription

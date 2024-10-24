@@ -237,6 +237,11 @@
   -webkit-box-shadow: 0 0 0 30px var(--color-surface) inset !important;
 }
 
+.textarea:has(.toolbar) .input {
+  scroll-padding-bottom: var(--space-extravagant);
+  padding-bottom: var(--space-extravagant);
+}
+
 .textarea:not(:has(.label)) {
   .input {
     padding-top: var(--field--padding-top);
@@ -370,19 +375,34 @@
 
 .toolbar {
   display: flex;
-  position: relative;
-  margin: var(--space-small) var(--field--padding-right) var(--space-base)
+  position: absolute;
+  right: 0;
+  bottom: calc(-1 * var(--space-small));
+  left: 0;
+  padding: var(--space-small) var(--field--padding-right) var(--space-base)
     var(--field--padding-left);
+  border-radius: 0 0 var(--radius-base) var(--radius-base);
+  background-color: var(--field--background-color);
+  pointer-events: none;
+  opacity: 0;
+  transition: all var(--timing-quick) ease-in-out;
+}
+
+.textarea:focus-within .toolbar {
+  bottom: 0;
+  pointer-events: all;
+  opacity: 1;
 }
 
 .toolbar::before {
+  --field--overflow-size: var(--space-small);
   content: "";
   display: block;
   position: absolute;
-  top: calc(-1.25 * var(--space-base));
+  top: calc(-1 * var(--field--overflow-size));
   right: 0;
   left: 0;
   z-index: var(--elevation-base);
-  height: var(--space-base);
+  height: var(--field--overflow-size);
   background: linear-gradient(to bottom, transparent, var(--color-surface) 60%);
 }
