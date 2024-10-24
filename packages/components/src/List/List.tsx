@@ -27,37 +27,34 @@ export function List<T extends BaseListItemProps = ListItemProps>({
   items,
   customRenderItem,
 }: ListProps<T>) {
-  if (customRenderItem) {
-    return (
-      <ul className={styles.list}>
-        {items.map(item => (
-          <li key={item.id}>{customRenderItem(item)}</li>
-        ))}
-      </ul>
-    );
-  }
   const isSectioned = items.some(item => "section" in item && item.section);
 
   if (isSectioned) {
-    return <SectionedList items={items} />;
+    return <SectionedList items={items} customRenderItem={customRenderItem} />;
   } else {
-    return <DisplayList items={items} />;
+    return <DisplayList items={items} customRenderItem={customRenderItem} />;
   }
 }
 
-function DisplayList({ items }: ListProps) {
+function DisplayList<T extends BaseListItemProps = ListItemProps>({
+  items,
+  customRenderItem,
+}: ListProps<T>) {
   return (
     <ul className={styles.list}>
       {items.map(item => (
         <li key={item.id} className={styles.item}>
-          <ListItem {...item} />
+          <ListItem {...item} customRenderItem={customRenderItem} />
         </li>
       ))}
     </ul>
   );
 }
 
-function SectionedList({ items }: ListProps) {
+function SectionedList<T extends BaseListItemProps = ListItemProps>({
+  items,
+  customRenderItem,
+}: ListProps<T>) {
   const sectionedItems = groupBy(items, item => get(item, "section", "Other"));
   const sectionHeaderClassNames = classnames(sectionStyles.sectionHeader);
 
@@ -74,7 +71,7 @@ function SectionedList({ items }: ListProps) {
           <ul className={styles.list}>
             {sectionedItems[sectionName].map(item => (
               <li key={item.id} className={styles.item}>
-                <ListItem {...item} />
+                <ListItem {...item} customRenderItem={customRenderItem} />
               </li>
             ))}
           </ul>

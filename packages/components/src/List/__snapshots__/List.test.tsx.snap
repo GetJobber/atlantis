@@ -1,37 +1,190 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`When a list is provided a custom render function it should use the custom render function instead of ListItem 1`] = `
+exports[`When a list is provided a custom render function it should handle a sectioned list with a custom render function 1`] = `
 <div>
   <ul
     class="list"
   >
-    <li>
-      <div>
-        <p
-          class="base regular base text"
+    <li
+      class="section"
+    >
+      <div
+        class="sectionHeader"
+      >
+        <h4
+          class="base bold large"
         >
-          Jane Doe
-        </p>
-        <p
-          class="base regular base text"
-        >
-          123 Main St
-        </p>
+          Employees
+        </h4>
       </div>
+      <ul
+        class="list"
+      >
+        <li
+          class="item"
+        >
+          <button
+            class="action"
+            id="1"
+            role="button"
+            type="button"
+          >
+            <div>
+              <p
+                class="base regular base text"
+              >
+                Jane Doe
+              </p>
+              <p
+                class="base regular base text"
+              >
+                123 Main St
+              </p>
+            </div>
+          </button>
+        </li>
+        <li
+          class="item"
+        >
+          <button
+            class="action"
+            id="2"
+            role="button"
+            type="button"
+          >
+            <div>
+              <p
+                class="base regular base text"
+              >
+                Joe Doe
+              </p>
+              <p
+                class="base regular base text"
+              >
+                456 Main St
+              </p>
+            </div>
+          </button>
+        </li>
+      </ul>
     </li>
-    <li>
-      <div>
-        <p
-          class="base regular base text"
+    <li
+      class="section"
+    >
+      <div
+        class="sectionHeader"
+      >
+        <h4
+          class="base bold large"
         >
-          Joe Doe
-        </p>
-        <p
-          class="base regular base text"
-        >
-          456 Main St
-        </p>
+          Customers
+        </h4>
       </div>
+      <ul
+        class="list"
+      >
+        <li
+          class="item"
+        >
+          <button
+            class="action"
+            id="3"
+            role="button"
+            type="button"
+          >
+            <div>
+              <p
+                class="base regular base text"
+              >
+                Milton Bradley
+              </p>
+              <p
+                class="base regular base text"
+              >
+                123 Fake St
+              </p>
+            </div>
+          </button>
+        </li>
+        <li
+          class="item"
+        >
+          <button
+            class="action"
+            id="4"
+            role="button"
+            type="button"
+          >
+            <div>
+              <p
+                class="base regular base text"
+              >
+                Tony Redman
+              </p>
+              <p
+                class="base regular base text"
+              >
+                456 Fake St
+              </p>
+            </div>
+          </button>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`When a list is provided a custom render function it should use the custom render instead of default ListItem behaviour 1`] = `
+<div>
+  <ul
+    class="list"
+  >
+    <li
+      class="item"
+    >
+      <button
+        class="action"
+        id="1"
+        role="button"
+        type="button"
+      >
+        <div>
+          <p
+            class="base regular base text"
+          >
+            Jane Doe
+          </p>
+          <p
+            class="base regular base text"
+          >
+            123 Main St
+          </p>
+        </div>
+      </button>
+    </li>
+    <li
+      class="item"
+    >
+      <button
+        class="action"
+        id="2"
+        role="button"
+        type="button"
+      >
+        <div>
+          <p
+            class="base regular base text"
+          >
+            Joe Doe
+          </p>
+          <p
+            class="base regular base text"
+          >
+            456 Main St
+          </p>
+        </div>
+      </button>
     </li>
   </ul>
 </div>
