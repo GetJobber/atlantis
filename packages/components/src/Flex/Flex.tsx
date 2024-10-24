@@ -2,7 +2,7 @@ import React, { CSSProperties, PropsWithChildren } from "react";
 // import chunk from "lodash/chunk";
 import classnames from "classnames";
 import { ColumnKeys, Direction, Spacing } from "./Flex.types";
-import styles from "./Flex.css";
+import styles from "./Flex.module.css";
 
 interface FlexProps extends PropsWithChildren {
   /**

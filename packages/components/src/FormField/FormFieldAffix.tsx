@@ -2,7 +2,7 @@ import classnames from "classnames";
 import React, { RefObject } from "react";
 import { XOR } from "ts-xor";
 import { Affix, FormFieldProps, Suffix } from "./FormFieldTypes";
-import styles from "./FormField.css";
+import styles from "./FormField.module.css";
 import { Button } from "../Button";
 import { Icon } from "../Icon";
 

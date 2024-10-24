@@ -1,6 +1,6 @@
 import React, { ReactElement, useId } from "react";
 import { InternalRadioOption } from "./RadioOption";
-import styles from "./RadioGroup.css";
+import styles from "./RadioGroup.module.css";
 
 interface RadioGroupProps {
   readonly children: ReactElement | ReactElement[];

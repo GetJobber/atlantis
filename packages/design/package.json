@@ -1,6 +1,6 @@
 {
   "name": "@jobber/design",
-  "version": "0.65.1",
+  "version": "0.67.1",
   "description": "Design foundation for the Jobber Atlantis Design System",
   "license": "MIT",
   "type": "module",
@@ -67,10 +67,6 @@
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/jsdom": "^21.1.7",
     "jsdom": "^24.1.0",
-    "postcss": "^8.4.40",
-    "postcss-calc": "^10.0.0",
-    "postcss-cli": "^11.0.0",
-    "postcss-import": "^16.1.0",
     "rollup": "^4.13.0",
     "tsx": "^4.16.2"
   }

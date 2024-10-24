@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
+import {
+  Combobox,
+  ComboboxCustomActivatorProps,
+  ComboboxOption,
+} from "@jobber/components/Combobox";
 import { Button } from "@jobber/components/Button";
 import { Typography } from "@jobber/components/Typography";
 import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
 import { StatusIndicator } from "@jobber/components/StatusIndicator";
+import { Content } from "@jobber/components/Content";
+import { Card } from "@jobber/components/Card";
+import { Heading } from "@jobber/components/Heading";
 import { useFakeQuery } from "./storyUtils";
 
 export default {
@@ -159,6 +166,45 @@ const ComboboxCustomActivator: ComponentStory<typeof Combobox> = args => {
               <Icon name={"arrowDown"} size={"large"} />
             </Chip.Suffix>
           </Chip>
+        </Combobox.Activator>
+        <Combobox.Option id="1" label="13%" />
+        <Combobox.Option id="2" label="15%" />
+        <Combobox.Option id="3" label="20%" />
+
+        <Combobox.Action
+          label="Add Tax Rate"
+          onClick={() => {
+            alert("Added a new tax rate ✅");
+          }}
+        />
+      </Combobox>
+      <br />
+      <Typography element={"h3"} fontFamily={"display"}>
+        Custom Activator using div and render function
+      </Typography>
+      <Combobox {...args} onSelect={setSelected} selected={selected}>
+        <Combobox.Activator>
+          {(activatorAPI: ComboboxCustomActivatorProps) => (
+            <div
+              role={activatorAPI.role}
+              tabIndex={0}
+              aria-controls={activatorAPI.ariaControls}
+              aria-expanded={activatorAPI.ariaExpanded}
+              onClick={activatorAPI.open}
+              onKeyDown={e => {
+                if (e.key === "Enter" || e.key === " ") {
+                  activatorAPI.open();
+                }
+              }}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+              }}
+            >
+              <Heading level={2}>Heading Two</Heading>
+              <Icon name={"arrowDown"} />
+            </div>
+          )}
         </Combobox.Activator>
         <Combobox.Option id="1" label="13%" />
         <Combobox.Option id="2" label="15%" />
@@ -435,6 +481,49 @@ const ComboboxInfiniteScroll: ComponentStory<typeof Combobox> = args => {
     </Combobox>
   );
 };
+
+const ComboboxKeepOpenOnClick: ComponentStory<typeof Combobox> = args => {
+  const [selected, setSelected] = useState<ComboboxOption[]>([]);
+  const [chips, setChips] = useState<string[]>([]);
+
+  const handleActionClick = (searchValue: string) => {
+    setChips([...chips, searchValue]);
+  };
+
+  return (
+    <Card header="Add more friends">
+      <Content>
+        <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+          <Combobox
+            {...args}
+            onSelect={setSelected}
+            selected={selected}
+            label="Add Chip"
+          >
+            <Combobox.Option id="1" label="Search" />
+            <Combobox.Option id="2" label="for a" />
+            <Combobox.Option id="3" label="friend" />
+
+            <Combobox.Action
+              visible={({ searchValue }) => Boolean(searchValue)}
+              label={({ searchValue }) => `Add "${searchValue}" as Chip`}
+              onClick={(_, { searchValue }) => handleActionClick(searchValue)}
+              keepOpenOnClick
+            />
+          </Combobox>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+            {chips.map((chip, index) => (
+              <Chip key={index} label={chip} />
+            ))}
+          </div>
+        </div>
+      </Content>
+    </Card>
+  );
+};
+
+export const KeepOpenOnClick = ComboboxKeepOpenOnClick.bind({});
+KeepOpenOnClick.args = {};
 
 export const ClearSelection = ComboboxClearSelection.bind({});
 ClearSelection.args = {};

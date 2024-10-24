@@ -6,7 +6,7 @@ import { Text } from "../../../Text";
 import { Button } from "../../../Button";
 import { Checkbox } from "../../../Checkbox";
 import { useDataListContext } from "../../context/DataListContext";
-import styles from "../../DataList.css";
+import styles from "../../DataList.module.css";
 import { InternalDataListBulkActions } from "../DataListBulkActions";
 import { useResponsiveSizing } from "../../hooks/useResponsiveSizing";
 import { useBatchSelect } from "../../hooks/useBatchSelect";

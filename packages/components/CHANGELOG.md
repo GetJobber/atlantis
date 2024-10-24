@@ -3,6 +3,222 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.44.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.44.2...@jobber/components@5.44.3) (2024-10-23)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [5.44.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.44.1...@jobber/components@5.44.2) (2024-10-23)
+
+
+### Bug Fixes
+
+* **components:** Fix Combobox Dependencies and Test Mocks ([#2082](https://github.com/GetJobber/atlantis/issues/2082)) ([31a3168](https://github.com/GetJobber/atlantis/commit/31a31686319d3ba05dfa98fd1bc83fb77cf99102))
+
+
+
+
+
+## [5.44.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.44.0...@jobber/components@5.44.1) (2024-10-23)
+
+
+### Bug Fixes
+
+* **components:** JOB-104988 Add accessibility attributes (also helps with testing) ([#2080](https://github.com/GetJobber/atlantis/issues/2080)) ([2bb45af](https://github.com/GetJobber/atlantis/commit/2bb45af7cf920b4cf66c76d53110edf25e009aef))
+
+
+
+
+
+# [5.44.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.43.3...@jobber/components@5.44.0) (2024-10-22)
+
+
+### Features
+
+* **components:** Allow Fully Custom Combobox Activator ([#2075](https://github.com/GetJobber/atlantis/issues/2075)) ([2332a8f](https://github.com/GetJobber/atlantis/commit/2332a8f9f86dcc2321a214129b1aba537ad5fa12))
+
+
+
+
+
+## [5.43.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.43.2...@jobber/components@5.43.3) (2024-10-21)
+
+
+### Bug Fixes
+
+* **components:** DataList toggle sorting header doesn't transpose id and key ([#2069](https://github.com/GetJobber/atlantis/issues/2069)) ([ed36a75](https://github.com/GetJobber/atlantis/commit/ed36a756cf2ca1ae65d3f6eeca087a6a585494fe))
+
+
+
+
+
+## [5.43.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.43.1...@jobber/components@5.43.2) (2024-10-18)
+
+
+### Bug Fixes
+
+* **components:** Fixed issue where GridCell could no longer have no children ([#2077](https://github.com/GetJobber/atlantis/issues/2077)) ([8c738f1](https://github.com/GetJobber/atlantis/commit/8c738f1807978a746b7a6960e12047e075e3a1f6))
+
+
+
+
+
+## [5.43.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.43.0...@jobber/components@5.43.1) (2024-10-16)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [5.43.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.42.0...@jobber/components@5.43.0) (2024-10-16)
+
+
+### Features
+
+* **components:** Add keepOpenOnClick prop to Combobox.Action ([#2055](https://github.com/GetJobber/atlantis/issues/2055)) ([b5adc8f](https://github.com/GetJobber/atlantis/commit/b5adc8f56626cd72000e17a31d80c695e7680d7b))
+
+
+
+
+
+# [5.42.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.41.1...@jobber/components@5.42.0) (2024-10-15)
+
+
+### Features
+
+* **components:** Update apple icon and Add bank icon [JOB-106774] ([#2073](https://github.com/GetJobber/atlantis/issues/2073)) ([6dd2ae6](https://github.com/GetJobber/atlantis/commit/6dd2ae6c4bcadb5bf32bbe9c04c3762a2b84e181))
+
+
+
+
+
+## [5.41.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.41.0...@jobber/components@5.41.1) (2024-10-15)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [5.41.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.40.3...@jobber/components@5.41.0) (2024-10-15)
+
+
+### Features
+
+* **components:** Decouple shadow from clickability [JOB-105101] ([#2054](https://github.com/GetJobber/atlantis/issues/2054)) ([4925956](https://github.com/GetJobber/atlantis/commit/4925956248d6cc03e54fdcbf5309ef4a7371fff4))
+
+
+
+
+
+## [5.40.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.40.2...@jobber/components@5.40.3) (2024-10-09)
+
+
+### Bug Fixes
+
+* **components:** Fix icons shrinking in the page menu with longer titles ([#2064](https://github.com/GetJobber/atlantis/issues/2064)) ([a17c235](https://github.com/GetJobber/atlantis/commit/a17c235aa06a4de00ced3e7be639ce2bff88c1e5))
+
+
+
+
+
+## [5.40.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.40.1...@jobber/components@5.40.2) (2024-10-08)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [5.40.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.40.0...@jobber/components@5.40.1) (2024-10-03)
+
+
+### Bug Fixes
+
+* **components:** Remove center alignment in FormField ([#2057](https://github.com/GetJobber/atlantis/issues/2057)) ([7259a09](https://github.com/GetJobber/atlantis/commit/7259a09e191fab94d25e011b8840bbb3458aaf38))
+
+
+
+
+
+# [5.40.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.39.1...@jobber/components@5.40.0) (2024-10-02)
+
+
+### Features
+
+* **components:** Make Suffix Optional on Single and Multi Select Chips ([#2047](https://github.com/GetJobber/atlantis/issues/2047)) ([e4b9e06](https://github.com/GetJobber/atlantis/commit/e4b9e064126d9ec6747060afd35770cb2274930c)), closes [#2028](https://github.com/GetJobber/atlantis/issues/2028)
+
+
+
+
+
+## [5.39.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.39.0...@jobber/components@5.39.1) (2024-10-02)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [5.39.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.38.0...@jobber/components@5.39.0) (2024-10-02)
+
+
+### Features
+
+* **components:** Re-separate Chip from Chips w/Background Color Fixes ([#2035](https://github.com/GetJobber/atlantis/issues/2035)) ([7e7d6a6](https://github.com/GetJobber/atlantis/commit/7e7d6a61429609f77f9fe2351252b10217ccf940)), closes [#2028](https://github.com/GetJobber/atlantis/issues/2028)
+
+
+
+
+
+# [5.38.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.37.1...@jobber/components@5.38.0) (2024-10-02)
+
+
+### Features
+
+* **deps:** Update storybook to the latest patch version (7.6.20) ([#2049](https://github.com/GetJobber/atlantis/issues/2049)) ([52b1458](https://github.com/GetJobber/atlantis/commit/52b145833ec3d5452b5d1cf5e2f536a222fc3f1f))
+
+
+
+
+
+## [5.37.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.37.0...@jobber/components@5.37.1) (2024-09-30)
+
+
+### Bug Fixes
+
+* **components:** Clear action UI fix ([#2052](https://github.com/GetJobber/atlantis/issues/2052)) ([63b0c9e](https://github.com/GetJobber/atlantis/commit/63b0c9e76c80628e30763bbc69f0060068b62245))
+
+
+
+
+
+# [5.37.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.36.0...@jobber/components@5.37.0) (2024-09-30)
+
+
+### Features
+
+* **components:** Clearable Autocomplete ([#2050](https://github.com/GetJobber/atlantis/issues/2050)) ([dfd86fb](https://github.com/GetJobber/atlantis/commit/dfd86fb18dee1bf197a6d6acbc078a9d291b18e9))
+
+
+
+
+
+# [5.36.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.35.4...@jobber/components@5.36.0) (2024-09-26)
+
+
+### Features
+
+* **components:** Create FileTypes enum for InputFile and use in validation error ([#2046](https://github.com/GetJobber/atlantis/issues/2046)) ([bc50873](https://github.com/GetJobber/atlantis/commit/bc50873d7770a1c50596baca25608c7676c3e7de))
+
+
+
+
+
 ## [5.35.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.35.3...@jobber/components@5.35.4) (2024-09-25)
 
 

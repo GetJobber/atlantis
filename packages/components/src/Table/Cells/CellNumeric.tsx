@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Cell.css";
+import styles from "./Cell.module.css";
 import { Cell } from "./Cell";
 
 export interface CellNumericProps {

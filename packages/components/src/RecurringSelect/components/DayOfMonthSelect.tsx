@@ -1,6 +1,6 @@
 import React, { useId } from "react";
-import styles from "./DayOfMonthSelect.css";
-import checkboxStyles from "../DateCellCheckbox.css";
+import styles from "./DayOfMonthSelect.module.css";
+import checkboxStyles from "../DateCellCheckbox.module.css";
 import { DayOfMonth } from "../types";
 
 interface DayOfMonthSelectProps {

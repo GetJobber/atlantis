@@ -3,7 +3,7 @@ import React, { useRef, useState } from "react";
 import classnames from "classnames";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
-import styles from "./DataListHeaderTile.css";
+import styles from "./DataListHeaderTile.module.css";
 import { DataListSortingArrows } from "./DataListSortingArrows";
 import { DataListSortingOptions } from "./components/DataListSortingOptions";
 import { Text } from "../../../Text";
@@ -60,6 +60,7 @@ export function DataListHeaderTile<T extends DataListObject>({
       {isSortable && (
         <DataListSortingArrows
           order={sortingState?.key === headerKey ? sortingState.order : "none"}
+          headerKey={headerKey}
         />
       )}
     </Tag>
@@ -109,7 +110,7 @@ export function DataListHeaderTile<T extends DataListObject>({
       setIsDropDownOpen(!isDropDownOpen);
     } else {
       const id = sortableItem?.options?.[0]?.id || headerKey;
-      toggleSorting(id, headerKey, headers[headerKey]);
+      toggleSorting(headerKey, id, headers[headerKey]);
     }
   }
 

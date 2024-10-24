@@ -36,6 +36,9 @@ initiate option selection.
 
 ##### Default activator
 
+To use the default activator simply omit any kind of `Combobox.Activator`
+subcomponent in your instance.
+
 Examples of using a default activator can be found in the
 [single-select](../?path=/story/components-selections-combobox-web--single-select)
 and
@@ -50,14 +53,27 @@ activator.
 ##### Custom activator
 
 The custom activator should be used in any instance where the default activator
-is not suitable. Your custom activator should be a child of
-`<Combobox.Activator />`. An example of using a custom activator can be found in
-the
+is not suitable.
+
+**Child React Component:** To use a customized `Chip` or `Button` your custom
+activator should be a child of `<Combobox.Activator />`. An example of using a
+custom activator can be found in the
 [custom activator](../?path=/story/components-selections-combobox-web--custom-activator)
 story.
 
-Omitting a custom activator subcomponent will result in the default activator
-being used.
+**Child Render Function:** If neither a Chip nor a Button is sufficient for your
+needs, you may instead provide a function as the child to `Combobox.Activator`.
+
+As arguments, the function will receive a method to open the Combobox (closing
+is handled internally), and accessibility attributes required for a Combobox.
+**You must implement these yourself**. See the
+[render function example](../?path=/story/components-selections-combobox-web--custom-activator)
+for reference.
+
+The render function must return a single, valid JSX Element (it can of course
+have children, it simply must have a single wrapping tag). Ensure that tabindex,
+focus, and keyboard interactivity are considered and handled appropriately if a
+non traditionally interactive element such as a div is used.
 
 #### Content
 
@@ -72,6 +88,12 @@ option.
 
 Actions are an optional way to allow users to perform custom tasks such as
 adding a new item to the list of options.
+
+By default, when an action is clicked, the Combobox will close. If you want the
+Combobox to remain open after an action is clicked, you can use the
+`keepOpenOnClick` prop. An example of this behaviour can be found in the
+[Keep Open on Click](../?path=/story/components-selections-combobox-web--keep-open-on-action-click)
+story.
 
 ### Selection behavior
 

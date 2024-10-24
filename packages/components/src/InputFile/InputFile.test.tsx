@@ -259,6 +259,31 @@ describe("Post Requests", () => {
       expect(axios.request).not.toHaveBeenCalled();
     });
   });
+
+  describe("when allowedTypes uses FileTypes enum", () => {
+    it("sets the correct MIME types for allowedTypes prop", () => {
+      const { container } = render(
+        <InputFile
+          getUploadParams={fetchUploadParams}
+          allowedTypes={["JPEG", "PNG", "HEIC", "PDF", "DOCX"]}
+        />,
+      );
+
+      const input = container.querySelector(
+        "input[type=file]",
+      ) as HTMLInputElement;
+
+      const expectedMimeTypes = [
+        "image/jpeg",
+        "image/png",
+        "image/heic",
+        "application/pdf",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      ].join(",");
+
+      expect(input.accept).toBe(expectedMimeTypes);
+    });
+  });
 });
 
 describe("PUT requests", () => {

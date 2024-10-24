@@ -6,7 +6,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import styles from "./DataListStickyHeader.css";
+import styles from "./DataListStickyHeader.module.css";
 import { DATA_LIST_STICKY_HEADER_TEST_ID } from "../../DataList.const";
 
 export function DataListStickyHeader({ children }: PropsWithChildren<object>) {

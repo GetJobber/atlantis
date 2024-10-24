@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./FormatFile.css";
+import styles from "./FormatFile.module.css";
 import { Button } from "../Button";
 import { ConfirmationModal } from "../ConfirmationModal";
 

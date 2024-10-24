@@ -1,7 +1,7 @@
 import { ReactNode, createElement } from "react";
 import classnames from "classnames";
-import spacings from "./Spacing.css";
-import styles from "./Content.css";
+import spacings from "./Spacing.module.css";
+import styles from "./Content.module.css";
 
 interface ContentProps {
   readonly children: ReactNode | ReactNode[];

@@ -1,5 +1,5 @@
 import React, { ReactElement, cloneElement, useContext } from "react";
-import styles from "./DataListEmptyState.css";
+import styles from "./DataListEmptyState.module.css";
 import { DataListContext } from "../../context/DataListContext";
 import { DataListEmptyStateProps } from "../../DataList.types";
 import { Text } from "../../../Text";

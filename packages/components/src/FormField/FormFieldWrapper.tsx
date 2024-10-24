@@ -10,7 +10,7 @@ import { Clearable, useShowClear } from "@jobber/hooks/useShowClear";
 import { AnimatePresence, motion } from "framer-motion";
 import { tokens } from "@jobber/design";
 import { FormFieldProps } from "./FormFieldTypes";
-import styles from "./FormField.css";
+import styles from "./FormField.module.css";
 import { AffixIcon, AffixLabel } from "./FormFieldAffix";
 import { FormFieldDescription } from "./FormFieldDescription";
 import { ClearAction } from "./components/ClearAction";
