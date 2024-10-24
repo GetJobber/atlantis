@@ -91,7 +91,7 @@
     "@types/history": "^4.7.6",
     "@types/jest": "^29.5.0",
     "@types/lodash": "^4.14.149",
-    "@types/react": "^18.0.28",
+    "@types/react": "^18.3.12",
     "@types/react-dom": "^18.0.11",
     "@types/react-router-dom": "^5.3.3",
     "@types/react-test-renderer": "^18.0.0",
