@@ -2,14 +2,22 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import { ComboboxOption } from "./ComboboxOption";
 import { ComboboxOptionProps } from "../../Combobox.types";
-import { ComboboxContextProvider } from "../../ComboboxProvider";
+import {
+  ComboboxContextProvider,
+  ComboboxProviderProps,
+} from "../../ComboboxProvider";
 
-export function renderOption(
-  id: string | number,
-  label: string,
-  selected: ComboboxOptionProps[],
+export function renderOption({
+  id,
+  label,
+  selected,
   onSelect = jest.fn(),
-) {
+}: {
+  id: string | number;
+  label: string;
+  selected: ComboboxOptionProps[];
+  onSelect?: ComboboxProviderProps["selectionHandler"];
+}) {
   return render(
     <ComboboxContextProvider
       handleOpen={jest.fn()}

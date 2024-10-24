@@ -10,25 +10,33 @@ afterEach(() => {
 describe("ComboboxOption", () => {
   describe("when option is selected", () => {
     it("should have a checkmark", () => {
-      POM.renderOption("1", "Michael", [{ id: "1", label: "Michael" }]);
+      POM.renderOption({
+        id: "1",
+        label: "Michael",
+        selected: [{ id: "1", label: "Michael" }],
+      });
 
       expect(POM.getCheckmark()).toBeInTheDocument();
     });
 
     it("should have selected attributes", () => {
-      POM.renderOption("1", "Michael", [{ id: "1", label: "Michael" }]);
+      POM.renderOption({
+        id: "1",
+        label: "Michael",
+        selected: [{ id: "1", label: "Michael" }],
+      });
 
       expect(POM.getOption("Michael")).toHaveAttribute("aria-selected", "true");
       expect(POM.getOption("Michael")).toHaveAttribute("data-selected", "true");
     });
 
     it("should call selectionHandler when clicked", async () => {
-      POM.renderOption(
-        "1",
-        "Michael",
-        [{ id: "1", label: "Michael" }],
+      POM.renderOption({
+        id: "1",
+        label: "Michael",
+        selected: [{ id: "1", label: "Michael" }],
         onSelect,
-      );
+      });
 
       await userEvent.click(POM.getOption("Michael"));
 
@@ -37,7 +45,11 @@ describe("ComboboxOption", () => {
 
     describe("id type insensitivity", () => {
       it("should correctly evaluate if selected is a string and option is a number", () => {
-        POM.renderOption("1", "Michael", [{ id: 1, label: "Michael" }]);
+        POM.renderOption({
+          id: "1",
+          label: "Michael",
+          selected: [{ id: "1", label: "Michael" }],
+        });
 
         expect(POM.getOption("Michael")).toHaveAttribute(
           "aria-selected",
@@ -49,7 +61,11 @@ describe("ComboboxOption", () => {
         );
       });
       it("should correctly evaluate if selected is a number and option is a number", () => {
-        POM.renderOption(1, "Michael", [{ id: 1, label: "Michael" }]);
+        POM.renderOption({
+          id: "1",
+          label: "Michael",
+          selected: [{ id: "1", label: "Michael" }],
+        });
 
         expect(POM.getOption("Michael")).toHaveAttribute(
           "aria-selected",
@@ -65,13 +81,21 @@ describe("ComboboxOption", () => {
 
   describe("when option is not selected", () => {
     it("should not have a checkmark", async () => {
-      POM.renderOption("1", "Michael", []);
+      POM.renderOption({
+        id: "1",
+        label: "Michael",
+        selected: [],
+      });
 
       expect(POM.queryCheckmark()).not.toBeInTheDocument();
     });
 
     it("should not have selected attributes", () => {
-      POM.renderOption("1", "Michael", []);
+      POM.renderOption({
+        id: "1",
+        label: "Michael",
+        selected: [],
+      });
 
       expect(POM.getOption("Michael")).toHaveAttribute(
         "aria-selected",
@@ -84,7 +108,12 @@ describe("ComboboxOption", () => {
     });
 
     it("should call selectionHandler when clicked", async () => {
-      POM.renderOption("1", "Michael", [], onSelect);
+      POM.renderOption({
+        id: "1",
+        label: "Michael",
+        selected: [],
+        onSelect,
+      });
 
       await userEvent.click(POM.getOption("Michael"));
 
