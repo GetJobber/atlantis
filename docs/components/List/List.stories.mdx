@@ -24,8 +24,6 @@ customize rendering. If your items conform to the `ListItemProps` interface, the
 component will render them automatically with the default behavior. The
 `ListItemProps` must be used when using default rendering.
 
-**`ListItemProps`** interface.
-
 #### Basic Flat List
 
 <Canvas>
@@ -103,7 +101,11 @@ their section and display them under section headers.
 
 If you need more control over the rendering of list items, you can provide a
 **custom render function** using the `customRenderItem` prop. This is useful if
-the default `ListItem` component doesn’t meet your requirements.
+the default rendering of the `ListItem` component doesn’t meet your
+requirements. If a custom render function is provided onClick, url, and hover
+functionality will still work. Sectioned list functionality will also remain the
+same. Lastly, the styles wrapping the list items will match those of a `List`
+with no custom render function.
 
 **Example: Custom Render Function with Custom Interface**
 
@@ -113,11 +115,15 @@ import { List } from "./List";
 interface ProductListItemProps extends BaseListItemProps {
   readonly name: string;
   readonly price: string;
+  readonly section: string;
+  readonly onClick?: () => void;
 }
 
 const items: ProductListItemProps[] = [
-  { id: 1, name: "Lawn Mower", price: "$250.00" },
-  { id: 2, name: "Hedge Trimmer", price: "$85.00" },
+  { id: 1, name: "Lawn Mower", price: "$250.00", section: "Garden Tools", onClick: () => alert("Lawn Mower clicked") },
+  { id: 2, name: "Hedge Trimmer", price: "$85.00", section: "Garden Tools", onClick: () => alert("Hedge Trimmer clicked") },
+  { id: 3, name: "Drill", price: "$50.00", section: "Power Tools", onClick: () => alert("Drill clicked") },
+  { id: 4, name: "Screwdriver", price: "$10.00", section: "Hand Tools", onClick: () => alert("Screwdriver clicked") },
 ];
 
 const renderProductItem = (item: ProductListItemProps) => (

@@ -1,6 +1,5 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import groupBy from "lodash/groupBy";
 import {
   BaseListItemProps,
   List,
@@ -95,6 +94,7 @@ SectionedListItems.args = { items: sectionedListItems };
 interface SPListItemProps extends BaseListItemProps {
   readonly name: string;
   readonly avatarUrl: string;
+  readonly onClick?: () => void;
 }
 
 const serviceProviderListItems: SPListItemProps[] = [
@@ -102,26 +102,31 @@ const serviceProviderListItems: SPListItemProps[] = [
     id: 1,
     name: "Rob Lane",
     avatarUrl: "https://randomuser.me/api/portraits/men/1.jpg",
+    onClick: () => alert("TODO: Implement onClick"),
   },
   {
     id: 2,
     name: "Marlene Hamilton",
     avatarUrl: "https://randomuser.me/api/portraits/women/2.jpg",
+    onClick: () => alert("TODO: Implement onClick"),
   },
   {
     id: 3,
     name: "Miriam Graves",
     avatarUrl: "https://randomuser.me/api/portraits/women/3.jpg",
+    onClick: () => alert("TODO: Implement onClick"),
   },
   {
     id: 4,
     name: "Milton Payne",
     avatarUrl: "https://randomuser.me/api/portraits/men/3.jpg",
+    onClick: () => alert("TODO: Implement onClick"),
   },
   {
     id: 5,
     name: "Madison Simmons",
     avatarUrl: "https://randomuser.me/api/portraits/women/4.jpg",
+    onClick: () => alert("TODO: Implement onClick"),
   },
 ];
 
@@ -131,19 +136,11 @@ function RenderServiceProviderList({
   readonly listItem: SPListItemProps;
 }) {
   return (
-    <div
-      style={{
-        padding: "16px",
-        // If this was outside of Storybook :not(:last-child) would be used
-        borderBottom: listItem.id !== 5 ? "1px solid 	#dadfe2" : "none",
-      }}
-    >
-      <Flex template={["shrink", "grow", "shrink"]} align="center">
-        <Avatar imageUrl={listItem.avatarUrl} />
-        <Heading level={4}>{listItem.name}</Heading>
-        <Icon name="arrowRight" size="base" color="interactive" />
-      </Flex>
-    </div>
+    <Flex template={["shrink", "grow", "shrink"]} align="center">
+      <Avatar imageUrl={listItem.avatarUrl} />
+      <Heading level={4}>{listItem.name}</Heading>
+      <Icon name="arrowRight" size="base" color="interactive" />
+    </Flex>
   );
 }
 
@@ -161,6 +158,7 @@ interface ProductListItemProps extends BaseListItemProps {
   readonly image: FileUpload;
   readonly price: string;
   readonly section: string;
+  readonly onClick?: () => void;
 }
 
 const imageFile: FileUpload = {
@@ -180,6 +178,7 @@ const productsList: ProductListItemProps[] = [
     image: imageFile,
     price: "$250.00",
     section: "Products",
+    onClick: () => alert("TODO: Implement onClick"),
   },
   {
     id: 2,
@@ -188,6 +187,7 @@ const productsList: ProductListItemProps[] = [
     image: imageFile,
     price: "$85.00",
     section: "Products",
+    onClick: () => alert("TODO: Implement onClick"),
   },
   {
     id: 3,
@@ -196,6 +196,7 @@ const productsList: ProductListItemProps[] = [
     image: imageFile,
     price: "$30.00",
     section: "Products",
+    onClick: () => alert("TODO: Implement onClick"),
   },
   {
     id: 4,
@@ -204,6 +205,7 @@ const productsList: ProductListItemProps[] = [
     image: imageFile,
     price: "$50.00",
     section: "Services",
+    onClick: () => alert("TODO: Implement onClick"),
   },
   {
     id: 5,
@@ -212,6 +214,7 @@ const productsList: ProductListItemProps[] = [
     image: imageFile,
     price: "$40.00",
     section: "Services",
+    onClick: () => alert("TODO: Implement onClick"),
   },
   {
     id: 6,
@@ -220,6 +223,7 @@ const productsList: ProductListItemProps[] = [
     image: imageFile,
     price: "$75.00",
     section: "Services",
+    onClick: () => alert("TODO: Implement onClick"),
   },
 ];
 
@@ -229,75 +233,23 @@ function RenderProductList({
   readonly listItem: ProductListItemProps;
 }) {
   return (
-    <div
-      style={{
-        padding: "16px",
-        // If this was outside of Storybook :not(:last-child) would be used
-        borderBottom: listItem.id !== 6 ? "1px solid 	#dadfe2" : "none",
-      }}
-    >
-      <Flex template={["shrink", "grow"]} align="center">
-        <FormatFile
-          file={listItem.image}
-          display="compact"
-          displaySize="base"
-        />
-        <div style={{ marginBottom: "8px" }}>
-          <Heading level={4}>{listItem.name}</Heading>
-          <Flex template={["grow", "shrink"]} align="start">
-            <Text>{listItem.description}</Text>
-            <Text>{listItem.price}</Text>
-          </Flex>
-        </div>
-      </Flex>
-    </div>
-  );
-}
-
-interface ProductSectionProps extends BaseListItemProps {
-  readonly products: ProductListItemProps[];
-}
-
-function groupProductsBySection(
-  items: ProductListItemProps[],
-): ProductSectionProps[] {
-  const grouped = groupBy(items, "section");
-
-  return Object.entries(grouped).map(([section, products]) => ({
-    id: section,
-    products,
-  }));
-}
-
-function RenderProductSection({
-  listItem,
-}: {
-  readonly listItem: ProductSectionProps;
-}) {
-  return (
-    <div>
-      <div
-        style={{
-          padding: "10px 0px 10px 16px",
-          borderBottom: "1px solid black",
-        }}
-      >
-        <Heading level={4}>{listItem.id}</Heading>
+    <Flex template={["shrink", "grow"]} align="center">
+      <FormatFile file={listItem.image} display="compact" displaySize="base" />
+      <div style={{ marginBottom: "8px" }}>
+        <Heading level={4}>{listItem.name}</Heading>
+        <Flex template={["grow", "shrink"]} align="start">
+          <Text>{listItem.description}</Text>
+          <Text>{listItem.price}</Text>
+        </Flex>
       </div>
-      <List
-        items={listItem.products}
-        customRenderItem={(item: ProductListItemProps) => (
-          <RenderProductList listItem={item} />
-        )}
-      />
-    </div>
+    </Flex>
   );
 }
 
 export const SectionedListWithCustomRenderer = BasicTemplate.bind({});
 SectionedListWithCustomRenderer.args = {
-  items: groupProductsBySection(productsList),
-  customRenderItem: (item: ProductSectionProps) => (
-    <RenderProductSection listItem={item} />
+  items: productsList,
+  customRenderItem: (item: ProductListItemProps) => (
+    <RenderProductList listItem={item} />
   ),
 };

@@ -144,7 +144,7 @@ describe("When a list item is clicked", () => {
 });
 
 describe("When a list is provided a custom render function", () => {
-  test("it should use the custom render function instead of ListItem", () => {
+  test("it should use the custom render instead of default ListItem behaviour", () => {
     interface CustomListItemProps extends BaseListItemProps {
       readonly name: string;
       readonly address: string;
@@ -174,6 +174,59 @@ describe("When a list is provided a custom render function", () => {
             id: 2,
             name: "Joe Doe",
             address: "456 Main St",
+          },
+        ]}
+        customRenderItem={item => <CustomRenderer listItem={item} />}
+      />,
+    );
+    expect(container).toMatchSnapshot();
+  });
+
+  test("it should handle a sectioned list with a custom render function", () => {
+    interface CustomListItemProps extends BaseListItemProps {
+      readonly name: string;
+      readonly address: string;
+      readonly section: string;
+    }
+
+    function CustomRenderer({
+      listItem,
+    }: {
+      readonly listItem: CustomListItemProps;
+    }) {
+      return (
+        <div>
+          <Text>{listItem.name}</Text>
+          <Text>{listItem.address}</Text>
+        </div>
+      );
+    }
+    const { container } = render(
+      <List
+        items={[
+          {
+            id: 1,
+            name: "Jane Doe",
+            address: "123 Main St",
+            section: "Employees",
+          },
+          {
+            id: 2,
+            name: "Joe Doe",
+            address: "456 Main St",
+            section: "Employees",
+          },
+          {
+            id: 3,
+            name: "Milton Bradley",
+            address: "123 Fake St",
+            section: "Customers",
+          },
+          {
+            id: 4,
+            name: "Tony Redman",
+            address: "456 Fake St",
+            section: "Customers",
           },
         ]}
         customRenderItem={item => <CustomRenderer listItem={item} />}
