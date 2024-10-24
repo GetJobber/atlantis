@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Meta, StoryFn } from "@storybook/react";
-import { SegmentedControl } from "@jobber/components/SegmentedControl";
+import {
+  SegmentedControl,
+  SegmentedControlContext,
+} from "@jobber/components/SegmentedControl";
 import { Icon } from "@jobber/components/Icon";
 
 const meta: Meta = {
@@ -90,5 +93,32 @@ export const WithIcons: Story = () => {
         <Icon name="chat" />
       </SegmentedControl.Option>
     </SegmentedControl>
+  );
+};
+
+export const AsUncontrolled: Story = () => {
+  const [activeOption, setActiveOption] = useState("pizza");
+
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = e => {
+    setActiveOption(e.target.value);
+  };
+
+  return (
+    <SegmentedControlContext.Provider
+      value={{ handleChange, selectedOption: activeOption }}
+    >
+      <SegmentedControl.Base>
+        <SegmentedControl.Option value="pizza">Pizza</SegmentedControl.Option>
+        <SegmentedControl.Option value="pizza2">
+          Ultra Pizza
+        </SegmentedControl.Option>
+        <SegmentedControl.Option value="pizza3">
+          Mega Pizza
+        </SegmentedControl.Option>
+        <SegmentedControl.Option value="pizza4">
+          Everything Pizza
+        </SegmentedControl.Option>
+      </SegmentedControl.Base>
+    </SegmentedControlContext.Provider>
   );
 };
