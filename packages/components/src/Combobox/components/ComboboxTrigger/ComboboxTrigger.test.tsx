@@ -5,30 +5,20 @@ import { ComboboxTrigger } from "./ComboboxTrigger";
 import { ComboboxContextProvider } from "../../ComboboxProvider";
 import { ComboboxOptionProps } from "../../Combobox.types";
 
-const toggleOpen = jest.fn();
+const handleOpen = jest.fn();
 
 afterEach(() => {
-  toggleOpen.mockClear();
+  handleOpen.mockClear();
 });
 
 describe("ComboboxTrigger", () => {
   describe("when open is false", () => {
-    it("calls toggleOpen", async () => {
+    it("calls handleOpen", async () => {
       renderTrigger();
       const trigger = screen.getByRole("combobox");
 
       await userEvent.click(trigger);
-      expect(toggleOpen).toHaveBeenCalled();
-    });
-  });
-
-  describe("when open is true", () => {
-    it("calls toggleOpen", async () => {
-      renderTrigger(true);
-      const trigger = screen.getByRole("combobox");
-
-      await userEvent.click(trigger);
-      expect(toggleOpen).toHaveBeenCalled();
+      expect(handleOpen).toHaveBeenCalled();
     });
   });
 
@@ -124,7 +114,7 @@ function renderTrigger(
 ) {
   return render(
     <ComboboxContextProvider
-      toggleOpen={toggleOpen}
+      handleOpen={handleOpen}
       handleClose={jest.fn()}
       selected={[]}
       open={open}

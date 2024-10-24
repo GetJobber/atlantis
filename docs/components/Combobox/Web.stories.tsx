@@ -194,10 +194,10 @@ const ComboboxCustomActivator: ComponentStory<typeof Combobox> = args => {
               tabIndex={0}
               aria-controls={activatorAPI.ariaControls}
               aria-expanded={activatorAPI.ariaExpanded}
-              onClick={activatorAPI.toggleOpen}
+              onClick={activatorAPI.open}
               onKeyDown={e => {
                 if (e.key === "Enter" || e.key === " ") {
-                  activatorAPI.toggleOpen();
+                  activatorAPI.open();
                 }
               }}
               style={{
