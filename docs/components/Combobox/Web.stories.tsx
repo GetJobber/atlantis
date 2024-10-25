@@ -534,7 +534,6 @@ const ComboboxCustomRenderOptions: ComponentStory<typeof Combobox> = args => {
       <Combobox.Option
         id="1"
         label="Bilbo"
-        prefix={<StatusIndicator status="success" />}
         customRender={({ id, isSelected, label }) => {
           return (
             <Flex template={["shrink", "grow", "shrink"]} gap="small">
