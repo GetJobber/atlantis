@@ -7,28 +7,34 @@ import {
   ComboboxProviderProps,
 } from "../../ComboboxProvider";
 
+const noop = () => {
+  return;
+};
+
 export function renderOption({
   id,
   label,
+  customRender,
   selected,
-  onSelect = jest.fn(),
+  onSelect = noop,
 }: {
   id: string | number;
   label: string;
+  customRender?: ComboboxOptionProps["customRender"];
   selected: ComboboxOptionProps[];
   onSelect?: ComboboxProviderProps["selectionHandler"];
 }) {
   return render(
     <ComboboxContextProvider
-      handleOpen={jest.fn()}
-      handleClose={jest.fn()}
+      handleOpen={noop}
+      handleClose={noop}
       selected={selected}
       open={true}
       shouldScroll={{ current: false }}
       selectionHandler={onSelect}
       searchValue=""
     >
-      <ComboboxOption label={label} id={id} />
+      <ComboboxOption label={label} id={id} customRender={customRender} />
     </ComboboxContextProvider>,
   );
 }
@@ -43,4 +49,8 @@ export function getCheckmark() {
 
 export function queryCheckmark() {
   return screen.queryByTestId("checkmark");
+}
+
+export function queryListItem() {
+  return screen.queryByRole("option");
 }

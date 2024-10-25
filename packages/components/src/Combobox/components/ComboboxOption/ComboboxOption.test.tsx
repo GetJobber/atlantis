@@ -1,5 +1,8 @@
+import React from "react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import * as POM from "./ComboboxOption.pom";
+import { ComboboxOptionProps } from "../../Combobox.types";
 
 const onSelect = jest.fn();
 
@@ -118,6 +121,114 @@ describe("ComboboxOption", () => {
       await userEvent.click(POM.getOption("Michael"));
 
       expect(onSelect).toHaveBeenCalled();
+    });
+  });
+
+  describe("when supplying a customRender prop", () => {
+    it("renders the custom content", () => {
+      const option: ComboboxOptionProps = {
+        id: "1",
+        label: "Michael",
+        customRender: ({ id, label, isSelected }) => {
+          return (
+            <div>
+              <div data-id={id}>id</div>
+              <div data-label={label}>label</div>
+              {isSelected && "✅"}
+            </div>
+          );
+        },
+      };
+
+      POM.renderOption({
+        ...option,
+        selected: [],
+      });
+
+      const id = screen.getByText("id");
+      const label = screen.getByText("label");
+      const selectedCheckmark = screen.queryByText("✅");
+      expect(id.dataset.id).toBe("1");
+      expect(label.dataset.label).toBe("Michael");
+      expect(selectedCheckmark).not.toBeInTheDocument();
+    });
+
+    it("renders the custom content with a checkmark if selected", () => {
+      const option: ComboboxOptionProps = {
+        id: "1",
+        label: "Michael",
+        customRender: ({ id, label, isSelected }) => {
+          return (
+            <div>
+              <div data-id={id}>id</div>
+              <div data-label={label}>label</div>
+              {isSelected && "✅"}
+            </div>
+          );
+        },
+      };
+
+      POM.renderOption({
+        ...option,
+        selected: [option],
+      });
+
+      const id = screen.getByText("id");
+      const label = screen.getByText("label");
+      const selectedCheckmark = screen.queryByText("✅");
+      expect(id.dataset.id).toBe("1");
+      expect(label.dataset.label).toBe("Michael");
+      expect(selectedCheckmark).toBeInTheDocument();
+    });
+
+    it("wraps the custom content within <li>", () => {
+      const option: ComboboxOptionProps = {
+        id: "1",
+        label: "Michael",
+        customRender: ({ id, label, isSelected }) => {
+          return (
+            <div>
+              id = {id}
+              label = {label}
+              {isSelected && "✅"}
+            </div>
+          );
+        },
+      };
+
+      POM.renderOption({
+        ...option,
+        selected: [option],
+      });
+
+      expect(POM.queryListItem()).toBeInTheDocument();
+    });
+
+    it("selects the option when clicked", async () => {
+      const option: ComboboxOptionProps = {
+        id: "1",
+        label: "Michael",
+        customRender: ({ id, label, isSelected }) => {
+          return (
+            <div data-id={id}>
+              {label} {isSelected && "✅"}
+            </div>
+          );
+        },
+      };
+
+      POM.renderOption({
+        ...option,
+        selected: [],
+        onSelect,
+      });
+
+      await userEvent.click(POM.getOption("Michael"));
+      expect(onSelect).toHaveBeenCalledTimes(1);
+      expect(onSelect).toHaveBeenCalledWith({
+        id: "1",
+        label: "Michael",
+      });
     });
   });
 });
