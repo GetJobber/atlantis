@@ -42,8 +42,8 @@ export function Disclosure({
   const isTitleString = typeof title === "string";
 
   return (
-    <details open={isOpen} onToggle={handleToggle} className={styles.details}>
-      <summary className={styles.summary}>
+    <details open={isOpen} className={styles.details}>
+      <summary className={styles.summary} onClick={handleToggle}>
         <div
           className={classnames(styles.summaryWrap, {
             [styles.customSummaryWrap]: !isTitleString,
@@ -64,10 +64,11 @@ export function Disclosure({
   );
 
   function handleToggle(event: React.MouseEvent<HTMLDetailsElement>) {
-    console.log("handleToggle");
-    const { open: currentToggleState } = event.target as HTMLDetailsElement;
-    if (currentToggleState === isOpen) return;
-    setInternalOpen(() => !isOpen);
+    if (open !== undefined) {
+      event.preventDefault();
+    }
+
+    setInternalOpen(value => !value);
     onToggle?.(!isOpen);
   }
 }
