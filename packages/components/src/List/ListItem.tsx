@@ -115,7 +115,7 @@ export function ListItem<T extends BaseListItemProps = ListItemProps>(
 
 function DefaultRenderItem(props: ListItemProps) {
   return (
-    <>
+    <div className={styles.defaultContainer}>
       {props.icon && (
         <div className={styles.icon}>
           <Icon name={props.icon} color={props.iconColor} />
@@ -142,7 +142,7 @@ function DefaultRenderItem(props: ListItemProps) {
           </Text>
         </div>
       )}
-    </>
+    </div>
   );
 }
 
