@@ -16,3 +16,4 @@ export * from "./useResizeObserver";
 export * from "./useSafeLayoutEffect";
 export * from "./useShowClear";
 export * from "./useWindowDimensions";
+export * from "./useControllableState";

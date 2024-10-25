@@ -42,5 +42,11 @@
   },
   "peacock.affectActivityBar": false,
   "peacock.affectTitleBar": false,
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "presentation-mode.configBackup": {
+    "terminal.integrated.fontSize": "undefined",
+    "editor.fontSize": "undefined"
+  },
+  "terminal.integrated.fontSize": 24,
+  "editor.fontSize": 24
 }

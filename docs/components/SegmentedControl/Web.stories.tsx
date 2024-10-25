@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { Meta, StoryFn } from "@storybook/react";
-import {
-  SegmentedControl,
-  SegmentedControlContext,
-} from "@jobber/components/SegmentedControl";
+import { SegmentedControl } from "@jobber/components/SegmentedControl";
 import { Icon } from "@jobber/components/Icon";
 
 const meta: Meta = {
@@ -21,25 +18,18 @@ const meta: Meta = {
 export default meta;
 
 type Story = StoryFn<typeof SegmentedControl>;
-type BasicSegment = "pizza" | "tacos" | "sushi" | "burgers";
 const options = [
   { value: "pizza", label: "Pizza" },
   { value: "tacos", label: "Tacos" },
   { value: "sushi", label: "Sushi" },
   { value: "burgers", label: "Burgers" },
-];
+] as const;
+
+type BasicSegment = (typeof options)[number]["value"];
 
 export const Basic: Story = () => {
-  const [activeOption, setActiveOption] = useState<BasicSegment>("pizza");
-
   return (
-    <SegmentedControl
-      defaultOption={"pizza"}
-      selectedOption={activeOption}
-      onSelectOption={d => {
-        setActiveOption(d as BasicSegment);
-      }}
-    >
+    <SegmentedControl<BasicSegment> defaultValue="tacos">
       {options.map(option => (
         <SegmentedControl.Option key={option.value} value={option.value}>
           {option.label}
@@ -49,59 +39,67 @@ export const Basic: Story = () => {
   );
 };
 
-export const WithIcons: Story = () => {
-  const [activeOption, setActiveOption] = useState<BasicSegment>("pizza");
+type WithIconsType =
+  | "calendar"
+  | "phone"
+  | "presentation"
+  | "availability"
+  | "chat";
 
+export const WithIcons: Story = () => {
   return (
-    <SegmentedControl
-      defaultOption={"phone"}
-      selectedOption={activeOption}
-      onSelectOption={d => {
-        setActiveOption(d as BasicSegment);
-      }}
-    >
-      <SegmentedControl.Option value="calendar" ariaLabel="Calendar">
+    <SegmentedControl<WithIconsType> defaultValue="phone">
+      <SegmentedControl.Option<WithIconsType>
+        value="calendar"
+        ariaLabel="Calendar"
+      >
         <Icon name="calendar" />
       </SegmentedControl.Option>
-      <SegmentedControl.Option value="phone" ariaLabel="Phone">
+      <SegmentedControl.Option<WithIconsType> value="phone" ariaLabel="Phone">
         <Icon name="phone" />
       </SegmentedControl.Option>
-      <SegmentedControl.Option value="presentation" ariaLabel="Presentation">
+      <SegmentedControl.Option<WithIconsType>
+        value="presentation"
+        ariaLabel="Presentation"
+      >
         <Icon name="presentation" />
       </SegmentedControl.Option>
-      <SegmentedControl.Option value="availability" ariaLabel="Availability">
+      <SegmentedControl.Option<WithIconsType>
+        value="availability"
+        ariaLabel="Availability"
+      >
         <Icon name="availability" />
       </SegmentedControl.Option>
-      <SegmentedControl.Option value="chat" ariaLabel="Chat">
+      <SegmentedControl.Option<WithIconsType> value="chat" ariaLabel="Chat">
         <Icon name="chat" />
       </SegmentedControl.Option>
     </SegmentedControl>
   );
 };
 
-export const AsUncontrolled: Story = () => {
-  const [activeOption, setActiveOption] = useState("pizza");
+type UncontrolledOptions = "pizza" | "pizza2" | "pizza3" | "pizza4";
 
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> = e => {
-    setActiveOption(e.target.value);
-  };
+export const AsUncontrolled: Story = () => {
+  const [activeOption, setActiveOption] =
+    useState<UncontrolledOptions>("pizza");
 
   return (
-    <SegmentedControlContext.Provider
-      value={{ handleChange, selectedOption: activeOption }}
+    <SegmentedControl<UncontrolledOptions>
+      value={activeOption}
+      onValueChange={setActiveOption}
     >
-      <SegmentedControl.Base>
-        <SegmentedControl.Option value="pizza">Pizza</SegmentedControl.Option>
-        <SegmentedControl.Option value="pizza2">
-          Ultra Pizza
-        </SegmentedControl.Option>
-        <SegmentedControl.Option value="pizza3">
-          Mega Pizza
-        </SegmentedControl.Option>
-        <SegmentedControl.Option value="pizza4">
-          Everything Pizza
-        </SegmentedControl.Option>
-      </SegmentedControl.Base>
-    </SegmentedControlContext.Provider>
+      <SegmentedControl.Option<UncontrolledOptions> value="pizza">
+        Pizza
+      </SegmentedControl.Option>
+      <SegmentedControl.Option<UncontrolledOptions> value="pizza2">
+        Ultra Pizza
+      </SegmentedControl.Option>
+      <SegmentedControl.Option<UncontrolledOptions> value="pizza3">
+        Mega Pizza
+      </SegmentedControl.Option>
+      <SegmentedControl.Option<UncontrolledOptions> value="pizza4">
+        Everything Pizza
+      </SegmentedControl.Option>
+    </SegmentedControl>
   );
 };

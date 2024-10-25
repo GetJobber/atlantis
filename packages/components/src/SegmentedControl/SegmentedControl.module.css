@@ -31,6 +31,11 @@
 }
 
 .container span {
+  display: none;
+}
+
+.container input:checked ~ span {
+  display: block;
   position: absolute;
   left: 0;
   width: calc(100% / var(--segmentedControl--option-count));
