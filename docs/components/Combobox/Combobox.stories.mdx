@@ -81,8 +81,20 @@ The content of the Combobox is responsible for displaying the list of selectable
 options, handling user interactions, and managing search functionality.
 
 `<Combobox.Option />` represents an individual option within the list. Each
-option has `id` and `label` props which are used to identify and display the
-option.
+option has `id`, `label`, and `prefix` props which are used to identify and
+display the option.
+
+##### Custom Content
+
+You can use the `prefix` option to render content on the left side of the
+provided `label`. An example of this behaviour can be found in the
+[Prefix Options](../?path=/story/components-selections-combobox-web--prefix-options)
+story.
+
+If you need more advanced control of the children inside each option, you can
+use the `customRender` prop to supply your own content. Check out the
+[Custom Render Options](../?path=/story/components-selections-combobox-web--custom-render-options)
+story for an example.
 
 #### Action
 
