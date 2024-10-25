@@ -1,9 +1,6 @@
-import React, { ReactElement, ReactNode, useEffect, useState } from "react";
-import {
-  Breakpoints,
-  useResizeObserver,
-} from "@jobber/hooks/useResizeObserver";
+import React, { ReactElement, ReactNode, useState } from "react";
 import classnames from "classnames";
+import { useBreakpoints } from "@jobber/hooks/useBreakpoints";
 import styles from "./Disclosure.module.css";
 import { Icon } from "../Icon";
 import { Typography } from "../Typography";
@@ -27,35 +24,35 @@ interface DisclosureProps {
    * @default false
    */
   readonly defaultOpen?: boolean;
+
+  readonly onToggle?: (newOpened: boolean) => void;
+  readonly opened?: boolean;
 }
 
 export function Disclosure({
   children,
   title,
   defaultOpen = false,
+  onToggle,
+  opened,
 }: DisclosureProps) {
-  const [isOpen, setOpen] = useState(defaultOpen);
-  const [isMounted, setMount] = useState(false);
-  const [titleRef, { exactWidth }] = useResizeObserver<HTMLDivElement>();
-  const isBelowBreakpoint = exactWidth && exactWidth < Breakpoints.small;
+  const [internalIsOpened, setInternalIsOpen] = useState(defaultOpen || opened);
+  const isOpen = opened !== undefined ? opened : internalIsOpened;
+  const { smallAndUp } = useBreakpoints();
+  console.log({ internalIsOpened, isOpen, opened, defaultOpen });
   const isTitleString = typeof title === "string";
 
-  useEffect(() => {
-    setMount(true);
-  }, []);
-
   return (
-    <details open={isOpen} onToggle={onToggle} className={styles.details}>
+    <details open={isOpen} onToggle={handleToggle} className={styles.details}>
       <summary className={styles.summary}>
         <div
           className={classnames(styles.summaryWrap, {
             [styles.customSummaryWrap]: !isTitleString,
           })}
-          ref={titleRef}
         >
           <DisclosureTitle
             title={title}
-            size={isBelowBreakpoint ? "base" : "large"}
+            size={smallAndUp ? "large" : "base"}
             isTitleString={isTitleString}
           />
           <span className={styles.arrowIconWrapper}>
@@ -67,15 +64,12 @@ export function Disclosure({
     </details>
   );
 
-  function onToggle(event: React.MouseEvent<HTMLDetailsElement>) {
-    event.preventDefault();
+  function handleToggle(event: React.MouseEvent<HTMLDetailsElement>) {
+    console.log("handleToggle");
     const { open: currentToggleState } = event.target as HTMLDetailsElement;
-
-    if (!isMounted || currentToggleState === isOpen) {
-      return;
-    }
-
-    setOpen(!currentToggleState);
+    if (currentToggleState === isOpen) return;
+    setInternalIsOpen(() => !isOpen);
+    onToggle?.(!isOpen);
   }
 }
 
