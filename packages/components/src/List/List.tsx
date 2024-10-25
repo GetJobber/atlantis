@@ -40,10 +40,12 @@ function DisplayList<T extends BaseListItemProps = ListItemProps>({
   items,
   customRenderItem,
 }: ListProps<T>) {
+  const itemClassNames = classnames(!customRenderItem && styles.item);
+
   return (
     <ul className={styles.list}>
       {items.map(item => (
-        <li key={item.id} className={styles.item}>
+        <li key={item.id} className={itemClassNames}>
           <ListItem {...item} customRenderItem={customRenderItem} />
         </li>
       ))}
@@ -57,6 +59,7 @@ function SectionedList<T extends BaseListItemProps = ListItemProps>({
 }: ListProps<T>) {
   const sectionedItems = groupBy(items, item => get(item, "section", "Other"));
   const sectionHeaderClassNames = classnames(sectionStyles.sectionHeader);
+  const itemClassNames = classnames(!customRenderItem && styles.item);
 
   return (
     <ul className={styles.list}>
@@ -70,7 +73,7 @@ function SectionedList<T extends BaseListItemProps = ListItemProps>({
 
           <ul className={styles.list}>
             {sectionedItems[sectionName].map(item => (
-              <li key={item.id} className={styles.item}>
+              <li key={item.id} className={itemClassNames}>
                 <ListItem {...item} customRenderItem={customRenderItem} />
               </li>
             ))}
