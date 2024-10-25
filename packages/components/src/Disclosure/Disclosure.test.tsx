@@ -104,7 +104,7 @@ describe("Disclosure", () => {
         async ({ breakpoint, expectedClass }) => {
           setViewportWidth(breakpoint);
           render(
-            <Disclosure title="I am Disclosure" opened={false}>
+            <Disclosure title="I am Disclosure" open={false}>
               <span>Content</span>
             </Disclosure>,
           );
@@ -113,9 +113,9 @@ describe("Disclosure", () => {
         },
       );
     });
-    it("should open when `opened` is true", () => {
+    it("should open when `open` is true", () => {
       render(
-        <Disclosure opened title="I am Disclosure">
+        <Disclosure open title="I am Disclosure">
           <span>Content</span>
         </Disclosure>,
       );
@@ -124,9 +124,9 @@ describe("Disclosure", () => {
       expect(detailsElement.getAttribute("open")).not.toBeNull();
     });
 
-    it("should close when `opened` is false", () => {
+    it("should close when `open` is false", () => {
       render(
-        <Disclosure opened={false} title="I am Disclosure">
+        <Disclosure open={false} title="I am Disclosure">
           <span>Content</span>
         </Disclosure>,
       );
@@ -136,15 +136,15 @@ describe("Disclosure", () => {
     });
 
     it.each([
-      { opened: true, expected: false },
-      { opened: false, expected: true },
+      { open: true, expected: false },
+      { open: false, expected: true },
     ])(
-      `when $opened should call onToggle with $expected when the summary is clicked`,
-      async ({ expected, opened }) => {
+      `when $open should call onToggle with $expected when the summary is clicked`,
+      async ({ expected, open }) => {
         const mockOnToggle = jest.fn();
         render(
           <Disclosure
-            opened={opened}
+            open={open}
             onToggle={mockOnToggle}
             title="I am Disclosure"
           >

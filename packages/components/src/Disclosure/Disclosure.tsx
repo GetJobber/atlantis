@@ -26,7 +26,7 @@ interface DisclosureProps {
   readonly defaultOpen?: boolean;
 
   readonly onToggle?: (newOpened: boolean) => void;
-  readonly opened?: boolean;
+  readonly open?: boolean;
 }
 
 export function Disclosure({
@@ -34,12 +34,11 @@ export function Disclosure({
   title,
   defaultOpen = false,
   onToggle,
-  opened,
+  open,
 }: DisclosureProps) {
-  const [internalIsOpened, setInternalIsOpen] = useState(defaultOpen || opened);
-  const isOpen = opened !== undefined ? opened : internalIsOpened;
+  const [internalOpen, setInternalOpen] = useState(defaultOpen || open);
+  const isOpen = open !== undefined ? open : internalOpen;
   const { smallAndUp } = useBreakpoints();
-  console.log({ internalIsOpened, isOpen, opened, defaultOpen });
   const isTitleString = typeof title === "string";
 
   return (
@@ -68,7 +67,7 @@ export function Disclosure({
     console.log("handleToggle");
     const { open: currentToggleState } = event.target as HTMLDetailsElement;
     if (currentToggleState === isOpen) return;
-    setInternalIsOpen(() => !isOpen);
+    setInternalOpen(() => !isOpen);
     onToggle?.(!isOpen);
   }
 }
