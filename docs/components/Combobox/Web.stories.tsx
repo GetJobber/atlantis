@@ -18,6 +18,7 @@ import { Flex } from "@jobber/components/Flex";
 import { StatusLabel } from "@jobber/components/StatusLabel";
 import { Avatar } from "@jobber/components/Avatar";
 import { Box } from "@jobber/components/Box";
+import { Emphasis } from "@jobber/components/Emphasis";
 import { useFakeQuery } from "./storyUtils";
 
 export default {
@@ -532,6 +533,9 @@ const ComboboxCustomRenderOptions: ComponentStory<typeof Combobox> = args => {
   const [selectedTeamMembers, setSelectedTeamMembers] = useState<
     ComboboxOption[]
   >([]);
+  const [selectedLineItems, setSelectedLineItems] = useState<ComboboxOption[]>(
+    [],
+  );
 
   const teamMemberOptions = [
     {
@@ -575,6 +579,33 @@ const ComboboxCustomRenderOptions: ComponentStory<typeof Combobox> = args => {
       position: "Crew lead",
       timeToDestination: 30,
       availability: true,
+    },
+  ];
+
+  const lineItemOptions = [
+    {
+      id: 1,
+      label: "Ladder Hook",
+      details: "Holds up to 25LB",
+      price: "25.00",
+    },
+    {
+      id: 2,
+      label: "Garage Railing Track - 8'",
+      details: "Holds up to 250LB",
+      price: "150.00",
+    },
+    {
+      id: 3,
+      label: "Garage Railing Track - 16'",
+      details: "Holds up to 500LB",
+      price: "275.00",
+    },
+    {
+      id: 4,
+      label: "Premium Ladder Hook",
+      details: "",
+      price: "35.00",
     },
   ];
 
@@ -836,6 +867,47 @@ const ComboboxCustomRenderOptions: ComponentStory<typeof Combobox> = args => {
           label="+ Add new member"
           onClick={() => {
             alert("Added a new teammate ✅");
+          }}
+        />
+      </Combobox>
+
+      <Combobox
+        label="Add line item"
+        subjectNoun="line items"
+        {...args}
+        onSelect={setSelectedLineItems}
+        selected={selectedLineItems}
+      >
+        {lineItemOptions.map(o => {
+          return (
+            <Combobox.Option
+              key={o.id}
+              id={`${o.id}`}
+              label={o.label}
+              customRender={({ isSelected, label }) => {
+                return (
+                  <Flex template={["grow", "shrink"]} gap="small">
+                    <Box gap="smaller">
+                      <div>{label}</div>
+                      <Text variation="subdued" size="small">
+                        {o.details}
+                      </Text>
+                    </Box>
+                    <Box direction="row" alignItems="center" gap="smaller">
+                      <Emphasis variation="bold">${o.price}</Emphasis>
+                      {isSelected && <Icon name="checkmark" color="success" />}
+                    </Box>
+                  </Flex>
+                );
+              }}
+            />
+          );
+        })}
+
+        <Combobox.Action
+          label="+ Add new line item"
+          onClick={() => {
+            alert("Added a new line item ✅");
           }}
         />
       </Combobox>
