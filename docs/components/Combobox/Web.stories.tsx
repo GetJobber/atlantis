@@ -527,7 +527,7 @@ const ComboboxKeepOpenOnClick: ComponentStory<typeof Combobox> = args => {
 };
 
 const ComboboxCustomRenderOptions: ComponentStory<typeof Combobox> = args => {
-  const [selected, setSelected] = useState<ComboboxOptionProps[]>([]);
+  const [selected, setSelected] = useState<ComboboxOption[]>([]);
 
   return (
     <Combobox {...args} onSelect={setSelected} selected={selected}>
