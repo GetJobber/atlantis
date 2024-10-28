@@ -79,12 +79,15 @@ export function ListItem<T extends BaseListItemProps = ListItemProps>(
   props: T &
     ListItemProps & {
       readonly customRenderItem?: (item: T) => React.ReactNode;
+      readonly customItemStyles?: boolean;
     },
 ) {
+  const omitDefaultStyles = props.customRenderItem && props.customItemStyles;
   const actionClasses = classnames(
     styles.action,
     props.isActive && styles.isActive,
     (props.onClick || props.url) && styles.hoverable,
+    !omitDefaultStyles && styles.defaultContainer,
   );
   const Wrapper = props.url ? "a" : "button";
 
@@ -111,7 +114,7 @@ export function ListItem<T extends BaseListItemProps = ListItemProps>(
 
 function DefaultRenderItem(props: ListItemProps) {
   return (
-    <div className={styles.defaultContainer}>
+    <>
       {props.icon && (
         <div className={styles.icon}>
           <Icon name={props.icon} color={props.iconColor} />
@@ -138,7 +141,7 @@ function DefaultRenderItem(props: ListItemProps) {
           </Text>
         </div>
       )}
-    </div>
+    </>
   );
 }
 
