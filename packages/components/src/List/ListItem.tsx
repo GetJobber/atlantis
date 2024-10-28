@@ -15,7 +15,6 @@ export interface BaseListItemProps {
    * items when a batch action is implemented.
    */
   readonly id: number | string;
-  [key: string]: unknown;
 }
 
 export interface ListItemProps extends BaseListItemProps {
@@ -76,14 +75,11 @@ export interface ListItemProps extends BaseListItemProps {
   ): void;
 }
 
-// function isCustomRender<T extends BaseListItemProps = ListItemProps>(item: unknown): item is T {
-//   return "customRender" in item;
-//   }
-
 export function ListItem<T extends BaseListItemProps = ListItemProps>(
-  props: ListItemProps & {
-    readonly customRenderItem?: (item: T) => React.ReactNode;
-  },
+  props: T &
+    ListItemProps & {
+      readonly customRenderItem?: (item: T) => React.ReactNode;
+    },
 ) {
   const actionClasses = classnames(
     styles.action,
@@ -105,7 +101,7 @@ export function ListItem<T extends BaseListItemProps = ListItemProps>(
       {...buttonProps}
     >
       {props.customRenderItem ? (
-        props.customRenderItem(props as T)
+        props.customRenderItem(props)
       ) : (
         <DefaultRenderItem {...props} />
       )}
