@@ -21,32 +21,55 @@ interface ListProps<T extends BaseListItemProps = ListItemProps> {
    * rendering
    */
   readonly customRenderItem?: (item: T) => React.ReactNode;
+  /**
+   * Set to true for more control over the item styles
+   */
+  readonly customItemStyles?: boolean;
 }
 
 export function List<T extends BaseListItemProps = ListItemProps>({
   items,
   customRenderItem,
+  customItemStyles,
 }: ListProps<T>) {
   const isSectioned = items.some(item => "section" in item && item.section);
 
   if (isSectioned) {
-    return <SectionedList items={items} customRenderItem={customRenderItem} />;
+    return (
+      <SectionedList
+        items={items}
+        customRenderItem={customRenderItem}
+        customItemStyles={customItemStyles}
+      />
+    );
   } else {
-    return <DisplayList items={items} customRenderItem={customRenderItem} />;
+    return (
+      <DisplayList
+        items={items}
+        customRenderItem={customRenderItem}
+        customItemStyles={customItemStyles}
+      />
+    );
   }
 }
 
 function DisplayList<T extends BaseListItemProps = ListItemProps>({
   items,
   customRenderItem,
+  customItemStyles,
 }: ListProps<T>) {
-  const itemClassNames = classnames(!customRenderItem && styles.item);
+  const omitDefaultStyles = customRenderItem && customItemStyles;
+  const itemClassNames = classnames(!omitDefaultStyles && styles.item);
 
   return (
     <ul className={styles.list}>
       {items.map(item => (
         <li key={item.id} className={itemClassNames}>
-          <ListItem {...item} customRenderItem={customRenderItem} />
+          <ListItem
+            {...item}
+            customRenderItem={customRenderItem}
+            customItemStyles={customItemStyles}
+          />
         </li>
       ))}
     </ul>
@@ -56,10 +79,13 @@ function DisplayList<T extends BaseListItemProps = ListItemProps>({
 function SectionedList<T extends BaseListItemProps = ListItemProps>({
   items,
   customRenderItem,
+  customItemStyles,
 }: ListProps<T>) {
   const sectionedItems = groupBy(items, item => get(item, "section", "Other"));
   const sectionHeaderClassNames = classnames(sectionStyles.sectionHeader);
-  const itemClassNames = classnames(!customRenderItem && styles.item);
+
+  const omitDefaultStyles = customRenderItem && customItemStyles;
+  const itemClassNames = classnames(!omitDefaultStyles && styles.item);
 
   return (
     <ul className={styles.list}>
@@ -74,7 +100,11 @@ function SectionedList<T extends BaseListItemProps = ListItemProps>({
           <ul className={styles.list}>
             {sectionedItems[sectionName].map(item => (
               <li key={item.id} className={itemClassNames}>
-                <ListItem {...item} customRenderItem={customRenderItem} />
+                <ListItem
+                  {...item}
+                  customRenderItem={customRenderItem}
+                  customItemStyles={customItemStyles}
+                />
               </li>
             ))}
           </ul>

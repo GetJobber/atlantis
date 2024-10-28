@@ -21,10 +21,10 @@ exports[`When a list is provided a custom render function it should handle a sec
         class="list"
       >
         <li
-          class=""
+          class="item"
         >
           <button
-            class="action"
+            class="action defaultContainer"
             id="1"
             role="button"
             type="button"
@@ -44,10 +44,10 @@ exports[`When a list is provided a custom render function it should handle a sec
           </button>
         </li>
         <li
-          class=""
+          class="item"
         >
           <button
-            class="action"
+            class="action defaultContainer"
             id="2"
             role="button"
             type="button"
@@ -84,10 +84,10 @@ exports[`When a list is provided a custom render function it should handle a sec
         class="list"
       >
         <li
-          class=""
+          class="item"
         >
           <button
-            class="action"
+            class="action defaultContainer"
             id="3"
             role="button"
             type="button"
@@ -107,10 +107,10 @@ exports[`When a list is provided a custom render function it should handle a sec
           </button>
         </li>
         <li
-          class=""
+          class="item"
         >
           <button
-            class="action"
+            class="action defaultContainer"
             id="4"
             role="button"
             type="button"
@@ -141,10 +141,10 @@ exports[`When a list is provided a custom render function it should use the cust
     class="list"
   >
     <li
-      class=""
+      class="item"
     >
       <button
-        class="action"
+        class="action defaultContainer"
         id="1"
         role="button"
         type="button"
@@ -164,10 +164,10 @@ exports[`When a list is provided a custom render function it should use the cust
       </button>
     </li>
     <li
-      class=""
+      class="item"
     >
       <button
-        class="action"
+        class="action defaultContainer"
         id="2"
         role="button"
         type="button"
@@ -214,77 +214,73 @@ exports[`renders 1 List item with all the props 1`] = `
           class="item"
         >
           <a
-            class="action isActive hoverable"
+            class="action isActive hoverable defaultContainer"
             href="#"
             id="1"
           >
             <div
-              class="defaultContainer"
+              class="icon"
             >
-              <div
-                class="icon"
+              <svg
+                data-testid="checkmark"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  data-testid="checkmark"
-                  style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
-                    style="fill: var(--color-green);"
-                  />
-                </svg>
-              </div>
-              <div
-                class="info"
+                <path
+                  d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  style="fill: var(--color-green);"
+                />
+              </svg>
+            </div>
+            <div
+              class="info"
+            >
+              <h5
+                class="base bold base heading"
               >
-                <h5
-                  class="base bold base heading"
-                >
-                  Jordan Yeo completed a visit
-                </h5>
-                <p
-                  class="base regular base text"
-                >
-                  <span
-                    class="truncate"
-                  >
-                    Build a deck
-                  </span>
-                </p>
-                <p
-                  class="base regular base text"
-                >
-                  <span
-                    class="truncate"
-                  >
-                    Fa la la la la
-                  </span>
-                </p>
-                <p
-                  class="base regular base textSecondary"
-                >
-                  <span
-                    class="base regular small italic"
-                  >
-                    Sep 24, 2019
-                  </span>
-                </p>
-              </div>
-              <div
-                class="amount"
+                Jordan Yeo completed a visit
+              </h5>
+              <p
+                class="base regular base text"
               >
-                <p
-                  class="base regular base text"
+                <span
+                  class="truncate"
                 >
-                  <b
-                    class="base bold"
-                  >
-                    $30.00
-                  </b>
-                </p>
-              </div>
+                  Build a deck
+                </span>
+              </p>
+              <p
+                class="base regular base text"
+              >
+                <span
+                  class="truncate"
+                >
+                  Fa la la la la
+                </span>
+              </p>
+              <p
+                class="base regular base textSecondary"
+              >
+                <span
+                  class="base regular small italic"
+                >
+                  Sep 24, 2019
+                </span>
+              </p>
+            </div>
+            <div
+              class="amount"
+            >
+              <p
+                class="base regular base text"
+              >
+                <b
+                  class="base bold"
+                >
+                  $30.00
+                </b>
+              </p>
             </div>
           </a>
         </li>
@@ -318,77 +314,73 @@ exports[`renders a list with multiple sections 1`] = `
           class="item"
         >
           <a
-            class="action isActive hoverable"
+            class="action isActive hoverable defaultContainer"
             href="#"
             id="1"
           >
             <div
-              class="defaultContainer"
+              class="icon"
             >
-              <div
-                class="icon"
+              <svg
+                data-testid="checkmark"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  data-testid="checkmark"
-                  style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
-                    style="fill: var(--color-green);"
-                  />
-                </svg>
-              </div>
-              <div
-                class="info"
+                <path
+                  d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  style="fill: var(--color-green);"
+                />
+              </svg>
+            </div>
+            <div
+              class="info"
+            >
+              <h5
+                class="base bold base heading"
               >
-                <h5
-                  class="base bold base heading"
-                >
-                  Jordan Yeo completed a visit
-                </h5>
-                <p
-                  class="base regular base text"
-                >
-                  <span
-                    class="truncate"
-                  >
-                    Build a deck
-                  </span>
-                </p>
-                <p
-                  class="base regular base text"
-                >
-                  <span
-                    class="truncate"
-                  >
-                    Fa la la la la
-                  </span>
-                </p>
-                <p
-                  class="base regular base textSecondary"
-                >
-                  <span
-                    class="base regular small italic"
-                  >
-                    Sep 24, 2019
-                  </span>
-                </p>
-              </div>
-              <div
-                class="amount"
+                Jordan Yeo completed a visit
+              </h5>
+              <p
+                class="base regular base text"
               >
-                <p
-                  class="base regular base text"
+                <span
+                  class="truncate"
                 >
-                  <b
-                    class="base bold"
-                  >
-                    $30.00
-                  </b>
-                </p>
-              </div>
+                  Build a deck
+                </span>
+              </p>
+              <p
+                class="base regular base text"
+              >
+                <span
+                  class="truncate"
+                >
+                  Fa la la la la
+                </span>
+              </p>
+              <p
+                class="base regular base textSecondary"
+              >
+                <span
+                  class="base regular small italic"
+                >
+                  Sep 24, 2019
+                </span>
+              </p>
+            </div>
+            <div
+              class="amount"
+            >
+              <p
+                class="base regular base text"
+              >
+                <b
+                  class="base bold"
+                >
+                  $30.00
+                </b>
+              </p>
             </div>
           </a>
         </li>
@@ -413,77 +405,73 @@ exports[`renders a list with multiple sections 1`] = `
           class="item"
         >
           <a
-            class="action isActive hoverable"
+            class="action isActive hoverable defaultContainer"
             href="#"
             id="1"
           >
             <div
-              class="defaultContainer"
+              class="icon"
             >
-              <div
-                class="icon"
+              <svg
+                data-testid="checkmark"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  data-testid="checkmark"
-                  style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
-                    style="fill: var(--color-green);"
-                  />
-                </svg>
-              </div>
-              <div
-                class="info"
+                <path
+                  d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  style="fill: var(--color-green);"
+                />
+              </svg>
+            </div>
+            <div
+              class="info"
+            >
+              <h5
+                class="base bold base heading"
               >
-                <h5
-                  class="base bold base heading"
-                >
-                  Jordan Yeo requires assistance
-                </h5>
-                <p
-                  class="base regular base text"
-                >
-                  <span
-                    class="truncate"
-                  >
-                    Foo bar
-                  </span>
-                </p>
-                <p
-                  class="base regular base text"
-                >
-                  <span
-                    class="truncate"
-                  >
-                    Baz
-                  </span>
-                </p>
-                <p
-                  class="base regular base textSecondary"
-                >
-                  <span
-                    class="base regular small italic"
-                  >
-                    Sep 25, 2019
-                  </span>
-                </p>
-              </div>
-              <div
-                class="amount"
+                Jordan Yeo requires assistance
+              </h5>
+              <p
+                class="base regular base text"
               >
-                <p
-                  class="base regular base text"
+                <span
+                  class="truncate"
                 >
-                  <b
-                    class="base bold"
-                  >
-                    $40.00
-                  </b>
-                </p>
-              </div>
+                  Foo bar
+                </span>
+              </p>
+              <p
+                class="base regular base text"
+              >
+                <span
+                  class="truncate"
+                >
+                  Baz
+                </span>
+              </p>
+              <p
+                class="base regular base textSecondary"
+              >
+                <span
+                  class="base regular small italic"
+                >
+                  Sep 25, 2019
+                </span>
+              </p>
+            </div>
+            <div
+              class="amount"
+            >
+              <p
+                class="base regular base text"
+              >
+                <b
+                  class="base bold"
+                >
+                  $40.00
+                </b>
+              </p>
             </div>
           </a>
         </li>
@@ -502,27 +490,23 @@ exports[`should render a button list item 1`] = `
       class="item"
     >
       <button
-        class="action hoverable"
+        class="action hoverable defaultContainer"
         id="1"
         role="button"
         type="button"
       >
         <div
-          class="defaultContainer"
+          class="info"
         >
-          <div
-            class="info"
+          <p
+            class="base regular base text"
           >
-            <p
-              class="base regular base text"
+            <span
+              class="truncate"
             >
-              <span
-                class="truncate"
-              >
-                Click me
-              </span>
-            </p>
-          </div>
+              Click me
+            </span>
+          </p>
         </div>
       </button>
     </li>
@@ -539,26 +523,22 @@ exports[`should render a link with url list item 1`] = `
       class="item"
     >
       <a
-        class="action hoverable"
+        class="action hoverable defaultContainer"
         href="/path/to/stuff"
         id="1"
       >
         <div
-          class="defaultContainer"
+          class="info"
         >
-          <div
-            class="info"
+          <p
+            class="base regular base text"
           >
-            <p
-              class="base regular base text"
+            <span
+              class="truncate"
             >
-              <span
-                class="truncate"
-              >
-                Learn more
-              </span>
-            </p>
-          </div>
+              Learn more
+            </span>
+          </p>
         </div>
       </a>
     </li>
@@ -575,26 +555,22 @@ exports[`should render an a tag with url and on click list item 1`] = `
       class="item"
     >
       <a
-        class="action hoverable"
+        class="action hoverable defaultContainer"
         href="/path/to/stuff"
         id="1"
       >
         <div
-          class="defaultContainer"
+          class="info"
         >
-          <div
-            class="info"
+          <p
+            class="base regular base text"
           >
-            <p
-              class="base regular base text"
+            <span
+              class="truncate"
             >
-              <span
-                class="truncate"
-              >
-                Learn more
-              </span>
-            </p>
-          </div>
+              Learn more
+            </span>
+          </p>
         </div>
       </a>
     </li>
