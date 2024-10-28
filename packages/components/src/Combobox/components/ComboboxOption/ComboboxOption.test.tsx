@@ -1,4 +1,3 @@
-import React from "react";
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import * as POM from "./ComboboxOption.pom";
@@ -129,15 +128,7 @@ describe("ComboboxOption", () => {
       const option: ComboboxOptionProps = {
         id: "1",
         label: "Michael",
-        customRender: ({ id, label, isSelected }) => {
-          return (
-            <div>
-              <div data-id={id}>id</div>
-              <div data-label={label}>label</div>
-              {isSelected && "✅"}
-            </div>
-          );
-        },
+        customRender: POM.customRender,
       };
 
       POM.renderOption({
@@ -145,11 +136,11 @@ describe("ComboboxOption", () => {
         selected: [],
       });
 
-      const id = screen.getByText("id");
-      const label = screen.getByText("label");
+      const id = screen.queryByText("1");
+      const label = screen.queryByText("Michael");
       const selectedCheckmark = screen.queryByText("✅");
-      expect(id.dataset.id).toBe("1");
-      expect(label.dataset.label).toBe("Michael");
+      expect(id).toBeInTheDocument();
+      expect(label).toBeInTheDocument();
       expect(selectedCheckmark).not.toBeInTheDocument();
     });
 
@@ -157,15 +148,7 @@ describe("ComboboxOption", () => {
       const option: ComboboxOptionProps = {
         id: "1",
         label: "Michael",
-        customRender: ({ id, label, isSelected }) => {
-          return (
-            <div>
-              <div data-id={id}>id</div>
-              <div data-label={label}>label</div>
-              {isSelected && "✅"}
-            </div>
-          );
-        },
+        customRender: POM.customRender,
       };
 
       POM.renderOption({
@@ -173,11 +156,11 @@ describe("ComboboxOption", () => {
         selected: [option],
       });
 
-      const id = screen.getByText("id");
-      const label = screen.getByText("label");
+      const id = screen.queryByText("1");
+      const label = screen.queryByText("Michael");
       const selectedCheckmark = screen.queryByText("✅");
-      expect(id.dataset.id).toBe("1");
-      expect(label.dataset.label).toBe("Michael");
+      expect(id).toBeInTheDocument();
+      expect(label).toBeInTheDocument();
       expect(selectedCheckmark).toBeInTheDocument();
     });
 
@@ -185,15 +168,7 @@ describe("ComboboxOption", () => {
       const option: ComboboxOptionProps = {
         id: "1",
         label: "Michael",
-        customRender: ({ id, label, isSelected }) => {
-          return (
-            <div>
-              id = {id}
-              label = {label}
-              {isSelected && "✅"}
-            </div>
-          );
-        },
+        customRender: POM.customRender,
       };
 
       POM.renderOption({
@@ -208,13 +183,7 @@ describe("ComboboxOption", () => {
       const option: ComboboxOptionProps = {
         id: "1",
         label: "Michael",
-        customRender: ({ id, label, isSelected }) => {
-          return (
-            <div data-id={id}>
-              {label} {isSelected && "✅"}
-            </div>
-          );
-        },
+        customRender: POM.customRender,
       };
 
       POM.renderOption({

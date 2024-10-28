@@ -51,3 +51,17 @@ export function queryCheckmark() {
 export function queryListItem() {
   return screen.queryByRole("option");
 }
+
+export const customRender: ComboboxOptionProps["customRender"] = ({
+  id,
+  label,
+  isSelected,
+}) => {
+  return (
+    <div>
+      <div>{id}</div>
+      <div>{label}</div>
+      {isSelected && "✅"}
+    </div>
+  );
+};
