@@ -130,17 +130,33 @@ const serviceProviderListItems: SPListItemProps[] = [
   },
 ];
 
+const itemCSS = `
+  li:not(:last-child) .my-item {
+    border-bottom: var(--border-base) solid var(--color-border);
+  }
+
+  .my-item {
+    padding: var(--space-small);
+    display: flex;
+    align-items: center;
+    gap: var(--space-small);
+  }
+`;
+
 function RenderServiceProviderList({
   listItem,
 }: {
   readonly listItem: SPListItemProps;
 }) {
   return (
-    <Flex template={["shrink", "grow", "shrink"]} align="center">
+    <div className="my-item">
+      <style>{itemCSS}</style>
       <Avatar imageUrl={listItem.avatarUrl} />
       <Heading level={4}>{listItem.name}</Heading>
-      <Icon name="arrowRight" size="base" color="interactive" />
-    </Flex>
+      <div style={{ marginLeft: "auto" }}>
+        <Icon name="arrowRight" size="base" color="interactive" />
+      </div>
+    </div>
   );
 }
 
@@ -228,6 +244,13 @@ const productsList: ProductListItemProps[] = [
 ];
 
 const sectionedCSS = `
+  .product-list-item {
+    display: flex;
+    justify-content: flex-start;
+    text-align: left;
+    padding: var(--space-small);
+  }
+
   .product-list-item > * {
     padding: var(--space-small);
   }
@@ -243,15 +266,7 @@ function RenderProductList({
   readonly listItem: ProductListItemProps;
 }) {
   return (
-    <div
-      className="product-list-item"
-      style={{
-        display: "flex",
-        justifyContent: "flex-start",
-        textAlign: "left",
-        padding: "var(--space-small)",
-      }}
-    >
+    <div className="product-list-item">
       <style>{sectionedCSS}</style>
       <FormatFile file={listItem.image} display="compact" displaySize="base" />
       <Flex template={["grow"]}>
