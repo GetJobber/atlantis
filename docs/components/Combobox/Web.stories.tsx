@@ -5,6 +5,7 @@ import {
   ComboboxCustomActivatorProps,
   ComboboxOption,
 } from "@jobber/components/Combobox";
+import { Text } from "@jobber/components/Text";
 import { Button } from "@jobber/components/Button";
 import { Typography } from "@jobber/components/Typography";
 import { Chip } from "@jobber/components/Chip";
@@ -527,207 +528,323 @@ const ComboboxKeepOpenOnClick: ComponentStory<typeof Combobox> = args => {
 };
 
 const ComboboxCustomRenderOptions: ComponentStory<typeof Combobox> = args => {
-  const [selected, setSelected] = useState<ComboboxOption[]>([]);
+  const [selectedFellows, setSelectedFellows] = useState<ComboboxOption[]>([]);
+  const [selectedTeamMembers, setSelectedTeamMembers] = useState<
+    ComboboxOption[]
+  >([]);
+
+  const teamMemberOptions = [
+    {
+      id: 1,
+      name: "Ricardo Valenzuela",
+      position: "Crew lead",
+      timeToDestination: 25,
+      availability: true,
+    },
+    {
+      id: 2,
+      name: "Frederic Vandelay",
+      position: "Crew lead",
+      timeToDestination: 30,
+      availability: true,
+    },
+    {
+      id: 3,
+      name: "Matt Lewis",
+      position: "Laborer",
+      timeToDestination: 40,
+      availability: true,
+    },
+    {
+      id: 4,
+      name: "Joshle Ford",
+      position: "Laborer",
+      timeToDestination: 0,
+      availability: false,
+    },
+    {
+      id: 5,
+      name: "Dusty McCallaghan",
+      position: "Laborer",
+      timeToDestination: 25,
+      availability: true,
+    },
+    {
+      id: 6,
+      name: "Tracy Holland",
+      position: "Crew lead",
+      timeToDestination: 30,
+      availability: true,
+    },
+  ];
 
   return (
-    <Combobox {...args} onSelect={setSelected} selected={selected}>
-      <Combobox.Option
-        id="1"
-        label="Bilbo"
-        customRender={({ id, isSelected, label }) => {
+    <Box gap="large">
+      <Combobox
+        label="The Fellowship"
+        subjectNoun="fellows"
+        {...args}
+        onSelect={setSelectedFellows}
+        selected={selectedFellows}
+      >
+        <Combobox.Option
+          id="1"
+          label="Bilbo"
+          customRender={({ id, isSelected, label }) => {
+            return (
+              <Flex template={["shrink", "grow", "shrink"]} gap="small">
+                <Avatar
+                  color={"var(--color-indigo)"}
+                  initials={"BB"}
+                  name={"Bilbo Baggins"}
+                  size={"small"}
+                />
+                <div>{label}</div>
+                <Box direction="row" alignItems="center" gap="smaller">
+                  <StatusLabel label={`${id}`} status={"informative"} />
+                  {isSelected && "✅"}
+                </Box>
+              </Flex>
+            );
+          }}
+        />
+        <Combobox.Option
+          id="2"
+          label="Samwise"
+          customRender={({ id, isSelected, label }) => {
+            return (
+              <Flex template={["shrink", "grow", "shrink"]} gap="small">
+                <Avatar
+                  color={"var(--color-indigo)"}
+                  initials={"SG"}
+                  name={"Samwise Gamgee"}
+                  size={"small"}
+                />
+                <div>{label}</div>
+                <Box direction="row" alignItems="center" gap="smaller">
+                  <StatusLabel label={`${id}`} status={"informative"} />
+                  {isSelected && "✅"}
+                </Box>
+              </Flex>
+            );
+          }}
+        />
+        <Combobox.Option
+          id="3"
+          label="Pippin"
+          customRender={({ id, isSelected, label }) => {
+            return (
+              <Flex template={["shrink", "grow", "shrink"]} gap="small">
+                <Avatar
+                  color={"var(--color-indigo)"}
+                  initials={"PT"}
+                  name={"Pippin Took"}
+                  size={"small"}
+                />
+                <div>{label}</div>
+                <Box direction="row" alignItems="center" gap="smaller">
+                  <StatusLabel label={`${id}`} status={"informative"} />
+                  {isSelected && "✅"}
+                </Box>
+              </Flex>
+            );
+          }}
+        />
+        <Combobox.Option
+          id="4"
+          label="Merry"
+          customRender={({ id, isSelected, label }) => {
+            return (
+              <Flex template={["shrink", "grow", "shrink"]} gap="small">
+                <Avatar
+                  color={"var(--color-indigo)"}
+                  initials={"MB"}
+                  name={"Merry Brandybuck"}
+                  size={"small"}
+                />
+                <div>{label}</div>
+                <Box direction="row" alignItems="center" gap="smaller">
+                  <StatusLabel label={`${id}`} status={"informative"} />
+                  {isSelected && "✅"}
+                </Box>
+              </Flex>
+            );
+          }}
+        />
+        <Combobox.Option
+          id="5"
+          label="Legolas"
+          customRender={({ id, isSelected, label }) => {
+            return (
+              <Flex template={["shrink", "grow", "shrink"]} gap="small">
+                <Avatar
+                  color={"var(--color-green)"}
+                  initials={"LG"}
+                  name={"Legolas Greenleaf"}
+                  size={"small"}
+                />
+                <div>{label}</div>
+                <Box direction="row" alignItems="center" gap="smaller">
+                  <StatusLabel label={`${id}`} status={"informative"} />
+                  {isSelected && "✅"}
+                </Box>
+              </Flex>
+            );
+          }}
+        />
+        <Combobox.Option
+          id="6"
+          label="Gandalf"
+          customRender={({ id, isSelected, label }) => {
+            return (
+              <Flex template={["shrink", "grow", "shrink"]} gap="small">
+                <Avatar
+                  color={"var(--color-grey)"}
+                  initials={"GG"}
+                  name={"Gandalf the Grey"}
+                  size={"small"}
+                />
+                <div>{label}</div>
+                <Box direction="row" alignItems="center" gap="smaller">
+                  <StatusLabel label={`${id}`} status={"informative"} />
+                  {isSelected && "✅"}
+                </Box>
+              </Flex>
+            );
+          }}
+        />
+        <Combobox.Option
+          id="7"
+          label="Aragorn"
+          customRender={({ id, isSelected, label }) => {
+            return (
+              <Flex template={["shrink", "grow", "shrink"]} gap="small">
+                <Avatar
+                  color={"var(--color-orange)"}
+                  initials={"A"}
+                  name={"Aragorn son of Arathorn"}
+                  size={"small"}
+                />
+                <div>{label}</div>
+                <Box direction="row" alignItems="center" gap="smaller">
+                  <StatusLabel label={`${id}`} status={"informative"} />
+                  {isSelected && "✅"}
+                </Box>
+              </Flex>
+            );
+          }}
+        />
+        <Combobox.Option
+          id="8"
+          label="Boromir"
+          customRender={({ id, isSelected, label }) => {
+            return (
+              <Flex template={["shrink", "grow", "shrink"]} gap="small">
+                <Avatar
+                  color={"var(--color-orange)"}
+                  initials={"B"}
+                  name={"Boromir son of Denethor"}
+                  size={"small"}
+                />
+                <div>{label}</div>
+                <Box direction="row" alignItems="center" gap="smaller">
+                  <StatusLabel label={`${id}`} status={"informative"} />
+                  {isSelected && "✅"}
+                </Box>
+              </Flex>
+            );
+          }}
+        />
+        <Combobox.Option
+          id="9"
+          label="Gimli"
+          customRender={({ id, isSelected, label }) => {
+            return (
+              <Flex template={["shrink", "grow", "shrink"]} gap="small">
+                <Avatar
+                  color={"var(--color-brown)"}
+                  initials={"G"}
+                  name={"Gimli son of Glóin"}
+                  size={"small"}
+                />
+                <div>{label}</div>
+                <Box direction="row" alignItems="center" gap="smaller">
+                  <StatusLabel label={`${id}`} status={"informative"} />
+                  {isSelected && "✅"}
+                </Box>
+              </Flex>
+            );
+          }}
+        />
+      </Combobox>
+
+      <Combobox
+        label="Assign team"
+        subjectNoun="team"
+        {...args}
+        onSelect={setSelectedTeamMembers}
+        selected={selectedTeamMembers}
+      >
+        {teamMemberOptions.map(o => {
           return (
-            <Flex template={["shrink", "grow", "shrink"]} gap="small">
-              <Avatar
-                color={"var(--color-indigo)"}
-                initials={"BB"}
-                name={"Bilbo Baggins"}
-                size={"small"}
-              />
-              <div>{label}</div>
-              <Box direction="row" alignItems="center" gap="smaller">
-                <StatusLabel label={`${id}`} status={"informative"} />
-                {isSelected && "✅"}
-              </Box>
-            </Flex>
+            <Combobox.Option
+              key={o.id}
+              id={`${o.id}`}
+              label={o.name}
+              customRender={({ isSelected, label }) => {
+                return (
+                  <Flex template={["shrink", "grow"]} gap="small">
+                    {isSelected ? (
+                      <Icon name="checkmark" color="success" />
+                    ) : (
+                      <Avatar
+                        initials={o.name[0]}
+                        name={o.name}
+                        size={"small"}
+                      />
+                    )}
+                    <Box direction="column" gap="smaller">
+                      <div>{label}</div>
+                      <Box direction="row" justifyContent="space-between">
+                        <Text variation="subdued">{o.position}</Text>
+                        <Box direction="row" alignItems="center" gap="smaller">
+                          {o.availability && (
+                            <Icon
+                              name="moveVisits"
+                              color="textSecondary"
+                              size="small"
+                            />
+                          )}
+                          {o.availability ? (
+                            <Text variation="subdued">
+                              +{o.timeToDestination}min
+                            </Text>
+                          ) : (
+                            <Text variation="error">Unavailable</Text>
+                          )}
+                        </Box>
+                      </Box>
+                    </Box>
+                  </Flex>
+                );
+              }}
+            />
           );
-        }}
-      />
-      <Combobox.Option
-        id="2"
-        label="Samwise"
-        customRender={({ id, isSelected, label }) => {
-          return (
-            <Flex template={["shrink", "grow", "shrink"]} gap="small">
-              <Avatar
-                color={"var(--color-indigo)"}
-                initials={"SG"}
-                name={"Samwise Gamgee"}
-                size={"small"}
-              />
-              <div>{label}</div>
-              <Box direction="row" alignItems="center" gap="smaller">
-                <StatusLabel label={`${id}`} status={"informative"} />
-                {isSelected && "✅"}
-              </Box>
-            </Flex>
-          );
-        }}
-      />
-      <Combobox.Option
-        id="3"
-        label="Pippin"
-        customRender={({ id, isSelected, label }) => {
-          return (
-            <Flex template={["shrink", "grow", "shrink"]} gap="small">
-              <Avatar
-                color={"var(--color-indigo)"}
-                initials={"PT"}
-                name={"Pippin Took"}
-                size={"small"}
-              />
-              <div>{label}</div>
-              <Box direction="row" alignItems="center" gap="smaller">
-                <StatusLabel label={`${id}`} status={"informative"} />
-                {isSelected && "✅"}
-              </Box>
-            </Flex>
-          );
-        }}
-      />
-      <Combobox.Option
-        id="4"
-        label="Merry"
-        customRender={({ id, isSelected, label }) => {
-          return (
-            <Flex template={["shrink", "grow", "shrink"]} gap="small">
-              <Avatar
-                color={"var(--color-indigo)"}
-                initials={"MB"}
-                name={"Merry Brandybuck"}
-                size={"small"}
-              />
-              <div>{label}</div>
-              <Box direction="row" alignItems="center" gap="smaller">
-                <StatusLabel label={`${id}`} status={"informative"} />
-                {isSelected && "✅"}
-              </Box>
-            </Flex>
-          );
-        }}
-      />
-      <Combobox.Option
-        id="5"
-        label="Legolas"
-        customRender={({ id, isSelected, label }) => {
-          return (
-            <Flex template={["shrink", "grow", "shrink"]} gap="small">
-              <Avatar
-                color={"var(--color-green)"}
-                initials={"LG"}
-                name={"Legolas Greenleaf"}
-                size={"small"}
-              />
-              <div>{label}</div>
-              <Box direction="row" alignItems="center" gap="smaller">
-                <StatusLabel label={`${id}`} status={"informative"} />
-                {isSelected && "✅"}
-              </Box>
-            </Flex>
-          );
-        }}
-      />
-      <Combobox.Option
-        id="6"
-        label="Gandalf"
-        customRender={({ id, isSelected, label }) => {
-          return (
-            <Flex template={["shrink", "grow", "shrink"]} gap="small">
-              <Avatar
-                color={"var(--color-grey)"}
-                initials={"GG"}
-                name={"Gandalf the Grey"}
-                size={"small"}
-              />
-              <div>{label}</div>
-              <Box direction="row" alignItems="center" gap="smaller">
-                <StatusLabel label={`${id}`} status={"informative"} />
-                {isSelected && "✅"}
-              </Box>
-            </Flex>
-          );
-        }}
-      />
-      <Combobox.Option
-        id="7"
-        label="Aragorn"
-        customRender={({ id, isSelected, label }) => {
-          return (
-            <Flex template={["shrink", "grow", "shrink"]} gap="small">
-              <Avatar
-                color={"var(--color-orange)"}
-                initials={"A"}
-                name={"Aragorn son of Arathorn"}
-                size={"small"}
-              />
-              <div>{label}</div>
-              <Box direction="row" alignItems="center" gap="smaller">
-                <StatusLabel label={`${id}`} status={"informative"} />
-                {isSelected && "✅"}
-              </Box>
-            </Flex>
-          );
-        }}
-      />
-      <Combobox.Option
-        id="8"
-        label="Boromir"
-        customRender={({ id, isSelected, label }) => {
-          return (
-            <Flex template={["shrink", "grow", "shrink"]} gap="small">
-              <Avatar
-                color={"var(--color-orange)"}
-                initials={"B"}
-                name={"Boromir son of Denethor"}
-                size={"small"}
-              />
-              <div>{label}</div>
-              <Box direction="row" alignItems="center" gap="smaller">
-                <StatusLabel label={`${id}`} status={"informative"} />
-                {isSelected && "✅"}
-              </Box>
-            </Flex>
-          );
-        }}
-      />
-      <Combobox.Option
-        id="9"
-        label="Gimli"
-        customRender={({ id, isSelected, label }) => {
-          return (
-            <Flex template={["shrink", "grow", "shrink"]} gap="small">
-              <Avatar
-                color={"var(--color-brown)"}
-                initials={"G"}
-                name={"Gimli son of Glóin"}
-                size={"small"}
-              />
-              <div>{label}</div>
-              <Box direction="row" alignItems="center" gap="smaller">
-                <StatusLabel label={`${id}`} status={"informative"} />
-                {isSelected && "✅"}
-              </Box>
-            </Flex>
-          );
-        }}
-      />
-    </Combobox>
+        })}
+
+        <Combobox.Action
+          label="+ Add new member"
+          onClick={() => {
+            alert("Added a new teammate ✅");
+          }}
+        />
+      </Combobox>
+    </Box>
   );
 };
 
 export const CustomRenderOptions = ComboboxCustomRenderOptions.bind({});
 CustomRenderOptions.args = {
-  label: "The Fellowship",
-  subjectNoun: "fellows",
   multiSelect: true,
 };
 
