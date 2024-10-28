@@ -97,6 +97,13 @@ their section and display them under section headers.
   </Card>
 </Canvas>
 
+#### Context Complexity
+
+The default full bleed (width) + bottom bordered style is preferred when the
+list item contains complex content where non-complex content would be something
+like Menu's content which has a different style but identical functionality
+otherwise.
+
 ### **Custom Rendering (Advanced Usage)**
 
 If you need more control over the rendering of list items, you can provide a
@@ -104,8 +111,10 @@ If you need more control over the rendering of list items, you can provide a
 the default rendering of the `ListItem` component doesn’t meet your
 requirements. If a custom render function is provided onClick, url, and hover
 functionality will still work. Sectioned list functionality will also remain the
-same. Lastly, the styles wrapping the list items will match those of a `List`
-with no custom render function.
+same.
+
+Lastly, you will be required to implement the spacing, alignment and border
+bottom CSS logic.
 
 **Example: Custom Render Function with Custom Interface**
 
@@ -126,17 +135,35 @@ const items: ProductListItemProps[] = [
   { id: 4, name: "Screwdriver", price: "$10.00", section: "Hand Tools", onClick: () => alert("Screwdriver clicked") },
 ];
 
+
 const renderProductItem = (item: ProductListItemProps) => (
-    <Flex template={["shrink", "grow"]} align="start">
+    <div className="customContainer">
         <Text>{item.price}</Text>
         <Heading level={4}>{item.name}</Heading>
-    </Flex>
+    </div>
   </div>
 );
 
 export const CustomRenderExample = () => (
   <List items={items} customRenderItem={renderProductItem} />
 );
+
+// *.module.css
+
+.customContainer {
+  display: flex;
+  alignItems: center;
+  justifyContent: flex-start;
+  text-align: left;
+}
+
+.customContainer > * {
+  padding: var(--space-small);
+}
+
+li > ul > li:not(:last-child) .customContainer {
+  border-bottom: var(--border-base) solid var(--color-border);
+}
 ```
 
 **In this example**:
@@ -145,6 +172,7 @@ export const CustomRenderExample = () => (
   `BaseListItemProps`.
 - The `customRenderItem` function provides complete control over how each item
   is rendered.
+- We replicate the padding, alignment and border logic
 
 **When to Use Custom Rendering:**
 
@@ -152,3 +180,13 @@ export const CustomRenderExample = () => (
   component can’t provide.
 - Create your own interface extending `BaseListItemProps` to define the fields
   you need.
+
+##### Replicating Default List Styles
+
+In the above example we must use `li > ul > li:not(:last-child) .{customClass}`
+because it is a sectioned list having nested ul and li elements.
+
+For a non sectioned list `li:not(:last-child) .{customClass}` would suffice.
+
+For the spacing, it is achieved with `small` padding on the item container, then
+an additional `small` padding on the elements inside.
