@@ -227,22 +227,41 @@ const productsList: ProductListItemProps[] = [
   },
 ];
 
+const sectionedCSS = `
+  .product-list-item > * {
+    padding: var(--space-small);
+  }
+
+  li > ul > li:not(:last-child) .product-list-item {
+    border-bottom: var(--border-base) solid var(--color-border);
+  }
+`;
+
 function RenderProductList({
   listItem,
 }: {
   readonly listItem: ProductListItemProps;
 }) {
   return (
-    <Flex template={["shrink", "grow"]} align="center">
+    <div
+      className="product-list-item"
+      style={{
+        display: "flex",
+        justifyContent: "flex-start",
+        textAlign: "left",
+        padding: "var(--space-small)",
+      }}
+    >
+      <style>{sectionedCSS}</style>
       <FormatFile file={listItem.image} display="compact" displaySize="base" />
-      <div style={{ marginBottom: "8px" }}>
+      <Flex template={["grow"]}>
         <Heading level={4}>{listItem.name}</Heading>
         <Flex template={["grow", "shrink"]} align="start">
           <Text>{listItem.description}</Text>
           <Text>{listItem.price}</Text>
         </Flex>
-      </div>
-    </Flex>
+      </Flex>
+    </div>
   );
 }
 
