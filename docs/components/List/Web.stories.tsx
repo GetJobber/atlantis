@@ -198,33 +198,17 @@ const serviceProviderListItems: SPListItemProps[] = [
   },
 ];
 
-const itemCSS = `
-  li:not(:last-child) .my-item {
-    border-bottom: var(--border-base) solid var(--color-border);
-  }
-
-  .my-item {
-    padding: var(--space-small);
-    display: flex;
-    align-items: center;
-    gap: var(--space-small);
-  }
-`;
-
 function RenderServiceProviderList({
   listItem,
 }: {
   readonly listItem: SPListItemProps;
 }) {
   return (
-    <div className="my-item">
-      <style>{itemCSS}</style>
+    <Flex template={["shrink", "grow", "shrink"]} align="center">
       <Avatar imageUrl={listItem.avatarUrl} />
       <Heading level={4}>{listItem.name}</Heading>
-      <div style={{ marginLeft: "auto" }}>
-        <Icon name="arrowRight" size="base" color="interactive" />
-      </div>
-    </div>
+      <Icon name="arrowRight" size="base" color="interactive" />
+    </Flex>
   );
 }
 
