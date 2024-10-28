@@ -33,17 +33,17 @@ export function ComboboxOption(props: ComboboxOptionProps) {
           isSelected,
         })
       ) : (
-        <DefaultContent {...contentProps} isSelected={isSelected} />
+        <InternalDefaultContent {...contentProps} isSelected={isSelected} />
       )}
     </li>
   );
 }
 
-type DefaultContentProps = Omit<ComboboxOptionProps, "customRender"> & {
+type InternalDefaultContentProps = Omit<ComboboxOptionProps, "customRender"> & {
   readonly isSelected: boolean;
 };
 
-function DefaultContent(props: DefaultContentProps) {
+function InternalDefaultContent(props: InternalDefaultContentProps) {
   return (
     <>
       <Flex template={props.prefix ? ["shrink", "grow"] : ["grow"]}>
