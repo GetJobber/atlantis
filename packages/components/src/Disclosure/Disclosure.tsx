@@ -25,7 +25,14 @@ interface DisclosureProps {
    */
   readonly defaultOpen?: boolean;
 
+  /**
+   * Callback that is called when the disclosure is toggled.
+   */
   readonly onToggle?: (newOpened: boolean) => void;
+
+  /**
+   * Used to make the disclosure a Controlled Component.
+   */
   readonly open?: boolean;
 }
 
@@ -36,7 +43,9 @@ export function Disclosure({
   onToggle,
   open,
 }: DisclosureProps) {
-  const [internalOpen, setInternalOpen] = useState(defaultOpen || open);
+  const [internalOpen, setInternalOpen] = useState(
+    defaultOpen || open || false,
+  );
   const isOpen = open !== undefined ? open : internalOpen;
   const { smallAndUp } = useBreakpoints();
   const isTitleString = typeof title === "string";
@@ -64,11 +73,9 @@ export function Disclosure({
   );
 
   function handleToggle(event: React.MouseEvent<HTMLDetailsElement>) {
-    if (open !== undefined) {
-      event.preventDefault();
-    }
+    event.preventDefault();
 
-    setInternalOpen(value => !value);
+    setInternalOpen(!isOpen);
     onToggle?.(!isOpen);
   }
 }
