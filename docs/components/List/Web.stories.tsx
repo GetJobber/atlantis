@@ -311,40 +311,22 @@ const productsList: ProductListItemProps[] = [
   },
 ];
 
-const sectionedCSS = `
-  .product-list-item {
-    display: flex;
-    justify-content: flex-start;
-    text-align: left;
-    padding: var(--space-small);
-  }
-
-  .product-list-item > * {
-    padding: var(--space-small);
-  }
-
-  li > ul > li:not(:last-child) .product-list-item {
-    border-bottom: var(--border-base) solid var(--color-border);
-  }
-`;
-
 function RenderProductList({
   listItem,
 }: {
   readonly listItem: ProductListItemProps;
 }) {
   return (
-    <div className="product-list-item">
-      <style>{sectionedCSS}</style>
+    <Flex template={["shrink", "grow"]} align="center">
       <FormatFile file={listItem.image} display="compact" displaySize="base" />
-      <Flex template={["grow"]}>
+      <div style={{ marginBottom: "8px" }}>
         <Heading level={4}>{listItem.name}</Heading>
         <Flex template={["grow", "shrink"]} align="start">
           <Text>{listItem.description}</Text>
           <Text>{listItem.price}</Text>
         </Flex>
-      </Flex>
-    </div>
+      </div>
+    </Flex>
   );
 }
 
