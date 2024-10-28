@@ -11,7 +11,7 @@ import { Text } from "@jobber/components/Text";
 import { Flex } from "@jobber/components/Flex";
 import { Avatar } from "@jobber/components/Avatar";
 import { Heading } from "@jobber/components/Heading";
-import { Icon } from "@jobber/components/Icon";
+import { Icon, IconNames } from "@jobber/components/Icon";
 import { FileUpload } from "@jobber/components/InputFile";
 import { FormatFile } from "@jobber/components/FormatFile";
 
@@ -29,6 +29,16 @@ const BasicTemplate: ComponentStory<typeof List> = args => (
   <Card>
     <List {...args} />
   </Card>
+);
+
+const SimpleTemplate: ComponentStory<typeof List> = args => (
+  <div style={{ width: "fit-content" }}>
+    <Card>
+      <div style={{ padding: "var(--space-small)" }}>
+        <List {...args} />
+      </div>
+    </Card>
+  </div>
 );
 
 export const Basic = BasicTemplate.bind({});
@@ -90,6 +100,64 @@ const sectionedListItems: ListItemProps[] = [
   },
 ];
 SectionedListItems.args = { items: sectionedListItems };
+
+export const SimpleListWithCustomRenderer = SimpleTemplate.bind({});
+const simpleListItems: ListItemProps[] = [
+  {
+    id: 1,
+    icon: "addNote",
+    content: ["Add Note"],
+    onClick: () => alert("TODO: Implement onClick"),
+  },
+  {
+    id: 2,
+    icon: "checkmark",
+    iconColor: "green",
+    content: "Approve",
+    onClick: () => alert("TODO: Implement onClick"),
+  },
+  {
+    id: 3,
+    icon: "cog",
+    content: "Settings",
+    onClick: () => alert("TODO: Implement onClick"),
+  },
+];
+
+interface SimpleListItemProps extends BaseListItemProps {
+  readonly content: string;
+  icon: IconNames;
+}
+
+SimpleListWithCustomRenderer.args = {
+  items: simpleListItems,
+  customRenderItem: (item: SimpleListItemProps) => (
+    <RenderSimpleItem listItem={item} />
+  ),
+};
+
+function RenderSimpleItem({
+  listItem,
+}: {
+  readonly listItem: SimpleListItemProps;
+}) {
+  return (
+    <div
+      style={{
+        borderRadius: "var(--radius-base)",
+        padding: "var(--space-small)",
+        textAlign: "center",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: "var(--space-small)",
+      }}
+    >
+      <Icon name={listItem.icon} />
+      <Text>{listItem.content}</Text>
+    </div>
+  );
+}
 
 interface SPListItemProps extends BaseListItemProps {
   readonly name: string;
