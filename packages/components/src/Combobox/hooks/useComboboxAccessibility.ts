@@ -3,13 +3,13 @@ import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import { usePopper } from "react-popper";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
-import { ComboboxOptionProps } from "../Combobox.types";
+import { ComboboxOption } from "../Combobox.types";
 import { ComboboxContext } from "../ComboboxProvider";
 
 // eslint-disable-next-line max-statements
 export function useComboboxAccessibility(
-  selectionCallback: (selection: ComboboxOptionProps) => void,
-  filteredOptions: ComboboxOptionProps[],
+  selectionCallback: (selection: ComboboxOption) => void,
+  filteredOptions: ComboboxOption[],
   optionsListRef: React.RefObject<HTMLUListElement>,
   open: boolean,
   wrapperRef: React.RefObject<HTMLDivElement>,

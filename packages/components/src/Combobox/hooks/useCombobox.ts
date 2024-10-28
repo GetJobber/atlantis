@@ -11,24 +11,24 @@ import {
   UseMakeComboboxHandlersReturn,
   useMakeComboboxHandlers,
 } from "./useMakeComboboxHandlers";
-import { ComboboxOptionProps } from "../Combobox.types";
+import { ComboboxOption } from "../Combobox.types";
 
 type UseComboboxReturn = {
   wrapperRef: React.RefObject<HTMLDivElement>;
   searchValue: string;
   setSearchValue: Dispatch<React.SetStateAction<string>>;
   open: boolean;
-  selectedOptions: ComboboxOptionProps[];
-  selectedStateSetter: (selection: ComboboxOptionProps[]) => void;
+  selectedOptions: ComboboxOption[];
+  selectedStateSetter: (selection: ComboboxOption[]) => void;
   shouldScroll: MutableRefObject<boolean>;
-  internalFilteredOptions: ComboboxOptionProps[];
+  internalFilteredOptions: ComboboxOption[];
   handleSearchChange: (value: string) => void;
 } & UseMakeComboboxHandlersReturn;
 
 export function useCombobox(
-  selected: ComboboxOptionProps[],
-  onSelect: (selection: ComboboxOptionProps[]) => void,
-  options: ComboboxOptionProps[],
+  selected: ComboboxOption[],
+  onSelect: (selection: ComboboxOption[]) => void,
+  options: ComboboxOption[],
   onClose?: () => void,
   multiSelect?: boolean,
   onSearch?: (searchValue: string) => void,

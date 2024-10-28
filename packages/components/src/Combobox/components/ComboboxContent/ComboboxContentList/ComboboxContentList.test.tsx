@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import { ComboboxContextProvider } from "@jobber/components/Combobox/ComboboxProvider";
-import { ComboboxOptionProps } from "@jobber/components/Combobox/Combobox.types";
+import { ComboboxOption } from "@jobber/components/Combobox/Combobox.types";
 import { ComboboxContentList } from "./ComboboxContentList";
 
 describe("ComboboxContentList", () => {
@@ -37,7 +37,7 @@ describe("ComboboxContentList", () => {
 });
 
 function renderComboboxContentList(
-  options: ComboboxOptionProps[] = [
+  options: ComboboxOption[] = [
     {
       id: "1",
       label: "Michael",
@@ -47,7 +47,7 @@ function renderComboboxContentList(
       label: "Jason",
     },
   ],
-  selected: ComboboxOptionProps[] = [],
+  selected: ComboboxOption[] = [],
   searchValue = "",
   subjectNoun?: string,
 ) {

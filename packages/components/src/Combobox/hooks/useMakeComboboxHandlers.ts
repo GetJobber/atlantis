@@ -1,9 +1,9 @@
 import React, { useCallback } from "react";
-import { ComboboxOptionProps } from "../Combobox.types";
+import { ComboboxOption } from "../Combobox.types";
 
 export interface UseMakeComboboxHandlersReturn {
   handleClose: () => void;
-  handleSelection: (selection: ComboboxOptionProps) => void;
+  handleSelection: (selection: ComboboxOption) => void;
   handleOpen: () => void;
 }
 
@@ -11,9 +11,9 @@ export function useMakeComboboxHandlers(
   setOpen: (open: boolean) => void,
   open: boolean,
   setSearchValue: (searchValue: string) => void,
-  selectedOptions: ComboboxOptionProps[],
+  selectedOptions: ComboboxOption[],
   shouldScroll: React.MutableRefObject<boolean>,
-  selectedStateSetter: (selected: ComboboxOptionProps[]) => void,
+  selectedStateSetter: (selected: ComboboxOption[]) => void,
   multiSelect?: boolean,
   onClose?: () => void,
   onSearch?: (searchValue: string) => void,
@@ -35,7 +35,7 @@ export function useMakeComboboxHandlers(
   }, [setOpen]);
 
   const handleSelection = useCallback(
-    (selection: ComboboxOptionProps) => {
+    (selection: ComboboxOption) => {
       if (multiSelect) {
         handleMultiSelect(selectedStateSetter, selectedOptions, selection);
       } else {
@@ -47,8 +47,8 @@ export function useMakeComboboxHandlers(
 
   const handleSingleSelect = useCallback(
     (
-      selectCallback: (selected: ComboboxOptionProps[]) => void,
-      selection: ComboboxOptionProps,
+      selectCallback: (selected: ComboboxOption[]) => void,
+      selection: ComboboxOption,
     ) => {
       selectCallback([selection]);
       handleClose();
@@ -64,9 +64,9 @@ export function useMakeComboboxHandlers(
 }
 
 function handleMultiSelect(
-  selectCallback: (selected: ComboboxOptionProps[]) => void,
-  selected: ComboboxOptionProps[],
-  selection: ComboboxOptionProps,
+  selectCallback: (selected: ComboboxOption[]) => void,
+  selected: ComboboxOption[],
+  selection: ComboboxOption,
 ) {
   if (selected.some(s => s.id === selection.id)) {
     selectCallback(selected.filter(s => s.id !== selection.id));

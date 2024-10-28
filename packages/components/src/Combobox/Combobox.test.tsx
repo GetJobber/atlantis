@@ -3,7 +3,7 @@ import { act, render, screen } from "@testing-library/react";
 import { UserEvent, userEvent } from "@testing-library/user-event";
 import { mockIntersectionObserver } from "jsdom-testing-mocks";
 import { Combobox } from "./Combobox";
-import { ComboboxOptionProps } from "./Combobox.types";
+import { ComboboxOption } from "./Combobox.types";
 import { COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE } from "./hooks/useComboboxValidation";
 import * as POM from "./Combobox.pom";
 import { Button } from "../Button";
@@ -18,9 +18,7 @@ const OVERLAY_TEST_ID = "ATL-Combobox-Overlay";
 const activatorLabel = "Select a Baggins";
 const handleAction = jest.fn();
 const handleSelect = jest.fn();
-const mockSelectedValue = jest
-  .fn<ComboboxOptionProps[], []>()
-  .mockReturnValue([]);
+const mockSelectedValue = jest.fn<ComboboxOption[], []>().mockReturnValue([]);
 const mockMultiSelectValue = jest.fn().mockReturnValue(false);
 const mockOnSearch = jest.fn();
 const observer = mockIntersectionObserver();

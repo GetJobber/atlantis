@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 import React from "react";
 import { ComboboxContent } from "./ComboboxContent";
 import { ComboboxContextProvider } from "../../ComboboxProvider";
-import { ComboboxOptionProps } from "../../Combobox.types";
+import { ComboboxOption } from "../../Combobox.types";
 
 const handleOpen = jest.fn();
 const setSelected = jest.fn();
@@ -70,8 +70,8 @@ describe("ComboboxContent Header", () => {
 });
 
 function renderComboboxContent(
-  options: ComboboxOptionProps[] = [],
-  selected: ComboboxOptionProps[] = [],
+  options: ComboboxOption[] = [],
+  selected: ComboboxOption[] = [],
   multiSelect = false,
   open = true,
   searchValue = "",
