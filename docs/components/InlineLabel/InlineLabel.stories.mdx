@@ -1,32 +1,56 @@
 import { Canvas, Meta } from "@storybook/addon-docs";
+import { Heading } from "@jobber/components/Heading";
+import { Text } from "@jobber/components/Text";
 import { InlineLabel } from "@jobber/components/InlineLabel";
 
 <Meta title="Components/Status and Feedback/InlineLabel" />
 
 # Inline Label
 
-Inline labels are typically used to indicate state/status on objects within the
-application.
+InlineLabel is a generic badging element that can be used to distinguish a
+labeling text element from other typographic content.
 
 ## Design & usage guidelines
 
 Inline labels can be used fairly broadly, but the application of
 [color](../?path=/docs/design-colors--docs) should be handled with intent. Use
 of colour along with a descriptive label can help the user understand the
-meaning of an item's status.
+meaning of an item.
 
-| Color                                                                                                             | Meaning     |
-| :---------------------------------------------------------------------------------------------------------------- | :---------- |
-| <InlineLabel color="red">Past due</InlineLabel> <InlineLabel color="red">Changes requested</InlineLabel>          | Critical    |
-| <InlineLabel color="yellow">Unscheduled</InlineLabel> <InlineLabel color="yellow">Awaiting response</InlineLabel> | Warning     |
-| <InlineLabel color="green">Approved</InlineLabel> <InlineLabel color="green">Paid</InlineLabel>                   | Success     |
-| <InlineLabel color="greyBlue">Draft</InlineLabel> <InlineLabel color="greyBlue">Archived</InlineLabel>            | Inactive    |
-| <InlineLabel color="lightBlue">Sent</InlineLabel> <InlineLabel color="lightBlue">Converted</InlineLabel>          | Informative |
+### Counts
 
-### Related components
+<Canvas>
+  <Text>Unread</Text>
+  <InlineLabel color="red">+99</InlineLabel>
+</Canvas>
 
-For simpler mapping of statuses to their semantic colours, use
-[StatusLabel.](../?path=/docs/components-status-and-feedback-statuslabel--docs)
+### Trends
+
+<Canvas>
+  <InlineLabel color="red">↓ 15%</InlineLabel>
+  <InlineLabel color="green">↑ 25%</InlineLabel>
+</Canvas>
+
+### Tags
+
+<Canvas>
+  <InlineLabel>Do not contact</InlineLabel>
+  <InlineLabel>Northeast</InlineLabel>
+  <InlineLabel>Residential</InlineLabel>
+  <InlineLabel>Electrical</InlineLabel>
+</Canvas>
+
+### Labels that need to be distinguished from other typographic element
+
+<Canvas>
+  <Heading level={2}>Do not contact</Heading>
+  <InlineLabel size="large">Beta</InlineLabel>
+</Canvas>
+
+## Related components
+
+[StatusLabel](../?path=/docs/components-status-and-feedback-statuslabel--docs)
+should be used when you're conveying the "status" of something.
 
 ## Sizes
 
