@@ -118,7 +118,7 @@ export interface ComboboxOptionProps {
   /**
    * An optional component to be displayed before the label.
    */
-  prefix?: React.ReactElement;
+  prefix?: React.ReactNode;
 
   /**
    * Advanced: A custom render prop to completely control how this option is rendered.
