@@ -134,6 +134,7 @@ SimpleListWithCustomRenderer.args = {
   customRenderItem: (item: SimpleListItemProps) => (
     <RenderSimpleItem listItem={item} />
   ),
+  customItemStyles: true,
 };
 
 function RenderSimpleItem({
