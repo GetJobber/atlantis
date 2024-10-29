@@ -1,6 +1,5 @@
 import { Box, Content, Grid, Page, Tab, Tabs } from "@jobber/components";
 import { useParams } from "react-router";
-import { ReactNode } from "react";
 import { PageWrapper } from "./PageWrapper";
 import { PropsList } from "../components/PropsList";
 import { CodeViewer } from "../components/CodeViewer";
@@ -25,7 +24,7 @@ export const ComponentView = () => {
   const { updateStyles } = useStyleUpdater();
   const { stateValues, stateValueWithFunction } = usePageValues(PageMeta);
 
-  const ComponentContent = PageMeta?.content as () => ReactNode;
+  const ComponentContent = PageMeta?.content;
 
   const { Component, code } = useComponentAndCode(
     PageMeta,

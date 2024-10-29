@@ -1,5 +1,5 @@
 export interface ContentExport {
-  content: unknown;
+  content: (props?: unknown) => JSX.Element;
   props: Array<{
     description: string;
     displayName: string;
@@ -23,7 +23,6 @@ interface GeneratedTag {
   name: string;
 }
 interface GeneratedProp {
-  declarations: Array<{ fileName: string; name: string }>;
   defaultValue: null | object;
   description: string;
   name: string;

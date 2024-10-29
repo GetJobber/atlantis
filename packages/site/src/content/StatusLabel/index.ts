@@ -3,6 +3,7 @@ import { StatusLabel } from "@jobber/components";
 import Content from "@atlantis/docs/components/StatusLabel/StatusLabel.stories.mdx";
 import Props from "./StatusLabel.props.json";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
+import { ContentExport } from "../../types/content";
 
 export default {
   content: Content,
@@ -22,4 +23,4 @@ export default {
       ),
     },
   ],
-};
+} as ContentExport;

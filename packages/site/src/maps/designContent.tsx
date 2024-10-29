@@ -15,52 +15,52 @@ export const designContentMap: ContentMapItems = {
   "welcome-guide": {
     intro: "Welcome!",
     title: "Welcome Guide!",
-    content: <WelcomeGuide />,
+    content: () => <WelcomeGuide />,
   },
 
   animation: {
     intro: "Animation",
     title: "Animation",
-    content: <AnimationDocs />,
+    content: () => <AnimationDocs />,
   },
   borders: {
     intro: "Borders",
     title: "Borders",
-    content: <BorderDocs />,
+    content: () => <BorderDocs />,
   },
   colors: {
     intro: "Colors",
     title: "Colors",
-    content: <ColorDocs />,
+    content: () => <ColorDocs />,
   },
   elevations: {
     intro: "Elevations",
     title: "Elevations",
-    content: <ElevationDocs />,
+    content: () => <ElevationDocs />,
   },
   opacity: {
     intro: "Opacity",
     title: "Opacity",
-    content: <OpacityDocs />,
+    content: () => <OpacityDocs />,
   },
   radii: {
     intro: "Radii",
     title: "Radii",
-    content: <RadiiDocs />,
+    content: () => <RadiiDocs />,
   },
   "responsive-breakpoint": {
     intro: "Responsive Breakpoints",
     title: "Responsive Breakpoints",
-    content: <ResponsiveBreakpointsDocs />,
+    content: () => <ResponsiveBreakpointsDocs />,
   },
   spacing: {
     intro: "Spacing",
     title: "Spacing",
-    content: <SpacingDocs />,
+    content: () => <SpacingDocs />,
   },
   typography: {
     intro: "Typography",
     title: "Typography",
-    content: <TypographyDocs />,
+    content: () => <TypographyDocs />,
   },
 };

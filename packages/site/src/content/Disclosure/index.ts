@@ -2,6 +2,7 @@ import { Disclosure } from "@jobber/components";
 import Content from "@atlantis/docs/components/Disclosure/Disclosure.stories.mdx";
 import Props from "./Disclosure.props.json";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
+import { ContentExport } from "../../types/content";
 
 export default {
   content: Content,
@@ -21,4 +22,4 @@ export default {
       ),
     },
   ],
-};
+} as ContentExport;
