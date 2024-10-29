@@ -101,65 +101,6 @@ const sectionedListItems: ListItemProps[] = [
 ];
 SectionedListItems.args = { items: sectionedListItems };
 
-export const SimpleListWithCustomRenderer = SimpleTemplate.bind({});
-const simpleListItems: ListItemProps[] = [
-  {
-    id: 1,
-    icon: "addNote",
-    content: ["Add Note"],
-    onClick: () => alert("TODO: Implement onClick"),
-  },
-  {
-    id: 2,
-    icon: "checkmark",
-    iconColor: "green",
-    content: "Approve",
-    onClick: () => alert("TODO: Implement onClick"),
-  },
-  {
-    id: 3,
-    icon: "cog",
-    content: "Settings",
-    onClick: () => alert("TODO: Implement onClick"),
-  },
-];
-
-interface SimpleListItemProps extends BaseListItemProps {
-  readonly content: string;
-  icon: IconNames;
-}
-
-SimpleListWithCustomRenderer.args = {
-  items: simpleListItems,
-  customRenderItem: (item: SimpleListItemProps) => (
-    <RenderSimpleItem listItem={item} />
-  ),
-  customItemStyles: true,
-};
-
-function RenderSimpleItem({
-  listItem,
-}: {
-  readonly listItem: SimpleListItemProps;
-}) {
-  return (
-    <div
-      style={{
-        borderRadius: "var(--radius-base)",
-        padding: "var(--space-small)",
-        textAlign: "center",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        gap: "var(--space-small)",
-      }}
-    >
-      <Icon name={listItem.icon} />
-      <Text>{listItem.content}</Text>
-    </div>
-  );
-}
-
 interface SPListItemProps extends BaseListItemProps {
   readonly name: string;
   readonly avatarUrl: string;
@@ -322,3 +263,62 @@ SectionedListWithCustomRenderer.args = {
     <RenderProductList listItem={item} />
   ),
 };
+
+export const SimpleListWithCustomStyles = SimpleTemplate.bind({});
+const simpleListItems: ListItemProps[] = [
+  {
+    id: 1,
+    icon: "addNote",
+    content: ["Add Note"],
+    onClick: () => alert("TODO: Implement onClick"),
+  },
+  {
+    id: 2,
+    icon: "checkmark",
+    iconColor: "green",
+    content: "Approve",
+    onClick: () => alert("TODO: Implement onClick"),
+  },
+  {
+    id: 3,
+    icon: "cog",
+    content: "Settings",
+    onClick: () => alert("TODO: Implement onClick"),
+  },
+];
+
+interface SimpleListItemProps extends BaseListItemProps {
+  readonly content: string;
+  icon: IconNames;
+}
+
+SimpleListWithCustomStyles.args = {
+  items: simpleListItems,
+  customRenderItem: (item: SimpleListItemProps) => (
+    <RenderSimpleItem listItem={item} />
+  ),
+  customItemStyles: true,
+};
+
+function RenderSimpleItem({
+  listItem,
+}: {
+  readonly listItem: SimpleListItemProps;
+}) {
+  return (
+    <div
+      style={{
+        borderRadius: "var(--radius-base)",
+        padding: "var(--space-small)",
+        textAlign: "center",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: "var(--space-small)",
+      }}
+    >
+      <Icon name={listItem.icon} />
+      <Text>{listItem.content}</Text>
+    </div>
+  );
+}
