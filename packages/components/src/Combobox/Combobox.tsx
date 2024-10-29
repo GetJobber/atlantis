@@ -20,6 +20,7 @@ export function Combobox(props: ComboboxProps): JSX.Element {
         id: option.props.id,
         label: option.props.label,
         prefix: option.props.prefix,
+        customRender: option.props.customRender,
       })) || [],
     [optionElements],
   );

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.45.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.44.3...@jobber/components@5.45.0) (2024-10-28)
+
+
+### Features
+
+* **components:** Allow ComboboxOption to render custom content ([#2087](https://github.com/GetJobber/atlantis/issues/2087)) ([178e4f0](https://github.com/GetJobber/atlantis/commit/178e4f019ac10da19f291ee75225d5ba0d6adc5e))
+
+
+
+
+
 ## [5.44.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.44.2...@jobber/components@5.44.3) (2024-10-23)
 
 **Note:** Version bump only for package @jobber/components

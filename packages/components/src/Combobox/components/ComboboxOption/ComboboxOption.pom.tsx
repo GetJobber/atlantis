@@ -1,26 +1,37 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { ComboboxOption as ComboboxOptionComponent } from "./ComboboxOption";
-import { ComboboxOption } from "../../Combobox.types";
-import { ComboboxContextProvider } from "../../ComboboxProvider";
+import noop from "lodash/noop";
+import { ComboboxOption } from "./ComboboxOption";
+import { ComboboxOptionProps } from "../../Combobox.types";
+import {
+  ComboboxContextProvider,
+  ComboboxProviderProps,
+} from "../../ComboboxProvider";
 
-export function renderOption(
-  id: string | number,
-  label: string,
-  selected: ComboboxOption[],
-  onSelect = jest.fn(),
-) {
+export function renderOption({
+  id,
+  label,
+  customRender,
+  selected,
+  onSelect = noop,
+}: {
+  id: string | number;
+  label: string;
+  customRender?: ComboboxOptionProps["customRender"];
+  selected: ComboboxOptionProps[];
+  onSelect?: ComboboxProviderProps["selectionHandler"];
+}) {
   return render(
     <ComboboxContextProvider
-      toggleOpen={jest.fn()}
-      handleClose={jest.fn()}
+      handleOpen={noop}
+      handleClose={noop}
       selected={selected}
       open={true}
       shouldScroll={{ current: false }}
       selectionHandler={onSelect}
       searchValue=""
     >
-      <ComboboxOptionComponent label={label} id={id} />
+      <ComboboxOption label={label} id={id} customRender={customRender} />
     </ComboboxContextProvider>,
   );
 }
@@ -36,3 +47,21 @@ export function getCheckmark() {
 export function queryCheckmark() {
   return screen.queryByTestId("checkmark");
 }
+
+export function queryListItem() {
+  return screen.queryByRole("option");
+}
+
+export const customRender: ComboboxOptionProps["customRender"] = ({
+  id,
+  label,
+  isSelected,
+}) => {
+  return (
+    <div>
+      <div>{id}</div>
+      <div>{label}</div>
+      {isSelected && "✅"}
+    </div>
+  );
+};
