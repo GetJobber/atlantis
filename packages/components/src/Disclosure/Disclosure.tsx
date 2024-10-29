@@ -1,6 +1,9 @@
 import React, { ReactElement, ReactNode, useState } from "react";
 import classnames from "classnames";
-import { useBreakpoints } from "@jobber/hooks/useBreakpoints";
+import {
+  Breakpoints,
+  useResizeObserver,
+} from "@jobber/hooks/useResizeObserver";
 import styles from "./Disclosure.module.css";
 import { Icon } from "../Icon";
 import { Typography } from "../Typography";
@@ -47,7 +50,8 @@ export function Disclosure({
     defaultOpen || open || false,
   );
   const isOpen = open !== undefined ? open : internalOpen;
-  const { smallAndUp } = useBreakpoints();
+  const [titleRef, { exactWidth }] = useResizeObserver<HTMLDivElement>();
+  const isBelowBreakpoint = exactWidth && exactWidth < Breakpoints.small;
   const isTitleString = typeof title === "string";
 
   return (
@@ -57,10 +61,11 @@ export function Disclosure({
           className={classnames(styles.summaryWrap, {
             [styles.customSummaryWrap]: !isTitleString,
           })}
+          ref={titleRef}
         >
           <DisclosureTitle
             title={title}
-            size={smallAndUp ? "large" : "base"}
+            size={isBelowBreakpoint ? "base" : "large"}
             isTitleString={isTitleString}
           />
           <span className={styles.arrowIconWrapper}>

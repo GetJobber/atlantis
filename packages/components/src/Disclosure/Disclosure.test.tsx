@@ -1,21 +1,30 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import {
-  BREAKPOINT_SIZES,
-  mockViewportWidth,
-} from "@jobber/hooks/useBreakpoints";
 import userEvent from "@testing-library/user-event";
+import * as jobberHooks from "@jobber/hooks/useResizeObserver";
 import { Disclosure } from ".";
 import { Icon } from "../Icon";
 
-const { cleanup, setViewportWidth } = mockViewportWidth();
+jest.mock("@jobber/hooks/useResizeObserver", () => {
+  return {
+    __esModule: true, // Allows use to spy on useResizeObserver
+    ...(jest.requireActual("@jobber/hooks/useResizeObserver") as object),
+  };
+});
+
+const mockContainerWidth = (exactWidth?: number) => {
+  jest.spyOn(jobberHooks, "useResizeObserver").mockReturnValue([
+    { current: null },
+    {
+      width: 1200,
+      height: 800,
+      exactWidth: exactWidth || 1200,
+      exactHeight: 800,
+    },
+  ]);
+};
 
 describe("Disclosure", () => {
-  afterEach(cleanup);
-  beforeEach(() => {
-    setViewportWidth(BREAKPOINT_SIZES.lg);
-  });
-
   it("renders a Disclosure", () => {
     render(
       <Disclosure title="Example Disclosure Title">
@@ -90,19 +99,17 @@ describe("Disclosure", () => {
   });
 
   describe("When the disclosure is controlled", () => {
-    afterEach(cleanup);
-    beforeEach(() => {
-      setViewportWidth(BREAKPOINT_SIZES.lg);
-    });
-
     describe("Title is a string", () => {
       it.each([
-        { breakpoint: BREAKPOINT_SIZES.lg, expectedClass: "large" },
-        { breakpoint: BREAKPOINT_SIZES.sm - 1, expectedClass: "base" },
+        { breakpoint: jobberHooks.Breakpoints.large, expectedClass: "large" },
+        {
+          breakpoint: jobberHooks.Breakpoints.small - 1,
+          expectedClass: "base",
+        },
       ])(
-        "should updated the title size based on the breakpoint",
+        "should updated the title size based on the size of the container",
         async ({ breakpoint, expectedClass }) => {
-          setViewportWidth(breakpoint);
+          mockContainerWidth(breakpoint);
           render(
             <Disclosure title="I am Disclosure" open={false}>
               <span>Content</span>
