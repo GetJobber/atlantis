@@ -234,4 +234,43 @@ describe("When a list is provided a custom render function", () => {
     );
     expect(container).toMatchSnapshot();
   });
+
+  test("it should allow for custom styles", () => {
+    interface CustomListItemProps extends BaseListItemProps {
+      readonly name: string;
+      readonly address: string;
+    }
+
+    function CustomRenderer({
+      listItem,
+    }: {
+      readonly listItem: CustomListItemProps;
+    }) {
+      return (
+        <div style={{ padding: "10px" }}>
+          <Text>{listItem.name}</Text>
+          <Text>{listItem.address}</Text>
+        </div>
+      );
+    }
+    const { container } = render(
+      <List
+        items={[
+          {
+            id: 1,
+            name: "Jane Doe",
+            address: "123 Main St",
+          },
+          {
+            id: 2,
+            name: "Joe Doe",
+            address: "456 Main St",
+          },
+        ]}
+        customRenderItem={item => <CustomRenderer listItem={item} />}
+        customItemStyles={true}
+      />,
+    );
+    expect(container).toMatchSnapshot();
+  });
 });

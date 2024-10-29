@@ -1,5 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`When a list is provided a custom render function it should allow for custom styles 1`] = `
+<div>
+  <ul
+    class="list"
+  >
+    <li
+      class=""
+    >
+      <button
+        class="action"
+        id="1"
+        role="button"
+        type="button"
+      >
+        <div
+          style="padding: 10px;"
+        >
+          <p
+            class="base regular base text"
+          >
+            Jane Doe
+          </p>
+          <p
+            class="base regular base text"
+          >
+            123 Main St
+          </p>
+        </div>
+      </button>
+    </li>
+    <li
+      class=""
+    >
+      <button
+        class="action"
+        id="2"
+        role="button"
+        type="button"
+      >
+        <div
+          style="padding: 10px;"
+        >
+          <p
+            class="base regular base text"
+          >
+            Joe Doe
+          </p>
+          <p
+            class="base regular base text"
+          >
+            456 Main St
+          </p>
+        </div>
+      </button>
+    </li>
+  </ul>
+</div>
+`;
+
 exports[`When a list is provided a custom render function it should handle a sectioned list with a custom render function 1`] = `
 <div>
   <ul
@@ -24,7 +83,7 @@ exports[`When a list is provided a custom render function it should handle a sec
           class="item"
         >
           <button
-            class="action defaultContainer"
+            class="action defaultContainer customItem"
             id="1"
             role="button"
             type="button"
@@ -47,7 +106,7 @@ exports[`When a list is provided a custom render function it should handle a sec
           class="item"
         >
           <button
-            class="action defaultContainer"
+            class="action defaultContainer customItem"
             id="2"
             role="button"
             type="button"
@@ -87,7 +146,7 @@ exports[`When a list is provided a custom render function it should handle a sec
           class="item"
         >
           <button
-            class="action defaultContainer"
+            class="action defaultContainer customItem"
             id="3"
             role="button"
             type="button"
@@ -110,7 +169,7 @@ exports[`When a list is provided a custom render function it should handle a sec
           class="item"
         >
           <button
-            class="action defaultContainer"
+            class="action defaultContainer customItem"
             id="4"
             role="button"
             type="button"
@@ -144,7 +203,7 @@ exports[`When a list is provided a custom render function it should use the cust
       class="item"
     >
       <button
-        class="action defaultContainer"
+        class="action defaultContainer customItem"
         id="1"
         role="button"
         type="button"
@@ -167,7 +226,7 @@ exports[`When a list is provided a custom render function it should use the cust
       class="item"
     >
       <button
-        class="action defaultContainer"
+        class="action defaultContainer customItem"
         id="2"
         role="button"
         type="button"
@@ -219,68 +278,72 @@ exports[`renders 1 List item with all the props 1`] = `
             id="1"
           >
             <div
-              class="icon"
+              class="paddedChild"
             >
-              <svg
-                data-testid="checkmark"
-                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
+              <div
+                class="icon"
               >
-                <path
-                  d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
-                  style="fill: var(--color-green);"
-                />
-              </svg>
-            </div>
-            <div
-              class="info"
-            >
-              <h5
-                class="base bold base heading"
-              >
-                Jordan Yeo completed a visit
-              </h5>
-              <p
-                class="base regular base text"
-              >
-                <span
-                  class="truncate"
+                <svg
+                  data-testid="checkmark"
+                  style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  Build a deck
-                </span>
-              </p>
-              <p
-                class="base regular base text"
+                  <path
+                    d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                    style="fill: var(--color-green);"
+                  />
+                </svg>
+              </div>
+              <div
+                class="info"
               >
-                <span
-                  class="truncate"
+                <h5
+                  class="base bold base heading"
                 >
-                  Fa la la la la
-                </span>
-              </p>
-              <p
-                class="base regular base textSecondary"
+                  Jordan Yeo completed a visit
+                </h5>
+                <p
+                  class="base regular base text"
+                >
+                  <span
+                    class="truncate"
+                  >
+                    Build a deck
+                  </span>
+                </p>
+                <p
+                  class="base regular base text"
+                >
+                  <span
+                    class="truncate"
+                  >
+                    Fa la la la la
+                  </span>
+                </p>
+                <p
+                  class="base regular base textSecondary"
+                >
+                  <span
+                    class="base regular small italic"
+                  >
+                    Sep 24, 2019
+                  </span>
+                </p>
+              </div>
+              <div
+                class="amount"
               >
-                <span
-                  class="base regular small italic"
+                <p
+                  class="base regular base text"
                 >
-                  Sep 24, 2019
-                </span>
-              </p>
-            </div>
-            <div
-              class="amount"
-            >
-              <p
-                class="base regular base text"
-              >
-                <b
-                  class="base bold"
-                >
-                  $30.00
-                </b>
-              </p>
+                  <b
+                    class="base bold"
+                  >
+                    $30.00
+                  </b>
+                </p>
+              </div>
             </div>
           </a>
         </li>
@@ -319,68 +382,72 @@ exports[`renders a list with multiple sections 1`] = `
             id="1"
           >
             <div
-              class="icon"
+              class="paddedChild"
             >
-              <svg
-                data-testid="checkmark"
-                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
+              <div
+                class="icon"
               >
-                <path
-                  d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
-                  style="fill: var(--color-green);"
-                />
-              </svg>
-            </div>
-            <div
-              class="info"
-            >
-              <h5
-                class="base bold base heading"
-              >
-                Jordan Yeo completed a visit
-              </h5>
-              <p
-                class="base regular base text"
-              >
-                <span
-                  class="truncate"
+                <svg
+                  data-testid="checkmark"
+                  style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  Build a deck
-                </span>
-              </p>
-              <p
-                class="base regular base text"
+                  <path
+                    d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                    style="fill: var(--color-green);"
+                  />
+                </svg>
+              </div>
+              <div
+                class="info"
               >
-                <span
-                  class="truncate"
+                <h5
+                  class="base bold base heading"
                 >
-                  Fa la la la la
-                </span>
-              </p>
-              <p
-                class="base regular base textSecondary"
+                  Jordan Yeo completed a visit
+                </h5>
+                <p
+                  class="base regular base text"
+                >
+                  <span
+                    class="truncate"
+                  >
+                    Build a deck
+                  </span>
+                </p>
+                <p
+                  class="base regular base text"
+                >
+                  <span
+                    class="truncate"
+                  >
+                    Fa la la la la
+                  </span>
+                </p>
+                <p
+                  class="base regular base textSecondary"
+                >
+                  <span
+                    class="base regular small italic"
+                  >
+                    Sep 24, 2019
+                  </span>
+                </p>
+              </div>
+              <div
+                class="amount"
               >
-                <span
-                  class="base regular small italic"
+                <p
+                  class="base regular base text"
                 >
-                  Sep 24, 2019
-                </span>
-              </p>
-            </div>
-            <div
-              class="amount"
-            >
-              <p
-                class="base regular base text"
-              >
-                <b
-                  class="base bold"
-                >
-                  $30.00
-                </b>
-              </p>
+                  <b
+                    class="base bold"
+                  >
+                    $30.00
+                  </b>
+                </p>
+              </div>
             </div>
           </a>
         </li>
@@ -410,68 +477,72 @@ exports[`renders a list with multiple sections 1`] = `
             id="1"
           >
             <div
-              class="icon"
+              class="paddedChild"
             >
-              <svg
-                data-testid="checkmark"
-                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
+              <div
+                class="icon"
               >
-                <path
-                  d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
-                  style="fill: var(--color-green);"
-                />
-              </svg>
-            </div>
-            <div
-              class="info"
-            >
-              <h5
-                class="base bold base heading"
-              >
-                Jordan Yeo requires assistance
-              </h5>
-              <p
-                class="base regular base text"
-              >
-                <span
-                  class="truncate"
+                <svg
+                  data-testid="checkmark"
+                  style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  Foo bar
-                </span>
-              </p>
-              <p
-                class="base regular base text"
+                  <path
+                    d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                    style="fill: var(--color-green);"
+                  />
+                </svg>
+              </div>
+              <div
+                class="info"
               >
-                <span
-                  class="truncate"
+                <h5
+                  class="base bold base heading"
                 >
-                  Baz
-                </span>
-              </p>
-              <p
-                class="base regular base textSecondary"
+                  Jordan Yeo requires assistance
+                </h5>
+                <p
+                  class="base regular base text"
+                >
+                  <span
+                    class="truncate"
+                  >
+                    Foo bar
+                  </span>
+                </p>
+                <p
+                  class="base regular base text"
+                >
+                  <span
+                    class="truncate"
+                  >
+                    Baz
+                  </span>
+                </p>
+                <p
+                  class="base regular base textSecondary"
+                >
+                  <span
+                    class="base regular small italic"
+                  >
+                    Sep 25, 2019
+                  </span>
+                </p>
+              </div>
+              <div
+                class="amount"
               >
-                <span
-                  class="base regular small italic"
+                <p
+                  class="base regular base text"
                 >
-                  Sep 25, 2019
-                </span>
-              </p>
-            </div>
-            <div
-              class="amount"
-            >
-              <p
-                class="base regular base text"
-              >
-                <b
-                  class="base bold"
-                >
-                  $40.00
-                </b>
-              </p>
+                  <b
+                    class="base bold"
+                  >
+                    $40.00
+                  </b>
+                </p>
+              </div>
             </div>
           </a>
         </li>
@@ -496,17 +567,21 @@ exports[`should render a button list item 1`] = `
         type="button"
       >
         <div
-          class="info"
+          class="paddedChild"
         >
-          <p
-            class="base regular base text"
+          <div
+            class="info"
           >
-            <span
-              class="truncate"
+            <p
+              class="base regular base text"
             >
-              Click me
-            </span>
-          </p>
+              <span
+                class="truncate"
+              >
+                Click me
+              </span>
+            </p>
+          </div>
         </div>
       </button>
     </li>
@@ -528,17 +603,21 @@ exports[`should render a link with url list item 1`] = `
         id="1"
       >
         <div
-          class="info"
+          class="paddedChild"
         >
-          <p
-            class="base regular base text"
+          <div
+            class="info"
           >
-            <span
-              class="truncate"
+            <p
+              class="base regular base text"
             >
-              Learn more
-            </span>
-          </p>
+              <span
+                class="truncate"
+              >
+                Learn more
+              </span>
+            </p>
+          </div>
         </div>
       </a>
     </li>
@@ -560,17 +639,21 @@ exports[`should render an a tag with url and on click list item 1`] = `
         id="1"
       >
         <div
-          class="info"
+          class="paddedChild"
         >
-          <p
-            class="base regular base text"
+          <div
+            class="info"
           >
-            <span
-              class="truncate"
+            <p
+              class="base regular base text"
             >
-              Learn more
-            </span>
-          </p>
+              <span
+                class="truncate"
+              >
+                Learn more
+              </span>
+            </p>
+          </div>
         </div>
       </a>
     </li>

@@ -88,6 +88,7 @@ export function ListItem<T extends BaseListItemProps = ListItemProps>(
     props.isActive && styles.isActive,
     (props.onClick || props.url) && styles.hoverable,
     !omitDefaultStyles && styles.defaultContainer,
+    props.customRenderItem && !props.customItemStyles && styles.customItem,
   );
   const Wrapper = props.url ? "a" : "button";
 
@@ -114,7 +115,7 @@ export function ListItem<T extends BaseListItemProps = ListItemProps>(
 
 function DefaultRenderItem(props: ListItemProps) {
   return (
-    <>
+    <div className={styles.paddedChild}>
       {props.icon && (
         <div className={styles.icon}>
           <Icon name={props.icon} color={props.iconColor} />
@@ -141,7 +142,7 @@ function DefaultRenderItem(props: ListItemProps) {
           </Text>
         </div>
       )}
-    </>
+    </div>
   );
 }
 
