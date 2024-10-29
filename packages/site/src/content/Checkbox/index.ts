@@ -1,5 +1,4 @@
 import { Checkbox } from "@jobber/components";
-// eslint-disable-next-line import/no-unresolved
 import Content from "@atlantis/docs/components/Checkbox/Checkbox.stories.mdx";
 import Props from "./Checkbox.props.json";
 import { ContentExport } from "../../types/content";

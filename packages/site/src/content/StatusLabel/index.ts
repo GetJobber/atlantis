@@ -1,5 +1,4 @@
 import { StatusLabel } from "@jobber/components";
-// eslint-disable-next-line import/no-unresolved
 import Content from "@atlantis/docs/components/StatusLabel/StatusLabel.stories.mdx";
 import Props from "./StatusLabel.props.json";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

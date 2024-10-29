@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved -- these exist. I need to find a way to make eslint okay with these paths */
 import WelcomeGuide from "@atlantis/docs/README.md";
 import AnimationDocs from "@atlantis/docs/design/Animation.stories.mdx";
 import BorderDocs from "@atlantis/docs/design/Borders.stories.mdx";
