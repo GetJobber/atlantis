@@ -54,12 +54,13 @@ export default (plop, config) => {
     actions: answers => {
       Object.assign(answers, { mdx: "mdx", tsx: "tsx" });
       const actions = [];
-      const buildSiteContentIndex =  () => ({
-            type:"addMany", 
-            destination:`packages/site/src/content/{{name}}/`,
-            base: "templates/site",
-            templateFiles:'templates/site/**/*'
-          })
+      // const buildSiteContentIndex = () => ({
+      //   type: "addMany",
+      //   destination: `packages/site/src/content/{{name}}/`,
+      //   base: "templates/site",
+      //   templateFiles: "templates/site/**/*",
+      // });
+
       if (answers.type === "web") {
         actions.push(
           {
@@ -73,9 +74,9 @@ export default (plop, config) => {
             destination: `docs/components/{{name}}/`,
             base: "templates/docs",
             templateFiles: `templates/docs/!(Mobile)*`,
-          }, 
-      //    buildSiteContentIndex(), - Uncomment when site is ready for production
-          webReminder
+          },
+          //    buildSiteContentIndex(), - Uncomment when site is ready for production
+          webReminder,
         );
       } else if (answers.type === "native") {
         actions.push(
@@ -91,8 +92,8 @@ export default (plop, config) => {
             base: "templates/docs",
             templateFiles: `templates/docs/!(Web)*`,
           },
-      //    buildSiteContentIndex(), - Uncomment when site is ready for production
-          mobileReminder
+          //    buildSiteContentIndex(), - Uncomment when site is ready for production
+          mobileReminder,
         );
       } else {
         actions.push(
@@ -114,7 +115,7 @@ export default (plop, config) => {
             base: "templates/docs",
             templateFiles: `templates/docs/${templateGlob}`,
           },
-        //  buildSiteContentIndex(), - Uncomment when site is ready for production
+          //  buildSiteContentIndex(), - Uncomment when site is ready for production
           webReminder,
           mobileReminder,
         );
