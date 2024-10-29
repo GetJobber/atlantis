@@ -20,6 +20,7 @@ export function Combobox(props: ComboboxProps): JSX.Element {
         id: option.props.id,
         label: option.props.label,
         prefix: option.props.prefix,
+        customRender: option.props.customRender,
       })) || [],
     [optionElements],
   );
@@ -32,9 +33,9 @@ export function Combobox(props: ComboboxProps): JSX.Element {
     searchValue,
     setSearchValue,
     open,
-    setOpen,
     handleClose,
     handleSelection,
+    handleOpen,
     internalFilteredOptions,
     handleSearchChange,
   } = useCombobox(
@@ -52,10 +53,11 @@ export function Combobox(props: ComboboxProps): JSX.Element {
       selected={selectedOptions}
       selectionHandler={handleSelection}
       open={open}
-      setOpen={setOpen}
+      handleOpen={handleOpen}
       handleClose={handleClose}
       shouldScroll={shouldScroll}
       searchValue={searchValue}
+      label={props.label}
     >
       <div ref={wrapperRef} className={styles.wrapper}>
         {open && (
@@ -79,7 +81,6 @@ export function Combobox(props: ComboboxProps): JSX.Element {
           setSearchValue={setSearchValue}
           wrapperRef={wrapperRef}
           open={open}
-          setOpen={setOpen}
           options={props.onSearch ? options : internalFilteredOptions}
           loading={props.loading}
           handleSearchChange={handleSearchChange}
