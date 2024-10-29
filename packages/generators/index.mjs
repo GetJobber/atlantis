@@ -1,5 +1,4 @@
 /* eslint-env node */
-/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable import/no-default-export */
 
 import { PathPrompt } from "inquirer-path";

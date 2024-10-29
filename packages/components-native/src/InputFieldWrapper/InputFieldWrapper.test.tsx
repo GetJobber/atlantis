@@ -1,6 +1,5 @@
 import React from "react";
 import { RenderAPI, fireEvent, render } from "@testing-library/react-native";
-// eslint-disable-next-line no-restricted-imports
 import { Text, ViewStyle } from "react-native";
 import {
   InputFieldWrapper,
