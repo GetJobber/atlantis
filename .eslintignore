@@ -7,4 +7,5 @@ packages/design/icons
 packages/generators/templates
 storybook-static
 
-**/*/*.css.d.ts
+*.css.d.ts
+*.md
