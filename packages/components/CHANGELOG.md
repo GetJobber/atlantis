@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.44.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.44.2...@jobber/components@5.44.3) (2024-10-23)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [5.44.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.44.1...@jobber/components@5.44.2) (2024-10-23)
+
+
+### Bug Fixes
+
+* **components:** Fix Combobox Dependencies and Test Mocks ([#2082](https://github.com/GetJobber/atlantis/issues/2082)) ([31a3168](https://github.com/GetJobber/atlantis/commit/31a31686319d3ba05dfa98fd1bc83fb77cf99102))
+
+
+
+
+
+## [5.44.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.44.0...@jobber/components@5.44.1) (2024-10-23)
+
+
+### Bug Fixes
+
+* **components:** JOB-104988 Add accessibility attributes (also helps with testing) ([#2080](https://github.com/GetJobber/atlantis/issues/2080)) ([2bb45af](https://github.com/GetJobber/atlantis/commit/2bb45af7cf920b4cf66c76d53110edf25e009aef))
+
+
+
+
+
+# [5.44.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.43.3...@jobber/components@5.44.0) (2024-10-22)
+
+
+### Features
+
+* **components:** Allow Fully Custom Combobox Activator ([#2075](https://github.com/GetJobber/atlantis/issues/2075)) ([2332a8f](https://github.com/GetJobber/atlantis/commit/2332a8f9f86dcc2321a214129b1aba537ad5fa12))
+
+
+
+
+
+## [5.43.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.43.2...@jobber/components@5.43.3) (2024-10-21)
+
+
+### Bug Fixes
+
+* **components:** DataList toggle sorting header doesn't transpose id and key ([#2069](https://github.com/GetJobber/atlantis/issues/2069)) ([ed36a75](https://github.com/GetJobber/atlantis/commit/ed36a756cf2ca1ae65d3f6eeca087a6a585494fe))
+
+
+
+
+
 ## [5.43.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.43.1...@jobber/components@5.43.2) (2024-10-18)
 
 

@@ -133,6 +133,7 @@ export function Select({
       styleOverride={{
         container: { paddingLeft: undefined },
       }}
+      assistiveText={assistiveText}
     >
       <View
         testID={getTestID(testID)}
@@ -174,16 +175,6 @@ export function Select({
             </View>
           </View>
         </SelectInternalPicker>
-
-        {assistiveText && (
-          <Text
-            level="textSupporting"
-            variation={textVariation}
-            hideFromScreenReader={true}
-          >
-            {assistiveText}
-          </Text>
-        )}
       </View>
     </InputFieldWrapper>
   );

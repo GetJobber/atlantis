@@ -18,7 +18,6 @@ type UseComboboxReturn = {
   searchValue: string;
   setSearchValue: Dispatch<React.SetStateAction<string>>;
   open: boolean;
-  setOpen: Dispatch<React.SetStateAction<boolean>>;
   selectedOptions: ComboboxOption[];
   selectedStateSetter: (selection: ComboboxOption[]) => void;
   shouldScroll: MutableRefObject<boolean>;
@@ -45,8 +44,9 @@ export function useCombobox(
     [onSearch, debounceTime],
   );
 
-  const { handleClose, handleSelection } = useMakeComboboxHandlers(
+  const { handleClose, handleSelection, handleOpen } = useMakeComboboxHandlers(
     setOpen,
+    open,
     setSearchValue,
     selected,
     shouldScroll,
@@ -65,12 +65,12 @@ export function useCombobox(
     searchValue,
     setSearchValue,
     open,
-    setOpen,
     selectedOptions: selected,
     selectedStateSetter: onSelect,
     shouldScroll,
     handleClose,
     handleSelection,
+    handleOpen,
     internalFilteredOptions,
     handleSearchChange: onSearch ? searchCallback : noop,
   };

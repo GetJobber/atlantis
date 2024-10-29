@@ -134,6 +134,7 @@ SimpleListWithCustomRenderer.args = {
   customRenderItem: (item: SimpleListItemProps) => (
     <RenderSimpleItem listItem={item} />
   ),
+  customItemStyles: true,
 };
 
 function RenderSimpleItem({
@@ -198,33 +199,17 @@ const serviceProviderListItems: SPListItemProps[] = [
   },
 ];
 
-const itemCSS = `
-  li:not(:last-child) .my-item {
-    border-bottom: var(--border-base) solid var(--color-border);
-  }
-
-  .my-item {
-    padding: var(--space-small);
-    display: flex;
-    align-items: center;
-    gap: var(--space-small);
-  }
-`;
-
 function RenderServiceProviderList({
   listItem,
 }: {
   readonly listItem: SPListItemProps;
 }) {
   return (
-    <div className="my-item">
-      <style>{itemCSS}</style>
+    <Flex template={["shrink", "grow", "shrink"]} align="center">
       <Avatar imageUrl={listItem.avatarUrl} />
       <Heading level={4}>{listItem.name}</Heading>
-      <div style={{ marginLeft: "auto" }}>
-        <Icon name="arrowRight" size="base" color="interactive" />
-      </div>
-    </div>
+      <Icon name="arrowRight" size="base" color="interactive" />
+    </Flex>
   );
 }
 
@@ -311,40 +296,22 @@ const productsList: ProductListItemProps[] = [
   },
 ];
 
-const sectionedCSS = `
-  .product-list-item {
-    display: flex;
-    justify-content: flex-start;
-    text-align: left;
-    padding: var(--space-small);
-  }
-
-  .product-list-item > * {
-    padding: var(--space-small);
-  }
-
-  li > ul > li:not(:last-child) .product-list-item {
-    border-bottom: var(--border-base) solid var(--color-border);
-  }
-`;
-
 function RenderProductList({
   listItem,
 }: {
   readonly listItem: ProductListItemProps;
 }) {
   return (
-    <div className="product-list-item">
-      <style>{sectionedCSS}</style>
+    <Flex template={["shrink", "grow"]} align="center">
       <FormatFile file={listItem.image} display="compact" displaySize="base" />
-      <Flex template={["grow"]}>
+      <div style={{ marginBottom: "8px" }}>
         <Heading level={4}>{listItem.name}</Heading>
         <Flex template={["grow", "shrink"]} align="start">
           <Text>{listItem.description}</Text>
           <Text>{listItem.price}</Text>
         </Flex>
-      </Flex>
-    </div>
+      </div>
+    </Flex>
   );
 }
 

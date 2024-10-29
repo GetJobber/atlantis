@@ -56,8 +56,12 @@
   text-align: right;
 }
 
-.isActive:hover > *,
-.isActive:focus > * {
+.isActive {
+  background-color: var(--color-surface--background);
+}
+
+.isActive:hover,
+.isActive:focus {
   background-color: var(--color-surface--background--hover);
 }
 
