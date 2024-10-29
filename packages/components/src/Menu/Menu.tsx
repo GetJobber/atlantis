@@ -1,7 +1,6 @@
 import React, {
   MouseEvent,
   ReactElement,
-  RefObject,
   useId,
   useRef,
   useState,
@@ -16,6 +15,7 @@ import { usePopper } from "react-popper";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import ReactDOM from "react-dom";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
+import { List, ListItemProps } from "@jobber/components/List";
 import styles from "./Menu.module.css";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
@@ -61,6 +61,10 @@ export interface SectionProps {
   actions: ActionProps[];
 }
 
+interface MenuListItems extends ListItemProps {
+  destructive?: boolean;
+}
+
 // eslint-disable-next-line max-statements
 export function Menu({ activator, items }: MenuProps) {
   const [visible, setVisible] = useState(false);
@@ -78,6 +82,28 @@ export function Menu({ activator, items }: MenuProps) {
   });
 
   useOnKeyDown(handleKeyboardShortcut, ["Escape"]);
+
+  // we're doing a lot of iteration now, memoize this value and building
+  const listItems: MenuListItems[] = items.reduce((acc, curr) => {
+    // iterate again
+    // conditionally assign key/value pairs
+    curr.actions.forEach(action => {
+      const currentItem: MenuListItems = {
+        id: action.label,
+        content: action.label,
+        ...(curr.header && { section: curr.header }),
+        ...(action.destructive && { destructive: action.destructive }),
+        ...(action.onClick && { onClick: action.onClick }),
+        ...(action.icon && { icon: action.icon }),
+      };
+
+      acc.push(currentItem);
+    });
+
+    return acc;
+  }, [] as MenuListItems[]);
+
+  console.log(listItems);
 
   // useRefocusOnActivator must come before useFocusTrap for them both to work
   useRefocusOnActivator(visible);
@@ -176,19 +202,38 @@ export function Menu({ activator, items }: MenuProps) {
                       duration: 0.25,
                     }}
                   >
-                    {items.map((item, key: number) => (
-                      <div key={key} className={styles.section}>
-                        {item.header && <SectionHeader text={item.header} />}
-
-                        {item.actions.map(action => (
-                          <Action
-                            sectionLabel={item.header}
-                            key={action.label}
-                            {...action}
-                          />
-                        ))}
-                      </div>
-                    ))}
+                    <List
+                      items={listItems}
+                      customRenderItem={item => (
+                        <div
+                          style={{
+                            borderRadius: "8px",
+                            display: "flex",
+                            gap: "8px",
+                            padding: "8px",
+                            alignItems: "center",
+                          }}
+                        >
+                          {item.icon && (
+                            <div>
+                              <Icon
+                                color={
+                                  item.destructive ? "destructive" : undefined
+                                }
+                                name={item.icon}
+                              />
+                            </div>
+                          )}
+                          <Typography
+                            element="span"
+                            fontWeight="semiBold"
+                            textColor="text"
+                          >
+                            {item.content}
+                          </Typography>
+                        </div>
+                      )}
+                    />
                   </motion.div>
                 )}
               </div>
@@ -228,26 +273,6 @@ export function Menu({ activator, items }: MenuProps) {
   }
 }
 
-interface SectionHeaderProps {
-  readonly text: string;
-}
-
-function SectionHeader({ text }: SectionHeaderProps) {
-  return (
-    <div className={styles.sectionHeader} aria-hidden={true}>
-      <Typography
-        element="h6"
-        size="base"
-        textColor="textSecondary"
-        fontWeight="regular"
-        textCase="none"
-      >
-        {text}
-      </Typography>
-    </div>
-  );
-}
-
 export interface ActionProps {
   /**
    * Action label
@@ -273,42 +298,6 @@ export interface ActionProps {
    * Callback when an action gets clicked
    */
   onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
-}
-
-function Action({
-  label,
-  sectionLabel,
-  icon,
-  destructive,
-  onClick,
-}: ActionProps) {
-  const actionButtonRef = useRef() as RefObject<HTMLButtonElement>;
-  const buttonClasses = classnames(styles.action, {
-    [styles.destructive]: destructive,
-  });
-
-  return (
-    <button
-      role="menuitem"
-      type="button"
-      className={buttonClasses}
-      key={label}
-      onClick={onClick}
-      ref={actionButtonRef}
-    >
-      {icon && (
-        <div>
-          <Icon color={destructive ? "destructive" : undefined} name={icon} />
-        </div>
-      )}
-      <Typography element="span" fontWeight="semiBold" textColor="text">
-        {sectionLabel && (
-          <span className={styles.screenReaderOnly}>{sectionLabel}</span>
-        )}
-        {label}
-      </Typography>
-    </button>
-  );
 }
 
 function MenuPortal({ children }: { readonly children: React.ReactElement }) {
