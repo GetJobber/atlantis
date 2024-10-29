@@ -204,6 +204,7 @@ export function Menu({ activator, items }: MenuProps) {
                   >
                     <List
                       items={listItems}
+                      customItemStyles={true}
                       customRenderItem={item => (
                         <div
                           style={{
