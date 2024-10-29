@@ -1,0 +1,401 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders inline label with capitalize transform 1`] = `
+<View
+  style={
+    [
+      {
+        "borderRadius": 16,
+      },
+      {
+        "paddingHorizontal": 8,
+        "paddingVertical": 4,
+      },
+      {
+        "backgroundColor": "hsl(195, 12%, 94%)",
+      },
+    ]
+  }
+>
+  <Text
+    accessibilityRole="text"
+    adjustsFontSizeToFit={false}
+    allowFontScaling={true}
+    collapsable={false}
+    selectable={true}
+    selectionColor="hsl(86, 100%, 46%)"
+    style={
+      [
+        {
+          "fontFamily": "inter-regular",
+        },
+        {
+          "color": "hsl(198, 35%, 21%)",
+        },
+        {
+          "textAlign": "left",
+        },
+        {
+          "fontSize": 14,
+          "lineHeight": 18,
+        },
+        {
+          "letterSpacing": 0,
+        },
+      ]
+    }
+  >
+    Draft
+  </Text>
+</View>
+`;
+
+exports[`renders inline label with color and size 1`] = `
+<View
+  style={
+    [
+      {
+        "borderRadius": 16,
+      },
+      {
+        "paddingHorizontal": 14,
+        "paddingVertical": 4,
+      },
+      {
+        "backgroundColor": "hsl(190, 63%, 92%)",
+      },
+    ]
+  }
+>
+  <Text
+    accessibilityRole="text"
+    adjustsFontSizeToFit={false}
+    allowFontScaling={true}
+    collapsable={false}
+    selectable={true}
+    selectionColor="hsl(86, 100%, 46%)"
+    style={
+      [
+        {
+          "fontFamily": "inter-regular",
+        },
+        {
+          "color": "hsl(190, 78%, 25%)",
+        },
+        {
+          "textAlign": "left",
+        },
+        {
+          "fontSize": 16,
+          "lineHeight": 20,
+        },
+        {
+          "letterSpacing": 0,
+        },
+      ]
+    }
+  >
+    DRAFT
+  </Text>
+</View>
+`;
+
+exports[`renders inline label with color red 1`] = `
+<View
+  style={
+    [
+      {
+        "borderRadius": 16,
+      },
+      {
+        "paddingHorizontal": 8,
+        "paddingVertical": 4,
+      },
+      {
+        "backgroundColor": "hsl(7, 63%, 95%)",
+      },
+    ]
+  }
+>
+  <Text
+    accessibilityRole="text"
+    adjustsFontSizeToFit={false}
+    allowFontScaling={true}
+    collapsable={false}
+    selectable={true}
+    selectionColor="hsl(86, 100%, 46%)"
+    style={
+      [
+        {
+          "fontFamily": "inter-regular",
+        },
+        {
+          "color": "hsl(6, 100%, 24%)",
+        },
+        {
+          "textAlign": "left",
+        },
+        {
+          "fontSize": 14,
+          "lineHeight": 18,
+        },
+        {
+          "letterSpacing": 0,
+        },
+      ]
+    }
+  >
+    DRAFT
+  </Text>
+</View>
+`;
+
+exports[`renders inline label with color teal 1`] = `
+<View
+  style={
+    [
+      {
+        "borderRadius": 16,
+      },
+      {
+        "paddingHorizontal": 8,
+        "paddingVertical": 4,
+      },
+      {
+        "backgroundColor": "hsl(190, 63%, 92%)",
+      },
+    ]
+  }
+>
+  <Text
+    accessibilityRole="text"
+    adjustsFontSizeToFit={false}
+    allowFontScaling={true}
+    collapsable={false}
+    selectable={true}
+    selectionColor="hsl(86, 100%, 46%)"
+    style={
+      [
+        {
+          "fontFamily": "inter-regular",
+        },
+        {
+          "color": "hsl(190, 78%, 25%)",
+        },
+        {
+          "textAlign": "left",
+        },
+        {
+          "fontSize": 14,
+          "lineHeight": 18,
+        },
+        {
+          "letterSpacing": 0,
+        },
+      ]
+    }
+  >
+    DRAFT
+  </Text>
+</View>
+`;
+
+exports[`renders inline label with no additional props 1`] = `
+<View
+  style={
+    [
+      {
+        "borderRadius": 16,
+      },
+      {
+        "paddingHorizontal": 8,
+        "paddingVertical": 4,
+      },
+      {
+        "backgroundColor": "hsl(195, 12%, 94%)",
+      },
+    ]
+  }
+>
+  <Text
+    accessibilityRole="text"
+    adjustsFontSizeToFit={false}
+    allowFontScaling={true}
+    collapsable={false}
+    selectable={true}
+    selectionColor="hsl(86, 100%, 46%)"
+    style={
+      [
+        {
+          "fontFamily": "inter-regular",
+        },
+        {
+          "color": "hsl(198, 35%, 21%)",
+        },
+        {
+          "textAlign": "left",
+        },
+        {
+          "fontSize": 14,
+          "lineHeight": 18,
+        },
+        {
+          "letterSpacing": 0,
+        },
+      ]
+    }
+  >
+    DRAFT
+  </Text>
+</View>
+`;
+
+exports[`renders inline label with size default 1`] = `
+<View
+  style={
+    [
+      {
+        "borderRadius": 16,
+      },
+      {
+        "paddingHorizontal": 8,
+        "paddingVertical": 4,
+      },
+      {
+        "backgroundColor": "hsl(195, 12%, 94%)",
+      },
+    ]
+  }
+>
+  <Text
+    accessibilityRole="text"
+    adjustsFontSizeToFit={false}
+    allowFontScaling={true}
+    collapsable={false}
+    selectable={true}
+    selectionColor="hsl(86, 100%, 46%)"
+    style={
+      [
+        {
+          "fontFamily": "inter-regular",
+        },
+        {
+          "color": "hsl(198, 35%, 21%)",
+        },
+        {
+          "textAlign": "left",
+        },
+        {
+          "fontSize": 14,
+          "lineHeight": 18,
+        },
+        {
+          "letterSpacing": 0,
+        },
+      ]
+    }
+  >
+    DRAFT
+  </Text>
+</View>
+`;
+
+exports[`renders inline label with size large 1`] = `
+<View
+  style={
+    [
+      {
+        "borderRadius": 16,
+      },
+      {
+        "paddingHorizontal": 14,
+        "paddingVertical": 4,
+      },
+      {
+        "backgroundColor": "hsl(195, 12%, 94%)",
+      },
+    ]
+  }
+>
+  <Text
+    accessibilityRole="text"
+    adjustsFontSizeToFit={false}
+    allowFontScaling={true}
+    collapsable={false}
+    selectable={true}
+    selectionColor="hsl(86, 100%, 46%)"
+    style={
+      [
+        {
+          "fontFamily": "inter-regular",
+        },
+        {
+          "color": "hsl(198, 35%, 21%)",
+        },
+        {
+          "textAlign": "left",
+        },
+        {
+          "fontSize": 16,
+          "lineHeight": 20,
+        },
+        {
+          "letterSpacing": 0,
+        },
+      ]
+    }
+  >
+    DRAFT
+  </Text>
+</View>
+`;
+
+exports[`renders inline label with size larger 1`] = `
+<View
+  style={
+    [
+      {
+        "borderRadius": 16,
+      },
+      {
+        "paddingHorizontal": 16,
+        "paddingVertical": 8,
+      },
+      {
+        "backgroundColor": "hsl(195, 12%, 94%)",
+      },
+    ]
+  }
+>
+  <Text
+    accessibilityRole="text"
+    adjustsFontSizeToFit={false}
+    allowFontScaling={true}
+    collapsable={false}
+    selectable={true}
+    selectionColor="hsl(86, 100%, 46%)"
+    style={
+      [
+        {
+          "fontFamily": "inter-regular",
+        },
+        {
+          "color": "hsl(198, 35%, 21%)",
+        },
+        {
+          "textAlign": "left",
+        },
+        {
+          "fontSize": 18,
+          "lineHeight": 22,
+        },
+        {
+          "letterSpacing": 0,
+        },
+      ]
+    }
+  >
+    DRAFT
+  </Text>
+</View>
+`;
