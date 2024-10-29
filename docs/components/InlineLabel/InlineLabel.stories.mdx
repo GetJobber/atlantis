@@ -1,6 +1,7 @@
 import { Canvas, Meta } from "@storybook/addon-docs";
 import { Heading } from "@jobber/components/Heading";
 import { Text } from "@jobber/components/Text";
+import { Box } from "@jobber/components/Box";
 import { InlineLabel } from "@jobber/components/InlineLabel";
 
 <Meta title="Components/Status and Feedback/InlineLabel" />
@@ -8,7 +9,7 @@ import { InlineLabel } from "@jobber/components/InlineLabel";
 # Inline Label
 
 InlineLabel is a generic badging element that can be used to distinguish a
-labeling text element from other typographic content.
+labeling Boxelement from other typographic content.
 
 ## Design & usage guidelines
 
@@ -20,31 +21,38 @@ of an item.
 ### Counts
 
 <Canvas>
-  <Text>Unread</Text>
-  <InlineLabel color="red">+99</InlineLabel>
+  <Box direction="row" alignItems="baseline" gap="small">
+    <Text>Unread</Text>
+    <InlineLabel color="red">+99</InlineLabel>
+  </Box>
 </Canvas>
 
 ### Trends
 
 <Canvas>
-  <InlineLabel color="red">↓ 15%</InlineLabel>
-  <InlineLabel color="green">↑ 25%</InlineLabel>
+  <InlineLabel color="red">↓ 15</InlineLabel>
+  <InlineLabel color="green">↑ 25</InlineLabel>
 </Canvas>
 
 ### Tags
 
 <Canvas>
-  <InlineLabel>Do not contact</InlineLabel>
-  <InlineLabel>Northeast</InlineLabel>
-  <InlineLabel>Residential</InlineLabel>
-  <InlineLabel>Electrical</InlineLabel>
+  <Box direction="row" alignItems="center" gap="smaller">
+    <InlineLabel>Preferred customer</InlineLabel>
+    <InlineLabel>Northeast</InlineLabel>
+    <InlineLabel>Residential</InlineLabel>
+    <InlineLabel>Electrical</InlineLabel>
+    <InlineLabel>10OFF promo</InlineLabel>
+  </Box>
 </Canvas>
 
 ### Labels that need to be distinguished from other typographic element
 
 <Canvas>
-  <Heading level={2}>Do not contact</Heading>
-  <InlineLabel size="large">Beta</InlineLabel>
+  <Box direction="row" alignItems="center" gap="small">
+    <Heading level={2}>New feature</Heading>
+    <InlineLabel size="large">Beta</InlineLabel>
+  </Box>
 </Canvas>
 
 ## Related components
