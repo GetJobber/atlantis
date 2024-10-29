@@ -16,12 +16,6 @@
           "fileName": "../components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
           "name": "AnimatedSwitcherProps"
         },
-        "declarations": [
-          {
-            "fileName": "../components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
-            "name": "AnimatedSwitcherProps"
-          }
-        ],
         "required": true,
         "type": {
           "name": "boolean"
@@ -35,12 +29,6 @@
           "fileName": "../components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
           "name": "AnimatedSwitcherProps"
         },
-        "declarations": [
-          {
-            "fileName": "../components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
-            "name": "AnimatedSwitcherProps"
-          }
-        ],
         "required": true,
         "type": {
           "name": "ReactElement<any, string | JSXElementConstructor<any>>"
@@ -54,12 +42,6 @@
           "fileName": "../components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
           "name": "AnimatedSwitcherProps"
         },
-        "declarations": [
-          {
-            "fileName": "../components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
-            "name": "AnimatedSwitcherProps"
-          }
-        ],
         "required": true,
         "type": {
           "name": "ReactElement<any, string | JSXElementConstructor<any>>"
@@ -75,12 +57,6 @@
           "fileName": "../components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
           "name": "AnimatedSwitcherProps"
         },
-        "declarations": [
-          {
-            "fileName": "../components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
-            "name": "AnimatedSwitcherProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "\"slideFromBottom\" | \"fade\""
@@ -103,12 +79,6 @@
           "fileName": "../components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
           "name": "AnimatedSwitcherIconProps"
         },
-        "declarations": [
-          {
-            "fileName": "../components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
-            "name": "AnimatedSwitcherIconProps"
-          }
-        ],
         "required": true,
         "type": {
           "name": "IconNames"
@@ -122,12 +92,6 @@
           "fileName": "../components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
           "name": "AnimatedSwitcherIconProps"
         },
-        "declarations": [
-          {
-            "fileName": "../components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
-            "name": "AnimatedSwitcherIconProps"
-          }
-        ],
         "required": true,
         "type": {
           "name": "IconNames"
@@ -143,12 +107,6 @@
           "fileName": "../components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
           "name": "AnimatedSwitcherProps"
         },
-        "declarations": [
-          {
-            "fileName": "../components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
-            "name": "AnimatedSwitcherProps"
-          }
-        ],
         "required": true,
         "type": {
           "name": "boolean"

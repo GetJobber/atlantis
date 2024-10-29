@@ -14,12 +14,6 @@
           "fileName": "../components/src/Checkbox/Checkbox.tsx",
           "name": "CheckboxLabelProps"
         },
-        "declarations": [
-          {
-            "fileName": "../components/src/Checkbox/Checkbox.tsx",
-            "name": "CheckboxLabelProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "string"
@@ -33,12 +27,6 @@
           "fileName": "../components/src/Checkbox/Checkbox.tsx",
           "name": "CheckboxChildrenProps"
         },
-        "declarations": [
-          {
-            "fileName": "../components/src/Checkbox/Checkbox.tsx",
-            "name": "CheckboxChildrenProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "ReactElement<any, string | JSXElementConstructor<any>>"
@@ -52,16 +40,6 @@
           "fileName": "../components/src/Checkbox/Checkbox.tsx",
           "name": "BaseCheckboxProps"
         },
-        "declarations": [
-          {
-            "fileName": "../components/src/Checkbox/Checkbox.tsx",
-            "name": "BaseCheckboxProps"
-          },
-          {
-            "fileName": "../components/src/Checkbox/Checkbox.tsx",
-            "name": "BaseCheckboxProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "boolean"
@@ -75,16 +53,6 @@
           "fileName": "../components/src/Checkbox/Checkbox.tsx",
           "name": "BaseCheckboxProps"
         },
-        "declarations": [
-          {
-            "fileName": "../components/src/Checkbox/Checkbox.tsx",
-            "name": "BaseCheckboxProps"
-          },
-          {
-            "fileName": "../components/src/Checkbox/Checkbox.tsx",
-            "name": "BaseCheckboxProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "boolean"
@@ -98,16 +66,6 @@
           "fileName": "../components/src/Checkbox/Checkbox.tsx",
           "name": "BaseCheckboxProps"
         },
-        "declarations": [
-          {
-            "fileName": "../components/src/Checkbox/Checkbox.tsx",
-            "name": "BaseCheckboxProps"
-          },
-          {
-            "fileName": "../components/src/Checkbox/Checkbox.tsx",
-            "name": "BaseCheckboxProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "boolean"
@@ -123,16 +81,6 @@
           "fileName": "../components/src/Checkbox/Checkbox.tsx",
           "name": "BaseCheckboxProps"
         },
-        "declarations": [
-          {
-            "fileName": "../components/src/Checkbox/Checkbox.tsx",
-            "name": "BaseCheckboxProps"
-          },
-          {
-            "fileName": "../components/src/Checkbox/Checkbox.tsx",
-            "name": "BaseCheckboxProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "boolean"
@@ -146,16 +94,6 @@
           "fileName": "../components/src/Checkbox/Checkbox.tsx",
           "name": "BaseCheckboxProps"
         },
-        "declarations": [
-          {
-            "fileName": "../components/src/Checkbox/Checkbox.tsx",
-            "name": "BaseCheckboxProps"
-          },
-          {
-            "fileName": "../components/src/Checkbox/Checkbox.tsx",
-            "name": "BaseCheckboxProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "string"
@@ -169,16 +107,6 @@
           "fileName": "../components/src/Checkbox/Checkbox.tsx",
           "name": "BaseCheckboxProps"
         },
-        "declarations": [
-          {
-            "fileName": "../components/src/Checkbox/Checkbox.tsx",
-            "name": "BaseCheckboxProps"
-          },
-          {
-            "fileName": "../components/src/Checkbox/Checkbox.tsx",
-            "name": "BaseCheckboxProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "string"
@@ -192,16 +120,6 @@
           "fileName": "../components/src/Checkbox/Checkbox.tsx",
           "name": "BaseCheckboxProps"
         },
-        "declarations": [
-          {
-            "fileName": "../components/src/Checkbox/Checkbox.tsx",
-            "name": "BaseCheckboxProps"
-          },
-          {
-            "fileName": "../components/src/Checkbox/Checkbox.tsx",
-            "name": "BaseCheckboxProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "string"
@@ -215,16 +133,6 @@
           "fileName": "../components/src/Checkbox/Checkbox.tsx",
           "name": "BaseCheckboxProps"
         },
-        "declarations": [
-          {
-            "fileName": "../components/src/Checkbox/Checkbox.tsx",
-            "name": "BaseCheckboxProps"
-          },
-          {
-            "fileName": "../components/src/Checkbox/Checkbox.tsx",
-            "name": "BaseCheckboxProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "(newValue: boolean) => void"
@@ -238,16 +146,6 @@
           "fileName": "../components/src/Checkbox/Checkbox.tsx",
           "name": "BaseCheckboxProps"
         },
-        "declarations": [
-          {
-            "fileName": "../components/src/Checkbox/Checkbox.tsx",
-            "name": "BaseCheckboxProps"
-          },
-          {
-            "fileName": "../components/src/Checkbox/Checkbox.tsx",
-            "name": "BaseCheckboxProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "() => void"

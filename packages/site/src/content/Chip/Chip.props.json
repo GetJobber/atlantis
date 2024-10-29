@@ -14,12 +14,6 @@
           "fileName": "packages/components/src/Chip/Chip.types.d.ts",
           "name": "ChipProps"
         },
-        "declarations": [
-          {
-            "fileName": "packages/components/src/Chip/Chip.types.d.ts",
-            "name": "ChipProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "string"
@@ -33,12 +27,6 @@
           "fileName": "packages/components/src/Chip/Chip.types.d.ts",
           "name": "ChipProps"
         },
-        "declarations": [
-          {
-            "fileName": "packages/components/src/Chip/Chip.types.d.ts",
-            "name": "ChipProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "string"
@@ -52,12 +40,6 @@
           "fileName": "packages/components/src/Chip/Chip.types.d.ts",
           "name": "ChipProps"
         },
-        "declarations": [
-          {
-            "fileName": "packages/components/src/Chip/Chip.types.d.ts",
-            "name": "ChipProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "boolean"
@@ -71,12 +53,6 @@
           "fileName": "packages/components/src/Chip/Chip.types.d.ts",
           "name": "ChipProps"
         },
-        "declarations": [
-          {
-            "fileName": "packages/components/src/Chip/Chip.types.d.ts",
-            "name": "ChipProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "string"
@@ -90,12 +66,6 @@
           "fileName": "packages/components/src/Chip/Chip.types.d.ts",
           "name": "ChipProps"
         },
-        "declarations": [
-          {
-            "fileName": "packages/components/src/Chip/Chip.types.d.ts",
-            "name": "ChipProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "boolean"
@@ -109,12 +79,6 @@
           "fileName": "packages/components/src/Chip/Chip.types.d.ts",
           "name": "ChipProps"
         },
-        "declarations": [
-          {
-            "fileName": "packages/components/src/Chip/Chip.types.d.ts",
-            "name": "ChipProps"
-          }
-        ],
         "required": true,
         "type": {
           "name": "string"
@@ -130,12 +94,6 @@
           "fileName": "packages/components/src/Chip/Chip.types.d.ts",
           "name": "ChipProps"
         },
-        "declarations": [
-          {
-            "fileName": "packages/components/src/Chip/Chip.types.d.ts",
-            "name": "ChipProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "string"
@@ -151,12 +109,6 @@
           "fileName": "packages/components/src/Chip/Chip.types.d.ts",
           "name": "ChipProps"
         },
-        "declarations": [
-          {
-            "fileName": "packages/components/src/Chip/Chip.types.d.ts",
-            "name": "ChipProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "number"
@@ -170,12 +122,6 @@
           "fileName": "packages/components/src/Chip/Chip.types.d.ts",
           "name": "ChipProps"
         },
-        "declarations": [
-          {
-            "fileName": "packages/components/src/Chip/Chip.types.d.ts",
-            "name": "ChipProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "string | number"
@@ -191,12 +137,6 @@
           "fileName": "packages/components/src/Chip/Chip.types.d.ts",
           "name": "ChipProps"
         },
-        "declarations": [
-          {
-            "fileName": "packages/components/src/Chip/Chip.types.d.ts",
-            "name": "ChipProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "ChipVariations"
@@ -210,12 +150,6 @@
           "fileName": "packages/components/src/Chip/Chip.types.d.ts",
           "name": "ChipProps"
         },
-        "declarations": [
-          {
-            "fileName": "packages/components/src/Chip/Chip.types.d.ts",
-            "name": "ChipProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "(value: string | number, ev: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) => void"
@@ -229,12 +163,6 @@
           "fileName": "packages/components/src/Chip/Chip.types.d.ts",
           "name": "ChipProps"
         },
-        "declarations": [
-          {
-            "fileName": "packages/components/src/Chip/Chip.types.d.ts",
-            "name": "ChipProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "(ev: React.KeyboardEvent<HTMLButtonElement | HTMLDivElement>) => void"
@@ -265,12 +193,6 @@
           "fileName": "packages/components/src/Chip/components/ChipSuffix/Chip.Suffix.tsx",
           "name": "ChipSuffixProps"
         },
-        "declarations": [
-          {
-            "fileName": "packages/components/src/Chip/components/ChipSuffix/Chip.Suffix.tsx",
-            "name": "ChipSuffixProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "string"
@@ -284,12 +206,6 @@
           "fileName": "packages/components/src/Chip/components/ChipSuffix/Chip.Suffix.tsx",
           "name": "ChipSuffixProps"
         },
-        "declarations": [
-          {
-            "fileName": "packages/components/src/Chip/components/ChipSuffix/Chip.Suffix.tsx",
-            "name": "ChipSuffixProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "string"
@@ -303,12 +219,6 @@
           "fileName": "packages/components/src/Chip/components/ChipSuffix/Chip.Suffix.tsx",
           "name": "ChipSuffixProps"
         },
-        "declarations": [
-          {
-            "fileName": "packages/components/src/Chip/components/ChipSuffix/Chip.Suffix.tsx",
-            "name": "ChipSuffixProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "string"
@@ -322,12 +232,6 @@
           "fileName": "packages/components/src/Chip/components/ChipSuffix/Chip.Suffix.tsx",
           "name": "ChipSuffixProps"
         },
-        "declarations": [
-          {
-            "fileName": "packages/components/src/Chip/components/ChipSuffix/Chip.Suffix.tsx",
-            "name": "ChipSuffixProps"
-          }
-        ],
         "required": false,
         "type": {
           "name": "(event: any) => void"
