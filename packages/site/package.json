@@ -1,7 +1,7 @@
 {
   "name": "@jobber/atlantis-site",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -20,17 +20,17 @@
     "react-router-dom": "5.3.4"
   },
   "devDependencies": {
+    "@mdx-js/react": "^3.0.1",
+    "@mdx-js/rollup": "^3.0.1",
     "@types/prismjs": "^1.26.4",
-    "@types/react-router-dom": "^5.3.3",
     "@types/react": "18.2.0",
     "@types/react-dom": "18.2.0",
+    "@types/react-router-dom": "^5.3.3",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "@vitejs/plugin-react": "^4.3.1",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
-    "@mdx-js/react": "^3.0.1",
-    "@mdx-js/rollup": "^3.0.1",
     "rehype-rewrite": "^4.0.2",
     "remark-gfm": "^4.0.0",
     "vite": "^5.3.1"
