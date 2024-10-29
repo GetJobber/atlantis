@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.46.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.45.0...@jobber/components@5.46.0) (2024-10-29)
+
+
+### Features
+
+* **components:** Add support for controlled disclosures ([#2088](https://github.com/GetJobber/atlantis/issues/2088)) ([2d6ed20](https://github.com/GetJobber/atlantis/commit/2d6ed20573a825961a715c5242a2b7a3595fcb38))
+
+
+
+
+
 # [5.45.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.44.3...@jobber/components@5.45.0) (2024-10-28)
 
 
