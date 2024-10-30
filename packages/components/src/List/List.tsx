@@ -89,27 +89,50 @@ function SectionedList<T extends BaseListItemProps = ListItemProps>({
 
   return (
     <ul className={styles.list}>
-      {Object.keys(sectionedItems).map(sectionName => (
-        <li key={sectionName} className={styles.section}>
-          <div className={sectionHeaderClassNames}>
-            <Typography element="h4" fontWeight="bold" size="large">
-              {sectionName}
-            </Typography>
-          </div>
+      {Object.keys(sectionedItems).map(sectionName => {
+        if (sectionName === "Other") {
+          return (
+            // this is upsetting React that it doesn't have a key
+            <>
+              {sectionedItems[sectionName].map(item => {
+                console.log(item.id);
 
-          <ul className={styles.list}>
-            {sectionedItems[sectionName].map(item => (
-              <li key={item.id} className={itemClassNames}>
-                <ListItem
-                  {...item}
-                  customRenderItem={customRenderItem}
-                  customItemStyles={customItemStyles}
-                />
-              </li>
-            ))}
-          </ul>
-        </li>
-      ))}
+                return (
+                  <li key={item.id} className={itemClassNames}>
+                    <ListItem
+                      {...item}
+                      customRenderItem={customRenderItem}
+                      customItemStyles={customItemStyles}
+                    />
+                  </li>
+                );
+              })}
+            </>
+          );
+        }
+
+        return (
+          <li key={sectionName} className={styles.section}>
+            <div className={sectionHeaderClassNames}>
+              <Typography element="h4" fontWeight="bold" size="large">
+                {sectionName}
+              </Typography>
+            </div>
+
+            <ul className={styles.list}>
+              {sectionedItems[sectionName].map(item => (
+                <li key={item.id} className={itemClassNames}>
+                  <ListItem
+                    {...item}
+                    customRenderItem={customRenderItem}
+                    customItemStyles={customItemStyles}
+                  />
+                </li>
+              ))}
+            </ul>
+          </li>
+        );
+      })}
     </ul>
   );
 }
