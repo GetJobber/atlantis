@@ -215,6 +215,18 @@
   flex-direction: column;
 }
 
+/* Hide overflow when toolbar is present */
+.textarea:has(.toolbar),
+.text:has(.toolbar) {
+  overflow-y: hidden;
+}
+
+/* Provide extra padding when toolbar is present to prevent content going under the toolbar */
+.textarea:has(.toolbar) .childrenWrapper,
+.text:has(.toolbar):focus-within .childrenWrapper {
+  padding-bottom: var(--space-extravagant);
+}
+
 .textarea .inputWrapper:has(.label) .childrenWrapper {
   padding-top: var(--field--padding-top);
 }
@@ -235,11 +247,6 @@
 .input:-webkit-autofill:focus,
 .input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px var(--color-surface) inset !important;
-}
-
-.textarea:has(.toolbar) .input {
-  scroll-padding-bottom: var(--space-extravagant);
-  padding-bottom: var(--space-extravagant);
 }
 
 .textarea:not(:has(.label)) {
@@ -376,26 +383,29 @@
 .toolbar {
   display: flex;
   position: absolute;
-  right: 0;
+  right: var(--border-base);
   bottom: calc(-1 * var(--space-small));
-  left: 0;
+  left: var(--border-base);
   padding: var(--space-small) var(--field--padding-right) var(--space-base)
     var(--field--padding-left);
   border-radius: 0 0 var(--radius-base) var(--radius-base);
   background-color: var(--field--background-color);
-  pointer-events: none;
   opacity: 0;
   transition: all var(--timing-quick) ease-in-out;
 }
 
-.textarea:focus-within .toolbar {
-  bottom: 0;
-  pointer-events: all;
+.text:not(.textarea) .toolbar {
+  pointer-events: none;
+}
+
+.textarea:focus-within .toolbar,
+.text:focus-within .toolbar,
+.toolbar.alwaysVisible {
+  bottom: var(--border-base);
   opacity: 1;
 }
 
 .toolbar::before {
-  --field--overflow-size: var(--space-small);
   content: "";
   display: block;
   position: absolute;
@@ -405,4 +415,5 @@
   z-index: var(--elevation-base);
   height: var(--field--overflow-size);
   background: linear-gradient(to bottom, transparent, var(--color-surface) 60%);
+  --field--overflow-size: var(--space-small);
 }

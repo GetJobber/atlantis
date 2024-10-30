@@ -18,15 +18,16 @@ declare const styles: {
   readonly "inputWrapper": string;
   readonly "childrenWrapper": string;
   readonly "input": string;
+  readonly "toolbar": string;
   readonly "label": string;
   readonly "select": string;
-  readonly "toolbar": string;
   readonly "postfix": string;
   readonly "affixIcon": string;
   readonly "suffix": string;
   readonly "hasAction": string;
   readonly "affixLabel": string;
   readonly "description": string;
+  readonly "alwaysVisible": string;
 };
 export = styles;
 

@@ -7,14 +7,11 @@ import React, {
 } from "react";
 import classnames from "classnames";
 import { Clearable, useShowClear } from "@jobber/hooks/useShowClear";
-import { AnimatePresence, motion } from "framer-motion";
-import { tokens } from "@jobber/design";
 import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.module.css";
 import { AffixIcon, AffixLabel } from "./FormFieldAffix";
 import { FormFieldDescription } from "./FormFieldDescription";
 import { ClearAction } from "./components/ClearAction";
-import { useToolbar } from "./hooks/useToolbar";
 import { useFormFieldFocus } from "./hooks/useFormFieldFocus";
 import { useIsSafari } from "./hooks/useIsSafari";
 import { InputValidation } from "../InputValidation";
@@ -52,6 +49,7 @@ export function FormFieldWrapper({
   inline,
   identifier,
   clearable,
+  inputRef,
   onClear,
   toolbar,
   toolbarVisibility = "while-editing",
@@ -109,13 +107,6 @@ export function FormFieldWrapper({
     disabled,
   });
 
-  const { isToolbarVisible, toolbarAnimationEnd, toolbarAnimationStart } =
-    useToolbar({
-      focused,
-      toolbar,
-      toolbarVisibility,
-    });
-
   return (
     <div className={containerClasses}>
       <div
@@ -157,7 +148,16 @@ export function FormFieldWrapper({
           )}
         </div>
         {toolbar && (
-          <div className={styles.toolbar} data-testid="ATL-InputText-Toolbar">
+          <div
+            onFocus={() => {
+              inputRef?.current?.focus();
+            }}
+            tabIndex={-1}
+            className={classnames(styles.toolbar, {
+              [styles.alwaysVisible]: toolbarVisibility === "always",
+            })}
+            data-testid="ATL-InputText-Toolbar"
+          >
             {toolbar}
           </div>
         )}
