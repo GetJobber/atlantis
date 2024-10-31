@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { Meta, StoryFn } from "@storybook/react";
-import {
-  SegmentedControl,
-  SegmentedControlContext,
-} from "@jobber/components/SegmentedControl";
-import { Icon } from "@jobber/components/Icon";
+import { SegmentedControl } from "@jobber/components/SegmentedControl";
 
 const meta: Meta = {
   title: "Components/Selections/SegmentedControl/Web",
@@ -28,12 +24,11 @@ const options = [
   { value: "burgers", label: "Burgers" },
 ];
 
-export const Controlled: Story = () => {
-  const [activeOption, setActiveOption] = useState("");
+export const BasicControlled: Story = () => {
+  const [activeOption, setActiveOption] = useState("pizza");
 
   return (
     <SegmentedControl
-      defaultOption={"pizza"}
       selectedOption={activeOption}
       onSelectOption={setActiveOption}
     >
@@ -46,34 +41,14 @@ export const Controlled: Story = () => {
   );
 };
 
-export const AsUncontrolled: Story = () => {
-  const [activeOption, setActiveOption] = useState("calendar");
-
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> = e => {
-    setActiveOption(e.target.value);
-  };
-
+export const BasicUncontrolled: Story = () => {
   return (
-    <SegmentedControlContext.Provider
-      value={{ handleChange, selectedOption: activeOption }}
-    >
-      <SegmentedControl.Base>
-        <SegmentedControl.Option value="calendar" ariaLabel="Calendar">
-          <Icon name="calendar" />
+    <SegmentedControl defaultOption="pizza">
+      {options.map(option => (
+        <SegmentedControl.Option key={option.value} value={option.value}>
+          {option.label}
         </SegmentedControl.Option>
-        <SegmentedControl.Option value="phone" ariaLabel="Phone">
-          <Icon name="phone" />
-        </SegmentedControl.Option>
-        <SegmentedControl.Option value="presentation" ariaLabel="Presentation">
-          <Icon name="presentation" />
-        </SegmentedControl.Option>
-        <SegmentedControl.Option value="availability" ariaLabel="Availability">
-          <Icon name="availability" />
-        </SegmentedControl.Option>
-        <SegmentedControl.Option value="chat" ariaLabel="Chat">
-          <Icon name="chat" />
-        </SegmentedControl.Option>
-      </SegmentedControl.Base>
-    </SegmentedControlContext.Provider>
+      ))}
+    </SegmentedControl>
   );
 };

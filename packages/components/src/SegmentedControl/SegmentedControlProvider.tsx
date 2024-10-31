@@ -7,49 +7,59 @@ import React, {
   useState,
 } from "react";
 
-interface SegmentedControlProviderContext {
+interface SegmentedControlProviderContext<T = unknown> {
   handleChange: ChangeEventHandler<HTMLInputElement>;
-  selectedOption: unknown;
+  selectedOption: T;
 }
 
-export const SegmentedControlContext =
-  createContext<SegmentedControlProviderContext>({
-    handleChange: () => ({}),
-    selectedOption: null,
-  });
+export const SegmentedControlContext = createContext<
+  SegmentedControlProviderContext<unknown>
+>({
+  handleChange: () => ({}),
+  selectedOption: null,
+});
 
 interface SegmentedControlProviderProps<T> extends PropsWithChildren {
-  readonly onSelectOption: (value: T) => void;
-  readonly defaultOption: T;
+  readonly selectedOption?: T;
+  readonly onSelectOption?: (value: T) => void;
+  readonly defaultOption?: T;
 }
 
 export const useSegmentedControl = () => {
-  const { handleChange, selectedOption } = useContext(SegmentedControlContext);
-
-  return { handleChange, selectedOption };
+  return useContext(SegmentedControlContext);
 };
 
 export function SegmentedControlProvider<T>({
   children,
-  onSelectOption,
+  selectedOption,
+  onSelectOption: onSelectOption,
   defaultOption,
 }: SegmentedControlProviderProps<T>) {
-  const [selectedOption, setSelectedOption] = useState<T>(defaultOption);
+  // const [selectedOption, setSelectedOption] = useState<T>(defaultOption);
+  const isControlled =
+    selectedOption !== undefined && onSelectOption !== undefined;
+  const [internalSelectedOption, setInternalSelectedOption] = useState<
+    T | undefined
+  >(defaultOption);
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = useCallback(
     event => {
       const value = event.target.value as T;
-      setSelectedOption(value);
-      onSelectOption(value);
+      if (!isControlled) setInternalSelectedOption(value);
+      onSelectOption?.(value);
     },
-    [onSelectOption],
+    [onSelectOption, isControlled],
   );
+
+  const currentSelectedOption = isControlled
+    ? selectedOption
+    : internalSelectedOption;
 
   return (
     <SegmentedControlContext.Provider
       value={{
         handleChange,
-        selectedOption,
+        selectedOption: currentSelectedOption,
       }}
     >
       {children}

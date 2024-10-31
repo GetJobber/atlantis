@@ -7,20 +7,21 @@ interface SegmentedControlProps<T> extends PropsWithChildren {
   /**
    * The currently selected option
    */
-  readonly selectedOption: T;
+  readonly selectedOption?: T;
 
   /**
    * A callback function that is called whenever the selected option changes
    */
-  readonly onSelectOption: (view: T) => void;
+  readonly onSelectOption?: (value: T) => void;
 
   /**
    * The default option to be selected initially
    */
-  readonly defaultOption: T;
+  readonly defaultOption?: T;
 }
 
 export function SegmentedControl<T>({
+  selectedOption,
   onSelectOption,
   defaultOption,
   children,
@@ -29,6 +30,7 @@ export function SegmentedControl<T>({
 
   return (
     <SegmentedControlProvider
+      selectedOption={selectedOption}
       onSelectOption={onSelectOption}
       defaultOption={defaultOption}
     >
