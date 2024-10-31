@@ -97,7 +97,7 @@ export function FormFieldWrapper({
     setLabelStyle(getAffixPaddding);
   }, [value]);
 
-  const { focused } = useFormFieldFocus({ wrapperRef });
+  const { focused } = useFormFieldFocus({ wrapperRef, inputRef, toolbar });
 
   const showClear = useShowClear({
     clearable,
@@ -149,9 +149,7 @@ export function FormFieldWrapper({
         </div>
         {toolbar && (
           <div
-            onFocus={() => {
-              inputRef?.current?.focus();
-            }}
+            aria-hidden={toolbarVisibility !== "always" && !focused}
             tabIndex={-1}
             className={classnames(styles.toolbar, {
               [styles.alwaysVisible]: toolbarVisibility === "always",

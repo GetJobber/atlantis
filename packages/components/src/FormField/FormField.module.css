@@ -396,6 +396,7 @@
     var(--field--padding-left);
   border-radius: 0 0 var(--radius-base) var(--radius-base);
   background-color: var(--field--background-color);
+  pointer-events: none;
   opacity: 0;
   transition: all var(--timing-quick) ease-in-out;
 }
@@ -408,6 +409,7 @@
 .text:focus-within .toolbar,
 .toolbar.alwaysVisible {
   bottom: var(--border-base);
+  pointer-events: auto;
   opacity: 1;
 }
 

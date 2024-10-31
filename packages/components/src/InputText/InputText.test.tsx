@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { InputText } from ".";
 import { InputTextRef } from "./InputText";
 
@@ -241,26 +241,28 @@ describe("toolbar", () => {
   });
 
   describe("with toolbar and toolbarVisibility focus-within", () => {
-    it("should only render toolbar when focused", () => {
+    it("should only render toolbar when focused", async () => {
       render(
         <InputText
           placeholder="Favourite movie"
-          toolbar={<h1>Bar Of Tool</h1>}
+          toolbar={<h1 data-testid="testId">Bar Of Tool</h1>}
         />,
       );
-      expect(
-        screen.queryByTestId("ATL-InputText-Toolbar"),
-      ).not.toBeInTheDocument();
+
+      const toolbar = screen.getByTestId("ATL-InputText-Toolbar");
+
+      expect(toolbar).toHaveAttribute("aria-hidden", "true");
 
       const input = screen.getByLabelText("Favourite movie");
       fireEvent.focus(input);
-
-      expect(screen.getByTestId("ATL-InputText-Toolbar")).toBeInTheDocument();
+      await waitFor(() => {
+        expect(toolbar).toHaveAttribute("aria-hidden", "false");
+      });
     });
   });
   describe("with multiline", () => {
     describe("with toolbar and toolbarVisibility focus-within", () => {
-      it("should only render toolbar when focused", () => {
+      it("should only render toolbar when focused", async () => {
         render(
           <InputText
             placeholder="Favourite movie"
@@ -268,14 +270,16 @@ describe("toolbar", () => {
             multiline
           />,
         );
-        expect(
-          screen.queryByTestId("ATL-InputText-Toolbar"),
-        ).not.toBeInTheDocument();
+        const toolbar = screen.getByTestId("ATL-InputText-Toolbar");
+
+        expect(toolbar).toHaveAttribute("aria-hidden", "true");
 
         const input = screen.getByLabelText("Favourite movie");
         fireEvent.focus(input);
 
-        expect(screen.getByTestId("ATL-InputText-Toolbar")).toBeInTheDocument();
+        await waitFor(() => {
+          expect(toolbar).toHaveAttribute("aria-hidden", "false");
+        });
       });
     });
   });

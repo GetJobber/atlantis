@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { FormFieldProps } from "../FormFieldTypes";
 
 interface UseFormFieldFocus {
   focused: boolean;
@@ -6,6 +7,10 @@ interface UseFormFieldFocus {
 
 interface UseFormFieldFocusProps {
   wrapperRef?: React.RefObject<HTMLDivElement>;
+  inputRef?: React.RefObject<
+    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+  >;
+  toolbar?: FormFieldProps["toolbar"];
 }
 
 const PORTAL_FOCUS_ATTRIBUTE_NAME = "data-atl-maintain-portal-focus";
@@ -50,6 +55,12 @@ export function useFormFieldFocus(
       );
     };
   }, []);
+
+  useEffect(() => {
+    if (props.toolbar && focused) {
+      props.inputRef?.current?.focus();
+    }
+  }, [props.toolbar, focused]);
 
   return {
     focused,
