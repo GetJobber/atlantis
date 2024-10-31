@@ -19,7 +19,11 @@ interface SegmentedControlOptionProps extends PropsWithChildren {
    * SegmentedControl.Option.
    */
   readonly ariaLabel?: string;
-  readonly onChange?: (valueIn: React.ChangeEvent<HTMLInputElement>) => void;
+
+  /**
+   * A callback function that is called whenever this option is selected.
+   */
+  readonly onSelected?: (valueIn: string | number) => void;
 }
 
 export function SegmentedControlOption({
@@ -27,7 +31,7 @@ export function SegmentedControlOption({
   children,
   label,
   ariaLabel,
-  onChange,
+  onSelected,
 }: SegmentedControlOptionProps) {
   const { selectedOption, handleChange } = useSegmentedControl();
   const localChecked = useMemo(
@@ -51,7 +55,7 @@ export function SegmentedControlOption({
   );
 
   function handleChangeLocal(valueIn: React.ChangeEvent<HTMLInputElement>) {
-    onChange?.(valueIn);
+    onSelected?.(value);
     handleChange?.(valueIn);
   }
 }
