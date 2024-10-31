@@ -21,7 +21,6 @@ const meta: Meta = {
 export default meta;
 
 type Story = StoryFn<typeof SegmentedControl>;
-type BasicSegment = "pizza" | "tacos" | "sushi" | "burgers";
 const options = [
   { value: "pizza", label: "Pizza" },
   { value: "tacos", label: "Tacos" },
@@ -29,16 +28,14 @@ const options = [
   { value: "burgers", label: "Burgers" },
 ];
 
-export const Basic: Story = () => {
-  const [activeOption, setActiveOption] = useState<BasicSegment>("pizza");
+export const Controlled: Story = () => {
+  const [activeOption, setActiveOption] = useState("");
 
   return (
     <SegmentedControl
       defaultOption={"pizza"}
       selectedOption={activeOption}
-      onSelectOption={d => {
-        setActiveOption(d as BasicSegment);
-      }}
+      onSelectOption={setActiveOption}
     >
       {options.map(option => (
         <SegmentedControl.Option key={option.value} value={option.value}>
@@ -49,38 +46,8 @@ export const Basic: Story = () => {
   );
 };
 
-export const WithIcons: Story = () => {
-  const [activeOption, setActiveOption] = useState<BasicSegment>("pizza");
-
-  return (
-    <SegmentedControl
-      defaultOption={"phone"}
-      selectedOption={activeOption}
-      onSelectOption={d => {
-        setActiveOption(d as BasicSegment);
-      }}
-    >
-      <SegmentedControl.Option value="calendar" ariaLabel="Calendar">
-        <Icon name="calendar" />
-      </SegmentedControl.Option>
-      <SegmentedControl.Option value="phone" ariaLabel="Phone">
-        <Icon name="phone" />
-      </SegmentedControl.Option>
-      <SegmentedControl.Option value="presentation" ariaLabel="Presentation">
-        <Icon name="presentation" />
-      </SegmentedControl.Option>
-      <SegmentedControl.Option value="availability" ariaLabel="Availability">
-        <Icon name="availability" />
-      </SegmentedControl.Option>
-      <SegmentedControl.Option value="chat" ariaLabel="Chat">
-        <Icon name="chat" />
-      </SegmentedControl.Option>
-    </SegmentedControl>
-  );
-};
-
 export const AsUncontrolled: Story = () => {
-  const [activeOption, setActiveOption] = useState("pizza");
+  const [activeOption, setActiveOption] = useState("calendar");
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = e => {
     setActiveOption(e.target.value);
@@ -91,15 +58,20 @@ export const AsUncontrolled: Story = () => {
       value={{ handleChange, selectedOption: activeOption }}
     >
       <SegmentedControl.Base>
-        <SegmentedControl.Option value="pizza">Pizza</SegmentedControl.Option>
-        <SegmentedControl.Option value="pizza2">
-          Ultra Pizza
+        <SegmentedControl.Option value="calendar" ariaLabel="Calendar">
+          <Icon name="calendar" />
         </SegmentedControl.Option>
-        <SegmentedControl.Option value="pizza3">
-          Mega Pizza
+        <SegmentedControl.Option value="phone" ariaLabel="Phone">
+          <Icon name="phone" />
         </SegmentedControl.Option>
-        <SegmentedControl.Option value="pizza4">
-          Everything Pizza
+        <SegmentedControl.Option value="presentation" ariaLabel="Presentation">
+          <Icon name="presentation" />
+        </SegmentedControl.Option>
+        <SegmentedControl.Option value="availability" ariaLabel="Availability">
+          <Icon name="availability" />
+        </SegmentedControl.Option>
+        <SegmentedControl.Option value="chat" ariaLabel="Chat">
+          <Icon name="chat" />
         </SegmentedControl.Option>
       </SegmentedControl.Base>
     </SegmentedControlContext.Provider>
