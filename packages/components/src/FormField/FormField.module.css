@@ -221,9 +221,15 @@
   overflow-y: hidden;
 }
 
+/* Prevent toolbar from jumping slightly between the focused state and unfocused state */
+.wrapper:has(.toolbar.alwaysVisible) {
+  position: relative;
+}
+
 /* Provide extra padding when toolbar is present to prevent content going under the toolbar */
 .textarea:has(.toolbar) .childrenWrapper,
-.text:has(.toolbar):focus-within .childrenWrapper {
+.text:has(.toolbar):focus-within .childrenWrapper,
+.text:has(.toolbar.alwaysVisible) .childrenWrapper {
   padding-bottom: var(--space-extravagant);
 }
 
