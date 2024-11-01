@@ -38,7 +38,7 @@ export function ProgressBar({
         <View
           style={[
             styles.progressBarContainer,
-            size === "small" && { height: 10 },
+            size === "small" && { height: 8 },
           ]}
         >
           <ProgressBarInner
