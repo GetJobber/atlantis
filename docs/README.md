@@ -69,9 +69,9 @@ This following list has installation links for each package:
 
 These are the core packages you'll need to build with Atlantis:
 
-- [Components](../?path=/docs/packages-components--docs)
-- [Design](../?path=/docs/packages-design--docs)
-- [Hooks](../?path=/docs/packages-hooks--docs)
+- [Components](https://atlantis.getjobber.com/?path=/docs/packages-components--docs)
+- [Design](https://atlantis.getjobber.com/?path=/docs/packages-design--docs)
+- [Hooks](https://atlantis.getjobber.com/?path=/docs/packages-hooks--docs)
 
 #### Installing specific versions
 
@@ -93,8 +93,8 @@ npm install @jobber/{package}@{version}
 If you're looking to build documentation and tooling using Atlantis' development
 standards, these packages will be useful:
 
-- [EsLint configuration](../?path=/docs/packages-eslint-config--docs)
-- [StyleLint configuration](../?path=/docs/packages-stylelint-config--docs)
+- [EsLint configuration](https://atlantis.getjobber.com/?path=/docs/packages-eslint-config--docs)
+- [StyleLint configuration](https://atlantis.getjobber.com/?path=/docs/packages-stylelint-config--docs)
 
 ## Generating a component
 
@@ -192,7 +192,7 @@ For more information on how the packages are bootstrapped, check out
 ## Contributing
 
 Everyone is a friend of Atlantis and we welcome pull requests. See the
-[contribution guidelines](../?path=/docs/contributing--docs) to learn how.
+[contribution guidelines](https://atlantis.getjobber.com/?path=/docs/contributing--docs) to learn how.
 
 ## Publishing
 
