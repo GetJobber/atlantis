@@ -56,9 +56,7 @@ export default {
         }),
       ],
     }),
-    commonjs({
-      ignore: ["time-input-polyfill", "time-input-polyfill/supportsTime"],
-    }),
+    commonjs(),
     copy({
       targets: [
         { src: "src/Card/cardcolors.css.d.ts", dest: "dist/Card" },
