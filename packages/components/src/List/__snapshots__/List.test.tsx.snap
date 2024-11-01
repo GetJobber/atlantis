@@ -278,7 +278,7 @@ exports[`renders 1 List item with all the props 1`] = `
             id="1"
           >
             <div
-              class="paddedChild"
+              class="defaultContent"
             >
               <div
                 class="icon"
@@ -382,7 +382,7 @@ exports[`renders a list with multiple sections 1`] = `
             id="1"
           >
             <div
-              class="paddedChild"
+              class="defaultContent"
             >
               <div
                 class="icon"
@@ -477,7 +477,7 @@ exports[`renders a list with multiple sections 1`] = `
             id="1"
           >
             <div
-              class="paddedChild"
+              class="defaultContent"
             >
               <div
                 class="icon"
@@ -567,7 +567,7 @@ exports[`should render a button list item 1`] = `
         type="button"
       >
         <div
-          class="paddedChild"
+          class="defaultContent"
         >
           <div
             class="info"
@@ -603,7 +603,7 @@ exports[`should render a link with url list item 1`] = `
         id="1"
       >
         <div
-          class="paddedChild"
+          class="defaultContent"
         >
           <div
             class="info"
@@ -639,7 +639,7 @@ exports[`should render an a tag with url and on click list item 1`] = `
         id="1"
       >
         <div
-          class="paddedChild"
+          class="defaultContent"
         >
           <div
             class="info"

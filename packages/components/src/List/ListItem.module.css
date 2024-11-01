@@ -6,23 +6,27 @@
   appearance: none;
 }
 
+.action > * {
+  transition: background-color var(--timing-base);
+}
+
 .defaultContainer > * {
   display: flex;
   box-sizing: border-box;
   text-align: left;
   flex: 1;
-  align-items: flex-start;
 }
 
 .customItem > * {
   padding: var(--space-base);
 }
 
-.paddedChild {
+.defaultContent {
+  align-items: flex-start;
   padding: var(--space-small);
 }
 
-.paddedChild > * {
+.defaultContent > * {
   padding: var(--space-small);
 }
 

@@ -22,7 +22,8 @@ interface ListProps<T extends BaseListItemProps = ListItemProps> {
    */
   readonly customRenderItem?: (item: T) => React.ReactNode;
   /**
-   * Set to true for more control over the item styles
+   * Set to true for more control over the item styles. Only modifies styles
+   * when used with customRenderItem.
    */
   readonly customItemStyles?: boolean;
 }

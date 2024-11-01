@@ -11,8 +11,8 @@ import { Emphasis } from "../Emphasis";
 
 export interface BaseListItemProps {
   /**
-   * The ID of the list item. This will be helpful to know the selected list
-   * items when a batch action is implemented.
+   * The ID of the list item. This is important for React to handle efficient
+   * re-rendering of list items.
    */
   readonly id: number | string;
 }
@@ -115,7 +115,7 @@ export function ListItem<T extends BaseListItemProps = ListItemProps>(
 
 function DefaultRenderItem(props: ListItemProps) {
   return (
-    <div className={styles.paddedChild}>
+    <div className={styles.defaultContent}>
       {props.icon && (
         <div className={styles.icon}>
           <Icon name={props.icon} color={props.iconColor} />

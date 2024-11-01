@@ -56,7 +56,11 @@ type `ListItemProps` must be used when using default rendering.
 #### Sectioned List
 
 If a section field is present in any item, the list will group the items by
-their section and display them under section headers.
+their section and display them under section headers. If even one section key
+exists in any of items then it will be expected that every object within that
+collection will have a section defined. If a section is missing, "Other" will be
+used, and any items with a section of "Other" will be grouped with that first
+occurrence that has no section.
 
 <Canvas>
   <Card>
@@ -147,7 +151,7 @@ export const CustomRenderExample = () => (
 - The `customRenderItem` function provides complete control over how each item
   is rendered.
 
-**When to Use Custom Rendering:**
+**About Custom Rendering:**
 
 - Use a custom render function when you need complex layouts that the `ListItem`
   component can’t provide.
