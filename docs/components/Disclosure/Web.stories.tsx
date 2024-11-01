@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Disclosure } from "@jobber/components/Disclosure";
 import { Content } from "@jobber/components/Content";
@@ -28,7 +28,7 @@ const BasicTemplate: ComponentStory<typeof Disclosure> = args => (
 );
 
 const ControlledTemplate: ComponentStory<typeof Disclosure> = args => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
     <Content>
