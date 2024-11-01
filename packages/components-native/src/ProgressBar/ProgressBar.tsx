@@ -4,6 +4,7 @@ import { ProgressBarProps } from "./types";
 import { styles } from "./ProgressBar.style";
 import { ProgressBarInner, calculateWidth } from "./ProgressBarInner";
 import { ProgressBarStepped } from "./ProgressBarStepped";
+import { sizeStyles } from "./ProgressBar.size.style";
 import { tokens } from "../utils/design";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
@@ -35,12 +36,7 @@ export function ProgressBar({
           inProgress={inProgress}
         />
       ) : (
-        <View
-          style={[
-            styles.progressBarContainer,
-            size === "small" && { height: 8 },
-          ]}
-        >
+        <View style={[styles.progressBarContainer, sizeStyles[size]]}>
           <ProgressBarInner
             width={100}
             animationDuration={0}

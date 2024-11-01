@@ -11,12 +11,13 @@ exports[`renders blue inProgress bar when 1 or more jobs is in progress 1`] = `
       [
         {
           "flexDirection": "row",
-          "height": 20,
           "marginBottom": 8,
           "marginTop": 8,
           "position": "relative",
         },
-        false,
+        {
+          "height": 16,
+        },
       ]
     }
   >
@@ -92,12 +93,13 @@ exports[`renders green CompletedProgress bar when 1 or more jobs is completed 1`
       [
         {
           "flexDirection": "row",
-          "height": 20,
           "marginBottom": 8,
           "marginTop": 8,
           "position": "relative",
         },
-        false,
+        {
+          "height": 16,
+        },
       ]
     }
   >

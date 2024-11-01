@@ -5,7 +5,6 @@ export const styles = StyleSheet.create({
   progressBarContainer: {
     marginTop: tokens["space-small"],
     marginBottom: tokens["space-small"],
-    height: 20,
     position: "relative",
     flexDirection: "row",
   },
