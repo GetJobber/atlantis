@@ -210,7 +210,7 @@ npm run release-the-kraken
 ### Publishing a failed release to NPM
 
 In some cases, the automatic release may successfully bump the version and add a
-[changelog](../?path=/docs/changelog-components--docs) but fail to publish to
+[changelog](https://atlantis.getjobber.com/?path=/docs/changelog-components--docs) but fail to publish to
 NPM. If this happens and you're one of the Atlantis NPM collaborators, run the
 code below to send unpublished versions to NPM.
 
