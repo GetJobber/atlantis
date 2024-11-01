@@ -15,6 +15,7 @@ export function ProgressBar({
   reverseTheme = false,
   header,
   variation = "progress",
+  size = "base",
 }: ProgressBarProps): JSX.Element {
   const { t } = useAtlantisI18n();
 
@@ -34,7 +35,12 @@ export function ProgressBar({
           inProgress={inProgress}
         />
       ) : (
-        <View style={styles.progressBarContainer}>
+        <View
+          style={[
+            styles.progressBarContainer,
+            size === "small" && { height: 10 },
+          ]}
+        >
           <ProgressBarInner
             width={100}
             animationDuration={0}

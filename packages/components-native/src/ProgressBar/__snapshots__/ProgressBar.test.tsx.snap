@@ -8,13 +8,16 @@ exports[`renders blue inProgress bar when 1 or more jobs is in progress 1`] = `
 >
   <View
     style={
-      {
-        "flexDirection": "row",
-        "height": 20,
-        "marginBottom": 8,
-        "marginTop": 8,
-        "position": "relative",
-      }
+      [
+        {
+          "flexDirection": "row",
+          "height": 20,
+          "marginBottom": 8,
+          "marginTop": 8,
+          "position": "relative",
+        },
+        false,
+      ]
     }
   >
     <View
@@ -86,13 +89,16 @@ exports[`renders green CompletedProgress bar when 1 or more jobs is completed 1`
 >
   <View
     style={
-      {
-        "flexDirection": "row",
-        "height": 20,
-        "marginBottom": 8,
-        "marginTop": 8,
-        "position": "relative",
-      }
+      [
+        {
+          "flexDirection": "row",
+          "height": 20,
+          "marginBottom": 8,
+          "marginTop": 8,
+          "position": "relative",
+        },
+        false,
+      ]
     }
   >
     <View
