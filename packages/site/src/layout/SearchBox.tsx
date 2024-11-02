@@ -58,7 +58,7 @@ export const SearchBox = ({
 
   return (
     <Modal size="large" open={open} onRequestClose={closeModal} title="Search">
-      <Content>
+      <Content spacing={"larger"}>
         <InputText
           ref={ref}
           value={search}
@@ -70,7 +70,13 @@ export const SearchBox = ({
         <div className={styles.searchBoxResults}>
           {filteredComponentList.length > 0 && (
             <Content>
-              <Typography size="larger" fontWeight="bold">
+              <Typography
+                size={"base"}
+                fontWeight={"bold"}
+                textCase={"uppercase"}
+                textColor={"textSecondary"}
+                element="h3"
+              >
                 Components
               </Typography>
               <ContentCardWrapper>
@@ -91,7 +97,13 @@ export const SearchBox = ({
           {filteredDesignList.length > 0 && (
             <Box padding={{ top: "largest" }}>
               <Content>
-                <Typography size="larger" fontWeight="bold">
+                <Typography
+                  size={"base"}
+                  fontWeight={"bold"}
+                  textCase={"uppercase"}
+                  textColor={"textSecondary"}
+                  element="h3"
+                >
                   Design
                 </Typography>
                 <ContentCardWrapper>

@@ -36,7 +36,11 @@ export const NavMenu = () => {
           type="button"
           style={{ background: "transparent", border: 0 }}
         >
-          <InputText placeholder="Search" />
+          <InputText
+            size="small"
+            prefix={{ icon: "search" }}
+            placeholder="Search"
+          />
         </button>
       </Box>
       <SearchBox open={open} setOpen={setOpen} />
