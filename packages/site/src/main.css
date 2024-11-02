@@ -93,6 +93,10 @@ code.root-code[class*="language-"] {
   color: var(--color-base-orange--500);
 }
 
+pre.root-pre[class*="language-"] {
+  padding: var(--space-larger);
+}
+
 pre.root-pre code.root-code {
   background: var(--color-base-blue--800);
   color: var(--color-surface);
