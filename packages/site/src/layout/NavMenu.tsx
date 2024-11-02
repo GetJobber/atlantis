@@ -31,12 +31,17 @@ export const NavMenu = () => {
         </Box>
       </Box>
       <Box padding="base">
-        <InputText
-          size="small"
-          prefix={{ icon: "search" }}
-          placeholder="Search"
-          onFocus={() => setOpen(true)}
-        />
+        <button
+          onClick={() => setOpen(true)}
+          type="button"
+          style={{ background: "transparent", border: 0 }}
+        >
+          <InputText
+            size="small"
+            prefix={{ icon: "search" }}
+            placeholder="Search"
+          />
+        </button>
       </Box>
       <SearchBox open={open} setOpen={setOpen} />
       <MenuList>
