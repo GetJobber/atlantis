@@ -1,10 +1,10 @@
 import { Box, Content } from "@jobber/components";
-import { ReactNode } from "react";
+import { ContentExport } from "../types/content";
 
 export const ContentView = ({
   content,
 }: {
-  readonly content: typeof import("*.md");
+  readonly content: ContentExport["content"];
   readonly intro: string;
   readonly title: string;
 }) => {
@@ -12,7 +12,7 @@ export const ContentView = ({
     <div style={{ backgroundColor: "var(--color-surface" }}>
       <custom-elements>
         <Box padding={"larger"}>
-          <Content>{content as unknown as ReactNode}</Content>
+          <Content>{content()}</Content>
         </Box>
       </custom-elements>
     </div>

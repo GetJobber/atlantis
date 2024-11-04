@@ -1,7 +1,9 @@
+import { ContentExport } from "./content";
+
 export interface ContentMapItem {
   intro: string;
   title: string;
-  content: typeof import("*.md");
+  content: ContentExport["content"];
 }
 export type ContentMapItems = Record<string, ContentMapItem>;
 export type ContentMap = Record<string, ContentMapItems>;

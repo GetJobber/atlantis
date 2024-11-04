@@ -43,7 +43,7 @@ export const AnimatedPresence = (props: PropsWithChildren) => {
 };
 
 export default {
-  content: AnimatedPresenceContent,
+  content: () => <AnimatedPresenceContent />,
   props: Props,
   component: {
     element: AnimatedPresence,
@@ -62,4 +62,4 @@ export default {
       ),
     },
   ],
-} as ContentExport;
+} as const satisfies ContentExport;

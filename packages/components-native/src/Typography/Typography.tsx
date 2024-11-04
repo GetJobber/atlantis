@@ -4,7 +4,6 @@ import {
   I18nManager,
   StyleProp,
   StyleSheet,
-  // eslint-disable-next-line no-restricted-imports
   Text,
   TextProps,
   TextStyle,
