@@ -245,7 +245,7 @@ describe("toolbar", () => {
       render(
         <InputText
           placeholder="Favourite movie"
-          toolbar={<h1 data-testid="testId">Bar Of Tool</h1>}
+          toolbar={<h1>Bar Of Tool</h1>}
         />,
       );
 
