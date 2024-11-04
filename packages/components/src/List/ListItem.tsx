@@ -82,12 +82,10 @@ export function ListItem<T extends BaseListItemProps = ListItemProps>(
       readonly customItemStyles?: boolean;
     },
 ) {
-  const omitDefaultStyles = props.customRenderItem && props.customItemStyles;
   const actionClasses = classnames(
     styles.action,
     props.isActive && styles.isActive,
     (props.onClick || props.url) && styles.hoverable,
-    !omitDefaultStyles && styles.defaultContainer,
     props.customRenderItem && !props.customItemStyles && styles.customItem,
   );
   const Wrapper = props.url ? "a" : "button";

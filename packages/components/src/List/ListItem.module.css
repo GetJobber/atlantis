@@ -2,6 +2,7 @@
   width: 100%;
   padding: 0;
   border: none;
+  text-align: left;
   background-color: transparent;
   appearance: none;
 }
@@ -10,18 +11,14 @@
   transition: background-color var(--timing-base);
 }
 
-.defaultContainer > * {
-  display: flex;
-  box-sizing: border-box;
-  text-align: left;
-  flex: 1;
-}
-
 .customItem > * {
   padding: var(--space-base);
 }
 
 .defaultContent {
+  display: flex;
+  box-sizing: border-box;
+  flex: 1;
   align-items: flex-start;
   padding: var(--space-small);
 }

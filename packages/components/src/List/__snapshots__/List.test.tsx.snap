@@ -83,7 +83,7 @@ exports[`When a list is provided a custom render function it should handle a sec
           class="item"
         >
           <button
-            class="action defaultContainer customItem"
+            class="action customItem"
             id="1"
             role="button"
             type="button"
@@ -106,7 +106,7 @@ exports[`When a list is provided a custom render function it should handle a sec
           class="item"
         >
           <button
-            class="action defaultContainer customItem"
+            class="action customItem"
             id="2"
             role="button"
             type="button"
@@ -146,7 +146,7 @@ exports[`When a list is provided a custom render function it should handle a sec
           class="item"
         >
           <button
-            class="action defaultContainer customItem"
+            class="action customItem"
             id="3"
             role="button"
             type="button"
@@ -169,7 +169,7 @@ exports[`When a list is provided a custom render function it should handle a sec
           class="item"
         >
           <button
-            class="action defaultContainer customItem"
+            class="action customItem"
             id="4"
             role="button"
             type="button"
@@ -203,7 +203,7 @@ exports[`When a list is provided a custom render function it should use the cust
       class="item"
     >
       <button
-        class="action defaultContainer customItem"
+        class="action customItem"
         id="1"
         role="button"
         type="button"
@@ -226,7 +226,7 @@ exports[`When a list is provided a custom render function it should use the cust
       class="item"
     >
       <button
-        class="action defaultContainer customItem"
+        class="action customItem"
         id="2"
         role="button"
         type="button"
@@ -273,7 +273,7 @@ exports[`renders 1 List item with all the props 1`] = `
           class="item"
         >
           <a
-            class="action isActive hoverable defaultContainer"
+            class="action isActive hoverable"
             href="#"
             id="1"
           >
@@ -377,7 +377,7 @@ exports[`renders a list with multiple sections 1`] = `
           class="item"
         >
           <a
-            class="action isActive hoverable defaultContainer"
+            class="action isActive hoverable"
             href="#"
             id="1"
           >
@@ -472,7 +472,7 @@ exports[`renders a list with multiple sections 1`] = `
           class="item"
         >
           <a
-            class="action isActive hoverable defaultContainer"
+            class="action isActive hoverable"
             href="#"
             id="1"
           >
@@ -561,7 +561,7 @@ exports[`should render a button list item 1`] = `
       class="item"
     >
       <button
-        class="action hoverable defaultContainer"
+        class="action hoverable"
         id="1"
         role="button"
         type="button"
@@ -598,7 +598,7 @@ exports[`should render a link with url list item 1`] = `
       class="item"
     >
       <a
-        class="action hoverable defaultContainer"
+        class="action hoverable"
         href="/path/to/stuff"
         id="1"
       >
@@ -634,7 +634,7 @@ exports[`should render an a tag with url and on click list item 1`] = `
       class="item"
     >
       <a
-        class="action hoverable defaultContainer"
+        class="action hoverable"
         href="/path/to/stuff"
         id="1"
       >
