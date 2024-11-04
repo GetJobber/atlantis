@@ -152,7 +152,7 @@ export function FormFieldWrapper({
             aria-hidden={toolbarVisibility !== "always" && !focused}
             tabIndex={-1}
             className={classnames(styles.toolbar, {
-              [styles.alwaysVisible]: toolbarVisibility === "always",
+              [styles.alwaysVisible]: toolbarVisibility === "always" || focused,
             })}
             data-testid="ATL-InputText-Toolbar"
           >
