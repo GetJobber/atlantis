@@ -1,11 +1,11 @@
 import { Button } from "@jobber/components";
-import Content from "@atlantis/docs/components/Button/Button.stories.mdx";
+import ButtonContent from "@atlantis/docs/components/Button/Button.stories.mdx";
 import Props from "./Button.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
-  content: Content,
+  content: () => <ButtonContent />,
   props: Props,
   component: {
     element: Button,
@@ -31,4 +31,4 @@ export default {
       ),
     },
   ],
-} as ContentExport;
+} as const satisfies ContentExport;

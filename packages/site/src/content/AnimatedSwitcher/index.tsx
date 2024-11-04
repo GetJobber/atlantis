@@ -8,7 +8,7 @@ import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
-  content: AnimatedSwitcherContent,
+  content: () => <AnimatedSwitcherContent />,
   props: Props,
   component: {
     element: AnimatedSwitcherRoot,
@@ -27,4 +27,4 @@ export default {
       ),
     },
   ],
-} as ContentExport;
+} as const satisfies ContentExport;

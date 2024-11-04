@@ -20,4 +20,4 @@ export default {
       url: "http://localhost:6006/?path=/docs/components-utilities-{{lowerCase name}}-web--docs",
     },
   ],
-} as ContentExport;
+} as const satisfies ContentExport;

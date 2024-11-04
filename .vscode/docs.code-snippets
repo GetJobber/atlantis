@@ -24,7 +24,7 @@
 			"      url: \"http://localhost:6006/?path=/docs/components-utilities-${1:ComponentName.toLowerCase()}-web--docs\",",
 			"    },",
 			"  ],",
-			"} as ContentExport;",
+			"} as const satisfies ContentExport;",
 		],
 		"description": "Template for creating a new component with prompts to replace 'Button' and Storybook links."
 	}

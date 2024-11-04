@@ -1,15 +1,14 @@
 import { Switch } from "@jobber/components";
-import Content from "@atlantis/docs/components/Switch/Switch.stories.mdx";
+import SwitchContent from "@atlantis/docs/components/Switch/Switch.stories.mdx";
 import Props from "./Switch.props.json";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 import { ContentExport } from "../../types/content";
 
 export default {
-  content: Content,
+  content: () => <SwitchContent />,
   props: Props,
   component: {
     element: Switch,
-    props: {},
     defaultProps: {},
   },
   title: "Switch",
@@ -20,4 +19,4 @@ export default {
       url: getStorybookUrl("?path=/docs/components-selections-switch--docs"),
     },
   ],
-} as ContentExport;
+} as const satisfies ContentExport;

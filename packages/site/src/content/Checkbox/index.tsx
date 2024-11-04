@@ -1,11 +1,11 @@
 import { Checkbox } from "@jobber/components";
-import Content from "@atlantis/docs/components/Checkbox/Checkbox.stories.mdx";
+import CheckboxContent from "@atlantis/docs/components/Checkbox/Checkbox.stories.mdx";
 import Props from "./Checkbox.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
-  content: Content,
+  content: () => <CheckboxContent />,
   props: Props,
   component: {
     element: Checkbox,
@@ -20,4 +20,4 @@ export default {
       url: getStorybookUrl("?path=/docs/components-selections-checkbox--docs"),
     },
   ],
-} as ContentExport;
+} as const satisfies ContentExport;
