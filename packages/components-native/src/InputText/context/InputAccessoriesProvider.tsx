@@ -3,7 +3,6 @@ import {
   InputAccessoryView,
   Keyboard,
   Platform,
-  // eslint-disable-next-line no-restricted-imports
   Button as RNButton,
   View,
   useColorScheme,

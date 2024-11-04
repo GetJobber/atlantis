@@ -1,0 +1,52 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Disclosure/Disclosure.tsx",
+    "description": "",
+    "displayName": "Disclosure",
+    "methods": [],
+    "props": {
+      "children": {
+        "defaultValue": null,
+        "description": "Child content that is manged by this component.",
+        "name": "children",
+        "parent": {
+          "fileName": "../components/src/Disclosure/Disclosure.tsx",
+          "name": "DisclosureProps"
+        },
+        "required": true,
+        "type": {
+          "name": "ReactNode | ReactNode[]"
+        }
+      },
+      "title": {
+        "defaultValue": null,
+        "description": "Title for the disclosure pane.\nIf ReactElement[] is provided, it must be wrapped in a container element (not a Fragment).",
+        "name": "title",
+        "parent": {
+          "fileName": "../components/src/Disclosure/Disclosure.tsx",
+          "name": "DisclosureProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string | ReactElement<any, string | JSXElementConstructor<any>> | ReactElement<any, string | JSXElementConstructor<any>>[]"
+        }
+      },
+      "defaultOpen": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "This sets the default open state of the disclosure.\nBy default the disclosure is closed.\nFor use when the component is being used as an Uncontrolled Component.",
+        "name": "defaultOpen",
+        "parent": {
+          "fileName": "../components/src/Disclosure/Disclosure.tsx",
+          "name": "DisclosureProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      }
+    }
+  }
+]

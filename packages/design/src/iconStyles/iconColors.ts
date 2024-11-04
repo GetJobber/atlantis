@@ -144,5 +144,8 @@ export const iconColors = {
     brandHighlight: {
       value: "{color.brand-.highlight}",
     },
+    task: {
+      value: "{color.task}",
+    },
   },
 };

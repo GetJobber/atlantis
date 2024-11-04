@@ -1,43 +1,30 @@
 import React, { ReactElement } from "react";
 import { render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { Button } from "@jobber/components/Button";
 import { Chip } from "@jobber/components/Chip";
 import { ComboboxActivator } from "./ComboboxActivator";
 import { ComboboxContextProvider } from "../../ComboboxProvider";
 import { ComboboxCustomActivatorProps } from "../../Combobox.types";
 
-const toggleOpen = jest.fn();
+const handleOpen = jest.fn();
 
 afterEach(() => {
-  toggleOpen.mockClear();
+  handleOpen.mockClear();
 });
 
 describe("ComboboxActivator", () => {
-  describe("when open is true", () => {
-    it("should call toggleOpen when the activator is clicked", () => {
-      const { getByRole } = renderComboboxActivator(
-        <Button label="Teammates" />,
-        true,
-      );
-      const activator = getByRole("combobox");
-
-      activator.click();
-
-      expect(toggleOpen).toHaveBeenCalled();
-    });
-  });
-
   describe("when open is false", () => {
-    it("should call toggleOpen when the activator is clicked", () => {
+    it("should call handleOpen when the activator is clicked", async () => {
       const { getByRole } = renderComboboxActivator(
         <Button label="Teammates" />,
         false,
       );
       const activator = getByRole("combobox");
 
-      activator.click();
+      await userEvent.click(activator);
 
-      expect(toggleOpen).toHaveBeenCalled();
+      expect(handleOpen).toHaveBeenCalled();
     });
   });
   it("can render a Button with role 'combobox' and onClick handler", () => {
@@ -70,6 +57,18 @@ describe("ComboboxActivator", () => {
     expect(getByText("Teammates")).toBeInTheDocument();
     expect(queryByRole("combobox")).toBeInTheDocument();
   });
+  it("opens the combobox when custom element is clicked", async () => {
+    const { getByRole } = renderComboboxActivator(
+      (api: ComboboxCustomActivatorProps) => (
+        <div role={api.role} onClick={api.open}>
+          Teammates
+        </div>
+      ),
+      true,
+    );
+    await userEvent.click(getByRole("combobox"));
+    expect(handleOpen).toHaveBeenCalled();
+  });
 });
 
 function renderComboboxActivator(
@@ -78,7 +77,7 @@ function renderComboboxActivator(
 ) {
   return render(
     <ComboboxContextProvider
-      toggleOpen={toggleOpen}
+      handleOpen={handleOpen}
       handleClose={jest.fn()}
       selectionHandler={jest.fn()}
       shouldScroll={{ current: false }}

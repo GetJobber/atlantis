@@ -64,8 +64,8 @@ story.
 **Child Render Function:** If neither a Chip nor a Button is sufficient for your
 needs, you may instead provide a function as the child to `Combobox.Activator`.
 
-As arguments, the function will receive the toggle method to swap between open
-and closed states, as well as accessibility attributes required for a Combobox.
+As arguments, the function will receive a method to open the Combobox (closing
+is handled internally), and accessibility attributes required for a Combobox.
 **You must implement these yourself**. See the
 [render function example](../?path=/story/components-selections-combobox-web--custom-activator)
 for reference.
@@ -81,8 +81,20 @@ The content of the Combobox is responsible for displaying the list of selectable
 options, handling user interactions, and managing search functionality.
 
 `<Combobox.Option />` represents an individual option within the list. Each
-option has `id` and `label` props which are used to identify and display the
-option.
+option has `id`, `label`, and `prefix` props which are used to identify and
+display the option.
+
+##### Custom Content
+
+You can use the `prefix` option to render content on the left side of the
+provided `label`. An example of this behaviour can be found in the
+[Prefix Options](../?path=/story/components-selections-combobox-web--prefix-options)
+story.
+
+If you need more advanced control of the children inside each option, you can
+use the `customRender` prop to supply your own content. Check out the
+[Custom Render Options](../?path=/story/components-selections-combobox-web--custom-render-options)
+story for an example.
 
 #### Action
 
@@ -206,7 +218,7 @@ search query.
 ### Keyboard operation
 
 - The activator can be actioned with `space` or `return`
-- The Comobox confines tabbing to within itself while it's open using
+- The Combobox confines tabbing to within itself while it's open using
   [useFocusTrap](../?path=/docs/hooks-usefocustrap--docs)
 - Pressing `esc` will close the Combobox and return focus to the activator using
   [useRefocusOnActivator](../?path=/docs/hooks-userefocusonactivator--docs)

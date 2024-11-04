@@ -83,15 +83,14 @@ export interface ComboboxCustomActivatorProps {
   role: "combobox";
 
   /**
-   * Method to toggle the open state of the Combobox.
-   * All callbacks and cleanup will be handled when toggled to closed.
+   * Method to open the Combobox. Closing is handled by the Combobox itself.
    */
-  toggleOpen: () => void;
+  open: () => void;
 }
 
 export type ComboboxActivatorAccessibility = Omit<
   ComboboxCustomActivatorProps,
-  "toggleOpen"
+  "open"
 >;
 
 export interface ComboboxActivatorProps {
@@ -105,7 +104,7 @@ export interface ComboboxTriggerProps
   readonly label?: string;
 }
 
-export interface ComboboxOption {
+export interface ComboboxOptionProps {
   /**
    * A unique identifier for the option.
    */
@@ -119,8 +118,20 @@ export interface ComboboxOption {
   /**
    * An optional component to be displayed before the label.
    */
-  prefix?: React.ReactElement;
+  prefix?: React.ReactNode;
+
+  /**
+   * Advanced: A custom render prop to completely control how this option is rendered.
+   * The function receives the option's props, and a boolean indicating if the option is selected.
+   */
+  readonly customRender?: (
+    option: Omit<ComboboxOptionProps, "customRender"> & {
+      isSelected: boolean;
+    },
+  ) => React.ReactNode;
 }
+
+export type ComboboxOption = ComboboxOptionProps;
 
 export interface ComboboxContentProps {
   /**

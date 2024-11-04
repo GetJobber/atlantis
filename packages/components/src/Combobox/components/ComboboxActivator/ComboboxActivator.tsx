@@ -6,7 +6,7 @@ import { ComboboxActivatorProps } from "../../Combobox.types";
 import { useComboboxActivatorAccessibility } from "../../hooks/useComboboxActivatorAccessibility";
 
 export function ComboboxActivator(props: ComboboxActivatorProps) {
-  const { toggleOpen } = React.useContext(ComboboxContext);
+  const { handleOpen } = React.useContext(ComboboxContext);
   const accessibilityAttributes = useComboboxActivatorAccessibility();
 
   if (
@@ -15,10 +15,10 @@ export function ComboboxActivator(props: ComboboxActivatorProps) {
   ) {
     return React.cloneElement(props.children, {
       role: accessibilityAttributes.role,
-      onClick: toggleOpen,
+      onClick: handleOpen,
     });
   } else if (typeof props.children === "function") {
-    return props.children({ ...accessibilityAttributes, toggleOpen });
+    return props.children({ ...accessibilityAttributes, open: handleOpen });
   }
 
   return null;

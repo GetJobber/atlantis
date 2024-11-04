@@ -21,7 +21,6 @@ interface DataListItem<T extends DataListObject> {
   readonly layout: DataListLayoutProps<T>["children"];
 }
 
-// eslint-disable-next-line max-statements
 export function DataListItem<T extends DataListObject>({
   item,
   layout,
