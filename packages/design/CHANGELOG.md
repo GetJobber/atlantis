@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.67.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.67.1...@jobber/design@0.67.2) (2024-11-04)
+
+
+### Bug Fixes
+
+* **design:** Updating the task icon to use task-color [JOB-98804] ([#2097](https://github.com/GetJobber/atlantis/issues/2097)) ([b371c3d](https://github.com/GetJobber/atlantis/commit/b371c3daad21afe090e402ca0053f499505309e7))
+
+
+
+
+
 ## [0.67.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.67.0...@jobber/design@0.67.1) (2024-10-16)
 
 **Note:** Version bump only for package @jobber/design
