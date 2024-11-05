@@ -123,6 +123,11 @@ export interface CommonFormFieldProps {
    * set it to `always`.
    */
   readonly clearable?: Clearable;
+
+  /**
+   * Which version of the Field to use
+   */
+  version?: 1;
 }
 
 export interface FormFieldProps extends CommonFormFieldProps {
