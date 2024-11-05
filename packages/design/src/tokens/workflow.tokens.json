@@ -3,7 +3,8 @@
     "$type": "color",
     "$description": "Semantic color tokens, only to be used in the workflow section?",
     "request": {
-      "$value": "{color.base.orange-.600}"
+      "$value": "{color.base.orange-.600}",
+      "$description": "Requests are orange."
     },
     "request-": {
       "surface": {
@@ -14,7 +15,8 @@
       }
     },
     "quote": {
-      "$value": "{color.base.pink-.700}"
+      "$value": "{color.base.pink-.700}",
+      "$description": "Quotes are pink."
     },
     "quote-": {
       "surface": {
@@ -25,7 +27,8 @@
       }
     },
     "job": {
-      "$value": "{color.base.green-.600}"
+      "$value": "{color.base.green-.600}",
+      "$description": "Jobs are green because of their core association to Jobber, which has historically used some shade of green for branding."
     },
     "job-": {
       "surface": {
@@ -36,7 +39,8 @@
       }
     },
     "task": {
-      "$value": "{color.base.lightBlue-.800}"
+      "$value": "{color.base.lightBlue-.800}",
+      "$description": "Tasks use a deeper shade of blue than invoices and the two rarely share interfaces as tasks are generally isolated to scheduling."
     },
     "task-": {
       "surface": {
@@ -47,7 +51,8 @@
       }
     },
     "invoice": {
-      "$value": "{color.base.lightBlue-.700}"
+      "$value": "{color.base.lightBlue-.700}",
+      "$description": "Invoices are blue as this is a common color associated with banking and finance."
     },
     "invoice-": {
       "surface": {
@@ -58,7 +63,8 @@
       }
     },
     "visit": {
-      "$value": "{color.job}"
+      "$value": "{color.job}",
+      "$description": "Visits inherit the green from jobs."
     },
     "visit-": {
       "surface": {
@@ -69,7 +75,8 @@
       }
     },
     "event": {
-      "$value": "{color.base.yellow-.400}"
+      "$value": "{color.base.yellow-.400}",
+      "$description": "Events use yellow."
     },
     "event-": {
       "surface": {
@@ -80,7 +87,8 @@
       }
     },
     "payments": {
-      "$value": "{color.invoice}"
+      "$value": "{color.invoice}",
+      "$description": "Payments inherit the blue of invoicing."
     },
     "payments-": {
       "surface": {
@@ -91,7 +99,8 @@
       }
     },
     "client": {
-      "$value": "{color.base.taupe-.700}"
+      "$value": "{color.base.taupe-.700}",
+      "$description": "Clients use a neutral value as they sit at the core of the workflow."
     }
   }
 }
