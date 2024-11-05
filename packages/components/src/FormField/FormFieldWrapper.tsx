@@ -12,7 +12,10 @@ import styles from "./FormField.module.css";
 import { AffixIcon, AffixLabel } from "./FormFieldAffix";
 import { FormFieldDescription } from "./FormFieldDescription";
 import { ClearAction } from "./components/ClearAction";
-import { useFormFieldFocus } from "./hooks/useFormFieldFocus";
+import {
+  TOOLBAR_FOCUS_EXCEPTION_ATTRIBUTE_NAME,
+  useFormFieldFocus,
+} from "./hooks/useFormFieldFocus";
 import { useIsSafari } from "./hooks/useIsSafari";
 import { InputValidation } from "../InputValidation";
 
@@ -151,6 +154,7 @@ export function FormFieldWrapper({
           <div
             aria-hidden={toolbarVisibility !== "always" && !focused}
             tabIndex={-1}
+            {...{ [TOOLBAR_FOCUS_EXCEPTION_ATTRIBUTE_NAME]: "true" }}
             className={classnames(styles.toolbar, {
               [styles.alwaysVisible]: toolbarVisibility === "always" || focused,
             })}

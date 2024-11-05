@@ -14,6 +14,8 @@ interface UseFormFieldFocusProps {
 }
 
 const PORTAL_FOCUS_ATTRIBUTE_NAME = "data-atl-maintain-portal-focus";
+export const TOOLBAR_FOCUS_EXCEPTION_ATTRIBUTE_NAME =
+  "data-atl-toolbar-focus-exception";
 
 export const formFieldFocusAttribute = {
   [PORTAL_FOCUS_ATTRIBUTE_NAME]: "true",
@@ -26,6 +28,17 @@ export function useFormFieldFocus(
 
   function handleFocusIn() {
     setFocused(true);
+    // console.log("focusin", document?.activeElement);
+    const activeElementInWrapper = props.wrapperRef?.current?.contains(
+      document?.activeElement,
+    );
+    const activeElementInToolbar = document?.activeElement?.closest(
+      `[${TOOLBAR_FOCUS_EXCEPTION_ATTRIBUTE_NAME}='true']`,
+    );
+
+    if (props.toolbar && activeElementInWrapper && !activeElementInToolbar) {
+      props.inputRef?.current?.focus();
+    }
   }
 
   function handleFocusOut() {
@@ -55,12 +68,6 @@ export function useFormFieldFocus(
       );
     };
   }, []);
-
-  useEffect(() => {
-    if (props.toolbar && focused) {
-      props.inputRef?.current?.focus();
-    }
-  }, [props.toolbar, focused]);
 
   return {
     focused,
