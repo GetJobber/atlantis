@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.74.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.73.4...@jobber/components-native@0.74.0) (2024-11-05)
+
+
+### Features
+
+* **components-native:** Add size variation for progress bar ([#2096](https://github.com/GetJobber/atlantis/issues/2096)) ([1e36491](https://github.com/GetJobber/atlantis/commit/1e364912003bcbf18fe80cac5ac6a0c9277b4313))
+
+
+
+
+
 ## [0.73.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.73.2...@jobber/components-native@0.73.3) (2024-10-24)
 
 
