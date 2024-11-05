@@ -1,6 +1,6 @@
 @supports (scrollbar-color: #000 #000) {
   /* stylelint-disable-next-line selector-max-type */
-  html {
+  [data-theme="dark"]:root html {
     scrollbar-color: var(--color-surface--background--subtle)
       var(--color-surface--background);
   }
