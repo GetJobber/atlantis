@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.47.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.46.1...@jobber/components@5.47.0) (2024-11-05)
+
+
+### Features
+
+* **components:** Improve list composability [JOB-107035] ([#2078](https://github.com/GetJobber/atlantis/issues/2078)) ([06b0655](https://github.com/GetJobber/atlantis/commit/06b0655bb964105db61ebd6d4ce85c0048f206ce))
+
+
+
+
+
 # [5.46.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.45.0...@jobber/components@5.46.0) (2024-10-29)
 
 
