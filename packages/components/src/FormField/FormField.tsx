@@ -6,8 +6,15 @@ import React, {
   useId,
   useImperativeHandle,
 } from "react";
-import { useController, useForm, useFormContext } from "react-hook-form";
-import { FormFieldProps } from "./FormFieldTypes";
+import {
+  FieldValues,
+  RegisterOptions,
+  UseFormSetValue,
+  useController,
+  useForm,
+  useFormContext,
+} from "react-hook-form";
+import { FieldActionsRef, FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.module.css";
 import { FormFieldWrapper } from "./FormFieldWrapper";
 import { FormFieldPostFix } from "./FormFieldPostFix";
@@ -26,70 +33,34 @@ type FormFieldInternalProps = FormFieldProps & {
   readonly id: string;
 };
 
-// eslint-disable-next-line max-statements
-function FormFieldInternal(props: FormFieldInternalProps) {
-  const {
-    actionsRef,
-    autocomplete = true,
-    children,
-    defaultValue,
-    description,
-    disabled,
-    id,
-    inputRef,
-    inline,
-    keyboard,
-    max,
-    maxLength,
-    min,
-    name: nameProp,
-    readonly,
-    rows,
-    loading,
-    type = "text",
-    validations,
-    value,
-    onChange,
-    onEnter,
-    onFocus,
-    onBlur,
-    onValidation,
-    onKeyUp,
-    clearable = "never",
-    autofocus,
-  } = props;
+export function useAtlantisReactForm({
+  actionsRef,
+  name,
+  defaultValue,
+  value,
+  validations,
+  inputRef,
+}: {
+  actionsRef?: React.RefObject<FieldActionsRef>;
+  name: string;
+  defaultValue?: string | Date;
+  value?: string | Date | number;
+  validations?: RegisterOptions;
+  inputRef?: React.RefObject<
+    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+  >;
+}) {
   const formContext = useFormContext();
   // If there isn't a Form Context being provided, get a form for this field.
   const { control, setValue, watch } =
     formContext ?? useForm({ mode: "onTouched" });
-
-  const descriptionIdentifier = `descriptionUUID--${id}`;
-  /**
-   * Generate a name if one is not supplied, this is the name
-   * that will be used for react-hook-form and not neccessarily
-   * attached to the DOM
-   */
-  const name = nameProp ? nameProp : `generatedName--${id}`;
-
-  useEffect(() => {
-    if (value != undefined) {
-      setValue(name, value);
-    }
-  }, [value, watch(name)]);
-
   useImperativeHandle(actionsRef, () => ({
     setValue: newValue => {
       setValue(name, newValue, { shouldValidate: true });
     },
   }));
-
   const {
-    field: {
-      onChange: onControllerChange,
-      onBlur: onControllerBlur,
-      ref: fieldRef,
-      ...rest
-    },
+    field: { onChange, onBlur, ref: fieldRef, ...rest },
     fieldState: { error },
   } = useController({
     name,
@@ -98,8 +69,90 @@ function FormFieldInternal(props: FormFieldInternalProps) {
     defaultValue: value ?? defaultValue ?? "",
   });
 
-  const errorMessage = error?.message || "";
-  useEffect(() => handleValidation(errorMessage), [errorMessage]);
+  useEffect(() => {
+    if (value != undefined) {
+      setValue(name, value);
+    }
+  }, [value, watch(name)]);
+
+  const inputRefs = mergeRefs([inputRef, fieldRef]);
+
+  return {
+    inputRefs,
+    rest,
+    setValue,
+    errorMessage: error?.message || "",
+    onControllerChange: onChange,
+    onControllerBlur: onBlur,
+  };
+}
+
+export function useAtlantisFormFieldName({
+  id,
+  nameProp,
+}: {
+  id: string;
+  nameProp?: string;
+}) {
+  /**
+   * Generate a name if one is not supplied, this is the name
+   * that will be used for react-hook-form and not neccessarily
+   * attached to the DOM
+   */
+  const name = nameProp ? nameProp : `generatedName--${id}`;
+
+  return { name };
+}
+
+export function useAtlantisFormField({
+  id,
+  nameProp,
+  name,
+  rest,
+  description,
+  disabled,
+  readonly,
+  keyboard,
+  autofocus,
+  handleChange,
+  handleBlur,
+  handleFocus,
+  inline,
+  validations,
+  handleKeyDown,
+  handleValidation,
+  errorMessage,
+}: {
+  id: string;
+  nameProp?: string;
+  name: string;
+  actionsRef?: React.RefObject<FieldActionsRef>;
+  rest: object;
+  description?: string;
+  disabled?: boolean;
+  readonly?: boolean;
+  keyboard?: string;
+  errorMessage: string;
+  autofocus?: boolean;
+  validations: boolean;
+  handleChange: (
+    event: ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => void;
+  handleBlur: () => void;
+  handleFocus: (
+    event: FocusEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => void;
+  inline?: boolean;
+  handleKeyDown: (
+    event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => void;
+  handleValidation: (message: string) => void;
+}) {
+  const descriptionIdentifier = `descriptionUUID--${id}`;
 
   const fieldProps = {
     ...rest,
@@ -108,7 +161,13 @@ function FormFieldInternal(props: FormFieldInternalProps) {
     name: (validations || nameProp) && name,
     disabled: disabled,
     readOnly: readonly,
-    inputMode: keyboard,
+    inputMode: keyboard as
+      | "text"
+      | "none"
+      | "tel"
+      | "url"
+      | "email"
+      | "numeric",
     onChange: handleChange,
     onBlur: handleBlur,
     onFocus: handleFocus,
@@ -122,53 +181,45 @@ function FormFieldInternal(props: FormFieldInternalProps) {
     autoFocus: autofocus,
     onKeyDown: handleKeyDown,
   };
-  const inputRefs = mergeRefs([inputRef, fieldRef]);
+  useEffect(() => handleValidation(errorMessage), [errorMessage]);
 
-  return (
-    <FormFieldWrapper
-      {...props}
-      value={rest.value}
-      error={errorMessage}
-      identifier={id}
-      descriptionIdentifier={descriptionIdentifier}
-      clearable={clearable}
-      onClear={handleClear}
-    >
-      {renderField()}
-    </FormFieldWrapper>
-  );
+  return { textFieldProps, fieldProps, descriptionIdentifier };
+}
 
-  function renderField() {
-    switch (type) {
-      case "select":
-        return (
-          <>
-            <select {...fieldProps}>{children}</select>
-            <FormFieldPostFix variation="select" />
-          </>
-        );
-      case "textarea":
-        return <textarea {...textFieldProps} rows={rows} ref={inputRefs} />;
-      default:
-        return (
-          <>
-            <input
-              {...textFieldProps}
-              autoComplete={setAutocomplete(autocomplete)}
-              type={type}
-              maxLength={maxLength}
-              max={max}
-              min={min}
-              ref={inputRefs}
-              onKeyUp={onKeyUp}
-            />
-            {loading && <FormFieldPostFix variation="spinner" />}
-            {children}
-          </>
-        );
-    }
-  }
-
+export function useAtlantisFormFieldActions({
+  name,
+  onChange,
+  inputRef,
+  onControllerChange,
+  onControllerBlur,
+  onEnter,
+  readonly,
+  type,
+  setValue,
+  onFocus,
+  onBlur,
+  onValidation,
+}: {
+  name: string;
+  onChange?:
+    | ((
+        newValue: string | number | boolean | Date,
+        event?: ChangeEvent<
+          HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+        >,
+      ) => void)
+    | undefined;
+  inputRef?: React.RefObject<HTMLInputElement>;
+  onControllerChange: (...event: unknown[]) => void;
+  onControllerBlur: () => void;
+  onEnter?: ((event: React.KeyboardEvent) => void) | undefined;
+  readonly?: boolean;
+  type: string;
+  setValue: UseFormSetValue<FieldValues>;
+  onFocus?: (() => void) | undefined;
+  onBlur?: (() => void) | undefined;
+  onValidation?: ((message: string) => void) | undefined;
+}) {
   function handleClear() {
     handleBlur();
     setValue(name, "", { shouldValidate: true });
@@ -223,6 +274,154 @@ function FormFieldInternal(props: FormFieldInternalProps) {
 
   function handleValidation(message: string) {
     onValidation && onValidation(message);
+  }
+
+  return {
+    handleClear,
+    handleChange,
+    handleKeyDown,
+    handleFocus,
+    handleBlur,
+    handleValidation,
+  };
+}
+
+// eslint-disable-next-line max-statements
+function FormFieldInternal(props: FormFieldInternalProps) {
+  const {
+    actionsRef,
+    autocomplete = true,
+    children,
+    defaultValue,
+    description,
+    disabled,
+    id,
+    inputRef,
+    inline,
+    keyboard,
+    max,
+    maxLength,
+    min,
+    name: nameProp,
+    readonly,
+    rows,
+    loading,
+    type = "text",
+    validations,
+    value,
+    onChange,
+    onEnter,
+    onFocus,
+    onBlur,
+    onValidation,
+    onKeyUp,
+    clearable = "never",
+    autofocus,
+  } = props;
+
+  const { name } = useAtlantisFormFieldName({ id, nameProp });
+
+  const {
+    errorMessage,
+    inputRefs,
+    rest,
+    setValue,
+    onControllerBlur,
+    onControllerChange,
+  } = useAtlantisReactForm({
+    actionsRef,
+    name,
+    defaultValue,
+    value,
+    validations,
+    inputRef,
+  });
+  const {
+    handleValidation,
+    handleBlur,
+    handleChange,
+    handleClear,
+    handleFocus,
+    handleKeyDown,
+  } = useAtlantisFormFieldActions({
+    onChange,
+    onEnter,
+    readonly,
+    type,
+    onFocus,
+    setValue,
+    onBlur,
+    onValidation,
+    onControllerBlur,
+    onControllerChange,
+    name,
+  });
+
+  const { textFieldProps, fieldProps, descriptionIdentifier } =
+    useAtlantisFormField({
+      id,
+      nameProp,
+      actionsRef,
+      rest,
+      name,
+      description,
+      validations: !!validations,
+      disabled,
+      readonly,
+      keyboard,
+      autofocus,
+      handleChange,
+      handleBlur,
+      handleFocus,
+      inline,
+      errorMessage,
+      handleValidation,
+      handleKeyDown,
+    });
+
+  return (
+    <FormFieldWrapper
+      {...props}
+      value={rest.value}
+      error={errorMessage}
+      identifier={id}
+      descriptionIdentifier={descriptionIdentifier}
+      clearable={clearable}
+      onClear={handleClear}
+    >
+      {renderField()}
+    </FormFieldWrapper>
+  );
+
+  function renderField() {
+    switch (type) {
+      case "select":
+        return (
+          <>
+            <select {...fieldProps}>{children}</select>
+            <FormFieldPostFix variation="select" />
+          </>
+        );
+      case "textarea":
+        return <textarea {...textFieldProps} rows={rows} ref={inputRefs} />;
+      default:
+        return (
+          <>
+            <input
+              {...textFieldProps}
+              autoComplete={setAutocomplete(autocomplete)}
+              type={type}
+              maxLength={maxLength}
+              max={max}
+              min={min}
+              ref={inputRefs}
+              onKeyUp={onKeyUp}
+            />
+            {loading && <FormFieldPostFix variation="spinner" />}
+            {children}
+          </>
+        );
+    }
   }
 }
 
