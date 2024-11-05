@@ -3,14 +3,16 @@
     "$type": "color",
     "$description": "Semantic color tokens. These are used to define the color of elements based on their semantic meaning. Use these tokens to style your components.",
     "interactive": {
-      "$value": "{color.base.green-.600}"
+      "$value": "{color.base.green-.600}",
+      "$description": "The default color used for interactive elements."
     },
     "interactive-": {
       "hover": {
         "$value": "{color.base.green-.700}"
       },
       "subtle": {
-        "$value": "{color.base.blue-.800}"
+        "$value": "{color.base.blue-.800}",
+        "$description": "Use for actions that do not demand prominence, such as closing a modal or a navigation icon that is present on every view."
       },
       "subtle-": {
         "hover": {
@@ -19,7 +21,8 @@
       }
     },
     "destructive": {
-      "$value": "{color.base.red-.600}"
+      "$value": "{color.base.red-.600}",
+      "$description": "Use to signify that an interaction will destroy something in the users’ account or workflow."
     },
     "destructive-": {
       "hover": {
@@ -27,18 +30,22 @@
       }
     },
     "disabled": {
-      "$value": "{color.base.grey-.400}"
+      "$value": "{color.base.grey-.400}",
+      "$description": "Use to signify that an interactive element is disabled."
     },
     "disabled-": {
       "secondary": {
-        "$value": "{color.base.grey-.200}"
+        "$value": "{color.base.grey-.200}",
+        "$description": "Use when a disabled element needs more than one shade."
       }
     },
     "focus": {
-      "$value": "{color.base.blue-.500}"
+      "$value": "{color.base.blue-.500}",
+      "$description": "Use to indicate that an element has been focused."
     },
     "critical": {
-      "$value": "{color.base.red-.600}"
+      "$value": "{color.base.red-.600}",
+      "$description": "Action required; user must see this status to be unblocked."
     },
     "critical-": {
       "surface": {
@@ -49,7 +56,8 @@
       }
     },
     "warning": {
-      "$value": "{color.base.yellow-.400}"
+      "$value": "{color.base.yellow-.400}",
+      "$description": "Action may be required as a consequence of current state."
     },
     "warning-": {
       "surface": {
@@ -60,7 +68,8 @@
       }
     },
     "success": {
-      "$value": "{color.base.green-.600}"
+      "$value": "{color.base.green-.600}",
+      "$description": "No action required; an action has completed successfully"
     },
     "success-": {
       "surface": {
@@ -71,7 +80,8 @@
       }
     },
     "informative": {
-      "$value": "{color.base.lightBlue-.500}"
+      "$value": "{color.base.lightBlue-.500}",
+      "$description": "No action required; but helpful to know about."
     },
     "informative-": {
       "surface": {
@@ -82,7 +92,8 @@
       }
     },
     "inactive": {
-      "$value": "{color.base.blue-.700}"
+      "$value": "{color.base.blue-.700}",
+      "$description": "No action required; not part of an active workflow."
     },
     "inactive-": {
       "surface": {
@@ -93,21 +104,26 @@
       }
     },
     "heading": {
-      "$value": "{color.base.blue-.900}"
+      "$value": "{color.base.blue-.900}",
+      "$description": "Headings have a bold, dark color to cement their hierarchy."
     },
     "text": {
-      "$value": "{color.base.blue-.800}"
+      "$value": "{color.base.blue-.800}",
+      "$description": "A slightly softer color is used for body text for greater readability."
     },
     "text-": {
       "secondary": {
-        "$value": "{color.base.blue-.600}"
+        "$value": "{color.base.blue-.600}",
+        "$description": "Text that is relevant but less important can be lower-contrast to suggest its’ reduced importance."
       },
       "reverse": {
-        "$value": "{color.white}"
+        "$value": "{color.white}",
+        "$description": "Use on “reversed” (dark) sections."
       },
       "reverse-": {
         "secondary": {
-          "$value": "{color.base.blue-.300}"
+          "$value": "{color.base.blue-.300}",
+          "$description": "Secondary text for “reversed” sections."
         }
       }
     },
@@ -115,27 +131,31 @@
       "$value": "{color.base.blue-.800}"
     },
     "surface": {
-      "$value": "{color.white}"
+      "$value": "{color.white}",
+      "$description": "Most elements in Jobber have a white surface; if clickable, they have a light hover and active color."
     },
     "surface-": {
       "hover": {
         "$value": "{color.base.taupe-.200}"
       },
       "reverse": {
-        "$value": "{color.base.blue-.900}"
+        "$value": "{color.base.blue-.900}",
+        "$description": "When a strong constrast is needed with the rest of the application, a reversed surface can be used."
       },
       "active": {
         "$value": "{color.base.taupe-.300}"
       },
       "background": {
-        "$value": "{color.base.taupe-.200}"
+        "$value": "{color.base.taupe-.200}",
+        "$description": "A slightly darker surface gives a receded appearance relative to main surfaces."
       },
       "background-": {
         "hover": {
           "$value": "{color.base.taupe-.300}"
         },
         "subtle": {
-          "$value": "{color.base.taupe-.100}"
+          "$value": "{color.base.taupe-.100}",
+          "$description": "Use when a subtler distinction than the standard surface--background is needed."
         },
         "subtle-": {
           "hover": {
@@ -145,18 +165,22 @@
       }
     },
     "border": {
-      "$value": "{color.base.blue-.300}"
+      "$value": "{color.base.blue-.300}",
+      "$description": "Most of our borders should use this color for subtle definition."
     },
     "border-": {
       "interactive": {
-        "$value": "{color.base.blue-.300}"
+        "$value": "{color.base.blue-.300}",
+        "$description": "Use for the borders of interactive elements to give greater visual significance and ensure the element meets WCAG contrast standards."
       },
       "section": {
-        "$value": "{color.base.blue-.900}"
+        "$value": "{color.base.blue-.900}",
+        "$description": "Use where other bordered content is being further sectioned, such as table headers or list sections."
       }
     },
     "brand": {
-      "$value": "{color.base.lime-.500}"
+      "$value": "{color.base.lime-.500}",
+      "$description": "The primary color associated with our brand, from website to ads to product; AKA “Jobber Green”."
     }
   }
 }
