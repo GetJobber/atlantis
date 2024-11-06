@@ -8,7 +8,8 @@
     },
     "interactive-": {
       "hover": {
-        "$value": "{color.base.green-.700}"
+        "$value": "{color.base.green-.700}",
+        "$description": "Hover state for interactive."
       },
       "subtle": {
         "$value": "{color.base.blue-.800}",
@@ -16,7 +17,8 @@
       },
       "subtle-": {
         "hover": {
-          "$value": "{color.base.blue-.900}"
+          "$value": "{color.base.blue-.900}",
+          "$description": "Hover state for interactive--subtle."
         }
       }
     },
@@ -26,7 +28,8 @@
     },
     "destructive-": {
       "hover": {
-        "$value": "{color.base.red-.700}"
+        "$value": "{color.base.red-.700}",
+        "$description": "Hover state for destructive."
       }
     },
     "disabled": {
@@ -49,10 +52,12 @@
     },
     "critical-": {
       "surface": {
-        "$value": "{color.base.red-.200}"
+        "$value": "{color.base.red-.200}",
+        "$description": "Use for the surface of an element that has critial status."
       },
       "onSurface": {
-        "$value": "{color.base.red-.800}"
+        "$value": "{color.base.red-.800}",
+        "$description": "Use for text or iconography that sits overtop a critical background."
       }
     },
     "warning": {
@@ -61,10 +66,12 @@
     },
     "warning-": {
       "surface": {
-        "$value": "{color.base.yellow-.200}"
+        "$value": "{color.base.yellow-.200}",
+        "$description": "Use for the surface of an element that has warning status."
       },
       "onSurface": {
-        "$value": "{color.base.yellow-.700}"
+        "$value": "{color.base.yellow-.700}",
+        "$description": "Use for text or iconography that sits overtop a warning background."
       }
     },
     "success": {
@@ -73,10 +80,12 @@
     },
     "success-": {
       "surface": {
-        "$value": "{color.base.green-.200}"
+        "$value": "{color.base.green-.200}",
+        "$description": "Use for the surface of an element that has success status."
       },
       "onSurface": {
-        "$value": "{color.base.green-.800}"
+        "$value": "{color.base.green-.800}",
+        "$description": "Use for text or iconography that sits overtop a success background."
       }
     },
     "informative": {
@@ -85,10 +94,12 @@
     },
     "informative-": {
       "surface": {
-        "$value": "{color.base.lightBlue-.200}"
+        "$value": "{color.base.lightBlue-.200}",
+        "$description": "Use for the surface of an element that has informative status."
       },
       "onSurface": {
-        "$value": "{color.base.lightBlue-.700}"
+        "$value": "{color.base.lightBlue-.700}",
+        "$description": "Use for text or iconography that sits overtop an informative background."
       }
     },
     "inactive": {
@@ -97,10 +108,12 @@
     },
     "inactive-": {
       "surface": {
-        "$value": "{color.base.blue-.200}"
+        "$value": "{color.base.blue-.200}",
+        "$description": "Use for the surface of an element that has inactive status."
       },
       "onSurface": {
-        "$value": "{color.base.blue-.900}"
+        "$value": "{color.base.blue-.900}",
+        "$description": "Use for text or iconography that sits overtop an inactive background."
       }
     },
     "heading": {
@@ -136,14 +149,16 @@
     },
     "surface-": {
       "hover": {
-        "$value": "{color.base.taupe-.200}"
+        "$value": "{color.base.taupe-.200}",
+        "$description": "Hover state for surface."
       },
       "reverse": {
         "$value": "{color.base.blue-.900}",
         "$description": "When a strong constrast is needed with the rest of the application, a reversed surface can be used."
       },
       "active": {
-        "$value": "{color.base.taupe-.300}"
+        "$value": "{color.base.taupe-.300}",
+        "$description": "Active state for surface."
       },
       "background": {
         "$value": "{color.base.taupe-.200}",
@@ -151,7 +166,8 @@
       },
       "background-": {
         "hover": {
-          "$value": "{color.base.taupe-.300}"
+          "$value": "{color.base.taupe-.300}",
+          "$description": "Hover state for surface--background."
         },
         "subtle": {
           "$value": "{color.base.taupe-.100}",
@@ -159,7 +175,8 @@
         },
         "subtle-": {
           "hover": {
-            "$value": "{color.base.taupe-.300}"
+            "$value": "{color.base.taupe-.300}",
+            "$description": "Hover state for surface--background--subtle."
           }
         }
       }
