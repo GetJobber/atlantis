@@ -6,7 +6,8 @@
         },
         "destructive-": {
             "hover": {
-                "$value": "{color.base.red-.300}"
+                "$value": "{color.base.red-.300}",
+                "$description": "Hover state for destructive."
             }
         },
         "surface": {
@@ -15,10 +16,12 @@
         },
         "surface-": {
             "hover": {
-                "$value": "{color.base.blue-.700}"
+                "$value": "{color.base.blue-.700}",
+                "$description": "Hover state for surface."
             },
             "active": {
-                "$value": "{color.base.blue-.600}"
+                "$value": "{color.base.blue-.600}",
+                "$description": "Active state for surface."
             },
             "background": {
                 "$value": "{color.base.blue-.900}",
@@ -26,7 +29,8 @@
             },
             "background-": {
                 "hover": {
-                    "$value": "{color.base.blue-.800}"
+                    "$value": "{color.base.blue-.800}",
+                    "$description": "Hover state for surface--background."
                 },
                 "subtle": {
                     "$value": "{color.base.blue-.700}",

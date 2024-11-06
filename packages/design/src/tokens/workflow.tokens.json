@@ -8,10 +8,12 @@
     },
     "request-": {
       "surface": {
-        "$value": "{color.base.orange-.200}"
+        "$value": "{color.base.orange-.200}",
+        "$description": "Use for the surface of an element that has request status."
       },
       "onSurface": {
-        "$value": "{color.base.orange-.800}"
+        "$value": "{color.base.orange-.800}",
+        "$description": "Use for text or iconography that sits overtop a request background."
       }
     },
     "quote": {
@@ -20,10 +22,12 @@
     },
     "quote-": {
       "surface": {
-        "$value": "{color.base.pink-.200}"
+        "$value": "{color.base.pink-.200}",
+        "$description": "Use for the surface of an element that has quote status."
       },
       "onSurface": {
-        "$value": "{color.base.pink-.800}"
+        "$value": "{color.base.pink-.800}",
+        "$description": "Use for text or iconography that sits overtop a quote background."
       }
     },
     "job": {
@@ -32,10 +36,12 @@
     },
     "job-": {
       "surface": {
-        "$value": "{color.base.green-.200}"
+        "$value": "{color.base.green-.200}",
+        "$description": "Use for the surface of an element that has job status."
       },
       "onSurface": {
-        "$value": "{color.base.green-.700}"
+        "$value": "{color.base.green-.700}",
+        "$description": "Use for text or iconography that sits overtop a job background."
       }
     },
     "task": {
@@ -44,10 +50,12 @@
     },
     "task-": {
       "surface": {
-        "$value": "{color.base.blue-.200}"
+        "$value": "{color.base.blue-.200}",
+        "$description": "Use for the surface of an element that has task status."
       },
       "onSurface": {
-        "$value": "{color.base.blue-.800}"
+        "$value": "{color.base.blue-.800}",
+        "$description": "Use for text or iconography that sits overtop a task background."
       }
     },
     "invoice": {
@@ -56,10 +64,12 @@
     },
     "invoice-": {
       "surface": {
-        "$value": "{color.base.lightBlue-.200}"
+        "$value": "{color.base.lightBlue-.200}",
+        "$description": "Use for the surface of an element that has invoice status."
       },
       "onSurface": {
-        "$value": "{color.base.lightBlue-.800}"
+        "$value": "{color.base.lightBlue-.800}",
+        "$description": "Use for text or iconography that sits overtop an invoice background."
       }
     },
     "visit": {
@@ -68,10 +78,12 @@
     },
     "visit-": {
       "surface": {
-        "$value": "{color.job-.surface}"
+        "$value": "{color.job-.surface}",
+        "$description": "Use for the surface of an element that has visit status."
       },
       "onSurface": {
-        "$value": "{color.job-.onSurface}"
+        "$value": "{color.job-.onSurface}",
+        "$description": "Use for text or iconography that sits overtop a visit background."
       }
     },
     "event": {
@@ -80,10 +92,12 @@
     },
     "event-": {
       "surface": {
-        "$value": "{color.base.yellow-.200}"
+        "$value": "{color.base.yellow-.200}",
+        "$description": "Use for the surface of an element that has event status."
       },
       "onSurface": {
-        "$value": "{color.base.yellow-.700}"
+        "$value": "{color.base.yellow-.700}",
+        "$description": "Use for text or iconography that sits overtop an event background."
       }
     },
     "payments": {
@@ -92,10 +106,12 @@
     },
     "payments-": {
       "surface": {
-        "$value": "{color.invoice-.surface}"
+        "$value": "{color.invoice-.surface}",
+        "$description": "Use for the surface of an element that has payment status."
       },
       "onSurface": {
-        "$value": "{color.invoice-.surface}"
+        "$value": "{color.invoice-.surface}",
+        "$description": "Use for text or iconography that sits overtop a payment background."
       }
     },
     "client": {
