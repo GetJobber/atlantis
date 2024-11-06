@@ -15,8 +15,8 @@ export function useRefocusOnActivator(active: boolean) {
     }
 
     return () => {
-      if (active) {
-        if (activator instanceof HTMLElement) {
+      if (active && activator instanceof HTMLElement) {
+        if (document.contains(activator)) {
           activator.focus();
         }
         activator = undefined;
