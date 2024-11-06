@@ -1,3 +1,4 @@
+/* autoprefixer: off */
 @supports (scrollbar-color: #000 #000) {
   /* stylelint-disable-next-line selector-max-type */
   [data-theme="dark"]:root html {
