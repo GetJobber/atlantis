@@ -3,12 +3,13 @@ export const componentList = [
     title: "AnimatedPresence",
     to: "/components/AnimatedPresence",
     imageURL: "/Animation.png",
-    additionalMatches: ["Motion"],
+    additionalMatches: ["Motion", "Animation"],
   },
   {
     title: "AnimatedSwitcher",
     to: "/components/AnimatedSwitcher",
     imageURL: "/Animation.png",
+    additionalMatches: ["Motion", "Animation"],
   },
   {
     title: "Autocomplete",
@@ -29,20 +30,24 @@ export const componentList = [
     title: "Chip",
     to: "/components/Chip",
     imageURL: "/Chip.png",
+    additionalMatches: ["Pill"],
   },
   {
     title: "Disclosure",
     to: "/components/Disclosure",
     imageURL: "/Disclosure.png",
+    additionalMatches: ["Accordion", "Collapsable"],
   },
   {
     title: "StatusLabel",
     to: "/components/StatusLabel",
     imageURL: "/StatusLabel.png",
+    additionalMatches: ["Badge", "Pill", "InlineLabel"],
   },
   {
     title: "Switch",
     to: "/components/Switch",
     imageURL: "/Switch.png",
+    additionalMatches: ["Toggle"],
   },
 ];
