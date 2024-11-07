@@ -66,6 +66,21 @@ single-selection method for modifying the view. Otherwise, truncation will
 prevent the user from reading the label and a label with wrapped text will
 create layout inconsistencies.
 
+## Controlled and Uncontrolled
+
+Use a
+[controlled](../?path=/story/components-selections-segmentedcontrol-web--basic-controlled)
+SegmentedControl when you need to manage the state of the selected option from a
+parent component. This is useful when the selected option needs to be
+synchronized with other state or when you need to perform side effects when the
+selected option changes.
+
+Use an
+[uncontrolled](../?path=/story/components-selections-segmentedcontrol-web--basic-uncontrolled)
+version when the SegmentedControl can manage it's own state. This is useful when
+the selected option does not need to be synchronized with other state or when
+you need a simple implementation.
+
 ## Related components
 
 Unlike [Tabs](../?path=/docs/components-navigation-tabs--docs), the contents of
