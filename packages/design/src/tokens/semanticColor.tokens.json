@@ -118,7 +118,7 @@
     },
     "heading": {
       "$value": "{color.base.blue-.900}",
-      "$description": "Headings have a bold, dark color to cement their hierarchy."
+      "$description": "Headings have a high contrast against the application surface to cement their hierarchy."
     },
     "text": {
       "$value": "{color.base.blue-.800}",
@@ -131,12 +131,12 @@
       },
       "reverse": {
         "$value": "{color.white}",
-        "$description": "Use on “reversed” (dark) sections."
+        "$description": "Use for typographic content against reversed (inverted theme) surfaces."
       },
       "reverse-": {
         "secondary": {
           "$value": "{color.base.blue-.300}",
-          "$description": "Secondary text for “reversed” sections."
+          "$description": "Secondary text for use against reversed (inverted theme) surfaces."
         }
       }
     },
@@ -145,7 +145,7 @@
     },
     "surface": {
       "$value": "{color.white}",
-      "$description": "Most elements in Jobber have a white surface; if clickable, they have a light hover and active color."
+      "$description": "The primary color of the application surface (background). If interactive, surfaces have a hover and active color."
     },
     "surface-": {
       "hover": {
@@ -154,7 +154,7 @@
       },
       "reverse": {
         "$value": "{color.base.blue-.900}",
-        "$description": "When a strong constrast is needed with the rest of the application, a reversed surface can be used."
+        "$description": "Use a reverse surface to invert the theme when a strong contrast is needed with the rest of the application."
       },
       "active": {
         "$value": "{color.base.taupe-.300}",
