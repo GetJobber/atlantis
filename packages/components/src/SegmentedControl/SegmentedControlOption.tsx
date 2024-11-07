@@ -37,6 +37,7 @@ export function SegmentedControlOption<TValue extends string | number>({
         value={value as string}
         onChange={handleChange}
         aria-label={ariaLabel}
+        tabIndex={localChecked ? 0 : -1}
       />
       <label htmlFor={inputId}>{children}</label>
     </>
