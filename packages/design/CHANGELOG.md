@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.67.3](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.67.2...@jobber/design@0.67.3) (2024-11-07)
+
+
+### Bug Fixes
+
+* **design:** Updated CSS selectors for dark scrollbar colour [JOB-108461] ([#2106](https://github.com/GetJobber/atlantis/issues/2106)) ([1ed7167](https://github.com/GetJobber/atlantis/commit/1ed71670988c79c0c8fdd9103818db77158bff23))
+
+
+
+
+
 ## [0.67.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.67.1...@jobber/design@0.67.2) (2024-11-04)
 
 
