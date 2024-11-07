@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { Meta, StoryFn } from "@storybook/react";
-import {
-  SegmentedControl,
-  SegmentedControlContext,
-} from "@jobber/components/SegmentedControl";
-import { Icon } from "@jobber/components/Icon";
+import { SegmentedControl } from "@jobber/components/SegmentedControl";
 
 const meta: Meta = {
   title: "Components/Selections/SegmentedControl/Web",
@@ -28,14 +24,13 @@ const options = [
   { value: "burgers", label: "Burgers" },
 ];
 
-export const Controlled: Story = () => {
-  const [activeOption, setActiveOption] = useState("");
+export const BasicControlled: Story = () => {
+  const [activeOption, setActiveOption] = useState("pizza");
 
   return (
     <SegmentedControl
-      defaultOption={"pizza"}
-      selectedOption={activeOption}
-      onSelectOption={setActiveOption}
+      selectedValue={activeOption}
+      onSelectValue={setActiveOption}
     >
       {options.map(option => (
         <SegmentedControl.Option key={option.value} value={option.value}>
@@ -46,34 +41,48 @@ export const Controlled: Story = () => {
   );
 };
 
-export const AsUncontrolled: Story = () => {
-  const [activeOption, setActiveOption] = useState("calendar");
+// export const OnSelectValue = () => {
+//   const [activeOption, setActiveOption] = useState<string>("tacos");
 
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> = e => {
-    setActiveOption(e.target.value);
-  };
+//   const handleSelectValue = (value: string) => {
+//     setActiveOption(value);
 
+//     if (value === "pizza") {
+//       console.log("Pizza selected!");
+//     } else if (value === "tacos") {
+//       console.log("Tacos selected!");
+//     } else if (value === "sushi") {
+//       console.log("Sushi selected!");
+//     } else if (value === "burgers") {
+//       console.log("Burgers selected!");
+//     }
+//   };
+
+//   return (
+//     <SegmentedControl<string>
+//       selectedValue={activeOption}
+//       onSelectValue={handleSelectValue}
+//     >
+//       {options.map(option => (
+//         <SegmentedControl.Option<string>
+//           key={option.value}
+//           value={option.value}
+//         >
+//           {option.label}
+//         </SegmentedControl.Option>
+//       ))}
+//     </SegmentedControl>
+//   );
+// };
+
+export const BasicUncontrolled: Story = () => {
   return (
-    <SegmentedControlContext.Provider
-      value={{ handleChange, selectedOption: activeOption }}
-    >
-      <SegmentedControl.Base>
-        <SegmentedControl.Option value="calendar" ariaLabel="Calendar">
-          <Icon name="calendar" />
+    <SegmentedControl defaultValue="pizza">
+      {options.map(option => (
+        <SegmentedControl.Option key={option.value} value={option.value}>
+          {option.label}
         </SegmentedControl.Option>
-        <SegmentedControl.Option value="phone" ariaLabel="Phone">
-          <Icon name="phone" />
-        </SegmentedControl.Option>
-        <SegmentedControl.Option value="presentation" ariaLabel="Presentation">
-          <Icon name="presentation" />
-        </SegmentedControl.Option>
-        <SegmentedControl.Option value="availability" ariaLabel="Availability">
-          <Icon name="availability" />
-        </SegmentedControl.Option>
-        <SegmentedControl.Option value="chat" ariaLabel="Chat">
-          <Icon name="chat" />
-        </SegmentedControl.Option>
-      </SegmentedControl.Base>
-    </SegmentedControlContext.Provider>
+      ))}
+    </SegmentedControl>
   );
 };

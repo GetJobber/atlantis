@@ -1,42 +1,30 @@
 import React, { PropsWithChildren, useId, useMemo } from "react";
 import { useSegmentedControl } from "./SegmentedControlProvider";
 
-interface SegmentedControlOptionProps extends PropsWithChildren {
+interface SegmentedControlOptionProps<TValue extends string | number>
+  extends PropsWithChildren {
   /**
    * The unique value associated with this option. This value is used to determine
    * which option is selected and is passed to the onSelectOption callback.
    */
-  readonly value: string | number;
-
-  /**
-   * The text label for the option. If no label is provided, the children
-   * of the component will be used as the label.
-   */
-  readonly label?: string;
+  readonly value: TValue;
 
   /**
    * An aria-label that describes the option. Can be placed within
    * SegmentedControl.Option.
    */
   readonly ariaLabel?: string;
-
-  /**
-   * A callback function that is called whenever this option is selected.
-   */
-  readonly onSelected?: (valueIn: string | number) => void;
 }
 
-export function SegmentedControlOption({
+export function SegmentedControlOption<TValue extends string | number>({
   value,
   children,
-  label,
   ariaLabel,
-  onSelected,
-}: SegmentedControlOptionProps) {
-  const { selectedOption, handleChange } = useSegmentedControl();
+}: SegmentedControlOptionProps<TValue>) {
+  const { selectedValue, handleChange } = useSegmentedControl<TValue>();
   const localChecked = useMemo(
-    () => selectedOption === value,
-    [selectedOption, value],
+    () => selectedValue === value,
+    [selectedValue, value],
   );
   const inputId = `${value.toString()}_${useId()}`;
 
@@ -46,16 +34,11 @@ export function SegmentedControlOption({
         type="radio"
         id={inputId}
         checked={localChecked}
-        value={value}
-        onChange={handleChangeLocal}
+        value={value as string}
+        onChange={handleChange}
         aria-label={ariaLabel}
       />
-      <label htmlFor={inputId}>{children || label}</label>
+      <label htmlFor={inputId}>{children}</label>
     </>
   );
-
-  function handleChangeLocal(valueIn: React.ChangeEvent<HTMLInputElement>) {
-    onSelected?.(value);
-    handleChange?.(valueIn);
-  }
 }
