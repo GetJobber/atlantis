@@ -90,16 +90,20 @@ custom-elements {
 }
 
 code.root-code[class*="language-"] {
-  color: var(--color-base-orange--500);
+  color: var(--color-request);
+}
+
+pre.root-pre[class*="language-"] {
+  padding: var(--space-larger);
 }
 
 pre.root-pre code.root-code {
-  background: var(--color-base-blue--800);
-  color: var(--color-surface);
+  background: var(--color-surface--background);
+  color: var(--color-text);
 }
 
 pre.root-pre {
-  background: var(--color-base-blue--800);
+  background: var(--color-surface--background);
   padding: var(--space-large);
   border-radius: var(--radius-base);
 }

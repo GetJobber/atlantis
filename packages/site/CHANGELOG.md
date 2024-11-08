@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.2.0...@jobber/atlantis-site@0.3.0) (2024-11-07)
+
+
+### Features
+
+* **docx:** Update code sandbox styling ([#2101](https://github.com/GetJobber/atlantis/issues/2101)) ([fcca943](https://github.com/GetJobber/atlantis/commit/fcca943ca90fd9268974917913651a751cace6eb))
+
+
+
+
+
 # [0.2.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.1.1...@jobber/atlantis-site@0.2.0) (2024-11-05)
 
 
