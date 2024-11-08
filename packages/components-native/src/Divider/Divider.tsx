@@ -1,6 +1,7 @@
 import React from "react";
 import { View } from "react-native";
-import { styles } from "./Divider.style";
+import { horizontalStyles } from "./DividerHorizontal.style";
+import { verticalStyles } from "./DividerVertical.style";
 
 interface DividerProps {
   /**
@@ -8,7 +9,7 @@ interface DividerProps {
    *
    * @default "base"
    */
-  readonly size?: keyof typeof styles;
+  readonly size?: "base" | "large" | "larger" | "largest";
   /**
    * The direction of the divider
    *
@@ -26,12 +27,13 @@ export function Divider({
   direction = "horizontal",
   testID = "Divider",
 }: DividerProps): JSX.Element {
+  const directionalStyles =
+    direction === "horizontal" ? horizontalStyles : verticalStyles;
   const style = [
-    styles.base,
-    size === "large" && styles.large,
-    size === "larger" && styles.larger,
-    size === "largest" && styles.largest,
-    direction === "horizontal" ? styles.horizontal : styles.vertical,
+    directionalStyles.base,
+    size === "large" && directionalStyles.large,
+    size === "larger" && directionalStyles.larger,
+    size === "largest" && directionalStyles.largest,
   ];
 
   return <View testID={testID} style={style} />;
