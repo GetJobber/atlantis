@@ -24,8 +24,8 @@ const options = [
   { value: "burgers", label: "Burgers" },
 ];
 
-export const BasicControlled: Story = () => {
-  const [activeOption, setActiveOption] = useState("pizza");
+export const Controlled: Story = () => {
+  const [activeOption, setActiveOption] = useState("tacos");
 
   return (
     <SegmentedControl
@@ -41,41 +41,7 @@ export const BasicControlled: Story = () => {
   );
 };
 
-// export const OnSelectValue = () => {
-//   const [activeOption, setActiveOption] = useState<string>("tacos");
-
-//   const handleSelectValue = (value: string) => {
-//     setActiveOption(value);
-
-//     if (value === "pizza") {
-//       console.log("Pizza selected!");
-//     } else if (value === "tacos") {
-//       console.log("Tacos selected!");
-//     } else if (value === "sushi") {
-//       console.log("Sushi selected!");
-//     } else if (value === "burgers") {
-//       console.log("Burgers selected!");
-//     }
-//   };
-
-//   return (
-//     <SegmentedControl<string>
-//       selectedValue={activeOption}
-//       onSelectValue={handleSelectValue}
-//     >
-//       {options.map(option => (
-//         <SegmentedControl.Option<string>
-//           key={option.value}
-//           value={option.value}
-//         >
-//           {option.label}
-//         </SegmentedControl.Option>
-//       ))}
-//     </SegmentedControl>
-//   );
-// };
-
-export const BasicUncontrolled: Story = () => {
+export const Uncontrolled: Story = () => {
   return (
     <SegmentedControl defaultValue="pizza">
       {options.map(option => (

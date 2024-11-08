@@ -5,13 +5,12 @@ interface SegmentedControlOptionProps<TValue extends string | number>
   extends PropsWithChildren {
   /**
    * The unique value associated with this option. This value is used to determine
-   * which option is selected and is passed to the onSelectOption callback.
+   * which option is selected and is passed to the onSelectValue callback.
    */
   readonly value: TValue;
 
   /**
-   * An aria-label that describes the option. Can be placed within
-   * SegmentedControl.Option.
+   * An aria-label that describes the option.
    */
   readonly ariaLabel?: string;
 }
