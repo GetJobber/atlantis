@@ -1,5 +1,5 @@
 import { Autocomplete as AutocompleteRoot } from "@jobber/components";
-import Content from "@atlantis/docs/components/Autocomplete/Autocomplete.stories.mdx";
+import AutocompleteContent from "@atlantis/docs/components/Autocomplete/Autocomplete.stories.mdx";
 import { PropsWithChildren, useState } from "react";
 import { Option } from "@jobber/components/Autocomplete";
 import Props from "./Autocomplete.props.json";
@@ -19,7 +19,7 @@ export const Autocomplete = (
   return <AutocompleteRoot {...props} value={value} onChange={setValue} />;
 };
 export default {
-  content: Content,
+  content: () => <AutocompleteContent />,
   props: Props,
   component: {
     element: Autocomplete,
@@ -43,4 +43,4 @@ export default {
       ),
     },
   ],
-} as ContentExport;
+} as const satisfies ContentExport;

@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Pressable,
-  // eslint-disable-next-line no-restricted-imports
   Text as RNText,
   StyleProp,
   TextStyle,

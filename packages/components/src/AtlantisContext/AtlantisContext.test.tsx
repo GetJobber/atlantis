@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { PropsWithChildren } from "react";
 import { renderHook } from "@testing-library/react-hooks";
 import {

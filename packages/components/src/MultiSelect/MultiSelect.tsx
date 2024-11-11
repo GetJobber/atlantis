@@ -40,7 +40,6 @@ interface MultiSelectProps {
   readonly size?: "small" | "large";
 }
 
-// eslint-disable-next-line max-statements
 export function MultiSelect({
   defaultLabel,
   allSelectedLabel,

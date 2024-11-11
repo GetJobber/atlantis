@@ -1,7 +1,6 @@
 import React from "react";
 import classnames from "classnames";
 import styles from "./Glimmer.module.css";
-/* eslint-disable import/no-internal-modules */
 import sizes from "./style/Sizes.module.css";
 import shapes from "./style/Shape.module.css";
 import timings from "./style/Timing.module.css";

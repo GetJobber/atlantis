@@ -1,7 +1,7 @@
 {
   "name": "@jobber/atlantis-site",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.3.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,7 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@jobber/components": "*",
+    "@jobber/components": "^5.47.0",
     "@jobber/hooks": "*",
     "prismjs": "^1.29.0",
     "react": "18.2.0",
@@ -33,6 +33,7 @@
     "eslint-plugin-react-refresh": "^0.4.7",
     "rehype-rewrite": "^4.0.2",
     "remark-gfm": "^4.0.0",
+    "typescript": "^5.6.3",
     "vite": "^5.3.1"
   }
 }

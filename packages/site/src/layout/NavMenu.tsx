@@ -1,4 +1,4 @@
-import { Box, InputText } from "@jobber/components";
+import { Box, Button } from "@jobber/components";
 import { Link } from "react-router-dom";
 import { PropsWithChildren, useState } from "react";
 import { SearchBox } from "./SearchBox";
@@ -31,13 +31,12 @@ export const NavMenu = () => {
         </Box>
       </Box>
       <Box padding="base">
-        <button
+        <Button
           onClick={() => setOpen(true)}
-          type="button"
-          style={{ background: "transparent", border: 0 }}
-        >
-          <InputText placeholder="Search" />
-        </button>
+          label="Search"
+          icon="search"
+          variation="subtle"
+        />
       </Box>
       <SearchBox open={open} setOpen={setOpen} />
       <MenuList>

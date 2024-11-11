@@ -9,7 +9,6 @@ import React, {
 } from "react";
 // According to react, it's imported within the package
 // https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis
-// eslint-disable-next-line import/no-internal-modules
 import { Root, createRoot } from "react-dom/client";
 import { Toast, ToastProps, ToastRef } from "./Toast";
 import styles from "./Toast.module.css";

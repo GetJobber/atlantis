@@ -7,6 +7,7 @@ import {
   Typography,
 } from "@jobber/components";
 import { useEffect, useMemo, useRef, useState } from "react";
+import styles from "./SearchBox.module.css";
 import { ContentCardWrapper } from "../components/ContentCardWrapper";
 import { ContentCard } from "../components/ContentCard";
 import { componentList } from "../componentList";
@@ -56,18 +57,26 @@ export const SearchBox = ({
   };
 
   return (
-    <Modal open={open} onRequestClose={closeModal} title="Search">
-      <Content>
+    <Modal size="large" open={open} onRequestClose={closeModal} title="Search">
+      <Content spacing={"larger"}>
         <InputText
           ref={ref}
           value={search}
           placeholder="Search"
+          prefix={{ icon: "search" }}
+          clearable="always"
           onChange={d => setSearch(d as string)}
         />
-        <Box width="100%">
+        <div className={styles.searchBoxResults}>
           {filteredComponentList.length > 0 && (
             <Content>
-              <Typography size="larger" fontWeight="bold">
+              <Typography
+                size={"base"}
+                fontWeight={"bold"}
+                textCase={"uppercase"}
+                textColor={"textSecondary"}
+                element="h3"
+              >
                 Components
               </Typography>
               <ContentCardWrapper>
@@ -88,7 +97,13 @@ export const SearchBox = ({
           {filteredDesignList.length > 0 && (
             <Box padding={{ top: "largest" }}>
               <Content>
-                <Typography size="larger" fontWeight="bold">
+                <Typography
+                  size={"base"}
+                  fontWeight={"bold"}
+                  textCase={"uppercase"}
+                  textColor={"textSecondary"}
+                  element="h3"
+                >
                   Design
                 </Typography>
                 <ContentCardWrapper>
@@ -107,7 +122,7 @@ export const SearchBox = ({
               </Content>
             </Box>
           )}
-        </Box>
+        </div>
       </Content>
     </Modal>
   );
