@@ -79,12 +79,9 @@ export function timeStringToDate(timeString: string): Date | undefined {
 
     const date = new Date();
     date.setHours(hours, minutes, 0, 0);
-    console.log(date.toString());
 
     return date;
   } catch {
-    console.log("undefined");
-
     return undefined;
   }
 }
