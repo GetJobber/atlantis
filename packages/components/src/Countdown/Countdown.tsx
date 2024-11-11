@@ -10,9 +10,8 @@ type GranularityOptions = "dhms" | "hms" | "ms" | "s" | "dhm" | "dh" | "d";
 
 interface CountdownProps {
   /**
-   * The date that is being counted down to
-   * time is to be displayed.
-   * In the case of `date` a `string` should be in ISO 8601 format
+   * The date that is being counted down to.
+   * Value for date as a `string` should be in ISO 8601 format.
    */
   readonly date: Date | number | string;
 

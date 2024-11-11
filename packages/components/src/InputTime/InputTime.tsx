@@ -50,7 +50,7 @@ export function InputTime({
 }
 
 function dateToTimeString(date?: Date): string {
-  if (date == undefined || !(date instanceof Date)) {
+  if (!(date instanceof Date)) {
     return "";
   }
 
@@ -66,15 +66,25 @@ export function timeStringToDate(timeString: string): Date | undefined {
   try {
     const [hours, minutes] = timeString.split(":").map(Number);
 
-    if (isNaN(hours) || isNaN(minutes)) {
+    if (
+      isNaN(hours) ||
+      isNaN(minutes) ||
+      hours < 0 ||
+      hours > 24 ||
+      minutes < 0 ||
+      minutes > 60
+    ) {
       return undefined;
     }
 
     const date = new Date();
     date.setHours(hours, minutes, 0, 0);
+    console.log(date.toString());
 
     return date;
   } catch {
+    console.log("undefined");
+
     return undefined;
   }
 }
