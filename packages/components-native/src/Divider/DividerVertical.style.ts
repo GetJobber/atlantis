@@ -18,7 +18,7 @@ export const verticalStyles = StyleSheet.create({
     opacity: 0.625,
   },
   largest: {
-    borderRightWidth: tokens["space-small"],
+    borderRightWidth: tokens["border-thickest"],
     opacity: 0.375,
   },
   vertical: {

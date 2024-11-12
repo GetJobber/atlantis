@@ -18,7 +18,7 @@ export const horizontalStyles = StyleSheet.create({
     opacity: 0.625,
   },
   largest: {
-    borderBottomWidth: tokens["space-small"],
+    borderBottomWidth: tokens["border-thickest"],
     opacity: 0.375,
   },
 });
