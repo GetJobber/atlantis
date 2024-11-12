@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.47.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.47.0...@jobber/components@5.47.1) (2024-11-12)
+
+
+### Bug Fixes
+
+* **components:** Remove unnecessary useRefocusOnActivator from DataListHeaderTile ([#2111](https://github.com/GetJobber/atlantis/issues/2111)) ([7e1a32a](https://github.com/GetJobber/atlantis/commit/7e1a32a41d21259294e8fa3a38a481e6a3ae4efa))
+
+
+
+
+
 # [5.47.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.46.1...@jobber/components@5.47.0) (2024-11-05)
 
 
