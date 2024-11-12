@@ -14,21 +14,14 @@ export const NavMenu = () => {
 
   return (
     <Box
-      width={200}
+      width={220}
       background="surface--background"
       border={{ right: "base" }}
     >
-      <Box
-        width="100%"
-        background="surface--background"
-        margin={{ bottom: "large" }}
-        height={60}
-      >
-        <Box padding={"base"}>
-          <Link to="/">
-            <JobberLogo />
-          </Link>
-        </Box>
+      <Box height={24} padding="base">
+        <Link to="/">
+          <JobberLogo />
+        </Link>
       </Box>
       <Box padding="base">
         <Button
