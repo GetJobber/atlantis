@@ -5,7 +5,7 @@ export const verticalStyles = StyleSheet.create({
   base: {
     margin: 0,
     height: "100%",
-    width: tokens["space-minuscule"],
+    width: "1px",
     borderRightWidth: tokens["border-base"],
     borderRightColor: tokens["color-border"],
   },
@@ -20,5 +20,8 @@ export const verticalStyles = StyleSheet.create({
   largest: {
     borderRightWidth: tokens["space-small"],
     opacity: 0.375,
+  },
+  vertical: {
+    borderRightColor: tokens["color-border"],
   },
 });

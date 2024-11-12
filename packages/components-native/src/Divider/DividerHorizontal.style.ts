@@ -3,11 +3,11 @@ import { tokens } from "../utils/design";
 
 export const horizontalStyles = StyleSheet.create({
   base: {
-    height: tokens["space-minuscule"],
+    height: "1px",
     margin: 0,
     width: "auto",
     borderBottomColor: tokens["color-border"],
-    borderBottomWidth: tokens["space-minuscule"],
+    borderBottomWidth: tokens["border-base"],
   },
   large: {
     borderBottomWidth: tokens["border-thick"],
