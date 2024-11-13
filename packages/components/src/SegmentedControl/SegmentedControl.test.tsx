@@ -105,4 +105,36 @@ describe("SegmentedControl", () => {
     expect(screen.getByLabelText("Sushi")).not.toHaveFocus();
     expect(screen.getByLabelText("Burgers")).not.toHaveFocus();
   });
+
+  it("assigns each option the same name prop string", () => {
+    render(
+      <SegmentedControl name="food">
+        {options.map(option => (
+          <SegmentedControl.Option key={option.value} value={option.value}>
+            {option.label}
+          </SegmentedControl.Option>
+        ))}
+      </SegmentedControl>,
+    );
+
+    options.forEach(option => {
+      expect(screen.getByLabelText(option.label).getAttribute("name")).toBe(
+        "food",
+      );
+    });
+  });
+
+  it("defaults the name prop to a unique id if string is not provided", () => {
+    render(
+      <SegmentedControl>
+        {options.map(option => (
+          <SegmentedControl.Option key={option.value} value={option.value}>
+            {option.label}
+          </SegmentedControl.Option>
+        ))}
+      </SegmentedControl>,
+    );
+    const firstOptionName = screen.getByLabelText("Pizza").getAttribute("name");
+    expect(firstOptionName).toMatch(":ro:");
+  });
 });
