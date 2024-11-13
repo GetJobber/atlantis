@@ -30,19 +30,19 @@ export const componentList = [
     title: "Chip",
     to: "/components/Chip",
     imageURL: "/Chip.png",
-    additionalMatches: ["Pill"],
+    additionalMatches: ["Pill", "Badge", "Tag"],
   },
   {
     title: "Disclosure",
     to: "/components/Disclosure",
     imageURL: "/Disclosure.png",
-    additionalMatches: ["Accordion", "Collapsable"],
+    additionalMatches: ["Accordion", "Collapsable", "Expandable", "Toggle"],
   },
   {
     title: "StatusLabel",
     to: "/components/StatusLabel",
     imageURL: "/StatusLabel.png",
-    additionalMatches: ["Badge", "Pill", "InlineLabel"],
+    additionalMatches: ["Badge", "Pill", "Tag", "InlineLabel"],
   },
   {
     title: "Switch",
