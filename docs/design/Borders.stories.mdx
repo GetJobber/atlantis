@@ -19,23 +19,33 @@ Border style should be `solid` unless a specific use case calls for some other
 format, such as indicating a dropzone on the
 [`InputFile` component](../?path=/docs/components-forms-and-inputs-inputfile--docs).
 
-export function Example({ of: size }) {
-  const style = {
+export function BaseStyle({ of: size }) {
+  return {
     width: "100%",
     height: "var(--space-minuscule)",
     borderBottomStyle: "solid",
     borderBottomWidth: `var(--border-${size})`,
     borderBottomColor: "var(--color-grey--lighter)",
   };
-  return <div style={style} />;
 }
 
-| Width               | Visual                    | Value |
-| :------------------ | :------------------------ | :---- |
-| `--border-base`     | <Example of="base" />     | 1 px  |
-| `--border-thick`    | <Example of="thick" />    | 2 px  |
-| `--border-thicker`  | <Example of="thicker" />  | 4 px  |
-| `--border-thickest` | <Example of="thickest" /> | 8 px  |
+export function Example({ of: size }) {
+  return <div style={BaseStyle({ of: size })} />;
+}
+
+export function BorderSize({ of: size }) {
+  const element = document.createElement("div");
+  Object.assign(element.style, BaseStyle({ of: size }));
+  document.body.appendChild(element);
+  return getComputedStyle(element).borderBottomWidth;
+}
+
+| Width               | Visual                    | Value                        |
+| :------------------ | :------------------------ | :--------------------------- |
+| `--border-base`     | <Example of="base" />     | <BorderSize of="base" />     |
+| `--border-thick`    | <Example of="thick" />    | <BorderSize of="thick" />    |
+| `--border-thicker`  | <Example of="thicker" />  | <BorderSize of="thicker" />  |
+| `--border-thickest` | <Example of="thickest" /> | <BorderSize of="thickest" /> |
 
 The `base` border width should be used for most use cases (see
 [`Card`](../?path=/docs/components-layouts-and-structure-card--docs) and
