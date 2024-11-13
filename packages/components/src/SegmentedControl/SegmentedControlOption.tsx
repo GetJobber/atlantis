@@ -20,18 +20,21 @@ export function SegmentedControlOption<TValue extends string | number>({
   children,
   ariaLabel,
 }: SegmentedControlOptionProps<TValue>) {
-  const { selectedValue, handleChange } = useSegmentedControl<TValue>();
+  const { selectedValue, handleChange, segmentedControlName } =
+    useSegmentedControl<TValue>();
   const localChecked = useMemo(
     () => selectedValue === value,
     [selectedValue, value],
   );
   const inputId = `${value.toString()}_${useId()}`;
+  console.log("segcontrolname", segmentedControlName);
 
   return (
     <>
       <input
         type="radio"
         id={inputId}
+        name={segmentedControlName}
         checked={localChecked}
         value={value as string}
         onChange={handleChange}

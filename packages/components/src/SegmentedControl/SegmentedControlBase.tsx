@@ -14,6 +14,7 @@ const SegmentedControlBase = forwardRef<HTMLDivElement, PropsWithChildren>(
       <div
         ref={ref}
         className={styles.container}
+        role="radiogroup"
         style={
           {
             "--segmentedControl--option-count": optionCount,

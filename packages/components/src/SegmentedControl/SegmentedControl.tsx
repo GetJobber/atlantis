@@ -1,4 +1,4 @@
-import React, { type PropsWithChildren, useRef } from "react";
+import React, { type PropsWithChildren, useId, useRef } from "react";
 import { SegmentedControlProvider } from "./SegmentedControlProvider";
 import { SegmentedControlOption } from "./SegmentedControlOption";
 import { SegmentedControlBase } from "./SegmentedControlBase";
@@ -18,6 +18,14 @@ interface SegmentedControlProps<T> extends PropsWithChildren {
    * The default option to be selected initially
    */
   readonly defaultValue?: T;
+
+  /**
+   * A unique name for the SegmentedControl, that links the group of
+   * options together.
+   *
+   * @default useId()
+   */
+  readonly name?: string;
 }
 
 export function SegmentedControl<T>({
@@ -25,14 +33,17 @@ export function SegmentedControl<T>({
   onSelectValue,
   defaultValue,
   children,
+  name = useId(),
 }: SegmentedControlProps<T>) {
   const container = useRef<HTMLDivElement>(null);
+  console.log("name", name);
 
   return (
     <SegmentedControlProvider
       selectedValue={selectedValue}
       onSelectValue={onSelectValue}
       defaultValue={defaultValue}
+      name={name}
     >
       <SegmentedControlBase ref={container}>{children}</SegmentedControlBase>
     </SegmentedControlProvider>

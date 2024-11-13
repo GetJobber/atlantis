@@ -11,6 +11,7 @@ import React, {
 interface SegmentedControlProviderContext<T = unknown> {
   handleChange: ChangeEventHandler<HTMLInputElement>;
   selectedValue: T;
+  segmentedControlName?: string;
 }
 
 export const SegmentedControlContext = createContext<
@@ -18,12 +19,14 @@ export const SegmentedControlContext = createContext<
 >({
   handleChange: () => ({}),
   selectedValue: null,
+  segmentedControlName: "",
 });
 
 interface SegmentedControlProviderProps<T> extends PropsWithChildren {
   readonly selectedValue?: T;
   readonly onSelectValue?: (value: T) => void;
   readonly defaultValue?: T;
+  readonly name?: string;
 }
 
 export const useSegmentedControl = <T,>() => {
@@ -35,8 +38,9 @@ export const useSegmentedControl = <T,>() => {
 export function SegmentedControlProvider<T>({
   children,
   selectedValue,
-  onSelectValue: onSelectValue,
+  onSelectValue,
   defaultValue,
+  name,
 }: SegmentedControlProviderProps<T>) {
   const isControlled =
     selectedValue !== undefined && onSelectValue !== undefined;
@@ -72,6 +76,7 @@ export function SegmentedControlProvider<T>({
       value={{
         handleChange,
         selectedValue: currentSelectedOption,
+        segmentedControlName: name,
       }}
     >
       {children}
