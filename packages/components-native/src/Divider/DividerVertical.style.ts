@@ -5,7 +5,7 @@ export const verticalStyles = StyleSheet.create({
   base: {
     margin: 0,
     height: "auto",
-    width: "1px",
+    width: 1,
     borderRightWidth: tokens["border-base"],
     borderRightColor: tokens["color-border"],
   },

@@ -3,7 +3,7 @@ import { tokens } from "../utils/design";
 
 export const horizontalStyles = StyleSheet.create({
   base: {
-    height: "1px",
+    height: 1,
     margin: 0,
     width: "auto",
     borderBottomColor: tokens["color-border"],
