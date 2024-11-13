@@ -5,23 +5,27 @@ import { SegmentedControlBase } from "./SegmentedControlBase";
 
 interface SegmentedControlProps<T> extends PropsWithChildren {
   /**
-   * The currently selected option
+   * The currently selected option. Use this prop with `onSelectValue` for
+   * a controlled component.
    */
   readonly selectedValue?: T;
 
   /**
-   * A callback function that is called whenever the selected option changes
+   * A callback function that is called whenever the selected option changes.
+   * Use this prop with `selectedValue` for a controlled component.
    */
   readonly onSelectValue?: (value: T) => void;
 
   /**
-   * The default option to be selected initially
+   * The default option to be selected initially.
+   * Set this prop when the component is uncontrolled.
    */
   readonly defaultValue?: T;
 
   /**
    * A unique name for the SegmentedControl, that links the group of
-   * options together.
+   * options together. Can be a string or, if not set, will default to a generated
+   * id.
    *
    * @default useId()
    */
