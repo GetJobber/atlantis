@@ -36,7 +36,6 @@ export function SegmentedControl<T>({
   name = useId(),
 }: SegmentedControlProps<T>) {
   const container = useRef<HTMLDivElement>(null);
-  console.log("name", name);
 
   return (
     <SegmentedControlProvider

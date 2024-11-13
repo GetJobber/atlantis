@@ -27,7 +27,6 @@ export function SegmentedControlOption<TValue extends string | number>({
     [selectedValue, value],
   );
   const inputId = `${value.toString()}_${useId()}`;
-  console.log("segcontrolname", segmentedControlName);
 
   return (
     <>
