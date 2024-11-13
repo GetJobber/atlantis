@@ -42,7 +42,9 @@ export const SearchBox = ({
     return componentList.filter(
       d =>
         d.title.toLowerCase().includes(search.toLowerCase()) ||
-        d.additionalMatches?.find(e => e.includes(search)),
+        d.additionalMatches?.find(e =>
+          e.toLowerCase().includes(search.toLowerCase()),
+        ),
     );
   }, [search]);
   useEffect(() => {

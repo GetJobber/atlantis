@@ -3,7 +3,7 @@ export const componentList = [
     title: "AnimatedPresence",
     to: "/components/AnimatedPresence",
     imageURL: "/Animation.png",
-    additionalMatches: ["Motion", "Animation"],
+    additionalMatches: ["Motion", "Animation", "Reveal"],
   },
   {
     title: "AnimatedSwitcher",
@@ -36,13 +36,19 @@ export const componentList = [
     title: "Disclosure",
     to: "/components/Disclosure",
     imageURL: "/Disclosure.png",
-    additionalMatches: ["Accordion", "Collapsable", "Expandable", "Toggle"],
+    additionalMatches: [
+      "Accordion",
+      "Collapsable",
+      "Expandable",
+      "Toggle",
+      "Reveal",
+    ],
   },
   {
     title: "StatusLabel",
     to: "/components/StatusLabel",
     imageURL: "/StatusLabel.png",
-    additionalMatches: ["Badge", "Pill", "Tag", "InlineLabel"],
+    additionalMatches: ["Badge", "Pill", "Tag", "InlineLabel", "Inline Label"],
   },
   {
     title: "Switch",
