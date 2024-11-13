@@ -29,16 +29,15 @@ const HorizontalTemplate: ComponentStory<typeof Divider> = args => (
 
 const VerticalTemplate: ComponentStory<typeof Divider> = args => (
   <View>
-    <Heading>Summary</Heading>
+    <View style={{ marginBottom: 16 }}>
+      <Heading>Summary</Heading>
+    </View>
     <View
       style={{
         display: "flex",
         flexDirection: "row",
         justifyContent: "flex-start",
-        position: "relative",
-        height: 50,
-        gap: 16,
-        paddingTop: 16,
+        gap: 12,
       }}
     >
       <Content spacing="small">
