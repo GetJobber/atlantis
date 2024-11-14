@@ -135,6 +135,8 @@ export default {
     },
     {
       dir: "dist",
+      preserveModules: true,
+      inlineDynamicImports: false,
       entryFileNames: "[name].mjs",
       format: "esm",
     },
