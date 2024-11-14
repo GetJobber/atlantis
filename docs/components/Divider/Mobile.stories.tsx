@@ -36,8 +36,8 @@ const VerticalTemplate: ComponentStory<typeof Divider> = args => (
       style={{
         display: "flex",
         flexDirection: "row",
-        justifyContent: "flex-start",
-        gap: 12,
+        height: 50,
+        gap: 16,
       }}
     >
       <Content spacing="small">
