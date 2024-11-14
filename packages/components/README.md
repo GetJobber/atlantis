@@ -34,7 +34,3 @@ export default function MyComponent() {
 
 More information on Atlantis can be found at
 [https://atlantis.getjobber.com](https://atlantis.getjobber.com).
-
-## Remove Me
-
-README change for prerelease.
