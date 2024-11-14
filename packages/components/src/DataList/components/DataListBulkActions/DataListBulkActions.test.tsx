@@ -1,4 +1,3 @@
-/* eslint-disable max-statements */
 import React, { PropsWithChildren } from "react";
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
@@ -7,6 +6,7 @@ import {
   defaultValues,
 } from "@jobber/components/DataList/context/DataListContext";
 import { DataListBulkActions } from ".";
+import { BULK_ACTIONS_CONTAINER_TEST_ID } from "./DataListBulkActions.const";
 import { DataListAction } from "../DataListAction";
 import { DataListHeaderCheckbox } from "../DataListHeader/DataListHeaderCheckbox";
 import { BREAKPOINT_SIZES, Breakpoints } from "../../DataList.const";
@@ -48,7 +48,7 @@ describe("DataListBulkActions", () => {
   it("should render the 4 buttons", () => {
     renderComponent();
     const overflowContainer = screen.getByTestId(
-      "ATL-DataListFilters-Container",
+      BULK_ACTIONS_CONTAINER_TEST_ID,
     );
 
     expect(within(overflowContainer).getAllByRole("button")).toHaveLength(4);

@@ -1,0 +1,7 @@
+.searchBoxResults {
+    width: 100%;
+    max-height: calc(100vh - 240px);
+    overflow-y: scroll;
+    padding: var(--space-smallest);
+    box-sizing: border-box;
+}

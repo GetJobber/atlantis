@@ -1,1 +1,1 @@
-export { useShowClear, Clearable } from "./useShowClear";
+export { useShowClear, type Clearable } from "./useShowClear";

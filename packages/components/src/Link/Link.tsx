@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from "react";
-import styles from "./Link.css";
+import styles from "./Link.module.css";
 
 export interface LinkProps {
   readonly url: string;

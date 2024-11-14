@@ -3,6 +3,74 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.67.5](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.67.4...@jobber/design@0.67.5) (2024-11-12)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.67.4](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.67.3...@jobber/design@0.67.4) (2024-11-07)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.67.3](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.67.2...@jobber/design@0.67.3) (2024-11-07)
+
+
+### Bug Fixes
+
+* **design:** Updated CSS selectors for dark scrollbar colour [JOB-108461] ([#2106](https://github.com/GetJobber/atlantis/issues/2106)) ([1ed7167](https://github.com/GetJobber/atlantis/commit/1ed71670988c79c0c8fdd9103818db77158bff23))
+
+
+
+
+
+## [0.67.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.67.1...@jobber/design@0.67.2) (2024-11-04)
+
+
+### Bug Fixes
+
+* **design:** Updating the task icon to use task-color [JOB-98804] ([#2097](https://github.com/GetJobber/atlantis/issues/2097)) ([b371c3d](https://github.com/GetJobber/atlantis/commit/b371c3daad21afe090e402ca0053f499505309e7))
+
+
+
+
+
+## [0.67.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.67.0...@jobber/design@0.67.1) (2024-10-16)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+# [0.67.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.66.0...@jobber/design@0.67.0) (2024-10-15)
+
+
+### Features
+
+* **components:** Update apple icon and Add bank icon [JOB-106774] ([#2073](https://github.com/GetJobber/atlantis/issues/2073)) ([6dd2ae6](https://github.com/GetJobber/atlantis/commit/6dd2ae6c4bcadb5bf32bbe9c04c3762a2b84e181))
+
+
+
+
+
+# [0.66.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.65.1...@jobber/design@0.66.0) (2024-10-07)
+
+
+### Features
+
+* **design:** Add new colors into base palette [JOB-105102] ([#2044](https://github.com/GetJobber/atlantis/issues/2044)) ([0e3ce4d](https://github.com/GetJobber/atlantis/commit/0e3ce4d09fa00f34572fe25f2697cede178a22ac))
+
+
+
+
+
 ## [0.65.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.65.0...@jobber/design@0.65.1) (2024-09-17)
 
 

@@ -1,0 +1,78 @@
+.action {
+  width: 100%;
+  padding: 0;
+  border: none;
+  text-align: left;
+  background-color: transparent;
+  appearance: none;
+}
+
+.action > * {
+  transition: background-color var(--timing-base);
+}
+
+.customItem > * {
+  padding: var(--space-base);
+}
+
+.defaultContent {
+  display: flex;
+  box-sizing: border-box;
+  flex: 1;
+  align-items: flex-start;
+  padding: var(--space-small);
+}
+
+.defaultContent > * {
+  padding: var(--space-small);
+}
+
+.hoverable {
+  cursor: pointer;
+}
+
+.hoverable:hover,
+.hoverable:focus {
+  outline: none;
+}
+
+.isActive > * {
+  background-color: var(--color-surface--background);
+}
+
+.hoverable:hover > *,
+.hoverable:focus > * {
+  background-color: var(--color-surface--hover);
+}
+
+.icon {
+  display: flex;
+  flex: 0 0 auto;
+  width: var(--space-large);
+  height: var(--space-large);
+  box-sizing: content-box;
+}
+.info {
+  flex: 1 1 auto;
+  min-width: 0;
+  align-self: center;
+}
+.amount {
+  flex: 0 0 auto;
+  text-align: right;
+}
+
+.isActive:hover > *,
+.isActive:focus > * {
+  background-color: var(--color-surface--background--hover);
+}
+
+/* TODO: Move truncate in typography */
+
+.truncate {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

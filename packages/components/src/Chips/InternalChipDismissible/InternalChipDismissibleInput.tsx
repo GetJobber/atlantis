@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import debounce from "lodash/debounce";
 import classNames from "classnames";
-import styles from "./InternalChipDismissible.css";
+import styles from "./InternalChipDismissible.module.css";
 import { ChipDismissibleInputProps } from "./InternalChipDismissibleTypes";
 import {
   useInView,

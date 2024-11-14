@@ -1,0 +1,12 @@
+.menu {
+  display: flex;
+  position: absolute;
+  top: -26px;
+  right: 0;
+  z-index: var(--elevation-menu);
+  box-shadow: var(--shadow-base);
+  border: var(--border-base) solid var(--color-border);
+  border-radius: var(--radius-base);
+  background-color: var(--color-surface);
+  gap: var(--space-smallest);
+}

@@ -1,8 +1,8 @@
 import React from "react";
 import { IconNames } from "@jobber/design";
 import classNames from "classnames";
-import iconStyles from "./BannerIcon.css";
-import bannerStyles from "../../Banner.css";
+import iconStyles from "./BannerIcon.module.css";
+import bannerStyles from "../../Banner.module.css";
 import { Icon } from "../../../Icon";
 import { BannerType } from "../../Banner.types";
 

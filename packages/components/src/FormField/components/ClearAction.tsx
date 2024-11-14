@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./ClearAction.css";
+import styles from "./ClearAction.module.css";
 import { Icon } from "../../Icon";
 
 interface ClearActionProps {

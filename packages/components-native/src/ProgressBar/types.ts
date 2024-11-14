@@ -38,4 +38,10 @@ export interface ProgressBarProps {
    * @default progress
    */
   readonly variation?: "progress" | "stepped";
+
+  /**
+   * Set the size of the progress bar
+   * @default base
+   */
+  readonly size?: "smaller" | "small" | "base";
 }

@@ -1,6 +1,6 @@
 import React, { ReactNode, useId } from "react";
 import { XOR } from "ts-xor";
-import styles from "./RadioGroup.css";
+import styles from "./RadioGroup.module.css";
 import { Text } from "../Text";
 
 interface BaseRadioOptionProps {

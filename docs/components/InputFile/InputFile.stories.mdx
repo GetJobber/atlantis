@@ -67,6 +67,9 @@ must accept a File and return `null` when it is accepted or an error object when
 rejected.
 
 For example, the code below only accepts files that are less than 2MB in size.
+Take a look at the
+[File Size Validator](../?path=/story/components-forms-and-inputs-inputfile-web--file-size-validator)
+story for expected behavior.
 
 ```ts
 function fileSizeValidator(file: File) {
@@ -81,12 +84,53 @@ function fileSizeValidator(file: File) {
 }
 ```
 
+### maxFiles
+
+The `maxFiles` property in the InputFile component is used to specify the
+maximum number of files that can be uploaded via the dropzone. This property is
+part of the `maxFilesValidation` object, which also includes the
+`numberOfCurrentFiles` property to track the number of files that have already
+been uploaded. When the total number of uploaded files exceeds the `maxFiles`
+limit, the component will display a validation message and prevent additional
+files from being uploaded.
+
+The
+[Max Files Limit](../?path=/story/components-forms-and-inputs-inputfile-web--max-files-limit)
+example demonstrates the behaviour of uploading more than `maxFiles`.
+
+```ts
+ <InputFile
+    ...
+    onUploadComplete={handleUpload}
+    maxFilesValidation={{ maxFiles: 3, numberOfCurrentFiles: files.length }}
+  />
+```
+
+`maxFiles` is directly mapped to `react-dropzone`'s `maxFiles` prop, documented
+[here](https://react-dropzone.js.org/#!/Accepting%20specific%20number%20of%20files).
+
 ### description
 
 The `description` prop is a string that can be used to provide additional
 information to the user. A common use case is to provide the accepted file types
 and maximum size for each file. With a helpful `description`, users are more
 aware of the limitations and requirements of the file upload.
+
+### allowedTypes
+
+The `allowedTypes` prop determines the types of files that can be uploaded.
+`allowedTypes` accepts `images`, `basicImages` or an array of customized file
+types. If the `allowedTypes` prop is not provided, all types will be accepted.
+
+Using the `FileTypes` enum, you can customize the types of files that are
+allowed to be uploaded.
+
+```ts
+<InputFile
+  ...
+  allowedTypes={["JPEG", "PNG", "HEIC", "PDF", "DOCX"]}
+/>
+```
 
 #### Notes
 

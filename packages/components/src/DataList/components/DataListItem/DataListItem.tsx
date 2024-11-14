@@ -12,7 +12,7 @@ import { DataListLayoutActionsContext } from "@jobber/components/DataList/compon
 import { generateListItemElement } from "@jobber/components/DataList/DataList.utils";
 import { DataListItemInternal } from "./DataListItemInternal";
 import { DataListItemClickable } from "./components/DataListItemClickable";
-import styles from "../../DataList.css";
+import styles from "../../DataList.module.css";
 import { useGetItemActions } from "../../hooks/useGetItemActions";
 
 interface DataListItem<T extends DataListObject> {
@@ -21,7 +21,6 @@ interface DataListItem<T extends DataListObject> {
   readonly layout: DataListLayoutProps<T>["children"];
 }
 
-// eslint-disable-next-line max-statements
 export function DataListItem<T extends DataListObject>({
   item,
   layout,

@@ -5,7 +5,7 @@ import {
   Breakpoints,
   useResizeObserver,
 } from "@jobber/hooks/useResizeObserver";
-import styles from "./Page.css";
+import styles from "./Page.module.css";
 import { Heading } from "../Heading";
 import { Text } from "../Text";
 import { Content } from "../Content";
@@ -87,7 +87,6 @@ interface PageWithIntroProps extends PageFoundationProps {
 
 export type PageProps = XOR<PageFoundationProps, PageWithIntroProps>;
 
-// eslint-disable-next-line max-statements
 export function Page({
   title,
   titleMetaData,

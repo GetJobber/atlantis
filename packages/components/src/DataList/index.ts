@@ -1,6 +1,7 @@
 export * from "./DataList";
 export {
   DataListItemType,
+  DataListObject,
   DataListSorting,
   DataListSortable,
   DataListSelectedType,

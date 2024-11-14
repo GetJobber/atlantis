@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { XOR } from "ts-xor";
-import styles from "./Toast.css";
+import styles from "./Toast.module.css";
 import { Icon, IconColorNames, IconNames } from "../Icon";
 import { Button } from "../Button";
 import { Typography } from "../Typography";

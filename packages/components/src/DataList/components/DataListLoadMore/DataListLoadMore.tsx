@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./DataListLoadMore.css";
+import styles from "./DataListLoadMore.module.css";
 import { DataListLoadMoreTrigger } from "./DataListLoadMoreTrigger";
 import { useDataListContext } from "../../context/DataListContext";
 import { DATA_LIST_LOADING_MORE_SPINNER_TEST_ID } from "../../DataList.const";

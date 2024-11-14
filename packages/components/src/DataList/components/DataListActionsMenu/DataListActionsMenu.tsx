@@ -11,7 +11,7 @@ import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { createPortal } from "react-dom";
 import { tokens } from "@jobber/design";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
-import styles from "./DataListActionsMenu.css";
+import styles from "./DataListActionsMenu.module.css";
 import { TRANSITION_DELAY_IN_SECONDS } from "../../DataList.const";
 
 interface DataListActionsMenuProps {

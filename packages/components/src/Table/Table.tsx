@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import styles from "./Table.css";
+import styles from "./Table.module.css";
 
 interface TableProps {
   readonly children: ReactElement | ReactElement[];
