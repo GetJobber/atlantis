@@ -35,8 +35,8 @@
   left: 0;
   width: calc(100% / var(--segmentedControl--option-count));
   height: 100%;
-  border: var(--color-border--interactive);
   border-radius: var(--radius-base);
+  outline: var(--border-base) solid var(--color-border--interactive);
   background-color: var(--color-surface);
   transition: var(--timing-base) left ease;
 }
