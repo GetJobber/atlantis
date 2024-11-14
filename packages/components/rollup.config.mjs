@@ -13,12 +13,14 @@ import presetenv from "postcss-preset-env";
 import multiInput from "rollup-plugin-multi-input";
 import nodePolyfills from "rollup-plugin-polyfill-node";
 import alias from "@rollup/plugin-alias";
+import treeShakeable from "rollup-plugin-tree-shakeable";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 export default {
   input: `src/**/index.{ts,tsx}`,
   plugins: [
+    treeShakeable(),
     nodePolyfills(),
     alias({
       entries: [
