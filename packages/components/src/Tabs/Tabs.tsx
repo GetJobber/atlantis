@@ -61,6 +61,7 @@ export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
               selected={activeTab === index}
               activateTab={activateTab(index)}
               onClick={tab.props.onClick}
+              customRenderItem={tab.props.customRenderItem}
             />
           ))}
         </ul>
@@ -79,6 +80,8 @@ export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
 interface TabProps {
   readonly label: string;
   readonly children: ReactNode | ReactNode[];
+  readonly customRenderItem?: (item: T) => React.ReactNode;
+
   onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
 }
 
@@ -89,6 +92,7 @@ export function Tab({ label }: TabProps) {
 interface InternalTabProps {
   readonly label: string;
   readonly selected: boolean;
+  readonly customRenderItem?: (item: T) => React.ReactNode;
   activateTab(): void;
   onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
 }
@@ -97,11 +101,14 @@ export function InternalTab({
   label,
   selected,
   activateTab,
+  customRenderItem,
   onClick = () => {
     return;
   },
 }: InternalTabProps) {
   const className = classnames(styles.tab, { [styles.selected]: selected });
+
+  console.log("***** customRenderItem", customRenderItem);
 
   return (
     <li role="presentation">
@@ -115,9 +122,13 @@ export function InternalTab({
           onClick(event);
         }}
       >
-        <Typography element="span" size="large" fontWeight="semiBold">
-          {label}
-        </Typography>
+        {customRenderItem ? (
+          customRenderItem
+        ) : (
+          <Typography element="span" size="large" fontWeight="semiBold">
+            {label}
+          </Typography>
+        )}
       </button>
     </li>
   );
