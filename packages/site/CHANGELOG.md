@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.3.1...@jobber/atlantis-site@0.4.0) (2024-11-14)
+
+
+### Features
+
+* **docx:** add disambiguation to a few components' Search ([#2109](https://github.com/GetJobber/atlantis/issues/2109)) ([e69aa66](https://github.com/GetJobber/atlantis/commit/e69aa66b074aa016420fea5a0ce59b6bf8960afb))
+
+
+
+
+
 ## [0.3.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.3.0...@jobber/atlantis-site@0.3.1) (2024-11-12)
 
 **Note:** Version bump only for package @jobber/atlantis-site
