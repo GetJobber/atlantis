@@ -464,7 +464,6 @@
     "rollup-plugin-multi-input": "^1.4.1",
     "rollup-plugin-polyfill-node": "^0.13.0",
     "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-tree-shakeable": "^1.0.3",
     "typed-css-modules": "^0.7.0"
   },
   "peerDependencies": {
