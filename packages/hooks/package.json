@@ -2,10 +2,11 @@
   "name": "@jobber/hooks",
   "version": "2.11.1",
   "license": "MIT",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.js",
+  "main": "./dist/index.mjs",
+  "type": "module",
+  "types": "./dist/index.d.mts",
   "scripts": {
-    "build": "tsc --project . --skipLibCheck",
+    "build": "tsc --project . --skipLibCheck && (mv dist/index.js dist/index.mjs || true) 2> /dev/null && (mv dist/index.d.ts dist/index.d.mts || true) 2> /dev/null",
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
     "bootstrap": "npm run clean; npm run build",
     "entryPoints:build": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts",
@@ -18,6 +19,48 @@
     "*.d.ts",
     "dist/*"
   ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    },
+    "./useBreakpoints": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    },
+    "./useCollectionQuery": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    },
+    "./useOnMount": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    },
+    "./useFormState": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    },
+    "./useBool": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    },
+    "./useIsMounted": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    },
+    "./useWindowDimensions": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    },
+    "./useOnKeyDown": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    },
+    "./useResizeObserver": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    }
+  },
   "devDependencies": {
     "@apollo/react-testing": "^4.0.0",
     "@jobber/formatters": "^0.3.0",
