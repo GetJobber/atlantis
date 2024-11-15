@@ -1,9 +1,11 @@
 .container {
+  --segmentedControl--size: 40px;
+
   display: grid;
   grid-template-columns: repeat(var(--segmentedControl--option-count), 1fr);
   align-items: center;
   position: relative;
-  min-height: 40px;
+  min-height: var(--segmentedControl--size);
   box-sizing: border-box;
   border: var(--border-base) solid var(--color-border--interactive);
   border-radius: var(--radius-base);
@@ -11,11 +13,11 @@
 }
 
 .small {
-  min-height: 32px;
+  --segmentedControl--size: 32px;
 }
 
 .large {
-  min-height: 48px;
+  --segmentedControl--size: 48px;
 }
 
 .container input[type="radio"] {
