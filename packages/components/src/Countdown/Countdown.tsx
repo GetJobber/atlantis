@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import { CivilDate } from "@std-proposal/temporal";
 import ReactCountdown, { CountdownRenderProps } from "react-countdown";
 import { computeTimeUnit } from "./computeTimeUnit";
 
@@ -10,10 +11,11 @@ type GranularityOptions = "dhms" | "hms" | "ms" | "s" | "dhm" | "dh" | "d";
 
 interface CountdownProps {
   /**
-   * The date that is being counted down to.
-   * Value for date as a `string` should be in ISO 8601 format.
+   * The date that is being counted down to
+   * Civil Time of time is to be displayed.
+   * In the case of `date` a `string` should be in ISO 8601 format
    */
-  readonly date: Date | number | string;
+  readonly date: CivilDate | Date | number | string;
 
   /**
    * Whether or not to present the unit of time to the user, or just the raw numbers.
@@ -41,7 +43,13 @@ export function Countdown({
   granularity = "dhms",
 }: CountdownProps) {
   const date = useMemo(() => {
-    const initDate = new Date(inputDate);
+    let initDate: Date;
+
+    if (inputDate instanceof CivilDate) {
+      initDate = new Date(inputDate.year, inputDate.month - 1, inputDate.day);
+    } else {
+      initDate = new Date(inputDate);
+    }
 
     return initDate;
   }, [inputDate]);
