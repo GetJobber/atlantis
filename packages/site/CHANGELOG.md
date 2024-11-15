@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.4](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.4.3...@jobber/atlantis-site@0.4.4) (2024-11-15)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.4.3](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.4.2...@jobber/atlantis-site@0.4.3) (2024-11-15)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.4.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.4.1...@jobber/atlantis-site@0.4.2) (2024-11-15)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.4.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.4.0...@jobber/atlantis-site@0.4.1) (2024-11-14)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+# [0.4.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.3.1...@jobber/atlantis-site@0.4.0) (2024-11-14)
+
+
+### Features
+
+* **docx:** add disambiguation to a few components' Search ([#2109](https://github.com/GetJobber/atlantis/issues/2109)) ([e69aa66](https://github.com/GetJobber/atlantis/commit/e69aa66b074aa016420fea5a0ce59b6bf8960afb))
+
+
+
+
+
+## [0.3.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.3.0...@jobber/atlantis-site@0.3.1) (2024-11-12)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
 # [0.3.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.2.0...@jobber/atlantis-site@0.3.0) (2024-11-07)
 
 

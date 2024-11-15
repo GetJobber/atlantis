@@ -1,6 +1,5 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { CivilTime } from "@std-proposal/temporal";
 import { InputGroup } from "@jobber/components/InputGroup";
 import { InputTime } from "@jobber/components/InputTime";
 import { InputText } from "@jobber/components/InputText";
@@ -13,19 +12,22 @@ export default {
     previewTabs: {
       code: {
         hidden: false,
-        extraImports: {
-          "@std-proposal/temporal": ["CivilTime"],
-        },
       },
     },
   },
 } as ComponentMeta<typeof InputGroup>;
 
 const BasicTemplate: ComponentStory<typeof InputGroup> = args => {
+  const startTime = new Date();
+  startTime.setHours(8, 35, 0, 0);
+
+  const endTime = new Date();
+  endTime.setHours(22, 55, 0, 0);
+
   return (
     <InputGroup {...args}>
-      <InputTime defaultValue={new CivilTime(8, 0)} />
-      <InputTime defaultValue={new CivilTime(17, 0)} />
+      <InputTime defaultValue={startTime} />
+      <InputTime defaultValue={endTime} />
     </InputGroup>
   );
 };

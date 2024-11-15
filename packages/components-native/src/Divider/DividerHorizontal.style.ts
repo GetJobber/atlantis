@@ -1,19 +1,24 @@
 import { StyleSheet } from "react-native";
 import { tokens } from "../utils/design";
 
-export const styles = StyleSheet.create({
+export const horizontalStyles = StyleSheet.create({
   base: {
-    height: tokens["space-minuscule"],
+    height: 1,
     margin: 0,
-    borderBottomWidth: tokens["border-base"],
+    width: "auto",
     borderBottomColor: tokens["color-border"],
+    borderBottomWidth: tokens["border-base"],
   },
   large: {
     borderBottomWidth: tokens["border-thick"],
     opacity: 0.875,
   },
+  larger: {
+    borderBottomWidth: tokens["border-thicker"],
+    opacity: 0.625,
+  },
   largest: {
-    borderBottomWidth: tokens["space-small"],
+    borderBottomWidth: tokens["border-thickest"],
     opacity: 0.375,
   },
 });

@@ -41,8 +41,10 @@ export const SearchBox = ({
   const filteredComponentList = useMemo(() => {
     return componentList.filter(
       d =>
-        d.title.includes(search) ||
-        d.additionalMatches?.find(e => e.includes(search)),
+        d.title.toLowerCase().includes(search.toLowerCase()) ||
+        d.additionalMatches?.find(e =>
+          e.toLowerCase().includes(search.toLowerCase()),
+        ),
     );
   }, [search]);
   useEffect(() => {
