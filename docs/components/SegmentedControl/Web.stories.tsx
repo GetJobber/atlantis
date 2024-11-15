@@ -5,6 +5,7 @@ import { Button } from "@jobber/components/Button";
 import { Text } from "@jobber/components/Text";
 import { Typography } from "@jobber/components/Typography";
 import { Heading } from "@jobber/components/Heading";
+import { Content } from "@jobber/components/Content";
 
 const meta: Meta = {
   title: "Components/Selections/SegmentedControl/Web",
@@ -33,12 +34,11 @@ export const Controlled: Story = () => {
   const [activeOption, setActiveOption] = useState("week");
 
   return (
-    <div>
+    <Content>
       <Text>
         Control the state without interacting with the SegmentedControl
         directly. Navigate through the options and reset state via the button.
       </Text>
-      <br />
       <Typography>Current activeOption: {activeOption}</Typography>
       <SegmentedControl
         selectedValue={activeOption}
@@ -50,9 +50,8 @@ export const Controlled: Story = () => {
           </SegmentedControl.Option>
         ))}
       </SegmentedControl>
-      <br />
       <Button label="Reset to Week" onClick={() => setActiveOption("week")} />
-    </div>
+    </Content>
   );
 };
 
@@ -70,7 +69,7 @@ export const Uncontrolled: Story = () => {
 
 export const Sizes: Story = () => {
   return (
-    <div>
+    <Content>
       <Heading level={4}>Small</Heading>
       <SegmentedControl defaultValue="day" size="small">
         {options.map(option => (
@@ -79,7 +78,6 @@ export const Sizes: Story = () => {
           </SegmentedControl.Option>
         ))}
       </SegmentedControl>
-      <br />
       <Heading level={4}>Base</Heading>
       <SegmentedControl defaultValue="day">
         {options.map(option => (
@@ -88,6 +86,6 @@ export const Sizes: Story = () => {
           </SegmentedControl.Option>
         ))}
       </SegmentedControl>
-    </div>
+    </Content>
   );
 };
