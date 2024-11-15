@@ -419,7 +419,6 @@
   "dependencies": {
     "@jobber/formatters": "^0.3.0",
     "@popperjs/core": "^2.0.6",
-    "@std-proposal/temporal": "0.0.1",
     "@tanstack/react-table": "8.5.13",
     "@types/color": "^3.0.1",
     "@types/lodash": "^4.14.136",
@@ -439,7 +438,6 @@
     "react-markdown": "^8.0.3",
     "react-popper": "^2.2.5",
     "react-router-dom": "^5.3.4",
-    "time-input-polyfill": "^1.0.7",
     "ts-xor": "^1.0.8"
   },
   "devDependencies": {
@@ -468,7 +466,6 @@
   "peerDependencies": {
     "@apollo/client": "^3",
     "@jobber/hooks": "^2",
-    "@std-proposal/temporal": "^0",
     "@tanstack/react-table": "^8",
     "axios": "^1",
     "classnames": "^2",
