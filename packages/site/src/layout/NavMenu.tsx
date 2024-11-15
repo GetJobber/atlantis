@@ -13,11 +13,7 @@ export const NavMenu = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <Box
-      width={220}
-      background="surface--background"
-      border={{ right: "base" }}
-    >
+    <Box width={220} background="surface--background">
       <Box height={24} padding="base">
         <Link to="/">
           <JobberLogo />
@@ -74,7 +70,7 @@ export const StyledLink = ({
     <Link
       to={to ?? "/"}
       style={{
-        padding: "var(--space-smaller)",
+        padding: "var(--space-base) 0",
         outline: "transparent",
         color: "var(--color-heading)",
         fontSize: "var(--typography--fontSize-large)",
