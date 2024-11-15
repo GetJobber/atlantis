@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.1.0...@jobber/components@6.2.0) (2024-11-15)
+
+
+### Features
+
+* **components:** Add size prop to SegmentedControl ([#2120](https://github.com/GetJobber/atlantis/issues/2120)) ([1126fbc](https://github.com/GetJobber/atlantis/commit/1126fbcb74c0af84679717849970fc5258552b0d))
+
+
+
+
+
 # [6.1.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.50.0...@jobber/components@6.1.0) (2024-11-15)
 
 
