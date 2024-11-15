@@ -10,6 +10,10 @@
   background-color: var(--color-surface--background);
 }
 
+.small {
+  min-height: 32px;
+}
+
 .container input[type="radio"] {
   position: absolute;
   left: -999vw;

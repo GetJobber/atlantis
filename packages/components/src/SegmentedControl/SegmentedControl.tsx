@@ -30,6 +30,13 @@ interface SegmentedControlProps<T> extends PropsWithChildren {
    * @default useId()
    */
   readonly name?: string;
+
+  /**
+   * Adjusts the size of the SegmentedControl. The default size is "base".
+   *
+   * @default base
+   */
+  readonly size?: "small" | "base";
 }
 
 export function SegmentedControl<T>({
@@ -38,6 +45,7 @@ export function SegmentedControl<T>({
   defaultValue,
   children,
   name = useId(),
+  size = "base",
 }: SegmentedControlProps<T>) {
   const container = useRef<HTMLDivElement>(null);
 
@@ -48,7 +56,9 @@ export function SegmentedControl<T>({
       defaultValue={defaultValue}
       name={name}
     >
-      <SegmentedControlBase ref={container}>{children}</SegmentedControlBase>
+      <SegmentedControlBase ref={container} size={size}>
+        {children}
+      </SegmentedControlBase>
     </SegmentedControlProvider>
   );
 }

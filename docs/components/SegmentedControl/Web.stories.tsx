@@ -4,6 +4,7 @@ import { SegmentedControl } from "@jobber/components/SegmentedControl";
 import { Button } from "@jobber/components/Button";
 import { Text } from "@jobber/components/Text";
 import { Typography } from "@jobber/components/Typography";
+import { Heading } from "@jobber/components/Heading";
 
 const meta: Meta = {
   title: "Components/Selections/SegmentedControl/Web",
@@ -64,5 +65,29 @@ export const Uncontrolled: Story = () => {
         </SegmentedControl.Option>
       ))}
     </SegmentedControl>
+  );
+};
+
+export const Sizes: Story = () => {
+  return (
+    <div>
+      <Heading level={4}>Small</Heading>
+      <SegmentedControl defaultValue="day" size="small">
+        {options.map(option => (
+          <SegmentedControl.Option key={option.value} value={option.value}>
+            {option.label}
+          </SegmentedControl.Option>
+        ))}
+      </SegmentedControl>
+      <br />
+      <Heading level={4}>Base</Heading>
+      <SegmentedControl defaultValue="day">
+        {options.map(option => (
+          <SegmentedControl.Option key={option.value} value={option.value}>
+            {option.label}
+          </SegmentedControl.Option>
+        ))}
+      </SegmentedControl>
+    </div>
   );
 };
