@@ -1,6 +1,10 @@
 import React, { useRef } from "react";
-import { useTimePredict } from "./hooks/useTimePredict";
+import {
+  civilTimeToHTMLTime,
+  htmlTimeToCivilTime,
+} from "./civilTimeConversions";
 import { InputTimeProps } from "./InputTimeProps";
+import { useTimePredict } from "./hooks/useTimePredict";
 import { FormField, FormFieldProps } from "../FormField";
 
 export function InputTime({
@@ -14,8 +18,8 @@ export function InputTime({
 
   const fieldProps: FormFieldProps = {
     onChange: handleChange,
-    ...(defaultValue && { defaultValue: dateToTimeString(defaultValue) }),
-    ...(!defaultValue && { value: dateToTimeString(value) }),
+    ...(defaultValue && { defaultValue: civilTimeToHTMLTime(defaultValue) }),
+    ...(!defaultValue && { value: civilTimeToHTMLTime(value) }),
     ...params,
   };
 
@@ -33,7 +37,7 @@ export function InputTime({
   );
 
   function handleChange(newValue: string) {
-    onChange?.(timeStringToDate(newValue));
+    onChange?.(htmlTimeToCivilTime(newValue));
   }
 
   function handleBlur() {
@@ -46,42 +50,5 @@ export function InputTime({
         ref.current.value = "";
       }
     }
-  }
-}
-
-function dateToTimeString(date?: Date): string {
-  if (!(date instanceof Date)) {
-    return "";
-  }
-
-  // Extract hours and minutes from the Date object
-  const hours = date.getHours().toString().padStart(2, "0");
-  const minutes = date.getMinutes().toString().padStart(2, "0");
-
-  // Return the time string in HH:MM format
-  return `${hours}:${minutes}`;
-}
-
-export function timeStringToDate(timeString: string): Date | undefined {
-  try {
-    const [hours, minutes] = timeString.split(":").map(Number);
-
-    if (
-      isNaN(hours) ||
-      isNaN(minutes) ||
-      hours < 0 ||
-      hours > 24 ||
-      minutes < 0 ||
-      minutes > 60
-    ) {
-      return undefined;
-    }
-
-    const date = new Date();
-    date.setHours(hours, minutes, 0, 0);
-
-    return date;
-  } catch {
-    return undefined;
   }
 }
