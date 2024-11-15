@@ -41,8 +41,8 @@ export function isFirefox(userAgent: string): boolean {
 
 export function isEdge(userAgent: string): boolean {
   return (
-    getClientBrowser(userAgent) ===
-    ("Microsoft Edge (Legacy)" || "Microsoft Edge (Chromium)")
+    getClientBrowser(userAgent) === "Microsoft Edge (Legacy)" ||
+    getClientBrowser(userAgent) === "Microsoft Edge (Chromium)"
   );
 }
 
