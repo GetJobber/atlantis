@@ -1,3 +1,4 @@
+import { CivilTime } from "@std-proposal/temporal";
 import { CommonFormFieldProps, FormFieldProps } from "../FormField";
 
 export interface InputTimeProps
@@ -33,13 +34,13 @@ export interface InputTimeProps
    * field with a data that is not controlled by the components state. If a
    * state is controlling the value, use the `value` prop instead.
    */
-  readonly defaultValue?: Date;
+  readonly defaultValue?: CivilTime;
   /**
    * Set the component to the given value.
    */
-  readonly value?: Date;
+  readonly value?: CivilTime;
   /**
    * Function called when user changes input value.
    */
-  onChange?(newValue?: Date): void;
+  onChange?(newValue?: CivilTime): void;
 }

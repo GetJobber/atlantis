@@ -1,5 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { CivilTime } from "@std-proposal/temporal";
 import { FormatTime } from "@jobber/components/FormatTime";
 
 export default {
@@ -10,25 +11,21 @@ export default {
     previewTabs: {
       code: {
         hidden: false,
+        extraImports: {
+          "@std-proposal/temporal": ["CivilTime"],
+        },
       },
     },
   },
 } as ComponentMeta<typeof FormatTime>;
 
-const BasicTemplate: ComponentStory<typeof FormatTime> = args => {
-  const earlyTime = new Date();
-  earlyTime.setHours(2, 35, 0, 0);
-
-  const lateTime = new Date();
-  lateTime.setHours(22, 35, 0, 0);
-
-  return (
-    <>
-      <FormatTime {...args} time={earlyTime} /> -{" "}
-      <FormatTime {...args} time={lateTime} />
-    </>
-  );
-};
+const BasicTemplate: ComponentStory<typeof FormatTime> = args => (
+  <>
+    <FormatTime {...args} time={new CivilTime(2, 35)} />
+    -
+    <FormatTime {...args} time={new CivilTime(18, 35)} />
+  </>
+);
 
 export const Basic = BasicTemplate.bind({});
 Basic.args = {};
