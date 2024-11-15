@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.49.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.48.0...@jobber/components@5.49.0) (2024-11-15)
+
+
+### Features
+
+* **components:** BREAKING CHANGE: remove Civil Date and Time libraries ([#2091](https://github.com/GetJobber/atlantis/issues/2091)) ([e6952d0](https://github.com/GetJobber/atlantis/commit/e6952d01a4ec37f257024315b9198ed37aad00d9))
+
+
+
+
+
 # [5.48.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.47.1...@jobber/components@5.48.0) (2024-11-14)
 
 
