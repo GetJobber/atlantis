@@ -49,19 +49,23 @@ export const ComponentView = () => {
                     </CodePreviewWindow>
                   )}
                 </Box>
-                <Tabs onTabChange={updateStyles}>
-                  <Tab label="Design">
-                    <Content spacing="large">
-                      <ComponentContent />
-                    </Content>
-                  </Tab>
-                  <Tab label="Props">
-                    <PropsList values={stateValues} />
-                  </Tab>
-                  <Tab label="Code">
-                    <CodeViewer code={code} />
-                  </Tab>
-                </Tabs>
+                <span
+                  style={{ "--public-tab--inset": 0 } as React.CSSProperties}
+                >
+                  <Tabs onTabChange={updateStyles}>
+                    <Tab label="Design">
+                      <Content spacing="large">
+                        <ComponentContent />
+                      </Content>
+                    </Tab>
+                    <Tab label="Props">
+                      <PropsList values={stateValues} />
+                    </Tab>
+                    <Tab label="Code">
+                      <CodeViewer code={code} />
+                    </Tab>
+                  </Tabs>
+                </span>
               </Content>
             </Box>
           </PageWrapper>
