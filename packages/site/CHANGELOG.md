@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.4.4...@jobber/atlantis-site@0.5.0) (2024-11-15)
+
+
+### Features
+
+* **docx:** Refine sidenav and docs ([#2112](https://github.com/GetJobber/atlantis/issues/2112)) ([f13d02a](https://github.com/GetJobber/atlantis/commit/f13d02aab198e02565366ad499a82db199d6b4e4))
+
+
+
+
+
 ## [0.4.4](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.4.3...@jobber/atlantis-site@0.4.4) (2024-11-15)
 
 **Note:** Version bump only for package @jobber/atlantis-site
