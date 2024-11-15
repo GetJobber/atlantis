@@ -1,12 +1,10 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { CivilTime } from "@std-proposal/temporal";
 import { FormatTime } from "./FormatTime";
 
 describe("FormatTime", () => {
   describe.each(
     Object.entries({
-      CivilDate: new CivilTime(14, 30),
       ISO8601DateString: "2019-03-30T14:30",
       Date: new Date("2019-03-30T14:30"),
     }),
