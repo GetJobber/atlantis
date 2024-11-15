@@ -8,7 +8,7 @@ import React, {
 import styles from "./SegmentedControl.module.css";
 
 export interface SegmentedControlBaseProps extends PropsWithChildren {
-  readonly size?: "small" | "base";
+  readonly size?: "small" | "base" | "large";
 }
 
 const SegmentedControlBase = forwardRef<
@@ -19,6 +19,7 @@ const SegmentedControlBase = forwardRef<
 
   const containerClassNames = classNames(styles.container, {
     [styles.small]: size === "small",
+    [styles.large]: size === "large",
   });
 
   return (

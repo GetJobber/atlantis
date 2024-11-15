@@ -86,6 +86,14 @@ export const Sizes: Story = () => {
           </SegmentedControl.Option>
         ))}
       </SegmentedControl>
+      <Heading level={4}>Large</Heading>
+      <SegmentedControl defaultValue="day" size="large">
+        {options.map(option => (
+          <SegmentedControl.Option key={option.value} value={option.value}>
+            {option.label}
+          </SegmentedControl.Option>
+        ))}
+      </SegmentedControl>
     </Content>
   );
 };

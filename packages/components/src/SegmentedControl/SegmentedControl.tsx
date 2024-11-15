@@ -36,7 +36,7 @@ interface SegmentedControlProps<T> extends PropsWithChildren {
    *
    * @default base
    */
-  readonly size?: "small" | "base";
+  readonly size?: "small" | "base" | "large";
 }
 
 export function SegmentedControl<T>({
