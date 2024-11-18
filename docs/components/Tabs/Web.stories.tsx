@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Tab, Tabs } from "@jobber/components/Tabs";
-import { Heading } from "@jobber/components/Heading";
+import { InlineLabel } from "@jobber/components/InlineLabel";
+import { Typography } from "@jobber/components/Typography";
+import { Icon } from "@jobber/components/Icon";
+import { StatusIndicator } from "@jobber/components/StatusIndicator";
 
 export default {
   title: "Components/Navigation/Tabs/Web",
@@ -87,26 +90,50 @@ const WithTabChangeCallbackTemplate: ComponentStory<typeof Tabs> = args => {
   );
 };
 
-const WithCustomRenderingTemplate: ComponentStory<typeof Tabs> = args => {
+const WithCustomReactNodeTemplate: ComponentStory<typeof Tabs> = args => {
   const [tab, setTab] = useState(args.defaultTab ?? 0);
-
-  console.log("****", typeof args.customRenderItem);
 
   return (
     <div>
       <p>Active tab index: {tab}</p>
       <Tabs onTabChange={setTab}>
-        <Tab {...args}>
-          🍳 Some eggs are laid by female animals of many different species,
-          including birds, reptiles, amphibians, mammals, and fish, and have
-          been eaten by humans for thousands of years.
+        <Tab
+          label={
+            <div>
+              <Typography element={"span"} fontWeight={"semiBold"}>
+                Inline Label
+              </Typography>
+              <InlineLabel color="red">{"+99"}</InlineLabel>
+            </div>
+          }
+        >
+          Pass a custom react node to customize your label!
         </Tab>
-        <Tab label="Cheese">
+        <Tab
+          label={
+            <div>
+              <Icon name={"happyFace"} />
+              <Typography element={"span"} fontWeight={"semiBold"}>
+                Icons
+              </Typography>
+              <Icon name={"thumbsUp"} />
+            </div>
+          }
+        >
           🧀 Cheese is a dairy product derived from milk that is produced in a
           wide range of flavors, textures, and forms by coagulation of the milk
           protein casein.
         </Tab>
-        <Tab label="Berries">
+        <Tab
+          label={
+            <div>
+              <Typography element={"span"} fontWeight={"semiBold"}>
+                Status Label
+              </Typography>
+              <StatusIndicator status={"informative"} />
+            </div>
+          }
+        >
           🍓 A berry is a small, pulpy, and often edible fruit. Typically,
           berries are juicy, rounded, brightly colored, sweet, sour or tart, and
           do not have a stone or pit.
@@ -119,7 +146,7 @@ const WithCustomRenderingTemplate: ComponentStory<typeof Tabs> = args => {
 export const Basic = BasicTemplate.bind({});
 export const WithDefaultTab = WithDefaultTabTemplate.bind({});
 export const WithTabChangeCallback = WithTabChangeCallbackTemplate.bind({});
-export const WithCustomRendering = WithCustomRenderingTemplate.bind({});
+export const WithCustomReactNode = WithCustomReactNodeTemplate.bind({});
 
 Basic.args = {
   label: "Eggs",
@@ -133,6 +160,4 @@ WithTabChangeCallback.args = {
   defaultTab: 1,
 };
 
-WithCustomRendering.args = {
-  renderCustomItem: () => <Heading level={4}>TEST CUSTOM</Heading>,
-};
+WithCustomReactNode.args = {};
