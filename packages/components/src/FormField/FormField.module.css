@@ -44,6 +44,9 @@
   --field--postfix-elevation: calc(var(--field--base-elevation) - 1);
   --field--postfix-action-elevation: calc(var(--field--base-elevation) + 2);
 
+  --field--toolbarGradientHeight: var(--space-base);
+  --field--toolbarPaddingBottom: var(--space-base);
+
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -368,21 +371,32 @@
   margin-top: var(--space-smaller);
 }
 
-.toolbar {
-  display: flex;
+.textarea.hasToolbar[data-toolbar-visible="true"] .input {
+  /* --formField-toolbarHeight is set on the js side */
+  padding-bottom: calc(var(--formField-toolbarHeight) + var(--field--toolbarPaddingBottom) + var(--field--toolbarGradientHeight));
+}
+
+.toolbarWrapper {
   position: relative;
-  margin: var(--space-small) var(--field--padding-right) var(--space-base)
-    var(--field--padding-left);
+  margin: 0 var(--field--padding-right) 0 var(--field--padding-left);
+}
+
+.toolbar {
+  background-color: var(--color-surface);
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 0 0 var(--field--toolbarPaddingBottom) 0;
 }
 
 .toolbar::before {
   content: "";
   display: block;
   position: absolute;
-  top: calc(-1.25 * var(--space-base));
   right: 0;
   left: 0;
-  z-index: var(--elevation-base);
-  height: var(--space-base);
+  top: calc(var(--field--toolbarGradientHeight) * -1);
+  height: var(--field--toolbarGradientHeight);
   background: linear-gradient(to bottom, transparent, var(--color-surface) 60%);
 }

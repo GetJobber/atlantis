@@ -7,14 +7,11 @@ import React, {
 } from "react";
 import classnames from "classnames";
 import { Clearable, useShowClear } from "@jobber/hooks/useShowClear";
-import { AnimatePresence, motion } from "framer-motion";
-import { tokens } from "@jobber/design";
 import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.module.css";
 import { AffixIcon, AffixLabel } from "./FormFieldAffix";
 import { FormFieldDescription } from "./FormFieldDescription";
 import { ClearAction } from "./components/ClearAction";
-import { useToolbar } from "./hooks/useToolbar";
 import { useFormFieldFocus } from "./hooks/useFormFieldFocus";
 import { useIsSafari } from "./hooks/useIsSafari";
 import { InputValidation } from "../InputValidation";
@@ -58,6 +55,10 @@ export function FormFieldWrapper({
   wrapperRef,
 }: PropsWithChildren<FormFieldWrapperProps>) {
   const isSafari = useIsSafari();
+  const { focused } = useFormFieldFocus({ wrapperRef });
+  const isToolbarVisible =
+    toolbar && (toolbarVisibility === "always" || focused);
+
   const wrapperClasses = classnames(
     styles.wrapper,
     size && styles[size],
@@ -71,6 +72,7 @@ export function FormFieldWrapper({
       [styles.text]: type === "textarea" || type === "text",
       [styles.textarea]: type === "textarea",
       [styles.safari]: isSafari && type === "textarea",
+      [styles.hasToolbar]: toolbar,
       [styles.select]: type === "select",
       [styles.invalid]: invalid ?? error,
       [styles.disabled]: disabled,
@@ -85,6 +87,7 @@ export function FormFieldWrapper({
 
   const wrapperInlineStyle = {
     ["--formField-maxLength" as string]: maxLength || max,
+    ["--formField-toolbarHeight" as string]: "32px",
   };
 
   const prefixRef = useRef() as RefObject<HTMLDivElement>;
@@ -99,8 +102,6 @@ export function FormFieldWrapper({
     setLabelStyle(getAffixPaddding);
   }, [value]);
 
-  const { focused } = useFormFieldFocus({ wrapperRef });
-
   const showClear = useShowClear({
     clearable,
     multiline: type === "textarea",
@@ -109,19 +110,13 @@ export function FormFieldWrapper({
     disabled,
   });
 
-  const { isToolbarVisible, toolbarAnimationEnd, toolbarAnimationStart } =
-    useToolbar({
-      focused,
-      toolbar,
-      toolbarVisibility,
-    });
-
   return (
     <div className={containerClasses}>
       <div
         className={wrapperClasses}
         style={wrapperInlineStyle}
         data-testid="Form-Field-Wrapper"
+        data-toolbar-visible={isToolbarVisible}
         ref={wrapperRef}
       >
         <div className={styles.horizontalWrapper}>
@@ -156,30 +151,18 @@ export function FormFieldWrapper({
             <AffixIcon {...suffix} variation="suffix" size={size} />
           )}
         </div>
-        <AnimatePresence
-          initial={toolbarVisibility === "always" ? false : true}
-        >
-          {isToolbarVisible && (
-            <motion.div
-              key="toolbar"
-              initial={toolbarAnimationEnd}
-              animate={toolbarAnimationStart}
-              exit={toolbarAnimationEnd}
-              transition={{
-                duration: tokens["timing-base"] / 1000,
-                ease: "easeInOut",
-              }}
+
+        {isToolbarVisible && (
+          <div className={styles.toolbarWrapper}>
+            <div
+              className={styles.toolbar}
+              data-testid="ATL-InputText-Toolbar"
               tabIndex={-1}
             >
-              <div
-                className={styles.toolbar}
-                data-testid="ATL-InputText-Toolbar"
-              >
-                {toolbar}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+              {toolbar}
+            </div>
+          </div>
+        )}
       </div>
       {description && !inline && (
         <FormFieldDescription
