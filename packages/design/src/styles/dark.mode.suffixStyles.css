@@ -7,7 +7,6 @@
 }
 
 /* Safari doesn't support scrollbar-color yet, so we're using the non-standard selector for now. */
-/* autoprefixer: off */
 @supports not (scrollbar-color: #000 #000) {
   [data-theme="dark"]:root html ::-webkit-scrollbar,
   [data-theme="dark"]:root body ::-webkit-scrollbar {
