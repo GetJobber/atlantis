@@ -130,12 +130,14 @@ export default {
     {
       dir: "dist",
       entryFileNames: "[name].cjs",
+      chunkFileNames: "[name].cjs",
       exports: "named",
       format: "cjs",
     },
     {
       dir: "dist",
       entryFileNames: "[name].mjs",
+      chunkFileNames: "[name].mjs",
       format: "esm",
     },
   ],
