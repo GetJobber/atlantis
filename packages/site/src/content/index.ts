@@ -7,6 +7,7 @@ import CheckboxContent from "./Checkbox";
 import StatusLabelContent from "./StatusLabel";
 import SwitchContent from "./Switch";
 import DisclosureContent from "./Disclosure";
+import AvatarContent from "./Avatar";
 import { ContentExport } from "../types/content";
 
 export const SiteContent: Record<string, ContentExport> = {
@@ -18,6 +19,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   Autocomplete: {
     ...AutoCompleteContent,
+  },
+  Avatar: {
+    ...AvatarContent,
   },
   Button: {
     ...ButtonContent,

@@ -109,6 +109,7 @@ const components = [
   "AnimatedPresence",
   "AnimatedSwitcher",
   "Autocomplete",
+  "Avatar",
   "Button",
   "Checkbox",
   "Chip",
