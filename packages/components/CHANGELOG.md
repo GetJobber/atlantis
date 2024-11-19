@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.1.0...@jobber/components@6.2.0) (2024-11-15)
+
+
+### Features
+
+* **components:** Add size prop to SegmentedControl ([#2120](https://github.com/GetJobber/atlantis/issues/2120)) ([1126fbc](https://github.com/GetJobber/atlantis/commit/1126fbcb74c0af84679717849970fc5258552b0d))
+
+
+
+
+
+# [6.1.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.50.0...@jobber/components@6.1.0) (2024-11-15)
+
+
+### Features
+
+* **components:** remove Civil Date and Time libraries ([#2124](https://github.com/GetJobber/atlantis/issues/2124)) ([6e5142d](https://github.com/GetJobber/atlantis/commit/6e5142da3f20658c5b5762da9b8b406d12db4043)), closes [#2122](https://github.com/GetJobber/atlantis/issues/2122)
+
+
+
+
+
+# [5.50.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.49.0...@jobber/components@5.50.0) (2024-11-15)
+
+
+### Features
+
+* **components:** REVERT remove Civil Date and Time libraries ([#2122](https://github.com/GetJobber/atlantis/issues/2122)) ([53e0525](https://github.com/GetJobber/atlantis/commit/53e0525bbde25ab5fb01335636f5aa63fe6d4696))
+
+
+
+
+
+# [5.49.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.48.0...@jobber/components@5.49.0) (2024-11-15)
+
+
+### Features
+
+* **components:** BREAKING CHANGE: remove Civil Date and Time libraries ([#2091](https://github.com/GetJobber/atlantis/issues/2091)) ([e6952d0](https://github.com/GetJobber/atlantis/commit/e6952d01a4ec37f257024315b9198ed37aad00d9))
+
+
+
+
+
+# [5.48.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.47.1...@jobber/components@5.48.0) (2024-11-14)
+
+
+### Features
+
+* **components:** SegmentedControl ([#1966](https://github.com/GetJobber/atlantis/issues/1966)) ([c403bd1](https://github.com/GetJobber/atlantis/commit/c403bd11b6eebfcaa361e5158770b0c8bb178b96))
+
+
+
+
+
 ## [5.47.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@5.47.0...@jobber/components@5.47.1) (2024-11-12)
 
 
