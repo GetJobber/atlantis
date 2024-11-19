@@ -13,22 +13,11 @@ export const NavMenu = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <Box
-      width={200}
-      background="surface--background"
-      border={{ right: "base" }}
-    >
-      <Box
-        width="100%"
-        background="surface--background"
-        margin={{ bottom: "large" }}
-        height={60}
-      >
-        <Box padding={"base"}>
-          <Link to="/">
-            <JobberLogo />
-          </Link>
-        </Box>
+    <Box width={220} background="surface--background">
+      <Box height={24} padding="base">
+        <Link to="/">
+          <JobberLogo />
+        </Link>
       </Box>
       <Box padding="base">
         <Button
@@ -81,13 +70,11 @@ export const StyledLink = ({
     <Link
       to={to ?? "/"}
       style={{
-        margin: 0,
-        marginBottom: "var(--space-base)",
-        padding: "var(--space-small) var(--space-small)",
+        padding: "var(--space-base) 0",
         outline: "transparent",
         color: "var(--color-heading)",
-        fontSize: "var(--typography--fontSize-base)",
-        fontWeight: 700,
+        fontSize: "var(--typography--fontSize-large)",
+        fontWeight: 600,
         width: "100%",
         textDecoration: "none",
         userSelect: "none",
@@ -109,9 +96,9 @@ export const MenuItem = ({ children }: PropsWithChildren) => {
     <li
       style={{
         display: "flex",
-        margin: "0 var(--space-small) var(--space-smaller) var(--space-base)",
-        paddingLeft: 6,
-        borderRadius: "var(--radius-base)",
+        margin: "0 var(--space-small) var(--space-smaller) var(--space-small)",
+        padding: "var(--space-small)",
+        borderRadius: "var(--radius-small)",
         color: "var(--color-heading)",
         alignItems: "center",
       }}
