@@ -44,6 +44,7 @@
   --field--postfix-elevation: calc(var(--field--base-elevation) - 1);
   --field--postfix-action-elevation: calc(var(--field--base-elevation) + 2);
 
+  --field--toolbarHeight: var(--space-larger);
   --field--toolbarGradientHeight: var(--space-base);
   --field--toolbarPaddingBottom: var(--space-base);
 
@@ -372,8 +373,7 @@
 }
 
 .textarea.hasToolbar[data-toolbar-visible="true"] .input {
-  /* --formField-toolbarHeight is set on the js side */
-  padding-bottom: calc(var(--formField-toolbarHeight) + var(--field--toolbarPaddingBottom) + var(--field--toolbarGradientHeight));
+  padding-bottom: calc(var(--field--toolbarHeight) + var(--field--toolbarPaddingBottom) + var(--field--toolbarGradientHeight));
 }
 
 .toolbarWrapper {

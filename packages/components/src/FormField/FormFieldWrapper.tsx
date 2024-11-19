@@ -87,7 +87,6 @@ export function FormFieldWrapper({
 
   const wrapperInlineStyle = {
     ["--formField-maxLength" as string]: maxLength || max,
-    ["--formField-toolbarHeight" as string]: "32px",
   };
 
   const prefixRef = useRef() as RefObject<HTMLDivElement>;
