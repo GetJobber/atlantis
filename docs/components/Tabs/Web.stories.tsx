@@ -91,54 +91,52 @@ const WithTabChangeCallbackTemplate: ComponentStory<typeof Tabs> = args => {
   );
 };
 
-const WithCustomReactNodeTemplate: ComponentStory<typeof Tabs> = args => {
-  const [tab, setTab] = useState(args.defaultTab ?? 0);
-
+const WithCustomReactNodeTemplate: ComponentStory<typeof Tabs> = () => {
   return (
-    <div>
-      <p>Active tab index: {tab}</p>
-      <Tabs onTabChange={setTab}>
-        <Tab
-          label={
-            <Flex template={["shrink", "shrink"]} align="center">
-              <Typography element={"span"} fontWeight={"semiBold"}>
-                Inline Label
-              </Typography>
-              <InlineLabel color="red">{"+99"}</InlineLabel>
-            </Flex>
-          }
-        >
-          Here is an example of using an Inline Label component in the Tab
-          label!
-        </Tab>
-        <Tab
-          label={
-            <Flex template={["shrink", "shrink", "shrink"]} align="center">
-              <Icon name={"happyFace"} />
-              <Typography element={"span"} fontWeight={"semiBold"}>
-                Icons
-              </Typography>
-              <Icon name={"thumbsUp"} />
-            </Flex>
-          }
-        >
-          Here is an example of using some Icon components in the tab label!
-        </Tab>
-        <Tab
-          label={
-            <Flex template={["shrink", "shrink"]} align="center">
-              <Typography element={"span"} fontWeight={"semiBold"}>
-                Status Label
-              </Typography>
-              <StatusIndicator status={"informative"} />
-            </Flex>
-          }
-        >
-          Here is an example of using a Status Indicator component in the Tab
-          label!
-        </Tab>
-      </Tabs>
-    </div>
+    <Tabs>
+      <Tab
+        label={
+          <Flex template={["shrink", "shrink"]} gap="small" align="center">
+            <Typography element={"span"} fontWeight={"semiBold"}>
+              Inline Label
+            </Typography>
+            <InlineLabel color="red">{"+99"}</InlineLabel>
+          </Flex>
+        }
+      >
+        Here is an example of using an Inline Label component in the Tab label!
+      </Tab>
+      <Tab
+        label={
+          <Flex
+            template={["shrink", "shrink", "shrink"]}
+            gap="small"
+            align="center"
+          >
+            <Icon name={"happyFace"} />
+            <Typography element={"span"} fontWeight={"semiBold"}>
+              Icons
+            </Typography>
+            <Icon name={"thumbsUp"} />
+          </Flex>
+        }
+      >
+        Here is an example of using some Icon components in the tab label!
+      </Tab>
+      <Tab
+        label={
+          <Flex template={["shrink", "shrink"]} gap="small" align="center">
+            <Typography element={"span"} fontWeight={"semiBold"}>
+              Status Label
+            </Typography>
+            <StatusIndicator status={"informative"} />
+          </Flex>
+        }
+      >
+        Here is an example of using a Status Indicator component in the Tab
+        label!
+      </Tab>
+    </Tabs>
   );
 };
 
