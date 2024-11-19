@@ -377,6 +377,7 @@
     var(--field--toolbarHeight) + var(--field--toolbarPaddingBottom) +
       var(--field--toolbarGradientHeight)
   );
+  height: 100%;
 }
 
 .toolbarWrapper {
