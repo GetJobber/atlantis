@@ -379,6 +379,7 @@
 .toolbarWrapper {
   position: relative;
   margin: 0 var(--field--padding-right) 0 var(--field--padding-left);
+  z-index: 1;
 }
 
 .toolbar {
@@ -390,12 +391,14 @@
   padding: 0 0 var(--field--toolbarPaddingBottom) 0;
 }
 
+/* This gradient sits above the toolbar and blends the text behind it nicely. */
 .toolbar::before {
   content: "";
   display: block;
   position: absolute;
   right: 0;
   left: 0;
+  z-index: -1;
   top: calc(var(--field--toolbarGradientHeight) * -1);
   height: var(--field--toolbarGradientHeight);
   background: linear-gradient(to bottom, transparent, var(--color-surface) 60%);
