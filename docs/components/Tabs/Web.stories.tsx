@@ -5,6 +5,7 @@ import { InlineLabel } from "@jobber/components/InlineLabel";
 import { Typography } from "@jobber/components/Typography";
 import { Icon } from "@jobber/components/Icon";
 import { StatusIndicator } from "@jobber/components/StatusIndicator";
+import { Flex } from "@jobber/components/Flex";
 
 export default {
   title: "Components/Navigation/Tabs/Web",
@@ -99,44 +100,42 @@ const WithCustomReactNodeTemplate: ComponentStory<typeof Tabs> = args => {
       <Tabs onTabChange={setTab}>
         <Tab
           label={
-            <div>
+            <Flex template={["shrink", "shrink"]} align="center">
               <Typography element={"span"} fontWeight={"semiBold"}>
                 Inline Label
               </Typography>
               <InlineLabel color="red">{"+99"}</InlineLabel>
-            </div>
+            </Flex>
           }
         >
-          Pass a custom react node to customize your label!
+          Here is an example of using an Inline Label component in the Tab
+          label!
         </Tab>
         <Tab
           label={
-            <div>
+            <Flex template={["shrink", "shrink", "shrink"]} align="center">
               <Icon name={"happyFace"} />
               <Typography element={"span"} fontWeight={"semiBold"}>
                 Icons
               </Typography>
               <Icon name={"thumbsUp"} />
-            </div>
+            </Flex>
           }
         >
-          🧀 Cheese is a dairy product derived from milk that is produced in a
-          wide range of flavors, textures, and forms by coagulation of the milk
-          protein casein.
+          Here is an example of using some Icon components in the tab label!
         </Tab>
         <Tab
           label={
-            <div>
+            <Flex template={["shrink", "shrink"]} align="center">
               <Typography element={"span"} fontWeight={"semiBold"}>
                 Status Label
               </Typography>
               <StatusIndicator status={"informative"} />
-            </div>
+            </Flex>
           }
         >
-          🍓 A berry is a small, pulpy, and often edible fruit. Typically,
-          berries are juicy, rounded, brightly colored, sweet, sour or tart, and
-          do not have a stone or pit.
+          Here is an example of using a Status Indicator component in the Tab
+          label!
         </Tab>
       </Tabs>
     </div>
