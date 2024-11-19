@@ -373,22 +373,25 @@
 }
 
 .textarea.hasToolbar[data-toolbar-visible="true"] .input {
-  padding-bottom: calc(var(--field--toolbarHeight) + var(--field--toolbarPaddingBottom) + var(--field--toolbarGradientHeight));
+  padding-bottom: calc(
+    var(--field--toolbarHeight) + var(--field--toolbarPaddingBottom) +
+      var(--field--toolbarGradientHeight)
+  );
 }
 
 .toolbarWrapper {
   position: relative;
-  margin: 0 var(--field--padding-right) 0 var(--field--padding-left);
   z-index: 1;
+  margin: 0 var(--field--padding-right) 0 var(--field--padding-left);
 }
 
 .toolbar {
-  background-color: var(--color-surface);
   display: flex;
   position: absolute;
   bottom: 0;
   width: 100%;
   padding: 0 0 var(--field--toolbarPaddingBottom) 0;
+  background-color: var(--color-surface);
 }
 
 /* This gradient sits above the toolbar and blends the text behind it nicely. */
@@ -396,10 +399,10 @@
   content: "";
   display: block;
   position: absolute;
+  top: calc(var(--field--toolbarGradientHeight) * -1);
   right: 0;
   left: 0;
   z-index: -1;
-  top: calc(var(--field--toolbarGradientHeight) * -1);
   height: var(--field--toolbarGradientHeight);
   background: linear-gradient(to bottom, transparent, var(--color-surface) 60%);
 }
