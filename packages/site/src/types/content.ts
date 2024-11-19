@@ -10,6 +10,7 @@ export interface ContentExport {
   }>;
   component: {
     element: unknown;
+    mobileElement?: unknown;
     defaultProps: Record<
       string,
       string | boolean | JSX.Element | [] | (() => void)

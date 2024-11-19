@@ -34,6 +34,7 @@
     "rehype-rewrite": "^4.0.2",
     "remark-gfm": "^4.0.0",
     "typescript": "^5.6.3",
-    "vite": "^5.3.1"
+    "vite": "^5.3.1",
+    "vite-plugin-react-native-web": "^1.1.2"
   }
 }

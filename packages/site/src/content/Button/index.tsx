@@ -1,4 +1,5 @@
-import { Button } from "@jobber/components";
+import { Button as WebButton } from "@jobber/components";
+import { Button as MobileButton } from "@jobber/components-native";
 import ButtonContent from "@atlantis/docs/components/Button/Button.stories.mdx";
 import Props from "./Button.props.json";
 import { ContentExport } from "../../types/content";
@@ -8,7 +9,8 @@ export default {
   content: () => <ButtonContent />,
   props: Props,
   component: {
-    element: Button,
+    element: WebButton,
+    mobileElement: MobileButton,
     defaultProps: { label: "Button" },
   },
   title: "Button",
