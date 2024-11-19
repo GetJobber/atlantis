@@ -24,6 +24,10 @@
       "types": "./dist/index.d.mts",
       "import": "./dist/index.mjs"
     },
+    "./dist": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    },
     "./useBreakpoints": {
       "types": "./dist/index.d.mts",
       "import": "./dist/index.mjs"
