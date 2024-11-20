@@ -371,14 +371,18 @@
   margin-top: var(--space-smaller);
 }
 
-.textarea.hasToolbar[data-toolbar-visible="true"] .input {
-  --padding-bottom: calc(
-    var(--field--toolbarHeight) + var(--field--toolbarPaddingBottom) +
-      var(--field--toolbarGradientHeight)
-  );
-  scroll-padding-bottom: var(--padding-bottom);
-  padding-bottom: var(--padding-bottom);
-  height: 100%;
+.textarea.hasToolbar[data-toolbar-visible="true"] {
+  .input {
+    height: 100%;
+  }
+
+  .childrenWrapper {
+    --padding-bottom: calc(
+      var(--field--toolbarHeight) + var(--field--toolbarPaddingBottom) +
+        var(--field--toolbarGradientHeight)
+    );
+    height: calc(100% - var(--padding-bottom));
+  }
 }
 
 .toolbarWrapper {
