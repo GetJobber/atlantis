@@ -13,8 +13,11 @@ import { AffixIcon, AffixLabel } from "./FormFieldAffix";
 import { FormFieldDescription } from "./FormFieldDescription";
 import { ClearAction } from "./components/ClearAction";
 import { useFormFieldFocus } from "./hooks/useFormFieldFocus";
-import { useIsSafari } from "./hooks/useIsSafari";
 import { InputValidation } from "../InputValidation";
+import { isFirefox, isSafari } from "../utils/getClientBrowser";
+
+const IS_FIREFOX = isFirefox(navigator.userAgent);
+const IS_SAFARI = isSafari(navigator.userAgent);
 
 interface FormFieldWrapperProps extends FormFieldProps {
   readonly error: string;
@@ -54,7 +57,6 @@ export function FormFieldWrapper({
   toolbarVisibility = "while-editing",
   wrapperRef,
 }: PropsWithChildren<FormFieldWrapperProps>) {
-  const isSafari = useIsSafari();
   const { focused } = useFormFieldFocus({ wrapperRef });
   const isToolbarVisible =
     toolbar && (toolbarVisibility === "always" || focused);
@@ -71,7 +73,8 @@ export function FormFieldWrapper({
         (placeholder && type === "tel"),
       [styles.text]: type === "textarea" || type === "text",
       [styles.textarea]: type === "textarea",
-      [styles.safari]: isSafari && type === "textarea",
+      [styles.safari]: IS_SAFARI && type === "textarea",
+      [styles.firefox]: IS_FIREFOX && type === "textarea",
       [styles.hasToolbar]: toolbar,
       [styles.select]: type === "select",
       [styles.invalid]: invalid ?? error,

@@ -371,20 +371,6 @@
   margin-top: var(--space-smaller);
 }
 
-.textarea.hasToolbar[data-toolbar-visible="true"] {
-  .input {
-    height: 100%;
-  }
-
-  .childrenWrapper {
-    --padding-bottom: calc(
-      var(--field--toolbarHeight) + var(--field--toolbarPaddingBottom) +
-        var(--field--toolbarGradientHeight)
-    );
-    height: calc(100% - var(--padding-bottom));
-  }
-}
-
 .toolbarWrapper {
   position: relative;
   z-index: 1;
@@ -411,4 +397,30 @@
   z-index: -1;
   height: var(--field--toolbarGradientHeight);
   background: linear-gradient(to bottom, transparent, var(--color-surface) 60%);
+}
+
+.textarea.hasToolbar[data-toolbar-visible="true"] {
+  .input {
+    height: 100%;
+    padding-bottom: var(--field--toolbarGradientHeight);
+    scroll-padding-bottom: var(--field--toolbarGradientHeight);
+  }
+
+  .childrenWrapper {
+    --toolbarTotalHeight: calc(
+      var(--field--toolbarHeight) + var(--field--toolbarPaddingBottom)
+    );
+    height: calc(100% - var(--toolbarTotalHeight));
+  }
+
+  /* When you're adding new lines to the bottom of a textarea, firefox doesn't respect scroll-padding
+  and the text ends up partially hidden behind the toolbar gradient, until you manually scroll again.
+  To make this less bad, we're shrinking the size of the gradient blend so most of the text is visible. */
+  &.firefox {
+    .toolbar::before {
+      --firefoxGradientHeight: calc(var(--field--toolbarGradientHeight) / 2);
+      top: calc(var(--firefoxGradientHeight) * -1);
+      height: var(--firefoxGradientHeight);
+    }
+  }
 }
