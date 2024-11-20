@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.3.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.2.2...@jobber/components@6.3.0) (2024-11-20)
+
+
+### Features
+
+* **components:** Updated Tabs label prop to accept a ReactNode [JOB-109275] ([#2128](https://github.com/GetJobber/atlantis/issues/2128)) ([94d7fe0](https://github.com/GetJobber/atlantis/commit/94d7fe09b020aefa5064b84f05234fdacee29765))
+
+
+
+
+
 ## [6.2.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.2.1...@jobber/components@6.2.2) (2024-11-20)
 
 
