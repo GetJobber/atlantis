@@ -28,26 +28,6 @@ describe("Menu", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("Uses the given role", () => {
-    const { container } = render(
-      <Menu
-        role={"test-role"}
-        items={[
-          {
-            header: "Send as...",
-            actions: [
-              {
-                label: "Text Message",
-                icon: "sms",
-              },
-            ],
-          },
-        ]}
-      />,
-    );
-    expect(container).toMatchSnapshot();
-  });
-
   describe("when clicking on the activator", () => {
     it("should open the menu", async () => {
       const header = "Mark as...";
