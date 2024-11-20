@@ -1,0 +1,187 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Guides/Creat Composable Components" />
+
+# Create Composable Components
+
+### Why Composability Matters
+
+**Feedback from Atlantis consumers has highlighted that**:
+
+- Developers want to make minor modifications without requesting feature
+  additions.
+- Designers need more flexibility to tailor components to specific use cases.
+- Current rigidity leads to workarounds, custom builds, and decreased adoption
+  of Atlantis.
+
+**Key Goals**:
+
+- Enhance flexibility while maintaining consistency.
+- Empower teams to build their own variations using reusable building blocks.
+
+### Types of Components and Their Customization Options
+
+1. **Primitive Components**:  
+   Examples: [Icon](..?path=/docs/components-images-and-icons-icon--docs),
+   [Avatar](..?path=/docs/components-images-and-icons-avatar--docs)
+
+   These components do not accept children and have minimal customization.
+
+2. **Simple Components**:  
+   Examples: [Button](..?path=/docs/components-actions-button--docs),
+   [Link](..?path=/docs/components-text-and-typography-link--docs)
+
+   These allow basic customization through props or limited children, like
+   `ReactNode` or specific child types.
+
+3. **Compound Components**:  
+   Examples: [Chip](..?path=/docs/components-selections-chip--docs),
+   [DataList](..?path=/docs/components-lists-and-tables-datalist--docs)
+
+   These are part of larger compositions and may validate their children types
+   to maintain internal consistency.
+
+4. **Complex Components**:  
+   Examples:
+   [Autocomplete](..?path=/docs/components-forms-and-inputs-autocomplete--docs),
+   [Combobox](..?path=/docs/components-selections-combobox--docs)
+
+   These often have strict APIs, with customization limited to specific props.
+   Internal UI and behaviors are not easily modifiable.
+
+## Path Forward: Favoring a Custom Render Function
+
+To address these challenges, we are adopting a **custom render function**
+approach as a preferred pattern for composability.
+
+#### Named Render Prop: `customRender____`
+
+This works by providing a named render prop (e.g., `customRenderItem`) that
+allows consumers to inject their own UI while preserving default behaviors. For
+example:
+
+```tsx
+const renderProductItem = item => (
+  <Flex template={["shrink", "grow"]} align="start">
+    <Text>{item.price}</Text>
+    <Heading level={4}>{item.name}</Heading>
+  </Flex>
+);
+
+export const CustomRenderExample = () => (
+  <List items={items} customRenderItem={renderProductItem} />
+);
+```
+
+**Why This Approach?**
+
+- **Clarity**: The `customRender` prefix clearly communicates the desire to do
+  advanced customization.
+- **Flexibility**: Supports both simple and complex components without major
+  refactoring.
+- **Trackability**: Easy to search for and monitor across codebases.
+
+### When a Custom Render Function Might Not Be the Right Solution
+
+While custom render functions are powerful, there are cases where they may not
+be the optimal choice.
+
+#### Example: `Tab` Component (see [Tabs](..?path=/docs/components-navigation-tabs--docs))
+
+Instead of introducing `customRenderLabel`, the `Tab` component was updated to
+allow the `label` prop to accept a `ReactNode`.
+
+```tsx
+<Tab label={<MyCustomLabel />} />
+```
+
+This approach was chosen for the following reasons:
+
+1. **Incremental Improvement**: Extending the `label` prop type was a simpler
+   change that still met customization needs.
+2. **No Internal State Exposure**: Customizing the `label` didn’t require
+   exposing or interacting with the `Tab`’s internal state (e.g., active state
+   styling).
+3. **Clarity of Purpose**: The `children` prop is already used for other
+   purposes, and adding a render function could create unnecessary complexity.
+
+### Considerations When Deciding on a Custom Render Function
+
+When deciding whether to use a custom render function, consider the following
+factors:
+
+1. **Internal State Requirements**:
+
+   - If customization depends on internal state (e.g., active status), a custom
+     render function might be necessary.
+
+2. **Atomic vs. Compound Components**:
+
+   - For atomic components like `Tab`, small changes like accepting `ReactNode`
+     might suffice.
+   - For compound components with multiple customizable parts, render functions
+     provide clearer APIs.
+
+3. **Existing API and Props**:
+
+   - Avoid overloading components with too many customization methods. Leverage
+     existing props like `children` where appropriate.
+
+4. **Context and Identity**:
+
+   - Assess what aspects of the component’s structure or behavior are integral
+     to its identity. For example, the green line under a `Tab` is required and
+     should not be customizable.
+
+5. **Collections vs. Single Components**:
+   - Collections often require opening up data/props for customization, which
+     can be more challenging to manage.
+
+### Alternatives to Custom Render Functions
+
+1. **Using `ReactNode` Props**:
+
+   - For simple cases where customization does not depend on internal state,
+     extending a prop type (e.g., `label: string | ReactNode`) is an effective
+     and non-breaking change.
+
+2. **Compound Componentization**:
+
+   - Breaking larger components into smaller, composable pieces (e.g.,
+     `<Disclosure.Title />`) allows for more focused and flexible customization.
+     These smaller pieces could have custom render props added to them to allow
+     for more precise customization
+
+3. **Children as a Function**:
+
+   - In cases where customization aligns with the component’s primary purpose,
+     the `children` prop can accept a render function to define the component's
+     content dynamically.
+
+   #### Example: Dynamic Content in a Modal
+
+   ```tsx
+   <Modal>
+     {({ closeModal }) => (
+       <div>
+         <p>Custom Modal Content</p>
+         <button onClick={closeModal}>Close</button>
+       </div>
+     )}
+   </Modal>
+   ```
+
+   **Why It Works**:
+
+   - `Modal` is a content-focused component, so it makes sense to use `children`
+     for defining dynamic or custom content.
+   - The `children` prop aligns with the component's primary purpose: displaying
+     custom modal content.
+
+   **When Not to Use Render Props via `children`**:
+
+   - If the component has multiple customizable sections, using `children` can
+     make the API confusing. Named render props like `customRenderMenu` are
+     better for disambiguation.
+   - If `children` is already reserved for other purposes (e.g., as content in a
+     `Tab`), avoid overloading its functionality.
