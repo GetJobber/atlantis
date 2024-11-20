@@ -78,10 +78,6 @@
   flex: 1;
 }
 
-.textarea.safari .horizontalWrapper {
-  margin-right: var(--field--padding-right);
-}
-
 .timeInputLabel:not(:focus-within) input {
   color: var(--field--background-color);
   -webkit-text-fill-color: var(--field--background-color);
@@ -244,10 +240,6 @@
   .input {
     padding-top: var(--field--padding-top);
   }
-}
-
-.textarea.safari .input {
-  padding-right: 0;
 }
 
 /**
@@ -421,6 +413,26 @@
       --firefoxGradientHeight: calc(var(--field--toolbarGradientHeight) / 2);
       top: calc(var(--firefoxGradientHeight) * -1);
       height: var(--firefoxGradientHeight);
+    }
+  }
+}
+
+/* Safari has a bug with the scrollbar overlapping the resize drag handle, preventing it from being used.
+The adjustments below add just enough extra padding to make the scrollbar not block the resize handle. */
+.safari.textarea {
+  .horizontalWrapper {
+    padding-bottom:  var(--field--padding-bottom);
+  }
+
+  &.hasToolbar[data-toolbar-visible="true"] {
+    .horizontalWrapper {
+      padding-bottom: var(--field--toolbarGradientHeight);
+    }
+
+    .input {
+      padding-bottom: var(--field--toolbarGradientHeight);
+      scroll-padding-bottom: var(--field--toolbarGradientHeight);
+      margin-bottom: calc(var(--field--toolbarGradientHeight) * -1);
     }
   }
 }
