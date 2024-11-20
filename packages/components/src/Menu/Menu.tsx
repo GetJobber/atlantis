@@ -43,10 +43,16 @@ export interface MenuProps {
    * Custom menu activator. If this is not provided a default [… More] will be used.
    */
   readonly activator?: ReactElement;
+
   /**
    * Collection of action items.
    */
   readonly items: SectionProps[];
+
+  /**
+   * Used to override the default menu role.
+   */
+  readonly role?: string;
 }
 
 export interface SectionProps {
@@ -62,7 +68,7 @@ export interface SectionProps {
 }
 
 // eslint-disable-next-line max-statements
-export function Menu({ activator, items }: MenuProps) {
+export function Menu({ activator, items, role }: MenuProps) {
   const [visible, setVisible] = useState(false);
   const shadowRef = useRef<HTMLSpanElement>(null);
 
@@ -160,7 +166,7 @@ export function Menu({ activator, items }: MenuProps) {
                 {items.length > 0 && (
                   <motion.div
                     className={styles.menu}
-                    role="menu"
+                    role={role || "menu"}
                     data-elevation={"elevated"}
                     aria-labelledby={buttonID}
                     id={menuID}
