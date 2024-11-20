@@ -226,7 +226,6 @@
 .textarea .input {
   flex: 1;
   resize: none;
-  scroll-padding-bottom: var(--space-base);
   padding-top: 0;
 }
 
@@ -373,10 +372,12 @@
 }
 
 .textarea.hasToolbar[data-toolbar-visible="true"] .input {
-  padding-bottom: calc(
+  --padding-bottom: calc(
     var(--field--toolbarHeight) + var(--field--toolbarPaddingBottom) +
       var(--field--toolbarGradientHeight)
   );
+  scroll-padding-bottom: var(--padding-bottom);
+  padding-bottom: var(--padding-bottom);
   height: 100%;
 }
 
