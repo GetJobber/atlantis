@@ -9,17 +9,24 @@ interface DividerProps {
    * @default "base"
    */
   readonly size?: "base" | "large" | "larger" | "largest";
+
   /**
    * The direction of the divider
    *
    * @default "horizontal"
    */
   readonly direction?: "horizontal" | "vertical";
+
+  /**
+   * A reference to the element in the rendered output
+   */
+  readonly testID?: string;
 }
 
 export function Divider({
   size = "base",
   direction = "horizontal",
+  testID,
 }: DividerProps) {
   const className = classnames(styles.divider, {
     [styles.large]: size === "large",
@@ -29,5 +36,7 @@ export function Divider({
     [styles.vertical]: direction == "vertical",
   });
 
-  return <div className={className} role="none presentation" />;
+  return (
+    <div className={className} data-testid={testID} role="none presentation" />
+  );
 }
