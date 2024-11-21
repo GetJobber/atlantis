@@ -70,6 +70,10 @@
   box-sizing: border-box;
 }
 
+.wrapper.textarea {
+  overflow: hidden;
+}
+
 .wrapper:focus-within {
   position: relative;
   z-index: var(--field--base-elevation);
@@ -112,10 +116,6 @@
   --field--placeholder-offset: 0;
   --field--placeholder-transform: 0;
   min-height: auto;
-}
-
-.wrapper.textarea {
-  overflow: hidden;
 }
 
 .invalid,
