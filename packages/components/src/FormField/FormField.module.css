@@ -380,7 +380,6 @@
   left: 0;
   z-index: 1;
   height: var(--field--toolbarTotalHeight);
-  margin: 0 var(--field--padding-right) 0 var(--field--padding-left);
   overflow: hidden;
   pointer-events: none;
 }
@@ -388,9 +387,11 @@
 .toolbar {
   display: flex;
   position: absolute;
+  right: 0;
   bottom: calc(var(--field--toolbarTotalHeight) * -1);
+  left: 0;
   z-index: 1;
-  width: 100%;
+  margin: 0 var(--field--padding-right) 0 var(--field--padding-left);
   padding: 0 0 var(--field--toolbarPaddingBottom) 0;
   background-color: var(--color-surface);
   pointer-events: auto;
