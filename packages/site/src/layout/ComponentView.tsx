@@ -1,5 +1,14 @@
-import { Box, Content, Grid, Page, Tab, Tabs } from "@jobber/components";
+import {
+  Box,
+  Content,
+  Grid,
+  Page,
+  SegmentedControl,
+  Tab,
+  Tabs,
+} from "@jobber/components";
 import { useParams } from "react-router";
+import { useState } from "react";
 import { PageWrapper } from "./PageWrapper";
 import { PropsList } from "../components/PropsList";
 import { CodeViewer } from "../components/CodeViewer";
@@ -22,13 +31,17 @@ export const ComponentView = () => {
   const PageMeta = SiteContent[name];
   useErrorCatcher();
   const { updateStyles } = useStyleUpdater();
-  const { stateValues, stateValueWithFunction } = usePageValues(PageMeta);
-
+  const [state, setState] = useState<"web" | "mobile">("web");
+  const { stateValues, stateValueWithFunction } = usePageValues(
+    PageMeta,
+    state,
+  );
   const ComponentContent = PageMeta?.content;
 
   const { Component, code } = useComponentAndCode(
     PageMeta,
     stateValueWithFunction,
+    state,
   );
 
   return PageMeta ? (
@@ -43,6 +56,17 @@ export const ComponentView = () => {
             <Box>
               <Content spacing="large">
                 <Box direction="column" gap="small">
+                  <SegmentedControl
+                    selectedValue={state}
+                    onSelectValue={setState}
+                  >
+                    <SegmentedControl.Option value="web">
+                      Web
+                    </SegmentedControl.Option>
+                    <SegmentedControl.Option value="mobile">
+                      Mobile
+                    </SegmentedControl.Option>
+                  </SegmentedControl>
                   {Component && (
                     <CodePreviewWindow>
                       <Component {...stateValueWithFunction} />

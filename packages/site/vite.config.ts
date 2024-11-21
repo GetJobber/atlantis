@@ -60,6 +60,14 @@ export default defineConfig({
         __dirname,
         "./src/components/StorybookOverrides",
       ),
+      "react-native-gesture-handler": path.resolve(
+        __dirname,
+        "./src/components/MobileOverrides",
+      ),
+      "react-native-modalize": path.resolve(
+        __dirname,
+        "./src/components/MobileOverrides",
+      ),
       /* "react-native-toast-message": path.resolve(
         __dirname,
         "./src/components/MobileOverrides",
@@ -72,10 +80,7 @@ export default defineConfig({
         __dirname,
         "./src/components/MobileOverrides",
       ),
-      "react-native-gesture-handler": path.resolve(
-        __dirname,
-        "./src/components/MobileOverrides",
-      ),
+     
       "react-native-keyboard-aware-scroll-view": path.resolve(
         __dirname,
         "./src/components/MobileOverrides",
@@ -84,10 +89,7 @@ export default defineConfig({
         __dirname,
         "./src/components/MobileOverrides",
       ),
-      "react-native-modalize": path.resolve(
-        __dirname,
-        "./src/components/MobileOverrides",
-      ),
+     
       "react-native-svg": path.resolve(
         __dirname,
         "./src/components/MobileOverrides",

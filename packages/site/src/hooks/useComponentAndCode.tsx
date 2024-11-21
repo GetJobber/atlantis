@@ -13,8 +13,13 @@ import { ValueStateInternals } from "../types/services";
 export const useComponentAndCode = (
   meta: ContentExport,
   stateValueWithFunction: ValueStateInternals,
+  type = "web",
 ) => {
-  const Component = meta?.component.element as undefined | (() => JSX.Element);
+  const Component =
+    type === "web"
+      ? (meta?.component.element as undefined | (() => JSX.Element))
+      : (meta?.component.mobileElement as undefined | (() => JSX.Element));
+
   const code = useMemo(() => {
     return Component && stateValueWithFunction
       ? reactElementToJSXString(<Component {...stateValueWithFunction} />, {

@@ -8,6 +8,14 @@ export interface ContentExport {
     props: Record<string, GeneratedProp | undefined>;
     tags: Record<string, GeneratedTag>;
   }>;
+  mobileProps: Array<{
+    description: string;
+    displayName: string;
+    filePath: string;
+    methods: Array<string>;
+    props: Record<string, GeneratedProp | undefined>;
+    tags: Record<string, GeneratedTag>;
+  }>;
   component: {
     element: unknown;
     mobileElement?: unknown;
