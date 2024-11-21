@@ -155,14 +155,11 @@ export function FormFieldWrapper({
 
         {hasToolbar && (
           <div
+            data-testid="ATL-InputText-Toolbar"
             className={styles.toolbarWrapper}
             aria-hidden={!isToolbarVisible}
           >
-            <div
-              className={styles.toolbar}
-              data-testid="ATL-InputText-Toolbar"
-              tabIndex={-1}
-            >
+            <div className={styles.toolbar} tabIndex={-1}>
               {toolbar}
             </div>
           </div>

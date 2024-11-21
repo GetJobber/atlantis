@@ -1,5 +1,6 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { InputText } from ".";
 import { InputTextRef } from "./InputText";
 
@@ -219,64 +220,76 @@ test("it should scroll into view input text", () => {
 });
 
 describe("toolbar", () => {
-  describe("without toolbar", () => {
+  describe("without multiline", () => {
     it("should not render toolbar", () => {
-      render(<InputText placeholder="Favourite colour" />);
+      render(
+        <InputText
+          placeholder="Favourite colour"
+          toolbar={<h1>Bar Of Tool</h1>}
+        />,
+      );
       expect(
         screen.queryByTestId("ATL-InputText-Toolbar"),
       ).not.toBeInTheDocument();
     });
   });
-  describe("with toolbar and toolbarVisibility always", () => {
-    it("should always render toolbar", () => {
+
+  describe("without toolbar", () => {
+    it("should not render toolbar", () => {
+      render(<InputText multiline placeholder="Favourite colour" />);
+      expect(
+        screen.queryByTestId("ATL-InputText-Toolbar"),
+      ).not.toBeInTheDocument();
+    });
+  });
+
+  describe("when disabled", () => {
+    it("should not render toolbar", () => {
       render(
         <InputText
+          multiline
+          disabled
           placeholder="Favourite movie"
           toolbar={<h1>Bar Of Tool</h1>}
           toolbarVisibility="always"
         />,
       );
-      expect(screen.getByTestId("ATL-InputText-Toolbar")).toBeInTheDocument();
+      expect(
+        screen.queryByTestId("ATL-InputText-Toolbar"),
+      ).not.toBeInTheDocument();
+    });
+  });
+
+  describe("with toolbar and toolbarVisibility always", () => {
+    it("should always render toolbar", () => {
+      render(
+        <InputText
+          multiline
+          placeholder="Favourite movie"
+          toolbar={<h1>Bar Of Tool</h1>}
+          toolbarVisibility="always"
+        />,
+      );
+      const toolbar = screen.getByTestId("ATL-InputText-Toolbar");
+      expect(toolbar).toHaveAttribute("aria-hidden", "false");
     });
   });
 
   describe("with toolbar and toolbarVisibility focus-within", () => {
-    it("should only render toolbar when focused", () => {
+    it("should only render toolbar when focused", async () => {
       render(
         <InputText
+          multiline
           placeholder="Favourite movie"
           toolbar={<h1>Bar Of Tool</h1>}
         />,
       );
-      expect(
-        screen.queryByTestId("ATL-InputText-Toolbar"),
-      ).not.toBeInTheDocument();
+      const toolbar = screen.getByTestId("ATL-InputText-Toolbar");
+      expect(toolbar).toHaveAttribute("aria-hidden", "true");
 
-      const input = screen.getByLabelText("Favourite movie");
-      fireEvent.focus(input);
+      await userEvent.click(screen.getByLabelText("Favourite movie"));
 
-      expect(screen.getByTestId("ATL-InputText-Toolbar")).toBeInTheDocument();
-    });
-  });
-  describe("with multiline", () => {
-    describe("with toolbar and toolbarVisibility focus-within", () => {
-      it("should only render toolbar when focused", () => {
-        render(
-          <InputText
-            placeholder="Favourite movie"
-            toolbar={<h1>Bar Of Tool</h1>}
-            multiline
-          />,
-        );
-        expect(
-          screen.queryByTestId("ATL-InputText-Toolbar"),
-        ).not.toBeInTheDocument();
-
-        const input = screen.getByLabelText("Favourite movie");
-        fireEvent.focus(input);
-
-        expect(screen.getByTestId("ATL-InputText-Toolbar")).toBeInTheDocument();
-      });
+      expect(toolbar).toHaveAttribute("aria-hidden", "false");
     });
   });
 });
