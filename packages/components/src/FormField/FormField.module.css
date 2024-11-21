@@ -47,6 +47,10 @@
   --field--toolbarHeight: var(--space-larger);
   --field--toolbarGradientHeight: var(--space-base);
   --field--toolbarPaddingBottom: var(--space-base);
+  --field--toolbarTotalHeight: calc(
+    var(--field--toolbarHeight) + var(--field--toolbarPaddingBottom) +
+      var(--field--toolbarGradientHeight)
+  );
 
   display: flex;
   flex-direction: column;
@@ -368,17 +372,22 @@
   bottom: 0;
   left: 0;
   z-index: 1;
+  height: var(--field--toolbarTotalHeight);
   margin: 0 var(--field--padding-right) 0 var(--field--padding-left);
+  overflow: hidden;
+  pointer-events: none;
 }
 
 .toolbar {
   display: flex;
   position: absolute;
-  bottom: 0;
+  bottom: calc(var(--field--toolbarTotalHeight) * -1);
   z-index: 1;
   width: 100%;
   padding: 0 0 var(--field--toolbarPaddingBottom) 0;
   background-color: var(--color-surface);
+  pointer-events: auto;
+  transition: bottom var(--timing-quick) ease-in-out;
 }
 
 /* This gradient sits above the toolbar and blends the text behind it nicely. */
@@ -394,16 +403,21 @@
   background: linear-gradient(to bottom, transparent, var(--color-surface) 60%);
 }
 
+.textarea.hasToolbar {
+  .input {
+    transition: padding-bottom var(--timing-quick) ease-in-out;
+  }
+}
+
 .textarea.hasToolbar[data-toolbar-visible="true"] {
-  --toolbarTotalHeight: calc(
-    var(--field--toolbarHeight) + var(--field--toolbarPaddingBottom) +
-      var(--field--toolbarGradientHeight)
-  );
+  .toolbar {
+    bottom: 0;
+  }
 
   .input {
     height: 100%;
-    padding-bottom: var(--toolbarTotalHeight);
-    scroll-padding-bottom: var(--toolbarTotalHeight);
+    padding-bottom: var(--field--toolbarTotalHeight);
+    scroll-padding-bottom: var(--field--toolbarTotalHeight);
   }
 
   /* When you're adding new lines to the bottom of a textarea, firefox doesn't respect scroll-padding
@@ -417,7 +431,8 @@
 
     .childrenWrapper {
       height: calc(
-        100% - var(--toolbarTotalHeight) + var(--field--toolbarGradientHeight)
+        100% - var(--field--toolbarTotalHeight) +
+          var(--field--toolbarGradientHeight)
       );
     }
 

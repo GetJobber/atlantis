@@ -57,8 +57,9 @@ export function FormFieldWrapper({
   wrapperRef,
 }: PropsWithChildren<FormFieldWrapperProps>) {
   const { focused } = useFormFieldFocus({ wrapperRef });
+  const hasToolbar = toolbar && type === "textarea";
   const isToolbarVisible =
-    toolbar && (toolbarVisibility === "always" || focused);
+    hasToolbar && (toolbarVisibility === "always" || focused);
 
   const wrapperClasses = classnames(
     styles.wrapper,
@@ -73,7 +74,7 @@ export function FormFieldWrapper({
       [styles.text]: type === "textarea" || type === "text",
       [styles.textarea]: type === "textarea",
       [styles.firefox]: IS_FIREFOX && type === "textarea",
-      [styles.hasToolbar]: toolbar,
+      [styles.hasToolbar]: hasToolbar,
       [styles.select]: type === "select",
       [styles.invalid]: invalid ?? error,
       [styles.disabled]: disabled,
@@ -152,8 +153,11 @@ export function FormFieldWrapper({
           )}
         </div>
 
-        {isToolbarVisible && (
-          <div className={styles.toolbarWrapper}>
+        {hasToolbar && (
+          <div
+            className={styles.toolbarWrapper}
+            aria-hidden={!isToolbarVisible}
+          >
             <div
               className={styles.toolbar}
               data-testid="ATL-InputText-Toolbar"
