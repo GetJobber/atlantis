@@ -344,13 +344,16 @@ const DataListStory = (args: {
 
       <DataList.EmptyState
         type="empty"
-        message="Character list is looking empty"
-        action={
-          <Button
-            label="New character"
-            onClick={() => alert("Create a new character")}
-          />
-        }
+        // message="Character list is looking empty"
+        // action={
+        //   <Button
+        //     label="New character"
+        //     onClick={() => alert("Create a new character")}
+        //   />
+        // }
+        // customRender={() => {
+        //   return <h1>TEST</h1>;
+        // }}
       />
 
       <DataList.EmptyState

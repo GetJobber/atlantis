@@ -223,7 +223,7 @@ export interface DataListEmptyStateProps {
   /**
    * The message that shows when the DataList is empty.
    */
-  readonly message: string;
+  readonly message?: string;
 
   /**
    * The action that shows when the DataList is empty.
@@ -241,6 +241,14 @@ export interface DataListEmptyStateProps {
    * to the DataList component.
    */
   readonly type?: "filtered" | "empty";
+
+  /**
+   * Custom render function for the empty state.
+   *
+   * If provided, this function will be used to render the empty state instead
+   * of the default rendering logic.
+   */
+  readonly customRender?: () => React.ReactNode;
 }
 
 export interface DataListContextProps<T extends DataListObject>

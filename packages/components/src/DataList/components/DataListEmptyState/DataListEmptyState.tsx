@@ -18,7 +18,15 @@ export function DataListEmptyState(_: DataListEmptyStateProps) {
 export function InternalDataListEmptyState() {
   const { emptyStateComponents: components, filtered } =
     useContext(DataListContext);
-  const { message, action } = getMessages();
+  const { message, action, customRender } = getEmptyStateContent();
+
+  if (!message && !customRender) {
+    throw new Error(`One of 'message' or 'customRender' is required.`);
+  }
+
+  if (customRender) {
+    return <div className={styles.emptyStateWrapper}>{customRender()}</div>;
+  }
 
   return (
     <div className={styles.emptyStateWrapper}>
@@ -27,7 +35,7 @@ export function InternalDataListEmptyState() {
     </div>
   );
 
-  function getMessages() {
+  function getEmptyStateContent() {
     const { defaultEmptyState, filteredEmptyState } =
       getEmptyStates(components);
 
@@ -36,12 +44,14 @@ export function InternalDataListEmptyState() {
         message:
           filteredEmptyState?.props.message || EMPTY_FILTER_RESULTS_MESSAGE,
         action: filteredEmptyState?.props.action,
+        customRender: filteredEmptyState?.props.customRender,
       };
     }
 
     return {
       message: defaultEmptyState?.props.message || EMPTY_RESULTS_MESSAGE,
       action: defaultEmptyState?.props.action,
+      customRender: defaultEmptyState?.props.customRender,
     };
   }
 }
