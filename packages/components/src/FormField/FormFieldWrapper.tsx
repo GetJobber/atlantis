@@ -57,7 +57,7 @@ export function FormFieldWrapper({
   wrapperRef,
 }: PropsWithChildren<FormFieldWrapperProps>) {
   const { focused } = useFormFieldFocus({ wrapperRef });
-  const hasToolbar = toolbar && type === "textarea";
+  const hasToolbar = toolbar && type === "textarea" && !disabled;
   const isToolbarVisible =
     hasToolbar && (toolbarVisibility === "always" || focused);
 
