@@ -33,7 +33,7 @@ export const Toolbar = BasicTemplate.bind({});
 Toolbar.args = {
   placeholder: "Hakunamatata",
   multiline: true,
-  rows: { min: 1, max: 5 },
+  rows: { min: 5, max: 10 },
   toolbar: (
     <div
       style={{
