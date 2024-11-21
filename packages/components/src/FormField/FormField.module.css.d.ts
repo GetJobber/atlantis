@@ -29,7 +29,6 @@ declare const styles: {
   readonly "toolbar": string;
   readonly "hasToolbar": string;
   readonly "firefox": string;
-  readonly "safari": string;
 };
 export = styles;
 

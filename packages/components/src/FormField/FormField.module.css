@@ -104,8 +104,7 @@
 }
 
 .wrapper.textarea {
-  resize: vertical;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .invalid,
@@ -220,8 +219,8 @@
 }
 
 .textarea .input {
-  flex: 1;
-  resize: none;
+  height: auto;
+  resize: vertical;
   padding-top: 0;
 }
 
@@ -364,7 +363,10 @@
 }
 
 .toolbarWrapper {
-  position: relative;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 1;
   margin: 0 var(--field--padding-right) 0 var(--field--padding-left);
 }
@@ -373,6 +375,7 @@
   display: flex;
   position: absolute;
   bottom: 0;
+  z-index: 1;
   width: 100%;
   padding: 0 0 var(--field--toolbarPaddingBottom) 0;
   background-color: var(--color-surface);
@@ -392,47 +395,36 @@
 }
 
 .textarea.hasToolbar[data-toolbar-visible="true"] {
+  --toolbarTotalHeight: calc(
+    var(--field--toolbarHeight) + var(--field--toolbarPaddingBottom) +
+      var(--field--toolbarGradientHeight)
+  );
+
   .input {
     height: 100%;
-    padding-bottom: var(--field--toolbarGradientHeight);
-    scroll-padding-bottom: var(--field--toolbarGradientHeight);
-  }
-
-  .childrenWrapper {
-    --toolbarTotalHeight: calc(
-      var(--field--toolbarHeight) + var(--field--toolbarPaddingBottom)
-    );
-    height: calc(100% - var(--toolbarTotalHeight));
+    padding-bottom: var(--toolbarTotalHeight);
+    scroll-padding-bottom: var(--toolbarTotalHeight);
   }
 
   /* When you're adding new lines to the bottom of a textarea, firefox doesn't respect scroll-padding
   and the text ends up partially hidden behind the toolbar gradient, until you manually scroll again.
   To make this less bad, we're shrinking the size of the gradient blend so most of the text is visible. */
   &.firefox {
+    .input {
+      padding-bottom: var(--field--toolbarGradientHeight);
+      scroll-padding-bottom: var(--field--toolbarGradientHeight);
+    }
+
+    .childrenWrapper {
+      height: calc(
+        100% - var(--toolbarTotalHeight) + var(--field--toolbarGradientHeight)
+      );
+    }
+
     .toolbar::before {
       --firefoxGradientHeight: calc(var(--field--toolbarGradientHeight) / 2);
       top: calc(var(--firefoxGradientHeight) * -1);
       height: var(--firefoxGradientHeight);
-    }
-  }
-}
-
-/* Safari has a bug with the scrollbar overlapping the resize drag handle, preventing it from being used.
-The adjustments below add just enough extra padding to make the scrollbar not block the resize handle. */
-.safari.textarea {
-  .horizontalWrapper {
-    padding-bottom:  var(--field--padding-bottom);
-  }
-
-  &.hasToolbar[data-toolbar-visible="true"] {
-    .horizontalWrapper {
-      padding-bottom: var(--field--toolbarGradientHeight);
-    }
-
-    .input {
-      padding-bottom: var(--field--toolbarGradientHeight);
-      scroll-padding-bottom: var(--field--toolbarGradientHeight);
-      margin-bottom: calc(var(--field--toolbarGradientHeight) * -1);
     }
   }
 }

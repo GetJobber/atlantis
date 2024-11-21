@@ -14,10 +14,9 @@ import { FormFieldDescription } from "./FormFieldDescription";
 import { ClearAction } from "./components/ClearAction";
 import { useFormFieldFocus } from "./hooks/useFormFieldFocus";
 import { InputValidation } from "../InputValidation";
-import { isFirefox, isSafari } from "../utils/getClientBrowser";
+import { isFirefox } from "../utils/getClientBrowser";
 
 const IS_FIREFOX = isFirefox(navigator.userAgent);
-const IS_SAFARI = isSafari(navigator.userAgent);
 
 interface FormFieldWrapperProps extends FormFieldProps {
   readonly error: string;
@@ -73,7 +72,6 @@ export function FormFieldWrapper({
         (placeholder && type === "tel"),
       [styles.text]: type === "textarea" || type === "text",
       [styles.textarea]: type === "textarea",
-      [styles.safari]: IS_SAFARI && type === "textarea",
       [styles.firefox]: IS_FIREFOX && type === "textarea",
       [styles.hasToolbar]: toolbar,
       [styles.select]: type === "select",
