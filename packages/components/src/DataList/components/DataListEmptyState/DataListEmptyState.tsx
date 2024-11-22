@@ -18,20 +18,18 @@ export function DataListEmptyState(_: DataListEmptyStateProps) {
 export function InternalDataListEmptyState() {
   const { emptyStateComponents: components, filtered } =
     useContext(DataListContext);
-  const { message, action, customRender } = getEmptyStateContent();
-
-  if (!message && !customRender) {
-    throw new Error(`One of 'message' or 'customRender' is required.`);
-  }
-
-  if (customRender) {
-    return <div className={styles.emptyStateWrapper}>{customRender()}</div>;
-  }
+  const { customRender, ...contentProps } = getEmptyStateContent();
 
   return (
     <div className={styles.emptyStateWrapper}>
-      <Text align="center">{message}</Text>
-      {renderButton(action)}
+      {customRender ? (
+        customRender({ ...contentProps })
+      ) : (
+        <>
+          <Text align="center">{contentProps.message}</Text>
+          {renderButton(contentProps.action)}
+        </>
+      )}
     </div>
   );
 
