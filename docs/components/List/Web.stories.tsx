@@ -256,11 +256,24 @@ function RenderProductList({
   );
 }
 
+function RenderSectionHeading({
+  sectionHeading
+}: { readonly sectionHeading: string }) {
+  return (
+    <Heading level={6} style={{ padding: "var(--space-small)" }}>
+      {sectionHeading}
+    </Heading>
+  );
+};
+
 export const SectionedListWithCustomRenderer = BasicTemplate.bind({});
 SectionedListWithCustomRenderer.args = {
   items: productsList,
   customRenderItem: (item: ProductListItemProps) => (
     <RenderProductList listItem={item} />
+  ),
+  customRenderSection: (sectionHeading: string) => (
+    <RenderSectionHeading sectionHeading={sectionHeading} />
   ),
 };
 
