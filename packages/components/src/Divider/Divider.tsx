@@ -2,6 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import styles from "./Divider.module.css";
 import sizes from "./DividerSizes.module.css";
+import directions from "./DividerDirections.module.css";
 
 interface DividerProps {
   /**
@@ -16,7 +17,7 @@ interface DividerProps {
    *
    * @default "horizontal"
    */
-  readonly direction?: "horizontal" | "vertical";
+  readonly direction?: keyof typeof directions;
 
   /**
    * A reference to the element in the rendered output
@@ -29,10 +30,11 @@ export function Divider({
   direction = "horizontal",
   testID,
 }: DividerProps) {
-  const className = classnames(styles.divider, sizes[size], {
-    [styles.horizontal]: direction == "horizontal",
-    [styles.vertical]: direction == "vertical",
-  });
+  const className = classnames(
+    styles.divider,
+    sizes[size],
+    directions[direction],
+  );
 
   return (
     <div className={className} data-testid={testID} role="none presentation" />
