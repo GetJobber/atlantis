@@ -7,6 +7,7 @@ import React, {
 } from "react";
 import classnames from "classnames";
 import { Clearable, useShowClear } from "@jobber/hooks/useShowClear";
+import { tokens } from "@jobber/design";
 import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.module.css";
 import { AffixIcon, AffixLabel } from "./FormFieldAffix";
@@ -17,6 +18,9 @@ import { InputValidation } from "../InputValidation";
 import { isFirefox } from "../utils/getClientBrowser";
 
 const IS_FIREFOX = isFirefox(navigator.userAgent);
+const TOOLBAR_HEIGHT = tokens["space-larger"];
+const TOOLBAR_PADDING_BOTTOM = tokens["space-base"];
+export const TOOLBAR_TOTAL_HEIGHT = TOOLBAR_HEIGHT + TOOLBAR_PADDING_BOTTOM;
 
 interface FormFieldWrapperProps extends FormFieldProps {
   readonly error: string;
@@ -89,6 +93,8 @@ export function FormFieldWrapper({
 
   const wrapperInlineStyle = {
     ["--formField-maxLength" as string]: maxLength || max,
+    ["--field--toolbarHeight" as string]: `${TOOLBAR_HEIGHT}px`,
+    ["--field--toolbarPaddingBottom" as string]: `${TOOLBAR_PADDING_BOTTOM}px`,
   };
 
   const prefixRef = useRef() as RefObject<HTMLDivElement>;

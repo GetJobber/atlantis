@@ -44,9 +44,8 @@
   --field--postfix-elevation: calc(var(--field--base-elevation) - 1);
   --field--postfix-action-elevation: calc(var(--field--base-elevation) + 2);
 
-  --field--toolbarHeight: var(--space-larger);
   --field--toolbarGradientHeight: var(--space-base);
-  --field--toolbarPaddingBottom: var(--space-base);
+  /* Some of these toolbar values are configured on the js side (see FormFieldWrapper). */
   --field--toolbarTotalHeight: calc(
     var(--field--toolbarHeight) + var(--field--toolbarPaddingBottom) +
       var(--field--toolbarGradientHeight)
