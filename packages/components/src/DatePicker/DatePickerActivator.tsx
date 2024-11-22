@@ -55,8 +55,10 @@ function InternalActivator(
         // cloneElement. https://github.com/DefinitelyTyped/DefinitelyTyped/issues/40888
         ref,
       });
-    } else {
+    } else if (typeof activator === "function") {
       return activator(props);
+    } else {
+      return null;
     }
   } else {
     return (
