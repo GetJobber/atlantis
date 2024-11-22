@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.3.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.2.2...@jobber/components@6.3.0) (2024-11-20)
+
+
+### Features
+
+* **components:** Updated Tabs label prop to accept a ReactNode [JOB-109275] ([#2128](https://github.com/GetJobber/atlantis/issues/2128)) ([94d7fe0](https://github.com/GetJobber/atlantis/commit/94d7fe09b020aefa5064b84f05234fdacee29765))
+
+
+
+
+
+## [6.2.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.2.1...@jobber/components@6.2.2) (2024-11-20)
+
+
+### Bug Fixes
+
+* **components:** Fix DataList Sticky Header Scrolling  [JOB-96126] ([#2130](https://github.com/GetJobber/atlantis/issues/2130)) ([7482f1f](https://github.com/GetJobber/atlantis/commit/7482f1f979b79113d6ae87743f49c332f6e3e9be))
+
+
+
+
+
 ## [6.2.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.2.0...@jobber/components@6.2.1) (2024-11-19)
 
 **Note:** Version bump only for package @jobber/components
