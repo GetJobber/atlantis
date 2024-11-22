@@ -91,10 +91,14 @@ export function FormFieldWrapper({
     [styles.inline]: inline,
   });
 
-  const wrapperInlineStyle = {
-    ["--formField-maxLength" as string]: maxLength || max,
+  const toolbarCSSVars = {
     ["--field--toolbarHeight" as string]: `${TOOLBAR_HEIGHT}px`,
     ["--field--toolbarPaddingBottom" as string]: `${TOOLBAR_PADDING_BOTTOM}px`,
+  };
+
+  const wrapperInlineStyle = {
+    ["--formField-maxLength" as string]: maxLength || max,
+    ...(hasToolbar ? toolbarCSSVars : {}),
   };
 
   const prefixRef = useRef() as RefObject<HTMLDivElement>;
