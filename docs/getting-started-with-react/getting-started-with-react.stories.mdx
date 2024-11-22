@@ -89,7 +89,7 @@ For this example we are going to build a card that allows you to enter a topic
 and then search for a related gif.
 
 <Canvas>
-  <Story name="Composing Components">
+  <Story name="Gif Gift">
     {() => {
       const [topic, setTopic] = useState();
       const [url, setURL] = useState();
@@ -183,3 +183,43 @@ The final part of our example defines the custom actions needed to power our
 component. In this case the action when the user clicks on the **Search**
 button. Here we call the `setURL` setter to show the `loadingGIF`. Then, we call
 `setURL` awaiting the async response of `getGIF`.
+
+## Types of Components in Atlantis and their Ability for Customization
+
+#### 1. Primitive Components:
+
+Examples: [Icon](..?path=/docs/components-images-and-icons-icon--docs),
+[Avatar](..?path=/docs/components-images-and-icons-avatar--docs)
+
+These components do not accept children and have minimal customization.
+
+#### 2. Simple Components:
+
+Examples: [Button](..?path=/docs/components-actions-button--docs),
+[Link](..?path=/docs/components-text-and-typography-link--docs)
+
+These allow basic customization through props or limited children, like
+`ReactNode` or specific child types.
+
+#### 3. Compound Components:
+
+Examples: [Chip](..?path=/docs/components-selections-chip--docs),
+[DataList](..?path=/docs/components-lists-and-tables-datalist--docs)
+
+These are part of larger compositions and may validate their children types to
+maintain internal consistency.
+
+#### 4. Strict Complex Components:
+
+Example:
+[Autocomplete](..?path=/docs/components-forms-and-inputs-autocomplete--docs),
+
+These have multiple UI pieces they are built out of but a strict APIs and
+limited customization.
+
+#### 5. Customizable Complex Components:
+
+Example: [Combobox](..?path=/docs/components-selections-combobox--docs)
+
+These also have multiple UI pieces they are built out of but offer options for
+customization.
