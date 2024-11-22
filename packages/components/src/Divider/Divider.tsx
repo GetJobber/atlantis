@@ -1,6 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import styles from "./Divider.module.css";
+import sizes from "./DividerSizes.module.css";
 
 interface DividerProps {
   /**
@@ -8,7 +9,7 @@ interface DividerProps {
    *
    * @default "base"
    */
-  readonly size?: "base" | "large" | "larger" | "largest";
+  readonly size?: keyof typeof sizes;
 
   /**
    * The direction of the divider
@@ -28,10 +29,7 @@ export function Divider({
   direction = "horizontal",
   testID,
 }: DividerProps) {
-  const className = classnames(styles.divider, {
-    [styles.large]: size === "large",
-    [styles.larger]: size === "larger",
-    [styles.largest]: size === "largest",
+  const className = classnames(styles.divider, sizes[size], {
     [styles.horizontal]: direction == "horizontal",
     [styles.vertical]: direction == "vertical",
   });

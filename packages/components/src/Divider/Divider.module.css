@@ -1,12 +1,12 @@
 .divider {
-  --divider-width: var(--border-base);
+  /* --divider-width: var(--border-base); */
   --divider-color: var(--color-border);
   margin: 0;
   padding: 0;
   border: none;
 }
 
-.large {
+/* .large {
   --divider-width: var(--border-thick);
   opacity: 0.875;
 }
@@ -19,7 +19,7 @@
 .largest {
   --divider-width: var(--border-thickest);
   opacity: 0.375;
-}
+} */
 
 .horizontal {
   height: var(--space-minuscule);
