@@ -101,6 +101,15 @@ export function FormFieldWrapper({
     ...(hasToolbar ? toolbarCSSVars : {}),
   };
 
+  const toolbarAttributes = {
+    "data-toolbar-visible": isToolbarVisible,
+  };
+
+  const wrapperAttributes = {
+    "data-testid": "Form-Field-Wrapper",
+    ...(hasToolbar ? toolbarAttributes : {}),
+  };
+
   const prefixRef = useRef() as RefObject<HTMLDivElement>;
   const suffixRef = useRef() as RefObject<HTMLDivElement>;
 
@@ -126,8 +135,7 @@ export function FormFieldWrapper({
       <div
         className={wrapperClasses}
         style={wrapperInlineStyle}
-        data-testid="Form-Field-Wrapper"
-        data-toolbar-visible={isToolbarVisible}
+        {...wrapperAttributes}
         ref={wrapperRef}
       >
         <div className={styles.horizontalWrapper}>
