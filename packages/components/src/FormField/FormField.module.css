@@ -418,7 +418,7 @@
 
 .textarea.hasToolbar[data-toolbar-visible="true"] {
   .toolbar {
-    bottom: 1px;
+    bottom: var(--border-base);
   }
 
   .input {
