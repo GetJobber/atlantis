@@ -1,10 +1,10 @@
 import { Meta } from "@storybook/addon-docs";
 
-<Meta title="Guides/Customizing Components" />
+<Meta title="Guides/Customizing components" />
 
-# Customizing Components
+# Customizing components
 
-### Philosophy: Easy to Use, Flexible to Customize
+### Philosophy: easy to use, flexible to customize
 
 Atlantis is designed to make building consistent, accessible, and visually
 appealing user interfaces as effortless as possible. Our goal is to create
@@ -25,7 +25,7 @@ functionality and cohesion will rest with you.
 Atlantis aims to strike a balance between simplicity, flexibility, and
 consistency.
 
-### Primary Customization Approach: Named Render Props
+### Primary customization approach: named render props
 
 In Atlantis, our primary approach to enabling customization is through named
 render props, using the `customRender____` pattern. This method allows consumers
@@ -55,13 +55,13 @@ In this example, the default List behavior (such as the main list structure and
 handling item interactions) is preserved. Only the presentation of individual
 items is customized.
 
-### Other Customization Approaches
+### Other customization approaches
 
 While custom render functions are our primary approach it is not used in all
 places. For simple cases where customization does not depend on internal state,
 we have chosen to extend prop types to allow for a `ReactNode` to be passed in.
 
-#### Example: Tab Component (see [Tabs](..?path=/docs/components-navigation-tabs--docs))
+#### Example: Tab component (see [Tabs](..?path=/docs/components-navigation-tabs--docs))
 
 Instead of introducing `customRenderLabel`, the `Tab` component was updated to
 allow the `label` prop to accept a `ReactNode`.
