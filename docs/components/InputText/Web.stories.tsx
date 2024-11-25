@@ -13,7 +13,17 @@ export default {
 } as ComponentMeta<typeof InputText>;
 
 const BasicTemplate: ComponentStory<typeof InputText> = args => {
-  return <InputText {...args} />;
+  return (
+    <div>
+      <InputText {...args} />
+      <div>text</div>
+      <InputText {...args} />
+      <div>text</div>
+      <div>text</div>
+      <InputText {...args} multiline={false} />
+      <div>text</div>
+    </div>
+  );
 };
 
 export const Basic = BasicTemplate.bind({});

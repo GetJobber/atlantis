@@ -7,8 +7,6 @@ import {
   FormField,
   FormFieldProps,
 } from "../FormField";
-import { isFirefox } from "../utils/getClientBrowser";
-import { TOOLBAR_TOTAL_HEIGHT } from "../FormField/FormFieldWrapper";
 
 export interface RowRange {
   min: number;
@@ -137,6 +135,7 @@ function InputTextInternal(
   }
 
   function resize(textArea: HTMLTextAreaElement) {
+    if (rowRange.min === rowRange.max) return;
     textArea.style.height = textAreaHeight(textArea) + "px";
   }
 
@@ -149,26 +148,17 @@ function InputTextInternal(
       paddingTop,
     } = window.getComputedStyle(textArea);
 
-    // Firefox has a bug where it doesn't take the toolbar space into account, so we need
-    // to include that in the maxHeight calculation.
-    const firefoxOffset =
-      isFirefox(navigator.userAgent) && props.toolbar
-        ? TOOLBAR_TOTAL_HEIGHT
-        : 0;
-
     const maxHeight =
       rowRange.max * parseFloat(lineHeight) +
       parseFloat(borderTopWidth) +
       parseFloat(borderBottomWidth) +
       parseFloat(paddingTop) +
-      parseFloat(paddingBottom) +
-      firefoxOffset;
+      parseFloat(paddingBottom);
 
     const scrollHeight =
       textArea.scrollHeight +
       parseFloat(borderTopWidth) +
-      parseFloat(borderBottomWidth) +
-      firefoxOffset;
+      parseFloat(borderBottomWidth);
 
     return Math.min(scrollHeight, maxHeight);
   }

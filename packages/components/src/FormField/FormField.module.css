@@ -44,13 +44,6 @@
   --field--postfix-elevation: calc(var(--field--base-elevation) - 1);
   --field--postfix-action-elevation: calc(var(--field--base-elevation) + 2);
 
-  --field--toolbarGradientHeight: var(--space-base);
-  /* Some of these toolbar values are configured on the js side (see FormFieldWrapper). */
-  --field--toolbarTotalHeight: calc(
-    var(--field--toolbarHeight) + var(--field--toolbarPaddingBottom) +
-      var(--field--toolbarGradientHeight)
-  );
-
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -77,13 +70,6 @@
   position: relative;
   z-index: var(--field--base-elevation);
   box-shadow: var(--shadow-focus);
-
-  &.textarea {
-    /* This avoids a shift of content when the textarea is blurred due to the relative positioning
-    added above. We should look into whether that's necessary at all, but it requires testing many
-    instances of FormField. */
-    position: initial;
-  }
 }
 
 .horizontalWrapper {
@@ -372,81 +358,39 @@
   margin-top: var(--space-smaller);
 }
 
+.wrapper.hasToolbar {
+  position: relative;
+  /*
+  THIS causes white corners of the inner content to overlap the border (see top left/right)
+  Probably can fix that by rounding the inner white content border radius.
+  */
+  overflow: visible;
+}
+
 .toolbarWrapper {
+  display: none;
   position: absolute;
   right: 0;
-  bottom: 0;
+  top: 100%;
   left: 0;
-  z-index: 1;
-  height: var(--field--toolbarTotalHeight);
-  overflow: hidden;
+  overflow: visible;
   pointer-events: none;
+  margin: 0 var(--field--padding-right) 0 var(--field--padding-left);
 }
 
 .toolbar {
   display: flex;
-  position: absolute;
-  right: 0;
-  bottom: calc(var(--field--toolbarTotalHeight) * -1);
-  left: 0;
-  z-index: 1;
-  margin: 0 var(--field--padding-right) 0 var(--field--padding-left);
-  padding: 0 0 var(--field--toolbarPaddingBottom) 0;
+  position: relative;
+  border-radius: 0 0 var(--radius-base) var(--radius-base);
+  padding: var(--space-small);
   background-color: var(--color-surface);
   pointer-events: auto;
-  transition: bottom var(--timing-quick) ease-in-out;
+  overflow: hidden;
+  border: var(--border-base) solid var(--field--border-color);
 }
 
-/* This gradient sits above the toolbar and blends the text behind it nicely. */
-.toolbar::before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: calc(var(--field--toolbarGradientHeight) * -1);
-  right: 0;
-  left: 0;
-  z-index: -1;
-  height: var(--field--toolbarGradientHeight);
-  background: linear-gradient(to bottom, transparent, var(--color-surface) 60%);
-}
-
-.textarea.hasToolbar {
-  .input {
-    transition: padding-bottom var(--timing-quick) ease-in-out;
-  }
-}
-
-.textarea.hasToolbar[data-toolbar-visible="true"] {
-  .toolbar {
-    bottom: var(--border-base);
-  }
-
-  .input {
-    height: 100%;
-    padding-bottom: var(--field--toolbarTotalHeight);
-    scroll-padding-bottom: var(--field--toolbarTotalHeight);
-  }
-
-  /* When you're adding new lines to the bottom of a textarea, firefox doesn't respect scroll-padding
-  and the text ends up partially hidden behind the toolbar gradient, until you manually scroll again.
-  To make this less bad, we're shrinking the size of the gradient blend so most of the text is visible. */
-  &.firefox {
-    .input {
-      padding-bottom: var(--field--toolbarGradientHeight);
-      scroll-padding-bottom: var(--field--toolbarGradientHeight);
-    }
-
-    .childrenWrapper {
-      height: calc(
-        100% - var(--field--toolbarTotalHeight) +
-          var(--field--toolbarGradientHeight)
-      );
-    }
-
-    .toolbar::before {
-      --firefoxGradientHeight: calc(var(--field--toolbarGradientHeight) / 2);
-      top: calc(var(--firefoxGradientHeight) * -1);
-      height: var(--firefoxGradientHeight);
-    }
+.wrapper.hasToolbar[data-toolbar-visible="true"] {
+  .toolbarWrapper {
+    display: block;
   }
 }
