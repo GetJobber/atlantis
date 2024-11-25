@@ -17,7 +17,6 @@ import { useFormFieldFocus } from "./hooks/useFormFieldFocus";
 import { InputValidation } from "../InputValidation";
 import { isFirefox } from "../utils/getClientBrowser";
 
-const IS_FIREFOX = isFirefox(navigator.userAgent);
 const TOOLBAR_HEIGHT = tokens["space-larger"];
 const TOOLBAR_PADDING_BOTTOM = tokens["space-base"];
 export const TOOLBAR_TOTAL_HEIGHT = TOOLBAR_HEIGHT + TOOLBAR_PADDING_BOTTOM;
@@ -77,7 +76,7 @@ export function FormFieldWrapper({
         (placeholder && type === "tel"),
       [styles.text]: type === "textarea" || type === "text",
       [styles.textarea]: type === "textarea",
-      [styles.firefox]: IS_FIREFOX && type === "textarea",
+      [styles.firefox]: isFirefox(navigator.userAgent) && type === "textarea",
       [styles.hasToolbar]: hasToolbar,
       [styles.select]: type === "select",
       [styles.invalid]: invalid ?? error,
