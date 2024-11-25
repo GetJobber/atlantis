@@ -167,7 +167,8 @@ function InputTextInternal(
     const scrollHeight =
       textArea.scrollHeight +
       parseFloat(borderTopWidth) +
-      parseFloat(borderBottomWidth);
+      parseFloat(borderBottomWidth) +
+      firefoxOffset;
 
     return Math.min(scrollHeight, maxHeight);
   }
