@@ -1,0 +1,77 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Guides/Customizing components" />
+
+# Customizing components
+
+### Philosophy: easy to use, flexible to customize
+
+Atlantis is designed to make building consistent, accessible, and visually
+appealing user interfaces as effortless as possible. Our goal is to create
+components that work out of the box, requiring minimal setup or configuration
+from consumers.
+
+While we strive to cover the most common design scenarios with thoughtful
+defaults, we understand that unique use cases may require customization. For
+these scenarios, we provide mechanisms to extend or modify our components in a
+way that maintains flexibility without compromising the integrity of the
+components.
+
+We recommend using the default implementations wherever possible to benefit from
+consistency, maintainability, and built in accessibility. However, if you choose
+to customize, please note that the responsibility for ensuring proper
+functionality and cohesion will rest with you.
+
+Atlantis aims to strike a balance between simplicity, flexibility, and
+consistency.
+
+### Primary customization approach: named render props
+
+In Atlantis, our primary approach to enabling customization is through named
+render props, using the `customRender____` pattern. This method allows consumers
+to inject their own UI logic while retaining the default behaviors and
+functionality of the component.
+
+#### Example: customRenderItem
+
+Here's an example of how to use a named render prop to customize the rendering
+of items in a [List](..?path=/docs/components-lists-and-tables-list--docs)
+component:
+
+```tsx
+const renderProductItem = item => (
+  <Flex template={["shrink", "grow"]} align="start">
+    <Text>{item.price}</Text>
+    <Heading level={4}>{item.name}</Heading>
+  </Flex>
+);
+
+export const CustomRenderExample = () => (
+  <List items={items} customRenderItem={renderProductItem} />
+);
+```
+
+In this example, the default List behavior (such as the main list structure and
+handling item interactions) is preserved. Only the presentation of individual
+items is customized.
+
+### Other customization approaches
+
+While custom render functions are our primary approach it is not used in all
+places. For simple cases where customization does not depend on internal state,
+we have chosen to extend prop types to allow for a `ReactNode` to be passed in.
+
+#### Example: Tab component (see [Tabs](..?path=/docs/components-navigation-tabs--docs))
+
+Instead of introducing `customRenderLabel`, the `Tab` component was updated to
+allow the `label` prop to accept a `ReactNode`.
+
+```tsx
+<Tab label={<MyCustomLabel />} />
+```
+
+This approach was chosen to provide a simpler experience for those implementing
+Atlantis components. Customizing the `label` didn’t require exposing or
+interacting with the `Tab`’s internal state (e.g., active state styling). Once
+the design becomes more complex a custom render function would become a better
+fit.
