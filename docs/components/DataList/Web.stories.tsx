@@ -6,6 +6,7 @@ import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { useCollectionQuery } from "@jobber/hooks/useCollectionQuery";
 import {
   DataList,
+  DataListEmptyStateProps,
   DataListItemType,
   DataListSelectedType,
   DataListSorting,
@@ -18,6 +19,7 @@ import { DatePicker } from "@jobber/components/DatePicker";
 import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
 import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
+import { Flex } from "@jobber/components/Flex";
 import { LIST_QUERY, ListQueryType, apolloClient } from "./storyUtils";
 
 const meta: Meta = {
@@ -345,14 +347,12 @@ const DataListStory = (args: {
       <DataList.EmptyState
         type="empty"
         message="Character list is looking empty"
-        customRender={({ message }) => {
-          return (
-            <>
-              <h1>TEST</h1>
-              <h3>{message}</h3>
-            </>
-          );
-        }}
+        action={
+          <Button
+            label="New character"
+            onClick={() => alert("Create a new character")}
+          />
+        }
       />
 
       <DataList.EmptyState
@@ -722,4 +722,44 @@ export const EmptyState: StoryObj<typeof DataList> = {
       headerVisibility={{ xs: false, md: true }}
     />
   ),
+};
+
+const CustomEmptyState = ({
+  message,
+}: Omit<DataListEmptyStateProps, "customRender">) => (
+  <div>
+    <h3>{message}</h3>
+    <Flex template={["grow", "shrink"]} direction="column">
+      <Button label="Create a new character" onClick={() => alert("Create")} />
+      <Button
+        label="Clear filters"
+        type="secondary"
+        onClick={() => alert("Clear filters")}
+      />
+    </Flex>
+  </div>
+);
+
+export const CustomRenderEmptyState: StoryFn<typeof DataList> = args => {
+  return (
+    <DataList {...args}>
+      <DataList.EmptyState
+        type="empty"
+        message="Character list is looking empty"
+        customRender={CustomEmptyState}
+      />
+    </DataList>
+  );
+};
+
+CustomRenderEmptyState.args = {
+  title: "All characters",
+  headerVisibility: { xs: false, md: true },
+  headers: {
+    label: "Name",
+    home: "Home world",
+    tags: "Attributes",
+    eyeColor: "Eye color",
+  },
+  data: [],
 };
