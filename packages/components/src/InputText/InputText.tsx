@@ -10,8 +10,6 @@ import {
 import { isFirefox } from "../utils/getClientBrowser";
 import { TOOLBAR_TOTAL_HEIGHT } from "../FormField/FormFieldWrapper";
 
-const IS_FIREFOX = isFirefox(navigator.userAgent);
-
 export interface RowRange {
   min: number;
   max: number;
@@ -154,7 +152,9 @@ function InputTextInternal(
     // Firefox has a bug where it doesn't take the toolbar space into account, so we need
     // to include that in the maxHeight calculation.
     const firefoxOffset =
-      IS_FIREFOX && props.toolbar ? TOOLBAR_TOTAL_HEIGHT : 0;
+      isFirefox(navigator.userAgent) && props.toolbar
+        ? TOOLBAR_TOTAL_HEIGHT
+        : 0;
 
     const maxHeight =
       rowRange.max * parseFloat(lineHeight) +
