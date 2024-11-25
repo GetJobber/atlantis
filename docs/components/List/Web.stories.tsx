@@ -262,7 +262,7 @@ function RenderSectionHeading({
   readonly sectionHeading: string;
 }) {
   return (
-    <Heading level={6} style={{ padding: "var(--space-small)" }}>
+    <Heading level={6} style={{ padding: "var(--color-destructive)" }}>
       {sectionHeading}
     </Heading>
   );
@@ -277,6 +277,7 @@ SectionedListWithCustomRenderer.args = {
   customRenderSection: (sectionHeading: string) => (
     <RenderSectionHeading sectionHeading={sectionHeading} />
   ),
+  ariaRole: "menu",
 };
 
 export const SimpleListWithCustomStyles = SimpleTemplate.bind({});

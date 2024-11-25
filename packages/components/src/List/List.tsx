@@ -45,7 +45,6 @@ interface ListProps<T extends BaseListItemProps = ListItemProps> {
    * Defines the HTML ARIA role for the list.
    *
    * * @default "list"
-   *
    */
   readonly ariaRole?: string;
 
@@ -136,8 +135,7 @@ function SectionedList<T extends BaseListItemProps = ListItemProps>({
     !omitDefaultSectionStyles && sectionStyles.sectionHeader,
   );
 
-  const roleItem =
-    ariaRole === "menu" || ariaRole === "list" ? `${ariaRole}item` : "";
+  const isMenuItem = ariaRole === "menu";
 
   return (
     <ul className={styles.list}>
@@ -165,6 +163,7 @@ function SectionedList<T extends BaseListItemProps = ListItemProps>({
                     {...item}
                     customRenderItem={customRenderItem}
                     customItemStyles={customItemStyles}
+                    isMenuItem={isMenuItem}
                   />
                 </li>
               ))}

@@ -68,6 +68,11 @@ export interface ListItemProps extends BaseListItemProps {
   readonly value?: string;
 
   /**
+   * Treats the item different if it is a menu item. This will disable tab navigation and set the role to "menuitem".
+   */
+  readonly isMenuItem?: boolean;
+
+  /**
    * Callback when a list item gets clicked.
    */
   onClick?(
@@ -89,9 +94,10 @@ export function ListItem<T extends BaseListItemProps = ListItemProps>(
     props.customRenderItem && !props.customItemStyles && styles.customItem,
   );
   const Wrapper = props.url ? "a" : "button";
+  const role = props.isMenuItem ? "menuitem" : "button";
 
   const buttonProps = {
-    ...(Wrapper === "button" && { role: "button", type: "button" as const }),
+    ...(Wrapper === "button" && { role, type: "button" as const }),
   };
 
   return (
@@ -100,6 +106,7 @@ export function ListItem<T extends BaseListItemProps = ListItemProps>(
       className={actionClasses}
       href={props.url}
       onClick={props.onClick}
+      tabIndex={props.isMenuItem ? -1 : 0}
       {...buttonProps}
     >
       {props.customRenderItem ? (
