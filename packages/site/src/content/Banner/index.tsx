@@ -1,14 +1,19 @@
-import { Banner } from "@jobber/components";
+import { Banner as BannerRoot } from "@jobber/components";
 import BannerContent from "@atlantis/docs/components/Banner/Banner.stories.mdx";
+import { PropsWithChildren } from "react";
 import Props from "./Banner.props.json";
 import { ContentExport } from "../../types/content";
 
-export default {
-  content: () => (
-    <BannerContent>
+export const Banner = (props: PropsWithChildren) => {
+  return (
+    <BannerRoot {...props}>
       <p>{"Account details updated"}</p>
-    </BannerContent>
-  ),
+    </BannerRoot>
+  );
+};
+
+export default {
+  content: () => <BannerContent />,
   props: Props,
   component: {
     element: Banner,
