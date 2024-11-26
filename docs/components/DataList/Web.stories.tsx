@@ -8,7 +8,6 @@ import {
   DataList,
   DataListEmptyStateProps,
   DataListItemType,
-  DataListObject,
   DataListSelectedType,
   DataListSorting,
 } from "@jobber/components/DataList";
@@ -53,76 +52,6 @@ const meta: Meta = {
 };
 
 export default meta;
-
-function DataListStoryLayoutMd<T extends DataListObject>(data: T[]) {
-  return (
-    <DataList.Layout size="md">
-      {(item: DataListItemType<typeof data>) => (
-        <Grid alignItems="center">
-          <Grid.Cell size={{ xs: 5 }}>
-            <Grid alignItems="center">
-              <Grid.Cell size={{ xs: 6 }}>
-                {item.label}
-                {item.species}
-              </Grid.Cell>
-              <Grid.Cell size={{ xs: 6 }}>{item.home}</Grid.Cell>
-            </Grid>
-          </Grid.Cell>
-          <Grid.Cell size={{ xs: 4 }}>{item.tags}</Grid.Cell>
-          <Grid.Cell size={{ xs: 1 }}>{item.eyeColor}</Grid.Cell>
-          <Grid.Cell size={{ xs: 2 }}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "flex-end",
-                textAlign: "right",
-              }}
-            >
-              {item.lastActivity}
-            </div>
-          </Grid.Cell>
-        </Grid>
-      )}
-    </DataList.Layout>
-  );
-}
-
-function DataListStoryLayoutXs<T extends DataListObject>(data: T[]) {
-  return (
-    <DataList.Layout size="xs">
-      {(item: DataListItemType<typeof data>) => (
-        <Content spacing="small">
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: item.species
-                ? "max-content auto max-content"
-                : "auto max-content",
-              gap: 8,
-              alignItems: "center",
-            }}
-          >
-            {item.label}
-            {item.species}
-            {item.eyeColor}
-          </div>
-          {item.tags}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "auto max-content",
-              gap: 8,
-              alignItems: "center",
-            }}
-          >
-            {item.lastActivity}
-            <DataList.LayoutActions />
-          </div>
-        </Content>
-      )}
-    </DataList.Layout>
-  );
-}
 
 const DataListStory = (args: {
   data?: unknown;
@@ -353,9 +282,67 @@ const DataListStory = (args: {
         />
       </DataList.BatchActions>
 
-      {DataListStoryLayoutMd(mappedData)}
+      <DataList.Layout size="md">
+        {(item: DataListItemType<typeof mappedData>) => (
+          <Grid alignItems="center">
+            <Grid.Cell size={{ xs: 5 }}>
+              <Grid alignItems="center">
+                <Grid.Cell size={{ xs: 6 }}>
+                  {item.label}
+                  {item.species}
+                </Grid.Cell>
+                <Grid.Cell size={{ xs: 6 }}>{item.home}</Grid.Cell>
+              </Grid>
+            </Grid.Cell>
+            <Grid.Cell size={{ xs: 4 }}>{item.tags}</Grid.Cell>
+            <Grid.Cell size={{ xs: 1 }}>{item.eyeColor}</Grid.Cell>
+            <Grid.Cell size={{ xs: 2 }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  textAlign: "right",
+                }}
+              >
+                {item.lastActivity}
+              </div>
+            </Grid.Cell>
+          </Grid>
+        )}
+      </DataList.Layout>
 
-      {DataListStoryLayoutXs(mappedData)}
+      <DataList.Layout size="xs">
+        {(item: DataListItemType<typeof mappedData>) => (
+          <Content spacing="small">
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: item.species
+                  ? "max-content auto max-content"
+                  : "auto max-content",
+                gap: 8,
+                alignItems: "center",
+              }}
+            >
+              {item.label}
+              {item.species}
+              {item.eyeColor}
+            </div>
+            {item.tags}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "auto max-content",
+                gap: 8,
+                alignItems: "center",
+              }}
+            >
+              {item.lastActivity}
+              <DataList.LayoutActions />
+            </div>
+          </Content>
+        )}
+      </DataList.Layout>
 
       <DataList.EmptyState
         type="empty"
@@ -638,8 +625,66 @@ export const ClearAllFilters: StoryFn<typeof DataList> = args => {
         onSearch={search => console.log(search)}
         placeholder="Search data..."
       />
-      {DataListStoryLayoutMd(mappedData)}
-      {DataListStoryLayoutXs(mappedData)}
+      <DataList.Layout size="md">
+        {item => (
+          <Grid alignItems="center">
+            <Grid.Cell size={{ xs: 5 }}>
+              <Grid alignItems="center">
+                <Grid.Cell size={{ xs: 6 }}>
+                  {item.label}
+                  {item.species}
+                </Grid.Cell>
+                <Grid.Cell size={{ xs: 6 }}>{item.home}</Grid.Cell>
+              </Grid>
+            </Grid.Cell>
+            <Grid.Cell size={{ xs: 4 }}>{item.tags}</Grid.Cell>
+            <Grid.Cell size={{ xs: 1 }}>{item.eyeColor}</Grid.Cell>
+            <Grid.Cell size={{ xs: 2 }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  textAlign: "right",
+                }}
+              >
+                {item.lastActivity}
+              </div>
+            </Grid.Cell>
+          </Grid>
+        )}
+      </DataList.Layout>
+      <DataList.Layout size="xs">
+        {item => (
+          <Content spacing="small">
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: item.species
+                  ? "max-content auto max-content"
+                  : "auto max-content",
+                gap: 8,
+                alignItems: "center",
+              }}
+            >
+              {item.label}
+              {item.species}
+              {item.eyeColor}
+            </div>
+            {item.tags}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "auto max-content",
+                gap: 8,
+                alignItems: "center",
+              }}
+            >
+              {item.lastActivity}
+              <DataList.LayoutActions />
+            </div>
+          </Content>
+        )}
+      </DataList.Layout>
     </DataList>
   );
 };
@@ -678,31 +723,90 @@ export const EmptyState: StoryObj<typeof DataList> = {
   ),
 };
 
-const CustomEmptyState = ({
-  message,
-}: Omit<DataListEmptyStateProps, "customRender">) => (
-  <div>
-    <h3>{message}</h3>
-    <Flex template={["grow", "shrink"]} direction="column">
-      <Button label="Create a new character" onClick={() => alert("Create")} />
-      <Button
-        label="Clear filters"
-        type="secondary"
-        onClick={() => alert("Clear filters")}
-      />
-    </Flex>
-  </div>
-);
-
 export const CustomRenderEmptyState: StoryFn<typeof DataList> = args => {
   return (
     <DataList {...args} totalCount={args.data?.length}>
-      {DataListStoryLayoutMd(args.data)}
-      {DataListStoryLayoutXs(args.data)}
+      <DataList.Layout size="md">
+        {item => (
+          <Grid alignItems="center">
+            <Grid.Cell size={{ xs: 5 }}>
+              <Grid alignItems="center">
+                <Grid.Cell size={{ xs: 6 }}>
+                  {item.label}
+                  {item.species}
+                </Grid.Cell>
+                <Grid.Cell size={{ xs: 6 }}>{item.home}</Grid.Cell>
+              </Grid>
+            </Grid.Cell>
+            <Grid.Cell size={{ xs: 4 }}>{item.tags}</Grid.Cell>
+            <Grid.Cell size={{ xs: 1 }}>{item.eyeColor}</Grid.Cell>
+            <Grid.Cell size={{ xs: 2 }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  textAlign: "right",
+                }}
+              >
+                {item.lastActivity}
+              </div>
+            </Grid.Cell>
+          </Grid>
+        )}
+      </DataList.Layout>
+      <DataList.Layout size="xs">
+        {item => (
+          <Content spacing="small">
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: item.species
+                  ? "max-content auto max-content"
+                  : "auto max-content",
+                gap: 8,
+                alignItems: "center",
+              }}
+            >
+              {item.label}
+              {item.species}
+              {item.eyeColor}
+            </div>
+            {item.tags}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "auto max-content",
+                gap: 8,
+                alignItems: "center",
+              }}
+            >
+              {item.lastActivity}
+              <DataList.LayoutActions />
+            </div>
+          </Content>
+        )}
+      </DataList.Layout>
       <DataList.EmptyState
         type="empty"
         message="Character list is looking empty"
-        customRender={CustomEmptyState}
+        customRender={({
+          message,
+        }: Omit<DataListEmptyStateProps, "customRender">) => (
+          <div>
+            <h3>{message}</h3>
+            <Flex template={["grow", "shrink"]} direction="column">
+              <Button
+                label="Create a new character"
+                onClick={() => alert("Create")}
+              />
+              <Button
+                label="Clear filters"
+                type="secondary"
+                onClick={() => alert("Clear filters")}
+              />
+            </Flex>
+          </div>
+        )}
       />
     </DataList>
   );
@@ -719,4 +823,12 @@ CustomRenderEmptyState.args = {
     lastActivity: "Last activity",
   },
   data: [],
+};
+
+CustomRenderEmptyState.parameters = {
+  previewTabs: {
+    code: {
+      hidden: false,
+    },
+  },
 };
