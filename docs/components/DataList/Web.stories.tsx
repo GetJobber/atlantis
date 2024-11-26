@@ -53,6 +53,76 @@ const meta: Meta = {
 
 export default meta;
 
+function DataListStoryLayoutMd(data) {
+  return (
+    <DataList.Layout size="md">
+      {(item: DataListItemType<typeof data>) => (
+        <Grid alignItems="center">
+          <Grid.Cell size={{ xs: 5 }}>
+            <Grid alignItems="center">
+              <Grid.Cell size={{ xs: 6 }}>
+                {item.label}
+                {item.species}
+              </Grid.Cell>
+              <Grid.Cell size={{ xs: 6 }}>{item.home}</Grid.Cell>
+            </Grid>
+          </Grid.Cell>
+          <Grid.Cell size={{ xs: 4 }}>{item.tags}</Grid.Cell>
+          <Grid.Cell size={{ xs: 1 }}>{item.eyeColor}</Grid.Cell>
+          <Grid.Cell size={{ xs: 2 }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                textAlign: "right",
+              }}
+            >
+              {item.lastActivity}
+            </div>
+          </Grid.Cell>
+        </Grid>
+      )}
+    </DataList.Layout>
+  );
+}
+
+function DataListStoryLayoutXs(data) {
+  return (
+    <DataList.Layout size="xs">
+      {(item: DataListItemType<typeof data>) => (
+        <Content spacing="small">
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: item.species
+                ? "max-content auto max-content"
+                : "auto max-content",
+              gap: 8,
+              alignItems: "center",
+            }}
+          >
+            {item.label}
+            {item.species}
+            {item.eyeColor}
+          </div>
+          {item.tags}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "auto max-content",
+              gap: 8,
+              alignItems: "center",
+            }}
+          >
+            {item.lastActivity}
+            <DataList.LayoutActions />
+          </div>
+        </Content>
+      )}
+    </DataList.Layout>
+  );
+}
+
 const DataListStory = (args: {
   data?: unknown;
   title: string;
@@ -282,67 +352,9 @@ const DataListStory = (args: {
         />
       </DataList.BatchActions>
 
-      <DataList.Layout size="md">
-        {(item: DataListItemType<typeof mappedData>) => (
-          <Grid alignItems="center">
-            <Grid.Cell size={{ xs: 5 }}>
-              <Grid alignItems="center">
-                <Grid.Cell size={{ xs: 6 }}>
-                  {item.label}
-                  {item.species}
-                </Grid.Cell>
-                <Grid.Cell size={{ xs: 6 }}>{item.home}</Grid.Cell>
-              </Grid>
-            </Grid.Cell>
-            <Grid.Cell size={{ xs: 4 }}>{item.tags}</Grid.Cell>
-            <Grid.Cell size={{ xs: 1 }}>{item.eyeColor}</Grid.Cell>
-            <Grid.Cell size={{ xs: 2 }}>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  textAlign: "right",
-                }}
-              >
-                {item.lastActivity}
-              </div>
-            </Grid.Cell>
-          </Grid>
-        )}
-      </DataList.Layout>
+      {DataListStoryLayoutMd(mappedData)}
 
-      <DataList.Layout size="xs">
-        {(item: DataListItemType<typeof mappedData>) => (
-          <Content spacing="small">
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: item.species
-                  ? "max-content auto max-content"
-                  : "auto max-content",
-                gap: 8,
-                alignItems: "center",
-              }}
-            >
-              {item.label}
-              {item.species}
-              {item.eyeColor}
-            </div>
-            {item.tags}
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "auto max-content",
-                gap: 8,
-                alignItems: "center",
-              }}
-            >
-              {item.lastActivity}
-              <DataList.LayoutActions />
-            </div>
-          </Content>
-        )}
-      </DataList.Layout>
+      {DataListStoryLayoutXs(mappedData)}
 
       <DataList.EmptyState
         type="empty"
@@ -625,68 +637,8 @@ export const ClearAllFilters: StoryFn<typeof DataList> = args => {
         onSearch={search => console.log(search)}
         placeholder="Search data..."
       />
-
-      <DataList.Layout size="md">
-        {item => (
-          <Grid alignItems="center">
-            <Grid.Cell size={{ xs: 5 }}>
-              <Grid alignItems="center">
-                <Grid.Cell size={{ xs: 6 }}>
-                  {item.label}
-                  {item.species}
-                </Grid.Cell>
-                <Grid.Cell size={{ xs: 6 }}>{item.home}</Grid.Cell>
-              </Grid>
-            </Grid.Cell>
-            <Grid.Cell size={{ xs: 4 }}>{item.tags}</Grid.Cell>
-            <Grid.Cell size={{ xs: 1 }}>{item.eyeColor}</Grid.Cell>
-            <Grid.Cell size={{ xs: 2 }}>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  textAlign: "right",
-                }}
-              >
-                {item.lastActivity}
-              </div>
-            </Grid.Cell>
-          </Grid>
-        )}
-      </DataList.Layout>
-
-      <DataList.Layout size="xs">
-        {item => (
-          <Content spacing="small">
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: item.species
-                  ? "max-content auto max-content"
-                  : "auto max-content",
-                gap: 8,
-                alignItems: "center",
-              }}
-            >
-              {item.label}
-              {item.species}
-              {item.eyeColor}
-            </div>
-            {item.tags}
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "auto max-content",
-                gap: 8,
-                alignItems: "center",
-              }}
-            >
-              {item.lastActivity}
-              <DataList.LayoutActions />
-            </div>
-          </Content>
-        )}
-      </DataList.Layout>
+      {DataListStoryLayoutMd(mappedData)}
+      {DataListStoryLayoutXs(mappedData)}
     </DataList>
   );
 };
@@ -699,6 +651,7 @@ ClearAllFilters.args = {
     home: "Home world",
     tags: "Attributes",
     eyeColor: "Eye color",
+    lastActivity: "Last activity",
   },
 };
 ClearAllFilters.parameters = {
@@ -743,67 +696,8 @@ const CustomEmptyState = ({
 export const CustomRenderEmptyState: StoryFn<typeof DataList> = args => {
   return (
     <DataList {...args} totalCount={args.data?.length}>
-      <DataList.Layout size="md">
-        {item => (
-          <Grid alignItems="center">
-            <Grid.Cell size={{ xs: 5 }}>
-              <Grid alignItems="center">
-                <Grid.Cell size={{ xs: 6 }}>
-                  {item.label}
-                  {item.species}
-                </Grid.Cell>
-                <Grid.Cell size={{ xs: 6 }}>{item.home}</Grid.Cell>
-              </Grid>
-            </Grid.Cell>
-            <Grid.Cell size={{ xs: 4 }}>{item.tags}</Grid.Cell>
-            <Grid.Cell size={{ xs: 1 }}>{item.eyeColor}</Grid.Cell>
-            <Grid.Cell size={{ xs: 2 }}>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  textAlign: "right",
-                }}
-              >
-                {item.lastActivity}
-              </div>
-            </Grid.Cell>
-          </Grid>
-        )}
-      </DataList.Layout>
-
-      <DataList.Layout size="xs">
-        {item => (
-          <Content spacing="small">
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: item.species
-                  ? "max-content auto max-content"
-                  : "auto max-content",
-                gap: 8,
-                alignItems: "center",
-              }}
-            >
-              {item.label}
-              {item.species}
-              {item.eyeColor}
-            </div>
-            {item.tags}
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "auto max-content",
-                gap: 8,
-                alignItems: "center",
-              }}
-            >
-              {item.lastActivity}
-              <DataList.LayoutActions />
-            </div>
-          </Content>
-        )}
-      </DataList.Layout>
+      {DataListStoryLayoutMd(args.data)}
+      {DataListStoryLayoutXs(args.data)}
       <DataList.EmptyState
         type="empty"
         message="Character list is looking empty"
@@ -821,6 +715,7 @@ CustomRenderEmptyState.args = {
     home: "Home world",
     tags: "Attributes",
     eyeColor: "Eye color",
+    lastActivity: "Last activity",
   },
   data: [],
 };
