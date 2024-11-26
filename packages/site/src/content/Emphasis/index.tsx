@@ -17,6 +17,7 @@ export default {
     },
   },
   title: "Emphasis",
+  description: "",
   links: [
     {
       label: "Storybook",
