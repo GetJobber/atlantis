@@ -33,6 +33,11 @@ export const componentList = [
     additionalMatches: ["Pill", "Badge", "Tag"],
   },
   {
+    title: "Countdown",
+    to: "/components/Countdown",
+    imageURL: "/Countdown.png",
+  },
+  {
     title: "Disclosure",
     to: "/components/Disclosure",
     imageURL: "/Disclosure.png",
