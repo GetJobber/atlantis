@@ -107,3 +107,7 @@ pre.root-pre {
   padding: var(--space-large);
   border-radius: var(--radius-base);
 }
+
+section[role="tabpanel"] > div > h1:first-of-type {
+  display: none;
+}

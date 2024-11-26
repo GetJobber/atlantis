@@ -22,6 +22,12 @@ export const componentList = [
     imageURL: "/Button.png",
   },
   {
+    title: "ButtonDismiss",
+    to: "/components/ButtonDismiss",
+    imageURL: "/ButtonDismiss.png",
+    additionalMatches: ["Close", "Dismiss", "Remove"],
+  },
+  {
     title: "Card",
     to: "/components/Card",
     imageURL: "/Card.png",
@@ -36,6 +42,11 @@ export const componentList = [
     to: "/components/Chip",
     imageURL: "/Chip.png",
     additionalMatches: ["Pill", "Badge", "Tag"],
+  },
+  {
+    title: "Countdown",
+    to: "/components/Countdown",
+    imageURL: "/Countdown.png",
   },
   {
     title: "Disclosure",
