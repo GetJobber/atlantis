@@ -22,6 +22,11 @@ export const componentList = [
     imageURL: "/Button.png",
   },
   {
+    title: "Card",
+    to: "/components/Card",
+    imageURL: "/Card.png",
+  },
+  {
     title: "Checkbox",
     to: "/components/Checkbox",
     imageURL: "/Checkbox.png",

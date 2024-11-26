@@ -2,6 +2,7 @@ import AnimatedPresenceContent from "./AnimatedPresence";
 import AnimatedSwitcherContent from "./AnimatedSwitcher";
 import AutoCompleteContent from "./Autocomplete";
 import ButtonContent from "./Button";
+import CardContent from "./Card";
 import ChipContent from "./Chip";
 import CheckboxContent from "./Checkbox";
 import StatusLabelContent from "./StatusLabel";
@@ -21,6 +22,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   Button: {
     ...ButtonContent,
+  },
+  Card: {
+    ...CardContent,
   },
   Checkbox: {
     ...CheckboxContent,
