@@ -8,6 +8,7 @@ import {
   DataList,
   DataListEmptyStateProps,
   DataListItemType,
+  DataListObject,
   DataListSelectedType,
   DataListSorting,
 } from "@jobber/components/DataList";
@@ -53,7 +54,7 @@ const meta: Meta = {
 
 export default meta;
 
-function DataListStoryLayoutMd(data) {
+function DataListStoryLayoutMd<T extends DataListObject>(data: T[]) {
   return (
     <DataList.Layout size="md">
       {(item: DataListItemType<typeof data>) => (
@@ -86,7 +87,7 @@ function DataListStoryLayoutMd(data) {
   );
 }
 
-function DataListStoryLayoutXs(data) {
+function DataListStoryLayoutXs<T extends DataListObject>(data: T[]) {
   return (
     <DataList.Layout size="xs">
       {(item: DataListItemType<typeof data>) => (
