@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Tab, Tabs } from "@jobber/components/Tabs";
+import { InlineLabel } from "@jobber/components/InlineLabel";
+import { Typography } from "@jobber/components/Typography";
+import { Icon } from "@jobber/components/Icon";
+import { StatusIndicator } from "@jobber/components/StatusIndicator";
+import { Flex } from "@jobber/components/Flex";
 
 export default {
   title: "Components/Navigation/Tabs/Web",
@@ -86,9 +91,59 @@ const WithTabChangeCallbackTemplate: ComponentStory<typeof Tabs> = args => {
   );
 };
 
+const WithCustomReactNodeTemplate: ComponentStory<typeof Tabs> = () => {
+  return (
+    <Tabs>
+      <Tab
+        label={
+          <Flex template={["shrink", "shrink"]} gap="small" align="center">
+            <Typography element={"span"} fontWeight={"semiBold"}>
+              Inline Label
+            </Typography>
+            <InlineLabel color="red">{"+99"}</InlineLabel>
+          </Flex>
+        }
+      >
+        Here is an example of using an Inline Label component in the Tab label!
+      </Tab>
+      <Tab
+        label={
+          <Flex
+            template={["shrink", "shrink", "shrink"]}
+            gap="small"
+            align="center"
+          >
+            <Icon name={"happyFace"} />
+            <Typography element={"span"} fontWeight={"semiBold"}>
+              Icons
+            </Typography>
+            <Icon name={"thumbsUp"} />
+          </Flex>
+        }
+      >
+        Here is an example of using some Icon components in the tab label!
+      </Tab>
+      <Tab
+        label={
+          <Flex template={["shrink", "shrink"]} gap="small" align="center">
+            <Typography element={"span"} fontWeight={"semiBold"}>
+              Status Label
+            </Typography>
+            <StatusIndicator status={"informative"} />
+          </Flex>
+        }
+      >
+        Here is an example of using a Status Indicator component in the Tab
+        label!
+      </Tab>
+    </Tabs>
+  );
+};
+
 export const Basic = BasicTemplate.bind({});
 export const WithDefaultTab = WithDefaultTabTemplate.bind({});
 export const WithTabChangeCallback = WithTabChangeCallbackTemplate.bind({});
+export const WithCustomReactNode = WithCustomReactNodeTemplate.bind({});
 
 Basic.args = {
   label: "Eggs",
@@ -101,3 +156,5 @@ WithDefaultTab.args = {
 WithTabChangeCallback.args = {
   defaultTab: 1,
 };
+
+WithCustomReactNode.args = {};

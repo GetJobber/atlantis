@@ -1,5 +1,6 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
+import { InlineLabel } from "@jobber/components/InlineLabel";
 import { Tab, Tabs } from ".";
 
 let count = 0;
@@ -11,6 +12,14 @@ const omelet = (
     </Tab>
     <Tab label="Cheese" onClick={() => count++}>
       <p>🧀</p>
+    </Tab>
+  </Tabs>
+);
+
+const omeletWithReactNodeLabel = (
+  <Tabs>
+    <Tab label={<InlineLabel color="red">{"Bacon"}</InlineLabel>}>
+      <p>Eggs</p>
     </Tab>
   </Tabs>
 );
@@ -27,6 +36,11 @@ const originalScrollWidth = Object.getOwnPropertyDescriptor(
 describe("Tabs", () => {
   it("renders Tabs", () => {
     const { container } = render(omelet);
+    expect(container).toMatchSnapshot();
+  });
+
+  it("displays the label when it is a ReactNode", () => {
+    const { container } = render(omeletWithReactNodeLabel);
     expect(container).toMatchSnapshot();
   });
 
