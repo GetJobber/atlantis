@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.4.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.3.0...@jobber/components@6.4.0) (2024-11-26)
+
+
+### Features
+
+* **components:** Add testID to Divider and dynamically reference size and direction props ([#2137](https://github.com/GetJobber/atlantis/issues/2137)) ([e919357](https://github.com/GetJobber/atlantis/commit/e919357b264538e1922f8c8e0f0c3934d37b6170))
+
+
+
+
+
 # [6.3.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.2.2...@jobber/components@6.3.0) (2024-11-20)
 
 
