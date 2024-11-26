@@ -1,0 +1,18 @@
+.base {
+  --divider-width: var(--border-base);
+}
+
+.large {
+  --divider-width: var(--border-thick);
+  opacity: 0.875;
+}
+
+.larger {
+  --divider-width: var(--border-thicker);
+  opacity: 0.625;
+}
+
+.largest {
+  --divider-width: var(--border-thickest);
+  opacity: 0.375;
+}
