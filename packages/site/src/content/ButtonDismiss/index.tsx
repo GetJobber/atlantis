@@ -11,6 +11,7 @@ export default {
     defaultProps: {},
   },
   title: "ButtonDismiss",
+  description: "",
   links: [
     {
       label: "Storybook",
