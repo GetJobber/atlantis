@@ -4,7 +4,7 @@ import Props from "./Avatar.props.json";
 import { ContentExport } from "../../types/content";
 
 export default {
-  content: Content,
+  content: () => <Content />,
   props: Props,
   component: {
     element: Avatar,
