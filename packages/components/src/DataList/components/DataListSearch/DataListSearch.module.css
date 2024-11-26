@@ -20,11 +20,16 @@
     opacity var(--transition-properties),
     width var(--transition-properties),
     visibility var(--transition-properties);
+
+  @media not (--medium-screens-and-up) {
+    overflow: hidden;
+  }
 }
 
 .searchInputVisible {
   visibility: visible;
   width: calc(100% - var(--button-offset));
+  overflow: visible;
   opacity: 1;
 }
 

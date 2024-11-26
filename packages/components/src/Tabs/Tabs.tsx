@@ -77,8 +77,9 @@ export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
 }
 
 interface TabProps {
-  readonly label: string;
+  readonly label: string | ReactNode;
   readonly children: ReactNode | ReactNode[];
+
   onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
 }
 
@@ -87,7 +88,7 @@ export function Tab({ label }: TabProps) {
 }
 
 interface InternalTabProps {
-  readonly label: string;
+  readonly label: string | ReactNode;
   readonly selected: boolean;
   activateTab(): void;
   onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
@@ -108,16 +109,19 @@ export function InternalTab({
       <button
         type="button"
         role="tab"
-        id={label}
         className={className}
         onClick={event => {
           activateTab();
           onClick(event);
         }}
       >
-        <Typography element="span" size="large" fontWeight="semiBold">
-          {label}
-        </Typography>
+        {typeof label === "string" ? (
+          <Typography element="span" size="large" fontWeight="semiBold">
+            {label}
+          </Typography>
+        ) : (
+          label
+        )}
       </button>
     </li>
   );
