@@ -56,6 +56,12 @@ export const componentList = [
     ],
   },
   {
+    title: "Emphasis",
+    to: "/components/Emphasis",
+    imageURL: "/Emphasis.png",
+    additionalMatches: ["Highlight", "Strong", "Bold", "Italic"],
+  },
+  {
     title: "StatusLabel",
     to: "/components/StatusLabel",
     imageURL: "/StatusLabel.png",

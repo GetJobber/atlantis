@@ -24,7 +24,7 @@ interface GeneratedTag {
 }
 interface GeneratedProp {
   defaultValue: null | object;
-  description: string;
+  description?: string;
   name: string;
   parent: { fileName: string; name: string };
   required: boolean;
