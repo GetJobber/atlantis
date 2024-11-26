@@ -46,6 +46,32 @@
         "type": {
           "name": "boolean"
         }
+      },
+      "onToggle": {
+        "defaultValue": null,
+        "description": "Callback that is called when the disclosure is toggled.",
+        "name": "onToggle",
+        "parent": {
+          "fileName": "../components/src/Disclosure/Disclosure.tsx",
+          "name": "DisclosureProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(newOpened: boolean) => void"
+        }
+      },
+      "open": {
+        "defaultValue": null,
+        "description": "Used to make the disclosure a Controlled Component.",
+        "name": "open",
+        "parent": {
+          "fileName": "../components/src/Disclosure/Disclosure.tsx",
+          "name": "DisclosureProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
       }
     }
   }
