@@ -22,6 +22,12 @@ export const componentList = [
     imageURL: "/Button.png",
   },
   {
+    title: "ButtonDismiss",
+    to: "/components/ButtonDismiss",
+    imageURL: "/ButtonDismiss.png",
+    additionalMatches: ["Close", "Dismiss", "Remove"],
+  },
+  {
     title: "Checkbox",
     to: "/components/Checkbox",
     imageURL: "/Checkbox.png",
