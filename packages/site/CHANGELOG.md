@@ -3,6 +3,95 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.6](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.7.5...@jobber/atlantis-site@0.7.6) (2024-11-27)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.7.5](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.7.4...@jobber/atlantis-site@0.7.5) (2024-11-27)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.7.4](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.7.3...@jobber/atlantis-site@0.7.4) (2024-11-27)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.7.3](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.7.2...@jobber/atlantis-site@0.7.3) (2024-11-27)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.7.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.7.1...@jobber/atlantis-site@0.7.2) (2024-11-27)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.7.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.7.0...@jobber/atlantis-site@0.7.1) (2024-11-27)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+# [0.7.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.5.9...@jobber/atlantis-site@0.7.0) (2024-11-27)
+
+
+### Features
+
+* **docx:** update docs inline table styling [JOB-110350] ([#2146](https://github.com/GetJobber/atlantis/issues/2146)) ([3ce14a0](https://github.com/GetJobber/atlantis/commit/3ce14a0fc5259255612af993c8a45af76551d137))
+
+
+
+
+
+# [0.6.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.5.9...@jobber/atlantis-site@0.6.0) (2024-11-27)
+
+
+### Features
+
+* **docx:** update docs inline table styling [JOB-110350] ([#2146](https://github.com/GetJobber/atlantis/issues/2146)) ([3ce14a0](https://github.com/GetJobber/atlantis/commit/3ce14a0fc5259255612af993c8a45af76551d137))
+
+
+
+
+
+## [0.5.9](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.5.8...@jobber/atlantis-site@0.5.9) (2024-11-26)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.5.8](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.5.7...@jobber/atlantis-site@0.5.8) (2024-11-26)
+
+
+### Bug Fixes
+
+* **docx:** hide duplicate h1s in imported `Stories` content ([#2140](https://github.com/GetJobber/atlantis/issues/2140)) ([7ba481a](https://github.com/GetJobber/atlantis/commit/7ba481a004f8f1ab38749de31ede6088e9cbcbac))
+
+
+
+
+
 ## [0.5.7](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.5.6...@jobber/atlantis-site@0.5.7) (2024-11-26)
 
 **Note:** Version bump only for package @jobber/atlantis-site

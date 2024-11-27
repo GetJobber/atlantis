@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.5.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.4.1...@jobber/components@6.5.0) (2024-11-27)
+
+
+### Features
+
+* **components:** Add customRender to DataList EmptyState ([#2138](https://github.com/GetJobber/atlantis/issues/2138)) ([eb21f8c](https://github.com/GetJobber/atlantis/commit/eb21f8c427dd5d427275eb3856d9a2c4bd017019))
+
+
+
+
+
 ## [6.4.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.4.0...@jobber/components@6.4.1) (2024-11-26)
 
 **Note:** Version bump only for package @jobber/components
