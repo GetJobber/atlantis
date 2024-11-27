@@ -1,0 +1,39 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Heading/Heading.tsx",
+    "description": "",
+    "displayName": "Heading",
+    "methods": [],
+    "props": {
+      "level": {
+        "defaultValue": {
+          "value": 5
+        },
+        "description": "",
+        "name": "level",
+        "parent": {
+          "fileName": "../components/src/Heading/Heading.tsx",
+          "name": "HeadingProps"
+        },
+        "required": false,
+        "type": {
+          "name": "HeadingLevel"
+        }
+      },
+      "element": {
+        "defaultValue": null,
+        "description": "Allows overriding of the element rendered. Defaults to the heading specified with level.",
+        "name": "element",
+        "parent": {
+          "fileName": "../components/src/Heading/Heading.tsx",
+          "name": "HeadingProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\" | \"p\" | \"span\""
+        }
+      }
+    }
+  }
+]
