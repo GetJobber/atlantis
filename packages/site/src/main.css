@@ -37,7 +37,7 @@ a:focus-visible {
 }
 
 a:visited {
-  color: var(--color-text--secondary);
+  color: var(--color-interactive--hover);
 }
 
 custom-elements {
