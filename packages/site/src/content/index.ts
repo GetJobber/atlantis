@@ -1,6 +1,7 @@
 import AnimatedPresenceContent from "./AnimatedPresence";
 import AnimatedSwitcherContent from "./AnimatedSwitcher";
 import AutoCompleteContent from "./Autocomplete";
+import BannerContent from "./Banner";
 import ButtonContent from "./Button";
 import ButtonDismissContent from "./ButtonDismiss";
 import ChipContent from "./Chip";
@@ -9,6 +10,7 @@ import CountdownContent from "./Countdown";
 import StatusLabelContent from "./StatusLabel";
 import SwitchContent from "./Switch";
 import DisclosureContent from "./Disclosure";
+import HeadingContent from "./Heading";
 import { ContentExport } from "../types/content";
 
 export const SiteContent: Record<string, ContentExport> = {
@@ -20,6 +22,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   Autocomplete: {
     ...AutoCompleteContent,
+  },
+  Banner: {
+    ...BannerContent,
   },
   Button: {
     ...ButtonContent,
@@ -44,5 +49,8 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   Disclosure: {
     ...DisclosureContent,
+  },
+  Heading: {
+    ...HeadingContent,
   },
 };

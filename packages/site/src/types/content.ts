@@ -16,7 +16,7 @@ export interface ContentExport {
     >;
   };
   title: string;
-  description: string;
+  description?: string;
   links: ContentExportLinks[];
 }
 interface GeneratedTag {
