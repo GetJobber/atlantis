@@ -12,8 +12,6 @@ export default {
     defaultProps: { label: "Checkbox" },
   },
   title: "Checkbox",
-  description:
-    "A checkbox lets a user select one or more items from a set of options.",
   links: [
     {
       label: "Storybook",
