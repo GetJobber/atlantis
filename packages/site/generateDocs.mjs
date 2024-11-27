@@ -120,6 +120,7 @@ const components = [
   "Emphasis",
   "Link",
   "Heading",
+  "ProgressBar",
   "StatusLabel",
   "Switch",
 ];
