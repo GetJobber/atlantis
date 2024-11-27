@@ -1,4 +1,4 @@
-import { Emphasis, Text } from "@jobber/components";
+import { Emphasis, Heading } from "@jobber/components";
 import EmphasisContent from "@atlantis/docs/components/Emphasis/Emphasis.stories.mdx";
 import Props from "./Emphasis.props.json";
 import { ContentExport } from "../../types/content";
@@ -10,9 +10,9 @@ export default {
     element: Emphasis,
     defaultProps: {
       children: (
-        <Text>
-          To <Emphasis variation="bold">boldly</Emphasis> go…
-        </Text>
+        <Heading level={4}>
+          Save <Emphasis variation="highlight">40%</Emphasis> today
+        </Heading>
       ),
     },
   },

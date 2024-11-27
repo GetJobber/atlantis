@@ -66,7 +66,7 @@ export const componentList = [
     imageURL: "/Emphasis.png",
     additionalMatches: ["Highlight", "Strong", "Bold", "Italic"],
   },
-  {    
+  {
     title: "Heading",
     to: "/components/Heading",
     imageURL: "/Heading.png",
