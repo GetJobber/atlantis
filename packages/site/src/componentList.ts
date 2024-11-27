@@ -44,6 +44,12 @@ export const componentList = [
     additionalMatches: ["Pill", "Badge", "Tag"],
   },
   {
+    title: "Chips",
+    to: "/components/Chips",
+    imageURL: "/Chips.png",
+    additionalMatches: ["Pill", "Badge", "Tag"],
+  },
+  {
     title: "Countdown",
     to: "/components/Countdown",
     imageURL: "/Countdown.png",
@@ -59,6 +65,18 @@ export const componentList = [
       "Toggle",
       "Reveal",
     ],
+  },
+  {
+    title: "Emphasis",
+    to: "/components/Emphasis",
+    imageURL: "/Emphasis.png",
+    additionalMatches: ["Highlight", "Strong", "Bold", "Italic"],
+  },
+  {
+    title: "Heading",
+    to: "/components/Heading",
+    imageURL: "/Heading.png",
+    additionalMatches: ["Title", "Subtitle", "Header"],
   },
   {
     title: "InlineLabel",
@@ -79,12 +97,6 @@ export const componentList = [
     to: "/components/Link",
     imageURL: "/Link.png",
     additionalMatches: ["Anchor", "URL"],
-  },
-  {
-    title: "Heading",
-    to: "/components/Heading",
-    imageURL: "/Heading.png",
-    additionalMatches: ["Title", "Subtitle", "Header"],
   },
   {
     title: "StatusLabel",
