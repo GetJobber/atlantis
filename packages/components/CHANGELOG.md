@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.5.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.5.0...@jobber/components@6.5.1) (2024-11-27)
+
+
+### Bug Fixes
+
+* **components:** Fix SectionHeader Overlap ([#2090](https://github.com/GetJobber/atlantis/issues/2090)) ([ceb61f5](https://github.com/GetJobber/atlantis/commit/ceb61f583fb716461cf5eaced396d52e2d1096a5))
+
+
+
+
+
 # [6.5.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.4.1...@jobber/components@6.5.0) (2024-11-27)
 
 
