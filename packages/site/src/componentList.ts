@@ -61,6 +61,12 @@ export const componentList = [
     ],
   },
   {
+    title: "Heading",
+    to: "/components/Heading",
+    imageURL: "/Heading.png",
+    additionalMatches: ["Title", "Subtitle", "Header"],
+  },
+  {
     title: "StatusLabel",
     to: "/components/StatusLabel",
     imageURL: "/StatusLabel.png",
