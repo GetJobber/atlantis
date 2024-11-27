@@ -116,6 +116,7 @@ const components = [
   "Chip",
   "Countdown",
   "Disclosure",
+  "Icon",
   "StatusLabel",
   "Switch",
 ];
