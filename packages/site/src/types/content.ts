@@ -12,7 +12,7 @@ export interface ContentExport {
     element: unknown;
     defaultProps: Record<
       string,
-      string | boolean | JSX.Element | [] | (() => void)
+      string | boolean | number | JSX.Element | [] | (() => void)
     >;
   };
   title: string;
