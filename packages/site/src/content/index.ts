@@ -11,6 +11,7 @@ import CountdownContent from "./Countdown";
 import DisclosureContent from "./Disclosure";
 import EmphasisContent from "./Emphasis";
 import HeadingContent from "./Heading";
+import IconContent from "./Icon";
 import LinkContent from "./Link";
 import ProgressBarContent from "./ProgressBar";
 import StatusLabelContent from "./StatusLabel";
@@ -56,6 +57,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   Heading: {
     ...HeadingContent,
+  },
+  Icon: {
+    ...IconContent,
   },
   Link: {
     ...LinkContent,
