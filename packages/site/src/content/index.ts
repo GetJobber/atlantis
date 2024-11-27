@@ -5,6 +5,7 @@ import BannerContent from "./Banner";
 import ButtonContent from "./Button";
 import ButtonDismissContent from "./ButtonDismiss";
 import ChipContent from "./Chip";
+import ChipsContent from "./Chips";
 import CheckboxContent from "./Checkbox";
 import CountdownContent from "./Countdown";
 import StatusLabelContent from "./StatusLabel";
@@ -38,6 +39,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   Chip: {
     ...ChipContent,
+  },
+  Chips: {
+    ...ChipsContent,
   },
   Countdown: {
     ...CountdownContent,
