@@ -121,6 +121,7 @@ const components = [
   "Emphasis",
   "Heading",
   "Icon",
+  "InlineLabel",
   "Link",
   "StatusLabel",
   "Switch",

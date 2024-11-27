@@ -4,15 +4,16 @@ import AutoCompleteContent from "./Autocomplete";
 import BannerContent from "./Banner";
 import ButtonContent from "./Button";
 import ButtonDismissContent from "./ButtonDismiss";
+import CheckboxContent from "./Checkbox";
 import CardContent from "./Card";
 import ChipContent from "./Chip";
 import ChipsContent from "./Chips";
-import CheckboxContent from "./Checkbox";
 import CountdownContent from "./Countdown";
 import DisclosureContent from "./Disclosure";
 import EmphasisContent from "./Emphasis";
 import HeadingContent from "./Heading";
 import IconContent from "./Icon";
+import InlineLabelContent from "./InlineLabel";
 import LinkContent from "./Link";
 import StatusLabelContent from "./StatusLabel";
 import SwitchContent from "./Switch";
@@ -63,6 +64,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   Icon: {
     ...IconContent,
+  },
+  InlineLabel: {
+    ...InlineLabelContent,
   },
   Link: {
     ...LinkContent,

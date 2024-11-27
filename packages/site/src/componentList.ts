@@ -89,6 +89,20 @@ export const componentList = [
     imageURL: "/Icon.png",
   },
   {
+    title: "InlineLabel",
+    to: "/components/InlineLabel",
+    imageURL: "/InlineLabel.png",
+    additionalMatches: [
+      "Tag",
+      "Label",
+      "Chip",
+      "Badge",
+      "Pill",
+      "Status Label",
+      "Status",
+    ],
+  },
+  {
     title: "Link",
     to: "/components/Link",
     imageURL: "/Link.png",
