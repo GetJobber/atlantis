@@ -2,5 +2,5 @@
   position: sticky;
   top: 0;
   padding: var(--space-small) var(--space-base);
-  border-bottom: 1px solid var(--color-border--section);
+  border-bottom: var(--border-base) solid var(--color-border--section);
 }
