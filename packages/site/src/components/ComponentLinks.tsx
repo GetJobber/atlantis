@@ -1,4 +1,4 @@
-import { Box, Content, Heading, Link } from "@jobber/components";
+import { Box, Content, Heading, Icon, Link } from "@jobber/components";
 import { ContentExportLinks } from "../types/content";
 
 /**
@@ -12,19 +12,20 @@ export const ComponentLinks = ({
   readonly links?: ContentExportLinks[];
 }) => {
   return (
-    <Content>
-      <Box padding="base" direction="column">
-        <Heading level={2}>Links</Heading>
-        <Box>
+    <Box padding={"base"} gap={"larger"}>
+      <Content>
+        <Heading level={6} element="h2">
+          Links
+        </Heading>
+        <Content spacing="smaller">
           {links?.map((link, index) => (
-            <Box key={index}>
-              <Link key={index} url={link.url}>
-                {link.label}
-              </Link>
-            </Box>
+            <Link key={index} url={link.url} external>
+              <Icon name="link" size="small" color="interactive" />
+              {link.label}
+            </Link>
           ))}
-        </Box>
-      </Box>
-    </Content>
+        </Content>
+      </Content>
+    </Box>
   );
 };

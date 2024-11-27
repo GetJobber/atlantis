@@ -33,45 +33,55 @@ export const ComponentView = () => {
 
   return PageMeta ? (
     <Grid>
-      <Grid.Cell size={{ xs: 12, md: 9 }}>
-        <Page
-          width="fill"
-          title={PageMeta.title}
-          subtitle={PageMeta.description}
+      <Grid.Cell size={{ xs: 12, md: 10 }}>
+        <div
+          style={{
+            background: "var(--color-surface)",
+            borderRadius: "var(--radius-base)",
+            boxShadow: "var(--shadow-base)",
+            padding: "var(--space-base)",
+            margin: "var(--space-base) 0",
+          }}
         >
-          <PageWrapper>
-            <Box>
-              <Content spacing="large">
-                <Box direction="column" gap="small">
-                  {Component && (
-                    <CodePreviewWindow>
-                      <Component {...stateValueWithFunction} />
-                    </CodePreviewWindow>
-                  )}
-                </Box>
-                <span
-                  style={{ "--public-tab--inset": 0 } as React.CSSProperties}
-                >
-                  <Tabs onTabChange={updateStyles}>
-                    <Tab label="Design">
-                      <Content spacing="large">
-                        <ComponentContent />
-                      </Content>
-                    </Tab>
-                    <Tab label="Props">
-                      <PropsList values={stateValues} />
-                    </Tab>
-                    <Tab label="Code">
-                      <CodeViewer code={code} />
-                    </Tab>
-                  </Tabs>
-                </span>
-              </Content>
-            </Box>
-          </PageWrapper>
-        </Page>
+          <Page
+            width="narrow"
+            title={PageMeta.title}
+            subtitle={PageMeta.description}
+          >
+            <PageWrapper>
+              <Box>
+                <Content spacing="large">
+                  <Box direction="column" gap="small">
+                    {Component && (
+                      <CodePreviewWindow>
+                        <Component {...stateValueWithFunction} />
+                      </CodePreviewWindow>
+                    )}
+                  </Box>
+                  <span
+                    style={{ "--public-tab--inset": 0 } as React.CSSProperties}
+                  >
+                    <Tabs onTabChange={updateStyles}>
+                      <Tab label="Design">
+                        <Content spacing="large">
+                          <ComponentContent />
+                        </Content>
+                      </Tab>
+                      <Tab label="Props">
+                        <PropsList values={stateValues} />
+                      </Tab>
+                      <Tab label="Code">
+                        <CodeViewer code={code} />
+                      </Tab>
+                    </Tabs>
+                  </span>
+                </Content>
+              </Box>
+            </PageWrapper>
+          </Page>
+        </div>
       </Grid.Cell>
-      <Grid.Cell size={{ xs: 12, md: 3 }}>
+      <Grid.Cell size={{ xs: 12, md: 2 }}>
         <ComponentLinks links={PageMeta?.links} />
       </Grid.Cell>
     </Grid>

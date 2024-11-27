@@ -13,7 +13,7 @@ export const NavMenu = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <Box width={220} background="surface--background">
+    <Box width={220}>
       <Box height={24} padding="base">
         <Link to="/">
           <JobberLogo />

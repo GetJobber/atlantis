@@ -45,7 +45,7 @@ export const LayoutWrapper = ({ children }: PropsWithChildren) => {
       style={{
         display: "flex",
         height: "100dvh",
-        background: "var(--color-surface)",
+        background: "var(--color-surface--background)",
       }}
     >
       {children}
