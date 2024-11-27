@@ -17,6 +17,7 @@ import InlineLabelContent from "./InlineLabel";
 import LinkContent from "./Link";
 import StatusLabelContent from "./StatusLabel";
 import SwitchContent from "./Switch";
+import AvatarContent from "./Avatar";
 import { ContentExport } from "../types/content";
 
 export const SiteContent: Record<string, ContentExport> = {
@@ -28,6 +29,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   Autocomplete: {
     ...AutoCompleteContent,
+  },
+  Avatar: {
+    ...AvatarContent,
   },
   Banner: {
     ...BannerContent,
