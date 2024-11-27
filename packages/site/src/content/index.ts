@@ -3,6 +3,7 @@ import AnimatedSwitcherContent from "./AnimatedSwitcher";
 import AutoCompleteContent from "./Autocomplete";
 import ButtonContent from "./Button";
 import ChipContent from "./Chip";
+import ChipsContent from "./Chips";
 import CheckboxContent from "./Checkbox";
 import StatusLabelContent from "./StatusLabel";
 import SwitchContent from "./Switch";
@@ -27,6 +28,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   Chip: {
     ...ChipContent,
+  },
+  Chips: {
+    ...ChipsContent,
   },
   StatusLabel: {
     ...StatusLabelContent,
