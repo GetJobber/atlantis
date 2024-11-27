@@ -5,6 +5,7 @@ import ButtonContent from "./Button";
 import ButtonDismissContent from "./ButtonDismiss";
 import ChipContent from "./Chip";
 import CheckboxContent from "./Checkbox";
+import ComboboxContent from "./Combobox";
 import CountdownContent from "./Countdown";
 import StatusLabelContent from "./StatusLabel";
 import SwitchContent from "./Switch";
@@ -32,6 +33,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   Chip: {
     ...ChipContent,
+  },
+  Combobox: {
+    ...ComboboxContent,
   },
   Countdown: {
     ...CountdownContent,
