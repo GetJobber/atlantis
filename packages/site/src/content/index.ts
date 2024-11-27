@@ -4,6 +4,7 @@ import AutoCompleteContent from "./Autocomplete";
 import BannerContent from "./Banner";
 import ButtonContent from "./Button";
 import ButtonDismissContent from "./ButtonDismiss";
+import CardContent from "./Card";
 import ChipContent from "./Chip";
 import ChipsContent from "./Chips";
 import CheckboxContent from "./Checkbox";
@@ -35,6 +36,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   ButtonDismiss: {
     ...ButtonDismissContent,
+  },
+  Card: {
+    ...CardContent,
   },
   Checkbox: {
     ...CheckboxContent,
