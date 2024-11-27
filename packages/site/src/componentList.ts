@@ -56,6 +56,12 @@ export const componentList = [
     ],
   },
   {
+    title: "Link",
+    to: "/components/Link",
+    imageURL: "/Link.png",
+    additionalMatches: ["Anchor", "URL"],
+  },
+  {
     title: "StatusLabel",
     to: "/components/StatusLabel",
     imageURL: "/StatusLabel.png",

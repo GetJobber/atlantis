@@ -108,6 +108,6 @@ pre.root-pre {
   border-radius: var(--radius-base);
 }
 
-section[role="tabpanel"] > div > h1:first-of-type {
+section[role="tabpanel"]>div>h1:first-of-type {
   display: none;
 }
