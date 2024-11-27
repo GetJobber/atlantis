@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.10.3...@jobber/generators@0.11.0) (2024-10-29)
+
+
+### Features
+
+* **docx:** The new Documentation Site. ([#2067](https://github.com/GetJobber/atlantis/issues/2067)) ([00d32fd](https://github.com/GetJobber/atlantis/commit/00d32fd68469acb430296dc5cc13e272ad4a8f4a)), closes [#2079](https://github.com/GetJobber/atlantis/issues/2079)
+
+
+
+
+
 ## [0.10.3](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.10.2...@jobber/generators@0.10.3) (2024-10-16)
 
 **Note:** Version bump only for package @jobber/generators

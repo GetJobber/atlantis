@@ -1,0 +1,39 @@
+{
+  "name": "@jobber/atlantis-site",
+  "private": true,
+  "version": "0.7.4",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "generate": "node generateDocs.mjs",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@jobber/components": "^6.4.1",
+    "@jobber/hooks": "*",
+    "prismjs": "^1.29.0",
+    "react": "18.2.0",
+    "react-element-to-jsx-string": "^15.0.0",
+    "react-router": "5.3.4",
+    "react-router-dom": "5.3.4"
+  },
+  "devDependencies": {
+    "@mdx-js/react": "^3.0.1",
+    "@mdx-js/rollup": "^3.0.1",
+    "@types/prismjs": "^1.26.4",
+    "@types/react": "18.2.0",
+    "@types/react-dom": "18.2.0",
+    "@types/react-router-dom": "^5.3.3",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-refresh": "^0.4.7",
+    "rehype-rewrite": "^4.0.2",
+    "remark-gfm": "^4.0.0",
+    "typescript": "^5.6.3",
+    "vite": "^5.3.1"
+  }
+}

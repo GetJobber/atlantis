@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.75.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.75.0...@jobber/components-native@0.75.1) (2024-11-19)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+# [0.75.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.74.0...@jobber/components-native@0.75.0) (2024-11-15)
+
+
+### Features
+
+* **components-native:** Updated Divider component - added 'vertical' mode and 'testID' prop [JOB-97734] ([#2110](https://github.com/GetJobber/atlantis/issues/2110)) ([a9a9416](https://github.com/GetJobber/atlantis/commit/a9a9416a53587209e6a0a4bd8f7e41f97d65d182))
+
+
+
+
+
+# [0.74.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.73.4...@jobber/components-native@0.74.0) (2024-11-05)
+
+
+### Features
+
+* **components-native:** Add size variation for progress bar ([#2096](https://github.com/GetJobber/atlantis/issues/2096)) ([1e36491](https://github.com/GetJobber/atlantis/commit/1e364912003bcbf18fe80cac5ac6a0c9277b4313))
+
+
+
+
+
 ## [0.73.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.73.2...@jobber/components-native@0.73.3) (2024-10-24)
 
 

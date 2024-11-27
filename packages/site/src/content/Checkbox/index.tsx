@@ -1,0 +1,21 @@
+import { Checkbox } from "@jobber/components";
+import CheckboxContent from "@atlantis/docs/components/Checkbox/Checkbox.stories.mdx";
+import Props from "./Checkbox.props.json";
+import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
+
+export default {
+  content: () => <CheckboxContent />,
+  props: Props,
+  component: {
+    element: Checkbox,
+    defaultProps: { label: "Checkbox" },
+  },
+  title: "Checkbox",
+  links: [
+    {
+      label: "Storybook",
+      url: getStorybookUrl("?path=/docs/components-selections-checkbox--docs"),
+    },
+  ],
+} as const satisfies ContentExport;
