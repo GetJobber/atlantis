@@ -17,6 +17,11 @@ export const componentList = [
     imageURL: "/Autocomplete.png",
   },
   {
+    title: "Banner",
+    to: "/components/Banner",
+    imageURL: "/Banner.png",
+  },
+  {
     title: "Button",
     to: "/components/Button",
     imageURL: "/Button.png",
@@ -60,6 +65,12 @@ export const componentList = [
     to: "/components/Emphasis",
     imageURL: "/Emphasis.png",
     additionalMatches: ["Highlight", "Strong", "Bold", "Italic"],
+  },
+  {    
+    title: "Heading",
+    to: "/components/Heading",
+    imageURL: "/Heading.png",
+    additionalMatches: ["Title", "Subtitle", "Header"],
   },
   {
     title: "StatusLabel",
