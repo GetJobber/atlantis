@@ -18,8 +18,6 @@ export default {
     defaultProps: { label: "Chip!" },
   },
   title: "Chip",
-  description:
-    "Chip allows selections and actions with a robust variety of content and presentation methods.",
   links: [
     {
       label: "Storybook",

@@ -34,11 +34,7 @@ export const ComponentView = () => {
   return PageMeta ? (
     <Grid>
       <Grid.Cell size={{ xs: 12, md: 9 }}>
-        <Page
-          width="fill"
-          title={PageMeta.title}
-          subtitle={PageMeta.description}
-        >
+        <Page width="fill" title={PageMeta.title}>
           <PageWrapper>
             <Box>
               <Content spacing="large">

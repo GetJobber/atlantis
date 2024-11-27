@@ -112,6 +112,7 @@ const components = [
   "Banner",
   "Button",
   "ButtonDismiss",
+  "Card",
   "Checkbox",
   "Chip",
   "Chips",

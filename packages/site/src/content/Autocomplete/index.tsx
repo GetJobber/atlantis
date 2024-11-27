@@ -34,7 +34,6 @@ export default {
     },
   },
   title: "Autocomplete",
-  description: "Autocompletes are a ...",
   links: [
     {
       label: "Storybook",

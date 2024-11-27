@@ -5,6 +5,7 @@ import BannerContent from "./Banner";
 import ButtonContent from "./Button";
 import ButtonDismissContent from "./ButtonDismiss";
 import CheckboxContent from "./Checkbox";
+import CardContent from "./Card";
 import ChipContent from "./Chip";
 import ChipsContent from "./Chips";
 import CountdownContent from "./Countdown";
@@ -37,6 +38,9 @@ export const SiteContent: Record<string, ContentExport> = {
   ButtonDismiss: {
     ...ButtonDismissContent,
   },
+  Card: {
+    ...CardContent,
+  },
   Checkbox: {
     ...CheckboxContent,
   },
@@ -58,9 +62,9 @@ export const SiteContent: Record<string, ContentExport> = {
   Heading: {
     ...HeadingContent,
   },
-   Icon: {
+  Icon: {
     ...IconContent,
-   },
+  },
   InlineLabel: {
     ...InlineLabelContent,
   },

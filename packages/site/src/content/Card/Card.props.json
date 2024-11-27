@@ -1,0 +1,106 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Card/Card.tsx",
+    "description": "",
+    "displayName": "Card",
+    "methods": [],
+    "props": {
+      "url": {
+        "defaultValue": null,
+        "description": "URL that the card would navigate to once clicked.",
+        "name": "url",
+        "parent": {
+          "fileName": "../components/src/Card/Card.tsx",
+          "name": "LinkCardProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "external": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "Makes the URL open in new tab on click.",
+        "name": "external",
+        "parent": {
+          "fileName": "../components/src/Card/Card.tsx",
+          "name": "LinkCardProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "onClick": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onClick",
+        "parent": {
+          "fileName": "../components/src/Card/Card.tsx",
+          "name": "ClickableCardProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>) => void"
+        }
+      },
+      "accent": {
+        "defaultValue": null,
+        "description": "The `accent`, if provided, will effect the color accent at the top of\nthe card.",
+        "name": "accent",
+        "parent": {
+          "fileName": "packages/components/src/Card/types.ts",
+          "name": "CardProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | number | symbol"
+        }
+      },
+      "title": {
+        "defaultValue": null,
+        "description": "@deprecated Use header instead.",
+        "name": "title",
+        "parent": {
+          "fileName": "packages/components/src/Card/types.ts",
+          "name": "CardProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "header": {
+        "defaultValue": null,
+        "description": "The header props of the card.",
+        "name": "header",
+        "parent": {
+          "fileName": "packages/components/src/Card/types.ts",
+          "name": "CardProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | HeaderActionProps | ReactElement<any, string | JSXElementConstructor<any>>"
+        }
+      },
+      "elevation": {
+        "defaultValue": {
+          "value": "none"
+        },
+        "description": "",
+        "name": "elevation",
+        "parent": {
+          "fileName": "packages/components/src/Card/types.ts",
+          "name": "CardProps"
+        },
+        "required": false,
+        "type": {
+          "name": "elevationProp"
+        }
+      }
+    }
+  }
+]

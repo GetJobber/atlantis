@@ -33,6 +33,11 @@ export const componentList = [
     additionalMatches: ["Close", "Dismiss", "Remove"],
   },
   {
+    title: "Card",
+    to: "/components/Card",
+    imageURL: "/Card.png",
+  },
+  {
     title: "Checkbox",
     to: "/components/Checkbox",
     imageURL: "/Checkbox.png",

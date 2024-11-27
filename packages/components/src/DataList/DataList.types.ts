@@ -241,6 +241,16 @@ export interface DataListEmptyStateProps {
    * to the DataList component.
    */
   readonly type?: "filtered" | "empty";
+
+  /**
+   * Custom render function for the empty state.
+   *
+   * If provided, this function will be used to render the empty state instead
+   * of the default rendering logic.
+   */
+  readonly customRender?: (
+    emptyState: Omit<DataListEmptyStateProps, "customRender">,
+  ) => ReactNode;
 }
 
 export interface DataListContextProps<T extends DataListObject>
