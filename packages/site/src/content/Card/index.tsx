@@ -1,13 +1,13 @@
-import { Card as CardRoot, Content, Text } from "@jobber/components";
+import { Card as CardRoot, Content, Heading, Text } from "@jobber/components";
 import CardContent from "@atlantis/docs/components/Card/Card.stories.mdx";
-import { PropsWithChildren } from "react";
 import Props from "./Card.props.json";
 import { ContentExport } from "../../types/content";
 
-export const Card = (props: PropsWithChildren) => {
+export const Card = () => {
   return (
-    <CardRoot {...props}>
+    <CardRoot>
       <Content>
+        <Heading level={4}>The Jobber App</Heading>
         <Text>
           Stay connected with your team in the field when you put the Jobber app
           in their hands.
@@ -22,7 +22,7 @@ export default {
   props: Props,
   component: {
     element: Card,
-    defaultProps: { header: { title: "The Jobber App" } },
+    defaultProps: {},
   },
   title: "Card",
   links: [
