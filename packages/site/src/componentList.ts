@@ -73,16 +73,21 @@ export const componentList = [
     additionalMatches: ["Highlight", "Strong", "Bold", "Italic"],
   },
   {
-    title: "Link",
-    to: "/components/Link",
-    imageURL: "/Link.png",
-    additionalMatches: ["Anchor", "URL"],
-  },
-  {
     title: "Heading",
     to: "/components/Heading",
     imageURL: "/Heading.png",
     additionalMatches: ["Title", "Subtitle", "Header"],
+  },
+  {
+    title: "Icon",
+    to: "/components/Icon",
+    imageURL: "/Icon.png",
+  },
+  {
+    title: "Link",
+    to: "/components/Link",
+    imageURL: "/Link.png",
+    additionalMatches: ["Anchor", "URL"],
   },
   {
     title: "StatusLabel",
