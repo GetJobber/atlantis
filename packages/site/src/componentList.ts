@@ -17,6 +17,11 @@ export const componentList = [
     imageURL: "/Autocomplete.png",
   },
   {
+    title: "Banner",
+    to: "/components/Banner",
+    imageURL: "/Banner.png",
+  },
+  {
     title: "Button",
     to: "/components/Button",
     imageURL: "/Button.png",

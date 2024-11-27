@@ -1,6 +1,7 @@
 import AnimatedPresenceContent from "./AnimatedPresence";
 import AnimatedSwitcherContent from "./AnimatedSwitcher";
 import AutoCompleteContent from "./Autocomplete";
+import BannerContent from "./Banner";
 import ButtonContent from "./Button";
 import ButtonDismissContent from "./ButtonDismiss";
 import ChipContent from "./Chip";
@@ -20,6 +21,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   Autocomplete: {
     ...AutoCompleteContent,
+  },
+  Banner: {
+    ...BannerContent,
   },
   Button: {
     ...ButtonContent,
