@@ -117,6 +117,7 @@ const components = [
   "Countdown",
   "Disclosure",
   "Emphasis",
+  "Link",
   "Heading",
   "StatusLabel",
   "Switch",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.5.9...@jobber/atlantis-site@0.6.0) (2024-11-27)
+
+
+### Features
+
+* **docx:** update docs inline table styling [JOB-110350] ([#2146](https://github.com/GetJobber/atlantis/issues/2146)) ([3ce14a0](https://github.com/GetJobber/atlantis/commit/3ce14a0fc5259255612af993c8a45af76551d137))
+
+
+
+
+
 ## [0.5.9](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.5.8...@jobber/atlantis-site@0.5.9) (2024-11-26)
 
 **Note:** Version bump only for package @jobber/atlantis-site
