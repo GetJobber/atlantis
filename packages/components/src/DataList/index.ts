@@ -6,4 +6,5 @@ export {
   DataListSortable,
   DataListSelectedType,
   DataListSelectedAllType,
+  DataListEmptyStateProps,
 } from "./DataList.types";
