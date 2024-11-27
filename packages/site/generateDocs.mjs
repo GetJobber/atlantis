@@ -119,6 +119,7 @@ const components = [
   "Disclosure",
   "Emphasis",
   "Heading",
+  "Icon",
   "InlineLabel",
   "Link",
   "StatusLabel",

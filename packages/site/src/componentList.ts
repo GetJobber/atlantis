@@ -79,6 +79,11 @@ export const componentList = [
     additionalMatches: ["Title", "Subtitle", "Header"],
   },
   {
+    title: "Icon",
+    to: "/components/Icon",
+    imageURL: "/Icon.png",
+  },
+  {
     title: "InlineLabel",
     to: "/components/InlineLabel",
     imageURL: "/InlineLabel.png",
