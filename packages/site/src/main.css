@@ -40,51 +40,53 @@ a:visited {
   color: var(--color-text--secondary);
 }
 
-custom-elements {
+custom-elements,
+section[role="tabpanel"] {
   & table {
-    font-size: 16px;
-    margin: 0;
+    min-width: 66%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-overflow-scrolling: touch;
-    margin: 16px 0;
-    margin-bottom: 16px;
-    font-size: 14px;
+    margin: var(--space-large) auto;
+    font-size: var(--typography--fontSize-base);
     line-height: 24px;
     padding: 0;
     border-collapse: collapse;
+    box-shadow: var(--shadow-low);
+    border-radius: var(--radius-base);
+    overflow: hidden;
   }
 
   & thead {
-
-    font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size: 14px;
+    font-size: var(--typography--fontSize-base);
     line-height: 24px;
+    text-align: start;
+    background-color: var(--color-surface--background);
   }
 
   & tr {
-    border-top: 1px solid var(--color-border);
+    border-top: none;
     margin: 0;
     padding: 0;
   }
 
   & tr th {
-
+    text-align: inherit;
     font-weight: bold;
     color: var(--color-text);
-    border: 1px solid var(--color-border);
+    border: none;
     margin: 0;
-    padding: 6px 13px;
+    padding: var(--space-base);
   }
 
   & tr td {
-    border: 1px solid var(--color-border);
+    border: none;
     color: var(--color-text);
     margin: 0;
-    padding: 6px 13px;
+    padding: var(--space-base);
   }
 
 }
@@ -106,4 +108,8 @@ pre.root-pre {
   background: var(--color-surface--background);
   padding: var(--space-large);
   border-radius: var(--radius-base);
+}
+
+section[role="tabpanel"] > div > h1:first-of-type {
+  display: none;
 }
