@@ -7,10 +7,11 @@ import ButtonDismissContent from "./ButtonDismiss";
 import ChipContent from "./Chip";
 import CheckboxContent from "./Checkbox";
 import CountdownContent from "./Countdown";
+import DisclosureContent from "./Disclosure";
+import InlineLabelContent from "./InlineLabel";
+import LinkContent from "./Link";
 import StatusLabelContent from "./StatusLabel";
 import SwitchContent from "./Switch";
-import DisclosureContent from "./Disclosure";
-import LinkContent from "./Link";
 import HeadingContent from "./Heading";
 import { ContentExport } from "../types/content";
 
@@ -42,6 +43,15 @@ export const SiteContent: Record<string, ContentExport> = {
   Countdown: {
     ...CountdownContent,
   },
+  Disclosure: {
+    ...DisclosureContent,
+  },
+  Heading: {
+    ...HeadingContent,
+  },
+  InlineLabel: {
+    ...InlineLabelContent,
+  },
   Link: {
     ...LinkContent,
   },
@@ -50,11 +60,5 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   Switch: {
     ...SwitchContent,
-  },
-  Disclosure: {
-    ...DisclosureContent,
-  },
-  Heading: {
-    ...HeadingContent,
   },
 };
