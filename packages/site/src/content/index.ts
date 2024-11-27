@@ -53,7 +53,7 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   Emphasis: {
     ...EmphasisContent,
-  },  
+  },
   Heading: {
     ...HeadingContent,
   },
