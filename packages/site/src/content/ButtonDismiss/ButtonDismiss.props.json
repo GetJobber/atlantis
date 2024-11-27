@@ -1,0 +1,37 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/ButtonDismiss/ButtonDismiss.tsx",
+    "description": "",
+    "displayName": "ButtonDismiss",
+    "methods": [],
+    "props": {
+      "onClick": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onClick",
+        "parent": {
+          "fileName": "../components/src/ButtonDismiss/ButtonDismiss.tsx",
+          "name": "ButtonDismissProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void"
+        }
+      },
+      "ariaLabel": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ariaLabel",
+        "parent": {
+          "fileName": "../components/src/ButtonDismiss/ButtonDismiss.tsx",
+          "name": "ButtonDismissProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  }
+]

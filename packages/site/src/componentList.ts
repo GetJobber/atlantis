@@ -17,9 +17,20 @@ export const componentList = [
     imageURL: "/Autocomplete.png",
   },
   {
+    title: "Banner",
+    to: "/components/Banner",
+    imageURL: "/Banner.png",
+  },
+  {
     title: "Button",
     to: "/components/Button",
     imageURL: "/Button.png",
+  },
+  {
+    title: "ButtonDismiss",
+    to: "/components/ButtonDismiss",
+    imageURL: "/ButtonDismiss.png",
+    additionalMatches: ["Close", "Dismiss", "Remove"],
   },
   {
     title: "Checkbox",
@@ -33,6 +44,17 @@ export const componentList = [
     additionalMatches: ["Pill", "Badge", "Tag"],
   },
   {
+    title: "Chips",
+    to: "/components/Chips",
+    imageURL: "/Chips.png",
+    additionalMatches: ["Pill", "Badge", "Tag"],
+  },
+  {
+    title: "Countdown",
+    to: "/components/Countdown",
+    imageURL: "/Countdown.png",
+  },
+  {
     title: "Disclosure",
     to: "/components/Disclosure",
     imageURL: "/Disclosure.png",
@@ -43,6 +65,29 @@ export const componentList = [
       "Toggle",
       "Reveal",
     ],
+  },
+  {
+    title: "Emphasis",
+    to: "/components/Emphasis",
+    imageURL: "/Emphasis.png",
+    additionalMatches: ["Highlight", "Strong", "Bold", "Italic"],
+  },
+  {
+    title: "Heading",
+    to: "/components/Heading",
+    imageURL: "/Heading.png",
+    additionalMatches: ["Title", "Subtitle", "Header"],
+  },
+  {
+    title: "Icon",
+    to: "/components/Icon",
+    imageURL: "/Icon.png",
+  },
+  {
+    title: "Link",
+    to: "/components/Link",
+    imageURL: "/Link.png",
+    additionalMatches: ["Anchor", "URL"],
   },
   {
     title: "StatusLabel",

@@ -12,7 +12,6 @@ export default {
     defaultProps: { label: "StatusLabel!" },
   },
   title: "StatusLabel",
-  description: "StatusLabel is neater.",
   links: [
     {
       label: "StatusLabel Storybook",

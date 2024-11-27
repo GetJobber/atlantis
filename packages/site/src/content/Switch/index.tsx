@@ -12,7 +12,6 @@ export default {
     defaultProps: {},
   },
   title: "Switch",
-  description: "Switch is cool too I guess",
   links: [
     {
       label: "Switch Storybook",

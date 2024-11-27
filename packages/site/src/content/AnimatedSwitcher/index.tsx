@@ -18,7 +18,6 @@ export default {
     },
   },
   title: "AnimatedSwitcher",
-  description: "AnimatedSwitchers are a ...",
   links: [
     {
       label: "Storybook",
