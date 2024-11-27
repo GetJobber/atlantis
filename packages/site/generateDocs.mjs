@@ -114,9 +114,13 @@ const components = [
   "ButtonDismiss",
   "Checkbox",
   "Chip",
+  "Chips",
   "Countdown",
   "Disclosure",
+  "Emphasis",
+  "Heading",
   "Icon",
+  "Link",
   "StatusLabel",
   "Switch",
 ];
