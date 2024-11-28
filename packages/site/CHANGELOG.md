@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.8.0...@jobber/atlantis-site@0.8.1) (2024-11-28)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+# [0.8.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.7.7...@jobber/atlantis-site@0.8.0) (2024-11-28)
+
+
+### Features
+
+* **components:** DataList to Docs ([#2156](https://github.com/GetJobber/atlantis/issues/2156)) ([c8675b0](https://github.com/GetJobber/atlantis/commit/c8675b0aa14a746a59e3eaf461821ff0ac18e6d5))
+
+
+
+
+
 ## [0.7.8](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.7.7...@jobber/atlantis-site@0.7.8) (2024-11-28)
 
 **Note:** Version bump only for package @jobber/atlantis-site
