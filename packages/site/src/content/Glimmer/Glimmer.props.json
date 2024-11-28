@@ -1,10 +1,8 @@
 [
   {
-    "tags": {
-      "experimental": ""
-    },
+    "tags": {},
     "filePath": "../components/src/Glimmer/Glimmer.tsx",
-    "description": "**Experimental component! Use at your own risk.**\n\nFoundational component used to build loading states such as Skeleton UI",
+    "description": "",
     "displayName": "Glimmer",
     "methods": [],
     "props": {
