@@ -1,6 +1,9 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import pickBy from "lodash/pickBy";
+import { FormProvider, useForm } from "react-hook-form";
+import isEmpty from "lodash/isEmpty";
 import { AnyOption, Autocomplete } from ".";
 import { InputTextRef } from "../InputText";
 
@@ -286,3 +289,144 @@ describe("Autocomplete", () => {
     expect(scrollIntoViewMock).toHaveBeenCalled();
   });
 });
+
+it("should support uncontrolled inputs", async () => {
+  render(
+    <Autocomplete
+      initialOptions={options}
+      getOptions={returnOptions(options)}
+      placeholder="placeholder_name"
+    />,
+  );
+  await userEvent.click(screen.getByRole("textbox"));
+  await userEvent.keyboard("{ArrowDown}{Enter}");
+  expect(screen.getByRole("textbox")).toHaveValue(options[1].label);
+});
+
+describe("react-hook-form support", () => {
+  describe("with named inputs", () => {
+    it("should update the form state when the value changes", async () => {
+      const { mockOnSubmit, mockOnError } = await renderWithForm();
+      const detailsInput = screen.getByRole("textbox", {
+        name: "Details Value",
+      });
+      await userEvent.click(detailsInput);
+      await userEvent.keyboard("new value");
+
+      await userEvent.click(screen.getByRole("button", { name: "Submit" }));
+      expect(mockOnError).not.toHaveBeenCalled();
+
+      expect(mockOnSubmit).toHaveBeenCalledWith(
+        expect.objectContaining({
+          detailsValue: { label: "new value" },
+        }),
+      );
+    });
+  });
+  describe("with unnamed inputs", () => {
+    it("should update the form state when the value changes", async () => {
+      const mockOnSubmit = jest.fn();
+      const mockOnError = jest.fn();
+      render(
+        <WithFormTemplate onSubmit={mockOnSubmit} onError={mockOnError} />,
+      );
+      const sectionInput = screen.getByLabelText("Unnamed Input");
+
+      await userEvent.click(sectionInput);
+      await userEvent.keyboard("{ArrowDown}{Enter}");
+
+      await userEvent.click(screen.getByRole("button", { name: "Submit" }));
+      expect(mockOnError).not.toHaveBeenCalled();
+      const lastMockOnSubmitCall = mockOnSubmit.mock.calls[0];
+      const unnamedInputValue = pickBy(
+        lastMockOnSubmitCall[0],
+        value => value.label === headingOptions[1].options[0].label,
+      );
+      expect(isEmpty(unnamedInputValue)).toBe(false);
+    });
+  });
+  it("should call onChange when the value changes", async () => {
+    const { mockOnError } = await renderWithForm(true);
+
+    await userEvent.click(screen.getByRole("button", { name: "Submit" }));
+    expect(mockOnError).toHaveBeenCalled();
+    const errorMessages = screen.getAllByText("This value is required");
+    expect(errorMessages).toHaveLength(2);
+  });
+});
+
+async function renderWithForm(enabledValidations = false) {
+  const mockOnSubmit = jest.fn();
+  const mockOnError = jest.fn();
+  render(
+    <WithFormTemplate
+      onSubmit={mockOnSubmit}
+      onError={mockOnError}
+      enableValidations={enabledValidations}
+    />,
+  );
+
+  return { mockOnSubmit, mockOnError };
+}
+
+function WithFormTemplate({
+  onSubmit,
+  onError,
+  enableValidations = false,
+}: {
+  readonly onSubmit: (data: unknown) => void;
+  readonly onError: (data: unknown) => void;
+  readonly enableValidations?: boolean;
+}) {
+  function getSectionOptions(text: string) {
+    if (text === "") {
+      return headingOptions;
+    }
+    const filterRegex = new RegExp(text, "i");
+
+    return headingOptions.map(section => ({
+      ...section,
+      options: section?.options?.filter(option =>
+        option.label.match(filterRegex),
+      ),
+    }));
+  }
+
+  function getOptions(text: string) {
+    if (text === "") {
+      return options;
+    }
+    const filterRegex = new RegExp(text, "i");
+
+    return options.filter(option => option.label.match(filterRegex));
+  }
+  const form = useForm();
+
+  const { handleSubmit } = form;
+  const validations = enableValidations
+    ? { required: { message: "This value is required", value: true } }
+    : undefined;
+
+  return (
+    <FormProvider {...form}>
+      <form onSubmit={handleSubmit(data => onSubmit(data), onError)}>
+        <Autocomplete
+          placeholder="Unnamed Input"
+          initialOptions={headingOptions}
+          defaultValue={headingOptions[0].options[0]}
+          getOptions={getSectionOptions}
+          validations={validations}
+        />
+        <Autocomplete
+          placeholder="Details Value"
+          name="detailsValue"
+          validations={validations}
+          getOptions={getOptions}
+          initialOptions={options}
+        />
+
+        <button type="submit">Submit</button>
+      </form>
+    </FormProvider>
+  );
+}

@@ -8,16 +8,19 @@ import React, {
 } from "react";
 import styles from "./Autocomplete.module.css";
 import { Menu } from "./Menu";
+import { AnyOption, Option } from "./Option";
 import {
   AutocompleteInternalProps,
   AutocompleteProps,
 } from "./Autocomplete.types";
+import { useMenuFormField } from "./useMenuFormField";
 import { InputText, InputTextRef } from "../InputText";
 import { useDebounce } from "../utils/useDebounce";
 
 // Max statements increased to make room for the debounce functions
 /* eslint max-statements: ["error", 14] */
-function AutocompleteInternal(
+// eslint-disable-next-line max-statements
+const AutocompleteInternal = forwardRef(function AutocompleteInternal(
   {
     initialOptions = [],
     value,
@@ -30,8 +33,11 @@ function AutocompleteInternal(
     onBlur,
     onFocus,
     validations,
+    defaultValue,
+    name,
+    id,
     ...inputProps
-  }: AutocompleteProps,
+  }: AutocompleteInternalProps,
   ref: Ref<InputTextRef>,
 ) {
   const [options, setOptions] = useState(initialOptions);
@@ -39,6 +45,14 @@ function AutocompleteInternal(
   const [inputText, setInputText] = useState(value?.label ?? "");
   const autocompleteRef = useRef(null);
   const delayedSearch = useDebounce(updateSearch, debounceRate);
+
+  const { onControllerChange } = useMenuFormField({
+    nameProp: name,
+    id,
+    value: value,
+    defaultValue: defaultValue,
+    onChangeProp: onChange,
+  });
 
   useEffect(() => {
     delayedSearch();
@@ -91,8 +105,9 @@ function AutocompleteInternal(
   }
 
   function handleMenuChange(chosenOption: Option) {
-    onChange(chosenOption);
+    onChange?.(chosenOption);
     updateInput(chosenOption.label);
+    onControllerChange(chosenOption);
     setMenuVisible(false);
   }
 
@@ -100,7 +115,8 @@ function AutocompleteInternal(
     updateInput(newText);
 
     if (allowFreeForm) {
-      onChange({ label: newText });
+      onControllerChange({ label: newText });
+      onChange?.({ label: newText });
     }
   }
 
@@ -109,7 +125,7 @@ function AutocompleteInternal(
 
     if (value == undefined || value.label !== inputText) {
       setInputText("");
-      onChange(undefined);
+      onChange?.(undefined);
     }
     onBlur && onBlur();
   }
@@ -121,7 +137,7 @@ function AutocompleteInternal(
       onFocus();
     }
   }
-}
+});
 
 function mapToOptions(items: AnyOption[]) {
   return items.reduce(function (result: AnyOption[], item) {
@@ -135,4 +151,11 @@ function mapToOptions(items: AnyOption[]) {
   }, []);
 }
 
-export const Autocomplete = forwardRef(AutocompleteInternal);
+export const Autocomplete = forwardRef(function Autocomplete(
+  props: AutocompleteProps,
+  ref: Ref<InputTextRef>,
+) {
+  const id = useId();
+
+  return <AutocompleteInternal {...props} ref={ref} id={id} />;
+});
