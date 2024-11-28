@@ -120,6 +120,7 @@ const components = [
   "Countdown",
   "Disclosure",
   "Emphasis",
+  "Glimmer",
   "Heading",
   "Icon",
   "InlineLabel",

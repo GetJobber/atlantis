@@ -11,6 +11,7 @@ import ChipsContent from "./Chips";
 import CountdownContent from "./Countdown";
 import DisclosureContent from "./Disclosure";
 import EmphasisContent from "./Emphasis";
+import GlimmerContent from "./Glimmer";
 import HeadingContent from "./Heading";
 import IconContent from "./Icon";
 import InlineLabelContent from "./InlineLabel";
@@ -63,6 +64,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   Emphasis: {
     ...EmphasisContent,
+  },
+  Glimmer: {
+    ...GlimmerContent,
   },
   Heading: {
     ...HeadingContent,
