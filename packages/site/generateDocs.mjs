@@ -128,6 +128,7 @@ const components = [
   "InlineLabel",
   "Link",
   "ProgressBar",
+  "StatusIndicator",
   "StatusLabel",
   "Switch",
 ];

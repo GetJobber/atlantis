@@ -135,6 +135,11 @@ export const componentList = [
     additionalMatches: ["Progress", "Loader"],
   },
   {
+    title: "StatusIndicator",
+    to: "/components/StatusIndicator",
+    imageURL: "/StatusIndicator.png",
+  },
+  {
     title: "StatusLabel",
     to: "/components/StatusLabel",
     imageURL: "/StatusLabel.png",
