@@ -15,6 +15,7 @@ import HeadingContent from "./Heading";
 import IconContent from "./Icon";
 import InlineLabelContent from "./InlineLabel";
 import LinkContent from "./Link";
+import ProgressBarContent from "./ProgressBar";
 import StatusLabelContent from "./StatusLabel";
 import SwitchContent from "./Switch";
 import AvatarContent from "./Avatar";
@@ -74,6 +75,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   Link: {
     ...LinkContent,
+  },
+  ProgressBar: {
+    ...ProgressBarContent,
   },
   StatusLabel: {
     ...StatusLabelContent,
