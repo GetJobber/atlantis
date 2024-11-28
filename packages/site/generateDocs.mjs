@@ -120,6 +120,7 @@ const components = [
   "Countdown",
   "Disclosure",
   "Emphasis",
+  "FormatDate",
   "Heading",
   "Icon",
   "InlineLabel",

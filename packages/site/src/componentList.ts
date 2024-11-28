@@ -83,6 +83,11 @@ export const componentList = [
     additionalMatches: ["Highlight", "Strong", "Bold", "Italic"],
   },
   {
+    title: "FormatDate",
+    to: "/components/FormatDate",
+    imageURL: "/FormatDate.png",
+  },
+  {
     title: "Heading",
     to: "/components/Heading",
     imageURL: "/Heading.png",
