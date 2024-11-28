@@ -121,6 +121,7 @@ const components = [
   "DataList",
   "Disclosure",
   "Emphasis",
+  "FormatDate",
   "Heading",
   "Icon",
   "InlineLabel",
