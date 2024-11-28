@@ -12,6 +12,7 @@ import CountdownContent from "./Countdown";
 import DataListContent from "./DataList";
 import DisclosureContent from "./Disclosure";
 import EmphasisContent from "./Emphasis";
+import FormatDateContent from "./FormatDate";
 import HeadingContent from "./Heading";
 import IconContent from "./Icon";
 import InlineLabelContent from "./InlineLabel";
@@ -67,6 +68,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   Emphasis: {
     ...EmphasisContent,
+  },
+  FormatDate: {
+    ...FormatDateContent,
   },
   Heading: {
     ...HeadingContent,
