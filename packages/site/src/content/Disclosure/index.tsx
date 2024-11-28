@@ -12,7 +12,6 @@ export default {
     defaultProps: { title: "Disclosure" },
   },
   title: "Disclosure",
-  description: "Disclosure is neater.",
   links: [
     {
       label: "Disclosure Storybook",

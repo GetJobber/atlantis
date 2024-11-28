@@ -53,7 +53,6 @@ export default {
     },
   },
   title: "AnimatedPresence",
-  description: "AnimatedPresences are a ...",
   links: [
     {
       label: "Storybook",

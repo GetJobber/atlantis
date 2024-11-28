@@ -17,6 +17,16 @@ export const componentList = [
     imageURL: "/Autocomplete.png",
   },
   {
+    title: "Avatar",
+    to: "/components/Avatar",
+    imageURL: "/Avatar.png",
+  },
+  {
+    title: "Banner",
+    to: "/components/Banner",
+    imageURL: "/Banner.png",
+  },
+  {
     title: "Button",
     to: "/components/Button",
     imageURL: "/Button.png",
@@ -26,6 +36,11 @@ export const componentList = [
     to: "/components/ButtonDismiss",
     imageURL: "/ButtonDismiss.png",
     additionalMatches: ["Close", "Dismiss", "Remove"],
+  },
+  {
+    title: "Card",
+    to: "/components/Card",
+    imageURL: "/Card.png",
   },
   {
     title: "Checkbox",
@@ -39,6 +54,12 @@ export const componentList = [
     additionalMatches: ["Pill", "Badge", "Tag"],
   },
   {
+    title: "Chips",
+    to: "/components/Chips",
+    imageURL: "/Chips.png",
+    additionalMatches: ["Pill", "Badge", "Tag"],
+  },
+  {
     title: "Combobox",
     to: "/components/Combobox",
     imageURL: "/Combobox.png",
@@ -47,6 +68,16 @@ export const componentList = [
     title: "Countdown",
     to: "/components/Countdown",
     imageURL: "/Countdown.png",
+  },
+  {
+    title: "DataDump",
+    to: "/components/DataDump",
+    imageURL: "/DataDump.png",
+  },
+  {
+    title: "DataList",
+    to: "/components/DataList",
+    imageURL: "/DataList.png",
   },
   {
     title: "Disclosure",
@@ -59,6 +90,59 @@ export const componentList = [
       "Toggle",
       "Reveal",
     ],
+  },
+  {
+    title: "Emphasis",
+    to: "/components/Emphasis",
+    imageURL: "/Emphasis.png",
+    additionalMatches: ["Highlight", "Strong", "Bold", "Italic"],
+  },
+  {
+    title: "FormatDate",
+    to: "/components/FormatDate",
+    imageURL: "/FormatDate.png",
+  },
+  {
+    title: "Heading",
+    to: "/components/Heading",
+    imageURL: "/Heading.png",
+    additionalMatches: ["Title", "Subtitle", "Header"],
+  },
+  {
+    title: "Icon",
+    to: "/components/Icon",
+    imageURL: "/Icon.png",
+  },
+  {
+    title: "InlineLabel",
+    to: "/components/InlineLabel",
+    imageURL: "/InlineLabel.png",
+    additionalMatches: [
+      "Tag",
+      "Label",
+      "Chip",
+      "Badge",
+      "Pill",
+      "Status Label",
+      "Status",
+    ],
+  },
+  {
+    title: "Link",
+    to: "/components/Link",
+    imageURL: "/Link.png",
+    additionalMatches: ["Anchor", "URL"],
+  },
+  {
+    title: "ProgressBar",
+    to: "/components/ProgressBar",
+    imageURL: "/ProgressBar.png",
+    additionalMatches: ["Progress", "Loader"],
+  },
+  {
+    title: "StatusIndicator",
+    to: "/components/StatusIndicator",
+    imageURL: "/StatusIndicator.png",
   },
   {
     title: "StatusLabel",

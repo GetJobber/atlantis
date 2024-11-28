@@ -12,11 +12,11 @@ export interface ContentExport {
     element: unknown;
     defaultProps: Record<
       string,
-      string | boolean | JSX.Element | [] | (() => void)
+      string | boolean | number | JSX.Element | [] | (() => void)
     >;
   };
   title: string;
-  description: string;
+  description?: string;
   links: ContentExportLinks[];
 }
 interface GeneratedTag {
@@ -24,7 +24,7 @@ interface GeneratedTag {
 }
 interface GeneratedProp {
   defaultValue: null | object;
-  description: string;
+  description?: string;
   name: string;
   parent: { fileName: string; name: string };
   required: boolean;

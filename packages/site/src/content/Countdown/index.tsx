@@ -15,7 +15,6 @@ export default {
     },
   },
   title: "Countdown",
-  description: "",
   links: [
     {
       label: "Storybook",
