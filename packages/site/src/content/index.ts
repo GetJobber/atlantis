@@ -9,6 +9,7 @@ import CardContent from "./Card";
 import ChipContent from "./Chip";
 import ChipsContent from "./Chips";
 import CountdownContent from "./Countdown";
+import DataDumpContent from "./DataDump";
 import DataListContent from "./DataList";
 import DisclosureContent from "./Disclosure";
 import EmphasisContent from "./Emphasis";
@@ -59,6 +60,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   Countdown: {
     ...CountdownContent,
+  },
+  DataDump: {
+    ...DataDumpContent,
   },
   DataList: {
     ...DataListContent,

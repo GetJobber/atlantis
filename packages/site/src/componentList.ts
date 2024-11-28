@@ -65,6 +65,11 @@ export const componentList = [
     imageURL: "/Countdown.png",
   },
   {
+    title: "DataDump",
+    to: "/components/DataDump",
+    imageURL: "/DataDump.png",
+  },
+  {
     title: "DataList",
     to: "/components/DataList",
     imageURL: "/DataList.png",
