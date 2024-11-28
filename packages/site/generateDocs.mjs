@@ -118,6 +118,7 @@ const components = [
   "Chip",
   "Chips",
   "Countdown",
+  "DataList",
   "Disclosure",
   "Emphasis",
   "Heading",
