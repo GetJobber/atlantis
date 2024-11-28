@@ -18,6 +18,7 @@ export interface AutocompleteProps
     | "size"
     | "suffix"
     | "validations"
+    | "onValidation"
   > {
   /**
    * @deprecated

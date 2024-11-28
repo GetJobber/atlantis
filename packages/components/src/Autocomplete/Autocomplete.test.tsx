@@ -306,7 +306,7 @@ it("should support uncontrolled inputs", async () => {
 describe("react-hook-form support", () => {
   describe("with named inputs", () => {
     it("should update the form state when the value changes", async () => {
-      const { mockOnSubmit, mockOnError } = await renderWithForm();
+      const { mockOnSubmit, mockOnError } = await renderAutocompleteForm();
       const detailsInput = screen.getByRole("textbox", {
         name: "Details Value",
       });
@@ -323,13 +323,10 @@ describe("react-hook-form support", () => {
       );
     });
   });
+
   describe("with unnamed inputs", () => {
     it("should update the form state when the value changes", async () => {
-      const mockOnSubmit = jest.fn();
-      const mockOnError = jest.fn();
-      render(
-        <WithFormTemplate onSubmit={mockOnSubmit} onError={mockOnError} />,
-      );
+      const { mockOnError, mockOnSubmit } = await renderAutocompleteForm();
       const sectionInput = screen.getByLabelText("Unnamed Input");
 
       await userEvent.click(sectionInput);
@@ -345,38 +342,46 @@ describe("react-hook-form support", () => {
       expect(isEmpty(unnamedInputValue)).toBe(false);
     });
   });
-  it("should call onChange when the value changes", async () => {
-    const { mockOnError } = await renderWithForm(true);
+
+  it("should call onError when the value is invalid", async () => {
+    const { mockOnError, mockOnValidation } = await renderAutocompleteForm(
+      true,
+    );
 
     await userEvent.click(screen.getByRole("button", { name: "Submit" }));
     expect(mockOnError).toHaveBeenCalled();
     const errorMessages = screen.getAllByText("This value is required");
     expect(errorMessages).toHaveLength(2);
+    expect(mockOnValidation).toHaveBeenCalledWith("This value is required");
   });
 });
 
-async function renderWithForm(enabledValidations = false) {
+async function renderAutocompleteForm(enabledValidations = false) {
   const mockOnSubmit = jest.fn();
   const mockOnError = jest.fn();
+  const mockOnValidation = jest.fn();
   render(
-    <WithFormTemplate
+    <AutocompleteFormTemplate
       onSubmit={mockOnSubmit}
       onError={mockOnError}
+      onValidation={mockOnValidation}
       enableValidations={enabledValidations}
     />,
   );
 
-  return { mockOnSubmit, mockOnError };
+  return { mockOnSubmit, mockOnError, mockOnValidation };
 }
 
-function WithFormTemplate({
+function AutocompleteFormTemplate({
   onSubmit,
   onError,
   enableValidations = false,
+  onValidation,
 }: {
   readonly onSubmit: (data: unknown) => void;
   readonly onError: (data: unknown) => void;
   readonly enableValidations?: boolean;
+  readonly onValidation: (message: string) => void;
 }) {
   function getSectionOptions(text: string) {
     if (text === "") {
@@ -421,6 +426,7 @@ function WithFormTemplate({
           placeholder="Details Value"
           name="detailsValue"
           validations={validations}
+          onValidation={onValidation}
           getOptions={getOptions}
           initialOptions={options}
         />
