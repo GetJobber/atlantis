@@ -1,4 +1,3 @@
-/* autoprefixer: off */
 @supports (scrollbar-color: #000 #000) {
   html[data-theme="dark"] {
     scrollbar-color: var(--color-surface--background--subtle)
