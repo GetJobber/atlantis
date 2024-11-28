@@ -70,6 +70,11 @@ export const componentList = [
     imageURL: "/DataDump.png",
   },
   {
+    title: "DataList",
+    to: "/components/DataList",
+    imageURL: "/DataList.png",
+  },
+  {
     title: "Disclosure",
     to: "/components/Disclosure",
     imageURL: "/Disclosure.png",
@@ -86,6 +91,11 @@ export const componentList = [
     to: "/components/Emphasis",
     imageURL: "/Emphasis.png",
     additionalMatches: ["Highlight", "Strong", "Bold", "Italic"],
+  },
+  {
+    title: "FormatDate",
+    to: "/components/FormatDate",
+    imageURL: "/FormatDate.png",
   },
   {
     title: "Heading",

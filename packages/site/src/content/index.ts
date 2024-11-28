@@ -10,8 +10,10 @@ import ChipContent from "./Chip";
 import ChipsContent from "./Chips";
 import CountdownContent from "./Countdown";
 import DataDumpContent from "./DataDump";
+import DataListContent from "./DataList";
 import DisclosureContent from "./Disclosure";
 import EmphasisContent from "./Emphasis";
+import FormatDateContent from "./FormatDate";
 import HeadingContent from "./Heading";
 import IconContent from "./Icon";
 import InlineLabelContent from "./InlineLabel";
@@ -62,11 +64,17 @@ export const SiteContent: Record<string, ContentExport> = {
   DataDump: {
     ...DataDumpContent,
   },
+  DataList: {
+    ...DataListContent,
+  },
   Disclosure: {
     ...DisclosureContent,
   },
   Emphasis: {
     ...EmphasisContent,
+  },
+  FormatDate: {
+    ...FormatDateContent,
   },
   Heading: {
     ...HeadingContent,
