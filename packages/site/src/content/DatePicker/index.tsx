@@ -1,5 +1,5 @@
 import { DatePicker } from "@jobber/components";
-import Content from "@atlantis/docs/components/DatePicker/Datepicker.stories.mdx";
+import Content from "@atlantis/docs/components/Datepicker/Datepicker.stories.mdx";
 import { useState } from "react";
 import { showToast } from "@jobber/components/Toast";
 import Props from "./DatePicker.props.json";
