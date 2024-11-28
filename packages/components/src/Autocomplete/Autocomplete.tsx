@@ -13,7 +13,7 @@ import {
   AutocompleteInternalProps,
   AutocompleteProps,
 } from "./Autocomplete.types";
-import { useMenuFormField } from "./useMenuFormField";
+import { useAutocompleteFormField } from "./useAutocompleteFormField";
 import { InputText, InputTextRef } from "../InputText";
 import { useDebounce } from "../utils/useDebounce";
 
@@ -46,7 +46,7 @@ const AutocompleteInternal = forwardRef(function AutocompleteInternal(
   const autocompleteRef = useRef(null);
   const delayedSearch = useDebounce(updateSearch, debounceRate);
 
-  const { onControllerChange } = useMenuFormField({
+  const { onControllerChange } = useAutocompleteFormField({
     nameProp: name,
     id,
     value: value,

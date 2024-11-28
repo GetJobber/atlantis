@@ -4,7 +4,7 @@ import isEqual from "lodash/isEqual";
 import { AutocompleteProps } from "./Autocomplete.types";
 import { Option } from "./Option";
 
-export function useMenuFormField({
+export function useAutocompleteFormField({
   nameProp,
   value,
   defaultValue,
