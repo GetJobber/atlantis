@@ -49,7 +49,6 @@ const headingOptions = [
   },
 ];
 
-// eslint-disable-next-line max-statements
 describe("Autocomplete", () => {
   it("renders an Autocomplete", async () => {
     const { container } = render(
