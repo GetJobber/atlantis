@@ -125,6 +125,7 @@ const components = [
   "InlineLabel",
   "Link",
   "ProgressBar",
+  "Spinner",
   "StatusLabel",
   "Switch",
 ];
