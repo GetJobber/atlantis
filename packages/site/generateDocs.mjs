@@ -123,6 +123,7 @@ const components = [
   "Disclosure",
   "Emphasis",
   "FormatDate",
+  "FormatEmail",
   "FormatTime",
   "Heading",
   "Icon",

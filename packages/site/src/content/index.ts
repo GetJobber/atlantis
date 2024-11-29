@@ -14,6 +14,7 @@ import DataListContent from "./DataList";
 import DisclosureContent from "./Disclosure";
 import EmphasisContent from "./Emphasis";
 import FormatDateContent from "./FormatDate";
+import FormatEmailContent from "./FormatEmail";
 import FormatTimeContent from "./FormatTime";
 import HeadingContent from "./Heading";
 import IconContent from "./Icon";
@@ -77,6 +78,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   FormatDate: {
     ...FormatDateContent,
+  },
+  FormatEmail: {
+    ...FormatEmailContent,
   },
   FormatTime: {
     ...FormatTimeContent,

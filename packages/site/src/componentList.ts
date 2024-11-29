@@ -98,6 +98,11 @@ export const componentList = [
     imageURL: "/FormatDate.png",
   },
   {
+    title: "FormatEmail",
+    to: "/components/FormatEmail",
+    imageURL: "/FormatEmail.png",
+  },
+  {
     title: "FormatTime",
     to: "/components/FormatTime",
     imageURL: "/FormatTime.png",
