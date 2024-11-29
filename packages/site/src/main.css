@@ -122,3 +122,8 @@ section[role="tabpanel"]>div>h1:first-of-type {
 .cm-editor .cm-type {
   color: 'blue'
 }
+
+iframe {
+  width: 100%;
+  min-height: 200px;
+}

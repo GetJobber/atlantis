@@ -10,10 +10,6 @@ export interface ContentExport {
   }>;
   component: {
     element: unknown;
-    defaultProps: Record<
-      string,
-      string | boolean | number | JSX.Element | [] | (() => void)
-    >;
   };
   title: string;
   description?: string;

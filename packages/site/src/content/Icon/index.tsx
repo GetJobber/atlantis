@@ -1,4 +1,3 @@
-import { Icon } from "@jobber/components";
 import IconContent from "@atlantis/docs/components/Icon/Icon.stories.mdx";
 import Props from "./Icon.props.json";
 import { ContentExport } from "../../types/content";
@@ -7,8 +6,7 @@ export default {
   content: () => <IconContent />,
   props: Props,
   component: {
-    element: Icon,
-    defaultProps: { name: "happyFace" },
+    element: `<Icon name="happyFace" />`,
   },
   title: "Icon",
   links: [

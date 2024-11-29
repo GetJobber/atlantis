@@ -1,4 +1,3 @@
-import { Link } from "@jobber/components";
 import LinkContent from "@atlantis/docs/components/Link/Link.stories.mdx";
 import Props from "./Link.props.json";
 import { ContentExport } from "../../types/content";
@@ -7,12 +6,7 @@ export default {
   content: () => <LinkContent />,
   props: Props,
   component: {
-    element: Link,
-    defaultProps: {
-      url: "https://en.wikipedia.org/wiki/Hyperlink",
-      external: true,
-      children: "What is a link anyway?",
-    },
+    element: `<Link url="https://en.wikipedia.org/wiki/Hyperlink" external={true}>What is a link anyway?</Link>`,
   },
   title: "Link",
   description: "",

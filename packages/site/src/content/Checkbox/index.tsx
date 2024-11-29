@@ -1,4 +1,3 @@
-import { Checkbox } from "@jobber/components";
 import CheckboxContent from "@atlantis/docs/components/Checkbox/Checkbox.stories.mdx";
 import Props from "./Checkbox.props.json";
 import { ContentExport } from "../../types/content";
@@ -8,8 +7,15 @@ export default {
   content: () => <CheckboxContent />,
   props: Props,
   component: {
-    element: Checkbox,
-    defaultProps: { label: "Checkbox" },
+    element: `const [checked, setChecked] = React.useState(true);
+
+  return (
+    <Checkbox
+      label={"Save card for future use"}
+      checked={checked}
+      onChange={setChecked}
+    />
+  );`,
   },
   title: "Checkbox",
   links: [

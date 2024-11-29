@@ -44,7 +44,7 @@ export const usePageValues = (meta: ContentExport) => {
               key,
               type: prop?.type.name || "",
               placeholder: key,
-              value: values[key] as string,
+              value: "",
               updateValue,
             }),
           };

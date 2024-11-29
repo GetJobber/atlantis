@@ -14,7 +14,7 @@ import {
   AtlantisPreviewEditor,
   AtlantisPreviewViewer,
   useAtlantisPreview,
-} from "../components/AtlantisPreviewEditor/AtlantisPreviewEditorProvider";
+} from "../components/AtlantisPreviewEditorProvider";
 import { useComponentAndCode } from "../hooks/useComponentAndCode";
 
 /**
@@ -28,10 +28,10 @@ export const ComponentView = () => {
   const PageMeta = SiteContent[name];
   useErrorCatcher();
   const { updateStyles } = useStyleUpdater();
-  const { stateValues, stateValueWithFunction } = usePageValues(PageMeta);
+  const { stateValues } = usePageValues(PageMeta);
 
   const ComponentContent = PageMeta?.content;
-  const { code } = useComponentAndCode(PageMeta, stateValueWithFunction);
+  const { code } = useComponentAndCode(PageMeta);
   useEffect(() => {
     updateCode(code);
   }, [code]);

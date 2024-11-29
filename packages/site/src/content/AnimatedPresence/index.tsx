@@ -1,26 +1,20 @@
-import {
-  AnimatedPresence as AnimatedPresenceRoot,
-  Button,
-  Content,
-  Flex,
-  Text,
-} from "@jobber/components";
 import AnimatedPresenceContent from "@atlantis/docs/components/AnimatedPresence/AnimatedPresence.stories.mdx";
-import { PropsWithChildren, useState } from "react";
 import Props from "./AnimatedPresence.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
-export const AnimatedPresence = (props: PropsWithChildren) => {
-  const [switched, setSwitched] = useState(false);
-
+export default {
+  content: () => <AnimatedPresenceContent />,
+  props: Props,
+  component: {
+    element: `const [switched, setSwitched] = React.useState(false);
   return (
     <Content>
       <Button
         label={switched ? "Switched" : "Initial"}
         onClick={() => setSwitched(!switched)}
       />
-      <AnimatedPresenceRoot {...props}>
+      <AnimatedPresence {...props}>
         {switched && (
           <Content>
             <Flex template={["grow", "shrink"]}>
@@ -37,16 +31,9 @@ export const AnimatedPresence = (props: PropsWithChildren) => {
             </Flex>
           </Content>
         )}
-      </AnimatedPresenceRoot>
+      </AnimatedPresence>
     </Content>
-  );
-};
-
-export default {
-  content: () => <AnimatedPresenceContent />,
-  props: Props,
-  component: {
-    element: AnimatedPresence,
+  );`,
     defaultProps: {
       initial: true,
       transition: "fromLeftToRight",

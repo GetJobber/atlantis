@@ -5,7 +5,7 @@ import "@jobber/components/dist/styles.css";
 import "./main.css";
 import { BrowserRouter } from "react-router-dom";
 import { Layout } from "./layout/Layout";
-import { AtlantisPreviewEditorProvider } from "./components/AtlantisPreviewEditor/AtlantisPreviewEditorProvider";
+import { AtlantisPreviewEditorProvider } from "./components/AtlantisPreviewEditorProvider";
 
 function renderApp() {
   const root = document.getElementById("root");

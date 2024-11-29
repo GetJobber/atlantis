@@ -6,8 +6,8 @@ export default {
   content: () => <ChipsContent />,
   props: Props,
   component: {
-    element: `() => {
- const [selected, setSelected] = useState<string>();
+    element: `
+ const [selected, setSelected] = React.useState();
 
   return (
     <Content>
@@ -19,11 +19,10 @@ export default {
         <Chip label="Wonderful" value="Wonderful" />
         <Chip label="Brilliant" value="Brilliant" />
         <Chip label="Magnificent" value="Magnificent" />
-      </ChipsRoot>
+      </Chips>
     </Content>
   );
-    }`,
-    defaultProps: {},
+    `,
   },
   title: "Chips",
   links: [

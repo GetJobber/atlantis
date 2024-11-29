@@ -1,4 +1,3 @@
-import { StatusLabel } from "@jobber/components";
 import StatusLabelContent from "@atlantis/docs/components/StatusLabel/StatusLabel.stories.mdx";
 import Props from "./StatusLabel.props.json";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
@@ -8,8 +7,7 @@ export default {
   content: () => <StatusLabelContent />,
   props: Props,
   component: {
-    element: StatusLabel,
-    defaultProps: { label: "StatusLabel!" },
+    element: `<StatusLabel label="StatusLabel!" />`,
   },
   title: "StatusLabel",
   links: [

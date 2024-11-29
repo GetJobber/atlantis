@@ -12,8 +12,6 @@
   },
   "dependencies": {
     "@babel/standalone": "^7.26.2",
-    "@codemirror/language": "^6.10.6",
-    "@codesandbox/sandpack-react": "^2.19.10",
     "@jobber/components": "file:../components",
     "@jobber/hooks": "file:../hooks",
     "prismjs": "^1.29.0",
