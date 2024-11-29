@@ -1,20 +1,20 @@
-import { Flex } from "@jobber/components";
-import Content from "@atlantis/docs/components/Flex/Flex.stories.mdx";
-import Props from "./Flex.props.json";
+import { Form } from "@jobber/components";
+import Content from "@atlantis/docs/components/Form/Form.stories.mdx";
+import Props from "./Form.props.json";
 import { ContentExport } from "../../types/content";
 
 export default {
   content: () => <Content />,
   props: Props,
   component: {
-    element: Flex,
+    element: Form,
     defaultProps: {},
   },
-  title: "Flex",
+  title: "Form",
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-Flex-web--docs",
+      url: "http://localhost:6006/?path=/docs/components-utilities-Form-web--docs",
     },
   ],
 } as const satisfies ContentExport;

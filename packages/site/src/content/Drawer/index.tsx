@@ -1,20 +1,20 @@
-import { Divider } from "@jobber/components";
-import Content from "@atlantis/docs/components/Divider/Divider.stories.mdx";
-import Props from "./Divider.props.json";
+import { Drawer } from "@jobber/components";
+import Content from "@atlantis/docs/components/Drawer/Drawer.stories.mdx";
+import Props from "./Drawer.props.json";
 import { ContentExport } from "../../types/content";
 
 export default {
   content: () => <Content />,
   props: Props,
   component: {
-    element: Divider,
+    element: Drawer,
     defaultProps: {},
   },
-  title: "Divider",
+  title: "Drawer",
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-Divider-web--docs",
+      url: "http://localhost:6006/?path=/docs/components-utilities-Drawer-web--docs",
     },
   ],
 } as const satisfies ContentExport;
