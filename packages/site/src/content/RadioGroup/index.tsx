@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: RadioGroup,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "RadioGroup",
   links: [

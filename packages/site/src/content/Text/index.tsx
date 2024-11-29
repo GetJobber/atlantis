@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: Text,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "Text",
   links: [

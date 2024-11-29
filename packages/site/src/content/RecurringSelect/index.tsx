@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: RecurringSelect,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "RecurringSelect",
   links: [

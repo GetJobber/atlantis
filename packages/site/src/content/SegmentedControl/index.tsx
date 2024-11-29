@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: SegmentedControl,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "SegmentedControl",
   links: [

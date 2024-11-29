@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: MultiSelect,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "MultiSelect",
   links: [

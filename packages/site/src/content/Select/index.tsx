@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: Select,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "Select",
   links: [

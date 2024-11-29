@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: Modal,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "Modal",
   links: [

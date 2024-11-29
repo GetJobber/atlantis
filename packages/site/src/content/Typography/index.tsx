@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: Typography,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "Typography",
   links: [

@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: Tooltip,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "Tooltip",
   links: [

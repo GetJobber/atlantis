@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: SideDrawer,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "SideDrawer",
   links: [

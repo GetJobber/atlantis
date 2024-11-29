@@ -138,7 +138,7 @@ export const SiteContent: Record<string, ContentExport> = {
     ...DatePickerContent,
   },
   DescriptionList: {
-    ...DescriptionList,
+    ...DescriptionListContent,
   },
   Disclosure: {
     ...DisclosureContent,

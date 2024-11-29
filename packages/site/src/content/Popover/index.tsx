@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: Popover,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "Popover",
   links: [
