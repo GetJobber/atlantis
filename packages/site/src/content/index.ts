@@ -11,8 +11,6 @@ import CardContent from "./Card";
 import ChipContent from "./Chip";
 import ChipsContent from "./Chips";
 import ComboboxContent from "./Combobox";
-import ConfirmationModalContent from "./ConfirmationModal";
-import ContentContent from "./Content";
 import CountdownContent from "./Countdown";
 import DataDumpContent from "./DataDump";
 import DataListContent from "./DataList";
@@ -41,7 +39,6 @@ import InlineLabelContent from "./InlineLabel";
 import InputAvatarContent from "./InputAvatar";
 import InputDateContent from "./InputDate";
 import InputEmailContent from "./InputEmail";
-import InputFileContent from "./InputFile";
 import InputGroupContent from "./InputGroup";
 import InputNumberContent from "./InputNumber";
 import InputPasswordContent from "./InputPassword";
@@ -56,14 +53,12 @@ import MarkdownContent from "./Markdown";
 import MenuContent from "./Menu";
 import ModalContent from "./Modal";
 import MultiSelectContent from "./MultiSelect";
-import PageContent from "./Page";
 import PopoverContent from "./Popover";
 import ProgressBarContent from "./ProgressBar";
 import RadioGroupContent from "./RadioGroup";
 import RecurringSelectContent from "./RecurringSelect";
 import SegmentedControlContent from "./SegmentedControl";
 import SelectContent from "./Select";
-import SideDrawerContent from "./SideDrawer";
 import SpinnerContent from "./Spinner";
 import StatusIndicatorContent from "./StatusIndicator";
 import StatusLabelContent from "./StatusLabel";
@@ -115,12 +110,6 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   Combobox: {
     ...ComboboxContent,
-  },
-  ConfirmationModal: {
-    ...ConfirmationModalContent,
-  },
-  Content: {
-    ...ContentContent,
   },
   Countdown: {
     ...CountdownContent,
@@ -206,9 +195,6 @@ export const SiteContent: Record<string, ContentExport> = {
   InputEmail: {
     ...InputEmailContent,
   },
-  InputFile: {
-    ...InputFileContent,
-  },
   InputGroup: {
     ...InputGroupContent,
   },
@@ -251,9 +237,6 @@ export const SiteContent: Record<string, ContentExport> = {
   MultiSelect: {
     ...MultiSelectContent,
   },
-  Page: {
-    ...PageContent,
-  },
   Popover: {
     ...PopoverContent,
   },
@@ -271,9 +254,6 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   Select: {
     ...SelectContent,
-  },
-  SideDrawer: {
-    ...SideDrawerContent,
   },
   Spinner: {
     ...SpinnerContent,

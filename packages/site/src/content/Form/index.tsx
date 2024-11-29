@@ -1,7 +1,16 @@
-import { Form } from "@jobber/components";
+import { Form as FormRoot, InputText } from "@jobber/components";
 import Content from "@atlantis/docs/components/Form/Form.stories.mdx";
 import Props from "./Form.props.json";
 import { ContentExport } from "../../types/content";
+
+export const Form = () => {
+  return (
+    <FormRoot onSubmit={() => alert("submitted")}>
+      <InputText name="name" />
+      <InputText name="email" />
+    </FormRoot>
+  );
+};
 
 export default {
   content: () => <Content />,

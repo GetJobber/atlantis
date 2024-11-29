@@ -70,16 +70,6 @@ export const componentList = [
     imageURL: "/Combobox.png",
   },
   {
-    title: "ConfirmationModal",
-    to: "/components/ConfirmationModal",
-    imageURL: "/ConfirmationModal.png",
-  },
-  {
-    title: "Content",
-    to: "/components/Content",
-    imageURL: "/Content.png",
-  },
-  {
     title: "Countdown",
     to: "/components/Countdown",
     imageURL: "/Countdown.png",
@@ -240,11 +230,6 @@ export const componentList = [
     imageURL: "/InputEmail.png",
   },
   {
-    title: "InputFile",
-    to: "/components/InputFile",
-    imageURL: "/InputFile.png",
-  },
-  {
     title: "InputGroup",
     to: "/components/InputGroup",
     imageURL: "/InputGroup.png",
@@ -316,11 +301,6 @@ export const componentList = [
     imageURL: "/MultiSelect.png",
   },
   {
-    title: "Page",
-    to: "/components/Page",
-    imageURL: "/Page.png",
-  },
-  {
     title: "Popover",
     to: "/components/Popover",
     imageURL: "/Popover.png",
@@ -350,11 +330,6 @@ export const componentList = [
     title: "Select",
     to: "/components/Select",
     imageURL: "/Select.png",
-  },
-  {
-    title: "SideDrawer",
-    to: "/components/SideDrawer",
-    imageURL: "/SideDrawer.png",
   },
   {
     title: "Spinner",

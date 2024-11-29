@@ -1,7 +1,19 @@
-import { InputNumber } from "@jobber/components";
+import { InputNumber as InputNumberRoot } from "@jobber/components";
 import Content from "@atlantis/docs/components/InputNumber/InputNumber.stories.mdx";
+import { useState } from "react";
 import Props from "./InputNumber.props.json";
 import { ContentExport } from "../../types/content";
+
+export const InputNumber = () => {
+  const [value, setValue] = useState(3);
+
+  return (
+    <InputNumberRoot
+      value={value}
+      onChange={(newValue: number) => setValue(newValue)}
+    />
+  );
+};
 
 export default {
   content: () => <Content />,

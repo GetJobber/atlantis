@@ -1,7 +1,11 @@
-import { InputText } from "@jobber/components";
+import { InputText as InputTextRoot } from "@jobber/components";
 import Content from "@atlantis/docs/components/InputText/InputText.stories.mdx";
 import Props from "./InputText.props.json";
 import { ContentExport } from "../../types/content";
+
+export const InputText = () => {
+  return <InputTextRoot name="age" placeholder="Age in words" />;
+};
 
 export default {
   content: () => <Content />,
