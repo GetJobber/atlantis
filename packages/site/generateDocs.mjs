@@ -132,6 +132,7 @@ const components = [
   "Icon",
   "InlineLabel",
   "InputDate",
+  "InputEmail",
   "Link",
   "ProgressBar",
   "Spinner",

@@ -24,6 +24,7 @@ import HeadingContent from "./Heading";
 import IconContent from "./Icon";
 import InlineLabelContent from "./InlineLabel";
 import InputDateContent from "./InputDate";
+import InputEmailContent from "./InputEmail";
 import LinkContent from "./Link";
 import ProgressBarContent from "./ProgressBar";
 import SpinnerContent from "./Spinner";
@@ -110,6 +111,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   InputDate: {
     ...InputDateContent,
+  },
+  InputEmail: {
+    ...InputEmailContent,
   },
   Link: {
     ...LinkContent,
