@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.9.0...@jobber/atlantis-site@0.10.0) (2024-11-29)
+
+
+### Features
+
+* **components:** Adding Spinner to Docs Site  ([#2154](https://github.com/GetJobber/atlantis/issues/2154)) ([460c5ec](https://github.com/GetJobber/atlantis/commit/460c5ec6e2dd4f3a63b30a47715d767d381f4174))
+
+
+
+
+
 # [0.9.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.8.8...@jobber/atlantis-site@0.9.0) (2024-11-29)
 
 
