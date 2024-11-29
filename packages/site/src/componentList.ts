@@ -144,6 +144,12 @@ export const componentList = [
     ],
   },
   {
+    title: "InputDate",
+    to: "/components/InputDate",
+    imageURL: "/InputDate.png",
+    additionalMatches: ["Datepicker", "Datetime Picker", "Calendar"],
+  },
+  {
     title: "Link",
     to: "/components/Link",
     imageURL: "/Link.png",

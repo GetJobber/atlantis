@@ -21,6 +21,7 @@ import GlimmerContent from "./Glimmer";
 import HeadingContent from "./Heading";
 import IconContent from "./Icon";
 import InlineLabelContent from "./InlineLabel";
+import InputDateContent from "./InputDate";
 import LinkContent from "./Link";
 import ProgressBarContent from "./ProgressBar";
 import StatusIndicatorContent from "./StatusIndicator";
@@ -101,6 +102,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   InlineLabel: {
     ...InlineLabelContent,
+  },
+  InputDate: {
+    ...InputDateContent,
   },
   Link: {
     ...LinkContent,
