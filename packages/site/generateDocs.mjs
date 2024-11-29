@@ -134,6 +134,7 @@ const components = [
   "InputDate",
   "Link",
   "ProgressBar",
+  "Spinner",
   "StatusIndicator",
   "StatusLabel",
   "Switch",

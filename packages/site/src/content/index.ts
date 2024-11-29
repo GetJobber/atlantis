@@ -1,5 +1,6 @@
 import AnimatedPresenceContent from "./AnimatedPresence";
 import AnimatedSwitcherContent from "./AnimatedSwitcher";
+import AvatarContent from "./Avatar";
 import AutoCompleteContent from "./Autocomplete";
 import BannerContent from "./Banner";
 import ButtonContent from "./Button";
@@ -25,10 +26,10 @@ import InlineLabelContent from "./InlineLabel";
 import InputDateContent from "./InputDate";
 import LinkContent from "./Link";
 import ProgressBarContent from "./ProgressBar";
+import SpinnerContent from "./Spinner";
 import StatusIndicatorContent from "./StatusIndicator";
 import StatusLabelContent from "./StatusLabel";
 import SwitchContent from "./Switch";
-import AvatarContent from "./Avatar";
 import { ContentExport } from "../types/content";
 
 export const SiteContent: Record<string, ContentExport> = {
@@ -115,6 +116,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   ProgressBar: {
     ...ProgressBarContent,
+  },
+  Spinner: {
+    ...SpinnerContent,
   },
   StatusIndicator: {
     ...StatusIndicatorContent,

@@ -167,6 +167,12 @@ export const componentList = [
     additionalMatches: ["Progress", "Loader"],
   },
   {
+    title: "Spinner",
+    to: "/components/Spinner",
+    imageURL: "/Spinner.png",
+    additionalMatches: ["Loader", "Loading", "Twirly", "Wait", "Busy"],
+  },
+  {
     title: "StatusIndicator",
     to: "/components/StatusIndicator",
     imageURL: "/StatusIndicator.png",
