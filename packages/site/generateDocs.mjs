@@ -124,6 +124,7 @@ const components = [
   "Emphasis",
   "FormatDate",
   "FormatEmail",
+  "FormatRelativeDateTime",
   "FormatTime",
   "Glimmer",
   "Heading",

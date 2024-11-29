@@ -15,6 +15,7 @@ import DisclosureContent from "./Disclosure";
 import EmphasisContent from "./Emphasis";
 import FormatDateContent from "./FormatDate";
 import FormatEmailContent from "./FormatEmail";
+import FormatRelativeDateTimeContent from "./FormatRelativeDateTime";
 import FormatTimeContent from "./FormatTime";
 import GlimmerContent from "./Glimmer";
 import HeadingContent from "./Heading";
@@ -82,6 +83,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   FormatEmail: {
     ...FormatEmailContent,
+  },
+  FormatRelativeDateTime: {
+    ...FormatRelativeDateTimeContent,
   },
   FormatTime: {
     ...FormatTimeContent,

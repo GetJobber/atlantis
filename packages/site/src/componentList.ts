@@ -103,6 +103,11 @@ export const componentList = [
     imageURL: "/FormatEmail.png",
   },
   {
+    title: "FormatRelativeDateTime",
+    to: "/components/FormatRelativeDateTime",
+    imageURL: "/FormatRelativeDateTime.png",
+  },
+  {
     title: "FormatTime",
     to: "/components/FormatTime",
     imageURL: "/FormatTime.png",
