@@ -11,20 +11,28 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@jobber/components": "^6.5.1",
-    "@jobber/hooks": "*",
+    "@babel/standalone": "^7.26.2",
+    "@codemirror/language": "^6.10.6",
+    "@codesandbox/sandpack-react": "^2.19.10",
+    "@jobber/components": "file:../components",
+    "@jobber/hooks": "file:../hooks",
     "prismjs": "^1.29.0",
-    "react": "18.2.0",
+    "react": "^18.2.0",
     "react-element-to-jsx-string": "^15.0.0",
     "react-router": "5.3.4",
     "react-router-dom": "5.3.4"
   },
+  "resolutions": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
   "devDependencies": {
     "@mdx-js/react": "^3.0.1",
     "@mdx-js/rollup": "^3.0.1",
+    "@types/babel__standalone": "^7.1.9",
     "@types/prismjs": "^1.26.4",
-    "@types/react": "18.2.0",
-    "@types/react-dom": "18.2.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
     "@types/react-router-dom": "^5.3.3",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",

@@ -113,3 +113,12 @@ pre.root-pre {
 section[role="tabpanel"]>div>h1:first-of-type {
   display: none;
 }
+
+.cm-editor {
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+.cm-editor .cm-type {
+  color: 'blue'
+}

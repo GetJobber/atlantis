@@ -170,6 +170,7 @@
   "dependencies": {
     "@storybook/blocks": "^7.6.20",
     "@storybook/components": "^7.6.20",
+    "codemirror": "^6.0.1",
     "jest-environment-jsdom": "^29.5.0"
   },
   "engines": {
