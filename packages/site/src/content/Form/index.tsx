@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: Flex,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "Flex",
   links: [

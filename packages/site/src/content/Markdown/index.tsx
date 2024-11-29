@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: Markdown,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "Markdown",
   links: [

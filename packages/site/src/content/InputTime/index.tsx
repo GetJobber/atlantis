@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: InputTime,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "InputTime",
   links: [

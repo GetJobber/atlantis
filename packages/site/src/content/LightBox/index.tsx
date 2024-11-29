@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: LightBox,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "LightBox",
   links: [

@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: DataTable,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "DataTable",
   links: [

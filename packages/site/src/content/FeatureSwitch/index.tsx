@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: FeatureSwitch,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "FeatureSwitch",
   links: [

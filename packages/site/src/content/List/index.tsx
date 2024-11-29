@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: List,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "List",
   links: [

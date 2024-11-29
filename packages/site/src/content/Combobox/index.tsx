@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: Combobox,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "Combobox",
   links: [

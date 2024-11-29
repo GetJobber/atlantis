@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: FormField,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "FormField",
   links: [

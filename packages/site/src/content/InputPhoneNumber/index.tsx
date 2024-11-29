@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: InputPhoneNumber,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "InputPhoneNumber",
   links: [

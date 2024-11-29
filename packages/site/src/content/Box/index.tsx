@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: Box,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "Box",
   links: [

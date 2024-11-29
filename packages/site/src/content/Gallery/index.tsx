@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: Gallery,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "Gallery",
   links: [

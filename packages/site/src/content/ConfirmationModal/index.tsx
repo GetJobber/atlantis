@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: ConfirmationModal,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "ConfirmationModal",
   links: [

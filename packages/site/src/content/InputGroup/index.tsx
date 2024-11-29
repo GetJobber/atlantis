@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: InputGroup,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "InputGroup",
   links: [

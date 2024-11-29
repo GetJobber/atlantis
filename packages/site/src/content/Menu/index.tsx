@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: Menu,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "Menu",
   links: [

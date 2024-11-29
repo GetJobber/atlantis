@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: Grid,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "Grid",
   links: [

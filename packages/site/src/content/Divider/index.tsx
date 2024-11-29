@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: Divider,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "Divider",
   links: [

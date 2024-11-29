@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: InputAvatar,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "InputAvatar",
   links: [

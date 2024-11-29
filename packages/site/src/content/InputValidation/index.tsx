@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: InputValidation,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "InputValidation",
   links: [

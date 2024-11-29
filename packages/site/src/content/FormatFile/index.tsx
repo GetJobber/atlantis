@@ -8,7 +8,7 @@ export default {
   props: Props,
   component: {
     element: FormatFile,
-    defaultProps: {  },
+    defaultProps: {},
   },
   title: "FormatFile",
   links: [
