@@ -92,7 +92,7 @@ export const componentList = [
     imageURL: "/Emphasis.png",
     additionalMatches: ["Highlight", "Strong", "Bold", "Italic"],
   },
-   {
+  {
     title: "FormatDate",
     to: "/components/FormatDate",
     imageURL: "/FormatDate.png",
