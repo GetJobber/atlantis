@@ -1,5 +1,6 @@
 import AnimatedPresenceContent from "./AnimatedPresence";
 import AnimatedSwitcherContent from "./AnimatedSwitcher";
+import AvatarContent from "./Avatar";
 import AutoCompleteContent from "./Autocomplete";
 import BannerContent from "./Banner";
 import ButtonContent from "./Button";
@@ -11,6 +12,7 @@ import ChipsContent from "./Chips";
 import CountdownContent from "./Countdown";
 import DataDumpContent from "./DataDump";
 import DataListContent from "./DataList";
+import DatePickerContent from "./DatePicker";
 import DisclosureContent from "./Disclosure";
 import EmphasisContent from "./Emphasis";
 import FormatDateContent from "./FormatDate";
@@ -21,13 +23,14 @@ import GlimmerContent from "./Glimmer";
 import HeadingContent from "./Heading";
 import IconContent from "./Icon";
 import InlineLabelContent from "./InlineLabel";
+import InputDateContent from "./InputDate";
 import InputEmailContent from "./InputEmail";
 import LinkContent from "./Link";
 import ProgressBarContent from "./ProgressBar";
+import SpinnerContent from "./Spinner";
 import StatusIndicatorContent from "./StatusIndicator";
 import StatusLabelContent from "./StatusLabel";
 import SwitchContent from "./Switch";
-import AvatarContent from "./Avatar";
 import { ContentExport } from "../types/content";
 
 export const SiteContent: Record<string, ContentExport> = {
@@ -73,6 +76,9 @@ export const SiteContent: Record<string, ContentExport> = {
   DataList: {
     ...DataListContent,
   },
+  DatePicker: {
+    ...DatePickerContent,
+  },
   Disclosure: {
     ...DisclosureContent,
   },
@@ -103,6 +109,9 @@ export const SiteContent: Record<string, ContentExport> = {
   InlineLabel: {
     ...InlineLabelContent,
   },
+  InputDate: {
+    ...InputDateContent,
+  },
   InputEmail: {
     ...InputEmailContent,
   },
@@ -111,6 +120,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   ProgressBar: {
     ...ProgressBarContent,
+  },
+  Spinner: {
+    ...SpinnerContent,
   },
   StatusIndicator: {
     ...StatusIndicatorContent,
