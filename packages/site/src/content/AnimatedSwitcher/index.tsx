@@ -1,4 +1,3 @@
-import { Text } from "@jobber/components";
 import AnimatedSwitcherContent from "@atlantis/docs/components/AnimatedSwitcher/AnimatedSwitcher.stories.mdx";
 import Props from "./AnimatedSwitcher.props.json";
 import { ContentExport } from "../../types/content";
@@ -29,10 +28,6 @@ export default {
     />
   )
 `,
-    defaultProps: {
-      initialChild: <Text>Initial!</Text>,
-      switchTo: <Text>Swapped!</Text>,
-    },
   },
   title: "AnimatedSwitcher",
   links: [
