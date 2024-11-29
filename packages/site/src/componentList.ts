@@ -75,6 +75,11 @@ export const componentList = [
     imageURL: "/DataList.png",
   },
   {
+    title: "DatePicker",
+    to: "/components/DatePicker",
+    imageURL: "/DatePicker.png",
+  },
+  {
     title: "Disclosure",
     to: "/components/Disclosure",
     imageURL: "/Disclosure.png",
@@ -144,6 +149,17 @@ export const componentList = [
     ],
   },
   {
+    title: "InputDate",
+    to: "/components/InputDate",
+    imageURL: "/InputDate.png",
+    additionalMatches: ["Datepicker", "Datetime Picker", "Calendar"],
+  },
+  {
+    title: "InputEmail",
+    to: "/components/InputEmail",
+    imageURL: "/InputEmail.png",
+  },
+  {
     title: "InputPassword",
     to: "/components/InputPassword",
     imageURL: "/InputPassword.png",
@@ -159,6 +175,12 @@ export const componentList = [
     to: "/components/ProgressBar",
     imageURL: "/ProgressBar.png",
     additionalMatches: ["Progress", "Loader"],
+  },
+  {
+    title: "Spinner",
+    to: "/components/Spinner",
+    imageURL: "/Spinner.png",
+    additionalMatches: ["Loader", "Loading", "Twirly", "Wait", "Busy"],
   },
   {
     title: "StatusIndicator",

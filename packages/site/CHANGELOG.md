@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.9.0...@jobber/atlantis-site@0.10.0) (2024-11-29)
+
+
+### Features
+
+* **components:** Adding Spinner to Docs Site  ([#2154](https://github.com/GetJobber/atlantis/issues/2154)) ([460c5ec](https://github.com/GetJobber/atlantis/commit/460c5ec6e2dd4f3a63b30a47715d767d381f4174))
+
+
+
+
+
+# [0.9.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.8.8...@jobber/atlantis-site@0.9.0) (2024-11-29)
+
+
+### Features
+
+* **components:** Adding DatePicker to Docs ([#2155](https://github.com/GetJobber/atlantis/issues/2155)) ([1a0a484](https://github.com/GetJobber/atlantis/commit/1a0a48403dac97f5d08def8b64d09e8847b88722))
+
+
+
+
+
+## [0.8.8](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.8.7...@jobber/atlantis-site@0.8.8) (2024-11-29)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.8.7](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.8.6...@jobber/atlantis-site@0.8.7) (2024-11-29)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
 ## [0.8.6](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.8.5...@jobber/atlantis-site@0.8.6) (2024-11-29)
 
 **Note:** Version bump only for package @jobber/atlantis-site
