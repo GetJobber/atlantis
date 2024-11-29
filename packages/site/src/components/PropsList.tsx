@@ -46,7 +46,7 @@ export const PropsList = ({
             title={value.name}
             data={value.props}
             headers={{
-              key: "Key",
+              key: "Property",
               required: "Required",
               description: "Description",
               component: "Component",
