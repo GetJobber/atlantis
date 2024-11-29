@@ -14,7 +14,10 @@ import DataListContent from "./DataList";
 import DisclosureContent from "./Disclosure";
 import EmphasisContent from "./Emphasis";
 import FormatDateContent from "./FormatDate";
+import FormatEmailContent from "./FormatEmail";
 import FormatRelativeDateTimeContent from "./FormatRelativeDateTime";
+import FormatTimeContent from "./FormatTime";
+import GlimmerContent from "./Glimmer";
 import HeadingContent from "./Heading";
 import IconContent from "./Icon";
 import InlineLabelContent from "./InlineLabel";
@@ -78,8 +81,17 @@ export const SiteContent: Record<string, ContentExport> = {
   FormatDate: {
     ...FormatDateContent,
   },
+  FormatEmail: {
+    ...FormatEmailContent,
+  },
   FormatRelativeDateTime: {
     ...FormatRelativeDateTimeContent,
+  },
+  FormatTime: {
+    ...FormatTimeContent,
+  },
+  Glimmer: {
+    ...GlimmerContent,
   },
   Heading: {
     ...HeadingContent,

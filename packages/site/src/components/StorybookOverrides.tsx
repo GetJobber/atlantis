@@ -11,6 +11,7 @@ import { RenderComponentShowCode } from "./RenderComponentShowCode";
 export const Meta = () => null;
 export const Story = () => null;
 export const ArgsTable = () => null;
+export const Source = () => null;
 
 /**
  * Drop-in Replacement for the Figma component from Storybook. Just embeds the Figma document using their embed API.

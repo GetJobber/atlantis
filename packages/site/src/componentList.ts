@@ -98,9 +98,25 @@ export const componentList = [
     imageURL: "/FormatDate.png",
   },
   {
+    title: "FormatEmail",
+    to: "/components/FormatEmail",
+    imageURL: "/FormatEmail.png",
+  },
+  {
     title: "FormatRelativeDateTime",
     to: "/components/FormatRelativeDateTime",
     imageURL: "/FormatRelativeDateTime.png",
+  },
+  {
+    title: "FormatTime",
+    to: "/components/FormatTime",
+    imageURL: "/FormatTime.png",
+  },
+  {
+    title: "Glimmer",
+    to: "/components/Glimmer",
+    imageURL: "/Glimmer.png",
+    additionalMatches: ["Skeleton", "Shimmer"],
   },
   {
     title: "Heading",
