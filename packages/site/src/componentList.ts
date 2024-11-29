@@ -144,6 +144,11 @@ export const componentList = [
     ],
   },
   {
+    title: "InputEmail",
+    to: "/components/InputEmail",
+    imageURL: "/InputEmail.png",
+  },
+  {
     title: "Link",
     to: "/components/Link",
     imageURL: "/Link.png",
