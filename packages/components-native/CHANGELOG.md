@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.75.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.75.1...@jobber/components-native@0.75.2) (2024-11-29)
+
+
+### Bug Fixes
+
+* **components:** Fix SegmentedControl.Base component name in meta.json ([#2174](https://github.com/GetJobber/atlantis/issues/2174)) ([997dc3b](https://github.com/GetJobber/atlantis/commit/997dc3b2c696b192bf9ea3ead921df3452a5dfff))
+
+
+
+
+
 ## [0.75.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.75.0...@jobber/components-native@0.75.1) (2024-11-19)
 
 **Note:** Version bump only for package @jobber/components-native

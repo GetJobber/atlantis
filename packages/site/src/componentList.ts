@@ -65,6 +65,16 @@ export const componentList = [
     imageURL: "/Countdown.png",
   },
   {
+    title: "DataDump",
+    to: "/components/DataDump",
+    imageURL: "/DataDump.png",
+  },
+  {
+    title: "DataList",
+    to: "/components/DataList",
+    imageURL: "/DataList.png",
+  },
+  {
     title: "DatePicker",
     to: "/components/DatePicker",
     imageURL: "/DatePicker.png",
@@ -86,6 +96,32 @@ export const componentList = [
     to: "/components/Emphasis",
     imageURL: "/Emphasis.png",
     additionalMatches: ["Highlight", "Strong", "Bold", "Italic"],
+  },
+  {
+    title: "FormatDate",
+    to: "/components/FormatDate",
+    imageURL: "/FormatDate.png",
+  },
+  {
+    title: "FormatEmail",
+    to: "/components/FormatEmail",
+    imageURL: "/FormatEmail.png",
+  },
+  {
+    title: "FormatRelativeDateTime",
+    to: "/components/FormatRelativeDateTime",
+    imageURL: "/FormatRelativeDateTime.png",
+  },
+  {
+    title: "FormatTime",
+    to: "/components/FormatTime",
+    imageURL: "/FormatTime.png",
+  },
+  {
+    title: "Glimmer",
+    to: "/components/Glimmer",
+    imageURL: "/Glimmer.png",
+    additionalMatches: ["Skeleton", "Shimmer"],
   },
   {
     title: "Heading",
@@ -113,6 +149,12 @@ export const componentList = [
     ],
   },
   {
+    title: "InputDate",
+    to: "/components/InputDate",
+    imageURL: "/InputDate.png",
+    additionalMatches: ["Datepicker", "Datetime Picker", "Calendar"],
+  },
+  {
     title: "Link",
     to: "/components/Link",
     imageURL: "/Link.png",
@@ -123,6 +165,11 @@ export const componentList = [
     to: "/components/ProgressBar",
     imageURL: "/ProgressBar.png",
     additionalMatches: ["Progress", "Loader"],
+  },
+  {
+    title: "StatusIndicator",
+    to: "/components/StatusIndicator",
+    imageURL: "/StatusIndicator.png",
   },
   {
     title: "StatusLabel",
