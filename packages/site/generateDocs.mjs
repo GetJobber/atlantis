@@ -130,6 +130,7 @@ const components = [
   "Heading",
   "Icon",
   "InlineLabel",
+  "InputPassword",
   "Link",
   "ProgressBar",
   "StatusIndicator",
