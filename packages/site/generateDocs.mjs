@@ -120,6 +120,7 @@ const components = [
   "Countdown",
   "DataDump",
   "DataList",
+  "DatePicker",
   "Disclosure",
   "Emphasis",
   "FormatDate",

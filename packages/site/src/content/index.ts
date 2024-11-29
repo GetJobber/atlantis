@@ -11,6 +11,7 @@ import ChipsContent from "./Chips";
 import CountdownContent from "./Countdown";
 import DataDumpContent from "./DataDump";
 import DataListContent from "./DataList";
+import DatePickerContent from "./DatePicker";
 import DisclosureContent from "./Disclosure";
 import EmphasisContent from "./Emphasis";
 import FormatDateContent from "./FormatDate";
@@ -72,6 +73,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   DataList: {
     ...DataListContent,
+  },
+  DatePicker: {
+    ...DatePickerContent,
   },
   Disclosure: {
     ...DisclosureContent,
