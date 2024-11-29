@@ -6,8 +6,8 @@ export const ComponentsPage = () => {
     <PageBlock
       structure={{
         header: {
-          title: "Web components",
-          body: "They are the best",
+          title: "Components",
+          body: "The building blocks of Jobber's interfaces",
         },
         body: {
           title: "Components",
