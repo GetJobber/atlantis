@@ -125,6 +125,7 @@ const components = [
   "FormatDate",
   "FormatEmail",
   "FormatTime",
+  "Glimmer",
   "Heading",
   "Icon",
   "InlineLabel",

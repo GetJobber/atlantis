@@ -16,6 +16,7 @@ import EmphasisContent from "./Emphasis";
 import FormatDateContent from "./FormatDate";
 import FormatEmailContent from "./FormatEmail";
 import FormatTimeContent from "./FormatTime";
+import GlimmerContent from "./Glimmer";
 import HeadingContent from "./Heading";
 import IconContent from "./Icon";
 import InlineLabelContent from "./InlineLabel";
@@ -84,6 +85,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   FormatTime: {
     ...FormatTimeContent,
+  },
+  Glimmer: {
+    ...GlimmerContent,
   },
   Heading: {
     ...HeadingContent,

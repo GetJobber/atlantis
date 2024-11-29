@@ -108,6 +108,12 @@ export const componentList = [
     imageURL: "/FormatTime.png",
   },
   {
+    title: "Glimmer",
+    to: "/components/Glimmer",
+    imageURL: "/Glimmer.png",
+    additionalMatches: ["Skeleton", "Shimmer"],
+  },
+  {
     title: "Heading",
     to: "/components/Heading",
     imageURL: "/Heading.png",
