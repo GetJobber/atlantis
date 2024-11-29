@@ -133,6 +133,7 @@ const components = [
   "InlineLabel",
   "InputDate",
   "InputEmail",
+  "InputPassword",
   "Link",
   "ProgressBar",
   "Spinner",
