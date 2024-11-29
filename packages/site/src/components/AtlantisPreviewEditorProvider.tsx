@@ -15,6 +15,18 @@ import {
   syntaxHighlighting,
 } from "@codemirror/language";
 
+/***
+ *
+ *
+ *
+ * This code has not yet been documented or tested.
+ * It will be done early next week. I just need a break from it.
+ *
+ *
+ *
+ *
+ */
+
 const language = new Compartment();
 
 const AtlantisPreviewEditorContext = createContext<{
