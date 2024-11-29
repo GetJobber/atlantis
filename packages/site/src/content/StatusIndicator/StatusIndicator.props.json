@@ -1,0 +1,24 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/StatusIndicator/StatusIndicator.tsx",
+    "description": "",
+    "displayName": "StatusIndicator",
+    "methods": [],
+    "props": {
+      "status": {
+        "defaultValue": null,
+        "description": "",
+        "name": "status",
+        "parent": {
+          "fileName": "../components/src/StatusIndicator/StatusIndicator.tsx",
+          "name": "StatusIndicatorProps"
+        },
+        "required": true,
+        "type": {
+          "name": "StatusIndicatorType"
+        }
+      }
+    }
+  }
+]

@@ -14,12 +14,15 @@ import DataListContent from "./DataList";
 import DisclosureContent from "./Disclosure";
 import EmphasisContent from "./Emphasis";
 import FormatDateContent from "./FormatDate";
+import FormatEmailContent from "./FormatEmail";
+import FormatTimeContent from "./FormatTime";
 import GlimmerContent from "./Glimmer";
 import HeadingContent from "./Heading";
 import IconContent from "./Icon";
 import InlineLabelContent from "./InlineLabel";
 import LinkContent from "./Link";
 import ProgressBarContent from "./ProgressBar";
+import StatusIndicatorContent from "./StatusIndicator";
 import StatusLabelContent from "./StatusLabel";
 import SwitchContent from "./Switch";
 import AvatarContent from "./Avatar";
@@ -77,6 +80,12 @@ export const SiteContent: Record<string, ContentExport> = {
   FormatDate: {
     ...FormatDateContent,
   },
+  FormatEmail: {
+    ...FormatEmailContent,
+  },
+  FormatTime: {
+    ...FormatTimeContent,
+  },
   Glimmer: {
     ...GlimmerContent,
   },
@@ -94,6 +103,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   ProgressBar: {
     ...ProgressBarContent,
+  },
+  StatusIndicator: {
+    ...StatusIndicatorContent,
   },
   StatusLabel: {
     ...StatusLabelContent,

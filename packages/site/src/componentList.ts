@@ -98,6 +98,16 @@ export const componentList = [
     imageURL: "/FormatDate.png",
   },
   {
+    title: "FormatEmail",
+    to: "/components/FormatEmail",
+    imageURL: "/FormatEmail.png",
+  },
+  {
+    title: "FormatTime",
+    to: "/components/FormatTime",
+    imageURL: "/FormatTime.png",
+  },
+  {
     title: "Glimmer",
     to: "/components/Glimmer",
     imageURL: "/Glimmer.png",
@@ -139,6 +149,11 @@ export const componentList = [
     to: "/components/ProgressBar",
     imageURL: "/ProgressBar.png",
     additionalMatches: ["Progress", "Loader"],
+  },
+  {
+    title: "StatusIndicator",
+    to: "/components/StatusIndicator",
+    imageURL: "/StatusIndicator.png",
   },
   {
     title: "StatusLabel",
