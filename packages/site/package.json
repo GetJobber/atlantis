@@ -1,7 +1,7 @@
 {
   "name": "@jobber/atlantis-site",
   "private": true,
-  "version": "0.7.8",
+  "version": "0.9.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,7 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@jobber/components": "^6.5.1",
+    "@jobber/components": "^6.5.3",
     "@jobber/hooks": "*",
     "prismjs": "^1.29.0",
     "react": "18.2.0",

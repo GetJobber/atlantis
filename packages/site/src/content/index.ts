@@ -10,14 +10,24 @@ import CardContent from "./Card";
 import ChipContent from "./Chip";
 import ChipsContent from "./Chips";
 import CountdownContent from "./Countdown";
+import DataDumpContent from "./DataDump";
+import DataListContent from "./DataList";
+import DatePickerContent from "./DatePicker";
 import DisclosureContent from "./Disclosure";
 import EmphasisContent from "./Emphasis";
+import FormatDateContent from "./FormatDate";
+import FormatEmailContent from "./FormatEmail";
+import FormatRelativeDateTimeContent from "./FormatRelativeDateTime";
+import FormatTimeContent from "./FormatTime";
+import GlimmerContent from "./Glimmer";
 import HeadingContent from "./Heading";
 import IconContent from "./Icon";
 import InlineLabelContent from "./InlineLabel";
+import InputDateContent from "./InputDate";
 import LinkContent from "./Link";
 import ProgressBarContent from "./ProgressBar";
 import SpinnerContent from "./Spinner";
+import StatusIndicatorContent from "./StatusIndicator";
 import StatusLabelContent from "./StatusLabel";
 import SwitchContent from "./Switch";
 import { ContentExport } from "../types/content";
@@ -59,11 +69,35 @@ export const SiteContent: Record<string, ContentExport> = {
   Countdown: {
     ...CountdownContent,
   },
+  DataDump: {
+    ...DataDumpContent,
+  },
+  DataList: {
+    ...DataListContent,
+  },
+  DatePicker: {
+    ...DatePickerContent,
+  },
   Disclosure: {
     ...DisclosureContent,
   },
   Emphasis: {
     ...EmphasisContent,
+  },
+  FormatDate: {
+    ...FormatDateContent,
+  },
+  FormatEmail: {
+    ...FormatEmailContent,
+  },
+  FormatRelativeDateTime: {
+    ...FormatRelativeDateTimeContent,
+  },
+  FormatTime: {
+    ...FormatTimeContent,
+  },
+  Glimmer: {
+    ...GlimmerContent,
   },
   Heading: {
     ...HeadingContent,
@@ -74,6 +108,9 @@ export const SiteContent: Record<string, ContentExport> = {
   InlineLabel: {
     ...InlineLabelContent,
   },
+  InputDate: {
+    ...InputDateContent,
+  },
   Link: {
     ...LinkContent,
   },
@@ -82,6 +119,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   Spinner: {
     ...SpinnerContent,
+  },
+  StatusIndicator: {
+    ...StatusIndicatorContent,
   },
   StatusLabel: {
     ...StatusLabelContent,

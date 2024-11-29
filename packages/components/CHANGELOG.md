@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.5.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.5.2...@jobber/components@6.5.3) (2024-11-29)
+
+
+### Bug Fixes
+
+* **components:** Fix SegmentedControl.Base component name in meta.json ([#2174](https://github.com/GetJobber/atlantis/issues/2174)) ([997dc3b](https://github.com/GetJobber/atlantis/commit/997dc3b2c696b192bf9ea3ead921df3452a5dfff))
+
+
+
+
+
+## [6.5.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.5.1...@jobber/components@6.5.2) (2024-11-29)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 ## [6.5.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.5.0...@jobber/components@6.5.1) (2024-11-27)
 
 
