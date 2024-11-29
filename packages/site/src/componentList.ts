@@ -27,6 +27,11 @@ export const componentList = [
     imageURL: "/Banner.png",
   },
   {
+    title: "Box",
+    to: "/components/Box",
+    imageURL: "/Box.png",
+  },
+  {
     title: "Button",
     to: "/components/Button",
     imageURL: "/Button.png",
@@ -60,6 +65,21 @@ export const componentList = [
     additionalMatches: ["Pill", "Badge", "Tag"],
   },
   {
+    title: "Combobox",
+    to: "/components/Combobox",
+    imageURL: "/Combobox.png",
+  },
+  {
+    title: "ConfirmationModal",
+    to: "/components/ConfirmationModal",
+    imageURL: "/ConfirmationModal.png",
+  },
+  {
+    title: "Content",
+    to: "/components/Content",
+    imageURL: "/Content.png",
+  },
+  {
     title: "Countdown",
     to: "/components/Countdown",
     imageURL: "/Countdown.png",
@@ -75,9 +95,19 @@ export const componentList = [
     imageURL: "/DataList.png",
   },
   {
+    title: "DataTable",
+    to: "/components/DataTable",
+    imageURL: "/DataTable.png",
+  },
+  {
     title: "DatePicker",
     to: "/components/DatePicker",
     imageURL: "/DatePicker.png",
+  },
+  {
+    title: "DescriptionList",
+    to: "/components/DescriptionList",
+    imageURL: "/DescriptionList.png",
   },
   {
     title: "Disclosure",
@@ -92,10 +122,35 @@ export const componentList = [
     ],
   },
   {
+    title: "Divider",
+    to: "/components/Divider",
+    imageURL: "/Divider.png",
+  },
+  {
+    title: "Drawer",
+    to: "/components/Drawer",
+    imageURL: "/Drawer.png",
+  },
+  {
     title: "Emphasis",
     to: "/components/Emphasis",
     imageURL: "/Emphasis.png",
     additionalMatches: ["Highlight", "Strong", "Bold", "Italic"],
+  },
+  {
+    title: "FeatureSwitch",
+    to: "/components/FeatureSwitch",
+    imageURL: "/FeatureSwitch.png",
+  },
+  {
+    title: "Flex",
+    to: "/components/Flex",
+    imageURL: "/Flex.png",
+  },
+  {
+    title: "Form",
+    to: "/components/Form",
+    imageURL: "/Form.png",
   },
   {
     title: "FormatDate",
@@ -108,6 +163,11 @@ export const componentList = [
     imageURL: "/FormatEmail.png",
   },
   {
+    title: "FormatFile",
+    to: "/components/FormatFile",
+    imageURL: "/FormatFile.png",
+  },
+  {
     title: "FormatRelativeDateTime",
     to: "/components/FormatRelativeDateTime",
     imageURL: "/FormatRelativeDateTime.png",
@@ -118,10 +178,25 @@ export const componentList = [
     imageURL: "/FormatTime.png",
   },
   {
+    title: "FormField",
+    to: "/components/FormField",
+    imageURL: "/FormField.png",
+  },
+  {
+    title: "Gallery",
+    to: "/components/Gallery",
+    imageURL: "/Gallery.png",
+  },
+  {
     title: "Glimmer",
     to: "/components/Glimmer",
     imageURL: "/Glimmer.png",
     additionalMatches: ["Skeleton", "Shimmer"],
+  },
+  {
+    title: "Grid",
+    to: "/components/Grid",
+    imageURL: "/Grid.png",
   },
   {
     title: "Heading",
@@ -149,6 +224,11 @@ export const componentList = [
     ],
   },
   {
+    title: "InputAvatar",
+    to: "/components/InputAvatar",
+    imageURL: "/InputAvatar.png",
+  },
+  {
     title: "InputDate",
     to: "/components/InputDate",
     imageURL: "/InputDate.png",
@@ -160,9 +240,49 @@ export const componentList = [
     imageURL: "/InputEmail.png",
   },
   {
+    title: "InputFile",
+    to: "/components/InputFile",
+    imageURL: "/InputFile.png",
+  },
+  {
+    title: "InputGroup",
+    to: "/components/InputGroup",
+    imageURL: "/InputGroup.png",
+  },
+  {
+    title: "InputNumber",
+    to: "/components/InputNumber",
+    imageURL: "/InputNumber.png",
+  },
+  {
     title: "InputPassword",
     to: "/components/InputPassword",
     imageURL: "/InputPassword.png",
+  },
+  {
+    title: "InputPhoneNumber",
+    to: "/components/InputPhoneNumber",
+    imageURL: "/InputPhoneNumber.png",
+  },
+  {
+    title: "InputText",
+    to: "/components/InputText",
+    imageURL: "/InputText.png",
+  },
+  {
+    title: "InputTime",
+    to: "/components/InputTime",
+    imageURL: "/InputTime.png",
+  },
+  {
+    title: "InputValidation",
+    to: "/components/InputValidation",
+    imageURL: "/InputValidation.png",
+  },
+  {
+    title: "LightBox",
+    to: "/components/LightBox",
+    imageURL: "/LightBox.png",
   },
   {
     title: "Link",
@@ -171,10 +291,70 @@ export const componentList = [
     additionalMatches: ["Anchor", "URL"],
   },
   {
+    title: "List",
+    to: "/components/List",
+    imageURL: "/List.png",
+  },
+  {
+    title: "Markdown",
+    to: "/components/Markdown",
+    imageURL: "/Markdown.png",
+  },
+  {
+    title: "Menu",
+    to: "/components/Menu",
+    imageURL: "/Menu.png",
+  },
+  {
+    title: "Modal",
+    to: "/components/Modal",
+    imageURL: "/Modal.png",
+  },
+  {
+    title: "MultiSelect",
+    to: "/components/MultiSelect",
+    imageURL: "/MultiSelect.png",
+  },
+  {
+    title: "Page",
+    to: "/components/Page",
+    imageURL: "/Page.png",
+  },
+  {
+    title: "Popover",
+    to: "/components/Popover",
+    imageURL: "/Popover.png",
+  },
+  {
     title: "ProgressBar",
     to: "/components/ProgressBar",
     imageURL: "/ProgressBar.png",
     additionalMatches: ["Progress", "Loader"],
+  },
+  {
+    title: "RadioGroup",
+    to: "/components/RadioGroup",
+    imageURL: "/RadioGroup.png",
+  },
+  {
+    title: "ReccuringSelect",
+    to: "/components/ReccuringSelect",
+    imageURL: "/ReccuringSelect.png",
+  },
+  {
+    title: "SegmentedControl",
+    to: "/components/SegmentedControl",
+    imageURL: "/SegmentedControl.png",
+  },
+  {
+    title: "Select",
+    to: "/components/Select",
+    imageURL: "/Select.png",
+  },
+  {
+    title: "SideDrawer",
+    to: "/components/SideDrawer",
+    imageURL: "/SideDrawer.png",
   },
   {
     title: "Spinner",
@@ -198,5 +378,35 @@ export const componentList = [
     to: "/components/Switch",
     imageURL: "/Switch.png",
     additionalMatches: ["Toggle"],
+  },
+  {
+    title: "Table",
+    to: "/components/Table",
+    imageURL: "/Table.png",
+  },
+  {
+    title: "Tabs",
+    to: "/components/Tabs",
+    imageURL: "/Tabs.png",
+  },
+  {
+    title: "Text",
+    to: "/components/Text",
+    imageURL: "/Text.png",
+  },
+  {
+    title: "Toast",
+    to: "/components/Toast",
+    imageURL: "/Toast.png",
+  },
+  {
+    title: "Tooltip",
+    to: "/components/Tooltip",
+    imageURL: "/Tooltip.png",
+  },
+  {
+    title: "Typography",
+    to: "/components/Typography",
+    imageURL: "/Typography.png",
   },
 ];
