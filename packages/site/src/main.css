@@ -91,6 +91,10 @@ section[role="tabpanel"] {
 
 }
 
+pre {
+  background-color: var(--color-surface--background);
+}
+
 code.root-code[class*="language-"] {
   color: var(--color-request);
 }
@@ -115,12 +119,12 @@ section[role="tabpanel"]>div>h1:first-of-type {
 }
 
 .cm-editor {
-  border: 1px solid black;
-  border-radius: 3px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-base);
 }
 
 .cm-editor .cm-type {
-  color: 'blue'
+  color: var(--color-text)
 }
 
 iframe {
