@@ -20,7 +20,6 @@ export interface FormFieldWrapperProps extends FormFieldProps {
   readonly onClear: () => void;
 }
 
-// eslint-disable-next-line max-statements
 export function FormFieldWrapper({
   align,
   description,
