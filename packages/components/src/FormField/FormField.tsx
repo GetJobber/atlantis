@@ -20,7 +20,6 @@ type FormFieldInternalProps = FormFieldProps & {
   readonly id: string;
 };
 
-// eslint-disable-next-line max-statements
 function FormFieldInternal(props: FormFieldInternalProps) {
   const {
     actionsRef,
