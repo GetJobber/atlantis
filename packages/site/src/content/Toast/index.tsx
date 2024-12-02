@@ -1,14 +1,15 @@
-import { Toast } from "@jobber/components";
-import Content from "@atlantis/docs/components/Toast/Toast.stories.mdx";
+import ToastContent from "@atlantis/docs/components/Toast/Toast.stories.mdx";
 import Props from "./Toast.props.json";
 import { ContentExport } from "../../types/content";
 
 export default {
-  content: () => <Content />,
+  content: () => <ToastContent />,
   props: Props,
   component: {
-    element: Toast,
-    defaultProps: {},
+    element: `<Button
+    label="Show toast"
+    onClick={() => showToast({ message: "Showed toast" })}
+  />`,
   },
   title: "Toast",
   links: [
