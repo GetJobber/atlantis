@@ -1,4 +1,4 @@
-import { Content, DataList, Grid, InlineLabel, InputText } from "@jobber/components";
+import { Content, DataList, Grid, InputText } from "@jobber/components";
 import { ReactNode, useState } from "react";
 
 /**
@@ -16,7 +16,7 @@ export const PropsList = ({
       key: string;
       description: string | undefined;
       component: ReactNode;
-      required: boolean;
+      required: string;
       id: string | number;
     }>;
   }>;
@@ -47,6 +47,7 @@ export const PropsList = ({
             data={value.props}
             headers={{
               key: "Property",
+              required: "Required",
               description: "Description",
               component: "Component",
             }}
@@ -56,14 +57,15 @@ export const PropsList = ({
                 key: string;
                 description: string;
                 component: ReactNode;
+                required: boolean;
               }) => (
-                <Grid>
+                <Grid gap>
                   <Grid.Cell size={{ xs: 2 }}>
                     <div style={{ display: "flex", alignItems: "flex" }}>
                       {item.key}
-                      {{required && <InlineLabel>Required</InlineLabel>}}
                     </div>
                   </Grid.Cell>
+                  <Grid.Cell size={{ xs: 1 }}>{item.required}</Grid.Cell>
                   <Grid.Cell size={{ xs: 2 }}>{item.component}</Grid.Cell>
                   <Grid.Cell size={{ xs: 3 }}>{item.description}</Grid.Cell>
                 </Grid>
