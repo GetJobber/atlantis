@@ -9,14 +9,20 @@ interface InputValidationProps {
    * Validation message to be displayed
    */
   readonly message: string;
+  readonly visible?: boolean;
 }
 
-export function InputValidation({ message }: InputValidationProps) {
+export function InputValidation({
+  message,
+  visible = true,
+}: InputValidationProps) {
   const messages = [message];
   const variants = {
     slideOut: { y: "5%", opacity: 0 },
     slideIn: { y: 0, opacity: 1 },
   };
+
+  if (!visible) return null;
 
   return (
     <>

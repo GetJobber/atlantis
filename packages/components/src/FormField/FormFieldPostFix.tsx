@@ -5,9 +5,15 @@ import { Spinner } from "../Spinner";
 
 interface FormFieldPostFixProps {
   readonly variation: "select" | "spinner";
+  readonly visible?: boolean;
 }
 
-export function FormFieldPostFix({ variation }: FormFieldPostFixProps) {
+export function FormFieldPostFix({
+  variation,
+  visible = true,
+}: FormFieldPostFixProps) {
+  if (!visible) return null;
+
   return (
     <span className={styles.postfix}>
       {variation === "select" ? (

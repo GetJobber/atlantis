@@ -7,9 +7,15 @@ interface ClearActionProps {
    * Click handler
    */
   readonly onClick: () => void;
+  readonly visible?: boolean;
 }
 
-export function ClearAction({ onClick }: ClearActionProps): JSX.Element {
+export function ClearAction({
+  onClick,
+  visible,
+}: ClearActionProps): React.ReactElement | null {
+  if (!visible) return null;
+
   return (
     <button
       className={styles.clearInput}
