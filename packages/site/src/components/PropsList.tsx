@@ -1,4 +1,10 @@
-import { Content, DataList, Grid, InputText, InlineLabel } from "@jobber/components";
+import {
+  Content,
+  DataList,
+  Grid,
+  InputText,
+  InlineLabel,
+} from "@jobber/components";
 import { ReactNode, useState } from "react";
 
 /**
@@ -27,7 +33,7 @@ export const PropsList = ({
     return {
       ...meta,
       props: meta.props.filter(e =>
-        e.key.toLowerCase().includes(search.toLowerCase()),
+        e.key.toLowerCase().includes(search.toLowerCase())
       ),
     };
   });
@@ -58,18 +64,22 @@ export const PropsList = ({
                 component: ReactNode;
                 required: boolean;
               }) => (
-              <Grid>
-              <Grid.Cell size={{ xs: 2 }}>
-                <div style={{display: "flex", gap: "var(--space-smaller", flexWrap: "wrap"}}>
-                  {item.key}
-                  {item.required && (
-                    <InlineLabel>Required</InlineLabel>
-                  )}
-                </div>
-              </Grid.Cell>
-              <Grid.Cell size={{ xs: 3 }}>{item.component}</Grid.Cell>
-              <Grid.Cell size={{ xs: 7 }}>{item.description}</Grid.Cell>
-              </Grid>
+                <Grid>
+                  <Grid.Cell size={{ xs: 2 }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: "var(--space-smaller",
+                        flexWrap: "wrap",
+                      }}
+                    >
+                      {item.key}
+                      {item.required && <InlineLabel>Required</InlineLabel>}
+                    </div>
+                  </Grid.Cell>
+                  <Grid.Cell size={{ xs: 3 }}>{item.component}</Grid.Cell>
+                  <Grid.Cell size={{ xs: 7 }}>{item.description}</Grid.Cell>
+                </Grid>
               )}
             </DataList.Layout>
             <DataList.Layout size="xs">
@@ -79,18 +89,22 @@ export const PropsList = ({
                 component: ReactNode;
                 required: boolean;
               }) => (
-              <Grid>
-              <Grid.Cell size={{ xs: 6 }}>
-                <div style={{display: "flex", gap: "var(--space-smaller", flexWrap: "wrap"}}>
-                  {item.key}
-                  {item.required && (
-                    <InlineLabel>Required</InlineLabel>
-                  )}
-                </div>
-              </Grid.Cell>
-              <Grid.Cell size={{ xs: 6 }}>{item.component}</Grid.Cell>
-              <Grid.Cell size={{ xs: 12 }}>{item.description}</Grid.Cell>
-              </Grid>
+                <Grid>
+                  <Grid.Cell size={{ xs: 6 }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: "var(--space-smaller",
+                        flexWrap: "wrap",
+                      }}
+                    >
+                      {item.key}
+                      {item.required && <InlineLabel>Required</InlineLabel>}
+                    </div>
+                  </Grid.Cell>
+                  <Grid.Cell size={{ xs: 6 }}>{item.component}</Grid.Cell>
+                  <Grid.Cell size={{ xs: 12 }}>{item.description}</Grid.Cell>
+                </Grid>
               )}
             </DataList.Layout>
 
