@@ -1,8 +1,6 @@
 import { useMemo, useState } from "react";
-import { InputText, Switch, Text } from "@jobber/components";
 import { ValueStateInternals } from "../types/services";
 import { ContentExport } from "../types/content";
-import { SelectWithOptions } from "../components/SelectWithOptions";
 
 /**
  * This is doing a few different things.
@@ -41,13 +39,7 @@ export const usePageValues = (meta: ContentExport) => {
             key,
             required: prop?.required ? "*" : "",
             description: prop?.description,
-            component: determineListComponent({
-              key,
-              type: prop?.type.name || "",
-              placeholder: key,
-              value: "",
-              updateValue,
-            }),
+            component: prop?.type?.name,
           };
         }),
       };
@@ -82,6 +74,8 @@ export const usePageValues = (meta: ContentExport) => {
   };
 };
 
+/**
+ * If we ever turn on prop editing again. We'll need this.
 const determineListComponent = ({
   key,
   type,
@@ -157,6 +151,7 @@ const determineListComponent = ({
 
   return <Text>{type}</Text>;
 };
+*/
 
 export const isFunction = (type: string) => {
   const regex = /\(([^)]*)\)\s*=>\s*([a-zA-Z_$][a-zA-Z0-9_$]*)/;

@@ -24,7 +24,7 @@ import { useComponentAndCode } from "../hooks/useComponentAndCode";
  */
 export const ComponentView = () => {
   const { name = "" } = useParams<{ name: string }>();
-  const { updateCode } = useAtlantisPreview();
+  const { updateCode, iframe } = useAtlantisPreview();
   const PageMeta = SiteContent[name];
   useErrorCatcher();
   const { updateStyles } = useStyleUpdater();
@@ -33,8 +33,10 @@ export const ComponentView = () => {
   const ComponentContent = PageMeta?.content;
   const { code } = useComponentAndCode(PageMeta);
   useEffect(() => {
-    updateCode(code as string);
-  }, [code]);
+    if (iframe?.current) {
+      setTimeout(() => updateCode(code as string), 100);
+    }
+  }, [code, iframe?.current]);
 
   return PageMeta ? (
     <Grid>

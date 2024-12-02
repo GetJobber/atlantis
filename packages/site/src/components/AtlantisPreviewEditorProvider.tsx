@@ -167,7 +167,9 @@ export const AtlantisPreviewEditorProvider = ({
                 ${transpiledCode}
              
            
-
+          if (rootElement) {
+              ReactDOM.unmountComponentAtNode(rootElement);
+            }
              if(!rootElement){
               rootElement = document.getElementById('root')
               root = ReactDOM.createRoot(rootElement);

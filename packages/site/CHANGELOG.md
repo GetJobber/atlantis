@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.10.5...@jobber/atlantis-site@0.11.0) (2024-12-02)
+
+
+### Features
+
+* **components:** Live Doc Editor ([#2179](https://github.com/GetJobber/atlantis/issues/2179)) ([18c145f](https://github.com/GetJobber/atlantis/commit/18c145fa6c18fdac3bbdd8b6a7a78541f03e7505))
+
+
+
+
+
+## [0.10.5](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.10.4...@jobber/atlantis-site@0.10.5) (2024-12-02)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
 ## [0.10.4](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.10.3...@jobber/atlantis-site@0.10.4) (2024-12-02)
 
 **Note:** Version bump only for package @jobber/atlantis-site
