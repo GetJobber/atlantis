@@ -1,4 +1,3 @@
-import { Button } from "@jobber/components";
 import ButtonContent from "@atlantis/docs/components/Button/Button.stories.mdx";
 import Props from "./Button.props.json";
 import { ContentExport } from "../../types/content";
@@ -8,8 +7,7 @@ export default {
   content: () => <ButtonContent />,
   props: Props,
   component: {
-    element: Button,
-    defaultProps: { label: "Button" },
+    element: `return <Button label="Button!" onClick={() => alert('Button Clicked!')} ></Button>`,
   },
   title: "Button",
   links: [

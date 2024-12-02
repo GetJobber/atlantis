@@ -1,4 +1,3 @@
-import { Divider } from "@jobber/components";
 import Content from "@atlantis/docs/components/Divider/Divider.stories.mdx";
 import Props from "./Divider.props.json";
 import { ContentExport } from "../../types/content";
@@ -7,8 +6,16 @@ export default {
   content: () => <Content />,
   props: Props,
   component: {
-    element: Divider,
-    defaultProps: {},
+    element: `<div
+      style={{
+        display: "grid",
+        gap: "var(--space-base)",
+      }}
+    >
+      <Content>Some amazing content</Content>
+      <Divider direction={"horizontal"} />
+      <Content>Even more amazing content</Content>
+    </div>`,
   },
   title: "Divider",
   links: [

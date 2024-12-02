@@ -21,8 +21,7 @@ export default {
   content: () => <BannerContent />,
   props: Props,
   component: {
-    element: Banner,
-    defaultProps: { type: "success" },
+    element: 'return <Banner type={"success"}>Account Details Updated</Banner>',
   },
   title: "Banner",
   links: [
