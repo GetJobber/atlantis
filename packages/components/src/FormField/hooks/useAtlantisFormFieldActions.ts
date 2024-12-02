@@ -1,8 +1,29 @@
 import { ChangeEvent, FocusEvent, KeyboardEvent } from "react";
 import { FieldValues, UseFormSetValue } from "react-hook-form";
+import { FormFieldProps, FormFieldTypes } from "../FormFieldTypes";
+
+export interface useAtlantisFormFieldActionsProps
+  extends Pick<
+    FormFieldProps,
+    | "onChange"
+    | "inputRef"
+    | "onEnter"
+    | "readonly"
+    | "onFocus"
+    | "onBlur"
+    | "onValidation"
+    | "onEnter"
+  > {
+  readonly name: string;
+  readonly onControllerChange: (...event: unknown[]) => void;
+  readonly onControllerBlur: () => void;
+  readonly type: FormFieldTypes;
+  readonly setValue: UseFormSetValue<FieldValues>;
+}
 
 /**
- * Generates the actions for a form field. Combines the actions from the props of the form field with the actions from react-hook-form
+ * Combines the actions from the props of the FormField with the actions from react-hook-form. This is used to
+ * manage the form state of a field through react-hook-form while providing support for additional callbacks
  */
 export function useAtlantisFormFieldActions({
   name,
@@ -17,27 +38,7 @@ export function useAtlantisFormFieldActions({
   onFocus,
   onBlur,
   onValidation,
-}: {
-  name: string;
-  onChange?:
-    | ((
-        newValue: string | number | boolean | Date,
-        event?: ChangeEvent<
-          HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-        >,
-      ) => void)
-    | undefined;
-  inputRef?: React.RefObject<HTMLInputElement>;
-  onControllerChange: (...event: unknown[]) => void;
-  onControllerBlur: () => void;
-  onEnter?: ((event: React.KeyboardEvent) => void) | undefined;
-  readonly?: boolean;
-  type: string;
-  setValue: UseFormSetValue<FieldValues>;
-  onFocus?: (() => void) | undefined;
-  onBlur?: (() => void) | undefined;
-  onValidation?: ((message: string) => void) | undefined;
-}) {
+}: useAtlantisFormFieldActionsProps) {
   function handleClear() {
     handleBlur();
     setValue(name, "", { shouldValidate: true });
