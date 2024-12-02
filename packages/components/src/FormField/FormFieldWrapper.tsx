@@ -1,12 +1,4 @@
-import React, {
-  PropsWithChildren,
-  ReactNode,
-  RefObject,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import classnames from "classnames";
+import React, { PropsWithChildren, ReactNode, RefObject, useRef } from "react";
 import { Clearable, useShowClear } from "@jobber/hooks/useShowClear";
 import { AnimatePresence, motion } from "framer-motion";
 import { tokens } from "@jobber/design";
@@ -17,7 +9,7 @@ import { FormFieldDescription } from "./FormFieldDescription";
 import { ClearAction } from "./components/ClearAction";
 import { useToolbar } from "./hooks/useToolbar";
 import { useFormFieldFocus } from "./hooks/useFormFieldFocus";
-import { useIsSafari } from "./hooks/useIsSafari";
+import { useFormFieldWrapperStyles } from "./hooks/useFormFieldWrapperStyles";
 import { InputValidation } from "../InputValidation";
 
 export interface FormFieldWrapperProps extends FormFieldProps {
@@ -26,11 +18,6 @@ export interface FormFieldWrapperProps extends FormFieldProps {
   readonly descriptionIdentifier: string;
   readonly clearable: Clearable;
   readonly onClear: () => void;
-}
-
-export interface LabelPadding {
-  paddingLeft: number | string | undefined;
-  paddingRight: number | string | undefined;
 }
 
 // eslint-disable-next-line max-statements
@@ -140,117 +127,6 @@ export function FormFieldWrapper({
       <InputValidation message={error} visible={!!error && !inline} />
     </div>
   );
-}
-export interface FormFieldWrapperHookProps extends FormFieldProps {
-  error: string;
-  suffixWidth: number;
-  prefixWidth: number;
-}
-
-export function useFormFieldWrapperStyles({
-  size,
-  align,
-  placeholder,
-  value,
-  invalid,
-  error,
-  max,
-  prefixWidth,
-  suffixWidth,
-  maxLength,
-  type,
-  disabled,
-  inline,
-}: FormFieldWrapperHookProps) {
-  const isSafari = useIsSafari();
-  const wrapperClasses = classnames(
-    styles.wrapper,
-    size && styles[size],
-    align && styles[align],
-    {
-      [styles.miniLabel]:
-        (placeholder && value !== "") ||
-        (placeholder && type === "select") ||
-        // Naively assume that if the the type is tel, it is the InputPhoneNumber
-        (placeholder && type === "tel"),
-      [styles.text]: type === "textarea" || type === "text",
-      [styles.textarea]: type === "textarea",
-      [styles.safari]: isSafari && type === "textarea",
-      [styles.select]: type === "select",
-      [styles.invalid]: invalid ?? error,
-      [styles.disabled]: disabled,
-      [styles.maxLength]: maxLength,
-      [styles.timeInputLabel]:
-        placeholder && type === "time" && placeholder && value === "",
-    },
-  );
-  const containerClasses = classnames(styles.container, {
-    [styles.inline]: inline,
-  });
-
-  const wrapperInlineStyle = {
-    ["--formField-maxLength" as string]: maxLength || max,
-  };
-
-  const [labelStyle, setLabelStyle] = useState<LabelPadding>({
-    paddingLeft: undefined,
-    paddingRight: undefined,
-  });
-
-  useEffect(() => {
-    setLabelStyle(
-      getAffixPaddding({
-        value,
-        type,
-        prefixWidth,
-        suffixWidth,
-      }),
-    );
-  }, [value]);
-
-  return {
-    inputStyle: styles.input,
-    wrapperClasses,
-    containerClasses,
-    wrapperInlineStyle,
-    labelStyle,
-    setLabelStyle,
-  };
-}
-
-export interface GetAffixProps extends FormFieldProps {
-  prefixWidth: number;
-  suffixWidth: number;
-}
-
-export function getAffixPaddding({
-  value,
-  type,
-  prefixWidth,
-  suffixWidth,
-}: GetAffixProps) {
-  const hasValue = value !== "";
-  const newPadding: LabelPadding = {
-    paddingLeft: undefined,
-    paddingRight: undefined,
-  };
-
-  // Naively assume that if the the type is tel, it is the InputPhoneNumber
-  if (type === "tel") return newPadding;
-
-  if (prefixWidth && !hasValue) {
-    newPadding.paddingLeft = offset(prefixWidth);
-  }
-
-  if (suffixWidth && !hasValue) {
-    newPadding.paddingRight = offset(suffixWidth);
-  }
-
-  function offset(width: number) {
-    return `calc(${width}px + var(--space-smallest)`;
-  }
-
-  return newPadding;
 }
 
 export function FormFieldInputHorizontalWrapper({

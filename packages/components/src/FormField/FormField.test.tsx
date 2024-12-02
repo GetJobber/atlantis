@@ -229,7 +229,7 @@ describe("FormField", () => {
     describe("with validation errors", () => {
       it("should trigger onValidation with error message", async () => {
         const validationHandler = jest.fn();
-        const validate = val => (val == "Bob" ? "message" : "foo");
+        const validate = (val: string) => (val == "Bob" ? "message" : "foo");
 
         const { getByLabelText } = render(
           <FormField
