@@ -99,6 +99,7 @@ export const AtlantisPreviewEditorProvider = ({
               Chips,
               Content,
               Combobox,
+              ConfirmationModal,
               Countdown,
               DataDump,
               DataList,
@@ -162,11 +163,11 @@ export const AtlantisPreviewEditorProvider = ({
               useEffect,
               ReactDOM
             } from '@jobber/components';
-             
+
 
                 ${transpiledCode}
-             
-           
+
+
           if (rootElement) {
               ReactDOM.unmountComponentAtNode(rootElement);
             }
@@ -326,7 +327,7 @@ html,body,#root {
         }
       });
       </script>
-     
-    
+
+
       </body>
       </html>`;
