@@ -1,22 +1,14 @@
 import { useEffect, useImperativeHandle } from "react";
-import {
-  RegisterOptions,
-  useController,
-  useForm,
-  useFormContext,
-} from "react-hook-form";
+import { useController, useForm, useFormContext } from "react-hook-form";
 import { mergeRefs } from "@jobber/components/utils/mergeRefs";
-import { FieldActionsRef } from "../FormFieldTypes";
+import { FormFieldProps } from "../FormFieldTypes";
 
-interface useAtlantisReactFormProps {
-  actionsRef?: React.RefObject<FieldActionsRef>;
+interface useAtlantisReactFormProps
+  extends Pick<
+    FormFieldProps,
+    "actionsRef" | "defaultValue" | "value" | "validations" | "inputRef"
+  > {
   name: string;
-  defaultValue?: string | Date;
-  value?: string | Date | number;
-  validations?: RegisterOptions;
-  inputRef?: React.RefObject<
-    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-  >;
 }
 
 /**
