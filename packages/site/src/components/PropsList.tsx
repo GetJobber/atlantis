@@ -2,8 +2,8 @@ import {
   Content,
   DataList,
   Grid,
-  InputText,
   InlineLabel,
+  InputText,
 } from "@jobber/components";
 import { ReactNode, useState } from "react";
 
@@ -33,7 +33,7 @@ export const PropsList = ({
     return {
       ...meta,
       props: meta.props.filter(e =>
-        e.key.toLowerCase().includes(search.toLowerCase())
+        e.key.toLowerCase().includes(search.toLowerCase()),
       ),
     };
   });
