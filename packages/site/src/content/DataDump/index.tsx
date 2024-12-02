@@ -1,4 +1,3 @@
-import { DataDump } from "@jobber/components";
 import DataDumpContent from "@atlantis/docs/components/DataDump/DataDump.stories.mdx";
 import Props from "./DataDump.props.json";
 import { ContentExport } from "../../types/content";
@@ -7,8 +6,7 @@ export default {
   content: () => <DataDumpContent />,
   props: Props,
   component: {
-    element: DataDump,
-    defaultProps: { data: '{ "name": "Bob" }' },
+    element: `<DataDump data={{ name: "Bob" }}></DataDump>`,
   },
   title: "DataDump",
   links: [

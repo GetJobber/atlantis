@@ -1,4 +1,3 @@
-import { Heading } from "@jobber/components";
 import HeadingContent from "@atlantis/docs/components/Heading/Heading.stories.mdx";
 import Props from "./Heading.props.json";
 import { ContentExport } from "../../types/content";
@@ -7,12 +6,7 @@ export default {
   content: () => <HeadingContent />,
   props: Props,
   component: {
-    element: Heading,
-    defaultProps: {
-      children: "New client",
-      level: "1",
-      element: "h1",
-    },
+    element: `<Heading level={1} element={"h1"}>New client</Heading>`,
   },
   title: "Heading",
   description: "",

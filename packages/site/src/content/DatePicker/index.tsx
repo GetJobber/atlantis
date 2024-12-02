@@ -1,14 +1,14 @@
-import { DatePicker } from "@jobber/components";
 import Content from "@atlantis/docs/components/Datepicker/Datepicker.stories.mdx";
-import { useState } from "react";
-import { showToast } from "@jobber/components/Toast";
 import Props from "./DatePicker.props.json";
 import { ContentExport } from "../../types/content";
 
-const DatePickerRoot = () => {
-  const [date, setDate] = useState(new Date());
+export default {
+  content: () => <Content />,
+  props: Props,
+  component: {
+    element: `const [date, setDate] = useState(new Date());
 
-  const changeDate = (dateIn: Date) => {
+  const changeDate = (dateIn) => {
     setDate(dateIn);
     showToast({
       message: "Date changed to: " + date.toLocaleString(),
@@ -16,15 +16,9 @@ const DatePickerRoot = () => {
     });
   };
 
-  return <DatePicker selected={date} onChange={changeDate} />;
-};
-
-export default {
-  content: () => <Content />,
-  props: Props,
-  component: {
-    element: DatePickerRoot,
-    defaultProps: {},
+  return <DatePicker selected={date} onChange={changeDate} />
+    
+    `,
   },
   title: "DatePicker",
   links: [

@@ -1,5 +1,5 @@
-import { PropsWithChildren } from "react";
-import { Route, Switch } from "react-router";
+import { PropsWithChildren, useEffect } from "react";
+import { Route, Switch, useLocation } from "react-router";
 import { NavMenu } from "./NavMenu";
 import { routes } from "../routes";
 import "./code-theme.css";
@@ -9,6 +9,15 @@ import "./code-theme.css";
  * @returns ReactNode
  */
 export const Layout = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Perform an action whenever the location changes
+    window.scrollTo({ top: 0 });
+
+    // Add your custom logic here
+  }, [location]);
+
   return (
     <LayoutWrapper>
       <NavMenu />
@@ -44,7 +53,6 @@ export const LayoutWrapper = ({ children }: PropsWithChildren) => {
     <div
       style={{
         display: "flex",
-        height: "100dvh",
         background: "var(--color-surface)",
       }}
     >

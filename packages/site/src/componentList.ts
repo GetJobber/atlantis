@@ -318,8 +318,8 @@ export const componentList = [
   },
   {
     title: "ReccuringSelect",
-    to: "/components/ReccuringSelect",
-    imageURL: "/ReccuringSelect.png",
+    to: "/components/RecurringSelect",
+    imageURL: "/RecurringSelect.png",
   },
   {
     title: "SegmentedControl",

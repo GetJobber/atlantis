@@ -1,4 +1,3 @@
-import { Emphasis, Typography } from "@jobber/components";
 import EmphasisContent from "@atlantis/docs/components/Emphasis/Emphasis.stories.mdx";
 import Props from "./Emphasis.props.json";
 import { ContentExport } from "../../types/content";
@@ -7,14 +6,10 @@ export default {
   content: () => <EmphasisContent />,
   props: Props,
   component: {
-    element: Emphasis,
-    defaultProps: {
-      children: (
-        <Typography size="largest" element="span" fontWeight={"extraBold"}>
+    element: `<Typography size="largest" element="span" fontWeight={"extraBold"}>
           Save <Emphasis variation="highlight">40%</Emphasis> today
         </Typography>
-      ),
-    },
+    `,
   },
   title: "Emphasis",
   description: "",

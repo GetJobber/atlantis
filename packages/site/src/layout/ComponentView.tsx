@@ -1,8 +1,8 @@
 import { Box, Content, Grid, Page, Tab, Tabs } from "@jobber/components";
 import { useParams } from "react-router";
+import { useEffect } from "react";
 import { PageWrapper } from "./PageWrapper";
 import { PropsList } from "../components/PropsList";
-import { CodeViewer } from "../components/CodeViewer";
 import { ComponentNotFound } from "../components/ComponentNotFound";
 import { ComponentLinks } from "../components/ComponentLinks";
 import { CodePreviewWindow } from "../components/CodePreviewWindow";
@@ -10,6 +10,11 @@ import { usePageValues } from "../hooks/usePageValues";
 import { SiteContent } from "../content";
 import { useStyleUpdater } from "../hooks/useStyleUpdater";
 import { useErrorCatcher } from "../hooks/useErrorCatcher";
+import {
+  AtlantisPreviewEditor,
+  AtlantisPreviewViewer,
+  useAtlantisPreview,
+} from "../components/AtlantisPreviewEditorProvider";
 import { useComponentAndCode } from "../hooks/useComponentAndCode";
 
 /**
@@ -19,17 +24,19 @@ import { useComponentAndCode } from "../hooks/useComponentAndCode";
  */
 export const ComponentView = () => {
   const { name = "" } = useParams<{ name: string }>();
+  const { updateCode, iframe } = useAtlantisPreview();
   const PageMeta = SiteContent[name];
   useErrorCatcher();
   const { updateStyles } = useStyleUpdater();
-  const { stateValues, stateValueWithFunction } = usePageValues(PageMeta);
+  const { stateValues } = usePageValues(PageMeta);
 
   const ComponentContent = PageMeta?.content;
-
-  const { Component, code } = useComponentAndCode(
-    PageMeta,
-    stateValueWithFunction,
-  );
+  const { code } = useComponentAndCode(PageMeta);
+  useEffect(() => {
+    if (iframe?.current) {
+      setTimeout(() => updateCode(code as string), 100);
+    }
+  }, [code, iframe?.current]);
 
   return PageMeta ? (
     <Grid>
@@ -39,11 +46,9 @@ export const ComponentView = () => {
             <Box>
               <Content spacing="large">
                 <Box direction="column" gap="small">
-                  {Component && (
-                    <CodePreviewWindow>
-                      <Component {...stateValueWithFunction} />
-                    </CodePreviewWindow>
-                  )}
+                  <CodePreviewWindow>
+                    <AtlantisPreviewViewer />
+                  </CodePreviewWindow>
                 </Box>
                 <span
                   style={{ "--public-tab--inset": 0 } as React.CSSProperties}
@@ -54,11 +59,11 @@ export const ComponentView = () => {
                         <ComponentContent />
                       </Content>
                     </Tab>
-                    <Tab label="Props">
+                    <Tab label="Implementation">
+                      <Box margin={{ bottom: "base" }}>
+                        <AtlantisPreviewEditor />
+                      </Box>
                       <PropsList values={stateValues} />
-                    </Tab>
-                    <Tab label="Code">
-                      <CodeViewer code={code} />
                     </Tab>
                   </Tabs>
                 </span>

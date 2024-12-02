@@ -1,8 +1,6 @@
 import { useMemo, useState } from "react";
-import { InputText, Switch, Text } from "@jobber/components";
 import { ValueStateInternals } from "../types/services";
 import { ContentExport } from "../types/content";
-import { SelectWithOptions } from "../components/SelectWithOptions";
 
 /**
  * This is doing a few different things.
@@ -21,7 +19,8 @@ export const usePageValues = (meta: ContentExport) => {
 
   const updateValue = (key: string, value: string | number | boolean) => {
     if (key) {
-      setValues(prev => ({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Will be removed soon, don't worry
+      setValues((prev: any) => ({
         ...prev,
         [key]: value as string,
       }));
@@ -40,13 +39,7 @@ export const usePageValues = (meta: ContentExport) => {
             key,
             required: prop?.required ? "*" : "",
             description: prop?.description,
-            component: determineListComponent({
-              key,
-              type: prop?.type.name || "",
-              placeholder: key,
-              value: values[key] as string,
-              updateValue,
-            }),
+            component: prop?.type?.name,
           };
         }),
       };
@@ -81,6 +74,8 @@ export const usePageValues = (meta: ContentExport) => {
   };
 };
 
+/**
+ * If we ever turn on prop editing again. We'll need this.
 const determineListComponent = ({
   key,
   type,
@@ -156,6 +151,7 @@ const determineListComponent = ({
 
   return <Text>{type}</Text>;
 };
+*/
 
 export const isFunction = (type: string) => {
   const regex = /\(([^)]*)\)\s*=>\s*([a-zA-Z_$][a-zA-Z0-9_$]*)/;

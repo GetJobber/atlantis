@@ -5,6 +5,7 @@ import "@jobber/components/dist/styles.css";
 import "./main.css";
 import { BrowserRouter } from "react-router-dom";
 import { Layout } from "./layout/Layout";
+import { AtlantisPreviewEditorProvider } from "./components/AtlantisPreviewEditorProvider";
 
 function renderApp() {
   const root = document.getElementById("root");
@@ -13,7 +14,9 @@ function renderApp() {
     ReactDOM.createRoot(root).render(
       <React.StrictMode>
         <BrowserRouter>
-          <Layout />
+          <AtlantisPreviewEditorProvider>
+            <Layout />
+          </AtlantisPreviewEditorProvider>
         </BrowserRouter>
       </React.StrictMode>,
     );
