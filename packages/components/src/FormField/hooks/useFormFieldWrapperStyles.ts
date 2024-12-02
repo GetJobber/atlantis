@@ -4,16 +4,33 @@ import { useIsSafari } from "./useIsSafari";
 import styles from "../FormField.module.css";
 import { FormFieldProps } from "../FormFieldTypes";
 
-export interface useFormFieldWrapperStylesProps extends FormFieldProps {
-  error: string;
+export interface useFormFieldWrapperStylesProps
+  extends Pick<
+    FormFieldProps,
+    | "size"
+    | "align"
+    | "placeholder"
+    | "value"
+    | "invalid"
+    | "max"
+    | "maxLength"
+    | "type"
+    | "disabled"
+    | "inline"
+  > {
+  readonly error: string;
   suffixRef: RefObject<HTMLDivElement>;
   prefixRef: RefObject<HTMLDivElement>;
 }
+
 export interface LabelPadding {
   paddingLeft: number | string | undefined;
   paddingRight: number | string | undefined;
 }
 
+/**
+ * Hook for getting the correct styles for the FormField and its children
+ */
 export function useFormFieldWrapperStyles({
   size,
   align,
