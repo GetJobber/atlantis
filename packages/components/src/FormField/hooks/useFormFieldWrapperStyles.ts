@@ -1,13 +1,13 @@
 import classnames from "classnames";
-import { useEffect, useState } from "react";
+import { RefObject, useEffect, useState } from "react";
 import { useIsSafari } from "./useIsSafari";
 import styles from "../FormField.module.css";
 import { FormFieldProps } from "../FormFieldTypes";
 
 export interface useFormFieldWrapperStylesProps extends FormFieldProps {
   error: string;
-  suffixWidth: number;
-  prefixWidth: number;
+  suffixRef: RefObject<HTMLDivElement>;
+  prefixRef: RefObject<HTMLDivElement>;
 }
 export interface LabelPadding {
   paddingLeft: number | string | undefined;
@@ -22,8 +22,8 @@ export function useFormFieldWrapperStyles({
   invalid,
   error,
   max,
-  prefixWidth,
-  suffixWidth,
+  prefixRef,
+  suffixRef,
   maxLength,
   type,
   disabled,
@@ -69,8 +69,8 @@ export function useFormFieldWrapperStyles({
       getAffixPaddding({
         value,
         type,
-        prefixWidth,
-        suffixWidth,
+        prefixWidth: prefixRef.current?.offsetWidth || 0,
+        suffixWidth: suffixRef.current?.offsetWidth || 0,
       }),
     );
   }, [value]);
