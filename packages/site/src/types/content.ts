@@ -10,6 +10,8 @@ export interface ContentExport {
   }>;
   component: {
     element: unknown;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Will be deleted soon, don't worry.
+    defaultProps: any;
   };
   title: string;
   description?: string;

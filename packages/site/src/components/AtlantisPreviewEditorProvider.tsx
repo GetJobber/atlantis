@@ -53,7 +53,7 @@ export const AtlantisPreviewEditorProvider = ({
   const [code, setCode] = useState<string>("");
   const [error, setError] = useState<string>("");
 
-  const writeSkeleton = doc => {
+  const writeSkeleton = (doc: Document | null | undefined) => {
     if (doc) {
       doc.open();
       doc.write(skeletonHTML);
