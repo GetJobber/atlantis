@@ -95,6 +95,7 @@ pre {
   background-color: var(--color-surface--background);
   border-radius: var(--radius-base);
   border: var(--border-base) solid var(--color-border);
+  margin: 0 !important;
 }
 
 code.root-code[class*="language-"] {
