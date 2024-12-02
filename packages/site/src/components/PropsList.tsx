@@ -43,7 +43,7 @@ export const PropsList = ({
         return (
           <DataList
             key={key}
-            title={value.name}
+            title="Properties"
             data={value.props}
             headers={{
               key: "Property",
