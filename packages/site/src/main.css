@@ -93,6 +93,8 @@ section[role="tabpanel"] {
 
 pre {
   background-color: var(--color-surface--background);
+  border-radius: var(--radius-base);
+  border: var(--border-base) solid var(--color-border);
 }
 
 code.root-code[class*="language-"] {
@@ -111,7 +113,6 @@ pre.root-pre code.root-code {
 pre.root-pre {
   background: var(--color-surface--background);
   padding: var(--space-large);
-  border-radius: var(--radius-base);
 }
 
 section[role="tabpanel"]>div>h1:first-of-type {
