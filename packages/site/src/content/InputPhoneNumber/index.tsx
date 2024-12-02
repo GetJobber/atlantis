@@ -14,7 +14,7 @@ export default {
         value={value}
         onChange={setValue}
       />
-  );`,
+  )`,
     defaultProps: {},
   },
   title: "InputPhoneNumber",
