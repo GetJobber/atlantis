@@ -1,16 +1,30 @@
-import { InputPhoneNumber } from "@jobber/components";
-import Content from "@atlantis/docs/components/InputPhoneNumber/InputPhoneNumber.stories.mdx";
+import { InputPhoneNumber as InputPhoneNumberRoot } from "@jobber/components";
+import InputPhoneNumberContent from "@atlantis/docs/components/InputPhoneNumber/InputPhoneNumber.stories.mdx";
+import { useState } from "react";
 import Props from "./InputPhoneNumber.props.json";
 import { ContentExport } from "../../types/content";
 
+export const InputPhoneNumber = () => {
+  const [value, setValue] = useState(undefined);
+
+  return (
+    <InputPhoneNumberRoot
+      placeholder={"Enter your phone number"}
+      value={value}
+      onChange={setValue}
+    />
+  );
+};
+
 export default {
-  content: () => <Content />,
+  content: () => <InputPhoneNumberContent />,
   props: Props,
   component: {
     element: InputPhoneNumber,
     defaultProps: {},
   },
   title: "InputPhoneNumber",
+  code: InputPhoneNumber,
   links: [
     {
       label: "Storybook",
