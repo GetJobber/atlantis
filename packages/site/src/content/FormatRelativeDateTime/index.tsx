@@ -1,4 +1,3 @@
-import { FormatRelativeDateTime } from "@jobber/components";
 import FormatRelativeDateTimeContent from "@atlantis/docs/components/FormatRelativeDateTime/FormatRelativeDateTime.stories.mdx";
 import Props from "./FormatRelativeDateTime.props.json";
 import { ContentExport } from "../../types/content";
@@ -7,7 +6,9 @@ export default {
   content: () => <FormatRelativeDateTimeContent />,
   props: Props,
   component: {
-    element: FormatRelativeDateTime,
+    element: `<FormatRelativeDateTime
+      date={new Date(new Date().setMinutes(new Date().getMinutes() - 5))}
+    />`,
     defaultProps: { date: "2020-07-10 15:22:00.000" },
   },
   title: "FormatRelativeDateTime",

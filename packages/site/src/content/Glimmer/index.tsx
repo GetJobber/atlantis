@@ -1,4 +1,3 @@
-import { Glimmer } from "@jobber/components";
 import GlimmerContent from "@atlantis/docs/components/Glimmer/Glimmer.stories.mdx";
 import Props from "./Glimmer.props.json";
 import { ContentExport } from "../../types/content";
@@ -7,7 +6,7 @@ export default {
   content: () => <GlimmerContent />,
   props: Props,
   component: {
-    element: Glimmer,
+    element: `<Glimmer />`,
     defaultProps: {},
   },
   title: "Glimmer",
