@@ -64,9 +64,6 @@ export default defineConfig({
       "@atlantis/docs": path.resolve(__dirname, "../../docs"),
     },
   },
-  server: {
-    open: true,
-  },
   define: {
     "process.env": {},
   },

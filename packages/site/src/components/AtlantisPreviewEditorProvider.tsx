@@ -2,6 +2,7 @@ import { transform } from "@babel/standalone";
 import {
   PropsWithChildren,
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useRef,
@@ -34,7 +35,12 @@ const AtlantisPreviewEditorContext = createContext<{
   updateCode: (code: string) => void;
   code: string;
   error: string;
-}>({ iframe: null, updateCode: () => ({}), code: "", error: "" });
+}>({
+  iframe: null,
+  updateCode: () => ({}),
+  code: "",
+  error: "",
+});
 
 export const useAtlantisPreview = () => {
   return useContext(AtlantisPreviewEditorContext);
@@ -50,32 +56,42 @@ export const AtlantisPreviewEditorProvider = ({
   useEffect(() => {
     if (iframe.current) {
       const doc = iframe.current.contentDocument;
-
-      if (doc) {
-        doc.open();
-        doc.write(skeletonHTML);
-        doc.close();
-      }
+      writeSkeleton(doc);
     }
   }, [iframe?.current]);
 
+  const writeSkeleton = doc => {
+    if (doc) {
+      doc.open();
+      doc.write(skeletonHTML);
+      doc.close();
+    }
+  };
   // eslint-disable-next-line max-statements
-  const updateCode = (codeUp: string) => {
-    setCode(codeUp);
+  const updateCode = useCallback(
+    // eslint-disable-next-line max-statements
+    (codeUp: string) => {
+      setCode(codeUp);
 
-    try {
-      const preCode = !codeUp.includes("return ") ? `return ${codeUp}` : codeUp;
-      const transpiledCode = transform(`function App(props){${preCode}}`, {
-        presets: [["env", { modules: false }], "react"],
-      }).code;
-      setError("");
+      try {
+        const preCode = !codeUp.includes("return ")
+          ? `return ${codeUp}`
+          : codeUp;
+        const transpiledCode = transform(`function App(props){${preCode}}`, {
+          presets: [["env", { modules: false }], "react"],
+        }).code;
+        setError("");
+        const html = iframe.current?.contentDocument?.documentElement.outerHTML;
 
-      if (iframe.current) {
-        const iframeWindow = iframe.current.contentWindow;
-        console.log("iframeWindow", iframeWindow);
+        if (html === "<html><head></head><body></body></html>") {
+          writeSkeleton(iframe.current?.contentDocument);
+        }
 
-        if (iframeWindow) {
-          const codeWrapper = `
+        if (iframe.current) {
+          const iframeWindow = iframe.current.contentWindow;
+
+          if (iframeWindow) {
+            const codeWrapper = `
             import React from 'react';
             import ReactDOM from 'react-dom/client';
             import {
@@ -118,19 +134,20 @@ export const AtlantisPreviewEditorProvider = ({
              }
               root.render(React.createElement(App, null));
           `;
-          iframeWindow.postMessage(
-            { type: "updateCode", code: codeWrapper },
-            "*",
-          );
+            iframeWindow.postMessage(
+              { type: "updateCode", code: codeWrapper },
+              "*",
+            );
+          }
+        } else {
+          console.log("tried to update iframe");
         }
-      } else {
-        console.log("tried to update iframe");
+      } catch (e) {
+        setError((e as { message: string }).message as string);
       }
-      console.log(iframe.current?.contentDocument?.documentElement.outerHTML);
-    } catch (e) {
-      setError((e as { message: string }).message as string);
-    }
-  };
+    },
+    [iframe],
+  );
 
   return (
     <AtlantisPreviewEditorContext.Provider
