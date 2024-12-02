@@ -1,0 +1,78 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Popover/Popover.tsx",
+    "description": "",
+    "displayName": "Popover",
+    "methods": [],
+    "props": {
+      "attachTo": {
+        "defaultValue": null,
+        "description": "Element the Popover will attach to and point at. A `useRef` must be attached to an html element\nand passed as an attachTo prop in order for the Popover to function properly",
+        "name": "attachTo",
+        "parent": {
+          "fileName": "../components/src/Popover/Popover.tsx",
+          "name": "PopoverProps"
+        },
+        "required": true,
+        "type": {
+          "name": "any"
+        }
+      },
+      "children": {
+        "defaultValue": null,
+        "description": "Popover content.",
+        "name": "children",
+        "parent": {
+          "fileName": "../components/src/Popover/Popover.tsx",
+          "name": "PopoverProps"
+        },
+        "required": true,
+        "type": {
+          "name": "React.ReactNode"
+        }
+      },
+      "open": {
+        "defaultValue": null,
+        "description": "Control Popover visibility.",
+        "name": "open",
+        "parent": {
+          "fileName": "../components/src/Popover/Popover.tsx",
+          "name": "PopoverProps"
+        },
+        "required": true,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "onRequestClose": {
+        "defaultValue": null,
+        "description": "Callback executed when the user wants to close/dismiss the Popover",
+        "name": "onRequestClose",
+        "parent": {
+          "fileName": "../components/src/Popover/Popover.tsx",
+          "name": "PopoverProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
+      },
+      "preferredPlacement": {
+        "defaultValue": {
+          "value": "auto"
+        },
+        "description": "Describes the preferred placement of the Popover.",
+        "name": "preferredPlacement",
+        "parent": {
+          "fileName": "../components/src/Popover/Popover.tsx",
+          "name": "PopoverProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"top\" | \"bottom\" | \"left\" | \"right\" | \"auto\""
+        }
+      }
+    }
+  }
+]

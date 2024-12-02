@@ -1,0 +1,37 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Menu/Menu.tsx",
+    "description": "",
+    "displayName": "Menu",
+    "methods": [],
+    "props": {
+      "activator": {
+        "defaultValue": null,
+        "description": "Custom menu activator. If this is not provided a default [… More] will be used.",
+        "name": "activator",
+        "parent": {
+          "fileName": "../components/src/Menu/Menu.tsx",
+          "name": "MenuProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactElement<any, string | JSXElementConstructor<any>>"
+        }
+      },
+      "items": {
+        "defaultValue": null,
+        "description": "Collection of action items.",
+        "name": "items",
+        "parent": {
+          "fileName": "../components/src/Menu/Menu.tsx",
+          "name": "MenuProps"
+        },
+        "required": true,
+        "type": {
+          "name": "SectionProps[]"
+        }
+      }
+    }
+  }
+]
