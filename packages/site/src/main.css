@@ -118,15 +118,6 @@ section[role="tabpanel"]>div>h1:first-of-type {
   display: none;
 }
 
-.cm-editor {
-  border: 1px solid var(--color-border);
-  border-radius: var(--border-base);
-}
-
-.cm-editor .cm-type {
-  color: var(--color-text)
-}
-
 iframe {
   width: 100%;
   min-height: 200px;
