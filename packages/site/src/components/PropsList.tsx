@@ -67,7 +67,7 @@ export const PropsList = ({
                   </Grid.Cell>
                   <Grid.Cell size={{ xs: 1 }}>{item.required}</Grid.Cell>
                   <Grid.Cell size={{ xs: 2 }}>{item.component}</Grid.Cell>
-                  <Grid.Cell size={{ xs: 3 }}>{item.description}</Grid.Cell>
+                  <Grid.Cell size={{ xs: 7 }}>{item.description}</Grid.Cell>
                 </Grid>
               )}
             </DataList.Layout>
