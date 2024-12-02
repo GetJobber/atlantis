@@ -21,7 +21,8 @@ export const usePageValues = (meta: ContentExport) => {
 
   const updateValue = (key: string, value: string | number | boolean) => {
     if (key) {
-      setValues(prev => ({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Will be removed soon, don't worry
+      setValues((prev: any) => ({
         ...prev,
         [key]: value as string,
       }));

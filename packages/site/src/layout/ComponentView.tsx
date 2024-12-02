@@ -33,7 +33,7 @@ export const ComponentView = () => {
   const ComponentContent = PageMeta?.content;
   const { code } = useComponentAndCode(PageMeta);
   useEffect(() => {
-    updateCode(code);
+    updateCode(code as string);
   }, [code]);
 
   return PageMeta ? (
