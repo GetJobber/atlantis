@@ -60,14 +60,14 @@ export const PropsList = ({
                 required: boolean;
               }) => (
                 <Grid gap>
-                  <Grid.Cell size={{ xs: 4 }}>
+                  <Grid.Cell size={{ xs: 2 }}>
                     <div style={{ display: "flex", alignItems: "flex" }}>
                       {item.key}
                     </div>
                   </Grid.Cell>
-                  <Grid.Cell size={{ xs: 4 }}>{item.required}</Grid.Cell>
-                  <Grid.Cell size={{ xs: 4 }}>{item.description}</Grid.Cell>
-                  {/*<Grid.Cell size={{ xs: 3 }}>{item.component}</Grid.Cell> */}
+                  <Grid.Cell size={{ xs: 1 }}>{item.required}</Grid.Cell>
+                  <Grid.Cell size={{ xs: 3 }}>{item.description}</Grid.Cell>
+                  <Grid.Cell size={{ xs: 5 }}>{item.component}</Grid.Cell>
                 </Grid>
               )}
             </DataList.Layout>
