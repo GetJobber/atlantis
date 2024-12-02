@@ -59,7 +59,7 @@ interface MultilineProps extends BaseProps {
   readonly rows?: number | RowRange;
 }
 
-export type InputTextPropOptions = XOR<BaseProps, MultilineProps>;
+type InputTextPropOptions = XOR<BaseProps, MultilineProps>;
 
 function InputTextInternal(
   props: InputTextPropOptions,
