@@ -7,7 +7,7 @@ export default {
   content: () => <AnimatedPresenceContent />,
   props: Props,
   component: {
-    element: `const [switched, setSwitched] = React.useState(false);
+    element: `const [switched, setSwitched] = useState(false);
   return (
     <Content>
       <Button
@@ -34,10 +34,6 @@ export default {
       </AnimatedPresence>
     </Content>
   );`,
-    defaultProps: {
-      initial: true,
-      transition: "fromLeftToRight",
-    },
   },
   title: "AnimatedPresence",
   links: [

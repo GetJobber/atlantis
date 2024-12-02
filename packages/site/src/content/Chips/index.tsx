@@ -7,7 +7,7 @@ export default {
   props: Props,
   component: {
     element: `
- const [selected, setSelected] = React.useState();
+ const [selected, setSelected] = useState();
 
   return (
     <Content>

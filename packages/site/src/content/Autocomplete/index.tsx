@@ -9,7 +9,7 @@ export default {
   component: {
     element: `
 
-const [value, setValue] = React.useState();
+const [value, setValue] = useState();
     const getOptions = () => {
       return [
         { value: 1, label: "Hobbitss" },

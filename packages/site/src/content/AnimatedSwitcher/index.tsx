@@ -9,7 +9,7 @@ export default {
   component: {
     element: `
 
-  const [switched, setSwitched] = React.useState(undefined || false);
+  const [switched, setSwitched] = useState(undefined || false);
 
   return (
     <AnimatedSwitcher

@@ -53,13 +53,6 @@ export const AtlantisPreviewEditorProvider = ({
   const [code, setCode] = useState<string>("");
   const [error, setError] = useState<string>("");
 
-  useEffect(() => {
-    if (iframe.current) {
-      const doc = iframe.current.contentDocument;
-      writeSkeleton(doc);
-    }
-  }, [iframe?.current]);
-
   const writeSkeleton = doc => {
     if (doc) {
       doc.open();
@@ -92,37 +85,85 @@ export const AtlantisPreviewEditorProvider = ({
 
           if (iframeWindow) {
             const codeWrapper = `
-            import React from 'react';
-            import ReactDOM from 'react-dom/client';
             import {
               AnimatedPresence,
               AnimatedSwitcher,
               Autocomplete,
               Avatar,
               Banner,
+              Box,
               Button,
               ButtonDismiss,
               Card,
               Checkbox,
-              Chips,
               Chip,
+              Chips,
               Content,
+              Combobox,
               Countdown,
+              DataDump,
+              DataList,
+              DataTable,
+              DatePicker,
+              DescriptionList,
               Disclosure,
+              Divider,
+              Drawer,
+              DrawerGrid,
               Emphasis,
+              FeatureSwitch,
               Flex,
+              Form,
+              FormatDate,
+              FormatEmail,
+              FormatFile,
+              FormatRelativeDateTime,
+              FormatTime,
+              FormField,
+              Gallery,
+              Glimmer,
+              Grid,
               Heading,
               Icon,
               InlineLabel,
-              Option,
+              InputAvatar,
+              InputDate,
+              InputEmail,
+              InputGroup,
+              InputNumber,
+              InputPassword,
+              InputText,
+              InputTime,
+              InputValidation,
+              LightBox,
+              Link,
+              List,
+              Markdown,
+              Menu,
+              Modal,
+              MultiSelect,
+              Page,
+              Popover,
               ProgressBar,
+              RadioGroup,
+              RecurringSelect,
+              SegmentedControl,
+              Select,
+              Spinner,
+              StatusIndicator,
               StatusLabel,
               Switch,
+              Table,
+              Tabs,
               Text,
-              Typography
+              Toast,
+              Tooltip,
+              Typography,
+              useState,
+              useEffect,
+              ReactDOM
             } from '@jobber/components';
-            import "styles.css";
-            import "foundation.css";
+             
 
                 ${transpiledCode}
              
@@ -245,17 +286,15 @@ html,body,#root {
   min-height: 200px;
 }
 </style>
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/foundation.css">
 </head>
       <body>
  <script type="importmap">
   {
     "imports": {
-      "@jobber/components": "/@fs/Users/scottthompson/workspace/atlantis/packages/components/dist/index.mjs",
-      "styles.css": "/@fs/Users/scottthompson/workspace/atlantis/packages/components/dist/styles.css",
-      "foundation.css": "/@fs/Users/scottthompson/workspace/atlantis/packages/design/dist/foundation.css",
-      "react-dom": "/node_modules/.vite/deps/react-dom.js",
-      "react-dom/client": "/node_modules/.vite/deps/react-dom_client.js",
-      "react": "/node_modules/.vite/deps/react.js"
+      "@jobber/components": "/editorBundle.js",
+      "axios": "/axios.js"
     }
   }
   </script>
