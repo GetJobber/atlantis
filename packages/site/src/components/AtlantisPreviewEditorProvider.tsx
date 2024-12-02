@@ -71,6 +71,9 @@ export const AtlantisPreviewEditorProvider = ({
           : codeUp;
         const transpiledCode = transform(`function App(props){${preCode}}`, {
           presets: [["env", { modules: false }], "react"],
+          plugins: [
+            ["transform-typescript", { isTSX: true, allExtensions: false }],
+          ],
         }).code;
         setError("");
         const html = iframe.current?.contentDocument?.documentElement.outerHTML;
@@ -159,10 +162,10 @@ export const AtlantisPreviewEditorProvider = ({
               Tooltip,
               Typography,
               useState,
+              useFormState,
               useEffect,
               ReactDOM
             } from '@jobber/components';
-             
 
                 ${transpiledCode}
              
