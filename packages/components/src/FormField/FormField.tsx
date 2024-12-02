@@ -57,7 +57,7 @@ function FormFieldInternal(props: FormFieldInternalProps) {
   const {
     errorMessage,
     inputRefs,
-    rest,
+    useControllerField,
     setValue,
     onControllerBlur,
     onControllerChange,
@@ -93,10 +93,9 @@ function FormFieldInternal(props: FormFieldInternalProps) {
   const { textFieldProps, fieldProps, descriptionIdentifier } =
     useAtlantisFormField({
       id,
-      nameProp,
-      actionsRef,
-      rest,
+      useControllerField,
       name,
+      nameProp,
       description,
       validations: !!validations,
       disabled,
@@ -115,7 +114,7 @@ function FormFieldInternal(props: FormFieldInternalProps) {
   return (
     <FormFieldWrapper
       {...props}
-      value={rest.value}
+      value={useControllerField.value}
       error={errorMessage}
       identifier={id}
       descriptionIdentifier={descriptionIdentifier}

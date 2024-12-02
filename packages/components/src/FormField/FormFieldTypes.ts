@@ -14,6 +14,15 @@ export type FormFieldTypes =
   | "tel"
   | "email";
 
+export type KeyBoardTypes =
+  | "text"
+  | "none"
+  | "tel"
+  | "url"
+  | "email"
+  | "numeric"
+  | "decimal";
+
 export type AutocompleteTypes =
   | "one-time-code"
   | "address-line1"

@@ -8,6 +8,17 @@ import {
 import { mergeRefs } from "@jobber/components/utils/mergeRefs";
 import { FieldActionsRef } from "../FormFieldTypes";
 
+interface useAtlantisReactFormProps {
+  actionsRef?: React.RefObject<FieldActionsRef>;
+  name: string;
+  defaultValue?: string | Date;
+  value?: string | Date | number;
+  validations?: RegisterOptions;
+  inputRef?: React.RefObject<
+    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+  >;
+}
+
 /**
  * Hook used to manage the form state of a field through react-hook-form
  */
@@ -18,16 +29,7 @@ export function useAtlantisReactForm({
   value,
   validations,
   inputRef,
-}: {
-  actionsRef?: React.RefObject<FieldActionsRef>;
-  name: string;
-  defaultValue?: string | Date;
-  value?: string | Date | number;
-  validations?: RegisterOptions;
-  inputRef?: React.RefObject<
-    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-  >;
-}) {
+}: useAtlantisReactFormProps) {
   const formContext = useFormContext();
   // If there isn't a Form Context being provided, get a form for this field.
   const { control, setValue, watch } =
@@ -38,7 +40,7 @@ export function useAtlantisReactForm({
     },
   }));
   const {
-    field: { onChange, onBlur, ref: fieldRef, ...rest },
+    field,
     fieldState: { error },
   } = useController({
     name,
@@ -46,6 +48,7 @@ export function useAtlantisReactForm({
     rules: validations,
     defaultValue: value ?? defaultValue ?? "",
   });
+  const { onChange, onBlur, ref: fieldRef, ...useControllerField } = field;
 
   useEffect(() => {
     if (value != undefined) {
@@ -57,7 +60,7 @@ export function useAtlantisReactForm({
 
   return {
     inputRefs,
-    rest,
+    useControllerField,
     setValue,
     errorMessage: error?.message || "",
     onControllerChange: onChange,
