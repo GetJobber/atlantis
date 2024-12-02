@@ -1,4 +1,4 @@
-import { Content, DataList, Grid, InputText, InlineLabel, Flex } from "@jobber/components";
+import { Content, DataList, Grid, InputText, InlineLabel } from "@jobber/components";
 import { ReactNode, useState } from "react";
 
 /**
@@ -81,12 +81,12 @@ export const PropsList = ({
               }) => (
               <Grid>
               <Grid.Cell size={{ xs: 6 }}>
-                <Flex gap="small" align="center" template={["shrink", "shrink"]}>
+                <div style={{display: "flex", gap: "var(--space-smaller", flexWrap: "wrap"}}>
                   {item.key}
                   {item.required && (
                     <InlineLabel>Required</InlineLabel>
                   )}
-                </Flex>
+                </div>
               </Grid.Cell>
               <Grid.Cell size={{ xs: 6 }}>{item.component}</Grid.Cell>
               <Grid.Cell size={{ xs: 12 }}>{item.description}</Grid.Cell>
