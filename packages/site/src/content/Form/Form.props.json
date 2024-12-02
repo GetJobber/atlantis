@@ -1,0 +1,63 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Form/Form.tsx",
+    "description": "",
+    "displayName": "Form",
+    "methods": [],
+    "props": {
+      "onSubmit": {
+        "defaultValue": null,
+        "description": "Callback for when the form has been sucessfully\nsubmitted.",
+        "name": "onSubmit",
+        "parent": {
+          "fileName": "../components/src/Form/Form.tsx",
+          "name": "FormProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
+      },
+      "onStateChange": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onStateChange",
+        "parent": {
+          "fileName": "../components/src/Form/Form.tsx",
+          "name": "FormProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(formState: { isDirty: boolean; isValid: boolean; }) => void"
+        }
+      },
+      "ref": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ref",
+        "parent": {
+          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
+          "name": "RefAttributes"
+        },
+        "required": false,
+        "type": {
+          "name": "Ref<FormRef>"
+        }
+      },
+      "key": {
+        "defaultValue": null,
+        "description": "",
+        "name": "key",
+        "parent": {
+          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
+          "name": "Attributes"
+        },
+        "required": false,
+        "type": {
+          "name": "Key"
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/List/List.tsx",
+    "description": "",
+    "displayName": "List",
+    "methods": [],
+    "props": {
+      "items": {
+        "defaultValue": null,
+        "description": "Array of the list items.",
+        "name": "items",
+        "parent": {
+          "fileName": "../components/src/List/List.tsx",
+          "name": "ListProps"
+        },
+        "required": true,
+        "type": {
+          "name": "T[]"
+        }
+      },
+      "customRenderItem": {
+        "defaultValue": null,
+        "description": "A function that will be called for each item instead of the default\nrendering",
+        "name": "customRenderItem",
+        "parent": {
+          "fileName": "../components/src/List/List.tsx",
+          "name": "ListProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(item: T) => React.ReactNode"
+        }
+      },
+      "customItemStyles": {
+        "defaultValue": null,
+        "description": "Set to true for more control over the item styles. Only modifies styles\nwhen used with customRenderItem.",
+        "name": "customItemStyles",
+        "parent": {
+          "fileName": "../components/src/List/List.tsx",
+          "name": "ListProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      }
+    }
+  }
+]

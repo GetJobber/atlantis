@@ -2,6 +2,7 @@ import { transform } from "@babel/standalone";
 import {
   PropsWithChildren,
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useRef,
@@ -34,7 +35,12 @@ const AtlantisPreviewEditorContext = createContext<{
   updateCode: (code: string) => void;
   code: string;
   error: string;
-}>({ iframe: null, updateCode: () => ({}), code: "", error: "" });
+}>({
+  iframe: null,
+  updateCode: () => ({}),
+  code: "",
+  error: "",
+});
 
 export const useAtlantisPreview = () => {
   return useContext(AtlantisPreviewEditorContext);
@@ -47,66 +53,116 @@ export const AtlantisPreviewEditorProvider = ({
   const [code, setCode] = useState<string>("");
   const [error, setError] = useState<string>("");
 
-  useEffect(() => {
-    if (iframe.current) {
-      const doc = iframe.current.contentDocument;
-
-      if (doc) {
-        doc.open();
-        doc.write(skeletonHTML);
-        doc.close();
-      }
+  const writeSkeleton = (doc: Document | null | undefined) => {
+    if (doc) {
+      doc.open();
+      doc.write(skeletonHTML);
+      doc.close();
     }
-  }, [iframe?.current]);
+  };
+  const updateCode = useCallback(
+    // eslint-disable-next-line max-statements
+    (codeUp: string) => {
+      setCode(codeUp);
 
-  // eslint-disable-next-line max-statements
-  const updateCode = (codeUp: string) => {
-    setCode(codeUp);
+      try {
+        const preCode = !codeUp.includes("return ")
+          ? `return ${codeUp}`
+          : codeUp;
+        const transpiledCode = transform(`function App(props){${preCode}}`, {
+          presets: [["env", { modules: false }], "react"],
+        }).code;
+        setError("");
+        const html = iframe.current?.contentDocument?.documentElement.outerHTML;
 
-    try {
-      const preCode = !codeUp.includes("return ") ? `return ${codeUp}` : codeUp;
-      const transpiledCode = transform(`function App(props){${preCode}}`, {
-        presets: [["env", { modules: false }], "react"],
-      }).code;
-      setError("");
+        if (html === "<html><head></head><body></body></html>") {
+          writeSkeleton(iframe.current?.contentDocument);
+        }
 
-      if (iframe.current) {
-        const iframeWindow = iframe.current.contentWindow;
-        console.log("iframeWindow", iframeWindow);
+        if (iframe.current) {
+          const iframeWindow = iframe.current.contentWindow;
 
-        if (iframeWindow) {
-          const codeWrapper = `
-            import React from 'react';
-            import ReactDOM from 'react-dom/client';
+          if (iframeWindow) {
+            const codeWrapper = `
             import {
               AnimatedPresence,
               AnimatedSwitcher,
               Autocomplete,
               Avatar,
               Banner,
+              Box,
               Button,
               ButtonDismiss,
               Card,
               Checkbox,
-              Chips,
               Chip,
+              Chips,
               Content,
+              Combobox,
               Countdown,
+              DataDump,
+              DataList,
+              DataTable,
+              DatePicker,
+              DescriptionList,
               Disclosure,
+              Divider,
+              Drawer,
+              DrawerGrid,
               Emphasis,
+              FeatureSwitch,
               Flex,
+              Form,
+              FormatDate,
+              FormatEmail,
+              FormatFile,
+              FormatRelativeDateTime,
+              FormatTime,
+              FormField,
+              Gallery,
+              Glimmer,
+              Grid,
               Heading,
               Icon,
               InlineLabel,
-              Option,
+              InputAvatar,
+              InputDate,
+              InputEmail,
+              InputGroup,
+              InputNumber,
+              InputPassword,
+              InputText,
+              InputTime,
+              InputValidation,
+              LightBox,
+              Link,
+              List,
+              Markdown,
+              Menu,
+              Modal,
+              MultiSelect,
+              Page,
+              Popover,
               ProgressBar,
+              RadioGroup,
+              RecurringSelect,
+              SegmentedControl,
+              Select,
+              Spinner,
+              StatusIndicator,
               StatusLabel,
               Switch,
+              Table,
+              Tabs,
               Text,
-              Typography
+              Toast,
+              Tooltip,
+              Typography,
+              useState,
+              useEffect,
+              ReactDOM
             } from '@jobber/components';
-            import "styles.css";
-            import "foundation.css";
+             
 
                 ${transpiledCode}
              
@@ -118,19 +174,20 @@ export const AtlantisPreviewEditorProvider = ({
              }
               root.render(React.createElement(App, null));
           `;
-          iframeWindow.postMessage(
-            { type: "updateCode", code: codeWrapper },
-            "*",
-          );
+            iframeWindow.postMessage(
+              { type: "updateCode", code: codeWrapper },
+              "*",
+            );
+          }
+        } else {
+          console.log("tried to update iframe");
         }
-      } else {
-        console.log("tried to update iframe");
+      } catch (e) {
+        setError((e as { message: string }).message as string);
       }
-      console.log(iframe.current?.contentDocument?.documentElement.outerHTML);
-    } catch (e) {
-      setError((e as { message: string }).message as string);
-    }
-  };
+    },
+    [iframe],
+  );
 
   return (
     <AtlantisPreviewEditorContext.Provider
@@ -228,17 +285,15 @@ html,body,#root {
   min-height: 200px;
 }
 </style>
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/foundation.css">
 </head>
       <body>
  <script type="importmap">
   {
     "imports": {
-      "@jobber/components": "/@fs/Users/scottthompson/workspace/atlantis/packages/components/dist/index.mjs",
-      "styles.css": "/@fs/Users/scottthompson/workspace/atlantis/packages/components/dist/styles.css",
-      "foundation.css": "/@fs/Users/scottthompson/workspace/atlantis/packages/design/dist/foundation.css",
-      "react-dom": "/node_modules/.vite/deps/react-dom.js",
-      "react-dom/client": "/node_modules/.vite/deps/react-dom_client.js",
-      "react": "/node_modules/.vite/deps/react.js"
+      "@jobber/components": "/editorBundle.js",
+      "axios": "/axios.js"
     }
   }
   </script>

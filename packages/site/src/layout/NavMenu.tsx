@@ -13,7 +13,13 @@ export const NavMenu = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <Box width={220} background="surface--background">
+    <div
+      style={{
+        width: 220,
+        minHeight: "100dvh",
+        backgroundColor: "var(--color-surface--background)",
+      }}
+    >
       <Box height={24} padding="base">
         <Link to="/">
           <JobberLogo />
@@ -57,7 +63,7 @@ export const NavMenu = () => {
           })}
         </Box>
       </MenuList>
-    </Box>
+    </div>
   );
 };
 

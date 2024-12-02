@@ -29,7 +29,7 @@
         },
         "required": false,
         "type": {
-          "name": "{ [x: number]: GroupOption; length: number; toString: (() => string) & (() => string); toLocaleString: (() => string) & (() => string); pop: () => GroupOption; push: (...items: GroupOption[]) => number; ... 29 more ...; [Symbol.unscopables]: () => { ...; }; } | { ...; }"
+          "name": "{ [x: number]: GroupOption; length: number; toString: () => string; toLocaleString: { (): string; (locales: string | string[], options?: NumberFormatOptions & DateTimeFormatOptions): string; }; ... 37 more ...; readonly [Symbol.unscopables]: { ...; }; } | { ...; }"
         }
       },
       "value": {
@@ -98,7 +98,7 @@
         },
         "required": true,
         "type": {
-          "name": "(newInputText: string) => { [x: number]: GroupOption; length: number; toString: (() => string) & (() => string); toLocaleString: (() => string) & (() => string); pop: () => GroupOption; ... 30 more ...; [Symbol.unscopables]: () => { ...; }; } | { ...; } | Promise<...>"
+          "name": "(newInputText: string) => { [x: number]: GroupOption; length: number; toString: () => string; toLocaleString: { (): string; (locales: string | string[], options?: NumberFormatOptions & DateTimeFormatOptions): string; }; ... 37 more ...; readonly [Symbol.unscopables]: { ...; }; } | { ...; } | Promise<...>"
         }
       },
       "placeholder": {
@@ -228,7 +228,7 @@
         },
         "required": false,
         "type": {
-          "name": "RegisterOptions<FieldValues, string>"
+          "name": "RegisterOptions"
         }
       },
       "ref": {

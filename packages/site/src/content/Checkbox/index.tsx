@@ -7,7 +7,7 @@ export default {
   content: () => <CheckboxContent />,
   props: Props,
   component: {
-    element: `const [checked, setChecked] = React.useState(true);
+    element: `const [checked, setChecked] = useState(true);
 
   return (
     <Checkbox
