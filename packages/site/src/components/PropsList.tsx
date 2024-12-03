@@ -5,7 +5,7 @@ import {
   InlineLabel,
   InputText,
 } from "@jobber/components";
-import React, { ReactNode, useState } from "react";
+import { ReactNode, useState } from "react";
 
 /**
  * All the Props for a component. This component receives an Array of DataListOptions, and will generate mulitple DataLists as a result.
@@ -59,6 +59,7 @@ export const PropsList = ({
               description: "Description",
               component: "Type",
             }}
+            headerVisibility={{ xs: false, md: true }}
           >
             <DataList.Layout size="md">
               {(item: {
