@@ -323,7 +323,7 @@ export const componentList = [
     imageURL: "/RadioGroup.png",
   },
   {
-    title: "ReccuringSelect",
+    title: "RecurringSelect",
     to: "/components/RecurringSelect",
     imageURL: "/RecurringSelect.png",
   },
