@@ -1,4 +1,4 @@
-import { Box, Button, Disclosure } from "@jobber/components";
+import { Box, Button, Disclosure, Typography } from "@jobber/components";
 import { Link } from "react-router-dom";
 import { PropsWithChildren, useState } from "react";
 import { SearchBox } from "./SearchBox";
@@ -39,19 +39,21 @@ export const NavMenu = () => {
           {routes?.map((route, index) => {
             if (route.children) {
               return (
-                <Disclosure key={index} title={route.handle}>
-                  {route.children.map((subroute, subindex) => {
-                    if (subroute.inNav === false) return null;
+                <Box key={index} padding="base">
+                  <Disclosure key={index} title={changelogTitle}>
+                    {route.children.map((subroute, subindex) => {
+                      if (subroute.inNav === false) return null;
 
-                    return (
-                      <MenuItem key={subindex}>
-                        <StyledLink to={subroute.path || "/"}>
-                          {subroute.handle}
-                        </StyledLink>
-                      </MenuItem>
-                    );
-                  })}
-                </Disclosure>
+                      return (
+                        <MenuItem key={subindex}>
+                          <StyledLink to={subroute.path || "/"}>
+                            {subroute.handle}
+                          </StyledLink>
+                        </MenuItem>
+                      );
+                    })}
+                  </Disclosure>
+                </Box>
               );
             }
             if (route.inNav === false) return null;
@@ -120,3 +122,9 @@ export const MenuItem = ({ children }: PropsWithChildren) => {
     </li>
   );
 };
+
+export const changelogTitle = (
+  <Typography fontWeight="semiBold" size="large" textColor="heading">
+    Changelog
+  </Typography>
+);
