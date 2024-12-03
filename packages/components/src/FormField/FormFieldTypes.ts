@@ -134,7 +134,10 @@ export interface CommonFormFieldProps {
   readonly clearable?: Clearable;
 
   /**
-   * Which version of the Field to use
+   * Experimental:
+   * Determine which version of the FormField to use.
+   * Right now this isn't used but it will be used in the future
+   * to allow us to release new versions of our form inputs without breaking existing functionality
    */
   version?: 1;
 }
