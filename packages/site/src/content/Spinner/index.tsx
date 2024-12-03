@@ -1,4 +1,3 @@
-import { Spinner } from "@jobber/components";
 import Content from "@atlantis/docs/components/Spinner/Spinner.stories.mdx";
 import Props from "./Spinner.props.json";
 import { ContentExport } from "../../types/content";
@@ -7,7 +6,7 @@ export default {
   content: () => <Content />,
   props: Props,
   component: {
-    element: Spinner,
+    element: `<Spinner />`,
     defaultProps: {},
   },
   title: "Spinner",

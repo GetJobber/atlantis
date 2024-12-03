@@ -71,6 +71,9 @@ export const AtlantisPreviewEditorProvider = ({
           : codeUp;
         const transpiledCode = transform(`function App(props){${preCode}}`, {
           presets: [["env", { modules: false }], "react"],
+          plugins: [
+            ["transform-typescript", { isTSX: true, allExtensions: false }],
+          ],
         }).code;
         setError("");
         const html = iframe.current?.contentDocument?.documentElement.outerHTML;
@@ -110,6 +113,7 @@ export const AtlantisPreviewEditorProvider = ({
               Divider,
               Drawer,
               DrawerGrid,
+              DurationPeriod,
               Emphasis,
               FeatureSwitch,
               Flex,
@@ -132,6 +136,7 @@ export const AtlantisPreviewEditorProvider = ({
               InputGroup,
               InputNumber,
               InputPassword,
+              InputPhoneNumber,
               InputText,
               InputTime,
               InputValidation,
@@ -142,10 +147,12 @@ export const AtlantisPreviewEditorProvider = ({
               Menu,
               Modal,
               MultiSelect,
+              Option,
               Page,
               Popover,
               ProgressBar,
               RadioGroup,
+              RadioOption,
               RecurringSelect,
               SegmentedControl,
               Select,
@@ -154,16 +161,26 @@ export const AtlantisPreviewEditorProvider = ({
               StatusLabel,
               Switch,
               Table,
+              Header,
+              Cell,
+              Body,
+              Row,
+              CellCurrency,
+              CellNumeric,
+              Footer,
               Tabs,
+              Tab,
               Text,
               Toast,
+              showToast,
               Tooltip,
               Typography,
               useState,
+              useFormState,
+              useRef,
               useEffect,
               ReactDOM
             } from '@jobber/components';
-
 
                 ${transpiledCode}
 
