@@ -55,10 +55,13 @@ export const AtlantisPreviewEditorProvider = ({
   const [code, setCode] = useState<string>("");
   const [error, setError] = useState<string>("");
 
-  const writeSkeleton = (doc: Document | null | undefined) => {
+  const writeSkeleton = (
+    doc: Document | null | undefined,
+    iframeTheme: Theme,
+  ) => {
     if (doc) {
       doc.open();
-      doc.write(skeletonHTML(theme));
+      doc.write(skeletonHTML(iframeTheme));
       doc.close();
     }
   };
@@ -82,7 +85,7 @@ export const AtlantisPreviewEditorProvider = ({
         const html = iframe.current?.contentDocument?.documentElement.outerHTML;
 
         if (html === "<html><head></head><body></body></html>") {
-          writeSkeleton(iframe.current?.contentDocument);
+          writeSkeleton(iframe.current?.contentDocument, theme);
         }
 
         if (iframe.current) {
@@ -213,7 +216,7 @@ export const AtlantisPreviewEditorProvider = ({
         setError((e as { message: string }).message as string);
       }
     },
-    [iframe],
+    [iframe, theme],
   );
 
   useEffect(() => {
