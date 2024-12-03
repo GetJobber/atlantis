@@ -51,11 +51,7 @@ export const NavMenu = () => {
               })
             ) : route.inNav === false ? null : (
               <MenuItem key={index}>
-                <StyledLink
-                  key={index}
-                  to={route.path ?? "/"}
-                  style={{ marginBottom: "var(--space-base)" }}
-                >
+                <StyledLink key={index} to={route.path ?? "/"}>
                   {route.handle}
                 </StyledLink>
               </MenuItem>
@@ -76,12 +72,11 @@ export const StyledLink = ({
     <Link
       to={to ?? "/"}
       style={{
-        padding: "var(--space-base) 0",
+        padding: "var(--space-smaller) 0",
         outline: "transparent",
         color: "var(--color-heading)",
         fontSize: "var(--typography--fontSize-large)",
-        fontWeight: 600,
-        width: "100%",
+        fontWeight: 700,
         textDecoration: "none",
         userSelect: "none",
         transition: "all var(--timing-base) ease-out",
