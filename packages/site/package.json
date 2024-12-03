@@ -25,6 +25,7 @@
     "react-router-dom": "5.3.4"
   },
   "devDependencies": {
+    "@babel/plugin-transform-typescript": "^7.25.9",
     "@mdx-js/react": "^3.0.1",
     "@mdx-js/rollup": "^3.0.1",
     "@rollup/plugin-replace": "^6.0.1",

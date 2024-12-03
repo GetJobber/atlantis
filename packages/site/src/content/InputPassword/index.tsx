@@ -1,4 +1,3 @@
-import { InputPassword } from "@jobber/components";
 import InputPasswordContent from "@atlantis/docs/components/InputPassword/InputPassword.stories.mdx";
 import Props from "./InputPassword.props.json";
 import { ContentExport } from "../../types/content";
@@ -7,7 +6,7 @@ export default {
   content: () => <InputPasswordContent />,
   props: Props,
   component: {
-    element: InputPassword,
+    element: `<InputPassword placeholder={"Password"} />`,
     defaultProps: { placeholder: "Password" },
   },
   title: "InputPassword",
