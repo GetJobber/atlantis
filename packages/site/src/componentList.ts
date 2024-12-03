@@ -307,6 +307,11 @@ export const componentList = [
     imageURL: "/MultiSelect.png",
   },
   {
+    title: "Page",
+    to: "/components/Page",
+    imageURL: "/Page.png",
+  },
+  {
     title: "Popover",
     to: "/components/Popover",
     imageURL: "/Popover.png",
