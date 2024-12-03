@@ -15,6 +15,7 @@ import {
   defaultHighlightStyle,
   syntaxHighlighting,
 } from "@codemirror/language";
+import { Theme, useAtlantisTheme } from "@jobber/components";
 
 /***
  *
@@ -49,6 +50,7 @@ export const useAtlantisPreview = () => {
 export const AtlantisPreviewEditorProvider = ({
   children,
 }: PropsWithChildren) => {
+  const { theme } = useAtlantisTheme();
   const iframe = useRef<HTMLIFrameElement>(null);
   const [code, setCode] = useState<string>("");
   const [error, setError] = useState<string>("");
@@ -56,7 +58,7 @@ export const AtlantisPreviewEditorProvider = ({
   const writeSkeleton = (doc: Document | null | undefined) => {
     if (doc) {
       doc.open();
-      doc.write(skeletonHTML);
+      doc.write(skeletonHTML(theme));
       doc.close();
     }
   };
@@ -91,6 +93,7 @@ export const AtlantisPreviewEditorProvider = ({
             import {
               AnimatedPresence,
               AnimatedSwitcher,
+              AtlantisThemeContextProvider,
               Autocomplete,
               Avatar,
               Banner,
@@ -185,6 +188,9 @@ export const AtlantisPreviewEditorProvider = ({
 
                 ${transpiledCode}
 
+            function RootWrapper() {
+              return React.createElement(AtlantisThemeContextProvider, null, React.createElement(App));
+            }
 
           if (rootElement) {
               ReactDOM.unmountComponentAtNode(rootElement);
@@ -193,7 +199,7 @@ export const AtlantisPreviewEditorProvider = ({
               rootElement = document.getElementById('root')
               root = ReactDOM.createRoot(rootElement);
              }
-              root.render(React.createElement(App, null));
+              root.render(React.createElement(RootWrapper, null));
           `;
             iframeWindow.postMessage(
               { type: "updateCode", code: codeWrapper },
@@ -209,6 +215,13 @@ export const AtlantisPreviewEditorProvider = ({
     },
     [iframe],
   );
+
+  useEffect(() => {
+    if (iframe.current) {
+      const iframeWindow = iframe.current.contentWindow;
+      iframeWindow?.postMessage({ type: "updateTheme", theme }, "*");
+    }
+  }, [theme]);
 
   return (
     <AtlantisPreviewEditorContext.Provider
@@ -290,10 +303,9 @@ export const AtlantisPreviewEditor = () => {
   );
 };
 
-const skeletonHTML = `
-
+const skeletonHTML = (theme: Theme) => `
 <!DOCTYPE html>
-<html>
+<html data-theme="${theme}">
 <head>
 <style>
 html,body,#root {
@@ -308,6 +320,7 @@ html,body,#root {
 </style>
 <link rel="stylesheet" href="/styles.css">
 <link rel="stylesheet" href="/foundation.css">
+<link rel="stylesheet" href="/dark.mode.css">
 </head>
       <body>
  <script type="importmap">
@@ -333,7 +346,8 @@ html,body,#root {
         return true;
       };
       window.addEventListener('message', (event) => {
-        const { type, code } = event.data;
+        const { type, code, theme } = event.data;
+
         if (type === 'updateCode') {
           const script = document.createElement('script');
           script.type = 'module';
@@ -342,6 +356,8 @@ html,body,#root {
           if (root) {
             root.appendChild(script); // Inject new script
           }
+        } else if (type === 'updateTheme') {
+          document.documentElement.dataset.theme = theme;
         }
       });
       </script>
