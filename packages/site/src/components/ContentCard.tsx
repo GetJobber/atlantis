@@ -1,4 +1,9 @@
-import { Card, Content, Heading } from "@jobber/components";
+import {
+  AtlantisThemeContextProvider,
+  Card,
+  Content,
+  Heading,
+} from "@jobber/components";
 import { useHistory } from "react-router";
 import { ComponentWrapper } from "./ComponentWrapper";
 import { ContentCardProps } from "../types/components";
@@ -26,10 +31,19 @@ export const ContentCard = ({
       }}
     >
       {!component ? (
-        <img
-          style={{ width: "100%", mixBlendMode: "multiply" }}
-          src={imageURL}
-        />
+        <AtlantisThemeContextProvider dangerouslyOverrideTheme="light">
+          <div
+            style={{
+              background: "var(--color-surface)",
+              borderRadius: "var(--radius-base) var(--radius-base) 0 0",
+            }}
+          >
+            <img
+              style={{ width: "100%", mixBlendMode: "multiply" }}
+              src={imageURL}
+            />
+          </div>
+        </AtlantisThemeContextProvider>
       ) : (
         <ComponentWrapper>{component()}</ComponentWrapper>
       )}
