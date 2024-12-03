@@ -119,6 +119,7 @@ const components = [
   "Chip",
   "Chips",
   "Combobox",
+  "ConfirmationModal",
   "Countdown",
   "DataDump",
   "DataList",

@@ -1,4 +1,3 @@
-import { FormatFile } from "@jobber/components";
 import Content from "@atlantis/docs/components/FormatFile/FormatFile.stories.mdx";
 import Props from "./FormatFile.props.json";
 import { ContentExport } from "../../types/content";
@@ -7,8 +6,23 @@ export default {
   content: () => <Content />,
   props: Props,
   component: {
-    element: FormatFile,
-    defaultProps: {},
+    element: `<FormatFile
+      file={{
+        key: "abc",
+        name: "myballisbigandroundIamrollingitontheground.png",
+        type: "image/png",
+        size: 213402324,
+        progress: 1,
+        src: () => {
+          return Promise.resolve("https://picsum.photos/250");
+        },
+      }}
+      display={"compact"}
+      displaySize={"large"}
+      onDelete={() => {
+        return alert("Deleted");
+      }}
+    />`,
   },
   title: "FormatFile",
   links: [
