@@ -6,8 +6,7 @@ export default {
   content: () => <Content />,
   props: Props,
   component: {
-    element: `
-    return (
+    element: `return (
     <Page
       title={"Notifications"}
       intro={

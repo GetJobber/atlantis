@@ -24,7 +24,7 @@ interface GeneratedProp {
   defaultValue: null | object;
   description?: string;
   name: string;
-  parent: { fileName: string; name: string };
+  parent?: { fileName: string; name: string };
   required: boolean;
   type: { name: string };
 }
