@@ -3,6 +3,7 @@ import { ComponentsPage } from "./pages/ComponentsPage";
 import { ContentLoader } from "./components/ContentLoader";
 import { DesignPage } from "./pages/DesignPage";
 import { ComponentView } from "./layout/ComponentView";
+import { componentList } from "./componentList";
 
 interface AtlantisRoute {
   path: string;
@@ -12,6 +13,13 @@ interface AtlantisRoute {
   inNav?: boolean;
   handle: string;
 }
+
+const componentRoutes = componentList.map(component => ({
+  path: component.to,
+  component: ContentLoader,
+  handle: component.title,
+  inNav: true,
+}));
 
 export const routes: Array<AtlantisRoute> = [
   {
@@ -44,4 +52,5 @@ export const routes: Array<AtlantisRoute> = [
     handle: "Content",
     inNav: false,
   },
+  ...componentRoutes,
 ];
