@@ -76,6 +76,11 @@ export const componentList = [
     additionalMatches: ["Confirm", "Prompt", "Modal"],
   },
   {
+    title: "Content",
+    to: "/components/Content",
+    imageURL: "/Content.png",
+  },
+  {
     title: "Countdown",
     to: "/components/Countdown",
     imageURL: "/Countdown.png",
