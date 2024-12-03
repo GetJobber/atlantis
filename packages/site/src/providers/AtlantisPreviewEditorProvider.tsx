@@ -60,6 +60,7 @@ export const AtlantisPreviewEditorProvider = ({
       doc.close();
     }
   };
+
   const updateCode = useCallback(
     // eslint-disable-next-line max-statements
     (codeUp: string) => {

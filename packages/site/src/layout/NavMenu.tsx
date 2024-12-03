@@ -4,6 +4,7 @@ import { PropsWithChildren, useState } from "react";
 import { SearchBox } from "./SearchBox";
 import { routes } from "../routes";
 import { JobberLogo } from "../assets/JobberLogo.svg";
+import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
 
 /**
  * Left side navigation menu for the application.
@@ -11,6 +12,9 @@ import { JobberLogo } from "../assets/JobberLogo.svg";
  */
 export const NavMenu = () => {
   const [open, setOpen] = useState(false);
+  const { isMinimal } = useAtlantisSite();
+
+  if (isMinimal) return null;
 
   return (
     <div

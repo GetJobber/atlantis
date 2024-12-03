@@ -12,10 +12,7 @@ export const Layout = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Perform an action whenever the location changes
     window.scrollTo({ top: 0 });
-
-    // Add your custom logic here
   }, [location]);
 
   return (
