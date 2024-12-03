@@ -13,6 +13,17 @@ export function initAtlantisTheme() {
 }
 
 /**
+ * Save the theme to local storage.
+ */
+export function saveTheme(theme: Theme) {
+  try {
+    localStorage.setItem("theme", theme);
+  } catch (error) {
+    // noop
+  }
+}
+
+/**
  * Get the theme from local storage.
  */
 function getTheme(): Theme | null {
