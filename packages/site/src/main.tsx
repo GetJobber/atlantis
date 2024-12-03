@@ -14,7 +14,7 @@ import { initAtlantisTheme } from "./utils/theme";
 const urlParams = new URLSearchParams(window.location.search);
 const minimalMode = urlParams.has("minimal");
 
-initAtlantisTheme();
+initAtlantisTheme(urlParams.get("theme"));
 
 function renderApp() {
   const root = document.getElementById("root");

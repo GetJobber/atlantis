@@ -7,8 +7,8 @@ const FALLBACK_THEME: Theme = "light";
  * else it falls back to the default "light" theme. It then sets the data-theme attribute,
  * which is what AtlantisThemeContextProvider reads upon startup.
  */
-export function initAtlantisTheme() {
-  const theme = getTheme() || FALLBACK_THEME;
+export function initAtlantisTheme(themeOverride: string | null) {
+  const theme = themeOverride || getTheme() || FALLBACK_THEME;
   document.documentElement.dataset.theme = theme;
 }
 
