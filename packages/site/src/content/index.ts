@@ -11,6 +11,7 @@ import CardContent from "./Card";
 import ChipContent from "./Chip";
 import ChipsContent from "./Chips";
 import ComboboxContent from "./Combobox";
+import ConfirmationModalContent from "./ConfirmationModal";
 import CountdownContent from "./Countdown";
 import DataDumpContent from "./DataDump";
 import DataListContent from "./DataList";
@@ -110,6 +111,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   Combobox: {
     ...ComboboxContent,
+  },
+  ConfirmationModal: {
+    ...ConfirmationModalContent,
   },
   Countdown: {
     ...CountdownContent,

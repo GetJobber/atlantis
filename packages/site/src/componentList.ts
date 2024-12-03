@@ -70,6 +70,12 @@ export const componentList = [
     imageURL: "/Combobox.png",
   },
   {
+    title: "ConfirmationModal",
+    to: "/components/ConfirmationModal",
+    imageURL: "/ConfirmationModal.png",
+    additionalMatches: ["Confirm", "Prompt", "Modal"],
+  },
+  {
     title: "Countdown",
     to: "/components/Countdown",
     imageURL: "/Countdown.png",
