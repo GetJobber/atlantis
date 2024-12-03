@@ -16,21 +16,19 @@ export const ComponentLinks = ({
   if (isMinimal) return null;
 
   return (
-    <div className="minimal-hidden">
-      <Content>
-        <Box padding="base" direction="column">
-          <Heading level={2}>Links</Heading>
-          <Box>
-            {links?.map((link, index) => (
-              <Box key={index}>
-                <Link key={index} url={link.url}>
-                  {link.label}
-                </Link>
-              </Box>
-            ))}
-          </Box>
+    <Content>
+      <Box padding="base" direction="column">
+        <Heading level={2}>Links</Heading>
+        <Box>
+          {links?.map((link, index) => (
+            <Box key={index}>
+              <Link key={index} url={link.url}>
+                {link.label}
+              </Link>
+            </Box>
+          ))}
         </Box>
-      </Content>
-    </div>
+      </Box>
+    </Content>
   );
 };
