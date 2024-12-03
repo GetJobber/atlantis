@@ -1,0 +1,116 @@
+.container {
+  background-color: rgba(241, 240, 233, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 160px 80px;
+}
+
+.contentWrapper {
+  border-radius: 8px;
+  background-color: #fff;
+  width: 1072px;
+  max-width: 100%;
+  padding: 24px;
+  border: 1px solid rgba(218, 223, 226, 1);
+}
+
+.logoHeader {
+  padding: 24px;
+}
+
+.logo {
+  aspect-ratio: 6.13;
+  object-fit: contain;
+  width: 166px;
+  max-width: 100%;
+}
+
+.pageContent {
+  width: 100%;
+}
+
+.mainContent {
+  padding-top: 16px;
+  width: 100%;
+}
+
+.uploadForm {
+  width: 100%;
+}
+
+.formHeader {
+  margin-bottom: 24px;
+}
+
+.formTitle {
+  font-size: 24px;
+  color: var(--color-typography-heading, #032b3a);
+  font-weight: 700;
+  line-height: 1;
+  font-family: Inter, sans-serif;
+}
+
+.formInstructions {
+  margin-top: 16px;
+  font-size: 14px;
+  color: var(--color-typography-text, #233d48);
+  line-height: 1;
+}
+
+.fileInput {
+  margin-bottom: 24px;
+}
+
+.notesInput {
+  min-height: 84px;
+  margin-bottom: 24px;
+}
+
+.submitButtonWrapper {
+  display: block;
+}
+
+.footer {
+  margin-top: 32px;
+  font-family: Inter, sans-serif;
+}
+
+.supportInfo {
+  font-size: 14px;
+  color: var(--color-typography-text, #233d48);
+  line-height: 1;
+}
+
+.securityBlurb {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--color-interactive, #000000);
+}
+
+.securityIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.privacyLink {
+  color: inherit;
+  text-decoration: underline;
+}
+
+@media (max-width: 991px) {
+  .container {
+    padding: 100px 20px;
+  }
+
+  .contentWrapper {
+    padding: 0 20px;
+  }
+
+  .logoHeader {
+    padding: 0 20px;
+  }
+}
