@@ -91,11 +91,17 @@ section[role="tabpanel"] {
 
 }
 
-pre {
+pre,
+code {
   background-color: var(--color-surface--background);
-  border-radius: var(--radius-base);
-  border: var(--border-base) solid var(--color-border);
-  margin: 0 !important;
+  border-radius: var(--radius-small);
+  padding: var(--space-smallest);
+  margin: 0;
+}
+
+pre code {
+  padding: var(--space-small);
+  display: block;
 }
 
 code.root-code[class*="language-"] {
