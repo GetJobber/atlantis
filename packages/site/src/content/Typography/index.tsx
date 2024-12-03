@@ -1,4 +1,3 @@
-import { Typography } from "@jobber/components";
 import Content from "@atlantis/docs/components/Typography/Typography.stories.mdx";
 import Props from "./Typography.props.json";
 import { ContentExport } from "../../types/content";
@@ -7,7 +6,7 @@ export default {
   content: () => <Content />,
   props: Props,
   component: {
-    element: Typography,
+    element: `<Typography size='large'>Typography</Typography>`,
     defaultProps: {},
   },
   title: "Typography",

@@ -1,4 +1,3 @@
-import { FormField } from "@jobber/components";
 import Content from "@atlantis/docs/components/FormField/FormField.stories.mdx";
 import Props from "./FormField.props.json";
 import { ContentExport } from "../../types/content";
@@ -7,8 +6,7 @@ export default {
   content: () => <Content />,
   props: Props,
   component: {
-    element: FormField,
-    defaultProps: {},
+    element: `<FormField placeholder={"Words..."} type={"text"} />`,
   },
   title: "FormField",
   links: [

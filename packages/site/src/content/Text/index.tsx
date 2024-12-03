@@ -1,4 +1,3 @@
-import { Text } from "@jobber/components";
 import Content from "@atlantis/docs/components/Text/Text.stories.mdx";
 import Props from "./Text.props.json";
 import { ContentExport } from "../../types/content";
@@ -7,7 +6,7 @@ export default {
   content: () => <Content />,
   props: Props,
   component: {
-    element: Text,
+    element: `<Text>Text</Text>`,
     defaultProps: {},
   },
   title: "Text",
