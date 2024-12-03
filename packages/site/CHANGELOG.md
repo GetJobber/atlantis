@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.12.0...@jobber/atlantis-site@0.12.1) (2024-12-03)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+# [0.12.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.11.0...@jobber/atlantis-site@0.12.0) (2024-12-03)
+
+
+### Features
+
+* **components:** Docs Site + Typescript Support For Live Editor ([#2185](https://github.com/GetJobber/atlantis/issues/2185)) ([8373c73](https://github.com/GetJobber/atlantis/commit/8373c737ed62b0190208a6d62811c0214cf9e537)), closes [#2189](https://github.com/GetJobber/atlantis/issues/2189)
+
+
+
+
+
 # [0.11.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.10.5...@jobber/atlantis-site@0.11.0) (2024-12-02)
 
 
