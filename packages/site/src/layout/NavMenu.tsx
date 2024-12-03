@@ -1,4 +1,4 @@
-import { Box, Button } from "@jobber/components";
+import { Box, Button, Disclosure } from "@jobber/components";
 import { Link } from "react-router-dom";
 import { PropsWithChildren, useState } from "react";
 import { SearchBox } from "./SearchBox";
@@ -37,19 +37,26 @@ export const NavMenu = () => {
       <MenuList>
         <Box>
           {routes?.map((route, index) => {
-            return route.children ? (
-              route.children.map((subroute, subindex) => {
-                if (subroute.inNav === false) return;
+            if (route.children) {
+              return (
+                <Disclosure key={index} title={route.handle}>
+                  {route.children.map((subroute, subindex) => {
+                    if (subroute.inNav === false) return null;
 
-                return (
-                  <MenuItem key={index}>
-                    <StyledLink to={subroute.path || "/"} key={subindex}>
-                      {subroute.handle}
-                    </StyledLink>
-                  </MenuItem>
-                );
-              })
-            ) : route.inNav === false ? null : (
+                    return (
+                      <MenuItem key={subindex}>
+                        <StyledLink to={subroute.path || "/"}>
+                          {subroute.handle}
+                        </StyledLink>
+                      </MenuItem>
+                    );
+                  })}
+                </Disclosure>
+              );
+            }
+            if (route.inNav === false) return null;
+
+            return (
               <MenuItem key={index}>
                 <StyledLink
                   key={index}
