@@ -5,7 +5,7 @@ import {
   InlineLabel,
   InputText,
 } from "@jobber/components";
-import { ReactNode, useState } from "react";
+import React, { ReactNode, useState } from "react";
 
 /**
  * All the Props for a component. This component receives an Array of DataListOptions, and will generate mulitple DataLists as a result.
@@ -32,9 +32,12 @@ export const PropsList = ({
   const filteredValues = values.map(meta => {
     return {
       ...meta,
-      props: meta.props.filter(e =>
-        e.key.toLowerCase().includes(search.toLowerCase()),
-      ),
+      props: meta.props
+        .filter(prop => prop.key.toLowerCase().includes(search.toLowerCase()))
+        .map(prop => ({
+          ...prop,
+          key: <pre>{prop.key}</pre>,
+        })),
     };
   });
 
@@ -59,7 +62,7 @@ export const PropsList = ({
           >
             <DataList.Layout size="md">
               {(item: {
-                key: string;
+                key: ReactNode;
                 description: string;
                 component: ReactNode;
                 required: boolean;
