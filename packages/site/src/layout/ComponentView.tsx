@@ -23,7 +23,6 @@ import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
  * This isn't really a Layout component, but it's not really a component component either. We could make a "Views" directory maybe, or a "Template" directory?
  * @returns ReactNode
  */
-// eslint-disable-next-line max-statements
 export const ComponentView = () => {
   const { name = "" } = useParams<{ name: string }>();
   const { updateCode, iframe } = useAtlantisPreview();
