@@ -1,6 +1,6 @@
 import { Box, Content, Grid, Page, Tab, Tabs } from "@jobber/components";
 import { useParams } from "react-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { PageWrapper } from "./PageWrapper";
 import { PropsList } from "../components/PropsList";
 import { ComponentNotFound } from "../components/ComponentNotFound";
@@ -22,6 +22,7 @@ import { useComponentAndCode } from "../hooks/useComponentAndCode";
  * This isn't really a Layout component, but it's not really a component component either. We could make a "Views" directory maybe, or a "Template" directory?
  * @returns ReactNode
  */
+// eslint-disable-next-line max-statements
 export const ComponentView = () => {
   const { name = "" } = useParams<{ name: string }>();
   const { updateCode, iframe } = useAtlantisPreview();
@@ -29,7 +30,7 @@ export const ComponentView = () => {
   useErrorCatcher();
   const { updateStyles } = useStyleUpdater();
   const { stateValues } = usePageValues(PageMeta);
-
+  const [tab, setTab] = useState("Design");
   const ComponentContent = PageMeta?.content;
   const { code } = useComponentAndCode(PageMeta);
   useEffect(() => {
@@ -37,6 +38,16 @@ export const ComponentView = () => {
       setTimeout(() => updateCode(code as string), 100);
     }
   }, [code, iframe?.current]);
+
+  const goToProps = e => {
+    e.preventDefault();
+    setTab("Implementation");
+  };
+
+  const goToUsage = e => {
+    e.preventDefault();
+    setTab("Implementation");
+  };
 
   return PageMeta ? (
     <Grid>
@@ -53,7 +64,7 @@ export const ComponentView = () => {
                 <span
                   style={{ "--public-tab--inset": 0 } as React.CSSProperties}
                 >
-                  <Tabs onTabChange={updateStyles}>
+                  <Tabs onTabChange={updateStyles} defaultTab={tab}>
                     <Tab label="Design">
                       <Content spacing="large">
                         <ComponentContent />
@@ -73,7 +84,11 @@ export const ComponentView = () => {
         </Page>
       </Grid.Cell>
       <Grid.Cell size={{ xs: 12, md: 3 }}>
-        <ComponentLinks links={PageMeta?.links} />
+        <ComponentLinks
+          links={PageMeta?.links}
+          goToProps={goToProps}
+          goToUsage={goToUsage}
+        />
       </Grid.Cell>
     </Grid>
   ) : (
