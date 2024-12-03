@@ -45,11 +45,11 @@ export const NavMenu = () => {
                       if (subroute.inNav === false) return null;
 
                       return (
-                        <MenuItem key={subindex}>
-                          <StyledLink to={subroute.path || "/"}>
+                        <div key={subindex}>
+                          <StyledSubLink to={subroute.path || "/"}>
                             {subroute.handle}
-                          </StyledLink>
-                        </MenuItem>
+                          </StyledSubLink>
+                        </div>
                       );
                     })}
                   </Disclosure>
@@ -90,6 +90,31 @@ export const StyledLink = ({
         color: "var(--color-heading)",
         fontSize: "var(--typography--fontSize-large)",
         fontWeight: 600,
+        width: "100%",
+        textDecoration: "none",
+        userSelect: "none",
+        transition: "all var(--timing-base) ease-out",
+        ...style,
+      }}
+    >
+      {children}
+    </Link>
+  );
+};
+
+export const StyledSubLink = ({
+  to,
+  children,
+  style,
+}: PropsWithChildren<{ readonly to: string; readonly style?: object }>) => {
+  return (
+    <Link
+      to={to ?? "/"}
+      style={{
+        outline: "transparent",
+        color: "var(--color-heading)",
+        fontSize: "var(--typography--fontSize-base)",
+        fontWeight: 700,
         width: "100%",
         textDecoration: "none",
         userSelect: "none",
