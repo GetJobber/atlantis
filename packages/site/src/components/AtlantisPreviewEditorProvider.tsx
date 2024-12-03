@@ -133,6 +133,7 @@ export const AtlantisPreviewEditorProvider = ({
               InputAvatar,
               InputDate,
               InputEmail,
+              InputFile,
               InputGroup,
               InputNumber,
               InputPassword,
