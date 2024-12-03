@@ -5,7 +5,7 @@ import { FormFieldPostFix } from "./FormFieldPostFix";
 import { useAtlantisFormFieldActions } from "./hooks/useAtlantisFormFieldActions";
 import { useAtlantisFormField } from "./hooks/useAtlantisFormField";
 import { useAtlantisFormFieldName } from "./hooks/useAtlantisFormFieldName";
-import { useAtlantisReactForm } from "./hooks/useAtlantisReactHookForm";
+import { useAtlantisReactHookForm } from "./hooks/useAtlantisReactHookForm";
 
 export function FormField(props: FormFieldProps) {
   // Warning: do not move useId into FormFieldInternal. This must be here to avoid
@@ -61,7 +61,7 @@ function FormFieldInternal(props: FormFieldInternalProps) {
     setValue,
     onControllerBlur,
     onControllerChange,
-  } = useAtlantisReactForm({
+  } = useAtlantisReactHookForm({
     actionsRef,
     name,
     defaultValue,

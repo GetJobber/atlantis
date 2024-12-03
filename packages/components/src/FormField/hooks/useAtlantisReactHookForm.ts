@@ -3,7 +3,7 @@ import { useController, useForm, useFormContext } from "react-hook-form";
 import { mergeRefs } from "@jobber/components/utils/mergeRefs";
 import { FormFieldProps } from "../FormFieldTypes";
 
-interface useAtlantisReactFormProps
+interface useAtlantisReactHookFormProps
   extends Pick<
     FormFieldProps,
     "actionsRef" | "defaultValue" | "value" | "validations" | "inputRef"
@@ -14,14 +14,14 @@ interface useAtlantisReactFormProps
 /**
  * Hook used to manage the form state of a field through react-hook-form
  */
-export function useAtlantisReactForm({
+export function useAtlantisReactHookForm({
   actionsRef,
   name,
   defaultValue,
   value,
   validations,
   inputRef,
-}: useAtlantisReactFormProps) {
+}: useAtlantisReactHookFormProps) {
   const formContext = useFormContext();
   // If there isn't a Form Context being provided, get a form for this field.
   const { control, setValue, watch } =
