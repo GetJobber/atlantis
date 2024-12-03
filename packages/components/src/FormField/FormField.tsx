@@ -77,6 +77,7 @@ function FormFieldInternal(props: FormFieldInternalProps) {
     handleFocus,
     handleKeyDown,
   } = useAtlantisFormFieldActions({
+    inputRef,
     onChange,
     onEnter,
     readonly,
