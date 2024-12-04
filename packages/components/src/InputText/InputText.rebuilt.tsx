@@ -1,5 +1,7 @@
 import React, { forwardRef, useId } from "react";
+import { useSafeLayoutEffect } from "@jobber/hooks";
 import { InputTextRebuiltProps } from "./InputText.types";
+import { useTextAreaResize } from "./useTextAreaResize";
 import { useInputTextActions } from "./useInputTextActions";
 import { useInputTextFormField } from "./useInputTextFormField";
 import {
@@ -8,27 +10,27 @@ import {
   useFormFieldWrapperStyles,
 } from "../FormField";
 import { FormFieldPostFix } from "../FormField/FormFieldPostFix";
+import { mergeRefs } from "../utils/mergeRefs";
 
 // eslint-disable-next-line max-statements
 export const InputTextSPAR = forwardRef(function InputTextInternal(
   props: InputTextRebuiltProps,
-  inputRefs: React.Ref<HTMLInputElement>,
+  inputRefs: React.Ref<HTMLInputElement | HTMLTextAreaElement>,
 ) {
   const inputTextRef = React.useRef<HTMLInputElement | HTMLTextAreaElement>(
     null,
   );
 
+  const wrapperRef = React.useRef<HTMLDivElement>(null);
   const legacyPropHelper = {
     ...props,
     version: 1,
   };
   const id = useId();
 
-  const [value, setValue] = React.useState(props.value || "");
+  const { resize, rowRange } = useTextAreaResize(props.rows);
 
-  useEffect(() => {
-    setValue(props.value || "");
-  }, [props.value]);
+  const type = props.multiline ? "textarea" : "text";
 
   const { inputStyle } = useFormFieldWrapperStyles(legacyPropHelper);
 
@@ -56,27 +58,26 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     errorMessage: "",
   });
 
+  useSafeLayoutEffect(() => {
+    resize(inputTextRef, wrapperRef);
+  }, [inputTextRef.current, wrapperRef.current]);
+
   return (
     <FormFieldWrapper
       name={name}
+      wrapperRef={wrapperRef}
       error={props.error ?? ""}
       identifier={id}
       descriptionIdentifier={props["aria-describedby"] ?? ""}
       clearable={props.clearable ?? "never"}
       onClear={handleClear}
-      type={props.type}
+      type={props.multiline ? "textarea" : "text"}
       placeholder={props.placeholder}
-      value={value as string}
+      value={props.value}
+      rows={rowRange.min}
     >
       <>
-        <input
-          {...fieldProps}
-          name={name}
-          ref={inputRefs}
-          className={inputStyle}
-          value={value}
-          onChange={e => setValue(e.target.value)}
-        />
+        <InputField />
         <FormFieldPostFix
           variation="spinner"
           visible={props.loading ?? false}
@@ -85,4 +86,29 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
       </>
     </FormFieldWrapper>
   );
+
+  function InputField() {
+    switch (type) {
+      case "textarea":
+        return (
+          <textarea
+            {...fieldProps}
+            rows={rowRange.min}
+            ref={mergeRefs([inputRefs, inputTextRef])}
+            className={inputStyle}
+            value={props.value}
+          />
+        );
+      default:
+        return (
+          <input
+            {...fieldProps}
+            name={name}
+            ref={mergeRefs([inputRefs, inputTextRef])}
+            className={inputStyle}
+            value={props.value}
+          />
+        );
+    }
+  }
 });
