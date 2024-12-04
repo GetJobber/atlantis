@@ -136,7 +136,6 @@ describe("Tabs", () => {
           <Tabs activeTab={activeTab} onTabChange={setActiveTab}>
             <Tab label="Eggs">
               <p>🍳</p>
-              <p>Eggs</p>
             </Tab>
             <Tab label="Cheese">
               <p>🧀</p>
