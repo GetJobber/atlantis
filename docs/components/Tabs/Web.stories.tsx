@@ -70,7 +70,7 @@ const WithTabChangeCallbackTemplate: ComponentStory<typeof Tabs> = args => {
   return (
     <div>
       <p>Active tab index: {tab}</p>
-      <Tabs {...args} onTabChange={setTab}>
+      <Tabs onTabChange={setTab}>
         <Tab label="Eggs">
           🍳 Some eggs are laid by female animals of many different species,
           including birds, reptiles, amphibians, mammals, and fish, and have
@@ -184,5 +184,3 @@ WithDefaultTab.args = {
 WithTabChangeCallback.args = {
   defaultTab: 1,
 };
-
-Controlled.args = {};
