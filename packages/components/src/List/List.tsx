@@ -10,6 +10,7 @@ import {
 } from "@jobber/components/List/ListItem";
 import sectionStyles from "./SectionHeader.module.css";
 import styles from "./List.module.css";
+import { LoadMoreTrigger } from "../LoadMoreTrigger";
 
 interface ListProps<T extends BaseListItemProps = ListItemProps> {
   /**
@@ -26,12 +27,18 @@ interface ListProps<T extends BaseListItemProps = ListItemProps> {
    * when used with customRenderItem.
    */
   readonly customItemStyles?: boolean;
+
+  /**
+   * Callback function for when the user scrolls to the bottom of the list
+   */
+  readonly onLoadMore?: () => void;
 }
 
 export function List<T extends BaseListItemProps = ListItemProps>({
   items,
   customRenderItem,
   customItemStyles,
+  onLoadMore,
 }: ListProps<T>) {
   const isSectioned = items.some(item => "section" in item && item.section);
 
@@ -41,6 +48,7 @@ export function List<T extends BaseListItemProps = ListItemProps>({
         items={items}
         customRenderItem={customRenderItem}
         customItemStyles={customItemStyles}
+        onLoadMore={onLoadMore}
       />
     );
   } else {
@@ -49,6 +57,7 @@ export function List<T extends BaseListItemProps = ListItemProps>({
         items={items}
         customRenderItem={customRenderItem}
         customItemStyles={customItemStyles}
+        onLoadMore={onLoadMore}
       />
     );
   }
@@ -58,6 +67,7 @@ function DisplayList<T extends BaseListItemProps = ListItemProps>({
   items,
   customRenderItem,
   customItemStyles,
+  onLoadMore,
 }: ListProps<T>) {
   const omitDefaultStyles = customRenderItem && customItemStyles;
   const itemClassNames = classnames(!omitDefaultStyles && styles.item);
@@ -73,6 +83,7 @@ function DisplayList<T extends BaseListItemProps = ListItemProps>({
           />
         </li>
       ))}
+      {onLoadMore && <LoadMoreTrigger onLoadMore={onLoadMore} />}
     </ul>
   );
 }
@@ -81,6 +92,7 @@ function SectionedList<T extends BaseListItemProps = ListItemProps>({
   items,
   customRenderItem,
   customItemStyles,
+  onLoadMore,
 }: ListProps<T>) {
   const sectionedItems = groupBy(items, item => get(item, "section", "Other"));
   const sectionHeaderClassNames = classnames(sectionStyles.sectionHeader);
@@ -111,6 +123,7 @@ function SectionedList<T extends BaseListItemProps = ListItemProps>({
           </ul>
         </li>
       ))}
+      {onLoadMore && <LoadMoreTrigger onLoadMore={onLoadMore} />}
     </ul>
   );
 }
