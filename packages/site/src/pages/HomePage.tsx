@@ -13,8 +13,12 @@ export const HomePage = () => {
         body: {
           title: "Packages",
           content: [
-            { title: "Components", to: "/components" },
-            { title: "Design", to: "/design" },
+            {
+              title: "Components",
+              to: "/components",
+              imageURL: "/Components.png",
+            },
+            { title: "Design", to: "/design", imageURL: "/Design.png" },
           ],
         },
       }}
