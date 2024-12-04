@@ -130,3 +130,15 @@ iframe {
   width: 100%;
   min-height: 200px;
 }
+
+.headerBlock {
+  background-image: url("../public/img_collage.jpg");
+  padding: var(--space-extravagant);
+  width: 100%;
+  height: 100%;
+  color: var(--color-base-white);
+  min-height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

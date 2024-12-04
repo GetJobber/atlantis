@@ -25,18 +25,8 @@ export const HeaderBlock = ({
   const history = useHistory();
 
   return (
-    <Box padding="extravagant" background="base-blue--900">
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          color: "var(--color-base-white)",
-          minHeight: "30vh",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-        }}
-      >
+    <Box background="base-blue--900">
+      <div className="headerBlock">
         <Content spacing="large">
           <Typography
             element={"h1"}
