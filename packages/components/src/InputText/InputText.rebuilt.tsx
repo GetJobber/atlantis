@@ -1,5 +1,5 @@
-import React, { forwardRef, useEffect, useId } from "react";
-import { Clearable } from "@jobber/hooks";
+import React, { forwardRef, useId } from "react";
+import { InputTextRebuiltProps } from "./InputText.types";
 import {
   FormFieldWrapper,
   FormFieldWrapperHookProps,
@@ -110,17 +110,3 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     </FormFieldWrapper>
   );
 });
-
-export interface InputTextRebuiltProps
-  extends React.InputHTMLAttributes<never> {
-  readonly error?: string;
-  readonly identifier?: string;
-  readonly autocomplete?: boolean | AutocompleteTypes;
-  readonly loading?: boolean;
-  readonly onKeyUp?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
-  readonly children?: React.ReactNode;
-  readonly clearable?: Clearable;
-  readonly onClear?: () => void;
-  readonly type?: FormFieldTypes;
-  readonly version: 2;
-}
