@@ -15,16 +15,32 @@ interface TabsProps {
   readonly defaultTab?: number;
 
   /**
+   * Specifies the index of the active tab.
+   * If provided, the component will be controlled and the active tab will be determined by this prop.
+   * If not provided, the component will manage its own state internally.
+   */
+  readonly activeTab?: number;
+
+  /**
    * Callback that fires when the active tab changes
    * @param newTabIndex
    */
   onTabChange?(newTabIndex: number): void;
 }
 
-export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
+export function Tabs({
+  children,
+  defaultTab = 0,
+  activeTab: controlledActiveTab,
+  onTabChange,
+}: TabsProps) {
   const activeTabInitialValue =
     defaultTab < React.Children.count(children) ? defaultTab : 0;
-  const [activeTab, setActiveTab] = useState(activeTabInitialValue);
+  const [internalActiveTab, setInternalActiveTab] = useState(
+    activeTabInitialValue,
+  );
+  const activeTab =
+    controlledActiveTab !== undefined ? controlledActiveTab : internalActiveTab;
   const { overflowRight, overflowLeft, tabRow } = useTabsOverflow();
   const overflowClassNames = classnames(styles.overflow, {
     [styles.overflowRight]: overflowRight,
@@ -33,7 +49,9 @@ export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
 
   const activateTab = (index: number) => {
     return () => {
-      setActiveTab(index);
+      if (controlledActiveTab === undefined) {
+        setInternalActiveTab(index);
+      }
 
       if (onTabChange) {
         onTabChange(index);
@@ -47,7 +65,7 @@ export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
 
   useEffect(() => {
     if (activeTab > React.Children.count(children) - 1) {
-      setActiveTab(activeTabInitialValue);
+      setInternalActiveTab(activeTabInitialValue);
     }
   }, [React.Children.count(children)]);
 

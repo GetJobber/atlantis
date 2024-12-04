@@ -70,7 +70,7 @@ const WithTabChangeCallbackTemplate: ComponentStory<typeof Tabs> = args => {
   return (
     <div>
       <p>Active tab index: {tab}</p>
-      <Tabs {...args} onTabChange={setTab}>
+      <Tabs onTabChange={setTab}>
         <Tab label="Eggs">
           🍳 Some eggs are laid by female animals of many different species,
           including birds, reptiles, amphibians, mammals, and fish, and have
@@ -140,10 +140,38 @@ const WithCustomReactNodeTemplate: ComponentStory<typeof Tabs> = () => {
   );
 };
 
+const ControlledTemplate: ComponentStory<typeof Tabs> = args => {
+  const [activeTab, setActiveTab] = useState(1);
+
+  return (
+    <div>
+      <p>Active tab index: {activeTab}</p>
+      <Tabs {...args} activeTab={activeTab} onTabChange={setActiveTab}>
+        <Tab label="Eggs">
+          🍳 Some eggs are laid by female animals of many different species,
+          including birds, reptiles, amphibians, mammals, and fish, and have
+          been eaten by humans for thousands of years.
+        </Tab>
+        <Tab label="Cheese">
+          🧀 Cheese is a dairy product derived from milk that is produced in a
+          wide range of flavors, textures, and forms by coagulation of the milk
+          protein casein.
+        </Tab>
+        <Tab label="Berries">
+          🍓 A berry is a small, pulpy, and often edible fruit. Typically,
+          berries are juicy, rounded, brightly colored, sweet, sour or tart, and
+          do not have a stone or pit.
+        </Tab>
+      </Tabs>
+    </div>
+  );
+};
+
 export const Basic = BasicTemplate.bind({});
 export const WithDefaultTab = WithDefaultTabTemplate.bind({});
 export const WithTabChangeCallback = WithTabChangeCallbackTemplate.bind({});
 export const WithCustomReactNode = WithCustomReactNodeTemplate.bind({});
+export const Controlled = ControlledTemplate.bind({});
 
 Basic.args = {
   label: "Eggs",
@@ -156,5 +184,3 @@ WithDefaultTab.args = {
 WithTabChangeCallback.args = {
   defaultTab: 1,
 };
-
-WithCustomReactNode.args = {};
