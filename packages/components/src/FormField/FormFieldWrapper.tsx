@@ -7,15 +7,15 @@ import React, {
 } from "react";
 import classnames from "classnames";
 import { Clearable, useShowClear } from "@jobber/hooks/useShowClear";
-import { AnimatePresence, motion } from "framer-motion";
-import { tokens } from "@jobber/design";
 import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.module.css";
 import { AffixIcon, AffixLabel } from "./FormFieldAffix";
 import { FormFieldDescription } from "./FormFieldDescription";
 import { ClearAction } from "./components/ClearAction";
-import { useToolbar } from "./hooks/useToolbar";
-import { useFormFieldFocus } from "./hooks/useFormFieldFocus";
+import {
+  TOOLBAR_FOCUS_EXCEPTION_ATTRIBUTE_NAME,
+  useFormFieldFocus,
+} from "./hooks/useFormFieldFocus";
 import { useIsSafari } from "./hooks/useIsSafari";
 import { InputValidation } from "../InputValidation";
 
@@ -52,6 +52,7 @@ export function FormFieldWrapper({
   inline,
   identifier,
   clearable,
+  inputRef,
   onClear,
   toolbar,
   toolbarVisibility = "while-editing",
@@ -99,7 +100,7 @@ export function FormFieldWrapper({
     setLabelStyle(getAffixPaddding);
   }, [value]);
 
-  const { focused } = useFormFieldFocus({ wrapperRef });
+  const { focused } = useFormFieldFocus({ wrapperRef, inputRef, toolbar });
 
   const showClear = useShowClear({
     clearable,
@@ -108,13 +109,6 @@ export function FormFieldWrapper({
     hasValue: Boolean(value),
     disabled,
   });
-
-  const { isToolbarVisible, toolbarAnimationEnd, toolbarAnimationStart } =
-    useToolbar({
-      focused,
-      toolbar,
-      toolbarVisibility,
-    });
 
   return (
     <div className={containerClasses}>
@@ -156,30 +150,19 @@ export function FormFieldWrapper({
             <AffixIcon {...suffix} variation="suffix" size={size} />
           )}
         </div>
-        <AnimatePresence
-          initial={toolbarVisibility === "always" ? false : true}
-        >
-          {isToolbarVisible && (
-            <motion.div
-              key="toolbar"
-              initial={toolbarAnimationEnd}
-              animate={toolbarAnimationStart}
-              exit={toolbarAnimationEnd}
-              transition={{
-                duration: tokens["timing-base"] / 1000,
-                ease: "easeInOut",
-              }}
-              tabIndex={-1}
-            >
-              <div
-                className={styles.toolbar}
-                data-testid="ATL-InputText-Toolbar"
-              >
-                {toolbar}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {toolbar && (
+          <div
+            aria-hidden={toolbarVisibility !== "always" && !focused}
+            tabIndex={-1}
+            {...{ [TOOLBAR_FOCUS_EXCEPTION_ATTRIBUTE_NAME]: "true" }}
+            className={classnames(styles.toolbar, {
+              [styles.alwaysVisible]: toolbarVisibility === "always" || focused,
+            })}
+            data-testid="ATL-InputText-Toolbar"
+          >
+            {toolbar}
+          </div>
+        )}
       </div>
       {description && !inline && (
         <FormFieldDescription

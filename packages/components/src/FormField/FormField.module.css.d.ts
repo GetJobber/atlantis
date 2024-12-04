@@ -18,6 +18,8 @@ declare const styles: {
   readonly "inputWrapper": string;
   readonly "childrenWrapper": string;
   readonly "input": string;
+  readonly "toolbar": string;
+  readonly "alwaysVisible": string;
   readonly "label": string;
   readonly "select": string;
   readonly "postfix": string;
@@ -26,7 +28,6 @@ declare const styles: {
   readonly "hasAction": string;
   readonly "affixLabel": string;
   readonly "description": string;
-  readonly "toolbar": string;
 };
 export = styles;
 

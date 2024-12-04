@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { FormFieldProps } from "../FormFieldTypes";
 
 interface UseFormFieldFocus {
   focused: boolean;
@@ -6,9 +7,15 @@ interface UseFormFieldFocus {
 
 interface UseFormFieldFocusProps {
   wrapperRef?: React.RefObject<HTMLDivElement>;
+  inputRef?: React.RefObject<
+    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+  >;
+  toolbar?: FormFieldProps["toolbar"];
 }
 
 const PORTAL_FOCUS_ATTRIBUTE_NAME = "data-atl-maintain-portal-focus";
+export const TOOLBAR_FOCUS_EXCEPTION_ATTRIBUTE_NAME =
+  "data-atl-toolbar-focus-exception";
 
 export const formFieldFocusAttribute = {
   [PORTAL_FOCUS_ATTRIBUTE_NAME]: "true",
@@ -21,6 +28,17 @@ export function useFormFieldFocus(
 
   function handleFocusIn() {
     setFocused(true);
+    // console.log("focusin", document?.activeElement);
+    const activeElementInWrapper = props.wrapperRef?.current?.contains(
+      document?.activeElement,
+    );
+    const activeElementInToolbar = document?.activeElement?.closest(
+      `[${TOOLBAR_FOCUS_EXCEPTION_ATTRIBUTE_NAME}='true']`,
+    );
+
+    if (props.toolbar && activeElementInWrapper && !activeElementInToolbar) {
+      props.inputRef?.current?.focus();
+    }
   }
 
   function handleFocusOut() {
