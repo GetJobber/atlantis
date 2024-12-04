@@ -42,7 +42,7 @@ pre[class*="language-"] {
 }
 
 code[class*="language-"] {
-  color: white;
+  color: var(--color-text);
 }
 
 /* Inline code */

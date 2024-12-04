@@ -25,6 +25,7 @@ export const ContentCard = ({
 
   return (
     <Card
+      elevation="low"
       onClick={() => {
         history.push(to);
         onClick?.();
