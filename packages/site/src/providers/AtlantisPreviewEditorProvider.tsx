@@ -15,6 +15,7 @@ import {
   defaultHighlightStyle,
   syntaxHighlighting,
 } from "@codemirror/language";
+import { Theme, useAtlantisTheme } from "@jobber/components";
 
 /***
  *
@@ -55,6 +56,7 @@ export const useAtlantisPreview = () => {
 export const AtlantisPreviewEditorProvider = ({
   children,
 }: PropsWithChildren) => {
+  const { theme } = useAtlantisTheme();
   const iframe = useRef<HTMLIFrameElement>(null);
   const iframeMobile = useRef<HTMLIFrameElement>(null);
   const [code, setCode] = useState<string>("");
@@ -65,10 +67,13 @@ export const AtlantisPreviewEditorProvider = ({
       : "web",
   );
 
-  const writeSkeleton = (doc: Document | null | undefined) => {
+  const writeSkeleton = (
+    doc: Document | null | undefined,
+    iframeTheme: Theme,
+  ) => {
     if (doc) {
       doc.open();
-      doc.write(skeletonHTML(type));
+      doc.write(skeletonHTML(iframeTheme, type));
       doc.close();
     }
   };
@@ -103,7 +108,7 @@ export const AtlantisPreviewEditorProvider = ({
           selectedFrame.current?.contentDocument?.documentElement.outerHTML;
 
         if (html === "<html><head></head><body></body></html>") {
-          writeSkeleton(selectedFrame.current?.contentDocument);
+          writeSkeleton(selectedFrame.current?.contentDocument, theme);
         }
 
         if (selectedFrame.current) {
@@ -126,8 +131,15 @@ export const AtlantisPreviewEditorProvider = ({
         setError((e as { message: string }).message as string);
       }
     },
-    [iframe, iframeMobile, type],
+    [iframe, iframeMobile, theme, type],
   );
+
+  useEffect(() => {
+    if (iframe.current) {
+      const iframeWindow = iframe.current.contentWindow;
+      iframeWindow?.postMessage({ type: "updateTheme", theme }, "*");
+    }
+  }, [theme]);
 
   return (
     <AtlantisPreviewEditorContext.Provider
@@ -261,7 +273,7 @@ export const AtlantisPreviewEditor = () => {
   );
 };
 
-const skeletonHTML = (type: "web" | "mobile") => {
+const skeletonHTML = (theme: Theme, type: "web" | "mobile") => {
   const imports =
     type == "mobile"
       ? `"@jobber/components-native":"/editorMobileBundle.js"`
@@ -270,7 +282,7 @@ const skeletonHTML = (type: "web" | "mobile") => {
   return `
 
 <!DOCTYPE html>
-<html>
+<html data-theme="${theme}">
 <head>
 <style>
 html,body,#root {
@@ -285,6 +297,7 @@ html,body,#root {
 </style>
 <link rel="stylesheet" href="/styles.css">
 <link rel="stylesheet" href="/foundation.css">
+<link rel="stylesheet" href="/dark.mode.css">
 </head>
       <body>
  <script type="importmap">
@@ -305,14 +318,11 @@ html,body,#root {
       </script>
       <script>
       window.onerror = function(message, source, lineno, colno, error) {
-        if (message !== 'Uncaught ReferenceError: TritonExample is not defined'){
-          console.log('An error occurred:', message);
-        }
         window.parent.postMessage(JSON.stringify({message, source, lineno, colno, error}), '*')
         return true;
       };
       window.addEventListener('message', (event) => {
-        const { type, code } = event.data;
+        const { type, code, theme } = event.data;
         if (type === 'updateCode') {
           const script = document.createElement('script');
           script.type = 'module';
@@ -321,6 +331,8 @@ html,body,#root {
           if (root) {
             root.appendChild(script); // Inject new script
           }
+        } else if (type === 'updateTheme') {
+          document.documentElement.dataset.theme = theme;
         }
       });
       </script>
@@ -333,6 +345,7 @@ export const WebCodeWrapper = (transpiledCode: string | null | undefined) => `
             import {
               AnimatedPresence,
               AnimatedSwitcher,
+              AtlantisThemeContextProvider,
               Autocomplete,
               Avatar,
               Banner,
@@ -428,6 +441,9 @@ export const WebCodeWrapper = (transpiledCode: string | null | undefined) => `
             } from '@jobber/components';
                 ${transpiledCode}
 
+            function RootWrapper() {
+              return React.createElement(AtlantisThemeContextProvider, null, React.createElement(App));
+            }
 
           if (rootElement) {
               ReactDOM.unmountComponentAtNode(rootElement);
@@ -436,7 +452,7 @@ export const WebCodeWrapper = (transpiledCode: string | null | undefined) => `
               rootElement = document.getElementById('root')
               root = ReactDOM.createRoot(rootElement);
              }
-              root.render(React.createElement(App, null));
+              root.render(React.createElement(RootWrapper, null));
           `;
 
 export const MobileCodeWrapper = (
