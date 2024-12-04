@@ -39,7 +39,7 @@ export const routes: Array<AtlantisRoute> = [
     path: "/changelog",
     handle: "Changelog",
     exact: true,
-    // component: ComponentsChangelogPage,
+    component: DesignPage,
     children: [
       {
         path: "/changelog/components",

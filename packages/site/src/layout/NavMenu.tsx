@@ -2,6 +2,7 @@ import { Box, Button, Disclosure, Typography } from "@jobber/components";
 import { Link } from "react-router-dom";
 import { PropsWithChildren, useState } from "react";
 import { SearchBox } from "./SearchBox";
+import AnimatedPresenceDisclosure from "./AnimatedPresenceDisclosure";
 import { routes } from "../routes";
 import { JobberLogo } from "../assets/JobberLogo.svg";
 
@@ -40,19 +41,20 @@ export const NavMenu = () => {
             if (route.children) {
               return (
                 <Box key={index} padding="base">
-                  <Disclosure key={index} title={changelogTitle}>
+                  <AnimatedPresenceDisclosure
+                    to={route.path || "/"}
+                    title={route.handle}
+                  >
                     {route.children.map((subroute, subindex) => {
                       if (subroute.inNav === false) return null;
 
                       return (
-                        <div key={subindex}>
-                          <StyledSubLink to={subroute.path || "/"}>
-                            {subroute.handle}
-                          </StyledSubLink>
-                        </div>
+                        <StyledSubLink key={subindex} to={subroute.path || "/"}>
+                          {subroute.handle}
+                        </StyledSubLink>
                       );
                     })}
-                  </Disclosure>
+                  </AnimatedPresenceDisclosure>
                 </Box>
               );
             }
