@@ -6,15 +6,20 @@ export const HomePage = () => {
       structure={{
         header: {
           title: "Atlantis",
-          body: "Design and build consumer-grade experiences with Jobber's design system",
+          body: "Jobber's toolkit for building consumer-grade experiences",
           ctaLabel: "Get Started",
           to: "/docs/content/design/welcome-guide",
+          imageURL: "../public/img_collage.jpg",
         },
         body: {
           title: "Packages",
           content: [
-            { title: "Components", to: "/docs/components" },
-            { title: "Design", to: "/docs/design" },
+            {
+              title: "Components",
+              to: "/docs/components",
+              imageURL: "/Components.png",
+            },
+            { title: "Design", to: "/docs/design", imageURL: "/Design.png" },
           ],
         },
       }}
