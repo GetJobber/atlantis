@@ -443,7 +443,13 @@ export const MobileCodeWrapper = (
   transpiledCode: string | null | undefined,
 ) => `
             import {
-              Button
+              Button,
+              Card,
+              Content,
+              InputDate,
+              Icon,
+              Text,
+              useState
             } from '@jobber/components-native';
 
                 ${transpiledCode}
