@@ -28,7 +28,7 @@ export default {
     }),
     alias({
       entries: [
-        { find: "react-native", replacement: "react-native-web" },
+        { find: "react-native", replacement: "./src/MobileOverrides.js" },
 
         {
           find: "react-native-keyboard-aware-scroll-view",

@@ -39,3 +39,7 @@ export const Switch = () => ({});
 export default {
   createAnimatedComponent: () => ({}),
 };
+
+export * from "react-native-web";
+export const PlatformColor = () => ({});
+export const requireNativeComponent = () => false;
