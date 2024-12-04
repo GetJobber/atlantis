@@ -56,6 +56,7 @@ import MarkdownContent from "./Markdown";
 import MenuContent from "./Menu";
 import ModalContent from "./Modal";
 import MultiSelectContent from "./MultiSelect";
+import PageContent from "./Page";
 import PopoverContent from "./Popover";
 import ProgressBarContent from "./ProgressBar";
 import RadioGroupContent from "./RadioGroup";
@@ -248,6 +249,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   MultiSelect: {
     ...MultiSelectContent,
+  },
+  Page: {
+    ...PageContent,
   },
   Popover: {
     ...PopoverContent,

@@ -164,6 +164,7 @@ const components = [
   "Menu",
   "Modal",
   "MultiSelect",
+  "Page",
   "Popover",
   "ProgressBar",
   "RadioGroup",
