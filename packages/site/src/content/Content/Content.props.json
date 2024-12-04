@@ -1,0 +1,41 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Content/Content.tsx",
+    "description": "",
+    "displayName": "Content",
+    "methods": [],
+    "props": {
+      "spacing": {
+        "defaultValue": {
+          "value": "base"
+        },
+        "description": "The amount of vertical spacing between the children",
+        "name": "spacing",
+        "parent": {
+          "fileName": "../components/src/Content/Content.tsx",
+          "name": "ContentProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | number | symbol"
+        }
+      },
+      "type": {
+        "defaultValue": {
+          "value": "div"
+        },
+        "description": "Change the wrapping element to be one of the available\nsemantic tags.",
+        "name": "type",
+        "parent": {
+          "fileName": "../components/src/Content/Content.tsx",
+          "name": "ContentProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"section\" | \"aside\" | \"header\" | \"footer\" | \"article\" | \"main\" | \"div\""
+        }
+      }
+    }
+  }
+]
