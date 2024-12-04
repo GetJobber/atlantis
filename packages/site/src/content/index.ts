@@ -12,6 +12,7 @@ import ChipContent from "./Chip";
 import ChipsContent from "./Chips";
 import ComboboxContent from "./Combobox";
 import ConfirmationModalContent from "./ConfirmationModal";
+import ContentStuff from "./Content";
 import CountdownContent from "./Countdown";
 import DataDumpContent from "./DataDump";
 import DataListContent from "./DataList";
@@ -40,6 +41,7 @@ import InlineLabelContent from "./InlineLabel";
 import InputAvatarContent from "./InputAvatar";
 import InputDateContent from "./InputDate";
 import InputEmailContent from "./InputEmail";
+import InputFileContent from "./InputFile";
 import InputGroupContent from "./InputGroup";
 import InputNumberContent from "./InputNumber";
 import InputPasswordContent from "./InputPassword";
@@ -54,6 +56,7 @@ import MarkdownContent from "./Markdown";
 import MenuContent from "./Menu";
 import ModalContent from "./Modal";
 import MultiSelectContent from "./MultiSelect";
+import PageContent from "./Page";
 import PopoverContent from "./Popover";
 import ProgressBarContent from "./ProgressBar";
 import RadioGroupContent from "./RadioGroup";
@@ -114,6 +117,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   ConfirmationModal: {
     ...ConfirmationModalContent,
+  },
+  Content: {
+    ...ContentStuff,
   },
   Countdown: {
     ...CountdownContent,
@@ -199,6 +205,9 @@ export const SiteContent: Record<string, ContentExport> = {
   InputEmail: {
     ...InputEmailContent,
   },
+  InputFile: {
+    ...InputFileContent,
+  },
   InputGroup: {
     ...InputGroupContent,
   },
@@ -240,6 +249,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   MultiSelect: {
     ...MultiSelectContent,
+  },
+  Page: {
+    ...PageContent,
   },
   Popover: {
     ...PopoverContent,
