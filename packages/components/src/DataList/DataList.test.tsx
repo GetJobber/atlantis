@@ -606,6 +606,7 @@ describe("DataList", () => {
         return (
           <DataList
             {...props}
+            onLoadMore={jest.fn()}
             data={props?.data || mockData}
             headers={mockHeaders}
           >

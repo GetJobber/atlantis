@@ -1,8 +1,11 @@
 import React from "react";
+import { LoadMoreTrigger } from "@jobber/components/LoadMoreTrigger";
 import styles from "./DataListLoadMore.module.css";
-import { DataListLoadMoreTrigger } from "./DataListLoadMoreTrigger";
 import { useDataListContext } from "../../context/DataListContext";
-import { DATA_LIST_LOADING_MORE_SPINNER_TEST_ID } from "../../DataList.const";
+import {
+  DATA_LIST_LOADING_MORE_SPINNER_TEST_ID,
+  DATA_LOAD_MORE_TEST_ID,
+} from "../../DataList.const";
 import { Spinner } from "../../../Spinner";
 import { Button } from "../../../Button";
 
@@ -13,13 +16,20 @@ interface DataListLoadMoreProps {
 export const MAX_DATA_COUNT = 50;
 
 export function DataListLoadMore({ onBackToTop }: DataListLoadMoreProps) {
-  const { loadingState, data } = useDataListContext();
+  const { loadingState, data, onLoadMore } = useDataListContext();
+
   const showBackToTop =
     data.length > MAX_DATA_COUNT && loadingState !== "loadingMore";
 
   return (
     <>
-      <DataListLoadMoreTrigger key={data.length} />
+      {onLoadMore && (
+        <LoadMoreTrigger
+          key={data.length}
+          onLoadMore={onLoadMore}
+          testId={DATA_LOAD_MORE_TEST_ID}
+        />
+      )}
 
       {loadingState === "loadingMore" && (
         <div
