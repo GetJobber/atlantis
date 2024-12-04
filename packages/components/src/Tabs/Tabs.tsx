@@ -25,6 +25,13 @@ export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
   const activeTabInitialValue =
     defaultTab < React.Children.count(children) ? defaultTab : 0;
   const [activeTab, setActiveTab] = useState(activeTabInitialValue);
+  useEffect(() => {
+    if (defaultTab > React.Children.count(children) - 1) {
+      setActiveTab(activeTabInitialValue);
+    } else {
+      setActiveTab(defaultTab);
+    }
+  }, [defaultTab]);
   const { overflowRight, overflowLeft, tabRow } = useTabsOverflow();
   const overflowClassNames = classnames(styles.overflow, {
     [styles.overflowRight]: overflowRight,

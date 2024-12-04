@@ -30,7 +30,7 @@ export const ComponentView = () => {
   useErrorCatcher();
   const { updateStyles } = useStyleUpdater();
   const { stateValues } = usePageValues(PageMeta);
-  const [tab, setTab] = useState("Design");
+  const [tab, setTab] = useState(0);
   const ComponentContent = PageMeta?.content;
   const { code } = useComponentAndCode(PageMeta);
   useEffect(() => {
@@ -41,12 +41,16 @@ export const ComponentView = () => {
 
   const goToProps = e => {
     e.preventDefault();
-    setTab("Implementation");
+    setTab(1);
   };
 
   const goToUsage = e => {
     e.preventDefault();
-    setTab("Implementation");
+    setTab(1);
+  };
+
+  const goToDesign = () => {
+    setTab(0);
   };
 
   return PageMeta ? (
@@ -86,6 +90,7 @@ export const ComponentView = () => {
       <Grid.Cell size={{ xs: 12, md: 3 }}>
         <ComponentLinks
           links={PageMeta?.links}
+          goToDesign={goToDesign}
           goToProps={goToProps}
           goToUsage={goToUsage}
         />

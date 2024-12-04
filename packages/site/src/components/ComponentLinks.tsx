@@ -11,10 +11,12 @@ export const ComponentLinks = ({
   links,
   goToProps,
   goToUsage,
+  goToDesign,
 }: {
   readonly links?: ContentExportLinks[];
   readonly goToProps: () => void;
   readonly goToUsage: () => void;
+  readonly goToDesign: () => void;
 }) => {
   const [hlinks, setHlinks] = useState<Element[] | null>(null);
 
@@ -31,11 +33,14 @@ export const ComponentLinks = ({
     const id = e.currentTarget?.getAttribute("href")?.replace("#", "");
 
     if (id) {
-      const element = document.getElementById(id);
+      goToDesign();
+      setTimeout(() => {
+        const element = document.getElementById(id);
 
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
     }
   };
 
