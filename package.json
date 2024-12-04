@@ -16,7 +16,7 @@
     "packages/site"
   ],
   "scripts": {
-    "build": "npm run storybook:build",
+    "build": "npm run storybook:build && cd packages/site && npm run build && mv dist ../../storybook-static/docs",
     "build:hooksIndex": "node scripts/createIndexFile.js ./packages/hooks/src",
     "bootstrap": "npm run bootstrap --workspaces --if-present",
     "ci:release": "lerna publish --yes",
