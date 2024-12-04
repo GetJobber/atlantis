@@ -15,6 +15,8 @@ const rewriteLink = (item: string) => {
   return newItem;
 };
 export default defineConfig({
+  base: "/docs",
+
   plugins: [
     react(),
     mdx({
