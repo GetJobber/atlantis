@@ -20,7 +20,7 @@ export const ToggleThemeButton = () => {
     <div
       style={{
         position: "fixed",
-        top: "var(--space-base)",
+        bottom: "var(--space-base)",
         right: "var(--space-base)",
       }}
     >
