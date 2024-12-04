@@ -91,6 +91,19 @@ section[role="tabpanel"] {
 
 }
 
+pre,
+code {
+  background-color: var(--color-surface--background);
+  border-radius: var(--radius-small);
+  padding: var(--space-smallest);
+  margin: 0;
+}
+
+pre code {
+  padding: var(--space-small);
+  display: block;
+}
+
 code.root-code[class*="language-"] {
   color: var(--color-request);
 }
@@ -107,20 +120,10 @@ pre.root-pre code.root-code {
 pre.root-pre {
   background: var(--color-surface--background);
   padding: var(--space-large);
-  border-radius: var(--radius-base);
 }
 
 section[role="tabpanel"]>div>h1:first-of-type {
   display: none;
-}
-
-.cm-editor {
-  border: 1px solid black;
-  border-radius: 3px;
-}
-
-.cm-editor .cm-type {
-  color: 'blue'
 }
 
 iframe {

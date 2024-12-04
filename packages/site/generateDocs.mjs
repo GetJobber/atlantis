@@ -149,6 +149,7 @@ const components = [
   "InputAvatar",
   "InputDate",
   "InputEmail",
+  "InputFile",
   "InputGroup",
   "InputNumber",
   "InputPassword",

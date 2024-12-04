@@ -41,6 +41,7 @@ import InlineLabelContent from "./InlineLabel";
 import InputAvatarContent from "./InputAvatar";
 import InputDateContent from "./InputDate";
 import InputEmailContent from "./InputEmail";
+import InputFileContent from "./InputFile";
 import InputGroupContent from "./InputGroup";
 import InputNumberContent from "./InputNumber";
 import InputPasswordContent from "./InputPassword";
@@ -202,6 +203,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   InputEmail: {
     ...InputEmailContent,
+  },
+  InputFile: {
+    ...InputFileContent,
   },
   InputGroup: {
     ...InputGroupContent,
