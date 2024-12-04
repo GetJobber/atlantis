@@ -7,7 +7,8 @@ export const ComponentsPage = () => {
       structure={{
         header: {
           title: "Components",
-          body: "The building blocks of Jobber's interfaces",
+          body: "The tools you'll use to build Jobber",
+          imageURL: "../public/img-hero_collage-v2.004b0168.webp",
         },
         body: {
           title: "Components",
