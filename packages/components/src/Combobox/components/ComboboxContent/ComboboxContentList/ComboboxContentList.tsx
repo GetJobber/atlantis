@@ -4,13 +4,13 @@ import { Text } from "@jobber/components/Text";
 import { Glimmer } from "@jobber/components/Glimmer";
 import { Spinner } from "@jobber/components/Spinner";
 import { AnimatedPresence } from "@jobber/components/AnimatedPresence";
+import { LoadMoreTrigger } from "@jobber/components/LoadMoreTrigger";
 import styles from "./ComboboxContentList.module.css";
 import {
   ComboboxListProps,
   ComboboxOptionProps,
 } from "../../../Combobox.types";
 import { ComboboxOption } from "../../ComboboxOption/ComboboxOption";
-import { ComboboxLoadMore } from "../ComboboxLoadMore";
 
 export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
   const optionsExist = props.options.length > 0;
@@ -57,7 +57,10 @@ export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
           </div>
 
           {props.onLoadMore && (
-            <ComboboxLoadMore onLoadMore={props.onLoadMore} />
+            <LoadMoreTrigger
+              onLoadMore={props.onLoadMore}
+              testId="ATL-Combobox-Loadmore-Trigger"
+            />
           )}
         </ul>
       )}
