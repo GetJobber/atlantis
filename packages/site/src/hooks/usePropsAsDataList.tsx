@@ -13,7 +13,7 @@ export const usePropsAsDataList = (
   const stateValues = useMemo(() => {
     const props = type === "web" ? meta?.props : meta?.mobileProps;
 
-    return props.map(propList => {
+    return props?.map(propList => {
       return {
         name: propList.displayName,
         props: Object.keys(propList.props).map((key, index) => {

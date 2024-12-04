@@ -88,13 +88,13 @@ export const ComponentView = () => {
                       <Box margin={{ bottom: "base" }}>
                         <AtlantisPreviewEditor />
                       </Box>
-                      <PropsList values={stateValues} />
+                      <PropsList values={stateValues || []} />
                     </Tab>
                     <Tab label="Mobile">
                       <Box margin={{ bottom: "base" }}>
                         <AtlantisPreviewEditor />
                       </Box>
-                      <PropsList values={stateValues} />
+                      <PropsList values={stateValues || []} />
                     </Tab>
                   </Tabs>
                 </span>

@@ -8,7 +8,7 @@ export interface ContentExport {
     props: Record<string, GeneratedProp | undefined>;
     tags: Record<string, GeneratedTag | undefined | string>;
   }>;
-  mobileProps: Array<{
+  mobileProps?: Array<{
     description: string;
     displayName: string;
     filePath: string;
