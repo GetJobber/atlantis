@@ -9,6 +9,7 @@ export const HomePage = () => {
           body: "Design and build consumer-grade experiences with Jobber's design system",
           ctaLabel: "Get Started",
           to: "/content/design/welcome-guide",
+          imageURL: "../public/img_collage.jpg",
         },
         body: {
           title: "Packages",

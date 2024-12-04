@@ -6,6 +6,7 @@ interface HeaderBlockProps {
   readonly body: string;
   readonly ctaLabel?: string;
   readonly to?: string;
+  readonly imageURL?: string;
 }
 
 /**
@@ -21,12 +22,16 @@ export const HeaderBlock = ({
   body,
   ctaLabel,
   to,
+  imageURL = "../public/img_collage.jpg",
 }: HeaderBlockProps) => {
   const history = useHistory();
 
   return (
     <Box background="base-blue--900">
-      <div className="headerBlock">
+      <div
+        style={{ backgroundImage: `url(${imageURL})` }}
+        className="headerBlock"
+      >
         <Content spacing="large">
           <Typography
             element={"h1"}
