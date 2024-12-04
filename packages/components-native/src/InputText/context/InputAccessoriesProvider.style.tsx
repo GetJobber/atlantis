@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { PlatformColor, StyleSheet } from "react-native";
 import { tokens } from "../../utils/design";
 
 const BAR_HEIGHT = 44;
@@ -18,6 +18,6 @@ export const styles = StyleSheet.create({
   },
   darkTheme: {
     // PlatformColor has to be conditional for Storybook to run without error
-    backgroundColor: tokens["color-surface--background"],
+    backgroundColor: PlatformColor?.("systemGray3"),
   },
 });

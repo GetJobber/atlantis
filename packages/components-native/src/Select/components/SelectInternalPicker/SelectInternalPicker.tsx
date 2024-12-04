@@ -1,6 +1,7 @@
 import React from "react";
-import { isIOS14AndUp } from "./utils";
+import { handlePress, isIOS14AndUp } from "./utils";
 import { SelectInternalPickerProps } from "../../types";
+import { SelectIOSPicker } from "../SelectIOSPicker";
 import { SelectPressable } from "../SelectPressable";
 import { SelectDefaultPicker } from "../SelectDefaultPicker";
 
@@ -13,7 +14,16 @@ export function SelectInternalPicker({
   if (disabled) return <>{children}</>;
 
   if (isIOS14AndUp()) {
-    return <SelectPressable>{children}</SelectPressable>;
+    return (
+      <SelectPressable>
+        <SelectIOSPicker
+          options={options}
+          onOptionPress={handlePress(onChange)}
+        >
+          {children}
+        </SelectIOSPicker>
+      </SelectPressable>
+    );
   }
 
   return (

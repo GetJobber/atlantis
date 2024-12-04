@@ -4,7 +4,6 @@ import react from "@vitejs/plugin-react";
 import mdx from "@mdx-js/rollup";
 import remarkGfm from "remark-gfm";
 import rehypeRewrite from "rehype-rewrite";
-import reactNativeWeb from "vite-plugin-react-native-web";
 
 const rewriteLink = (item: string) => {
   let newItem = item;
@@ -18,7 +17,6 @@ const rewriteLink = (item: string) => {
 export default defineConfig({
   plugins: [
     react(),
-    reactNativeWeb(),
     mdx({
       remarkPlugins: [remarkGfm],
       rehypePlugins: [
@@ -46,7 +44,7 @@ export default defineConfig({
     }),
   ],
   optimizeDeps: {
-    include: ["@jobber/formatters", "@jobber/hooks", "@jobber/components"],
+    include: ["@jobber/hooks"],
   },
   resolve: {
     alias: {
@@ -60,52 +58,6 @@ export default defineConfig({
         __dirname,
         "./src/components/StorybookOverrides",
       ),
-      "react-native-gesture-handler": path.resolve(
-        __dirname,
-        "./src/components/MobileOverrides",
-      ),
-      "react-native-modalize": path.resolve(
-        __dirname,
-        "./src/components/MobileOverrides",
-      ),
-      /* "react-native-toast-message": path.resolve(
-        __dirname,
-        "./src/components/MobileOverrides",
-      ),
-      "react-native": path.resolve(
-        __dirname,
-        "./src/components/MobileOverrides",
-      ),
-      "react-native-reanimated": path.resolve(
-        __dirname,
-        "./src/components/MobileOverrides",
-      ),
-     
-      "react-native-keyboard-aware-scroll-view": path.resolve(
-        __dirname,
-        "./src/components/MobileOverrides",
-      ),
-      "react-native-safe-area-context": path.resolve(
-        __dirname,
-        "./src/components/MobileOverrides",
-      ),
-     
-      "react-native-svg": path.resolve(
-        __dirname,
-        "./src/components/MobileOverrides",
-      ),
-      "react-native-picker": path.resolve(
-        __dirname,
-        "./src/components/MobileOverrides",
-      ),
-      "react-native-modal-datetime-picker": path.resolve(
-        __dirname,
-        "./src/components/MobileOverrides",
-      ),
-      "@react-native-picker/picker": path.resolve(
-        __dirname,
-        "./src/components/MobileOverrides",
-      ),  */
       mdxUtils: path.resolve(__dirname, "../../.storybook/components"),
       "@jobber/docx": path.resolve(__dirname, "../docx/src"),
       "@atlantis/docs": path.resolve(__dirname, "../../docs"),

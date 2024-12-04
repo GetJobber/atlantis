@@ -10,7 +10,7 @@ export default {
   mobileProps: MobileProps,
   component: {
     element: `return <Button label="Button!" onClick={() => alert('Button Clicked!')} ></Button>`,
-    mobileElement: `return <Button label="Button!" onClick={() => alert('Button Clicked!')} ></Button>`,
+    mobileElement: `return <Button label="Button!" onPress={() => alert('Button Pressed!')} ></Button>`,
     defaultProps: { label: "Button", children: "Button2" },
   },
   title: "Button",

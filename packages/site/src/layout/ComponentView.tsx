@@ -1,14 +1,6 @@
-import {
-  Box,
-  Content,
-  Grid,
-  Page,
-  SegmentedControl,
-  Tab,
-  Tabs,
-} from "@jobber/components";
+import { Box, Content, Grid, Page, Tab, Tabs } from "@jobber/components";
 import { useParams } from "react-router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { PageWrapper } from "./PageWrapper";
 import { PropsList } from "../components/PropsList";
 import { ComponentNotFound } from "../components/ComponentNotFound";
@@ -31,24 +23,34 @@ import {
  */
 export const ComponentView = () => {
   const { name = "" } = useParams<{ name: string }>();
-  const { updateCode, iframe } = useAtlantisPreview();
+  const { updateCode, iframe, iframeMobile, type, updateType } =
+    useAtlantisPreview();
   const PageMeta = SiteContent[name];
   useErrorCatcher();
   const { updateStyles } = useStyleUpdater();
-  const [state, setState] = useState<"web" | "mobile">("web");
-  const { stateValues } = usePropsAsDataList(PageMeta, state);
+
+  const { stateValues } = usePropsAsDataList(PageMeta, type);
 
   const ComponentContent = PageMeta?.content;
   const code =
-    state === "web"
+    type === "web"
       ? PageMeta.component.element
       : PageMeta.component.mobileElement;
 
   useEffect(() => {
-    if (iframe?.current) {
+    if (iframe?.current || iframeMobile?.current) {
       setTimeout(() => updateCode(code as string), 100);
     }
-  }, [code, iframe?.current]);
+  }, [code, iframe?.current, iframeMobile?.current, type]);
+
+  const handleTabChange = (tab: number) => {
+    if (tab == 1) {
+      updateType("web");
+    } else if (tab == 2) {
+      updateType("mobile");
+    }
+    updateStyles();
+  };
 
   return PageMeta ? (
     <Grid>
@@ -57,18 +59,7 @@ export const ComponentView = () => {
           <PageWrapper>
             <Box>
               <Content spacing="large">
-                <Box direction="column" gap="small">
-                  <SegmentedControl
-                    selectedValue={state}
-                    onSelectValue={setState}
-                  >
-                    <SegmentedControl.Option value="web">
-                      Web
-                    </SegmentedControl.Option>
-                    <SegmentedControl.Option value="mobile">
-                      Mobile
-                    </SegmentedControl.Option>
-                  </SegmentedControl>
+                <Box direction="column" gap="small" alignItems="flex-end">
                   <CodePreviewWindow>
                     <AtlantisPreviewViewer />
                   </CodePreviewWindow>
@@ -76,13 +67,19 @@ export const ComponentView = () => {
                 <span
                   style={{ "--public-tab--inset": 0 } as React.CSSProperties}
                 >
-                  <Tabs onTabChange={updateStyles}>
+                  <Tabs onTabChange={handleTabChange}>
                     <Tab label="Design">
                       <Content spacing="large">
                         <ComponentContent />
                       </Content>
                     </Tab>
-                    <Tab label="Implementation">
+                    <Tab label="Web">
+                      <Box margin={{ bottom: "base" }}>
+                        <AtlantisPreviewEditor />
+                      </Box>
+                      <PropsList values={stateValues} />
+                    </Tab>
+                    <Tab label="Mobile">
                       <Box margin={{ bottom: "base" }}>
                         <AtlantisPreviewEditor />
                       </Box>
