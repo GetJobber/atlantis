@@ -1,26 +1,24 @@
 import React, { forwardRef, useId } from "react";
 import { InputTextRebuiltProps } from "./InputText.types";
+import { useInputTextActions } from "./useInputTextActions";
+import { useInputTextFormField } from "./useInputTextFormField";
 import {
   FormFieldWrapper,
-  FormFieldWrapperHookProps,
-  useFormFieldWrapperStyles,
-} from "../FormField/FormFieldWrapper";
-import { FormFieldPostFix } from "../FormField/FormFieldPostFix";
-import {
-  AutocompleteTypes,
-  FormFieldTypes,
-  useAtlantisFormField,
-  useAtlantisFormFieldActions,
   useAtlantisFormFieldName,
+  useFormFieldWrapperStyles,
 } from "../FormField";
+import { FormFieldPostFix } from "../FormField/FormFieldPostFix";
 
+// eslint-disable-next-line max-statements
 export const InputTextSPAR = forwardRef(function InputTextInternal(
   props: InputTextRebuiltProps,
   inputRefs: React.Ref<HTMLInputElement>,
 ) {
+  const inputTextRef = React.useRef<HTMLInputElement | HTMLTextAreaElement>(
+    null,
+  );
+
   const legacyPropHelper = {
-    prefixWidth: 0,
-    suffixWidth: 0,
     ...props,
     version: 1,
   };
@@ -32,51 +30,29 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     setValue(props.value || "");
   }, [props.value]);
 
-  const { inputStyle } = useFormFieldWrapperStyles({
-    ...(legacyPropHelper as FormFieldWrapperHookProps),
-  });
+  const { inputStyle } = useFormFieldWrapperStyles(legacyPropHelper);
 
   const { name } = useAtlantisFormFieldName({
     nameProp: props.name,
     id: props.id || id,
   });
 
-  const {
-    handleChange,
-    handleBlur,
-    handleFocus,
-    handleKeyDown,
-    handleValidation,
-  } = useAtlantisFormFieldActions({
-    name,
-    onChange: props.onChange as
-      | ((
-          newValue: string | number | boolean | Date,
-          event?:
-            | React.ChangeEvent<
-                HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-              >
-            | undefined,
-        ) => void)
-      | undefined,
-    onBlur: props.onBlur as (() => void) | undefined,
-    onFocus: props.onFocus as () => void,
-    onControllerBlur: () => ({}),
-    onControllerChange: () => ({}),
-    type: "text",
-    setValue,
-  });
+  const { handleChange, handleBlur, handleFocus, handleKeyDown, handleClear } =
+    useInputTextActions({
+      onChange: props.onChange,
+      onBlur: props.onBlur,
+      onFocus: props.onFocus,
+      onEnter: props.onEnter,
+      inputRef: inputTextRef,
+    });
 
-  const { fieldProps } = useAtlantisFormField({
+  const { fieldProps } = useInputTextFormField({
     id,
     name,
-    rest: {},
-    validations: false,
     handleChange,
     handleBlur,
     handleFocus,
     handleKeyDown,
-    handleValidation,
     errorMessage: "",
   });
 
@@ -87,7 +63,7 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
       identifier={id}
       descriptionIdentifier={props["aria-describedby"] ?? ""}
       clearable={props.clearable ?? "never"}
-      onClear={props.onClear ?? (() => ({}))}
+      onClear={handleClear}
       type={props.type}
       placeholder={props.placeholder}
       value={value as string}
