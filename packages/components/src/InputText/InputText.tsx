@@ -1,17 +1,14 @@
 import React, { Ref, forwardRef, useImperativeHandle, useRef } from "react";
 import { XOR } from "ts-xor";
 import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
+import { RowRange } from "./InputText.types";
+import { useTextAreaResize } from "./useTextAreaResize";
 import {
   CommonFormFieldProps,
   FieldActionsRef,
   FormField,
   FormFieldProps,
 } from "../FormField";
-
-export interface RowRange {
-  min: number;
-  max: number;
-}
 
 interface BaseProps
   extends CommonFormFieldProps,
@@ -69,7 +66,7 @@ function InputTextInternal(
   const actionsRef = useRef<FieldActionsRef>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  const rowRange = getRowRange();
+  const { resize, rowRange } = useTextAreaResize(props.rows);
 
   useImperativeHandle(ref, () => ({
     insert: (text: string) => {
@@ -99,14 +96,7 @@ function InputTextInternal(
   }));
 
   useSafeLayoutEffect(() => {
-    if (
-      inputRef &&
-      inputRef.current instanceof HTMLTextAreaElement &&
-      wrapperRef &&
-      wrapperRef.current instanceof HTMLDivElement
-    ) {
-      resize(inputRef.current, wrapperRef.current);
-    }
+    resize(inputRef, wrapperRef);
   }, [inputRef.current, wrapperRef.current]);
 
   return (
@@ -124,56 +114,7 @@ function InputTextInternal(
   function handleChange(newValue: string) {
     props.onChange && props.onChange(newValue);
 
-    if (
-      inputRef &&
-      inputRef.current instanceof HTMLTextAreaElement &&
-      wrapperRef &&
-      wrapperRef?.current instanceof HTMLDivElement
-    ) {
-      resize(inputRef.current, wrapperRef.current);
-    }
-  }
-
-  function getRowRange(): RowRange {
-    if (props.rows === undefined) {
-      return { min: 3, max: 3 };
-    } else if (typeof props.rows === "object") {
-      return { min: props.rows.min, max: props.rows.max };
-    } else {
-      return { min: props.rows, max: props.rows };
-    }
-  }
-
-  function resize(textArea: HTMLTextAreaElement, wrapper: HTMLDivElement) {
-    if (rowRange.min === rowRange.max) return;
-
-    textArea.style.flexBasis = "auto";
-    wrapper.style.height = "auto";
-    textArea.style.flexBasis = textAreaHeight(textArea) + "px";
-  }
-
-  function textAreaHeight(textArea: HTMLTextAreaElement) {
-    const {
-      lineHeight,
-      borderBottomWidth,
-      borderTopWidth,
-      paddingBottom,
-      paddingTop,
-    } = window.getComputedStyle(textArea);
-
-    const maxHeight =
-      rowRange.max * parseFloat(lineHeight) +
-      parseFloat(borderTopWidth) +
-      parseFloat(borderBottomWidth) +
-      parseFloat(paddingTop) +
-      parseFloat(paddingBottom);
-
-    const scrollHeight =
-      textArea.scrollHeight +
-      parseFloat(borderTopWidth) +
-      parseFloat(borderBottomWidth);
-
-    return Math.min(scrollHeight, maxHeight);
+    resize(inputRef, wrapperRef);
   }
 
   function insertText(text: string) {
