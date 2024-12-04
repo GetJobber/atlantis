@@ -21,22 +21,21 @@ interface AtlantisRoute {
 const groupedComponentNavRoutes: Array<AtlantisRoute> = [];
 
 const populateComponentRoutes = () => {
-    for (const [grouping, components] of Object.entries(componentGroupings)) {
-      console.log(grouping, components);
-      const tempGrouping = {handle: grouping, children: []}
-        for (const component of components) {
-          console.log(component);
-          tempGrouping.children.push(
-            {
-              path: `/components/${component}`, 
-              component: ContentLoader, 
-              handle: component, 
-              inNav: true,
-            }
-          );
-        };
+  for (const [grouping, components] of Object.entries(componentGroupings)) {
+    console.log(grouping, components);
+    const tempGrouping = { handle: grouping, children: [] };
+
+    for (const component of components) {
+      console.log(component);
+      tempGrouping.children.push({
+        path: `/components/${component}`,
+        component: ContentLoader,
+        handle: component,
+        inNav: true,
+      });
+    }
     groupedComponentNavRoutes.push(tempGrouping);
-  };
+  }
 };
 
 const componentRoutes = componentList.map(component => ({
