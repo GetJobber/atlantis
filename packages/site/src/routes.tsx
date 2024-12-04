@@ -7,15 +7,37 @@ import { componentList } from "./componentList";
 import { ComponentsChangelogPage } from "./pages/ComponentsChangelogPage";
 import { ComponentsNativeChangelogPage } from "./pages/ComponentsNativeChangelogPage";
 import { DesignChangelogPage } from "./pages/DesignChangelogPage";
+import { componentGroupings } from "./componentGroupings";
 
 interface AtlantisRoute {
-  path: string;
+  path?: string;
   component?: () => JSX.Element;
   exact?: boolean;
   children?: Array<AtlantisRoute>;
   inNav?: boolean;
   handle: string;
 }
+
+const groupedComponentNavRoutes: Array<AtlantisRoute> = [];
+
+const populateComponentRoutes = () => {
+    for (const [grouping, components] of Object.entries(componentGroupings)) {
+      console.log(grouping, components);
+      const tempGrouping = {handle: grouping, children: []}
+        for (const component of components) {
+          console.log(component);
+          tempGrouping.children.push(
+            {
+              path: `/components/${component}`, 
+              component: ContentLoader, 
+              handle: component, 
+              inNav: true,
+            }
+          );
+        };
+    groupedComponentNavRoutes.push(tempGrouping);
+  };
+};
 
 const componentRoutes = componentList.map(component => ({
   path: component.to,
@@ -36,6 +58,7 @@ export const routes: Array<AtlantisRoute> = [
     handle: "Components",
     exact: true,
     component: ComponentsPage,
+    children: groupedComponentNavRoutes,
   },
   {
     path: "/design",
@@ -81,5 +104,4 @@ export const routes: Array<AtlantisRoute> = [
     handle: "Content",
     inNav: false,
   },
-  ...componentRoutes,
 ];
