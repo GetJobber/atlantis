@@ -83,11 +83,11 @@ export function useAtlantisFormFieldActions({
       setTimeout(() => readonly && (target as HTMLInputElement).select());
     }
 
-    onFocus && onFocus();
+    onFocus?.(event);
   }
 
-  function handleBlur() {
-    onBlur && onBlur();
+  function handleBlur(event?: FocusEvent) {
+    onBlur?.(event);
     onControllerBlur();
   }
 
