@@ -47,7 +47,7 @@ export const ComponentNotFound = () => {
             </Card>
           </Box>
           <Box>
-            <Link url="/components">Back to components</Link>
+            <Link url="/docs/components">Back to components</Link>
           </Box>
         </Content>
       </Box>

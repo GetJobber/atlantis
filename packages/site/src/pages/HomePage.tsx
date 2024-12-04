@@ -8,13 +8,13 @@ export const HomePage = () => {
           title: "Atlantis",
           body: "Design and build consumer-grade experiences with Jobber's design system",
           ctaLabel: "Get Started",
-          to: "/content/design/welcome-guide",
+          to: "/docs/content/design/welcome-guide",
         },
         body: {
           title: "Packages",
           content: [
-            { title: "Components", to: "/components" },
-            { title: "Design", to: "/design" },
+            { title: "Components", to: "/docs/components" },
+            { title: "Design", to: "/docs/design" },
           ],
         },
       }}

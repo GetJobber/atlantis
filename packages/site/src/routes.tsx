@@ -26,43 +26,43 @@ const componentRoutes = componentList.map(component => ({
 
 export const routes: Array<AtlantisRoute> = [
   {
-    path: "/",
+    path: "/docs",
     component: HomePage,
     exact: true,
     handle: "Home",
   },
   {
-    path: "/components",
+    path: "/docs/components",
     handle: "Components",
     exact: true,
     component: ComponentsPage,
   },
   {
-    path: "/design",
+    path: "/docs/design",
     handle: "Design",
     exact: true,
     component: DesignPage,
   },
   {
-    path: "/changelog",
+    path: "/docs/changelog",
     handle: "Changelog",
     exact: true,
     // component: ComponentsChangelogPage,
     children: [
       {
-        path: "/changelog/components",
+        path: "/docs/changelog/components",
         handle: "Components",
         exact: true,
         component: ComponentsChangelogPage,
       },
       {
-        path: "/changelog/components-native",
+        path: "/docs/changelog/components-native",
         handle: "Components Native",
         exact: true,
         component: ComponentsNativeChangelogPage,
       },
       {
-        path: "/changelog/design",
+        path: "/docs/changelog/design",
         handle: "Design",
         exact: true,
         component: DesignChangelogPage,
@@ -70,13 +70,13 @@ export const routes: Array<AtlantisRoute> = [
     ],
   },
   {
-    path: "/components/:name",
+    path: "/docs/components/:name",
     component: ComponentView,
     handle: "Web",
     inNav: false,
   },
   {
-    path: "/content/:type/:name",
+    path: "/docs/content/:type/:name",
     component: ContentLoader,
     handle: "Content",
     inNav: false,
