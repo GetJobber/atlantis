@@ -6,8 +6,7 @@ export default {
   content: () => <Content />,
   props: Props,
   component: {
-    element: `<FormatFile
-      file={{
+    element: `const file = {
         key: "abc",
         name: "myballisbigandroundIamrollingitontheground.png",
         type: "image/png",
@@ -16,13 +15,18 @@ export default {
         src: () => {
           return Promise.resolve("https://picsum.photos/250");
         },
-      }}
-      display={"compact"}
-      displaySize={"large"}
-      onDelete={() => {
-        return alert("Deleted");
-      }}
-    />`,
+      };
+
+      return (
+        <FormatFile
+          file={file}
+          display={"compact"}
+          displaySize={"large"}
+          onDelete={() => {
+            return alert("Deleted");
+          }}
+        />
+      );`,
   },
   title: "FormatFile",
   links: [

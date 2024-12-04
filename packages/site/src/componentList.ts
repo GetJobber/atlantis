@@ -76,6 +76,11 @@ export const componentList = [
     additionalMatches: ["Confirm", "Prompt", "Modal"],
   },
   {
+    title: "Content",
+    to: "/components/Content",
+    imageURL: "/Content.png",
+  },
+  {
     title: "Countdown",
     to: "/components/Countdown",
     imageURL: "/Countdown.png",
@@ -236,6 +241,11 @@ export const componentList = [
     imageURL: "/InputEmail.png",
   },
   {
+    title: "InputFile",
+    to: "/components/InputFile",
+    imageURL: "/InputFile.png",
+  },
+  {
     title: "InputGroup",
     to: "/components/InputGroup",
     imageURL: "/InputGroup.png",
@@ -307,6 +317,11 @@ export const componentList = [
     imageURL: "/MultiSelect.png",
   },
   {
+    title: "Page",
+    to: "/components/Page",
+    imageURL: "/Page.png",
+  },
+  {
     title: "Popover",
     to: "/components/Popover",
     imageURL: "/Popover.png",
@@ -323,7 +338,7 @@ export const componentList = [
     imageURL: "/RadioGroup.png",
   },
   {
-    title: "ReccuringSelect",
+    title: "RecurringSelect",
     to: "/components/RecurringSelect",
     imageURL: "/RecurringSelect.png",
   },

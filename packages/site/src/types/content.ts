@@ -6,7 +6,7 @@ export interface ContentExport {
     filePath: string;
     methods: Array<string>;
     props: Record<string, GeneratedProp | undefined>;
-    tags: Record<string, GeneratedTag>;
+    tags: Record<string, GeneratedTag | undefined | string>;
   }>;
   component: {
     element: unknown;
@@ -24,7 +24,7 @@ interface GeneratedProp {
   defaultValue: null | object;
   description?: string;
   name: string;
-  parent: { fileName: string; name: string };
+  parent?: { fileName: string; name: string };
   required: boolean;
   type: { name: string };
 }

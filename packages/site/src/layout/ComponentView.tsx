@@ -14,8 +14,9 @@ import {
   AtlantisPreviewEditor,
   AtlantisPreviewViewer,
   useAtlantisPreview,
-} from "../components/AtlantisPreviewEditorProvider";
+} from "../providers/AtlantisPreviewEditorProvider";
 import { useComponentAndCode } from "../hooks/useComponentAndCode";
+import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
 
 /**
  * Layout for displaying a Component documentation page. This will display the component, props, and code.
@@ -29,7 +30,17 @@ export const ComponentView = () => {
   useErrorCatcher();
   const { updateStyles } = useStyleUpdater();
   const { stateValues } = usePageValues(PageMeta);
+  const { enableMinimal, minimal, disableMinimal, isMinimal } =
+    useAtlantisSite();
+  useEffect(() => {
+    if (minimal.requested && !minimal.enabled) {
+      enableMinimal();
+    }
 
+    return () => {
+      disableMinimal();
+    };
+  }, []);
   const ComponentContent = PageMeta?.content;
   const { code } = useComponentAndCode(PageMeta);
   useEffect(() => {
@@ -40,7 +51,7 @@ export const ComponentView = () => {
 
   return PageMeta ? (
     <Grid>
-      <Grid.Cell size={{ xs: 12, md: 9 }}>
+      <Grid.Cell size={isMinimal ? { xs: 12, md: 12 } : { xs: 12, md: 9 }}>
         <Page width="fill" title={PageMeta.title}>
           <PageWrapper>
             <Box>
