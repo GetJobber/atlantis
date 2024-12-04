@@ -139,11 +139,6 @@ export const AtlantisPreviewEditorProvider = ({
       const iframeWindow = iframe.current.contentWindow;
       iframeWindow?.postMessage({ type: "updateTheme", theme }, "*");
     }
-
-    if (iframeMobile.current) {
-      const iframeWindow = iframeMobile.current.contentWindow;
-      iframeWindow?.postMessage({ type: "updateTheme", theme }, "*");
-    }
   }, [theme]);
 
   return (
