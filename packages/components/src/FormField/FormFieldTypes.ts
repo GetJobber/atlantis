@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactNode, RefObject } from "react";
+import React, { ChangeEvent, ReactNode, RefObject } from "react";
 import { RegisterOptions } from "react-hook-form";
 import { XOR } from "ts-xor";
 import { Clearable } from "@jobber/hooks/src/useShowClear";
@@ -222,12 +222,12 @@ export interface FormFieldProps extends CommonFormFieldProps {
   /**
    * Focus callback.
    */
-  onFocus?(): void;
+  onFocus?(event?: React.FocusEvent): void;
 
   /**
    * Blur callback.
    */
-  onBlur?(): void;
+  onBlur?(event?: React.FocusEvent): void;
 
   onKeyUp?(event: React.KeyboardEvent<HTMLInputElement>): void;
 
@@ -262,3 +262,18 @@ export interface FormFieldProps extends CommonFormFieldProps {
    */
   readonly toolbarVisibility?: "always" | "while-editing";
 }
+
+export interface FormFieldPropsV2
+  extends Pick<
+    CommonFormFieldProps,
+    | "align"
+    | "clearable"
+    | "description"
+    | "disabled"
+    | "inline"
+    | "loading"
+    | "name"
+    | "placeholder"
+    | "size"
+    | "value"
+  > {}
