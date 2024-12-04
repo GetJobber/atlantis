@@ -3,6 +3,7 @@ import {
   Card,
   Content,
   Heading,
+  useAtlantisTheme,
 } from "@jobber/components";
 import { useHistory } from "react-router";
 import { ComponentWrapper } from "./ComponentWrapper";
@@ -22,6 +23,7 @@ export const ContentCard = ({
   onClick,
 }: ContentCardProps) => {
   const history = useHistory();
+  const { theme } = useAtlantisTheme();
 
   return (
     <Card
@@ -34,10 +36,14 @@ export const ContentCard = ({
       {!component ? (
         <AtlantisThemeContextProvider dangerouslyOverrideTheme="light">
           <div
-            style={{
-              background: "var(--color-surface)",
-              borderRadius: "var(--radius-base) var(--radius-base) 0 0",
-            }}
+            style={
+              imageURL && theme === "dark"
+                ? {
+                    background: "var(--color-surface)",
+                    borderRadius: "var(--radius-base) var(--radius-base) 0 0",
+                  }
+                : {}
+            }
           >
             <img
               style={{ width: "100%", mixBlendMode: "multiply" }}
