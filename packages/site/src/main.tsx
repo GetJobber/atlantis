@@ -5,7 +5,11 @@ import "@jobber/components/dist/styles.css";
 import "./main.css";
 import { BrowserRouter } from "react-router-dom";
 import { Layout } from "./layout/Layout";
-import { AtlantisPreviewEditorProvider } from "./components/AtlantisPreviewEditorProvider";
+import { AtlantisPreviewEditorProvider } from "./providers/AtlantisPreviewEditorProvider";
+import { AtlantisSiteProvider } from "./providers/AtlantisSiteProvider";
+
+const urlParams = new URLSearchParams(window.location.search);
+const minimalMode = urlParams.has("minimal");
 
 function renderApp() {
   const root = document.getElementById("root");
@@ -14,9 +18,13 @@ function renderApp() {
     ReactDOM.createRoot(root).render(
       <React.StrictMode>
         <BrowserRouter>
-          <AtlantisPreviewEditorProvider>
-            <Layout />
-          </AtlantisPreviewEditorProvider>
+          <AtlantisSiteProvider
+            minimal={{ requested: minimalMode, enabled: false }}
+          >
+            <AtlantisPreviewEditorProvider>
+              <Layout />
+            </AtlantisPreviewEditorProvider>
+          </AtlantisSiteProvider>
         </BrowserRouter>
       </React.StrictMode>,
     );
