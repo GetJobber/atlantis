@@ -22,11 +22,9 @@ const groupedComponentNavRoutes: Array<AtlantisRoute> = [];
 
 const populateComponentRoutes = () => {
   for (const [grouping, components] of Object.entries(componentGroupings)) {
-    console.log(grouping, components);
     const tempGrouping = { handle: grouping, children: [] };
 
     for (const component of components) {
-      console.log(component);
       tempGrouping.children.push({
         path: `/components/${component}`,
         component: ContentLoader,
@@ -44,6 +42,8 @@ const componentRoutes = componentList.map(component => ({
   handle: component.title,
   inNav: true,
 }));
+
+populateComponentRoutes();
 
 export const routes: Array<AtlantisRoute> = [
   {

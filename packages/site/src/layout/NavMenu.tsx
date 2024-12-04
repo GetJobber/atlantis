@@ -2,6 +2,7 @@ import { Box, Button, Disclosure, Typography } from "@jobber/components";
 import { Link } from "react-router-dom";
 import { PropsWithChildren, useState } from "react";
 import { SearchBox } from "./SearchBox";
+import AnimatedPresenceDisclosure from "./AnimatedPresenceDisclosure";
 import { routes } from "../routes";
 import { JobberLogo } from "../assets/JobberLogo.svg";
 
@@ -12,13 +13,14 @@ import { JobberLogo } from "../assets/JobberLogo.svg";
 export const NavMenu = () => {
   const [open, setOpen] = useState(false);
 
+  console.log(routes);
+
   return (
     <div
       style={{
         width: 220,
-        height: "100dvh",
+        minHeight: "100dvh",
         backgroundColor: "var(--color-surface--background)",
-        overflow: "scroll",
       }}
     >
       <Box height={24} padding="base">
@@ -41,31 +43,52 @@ export const NavMenu = () => {
             if (route.children) {
               return (
                 <Box key={index} padding="base">
-                  <Disclosure key={index} title={changelogTitle}>
+                  <AnimatedPresenceDisclosure
+                    to={route.path || "/"}
+                    title={route.handle}
+                  >
                     {route.children.map((subroute, subindex) => {
                       if (subroute.inNav === false) return null;
 
-                      return (
-                        <div key={subindex}>
-                          <StyledSubLink to={subroute.path || "/"}>
+                      if (subroute.children) {
+                        return (
+                          <>
+                            {sectionTitle(subroute.handle)}
+                            {subroute.children.map(
+                              (subsubroute, subsubindex) => {
+                                return (
+                                  <StyledSubLink
+                                    key={subsubindex}
+                                    to={subsubroute.path || "/"}
+                                  >
+                                    {subsubroute.handle}
+                                  </StyledSubLink>
+                                );
+                              },
+                            )}
+                          </>
+                        );
+                      } else {
+                        return (
+                          <StyledSubLink
+                            key={subindex}
+                            to={subroute.path || "/"}
+                          >
                             {subroute.handle}
                           </StyledSubLink>
-                        </div>
-                      );
+                        );
+                      }
                     })}
-                  </Disclosure>
+                  </AnimatedPresenceDisclosure>
                 </Box>
               );
             }
+
             if (route.inNav === false) return null;
 
             return (
               <MenuItem key={index}>
-                <StyledLink
-                  key={index}
-                  to={route.path ?? "/"}
-                  style={{ marginBottom: "var(--space-base)" }}
-                >
+                <StyledLink key={index} to={route.path ?? "/"}>
                   {route.handle}
                 </StyledLink>
               </MenuItem>
@@ -86,7 +109,6 @@ export const StyledLink = ({
     <Link
       to={to ?? "/"}
       style={{
-        padding: "var(--space-base) 0",
         outline: "transparent",
         color: "var(--color-heading)",
         fontSize: "var(--typography--fontSize-large)",
@@ -120,6 +142,9 @@ export const StyledSubLink = ({
         textDecoration: "none",
         userSelect: "none",
         transition: "all var(--timing-base) ease-out",
+        display: "block",
+        padding:
+          "var(--space-smaller) var(--space-smaller) var(--space-smaller) var(--space-base)",
         ...style,
       }}
     >
@@ -153,4 +178,12 @@ export const changelogTitle = (
   <Typography fontWeight="semiBold" size="large" textColor="heading">
     Changelog
   </Typography>
+);
+
+export const sectionTitle = section => (
+  <div style={{ padding: "var(--space-smaller)" }}>
+    <Typography fontWeight="bold" size="small" textColor="textSecondary">
+      {section.toUpperCase()}
+    </Typography>
+  </div>
 );
