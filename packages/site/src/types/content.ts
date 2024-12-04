@@ -19,13 +19,11 @@ export interface ContentExport {
   component: {
     element: unknown;
     mobileElement?: unknown;
-    defaultProps: Record<
-      string,
-      string | boolean | JSX.Element | [] | (() => void)
-    >;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Will be deleted soon, don't worry.
+    defaultProps?: any;
   };
   title: string;
-  description: string;
+  description?: string;
   links: ContentExportLinks[];
 }
 interface GeneratedTag {
@@ -33,7 +31,7 @@ interface GeneratedTag {
 }
 interface GeneratedProp {
   defaultValue: null | object;
-  description: string;
+  description?: string;
   name: string;
   parent: { fileName: string; name: string };
   required: boolean;

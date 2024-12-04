@@ -1,5 +1,3 @@
-import { Button as WebButton } from "@jobber/components";
-import { Button as MobileButton } from "@jobber/components-native";
 import ButtonContent from "@atlantis/docs/components/Button/Button.stories.mdx";
 import Props from "./Button.props.json";
 import MobileProps from "./Button.props-mobile.json";
@@ -11,13 +9,11 @@ export default {
   props: Props,
   mobileProps: MobileProps,
   component: {
-    element: WebButton,
-    mobileElement: MobileButton,
+    element: `return <Button label="Button!" onClick={() => alert('Button Clicked!')} ></Button>`,
+    mobileElement: `return <Button label="Button!" onClick={() => alert('Button Clicked!')} ></Button>`,
     defaultProps: { label: "Button", children: "Button2" },
   },
   title: "Button",
-  description:
-    "Buttons are a core user interface component, as they allow users to initiate, complete, and reverse actions.",
   links: [
     {
       label: "Storybook",

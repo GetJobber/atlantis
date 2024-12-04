@@ -1,4 +1,3 @@
-import { Switch } from "@jobber/components";
 import SwitchContent from "@atlantis/docs/components/Switch/Switch.stories.mdx";
 import Props from "./Switch.props.json";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
@@ -8,11 +7,9 @@ export default {
   content: () => <SwitchContent />,
   props: Props,
   component: {
-    element: Switch,
-    defaultProps: {},
+    element: `<Switch />`,
   },
   title: "Switch",
-  description: "Switch is cool too I guess",
   links: [
     {
       label: "Switch Storybook",

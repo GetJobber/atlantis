@@ -14,7 +14,13 @@ export const BodyBlock = ({ children, title }: BodyBlockProps) => {
   return (
     <Box padding={"extravagant"}>
       <Content>
-        <Typography size="larger" fontWeight="bold">
+        <Typography
+          size={"base"}
+          fontWeight={"bold"}
+          textCase={"uppercase"}
+          textColor={"textSecondary"}
+          element="h2"
+        >
           {title}
         </Typography>
         <Box direction="row" alignItems="stretch" gap={"base"}>

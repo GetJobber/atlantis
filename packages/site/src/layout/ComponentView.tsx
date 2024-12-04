@@ -8,18 +8,21 @@ import {
   Tabs,
 } from "@jobber/components";
 import { useParams } from "react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PageWrapper } from "./PageWrapper";
 import { PropsList } from "../components/PropsList";
-import { CodeViewer } from "../components/CodeViewer";
 import { ComponentNotFound } from "../components/ComponentNotFound";
 import { ComponentLinks } from "../components/ComponentLinks";
 import { CodePreviewWindow } from "../components/CodePreviewWindow";
-import { usePageValues } from "../hooks/usePageValues";
+import { usePropsAsDataList } from "../hooks/usePropsAsDataList";
 import { SiteContent } from "../content";
 import { useStyleUpdater } from "../hooks/useStyleUpdater";
 import { useErrorCatcher } from "../hooks/useErrorCatcher";
-import { useComponentAndCode } from "../hooks/useComponentAndCode";
+import {
+  AtlantisPreviewEditor,
+  AtlantisPreviewViewer,
+  useAtlantisPreview,
+} from "../components/AtlantisPreviewEditorProvider";
 
 /**
  * Layout for displaying a Component documentation page. This will display the component, props, and code.
@@ -28,30 +31,29 @@ import { useComponentAndCode } from "../hooks/useComponentAndCode";
  */
 export const ComponentView = () => {
   const { name = "" } = useParams<{ name: string }>();
+  const { updateCode, iframe } = useAtlantisPreview();
   const PageMeta = SiteContent[name];
   useErrorCatcher();
   const { updateStyles } = useStyleUpdater();
   const [state, setState] = useState<"web" | "mobile">("web");
-  const { stateValues, stateValueWithFunction } = usePageValues(
-    PageMeta,
-    state,
-  );
-  const ComponentContent = PageMeta?.content;
+  const { stateValues } = usePropsAsDataList(PageMeta, state);
 
-  const { Component, code } = useComponentAndCode(
-    PageMeta,
-    stateValueWithFunction,
-    state,
-  );
+  const ComponentContent = PageMeta?.content;
+  const code =
+    state === "web"
+      ? PageMeta.component.element
+      : PageMeta.component.mobileElement;
+
+  useEffect(() => {
+    if (iframe?.current) {
+      setTimeout(() => updateCode(code as string), 100);
+    }
+  }, [code, iframe?.current]);
 
   return PageMeta ? (
     <Grid>
       <Grid.Cell size={{ xs: 12, md: 9 }}>
-        <Page
-          width="fill"
-          title={PageMeta.title}
-          subtitle={PageMeta.description}
-        >
+        <Page width="fill" title={PageMeta.title}>
           <PageWrapper>
             <Box>
               <Content spacing="large">
@@ -67,11 +69,9 @@ export const ComponentView = () => {
                       Mobile
                     </SegmentedControl.Option>
                   </SegmentedControl>
-                  {Component && (
-                    <CodePreviewWindow>
-                      <Component {...stateValueWithFunction} />
-                    </CodePreviewWindow>
-                  )}
+                  <CodePreviewWindow>
+                    <AtlantisPreviewViewer />
+                  </CodePreviewWindow>
                 </Box>
                 <span
                   style={{ "--public-tab--inset": 0 } as React.CSSProperties}
@@ -82,11 +82,11 @@ export const ComponentView = () => {
                         <ComponentContent />
                       </Content>
                     </Tab>
-                    <Tab label="Props">
+                    <Tab label="Implementation">
+                      <Box margin={{ bottom: "base" }}>
+                        <AtlantisPreviewEditor />
+                      </Box>
                       <PropsList values={stateValues} />
-                    </Tab>
-                    <Tab label="Code">
-                      <CodeViewer code={code} />
                     </Tab>
                   </Tabs>
                 </span>

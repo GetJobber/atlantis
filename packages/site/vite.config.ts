@@ -46,7 +46,7 @@ export default defineConfig({
     }),
   ],
   optimizeDeps: {
-    include: ["@jobber/formatters", "@jobber/hooks"],
+    include: ["@jobber/formatters", "@jobber/hooks", "@jobber/components"],
   },
   resolve: {
     alias: {
@@ -110,9 +110,6 @@ export default defineConfig({
       "@jobber/docx": path.resolve(__dirname, "../docx/src"),
       "@atlantis/docs": path.resolve(__dirname, "../../docs"),
     },
-  },
-  server: {
-    open: true,
   },
   define: {
     "process.env": {},

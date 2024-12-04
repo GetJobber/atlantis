@@ -1,4 +1,4 @@
-import { Box, Button } from "@jobber/components";
+import { Box, Button, Disclosure, Typography } from "@jobber/components";
 import { Link } from "react-router-dom";
 import { PropsWithChildren, useState } from "react";
 import { SearchBox } from "./SearchBox";
@@ -13,7 +13,13 @@ export const NavMenu = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <Box width={220} background="surface--background">
+    <div
+      style={{
+        width: 220,
+        minHeight: "100dvh",
+        backgroundColor: "var(--color-surface--background)",
+      }}
+    >
       <Box height={24} padding="base">
         <Link to="/">
           <JobberLogo />
@@ -31,19 +37,28 @@ export const NavMenu = () => {
       <MenuList>
         <Box>
           {routes?.map((route, index) => {
-            return route.children ? (
-              route.children.map((subroute, subindex) => {
-                if (subroute.inNav === false) return;
+            if (route.children) {
+              return (
+                <Box key={index} padding="base">
+                  <Disclosure key={index} title={changelogTitle}>
+                    {route.children.map((subroute, subindex) => {
+                      if (subroute.inNav === false) return null;
 
-                return (
-                  <MenuItem key={index}>
-                    <StyledLink to={subroute.path || "/"} key={subindex}>
-                      {subroute.handle}
-                    </StyledLink>
-                  </MenuItem>
-                );
-              })
-            ) : route.inNav === false ? null : (
+                      return (
+                        <div key={subindex}>
+                          <StyledSubLink to={subroute.path || "/"}>
+                            {subroute.handle}
+                          </StyledSubLink>
+                        </div>
+                      );
+                    })}
+                  </Disclosure>
+                </Box>
+              );
+            }
+            if (route.inNav === false) return null;
+
+            return (
               <MenuItem key={index}>
                 <StyledLink
                   key={index}
@@ -57,7 +72,7 @@ export const NavMenu = () => {
           })}
         </Box>
       </MenuList>
-    </Box>
+    </div>
   );
 };
 
@@ -75,6 +90,31 @@ export const StyledLink = ({
         color: "var(--color-heading)",
         fontSize: "var(--typography--fontSize-large)",
         fontWeight: 600,
+        width: "100%",
+        textDecoration: "none",
+        userSelect: "none",
+        transition: "all var(--timing-base) ease-out",
+        ...style,
+      }}
+    >
+      {children}
+    </Link>
+  );
+};
+
+export const StyledSubLink = ({
+  to,
+  children,
+  style,
+}: PropsWithChildren<{ readonly to: string; readonly style?: object }>) => {
+  return (
+    <Link
+      to={to ?? "/"}
+      style={{
+        outline: "transparent",
+        color: "var(--color-heading)",
+        fontSize: "var(--typography--fontSize-base)",
+        fontWeight: 700,
         width: "100%",
         textDecoration: "none",
         userSelect: "none",
@@ -107,3 +147,9 @@ export const MenuItem = ({ children }: PropsWithChildren) => {
     </li>
   );
 };
+
+export const changelogTitle = (
+  <Typography fontWeight="semiBold" size="large" textColor="heading">
+    Changelog
+  </Typography>
+);
