@@ -62,8 +62,10 @@ exports[`Tabs renders Tabs 1`] = `
           role="presentation"
         >
           <button
+            aria-selected="true"
             class="tab selected"
             role="tab"
+            tabindex="0"
             type="button"
           >
             <span
@@ -77,8 +79,10 @@ exports[`Tabs renders Tabs 1`] = `
           role="presentation"
         >
           <button
+            aria-selected="false"
             class="tab"
             role="tab"
+            tabindex="-1"
             type="button"
           >
             <span
@@ -94,6 +98,7 @@ exports[`Tabs renders Tabs 1`] = `
       aria-label="Eggs"
       class="tabContent"
       role="tabpanel"
+      tabindex="0"
     >
       <p>
         🍳
