@@ -236,6 +236,11 @@ export const componentList = [
     imageURL: "/InputEmail.png",
   },
   {
+    title: "InputFile",
+    to: "/components/InputFile",
+    imageURL: "/InputFile.png",
+  },
+  {
     title: "InputGroup",
     to: "/components/InputGroup",
     imageURL: "/InputGroup.png",
@@ -328,7 +333,7 @@ export const componentList = [
     imageURL: "/RadioGroup.png",
   },
   {
-    title: "ReccuringSelect",
+    title: "RecurringSelect",
     to: "/components/RecurringSelect",
     imageURL: "/RecurringSelect.png",
   },
