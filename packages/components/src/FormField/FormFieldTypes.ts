@@ -262,18 +262,3 @@ export interface FormFieldProps extends CommonFormFieldProps {
    */
   readonly toolbarVisibility?: "always" | "while-editing";
 }
-
-export interface FormFieldPropsV2
-  extends Pick<
-    CommonFormFieldProps,
-    | "align"
-    | "clearable"
-    | "description"
-    | "disabled"
-    | "inline"
-    | "loading"
-    | "name"
-    | "placeholder"
-    | "size"
-    | "value"
-  > {}
