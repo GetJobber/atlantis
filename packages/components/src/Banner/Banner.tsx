@@ -2,7 +2,7 @@ import React, { ReactNode, useState } from "react";
 import classnames from "classnames";
 import { IconNames } from "@jobber/design";
 import { useResizeObserver } from "@jobber/hooks/useResizeObserver";
-import styles from "./Banner.css";
+import styles from "./Banner.module.css";
 import { BannerIcon } from "./components/BannerIcon";
 import { BannerType } from "./Banner.types";
 import { Text } from "../Text";
@@ -27,7 +27,14 @@ interface BannerProps {
    * Adds an icon to the left of the banner content
    */
   readonly icon?: IconNames;
+
   onDismiss?(): void;
+
+  /**
+   * When provided, the banner's visibility is controlled by this value.
+   * @default undefined
+   */
+  readonly controlledVisiblity?: boolean;
 }
 
 export function Banner({
@@ -37,9 +44,12 @@ export function Banner({
   dismissible = true,
   icon,
   onDismiss,
+  controlledVisiblity,
 }: BannerProps) {
   const [showBanner, setShowBanner] = useState(true);
   const bannerIcon = icon || getBannerIcon(type);
+  const controlledVisible = controlledVisiblity ?? true;
+  const visible = controlledVisible && showBanner;
 
   const bannerWidths = {
     small: 320,
@@ -66,7 +76,7 @@ export function Banner({
     [styles.medium]: bannerWidth >= bannerWidths.medium,
   });
 
-  if (!showBanner) return null;
+  if (!visible) return null;
 
   return (
     <div
@@ -100,8 +110,10 @@ export function Banner({
   );
 
   function handleClose() {
-    setShowBanner(!showBanner);
-    onDismiss && onDismiss();
+    if (typeof controlledVisiblity === "undefined") {
+      setShowBanner(!showBanner);
+    }
+    onDismiss?.();
   }
 }
 

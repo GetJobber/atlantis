@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import React from "react";
-import styles from "./SortIcon.css";
+import styles from "./SortIcon.module.css";
 
 export enum SortDirection {
   ascending,

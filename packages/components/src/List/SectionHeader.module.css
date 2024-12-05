@@ -1,0 +1,6 @@
+.sectionHeader {
+  position: sticky;
+  top: 0;
+  padding: var(--space-small) var(--space-base);
+  border-bottom: var(--border-base) solid var(--color-border--section);
+}

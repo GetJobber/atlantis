@@ -6,7 +6,7 @@ import {
 import { Typography } from "@jobber/components/Typography";
 import { Icon } from "@jobber/components/Icon";
 import { useDataListLayoutActionsContext } from "@jobber/components/DataList/components/DataListLayoutActions/DataListLayoutContext";
-import styles from "./DataListAction.css";
+import styles from "./DataListAction.module.css";
 
 export function DataListAction<T extends DataListObject>({
   label,
@@ -14,6 +14,7 @@ export function DataListAction<T extends DataListObject>({
   destructive,
   visible = () => true,
   onClick,
+  actionUrl,
 }: DataListActionProps<T>) {
   const { activeItem } = useDataListLayoutActionsContext<T>();
 
@@ -22,7 +23,7 @@ export function DataListAction<T extends DataListObject>({
     return null;
   }
 
-  const color = destructive ? "critical" : "heading";
+  const color = destructive ? "destructive" : "heading";
 
   function getActionLabel() {
     if (typeof label === "string") {
@@ -32,6 +33,22 @@ export function DataListAction<T extends DataListObject>({
     if (activeItem) {
       return label(activeItem);
     }
+  }
+
+  if (actionUrl) {
+    return (
+      <a
+        href={actionUrl}
+        rel="noopener noreferrer"
+        className={`${styles.action} ${styles.actionUrl}`}
+        onClick={handleClick}
+      >
+        <Typography textColor={color}>
+          <span className={styles.label}>{getActionLabel()}</span>
+        </Typography>
+        {icon && <Icon name={icon} color={color} />}
+      </a>
+    );
   }
 
   return (

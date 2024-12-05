@@ -1,6 +1,6 @@
 import React from "react";
 import { ColorSwatch } from "./ColorSwatch";
-import styles from "./ColorSwatches.css";
+import styles from "./ColorSwatches.module.css";
 
 interface Color {
   readonly name: string;

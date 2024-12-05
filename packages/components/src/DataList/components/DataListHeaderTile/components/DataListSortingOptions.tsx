@@ -2,7 +2,7 @@ import React, { KeyboardEvent, useEffect } from "react";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { Icon } from "@jobber/components/Icon";
-import styles from "./DataListSortingOptions.css";
+import styles from "./DataListSortingOptions.module.css";
 import { DataListSorting, SortableOptions } from "../../../DataList.types";
 
 interface DataListSortingOptionsProps {
@@ -46,7 +46,7 @@ export function DataListSortingOptions({
         >
           {option.label}
           {option.label === selectedOption?.label && (
-            <Icon name="checkmark" color="blue" />
+            <Icon name="checkmark" color="interactiveSubtle" />
           )}
         </li>
       ))}

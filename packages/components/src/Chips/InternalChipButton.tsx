@@ -5,7 +5,7 @@ import React, {
   useRef,
 } from "react";
 import { IconNames } from "@jobber/design";
-import styles from "./InternalChip.css";
+import styles from "./InternalChip.module.css";
 import { Icon } from "../Icon";
 
 export interface ChipButtonProps {
@@ -39,7 +39,7 @@ export function InternalChipButton({
       aria-disabled={disabled}
       data-testid="remove-chip-button"
     >
-      <Icon name={icon} color={getColor()} />
+      <Icon size="small" name={icon} color={getColor()} />
     </div>
   );
 
@@ -64,7 +64,7 @@ export function InternalChipButton({
     if (disabled) return "disabled";
     if (invalid) return "critical";
 
-    return "greyBlue";
+    return "interactiveSubtle";
   }
 
   function handleClick(event: MouseEvent<HTMLDivElement>) {

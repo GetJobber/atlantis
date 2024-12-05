@@ -1,5 +1,4 @@
 import { MouseEvent, ReactElement } from "react";
-import { XOR } from "ts-xor";
 import { ChipProps } from "./Chip";
 
 interface ChipFoundationProps {
@@ -38,6 +37,11 @@ interface ChipFoundationProps {
 export interface ChipSingleSelectProps extends ChipFoundationProps {
   readonly type?: "singleselect";
   readonly selected?: string;
+  /**
+   * Show the checkmark suffix on the selected Chip(s)
+   * defaults to true
+   */
+  readonly showSelectedSuffix?: boolean;
   onChange(value?: string): void;
 
   /**
@@ -51,6 +55,11 @@ export interface ChipSingleSelectProps extends ChipFoundationProps {
 export interface ChipMultiSelectProps extends ChipFoundationProps {
   readonly type: "multiselect";
   readonly selected: string[];
+  /**
+   * Show the checkmark suffix on the selected Chip(s)
+   * defaults to true
+   */
+  readonly showSelectedSuffix?: boolean;
   onChange(value: string[]): void;
 }
 
@@ -96,7 +105,6 @@ export interface ChipDismissibleProps extends ChipFoundationProps {
   onLoadMore?(searchValue: string): void;
 }
 
-export type ChipsProps = XOR<
-  ChipSingleSelectProps,
-  XOR<ChipMultiSelectProps, ChipDismissibleProps>
->;
+export type ChipsProps =
+  | ChipSingleSelectProps
+  | (ChipMultiSelectProps | ChipDismissibleProps);

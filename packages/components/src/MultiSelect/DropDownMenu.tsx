@@ -9,7 +9,7 @@ import React, {
   useState,
 } from "react";
 import classNames from "classnames";
-import styles from "./DropDownMenu.css";
+import styles from "./DropDownMenu.module.css";
 import { Option, Options } from "./types";
 import { Checkbox } from "../Checkbox";
 
@@ -113,6 +113,7 @@ export function DropDownMenu({ options, setOptions }: DropDownMenuProps) {
   return (
     <ul
       data-testid="dropdown-menu"
+      data-elevation={"elevated"}
       className={styles.dropDownMenuContainer}
       ref={menuDiv}
       onKeyDown={handleKeyDown}

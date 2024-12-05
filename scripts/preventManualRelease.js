@@ -6,7 +6,6 @@
  */
 
 /* eslint-env node */
-/* eslint-disable @typescript-eslint/no-var-requires */
 const axios = require("axios");
 const glob = require("glob");
 const chalk = require("chalk");

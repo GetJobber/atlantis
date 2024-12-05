@@ -6,7 +6,7 @@ import {
 } from "@jobber/components/DataList/DataList.types";
 import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
 import { useActiveLayout } from "@jobber/components/DataList/hooks/useActiveLayout";
-import styles from "./DataListLoadingState.css";
+import styles from "./DataListLoadingState.module.css";
 
 export const LOADING_STATE_LIMIT_ITEMS = 10;
 export const DATALIST_LOADINGSTATE_ROW_TEST_ID =

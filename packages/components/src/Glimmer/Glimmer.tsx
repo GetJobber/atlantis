@@ -1,10 +1,9 @@
 import React from "react";
 import classnames from "classnames";
-import styles from "./Glimmer.css";
-/* eslint-disable import/no-internal-modules */
-import sizes from "./style/Sizes.css";
-import shapes from "./style/Shape.css";
-import timings from "./style/Timing.css";
+import styles from "./Glimmer.module.css";
+import sizes from "./style/Sizes.module.css";
+import shapes from "./style/Shape.module.css";
+import timings from "./style/Timing.module.css";
 /* eslint-enable import/no-internal-modules */
 import { Content } from "../Content";
 
@@ -51,13 +50,6 @@ export const GLIMMER_HEADER_TEST_ID = "ATL-GlimmerHeader";
 export const GLIMMER_TEXT_TEST_ID = "ATL-GlimmerText";
 export const GLIMMER_BUTTON_TEST_ID = "ATL-GlimmerButton";
 
-/**
- * **Experimental component! Use at your own risk.**
- *
- * Foundational component used to build loading states such as Skeleton UI
- *
- * @experimental
- */
 export function Glimmer({
   size = "base",
   shape = "rectangle",
@@ -84,7 +76,8 @@ export function Glimmer({
   );
 }
 
-interface GlimmerHeaderProps extends Omit<GlimmerProps, "shape" | "size"> {
+export interface GlimmerHeaderProps
+  extends Omit<GlimmerProps, "shape" | "size"> {
   /**
    * Adjust the size of the `Glimmer.Header`.
    *
@@ -112,7 +105,7 @@ Glimmer.Header = function GlimmerHeader({
   );
 };
 
-interface GlimmerTextProps extends Omit<GlimmerProps, "shape" | "size"> {
+export interface GlimmerTextProps extends Omit<GlimmerProps, "shape" | "size"> {
   /**
    * Set how many lines shows up.
    *
@@ -139,7 +132,8 @@ Glimmer.Text = function GlimmerText({
   );
 };
 
-interface GlimmerButtonProps extends Omit<GlimmerProps, "shape" | "size"> {
+export interface GlimmerButtonProps
+  extends Omit<GlimmerProps, "shape" | "size"> {
   /**
    * Allow `Glimmer.Button` to go full width.
    *

@@ -1,7 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import getHumanReadableFileSize from "filesize";
-import styles from "./FormatFile.css";
+import styles from "./FormatFile.module.css";
 import { FormatFileDeleteButton } from "./FormatFileDeleteButton";
 import { InternalThumbnail } from "./InternalThumbnail";
 import { FileUpload } from "../InputFile";
@@ -48,7 +48,7 @@ export function FormatFile({
 }: FormatFileProps) {
   const isComplete = file.progress >= 1;
   const fileSize = getHumanReadableFileSize(file.size);
-  const wrapperClassNames = classnames(styles[display], {
+  const wrapperClassNames = classnames(styles[display], styles.formatFile, {
     [styles[displaySize]]: display === "compact",
   });
 

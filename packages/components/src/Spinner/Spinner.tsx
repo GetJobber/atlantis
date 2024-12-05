@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import styles from "./Spinner.css";
+import styles from "./Spinner.module.css";
 
 interface SpinnerProps {
   /**

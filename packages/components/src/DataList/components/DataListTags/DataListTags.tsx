@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
-import styles from "./DataListTags.css";
+import styles from "./DataListTags.module.css";
 import { InlineLabel } from "../../../InlineLabel";
 import { Text } from "../../../Text";
 

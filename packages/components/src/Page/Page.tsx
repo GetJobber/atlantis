@@ -5,7 +5,7 @@ import {
   Breakpoints,
   useResizeObserver,
 } from "@jobber/hooks/useResizeObserver";
-import styles from "./Page.css";
+import styles from "./Page.module.css";
 import { Heading } from "../Heading";
 import { Text } from "../Text";
 import { Content } from "../Content";
@@ -14,6 +14,10 @@ import { Button, ButtonProps } from "../Button";
 import { Menu, SectionProps } from "../Menu";
 import { Emphasis } from "../Emphasis";
 
+export type ButtonActionProps = ButtonProps & {
+  ref?: React.RefObject<HTMLDivElement>;
+};
+
 interface PageFoundationProps {
   readonly children: ReactNode | ReactNode[];
 
@@ -21,6 +25,12 @@ interface PageFoundationProps {
    * Title of the page.
    */
   readonly title: string;
+
+  /**
+   * TitleMetaData component to be displayed
+   * next to the title.
+   */
+  readonly titleMetaData?: ReactNode;
 
   /**
    * Subtitle of the page.
@@ -43,13 +53,13 @@ interface PageFoundationProps {
   /**
    * Page title primary action button settings.
    */
-  readonly primaryAction?: ButtonProps;
+  readonly primaryAction?: ButtonActionProps;
 
   /**
    * Page title secondary action button settings.
    *   Only shown if there is a primaryAction.
    */
-  readonly secondaryAction?: ButtonProps;
+  readonly secondaryAction?: ButtonActionProps;
 
   /**
    * Page title Action menu.
@@ -77,9 +87,9 @@ interface PageWithIntroProps extends PageFoundationProps {
 
 export type PageProps = XOR<PageFoundationProps, PageWithIntroProps>;
 
-// eslint-disable-next-line max-statements
 export function Page({
   title,
+  titleMetaData,
   intro,
   externalIntroLinks,
   subtitle,
@@ -126,7 +136,14 @@ export function Page({
         <Content>
           <div className={titleBarClasses} ref={titleBarRef}>
             <div>
-              <Heading level={1}>{title}</Heading>
+              {titleMetaData ? (
+                <div className={styles.titleRow}>
+                  <Heading level={1}>{title}</Heading>
+                  {titleMetaData}
+                </div>
+              ) : (
+                <Heading level={1}>{title}</Heading>
+              )}
               {subtitle && (
                 <div className={styles.subtitle}>
                   <Text size="large" variation="subdued">
@@ -140,13 +157,16 @@ export function Page({
             {showActionGroup && (
               <div className={styles.actionGroup}>
                 {primaryAction && (
-                  <div className={styles.primaryAction}>
-                    <Button {...primaryAction} />
+                  <div className={styles.primaryAction} ref={primaryAction.ref}>
+                    <Button {...getActionProps(primaryAction)} />
                   </div>
                 )}
                 {secondaryAction && (
-                  <div className={styles.actionButton}>
-                    <Button {...secondaryAction} />
+                  <div
+                    className={styles.actionButton}
+                    ref={secondaryAction.ref}
+                  >
+                    <Button {...getActionProps(secondaryAction)} />
                   </div>
                 )}
                 {showMenu && (
@@ -172,3 +192,10 @@ export function Page({
     </div>
   );
 }
+
+export const getActionProps = (actionProps: ButtonActionProps): ButtonProps => {
+  const buttonProps = { ...actionProps };
+  if (actionProps.ref) delete buttonProps.ref;
+
+  return buttonProps;
+};

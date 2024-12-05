@@ -1,6 +1,6 @@
 {
   "name": "@jobber/hooks",
-  "version": "2.9.8",
+  "version": "2.11.1",
   "license": "MIT",
   "main": "./dist/index.js",
   "types": "./dist/index.d.js",
@@ -21,16 +21,12 @@
   "devDependencies": {
     "@apollo/react-testing": "^4.0.0",
     "@jobber/formatters": "^0.3.0",
-    "@testing-library/react": "^14.0.0",
-    "@testing-library/react-hooks": "^7.0.0",
-    "@testing-library/user-event": "^14.5.1",
     "@types/lodash": "4.14.136",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@types/uuid": "^8.3.3",
     "@types/zxcvbn": "^4.4.1",
     "jsdom-testing-mocks": "^1.9.0",
-    "typescript": "^4.9.5",
     "uuid": "^8.3.2"
   },
   "dependencies": {
@@ -42,6 +38,6 @@
   },
   "peerDependencies": {
     "@apollo/client": "^3.0.0",
-    "react": "^18"
+    "react": "^18.2.0"
   }
 }

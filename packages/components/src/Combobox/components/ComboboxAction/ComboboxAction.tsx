@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import styles from "./ComboboxAction.css";
+import styles from "./ComboboxAction.module.css";
 import { Typography } from "../../../Typography";
 import { ComboboxActionProps } from "../../Combobox.types";
 import { ComboboxContext } from "../../ComboboxProvider";
 
 export function ComboboxAction(props: ComboboxActionProps) {
-  const { searchValue } = useContext(ComboboxContext);
+  const { searchValue, handleClose } = useContext(ComboboxContext);
 
   if (props.visible) {
     const isVisible =
@@ -20,17 +20,25 @@ export function ComboboxAction(props: ComboboxActionProps) {
   const computedLabel =
     typeof props.label === "string" ? props.label : props.label(options);
 
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (!props.keepOpenOnClick) {
+      handleClose();
+    }
+
+    props.onClick(e, options);
+  };
+
   return (
     <div className={styles.actionContainer}>
       <button
         className={styles.actionButton}
-        onClick={e => props.onClick(e, options)}
+        onClick={handleClick}
         type="button"
       >
         <Typography
           element="span"
           size="base"
-          textColor="green"
+          textColor="interactive"
           fontWeight="semiBold"
         >
           {computedLabel}

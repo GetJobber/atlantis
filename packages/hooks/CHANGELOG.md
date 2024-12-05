@@ -3,6 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.11.0...@jobber/hooks@2.11.1) (2024-10-01)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+# [2.11.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.10.2...@jobber/hooks@2.11.0) (2024-08-27)
+
+
+### Bug Fixes
+
+* **components:** Fix flakey spec in useBreakpoints ([#1997](https://github.com/GetJobber/atlantis/issues/1997)) ([8fe06a3](https://github.com/GetJobber/atlantis/commit/8fe06a37570870830c9cb443d4a42a7b38b35f6e))
+
+
+### Features
+
+* **design:** BREAKING CHANGE: Complete rebuild of the design token package ([#1965](https://github.com/GetJobber/atlantis/issues/1965)) ([b749502](https://github.com/GetJobber/atlantis/commit/b749502e347a4e14a1c5fcfdbc3114f54bb616f1))
+
+
+
+
+
+## [2.10.2](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.10.1...@jobber/hooks@2.10.2) (2024-07-15)
+
+
+### Reverts
+
+* revert: "feat: Storybook7 Upgrade" ([#1956](https://github.com/GetJobber/atlantis/issues/1956)) ([1e82e48](https://github.com/GetJobber/atlantis/commit/1e82e48f69d4fa8a8d2db46daba6dcf3b6d87111)), closes [#1952](https://github.com/GetJobber/atlantis/issues/1952) [#1953](https://github.com/GetJobber/atlantis/issues/1953) [#1957](https://github.com/GetJobber/atlantis/issues/1957)
+
+
+
+
+
+## [2.10.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.10.0...@jobber/hooks@2.10.1) (2024-07-08)
+
+
+### Reverts
+
+* "feat: Storybook7 Upgrade" ([#1954](https://github.com/GetJobber/atlantis/issues/1954)) ([0854202](https://github.com/GetJobber/atlantis/commit/0854202ae850439c514f5ce1f129f2e584fe0efb)), closes [#1711](https://github.com/GetJobber/atlantis/issues/1711)
+
+
+
+
+
+# [2.10.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.9.8...@jobber/hooks@2.10.0) (2024-07-05)
+
+
+### Features
+
+* Storybook7 Upgrade ([#1711](https://github.com/GetJobber/atlantis/issues/1711)) ([7923df3](https://github.com/GetJobber/atlantis/commit/7923df325cae63a5476d997f577efd3e123dbe54))
+
+
+
+
+
 ## [2.9.8](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.9.7...@jobber/hooks@2.9.8) (2024-05-28)
 
 

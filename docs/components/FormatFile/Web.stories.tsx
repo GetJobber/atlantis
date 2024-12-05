@@ -42,3 +42,18 @@ Collapsed.args = {
   displaySize: "large",
   onDelete: () => alert("Deleted"),
 };
+
+export const ExpandedWithDelete = BasicTemplate.bind({});
+ExpandedWithDelete.args = {
+  file: {
+    key: "abc",
+    name: "image_of_something.png",
+    type: "image/png",
+    size: 213402324,
+    progress: 1,
+    src: () => Promise.resolve("https://picsum.photos/250"),
+  },
+  display: "expanded",
+  onDelete: () => console.log("Deleted"),
+  onClick: () => alert("Clicked"),
+};

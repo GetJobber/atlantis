@@ -89,6 +89,13 @@ it("renders text with green color", () => {
   expect(typography.toJSON()).toMatchSnapshot();
 });
 
+it("renders text with semantic color", () => {
+  const typography = render(
+    <Typography color="inactiveOnSurface">Test Text</Typography>,
+  );
+  expect(typography.toJSON()).toMatchSnapshot();
+});
+
 it("renders text with default color", () => {
   const typography = render(<Typography color="default">Test Text</Typography>);
   expect(typography.toJSON()).toMatchSnapshot();
@@ -215,5 +222,18 @@ it("renders text that is inaccessible", () => {
       accessibilityRole: "none",
       importantForAccessibility: "no-hide-descendants",
     }),
+  );
+});
+
+describe("underline", () => {
+  it.each(["solid", "double", "dotted", "dashed"] as const)(
+    "renders text with %s underline",
+    underlineStyle => {
+      const typography = render(
+        <Typography underline={underlineStyle}>Test Text</Typography>,
+      );
+
+      expect(typography.toJSON()).toMatchSnapshot();
+    },
   );
 });

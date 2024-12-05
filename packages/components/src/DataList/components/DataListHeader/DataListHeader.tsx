@@ -9,7 +9,7 @@ import { useResponsiveSizing } from "@jobber/components/DataList/hooks/useRespon
 import { DataListHeaderCheckbox } from "./DataListHeaderCheckbox";
 import { useActiveLayout } from "../../hooks/useActiveLayout";
 import { useBatchSelect } from "../../hooks/useBatchSelect";
-import styles from "../../DataList.css";
+import styles from "../../DataList.module.css";
 
 export function DataListHeader() {
   const breakpoints = useResponsiveSizing();

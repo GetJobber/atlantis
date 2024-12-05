@@ -1,6 +1,8 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
+import { StatusLabel } from "@jobber/components/StatusLabel";
 import { Page } from ".";
+import { getActionProps } from "./Page";
 import { SectionProps } from "../Menu";
 
 jest.mock("@jobber/hooks", () => {
@@ -105,6 +107,23 @@ describe("When actions are provided", () => {
     fireEvent.click(getByText("Second Do"));
     expect(handleSecondaryAction).toHaveBeenCalledTimes(1);
   });
+
+  describe("getActionProps", () => {
+    it("given action props, it returns the correct props", () => {
+      const buttonActionProps = {
+        label: "Label",
+      };
+      const buttonActionWithRefProps = {
+        label: "Label",
+        ref: { current: null },
+      };
+
+      expect(getActionProps(buttonActionProps)).toEqual(buttonActionProps);
+      expect(getActionProps(buttonActionWithRefProps)).toEqual(
+        buttonActionProps,
+      );
+    });
+  });
 });
 
 describe("When moreActions are provided", () => {
@@ -185,5 +204,28 @@ describe("When intro is provided with links", () => {
     const renderedLink = getByRole("link");
     expect(renderedLink.textContent).toBe("click me, I dare you");
     expect(renderedLink.getAttribute("target")).toBe("_blank");
+  });
+});
+
+describe("When titleMetaData is provided", () => {
+  it("should render the component", () => {
+    const titleMetaDataTestId = "titleMetaDataTestId";
+    const pageTitle = "The greatest page";
+
+    const { getByText, getByTestId } = render(
+      <Page
+        title={pageTitle}
+        titleMetaData={
+          <div data-testid={titleMetaDataTestId}>
+            <StatusLabel label={"Success"} status={"success"} />
+          </div>
+        }
+      >
+        Sup
+      </Page>,
+    );
+
+    expect(getByText(pageTitle)).toBeDefined();
+    expect(getByTestId(titleMetaDataTestId)).toBeDefined();
   });
 });

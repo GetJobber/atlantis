@@ -1,0 +1,10 @@
+.statusIndicator {
+  --statusLabel-icon-diameter: 8px;
+
+  display: inline-block;
+  width: var(--statusLabel-icon-diameter);
+  height: var(--statusLabel-icon-diameter);
+  border-radius: 50%;
+  background-color: var(--color-success);
+  flex-shrink: 0;
+}

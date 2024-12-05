@@ -12,7 +12,7 @@ import { DataListLayoutActionsContext } from "@jobber/components/DataList/compon
 import { generateListItemElement } from "@jobber/components/DataList/DataList.utils";
 import { DataListItemInternal } from "./DataListItemInternal";
 import { DataListItemClickable } from "./components/DataListItemClickable";
-import styles from "../../DataList.css";
+import styles from "../../DataList.module.css";
 import { useGetItemActions } from "../../hooks/useGetItemActions";
 
 interface DataListItem<T extends DataListObject> {
@@ -21,7 +21,6 @@ interface DataListItem<T extends DataListObject> {
   readonly layout: DataListLayoutProps<T>["children"];
 }
 
-// eslint-disable-next-line max-statements
 export function DataListItem<T extends DataListObject>({
   item,
   layout,
@@ -35,7 +34,10 @@ export function DataListItem<T extends DataListObject>({
 
   const { actions, hasActions } = useGetItemActions<T>(item);
   const isContextMenuVisible = Boolean(contextPosition);
+
   const shouldShowContextMenu = showMenu && isContextMenuVisible && hasActions;
+  const shouldShowHoverMenu =
+    showMenu && hasActions && !hasInLayoutActions && !shouldShowContextMenu;
 
   return (
     <DataListLayoutActionsContext.Provider value={{ activeItem: item }}>
@@ -55,7 +57,7 @@ export function DataListItem<T extends DataListObject>({
         </DataListItemInternal>
 
         <AnimatePresence>
-          {showMenu && hasActions && !hasInLayoutActions && (
+          {shouldShowHoverMenu && (
             <InternalDataListItemActions actions={actions} />
           )}
 

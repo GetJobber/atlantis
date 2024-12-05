@@ -26,14 +26,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 1`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="minus2"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q-"
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -73,14 +73,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 1`]
             class="checkBox"
           >
             <svg
-              class="Z6OfUI2sH34- TphtDHcwxDc-"
               data-testid="minus2"
+              style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                class="hQLb9vztL-Q-"
                 d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                style="fill: var(--color-surface);"
               />
             </svg>
           </span>
@@ -177,14 +177,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 2`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="minus2"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q-"
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -222,14 +222,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 2`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="minus2"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q-"
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -268,14 +268,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 2`]
             class="checkBox"
           >
             <svg
-              class="Z6OfUI2sH34- TphtDHcwxDc-"
               data-testid="minus2"
+              style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                class="hQLb9vztL-Q-"
                 d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                style="fill: var(--color-surface);"
               />
             </svg>
           </span>
@@ -372,14 +372,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="minus2"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q-"
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -417,14 +417,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="minus2"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q-"
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -463,14 +463,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="checkmark"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q- S4fBuUx-A70-"
                   d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -510,14 +510,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
             class="checkBox"
           >
             <svg
-              class="Z6OfUI2sH34- TphtDHcwxDc-"
               data-testid="checkmark"
+              style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                class="hQLb9vztL-Q- S4fBuUx-A70-"
                 d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                style="fill: var(--color-surface);"
               />
             </svg>
           </span>
@@ -614,14 +614,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="minus2"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q-"
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -659,14 +659,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="minus2"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q-"
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -705,14 +705,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="checkmark"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q- S4fBuUx-A70-"
                   d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -750,14 +750,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="checkmark"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q- S4fBuUx-A70-"
                   d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -796,14 +796,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
             class="checkBox"
           >
             <svg
-              class="Z6OfUI2sH34- TphtDHcwxDc-"
               data-testid="checkmark"
+              style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                class="hQLb9vztL-Q- S4fBuUx-A70-"
                 d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                style="fill: var(--color-surface);"
               />
             </svg>
           </span>
@@ -900,14 +900,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="minus2"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q-"
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -945,14 +945,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="minus2"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q-"
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -991,14 +991,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="checkmark"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q- S4fBuUx-A70-"
                   d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -1036,14 +1036,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="checkmark"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q- S4fBuUx-A70-"
                   d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -1082,14 +1082,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="minus2"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q-"
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -1129,14 +1129,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
             class="checkBox"
           >
             <svg
-              class="Z6OfUI2sH34- TphtDHcwxDc-"
               data-testid="minus2"
+              style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                class="hQLb9vztL-Q-"
                 d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                style="fill: var(--color-surface);"
               />
             </svg>
           </span>
@@ -1233,14 +1233,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="minus2"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q-"
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -1278,14 +1278,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="minus2"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q-"
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -1324,14 +1324,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="checkmark"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q- S4fBuUx-A70-"
                   d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -1369,14 +1369,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="checkmark"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q- S4fBuUx-A70-"
                   d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -1415,14 +1415,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="minus2"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q-"
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -1460,14 +1460,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="minus2"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q-"
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -1506,14 +1506,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
             class="checkBox"
           >
             <svg
-              class="Z6OfUI2sH34- TphtDHcwxDc-"
               data-testid="minus2"
+              style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                class="hQLb9vztL-Q-"
                 d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                style="fill: var(--color-surface);"
               />
             </svg>
           </span>
@@ -1610,14 +1610,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="minus2"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q-"
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -1655,14 +1655,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="minus2"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q-"
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -1701,14 +1701,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="checkmark"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q- S4fBuUx-A70-"
                   d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -1746,14 +1746,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="checkmark"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q- S4fBuUx-A70-"
                   d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -1792,14 +1792,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="minus2"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q-"
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -1837,14 +1837,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="minus2"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q-"
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -1883,14 +1883,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="checkmark"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q- S4fBuUx-A70-"
                   d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -1930,14 +1930,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
             class="checkBox"
           >
             <svg
-              class="Z6OfUI2sH34- TphtDHcwxDc-"
               data-testid="checkmark"
+              style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                class="hQLb9vztL-Q- S4fBuUx-A70-"
                 d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                style="fill: var(--color-surface);"
               />
             </svg>
           </span>
@@ -2034,14 +2034,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="minus2"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q-"
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -2079,14 +2079,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="minus2"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q-"
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -2125,14 +2125,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="checkmark"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q- S4fBuUx-A70-"
                   d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -2170,14 +2170,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="checkmark"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q- S4fBuUx-A70-"
                   d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -2216,14 +2216,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="minus2"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q-"
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -2261,14 +2261,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="minus2"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q-"
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -2307,14 +2307,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="checkmark"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q- S4fBuUx-A70-"
                   d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -2352,14 +2352,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               class="checkBox"
             >
               <svg
-                class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="checkmark"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  class="hQLb9vztL-Q- S4fBuUx-A70-"
                   d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  style="fill: var(--color-surface);"
                 />
               </svg>
             </span>
@@ -2398,14 +2398,14 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
             class="checkBox"
           >
             <svg
-              class="Z6OfUI2sH34- TphtDHcwxDc-"
               data-testid="checkmark"
+              style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                class="hQLb9vztL-Q- S4fBuUx-A70-"
                 d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                style="fill: var(--color-surface);"
               />
             </svg>
           </span>

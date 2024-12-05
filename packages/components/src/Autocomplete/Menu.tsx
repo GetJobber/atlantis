@@ -6,7 +6,7 @@ import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import { AnyOption, Option } from "./Option";
-import styles from "./Autocomplete.css";
+import styles from "./Autocomplete.module.css";
 import { Text } from "../Text";
 import { Icon } from "../Icon";
 import { Heading } from "../Heading";
@@ -66,6 +66,7 @@ export function Menu({
       className={classnames(styles.options, { [styles.visible]: visible })}
       ref={setMenuRef}
       style={{ ...popperStyles.popper, width: targetWidth }}
+      data-elevation={"elevated"}
       {...attributes.popper}
     >
       {options.map((option, index) => {

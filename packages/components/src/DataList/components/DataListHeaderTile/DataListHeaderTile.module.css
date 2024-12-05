@@ -1,0 +1,24 @@
+.headerLabel {
+  display: flex;
+  position: relative;
+  align-items: center;
+  margin: 0 calc(-1 * var(--space-smallest));
+  padding: 0 var(--space-smallest);
+  border: none;
+  border-radius: var(--radius-small);
+  background-color: transparent;
+  transition: all var(--timing-base) ease-out;
+}
+
+.headerLabel:focus,
+.headerLabel:focus-visible {
+  outline: transparent;
+}
+
+.headerLabel:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+
+.sortable {
+  cursor: pointer;
+}

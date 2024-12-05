@@ -1,0 +1,102 @@
+:root {
+  --public-tab--inset: var(--space-base);
+}
+
+.tabs {
+  --tab--height: 40px;
+  --tab--vertical-inset: var(--space-base);
+
+  display: block;
+  width: 100%;
+}
+
+.overflow {
+  position: relative;
+  padding-left: var(--public-tab--inset);
+  padding-right: var(--public-tab--inset);
+}
+
+.overflowRight:after,
+.overflowLeft:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: var(--elevation-base);
+  width: var(--space-large);
+}
+
+.overflowRight:after {
+  right: var(--public-tab--inset);
+  box-shadow: inset -16px 0 16px -16px rgba(var(--color-black--rgb), 0.25);
+}
+
+.overflowLeft:before {
+  left: var(--public-tab--inset);
+  box-shadow: inset 16px 0 16px -16px rgba(var(--color-black--rgb), 0.25);
+}
+
+.tabRow {
+  display: flex;
+  margin: 0;
+  margin-bottom: calc(-1 * var(--border-base));
+  padding: 0;
+  border-bottom: solid var(--border-base) var(--color-border);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  gap: var(--space-large);
+}
+
+ul.tabRow {
+  padding-inline-start: 0;
+}
+
+.tabRow li {
+  display: flex;
+  position: relative;
+  list-style: none;
+  flex: 0 0 fit-content;
+}
+
+.tab {
+  height: var(--tab--height);
+  margin: 0;
+  padding: var(--space-smaller) var(--space-small);
+  border: none;
+  border-radius: var(--radius-base) var(--radius-base) 0 0;
+  outline: none;
+  color: var(--color-text--secondary);
+  background-color: var(--color-surface);
+  cursor: pointer;
+  transition: all var(--timing-base) ease;
+  flex: 0 0 auto;
+}
+
+.tab:focus-visible {
+  outline: transparent;
+  background-color: var(--color-surface--hover);
+}
+
+.tab.selected,
+.tab:not(.selected):hover,
+.tab:not(.selected):focus {
+  color: var(--color-heading);
+}
+
+.selected::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: var(--space-smaller);
+  background-color: var(--color-interactive);
+}
+
+.tabContent {
+  padding-top: var(--tab--vertical-inset);
+  padding-bottom: var(--tab--vertical-inset);
+  padding-left: var(--public-tab--inset);
+  padding-right: var(--public-tab--inset);
+}

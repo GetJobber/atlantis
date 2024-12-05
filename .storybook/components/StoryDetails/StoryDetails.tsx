@@ -1,5 +1,5 @@
 import React from "react";
-import { Story as Context } from "@storybook/api";
+import { type API as Context } from "@storybook/manager-api";
 import { Text } from "@jobber/components/Text";
 import { Emphasis } from "@jobber/components/Emphasis";
 import styles from "./StoryDetails.css";

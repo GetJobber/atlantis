@@ -1,0 +1,53 @@
+.statusLabelRow {
+  --labelBackgroundColor: var(--color-success--surface);
+  --labelTextColor: var(--color-success--onSurface);
+
+  display: flex;
+  width: fit-content;
+  padding: 0.375rem 0.625rem 0.375rem 0.5rem;
+  border-radius: 0.75rem;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 0.375rem;
+  background-color: var(--labelBackgroundColor);
+}
+
+.success {
+  --labelBackgroundColor: var(--color-success--surface);
+  --labelTextColor: var(--color-success--onSurface);
+}
+
+.warning {
+  --labelBackgroundColor: var(--color-warning--surface);
+  --labelTextColor: var(--color-warning--onSurface);
+}
+
+.critical {
+  --labelBackgroundColor: var(--color-critical--surface);
+  --labelTextColor: var(--color-critical--onSurface);
+}
+
+.inactive {
+  --labelBackgroundColor: var(--color-inactive--surface);
+  --labelTextColor: var(--color-inactive--onSurface);
+}
+
+.informative {
+  --labelBackgroundColor: var(--color-informative--surface);
+  --labelTextColor: var(--color-informative--onSurface);
+}
+
+/* Reset the <Text> line height so we can reliably get 24px tall */
+.statusLabelRow p {
+  color: var(--labelTextColor);
+  line-height: 1;
+}
+
+.labelTextEndAligned {
+  flex-direction: row-reverse;
+}
+
+.statusIndicatorWrapper {
+  display: flex;
+  padding-top: 0.125rem;
+}

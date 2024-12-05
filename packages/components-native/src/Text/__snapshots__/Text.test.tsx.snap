@@ -546,6 +546,47 @@ exports[`renders text with success variation reverseTheme true 1`] = `
 </Text>
 `;
 
+exports[`renders text with underline styling 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  maxFontSizeMultiplier={3.125}
+  selectable={true}
+  selectionColor="hsl(86, 100%, 46%)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "hsl(198, 35%, 21%)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+      {
+        "textDecorationStyle": "dashed",
+      },
+      {
+        "textDecorationColor": "hsl(197, 15%, 45%)",
+        "textDecorationLine": "underline",
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
 exports[`renders text with warn variation 1`] = `
 <Text
   accessibilityRole="text"
@@ -572,6 +613,43 @@ exports[`renders text with warn variation 1`] = `
       },
       {
         "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders with italic styling 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  maxFontSizeMultiplier={3.125}
+  selectable={true}
+  selectionColor="hsl(86, 100%, 46%)"
+  style={
+    [
+      {
+        "fontFamily": "inter-italic",
+      },
+      {
+        "color": "hsl(198, 35%, 21%)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+      {
+        "fontStyle": "italic",
       },
     ]
   }

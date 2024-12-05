@@ -222,16 +222,17 @@ function ContentOverlayInternal(
       <View onLayout={handleHeaderLayout} testID="ATL-Overlay-Header">
         <View style={headerStyles}>
           <View
-            style={
+            style={[
+              styles.title,
               shouldShowDismiss
                 ? styles.titleWithDismiss
-                : styles.titleWithoutDismiss
-            }
+                : styles.titleWithoutDismiss,
+            ]}
           >
             <Heading
               level="subtitle"
               variation={loading ? "subdued" : "heading"}
-              align={shouldShowDismiss ? "start" : "center"}
+              align={"start"}
             >
               {title}
             </Heading>

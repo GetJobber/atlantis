@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "5.7.8",
+  "version": "6.6.0",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.cjs",
@@ -29,6 +29,11 @@
       "import": "./dist/AtlantisContext/index.mjs",
       "require": "./dist/AtlantisContext/index.cjs"
     },
+    "./AtlantisThemeContext": {
+      "types": "./dist/AtlantisThemeContext/index.d.ts",
+      "import": "./dist/AtlantisThemeContext/index.mjs",
+      "require": "./dist/AtlantisThemeContext/index.cjs"
+    },
     "./Autocomplete": {
       "types": "./dist/Autocomplete/index.d.ts",
       "import": "./dist/Autocomplete/index.mjs",
@@ -43,6 +48,11 @@
       "types": "./dist/Banner/index.d.ts",
       "import": "./dist/Banner/index.mjs",
       "require": "./dist/Banner/index.cjs"
+    },
+    "./Box": {
+      "types": "./dist/Box/index.d.ts",
+      "import": "./dist/Box/index.mjs",
+      "require": "./dist/Box/index.cjs"
     },
     "./Button": {
       "types": "./dist/Button/index.d.ts",
@@ -383,6 +393,11 @@
       "types": "./dist/Typography/index.d.ts",
       "import": "./dist/Typography/index.mjs",
       "require": "./dist/Typography/index.cjs"
+    },
+    "./utils/meta/meta.json": {
+      "types": "./dist/utils/meta/meta.json",
+      "import": "./dist/utils/meta/meta.json",
+      "require": "./dist/utils/meta/meta.json"
     }
   },
   "scripts": {
@@ -402,11 +417,8 @@
     "dist/*"
   ],
   "dependencies": {
-    "@jobber/design": "^0.60.1",
     "@jobber/formatters": "^0.3.0",
-    "@jobber/hooks": "^2.9.8",
     "@popperjs/core": "^2.0.6",
-    "@std-proposal/temporal": "0.0.1",
     "@tanstack/react-table": "8.5.13",
     "@types/color": "^3.0.1",
     "@types/lodash": "^4.14.136",
@@ -426,7 +438,6 @@
     "react-markdown": "^8.0.3",
     "react-popper": "^2.2.5",
     "react-router-dom": "^5.3.4",
-    "time-input-polyfill": "^1.0.7",
     "ts-xor": "^1.0.8"
   },
   "devDependencies": {
@@ -435,10 +446,6 @@
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^14.0.0",
-    "@testing-library/react-hooks": "^7.0.2",
-    "@testing-library/user-event": "^14.5.1",
     "@types/glob": "^7.1.1",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
@@ -446,7 +453,7 @@
     "copyfiles": "^2.4.1",
     "glob": "^7.1.4",
     "jsdom-testing-mocks": "^1.9.0",
-    "postcss": "^8.4.21",
+    "postcss": "^8.4.40",
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^8.3.0",
     "rollup": "^4.13.0",
@@ -454,23 +461,21 @@
     "rollup-plugin-multi-input": "^1.4.1",
     "rollup-plugin-polyfill-node": "^0.13.0",
     "rollup-plugin-postcss": "^4.0.2",
-    "typed-css-modules": "^0.7.0",
-    "typescript": "^4.9.5"
+    "typed-css-modules": "^0.7.0"
   },
   "peerDependencies": {
     "@apollo/client": "^3",
     "@jobber/hooks": "^2",
-    "@std-proposal/temporal": "^0",
     "@tanstack/react-table": "^8",
     "axios": "^1",
     "classnames": "^2",
     "color": "^4",
-    "date-fns": "^2.0.0",
+    "date-fns": "^2.30.0",
     "date-fns-tz": "^2.0.0",
     "filesize": "^6",
     "framer-motion": "^11",
     "lodash": "^4",
-    "react": "^18",
+    "react": "^18.2.0",
     "react-dom": "^18",
     "react-hook-form": "^7",
     "react-popper": "^2",

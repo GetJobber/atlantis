@@ -24,21 +24,33 @@ export interface IconProps {
    * Sets a custom color for the icon. Can be a rgb() or hex value.
    */
   readonly customColor?: string;
+
+  /**
+   * Used to locate this view in end-to-end tests
+   */
+  readonly testID?: string;
 }
 
-export function Icon({ name, color, customColor, size = "base" }: IconProps) {
+export function Icon({
+  name,
+  color,
+  customColor,
+  size = "base",
+  testID,
+}: IconProps) {
   let icon;
-  const { svgClassNames, pathClassNames, paths, viewBox } = getIcon({
+  const { svgStyle, pathStyle, paths, viewBox } = getIcon({
     name,
     color: getIconColor(name, color),
     size,
+    platform: "web",
   });
 
   if (name === "truck") {
-    icon = getTruck(pathClassNames, customColor);
+    icon = getTruck(pathStyle, customColor);
   } else {
     icon = paths.map((path: string) => (
-      <path key={path} className={pathClassNames} d={path} fill={customColor} />
+      <path key={path} style={{ ...pathStyle }} d={path} fill={customColor} />
     ));
   }
 
@@ -46,8 +58,8 @@ export function Icon({ name, color, customColor, size = "base" }: IconProps) {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox={viewBox}
-      className={svgClassNames}
-      data-testid={name}
+      style={svgStyle}
+      data-testid={testID || name}
     >
       {icon}
     </svg>
@@ -62,9 +74,9 @@ function getIconColor(name: IconNames, color?: IconColorNames) {
   return color;
 }
 
-function getTruck(pathClassNames: string, customColor?: string) {
+function getTruck(pathStyle: { fill: string }, customColor?: string) {
   return (
-    <g transform="translate(233.000000, 0.000000)" className={pathClassNames}>
+    <g transform="translate(233.000000, 0.000000)" style={{ ...pathStyle }}>
       <path
         d="M31.030303,124.121212 C31.030303,106.983796 44.9231903,93.0909091 62.0606061,93.0909091 L93.0909091,93.0909091 L93.0909091,279.272727 L62.0606061,279.272727 C44.9231903,279.272727 31.030303,265.37984 31.030303,248.242424 L31.030303,124.121212 Z M31.030303,744.727273 C31.030303,727.589236 44.9231903,713.69697 62.0606061,713.69697 L93.0909091,713.69697 L93.0909091,899.878788 L62.0606061,899.878788 C44.9231903,899.878788 31.030303,885.986521 31.030303,868.848485 L31.030303,744.727273 Z M62.0606061,961.939394 L496.484848,961.939394 L496.484848,992.969697 C496.484848,1010.10773 482.592582,1024 465.454545,1024 L93.0909091,1024 C75.9534933,1024 62.0606061,1010.10773 62.0606061,992.969697 L62.0606061,961.939394 Z M494.858861,713.715588 L463.834764,714.258618 L467.083636,900.412509 L498.107733,899.869479 C515.242667,899.571588 528.889794,885.437285 528.591903,868.302352 L526.425988,744.199758 C526.128097,727.064824 511.993794,713.417697 494.858861,713.715588 Z M496.484848,93.0909091 L465.454545,93.0909091 L465.454545,279.272727 L496.484848,279.272727 C513.622885,279.272727 527.515152,265.37984 527.515152,248.242424 L527.515152,124.121212 C527.515152,106.983796 513.622885,93.0909091 496.484848,93.0909091 Z"
         id="Shape"

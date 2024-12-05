@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import styles from "./StatusLabel.css";
+import styles from "./StatusLabel.module.css";
 import { StatusIndicatorType } from "../StatusIndicator/StatusIndicator.type";
 import { Typography } from "../Typography";
 import { StatusIndicator } from "../StatusIndicator/StatusIndicator";
@@ -48,7 +48,7 @@ export function StatusLabel({
         <StatusIndicator status={status} />
       </div>
 
-      <Typography size="small" textColor={status} align={alignment}>
+      <Typography size="small" align={alignment}>
         {label}
       </Typography>
     </div>

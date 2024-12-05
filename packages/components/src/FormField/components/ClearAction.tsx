@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./ClearAction.css";
+import styles from "./ClearAction.module.css";
 import { Icon } from "../../Icon";
 
 interface ClearActionProps {
@@ -7,9 +7,15 @@ interface ClearActionProps {
    * Click handler
    */
   readonly onClick: () => void;
+  readonly visible?: boolean;
 }
 
-export function ClearAction({ onClick }: ClearActionProps): JSX.Element {
+export function ClearAction({
+  onClick,
+  visible,
+}: ClearActionProps): React.ReactElement | null {
+  if (!visible) return null;
+
   return (
     <button
       className={styles.clearInput}

@@ -2,7 +2,7 @@ import classnames from "classnames";
 import React, { RefObject } from "react";
 import { XOR } from "ts-xor";
 import { Affix, FormFieldProps, Suffix } from "./FormFieldTypes";
-import styles from "./FormField.css";
+import styles from "./FormField.module.css";
 import { Button } from "../Button";
 import { Icon } from "../Icon";
 
@@ -19,6 +19,7 @@ export function AffixLabel({
   const affixLabelClass = classnames(styles.affixLabel, {
     [styles.suffix]: variation === "suffix",
   });
+  if (!label) return null;
 
   return (
     <div ref={labelRef} className={affixLabelClass}>
@@ -44,7 +45,7 @@ export function AffixIcon({
 
   const iconSize = size === "small" ? "small" : "base";
 
-  if (!icon) return <></>;
+  if (!icon) return null;
 
   return (
     <div className={affixIconClass}>

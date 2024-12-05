@@ -1,0 +1,27 @@
+@supports (scrollbar-color: #000 #000) {
+  html[data-theme="dark"] {
+    scrollbar-color: var(--color-surface--background--subtle)
+      var(--color-surface--background);
+  }
+}
+
+/* Safari doesn't support scrollbar-color yet, so we're using the non-standard selector for now. */
+@supports not (scrollbar-color: #000 #000) {
+  [data-theme="dark"]:root html ::-webkit-scrollbar,
+  [data-theme="dark"]:root body ::-webkit-scrollbar {
+    background-color: var(--color-surface--background);
+  }
+
+  [data-theme="dark"]:root html ::-webkit-scrollbar-thumb,
+  [data-theme="dark"]:root body ::-webkit-scrollbar-thumb {
+    border: 3px solid var(--color-surface--background);
+    border-radius: 12px;
+    background-color: var(--color-surface--background--subtle);
+    cursor: pointer;
+  }
+
+  [data-theme="dark"]:root html ::-webkit-scrollbar-thumb:hover,
+  [data-theme="dark"]:root body ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-surface--active);
+  }
+}

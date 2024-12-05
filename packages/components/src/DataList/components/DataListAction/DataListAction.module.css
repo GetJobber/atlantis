@@ -1,0 +1,41 @@
+.action {
+  display: flex;
+  width: 100%;
+  min-height: 44px;
+  padding: var(--space-small);
+  border: none;
+  border-radius: 0;
+  border-radius: var(--radius-base);
+  font-size: var(--typography--fontSize-base);
+  text-align: left;
+  background: none;
+  cursor: pointer;
+  transition: background var(--timing-base) ease;
+  appearance: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-small);
+}
+
+.actionUrl {
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.action:hover,
+.action:focus {
+  background-color: var(--color-surface--hover);
+}
+
+.action:focus,
+.action:focus-visible {
+  outline: none;
+}
+
+.action:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+
+.label {
+  font-weight: 500;
+}

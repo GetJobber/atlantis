@@ -3,7 +3,7 @@ import classnames from "classnames";
 import ReactDatePicker from "react-datepicker";
 import { XOR } from "ts-xor";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
-import styles from "./DatePicker.css";
+import styles from "./DatePicker.module.css";
 import { DatePickerCustomHeader } from "./DatePickerCustomHeader";
 import {
   DatePickerActivator,
@@ -123,7 +123,7 @@ export function DatePicker({
   }
 
   return (
-    <div className={wrapperClassName} ref={ref}>
+    <div className={wrapperClassName} ref={ref} data-elevation={"elevated"}>
       <ReactDatePicker
         ref={pickerRef}
         calendarClassName={datePickerClassNames}
