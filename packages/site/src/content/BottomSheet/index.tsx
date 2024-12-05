@@ -1,13 +1,11 @@
 import Content from "@atlantis/docs/components/BottomSheet/BottomSheet.stories.mdx";
-import Props from "./BottomSheet.props-mobile.json";
+import MobileProps from "./BottomSheet.props-mobile.json";
 import { ContentExport } from "../../types/content";
 
 export default {
   content: () => <Content />,
-  props: Props,
-  mobileProps: Props,
+  mobileProps: MobileProps,
   component: {
-    element: "<div>Hi!</div>",
     mobileElement: `const bottomSheetRef = useRef<BottomSheetRef>(null);
 
   return (<>

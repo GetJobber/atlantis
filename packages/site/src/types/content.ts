@@ -1,6 +1,6 @@
 export interface ContentExport {
   content: (props?: unknown) => JSX.Element;
-  props: Array<{
+  props?: Array<{
     description: string;
     displayName: string;
     filePath: string;

@@ -1,12 +1,11 @@
 import Content from "@atlantis/docs/components/ActionItem/ActionItem.stories.mdx";
-import Props from "./ActionItem.props-mobile.json";
+import MobileProps from "./ActionItem.props-mobile.json";
 import { ContentExport } from "../../types/content";
 
 export default {
   content: () => <Content />,
-  props: Props,
+  mobileProps: MobileProps,
   component: {
-    element: "",
     mobileElement: `<ActionItem
       icon={"work"}
       onPress={() => {

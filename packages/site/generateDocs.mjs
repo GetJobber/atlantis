@@ -215,7 +215,6 @@ const mobileComponents = [
   "InputText",
   "InputTime",
   "FormatFile",
-  "Gallery",
   "Icon",
   "ThumbnailList",
   "ActionItem",

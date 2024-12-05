@@ -29,12 +29,15 @@ export const Path = props => {
 };
 export const useSafeAreaInsets = () => "";
 export const Modalize = () => "";
-export const useSharedValue = () => "";
+export const useSharedValue = () => ({ value: 0 });
 export const useAnimatedStyle = () => "";
 export const withRepeat = () => "";
-export const withTiming = () => "";
+export const withTiming = () => 0;
 export const withDelay = () => "";
-export const Easing = () => "";
+// eslint-disable-next-line @typescript-eslint/no-extraneous-class
+export class Easing {
+  static bezier = () => ({ value: "" });
+}
 export const ScrollView = () => "";
 export const SafeAreaView = () => "";
 export const Defs = () => "";

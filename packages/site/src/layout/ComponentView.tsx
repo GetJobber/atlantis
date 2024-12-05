@@ -1,6 +1,6 @@
 import { Box, Content, Grid, Page, Tab, Tabs } from "@jobber/components";
 import { useParams } from "react-router";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { PageWrapper } from "./PageWrapper";
 import { PropsList } from "../components/PropsList";
 import { ComponentNotFound } from "../components/ComponentNotFound";
@@ -63,9 +63,9 @@ export const ComponentView = () => {
     }
 
     if (type === "mobile" && !PageMeta?.component?.mobileElement) {
-      //updateType("web");
+      updateType("web");
     }
-  }, [type]);
+  }, [type, PageMeta]);
 
   const handleTabChange = (tab: number) => {
     if (tab == 1) {
@@ -107,15 +107,20 @@ export const ComponentView = () => {
       ),
     },
   ];
-  const activeTabs = tabs.filter((_, index) => {
-    if (index == 1 && !PageMeta?.component?.element) {
-      return false;
-    } else if (index == 2 && !PageMeta?.component?.mobileElement) {
-      return false;
-    }
 
-    return true;
-  });
+  const activeTabs = useMemo(() => {
+    return tabs.filter((_, index) => {
+      if (!PageMeta?.component.element && index === 1) {
+        return false;
+      }
+
+      if (!PageMeta?.component.mobileElement && index === 2) {
+        return false;
+      }
+
+      return true;
+    });
+  }, [tabs]);
 
   return PageMeta ? (
     <Grid>

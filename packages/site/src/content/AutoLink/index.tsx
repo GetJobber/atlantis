@@ -1,10 +1,10 @@
 import Content from "@atlantis/docs/components/AutoLink/AutoLink.stories.mdx";
-import Props from "./AutoLink.props-mobile.json";
+import MobileProps from "./AutoLink.props-mobile.json";
 import { ContentExport } from "../../types/content";
 
 export default {
   content: () => <Content />,
-  props: Props,
+  mobileProps: MobileProps,
   component: {
     mobileElement: `<AutoLink>This is a block of text with a 555-555-5555 link in it</AutoLink>`,
   },
