@@ -1,5 +1,6 @@
 import React, { forwardRef, useId } from "react";
 import { useSafeLayoutEffect } from "@jobber/hooks";
+import omit from "lodash/omit";
 import { InputTextRebuiltProps } from "./InputText.types";
 import { useTextAreaResize } from "./useTextAreaResize";
 import { useInputTextActions } from "./useInputTextActions";
@@ -31,6 +32,7 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
   const { resize, rowRange } = useTextAreaResize(props.rows);
 
   const type = props.multiline ? "textarea" : "text";
+  console.log({ rowRange });
 
   const { inputStyle } = useFormFieldWrapperStyles(legacyPropHelper);
 
@@ -47,8 +49,17 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
       onEnter: props.onEnter,
       inputRef: inputTextRef,
     });
+  const inputProps = omit(props, [
+    "onChange",
+    "onBlur",
+    "onFocus",
+    "onEnter",
+    "size",
+    "placeholder",
+  ]);
 
   const { fieldProps } = useInputTextFormField({
+    ...inputProps,
     id,
     name,
     handleChange,
@@ -64,6 +75,11 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
 
   return (
     <FormFieldWrapper
+      disabled={props.disabled}
+      size={props.size}
+      align={props.align}
+      inline={props.inline}
+      autofocus={props.autoFocus}
       name={name}
       wrapperRef={wrapperRef}
       error={props.error ?? ""}
@@ -74,10 +90,13 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
       type={props.multiline ? "textarea" : "text"}
       placeholder={props.placeholder}
       value={props.value}
+      onBlur={() => console.log("onBlur")}
       rows={rowRange.min}
+      toolbar={props.toolbar}
+      toolbarVisibility={props.toolbarVisibility}
     >
       <>
-        <InputField />
+        {renderInputField()}
         <FormFieldPostFix
           variation="spinner"
           visible={props.loading ?? false}
@@ -87,7 +106,7 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     </FormFieldWrapper>
   );
 
-  function InputField() {
+  function renderInputField() {
     switch (type) {
       case "textarea":
         return (

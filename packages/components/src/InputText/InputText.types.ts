@@ -39,7 +39,10 @@ export interface InputTextRebuiltProps
   readonly version: Extract<InputTextVersion, 2>;
   readonly type?: FormFieldTypes;
 
-  readonly onChange?: FormFieldProps["onChange"];
+  readonly onChange?: (
+    newValue: string,
+    event?: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => void;
   readonly onEnter?: FormFieldProps["onEnter"];
 
   readonly onBlur?: FormFieldProps["onBlur"];
@@ -51,4 +54,8 @@ export interface InputTextRebuiltProps
 
   readonly size?: FormFieldProps["size"];
   readonly inline?: FormFieldProps["inline"];
+  readonly align?: FormFieldProps["align"];
+
+  readonly toolbar?: FormFieldProps["toolbar"];
+  readonly toolbarVisibility?: FormFieldProps["toolbarVisibility"];
 }
