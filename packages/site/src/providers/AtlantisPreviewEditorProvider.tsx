@@ -331,16 +331,16 @@ html,body,#root {
   min-height: 200px;
 }
 </style>
-<link rel="stylesheet" href="/docs/styles.css">
-<link rel="stylesheet" href="/docs/foundation.css">
-<link rel="stylesheet" href="/docs/dark.mode.css">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/foundation.css">
+<link rel="stylesheet" href="/dark.mode.css">
 </head>
       <body>
  <script type="importmap">
   {
     "imports": {
-      "@jobber/components": "/docs/editorBundle.js",
-      "axios": "/docs/axios.js"
+      "@jobber/components": "/editorBundle.js",
+      "axios": "/axios.js"
     }
   }
   </script>

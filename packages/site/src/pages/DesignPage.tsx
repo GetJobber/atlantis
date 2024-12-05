@@ -8,7 +8,7 @@ export const DesignPage = () => {
         header: {
           title: "Design",
           body: "The foundation of Jobber's look and feel",
-          imageURL: "/docs/img-page-divider-collage.webp",
+          imageURL: "/img-page-divider-collage.webp",
         },
         body: {
           title: "Design",

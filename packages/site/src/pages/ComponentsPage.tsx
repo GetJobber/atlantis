@@ -8,7 +8,7 @@ export const ComponentsPage = () => {
         header: {
           title: "Components",
           body: "The tools you'll use to build Jobber",
-          imageURL: "/docs/img-hero_collage-v2.004b0168.webp",
+          imageURL: "/img-hero_collage-v2.004b0168.webp",
         },
         body: {
           title: "Components",
