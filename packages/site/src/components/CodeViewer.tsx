@@ -1,4 +1,4 @@
-import { Box, Button, showToast } from "@jobber/components";
+import { Box, Button, Tooltip, showToast } from "@jobber/components";
 
 /**
  * Shows code with a copy button.
@@ -16,19 +16,23 @@ export const CodeViewer = ({ code }: { readonly code: string }) => {
           </pre>
         </Box>
 
-        <Box width="100%" direction="row" justifyContent="end">
-          <Button
-            label="Copy"
-            type="tertiary"
-            size="small"
-            onClick={() => {
-              navigator.clipboard.writeText(code);
-              showToast({
-                message: "Copied code to clipboard",
-              });
-            }}
-          ></Button>
-        </Box>
+        <div style={{ position: "absolute", bottom: "10px", right: "3px" }}>
+          <Tooltip message="Copy code to clipboard">
+            <Button
+              ariaLabel="Copy"
+              icon="copy"
+              type="secondary"
+              variation="subtle"
+              size="small"
+              onClick={() => {
+                navigator.clipboard.writeText(code);
+                showToast({
+                  message: "Copied code to clipboard",
+                });
+              }}
+            ></Button>
+          </Tooltip>
+        </div>
       </Box>
     </Box>
   );

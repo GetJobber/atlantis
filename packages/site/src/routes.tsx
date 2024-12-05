@@ -3,6 +3,10 @@ import { ComponentsPage } from "./pages/ComponentsPage";
 import { ContentLoader } from "./components/ContentLoader";
 import { DesignPage } from "./pages/DesignPage";
 import { ComponentView } from "./layout/ComponentView";
+import { componentList } from "./componentList";
+import { ComponentsChangelogPage } from "./pages/ComponentsChangelogPage";
+import { ComponentsNativeChangelogPage } from "./pages/ComponentsNativeChangelogPage";
+import { DesignChangelogPage } from "./pages/DesignChangelogPage";
 
 interface AtlantisRoute {
   path: string;
@@ -12,6 +16,13 @@ interface AtlantisRoute {
   inNav?: boolean;
   handle: string;
 }
+
+const componentRoutes = componentList.map(component => ({
+  path: component.to,
+  component: ContentLoader,
+  handle: component.title,
+  inNav: true,
+}));
 
 export const routes: Array<AtlantisRoute> = [
   {
@@ -33,6 +44,32 @@ export const routes: Array<AtlantisRoute> = [
     component: DesignPage,
   },
   {
+    path: "/changelog",
+    handle: "Changelog",
+    exact: true,
+    // component: ComponentsChangelogPage,
+    children: [
+      {
+        path: "/changelog/components",
+        handle: "Components",
+        exact: true,
+        component: ComponentsChangelogPage,
+      },
+      {
+        path: "/changelog/components-native",
+        handle: "Components Native",
+        exact: true,
+        component: ComponentsNativeChangelogPage,
+      },
+      {
+        path: "/changelog/design",
+        handle: "Design",
+        exact: true,
+        component: DesignChangelogPage,
+      },
+    ],
+  },
+  {
     path: "/components/:name",
     component: ComponentView,
     handle: "Web",
@@ -44,4 +81,5 @@ export const routes: Array<AtlantisRoute> = [
     handle: "Content",
     inNav: false,
   },
+  ...componentRoutes,
 ];

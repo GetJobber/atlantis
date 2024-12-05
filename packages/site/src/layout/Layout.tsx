@@ -1,14 +1,21 @@
-import { PropsWithChildren } from "react";
-import { Route, Switch } from "react-router";
+import { PropsWithChildren, useEffect } from "react";
+import { Route, Switch, useLocation } from "react-router";
 import { NavMenu } from "./NavMenu";
 import { routes } from "../routes";
 import "./code-theme.css";
+import { ToggleThemeButton } from "../components/ToggleThemeButton";
 
 /**
  * Layout for whole application. This will display the NavMenu and the content of the page.
  * @returns ReactNode
  */
 export const Layout = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, [location]);
+
   return (
     <LayoutWrapper>
       <NavMenu />
@@ -35,6 +42,8 @@ export const Layout = () => {
           )}
         </Switch>
       </div>
+
+      <ToggleThemeButton />
     </LayoutWrapper>
   );
 };
@@ -44,7 +53,6 @@ export const LayoutWrapper = ({ children }: PropsWithChildren) => {
     <div
       style={{
         display: "flex",
-        height: "100dvh",
         background: "var(--color-surface)",
       }}
     >

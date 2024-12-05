@@ -4,6 +4,14 @@
  * @author Lea Verou
  */
 
+pre {
+  --color-code--yellow: var(--color-base-yellow--600);
+  --color-code--lime: var(--color-base-lime--600);
+  --color-code--pink: var(--color-base-pink--600);
+  --color-code--orange: var(--color-base-orange--600);
+  --color-code--teal: var(--color-base-teal--600);
+}
+
 code[class*="language-"],
 pre[class*="language-"] {
   font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
@@ -34,7 +42,7 @@ pre[class*="language-"] {
 }
 
 code[class*="language-"] {
-  color: white;
+  color: var(--color-text);
 }
 
 /* Inline code */
@@ -66,7 +74,7 @@ code[class*="language-"] {
 .token.number,
 .token.constant,
 .token.symbol {
-  color: #0cf;
+  color: var(--color-code--teal);
 }
 
 .token.selector,
@@ -74,7 +82,7 @@ code[class*="language-"] {
 .token.string,
 .token.char,
 .token.builtin {
-  color: var(--color-base-yellow--400);
+  color: var(--color-code--yellow);
 }
 
 .token.operator,
@@ -83,18 +91,18 @@ code[class*="language-"] {
 .language-css .token.string,
 .token.variable,
 .token.inserted {
-  color: yellowgreen;
+  color: var(--color-code--lime);
 }
 
 .token.atrule,
 .token.attr-value,
 .token.keyword {
-  color: deeppink;
+  color: var(--color-code--pink);
 }
 
 .token.regex,
 .token.important {
-  color: orange;
+  color: var(--color-code--orange);
 }
 
 .token.important,
@@ -111,7 +119,7 @@ code[class*="language-"] {
 }
 
 .token.deleted {
-  color: red;
+  color: var(--color-critical);
 }
 
 /* Plugin styles: Diff Highlight */

@@ -42,11 +42,9 @@ export const RenderComponentShowCode = ({ children }: PropsWithChildren) => {
         </div>
       </Box>
       {codeVisible && (
-        <Box background="base-blue--800" padding={"small"} radius="base">
-          <pre>
-            <code className="language-javascript">{code}</code>
-          </pre>
-        </Box>
+        <pre>
+          <code className="language-javascript">{code}</code>
+        </pre>
       )}
     </Card>
   );

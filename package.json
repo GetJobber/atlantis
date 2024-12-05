@@ -26,7 +26,7 @@
     "lerna:clean": "lerna run clean && lerna clean --y && npm run clean",
     "lint:css": "stylelint 'packages/**/*.css' --allow-empty-input --ignore-pattern 'packages/**/dist/**/*.css'",
     "lint:fix": "npm run lint:js -- --fix && npm run lint:css -- --fix && npm run lint:markdown -- --write",
-    "lint:js": "eslint --ext .js,.jsx,.ts,.tsx,.mjs,.cjs . --ignore-pattern node_modules/ --ignore-pattern 'packages/design/src/assets/**'",
+    "lint:js": "eslint --ext .js,.jsx,.ts,.tsx,.mjs,.cjs . --report-unused-disable-directives",
     "lint:markdown": "prettier --check '**/*.{md,mdx}' --write",
     "pack": "npm run bootstrap && npm pack -w",
     "postinstall": "npm run bootstrap",
@@ -152,7 +152,7 @@
     "ts-node": "^10.9.1",
     "typed-css-modules": "^0.7.0",
     "typed-css-modules-loader": "0.0.18",
-    "typescript": "^4.9.5",
+    "typescript": "^5.6.3",
     "webpack": "^5.65.0"
   },
   "husky": {
@@ -168,13 +168,12 @@
     "ie >= 11"
   ],
   "dependencies": {
-    "@std-proposal/temporal": "0.0.1",
     "@storybook/blocks": "^7.6.20",
     "@storybook/components": "^7.6.20",
     "jest-environment-jsdom": "^29.5.0"
   },
   "engines": {
-    "node": "18",
+    "node": "22",
     "npm": "10"
   },
   "overrides": {

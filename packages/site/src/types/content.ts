@@ -1,33 +1,30 @@
 export interface ContentExport {
-  content: unknown;
+  content: (props?: unknown) => JSX.Element;
   props: Array<{
     description: string;
     displayName: string;
     filePath: string;
     methods: Array<string>;
     props: Record<string, GeneratedProp | undefined>;
-    tags: Record<string, GeneratedTag>;
+    tags: Record<string, GeneratedTag | undefined | string>;
   }>;
   component: {
     element: unknown;
-    defaultProps: Record<
-      string,
-      string | boolean | JSX.Element | [] | (() => void)
-    >;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Will be deleted soon, don't worry.
+    defaultProps?: any;
   };
   title: string;
-  description: string;
+  description?: string;
   links: ContentExportLinks[];
 }
 interface GeneratedTag {
   name: string;
 }
 interface GeneratedProp {
-  declarations: Array<{ fileName: string; name: string }>;
   defaultValue: null | object;
-  description: string;
+  description?: string;
   name: string;
-  parent: { fileName: string; name: string };
+  parent?: { fileName: string; name: string };
   required: boolean;
   type: { name: string };
 }

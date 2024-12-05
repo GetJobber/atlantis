@@ -1,4 +1,3 @@
-/* eslint-disable import/no-internal-modules */
 import React, { CSSProperties, ReactNode } from "react";
 import classnames from "classnames";
 import styles from "./css/Typography.module.css";

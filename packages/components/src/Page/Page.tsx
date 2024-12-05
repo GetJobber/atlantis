@@ -87,7 +87,6 @@ interface PageWithIntroProps extends PageFoundationProps {
 
 export type PageProps = XOR<PageFoundationProps, PageWithIntroProps>;
 
-// eslint-disable-next-line max-statements
 export function Page({
   title,
   titleMetaData,

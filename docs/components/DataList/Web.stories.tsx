@@ -6,6 +6,7 @@ import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { useCollectionQuery } from "@jobber/hooks/useCollectionQuery";
 import {
   DataList,
+  DataListEmptyStateProps,
   DataListItemType,
   DataListSelectedType,
   DataListSorting,
@@ -18,6 +19,7 @@ import { DatePicker } from "@jobber/components/DatePicker";
 import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
 import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
+import { Flex } from "@jobber/components/Flex";
 import { LIST_QUERY, ListQueryType, apolloClient } from "./storyUtils";
 
 const meta: Meta = {
@@ -623,7 +625,6 @@ export const ClearAllFilters: StoryFn<typeof DataList> = args => {
         onSearch={search => console.log(search)}
         placeholder="Search data..."
       />
-
       <DataList.Layout size="md">
         {item => (
           <Grid alignItems="center">
@@ -652,7 +653,6 @@ export const ClearAllFilters: StoryFn<typeof DataList> = args => {
           </Grid>
         )}
       </DataList.Layout>
-
       <DataList.Layout size="xs">
         {item => (
           <Content spacing="small">
@@ -697,6 +697,7 @@ ClearAllFilters.args = {
     home: "Home world",
     tags: "Attributes",
     eyeColor: "Eye color",
+    lastActivity: "Last activity",
   },
 };
 ClearAllFilters.parameters = {
@@ -720,4 +721,114 @@ export const EmptyState: StoryObj<typeof DataList> = {
       headerVisibility={{ xs: false, md: true }}
     />
   ),
+};
+
+export const CustomRenderEmptyState: StoryFn<typeof DataList> = args => {
+  return (
+    <DataList {...args} totalCount={args.data?.length}>
+      <DataList.Layout size="md">
+        {item => (
+          <Grid alignItems="center">
+            <Grid.Cell size={{ xs: 5 }}>
+              <Grid alignItems="center">
+                <Grid.Cell size={{ xs: 6 }}>
+                  {item.label}
+                  {item.species}
+                </Grid.Cell>
+                <Grid.Cell size={{ xs: 6 }}>{item.home}</Grid.Cell>
+              </Grid>
+            </Grid.Cell>
+            <Grid.Cell size={{ xs: 4 }}>{item.tags}</Grid.Cell>
+            <Grid.Cell size={{ xs: 1 }}>{item.eyeColor}</Grid.Cell>
+            <Grid.Cell size={{ xs: 2 }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  textAlign: "right",
+                }}
+              >
+                {item.lastActivity}
+              </div>
+            </Grid.Cell>
+          </Grid>
+        )}
+      </DataList.Layout>
+      <DataList.Layout size="xs">
+        {item => (
+          <Content spacing="small">
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: item.species
+                  ? "max-content auto max-content"
+                  : "auto max-content",
+                gap: 8,
+                alignItems: "center",
+              }}
+            >
+              {item.label}
+              {item.species}
+              {item.eyeColor}
+            </div>
+            {item.tags}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "auto max-content",
+                gap: 8,
+                alignItems: "center",
+              }}
+            >
+              {item.lastActivity}
+              <DataList.LayoutActions />
+            </div>
+          </Content>
+        )}
+      </DataList.Layout>
+      <DataList.EmptyState
+        type="empty"
+        message="Character list is looking empty"
+        customRender={({
+          message,
+        }: Omit<DataListEmptyStateProps, "customRender">) => (
+          <div>
+            <h3>{message}</h3>
+            <Flex template={["grow", "shrink"]} direction="column">
+              <Button
+                label="Create a new character"
+                onClick={() => alert("Create")}
+              />
+              <Button
+                label="Clear filters"
+                type="secondary"
+                onClick={() => alert("Clear filters")}
+              />
+            </Flex>
+          </div>
+        )}
+      />
+    </DataList>
+  );
+};
+
+CustomRenderEmptyState.args = {
+  title: "All characters",
+  headerVisibility: { xs: false, md: true },
+  headers: {
+    label: "Name",
+    home: "Home world",
+    tags: "Attributes",
+    eyeColor: "Eye color",
+    lastActivity: "Last activity",
+  },
+  data: [],
+};
+
+CustomRenderEmptyState.parameters = {
+  previewTabs: {
+    code: {
+      hidden: false,
+    },
+  },
 };

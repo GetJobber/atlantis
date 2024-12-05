@@ -1,0 +1,65 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Link/Link.tsx",
+    "description": "",
+    "displayName": "Link",
+    "methods": [],
+    "props": {
+      "url": {
+        "defaultValue": null,
+        "description": "",
+        "name": "url",
+        "parent": {
+          "fileName": "../components/src/Link/Link.tsx",
+          "name": "LinkProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      },
+      "ariaLabel": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ariaLabel",
+        "parent": {
+          "fileName": "../components/src/Link/Link.tsx",
+          "name": "LinkProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "ariaExpanded": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ariaExpanded",
+        "parent": {
+          "fileName": "../components/src/Link/Link.tsx",
+          "name": "LinkProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "external": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "",
+        "name": "external",
+        "parent": {
+          "fileName": "../components/src/Link/Link.tsx",
+          "name": "LinkProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      }
+    }
+  }
+]

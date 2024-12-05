@@ -1,6 +1,7 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
-import { List } from ".";
+import { BaseListItemProps, List } from ".";
+import { Text } from "../Text";
 
 it("renders 1 List item with all the props", () => {
   const { container } = render(
@@ -17,6 +18,46 @@ it("renders 1 List item with all the props", () => {
           isActive: true,
           section: "Notification",
           title: "Jordan Yeo completed a visit",
+          onClick: () => {
+            /* do stuff */
+          },
+        },
+      ]}
+    />,
+  );
+  expect(container).toMatchSnapshot();
+});
+
+it("renders a list with multiple sections", () => {
+  const { container } = render(
+    <List
+      items={[
+        {
+          value: "$30.00",
+          content: ["Build a deck", "Fa la la la la"],
+          caption: "Sep 24, 2019",
+          url: "#",
+          icon: "checkmark",
+          iconColor: "green",
+          id: 1,
+          isActive: true,
+          section: "Notifications",
+          title: "Jordan Yeo completed a visit",
+          onClick: () => {
+            /* do stuff */
+          },
+        },
+        {
+          value: "$40.00",
+          content: ["Foo bar", "Baz"],
+          caption: "Sep 25, 2019",
+          url: "#",
+          icon: "checkmark",
+          iconColor: "green",
+          id: 1,
+          isActive: true,
+          section: "Urgent Notifications",
+          title: "Jordan Yeo requires assistance",
           onClick: () => {
             /* do stuff */
           },
@@ -99,5 +140,137 @@ describe("When a list item is clicked", () => {
 
     fireEvent.click(getByRole("button"));
     expect(handleClick).toHaveBeenCalled();
+  });
+});
+
+describe("When a list is provided a custom render function", () => {
+  test("it should use the custom render instead of default ListItem behaviour", () => {
+    interface CustomListItemProps extends BaseListItemProps {
+      readonly name: string;
+      readonly address: string;
+    }
+
+    function CustomRenderer({
+      listItem,
+    }: {
+      readonly listItem: CustomListItemProps;
+    }) {
+      return (
+        <div>
+          <Text>{listItem.name}</Text>
+          <Text>{listItem.address}</Text>
+        </div>
+      );
+    }
+    const { container } = render(
+      <List
+        items={[
+          {
+            id: 1,
+            name: "Jane Doe",
+            address: "123 Main St",
+          },
+          {
+            id: 2,
+            name: "Joe Doe",
+            address: "456 Main St",
+          },
+        ]}
+        customRenderItem={item => <CustomRenderer listItem={item} />}
+      />,
+    );
+    expect(container).toMatchSnapshot();
+  });
+
+  test("it should handle a sectioned list with a custom render function", () => {
+    interface CustomListItemProps extends BaseListItemProps {
+      readonly name: string;
+      readonly address: string;
+      readonly section: string;
+    }
+
+    function CustomRenderer({
+      listItem,
+    }: {
+      readonly listItem: CustomListItemProps;
+    }) {
+      return (
+        <div>
+          <Text>{listItem.name}</Text>
+          <Text>{listItem.address}</Text>
+        </div>
+      );
+    }
+    const { container } = render(
+      <List
+        items={[
+          {
+            id: 1,
+            name: "Jane Doe",
+            address: "123 Main St",
+            section: "Employees",
+          },
+          {
+            id: 2,
+            name: "Joe Doe",
+            address: "456 Main St",
+            section: "Employees",
+          },
+          {
+            id: 3,
+            name: "Milton Bradley",
+            address: "123 Fake St",
+            section: "Customers",
+          },
+          {
+            id: 4,
+            name: "Tony Redman",
+            address: "456 Fake St",
+            section: "Customers",
+          },
+        ]}
+        customRenderItem={item => <CustomRenderer listItem={item} />}
+      />,
+    );
+    expect(container).toMatchSnapshot();
+  });
+
+  test("it should allow for custom styles", () => {
+    interface CustomListItemProps extends BaseListItemProps {
+      readonly name: string;
+      readonly address: string;
+    }
+
+    function CustomRenderer({
+      listItem,
+    }: {
+      readonly listItem: CustomListItemProps;
+    }) {
+      return (
+        <div style={{ padding: "10px" }}>
+          <Text>{listItem.name}</Text>
+          <Text>{listItem.address}</Text>
+        </div>
+      );
+    }
+    const { container } = render(
+      <List
+        items={[
+          {
+            id: 1,
+            name: "Jane Doe",
+            address: "123 Main St",
+          },
+          {
+            id: 2,
+            name: "Joe Doe",
+            address: "456 Main St",
+          },
+        ]}
+        customRenderItem={item => <CustomRenderer listItem={item} />}
+        customItemStyles={true}
+      />,
+    );
+    expect(container).toMatchSnapshot();
   });
 });

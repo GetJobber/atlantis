@@ -1,0 +1,41 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/InlineLabel/InlineLabel.tsx",
+    "description": "",
+    "displayName": "InlineLabel",
+    "methods": [],
+    "props": {
+      "size": {
+        "defaultValue": {
+          "value": "base"
+        },
+        "description": "The size of the label",
+        "name": "size",
+        "parent": {
+          "fileName": "../components/src/InlineLabel/InlineLabel.tsx",
+          "name": "InlineLabelProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"base\" | \"large\" | \"larger\""
+        }
+      },
+      "color": {
+        "defaultValue": {
+          "value": "greyBlue"
+        },
+        "description": "The color of the label",
+        "name": "color",
+        "parent": {
+          "fileName": "../components/src/InlineLabel/InlineLabel.tsx",
+          "name": "InlineLabelProps"
+        },
+        "required": false,
+        "type": {
+          "name": "InlineLabelColors"
+        }
+      }
+    }
+  }
+]

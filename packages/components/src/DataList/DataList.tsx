@@ -1,4 +1,3 @@
-/* eslint-disable max-statements */
 import React, { useMemo, useRef, useState } from "react";
 import styles from "./DataList.module.css";
 import { DataListTotalCount } from "./components/DataListTotalCount";

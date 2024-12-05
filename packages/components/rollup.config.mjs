@@ -56,9 +56,7 @@ export default {
         }),
       ],
     }),
-    commonjs({
-      ignore: ["time-input-polyfill", "time-input-polyfill/supportsTime"],
-    }),
+    commonjs(),
     copy({
       targets: [
         { src: "src/Card/cardcolors.css.d.ts", dest: "dist/Card" },
@@ -130,12 +128,14 @@ export default {
     {
       dir: "dist",
       entryFileNames: "[name].cjs",
+      chunkFileNames: "[name]-[format].js",
       exports: "named",
       format: "cjs",
     },
     {
       dir: "dist",
       entryFileNames: "[name].mjs",
+      chunkFileNames: "[name]-[format].js",
       format: "esm",
     },
   ],
@@ -152,7 +152,6 @@ export default {
     "color",
     "framer-motion",
     "classnames",
-    "@std-proposal/temporal",
     "@apollo/client",
     "@jobber/design",
     "@jobber/design/foundation",
