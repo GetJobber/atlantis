@@ -18,6 +18,7 @@ exports[`Tabs displays the label when it is a ReactNode 1`] = `
           <button
             class="tab selected"
             role="tab"
+            tabindex="0"
             type="button"
           >
             <span
@@ -64,6 +65,7 @@ exports[`Tabs renders Tabs 1`] = `
           <button
             class="tab selected"
             role="tab"
+            tabindex="0"
             type="button"
           >
             <span
@@ -79,6 +81,7 @@ exports[`Tabs renders Tabs 1`] = `
           <button
             class="tab"
             role="tab"
+            tabindex="-1"
             type="button"
           >
             <span
