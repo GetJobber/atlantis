@@ -4,7 +4,10 @@ import omit from "lodash/omit";
 import { InputTextRebuiltProps } from "./InputText.types";
 import { useTextAreaResize } from "./useTextAreaResize";
 import { useInputTextActions } from "./useInputTextActions";
-import { useInputTextFormField } from "./useInputTextFormField";
+import {
+  UseInputTextFormFieldReturn,
+  useInputTextFormField,
+} from "./useInputTextFormField";
 import {
   FormFieldWrapper,
   useAtlantisFormFieldName,
@@ -32,7 +35,6 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
   const { resize, rowRange } = useTextAreaResize(props.rows);
 
   const type = props.multiline ? "textarea" : "text";
-  console.log({ rowRange });
 
   const { inputStyle } = useFormFieldWrapperStyles(legacyPropHelper);
 
@@ -49,6 +51,7 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
       onEnter: props.onEnter,
       inputRef: inputTextRef,
     });
+
   const inputProps = omit(props, [
     "onChange",
     "onBlur",
@@ -58,6 +61,7 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     "placeholder",
     "prefix",
     "suffix",
+    "version",
   ]);
 
   const { fieldProps } = useInputTextFormField({
@@ -68,7 +72,6 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     handleBlur,
     handleFocus,
     handleKeyDown,
-    errorMessage: "",
   });
 
   useSafeLayoutEffect(() => {
@@ -85,6 +88,7 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
       name={name}
       wrapperRef={wrapperRef}
       error={props.error ?? ""}
+      invalid={props.invalid}
       identifier={id}
       descriptionIdentifier={props["aria-describedby"] ?? ""}
       clearable={props.clearable ?? "never"}
@@ -92,7 +96,6 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
       type={props.multiline ? "textarea" : "text"}
       placeholder={props.placeholder}
       value={props.value}
-      onBlur={() => console.log("onBlur")}
       prefix={props.prefix}
       suffix={props.suffix}
       rows={rowRange.min}
@@ -100,7 +103,22 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
       toolbarVisibility={props.toolbarVisibility}
     >
       <>
-        {renderInputField()}
+        {type === "textarea" ? (
+          <TextArea
+            fieldProps={fieldProps}
+            rowRange={rowRange}
+            inputRefs={[inputRefs, inputTextRef]}
+            value={props.value}
+            inputStyle={inputStyle}
+          />
+        ) : (
+          <TextInput
+            fieldProps={fieldProps}
+            inputRefs={[inputRefs, inputTextRef]}
+            value={props.value}
+            inputStyle={inputStyle}
+          />
+        )}
         <FormFieldPostFix
           variation="spinner"
           visible={props.loading ?? false}
@@ -109,29 +127,49 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
       </>
     </FormFieldWrapper>
   );
-
-  function renderInputField() {
-    switch (type) {
-      case "textarea":
-        return (
-          <textarea
-            {...fieldProps}
-            rows={rowRange.min}
-            ref={mergeRefs([inputRefs, inputTextRef])}
-            className={inputStyle}
-            value={props.value}
-          />
-        );
-      default:
-        return (
-          <input
-            {...fieldProps}
-            name={name}
-            ref={mergeRefs([inputRefs, inputTextRef])}
-            className={inputStyle}
-            value={props.value}
-          />
-        );
-    }
-  }
 });
+
+function TextArea({
+  fieldProps,
+  rowRange,
+  inputRefs,
+  value,
+  inputStyle,
+}: {
+  readonly fieldProps: UseInputTextFormFieldReturn["fieldProps"];
+  readonly rowRange: ReturnType<typeof useTextAreaResize>["rowRange"];
+  readonly inputRefs: React.Ref<HTMLTextAreaElement | HTMLInputElement>[];
+  readonly value: string;
+  readonly inputStyle: string;
+}) {
+  return (
+    <textarea
+      {...fieldProps}
+      rows={rowRange.min}
+      ref={mergeRefs(inputRefs)}
+      className={inputStyle}
+      value={value}
+    />
+  );
+}
+
+function TextInput({
+  fieldProps,
+  inputRefs,
+  value,
+  inputStyle,
+}: {
+  readonly fieldProps: UseInputTextFormFieldReturn["fieldProps"];
+  readonly inputRefs: React.Ref<HTMLTextAreaElement | HTMLInputElement>[];
+  readonly value: string;
+  readonly inputStyle: string;
+}) {
+  return (
+    <input
+      {...fieldProps}
+      ref={mergeRefs(inputRefs)}
+      className={inputStyle}
+      value={value}
+    />
+  );
+}
