@@ -77,7 +77,6 @@ export function useInputTextFormField({
     className: styles.input,
     name,
     disabled: rest.disabled,
-    readOnly: rest.readOnly,
     inputMode: rest.inputMode,
     onChange: handleChange,
     onBlur: handleBlur,
