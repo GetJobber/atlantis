@@ -322,6 +322,7 @@ html,body,#root {
       </script>
       <script>
       window.onerror = function(message, source, lineno, colno, error) {
+      console.log('ERROR',message, source, lineno, colno, error)
         window.parent.postMessage(JSON.stringify({message, source, lineno, colno, error}), '*')
         return true;
       };
@@ -487,9 +488,9 @@ export const MobileCodeWrapper = (
               Glimmer,
               Heading,
               IconButton,
-           /*   Chip,
-              Chips,
-              Form,
+            /*  Chip,
+            Chips,
+            Form,
               FormField,
               IconButton, */
               InputDate,
@@ -512,13 +513,17 @@ export const MobileCodeWrapper = (
               showToast,
               Typography,
               useState,
+              forwardRef,
               useEffect,
               useRef,
               Host,
+              View,
             } from '@jobber/components-native';
-
                 ${transpiledCode}
-
+            
+            function RootWrapper() {
+              return React.createElement(Host, {style:{display:'flex',alignItems:'center',justifyContent:'center', width:'100%'}}, React.createElement(App));
+            }
 
           if (rootElement) {
             //  ReactDOM.unmountComponentAtNode(rootElement);
@@ -527,5 +532,5 @@ export const MobileCodeWrapper = (
               rootElement = document.getElementById('root')
               root = ReactDOM.createRoot(rootElement);
              }
-              root.render(React.createElement(App, null));
+              root.render(React.createElement(RootWrapper, null));
           `;
