@@ -56,6 +56,8 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     "onEnter",
     "size",
     "placeholder",
+    "prefix",
+    "suffix",
   ]);
 
   const { fieldProps } = useInputTextFormField({
@@ -91,6 +93,8 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
       placeholder={props.placeholder}
       value={props.value}
       onBlur={() => console.log("onBlur")}
+      prefix={props.prefix}
+      suffix={props.suffix}
       rows={rowRange.min}
       toolbar={props.toolbar}
       toolbarVisibility={props.toolbarVisibility}

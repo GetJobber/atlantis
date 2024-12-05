@@ -58,4 +58,7 @@ export interface InputTextRebuiltProps
 
   readonly toolbar?: FormFieldProps["toolbar"];
   readonly toolbarVisibility?: FormFieldProps["toolbarVisibility"];
+
+  readonly prefix?: FormFieldProps["prefix"];
+  readonly suffix?: FormFieldProps["suffix"];
 }
