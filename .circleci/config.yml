@@ -155,7 +155,7 @@ jobs:
       - *attach_workspace
       - *generate_base_path
       - run:
-          command: npm run build
+          command: npm run storybook:build
 
   build_new_docs:
     <<: *container_config
