@@ -1,7 +1,7 @@
 import { Meta } from "@storybook/addon-docs";
 import { Tab, Tabs } from "@jobber/components/Tabs";
 
-<Meta title="Components/Selections/Chips/Docs" />
+<Meta title="Components/Selections/Chips" />
 
 # Chips
 
@@ -26,8 +26,7 @@ will allow the user to choose one of those items.
 This preserves vertical space while allowing the user to clearly identify which
 item they have selected.
 
-Unlike
-[Radio](../?path=/docs/components-forms-and-inputs-radiogroup-docs--page), the
+Unlike [Radio](../?path=/docs/components-forms-and-inputs-radiogroup--docs), the
 selected single-select Chip can be de-selected by the user, leaving all
 selections blank.
 
@@ -40,7 +39,7 @@ Chips will allow the user to choose as many items from the group as they wish.
 This preserves vertical space while allowing the user to clearly identify which
 items they have selected. To signify to the user that multiple selections are
 possible, a checkmark icon is present to reinforce the conceptual similarity to
-a [Checkbox](../?path=/docs/components-selections-checkbox-docs--page).
+a [Checkbox](../?path=/docs/components-selections-checkbox--docs).
 
 Similar to Checkbox, a selected multi-select Chip can be de-selected by the
 user, leaving all selections blank.
@@ -82,6 +81,21 @@ In cases where the Chip is on an area whose background is
   </Tab>
 </Tabs>
 
+## Related components
+
+- [Chip](../?path=/docs/components-selections-chip--docs) is the building block
+  that Chips is built on top of, and has more flexibility to be used in
+  isolation.
+- [RadioGroup](../?path=/docs/components-forms-and-inputs-radiogroup--docs)
+  should be used to allow the user to select "one-of-many" items (single-select)
+  and the labels for the items are longer than 1 or 2 words.
+- [Checkbox](../?path=/docs/components-selections-checkbox--docs) should be used
+  to allow the user to select "one-or-more-of-many" items (multi-select) and the
+  labels for the items are longer than 1 or 2 words.
+- [InlineLabel](../?path=/docs/components-status-and-feedback-inlinelabel--docs)
+  should be used when you just need a rectangular element that displays the
+  status of another element.
+
 ## Content guidelines
 
 Chip labels should be 1–2 words at most. If any of the options in the group may
@@ -99,7 +113,7 @@ roles and keyboard operation to allow the user to interact as though they are
 dealing with a checkbox or radio button.
 
 If Chips is set for add/dismiss selections, the dismiss button will notify the
-user that they will "dismiss {label name}" upon press.
+user that they will "dismiss \{label name\}" upon press.
 
   </Tab>
 
@@ -123,22 +137,39 @@ The Chips themselves will take up as much space as their container allows, and
 the Chips will flow left to right. Chips may re-flow into new rows, or scroll
 out of view in a single row, depending on your use case.
 
-## Related components
-
-- [RadioGroup](../?path=/docs/components-forms-and-inputs-radiogroup-docs--page)
-  should be used to allow the user to select "one-of-many" items (single-select)
-  and the labels for the items are longer than 1 or 2 words.
-- [Checkbox](../?path=/docs/components-selections-checkbox-docs--page) should be
-  used to allow the user to select "one-or-more-of-many" items (multi-select)
-  and the labels for the items are longer than 1 or 2 words.
-- [InlineLabel](../?path=/docs/components-status-and-feedback-inlinelabel-docs--page)
-  should be used when you just need a rectangular element that displays the
-  status of another element.
-
 ## Notes
 
-There was some consideration to bring the ability to "accent" Chips with certain
-colors for parity with Jobber's mobile platform, but we will not be implementing
-this is for the web components as of this first iteration of our web Chip. The
-mobile use-case is very specific to a filtering use case that we as of now do
-not anticipate will be required for the web.
+To override the appearance of the selected Chip(s) you may use
+[Base Chip Color Overrides](../?path=/docs/components-selections-chip--docs#base-chip-color-overrides)
+since the selected Chip is a Base Chip.
+
+### Chips composition with standalone Chip
+
+Standalone Chip's `role`, `<Chip.Prefix>`, `<Chip.Suffix>` `heading` and
+`variation` will not work specifically when used within a `Chips`.
+
+If you wish to use a prefix, please use `Chip` from `Chips/Chip`.
+
+#### ✅ Do
+
+```
+import { Chip, Chips } from "@jobber/components/Chips";
+...
+
+<Chips>
+  <Chip prefix="thumbsUp"/>
+</Chips>
+```
+
+#### ❌ Don't
+
+```
+import { Chip, Chips } from "@jobber/components";
+
+...
+<Chips>
+  <Chip>
+    <Chip.Prefix>...</Chip.Prefix>
+  </Chip>
+</Chips>
+```

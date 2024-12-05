@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import classnames from "classnames";
-import styles from "./InputGroup.css";
+import styles from "./InputGroup.module.css";
 
 interface InputGroupProps {
   readonly children: ReactElement | ReactElement[];

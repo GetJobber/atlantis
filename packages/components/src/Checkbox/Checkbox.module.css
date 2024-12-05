@@ -1,0 +1,92 @@
+.checkBoxParent {
+  --checkbox--size: 20px;
+  --checkbox--border--checked: var(--color-interactive);
+  --checkbox--border--unchecked: var(--color-border--interactive);
+  --checkbox--border--hover: var(--color-interactive);
+  display: inline-block;
+}
+
+.wrapper {
+  display: flex;
+  align-items: flex-start;
+  user-select: none;
+  cursor: pointer;
+}
+
+.disabled {
+  --checkbox--border--checked: var(--color-disabled--secondary);
+  --checkbox--border--unchecked: var(--color-disabled--secondary);
+  --checkbox--border--hover: var(--color-disabled--secondary);
+  cursor: not-allowed;
+}
+
+.checkHolder {
+  position: relative;
+}
+
+.input {
+  /* Hide checkbox on UI but not screen readers and still allow focus state */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+  white-space: nowrap;
+}
+
+.checkBox {
+  display: flex;
+  width: var(--checkbox--size);
+  height: var(--checkbox--size);
+  box-sizing: border-box;
+  border: var(--border-thick) solid var(--checkbox--border--unchecked);
+  border-radius: var(--radius-small);
+  background-color: var(--color-surface);
+  transition: all var(--timing-quick) ease-out;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkBox:hover,
+.checkBoxParent:hover .checkBox {
+  border-color: var(--checkbox--border--hover);
+}
+
+.input.indeterminate + .checkBox,
+.input:checked + .checkBox {
+  border-color: var(--checkbox--border--checked);
+  background-color: var(--color-interactive);
+}
+
+.input:focus-visible + .checkBox {
+  box-shadow: var(--shadow-focus);
+}
+
+.disabled p {
+  color: var(--color-disabled);
+}
+
+.disabled .checkBox > * {
+  opacity: 0;
+}
+
+.disabled .input.indeterminate + .checkBox,
+.disabled .input:checked + .checkBox {
+  background-color: var(--color-disabled--secondary);
+}
+
+.disabled .input.indeterminate + .checkBox > *,
+.disabled .input:checked + .checkBox > * {
+  opacity: 1;
+}
+
+.label {
+  margin: 0 var(--space-small);
+  margin-top: var(--space-smallest);
+}
+
+.description {
+  margin-bottom: var(--space-small);
+  padding-left: calc(var(--checkbox--size) + var(--space-small));
+}

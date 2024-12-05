@@ -1,7 +1,7 @@
 import { Meta } from "@storybook/addon-docs";
 import { Drawer } from "@jobber/components/Drawer";
 
-<Meta title="Components/Layouts and Structure/Drawer/Docs" component={Drawer} />
+<Meta title="Components/Layouts and Structure/Drawer" component={Drawer} />
 
 # Drawer
 
@@ -10,15 +10,16 @@ Users can interact with the main content while the drawer is visible.
 
 ## Related components
 
-Drawer is similar in some ways to Card and Modal.
+Use [SideDrawer](../?path=/docs/components-overlays-sidedrawer--docs) if you
+need to overlay the page's content and block user interaction with the page,
+while still maintaining visibilty of the page's primary contents.
 
-For an experience where the user can only interact with one "mode" of content
-(the main view _or_ the contents of the component) use
-[Modal.](../?path=/docs/components-overlays-modal-docs--page)
+Use [Modal](../?path=/docs/components-overlays-Modal--docs) if you need to
+overlay the page's content and block user interaction with the page, and do not
+need the user to have visibilty of the page's primary contents.
 
-For an inline grouping of content that is relevant within the main view and
-non-dismissible, use
-[Card.](../?path=/docs/components-layouts-and-structure-card-docs--page)
+Use [Card](../?path=/docs/components-layouts-and-structure-card--docs) to group
+content inline, within the main view, in a non-dismissible way.
 
 ## Accessibility
 

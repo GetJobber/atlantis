@@ -4,13 +4,13 @@ import ReactDOM from "react-dom";
 import { motion } from "framer-motion";
 import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
-import styles from "./Tooltip.css";
+import styles from "./Tooltip.module.css";
 import { useTooltipPositioning } from "./useTooltipPositioning";
 import { Placement } from "./Tooltip.types";
 
 const variation = {
-  startOrStop: { scale: 0.6, opacity: 0 },
-  done: { scale: 1, opacity: 1 },
+  startOrStop: { opacity: 0 },
+  done: { opacity: 1 },
 };
 
 interface TooltipProps {
@@ -24,12 +24,15 @@ interface TooltipProps {
    * @default 'top'
    */
   readonly preferredPlacement?: Placement;
+
+  readonly setTabIndex?: boolean;
 }
 
 export function Tooltip({
   message,
   children,
   preferredPlacement = "top",
+  setTabIndex = true,
 }: TooltipProps) {
   const [show, setShow] = useState(false);
 
@@ -72,8 +75,9 @@ export function Tooltip({
               animate="done"
               exit="startOrStop"
               transition={{
-                damping: 50,
-                stiffness: 500,
+                ease: "easeOut",
+                duration: 0.15,
+                delay: 0.3,
               }}
             >
               <p className={styles.tooltipMessage}>{message}</p>
@@ -106,7 +110,10 @@ export function Tooltip({
         // This is to avoid having to add those attribute as a prop on every
         // component we have.
         activator.setAttribute("aria-description", message);
-        activator.setAttribute("tabindex", "0"); // enable focus
+
+        if (setTabIndex) {
+          activator.setAttribute("tabindex", "0"); // enable focus
+        }
       }
     };
 

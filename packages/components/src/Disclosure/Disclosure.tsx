@@ -1,9 +1,10 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { ReactElement, ReactNode, useState } from "react";
+import classnames from "classnames";
 import {
   Breakpoints,
   useResizeObserver,
 } from "@jobber/hooks/useResizeObserver";
-import styles from "./Disclosure.css";
+import styles from "./Disclosure.module.css";
 import { Icon } from "../Icon";
 import { Typography } from "../Typography";
 
@@ -15,8 +16,9 @@ interface DisclosureProps {
 
   /**
    * Title for the disclosure pane.
+   * If ReactElement[] is provided, it must be wrapped in a container element (not a Fragment).
    */
-  readonly title: string;
+  readonly title: string | ReactElement | ReactElement[];
 
   /**
    * This sets the default open state of the disclosure.
@@ -25,36 +27,49 @@ interface DisclosureProps {
    * @default false
    */
   readonly defaultOpen?: boolean;
+
+  /**
+   * Callback that is called when the disclosure is toggled.
+   */
+  readonly onToggle?: (newOpened: boolean) => void;
+
+  /**
+   * Used to make the disclosure a Controlled Component.
+   */
+  readonly open?: boolean;
 }
 
 export function Disclosure({
   children,
   title,
   defaultOpen = false,
+  onToggle,
+  open,
 }: DisclosureProps) {
-  const [isOpen, setOpen] = useState(defaultOpen);
-  const [isMounted, setMount] = useState(false);
+  const [internalOpen, setInternalOpen] = useState(
+    defaultOpen || open || false,
+  );
+  const isOpen = open !== undefined ? open : internalOpen;
   const [titleRef, { exactWidth }] = useResizeObserver<HTMLDivElement>();
   const isBelowBreakpoint = exactWidth && exactWidth < Breakpoints.small;
-
-  useEffect(() => {
-    setMount(true);
-  }, []);
+  const isTitleString = typeof title === "string";
 
   return (
-    <details open={isOpen} onToggle={onToggle} className={styles.details}>
-      <summary className={styles.summary}>
-        <div className={styles.summaryWrap} ref={titleRef}>
-          <Typography
-            element="h4"
+    <details open={isOpen} className={styles.details}>
+      <summary className={styles.summary} onClick={handleToggle}>
+        <div
+          className={classnames(styles.summaryWrap, {
+            [styles.customSummaryWrap]: !isTitleString,
+          })}
+          ref={titleRef}
+        >
+          <DisclosureTitle
+            title={title}
             size={isBelowBreakpoint ? "base" : "large"}
-            fontWeight="bold"
-            textColor="heading"
-          >
-            {title}
-          </Typography>
+            isTitleString={isTitleString}
+          />
           <span className={styles.arrowIconWrapper}>
-            <Icon size="large" name="arrowDown" color="green" />
+            <Icon name="arrowDown" color="interactive" />
           </span>
         </div>
       </summary>
@@ -62,14 +77,35 @@ export function Disclosure({
     </details>
   );
 
-  function onToggle(event: React.MouseEvent<HTMLDetailsElement>) {
+  function handleToggle(event: React.MouseEvent<HTMLDetailsElement>) {
     event.preventDefault();
-    const { open: currentToggleState } = event.target as HTMLDetailsElement;
 
-    if (!isMounted || currentToggleState === isOpen) {
-      return;
-    }
-
-    setOpen(!currentToggleState);
+    setInternalOpen(!isOpen);
+    onToggle?.(!isOpen);
   }
+}
+
+interface DisclosureTitleProps {
+  /**
+   * Title for the disclosure pane.
+   */
+  readonly title: string | ReactNode | ReactNode[];
+  /**
+   * Size when the title is a string.
+   */
+  readonly size: "base" | "large";
+  /**
+   * Whether the title is a string.
+   */
+  readonly isTitleString: boolean;
+}
+
+function DisclosureTitle({ title, size, isTitleString }: DisclosureTitleProps) {
+  if (!isTitleString) return <>{title}</>;
+
+  return (
+    <Typography element="h4" size={size} fontWeight="bold" textColor="heading">
+      {title}
+    </Typography>
+  );
 }

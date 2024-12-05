@@ -5,4 +5,11 @@ module.exports = {
     "@babel/preset-typescript",
     "@babel/preset-react",
   ],
+  plugins: [
+    [
+      "@babel/plugin-syntax-import-attributes",
+      { deprecatedAssertSyntax: true },
+    ],
+    "babel-plugin-transform-import-meta",
+  ],
 };

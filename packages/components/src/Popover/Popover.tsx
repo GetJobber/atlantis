@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { usePopper } from "react-popper";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
-import classes from "./Popover.css";
+import classes from "./Popover.module.css";
 import { ButtonDismiss } from "../ButtonDismiss";
 
 export interface PopoverProps {
@@ -57,6 +57,7 @@ export function Popover({
       {open && (
         <div
           role="dialog"
+          data-elevation={"elevated"}
           ref={setPopperElement}
           style={popperStyles.popper}
           className={classes.popover}

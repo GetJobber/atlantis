@@ -1,8 +1,7 @@
-import React, { ReactElement } from "react";
+import React, { ReactNode } from "react";
 import classNames from "classnames";
-import { GridCellProps, InternalGridCell } from "./InternalGridCell";
-import styles from "./Grid.css";
-import alignments from "./GridAlign.css";
+import styles from "./Grid.module.css";
+import alignments from "./GridAlign.module.css";
 import { GridCell } from "./GridCell";
 
 interface GridProps {
@@ -19,11 +18,9 @@ interface GridProps {
   readonly alignItems?: keyof typeof alignments;
 
   /**
-   * Array of `Grid.Cell` children
+   * `Grid.Cell` children
    */
-  readonly children:
-    | Array<ReactElement<GridCellProps>>
-    | ReactElement<GridCellProps>;
+  readonly children: ReactNode;
 }
 
 export const GRID_TEST_ID = "ATL-Grid";
@@ -39,12 +36,7 @@ export function Grid({
 
   return (
     <div data-testid={GRID_TEST_ID} className={classnames}>
-      {React.Children.map(
-        children,
-        ({ props }: { readonly props: GridCellProps }) => {
-          return <InternalGridCell {...props} />;
-        },
-      )}
+      {children}
     </div>
   );
 }

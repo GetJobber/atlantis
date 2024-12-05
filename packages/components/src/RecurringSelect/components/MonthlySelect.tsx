@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./MonthlySelect.css";
+import styles from "./MonthlySelect.module.css";
 import { DurationPeriod } from "../types";
 import { RadioGroup, RadioOption } from "../../RadioGroup";
 

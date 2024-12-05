@@ -1,58 +1,73 @@
 {
   "name": "@jobber/design",
-  "version": "0.60.1",
+  "version": "0.67.6",
   "description": "Design foundation for the Jobber Atlantis Design System",
   "license": "MIT",
-  "main": "dist/index.js",
+  "type": "module",
+  "main": "dist/index.cjs",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    },
+    "./foundation": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    },
+    "./foundation.js": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    },
+    "./dist/foundation.css": "./dist/foundation.css",
+    "./foundation.css": {
+      "import": "./dist/foundation.css",
+      "require": "./dist/foundation.css"
+    },
+    "./dist/dark.mode.css": "./dist/dark.mode.css",
+    "./dark.mode.css": {
+      "import": "./dist/dark.mode.css",
+      "require": "./dist/dark.mode.css"
+    },
+    "./colors": {
+      "import": "./dist/colors.mjs",
+      "require:": "./dist/colors.cjs"
+    },
+    "./colors.js": {
+      "import": "./dist/colors.mjs",
+      "require:": "./dist/colors.cjs"
+    }
+  },
   "files": [
     "dist/*",
     "*.css",
+    "*.mjs",
+    "*.cjs",
+    "*.js",
     "foundation.*",
     "icons/*"
   ],
   "scripts": {
-    "build": "npm run build:iconMap && npm run build:css && npm run build:css:icons && npm run build:colors && npm run build:cssTypes && npm run build:foundation && npm run build:iconCssStyle && npm run build:rollup",
-    "build:rollup": "rollup --config",
-    "build:css": "postcss src/foundation.css --output foundation.css --use postcss-import",
-    "build:css:icons": "postcss src/icons/*.css --dir icons/ --use postcss-import",
-    "build:ts": "tsc --project .",
-    "build:cssTypes": "tcm src/icons",
-    "build:colors": "node buildColors.js",
-    "build:foundation": "node buildFoundation.js && node resolveFoundationTokens.js && npm run build:foundationTypes && npm run build:addFoundationExceptions && npm run build:removeTempFiles",
-    "build:foundationTypes": "tsc --declaration --emitDeclarationOnly --allowJs foundation.js foundation.native.js foundation.android.js foundation.ios.js --outDir . --skipLibCheck",
-    "build:addFoundationExceptions": "./scripts/addFoundationExceptions.sh",
-    "build:removeTempFiles": "rm -f src/foundation.js && ./scripts/removeFoundationTempFiles.sh",
-    "build:iconMap": "ts-node --project ../../tsconfig.bin.json scripts/generateIconMap.ts",
-    "build:iconCssStyle": "node buildIconStyles.js && npm run build:iconCssStyleTypes",
-    "build:iconCssStyleTypes": "tsc --declaration --emitDeclarationOnly --allowJs src/icons/iconStyles.ts --outDir ./src/icons --skipLibCheck",
-    "clean": "rm -rf dist/* icons/* src/icons/iconMap.ts colors.js foundation.* iconStyles.* tsconfig.tsbuildinfo",
+    "build:design": "rollup -c rollup.config.mjs",
+    "generate:iconMap": "tsx src/scripts/buildIconMap.ts",
+    "generate:tokenCSS": "tsx src/scripts/buildTokens.ts",
+    "generate:assets": "npm run generate:iconMap && npm run generate:tokenCSS",
+    "build": "mkdir -p dist && npm run generate:assets && npm run build:design",
+    "watch": "mkdir -p dist & chokidar \"**/*.ts\" \"**/*.json\" \"**/*.svg\"-c \"npm run generate:assets && npm run build:design\"",
+    "clean": "rm -rf dist colors.js foundation.css src/assets colors.cjs colors.mjs",
     "bootstrap": "npm run clean && npm run build"
   },
-  "dependencies": {
-    "classnames": "^2.3.2"
-  },
   "devDependencies": {
-    "@csstools/postcss-extract": "^2.0.1",
-    "@csstools/postcss-global-data": "^1.0.3",
-    "@rollup/plugin-commonjs": "^24.0.1",
-    "@types/node": "^18.15.7",
-    "autoprefixer": "^9.5.1",
-    "cheerio": "^1.0.0-rc.12",
-    "css-to-react-native-transform": "^2.0.0",
-    "postcss": "^8.4.21",
-    "postcss-calc": "^8.2.3",
-    "postcss-cli": "^10.1.0",
-    "postcss-custom-properties": "^13.1.4",
-    "postcss-import": "^15.1.0",
-    "postcss-preset-env": "^8.3.0",
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/jsdom": "^21.1.7",
+    "jsdom": "^24.1.0",
     "rollup": "^4.13.0",
-    "rollup-plugin-copy": "^3.5.0",
-    "rollup-plugin-multi-input": "^1.4.1",
-    "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-typescript2": "^0.36.0",
-    "svgo": "^3.0.2",
-    "typed-css-modules": "^0.7.0",
-    "typescript": "^4.9.5"
+    "tsx": "^4.16.2"
   }
 }

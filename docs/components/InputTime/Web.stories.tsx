@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { CivilTime } from "@std-proposal/temporal";
 import { InputTime } from "@jobber/components/InputTime";
 import { Content } from "@jobber/components/Content";
 import { Button } from "@jobber/components/Button";
@@ -14,26 +13,22 @@ export default {
     previewTabs: {
       code: {
         hidden: false,
-        extraImports: {
-          "@std-proposal/temporal": ["CivilTime"],
-        },
       },
     },
   },
 } as ComponentMeta<typeof InputTime>;
 
+const newDate = new Date();
+newDate.setHours(2, 35, 0, 0);
+
 const BasicTemplate: ComponentStory<typeof InputTime> = args => (
   <InputTime {...args} />
 );
 
-const EventTemplate: ComponentStory<typeof InputTime> = args => {
-  const [time, setTime] = useState<CivilTime>();
+const ControlledTemplate: ComponentStory<typeof InputTime> = args => {
+  const [time, setTime] = useState<Date>();
 
-  const resetTime = () => {
-    setTime(undefined);
-  };
-
-  const handleChange = (newTime: CivilTime) => {
+  const handleChange = (newTime: Date) => {
     setTime(newTime);
   };
 
@@ -41,7 +36,7 @@ const EventTemplate: ComponentStory<typeof InputTime> = args => {
     <Content>
       <Flex template={["grow", "shrink"]}>
         <InputTime {...args} value={time} onChange={handleChange} />
-        <Button label="Reset" size="large" onClick={resetTime} />
+        <Button label="Reset" size="large" onClick={() => setTime()} />
       </Flex>
       <pre>{time && time.toString()}</pre>
     </Content>
@@ -49,11 +44,12 @@ const EventTemplate: ComponentStory<typeof InputTime> = args => {
 };
 
 export const Uncontrolled = BasicTemplate.bind({});
+
 Uncontrolled.args = {
-  defaultValue: new CivilTime(2, 35),
+  defaultValue: newDate,
 };
 
-export const Controlled = EventTemplate.bind({});
+export const Controlled = ControlledTemplate.bind({});
 Controlled.args = {
   placeholder: "Start time",
   clearable: "always",
@@ -61,18 +57,18 @@ Controlled.args = {
 
 export const Disabled = BasicTemplate.bind({});
 Disabled.args = {
-  defaultValue: new CivilTime(3, 52),
+  defaultValue: newDate,
   disabled: true,
 };
 
 export const ReadOnly = BasicTemplate.bind({});
 ReadOnly.args = {
-  defaultValue: new CivilTime(5, 23),
+  defaultValue: newDate,
   readonly: true,
 };
 
 export const Invalid = BasicTemplate.bind({});
 Invalid.args = {
-  defaultValue: new CivilTime(2, 35),
+  defaultValue: newDate,
   invalid: true,
 };

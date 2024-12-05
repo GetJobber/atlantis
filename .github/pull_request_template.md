@@ -2,7 +2,7 @@
   Atlantis uses Conventional Commits to track versions.
   Pull request titles should follow the following format.
 
-  For help creating your pull request, you can [use this tool](https://atlantis.getjobber.com/?path=/story/guides-pull-request-title-generator--page)
+  For help creating your pull request, you can [use this tool](https://atlantis.getjobber.com/?path=/story/guides-pull-request-title-generator--docs)
 
   <TYPE>(<optional SCOPE>): <conditionally BREAKING CHANGE:> <description>
 
@@ -22,8 +22,12 @@
   SCOPE should be one of:
     - components
     - components-native
+    - deps
+    - deps-dev
     - design
+    - docx
     - eslint
+    - formatters
     - generators
     - hooks
     - stylelint

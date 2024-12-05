@@ -1,13 +1,7 @@
-import React, {
-  MutableRefObject,
-  ReactElement,
-  ReactNode,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { ReactElement, ReactNode, useEffect, useState } from "react";
 import classnames from "classnames";
-import styles from "./Tabs.css";
+import styles from "./Tabs.module.css";
+import { useTabsOverflow } from "./hooks/useTabsOverflow";
 import { Typography } from "../Typography";
 
 interface TabsProps {
@@ -21,20 +15,33 @@ interface TabsProps {
   readonly defaultTab?: number;
 
   /**
+   * Specifies the index of the active tab.
+   * If provided, the component will be controlled and the active tab will be determined by this prop.
+   * If not provided, the component will manage its own state internally.
+   */
+  readonly activeTab?: number;
+
+  /**
    * Callback that fires when the active tab changes
    * @param newTabIndex
    */
   onTabChange?(newTabIndex: number): void;
 }
 
-export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
+export function Tabs({
+  children,
+  defaultTab = 0,
+  activeTab: controlledActiveTab,
+  onTabChange,
+}: TabsProps) {
   const activeTabInitialValue =
     defaultTab < React.Children.count(children) ? defaultTab : 0;
-  const [activeTab, setActiveTab] = useState(activeTabInitialValue);
-  const [overflowRight, setOverflowRight] = useState(false);
-  const [overflowLeft, setOverflowLeft] = useState(false);
-  const tabRow = useRef() as MutableRefObject<HTMLUListElement>;
-
+  const [internalActiveTab, setInternalActiveTab] = useState(
+    activeTabInitialValue,
+  );
+  const activeTab =
+    controlledActiveTab !== undefined ? controlledActiveTab : internalActiveTab;
+  const { overflowRight, overflowLeft, tabRow } = useTabsOverflow();
   const overflowClassNames = classnames(styles.overflow, {
     [styles.overflowRight]: overflowRight,
     [styles.overflowLeft]: overflowLeft,
@@ -42,7 +49,9 @@ export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
 
   const activateTab = (index: number) => {
     return () => {
-      setActiveTab(index);
+      if (controlledActiveTab === undefined) {
+        setInternalActiveTab(index);
+      }
 
       if (onTabChange) {
         onTabChange(index);
@@ -52,31 +61,13 @@ export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
 
   const activeTabProps = (React.Children.toArray(children) as ReactElement[])[
     activeTab
-  ].props;
-
-  const handleOverflowing = () => {
-    if (tabRow.current) {
-      const scrollWidth = tabRow.current.scrollWidth;
-      const clientWidth = tabRow.current.clientWidth;
-      const maxScroll = scrollWidth - clientWidth;
-      const scrollPos = tabRow.current.scrollLeft;
-
-      if (scrollWidth > clientWidth) {
-        setOverflowRight(scrollPos >= 0 && scrollPos != maxScroll);
-        setOverflowLeft(scrollPos > 0 && scrollPos < scrollWidth);
-      }
-    }
-  };
+  ]?.props;
 
   useEffect(() => {
-    handleOverflowing();
-    tabRow.current &&
-      tabRow.current.addEventListener("scroll", handleOverflowing);
-
-    return () => {
-      window.removeEventListener("scroll", handleOverflowing);
-    };
-  });
+    if (activeTab > React.Children.count(children) - 1) {
+      setInternalActiveTab(activeTabInitialValue);
+    }
+  }, [React.Children.count(children)]);
 
   return (
     <div className={styles.tabs}>
@@ -95,17 +86,18 @@ export function Tabs({ children, defaultTab = 0, onTabChange }: TabsProps) {
       <section
         role="tabpanel"
         className={styles.tabContent}
-        aria-label={activeTabProps.label}
+        aria-label={activeTabProps?.label}
       >
-        {activeTabProps.children}
+        {activeTabProps?.children}
       </section>
     </div>
   );
 }
 
 interface TabProps {
-  readonly label: string;
+  readonly label: string | ReactNode;
   readonly children: ReactNode | ReactNode[];
+
   onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
 }
 
@@ -114,7 +106,7 @@ export function Tab({ label }: TabProps) {
 }
 
 interface InternalTabProps {
-  readonly label: string;
+  readonly label: string | ReactNode;
   readonly selected: boolean;
   activateTab(): void;
   onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
@@ -135,16 +127,19 @@ export function InternalTab({
       <button
         type="button"
         role="tab"
-        id={label}
         className={className}
         onClick={event => {
           activateTab();
           onClick(event);
         }}
       >
-        <Typography element="span" size="large" fontWeight="semiBold">
-          {label}
-        </Typography>
+        {typeof label === "string" ? (
+          <Typography element="span" size="large" fontWeight="semiBold">
+            {label}
+          </Typography>
+        ) : (
+          label
+        )}
       </button>
     </li>
   );

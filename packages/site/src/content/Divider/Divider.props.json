@@ -1,0 +1,54 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Divider/Divider.tsx",
+    "description": "",
+    "displayName": "Divider",
+    "methods": [],
+    "props": {
+      "size": {
+        "defaultValue": {
+          "value": "base"
+        },
+        "description": "The weight of the divider.",
+        "name": "size",
+        "parent": {
+          "fileName": "../components/src/Divider/Divider.tsx",
+          "name": "DividerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | number | symbol"
+        }
+      },
+      "direction": {
+        "defaultValue": {
+          "value": "horizontal"
+        },
+        "description": "The direction of the divider",
+        "name": "direction",
+        "parent": {
+          "fileName": "../components/src/Divider/Divider.tsx",
+          "name": "DividerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | number | symbol"
+        }
+      },
+      "testID": {
+        "defaultValue": null,
+        "description": "A reference to the element in the rendered output",
+        "name": "testID",
+        "parent": {
+          "fileName": "../components/src/Divider/Divider.tsx",
+          "name": "DividerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  }
+]

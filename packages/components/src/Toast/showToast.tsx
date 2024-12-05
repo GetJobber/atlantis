@@ -9,28 +9,32 @@ import React, {
 } from "react";
 // According to react, it's imported within the package
 // https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis
-// eslint-disable-next-line import/no-internal-modules
-import { createRoot } from "react-dom/client";
+import { Root, createRoot } from "react-dom/client";
 import { Toast, ToastProps, ToastRef } from "./Toast";
-import styles from "./Toast.css";
+import styles from "./Toast.module.css";
 
 const targetId = "atlantis-toast-element";
-let target = document.querySelector(`#${targetId}`);
-
-if (!target) {
-  target = document.createElement("div");
-  target.id = targetId;
-  target.classList.add(styles.wrapper);
-  document.body.appendChild(target);
-}
-
-const root = createRoot(target);
+let root: Root | undefined;
 
 export function showToast(props: ToastProps) {
   // Ensure target and body is still there when rendering the toast. This is due
   // to an issue with ReactDOM createRoot assuming document is always there and
   // Jest taking the document down.
-  if (document.body.contains(target)) {
+  if (!globalThis.document) return;
+  let target = globalThis.document.querySelector(`#${targetId}`);
+
+  if (!target) {
+    target = globalThis.document.createElement("div");
+    target.id = targetId;
+    target.classList.add(styles.wrapper);
+    globalThis.document.body.appendChild(target);
+  }
+
+  if (target && !root) {
+    root = createRoot(target);
+  }
+
+  if (root && target && globalThis.document.body.contains(target)) {
     root.render(<ToasterOven {...props} />);
   }
 }

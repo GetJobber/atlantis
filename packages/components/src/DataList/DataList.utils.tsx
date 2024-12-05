@@ -87,7 +87,7 @@ export function generateHeaderElements<T extends DataListObject>(
   const headerElements = Object.keys(headers).reduce(
     (acc, key) => ({
       ...acc,
-      [key]: <DataListHeaderTile headers={headers} headerKey={key} visible />,
+      [key]: <DataListHeaderTile headers={headers} headerKey={key} />,
     }),
     {} as DataListItemTypeFromHeader<T, typeof headers>,
   );

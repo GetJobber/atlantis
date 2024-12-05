@@ -3,6 +3,244 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.75.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.75.1...@jobber/components-native@0.75.2) (2024-11-29)
+
+
+### Bug Fixes
+
+* **components:** Fix SegmentedControl.Base component name in meta.json ([#2174](https://github.com/GetJobber/atlantis/issues/2174)) ([997dc3b](https://github.com/GetJobber/atlantis/commit/997dc3b2c696b192bf9ea3ead921df3452a5dfff))
+
+
+
+
+
+## [0.75.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.75.0...@jobber/components-native@0.75.1) (2024-11-19)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+# [0.75.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.74.0...@jobber/components-native@0.75.0) (2024-11-15)
+
+
+### Features
+
+* **components-native:** Updated Divider component - added 'vertical' mode and 'testID' prop [JOB-97734] ([#2110](https://github.com/GetJobber/atlantis/issues/2110)) ([a9a9416](https://github.com/GetJobber/atlantis/commit/a9a9416a53587209e6a0a4bd8f7e41f97d65d182))
+
+
+
+
+
+# [0.74.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.73.4...@jobber/components-native@0.74.0) (2024-11-05)
+
+
+### Features
+
+* **components-native:** Add size variation for progress bar ([#2096](https://github.com/GetJobber/atlantis/issues/2096)) ([1e36491](https://github.com/GetJobber/atlantis/commit/1e364912003bcbf18fe80cac5ac6a0c9277b4313))
+
+
+
+
+
+## [0.73.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.73.2...@jobber/components-native@0.73.3) (2024-10-24)
+
+
+### Bug Fixes
+
+* **components-native:** Assistive text alignment on `Select` ([#2068](https://github.com/GetJobber/atlantis/issues/2068)) ([538e4b2](https://github.com/GetJobber/atlantis/commit/538e4b29f5481a81eb76a03f9a66bd8df407ea0d))
+
+
+
+
+
+## [0.73.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.73.1...@jobber/components-native@0.73.2) (2024-10-18)
+
+
+### Bug Fixes
+
+* **components-native:** ContentOverlay Heading alignment should not change with presence of dismiss button ([#2076](https://github.com/GetJobber/atlantis/issues/2076)) ([a223edf](https://github.com/GetJobber/atlantis/commit/a223edf359a309138776a8e9e65abe83f7a99b92))
+
+
+
+
+
+## [0.73.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.73.0...@jobber/components-native@0.73.1) (2024-10-16)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+# [0.73.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.72.3...@jobber/components-native@0.73.0) (2024-10-15)
+
+
+### Features
+
+* **components:** Update apple icon and Add bank icon [JOB-106774] ([#2073](https://github.com/GetJobber/atlantis/issues/2073)) ([6dd2ae6](https://github.com/GetJobber/atlantis/commit/6dd2ae6c4bcadb5bf32bbe9c04c3762a2b84e181))
+
+
+
+
+
+## [0.72.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.72.2...@jobber/components-native@0.72.3) (2024-10-04)
+
+
+### Bug Fixes
+
+* **components-native:** Restore success Text variation type ([#2059](https://github.com/GetJobber/atlantis/issues/2059)) ([f29667f](https://github.com/GetJobber/atlantis/commit/f29667f616a5c9e5bbb0458fbe29ae2a04ebe050))
+
+
+
+
+
+## [0.72.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.72.1...@jobber/components-native@0.72.2) (2024-09-24)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.72.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.72.0...@jobber/components-native@0.72.1) (2024-09-17)
+
+
+### Bug Fixes
+
+* **design:** Update critical color for dark mode ([#2006](https://github.com/GetJobber/atlantis/issues/2006)) ([88254f2](https://github.com/GetJobber/atlantis/commit/88254f22708ca8c7ef60283187e8a9c136210f89))
+
+
+
+
+
+# [0.72.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.71.2...@jobber/components-native@0.72.0) (2024-09-12)
+
+
+### Features
+
+* **components-native:** Add underline support to Text/Typography components for mobile (JOB-104505) ([#2022](https://github.com/GetJobber/atlantis/issues/2022)) ([f831aa1](https://github.com/GetJobber/atlantis/commit/f831aa1db5deb9d355353e814637fe60bbe2072a))
+
+
+
+
+
+## [0.71.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.71.1...@jobber/components-native@0.71.2) (2024-09-06)
+
+
+### Bug Fixes
+
+* **components:** match Glimmer mobile styles to web ([#2004](https://github.com/GetJobber/atlantis/issues/2004)) ([013553d](https://github.com/GetJobber/atlantis/commit/013553dc8151796e3e4d3ec514666274830bc6cd))
+
+
+
+
+
+## [0.71.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.71.0...@jobber/components-native@0.71.1) (2024-08-22)
+
+
+### Bug Fixes
+
+* **components:** Sort meta.json ([#1994](https://github.com/GetJobber/atlantis/issues/1994)) ([6fe9fa2](https://github.com/GetJobber/atlantis/commit/6fe9fa244a08dad4ee46537fa247675a8dbdd561))
+
+
+
+
+
+# [0.71.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.70.0...@jobber/components-native@0.71.0) (2024-08-22)
+
+
+### Features
+
+* **components:** Export component names as meta.json ([#1989](https://github.com/GetJobber/atlantis/issues/1989)) ([5f770d2](https://github.com/GetJobber/atlantis/commit/5f770d29755faae493e4471d16a680d4601ca012))
+
+
+
+
+
+# [0.70.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.69.4...@jobber/components-native@0.70.0) (2024-08-20)
+
+
+### Features
+
+* **design:** BREAKING CHANGE: Complete rebuild of the design token package ([#1965](https://github.com/GetJobber/atlantis/issues/1965)) ([b749502](https://github.com/GetJobber/atlantis/commit/b749502e347a4e14a1c5fcfdbc3114f54bb616f1))
+
+
+
+
+
+## [0.69.4](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.69.3...@jobber/components-native@0.69.4) (2024-08-08)
+
+
+### Bug Fixes
+
+* **components-native:** Add support for italics in Atlantis `Typography` component (JOB-101940) ([#1977](https://github.com/GetJobber/atlantis/issues/1977)) ([93cb197](https://github.com/GetJobber/atlantis/commit/93cb19710c4244c0453dfbb8f13a48110e72fb95)), closes [#1980](https://github.com/GetJobber/atlantis/issues/1980)
+
+
+
+
+
+## [0.69.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.69.2...@jobber/components-native@0.69.3) (2024-08-02)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.69.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.69.1...@jobber/components-native@0.69.2) (2024-07-15)
+
+
+### Reverts
+
+* revert: "feat: Storybook7 Upgrade" ([#1956](https://github.com/GetJobber/atlantis/issues/1956)) ([1e82e48](https://github.com/GetJobber/atlantis/commit/1e82e48f69d4fa8a8d2db46daba6dcf3b6d87111)), closes [#1952](https://github.com/GetJobber/atlantis/issues/1952) [#1953](https://github.com/GetJobber/atlantis/issues/1953) [#1957](https://github.com/GetJobber/atlantis/issues/1957)
+
+
+
+
+
+## [0.69.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.69.0...@jobber/components-native@0.69.1) (2024-07-08)
+
+
+### Reverts
+
+* "feat: Storybook7 Upgrade" ([#1954](https://github.com/GetJobber/atlantis/issues/1954)) ([0854202](https://github.com/GetJobber/atlantis/commit/0854202ae850439c514f5ce1f129f2e584fe0efb)), closes [#1711](https://github.com/GetJobber/atlantis/issues/1711)
+
+
+
+
+
+# [0.69.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.68.0...@jobber/components-native@0.69.0) (2024-07-05)
+
+
+### Features
+
+* Storybook7 Upgrade ([#1711](https://github.com/GetJobber/atlantis/issues/1711)) ([7923df3](https://github.com/GetJobber/atlantis/commit/7923df325cae63a5476d997f577efd3e123dbe54))
+
+
+
+
+
+# [0.68.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.67.6...@jobber/components-native@0.68.0) (2024-06-24)
+
+
+### Features
+
+* **components-native:** Add testID prop to components-native Icon ([#1943](https://github.com/GetJobber/atlantis/issues/1943)) ([85faba9](https://github.com/GetJobber/atlantis/commit/85faba97f811420792ebe5bf3b91bbf8c79b2c19))
+
+
+
+
+
+## [0.67.6](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.67.5...@jobber/components-native@0.67.6) (2024-06-11)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
 ## [0.67.5](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.67.4...@jobber/components-native@0.67.5) (2024-06-03)
 
 **Note:** Version bump only for package @jobber/components-native

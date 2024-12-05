@@ -38,7 +38,7 @@ describe("DataListAction", () => {
     mockDestructiveValue.mockReturnValue(true);
     const { button } = renderComponent();
 
-    expect(button.querySelector("p")).toHaveClass("critical");
+    expect(button.querySelector("p")).toHaveClass("destructive");
   });
 
   it("should not fire the onClick when the item from the context is undefined", async () => {
@@ -70,6 +70,20 @@ describe("DataListAction", () => {
 
     expect(screen.getByRole("button", { name: "Edit" })).toBeInTheDocument();
     expect(mockLabel).toHaveBeenCalledWith(value.activeItem);
+  });
+
+  it("should render an action as a link when an actionUrl is passed", () => {
+    const actionUrl = "https://example.com";
+    render(
+      <DataListLayoutActionsContext.Provider
+        value={{ activeItem: mockActiveItemValue() }}
+      >
+        <DataListAction label={name} actionUrl={actionUrl} />
+      </DataListLayoutActionsContext.Provider>,
+    );
+
+    const link = screen.getByRole("link", { name });
+    expect(link).toHaveAttribute("href", actionUrl);
   });
 
   describe("Action visibility", () => {

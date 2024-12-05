@@ -1,0 +1,21 @@
+.sortIcon {
+  padding-right: var(--space-small);
+}
+.sortIcon path {
+  fill: var(--color-interactive--subtle);
+  opacity: 0.4;
+  transition: opacity var(--timing-base) ease;
+}
+
+.sortIcon path.inactive {
+  opacity: 0.4;
+}
+
+.sortIcon path.active,
+.sortIcon:hover path {
+  opacity: 1;
+}
+
+.sortIcon:hover path.inactive {
+  opacity: 0.6;
+}

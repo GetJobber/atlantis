@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./StatusShield.css";
+import styles from "./StatusShield.module.css";
 
 const statusColor = {
   fail: "ef5733",

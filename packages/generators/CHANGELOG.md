@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.10.3...@jobber/generators@0.11.0) (2024-10-29)
+
+
+### Features
+
+* **docx:** The new Documentation Site. ([#2067](https://github.com/GetJobber/atlantis/issues/2067)) ([00d32fd](https://github.com/GetJobber/atlantis/commit/00d32fd68469acb430296dc5cc13e272ad4a8f4a)), closes [#2079](https://github.com/GetJobber/atlantis/issues/2079)
+
+
+
+
+
+## [0.10.3](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.10.2...@jobber/generators@0.10.3) (2024-10-16)
+
+**Note:** Version bump only for package @jobber/generators
+
+
+
+
+
+## [0.10.2](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.10.1...@jobber/generators@0.10.2) (2024-07-15)
+
+
+### Reverts
+
+* revert: "feat: Storybook7 Upgrade" ([#1956](https://github.com/GetJobber/atlantis/issues/1956)) ([1e82e48](https://github.com/GetJobber/atlantis/commit/1e82e48f69d4fa8a8d2db46daba6dcf3b6d87111)), closes [#1952](https://github.com/GetJobber/atlantis/issues/1952) [#1953](https://github.com/GetJobber/atlantis/issues/1953) [#1957](https://github.com/GetJobber/atlantis/issues/1957)
+
+
+
+
+
+## [0.10.1](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.10.0...@jobber/generators@0.10.1) (2024-07-08)
+
+
+### Reverts
+
+* "feat: Storybook7 Upgrade" ([#1954](https://github.com/GetJobber/atlantis/issues/1954)) ([0854202](https://github.com/GetJobber/atlantis/commit/0854202ae850439c514f5ce1f129f2e584fe0efb)), closes [#1711](https://github.com/GetJobber/atlantis/issues/1711)
+
+
+
+
+
+# [0.10.0](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.9.0...@jobber/generators@0.10.0) (2024-07-05)
+
+
+### Features
+
+* Storybook7 Upgrade ([#1711](https://github.com/GetJobber/atlantis/issues/1711)) ([7923df3](https://github.com/GetJobber/atlantis/commit/7923df325cae63a5476d997f577efd3e123dbe54))
+
+
+
+
+
 # [0.9.0](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.8.2...@jobber/generators@0.9.0) (2024-02-05)
 
 

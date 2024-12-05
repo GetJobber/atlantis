@@ -1,5 +1,5 @@
 import React, { PropsWithChildren, useState } from "react";
-import styles from "./InputAvatar.css";
+import styles from "./InputAvatar.module.css";
 import { Avatar, AvatarProps } from "../Avatar";
 import { FileUpload, InputFile, UploadParams } from "../InputFile";
 import { ProgressBar } from "../ProgressBar";
@@ -11,7 +11,7 @@ interface InputAvatarProps extends Omit<AvatarProps, "size"> {
    * to upload the file.
    *
    * More info is available at:
-   * https://atlantis.getjobber.com/?path=/docs/components-forms-and-inputs-inputfile-docs--page#getuploadparams
+   * https://atlantis.getjobber.com/?path=/docs/components-forms-and-inputs-inputfile--docs#getuploadparams
    */
   getUploadParams(file: File): UploadParams | Promise<UploadParams>;
 

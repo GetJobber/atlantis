@@ -241,6 +241,16 @@ export interface DataListEmptyStateProps {
    * to the DataList component.
    */
   readonly type?: "filtered" | "empty";
+
+  /**
+   * Custom render function for the empty state.
+   *
+   * If provided, this function will be used to render the empty state instead
+   * of the default rendering logic.
+   */
+  readonly customRender?: (
+    emptyState: Omit<DataListEmptyStateProps, "customRender">,
+  ) => ReactNode;
 }
 
 export interface DataListContextProps<T extends DataListObject>
@@ -350,6 +360,11 @@ export interface DataListActionProps<T extends DataListObject> {
    * The callback function when the action is clicked.
    */
   readonly onClick?: (data: T) => void;
+
+  /**
+   * The URL to navigate to when the action is clicked.
+   */
+  readonly actionUrl?: string;
 }
 
 export interface DataListActionsProps<T extends DataListObject> {

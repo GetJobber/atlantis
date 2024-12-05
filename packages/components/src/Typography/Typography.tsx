@@ -1,15 +1,16 @@
-/* eslint-disable import/no-internal-modules */
 import React, { CSSProperties, ReactNode } from "react";
 import classnames from "classnames";
-import styles from "./css/Typography.css";
-import fontSizes from "./css/FontSizes.css";
-import fontWeights from "./css/FontWeights.css";
-import textCases from "./css/TextCases.css";
-import textColors from "./css/TextColors.css";
-import emphasis from "./css/Emphasis.css";
-import truncate from "./css/Truncate.css";
-import alignment from "./css/TextAlignment.css";
-import fontFamilies from "./css/FontFamilies.css";
+import styles from "./css/Typography.module.css";
+import fontSizes from "./css/FontSizes.module.css";
+import fontWeights from "./css/FontWeights.module.css";
+import textCases from "./css/TextCases.module.css";
+import textColors from "./css/TextColors.module.css";
+import emphasis from "./css/Emphasis.module.css";
+import truncate from "./css/Truncate.module.css";
+import alignment from "./css/TextAlignment.module.css";
+import fontFamilies from "./css/FontFamilies.module.css";
+import underlineStyles from "./css/Underline.module.css";
+import { UnderlineStyle, UnderlineStyleWithColor } from "./types";
 
 interface TypographyProps {
   readonly id?: string;
@@ -50,6 +51,16 @@ interface TypographyProps {
   readonly fontFamily?: keyof typeof fontFamilies;
   readonly children: ReactNode;
   readonly numberOfLines?: number;
+
+  /**
+   * The style (and optionally a color) of underline the text is decorated with.
+   * All semantic color tokens (other than the base values) defined in tokens.web
+   * are valid values. If omitted, no underline is applied.
+   *
+   * @example "solid" for a non-dashed underline of the same color as `textColor`
+   * @example "double color-invoice" for a double underline in the specified color
+   */
+  readonly underline?: UnderlineStyle | UnderlineStyleWithColor | undefined;
 }
 export type TypographyOptions = Omit<TypographyProps, "children">;
 
@@ -65,6 +76,7 @@ export function Typography({
   emphasisType,
   numberOfLines,
   fontFamily,
+  underline,
 }: TypographyProps) {
   const shouldTruncateText = numberOfLines && numberOfLines > 0;
   const className = classnames(
@@ -76,23 +88,49 @@ export function Typography({
     emphasisType && emphasis[emphasisType],
     fontFamily && fontFamilies[fontFamily],
     shouldTruncateText && truncate.textTruncate,
+    underline && underlineStyles.basicUnderline,
     {
       ...(align && { [alignment[align]]: align !== `start` }),
     },
   );
 
-  let truncateLines: CSSProperties | undefined;
+  let stylesOverrides: CSSProperties = {};
 
   if (shouldTruncateText) {
-    truncateLines = {
+    stylesOverrides = {
       WebkitLineClamp: numberOfLines,
       WebkitBoxOrient: "vertical",
     };
   }
 
+  if (underline) {
+    const [underlineStyle, underlineColor] = underline.split(" ");
+
+    stylesOverrides.textDecorationStyle = underlineStyle as UnderlineStyle;
+    stylesOverrides.textDecorationColor = computeUnderlineColor(
+      underlineColor,
+      textColor,
+    );
+  }
+
   return (
-    <Tag id={id} className={className} style={truncateLines}>
+    <Tag id={id} className={className} style={stylesOverrides}>
       {children}
     </Tag>
   );
+}
+
+function computeUnderlineColor(
+  textDecorationColor: string,
+  textColor?: keyof typeof textColors,
+): string | undefined {
+  // Use the specified underline color if one is provided. If no underline color
+  // is specified, fall back to the text color for the underline.
+  if (textDecorationColor) {
+    return `var(--${textDecorationColor})`;
+  }
+
+  if (textColor) {
+    return textColors[textColor];
+  }
 }

@@ -1,0 +1,40 @@
+.dropZoneBase {
+  font-size: 0;
+  line-height: 0;
+  user-select: none;
+  cursor: pointer;
+}
+
+.dropZoneBase:focus,
+.dropZoneBase:focus-within {
+  border-color: var(--color-focus);
+  outline: none;
+}
+
+.dropZone {
+  padding: var(--space-base);
+  border: var(--border-thick) dashed var(--color-border--interactive);
+  border-radius: var(--radius-large);
+  text-align: center;
+}
+
+.dropZone.active {
+  border-color: var(--color-focus);
+  background-color: var(--color-surface--hover);
+}
+
+.dropZone.error {
+  border-color: var(--color-critical);
+}
+
+.validationErrors {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropzoneContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}

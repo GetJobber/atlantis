@@ -1,0 +1,10 @@
+.horizontal {
+  height: var(--space-minuscule);
+  border-bottom: var(--divider-width) solid var(--divider-color);
+}
+
+.vertical {
+  width: var(--space-minuscule);
+  height: auto;
+  border-right: var(--divider-width) solid var(--divider-color);
+}

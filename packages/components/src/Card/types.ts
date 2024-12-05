@@ -1,5 +1,5 @@
 import { ReactElement, ReactNode } from "react";
-import colors from "./colors.css";
+import colors from "./cardcolors.module.css";
 import { ButtonProps } from "../Button";
 import { MenuProps } from "../Menu";
 
@@ -17,6 +17,8 @@ export interface HeaderActionProps {
    */
   readonly action?: ActionProps;
 }
+
+export type elevationProp = "none" | "low" | "base" | "high";
 
 export interface CardProps {
   /**
@@ -36,4 +38,5 @@ export interface CardProps {
    * The header props of the card.
    */
   readonly header?: string | HeaderActionProps | ReactElement;
+  readonly elevation?: elevationProp;
 }

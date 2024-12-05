@@ -41,8 +41,6 @@ export function FormCache<T extends FieldValues>({
       // https://github.com/react-hook-form/react-hook-form/issues/2978
       setLocalCache(omit(formData, localCacheExclude));
     } else {
-      // @ts-expect-error Typescript thinks that the FieldValues defined in useWatch is different
-      // from the one in useFormContext
       setLocalCache(formData);
     }
   }, [formData, isDirty, localCacheExclude, setLocalCache, shouldExclude]);

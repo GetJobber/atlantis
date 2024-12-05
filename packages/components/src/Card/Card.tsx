@@ -1,8 +1,9 @@
 import React from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
-import styles from "./Card.css";
-import colors from "./colors.css";
+import styles from "./Card.module.css";
+import colors from "./cardcolors.module.css";
+import elevations from "./CardElevations.module.css";
 import { CardClickable } from "./CardClickable";
 import { CardHeader } from "./CardHeader";
 import { CardProps } from "./types";
@@ -33,12 +34,14 @@ export function Card({
   title,
   url,
   external = false,
+  elevation = "none",
 }: CardPropOptions) {
   const className = classnames(
     styles.card,
     accent && styles.accent,
     (url || onClick) && styles.clickable,
     accent && colors[accent],
+    elevation !== "none" && elevations[`${elevation}Elevation`],
   );
 
   const cardContent = (

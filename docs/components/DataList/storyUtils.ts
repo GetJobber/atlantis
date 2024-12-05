@@ -13,7 +13,7 @@ export interface ListQueryType {
         created: string;
         id: string;
         name: string;
-        gender: string;
+        eyeColor: string;
         hairColor: string;
         skinColor: string;
         birthYear: string;
@@ -46,7 +46,7 @@ export const LIST_QUERY = gql`
           created
           id
           name
-          gender
+          eyeColor
           hairColor
           skinColor
           birthYear

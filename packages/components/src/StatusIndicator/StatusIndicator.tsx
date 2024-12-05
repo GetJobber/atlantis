@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./StatusIndicator.css";
+import styles from "./StatusIndicator.module.css";
 import { StatusIndicatorType } from "./StatusIndicator.type";
 
 interface StatusIndicatorProps {

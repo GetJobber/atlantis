@@ -1,0 +1,95 @@
+.autocomplete {
+  position: relative;
+  width: 100%;
+}
+
+.options {
+  display: none;
+  position: absolute;
+  z-index: calc(var(--elevation-menu) + var(--elevation-modal));
+  width: 100%;
+  /* Unfortunately this is how we define our line item picker height in jobber online.
+  This is a concession to maintain visual parity. */
+  max-height: 300px;
+  box-shadow: var(--shadow-base);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: var(--border-base) solid var(--color-color-border);
+  border-radius: var(--radius-base);
+  overflow: auto;
+  scroll-behavior: smooth;
+  background-color: var(--color-surface);
+}
+
+.options h5 {
+  padding: var(--space-small) 0 var(--space-smaller) var(--space-small);
+  border-bottom: var(--border-base) solid var(--color-border);
+}
+
+.options.visible {
+  display: block;
+}
+
+.options.visible:empty {
+  display: none;
+}
+
+.option {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: center;
+  padding: var(--space-small);
+  border: none;
+  text-align: left;
+  list-style: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all var(--timing-base);
+}
+
+.option:hover,
+.option:focus,
+.option.active {
+  background-color: var(--color-surface--hover);
+  outline-color: var(--color-focus);
+}
+
+.option.separator:not(:last-child) {
+  border-bottom: var(--border-base) solid var(--color-border);
+}
+
+.options:hover .option.active:not(:hover) {
+  background-color: transparent;
+  outline-color: transparent;
+}
+
+.options .heading:not(:first-child) {
+  padding-top: var(--space-small);
+}
+
+.option .icon {
+  flex: 0 1 auto;
+  align-self: auto;
+  width: var(--space-large);
+}
+
+.option .text {
+  display: inline-flex;
+  flex: 1 100%;
+  flex-wrap: wrap;
+}
+
+.option .label {
+  flex: 2;
+}
+
+.option .details {
+  flex: 1;
+  align-self: flex-end;
+  text-align: right;
+}
