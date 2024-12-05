@@ -16,7 +16,7 @@ export interface useInputTextFormFieldProps
   /**
    * The error message for the field
    */
-  readonly errorMessage: string;
+  readonly error?: string;
 
   /**
    * Adjusts the form field to go inline with a content. This also silences the
@@ -56,6 +56,10 @@ export interface useInputTextFormFieldProps
   ) => void;
 }
 
+export interface UseInputTextFormFieldReturn {
+  fieldProps: React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement>;
+}
+
 /**
  * Provides the props for the html fields rendered by the FormField component
  */
@@ -68,7 +72,7 @@ export function useInputTextFormField({
   handleBlur,
   handleFocus,
   handleKeyDown,
-  errorMessage,
+  error,
   ...rest
 }: useInputTextFormFieldProps) {
   const descriptionIdentifier = `descriptionUUID--${id}`;
@@ -83,11 +87,11 @@ export function useInputTextFormField({
     onFocus: handleFocus,
     ...(description &&
       !inline && { "aria-describedby": descriptionIdentifier }),
-    "aria-invalid": rest["aria-invalid"] || errorMessage ? true : undefined,
+    "aria-invalid": rest["aria-invalid"] || error ? true : undefined,
     autoFocus: rest.autoFocus,
     onKeyDown: handleKeyDown,
     ...rest,
   };
 
-  return { fieldProps, descriptionIdentifier };
+  return { fieldProps };
 }

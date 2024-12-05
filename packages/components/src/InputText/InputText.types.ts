@@ -15,9 +15,20 @@ export type InputTextVersion = 1 | 2 | undefined;
 export interface InputTextRebuiltProps
   extends Omit<
     React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement>,
-    "onChange" | "onBlur" | "max" | "min" | "maxLength" | "rows" | "size"
+    | "onChange"
+    | "onBlur"
+    | "maxLength"
+    | "rows"
+    | "size"
+    | "suffix"
+    | "prefix"
+    | "max"
+    | "min"
+    | "defaultValue"
   > {
   readonly error?: string;
+
+  readonly invalid?: boolean;
   readonly identifier?: string;
   readonly autocomplete?: boolean | AutocompleteTypes;
   readonly loading?: boolean;
@@ -49,8 +60,6 @@ export interface InputTextRebuiltProps
   readonly value: string;
 
   readonly maxLength?: number;
-  readonly max?: number;
-  readonly min?: number;
 
   readonly size?: FormFieldProps["size"];
   readonly inline?: FormFieldProps["inline"];
