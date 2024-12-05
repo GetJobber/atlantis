@@ -73,7 +73,7 @@ export const PropsList = ({
                     <div
                       style={{
                         display: "flex",
-                        gap: "var(--space-smaller",
+                        gap: "var(--space-small)",
                         flexWrap: "wrap",
                       }}
                     >
