@@ -13,8 +13,6 @@ import { JobberLogo } from "../assets/JobberLogo.svg";
 export const NavMenu = () => {
   const [open, setOpen] = useState(false);
 
-  console.log(routes);
-
   return (
     <div
       style={{
@@ -42,8 +40,9 @@ export const NavMenu = () => {
           {routes?.map((route, index) => {
             if (route.children) {
               return (
-                <Box key={index} padding="base">
+                <Box key={`box-${index}-${Math.random(10000000)}`} padding="base">
                   <AnimatedPresenceDisclosure
+                    key={`disclosre-${route.handle}-${index}-${Math.random(10000000)}`}
                     to={route.path || "/"}
                     title={route.handle}
                   >
@@ -58,7 +57,7 @@ export const NavMenu = () => {
                               (subsubroute, subsubindex) => {
                                 return (
                                   <StyledSubLink
-                                    key={subsubindex}
+                                    key={`${subsubroute.handle}-${subsubindex}-${Math.random(10000000)}`}
                                     to={subsubroute.path || "/"}
                                   >
                                     {subsubroute.handle}
@@ -71,7 +70,7 @@ export const NavMenu = () => {
                       } else {
                         return (
                           <StyledSubLink
-                            key={subindex}
+                            key={`${subroute.handle}-${subindex}-${Math.random(10000000)}`}
                             to={subroute.path || "/"}
                           >
                             {subroute.handle}
@@ -87,8 +86,8 @@ export const NavMenu = () => {
             if (route.inNav === false) return null;
 
             return (
-              <MenuItem key={index}>
-                <StyledLink key={index} to={route.path ?? "/"}>
+              <MenuItem key={`menuitem-${index}-${Math.random(10000000)}`}>
+                <StyledLink key={`${route.handle}-${index}-${Math.random(10000000)}`} to={route.path ?? "/"}>
                   {route.handle}
                 </StyledLink>
               </MenuItem>

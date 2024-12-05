@@ -27,7 +27,7 @@ const populateComponentRoutes = () => {
     for (const component of components) {
       tempGrouping.children.push({
         path: `/components/${component}`,
-        component: ContentLoader,
+        component: ComponentView,
         handle: component,
         inNav: true,
       });
@@ -35,13 +35,6 @@ const populateComponentRoutes = () => {
     groupedComponentNavRoutes.push(tempGrouping);
   }
 };
-
-const componentRoutes = componentList.map(component => ({
-  path: component.to,
-  component: ContentLoader,
-  handle: component.title,
-  inNav: true,
-}));
 
 populateComponentRoutes();
 
