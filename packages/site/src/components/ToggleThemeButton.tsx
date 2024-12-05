@@ -26,7 +26,7 @@ export const ToggleThemeButton = () => {
     >
       <Button
         type="secondary"
-        label={isDark ? "☀️" : "🌕"}
+        label={isDark ? "☀️" : "🌒"}
         onClick={handleClick}
       />
     </div>
