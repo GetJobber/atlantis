@@ -8,6 +8,7 @@ import React, {
 import classnames from "classnames";
 import styles from "./Tabs.module.css";
 import { useTabsOverflow } from "./hooks/useTabsOverflow";
+import { useArrowKeyNavigation } from "./hooks/useArrowKeyNavigation";
 import { Typography } from "../Typography";
 
 interface TabsProps {
@@ -67,29 +68,10 @@ export function Tabs({
     };
   };
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
-    const currentIndex = tabRefs.current.findIndex(
-      tab => tab === document.activeElement,
-    );
-
-    if (currentIndex === -1) return;
-
-    const focusAndActivateTab = (index: number) => {
-      tabRefs.current[index]?.focus();
-      activateTab(index)();
-    };
-
-    if (event.key === "ArrowRight") {
-      event.preventDefault();
-      const nextIndex = (currentIndex + 1) % tabRefs.current.length;
-      focusAndActivateTab(nextIndex);
-    } else if (event.key === "ArrowLeft") {
-      event.preventDefault();
-      const prevIndex =
-        (currentIndex - 1 + tabRefs.current.length) % tabRefs.current.length;
-      focusAndActivateTab(prevIndex);
-    }
-  };
+  const handleKeyDown = useArrowKeyNavigation({
+    elementsRef: tabRefs,
+    onActivate: index => activateTab(index)(),
+  });
 
   const activeTabProps = (React.Children.toArray(children) as ReactElement[])[
     activeTab
