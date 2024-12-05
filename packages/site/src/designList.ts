@@ -37,7 +37,7 @@ export const designList = [
     title: "Radii",
     to: "/content/design/radii",
     imageURL: "/Radii.png",
-    additionalMatches: ["Roundness", "Corners"],
+    additionalMatches: ["Roundness", "Corners", "Radius"],
   },
   {
     title: "Spacing",
