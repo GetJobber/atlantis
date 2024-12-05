@@ -282,7 +282,7 @@ const skeletonHTML = (theme: Theme, type: "web" | "mobile") => {
   return `
 
 <!DOCTYPE html>
-<html data-theme="${theme}">
+<html data-theme="${type === "web" ? theme : "light"}">
 <head>
 <style>
 html,body,#root {
@@ -459,13 +459,24 @@ export const MobileCodeWrapper = (
   transpiledCode: string | null | undefined,
 ) => `
             import {
+              ActionItem,
+              ActionItemGroup,
+              ActionLabel,
+              ActivityIndicator,
+              AutoLink,
+              Banner,
+              BottomSheet,
+              BottomSheetOption,
               Button,
+              ButtonGroup,
               Card,
               Content,
               InputDate,
               Icon,
               Text,
-              useState
+              useState,
+              useRef,
+              Host,
             } from '@jobber/components-native';
 
                 ${transpiledCode}

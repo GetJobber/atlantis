@@ -1,5 +1,23 @@
 export const componentList = [
   {
+    title: "ActionItem",
+    to: "/components/ActionItem",
+    imageURL: "/ActionItem.png",
+    additionalMatches: [],
+  },
+  {
+    title: "ActionItemGroup",
+    to: "/components/ActionItemGroup",
+    imageURL: "/ActionItemGroup.png",
+    additionalMatches: [],
+  },
+  {
+    title: "ActionLabel",
+    to: "/components/ActionLabel",
+    imageURL: "/ActionLabel.png",
+    additionalMatches: [],
+  },
+  {
     title: "AnimatedPresence",
     to: "/components/AnimatedPresence",
     imageURL: "/Animation.png",
@@ -17,6 +35,11 @@ export const componentList = [
     imageURL: "/Autocomplete.png",
   },
   {
+    title: "AutoLink",
+    to: "/components/AutoLink",
+    imageURL: "/AutoLink.png",
+  },
+  {
     title: "Avatar",
     to: "/components/Avatar",
     imageURL: "/Avatar.png",
@@ -32,6 +55,11 @@ export const componentList = [
     imageURL: "/Box.png",
   },
   {
+    title: "BottomSheet",
+    to: "/components/BottomSheet",
+    imageURL: "/BottomSheet.png",
+  },
+  {
     title: "Button",
     to: "/components/Button",
     imageURL: "/Button.png",
@@ -41,6 +69,11 @@ export const componentList = [
     to: "/components/ButtonDismiss",
     imageURL: "/ButtonDismiss.png",
     additionalMatches: ["Close", "Dismiss", "Remove"],
+  },
+  {
+    title: "ButtonGroup",
+    to: "/components/ButtonGroup",
+    imageURL: "/ButtonGroup.png",
   },
   {
     title: "Card",

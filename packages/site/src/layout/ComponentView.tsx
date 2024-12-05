@@ -33,6 +33,7 @@ export const ComponentView = () => {
   const { stateValues } = usePropsAsDataList(PageMeta, type);
   const { enableMinimal, minimal, disableMinimal, isMinimal } =
     useAtlantisSite();
+
   useEffect(() => {
     if (minimal.requested && !minimal.enabled) {
       enableMinimal();
@@ -42,17 +43,29 @@ export const ComponentView = () => {
       disableMinimal();
     };
   }, []);
+
   const ComponentContent = PageMeta?.content;
+
   const code =
-    type === "web"
-      ? PageMeta.component.element
-      : PageMeta.component.mobileElement;
+    type === "web" && PageMeta?.component?.element
+      ? PageMeta?.component?.element
+      : PageMeta?.component?.mobileElement;
 
   useEffect(() => {
     if (iframe?.current || iframeMobile?.current) {
       setTimeout(() => updateCode(code as string), 100);
     }
   }, [code, iframe?.current, iframeMobile?.current, type]);
+
+  useEffect(() => {
+    if (type === "web" && !PageMeta?.component?.element) {
+      updateType("mobile");
+    }
+
+    if (type === "mobile" && !PageMeta?.component?.mobileElement) {
+      //updateType("web");
+    }
+  }, [type]);
 
   const handleTabChange = (tab: number) => {
     if (tab == 1) {
@@ -62,6 +75,47 @@ export const ComponentView = () => {
     }
     updateStyles();
   };
+  const tabs = [
+    {
+      label: "Design",
+      children: (
+        <Content spacing="large">
+          <ComponentContent />
+        </Content>
+      ),
+    },
+    {
+      label: "Web",
+      children: (
+        <>
+          <Box margin={{ bottom: "base" }}>
+            <AtlantisPreviewEditor />
+          </Box>
+          <PropsList values={stateValues || []} />
+        </>
+      ),
+    },
+    {
+      label: "Mobile",
+      children: (
+        <>
+          <Box margin={{ bottom: "base" }}>
+            <AtlantisPreviewEditor />
+          </Box>
+          <PropsList values={stateValues || []} />
+        </>
+      ),
+    },
+  ];
+  const activeTabs = tabs.filter((_, index) => {
+    if (index == 1 && !PageMeta?.component?.element) {
+      return false;
+    } else if (index == 2 && !PageMeta?.component?.mobileElement) {
+      return false;
+    }
+
+    return true;
+  });
 
   return PageMeta ? (
     <Grid>
@@ -79,23 +133,11 @@ export const ComponentView = () => {
                   style={{ "--public-tab--inset": 0 } as React.CSSProperties}
                 >
                   <Tabs onTabChange={handleTabChange}>
-                    <Tab label="Design">
-                      <Content spacing="large">
-                        <ComponentContent />
-                      </Content>
-                    </Tab>
-                    <Tab label="Web">
-                      <Box margin={{ bottom: "base" }}>
-                        <AtlantisPreviewEditor />
-                      </Box>
-                      <PropsList values={stateValues || []} />
-                    </Tab>
-                    <Tab label="Mobile">
-                      <Box margin={{ bottom: "base" }}>
-                        <AtlantisPreviewEditor />
-                      </Box>
-                      <PropsList values={stateValues || []} />
-                    </Tab>
+                    {activeTabs.map((tab, index) => (
+                      <Tab key={index} label={tab.label}>
+                        {tab.children}
+                      </Tab>
+                    ))}
                   </Tabs>
                 </span>
               </Content>

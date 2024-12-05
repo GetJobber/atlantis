@@ -1,11 +1,18 @@
+import ActionItemContent from "./ActionItem";
+import ActionItemGroupContent from "./ActionItemGroup";
+import ActionLabelContent from "./ActionLabel";
+import ActivityIndicatorContent from "./ActivityIndicator";
 import AnimatedPresenceContent from "./AnimatedPresence";
 import AnimatedSwitcherContent from "./AnimatedSwitcher";
 import AvatarContent from "./Avatar";
+import AutoLinkContent from "./AutoLink";
 import AutoCompleteContent from "./Autocomplete";
 import BannerContent from "./Banner";
+import BottomSheetContent from "./BottomSheet";
 import BoxContent from "./Box";
 import ButtonContent from "./Button";
 import ButtonDismissContent from "./ButtonDismiss";
+import ButtonGroupContent from "./ButtonGroup";
 import CheckboxContent from "./Checkbox";
 import CardContent from "./Card";
 import ChipContent from "./Chip";
@@ -76,6 +83,18 @@ import TypographyContent from "./Typography";
 import { ContentExport } from "../types/content";
 
 export const SiteContent: Record<string, ContentExport> = {
+  ActionItem: {
+    ...ActionItemContent,
+  },
+  ActionItemGroup: {
+    ...ActionItemGroupContent,
+  },
+  ActionLabel: {
+    ...ActionLabelContent,
+  },
+  ActivityIndicator: {
+    ...ActivityIndicatorContent,
+  },
   AnimatedPresence: {
     ...AnimatedPresenceContent,
   },
@@ -85,11 +104,20 @@ export const SiteContent: Record<string, ContentExport> = {
   Autocomplete: {
     ...AutoCompleteContent,
   },
+  AutoLink: {
+    ...AutoLinkContent,
+  },
   Avatar: {
     ...AvatarContent,
   },
   Banner: {
     ...BannerContent,
+  },
+  BottomSheet: {
+    ...BottomSheetContent,
+  },
+  ButtonGroup: {
+    ...ButtonGroupContent,
   },
   Box: {
     ...BoxContent,

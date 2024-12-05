@@ -6,6 +6,7 @@ window.React = React;
 window.ReactDOM = ReactDOM;
 
 export * from "@jobber/components-native";
+export * from "react-native-portalize";
 
 export {
   ReactDOM,

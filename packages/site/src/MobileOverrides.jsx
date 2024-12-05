@@ -22,7 +22,7 @@ export const Gesture = {
 
 export const Path = props => {
   return (
-    <path d={props.d} fill={props.fill} key={props.key}>
+    <path d={props.d} fill={props.fill}>
       {props.children}
     </path>
   );
