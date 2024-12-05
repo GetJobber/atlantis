@@ -164,6 +164,7 @@ export const AtlantisPreviewEditorProvider = ({
               RecurringSelect,
               SegmentedControl,
               Select,
+              SideDrawer,
               Spinner,
               StatusIndicator,
               StatusLabel,

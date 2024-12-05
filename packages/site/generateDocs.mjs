@@ -171,6 +171,7 @@ const components = [
   "RecurringSelect",
   "SegmentedControl",
   "Select",
+  "SideDrawer",
   "Spinner",
   "StatusIndicator",
   "StatusLabel",
