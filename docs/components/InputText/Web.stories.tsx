@@ -124,6 +124,15 @@ export const VersionComparison = () => {
   });
   const [multiline, setMultiline] = React.useState(false);
   const [inline, setInline] = React.useState(false);
+  const [invalid, setInvalid] = React.useState(false);
+  const [errorMessage, setErrorMessage] = React.useState("");
+
+  const extraProps = {
+    invalid,
+    error: errorMessage,
+    multiline,
+    inline,
+  };
 
   const handleChange = (field: keyof typeof values) => (value: string) => {
     setValues(prev => ({ ...prev, [field]: value }));
@@ -173,12 +182,19 @@ export const VersionComparison = () => {
   return (
     <Content>
       <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+        <Grid>
+          <Grid.Cell size={{ xs: 6 }}>
+            <h2>V1</h2>
+          </Grid.Cell>
+          <Grid.Cell size={{ xs: 6 }}>
+            <h2>V2</h2>
+          </Grid.Cell>
+        </Grid>
         {renderBothVersions(
           "Left Aligned (Default)",
           {
             placeholder: "Default alignment",
-            multiline,
-            inline,
+            ...extraProps,
           },
           "basic",
         )}
@@ -188,8 +204,7 @@ export const VersionComparison = () => {
           {
             placeholder: "Right aligned text",
             align: "right",
-            multiline,
-            inline,
+            ...extraProps,
           },
           "rightAlign",
         )}
@@ -199,8 +214,7 @@ export const VersionComparison = () => {
           {
             placeholder: "Center aligned text",
             align: "center",
-            multiline,
-            inline,
+            ...extraProps,
           },
           "centerAlign",
         )}
@@ -210,8 +224,7 @@ export const VersionComparison = () => {
           {
             placeholder: "Input with prefix",
             prefix: { label: "$" },
-            multiline,
-            inline,
+            ...extraProps,
           },
           "prefix",
         )}
@@ -221,8 +234,8 @@ export const VersionComparison = () => {
           {
             placeholder: "Input with suffix",
             suffix: { label: "%" },
-            multiline,
-            inline,
+            ...extraProps,
+            title: "this is a title",
           },
           "suffix",
         )}
@@ -233,8 +246,7 @@ export const VersionComparison = () => {
             placeholder: "Input with both",
             prefix: { icon: "search" },
             suffix: { icon: "calendar" },
-            multiline,
-            inline,
+            ...extraProps,
           },
           "both",
         )}
@@ -244,8 +256,7 @@ export const VersionComparison = () => {
           {
             placeholder: "With toolbar",
             toolbar: toolbar,
-            multiline,
-            inline,
+            ...extraProps,
           },
           "withToolbar",
         )}
@@ -258,25 +269,51 @@ export const VersionComparison = () => {
             prefix: { label: "$" },
             suffix: { icon: "remove" },
             toolbar: toolbar,
+            ...extraProps,
           },
           "both",
         )}
         {renderBothVersions(
           "Size small",
-          { placeholder: "With Size", size: "small", multiline, inline },
+          {
+            placeholder: "With Size",
+            size: "small",
+            ...extraProps,
+          },
           "sizeSmall",
         )}
         {renderBothVersions(
           "Size large",
-          { placeholder: "With Size", size: "large", multiline, inline },
+          { placeholder: "With Size", size: "large", ...extraProps },
           "sizeLarge",
         )}
       </div>
-      <Button
-        label="Toggle Multiline"
-        onClick={() => setMultiline(!multiline)}
-      />
-      <Button label="Toggle inline" onClick={() => setInline(!inline)} />
+      <Grid>
+        <Grid.Cell size={{ xs: 6 }}>
+          <Button
+            label="Toggle Multiline"
+            onClick={() => setMultiline(!multiline)}
+          />
+        </Grid.Cell>
+        <Grid.Cell size={{ xs: 6 }}>
+          <Button label="Toggle inline" onClick={() => setInline(!inline)} />
+        </Grid.Cell>
+        <Grid.Cell size={{ xs: 6 }}>
+          <Button label="Toggle Invalid" onClick={() => setInvalid(!invalid)} />
+        </Grid.Cell>
+        <Grid.Cell size={{ xs: 6 }}>
+          <Button
+            label="Toggle Error message"
+            onClick={() => {
+              if (errorMessage) {
+                setErrorMessage("");
+              } else {
+                setErrorMessage("This is an error message");
+              }
+            }}
+          />
+        </Grid.Cell>
+      </Grid>
     </Content>
   );
 };
