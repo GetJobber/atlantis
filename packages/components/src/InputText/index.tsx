@@ -29,4 +29,4 @@ export const InputText = React.forwardRef(function InputText(
     />
   );
 });
-export { InputTextRef, InputTextSPAR };
+export { InputTextRef, InputTextSPAR as InputTextRebuilt };
