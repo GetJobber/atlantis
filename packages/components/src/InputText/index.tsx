@@ -4,7 +4,8 @@ import {
   InputTextPropOptions,
   InputTextRef,
 } from "./InputText";
-import { InputTextRebuiltProps, InputTextSPAR } from "./InputText.rebuilt";
+import { InputTextSPAR } from "./InputText.rebuilt";
+import { InputTextRebuiltProps } from "./InputText.types";
 
 type CombinedProps = InputTextPropOptions | InputTextRebuiltProps;
 
@@ -28,4 +29,4 @@ export const InputText = React.forwardRef(function InputText(
     />
   );
 });
-export { InputTextRef };
+export { InputTextRef, InputTextSPAR };

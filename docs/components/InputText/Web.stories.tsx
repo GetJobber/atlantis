@@ -1,7 +1,9 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { InputText } from "@jobber/components/InputText";
+import { InputText, InputTextSPAR } from "@jobber/components/InputText";
 import { Button } from "@jobber/components/Button";
+import { Content } from "@jobber/components/Content";
+import { Grid } from "@jobber/components/Grid";
 
 export default {
   title: "Components/Forms and Inputs/InputText/Web",
@@ -13,9 +15,16 @@ export default {
 } as ComponentMeta<typeof InputText>;
 
 const BasicTemplate: ComponentStory<typeof InputText> = args => {
-  return <InputText {...args} />;
+  const [value, setValue] = React.useState("");
+
+  return <InputText {...args} value={value} onChange={setValue} version={2} />;
 };
 
+const Version2Template: ComponentStory<typeof InputTextSPAR> = args => {
+  const [value, setValue] = React.useState("");
+
+  return <InputText {...args} value={value} onChange={setValue} version={2} />;
+};
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
   name: "age",
@@ -56,7 +65,6 @@ Toolbar.args = {
 
 export const Readonly = BasicTemplate.bind({});
 Readonly.args = {
-  defaultValue: "Rocinante",
   readonly: true,
 };
 
@@ -70,4 +78,205 @@ export const Clearable = BasicTemplate.bind({});
 Clearable.args = {
   name: "name",
   clearable: "always",
+};
+
+export const Version2 = Version2Template.bind({});
+Version2.args = {
+  placeholder: "Hakunamatata",
+  multiline: true,
+  rows: { min: 1, max: 5 },
+  toolbar: (
+    <div
+      style={{
+        display: "flex",
+        width: "100%",
+        justifyContent: "space-between",
+      }}
+    >
+      <Button label="Rewrite" size="small" icon="sparkles" fullWidth={false} />
+      <Button
+        ariaLabel="Undo"
+        size="small"
+        icon="redo"
+        type="tertiary"
+        fullWidth={false}
+      />
+    </div>
+  ),
+};
+
+export const VersionComparison = () => {
+  const [values, setValues] = React.useState({
+    basic: "",
+    multiline: "",
+    error: "",
+    disabled: "",
+    readonly: "",
+    withToolbar: "",
+    prefix: "",
+    suffix: "",
+    both: "",
+    rightAlign: "",
+    centerAlign: "",
+    sizeSmall: "",
+    sizeLarge: "",
+    inline: "",
+  });
+  const [multiline, setMultiline] = React.useState(false);
+  const [inline, setInline] = React.useState(false);
+
+  const handleChange = (field: keyof typeof values) => (value: string) => {
+    setValues(prev => ({ ...prev, [field]: value }));
+  };
+
+  const toolbar = (
+    <div style={{ display: "flex", gap: "0.5rem" }}>
+      <Button label="Rewrite" size="small" icon="sparkles" fullWidth={false} />
+      <Button
+        ariaLabel="Undo"
+        size="small"
+        icon="redo"
+        type="tertiary"
+        fullWidth={false}
+      />
+    </div>
+  );
+
+  const renderBothVersions = (
+    title: string,
+    props: Record<string, unknown>,
+    field: keyof typeof values,
+  ) => (
+    <Grid>
+      <Grid.Cell size={{ xs: 12 }}>
+        <h3>{title}</h3>
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <InputText
+          {...props}
+          version={1}
+          value={values[field]}
+          onChange={handleChange(field)}
+        />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <InputTextSPAR
+          {...props}
+          version={2}
+          value={values[field]}
+          onChange={handleChange(field)}
+        />
+      </Grid.Cell>
+    </Grid>
+  );
+
+  return (
+    <Content>
+      <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+        {renderBothVersions(
+          "Left Aligned (Default)",
+          {
+            placeholder: "Default alignment",
+            multiline,
+            inline,
+          },
+          "basic",
+        )}
+
+        {renderBothVersions(
+          "Right Aligned",
+          {
+            placeholder: "Right aligned text",
+            align: "right",
+            multiline,
+            inline,
+          },
+          "rightAlign",
+        )}
+
+        {renderBothVersions(
+          "Center Aligned",
+          {
+            placeholder: "Center aligned text",
+            align: "center",
+            multiline,
+            inline,
+          },
+          "centerAlign",
+        )}
+
+        {renderBothVersions(
+          "With Prefix",
+          {
+            placeholder: "Input with prefix",
+            prefix: { label: "$" },
+            multiline,
+            inline,
+          },
+          "prefix",
+        )}
+
+        {renderBothVersions(
+          "With Suffix",
+          {
+            placeholder: "Input with suffix",
+            suffix: { label: "%" },
+            multiline,
+            inline,
+          },
+          "suffix",
+        )}
+
+        {renderBothVersions(
+          "With Prefix and Suffix",
+          {
+            placeholder: "Input with both",
+            prefix: { icon: "search" },
+            suffix: { icon: "calendar" },
+            multiline,
+            inline,
+          },
+          "both",
+        )}
+
+        {renderBothVersions(
+          "With Toolbar",
+          {
+            placeholder: "With toolbar",
+            toolbar: toolbar,
+            multiline,
+            inline,
+          },
+          "withToolbar",
+        )}
+
+        {renderBothVersions(
+          "Combined Features",
+          {
+            placeholder: "All features",
+            align: "right",
+            prefix: { label: "$" },
+            suffix: { icon: "remove" },
+            toolbar: toolbar,
+          },
+          "both",
+        )}
+        {renderBothVersions(
+          "Size small",
+          { placeholder: "With Size", size: "small", multiline, inline },
+          "sizeSmall",
+        )}
+        {renderBothVersions(
+          "Size large",
+          { placeholder: "With Size", size: "large", multiline, inline },
+          "sizeLarge",
+        )}
+      </div>
+      <Button
+        label="Toggle Multiline"
+        onClick={() => setMultiline(!multiline)}
+      />
+      <Button label="Toggle inline" onClick={() => setInline(!inline)} />
+    </Content>
+  );
 };
