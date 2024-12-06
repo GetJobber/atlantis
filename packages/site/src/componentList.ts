@@ -15,26 +15,31 @@ export const componentList = [
     title: "Autocomplete",
     to: "/components/Autocomplete",
     imageURL: "/Autocomplete.png",
+    additionalMatches: ["Typeahead", "Suggest"],
   },
   {
     title: "Avatar",
     to: "/components/Avatar",
     imageURL: "/Avatar.png",
+    additionalMatches: ["Profile", "User"],
   },
   {
     title: "Banner",
     to: "/components/Banner",
     imageURL: "/Banner.png",
+    additionalMatches: ["Hero", "Notification"],
   },
   {
     title: "Box",
     to: "/components/Box",
     imageURL: "/Box.png",
+    additionalMatches: ["Container", "Wrapper", "Layout"],
   },
   {
     title: "Button",
     to: "/components/Button",
     imageURL: "/Button.png",
+    additionalMatches: ["Action"],
   },
   {
     title: "ButtonDismiss",
@@ -46,6 +51,7 @@ export const componentList = [
     title: "Card",
     to: "/components/Card",
     imageURL: "/Card.png",
+    additionalMatches: ["Tile"],
   },
   {
     title: "Checkbox",
@@ -68,6 +74,7 @@ export const componentList = [
     title: "Combobox",
     to: "/components/Combobox",
     imageURL: "/Combobox.png",
+    additionalMatches: ["Dropdown", "Select"],
   },
   {
     title: "ConfirmationModal",
@@ -79,11 +86,13 @@ export const componentList = [
     title: "Content",
     to: "/components/Content",
     imageURL: "/Content.png",
+    additionalMatches: ["Container", "Layout", "Spacing"],
   },
   {
     title: "Countdown",
     to: "/components/Countdown",
     imageURL: "/Countdown.png",
+    additionalMatches: ["Timer", "Time", "Clock"],
   },
   {
     title: "DataDump",
@@ -94,16 +103,19 @@ export const componentList = [
     title: "DataList",
     to: "/components/DataList",
     imageURL: "/DataList.png",
+    additionalMatches: ["Table"],
   },
   {
     title: "DataTable",
     to: "/components/DataTable",
     imageURL: "/DataTable.png",
+    additionalMatches: ["List"],
   },
   {
     title: "DatePicker",
     to: "/components/DatePicker",
     imageURL: "/DatePicker.png",
+    additionalMatches: ["Calendar"],
   },
   {
     title: "DescriptionList",
@@ -126,11 +138,13 @@ export const componentList = [
     title: "Divider",
     to: "/components/Divider",
     imageURL: "/Divider.png",
+    additionalMatches: ["Separator", "Line", "Rule"],
   },
   {
     title: "Drawer",
     to: "/components/Drawer",
     imageURL: "/Drawer.png",
+    additionalMatches: ["Panel", "Flyout"],
   },
   {
     title: "Emphasis",
@@ -147,6 +161,7 @@ export const componentList = [
     title: "Flex",
     to: "/components/Flex",
     imageURL: "/Flex.png",
+    additionalMatches: ["Layout", "Container"],
   },
   {
     title: "Form",
@@ -167,6 +182,7 @@ export const componentList = [
     title: "FormatFile",
     to: "/components/FormatFile",
     imageURL: "/FormatFile.png",
+    additionalMatches: ["Display", "Upload", "Image"],
   },
   {
     title: "FormatRelativeDateTime",
@@ -187,6 +203,7 @@ export const componentList = [
     title: "Gallery",
     to: "/components/Gallery",
     imageURL: "/Gallery.png",
+    additionalMatches: ["Image", "Thumbnail", "Photo"],
   },
   {
     title: "Glimmer",
@@ -198,6 +215,7 @@ export const componentList = [
     title: "Grid",
     to: "/components/Grid",
     imageURL: "/Grid.png",
+    additionalMatches: ["Layout"],
   },
   {
     title: "Heading",
@@ -209,6 +227,7 @@ export const componentList = [
     title: "Icon",
     to: "/components/Icon",
     imageURL: "/Icon.png",
+    additionalMatches: ["Symbol"],
   },
   {
     title: "InlineLabel",
@@ -244,11 +263,13 @@ export const componentList = [
     title: "InputFile",
     to: "/components/InputFile",
     imageURL: "/InputFile.png",
+    additionalMatches: ["Upload", "Dropzone", "Image"],
   },
   {
     title: "InputGroup",
     to: "/components/InputGroup",
     imageURL: "/InputGroup.png",
+    additionalMatches: ["Fieldset"],
   },
   {
     title: "InputNumber",
@@ -279,11 +300,13 @@ export const componentList = [
     title: "InputValidation",
     to: "/components/InputValidation",
     imageURL: "/InputValidation.png",
+    additionalMatches: ["Message", "Error", "Warning"],
   },
   {
     title: "LightBox",
     to: "/components/LightBox",
     imageURL: "/LightBox.png",
+    additionalMatches: ["Display", "Gallery", "Image"],
   },
   {
     title: "Link",
@@ -300,31 +323,37 @@ export const componentList = [
     title: "Markdown",
     to: "/components/Markdown",
     imageURL: "/Markdown.png",
+    additionalMatches: ["Text"],
   },
   {
     title: "Menu",
     to: "/components/Menu",
     imageURL: "/Menu.png",
+    additionalMatches: ["Dropdown"],
   },
   {
     title: "Modal",
     to: "/components/Modal",
     imageURL: "/Modal.png",
+    additionalMatches: ["Dialog", "Popup", "Overlay", "Confirm", "Alert"],
   },
   {
     title: "MultiSelect",
     to: "/components/MultiSelect",
     imageURL: "/MultiSelect.png",
+    additionalMatches: ["Dropdown", "Menu"],
   },
   {
     title: "Page",
     to: "/components/Page",
     imageURL: "/Page.png",
+    additionalMatches: ["Layout"],
   },
   {
     title: "Popover",
     to: "/components/Popover",
     imageURL: "/Popover.png",
+    additionalMatches: ["Float", "Dialog", "Info"],
   },
   {
     title: "ProgressBar",
@@ -336,26 +365,31 @@ export const componentList = [
     title: "RadioGroup",
     to: "/components/RadioGroup",
     imageURL: "/RadioGroup.png",
+    additionalMatches: ["Select"],
   },
   {
     title: "RecurringSelect",
     to: "/components/RecurringSelect",
     imageURL: "/RecurringSelect.png",
+    additionalMatches: ["Schedule", "Interval"],
   },
   {
     title: "SegmentedControl",
     to: "/components/SegmentedControl",
     imageURL: "/SegmentedControl.png",
+    additionalMatches: ["Toggle", "Switch"],
   },
   {
     title: "Select",
     to: "/components/Select",
     imageURL: "/Select.png",
+    additionalMatches: ["Dropdown", "Menu", "List"],
   },
   {
     title: "SideDrawer",
     to: "/components/SideDrawer",
     imageURL: "/SideDrawer.png",
+    additionalMatches: ["Panel", "Flyout"],
   },
   {
     title: "Spinner",
@@ -367,6 +401,7 @@ export const componentList = [
     title: "StatusIndicator",
     to: "/components/StatusIndicator",
     imageURL: "/StatusIndicator.png",
+    additionalMatches: ["Badge", "Tag"],
   },
   {
     title: "StatusLabel",
@@ -399,11 +434,13 @@ export const componentList = [
     title: "Toast",
     to: "/components/Toast",
     imageURL: "/Toast.png",
+    additionalMatches: ["Notification", "Alert", "Message"],
   },
   {
     title: "Tooltip",
     to: "/components/Tooltip",
     imageURL: "/Tooltip.png",
+    additionalMatches: ["Hover", "Info"],
   },
   {
     title: "Typography",
