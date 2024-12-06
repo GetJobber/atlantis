@@ -76,6 +76,7 @@ import RadioGroupContent from "./RadioGroup";
 import RecurringSelectContent from "./RecurringSelect";
 import SegmentedControlContent from "./SegmentedControl";
 import SelectContent from "./Select";
+import SideDrawerContent from "./SideDrawer";
 import SpinnerContent from "./Spinner";
 import StatusIndicatorContent from "./StatusIndicator";
 import StatusLabelContent from "./StatusLabel";
@@ -324,6 +325,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   Select: {
     ...SelectContent,
+  },
+  SideDrawer: {
+    ...SideDrawerContent,
   },
   Spinner: {
     ...SpinnerContent,

@@ -322,7 +322,10 @@ html,body,#root {
       </script>
       <script>
       window.onerror = function(message, source, lineno, colno, error) {
+<<<<<<< HEAD
       console.log('ERROR',message, source, lineno, colno, error)
+=======
+>>>>>>> master
         window.parent.postMessage(JSON.stringify({message, source, lineno, colno, error}), '*')
         return true;
       };
@@ -418,6 +421,7 @@ export const WebCodeWrapper = (transpiledCode: string | null | undefined) => `
               RecurringSelect,
               SegmentedControl,
               Select,
+              SideDrawer,
               Spinner,
               StatusIndicator,
               StatusLabel,

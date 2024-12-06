@@ -27,7 +27,6 @@ export const Path = props => {
   );
 };
 export const useSafeAreaInsets = () => "";
-
 export const useSharedValue = () => ({ value: 0 });
 export const useAnimatedStyle = () => "";
 export const withRepeat = () => "";
