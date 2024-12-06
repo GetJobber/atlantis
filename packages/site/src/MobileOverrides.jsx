@@ -47,9 +47,46 @@ export const Rect = rect => {
 
   return "";
 };
-export const KeyboardAwareScrollView = () => "";
+export const KeyboardAwareScrollView = props => props.children;
 export const useSafeAreaFrame = () => "";
-export const Switch = () => "";
+
+// The real Switch would be better here. Once we figure out the
+// bundling issues with react-native (where we want to ship Switch alongside react-native-web)
+// This should work better.
+export const Switch = () => {
+  const [visible, setVisible] = React.useState(false);
+
+  return (
+    <button
+      type="button"
+      onClick={() => setVisible(!visible)}
+      style={{
+        borderRadius: "10px",
+        backgroundColor: visible ? "rgb(56, 133, 35)" : "rgb(241, 240, 233)",
+        width: 40,
+        height: 15,
+        top: 3,
+        position: "relative",
+        border: 0,
+      }}
+    >
+      <div
+        style={{
+          width: 20,
+          height: 20,
+          left: visible ? 20 : 0,
+          border: "none",
+          transition: "left 0.3s",
+          backgroundColor: visible ? "rgb(0, 150, 136)" : "rgb(241, 240, 233)",
+          borderRadius: "50%",
+          position: "absolute",
+          top: -3,
+          boxShadow: "rgba(0, 0, 0, 0.5) 0px 1px 3px",
+        }}
+      />
+    </button>
+  );
+};
 
 //React native SVG
 export default class extends React.Component {
@@ -90,6 +127,7 @@ export const Modalize = forwardRef((props, ref) => {
   const [open, setOpen] = React.useState(false);
 
   const updateOpen = () => {
+    console.log("setting open?", open);
     setOpen(o => !o);
   };
   useEffect(() => {
@@ -97,11 +135,7 @@ export const Modalize = forwardRef((props, ref) => {
   }, []);
 
   return (
-    <div
-      style={{ display: open ? "block" : "none" }}
-      ref={ref}
-      open={updateOpen}
-    >
+    <div style={{ display: open ? "block" : "none" }} ref={ref}>
       {props.children}
     </div>
   );

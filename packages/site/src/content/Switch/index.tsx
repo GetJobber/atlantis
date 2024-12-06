@@ -10,7 +10,7 @@ export default {
   mobileProps: MobileProps,
   component: {
     element: `<Switch />`,
-    mobileElement: `<Switch label='Toggle example' />`,
+    mobileElement: `<Switch label='Switch example' />`,
   },
   title: "Switch",
   links: [
