@@ -1,13 +1,14 @@
 import ChipsContent from "@atlantis/docs/components/Chips/Chips.stories.mdx";
 import Props from "./Chips.props.json";
+import MobileProps from "./Chips.props-mobile.json";
 import { ContentExport } from "../../types/content";
 
 export default {
   content: () => <ChipsContent />,
   props: Props,
+  mobileProps: MobileProps,
   component: {
-    element: `
- const [selected, setSelected] = useState();
+    element: `const [selected, setSelected] = useState();
 
   return (
     <Content>
@@ -22,6 +23,15 @@ export default {
       </Chips>
     </Content>
   );
+    `,
+    mobileElement: `<Chip
+        label={"Active chip"}
+        onPress={function onPress() {
+          return alert("hi!");
+        }}
+        accessibilityLabel={"Active chip"}
+        isActive={true}
+      />
     `,
   },
   title: "Chips",

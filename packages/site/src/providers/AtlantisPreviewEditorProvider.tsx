@@ -33,14 +33,20 @@ const language = new Compartment();
 
 const AtlantisPreviewEditorContext = createContext<{
   iframe: React.RefObject<HTMLIFrameElement> | null;
+  iframeMobile: React.RefObject<HTMLIFrameElement> | null;
   updateCode: (code: string) => void;
   code: string;
   error: string;
+  type: "web" | "mobile";
+  updateType: (value: "web" | "mobile") => void;
 }>({
   iframe: null,
+  iframeMobile: null,
   updateCode: () => ({}),
   code: "",
   error: "",
+  type: "web",
+  updateType: () => ({}),
 });
 
 export const useAtlantisPreview = () => {
@@ -52,8 +58,14 @@ export const AtlantisPreviewEditorProvider = ({
 }: PropsWithChildren) => {
   const { theme } = useAtlantisTheme();
   const iframe = useRef<HTMLIFrameElement>(null);
+  const iframeMobile = useRef<HTMLIFrameElement>(null);
   const [code, setCode] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const [type, setType] = useState<"web" | "mobile">(
+    new URLSearchParams(window.location.search)?.has("mobile")
+      ? "mobile"
+      : "web",
+  );
 
   const writeSkeleton = (
     doc: Document | null | undefined,
@@ -61,11 +73,19 @@ export const AtlantisPreviewEditorProvider = ({
   ) => {
     if (doc) {
       doc.open();
-      doc.write(skeletonHTML(iframeTheme));
+      doc.write(skeletonHTML(iframeTheme, type));
       doc.close();
     }
   };
 
+  const updateType = (value: "web" | "mobile") => {
+    setType(value);
+    window.history.replaceState(
+      null,
+      "",
+      `${window.location.pathname}?${value === "mobile" ? "mobile" : ""}`,
+    );
+  };
   const updateCode = useCallback(
     // eslint-disable-next-line max-statements
     (codeUp: string) => {
@@ -82,17 +102,250 @@ export const AtlantisPreviewEditorProvider = ({
           ],
         }).code;
         setError("");
-        const html = iframe.current?.contentDocument?.documentElement.outerHTML;
+        const selectedFrame = type == "web" ? iframe : iframeMobile;
+
+        const html =
+          selectedFrame.current?.contentDocument?.documentElement.outerHTML;
 
         if (html === "<html><head></head><body></body></html>") {
-          writeSkeleton(iframe.current?.contentDocument, theme);
+          writeSkeleton(selectedFrame.current?.contentDocument, theme);
         }
 
-        if (iframe.current) {
-          const iframeWindow = iframe.current.contentWindow;
+        if (selectedFrame.current) {
+          const iframeWindow = selectedFrame.current.contentWindow;
 
           if (iframeWindow) {
-            const codeWrapper = `
+            const codeWrapper =
+              type == "web"
+                ? WebCodeWrapper(transpiledCode)
+                : MobileCodeWrapper(transpiledCode);
+            iframeWindow.postMessage(
+              { type: "updateCode", code: codeWrapper },
+              "*",
+            );
+          }
+        } else {
+          console.log("tried to update iframe");
+        }
+      } catch (e) {
+        setError((e as { message: string }).message as string);
+      }
+    },
+    [iframe, iframeMobile, theme, type],
+  );
+
+  useEffect(() => {
+    if (iframe.current) {
+      const iframeWindow = iframe.current.contentWindow;
+      iframeWindow?.postMessage({ type: "updateTheme", theme }, "*");
+    }
+  }, [theme]);
+
+  return (
+    <AtlantisPreviewEditorContext.Provider
+      value={{
+        iframe,
+        iframeMobile,
+        updateCode,
+        code,
+        error,
+        type,
+        updateType,
+      }}
+    >
+      {children}
+    </AtlantisPreviewEditorContext.Provider>
+  );
+};
+
+export const AtlantisPreviewViewer = () => {
+  const { iframe, iframeMobile, type } = useAtlantisPreview();
+
+  return (
+    <>
+      <iframe
+        style={{
+          border: "none",
+          height: "100%",
+          display: type == "web" ? "block" : "none",
+        }}
+        ref={iframe}
+      />
+      <iframe
+        style={{
+          border: "none",
+          height: "100%",
+          display: type == "mobile" ? "block" : "none",
+          borderRadius: "var(--radius-base)",
+        }}
+        ref={iframeMobile}
+      />
+    </>
+  );
+};
+const myTheme = EditorView.theme(
+  {
+    "&": {
+      color: "var(--color-text)",
+      backgroundColor: "var(--color-surface--background)",
+      border: "var(--border-base) solid var(--color-border)",
+      borderRadius: "var(--radius-base)",
+      padding: "var(--space-small)",
+    },
+    ".cm-content": {
+      caretColor: "var(--color-interactive)",
+    },
+    ".cm-type": {
+      color: "var(--color-text)",
+    },
+    "&.cm-focused": {
+      outline: "transparent",
+      boxShadow: "var(--shadow-focus)",
+    },
+    "&.cm-focused .cm-selectionBackground, ::selection": {
+      backgroundColor: "var(--color-surface)",
+    },
+    ".cm-gutters": {
+      backgroundColor: "inherit",
+      color: "var(--color-text--secondary)",
+      border: "none",
+    },
+  },
+  { dark: true },
+);
+
+export const AtlantisPreviewEditor = () => {
+  const { code, updateCode, error, type } = useAtlantisPreview();
+  const editor = useRef(null);
+  const editorView = useRef<EditorView | null>(null);
+  useEffect(() => {
+    if (code && editorView.current?.state.doc.toString() !== code) {
+      const transaction = editorView.current?.state.update({
+        changes: {
+          from: 0,
+          to: editorView.current.state.doc.length,
+          insert: code,
+        },
+      });
+
+      if (transaction) {
+        editorView.current?.dispatch(transaction);
+      }
+    }
+  }, [type, code]);
+
+  useEffect(() => {
+    if (editor.current && !editorView.current) {
+      const startState = EditorState.create({
+        doc: code,
+        extensions: [
+          lineNumbers(),
+          myTheme,
+          syntaxHighlighting(defaultHighlightStyle, { fallback: true }),
+
+          language.of(javascript({ jsx: true, typescript: true })),
+          EditorView.updateListener.of(update => {
+            if (update.docChanged) {
+              updateCode(update.state.doc.toString());
+            }
+          }),
+        ],
+      });
+      editorView.current = new EditorView({
+        state: startState,
+        parent: editor.current,
+      });
+      editorView.current.dispatch({});
+    }
+
+    return () => {
+      if (editorView.current) {
+        editorView.current.destroy();
+        editorView.current = null;
+      }
+    };
+  }, [editor, editorView, type]);
+
+  return (
+    <div>
+      <div ref={editor}></div>
+      {error}
+    </div>
+  );
+};
+
+const skeletonHTML = (theme: Theme, type: "web" | "mobile") => {
+  const imports =
+    type == "mobile"
+      ? `"@jobber/components-native":"/editorMobileBundle.js"`
+      : `"@jobber/components":"/editorBundle.js"`;
+
+  return `
+
+<!DOCTYPE html>
+<html data-theme="${type === "web" ? theme : "light"}" data-type="${type}">
+<head>
+<style>
+html,body,#root {
+  height: 100%;
+  width: 99%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 200px;
+}
+  html[data-type="mobile"] {
+  border-radius:10px;
+}
+</style>
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/foundation.css">
+<link rel="stylesheet" href="/dark.mode.css">
+</head>
+      <body>
+ <script type="importmap">
+  {
+    "imports": {
+      ${imports},
+      "@jobber/hooks":"/node_modules/.vite/deps/@jobber_hooks.js",
+      "@jobber/hooks/useIsMounted":"/node_modules/.vite/deps/@jobber_hooks.js",
+      "axios": "/axios.js"
+    }
+  }
+  </script>
+      <div id="root">
+      </div>
+      <script>
+        var root;
+        var rootElement;
+      </script>
+      <script>
+      window.onerror = function(message, source, lineno, colno, error) {
+        window.parent.postMessage(JSON.stringify({message, source, lineno, colno, error}), '*')
+        return true;
+      };
+      window.addEventListener('message', (event) => {
+        const { type, code, theme } = event.data;
+        if (type === 'updateCode') {
+          const script = document.createElement('script');
+          script.type = 'module';
+          script.textContent = code;
+          const root = document.getElementById('root');
+          if (root) {
+            root.appendChild(script); // Inject new script
+          }
+        } else if (type === 'updateTheme') {
+          document.documentElement.dataset.theme = theme;
+        }
+      });
+      </script>
+
+
+      </body>
+      </html>`;
+};
+export const WebCodeWrapper = (transpiledCode: string | null | undefined) => `
             import {
               AnimatedPresence,
               AnimatedSwitcher,
@@ -188,9 +441,9 @@ export const AtlantisPreviewEditorProvider = ({
               useFormState,
               useRef,
               useEffect,
-              ReactDOM
+              ReactDOM,
+              React
             } from '@jobber/components';
-
                 ${transpiledCode}
 
             function RootWrapper() {
@@ -206,176 +459,74 @@ export const AtlantisPreviewEditorProvider = ({
              }
               root.render(React.createElement(RootWrapper, null));
           `;
-            iframeWindow.postMessage(
-              { type: "updateCode", code: codeWrapper },
-              "*",
-            );
-          }
-        } else {
-          console.log("tried to update iframe");
-        }
-      } catch (e) {
-        setError((e as { message: string }).message as string);
-      }
-    },
-    [iframe, theme],
-  );
 
-  useEffect(() => {
-    if (iframe.current) {
-      const iframeWindow = iframe.current.contentWindow;
-      iframeWindow?.postMessage({ type: "updateTheme", theme }, "*");
-    }
-  }, [theme]);
+export const MobileCodeWrapper = (
+  transpiledCode: string | null | undefined,
+) => `
+            import {
+              ActionItem,
+              ActionItemGroup,
+              ActionLabel,
+              ActivityIndicator,
+              AutoLink,
+              Banner,
+              BottomSheet,
+              BottomSheetOption,
+              Button,
+              ButtonGroup,
+              Card,
+              Content,
+              Checkbox,
+              Chip,
+              ContentOverlay,
+              Disclosure,
+              Divider,
+              EmptyState,
+              Flex,
+              Icon,
+              StatusLabel,
+              Glimmer,
+              Heading,
+              IconButton,
+           /*   Chip,
+              Chips,
+              Form,
+              FormField,
+              IconButton, */
+              InputDate,
+              InputEmail,
+              InputFieldWrapper,
+              InputNumber,
+              InputPassword,
+              InputPressable,
+              InputSearch,
+              InputText,
+              Menu,
+              ProgressBar,
+              Select,
+              Option,
+              Switch, 
+              Text,
+              TextList,
+              ThumbnailList,
+              Toast,
+              showToast,
+              Typography,
+              useState,
+              useEffect,
+              useRef,
+              Host,
+            } from '@jobber/components-native';
 
-  return (
-    <AtlantisPreviewEditorContext.Provider
-      value={{ iframe, updateCode, code, error }}
-    >
-      {children}
-    </AtlantisPreviewEditorContext.Provider>
-  );
-};
+                ${transpiledCode}
 
-export const AtlantisPreviewViewer = () => {
-  const { iframe } = useAtlantisPreview();
 
-  return <iframe style={{ border: "none", height: "100%" }} ref={iframe} />;
-};
-const myTheme = EditorView.theme(
-  {
-    "&": {
-      color: "var(--color-text)",
-      backgroundColor: "var(--color-surface--background)",
-      border: "var(--border-base) solid var(--color-border)",
-      borderRadius: "var(--radius-base)",
-      padding: "var(--space-small)",
-    },
-    ".cm-content": {
-      caretColor: "var(--color-interactive)",
-    },
-    ".cm-type": {
-      color: "var(--color-text)",
-    },
-    "&.cm-focused": {
-      outline: "transparent",
-      boxShadow: "var(--shadow-focus)",
-    },
-    "&.cm-focused .cm-selectionBackground, ::selection": {
-      backgroundColor: "var(--color-surface)",
-    },
-    ".cm-gutters": {
-      backgroundColor: "inherit",
-      color: "var(--color-text--secondary)",
-      border: "none",
-    },
-  },
-  { dark: true },
-);
-
-export const AtlantisPreviewEditor = () => {
-  const { code, updateCode, error } = useAtlantisPreview();
-  const editor = useRef(null);
-  const editorView = useRef<EditorView | null>(null);
-
-  useEffect(() => {
-    if (editor.current && !editorView.current) {
-      const startState = EditorState.create({
-        doc: code,
-        extensions: [
-          lineNumbers(),
-          myTheme,
-          syntaxHighlighting(defaultHighlightStyle, { fallback: true }),
-
-          language.of(javascript({ jsx: true, typescript: true })),
-          EditorView.updateListener.of(update => {
-            if (update.docChanged) {
-              updateCode(update.state.doc.toString());
+          if (rootElement) {
+            //  ReactDOM.unmountComponentAtNode(rootElement);
             }
-          }),
-        ],
-      });
-      editorView.current = new EditorView({
-        state: startState,
-        parent: editor.current,
-      });
-    }
-
-    return () => {
-      if (editorView.current) {
-        editorView.current.destroy();
-        editorView.current = null;
-      }
-    };
-  }, [editor, editorView]);
-
-  return (
-    <div>
-      <div ref={editor}></div>
-      {error}
-    </div>
-  );
-};
-
-const skeletonHTML = (theme: Theme) => `
-<!DOCTYPE html>
-<html data-theme="${theme}">
-<head>
-<style>
-html,body,#root {
-  height: 100%;
-  width: 99%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  min-height: 200px;
-}
-</style>
-<link rel="stylesheet" href="/styles.css">
-<link rel="stylesheet" href="/foundation.css">
-<link rel="stylesheet" href="/dark.mode.css">
-</head>
-      <body>
- <script type="importmap">
-  {
-    "imports": {
-      "@jobber/components": "/editorBundle.js",
-      "axios": "/axios.js"
-    }
-  }
-  </script>
-      <div id="root">
-      </div>
-      <script>
-        var root;
-        var rootElement;
-      </script>
-      <script>
-      window.onerror = function(message, source, lineno, colno, error) {
-        if (message !== 'Uncaught ReferenceError: TritonExample is not defined'){
-          console.log('An error occurred:', message);
-        }
-        window.parent.postMessage(JSON.stringify({message, source, lineno, colno, error}), '*')
-        return true;
-      };
-      window.addEventListener('message', (event) => {
-        const { type, code, theme } = event.data;
-
-        if (type === 'updateCode') {
-          const script = document.createElement('script');
-          script.type = 'module';
-          script.textContent = code;
-          const root = document.getElementById('root');
-          if (root) {
-            root.appendChild(script); // Inject new script
-          }
-        } else if (type === 'updateTheme') {
-          document.documentElement.dataset.theme = theme;
-        }
-      });
-      </script>
-
-
-      </body>
-      </html>`;
+             if(!rootElement){
+              rootElement = document.getElementById('root')
+              root = ReactDOM.createRoot(rootElement);
+             }
+              root.render(React.createElement(App, null));
+          `;

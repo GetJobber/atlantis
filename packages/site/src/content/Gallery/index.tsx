@@ -91,7 +91,6 @@ export default {
         },
       ]}
         />`,
-    defaultProps: {},
   },
   title: "Gallery",
   links: [

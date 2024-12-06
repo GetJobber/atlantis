@@ -1,11 +1,11 @@
 import AnimatedSwitcherContent from "@atlantis/docs/components/AnimatedSwitcher/AnimatedSwitcher.stories.mdx";
-import Props from "./AnimatedSwitcher.props.json";
+import MobileProps from "./AnimatedSwitcher.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <AnimatedSwitcherContent />,
-  props: Props,
+  mobileProps: MobileProps,
   component: {
     element: `
 
