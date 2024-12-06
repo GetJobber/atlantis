@@ -417,6 +417,7 @@ export const WebCodeWrapper = (transpiledCode: string | null | undefined) => `
               RecurringSelect,
               SegmentedControl,
               Select,
+              SideDrawer,
               Spinner,
               StatusIndicator,
               StatusLabel,

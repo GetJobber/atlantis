@@ -417,6 +417,11 @@ export const componentList = [
     imageURL: "/Select.png",
   },
   {
+    title: "SideDrawer",
+    to: "/components/SideDrawer",
+    imageURL: "/SideDrawer.png",
+  },
+  {
     title: "Spinner",
     to: "/components/Spinner",
     imageURL: "/Spinner.png",
