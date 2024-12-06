@@ -6,7 +6,7 @@ import { PropsList } from "../components/PropsList";
 import { ComponentNotFound } from "../components/ComponentNotFound";
 import { ComponentLinks } from "../components/ComponentLinks";
 import { CodePreviewWindow } from "../components/CodePreviewWindow";
-import { usePageValues } from "../hooks/usePageValues";
+import { usePropsAsDataList } from "../hooks/usePropsAsDataList";
 import { SiteContent } from "../content";
 import { useStyleUpdater } from "../hooks/useStyleUpdater";
 import { useErrorCatcher } from "../hooks/useErrorCatcher";
@@ -15,7 +15,6 @@ import {
   AtlantisPreviewViewer,
   useAtlantisPreview,
 } from "../providers/AtlantisPreviewEditorProvider";
-import { useComponentAndCode } from "../hooks/useComponentAndCode";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
 
 /**
@@ -23,13 +22,15 @@ import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
  * This isn't really a Layout component, but it's not really a component component either. We could make a "Views" directory maybe, or a "Template" directory?
  * @returns ReactNode
  */
+// eslint-disable-next-line max-statements
 export const ComponentView = () => {
   const { name = "" } = useParams<{ name: string }>();
-  const { updateCode, iframe } = useAtlantisPreview();
+  const { updateCode, iframe, iframeMobile, type, updateType } =
+    useAtlantisPreview();
   const PageMeta = SiteContent[name];
   useErrorCatcher();
   const { updateStyles } = useStyleUpdater();
-  const { stateValues } = usePageValues(PageMeta);
+  const { stateValues } = usePropsAsDataList(PageMeta, type);
   const { enableMinimal, minimal, disableMinimal, isMinimal } =
     useAtlantisSite();
   useEffect(() => {
@@ -42,12 +43,25 @@ export const ComponentView = () => {
     };
   }, []);
   const ComponentContent = PageMeta?.content;
-  const { code } = useComponentAndCode(PageMeta);
+  const code =
+    type === "web"
+      ? PageMeta.component.element
+      : PageMeta.component.mobileElement;
+
   useEffect(() => {
-    if (iframe?.current) {
+    if (iframe?.current || iframeMobile?.current) {
       setTimeout(() => updateCode(code as string), 100);
     }
-  }, [code, iframe?.current]);
+  }, [code, iframe?.current, iframeMobile?.current, type]);
+
+  const handleTabChange = (tab: number) => {
+    if (tab == 1) {
+      updateType("web");
+    } else if (tab == 2) {
+      updateType("mobile");
+    }
+    updateStyles();
+  };
 
   return PageMeta ? (
     <Grid>
@@ -56,7 +70,7 @@ export const ComponentView = () => {
           <PageWrapper>
             <Box>
               <Content spacing="large">
-                <Box direction="column" gap="small">
+                <Box direction="column" gap="small" alignItems="flex-end">
                   <CodePreviewWindow>
                     <AtlantisPreviewViewer />
                   </CodePreviewWindow>
@@ -64,17 +78,23 @@ export const ComponentView = () => {
                 <span
                   style={{ "--public-tab--inset": 0 } as React.CSSProperties}
                 >
-                  <Tabs onTabChange={updateStyles}>
+                  <Tabs onTabChange={handleTabChange}>
                     <Tab label="Design">
                       <Content spacing="large">
                         <ComponentContent />
                       </Content>
                     </Tab>
-                    <Tab label="Implementation">
+                    <Tab label="Web">
                       <Box margin={{ bottom: "base" }}>
                         <AtlantisPreviewEditor />
                       </Box>
-                      <PropsList values={stateValues} />
+                      <PropsList values={stateValues || []} />
+                    </Tab>
+                    <Tab label="Mobile">
+                      <Box margin={{ bottom: "base" }}>
+                        <AtlantisPreviewEditor />
+                      </Box>
+                      <PropsList values={stateValues || []} />
                     </Tab>
                   </Tabs>
                 </span>
