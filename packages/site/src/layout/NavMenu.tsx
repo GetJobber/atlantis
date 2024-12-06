@@ -21,8 +21,9 @@ export const NavMenu = () => {
     <div
       style={{
         width: 220,
-        minHeight: "100dvh",
+        height: "100dvh",
         backgroundColor: "var(--color-surface--background)",
+        overflow: "auto",
       }}
     >
       <Box height={24} padding="base">
