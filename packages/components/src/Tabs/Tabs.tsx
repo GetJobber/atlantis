@@ -146,10 +146,7 @@ const InternalTab = React.forwardRef<HTMLButtonElement, InternalTabProps>(
           className={className}
           onClick={event => {
             activateTab();
-
-            if (onClick) {
-              onClick(event);
-            }
+            onClick?.(event);
           }}
           ref={ref}
           tabIndex={tabIndex}
