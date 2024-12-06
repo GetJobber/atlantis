@@ -144,13 +144,20 @@ function InternalDataList({
   const showEmptyState = !initialLoading && data.length === 0;
 
   const shouldRenderLoadMoreTrigger = !initialLoading && !showEmptyState;
+  const shouldRenderTitleContainer =
+    initialLoading || title !== "" || totalCount !== null;
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.titleContainer}>
-        {title && <Heading level={3}>{title}</Heading>}
-        <DataListTotalCount totalCount={totalCount} loading={initialLoading} />
-      </div>
+      {shouldRenderTitleContainer && (
+        <div className={styles.titleContainer}>
+          {title && <Heading level={3}>{title}</Heading>}
+          <DataListTotalCount
+            totalCount={totalCount}
+            loading={initialLoading}
+          />
+        </div>
+      )}
 
       {/* We need to know where the top of the list is but not necessarily the
       heading as per the design requirements */}
