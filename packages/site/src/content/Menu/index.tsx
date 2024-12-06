@@ -62,7 +62,7 @@ export default {
     },
   ];
 
-  return <Host><Menu menuOptions={menuOptions} /></Host>`,
+  return <Menu menuOptions={menuOptions} />`,
     defaultProps: {},
   },
   title: "Menu",

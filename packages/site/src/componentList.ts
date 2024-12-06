@@ -18,6 +18,12 @@ export const componentList = [
     additionalMatches: [],
   },
   {
+    title: "ActivityIndicator",
+    to: "/components/ActivityIndicator",
+    imageURL: "/ActivityIndicator.png",
+    additionalMatches: ["Loader", "Loading", "Busy", "Spinner"],
+  },
+  {
     title: "AnimatedPresence",
     to: "/components/AnimatedPresence",
     imageURL: "/Animation.png",

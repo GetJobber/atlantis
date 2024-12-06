@@ -231,7 +231,7 @@ const mobileComponents = [
   "InputFieldWrapper",
   "BottomSheet",
   "Checkbox",
-  "Chips",
+  "Chip",
   "Select",
   "Switch",
   "ActivityIndicator",
