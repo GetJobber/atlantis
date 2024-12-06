@@ -1,5 +1,23 @@
 export const componentList = [
   {
+    title: "ActionItem",
+    to: "/components/ActionItem",
+    imageURL: "/ActionItem.png",
+    additionalMatches: [],
+  },
+  {
+    title: "ActionItemGroup",
+    to: "/components/ActionItemGroup",
+    imageURL: "/ActionItemGroup.png",
+    additionalMatches: [],
+  },
+  {
+    title: "ActionLabel",
+    to: "/components/ActionLabel",
+    imageURL: "/ActionLabel.png",
+    additionalMatches: [],
+  },
+  {
     title: "AnimatedPresence",
     to: "/components/AnimatedPresence",
     imageURL: "/Animation.png",
@@ -17,6 +35,11 @@ export const componentList = [
     imageURL: "/Autocomplete.png",
   },
   {
+    title: "AutoLink",
+    to: "/components/AutoLink",
+    imageURL: "/AutoLink.png",
+  },
+  {
     title: "Avatar",
     to: "/components/Avatar",
     imageURL: "/Avatar.png",
@@ -32,6 +55,11 @@ export const componentList = [
     imageURL: "/Box.png",
   },
   {
+    title: "BottomSheet",
+    to: "/components/BottomSheet",
+    imageURL: "/BottomSheet.png",
+  },
+  {
     title: "Button",
     to: "/components/Button",
     imageURL: "/Button.png",
@@ -41,6 +69,11 @@ export const componentList = [
     to: "/components/ButtonDismiss",
     imageURL: "/ButtonDismiss.png",
     additionalMatches: ["Close", "Dismiss", "Remove"],
+  },
+  {
+    title: "ButtonGroup",
+    to: "/components/ButtonGroup",
+    imageURL: "/ButtonGroup.png",
   },
   {
     title: "Card",
@@ -79,6 +112,11 @@ export const componentList = [
     title: "Content",
     to: "/components/Content",
     imageURL: "/Content.png",
+  },
+  {
+    title: "ContentOverlay",
+    to: "/components/ContentOverlay",
+    imageURL: "/ContentOverlay.png",
   },
   {
     title: "Countdown",
@@ -137,6 +175,12 @@ export const componentList = [
     to: "/components/Emphasis",
     imageURL: "/Emphasis.png",
     additionalMatches: ["Highlight", "Strong", "Bold", "Italic"],
+  },
+  {
+    title: "EmptyState",
+    to: "/components/EmptyState",
+    imageURL: "/EmptyState.png",
+    additionalMatches: ["No", "None", "Nada", "Nothing"],
   },
   {
     title: "FeatureSwitch",
@@ -211,6 +255,11 @@ export const componentList = [
     imageURL: "/Icon.png",
   },
   {
+    title: "IconButton",
+    to: "/components/IconButton",
+    imageURL: "/IconButton.png",
+  },
+  {
     title: "InlineLabel",
     to: "/components/InlineLabel",
     imageURL: "/InlineLabel.png",
@@ -241,6 +290,11 @@ export const componentList = [
     imageURL: "/InputEmail.png",
   },
   {
+    title: "InputFieldWrapper",
+    to: "/components/InputFieldWrapper",
+    imageURL: "/InputFieldWrapper.png",
+  },
+  {
     title: "InputFile",
     to: "/components/InputFile",
     imageURL: "/InputFile.png",
@@ -264,6 +318,16 @@ export const componentList = [
     title: "InputPhoneNumber",
     to: "/components/InputPhoneNumber",
     imageURL: "/InputPhoneNumber.png",
+  },
+  {
+    title: "InputPressable",
+    to: "/components/InputPressable",
+    imageURL: "/InputPressable.png",
+  },
+  {
+    title: "InputSearch",
+    to: "/components/InputSearch",
+    imageURL: "/InputSearch.png",
   },
   {
     title: "InputText",
@@ -394,6 +458,16 @@ export const componentList = [
     title: "Text",
     to: "/components/Text",
     imageURL: "/Text.png",
+  },
+  {
+    title: "TextList",
+    to: "/components/TextList",
+    imageURL: "/TextList.png",
+  },
+  {
+    title: "ThumbnailList",
+    to: "/components/ThumbnailList",
+    imageURL: "/ThumbnailList.png",
   },
   {
     title: "Toast",

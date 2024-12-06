@@ -1,6 +1,6 @@
 export interface ContentExport {
   content: (props?: unknown) => JSX.Element;
-  props: Array<{
+  props?: Array<{
     description: string;
     displayName: string;
     filePath: string;
@@ -17,7 +17,7 @@ export interface ContentExport {
     tags: Record<string, GeneratedTag>;
   }>;
   component: {
-    element: unknown;
+    element?: unknown;
     mobileElement?: unknown;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Will be deleted soon, don't worry.
     defaultProps?: any;

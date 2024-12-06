@@ -1,0 +1,69 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components-native/src/Glimmer/Glimmer.tsx",
+    "description": "",
+    "displayName": "Glimmer",
+    "methods": [],
+    "props": {
+      "shape": {
+        "defaultValue": {
+          "value": "rectangle"
+        },
+        "description": "Sets the size of the glimmer.",
+        "name": "shape",
+        "parent": {
+          "fileName": "../components-native/src/Glimmer/Glimmer.tsx",
+          "name": "GlimmerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"rectangle\" | \"square\" | \"circle\""
+        }
+      },
+      "size": {
+        "defaultValue": {
+          "value": "base"
+        },
+        "description": "Sets the shape of the glimmer.\n\nIf you need a specific width, use the `width` prop.",
+        "name": "size",
+        "parent": {
+          "fileName": "../components-native/src/Glimmer/Glimmer.tsx",
+          "name": "GlimmerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"base\" | \"large\" | \"larger\" | \"largest\""
+        }
+      },
+      "timing": {
+        "defaultValue": {
+          "value": "base"
+        },
+        "description": "Control how fast the shine moves from left to right. This is useful when\nthe glimmer is used on smaller spaces.",
+        "name": "timing",
+        "parent": {
+          "fileName": "../components-native/src/Glimmer/Glimmer.tsx",
+          "name": "GlimmerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "GlimmerTimings"
+        }
+      },
+      "width": {
+        "defaultValue": null,
+        "description": "Adjust the width of the glimmer in px or % values.",
+        "name": "width",
+        "parent": {
+          "fileName": "../components-native/src/Glimmer/Glimmer.tsx",
+          "name": "GlimmerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number | `${number}%`"
+        }
+      }
+    }
+  }
+]

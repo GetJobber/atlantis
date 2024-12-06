@@ -176,6 +176,7 @@ export const AtlantisPreviewViewer = () => {
           border: "none",
           height: "100%",
           display: type == "mobile" ? "block" : "none",
+          borderRadius: "var(--radius-base)",
         }}
         ref={iframeMobile}
       />
@@ -282,7 +283,7 @@ const skeletonHTML = (theme: Theme, type: "web" | "mobile") => {
   return `
 
 <!DOCTYPE html>
-<html data-theme="${theme}">
+<html data-theme="${type === "web" ? theme : "light"}" data-type="${type}">
 <head>
 <style>
 html,body,#root {
@@ -293,6 +294,9 @@ html,body,#root {
   justify-content: center;
   flex-direction: column;
   min-height: 200px;
+}
+  html[data-type="mobile"] {
+  border-radius:10px;
 }
 </style>
 <link rel="stylesheet" href="/styles.css">
@@ -460,7 +464,58 @@ export const MobileCodeWrapper = (
   transpiledCode: string | null | undefined,
 ) => `
             import {
-              Button
+              ActionItem,
+              ActionItemGroup,
+              ActionLabel,
+              ActivityIndicator,
+              AutoLink,
+              Banner,
+              BottomSheet,
+              BottomSheetOption,
+              Button,
+              ButtonGroup,
+              Card,
+              Content,
+              Checkbox,
+              Chip,
+              ContentOverlay,
+              Disclosure,
+              Divider,
+              EmptyState,
+              Flex,
+              Icon,
+              StatusLabel,
+              Glimmer,
+              Heading,
+              IconButton,
+           /*   Chip,
+              Chips,
+              Form,
+              FormField,
+              IconButton, */
+              InputDate,
+              InputEmail,
+              InputFieldWrapper,
+              InputNumber,
+              InputPassword,
+              InputPressable,
+              InputSearch,
+              InputText,
+              Menu,
+              ProgressBar,
+              Select,
+              Option,
+              Switch, 
+              Text,
+              TextList,
+              ThumbnailList,
+              Toast,
+              showToast,
+              Typography,
+              useState,
+              useEffect,
+              useRef,
+              Host,
             } from '@jobber/components-native';
 
                 ${transpiledCode}
