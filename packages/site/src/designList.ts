@@ -21,6 +21,7 @@ export const designList = [
     title: "Colors",
     to: "/content/design/colors",
     imageURL: "/Colors.png",
+    additionalMatches: ["Palette", "Colours"],
   },
   {
     title: "Elevations",
