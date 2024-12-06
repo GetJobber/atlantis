@@ -1,6 +1,6 @@
 import { Box, Button, Disclosure, Typography } from "@jobber/components";
 import { Link } from "react-router-dom";
-import { PropsWithChildren, useState } from "react";
+import { Fragment, PropsWithChildren, useState } from "react";
 import { SearchBox } from "./SearchBox";
 import AnimatedPresenceDisclosure from "./AnimatedPresenceDisclosure";
 import { routes } from "../routes";
@@ -37,57 +37,49 @@ export const NavMenu = () => {
       <SearchBox open={open} setOpen={setOpen} />
       <MenuList>
         <Box>
-          {routes?.map((route, index) => {
+          {routes?.map((route, routeIndex) => {
+            if (route.inNav === false) return null;
+
+            const iterateSubMenu = (menuItems, parentIndex) => {
+              return menuItems.map((menuItem, menuItemIndex) => {
+                if (menuItem.children) {
+                  return (
+                    <Fragment key={`${parentIndex}-${menuItemIndex}`}>
+                      {sectionTitle(menuItem.handle)}
+                      {iterateSubMenu(
+                        menuItem.children,
+                        `${parentIndex}-${menuItemIndex}`,
+                      )}
+                    </Fragment>
+                  );
+                }
+
+                return (
+                  <MenuItem key={`${parentIndex}-${menuItemIndex}`}>
+                    <StyledLink to={`/components/${menuItem.handle}` ?? "/"}>
+                      {menuItem.handle}
+                    </StyledLink>
+                  </MenuItem>
+                );
+              });
+            };
+
             if (route.children) {
               return (
-                <Box key={`box-${index}-${Math.random(10000000)}`} padding="base">
+                <Box key={routeIndex} padding="base">
                   <AnimatedPresenceDisclosure
-                    key={`disclosre-${route.handle}-${index}-${Math.random(10000000)}`}
-                    to={route.path || "/"}
+                    to={`/components/${route.handle}` || "/"}
                     title={route.handle}
                   >
-                    {route.children.map((subroute, subindex) => {
-                      if (subroute.inNav === false) return null;
-
-                      if (subroute.children) {
-                        return (
-                          <>
-                            {sectionTitle(subroute.handle)}
-                            {subroute.children.map(
-                              (subsubroute, subsubindex) => {
-                                return (
-                                  <StyledSubLink
-                                    key={`${subsubroute.handle}-${subsubindex}-${Math.random(10000000)}`}
-                                    to={subsubroute.path || "/"}
-                                  >
-                                    {subsubroute.handle}
-                                  </StyledSubLink>
-                                );
-                              },
-                            )}
-                          </>
-                        );
-                      } else {
-                        return (
-                          <StyledSubLink
-                            key={`${subroute.handle}-${subindex}-${Math.random(10000000)}`}
-                            to={subroute.path || "/"}
-                          >
-                            {subroute.handle}
-                          </StyledSubLink>
-                        );
-                      }
-                    })}
+                    {iterateSubMenu(route.children, routeIndex)}
                   </AnimatedPresenceDisclosure>
                 </Box>
               );
             }
 
-            if (route.inNav === false) return null;
-
             return (
-              <MenuItem key={`menuitem-${index}-${Math.random(10000000)}`}>
-                <StyledLink key={`${route.handle}-${index}-${Math.random(10000000)}`} to={route.path ?? "/"}>
+              <MenuItem key={routeIndex}>
+                <StyledLink to={"/components" ?? "/"}>
                   {route.handle}
                 </StyledLink>
               </MenuItem>
@@ -180,7 +172,7 @@ export const changelogTitle = (
 );
 
 export const sectionTitle = section => (
-  <div style={{ padding: "var(--space-smaller)" }}>
+  <div key={section} style={{ padding: "var(--space-smaller)" }}>
     <Typography fontWeight="bold" size="small" textColor="textSecondary">
       {section.toUpperCase()}
     </Typography>

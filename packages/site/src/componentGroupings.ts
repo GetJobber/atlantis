@@ -15,7 +15,6 @@ export const componentGroupings = {
     "Avatar",
     "Chip",
     "Tag",
-    "Pill",
     "Card",
     "Table",
     "Header",

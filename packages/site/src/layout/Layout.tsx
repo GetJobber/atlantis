@@ -10,6 +10,7 @@ import "./code-theme.css";
  */
 export const Layout = () => {
   const location = useLocation();
+  console.log("location", location);
 
   useEffect(() => {
     // Perform an action whenever the location changes
@@ -25,14 +26,27 @@ export const Layout = () => {
         <Switch>
           {routes.map((route, index) =>
             route.children ? (
-              route.children.map((child, childIndex) => (
-                <Route
-                  key={childIndex}
-                  exact={child.exact ?? false}
-                  path={child.path}
-                  component={child.component}
-                />
-              ))
+              route.children.map((child, childIndex) => {
+                console.log("child", child);
+
+                return child.children ? (
+                  child.children.map((childchild, childchildIndex) => (
+                    <Route
+                      key={childchildIndex}
+                      exact={childchild.exact ?? false}
+                      path={childchild.path}
+                      component={childchild.component}
+                    />
+                  ))
+                ) : (
+                  <Route
+                    key={childIndex}
+                    exact={child.exact ?? false}
+                    path={child.path}
+                    component={child.component}
+                  />
+                );
+              })
             ) : (
               <Route
                 exact={route.exact ?? false}

@@ -1,0 +1,123 @@
+:root[data-theme="dark"],
+ div[data-theme="dark"] {
+@media screen {
+  --base-unit: 16px;
+  --color-base-blue--700: hsl(197, 15%, 35%);
+  --color-base-blue--800: hsl(197, 18%, 25%);
+  --color-base-blue--900: hsl(197, 15%, 16%);
+  --color-base-blue--1000: hsl(197, 10%, 10%);
+  --color-interactive: hsl(86, 60%, 50%);
+  --color-interactive--hover: hsl(86, 60%, 60%);
+  --color-interactive--subtle: var(--color-base-blue--200);
+  --color-interactive--subtle--hover: var(--color-base-blue--100);
+  --color-destructive: var(--color-base-red--500);
+  --color-destructive--hover: var(--color-base-red--400);
+  --color-disabled: var(--color-base-grey--500);
+  --color-disabled--secondary: var(--color-base-grey--700);
+  --color-critical: var(--color-base-red--500);
+  --color-critical--surface: var(--color-base-red--900);
+  --color-critical--onSurface: var(--color-base-red--300);
+  --color-warning: var(--color-base-yellow--400);
+  --color-warning--surface: var(--color-base-yellow--700);
+  --color-warning--onSurface: var(--color-base-yellow--200);
+  --color-success: var(--color-base-green--500);
+  --color-success--surface: var(--color-base-green--800);
+  --color-success--onSurface: var(--color-base-green--300);
+  --color-informative: var(--color-base-lightBlue--600);
+  --color-informative--surface: var(--color-base-lightBlue--800);
+  --color-informative--onSurface: var(--color-base-lightBlue--300);
+  --color-inactive: var(--color-base-blue--500);
+  --color-inactive--surface: var(--color-base-blue--700);
+  --color-inactive--onSurface: var(--color-base-blue--200);
+  --color-heading: var(--color-base-blue--100);
+  --color-text: var(--color-base-blue--200);
+  --color-text--secondary: var(--color-base-blue--400);
+  --color-text--reverse: var(--color-base-blue--700);
+  --color-text--reverse--secondary: var(--color-base-blue--900);
+  --color-icon: var(--color-base-blue--200);
+  --color-surface: var(--color-base-blue--900);
+  --color-surface--hover: var(--color-base-blue--800);
+  --color-surface--active: var(--color-base-blue--700);
+  --color-surface--background: var(--color-base-blue--1000);
+  --color-surface--background--hover: var(--color-base-blue--800);
+  --color-surface--background--subtle: var(--color-base-blue--800);
+  --color-surface--reverse: var(--color-base-taupe--200);
+  --color-border: var(--color-base-blue--700);
+  --color-border--interactive: var(--color-base-blue--500);
+  --color-border--section: var(--color-base-blue--400);
+  --color-overlay: rgba(var(--color-black--rgb), 0.6);
+  --color-overlay--dimmed: rgba(var(--color-black--rgb), 0.4);
+  --color-request: var(--color-base-orange--500);
+  --color-quote: var(--color-base-pink--500);
+  --color-job: var(--color-base-green--500);
+  --color-visit: var(--color-job);
+  --color-task: var(--color-base-blue--500);
+  --color-event: var(--color-base-yellow--400);
+  --color-invoice: var(--color-base-lightBlue--500);
+  --color-payments: var(--color-invoice);
+  --color-request--surface: var(--color-base-orange--800);
+  --color-request--onSurface: var(--color-base-orange--300);
+  --color-quote--surface: var(--color-base-pink--800);
+  --color-quote--onSurface: var(--color-base-pink--300);
+  --color-job--surface: var(--color-base-green--800);
+  --color-job--onSurface: var(--color-base-green--200);
+  --color-visit--surface: var(--color-job--surface);
+  --color-visit--onSurface: var(--color-job--onSurface);
+  --color-task--surface: var(--color-base-blue--700);
+  --color-task--onSurface: var(--color-base-blue--300);
+  --color-event--surface: var(--color-base-yellow--700);
+  --color-event--onSurface: var(--color-base-yellow--200);
+  --color-invoice--surface: var(--color-base-lightBlue--800);
+  --color-invoice--onSurface: var(--color-base-lightBlue--300);
+  --color-payments--surface: var(--color-invoice--surface);
+  --color-payments--onSurface: var(--color-invoice--surface);
+  --color-client: var(--color-base-blue--200);
+  --shadow-low: 0px var(--space-minuscule) var(--space-smallest) rgba(0, 0, 0, 0.15), 0px 0px var(--space-smallest) rgba(0, 0, 0, 0.25);
+  --shadow-base: 0px var(--space-minuscule) var(--space-smaller) 0px rgba(0, 0, 0, 0.1), 0px var(--space-smaller) 12px 0px rgba(0, 0, 0, 0.2);
+  --shadow-high: 0px var(--space-base) var(--space-base) 0px rgba(0, 0, 0, 0.075), 0px 0px var(--space-small) 0px rgba(0, 0, 0, 0.175);
+  --field--placeholder-color: var(--color-base-blue--400);
+  --field--border-color: var(--color-base-blue--500);
+[data-elevation="elevated"] {
+  --base-unit: 16px;
+  --color-destructive: var(--color-base-red--400);
+  --color-destructive--hover: var(--color-base-red--300);
+  --color-surface: var(--color-base-blue--800);
+  --color-surface--hover: var(--color-base-blue--700);
+  --color-surface--active: var(--color-base-blue--600);
+  --color-surface--background: var(--color-base-blue--900);
+  --color-surface--background--hover: var(--color-base-blue--800);
+  --color-surface--background--subtle: var(--color-base-blue--700);
+  --color-border: var(--color-base-blue--700);
+  --color-border--section: var(--color-base-blue--300);
+  --color-text: var(--color-base-blue--100);
+  --color-text--secondary: var(--color-base-blue--300);
+}
+}
+}
+@supports (scrollbar-color: #000 #000) {
+  html[data-theme="dark"] {
+    scrollbar-color: var(--color-surface--background--subtle)
+      var(--color-surface--background);
+  }
+}
+
+/* Safari doesn't support scrollbar-color yet, so we're using the non-standard selector for now. */
+@supports not (scrollbar-color: #000 #000) {
+  [data-theme="dark"]:root html ::-webkit-scrollbar,
+  [data-theme="dark"]:root body ::-webkit-scrollbar {
+    background-color: var(--color-surface--background);
+  }
+
+  [data-theme="dark"]:root html ::-webkit-scrollbar-thumb,
+  [data-theme="dark"]:root body ::-webkit-scrollbar-thumb {
+    border: 3px solid var(--color-surface--background);
+    border-radius: 12px;
+    background-color: var(--color-surface--background--subtle);
+    cursor: pointer;
+  }
+
+  [data-theme="dark"]:root html ::-webkit-scrollbar-thumb:hover,
+  [data-theme="dark"]:root body ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-surface--active);
+  }
+}

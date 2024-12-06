@@ -25,11 +25,13 @@ const populateComponentRoutes = () => {
     const tempGrouping = { handle: grouping, children: [] };
 
     for (const component of components) {
+      console.log("%%%%% component", component);
       tempGrouping.children.push({
-        path: `/components/${component}`,
+        path: "/components/:name",
         component: ComponentView,
         handle: component,
         inNav: true,
+        exact: true,
       });
     }
     groupedComponentNavRoutes.push(tempGrouping);
@@ -84,12 +86,12 @@ export const routes: Array<AtlantisRoute> = [
       },
     ],
   },
-  {
-    path: "/components/:name",
-    component: ComponentView,
-    handle: "Web",
-    inNav: false,
-  },
+  // {
+  //   path: "/components/:name",
+  //   component: ComponentView,
+  //   handle: "Web",
+  //   inNav: false,
+  // },
   {
     path: "/content/:type/:name",
     component: ContentLoader,

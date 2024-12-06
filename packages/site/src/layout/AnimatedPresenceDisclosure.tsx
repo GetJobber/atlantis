@@ -58,9 +58,7 @@ function AnimatedPresenceDisclosure({
         {isOpen && (
           <ul style={{ marginTop: "10px", padding: "0" }}>
             {React.Children.map(children, child => (
-              <li style={{ listStyleType: "none", marginBottom: "8px" }}>
-                {child}
-              </li>
+              <>{child}</>
             ))}
           </ul>
         )}

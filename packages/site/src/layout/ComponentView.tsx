@@ -38,8 +38,6 @@ export const ComponentView = () => {
     }
   }, [code, iframe?.current]);
 
-  console.log('inComponent view', PageMeta);
-
   return PageMeta ? (
     <Grid>
       <Grid.Cell size={{ xs: 12, md: 9 }}>
