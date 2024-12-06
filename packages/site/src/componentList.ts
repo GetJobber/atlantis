@@ -491,7 +491,6 @@ export const componentList = [
     title: "ProgressBar",
     to: "/components/ProgressBar",
     imageURL: "/ProgressBar.png",
-    additionalMatches: ["Progress", "Loader"],
     sections: ["Status and Feedback"],
     additionalMatches: ["Progress", "Loader", "Stepper"],
   },
