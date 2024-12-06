@@ -1,4 +1,3 @@
-// bundle.js
 import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import { useFormState } from "@jobber/hooks";

@@ -3,6 +3,7 @@ import { Route, Switch, useLocation } from "react-router";
 import { NavMenu } from "./NavMenu";
 import { routes } from "../routes";
 import "./code-theme.css";
+import { ToggleThemeButton } from "../components/ToggleThemeButton";
 
 /**
  * Layout for whole application. This will display the NavMenu and the content of the page.
@@ -13,10 +14,7 @@ export const Layout = () => {
   console.log("location", location);
 
   useEffect(() => {
-    // Perform an action whenever the location changes
     window.scrollTo({ top: 0 });
-
-    // Add your custom logic here
   }, [location]);
 
   return (
@@ -58,6 +56,8 @@ export const Layout = () => {
           )}
         </Switch>
       </div>
+
+      <ToggleThemeButton />
     </LayoutWrapper>
   );
 };

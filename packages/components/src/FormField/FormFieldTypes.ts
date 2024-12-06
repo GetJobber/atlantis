@@ -14,6 +14,15 @@ export type FormFieldTypes =
   | "tel"
   | "email";
 
+export type KeyBoardTypes =
+  | "text"
+  | "none"
+  | "tel"
+  | "url"
+  | "email"
+  | "numeric"
+  | "decimal";
+
 export type AutocompleteTypes =
   | "one-time-code"
   | "address-line1"
@@ -123,6 +132,14 @@ export interface CommonFormFieldProps {
    * set it to `always`.
    */
   readonly clearable?: Clearable;
+
+  /**
+   * Experimental:
+   * Determine which version of the FormField to use.
+   * Right now this isn't used but it will be used in the future
+   * to allow us to release new versions of our form inputs without breaking existing functionality
+   */
+  version?: 1;
 }
 
 export interface FormFieldProps extends CommonFormFieldProps {

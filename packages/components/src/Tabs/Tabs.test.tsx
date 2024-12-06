@@ -121,6 +121,44 @@ describe("Tabs", () => {
     expect(queryByText("🧀")).not.toBeInTheDocument();
   });
 
+  it("handles controlled activeTab prop", () => {
+    const ControlledTabs = () => {
+      const [activeTab, setActiveTab] = React.useState(0);
+
+      return (
+        <div>
+          <button type="button" onClick={() => setActiveTab(0)}>
+            Set Tab 0
+          </button>
+          <button type="button" onClick={() => setActiveTab(1)}>
+            Set Tab 1
+          </button>
+          <Tabs activeTab={activeTab} onTabChange={setActiveTab}>
+            <Tab label="Eggs">
+              <p>🍳</p>
+            </Tab>
+            <Tab label="Cheese">
+              <p>🧀</p>
+            </Tab>
+          </Tabs>
+        </div>
+      );
+    };
+
+    const { getByText, queryByText } = render(<ControlledTabs />);
+
+    expect(queryByText("🍳")).toBeInTheDocument();
+    expect(queryByText("🧀")).not.toBeInTheDocument();
+
+    fireEvent.click(getByText("Set Tab 1"));
+    expect(queryByText("🍳")).not.toBeInTheDocument();
+    expect(queryByText("🧀")).toBeInTheDocument();
+
+    fireEvent.click(getByText("Set Tab 0"));
+    expect(queryByText("🍳")).toBeInTheDocument();
+    expect(queryByText("🧀")).not.toBeInTheDocument();
+  });
+
   describe("overflow", () => {
     beforeAll(() => {
       Object.defineProperty(HTMLElement.prototype, "clientWidth", {

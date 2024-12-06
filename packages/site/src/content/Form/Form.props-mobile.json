@@ -1,0 +1,284 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components-native/src/Form/Form.tsx",
+    "description": "",
+    "displayName": "Form",
+    "methods": [],
+    "props": {
+      "children": {
+        "defaultValue": null,
+        "description": "Content to be passed into the form",
+        "name": "children",
+        "parent": {
+          "fileName": "packages/components-native/src/Form/types.ts",
+          "name": "FormProps"
+        },
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "onBeforeSubmit": {
+        "defaultValue": null,
+        "description": "A callback function that is run before invoking onSubmit. Form submission is canceled if the promise resolves to false.",
+        "name": "onBeforeSubmit",
+        "parent": {
+          "fileName": "packages/components-native/src/Form/types.ts",
+          "name": "FormProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(data: UnpackNestedValue<T>) => Promise<boolean>"
+        }
+      },
+      "onSubmit": {
+        "defaultValue": null,
+        "description": "A callback function that handles the submission of form data.\nIf an error occurs during submission, it should not be caught and handled silently; the error must be thrown again.\nIf the submission is successful and no error is thrown, the `onSubmitSuccess` callback will be called.\nIf an error is thrown, the `onSubmitError` callback will be called.",
+        "name": "onSubmit",
+        "parent": {
+          "fileName": "packages/components-native/src/Form/types.ts",
+          "name": "FormProps"
+        },
+        "required": true,
+        "type": {
+          "name": "(data: UnpackNestedValue<T>) => Promise<S>"
+        }
+      },
+      "onSubmitError": {
+        "defaultValue": null,
+        "description": "A callback function that handles any error that occurs during \"onSubmit\"",
+        "name": "onSubmitError",
+        "parent": {
+          "fileName": "packages/components-native/src/Form/types.ts",
+          "name": "FormProps"
+        },
+        "required": true,
+        "type": {
+          "name": "(error: FormErrors) => void"
+        }
+      },
+      "onSubmitSuccess": {
+        "defaultValue": null,
+        "description": "A callback function that handles a successful form submission from \"onSubmit\"",
+        "name": "onSubmitSuccess",
+        "parent": {
+          "fileName": "packages/components-native/src/Form/types.ts",
+          "name": "FormProps"
+        },
+        "required": true,
+        "type": {
+          "name": "(data: S) => void"
+        }
+      },
+      "bannerErrors": {
+        "defaultValue": null,
+        "description": "Network or user errors to be displayed as a banner at the top of the form",
+        "name": "bannerErrors",
+        "parent": {
+          "fileName": "packages/components-native/src/Form/types.ts",
+          "name": "FormProps"
+        },
+        "required": false,
+        "type": {
+          "name": "FormBannerErrors"
+        }
+      },
+      "bannerMessages": {
+        "defaultValue": null,
+        "description": "Status messages to be displayed as a banner at the top of the form",
+        "name": "bannerMessages",
+        "parent": {
+          "fileName": "packages/components-native/src/Form/types.ts",
+          "name": "FormProps"
+        },
+        "required": false,
+        "type": {
+          "name": "FormBannerMessage[]"
+        }
+      },
+      "initialLoading": {
+        "defaultValue": null,
+        "description": "Loading when the initial form data is being fetched",
+        "name": "initialLoading",
+        "parent": {
+          "fileName": "packages/components-native/src/Form/types.ts",
+          "name": "FormProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "initialValues": {
+        "defaultValue": null,
+        "description": "The initial values of the form inputs\nThis should be available as soon as initialLoading is set to false",
+        "name": "initialValues",
+        "parent": {
+          "fileName": "packages/components-native/src/Form/types.ts",
+          "name": "FormProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(Date & FieldValues) | (FileList & FieldValues) | (File & FieldValues) | { [x: string]: any; } | ((Date | Blob | FileList | File) & FileList & FieldValues) | { ...; } | (object & FieldValues) | ((Date | ... 2 more ... | File) & { ...; }) | { ...; }"
+        }
+      },
+      "mode": {
+        "defaultValue": null,
+        "description": "When the validation should happen.\nPossible values are \"onBlur\", \"onChange\", \"onSubmit\", \"onTouched\", and \"all\".\nThe default value is \"onTouched\"",
+        "name": "mode",
+        "parent": {
+          "fileName": "packages/components-native/src/Form/types.ts",
+          "name": "FormProps"
+        },
+        "required": false,
+        "type": {
+          "name": "keyof ValidationMode"
+        }
+      },
+      "reValidateMode": {
+        "defaultValue": null,
+        "description": "When the validation after submission should happen.\nPossible values are \"onBlur\", \"onChange\", and \"onSubmit\".\nThe default value is \"onChange\"",
+        "name": "reValidateMode",
+        "parent": {
+          "fileName": "packages/components-native/src/Form/types.ts",
+          "name": "FormProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"onBlur\" | \"onChange\" | \"onSubmit\""
+        }
+      },
+      "formRef": {
+        "defaultValue": null,
+        "description": "ref object to access react hook form methods and state",
+        "name": "formRef",
+        "parent": {
+          "fileName": "packages/components-native/src/Form/types.ts",
+          "name": "FormProps"
+        },
+        "required": false,
+        "type": {
+          "name": "MutableRefObject<UseFormReturn<T> & { scrollViewRef?: RefObject<KeyboardAwareScrollView>; saveButtonHeight?: number; messageBannerHeight?: number; }>"
+        }
+      },
+      "saveButtonLabel": {
+        "defaultValue": null,
+        "description": "Label to be displayed for the save button",
+        "name": "saveButtonLabel",
+        "parent": {
+          "fileName": "packages/components-native/src/Form/types.ts",
+          "name": "FormProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "renderStickySection": {
+        "defaultValue": null,
+        "description": "@deprecated use `secondaryAction` instead.\nOverride default save button in the sticky section of the form with another element.",
+        "name": "renderStickySection",
+        "parent": {
+          "fileName": "packages/components-native/src/Form/types.ts",
+          "name": "FormProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(onSubmit: () => void, label: string, isSubmitting: boolean) => Element"
+        }
+      },
+      "localCacheKey": {
+        "defaultValue": null,
+        "description": "Adding a key will save a local copy of the form data that will be used to\nrecover values when the app is backgrounded or has crashed.",
+        "name": "localCacheKey",
+        "parent": {
+          "fileName": "packages/components-native/src/Form/types.ts",
+          "name": "FormProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "localCacheExclude": {
+        "defaultValue": null,
+        "description": "Forms field names that will not be considered for caching.\nUseful for omitting sensitive data.",
+        "name": "localCacheExclude",
+        "parent": {
+          "fileName": "packages/components-native/src/Form/types.ts",
+          "name": "FormProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string[]"
+        }
+      },
+      "localCacheId": {
+        "defaultValue": null,
+        "description": "A string or array of strings that can be used to identify the pre-filled\ndata on the form. This can be used to support local caching for forms that\nprefill data without inadvertently applying the cache at the wrong time.\n\nFor example this can be used to when an object is based on data from\nanother object (Quote being converted into a Job). This will allow\nthe user to retrieve data from the cache when trying to create the\nsame object (same Quote being converted into a Job) following an app crash.\n\nThere is still only one copy of data for each `localCacheKey`.\nIf a user opens the same form the data will only be loaded if the `localCacheId` matches",
+        "name": "localCacheId",
+        "parent": {
+          "fileName": "packages/components-native/src/Form/types.ts",
+          "name": "FormProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | string[]"
+        }
+      },
+      "secondaryActions": {
+        "defaultValue": null,
+        "description": "Secondary Action for ButtonGroup",
+        "name": "secondaryActions",
+        "parent": {
+          "fileName": "packages/components-native/src/Form/types.ts",
+          "name": "FormProps"
+        },
+        "required": false,
+        "type": {
+          "name": "SecondaryActionProp[]"
+        }
+      },
+      "saveButtonOffset": {
+        "defaultValue": null,
+        "description": "A number that will pull down the save button when the position is sticky.\nUseful when there's a footer or content below the form that is pulling\nthe button up.",
+        "name": "saveButtonOffset",
+        "parent": {
+          "fileName": "packages/components-native/src/Form/types.ts",
+          "name": "FormProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "showStickySaveButton": {
+        "defaultValue": null,
+        "description": "Forces to render the sticky save button instead of the inline.\nThe sticky save button is default for iOS but not for Android due to\nlimitations. Use this prop with caution on Android.",
+        "name": "showStickySaveButton",
+        "parent": {
+          "fileName": "packages/components-native/src/Form/types.ts",
+          "name": "FormProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "renderFooter": {
+        "defaultValue": null,
+        "description": "Renders a footer below the save button.",
+        "name": "renderFooter",
+        "parent": {
+          "fileName": "packages/components-native/src/Form/types.ts",
+          "name": "FormProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactNode"
+        }
+      }
+    }
+  }
+]

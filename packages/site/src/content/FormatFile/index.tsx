@@ -1,13 +1,14 @@
 import Content from "@atlantis/docs/components/FormatFile/FormatFile.stories.mdx";
 import Props from "./FormatFile.props.json";
+import MobileProps from "./FormatFile.props-mobile.json";
 import { ContentExport } from "../../types/content";
 
 export default {
   content: () => <Content />,
   props: Props,
+  mobileProps: MobileProps,
   component: {
-    element: `<FormatFile
-      file={{
+    element: `const file = {
         key: "abc",
         name: "myballisbigandroundIamrollingitontheground.png",
         type: "image/png",
@@ -16,11 +17,25 @@ export default {
         src: () => {
           return Promise.resolve("https://picsum.photos/250");
         },
-      }}
-      display={"compact"}
-      displaySize={"large"}
-      onDelete={() => {
-        return alert("Deleted");
+      };
+
+      return (
+        <FormatFile
+          file={file}
+          display={"compact"}
+          displaySize={"large"}
+          onDelete={() => {
+            return alert("Deleted");
+          }}
+        />
+      );`,
+    mobileElement: `<FormatFile
+      file={{
+        fileName: "image.png",
+        contentType: "image/png",
+        url: "https://picsum.photos/250",
+        thumbnailUrl: "https://picsum.photos/250",
+        fileSize: 1024,
       }}
     />`,
   },

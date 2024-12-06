@@ -12,6 +12,7 @@ interface PageBlockProps {
       body: string;
       ctaLabel?: string;
       to?: string;
+      imageURL?: string;
     };
     body: {
       title: string;

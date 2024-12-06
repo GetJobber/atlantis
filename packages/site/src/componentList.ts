@@ -1,5 +1,23 @@
 export const componentList = [
   {
+    title: "ActionItem",
+    to: "/components/ActionItem",
+    imageURL: "/ActionItem.png",
+    additionalMatches: [],
+  },
+  {
+    title: "ActionItemGroup",
+    to: "/components/ActionItemGroup",
+    imageURL: "/ActionItemGroup.png",
+    additionalMatches: [],
+  },
+  {
+    title: "ActionLabel",
+    to: "/components/ActionLabel",
+    imageURL: "/ActionLabel.png",
+    additionalMatches: [],
+  },
+  {
     title: "AnimatedPresence",
     to: "/components/AnimatedPresence",
     imageURL: "/Animation.png",
@@ -20,6 +38,11 @@ export const componentList = [
     sections: ["Forms and Inputs"],
   },
   {
+    title: "AutoLink",
+    to: "/components/AutoLink",
+    imageURL: "/AutoLink.png",
+  },
+  {
     title: "Avatar",
     to: "/components/Avatar",
     imageURL: "/Avatar.png",
@@ -38,6 +61,11 @@ export const componentList = [
     sections: ["Layouts and Structure"],
   },
   {
+    title: "BottomSheet",
+    to: "/components/BottomSheet",
+    imageURL: "/BottomSheet.png",
+  },
+  {
     title: "Button",
     to: "/components/Button",
     imageURL: "/Button.png",
@@ -49,6 +77,11 @@ export const componentList = [
     imageURL: "/ButtonDismiss.png",
     additionalMatches: ["Close", "Dismiss", "Remove"],
     sections: [],
+  },
+  {
+    title: "ButtonGroup",
+    to: "/components/ButtonGroup",
+    imageURL: "/ButtonGroup.png",
   },
   {
     title: "Card",
@@ -88,6 +121,16 @@ export const componentList = [
     imageURL: "/ConfirmationModal.png",
     additionalMatches: ["Confirm", "Prompt", "Modal"],
     sections: [],
+  },
+  {
+    title: "Content",
+    to: "/components/Content",
+    imageURL: "/Content.png",
+  },
+  {
+    title: "ContentOverlay",
+    to: "/components/ContentOverlay",
+    imageURL: "/ContentOverlay.png",
   },
   {
     title: "Countdown",
@@ -156,6 +199,12 @@ export const componentList = [
     imageURL: "/Emphasis.png",
     additionalMatches: ["Highlight", "Strong", "Bold", "Italic"],
     sections: [],
+  },
+  {
+    title: "EmptyState",
+    to: "/components/EmptyState",
+    imageURL: "/EmptyState.png",
+    additionalMatches: ["No", "None", "Nada", "Nothing"],
   },
   {
     title: "FeatureSwitch",
@@ -244,6 +293,11 @@ export const componentList = [
     sections: ["Images and Icons"],
   },
   {
+    title: "IconButton",
+    to: "/components/IconButton",
+    imageURL: "/IconButton.png",
+  },
+  {
     title: "InlineLabel",
     to: "/components/InlineLabel",
     imageURL: "/InlineLabel.png",
@@ -278,6 +332,11 @@ export const componentList = [
     sections: ["Forms and Inputs"],
   },
   {
+    title: "InputFieldWrapper",
+    to: "/components/InputFieldWrapper",
+    imageURL: "/InputFieldWrapper.png",
+  },
+  {
     title: "InputFile",
     to: "/components/InputFile",
     imageURL: "/InputFile.png",
@@ -306,6 +365,16 @@ export const componentList = [
     to: "/components/InputPhoneNumber",
     imageURL: "/InputPhoneNumber.png",
     sections: ["Forms and Inputs"],
+  },
+  {
+    title: "InputPressable",
+    to: "/components/InputPressable",
+    imageURL: "/InputPressable.png",
+  },
+  {
+    title: "InputSearch",
+    to: "/components/InputSearch",
+    imageURL: "/InputSearch.png",
   },
   {
     title: "InputText",
@@ -369,6 +438,11 @@ export const componentList = [
     sections: [],
   },
   {
+    title: "Page",
+    to: "/components/Page",
+    imageURL: "/Page.png",
+  },
+  {
     title: "Popover",
     to: "/components/Popover",
     imageURL: "/Popover.png",
@@ -404,6 +478,11 @@ export const componentList = [
     to: "/components/Select",
     imageURL: "/Select.png",
     sections: [],
+  },
+  {
+    title: "SideDrawer",
+    to: "/components/SideDrawer",
+    imageURL: "/SideDrawer.png",
   },
   {
     title: "Spinner",
@@ -449,6 +528,16 @@ export const componentList = [
     to: "/components/Text",
     imageURL: "/Text.png",
     sections: [],
+  },
+  {
+    title: "TextList",
+    to: "/components/TextList",
+    imageURL: "/TextList.png",
+  },
+  {
+    title: "ThumbnailList",
+    to: "/components/ThumbnailList",
+    imageURL: "/ThumbnailList.png",
   },
   {
     title: "Toast",

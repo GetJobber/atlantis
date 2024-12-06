@@ -76,9 +76,14 @@ const removeDeclarations = doc => {
  * @param {string} componentName
  * @returns {{componentPath: string, outputPath: string}}
  */
-const buildPaths = (baseComponentDir, baseOutputDir, componentName) => {
+const buildPaths = (
+  baseComponentDir,
+  baseOutputDir,
+  componentName,
+  tack = "",
+) => {
   const componentPath = `${baseComponentDir}/${componentName}/${componentName}.tsx`;
-  const outputPath = `${baseOutputDir}/${componentName}/${componentName}.props.json`;
+  const outputPath = `${baseOutputDir}/${componentName}/${componentName}.props${tack}.json`;
 
   return { componentPath, outputPath };
 };
@@ -90,6 +95,7 @@ const buildPaths = (baseComponentDir, baseOutputDir, componentName) => {
  * improvement in the future would be take in the location of the script, and work from there instead (__dirname in the old world).
  */
 const baseComponentDir = `../components/src`;
+const baseMobileComponentDir = `../components-native/src`;
 const baseOutputDir = "./src/content";
 
 const buildComponentDocs = name => {
@@ -97,6 +103,16 @@ const buildComponentDocs = name => {
     baseComponentDir,
     baseOutputDir,
     name,
+  );
+  parseAndWriteDocs(componentPath, outputPath);
+};
+
+const buildMobileComponentDocs = name => {
+  const { componentPath, outputPath } = buildPaths(
+    baseMobileComponentDir,
+    baseOutputDir,
+    name,
+    "-mobile",
   );
   parseAndWriteDocs(componentPath, outputPath);
 };
@@ -120,6 +136,7 @@ const components = [
   "Chips",
   "Combobox",
   "ConfirmationModal",
+  "Content",
   "Countdown",
   "DataDump",
   "DataList",
@@ -163,12 +180,14 @@ const components = [
   "Menu",
   "Modal",
   "MultiSelect",
+  "Page",
   "Popover",
   "ProgressBar",
   "RadioGroup",
   "RecurringSelect",
   "SegmentedControl",
   "Select",
+  "SideDrawer",
   "Spinner",
   "StatusIndicator",
   "StatusLabel",
@@ -181,4 +200,53 @@ const components = [
   "Typography",
 ];
 
+const mobileComponents = [
+  "ActionLabel",
+  "Button",
+  "ButtonGroup",
+  "IconButton",
+  "Card",
+  "Form",
+  "InputDate",
+  "InputEmail",
+  "InputNumber",
+  "InputPassword",
+  "InputPressable",
+  "InputSearch",
+  "InputText",
+  "InputTime",
+  "FormatFile",
+  "Icon",
+  "ThumbnailList",
+  "ActionItem",
+  "ActionItemGroup",
+  "Content",
+  "Disclosure",
+  "Divider",
+  "Flex",
+  "TextList",
+  "Menu",
+  "ContentOverlay",
+  "FormField",
+  "InputFieldWrapper",
+  "BottomSheet",
+  "Checkbox",
+  "Chips",
+  "Select",
+  "Switch",
+  "ActivityIndicator",
+  "Banner",
+  "EmptyState",
+  "Glimmer",
+  "ProgressBar",
+  "StatusLabel",
+  "Toast",
+  "AutoLink",
+  "Heading",
+  "Text",
+  "Typography",
+];
+
 components.forEach(buildComponentDocs);
+
+mobileComponents.forEach(buildMobileComponentDocs);

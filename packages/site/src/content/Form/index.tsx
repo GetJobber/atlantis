@@ -1,10 +1,12 @@
 import Content from "@atlantis/docs/components/Form/Form.stories.mdx";
 import Props from "./Form.props.json";
+import MobileProps from "./Form.props-mobile.json";
 import { ContentExport } from "../../types/content";
 
 export default {
   content: () => <Content />,
   props: Props,
+  mobileProps: MobileProps,
   component: {
     element: `const [{ isDirty, isValid }, setFormState] = useFormState();
   const [first, setFirst] = useState("");
@@ -49,7 +51,34 @@ export default {
       </Content>
     </Form>
 )`,
-    defaultProps: {},
+    mobileElement: `<Form
+      initialValues={{ firstName: "Greatest", lastName: "Ever", nickName: "" }}
+      onSubmit={function onSubmit(value) {
+        return new Promise(function (resolve) {
+          setTimeout(function () {
+            return resolve(alert(JSON.stringify(value, void 0)));
+          }, 1e3);
+        });
+      }}
+    >
+      <Content>
+        <InputText
+          name="firstName"
+          placeholder="First name"
+          validations={{ required: "Please add a first name" }}
+        />
+        <InputText
+          name="lastName"
+          placeholder="Last name"
+          validations={{ required: "Please add a last name" }}
+        />
+        <InputText
+          name="nickName"
+          placeholder="Nick name"
+          validations={{ required: "Please add a nick name" }}
+        />
+      </Content>
+    </Form>`,
   },
   title: "Form",
   links: [

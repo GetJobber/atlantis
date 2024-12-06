@@ -1,0 +1,93 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components-native/src/AutoLink/AutoLink.tsx",
+    "description": "",
+    "displayName": "AutoLink",
+    "methods": [],
+    "props": {
+      "children": {
+        "defaultValue": null,
+        "description": "Text to display.",
+        "name": "children",
+        "parent": {
+          "fileName": "packages/components-native/src/AutoLink/types.ts",
+          "name": "AutoLinkProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      },
+      "phone": {
+        "defaultValue": null,
+        "description": "Flag for linking phone numbers in text",
+        "name": "phone",
+        "parent": {
+          "fileName": "packages/components-native/src/AutoLink/types.ts",
+          "name": "AutoLinkProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "email": {
+        "defaultValue": null,
+        "description": "Flag for linking emails in text",
+        "name": "email",
+        "parent": {
+          "fileName": "packages/components-native/src/AutoLink/types.ts",
+          "name": "AutoLinkProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "urls": {
+        "defaultValue": null,
+        "description": "Flag for linking urls in text",
+        "name": "urls",
+        "parent": {
+          "fileName": "packages/components-native/src/AutoLink/types.ts",
+          "name": "AutoLinkProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "bottomTabsVisible": {
+        "defaultValue": {
+          "value": true
+        },
+        "description": "Determines the placement of the toast that gets shown onLongPress",
+        "name": "bottomTabsVisible",
+        "parent": {
+          "fileName": "packages/components-native/src/AutoLink/types.ts",
+          "name": "AutoLinkProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "selectable": {
+        "defaultValue": {
+          "value": true
+        },
+        "description": "Lets the user select text, to use the native copy and paste functionality.",
+        "name": "selectable",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Text/Text.d.ts",
+          "name": "TextPropsAndroid"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      }
+    }
+  }
+]

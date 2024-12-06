@@ -57,6 +57,7 @@
     "Footer",
     "Form",
     "FormField",
+    "FormFieldWrapper",
     "FormatDate",
     "FormatEmail",
     "FormatFile",

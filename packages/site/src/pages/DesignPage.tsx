@@ -7,7 +7,8 @@ export const DesignPage = () => {
       structure={{
         header: {
           title: "Design",
-          body: "Design elements and concepts that apply across Jobber's ecosystem",
+          body: "The foundation of Jobber's look and feel",
+          imageURL: "../public/img-page-divider-collage.webp",
         },
         body: {
           title: "Design",
