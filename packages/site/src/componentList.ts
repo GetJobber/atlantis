@@ -465,7 +465,7 @@ export const componentList = [
     to: "/components/Modal",
     imageURL: "/Modal.png",
     sections: ["Overlays"],
-    additionalMatches: ["Dialog", "Popup", "Overlay"], 
+    additionalMatches: ["Dialog", "Popup", "Overlay"],
   },
   {
     title: "MultiSelect",
