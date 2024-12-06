@@ -149,7 +149,7 @@ export const componentList = [
     title: "DataTable",
     to: "/components/DataTable",
     imageURL: "/DataTable.png",
-    additionalMatches: ["List"],
+    additionalMatches: ["Thicklist", "Table"],
   },
   {
     title: "DatePicker",
@@ -161,7 +161,7 @@ export const componentList = [
     title: "DescriptionList",
     to: "/components/DescriptionList",
     imageURL: "/DescriptionList.png",
-    additionalMatches: ["Definition List", "Key Value Pair"],
+    additionalMatches: ["Definition List", "Key Value Pair", "Simple List"],
   },
   {
     title: "Disclosure",
@@ -251,7 +251,7 @@ export const componentList = [
     title: "Gallery",
     to: "/components/Gallery",
     imageURL: "/Gallery.png",
-    additionalMatches: ["Image", "Thumbnail", "Photo"],
+    additionalMatches: ["Image", "Thumbnail", "Photo", "Carousel", "ThumbnailList", "ImageList"],
   },
   {
     title: "Glimmer",
@@ -321,6 +321,7 @@ export const componentList = [
     title: "InputEmail",
     to: "/components/InputEmail",
     imageURL: "/InputEmail.png",
+    additionalMatches: ["Email Input"],
   },
   {
     title: "InputFieldWrapper",
@@ -331,7 +332,7 @@ export const componentList = [
     title: "InputFile",
     to: "/components/InputFile",
     imageURL: "/InputFile.png",
-    additionalMatches: ["Upload", "Dropzone", "Image"],
+    additionalMatches: ["Upload", "Dropzone", "Image", "Uploader", "File Input", "File Uploader"],
   },
   {
     title: "InputGroup",
@@ -343,16 +344,19 @@ export const componentList = [
     title: "InputNumber",
     to: "/components/InputNumber",
     imageURL: "/InputNumber.png",
+    additionalMatches: ["Number Input", "Numeric Input"],
   },
   {
     title: "InputPassword",
     to: "/components/InputPassword",
     imageURL: "/InputPassword.png",
+    additionalMatches: ["Password Input"],
   },
   {
     title: "InputPhoneNumber",
     to: "/components/InputPhoneNumber",
     imageURL: "/InputPhoneNumber.png",
+    additionalMatches: ["Phone Number Input"],
   },
   {
     title: "InputPressable",
@@ -368,24 +372,25 @@ export const componentList = [
     title: "InputText",
     to: "/components/InputText",
     imageURL: "/InputText.png",
-    additionalMatches: ["Textbox", "Textarea", "Field"],
+    additionalMatches: ["Textbox", "Textarea", "Field", "Textfield", "Text Input", "Input"],
   },
   {
     title: "InputTime",
     to: "/components/InputTime",
     imageURL: "/InputTime.png",
+    additionalMatches: ["Time Input", "Time Picker"],
   },
   {
     title: "InputValidation",
     to: "/components/InputValidation",
     imageURL: "/InputValidation.png",
-    additionalMatches: ["Message", "Error", "Warning"],
+    additionalMatches: ["Message", "Error", "Warning", "Field Error", "Error Message"],
   },
   {
     title: "LightBox",
     to: "/components/LightBox",
     imageURL: "/LightBox.png",
-    additionalMatches: ["Display", "Gallery", "Image"],
+    additionalMatches: ["Display", "Gallery", "Image", "Carousel"],
   },
   {
     title: "Link",
@@ -432,7 +437,7 @@ export const componentList = [
     title: "Popover",
     to: "/components/Popover",
     imageURL: "/Popover.png",
-    additionalMatches: ["Float", "Dropdown", "Tooltip", "Dialog", "Info"],
+    additionalMatches: ["Float", "Dropdown", "Tooltip", "Dialog", "Info", "Popup"],
   },
   {
     title: "ProgressBar",
@@ -450,13 +455,13 @@ export const componentList = [
     title: "RecurringSelect",
     to: "/components/RecurringSelect",
     imageURL: "/RecurringSelect.png",
-    additionalMatches: ["Schedule", "Calendar", "Interval"],
+    additionalMatches: ["Schedule", "Calendar", "Interval", "Date Picker"],
   },
   {
     title: "SegmentedControl",
     to: "/components/SegmentedControl",
     imageURL: "/SegmentedControl.png",
-    additionalMatches: ["Toggle", "Switch", "Tab", "ViewControl"],
+    additionalMatches: ["Toggle", "Switch", "Tab", "ViewControl", "TabControl"],
   },
   {
     title: "Select",
@@ -468,7 +473,7 @@ export const componentList = [
     title: "SideDrawer",
     to: "/components/SideDrawer",
     imageURL: "/SideDrawer.png",
-    additionalMatches: ["Panel", "Flyout", "Sidebar"],
+    additionalMatches: ["Panel", "Flyout", "Sidebar", "Drawer"],
   },
   {
     title: "Spinner",
@@ -516,7 +521,7 @@ export const componentList = [
     title: "Text",
     to: "/components/Text",
     imageURL: "/Text.png",
-    additionalMatches: ["Typography", "Paragraph", "Body"],
+    additionalMatches: ["Typography", "Paragraph", "Body", "Body Copy"],
   },
   {
     title: "TextList",
@@ -546,7 +551,7 @@ export const componentList = [
     title: "Tooltip",
     to: "/components/Tooltip",
     imageURL: "/Tooltip.png",
-    additionalMatches: ["Hover", "Info", "Popover"],
+    additionalMatches: ["Hover", "Info", "Popover", "Popup"],
   },
   {
     title: "Typography",
