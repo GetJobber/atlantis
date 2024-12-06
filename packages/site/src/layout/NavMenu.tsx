@@ -1,4 +1,4 @@
-import { Box, Button, Disclosure, Typography } from "@jobber/components";
+import { Box, Button, Typography } from "@jobber/components";
 import { Link } from "react-router-dom";
 import { Fragment, PropsWithChildren, useState } from "react";
 import { SearchBox } from "./SearchBox";
@@ -44,23 +44,25 @@ export const NavMenu = () => {
           {routes?.map((route, routeIndex) => {
             if (route.inNav === false) return null;
 
-            const iterateSubMenu = (menuItems, parentIndex) => {
+            interface MenuItem {
+              handle: string;
+              children?: MenuItem[];
+            }
+
+            const iterateSubMenu = (menuItems: MenuItem[]) => {
               return menuItems.map((menuItem, menuItemIndex) => {
                 if (menuItem.children) {
                   return (
-                    <Fragment key={`${parentIndex}-${menuItemIndex}`}>
+                    <Fragment key={`${routeIndex}-${menuItemIndex}`}>
                       {sectionTitle(menuItem.handle)}
-                      {iterateSubMenu(
-                        menuItem.children,
-                        `${parentIndex}-${menuItemIndex}`,
-                      )}
+                      {iterateSubMenu(menuItem.children)}
                     </Fragment>
                   );
                 }
 
                 return (
-                  <MenuItem key={`${parentIndex}-${menuItemIndex}`}>
-                    <StyledLink to={`/components/${menuItem.handle}` ?? "/"}>
+                  <MenuItem key={`${routeIndex}-${menuItemIndex}`}>
+                    <StyledLink to={`/components/${menuItem.handle}`}>
                       {menuItem.handle}
                     </StyledLink>
                   </MenuItem>
@@ -72,10 +74,10 @@ export const NavMenu = () => {
               return (
                 <Box key={routeIndex} padding="base">
                   <AnimatedPresenceDisclosure
-                    to={`/components/${route.handle}` || "/"}
+                    to={`/components/${route.handle}`}
                     title={route.handle}
                   >
-                    {iterateSubMenu(route.children, routeIndex)}
+                    {iterateSubMenu(route.children)}
                   </AnimatedPresenceDisclosure>
                 </Box>
               );
@@ -83,9 +85,7 @@ export const NavMenu = () => {
 
             return (
               <MenuItem key={routeIndex}>
-                <StyledLink to={"/components" ?? "/"}>
-                  {route.handle}
-                </StyledLink>
+                <StyledLink to={"/components"}>{route.handle}</StyledLink>
               </MenuItem>
             );
           })}
@@ -175,10 +175,8 @@ export const changelogTitle = (
   </Typography>
 );
 
-export const sectionTitle = section => (
-  <div key={section} style={{ padding: "var(--space-smaller)" }}>
-    <Typography fontWeight="bold" size="small" textColor="textSecondary">
-      {section.toUpperCase()}
-    </Typography>
-  </div>
+export const sectionTitle = (section: string) => (
+  <Typography fontWeight="bold" size="small" textColor="textSecondary">
+    {section.toUpperCase()}
+  </Typography>
 );

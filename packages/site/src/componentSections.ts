@@ -10,6 +10,5 @@ export const componentSections = [
   "Selections",
   "Status and Feedback",
   "Text and Typography",
-  "Themes",
   "Utilities",
 ];

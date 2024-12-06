@@ -7,7 +7,7 @@ import { componentList } from "./componentList";
 import { ComponentsChangelogPage } from "./pages/ComponentsChangelogPage";
 import { ComponentsNativeChangelogPage } from "./pages/ComponentsNativeChangelogPage";
 import { DesignChangelogPage } from "./pages/DesignChangelogPage";
-import { componentGroupings } from "./componentGroupings";
+import { componentSections } from "./componentSections";
 
 interface AtlantisRoute {
   path?: string;
@@ -18,27 +18,30 @@ interface AtlantisRoute {
   handle: string;
 }
 
-const groupedComponentNavRoutes: Array<AtlantisRoute> = [];
+const generateComponentSidebar = () => {
+  const sectionedComponentRoutes: Array<AtlantisRoute> = [];
 
-const populateComponentRoutes = () => {
-  for (const [grouping, components] of Object.entries(componentGroupings)) {
-    const tempGrouping = { handle: grouping, children: [] };
+  for (const section of componentSections) {
+    const sectionRoutes: AtlantisRoute = { handle: section, children: [] };
+    const filteredComponents = componentList.filter(component => {
+      return component.sections && component.sections.includes(section);
+    });
 
-    for (const component of components) {
-      console.log("%%%%% component", component);
-      tempGrouping.children.push({
+    filteredComponents.map(component => {
+      if (!sectionRoutes.children) return;
+      sectionRoutes.children.push({
         path: "/components/:name",
         component: ComponentView,
-        handle: component,
+        handle: component.title,
         inNav: true,
         exact: true,
       });
-    }
-    groupedComponentNavRoutes.push(tempGrouping);
+    });
+    sectionedComponentRoutes.push(sectionRoutes);
   }
-};
 
-populateComponentRoutes();
+  return sectionedComponentRoutes;
+};
 
 export const routes: Array<AtlantisRoute> = [
   {
@@ -52,7 +55,7 @@ export const routes: Array<AtlantisRoute> = [
     handle: "Components",
     exact: true,
     component: ComponentsPage,
-    children: groupedComponentNavRoutes,
+    children: generateComponentSidebar(),
   },
   {
     path: "/design",
@@ -86,12 +89,12 @@ export const routes: Array<AtlantisRoute> = [
       },
     ],
   },
-  // {
-  //   path: "/components/:name",
-  //   component: ComponentView,
-  //   handle: "Web",
-  //   inNav: false,
-  // },
+  {
+    path: "/components/:name",
+    component: ComponentView,
+    handle: "Web",
+    inNav: false,
+  },
   {
     path: "/content/:type/:name",
     component: ContentLoader,

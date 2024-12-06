@@ -11,7 +11,6 @@ import { ToggleThemeButton } from "../components/ToggleThemeButton";
  */
 export const Layout = () => {
   const location = useLocation();
-  console.log("location", location);
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
@@ -25,8 +24,6 @@ export const Layout = () => {
           {routes.map((route, index) =>
             route.children ? (
               route.children.map((child, childIndex) => {
-                console.log("child", child);
-
                 return child.children ? (
                   child.children.map((childchild, childchildIndex) => (
                     <Route
