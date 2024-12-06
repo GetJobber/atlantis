@@ -43,7 +43,7 @@ export default defineConfig({
               if (node.type === "element" && node.tagName === "h2") {
                 node.properties.id =
                   "component-view-" +
-                  node.children?.[0].value.replace(/ /g, "-").toLowerCase();
+                  node.children?.[0].value?.replace(/ /g, "-").toLowerCase();
                 node.properties["data-heading-link"] = "";
               }
             },
@@ -67,7 +67,6 @@ export default defineConfig({
         __dirname,
         "./src/components/StorybookOverrides",
       ),
-
       mdxUtils: path.resolve(__dirname, "../../.storybook/components"),
       "@jobber/docx": path.resolve(__dirname, "../docx/src"),
       "@atlantis/docs": path.resolve(__dirname, "../../docs"),

@@ -1,4 +1,6 @@
 public/editorBundle.js
+public/editorMobileBundle.js
 public/axios.js
 public/foundation.css
+public/dark.mode.css
 public/styles.css

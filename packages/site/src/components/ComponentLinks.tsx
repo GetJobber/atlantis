@@ -1,6 +1,7 @@
 import { Box, Content, Heading, Link } from "@jobber/components";
 import { MouseEvent, useEffect, useState } from "react";
 import { ContentExportLinks } from "../types/content";
+import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
 
 /**
  * Lists some links, typically in the top right corner of the ComponentView.
@@ -43,6 +44,8 @@ export const ComponentLinks = ({
       }, 100);
     }
   };
+  const { isMinimal } = useAtlantisSite();
+  if (isMinimal) return null;
 
   return (
     <Content>
