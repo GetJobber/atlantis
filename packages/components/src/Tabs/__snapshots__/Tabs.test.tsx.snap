@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Tabs displays the label when it is a ReactNode 1`] = `
+exports[`Tabs Component Rendering displays the label when it is a ReactNode 1`] = `
 <div>
   <div
     class="tabs"
@@ -47,7 +47,7 @@ exports[`Tabs displays the label when it is a ReactNode 1`] = `
 </div>
 `;
 
-exports[`Tabs renders Tabs 1`] = `
+exports[`Tabs Component Rendering renders Tabs 1`] = `
 <div>
   <div
     class="tabs"

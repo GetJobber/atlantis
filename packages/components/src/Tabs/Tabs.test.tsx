@@ -34,215 +34,220 @@ const originalScrollWidth = Object.getOwnPropertyDescriptor(
   "scrollWidth",
 );
 
-// eslint-disable-next-line max-statements
-describe("Tabs", () => {
-  it("renders Tabs", () => {
-    const { container } = render(omelet);
-    expect(container).toMatchSnapshot();
+describe("Tabs Component", () => {
+  describe("Rendering", () => {
+    it("renders Tabs", () => {
+      const { container } = render(omelet);
+      expect(container).toMatchSnapshot();
+    });
+
+    it("displays the label when it is a ReactNode", () => {
+      const { container } = render(omeletWithReactNodeLabel);
+      expect(container).toMatchSnapshot();
+    });
   });
 
-  it("displays the label when it is a ReactNode", () => {
-    const { container } = render(omeletWithReactNodeLabel);
-    expect(container).toMatchSnapshot();
-  });
+  describe("Tab Switching", () => {
+    it("should switch tabs", async () => {
+      const { getByRole, queryByText } = render(omelet);
 
-  it("should switch tabs", async () => {
-    const { getByText, queryByText } = render(omelet);
+      expect(queryByText("🍳")).toBeInTheDocument();
+      expect(queryByText("🧀")).not.toBeInTheDocument();
 
-    expect(queryByText("🍳")).toBeInTheDocument();
-    expect(queryByText("🧀")).not.toBeInTheDocument();
+      await userEvent.click(getByRole("tab", { name: "Cheese" }));
+      expect(queryByText("🍳")).not.toBeInTheDocument();
+      expect(queryByText("🧀")).toBeInTheDocument();
 
-    await userEvent.click(getByText("Cheese"));
-    expect(queryByText("🍳")).not.toBeInTheDocument();
-    expect(queryByText("🧀")).toBeInTheDocument();
+      await userEvent.click(getByRole("tab", { name: "Eggs" }));
+      expect(queryByText("🍳")).toBeInTheDocument();
+      expect(queryByText("🧀")).not.toBeInTheDocument();
+    });
 
-    await userEvent.click(getByText("Eggs"));
-    expect(queryByText("🍳")).toBeInTheDocument();
-    expect(queryByText("🧀")).not.toBeInTheDocument();
-  });
+    it("should handle tab onClick", async () => {
+      const { getByRole } = render(omelet);
+      count = 0;
 
-  it("should handle tab onClick", async () => {
-    const { getByText } = render(omelet);
-    count = 0;
+      await userEvent.click(getByRole("tab", { name: "Cheese" }));
+      expect(count).toBe(1);
+      await userEvent.click(getByRole("tab", { name: "Cheese" }));
+      expect(count).toBe(2);
+    });
 
-    await userEvent.click(getByText("Cheese"));
-    expect(count).toBe(1);
-    await userEvent.click(getByText("Cheese"));
-    expect(count).toBe(2);
-  });
+    it("should switch tabs with arrow keys", async () => {
+      const { getByRole, queryByText } = render(omelet);
 
-  it("should switch tabs with arrow keys", async () => {
-    const { getByRole, queryByText } = render(omelet);
+      const tab1 = getByRole("tab", { name: "Eggs" });
+      const tab2 = getByRole("tab", { name: "Cheese" });
 
-    const tab1 = getByRole("tab", { name: "Eggs" });
-    const tab2 = getByRole("tab", { name: "Cheese" });
+      tab1.focus();
+      await userEvent.keyboard("{ArrowRight}");
+      expect(tab2).toHaveFocus();
+      expect(queryByText("🍳")).not.toBeInTheDocument();
+      expect(queryByText("🧀")).toBeInTheDocument();
 
-    tab1.focus();
-    await userEvent.keyboard("{ArrowRight}");
-    expect(tab2).toHaveFocus();
-    expect(queryByText("🍳")).not.toBeInTheDocument();
-    expect(queryByText("🧀")).toBeInTheDocument();
+      await userEvent.keyboard("{ArrowLeft}");
+      expect(tab1).toHaveFocus();
+      expect(queryByText("🍳")).toBeInTheDocument();
+      expect(queryByText("🧀")).not.toBeInTheDocument();
+    });
 
-    await userEvent.keyboard("{ArrowLeft}");
-    expect(tab1).toHaveFocus();
-    expect(queryByText("🍳")).toBeInTheDocument();
-    expect(queryByText("🧀")).not.toBeInTheDocument();
-  });
+    it("should loop focus between tabs with arrow keys", async () => {
+      const { getByRole } = render(omelet);
 
-  it("should loop focus between tabs with arrow keys", async () => {
-    const { getByRole } = render(omelet);
+      const tab1 = getByRole("tab", { name: "Eggs" });
+      const tab2 = getByRole("tab", { name: "Cheese" });
 
-    const tab1 = getByRole("tab", { name: "Eggs" });
-    const tab2 = getByRole("tab", { name: "Cheese" });
+      tab1.focus();
+      await userEvent.keyboard("{ArrowRight}");
+      expect(tab2).toHaveFocus();
 
-    tab1.focus();
-    await userEvent.keyboard("{ArrowRight}");
-    expect(tab2).toHaveFocus();
+      await userEvent.keyboard("{ArrowRight}");
+      expect(tab1).toHaveFocus();
 
-    await userEvent.keyboard("{ArrowRight}");
-    expect(tab1).toHaveFocus();
+      await userEvent.keyboard("{ArrowLeft}");
+      expect(tab2).toHaveFocus();
+    });
 
-    await userEvent.keyboard("{ArrowLeft}");
-    expect(tab2).toHaveFocus();
-  });
-
-  it("will tab key focus to a child, if one exists within a tab", async () => {
-    const { getByRole, getByText } = render(
-      <Tabs>
-        <Tab label="Eggs">
-          <p>🍳</p>
-          <button type="button">Focusable Child</button>
-        </Tab>
-        <Tab label="Cheese">
-          <p>🧀</p>
-        </Tab>
-      </Tabs>,
-    );
-
-    const tab1 = getByRole("tab", { name: "Eggs" });
-    const focusableChild = getByText("Focusable Child");
-
-    tab1.focus();
-    await userEvent.keyboard("{Tab}");
-    expect(focusableChild).toHaveFocus();
-  });
-
-  it("while focused on a child element, hitting Shift+Tab moves focus back to the tab", async () => {
-    const { getByRole, getByText } = render(
-      <Tabs>
-        <Tab label="Eggs">
-          <p>🍳</p>
-          <button type="button">Focusable Child</button>
-        </Tab>
-        <Tab label="Cheese">
-          <p>🧀</p>
-        </Tab>
-      </Tabs>,
-    );
-
-    const tab1 = getByRole("tab", { name: "Eggs" });
-    const focusableChild = getByText("Focusable Child");
-
-    tab1.focus();
-    await userEvent.keyboard("{Tab}");
-    expect(focusableChild).toHaveFocus();
-
-    await userEvent.keyboard("{Shift>}{Tab}{/Shift}");
-    expect(tab1).toHaveFocus();
-  });
-
-  it("calls the onTabChange callback after a tab is clicked", async () => {
-    const onTabChange = jest.fn();
-    const { getByText } = render(
-      <Tabs onTabChange={onTabChange}>
-        <Tab label="Eggs">
-          <p>🍳</p>
-          <p>Eggs</p>
-        </Tab>
-        <Tab label="Cheese">
-          <p>🧀</p>
-        </Tab>
-      </Tabs>,
-    );
-
-    await userEvent.click(getByText("Cheese"));
-    expect(onTabChange).toHaveBeenCalledWith(1);
-  });
-
-  it("sets the active tab on mount", async () => {
-    const { getByText, queryByText } = render(
-      <Tabs defaultTab={1}>
-        <Tab label="Eggs">
-          <p>🍳</p>
-          <p>Eggs</p>
-        </Tab>
-        <Tab label="Cheese">
-          <p>🧀</p>
-        </Tab>
-      </Tabs>,
-    );
-
-    await userEvent.click(getByText("Cheese"));
-    expect(queryByText("🍳")).not.toBeInTheDocument();
-    expect(queryByText("🧀")).toBeInTheDocument();
-  });
-
-  it("sets the active tab to 0 if the defaultTab is out of bounds", () => {
-    const { queryByText } = render(
-      <Tabs defaultTab={2}>
-        <Tab label="Eggs">
-          <p>🍳</p>
-          <p>Eggs</p>
-        </Tab>
-        <Tab label="Cheese">
-          <p>🧀</p>
-        </Tab>
-      </Tabs>,
-    );
-
-    expect(queryByText("🍳")).toBeInTheDocument();
-    expect(queryByText("🧀")).not.toBeInTheDocument();
-  });
-
-  it("handles controlled activeTab prop", async () => {
-    const ControlledTabs = () => {
-      const [activeTab, setActiveTab] = React.useState(0);
-
-      return (
-        <div>
-          <button type="button" onClick={() => setActiveTab(0)}>
-            Set Tab 0
-          </button>
-          <button type="button" onClick={() => setActiveTab(1)}>
-            Set Tab 1
-          </button>
-          <Tabs activeTab={activeTab} onTabChange={setActiveTab}>
-            <Tab label="Eggs">
-              <p>🍳</p>
-            </Tab>
-            <Tab label="Cheese">
-              <p>🧀</p>
-            </Tab>
-          </Tabs>
-        </div>
+    it("calls the onTabChange callback after a tab is clicked", async () => {
+      const onTabChange = jest.fn();
+      const { getByRole } = render(
+        <Tabs onTabChange={onTabChange}>
+          <Tab label="Eggs">
+            <p>🍳</p>
+            <p>Eggs</p>
+          </Tab>
+          <Tab label="Cheese">
+            <p>🧀</p>
+          </Tab>
+        </Tabs>,
       );
-    };
 
-    const { getByText, queryByText } = render(<ControlledTabs />);
+      await userEvent.click(getByRole("tab", { name: "Cheese" }));
+      expect(onTabChange).toHaveBeenCalledWith(1);
+    });
 
-    expect(queryByText("🍳")).toBeInTheDocument();
-    expect(queryByText("🧀")).not.toBeInTheDocument();
+    it("sets the active tab on mount", async () => {
+      const { getByRole, queryByText } = render(
+        <Tabs defaultTab={1}>
+          <Tab label="Eggs">
+            <p>🍳</p>
+            <p>Eggs</p>
+          </Tab>
+          <Tab label="Cheese">
+            <p>🧀</p>
+          </Tab>
+        </Tabs>,
+      );
 
-    await userEvent.click(getByText("Set Tab 1"));
-    expect(queryByText("🍳")).not.toBeInTheDocument();
-    expect(queryByText("🧀")).toBeInTheDocument();
+      await userEvent.click(getByRole("tab", { name: "Cheese" }));
+      expect(queryByText("🍳")).not.toBeInTheDocument();
+      expect(queryByText("🧀")).toBeInTheDocument();
+    });
 
-    await userEvent.click(getByText("Set Tab 0"));
-    expect(queryByText("🍳")).toBeInTheDocument();
-    expect(queryByText("🧀")).not.toBeInTheDocument();
+    it("sets the active tab to 0 if the defaultTab is out of bounds", () => {
+      const { queryByText } = render(
+        <Tabs defaultTab={2}>
+          <Tab label="Eggs">
+            <p>🍳</p>
+            <p>Eggs</p>
+          </Tab>
+          <Tab label="Cheese">
+            <p>🧀</p>
+          </Tab>
+        </Tabs>,
+      );
+
+      expect(queryByText("🍳")).toBeInTheDocument();
+      expect(queryByText("🧀")).not.toBeInTheDocument();
+    });
+
+    it("handles controlled activeTab prop", async () => {
+      const ControlledTabs = () => {
+        const [activeTab, setActiveTab] = React.useState(0);
+
+        return (
+          <div>
+            <button type="button" onClick={() => setActiveTab(0)}>
+              Set Tab 0
+            </button>
+            <button type="button" onClick={() => setActiveTab(1)}>
+              Set Tab 1
+            </button>
+            <Tabs activeTab={activeTab} onTabChange={setActiveTab}>
+              <Tab label="Eggs">
+                <p>🍳</p>
+              </Tab>
+              <Tab label="Cheese">
+                <p>🧀</p>
+              </Tab>
+            </Tabs>
+          </div>
+        );
+      };
+
+      const { getByText, queryByText } = render(<ControlledTabs />);
+
+      expect(queryByText("🍳")).toBeInTheDocument();
+      expect(queryByText("🧀")).not.toBeInTheDocument();
+
+      await userEvent.click(getByText("Set Tab 1"));
+      expect(queryByText("🍳")).not.toBeInTheDocument();
+      expect(queryByText("🧀")).toBeInTheDocument();
+
+      await userEvent.click(getByText("Set Tab 0"));
+      expect(queryByText("🍳")).toBeInTheDocument();
+      expect(queryByText("🧀")).not.toBeInTheDocument();
+    });
   });
 
-  describe("overflow", () => {
+  describe("Focus Management", () => {
+    it("will tab key focus to a child, if one exists within a tab", async () => {
+      const { getByRole, getByText } = render(
+        <Tabs>
+          <Tab label="Eggs">
+            <p>🍳</p>
+            <button type="button">Focusable Child</button>
+          </Tab>
+          <Tab label="Cheese">
+            <p>🧀</p>
+          </Tab>
+        </Tabs>,
+      );
+
+      const tab1 = getByRole("tab", { name: "Eggs" });
+      const focusableChild = getByText("Focusable Child");
+
+      tab1.focus();
+      await userEvent.keyboard("{Tab}");
+      expect(focusableChild).toHaveFocus();
+    });
+
+    it("while focused on a child element, hitting Shift+Tab moves focus back to the tab", async () => {
+      const { getByRole, getByText } = render(
+        <Tabs>
+          <Tab label="Eggs">
+            <p>🍳</p>
+            <button type="button">Focusable Child</button>
+          </Tab>
+          <Tab label="Cheese">
+            <p>🧀</p>
+          </Tab>
+        </Tabs>,
+      );
+
+      const tab1 = getByRole("tab", { name: "Eggs" });
+      const focusableChild = getByText("Focusable Child");
+
+      tab1.focus();
+      await userEvent.keyboard("{Tab}");
+      expect(focusableChild).toHaveFocus();
+
+      await userEvent.keyboard("{Shift>}{Tab}{/Shift}");
+      expect(tab1).toHaveFocus();
+    });
+  });
+
+  describe("Overflow Management", () => {
     beforeAll(() => {
       Object.defineProperty(HTMLElement.prototype, "clientWidth", {
         configurable: true,
@@ -268,6 +273,7 @@ describe("Tabs", () => {
         );
       }
     });
+
     it("adds the overflowRight class when tabs overflow without scrolling to end", () => {
       const manyTabs = Array.from({ length: 10 }, (_, i) => (
         <Tab key={i} label={`Tab ${i}`}>
@@ -285,7 +291,7 @@ describe("Tabs", () => {
     });
   });
 
-  describe("dynamic tabs", () => {
+  describe("Dynamic Tabs", () => {
     function buildTabs(length: number) {
       return Array.from({ length }, (_, i) => (
         <Tab key={i} label={`Tab ${i}`}>
