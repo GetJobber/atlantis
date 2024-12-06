@@ -37,6 +37,10 @@
   /* required to over-ride very specific fill from <Icon> */
 }
 
+.button span {
+  line-height: 1;
+}
+
 .button:hover,
 a.button:hover,
 .button:focus-visible,
