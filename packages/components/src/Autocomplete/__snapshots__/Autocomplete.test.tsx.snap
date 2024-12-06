@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`it should display headers when headers are passed in 1`] = `
+exports[`Autocomplete renders an Autocomplete 1`] = `
 <div>
   <div
     class="autocomplete"
@@ -20,7 +20,7 @@ exports[`it should display headers when headers are passed in 1`] = `
           >
             <label
               class="label"
-              for=":r3:"
+              for=":r1:"
             >
               placeholder_name
             </label>
@@ -31,7 +31,7 @@ exports[`it should display headers when headers are passed in 1`] = `
               <input
                 autocomplete="off"
                 class="input"
-                id=":r3:"
+                id=":r1:"
                 type="text"
                 value=""
               />
@@ -44,7 +44,7 @@ exports[`it should display headers when headers are passed in 1`] = `
 </div>
 `;
 
-exports[`renders an Autocomplete 1`] = `
+exports[`Autocomplete should display headers when headers are passed in 1`] = `
 <div>
   <div
     class="autocomplete"
@@ -64,7 +64,7 @@ exports[`renders an Autocomplete 1`] = `
           >
             <label
               class="label"
-              for=":r0:"
+              for=":r7:"
             >
               placeholder_name
             </label>
@@ -75,7 +75,7 @@ exports[`renders an Autocomplete 1`] = `
               <input
                 autocomplete="off"
                 class="input"
-                id=":r0:"
+                id=":r7:"
                 type="text"
                 value=""
               />
