@@ -57,12 +57,13 @@ export const componentList = [
     title: "Checkbox",
     to: "/components/Checkbox",
     imageURL: "/Checkbox.png",
+    additionalMatches: ["Select"],
   },
   {
     title: "Chip",
     to: "/components/Chip",
     imageURL: "/Chip.png",
-    additionalMatches: ["Pill", "Badge", "Tag"],
+    additionalMatches: ["Pill", "Badge", "Tag", "Select"],
   },
   {
     title: "Chips",
