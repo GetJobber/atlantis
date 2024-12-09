@@ -12,7 +12,7 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-ActivityIndicator-web--docs",
+      url: `${window.env?.VITE_STORYBOOK_URL}/?path=/docs/components-utilities-ActivityIndicator-web--docs`,
     },
   ],
 } as const satisfies ContentExport;

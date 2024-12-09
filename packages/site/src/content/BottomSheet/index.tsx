@@ -48,7 +48,9 @@ alert('will show bottom sheet in mobile');
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-BottomSheet-web--docs",
+      url: `${
+        (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
+      }/?path=/docs/components-utilities-BottomSheet-web--docs`,
     },
   ],
 } as const satisfies ContentExport;

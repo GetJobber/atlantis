@@ -12,7 +12,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-InlineLabel-web--docs",
+      url: `${
+        (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
+      }/?path=/docs/components-utilities-InlineLabel-web--docs`,
     },
   ],
 } as const satisfies ContentExport;

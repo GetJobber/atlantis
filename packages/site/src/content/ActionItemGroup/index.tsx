@@ -37,7 +37,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-ActionItemGroup-web--docs",
+      url: `${
+        (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
+      }?path=/story/components-layouts-and-structure-actionitemgroup-mobile--basic`,
     },
   ],
 } as const satisfies ContentExport;

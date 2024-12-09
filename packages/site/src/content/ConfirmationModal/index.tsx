@@ -28,7 +28,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-ConfirmationModal-web--docs",
+      url: `${
+        (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
+      }/?path=/docs/components-utilities-ConfirmationModal-web--docs`,
     },
   ],
 } as const satisfies ContentExport;

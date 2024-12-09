@@ -32,7 +32,9 @@ async function handleChange(newAvatar: unknown) {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-InputAvatar-web--docs",
+      url: `${
+        (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
+      }/?path=/docs/components-utilities-InputAvatar-web--docs`,
     },
   ],
 } as const satisfies ContentExport;

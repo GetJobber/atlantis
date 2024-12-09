@@ -19,7 +19,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-images-and-icons-avatar--docs",
+      url: `${
+        (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
+      }/?path=/docs/components-images-and-icons-avatar--docs`,
     },
   ],
 } as const satisfies ContentExport;
