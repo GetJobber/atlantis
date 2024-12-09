@@ -1,10 +1,12 @@
 import Content from "@atlantis/docs/components/FormatFile/FormatFile.stories.mdx";
 import Props from "./FormatFile.props.json";
+import MobileProps from "./FormatFile.props-mobile.json";
 import { ContentExport } from "../../types/content";
 
 export default {
   content: () => <Content />,
   props: Props,
+  mobileProps: MobileProps,
   component: {
     element: `const file = {
         key: "abc",
@@ -27,6 +29,15 @@ export default {
           }}
         />
       );`,
+    mobileElement: `<FormatFile
+      file={{
+        fileName: "image.png",
+        contentType: "image/png",
+        url: "https://picsum.photos/250",
+        thumbnailUrl: "https://picsum.photos/250",
+        fileSize: 1024,
+      }}
+    />`,
   },
   title: "FormatFile",
   links: [

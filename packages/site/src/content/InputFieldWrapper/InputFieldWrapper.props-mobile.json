@@ -1,0 +1,246 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
+    "description": "",
+    "displayName": "InputFieldWrapper",
+    "methods": [],
+    "props": {
+      "invalid": {
+        "defaultValue": null,
+        "description": "Highlights the field red and shows message below (if string) to indicate an error",
+        "name": "invalid",
+        "parent": {
+          "fileName": "../components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
+          "name": "InputFieldWrapperProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | boolean"
+        }
+      },
+      "disabled": {
+        "defaultValue": null,
+        "description": "Disable the input",
+        "name": "disabled",
+        "parent": {
+          "fileName": "../components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
+          "name": "InputFieldWrapperProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "placeholder": {
+        "defaultValue": null,
+        "description": "Hint text that goes above the value once the field is filled out",
+        "name": "placeholder",
+        "parent": {
+          "fileName": "../components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
+          "name": "InputFieldWrapperProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "assistiveText": {
+        "defaultValue": null,
+        "description": "Text that goes below the input to help the user understand the input",
+        "name": "assistiveText",
+        "parent": {
+          "fileName": "../components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
+          "name": "InputFieldWrapperProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "hasMiniLabel": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "",
+        "name": "hasMiniLabel",
+        "parent": {
+          "fileName": "../components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
+          "name": "InputFieldWrapperProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "hasValue": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "",
+        "name": "hasValue",
+        "parent": {
+          "fileName": "../components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
+          "name": "InputFieldWrapperProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "prefix": {
+        "defaultValue": null,
+        "description": "Symbol to display before the text input",
+        "name": "prefix",
+        "parent": {
+          "fileName": "../components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
+          "name": "InputFieldWrapperProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ icon?: IconNames; label?: string; }"
+        }
+      },
+      "suffix": {
+        "defaultValue": null,
+        "description": "Symbol to display after the text input",
+        "name": "suffix",
+        "parent": {
+          "fileName": "../components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
+          "name": "InputFieldWrapperProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ icon?: IconNames; label?: string; onPress?: () => void; }"
+        }
+      },
+      "error": {
+        "defaultValue": null,
+        "description": "",
+        "name": "error",
+        "parent": {
+          "fileName": "../components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
+          "name": "InputFieldWrapperProps"
+        },
+        "required": false,
+        "type": {
+          "name": "FieldError"
+        }
+      },
+      "focused": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "",
+        "name": "focused",
+        "parent": {
+          "fileName": "../components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
+          "name": "InputFieldWrapperProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "showClearAction": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "Adds the ClearAction that will call the onClear handler when pressed",
+        "name": "showClearAction",
+        "parent": {
+          "fileName": "../components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
+          "name": "InputFieldWrapperProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "onClear": {
+        "defaultValue": null,
+        "description": "Callback called when the user clicks the ClearAction button. Should clear the value passed.\nTo disallow clearing set the clearable prop to never",
+        "name": "onClear",
+        "parent": {
+          "fileName": "../components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
+          "name": "InputFieldWrapperProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
+      },
+      "styleOverride": {
+        "defaultValue": null,
+        "description": "Custom styling to override default style of the input field",
+        "name": "styleOverride",
+        "parent": {
+          "fileName": "../components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
+          "name": "InputFieldWrapperProps"
+        },
+        "required": false,
+        "type": {
+          "name": "InputFieldStyleOverride"
+        }
+      },
+      "toolbar": {
+        "defaultValue": null,
+        "description": "Add a toolbar below the input field for actions like rewriting the text.",
+        "name": "toolbar",
+        "parent": {
+          "fileName": "../components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
+          "name": "InputFieldWrapperProps"
+        },
+        "required": false,
+        "type": {
+          "name": "React.ReactNode"
+        }
+      },
+      "toolbarVisibility": {
+        "defaultValue": {
+          "value": "while-editing"
+        },
+        "description": "Change the behaviour of when the toolbar becomes visible.",
+        "name": "toolbarVisibility",
+        "parent": {
+          "fileName": "../components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
+          "name": "InputFieldWrapperProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"always\" | \"while-editing\""
+        }
+      },
+      "loading": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "Show loading indicator.",
+        "name": "loading",
+        "parent": {
+          "fileName": "../components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
+          "name": "InputFieldWrapperProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "loadingType": {
+        "defaultValue": {
+          "value": "spinner"
+        },
+        "description": "Change the type of loading indicator to spinner or glimmer.",
+        "name": "loadingType",
+        "parent": {
+          "fileName": "../components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
+          "name": "InputFieldWrapperProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"spinner\" | \"glimmer\""
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components-native/src/StatusLabel/StatusLabel.tsx",
+    "description": "",
+    "displayName": "StatusLabel",
+    "methods": [],
+    "props": {
+      "text": {
+        "defaultValue": null,
+        "description": "Text to display.",
+        "name": "text",
+        "parent": {
+          "fileName": "../components-native/src/StatusLabel/StatusLabel.tsx",
+          "name": "StatusLabelProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      },
+      "alignment": {
+        "defaultValue": {
+          "value": "end"
+        },
+        "description": "Alignment of text",
+        "name": "alignment",
+        "parent": {
+          "fileName": "../components-native/src/StatusLabel/StatusLabel.tsx",
+          "name": "StatusLabelProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"start\" | \"end\""
+        }
+      },
+      "status": {
+        "defaultValue": {
+          "value": "success"
+        },
+        "description": "Status color of the square beside text",
+        "name": "status",
+        "parent": {
+          "fileName": "../components-native/src/StatusLabel/StatusLabel.tsx",
+          "name": "StatusLabelProps"
+        },
+        "required": false,
+        "type": {
+          "name": "StatusType"
+        }
+      }
+    }
+  }
+]

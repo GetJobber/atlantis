@@ -1,7 +1,14 @@
-import React, { ReactElement, ReactNode, useEffect, useState } from "react";
+import React, {
+  ReactElement,
+  ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import classnames from "classnames";
 import styles from "./Tabs.module.css";
 import { useTabsOverflow } from "./hooks/useTabsOverflow";
+import { useArrowKeyNavigation } from "./hooks/useArrowKeyNavigation";
 import { Typography } from "../Typography";
 
 interface TabsProps {
@@ -47,6 +54,8 @@ export function Tabs({
     [styles.overflowLeft]: overflowLeft,
   });
 
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
   const activateTab = (index: number) => {
     return () => {
       if (controlledActiveTab === undefined) {
@@ -58,6 +67,11 @@ export function Tabs({
       }
     };
   };
+
+  const handleKeyDown = useArrowKeyNavigation({
+    elementsRef: tabRefs,
+    onActivate: index => activateTab(index)(),
+  });
 
   const activeTabProps = (React.Children.toArray(children) as ReactElement[])[
     activeTab
@@ -72,13 +86,20 @@ export function Tabs({
   return (
     <div className={styles.tabs}>
       <div className={overflowClassNames}>
-        <ul role="tablist" className={styles.tabRow} ref={tabRow}>
+        <ul
+          role="tablist"
+          className={styles.tabRow}
+          ref={tabRow}
+          onKeyDown={handleKeyDown}
+        >
           {React.Children.map(children, (tab, index) => (
             <InternalTab
               label={tab.props.label}
               selected={activeTab === index}
               activateTab={activateTab(index)}
               onClick={tab.props.onClick}
+              ref={el => (tabRefs.current[index] = el)}
+              tabIndex={activeTab === index ? 0 : -1}
             />
           ))}
         </ul>
@@ -110,37 +131,39 @@ interface InternalTabProps {
   readonly selected: boolean;
   activateTab(): void;
   onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
+  readonly tabIndex: number;
 }
 
-export function InternalTab({
-  label,
-  selected,
-  activateTab,
-  onClick = () => {
-    return;
+const InternalTab = React.forwardRef<HTMLButtonElement, InternalTabProps>(
+  ({ label, selected, activateTab, onClick, tabIndex }, ref) => {
+    const className = classnames(styles.tab, { [styles.selected]: selected });
+
+    return (
+      <li role="presentation">
+        <button
+          type="button"
+          role="tab"
+          className={className}
+          onClick={event => {
+            activateTab();
+            onClick?.(event);
+          }}
+          ref={ref}
+          tabIndex={tabIndex}
+        >
+          {typeof label === "string" ? (
+            <Typography element="span" size="large" fontWeight="semiBold">
+              {label}
+            </Typography>
+          ) : (
+            label
+          )}
+        </button>
+      </li>
+    );
   },
-}: InternalTabProps) {
-  const className = classnames(styles.tab, { [styles.selected]: selected });
+);
 
-  return (
-    <li role="presentation">
-      <button
-        type="button"
-        role="tab"
-        className={className}
-        onClick={event => {
-          activateTab();
-          onClick(event);
-        }}
-      >
-        {typeof label === "string" ? (
-          <Typography element="span" size="large" fontWeight="semiBold">
-            {label}
-          </Typography>
-        ) : (
-          label
-        )}
-      </button>
-    </li>
-  );
-}
+InternalTab.displayName = "InternalTab";
+
+export { InternalTab };
