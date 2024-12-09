@@ -70,7 +70,7 @@ exports[`renders a thumbnail component with attachments 1`] = `
             style={
               [
                 {
-                  "backgroundColor": "hsl(53, 21%, 93%)",
+                  "backgroundColor": "hsl(51, 17%, 85%)",
                   "borderColor": "hsl(200, 13%, 87%)",
                   "borderRadius": 8,
                   "borderWidth": 1,
