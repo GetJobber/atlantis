@@ -192,6 +192,27 @@ const myTheme = EditorView.theme(
       borderRadius: "var(--radius-base)",
       padding: "var(--space-small)",
     },
+    ".ͼi": {
+      color: "var(--color-interactive)",
+    },
+    ".ͼe": {
+      color: "var(--color-critical)",
+    },
+    ".ͼl": {
+      color: "var(--color-invoice)",
+    },
+    ".ͼb": {
+      color: "var(--color-quote)",
+    },
+    ".ͼg": {
+      color: "var(--color-task)",
+    },
+    ".ͼd": {
+      color: "var(--color-informative)",
+    },
+    ".ͼc": {
+      color: "var(--color-informative)",
+    },
     ".cm-content": {
       caretColor: "var(--color-interactive)",
     },
