@@ -15,8 +15,8 @@ export interface useAtlantisFormFieldActionsProps
     | "onEnter"
   > {
   readonly name: string;
-  readonly onControllerChange?: (...event: unknown[]) => void;
-  readonly onControllerBlur?: () => void;
+  readonly onControllerChange: (...event: unknown[]) => void;
+  readonly onControllerBlur: () => void;
   readonly type: FormFieldTypes;
   readonly setValue: UseFormSetValue<FieldValues>;
 }
@@ -58,8 +58,8 @@ export function useAtlantisFormFieldActions({
       newValue = parseFloat(newValue);
     }
 
-    onChange?.(newValue, event);
-    onControllerChange?.(event);
+    onChange && onChange(newValue, event);
+    onControllerChange(event);
   }
 
   function handleKeyDown(
@@ -83,12 +83,12 @@ export function useAtlantisFormFieldActions({
       setTimeout(() => readonly && (target as HTMLInputElement).select());
     }
 
-    onFocus?.(event);
+    onFocus && onFocus();
   }
 
-  function handleBlur(event?: FocusEvent) {
-    onBlur?.(event);
-    onControllerBlur?.();
+  function handleBlur() {
+    onBlur && onBlur();
+    onControllerBlur();
   }
 
   function handleValidation(message: string) {
