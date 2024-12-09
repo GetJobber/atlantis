@@ -1,5 +1,6 @@
 import Content from "@atlantis/docs/components/AutoLink/AutoLink.stories.mdx";
 import MobileProps from "./AutoLink.props-mobile.json";
+import Notes from "./AutoLinkNotes.mdx";
 import { ContentExport } from "../../types/content";
 
 export default {
@@ -15,4 +16,5 @@ export default {
       url: "http://localhost:6006/?path=/docs/components-utilities-AutoLink-web--docs",
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

@@ -1,5 +1,6 @@
 import Content from "@atlantis/docs/components/Combobox/Combobox.stories.mdx";
 import Props from "./Combobox.props.json";
+import Notes from "./ComboboxNotes.mdx";
 import { ContentExport } from "../../types/content";
 
 export default {
@@ -63,4 +64,5 @@ export default {
       url: "http://localhost:6006/?path=/docs/components-utilities-Combobox-web--docs",
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;
