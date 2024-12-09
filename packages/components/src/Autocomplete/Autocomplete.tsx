@@ -1,81 +1,26 @@
-import React, { Ref, forwardRef, useEffect, useRef, useState } from "react";
-import { XOR } from "ts-xor";
+import React, {
+  Ref,
+  forwardRef,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+} from "react";
 import styles from "./Autocomplete.module.css";
 import { Menu } from "./Menu";
-import { AnyOption, GroupOption, Option } from "./Option";
+import { AnyOption, Option } from "./Option";
+import {
+  AutocompleteInternalProps,
+  AutocompleteProps,
+} from "./Autocomplete.types";
+import { useAutocompleteFormField } from "./useAutocompleteFormField";
 import { InputText, InputTextRef } from "../InputText";
-import { FormFieldProps } from "../FormField";
 import { useDebounce } from "../utils/useDebounce";
-
-type OptionCollection = XOR<Option[], GroupOption[]>;
-
-interface AutocompleteProps
-  extends Pick<
-    FormFieldProps,
-    | "clearable"
-    | "invalid"
-    | "name"
-    | "onBlur"
-    | "onFocus"
-    | "prefix"
-    | "size"
-    | "suffix"
-    | "validations"
-  > {
-  /**
-   * @deprecated
-   * Use `ref` instead.
-   */
-  readonly inputRef?: FormFieldProps["inputRef"];
-
-  /**
-   * Initial options to show when user first focuses the Autocomplete
-   */
-  readonly initialOptions?: OptionCollection;
-
-  /**
-   * Set Autocomplete value.
-   */
-  readonly value: Option | undefined;
-
-  /**
-   * Allow the autocomplete to use values not from the drop down menu.
-   *
-   * @default true
-   */
-  readonly allowFreeForm?: boolean;
-
-  /**
-   * Debounce in milliseconds for getOptions
-   *
-   * @default 300
-   */
-  readonly debounce?: number;
-
-  /**
-   * Simplified onChange handler that only provides the new value.
-   * @param newValue
-   */
-  onChange(newValue?: Option): void;
-
-  /**
-   * Called as the user types in the input. The autocomplete will display what
-   * is returned from this method to the user as available options.
-   * @param newInputText
-   */
-  getOptions(
-    newInputText: string,
-  ): OptionCollection | Promise<OptionCollection>;
-
-  /**
-   * Hint text that goes above the value once the form is filled out.
-   */
-  readonly placeholder: string;
-}
 
 // Max statements increased to make room for the debounce functions
 /* eslint max-statements: ["error", 14] */
-function AutocompleteInternal(
+// eslint-disable-next-line max-statements
+const AutocompleteInternal = forwardRef(function AutocompleteInternal(
   {
     initialOptions = [],
     value,
@@ -88,8 +33,11 @@ function AutocompleteInternal(
     onBlur,
     onFocus,
     validations,
+    defaultValue,
+    name,
+    id,
     ...inputProps
-  }: AutocompleteProps,
+  }: AutocompleteInternalProps,
   ref: Ref<InputTextRef>,
 ) {
   const [options, setOptions] = useState(initialOptions);
@@ -97,6 +45,14 @@ function AutocompleteInternal(
   const [inputText, setInputText] = useState(value?.label ?? "");
   const autocompleteRef = useRef(null);
   const delayedSearch = useDebounce(updateSearch, debounceRate);
+
+  const { onControllerChange } = useAutocompleteFormField({
+    nameProp: name,
+    id,
+    value: value,
+    defaultValue: defaultValue,
+    onChangeProp: onChange,
+  });
 
   useEffect(() => {
     delayedSearch();
@@ -149,8 +105,9 @@ function AutocompleteInternal(
   }
 
   function handleMenuChange(chosenOption: Option) {
-    onChange(chosenOption);
+    onChange?.(chosenOption);
     updateInput(chosenOption.label);
+    onControllerChange(chosenOption);
     setMenuVisible(false);
   }
 
@@ -158,7 +115,8 @@ function AutocompleteInternal(
     updateInput(newText);
 
     if (allowFreeForm) {
-      onChange({ label: newText });
+      onControllerChange({ label: newText });
+      onChange?.({ label: newText });
     }
   }
 
@@ -167,7 +125,7 @@ function AutocompleteInternal(
 
     if (value == undefined || value.label !== inputText) {
       setInputText("");
-      onChange(undefined);
+      onChange?.(undefined);
     }
     onBlur && onBlur();
   }
@@ -179,7 +137,7 @@ function AutocompleteInternal(
       onFocus();
     }
   }
-}
+});
 
 function mapToOptions(items: AnyOption[]) {
   return items.reduce(function (result: AnyOption[], item) {
@@ -193,4 +151,11 @@ function mapToOptions(items: AnyOption[]) {
   }, []);
 }
 
-export const Autocomplete = forwardRef(AutocompleteInternal);
+export const Autocomplete = forwardRef(function Autocomplete(
+  props: AutocompleteProps,
+  ref: Ref<InputTextRef>,
+) {
+  const id = useId();
+
+  return <AutocompleteInternal {...props} ref={ref} id={id} />;
+});
