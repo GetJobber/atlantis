@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { InputText, InputTextSPAR } from "@jobber/components/InputText";
+import { InputText } from "@jobber/components/InputText";
 import { Button } from "@jobber/components/Button";
 import { Content } from "@jobber/components/Content";
 import { Grid } from "@jobber/components/Grid";
@@ -20,11 +20,6 @@ const BasicTemplate: ComponentStory<typeof InputText> = args => {
   return <InputText {...args} value={value} onChange={setValue} version={2} />;
 };
 
-const Version2Template: ComponentStory<typeof InputTextSPAR> = args => {
-  const [value, setValue] = React.useState("");
-
-  return <InputText {...args} value={value} onChange={setValue} version={2} />;
-};
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
   name: "age",
@@ -80,31 +75,6 @@ Clearable.args = {
   clearable: "always",
 };
 
-export const Version2 = Version2Template.bind({});
-Version2.args = {
-  placeholder: "Hakunamatata",
-  multiline: true,
-  rows: { min: 1, max: 5 },
-  toolbar: (
-    <div
-      style={{
-        display: "flex",
-        width: "100%",
-        justifyContent: "space-between",
-      }}
-    >
-      <Button label="Rewrite" size="small" icon="sparkles" fullWidth={false} />
-      <Button
-        ariaLabel="Undo"
-        size="small"
-        icon="redo"
-        type="tertiary"
-        fullWidth={false}
-      />
-    </div>
-  ),
-};
-
 export const VersionComparison = () => {
   const [values, setValues] = React.useState({
     basic: "",
@@ -124,14 +94,16 @@ export const VersionComparison = () => {
   });
   const [multiline, setMultiline] = React.useState(false);
   const [inline, setInline] = React.useState(false);
-  const [invalid, setInvalid] = React.useState(false);
-  const [errorMessage, setErrorMessage] = React.useState("");
+  const [invalid, setInvalid] = React.useState<boolean | undefined>(undefined);
+  const [disabled, setDisabled] = React.useState(false);
+  const [errorMessage, setErrorMessage] = React.useState<string | undefined>();
 
   const extraProps = {
     invalid,
     error: errorMessage,
     multiline,
     inline,
+    disabled,
   };
 
   const handleChange = (field: keyof typeof values) => (value: string) => {
@@ -169,7 +141,7 @@ export const VersionComparison = () => {
         />
       </Grid.Cell>
       <Grid.Cell size={{ xs: 6 }}>
-        <InputTextSPAR
+        <InputText
           {...props}
           version={2}
           value={values[field]}
@@ -299,17 +271,34 @@ export const VersionComparison = () => {
           <Button label="Toggle inline" onClick={() => setInline(!inline)} />
         </Grid.Cell>
         <Grid.Cell size={{ xs: 6 }}>
-          <Button label="Toggle Invalid" onClick={() => setInvalid(!invalid)} />
+          <Button
+            label="Toggle Invalid"
+            onClick={() => {
+              if (invalid) {
+                setInvalid(undefined);
+              } else {
+                setInvalid(true);
+              }
+            }}
+          />
         </Grid.Cell>
         <Grid.Cell size={{ xs: 6 }}>
           <Button
             label="Toggle Error message"
             onClick={() => {
               if (errorMessage) {
-                setErrorMessage("");
+                setErrorMessage(undefined);
               } else {
                 setErrorMessage("This is an error message");
               }
+            }}
+          />
+        </Grid.Cell>
+        <Grid.Cell size={{ xs: 6 }}>
+          <Button
+            label="Toggle Disabled"
+            onClick={() => {
+              setDisabled(!disabled);
             }}
           />
         </Grid.Cell>
