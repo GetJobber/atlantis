@@ -50,7 +50,7 @@
   padding: var(--space-small) var(--space-base);
   color: var(--color-text--secondary);
   font-size: var(--typography--fontSize-large);
-  background-color: var(--color-surface--background);
+  background-color: var(--color-surface--element);
   justify-content: space-between;
 }
 
