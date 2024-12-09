@@ -1,6 +1,6 @@
 import { Box, Content, Grid, Page, Tab, Tabs } from "@jobber/components";
 import { useParams } from "react-router";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { PageWrapper } from "./PageWrapper";
 import { PropsList } from "../components/PropsList";
 import { ComponentNotFound } from "../components/ComponentNotFound";
@@ -30,6 +30,7 @@ export const ComponentView = () => {
   const PageMeta = SiteContent[name];
   useErrorCatcher();
   const { updateStyles } = useStyleUpdater();
+  const [tab, setTab] = useState(0);
   const { stateValues } = usePropsAsDataList(PageMeta, type);
   const { enableMinimal, minimal, disableMinimal, isMinimal } =
     useAtlantisSite();
@@ -67,8 +68,10 @@ export const ComponentView = () => {
     }
   }, [type, PageMeta]);
 
-  const handleTabChange = (tab: number) => {
-    if (tab == 1) {
+  const handleTabChange = (tabIn: number) => {
+    setTab(tabIn);
+
+    if (tabIn == 1) {
       updateType("web");
     } else if (tab == 2) {
       updateType("mobile");
@@ -122,6 +125,18 @@ export const ComponentView = () => {
     });
   }, [tabs]);
 
+  const goToProps = () => {
+    setTab(1);
+  };
+
+  const goToUsage = () => {
+    setTab(1);
+  };
+
+  const goToDesign = () => {
+    setTab(0);
+  };
+
   return PageMeta ? (
     <Grid>
       <Grid.Cell size={isMinimal ? { xs: 12, md: 12 } : { xs: 12, md: 9 }}>
@@ -137,10 +152,10 @@ export const ComponentView = () => {
                 <span
                   style={{ "--public-tab--inset": 0 } as React.CSSProperties}
                 >
-                  <Tabs onTabChange={handleTabChange}>
-                    {activeTabs.map((tab, index) => (
-                      <Tab key={index} label={tab.label}>
-                        {tab.children}
+                  <Tabs onTabChange={handleTabChange} activeTab={tab}>
+                    {activeTabs.map((tabyeah, index) => (
+                      <Tab key={index} label={tabyeah.label}>
+                        {tabyeah.children}
                       </Tab>
                     ))}
                   </Tabs>
@@ -151,7 +166,12 @@ export const ComponentView = () => {
         </Page>
       </Grid.Cell>
       <Grid.Cell size={{ xs: 12, md: 3 }}>
-        <ComponentLinks links={PageMeta?.links} />
+        <ComponentLinks
+          links={PageMeta?.links}
+          goToDesign={goToDesign}
+          goToProps={goToProps}
+          goToUsage={goToUsage}
+        />
       </Grid.Cell>
     </Grid>
   ) : (
