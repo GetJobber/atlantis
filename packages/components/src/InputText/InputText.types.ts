@@ -1,6 +1,8 @@
 import { Clearable } from "@jobber/hooks/src";
+import { XOR } from "ts-xor";
 import {
   AutocompleteTypes,
+  CommonFormFieldProps,
   FormFieldProps,
   FormFieldTypes,
 } from "../FormField";
@@ -22,6 +24,7 @@ export interface InputTextRebuiltProps
     | "size"
     | "suffix"
     | "prefix"
+    | "value"
     | "max"
     | "min"
     | "defaultValue"
@@ -47,8 +50,8 @@ export interface InputTextRebuiltProps
    * maximum number of visible rows.
    */
   readonly rows?: number | RowRange;
-  readonly version: Extract<InputTextVersion, 2>;
   readonly type?: FormFieldTypes;
+  readonly version: 2;
 
   readonly onChange?: (
     newValue: string,
@@ -71,3 +74,52 @@ export interface InputTextRebuiltProps
   readonly prefix?: FormFieldProps["prefix"];
   readonly suffix?: FormFieldProps["suffix"];
 }
+
+interface BaseProps
+  extends CommonFormFieldProps,
+    Pick<
+      FormFieldProps,
+      | "autofocus"
+      | "maxLength"
+      | "readonly"
+      | "autocomplete"
+      | "keyboard"
+      | "onEnter"
+      | "onFocus"
+      | "onBlur"
+      | "onChange"
+      | "inputRef"
+      | "validations"
+      | "defaultValue"
+      | "prefix"
+      | "suffix"
+      | "toolbar"
+      | "toolbarVisibility"
+      | "version"
+    > {
+  multiline?: boolean;
+}
+
+export interface InputTextRef {
+  insert(text: string): void;
+  blur(): void;
+  focus(): void;
+  scrollIntoView(arg?: boolean | ScrollIntoViewOptions): void;
+}
+
+interface MultilineProps extends BaseProps {
+  /**
+   * Use this when you're expecting a long answer.
+   */
+  readonly multiline: true;
+
+  /**
+   * Specifies the visible height of a long answer form field. Can be in the
+   * form of a single number to set a static height, or an object with a min
+   * and max keys indicating the minimum number of visible rows, and the
+   * maximum number of visible rows.
+   */
+  readonly rows?: number | RowRange;
+}
+
+export type InputTextPropOptions = XOR<BaseProps, MultilineProps>;

@@ -1,62 +1,8 @@
 import React, { Ref, forwardRef, useImperativeHandle, useRef } from "react";
-import { XOR } from "ts-xor";
 import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
-import { RowRange } from "./InputText.types";
+import { InputTextPropOptions, InputTextRef } from "./InputText.types";
 import { useTextAreaResize } from "./useTextAreaResize";
-import {
-  CommonFormFieldProps,
-  FieldActionsRef,
-  FormField,
-  FormFieldProps,
-} from "../FormField";
-
-interface BaseProps
-  extends CommonFormFieldProps,
-    Pick<
-      FormFieldProps,
-      | "autofocus"
-      | "maxLength"
-      | "readonly"
-      | "autocomplete"
-      | "keyboard"
-      | "onEnter"
-      | "onFocus"
-      | "onBlur"
-      | "onChange"
-      | "inputRef"
-      | "validations"
-      | "defaultValue"
-      | "prefix"
-      | "suffix"
-      | "toolbar"
-      | "toolbarVisibility"
-    > {
-  multiline?: boolean;
-}
-
-export interface InputTextRef {
-  insert(text: string): void;
-  blur(): void;
-  focus(): void;
-  scrollIntoView(arg?: boolean | ScrollIntoViewOptions): void;
-}
-
-interface MultilineProps extends BaseProps {
-  /**
-   * Use this when you're expecting a long answer.
-   */
-  readonly multiline: true;
-
-  /**
-   * Specifies the visible height of a long answer form field. Can be in the
-   * form of a single number to set a static height, or an object with a min
-   * and max keys indicating the minimum number of visible rows, and the
-   * maximum number of visible rows.
-   */
-  readonly rows?: number | RowRange;
-}
-
-export type InputTextPropOptions = XOR<BaseProps, MultilineProps>;
+import { FieldActionsRef, FormField } from "../FormField";
 
 function InputTextInternal(
   props: InputTextPropOptions,
