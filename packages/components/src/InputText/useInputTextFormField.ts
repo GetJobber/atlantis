@@ -97,5 +97,5 @@ export function useInputTextFormField({
     ...rest,
   };
 
-  return { fieldProps };
+  return { fieldProps, descriptionIdentifier };
 }

@@ -235,6 +235,19 @@ describe("InputText V2", () => {
     expect(changeHandler).toHaveBeenCalledWith(newerValue, expect.anything());
   });
 
+  it("should render the description", () => {
+    const description = "This is a description";
+    render(
+      <InputText
+        value={value}
+        version={2}
+        placeholder="Favourite colour"
+        description={description}
+      />,
+    );
+    expect(screen.getByText(description)).toBeInTheDocument();
+  });
+
   describe("focusing", () => {
     it("should focus input text", () => {
       const placeholder = "Got milk?";

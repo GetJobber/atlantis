@@ -65,7 +65,7 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     "version",
   ]);
 
-  const { fieldProps } = useInputTextFormField({
+  const { fieldProps, descriptionIdentifier } = useInputTextFormField({
     ...inputProps,
     id,
     name,
@@ -91,7 +91,8 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
       error={props.error ?? ""}
       invalid={Boolean(props.error || props.invalid)}
       identifier={id}
-      descriptionIdentifier={props["aria-describedby"] ?? ""}
+      descriptionIdentifier={descriptionIdentifier}
+      description={props.description}
       clearable={props.clearable ?? "never"}
       onClear={handleClear}
       type={props.multiline ? "textarea" : "text"}

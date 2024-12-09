@@ -73,6 +73,7 @@ export interface InputTextRebuiltProps
 
   readonly prefix?: FormFieldProps["prefix"];
   readonly suffix?: FormFieldProps["suffix"];
+  readonly description?: FormFieldProps["description"];
 }
 
 interface BaseProps

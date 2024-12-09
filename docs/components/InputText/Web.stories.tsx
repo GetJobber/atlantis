@@ -97,6 +97,7 @@ export const VersionComparison = () => {
   const [invalid, setInvalid] = React.useState<boolean | undefined>(undefined);
   const [disabled, setDisabled] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState<string | undefined>();
+  const [description, setDescription] = React.useState<string>("");
 
   const extraProps = {
     invalid,
@@ -104,6 +105,7 @@ export const VersionComparison = () => {
     multiline,
     inline,
     disabled,
+    description,
   };
 
   const handleChange = (field: keyof typeof values) => (value: string) => {
@@ -299,6 +301,14 @@ export const VersionComparison = () => {
             label="Toggle Disabled"
             onClick={() => {
               setDisabled(!disabled);
+            }}
+          />
+        </Grid.Cell>
+        <Grid.Cell size={{ xs: 6 }}>
+          <Button
+            label="Toggle Description"
+            onClick={() => {
+              setDescription(description ? "" : "This is a description");
             }}
           />
         </Grid.Cell>
