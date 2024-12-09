@@ -599,7 +599,7 @@ export const componentList = [
     to: "/components/StatusIndicator",
     imageURL: "/StatusIndicator.png",
     sections: ["Status and Feedback"],
-    additionalMatches: ["Badge", "Tag"], 
+    additionalMatches: ["Badge", "Tag"],
   },
   {
     title: "StatusLabel",
