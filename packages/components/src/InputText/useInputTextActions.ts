@@ -10,8 +10,7 @@ export interface useInputTextActionsProps
 }
 
 /**
- * Combines the actions from the props of the FormField with the actions from react-hook-form. This is used to
- * manage the form state of a field through react-hook-form while providing support for additional callbacks
+ * Combines the actions on the InputText such as onChange, onEnter, onFocus, onBlur, and onClear to forward information to the consumers of the InputText
  */
 export function useInputTextActions({
   onChange,
