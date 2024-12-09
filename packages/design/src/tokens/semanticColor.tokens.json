@@ -179,6 +179,16 @@
             "$description": "Hover state for surface--background--subtle."
           }
         }
+      },
+      "element": {
+        "$value": "{color.base.taupe-.300}",
+        "$description": "Use for the background of elements that need to be visually separated from the main surface."
+      },
+      "element-": {
+        "hover": {
+          "$value": "{color.base.taupe-.400}",
+          "$description": "Hover state for surface--element."
+        }
       }
     },
     "border": {
