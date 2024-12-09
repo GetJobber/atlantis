@@ -216,6 +216,19 @@
           "name": "\"small\" | \"large\""
         }
       },
+      "version": {
+        "defaultValue": null,
+        "description": "Experimental:\nDetermine which version of the FormField to use.\nRight now this isn't used but it will be used in the future\nto allow us to release new versions of our form inputs without breaking existing functionality",
+        "name": "version",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "1"
+        }
+      },
       "readonly": {
         "defaultValue": null,
         "description": "Prevents users from editing the value.",
