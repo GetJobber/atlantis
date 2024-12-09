@@ -1,6 +1,9 @@
 import { RefObject } from "react";
 import { RowRange } from "./InputText.types";
 
+/**
+ * Hook for resizing a textarea based on its content. The textarea will grow up to the max number of rows specified.
+ */
 export function useTextAreaResize(rows?: number | RowRange) {
   const rowRange = getRowRange(rows);
 
