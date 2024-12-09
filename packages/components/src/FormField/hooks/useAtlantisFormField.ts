@@ -27,7 +27,7 @@ export interface useAtlantisFormFieldProps
   /**
    * The field returned from react-hook-form's useController
    */
-  readonly useControllerField?: Omit<
+  readonly useControllerField: Omit<
     UseControllerReturn["field"],
     "ref" | "onChange" | "onBlur"
   >;
@@ -85,7 +85,7 @@ export function useAtlantisFormField({
   id,
   nameProp,
   name,
-  useControllerField,
+  useControllerField: useControllerField,
   description,
   disabled,
   readonly,
