@@ -51,6 +51,10 @@ export interface InputTextRebuiltProps
    */
   readonly rows?: number | RowRange;
   readonly type?: FormFieldTypes;
+
+  /**
+   * Version 2 is highly experimental. Avoid using it unless you have talked with Atlantis first.
+   */
   readonly version: 2;
 
   readonly onChange?: (

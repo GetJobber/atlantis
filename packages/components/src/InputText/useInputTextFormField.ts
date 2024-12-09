@@ -63,7 +63,8 @@ export interface UseInputTextFormFieldReturn {
 }
 
 /**
- * Provides the props for the html fields rendered by the FormField component
+ * Provides the props for the html fields rendered by the html input.
+ *  DO not repeat this pattern. We are doing this as a proof of concept relating to the refactoring of Form inputs to see what can be removed.
  */
 export function useInputTextFormField({
   id,

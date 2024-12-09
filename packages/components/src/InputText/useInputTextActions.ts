@@ -10,7 +10,8 @@ export interface useInputTextActionsProps
 }
 
 /**
- * Combines the actions on the InputText such as onChange, onEnter, onFocus, onBlur, and onClear to forward information to the consumers of the InputText
+ * Combines the actions on the InputText such as onChange, onEnter, onFocus, onBlur, and onClear to forward information to the consumers of the InputText.
+ * DO not repeat this pattern. We are doing this as a proof of concept relating to the refactoring of Form inputs to see what can be removed.
  */
 export function useInputTextActions({
   onChange,
