@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     height: BAR_HEIGHT,
   },
   lightTheme: {
-    backgroundColor: tokens["color-surface--background"],
+    backgroundColor: tokens["color-surface--element"],
   },
   darkTheme: {
     // PlatformColor has to be conditional for Storybook to run without error

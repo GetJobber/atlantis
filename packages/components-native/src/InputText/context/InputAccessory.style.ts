@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: tokens["space-small"],
-    backgroundColor: tokens["color-surface--background"],
+    backgroundColor: tokens["color-surface--element"],
     borderTopWidth: tokens["space-minuscule"],
     borderTopColor: tokens["color-border"],
   },

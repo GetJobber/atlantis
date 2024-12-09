@@ -185,6 +185,16 @@
             "reverse": {
                 "$value": "{color.base.taupe-.200}",
                 "$description": "Use a reverse surface to invert the theme when a strong contrast is needed with the rest of the application."
+            },
+            "element": {
+                "$value": "{color.base.blue-.700}",
+                "$description": "Use for the background of elements that need to be visually separated from the main surface."
+            },
+            "element-": {
+                "hover": {
+                    "$value": "{color.base.blue-.600}",
+                    "$description": "Hover state for surface--element."
+                }
             }
         },
         "border": {
