@@ -1,32 +1,36 @@
-import React, { ForwardedRef } from "react";
-import {
-  InputText as InputTextLegacy,
-  InputTextPropOptions,
-  InputTextRef,
-} from "./InputText";
+import React, { ForwardedRef, forwardRef } from "react";
+import { InputText as InputTextLegacy } from "./InputText";
 import { InputTextSPAR } from "./InputText.rebuilt";
-import { InputTextRebuiltProps } from "./InputText.types";
+import {
+  InputTextPropOptions,
+  InputTextRebuiltProps,
+  InputTextRef,
+} from "./InputText.types";
 
-type CombinedProps = InputTextPropOptions | InputTextRebuiltProps;
+export type InputTextProps = InputTextPropOptions | InputTextRebuiltProps;
 
-export const InputText = React.forwardRef(function InputText(
-  props: CombinedProps,
-  ref,
+function isNewInputTextProps(
+  props: InputTextProps,
+): props is InputTextRebuiltProps {
+  return props.version === 2;
+}
+
+export const InputText = forwardRef(function InputTextShim(
+  props: InputTextProps,
+  ref: ForwardedRef<HTMLTextAreaElement | HTMLInputElement | InputTextRef>,
 ) {
-  if (props.version === 2) {
+  if (isNewInputTextProps(props)) {
     return (
       <InputTextSPAR
-        {...(props as InputTextRebuiltProps)}
-        ref={ref as ForwardedRef<HTMLInputElement>}
+        {...props}
+        ref={ref as ForwardedRef<HTMLTextAreaElement | HTMLInputElement>}
       />
     );
+  } else {
+    return (
+      <InputTextLegacy {...props} ref={ref as ForwardedRef<InputTextRef>} />
+    );
   }
-
-  return (
-    <InputTextLegacy
-      {...(props as InputTextPropOptions)}
-      ref={ref as ForwardedRef<InputTextRef>}
-    />
-  );
 });
-export { InputTextRef, InputTextSPAR as InputTextRebuilt };
+
+export { InputTextRef };
