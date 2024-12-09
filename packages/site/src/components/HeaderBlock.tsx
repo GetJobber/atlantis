@@ -22,7 +22,7 @@ export const HeaderBlock = ({
   body,
   ctaLabel,
   to,
-  imageURL = "../public/img_collage.jpg",
+  imageURL = "/img_collage.jpg",
 }: HeaderBlockProps) => {
   const history = useHistory();
 
