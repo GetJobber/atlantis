@@ -59,6 +59,7 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     "onEnter",
     "size",
     "placeholder",
+    "multiline",
     "prefix",
     "suffix",
     "version",
@@ -88,7 +89,7 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
       name={name}
       wrapperRef={wrapperRef}
       error={props.error ?? ""}
-      invalid={props.invalid}
+      invalid={Boolean(props.error || props.invalid)}
       identifier={id}
       descriptionIdentifier={props["aria-describedby"] ?? ""}
       clearable={props.clearable ?? "never"}

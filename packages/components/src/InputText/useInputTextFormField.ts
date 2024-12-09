@@ -54,6 +54,8 @@ export interface useInputTextFormFieldProps
   handleKeyDown: (
     event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
+
+  readonly invalid?: boolean;
 }
 
 export interface UseInputTextFormFieldReturn {
@@ -87,8 +89,10 @@ export function useInputTextFormField({
     onFocus: handleFocus,
     ...(description &&
       !inline && { "aria-describedby": descriptionIdentifier }),
-    "aria-invalid": rest["aria-invalid"] || error ? true : undefined,
+    "aria-invalid":
+      rest["aria-invalid"] || error || rest.invalid ? true : undefined,
     autoFocus: rest.autoFocus,
+    invalid: error || rest.invalid ? "true" : undefined,
     onKeyDown: handleKeyDown,
     ...rest,
   };
