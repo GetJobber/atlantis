@@ -106,25 +106,13 @@ export const ComponentView = () => {
         </>
       ),
     },
-    // ...(PageMeta?.notes
-    //   ? [
-    //       {
-    //         label: "Implement",
-    //         children: (
-    //           <Content spacing="large">
-    //             <PageMeta.notes />
-    //           </Content>
-    //         ),
-    //       },
-    //     ]
-    //   : []),
     {
       label: "Implement",
       children: PageMeta?.notes ? (
         <Content spacing="large">
           <PageMeta.notes />
         </Content>
-      ) : null, // Render null if notes are missing
+      ) : null,
     },
   ];
 

@@ -1,4 +1,4 @@
-## Composability
+## Configuration
 
 Combobox is composed of three main parts: Activator, Content, and Action.
 
@@ -80,14 +80,14 @@ Combobox to remain open after an action is clicked, you can use the
 [Keep Open on Click](../?path=/story/components-selections-combobox-web--keep-open-on-action-click)
 story.
 
-## Selection behavior
+### Selection behavior
 
-### Single-select
+#### Single-select
 
 Single-select is Combobox's default selection mode. When a selection is made,
 the Combobox will close.
 
-### Multi-select
+#### Multi-select
 
 Add the `multiSelect` prop to allow multiple options to be selected and/or
 un-selected. In multi-select mode, the Combobox will only close when a user
@@ -112,7 +112,7 @@ Please note that regardless of if it is a single-select or a multi-select, the
 the case of multi-select). Multi-select will receive an array of all selections,
 not only the most recent.
 
-#### onClose
+### onClose
 
 If it is desirable to wait until the Combobox has been closed, likely indicating
 that all selections have been made, it is recommended to use the optional
@@ -125,7 +125,7 @@ has been closed. As such, it will only have a difference in timing for
 multi-select since a single-select selection will immediately close the
 Combobox.
 
-#### Selection Display
+### Selection Display
 
 When using the default activator, the selections will be displayed inside the
 activator. The data will still be returned via callback.
@@ -133,7 +133,7 @@ activator. The data will still be returned via callback.
 When using a custom activator, the selections will only be returned as data
 keeping the choice of how to display the data flexible.
 
-## Custom onSearch
+### Custom onSearch
 
 The `onSearch` prop allows you to hook into the Combobox's search input and
 receive what the user has typed. This callback is debounced by 300ms by default

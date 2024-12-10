@@ -1,22 +1,4 @@
-## Controlled and Uncontrolled
-
-### Uncontrolled
-
-An
-[uncontrolled](..../?path=/story/components-selections-segmentedcontrol-web--uncontrolled)
-SegmentedControl manages its selected state internally, which is useful for
-simpler use cases where the selected option does not need to sync with other
-parts of your application’s state.
-
-Use the `defaultValue` prop to set the initially selected option.
-
-```tsx
-<SegmentedControl defaultValue="day">
- <SegmentedControl.Option value="day">Day</SegmentedControl.Option>
- <SegmentedControl.Option value="week">Week</SegmentedControl.Option>
- <SegmentedControl.Option value="month">Month</SegmentedControl.Option>
-</SegmentedControl.Option>
-```
+## Controlled & Uncontrolled
 
 ### Controlled
 
@@ -41,7 +23,25 @@ const [selectedOption, setSelectedOption] = useState("day");
 </SegmentedControl>;
 ```
 
-## Keyboard functionality magic
+### Uncontrolled
+
+An
+[uncontrolled](..../?path=/story/components-selections-segmentedcontrol-web--uncontrolled)
+SegmentedControl manages its selected state internally, which is useful for
+simpler use cases where the selected option does not need to sync with other
+parts of your application’s state.
+
+Use the `defaultValue` prop to set the initially selected option.
+
+```tsx
+<SegmentedControl defaultValue="day">
+ <SegmentedControl.Option value="day">Day</SegmentedControl.Option>
+ <SegmentedControl.Option value="week">Week</SegmentedControl.Option>
+ <SegmentedControl.Option value="month">Month</SegmentedControl.Option>
+</SegmentedControl.Option>
+```
+
+## Developer Notes
 
 SegmentedControl does not have any specific arrow key logic. That is because
 arrow key navigation is implicitly set through the SegmentedControl radio button

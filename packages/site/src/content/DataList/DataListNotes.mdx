@@ -5,7 +5,8 @@ props to separate each part of the component.
 
 ### Main wrapper
 
-DataList is the main component that holds all the other components.
+DataList is the main component that holds the composable parts of the list. It
+also accepts props that are related to the list as a whole.
 
 ### Layout
 
@@ -78,7 +79,7 @@ action that is related to the item.
 </DataList>
 ```
 
-##### Hiding an action
+#### Hiding an action
 
 Hide an action by using the `visible` prop. It accepts a function that has a
 parameter of the item it's related to.
@@ -112,7 +113,7 @@ items:
 </DataList>
 ```
 
-##### Using onSelectAll
+#### Using onSelectAll
 
 There are two ways to use the `onSelectAll` prop:
 
