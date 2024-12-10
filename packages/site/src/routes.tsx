@@ -7,9 +7,10 @@ import { componentList } from "./componentList";
 import { ComponentsChangelogPage } from "./pages/ComponentsChangelogPage";
 import { ComponentsNativeChangelogPage } from "./pages/ComponentsNativeChangelogPage";
 import { DesignChangelogPage } from "./pages/DesignChangelogPage";
+import { componentSections } from "./componentSections";
 
-interface AtlantisRoute {
-  path: string;
+export interface AtlantisRoute {
+  path?: string;
   component?: () => JSX.Element;
   exact?: boolean;
   children?: Array<AtlantisRoute>;
@@ -17,12 +18,30 @@ interface AtlantisRoute {
   handle: string;
 }
 
-const componentRoutes = componentList.map(component => ({
-  path: component.to,
-  component: ContentLoader,
-  handle: component.title,
-  inNav: true,
-}));
+const generateComponentSidebar = () => {
+  const sectionedComponentRoutes: Array<AtlantisRoute> = [];
+
+  for (const section of componentSections) {
+    const sectionRoutes: AtlantisRoute = { handle: section, children: [] };
+    const filteredComponents = componentList.filter(component => {
+      return component.sections && component.sections.includes(section);
+    });
+
+    filteredComponents.map(component => {
+      if (!sectionRoutes.children) return;
+      sectionRoutes.children.push({
+        path: "/components/:name",
+        component: ComponentView,
+        handle: component.title,
+        inNav: true,
+        exact: true,
+      });
+    });
+    sectionedComponentRoutes.push(sectionRoutes);
+  }
+
+  return sectionedComponentRoutes;
+};
 
 export const routes: Array<AtlantisRoute> = [
   {
@@ -36,6 +55,7 @@ export const routes: Array<AtlantisRoute> = [
     handle: "Components",
     exact: true,
     component: ComponentsPage,
+    children: generateComponentSidebar(),
   },
   {
     path: "/design",
@@ -81,5 +101,4 @@ export const routes: Array<AtlantisRoute> = [
     handle: "Content",
     inNav: false,
   },
-  ...componentRoutes,
 ];
