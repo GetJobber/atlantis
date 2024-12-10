@@ -63,23 +63,24 @@ ul.tabRow {
   margin: 0;
   padding: var(--space-smaller) var(--space-small);
   border: none;
+  border-radius: var(--radius-base) var(--radius-base) 0 0;
   outline: none;
   color: var(--color-text--secondary);
-  background: var(--color-surface);
+  background-color: var(--color-surface);
   cursor: pointer;
-  transition: all var(--timing-base);
+  transition: all var(--timing-base) ease;
   flex: 0 0 auto;
+}
+
+.tab:focus-visible {
+  outline: transparent;
+  background-color: var(--color-surface--hover);
 }
 
 .tab.selected,
 .tab:not(.selected):hover,
 .tab:not(.selected):focus {
   color: var(--color-heading);
-}
-
-.tab:not(.selected):focus-within {
-  outline: none;
-  background: var(--color-surface--hover);
 }
 
 .selected::after {
@@ -91,10 +92,6 @@ ul.tabRow {
   left: 0;
   height: var(--space-smaller);
   background-color: var(--color-interactive);
-}
-
-.selected:focus {
-  background-color: transparent;
 }
 
 .tabContent {

@@ -1,24 +1,35 @@
-import {
-  AnimatedSwitcher as AnimatedSwitcherRoot,
-  Text,
-} from "@jobber/components";
 import AnimatedSwitcherContent from "@atlantis/docs/components/AnimatedSwitcher/AnimatedSwitcher.stories.mdx";
-import Props from "./AnimatedSwitcher.props.json";
+import MobileProps from "./AnimatedSwitcher.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <AnimatedSwitcherContent />,
-  props: Props,
+  mobileProps: MobileProps,
   component: {
-    element: AnimatedSwitcherRoot,
-    defaultProps: {
-      initialChild: <Text>Initial!</Text>,
-      switchTo: <Text>Swapped!</Text>,
-    },
+    element: `
+
+  const [switched, setSwitched] = useState(undefined || false);
+
+  return (
+    <AnimatedSwitcher
+      switched={switched}
+      initialChild={
+        <Button label="Mark complete" onClick={() => setSwitched(true)} />
+      }
+      switchTo={
+        <Button
+          icon="checkmark"
+          label="Complete"
+          type="secondary"
+          onClick={() => setSwitched(false)}
+        />
+      }
+    />
+  )
+`,
   },
   title: "AnimatedSwitcher",
-  description: "AnimatedSwitchers are a ...",
   links: [
     {
       label: "Storybook",

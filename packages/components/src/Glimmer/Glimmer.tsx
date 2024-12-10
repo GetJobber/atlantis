@@ -50,13 +50,6 @@ export const GLIMMER_HEADER_TEST_ID = "ATL-GlimmerHeader";
 export const GLIMMER_TEXT_TEST_ID = "ATL-GlimmerText";
 export const GLIMMER_BUTTON_TEST_ID = "ATL-GlimmerButton";
 
-/**
- * **Experimental component! Use at your own risk.**
- *
- * Foundational component used to build loading states such as Skeleton UI
- *
- * @experimental
- */
 export function Glimmer({
   size = "base",
   shape = "rectangle",

@@ -33,8 +33,12 @@ export const SearchBox = ({
   const [search, setSearch] = useState("");
 
   const filteredDesignList = useMemo(() => {
-    return designList.filter(d =>
-      d.title.toLowerCase().includes(search.toLowerCase()),
+    return designList.filter(
+      d =>
+        d.title.toLowerCase().includes(search.toLowerCase()) ||
+        d.additionalMatches?.find(e =>
+          e.toLowerCase().includes(search.toLowerCase()),
+        ),
     );
   }, [search]);
 

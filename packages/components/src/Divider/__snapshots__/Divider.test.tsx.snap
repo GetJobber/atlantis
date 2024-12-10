@@ -3,7 +3,7 @@
 exports[`Divider should render 1`] = `
 <div>
   <div
-    class="divider horizontal"
+    class="divider base horizontal"
     role="none presentation"
   />
 </div>

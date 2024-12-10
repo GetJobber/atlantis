@@ -1,5 +1,6 @@
-import React from "react";
+import React, { createRef } from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { FormField } from ".";
 import { Form } from "../Form/Form";
 
@@ -91,6 +92,23 @@ describe("FormField", () => {
         expect(getByRole("textbox")).not.toHaveAttribute("aria-describedby");
       });
     });
+  });
+
+  it("should call onFocus and onBlur", async () => {
+    const focusHandler = jest.fn();
+    const blurHandler = jest.fn();
+    const { getByLabelText } = render(
+      <FormField
+        placeholder="foo"
+        onBlur={blurHandler}
+        onFocus={focusHandler}
+      />,
+    );
+
+    await userEvent.click(getByLabelText("foo"));
+    await userEvent.tab();
+    expect(focusHandler).toHaveBeenCalledTimes(1);
+    expect(blurHandler).toHaveBeenCalledTimes(1);
   });
 
   describe("with a controlled value", () => {
@@ -229,7 +247,7 @@ describe("FormField", () => {
     describe("with validation errors", () => {
       it("should trigger onValidation with error message", async () => {
         const validationHandler = jest.fn();
-        const validate = val => (val == "Bob" ? "message" : "foo");
+        const validate = (val: string) => (val == "Bob" ? "message" : "foo");
 
         const { getByLabelText } = render(
           <FormField
@@ -421,6 +439,23 @@ describe("FormField", () => {
       const clearButton = getByLabelText("Clear input");
       fireEvent.click(clearButton);
       expect(setValue).toHaveBeenCalledWith("");
+    });
+
+    describe("when inputRef provided", () => {
+      it("should focus the input when the clear is used", async () => {
+        const mockRef = createRef<HTMLInputElement>();
+        const { getByRole, getByLabelText } = render(
+          <FormField
+            placeholder={"I am a placeholder"}
+            value={"I am a value"}
+            clearable="always"
+            inputRef={mockRef}
+          />,
+        );
+        const clearButton = getByLabelText("Clear input");
+        await userEvent.click(clearButton);
+        expect(getByRole("textbox")).toHaveFocus();
+      });
     });
   });
 });

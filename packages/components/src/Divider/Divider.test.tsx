@@ -8,6 +8,11 @@ describe("Divider", () => {
     expect(container).toMatchSnapshot();
   });
 
+  it("applies testID prop to div element", () => {
+    const { getByTestId } = render(<Divider testID="ATL-divider" />);
+    expect(getByTestId("ATL-divider")).toBeInTheDocument();
+  });
+
   describe("when large", () => {
     it("renders", () => {
       const { container } = render(<Divider size="large" />);

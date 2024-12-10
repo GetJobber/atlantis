@@ -1,0 +1,93 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Banner/Banner.tsx",
+    "description": "",
+    "displayName": "Banner",
+    "methods": [],
+    "props": {
+      "type": {
+        "defaultValue": null,
+        "description": "",
+        "name": "type",
+        "parent": {
+          "fileName": "../components/src/Banner/Banner.tsx",
+          "name": "BannerProps"
+        },
+        "required": true,
+        "type": {
+          "name": "BannerType"
+        }
+      },
+      "primaryAction": {
+        "defaultValue": null,
+        "description": "The default cta variation should be a 'work' variation. If the banner\n'type' is set to 'notice' we change the cta variation to 'learning'",
+        "name": "primaryAction",
+        "parent": {
+          "fileName": "../components/src/Banner/Banner.tsx",
+          "name": "BannerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ButtonProps"
+        }
+      },
+      "dismissible": {
+        "defaultValue": {
+          "value": true
+        },
+        "description": "",
+        "name": "dismissible",
+        "parent": {
+          "fileName": "../components/src/Banner/Banner.tsx",
+          "name": "BannerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "icon": {
+        "defaultValue": null,
+        "description": "Adds an icon to the left of the banner content",
+        "name": "icon",
+        "parent": {
+          "fileName": "../components/src/Banner/Banner.tsx",
+          "name": "BannerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "IconNames"
+        }
+      },
+      "onDismiss": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onDismiss",
+        "parent": {
+          "fileName": "../components/src/Banner/Banner.tsx",
+          "name": "BannerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
+      },
+      "controlledVisiblity": {
+        "defaultValue": {
+          "value": "undefined"
+        },
+        "description": "When provided, the banner's visibility is controlled by this value.",
+        "name": "controlledVisiblity",
+        "parent": {
+          "fileName": "../components/src/Banner/Banner.tsx",
+          "name": "BannerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      }
+    }
+  }
+]
