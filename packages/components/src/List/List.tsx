@@ -140,7 +140,11 @@ function SectionedList<T extends BaseListItemProps = ListItemProps>({
             key={sectionName}
             className={classnames(!omitDefaultSectionStyles && styles.section)}
           >
-            {getSectionHeader(sectionName, sectionHeaderClassNames)}
+            {getSectionHeader(
+              sectionName,
+              sectionHeaderClassNames,
+              customRenderSection,
+            )}
             <ul className={styles.list}>
               {sectionedItems[sectionName].map(item => (
                 <li key={item.id} className={itemClassNames}>
