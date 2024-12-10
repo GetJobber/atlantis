@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.15.5...@jobber/atlantis-site@0.16.0) (2024-12-10)
+
+
+### Features
+
+* **components:** Docs Site - Remaining Mobile Components ([#2221](https://github.com/GetJobber/atlantis/issues/2221)) ([76dcae6](https://github.com/GetJobber/atlantis/commit/76dcae60952d9624bf0f0aa98ed43e1934419c97))
+
+
+
+
+
 ## [0.15.5](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.15.4...@jobber/atlantis-site@0.15.5) (2024-12-10)
 
 **Note:** Version bump only for package @jobber/atlantis-site
