@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { BaseListItemProps, List } from ".";
 import { Text } from "../Text";
 
@@ -272,5 +272,61 @@ describe("When a list is provided a custom render function", () => {
       />,
     );
     expect(container).toMatchSnapshot();
+  });
+});
+
+describe("Default Section Header", () => {
+  test("it should render the default section header when at least one section value is absent", () => {
+    render(
+      <List
+        items={[
+          {
+            id: 1,
+            content: "Build the deck",
+            onClick: () => {
+              /* do stuff */
+            },
+          },
+          {
+            id: 2,
+            content: "Hey I'm walkin here",
+            section: "Gabbagool",
+            onClick: () => {
+              /* do stuff */
+            },
+          },
+        ]}
+      />,
+    );
+
+    const defaultSectionHeader = screen.getByText("Other");
+    expect(defaultSectionHeader).toBeInTheDocument();
+  });
+  test("it should render the provided section header when at least one section value is absent", () => {
+    render(
+      <List
+        defaultSectionHeader="Alternative"
+        items={[
+          {
+            id: 1,
+            content: "Build the deck",
+            onClick: () => {
+              /* do stuff */
+            },
+          },
+          {
+            id: 2,
+            content: "Hey I'm walkin here",
+            section: "Gabbagool",
+            onClick: () => {
+              /* do stuff */
+            },
+          },
+        ]}
+      />,
+    );
+
+    const defaultSectionHeader = screen.getByText("Alternative");
+    expect(defaultSectionHeader).toBeInTheDocument();
   });
 });
