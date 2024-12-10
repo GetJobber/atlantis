@@ -207,6 +207,7 @@ const mobileComponents = [
   "IconButton",
   "Card",
   "Form",
+  "InputCurrency",
   "InputDate",
   "InputEmail",
   "InputNumber",
