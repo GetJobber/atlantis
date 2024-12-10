@@ -124,22 +124,12 @@ function SectionedList<T extends BaseListItemProps = ListItemProps>({
   return (
     <ul className={styles.list} aria-labelledby={labelledBy}>
       {Object.keys(sectionedItems).map(sectionName => {
-        const sectionHeader = customRenderSection ? (
-          customRenderSection(sectionName)
-        ) : (
-          <Typography element="h4" fontWeight="bold" size="large">
-            {sectionName}
-          </Typography>
-        );
-
         return (
           <li
             key={sectionName}
             className={classnames(!omitDefaultSectionStyles && styles.section)}
           >
-            {sectionHeader && (
-              <div className={sectionHeaderClassNames}>{sectionHeader}</div>
-            )}
+            {getSectionHeader(sectionName, sectionHeaderClassNames)}
             <ul className={styles.list}>
               {sectionedItems[sectionName].map(item => (
                 <li key={item.id} className={itemClassNames}>
@@ -156,4 +146,20 @@ function SectionedList<T extends BaseListItemProps = ListItemProps>({
       })}
     </ul>
   );
+}
+
+function getSectionHeader(
+  sectionName: string,
+  sectionHeaderClassNames: string,
+  customRenderSection?: (sectionName: string) => React.ReactNode,
+) {
+  const sectionHeader = customRenderSection ? (
+    customRenderSection(sectionName)
+  ) : (
+    <Typography element="h4" fontWeight="bold" size="large">
+      {sectionName}
+    </Typography>
+  );
+
+  return <div className={sectionHeaderClassNames}>{sectionHeader}</div>;
 }
