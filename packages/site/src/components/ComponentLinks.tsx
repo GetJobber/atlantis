@@ -51,7 +51,7 @@ export const ComponentLinks = ({
     <Content>
       <Box padding="base" direction="column">
         <Box margin={{ bottom: "base" }}>
-          <Heading level={3}>Design</Heading>
+          <Heading level={6} element={h3}>Design</Heading>
           {hlinks?.map((link, index) => (
             <Box key={index}>
               <a onClick={click} href={`#${link.id}`}>
