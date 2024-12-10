@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.8.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.7.1...@jobber/components@6.8.0) (2024-12-10)
+
+
+### Features
+
+* **components:** Properly Exporting DataListProps from DataList ([#2233](https://github.com/GetJobber/atlantis/issues/2233)) ([bb8f657](https://github.com/GetJobber/atlantis/commit/bb8f657f0349bc321e703cca4c104181a367b0b0))
+
+
+
+
+
 ## [6.7.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.7.0...@jobber/components@6.7.1) (2024-12-10)
 
 
