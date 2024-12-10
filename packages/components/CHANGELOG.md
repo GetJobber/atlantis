@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.7.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.6.0...@jobber/components@6.7.0) (2024-12-06)
+
+
+### Features
+
+* **components:** Add arrow key navigation to Tabs ([#2211](https://github.com/GetJobber/atlantis/issues/2211)) ([4eb1c2d](https://github.com/GetJobber/atlantis/commit/4eb1c2dbfe8ab3457e6cf4dbbe2597370161c26f))
+
+
+
+
+
 # [6.6.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.5.4...@jobber/components@6.6.0) (2024-12-04)
 
 

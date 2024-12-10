@@ -39,7 +39,7 @@ export const ContentCard = ({
             style={
               imageURL && theme === "dark"
                 ? {
-                    background: "var(--color-surface)",
+                    background: "var(--color-base-blue--200)",
                     borderRadius: "var(--radius-base) var(--radius-base) 0 0",
                   }
                 : {}

@@ -1,0 +1,193 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components-native/src/InputDate/InputDate.tsx",
+    "description": "Allow users to select a date using the device date picker.",
+    "displayName": "InputDate",
+    "methods": [],
+    "props": {
+      "name": {
+        "defaultValue": null,
+        "description": "Adding a `name` would make this component \"Form controlled\" and must be\nnested within a `<Form />` component.\n\nCannot be declared if `value` prop is used.",
+        "name": "name",
+        "parent": {
+          "fileName": "../components-native/src/InputDate/InputDate.tsx",
+          "name": "FormControlledInputDate"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "validations": {
+        "defaultValue": null,
+        "description": "Shows an error message below the field and highlights it red when the\nvalue is invalid. Only applies when nested within a `<Form />` component.\n\nYou can see **most** of the rules you can pass in\n[React-hook-form Documentation](https://react-hook-form.com/api/useform/register#options).",
+        "name": "validations",
+        "parent": {
+          "fileName": "../components-native/src/InputDate/InputDate.tsx",
+          "name": "FormControlledInputDate"
+        },
+        "required": false,
+        "type": {
+          "name": "Omit<Partial<{ required: string | ValidationRule<boolean>; min: ValidationRule<string | number>; max: ValidationRule<string | number>; ... 12 more ...; deps: string | string[]; }>, \"disabled\" | ... 2 more ... | \"setValueAs\">"
+        }
+      },
+      "defaultValue": {
+        "defaultValue": null,
+        "description": "The initial value for the input.",
+        "name": "defaultValue",
+        "parent": {
+          "fileName": "../components-native/src/InputDate/InputDate.tsx",
+          "name": "FormControlledInputDate"
+        },
+        "required": false,
+        "type": {
+          "name": "Date"
+        }
+      },
+      "value": {
+        "defaultValue": null,
+        "description": "The value shown on the field. This gets automatically formatted to the\naccount's date format.\n\nCannot be declared if `name` prop is used.",
+        "name": "value",
+        "parent": {
+          "fileName": "../components-native/src/InputDate/InputDate.tsx",
+          "name": "DevControlledInputDate"
+        },
+        "required": false,
+        "type": {
+          "name": "string | Date"
+        }
+      },
+      "onChange": {
+        "defaultValue": null,
+        "description": "The callback that fires whenever a date gets selected.",
+        "name": "onChange",
+        "parent": {
+          "fileName": "../components-native/src/InputDate/InputDate.tsx",
+          "name": "DevControlledInputDate"
+        },
+        "required": false,
+        "type": {
+          "name": "((value?: Date) => void) | ((value?: Date) => void)"
+        }
+      },
+      "clearable": {
+        "defaultValue": null,
+        "description": "Defaulted to \"always\" so user can clear the dates whenever there's a value.",
+        "name": "clearable",
+        "parent": {
+          "fileName": "../components-native/src/InputDate/InputDate.tsx",
+          "name": "BaseInputDateProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"never\" | \"always\""
+        }
+      },
+      "emptyValueLabel": {
+        "defaultValue": null,
+        "description": "This label is shown to the user when there's no selected date.",
+        "name": "emptyValueLabel",
+        "parent": {
+          "fileName": "../components-native/src/InputDate/InputDate.tsx",
+          "name": "BaseInputDateProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "maxDate": {
+        "defaultValue": null,
+        "description": "Maximum date the user can set.",
+        "name": "maxDate",
+        "parent": {
+          "fileName": "../components-native/src/InputDate/InputDate.tsx",
+          "name": "BaseInputDateProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Date"
+        }
+      },
+      "minDate": {
+        "defaultValue": null,
+        "description": "Minimum date the user can set",
+        "name": "minDate",
+        "parent": {
+          "fileName": "../components-native/src/InputDate/InputDate.tsx",
+          "name": "BaseInputDateProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Date"
+        }
+      },
+      "accessibilityLabel": {
+        "defaultValue": null,
+        "description": "VoiceOver will read this string when a user selects the element",
+        "name": "accessibilityLabel",
+        "parent": {
+          "fileName": "../components-native/src/InputDate/InputDate.tsx",
+          "name": "BaseInputDateProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "accessibilityHint": {
+        "defaultValue": null,
+        "description": "Helps users understand what will happen when they perform an action",
+        "name": "accessibilityHint",
+        "parent": {
+          "fileName": "../components-native/src/InputDate/InputDate.tsx",
+          "name": "BaseInputDateProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "invalid": {
+        "defaultValue": null,
+        "description": "Highlights the field red and shows message below (if string) to indicate an error",
+        "name": "invalid",
+        "parent": {
+          "fileName": "packages/components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
+          "name": "InputFieldWrapperProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | boolean"
+        }
+      },
+      "disabled": {
+        "defaultValue": null,
+        "description": "Disable the input",
+        "name": "disabled",
+        "parent": {
+          "fileName": "packages/components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
+          "name": "InputFieldWrapperProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "placeholder": {
+        "defaultValue": null,
+        "description": "Hint text that goes above the value once the field is filled out",
+        "name": "placeholder",
+        "parent": {
+          "fileName": "packages/components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
+          "name": "InputFieldWrapperProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  }
+]
