@@ -36,6 +36,16 @@
                     "$value": "{color.base.blue-.100}",
                     "$description": "Hover state for interactive--subtle."
                 }
+            },
+            "background": {
+                "$value": "{color.base.blue-.700}",
+                "$description": "Use for the background of interactive elements to ensure separation from the surface they appear on."
+            },
+            "background-": {
+                "hover": {
+                    "$value": "{color.base.blue-.600}",
+                    "$description": "Hover state for interactive--background."
+                }
             }
         },
         "destructive": {
@@ -185,16 +195,6 @@
             "reverse": {
                 "$value": "{color.base.taupe-.200}",
                 "$description": "Use a reverse surface to invert the theme when a strong contrast is needed with the rest of the application."
-            },
-            "element": {
-                "$value": "{color.base.blue-.700}",
-                "$description": "Use for the background of elements that need to be visually separated from the main surface."
-            },
-            "element-": {
-                "hover": {
-                    "$value": "{color.base.blue-.600}",
-                    "$description": "Hover state for surface--element."
-                }
             }
         },
         "border": {
