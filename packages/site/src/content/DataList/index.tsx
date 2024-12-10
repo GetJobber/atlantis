@@ -1,5 +1,6 @@
 import Content from "@atlantis/docs/components/DataList/DataList.stories.mdx";
 import Props from "./DataList.props.json";
+import Notes from "./DataListNotes.mdx";
 import { ContentExport } from "../../types/content";
 
 export default {
@@ -42,4 +43,5 @@ export default {
       url: "http://localhost:6006/?path=/docs/components-lists-and-tables-datalist--docs",
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

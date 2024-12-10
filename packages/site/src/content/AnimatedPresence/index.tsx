@@ -1,5 +1,6 @@
 import AnimatedPresenceContent from "@atlantis/docs/components/AnimatedPresence/AnimatedPresence.stories.mdx";
 import Props from "./AnimatedPresence.props.json";
+import Notes from "./AnimatedPresenceNotes.mdx";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
@@ -44,4 +45,5 @@ export default {
       ),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

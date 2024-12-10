@@ -1,5 +1,6 @@
 import Content from "@atlantis/docs/components/Tabs/Tabs.stories.mdx";
 import Props from "./Tabs.props.json";
+import Notes from "./TabsNotes.mdx";
 import { ContentExport } from "../../types/content";
 
 export default {
@@ -32,4 +33,5 @@ export default {
       url: "http://localhost:6006/?path=/docs/components-utilities-Tabs-web--docs",
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;
