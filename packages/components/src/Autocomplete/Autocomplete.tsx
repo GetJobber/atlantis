@@ -13,6 +13,7 @@ interface AutocompleteProps
   extends Pick<
     FormFieldProps,
     | "clearable"
+    | "description"
     | "invalid"
     | "name"
     | "onBlur"
@@ -120,15 +121,13 @@ function AutocompleteInternal(
         validations={validations}
         {...inputProps}
       />
-      {menuVisible && (
-        <Menu
-          attachTo={autocompleteRef}
-          visible={menuVisible && options.length > 0}
-          options={options}
-          selectedOption={value}
-          onOptionSelect={handleMenuChange}
-        />
-      )}
+      <Menu
+        attachTo={autocompleteRef}
+        visible={true}
+        options={options}
+        selectedOption={value}
+        onOptionSelect={handleMenuChange}
+      />
     </div>
   );
 
