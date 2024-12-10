@@ -14,7 +14,11 @@ export default {
     />`,
     mobileElement: `<><Button
         label="Show toast"
-        onPress={() => showToast({ message: "Showed toast" })}
+        onPress={
+        () => {
+        alert('A toast shows on your mobile device!') 
+        showToast({ message: "Showed toast" })
+        }}
       />
       <Toast /></>
     `,
