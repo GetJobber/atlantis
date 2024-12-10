@@ -576,10 +576,10 @@
           "name": "(index: number, value: File) => File[]"
         }
       },
-      "__@iterator@35107": {
+      "__@iterator@35723": {
         "defaultValue": null,
         "description": "Iterator",
-        "name": "__@iterator@35107",
+        "name": "__@iterator@35723",
         "parent": {
           "fileName": "atlantis/node_modules/typescript/lib/lib.es2015.iterable.d.ts",
           "name": "Array"
@@ -589,10 +589,10 @@
           "name": "() => ArrayIterator<File>"
         }
       },
-      "__@unscopables@35109": {
+      "__@unscopables@35725": {
         "defaultValue": null,
         "description": "Is an object whose properties have the value 'true'\nwhen they will be absent when used in a 'with' statement.",
-        "name": "__@unscopables@35109",
+        "name": "__@unscopables@35725",
         "parent": {
           "fileName": "atlantis/node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts",
           "name": "Array"

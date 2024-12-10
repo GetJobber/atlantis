@@ -10,8 +10,8 @@ export default {
   props: Props,
   mobileProps: MobileProps,
   component: {
-    element: `return <Button label="Button!" onClick={() => alert('Button Clicked!')} ></Button>`,
-    mobileElement: `return <Button label="Button!" onPress={() => alert('Button Pressed!')} ></Button>`,
+    element: `<Button label="Button!" onClick={() => alert('Button Clicked!')} ></Button>`,
+    mobileElement: `<Button label="Button!" onPress={() => alert('Button Pressed!')} ></Button>`,
   },
   title: "Button",
   links: [
