@@ -48,7 +48,20 @@ export const NavMenu = () => {
             interface MenuItem {
               handle: string;
               children?: MenuItem[];
+              path?: string;
             }
+
+            const iterateSubSubMenu = (menuItems: MenuItem[]) => {
+              return menuItems.map((menuItem, menuItemIndex) => {
+                return (
+                  <MenuItem key={`${routeIndex}-${menuItemIndex}`}>
+                    <StyledLink to={`/components/${menuItem.handle}`}>
+                      {menuItem.handle}
+                    </StyledLink>
+                  </MenuItem>
+                );
+              });
+            };
 
             const iterateSubMenu = (menuItems: MenuItem[]) => {
               return menuItems.map((menuItem, menuItemIndex) => {
@@ -56,14 +69,14 @@ export const NavMenu = () => {
                   return (
                     <Fragment key={`${routeIndex}-${menuItemIndex}`}>
                       {sectionTitle(menuItem.handle)}
-                      {iterateSubMenu(menuItem.children)}
+                      {iterateSubSubMenu(menuItem.children)}
                     </Fragment>
                   );
                 }
 
                 return (
                   <MenuItem key={`${routeIndex}-${menuItemIndex}`}>
-                    <StyledLink to={`/components/${menuItem.handle}`}>
+                    <StyledLink to={menuItem.path ?? "/"}>
                       {menuItem.handle}
                     </StyledLink>
                   </MenuItem>
@@ -75,7 +88,7 @@ export const NavMenu = () => {
               return (
                 <Box key={routeIndex} padding="base">
                   <AnimatedPresenceDisclosure
-                    to={`/components/${route.handle}`}
+                    to={route.path ?? "/"}
                     title={route.handle}
                   >
                     {iterateSubMenu(route.children)}
@@ -86,7 +99,7 @@ export const NavMenu = () => {
 
             return (
               <MenuItem key={routeIndex}>
-                <StyledLink to={"/components"}>{route.handle}</StyledLink>
+                <StyledLink to={route.path ?? "/"}>{route.handle}</StyledLink>
               </MenuItem>
             );
           })}

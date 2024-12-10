@@ -9,7 +9,7 @@ import { ComponentsNativeChangelogPage } from "./pages/ComponentsNativeChangelog
 import { DesignChangelogPage } from "./pages/DesignChangelogPage";
 import { componentSections } from "./componentSections";
 
-interface AtlantisRoute {
+export interface AtlantisRoute {
   path?: string;
   component?: () => JSX.Element;
   exact?: boolean;
