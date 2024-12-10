@@ -1,6 +1,7 @@
 import ChipsContent from "@atlantis/docs/components/Chips/Chips.stories.mdx";
 import Props from "./Chips.props.json";
 import MobileProps from "./Chips.props-mobile.json";
+import Notes from "./ChipsNotes.mdx";
 import { ContentExport } from "../../types/content";
 
 export default {
@@ -41,4 +42,5 @@ export default {
       url: "http://localhost:6006/?path=/docs/components-utilities-Chips-web--docs",
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;
