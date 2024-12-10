@@ -45,6 +45,12 @@ interface ListProps<T extends BaseListItemProps = ListItemProps> {
    * An ID of an element that provides the labelling for this list.
    */
   readonly labelledBy?: string;
+
+  /**
+   * A default section header value for items that do not have a section.
+   * @default "Other"
+   */
+  readonly defaultSectionHeader?: string;
 }
 
 export function List<T extends BaseListItemProps = ListItemProps>({
@@ -53,6 +59,7 @@ export function List<T extends BaseListItemProps = ListItemProps>({
   customItemStyles,
   customRenderSection,
   customSectionStyles,
+  defaultSectionHeader = "Other",
   labelledBy,
 }: ListProps<T>) {
   const isSectioned = items.some(item => "section" in item && item.section);
@@ -65,6 +72,7 @@ export function List<T extends BaseListItemProps = ListItemProps>({
         customItemStyles={customItemStyles}
         customRenderSection={customRenderSection}
         customSectionStyles={customSectionStyles}
+        defaultSectionHeader={defaultSectionHeader}
         labelledBy={labelledBy}
       />
     );
@@ -110,9 +118,12 @@ function SectionedList<T extends BaseListItemProps = ListItemProps>({
   customItemStyles,
   customRenderSection,
   customSectionStyles,
+  defaultSectionHeader,
   labelledBy,
 }: ListProps<T>) {
-  const sectionedItems = groupBy(items, item => get(item, "section", "Other"));
+  const sectionedItems = groupBy(items, item =>
+    get(item, "section", defaultSectionHeader),
+  );
 
   const omitDefaultStyles = customRenderItem && customItemStyles;
   const omitDefaultSectionStyles = customRenderSection && customSectionStyles;
