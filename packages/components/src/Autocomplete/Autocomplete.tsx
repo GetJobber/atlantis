@@ -121,13 +121,15 @@ function AutocompleteInternal(
         validations={validations}
         {...inputProps}
       />
-      <Menu
-        attachTo={autocompleteRef}
-        visible={true}
-        options={options}
-        selectedOption={value}
-        onOptionSelect={handleMenuChange}
-      />
+      {menuVisible && (
+        <Menu
+          attachTo={autocompleteRef}
+          visible={menuVisible && options.length > 0}
+          options={options}
+          selectedOption={value}
+          onOptionSelect={handleMenuChange}
+        />
+      )}
     </div>
   );
 
