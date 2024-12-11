@@ -58,7 +58,11 @@ export const ComponentView = () => {
   }, [code, iframe?.current, iframeMobile?.current, type]);
 
   useEffect(() => {
-    if (type === "web" && !PageMeta?.component?.element) {
+    if (
+      type === "web" &&
+      !PageMeta?.component?.element &&
+      PageMeta?.component?.mobileElement
+    ) {
       updateType("mobile");
     }
 
