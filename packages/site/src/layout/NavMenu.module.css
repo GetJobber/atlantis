@@ -2,6 +2,7 @@
     --hoverOffset: var(--space-smallest);
     --negativeHoverOffset: calc(-1 * var(--hoverOffset));
     --subItemInset: calc(var(--space-small) + var(--space-smaller));
+    --navItemHeight: 40px;
     display: flex;
     flex-direction: column;
     padding: 36px 0 0 0;
@@ -40,7 +41,7 @@
 .navMenuItem {
   align-items: center;
   display: flex;
-  min-height: 40px;
+  min-height: var(--navItemHeight);
   overflow-wrap: anywhere;
   transition: all var(--timing-base) ease-out;
   user-select: none;
@@ -82,7 +83,7 @@
   margin-right: var(--negativeHoverOffset);
   padding-left: var(--hoverOffset);
   padding-right: calc(var(--space-smallest) + var(--hoverOffset));
-  min-height: 40px;
+  min-height: var(--navItemHeight);
   align-items: center;
   justify-content: space-between;
 
