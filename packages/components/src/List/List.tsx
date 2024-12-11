@@ -33,9 +33,13 @@ interface ListProps<T extends BaseListItemProps = ListItemProps> {
   /**
    * A function that will be called for each section heading instead of the default
    * rendering
-   * @argument sectionName - The name of the section to render
+   * @argument sectionName - The name of the section
+   * @argument items - All items in the section
    */
-  readonly customRenderSection?: (sectionName: string) => React.ReactNode;
+  readonly customRenderSection?: (
+    sectionName: string,
+    items: T[],
+  ) => React.ReactNode;
 
   /**
    * Set to true for more control over the section heading styles. Only modifies styles
@@ -137,6 +141,8 @@ function SectionedList<T extends BaseListItemProps = ListItemProps>({
   return (
     <ul className={styles.list} aria-labelledby={labelledBy}>
       {Object.keys(sectionedItems).map(sectionName => {
+        const sectionItems = sectionedItems[sectionName];
+
         return (
           <li
             key={sectionName}
@@ -146,9 +152,10 @@ function SectionedList<T extends BaseListItemProps = ListItemProps>({
               sectionName,
               sectionHeaderClassNames,
               customRenderSection,
+              sectionItems,
             )}
             <ul className={styles.list}>
-              {sectionedItems[sectionName].map(item => (
+              {sectionItems.map(item => (
                 <li key={item.id} className={itemClassNames}>
                   <ListItem
                     {...item}
@@ -165,18 +172,20 @@ function SectionedList<T extends BaseListItemProps = ListItemProps>({
   );
 }
 
-function getSectionHeader(
+function getSectionHeader<T extends BaseListItemProps>(
   sectionName: string,
   sectionHeaderClassNames: string,
-  customRenderSection?: (sectionName: string) => React.ReactNode,
+  customRenderSection?: (sectionName: string, items: T[]) => React.ReactNode,
+  sectionItems?: T[],
 ) {
-  const sectionHeader = customRenderSection ? (
-    customRenderSection(sectionName)
-  ) : (
-    <Typography element="h4" fontWeight="bold" size="large">
-      {sectionName}
-    </Typography>
-  );
+  const sectionHeader =
+    customRenderSection && sectionItems ? (
+      customRenderSection(sectionName, sectionItems)
+    ) : (
+      <Typography element="h4" fontWeight="bold" size="large">
+        {sectionName}
+      </Typography>
+    );
 
   return <div className={sectionHeaderClassNames}>{sectionHeader}</div>;
 }
