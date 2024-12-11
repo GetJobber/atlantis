@@ -21,11 +21,13 @@ export const ComponentLinks = ({
         <Heading level={2}>Links</Heading>
         <Box>
           {links?.map((link, index) => (
-            <Box key={index}>
-              <Link key={index} url={link.url}>
-                {link.label}
-              </Link>
-            </Box>
+            <div key={index} data-storybook-link>
+              <Box>
+                <Link key={index} url={link.url}>
+                  {link.label}
+                </Link>
+              </Box>
+            </div>
           ))}
         </Box>
       </Box>
