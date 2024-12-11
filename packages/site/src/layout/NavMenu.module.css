@@ -1,28 +1,28 @@
 
-.navMenuSticky {
-  background-color: var(--color-surface--background);
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-large);
-  padding: 36px var(--space-base) var(--space-large) var(--space-base);
-  position: fixed;
-  width: 188px;
-  z-index: 1;
+.navMenuContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 36px var(--space-base) 0 var(--space-base);
+    height: calc(100dvh - 36px);
+    background-color: var(--color-surface--background);
+    width: 188px;
+}
+
+.navMenuHeader {
+    background-color: var(--color-surface--background);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-large);
 }
 
 .navMenu {
-  background-color: var(--color-surface--background);
-  box-sizing: border-box;
-  color: var(--color-typography-text);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-large);
-  height: calc(100dvh - 140px);
-  margin-top: 140px;
-  overflow: auto;
-  padding: 0 var(--space-base) var(--space-base) var(--space-base);
-  width: 188px;
+    background-color: var(--color-surface--background);
+    color: var(--color-typography-text);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-large);
+    overflow-y: scroll;
+    padding-bottom: var(--space-base);
 }
 
 .navMenuItem {

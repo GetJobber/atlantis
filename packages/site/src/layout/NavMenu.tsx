@@ -19,8 +19,8 @@ export const NavMenu = () => {
   if (isMinimal) return null;
 
   return (
-    <div>
-      <div className={styles.navMenuSticky}>
+    <div className={styles.navMenuContainer}>
+      <div className={styles.navMenuHeader}>
         <Box>
           <Link to="/">
             <JobberLogo />
