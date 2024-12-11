@@ -3,6 +3,7 @@ import Props from "./InputDate.props.json";
 import MobileProps from "./InputDate.props-mobile.json";
 import Notes from "./InputDateNotes.mdx";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <InputDateContent />,
@@ -22,7 +23,9 @@ return <InputDate value={date} onChange={setDate} />;
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-InputDate-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-forms-and-inputs-inputdate--docs`,
+      ),
     },
   ],
   notes: () => <Notes />,

@@ -1,7 +1,6 @@
 import { PropsWithChildren, useEffect } from "react";
 import { Route, Switch, useLocation } from "react-router";
 import { NavMenu } from "./NavMenu";
-import { ComponentView } from "./ComponentView";
 import { AtlantisRoute, routes } from "../routes";
 import "./code-theme.css";
 import { ToggleThemeButton } from "../components/ToggleThemeButton";
@@ -25,8 +24,6 @@ export const Layout = () => {
         <Switch>
           <>
             {routes?.map((route, routeIndex) => {
-              if (route.inNav === false) return null;
-
               const iterateSubMenu = (childroutes: AtlantisRoute[]) => {
                 return childroutes.map((child, childIndex) => {
                   // We don't want to loop through the components
@@ -68,14 +65,6 @@ export const Layout = () => {
                 />
               );
             })}
-
-            {/* The component page */}
-            <Route
-              key={"component"}
-              exact={true}
-              path={"/components/:name"}
-              component={ComponentView}
-            />
           </>
         </Switch>
       </div>

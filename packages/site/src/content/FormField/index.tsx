@@ -3,6 +3,7 @@ import Props from "./FormField.props.json";
 import MobileProps from "./FormField.props-mobile.json";
 import Notes from "./FormFieldNotes.mdx";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -20,7 +21,7 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-FormField-web--docs",
+      url: getStorybookUrl(`?path=/docs/components-private-formfield--docs`),
     },
   ],
   notes: () => <Notes />,

@@ -2,6 +2,7 @@ import Content from "@atlantis/docs/components/BottomSheet/BottomSheet.stories.m
 import MobileProps from "./BottomSheet.props-mobile.json";
 import Notes from "./BottomSheetNotes.mdx";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -49,7 +50,9 @@ alert('will show bottom sheet in mobile');
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-BottomSheet-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-selections-bottomsheet--docs`,
+      ),
     },
   ],
   notes: () => <Notes />,

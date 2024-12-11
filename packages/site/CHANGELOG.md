@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.16.2...@jobber/atlantis-site@0.17.0) (2024-12-11)
+
+
+### Features
+
+* **components:** Docs Site Side Nav Links ([#2222](https://github.com/GetJobber/atlantis/issues/2222)) ([50938b7](https://github.com/GetJobber/atlantis/commit/50938b7ab7a74fd23db935e6b05456b63848df09))
+
+
+
+
+
+## [0.16.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.16.1...@jobber/atlantis-site@0.16.2) (2024-12-11)
+
+
+### Bug Fixes
+
+* **components:** Docs Site not rendering Design items properly ([#2239](https://github.com/GetJobber/atlantis/issues/2239)) ([540d225](https://github.com/GetJobber/atlantis/commit/540d2259b127473472d0975e17e413f88175169f))
+
+
+
+
+
 ## [0.16.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.16.0...@jobber/atlantis-site@0.16.1) (2024-12-10)
 
 **Note:** Version bump only for package @jobber/atlantis-site

@@ -525,6 +525,7 @@ export const MobileCodeWrapper = (
               Form,
               FormField,
               FormatFile,
+              InputCurrency,
               InputDate,
               InputEmail,
               InputFieldWrapper,
@@ -537,7 +538,7 @@ export const MobileCodeWrapper = (
               ProgressBar,
               Select,
               Option,
-              Switch, 
+              Switch,
               Text,
               TextList,
               ThumbnailList,
@@ -552,9 +553,13 @@ export const MobileCodeWrapper = (
               View,
             } from '@jobber/components-native';
                 ${transpiledCode}
-            
+
             function RootWrapper() {
               return React.createElement(Host, {style:{display:'flex',alignItems:'center',justifyContent:'center', width:'100%'}}, React.createElement(App));
+            }
+
+            function IntlWrapper() {
+              return React.createElement(IntlProvider, {locale: 'en'}, React.createElement(RootWrapper));
             }
 
           if (rootElement) {
@@ -564,5 +569,5 @@ export const MobileCodeWrapper = (
               rootElement = document.getElementById('root')
               root = ReactDOM.createRoot(rootElement);
              }
-              root.render(React.createElement(RootWrapper, null));
+              root.render(React.createElement(IntlWrapper, null));
           `;
