@@ -106,6 +106,14 @@ export const ComponentView = () => {
         </>
       ),
     },
+    {
+      label: "Implement",
+      children: PageMeta?.notes ? (
+        <Content spacing="large">
+          <PageMeta.notes />
+        </Content>
+      ) : null,
+    },
   ];
 
   const activeTabs = useMemo(() => {
@@ -115,6 +123,10 @@ export const ComponentView = () => {
       }
 
       if (!PageMeta?.component.mobileElement && index === 2) {
+        return false;
+      }
+
+      if (!PageMeta?.notes && index === 3) {
         return false;
       }
 

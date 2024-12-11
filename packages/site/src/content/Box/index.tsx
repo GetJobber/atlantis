@@ -1,5 +1,6 @@
 import Content from "@atlantis/docs/components/Box/Box.stories.mdx";
 import Props from "./Box.props.json";
+import Notes from "./BoxNotes.mdx";
 import { ContentExport } from "../../types/content";
 
 export default {
@@ -18,4 +19,5 @@ export default {
       url: "http://localhost:6006/?path=/docs/components-utilities-Box-web--docs",
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

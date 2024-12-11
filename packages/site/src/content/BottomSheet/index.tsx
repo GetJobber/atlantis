@@ -1,5 +1,6 @@
 import Content from "@atlantis/docs/components/BottomSheet/BottomSheet.stories.mdx";
 import MobileProps from "./BottomSheet.props-mobile.json";
+import Notes from "./BottomSheetNotes.mdx";
 import { ContentExport } from "../../types/content";
 
 export default {
@@ -51,4 +52,5 @@ alert('will show bottom sheet in mobile');
       url: "http://localhost:6006/?path=/docs/components-utilities-BottomSheet-web--docs",
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

@@ -1,0 +1,13 @@
+## Configuration
+
+BottomSheet uses an internal BottomSheetOption to provide a preset pairing of an
+Icon and an ActionLabel.
+
+By default, the `<BottomSheet />` is not visible on the screen. To open the
+`<BottomSheet />`, you need to add a `ref` attribute on it and call
+`ref.current.open()`.
+
+### onClose
+
+Do not use `ref.current?.close()` inside the onClose callback. This could create
+an infinite loop.
