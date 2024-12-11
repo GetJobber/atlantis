@@ -18,7 +18,7 @@ enum IndexChange {
 
 interface MenuProps {
   readonly visible: boolean;
-  readonly options: Option[] | Promise<Option[]>;
+  readonly options: Option[];
   readonly selectedOption?: Option;
   /**
    * Element that it's attached to when the menu opens.
