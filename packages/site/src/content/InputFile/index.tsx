@@ -1,5 +1,6 @@
 import Content from "@atlantis/docs/components/InputFile/InputFile.stories.mdx";
 import Props from "./InputFile.props.json";
+import Notes from "./InputFileNotes.mdx";
 import { ContentExport } from "../../types/content";
 
 export default {
@@ -16,4 +17,5 @@ export default {
       url: "http://localhost:6006/?path=/docs/components-utilities-InputFile-web--docs",
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

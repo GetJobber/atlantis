@@ -1,6 +1,7 @@
 import Content from "@atlantis/docs/components/FormField/FormField.stories.mdx";
 import Props from "./FormField.props.json";
 import MobileProps from "./FormField.props-mobile.json";
+import Notes from "./FormFieldNotes.mdx";
 import { ContentExport } from "../../types/content";
 
 export default {
@@ -22,4 +23,5 @@ export default {
       url: "http://localhost:6006/?path=/docs/components-utilities-FormField-web--docs",
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;
