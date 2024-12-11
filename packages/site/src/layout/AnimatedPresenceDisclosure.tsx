@@ -41,7 +41,7 @@ function AnimatedPresenceDisclosure({
           alignItems: "center",
           justifyContent: "space-between",
           backgroundColor: isHovered
-            ? "var(--color-surface)"
+            ? "var(--color-surface--background--hover)"
             : "var(--color-surface--background)",
           outline: "none",
           textDecoration: "none",
@@ -58,7 +58,7 @@ function AnimatedPresenceDisclosure({
           onClick={handleButtonClick}
           style={{
             backgroundColor: isHovered
-              ? "var(--color-surface)"
+              ? "var(--color-surface--background--hover)"
               : "var(--color-surface--background)",
             border: "none",
             cursor: "pointer",

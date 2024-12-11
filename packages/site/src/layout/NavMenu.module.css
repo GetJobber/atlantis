@@ -46,7 +46,7 @@
   }
 
   &:hover {
-    background-color: var(--color-surface);
+    background-color: var(--color-surface--background--hover);
     color: var(--color-typography-text);
   }
 }
