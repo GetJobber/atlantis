@@ -7,16 +7,20 @@ export default {
   content: () => <Content />,
   mobileProps: MobileProps,
   component: {
-    mobileElement: ` const contentOverlayRef = useRef<ContentOverlayRef>(null);
+    mobileElement: `const contentOverlayRef = useRef<ContentOverlayRef>(null);
 
-    return (
-    <Host>
-    <ContentOverlay
+  return (
+    <View
+      style={{
+        width: 300,
+      }}
+    >
+      <ContentOverlay
         title={"Overlay Title"}
-        onClose={function onClose() {
+        onClose={() => {
           return alert("Overlay Dismissed");
         }}
-        onOpen={function onOpen() {
+        onOpen={() => {
           return alert("Overlay opened");
         }}
         fullScreen={false}
@@ -26,8 +30,13 @@ export default {
           <Text>I am some text inside the ContentOverlay.</Text>
         </Content>
       </ContentOverlay>
-      </Host>
-      )`,
+      <View>
+        <Button
+          label="Open Overlay"
+          onPress={() => contentOverlayRef.current?.open?.()}
+        />
+      </View>
+    </View>)`,
   },
   title: "ContentOverlay",
   links: [

@@ -54,11 +54,11 @@ export default {
 )`,
     mobileElement: `<Form
       initialValues={{ firstName: "Greatest", lastName: "Ever", nickName: "" }}
-      onSubmit={function onSubmit(value) {
+      onSubmit={(value) => {
         return new Promise(function (resolve) {
-          setTimeout(function () {
-            return resolve(alert(JSON.stringify(value, void 0)));
-          }, 1e3);
+          setTimeout(() => {
+            resolve(alert(JSON.stringify(value, void 0)));
+          }, 100);
         });
       }}
     >
