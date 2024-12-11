@@ -1,12 +1,13 @@
 .navMenuContainer {
     --hoverOffset: var(--space-smallest);
     --negativeHoverOffset: calc(-1 * var(--hoverOffset));
+    --subItemInset: calc(var(--space-small) + var(--space-smaller));
     display: flex;
     flex-direction: column;
     padding: 36px 0 0 0;
     height: 100dvh;
     background-color: var(--color-surface--background);
-    width: 188px;
+    width: 200px;
     box-sizing: border-box;
 }
 
@@ -63,7 +64,7 @@
 }
 
 .navMenuSubItem {
-  padding-left: var(--space-base);
+  padding-left: var(--subItemInset);
 }
 
 .navMenuSubTitle {
