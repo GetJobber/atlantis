@@ -1,6 +1,6 @@
 export const JobberLogo = () => {
   return (
-    <svg width="auto" height="24">
+    <svg width="100" height="24" overflow={"visible"}>
       <path
         fillRule="evenodd"
         clipRule="evenodd"

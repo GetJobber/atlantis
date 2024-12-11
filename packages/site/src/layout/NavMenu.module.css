@@ -1,0 +1,42 @@
+.navMenu {
+  width: 188px;
+  height: 100dvh;
+  background-color: var(--color-surface--background);
+  overflow: auto;
+  padding: 36px var(--space-base) 0 var(--space-base);
+  display: flex;
+  gap: var(--space-large);
+  flex-direction: column;
+  color: var(--color-typography-text);
+}
+
+.navMenuItem {
+  user-select: none;
+  transition: all var(--timing-base) ease-out;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.navMenuLink {
+  color: var(--color-typography-text);
+  text-decoration: none;
+  outline: transparent;
+
+  &:visited {
+    color: var(--color-typography-text);
+  }
+
+  &:hover {
+    background-color: var(--color-surface);
+    color: var(--color-typography-text);
+  }
+}
+
+.navMenuSubItem {
+  padding-left: var(--space-base);
+}
+
+.navMenuSubTitle {
+  min-height: 24px;
+}

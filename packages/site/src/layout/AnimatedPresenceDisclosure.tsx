@@ -21,7 +21,7 @@ function AnimatedPresenceDisclosure({
   };
 
   return (
-    <>
+    <div>
       <Link
         to={to ?? "/"}
         href="https://www.google.com"
@@ -35,6 +35,7 @@ function AnimatedPresenceDisclosure({
           backgroundColor: "var(--color-surface--background)",
           outline: "none",
           textDecoration: "none",
+          minHeight: 40,
         }}
       >
         <Typography fontWeight="semiBold" size="large" textColor="heading">
@@ -56,14 +57,14 @@ function AnimatedPresenceDisclosure({
 
       <AnimatedPresence>
         {isOpen && (
-          <ul style={{ marginTop: "10px", padding: "0" }}>
+          <ul style={{ padding: "0" }}>
             {React.Children.map(children, child => (
               <>{child}</>
             ))}
           </ul>
         )}
       </AnimatedPresence>
-    </>
+    </div>
   );
 }
 

@@ -101,7 +101,7 @@ export const SearchBox = ({
             </Content>
           )}
           {filteredDesignList.length > 0 && (
-            <Box padding={{ top: "largest" }}>
+            <Box>
               <Content>
                 <Typography
                   size={"base"}
