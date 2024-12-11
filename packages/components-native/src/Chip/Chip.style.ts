@@ -29,6 +29,6 @@ export const styles = StyleSheet.create({
     padding: tokens["space-smaller"],
   },
   activeDismissIcon: {
-    backgroundColor: tokens["color-surface--element"],
+    backgroundColor: tokens["color-interactive--background"],
   },
 });
