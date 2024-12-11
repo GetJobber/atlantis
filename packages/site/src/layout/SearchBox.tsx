@@ -1,5 +1,4 @@
 import {
-  Box,
   Content,
   InputText,
   InputTextRef,
@@ -101,32 +100,30 @@ export const SearchBox = ({
             </Content>
           )}
           {filteredDesignList.length > 0 && (
-            <Box>
-              <Content>
-                <Typography
-                  size={"base"}
-                  fontWeight={"bold"}
-                  textCase={"uppercase"}
-                  textColor={"textSecondary"}
-                  element="h3"
-                >
-                  Design
-                </Typography>
-                <ContentCardWrapper>
-                  {filteredDesignList.map(({ title, to, imageURL }, key) => {
-                    return (
-                      <ContentCard
-                        onClick={closeModal}
-                        title={title}
-                        to={to}
-                        imageURL={imageURL}
-                        key={key}
-                      />
-                    );
-                  })}
-                </ContentCardWrapper>
-              </Content>
-            </Box>
+            <Content>
+              <Typography
+                size={"base"}
+                fontWeight={"bold"}
+                textCase={"uppercase"}
+                textColor={"textSecondary"}
+                element="h3"
+              >
+                Design
+              </Typography>
+              <ContentCardWrapper>
+                {filteredDesignList.map(({ title, to, imageURL }, key) => {
+                  return (
+                    <ContentCard
+                      onClick={closeModal}
+                      title={title}
+                      to={to}
+                      imageURL={imageURL}
+                      key={key}
+                    />
+                  );
+                })}
+              </ContentCardWrapper>
+            </Content>
           )}
         </div>
       </Content>
