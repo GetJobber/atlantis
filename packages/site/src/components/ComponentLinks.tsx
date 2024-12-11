@@ -1,4 +1,4 @@
-import { Box, Content, Heading, Link } from "@jobber/components";
+import { Box, Content, Heading, Icon, Link } from "@jobber/components";
 import { MouseEvent, useEffect, useState } from "react";
 import { ContentExportLinks } from "../types/content";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
@@ -13,11 +13,15 @@ export const ComponentLinks = ({
   goToProps,
   goToUsage,
   goToDesign,
+  webEnabled,
+  mobileEnabled,
 }: {
   readonly links?: ContentExportLinks[];
-  readonly goToProps: () => void;
-  readonly goToUsage: () => void;
+  readonly goToProps: (type: string) => void;
+  readonly goToUsage: (type: string) => void;
   readonly goToDesign: () => void;
+  readonly webEnabled: boolean;
+  readonly mobileEnabled: boolean;
 }) => {
   const [hlinks, setHlinks] = useState<Element[] | null>(null);
 
@@ -50,37 +54,67 @@ export const ComponentLinks = ({
   return (
     <Content>
       <Box padding="base" direction="column">
-        <Box margin={{ bottom: "base" }}>
-          <Heading level={3}>Design</Heading>
-          {hlinks?.map((link, index) => (
-            <Box key={index}>
-              <a onClick={click} href={`#${link.id}`}>
-                {link.textContent}
-              </a>
-            </Box>
-          ))}
-        </Box>
-        <Box margin={{ bottom: "base" }}>
-          <Heading level={3}>Implementation</Heading>
-          <Box>
-            <a onClick={goToUsage} href={`#`}>
-              Usage
-            </a>
-            <a onClick={goToProps} href={`#`}>
-              Props
-            </a>
-          </Box>
-        </Box>
-        <Heading level={3}>Links</Heading>
-        <Box>
-          {links?.map((link, index) => (
-            <Box key={index}>
-              <Link key={index} url={link.url}>
-                {link.label}
-              </Link>
-            </Box>
-          ))}
-        </Box>
+        <Content spacing={"larger"}>
+          <Content>
+            <Heading level={3}>Design</Heading>
+            <Content spacing="small">
+              {hlinks?.map((link, index) => (
+                <Box key={index}>
+                  <a onClick={click} href={`#${link.id}`}>
+                    {link.textContent}
+                  </a>
+                </Box>
+              ))}
+            </Content>
+          </Content>
+          {webEnabled && (
+            <Content>
+              <Heading level={3}>Web</Heading>
+              <Content spacing="small">
+                <Box>
+                  <a onClick={() => goToUsage("web")} href={`#`}>
+                    Usage
+                  </a>
+                </Box>
+                <Box>
+                  <a onClick={() => goToProps("web")} href={`#`}>
+                    Props
+                  </a>
+                </Box>
+              </Content>
+            </Content>
+          )}
+          {mobileEnabled && (
+            <Content>
+              <Heading level={3}>Mobile</Heading>
+              <Content spacing="small">
+                <Box>
+                  <a onClick={() => goToUsage("mobile")} href={`#`}>
+                    Usage
+                  </a>
+                </Box>
+                <Box>
+                  <a onClick={() => goToProps("web")} href={`#`}>
+                    Props
+                  </a>
+                </Box>
+              </Content>
+            </Content>
+          )}
+          <Content>
+            <Heading level={3}>Links</Heading>
+            <Content spacing="smaller">
+              <Box direction="row" gap="small">
+                <Icon name="link" />
+                {links?.map((link, index) => (
+                  <Link key={index} url={link.url} external>
+                    {link.label}
+                  </Link>
+                ))}
+              </Box>
+            </Content>
+          </Content>
+        </Content>
       </Box>
     </Content>
   );

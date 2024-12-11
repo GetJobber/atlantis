@@ -101,12 +101,12 @@ export const ComponentView = () => {
     {
       label: "Mobile",
       children: (
-        <>
+        <div data-usage-tab>
           <Box margin={{ bottom: "base" }}>
             <AtlantisPreviewEditor />
           </Box>
           <PropsList values={stateValues || []} />
-        </>
+        </div>
       ),
     },
   ];
@@ -125,12 +125,46 @@ export const ComponentView = () => {
     });
   }, [tabs]);
 
-  const goToProps = () => {
-    setTab(1);
+  const goToProps = (typeIn: string) => {
+    if (typeIn === "web" && PageMeta?.component?.element) {
+      setTab(1);
+    } else if (typeIn === "mobile" && !PageMeta?.component?.element) {
+      setTab(1);
+    } else if (
+      typeIn === "mobile" &&
+      PageMeta?.component?.element &&
+      PageMeta?.component?.mobileElement
+    ) {
+      setTab(2);
+    } else {
+      setTab(1);
+    }
+    setTimeout(() => {
+      document
+        .querySelector("[data-props-list]")
+        ?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
   };
 
-  const goToUsage = () => {
-    setTab(1);
+  const goToUsage = (typeIn: string) => {
+    if (typeIn === "web" && PageMeta?.component?.element) {
+      setTab(1);
+    } else if (typeIn === "mobile" && !PageMeta?.component?.element) {
+      setTab(1);
+    } else if (
+      typeIn === "mobile" &&
+      PageMeta?.component?.element &&
+      PageMeta?.component?.mobileElement
+    ) {
+      setTab(2);
+    } else {
+      setTab(1);
+    }
+    setTimeout(() => {
+      document
+        .querySelector("[data-usage-tab]")
+        ?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
   };
 
   const goToDesign = () => {
@@ -168,6 +202,8 @@ export const ComponentView = () => {
       <Grid.Cell size={{ xs: 12, md: 3 }}>
         <ComponentLinks
           links={PageMeta?.links}
+          mobileEnabled={!!PageMeta?.component?.mobileElement}
+          webEnabled={!!PageMeta?.component?.element}
           goToDesign={goToDesign}
           goToProps={goToProps}
           goToUsage={goToUsage}
