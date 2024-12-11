@@ -14,10 +14,16 @@ function AnimatedPresenceDisclosure({
   to,
 }: AnimatedPresenceDisclosureProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleButtonClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsOpen(!isOpen);
+  };
+
+  const handleHover = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsHovered(!isHovered);
   };
 
   return (
@@ -28,14 +34,20 @@ function AnimatedPresenceDisclosure({
         tabIndex={0}
         onFocus={e => (e.currentTarget.style.boxShadow = "0 0 3px #0073e6")}
         onBlur={e => (e.currentTarget.style.boxShadow = "none")}
+        onMouseEnter={handleHover}
+        onMouseLeave={handleHover}
         style={{
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          backgroundColor: "var(--color-surface--background)",
+          backgroundColor: isHovered
+            ? "var(--color-surface)"
+            : "var(--color-surface--background)",
           outline: "none",
           textDecoration: "none",
           minHeight: 40,
+          paddingLeft: "var(--space-smallest)",
+          transition: "all var(--timing-base) ease-out",
         }}
       >
         <Typography fontWeight="semiBold" size="large" textColor="heading">
@@ -45,9 +57,12 @@ function AnimatedPresenceDisclosure({
           type="button"
           onClick={handleButtonClick}
           style={{
-            backgroundColor: "var(--color-surface--background)",
+            backgroundColor: isHovered
+              ? "var(--color-surface)"
+              : "var(--color-surface--background)",
             border: "none",
             cursor: "pointer",
+            transition: "all var(--timing-base) ease-out",
           }}
           aria-label="Toggle Changelog"
         >
