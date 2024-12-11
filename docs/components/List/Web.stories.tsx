@@ -256,18 +256,6 @@ function RenderProductList({
   );
 }
 
-function RenderSectionHeading({
-  sectionHeading,
-}: {
-  readonly sectionHeading: string;
-}) {
-  return (
-    <Heading level={6} style={{ padding: "var(--color-destructive)" }}>
-      {sectionHeading}
-    </Heading>
-  );
-}
-
 export const SectionedListWithCustomRenderer = BasicTemplate.bind({});
 SectionedListWithCustomRenderer.args = {
   items: productsList,
@@ -275,7 +263,7 @@ SectionedListWithCustomRenderer.args = {
     <RenderProductList listItem={item} />
   ),
   customRenderSection: (sectionHeading: string) => (
-    <RenderSectionHeading sectionHeading={sectionHeading} />
+    <Heading level={2}>{sectionHeading}</Heading>
   ),
   ariaRole: "menu",
 };
