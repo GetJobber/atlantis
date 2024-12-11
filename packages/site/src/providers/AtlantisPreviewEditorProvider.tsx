@@ -341,8 +341,8 @@ html,body,#root {
   {
     "imports": {
       ${imports},
-      "@jobber/hooks":"/editorBundle.js",
-      "@jobber/hooks/useIsMounted":"/editorBundle.js",
+      "@jobber/hooks":"/node_modules/.vite/deps/@jobber_hooks.js",
+      "@jobber/hooks/useIsMounted":"/node_modules/.vite/deps/@jobber_hooks.js",
       "axios": "/axios.js"
     }
   }
