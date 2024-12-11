@@ -558,6 +558,10 @@ export const MobileCodeWrapper = (
               return React.createElement(Host, {style:{display:'flex',alignItems:'center',justifyContent:'center', width:'100%'}}, React.createElement(App));
             }
 
+            function IntlWrapper() {
+              return React.createElement(IntlProvider, {locale: 'en'}, React.createElement(RootWrapper));
+            }
+
           if (rootElement) {
             //  ReactDOM.unmountComponentAtNode(rootElement);
             }
@@ -565,5 +569,5 @@ export const MobileCodeWrapper = (
               rootElement = document.getElementById('root')
               root = ReactDOM.createRoot(rootElement);
              }
-              root.render(React.createElement(RootWrapper, null));
+              root.render(React.createElement(IntlWrapper, null));
           `;

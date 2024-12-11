@@ -6,9 +6,7 @@ export default {
   content: () => <Content />,
   mobileProps: MobileProps,
   component: {
-    mobileElement: `<IntlProvider locale="en">
-      <InputCurrency placeholder="Unit Price" />
-    </IntlProvider>`,
+    mobileElement: `<InputCurrency placeholder="Unit Price" />`,
   },
   title: "InputCurrency",
   links: [
