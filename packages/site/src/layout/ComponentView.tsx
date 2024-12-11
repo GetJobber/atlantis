@@ -130,8 +130,6 @@ export const ComponentView = () => {
   }, [tabs]);
 
   const goToProps = (typeIn: string) => {
-    console.log("GOINT TO PROPS", typeIn);
-
     if (typeIn === "web" && PageMeta?.component?.element) {
       handleTabChange(1);
     } else if (typeIn === "mobile" && !PageMeta?.component?.element) {
