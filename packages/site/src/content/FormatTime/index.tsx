@@ -1,6 +1,7 @@
 import FormatTimeContent from "@atlantis/docs/components/FormatTime/FormatTime.stories.mdx";
 import Props from "./FormatTime.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <FormatTimeContent />,
@@ -23,7 +24,7 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-FormatTime-web--docs",
+      url: getStorybookUrl(`?path=/docs/components-utilities-formattime--docs`),
     },
   ],
 } as const satisfies ContentExport;

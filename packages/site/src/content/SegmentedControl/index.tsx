@@ -1,6 +1,7 @@
 import Content from "@atlantis/docs/components/SegmentedControl/SegmentedControl.stories.mdx";
 import Props from "./SegmentedControl.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -35,7 +36,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-SegmentedControl-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-selections-segmentedcontrol--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

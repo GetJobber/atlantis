@@ -2,6 +2,7 @@ import InputDateContent from "@atlantis/docs/components/InputDate/InputDate.stor
 import Props from "./InputDate.props.json";
 import MobileProps from "./InputDate.props-mobile.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <InputDateContent />,
@@ -21,7 +22,9 @@ return <InputDate value={date} onChange={setDate} />;
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-InputDate-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-forms-and-inputs-inputdate--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

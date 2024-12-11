@@ -2,6 +2,7 @@ import InputPasswordContent from "@atlantis/docs/components/InputPassword/InputP
 import Props from "./InputPassword.props.json";
 import MobileProps from "./InputPassword.props-mobile.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <InputPasswordContent />,
@@ -15,7 +16,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-InputPassword-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-forms-and-inputs-inputphonenumber--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

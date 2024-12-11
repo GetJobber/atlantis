@@ -1,6 +1,7 @@
 import Content from "@atlantis/docs/components/InputValidation/InputValidation.stories.mdx";
 import Props from "./InputValidation.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -38,7 +39,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-InputValidation-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-forms-and-inputs-inputvalidation--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

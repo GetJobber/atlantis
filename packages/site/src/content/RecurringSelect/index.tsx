@@ -1,6 +1,7 @@
 import Content from "@atlantis/docs/components/RecurringSelect/RecurringSelect.stories.mdx";
 import Props from "./RecurringSelect.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -19,7 +20,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-RecurringSelect-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-selections-recurringselect--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

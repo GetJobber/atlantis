@@ -2,6 +2,7 @@ import Content from "@atlantis/docs/components/Flex/Flex.stories.mdx";
 import Props from "./Flex.props.json";
 import MobileProps from "./Flex.props-mobile.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -37,7 +38,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-Flex-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-layouts-and-structure-flex--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;
