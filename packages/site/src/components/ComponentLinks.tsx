@@ -94,7 +94,7 @@ export const ComponentLinks = ({
                   </a>
                 </Box>
                 <Box>
-                  <a onClick={() => goToProps("web")} href={`#`}>
+                  <a onClick={() => goToProps("mobile")} href={`#`}>
                     Props
                   </a>
                 </Box>

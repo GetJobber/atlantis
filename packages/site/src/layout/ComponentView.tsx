@@ -73,7 +73,7 @@ export const ComponentView = () => {
 
     if (tabIn == 1) {
       updateType("web");
-    } else if (tab == 2) {
+    } else if (tabIn == 2) {
       updateType("mobile");
     }
     updateStyles();
@@ -126,18 +126,20 @@ export const ComponentView = () => {
   }, [tabs]);
 
   const goToProps = (typeIn: string) => {
+    console.log("GOINT TO PROPS", typeIn);
+
     if (typeIn === "web" && PageMeta?.component?.element) {
-      setTab(1);
+      handleTabChange(1);
     } else if (typeIn === "mobile" && !PageMeta?.component?.element) {
-      setTab(1);
+      handleTabChange(1);
     } else if (
       typeIn === "mobile" &&
       PageMeta?.component?.element &&
       PageMeta?.component?.mobileElement
     ) {
-      setTab(2);
+      handleTabChange(2);
     } else {
-      setTab(1);
+      handleTabChange(1);
     }
     setTimeout(() => {
       document
@@ -148,17 +150,17 @@ export const ComponentView = () => {
 
   const goToUsage = (typeIn: string) => {
     if (typeIn === "web" && PageMeta?.component?.element) {
-      setTab(1);
+      handleTabChange(1);
     } else if (typeIn === "mobile" && !PageMeta?.component?.element) {
-      setTab(1);
+      handleTabChange(1);
     } else if (
       typeIn === "mobile" &&
       PageMeta?.component?.element &&
       PageMeta?.component?.mobileElement
     ) {
-      setTab(2);
+      handleTabChange(2);
     } else {
-      setTab(1);
+      handleTabChange(1);
     }
     setTimeout(() => {
       document
