@@ -37,7 +37,7 @@
 }
 
 .isActive > * {
-  background-color: var(--color-surface--background);
+  background-color: var(--color-surface--element);
 }
 
 .hoverable:hover > *,
@@ -64,7 +64,7 @@
 
 .isActive:hover > *,
 .isActive:focus > * {
-  background-color: var(--color-surface--background--hover);
+  background-color: var(--color-surface--element--hover);
 }
 
 /* TODO: Move truncate in typography */
