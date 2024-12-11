@@ -27,7 +27,8 @@ export const NavMenu = () => {
       }}
     >
       <Box height={24} padding="base">
-        <Link to="/">
+        {/* TODO: remove ?new when we roll out the new docs site to everyone */}
+        <Link to="/?new">
           <JobberLogo />
         </Link>
       </Box>
@@ -99,7 +100,9 @@ export const NavMenu = () => {
 
             return (
               <MenuItem key={routeIndex}>
-                <StyledLink to={route.path ?? "/"}>{route.handle}</StyledLink>
+                <StyledLink to={getRoutePath(route.path) ?? "/"}>
+                  {route.handle}
+                </StyledLink>
               </MenuItem>
             );
           })}
@@ -194,3 +197,12 @@ export const sectionTitle = (section: string) => (
     {section.toUpperCase()}
   </Typography>
 );
+
+// TODO: delete this once we roll out the new docs site to everyone
+function getRoutePath(path?: string) {
+  if (path === "/") {
+    return "/?new";
+  }
+
+  return path;
+}
