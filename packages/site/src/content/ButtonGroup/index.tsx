@@ -1,13 +1,13 @@
 import Content from "@atlantis/docs/components/ButtonGroup/ButtonGroup.stories.mdx";
 import Props from "./ButtonGroup.props-mobile.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
   props: Props,
   component: {
-    mobileElement: `<Host>
-    <ButtonGroup>
+    mobileElement: `<ButtonGroup>
       <ButtonGroup.PrimaryAction
         label={"Create"}
         icon={"plus"}
@@ -24,14 +24,13 @@ export default {
         onPress={() => alert("delete")}
       />
     </ButtonGroup>
-    </Host>
     `,
   },
   title: "ButtonGroup",
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-ButtonGroup-web--docs",
+      url: getStorybookUrl(`?path=/docs/components-actions-buttongroup--docs`),
     },
   ],
 } as const satisfies ContentExport;

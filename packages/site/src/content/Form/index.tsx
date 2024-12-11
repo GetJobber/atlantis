@@ -2,6 +2,7 @@ import Content from "@atlantis/docs/components/Form/Form.stories.mdx";
 import Props from "./Form.props.json";
 import MobileProps from "./Form.props-mobile.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -53,11 +54,11 @@ export default {
 )`,
     mobileElement: `<Form
       initialValues={{ firstName: "Greatest", lastName: "Ever", nickName: "" }}
-      onSubmit={function onSubmit(value) {
+      onSubmit={(value) => {
         return new Promise(function (resolve) {
-          setTimeout(function () {
-            return resolve(alert(JSON.stringify(value, void 0)));
-          }, 1e3);
+          setTimeout(() => {
+            resolve(alert(JSON.stringify(value, void 0)));
+          }, 100);
         });
       }}
     >
@@ -84,7 +85,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-Form-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-forms-and-inputs-form--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

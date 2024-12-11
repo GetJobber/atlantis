@@ -1,6 +1,7 @@
 import FormatDateContent from "@atlantis/docs/components/FormatDate/FormatDate.stories.mdx";
 import Props from "./FormatDate.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <FormatDateContent />,
@@ -12,7 +13,7 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-FormatDate-web--docs",
+      url: getStorybookUrl(`?path=/docs/components-utilities-formatdate--docs`),
     },
   ],
 } as const satisfies ContentExport;
