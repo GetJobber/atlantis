@@ -1,6 +1,7 @@
-import { AnimatedPresence, Icon, Typography } from "@jobber/components";
+import { AnimatedPresence, Button, Typography } from "@jobber/components";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import styles from "./NavMenu.module.css";
 
 interface AnimatedPresenceDisclosureProps {
   readonly children: React.ReactNode;
@@ -28,47 +29,36 @@ function AnimatedPresenceDisclosure({
 
   return (
     <div>
-      <Link
-        to={to ?? "/"}
-        href="https://www.google.com"
-        tabIndex={0}
-        onFocus={e => (e.currentTarget.style.boxShadow = "0 0 3px #0073e6")}
-        onBlur={e => (e.currentTarget.style.boxShadow = "none")}
-        onMouseEnter={handleHover}
-        onMouseLeave={handleHover}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          backgroundColor: isHovered
-            ? "var(--color-surface--background--hover)"
-            : "var(--color-surface--background)",
-          outline: "none",
-          textDecoration: "none",
-          minHeight: 40,
-          paddingLeft: "var(--space-smallest)",
-          transition: "all var(--timing-base) ease-out",
-        }}
-      >
-        <Typography fontWeight="semiBold" size="large" textColor="heading">
-          {title}
-        </Typography>
-        <button
-          type="button"
-          onClick={handleButtonClick}
+      <span className={styles.disclosureNavItem}>
+        <Link
+          to={to ?? "/"}
+          href="https://www.google.com"
+          tabIndex={0}
+          onFocus={e =>
+            (e.currentTarget.style.boxShadow = "var(--shadow-focus)")
+          }
+          onBlur={e => (e.currentTarget.style.boxShadow = "none")}
+          onMouseEnter={handleHover}
+          onMouseLeave={handleHover}
           style={{
-            backgroundColor: isHovered
-              ? "var(--color-surface--background--hover)"
-              : "var(--color-surface--background)",
-            border: "none",
-            cursor: "pointer",
-            transition: "all var(--timing-base) ease-out",
+            backgroundColor: "transparent",
+            outline: "none",
+            textDecoration: "none",
           }}
-          aria-label="Toggle Changelog"
         >
-          <Icon name="arrowDown" />
-        </button>
-      </Link>
+          <Typography fontWeight="semiBold" size="large" textColor="heading">
+            {title}
+          </Typography>
+        </Link>
+        <Button
+          variation="subtle"
+          size="small"
+          type="tertiary"
+          onClick={handleButtonClick}
+          ariaLabel="Toggle Changelog"
+          icon={isOpen ? "arrowUp" : "arrowDown"}
+        />
+      </span>
 
       <AnimatedPresence>
         {isOpen && (

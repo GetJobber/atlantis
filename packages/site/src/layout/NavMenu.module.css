@@ -1,5 +1,6 @@
-
 .navMenuContainer {
+    --hoverOffset: var(--space-smallest);
+    --negativeHoverOffset: calc(-1 * var(--hoverOffset));
     display: flex;
     flex-direction: column;
     padding: 36px 0 0 0;
@@ -29,6 +30,10 @@
     flex-direction: column;
     gap: var(--space-large);
     overflow-y: scroll;
+}
+
+.navMenu li {
+  margin-bottom: var(--space-smaller);
 }
 
 .navMenuItem {
@@ -63,6 +68,29 @@
 
 .navMenuSubTitle {
   min-height: 24px;
-  padding: var(--space-smaller) 0;
+  padding: var(--space-smaller) 0 var(--space-small) 0;
   align-items: end;
 }
+
+.disclosureNavItem {
+  display: flex;
+  gap: var(--space-smaller);
+  border-radius: var(--radius-small);
+  transition: all var(--timing-base) ease-out;
+  margin-left: var(--negativeHoverOffset);
+  margin-right: var(--negativeHoverOffset);
+  padding-left: var(--hoverOffset);
+  padding-right: calc(var(--space-smallest) + var(--hoverOffset));
+  min-height: 40px;
+  align-items: center;
+  justify-content: space-between;
+
+  &:hover {
+    background-color: var(--color-surface--background--hover);
+  }
+
+  button {
+    border-radius: var(--radius-small);
+  }
+}
+
