@@ -3,7 +3,7 @@ import { useLocation } from "react-router";
 import { useOnMount } from "@jobber/hooks";
 import ReactGA from "react-ga4";
 
-const IS_PROD = window.location.hostname.includes("atlantis.getjobber.com");
+const IS_PROD = window.location.hostname === "atlantis.getjobber.com";
 
 /**
  * Analytics tracks page navigations and reports them to our analytics provider.
