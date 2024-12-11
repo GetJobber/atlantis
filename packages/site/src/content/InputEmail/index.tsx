@@ -2,6 +2,7 @@ import InputEmailContent from "@atlantis/docs/components/InputEmail/InputEmail.s
 import Props from "./InputEmail.props.json";
 import MobileProps from "./InputEmail.props-mobile.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <InputEmailContent />,
@@ -15,9 +16,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: `${
-        (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
-      }?path=/docs/components-forms-and-inputs-inputemail--docs`,
+      url: getStorybookUrl(
+        `?path=/docs/components-forms-and-inputs-inputemail--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

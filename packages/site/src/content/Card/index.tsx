@@ -2,6 +2,7 @@ import CardContent from "@atlantis/docs/components/Card/Card.stories.mdx";
 import Props from "./Card.props.json";
 import MobileProps from "./Card.props-mobile.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <CardContent />,
@@ -34,9 +35,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: `${
-        (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
-      }?path=/docs/components-layouts-and-structure-card--docs`,
+      url: getStorybookUrl(
+        `?path=/docs/components-layouts-and-structure-card--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

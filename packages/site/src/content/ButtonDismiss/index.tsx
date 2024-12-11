@@ -1,6 +1,7 @@
 import ButtonDismissContent from "@atlantis/docs/components/ButtonDismiss/ButtonDismiss.stories.mdx";
 import Props from "./ButtonDismiss.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <ButtonDismissContent />,
@@ -14,9 +15,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: `${
-        (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
-      }?path=/docs/components-private-buttondismiss--docs`,
+      url: getStorybookUrl(
+        `?path=/docs/components-private-buttondismiss--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

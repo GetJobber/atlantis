@@ -2,6 +2,7 @@ import Content from "@atlantis/docs/components/Select/Select.stories.mdx";
 import Props from "./Select.props.json";
 import MobileProps from "./Select.props-mobile.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -23,9 +24,7 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: `${
-        (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
-      }?path=/docs/components-selections-select--docs`,
+      url: getStorybookUrl(`?path=/docs/components-selections-select--docs`),
     },
   ],
 } as const satisfies ContentExport;

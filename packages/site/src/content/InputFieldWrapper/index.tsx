@@ -1,6 +1,7 @@
 import Content from "@atlantis/docs/components/InputFieldWrapper/InputFieldWrapper.stories.mdx";
 import MobileProps from "./InputFieldWrapper.props-mobile.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -15,9 +16,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: `${
-        (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
-      }?path=/docs/components-private-inputfieldwrapper--docs`,
+      url: getStorybookUrl(
+        `?path=/docs/components-private-inputfieldwrapper--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

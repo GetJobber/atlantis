@@ -2,6 +2,7 @@ import Content from "@atlantis/docs/components/Menu/Menu.stories.mdx";
 import Props from "./Menu.props.json";
 import MobileProps from "./Menu.props-mobile.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -69,9 +70,7 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: `${
-        (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
-      }?path=/docs/components-navigation-menu--docs`,
+      url: getStorybookUrl(`?path=/docs/components-navigation-menu--docs`),
     },
   ],
 } as const satisfies ContentExport;

@@ -2,6 +2,7 @@ import ChipsContent from "@atlantis/docs/components/Chips/Chips.stories.mdx";
 import Props from "./Chips.props.json";
 import MobileProps from "./Chips.props-mobile.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <ChipsContent />,
@@ -38,9 +39,7 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: `${
-        (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
-      }?path=/docs/components-selections-chips--docs`,
+      url: getStorybookUrl(`?path=/docs/components-selections-chips--docs`),
     },
   ],
 } as const satisfies ContentExport;

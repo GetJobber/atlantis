@@ -1,6 +1,7 @@
 import Content from "@atlantis/docs/components/Tooltip/Tooltip.stories.mdx";
 import Props from "./Tooltip.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -20,9 +21,7 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: `${
-        (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
-      }?path=/docs/components-overlays-tooltip--docs`,
+      url: getStorybookUrl(`?path=/docs/components-overlays-tooltip--docs`),
     },
   ],
 } as const satisfies ContentExport;

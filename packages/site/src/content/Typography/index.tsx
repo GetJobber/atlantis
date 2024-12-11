@@ -2,6 +2,7 @@ import Content from "@atlantis/docs/components/Typography/Typography.stories.mdx
 import Props from "./Typography.props.json";
 import MobileProps from "./Typography.props-mobile.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -15,9 +16,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: `${
-        (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
-      }?path=/docs/components-text-and-typography-typography--docs`,
+      url: getStorybookUrl(
+        `?path=/docs/components-text-and-typography-typography--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

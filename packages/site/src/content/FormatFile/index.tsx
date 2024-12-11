@@ -2,6 +2,7 @@ import Content from "@atlantis/docs/components/FormatFile/FormatFile.stories.mdx
 import Props from "./FormatFile.props.json";
 import MobileProps from "./FormatFile.props-mobile.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -43,9 +44,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: `${
-        (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
-      }?path=/docs/components-images-and-icons-formatfile--docs`,
+      url: getStorybookUrl(
+        `?path=/docs/components-images-and-icons-formatfile--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

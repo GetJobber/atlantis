@@ -1,6 +1,7 @@
 import FormatTimeContent from "@atlantis/docs/components/FormatTime/FormatTime.stories.mdx";
 import Props from "./FormatTime.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <FormatTimeContent />,
@@ -23,9 +24,7 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: `${
-        (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
-      }?path=/docs/components-utilities-formattime--docs`,
+      url: getStorybookUrl(`?path=/docs/components-utilities-formattime--docs`),
     },
   ],
 } as const satisfies ContentExport;

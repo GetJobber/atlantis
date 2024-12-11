@@ -1,6 +1,7 @@
 import ConfirmationModalContent from "@atlantis/docs/components/ConfirmationModal/ConfirmationModal.stories.mdx";
 import Props from "./ConfirmationModal.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <ConfirmationModalContent />,
@@ -28,9 +29,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: `${
-        (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
-      }?path=/docs/components-overlays-confirmationmodal--docs`,
+      url: getStorybookUrl(
+        `?path=/docs/components-overlays-confirmationmodal--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

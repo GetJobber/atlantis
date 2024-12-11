@@ -1,6 +1,7 @@
 import Content from "@atlantis/docs/components/Combobox/Combobox.stories.mdx";
 import Props from "./Combobox.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -60,9 +61,7 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: `${
-        (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
-      }?path=/docs/components-selections-combobox--docs`,
+      url: getStorybookUrl(`?path=/docs/components-selections-combobox--docs`),
     },
   ],
 } as const satisfies ContentExport;

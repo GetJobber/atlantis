@@ -1,6 +1,7 @@
 import Content from "@atlantis/docs/components/TextList/TextList.stories.mdx";
 import MobileProps from "./TextList.props-mobile.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -12,9 +13,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: `${
-        (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
-      }?path=/docs/components-lists-and-tables-textlist--docs`,
+      url: getStorybookUrl(
+        `?path=/docs/components-lists-and-tables-textlist--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

@@ -1,6 +1,7 @@
 import Content from "@atlantis/docs/components/Grid/Grid.stories.mdx";
 import Props from "./Grid.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -51,9 +52,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: `${
-        (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
-      }?path=/docs/components-layouts-and-structure-grid--docs`,
+      url: getStorybookUrl(
+        `?path=/docs/components-layouts-and-structure-grid--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

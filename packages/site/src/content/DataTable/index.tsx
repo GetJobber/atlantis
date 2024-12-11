@@ -1,6 +1,7 @@
 import Content from "@atlantis/docs/components/DataTable/DataTable.stories.mdx";
 import Props from "./DataTable.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -113,9 +114,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: `${
-        (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
-      }?path=/docs/components-lists-and-tables-datatable--docs`,
+      url: getStorybookUrl(
+        `?path=/docs/components-lists-and-tables-datatable--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

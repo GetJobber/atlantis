@@ -1,6 +1,7 @@
 import Content from "@atlantis/docs/components/DataList/DataList.stories.mdx";
 import Props from "./DataList.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -39,9 +40,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: `${
-        (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
-      }?path=/docs/components-lists-and-tables-datalist--docs`,
+      url: getStorybookUrl(
+        `?path=/docs/components-lists-and-tables-datalist--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

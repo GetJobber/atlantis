@@ -1,6 +1,7 @@
 import Content from "@atlantis/docs/components/Drawer/Drawer.stories.mdx";
 import Props from "./Drawer.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -61,9 +62,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: `${
-        (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
-      }?path=/docs/components-layouts-and-structure-drawer--docs`,
+      url: getStorybookUrl(
+        `?path=/docs/components-layouts-and-structure-drawer--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

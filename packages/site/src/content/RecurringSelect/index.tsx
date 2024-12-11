@@ -1,6 +1,7 @@
 import Content from "@atlantis/docs/components/RecurringSelect/RecurringSelect.stories.mdx";
 import Props from "./RecurringSelect.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -19,9 +20,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: `${
-        (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
-      }?path=/docs/components-selections-recurringselect--docs`,
+      url: getStorybookUrl(
+        `?path=/docs/components-selections-recurringselect--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;
