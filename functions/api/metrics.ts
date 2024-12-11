@@ -28,6 +28,8 @@ export const onRequestPost: PagesFunction = async ({ request }) => {
   try {
     requestBody = await request.json();
   } catch (error) {
+    console.error(error);
+
     return jsonResponse(400, { error: "missing json body" });
   }
 
@@ -44,6 +46,8 @@ export const onRequestPost: PagesFunction = async ({ request }) => {
   try {
     await metricSender.sendBatch([metric]);
   } catch (error) {
+    console.error(error);
+
     return jsonResponse(500, { error: "failed to process metric" });
   }
 
