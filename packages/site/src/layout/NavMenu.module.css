@@ -1,28 +1,44 @@
-.navMenu {
-  width: 188px;
-  height: calc(100dvh - 36px);
+
+.navMenuSticky {
   background-color: var(--color-surface--background);
-  overflow: auto;
-  padding: 36px var(--space-base) 0 var(--space-base);
+  box-sizing: border-box;
   display: flex;
-  gap: var(--space-large);
   flex-direction: column;
+  gap: var(--space-large);
+  padding: 36px var(--space-base) var(--space-large) var(--space-base);
+  position: fixed;
+  width: 188px;
+  z-index: 1;
+}
+
+.navMenu {
+  background-color: var(--color-surface--background);
+  box-sizing: border-box;
   color: var(--color-typography-text);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-large);
+  height: calc(100dvh - 120px);
+  margin-top: 120px;
+  overflow: auto;
+  padding: 0 var(--space-base) var(--space-base) var(--space-base);
+  width: 188px;
 }
 
 .navMenuItem {
-  user-select: none;
-  transition: all var(--timing-base) ease-out;
-  min-height: 40px;
-  display: flex;
   align-items: center;
+  display: flex;
   margin: var(--space-smaller) 0;
+  min-height: 40px;
+  overflow-wrap: anywhere;
+  transition: all var(--timing-base) ease-out;
+  user-select: none;
 }
 
 .navMenuLink {
   color: var(--color-typography-text);
-  text-decoration: none;
   outline: transparent;
+  text-decoration: none;
 
   &:visited {
     color: var(--color-typography-text);

@@ -19,86 +19,90 @@ export const NavMenu = () => {
   if (isMinimal) return null;
 
   return (
-    <div className={styles.navMenu}>
-      <Box>
-        <Link to="/">
-          <JobberLogo />
-        </Link>
-      </Box>
-      <Box>
-        <Button
-          onClick={() => setOpen(true)}
-          label="Search"
-          icon="search"
-          variation="subtle"
-        />
-      </Box>
-      <SearchBox open={open} setOpen={setOpen} />
-      <MenuList>
+    <div>
+      <div className={styles.navMenuSticky}>
         <Box>
-          {routes?.map((route, routeIndex) => {
-            if (route.inNav === false) return null;
-
-            interface MenuItem {
-              handle: string;
-              children?: MenuItem[];
-              path?: string;
-            }
-
-            const iterateSubSubMenu = (menuItems: MenuItem[]) => {
-              return menuItems.map((menuItem, menuItemIndex) => {
-                return (
-                  <MenuSubItem key={`${routeIndex}-${menuItemIndex}`}>
-                    <StyledSubLink to={`/components/${menuItem.handle}`}>
-                      {menuItem.handle}
-                    </StyledSubLink>
-                  </MenuSubItem>
-                );
-              });
-            };
-
-            const iterateSubMenu = (menuItems: MenuItem[]) => {
-              return menuItems.map((menuItem, menuItemIndex) => {
-                if (menuItem.children) {
-                  return (
-                    <Fragment key={`${routeIndex}-${menuItemIndex}`}>
-                      {sectionTitle(menuItem.handle)}
-                      {iterateSubSubMenu(menuItem.children)}
-                    </Fragment>
-                  );
-                }
-
-                return (
-                  <MenuSubItem key={`${routeIndex}-${menuItemIndex}`}>
-                    <StyledSubLink to={menuItem.path ?? "/"}>
-                      {menuItem.handle}
-                    </StyledSubLink>
-                  </MenuSubItem>
-                );
-              });
-            };
-
-            if (route.children) {
-              return (
-                <Box key={routeIndex}>
-                  <AnimatedPresenceDisclosure
-                    to={route.path ?? "/"}
-                    title={route.handle}
-                  >
-                    {iterateSubMenu(route.children)}
-                  </AnimatedPresenceDisclosure>
-                </Box>
-              );
-            }
-
-            return (
-              <MenuItem key={routeIndex}>
-                <StyledLink to={route.path ?? "/"}>{route.handle}</StyledLink>
-              </MenuItem>
-            );
-          })}
+          <Link to="/">
+            <JobberLogo />
+          </Link>
         </Box>
-      </MenuList>
+        <Box>
+          <Button
+            onClick={() => setOpen(true)}
+            label="Search"
+            icon="search"
+            variation="subtle"
+          />
+        </Box>
+        <SearchBox open={open} setOpen={setOpen} />
+      </div>
+      <div className={styles.navMenu}>
+        <MenuList>
+          <Box>
+            {routes?.map((route, routeIndex) => {
+              if (route.inNav === false) return null;
+
+              interface MenuItem {
+                handle: string;
+                children?: MenuItem[];
+                path?: string;
+              }
+
+              const iterateSubSubMenu = (menuItems: MenuItem[]) => {
+                return menuItems.map((menuItem, menuItemIndex) => {
+                  return (
+                    <MenuSubItem key={`${routeIndex}-${menuItemIndex}`}>
+                      <StyledSubLink to={`/components/${menuItem.handle}`}>
+                        {menuItem.handle}
+                      </StyledSubLink>
+                    </MenuSubItem>
+                  );
+                });
+              };
+
+              const iterateSubMenu = (menuItems: MenuItem[]) => {
+                return menuItems.map((menuItem, menuItemIndex) => {
+                  if (menuItem.children) {
+                    return (
+                      <Fragment key={`${routeIndex}-${menuItemIndex}`}>
+                        {sectionTitle(menuItem.handle)}
+                        {iterateSubSubMenu(menuItem.children)}
+                      </Fragment>
+                    );
+                  }
+
+                  return (
+                    <MenuSubItem key={`${routeIndex}-${menuItemIndex}`}>
+                      <StyledSubLink to={menuItem.path ?? "/"}>
+                        {menuItem.handle}
+                      </StyledSubLink>
+                    </MenuSubItem>
+                  );
+                });
+              };
+
+              if (route.children) {
+                return (
+                  <Box key={routeIndex}>
+                    <AnimatedPresenceDisclosure
+                      to={route.path ?? "/"}
+                      title={route.handle}
+                    >
+                      {iterateSubMenu(route.children)}
+                    </AnimatedPresenceDisclosure>
+                  </Box>
+                );
+              }
+
+              return (
+                <MenuItem key={routeIndex}>
+                  <StyledLink to={route.path ?? "/"}>{route.handle}</StyledLink>
+                </MenuItem>
+              );
+            })}
+          </Box>
+        </MenuList>
+      </div>
     </div>
   );
 };
