@@ -148,14 +148,14 @@ jobs:
       - store_artifacts:
           path: coverage
 
-  build_docs:
+  build_storybook:
     resource_class: medium+
     <<: *container_config
     steps:
       - *attach_workspace
       - *generate_base_path
       - run:
-          command: npm run build
+          command: npm run storybook:build
 
   build_new_docs:
     <<: *container_config
@@ -202,7 +202,7 @@ workflows:
       - test:
           requires:
             - check_for_manual_release
-      - build_docs:
+      - build_storybook:
           requires:
             - check_for_manual_release
       - build_new_docs:
@@ -210,7 +210,7 @@ workflows:
             - check_for_manual_release
       - check_git_status:
           requires:
-            - build_docs
+            - build_storybook
             - build_new_docs
       - release:
           filters:
@@ -220,6 +220,6 @@ workflows:
             - lint_javascript
             - lint_css
             - test
-            - build_docs
+            - build_storybook
             - build_new_docs
             - check_git_status
