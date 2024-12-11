@@ -1,7 +1,8 @@
-import { Box, Button, Disclosure, Typography } from "@jobber/components";
+import { Box, Button, Typography } from "@jobber/components";
 import { Link } from "react-router-dom";
-import { PropsWithChildren, useState } from "react";
+import { Fragment, PropsWithChildren, useState } from "react";
 import { SearchBox } from "./SearchBox";
+import AnimatedPresenceDisclosure from "./AnimatedPresenceDisclosure";
 import { routes } from "../routes";
 import { JobberLogo } from "../assets/JobberLogo.svg";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
@@ -22,7 +23,7 @@ export const NavMenu = () => {
         width: 220,
         height: "100dvh",
         backgroundColor: "var(--color-surface--background)",
-        overflow: "scroll",
+        overflow: "auto",
       }}
     >
       <Box height={24} padding="base">
@@ -41,37 +42,64 @@ export const NavMenu = () => {
       <SearchBox open={open} setOpen={setOpen} />
       <MenuList>
         <Box>
-          {routes?.map((route, index) => {
+          {routes?.map((route, routeIndex) => {
+            if (route.inNav === false) return null;
+
+            interface MenuItem {
+              handle: string;
+              children?: MenuItem[];
+              path?: string;
+            }
+
+            const iterateSubSubMenu = (menuItems: MenuItem[]) => {
+              return menuItems.map((menuItem, menuItemIndex) => {
+                return (
+                  <MenuItem key={`${routeIndex}-${menuItemIndex}`}>
+                    <StyledLink to={`/components/${menuItem.handle}`}>
+                      {menuItem.handle}
+                    </StyledLink>
+                  </MenuItem>
+                );
+              });
+            };
+
+            const iterateSubMenu = (menuItems: MenuItem[]) => {
+              return menuItems.map((menuItem, menuItemIndex) => {
+                if (menuItem.children) {
+                  return (
+                    <Fragment key={`${routeIndex}-${menuItemIndex}`}>
+                      {sectionTitle(menuItem.handle)}
+                      {iterateSubSubMenu(menuItem.children)}
+                    </Fragment>
+                  );
+                }
+
+                return (
+                  <MenuItem key={`${routeIndex}-${menuItemIndex}`}>
+                    <StyledLink to={menuItem.path ?? "/"}>
+                      {menuItem.handle}
+                    </StyledLink>
+                  </MenuItem>
+                );
+              });
+            };
+
             if (route.children) {
               return (
-                <Box key={index} padding="base">
-                  <Disclosure key={index} title={changelogTitle}>
-                    {route.children.map((subroute, subindex) => {
-                      if (subroute.inNav === false) return null;
-
-                      return (
-                        <div key={subindex}>
-                          <StyledSubLink to={subroute.path || "/"}>
-                            {subroute.handle}
-                          </StyledSubLink>
-                        </div>
-                      );
-                    })}
-                  </Disclosure>
+                <Box key={routeIndex} padding="base">
+                  <AnimatedPresenceDisclosure
+                    to={route.path ?? "/"}
+                    title={route.handle}
+                  >
+                    {iterateSubMenu(route.children)}
+                  </AnimatedPresenceDisclosure>
                 </Box>
               );
             }
-            if (route.inNav === false) return null;
 
             return (
-              <MenuItem key={index}>
-                <StyledLink
-                  key={index}
-                  to={route.path ?? "/"}
-                  style={{ marginBottom: "var(--space-base)" }}
-                >
-                  {route.handle}
-                </StyledLink>
+              <MenuItem key={routeIndex}>
+                <StyledLink to={route.path ?? "/"}>{route.handle}</StyledLink>
               </MenuItem>
             );
           })}
@@ -90,7 +118,6 @@ export const StyledLink = ({
     <Link
       to={to ?? "/"}
       style={{
-        padding: "var(--space-base) 0",
         outline: "transparent",
         color: "var(--color-heading)",
         fontSize: "var(--typography--fontSize-large)",
@@ -124,6 +151,9 @@ export const StyledSubLink = ({
         textDecoration: "none",
         userSelect: "none",
         transition: "all var(--timing-base) ease-out",
+        display: "block",
+        padding:
+          "var(--space-smaller) var(--space-smaller) var(--space-smaller) var(--space-base)",
         ...style,
       }}
     >
@@ -156,5 +186,11 @@ export const MenuItem = ({ children }: PropsWithChildren) => {
 export const changelogTitle = (
   <Typography fontWeight="semiBold" size="large" textColor="heading">
     Changelog
+  </Typography>
+);
+
+export const sectionTitle = (section: string) => (
+  <Typography fontWeight="bold" size="small" textColor="textSecondary">
+    {section.toUpperCase()}
   </Typography>
 );

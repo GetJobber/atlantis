@@ -6,8 +6,7 @@ export default {
   content: () => <Content />,
   props: Props,
   component: {
-    mobileElement: `<Host>
-    <ButtonGroup>
+    mobileElement: `<ButtonGroup>
       <ButtonGroup.PrimaryAction
         label={"Create"}
         icon={"plus"}
@@ -24,7 +23,6 @@ export default {
         onPress={() => alert("delete")}
       />
     </ButtonGroup>
-    </Host>
     `,
   },
   title: "ButtonGroup",
