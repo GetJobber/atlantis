@@ -19,7 +19,7 @@ export const NavMenu = () => {
   if (isMinimal) return null;
 
   return (
-    <div className={styles.navMenuContainer}>
+    <nav className={styles.navMenuContainer}>
       <div className={styles.navMenuHeader}>
         <Box>
           <Link to="/">
@@ -103,7 +103,7 @@ export const NavMenu = () => {
           </Box>
         </MenuList>
       </div>
-    </div>
+    </nav>
   );
 };
 
