@@ -10,6 +10,7 @@ import { Layout } from "./layout/Layout";
 import { AtlantisPreviewEditorProvider } from "./providers/AtlantisPreviewEditorProvider";
 import { AtlantisSiteProvider } from "./providers/AtlantisSiteProvider";
 import { initAtlantisTheme } from "./utils/theme";
+import { Analytics } from "./components/Analytics";
 
 const urlParams = new URLSearchParams(window.location.search);
 const minimalMode = urlParams.has("minimal");
@@ -27,6 +28,7 @@ function renderApp() {
             <AtlantisSiteProvider
               minimal={{ requested: minimalMode, enabled: false }}
             >
+              <Analytics />
               <AtlantisPreviewEditorProvider>
                 <Layout />
               </AtlantisPreviewEditorProvider>
