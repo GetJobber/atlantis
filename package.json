@@ -62,6 +62,7 @@
     "@cloudflare/workers-types": "^4.20241205.0",
     "@codesandbox/sandpack-react": "^1.20.9",
     "@csstools/postcss-global-data": "^1.0.3",
+    "@datadog/datadog-api-client": "^1.30.0",
     "@jobber/components": "*",
     "@jobber/components-native": "*",
     "@jobber/design": "*",

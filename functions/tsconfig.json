@@ -1,0 +1,18 @@
+{
+  "include": ["api", "src"],
+  "compilerOptions": {
+    "noEmit": true,
+    "strict": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "target": "esnext",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "lib": ["esnext"],
+    "types": ["@cloudflare/workers-types"],
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["*"],
+    }
+  }
+}
