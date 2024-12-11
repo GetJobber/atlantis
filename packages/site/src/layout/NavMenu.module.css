@@ -16,6 +16,7 @@
   min-height: 40px;
   display: flex;
   align-items: center;
+  margin: var(--space-smaller) 0;
 }
 
 .navMenuLink {

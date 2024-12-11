@@ -80,7 +80,7 @@ export const NavMenu = () => {
 
             if (route.children) {
               return (
-                <Box key={routeIndex} height={40}>
+                <Box key={routeIndex}>
                   <AnimatedPresenceDisclosure
                     to={route.path ?? "/"}
                     title={route.handle}
