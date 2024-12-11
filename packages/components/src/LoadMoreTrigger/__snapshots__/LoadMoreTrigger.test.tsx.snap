@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a LoadMoreTrigger 1`] = `
+<div>
+  <div
+    class="trigger"
+    data-testid="ATL-LoadMore-Trigger"
+  />
+</div>
+`;

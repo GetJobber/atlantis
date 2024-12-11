@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
 import { useInView } from "@jobber/hooks/useInView";
-import styles from "./ComboboxLoadMore.module.css";
+import styles from "./LoadMoreTrigger.module.css";
 
-interface ComboboxLoadMoreProps {
+interface LoadMoreTriggerProps {
   readonly onLoadMore: () => void;
+  readonly testId?: string;
 }
 
-export function ComboboxLoadMore({ onLoadMore }: ComboboxLoadMoreProps) {
+export const LOAD_MORE_TEST_ID = "ATL-LoadMore-Trigger";
+
+export function LoadMoreTrigger({ onLoadMore, testId }: LoadMoreTriggerProps) {
   const [inViewRef, isInView] = useInView<HTMLDivElement>();
 
   useEffect(() => {
@@ -15,9 +18,9 @@ export function ComboboxLoadMore({ onLoadMore }: ComboboxLoadMoreProps) {
 
   return (
     <div
-      data-testid="ATL-Combobox-Loadmore-Trigger"
       ref={inViewRef}
       className={styles.trigger}
+      data-testid={testId || LOAD_MORE_TEST_ID}
     />
   );
 }
