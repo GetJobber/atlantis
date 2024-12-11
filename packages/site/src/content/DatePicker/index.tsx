@@ -1,6 +1,7 @@
 import Content from "@atlantis/docs/components/Datepicker/Datepicker.stories.mdx";
 import Props from "./DatePicker.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -24,7 +25,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-DatePicker-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-selections-datepicker--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

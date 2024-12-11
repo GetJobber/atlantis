@@ -107,9 +107,11 @@ export const ComponentLinks = ({
               <Box direction="row" gap="small">
                 <Icon name="link" />
                 {links?.map((link, index) => (
-                  <Link key={index} url={link.url} external>
-                    {link.label}
-                  </Link>
+                  <div key={index} data-storybook-link>
+                    <Link key={index} url={link.url} external>
+                      {link.label}
+                    </Link>
+                  </div>
                 ))}
               </Box>
             </Content>
