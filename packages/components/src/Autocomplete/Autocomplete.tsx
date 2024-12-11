@@ -13,6 +13,7 @@ interface AutocompleteProps
   extends Pick<
     FormFieldProps,
     | "clearable"
+    | "description"
     | "invalid"
     | "name"
     | "onBlur"

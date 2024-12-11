@@ -1,6 +1,7 @@
 import LinkContent from "@atlantis/docs/components/Link/Link.stories.mdx";
 import Props from "./Link.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <LinkContent />,
@@ -13,7 +14,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-Link-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-text-and-typography-link--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

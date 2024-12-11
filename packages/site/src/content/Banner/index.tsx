@@ -1,7 +1,9 @@
 import BannerContent from "@atlantis/docs/components/Banner/Banner.stories.mdx";
 import Props from "./Banner.props.json";
 import MobileProps from "./Banner.props-mobile.json";
+import Notes from "./BannerNotes.mdx";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <BannerContent />,
@@ -27,7 +29,10 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-Banner-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-status-and-feedback-banner--docs`,
+      ),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;
