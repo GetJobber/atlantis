@@ -19,14 +19,12 @@
 }
 
 .navMenuHeader {
-    background-color: var(--color-surface--background);
     display: flex;
     flex-direction: column;
     gap: var(--space-large);
 }
 
 .navMenu {
-    background-color: var(--color-surface--background);
     color: var(--color-text);
     display: flex;
     flex-direction: column;
