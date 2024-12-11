@@ -1,5 +1,6 @@
 import Content from "@atlantis/docs/components/InputPressable/InputPressable.stories.mdx";
 import MobileProps from "./InputPressable.props-mobile.json";
+import Notes from "./InputPressableNotes.mdx";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
@@ -24,4 +25,5 @@ export default {
       ),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

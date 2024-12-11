@@ -1,6 +1,7 @@
 import ButtonContent from "@atlantis/docs/components/Button/Button.stories.mdx";
 import Props from "./Button.props.json";
 import MobileProps from "./Button.props-mobile.json";
+import Notes from "./ButtonNotes.mdx";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
@@ -19,4 +20,5 @@ export default {
       url: getStorybookUrl("?path=/docs/components-actions-button--docs"),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

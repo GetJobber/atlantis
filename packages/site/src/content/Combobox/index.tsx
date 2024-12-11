@@ -1,5 +1,6 @@
 import Content from "@atlantis/docs/components/Combobox/Combobox.stories.mdx";
 import Props from "./Combobox.props.json";
+import Notes from "./ComboboxNotes.mdx";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
@@ -64,4 +65,5 @@ export default {
       url: getStorybookUrl(`?path=/docs/components-selections-combobox--docs`),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

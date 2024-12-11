@@ -1,5 +1,6 @@
 import Content from "@atlantis/docs/components/Tabs/Tabs.stories.mdx";
 import Props from "./Tabs.props.json";
+import Notes from "./TabsNotes.mdx";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
@@ -33,4 +34,5 @@ export default {
       url: getStorybookUrl(`?path=/docs/components-navigation-tabs--docs`),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;
