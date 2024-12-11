@@ -1,6 +1,7 @@
 import FormatEmailContent from "@atlantis/docs/components/FormatEmail/FormatEmail.stories.mdx";
 import Props from "./FormatEmail.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <FormatEmailContent />,
@@ -12,7 +13,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-FormatEmail-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-utilities-formatemail--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

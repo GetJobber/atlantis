@@ -3,7 +3,7 @@
     "tags": {},
     "filePath": "../components/src/Tabs/Tabs.tsx",
     "description": "",
-    "displayName": "Tabs",
+    "displayName": "InternalTab",
     "methods": [],
     "props": {
       "defaultTab": {
@@ -45,104 +45,6 @@
         "required": false,
         "type": {
           "name": "(newTabIndex: number) => void"
-        }
-      }
-    }
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/Tabs/Tabs.tsx",
-    "description": "",
-    "displayName": "Tab",
-    "methods": [],
-    "props": {
-      "label": {
-        "defaultValue": null,
-        "description": "",
-        "name": "label",
-        "parent": {
-          "fileName": "../components/src/Tabs/Tabs.tsx",
-          "name": "TabProps"
-        },
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        }
-      },
-      "onClick": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onClick",
-        "parent": {
-          "fileName": "../components/src/Tabs/Tabs.tsx",
-          "name": "TabProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: React.MouseEvent<HTMLButtonElement>) => void"
-        }
-      }
-    }
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/Tabs/Tabs.tsx",
-    "description": "",
-    "displayName": "InternalTab",
-    "methods": [],
-    "props": {
-      "label": {
-        "defaultValue": null,
-        "description": "",
-        "name": "label",
-        "parent": {
-          "fileName": "../components/src/Tabs/Tabs.tsx",
-          "name": "InternalTabProps"
-        },
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        }
-      },
-      "selected": {
-        "defaultValue": null,
-        "description": "",
-        "name": "selected",
-        "parent": {
-          "fileName": "../components/src/Tabs/Tabs.tsx",
-          "name": "InternalTabProps"
-        },
-        "required": true,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "activateTab": {
-        "defaultValue": null,
-        "description": "",
-        "name": "activateTab",
-        "parent": {
-          "fileName": "../components/src/Tabs/Tabs.tsx",
-          "name": "InternalTabProps"
-        },
-        "required": true,
-        "type": {
-          "name": "() => void"
-        }
-      },
-      "onClick": {
-        "defaultValue": {
-          "value": "() => {\n    return;\n  }"
-        },
-        "description": "",
-        "name": "onClick",
-        "parent": {
-          "fileName": "../components/src/Tabs/Tabs.tsx",
-          "name": "InternalTabProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: React.MouseEvent<HTMLButtonElement>) => void"
         }
       }
     }

@@ -1,6 +1,7 @@
 import CountdownContent from "@atlantis/docs/components/Countdown/Countdown.stories.mdx";
 import Props from "./Countdown.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <CountdownContent />,
@@ -12,7 +13,7 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-Countdown-web--docs",
+      url: getStorybookUrl(`?path=/docs/components-utilities-countdown--docs`),
     },
   ],
 } as const satisfies ContentExport;
