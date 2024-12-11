@@ -24,7 +24,7 @@
 
 .navMenu {
     background-color: var(--color-surface--background);
-    color: var(--color-typography-text);
+    color: var(--color-text);
     display: flex;
     flex-direction: column;
     gap: var(--space-large);
@@ -42,18 +42,19 @@
 }
 
 .navMenuLink {
-  color: var(--color-typography-text);
+  color: var(--color-text);
   outline: transparent;
   text-decoration: none;
   padding: 0;
 
   &:visited {
-    color: var(--color-typography-text);
+    color: var(--color-text);
   }
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     background-color: var(--color-surface--background--hover);
-    color: var(--color-typography-text);
+    color: var(--color-text);
   }
 }
 
