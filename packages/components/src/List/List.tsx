@@ -20,6 +20,7 @@ interface ListProps<T extends BaseListItemProps = ListItemProps> {
   /**
    * A function that will be called for each item instead of the default
    * rendering
+   * @argument item - The item to render
    */
   readonly customRenderItem?: (item: T) => React.ReactNode;
 
@@ -32,6 +33,7 @@ interface ListProps<T extends BaseListItemProps = ListItemProps> {
   /**
    * A function that will be called for each section heading instead of the default
    * rendering
+   * @argument sectionName - The name of the section to render
    */
   readonly customRenderSection?: (sectionName: string) => React.ReactNode;
 
