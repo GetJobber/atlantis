@@ -15,7 +15,7 @@ export default {
       label: "Storybook",
       url: `${
         (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
-      }/?path=/docs/components-utilities-Spinner-web--docs`,
+      }?path=/docs/components-status-and-feedback-spinner--docs`,
     },
   ],
 } as const satisfies ContentExport;

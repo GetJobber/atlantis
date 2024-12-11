@@ -41,7 +41,7 @@ export default {
       label: "Storybook",
       url: `${
         (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
-      }/?path=/docs/components-utilities-LightBox-web--docs`,
+      }?path=/docs/components-images-and-icons-lightbox--docs`,
     },
   ],
 } as const satisfies ContentExport;

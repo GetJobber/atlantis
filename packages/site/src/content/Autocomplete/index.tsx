@@ -33,7 +33,7 @@ const [value, setValue] = useState();
     {
       label: "Storybook",
       url: getStorybookUrl(
-        "?path=/story/components-forms-and-inputs-autocomplete-web--basic",
+        "?path=/docs/components-forms-and-inputs-autocomplete--docs",
       ),
     },
   ],

@@ -40,7 +40,7 @@ export default {
       label: "Storybook",
       url: `${
         (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
-      }/?path=/docs/components-utilities-InputValidation-web--docs`,
+      }?path=/docs/components-forms-and-inputs-inputvalidation--docs`,
     },
   ],
 } as const satisfies ContentExport;

@@ -21,7 +21,7 @@ export default {
       label: "Storybook",
       url: `${
         (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
-      }/?path=/docs/components-utilities-RecurringSelect-web--docs`,
+      }?path=/docs/components-selections-recurringselect--docs`,
     },
   ],
 } as const satisfies ContentExport;

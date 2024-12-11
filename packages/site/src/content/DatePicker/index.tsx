@@ -26,7 +26,7 @@ export default {
       label: "Storybook",
       url: `${
         (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
-      }/?path=/docs/components-utilities-DatePicker-web--docs`,
+      }?path=/docs/components-selections-datepicker--docs`,
     },
   ],
 } as const satisfies ContentExport;

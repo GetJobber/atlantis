@@ -17,7 +17,7 @@ export default {
       label: "Storybook",
       url: `${
         (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
-      }/?path=/docs/components-utilities-FormatRelativeDateTime-web--docs`,
+      }?path=/docs/components-utilities-formatrelativedatetime--docs`,
     },
   ],
 } as const satisfies ContentExport;

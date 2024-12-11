@@ -14,7 +14,7 @@ export default {
       label: "Storybook",
       url: `${
         (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
-      }/?path=/docs/components-utilities-ActionLabel-web--docs`,
+      }?path=/docs/components-status-and-feedback-activityindicator--docs`,
     },
   ],
 } as const satisfies ContentExport;

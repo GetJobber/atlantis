@@ -2,6 +2,7 @@ import BannerContent from "@atlantis/docs/components/Banner/Banner.stories.mdx";
 import Props from "./Banner.props.json";
 import MobileProps from "./Banner.props-mobile.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <BannerContent />,
@@ -27,9 +28,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: `${
-        (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
-      }/?path=/docs/components-utilities-Banner-web--docs`,
+      url: getStorybookUrl(
+        `?path=/docs/components-status-and-feedback-banner--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

@@ -19,7 +19,7 @@ export default {
       label: "Storybook",
       url: `${
         (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
-      }/?path=/docs/components-utilities-DescriptionList-web--docs`,
+      }?path=/docs/components-lists-and-tables-descriptionlist--docs`,
     },
   ],
 } as const satisfies ContentExport;

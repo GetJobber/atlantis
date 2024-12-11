@@ -12,7 +12,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: `${window.env?.VITE_STORYBOOK_URL}/?path=/docs/components-utilities-ActivityIndicator-web--docs`,
+      url: `${
+        (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL
+      }?path=/docs/components-status-and-feedback-activityindicator--docs`,
     },
   ],
 } as const satisfies ContentExport;
