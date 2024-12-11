@@ -49,6 +49,7 @@ import IconContent from "./Icon";
 import IconButtonContent from "./IconButton";
 import InlineLabelContent from "./InlineLabel";
 import InputAvatarContent from "./InputAvatar";
+import InputCurrencyContent from "./InputCurrency";
 import InputDateContent from "./InputDate";
 import InputEmailContent from "./InputEmail";
 import InputFieldWrapperContent from "./InputFieldWrapper";
@@ -244,6 +245,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   InputAvatar: {
     ...InputAvatarContent,
+  },
+  InputCurrency: {
+    ...InputCurrencyContent,
   },
   InputDate: {
     ...InputDateContent,

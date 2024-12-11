@@ -22,6 +22,7 @@ export const componentList = [
     title: "ActivityIndicator",
     to: "/components/ActivityIndicator",
     imageURL: "/ActivityIndicator.png",
+    sections: ["Status and Feedback"],
     additionalMatches: ["Loader", "Loading", "Busy", "Spinner"],
   },
   {
@@ -372,6 +373,13 @@ export const componentList = [
     to: "/components/InputAvatar",
     imageURL: "/InputAvatar.png",
     sections: ["Forms and Inputs"],
+  },
+  {
+    title: "InputCurrency",
+    to: "/components/InputCurrency",
+    imageURL: "/InputCurrency.png",
+    sections: ["Forms and Inputs"],
+    additionalMatches: ["Money", "Dollar", "Currency"],
   },
   {
     title: "InputDate",
