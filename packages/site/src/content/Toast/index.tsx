@@ -2,6 +2,7 @@ import Content from "@atlantis/docs/components/Toast/Toast.stories.mdx";
 import Props from "./Toast.props.json";
 import MobileProps from "./Toast.props-mobile.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -14,7 +15,11 @@ export default {
     />`,
     mobileElement: `<><Button
         label="Show toast"
-        onPress={() => showToast({ message: "Showed toast" })}
+        onPress={
+        () => {
+        alert('A toast shows on your mobile device!') 
+        showToast({ message: "Showed toast" })
+        }}
       />
       <Toast /></>
     `,
@@ -23,7 +28,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-Toast-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-status-and-feedback-toast--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

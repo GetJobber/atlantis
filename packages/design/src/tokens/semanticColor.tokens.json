@@ -20,6 +20,16 @@
           "$value": "{color.base.blue-.900}",
           "$description": "Hover state for interactive--subtle."
         }
+      },
+      "background": {
+        "$value": "{color.base.taupe-.300}",
+        "$description": "Use for the background of interactive elements to ensure separation from the surface they appear on."
+      },
+      "background-": {
+        "hover": {
+          "$value": "{color.base.taupe-.400}",
+          "$description": "Hover state for interactive--background."
+        }
       }
     },
     "destructive": {

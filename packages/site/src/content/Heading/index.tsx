@@ -2,6 +2,7 @@ import HeadingContent from "@atlantis/docs/components/Heading/Heading.stories.md
 import Props from "./Heading.props.json";
 import MobileProps from "./Heading.props-mobile.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <HeadingContent />,
@@ -16,7 +17,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-Heading-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-text-and-typography-heading--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

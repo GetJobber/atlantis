@@ -59,6 +59,7 @@ export const AtlantisPreviewEditorProvider = ({
   const { theme } = useAtlantisTheme();
   const iframe = useRef<HTMLIFrameElement>(null);
   const iframeMobile = useRef<HTMLIFrameElement>(null);
+
   const [code, setCode] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [type, setType] = useState<"web" | "mobile">(
@@ -89,6 +90,9 @@ export const AtlantisPreviewEditorProvider = ({
   const updateCode = useCallback(
     // eslint-disable-next-line max-statements
     (codeUp: string) => {
+      if (codeUp === code) {
+        return;
+      }
       setCode(codeUp);
 
       try {
@@ -109,6 +113,16 @@ export const AtlantisPreviewEditorProvider = ({
 
         if (html === "<html><head></head><body></body></html>") {
           writeSkeleton(selectedFrame.current?.contentDocument, theme);
+          selectedFrame?.current?.addEventListener("load", () => {
+            if (selectedFrame.current) {
+              const iframeDocument = selectedFrame.current.contentDocument;
+
+              if (iframeDocument) {
+                selectedFrame.current.style.height =
+                  iframeDocument.body.scrollHeight + 60 + "px";
+              }
+            }
+          });
         }
 
         if (selectedFrame.current) {
@@ -166,7 +180,6 @@ export const AtlantisPreviewViewer = () => {
       <iframe
         style={{
           border: "none",
-          height: "100%",
           display: type == "web" ? "block" : "none",
         }}
         ref={iframe}
@@ -174,7 +187,6 @@ export const AtlantisPreviewViewer = () => {
       <iframe
         style={{
           border: "none",
-          height: "100%",
           display: type == "mobile" ? "block" : "none",
           borderRadius: "var(--radius-base)",
         }}
@@ -343,6 +355,7 @@ html,body,#root {
       </script>
       <script>
       window.onerror = function(message, source, lineno, colno, error) {
+      console.log('ERROR',message, source, lineno, colno, error)
         window.parent.postMessage(JSON.stringify({message, source, lineno, colno, error}), '*')
         return true;
       };
@@ -509,11 +522,10 @@ export const MobileCodeWrapper = (
               Glimmer,
               Heading,
               IconButton,
-           /*   Chip,
-              Chips,
               Form,
               FormField,
-              IconButton, */
+              FormatFile,
+              InputCurrency,
               InputDate,
               InputEmail,
               InputFieldWrapper,
@@ -526,7 +538,7 @@ export const MobileCodeWrapper = (
               ProgressBar,
               Select,
               Option,
-              Switch, 
+              Switch,
               Text,
               TextList,
               ThumbnailList,
@@ -534,13 +546,21 @@ export const MobileCodeWrapper = (
               showToast,
               Typography,
               useState,
+              forwardRef,
               useEffect,
               useRef,
               Host,
+              View,
             } from '@jobber/components-native';
-
                 ${transpiledCode}
 
+            function RootWrapper() {
+              return React.createElement(Host, {style:{display:'flex',alignItems:'center',justifyContent:'center', width:'100%'}}, React.createElement(App));
+            }
+
+            function IntlWrapper() {
+              return React.createElement(IntlProvider, {locale: 'en'}, React.createElement(RootWrapper));
+            }
 
           if (rootElement) {
             //  ReactDOM.unmountComponentAtNode(rootElement);
@@ -549,5 +569,5 @@ export const MobileCodeWrapper = (
               rootElement = document.getElementById('root')
               root = ReactDOM.createRoot(rootElement);
              }
-              root.render(React.createElement(App, null));
+              root.render(React.createElement(IntlWrapper, null));
           `;
