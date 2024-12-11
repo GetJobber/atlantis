@@ -2,10 +2,17 @@
 .navMenuContainer {
     display: flex;
     flex-direction: column;
-    padding: 36px var(--space-base) 0 var(--space-base);
-    height: calc(100dvh - 36px);
+    padding: 36px 0 0 0;
+    height: 100dvh;
     background-color: var(--color-surface--background);
     width: 188px;
+    box-sizing: border-box;
+}
+
+.navMenuContainer > * {
+  padding-left: var(--space-base);
+  padding-right: var(--space-base);
+  padding-bottom: var(--space-base);
 }
 
 .navMenuHeader {
@@ -22,7 +29,6 @@
     flex-direction: column;
     gap: var(--space-large);
     overflow-y: scroll;
-    padding-bottom: var(--space-base);
 }
 
 .navMenuItem {
