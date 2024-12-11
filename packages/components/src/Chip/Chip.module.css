@@ -1,6 +1,8 @@
 :root {
-  --public-chip-base-bg-color: var(--color-surface--element);
-  --public-chip-base-hover-bg-color: var(--color-surface--element--hover);
+  --public-chip-base-bg-color: var(--color-interactive--background);
+  --public-chip-base-hover-bg-color: var(
+    --color-interactive--background--hover
+  );
   --public-chip-base-content-color: var(--color-heading);
 }
 
@@ -113,7 +115,7 @@
 .subtle.invalid:hover,
 .subtle.invalid:focus-visible {
   --chip-border-color: var(--color-critical);
-  --chip-base-hover-bg-color: var(--color-surface--element--hover);
+  --chip-base-hover-bg-color: var(--color-interactive--background--hover);
 }
 
 .subtle {
@@ -125,7 +127,7 @@
 .subtle:focus-visible,
 .subtle:hover {
   --chip-border-color: var(--chip-base-bg-color);
-  --chip-base-hover-bg-color: var(--color-surface--element);
+  --chip-base-hover-bg-color: var(--color-interactive--background);
 }
 
 .invalid.disabled,

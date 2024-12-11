@@ -9,7 +9,7 @@
   box-sizing: border-box;
   border: var(--border-base) solid var(--color-border--interactive);
   border-radius: var(--radius-base);
-  background-color: var(--color-surface--element);
+  background-color: var(--color-interactive--background);
 }
 
 .small {

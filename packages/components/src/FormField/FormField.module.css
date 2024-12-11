@@ -117,7 +117,7 @@
 .disabled {
   --field--placeholder-color: var(--color-disabled);
   --field--value-color: var(--color-disabled);
-  --field--background-color: var(--color-surface--element);
+  --field--background-color: var(--color-interactive--background);
   --field--border-color: var(--color-disabled--secondary);
 }
 

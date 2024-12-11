@@ -104,7 +104,7 @@
 
 .clickableRow:hover,
 .clickableRow:hover :first-child {
-  background: var(--color-surface--element);
+  background: var(--color-interactive--background);
   cursor: pointer;
 }
 
