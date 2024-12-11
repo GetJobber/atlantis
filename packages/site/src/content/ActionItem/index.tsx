@@ -2,7 +2,6 @@ import Content from "@atlantis/docs/components/ActionItem/ActionItem.stories.mdx
 import MobileProps from "./ActionItem.props-mobile.json";
 import { ContentExport } from "../../types/content";
 
-console.log("HI?", window.env);
 export default {
   content: () => <Content />,
   mobileProps: MobileProps,
