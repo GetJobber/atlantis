@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@jobber/components";
+import { Box, Button, Content, Typography } from "@jobber/components";
 import { Link } from "react-router-dom";
 import { Fragment, PropsWithChildren, useState } from "react";
 import { SearchBox } from "./SearchBox";
@@ -38,7 +38,7 @@ export const NavMenu = () => {
       </div>
       <div className={styles.navMenu}>
         <MenuList>
-          <Box>
+          <Content spacing="smaller">
             {routes?.map((route, routeIndex) => {
               if (route.inNav === false) return null;
 
@@ -100,7 +100,7 @@ export const NavMenu = () => {
                 </MenuItem>
               );
             })}
-          </Box>
+          </Content>
         </MenuList>
       </div>
     </nav>
@@ -152,7 +152,7 @@ export const MenuItem = ({ children }: PropsWithChildren) => {
 export const MenuSubItem = ({ children }: PropsWithChildren) => {
   return (
     <li style={{ listStyle: "none" }}>
-      <Typography fontWeight="bold" size="base" textColor="text">
+      <Typography fontWeight="semiBold" size="base" textColor="text">
         {children}
       </Typography>
     </li>
