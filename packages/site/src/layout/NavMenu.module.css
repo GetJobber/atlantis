@@ -80,17 +80,32 @@
   margin-left: var(--negativeHoverOffset);
   margin-right: var(--negativeHoverOffset);
   padding-left: var(--hoverOffset);
-  padding-right: calc(var(--space-smallest) + var(--hoverOffset));
   min-height: var(--navItemHeight);
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
 
   &:hover {
     background-color: var(--color-surface--background--hover);
   }
 
+  a {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    outline: transparent;
+    text-decoration: none;
+    flex-grow: 1;
+    min-height: var(--navItemHeight);
+
+    &:focus-visible {
+      box-shadow: var(--shadow-focus);
+      background-color: var(--color-surface--background--hover);
+    }
+  }
+
   button {
     border-radius: var(--radius-small);
+    mix-blend-mode: multiply;
   }
 }
 

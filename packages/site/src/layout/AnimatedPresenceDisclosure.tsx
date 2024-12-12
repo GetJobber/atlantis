@@ -34,17 +34,8 @@ function AnimatedPresenceDisclosure({
           to={to ?? "/"}
           href="https://www.google.com"
           tabIndex={0}
-          onFocus={e =>
-            (e.currentTarget.style.boxShadow = "var(--shadow-focus)")
-          }
-          onBlur={e => (e.currentTarget.style.boxShadow = "none")}
           onMouseEnter={handleHover}
           onMouseLeave={handleHover}
-          style={{
-            backgroundColor: "transparent",
-            outline: "none",
-            textDecoration: "none",
-          }}
         >
           <Typography fontWeight="semiBold" size="large" textColor="heading">
             {title}
