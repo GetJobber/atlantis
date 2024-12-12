@@ -15,28 +15,16 @@ function AnimatedPresenceDisclosure({
   to,
 }: AnimatedPresenceDisclosureProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
 
   const handleButtonClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsOpen(!isOpen);
   };
 
-  const handleHover = (e: React.MouseEvent) => {
-    e.preventDefault();
-    setIsHovered(!isHovered);
-  };
-
   return (
     <div>
       <span className={styles.disclosureNavItem}>
-        <Link
-          to={to ?? "/"}
-          href="https://www.google.com"
-          tabIndex={0}
-          onMouseEnter={handleHover}
-          onMouseLeave={handleHover}
-        >
+        <Link to={to ?? "/"} href="https://www.google.com" tabIndex={0}>
           <Typography fontWeight="semiBold" size="large" textColor="heading">
             {title}
           </Typography>
