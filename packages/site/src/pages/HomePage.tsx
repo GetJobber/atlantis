@@ -9,7 +9,7 @@ export const HomePage = () => {
           body: "Jobber's toolkit for building consumer-grade experiences",
           ctaLabel: "Get Started",
           to: "/content/design/welcome-guide",
-          imageURL: "../public/img_collage.jpg",
+          imageURL: "/img_collage.jpg",
         },
         body: {
           title: "Packages",

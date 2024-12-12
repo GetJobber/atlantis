@@ -131,7 +131,7 @@ iframe {
 }
 
 .headerBlock {
-  background-image: url("../public/img_collage.jpg");
+  background-image: url("/img_collage.jpg");
   background-size: cover;
   padding: var(--space-extravagant);
   width: 100%;
@@ -152,7 +152,7 @@ iframe {
   left: 0;
   right: 0;
   background-color: var(--color-surface);
-  mask-image: url("../public/distress_paper-rip.svg");
+  mask-image: url("/distress_paper-rip.svg");
   mask-repeat: no-repeat;
   mask-size: cover;
   width: 100%;

@@ -56,7 +56,7 @@ export const ComponentView = () => {
     if (iframe?.current || iframeMobile?.current) {
       setTimeout(() => updateCode(code as string), 100);
     }
-  }, [code, iframe?.current, iframeMobile?.current, type]);
+  }, [code, iframe?.current, iframeMobile?.current, type, tab]);
 
   useEffect(() => {
     if (
@@ -73,13 +73,12 @@ export const ComponentView = () => {
   }, [type, PageMeta]);
 
   const handleTabChange = (tabIn: number) => {
-    setTab(tabIn);
-
     if (tabIn == 1) {
       updateType("web");
     } else if (tabIn == 2) {
       updateType("mobile");
     }
+    setTab(tabIn);
     updateStyles();
   };
   const tabs = [
