@@ -310,8 +310,16 @@ export const AtlantisPreviewEditor = () => {
 const skeletonHTML = (theme: Theme, type: "web" | "mobile") => {
   const imports =
     type == "mobile"
-      ? `"@jobber/components-native":"/editorMobileBundle.js"`
-      : `"@jobber/components":"/editorBundle.js"`;
+      ? `
+      "@jobber/hooks":"/editorMobileBundle.js",
+      "@jobber/hooks/useIsMounted":"/editorMobileBundle.js",
+      "@jobber/components-native":"/editorMobileBundle.js",
+      `
+      : `
+         "@jobber/hooks":"/editorBundle.js",
+         "@jobber/hooks/useIsMounted":"/editorBundle.js",
+      "@jobber/components":"/editorBundle.js",
+      `;
 
   return `
 
@@ -340,9 +348,7 @@ html,body,#root {
  <script type="importmap">
   {
     "imports": {
-      ${imports},
-      "@jobber/hooks":"/editorBundle.js",
-      "@jobber/hooks/useIsMounted":"/editorBundle.js",
+      ${imports}
       "axios": "/axios.js"
     }
   }
