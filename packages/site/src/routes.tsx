@@ -63,6 +63,23 @@ export const routes: Array<AtlantisRoute> = [
     handle: "Content",
     exact: true,
     component: ContentPage,
+    children: [
+      {
+        path: "/content/formatting",
+        handle: "Formatting",
+        exact: true,
+      },
+      {
+        path: "/content/product-vocabulary",
+        handle: "Product Vocabulary",
+        exact: true,
+      },
+      {
+        path: "/content/voice-and-tone",
+        handle: "Voice & tone",
+        exact: true,
+      },
+    ],
   },
   {
     path: "/design",

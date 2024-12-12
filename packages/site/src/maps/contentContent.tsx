@@ -15,8 +15,8 @@ export const contentContentMap: ContentMapItems = {
     content: () => <ProductVocabularyDocs />,
   },
   "voice-and-tone": {
-    intro: "Voice and tone",
-    title: "Voice and tone",
+    intro: "Voice & tone",
+    title: "Voice & tone",
     content: () => <VoiceAndToneDocs />,
   },
 };
