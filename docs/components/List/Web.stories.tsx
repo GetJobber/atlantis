@@ -265,7 +265,6 @@ SectionedListWithCustomRenderer.args = {
   customRenderSection: (sectionHeading: string) => (
     <Heading level={2}>{sectionHeading}</Heading>
   ),
-  ariaRole: "menu",
 };
 
 export const SimpleListWithCustomStyles = SimpleTemplate.bind({});
