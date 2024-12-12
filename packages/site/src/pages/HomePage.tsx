@@ -20,6 +20,7 @@ export const HomePage = () => {
               imageURL: "/Components.png",
             },
             { title: "Design", to: "/design", imageURL: "/Design.png" },
+            { title: "Content", to: "/content", imageURL: "/Placeholder.png" },
           ],
         },
       }}

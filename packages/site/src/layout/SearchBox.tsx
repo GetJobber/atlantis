@@ -1,5 +1,4 @@
 import {
-  Box,
   Content,
   InputText,
   InputTextRef,
@@ -11,6 +10,7 @@ import styles from "./SearchBox.module.css";
 import { ContentCardWrapper } from "../components/ContentCardWrapper";
 import { ContentCard } from "../components/ContentCard";
 import { componentList } from "../componentList";
+import { contentList } from "../contentList";
 import { designList } from "../designList";
 
 /**
@@ -31,6 +31,16 @@ export const SearchBox = ({
 }) => {
   const ref = useRef<InputTextRef>(null);
   const [search, setSearch] = useState("");
+
+  const filteredContentList = useMemo(() => {
+    return contentList.filter(
+      d =>
+        d.title.toLowerCase().includes(search.toLowerCase()) ||
+        d.additionalMatches?.find(e =>
+          e.toLowerCase().includes(search.toLowerCase()),
+        ),
+    );
+  }, [search]);
 
   const filteredDesignList = useMemo(() => {
     return designList.filter(
@@ -74,34 +84,60 @@ export const SearchBox = ({
           onChange={d => setSearch(d as string)}
         />
         <div className={styles.searchBoxResults}>
-          {filteredComponentList.length > 0 && (
-            <Content>
-              <Typography
-                size={"base"}
-                fontWeight={"bold"}
-                textCase={"uppercase"}
-                textColor={"textSecondary"}
-                element="h3"
-              >
-                Components
-              </Typography>
-              <ContentCardWrapper>
-                {filteredComponentList.map(({ title, to, imageURL }, key) => {
-                  return (
-                    <ContentCard
-                      onClick={closeModal}
-                      title={title}
-                      to={to}
-                      imageURL={imageURL}
-                      key={key}
-                    />
-                  );
-                })}
-              </ContentCardWrapper>
-            </Content>
-          )}
-          {filteredDesignList.length > 0 && (
-            <Box padding={{ top: "largest" }}>
+          <Content spacing={"larger"}>
+            {filteredComponentList.length > 0 && (
+              <Content>
+                <Typography
+                  size={"base"}
+                  fontWeight={"bold"}
+                  textCase={"uppercase"}
+                  textColor={"textSecondary"}
+                  element="h3"
+                >
+                  Components
+                </Typography>
+                <ContentCardWrapper>
+                  {filteredComponentList.map(({ title, to, imageURL }, key) => {
+                    return (
+                      <ContentCard
+                        onClick={closeModal}
+                        title={title}
+                        to={to}
+                        imageURL={imageURL}
+                        key={key}
+                      />
+                    );
+                  })}
+                </ContentCardWrapper>
+              </Content>
+            )}
+            {filteredContentList.length > 0 && (
+              <Content>
+                <Typography
+                  size={"base"}
+                  fontWeight={"bold"}
+                  textCase={"uppercase"}
+                  textColor={"textSecondary"}
+                  element="h3"
+                >
+                  Content
+                </Typography>
+                <ContentCardWrapper>
+                  {filteredContentList.map(({ title, to, imageURL }, key) => {
+                    return (
+                      <ContentCard
+                        onClick={closeModal}
+                        title={title}
+                        to={to}
+                        imageURL={imageURL}
+                        key={key}
+                      />
+                    );
+                  })}
+                </ContentCardWrapper>
+              </Content>
+            )}
+            {filteredDesignList.length > 0 && (
               <Content>
                 <Typography
                   size={"base"}
@@ -126,8 +162,8 @@ export const SearchBox = ({
                   })}
                 </ContentCardWrapper>
               </Content>
-            </Box>
-          )}
+            )}
+          </Content>
         </div>
       </Content>
     </Modal>
