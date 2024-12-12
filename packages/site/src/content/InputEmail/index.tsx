@@ -9,7 +9,7 @@ export default {
   props: Props,
   mobileProps: MobileProps,
   component: {
-    element: `<InputEmail placeholder={"Enter your email"} />`,
+    element: `<InputEmail placeholder={"Enter your email."} />`,
     mobileElement: `<InputEmail placeholder={"Enter your email"} />`,
   },
   title: "InputEmail",

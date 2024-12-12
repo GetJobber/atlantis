@@ -10,7 +10,7 @@ export default {
   mobileProps: MobileProps,
   component: {
     element: `<InputText name="age" placeholder="Age in words" />`,
-    mobileElement: `<InputText name="age" placeholder="Age in words" />`,
+    mobileElement: `<InputText name="age" placeholder="Age in words." />`,
   },
   title: "InputText",
   links: [
