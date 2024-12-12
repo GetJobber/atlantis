@@ -55,7 +55,7 @@ function AnimatedPresenceDisclosure({
           size="small"
           type="tertiary"
           onClick={handleButtonClick}
-          ariaLabel="Toggle Changelog"
+          ariaLabel={`Toggle ${title}`}
           icon={isOpen ? "arrowUp" : "arrowDown"}
         />
       </span>
