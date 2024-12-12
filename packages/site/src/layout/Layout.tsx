@@ -1,4 +1,4 @@
-import { PropsWithChildren, useEffect } from "react";
+import { PropsWithChildren, useEffect, useRef } from "react";
 import { Route, Switch, useLocation } from "react-router";
 import { NavMenu } from "./NavMenu";
 import { AtlantisRoute, routes } from "../routes";
@@ -12,15 +12,20 @@ import { ToggleThemeButton } from "../components/ToggleThemeButton";
 
 export const Layout = () => {
   const location = useLocation();
-
+  const scrollPane = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    window.scrollTo({ top: 0 });
-  }, [location]);
+    if (scrollPane?.current) {
+      scrollPane?.current.scrollTo({ top: 0 });
+    }
+  }, [location, scrollPane?.current]);
 
   return (
     <LayoutWrapper>
       <NavMenu />
-      <div style={{ overflow: "auto", width: "100%", height: "100dvh" }}>
+      <div
+        style={{ overflow: "auto", width: "100%", height: "100dvh" }}
+        ref={scrollPane}
+      >
         <Switch>
           <>
             {routes?.map((route, routeIndex) => {
