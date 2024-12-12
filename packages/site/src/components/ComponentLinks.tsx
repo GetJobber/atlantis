@@ -64,7 +64,9 @@ export const ComponentLinks = ({
     >
       <Content spacing={"larger"}>
         <Content>
-          <Heading level={6} element="h3">Design</Heading>
+          <Heading level={6} element="h3">
+            Design
+          </Heading>
           <Content spacing="small">
             {hlinks?.map((link, index) => (
               <Box key={index}>
@@ -77,7 +79,9 @@ export const ComponentLinks = ({
         </Content>
         {webEnabled && (
           <Content>
-            <Heading level={6} element="h3">Web</Heading>
+            <Heading level={6} element="h3">
+              Web
+            </Heading>
             <Content spacing="small">
               <Box>
                 <a onClick={() => goToUsage("web")} href={`#`}>
@@ -94,7 +98,9 @@ export const ComponentLinks = ({
         )}
         {mobileEnabled && (
           <Content>
-            <Heading level={6} element="h3">Mobile</Heading>
+            <Heading level={6} element="h3">
+              Mobile
+            </Heading>
             <Content spacing="small">
               <Box>
                 <a onClick={() => goToUsage("mobile")} href={`#`}>
@@ -110,7 +116,9 @@ export const ComponentLinks = ({
           </Content>
         )}
         <Content>
-          <Heading level={6} element="h3">Links</Heading>
+          <Heading level={6} element="h3">
+            Links
+          </Heading>
           <Content spacing="smaller">
             <Box direction="row" gap="smaller" alignItems="center">
               <Icon size="small" color="interactive" name="link" />

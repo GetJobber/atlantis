@@ -227,13 +227,13 @@ export const ComponentView = () => {
         </Grid>
       </main>
       <ComponentLinks
-          links={PageMeta?.links}
-          mobileEnabled={!!PageMeta?.component?.mobileElement}
-          webEnabled={!!PageMeta?.component?.element}
-          goToDesign={goToDesign}
-          goToProps={goToProps}
-          goToUsage={goToUsage}
-        />
+        links={PageMeta?.links}
+        mobileEnabled={!!PageMeta?.component?.mobileElement}
+        webEnabled={!!PageMeta?.component?.element}
+        goToDesign={goToDesign}
+        goToProps={goToProps}
+        goToUsage={goToUsage}
+      />
     </div>
   ) : (
     <ComponentNotFound />
