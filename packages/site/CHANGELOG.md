@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.3](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.17.2...@jobber/atlantis-site@0.17.3) (2024-12-12)
+
+
+### Bug Fixes
+
+* **components:** Fixing a scrolling issue with the docs site. ([#2245](https://github.com/GetJobber/atlantis/issues/2245)) ([23a6432](https://github.com/GetJobber/atlantis/commit/23a643257f008ca1397472c9999c664b5699cb5c))
+
+
+
+
+
 ## [0.17.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.17.1...@jobber/atlantis-site@0.17.2) (2024-12-12)
 
 
