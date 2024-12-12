@@ -1,6 +1,7 @@
 import Content from "@atlantis/docs/components/Form/Form.stories.mdx";
 import Props from "./Form.props.json";
 import MobileProps from "./Form.props-mobile.json";
+import Notes from "./FormNotes.mdx";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
@@ -90,4 +91,5 @@ export default {
       ),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

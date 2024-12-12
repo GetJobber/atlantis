@@ -1,0 +1,10 @@
+## Controlled & Uncontrolled
+
+InputPressable can only be used as a controlled component. Given the nature of
+this input component which requires a wrapper to set the value, it doesn't make
+sense for this component to be uncontrolled.
+
+## Developer notes
+
+To prevent a previously focused input from being focused again when the
+`InputPressable` is closed you can `Keyboard.dismiss()` in the `onPress`.

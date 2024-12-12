@@ -1,5 +1,6 @@
 import Content from "@atlantis/docs/components/Box/Box.stories.mdx";
 import Props from "./Box.props.json";
+import Notes from "./BoxNotes.mdx";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
@@ -21,4 +22,5 @@ export default {
       ),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;
