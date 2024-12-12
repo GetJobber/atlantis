@@ -37,7 +37,7 @@
 }
 
 .isActive > * {
-  background-color: var(--color-interactive--background);
+  background-color: var(--color-surface--background);
 }
 
 .hoverable:hover > *,
