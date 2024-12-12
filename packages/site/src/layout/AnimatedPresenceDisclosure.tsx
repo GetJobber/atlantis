@@ -52,5 +52,4 @@ function AnimatedPresenceDisclosure({
   );
 }
 
-// export default TritonExample;
 export default AnimatedPresenceDisclosure;
