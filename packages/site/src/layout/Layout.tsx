@@ -20,7 +20,7 @@ export const Layout = () => {
   return (
     <LayoutWrapper>
       <NavMenu />
-      <div style={{ overflow: "auto", width: "100%", minHeight: "100%" }}>
+      <div style={{ overflow: "auto", width: "100%", height: "100dvh" }}>
         <Switch>
           <>
             {routes?.map((route, routeIndex) => {
