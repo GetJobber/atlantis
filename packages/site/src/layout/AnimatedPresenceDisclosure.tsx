@@ -24,7 +24,7 @@ function AnimatedPresenceDisclosure({
   return (
     <div>
       <span className={styles.disclosureNavItem}>
-        <Link to={to ?? "/"} href="https://www.google.com" tabIndex={0}>
+        <Link to={to ?? "/"} tabIndex={0}>
           <Typography fontWeight="semiBold" size="large" textColor="heading">
             {title}
           </Typography>
