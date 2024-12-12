@@ -1,5 +1,4 @@
 import {
-  Box,
   Content,
   InputText,
   InputTextRef,
@@ -74,34 +73,34 @@ export const SearchBox = ({
           onChange={d => setSearch(d as string)}
         />
         <div className={styles.searchBoxResults}>
-          {filteredComponentList.length > 0 && (
-            <Content>
-              <Typography
-                size={"base"}
-                fontWeight={"bold"}
-                textCase={"uppercase"}
-                textColor={"textSecondary"}
-                element="h3"
-              >
-                Components
-              </Typography>
-              <ContentCardWrapper>
-                {filteredComponentList.map(({ title, to, imageURL }, key) => {
-                  return (
-                    <ContentCard
-                      onClick={closeModal}
-                      title={title}
-                      to={to}
-                      imageURL={imageURL}
-                      key={key}
-                    />
-                  );
-                })}
-              </ContentCardWrapper>
-            </Content>
-          )}
-          {filteredDesignList.length > 0 && (
-            <Box padding={{ top: "largest" }}>
+          <Content spacing={"larger"}>
+            {filteredComponentList.length > 0 && (
+              <Content>
+                <Typography
+                  size={"base"}
+                  fontWeight={"bold"}
+                  textCase={"uppercase"}
+                  textColor={"textSecondary"}
+                  element="h3"
+                >
+                  Components
+                </Typography>
+                <ContentCardWrapper>
+                  {filteredComponentList.map(({ title, to, imageURL }, key) => {
+                    return (
+                      <ContentCard
+                        onClick={closeModal}
+                        title={title}
+                        to={to}
+                        imageURL={imageURL}
+                        key={key}
+                      />
+                    );
+                  })}
+                </ContentCardWrapper>
+              </Content>
+            )}
+            {filteredDesignList.length > 0 && (
               <Content>
                 <Typography
                   size={"base"}
@@ -126,8 +125,8 @@ export const SearchBox = ({
                   })}
                 </ContentCardWrapper>
               </Content>
-            </Box>
-          )}
+            )}
+          </Content>
         </div>
       </Content>
     </Modal>
