@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.17.1...@jobber/atlantis-site@0.17.2) (2024-12-12)
+
+
+### Bug Fixes
+
+* **components:** Fixing some issues with the docs site before launch ([#2241](https://github.com/GetJobber/atlantis/issues/2241)) ([b33b5ed](https://github.com/GetJobber/atlantis/commit/b33b5ed965b5ac76f8f55907f35be3af092fbd77))
+
+
+
+
+
 ## [0.17.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.17.0...@jobber/atlantis-site@0.17.1) (2024-12-11)
 
 **Note:** Version bump only for package @jobber/atlantis-site
