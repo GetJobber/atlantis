@@ -58,9 +58,12 @@ type `ListItemProps` must be used when using default rendering.
 If a section field is present in any item, the list will group the items by
 their section and display them under section headers. If even one section key
 exists in any of items then it will be expected that every object within that
-collection will have a section defined. If a section is missing, "Other" will be
-used, and any items with a section of "Other" will be grouped with that first
-occurrence that has no section.
+collection will have a section defined.
+
+If a section is missing, "Other" will be used by default, and any items with a
+section of "Other" will be grouped with that first occurrence that has no
+section. To provide your header value for items missing a section, use the
+`defaultSectionHeader` prop.
 
 <Canvas>
   <Card>
