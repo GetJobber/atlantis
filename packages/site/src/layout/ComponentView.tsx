@@ -187,35 +187,46 @@ export const ComponentView = () => {
   };
 
   return PageMeta ? (
-    <Grid>
-      <Grid.Cell size={isMinimal ? { xs: 12, md: 12 } : { xs: 12, md: 9 }}>
-        <Page width="fill" title={PageMeta.title}>
-          <PageWrapper>
-            <Box>
-              <Content spacing="large">
-                <Box direction="column" gap="small" alignItems="flex-end">
-                  <CodePreviewWindow>
-                    <AtlantisPreviewViewer />
-                  </CodePreviewWindow>
+    <div style={{ display: "flex", height: "100dvh" }}>
+      <main
+        style={{
+          overflowY: "scroll",
+          backgroundColor: "var(--color-surface)",
+          boxShadow: "var(--shadow-low)",
+        }}
+      >
+        <Grid>
+          <Grid.Cell size={isMinimal ? { xs: 12, md: 12 } : { xs: 12, md: 8 }}>
+            <Page width="narrow" title={PageMeta.title}>
+              <PageWrapper>
+                <Box>
+                  <Content spacing="large">
+                    <Box direction="column" gap="small" alignItems="flex-end">
+                      <CodePreviewWindow>
+                        <AtlantisPreviewViewer />
+                      </CodePreviewWindow>
+                    </Box>
+                    <span
+                      style={
+                        { "--public-tab--inset": 0 } as React.CSSProperties
+                      }
+                    >
+                      <Tabs onTabChange={handleTabChange}>
+                        {activeTabs.map((tab, index) => (
+                          <Tab key={index} label={tab.label}>
+                            {tab.children}
+                          </Tab>
+                        ))}
+                      </Tabs>
+                    </span>
+                  </Content>
                 </Box>
-                <span
-                  style={{ "--public-tab--inset": 0 } as React.CSSProperties}
-                >
-                  <Tabs onTabChange={handleTabChange} activeTab={tab}>
-                    {activeTabs.map((tabyeah, index) => (
-                      <Tab key={index} label={tabyeah.label}>
-                        {tabyeah.children}
-                      </Tab>
-                    ))}
-                  </Tabs>
-                </span>
-              </Content>
-            </Box>
-          </PageWrapper>
-        </Page>
-      </Grid.Cell>
-      <Grid.Cell size={{ xs: 12, md: 3 }}>
-        <ComponentLinks
+              </PageWrapper>
+            </Page>
+          </Grid.Cell>
+        </Grid>
+      </main>
+      <ComponentLinks
           links={PageMeta?.links}
           mobileEnabled={!!PageMeta?.component?.mobileElement}
           webEnabled={!!PageMeta?.component?.element}
@@ -223,8 +234,7 @@ export const ComponentView = () => {
           goToProps={goToProps}
           goToUsage={goToUsage}
         />
-      </Grid.Cell>
-    </Grid>
+    </div>
   ) : (
     <ComponentNotFound />
   );

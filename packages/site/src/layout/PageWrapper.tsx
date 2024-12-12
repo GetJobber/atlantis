@@ -11,6 +11,8 @@ export const PageWrapper = ({ children }: PropsWithChildren) => {
       style={{
         width: "100%",
         minHeight: "100%",
+        backgroundColor: "var(--color-surface)",
+        boxShadow: "var(--shadow-low)",
       }}
     >
       {children}

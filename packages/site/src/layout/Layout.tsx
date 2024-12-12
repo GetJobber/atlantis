@@ -84,7 +84,7 @@ export const LayoutWrapper = ({ children }: PropsWithChildren) => {
     <div
       style={{
         display: "flex",
-        background: "var(--color-surface)",
+        background: "var(--color-surface--background)",
       }}
     >
       {children}
