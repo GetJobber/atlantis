@@ -1,6 +1,7 @@
 import { HomePage } from "./pages/HomePage";
 import { ComponentsPage } from "./pages/ComponentsPage";
 import { ContentLoader } from "./components/ContentLoader";
+import { ContentPage } from "./pages/ContentPage";
 import { DesignPage } from "./pages/DesignPage";
 import { ComponentView } from "./layout/ComponentView";
 import { componentList } from "./componentList";
@@ -58,6 +59,29 @@ export const routes: Array<AtlantisRoute> = [
     children: generateComponentSidebar(),
   },
   {
+    path: "/content",
+    handle: "Content",
+    exact: true,
+    component: ContentPage,
+    children: [
+      {
+        path: "/content/formatting",
+        handle: "Formatting",
+        exact: true,
+      },
+      {
+        path: "/content/product-vocabulary",
+        handle: "Product Vocabulary",
+        exact: true,
+      },
+      {
+        path: "/content/voice-and-tone",
+        handle: "Voice & tone",
+        exact: true,
+      },
+    ],
+  },
+  {
     path: "/design",
     handle: "Design",
     exact: true,
@@ -94,11 +118,20 @@ export const routes: Array<AtlantisRoute> = [
     component: ComponentView,
     handle: "Web",
     inNav: false,
+    exact: true,
   },
   {
-    path: "/content/:type/:name",
+    path: "/design/:name",
     component: ContentLoader,
-    handle: "Content",
+    handle: "DesignContent",
     inNav: false,
+    exact: true,
+  },
+  {
+    path: "/content/:name",
+    component: ContentLoader,
+    handle: "GeneralContent",
+    inNav: false,
+    exact: true,
   },
 ];
