@@ -133,13 +133,13 @@ export const SearchBox = ({
               filteredDesignList.length == 0 && (
                 <Box
                   height={"100%"}
-                  direction="column"
+                  direction={"column"}
                   padding={"extravagant"}
-                  gap="larger"
-                  alignItems="center"
+                  gap={"larger"}
+                  alignItems={"center"}
                 >
                   <ToolBoxIllustration />
-                  <Heading level={1} element="h3">
+                  <Heading level={1} element={"h3"}>
                     The toolbox looks empty!
                   </Heading>
                   <Typography
@@ -148,8 +148,8 @@ export const SearchBox = ({
                     size={"large"}
                     textColor={"text"}
                   >
-                    We couldn&apos;t match any results with your search. Try
-                    searching a different term.
+                    We couldn&apos;t match any results with your search; try a
+                    different term.
                   </Typography>
                   <Typography
                     align={"center"}
