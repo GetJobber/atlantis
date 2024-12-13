@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.8](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.17.7...@jobber/atlantis-site@0.17.8) (2024-12-13)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.17.7](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.17.6...@jobber/atlantis-site@0.17.7) (2024-12-13)
+
+
+### Bug Fixes
+
+* nav disclosure section dark mode [JOB-111816] ([#2249](https://github.com/GetJobber/atlantis/issues/2249)) ([30a6199](https://github.com/GetJobber/atlantis/commit/30a619906493b997b091a5507b8715e0ec0bc514))
+
+
+
+
+
+## [0.17.6](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.17.5...@jobber/atlantis-site@0.17.6) (2024-12-13)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.17.5](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.17.4...@jobber/atlantis-site@0.17.5) (2024-12-13)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
 ## [0.17.4](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.17.3...@jobber/atlantis-site@0.17.4) (2024-12-12)
 
 **Note:** Version bump only for package @jobber/atlantis-site
