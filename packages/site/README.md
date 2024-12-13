@@ -64,3 +64,5 @@ The semi-complete list of design documentation is within `src/designList.ts`
 1. types -> Shared types within the system. If you start to import types from
    another file, hoist the type to the types directory. Good way to prevent
    circular dependencies.
+
+## STODO: Make this better. Include more examples of running. Talk about the live editor, mention more features. Talk about how we generate props, talk about routing.

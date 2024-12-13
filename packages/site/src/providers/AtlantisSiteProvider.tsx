@@ -6,6 +6,10 @@ import {
   useState,
 } from "react";
 
+// STODO: We already have a few providers, should we consolidate them?
+// Or should be have a provider for each feature?
+// Should we use Zustand for this?
+
 const AtlantisSiteContext = createContext<{
   minimal: {
     requested: boolean;

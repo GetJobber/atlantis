@@ -8,6 +8,9 @@ import {
   Page,
 } from "@jobber/components";
 
+// STODO: This 404 page is VERY specific to Atlantis while building the Docs site.
+// Can we move this content to a content page, and can we replace this with a friendly 404 page for consumers of the site instead?
+
 /**
  * Instructions that show up if a node cannot be found, typically in the ComponentView.
  * @returns ReactNode

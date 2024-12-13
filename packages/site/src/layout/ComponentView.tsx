@@ -17,6 +17,12 @@ import {
 } from "../providers/AtlantisPreviewEditorProvider";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
 
+// STODO: This became a bit of a dumping ground during development.
+// There is some code in here that should be both cleaned up + moved to its own hook.
+// Minimal mode for instance should all live together and just be called from here.
+// Same with some of the iframe mangement. Move the logic out of here so it can live together as a discrete unit, but still call it from here.
+// Also an opportunity to tidy up the tab management.
+
 /**
  * Layout for displaying a Component documentation page. This will display the component, props, and code.
  * This isn't really a Layout component, but it's not really a component component either. We could make a "Views" directory maybe, or a "Template" directory?

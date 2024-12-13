@@ -1,3 +1,36 @@
+/**
+ *
+ * Atlantis Live Code Editor + Preview
+ *
+ * This file is currently a mess, and that's kind of okay. It's a work in progress.
+ *
+ * The goal of this file is to provide a live code editor and preview for the Atlantis design system.
+ *
+ * This huge comment will attempt to explain all that is happening in here so when we come back here in the new year we have a starting point.
+ *
+ * We're using Code Mirror for the editor, and a simple iframe for the preview.
+ *
+ * In the simplest terms:
+ * Type in the Code Editor, we run the code through Babel to transpile it to browser-safe Javascript.
+ * We then take that code, and ask the iframe if it's already been initialized.
+ * If not, we initalize the iframe with our Skeleton HTML which is the same for both web and mobile (aside from the import maps which are flagged by a boolean)
+ * Once the iframe is initalized (we use two iframes, one for mobile and one for web), we send the code to the iframe.
+ * We send the code to the iframe via a postMessage event.
+ *
+ * The iframe then takes the code, and injects it into the DOM using React. We use properly unload -> reload mechanisms so we don't trigger errors in the browser.
+ *
+ *
+ * Where this file could be improved:
+ * 1. It should probably be more than one file, probably in its own section of this codebase. It's a bit more than just a 'Provider'
+ * 2. All the pieces relating to the skeletong can probably live on their own
+ * 3. The code editor and preview could be split into their own components
+ * 4. The code wrappers could be cleaned up and moved to their own files.
+ * 5. Clean up the useEffect usage. It's a bit of a mess.
+ * 6. The error handling could be improved.
+ * 7. The Preview Editor could be cleaned up a fair amount as well. We're interfacing with code mirror bluntly.
+ * 8. The iframed COULD (maybe not though) be abstracted into its own component with attached hook functionality (update iframe, etc)
+ */
+
 import { transform } from "@babel/standalone";
 import {
   PropsWithChildren,
@@ -16,18 +49,6 @@ import {
   syntaxHighlighting,
 } from "@codemirror/language";
 import { Theme, useAtlantisTheme } from "@jobber/components";
-
-/***
- *
- *
- *
- * This code has not yet been documented or tested.
- * It will be done early next week. I just need a break from it.
- *
- *
- *
- *
- */
 
 const language = new Compartment();
 

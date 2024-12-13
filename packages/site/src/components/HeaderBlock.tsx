@@ -9,6 +9,8 @@ interface HeaderBlockProps {
   readonly imageURL?: string;
 }
 
+// STODO: Pattern? Feels like this could be a pattern of how to build a "Hero" component?
+
 /**
  * Displays at the top of the home page, and any other main content page.
  *

@@ -5,22 +5,6 @@ import { ContentCardWrapper } from "./ContentCardWrapper";
 import { PageWrapper } from "../layout/PageWrapper";
 import { ContentCardProps } from "../types/components";
 
-interface PageBlockProps {
-  readonly structure: {
-    header: {
-      title: string;
-      body: string;
-      ctaLabel?: string;
-      to?: string;
-      imageURL?: string;
-    };
-    body: {
-      title: string;
-      content: ContentCardProps[];
-    };
-  };
-}
-
 /**
  * Opinionated layout for a page. Has a Header, Body and list of content cards.
  * @param param0 PageBlockProps
@@ -40,3 +24,19 @@ export const PageBlock = ({ structure }: PageBlockProps) => {
     </PageWrapper>
   );
 };
+
+export interface PageBlockProps {
+  readonly structure: {
+    header: {
+      title: string;
+      body: string;
+      ctaLabel?: string;
+      to?: string;
+      imageURL?: string;
+    };
+    body: {
+      title: string;
+      content: ContentCardProps[];
+    };
+  };
+}

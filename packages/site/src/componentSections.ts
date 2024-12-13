@@ -1,3 +1,5 @@
+// STODO: Could these be an enum instead?
+
 export const componentSections = [
   "Actions",
   "Forms & Inputs",

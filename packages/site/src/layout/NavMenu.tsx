@@ -8,6 +8,8 @@ import { routes } from "../routes";
 import { JobberLogo } from "../assets/JobberLogo.svg";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
 
+//STODO: Update this to use Tanstack Router. The shape of this file will change a bit when we do that, but that's okay!
+
 /**
  * Left side navigation menu for the application.
  * @returns ReactNode

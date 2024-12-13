@@ -9,6 +9,8 @@ import { ComponentsNativeChangelogPage } from "./pages/ComponentsNativeChangelog
 import { DesignChangelogPage } from "./pages/DesignChangelogPage";
 import { componentSections } from "./componentSections";
 
+// STODO: Move this react-router implementation to Tanstack Router.
+
 export interface AtlantisRoute {
   path?: string;
   component?: () => JSX.Element;

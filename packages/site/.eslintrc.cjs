@@ -1,3 +1,5 @@
+// STODO: Can we upgrade this to an esm style approach and use the same config as the other packages?
+
 module.exports = {
   rules: {
     "react/react-in-jsx-scope": "off",

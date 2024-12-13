@@ -1,5 +1,9 @@
 import { Box, Button, Tooltip, showToast } from "@jobber/components";
 
+// STODO: Sometimes this doesn't render code because of an internal error.
+// Should we be louder about that error so we see it?
+// Could we have it error out on E2E tests?
+
 /**
  * Shows code with a copy button.
  *

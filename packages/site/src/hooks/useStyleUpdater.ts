@@ -1,6 +1,12 @@
 import { useEffect } from "react";
 import prism from "prismjs";
 
+// STODO: This was a workaround hack to get syntax highlighting in documentation code examples functional and keep moving.
+// Now that we have some breathing room, is there a better way to do this?
+// Essentially prismjs wasn't highlighting the code properly because it was being rendered as TSX (which it is)
+// So I forcibly removed the TSX class and replaced it with JS.
+// Can we just get prism to style TSX properly instead?
+
 /**
  * This is to forcibly remove all 'language-tsx' usages on the page and replace them with 'language-javascript'
  *

@@ -7,6 +7,8 @@ import {
 } from "@jobber/components";
 import { ReactNode, useState } from "react";
 
+// STODO: Pattern? SimpleFilteredList?
+
 /**
  * All the Props for a component. This component receives an Array of DataListOptions, and will generate mulitple DataLists as a result.
  * This is to better support compound components.

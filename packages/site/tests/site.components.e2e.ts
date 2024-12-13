@@ -5,6 +5,13 @@ import {
   //@ts-expect-error - No types for mjs file. that is okay.
 } from "../baseComponentLists.mjs";
 
+// STODO: What over E2E tests should we write?
+// Once we get every component rendering, how do ensure after that they stay rendering properly?
+// What about side nav links, or the navigation in general? How do we write tests to make
+// sure they stay functional? Like the scroll to top on page page.
+// After we define how want the site to work let's circle back here and
+// enshrine that behavior in tests.
+
 const buildUniqueComponentList = () => {
   const combinedList = [
     ...ListOfGeneratedMobileComponents,

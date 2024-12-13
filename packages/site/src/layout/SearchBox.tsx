@@ -12,6 +12,12 @@ import { ContentCard } from "../components/ContentCard";
 import { componentList } from "../componentList";
 import { designList } from "../designList";
 
+// STODO: Some tidy up here.
+// I think we can have one filter function that takes the list and the search term.
+// Then we can use that function for both the design and component lists.
+// The maps also look relatively similar, so we might be able to re-use the same map function on both lists.
+// Or combine the lists and iterate that way
+
 /**
  * Full Page Search Modal
  *

@@ -3,6 +3,11 @@ import { MouseEvent, useEffect, useState } from "react";
 import { ContentExportLinks } from "../types/content";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
 
+// STODO: This is not a scalable solution
+// Originally built for just Storybook links, grew to include dynamic links.
+// Now that we have some breathing room, let's look at this holistically and see if we can make it more flexible.
+// How do we want to handle side-navigation links?
+
 /**
  * Lists some links, typically in the top right corner of the ComponentView.
  * @param param0 {links: ContentExportLinks[]}

@@ -10,6 +10,9 @@ import SpacingDocs from "@atlantis/docs/design/Spacing.stories.mdx";
 import TypographyDocs from "@atlantis/docs/design/Typography.stories.mdx";
 import { ContentMapItems } from "../types/maps";
 
+/**
+ * STODO: I think we're working on consolidating all this here, but I think this is the leftover of an early idea that that didn't get fully implemented.
+ */
 export const designContentMap: ContentMapItems = {
   "welcome-guide": {
     intro: "Welcome!",

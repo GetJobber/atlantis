@@ -1,5 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
+// STODO: These were the defaults as provided by playwright. Do we want anymore advanced here, or anything different?
+
 export default defineConfig({
   testDir: "./tests",
   testMatch: ["**/*.e2e.ts"],

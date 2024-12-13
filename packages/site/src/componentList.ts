@@ -1,3 +1,9 @@
+// STODO: would there be any value in using an enum for the sections so we can ensure they are always the same?
+// This file may need a bit of work when we shift to Tanstack Router. It'll be interseting to get typesafety working for all the component links.
+
+// STODO: This should eventually live as Headless CMS configuration so it can be configured without having to edit this file.
+// This file is already in close to the right format for that.
+
 export const componentList = [
   {
     title: "ActionItem",

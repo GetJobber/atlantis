@@ -3,6 +3,10 @@ import reactElementToJSXString from "react-element-to-jsx-string";
 import { Children, PropsWithChildren, useEffect, useState } from "react";
 import prism from "prismjs";
 
+// STODO: Is there a pattern here?
+// Could we replace the Div/Span with a Box?
+// Could the language/javascript stuff live in a prismjs specific domain?
+
 /**
  * This is a drop-in replacement for the <Canvas> component from Storybook. It renders the component as provided, and then shows the code for that component.
  * @param param0 {children:ReactNode}

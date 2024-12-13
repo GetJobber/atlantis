@@ -9,6 +9,9 @@ import { useHistory } from "react-router";
 import { ComponentWrapper } from "./ComponentWrapper";
 import { ContentCardProps } from "../types/components";
 
+// STODO: Is there a pattern in here?
+// If not, is there some kind of image we can build for the image override piece we're doing?
+
 /**
  * Opinionated card for displaying links to our content
  *

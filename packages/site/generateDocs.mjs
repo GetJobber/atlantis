@@ -1,3 +1,24 @@
+/**
+ * This script is used to generate the *.props.json files under the src/content directory of this repo.
+ *
+ * The script uses react-docgen-typescript to parse our Typescript Component files, and generate a JSON representation that we can then
+ * display to our consumers.
+ *
+ * These props can be parsed without the need for the library, but react-docgen-typescript is a battle-tested approach that we don't
+ * have to own. I believe the project is currently looking for a maintainer, and the community was/is pressuruing Storybook
+ * to take it on, since it's a critical part of their system.
+ *
+ * These prop files are then used to generate the list of Props for every component on our documentation site.
+ *
+ */
+
+/**
+ * STODO: This is currently wildly innefficient. I spun a quick test to move to a GLOB pattern instead of looping though a static list one-by-one.
+ * The generation takes a fraction of the time, but we no longer get free splitting of the files into their own concerns + web and mobile.
+ * So if we figure out how to chunk out the files AFTER they've been generated into the structure we need, I think the generation step
+ * could be moved to a build step.
+ */
+
 import { mkdirSync, writeFileSync } from "fs";
 import { dirname } from "path";
 import { parse } from "react-docgen-typescript";
@@ -5,20 +26,6 @@ import {
   ListOfGeneratedMobileComponents,
   ListOfGeneratedWebComponents,
 } from "./baseComponentLists.mjs";
-
-/**
- * This script is used to generate the *.props.json files under the src/content directory of this repo.
- *
- * The script uses react-docgen-typescript to parse our Typescript Component files, and generate a JSON representation that we can then
- * display to our consumers.
- *
- * These props can be parsed without the need for the library, but react-docgen-typescript a battle-tested approach that we don't
- * have to own. I believe the project is currently looking for a maintainer, and the community was/is pressuruing Storybook
- * to take it on, since it's a critical part of their system.
- *
- * These prop files are then used to generate the list of Props for every component on our documentation site.
- *
- */
 
 /**
  * Take in a component location, and where you want the output written. We will parse the component contents at the provided location, and write the

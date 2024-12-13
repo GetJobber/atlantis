@@ -5,6 +5,10 @@ import { AtlantisRoute, routes } from "../routes";
 import "./code-theme.css";
 import { ToggleThemeButton } from "../components/ToggleThemeButton";
 
+//STODO: Update to use TanStack Router
+//STODO: Move the hook to be generically available.
+// useScrollToTopOnNavigate(ref) would be useful.
+
 /**
  * Layout for whole application. This will display the NavMenu and the content of the page.
  * @returns ReactNode

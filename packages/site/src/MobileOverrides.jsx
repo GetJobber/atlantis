@@ -1,3 +1,21 @@
+/**
+ * 
+ * This file is connected to `editorMobileBundle.rollup.config.js` and is used to override the mobile components in the live editor when viewing component pages.
+ * 
+ * This file should not be long living. We should properly bundle react-native with a shimmed version of react-native-web properly via Rollup.
+ * 
+ * Or with vite maybe? Or webpack? metro? expo? However we build react-native with a shimmed version of react-native-web, we should do it properly
+ * and not overly rely on this file.
+ * 
+ * This file was originally meant to house just the pieces of our stack that were not react-native-web compatible.
+ * 
+ * But it ended up housing the entire build via aliases in the rollup config, which is not ideal.
+ * 
+ * /
+
+
+
+
 /* eslint-disable react/prop-types */
 // If you get an error in the live editor for mobile components, you'll need
 // an override in this file. Try to match the shape of what the original code

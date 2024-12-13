@@ -12,6 +12,8 @@ import { AtlantisSiteProvider } from "./providers/AtlantisSiteProvider";
 import { initAtlantisTheme } from "./utils/theme";
 import { Analytics } from "./components/Analytics";
 
+// STODO: Wrap this up in a function associated to 'minimal' mode.
+// We may eventually want more modes.
 const urlParams = new URLSearchParams(window.location.search);
 const minimalMode = urlParams.has("minimal");
 
@@ -40,6 +42,7 @@ function renderApp() {
   }
 }
 
+// STODO: Do this the right way. Pre-load the fonts, css setup the shell as raw html, so there isn't a snap of content, etc.
 // Hacky way around flash of unstyled content. We should properly pre-load the fonts instead when we get a chance.
 window.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {

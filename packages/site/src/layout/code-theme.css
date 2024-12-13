@@ -4,6 +4,10 @@
  * @author Lea Verou
  */
 
+/**
+STODO: I think we should look at consolidating the code theme styles with the rest of the site styles
+**/
+
 pre {
   --color-code--yellow: var(--color-base-yellow--600);
   --color-code--lime: var(--color-base-lime--600);
@@ -54,7 +58,7 @@ code[class*="language-"] {
 }
 
 /* Inline code */
-:not(pre) > code[class*="language-"] {
+:not(pre)>code[class*="language-"] {
   padding: 0.2em;
   border-radius: 0.3em;
   box-shadow: none;
@@ -131,14 +135,14 @@ code[class*="language-"] {
 }
 
 /* Plugin styles: Diff Highlight */
-pre.diff-highlight.diff-highlight > code .token.deleted:not(.prefix),
-pre > code.diff-highlight.diff-highlight .token.deleted:not(.prefix) {
+pre.diff-highlight.diff-highlight>code .token.deleted:not(.prefix),
+pre>code.diff-highlight.diff-highlight .token.deleted:not(.prefix) {
   background-color: rgba(255, 0, 0, 0.3);
   display: inline;
 }
 
-pre.diff-highlight.diff-highlight > code .token.inserted:not(.prefix),
-pre > code.diff-highlight.diff-highlight .token.inserted:not(.prefix) {
+pre.diff-highlight.diff-highlight>code .token.inserted:not(.prefix),
+pre>code.diff-highlight.diff-highlight .token.inserted:not(.prefix) {
   background-color: rgba(0, 255, 128, 0.3);
   display: inline;
 }

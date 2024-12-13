@@ -6,6 +6,8 @@ import {
 } from "@jobber/components";
 import { saveTheme } from "../utils/theme";
 
+// STODO: Pattern? CornerButton? ThemeToggle?
+
 export const ToggleThemeButton = () => {
   const { theme } = useAtlantisTheme();
   const isDark = theme === "dark";

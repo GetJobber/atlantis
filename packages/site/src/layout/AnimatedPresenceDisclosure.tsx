@@ -9,6 +9,9 @@ interface AnimatedPresenceDisclosureProps {
   readonly to: string;
 }
 
+// STODO: Is this our first potential pattern? If we're using these components in this way could we just communicate this as a pattern for using our components together?
+// Could we replace the Div/Span with a Box?
+// Could we replace the Typography with a Heading?
 function AnimatedPresenceDisclosure({
   children,
   title,

@@ -3,6 +3,9 @@
  * There is a future in which this list is dynamically generated from an 'ls' command or similar, but being
  * basic and explicit is a good starting point.
  */
+
+// STODO: I think we have a few list of components. Can we consolidate them all here, OR can we move to a generated list based on the components in the packages?
+
 const components = [
   "AnimatedPresence",
   "AnimatedSwitcher",

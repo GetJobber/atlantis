@@ -1,3 +1,7 @@
+/**
+ * STODO: These should eventually live as Headless CMS configurations.
+ */
+
 export const designList = [
   {
     title: "Animation",
