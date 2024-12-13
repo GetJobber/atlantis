@@ -9,6 +9,7 @@ import { componentList } from "./componentList";
 // import { ComponentsNativeChangelogPage } from "./pages/ComponentsNativeChangelogPage";
 // import { DesignChangelogPage } from "./pages/DesignChangelogPage";
 import { componentSections } from "./componentSections";
+import { ChangelogPage } from "./pages/ChangelogPage";
 
 export interface AtlantisRoute {
   path?: string;
@@ -91,7 +92,7 @@ export const routes: Array<AtlantisRoute> = [
     path: "/changelog",
     handle: "Changelog",
     exact: true,
-    // component: ComponentsChangelogPage,
+    component: ChangelogPage,
     children: [
       {
         path: "/changelog/components",
