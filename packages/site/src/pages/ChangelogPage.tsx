@@ -7,11 +7,10 @@ export const ChangelogPage = () => {
       structure={{
         header: {
           title: "Changelog",
-          body: "COPY",
+          body: "What's new and notable",
           imageURL: "/img-page-divider-collage.webp",
         },
         body: {
-          title: "Changelog",
           content: changelogList,
         },
       }}
