@@ -113,8 +113,10 @@ If you need more control over the rendering of list items, you can provide a
 This is useful if the default rendering of the `ListItem` or section header
 component doesn’t meet your requirements. If a custom render function is
 provided onClick, url, and hover functionality will still work. Sectioned list
-functionality will also remain the same, only the appearance will change if a
-custom section is provided.
+functionality will also remain the same.
+
+If a custrom render function is provided for the section only the appearance of
+the header will change.
 
 **Example: Custom Render Function with Custom Interface**
 
@@ -178,7 +180,8 @@ and no border-bottom. You can also experiment by toggling this prop in the other
 custom render examples to observe its impact.
 
 Note: The `customItemStyles` prop is only valid when a `customRenderItem`
-function is provided. The same is true of the `customSectionStyles`.
+function is provided. The same principle applies to the `customSectionStyles`,
+and `customRenderSection`.
 
 ```tsx
 
