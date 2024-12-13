@@ -196,7 +196,7 @@ export const ComponentView = () => {
         }}
       >
         <Box alignItems="center">
-          <div style={{ maxWidth: "768px" }}>
+          <div style={{ width: "100%", maxWidth: "768px" }}>
             <Page width="narrow" title={PageMeta.title}>
               <PageWrapper>
                 <Box>
