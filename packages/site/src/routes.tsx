@@ -63,6 +63,53 @@ export const routes: Array<AtlantisRoute> = [
     handle: "Design",
     exact: true,
     component: DesignPage,
+    children: [
+      {
+        path: "/design/animation",
+        handle: "Animation",
+        exact: true,
+      },
+      {
+        path: "/design/borders",
+        handle: "Borders",
+        exact: true,
+      },
+      {
+        path: "/design/responsive-breakpoint",
+        handle: "Breakpoints",
+        exact: true,
+      },
+      {
+        path: "/design/colors",
+        handle: "Colors",
+        exact: true,
+      },
+      {
+        path: "/design/elevations",
+        handle: "Elevations",
+        exact: true,
+      },
+      {
+        path: "/design/opacity",
+        handle: "Opacity",
+        exact: true,
+      },
+      {
+        path: "/design/radii",
+        handle: "Radii",
+        exact: true,
+      },
+      {
+        path: "/design/spacing",
+        handle: "Spacing",
+        exact: true,
+      },
+      {
+        path: "/design/typography",
+        handle: "Typography",
+        exact: true,
+      },
+    ],
   },
   {
     path: "/changelog",
@@ -92,11 +139,20 @@ export const routes: Array<AtlantisRoute> = [
     component: ComponentView,
     handle: "Web",
     inNav: false,
+    exact: false,
   },
   {
-    path: "/content/:type/:name",
+    path: "/design/:name",
     component: ContentLoader,
-    handle: "Content",
+    handle: "DesignContent",
     inNav: false,
+    exact: true,
+  },
+  {
+    path: "/content/:name",
+    component: ContentLoader,
+    handle: "GeneralContent",
+    inNav: false,
+    exact: true,
   },
 ];
