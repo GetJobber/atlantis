@@ -19,7 +19,7 @@ export const ContentCard = ({
   title,
   to,
   component,
-  imageURL,
+  imageURL = "../Placeholder.png",
   onClick,
 }: ContentCardProps) => {
   const history = useHistory();
