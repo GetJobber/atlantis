@@ -21,7 +21,7 @@ export const CategoryCardSection = ({
     <div
       style={{
         display: "grid",
-        gridTemplateColumns: "80px 1fr",
+        gridTemplateColumns: "96px 1fr",
         gap: "var(--space-larger)",
         width: "100%",
         paddingBottom: "var(--space-large)",

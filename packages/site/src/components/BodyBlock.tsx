@@ -1,4 +1,4 @@
-import { Box, Content } from "@jobber/components";
+import { Content } from "@jobber/components";
 import { PropsWithChildren } from "react";
 
 /**
@@ -8,10 +8,14 @@ import { PropsWithChildren } from "react";
  */
 export const BodyBlock = ({ children }: PropsWithChildren) => {
   return (
-    <div style={{ maxWidth: 1024, margin: "auto" }}>
-      <Box padding={"extravagant"}>
-        <Content>{children}</Content>
-      </Box>
+    <div
+      style={{
+        maxWidth: 1024,
+        margin: "auto",
+        padding: "var(--space-largest) var(--space-large)",
+      }}
+    >
+      <Content>{children}</Content>
     </div>
   );
 };
