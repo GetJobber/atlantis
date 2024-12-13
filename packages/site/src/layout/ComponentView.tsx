@@ -1,4 +1,4 @@
-import { Box, Content, Grid, Page, Tab, Tabs } from "@jobber/components";
+import { Box, Content, Page, Tab, Tabs } from "@jobber/components";
 import { useParams } from "react-router";
 import { useEffect, useMemo, useState } from "react";
 import { PageWrapper } from "./PageWrapper";
@@ -32,8 +32,7 @@ export const ComponentView = () => {
   const { updateStyles } = useStyleUpdater();
   const [tab, setTab] = useState(0);
   const { stateValues } = usePropsAsDataList(PageMeta, type);
-  const { enableMinimal, minimal, disableMinimal, isMinimal } =
-    useAtlantisSite();
+  const { enableMinimal, minimal, disableMinimal } = useAtlantisSite();
 
   useEffect(() => {
     if (minimal.requested && !minimal.enabled) {
@@ -193,10 +192,11 @@ export const ComponentView = () => {
           overflowY: "scroll",
           backgroundColor: "var(--color-surface)",
           boxShadow: "var(--shadow-low)",
+          flexGrow: 1,
         }}
       >
-        <Grid>
-          <Grid.Cell size={isMinimal ? { xs: 12, md: 12 } : { xs: 12, md: 8 }}>
+        <Box alignItems="center">
+          <div style={{ maxWidth: "768px" }}>
             <Page width="narrow" title={PageMeta.title}>
               <PageWrapper>
                 <Box>
@@ -212,9 +212,9 @@ export const ComponentView = () => {
                       }
                     >
                       <Tabs onTabChange={handleTabChange}>
-                        {activeTabs.map((tab, index) => (
-                          <Tab key={index} label={tab.label}>
-                            {tab.children}
+                        {activeTabs.map((activeTab, index) => (
+                          <Tab key={index} label={activeTab.label}>
+                            {activeTab.children}
                           </Tab>
                         ))}
                       </Tabs>
@@ -223,8 +223,8 @@ export const ComponentView = () => {
                 </Box>
               </PageWrapper>
             </Page>
-          </Grid.Cell>
-        </Grid>
+          </div>
+        </Box>
       </main>
       <ComponentLinks
         links={PageMeta?.links}

@@ -55,7 +55,7 @@ export const ComponentLinks = ({
     <aside
       style={{
         width: "200px",
-        padding: "36px var(--space-base) var(--space-base) var(--space-base)",
+        padding: "36px var(--space-base)",
         display: "flex",
         flexDirection: "column",
         flexShrink: "0",

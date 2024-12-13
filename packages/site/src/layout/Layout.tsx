@@ -23,7 +23,11 @@ export const Layout = () => {
     <LayoutWrapper>
       <NavMenu />
       <div
-        style={{ overflow: "auto", width: "100%", height: "100dvh" }}
+        style={{
+          overflow: "auto",
+          width: "100%",
+          height: "100dvh",
+        }}
         ref={scrollPane}
       >
         <Switch>
