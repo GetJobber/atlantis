@@ -126,6 +126,12 @@ export const SearchBox = ({
                 </ContentCardWrapper>
               </Content>
             )}
+            {filteredComponentList.length == 0 &&
+              filteredDesignList.length == 0 && (
+                <Typography size={"base"} textColor={"textSecondary"}>
+                  No results found
+                </Typography>
+              )}
           </Content>
         </div>
       </Content>
