@@ -13,10 +13,10 @@ export const ContentLoader = () => {
   const location = useLocation();
 
   switch (true) {
-    case location.pathname.includes("/design"):
+    case location.pathname.startsWith("/design"):
       type = "design";
       break;
-    case location.pathname.includes("/changelog"):
+    case location.pathname.startsWith("/changelog"):
       type = "changelog";
       break;
     default:

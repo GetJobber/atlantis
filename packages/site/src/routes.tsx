@@ -100,12 +100,42 @@ export const routes: Array<AtlantisRoute> = [
       },
       {
         path: "/changelog/components-native",
-        handle: "Components Native",
+        handle: "Components-Native",
         exact: true,
       },
       {
         path: "/changelog/design",
         handle: "Design",
+        exact: true,
+      },
+      {
+        path: "/changelog/docx",
+        handle: "Docx",
+        exact: true,
+      },
+      {
+        path: "/changelog/eslint-config",
+        handle: "Eslint Config",
+        exact: true,
+      },
+      {
+        path: "/changelog/formatters",
+        handle: "Formatters",
+        exact: true,
+      },
+      {
+        path: "/changelog/generators",
+        handle: "Generators",
+        exact: true,
+      },
+      {
+        path: "/changelog/hooks",
+        handle: "Hooks",
+        exact: true,
+      },
+      {
+        path: "/changelog/stylelint-config",
+        handle: "Stylelint Config",
         exact: true,
       },
     ],
