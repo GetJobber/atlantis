@@ -14,6 +14,7 @@ export const ComponentsPage = () => {
           title: "Components",
           content: componentList,
         },
+        useCategories: true,
       }}
     />
   );
