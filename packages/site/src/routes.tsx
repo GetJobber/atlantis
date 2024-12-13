@@ -5,9 +5,9 @@ import { ContentPage } from "./pages/ContentPage";
 import { DesignPage } from "./pages/DesignPage";
 import { ComponentView } from "./layout/ComponentView";
 import { componentList } from "./componentList";
-import { ComponentsChangelogPage } from "./pages/ComponentsChangelogPage";
-import { ComponentsNativeChangelogPage } from "./pages/ComponentsNativeChangelogPage";
-import { DesignChangelogPage } from "./pages/DesignChangelogPage";
+// import { ComponentsChangelogPage } from "./pages/ComponentsChangelogPage";
+// import { ComponentsNativeChangelogPage } from "./pages/ComponentsNativeChangelogPage";
+// import { DesignChangelogPage } from "./pages/DesignChangelogPage";
 import { componentSections } from "./componentSections";
 
 export interface AtlantisRoute {
@@ -97,19 +97,16 @@ export const routes: Array<AtlantisRoute> = [
         path: "/changelog/components",
         handle: "Components",
         exact: true,
-        component: ComponentsChangelogPage,
       },
       {
         path: "/changelog/components-native",
         handle: "Components Native",
         exact: true,
-        component: ComponentsNativeChangelogPage,
       },
       {
         path: "/changelog/design",
         handle: "Design",
         exact: true,
-        component: DesignChangelogPage,
       },
     ],
   },
@@ -131,6 +128,13 @@ export const routes: Array<AtlantisRoute> = [
     path: "/content/:name",
     component: ContentLoader,
     handle: "GeneralContent",
+    inNav: false,
+    exact: true,
+  },
+  {
+    path: "/changelog/:name",
+    component: ContentLoader,
+    handle: "ChangelogContent",
     inNav: false,
     exact: true,
   },

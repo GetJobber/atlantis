@@ -12,11 +12,22 @@ export const ContentLoader = () => {
   const { name } = useParams<{ name: string }>();
   const location = useLocation();
 
-  if (location.pathname.includes("/design")) {
-    type = "design";
+  switch (true) {
+    case location.pathname.includes("/design"):
+      type = "design";
+      break;
+    case location.pathname.includes("/changelog"):
+      type = "changelog";
+      break;
+    default:
+      type = "content";
   }
 
   const content = contentMap[type][name];
+
+  console.log("Type:", type);
+  console.log("Name:", name);
+  console.log("Content:", content);
 
   return (
     <ContentView
