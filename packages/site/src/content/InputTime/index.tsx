@@ -1,5 +1,6 @@
 import Content from "@atlantis/docs/components/InputTime/InputTime.stories.mdx";
 import Props from "./InputTime.props.json";
+import Notes from "./InputTimeNotes.mdx";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
@@ -18,4 +19,5 @@ export default {
       ),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;
