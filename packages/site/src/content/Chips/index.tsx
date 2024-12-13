@@ -1,6 +1,8 @@
 import ChipsContent from "@atlantis/docs/components/Chips/Chips.stories.mdx";
 import Props from "./Chips.props.json";
+import Notes from "./ChipsNotes.mdx";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <ChipsContent />,
@@ -27,7 +29,8 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-Chips-web--docs",
+      url: getStorybookUrl(`?path=/docs/components-selections-chips--docs`),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

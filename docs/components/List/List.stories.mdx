@@ -2,6 +2,10 @@ import { Meta, Canvas } from "@storybook/addon-docs";
 import { Card } from "@jobber/components/Card";
 import { List } from "@jobber/components/List";
 
+{/* Sections of this file have been duplicated in the new docs site temporarily. */}
+{/* When updating this file, make sure to also update the corresponding notes file: */}
+{/* packages/site/src/content/[Component]/[Component]Notes.mdx */}
+
 <Meta title="Components/Lists and Tables/List" />
 
 # List
@@ -12,7 +16,7 @@ supports both [flat lists](#basic-flat-list) and
 [custom rendering](#custom-rendering-advanced-usage) of list items via a render
 function.
 
-## Design and Usage Guidelines
+## Design & usage Guidelines
 
 The `List` component is a great solution if you are looking to display a
 collection of objects that are either the same type or related to one another,
@@ -104,7 +108,7 @@ section. To provide your header value for items missing a section, use the
   </Card>
 </Canvas>
 
-### **Custom Rendering (Advanced Usage)**
+### Custom Rendering (Advanced Usage)
 
 If you need more control over the rendering of list items, you can provide a
 **custom render function** using one or more of the `customRenderItem` or
@@ -182,7 +186,3 @@ custom render examples to observe its impact.
 Note: The `customItemStyles` prop is only valid when a `customRenderItem`
 function is provided. The same principle applies to the `customSectionStyles`,
 and `customRenderSection`.
-
-```tsx
-
-```

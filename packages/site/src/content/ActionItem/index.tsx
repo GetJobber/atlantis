@@ -1,6 +1,7 @@
 import Content from "@atlantis/docs/components/ActionItem/ActionItem.stories.mdx";
 import MobileProps from "./ActionItem.props-mobile.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -19,7 +20,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-ActionItem-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-layouts-and-structure-actionitem--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

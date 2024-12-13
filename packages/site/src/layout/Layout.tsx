@@ -1,7 +1,6 @@
-import { PropsWithChildren, useEffect } from "react";
+import { PropsWithChildren, useEffect, useRef } from "react";
 import { Route, Switch, useLocation } from "react-router";
 import { NavMenu } from "./NavMenu";
-import { ComponentView } from "./ComponentView";
 import { AtlantisRoute, routes } from "../routes";
 import "./code-theme.css";
 import { ToggleThemeButton } from "../components/ToggleThemeButton";
@@ -13,20 +12,23 @@ import { ToggleThemeButton } from "../components/ToggleThemeButton";
 
 export const Layout = () => {
   const location = useLocation();
-
+  const scrollPane = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    window.scrollTo({ top: 0 });
-  }, [location]);
+    if (scrollPane?.current) {
+      scrollPane?.current.scrollTo({ top: 0 });
+    }
+  }, [location, scrollPane?.current]);
 
   return (
     <LayoutWrapper>
       <NavMenu />
-      <div style={{ overflow: "auto", width: "100%", minHeight: "100%" }}>
+      <div
+        style={{ overflow: "auto", width: "100%", height: "100dvh" }}
+        ref={scrollPane}
+      >
         <Switch>
           <>
             {routes?.map((route, routeIndex) => {
-              if (route.inNav === false) return null;
-
               const iterateSubMenu = (childroutes: AtlantisRoute[]) => {
                 return childroutes.map((child, childIndex) => {
                   // We don't want to loop through the components
@@ -68,14 +70,6 @@ export const Layout = () => {
                 />
               );
             })}
-
-            {/* The component page */}
-            <Route
-              key={"component"}
-              exact={true}
-              path={"/components/:name"}
-              component={ComponentView}
-            />
           </>
         </Switch>
       </div>

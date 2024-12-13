@@ -1,7 +1,9 @@
 import Content from "@atlantis/docs/components/Form/Form.stories.mdx";
 import Props from "./Form.props.json";
 import MobileProps from "./Form.props-mobile.json";
+import Notes from "./FormNotes.mdx";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -84,7 +86,10 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-Form-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-forms-and-inputs-form--docs`,
+      ),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;
