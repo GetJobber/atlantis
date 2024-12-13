@@ -18,7 +18,6 @@ interface PageBlockProps {
       imageURL?: string;
     };
     body: {
-      title: string;
       content: ContentCardProps[];
     };
     useCategories?: boolean;
@@ -62,7 +61,7 @@ export const PageBlock = ({ structure }: PageBlockProps) => {
   return (
     <PageWrapper>
       <HeaderBlock {...structure.header} />
-      <BodyBlock title={structure.body.title}>
+      <BodyBlock>
         {structure.useCategories && (
           <div
             style={{

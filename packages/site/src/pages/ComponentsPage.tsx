@@ -11,7 +11,6 @@ export const ComponentsPage = () => {
           imageURL: "/img-hero_collage-v2.004b0168.webp",
         },
         body: {
-          title: "Components",
           content: componentList,
         },
         useCategories: true,
