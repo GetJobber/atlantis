@@ -1,5 +1,7 @@
 import {
+  Box,
   Content,
+  Heading,
   InputText,
   InputTextRef,
   Modal,
@@ -7,6 +9,7 @@ import {
 } from "@jobber/components";
 import { useEffect, useMemo, useRef, useState } from "react";
 import styles from "./SearchBox.module.css";
+import { ToolBoxIllustration } from "../assets/ToolBoxIllustration";
 import { ContentCardWrapper } from "../components/ContentCardWrapper";
 import { ContentCard } from "../components/ContentCard";
 import { componentList } from "../componentList";
@@ -128,9 +131,36 @@ export const SearchBox = ({
             )}
             {filteredComponentList.length == 0 &&
               filteredDesignList.length == 0 && (
-                <Typography size={"base"} textColor={"textSecondary"}>
-                  No results found
-                </Typography>
+                <Box
+                  height={"100%"}
+                  direction="column"
+                  padding={"extravagant"}
+                  gap="larger"
+                  alignItems="center"
+                >
+                  <ToolBoxIllustration />
+                  <Heading level={1} element="h3">
+                    The toolbox looks empty!
+                  </Heading>
+                  <Typography
+                    align={"center"}
+                    fontWeight={"semiBold"}
+                    size={"large"}
+                    textColor={"text"}
+                  >
+                    We couldn&apos;t match any results with your search. Try
+                    searching a different term.
+                  </Typography>
+                  <Typography
+                    align={"center"}
+                    fontWeight={"medium"}
+                    size={"large"}
+                    textColor={"textSecondary"}
+                  >
+                    If you think something&apos;s missing, let the Atlantis team
+                    know.
+                  </Typography>
+                </Box>
               )}
           </Content>
         </div>
