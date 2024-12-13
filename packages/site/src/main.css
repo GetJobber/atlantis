@@ -142,6 +142,7 @@ iframe {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   box-sizing: border-box;
 }
 
@@ -157,4 +158,9 @@ iframe {
   mask-size: cover;
   width: 100%;
   height: 2vw;
+}
+
+.headerBlock > * {
+  width: 100%;
+  max-width: 1024px;
 }
