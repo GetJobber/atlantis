@@ -10,7 +10,6 @@ export const ContentPage = () => {
           body: "Before you start building, make sure you’re organized",
         },
         body: {
-          title: "Content",
           content: contentList,
         },
       }}

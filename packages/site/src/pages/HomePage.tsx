@@ -12,7 +12,6 @@ export const HomePage = () => {
           imageURL: "/img_collage.jpg",
         },
         body: {
-          title: "Packages",
           content: [
             {
               title: "Components",

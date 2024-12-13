@@ -22,7 +22,7 @@ export const componentList = [
     title: "ActivityIndicator",
     to: "/components/ActivityIndicator",
     imageURL: "/ActivityIndicator.png",
-    sections: ["Status and Feedback"],
+    sections: ["Status & Feedback"],
     additionalMatches: ["Loader", "Loading", "Busy", "Spinner"],
   },
   {

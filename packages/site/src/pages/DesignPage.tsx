@@ -11,7 +11,6 @@ export const DesignPage = () => {
           imageURL: "/img-page-divider-collage.webp",
         },
         body: {
-          title: "Design",
           content: designList,
         },
       }}
