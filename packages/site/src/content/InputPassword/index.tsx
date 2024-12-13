@@ -9,8 +9,8 @@ export default {
   props: Props,
   mobileProps: MobileProps,
   component: {
-    element: `<InputPassword placeholder={"Password"} />`,
-    mobileElement: `<InputPassword placeholder={"Password"} />`,
+    element: `<InputPassword placeholder={"Password Spot"} />`,
+    mobileElement: `<InputPassword placeholder={"Password In"} />`,
   },
   title: "InputPassword",
   links: [

@@ -1,6 +1,7 @@
 import Content from "@atlantis/docs/components/FormField/FormField.stories.mdx";
 import Props from "./FormField.props.json";
 import MobileProps from "./FormField.props-mobile.json";
+import Notes from "./FormFieldNotes.mdx";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
@@ -23,4 +24,5 @@ export default {
       url: getStorybookUrl(`?path=/docs/components-private-formfield--docs`),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

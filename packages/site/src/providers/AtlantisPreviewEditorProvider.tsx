@@ -310,8 +310,16 @@ export const AtlantisPreviewEditor = () => {
 const skeletonHTML = (theme: Theme, type: "web" | "mobile") => {
   const imports =
     type == "mobile"
-      ? `"@jobber/components-native":"/editorMobileBundle.js"`
-      : `"@jobber/components":"/editorBundle.js"`;
+      ? `
+      "@jobber/hooks":"/editorMobileBundle.js",
+      "@jobber/hooks/useIsMounted":"/editorMobileBundle.js",
+      "@jobber/components-native":"/editorMobileBundle.js",
+      `
+      : `
+         "@jobber/hooks":"/editorBundle.js",
+         "@jobber/hooks/useIsMounted":"/editorBundle.js",
+      "@jobber/components":"/editorBundle.js",
+      `;
 
   return `
 
@@ -340,9 +348,7 @@ html,body,#root {
  <script type="importmap">
   {
     "imports": {
-      ${imports},
-      "@jobber/hooks":"/node_modules/.vite/deps/@jobber_hooks.js",
-      "@jobber/hooks/useIsMounted":"/node_modules/.vite/deps/@jobber_hooks.js",
+      ${imports}
       "axios": "/axios.js"
     }
   }
@@ -525,6 +531,7 @@ export const MobileCodeWrapper = (
               Form,
               FormField,
               FormatFile,
+              InputCurrency,
               InputDate,
               InputEmail,
               InputFieldWrapper,
@@ -537,7 +544,7 @@ export const MobileCodeWrapper = (
               ProgressBar,
               Select,
               Option,
-              Switch, 
+              Switch,
               Text,
               TextList,
               ThumbnailList,
@@ -552,9 +559,13 @@ export const MobileCodeWrapper = (
               View,
             } from '@jobber/components-native';
                 ${transpiledCode}
-            
+
             function RootWrapper() {
               return React.createElement(Host, {style:{display:'flex',alignItems:'center',justifyContent:'center', width:'100%'}}, React.createElement(App));
+            }
+
+            function IntlWrapper() {
+              return React.createElement(IntlProvider, {locale: 'en'}, React.createElement(RootWrapper));
             }
 
           if (rootElement) {
@@ -564,5 +575,5 @@ export const MobileCodeWrapper = (
               rootElement = document.getElementById('root')
               root = ReactDOM.createRoot(rootElement);
              }
-              root.render(React.createElement(RootWrapper, null));
+              root.render(React.createElement(IntlWrapper, null));
           `;

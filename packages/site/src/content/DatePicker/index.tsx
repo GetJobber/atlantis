@@ -1,5 +1,6 @@
 import Content from "@atlantis/docs/components/Datepicker/Datepicker.stories.mdx";
 import Props from "./DatePicker.props.json";
+import Notes from "./DatePickerNotes.mdx";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
@@ -18,7 +19,7 @@ export default {
   };
 
   return <DatePicker selected={date} onChange={changeDate} />
-    
+
     `,
   },
   title: "DatePicker",
@@ -30,4 +31,5 @@ export default {
       ),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

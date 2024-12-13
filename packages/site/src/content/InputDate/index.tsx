@@ -1,6 +1,7 @@
 import InputDateContent from "@atlantis/docs/components/InputDate/InputDate.stories.mdx";
 import Props from "./InputDate.props.json";
 import MobileProps from "./InputDate.props-mobile.json";
+import Notes from "./InputDateNotes.mdx";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
@@ -27,4 +28,5 @@ return <InputDate value={date} onChange={setDate} />;
       ),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

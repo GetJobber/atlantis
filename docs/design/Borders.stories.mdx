@@ -34,10 +34,9 @@ export function Example({ of: size }) {
 }
 
 export function BorderSize({ of: size }) {
-  const element = document.createElement("div");
-  Object.assign(element.style, BaseStyle({ of: size }));
-  document.body.appendChild(element);
-  return getComputedStyle(element).borderBottomWidth;
+  return getComputedStyle(document.documentElement).getPropertyValue(
+    `--border-${size}`
+  );
 }
 
 | Width               | Visual                    | Value                        |
