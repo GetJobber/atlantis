@@ -109,3 +109,9 @@
   }
 }
 
+:root[data-theme="dark"] .navMenuContainer {
+  button {
+    mix-blend-mode: screen;
+  }
+}
+
