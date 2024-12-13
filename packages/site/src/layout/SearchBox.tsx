@@ -13,6 +13,7 @@ import { ToolBoxIllustration } from "../assets/ToolBoxIllustration";
 import { ContentCardWrapper } from "../components/ContentCardWrapper";
 import { ContentCard } from "../components/ContentCard";
 import { componentList } from "../componentList";
+import { contentList } from "../contentList";
 import { designList } from "../designList";
 
 /**
@@ -33,6 +34,16 @@ export const SearchBox = ({
 }) => {
   const ref = useRef<InputTextRef>(null);
   const [search, setSearch] = useState("");
+
+  const filteredContentList = useMemo(() => {
+    return contentList.filter(
+      d =>
+        d.title.toLowerCase().includes(search.toLowerCase()) ||
+        d.additionalMatches?.find(e =>
+          e.toLowerCase().includes(search.toLowerCase()),
+        ),
+    );
+  }, [search]);
 
   const filteredDesignList = useMemo(() => {
     return designList.filter(
@@ -90,6 +101,32 @@ export const SearchBox = ({
                 </Typography>
                 <ContentCardWrapper>
                   {filteredComponentList.map(({ title, to, imageURL }, key) => {
+                    return (
+                      <ContentCard
+                        onClick={closeModal}
+                        title={title}
+                        to={to}
+                        imageURL={imageURL}
+                        key={key}
+                      />
+                    );
+                  })}
+                </ContentCardWrapper>
+              </Content>
+            )}
+            {filteredContentList.length > 0 && (
+              <Content>
+                <Typography
+                  size={"base"}
+                  fontWeight={"bold"}
+                  textCase={"uppercase"}
+                  textColor={"textSecondary"}
+                  element="h3"
+                >
+                  Content
+                </Typography>
+                <ContentCardWrapper>
+                  {filteredContentList.map(({ title, to, imageURL }, key) => {
                     return (
                       <ContentCard
                         onClick={closeModal}

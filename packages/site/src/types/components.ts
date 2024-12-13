@@ -5,5 +5,6 @@ export interface ContentCardProps {
   readonly to: string;
   readonly component?: () => ReactNode;
   readonly imageURL?: string;
+  readonly sections?: string[];
   onClick?: () => void;
 }

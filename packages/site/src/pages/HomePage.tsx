@@ -12,18 +12,14 @@ export const HomePage = () => {
           imageURL: "/img_collage.jpg",
         },
         body: {
-          title: "Packages",
           content: [
             {
               title: "Components",
               to: "/components",
               imageURL: "/Components.png",
             },
-            {
-              title: "Design",
-              to: "/design",
-              imageURL: "/Design.png",
-            },
+            { title: "Design", to: "/design", imageURL: "/Design.png" },
+            { title: "Content", to: "/content", imageURL: "/Placeholder.png" },
           ],
         },
       }}
