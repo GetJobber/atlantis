@@ -25,10 +25,6 @@ export const ContentLoader = () => {
 
   const content = contentMap[type][name];
 
-  console.log("Type:", type);
-  console.log("Name:", name);
-  console.log("Content:", content);
-
   return (
     <ContentView
       intro={content.intro}
