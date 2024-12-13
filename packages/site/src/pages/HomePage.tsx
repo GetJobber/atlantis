@@ -24,6 +24,11 @@ export const HomePage = () => {
               to: "/design",
               imageURL: "/Design.png",
             },
+            {
+              title: "Changelog",
+              to: "/changelog",
+              imageURL: "/Changelog.png",
+            },
           ],
         },
       }}

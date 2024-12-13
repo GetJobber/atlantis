@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useLocation, useParams } from "react-router";
 import { ContentView } from "../pages/ContentView";
 import { contentMap } from "../maps";
 
@@ -8,8 +8,15 @@ import { contentMap } from "../maps";
  * @returns ReadNode
  */
 export const ContentLoader = () => {
-  const { name, type } = useParams<{ name: string; type: string }>();
+  let type = "content";
+  const { name } = useParams<{ name: string }>();
+  const location = useLocation();
 
+  if (location.pathname.includes("/design")) {
+    type = "design";
+  } else if (location.pathname.includes("/changelog")) {
+    type = "changelog";
+  }
   const content = contentMap[type][name];
 
   return (
