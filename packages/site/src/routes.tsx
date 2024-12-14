@@ -5,9 +5,6 @@ import { ContentPage } from "./pages/ContentPage";
 import { DesignPage } from "./pages/DesignPage";
 import { ComponentView } from "./layout/ComponentView";
 import { componentList } from "./componentList";
-// import { ComponentsChangelogPage } from "./pages/ComponentsChangelogPage";
-// import { ComponentsNativeChangelogPage } from "./pages/ComponentsNativeChangelogPage";
-// import { DesignChangelogPage } from "./pages/DesignChangelogPage";
 import { componentSections } from "./componentSections";
 import { ChangelogPage } from "./pages/ChangelogPage";
 
