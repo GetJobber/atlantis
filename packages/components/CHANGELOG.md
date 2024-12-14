@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.9.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.8.0...@jobber/components@6.9.0) (2024-12-14)
+
+
+### Features
+
+* **components:** Make List Section Header Flexible ([#2235](https://github.com/GetJobber/atlantis/issues/2235)) ([df9851c](https://github.com/GetJobber/atlantis/commit/df9851c0880246aa9e67c12af9040ff957f6af7c))
+
+
+
+
+
 # [6.8.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.7.1...@jobber/components@6.8.0) (2024-12-10)
 
 
