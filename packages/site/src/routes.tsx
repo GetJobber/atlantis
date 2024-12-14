@@ -86,6 +86,53 @@ export const routes: Array<AtlantisRoute> = [
     handle: "Design",
     exact: true,
     component: DesignPage,
+    children: [
+      {
+        path: "/design/animation",
+        handle: "Animation",
+        exact: true,
+      },
+      {
+        path: "/design/borders",
+        handle: "Borders",
+        exact: true,
+      },
+      {
+        path: "/design/colors",
+        handle: "Colors",
+        exact: true,
+      },
+      {
+        path: "/design/elevations",
+        handle: "Elevations",
+        exact: true,
+      },
+      {
+        path: "/design/opacity",
+        handle: "Opacity",
+        exact: true,
+      },
+      {
+        path: "/design/radii",
+        handle: "Radii",
+        exact: true,
+      },
+      {
+        path: "/design/breakpoints",
+        handle: "Breakpoints",
+        exact: true,
+      },
+      {
+        path: "/design/spacing",
+        handle: "Spacing",
+        exact: true,
+      },
+      {
+        path: "/design/typography",
+        handle: "Typography",
+        exact: true,
+      },
+    ],
   },
   {
     path: "/changelog",

@@ -13,7 +13,7 @@ export const designList = [
   },
   {
     title: "Breakpoints",
-    to: "/design/responsive-breakpoint",
+    to: "/design/breakpoints",
     imageURL: "/Breakpoints.png",
     additionalMatches: ["Responsive"],
   },
