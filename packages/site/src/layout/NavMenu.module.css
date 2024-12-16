@@ -1,35 +1,35 @@
 .navMenuContainer {
-    --hoverOffset: var(--space-smallest);
-    --negativeHoverOffset: calc(-1 * var(--hoverOffset));
-    --subItemInset: calc(var(--space-small) + var(--space-smaller));
-    --navItemHeight: 40px;
-    display: flex;
-    flex-direction: column;
-    padding: 36px 0 0 0;
-    height: 100dvh;
-    background-color: var(--color-surface--background);
-    width: 200px;
-    box-sizing: border-box;
+  --hoverOffset: var(--space-smallest);
+  --negativeHoverOffset: calc(-1 * var(--hoverOffset));
+  --subItemInset: calc(var(--space-small) + var(--space-smaller));
+  --navItemHeight: 40px;
+  display: flex;
+  flex-direction: column;
+  padding: 36px 0 0 0;
+  height: 100dvh;
+  background-color: var(--color-surface--background);
+  width: 200px;
+  box-sizing: border-box;
 }
 
-.navMenuContainer > * {
+.navMenuContainer>* {
   padding-left: var(--space-base);
   padding-right: var(--space-base);
   padding-bottom: var(--space-base);
 }
 
 .navMenuHeader {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-large);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-large);
 }
 
 .navMenu {
-    color: var(--color-text);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-large);
-    overflow-y: scroll;
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-large);
+  overflow-y: scroll;
 }
 
 .navMenu li {
@@ -43,6 +43,38 @@
   overflow-wrap: anywhere;
   transition: all var(--timing-base) ease-out;
   user-select: none;
+}
+
+.searchButton {
+  display: flex;
+  align-items: center;
+  border: var(--border-base) solid var(--color-border--interactive);
+  border-radius: var(--radius-base);
+  padding: var(--space-small);
+  background: var(--color-surface);
+}
+
+.searchButton:hover {
+  background: var(--color-surface--background--hover);
+  border: var(--border-base) solid var(--color-interactive--subtle--hover);
+}
+
+.searchButtonText {
+  margin: 0 var(--space-small);
+  flex: 1;
+  text-align: start;
+}
+
+.keyIndicator {
+  background: var(--color-surface--background);
+  width: 20px;
+  height: 20px;
+  font-size: var(--typography--fontSize-large);
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-low);
 }
 
 .navMenuLink {
@@ -114,4 +146,3 @@
     mix-blend-mode: screen;
   }
 }
-

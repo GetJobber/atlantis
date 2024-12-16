@@ -6,6 +6,7 @@ import {
   Typography,
 } from "@jobber/components";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useOnKeyDown } from "@jobber/hooks";
 import styles from "./SearchBox.module.css";
 import { ContentCardWrapper } from "../components/ContentCardWrapper";
 import { ContentCard } from "../components/ContentCard";
@@ -31,6 +32,11 @@ export const SearchBox = ({
 }) => {
   const ref = useRef<InputTextRef>(null);
   const [search, setSearch] = useState("");
+
+  useOnKeyDown(event => {
+    event.preventDefault();
+    setOpen(true);
+  }, "/");
 
   const filteredContentList = useMemo(() => {
     return contentList.filter(

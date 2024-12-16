@@ -1,4 +1,4 @@
-import { Box, Button, Content, Typography } from "@jobber/components";
+import { Box, Content, Icon, Typography } from "@jobber/components";
 import { Link } from "react-router-dom";
 import { Fragment, PropsWithChildren, useState } from "react";
 import { SearchBox } from "./SearchBox";
@@ -67,12 +67,24 @@ export const NavMenu = () => {
           </Link>
         </Box>
         <Box>
-          <Button
+          <button
+            type="button"
             onClick={() => setOpen(true)}
-            label="Search"
-            icon="search"
-            variation="subtle"
-          />
+            className={styles.searchButton}
+            aria-label="Search"
+          >
+            <Icon name="search" />
+            <span className={styles.searchButtonText}>
+              <Typography
+                size={"base"}
+                textColor={"text"}
+                fontWeight={"semiBold"}
+              >
+                Search
+              </Typography>
+            </span>
+            <div className={styles.keyIndicator}>/</div>
+          </button>
         </Box>
         <SearchBox open={open} setOpen={setOpen} />
       </div>
