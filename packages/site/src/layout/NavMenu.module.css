@@ -7,7 +7,6 @@
     flex-direction: column;
     padding: 36px 0 0 0;
     height: 100dvh;
-    background-color: var(--color-surface--background);
     width: 200px;
     box-sizing: border-box;
 }
@@ -109,9 +108,8 @@
   }
 }
 
-:root[data-theme="dark"] .navMenuContainer {
+:root[data-theme="dark"] .disclosureNavItem {
   button {
     mix-blend-mode: screen;
   }
 }
-

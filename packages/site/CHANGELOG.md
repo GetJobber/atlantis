@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.1...@jobber/atlantis-site@0.18.2) (2024-12-16)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.0...@jobber/atlantis-site@0.18.1) (2024-12-16)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+# [0.18.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.17.8...@jobber/atlantis-site@0.18.0) (2024-12-14)
+
+
+### Features
+
+* **components:** Make List Section Header Flexible ([#2235](https://github.com/GetJobber/atlantis/issues/2235)) ([df9851c](https://github.com/GetJobber/atlantis/commit/df9851c0880246aa9e67c12af9040ff957f6af7c))
+
+
+
+
+
 ## [0.17.8](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.17.7...@jobber/atlantis-site@0.17.8) (2024-12-13)
 
 **Note:** Version bump only for package @jobber/atlantis-site

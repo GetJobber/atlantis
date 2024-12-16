@@ -62,9 +62,12 @@ type `ListItemProps` must be used when using default rendering.
 If a section field is present in any item, the list will group the items by
 their section and display them under section headers. If even one section key
 exists in any of items then it will be expected that every object within that
-collection will have a section defined. If a section is missing, "Other" will be
-used, and any items with a section of "Other" will be grouped with that first
-occurrence that has no section.
+collection will have a section defined.
+
+If a section is missing, "Other" will be used by default, and any items with a
+section of "Other" will be grouped with that first occurrence that has no
+section. To provide your header value for items missing a section, use the
+`defaultSectionHeader` prop.
 
 <Canvas>
   <Card>
@@ -108,11 +111,16 @@ occurrence that has no section.
 ### Custom Rendering (Advanced Usage)
 
 If you need more control over the rendering of list items, you can provide a
-**custom render function** using the `customRenderItem` prop. This is useful if
-the default rendering of the `ListItem` component doesn’t meet your
-requirements. If a custom render function is provided onClick, url, and hover
-functionality will still work. Sectioned list functionality will also remain the
-same.
+**custom render function** using one or more of the `customRenderItem` or
+`customRenderSection` props.
+
+This is useful if the default rendering of the `ListItem` or section header
+component doesn’t meet your requirements. If a custom render function is
+provided onClick, url, and hover functionality will still work. Sectioned list
+functionality will also remain the same.
+
+If a custrom render function is provided for the section only the appearance of
+the header will change.
 
 **Example: Custom Render Function with Custom Interface**
 
@@ -176,4 +184,5 @@ and no border-bottom. You can also experiment by toggling this prop in the other
 custom render examples to observe its impact.
 
 Note: The `customItemStyles` prop is only valid when a `customRenderItem`
-function is provided.
+function is provided. The same principle applies to the `customSectionStyles`,
+and `customRenderSection`.
