@@ -133,7 +133,7 @@ iframe {
 .headerBlock {
   background-image: url("/img_collage.jpg");
   background-size: cover;
-  padding: var(--space-extravagant);
+  padding: var(--space-large);
   width: 100%;
   height: 100%;
   color: var(--color-base-white);
@@ -142,7 +142,14 @@ iframe {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   box-sizing: border-box;
+}
+
+@media screen and (min-width: 1024px) {
+  .headerBlock {
+    padding: var(--space-extravagant);
+  }
 }
 
 .headerBlock:after {
@@ -157,4 +164,9 @@ iframe {
   mask-size: cover;
   width: 100%;
   height: 2vw;
+}
+
+.headerBlock > * {
+  width: 100%;
+  max-width: 1024px;
 }
