@@ -7,6 +7,7 @@ import { ComponentView } from "./layout/ComponentView";
 import { componentList } from "./componentList";
 import { componentSections } from "./componentSections";
 import { ChangelogPage } from "./pages/ChangelogPage";
+import { GuidesPage } from "./pages/GuidesPage";
 
 export interface AtlantisRoute {
   path?: string;
@@ -133,6 +134,44 @@ export const routes: Array<AtlantisRoute> = [
     ],
   },
   {
+    path: "/guides",
+    handle: "Guides",
+    exact: true,
+    component: GuidesPage,
+    children: [
+      {
+        path: "/guides/create-a-react-component",
+        handle: "Create a React component",
+        exact: true,
+      },
+      {
+        path: "/guides/customizing-components",
+        handle: "Customizing components",
+        exact: true,
+      },
+      {
+        path: "/guides/documentation-styleguide",
+        handle: "Documentation styleguide",
+        exact: true,
+      },
+      {
+        path: "/guides/frontend-styleguide",
+        handle: "Frontend styleguide",
+        exact: true,
+      },
+      {
+        path: "/guides/getting-started-with-react",
+        handle: "Getting started with React",
+        exact: true,
+      },
+      {
+        path: "/guides/pull-request-title-generator",
+        handle: "Pull request title generator",
+        exact: true,
+      },
+    ],
+  },
+  {
     path: "/changelog",
     handle: "Changelog",
     exact: true,
@@ -203,6 +242,13 @@ export const routes: Array<AtlantisRoute> = [
     path: "/content/:name",
     component: ContentLoader,
     handle: "GeneralContent",
+    inNav: false,
+    exact: true,
+  },
+  {
+    path: "/guides/:name",
+    component: ContentLoader,
+    handle: "GuidesContent",
     inNav: false,
     exact: true,
   },
