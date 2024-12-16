@@ -34,7 +34,7 @@ const language = new Compartment();
 const AtlantisPreviewEditorContext = createContext<{
   iframe: React.RefObject<HTMLIFrameElement> | null;
   iframeMobile: React.RefObject<HTMLIFrameElement> | null;
-  updateCode: (code: string) => void;
+  updateCode: (code: string, forceUpdate?: boolean) => void;
   code: string;
   error: string;
   type: "web" | "mobile";
@@ -89,8 +89,8 @@ export const AtlantisPreviewEditorProvider = ({
   };
   const updateCode = useCallback(
     // eslint-disable-next-line max-statements
-    (codeUp: string) => {
-      if (codeUp === code) {
+    (codeUp: string, forceUpdate?: boolean) => {
+      if (codeUp === code && !forceUpdate) {
         return;
       }
       setCode(codeUp);
@@ -111,22 +111,8 @@ export const AtlantisPreviewEditorProvider = ({
         const html =
           selectedFrame.current?.contentDocument?.documentElement.outerHTML;
 
-        if (html === "<html><head></head><body></body></html>") {
-          writeSkeleton(selectedFrame.current?.contentDocument, theme);
-          selectedFrame?.current?.addEventListener("load", () => {
-            if (selectedFrame.current) {
-              const iframeDocument = selectedFrame.current.contentDocument;
-
-              if (iframeDocument) {
-                selectedFrame.current.style.height =
-                  iframeDocument.body.scrollHeight + 60 + "px";
-              }
-            }
-          });
-        }
-
-        if (selectedFrame.current) {
-          const iframeWindow = selectedFrame.current.contentWindow;
+        const updateIframeCode = (currentFrame: HTMLIFrameElement) => {
+          const iframeWindow = currentFrame.contentWindow;
 
           if (iframeWindow) {
             const codeWrapper =
@@ -138,6 +124,23 @@ export const AtlantisPreviewEditorProvider = ({
               "*",
             );
           }
+        };
+
+        if (html === "<html><head></head><body></body></html>") {
+          writeSkeleton(selectedFrame.current?.contentDocument, theme);
+          selectedFrame?.current?.addEventListener("load", () => {
+            if (selectedFrame.current) {
+              const iframeDocument = selectedFrame.current.contentDocument;
+
+              if (iframeDocument) {
+                selectedFrame.current.style.height =
+                  iframeDocument.body.scrollHeight + 60 + "px";
+              }
+              updateIframeCode(selectedFrame.current);
+            }
+          });
+        } else if (selectedFrame.current) {
+          updateIframeCode(selectedFrame.current);
         } else {
           console.log("tried to update iframe");
         }
@@ -361,8 +364,8 @@ html,body,#root {
       </script>
       <script>
       window.onerror = function(message, source, lineno, colno, error) {
-      console.log('ERROR',message, source, lineno, colno, error)
-        window.parent.postMessage(JSON.stringify({message, source, lineno, colno, error}), '*')
+        console.log('ERROR', message, source, lineno, colno, error);
+        window.parent.postMessage(JSON.stringify({ message, source, lineno, colno, error }), '*');
         return true;
       };
       window.addEventListener('message', (event) => {
