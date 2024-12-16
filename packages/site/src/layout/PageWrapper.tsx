@@ -7,13 +7,14 @@ import { PropsWithChildren } from "react";
  */
 export const PageWrapper = ({ children }: PropsWithChildren) => {
   return (
-    <main
+    <div
       style={{
         width: "100%",
         minHeight: "100%",
+        backgroundColor: "var(--color-surface)",
       }}
     >
       {children}
-    </main>
+    </div>
   );
 };
