@@ -15,6 +15,7 @@ import { ContentCard } from "../components/ContentCard";
 import { componentList } from "../componentList";
 import { contentList } from "../contentList";
 import { designList } from "../designList";
+import { guidesList } from "../guidesList";
 import { changelogList } from "../changelogList";
 
 /**
@@ -75,6 +76,17 @@ export const SearchBox = ({
         ),
     );
   }, [search]);
+
+  const filteredGuidesList = useMemo(() => {
+    return guidesList.filter(
+      d =>
+        d.title.toLowerCase().includes(search.toLowerCase()) ||
+        d.additionalMatches?.find(e =>
+          e.toLowerCase().includes(search.toLowerCase()),
+        ),
+    );
+  }, [search]);
+
   useEffect(() => {
     if (open) {
       ref.current?.focus();
@@ -190,6 +202,32 @@ export const SearchBox = ({
                 </Typography>
                 <ContentCardWrapper>
                   {filteredChangelogList.map(({ title, to, imageURL }, key) => {
+                    return (
+                      <ContentCard
+                        onClick={closeModal}
+                        title={title}
+                        to={to}
+                        imageURL={imageURL}
+                        key={key}
+                      />
+                    );
+                  })}
+                </ContentCardWrapper>
+              </Content>
+            )}
+            {filteredGuidesList.length > 0 && (
+              <Content>
+                <Typography
+                  size={"base"}
+                  fontWeight={"bold"}
+                  textCase={"uppercase"}
+                  textColor={"textSecondary"}
+                  element="h3"
+                >
+                  Guides
+                </Typography>
+                <ContentCardWrapper>
+                  {filteredGuidesList.map(({ title, to, imageURL }, key) => {
                     return (
                       <ContentCard
                         onClick={closeModal}
