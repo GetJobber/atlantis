@@ -21,10 +21,11 @@ export const Layout = () => {
 
   return (
     <LayoutWrapper>
-      <NavMenu />
+      <NavMenu mainContentRef={scrollPane} />
       <div
         style={{ overflow: "auto", width: "100%", height: "100dvh" }}
         ref={scrollPane}
+        tabIndex={0}
       >
         <Switch>
           <>
