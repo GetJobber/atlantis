@@ -1,4 +1,4 @@
-import { Box, Content, Icon, Typography } from "@jobber/components";
+import { Box, Button, Content, Icon, Typography } from "@jobber/components";
 import { Link } from "react-router-dom";
 import { Fragment, PropsWithChildren, useState } from "react";
 import { SearchBox } from "./SearchBox";
