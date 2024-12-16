@@ -52,6 +52,12 @@
   border-radius: var(--radius-base);
   padding: var(--space-small);
   background: var(--color-surface);
+  outline: transparent;
+
+  &:focus-visible {
+    box-shadow: var(--shadow-focus);
+    background-color: var(--color-surface--background--hover);
+  }
 }
 
 .searchButton:hover {
