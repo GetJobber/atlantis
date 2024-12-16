@@ -54,9 +54,9 @@ export const ComponentView = () => {
 
   useEffect(() => {
     if (iframe?.current || iframeMobile?.current) {
-      setTimeout(() => updateCode(code as string), 100);
+      setTimeout(() => updateCode(code as string, true), 100);
     }
-  }, [code, iframe?.current, iframeMobile?.current, type, tab]);
+  }, [code, type]);
 
   useEffect(() => {
     if (
