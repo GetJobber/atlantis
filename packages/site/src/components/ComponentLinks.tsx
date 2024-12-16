@@ -52,72 +52,87 @@ export const ComponentLinks = ({
   if (isMinimal) return null;
 
   return (
-    <Content>
-      <Box padding="base" direction="column">
-        <Content spacing={"larger"}>
-          <Content>
-            <Heading level={3}>Design</Heading>
-            <Content spacing="small">
-              {hlinks?.map((link, index) => (
-                <Box key={index}>
-                  <a onClick={click} href={`#${link.id}`}>
-                    {link.textContent}
-                  </a>
-                </Box>
-              ))}
-            </Content>
+    <aside
+      style={{
+        width: "200px",
+        padding: "36px var(--space-base)",
+        display: "flex",
+        flexDirection: "column",
+        flexShrink: "0",
+        boxSizing: "border-box",
+      }}
+    >
+      <Content spacing={"larger"}>
+        <Content>
+          <Heading level={6} element="h3">
+            Design
+          </Heading>
+          <Content spacing="small">
+            {hlinks?.map((link, index) => (
+              <Box key={index}>
+                <a onClick={click} href={`#${link.id}`}>
+                  {link.textContent}
+                </a>
+              </Box>
+            ))}
           </Content>
-          {webEnabled && (
-            <Content>
-              <Heading level={3}>Web</Heading>
-              <Content spacing="small">
-                <Box>
-                  <a onClick={() => goToUsage("web")} href={`#`}>
-                    Usage
-                  </a>
-                </Box>
-                <Box>
-                  <a onClick={() => goToProps("web")} href={`#`}>
-                    Props
-                  </a>
-                </Box>
-              </Content>
-            </Content>
-          )}
-          {mobileEnabled && (
-            <Content>
-              <Heading level={3}>Mobile</Heading>
-              <Content spacing="small">
-                <Box>
-                  <a onClick={() => goToUsage("mobile")} href={`#`}>
-                    Usage
-                  </a>
-                </Box>
-                <Box>
-                  <a onClick={() => goToProps("mobile")} href={`#`}>
-                    Props
-                  </a>
-                </Box>
-              </Content>
-            </Content>
-          )}
+        </Content>
+        {webEnabled && (
           <Content>
-            <Heading level={3}>Links</Heading>
-            <Content spacing="smaller">
-              <Box direction="row" gap="small">
-                <Icon name="link" />
-                {links?.map((link, index) => (
-                  <div key={index} data-storybook-link>
-                    <Link key={index} url={link.url} external>
-                      {link.label}
-                    </Link>
-                  </div>
-                ))}
+            <Heading level={6} element="h3">
+              Web
+            </Heading>
+            <Content spacing="small">
+              <Box>
+                <a onClick={() => goToUsage("web")} href={`#`}>
+                  Usage
+                </a>
+              </Box>
+              <Box>
+                <a onClick={() => goToProps("web")} href={`#`}>
+                  Props
+                </a>
               </Box>
             </Content>
           </Content>
+        )}
+        {mobileEnabled && (
+          <Content>
+            <Heading level={6} element="h3">
+              Mobile
+            </Heading>
+            <Content spacing="small">
+              <Box>
+                <a onClick={() => goToUsage("mobile")} href={`#`}>
+                  Usage
+                </a>
+              </Box>
+              <Box>
+                <a onClick={() => goToProps("mobile")} href={`#`}>
+                  Props
+                </a>
+              </Box>
+            </Content>
+          </Content>
+        )}
+        <Content>
+          <Heading level={6} element="h3">
+            Links
+          </Heading>
+          <Content spacing="smaller">
+            <Box direction="row" gap="smaller" alignItems="center">
+              <Icon size="small" color="interactive" name="link" />
+              {links?.map((link, index) => (
+                <div key={index} data-storybook-link>
+                  <Link key={index} url={link.url} external>
+                    {link.label}
+                  </Link>
+                </div>
+              ))}
+            </Box>
+          </Content>
         </Content>
-      </Box>
-    </Content>
+      </Content>
+    </aside>
   );
 };
