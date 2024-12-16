@@ -95,7 +95,7 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
                 Search
               </Typography>
             </span>
-            <div className={styles.keyIndicator}>/</div>
+            <div className={styles.searchKeyIndicator}>/</div>
           </button>
         </Box>
         <SearchBox open={open} setOpen={setOpen} />
