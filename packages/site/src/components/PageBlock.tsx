@@ -65,15 +65,14 @@ export const PageBlock = ({ structure }: PageBlockProps) => {
         {structure.useCategories && (
           <div
             style={{
-              width: 305,
+              width: "240px",
               margin: "auto",
-              paddingBottom: "var(--space-large)",
+              paddingBottom: "var(--space-largest)",
             }}
           >
             <SegmentedControl
               selectedValue={cardView}
               onSelectValue={setCardView}
-              size={"small"}
             >
               <SegmentedControl.Option value={"category"}>
                 Category

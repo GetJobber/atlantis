@@ -7,12 +7,17 @@ import styles from "./NavMenu.module.css";
 import { routes } from "../routes";
 import { JobberLogo } from "../assets/JobberLogo.svg";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
+import { VisibleWhenFocused } from "../components/VisibleWhenFocused";
+
+interface NavMenuProps {
+  readonly mainContentRef: React.RefObject<HTMLDivElement>;
+}
 
 /**
  * Left side navigation menu for the application.
  * @returns ReactNode
  */
-export const NavMenu = () => {
+export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
   const [open, setOpen] = useState(false);
   const { isMinimal } = useAtlantisSite();
 
@@ -57,9 +62,16 @@ export const NavMenu = () => {
     });
   };
 
+  const skipToContent = () => {
+    mainContentRef.current?.focus();
+  };
+
   return (
     <nav className={styles.navMenuContainer}>
       <div className={styles.navMenuHeader}>
+        <VisibleWhenFocused>
+          <Button label="Skip to Content" onClick={skipToContent} />
+        </VisibleWhenFocused>
         <Box>
           {/* TODO: remove ?new when we roll out the new docs site to everyone */}
           <Link to="/?new">

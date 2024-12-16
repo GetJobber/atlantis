@@ -5,10 +5,8 @@ import { ContentPage } from "./pages/ContentPage";
 import { DesignPage } from "./pages/DesignPage";
 import { ComponentView } from "./layout/ComponentView";
 import { componentList } from "./componentList";
-import { ComponentsChangelogPage } from "./pages/ComponentsChangelogPage";
-import { ComponentsNativeChangelogPage } from "./pages/ComponentsNativeChangelogPage";
-import { DesignChangelogPage } from "./pages/DesignChangelogPage";
 import { componentSections } from "./componentSections";
+import { ChangelogPage } from "./pages/ChangelogPage";
 
 export interface AtlantisRoute {
   path?: string;
@@ -86,30 +84,104 @@ export const routes: Array<AtlantisRoute> = [
     handle: "Design",
     exact: true,
     component: DesignPage,
+    children: [
+      {
+        path: "/design/animation",
+        handle: "Animation",
+        exact: true,
+      },
+      {
+        path: "/design/borders",
+        handle: "Borders",
+        exact: true,
+      },
+      {
+        path: "/design/colors",
+        handle: "Colors",
+        exact: true,
+      },
+      {
+        path: "/design/elevations",
+        handle: "Elevations",
+        exact: true,
+      },
+      {
+        path: "/design/opacity",
+        handle: "Opacity",
+        exact: true,
+      },
+      {
+        path: "/design/radii",
+        handle: "Radii",
+        exact: true,
+      },
+      {
+        path: "/design/breakpoints",
+        handle: "Breakpoints",
+        exact: true,
+      },
+      {
+        path: "/design/spacing",
+        handle: "Spacing",
+        exact: true,
+      },
+      {
+        path: "/design/typography",
+        handle: "Typography",
+        exact: true,
+      },
+    ],
   },
   {
     path: "/changelog",
     handle: "Changelog",
     exact: true,
-    // component: ComponentsChangelogPage,
+    component: ChangelogPage,
     children: [
       {
         path: "/changelog/components",
         handle: "Components",
         exact: true,
-        component: ComponentsChangelogPage,
       },
       {
         path: "/changelog/components-native",
-        handle: "Components Native",
+        handle: "Components-Native",
         exact: true,
-        component: ComponentsNativeChangelogPage,
       },
       {
         path: "/changelog/design",
         handle: "Design",
         exact: true,
-        component: DesignChangelogPage,
+      },
+      {
+        path: "/changelog/docx",
+        handle: "Docx",
+        exact: true,
+      },
+      {
+        path: "/changelog/eslint-config",
+        handle: "Eslint Config",
+        exact: true,
+      },
+      {
+        path: "/changelog/formatters",
+        handle: "Formatters",
+        exact: true,
+      },
+      {
+        path: "/changelog/generators",
+        handle: "Generators",
+        exact: true,
+      },
+      {
+        path: "/changelog/hooks",
+        handle: "Hooks",
+        exact: true,
+      },
+      {
+        path: "/changelog/stylelint-config",
+        handle: "Stylelint Config",
+        exact: true,
       },
     ],
   },
@@ -131,6 +203,13 @@ export const routes: Array<AtlantisRoute> = [
     path: "/content/:name",
     component: ContentLoader,
     handle: "GeneralContent",
+    inNav: false,
+    exact: true,
+  },
+  {
+    path: "/changelog/:name",
+    component: ContentLoader,
+    handle: "ChangelogContent",
     inNav: false,
     exact: true,
   },

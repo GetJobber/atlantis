@@ -13,6 +13,7 @@ import { ContentCard } from "../components/ContentCard";
 import { componentList } from "../componentList";
 import { contentList } from "../contentList";
 import { designList } from "../designList";
+import { changelogList } from "../changelogList";
 
 /**
  * Full Page Search Modal
@@ -60,6 +61,16 @@ export const SearchBox = ({
 
   const filteredComponentList = useMemo(() => {
     return componentList.filter(
+      d =>
+        d.title.toLowerCase().includes(search.toLowerCase()) ||
+        d.additionalMatches?.find(e =>
+          e.toLowerCase().includes(search.toLowerCase()),
+        ),
+    );
+  }, [search]);
+
+  const filteredChangelogList = useMemo(() => {
+    return changelogList.filter(
       d =>
         d.title.toLowerCase().includes(search.toLowerCase()) ||
         d.additionalMatches?.find(e =>
@@ -156,6 +167,32 @@ export const SearchBox = ({
                 </Typography>
                 <ContentCardWrapper>
                   {filteredDesignList.map(({ title, to, imageURL }, key) => {
+                    return (
+                      <ContentCard
+                        onClick={closeModal}
+                        title={title}
+                        to={to}
+                        imageURL={imageURL}
+                        key={key}
+                      />
+                    );
+                  })}
+                </ContentCardWrapper>
+              </Content>
+            )}
+            {filteredChangelogList.length > 0 && (
+              <Content>
+                <Typography
+                  size={"base"}
+                  fontWeight={"bold"}
+                  textCase={"uppercase"}
+                  textColor={"textSecondary"}
+                  element="h3"
+                >
+                  Changelog
+                </Typography>
+                <ContentCardWrapper>
+                  {filteredChangelogList.map(({ title, to, imageURL }, key) => {
                     return (
                       <ContentCard
                         onClick={closeModal}

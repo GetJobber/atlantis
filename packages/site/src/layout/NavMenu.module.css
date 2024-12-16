@@ -1,15 +1,14 @@
 .navMenuContainer {
-  --hoverOffset: var(--space-smallest);
-  --negativeHoverOffset: calc(-1 * var(--hoverOffset));
-  --subItemInset: calc(var(--space-small) + var(--space-smaller));
-  --navItemHeight: 40px;
-  display: flex;
-  flex-direction: column;
-  padding: 36px 0 0 0;
-  height: 100dvh;
-  background-color: var(--color-surface--background);
-  width: 200px;
-  box-sizing: border-box;
+    --hoverOffset: var(--space-smallest);
+    --negativeHoverOffset: calc(-1 * var(--hoverOffset));
+    --subItemInset: calc(var(--space-small) + var(--space-smaller));
+    --navItemHeight: 40px;
+    display: flex;
+    flex-direction: column;
+    padding: 36px 0 0 0;
+    height: 100dvh;
+    width: 200px;
+    box-sizing: border-box;
 }
 
 .navMenuContainer>* {
@@ -147,7 +146,7 @@
   }
 }
 
-:root[data-theme="dark"] .navMenuContainer {
+:root[data-theme="dark"] .disclosureNavItem {
   button {
     mix-blend-mode: screen;
   }
