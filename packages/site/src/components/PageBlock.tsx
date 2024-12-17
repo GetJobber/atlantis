@@ -63,7 +63,7 @@ export const PageBlock = ({ structure }: PageBlockProps) => {
     <PageWrapper>
       <HeaderBlock {...structure.header} />
       <BodyBlock>
-        {structure.showSegmentedControl !== false && (
+        {structure.showSegmentedControl && (
           <div
             style={{
               width: "240px",

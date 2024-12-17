@@ -46,7 +46,6 @@ export const HomePage = () => {
           ],
         },
         useCategories: true,
-        showSegmentedControl: false,
       }}
     />
   );
