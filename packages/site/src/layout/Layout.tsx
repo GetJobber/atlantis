@@ -27,6 +27,7 @@ export const Layout = () => {
           overflow: "auto",
           width: "100%",
           height: "100dvh",
+          outline: "transparent",
         }}
         ref={scrollPane}
         tabIndex={0}
