@@ -2,6 +2,7 @@ import { FormFieldProps } from "../FormFieldTypes";
 
 interface UseToolBarProps {
   focused: boolean;
+  disabled?: boolean;
   toolbar: React.ReactNode;
   toolbarVisibility: FormFieldProps["toolbarVisibility"];
 }
@@ -15,6 +16,7 @@ interface UseToolbar {
 export function useToolbar(props: UseToolBarProps): UseToolbar {
   const isToolbarVisible =
     props.toolbar !== undefined &&
+    !props.disabled &&
     (props.toolbarVisibility === "always" || props.focused);
   const toolbarAnimationEnd = { opacity: 0, height: 0 };
   const toolbarAnimationStart = { opacity: 1, height: "auto" };

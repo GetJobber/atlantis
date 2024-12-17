@@ -77,6 +77,7 @@ export function FormFieldWrapper({
   const { isToolbarVisible, toolbarAnimationEnd, toolbarAnimationStart } =
     useToolbar({
       focused,
+      disabled,
       toolbar,
       toolbarVisibility,
     });
