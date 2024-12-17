@@ -367,8 +367,8 @@
 .toolbarWrapper {
   position: absolute;
   top: 100%;
-  right: 0;
-  left: 0;
+  right: calc(var(--border-base) * -1);
+  left: calc(var(--border-base) * -1);
   z-index: 1;
 }
 
