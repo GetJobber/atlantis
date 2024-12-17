@@ -227,6 +227,24 @@ describe("toolbar", () => {
       ).not.toBeInTheDocument();
     });
   });
+
+  describe("when disabled", () => {
+    it("should not render toolbar", () => {
+      render(
+        <InputText
+          multiline
+          disabled
+          placeholder="Favourite movie"
+          toolbar={<h1>Bar Of Tool</h1>}
+          toolbarVisibility="always"
+        />,
+      );
+      expect(
+        screen.queryByTestId("ATL-InputText-Toolbar"),
+      ).not.toBeInTheDocument();
+    });
+  });
+
   describe("with toolbar and toolbarVisibility always", () => {
     it("should always render toolbar", () => {
       render(
