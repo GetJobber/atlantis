@@ -17,17 +17,36 @@ export const HomePage = () => {
               title: "Components",
               to: "/components",
               imageURL: "/Components.png",
+              sections: ["Packages"],
             },
-            { title: "Design", to: "/design", imageURL: "/Design.png" },
-            { title: "Content", to: "/content", imageURL: "/Placeholder.png" },
-            { title: "Guides", to: "/guides", imageURL: "/Placeholder.png" },
+            {
+              title: "Design",
+              to: "/design",
+              imageURL: "/Design.png",
+              sections: ["Packages"],
+            },
+            {
+              title: "Content",
+              to: "/content",
+              imageURL: "/Placeholder.png",
+              sections: ["Resources"],
+            },
+            {
+              title: "Guides",
+              to: "/guides",
+              imageURL: "/Placeholder.png",
+              sections: ["Resources"],
+            },
             {
               title: "Changelog",
               to: "/changelog",
               imageURL: "/Placeholder.png",
+              sections: ["Changelog"],
             },
           ],
         },
+        useCategories: true,
+        showSegmentedControl: false,
       }}
     />
   );
