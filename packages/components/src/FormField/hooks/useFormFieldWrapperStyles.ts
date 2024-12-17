@@ -1,6 +1,5 @@
 import classnames from "classnames";
 import { RefObject, useEffect, useState } from "react";
-import { useIsSafari } from "./useIsSafari";
 import styles from "../FormField.module.css";
 import { FormFieldProps } from "../FormFieldTypes";
 
@@ -46,7 +45,6 @@ export function useFormFieldWrapperStyles({
   disabled,
   inline,
 }: useFormFieldWrapperStylesProps) {
-  const isSafari = useIsSafari();
   const wrapperClasses = classnames(
     styles.wrapper,
     size && styles[size],
@@ -59,7 +57,6 @@ export function useFormFieldWrapperStyles({
         (placeholder && type === "tel"),
       [styles.text]: type === "textarea" || type === "text",
       [styles.textarea]: type === "textarea",
-      [styles.safari]: isSafari && type === "textarea",
       [styles.select]: type === "select",
       [styles.invalid]: invalid ?? error,
       [styles.disabled]: disabled,

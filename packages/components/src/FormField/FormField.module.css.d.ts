@@ -1,9 +1,8 @@
 declare const styles: {
   readonly "container": string;
   readonly "wrapper": string;
-  readonly "horizontalWrapper": string;
   readonly "textarea": string;
-  readonly "safari": string;
+  readonly "horizontalWrapper": string;
   readonly "timeInputLabel": string;
   readonly "miniLabel": string;
   readonly "large": string;

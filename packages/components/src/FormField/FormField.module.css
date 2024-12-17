@@ -62,6 +62,10 @@
   box-sizing: border-box;
 }
 
+.wrapper.textarea {
+  overflow: hidden;
+}
+
 .wrapper:focus-within {
   position: relative;
   z-index: var(--field--base-elevation);
@@ -72,10 +76,6 @@
   display: flex;
   height: var(--field--height);
   flex: 1;
-}
-
-.textarea.safari .horizontalWrapper {
-  margin-right: var(--field--padding-right);
 }
 
 .timeInputLabel:not(:focus-within) input {
@@ -101,11 +101,6 @@
   --field--placeholder-offset: 0;
   --field--placeholder-transform: 0;
   min-height: auto;
-}
-
-.wrapper.textarea {
-  resize: vertical;
-  overflow: auto;
 }
 
 .invalid,
@@ -220,9 +215,8 @@
 }
 
 .textarea .input {
-  flex: 1;
-  resize: none;
-  scroll-padding-bottom: var(--space-base);
+  height: auto;
+  resize: vertical;
   padding-top: 0;
 }
 
@@ -241,10 +235,6 @@
   .input {
     padding-top: var(--field--padding-top);
   }
-}
-
-.textarea.safari .input {
-  padding-right: 0;
 }
 
 /**

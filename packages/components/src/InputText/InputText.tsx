@@ -99,15 +99,10 @@ function InputTextInternal(
   }));
 
   useSafeLayoutEffect(() => {
-    if (
-      inputRef &&
-      inputRef.current instanceof HTMLTextAreaElement &&
-      wrapperRef &&
-      wrapperRef.current instanceof HTMLDivElement
-    ) {
-      resize(inputRef.current, wrapperRef.current);
+    if (inputRef && inputRef.current instanceof HTMLTextAreaElement) {
+      resize(inputRef.current);
     }
-  }, [inputRef.current, wrapperRef.current]);
+  }, [inputRef.current]);
 
   return (
     <FormField
@@ -124,13 +119,8 @@ function InputTextInternal(
   function handleChange(newValue: string) {
     props.onChange && props.onChange(newValue);
 
-    if (
-      inputRef &&
-      inputRef.current instanceof HTMLTextAreaElement &&
-      wrapperRef &&
-      wrapperRef?.current instanceof HTMLDivElement
-    ) {
-      resize(inputRef.current, wrapperRef.current);
+    if (inputRef && inputRef.current instanceof HTMLTextAreaElement) {
+      resize(inputRef.current);
     }
   }
 
@@ -144,12 +134,9 @@ function InputTextInternal(
     }
   }
 
-  function resize(textArea: HTMLTextAreaElement, wrapper: HTMLDivElement) {
+  function resize(textArea: HTMLTextAreaElement) {
     if (rowRange.min === rowRange.max) return;
-
-    textArea.style.flexBasis = "auto";
-    wrapper.style.height = "auto";
-    textArea.style.flexBasis = textAreaHeight(textArea) + "px";
+    textArea.style.height = textAreaHeight(textArea) + "px";
   }
 
   function textAreaHeight(textArea: HTMLTextAreaElement) {
