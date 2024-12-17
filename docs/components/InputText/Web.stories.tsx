@@ -2,6 +2,7 @@ import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { InputText } from "@jobber/components/InputText";
 import { Button } from "@jobber/components/Button";
+import { Box } from "@jobber/components/Box";
 
 export default {
   title: "Components/Forms and Inputs/InputText/Web",
@@ -29,7 +30,26 @@ Multiline.args = {
   rows: { min: 1, max: 5 },
 };
 
-export const Toolbar = BasicTemplate.bind({});
+const ToolbarTemplate: ComponentStory<typeof InputText> = args => {
+  return (
+    <div>
+      <h2>Multiline</h2>
+      <Box gap="base">
+        <InputText {...args} multiline />
+        <InputText {...args} rows={{ min: 5, max: 10 }} multiline />
+        <p>Example text...</p>
+        <h2>Single line</h2>
+      </Box>
+      <Box gap="base">
+        <InputText {...args} rows={undefined} multiline={false} />
+        <InputText {...args} rows={undefined} multiline={false} />
+      </Box>
+      <p>Example text...</p>
+    </div>
+  );
+};
+
+export const Toolbar = ToolbarTemplate.bind({});
 Toolbar.args = {
   placeholder: "Hakunamatata",
   multiline: true,
