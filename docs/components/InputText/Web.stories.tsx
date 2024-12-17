@@ -37,9 +37,9 @@ const ToolbarTemplate: ComponentStory<typeof InputText> = args => {
       <Box gap="base">
         <InputText {...args} multiline />
         <InputText {...args} rows={{ min: 5, max: 10 }} multiline />
-        <p>Example text...</p>
-        <h2>Single line</h2>
       </Box>
+      <p>Example text...</p>
+      <h2>Single line</h2>
       <Box gap="base">
         <InputText {...args} rows={undefined} multiline={false} />
         <InputText {...args} rows={undefined} multiline={false} />
