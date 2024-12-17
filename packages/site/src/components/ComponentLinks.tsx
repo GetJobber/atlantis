@@ -1,5 +1,5 @@
 import { Box, Content, Heading, Icon, Link } from "@jobber/components";
-import { MouseEvent, useEffect, useState } from "react";
+import { AnchorLinks } from "./AnchorLinks";
 import { ContentExportLinks } from "../types/content";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
 
@@ -23,31 +23,6 @@ export const ComponentLinks = ({
   readonly webEnabled: boolean;
   readonly mobileEnabled: boolean;
 }) => {
-  const [hlinks, setHlinks] = useState<Element[] | null>(null);
-
-  useEffect(() => {
-    const hdd = document.querySelectorAll("[data-heading-link]");
-
-    if (hdd.length > 0) {
-      setHlinks(Array.from(hdd));
-    }
-  }, []);
-
-  const click = (e: MouseEvent) => {
-    e.preventDefault();
-    const id = e.currentTarget?.getAttribute("href")?.replace("#", "");
-
-    if (id) {
-      goToDesign();
-      setTimeout(() => {
-        const element = document.getElementById(id);
-
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 100);
-    }
-  };
   const { isMinimal } = useAtlantisSite();
   if (isMinimal) return null;
 
@@ -63,20 +38,7 @@ export const ComponentLinks = ({
       }}
     >
       <Content spacing={"larger"}>
-        <Content>
-          <Heading level={6} element="h3">
-            Design
-          </Heading>
-          <Content spacing="small">
-            {hlinks?.map((link, index) => (
-              <Box key={index}>
-                <a onClick={click} href={`#${link.id}`}>
-                  {link.textContent}
-                </a>
-              </Box>
-            ))}
-          </Content>
-        </Content>
+        <AnchorLinks header="Design" additionalOnClickAction={goToDesign} />
         {webEnabled && (
           <Content>
             <Heading level={6} element="h3">

@@ -1,5 +1,6 @@
 import { Box, Content } from "@jobber/components";
 import { ContentExport } from "../types/content";
+import { AnchorLinks } from "../components/AnchorLinks";
 
 export const ContentView = ({
   content,
@@ -14,6 +15,7 @@ export const ContentView = ({
         <Box padding={"larger"}>
           <Content>{content()}</Content>
         </Box>
+        <AnchorLinks header="Details" />
       </custom-elements>
     </div>
   );
