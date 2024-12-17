@@ -1,6 +1,7 @@
 import { PropsWithChildren } from "react";
 import { Typography } from "@jobber/components";
 import { ContentCardWrapper } from "./ContentCardWrapper";
+import styles from "./CategoryCardSection.module.css";
 
 interface CategoryCardSectionProps {
   readonly category: string;
@@ -18,15 +19,7 @@ export const CategoryCardSection = ({
   children,
 }: PropsWithChildren<CategoryCardSectionProps>) => {
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "96px 1fr",
-        gap: "var(--space-larger)",
-        width: "100%",
-        paddingBottom: "var(--space-large)",
-      }}
-    >
+    <div className={styles.categoryCardSection}>
       <Typography
         element={"h6"}
         fontWeight={"bold"}

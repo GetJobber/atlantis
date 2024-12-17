@@ -21,10 +21,16 @@ export const Layout = () => {
 
   return (
     <LayoutWrapper>
-      <NavMenu />
+      <NavMenu mainContentRef={scrollPane} />
       <div
-        style={{ overflow: "auto", width: "100%", height: "100dvh" }}
+        style={{
+          overflow: "auto",
+          width: "100%",
+          height: "100dvh",
+          outline: "transparent",
+        }}
         ref={scrollPane}
+        tabIndex={0}
       >
         <Switch>
           <>
@@ -84,7 +90,7 @@ export const LayoutWrapper = ({ children }: PropsWithChildren) => {
     <div
       style={{
         display: "flex",
-        background: "var(--color-surface)",
+        background: "var(--color-surface--background)",
       }}
     >
       {children}

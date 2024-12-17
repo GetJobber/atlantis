@@ -1,17 +1,22 @@
 import {
+  Box,
   Content,
+  Heading,
   InputText,
   InputTextRef,
   Modal,
   Typography,
 } from "@jobber/components";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useOnKeyDown } from "@jobber/hooks";
 import styles from "./SearchBox.module.css";
+import { ToolBoxIllustration } from "../assets/ToolBoxIllustration";
 import { ContentCardWrapper } from "../components/ContentCardWrapper";
 import { ContentCard } from "../components/ContentCard";
 import { componentList } from "../componentList";
 import { contentList } from "../contentList";
 import { designList } from "../designList";
+import { guidesList } from "../guidesList";
 import { changelogList } from "../changelogList";
 
 /**
@@ -32,6 +37,11 @@ export const SearchBox = ({
 }) => {
   const ref = useRef<InputTextRef>(null);
   const [search, setSearch] = useState("");
+
+  useOnKeyDown(event => {
+    event.preventDefault();
+    setOpen(true);
+  }, "/");
 
   const filteredContentList = useMemo(() => {
     return contentList.filter(
@@ -72,6 +82,17 @@ export const SearchBox = ({
         ),
     );
   }, [search]);
+
+  const filteredGuidesList = useMemo(() => {
+    return guidesList.filter(
+      d =>
+        d.title.toLowerCase().includes(search.toLowerCase()) ||
+        d.additionalMatches?.find(e =>
+          e.toLowerCase().includes(search.toLowerCase()),
+        ),
+    );
+  }, [search]);
+
   useEffect(() => {
     if (open) {
       ref.current?.focus();
@@ -199,6 +220,64 @@ export const SearchBox = ({
                   })}
                 </ContentCardWrapper>
               </Content>
+            )}
+            {filteredGuidesList.length > 0 && (
+              <Content>
+                <Typography
+                  size={"base"}
+                  fontWeight={"bold"}
+                  textCase={"uppercase"}
+                  textColor={"textSecondary"}
+                  element="h3"
+                >
+                  Guides
+                </Typography>
+                <ContentCardWrapper>
+                  {filteredGuidesList.map(({ title, to, imageURL }, key) => {
+                    return (
+                      <ContentCard
+                        onClick={closeModal}
+                        title={title}
+                        to={to}
+                        imageURL={imageURL}
+                        key={key}
+                      />
+                    );
+                  })}
+                </ContentCardWrapper>
+              </Content>
+            )}
+            {!filteredComponentList.length && !filteredDesignList.length && (
+              <Box
+                height={"100%"}
+                direction={"column"}
+                padding={"extravagant"}
+                gap={"larger"}
+                alignItems={"center"}
+              >
+                <ToolBoxIllustration />
+                <Heading level={1} element={"h3"}>
+                  The toolbox looks empty!
+                </Heading>
+                <Typography
+                  align={"center"}
+                  fontWeight={"semiBold"}
+                  size={"large"}
+                  textColor={"text"}
+                >
+                  We couldn&apos;t match any results with your search; try a
+                  different term.
+                </Typography>
+                <Typography
+                  align={"center"}
+                  fontWeight={"medium"}
+                  size={"large"}
+                  textColor={"textSecondary"}
+                >
+                  If you think something&apos;s missing, let the Atlantis team
+                  know.
+                </Typography>
+              </Box>
             )}
           </Content>
         </div>

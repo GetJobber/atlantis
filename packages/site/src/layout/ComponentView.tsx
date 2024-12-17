@@ -1,4 +1,4 @@
-import { Box, Content, Grid, Page, Tab, Tabs } from "@jobber/components";
+import { Box, Content, Page, Tab, Tabs } from "@jobber/components";
 import { useParams } from "react-router";
 import { useEffect, useMemo, useState } from "react";
 import { PageWrapper } from "./PageWrapper";
@@ -32,8 +32,7 @@ export const ComponentView = () => {
   const { updateStyles } = useStyleUpdater();
   const [tab, setTab] = useState(0);
   const { stateValues } = usePropsAsDataList(PageMeta, type);
-  const { enableMinimal, minimal, disableMinimal, isMinimal } =
-    useAtlantisSite();
+  const { enableMinimal, minimal, disableMinimal } = useAtlantisSite();
 
   useEffect(() => {
     if (minimal.requested && !minimal.enabled) {
@@ -54,9 +53,9 @@ export const ComponentView = () => {
 
   useEffect(() => {
     if (iframe?.current || iframeMobile?.current) {
-      setTimeout(() => updateCode(code as string), 100);
+      setTimeout(() => updateCode(code as string, true), 100);
     }
-  }, [code, iframe?.current, iframeMobile?.current, type, tab]);
+  }, [code, type]);
 
   useEffect(() => {
     if (
@@ -187,44 +186,55 @@ export const ComponentView = () => {
   };
 
   return PageMeta ? (
-    <Grid>
-      <Grid.Cell size={isMinimal ? { xs: 12, md: 12 } : { xs: 12, md: 9 }}>
-        <Page width="fill" title={PageMeta.title}>
-          <PageWrapper>
-            <Box>
-              <Content spacing="large">
-                <Box direction="column" gap="small" alignItems="flex-end">
-                  <CodePreviewWindow>
-                    <AtlantisPreviewViewer />
-                  </CodePreviewWindow>
+    <div style={{ display: "flex", height: "100dvh" }}>
+      <main
+        style={{
+          overflowY: "scroll",
+          backgroundColor: "var(--color-surface)",
+          boxShadow: "var(--shadow-low)",
+          flexGrow: 1,
+        }}
+      >
+        <Box alignItems="center">
+          <div style={{ width: "100%", maxWidth: "768px" }}>
+            <Page width="narrow" title={PageMeta.title}>
+              <PageWrapper>
+                <Box>
+                  <Content spacing="large">
+                    <Box direction="column" gap="small" alignItems="flex-end">
+                      <CodePreviewWindow>
+                        <AtlantisPreviewViewer />
+                      </CodePreviewWindow>
+                    </Box>
+                    <span
+                      style={
+                        { "--public-tab--inset": 0 } as React.CSSProperties
+                      }
+                    >
+                      <Tabs onTabChange={handleTabChange} activeTab={tab}>
+                        {activeTabs.map((activeTab, index) => (
+                          <Tab key={index} label={activeTab.label}>
+                            {activeTab.children}
+                          </Tab>
+                        ))}
+                      </Tabs>
+                    </span>
+                  </Content>
                 </Box>
-                <span
-                  style={{ "--public-tab--inset": 0 } as React.CSSProperties}
-                >
-                  <Tabs onTabChange={handleTabChange} activeTab={tab}>
-                    {activeTabs.map((tabyeah, index) => (
-                      <Tab key={index} label={tabyeah.label}>
-                        {tabyeah.children}
-                      </Tab>
-                    ))}
-                  </Tabs>
-                </span>
-              </Content>
-            </Box>
-          </PageWrapper>
-        </Page>
-      </Grid.Cell>
-      <Grid.Cell size={{ xs: 12, md: 3 }}>
-        <ComponentLinks
-          links={PageMeta?.links}
-          mobileEnabled={!!PageMeta?.component?.mobileElement}
-          webEnabled={!!PageMeta?.component?.element}
-          goToDesign={goToDesign}
-          goToProps={goToProps}
-          goToUsage={goToUsage}
-        />
-      </Grid.Cell>
-    </Grid>
+              </PageWrapper>
+            </Page>
+          </div>
+        </Box>
+      </main>
+      <ComponentLinks
+        links={PageMeta?.links}
+        mobileEnabled={!!PageMeta?.component?.mobileElement}
+        webEnabled={!!PageMeta?.component?.element}
+        goToDesign={goToDesign}
+        goToProps={goToProps}
+        goToUsage={goToUsage}
+      />
+    </div>
   ) : (
     <ComponentNotFound />
   );
