@@ -287,6 +287,7 @@
 }
 
 .textarea.miniLabel .label {
+  border-radius: var(--radius-base);
   background-color: var(--field--background-color);
 }
 
@@ -358,21 +359,29 @@
   margin-top: var(--space-smaller);
 }
 
+.wrapper.hasToolbar {
+  position: relative;
+  overflow: visible;
+}
+
+.toolbarWrapper {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  z-index: 1;
+  margin: 0 var(--field--padding-right) 0 var(--field--padding-left);
+  overflow: visible;
+  pointer-events: none;
+}
+
 .toolbar {
   display: flex;
   position: relative;
-  margin: var(--space-small) var(--field--padding-right) var(--space-base)
-    var(--field--padding-left);
-}
-
-.toolbar::before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: calc(-1.25 * var(--space-base));
-  right: 0;
-  left: 0;
-  z-index: var(--elevation-base);
-  height: var(--space-base);
-  background: linear-gradient(to bottom, transparent, var(--color-surface) 60%);
+  padding: var(--space-small);
+  border: var(--border-base) solid var(--field--border-color);
+  border-radius: 0 0 var(--radius-base) var(--radius-base);
+  overflow: hidden;
+  background-color: var(--color-surface);
+  pointer-events: auto;
 }

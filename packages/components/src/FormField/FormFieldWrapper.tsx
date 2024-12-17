@@ -62,6 +62,7 @@ export function FormFieldWrapper({
       disabled,
       inline,
       size,
+      toolbar,
     });
 
   const { focused } = useFormFieldFocus({ wrapperRef });
@@ -193,6 +194,7 @@ export function FormFieldWrapperToolbar({
       {isToolbarVisible && (
         <motion.div
           key="toolbar"
+          className={styles.toolbarWrapper}
           initial={toolbarAnimationEnd}
           animate={toolbarAnimationStart}
           exit={toolbarAnimationEnd}

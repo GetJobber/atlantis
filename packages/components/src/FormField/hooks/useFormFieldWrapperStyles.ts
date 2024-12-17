@@ -16,6 +16,7 @@ export interface useFormFieldWrapperStylesProps
     | "type"
     | "disabled"
     | "inline"
+    | "toolbar"
   > {
   readonly error: string;
   suffixRef: RefObject<HTMLDivElement>;
@@ -44,6 +45,7 @@ export function useFormFieldWrapperStyles({
   type,
   disabled,
   inline,
+  toolbar,
 }: useFormFieldWrapperStylesProps) {
   const wrapperClasses = classnames(
     styles.wrapper,
@@ -57,6 +59,7 @@ export function useFormFieldWrapperStyles({
         (placeholder && type === "tel"),
       [styles.text]: type === "textarea" || type === "text",
       [styles.textarea]: type === "textarea",
+      [styles.hasToolbar]: toolbar && !disabled,
       [styles.select]: type === "select",
       [styles.invalid]: invalid ?? error,
       [styles.disabled]: disabled,
