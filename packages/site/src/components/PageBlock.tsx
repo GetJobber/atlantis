@@ -21,6 +21,7 @@ interface PageBlockProps {
       content: ContentCardProps[];
     };
     useCategories?: boolean;
+    showSegmentedControl?: boolean;
   };
 }
 
@@ -62,7 +63,7 @@ export const PageBlock = ({ structure }: PageBlockProps) => {
     <PageWrapper>
       <HeaderBlock {...structure.header} />
       <BodyBlock>
-        {structure.useCategories && (
+        {structure.showSegmentedControl && (
           <div
             style={{
               width: "240px",
@@ -84,7 +85,7 @@ export const PageBlock = ({ structure }: PageBlockProps) => {
           </div>
         )}
 
-        {cardView === "category" ? (
+        {structure.useCategories && cardView === "category" ? (
           <>
             {sectionedComponents().map(({ section, items }) => (
               <CategoryCardSection key={section} category={section}>
