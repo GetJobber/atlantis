@@ -7,12 +7,16 @@ interface AnimatedPresenceDisclosureProps {
   readonly children: React.ReactNode;
   readonly title: React.ReactNode;
   readonly to: string;
+  readonly className?: string;
+  readonly selected?: boolean;
 }
 
 function AnimatedPresenceDisclosure({
   children,
   title,
   to,
+  className,
+  selected,
 }: AnimatedPresenceDisclosureProps) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -22,8 +26,13 @@ function AnimatedPresenceDisclosure({
   };
 
   return (
-    <div>
-      <span className={styles.disclosureNavItem}>
+    <div className={className}>
+      <span
+        className={`${styles.disclosureNavItem} ${
+          selected ? styles.selected : ""
+        }`}
+      >
+        {" "}
         <Link to={to ?? "/"} tabIndex={0}>
           <Typography fontWeight="semiBold" size="large" textColor="heading">
             {title}

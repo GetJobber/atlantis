@@ -106,12 +106,15 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
             {routes?.map((route, routeIndex) => {
               if (route.inNav === false) return null;
 
+              const isSelected = location.pathname === route.path;
+
               if (route.children) {
                 return (
                   <Box key={routeIndex}>
                     <AnimatedPresenceDisclosure
                       to={route.path ?? "/"}
                       title={route.handle}
+                      selected={isSelected}
                     >
                       {iterateSubMenu(route.children, routeIndex)}
                     </AnimatedPresenceDisclosure>

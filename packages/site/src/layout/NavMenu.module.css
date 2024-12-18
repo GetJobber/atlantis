@@ -153,7 +153,6 @@
 }
 
 .selected {
-  border: 2px solid red;
-  border-radius: 4px;
-  /* Optional: for rounded borders */
+  background-color: var(--color-surface);
+  border-radius: var(--radius-small);
 }
