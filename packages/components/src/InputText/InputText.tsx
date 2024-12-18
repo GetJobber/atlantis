@@ -98,7 +98,7 @@ function InputTextInternal(
     },
   }));
 
-  const resize = useAutoResize(inputRef, rowRange);
+  const resize = useAutoResize(inputRef, rowRange, props.value);
 
   return (
     <FormField
@@ -129,9 +129,6 @@ function InputTextInternal(
       return { min: props.rows, max: props.rows };
     }
   }
-
-
-
 
   function insertText(text: string) {
     const input = inputRef.current;
@@ -165,12 +162,21 @@ function insertAtCursor(
 function useAutoResize(
   inputRef: React.RefObject<HTMLTextAreaElement | HTMLInputElement>,
   rowRange: RowRange,
+  value: string | number | Date | undefined,
 ) {
   useSafeLayoutEffect(() => {
     if (inputRef && inputRef.current instanceof HTMLTextAreaElement) {
       resize(inputRef.current);
     }
   }, [inputRef.current]);
+
+  useSafeLayoutEffect(() => {
+    setTimeout(() => {
+      if (inputRef && inputRef.current instanceof HTMLTextAreaElement) {
+        resize(inputRef.current);
+      }
+    }, 0);
+  }, [value]);
 
   function resize(textArea: HTMLTextAreaElement) {
     if (rowRange.min === rowRange.max) return;
