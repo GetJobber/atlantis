@@ -151,3 +151,9 @@
     mix-blend-mode: screen;
   }
 }
+
+.selected {
+  border: 2px solid red;
+  border-radius: 4px;
+  /* Optional: for rounded borders */
+}

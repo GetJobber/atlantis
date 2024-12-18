@@ -1,5 +1,5 @@
 import { Box, Button, Content, Icon, Typography } from "@jobber/components";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Fragment, PropsWithChildren, useState } from "react";
 import { SearchBox } from "./SearchBox";
 import AnimatedPresenceDisclosure from "./AnimatedPresenceDisclosure";
@@ -138,10 +138,15 @@ export const StyledLink = ({
   to,
   children,
 }: PropsWithChildren<{ readonly to: string }>) => {
+  const location = useLocation();
+  const isSelected = location.pathname === to;
+
   return (
     <Link
       to={to ?? "/"}
-      className={`${styles.navMenuItem} ${styles.navMenuLink}`}
+      className={`${styles.navMenuItem} ${styles.navMenuLink} ${
+        isSelected ? styles.selected : ""
+      }`}
     >
       {children}
     </Link>
@@ -152,10 +157,15 @@ export const StyledSubLink = ({
   to,
   children,
 }: PropsWithChildren<{ readonly to: string }>) => {
+  const location = useLocation();
+  const isSelected = location.pathname === to;
+
   return (
     <Link
       to={to ?? "/"}
-      className={`${styles.navMenuItem} ${styles.navMenuSubItem} ${styles.navMenuLink}`}
+      className={`${styles.navMenuItem} ${styles.navMenuSubItem} ${
+        styles.navMenuLink
+      } ${isSelected ? styles.selected : ""}`}
     >
       {children}
     </Link>
