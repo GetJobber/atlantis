@@ -40,6 +40,10 @@ a:visited {
   color: var(--color-interactive--hover);
 }
 
+custom-elements {
+  min-height: 100dvh;
+}
+
 custom-elements,
 section[role="tabpanel"] {
   & table {

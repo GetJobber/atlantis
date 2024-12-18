@@ -9,7 +9,9 @@ export const ContentView = ({
   readonly title: string;
 }) => {
   return (
-    <div style={{ backgroundColor: "var(--color-surface" }}>
+    <div
+      style={{ backgroundColor: "var(--color-surface)", minHeight: "100dvh" }}
+    >
       <custom-elements>
         <Box padding={"larger"}>
           <Content>{content()}</Content>

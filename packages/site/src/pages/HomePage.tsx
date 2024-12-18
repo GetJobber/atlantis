@@ -23,6 +23,11 @@ export const HomePage = () => {
             { title: "Hooks", to: "/hooks", imageURL: "/Hooks.png" },
             { title: "Guides", to: "/guides", imageURL: "/Placeholder.png" },
             {
+              title: "Packages",
+              to: "/packages",
+              imageURL: "/Placeholder.png",
+            },
+            {
               title: "Changelog",
               to: "/changelog",
               imageURL: "/Placeholder.png",

@@ -1,9 +1,10 @@
 import { PropsWithChildren, useEffect, useRef } from "react";
-import { Route, Switch, useLocation } from "react-router";
+import { Route, Switch, useHistory, useLocation } from "react-router";
 import { NavMenu } from "./NavMenu";
 import { AtlantisRoute, routes } from "../routes";
 import "./code-theme.css";
 import { ToggleThemeButton } from "../components/ToggleThemeButton";
+import { hooksList } from "../hooksList";
 
 /**
  * Layout for whole application. This will display the NavMenu and the content of the page.
@@ -13,11 +14,26 @@ import { ToggleThemeButton } from "../components/ToggleThemeButton";
 export const Layout = () => {
   const location = useLocation();
   const scrollPane = useRef<HTMLDivElement>(null);
+  const path = new URLSearchParams(location.search).get("path");
+  const history = useHistory();
+
   useEffect(() => {
     if (scrollPane?.current) {
       scrollPane?.current.scrollTo({ top: 0 });
     }
   }, [location, scrollPane?.current]);
+
+  // Redirects for the links on the hooks packages page
+  if (path && path.includes("hooks")) {
+    const pathRegex = /hooks-(.*)--docs/g.exec(path);
+    const match = hooksList.find(
+      hook => pathRegex?.[1] === hook.title.toLowerCase(),
+    );
+
+    if (match) {
+      history.push(match.to);
+    }
+  }
 
   return (
     <LayoutWrapper>
