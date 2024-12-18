@@ -1,10 +1,5 @@
-import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
-import { useState } from "react";
-import { Button } from "@jobber/components/Button";
-import { Content } from "@jobber/components/Content";
-import { Checkbox } from "@jobber/components/Checkbox";
-import { InputText } from "@jobber/components/InputText";
-import * as hooks from "@atlantis/packages/hooks/src";
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { UseFocusTrap } from "./UseFocusTrap";
 
 <Meta title="Hooks/useFocusTrap" />
 
@@ -20,27 +15,5 @@ import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 ```
 
 <Canvas>
-  <Story name="useFocusTrap">
-    {() => {
-      const [checked, setChecked] = useState(false);
-      const trapRef = hooks.useFocusTrap(checked);
-      return (
-        <>
-          <Checkbox
-            checked={checked}
-            onChange={setChecked}
-            label="Trap focus"
-          />
-          <div ref={trapRef} tabIndex={0}>
-            <Content>
-              {checked}
-              <InputText placeholder="First Name" name="firstName" />
-              <InputText placeholder="Last Name" name="lastName" />
-              <Button label="Submit Form" submit={true} />
-            </Content>
-          </div>
-        </>
-      );
-    }}
-  </Story>
+  <UseFocusTrap />
 </Canvas>

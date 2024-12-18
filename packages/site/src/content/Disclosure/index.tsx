@@ -1,15 +1,27 @@
-import { Disclosure } from "@jobber/components";
 import DisclosureContent from "@atlantis/docs/components/Disclosure/Disclosure.stories.mdx";
 import Props from "./Disclosure.props.json";
+import MobileProps from "./Disclosure.props-mobile.json";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 import { ContentExport } from "../../types/content";
 
 export default {
   content: () => <DisclosureContent />,
   props: Props,
+  mobileProps: MobileProps,
   component: {
-    element: Disclosure,
-    defaultProps: { title: "Disclosure" },
+    element: `<Disclosure title={'Advanced Instructions'}>
+      <Content>
+        <Text>Here is some helpful information to level up your business:</Text>
+        <Text>For every 2 team members you add, your profits will triple.</Text>
+      </Content>
+    </Disclosure>`,
+    mobileElement: `<Disclosure
+      header={"Advanced Instructions"}
+      content={"For every 2 team members you add, your profits will triple."}
+      isEmpty={false}
+      open={open}
+      onToggle={() => setOpen(!open)}
+    />`,
   },
   title: "Disclosure",
   links: [

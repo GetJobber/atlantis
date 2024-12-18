@@ -1,86 +1,161 @@
-import { Box, Button } from "@jobber/components";
+import { Box, Button, Content, Icon, Typography } from "@jobber/components";
 import { Link } from "react-router-dom";
-import { PropsWithChildren, useState } from "react";
+import { Fragment, PropsWithChildren, useState } from "react";
 import { SearchBox } from "./SearchBox";
+import AnimatedPresenceDisclosure from "./AnimatedPresenceDisclosure";
+import styles from "./NavMenu.module.css";
 import { routes } from "../routes";
 import { JobberLogo } from "../assets/JobberLogo.svg";
+import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
+import { VisibleWhenFocused } from "../components/VisibleWhenFocused";
+
+interface NavMenuProps {
+  readonly mainContentRef: React.RefObject<HTMLDivElement>;
+}
 
 /**
  * Left side navigation menu for the application.
  * @returns ReactNode
  */
-export const NavMenu = () => {
+export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
   const [open, setOpen] = useState(false);
+  const { isMinimal } = useAtlantisSite();
+
+  if (isMinimal) return null;
+
+  interface MenuItem {
+    handle: string;
+    children?: MenuItem[];
+    path?: string;
+  }
+
+  const iterateSubSubMenu = (menuItems: MenuItem[], routeIndex: number) => {
+    return menuItems.map((menuItem, menuItemIndex) => {
+      return (
+        <MenuSubItem key={`${routeIndex}-${menuItemIndex}`}>
+          <StyledSubLink to={`/components/${menuItem.handle}`}>
+            {menuItem.handle}
+          </StyledSubLink>
+        </MenuSubItem>
+      );
+    });
+  };
+
+  const iterateSubMenu = (menuItems: MenuItem[], routeIndex: number) => {
+    return menuItems.map((menuItem, menuItemIndex) => {
+      if (menuItem.children) {
+        return (
+          <Fragment key={`${routeIndex}-${menuItemIndex}`}>
+            {sectionTitle(menuItem.handle)}
+            {iterateSubSubMenu(menuItem.children, routeIndex)}
+          </Fragment>
+        );
+      }
+
+      return (
+        <MenuSubItem key={`${routeIndex}-${menuItemIndex}`}>
+          <StyledSubLink to={menuItem.path ?? "/"}>
+            {menuItem.handle}
+          </StyledSubLink>
+        </MenuSubItem>
+      );
+    });
+  };
+
+  const skipToContent = () => {
+    mainContentRef.current?.focus();
+  };
 
   return (
-    <Box width={220} background="surface--background">
-      <Box height={24} padding="base">
-        <Link to="/">
-          <JobberLogo />
-        </Link>
-      </Box>
-      <Box padding="base">
-        <Button
-          onClick={() => setOpen(true)}
-          label="Search"
-          icon="search"
-          variation="subtle"
-        />
-      </Box>
-      <SearchBox open={open} setOpen={setOpen} />
-      <MenuList>
+    <nav className={styles.navMenuContainer}>
+      <div className={styles.navMenuHeader}>
+        <VisibleWhenFocused>
+          <Button label="Skip to Content" onClick={skipToContent} />
+        </VisibleWhenFocused>
         <Box>
-          {routes?.map((route, index) => {
-            return route.children ? (
-              route.children.map((subroute, subindex) => {
-                if (subroute.inNav === false) return;
-
-                return (
-                  <MenuItem key={index}>
-                    <StyledLink to={subroute.path || "/"} key={subindex}>
-                      {subroute.handle}
-                    </StyledLink>
-                  </MenuItem>
-                );
-              })
-            ) : route.inNav === false ? null : (
-              <MenuItem key={index}>
-                <StyledLink
-                  key={index}
-                  to={route.path ?? "/"}
-                  style={{ marginBottom: "var(--space-base)" }}
-                >
-                  {route.handle}
-                </StyledLink>
-              </MenuItem>
-            );
-          })}
+          {/* TODO: remove ?new when we roll out the new docs site to everyone */}
+          <Link to="/?new">
+            <JobberLogo />
+          </Link>
         </Box>
-      </MenuList>
-    </Box>
+        <Box>
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className={styles.searchButton}
+            aria-label="Search"
+          >
+            <Icon name="search" />
+            <span className={styles.searchButtonText}>
+              <Typography
+                size={"base"}
+                textColor={"text"}
+                fontWeight={"semiBold"}
+              >
+                Search
+              </Typography>
+            </span>
+            <div className={styles.searchKeyIndicator}>/</div>
+          </button>
+        </Box>
+        <SearchBox open={open} setOpen={setOpen} />
+      </div>
+      <div className={styles.navMenu}>
+        <MenuList>
+          <Content spacing="smaller">
+            {routes?.map((route, routeIndex) => {
+              if (route.inNav === false) return null;
+
+              if (route.children) {
+                return (
+                  <Box key={routeIndex}>
+                    <AnimatedPresenceDisclosure
+                      to={route.path ?? "/"}
+                      title={route.handle}
+                    >
+                      {iterateSubMenu(route.children, routeIndex)}
+                    </AnimatedPresenceDisclosure>
+                  </Box>
+                );
+              }
+
+              return (
+                <MenuItem key={routeIndex}>
+                  <StyledLink to={getRoutePath(route.path) ?? "/"}>
+                    {route.handle}
+                  </StyledLink>
+                </MenuItem>
+              );
+            })}
+          </Content>
+        </MenuList>
+      </div>
+    </nav>
   );
 };
 
 export const StyledLink = ({
   to,
   children,
-  style,
-}: PropsWithChildren<{ readonly to: string; readonly style?: object }>) => {
+}: PropsWithChildren<{ readonly to: string }>) => {
   return (
     <Link
       to={to ?? "/"}
-      style={{
-        padding: "var(--space-base) 0",
-        outline: "transparent",
-        color: "var(--color-heading)",
-        fontSize: "var(--typography--fontSize-large)",
-        fontWeight: 600,
-        width: "100%",
-        textDecoration: "none",
-        userSelect: "none",
-        transition: "all var(--timing-base) ease-out",
-        ...style,
-      }}
+      className={`${styles.navMenuItem} ${styles.navMenuLink}`}
+    >
+      {children}
+    </Link>
+  );
+};
+
+export const StyledSubLink = ({
+  to,
+  children,
+}: PropsWithChildren<{ readonly to: string }>) => {
+  return (
+    <Link
+      to={to ?? "/"}
+      className={`${styles.navMenuItem} ${styles.navMenuSubItem} ${styles.navMenuLink}`}
     >
       {children}
     </Link>
@@ -88,22 +163,42 @@ export const StyledLink = ({
 };
 
 export const MenuList = ({ children }: PropsWithChildren) => {
-  return <ul style={{ listStyleType: "none", padding: 0 }}>{children}</ul>;
+  return <ul style={{ listStyle: "none", padding: 0 }}>{children}</ul>;
 };
 
 export const MenuItem = ({ children }: PropsWithChildren) => {
   return (
-    <li
-      style={{
-        display: "flex",
-        margin: "0 var(--space-small) var(--space-smaller) var(--space-small)",
-        padding: "var(--space-small)",
-        borderRadius: "var(--radius-small)",
-        color: "var(--color-heading)",
-        alignItems: "center",
-      }}
-    >
-      {children}
+    <li style={{ listStyle: "none" }}>
+      <Typography fontWeight="bold" size="large" textColor="text">
+        {children}
+      </Typography>
     </li>
   );
 };
+
+export const MenuSubItem = ({ children }: PropsWithChildren) => {
+  return (
+    <li style={{ listStyle: "none" }}>
+      <Typography fontWeight="semiBold" size="base" textColor="text">
+        {children}
+      </Typography>
+    </li>
+  );
+};
+
+export const sectionTitle = (section: string) => (
+  <div className={`${styles.navMenuItem} ${styles.navMenuSubTitle}`}>
+    <Typography fontWeight="bold" size="small" textColor="textSecondary">
+      {section.toUpperCase()}
+    </Typography>
+  </div>
+);
+
+// TODO: delete this once we roll out the new docs site to everyone
+function getRoutePath(path?: string) {
+  if (path === "/") {
+    return "/?new";
+  }
+
+  return path;
+}

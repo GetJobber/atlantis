@@ -127,6 +127,19 @@
           "name": "Clearable"
         }
       },
+      "description": {
+        "defaultValue": null,
+        "description": "Further description of the input, can be used for a hint.",
+        "name": "description",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
       "invalid": {
         "defaultValue": null,
         "description": "Highlights the field red to indicate an error.",

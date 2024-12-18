@@ -1,0 +1,71 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Text/Text.tsx",
+    "description": "",
+    "displayName": "Text",
+    "methods": [],
+    "props": {
+      "maxLines": {
+        "defaultValue": {
+          "value": "unlimited"
+        },
+        "description": "",
+        "name": "maxLines",
+        "parent": {
+          "fileName": "../components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"single\" | \"small\" | \"base\" | \"large\" | \"larger\" | \"unlimited\""
+        }
+      },
+      "variation": {
+        "defaultValue": {
+          "value": "default"
+        },
+        "description": "",
+        "name": "variation",
+        "parent": {
+          "fileName": "../components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"default\" | \"subdued\" | \"success\" | \"error\" | \"warn\" | \"info\" | \"disabled\""
+        }
+      },
+      "align": {
+        "defaultValue": {
+          "value": "start"
+        },
+        "description": "",
+        "name": "align",
+        "parent": {
+          "fileName": "../components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"start\" | \"center\" | \"end\""
+        }
+      },
+      "size": {
+        "defaultValue": {
+          "value": "base"
+        },
+        "description": "",
+        "name": "size",
+        "parent": {
+          "fileName": "../components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"base\" | \"large\""
+        }
+      }
+    }
+  }
+]

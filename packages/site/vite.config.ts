@@ -26,7 +26,8 @@ export default defineConfig({
             rewrite: (node: {
               type: string;
               tagName: string;
-              properties: { href: string };
+              properties: Record<string, string>;
+              children?: Array<{ value: string }>;
             }) => {
               if (
                 node.type === "element" &&
@@ -34,8 +35,16 @@ export default defineConfig({
                 node.properties &&
                 node.properties.href
               ) {
-                // Rewrite the link as needed
                 node.properties.href = rewriteLink(node.properties.href);
+              }
+
+              // For any processed H2 Element, add an ID and a data-heading-link attribute
+              // So we can link to it from the sidebar
+              if (node.type === "element" && node.tagName === "h2") {
+                node.properties.id =
+                  "component-view-" +
+                  node.children?.[0].value?.replace(/ /g, "-").toLowerCase();
+                node.properties["data-heading-link"] = "";
               }
             },
           },
@@ -44,7 +53,7 @@ export default defineConfig({
     }),
   ],
   optimizeDeps: {
-    include: ["@jobber/formatters", "@jobber/hooks"],
+    include: ["@jobber/formatters", "@jobber/hooks", "@jobber/components"],
   },
   resolve: {
     alias: {
@@ -58,14 +67,10 @@ export default defineConfig({
         __dirname,
         "./src/components/StorybookOverrides",
       ),
-
       mdxUtils: path.resolve(__dirname, "../../.storybook/components"),
       "@jobber/docx": path.resolve(__dirname, "../docx/src"),
       "@atlantis/docs": path.resolve(__dirname, "../../docs"),
     },
-  },
-  server: {
-    open: true,
   },
   define: {
     "process.env": {},

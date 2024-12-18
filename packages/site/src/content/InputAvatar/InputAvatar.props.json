@@ -1,0 +1,102 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/InputAvatar/InputAvatar.tsx",
+    "description": "",
+    "displayName": "InputAvatar",
+    "methods": [],
+    "props": {
+      "getUploadParams": {
+        "defaultValue": null,
+        "description": "A callback that receives a file object and returns a `UploadParams` needed\nto upload the file.\n\nMore info is available at:\nhttps://atlantis.getjobber.com/?path=/docs/components-forms-and-inputs-inputfile--docs#getuploadparams",
+        "name": "getUploadParams",
+        "parent": {
+          "fileName": "../components/src/InputAvatar/InputAvatar.tsx",
+          "name": "InputAvatarProps"
+        },
+        "required": true,
+        "type": {
+          "name": "(file: File) => UploadParams | Promise<UploadParams>"
+        }
+      },
+      "onChange": {
+        "defaultValue": null,
+        "description": "Triggered when an image is changed.",
+        "name": "onChange",
+        "parent": {
+          "fileName": "../components/src/InputAvatar/InputAvatar.tsx",
+          "name": "InputAvatarProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(file?: FileUpload) => void"
+        }
+      },
+      "onUploadComplete": {
+        "defaultValue": null,
+        "description": "Triggered when an image upload has completed.",
+        "name": "onUploadComplete",
+        "parent": {
+          "fileName": "../components/src/InputAvatar/InputAvatar.tsx",
+          "name": "InputAvatarProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(file?: FileUpload) => void"
+        }
+      },
+      "imageUrl": {
+        "defaultValue": null,
+        "description": "A url for the image that will be displayed",
+        "name": "imageUrl",
+        "parent": {
+          "fileName": "packages/components/src/Avatar/Avatar.tsx",
+          "name": "AvatarFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "name": {
+        "defaultValue": null,
+        "description": "A users name to be used for assistive technology",
+        "name": "name",
+        "parent": {
+          "fileName": "packages/components/src/Avatar/Avatar.tsx",
+          "name": "AvatarFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "initials": {
+        "defaultValue": null,
+        "description": "The initials that will be displayed if no image is set.\\",
+        "name": "initials",
+        "parent": {
+          "fileName": "packages/components/src/Avatar/Avatar.tsx",
+          "name": "AvatarWithInitialsProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "color": {
+        "defaultValue": null,
+        "description": "The background and border color that represents the user. This should be\nrepresented as a value that can be read by CSS",
+        "name": "color",
+        "parent": {
+          "fileName": "packages/components/src/Avatar/Avatar.tsx",
+          "name": "AvatarFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  }
+]

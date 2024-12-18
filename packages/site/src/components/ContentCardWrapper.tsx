@@ -14,8 +14,9 @@ export const ContentCardWrapper = ({ children }: PropsWithChildren) => {
         width: "100%",
         gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
         gridTemplateRows: "auto",
-        gap: "var(--space-base)",
+        gap: "var(--space-larger)",
       }}
+      data-elevation="elevated"
     >
       {children}
     </div>

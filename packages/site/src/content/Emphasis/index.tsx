@@ -1,27 +1,25 @@
-import { Emphasis, Typography } from "@jobber/components";
 import EmphasisContent from "@atlantis/docs/components/Emphasis/Emphasis.stories.mdx";
 import Props from "./Emphasis.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <EmphasisContent />,
   props: Props,
   component: {
-    element: Emphasis,
-    defaultProps: {
-      children: (
-        <Typography size="largest" element="span" fontWeight={"extraBold"}>
+    element: `<Typography size="largest" element="span" fontWeight={"extraBold"}>
           Save <Emphasis variation="highlight">40%</Emphasis> today
         </Typography>
-      ),
-    },
+    `,
   },
   title: "Emphasis",
   description: "",
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-Emphasis-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-text-and-typography-emphasis--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

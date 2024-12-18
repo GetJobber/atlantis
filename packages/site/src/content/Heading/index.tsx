@@ -1,25 +1,25 @@
-import { Heading } from "@jobber/components";
 import HeadingContent from "@atlantis/docs/components/Heading/Heading.stories.mdx";
 import Props from "./Heading.props.json";
+import MobileProps from "./Heading.props-mobile.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <HeadingContent />,
   props: Props,
+  mobileProps: MobileProps,
   component: {
-    element: Heading,
-    defaultProps: {
-      children: "New client",
-      level: "1",
-      element: "h1",
-    },
+    element: `<Heading level={1} element={"h1"}>New client</Heading>`,
+    mobileElement: `<Heading level={1} element={"h1"}>New client</Heading>`,
   },
   title: "Heading",
   description: "",
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-Heading-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-text-and-typography-heading--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

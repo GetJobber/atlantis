@@ -47,9 +47,9 @@ export const designContentMap: ContentMapItems = {
     title: "Radii",
     content: () => <RadiiDocs />,
   },
-  "responsive-breakpoint": {
-    intro: "Responsive Breakpoints",
-    title: "Responsive Breakpoints",
+  breakpoints: {
+    intro: "Breakpoints",
+    title: "Breakpoints",
     content: () => <ResponsiveBreakpointsDocs />,
   },
   spacing: {

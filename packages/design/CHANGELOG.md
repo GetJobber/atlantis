@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.68.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.67.7...@jobber/design@0.68.0) (2024-12-11)
+
+
+### Features
+
+* **design:** add microphone icon ([#2225](https://github.com/GetJobber/atlantis/issues/2225)) ([1fedf7d](https://github.com/GetJobber/atlantis/commit/1fedf7dbd30fe34bc6150ed0f3f0ae03074b0539))
+
+
+
+
+
+## [0.67.7](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.67.6...@jobber/design@0.67.7) (2024-12-11)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.67.6](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.67.5...@jobber/design@0.67.6) (2024-11-28)
+
+
+### Bug Fixes
+
+* **design:** Remove autoprefixer comment for webpack v5 ([#2132](https://github.com/GetJobber/atlantis/issues/2132)) ([eaf1dd0](https://github.com/GetJobber/atlantis/commit/eaf1dd0053868e812b09f4bf3a82f4cc71c8f3a3))
+
+
+
+
+
 ## [0.67.5](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.67.4...@jobber/design@0.67.5) (2024-11-12)
 
 **Note:** Version bump only for package @jobber/design

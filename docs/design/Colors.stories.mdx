@@ -25,7 +25,7 @@ Color should never be the single means of conveying information in an interface.
 Use labels, iconography, or hints for assistive technology alongside color to
 ensure your content can be understood by everyone.
 
-## Usage guidelines
+## Design & usage guidelines
 
 ### Typography
 
@@ -83,6 +83,18 @@ The default color used for interactive elements.
 
 Use for interactive elements that should be less visually pronounced, such as an
 icon action in main navigation, or buttons to dismiss or cancel a workflow.
+
+##### Interactive--Background
+
+<Swatch
+  colors={[
+    "--color-interactive--background",
+    "--color-interactive--background--hover",
+  ]}
+/>
+
+Use for the background of interactive elements to ensure separation from the
+surface they appear on.
 
 #### Destructive
 

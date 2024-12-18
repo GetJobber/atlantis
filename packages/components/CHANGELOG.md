@@ -3,6 +3,88 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.9.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.8.0...@jobber/components@6.9.0) (2024-12-14)
+
+
+### Features
+
+* **components:** Make List Section Header Flexible ([#2235](https://github.com/GetJobber/atlantis/issues/2235)) ([df9851c](https://github.com/GetJobber/atlantis/commit/df9851c0880246aa9e67c12af9040ff957f6af7c))
+
+
+
+
+
+# [6.8.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.7.1...@jobber/components@6.8.0) (2024-12-10)
+
+
+### Features
+
+* **components:** Properly Exporting DataListProps from DataList ([#2233](https://github.com/GetJobber/atlantis/issues/2233)) ([bb8f657](https://github.com/GetJobber/atlantis/commit/bb8f657f0349bc321e703cca4c104181a367b0b0))
+
+
+
+
+
+## [6.7.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.7.0...@jobber/components@6.7.1) (2024-12-10)
+
+
+### Bug Fixes
+
+* **components:** Expose description as a prop for Autocomplete ([#2228](https://github.com/GetJobber/atlantis/issues/2228)) ([c145b7e](https://github.com/GetJobber/atlantis/commit/c145b7ebe6fb4555762aec3367b55b93308d6674))
+
+
+
+
+
+# [6.7.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.6.0...@jobber/components@6.7.0) (2024-12-06)
+
+
+### Features
+
+* **components:** Add arrow key navigation to Tabs ([#2211](https://github.com/GetJobber/atlantis/issues/2211)) ([4eb1c2d](https://github.com/GetJobber/atlantis/commit/4eb1c2dbfe8ab3457e6cf4dbbe2597370161c26f))
+
+
+
+
+
+# [6.6.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.5.4...@jobber/components@6.6.0) (2024-12-04)
+
+
+### Features
+
+* **components:** Add controlled option to Tabs ([#2204](https://github.com/GetJobber/atlantis/issues/2204)) ([2c7559c](https://github.com/GetJobber/atlantis/commit/2c7559c98eb947b163e1fc80d329052caa59c34e))
+
+
+
+
+
+## [6.5.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.5.3...@jobber/components@6.5.4) (2024-12-04)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [6.5.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.5.2...@jobber/components@6.5.3) (2024-11-29)
+
+
+### Bug Fixes
+
+* **components:** Fix SegmentedControl.Base component name in meta.json ([#2174](https://github.com/GetJobber/atlantis/issues/2174)) ([997dc3b](https://github.com/GetJobber/atlantis/commit/997dc3b2c696b192bf9ea3ead921df3452a5dfff))
+
+
+
+
+
+## [6.5.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.5.1...@jobber/components@6.5.2) (2024-11-29)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 ## [6.5.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.5.0...@jobber/components@6.5.1) (2024-11-27)
 
 

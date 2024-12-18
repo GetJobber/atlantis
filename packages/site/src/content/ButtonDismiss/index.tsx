@@ -1,20 +1,23 @@
-import { ButtonDismiss } from "@jobber/components";
 import ButtonDismissContent from "@atlantis/docs/components/ButtonDismiss/ButtonDismiss.stories.mdx";
 import Props from "./ButtonDismiss.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <ButtonDismissContent />,
   props: Props,
   component: {
-    element: ButtonDismiss,
-    defaultProps: {},
+    element: `<ButtonDismiss onClick={function onClick() {
+        alert("Dismissed!");
+      }} />`,
   },
   title: "ButtonDismiss",
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-ButtonDismiss-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-private-buttondismiss--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;
