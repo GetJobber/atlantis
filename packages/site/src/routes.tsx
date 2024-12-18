@@ -10,6 +10,7 @@ import { ChangelogPage } from "./pages/ChangelogPage";
 import { HooksPage } from "./pages/HooksPage";
 import { hooksList } from "./hooksList";
 import { GuidesPage } from "./pages/GuidesPage";
+import { PackagesPage } from "./pages/PackagesPage";
 
 export interface AtlantisRoute {
   path?: string;
@@ -195,6 +196,39 @@ export const routes: Array<AtlantisRoute> = [
     ],
   },
   {
+    path: "/packages",
+    handle: "Packages",
+    exact: true,
+    component: PackagesPage,
+    children: [
+      {
+        path: "/packages/components",
+        handle: "Components",
+        exact: true,
+      },
+      {
+        path: "/packages/design",
+        handle: "Design",
+        exact: true,
+      },
+      {
+        path: "/packages/eslint-config",
+        handle: "Eslint Config",
+        exact: true,
+      },
+      {
+        path: "/packages/hooks",
+        handle: "Hooks",
+        exact: true,
+      },
+      {
+        path: "/packages/stylelint-config",
+        handle: "Stylelint Config",
+        exact: true,
+      },
+    ],
+  },
+  {
     path: "/changelog",
     handle: "Changelog",
     exact: true,
@@ -279,6 +313,13 @@ export const routes: Array<AtlantisRoute> = [
     path: "/guides/:name",
     component: ContentLoader,
     handle: "GuidesContent",
+    inNav: false,
+    exact: true,
+  },
+  {
+    path: "/packages/:name",
+    component: ContentLoader,
+    handle: "PackagesContent",
     inNav: false,
     exact: true,
   },
