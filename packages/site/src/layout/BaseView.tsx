@@ -40,6 +40,8 @@ BaseView.Siderail = function Siderail({
         flexDirection: "column",
         flexShrink: "0",
         boxSizing: "border-box",
+        overflowY: "auto",
+        height: "100%",
       }}
     >
       {children}
