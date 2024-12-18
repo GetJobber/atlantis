@@ -1,7 +1,6 @@
 import { Box, Content, Page, Tab, Tabs } from "@jobber/components";
 import { useParams } from "react-router";
 import { useEffect, useMemo, useState } from "react";
-import { PageWrapper } from "./PageWrapper";
 import { BaseView } from "./BaseView";
 import { PropsList } from "../components/PropsList";
 import { ComponentNotFound } from "../components/ComponentNotFound";
@@ -190,28 +189,24 @@ export const ComponentView = () => {
     <BaseView>
       <BaseView.Main>
         <Page width="narrow" title={PageMeta.title}>
-          <PageWrapper>
-            <Box>
-              <Content spacing="large">
-                <Box direction="column" gap="small" alignItems="flex-end">
-                  <CodePreviewWindow>
-                    <AtlantisPreviewViewer />
-                  </CodePreviewWindow>
-                </Box>
-                <span
-                  style={{ "--public-tab--inset": 0 } as React.CSSProperties}
-                >
-                  <Tabs onTabChange={handleTabChange} activeTab={tab}>
-                    {activeTabs.map((activeTab, index) => (
-                      <Tab key={index} label={activeTab.label}>
-                        {activeTab.children}
-                      </Tab>
-                    ))}
-                  </Tabs>
-                </span>
-              </Content>
-            </Box>
-          </PageWrapper>
+          <Box>
+            <Content spacing="large">
+              <Box direction="column" gap="small" alignItems="flex-end">
+                <CodePreviewWindow>
+                  <AtlantisPreviewViewer />
+                </CodePreviewWindow>
+              </Box>
+              <span style={{ "--public-tab--inset": 0 } as React.CSSProperties}>
+                <Tabs onTabChange={handleTabChange} activeTab={tab}>
+                  {activeTabs.map((activeTab, index) => (
+                    <Tab key={index} label={activeTab.label}>
+                      {activeTab.children}
+                    </Tab>
+                  ))}
+                </Tabs>
+              </span>
+            </Content>
+          </Box>
         </Page>
       </BaseView.Main>
       <BaseView.Siderail>

@@ -1,5 +1,5 @@
 import { useLocation, useParams } from "react-router";
-import { ContentView } from "../pages/ContentView";
+import { ContentView } from "../layout/ContentView";
 import { contentMap } from "../maps";
 
 /**

@@ -1,7 +1,7 @@
 import { Content } from "@jobber/components";
+import { BaseView } from "./BaseView";
 import { ContentExport } from "../types/content";
 import { AnchorLinks } from "../components/AnchorLinks";
-import { BaseView } from "../layout/BaseView";
 
 export const ContentView = ({
   key,
