@@ -1,9 +1,9 @@
-import { isValidElement } from "react";
-import { Canvas, Meta, Source, Story } from "@storybook/addon-docs";
+import { Canvas, Meta, Source } from "@storybook/addon-docs";
+import { useBreakpoints } from "@jobber/hooks/useBreakpoints";
+import { UseResizeObserver } from "./UseResizeObserver";
 import { Text } from "@jobber/components/Text";
 import { Card } from "@jobber/components/Card";
 import { Content } from "@jobber/components/Content";
-import * as hooks from "@atlantis/packages/hooks/src";
 
 <Meta title="Hooks/useResizeObserver" />
 
@@ -17,33 +17,7 @@ import { useResizeObserver } from "@jobber/hooks/useResizeObserver";
 ```
 
 <Canvas withToolbar>
-  <Story name="useResizeObserver">
-    {() => {
-      const { Breakpoints } = hooks;
-      const [ref, { width, exactWidth, exactHeight, height }] =
-        hooks.useResizeObserver();
-      return (
-        <div ref={ref}>
-          <Card title={`Check out my àçƈéñŦ`} accent={getAccent()}>
-            <Content>
-              <Text>Width Step: {width}</Text>
-              <Text>Height Step: {height}</Text>
-              <Text>Exact Width: {exactWidth}</Text>
-              <Text>Exact Height: {exactHeight}</Text>
-            </Content>
-          </Card>
-        </div>
-      );
-      function getAccent() {
-        if (exactWidth < Breakpoints.smaller) return "red";
-        if (width < Breakpoints.small) return "orange";
-        if (width < Breakpoints.base) return "yellow";
-        if (width < Breakpoints.large) return "green";
-        if (width < Breakpoints.larger) return "lightBlue";
-        return "purple";
-      }
-    }}
-  </Story>
+  <UseResizeObserver />
 </Canvas>
 
 ## Typing
@@ -68,7 +42,7 @@ import { Breakpoints } from "@jobber/hooks/useResizeObserver";
 
 ### The `Breakpoints` object:
 
-<Source language="json" code={JSON.stringify(hooks.Breakpoints)} />
+<Source language="json" code={JSON.stringify(useBreakpoints)} />
 
 ## Custom Sizes
 
@@ -82,7 +56,7 @@ want to use `Breakpoints`.
       medium: 640,
       large: 768,
     };
-    const [ref, { width, exactWidth }] = hooks.useResizeObserver({
+    const [ref, { width, exactWidth }] = useResizeObserver({
       widths: customWidths,
     });
     return (

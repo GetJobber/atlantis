@@ -1,3 +1,6 @@
+/* eslint max-statements: 0 */
+// This is here because it was complaining the function has 13 statements and the limit is 12
+// Maybe it can be refactored in the future? But this number seems arbitrary
 import {
   Box,
   Content,
@@ -10,14 +13,16 @@ import {
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useOnKeyDown } from "@jobber/hooks";
 import styles from "./SearchBox.module.css";
+import { SearchBoxSection } from "./SearchBoxSection";
 import { ToolBoxIllustration } from "../assets/ToolBoxIllustration";
-import { ContentCardWrapper } from "../components/ContentCardWrapper";
-import { ContentCard } from "../components/ContentCard";
 import { componentList } from "../componentList";
 import { contentList } from "../contentList";
 import { designList } from "../designList";
 import { guidesList } from "../guidesList";
 import { changelogList } from "../changelogList";
+import { hooksList } from "../hooksList";
+import { packagesList } from "../packagesList";
+import { ContentListItem } from "../types/components";
 
 /**
  * Full Page Search Modal
@@ -38,60 +43,53 @@ export const SearchBox = ({
   const ref = useRef<InputTextRef>(null);
   const [search, setSearch] = useState("");
 
+  const filterFunction = (item: ContentListItem) =>
+    item.title.toLowerCase().includes(search.toLowerCase()) ||
+    item.additionalMatches?.find((e: string) =>
+      e.toLowerCase().includes(search.toLowerCase()),
+    );
+
   useOnKeyDown(event => {
     event.preventDefault();
     setOpen(true);
   }, "/");
 
   const filteredContentList = useMemo(() => {
-    return contentList.filter(
-      d =>
-        d.title.toLowerCase().includes(search.toLowerCase()) ||
-        d.additionalMatches?.find(e =>
-          e.toLowerCase().includes(search.toLowerCase()),
-        ),
-    );
+    return contentList.filter(d => filterFunction(d));
   }, [search]);
 
   const filteredDesignList = useMemo(() => {
-    return designList.filter(
-      d =>
-        d.title.toLowerCase().includes(search.toLowerCase()) ||
-        d.additionalMatches?.find(e =>
-          e.toLowerCase().includes(search.toLowerCase()),
-        ),
-    );
+    return designList.filter(d => filterFunction(d));
   }, [search]);
 
   const filteredComponentList = useMemo(() => {
-    return componentList.filter(
-      d =>
-        d.title.toLowerCase().includes(search.toLowerCase()) ||
-        d.additionalMatches?.find(e =>
-          e.toLowerCase().includes(search.toLowerCase()),
-        ),
-    );
+    return componentList.filter(d => filterFunction(d));
   }, [search]);
 
   const filteredChangelogList = useMemo(() => {
-    return changelogList.filter(
-      d =>
-        d.title.toLowerCase().includes(search.toLowerCase()) ||
-        d.additionalMatches?.find(e =>
-          e.toLowerCase().includes(search.toLowerCase()),
-        ),
-    );
+    return changelogList.filter(d => filterFunction(d));
   }, [search]);
 
   const filteredGuidesList = useMemo(() => {
-    return guidesList.filter(
-      d =>
-        d.title.toLowerCase().includes(search.toLowerCase()) ||
-        d.additionalMatches?.find(e =>
-          e.toLowerCase().includes(search.toLowerCase()),
-        ),
-    );
+    return guidesList.filter(d => filterFunction(d));
   }, [search]);
+
+  const filteredHooksList = useMemo(() => {
+    return hooksList.filter(d => filterFunction(d));
+  }, [search]);
+
+  const filteredPackagesList = useMemo(() => {
+    return packagesList.filter(d => filterFunction(d));
+  }, [search]);
+
+  const emptyResults =
+    !filteredContentList.length &&
+    !filteredDesignList.length &&
+    !filteredComponentList.length &&
+    !filteredChangelogList.length &&
+    !filteredGuidesList.length &&
+    !filteredHooksList.length &&
+    !filteredPackagesList.length;
 
   useEffect(() => {
     if (open) {
@@ -119,135 +117,68 @@ export const SearchBox = ({
           <Content spacing={"larger"}>
             {filteredComponentList.length > 0 && (
               <Content>
-                <Typography
-                  size={"base"}
-                  fontWeight={"bold"}
-                  textCase={"uppercase"}
-                  textColor={"textSecondary"}
-                  element="h3"
-                >
-                  Components
-                </Typography>
-                <ContentCardWrapper>
-                  {filteredComponentList.map(({ title, to, imageURL }, key) => {
-                    return (
-                      <ContentCard
-                        onClick={closeModal}
-                        title={title}
-                        to={to}
-                        imageURL={imageURL}
-                        key={key}
-                      />
-                    );
-                  })}
-                </ContentCardWrapper>
+                <SearchBoxSection
+                  sectionTitle="Components"
+                  filteredListItems={filteredComponentList}
+                  handleCloseModal={closeModal}
+                />
               </Content>
             )}
             {filteredContentList.length > 0 && (
               <Content>
-                <Typography
-                  size={"base"}
-                  fontWeight={"bold"}
-                  textCase={"uppercase"}
-                  textColor={"textSecondary"}
-                  element="h3"
-                >
-                  Content
-                </Typography>
-                <ContentCardWrapper>
-                  {filteredContentList.map(({ title, to, imageURL }, key) => {
-                    return (
-                      <ContentCard
-                        onClick={closeModal}
-                        title={title}
-                        to={to}
-                        imageURL={imageURL}
-                        key={key}
-                      />
-                    );
-                  })}
-                </ContentCardWrapper>
+                <SearchBoxSection
+                  sectionTitle="Content"
+                  filteredListItems={filteredContentList}
+                  handleCloseModal={closeModal}
+                />
               </Content>
             )}
             {filteredDesignList.length > 0 && (
               <Content>
-                <Typography
-                  size={"base"}
-                  fontWeight={"bold"}
-                  textCase={"uppercase"}
-                  textColor={"textSecondary"}
-                  element="h3"
-                >
-                  Design
-                </Typography>
-                <ContentCardWrapper>
-                  {filteredDesignList.map(({ title, to, imageURL }, key) => {
-                    return (
-                      <ContentCard
-                        onClick={closeModal}
-                        title={title}
-                        to={to}
-                        imageURL={imageURL}
-                        key={key}
-                      />
-                    );
-                  })}
-                </ContentCardWrapper>
+                <SearchBoxSection
+                  sectionTitle="Design"
+                  filteredListItems={filteredDesignList}
+                  handleCloseModal={closeModal}
+                />
               </Content>
             )}
             {filteredChangelogList.length > 0 && (
               <Content>
-                <Typography
-                  size={"base"}
-                  fontWeight={"bold"}
-                  textCase={"uppercase"}
-                  textColor={"textSecondary"}
-                  element="h3"
-                >
-                  Changelog
-                </Typography>
-                <ContentCardWrapper>
-                  {filteredChangelogList.map(({ title, to, imageURL }, key) => {
-                    return (
-                      <ContentCard
-                        onClick={closeModal}
-                        title={title}
-                        to={to}
-                        imageURL={imageURL}
-                        key={key}
-                      />
-                    );
-                  })}
-                </ContentCardWrapper>
+                <SearchBoxSection
+                  sectionTitle="Changelog"
+                  filteredListItems={filteredChangelogList}
+                  handleCloseModal={closeModal}
+                />
               </Content>
             )}
             {filteredGuidesList.length > 0 && (
               <Content>
-                <Typography
-                  size={"base"}
-                  fontWeight={"bold"}
-                  textCase={"uppercase"}
-                  textColor={"textSecondary"}
-                  element="h3"
-                >
-                  Guides
-                </Typography>
-                <ContentCardWrapper>
-                  {filteredGuidesList.map(({ title, to, imageURL }, key) => {
-                    return (
-                      <ContentCard
-                        onClick={closeModal}
-                        title={title}
-                        to={to}
-                        imageURL={imageURL}
-                        key={key}
-                      />
-                    );
-                  })}
-                </ContentCardWrapper>
+                <SearchBoxSection
+                  sectionTitle="Guides"
+                  filteredListItems={filteredGuidesList}
+                  handleCloseModal={closeModal}
+                />
               </Content>
             )}
-            {!filteredComponentList.length && !filteredDesignList.length && (
+            {filteredHooksList.length > 0 && (
+              <Content>
+                <SearchBoxSection
+                  sectionTitle="Hooks"
+                  filteredListItems={filteredHooksList}
+                  handleCloseModal={closeModal}
+                />
+              </Content>
+            )}
+            {filteredPackagesList.length > 0 && (
+              <Content>
+                <SearchBoxSection
+                  sectionTitle="Packages"
+                  filteredListItems={filteredPackagesList}
+                  handleCloseModal={closeModal}
+                />
+              </Content>
+            )}
+            {emptyResults && (
               <Box
                 height={"100%"}
                 direction={"column"}

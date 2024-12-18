@@ -7,7 +7,10 @@ import { ComponentView } from "./layout/ComponentView";
 import { componentList } from "./componentList";
 import { componentSections } from "./componentSections";
 import { ChangelogPage } from "./pages/ChangelogPage";
+import { HooksPage } from "./pages/HooksPage";
+import { hooksList } from "./hooksList";
 import { GuidesPage } from "./pages/GuidesPage";
+import { PackagesPage } from "./pages/PackagesPage";
 
 export interface AtlantisRoute {
   path?: string;
@@ -41,6 +44,20 @@ const generateComponentSidebar = () => {
   }
 
   return sectionedComponentRoutes;
+};
+
+const generateHooksSidebar = () => {
+  const hookRoutes: Array<AtlantisRoute> = [];
+  hooksList.map(hook => {
+    hookRoutes.push({
+      path: `/hooks/${hook.title}`,
+      handle: hook.title,
+      inNav: true,
+      exact: true,
+    });
+  });
+
+  return hookRoutes;
 };
 
 export const routes: Array<AtlantisRoute> = [
@@ -134,6 +151,13 @@ export const routes: Array<AtlantisRoute> = [
     ],
   },
   {
+    path: "/hooks",
+    handle: "Hooks",
+    exact: true,
+    component: HooksPage,
+    children: generateHooksSidebar(),
+  },
+  {
     path: "/guides",
     handle: "Guides",
     exact: true,
@@ -167,6 +191,39 @@ export const routes: Array<AtlantisRoute> = [
       {
         path: "/guides/pull-request-title-generator",
         handle: "Pull request title generator",
+        exact: true,
+      },
+    ],
+  },
+  {
+    path: "/packages",
+    handle: "Packages",
+    exact: true,
+    component: PackagesPage,
+    children: [
+      {
+        path: "/packages/components",
+        handle: "Components",
+        exact: true,
+      },
+      {
+        path: "/packages/design",
+        handle: "Design",
+        exact: true,
+      },
+      {
+        path: "/packages/eslint-config",
+        handle: "Eslint Config",
+        exact: true,
+      },
+      {
+        path: "/packages/hooks",
+        handle: "Hooks",
+        exact: true,
+      },
+      {
+        path: "/packages/stylelint-config",
+        handle: "Stylelint Config",
         exact: true,
       },
     ],
@@ -246,9 +303,23 @@ export const routes: Array<AtlantisRoute> = [
     exact: true,
   },
   {
+    path: "/hooks/:name",
+    component: ContentLoader,
+    handle: "HooksContent",
+    inNav: false,
+    exact: true,
+  },
+  {
     path: "/guides/:name",
     component: ContentLoader,
     handle: "GuidesContent",
+    inNav: false,
+    exact: true,
+  },
+  {
+    path: "/packages/:name",
+    component: ContentLoader,
+    handle: "PackagesContent",
     inNav: false,
     exact: true,
   },

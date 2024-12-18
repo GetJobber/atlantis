@@ -14,6 +14,7 @@ export const ComponentsPage = () => {
           content: componentList,
         },
         useCategories: true,
+        showSegmentedControl: true,
       }}
     />
   );
