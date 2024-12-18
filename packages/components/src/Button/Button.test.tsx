@@ -241,3 +241,23 @@ describe("Button role", () => {
     expect(getByRole("combobox")).toBeInstanceOf(HTMLButtonElement);
   });
 });
+
+describe("Button ref", () => {
+  it("uses ref forwarding to provide a ref to the button or anchor element", () => {
+    const ref = React.createRef<HTMLButtonElement | HTMLAnchorElement>();
+
+    render(<Button label="hello" ref={ref} />);
+    expect(ref.current).toBeInstanceOf(HTMLButtonElement);
+
+    render(<Button ariaLabel="hello" icon="add" ref={ref} />);
+    expect(ref.current).toBeInstanceOf(HTMLButtonElement);
+
+    render(<Button label="hello" url="/world" ref={ref} />);
+    expect(ref.current).toBeInstanceOf(HTMLAnchorElement);
+
+    render(<Button label="hello" to="/world" ref={ref} />, {
+      wrapper: Router,
+    });
+    expect(ref.current).toBeInstanceOf(HTMLAnchorElement);
+  });
+});
