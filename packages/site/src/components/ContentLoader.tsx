@@ -34,5 +34,11 @@ export const ContentLoader = () => {
 
   const content = contentMap[type][name];
 
-  return <ContentView key={`${type}-${name}`} content={content.content} />;
+  return (
+    <ContentView
+      title={content.title}
+      key={`${type}-${name}`}
+      content={content.content}
+    />
+  );
 };

@@ -16,6 +16,7 @@ import {
   useAtlantisPreview,
 } from "../providers/AtlantisPreviewEditorProvider";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
+import usePageTitle from "../hooks/usePageTitle";
 
 /**
  * Layout for displaying a Component documentation page. This will display the component, props, and code.
@@ -33,6 +34,8 @@ export const ComponentView = () => {
   const [tab, setTab] = useState(0);
   const { stateValues } = usePropsAsDataList(PageMeta, type);
   const { enableMinimal, minimal, disableMinimal } = useAtlantisSite();
+
+  usePageTitle({ title: PageMeta?.title });
 
   useEffect(() => {
     if (minimal.requested && !minimal.enabled) {
