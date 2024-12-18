@@ -8,6 +8,11 @@ interface AnchorLinksProps {
   readonly header: string;
 
   /**
+   * A key unique to the page that controls re-rendering of the component
+   */
+  readonly key: string;
+
+  /**
    * An additional action to perform along with scrolling to the selected anchor
    */
   readonly additionalOnClickAction?: () => void;
@@ -15,6 +20,7 @@ interface AnchorLinksProps {
 
 export function AnchorLinks({
   header,
+  key,
   additionalOnClickAction,
 }: AnchorLinksProps) {
   const [hlinks, setHlinks] = useState<Element[] | null>(null);
@@ -25,7 +31,7 @@ export function AnchorLinks({
     if (hdd.length > 0) {
       setHlinks(Array.from(hdd));
     }
-  }, []);
+  }, [key]);
 
   const click = (e: MouseEvent) => {
     e.preventDefault();
@@ -44,19 +50,23 @@ export function AnchorLinks({
   };
 
   return (
-    <Content>
-      <Heading level={6} element="h3">
-        {header}
-      </Heading>
-      <Content spacing="small">
-        {hlinks?.map((link, index) => (
-          <Box key={index}>
-            <a onClick={click} href={`#${link.id}`}>
-              {link.textContent}
-            </a>
-          </Box>
-        ))}
-      </Content>
-    </Content>
+    <>
+      {hlinks && hlinks.length > 0 && (
+        <Content>
+          <Heading level={6} element="h3">
+            {header}
+          </Heading>
+          <Content spacing="small">
+            {hlinks?.map((link, index) => (
+              <Box key={index}>
+                <a onClick={click} href={`#${link.id}`}>
+                  {link.textContent}
+                </a>
+              </Box>
+            ))}
+          </Content>
+        </Content>
+      )}
+    </>
   );
 }

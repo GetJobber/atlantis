@@ -2,6 +2,7 @@ import { Box, Content, Page, Tab, Tabs } from "@jobber/components";
 import { useParams } from "react-router";
 import { useEffect, useMemo, useState } from "react";
 import { PageWrapper } from "./PageWrapper";
+import { BaseView } from "./BaseView";
 import { PropsList } from "../components/PropsList";
 import { ComponentNotFound } from "../components/ComponentNotFound";
 import { ComponentLinks } from "../components/ComponentLinks";
@@ -186,55 +187,45 @@ export const ComponentView = () => {
   };
 
   return PageMeta ? (
-    <div style={{ display: "flex", height: "100dvh" }}>
-      <main
-        style={{
-          overflowY: "scroll",
-          backgroundColor: "var(--color-surface)",
-          boxShadow: "var(--shadow-low)",
-          flexGrow: 1,
-        }}
-      >
-        <Box alignItems="center">
-          <div style={{ width: "100%", maxWidth: "768px" }}>
-            <Page width="narrow" title={PageMeta.title}>
-              <PageWrapper>
-                <Box>
-                  <Content spacing="large">
-                    <Box direction="column" gap="small" alignItems="flex-end">
-                      <CodePreviewWindow>
-                        <AtlantisPreviewViewer />
-                      </CodePreviewWindow>
-                    </Box>
-                    <span
-                      style={
-                        { "--public-tab--inset": 0 } as React.CSSProperties
-                      }
-                    >
-                      <Tabs onTabChange={handleTabChange} activeTab={tab}>
-                        {activeTabs.map((activeTab, index) => (
-                          <Tab key={index} label={activeTab.label}>
-                            {activeTab.children}
-                          </Tab>
-                        ))}
-                      </Tabs>
-                    </span>
-                  </Content>
+    <BaseView>
+      <BaseView.Main>
+        <Page width="narrow" title={PageMeta.title}>
+          <PageWrapper>
+            <Box>
+              <Content spacing="large">
+                <Box direction="column" gap="small" alignItems="flex-end">
+                  <CodePreviewWindow>
+                    <AtlantisPreviewViewer />
+                  </CodePreviewWindow>
                 </Box>
-              </PageWrapper>
-            </Page>
-          </div>
-        </Box>
-      </main>
-      <ComponentLinks
-        links={PageMeta?.links}
-        mobileEnabled={!!PageMeta?.component?.mobileElement}
-        webEnabled={!!PageMeta?.component?.element}
-        goToDesign={goToDesign}
-        goToProps={goToProps}
-        goToUsage={goToUsage}
-      />
-    </div>
+                <span
+                  style={{ "--public-tab--inset": 0 } as React.CSSProperties}
+                >
+                  <Tabs onTabChange={handleTabChange} activeTab={tab}>
+                    {activeTabs.map((activeTab, index) => (
+                      <Tab key={index} label={activeTab.label}>
+                        {activeTab.children}
+                      </Tab>
+                    ))}
+                  </Tabs>
+                </span>
+              </Content>
+            </Box>
+          </PageWrapper>
+        </Page>
+      </BaseView.Main>
+      <BaseView.Siderail>
+        <ComponentLinks
+          key={`component-${name}`}
+          links={PageMeta?.links}
+          mobileEnabled={!!PageMeta?.component?.mobileElement}
+          webEnabled={!!PageMeta?.component?.element}
+          goToDesign={goToDesign}
+          goToProps={goToProps}
+          goToUsage={goToUsage}
+        />
+      </BaseView.Siderail>
+    </BaseView>
   ) : (
     <ComponentNotFound />
   );

@@ -1,22 +1,25 @@
-import { Box, Content } from "@jobber/components";
+import { Content } from "@jobber/components";
 import { ContentExport } from "../types/content";
 import { AnchorLinks } from "../components/AnchorLinks";
+import { BaseView } from "../layout/BaseView";
 
 export const ContentView = ({
+  key,
   content,
 }: {
+  readonly key: string;
   readonly content: ContentExport["content"];
-  readonly intro: string;
-  readonly title: string;
 }) => {
   return (
-    <div style={{ backgroundColor: "var(--color-surface" }}>
-      <custom-elements>
-        <Box padding={"larger"}>
+    <BaseView>
+      <BaseView.Main>
+        <custom-elements>
           <Content>{content()}</Content>
-        </Box>
-        <AnchorLinks header="Details" />
-      </custom-elements>
-    </div>
+        </custom-elements>
+      </BaseView.Main>
+      <BaseView.Siderail>
+        <AnchorLinks header="Jump To" key={key} />
+      </BaseView.Siderail>
+    </BaseView>
   );
 };
