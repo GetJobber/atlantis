@@ -44,6 +44,11 @@
   user-select: none;
 }
 
+.selected {
+  background-color: var(--color-surface) !important;
+  border-radius: var(--radius-small);
+}
+
 .searchButton {
   display: flex;
   align-items: center;
@@ -150,9 +155,4 @@
   button {
     mix-blend-mode: screen;
   }
-}
-
-.selected {
-  background-color: var(--color-surface);
-  border-radius: var(--radius-small);
 }
