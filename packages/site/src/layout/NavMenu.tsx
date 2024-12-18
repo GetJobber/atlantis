@@ -20,6 +20,7 @@ interface NavMenuProps {
 export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
   const [open, setOpen] = useState(false);
   const { isMinimal } = useAtlantisSite();
+  const location = useLocation();
 
   if (isMinimal) return null;
 
@@ -141,8 +142,9 @@ export const StyledLink = ({
   to,
   children,
 }: PropsWithChildren<{ readonly to: string }>) => {
-  const location = useLocation();
-  const isSelected = location.pathname === to;
+  // const location = useLocation();
+  const isSelected =
+    location.pathname === to || (location.pathname === "/" && to === "/?new");
 
   return (
     <Link
@@ -160,7 +162,7 @@ export const StyledSubLink = ({
   to,
   children,
 }: PropsWithChildren<{ readonly to: string }>) => {
-  const location = useLocation();
+  // const location = useLocation();
   const isSelected = location.pathname === to;
 
   return (
