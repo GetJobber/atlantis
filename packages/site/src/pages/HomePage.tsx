@@ -32,6 +32,12 @@ export const HomePage = () => {
               sections: ["Resources"],
             },
             {
+              title: "Hooks",
+              to: "/hooks",
+              imageURL: "/Hooks.png",
+              sections: ["Packages"],
+            },
+            {
               title: "Guides",
               to: "/guides",
               imageURL: "/Placeholder.png",

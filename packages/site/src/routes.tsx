@@ -7,6 +7,8 @@ import { ComponentView } from "./layout/ComponentView";
 import { componentList } from "./componentList";
 import { componentSections } from "./componentSections";
 import { ChangelogPage } from "./pages/ChangelogPage";
+import { HooksPage } from "./pages/HooksPage";
+import { hooksList } from "./hooksList";
 import { GuidesPage } from "./pages/GuidesPage";
 
 export interface AtlantisRoute {
@@ -41,6 +43,20 @@ const generateComponentSidebar = () => {
   }
 
   return sectionedComponentRoutes;
+};
+
+const generateHooksSidebar = () => {
+  const hookRoutes: Array<AtlantisRoute> = [];
+  hooksList.map(hook => {
+    hookRoutes.push({
+      path: `/hooks/${hook.title}`,
+      handle: hook.title,
+      inNav: true,
+      exact: true,
+    });
+  });
+
+  return hookRoutes;
 };
 
 export const routes: Array<AtlantisRoute> = [
@@ -132,6 +148,13 @@ export const routes: Array<AtlantisRoute> = [
         exact: true,
       },
     ],
+  },
+  {
+    path: "/hooks",
+    handle: "Hooks",
+    exact: true,
+    component: HooksPage,
+    children: generateHooksSidebar(),
   },
   {
     path: "/guides",
@@ -242,6 +265,13 @@ export const routes: Array<AtlantisRoute> = [
     path: "/content/:name",
     component: ContentLoader,
     handle: "GeneralContent",
+    inNav: false,
+    exact: true,
+  },
+  {
+    path: "/hooks/:name",
+    component: ContentLoader,
+    handle: "HooksContent",
     inNav: false,
     exact: true,
   },
