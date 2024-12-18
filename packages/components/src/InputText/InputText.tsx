@@ -98,11 +98,7 @@ function InputTextInternal(
     },
   }));
 
-  useSafeLayoutEffect(() => {
-    if (inputRef && inputRef.current instanceof HTMLTextAreaElement) {
-      resize(inputRef.current);
-    }
-  }, [inputRef.current]);
+  const resize = useAutoResize(inputRef, rowRange);
 
   return (
     <FormField
@@ -134,35 +130,8 @@ function InputTextInternal(
     }
   }
 
-  function resize(textArea: HTMLTextAreaElement) {
-    if (rowRange.min === rowRange.max) return;
-    textArea.style.height = "auto";
-    textArea.style.height = textAreaHeight(textArea) + "px";
-  }
 
-  function textAreaHeight(textArea: HTMLTextAreaElement) {
-    const {
-      lineHeight,
-      borderBottomWidth,
-      borderTopWidth,
-      paddingBottom,
-      paddingTop,
-    } = window.getComputedStyle(textArea);
 
-    const maxHeight =
-      rowRange.max * parseFloat(lineHeight) +
-      parseFloat(borderTopWidth) +
-      parseFloat(borderBottomWidth) +
-      parseFloat(paddingTop) +
-      parseFloat(paddingBottom);
-
-    const scrollHeight =
-      textArea.scrollHeight +
-      parseFloat(borderTopWidth) +
-      parseFloat(borderBottomWidth);
-
-    return Math.min(scrollHeight, maxHeight);
-  }
 
   function insertText(text: string) {
     const input = inputRef.current;
@@ -191,4 +160,45 @@ function insertAtCursor(
   input.value = before + newText + after;
   input.selectionStart = input.selectionEnd = start + newText.length;
   input.focus();
+}
+
+function useAutoResize(
+  inputRef: React.RefObject<HTMLTextAreaElement | HTMLInputElement>,
+  rowRange: RowRange,
+) {
+  useSafeLayoutEffect(() => {
+    if (inputRef && inputRef.current instanceof HTMLTextAreaElement) {
+      resize(inputRef.current);
+    }
+  }, [inputRef.current]);
+
+  function resize(textArea: HTMLTextAreaElement) {
+    if (rowRange.min === rowRange.max) return;
+    textArea.style.height = "auto";
+    textArea.style.height = textAreaHeight(textArea) + "px";
+  }
+
+  function textAreaHeight(textArea: HTMLTextAreaElement) {
+    const {
+      lineHeight,
+      borderBottomWidth,
+      borderTopWidth,
+      paddingBottom,
+      paddingTop,
+    } = window.getComputedStyle(textArea);
+    const maxHeight =
+      rowRange.max * parseFloat(lineHeight) +
+      parseFloat(borderTopWidth) +
+      parseFloat(borderBottomWidth) +
+      parseFloat(paddingTop) +
+      parseFloat(paddingBottom);
+    const scrollHeight =
+      textArea.scrollHeight +
+      parseFloat(borderTopWidth) +
+      parseFloat(borderBottomWidth);
+
+    return Math.min(scrollHeight, maxHeight);
+  }
+
+  return resize;
 }
