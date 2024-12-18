@@ -54,7 +54,7 @@
 
 .dayCheckboxInput:disabled + .dayCheckbox {
   color: var(--color-disabled);
-  background: var(--color-surface--background);
+  background: var(--color-disabled--secondary);
   cursor: default;
 }
 
