@@ -1,7 +1,5 @@
-import { Canvas, Meta, Story } from "@storybook/addon-docs";
-import { useEffect, useState } from "react";
-import { Button } from "@jobber/components/Button";
-import * as hooks from "@atlantis/packages/hooks/src";
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { UseOnMount } from "./UseOnMount";
 
 <Meta title="Hooks/useOnMount" />
 
@@ -16,42 +14,5 @@ import { useOnMount } from "@jobber/hooks/useOnMount";
 ```
 
 <Canvas>
-  <Story name="useOnMount">
-    {() => {
-      function AlertMountedComponent() {
-        const [callbackCallCount, setCallbackCallCount] = useState(0);
-        hooks.useOnMount(() => {
-          setCallbackCallCount(callbackCallCount + 1);
-        });
-        return (
-          <h4>
-            I am the AlertMountedComponent and my callback has been called{" "}
-            {callbackCallCount} time
-          </h4>
-        );
-      }
-      const [shouldMount, setShouldMount] = useState(false);
-      let component = <></>;
-      if (shouldMount) {
-        component = <AlertMountedComponent />;
-      }
-      return (
-        <>
-          {component}
-          <Button
-            label={"Mount Component"}
-            onClick={() => {
-              setShouldMount(true);
-            }}
-          />
-          <Button
-            label={"Unmount Component"}
-            onClick={() => {
-              setShouldMount(false);
-            }}
-          />
-        </>
-      );
-    }}
-  </Story>
+  <UseOnMount />
 </Canvas>

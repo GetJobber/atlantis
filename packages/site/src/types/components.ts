@@ -8,3 +8,10 @@ export interface ContentCardProps {
   readonly sections?: string[];
   onClick?: () => void;
 }
+
+export interface ContentListItem {
+  title: string;
+  to: string;
+  imageURL: string;
+  additionalMatches?: string[];
+}
