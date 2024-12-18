@@ -3,7 +3,10 @@ import { useAssert } from "@jobber/hooks/useAssert";
 import { InternalChipProps } from "./ChipTypes";
 
 export interface ChipProps
-  extends Pick<InternalChipProps, "label" | "prefix" | "disabled" | "invalid"> {
+  extends Pick<
+    InternalChipProps,
+    "label" | "prefix" | "disabled" | "invalid" | "variation"
+  > {
   /**
    * The value that gets returned on the `<Chips>`'s onChange callback.
    */
