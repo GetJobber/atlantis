@@ -1,6 +1,7 @@
 import { Content, Typography } from "@jobber/components";
 import { ContentCardWrapper } from "../components/ContentCardWrapper";
 import { ContentCard } from "../components/ContentCard";
+import { ContentCardProps } from "../types/components";
 
 interface SearchBoxSectionProps {
   readonly sectionTitle: string;

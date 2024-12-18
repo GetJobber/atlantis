@@ -21,6 +21,7 @@ import { designList } from "../designList";
 import { guidesList } from "../guidesList";
 import { changelogList } from "../changelogList";
 import { hooksList } from "../hooksList";
+import { ContentListItem } from "../types/components";
 
 /**
  * Full Page Search Modal
@@ -41,9 +42,9 @@ export const SearchBox = ({
   const ref = useRef<InputTextRef>(null);
   const [search, setSearch] = useState("");
 
-  const filterFunction = item =>
+  const filterFunction = (item: ContentListItem) =>
     item.title.toLowerCase().includes(search.toLowerCase()) ||
-    item.additionalMatches?.find(e =>
+    item.additionalMatches?.find((e: string) =>
       e.toLowerCase().includes(search.toLowerCase()),
     );
 
