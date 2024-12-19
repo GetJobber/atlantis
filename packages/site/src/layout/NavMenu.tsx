@@ -1,5 +1,5 @@
 import { Box, Button, Content, Icon, Typography } from "@jobber/components";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Fragment, PropsWithChildren, useState } from "react";
 import { SearchBox } from "./SearchBox";
 import AnimatedPresenceDisclosure from "./AnimatedPresenceDisclosure";
@@ -20,6 +20,7 @@ interface NavMenuProps {
 export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
   const [open, setOpen] = useState(false);
   const { isMinimal } = useAtlantisSite();
+  const location = useLocation();
 
   if (isMinimal) return null;
 
@@ -112,6 +113,7 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
                     <AnimatedPresenceDisclosure
                       to={route.path ?? "/"}
                       title={route.handle}
+                      selected={location.pathname.startsWith(route.path ?? "/")}
                     >
                       {iterateSubMenu(route.children, routeIndex)}
                     </AnimatedPresenceDisclosure>
@@ -138,10 +140,16 @@ export const StyledLink = ({
   to,
   children,
 }: PropsWithChildren<{ readonly to: string }>) => {
+  // const location = useLocation();
+  const isSelected =
+    location.pathname === to || (location.pathname === "/" && to === "/?new");
+
   return (
     <Link
       to={to ?? "/"}
-      className={`${styles.navMenuItem} ${styles.navMenuLink}`}
+      className={`${styles.navMenuItem} ${styles.navMenuLink} ${
+        isSelected ? styles.selected : ""
+      }`}
     >
       {children}
     </Link>
@@ -152,10 +160,15 @@ export const StyledSubLink = ({
   to,
   children,
 }: PropsWithChildren<{ readonly to: string }>) => {
+  // const location = useLocation();
+  const isSelected = location.pathname === to;
+
   return (
     <Link
       to={to ?? "/"}
-      className={`${styles.navMenuItem} ${styles.navMenuSubItem} ${styles.navMenuLink}`}
+      className={`${styles.navMenuItem} ${styles.navMenuSubItem} ${
+        styles.navMenuLink
+      } ${isSelected ? styles.selected : ""}`}
     >
       {children}
     </Link>
