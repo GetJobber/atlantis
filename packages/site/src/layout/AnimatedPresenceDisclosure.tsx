@@ -16,12 +16,11 @@ function AnimatedPresenceDisclosure({
   to,
   selected,
 }: AnimatedPresenceDisclosureProps) {
-  const location = useLocation();
+  const { pathname } = useLocation();
 
   // Determine if any child is selected based on the current URL
   const hasSelectedChild = React.Children.toArray(children).some(
-    child =>
-      React.isValidElement(child) && location.pathname === child.props.to,
+    child => React.isValidElement(child) && pathname === child.props.to,
   );
 
   const [isOpen, setIsOpen] = useState(selected || hasSelectedChild);
@@ -36,15 +35,13 @@ function AnimatedPresenceDisclosure({
   // Scroll the selected element into view when the disclosure is open
   useEffect(() => {
     if (isOpen) {
-      const selectedElement = document.querySelector(
-        `[href="${location.pathname}"]`,
-      );
+      const selectedElement = document.querySelector(`[href="${pathname}"]`);
 
       if (selectedElement) {
         selectedElement.scrollIntoView({ behavior: "smooth", block: "center" });
       }
     }
-  }, [isOpen, location.pathname]);
+  }, [isOpen, pathname]);
 
   const handleButtonClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -52,7 +49,7 @@ function AnimatedPresenceDisclosure({
   };
 
   // Keeps from having the Disclosure title and the child both highlighted
-  const isTitleSelected = location.pathname === to;
+  const isTitleSelected = pathname === to;
 
   return (
     <div>
@@ -85,7 +82,7 @@ function AnimatedPresenceDisclosure({
               )
               .map(child =>
                 React.cloneElement(child, {
-                  selected: location.pathname === child.props.to,
+                  selected: pathname === child.props.to,
                 }),
               )}
           </ul>
