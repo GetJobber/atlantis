@@ -43,17 +43,16 @@ interface ButtonLabelProps extends ButtonFoundationProps {
   readonly label: string;
 }
 
-interface ButtonAnchorProps extends ButtonFoundationProps {
+interface ButtonAnchorProps<ClientSideRouting extends boolean>
+  extends ButtonFoundationProps {
   /**
    * Provide the navigation path for the button. If useClientSideRouting is true, the button will use the router to navigate.
    */
-  readonly url?: RouterNavigationPath;
-
+  readonly url?: ClientSideRouting extends true ? RouterNavigationPath : string;
   /**
    * Determines if the button should use the router to navigate.
    */
-  readonly useClientSideRouting?: boolean;
-
+  readonly useClientSideRouting?: ClientSideRouting;
   /**
    * Router options to be passed to the ButtonNavigationProvider when navigating.
    */
@@ -101,12 +100,12 @@ interface BasicButtonProps extends ButtonFoundationProps {
   readonly role?: string;
 }
 
-export type ButtonProps = XOR<
+export type ButtonProps<ClientSideRouting extends boolean = false> = XOR<
   BaseActionProps,
   XOR<DestructiveActionProps, SubmitActionProps>
 > &
   XOR<
     XOR<SubmitButtonProps, BasicButtonProps>,
-    XOR<ButtonLinkProps, ButtonAnchorProps>
+    XOR<ButtonLinkProps, ButtonAnchorProps<ClientSideRouting>>
   > &
   XOR<ButtonIconProps, ButtonLabelProps>;

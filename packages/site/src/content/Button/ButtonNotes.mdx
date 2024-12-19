@@ -109,7 +109,10 @@ function AppProvider({ children }) {
 
   return (
     <ButtonNavigationProvider
-      buildLocationHref={(href: RouterNavigationPath) => href?.toString() || ""}
+      buildLocationHref={(href: RouterNavigationPath, routerOptions) => {
+        if (!href) return "";
+        return router.buildLocation({ to: href, ...routerOptions }).href;
+      }}
       openLink={(
         href?: RouterNavigationPath,
         routerOptions?: NavigateOptions

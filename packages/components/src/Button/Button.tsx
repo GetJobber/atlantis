@@ -7,7 +7,9 @@ import { ButtonProps, ButtonType } from "./Button.types";
 import { Icon } from "../Icon";
 import { Typography } from "../Typography";
 
-export function Button(props: ButtonProps) {
+export function Button<ClientSideRouting extends boolean = false>(
+  props: ButtonProps<ClientSideRouting>,
+) {
   const {
     ariaControls,
     ariaHaspopup,
@@ -79,7 +81,11 @@ export function Button(props: ButtonProps) {
   return <Tag {...tagProps}>{buttonInternals}</Tag>;
 }
 
-function ButtonInternals({ label, icon, size = "base" }: ButtonProps) {
+function ButtonInternals<ClientSideRouting extends boolean = false>({
+  label,
+  icon,
+  size = "base",
+}: ButtonProps<ClientSideRouting>) {
   return (
     <>
       {icon && <Icon name={icon} size={size} />}

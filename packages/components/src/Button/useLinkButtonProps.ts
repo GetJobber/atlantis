@@ -2,7 +2,9 @@ import React, { useCallback } from "react";
 import { useButtonNavigationProvider } from "./ButtonNavigationProvider";
 import { ButtonProps } from "./Button.types";
 
-export function useLinkButtonProps(props: ButtonProps) {
+export function useLinkButtonProps<ClientSideRouting extends boolean>(
+  props: ButtonProps<ClientSideRouting>,
+) {
   const { routerOptions, onClick, url, useClientSideRouting } = props;
   const { openLink, buildLocationHref } = useButtonNavigationProvider();
   const routerHref = buildLocationHref(url, routerOptions);
