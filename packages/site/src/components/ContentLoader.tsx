@@ -1,5 +1,5 @@
 import { useLocation, useParams } from "react-router";
-import { ContentView } from "../pages/ContentView";
+import { ContentView } from "../layout/ContentView";
 import { contentMap } from "../maps";
 
 /**
@@ -36,8 +36,8 @@ export const ContentLoader = () => {
 
   return (
     <ContentView
-      intro={content.intro}
       title={content.title}
+      key={`${type}-${name}`}
       content={content.content}
     />
   );

@@ -7,6 +7,7 @@ import { ContentCardWrapper } from "./ContentCardWrapper";
 import { CategoryCardSection } from "./CategoryCardSection";
 import { PageWrapper } from "../layout/PageWrapper";
 import { ContentCardProps } from "../types/components";
+import usePageTitle from "../hooks/usePageTitle";
 
 interface PageBlockProps {
   readonly structure: {
@@ -31,6 +32,7 @@ interface PageBlockProps {
  * @returns
  */
 export const PageBlock = ({ structure }: PageBlockProps) => {
+  usePageTitle({ title: structure.header.title });
   interface SectionMap {
     [key: string]: Array<(typeof structure.body.content)[0]>;
   }
