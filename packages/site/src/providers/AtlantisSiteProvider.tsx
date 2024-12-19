@@ -1,3 +1,5 @@
+import { ButtonNavigationProvider } from "@jobber/components";
+import { LocationDescriptor } from "history";
 import {
   PropsWithChildren,
   createContext,
@@ -5,7 +7,22 @@ import {
   useContext,
   useState,
 } from "react";
+import { useHistory } from "react-router-dom";
 
+type RouterActionParameters = Parameters<
+  ReturnType<typeof useHistory>["push"]
+>[1];
+
+interface RouterOptions {
+  action?: "push" | "replace";
+  parameters?: RouterActionParameters;
+}
+declare module "@jobber/components" {
+  interface NavigationConfig {
+    routerOptions: RouterOptions;
+    href: LocationDescriptor<unknown>;
+  }
+}
 const AtlantisSiteContext = createContext<{
   minimal: {
     requested: boolean;
@@ -49,6 +66,7 @@ export const AtlantisSiteProvider = ({
       enabled: false,
     }));
   }, []);
+  const history = useHistory();
 
   return (
     <AtlantisSiteContext.Provider
@@ -59,7 +77,24 @@ export const AtlantisSiteProvider = ({
         disableMinimal,
       }}
     >
-      {children}
+      <ButtonNavigationProvider
+        openLink={(newPath, routerOptions) => {
+          const action = routerOptions?.action || "push";
+          const historyAction =
+            action === "replace" ? history.replace : history.push;
+          const state = routerOptions?.parameters;
+          historyAction(newPath, state);
+        }}
+        buildLocationHref={to => {
+          if (typeof to === "string" || !to) {
+            return to || "";
+          } else {
+            return history.createHref(to);
+          }
+        }}
+      >
+        {children}
+      </ButtonNavigationProvider>
     </AtlantisSiteContext.Provider>
   );
 };
