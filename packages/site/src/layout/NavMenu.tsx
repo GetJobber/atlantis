@@ -1,12 +1,6 @@
 import { Box, Button, Content, Icon, Typography } from "@jobber/components";
 import { Link, useLocation } from "react-router-dom";
-import {
-  Fragment,
-  PropsWithChildren,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { Fragment, PropsWithChildren, useRef, useState } from "react";
 import { SearchBox } from "./SearchBox";
 import AnimatedPresenceDisclosure from "./AnimatedPresenceDisclosure";
 import styles from "./NavMenu.module.css";
@@ -30,15 +24,6 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
   const selectedRef = useRef<HTMLAnchorElement | null>(null);
 
   if (isMinimal) return null;
-
-  useEffect(() => {
-    if (selectedRef.current) {
-      selectedRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
-    }
-  }, [location.pathname]);
 
   interface MenuItem {
     handle: string;
@@ -161,14 +146,11 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
 export const StyledLink = ({
   to,
   children,
-  // isSelected,
   selectedRef,
 }: PropsWithChildren<{
   readonly to: string;
-  // readonly isSelected: boolean;
   readonly selectedRef: React.RefObject<HTMLAnchorElement>;
 }>) => {
-  // const location = useLocation();
   const isSelected =
     location.pathname === to || (location.pathname === "/" && to === "/?new");
 
@@ -193,7 +175,6 @@ export const StyledSubLink = ({
   readonly to: string;
   readonly selectedRef: React.RefObject<HTMLAnchorElement>;
 }>) => {
-  // const location = useLocation();
   const isSelected = location.pathname === to;
 
   return (
