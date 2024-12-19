@@ -1,5 +1,5 @@
 import { AnimatedPresence, Button, Typography } from "@jobber/components";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styles from "./NavMenu.module.css";
 
@@ -18,13 +18,33 @@ function AnimatedPresenceDisclosure({
 }: AnimatedPresenceDisclosureProps) {
   const location = useLocation();
 
-  // Check if any child is selected based on location
+  // Determine if any child is selected based on the current URL
   const hasSelectedChild = React.Children.toArray(children).some(
     child =>
       React.isValidElement(child) && location.pathname === child.props.to,
   );
 
   const [isOpen, setIsOpen] = useState(selected || hasSelectedChild);
+
+  // Open the disclosure if the parent or any child is selected
+  useEffect(() => {
+    if (selected || hasSelectedChild) {
+      setIsOpen(true);
+    }
+  }, [selected, hasSelectedChild]);
+
+  // Scroll the selected element into view when the disclosure is open
+  useEffect(() => {
+    if (isOpen) {
+      const selectedElement = document.querySelector(
+        `[href="${location.pathname}"]`,
+      );
+
+      if (selectedElement) {
+        selectedElement.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }
+  }, [isOpen, location.pathname]);
 
   const handleButtonClick = (e: React.MouseEvent) => {
     e.preventDefault();
