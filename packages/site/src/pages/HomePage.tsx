@@ -5,7 +5,7 @@ export const HomePage = () => {
     <PageBlock
       structure={{
         header: {
-          title: "Atlantis",
+          title: "Home",
           body: "Jobber's toolkit for building consumer-grade experiences",
           ctaLabel: "Get Started",
           to: "/design/welcome-guide",

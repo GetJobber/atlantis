@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 function usePageTitle({ title }: { title: string }) {
   useEffect(() => {
-    document.title = title;
+    document.title = `${title} - Atlantis`;
   }, [title]);
 }
 
