@@ -1,7 +1,10 @@
 import { IconNames } from "@jobber/design";
 import { XOR } from "ts-xor";
 import { LinkProps } from "react-router-dom";
-import { NavigationPath, RouterOptions } from "./ButtonNavigationProvider";
+import {
+  RouterNavigationPath,
+  RouterOptions,
+} from "./ButtonNavigationProvider";
 
 export type ButtonType = "button" | "submit";
 
@@ -44,7 +47,7 @@ interface ButtonAnchorProps extends ButtonFoundationProps {
   /**
    * Provide the navigation path for the button. If useClientSideRouting is true, the button will use the router to navigate.
    */
-  readonly url?: NavigationPath;
+  readonly url?: RouterNavigationPath;
 
   /**
    * Determines if the button should use the router to navigate.

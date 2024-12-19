@@ -331,6 +331,8 @@ to declare the `NavigationConfig` interface in your project.
 
 ```tsx
 import { useHistory } from "react-router-dom";
+import type { RouterNavigationPath } from "@jobber/components"
+
 
 // Both Push and replace have the same parameters
 type RouterActionParameters = Parameters<
@@ -353,7 +355,7 @@ function AppProvider({ children }) {
   const history = useHistory();
   return (
     <ButtonNavigationProvider
-      openLink={(href?: NavigationPath, routerOptions?: NavigateOptions, event) => {
+      openLink={(href?: RouterNavigationPath, routerOptions?: NavigateOptions, event) => {
         // Default to the push action
         const action = routerOptions?.action || "push";
         const historyAction =
@@ -395,6 +397,7 @@ function InnerComponent() {
 ```tsx
 import type { NavigateOptions, ToOptions } from "@tanstack/react-router";
 import { useRouter } from "@tanstack/react-router";
+import type { RouterNavigationPath } from "@jobber/components";
 
 declare module "@jobber/components" {
   interface NavigationConfig {
@@ -408,8 +411,11 @@ function AppProvider({ children }) {
 
   return (
     <ButtonNavigationProvider
-      buildLocationHref={(href: NavigationPath) => href?.toString() || ""}
-      openLink={(href?: NavigationPath, routerOptions?: NavigateOptions) => {
+      buildLocationHref={(href: RouterNavigationPath) => href?.toString() || ""}
+      openLink={(
+        href?: RouterNavigationPath,
+        routerOptions?: NavigateOptions
+      ) => {
         router.navigate({ to: href, ...routerOptions });
       }}
     >

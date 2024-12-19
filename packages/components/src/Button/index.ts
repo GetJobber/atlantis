@@ -5,7 +5,7 @@ export {
 } from "./ButtonNavigationProvider";
 export type {
   NavigationConfig,
-  NavigationPath,
+  RouterNavigationPath,
   RouterOptions,
 } from "./ButtonNavigationProvider";
 export type { ButtonProps } from "./Button.types";
