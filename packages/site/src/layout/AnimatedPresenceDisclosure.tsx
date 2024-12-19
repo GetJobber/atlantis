@@ -1,5 +1,5 @@
 import { AnimatedPresence, Button, Typography } from "@jobber/components";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styles from "./NavMenu.module.css";
 
@@ -18,8 +18,13 @@ function AnimatedPresenceDisclosure({
 }: AnimatedPresenceDisclosureProps) {
   const { pathname } = useLocation();
 
+  const childrenArray = useMemo(
+    () => React.Children.toArray(children),
+    [children],
+  );
+
   // Determine if any child is selected based on the current URL
-  const hasSelectedChild = React.Children.toArray(children).some(
+  const hasSelectedChild = childrenArray.some(
     child => React.isValidElement(child) && pathname === child.props.to,
   );
 
@@ -76,7 +81,7 @@ function AnimatedPresenceDisclosure({
       <AnimatedPresence>
         {isOpen && (
           <ul style={{ padding: "0" }}>
-            {React.Children.toArray(children)
+            {childrenArray
               .filter((child): child is React.ReactElement =>
                 React.isValidElement(child),
               )
