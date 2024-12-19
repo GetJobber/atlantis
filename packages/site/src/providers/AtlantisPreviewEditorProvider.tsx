@@ -15,7 +15,13 @@ import {
   defaultHighlightStyle,
   syntaxHighlighting,
 } from "@codemirror/language";
-import { Theme, useAtlantisTheme } from "@jobber/components";
+import {
+  Button,
+  Theme,
+  Tooltip,
+  showToast,
+  useAtlantisTheme,
+} from "@jobber/components";
 
 /***
  *
@@ -250,6 +256,28 @@ const myTheme = EditorView.theme(
   { dark: true },
 );
 
+function CopyCodeButton({ code }: { readonly code: string }) {
+  return (
+    <div style={{ position: "absolute", bottom: "10px", right: "3px" }}>
+      <Tooltip message="Copy code to clipboard">
+        <Button
+          ariaLabel="Copy"
+          icon="copy"
+          type="secondary"
+          variation="subtle"
+          size="small"
+          onClick={() => {
+            navigator.clipboard.writeText(code);
+            showToast({
+              message: "Copied code to clipboard",
+            });
+          }}
+        ></Button>
+      </Tooltip>
+    </div>
+  );
+}
+
 export const AtlantisPreviewEditor = () => {
   const { code, updateCode, error, type } = useAtlantisPreview();
   const editor = useRef(null);
@@ -305,6 +333,7 @@ export const AtlantisPreviewEditor = () => {
   return (
     <div>
       <div ref={editor}></div>
+      <CopyCodeButton code={code} />
       {error}
     </div>
   );
