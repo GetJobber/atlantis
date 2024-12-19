@@ -20,7 +20,7 @@ interface NavMenuProps {
 export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
   const [open, setOpen] = useState(false);
   const { isMinimal } = useAtlantisSite();
-  const location = useLocation();
+  const { pathname } = useLocation();
   const selectedRef = useRef<HTMLAnchorElement | null>(null);
 
   if (isMinimal) return null;
@@ -117,7 +117,7 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
                     <AnimatedPresenceDisclosure
                       to={route.path ?? "/"}
                       title={route.handle}
-                      selected={location.pathname.startsWith(route.path ?? "/")}
+                      selected={pathname.startsWith(route.path ?? "/")}
                     >
                       {iterateSubMenu(route.children, routeIndex)}
                     </AnimatedPresenceDisclosure>
@@ -151,8 +151,8 @@ export const StyledLink = ({
   readonly to: string;
   readonly selectedRef: React.RefObject<HTMLAnchorElement>;
 }>) => {
-  const isSelected =
-    location.pathname === to || (location.pathname === "/" && to === "/?new");
+  const { pathname } = useLocation();
+  const isSelected = pathname === to || (pathname === "/" && to === "/?new");
 
   return (
     <Link
@@ -175,7 +175,8 @@ export const StyledSubLink = ({
   readonly to: string;
   readonly selectedRef: React.RefObject<HTMLAnchorElement>;
 }>) => {
-  const isSelected = location.pathname === to;
+  const { pathname } = useLocation();
+  const isSelected = pathname === to;
 
   return (
     <Link
