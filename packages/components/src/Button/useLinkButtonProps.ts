@@ -20,7 +20,7 @@ export function useLinkButtonProps(props: ButtonProps) {
           event as React.MouseEvent<HTMLAnchorElement>,
         );
     },
-    [onClick, open, buildLocationHref, routerOptions],
+    [onClick, openLink, buildLocationHref, routerOptions],
   );
 
   return {
