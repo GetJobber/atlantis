@@ -1,6 +1,12 @@
 import { Box, Button, Content, Icon, Typography } from "@jobber/components";
 import { Link, useLocation } from "react-router-dom";
-import { Fragment, PropsWithChildren, useState } from "react";
+import {
+  Fragment,
+  PropsWithChildren,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { SearchBox } from "./SearchBox";
 import AnimatedPresenceDisclosure from "./AnimatedPresenceDisclosure";
 import styles from "./NavMenu.module.css";
@@ -21,8 +27,18 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
   const [open, setOpen] = useState(false);
   const { isMinimal } = useAtlantisSite();
   const location = useLocation();
+  const selectedRef = useRef<HTMLAnchorElement | null>(null);
 
   if (isMinimal) return null;
+
+  useEffect(() => {
+    if (selectedRef.current) {
+      selectedRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  }, [location.pathname]);
 
   interface MenuItem {
     handle: string;
@@ -34,7 +50,10 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
     return menuItems.map((menuItem, menuItemIndex) => {
       return (
         <MenuSubItem key={`${routeIndex}-${menuItemIndex}`}>
-          <StyledSubLink to={`/components/${menuItem.handle}`}>
+          <StyledSubLink
+            to={`/components/${menuItem.handle}`}
+            selectedRef={selectedRef}
+          >
             {menuItem.handle}
           </StyledSubLink>
         </MenuSubItem>
@@ -55,7 +74,7 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
 
       return (
         <MenuSubItem key={`${routeIndex}-${menuItemIndex}`}>
-          <StyledSubLink to={menuItem.path ?? "/"}>
+          <StyledSubLink to={menuItem.path ?? "/"} selectedRef={selectedRef}>
             {menuItem.handle}
           </StyledSubLink>
         </MenuSubItem>
@@ -123,7 +142,10 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
 
               return (
                 <MenuItem key={routeIndex}>
-                  <StyledLink to={getRoutePath(route.path) ?? "/"}>
+                  <StyledLink
+                    to={getRoutePath(route.path) ?? "/"}
+                    selectedRef={selectedRef}
+                  >
                     {route.handle}
                   </StyledLink>
                 </MenuItem>
@@ -139,7 +161,13 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
 export const StyledLink = ({
   to,
   children,
-}: PropsWithChildren<{ readonly to: string }>) => {
+  // isSelected,
+  selectedRef,
+}: PropsWithChildren<{
+  readonly to: string;
+  // readonly isSelected: boolean;
+  readonly selectedRef: React.RefObject<HTMLAnchorElement>;
+}>) => {
   // const location = useLocation();
   const isSelected =
     location.pathname === to || (location.pathname === "/" && to === "/?new");
@@ -150,6 +178,7 @@ export const StyledLink = ({
       className={`${styles.navMenuItem} ${styles.navMenuLink} ${
         isSelected ? styles.selected : ""
       }`}
+      ref={isSelected ? selectedRef : null}
     >
       {children}
     </Link>
@@ -159,7 +188,11 @@ export const StyledLink = ({
 export const StyledSubLink = ({
   to,
   children,
-}: PropsWithChildren<{ readonly to: string }>) => {
+  selectedRef,
+}: PropsWithChildren<{
+  readonly to: string;
+  readonly selectedRef: React.RefObject<HTMLAnchorElement>;
+}>) => {
   // const location = useLocation();
   const isSelected = location.pathname === to;
 
@@ -169,6 +202,7 @@ export const StyledSubLink = ({
       className={`${styles.navMenuItem} ${styles.navMenuSubItem} ${
         styles.navMenuLink
       } ${isSelected ? styles.selected : ""}`}
+      ref={isSelected ? selectedRef : null}
     >
       {children}
     </Link>
