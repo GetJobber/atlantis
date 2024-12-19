@@ -1,11 +1,139 @@
 ## Configuration
 
-### Client-side routing (Web only)
+### DEPRECATED: Client-side routing (Web only)
 
 A Button can be used for client-side routing as well. When using a Button to
 handle the client-side routing, use the `to` prop. Notice when you click below
 that the URL will change to the appropriate route. See
 [Web/Client Side Routing example](../?path=/story/components-actions-button-web--client-side-routing).
+
+### Client-side routing (Web only)
+
+A Button can be used for client-side routing as well. When using a Button to
+handle the client-side routing, use the `ButtonNavigationProvider`. You will
+need to do the following: Wrap your application in the
+`ButtonNavigationProvider` and pass the `openLink` and `buildLocationHref` props
+to the provider.
+
+`openLink` is the function that will be called when the should do a client side
+navigation. It will be provided the `url`, `routerOptions` passed to the
+`Button` component, and the `event` that triggered the navigation.
+
+`buildLocationHref` is a function that will be called to build the href for the
+`Button` component. It will be provided to the html anchor tag. It will recieve
+the `url` and `routerOptions` passed to the `Button` component.
+
+To provide typescript support for the `ButtonNavigationProvider` you will need
+to declare the `NavigationConfig` interface in your project.
+
+#### react-router-dom version 5 example:
+
+```tsx
+import { useHistory } from "react-router-dom";
+
+// Both Push and replace have the same parameters
+type RouterActionParameters = Parameters<
+  ReturnType<typeof useHistory>["push"]
+>[1];
+
+interface RouterOptions {
+  action?: "push" | "replace";
+  parameters?: RouterActionParameters;
+}
+
+declare module "@jobber/components" {
+  interface NavigationConfig {
+    routerOptions: RouterOptions;
+    href: LocationDescriptor<unknown>;
+  }
+}
+
+function AppProvider({ children }) {
+  const history = useHistory();
+  return (
+    <ButtonNavigationProvider
+      openLink={(href?: NavigationPath, routerOptions?: NavigateOptions, event) => {
+        // Default to the push action
+        const action = routerOptions?.action || "push";
+        const historyAction =
+          action === "replace" ? history.replace : history.push;
+        const state = routerOptions?.parameters;
+        historyAction(newPath, state);
+      }}
+      buildLocationHref={to => {
+        if (typeof to === "string" || !to) {
+          return to || "";
+        } else {
+          return history.createHref(to);
+        }
+      }}
+    >
+      {children}
+    </ButtonNavigationProvider>
+  );
+}
+
+function InnerComponent() {
+  return (
+    <Button
+      url={{
+          pathname: generatePath(MY_CUSTOM_PATH, {
+            MY_PATH_PARAM: "some-param",
+          }),
+          search: "?my-query-param=some-query-param",
+        }}
+        routerOptions={{ action: "replace", { myHistoryStateValue: true}}}>
+      Go to some path
+    </Button>
+  );
+}
+```
+
+#### Tanstack router example:
+
+```tsx
+import type { NavigateOptions, ToOptions } from "@tanstack/react-router";
+import { useRouter } from "@tanstack/react-router";
+
+declare module "@jobber/components" {
+  interface NavigationConfig {
+    href: ToOptions["to"];
+    routerOptions: NavigateOptions;
+  }
+}
+
+function AppProvider({ children }) {
+  const router = useRouter();
+
+  return (
+    <ButtonNavigationProvider
+      buildLocationHref={(href: NavigationPath) => href?.toString() || ""}
+      openLink={(href?: NavigationPath, routerOptions?: NavigateOptions) => {
+        router.navigate({ to: href, ...routerOptions });
+      }}
+    >
+      {children}
+    </ButtonNavigationProvider>
+  );
+}
+
+function InnerComponent() {
+  return (
+    <Button
+      to="/some-path/$someParam"
+      routerOptions={{
+        resetScroll: true,
+        params: { someParam: "someValue" },
+        search: { mySearch: "mySearchValue" },
+        state: { myState: "myStateValue" },
+        replace: true,
+      }}
+    >
+      Go to some path
+    </Button>
+  );
+}
+```
 
 ### Form submit (Web only)
 

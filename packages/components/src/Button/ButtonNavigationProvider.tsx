@@ -12,7 +12,7 @@ export type RouterOptions = NavigationConfig extends { routerOptions: infer T }
   ? T
   : // eslint-disable-next-line @typescript-eslint/no-explicit-any
     any;
-export type NavigationPath = NavigationConfig extends { href: infer T }
+export type RouterNavigationPath = NavigationConfig extends { href: infer T }
   ? T
   : string;
 type LocationHref = Location["href"];
@@ -22,15 +22,15 @@ interface ButtonNavigationContextProps {
    * Function that will be called when a user clicks on a Button with a URL and useClientSideRouting is true.
    */
   readonly openLink: (
-    href: NavigationPath,
+    buttonURLProp: RouterNavigationPath,
     routerOptions?: RouterOptions,
     event?: React.MouseEvent<HTMLAnchorElement>,
   ) => void;
   /**
-   * Function that will build the href used by the anchor tag in the Button component.
+   * Function that will build the href used by the anchor tag in the Button component based on the url prop of the Button
    */
   readonly buildLocationHref: (
-    href?: NavigationPath,
+    buttonURLProp?: RouterNavigationPath,
     routerOptions?: RouterOptions,
   ) => LocationHref;
 }
