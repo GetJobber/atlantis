@@ -48,7 +48,9 @@ interface ButtonAnchorProps<ClientSideRouting extends boolean>
   /**
    * Provide the navigation path for the button. If useClientSideRouting is true, the button will use the router to navigate.
    */
-  readonly url?: ClientSideRouting extends true ? RouterNavigationPath : string;
+  readonly url?: ClientSideRouting extends true
+    ? RouterNavigationPath | undefined
+    : string | undefined;
   /**
    * Determines if the button should use the router to navigate.
    */
