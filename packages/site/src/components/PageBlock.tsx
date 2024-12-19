@@ -1,4 +1,4 @@
-import { Button, Grid, SegmentedControl } from "@jobber/components";
+import { SegmentedControl } from "@jobber/components";
 import { useState } from "react";
 import { BodyBlock } from "./BodyBlock";
 import { ContentCard } from "./ContentCard";
@@ -62,24 +62,6 @@ export const PageBlock = ({ structure }: PageBlockProps) => {
     <PageWrapper>
       <HeaderBlock {...structure.header} />
       <BodyBlock>
-        <Grid>
-          <Grid.Cell size={{ xs: 3 }}>
-            <Button url="https://google.com" label="link to google" />
-          </Grid.Cell>
-          <Grid.Cell size={{ xs: 3 }}>
-            <Button
-              url={{ pathname: "/components", search: "name=Button" }}
-              routerOptions={{
-                action: "replace",
-              }}
-              label="Internal link"
-              useClientSideRouting
-            />
-          </Grid.Cell>
-          <Grid.Cell size={{ xs: 3 }}>
-            <Button url="https://bing.com" label="External link" external />
-          </Grid.Cell>
-        </Grid>
         {structure.useCategories && (
           <div
             style={{
