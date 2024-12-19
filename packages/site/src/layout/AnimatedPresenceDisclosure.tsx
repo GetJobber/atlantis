@@ -51,6 +51,7 @@ function AnimatedPresenceDisclosure({
     setIsOpen(!isOpen);
   };
 
+  // Keeps from having the Disclosure title and the child both highlighted
   const isTitleSelected = location.pathname === to;
 
   return (
