@@ -1,13 +1,12 @@
 import { AnimatedPresence, Button, Typography } from "@jobber/components";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styles from "./NavMenu.module.css";
 
 interface AnimatedPresenceDisclosureProps {
   readonly children: React.ReactNode;
   readonly title: React.ReactNode;
   readonly to: string;
-  // readonly className?: string;
   readonly selected?: boolean;
 }
 
@@ -15,24 +14,32 @@ function AnimatedPresenceDisclosure({
   children,
   title,
   to,
-  // className,
   selected,
 }: AnimatedPresenceDisclosureProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+
+  // Check if any child is selected based on location
+  const hasSelectedChild = React.Children.toArray(children).some(
+    child =>
+      React.isValidElement(child) && location.pathname === child.props.to,
+  );
+
+  const [isOpen, setIsOpen] = useState(selected || hasSelectedChild);
 
   const handleButtonClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsOpen(!isOpen);
   };
 
+  const isTitleSelected = location.pathname === to;
+
   return (
     <div>
       <span
         className={`${styles.disclosureNavItem} ${
-          selected ? styles.selected : ""
+          isTitleSelected ? styles.selected : ""
         }`}
       >
-        {" "}
         <Link to={to ?? "/"} tabIndex={0}>
           <Typography fontWeight="semiBold" size="large" textColor="heading">
             {title}
@@ -51,9 +58,15 @@ function AnimatedPresenceDisclosure({
       <AnimatedPresence>
         {isOpen && (
           <ul style={{ padding: "0" }}>
-            {React.Children.map(children, child => (
-              <>{child}</>
-            ))}
+            {React.Children.toArray(children)
+              .filter((child): child is React.ReactElement =>
+                React.isValidElement(child),
+              )
+              .map(child =>
+                React.cloneElement(child, {
+                  selected: location.pathname === child.props.to,
+                }),
+              )}
           </ul>
         )}
       </AnimatedPresence>
