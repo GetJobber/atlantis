@@ -160,6 +160,8 @@ export const StyledLink = ({
   readonly selectedRef: React.RefObject<HTMLAnchorElement>;
 }>) => {
   const { pathname } = useLocation();
+  // The `to === "/?new"` check allows Home to be highlighted in the side nav
+  // TODO: remove when we roll out the new docs site & double check Home is still highlighted
   const isSelected = pathname === to || (pathname === "/" && to === "/?new");
   const className = getLinkClassName(
     `${styles.navMenuItem} ${styles.navMenuLink}`,
