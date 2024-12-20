@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import { useEffect, useMemo, useState } from "react";
 import { PageWrapper } from "./PageWrapper";
 import { PropsList } from "../components/PropsList";
-import { ComponentNotFound } from "../components/ComponentNotFound";
+import { NotFoundPage } from "../pages/NotFoundPage";
 import { ComponentLinks } from "../components/ComponentLinks";
 import { CodePreviewWindow } from "../components/CodePreviewWindow";
 import { usePropsAsDataList } from "../hooks/usePropsAsDataList";
@@ -236,6 +236,6 @@ export const ComponentView = () => {
       />
     </div>
   ) : (
-    <ComponentNotFound />
+    <NotFoundPage />
   );
 };

@@ -5,6 +5,7 @@ import { AtlantisRoute, routes } from "../routes";
 import "./code-theme.css";
 import { ToggleThemeButton } from "../components/ToggleThemeButton";
 import { hooksList } from "../hooksList";
+import { NotFoundPage } from "../pages/NotFoundPage";
 
 /**
  * Layout for whole application. This will display the NavMenu and the content of the page.
@@ -92,6 +93,10 @@ export const Layout = () => {
                 />
               );
             })}
+
+            <Route>
+              <NotFoundPage />
+            </Route>
           </>
         </Switch>
       </div>
