@@ -49,11 +49,6 @@ export const HomePage = () => {
               imageURL: "/Placeholder.png",
             },
             {
-              title: "Packages",
-              to: "/packages",
-              imageURL: "/Placeholder.png",
-            },
-            {
               title: "Changelog",
               to: "/changelog",
               imageURL: "/Placeholder.png",
