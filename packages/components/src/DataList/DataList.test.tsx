@@ -100,7 +100,7 @@ describe("DataList", () => {
         </DataList>,
       );
       expect(screen.getByText(mockTitle)).toBeInTheDocument();
-      expect(screen.queryByText("(10 results)")).not.toBeInTheDocument();
+      expect(screen.queryByTestId(DATALIST_TOTALCOUNT_TEST_ID)).toBeNull();
     });
   });
 
