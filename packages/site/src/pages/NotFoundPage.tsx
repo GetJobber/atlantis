@@ -32,7 +32,7 @@ export const NotFoundPage = () => {
       }, 0); // This is to force a re-render to prevent the fish from changing in the middle of the animation
     };
 
-    timeoutRef.current = setTimeout(updateFish, 20000);
+    timeoutRef.current = setTimeout(updateFish, 30000);
 
     return () => {
       if (timeoutRef.current) {
