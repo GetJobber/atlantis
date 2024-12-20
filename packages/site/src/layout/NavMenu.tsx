@@ -143,6 +143,14 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
   );
 };
 
+const getLinkClassName = (
+  baseClasses: string,
+  isSelected: boolean,
+  selectedClass: string,
+): string => {
+  return `${baseClasses} ${isSelected ? selectedClass : ""}`.trim();
+};
+
 export const StyledLink = ({
   to,
   children,
@@ -153,13 +161,16 @@ export const StyledLink = ({
 }>) => {
   const { pathname } = useLocation();
   const isSelected = pathname === to || (pathname === "/" && to === "/?new");
+  const className = getLinkClassName(
+    `${styles.navMenuItem} ${styles.navMenuLink}`,
+    isSelected,
+    styles.selected,
+  );
 
   return (
     <Link
       to={to ?? "/"}
-      className={`${styles.navMenuItem} ${styles.navMenuLink} ${
-        isSelected ? styles.selected : ""
-      }`}
+      className={className}
       ref={isSelected ? selectedRef : null}
     >
       {children}
@@ -177,13 +188,16 @@ export const StyledSubLink = ({
 }>) => {
   const { pathname } = useLocation();
   const isSelected = pathname === to;
+  const className = getLinkClassName(
+    `${styles.navMenuItem} ${styles.navMenuSubItem} ${styles.navMenuLink}`,
+    isSelected,
+    styles.selected,
+  );
 
   return (
     <Link
       to={to ?? "/"}
-      className={`${styles.navMenuItem} ${styles.navMenuSubItem} ${
-        styles.navMenuLink
-      } ${isSelected ? styles.selected : ""}`}
+      className={className}
       ref={isSelected ? selectedRef : null}
     >
       {children}
