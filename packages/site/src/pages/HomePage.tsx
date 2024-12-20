@@ -17,11 +17,37 @@ export const HomePage = () => {
               title: "Components",
               to: "/components",
               imageURL: "/Components.png",
+              sections: ["Packages"],
             },
-            { title: "Design", to: "/design", imageURL: "/Design.png" },
-            { title: "Content", to: "/content", imageURL: "/Placeholder.png" },
-            { title: "Hooks", to: "/hooks", imageURL: "/Hooks.png" },
-            { title: "Guides", to: "/guides", imageURL: "/Placeholder.png" },
+            {
+              title: "Design",
+              to: "/design",
+              imageURL: "/Design.png",
+              sections: ["Packages"],
+            },
+            {
+              title: "Content",
+              to: "/content",
+              imageURL: "/Placeholder.png",
+              sections: ["Resources"],
+            },
+            {
+              title: "Hooks",
+              to: "/hooks",
+              imageURL: "/Hooks.png",
+              sections: ["Packages"],
+            },
+            {
+              title: "Guides",
+              to: "/guides",
+              imageURL: "/Placeholder.png",
+              sections: ["Resources"],
+            },
+            {
+              title: "Packages",
+              to: "/packages",
+              imageURL: "/Placeholder.png",
+            },
             {
               title: "Packages",
               to: "/packages",
@@ -31,9 +57,11 @@ export const HomePage = () => {
               title: "Changelog",
               to: "/changelog",
               imageURL: "/Placeholder.png",
+              sections: ["Changelog"],
             },
           ],
         },
+        useCategories: true,
       }}
     />
   );

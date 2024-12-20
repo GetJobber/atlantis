@@ -1,5 +1,5 @@
 import { useLocation, useParams } from "react-router";
-import { ContentView } from "../pages/ContentView";
+import { ContentView } from "../layout/ContentView";
 import { contentMap } from "../maps";
 import { NotFoundPage } from "../pages/NotFoundPage";
 
@@ -36,11 +36,7 @@ export const ContentLoader = () => {
   const content = contentMap[type][name];
 
   return content ? (
-    <ContentView
-      intro={content.intro}
-      title={content.title}
-      content={content.content}
-    />
+    <ContentView key={`${type}-${name}`} content={content.content} />
   ) : (
     <NotFoundPage />
   );
