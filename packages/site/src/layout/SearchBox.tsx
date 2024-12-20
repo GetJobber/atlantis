@@ -31,6 +31,12 @@ const lists = [
   { title: "Packages", items: packagesList },
 ];
 
+/**
+ * Search Modal; for filtering and searching all navigation items.
+ *
+ * @param param0 {open, setOpen} - The props for the SearchBox component.
+ * @returns ReactNode
+ */
 export const SearchBox = ({
   open,
   setOpen,
