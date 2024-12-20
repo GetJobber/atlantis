@@ -92,6 +92,16 @@ describe("DataList", () => {
       const results = screen.getByTestId(DATALIST_TOTALCOUNT_TEST_ID);
       expect(within(results).getByTestId(GLIMMER_TEST_ID)).toBeInTheDocument();
     });
+
+    it("should not render the total count if the totalCount is not declared", () => {
+      render(
+        <DataList data={mockData} headers={mockHeader} title={mockTitle}>
+          <></>
+        </DataList>,
+      );
+      expect(screen.getByText(mockTitle)).toBeInTheDocument();
+      expect(screen.queryByText("(10 results)")).not.toBeInTheDocument();
+    });
   });
 
   const mockData = [
