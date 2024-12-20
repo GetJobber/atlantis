@@ -1,10 +1,14 @@
 import Content from "@atlantis/docs/components/Form/Form.stories.mdx";
 import Props from "./Form.props.json";
+import MobileProps from "./Form.props-mobile.json";
+import Notes from "./FormNotes.mdx";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
   props: Props,
+  mobileProps: MobileProps,
   component: {
     element: `const [{ isDirty, isValid }, setFormState] = useFormState();
   const [first, setFirst] = useState("");
@@ -49,13 +53,43 @@ export default {
       </Content>
     </Form>
 )`,
-    defaultProps: {},
+    mobileElement: `<Form
+      initialValues={{ firstName: "Greatest", lastName: "Ever", nickName: "" }}
+      onSubmit={(value) => {
+        return new Promise(function (resolve) {
+          setTimeout(() => {
+            resolve(alert(JSON.stringify(value, void 0)));
+          }, 100);
+        });
+      }}
+    >
+      <Content>
+        <InputText
+          name="firstName"
+          placeholder="First name"
+          validations={{ required: "Please add a first name" }}
+        />
+        <InputText
+          name="lastName"
+          placeholder="Last name"
+          validations={{ required: "Please add a last name" }}
+        />
+        <InputText
+          name="nickName"
+          placeholder="Nick name"
+          validations={{ required: "Please add a nick name" }}
+        />
+      </Content>
+    </Form>`,
   },
   title: "Form",
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-Form-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-forms-and-inputs-form--docs`,
+      ),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

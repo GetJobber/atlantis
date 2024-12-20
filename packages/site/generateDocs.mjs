@@ -1,6 +1,10 @@
 import { mkdirSync, writeFileSync } from "fs";
 import { dirname } from "path";
 import { parse } from "react-docgen-typescript";
+import {
+  ListOfGeneratedMobileComponents,
+  ListOfGeneratedWebComponents,
+} from "./baseComponentLists.mjs";
 
 /**
  * This script is used to generate the *.props.json files under the src/content directory of this repo.
@@ -76,9 +80,14 @@ const removeDeclarations = doc => {
  * @param {string} componentName
  * @returns {{componentPath: string, outputPath: string}}
  */
-const buildPaths = (baseComponentDir, baseOutputDir, componentName) => {
+const buildPaths = (
+  baseComponentDir,
+  baseOutputDir,
+  componentName,
+  tack = "",
+) => {
   const componentPath = `${baseComponentDir}/${componentName}/${componentName}.tsx`;
-  const outputPath = `${baseOutputDir}/${componentName}/${componentName}.props.json`;
+  const outputPath = `${baseOutputDir}/${componentName}/${componentName}.props${tack}.json`;
 
   return { componentPath, outputPath };
 };
@@ -90,6 +99,7 @@ const buildPaths = (baseComponentDir, baseOutputDir, componentName) => {
  * improvement in the future would be take in the location of the script, and work from there instead (__dirname in the old world).
  */
 const baseComponentDir = `../components/src`;
+const baseMobileComponentDir = `../components-native/src`;
 const baseOutputDir = "./src/content";
 
 const buildComponentDocs = name => {
@@ -101,86 +111,16 @@ const buildComponentDocs = name => {
   parseAndWriteDocs(componentPath, outputPath);
 };
 
-/**
- * List of components to build documentation for. There is a future in which this list is dynamically generated from an 'ls' command or similar.
- * For now though, since not ALL the components are in the system, we're building manually.
- */
-const components = [
-  "AnimatedPresence",
-  "AnimatedSwitcher",
-  "Autocomplete",
-  "Avatar",
-  "Banner",
-  "Box",
-  "Button",
-  "ButtonDismiss",
-  "Card",
-  "Checkbox",
-  "Chip",
-  "Chips",
-  "Combobox",
-  "ConfirmationModal",
-  "Content",
-  "Countdown",
-  "DataDump",
-  "DataList",
-  "DataTable",
-  "DatePicker",
-  "DescriptionList",
-  "Disclosure",
-  "Divider",
-  "Drawer",
-  "Emphasis",
-  "FeatureSwitch",
-  "Flex",
-  "Form",
-  "FormatDate",
-  "FormatEmail",
-  "FormatFile",
-  "FormatRelativeDateTime",
-  "FormatTime",
-  "FormField",
-  "Gallery",
-  "Glimmer",
-  "Grid",
-  "Heading",
-  "Icon",
-  "InlineLabel",
-  "InputAvatar",
-  "InputDate",
-  "InputEmail",
-  "InputFile",
-  "InputGroup",
-  "InputNumber",
-  "InputPassword",
-  "InputPhoneNumber",
-  "InputText",
-  "InputTime",
-  "InputValidation",
-  "LightBox",
-  "Link",
-  "List",
-  "Markdown",
-  "Menu",
-  "Modal",
-  "MultiSelect",
-  "Page",
-  "Popover",
-  "ProgressBar",
-  "RadioGroup",
-  "RecurringSelect",
-  "SegmentedControl",
-  "Select",
-  "Spinner",
-  "StatusIndicator",
-  "StatusLabel",
-  "Switch",
-  "Table",
-  "Tabs",
-  "Text",
-  "Toast",
-  "Tooltip",
-  "Typography",
-];
+const buildMobileComponentDocs = name => {
+  const { componentPath, outputPath } = buildPaths(
+    baseMobileComponentDir,
+    baseOutputDir,
+    name,
+    "-mobile",
+  );
+  parseAndWriteDocs(componentPath, outputPath);
+};
 
-components.forEach(buildComponentDocs);
+ListOfGeneratedWebComponents.forEach(buildComponentDocs);
+
+ListOfGeneratedMobileComponents.forEach(buildMobileComponentDocs);

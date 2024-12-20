@@ -1,33 +1,38 @@
-import { Banner as BannerRoot } from "@jobber/components";
 import BannerContent from "@atlantis/docs/components/Banner/Banner.stories.mdx";
-import { PropsWithChildren } from "react";
 import Props from "./Banner.props.json";
-import { BannerType } from "../../types/banner";
+import MobileProps from "./Banner.props-mobile.json";
+import Notes from "./BannerNotes.mdx";
 import { ContentExport } from "../../types/content";
-
-export const Banner = (
-  props: PropsWithChildren<{
-    readonly type: BannerType;
-  }>,
-) => {
-  return (
-    <BannerRoot {...props}>
-      <p>{"Account details updated"}</p>
-    </BannerRoot>
-  );
-};
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <BannerContent />,
   props: Props,
+  mobileProps: MobileProps,
   component: {
-    element: 'return <Banner type={"success"}>Account Details Updated</Banner>',
+    element: '<Banner type={"success"}>Account Details Updated</Banner>',
+    mobileElement: `<><Banner type="success">
+        <Text>Your import is in progress</Text>
+      </Banner>
+      <Banner type="warning">
+        <Text>Your import is in progress</Text>
+      </Banner>
+      <Banner type="notice">
+        <Text>Your import is in progress</Text>
+      </Banner>
+      <Banner type="error">
+        <Text>Your import is in progress</Text>
+      </Banner></>
+      `,
   },
   title: "Banner",
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-Banner-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-status-and-feedback-banner--docs`,
+      ),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

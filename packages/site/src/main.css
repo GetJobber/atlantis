@@ -128,13 +128,12 @@ section[role="tabpanel"]>div>h1:first-of-type {
 
 iframe {
   width: 100%;
-  min-height: 200px;
 }
 
 .headerBlock {
-  background-image: url("../public/img_collage.jpg");
+  background-image: url("/img_collage.jpg");
   background-size: cover;
-  padding: var(--space-extravagant);
+  padding: var(--space-large);
   width: 100%;
   height: 100%;
   color: var(--color-base-white);
@@ -143,7 +142,14 @@ iframe {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   box-sizing: border-box;
+}
+
+@media screen and (min-width: 1024px) {
+  .headerBlock {
+    padding: var(--space-extravagant);
+  }
 }
 
 .headerBlock:after {
@@ -153,9 +159,14 @@ iframe {
   left: 0;
   right: 0;
   background-color: var(--color-surface);
-  mask-image: url("../public/distress_paper-rip.svg");
+  mask-image: url("/distress_paper-rip.svg");
   mask-repeat: no-repeat;
   mask-size: cover;
   width: 100%;
   height: 2vw;
+}
+
+.headerBlock > * {
+  width: 100%;
+  max-width: 1024px;
 }

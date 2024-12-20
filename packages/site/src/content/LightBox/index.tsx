@@ -1,6 +1,8 @@
 import Content from "@atlantis/docs/components/LightBox/LightBox.stories.mdx";
 import Props from "./LightBox.props.json";
+import Notes from "./LightBoxNotes.mdx";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -39,7 +41,10 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-LightBox-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-images-and-icons-lightbox--docs`,
+      ),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

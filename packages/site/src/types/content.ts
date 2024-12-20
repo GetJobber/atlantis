@@ -1,6 +1,6 @@
 export interface ContentExport {
   content: (props?: unknown) => JSX.Element;
-  props: Array<{
+  props?: Array<{
     description: string;
     displayName: string;
     filePath: string;
@@ -8,14 +8,24 @@ export interface ContentExport {
     props: Record<string, GeneratedProp | undefined>;
     tags: Record<string, GeneratedTag | undefined | string>;
   }>;
+  mobileProps?: Array<{
+    description: string;
+    displayName: string;
+    filePath: string;
+    methods: Array<string>;
+    props: Record<string, GeneratedProp | undefined>;
+    tags: Record<string, GeneratedTag>;
+  }>;
   component: {
-    element: unknown;
+    element?: unknown;
+    mobileElement?: unknown;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Will be deleted soon, don't worry.
     defaultProps?: any;
   };
   title: string;
   description?: string;
   links: ContentExportLinks[];
+  notes?: () => JSX.Element;
 }
 interface GeneratedTag {
   name: string;

@@ -1,0 +1,115 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components-native/src/Switch/Switch.tsx",
+    "description": "",
+    "displayName": "Switch",
+    "methods": [],
+    "props": {
+      "label": {
+        "defaultValue": null,
+        "description": "Optional label to display in front of the switch",
+        "name": "label",
+        "parent": {
+          "fileName": "../components-native/src/Switch/Switch.tsx",
+          "name": "WithLabelProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "description": {
+        "defaultValue": null,
+        "description": "Optional descriptive text to display under the switch",
+        "name": "description",
+        "parent": {
+          "fileName": "../components-native/src/Switch/Switch.tsx",
+          "name": "WithLabelProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "value": {
+        "defaultValue": null,
+        "description": "Value of the switch",
+        "name": "value",
+        "parent": {
+          "fileName": "packages/components-native/src/Switch/components/BaseSwitch/BaseSwitch.tsx",
+          "name": "BaseSwitchProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "defaultValue": {
+        "defaultValue": null,
+        "description": "Default value of the switch when uncontrolled",
+        "name": "defaultValue",
+        "parent": {
+          "fileName": "packages/components-native/src/Switch/components/BaseSwitch/BaseSwitch.tsx",
+          "name": "BaseSwitchProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "onValueChange": {
+        "defaultValue": null,
+        "description": "Callback to handle value changes",
+        "name": "onValueChange",
+        "parent": {
+          "fileName": "packages/components-native/src/Switch/components/BaseSwitch/BaseSwitch.tsx",
+          "name": "BaseSwitchProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(val: boolean) => void"
+        }
+      },
+      "disabled": {
+        "defaultValue": null,
+        "description": "When true, the switch cannot be toggled",
+        "name": "disabled",
+        "parent": {
+          "fileName": "packages/components-native/src/Switch/components/BaseSwitch/BaseSwitch.tsx",
+          "name": "BaseSwitchProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "accessibilityLabel": {
+        "defaultValue": null,
+        "description": "Accessibility label for this switch",
+        "name": "accessibilityLabel",
+        "parent": {
+          "fileName": "packages/components-native/src/Switch/components/BaseSwitch/BaseSwitch.tsx",
+          "name": "BaseSwitchProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "name": {
+        "defaultValue": null,
+        "description": "Name of the input.",
+        "name": "name",
+        "parent": {
+          "fileName": "packages/components-native/src/Switch/components/BaseSwitch/BaseSwitch.tsx",
+          "name": "BaseSwitchProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  }
+]

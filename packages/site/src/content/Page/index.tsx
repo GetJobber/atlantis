@@ -1,12 +1,13 @@
 import Content from "@atlantis/docs/components/Page/Page.stories.mdx";
 import Props from "./Page.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
   props: Props,
   component: {
-    element: `return (
+    element: `(
     <Page
       title={"Notifications"}
       intro={
@@ -24,7 +25,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-Page-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-layouts-and-structure-page--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

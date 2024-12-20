@@ -3,6 +3,313 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.13](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.12...@jobber/atlantis-site@0.18.13) (2024-12-20)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.12](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.11...@jobber/atlantis-site@0.18.12) (2024-12-19)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.11](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.10...@jobber/atlantis-site@0.18.11) (2024-12-18)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.10](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.9...@jobber/atlantis-site@0.18.10) (2024-12-18)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.9](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.8...@jobber/atlantis-site@0.18.9) (2024-12-18)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.8](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.7...@jobber/atlantis-site@0.18.8) (2024-12-17)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.7](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.6...@jobber/atlantis-site@0.18.7) (2024-12-16)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.6](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.5...@jobber/atlantis-site@0.18.6) (2024-12-16)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.5](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.4...@jobber/atlantis-site@0.18.5) (2024-12-16)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.4](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.3...@jobber/atlantis-site@0.18.4) (2024-12-16)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.3](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.2...@jobber/atlantis-site@0.18.3) (2024-12-16)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.1...@jobber/atlantis-site@0.18.2) (2024-12-16)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.0...@jobber/atlantis-site@0.18.1) (2024-12-16)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+# [0.18.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.17.8...@jobber/atlantis-site@0.18.0) (2024-12-14)
+
+
+### Features
+
+* **components:** Make List Section Header Flexible ([#2235](https://github.com/GetJobber/atlantis/issues/2235)) ([df9851c](https://github.com/GetJobber/atlantis/commit/df9851c0880246aa9e67c12af9040ff957f6af7c))
+
+
+
+
+
+## [0.17.8](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.17.7...@jobber/atlantis-site@0.17.8) (2024-12-13)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.17.7](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.17.6...@jobber/atlantis-site@0.17.7) (2024-12-13)
+
+
+### Bug Fixes
+
+* nav disclosure section dark mode [JOB-111816] ([#2249](https://github.com/GetJobber/atlantis/issues/2249)) ([30a6199](https://github.com/GetJobber/atlantis/commit/30a619906493b997b091a5507b8715e0ec0bc514))
+
+
+
+
+
+## [0.17.6](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.17.5...@jobber/atlantis-site@0.17.6) (2024-12-13)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.17.5](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.17.4...@jobber/atlantis-site@0.17.5) (2024-12-13)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.17.4](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.17.3...@jobber/atlantis-site@0.17.4) (2024-12-12)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.17.3](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.17.2...@jobber/atlantis-site@0.17.3) (2024-12-12)
+
+
+### Bug Fixes
+
+* **components:** Fixing a scrolling issue with the docs site. ([#2245](https://github.com/GetJobber/atlantis/issues/2245)) ([23a6432](https://github.com/GetJobber/atlantis/commit/23a643257f008ca1397472c9999c664b5699cb5c))
+
+
+
+
+
+## [0.17.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.17.1...@jobber/atlantis-site@0.17.2) (2024-12-12)
+
+
+### Bug Fixes
+
+* **components:** Fixing some issues with the docs site before launch ([#2241](https://github.com/GetJobber/atlantis/issues/2241)) ([b33b5ed](https://github.com/GetJobber/atlantis/commit/b33b5ed965b5ac76f8f55907f35be3af092fbd77))
+
+
+
+
+
+## [0.17.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.17.0...@jobber/atlantis-site@0.17.1) (2024-12-11)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+# [0.17.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.16.2...@jobber/atlantis-site@0.17.0) (2024-12-11)
+
+
+### Features
+
+* **components:** Docs Site Side Nav Links ([#2222](https://github.com/GetJobber/atlantis/issues/2222)) ([50938b7](https://github.com/GetJobber/atlantis/commit/50938b7ab7a74fd23db935e6b05456b63848df09))
+
+
+
+
+
+## [0.16.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.16.1...@jobber/atlantis-site@0.16.2) (2024-12-11)
+
+
+### Bug Fixes
+
+* **components:** Docs Site not rendering Design items properly ([#2239](https://github.com/GetJobber/atlantis/issues/2239)) ([540d225](https://github.com/GetJobber/atlantis/commit/540d2259b127473472d0975e17e413f88175169f))
+
+
+
+
+
+## [0.16.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.16.0...@jobber/atlantis-site@0.16.1) (2024-12-10)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+# [0.16.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.15.5...@jobber/atlantis-site@0.16.0) (2024-12-10)
+
+
+### Features
+
+* **components:** Docs Site - Remaining Mobile Components ([#2221](https://github.com/GetJobber/atlantis/issues/2221)) ([76dcae6](https://github.com/GetJobber/atlantis/commit/76dcae60952d9624bf0f0aa98ed43e1934419c97))
+
+
+
+
+
+## [0.15.5](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.15.4...@jobber/atlantis-site@0.15.5) (2024-12-10)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.15.4](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.15.3...@jobber/atlantis-site@0.15.4) (2024-12-09)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.15.3](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.15.2...@jobber/atlantis-site@0.15.3) (2024-12-06)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.15.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.15.1...@jobber/atlantis-site@0.15.2) (2024-12-06)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.15.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.15.0...@jobber/atlantis-site@0.15.1) (2024-12-06)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+# [0.15.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.14.0...@jobber/atlantis-site@0.15.0) (2024-12-06)
+
+
+### Features
+
+* **components:** Docs Site: The Rest Of The Mobile Components ([#2212](https://github.com/GetJobber/atlantis/issues/2212)) ([820bddf](https://github.com/GetJobber/atlantis/commit/820bddf2419095fd019ebfb4036970059c06b008))
+
+
+
+
+
+# [0.14.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.13.4...@jobber/atlantis-site@0.14.0) (2024-12-06)
+
+
+### Features
+
+* **components:** Docs Site Mobile Support ([#2203](https://github.com/GetJobber/atlantis/issues/2203)) ([b88d507](https://github.com/GetJobber/atlantis/commit/b88d5079cd62313e714705f06e20261fe152770a))
+
+
+
+
+
+## [0.13.4](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.13.3...@jobber/atlantis-site@0.13.4) (2024-12-05)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.13.3](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.13.2...@jobber/atlantis-site@0.13.3) (2024-12-05)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
 ## [0.13.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.13.1...@jobber/atlantis-site@0.13.2) (2024-12-04)
 
 **Note:** Version bump only for package @jobber/atlantis-site

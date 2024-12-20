@@ -1,0 +1,76 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components-native/src/Toast/Toast.tsx",
+    "description": "",
+    "displayName": "JobberToast",
+    "methods": [],
+    "props": {
+      "bottomOffset": {
+        "defaultValue": {
+          "value": "40"
+        },
+        "description": "Offset from the bottom of the screen in px.\nHas effect only when the position is \"bottom\".",
+        "name": "bottomOffset",
+        "parent": {
+          "fileName": "../components-native/src/Toast/Toast.tsx",
+          "name": "JobberToastProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components-native/src/Toast/Toast.tsx",
+    "description": "",
+    "displayName": "showToast",
+    "methods": [],
+    "props": {
+      "message": {
+        "defaultValue": null,
+        "description": "Message to be displayed in the toast",
+        "name": "message",
+        "parent": {
+          "fileName": "../components-native/src/Toast/Toast.tsx",
+          "name": "ShowToastParams"
+        },
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      },
+      "bottomTabsVisible": {
+        "defaultValue": null,
+        "description": "Indicates if the bottom tabs are being shown\nIt is equired to define the display position of the toast.",
+        "name": "bottomTabsVisible",
+        "parent": {
+          "fileName": "../components-native/src/Toast/Toast.tsx",
+          "name": "ShowToastParams"
+        },
+        "required": true,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "position": {
+        "defaultValue": {
+          "value": "bottom"
+        },
+        "description": "Where the toast will be positioned",
+        "name": "position",
+        "parent": {
+          "fileName": "../components-native/src/Toast/Toast.tsx",
+          "name": "ShowToastParams"
+        },
+        "required": false,
+        "type": {
+          "name": "ToastPosition"
+        }
+      }
+    }
+  }
+]

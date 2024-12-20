@@ -22,13 +22,13 @@ export const HeaderBlock = ({
   body,
   ctaLabel,
   to,
-  imageURL = "../public/img_collage.jpg",
+  imageURL = "/img_collage.jpg",
 }: HeaderBlockProps) => {
   const history = useHistory();
 
   return (
     <Box background="base-blue--900">
-      <div
+      <header
         style={{ backgroundImage: `url(${imageURL})` }}
         className="headerBlock"
       >
@@ -41,7 +41,9 @@ export const HeaderBlock = ({
           >
             {title}
           </Typography>
-          <Typography size="large">{body}</Typography>
+          <Typography size="large" fontWeight={"semiBold"}>
+            {body}
+          </Typography>
           {to && ctaLabel && (
             <Button
               type="secondary"
@@ -51,7 +53,7 @@ export const HeaderBlock = ({
             />
           )}
         </Content>
-      </div>
+      </header>
     </Box>
   );
 };

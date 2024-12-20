@@ -8,20 +8,55 @@ export const HomePage = () => {
           title: "Atlantis",
           body: "Jobber's toolkit for building consumer-grade experiences",
           ctaLabel: "Get Started",
-          to: "/content/design/welcome-guide",
-          imageURL: "../public/img_collage.jpg",
+          to: "/design/welcome-guide",
+          imageURL: "/img_collage.jpg",
         },
         body: {
-          title: "Packages",
           content: [
             {
               title: "Components",
               to: "/components",
               imageURL: "/Components.png",
+              sections: ["Packages"],
             },
-            { title: "Design", to: "/design", imageURL: "/Design.png" },
+            {
+              title: "Design",
+              to: "/design",
+              imageURL: "/Design.png",
+              sections: ["Packages"],
+            },
+            {
+              title: "Content",
+              to: "/content",
+              imageURL: "/Placeholder.png",
+              sections: ["Resources"],
+            },
+            {
+              title: "Hooks",
+              to: "/hooks",
+              imageURL: "/Hooks.png",
+              sections: ["Packages"],
+            },
+            {
+              title: "Guides",
+              to: "/guides",
+              imageURL: "/Placeholder.png",
+              sections: ["Resources"],
+            },
+            {
+              title: "Packages",
+              to: "/packages",
+              imageURL: "/Placeholder.png",
+            },
+            {
+              title: "Changelog",
+              to: "/changelog",
+              imageURL: "/Placeholder.png",
+              sections: ["Changelog"],
+            },
           ],
         },
+        useCategories: true,
       }}
     />
   );

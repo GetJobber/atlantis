@@ -1,6 +1,8 @@
 import Content from "@atlantis/docs/components/Box/Box.stories.mdx";
 import Props from "./Box.props.json";
+import Notes from "./BoxNotes.mdx";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -15,7 +17,10 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-Box-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-layouts-and-structure-box--docs`,
+      ),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;
