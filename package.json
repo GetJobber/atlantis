@@ -168,6 +168,7 @@
     "ie >= 11"
   ],
   "dependencies": {
+    "@hotjar/browser": "^1.0.9",
     "@storybook/blocks": "^7.6.20",
     "@storybook/components": "^7.6.20",
     "jest-environment-jsdom": "^29.5.0"

@@ -6,6 +6,7 @@ import "@jobber/components/dist/styles.css";
 import "./main.css";
 import { BrowserRouter } from "react-router-dom";
 import { AtlantisThemeContextProvider } from "@jobber/components";
+import Hotjar from "@hotjar/browser";
 import { Layout } from "./layout/Layout";
 import { AtlantisPreviewEditorProvider } from "./providers/AtlantisPreviewEditorProvider";
 import { AtlantisSiteProvider } from "./providers/AtlantisSiteProvider";
@@ -19,6 +20,11 @@ const urlParams = new URLSearchParams(window.location.search);
 const minimalMode = urlParams.has("minimal");
 
 initAtlantisTheme(urlParams.get("theme"));
+
+const siteId = 5247292;
+const hotjarVersion = 6;
+
+Hotjar.init(siteId, hotjarVersion);
 
 function renderApp() {
   const root = document.getElementById("root");

@@ -1,4 +1,5 @@
 import path from "path";
+import fs from "fs";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import mdx from "@mdx-js/rollup";
@@ -75,5 +76,11 @@ export default defineConfig({
   },
   define: {
     "process.env": {},
+  },
+  server: {
+    https: {
+      key: fs.readFileSync("./localhost-key.pem"),
+      cert: fs.readFileSync("./localhost.pem"),
+    },
   },
 });
