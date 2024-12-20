@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.14](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.13...@jobber/atlantis-site@0.18.14) (2024-12-20)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.13](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.12...@jobber/atlantis-site@0.18.13) (2024-12-20)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
 ## [0.18.12](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.11...@jobber/atlantis-site@0.18.12) (2024-12-19)
 
 **Note:** Version bump only for package @jobber/atlantis-site
