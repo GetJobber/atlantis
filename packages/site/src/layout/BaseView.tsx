@@ -1,7 +1,7 @@
 import { Box } from "@jobber/components";
 import React from "react";
 
-export function BaseView({ children }: { readonly children: React.ReactNode }) {
+export function BaseView({ children }: PropsWithChildren) {
   return <div style={{ display: "flex", height: "100dvh" }}>{children}</div>;
 }
 
