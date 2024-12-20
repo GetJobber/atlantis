@@ -1,6 +1,3 @@
-/* eslint max-statements: 0 */
-// This is here because it was complaining the function has 13 statements and the limit is 12
-// Maybe it can be refactored in the future? But this number seems arbitrary
 import {
   Box,
   Content,
@@ -24,15 +21,16 @@ import { hooksList } from "../hooksList";
 import { packagesList } from "../packagesList";
 import { ContentListItem } from "../types/components";
 
-/**
- * Full Page Search Modal
- *
- * This lists all the components and design items in the system,
- * for filtering and searching.
- *
- * @param param0 {open,setOpen}
- * @returns ReactNode
- */
+const lists = [
+  { title: "Components", items: componentList },
+  { title: "Content", items: contentList },
+  { title: "Design", items: designList },
+  { title: "Changelog", items: changelogList },
+  { title: "Guides", items: guidesList },
+  { title: "Hooks", items: hooksList },
+  { title: "Packages", items: packagesList },
+];
+
 export const SearchBox = ({
   open,
   setOpen,
@@ -45,7 +43,7 @@ export const SearchBox = ({
 
   const filterFunction = (item: ContentListItem) =>
     item.title.toLowerCase().includes(search.toLowerCase()) ||
-    item.additionalMatches?.find((e: string) =>
+    item.additionalMatches?.some((e: string) =>
       e.toLowerCase().includes(search.toLowerCase()),
     );
 
@@ -54,42 +52,14 @@ export const SearchBox = ({
     setOpen(true);
   }, "/");
 
-  const filteredContentList = useMemo(() => {
-    return contentList.filter(d => filterFunction(d));
+  const filteredLists = useMemo(() => {
+    return lists.map(list => ({
+      title: list.title,
+      items: list.items.filter(filterFunction),
+    }));
   }, [search]);
 
-  const filteredDesignList = useMemo(() => {
-    return designList.filter(d => filterFunction(d));
-  }, [search]);
-
-  const filteredComponentList = useMemo(() => {
-    return componentList.filter(d => filterFunction(d));
-  }, [search]);
-
-  const filteredChangelogList = useMemo(() => {
-    return changelogList.filter(d => filterFunction(d));
-  }, [search]);
-
-  const filteredGuidesList = useMemo(() => {
-    return guidesList.filter(d => filterFunction(d));
-  }, [search]);
-
-  const filteredHooksList = useMemo(() => {
-    return hooksList.filter(d => filterFunction(d));
-  }, [search]);
-
-  const filteredPackagesList = useMemo(() => {
-    return packagesList.filter(d => filterFunction(d));
-  }, [search]);
-
-  const emptyResults =
-    !filteredContentList.length &&
-    !filteredDesignList.length &&
-    !filteredComponentList.length &&
-    !filteredChangelogList.length &&
-    !filteredGuidesList.length &&
-    !filteredHooksList.length &&
-    !filteredPackagesList.length;
+  const emptyResults = filteredLists.every(list => list.items.length === 0);
 
   useEffect(() => {
     if (open) {
@@ -115,104 +85,53 @@ export const SearchBox = ({
         />
         <div className={styles.searchBoxResults}>
           <Content spacing={"larger"}>
-            {filteredComponentList.length > 0 && (
-              <Content>
-                <SearchBoxSection
-                  sectionTitle="Components"
-                  filteredListItems={filteredComponentList}
-                  handleCloseModal={closeModal}
-                />
-              </Content>
+            {filteredLists.map(
+              list =>
+                list.items.length > 0 && (
+                  <Content key={list.title}>
+                    <SearchBoxSection
+                      sectionTitle={list.title}
+                      filteredListItems={list.items}
+                      handleCloseModal={closeModal}
+                    />
+                  </Content>
+                ),
             )}
-            {filteredContentList.length > 0 && (
-              <Content>
-                <SearchBoxSection
-                  sectionTitle="Content"
-                  filteredListItems={filteredContentList}
-                  handleCloseModal={closeModal}
-                />
-              </Content>
-            )}
-            {filteredDesignList.length > 0 && (
-              <Content>
-                <SearchBoxSection
-                  sectionTitle="Design"
-                  filteredListItems={filteredDesignList}
-                  handleCloseModal={closeModal}
-                />
-              </Content>
-            )}
-            {filteredChangelogList.length > 0 && (
-              <Content>
-                <SearchBoxSection
-                  sectionTitle="Changelog"
-                  filteredListItems={filteredChangelogList}
-                  handleCloseModal={closeModal}
-                />
-              </Content>
-            )}
-            {filteredGuidesList.length > 0 && (
-              <Content>
-                <SearchBoxSection
-                  sectionTitle="Guides"
-                  filteredListItems={filteredGuidesList}
-                  handleCloseModal={closeModal}
-                />
-              </Content>
-            )}
-            {filteredHooksList.length > 0 && (
-              <Content>
-                <SearchBoxSection
-                  sectionTitle="Hooks"
-                  filteredListItems={filteredHooksList}
-                  handleCloseModal={closeModal}
-                />
-              </Content>
-            )}
-            {filteredPackagesList.length > 0 && (
-              <Content>
-                <SearchBoxSection
-                  sectionTitle="Packages"
-                  filteredListItems={filteredPackagesList}
-                  handleCloseModal={closeModal}
-                />
-              </Content>
-            )}
-            {emptyResults && (
-              <Box
-                height={"100%"}
-                direction={"column"}
-                padding={"extravagant"}
-                gap={"larger"}
-                alignItems={"center"}
-              >
-                <ToolBoxIllustration />
-                <Heading level={1} element={"h3"}>
-                  The toolbox looks empty!
-                </Heading>
-                <Typography
-                  align={"center"}
-                  fontWeight={"semiBold"}
-                  size={"large"}
-                  textColor={"text"}
-                >
-                  We couldn&apos;t match any results with your search; try a
-                  different term.
-                </Typography>
-                <Typography
-                  align={"center"}
-                  fontWeight={"medium"}
-                  size={"large"}
-                  textColor={"textSecondary"}
-                >
-                  If you think something&apos;s missing, let the Atlantis team
-                  know.
-                </Typography>
-              </Box>
-            )}
+            {emptyResults && <EmptyResults />}
           </Content>
         </div>
       </Content>
     </Modal>
   );
 };
+
+const EmptyResults = () => (
+  <Box
+    height={"100%"}
+    direction={"column"}
+    padding={"extravagant"}
+    gap={"larger"}
+    alignItems={"center"}
+  >
+    <ToolBoxIllustration />
+    <Heading level={1} element={"h3"}>
+      The toolbox looks empty!
+    </Heading>
+    <Typography
+      align={"center"}
+      fontWeight={"semiBold"}
+      size={"large"}
+      textColor={"text"}
+    >
+      We couldn&apos;t match any results with your search; try a different term.
+    </Typography>
+    <Typography
+      align={"center"}
+      fontWeight={"medium"}
+      size={"large"}
+      textColor={"textSecondary"}
+    >
+      If you think something&apos;s missing, let the Atlantis team know.
+    </Typography>
+  </Box>
+);
