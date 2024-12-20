@@ -21,6 +21,7 @@ import { designList } from "../designList";
 import { guidesList } from "../guidesList";
 import { changelogList } from "../changelogList";
 import { hooksList } from "../hooksList";
+import { packagesList } from "../packagesList";
 import { ContentListItem } from "../types/components";
 
 /**
@@ -76,6 +77,19 @@ export const SearchBox = ({
   const filteredHooksList = useMemo(() => {
     return hooksList.filter(d => filterFunction(d));
   }, [search]);
+
+  const filteredPackagesList = useMemo(() => {
+    return packagesList.filter(d => filterFunction(d));
+  }, [search]);
+
+  const emptyResults =
+    !filteredContentList.length &&
+    !filteredDesignList.length &&
+    !filteredComponentList.length &&
+    !filteredChangelogList.length &&
+    !filteredGuidesList.length &&
+    !filteredHooksList.length &&
+    !filteredPackagesList.length;
 
   useEffect(() => {
     if (open) {
@@ -155,7 +169,16 @@ export const SearchBox = ({
                 />
               </Content>
             )}
-            {!filteredComponentList.length && !filteredDesignList.length && (
+            {filteredPackagesList.length > 0 && (
+              <Content>
+                <SearchBoxSection
+                  sectionTitle="Packages"
+                  filteredListItems={filteredPackagesList}
+                  handleCloseModal={closeModal}
+                />
+              </Content>
+            )}
+            {emptyResults && (
               <Box
                 height={"100%"}
                 direction={"column"}
