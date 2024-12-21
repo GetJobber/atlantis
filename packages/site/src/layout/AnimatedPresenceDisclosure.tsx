@@ -1,29 +1,68 @@
 import { AnimatedPresence, Button, Typography } from "@jobber/components";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useMemo, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import styles from "./NavMenu.module.css";
 
 interface AnimatedPresenceDisclosureProps {
   readonly children: React.ReactNode;
   readonly title: React.ReactNode;
   readonly to: string;
+  readonly selected?: boolean;
 }
 
 function AnimatedPresenceDisclosure({
   children,
   title,
   to,
+  selected,
 }: AnimatedPresenceDisclosureProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const { pathname } = useLocation();
+
+  const childrenArray = useMemo(
+    () => React.Children.toArray(children),
+    [children],
+  );
+
+  // Determine if any child is selected based on the current URL
+  const hasSelectedChild = childrenArray.some(
+    child => React.isValidElement(child) && pathname === child.props.to,
+  );
+
+  const [isOpen, setIsOpen] = useState(selected || hasSelectedChild);
+
+  // Open the disclosure if the parent or any child is selected
+  useEffect(() => {
+    if (selected || hasSelectedChild) {
+      setIsOpen(true);
+    }
+  }, [selected, hasSelectedChild]);
+
+  // Scroll the selected element into view when the disclosure is open
+  useEffect(() => {
+    if (isOpen) {
+      const selectedElement = document.querySelector(`[href="${pathname}"]`);
+
+      if (selectedElement) {
+        selectedElement.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }
+  }, [isOpen, pathname]);
 
   const handleButtonClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsOpen(!isOpen);
   };
 
+  // Keeps from having the Disclosure title and the child both highlighted
+  const isTitleSelected = pathname === to;
+
   return (
     <div>
-      <span className={styles.disclosureNavItem}>
+      <span
+        className={`${styles.disclosureNavItem} ${
+          isTitleSelected ? styles.selected : ""
+        }`}
+      >
         <Link to={to ?? "/"} tabIndex={0}>
           <Typography fontWeight="semiBold" size="large" textColor="heading">
             {title}
@@ -42,9 +81,15 @@ function AnimatedPresenceDisclosure({
       <AnimatedPresence>
         {isOpen && (
           <ul style={{ padding: "0" }}>
-            {React.Children.map(children, child => (
-              <>{child}</>
-            ))}
+            {childrenArray
+              .filter((child): child is React.ReactElement =>
+                React.isValidElement(child),
+              )
+              .map(child =>
+                React.cloneElement(child, {
+                  selected: pathname === child.props.to,
+                }),
+              )}
           </ul>
         )}
       </AnimatedPresence>
