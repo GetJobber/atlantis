@@ -47,11 +47,17 @@ export const SearchBox = ({
   const ref = useRef<InputTextRef>(null);
   const [search, setSearch] = useState("");
 
-  const filterFunction = (item: ContentListItem) =>
-    item.title.toLowerCase().includes(search.toLowerCase()) ||
-    item.additionalMatches?.some((e: string) =>
-      e.toLowerCase().includes(search.toLowerCase()),
+  const filterItems = (items: ContentListItem[], searchTerm: string) => {
+    const lowerCaseSearchTerm = searchTerm.toLowerCase();
+
+    return items.filter(
+      item =>
+        item.title.toLowerCase().includes(lowerCaseSearchTerm) ||
+        item.additionalMatches?.some((e: string) =>
+          e.toLowerCase().includes(lowerCaseSearchTerm),
+        ),
     );
+  };
 
   useOnKeyDown(event => {
     event.preventDefault();
@@ -61,7 +67,7 @@ export const SearchBox = ({
   const filteredLists = useMemo(() => {
     return lists.map(list => ({
       title: list.title,
-      items: list.items.filter(filterFunction),
+      items: filterItems(list.items, search),
     }));
   }, [search]);
 
