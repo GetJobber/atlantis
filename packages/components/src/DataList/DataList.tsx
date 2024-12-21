@@ -149,7 +149,12 @@ function InternalDataList({
     <div className={styles.wrapper}>
       <div className={styles.titleContainer}>
         {title && <Heading level={3}>{title}</Heading>}
-        <DataListTotalCount totalCount={totalCount} loading={initialLoading} />
+        {totalCount !== undefined && (
+          <DataListTotalCount
+            totalCount={totalCount}
+            loading={initialLoading}
+          />
+        )}
       </div>
 
       {/* We need to know where the top of the list is but not necessarily the
