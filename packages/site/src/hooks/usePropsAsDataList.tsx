@@ -2,34 +2,32 @@ import { useMemo } from "react";
 import { ContentExport } from "../types/content";
 
 /**
- *
  * Map our Props to a DataList for display in the ComponentView
- *
  */
 export const usePropsAsDataList = (
-  meta: ContentExport,
+  meta: ContentExport | undefined,
   type: "web" | "mobile",
 ) => {
   const stateValues = useMemo(() => {
-    const props = type === "web" ? meta?.props : meta?.mobileProps;
+    if (!meta) return [];
 
-    return props?.map(propList => {
-      return {
-        name: propList.displayName,
-        props: Object.keys(propList.props).map((key, index) => {
-          const prop = propList.props[key];
+    const props = type === "web" ? meta.props : meta.mobileProps;
 
-          return {
-            id: index,
-            key,
-            required: prop?.required ? "*" : "",
-            description: prop?.description,
-            component: prop?.type?.name,
-          };
-        }),
-      };
-    });
-  }, [type]);
+    return props?.map(propList => ({
+      name: propList.displayName,
+      props: Object.keys(propList.props).map((key, index) => {
+        const prop = propList.props[key];
+
+        return {
+          id: index,
+          key,
+          required: prop?.required ? "*" : "",
+          description: prop?.description,
+          component: prop?.type?.name,
+        };
+      }),
+    }));
+  }, [meta, type]);
 
   return {
     stateValues,

@@ -44,6 +44,11 @@ export const ComponentView = () => {
     };
   }, []);
 
+  useEffect(() => {
+    // Reset tab to 0 (or the first available tab) when the component name changes
+    setTab(0);
+  }, [name]);
+
   const ComponentContent = PageMeta?.content;
 
   const code =
