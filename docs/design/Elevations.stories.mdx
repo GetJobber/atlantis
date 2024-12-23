@@ -76,7 +76,8 @@ export function Example({ of: shadow }) {
   const style = {
     width: "100%",
     height: "var(--space-largest)",
-    backgroundColor: "var(--color-white)",
+    borderRadius: "var(--radius-base)",
+    backgroundColor: "var(--color-surface)",
     boxShadow: `var(--shadow-${shadow})`,
   };
   return <div style={style} />;
