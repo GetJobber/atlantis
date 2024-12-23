@@ -9,7 +9,6 @@ import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
  * @returns ReactNode
  */
 export const ComponentLinks = ({
-  key,
   links,
   goToProps,
   goToUsage,
@@ -17,7 +16,6 @@ export const ComponentLinks = ({
   webEnabled,
   mobileEnabled,
 }: {
-  readonly key: string;
   readonly links?: ContentExportLinks[];
   readonly goToProps: (type: string) => void;
   readonly goToUsage: (type: string) => void;
@@ -31,7 +29,7 @@ export const ComponentLinks = ({
   return (
     <Content spacing={"larger"}>
       <AnchorLinks
-        key={key}
+        id="design"
         header="Design"
         additionalOnClickAction={goToDesign}
       />
