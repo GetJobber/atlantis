@@ -36,7 +36,11 @@ export const ContentLoader = () => {
   const content = contentMap[type][name];
 
   return content ? (
-    <ContentView key={`${type}-${name}`} content={content.content} />
+    <ContentView
+      key={`${type}-${name}`}
+      title={content.title}
+      content={content.content}
+    />
   ) : (
     <NotFoundPage />
   );
