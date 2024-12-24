@@ -1,4 +1,4 @@
-import { PropsWithChildren, useEffect, useRef } from "react";
+import React, { PropsWithChildren, useEffect, useRef } from "react";
 import { Route, Switch, useHistory, useLocation } from "react-router";
 import { NavMenu } from "./NavMenu";
 import { AtlantisRoute, routes } from "../routes";
@@ -49,7 +49,7 @@ export const Layout = () => {
         tabIndex={0}
       >
         <Switch>
-          <>
+          <React.Fragment key={location.pathname}>
             {routes?.map((route, routeIndex) => {
               const iterateSubMenu = (childroutes: AtlantisRoute[]) => {
                 return childroutes.map((child, childIndex) => {
@@ -70,7 +70,7 @@ export const Layout = () => {
               // Top level items with children (Changelog)
               if (route.children) {
                 return (
-                  <>
+                  <React.Fragment key={route.path}>
                     <Route
                       key={routeIndex}
                       exact={route.exact ?? false}
@@ -78,7 +78,7 @@ export const Layout = () => {
                       component={route.component}
                     />
                     {iterateSubMenu(route.children)}
-                  </>
+                  </React.Fragment>
                 );
               }
 
@@ -92,7 +92,7 @@ export const Layout = () => {
                 />
               );
             })}
-          </>
+          </React.Fragment>
         </Switch>
       </div>
 
