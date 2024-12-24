@@ -23,7 +23,7 @@ export const ContentView = ({
         </custom-elements>
       </BaseView.Main>
       <BaseView.Siderail>
-        <AnchorLinks header="Jump To" key={key} />
+        <AnchorLinks header="Jump To" id={key} />
       </BaseView.Siderail>
     </BaseView>
   );
