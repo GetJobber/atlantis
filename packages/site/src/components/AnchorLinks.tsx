@@ -8,9 +8,9 @@ interface AnchorLinksProps {
   readonly header: string;
 
   /**
-   * A key unique to the page that controls re-rendering of the component
+   * A unique identifier for the component
    */
-  readonly key: string;
+  readonly id: string;
 
   /**
    * An additional action to perform along with scrolling to the selected anchor
@@ -20,7 +20,7 @@ interface AnchorLinksProps {
 
 export function AnchorLinks({
   header,
-  key,
+  id,
   additionalOnClickAction,
 }: AnchorLinksProps) {
   const [hlinks, setHlinks] = useState<Element[] | null>(null);
@@ -31,16 +31,16 @@ export function AnchorLinks({
     if (hdd.length > 0) {
       setHlinks(Array.from(hdd));
     }
-  }, [key]);
+  }, [id]);
 
   const click = (e: MouseEvent) => {
     e.preventDefault();
-    const id = e.currentTarget?.getAttribute("href")?.replace("#", "");
+    const anchorId = e.currentTarget?.getAttribute("href")?.replace("#", "");
 
-    if (id) {
+    if (anchorId) {
       additionalOnClickAction?.();
       setTimeout(() => {
-        const element = document.getElementById(id);
+        const element = document.getElementById(anchorId);
 
         if (element) {
           element.scrollIntoView({ behavior: "smooth" });
