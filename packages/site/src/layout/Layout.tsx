@@ -88,6 +88,10 @@ const RoutesSwitch = () => {
   );
 
   return (
+    // The React.Fragment with key is used to force a remount of the component
+    // when the path changes. This ensures:
+    // 1. The component props are updated when the path changes
+    // 2. The Design tab is selected when the path changes
     <React.Fragment key={location.pathname}>
       <Switch>{baseRoutes}</Switch>
     </React.Fragment>
