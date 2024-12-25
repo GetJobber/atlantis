@@ -87,7 +87,11 @@ const RoutesSwitch = () => {
     <Route key={routes.length} path="*" component={NotFoundPage} />,
   );
 
-  return <Switch>{baseRoutes}</Switch>;
+  return (
+    <React.Fragment key={location.pathname}>
+      <Switch>{baseRoutes}</Switch>
+    </React.Fragment>
+  );
 };
 
 export const LayoutWrapper = ({ children }: PropsWithChildren) => {
