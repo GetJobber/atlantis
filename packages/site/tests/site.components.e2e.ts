@@ -4,6 +4,8 @@ import {
   ListOfGeneratedWebComponents,
   //@ts-expect-error - No types for mjs file. that is okay.
 } from "../baseComponentLists.mjs";
+//@ts-expect-error - No types for mjs file. that is okay.
+import { ListOfDesignPages } from "../baseDesignList.mjs";
 
 const buildUniqueComponentList = () => {
   const combinedList = [
@@ -55,6 +57,40 @@ uniqueList.forEach(component => {
     }
   });
 });
+
+ListOfDesignPages.forEach(
+  (design: string | RegExp | readonly (string | RegExp)[]) => {
+    // eslint-disable-next-line max-statements
+    test(`Design Page For: ${design}`, async ({ page }) => {
+      await page.goto(`http://localhost:5173/design/${design}`);
+      console.log(await page.content());
+
+      if (typeof design === "string" || design instanceof RegExp) {
+        await expect(
+          page.getByRole("heading", { name: design, exact: true }),
+        ).toHaveText(design);
+      }
+      await expect(page.getByText("Component not found")).not.toBeVisible();
+      const links = await page.locator("[data-storybook-link]");
+
+      for (const link of await links.all()) {
+        const actualLInk = link.locator("a");
+        const href = await actualLInk.getAttribute("href");
+
+        if (href) {
+          const heading = await goToLinkAndGetHeading(
+            page,
+            href,
+            design.toString(),
+          );
+
+          await checkThatHeadingExists(heading, page);
+          await page.goBack();
+        }
+      }
+    });
+  },
+);
 
 const goToLinkAndGetHeading = async (
   page: Page,
