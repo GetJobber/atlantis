@@ -4,6 +4,7 @@ import react from "@vitejs/plugin-react";
 import mdx from "@mdx-js/rollup";
 import remarkGfm from "remark-gfm";
 import rehypeRewrite from "rehype-rewrite";
+import fixedMetaTagPlugin from "./src/utils/metatag";
 
 const rewriteLink = (item: string) => {
   let newItem = item;
@@ -14,6 +15,7 @@ const rewriteLink = (item: string) => {
 
   return newItem;
 };
+
 export default defineConfig({
   plugins: [
     react(),
@@ -38,7 +40,7 @@ export default defineConfig({
                 node.properties.href = rewriteLink(node.properties.href);
               }
 
-              // For any processed H2 Element, add an ID and a data-heading-link attribute
+              // So we can link to it from the sidebar
               // So we can link to it from the sidebar
               if (node.type === "element" && node.tagName === "h2") {
                 node.properties.id =
@@ -51,6 +53,7 @@ export default defineConfig({
         ],
       ],
     }),
+    fixedMetaTagPlugin(),
   ],
   optimizeDeps: {
     include: ["@jobber/formatters", "@jobber/hooks", "@jobber/components"],

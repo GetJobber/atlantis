@@ -20,32 +20,23 @@ const minimalMode = urlParams.has("minimal");
 
 initAtlantisTheme(urlParams.get("theme"));
 
-function renderApp() {
-  const root = document.getElementById("root");
+const root = document.getElementById("root");
 
-  if (root) {
-    ReactDOM.createRoot(root).render(
-      <React.StrictMode>
-        <BrowserRouter>
-          <AtlantisThemeContextProvider>
-            <AtlantisSiteProvider
-              minimal={{ requested: minimalMode, enabled: false }}
-            >
-              <Analytics />
-              <AtlantisPreviewEditorProvider>
-                <Layout />
-              </AtlantisPreviewEditorProvider>
-            </AtlantisSiteProvider>
-          </AtlantisThemeContextProvider>
-        </BrowserRouter>
-      </React.StrictMode>,
-    );
-  }
+if (root) {
+  ReactDOM.createRoot(root).render(
+    <React.StrictMode>
+      <BrowserRouter>
+        <AtlantisThemeContextProvider>
+          <AtlantisSiteProvider
+            minimal={{ requested: minimalMode, enabled: false }}
+          >
+            <Analytics />
+            <AtlantisPreviewEditorProvider>
+              <Layout />
+            </AtlantisPreviewEditorProvider>
+          </AtlantisSiteProvider>
+        </AtlantisThemeContextProvider>
+      </BrowserRouter>
+    </React.StrictMode>,
+  );
 }
-
-// Hacky way around flash of unstyled content. We should properly pre-load the fonts instead when we get a chance.
-window.addEventListener("DOMContentLoaded", () => {
-  setTimeout(() => {
-    renderApp();
-  }, 200);
-});
