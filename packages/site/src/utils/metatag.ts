@@ -1,3 +1,12 @@
+/* 
+    This is a plugin for generating metatags for the Site.
+    It grabs the first h1 element for the title,
+    the first p element for the description,
+    and if the page is a component, content, or design page, it will grab the image from their respective list.
+    if it is a hook page, it will grab the hook image.
+    If it is none of the above, it will grab the default image. 
+*/
+
 import { componentList } from "../componentList";
 import { contentList } from "../contentList";
 import { designList } from "../designList";

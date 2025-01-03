@@ -40,7 +40,7 @@ export default defineConfig({
                 node.properties.href = rewriteLink(node.properties.href);
               }
 
-              // So we can link to it from the sidebar
+              // For any processed H2 Element, add an ID and a data-heading-link attribute
               // So we can link to it from the sidebar
               if (node.type === "element" && node.tagName === "h2") {
                 node.properties.id =
