@@ -10,13 +10,11 @@ import { usePropsAsDataList } from "../hooks/usePropsAsDataList";
 import { SiteContent } from "../content";
 import { useStyleUpdater } from "../hooks/useStyleUpdater";
 import { useErrorCatcher } from "../hooks/useErrorCatcher";
-import {
-  AtlantisPreviewEditor,
-  AtlantisPreviewViewer,
-  useAtlantisPreview,
-} from "../providers/AtlantisPreviewEditorProvider";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
 import usePageTitle from "../hooks/usePageTitle";
+import { useAtlantisPreview } from "../preview/AtlantisPreviewProvider";
+import { AtlantisPreviewEditor } from "../preview/AtlantisPreviewEditor";
+import { AtlantisPreviewViewer } from "../preview/AtlantisPreviewViewer";
 
 /**
  * Layout for displaying a Component documentation page. This will display the component, props, and code.
