@@ -13,7 +13,7 @@ export function UseBool() {
       <br />
       <Button onClick={on} label={"On"} variation="subtle" />
       <br />
-      <Button onClick={off} label={"Off"} variabtion="destructive" />
+      <Button onClick={off} label={"Off"} variation="destructive" />
     </Content>
   );
 }
