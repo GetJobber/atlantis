@@ -60,7 +60,6 @@ uniqueList.forEach(component => {
 
 ListOfDesignPages.forEach(
   ({ path, title }: { path: string; title: string }) => {
-    // eslint-disable-next-line max-statements
     test(`Design Page For: ${title}`, async ({ page }) => {
       await page.goto(`http://localhost:5173/design/${path}`);
 
