@@ -1,7 +1,7 @@
-import { Box, Content, Grid, Page, Tab, Tabs } from "@jobber/components";
+import { Box, Content, Page, Tab, Tabs } from "@jobber/components";
 import { useParams } from "react-router";
 import { useEffect, useMemo, useState } from "react";
-import { PageWrapper } from "./PageWrapper";
+import { BaseView } from "./BaseView";
 import { PropsList } from "../components/PropsList";
 import { ComponentNotFound } from "../components/ComponentNotFound";
 import { ComponentLinks } from "../components/ComponentLinks";
@@ -16,6 +16,7 @@ import {
   useAtlantisPreview,
 } from "../providers/AtlantisPreviewEditorProvider";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
+import usePageTitle from "../hooks/usePageTitle";
 
 /**
  * Layout for displaying a Component documentation page. This will display the component, props, and code.
@@ -32,8 +33,9 @@ export const ComponentView = () => {
   const { updateStyles } = useStyleUpdater();
   const [tab, setTab] = useState(0);
   const { stateValues } = usePropsAsDataList(PageMeta, type);
-  const { enableMinimal, minimal, disableMinimal, isMinimal } =
-    useAtlantisSite();
+  const { enableMinimal, minimal, disableMinimal } = useAtlantisSite();
+
+  usePageTitle({ title: PageMeta?.title });
 
   useEffect(() => {
     if (minimal.requested && !minimal.enabled) {
@@ -54,9 +56,9 @@ export const ComponentView = () => {
 
   useEffect(() => {
     if (iframe?.current || iframeMobile?.current) {
-      setTimeout(() => updateCode(code as string), 100);
+      setTimeout(() => updateCode(code as string, true), 100);
     }
-  }, [code, iframe?.current, iframeMobile?.current, type]);
+  }, [code, type]);
 
   useEffect(() => {
     if (
@@ -73,13 +75,12 @@ export const ComponentView = () => {
   }, [type, PageMeta]);
 
   const handleTabChange = (tabIn: number) => {
-    setTab(tabIn);
-
     if (tabIn == 1) {
       updateType("web");
     } else if (tabIn == 2) {
       updateType("mobile");
     }
+    setTab(tabIn);
     updateStyles();
   };
   const tabs = [
@@ -113,6 +114,14 @@ export const ComponentView = () => {
         </div>
       ),
     },
+    {
+      label: "Implement",
+      children: PageMeta?.notes ? (
+        <Content spacing="large">
+          <PageMeta.notes />
+        </Content>
+      ) : null,
+    },
   ];
 
   const activeTabs = useMemo(() => {
@@ -122,6 +131,10 @@ export const ComponentView = () => {
       }
 
       if (!PageMeta?.component.mobileElement && index === 2) {
+        return false;
+      }
+
+      if (!PageMeta?.notes && index === 3) {
         return false;
       }
 
@@ -176,35 +189,32 @@ export const ComponentView = () => {
   };
 
   return PageMeta ? (
-    <Grid>
-      <Grid.Cell size={isMinimal ? { xs: 12, md: 12 } : { xs: 12, md: 9 }}>
-        <Page width="fill" title={PageMeta.title}>
-          <PageWrapper>
-            <Box>
-              <Content spacing="large">
-                <Box direction="column" gap="small" alignItems="flex-end">
-                  <CodePreviewWindow>
-                    <AtlantisPreviewViewer />
-                  </CodePreviewWindow>
-                </Box>
-                <span
-                  style={{ "--public-tab--inset": 0 } as React.CSSProperties}
-                >
-                  <Tabs onTabChange={handleTabChange} activeTab={tab}>
-                    {activeTabs.map((tabyeah, index) => (
-                      <Tab key={index} label={tabyeah.label}>
-                        {tabyeah.children}
-                      </Tab>
-                    ))}
-                  </Tabs>
-                </span>
-              </Content>
-            </Box>
-          </PageWrapper>
+    <BaseView>
+      <BaseView.Main>
+        <Page width="narrow" title={PageMeta.title}>
+          <Box>
+            <Content spacing="large">
+              <Box direction="column" gap="small" alignItems="flex-end">
+                <CodePreviewWindow>
+                  <AtlantisPreviewViewer />
+                </CodePreviewWindow>
+              </Box>
+              <span style={{ "--public-tab--inset": 0 } as React.CSSProperties}>
+                <Tabs onTabChange={handleTabChange} activeTab={tab}>
+                  {activeTabs.map((activeTab, index) => (
+                    <Tab key={index} label={activeTab.label}>
+                      {activeTab.children}
+                    </Tab>
+                  ))}
+                </Tabs>
+              </span>
+            </Content>
+          </Box>
         </Page>
-      </Grid.Cell>
-      <Grid.Cell size={{ xs: 12, md: 3 }}>
+      </BaseView.Main>
+      <BaseView.Siderail>
         <ComponentLinks
+          key={`component-${name}`}
           links={PageMeta?.links}
           mobileEnabled={!!PageMeta?.component?.mobileElement}
           webEnabled={!!PageMeta?.component?.element}
@@ -212,8 +222,8 @@ export const ComponentView = () => {
           goToProps={goToProps}
           goToUsage={goToUsage}
         />
-      </Grid.Cell>
-    </Grid>
+      </BaseView.Siderail>
+    </BaseView>
   ) : (
     <ComponentNotFound />
   );

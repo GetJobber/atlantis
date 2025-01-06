@@ -1,5 +1,5 @@
-import { useParams } from "react-router";
-import { ContentView } from "../pages/ContentView";
+import { useLocation, useParams } from "react-router";
+import { ContentView } from "../layout/ContentView";
 import { contentMap } from "../maps";
 
 /**
@@ -8,14 +8,36 @@ import { contentMap } from "../maps";
  * @returns ReadNode
  */
 export const ContentLoader = () => {
-  const { name, type } = useParams<{ name: string; type: string }>();
+  let type = "content";
+  const { name } = useParams<{ name: string }>();
+  const location = useLocation();
+
+  switch (true) {
+    case location.pathname.startsWith("/design"):
+      type = "design";
+      break;
+    case location.pathname.startsWith("/changelog"):
+      type = "changelog";
+      break;
+    case location.pathname.startsWith("/hooks"):
+      type = "hooks";
+      break;
+    case location.pathname.startsWith("/guides"):
+      type = "guides";
+      break;
+    case location.pathname.startsWith("/packages"):
+      type = "packages";
+      break;
+    default:
+      type = "content";
+  }
 
   const content = contentMap[type][name];
 
   return (
     <ContentView
-      intro={content.intro}
       title={content.title}
+      key={`${type}-${name}`}
       content={content.content}
     />
   );

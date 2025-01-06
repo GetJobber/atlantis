@@ -1,54 +1,54 @@
 export const designList = [
   {
     title: "Animation",
-    to: "/content/design/animation",
+    to: "/design/animation",
     imageURL: "/Animation.png",
     additionalMatches: ["Motion"],
   },
   {
     title: "Borders",
-    to: "/content/design/borders",
+    to: "/design/borders",
     imageURL: "/Borders.png",
     additionalMatches: ["Dividers"],
   },
   {
     title: "Breakpoints",
-    to: "/content/design/responsive-breakpoint",
+    to: "/design/breakpoints",
     imageURL: "/Breakpoints.png",
     additionalMatches: ["Responsive"],
   },
   {
     title: "Colors",
-    to: "/content/design/colors",
+    to: "/design/colors",
     imageURL: "/Colors.png",
     additionalMatches: ["Palette", "Colours"],
   },
   {
     title: "Elevations",
-    to: "/content/design/elevations",
+    to: "/design/elevations",
     imageURL: "/Elevations.png",
     additionalMatches: ["Shadows"],
   },
   {
     title: "Opacity",
-    to: "/content/design/opacity",
+    to: "/design/opacity",
     imageURL: "/Opacity.png",
   },
   {
     title: "Radii",
-    to: "/content/design/radii",
+    to: "/design/radii",
     imageURL: "/Radii.png",
     additionalMatches: ["Roundness", "Corners", "Radius"],
   },
   {
     title: "Spacing",
-    to: "/content/design/spacing",
+    to: "/design/spacing",
     imageURL: "/Spacing.png",
     additionalMatches: ["Margin", "Padding"],
   },
   {
     title: "Typography",
-    to: "/content/design/typography",
+    to: "/design/typography",
     imageURL: "/Typography.png",
   },
 ];

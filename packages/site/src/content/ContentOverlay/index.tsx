@@ -1,5 +1,6 @@
 import Content from "@atlantis/docs/components/ContentOverlay/ContentOverlay.stories.mdx";
 import MobileProps from "./ContentOverlay.props-mobile.json";
+import Notes from "./ContentOverlayNotes.mdx";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
@@ -47,4 +48,5 @@ export default {
       ),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

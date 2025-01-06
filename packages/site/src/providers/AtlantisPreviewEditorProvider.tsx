@@ -15,7 +15,13 @@ import {
   defaultHighlightStyle,
   syntaxHighlighting,
 } from "@codemirror/language";
-import { Theme, useAtlantisTheme } from "@jobber/components";
+import {
+  Button,
+  Theme,
+  Tooltip,
+  showToast,
+  useAtlantisTheme,
+} from "@jobber/components";
 
 /***
  *
@@ -34,7 +40,7 @@ const language = new Compartment();
 const AtlantisPreviewEditorContext = createContext<{
   iframe: React.RefObject<HTMLIFrameElement> | null;
   iframeMobile: React.RefObject<HTMLIFrameElement> | null;
-  updateCode: (code: string) => void;
+  updateCode: (code: string, forceUpdate?: boolean) => void;
   code: string;
   error: string;
   type: "web" | "mobile";
@@ -89,8 +95,8 @@ export const AtlantisPreviewEditorProvider = ({
   };
   const updateCode = useCallback(
     // eslint-disable-next-line max-statements
-    (codeUp: string) => {
-      if (codeUp === code) {
+    (codeUp: string, forceUpdate?: boolean) => {
+      if (codeUp === code && !forceUpdate) {
         return;
       }
       setCode(codeUp);
@@ -111,22 +117,8 @@ export const AtlantisPreviewEditorProvider = ({
         const html =
           selectedFrame.current?.contentDocument?.documentElement.outerHTML;
 
-        if (html === "<html><head></head><body></body></html>") {
-          writeSkeleton(selectedFrame.current?.contentDocument, theme);
-          selectedFrame?.current?.addEventListener("load", () => {
-            if (selectedFrame.current) {
-              const iframeDocument = selectedFrame.current.contentDocument;
-
-              if (iframeDocument) {
-                selectedFrame.current.style.height =
-                  iframeDocument.body.scrollHeight + 60 + "px";
-              }
-            }
-          });
-        }
-
-        if (selectedFrame.current) {
-          const iframeWindow = selectedFrame.current.contentWindow;
+        const updateIframeCode = (currentFrame: HTMLIFrameElement) => {
+          const iframeWindow = currentFrame.contentWindow;
 
           if (iframeWindow) {
             const codeWrapper =
@@ -138,6 +130,23 @@ export const AtlantisPreviewEditorProvider = ({
               "*",
             );
           }
+        };
+
+        if (html === "<html><head></head><body></body></html>") {
+          writeSkeleton(selectedFrame.current?.contentDocument, theme);
+          selectedFrame?.current?.addEventListener("load", () => {
+            if (selectedFrame.current) {
+              const iframeDocument = selectedFrame.current.contentDocument;
+
+              if (iframeDocument) {
+                selectedFrame.current.style.height =
+                  iframeDocument.body.scrollHeight + 60 + "px";
+              }
+              updateIframeCode(selectedFrame.current);
+            }
+          });
+        } else if (selectedFrame.current) {
+          updateIframeCode(selectedFrame.current);
         } else {
           console.log("tried to update iframe");
         }
@@ -247,6 +256,28 @@ const myTheme = EditorView.theme(
   { dark: true },
 );
 
+function CopyCodeButton({ code }: { readonly code: string }) {
+  return (
+    <div style={{ position: "absolute", bottom: "10px", right: "3px" }}>
+      <Tooltip message="Copy code to clipboard">
+        <Button
+          ariaLabel="Copy"
+          icon="copy"
+          type="secondary"
+          variation="subtle"
+          size="small"
+          onClick={() => {
+            navigator.clipboard.writeText(code);
+            showToast({
+              message: "Copied code to clipboard",
+            });
+          }}
+        ></Button>
+      </Tooltip>
+    </div>
+  );
+}
+
 export const AtlantisPreviewEditor = () => {
   const { code, updateCode, error, type } = useAtlantisPreview();
   const editor = useRef(null);
@@ -302,6 +333,7 @@ export const AtlantisPreviewEditor = () => {
   return (
     <div>
       <div ref={editor}></div>
+      <CopyCodeButton code={code} />
       {error}
     </div>
   );
@@ -310,8 +342,16 @@ export const AtlantisPreviewEditor = () => {
 const skeletonHTML = (theme: Theme, type: "web" | "mobile") => {
   const imports =
     type == "mobile"
-      ? `"@jobber/components-native":"/editorMobileBundle.js"`
-      : `"@jobber/components":"/editorBundle.js"`;
+      ? `
+      "@jobber/hooks":"/editorMobileBundle.js",
+      "@jobber/hooks/useIsMounted":"/editorMobileBundle.js",
+      "@jobber/components-native":"/editorMobileBundle.js",
+      `
+      : `
+         "@jobber/hooks":"/editorBundle.js",
+         "@jobber/hooks/useIsMounted":"/editorBundle.js",
+      "@jobber/components":"/editorBundle.js",
+      `;
 
   return `
 
@@ -340,9 +380,7 @@ html,body,#root {
  <script type="importmap">
   {
     "imports": {
-      ${imports},
-      "@jobber/hooks":"/node_modules/.vite/deps/@jobber_hooks.js",
-      "@jobber/hooks/useIsMounted":"/node_modules/.vite/deps/@jobber_hooks.js",
+      ${imports}
       "axios": "/axios.js"
     }
   }
@@ -355,8 +393,8 @@ html,body,#root {
       </script>
       <script>
       window.onerror = function(message, source, lineno, colno, error) {
-      console.log('ERROR',message, source, lineno, colno, error)
-        window.parent.postMessage(JSON.stringify({message, source, lineno, colno, error}), '*')
+        console.log('ERROR', message, source, lineno, colno, error);
+        window.parent.postMessage(JSON.stringify({ message, source, lineno, colno, error }), '*');
         return true;
       };
       window.addEventListener('message', (event) => {

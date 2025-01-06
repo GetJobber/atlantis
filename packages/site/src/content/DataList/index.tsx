@@ -1,5 +1,6 @@
 import Content from "@atlantis/docs/components/DataList/DataList.stories.mdx";
 import Props from "./DataList.props.json";
+import Notes from "./DataListNotes.mdx";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
@@ -45,4 +46,5 @@ export default {
       ),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;
