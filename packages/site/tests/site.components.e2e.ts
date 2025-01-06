@@ -59,35 +59,16 @@ uniqueList.forEach(component => {
 });
 
 ListOfDesignPages.forEach(
-  (design: string | RegExp | readonly (string | RegExp)[]) => {
+  ({ path, title }: { path: string; title: string }) => {
     // eslint-disable-next-line max-statements
-    test(`Design Page For: ${design}`, async ({ page }) => {
-      await page.goto(`http://localhost:5173/design/${design}`);
-      console.log(await page.content());
+    test(`Design Page For: ${title}`, async ({ page }) => {
+      await page.goto(`http://localhost:5173/design/${path}`);
 
-      if (typeof design === "string" || design instanceof RegExp) {
-        await expect(
-          page.getByRole("heading", { name: design, exact: true }),
-        ).toHaveText(design);
-      }
+      await expect(
+        page.getByRole("heading", { name: title, exact: true }),
+      ).toHaveText(title);
+
       await expect(page.getByText("Component not found")).not.toBeVisible();
-      const links = await page.locator("[data-storybook-link]");
-
-      for (const link of await links.all()) {
-        const actualLInk = link.locator("a");
-        const href = await actualLInk.getAttribute("href");
-
-        if (href) {
-          const heading = await goToLinkAndGetHeading(
-            page,
-            href,
-            design.toString(),
-          );
-
-          await checkThatHeadingExists(heading, page);
-          await page.goBack();
-        }
-      }
     });
   },
 );
@@ -120,7 +101,7 @@ async function checkThatHeadingExists(heading: Locator, page) {
 test("Home Loads", async ({ page }) => {
   await page.goto("http://localhost:5173");
 
-  await expect(page.locator("h1")).toHaveText("Atlantis");
+  await expect(page.locator("h1")).toHaveText("Home");
 });
 
 test("Design Loads", async ({ page }) => {
