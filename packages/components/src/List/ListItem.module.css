@@ -64,7 +64,7 @@
 
 .isActive:hover > *,
 .isActive:focus > * {
-  background-color: var(--color-surface--background--hover);
+  background-color: var(--color-interactive--background--hover);
 }
 
 /* TODO: Move truncate in typography */
