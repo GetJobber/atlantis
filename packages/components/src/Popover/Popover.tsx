@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { CSSProperties, useState } from "react";
 import { usePopper } from "react-popper";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
+import classnames from "classnames";
 import classes from "./Popover.module.css";
 import { ButtonDismiss } from "../ButtonDismiss";
 
@@ -31,6 +32,16 @@ export interface PopoverProps {
    * @default 'auto'
    */
   readonly preferredPlacement?: "top" | "bottom" | "left" | "right" | "auto";
+
+  /**
+   * Custom className for the wrapping container.
+   */
+  readonly UNSAFE_className?: string;
+
+  /**
+   * Custom style for the wrapping container.
+   */
+  readonly UNSAFE_style?: CSSProperties;
 }
 
 export function Popover({
@@ -39,6 +50,8 @@ export function Popover({
   attachTo,
   open,
   preferredPlacement = "auto",
+  UNSAFE_className,
+  UNSAFE_style,
 }: PopoverProps) {
   const [popperElement, setPopperElement] = useState<HTMLElement | null>();
   const [arrowElement, setArrowElement] = useState<HTMLElement | null>();
@@ -52,6 +65,8 @@ export function Popover({
   );
   useRefocusOnActivator(open);
 
+  const popoverClassNames = classnames(classes.popover, UNSAFE_className);
+
   return (
     <>
       {open && (
@@ -59,8 +74,8 @@ export function Popover({
           role="dialog"
           data-elevation={"elevated"}
           ref={setPopperElement}
-          style={popperStyles.popper}
-          className={classes.popover}
+          style={{ ...popperStyles.popper, ...UNSAFE_style }}
+          className={popoverClassNames}
           {...attributes.popper}
         >
           <div className={classes.dismissButton}>
