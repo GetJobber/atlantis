@@ -1,6 +1,6 @@
 import { Link, Typography } from "@jobber/components";
 import { useLocation } from "react-router";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import styles from "./NotFoundPage.module.css";
 
 export const NotFoundPage = () => {
@@ -24,24 +24,20 @@ export const NotFoundPage = () => {
   const [fishElement, setFishElement] = useState<JSX.Element | null>(
     getRandomFish(),
   );
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = useRef<number | null>(null);
 
-  useEffect(() => {
-    const updateFish = () => {
-      setFishElement(null);
-      setTimeout(() => {
-        setFishElement(getRandomFish());
-      }, 0); // This is to force a re-render to prevent the fish from changing in the middle of the animation
-    };
+  const updateFish = () => {
+    setFishElement(null);
+    requestAnimationFrame(() => {
+      setFishElement(getRandomFish());
+    });
+    timeoutRef.current = window.setTimeout(updateFish, 30000); // Set timeout to match your animation duration (30 seconds)
+  };
 
-    timeoutRef.current = setTimeout(updateFish, 30000);
-
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, [fishElement]);
+  // Start the update cycle
+  if (!timeoutRef.current) {
+    updateFish();
+  }
 
   return (
     <div className={styles.container}>

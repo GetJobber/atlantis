@@ -17,15 +17,8 @@
         background: linear-gradient(to bottom, var(--color-informative--onSurface) 0%, var(--color-surface) 40% );
     
         /* The Wavy part */
-        --size: 50px;
-        --R: calc(var(--size)*1.28);
-      
-        mask:
-          radial-gradient(var(--R) at 50% calc(1.8*var(--size)),#000 99%,#0000 101%) 
-            calc(50% - 2*var(--size)) 0/calc(4*var(--size)) 100%,
-          radial-gradient(var(--R) at 50% calc(-.8*var(--size)),#0000 99%,#000 101%) 
-            50% var(--size)/calc(4*var(--size)) 100% repeat-x;
-      }
+        mask: radial-gradient(64px at 50% 90px, #000 99%, #0000 101%) calc(50% - 100px) 0 / 200px 100%, 
+              radial-gradient(64px at 50% -40px, #0000 99%, #000 101%) 50% 50px / 200px 100% repeat-x;
   }
 
   .content {
@@ -75,3 +68,4 @@
 }
   
 
+}
