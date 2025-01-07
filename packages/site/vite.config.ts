@@ -70,6 +70,7 @@ export default defineConfig({
       mdxUtils: path.resolve(__dirname, "../../.storybook/components"),
       "@jobber/docx": path.resolve(__dirname, "../docx/src"),
       "@atlantis/docs": path.resolve(__dirname, "../../docs"),
+      "@atlantis/packages": path.resolve(__dirname, "../../packages"),
     },
   },
   define: {

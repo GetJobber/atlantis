@@ -1,6 +1,6 @@
 import { Box, Button, Content, Icon, Typography } from "@jobber/components";
-import { Link } from "react-router-dom";
-import { Fragment, PropsWithChildren, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Fragment, PropsWithChildren, useRef, useState } from "react";
 import { SearchBox } from "./SearchBox";
 import AnimatedPresenceDisclosure from "./AnimatedPresenceDisclosure";
 import styles from "./NavMenu.module.css";
@@ -20,6 +20,8 @@ interface NavMenuProps {
 export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
   const [open, setOpen] = useState(false);
   const { isMinimal } = useAtlantisSite();
+  const { pathname } = useLocation();
+  const selectedRef = useRef<HTMLAnchorElement | null>(null);
 
   if (isMinimal) return null;
 
@@ -33,7 +35,10 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
     return menuItems.map((menuItem, menuItemIndex) => {
       return (
         <MenuSubItem key={`${routeIndex}-${menuItemIndex}`}>
-          <StyledSubLink to={`/components/${menuItem.handle}`}>
+          <StyledSubLink
+            to={`/components/${menuItem.handle}`}
+            selectedRef={selectedRef}
+          >
             {menuItem.handle}
           </StyledSubLink>
         </MenuSubItem>
@@ -54,7 +59,7 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
 
       return (
         <MenuSubItem key={`${routeIndex}-${menuItemIndex}`}>
-          <StyledSubLink to={menuItem.path ?? "/"}>
+          <StyledSubLink to={menuItem.path ?? "/"} selectedRef={selectedRef}>
             {menuItem.handle}
           </StyledSubLink>
         </MenuSubItem>
@@ -112,6 +117,7 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
                     <AnimatedPresenceDisclosure
                       to={route.path ?? "/"}
                       title={route.handle}
+                      selected={pathname.startsWith(route.path ?? "/")}
                     >
                       {iterateSubMenu(route.children, routeIndex)}
                     </AnimatedPresenceDisclosure>
@@ -121,7 +127,10 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
 
               return (
                 <MenuItem key={routeIndex}>
-                  <StyledLink to={getRoutePath(route.path) ?? "/"}>
+                  <StyledLink
+                    to={getRoutePath(route.path) ?? "/"}
+                    selectedRef={selectedRef}
+                  >
                     {route.handle}
                   </StyledLink>
                 </MenuItem>
@@ -134,14 +143,37 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
   );
 };
 
+const getLinkClassName = (
+  baseClasses: string,
+  isSelected: boolean,
+  selectedClass: string,
+): string => {
+  return `${baseClasses} ${isSelected ? selectedClass : ""}`.trim();
+};
+
 export const StyledLink = ({
   to,
   children,
-}: PropsWithChildren<{ readonly to: string }>) => {
+  selectedRef,
+}: PropsWithChildren<{
+  readonly to: string;
+  readonly selectedRef: React.RefObject<HTMLAnchorElement>;
+}>) => {
+  const { pathname } = useLocation();
+  // The `to === "/?new"` check allows Home to be highlighted in the side nav
+  // TODO: remove when we roll out the new docs site & double check Home is still highlighted
+  const isSelected = pathname === to || (pathname === "/" && to === "/?new");
+  const className = getLinkClassName(
+    `${styles.navMenuItem} ${styles.navMenuLink}`,
+    isSelected,
+    styles.selected,
+  );
+
   return (
     <Link
       to={to ?? "/"}
-      className={`${styles.navMenuItem} ${styles.navMenuLink}`}
+      className={className}
+      ref={isSelected ? selectedRef : null}
     >
       {children}
     </Link>
@@ -151,11 +183,24 @@ export const StyledLink = ({
 export const StyledSubLink = ({
   to,
   children,
-}: PropsWithChildren<{ readonly to: string }>) => {
+  selectedRef,
+}: PropsWithChildren<{
+  readonly to: string;
+  readonly selectedRef: React.RefObject<HTMLAnchorElement>;
+}>) => {
+  const { pathname } = useLocation();
+  const isSelected = pathname === to;
+  const className = getLinkClassName(
+    `${styles.navMenuItem} ${styles.navMenuSubItem} ${styles.navMenuLink}`,
+    isSelected,
+    styles.selected,
+  );
+
   return (
     <Link
       to={to ?? "/"}
-      className={`${styles.navMenuItem} ${styles.navMenuSubItem} ${styles.navMenuLink}`}
+      className={className}
+      ref={isSelected ? selectedRef : null}
     >
       {children}
     </Link>

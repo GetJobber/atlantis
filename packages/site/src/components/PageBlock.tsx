@@ -7,6 +7,7 @@ import { ContentCardWrapper } from "./ContentCardWrapper";
 import { CategoryCardSection } from "./CategoryCardSection";
 import { PageWrapper } from "../layout/PageWrapper";
 import { ContentCardProps } from "../types/components";
+import usePageTitle from "../hooks/usePageTitle";
 
 interface PageBlockProps {
   readonly structure: {
@@ -21,6 +22,7 @@ interface PageBlockProps {
       content: ContentCardProps[];
     };
     useCategories?: boolean;
+    showSegmentedControl?: boolean;
   };
 }
 
@@ -30,6 +32,7 @@ interface PageBlockProps {
  * @returns
  */
 export const PageBlock = ({ structure }: PageBlockProps) => {
+  usePageTitle({ title: structure.header.title });
   interface SectionMap {
     [key: string]: Array<(typeof structure.body.content)[0]>;
   }
@@ -62,7 +65,7 @@ export const PageBlock = ({ structure }: PageBlockProps) => {
     <PageWrapper>
       <HeaderBlock {...structure.header} />
       <BodyBlock>
-        {structure.useCategories && (
+        {structure.showSegmentedControl && (
           <div
             style={{
               width: "240px",
@@ -84,7 +87,7 @@ export const PageBlock = ({ structure }: PageBlockProps) => {
           </div>
         )}
 
-        {cardView === "category" ? (
+        {structure.useCategories && cardView === "category" ? (
           <>
             {sectionedComponents().map(({ section, items }) => (
               <CategoryCardSection key={section} category={section}>
