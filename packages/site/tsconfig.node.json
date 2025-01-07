@@ -9,5 +9,5 @@
     "strict": true,
     "noEmit": true
   },
-  "include": ["vite.config.ts", "src/utils/metatag.ts", "src/componentList.ts", "src/contentList.ts", "src/designList.ts"],
+  "include": ["vite.config.ts"],
 }

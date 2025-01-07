@@ -4,7 +4,6 @@ import react from "@vitejs/plugin-react";
 import mdx from "@mdx-js/rollup";
 import remarkGfm from "remark-gfm";
 import rehypeRewrite from "rehype-rewrite";
-import fixedMetaTagPlugin from "./src/utils/metatag";
 
 const rewriteLink = (item: string) => {
   let newItem = item;
@@ -53,7 +52,6 @@ export default defineConfig({
         ],
       ],
     }),
-    fixedMetaTagPlugin(),
   ],
   optimizeDeps: {
     include: ["@jobber/formatters", "@jobber/hooks", "@jobber/components"],
