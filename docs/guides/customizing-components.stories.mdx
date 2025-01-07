@@ -1,4 +1,5 @@
 import { Meta } from "@storybook/addon-docs";
+import { Banner } from "@jobber/components/Banner";
 
 <Meta title="Guides/Customizing components" />
 
@@ -80,14 +81,21 @@ fit.
 
 #### UNSAFE\_ props
 
-In some cases, we provide `UNSAFE_` props to allow for more advanced
-customization. These props are prefixed with `UNSAFE_` to indicate that they are
-not recommended for general use and may have unexpected side effects. We
-recommend using these props only when absolutely necessary.
+In some cases, we provide `UNSAFE_` props to allow for further advanced
+customization. These props are prefixed with `UNSAFE_` to indicate that they
+should only be used when absolutely necessary, as they may break the component's
+future compatibility.
 
-If considering using an `UNSAFE_` prop, we encourage you or your designers to
-talk to us. We may be able to suggest an alternative implementation, or your
-design can help inform future additions to Atlantis.
+<Banner type="warning">
+  <p>
+    Use of `UNSAFE_` props is **at your own risk** and should be considered a
+    **last resort**. Future Atlantis updates may lead to unintended breakages.
+  </p>
+</Banner>
+
+If you are considering using an `UNSAFE_` prop, we encourage you or your
+designers to talk to us. We may be able to suggest an alternative
+implementation, or your design can help inform future additions to Atlantis.
 
 - **`UNSAFE_className`**: Allows you to apply custom classnames to the
   component's wrapping container.
@@ -109,3 +117,7 @@ design can help inform future additions to Atlantis.
   UNSAFE_style={{ backgroundColor: "var(--color-surface--background)" }}
 />
 ```
+
+**Note:** Inspiration for this approach was taken from React Spectrum's
+philosophy and implementation of their own class based
+[escape hatches](https://react-spectrum.adobe.com/react-spectrum/styling.html#escape-hatches).

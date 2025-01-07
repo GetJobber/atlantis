@@ -34,15 +34,15 @@ export interface PopoverProps {
   readonly preferredPlacement?: "top" | "bottom" | "left" | "right" | "auto";
 
   /**
-   * Custom className for the wrapping container. This should only be used as a
-   * **last resort**. Using this may result in unintended side effects.
+   * **Use at your own risk:** Custom className for the wrapping container. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
    * More information [here](../?path=/docs/guides-customizing-components--docs#unsafe_-props).
    */
   readonly UNSAFE_className?: string;
 
   /**
-   * Custom style for the wrapping container. This should only be used as a
-   * **last resort**. Using this may result in unintended side effects.
+   * **Use at your own risk:** Custom style for the wrapping container. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
    * More information [here](../?path=/docs/guides-customizing-components--docs#unsafe_-props).
    */
   readonly UNSAFE_style?: CSSProperties;
