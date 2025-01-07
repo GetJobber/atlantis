@@ -368,10 +368,13 @@ html,body,#root {
   flex-direction: column;
   min-height: 280px;
   margin: 0;
-  padding: var(--space-smallest);
 }
   html[data-type="mobile"] {
   border-radius: var(--radius-base);
+}
+#root {
+  box-sizing: border-box;
+  padding: var(--space-smallest);
 }
 </style>
 <link rel="stylesheet" href="/styles.css">
