@@ -204,7 +204,11 @@ export function FormFieldWrapperToolbar({
           }}
           tabIndex={-1}
         >
-          <div className={styles.toolbar} data-testid="ATL-InputText-Toolbar">
+          <div
+            className={styles.toolbar}
+            data-testid="ATL-InputText-Toolbar"
+            data-elevation="elevated"
+          >
             {toolbar}
           </div>
         </motion.div>
