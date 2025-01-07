@@ -368,6 +368,7 @@ html,body,#root {
   flex-direction: column;
   min-height: 280px;
   margin: 0;
+  padding: var(--space-smallest);
 }
   html[data-type="mobile"] {
   border-radius: var(--radius-base);
