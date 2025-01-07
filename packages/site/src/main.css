@@ -1,3 +1,7 @@
+:root {
+  --sideBarWidth: 240px;
+}
+
 body {
   margin: 0;
   font-family: var(--typography--fontFamily-normal);

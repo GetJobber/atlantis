@@ -7,7 +7,7 @@
   flex-direction: column;
   padding: 36px 0 0 0;
   height: 100dvh;
-  width: 200px;
+  width: var(--sideBarWidth);
   box-sizing: border-box;
 }
 
