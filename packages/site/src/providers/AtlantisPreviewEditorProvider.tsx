@@ -366,7 +366,7 @@ html,body,#root {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  min-height: 240px;
+  min-height: 280px;
   margin: 0;
 }
   html[data-type="mobile"] {
