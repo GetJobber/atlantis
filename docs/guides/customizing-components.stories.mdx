@@ -57,11 +57,13 @@ items is customized.
 
 ### Other customization approaches
 
+#### ReactNode
+
 While custom render functions are our primary approach it is not used in all
 places. For simple cases where customization does not depend on internal state,
 we have chosen to extend prop types to allow for a `ReactNode` to be passed in.
 
-#### Example: Tab component (see [Tabs](..?path=/docs/components-navigation-tabs--docs))
+##### Example: Tab component (see [Tabs](..?path=/docs/components-navigation-tabs--docs))
 
 Instead of introducing `customRenderLabel`, the `Tab` component was updated to
 allow the `label` prop to accept a `ReactNode`.
@@ -75,3 +77,35 @@ Atlantis components. Customizing the `label` didn’t require exposing or
 interacting with the `Tab`’s internal state (e.g., active state styling). Once
 the design becomes more complex a custom render function would become a better
 fit.
+
+#### UNSAFE\_ props
+
+In some cases, we provide `UNSAFE_` props to allow for more advanced
+customization. These props are prefixed with `UNSAFE_` to indicate that they are
+not recommended for general use and may have unexpected side effects. We
+recommend using these props only when absolutely necessary.
+
+If considering using an `UNSAFE_` prop, we encourage you or your designers to
+talk to us. We may be able to suggest an alternative implementation, or your
+design can help inform future additions to Atlantis.
+
+- **`UNSAFE_className`**: Allows you to apply custom classnames to the
+  component's wrapping container.
+
+```tsx
+<Component UNSAFE_className={styles.customClass} />
+
+.customClass {
+  background-color: var(--color-surface);
+  padding: var(--space-base);
+}
+```
+
+- **`UNSAFE_style`**: Allows you to apply custom inline styles to the
+  component's wrapping container.
+
+```tsx
+<Component
+  UNSAFE_style={{ backgroundColor: "var(--color-surface--background)" }}
+/>
+```
