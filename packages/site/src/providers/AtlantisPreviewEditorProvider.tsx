@@ -360,14 +360,14 @@ const skeletonHTML = (theme: Theme, type: "web" | "mobile") => {
 <head>
 <style>
 html,body,#root {
-  height: 100%;
-  width: 99%;
+  height: 100vh;
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  min-height: 200px;
-  background-color: transparent;
+  min-height: 240px;
+  margin: 0;
 }
   html[data-type="mobile"] {
   border-radius: var(--radius-base);
