@@ -14,7 +14,6 @@ const rewriteLink = (item: string) => {
 
   return newItem;
 };
-
 export default defineConfig({
   plugins: [
     react(),
