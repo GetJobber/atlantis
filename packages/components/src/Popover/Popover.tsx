@@ -66,8 +66,6 @@ export function Popover({
   useRefocusOnActivator(open);
 
   const popoverClassNames = classnames(classes.popover, UNSAFE_className);
-  console.log(popoverClassNames);
-  console.log("UNSAFE_className:", UNSAFE_className);
 
   return (
     <>
@@ -77,7 +75,7 @@ export function Popover({
           data-elevation={"elevated"}
           ref={setPopperElement}
           style={{ ...popperStyles.popper, ...UNSAFE_style }}
-          className={`${classes.popover} ${UNSAFE_className || ""}`}
+          className={popoverClassNames}
           {...attributes.popper}
         >
           <div className={classes.dismissButton}>
