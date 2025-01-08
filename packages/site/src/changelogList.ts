@@ -2,19 +2,19 @@ export const changelogList = [
   {
     title: "Components",
     to: "/changelog/components",
-    imageURL: "/Placeholder.png",
+    imageURL: "/Components.png",
     additionalMatches: ["Changelog", "Log", "Components"],
   },
   {
     title: "Components-Native",
     to: "/changelog/components-native",
-    imageURL: "/Placeholder.png",
+    imageURL: "/Components.png",
     additionalMatches: ["Changelog", "Log", "Native"],
   },
   {
     title: "Design",
     to: "/changelog/design",
-    imageURL: "/Placeholder.png",
+    imageURL: "/Design.png",
     additionalMatches: ["Changelog", "Log", "Design"],
   },
   {
@@ -44,7 +44,7 @@ export const changelogList = [
   {
     title: "Hooks",
     to: "/changelog/hooks",
-    imageURL: "/Placeholder.png",
+    imageURL: "/Hooks.png",
     additionalMatches: ["Changelog", "Log", "Hooks"],
   },
   {
