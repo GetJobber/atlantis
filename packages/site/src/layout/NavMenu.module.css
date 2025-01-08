@@ -129,6 +129,7 @@
   min-height: var(--navItemHeight);
   align-items: stretch;
   justify-content: space-between;
+  background-color: var(--color-surface--background);
 
   &:hover {
     background-color: var(--color-surface--background--hover);
