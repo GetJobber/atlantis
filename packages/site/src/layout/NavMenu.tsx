@@ -90,15 +90,9 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
             className={styles.searchButton}
             aria-label="Search"
           >
-            <Icon name="search" />
+            <Icon name="search" color="greyBlue" />
             <span className={styles.searchButtonText}>
-              <Typography
-                size={"base"}
-                textColor={"text"}
-                fontWeight={"semiBold"}
-              >
-                Search
-              </Typography>
+              <Typography textColor={"textSecondary"}>Search</Typography>
             </span>
             <div className={styles.searchKeyIndicator}>/</div>
           </button>
@@ -214,7 +208,7 @@ export const MenuList = ({ children }: PropsWithChildren) => {
 export const MenuItem = ({ children }: PropsWithChildren) => {
   return (
     <li style={{ listStyle: "none" }}>
-      <Typography fontWeight="bold" size="large" textColor="text">
+      <Typography fontWeight="semiBold" size={"large"} textColor="heading">
         {children}
       </Typography>
     </li>
@@ -224,9 +218,7 @@ export const MenuItem = ({ children }: PropsWithChildren) => {
 export const MenuSubItem = ({ children }: PropsWithChildren) => {
   return (
     <li style={{ listStyle: "none" }}>
-      <Typography fontWeight="semiBold" size="base" textColor="text">
-        {children}
-      </Typography>
+      <Typography textColor="heading">{children}</Typography>
     </li>
   );
 };
