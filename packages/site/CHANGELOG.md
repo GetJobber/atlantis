@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.25](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.24...@jobber/atlantis-site@0.18.25) (2025-01-08)
+
+
+### Bug Fixes
+
+* **components:** Garbled Component Names in Prod Site Build Canvas ([#2287](https://github.com/GetJobber/atlantis/issues/2287)) ([bd9a731](https://github.com/GetJobber/atlantis/commit/bd9a731062efd3b8470023e44c480cf541eaafed))
+
+
+
+
+
 ## [0.18.24](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.23...@jobber/atlantis-site@0.18.24) (2025-01-08)
 
 **Note:** Version bump only for package @jobber/atlantis-site
