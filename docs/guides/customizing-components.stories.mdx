@@ -98,10 +98,10 @@ designers to talk to us. We may be able to suggest an alternative
 implementation, or your design can help inform future additions to Atlantis.
 
 - **`UNSAFE_className`**: Allows you to apply custom classnames to the
-  component's wrapping container.
+  component's container and in some cases, sub-components.
 
 ```tsx
-<Component UNSAFE_className={styles.customClass} />
+<Component UNSAFE_className={{ container: styles.customClass }} />
 
 .customClass {
   background-color: var(--color-surface);
@@ -109,12 +109,19 @@ implementation, or your design can help inform future additions to Atlantis.
 }
 ```
 
+```tsx
+<Component UNSAFE_className={{ container: "custom-container-class" }} />
+```
+
 - **`UNSAFE_style`**: Allows you to apply custom inline styles to the
-  component's wrapping container.
+  component's container and in some cases, sub-components.
 
 ```tsx
 <Component
-  UNSAFE_style={{ backgroundColor: "var(--color-surface--background)" }}
+  UNSAFE_style={{
+    container: { backgroundColor: "var(--color-surface--background)" },
+    subItem: { paddingRight: "var(--space-larger)" },
+  }}
 />
 ```
 
