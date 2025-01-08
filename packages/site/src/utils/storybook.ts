@@ -16,11 +16,15 @@ export function handleStorybookRedirect() {
 
   const urlParams = new URLSearchParams(window.location.search);
   const forceNewDocsSite = urlParams.has("new");
+  const redirectToNewSite = localStorage.getItem("nolikeynewsite");
   const isStorybookPath = urlParams.has("path");
 
   if (isStorybookPath) {
     window.location.href = `/storybook/${window.location.search}`;
-  } else if (window.location.pathname === "/" && !forceNewDocsSite) {
+  } else if (
+    (window.location.pathname === "/" && !forceNewDocsSite) ||
+    redirectToNewSite
+  ) {
     // NOTE: by default we redirect to storybook for now.
     // TODO: when the new site is ready, we just need to remove this case.
     window.location.href = `/storybook`;
