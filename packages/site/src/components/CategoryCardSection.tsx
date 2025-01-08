@@ -19,20 +19,9 @@ export const CategoryCardSection = ({
 }: PropsWithChildren<CategoryCardSectionProps>) => {
   return (
     <Content spacing={"large"}>
-      <div
-        className="stickySectionHeader"
-        style={{
-          background: "var(--color-surface)",
-          padding:
-            "var(--space-base) var(--space-minuscule) var(--space-smaller) 0px",
-          marginLeft: "-1px",
-          width: "100%",
-        }}
-      >
-        <Heading element={"h3"} level={4}>
-          {category}
-        </Heading>
-      </div>
+      <Heading element={"h3"} level={4}>
+        {category}
+      </Heading>
       <ContentCardWrapper>{children}</ContentCardWrapper>
     </Content>
   );
