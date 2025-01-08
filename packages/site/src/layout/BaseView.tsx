@@ -31,7 +31,7 @@ BaseView.Siderail = function Siderail({
   visible = true,
 }: {
   readonly children: React.ReactNode;
-  readonly visible: boolean;
+  readonly visible?: boolean;
 }) {
   if (!visible) {
     return null;
