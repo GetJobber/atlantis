@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.23](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.22...@jobber/atlantis-site@0.18.23) (2025-01-08)
+
+
+### Bug Fixes
+
+* **docx:** Fixing issue with Minimal Mode on small Viewports ([#2288](https://github.com/GetJobber/atlantis/issues/2288)) ([385b3fc](https://github.com/GetJobber/atlantis/commit/385b3fc1ed04833553173be2c4919e038e2b0e4b))
+
+
+
+
+
 ## [0.18.22](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.21...@jobber/atlantis-site@0.18.22) (2025-01-08)
 
 **Note:** Version bump only for package @jobber/atlantis-site
