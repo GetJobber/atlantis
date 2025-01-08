@@ -29,16 +29,20 @@ html,body,#root {
   justify-content: center;
   flex-direction: column;
   min-height: 200px;
-}
+  }
   html[data-type="mobile"] {
-  border-radius:10px;
-}
+    border-radius:var(--radius-base);
+  }
+  #root {
+    box-sizing: border-box;
+    padding: var(--space-smallest);
+  }
 </style>
 <link rel="stylesheet" href="/styles.css">
 <link rel="stylesheet" href="/foundation.css">
 <link rel="stylesheet" href="/dark.mode.css">
 </head>
-      <body>
+      <body style="background-color:transparent;">
  <script type="importmap">
   {
     "imports": {
