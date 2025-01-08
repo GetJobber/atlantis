@@ -28,9 +28,15 @@ BaseView.Main = function Main({
 
 BaseView.Siderail = function Siderail({
   children,
+  visible = true,
 }: {
   readonly children: React.ReactNode;
+  readonly visible: boolean;
 }) {
+  if (!visible) {
+    return null;
+  }
+
   return (
     <aside
       style={{

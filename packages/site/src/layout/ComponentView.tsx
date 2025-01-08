@@ -31,7 +31,8 @@ export const ComponentView = () => {
   const { updateStyles } = useStyleUpdater();
   const [tab, setTab] = useState(0);
   const { stateValues } = usePropsAsDataList(PageMeta, type);
-  const { enableMinimal, minimal, disableMinimal } = useAtlantisSite();
+  const { enableMinimal, minimal, disableMinimal, isMinimal } =
+    useAtlantisSite();
 
   usePageTitle({ title: PageMeta?.title });
 
@@ -210,7 +211,7 @@ export const ComponentView = () => {
           </Box>
         </Page>
       </BaseView.Main>
-      <BaseView.Siderail>
+      <BaseView.Siderail visible={!isMinimal}>
         <ComponentLinks
           key={`component-${name}`}
           links={PageMeta?.links}
