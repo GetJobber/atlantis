@@ -15,26 +15,26 @@ export default {
           <Heading level={6} element={"p"}>
             Base
           </Heading>
-          <Box background={"base-blue--500"} height={24} radius={"base"}></Box>
-          <Box background={"base-blue--500"} height={24} radius={"base"}></Box>
-          <Box background={"base-blue--500"} height={24} radius={"base"}></Box>
+          <Box background={"base-blue--500"} height={16} radius={"base"}></Box>
+          <Box background={"base-blue--500"} height={16} radius={"base"}></Box>
+          <Box background={"base-blue--500"} height={16} radius={"base"}></Box>
           <Content spacing={"small"}>
             <Heading level={6} element={"p"}>
               Small
             </Heading>
             <Box
               background={"base-blue--500"}
-              height={24}
+              height={16}
               radius={"base"}
             ></Box>
             <Box
               background={"base-blue--500"}
-              height={24}
+              height={16}
               radius={"base"}
             ></Box>
             <Box
               background={"base-blue--500"}
-              height={24}
+              height={16}
               radius={"base"}
             ></Box>
           </Content>
