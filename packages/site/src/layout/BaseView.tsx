@@ -40,7 +40,7 @@ BaseView.Siderail = function Siderail({
   return (
     <aside
       style={{
-        width: "200px",
+        width: "var(--sideBarWidth)",
         padding: "36px var(--space-base)",
         display: "flex",
         flexDirection: "column",

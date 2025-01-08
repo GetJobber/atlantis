@@ -208,7 +208,7 @@ export const MenuList = ({ children }: PropsWithChildren) => {
 export const MenuItem = ({ children }: PropsWithChildren) => {
   return (
     <li style={{ listStyle: "none" }}>
-      <Typography fontWeight="bold" size="large" textColor="text">
+      <Typography fontWeight="semiBold" size={"large"} textColor="heading">
         {children}
       </Typography>
     </li>
@@ -218,9 +218,7 @@ export const MenuItem = ({ children }: PropsWithChildren) => {
 export const MenuSubItem = ({ children }: PropsWithChildren) => {
   return (
     <li style={{ listStyle: "none" }}>
-      <Typography fontWeight="semiBold" size="base" textColor="text">
-        {children}
-      </Typography>
+      <Typography textColor="heading">{children}</Typography>
     </li>
   );
 };
