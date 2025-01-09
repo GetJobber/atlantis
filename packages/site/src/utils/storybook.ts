@@ -17,7 +17,7 @@ export function handleStorybookRedirect() {
 
   if (isStorybookPath) {
     window.location.href = `/storybook/${window.location.search}`;
-  } else if (redirectToNewSite) {
+  } else if (window.location.pathname === "/" && redirectToNewSite) {
     // NOTE: by default we redirect to storybook for now.
     // TODO: when the new site is ready, we just need to remove this case.
     window.location.href = `/storybook`;
