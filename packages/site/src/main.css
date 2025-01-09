@@ -74,7 +74,6 @@ blockquote {
   margin: 0;
   padding: var(--space-large);
   border-radius: var(--radius-base);
-  box-shadow: var(--shadow-low);
 }
 
 custom-elements,
