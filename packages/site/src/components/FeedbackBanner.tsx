@@ -37,7 +37,7 @@ export const FeedbackBanner = () => {
         padding: "var(--space-small)",
         transition: "transform 0.3s ease-in-out",
         transform: isExpanded
-          ? "translateY(0)"
+          ? "translateY(0px)"
           : "translateY(calc(100% - 40px))",
       }}
     >

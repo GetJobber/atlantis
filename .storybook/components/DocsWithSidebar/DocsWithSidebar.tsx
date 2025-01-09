@@ -36,7 +36,7 @@ export function DocsWithSidebar({
   }
   const toggleTab = () => {
     setHidden(!hidden)
-    localStorage.setItem('toggleNewDocs', !hidden ? 'false' : 'true')
+    localStorage.setItem('toggleNewDocs', !hidden ? 'true' : 'false')
   }
 
   return (
