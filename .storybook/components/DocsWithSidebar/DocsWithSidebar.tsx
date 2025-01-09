@@ -32,7 +32,7 @@ export function DocsWithSidebar({
   ].join(" ");
   const newDocs = () => {
     localStorage.removeItem('nolikeynewsite')
-    window.parent.location.href = '/?new'
+    window.parent.location.href = '/'
   }
   const toggleTab = () => {
     setHidden(!hidden)
