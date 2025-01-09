@@ -64,7 +64,7 @@ export function DocsWithSidebar({
           <TableOfContents githubInfo={githubInfo} />
         </div>
       </aside>
-      <div style={{
+     { /* Commenting out. This branch has been merged into a new one, and we didn't want this leaking out by accident <div style={{
         position:'fixed',
         bottom:0,
         left: hidden ? -195 : 0,
@@ -77,7 +77,7 @@ export function DocsWithSidebar({
           <Button label="View the new docs site" type='tertiary' onClick={newDocs} />
           <Button onClick={toggleTab} icon={hidden ? 'arrowRight' : "arrowLeft"} ariaLabel="hide" type='tertiary' variation="subtle" />
         </Box>
-      </div>
+      </div> */}
     </div>
   );
 
