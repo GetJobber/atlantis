@@ -19,9 +19,7 @@ export const CategoryCardSection = ({
 }: PropsWithChildren<CategoryCardSectionProps>) => {
   return (
     <Content spacing={"large"}>
-      <Heading element={"h3"} level={4}>
-        {category}
-      </Heading>
+      <Heading level={2}>{category}</Heading>
       <ContentCardWrapper>{children}</ContentCardWrapper>
     </Content>
   );
