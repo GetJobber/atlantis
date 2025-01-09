@@ -7,11 +7,11 @@
   flex-direction: column;
   padding: 36px 0 0 0;
   height: 100dvh;
-  width: var(--sideBarWidth);
+  min-width: var(--sideBarWidth);
   box-sizing: border-box;
 }
 
-.navMenuContainer > * {
+.navMenuContainer>* {
   padding-left: var(--space-base);
   padding-right: var(--space-base);
   padding-bottom: var(--space-base);
