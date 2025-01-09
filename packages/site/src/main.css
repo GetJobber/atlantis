@@ -188,3 +188,9 @@ iframe {
     gap: var(--space-larger);
   }
 }
+
+.stickySectionHeader {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
