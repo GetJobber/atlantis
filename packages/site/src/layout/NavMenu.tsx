@@ -199,7 +199,7 @@ export const MenuList = ({ children }: PropsWithChildren) => {
 
 export const MenuItem = ({ children }: PropsWithChildren) => {
   return (
-    <li style={{ listStyle: "none" }}>
+    <li style={{ listStyle: "none" }} className="stickySectionHeader">
       <Typography fontWeight="semiBold" size={"large"} textColor="heading">
         {children}
       </Typography>
