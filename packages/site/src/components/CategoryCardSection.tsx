@@ -29,9 +29,7 @@ export const CategoryCardSection = ({
           width: "100%",
         }}
       >
-        <Heading element={"h3"} level={4}>
-          {category}
-        </Heading>
+        <Heading level={2}>{category}</Heading>
       </div>
       <ContentCardWrapper>{children}</ContentCardWrapper>
     </Content>
