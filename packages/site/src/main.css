@@ -173,3 +173,17 @@ iframe {
   width: 100%;
   max-width: 1024px;
 }
+
+.contentCardWrapper {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-rows: auto;
+  gap: var(--space-base);
+}
+
+@media screen and (min-width: 1024px) {
+  .contentCardWrapper {
+    gap: var(--space-larger);
+  }
+}
