@@ -98,16 +98,7 @@ function InputTextInternal(
     },
   }));
 
-  useSafeLayoutEffect(() => {
-    if (
-      inputRef &&
-      inputRef.current instanceof HTMLTextAreaElement &&
-      wrapperRef &&
-      wrapperRef.current instanceof HTMLDivElement
-    ) {
-      resize(inputRef.current, wrapperRef.current);
-    }
-  }, [inputRef.current, wrapperRef.current]);
+  const resize = useAutoResize(inputRef, wrapperRef, rowRange);
 
   return (
     <FormField
@@ -144,6 +135,51 @@ function InputTextInternal(
     }
   }
 
+  function insertText(text: string) {
+    const input = inputRef.current;
+
+    if (input) {
+      insertAtCursor(input, text);
+
+      const newValue = input.value;
+      actionsRef.current?.setValue(newValue);
+      props.onChange && props.onChange(newValue);
+    }
+  }
+}
+
+export const InputText = forwardRef(InputTextInternal);
+
+function insertAtCursor(
+  input: HTMLTextAreaElement | HTMLInputElement,
+  newText: string,
+) {
+  const start = input.selectionStart || 0;
+  const end = input.selectionEnd || 0;
+  const text = input.value;
+  const before = text.substring(0, start);
+  const after = text.substring(end, text.length);
+  input.value = before + newText + after;
+  input.selectionStart = input.selectionEnd = start + newText.length;
+  input.focus();
+}
+
+function useAutoResize(
+  inputRef: React.RefObject<HTMLTextAreaElement | HTMLInputElement>,
+  wrapperRef: React.RefObject<HTMLDivElement>,
+  rowRange: RowRange,
+) {
+  useSafeLayoutEffect(() => {
+    if (
+      inputRef &&
+      inputRef.current instanceof HTMLTextAreaElement &&
+      wrapperRef &&
+      wrapperRef.current instanceof HTMLDivElement
+    ) {
+      resize(inputRef.current, wrapperRef.current);
+    }
+  }, [inputRef.current, wrapperRef.current]);
+
   function resize(textArea: HTMLTextAreaElement, wrapper: HTMLDivElement) {
     if (rowRange.min === rowRange.max) return;
 
@@ -176,31 +212,5 @@ function InputTextInternal(
     return Math.min(scrollHeight, maxHeight);
   }
 
-  function insertText(text: string) {
-    const input = inputRef.current;
-
-    if (input) {
-      insertAtCursor(input, text);
-
-      const newValue = input.value;
-      actionsRef.current?.setValue(newValue);
-      props.onChange && props.onChange(newValue);
-    }
-  }
-}
-
-export const InputText = forwardRef(InputTextInternal);
-
-function insertAtCursor(
-  input: HTMLTextAreaElement | HTMLInputElement,
-  newText: string,
-) {
-  const start = input.selectionStart || 0;
-  const end = input.selectionEnd || 0;
-  const text = input.value;
-  const before = text.substring(0, start);
-  const after = text.substring(end, text.length);
-  input.value = before + newText + after;
-  input.selectionStart = input.selectionEnd = start + newText.length;
-  input.focus();
+  return resize;
 }
