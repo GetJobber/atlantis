@@ -378,7 +378,7 @@ export const componentList = [
     title: "InputCurrency",
     to: "/components/InputCurrency",
     imageURL: "/InputCurrency.png",
-    sections: ["Forms and Inputs"],
+    sections: ["Forms & Inputs"],
     additionalMatches: ["Money", "Dollar", "Currency"],
   },
   {

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.10.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.9.1...@jobber/components@6.10.0) (2025-01-08)
+
+
+### Features
+
+* **components:** Add UNSAFE_className and UNSAFE_style to Popover ([#2282](https://github.com/GetJobber/atlantis/issues/2282)) ([d620abf](https://github.com/GetJobber/atlantis/commit/d620abf73749437f16cee5f6114cdf714214c977))
+
+
+
+
+
+## [6.9.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.9.0...@jobber/components@6.9.1) (2025-01-06)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 # [6.9.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.8.0...@jobber/components@6.9.0) (2024-12-14)
 
 

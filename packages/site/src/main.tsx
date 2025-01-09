@@ -7,7 +7,7 @@ import "./main.css";
 import { BrowserRouter } from "react-router-dom";
 import { AtlantisThemeContextProvider } from "@jobber/components";
 import { Layout } from "./layout/Layout";
-import { AtlantisPreviewEditorProvider } from "./providers/AtlantisPreviewEditorProvider";
+import { AtlantisPreviewProvider } from "./preview/AtlantisPreviewProvider";
 import { AtlantisSiteProvider } from "./providers/AtlantisSiteProvider";
 import { initAtlantisTheme } from "./utils/theme";
 import { Analytics } from "./components/Analytics";
@@ -32,9 +32,9 @@ function renderApp() {
               minimal={{ requested: minimalMode, enabled: false }}
             >
               <Analytics />
-              <AtlantisPreviewEditorProvider>
+              <AtlantisPreviewProvider>
                 <Layout />
-              </AtlantisPreviewEditorProvider>
+              </AtlantisPreviewProvider>
             </AtlantisSiteProvider>
           </AtlantisThemeContextProvider>
         </BrowserRouter>

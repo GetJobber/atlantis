@@ -1,4 +1,4 @@
-import { Box, Content, Heading } from "@jobber/components";
+import { Box, Content, Typography } from "@jobber/components";
 import { MouseEvent, useEffect, useState } from "react";
 
 interface AnchorLinksProps {
@@ -53,9 +53,15 @@ export function AnchorLinks({
     <>
       {hlinks && hlinks.length > 0 && (
         <Content>
-          <Heading level={6} element="h3">
+          <Typography
+            element={"h3"}
+            size="small"
+            textCase="uppercase"
+            textColor="textSecondary"
+            fontWeight={"bold"}
+          >
             {header}
-          </Heading>
+          </Typography>
           <Content spacing="small">
             {hlinks?.map((link, index) => (
               <Box key={index}>
