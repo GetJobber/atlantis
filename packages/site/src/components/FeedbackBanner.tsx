@@ -10,18 +10,18 @@ import { useState } from "react";
  * @returns
  */
 export const FeedbackBanner = () => {
-  const [innerState, setInnerState] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(true);
   const hideFeedbackBanner = localStorage.getItem("hideFeedbackBanner");
 
-  if (hideFeedbackBanner || !innerState) {
+  if (hideFeedbackBanner) {
     return null;
   }
 
   return (
     <div
       style={{
-        position: "absolute",
-        bottom: -20,
+        position: "fixed",
+        bottom: 0,
         width: "375px",
         backgroundColor: "var(--color-surface)",
         color: "white",
@@ -34,45 +34,47 @@ export const FeedbackBanner = () => {
         borderTopLeftRadius: "var(--radius-base)",
         borderTopRightRadius: "var(--radius-base)",
         boxShadow: "var(--shadow-base)",
-        padding: "var(--space-base)",
-        paddingBottom: "var(--space-base)",
+        padding: "var(--space-small)",
+        transition: "transform 0.3s ease-in-out",
+        transform: isExpanded
+          ? "translateY(0)"
+          : "translateY(calc(100% - 40px))",
       }}
     >
       <Box
         direction="row"
         justifyContent="space-between"
         width="100%"
-        margin={{ bottom: "base" }}
         alignItems="center"
       >
         <Heading level={4}>Welcome to the new site</Heading>
         <Button
-          icon="remove"
-          ariaLabel="remove"
+          icon={isExpanded ? "arrowDown" : "arrowUp"}
+          ariaLabel={isExpanded ? "Collapse" : "Expand"}
           variation="subtle"
           type="secondary"
-          onClick={() => {
-            localStorage.setItem("hideFeedbackBanner", "true");
-            setInnerState(false);
-          }}
+          onClick={() => setIsExpanded(!isExpanded)}
         />
       </Box>
-      <Box direction="row" alignItems="center">
-        <Button
-          type="secondary"
-          url="/GOOGLEFORMLINK"
-          label="Give feedback"
-        ></Button>
-        <Button
-          type="tertiary"
-          variation="subtle"
-          onClick={() => {
-            localStorage.setItem("nolikeynewsite", "true");
-            window.location.href = "/storybook/?path=/docs/introduction--docs";
-          }}
-          label="Back to old site"
-        />
-      </Box>
+      {isExpanded && (
+        <Box direction="row" alignItems="center" margin={{ top: "base" }}>
+          <Button
+            type="secondary"
+            url="/GOOGLEFORMLINK"
+            label="Give feedback"
+          />
+          <Button
+            type="tertiary"
+            variation="subtle"
+            onClick={() => {
+              localStorage.setItem("nolikeynewsite", "true");
+              window.location.href =
+                "/storybook/?path=/docs/introduction--docs";
+            }}
+            label="Back to old site"
+          />
+        </Box>
+      )}
     </div>
   );
 };
