@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.31](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.30...@jobber/atlantis-site@0.18.31) (2025-01-09)
+
+
+### Bug Fixes
+
+* **docx:** Fixing the double scroll bars on the Docs Site ([#2296](https://github.com/GetJobber/atlantis/issues/2296)) ([04f0380](https://github.com/GetJobber/atlantis/commit/04f0380a48d44c3c64fc3bedfe63b4d7fb9f9b27))
+
+
+
+
+
 ## [0.18.30](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.29...@jobber/atlantis-site@0.18.30) (2025-01-09)
 
 **Note:** Version bump only for package @jobber/atlantis-site
