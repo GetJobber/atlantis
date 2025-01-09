@@ -98,7 +98,7 @@ function InputTextInternal(
     },
   }));
 
-  const resize = useAutoResize(inputRef, wrapperRef, rowRange);
+  const resize = useAutoResize(inputRef, wrapperRef, rowRange, props.value);
 
   return (
     <FormField
@@ -168,6 +168,7 @@ function useAutoResize(
   inputRef: React.RefObject<HTMLTextAreaElement | HTMLInputElement>,
   wrapperRef: React.RefObject<HTMLDivElement>,
   rowRange: RowRange,
+  value: string | number | Date | undefined,
 ) {
   useSafeLayoutEffect(() => {
     if (
@@ -179,6 +180,22 @@ function useAutoResize(
       resize(inputRef.current, wrapperRef.current);
     }
   }, [inputRef.current, wrapperRef.current]);
+
+  // When the consumer passes a new controlled value, we need to recheck the size.
+  // The timeout ensures the DOM has a enough time to render the new text before
+  // we access the height.
+  useSafeLayoutEffect(() => {
+    setTimeout(() => {
+      if (
+        inputRef &&
+        inputRef.current instanceof HTMLTextAreaElement &&
+        wrapperRef &&
+        wrapperRef.current instanceof HTMLDivElement
+      ) {
+        resize(inputRef.current, wrapperRef.current);
+      }
+    }, 0);
+  }, [value]);
 
   function resize(textArea: HTMLTextAreaElement, wrapper: HTMLDivElement) {
     if (rowRange.min === rowRange.max) return;
