@@ -38,6 +38,7 @@ html,body,#root {
     padding: var(--space-smallest);
   }
 </style>
+<link rel="stylesheet" href="https://cdn.jobber.com/fonts/fonts.css">
 <link rel="stylesheet" href="/styles.css">
 <link rel="stylesheet" href="/foundation.css">
 <link rel="stylesheet" href="/dark.mode.css">
