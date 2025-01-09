@@ -35,7 +35,7 @@ export const FeedbackBanner = () => {
         borderTopRightRadius: "var(--radius-base)",
         boxShadow: "var(--shadow-base)",
         padding: "var(--space-small)",
-        transition: "transform 0.3s ease-in-out",
+        transition: "transform var(--timing-base) ease-in-out",
         transform: isExpanded
           ? "translateY(0px)"
           : "translateY(calc(100% - 40px))",
