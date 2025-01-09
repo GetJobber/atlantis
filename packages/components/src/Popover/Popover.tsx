@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { CSSProperties, useState } from "react";
 import { usePopper } from "react-popper";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
+import classnames from "classnames";
 import classes from "./Popover.module.css";
 import { ButtonDismiss } from "../ButtonDismiss";
 
@@ -31,6 +32,28 @@ export interface PopoverProps {
    * @default 'auto'
    */
   readonly preferredPlacement?: "top" | "bottom" | "left" | "right" | "auto";
+
+  /**
+   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information [here](https://atlantis.getjobber.com/storybook/?path=/docs/guides-customizing-components--docs#unsafe_-props).
+   */
+  readonly UNSAFE_className?: {
+    container?: string;
+    dismissButtonContainer?: string;
+    arrow?: string;
+  };
+
+  /**
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information [here](https://atlantis.getjobber.com/storybook/?path=/docs/guides-customizing-components--docs#unsafe_-props).
+   */
+  readonly UNSAFE_style?: {
+    container?: CSSProperties;
+    dismissButtonContainer?: CSSProperties;
+    arrow?: CSSProperties;
+  };
 }
 
 export function Popover({
@@ -39,6 +62,8 @@ export function Popover({
   attachTo,
   open,
   preferredPlacement = "auto",
+  UNSAFE_className = {},
+  UNSAFE_style = {},
 }: PopoverProps) {
   const [popperElement, setPopperElement] = useState<HTMLElement | null>();
   const [arrowElement, setArrowElement] = useState<HTMLElement | null>();
@@ -52,6 +77,16 @@ export function Popover({
   );
   useRefocusOnActivator(open);
 
+  const popoverClassNames = classnames(
+    classes.popover,
+    UNSAFE_className.container,
+  );
+  const dismissButtonClassNames = classnames(
+    classes.dismissButton,
+    UNSAFE_className.dismissButtonContainer,
+  );
+  const arrowClassNames = classnames(classes.arrow, UNSAFE_className.arrow);
+
   return (
     <>
       {open && (
@@ -59,18 +94,24 @@ export function Popover({
           role="dialog"
           data-elevation={"elevated"}
           ref={setPopperElement}
-          style={popperStyles.popper}
-          className={classes.popover}
+          style={{ ...popperStyles.popper, ...(UNSAFE_style.container ?? {}) }}
+          className={popoverClassNames}
           {...attributes.popper}
+          data-testid="popover-container"
         >
-          <div className={classes.dismissButton}>
+          <div
+            className={dismissButtonClassNames}
+            style={UNSAFE_style.dismissButtonContainer ?? {}}
+            data-testid="popover-dismiss-button-container"
+          >
             <ButtonDismiss onClick={onRequestClose} ariaLabel="Close dialog" />
           </div>
           {children}
           <div
             ref={setArrowElement}
-            className={classes.arrow}
-            style={popperStyles.arrow}
+            className={arrowClassNames}
+            style={{ ...popperStyles.arrow, ...(UNSAFE_style.arrow ?? {}) }}
+            data-testid="popover-arrow"
           />
         </div>
       )}

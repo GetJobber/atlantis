@@ -7,7 +7,7 @@
   flex-direction: column;
   padding: 36px 0 0 0;
   height: 100dvh;
-  width: 200px;
+  width: var(--sideBarWidth);
   box-sizing: border-box;
 }
 
@@ -58,6 +58,8 @@
   padding: var(--space-small);
   background: var(--color-surface);
   outline: transparent;
+  cursor: pointer;
+  transition: all var(--timing-base) ease-out;
 
   &:focus-visible {
     box-shadow: var(--shadow-focus);
@@ -85,6 +87,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: var(--radius-small);
   box-shadow: var(--shadow-low);
 }
 
@@ -122,6 +125,7 @@
   transition: all var(--timing-base) ease-out;
   margin-left: var(--negativeHoverOffset);
   margin-right: var(--negativeHoverOffset);
+  margin-bottom: var(--space-smaller);
   padding-left: var(--hoverOffset);
   min-height: var(--navItemHeight);
   align-items: stretch;

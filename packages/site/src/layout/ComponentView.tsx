@@ -3,20 +3,18 @@ import { useParams } from "react-router";
 import { useEffect, useMemo, useState } from "react";
 import { BaseView } from "./BaseView";
 import { PropsList } from "../components/PropsList";
-import { ComponentNotFound } from "../components/ComponentNotFound";
+import { NotFoundPage } from "../pages/NotFoundPage";
 import { ComponentLinks } from "../components/ComponentLinks";
 import { CodePreviewWindow } from "../components/CodePreviewWindow";
 import { usePropsAsDataList } from "../hooks/usePropsAsDataList";
 import { SiteContent } from "../content";
 import { useStyleUpdater } from "../hooks/useStyleUpdater";
 import { useErrorCatcher } from "../hooks/useErrorCatcher";
-import {
-  AtlantisPreviewEditor,
-  AtlantisPreviewViewer,
-  useAtlantisPreview,
-} from "../providers/AtlantisPreviewEditorProvider";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
 import usePageTitle from "../hooks/usePageTitle";
+import { useAtlantisPreview } from "../preview/AtlantisPreviewProvider";
+import { AtlantisPreviewEditor } from "../preview/AtlantisPreviewEditor";
+import { AtlantisPreviewViewer } from "../preview/AtlantisPreviewViewer";
 
 /**
  * Layout for displaying a Component documentation page. This will display the component, props, and code.
@@ -33,7 +31,8 @@ export const ComponentView = () => {
   const { updateStyles } = useStyleUpdater();
   const [tab, setTab] = useState(0);
   const { stateValues } = usePropsAsDataList(PageMeta, type);
-  const { enableMinimal, minimal, disableMinimal } = useAtlantisSite();
+  const { enableMinimal, minimal, disableMinimal, isMinimal } =
+    useAtlantisSite();
 
   usePageTitle({ title: PageMeta?.title });
 
@@ -212,7 +211,7 @@ export const ComponentView = () => {
           </Box>
         </Page>
       </BaseView.Main>
-      <BaseView.Siderail>
+      <BaseView.Siderail visible={!isMinimal}>
         <ComponentLinks
           key={`component-${name}`}
           links={PageMeta?.links}
@@ -225,6 +224,6 @@ export const ComponentView = () => {
       </BaseView.Siderail>
     </BaseView>
   ) : (
-    <ComponentNotFound />
+    <NotFoundPage />
   );
 };

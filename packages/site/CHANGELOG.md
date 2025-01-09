@@ -3,6 +3,68 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.27](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.26...@jobber/atlantis-site@0.18.27) (2025-01-09)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.26](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.25...@jobber/atlantis-site@0.18.26) (2025-01-09)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.25](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.24...@jobber/atlantis-site@0.18.25) (2025-01-08)
+
+
+### Bug Fixes
+
+* **components:** Garbled Component Names in Prod Site Build Canvas ([#2287](https://github.com/GetJobber/atlantis/issues/2287)) ([bd9a731](https://github.com/GetJobber/atlantis/commit/bd9a731062efd3b8470023e44c480cf541eaafed))
+
+
+
+
+
+## [0.18.24](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.23...@jobber/atlantis-site@0.18.24) (2025-01-08)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.23](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.22...@jobber/atlantis-site@0.18.23) (2025-01-08)
+
+
+### Bug Fixes
+
+* **docx:** Fixing issue with Minimal Mode on small Viewports ([#2288](https://github.com/GetJobber/atlantis/issues/2288)) ([385b3fc](https://github.com/GetJobber/atlantis/commit/385b3fc1ed04833553173be2c4919e038e2b0e4b))
+
+
+
+
+
+## [0.18.22](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.21...@jobber/atlantis-site@0.18.22) (2025-01-08)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.21](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.20...@jobber/atlantis-site@0.18.21) (2025-01-08)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
 ## [0.18.20](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.19...@jobber/atlantis-site@0.18.20) (2025-01-06)
 
 **Note:** Version bump only for package @jobber/atlantis-site

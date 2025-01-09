@@ -64,7 +64,7 @@ function AnimatedPresenceDisclosure({
         }`}
       >
         <Link to={to ?? "/"} tabIndex={0}>
-          <Typography fontWeight="semiBold" size="large" textColor="heading">
+          <Typography fontWeight="semiBold" size={"large"} textColor="heading">
             {title}
           </Typography>
         </Link>
