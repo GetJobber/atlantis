@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.30](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.29...@jobber/atlantis-site@0.18.30) (2025-01-09)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.29](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.28...@jobber/atlantis-site@0.18.29) (2025-01-09)
+
+
+### Bug Fixes
+
+* **docx:** Jobber Pro not rendering properly within Heading + Typography coded examples. ([#2295](https://github.com/GetJobber/atlantis/issues/2295)) ([a19550e](https://github.com/GetJobber/atlantis/commit/a19550ea78cd7527c91f64290f425ba5e89c67b1))
+
+
+
+
+
+## [0.18.28](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.27...@jobber/atlantis-site@0.18.28) (2025-01-09)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.27](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.26...@jobber/atlantis-site@0.18.27) (2025-01-09)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
 ## [0.18.26](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.25...@jobber/atlantis-site@0.18.26) (2025-01-09)
 
 **Note:** Version bump only for package @jobber/atlantis-site

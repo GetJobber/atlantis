@@ -1,7 +1,6 @@
 import { PropsWithChildren } from "react";
-import { Typography } from "@jobber/components";
+import { Content, Heading } from "@jobber/components";
 import { ContentCardWrapper } from "./ContentCardWrapper";
-import styles from "./CategoryCardSection.module.css";
 
 interface CategoryCardSectionProps {
   readonly category: string;
@@ -19,16 +18,9 @@ export const CategoryCardSection = ({
   children,
 }: PropsWithChildren<CategoryCardSectionProps>) => {
   return (
-    <div className={styles.categoryCardSection}>
-      <Typography
-        element={"h6"}
-        fontWeight={"bold"}
-        size={"small"}
-        textColor={"textSecondary"}
-      >
-        {category.toUpperCase()}
-      </Typography>
+    <Content spacing={"large"}>
+      <Heading level={2}>{category}</Heading>
       <ContentCardWrapper>{children}</ContentCardWrapper>
-    </div>
+    </Content>
   );
 };
