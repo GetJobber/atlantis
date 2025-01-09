@@ -125,6 +125,7 @@
   transition: all var(--timing-base) ease-out;
   margin-left: var(--negativeHoverOffset);
   margin-right: var(--negativeHoverOffset);
+  margin-bottom: var(--space-smaller);
   padding-left: var(--hoverOffset);
   min-height: var(--navItemHeight);
   align-items: stretch;
