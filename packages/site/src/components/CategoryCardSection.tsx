@@ -19,7 +19,18 @@ export const CategoryCardSection = ({
 }: PropsWithChildren<CategoryCardSectionProps>) => {
   return (
     <Content spacing={"large"}>
-      <Heading level={2}>{category}</Heading>
+      <div
+        className="stickySectionHeader"
+        style={{
+          background: "var(--color-surface)",
+          padding:
+            "var(--space-base) var(--space-minuscule) var(--space-smaller) 0px",
+          marginLeft: "-1px",
+          width: "100%",
+        }}
+      >
+        <Heading level={2}>{category}</Heading>
+      </div>
       <ContentCardWrapper>{children}</ContentCardWrapper>
     </Content>
   );
