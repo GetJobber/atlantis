@@ -60,7 +60,7 @@ export const FeedbackBanner = () => {
         <Box direction="row" alignItems="center" margin={{ top: "base" }}>
           <Button
             type="secondary"
-            url="/GOOGLEFORMLINK"
+            url="https://docs.google.com/forms/d/e/1FAIpQLSdP0Gx84AT9rD5Y2Snm4x-COzavhE4pjNyOfOjjbdEmycdsAQ/viewform?usp=sharing"
             label="Give feedback"
           />
           <Button
