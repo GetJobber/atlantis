@@ -24,7 +24,8 @@
 5. **Accessibility**:
 
    - Consider accessibility in all code.
-   - Use ARIA roles and properties where applicable.
+   - Prefer HTML-native roles and attributes, and use ARIA roles only as
+     necessary
 
 6. **Comments and Documentation**:
 
