@@ -12,14 +12,39 @@ h1 {
   font-weight: 800;
 }
 
-h1,
+h1 {
+  font-family: var(--typography--fontFamily-display);
+}
+
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: var(--typography--fontFamily-display);
+  font-weight: 700;
 }
+
+h2 {
+  font-size: var(--typography--fontSize-largest);
+}
+
+h3 {
+  font-size: var(--typography--fontSize-larger);
+}
+
+h4 {
+  font-size: var(--typography--fontSize-large);
+}
+
+h5 {
+  font-size: var(--typography--fontSize-base);
+}
+
+h6 {
+  font-size: var(--typography--fontSize-small);
+  text-transform: uppercase;
+}
+
 
 a {
   margin: calc(-1 * var(--space-smallest));
@@ -42,6 +67,13 @@ a:focus-visible {
 
 a:visited {
   color: var(--color-interactive--hover);
+}
+
+blockquote {
+  background-color: var(--color-surface--background--subtle);
+  margin: 0;
+  padding: var(--space-base) var(--space-large);
+  border-radius: var(--radius-base);
 }
 
 custom-elements,
@@ -140,7 +172,6 @@ iframe {
   padding: var(--space-large);
   width: 100%;
   height: 100%;
-  color: var(--color-base-white);
   text-shadow: 0px 4px 16px rgba(var(--color-black--rgb), 0.6);
   min-height: 30vh;
   display: flex;
@@ -173,4 +204,24 @@ iframe {
 .headerBlock > * {
   width: 100%;
   max-width: 1024px;
+}
+
+.contentCardWrapper {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-rows: auto;
+  gap: var(--space-base);
+}
+
+@media screen and (min-width: 1024px) {
+  .contentCardWrapper {
+    gap: var(--space-larger);
+  }
+}
+
+.stickySectionHeader {
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }

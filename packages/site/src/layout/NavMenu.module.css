@@ -7,11 +7,11 @@
   flex-direction: column;
   padding: 36px 0 0 0;
   height: 100dvh;
-  width: var(--sideBarWidth);
+  min-width: var(--sideBarWidth);
   box-sizing: border-box;
 }
 
-.navMenuContainer > * {
+.navMenuContainer>* {
   padding-left: var(--space-base);
   padding-right: var(--space-base);
   padding-bottom: var(--space-base);
@@ -125,10 +125,12 @@
   transition: all var(--timing-base) ease-out;
   margin-left: var(--negativeHoverOffset);
   margin-right: var(--negativeHoverOffset);
+  margin-bottom: var(--space-smaller);
   padding-left: var(--hoverOffset);
   min-height: var(--navItemHeight);
   align-items: stretch;
   justify-content: space-between;
+  background-color: var(--color-surface--background);
 
   &:hover {
     background-color: var(--color-surface--background--hover);
