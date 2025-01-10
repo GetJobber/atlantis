@@ -108,12 +108,12 @@ export const ComponentView = () => {
         <div data-usage-tab>
           <Box margin={{ bottom: "base" }}>
             <AtlantisPreviewEditor />
-            <Box margin={{ top: "base" }}>
-              <Typography fontWeight={"bold"}>
-                Due to distinctions between web and native platform, this may
-                not render accurately in a web browser.
-              </Typography>
-            </Box>
+          </Box>
+          <Box margin={{ top: "base", bottom: "base" }}>
+            <Typography fontWeight={"bold"}>
+              Due to distinctions between web and native platform, this may not
+              render accurately in a web browser.
+            </Typography>
           </Box>
           <PropsList values={stateValues || []} />
         </div>
