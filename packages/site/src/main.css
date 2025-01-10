@@ -1,5 +1,11 @@
 :root {
-  --sideBarWidth: 250px;
+  --sideBarWidth: 200px;
+}
+
+@media screen and (min-width: 1024px) {
+  :root {
+    --sideBarWidth: 220px;
+  }
 }
 
 body {
@@ -224,4 +230,21 @@ iframe {
   position: sticky;
   top: 0;
   z-index: 1;
+}
+
+.baseView-sideRail {
+  width: var(--sideBarWidth);
+  padding: 36px var(--space-base);
+  display: none;
+  flex-direction: column;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  overflow-y: auto;
+  height: 100%;
+}
+
+@media screen and (min-width: 1024px) {
+  .baseView-sideRail {
+    display: flex;
+  }
 }
