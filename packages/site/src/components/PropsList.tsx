@@ -70,7 +70,7 @@ export const PropsList = ({
                   required: boolean;
                 }) => (
                   <Grid>
-                    <Grid.Cell size={{ md: 6, lg: 3 }}>
+                    <Grid.Cell size={{ md: 5, lg: 3 }}>
                       <div
                         style={{
                           display: "flex",
@@ -82,7 +82,7 @@ export const PropsList = ({
                         {item.required && <InlineLabel>Required</InlineLabel>}
                       </div>
                     </Grid.Cell>
-                    <Grid.Cell size={{ md: 6, lg: 3 }}>
+                    <Grid.Cell size={{ md: 7, lg: 3 }}>
                       {item.component}
                     </Grid.Cell>
                     <Grid.Cell size={{ md: 12, lg: 6 }}>
