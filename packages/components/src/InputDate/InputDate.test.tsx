@@ -1,6 +1,6 @@
 /* eslint-disable max-statements */
 import React, { useState } from "react";
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { InputDate } from ".";
 import { Modal } from "../Modal";
 import { Button } from "../Button";
@@ -9,25 +9,21 @@ import * as atlantisContext from "../AtlantisContext/AtlantisContext";
 
 describe("InputDate V1", () => {
   it("renders a blank form by default", () => {
-    const { getByDisplayValue, queryByText } = render(
-      <InputDate onChange={jest.fn()} />,
-    );
-    expect(getByDisplayValue("")).toBeInTheDocument();
-    expect(queryByText("15")).not.toBeInTheDocument();
+    render(<InputDate onChange={jest.fn()} />);
+    expect(screen.getByDisplayValue("")).toBeInTheDocument();
+    expect(screen.queryByText("15")).not.toBeInTheDocument();
   });
 
   it("fires onChange with the new value when you click a date", () => {
     const date = "11/11/2011";
     const newDate = "11/15/2011";
     const changeHandler = jest.fn();
-    const { getByText, getByRole } = render(
-      <InputDate value={new Date(date)} onChange={changeHandler} />,
-    );
-    const calendarButton = getByRole("button");
+    render(<InputDate value={new Date(date)} onChange={changeHandler} />);
+    const calendarButton = screen.getByRole("button");
 
     fireEvent.click(calendarButton);
 
-    const selectDate = getByText("15");
+    const selectDate = screen.getByText("15");
     fireEvent.click(selectDate);
     expect(changeHandler).toHaveBeenCalledWith(new Date(newDate));
   });
@@ -37,7 +33,7 @@ describe("InputDate V1", () => {
     const minDate = "11/9/2011";
     const maxDate = "11/15/2011";
     const changeHandler = jest.fn();
-    const { getByRole, getByText } = render(
+    render(
       <InputDate
         minDate={new Date(minDate)}
         maxDate={new Date(maxDate)}
@@ -45,12 +41,12 @@ describe("InputDate V1", () => {
         onChange={changeHandler}
       />,
     );
-    const calendarButton = getByRole("button");
+    const calendarButton = screen.getByRole("button");
     fireEvent.click(calendarButton);
 
-    const selectDate1 = getByText("7");
+    const selectDate1 = screen.getByText("7");
     fireEvent.click(selectDate1);
-    const selectDate2 = getByText("17");
+    const selectDate2 = screen.getByText("17");
     fireEvent.click(selectDate2);
     expect(changeHandler).not.toHaveBeenCalled();
   });
@@ -60,7 +56,7 @@ describe("InputDate V1", () => {
     const newDate = "11/15/2011";
     const placeholder = "placeholder";
     const changeHandler = jest.fn();
-    const { getByLabelText } = render(
+    render(
       <InputDate
         value={new Date(date)}
         onChange={changeHandler}
@@ -68,7 +64,7 @@ describe("InputDate V1", () => {
       />,
     );
 
-    fireEvent.change(getByLabelText(placeholder), {
+    fireEvent.change(screen.getByLabelText(placeholder), {
       target: { value: newDate },
     });
     expect(changeHandler).toHaveBeenCalledWith(new Date(newDate));
@@ -78,27 +74,25 @@ describe("InputDate V1", () => {
     const date = "11/11/2011";
     const newDate = "11/15/2011";
     const changeHandler = jest.fn();
-    const { queryByDisplayValue, rerender } = render(
+    const { rerender } = render(
       <InputDate value={new Date(date)} onChange={changeHandler} />,
     );
-    expect(queryByDisplayValue(date)).toBeInTheDocument();
+    expect(screen.queryByDisplayValue(date)).toBeInTheDocument();
 
     rerender(<InputDate value={new Date(newDate)} onChange={changeHandler} />);
 
-    expect(queryByDisplayValue(date)).not.toBeInTheDocument();
-    expect(queryByDisplayValue(newDate)).toBeInTheDocument();
+    expect(screen.queryByDisplayValue(date)).not.toBeInTheDocument();
+    expect(screen.queryByDisplayValue(newDate)).toBeInTheDocument();
   });
 
   it("returns the correct date object when long formatted date is supplied", () => {
     const date = "11/11/2011";
     const newDate = "November 15, 2011";
     const changeHandler = jest.fn();
-    const { getByDisplayValue } = render(
-      <InputDate value={new Date(date)} onChange={changeHandler} />,
-    );
-    expect(getByDisplayValue(date)).toBeInTheDocument();
+    render(<InputDate value={new Date(date)} onChange={changeHandler} />);
+    expect(screen.getByDisplayValue(date)).toBeInTheDocument();
 
-    fireEvent.change(getByDisplayValue(date), {
+    fireEvent.change(screen.getByDisplayValue(date), {
       target: { value: newDate },
     });
 
@@ -110,7 +104,7 @@ describe("InputDate V1", () => {
     const badInput = "bad input";
     const changeHandler = jest.fn();
     const placeholder = "placeholder";
-    const { getByDisplayValue, getByLabelText } = render(
+    render(
       <InputDate
         placeholder={placeholder}
         value={new Date(date)}
@@ -118,12 +112,12 @@ describe("InputDate V1", () => {
       />,
     );
 
-    expect(getByDisplayValue(date)).toBeInTheDocument();
+    expect(screen.getByDisplayValue(date)).toBeInTheDocument();
 
-    const form = getByDisplayValue(date);
+    const form = screen.getByDisplayValue(date);
     fireEvent.focus(form);
 
-    fireEvent.change(getByLabelText(placeholder), {
+    fireEvent.change(screen.getByLabelText(placeholder), {
       target: { value: badInput },
     });
     expect(changeHandler).toHaveBeenCalledTimes(0);
@@ -132,72 +126,62 @@ describe("InputDate V1", () => {
   it("doesn't display the calendar when input is focused with keyboard", () => {
     const date = "11/11/2011";
     const changeHandler = jest.fn();
-    const { queryByText, getByDisplayValue } = render(
-      <InputDate value={new Date(date)} onChange={changeHandler} />,
-    );
-    const input = getByDisplayValue(date);
+    render(<InputDate value={new Date(date)} onChange={changeHandler} />);
+    const input = screen.getByDisplayValue(date);
 
     fireEvent.focus(input);
 
-    expect(queryByText("15")).not.toBeInTheDocument();
+    expect(screen.queryByText("15")).not.toBeInTheDocument();
   });
 
   it("doesn't display the calendar when calendar button is focused with keyboard", () => {
     const date = "11/11/2011";
     const changeHandler = jest.fn();
-    const { queryByText, getByRole } = render(
-      <InputDate value={new Date(date)} onChange={changeHandler} />,
-    );
-    const calendarButton = getByRole("button");
+    render(<InputDate value={new Date(date)} onChange={changeHandler} />);
+    const calendarButton = screen.getByRole("button");
 
     fireEvent.focus(calendarButton);
 
-    expect(queryByText("15")).not.toBeInTheDocument();
+    expect(screen.queryByText("15")).not.toBeInTheDocument();
   });
 
   it("displays the calendar when button is pressed", () => {
     const date = "11/11/2011";
     const changeHandler = jest.fn();
-    const { getByText, getByRole } = render(
-      <InputDate value={new Date(date)} onChange={changeHandler} />,
-    );
-    const calendarButton = getByRole("button");
+    render(<InputDate value={new Date(date)} onChange={changeHandler} />);
+    const calendarButton = screen.getByRole("button");
 
     fireEvent.click(calendarButton);
 
-    expect(getByText("15")).toBeInTheDocument();
+    expect(screen.getByText("15")).toBeInTheDocument();
   });
 
   it("displays the calendar when input is focused with a click", () => {
     const date = "11/11/2011";
     const changeHandler = jest.fn();
-    const { getByText, getByDisplayValue } = render(
-      <InputDate value={new Date(date)} onChange={changeHandler} />,
-    );
-    const input = getByDisplayValue(date);
+    render(<InputDate value={new Date(date)} onChange={changeHandler} />);
+    const input = screen.getByDisplayValue(date);
 
     fireEvent.click(input);
 
-    expect(getByText("15")).toBeInTheDocument();
+    expect(screen.getByText("15")).toBeInTheDocument();
   });
 
   describe("when InputDate is used within a Modal", () => {
     it("should close only the open picker when the escape key is pressed", async () => {
       const date = "11/11/2011";
-      const { getByRole, getByText, getByDisplayValue, queryByText } = render(
-        <NestedTestComponent date={date} />,
-      );
-      const button = getByRole("button");
+      render(<NestedTestComponent date={date} />);
+      const button = screen.getByRole("button");
       fireEvent.click(button);
 
-      const input = getByDisplayValue(date);
+      const input = screen.getByDisplayValue(date);
       fireEvent.click(input);
 
-      expect(getByText("15")).toBeInTheDocument();
+      expect(screen.getByText("15")).toBeInTheDocument();
       fireEvent.keyDown(input, { key: "Escape" });
 
-      expect(getByText("Test Modal Content")).toBeInTheDocument();
-      expect(queryByText("15")).not.toBeInTheDocument();
+      expect(screen.getByText("Test Modal Content")).toBeInTheDocument();
+      expect(screen.queryByText("15")).not.toBeInTheDocument();
     });
   });
 
@@ -214,10 +198,8 @@ describe("InputDate V1", () => {
       const expectedDate = "05/24/2023";
       const date = new Date(2023, 4, 24).toISOString();
       const changeHandler = jest.fn();
-      const { queryByDisplayValue } = render(
-        <InputDate value={new Date(date)} onChange={changeHandler} />,
-      );
-      expect(queryByDisplayValue(expectedDate)).toBeInTheDocument();
+      render(<InputDate value={new Date(date)} onChange={changeHandler} />);
+      expect(screen.queryByDisplayValue(expectedDate)).toBeInTheDocument();
     });
 
     it("should display mmmm d, yyyy when dateFormat is 'PP'", () => {
@@ -228,10 +210,8 @@ describe("InputDate V1", () => {
       const expectedDate = "Feb 20, 2023";
       const date = new Date(2023, 1, 20).toISOString();
       const changeHandler = jest.fn();
-      const { queryByDisplayValue } = render(
-        <InputDate value={new Date(date)} onChange={changeHandler} />,
-      );
-      expect(queryByDisplayValue(expectedDate)).toBeInTheDocument();
+      render(<InputDate value={new Date(date)} onChange={changeHandler} />);
+      expect(screen.queryByDisplayValue(expectedDate)).toBeInTheDocument();
     });
 
     it("should display mmmmm d, yyyy when dateFormat is 'PPP'", () => {
@@ -242,10 +222,8 @@ describe("InputDate V1", () => {
       const expectedDate = "July 7th, 2023";
       const date = new Date(2023, 6, 7).toISOString();
       const changeHandler = jest.fn();
-      const { queryByDisplayValue } = render(
-        <InputDate value={new Date(date)} onChange={changeHandler} />,
-      );
-      expect(queryByDisplayValue(expectedDate)).toBeInTheDocument();
+      render(<InputDate value={new Date(date)} onChange={changeHandler} />);
+      expect(screen.queryByDisplayValue(expectedDate)).toBeInTheDocument();
     });
 
     it("should display dddd, mmmmm d, yyyy when dateFormat is 'PPPP'", () => {
@@ -256,10 +234,8 @@ describe("InputDate V1", () => {
       const expectedDate = "Thursday, June 22nd, 2023";
       const date = new Date(2023, 5, 22).toISOString();
       const changeHandler = jest.fn();
-      const { queryByDisplayValue } = render(
-        <InputDate value={new Date(date)} onChange={changeHandler} />,
-      );
-      expect(queryByDisplayValue(expectedDate)).toBeInTheDocument();
+      render(<InputDate value={new Date(date)} onChange={changeHandler} />);
+      expect(screen.queryByDisplayValue(expectedDate)).toBeInTheDocument();
     });
   });
 
@@ -267,77 +243,75 @@ describe("InputDate V1", () => {
     it("should display the calendar icon when set to true", () => {
       const date = "11/11/2011";
       const changeHandler = jest.fn();
-      const { getByRole } = render(
+      render(
         <InputDate
           value={new Date(date)}
           onChange={changeHandler}
           showIcon={true}
         />,
       );
-      expect(getByRole("button")).toBeDefined();
+      expect(screen.getByRole("button")).toBeDefined();
     });
 
     it("should display the calendar icon when set to undefined", () => {
       const date = "11/11/2011";
       const changeHandler = jest.fn();
-      const { getByRole } = render(
-        <InputDate value={new Date(date)} onChange={changeHandler} />,
-      );
-      expect(getByRole("button")).toBeDefined();
+      render(<InputDate value={new Date(date)} onChange={changeHandler} />);
+      expect(screen.getByRole("button")).toBeDefined();
     });
 
     it("should not display the calendar icon when set to false", () => {
       const date = "11/11/2011";
       const changeHandler = jest.fn();
-      const { queryByRole } = render(
+      render(
         <InputDate
           value={new Date(date)}
           onChange={changeHandler}
           showIcon={false}
         />,
       );
-      expect(queryByRole("button")).toBeNull();
+      expect(screen.queryByRole("button")).toBeNull();
     });
 
     it("should show mini calendar when set to false and down arrow is pressed", () => {
       const date = "11/11/2011";
       const changeHandler = jest.fn();
-      const { getByText, getByDisplayValue } = render(
+      render(
         <InputDate
           value={new Date(date)}
           onChange={changeHandler}
           showIcon={false}
         />,
       );
-      const input = getByDisplayValue(date);
+      const input = screen.getByDisplayValue(date);
 
       fireEvent.keyUp(input, { key: "ArrowDown" });
 
-      expect(getByText("15")).toBeInTheDocument();
+      expect(screen.getByText("15")).toBeInTheDocument();
     });
   });
 
   it("should display the selected date when emptyValueLabel is undefined", () => {
     const date = "11/11/2011";
     const changeHandler = jest.fn();
-    const { queryByDisplayValue } = render(
-      <InputDate value={new Date(date)} onChange={changeHandler} />,
-    );
+    render(<InputDate value={new Date(date)} onChange={changeHandler} />);
 
-    expect(queryByDisplayValue(date)).toBeInTheDocument();
+    expect(screen.queryByDisplayValue(date)).toBeInTheDocument();
   });
 
   it("should display emptyValueLabel when set", () => {
     const changeHandler = jest.fn();
     const expectedDisplayValue = "Unscheduled";
-    const { queryByDisplayValue } = render(
+    render(
       <InputDate
         onChange={changeHandler}
         emptyValueLabel={expectedDisplayValue}
       />,
     );
 
-    expect(queryByDisplayValue(expectedDisplayValue)).toBeInTheDocument();
+    expect(
+      screen.queryByDisplayValue(expectedDisplayValue),
+    ).toBeInTheDocument();
   });
 
   function NestedTestComponent(props: { readonly date: string }): JSX.Element {
