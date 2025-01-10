@@ -62,6 +62,7 @@ export function FormFieldWrapper({
       disabled,
       inline,
       size,
+      toolbar,
     });
 
   const { focused } = useFormFieldFocus({ wrapperRef });
@@ -77,6 +78,7 @@ export function FormFieldWrapper({
   const { isToolbarVisible, toolbarAnimationEnd, toolbarAnimationStart } =
     useToolbar({
       focused,
+      disabled,
       toolbar,
       toolbarVisibility,
     });
@@ -192,6 +194,7 @@ export function FormFieldWrapperToolbar({
       {isToolbarVisible && (
         <motion.div
           key="toolbar"
+          className={styles.toolbarWrapper}
           initial={toolbarAnimationEnd}
           animate={toolbarAnimationStart}
           exit={toolbarAnimationEnd}
@@ -201,7 +204,11 @@ export function FormFieldWrapperToolbar({
           }}
           tabIndex={-1}
         >
-          <div className={styles.toolbar} data-testid="ATL-InputText-Toolbar">
+          <div
+            className={styles.toolbar}
+            data-testid="ATL-InputText-Toolbar"
+            data-elevation="elevated"
+          >
             {toolbar}
           </div>
         </motion.div>
