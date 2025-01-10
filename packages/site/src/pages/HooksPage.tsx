@@ -14,6 +14,7 @@ export const HooksPage = () => {
           content: hooksList,
         },
         useCategories: true,
+        showSegmentedControl: true,
       }}
     />
   );

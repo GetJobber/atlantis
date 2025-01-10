@@ -1,4 +1,4 @@
-import { Box, Content, Page, Tab, Tabs, Typography } from "@jobber/components";
+import { Banner, Box, Content, Page, Tab, Tabs } from "@jobber/components";
 import { useParams } from "react-router";
 import { useEffect, useMemo, useState } from "react";
 import { BaseView } from "./BaseView";
@@ -110,10 +110,10 @@ export const ComponentView = () => {
             <AtlantisPreviewEditor />
           </Box>
           <Box margin={{ top: "base", bottom: "base" }}>
-            <Typography fontWeight={"bold"}>
+            <Banner type="warning">
               Due to distinctions between web and native platform, this may not
               render accurately in a web browser.
-            </Typography>
+            </Banner>
           </Box>
           <PropsList values={stateValues || []} />
         </div>

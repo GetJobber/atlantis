@@ -1,10 +1,5 @@
 export const hooksList = [
   {
-    title: "useFocusTrap",
-    to: "/hooks/useFocusTrap",
-    sections: ["Accessibility"],
-  },
-  {
     title: "useAssert",
     to: "/hooks/useAssert",
     sections: ["React Utilities"],
@@ -29,7 +24,11 @@ export const hooksList = [
     to: "/hooks/useCollectionQuery",
     sections: ["React Utilities"],
   },
-
+  {
+    title: "useFocusTrap",
+    to: "/hooks/useFocusTrap",
+    sections: ["Accessibility"],
+  },
   {
     title: "useFormState",
     sections: ["React Utilities"],
