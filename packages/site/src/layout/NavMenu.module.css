@@ -131,34 +131,36 @@
   align-items: stretch;
   justify-content: space-between;
   background-color: var(--color-surface--background);
-
-  &:hover {
-    background-color: var(--color-surface--background--hover);
-  }
-
-  a {
-    background-color: transparent;
-    display: flex;
-    align-items: center;
-    outline: transparent;
-    text-decoration: none;
-    flex-grow: 1;
-    min-height: var(--navItemHeight);
-
-    &:focus-visible {
-      box-shadow: var(--shadow-focus);
-      background-color: var(--color-surface--background--hover);
-    }
-  }
-
-  button {
-    border-radius: var(--radius-small);
-    mix-blend-mode: multiply;
-  }
 }
 
-:root[data-theme="dark"] .disclosureNavItem {
-  button {
-    mix-blend-mode: screen;
-  }
+.disclosureNavItem a {
+  background-color: transparent;
+  display: flex;
+  display: inline-flex;
+  align-self: stretch;
+  width: 100%;
+  align-items: center;
+  outline: transparent;
+  text-decoration: none;
+  flex-grow: 1;
+  min-height: var(--navItemHeight);
+  outline: transparent;
+}
+
+.disclosureNavItem:hover {
+  background-color: var(--color-surface--background--hover);
+}
+
+.disclosureNavItem a:focus-visible {
+  box-shadow: var(--shadow-focus);
+  background-color: var(--color-surface--background--hover);
+}
+
+.disclosureNavItem button {
+  border-radius: var(--radius-small);
+  mix-blend-mode: multiply;
+}
+
+:root[data-theme="dark"] .disclosureNavItem button {
+  mix-blend-mode: screen;
 }
