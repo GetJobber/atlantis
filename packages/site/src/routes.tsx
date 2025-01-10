@@ -176,7 +176,7 @@ export const routes: Array<AtlantisRoute> = [
       },
       {
         path: "/guides/documentation-styleguide",
-        handle: "Documentation styleguide",
+        handle: "Writing documentation",
         exact: true,
       },
       {
