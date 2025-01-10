@@ -48,6 +48,7 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
       onChange: props.onChange,
       onBlur: props.onBlur,
       onFocus: props.onFocus,
+      onKeyDown: props.onKeyDown,
       onEnter: props.onEnter,
       inputRef: inputTextRef,
     });
