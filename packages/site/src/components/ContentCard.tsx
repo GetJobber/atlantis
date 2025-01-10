@@ -35,21 +35,23 @@ export const ContentCard = ({
     >
       {!component ? (
         <AtlantisThemeContextProvider dangerouslyOverrideTheme="light">
-          <div
-            style={
-              imageURL && theme === "dark"
-                ? {
-                    background: "var(--color-base-blue--200)",
-                    borderRadius: "var(--radius-base) var(--radius-base) 0 0",
-                  }
-                : {}
-            }
-          >
-            <img
-              style={{ width: "100%", mixBlendMode: "multiply" }}
-              src={imageURL}
-            />
-          </div>
+          {imageURL && (
+            <div
+              style={
+                theme === "dark"
+                  ? {
+                      background: "var(--color-base-blue--200)",
+                      borderRadius: "var(--radius-base) var(--radius-base) 0 0",
+                    }
+                  : {}
+              }
+            >
+              <img
+                style={{ width: "100%", mixBlendMode: "multiply" }}
+                src={imageURL}
+              />
+            </div>
+          )}
         </AtlantisThemeContextProvider>
       ) : (
         <ComponentWrapper>{component()}</ComponentWrapper>
