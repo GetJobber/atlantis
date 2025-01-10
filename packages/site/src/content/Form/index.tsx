@@ -54,12 +54,10 @@ export default {
     </Form>
 )`,
     mobileElement: `<Form
+      localCacheKey="form"
       initialValues={{ firstName: "Greatest", lastName: "Ever", nickName: "" }}
       onSubmit={(value) => {
-        return new Promise(function (resolve) {
-          setTimeout(() => {
-            resolve(alert(JSON.stringify(value, void 0)));
-          }, 100);
+                 console.log(JSON.stringify(value, void 0))
         });
       }}
     >

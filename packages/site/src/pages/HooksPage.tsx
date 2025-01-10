@@ -13,6 +13,7 @@ export const HooksPage = () => {
         body: {
           content: hooksList,
         },
+        useCategories: true,
       }}
     />
   );

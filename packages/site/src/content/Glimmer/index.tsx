@@ -10,7 +10,11 @@ export default {
   mobileProps: MobileProps,
   component: {
     element: `<Glimmer />`,
-    mobileElement: `<Glimmer shape={"rectangle"} size={"base"} timing={"base"} />`,
+    mobileElement: `<View>
+      <View>Glimmer will render on device</View>
+      {/*<Glimmer shape={"rectangle"} size={"base"} timing={"base"} />*/}
+    </View>
+    `,
   },
   title: "Glimmer",
   links: [
