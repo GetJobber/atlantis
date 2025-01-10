@@ -28,7 +28,6 @@ export const HomePage = () => {
             {
               title: "Content",
               to: "/content",
-              imageURL: "/Placeholder.png",
               sections: ["Resources"],
             },
             {
@@ -40,18 +39,15 @@ export const HomePage = () => {
             {
               title: "Guides",
               to: "/guides",
-              imageURL: "/Placeholder.png",
               sections: ["Resources"],
             },
             {
               title: "Packages",
               to: "/packages",
-              imageURL: "/Placeholder.png",
             },
             {
               title: "Changelog",
               to: "/changelog",
-              imageURL: "/Placeholder.png",
               sections: ["Changelog"],
             },
           ],
