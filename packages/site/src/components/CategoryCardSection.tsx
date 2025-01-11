@@ -26,7 +26,7 @@ export const CategoryCardSection = ({
           padding:
             "var(--space-base) var(--space-minuscule) var(--space-smaller) 0px",
           marginLeft: "-1px",
-          width: "100%",
+          display: "inline-block",
         }}
       >
         <Heading level={2}>{category}</Heading>
