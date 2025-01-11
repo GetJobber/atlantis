@@ -1,12 +1,12 @@
 import WelcomeGuide from "@atlantis/docs/README.md";
-import { BaseView } from "../layout/BaseView";
+import { ContentView } from "../layout/ContentView";
 
 export const GettingStartedPage = () => {
   return (
-    <BaseView>
-      <BaseView.Main>
-        <WelcomeGuide />
-      </BaseView.Main>
-    </BaseView>
+    <ContentView
+      title="Welcome Guide"
+      key="welcome-guide"
+      content={() => <WelcomeGuide />}
+    />
   );
 };
