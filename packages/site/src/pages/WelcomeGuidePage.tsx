@@ -1,7 +1,7 @@
 import WelcomeGuide from "@atlantis/docs/README.md";
 import { ContentView } from "../layout/ContentView";
 
-export const GettingStartedPage = () => {
+export const WelcomeGuidePage = () => {
   return (
     <ContentView
       title="Welcome Guide"
