@@ -2,10 +2,6 @@ import { ArgsTable, Canvas, Meta } from "@storybook/addon-docs";
 import { SegmentedControl } from "@jobber/components";
 import { Icon } from "@jobber/components/Icon";
 
-{/* Sections of this file have been duplicated in the new docs site temporarily. */}
-{/* When updating this file, make sure to also update the corresponding notes file: */}
-{/* packages/site/src/content/[Component]/[Component]Notes.mdx */}
-
 <Meta
   title="Components/Selections/SegmentedControl"
   component={SegmentedControl}
@@ -69,49 +65,6 @@ using [Menu](/?path=/docs/components-navigation-menu--docs) as an alternative
 single-selection method for modifying the view. Otherwise, truncation will
 prevent the user from reading the label and a label with wrapped text will
 create layout inconsistencies.
-
-## Controlled and Uncontrolled
-
-### Uncontrolled
-
-An
-[uncontrolled](..../?path=/story/components-selections-segmentedcontrol-web--uncontrolled)
-SegmentedControl manages its selected state internally, which is useful for
-simpler use cases where the selected option does not need to sync with other
-parts of your application’s state.
-
-Use the `defaultValue` prop to set the initially selected option.
-
-```tsx
-<SegmentedControl defaultValue="day">
-  <SegmentedControl.Option value="day">Day</SegmentedControl.Option>
-  <SegmentedControl.Option value="week">Week</SegmentedControl.Option>
-  <SegmentedControl.Option value="month">Month</SegmentedControl.Option>
-</SegmentedControl.Option>
-```
-
-### Controlled
-
-Use a
-[controlled](..../?path=/story/components-selections-segmentedcontrol-web--controlled)
-SegmentedControl when the selected option needs to sync with other application
-state or when side effects should occur upon selection changes.
-
-For a controlled SegmentedControl, set the `selectedValue` prop and use
-`onSelectValue` as a callback that updates the external state.
-
-```tsx
-const [selectedOption, setSelectedOption] = useState("day");
-
-<SegmentedControl
-  selectedValue={selectedOption}
-  onSelectValue={setSelectedOption}
->
-  <SegmentedControl.Option value="day">Day</SegmentedControl.Option>
-  <SegmentedControl.Option value="week">Week</SegmentedControl.Option>
-  <SegmentedControl.Option value="month">Month</SegmentedControl.Option>
-</SegmentedControl>;
-```
 
 ## Related components
 

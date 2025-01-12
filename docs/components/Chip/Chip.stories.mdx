@@ -4,10 +4,6 @@ import { Avatar } from "@jobber/components/Avatar";
 import { Icon } from "@jobber/components/Icon";
 import { Flex } from "@jobber/components/Flex";
 
-{/* Sections of this file have been duplicated in the new docs site temporarily. */}
-{/* When updating this file, make sure to also update the corresponding notes file: */}
-{/* packages/site/src/content/[Component]/[Component]Notes.mdx */}
-
 <Meta title="Components/Selections/Chip" />
 
 # Chip
@@ -187,15 +183,6 @@ invalid state.
   </Chip>
 </Canvas>
 
-## Sub Components
-
-### Chip.Prefix
-
-When `Chip.Prefix` is provided an Icon or Avatar as the immediate child or
-children, some extra markup and styles will automatically be added. If these
-styles and markup are not desired, you may wrap the Avatar(s) or Icon(s) in any
-other element and provide your own layout.
-
 ## Related components
 
 - [Chips](../?path=/docs/components-selections-chips--docs) is a convenience
@@ -256,10 +243,3 @@ For the hover/focused background color: `--public-chip-base-hover-bg-color`
 
 For the text content and miscellaneous content such as the line separator
 between the `label` and `heading`: `--public-chip-base-content-color`
-
-## Notes
-
-Chip is in the process of being applied to the more opinionated Chips
-convenience wrapper, but by design does not carry the same level of "out of the
-box" functionality as it is a more "atomic" element that can be used outside of
-those more complex selection flows.
