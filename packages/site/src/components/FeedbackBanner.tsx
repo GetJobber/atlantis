@@ -28,6 +28,7 @@ export const FeedbackBanner = () => {
         left: 0,
         right: 0,
         margin: "0 auto",
+        zIndex: 2,
         display: "flex",
         flexDirection: "column",
         border: "1px solid var(--color-border)",
