@@ -1,10 +1,6 @@
 import { Meta } from "@storybook/addon-docs";
 import { Tab, Tabs } from "@jobber/components/Tabs";
 
-{/* Sections of this file have been duplicated in the new docs site temporarily. */}
-{/* When updating this file, make sure to also update the corresponding notes file: */}
-{/* packages/site/src/content/[Component]/[Component]Notes.mdx */}
-
 <Meta title="Components/Selections/Chips" />
 
 # Chips
@@ -140,40 +136,3 @@ assistive technology.
 The Chips themselves will take up as much space as their container allows, and
 the Chips will flow left to right. Chips may re-flow into new rows, or scroll
 out of view in a single row, depending on your use case.
-
-## Notes
-
-To override the appearance of the selected Chip(s) you may use
-[Base Chip Color Overrides](../?path=/docs/components-selections-chip--docs#base-chip-color-overrides)
-since the selected Chip is a Base Chip.
-
-### Chips composition with standalone Chip
-
-Standalone Chip's `role`, `<Chip.Prefix>`, `<Chip.Suffix>` `heading` and
-`variation` will not work specifically when used within a `Chips`.
-
-If you wish to use a prefix, please use `Chip` from `Chips/Chip`.
-
-#### ✅ Do
-
-```
-import { Chip, Chips } from "@jobber/components/Chips";
-...
-
-<Chips>
-  <Chip prefix="thumbsUp"/>
-</Chips>
-```
-
-#### ❌ Don't
-
-```
-import { Chip, Chips } from "@jobber/components";
-
-...
-<Chips>
-  <Chip>
-    <Chip.Prefix>...</Chip.Prefix>
-  </Chip>
-</Chips>
-```
