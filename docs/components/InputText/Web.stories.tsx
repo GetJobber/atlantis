@@ -92,6 +92,7 @@ export const VersionComparison = () => {
     sizeSmall: "",
     sizeLarge: "",
     inline: "",
+    multilineResize: "",
   });
   const [multiline, setMultiline] = React.useState(false);
   const [inline, setInline] = React.useState(false);
@@ -262,6 +263,15 @@ export const VersionComparison = () => {
           { placeholder: "With Size", size: "large", ...extraProps },
           "sizeLarge",
         )}
+        {renderBothVersions(
+          "Multiline Resize",
+          {
+            placeholder: "Multiline resize",
+            rows: { min: 2, max: 10 },
+            multiline: true,
+          },
+          "multilineResize",
+        )}
       </div>
       <Grid>
         <Grid.Cell size={{ xs: 6 }}>
@@ -311,6 +321,12 @@ export const VersionComparison = () => {
             onClick={() => {
               setDescription(description ? "" : "This is a description");
             }}
+          />
+        </Grid.Cell>
+        <Grid.Cell size={{ xs: 6 }}>
+          <Button
+            label="Reset MultiLine resize"
+            onClick={() => handleChange("multilineResize")("")}
           />
         </Grid.Cell>
       </Grid>
