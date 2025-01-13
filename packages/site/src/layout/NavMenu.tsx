@@ -78,8 +78,7 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
           <Button label="Skip to Content" onClick={skipToContent} />
         </VisibleWhenFocused>
         <Box>
-          {/* TODO: remove ?new when we roll out the new docs site to everyone */}
-          <Link to="/?new">
+          <Link to="/">
             <JobberLogo />
           </Link>
         </Box>
@@ -122,10 +121,7 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
 
             return (
               <MenuItem key={routeIndex}>
-                <StyledLink
-                  to={getRoutePath(route.path) ?? "/"}
-                  selectedRef={selectedRef}
-                >
+                <StyledLink to={route.path ?? "/"} selectedRef={selectedRef}>
                   {route.handle}
                 </StyledLink>
               </MenuItem>
@@ -154,9 +150,7 @@ export const StyledLink = ({
   readonly selectedRef: React.RefObject<HTMLAnchorElement>;
 }>) => {
   const { pathname } = useLocation();
-  // The `to === "/?new"` check allows Home to be highlighted in the side nav
-  // TODO: remove when we roll out the new docs site & double check Home is still highlighted
-  const isSelected = pathname === to || (pathname === "/" && to === "/?new");
+  const isSelected = pathname === to;
   const className = getLinkClassName(
     `${styles.navMenuItem} ${styles.navMenuLink}`,
     isSelected,
@@ -230,12 +224,3 @@ export const sectionTitle = (section: string) => (
     </Typography>
   </div>
 );
-
-// TODO: delete this once we roll out the new docs site to everyone
-function getRoutePath(path?: string) {
-  if (path === "/") {
-    return "/?new";
-  }
-
-  return path;
-}
