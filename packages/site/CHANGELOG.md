@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.39](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.38...@jobber/atlantis-site@0.18.39) (2025-01-13)
+
+
+### Bug Fixes
+
+* **docx:** Final Feedback before soft launch ([#2301](https://github.com/GetJobber/atlantis/issues/2301)) ([dc696e5](https://github.com/GetJobber/atlantis/commit/dc696e53b0cdfc5b6cbc21f27ea1a041273d9ba7))
+
+
+
+
+
 ## [0.18.38](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.37...@jobber/atlantis-site@0.18.38) (2025-01-13)
 
 
