@@ -78,10 +78,10 @@ export const PageBlock = ({ structure }: PageBlockProps) => {
               onSelectValue={setCardView}
             >
               <SegmentedControl.Option value={"category"}>
-                Category
+                Categorical
               </SegmentedControl.Option>
               <SegmentedControl.Option value={"a-z"}>
-                A-Z
+                Alphabetical
               </SegmentedControl.Option>
             </SegmentedControl>
           </div>

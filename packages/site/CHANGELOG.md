@@ -3,6 +3,166 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.38](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.37...@jobber/atlantis-site@0.18.38) (2025-01-13)
+
+
+### Bug Fixes
+
+* **docx:** get component iframes rendering correctly ([#2305](https://github.com/GetJobber/atlantis/issues/2305)) ([2e7a28c](https://github.com/GetJobber/atlantis/commit/2e7a28c9239c2cd99bba1c9e9c6ca73f4061f8e6))
+* **docx:** style sidenav correctly in Safari ([#2304](https://github.com/GetJobber/atlantis/issues/2304)) ([07c5235](https://github.com/GetJobber/atlantis/commit/07c5235b44178aecea81848e176dd2571703f123))
+
+
+
+
+
+## [0.18.37](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.36...@jobber/atlantis-site@0.18.37) (2025-01-13)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.36](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.35...@jobber/atlantis-site@0.18.36) (2025-01-10)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.35](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.34...@jobber/atlantis-site@0.18.35) (2025-01-10)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.34](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.33...@jobber/atlantis-site@0.18.34) (2025-01-10)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.33](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.32...@jobber/atlantis-site@0.18.33) (2025-01-10)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.32](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.31...@jobber/atlantis-site@0.18.32) (2025-01-09)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.31](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.30...@jobber/atlantis-site@0.18.31) (2025-01-09)
+
+
+### Bug Fixes
+
+* **docx:** Fixing the double scroll bars on the Docs Site ([#2296](https://github.com/GetJobber/atlantis/issues/2296)) ([04f0380](https://github.com/GetJobber/atlantis/commit/04f0380a48d44c3c64fc3bedfe63b4d7fb9f9b27))
+
+
+
+
+
+## [0.18.30](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.29...@jobber/atlantis-site@0.18.30) (2025-01-09)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.29](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.28...@jobber/atlantis-site@0.18.29) (2025-01-09)
+
+
+### Bug Fixes
+
+* **docx:** Jobber Pro not rendering properly within Heading + Typography coded examples. ([#2295](https://github.com/GetJobber/atlantis/issues/2295)) ([a19550e](https://github.com/GetJobber/atlantis/commit/a19550ea78cd7527c91f64290f425ba5e89c67b1))
+
+
+
+
+
+## [0.18.28](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.27...@jobber/atlantis-site@0.18.28) (2025-01-09)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.27](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.26...@jobber/atlantis-site@0.18.27) (2025-01-09)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.26](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.25...@jobber/atlantis-site@0.18.26) (2025-01-09)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.25](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.24...@jobber/atlantis-site@0.18.25) (2025-01-08)
+
+
+### Bug Fixes
+
+* **components:** Garbled Component Names in Prod Site Build Canvas ([#2287](https://github.com/GetJobber/atlantis/issues/2287)) ([bd9a731](https://github.com/GetJobber/atlantis/commit/bd9a731062efd3b8470023e44c480cf541eaafed))
+
+
+
+
+
+## [0.18.24](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.23...@jobber/atlantis-site@0.18.24) (2025-01-08)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.23](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.22...@jobber/atlantis-site@0.18.23) (2025-01-08)
+
+
+### Bug Fixes
+
+* **docx:** Fixing issue with Minimal Mode on small Viewports ([#2288](https://github.com/GetJobber/atlantis/issues/2288)) ([385b3fc](https://github.com/GetJobber/atlantis/commit/385b3fc1ed04833553173be2c4919e038e2b0e4b))
+
+
+
+
+
+## [0.18.22](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.21...@jobber/atlantis-site@0.18.22) (2025-01-08)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.18.21](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.20...@jobber/atlantis-site@0.18.21) (2025-01-08)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
 ## [0.18.20](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.19...@jobber/atlantis-site@0.18.20) (2025-01-06)
 
 **Note:** Version bump only for package @jobber/atlantis-site

@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { InputText } from "@jobber/components/InputText";
 import { Button } from "@jobber/components/Button";
 import { Content } from "@jobber/components/Content";
 import { Grid } from "@jobber/components/Grid";
+import { Box } from "@jobber/components/Box";
 
 export default {
   title: "Components/Forms and Inputs/InputText/Web",
@@ -315,4 +316,29 @@ export const VersionComparison = () => {
       </Grid>
     </Content>
   );
+};
+
+const ControlledTemplate: ComponentStory<typeof InputText> = args => {
+  const [value, setValue] = useState("");
+
+  return (
+    <Box gap="base">
+      <InputText
+        {...args}
+        rows={{ min: 1, max: 10 }}
+        multiline
+        value={value}
+        onChange={v => setValue(`${v}`)}
+      />
+
+      <div>
+        <Button label="Reset" onClick={() => setValue("")} />
+      </div>
+    </Box>
+  );
+};
+
+export const Controlled = ControlledTemplate.bind({});
+Controlled.args = {
+  placeholder: "Hakunamatata",
 };

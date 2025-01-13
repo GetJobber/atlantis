@@ -11,6 +11,8 @@ import { HooksPage } from "./pages/HooksPage";
 import { hooksList } from "./hooksList";
 import { GuidesPage } from "./pages/GuidesPage";
 import { PackagesPage } from "./pages/PackagesPage";
+import { ComponentNotFound } from "./components/ComponentNotFound";
+import { WelcomeGuidePage } from "./pages/WelcomeGuidePage";
 
 export interface AtlantisRoute {
   path?: string;
@@ -175,7 +177,7 @@ export const routes: Array<AtlantisRoute> = [
       },
       {
         path: "/guides/documentation-styleguide",
-        handle: "Documentation styleguide",
+        handle: "Writing documentation",
         exact: true,
       },
       {
@@ -327,6 +329,20 @@ export const routes: Array<AtlantisRoute> = [
     path: "/changelog/:name",
     component: ContentLoader,
     handle: "ChangelogContent",
+    inNav: false,
+    exact: true,
+  },
+  {
+    path: "/component-not-found",
+    component: ComponentNotFound,
+    handle: "ComponentNotFound",
+    inNav: false,
+    exact: true,
+  },
+  {
+    path: "/welcome-guide",
+    component: WelcomeGuidePage,
+    handle: "WelcomeGuide",
     inNav: false,
     exact: true,
   },

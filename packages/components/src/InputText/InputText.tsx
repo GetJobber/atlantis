@@ -1,5 +1,4 @@
 import React, { Ref, forwardRef, useImperativeHandle, useRef } from "react";
-import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import { InputTextPropOptions, InputTextRef } from "./InputText.types";
 import { useTextAreaResize } from "./useTextAreaResize";
 import { FieldActionsRef, FormField } from "../FormField";
@@ -12,7 +11,12 @@ function InputTextInternal(
   const actionsRef = useRef<FieldActionsRef>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  const { resize, rowRange } = useTextAreaResize(props.rows);
+  const { resize, rowRange } = useTextAreaResize({
+    rows: props.rows,
+    value: props.value,
+    inputRef,
+    wrapperRef,
+  });
 
   useImperativeHandle(ref, () => ({
     insert: (text: string) => {
@@ -41,10 +45,6 @@ function InputTextInternal(
     },
   }));
 
-  useSafeLayoutEffect(() => {
-    resize(inputRef, wrapperRef);
-  }, [inputRef.current, wrapperRef.current]);
-
   return (
     <FormField
       {...props}
@@ -60,7 +60,7 @@ function InputTextInternal(
   function handleChange(newValue: string) {
     props.onChange && props.onChange(newValue);
 
-    resize(inputRef, wrapperRef);
+    resize();
   }
 
   function insertText(text: string) {

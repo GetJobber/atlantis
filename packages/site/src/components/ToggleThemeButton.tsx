@@ -24,6 +24,7 @@ export const ToggleThemeButton = () => {
         right: "var(--space-base)",
         boxShadow: "var(--shadow-base)",
         borderRadius: "var(--radius-base)",
+        zIndex: 1,
       }}
       data-elevation="elevated"
     >

@@ -4,6 +4,8 @@ import {
   ListOfGeneratedWebComponents,
   //@ts-expect-error - No types for mjs file. that is okay.
 } from "../baseComponentLists.mjs";
+//@ts-expect-error - No types for mjs file. that is okay.
+import { ListOfDesignPages } from "../baseDesignList.mjs";
 
 const buildUniqueComponentList = () => {
   const combinedList = [
@@ -56,6 +58,20 @@ uniqueList.forEach(component => {
   });
 });
 
+ListOfDesignPages.forEach(
+  ({ path, title }: { path: string; title: string }) => {
+    test(`Design Page For: ${title}`, async ({ page }) => {
+      await page.goto(`http://localhost:5173/design/${path}`);
+
+      await expect(
+        page.getByRole("heading", { name: title, exact: true }),
+      ).toHaveText(title);
+
+      await expect(page.getByText("Component not found")).not.toBeVisible();
+    });
+  },
+);
+
 const goToLinkAndGetHeading = async (
   page: Page,
   href: string,
@@ -84,7 +100,7 @@ async function checkThatHeadingExists(heading: Locator, page) {
 test("Home Loads", async ({ page }) => {
   await page.goto("http://localhost:5173");
 
-  await expect(page.locator("h1")).toHaveText("Atlantis");
+  await expect(page.locator("h1")).toHaveText("Home");
 });
 
 test("Design Loads", async ({ page }) => {

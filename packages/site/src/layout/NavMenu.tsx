@@ -1,4 +1,4 @@
-import { Box, Button, Content, Icon, Typography } from "@jobber/components";
+import { Box, Button, Icon, Typography } from "@jobber/components";
 import { Link, useLocation } from "react-router-dom";
 import { Fragment, PropsWithChildren, useRef, useState } from "react";
 import { SearchBox } from "./SearchBox";
@@ -90,13 +90,9 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
             className={styles.searchButton}
             aria-label="Search"
           >
-            <Icon name="search" />
+            <Icon name="search" color="greyBlue" />
             <span className={styles.searchButtonText}>
-              <Typography
-                size={"base"}
-                textColor={"text"}
-                fontWeight={"semiBold"}
-              >
+              <Typography size={"base"} textColor={"textSecondary"}>
                 Search
               </Typography>
             </span>
@@ -107,36 +103,34 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
       </div>
       <div className={styles.navMenu}>
         <MenuList>
-          <Content spacing="smaller">
-            {routes?.map((route, routeIndex) => {
-              if (route.inNav === false) return null;
+          {routes?.map((route, routeIndex) => {
+            if (route.inNav === false) return null;
 
-              if (route.children) {
-                return (
-                  <Box key={routeIndex}>
-                    <AnimatedPresenceDisclosure
-                      to={route.path ?? "/"}
-                      title={route.handle}
-                      selected={pathname.startsWith(route.path ?? "/")}
-                    >
-                      {iterateSubMenu(route.children, routeIndex)}
-                    </AnimatedPresenceDisclosure>
-                  </Box>
-                );
-              }
-
+            if (route.children) {
               return (
-                <MenuItem key={routeIndex}>
-                  <StyledLink
-                    to={getRoutePath(route.path) ?? "/"}
-                    selectedRef={selectedRef}
+                <Box key={routeIndex}>
+                  <AnimatedPresenceDisclosure
+                    to={route.path ?? "/"}
+                    title={route.handle}
+                    selected={pathname.startsWith(route.path ?? "/")}
                   >
-                    {route.handle}
-                  </StyledLink>
-                </MenuItem>
+                    {iterateSubMenu(route.children, routeIndex)}
+                  </AnimatedPresenceDisclosure>
+                </Box>
               );
-            })}
-          </Content>
+            }
+
+            return (
+              <MenuItem key={routeIndex}>
+                <StyledLink
+                  to={getRoutePath(route.path) ?? "/"}
+                  selectedRef={selectedRef}
+                >
+                  {route.handle}
+                </StyledLink>
+              </MenuItem>
+            );
+          })}
         </MenuList>
       </div>
     </nav>
@@ -213,8 +207,8 @@ export const MenuList = ({ children }: PropsWithChildren) => {
 
 export const MenuItem = ({ children }: PropsWithChildren) => {
   return (
-    <li style={{ listStyle: "none" }}>
-      <Typography fontWeight="bold" size="large" textColor="text">
+    <li style={{ listStyle: "none" }} className="stickySectionHeader">
+      <Typography fontWeight="semiBold" size={"large"} textColor="heading">
         {children}
       </Typography>
     </li>
@@ -224,9 +218,7 @@ export const MenuItem = ({ children }: PropsWithChildren) => {
 export const MenuSubItem = ({ children }: PropsWithChildren) => {
   return (
     <li style={{ listStyle: "none" }}>
-      <Typography fontWeight="semiBold" size="base" textColor="text">
-        {children}
-      </Typography>
+      <Typography textColor="heading">{children}</Typography>
     </li>
   );
 };
