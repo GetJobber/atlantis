@@ -20,7 +20,16 @@ BaseView.Main = function Main({
       }}
     >
       <Box alignItems="center">
-        <div style={{ width: "100%", maxWidth: "768px" }}>{children}</div>
+        <div
+          style={{
+            width: "100%",
+            maxWidth: "calc(768px + var(--space-large)",
+            padding: "0 var(--space-base)",
+            boxSizing: "border-box",
+          }}
+        >
+          {children}
+        </div>
       </Box>
     </main>
   );
@@ -37,20 +46,5 @@ BaseView.Siderail = function Siderail({
     return null;
   }
 
-  return (
-    <aside
-      style={{
-        width: "var(--sideBarWidth)",
-        padding: "36px var(--space-base)",
-        display: "flex",
-        flexDirection: "column",
-        flexShrink: "0",
-        boxSizing: "border-box",
-        overflowY: "auto",
-        height: "100%",
-      }}
-    >
-      {children}
-    </aside>
-  );
+  return <aside className="baseView-sideRail">{children}</aside>;
 };

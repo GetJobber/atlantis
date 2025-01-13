@@ -6,6 +6,7 @@ import "./code-theme.css";
 import { ToggleThemeButton } from "../components/ToggleThemeButton";
 import { hooksList } from "../hooksList";
 import { NotFoundPage } from "../pages/NotFoundPage";
+import { FeedbackBanner } from "../components/FeedbackBanner";
 
 /**
  * Layout for whole application. This will display the NavMenu and the content of the page.
@@ -53,6 +54,7 @@ export const Layout = () => {
       </div>
 
       <ToggleThemeButton />
+      <FeedbackBanner />
     </LayoutWrapper>
   );
 };

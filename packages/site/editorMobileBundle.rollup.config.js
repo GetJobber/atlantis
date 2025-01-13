@@ -17,6 +17,7 @@ export default {
     file: "public/editorMobileBundle.js",
     format: "esm",
     exports: "named",
+    banner: "var global = global || {cancelAnimationFrame: () => {}};", // Some code in the mobile bundle is looking for this, so we have to stub it.
   },
   plugins: [
     commonjs(),
