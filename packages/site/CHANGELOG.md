@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.39...@jobber/atlantis-site@0.19.0) (2025-01-13)
+
+
+### Features
+
+* **docx:** Soft Launch the Docs Site ([#2297](https://github.com/GetJobber/atlantis/issues/2297)) ([54a5afe](https://github.com/GetJobber/atlantis/commit/54a5afe5130ef6b277fc2e807ff68a05bdb74932))
+
+
+
+
+
 ## [0.18.39](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.38...@jobber/atlantis-site@0.18.39) (2025-01-13)
 
 
