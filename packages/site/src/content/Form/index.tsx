@@ -56,10 +56,9 @@ export default {
     mobileElement: `<Form
       localCacheKey="form"
       initialValues={{ firstName: "Greatest", lastName: "Ever", nickName: "" }}
-      onSubmit={(value) => {
+       onSubmit={(value) => {
                  console.log(JSON.stringify(value, void 0))
-        });
-      }}
+        }}
     >
       <Content>
         <InputText

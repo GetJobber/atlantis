@@ -110,7 +110,7 @@ export const ComponentView = () => {
             <AtlantisPreviewEditor />
           </Box>
           <Box margin={{ top: "base", bottom: "base" }}>
-            <Banner type="warning">
+            <Banner type="warning" dismissible={false}>
               Due to distinctions between web and native platform, this may not
               render accurately in a web browser.
             </Banner>
