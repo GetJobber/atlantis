@@ -91,7 +91,9 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
           >
             <Icon name="search" color="greyBlue" />
             <span className={styles.searchButtonText}>
-              <Typography textColor={"textSecondary"}>Search</Typography>
+              <Typography size={"base"} textColor={"textSecondary"}>
+                Search
+              </Typography>
             </span>
             <div className={styles.searchKeyIndicator}>/</div>
           </button>

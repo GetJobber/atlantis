@@ -18,8 +18,8 @@ export const guidesContentMap: ContentMapItems = {
     content: () => <CustomizingComponentsComponent />,
   },
   "documentation-styleguide": {
-    intro: "Documentation styleguide",
-    title: "Documentation styleguide",
+    intro: "Writing documentation",
+    title: "Writing documentation",
     content: () => <DocumentationStyleguideComponent />,
   },
   "frontend-styleguide": {

@@ -14,6 +14,7 @@ export const AtlantisPreviewViewer = () => {
         style={{
           border: "none",
           display: type == "web" ? "block" : "none",
+          minHeight: "200px",
         }}
         ref={iframe}
       />
@@ -22,6 +23,7 @@ export const AtlantisPreviewViewer = () => {
           border: "none",
           display: type == "mobile" ? "block" : "none",
           borderRadius: "var(--radius-base)",
+          minHeight: "200px",
         }}
         ref={iframeMobile}
       />
