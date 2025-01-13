@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.38](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.37...@jobber/atlantis-site@0.18.38) (2025-01-13)
+
+
+### Bug Fixes
+
+* **docx:** get component iframes rendering correctly ([#2305](https://github.com/GetJobber/atlantis/issues/2305)) ([2e7a28c](https://github.com/GetJobber/atlantis/commit/2e7a28c9239c2cd99bba1c9e9c6ca73f4061f8e6))
+* **docx:** style sidenav correctly in Safari ([#2304](https://github.com/GetJobber/atlantis/issues/2304)) ([07c5235](https://github.com/GetJobber/atlantis/commit/07c5235b44178aecea81848e176dd2571703f123))
+
+
+
+
+
 ## [0.18.37](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.18.36...@jobber/atlantis-site@0.18.37) (2025-01-13)
 
 **Note:** Version bump only for package @jobber/atlantis-site
