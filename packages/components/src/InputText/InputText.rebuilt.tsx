@@ -15,7 +15,6 @@ import {
 import { FormFieldPostFix } from "../FormField/FormFieldPostFix";
 import { mergeRefs } from "../utils/mergeRefs";
 
-// eslint-disable-next-line max-statements
 export const InputTextSPAR = forwardRef(function InputTextInternal(
   props: InputTextRebuiltProps,
   inputRefs: React.Ref<HTMLInputElement | HTMLTextAreaElement>,
