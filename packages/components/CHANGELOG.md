@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.10.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.10.1...@jobber/components@6.10.2) (2025-01-10)
+
+
+### Bug Fixes
+
+* **components:** Auto resize multiline InputText when controlled value is changed ([#2268](https://github.com/GetJobber/atlantis/issues/2268)) ([50670ae](https://github.com/GetJobber/atlantis/commit/50670ae1b45f3df839c2b52ae977e0da45d6ce83))
+
+
+
+
+
 ## [6.10.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.10.0...@jobber/components@6.10.1) (2025-01-09)
 
 

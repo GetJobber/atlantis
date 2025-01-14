@@ -60,7 +60,7 @@ export const PropsList = ({
                 description: "Description",
                 component: "Type",
               }}
-              headerVisibility={{ xs: false, md: true }}
+              headerVisibility={{ xs: false, lg: true }}
             >
               <DataList.Layout size="md">
                 {(item: {
@@ -70,7 +70,7 @@ export const PropsList = ({
                   required: boolean;
                 }) => (
                   <Grid>
-                    <Grid.Cell size={{ xs: 2 }}>
+                    <Grid.Cell size={{ md: 5, lg: 3 }}>
                       <div
                         style={{
                           display: "flex",
@@ -82,8 +82,12 @@ export const PropsList = ({
                         {item.required && <InlineLabel>Required</InlineLabel>}
                       </div>
                     </Grid.Cell>
-                    <Grid.Cell size={{ xs: 3 }}>{item.component}</Grid.Cell>
-                    <Grid.Cell size={{ xs: 7 }}>{item.description}</Grid.Cell>
+                    <Grid.Cell size={{ md: 7, lg: 3 }}>
+                      {item.component}
+                    </Grid.Cell>
+                    <Grid.Cell size={{ md: 12, lg: 6 }}>
+                      {item.description}
+                    </Grid.Cell>
                   </Grid>
                 )}
               </DataList.Layout>
@@ -95,7 +99,7 @@ export const PropsList = ({
                   required: boolean;
                 }) => (
                   <Grid>
-                    <Grid.Cell size={{ xs: 6 }}>
+                    <Grid.Cell size={{ xs: 12 }}>
                       <div
                         style={{
                           display: "flex",
@@ -107,7 +111,7 @@ export const PropsList = ({
                         {item.required && <InlineLabel>Required</InlineLabel>}
                       </div>
                     </Grid.Cell>
-                    <Grid.Cell size={{ xs: 6 }}>{item.component}</Grid.Cell>
+                    <Grid.Cell size={{ xs: 12 }}>{item.component}</Grid.Cell>
                     <Grid.Cell size={{ xs: 12 }}>{item.description}</Grid.Cell>
                   </Grid>
                 )}
