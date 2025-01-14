@@ -11,6 +11,7 @@ import { HooksPage } from "./pages/HooksPage";
 import { hooksList } from "./hooksList";
 import { GuidesPage } from "./pages/GuidesPage";
 import { PackagesPage } from "./pages/PackagesPage";
+import { FigmaPage } from "./pages/FigmaPage";
 import { ComponentNotFound } from "./components/ComponentNotFound";
 
 export interface AtlantisRoute {
@@ -336,6 +337,13 @@ export const routes: Array<AtlantisRoute> = [
     component: ComponentNotFound,
     handle: "ComponentNotFound",
     inNav: false,
+    exact: true,
+  },
+  {
+    path: "/figma-guide",
+    component: FigmaPage,
+    handle: "FigmaGuide",
+    inNav: true,
     exact: true,
   },
 ];

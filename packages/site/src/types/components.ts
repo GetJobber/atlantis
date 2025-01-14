@@ -2,7 +2,8 @@ import { ReactNode } from "react";
 
 export interface ContentCardProps {
   readonly title: string;
-  readonly to: string;
+  readonly to?: string;
+  readonly url?: string;
   readonly component?: () => ReactNode;
   readonly imageURL?: string;
   readonly sections?: string[];

@@ -18,6 +18,7 @@ import { ContentCardProps } from "../types/components";
 export const ContentCard = ({
   title,
   to,
+  url,
   component,
   imageURL,
   onClick,
@@ -29,7 +30,11 @@ export const ContentCard = ({
     <Card
       elevation="low"
       onClick={() => {
-        history.push(to);
+        if (url) {
+          window.location.href = url;
+        } else if (to) {
+          history.push(to);
+        }
         onClick?.();
       }}
     >
