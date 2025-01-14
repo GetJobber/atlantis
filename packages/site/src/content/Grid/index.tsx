@@ -7,46 +7,94 @@ export default {
   content: () => <Content />,
   props: Props,
   component: {
-    element: `<Content spacing="large">
+    element: `<div style={{ display: "flex", width: "100%", justifyContent: "center" }}>
       <Grid gap={true}>
         <Grid.Cell
           size={{
-            xs: 12,
-            md: 6,
+            xs: 1,
           }}
         >
-          <Card>
-            <Content>
-              <Text>Column 1</Text>
-            </Content>
-          </Card>
+          <Box background={"base-blue--500"} height={220} width={36} radius={"base"}></Box>
         </Grid.Cell>
         <Grid.Cell
           size={{
-            xs: 12,
-            md: 3,
+            xs: 1,
           }}
         >
-          <Card>
-            <Content>
-              <Text>Column 2</Text>
-            </Content>
-          </Card>
+          <Box background={"base-blue--500"} height={220} width={36} radius={"base"}></Box>
         </Grid.Cell>
         <Grid.Cell
           size={{
-            xs: 12,
-            md: 3,
+            xs: 1,
           }}
         >
-          <Card>
-            <Content>
-              <Text>Column 3</Text>
-            </Content>
-          </Card>
+          <Box background={"base-blue--500"} height={220} width={36} radius={"base"}></Box>
+        </Grid.Cell>
+        <Grid.Cell
+          size={{
+            xs: 1,
+          }}
+        >
+          <Box background={"base-blue--500"} height={220} width={36} radius={"base"}></Box>
+        </Grid.Cell>
+        <Grid.Cell
+          size={{
+            xs: 1,
+          }}
+        >
+          <Box background={"base-blue--500"} height={220} width={36} radius={"base"}></Box>
+        </Grid.Cell>
+        <Grid.Cell
+          size={{
+            xs: 1,
+          }}
+        >
+          <Box background={"base-blue--500"} height={220} width={36} radius={"base"}></Box>
+        </Grid.Cell>
+        <Grid.Cell
+          size={{
+            xs: 1,
+          }}
+        >
+          <Box background={"base-blue--500"} height={220} width={36} radius={"base"}></Box>
+        </Grid.Cell>
+        <Grid.Cell
+          size={{
+            xs: 1,
+          }}
+        >
+          <Box background={"base-blue--500"} height={220} width={36} radius={"base"}></Box>
+        </Grid.Cell>
+        <Grid.Cell
+          size={{
+            xs: 1,
+          }}
+        >
+          <Box background={"base-blue--500"} height={220} width={36} radius={"base"}></Box>
+        </Grid.Cell>
+        <Grid.Cell
+          size={{
+            xs: 1,
+          }}
+        >
+          <Box background={"base-blue--500"} height={220} width={36} radius={"base"}></Box>
+        </Grid.Cell>
+        <Grid.Cell
+          size={{
+            xs: 1,
+          }}
+        >
+          <Box background={"base-blue--500"} height={220} width={36} radius={"base"}></Box>
+        </Grid.Cell>
+        <Grid.Cell
+          size={{
+            xs: 1,
+          }}
+        >
+          <Box background={"base-blue--500"} height={220} width={36} radius={"base"}></Box>
         </Grid.Cell>
       </Grid>
-    </Content>`,
+    </div>`,
   },
   title: "Grid",
   links: [
