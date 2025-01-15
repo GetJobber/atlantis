@@ -5,7 +5,7 @@ import { Banner } from "@jobber/components/Banner";
 
 # Customizing components
 
-### Balancing simplicity, flexibility, and consistency
+## Balancing simplicity, flexibility, and consistency
 
 Atlantis is designed to make building consistent, accessible, and visually
 appealing user interfaces as effortless as possible for you.
@@ -26,7 +26,7 @@ from:
 If you choose to customize components, you assume responsibility for these
 concerns and any issues that may arise in future versions.
 
-### Named `customRender____` props
+## Named `customRender____` props
 
 Our primary approach to enabling customization is using named render props
 following the `customRender____` pattern.
@@ -36,7 +36,9 @@ This allows you to both:
 - inject your own UI logic
 - retain the default behaviors and functionality of the component
 
-#### Example: [List](../components/List) customRenderItem
+[Reference implementation](https://github.com/GetJobber/atlantis/blob/304e776cf7fc1b9683cecbb1d7a0d8dbebdb60bb/packages/components/src/List/List.tsx#L25C3-L25C60)
+
+##### Example: [List](../components/List) customRenderItem
 
 ```tsx
 const renderProductItem = item => (
@@ -51,15 +53,17 @@ export const CustomRenderExample = () => (
 );
 ```
 
-### Other customization approaches
+## Other approaches
 
-#### ReactNode
+### ReactNode
 
 Extending prop types to allow a `ReactNode` to be inserted is useful for simpler
 cases where your:
 
 - customization does not depend on internal state
 - design is relatively simple
+
+[Reference implementation](https://github.com/GetJobber/atlantis/blob/master/packages/components/src/Tabs/Tabs.tsx#L119C3-L119C38)
 
 ##### Example: [Tab](../components/Tab) label
 
@@ -70,7 +74,13 @@ cases where your:
 Customizing the `label` doesn’t require exposing or interacting with the `Tab`’s
 internal state (e.g., active state styling).
 
-#### UNSAFE\_ props
+### UNSAFE\_ props
+
+<Banner type="warning" dismissible={false}>
+  These properties are prefixed `UNSAFE_` for a reason! Their usage is **at your
+  own risk** and should be considered a **last resort**. Atlantis updates may
+  break these usages.
+</Banner>
 
 `UNSAFE_` props are used to allow for advanced styling customization of:
 
@@ -81,18 +91,12 @@ If you are considering using an `UNSAFE_` prop, we encourage you to
 [talk to us](https://getjobber.slack.com/archives/C03BJHV3PMG) to look for safer
 ways to meet your needs.
 
-<Banner type="warning" dismissible={false}>
-  These props are prefixed `UNSAFE_` for a reason! Their usage is **at your own
-  risk** and should be considered a **last resort**. Atlantis updates may break
-  these usages.
-</Banner>
+[Reference implementation](https://github.com/GetJobber/atlantis/blob/304e776cf7fc1b9683cecbb1d7a0d8dbebdb60bb/packages/components/src/Popover/Popover.tsx#L36-L56)
 
-##### Example: [Popover](../components/Popover) styling overrides
-
-**`UNSAFE_className`**
+##### Example: `UNSAFE_className`
 
 ```tsx
-<Popover UNSAFE_className={{ container: styles.customClass }} />
+<Component UNSAFE_className={{ container: styles.customClass }} />
 
 .customClass {
   background-color: var(--color-surface--background);
@@ -100,10 +104,10 @@ ways to meet your needs.
 }
 ```
 
-**`UNSAFE_style`**
+##### Example: `UNSAFE_style`
 
 ```tsx
-<Popover
+<Component
   UNSAFE_style={{
     container: { backgroundColor: "var(--color-surface--background)" },
     dismissArrow: { paddingRight: "var(--space-larger)" },
