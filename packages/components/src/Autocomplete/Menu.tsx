@@ -1,20 +1,15 @@
-import React, { RefObject, useEffect, useState } from "react";
+import React, { RefObject, useCallback, useState } from "react";
 import classnames from "classnames";
 import { createPortal } from "react-dom";
 import { usePopper } from "react-popper";
-import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import { AnyOption, Option } from "./Option";
 import styles from "./Autocomplete.module.css";
+import { useKeyboardNavigation } from "./useKeyboardNavigation";
 import { Text } from "../Text";
 import { Icon } from "../Icon";
 import { Heading } from "../Heading";
-
-enum IndexChange {
-  Previous = -1,
-  Next = 1,
-}
 
 interface MenuProps {
   readonly visible: boolean;
@@ -37,7 +32,6 @@ export function Menu({
   onOptionSelect,
   attachTo,
 }: MenuProps) {
-  const [highlightedIndex, setHighlightedIndex] = useState(0);
   const {
     menuRef,
     setMenuRef,
@@ -49,15 +43,25 @@ export function Menu({
   const detectSeparatorCondition = (option: Option) =>
     option.description || option.details;
 
-  const detectGroups = (option: AnyOption) => option.options;
-
   const addSeparators = options.some(detectSeparatorCondition);
 
-  const initialHighlight = options.some(detectGroups) ? 1 : 0;
+  const onHighlightChange = useCallback(
+    (newHighlightedIndex: number) => {
+      menuRef?.children[newHighlightedIndex]?.scrollIntoView?.({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "start",
+      });
+    },
+    [menuRef],
+  );
 
-  setupKeyListeners();
-
-  useEffect(() => setHighlightedIndex(initialHighlight), [options]);
+  const { highlightedIndex } = useKeyboardNavigation({
+    options,
+    visible,
+    onOptionSelect,
+    onHighlightChange,
+  });
 
   const mounted = useIsMounted();
 
@@ -114,52 +118,6 @@ export function Menu({
   );
 
   return mounted.current ? createPortal(menu, document.body) : menu;
-
-  function setupKeyListeners() {
-    useEffect(() => {
-      menuRef?.children[highlightedIndex]?.scrollIntoView?.({
-        behavior: "smooth",
-        block: "nearest",
-        inline: "start",
-      });
-    }, [highlightedIndex]);
-
-    useOnKeyDown((event: KeyboardEvent) => {
-      const indexChange = arrowKeyPress(event, IndexChange.Next);
-
-      if (indexChange) {
-        setHighlightedIndex(
-          Math.min(options.length - 1, highlightedIndex + indexChange),
-        );
-      }
-    }, "ArrowDown");
-
-    useOnKeyDown((event: KeyboardEvent) => {
-      const indexChange = arrowKeyPress(event, IndexChange.Previous);
-
-      if (indexChange) {
-        setHighlightedIndex(Math.max(0, highlightedIndex + indexChange));
-      }
-    }, "ArrowUp");
-
-    useOnKeyDown((event: KeyboardEvent) => {
-      if (!visible) return;
-      if (isGroup(options[highlightedIndex])) return;
-
-      event.preventDefault();
-      onOptionSelect(options[highlightedIndex]);
-    }, "Enter");
-  }
-
-  function arrowKeyPress(event: KeyboardEvent, direction: number) {
-    if (!visible) return;
-    event.preventDefault();
-    const requestedIndex = options[highlightedIndex + direction];
-
-    return requestedIndex && isGroup(requestedIndex)
-      ? direction + direction
-      : direction;
-  }
 }
 
 function isOptionSelected(selectedOption: Option | undefined, option: Option) {
