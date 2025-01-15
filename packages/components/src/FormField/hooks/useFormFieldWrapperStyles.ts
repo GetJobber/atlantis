@@ -18,9 +18,9 @@ export interface useFormFieldWrapperStylesProps
     | "disabled"
     | "inline"
   > {
-  readonly error?: string;
-  suffixRef?: RefObject<HTMLDivElement>;
-  prefixRef?: RefObject<HTMLDivElement>;
+  readonly error: string;
+  suffixRef: RefObject<HTMLDivElement>;
+  prefixRef: RefObject<HTMLDivElement>;
 }
 
 export interface LabelPadding {
@@ -86,8 +86,8 @@ export function useFormFieldWrapperStyles({
       getAffixPaddding({
         value,
         type,
-        prefixWidth: prefixRef?.current?.offsetWidth || 0,
-        suffixWidth: suffixRef?.current?.offsetWidth || 0,
+        prefixWidth: prefixRef.current?.offsetWidth || 0,
+        suffixWidth: suffixRef.current?.offsetWidth || 0,
       }),
     );
   }, [value]);
