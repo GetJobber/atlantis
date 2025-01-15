@@ -7,37 +7,41 @@ import { Banner } from "@jobber/components/Banner";
 
 ### Philosophy: easy to use, flexible to customize
 
+Atlantis aims to strike a balance between simplicity, flexibility, and
+consistency.
+
 Atlantis is designed to make building consistent, accessible, and visually
 appealing user interfaces as effortless as possible. Our goal is to create
 components that work out of the box, requiring minimal setup or configuration
 from consumers.
 
-While we strive to cover the most common design scenarios with thoughtful
-defaults, we understand that unique use cases may require customization. For
-these scenarios, we provide mechanisms to extend or modify our components in a
-way that maintains flexibility without compromising the integrity of the
-components.
+We strive to cover the most common design scenarios with thoughtful defaults,
+but we understand that unique use cases may require customization. For these
+scenarios, we provide mechanisms to extend or modify our components in a way
+that maintains flexibility without compromising the integrity of the components.
 
-We recommend using the default implementations wherever possible to benefit from
-consistency, maintainability, and built in accessibility. However, if you choose
-to customize, please note that the responsibility for ensuring proper
-functionality and cohesion will rest with you.
+We recommend using the default implementations wherever possible to benefit
+from:
 
-Atlantis aims to strike a balance between simplicity, flexibility, and
-consistency.
+- consistency
+- maintainability
+- built-in accessibility
 
-### Primary customization approach: named render props
+If you choose to customize components, the responsibility for these items falls
+to you and Atlantis is not responsible for issues that may arise in future
+versions.
 
-In Atlantis, our primary approach to enabling customization is through named
-render props, using the `customRender____` pattern. This method allows consumers
-to inject their own UI logic while retaining the default behaviors and
-functionality of the component.
+### Named `customRender____` props
 
-#### Example: customRenderItem
+Our primary approach to enabling customization is using named render props
+following the `customRender____` pattern.
 
-Here's an example of how to use a named render prop to customize the rendering
-of items in a [List](..?path=/docs/components-lists-and-tables-list--docs)
-component:
+This allows you to both:
+
+- inject your own UI logic
+- retain the default behaviors and functionality of the component
+
+#### Example: [List](../components/List) customRenderItem
 
 ```tsx
 const renderProductItem = item => (
@@ -52,79 +56,69 @@ export const CustomRenderExample = () => (
 );
 ```
 
-In this example, the default List behavior (such as the main list structure and
-handling item interactions) is preserved. Only the presentation of individual
-items is customized.
-
 ### Other customization approaches
 
 #### ReactNode
 
-While custom render functions are our primary approach it is not used in all
-places. For simple cases where customization does not depend on internal state,
-we have chosen to extend prop types to allow for a `ReactNode` to be passed in.
+Extending prop types to allow a `ReactNode` to be inserted is useful for simpler
+cases where your:
 
-##### Example: Tab component (see [Tabs](..?path=/docs/components-navigation-tabs--docs))
+- customization does not depend on internal state
+- design is relatively simple
 
-Instead of introducing `customRenderLabel`, the `Tab` component was updated to
-allow the `label` prop to accept a `ReactNode`.
+##### Example: [Tab](../components/Tab) label
 
 ```tsx
 <Tab label={<MyCustomLabel />} />
 ```
 
-This approach was chosen to provide a simpler experience for those implementing
-Atlantis components. Customizing the `label` didn’t require exposing or
-interacting with the `Tab`’s internal state (e.g., active state styling). Once
-the design becomes more complex a custom render function would become a better
-fit.
+Customizing the `label` doesn’t require exposing or interacting with the `Tab`’s
+internal state (e.g., active state styling).
 
 #### UNSAFE\_ props
 
-In some cases, we provide `UNSAFE_` props to allow for further advanced
-customization. These props are prefixed with `UNSAFE_` to indicate that they
-should only be used when absolutely necessary, as they may break the component's
-future compatibility.
+`UNSAFE_` props are used to allow for advanced styling customization of:
 
-<Banner type="warning">
-  <p>
-    Use of `UNSAFE_` props is **at your own risk** and should be considered a
-    **last resort**. Future Atlantis updates may lead to unintended breakages.
-  </p>
+- a component's container
+- in some cases, a component's sub-components
+
+If you are considering using an `UNSAFE_` prop, we encourage you to
+[talk to us](https://getjobber.slack.com/archives/C03BJHV3PMG) to look for safer
+ways to meet your needs.
+
+<Banner type="warning" dismissible={false}>
+  These props are prefixed `UNSAFE_` for a reason! Their usage is **at your own
+  risk** and should be considered a **last resort**. Atlantis updates may break
+  these usages.
 </Banner>
 
-If you are considering using an `UNSAFE_` prop, we encourage you or your
-designers to talk to us. We may be able to suggest an alternative
-implementation, or your design can help inform future additions to Atlantis.
+##### Example: [Popover](../components/Popover) styling overrides
 
-- **`UNSAFE_className`**: Allows you to apply custom classnames to the
-  component's container and in some cases, sub-components.
+**`UNSAFE_className`**
 
 ```tsx
-<Component UNSAFE_className={{ container: styles.customClass }} />
+<Popover UNSAFE_className={{ container: styles.customClass }} />
 
 .customClass {
-  background-color: var(--color-surface);
-  padding: var(--space-base);
+  background-color: var(--color-surface--background);
+  padding: var(--space-large);
 }
 ```
 
-```tsx
-<Component UNSAFE_className={{ container: "custom-container-class" }} />
-```
-
-- **`UNSAFE_style`**: Allows you to apply custom inline styles to the
-  component's container and in some cases, sub-components.
+**`UNSAFE_style`**
 
 ```tsx
-<Component
+<Popover
   UNSAFE_style={{
     container: { backgroundColor: "var(--color-surface--background)" },
-    subItem: { paddingRight: "var(--space-larger)" },
+    dismissArrow: { paddingRight: "var(--space-larger)" },
   }}
 />
 ```
 
-**Note:** Inspiration for this approach was taken from React Spectrum's
-philosophy and implementation of their own class based
-[escape hatches](https://react-spectrum.adobe.com/react-spectrum/styling.html#escape-hatches).
+**Note:** Inspiration for this approach was taken from:
+
+- React Spectrum's
+  [UNSAFE\_ escape hatches](https://react-spectrum.adobe.com/react-spectrum/styling.html#escape-hatches)
+- Gestalt's
+  [dangerouslySet**\_** pattern](https://gestalt.pinterest.systems/get_started/developers/hacking_gestalt#Box's-dangerouslySetInlineStyle)
