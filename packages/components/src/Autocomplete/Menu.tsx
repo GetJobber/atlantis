@@ -1,13 +1,12 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 import classnames from "classnames";
 import { createPortal } from "react-dom";
-import { usePopper } from "react-popper";
-import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import { AnyOption, Option } from "./Option";
 import styles from "./Autocomplete.module.css";
 import { useKeyboardNavigation } from "./useKeyboardNavigation";
 import { MenuProps } from "./Autocomplete.types";
+import { useRepositionMenu } from "./useRepositionMenu";
 import { Text } from "../Text";
 import { Icon } from "../Icon";
 import { Heading } from "../Heading";
@@ -118,22 +117,4 @@ function isGroup(option: AnyOption) {
   if (option.options) return true;
 
   return false;
-}
-
-function useRepositionMenu(attachTo: MenuProps["attachTo"], visible = false) {
-  const [menuRef, setMenuRef] = useState<HTMLElement | null>();
-  const popper = usePopper(attachTo.current, menuRef, {
-    modifiers: [
-      { name: "offset", options: { offset: [0, 8] } },
-      { name: "flip", options: { fallbackPlacements: ["top"] } },
-    ],
-  });
-
-  useSafeLayoutEffect(() => {
-    popper?.update?.();
-  }, [visible]);
-
-  const targetWidth = attachTo.current?.clientWidth;
-
-  return { ...popper, menuRef, setMenuRef, targetWidth };
 }
