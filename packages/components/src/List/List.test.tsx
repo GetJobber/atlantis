@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { BaseListItemProps, List } from ".";
 import { Text } from "../Text";
 
@@ -272,5 +272,91 @@ describe("When a list is provided a custom render function", () => {
       />,
     );
     expect(container).toMatchSnapshot();
+  });
+});
+
+describe("When a list is provided a custom render function for sections", () => {
+  test("it should use the custom render instead of default section header behaviour", () => {
+    render(
+      <List
+        items={[
+          {
+            id: 1,
+            name: "Jane Doe",
+            address: "123 Main St",
+            section: "Employees",
+          },
+          {
+            id: 3,
+            name: "Milton Bradley",
+            address: "123 Fake St",
+            section: "Customers",
+          },
+        ]}
+        customRenderSection={section => (
+          <span data-testid="customSectionHeader">{section}</span>
+        )}
+      />,
+    );
+
+    const customSectionHeader = screen.getAllByTestId("customSectionHeader");
+    // we have 2 different section header: customers and employees
+    expect(customSectionHeader).toHaveLength(2);
+  });
+});
+
+describe("Default Section Header", () => {
+  test("it should render the default section header when at least one section value is absent", () => {
+    render(
+      <List
+        items={[
+          {
+            id: 1,
+            content: "Build the deck",
+            onClick: () => {
+              /* do stuff */
+            },
+          },
+          {
+            id: 2,
+            content: "Hey I'm walkin here",
+            section: "Gabbagool",
+            onClick: () => {
+              /* do stuff */
+            },
+          },
+        ]}
+      />,
+    );
+
+    const defaultSectionHeader = screen.getByText("Other");
+    expect(defaultSectionHeader).toBeInTheDocument();
+  });
+  test("it should render the provided section header when at least one section value is absent", () => {
+    render(
+      <List
+        defaultSectionHeader="Alternative"
+        items={[
+          {
+            id: 1,
+            content: "Build the deck",
+            onClick: () => {
+              /* do stuff */
+            },
+          },
+          {
+            id: 2,
+            content: "Hey I'm walkin here",
+            section: "Gabbagool",
+            onClick: () => {
+              /* do stuff */
+            },
+          },
+        ]}
+      />,
+    );
+
+    const defaultSectionHeader = screen.getByText("Alternative");
+    expect(defaultSectionHeader).toBeInTheDocument();
   });
 });

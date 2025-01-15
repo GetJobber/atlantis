@@ -1,0 +1,54 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/DataDump/DataDump.tsx",
+    "description": "",
+    "displayName": "DataDump",
+    "methods": [],
+    "props": {
+      "label": {
+        "defaultValue": {
+          "value": "Raw Data"
+        },
+        "description": "Label for the DataDump",
+        "name": "label",
+        "parent": {
+          "fileName": "../components/src/DataDump/DataDump.tsx",
+          "name": "DataDebuggerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "defaultOpen": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "Should the `DataDump` default to open?",
+        "name": "defaultOpen",
+        "parent": {
+          "fileName": "../components/src/DataDump/DataDump.tsx",
+          "name": "DataDebuggerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "data": {
+        "defaultValue": null,
+        "description": "Data to display.",
+        "name": "data",
+        "parent": {
+          "fileName": "../components/src/DataDump/DataDump.tsx",
+          "name": "DataDebuggerProps"
+        },
+        "required": true,
+        "type": {
+          "name": "unknown"
+        }
+      }
+    }
+  }
+]

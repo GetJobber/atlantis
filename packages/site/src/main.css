@@ -1,3 +1,13 @@
+:root {
+  --sideBarWidth: 200px;
+}
+
+@media screen and (min-width: 1024px) {
+  :root {
+    --sideBarWidth: 235px;
+  }
+}
+
 body {
   margin: 0;
   font-family: var(--typography--fontFamily-normal);
@@ -8,14 +18,39 @@ h1 {
   font-weight: 800;
 }
 
-h1,
+h1 {
+  font-family: var(--typography--fontFamily-display);
+}
+
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: var(--typography--fontFamily-display);
+  font-weight: 700;
 }
+
+h2 {
+  font-size: var(--typography--fontSize-largest);
+}
+
+h3 {
+  font-size: var(--typography--fontSize-larger);
+}
+
+h4 {
+  font-size: var(--typography--fontSize-large);
+}
+
+h5 {
+  font-size: var(--typography--fontSize-base);
+}
+
+h6 {
+  font-size: var(--typography--fontSize-small);
+  text-transform: uppercase;
+}
+
 
 a {
   margin: calc(-1 * var(--space-smallest));
@@ -37,56 +72,78 @@ a:focus-visible {
 }
 
 a:visited {
-  color: var(--color-text--secondary);
+  color: var(--color-interactive--hover);
 }
 
-custom-elements {
+blockquote {
+  background-color: var(--color-surface--background--subtle);
+  margin: 0;
+  padding: var(--space-base) var(--space-large);
+  border-radius: var(--radius-base);
+}
+
+custom-elements,
+section[role="tabpanel"] {
   & table {
-    font-size: 16px;
-    margin: 0;
+    min-width: 66%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-overflow-scrolling: touch;
-    margin: 16px 0;
-    margin-bottom: 16px;
-    font-size: 14px;
+    margin: var(--space-large) auto;
+    font-size: var(--typography--fontSize-base);
     line-height: 24px;
     padding: 0;
     border-collapse: collapse;
+    box-shadow: var(--shadow-low);
+    border-radius: var(--radius-base);
+    overflow: hidden;
   }
 
   & thead {
-
-    font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size: 14px;
+    font-size: var(--typography--fontSize-base);
     line-height: 24px;
+    text-align: start;
+    background-color: var(--color-surface--background);
   }
 
   & tr {
-    border-top: 1px solid var(--color-border);
+    border-top: none;
     margin: 0;
     padding: 0;
   }
 
   & tr th {
-
+    text-align: inherit;
     font-weight: bold;
     color: var(--color-text);
-    border: 1px solid var(--color-border);
+    border: none;
     margin: 0;
-    padding: 6px 13px;
+    padding: var(--space-base);
   }
 
   & tr td {
-    border: 1px solid var(--color-border);
+    border: none;
     color: var(--color-text);
     margin: 0;
-    padding: 6px 13px;
+    padding: var(--space-base);
   }
 
+}
+
+pre,
+code {
+  background-color: var(--color-surface--background);
+  border-radius: var(--radius-small);
+  padding: var(--space-smallest);
+  margin: 0;
+}
+
+pre code {
+  padding: var(--space-small);
+  display: block;
 }
 
 code.root-code[class*="language-"] {
@@ -105,5 +162,89 @@ pre.root-pre code.root-code {
 pre.root-pre {
   background: var(--color-surface--background);
   padding: var(--space-large);
-  border-radius: var(--radius-base);
+}
+
+section[role="tabpanel"]>div>h1:first-of-type {
+  display: none;
+}
+
+iframe {
+  width: 100%;
+}
+
+.headerBlock {
+  background-image: url("/img_collage.jpg");
+  background-size: cover;
+  padding: var(--space-large);
+  width: 100%;
+  height: 100%;
+  text-shadow: 0px 4px 16px rgba(var(--color-black--rgb), 0.6);
+  min-height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+@media screen and (min-width: 1024px) {
+  .headerBlock {
+    padding: var(--space-extravagant);
+  }
+}
+
+.headerBlock:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--color-surface);
+  mask-image: url("/distress_paper-rip.svg");
+  mask-repeat: no-repeat;
+  mask-size: cover;
+  width: 100%;
+  height: 2vw;
+}
+
+.headerBlock > * {
+  width: 100%;
+  max-width: 1024px;
+}
+
+.contentCardWrapper {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-rows: auto;
+  gap: var(--space-base);
+}
+
+@media screen and (min-width: 1024px) {
+  .contentCardWrapper {
+    gap: var(--space-larger);
+  }
+}
+
+.stickySectionHeader {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.baseView-sideRail {
+  width: var(--sideBarWidth);
+  padding: 36px var(--space-base);
+  display: none;
+  flex-direction: column;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  overflow-y: auto;
+  height: 100%;
+}
+
+@media screen and (min-width: 1024px) {
+  .baseView-sideRail {
+    display: flex;
+  }
 }

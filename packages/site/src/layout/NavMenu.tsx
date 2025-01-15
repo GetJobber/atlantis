@@ -1,99 +1,194 @@
-import { Box, Button } from "@jobber/components";
-import { Link } from "react-router-dom";
-import { PropsWithChildren, useState } from "react";
+import { Box, Button, Icon, Typography } from "@jobber/components";
+import { Link, useLocation } from "react-router-dom";
+import { Fragment, PropsWithChildren, useRef, useState } from "react";
 import { SearchBox } from "./SearchBox";
+import AnimatedPresenceDisclosure from "./AnimatedPresenceDisclosure";
+import styles from "./NavMenu.module.css";
 import { routes } from "../routes";
 import { JobberLogo } from "../assets/JobberLogo.svg";
+import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
+import { VisibleWhenFocused } from "../components/VisibleWhenFocused";
+
+interface NavMenuProps {
+  readonly mainContentRef: React.RefObject<HTMLDivElement>;
+}
 
 /**
  * Left side navigation menu for the application.
  * @returns ReactNode
  */
-export const NavMenu = () => {
+export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
   const [open, setOpen] = useState(false);
+  const { isMinimal } = useAtlantisSite();
+  const { pathname } = useLocation();
+  const selectedRef = useRef<HTMLAnchorElement | null>(null);
+
+  if (isMinimal) return null;
+
+  interface MenuItem {
+    handle: string;
+    children?: MenuItem[];
+    path?: string;
+  }
+
+  const iterateSubSubMenu = (menuItems: MenuItem[], routeIndex: number) => {
+    return menuItems.map((menuItem, menuItemIndex) => {
+      return (
+        <MenuSubItem key={`${routeIndex}-${menuItemIndex}`}>
+          <StyledSubLink
+            to={`/components/${menuItem.handle}`}
+            selectedRef={selectedRef}
+          >
+            {menuItem.handle}
+          </StyledSubLink>
+        </MenuSubItem>
+      );
+    });
+  };
+
+  const iterateSubMenu = (menuItems: MenuItem[], routeIndex: number) => {
+    return menuItems.map((menuItem, menuItemIndex) => {
+      if (menuItem.children) {
+        return (
+          <Fragment key={`${routeIndex}-${menuItemIndex}`}>
+            {sectionTitle(menuItem.handle)}
+            {iterateSubSubMenu(menuItem.children, routeIndex)}
+          </Fragment>
+        );
+      }
+
+      return (
+        <MenuSubItem key={`${routeIndex}-${menuItemIndex}`}>
+          <StyledSubLink to={menuItem.path ?? "/"} selectedRef={selectedRef}>
+            {menuItem.handle}
+          </StyledSubLink>
+        </MenuSubItem>
+      );
+    });
+  };
+
+  const skipToContent = () => {
+    mainContentRef.current?.focus();
+  };
 
   return (
-    <Box
-      width={200}
-      background="surface--background"
-      border={{ right: "base" }}
-    >
-      <Box
-        width="100%"
-        background="surface--background"
-        margin={{ bottom: "large" }}
-        height={60}
-      >
-        <Box padding={"base"}>
+    <nav className={styles.navMenuContainer}>
+      <div className={styles.navMenuHeader}>
+        <VisibleWhenFocused>
+          <Button label="Skip to Content" onClick={skipToContent} />
+        </VisibleWhenFocused>
+        <Box>
           <Link to="/">
             <JobberLogo />
           </Link>
         </Box>
-      </Box>
-      <Box padding="base">
-        <Button
-          onClick={() => setOpen(true)}
-          label="Search"
-          icon="search"
-          variation="subtle"
-        />
-      </Box>
-      <SearchBox open={open} setOpen={setOpen} />
-      <MenuList>
         <Box>
-          {routes?.map((route, index) => {
-            return route.children ? (
-              route.children.map((subroute, subindex) => {
-                if (subroute.inNav === false) return;
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className={styles.searchButton}
+            aria-label="Search"
+          >
+            <Icon name="search" color="greyBlue" />
+            <span className={styles.searchButtonText}>
+              <Typography size={"base"} textColor={"textSecondary"}>
+                Search
+              </Typography>
+            </span>
+            <div className={styles.searchKeyIndicator}>/</div>
+          </button>
+        </Box>
+        <SearchBox open={open} setOpen={setOpen} />
+      </div>
+      <div className={styles.navMenu}>
+        <MenuList>
+          {routes?.map((route, routeIndex) => {
+            if (route.inNav === false) return null;
 
-                return (
-                  <MenuItem key={index}>
-                    <StyledLink to={subroute.path || "/"} key={subindex}>
-                      {subroute.handle}
-                    </StyledLink>
-                  </MenuItem>
-                );
-              })
-            ) : route.inNav === false ? null : (
-              <MenuItem key={index}>
-                <StyledLink
-                  key={index}
-                  to={route.path ?? "/"}
-                  style={{ marginBottom: "var(--space-base)" }}
-                >
+            if (route.children) {
+              return (
+                <Box key={routeIndex}>
+                  <AnimatedPresenceDisclosure
+                    to={route.path ?? "/"}
+                    title={route.handle}
+                    selected={pathname.startsWith(route.path ?? "/")}
+                  >
+                    {iterateSubMenu(route.children, routeIndex)}
+                  </AnimatedPresenceDisclosure>
+                </Box>
+              );
+            }
+
+            return (
+              <MenuItem key={routeIndex}>
+                <StyledLink to={route.path ?? "/"} selectedRef={selectedRef}>
                   {route.handle}
                 </StyledLink>
               </MenuItem>
             );
           })}
-        </Box>
-      </MenuList>
-    </Box>
+        </MenuList>
+      </div>
+    </nav>
   );
+};
+
+const getLinkClassName = (
+  baseClasses: string,
+  isSelected: boolean,
+  selectedClass: string,
+): string => {
+  return `${baseClasses} ${isSelected ? selectedClass : ""}`.trim();
 };
 
 export const StyledLink = ({
   to,
   children,
-  style,
-}: PropsWithChildren<{ readonly to: string; readonly style?: object }>) => {
+  selectedRef,
+}: PropsWithChildren<{
+  readonly to: string;
+  readonly selectedRef: React.RefObject<HTMLAnchorElement>;
+}>) => {
+  const { pathname } = useLocation();
+  const isSelected = pathname === to;
+  const className = getLinkClassName(
+    `${styles.navMenuItem} ${styles.navMenuLink}`,
+    isSelected,
+    styles.selected,
+  );
+
   return (
     <Link
       to={to ?? "/"}
-      style={{
-        margin: 0,
-        marginBottom: "var(--space-base)",
-        padding: "var(--space-small) var(--space-small)",
-        outline: "transparent",
-        color: "var(--color-heading)",
-        fontSize: "var(--typography--fontSize-base)",
-        fontWeight: 700,
-        width: "100%",
-        textDecoration: "none",
-        userSelect: "none",
-        transition: "all var(--timing-base) ease-out",
-        ...style,
-      }}
+      className={className}
+      ref={isSelected ? selectedRef : null}
+    >
+      {children}
+    </Link>
+  );
+};
+
+export const StyledSubLink = ({
+  to,
+  children,
+  selectedRef,
+}: PropsWithChildren<{
+  readonly to: string;
+  readonly selectedRef: React.RefObject<HTMLAnchorElement>;
+}>) => {
+  const { pathname } = useLocation();
+  const isSelected = pathname === to;
+  const className = getLinkClassName(
+    `${styles.navMenuItem} ${styles.navMenuSubItem} ${styles.navMenuLink}`,
+    isSelected,
+    styles.selected,
+  );
+
+  return (
+    <Link
+      to={to ?? "/"}
+      className={className}
+      ref={isSelected ? selectedRef : null}
     >
       {children}
     </Link>
@@ -101,22 +196,31 @@ export const StyledLink = ({
 };
 
 export const MenuList = ({ children }: PropsWithChildren) => {
-  return <ul style={{ listStyleType: "none", padding: 0 }}>{children}</ul>;
+  return <ul style={{ listStyle: "none", padding: 0 }}>{children}</ul>;
 };
 
 export const MenuItem = ({ children }: PropsWithChildren) => {
   return (
-    <li
-      style={{
-        display: "flex",
-        margin: "0 var(--space-small) var(--space-smaller) var(--space-base)",
-        paddingLeft: 6,
-        borderRadius: "var(--radius-base)",
-        color: "var(--color-heading)",
-        alignItems: "center",
-      }}
-    >
-      {children}
+    <li style={{ listStyle: "none" }} className="stickySectionHeader">
+      <Typography fontWeight="semiBold" size={"large"} textColor="heading">
+        {children}
+      </Typography>
     </li>
   );
 };
+
+export const MenuSubItem = ({ children }: PropsWithChildren) => {
+  return (
+    <li style={{ listStyle: "none" }}>
+      <Typography textColor="heading">{children}</Typography>
+    </li>
+  );
+};
+
+export const sectionTitle = (section: string) => (
+  <div className={`${styles.navMenuItem} ${styles.navMenuSubTitle}`}>
+    <Typography fontWeight="bold" size="small" textColor="textSecondary">
+      {section.toUpperCase()}
+    </Typography>
+  </div>
+);

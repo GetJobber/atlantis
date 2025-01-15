@@ -1,0 +1,89 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components-native/src/Banner/Banner.tsx",
+    "description": "",
+    "displayName": "Banner",
+    "methods": [],
+    "props": {
+      "action": {
+        "defaultValue": null,
+        "description": "The function that should be performed when the Banner is pressed",
+        "name": "action",
+        "parent": {
+          "fileName": "packages/components-native/src/Banner/types.ts",
+          "name": "BannerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ActionProps"
+        }
+      },
+      "children": {
+        "defaultValue": null,
+        "description": "Custom content to be displayed in the banner",
+        "name": "children",
+        "parent": {
+          "fileName": "packages/components-native/src/Banner/types.ts",
+          "name": "BannerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | ReactElement<any, string | JSXElementConstructor<any>> | ReactElement<any, string | JSXElementConstructor<any>>[]"
+        }
+      },
+      "details": {
+        "defaultValue": null,
+        "description": "**Deprecated**: Use `children` with a `<TextList level=\"text\" />` instead\n@deprecated",
+        "name": "details",
+        "parent": {
+          "fileName": "packages/components-native/src/Banner/types.ts",
+          "name": "BannerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string[]"
+        }
+      },
+      "text": {
+        "defaultValue": null,
+        "description": "**Deprecated**: Use `children` with a `<Text level=\"text\" />`\n@deprecated",
+        "name": "text",
+        "parent": {
+          "fileName": "packages/components-native/src/Banner/types.ts",
+          "name": "BannerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "type": {
+        "defaultValue": null,
+        "description": "The primary theme of the banner, controls the things like the background color",
+        "name": "type",
+        "parent": {
+          "fileName": "packages/components-native/src/Banner/types.ts",
+          "name": "BannerProps"
+        },
+        "required": true,
+        "type": {
+          "name": "BannerTypes"
+        }
+      },
+      "icon": {
+        "defaultValue": null,
+        "description": "Adds an icon to the left of the banner content",
+        "name": "icon",
+        "parent": {
+          "fileName": "packages/components-native/src/Banner/types.ts",
+          "name": "BannerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "IconNames"
+        }
+      }
+    }
+  }
+]

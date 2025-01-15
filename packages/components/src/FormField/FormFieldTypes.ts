@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactNode, RefObject } from "react";
+import React, { ChangeEvent, ReactNode, RefObject } from "react";
 import { RegisterOptions } from "react-hook-form";
 import { XOR } from "ts-xor";
 import { Clearable } from "@jobber/hooks/src/useShowClear";
@@ -13,6 +13,15 @@ export type FormFieldTypes =
   | "select"
   | "tel"
   | "email";
+
+export type KeyBoardTypes =
+  | "text"
+  | "none"
+  | "tel"
+  | "url"
+  | "email"
+  | "numeric"
+  | "decimal";
 
 export type AutocompleteTypes =
   | "one-time-code"
@@ -123,6 +132,14 @@ export interface CommonFormFieldProps {
    * set it to `always`.
    */
   readonly clearable?: Clearable;
+
+  /**
+   * Experimental:
+   * Determine which version of the FormField to use.
+   * Right now this isn't used but it will be used in the future
+   * to allow us to release new versions of our form inputs without breaking existing functionality
+   */
+  version?: 1;
 }
 
 export interface FormFieldProps extends CommonFormFieldProps {
@@ -205,12 +222,12 @@ export interface FormFieldProps extends CommonFormFieldProps {
   /**
    * Focus callback.
    */
-  onFocus?(): void;
+  onFocus?(event?: React.FocusEvent): void;
 
   /**
    * Blur callback.
    */
-  onBlur?(): void;
+  onBlur?(event?: React.FocusEvent): void;
 
   onKeyUp?(event: React.KeyboardEvent<HTMLInputElement>): void;
 

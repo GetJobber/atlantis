@@ -1,0 +1,158 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components-native/src/InputTime/InputTime.tsx",
+    "description": "",
+    "displayName": "InputTime",
+    "methods": [],
+    "props": {
+      "name": {
+        "defaultValue": null,
+        "description": "Adding a `name` would make this component \"Form controlled\" and must be\nnested within a `<Form />` component.\n\nCannot be declared if `value` prop is used.",
+        "name": "name",
+        "parent": {
+          "fileName": "../components-native/src/InputTime/InputTime.tsx",
+          "name": "InputTimeFormControlled"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "validations": {
+        "defaultValue": null,
+        "description": "Shows an error message below the field and highlights it red when the\nvalue is invalid. Only applies when nested within a `<Form />` component.",
+        "name": "validations",
+        "parent": {
+          "fileName": "../components-native/src/InputTime/InputTime.tsx",
+          "name": "InputTimeFormControlled"
+        },
+        "required": false,
+        "type": {
+          "name": "Omit<Partial<{ required: string | ValidationRule<boolean>; min: ValidationRule<string | number>; max: ValidationRule<string | number>; ... 12 more ...; deps: string | string[]; }>, \"disabled\" | ... 2 more ... | \"setValueAs\">"
+        }
+      },
+      "value": {
+        "defaultValue": null,
+        "description": "The value shown on the field. This gets automatically formatted to the\naccount's time format.",
+        "name": "value",
+        "parent": {
+          "fileName": "../components-native/src/InputTime/InputTime.tsx",
+          "name": "InputTimeDevControlled"
+        },
+        "required": false,
+        "type": {
+          "name": "string | Date"
+        }
+      },
+      "onChange": {
+        "defaultValue": null,
+        "description": "The callback that fires whenever a time gets selected.",
+        "name": "onChange",
+        "parent": {
+          "fileName": "../components-native/src/InputTime/InputTime.tsx",
+          "name": "InputTimeDevControlled"
+        },
+        "required": false,
+        "type": {
+          "name": "((value?: Date) => void) | ((value?: Date) => void)"
+        }
+      },
+      "clearable": {
+        "defaultValue": null,
+        "description": "Defaulted to \"always\" so user can clear the time whenever there's a value.",
+        "name": "clearable",
+        "parent": {
+          "fileName": "../components-native/src/InputTime/InputTime.tsx",
+          "name": "InputTimeBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"never\" | \"always\""
+        }
+      },
+      "emptyValueLabel": {
+        "defaultValue": {
+          "value": "undefined"
+        },
+        "description": "Add a custom value to display when no time is selected",
+        "name": "emptyValueLabel",
+        "parent": {
+          "fileName": "../components-native/src/InputTime/InputTime.tsx",
+          "name": "InputTimeBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "type": {
+        "defaultValue": {
+          "value": "scheduling"
+        },
+        "description": "Adjusts the UX of the time picker based on where you'd use it.\n\n- `\"granular\"` - allows the user to pick a very specific time\n- `\"scheduling\"` - only allows user to select between 5 minutes interval.\n   If your design is catered towards \"scheduling\", you should use this type.",
+        "name": "type",
+        "parent": {
+          "fileName": "../components-native/src/InputTime/InputTime.tsx",
+          "name": "InputTimeBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"granular\" | \"scheduling\""
+        }
+      },
+      "showIcon": {
+        "defaultValue": null,
+        "description": "Hide or show the timer icon.",
+        "name": "showIcon",
+        "parent": {
+          "fileName": "../components-native/src/InputTime/InputTime.tsx",
+          "name": "InputTimeBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "invalid": {
+        "defaultValue": null,
+        "description": "Highlights the field red and shows message below (if string) to indicate an error",
+        "name": "invalid",
+        "parent": {
+          "fileName": "packages/components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
+          "name": "InputFieldWrapperProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | boolean"
+        }
+      },
+      "disabled": {
+        "defaultValue": null,
+        "description": "Disable the input",
+        "name": "disabled",
+        "parent": {
+          "fileName": "packages/components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
+          "name": "InputFieldWrapperProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "placeholder": {
+        "defaultValue": null,
+        "description": "Hint text that goes above the value once the field is filled out",
+        "name": "placeholder",
+        "parent": {
+          "fileName": "packages/components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
+          "name": "InputFieldWrapperProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  }
+]

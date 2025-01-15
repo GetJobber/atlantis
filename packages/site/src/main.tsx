@@ -1,10 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "@jobber/design/foundation.css";
+import "@jobber/design/dist/dark.mode.css";
 import "@jobber/components/dist/styles.css";
 import "./main.css";
 import { BrowserRouter } from "react-router-dom";
+import { AtlantisThemeContextProvider } from "@jobber/components";
 import { Layout } from "./layout/Layout";
+import { AtlantisPreviewProvider } from "./preview/AtlantisPreviewProvider";
+import { AtlantisSiteProvider } from "./providers/AtlantisSiteProvider";
+import { initAtlantisTheme } from "./utils/theme";
+import { Analytics } from "./components/Analytics";
+import { handleStorybookRedirect } from "./utils/storybook";
+
+handleStorybookRedirect();
+
+const urlParams = new URLSearchParams(window.location.search);
+const minimalMode = urlParams.has("minimal");
+
+initAtlantisTheme(urlParams.get("theme"));
 
 function renderApp() {
   const root = document.getElementById("root");
@@ -13,7 +27,16 @@ function renderApp() {
     ReactDOM.createRoot(root).render(
       <React.StrictMode>
         <BrowserRouter>
-          <Layout />
+          <AtlantisThemeContextProvider>
+            <AtlantisSiteProvider
+              minimal={{ requested: minimalMode, enabled: false }}
+            >
+              <Analytics />
+              <AtlantisPreviewProvider>
+                <Layout />
+              </AtlantisPreviewProvider>
+            </AtlantisSiteProvider>
+          </AtlantisThemeContextProvider>
         </BrowserRouter>
       </React.StrictMode>,
     );

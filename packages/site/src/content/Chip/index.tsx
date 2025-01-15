@@ -1,29 +1,31 @@
-import { Chip as ChipRoot } from "@jobber/components";
 import ChipContent from "@atlantis/docs/components/Chip/Chip.stories.mdx";
-import { PropsWithChildren } from "react";
 import Props from "./Chip.props.json";
+import Notes from "./ChipNotes.mdx";
+import MobileProps from "./Chip.props-mobile.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
-
-// Need to wrap Chip, otherwise TypeScript complains about its subcomponents (Chip.Prefix, Chip.Suffix)
-export const Chip = (props: PropsWithChildren) => {
-  return <ChipRoot {...props} />;
-};
 
 export default {
   content: () => <ChipContent />,
   props: Props,
+  mobileProps: MobileProps,
   component: {
-    element: Chip,
-    defaultProps: { label: "Chip!" },
+    element: `<Chip label="Chip!" />`,
+    mobileElement: `<Chip
+        label={"Active chip"}
+        onPress={() => {
+          alert("hi!");
+        }}
+        accessibilityLabel={"Active chip"}
+        isActive={true}
+      />`,
   },
   title: "Chip",
-  description:
-    "Chip allows selections and actions with a robust variety of content and presentation methods.",
   links: [
     {
       label: "Storybook",
       url: getStorybookUrl("?path=/docs/components-selections-chip--docs"),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

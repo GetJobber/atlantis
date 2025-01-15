@@ -12,6 +12,14 @@ pre {
   --color-code--teal: var(--color-base-teal--600);
 }
 
+:root[data-theme="dark"] pre {
+  --color-code--yellow: var(--color-base-yellow--300);
+  --color-code--lime: var(--color-base-lime--300);
+  --color-code--pink: var(--color-base-pink--300);
+  --color-code--orange: var(--color-base-orange--300);
+  --color-code--teal: var(--color-base-teal--300);
+}
+
 code[class*="language-"],
 pre[class*="language-"] {
   font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
@@ -42,7 +50,7 @@ pre[class*="language-"] {
 }
 
 code[class*="language-"] {
-  color: white;
+  color: var(--color-text);
 }
 
 /* Inline code */

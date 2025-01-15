@@ -5,18 +5,54 @@ export const HomePage = () => {
     <PageBlock
       structure={{
         header: {
-          title: "Atlantis",
-          body: "Design and build consumer-grade products with this world-class design system",
+          title: "Home",
+          body: "Jobber's toolkit for building consumer-grade experiences",
           ctaLabel: "Get Started",
-          to: "/content/design/welcome-guide",
+          to: "/welcome-guide",
+          imageURL: "/img_collage.jpg",
         },
         body: {
-          title: "Packages",
           content: [
-            { title: "Components", to: "/components" },
-            { title: "Design", to: "/design" },
+            {
+              title: "Components",
+              to: "/components",
+              imageURL: "/Components.png",
+              sections: ["Packages"],
+            },
+            {
+              title: "Design",
+              to: "/design",
+              imageURL: "/Design.png",
+              sections: ["Packages"],
+            },
+            {
+              title: "Content",
+              to: "/content",
+              sections: ["Resources"],
+            },
+            {
+              title: "Hooks",
+              to: "/hooks",
+              imageURL: "/Hooks.png",
+              sections: ["Packages"],
+            },
+            {
+              title: "Guides",
+              to: "/guides",
+              sections: ["Resources"],
+            },
+            {
+              title: "Packages",
+              to: "/packages",
+            },
+            {
+              title: "Changelog",
+              to: "/changelog",
+              sections: ["Changelog"],
+            },
           ],
         },
+        useCategories: true,
       }}
     />
   );

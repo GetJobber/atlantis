@@ -1,0 +1,449 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Page/Page.tsx",
+    "description": "",
+    "displayName": "Page",
+    "methods": [],
+    "props": {
+      "intro": {
+        "defaultValue": null,
+        "description": "Content of the page. This supports basic markdown node types\nsuch as `_italic_`, `**bold**`, and `[link name](url)`.",
+        "name": "intro",
+        "parent": {
+          "fileName": "../components/src/Page/Page.tsx",
+          "name": "PageWithIntroProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "externalIntroLinks": {
+        "defaultValue": null,
+        "description": "Causes any markdown links in the `intro` prop to open in a new\ntab, i.e. with `target=\"_blank\"`.\n\nCan only be used if `intro` prop is also specified.\n\nDefaults to `false`.",
+        "name": "externalIntroLinks",
+        "parent": {
+          "fileName": "../components/src/Page/Page.tsx",
+          "name": "PageWithIntroProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "title": {
+        "defaultValue": null,
+        "description": "Title of the page.",
+        "name": "title",
+        "parent": {
+          "fileName": "../components/src/Page/Page.tsx",
+          "name": "PageFoundationProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      },
+      "titleMetaData": {
+        "defaultValue": null,
+        "description": "TitleMetaData component to be displayed\nnext to the title.",
+        "name": "titleMetaData",
+        "parent": {
+          "fileName": "../components/src/Page/Page.tsx",
+          "name": "PageFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "subtitle": {
+        "defaultValue": null,
+        "description": "Subtitle of the page.",
+        "name": "subtitle",
+        "parent": {
+          "fileName": "../components/src/Page/Page.tsx",
+          "name": "PageFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "width": {
+        "defaultValue": {
+          "value": "standard"
+        },
+        "description": "Determines the width of the page.\n\nFill makes the width grow to 100%.\n\nStandard caps out at 1280px.\n\nNarrow caps out at 1024px.",
+        "name": "width",
+        "parent": {
+          "fileName": "../components/src/Page/Page.tsx",
+          "name": "PageFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"fill\" | \"standard\" | \"narrow\""
+        }
+      },
+      "primaryAction": {
+        "defaultValue": null,
+        "description": "Page title primary action button settings.",
+        "name": "primaryAction",
+        "parent": {
+          "fileName": "../components/src/Page/Page.tsx",
+          "name": "PageFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ButtonActionProps"
+        }
+      },
+      "secondaryAction": {
+        "defaultValue": null,
+        "description": "Page title secondary action button settings.\n  Only shown if there is a primaryAction.",
+        "name": "secondaryAction",
+        "parent": {
+          "fileName": "../components/src/Page/Page.tsx",
+          "name": "PageFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ButtonActionProps"
+        }
+      },
+      "moreActionsMenu": {
+        "defaultValue": {
+          "value": "[]"
+        },
+        "description": "Page title Action menu.",
+        "name": "moreActionsMenu",
+        "parent": {
+          "fileName": "../components/src/Page/Page.tsx",
+          "name": "PageFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "SectionProps[]"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Page/Page.tsx",
+    "description": "",
+    "displayName": "getActionProps",
+    "methods": [],
+    "props": {
+      "external": {
+        "defaultValue": null,
+        "description": "",
+        "name": "external",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "onClick": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onClick",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void"
+        }
+      },
+      "name": {
+        "defaultValue": null,
+        "description": "",
+        "name": "name",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "SubmitActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "submit": {
+        "defaultValue": null,
+        "description": "Allows the button to submit a form",
+        "name": "submit",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "SubmitActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "type": {
+        "defaultValue": null,
+        "description": "",
+        "name": "type",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "SubmitActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"primary\" | \"secondary\" | \"tertiary\""
+        }
+      },
+      "value": {
+        "defaultValue": null,
+        "description": "",
+        "name": "value",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "SubmitActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "variation": {
+        "defaultValue": null,
+        "description": "",
+        "name": "variation",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "BaseActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"work\" | \"learning\" | \"subtle\" | \"destructive\""
+        }
+      },
+      "ariaLabel": {
+        "defaultValue": null,
+        "description": "Used for screen readers. Will override label on screen\nreader if present.",
+        "name": "ariaLabel",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "ariaControls": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ariaControls",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "ariaHaspopup": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ariaHaspopup",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "ariaExpanded": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ariaExpanded",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "disabled": {
+        "defaultValue": null,
+        "description": "",
+        "name": "disabled",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "fullWidth": {
+        "defaultValue": null,
+        "description": "",
+        "name": "fullWidth",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "icon": {
+        "defaultValue": null,
+        "description": "",
+        "name": "icon",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "IconNames"
+        }
+      },
+      "iconOnRight": {
+        "defaultValue": null,
+        "description": "",
+        "name": "iconOnRight",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "id": {
+        "defaultValue": null,
+        "description": "",
+        "name": "id",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "label": {
+        "defaultValue": null,
+        "description": "",
+        "name": "label",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "loading": {
+        "defaultValue": null,
+        "description": "",
+        "name": "loading",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "size": {
+        "defaultValue": null,
+        "description": "",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"base\" | \"large\""
+        }
+      },
+      "onMouseDown": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onMouseDown",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void"
+        }
+      },
+      "role": {
+        "defaultValue": null,
+        "description": "Used to override the default button role.",
+        "name": "role",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "BasicButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "to": {
+        "defaultValue": null,
+        "description": "**Deprecated**: to will be removed in the next major version\n@deprecated",
+        "name": "to",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonLinkProps"
+        },
+        "required": false,
+        "type": {
+          "name": "LocationDescriptor<unknown> | ((location: Location<unknown>) => LocationDescriptor<unknown>)"
+        }
+      },
+      "url": {
+        "defaultValue": null,
+        "description": "Used to create an 'href' on an anchor tag.",
+        "name": "url",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonAnchorProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "ref": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ref",
+        "required": false,
+        "type": {
+          "name": "React.RefObject<HTMLDivElement>"
+        }
+      }
+    }
+  }
+]

@@ -1,5 +1,9 @@
 import { Meta } from "@storybook/addon-docs";
 
+{/* Sections of this file have been duplicated in the new docs site temporarily. */}
+{/* When updating this file, make sure to also update the corresponding notes file: */}
+{/* packages/site/src/content/[Component]/[Component]Notes.mdx */}
+
 <Meta title="Components/Navigation/Tabs" />
 
 # Tabs
@@ -13,6 +17,19 @@ needs to access one sub-group at a time.
 
 Do not use Tabs as a means of navigating the view or in lieu of a Table of
 Contents.
+
+## Content guidelines
+
+Tabs are a metaphor for physical tab folders, so think of the content of each
+Tab as its' own "sheet of paper". What the content is can be flexible, as long
+as each Tab has distinct content.
+
+Tab labels contain only text by default, but additional content can be added if
+needed. Typically this should be some metadata that helps the user understand or
+anticipate the contents of each Tab, such as an InlineLabel to badge a count of
+items in each Tab, or an Icon. Do not insert additional interactive elements
+such as Buttons into a Tab label as it will create a confusing interaction
+pattern for the user.
 
 ## Related components
 

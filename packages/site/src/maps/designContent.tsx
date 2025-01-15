@@ -1,4 +1,3 @@
-import WelcomeGuide from "@atlantis/docs/README.md";
 import AnimationDocs from "@atlantis/docs/design/Animation.stories.mdx";
 import BorderDocs from "@atlantis/docs/design/Borders.stories.mdx";
 import ColorDocs from "@atlantis/docs/design/Colors.stories.mdx";
@@ -11,12 +10,6 @@ import TypographyDocs from "@atlantis/docs/design/Typography.stories.mdx";
 import { ContentMapItems } from "../types/maps";
 
 export const designContentMap: ContentMapItems = {
-  "welcome-guide": {
-    intro: "Welcome!",
-    title: "Welcome Guide!",
-    content: () => <WelcomeGuide />,
-  },
-
   animation: {
     intro: "Animation",
     title: "Animation",
@@ -47,9 +40,9 @@ export const designContentMap: ContentMapItems = {
     title: "Radii",
     content: () => <RadiiDocs />,
   },
-  "responsive-breakpoint": {
-    intro: "Responsive Breakpoints",
-    title: "Responsive Breakpoints",
+  breakpoints: {
+    intro: "Breakpoints",
+    title: "Breakpoints",
     content: () => <ResponsiveBreakpointsDocs />,
   },
   spacing: {
