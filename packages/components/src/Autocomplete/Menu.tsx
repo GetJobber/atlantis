@@ -1,4 +1,4 @@
-import React, { RefObject, useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import classnames from "classnames";
 import { createPortal } from "react-dom";
 import { usePopper } from "react-popper";
@@ -7,20 +7,10 @@ import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import { AnyOption, Option } from "./Option";
 import styles from "./Autocomplete.module.css";
 import { useKeyboardNavigation } from "./useKeyboardNavigation";
+import { MenuProps } from "./Autocomplete.types";
 import { Text } from "../Text";
 import { Icon } from "../Icon";
 import { Heading } from "../Heading";
-
-interface MenuProps {
-  readonly visible: boolean;
-  readonly options: Option[];
-  readonly selectedOption?: Option;
-  /**
-   * Element that it's attached to when the menu opens.
-   */
-  readonly attachTo: RefObject<Element | null>;
-  onOptionSelect(chosenOption: Option): void;
-}
 
 // Adding useIsMounted is what tipped this to 13 statements.
 // Any additions beyond useIsMounted should probably see this component refactored a bit

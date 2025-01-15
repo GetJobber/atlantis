@@ -1,4 +1,17 @@
+import { RefObject } from "react";
 import { XOR } from "ts-xor";
+
+export interface MenuProps {
+  readonly visible: boolean;
+  readonly options: Option[];
+  readonly selectedOption?: Option;
+
+  /**
+   * Element that it's attached to when the menu opens.
+   */
+  readonly attachTo: RefObject<Element | null>;
+  onOptionSelect(chosenOption: Option): void;
+}
 
 type OptionValue = string | number;
 

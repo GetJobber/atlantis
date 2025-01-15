@@ -2,7 +2,7 @@ import React, { Ref, forwardRef, useEffect, useRef, useState } from "react";
 import { XOR } from "ts-xor";
 import styles from "./Autocomplete.module.css";
 import { Menu } from "./Menu";
-import { AnyOption, GroupOption, Option } from "./Option";
+import { AnyOption, GroupOption, Option } from "./Autocomplete.types";
 import { InputText, InputTextRef } from "../InputText";
 import { FormFieldProps } from "../FormField";
 import { useDebounce } from "../utils/useDebounce";
