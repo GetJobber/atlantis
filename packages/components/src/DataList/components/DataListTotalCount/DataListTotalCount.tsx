@@ -33,7 +33,10 @@ export function DataListTotalCount({
   if (typeof totalCount === "number") {
     return (
       <DataListTotalCountContainer>
-        <Text variation="subdued">({totalCount.toLocaleString()} results)</Text>
+        <Text variation="subdued">
+          ({totalCount.toLocaleString()}{" "}
+          {totalCount == 1 ? "result" : "results"})
+        </Text>
       </DataListTotalCountContainer>
     );
   }
