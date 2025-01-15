@@ -6,10 +6,8 @@ import { MenuProps, Option } from "./Autocomplete.types";
 import styles from "./Autocomplete.module.css";
 import { useKeyboardNavigation } from "./useKeyboardNavigation";
 import { useRepositionMenu } from "./useRepositionMenu";
-import { isGroup, isOptionSelected } from "./Autocomplete.utils";
-import { Text } from "../Text";
-import { Icon } from "../Icon";
-import { Heading } from "../Heading";
+import { isOptionSelected } from "./Autocomplete.utils";
+import { MenuOption } from "./Option";
 
 // Adding useIsMounted is what tipped this to 13 statements.
 // Any additions beyond useIsMounted should probably see this component refactored a bit
@@ -59,44 +57,15 @@ export function Menu({
       {...{ setMenuRef, popperStyles, attributes, targetWidth, visible }}
     >
       {options.map((option, index) => {
-        const optionClass = classnames(styles.option, {
-          [styles.active]: index === highlightedIndex,
-          [styles.separator]: addSeparators,
-        });
-
-        if (isGroup(option)) {
-          return (
-            <div key={option.label} className={styles.heading}>
-              <Heading level={5}>{option.label}</Heading>
-            </div>
-          );
-        }
-
         return (
-          <button
-            className={optionClass}
-            key={option.value}
-            onMouseDown={onOptionSelect.bind(undefined, option)}
-          >
-            <div className={styles.icon}>
-              {isOptionSelected(selectedOption, option) && (
-                <Icon name="checkmark" size="small" />
-              )}
-            </div>
-            <div className={styles.text}>
-              <div className={styles.label}>
-                <Text>{option.label}</Text>
-                {option.description !== undefined && (
-                  <Text variation="subdued">{option.description}</Text>
-                )}
-              </div>
-              {option.details !== undefined && (
-                <div className={styles.details}>
-                  <Text>{option.details}</Text>
-                </div>
-              )}
-            </div>
-          </button>
+          <MenuOption
+            key={index}
+            option={option}
+            isHighlighted={index === highlightedIndex}
+            onOptionSelect={onOptionSelect}
+            isSelected={isOptionSelected(selectedOption, option)}
+            addSeparators={addSeparators}
+          />
         );
       })}
     </MenuPopper>
