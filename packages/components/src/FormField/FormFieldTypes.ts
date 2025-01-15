@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ReactNode, RefObject } from "react";
+import { ChangeEvent, ReactNode, RefObject } from "react";
 import { RegisterOptions } from "react-hook-form";
 import { XOR } from "ts-xor";
 import { Clearable } from "@jobber/hooks/src/useShowClear";
@@ -222,12 +222,12 @@ export interface FormFieldProps extends CommonFormFieldProps {
   /**
    * Focus callback.
    */
-  onFocus?(event?: React.FocusEvent): void;
+  onFocus?(): void;
 
   /**
    * Blur callback.
    */
-  onBlur?(event?: React.FocusEvent): void;
+  onBlur?(): void;
 
   onKeyUp?(event: React.KeyboardEvent<HTMLInputElement>): void;
 
