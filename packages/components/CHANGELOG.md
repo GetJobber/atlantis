@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.11.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.11.0...@jobber/components@6.11.1) (2025-01-15)
+
+
+### Reverts
+
+* "feat(components): add input text rebuild EARLY Iterations" ([#2315](https://github.com/GetJobber/atlantis/issues/2315)) ([ce22675](https://github.com/GetJobber/atlantis/commit/ce22675ce69ba289c93c75a4f42c392ff232e964)), closes [#2213](https://github.com/GetJobber/atlantis/issues/2213)
+
+
+
+
+
 # [6.11.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.10.2...@jobber/components@6.11.0) (2025-01-14)
 
 
