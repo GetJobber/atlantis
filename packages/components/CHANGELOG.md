@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.11.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.11.1...@jobber/components@6.11.2) (2025-01-15)
+
+
+### Bug Fixes
+
+* **components:** DataListTotalCount results pluralization ([#2314](https://github.com/GetJobber/atlantis/issues/2314)) ([189fa1f](https://github.com/GetJobber/atlantis/commit/189fa1fd3ff5f5520fca4e8eaa70669674d04980))
+
+
+
+
+
 ## [6.11.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.11.0...@jobber/components@6.11.1) (2025-01-15)
 
 
