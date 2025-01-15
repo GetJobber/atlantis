@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { PropsWithChildren, useCallback } from "react";
 import classnames from "classnames";
 import { createPortal } from "react-dom";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
@@ -55,12 +55,8 @@ export function Menu({
   const mounted = useIsMounted();
 
   const menu = (
-    <div
-      className={classnames(styles.options, { [styles.visible]: visible })}
-      ref={setMenuRef}
-      style={{ ...popperStyles.popper, width: targetWidth }}
-      data-elevation={"elevated"}
-      {...attributes.popper}
+    <MenuPopper
+      {...{ setMenuRef, popperStyles, attributes, targetWidth, visible }}
     >
       {options.map((option, index) => {
         const optionClass = classnames(styles.option, {
@@ -103,8 +99,37 @@ export function Menu({
           </button>
         );
       })}
-    </div>
+    </MenuPopper>
   );
 
   return mounted.current ? createPortal(menu, document.body) : menu;
+}
+
+interface MenuPoppperProps {
+  readonly setMenuRef: ReturnType<typeof useRepositionMenu>["setMenuRef"];
+  readonly popperStyles: ReturnType<typeof useRepositionMenu>["styles"];
+  readonly attributes: ReturnType<typeof useRepositionMenu>["attributes"];
+  readonly targetWidth: ReturnType<typeof useRepositionMenu>["targetWidth"];
+  readonly visible: boolean;
+}
+
+function MenuPopper({
+  setMenuRef,
+  popperStyles,
+  attributes,
+  targetWidth,
+  visible,
+  children,
+}: PropsWithChildren<MenuPoppperProps>) {
+  return (
+    <div
+      className={classnames(styles.options, { [styles.visible]: visible })}
+      ref={setMenuRef}
+      style={{ ...popperStyles.popper, width: targetWidth }}
+      data-elevation={"elevated"}
+      {...attributes.popper}
+    >
+      {children}
+    </div>
+  );
 }
