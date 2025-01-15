@@ -1,6 +1,6 @@
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useEffect, useState } from "react";
-import { AnyOption, Option } from "./Option";
+import { AnyOption, Option } from "./Autocomplete.types";
 import { isGroup } from "./Autocomplete.utils";
 
 enum IndexChange {

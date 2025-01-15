@@ -2,11 +2,11 @@ import React, { useCallback } from "react";
 import classnames from "classnames";
 import { createPortal } from "react-dom";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
-import { AnyOption, Option } from "./Option";
+import { MenuProps, Option } from "./Autocomplete.types";
 import styles from "./Autocomplete.module.css";
 import { useKeyboardNavigation } from "./useKeyboardNavigation";
-import { MenuProps } from "./Autocomplete.types";
 import { useRepositionMenu } from "./useRepositionMenu";
+import { isGroup, isOptionSelected } from "./Autocomplete.utils";
 import { Text } from "../Text";
 import { Icon } from "../Icon";
 import { Heading } from "../Heading";
@@ -107,14 +107,4 @@ export function Menu({
   );
 
   return mounted.current ? createPortal(menu, document.body) : menu;
-}
-
-function isOptionSelected(selectedOption: Option | undefined, option: Option) {
-  return selectedOption && selectedOption.value === option.value;
-}
-
-function isGroup(option: AnyOption) {
-  if (option.options) return true;
-
-  return false;
 }
