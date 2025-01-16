@@ -1,4 +1,4 @@
-import { Clearable } from "@jobber/hooks/src";
+import { Clearable } from "@jobber/hooks";
 import { XOR } from "ts-xor";
 import {
   AutocompleteTypes,
@@ -127,4 +127,4 @@ interface MultilineProps extends BaseProps {
   readonly rows?: number | RowRange;
 }
 
-export type InputTextPropOptions = XOR<BaseProps, MultilineProps>;
+export type LegacyInputTextProps = XOR<BaseProps, MultilineProps>;

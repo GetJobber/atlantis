@@ -2,21 +2,22 @@ import React, { ForwardedRef, forwardRef } from "react";
 import { InputText as InputTextLegacy } from "./InputText";
 import { InputTextSPAR } from "./InputText.rebuilt";
 import {
-  InputTextPropOptions,
   InputTextRebuiltProps,
   InputTextRef,
+  LegacyInputTextProps,
 } from "./InputText.types";
 
-export type InputTextProps = InputTextPropOptions | InputTextRebuiltProps;
+export type InputTextShimProps = LegacyInputTextProps | InputTextRebuiltProps;
+export type InputTextProps = LegacyInputTextProps;
 
 function isNewInputTextProps(
-  props: InputTextProps,
+  props: InputTextShimProps,
 ): props is InputTextRebuiltProps {
   return props.version === 2;
 }
 
 export const InputText = forwardRef(function InputTextShim(
-  props: InputTextProps,
+  props: InputTextShimProps,
   ref: ForwardedRef<HTMLTextAreaElement | HTMLInputElement | InputTextRef>,
 ) {
   if (isNewInputTextProps(props)) {
@@ -33,4 +34,4 @@ export const InputText = forwardRef(function InputTextShim(
   }
 });
 
-export { InputTextRef };
+export { InputTextRef, InputTextRebuiltProps };

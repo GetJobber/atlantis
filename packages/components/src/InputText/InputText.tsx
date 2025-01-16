@@ -1,10 +1,10 @@
 import React, { Ref, forwardRef, useImperativeHandle, useRef } from "react";
-import { InputTextPropOptions, InputTextRef } from "./InputText.types";
+import { InputTextRef, LegacyInputTextProps } from "./InputText.types";
 import { useTextAreaResize } from "./useTextAreaResize";
 import { FieldActionsRef, FormField } from "../FormField";
 
 function InputTextInternal(
-  props: InputTextPropOptions,
+  props: LegacyInputTextProps,
   ref: Ref<InputTextRef>,
 ) {
   const inputRef = useRef<HTMLTextAreaElement | HTMLInputElement>(null);
