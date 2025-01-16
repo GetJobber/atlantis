@@ -38,8 +38,12 @@ module.exports = {
     ],
     "import/no-default-export": "off",
 
-    // Typescript will already do it
-    "import/no-unresolved": "off",
+    "import/no-unresolved": [
+      "error",
+      {
+        ignore: ["^@atlantis/docs", "^@atlantis/packages"],
+      },
+    ],
 
     // Typescript will already do it
     "import/namespace": "off",
