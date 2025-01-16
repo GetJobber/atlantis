@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.11.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.11.2...@jobber/components@6.11.3) (2025-01-16)
+
+
+### Bug Fixes
+
+* **components:** Add transparent outline for DataList sort options  ([#2318](https://github.com/GetJobber/atlantis/issues/2318)) ([de4cad9](https://github.com/GetJobber/atlantis/commit/de4cad92955cc2642fad69b01686da0b03ad087f))
+* **components:** Enabled Tree Shaking properly in Atlantis. ([#2117](https://github.com/GetJobber/atlantis/issues/2117)) ([d9807e8](https://github.com/GetJobber/atlantis/commit/d9807e8875ee0658f8ac935dc9757d0570757795))
+
+
+
+
+
 ## [6.11.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.11.1...@jobber/components@6.11.2) (2025-01-15)
 
 
