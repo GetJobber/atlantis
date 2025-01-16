@@ -37,4 +37,5 @@
 
 .option:focus-visible {
   box-shadow: var(--shadow-focus);
+  outline: transparent;
 }
