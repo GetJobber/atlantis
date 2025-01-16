@@ -66,6 +66,7 @@ module.exports = {
 
     // Typescript will already do it
     "import/no-named-as-default-member": "off",
+
     // Hugely expensive. See other tools like Madge to solve circular dependencies
     "import/no-cycle": "off",
 
