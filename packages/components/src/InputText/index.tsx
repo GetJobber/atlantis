@@ -2,13 +2,12 @@ import React, { ForwardedRef, forwardRef } from "react";
 import { InputText as InputTextLegacy } from "./InputText";
 import { InputTextSPAR } from "./InputText.rebuilt";
 import {
+  InputTextLegacyProps,
   InputTextRebuiltProps,
   InputTextRef,
-  LegacyInputTextProps,
 } from "./InputText.types";
 
-export type InputTextShimProps = LegacyInputTextProps | InputTextRebuiltProps;
-export type InputTextProps = LegacyInputTextProps;
+export type InputTextShimProps = InputTextLegacyProps | InputTextRebuiltProps;
 
 function isNewInputTextProps(
   props: InputTextShimProps,
@@ -34,4 +33,4 @@ export const InputText = forwardRef(function InputTextShim(
   }
 });
 
-export { InputTextRef, InputTextRebuiltProps };
+export { InputTextRef, InputTextRebuiltProps, InputTextLegacyProps };
