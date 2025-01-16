@@ -192,7 +192,8 @@ For more information on how the packages are bootstrapped, check out
 ## Contributing
 
 Everyone is a friend of Atlantis and we welcome pull requests. See the
-[contribution guidelines](https://atlantis.getjobber.com/?path=/docs/contributing--docs) to learn how.
+[contribution guidelines](https://atlantis.getjobber.com/?path=/docs/contributing--docs)
+to learn how.
 
 ## Publishing
 
@@ -210,9 +211,9 @@ npm run release-the-kraken
 ### Publishing a failed release to NPM
 
 In some cases, the automatic release may successfully bump the version and add a
-[changelog](https://atlantis.getjobber.com/?path=/docs/changelog-components--docs) but fail to publish to
-NPM. If this happens and you're one of the Atlantis NPM collaborators, run the
-code below to send unpublished versions to NPM.
+[changelog](https://atlantis.getjobber.com/?path=/docs/changelog-components--docs)
+but fail to publish to NPM. If this happens and you're one of the Atlantis NPM
+collaborators, run the code below to send unpublished versions to NPM.
 
 ```sh
 npm run release:unpublished-package
