@@ -1,19 +1,6 @@
 module.exports = {
-  root: true,
   env: { browser: true, es6: true, node: true },
   parser: "@typescript-eslint/parser",
-  extends: [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended",
-    "plugin:jest/recommended",
-    "plugin:import/react",
-    "plugin:import/recommended",
-    "plugin:import/typescript",
-    "prettier",
-    "plugin:prettier/recommended",
-  ],
-  plugins: ["@typescript-eslint", "react", "prettier", "import", "jest"],
   settings: {
     react: { version: "detect" },
     "import/resolver": {
@@ -29,6 +16,7 @@ module.exports = {
     sourceType: "module",
   },
   rules: {
+    "monorepo-cop/no-relative-import-outside-package": "off",
     "import/order": [
       "error",
       {
