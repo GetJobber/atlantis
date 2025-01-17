@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.11.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.11.3...@jobber/components@6.11.4) (2025-01-17)
+
+
+### Bug Fixes
+
+* **components:** Fix label issue with SegmentedControl on older versions of Safari [113267] ([#2319](https://github.com/GetJobber/atlantis/issues/2319)) ([f69c26a](https://github.com/GetJobber/atlantis/commit/f69c26a060da05ff41d0ec02cd1b56ef914397fa))
+
+
+
+
+
 ## [6.11.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.11.2...@jobber/components@6.11.3) (2025-01-16)
 
 
