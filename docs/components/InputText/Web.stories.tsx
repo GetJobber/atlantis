@@ -75,7 +75,6 @@ Clearable.args = {
   clearable: "always",
 };
 
-// eslint-disable-next-line max-statements
 export const VersionComparison = () => {
   const [values, setValues] = React.useState({
     basic: "",
