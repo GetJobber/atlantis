@@ -118,7 +118,7 @@ FormatFile.DeleteButton = function DeleteButton({
         onClick={() => setDeleteConfirmationOpen(true)}
         variation="destructive"
         type="tertiary"
-        icon="trash"
+        icon="remove"
         ariaLabel="Delete File"
         size={buttonSize}
       />
