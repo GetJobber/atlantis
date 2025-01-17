@@ -6,19 +6,32 @@ import { ConfirmationModal } from "../ConfirmationModal";
 interface DeleteButtonProps {
   readonly size?: "base" | "large";
   readonly onDelete?: () => void;
+  readonly quickDelete?: boolean;
 }
 
-export function FormatFileDeleteButton({ size, onDelete }: DeleteButtonProps) {
+export function FormatFileDeleteButton({
+  size,
+  onDelete,
+  quickDelete,
+}: DeleteButtonProps) {
   const buttonSize = size === "base" ? "small" : "base";
   const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
+
+  const determineIfQuickDelete = () => {
+    if (!quickDelete) {
+      setDeleteConfirmationOpen(!deleteConfirmationOpen);
+    } else {
+      onDelete?.();
+    }
+  };
 
   return (
     <div className={styles.deleteButton}>
       <Button
-        onClick={() => setDeleteConfirmationOpen(true)}
+        onClick={determineIfQuickDelete}
         variation="destructive"
         type="tertiary"
-        icon="trash"
+        icon={quickDelete ? "remove" : "trash"}
         ariaLabel="Delete File"
         size={buttonSize}
       />
