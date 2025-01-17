@@ -7,6 +7,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { v4 } from "uuid";
 // According to react, it's imported within the package
 // https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis
 import { Root, createRoot } from "react-dom/client";
@@ -49,18 +50,20 @@ function ToasterOven(props: ToastProps) {
 }
 
 function ToastInternal(_: unknown, ref: Ref<ToastRef>) {
-  const [toastKey, setToastKey] = useState(0);
   const [toasts, setToasts] = useState<ToastProps[]>([]);
 
   useImperativeHandle(ref, () => ({
     add: props => {
-      setToastKey(toastKey + 1);
+      const id = props.id || v4();
+      const dedupeToasts = toasts.filter(toast => {
+        return toast.id !== id;
+      });
       setToasts([
         {
           ...props,
-          id: toastKey,
+          id,
         },
-        ...toasts,
+        ...dedupeToasts,
       ]);
     },
   }));
