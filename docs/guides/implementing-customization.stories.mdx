@@ -7,7 +7,7 @@ import { Banner } from "@jobber/components/Banner";
 
 When adding `UNSAFE_` props to a component, follow these guidelines:
 
-#### 1. Components have both `UNSAFE_className` & `UNSAFE_style`
+#### Components have both `UNSAFE_className` & `UNSAFE_style`
 
 `UNSAFE_className` is for applying custom classes:
 
@@ -25,9 +25,9 @@ UNSAFE_className={{ container: "custom-container-class" }}
   }}
 ```
 
-#### 2. Each component has a `container` type for the parent element
+#### Each component has a `container` type for the parent element
 
-#### 3. Where necessary, components have types for sub-components
+#### Where necessary, components have types for sub-components
 
 Each element should be targeted via `UNSAFE_` props. For example, in Popover:
 
@@ -37,7 +37,7 @@ Each element should be targeted via `UNSAFE_` props. For example, in Popover:
 | `.dismissButtonContainer` | ✅                  |
 | `.arrow`                  | ✅                  |
 
-#### 4. Naming conventions for sub-components are carefully considered
+#### Naming conventions for sub-components are carefully considered
 
 Sub-components may be other Atlantis components that will eventually have their
 own classNames.
