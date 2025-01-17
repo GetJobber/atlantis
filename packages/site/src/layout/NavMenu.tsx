@@ -1,4 +1,4 @@
-import { Box, Button, Content, Icon, Typography } from "@jobber/components";
+import { Box, Button, Icon, Typography } from "@jobber/components";
 import { Link, useLocation } from "react-router-dom";
 import { Fragment, PropsWithChildren, useRef, useState } from "react";
 import { SearchBox } from "./SearchBox";
@@ -78,8 +78,7 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
           <Button label="Skip to Content" onClick={skipToContent} />
         </VisibleWhenFocused>
         <Box>
-          {/* TODO: remove ?new when we roll out the new docs site to everyone */}
-          <Link to="/?new">
+          <Link to="/">
             <JobberLogo />
           </Link>
         </Box>
@@ -90,13 +89,9 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
             className={styles.searchButton}
             aria-label="Search"
           >
-            <Icon name="search" />
+            <Icon name="search" color="greyBlue" />
             <span className={styles.searchButtonText}>
-              <Typography
-                size={"base"}
-                textColor={"text"}
-                fontWeight={"semiBold"}
-              >
+              <Typography size={"base"} textColor={"textSecondary"}>
                 Search
               </Typography>
             </span>
@@ -107,36 +102,31 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
       </div>
       <div className={styles.navMenu}>
         <MenuList>
-          <Content spacing="smaller">
-            {routes?.map((route, routeIndex) => {
-              if (route.inNav === false) return null;
+          {routes?.map((route, routeIndex) => {
+            if (route.inNav === false) return null;
 
-              if (route.children) {
-                return (
-                  <Box key={routeIndex}>
-                    <AnimatedPresenceDisclosure
-                      to={route.path ?? "/"}
-                      title={route.handle}
-                      selected={pathname.startsWith(route.path ?? "/")}
-                    >
-                      {iterateSubMenu(route.children, routeIndex)}
-                    </AnimatedPresenceDisclosure>
-                  </Box>
-                );
-              }
-
+            if (route.children) {
               return (
-                <MenuItem key={routeIndex}>
-                  <StyledLink
-                    to={getRoutePath(route.path) ?? "/"}
-                    selectedRef={selectedRef}
+                <Box key={routeIndex}>
+                  <AnimatedPresenceDisclosure
+                    to={route.path ?? "/"}
+                    title={route.handle}
+                    selected={pathname.startsWith(route.path ?? "/")}
                   >
-                    {route.handle}
-                  </StyledLink>
-                </MenuItem>
+                    {iterateSubMenu(route.children, routeIndex)}
+                  </AnimatedPresenceDisclosure>
+                </Box>
               );
-            })}
-          </Content>
+            }
+
+            return (
+              <MenuItem key={routeIndex}>
+                <StyledLink to={route.path ?? "/"} selectedRef={selectedRef}>
+                  {route.handle}
+                </StyledLink>
+              </MenuItem>
+            );
+          })}
         </MenuList>
       </div>
     </nav>
@@ -160,9 +150,7 @@ export const StyledLink = ({
   readonly selectedRef: React.RefObject<HTMLAnchorElement>;
 }>) => {
   const { pathname } = useLocation();
-  // The `to === "/?new"` check allows Home to be highlighted in the side nav
-  // TODO: remove when we roll out the new docs site & double check Home is still highlighted
-  const isSelected = pathname === to || (pathname === "/" && to === "/?new");
+  const isSelected = pathname === to;
   const className = getLinkClassName(
     `${styles.navMenuItem} ${styles.navMenuLink}`,
     isSelected,
@@ -213,8 +201,8 @@ export const MenuList = ({ children }: PropsWithChildren) => {
 
 export const MenuItem = ({ children }: PropsWithChildren) => {
   return (
-    <li style={{ listStyle: "none" }}>
-      <Typography fontWeight="bold" size="large" textColor="text">
+    <li style={{ listStyle: "none" }} className="stickySectionHeader">
+      <Typography fontWeight="semiBold" size={"large"} textColor="heading">
         {children}
       </Typography>
     </li>
@@ -224,9 +212,7 @@ export const MenuItem = ({ children }: PropsWithChildren) => {
 export const MenuSubItem = ({ children }: PropsWithChildren) => {
   return (
     <li style={{ listStyle: "none" }}>
-      <Typography fontWeight="semiBold" size="base" textColor="text">
-        {children}
-      </Typography>
+      <Typography textColor="heading">{children}</Typography>
     </li>
   );
 };
@@ -238,12 +224,3 @@ export const sectionTitle = (section: string) => (
     </Typography>
   </div>
 );
-
-// TODO: delete this once we roll out the new docs site to everyone
-function getRoutePath(path?: string) {
-  if (path === "/") {
-    return "/?new";
-  }
-
-  return path;
-}

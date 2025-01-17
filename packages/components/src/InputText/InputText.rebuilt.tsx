@@ -1,5 +1,4 @@
 import React, { forwardRef, useId } from "react";
-import { useSafeLayoutEffect } from "@jobber/hooks";
 import omit from "lodash/omit";
 import { InputTextRebuiltProps } from "./InputText.types";
 import { useTextAreaResize } from "./useTextAreaResize";
@@ -16,7 +15,6 @@ import {
 import { FormFieldPostFix } from "../FormField/FormFieldPostFix";
 import { mergeRefs } from "../utils/mergeRefs";
 
-// eslint-disable-next-line max-statements
 export const InputTextSPAR = forwardRef(function InputTextInternal(
   props: InputTextRebuiltProps,
   inputRefs: React.Ref<HTMLInputElement | HTMLTextAreaElement>,
@@ -32,7 +30,12 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
   };
   const id = useId();
 
-  const { resize, rowRange } = useTextAreaResize(props.rows);
+  const { rowRange } = useTextAreaResize({
+    rows: props.rows,
+    value: props.value,
+    inputRef: inputTextRef,
+    wrapperRef: wrapperRef,
+  });
 
   const type = props.multiline ? "textarea" : "text";
 
@@ -75,10 +78,6 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     handleFocus,
     handleKeyDown,
   });
-
-  useSafeLayoutEffect(() => {
-    resize(inputTextRef, wrapperRef);
-  }, [inputTextRef.current, wrapperRef.current]);
 
   return (
     <FormFieldWrapper

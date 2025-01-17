@@ -29,6 +29,10 @@ See
 
 ### Functional
 
+<Banner type="warning" dismissible={false}>
+  A "functional" Popover hasn't been implemented in a componentized fashion yet.
+</Banner>
+
 Reveal a list of available actions to the user. For example, if the user clicks
 on an element and there are four potential actions they might take, Popover is a
 great way to present those actions. If you're looking to provide a menu of
@@ -36,11 +40,67 @@ actions that comes complete with a trigger button,
 [Menu](../?path=/docs/components-navigation-menu--docs) has that bundle ready to
 go.
 
-<Banner type="warning" dismissible={false}>
-  A "functional" Popover hasn't been implemented in a componentized fashion yet.
-</Banner>
+## Component customization
 
-### Related components
+### UNSAFE\_ props (advanced usage)
+
+General information for using `UNSAFE_` props can be found
+[here](https://atlantis.getjobber.com/storybook/?path=/docs/guides-customizing-components--docs#unsafe_-props).
+
+Popover has three elements that can be targeted with classes or styles. These
+are the container, the dismiss button container, and the arrow.
+
+**Note**: Use of `UNSAFE_` props is **at your own risk** and should be
+considered a **last resort**. Future Popover updates may lead to unintended
+breakages.
+
+#### UNSAFE_className
+
+Use `UNSAFE_className` to apply custom classes to the Popover. This can be
+useful for applying styles via CSS Modules.
+
+```tsx
+// Popover.tsx
+  UNSAFE_className={{
+    container: styles.customPopoverBackground,
+    dismissButtonContainer: styles.customDismissButton,
+    arrow: styles.customArrow,
+  }}
+
+// Popover.module.css
+.customPopoverBackground {
+  background-color: var(--color-surface--background);
+}
+
+.customDismissButton {
+  background-color: var(--color-indigo);
+}
+
+.customArrow {
+  padding-left: var(--space-extravagant);
+}
+```
+
+You can also use the `UNSAFE_className` prop to apply custom classes to any
+element within the Popover.
+
+```tsx
+  UNSAFE_className={{ container: "custom-container-class" }}
+```
+
+#### UNSAFE_style
+
+Use `UNSAFE_style` to apply inline custom styles to the Popover.
+
+```tsx
+  UNSAFE_style={{
+    container: { backgroundColor: "lightblue" },
+    dismissButtonContainer: { paddingRight: "var(--space-larger)" },
+    arrow: { paddingRight: "var(--space-extravagant)" },
+  }}
+```
+
+## Related components
 
 To add a menu button that presents multiple actions to the user, use
 [Menu](../?path=/docs/components-navigation-menu--docs).

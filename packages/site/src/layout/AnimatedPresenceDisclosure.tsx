@@ -61,10 +61,10 @@ function AnimatedPresenceDisclosure({
       <span
         className={`${styles.disclosureNavItem} ${
           isTitleSelected ? styles.selected : ""
-        }`}
+        } stickySectionHeader`}
       >
         <Link to={to ?? "/"} tabIndex={0}>
-          <Typography fontWeight="semiBold" size="large" textColor="heading">
+          <Typography fontWeight="semiBold" size={"large"} textColor="heading">
             {title}
           </Typography>
         </Link>

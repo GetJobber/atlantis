@@ -8,8 +8,8 @@ export default {
   content: () => <Content />,
   props: Props,
   component: {
-    element: `<Box padding="base" border="base">
-        <Text>Box Content</Text>
+    element: `<Box padding="large" background="success--surface" radius="large" border="base">
+        <Text>Box content</Text>
       </Box>
     `,
   },

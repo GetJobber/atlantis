@@ -1,11 +1,12 @@
 {
   "name": "@jobber/components",
-  "version": "6.9.1",
+  "version": "6.11.4",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "sideEffects": false,
   "exports": {
     ".": {
       "types": "./dist/index.d.mts",

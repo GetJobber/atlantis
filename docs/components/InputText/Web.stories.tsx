@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { InputText } from "@jobber/components/InputText";
 import { Button } from "@jobber/components/Button";
 import { Content } from "@jobber/components/Content";
 import { Grid } from "@jobber/components/Grid";
+import { Box } from "@jobber/components/Box";
 
 export default {
   title: "Components/Forms and Inputs/InputText/Web",
@@ -81,7 +82,7 @@ export const VersionComparison = () => {
     multiline: "",
     error: "",
     disabled: "",
-    readonly: "",
+    readonly: "This is readonly",
     withToolbar: "",
     prefix: "",
     suffix: "",
@@ -91,6 +92,7 @@ export const VersionComparison = () => {
     sizeSmall: "",
     sizeLarge: "",
     inline: "",
+    multilineResize: "",
   });
   const [multiline, setMultiline] = React.useState(false);
   const [inline, setInline] = React.useState(false);
@@ -172,7 +174,18 @@ export const VersionComparison = () => {
           },
           "basic",
         )}
-
+        {renderBothVersions(
+          "Readonly",
+          {
+            placeholder: "Readonly",
+            ...extraProps,
+            // For version 1
+            readonly: true,
+            // For version 2
+            readOnly: true,
+          },
+          "readonly",
+        )}
         {renderBothVersions(
           "Right Aligned",
           {
@@ -261,6 +274,15 @@ export const VersionComparison = () => {
           { placeholder: "With Size", size: "large", ...extraProps },
           "sizeLarge",
         )}
+        {renderBothVersions(
+          "Multiline Resize",
+          {
+            placeholder: "Multiline resize",
+            rows: { min: 2, max: 10 },
+            multiline: true,
+          },
+          "multilineResize",
+        )}
       </div>
       <Grid>
         <Grid.Cell size={{ xs: 6 }}>
@@ -312,7 +334,38 @@ export const VersionComparison = () => {
             }}
           />
         </Grid.Cell>
+        <Grid.Cell size={{ xs: 6 }}>
+          <Button
+            label="Reset MultiLine resize"
+            onClick={() => handleChange("multilineResize")("")}
+          />
+        </Grid.Cell>
       </Grid>
     </Content>
   );
+};
+
+const ControlledTemplate: ComponentStory<typeof InputText> = args => {
+  const [value, setValue] = useState("");
+
+  return (
+    <Box gap="base">
+      <InputText
+        {...args}
+        rows={{ min: 1, max: 10 }}
+        multiline
+        value={value}
+        onChange={v => setValue(`${v}`)}
+      />
+
+      <div>
+        <Button label="Reset" onClick={() => setValue("")} />
+      </div>
+    </Box>
+  );
+};
+
+export const Controlled = ControlledTemplate.bind({});
+Controlled.args = {
+  placeholder: "Hakunamatata",
 };

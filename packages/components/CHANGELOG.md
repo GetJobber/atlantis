@@ -3,6 +3,95 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.11.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.11.3...@jobber/components@6.11.4) (2025-01-17)
+
+
+### Bug Fixes
+
+* **components:** Fix label issue with SegmentedControl on older versions of Safari [113267] ([#2319](https://github.com/GetJobber/atlantis/issues/2319)) ([f69c26a](https://github.com/GetJobber/atlantis/commit/f69c26a060da05ff41d0ec02cd1b56ef914397fa))
+
+
+
+
+
+## [6.11.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.11.2...@jobber/components@6.11.3) (2025-01-16)
+
+
+### Bug Fixes
+
+* **components:** Add transparent outline for DataList sort options  ([#2318](https://github.com/GetJobber/atlantis/issues/2318)) ([de4cad9](https://github.com/GetJobber/atlantis/commit/de4cad92955cc2642fad69b01686da0b03ad087f))
+* **components:** Enabled Tree Shaking properly in Atlantis. ([#2117](https://github.com/GetJobber/atlantis/issues/2117)) ([d9807e8](https://github.com/GetJobber/atlantis/commit/d9807e8875ee0658f8ac935dc9757d0570757795))
+
+
+
+
+
+## [6.11.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.11.1...@jobber/components@6.11.2) (2025-01-15)
+
+
+### Bug Fixes
+
+* **components:** DataListTotalCount results pluralization ([#2314](https://github.com/GetJobber/atlantis/issues/2314)) ([189fa1f](https://github.com/GetJobber/atlantis/commit/189fa1fd3ff5f5520fca4e8eaa70669674d04980))
+
+
+
+
+
+## [6.11.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.11.0...@jobber/components@6.11.1) (2025-01-15)
+
+
+### Reverts
+
+* "feat(components): add input text rebuild EARLY Iterations" ([#2315](https://github.com/GetJobber/atlantis/issues/2315)) ([ce22675](https://github.com/GetJobber/atlantis/commit/ce22675ce69ba289c93c75a4f42c392ff232e964)), closes [#2213](https://github.com/GetJobber/atlantis/issues/2213)
+
+
+
+
+
+# [6.11.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.10.2...@jobber/components@6.11.0) (2025-01-14)
+
+
+### Features
+
+* **components:** add input text rebuild EARLY Iterations ([#2213](https://github.com/GetJobber/atlantis/issues/2213)) ([f02601b](https://github.com/GetJobber/atlantis/commit/f02601b81b0eab81e652416bba7277afd17e058e))
+
+
+
+
+
+## [6.10.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.10.1...@jobber/components@6.10.2) (2025-01-10)
+
+
+### Bug Fixes
+
+* **components:** Auto resize multiline InputText when controlled value is changed ([#2268](https://github.com/GetJobber/atlantis/issues/2268)) ([50670ae](https://github.com/GetJobber/atlantis/commit/50670ae1b45f3df839c2b52ae977e0da45d6ce83))
+
+
+
+
+
+## [6.10.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.10.0...@jobber/components@6.10.1) (2025-01-09)
+
+
+### Bug Fixes
+
+* **components:** Avoid rendering DataList title container when empty  ([#2170](https://github.com/GetJobber/atlantis/issues/2170)) ([4850a26](https://github.com/GetJobber/atlantis/commit/4850a260a269c211fac3504a5382a09cb91cde00))
+
+
+
+
+
+# [6.10.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.9.1...@jobber/components@6.10.0) (2025-01-08)
+
+
+### Features
+
+* **components:** Add UNSAFE_className and UNSAFE_style to Popover ([#2282](https://github.com/GetJobber/atlantis/issues/2282)) ([d620abf](https://github.com/GetJobber/atlantis/commit/d620abf73749437f16cee5f6114cdf714214c977))
+
+
+
+
+
 ## [6.9.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.9.0...@jobber/components@6.9.1) (2025-01-06)
 
 **Note:** Version bump only for package @jobber/components

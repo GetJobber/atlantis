@@ -1,4 +1,5 @@
 import { Meta } from "@storybook/addon-docs";
+import { Banner } from "@jobber/components/Banner";
 
 <Meta title="Guides/Customizing components" />
 
@@ -57,11 +58,13 @@ items is customized.
 
 ### Other customization approaches
 
+#### ReactNode
+
 While custom render functions are our primary approach it is not used in all
 places. For simple cases where customization does not depend on internal state,
 we have chosen to extend prop types to allow for a `ReactNode` to be passed in.
 
-#### Example: Tab component (see [Tabs](..?path=/docs/components-navigation-tabs--docs))
+##### Example: Tab component (see [Tabs](..?path=/docs/components-navigation-tabs--docs))
 
 Instead of introducing `customRenderLabel`, the `Tab` component was updated to
 allow the `label` prop to accept a `ReactNode`.
@@ -75,3 +78,53 @@ Atlantis components. Customizing the `label` didn’t require exposing or
 interacting with the `Tab`’s internal state (e.g., active state styling). Once
 the design becomes more complex a custom render function would become a better
 fit.
+
+#### UNSAFE\_ props
+
+In some cases, we provide `UNSAFE_` props to allow for further advanced
+customization. These props are prefixed with `UNSAFE_` to indicate that they
+should only be used when absolutely necessary, as they may break the component's
+future compatibility.
+
+<Banner type="warning">
+  <p>
+    Use of `UNSAFE_` props is **at your own risk** and should be considered a
+    **last resort**. Future Atlantis updates may lead to unintended breakages.
+  </p>
+</Banner>
+
+If you are considering using an `UNSAFE_` prop, we encourage you or your
+designers to talk to us. We may be able to suggest an alternative
+implementation, or your design can help inform future additions to Atlantis.
+
+- **`UNSAFE_className`**: Allows you to apply custom classnames to the
+  component's container and in some cases, sub-components.
+
+```tsx
+<Component UNSAFE_className={{ container: styles.customClass }} />
+
+.customClass {
+  background-color: var(--color-surface);
+  padding: var(--space-base);
+}
+```
+
+```tsx
+<Component UNSAFE_className={{ container: "custom-container-class" }} />
+```
+
+- **`UNSAFE_style`**: Allows you to apply custom inline styles to the
+  component's container and in some cases, sub-components.
+
+```tsx
+<Component
+  UNSAFE_style={{
+    container: { backgroundColor: "var(--color-surface--background)" },
+    subItem: { paddingRight: "var(--space-larger)" },
+  }}
+/>
+```
+
+**Note:** Inspiration for this approach was taken from React Spectrum's
+philosophy and implementation of their own class based
+[escape hatches](https://react-spectrum.adobe.com/react-spectrum/styling.html#escape-hatches).

@@ -1,4 +1,4 @@
-import { Clearable } from "@jobber/hooks/src";
+import { Clearable } from "@jobber/hooks";
 import { XOR } from "ts-xor";
 import {
   AutocompleteTypes,
@@ -14,6 +14,10 @@ export interface RowRange {
 
 export type InputTextVersion = 1 | 2 | undefined;
 
+/**
+ * Experimental version 2 of the InputText component.
+ * Do not use unless you have talked with Atlantis first.
+ */
 export interface InputTextRebuiltProps
   extends Omit<
     React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement>,
@@ -126,5 +130,7 @@ interface MultilineProps extends BaseProps {
    */
   readonly rows?: number | RowRange;
 }
-
-export type InputTextPropOptions = XOR<BaseProps, MultilineProps>;
+/**
+ * InputText props for the existing version of InputText
+ */
+export type InputTextLegacyProps = XOR<BaseProps, MultilineProps>;

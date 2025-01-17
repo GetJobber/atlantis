@@ -7,11 +7,11 @@
   flex-direction: column;
   padding: 36px 0 0 0;
   height: 100dvh;
-  width: 200px;
+  min-width: var(--sideBarWidth);
   box-sizing: border-box;
 }
 
-.navMenuContainer > * {
+.navMenuContainer>* {
   padding-left: var(--space-base);
   padding-right: var(--space-base);
   padding-bottom: var(--space-base);
@@ -58,6 +58,8 @@
   padding: var(--space-small);
   background: var(--color-surface);
   outline: transparent;
+  cursor: pointer;
+  transition: all var(--timing-base) ease-out;
 
   &:focus-visible {
     box-shadow: var(--shadow-focus);
@@ -85,6 +87,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: var(--radius-small);
   box-shadow: var(--shadow-low);
 }
 
@@ -122,38 +125,42 @@
   transition: all var(--timing-base) ease-out;
   margin-left: var(--negativeHoverOffset);
   margin-right: var(--negativeHoverOffset);
+  margin-bottom: var(--space-smaller);
   padding-left: var(--hoverOffset);
   min-height: var(--navItemHeight);
   align-items: stretch;
   justify-content: space-between;
-
-  &:hover {
-    background-color: var(--color-surface--background--hover);
-  }
-
-  a {
-    background-color: transparent;
-    display: flex;
-    align-items: center;
-    outline: transparent;
-    text-decoration: none;
-    flex-grow: 1;
-    min-height: var(--navItemHeight);
-
-    &:focus-visible {
-      box-shadow: var(--shadow-focus);
-      background-color: var(--color-surface--background--hover);
-    }
-  }
-
-  button {
-    border-radius: var(--radius-small);
-    mix-blend-mode: multiply;
-  }
+  background-color: var(--color-surface--background);
 }
 
-:root[data-theme="dark"] .disclosureNavItem {
-  button {
-    mix-blend-mode: screen;
-  }
+.disclosureNavItem a {
+  background-color: transparent;
+  display: flex;
+  display: inline-flex;
+  align-self: stretch;
+  width: 100%;
+  align-items: center;
+  outline: transparent;
+  text-decoration: none;
+  flex-grow: 1;
+  min-height: var(--navItemHeight);
+  outline: transparent;
+}
+
+.disclosureNavItem:hover {
+  background-color: var(--color-surface--background--hover);
+}
+
+.disclosureNavItem a:focus-visible {
+  box-shadow: var(--shadow-focus);
+  background-color: var(--color-surface--background--hover);
+}
+
+.disclosureNavItem button {
+  border-radius: var(--radius-small);
+  mix-blend-mode: multiply;
+}
+
+:root[data-theme="dark"] .disclosureNavItem button {
+  mix-blend-mode: screen;
 }
