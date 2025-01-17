@@ -44,11 +44,13 @@ go.
 
 ### UNSAFE\_ props (advanced usage)
 
-General information for using `UNSAFE_` props can be found
-[here](https://atlantis.getjobber.com/storybook/?path=/docs/guides-customizing-components--docs#unsafe_-props).
+Popover has three elements that can be targeted with classes or styles:
 
-Popover has three elements that can be targeted with classes or styles. These
-are the container, the dismiss button container, and the arrow.
+| **Element**               | **`UNSAFE_` props** |
+| :------------------------ | :------------------ |
+| `.container`              | ✅                  |
+| `.dismissButtonContainer` | ✅                  |
+| `.arrow`                  | ✅                  |
 
 **Note**: Use of `UNSAFE_` props is **at your own risk** and should be
 considered a **last resort**. Future Popover updates may lead to unintended
@@ -60,14 +62,14 @@ Use `UNSAFE_className` to apply custom classes to the Popover. This can be
 useful for applying styles via CSS Modules.
 
 ```tsx
-// Popover.tsx
+// CustomPopover.tsx
   UNSAFE_className={{
     container: styles.customPopoverBackground,
     dismissButtonContainer: styles.customDismissButton,
     arrow: styles.customArrow,
   }}
 
-// Popover.module.css
+// CustomPopover.module.css
 .customPopoverBackground {
   background-color: var(--color-surface--background);
 }
@@ -99,6 +101,9 @@ Use `UNSAFE_style` to apply inline custom styles to the Popover.
     arrow: { paddingRight: "var(--space-extravagant)" },
   }}
 ```
+
+General information for using `UNSAFE_` props can be found
+[here](https://atlantis.getjobber.com/storybook/?path=/docs/guides-customizing-components--docs#unsafe_-props).
 
 ## Related components
 
