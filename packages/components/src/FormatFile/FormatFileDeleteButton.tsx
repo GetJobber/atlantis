@@ -28,7 +28,7 @@ export function FormatFileDeleteButton({
   return (
     <div className={styles.deleteButton}>
       <Button
-        onClick={() => determineIfQuickDelete()}
+        onClick={determineIfQuickDelete}
         variation="destructive"
         type="tertiary"
         icon={quickDelete ? "remove" : "trash"}
