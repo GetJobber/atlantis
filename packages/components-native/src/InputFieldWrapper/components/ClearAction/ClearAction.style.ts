@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     alignSelf: "center",
   },
   circle: {
-    backgroundColor: tokens["color-surface--background"],
+    backgroundColor: tokens["color-interactive--background"],
     borderRadius: tokens["radius-circle"],
     width: tokens["space-large"],
     height: tokens["space-large"],

@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     height: 8,
     borderRadius: tokens["radius-circle"],
     overflow: "hidden",
-    backgroundColor: tokens["color-surface--background"],
+    backgroundColor: tokens["color-interactive--background"],
   },
   progress: {
     height: "100%",
