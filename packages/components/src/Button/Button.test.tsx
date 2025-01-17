@@ -1,12 +1,20 @@
 import React from "react";
-import { fireEvent, render } from "@testing-library/react";
+import {
+  createEvent,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "@testing-library/react";
 import {
   Route,
   RouteChildrenProps,
   BrowserRouter as Router,
   Switch,
 } from "react-router-dom";
+import userEvent from "@testing-library/user-event";
 import { Button } from ".";
+import { ButtonNavigationProvider } from "./ButtonNavigationProvider";
 
 it("renders a Button", () => {
   const { container } = render(<Button label="Submit" />);
@@ -84,45 +92,41 @@ it("renders a Button with a loading state", () => {
   expect(container).toMatchSnapshot();
 });
 
-test("it should call the handler on click", () => {
+it("should call the handler on click", async () => {
   const label = "Click Me";
   const clickHandler = jest.fn();
-  const { getByText } = render(<Button label={label} onClick={clickHandler} />);
+  render(<Button label={label} onClick={clickHandler} />);
 
-  fireEvent.click(getByText(label));
+  await userEvent.click(screen.getByText(label));
   expect(clickHandler).toHaveBeenCalledTimes(1);
 });
 
-test("it shouldn't call the handler on click when disabled", () => {
+it("shouldn't call the handler on click when disabled", async () => {
   const label = "I'm disabled";
   const clickHandler = jest.fn();
-  const { getByText } = render(
-    <Button label={label} disabled={true} onClick={clickHandler} />,
-  );
+  render(<Button label={label} disabled={true} onClick={clickHandler} />);
 
-  fireEvent.click(getByText(label));
+  await userEvent.click(screen.getByText(label));
   expect(clickHandler).toHaveBeenCalledTimes(0);
 });
 
-test("it should call the handler on mouse down", () => {
+it("should call the handler on mouse down", async () => {
   const label = "Click Me";
   const mouseDownHandler = jest.fn();
-  const { getByText } = render(
-    <Button label={label} onMouseDown={mouseDownHandler} />,
-  );
+  render(<Button label={label} onMouseDown={mouseDownHandler} />);
 
-  fireEvent.mouseDown(getByText(label));
+  await userEvent.click(screen.getByText(label));
   expect(mouseDownHandler).toHaveBeenCalledTimes(1);
 });
 
-test("it shouldn't call the handler on mouse down when disabled", () => {
+it("shouldn't call the handler on mouse down when disabled", async () => {
   const label = "I'm disabled";
   const mouseDownHandler = jest.fn();
-  const { getByText } = render(
+  render(
     <Button label={label} disabled={true} onMouseDown={mouseDownHandler} />,
   );
 
-  fireEvent.mouseDown(getByText(label));
+  await userEvent.click(screen.getByText(label));
   expect(mouseDownHandler).toHaveBeenCalledTimes(0);
 });
 
@@ -147,8 +151,8 @@ it("renders button type='submit'", () => {
   expect(button).toBeInstanceOf(HTMLButtonElement);
 });
 describe("react router dom", () => {
-  it("routes when buttons are clicked", () => {
-    const { getByText, queryByText } = render(
+  it("routes when buttons are clicked", async () => {
+    render(
       <Router>
         <Button label="One" to="/" />
         <Button label="Two" to="/two" />
@@ -167,24 +171,24 @@ describe("react router dom", () => {
       </Router>,
     );
 
-    expect(queryByText("Uno")).toBeInstanceOf(HTMLElement);
-    expect(queryByText("Dos")).not.toBeInstanceOf(HTMLElement);
-    expect(queryByText("Tres")).not.toBeInstanceOf(HTMLElement);
+    expect(screen.queryByText("Uno")).toBeInstanceOf(HTMLElement);
+    expect(screen.queryByText("Dos")).not.toBeInstanceOf(HTMLElement);
+    expect(screen.queryByText("Tres")).not.toBeInstanceOf(HTMLElement);
 
-    fireEvent.click(getByText("Two"));
+    await userEvent.click(screen.getByText("Two"));
 
-    expect(queryByText("Uno")).not.toBeInstanceOf(HTMLElement);
-    expect(queryByText("Dos")).toBeInstanceOf(HTMLElement);
-    expect(queryByText("Tres")).not.toBeInstanceOf(HTMLElement);
+    expect(screen.queryByText("Uno")).not.toBeInstanceOf(HTMLElement);
+    expect(screen.queryByText("Dos")).toBeInstanceOf(HTMLElement);
+    expect(screen.queryByText("Tres")).not.toBeInstanceOf(HTMLElement);
 
-    fireEvent.click(getByText("Three"));
+    await userEvent.click(screen.getByText("Three"));
 
-    expect(queryByText("Uno")).not.toBeInstanceOf(HTMLElement);
-    expect(queryByText("Dos")).not.toBeInstanceOf(HTMLElement);
-    expect(queryByText("Tres")).toBeInstanceOf(HTMLElement);
+    expect(screen.queryByText("Uno")).not.toBeInstanceOf(HTMLElement);
+    expect(screen.queryByText("Dos")).not.toBeInstanceOf(HTMLElement);
+    expect(screen.queryByText("Tres")).toBeInstanceOf(HTMLElement);
   });
 
-  it("routes with when buttons include link state", () => {
+  it("routes with when buttons include link state", async () => {
     interface LocationStateTest {
       locationStateTest: string;
     }
@@ -197,7 +201,7 @@ describe("react router dom", () => {
     ) {
       return <span>{props.location?.state?.locationStateTest}</span>;
     }
-    const { getByText } = render(
+    render(
       <Router>
         <Button label="One" to="/" />
         <Button
@@ -219,8 +223,8 @@ describe("react router dom", () => {
         </Switch>
       </Router>,
     );
-    fireEvent.click(getByText("Two"));
-    expect(getByText("This is state")).toBeDefined();
+    await userEvent.click(screen.getByText("Two"));
+    expect(screen.getByText("This is state")).toBeDefined();
   });
 });
 
@@ -240,4 +244,68 @@ describe("Button role", () => {
     const { getByRole } = render(<Button label="hello" role="combobox" />);
     expect(getByRole("combobox")).toBeInstanceOf(HTMLButtonElement);
   });
+});
+
+describe("Button Navigation Provider", () => {
+  const mockOpenLink = jest.fn();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const mockRouterOptions: any = { routerOptions: true };
+  const mockLocationHref = "https://getjobber.com";
+  const mockClientSideRoutingURLProp = "/jobber";
+  const buttonUrlProp = "jobber.com";
+  const mockBuildLocationHref = jest.fn(() => mockLocationHref);
+
+  function RenderNavigationButton(useClientSideRouting: boolean) {
+    return (
+      <ButtonNavigationProvider
+        openLink={mockOpenLink}
+        buildLocationHref={mockBuildLocationHref}
+      >
+        <Button
+          label="hello"
+          url={
+            useClientSideRouting ? mockClientSideRoutingURLProp : buttonUrlProp
+          }
+          routerOptions={mockRouterOptions}
+          useClientSideRouting={useClientSideRouting}
+        />
+      </ButtonNavigationProvider>
+    );
+  }
+  it("should preventDefault and call openLink with the provided url prop when useClientSideRouting is true", async () => {
+    render(RenderNavigationButton(true));
+    const mouseEvent = createEvent("click", screen.getByText("hello"), {
+      bubbles: true,
+      cancelable: true,
+    });
+    fireEvent(screen.getByText("hello"), mouseEvent);
+    await waitFor(() =>
+      expect(mockOpenLink).toHaveBeenCalledWith(
+        mockClientSideRoutingURLProp,
+        mockRouterOptions,
+        expect.objectContaining({
+          nativeEvent: mouseEvent,
+          defaultPrevented: true,
+        }),
+      ),
+    );
+  });
+
+  it("should not call openLink when useClientSideRouting is false", async () => {
+    render(RenderNavigationButton(false));
+    await userEvent.click(screen.getByText("hello"));
+    expect(mockOpenLink).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    { useClientSideRouting: true, expectedHref: mockLocationHref },
+    { useClientSideRouting: false, expectedHref: buttonUrlProp },
+  ])(
+    `should should build the correct href with when client side routing is $clientSideRouting`,
+    async ({ useClientSideRouting, expectedHref }) => {
+      render(RenderNavigationButton(useClientSideRouting));
+      const link = screen.getByRole("link");
+      expect(link).toHaveAttribute("href", expectedHref);
+    },
+  );
 });
