@@ -16,7 +16,9 @@ export default {
 } as ComponentMeta<typeof InputText>;
 
 const BasicTemplate: ComponentStory<typeof InputText> = args => {
-  return <InputText {...args} />;
+  const [value, setValue] = React.useState("");
+
+  return <InputText {...args} value={value} onChange={setValue} version={2} />;
 };
 
 export const Basic = BasicTemplate.bind({});
@@ -59,7 +61,6 @@ Toolbar.args = {
 
 export const Readonly = BasicTemplate.bind({});
 Readonly.args = {
-  defaultValue: "Rocinante",
   readonly: true,
 };
 
