@@ -57,3 +57,23 @@ ExpandedWithDelete.args = {
   onDelete: () => console.log("Deleted"),
   onClick: () => alert("Clicked"),
 };
+
+export const Overridden = BasicTemplate.bind({});
+Overridden.args = {
+  file: {
+    key: "abc",
+    name: "image_of_something.png",
+    type: "image/png",
+    size: 213402324,
+    progress: 1,
+    src: () => Promise.resolve("https://picsum.photos/250"),
+  },
+  slots: {
+    deleteButton: () => (
+      <button onClick={() => alert("delete!")}>Delete</button>
+    ),
+  },
+  display: "expanded",
+  onDelete: () => console.log("Deleted"),
+  onClick: () => alert("Clicked"),
+};
