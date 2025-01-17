@@ -5,8 +5,11 @@ declare const styles: {
   readonly "toolbar": string;
   readonly "title": string;
   readonly "imagesWrapper": string;
-  readonly "overlay": string;
   readonly "image": string;
+  readonly "backgroundBlur": string;
+  readonly "backgroundImage": string;
+  readonly "thumbnailList": string;
+  readonly "thumbnail": string;
 };
 export = styles;
 

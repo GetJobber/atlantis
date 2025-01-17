@@ -10,6 +10,7 @@ import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import styles from "./LightBox.module.css";
 import { ButtonDismiss } from "../ButtonDismiss";
 import { Button } from "../Button";
+import { AtlantisThemeContextProvider } from "../AtlantisThemeContext";
 
 interface PresentedImage {
   title?: string;
@@ -126,52 +127,66 @@ export function LightBox({
   const template = (
     <>
       {open && (
-        <div
-          className={styles.lightboxWrapper}
-          tabIndex={0}
-          aria-label="Lightbox"
-          key="Lightbox"
-          ref={lightboxRef}
-        >
-          <div className={styles.toolbar}>
-            <span className={styles.title}>
-              {images[currentImageIndex].title}
-            </span>
-            <ButtonDismiss ariaLabel="Close" onClick={handleRequestClose} />
-          </div>
-          <div className={styles.imagesWrapper}>
-            <AnimatePresence initial={false}>
-              <motion.img
-                key={currentImageIndex}
-                variants={variants}
-                src={images[currentImageIndex].url}
-                custom={direction}
-                className={styles.image}
-                style={{ y: "-50%" }}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={imageTransition}
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={1}
-                onDragEnd={handleOnDragEnd}
+        <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
+          <div
+            className={styles.lightboxWrapper}
+            tabIndex={0}
+            aria-label="Lightbox"
+            key="Lightbox"
+            ref={lightboxRef}
+          >
+            <div className={styles.toolbar}>
+              {/* {images[currentImageIndex].title} */}
+              <ButtonDismiss ariaLabel="Close" onClick={handleRequestClose} />
+            </div>
+            <div className={styles.imagesWrapper}>
+              <div
+                className={styles.backgroundImage}
+                onClick={handleRequestClose}
+                style={{
+                  backgroundImage: `url("${images[currentImageIndex].url}")`,
+                }}
+              >
+                <div className={styles.backgroundBlur} />
+              </div>
+              <AnimatePresence initial={false}>
+                <motion.img
+                  key={currentImageIndex}
+                  variants={variants}
+                  src={images[currentImageIndex].url}
+                  custom={direction}
+                  className={styles.image}
+                  style={{ y: "-50%" }}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={imageTransition}
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={1}
+                  onDragEnd={handleOnDragEnd}
+                />
+              </AnimatePresence>
+            </div>
+
+            {images.length > 1 && (
+              <>
+                <PreviousButton onClick={debouncedHandlePrevious} />
+                <NextButton onClick={debouncedHandleNext} />
+              </>
+            )}
+
+            <ul className={styles.thumbnailList}>
+              <ThumbnailListItem
+                imageUrl={images[currentImageIndex - 1]?.url}
               />
-            </AnimatePresence>
+              <ThumbnailListItem imageUrl={images[currentImageIndex]?.url} />
+              <ThumbnailListItem
+                imageUrl={images[currentImageIndex + 1]?.url}
+              />
+            </ul>
           </div>
-
-          {images.length > 1 && (
-            <>
-              <PreviousButton onClick={debouncedHandlePrevious} />
-              <NextButton onClick={debouncedHandleNext} />
-            </>
-          )}
-
-          <div className={styles.toolbar}>
-            {images[currentImageIndex].caption}
-          </div>
-          <div className={styles.overlay} onClick={handleRequestClose} />
-        </div>
+        </AtlantisThemeContextProvider>
       )}
     </>
   );
@@ -254,4 +269,19 @@ function togglePrintStyles(open: boolean) {
   } catch (error) {
     console.error(error);
   }
+}
+
+function ThumbnailListItem({ imageUrl }: { readonly imageUrl?: string }) {
+  if (imageUrl) {
+    return (
+      <li>
+        <div
+          className={styles.thumbnail}
+          style={{ backgroundImage: `url("${imageUrl}")` }}
+        />
+      </li>
+    );
+  }
+
+  return <li data-no-item />;
 }
