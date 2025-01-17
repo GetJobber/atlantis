@@ -47,7 +47,7 @@ export const FeedbackBanner = () => {
     >
       <Disclosure
         title={
-          <Heading>
+          <Heading level={4}>
             Welcome to the <Emphasis variation="highlight">new</Emphasis>{" "}
             Atlantis docs site
           </Heading>
