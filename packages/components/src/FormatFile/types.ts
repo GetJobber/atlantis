@@ -33,7 +33,7 @@ export interface FormatFileProps {
   /**
    * Available Component Overrides
    */
-  slots: {
+  slots?: {
     thumbnail?: React.FC;
     progress?: React.FC;
     expanded?: React.FC;
