@@ -16,9 +16,7 @@ export default {
 } as ComponentMeta<typeof InputText>;
 
 const BasicTemplate: ComponentStory<typeof InputText> = args => {
-  const [value, setValue] = React.useState("");
-
-  return <InputText {...args} value={value} onChange={setValue} version={2} />;
+  return <InputText {...args} />;
 };
 
 export const Basic = BasicTemplate.bind({});
@@ -61,6 +59,7 @@ Toolbar.args = {
 
 export const Readonly = BasicTemplate.bind({});
 Readonly.args = {
+  defaultValue: "Rocinante",
   readonly: true,
 };
 
@@ -76,13 +75,14 @@ Clearable.args = {
   clearable: "always",
 };
 
+// eslint-disable-next-line max-statements
 export const VersionComparison = () => {
   const [values, setValues] = React.useState({
     basic: "",
     multiline: "",
     error: "",
     disabled: "",
-    readonly: "",
+    readonly: "This is readonly",
     withToolbar: "",
     prefix: "",
     suffix: "",
@@ -174,7 +174,18 @@ export const VersionComparison = () => {
           },
           "basic",
         )}
-
+        {renderBothVersions(
+          "Readonly",
+          {
+            placeholder: "Readonly",
+            ...extraProps,
+            // For version 1
+            readonly: true,
+            // For version 2
+            readOnly: true,
+          },
+          "readonly",
+        )}
         {renderBothVersions(
           "Right Aligned",
           {
