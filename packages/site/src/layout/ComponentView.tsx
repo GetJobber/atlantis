@@ -1,7 +1,7 @@
 import {
   Banner,
   Box,
-  Chip,
+  Button,
   Content,
   Page,
   Tab,
@@ -206,13 +206,22 @@ export const ComponentView = () => {
       <BaseView.Main>
         <Page width="narrow" title={PageMeta.title}>
           <Box>
-            <Content spacing="large">
-              <Box direction="column" gap="small" alignItems="flex-end">
+            <Content spacing="larger">
+              <Box direction="column" gap="base">
                 <Box direction="row" gap="small">
                   {PageMeta?.component?.codedExamples?.map((example, index) => (
-                    <Chip
+                    <Button
                       key={index}
-                      onClick={() => updateCode(example.code)}
+                      variation={example.active ? "work" : "learning"}
+                      type={"secondary"}
+                      size={"small"}
+                      onClick={() => {
+                        updateCode(example.code);
+                        PageMeta.component.codedExamples.forEach(
+                          ex => (ex.active = false),
+                        );
+                        example.active = true;
+                      }}
                       label={example.name}
                     />
                   ))}
