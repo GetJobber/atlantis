@@ -1,4 +1,12 @@
-import { Banner, Box, Content, Page, Tab, Tabs } from "@jobber/components";
+import {
+  Banner,
+  Box,
+  Chip,
+  Content,
+  Page,
+  Tab,
+  Tabs,
+} from "@jobber/components";
 import { useParams } from "react-router";
 import { useEffect, useMemo, useState } from "react";
 import { BaseView } from "./BaseView";
@@ -200,6 +208,15 @@ export const ComponentView = () => {
           <Box>
             <Content spacing="large">
               <Box direction="column" gap="small" alignItems="flex-end">
+                <Box direction="row" gap="small">
+                  {PageMeta?.component?.codedExamples?.map((example, index) => (
+                    <Chip
+                      key={index}
+                      onClick={() => updateCode(example.code)}
+                      label={example.name}
+                    />
+                  ))}
+                </Box>
                 <CodePreviewWindow>
                   <AtlantisPreviewViewer />
                 </CodePreviewWindow>

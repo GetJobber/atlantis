@@ -18,6 +18,7 @@ export interface ContentExport {
   }>;
   component: {
     element?: unknown;
+    codedExamples?: Array<{ code: string; name: string }>;
     mobileElement?: unknown;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Will be deleted soon, don't worry.
     defaultProps?: any;
