@@ -4,6 +4,7 @@ import DocumentationStyleguideComponent from "@atlantis/docs/guides/documentatio
 import FrontendStyleguideComponenet from "@atlantis/docs/guides/frontend-style.stories.mdx";
 import GettingSatrtedWithReactComponent from "@atlantis/docs/getting-started-with-react/getting-started-with-react.stories.mdx";
 import PullRequestTitleGeneratorComponent from "@atlantis/docs/guides/pull-request-title-generator.stories.mdx";
+import ImplementingCustomizationComponent from "@atlantis/docs/guides/implementing-customization.stories.mdx";
 import { ContentMapItems } from "../types/maps";
 
 export const guidesContentMap: ContentMapItems = {
@@ -16,6 +17,11 @@ export const guidesContentMap: ContentMapItems = {
     intro: "Customizing components",
     title: "Customizing components",
     content: () => <CustomizingComponentsComponent />,
+  },
+  "implementing-customization": {
+    intro: "Implementing customization",
+    title: "Implementing customization",
+    content: () => <ImplementingCustomizationComponent />,
   },
   "documentation-styleguide": {
     intro: "Writing documentation",

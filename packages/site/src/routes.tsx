@@ -176,6 +176,11 @@ export const routes: Array<AtlantisRoute> = [
         exact: true,
       },
       {
+        path: "/guides/implementing-customization",
+        handle: "Implementing customization",
+        exact: true,
+      },
+      {
         path: "/guides/documentation-styleguide",
         handle: "Writing documentation",
         exact: true,

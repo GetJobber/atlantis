@@ -9,6 +9,11 @@ export const guidesList = [
     additionalMatches: ["Custom", "Composability"],
   },
   {
+    title: "Implementing customization",
+    to: "/guides/implementing-customization",
+    additionalMatches: ["Custom"],
+  },
+  {
     title: "Writing documentation",
     to: "/guides/documentation-styleguide",
   },
