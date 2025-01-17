@@ -1,5 +1,12 @@
-import { Box, Button, Heading } from "@jobber/components";
-import { useState } from "react";
+import {
+  Box,
+  Button,
+  Content,
+  Disclosure,
+  Emphasis,
+  Heading,
+  Text,
+} from "@jobber/components";
 
 /**
  * FeedbackBanner
@@ -10,7 +17,6 @@ import { useState } from "react";
  * @returns
  */
 export const FeedbackBanner = () => {
-  const [isExpanded, setIsExpanded] = useState(true);
   const hideFeedbackBanner = localStorage.getItem("hideFeedbackBanner");
 
   if (hideFeedbackBanner) {
@@ -19,12 +25,12 @@ export const FeedbackBanner = () => {
 
   return (
     <div
+      data-elevation="elevated"
       style={{
         position: "fixed",
         bottom: 0,
         width: "375px",
         backgroundColor: "var(--color-surface)",
-        color: "white",
         left: 0,
         right: 0,
         margin: "0 auto",
@@ -32,50 +38,47 @@ export const FeedbackBanner = () => {
         display: "flex",
         flexDirection: "column",
         border: "1px solid var(--color-border)",
+        borderBottom: "none",
         borderTopLeftRadius: "var(--radius-base)",
         borderTopRightRadius: "var(--radius-base)",
         boxShadow: "var(--shadow-base)",
         padding: "var(--space-small)",
-        transition: "transform var(--timing-base) ease-in-out",
-        transform: isExpanded
-          ? "translateY(0px)"
-          : "translateY(calc(100% - 40px))",
       }}
     >
-      <Box
-        direction="row"
-        justifyContent="space-between"
-        width="100%"
-        alignItems="center"
+      <Disclosure
+        title={
+          <Heading>
+            Welcome to the <Emphasis variation="highlight">new</Emphasis>{" "}
+            Atlantis docs site
+          </Heading>
+        }
       >
-        <Heading level={4}>Welcome to the new site</Heading>
-        <Button
-          icon={isExpanded ? "arrowDown" : "arrowUp"}
-          ariaLabel={isExpanded ? "Collapse" : "Expand"}
-          variation="subtle"
-          type="secondary"
-          onClick={() => setIsExpanded(!isExpanded)}
-        />
-      </Box>
-      {isExpanded && (
-        <Box direction="row" alignItems="center" margin={{ top: "base" }}>
-          <Button
-            type="secondary"
-            url="https://docs.google.com/forms/d/e/1FAIpQLSdP0Gx84AT9rD5Y2Snm4x-COzavhE4pjNyOfOjjbdEmycdsAQ/viewform?usp=sharing"
-            label="Give feedback"
-          />
-          <Button
-            type="tertiary"
-            variation="subtle"
-            onClick={() => {
-              localStorage.setItem("nolikeynewsite", "true");
-              window.location.href =
-                "/storybook/?path=/docs/introduction--docs";
-            }}
-            label="Back to old site"
-          />
-        </Box>
-      )}
+        <Content spacing="small">
+          <Text size="small">
+            We&apos;re excited to share our new docs site with you! Please take
+            a moment to give us feedback so we can make it even better.
+          </Text>
+          <Box direction="row" alignItems="center" gap="small">
+            <Button
+              type="secondary"
+              size="small"
+              url="https://docs.google.com/forms/d/e/1FAIpQLSdP0Gx84AT9rD5Y2Snm4x-COzavhE4pjNyOfOjjbdEmycdsAQ/viewform?usp=sharing"
+              label="Give feedback"
+            />
+            <Button
+              type="tertiary"
+              variation="subtle"
+              size="small"
+              onClick={() => {
+                localStorage.setItem("nolikeynewsite", "true");
+                window.location.href =
+                  "/storybook/?path=/docs/introduction--docs";
+              }}
+              label="Back to old site"
+            />
+          </Box>
+        </Content>
+      </Disclosure>
     </div>
   );
 };
