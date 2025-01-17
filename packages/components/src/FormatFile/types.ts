@@ -29,6 +29,16 @@ export interface FormatFileProps {
    * onDelete callback - this function will be called when the delete action is triggered
    */
   onDelete?(): void;
+
+  /**
+   * Available Component Overrides
+   */
+  slots: {
+    thumbnail?: React.FC;
+    progress?: React.FC;
+    expanded?: React.FC;
+    deleteButton?: React.FC;
+  };
 }
 
 export type UseFormatFileStylesProps = Pick<

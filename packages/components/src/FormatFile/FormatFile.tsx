@@ -15,6 +15,7 @@ export function FormatFile({
   displaySize = "base",
   onDelete,
   onClick,
+  slots,
 }: FormatFileProps) {
   const { isComplete, DetailsContainer, fileSize } = useFormatFile({
     onClick,
@@ -30,6 +31,11 @@ export function FormatFile({
       isComplete,
     });
 
+  const ThumbnailSlot = slots?.thumbnail || Thumbnail;
+  const ExpandedSlot = slots?.expanded || FormatFile.Expanded;
+  const DeleteButtonSlot = slots?.deleteButton || FormatFile.DeleteButton;
+  const ProgressSlot = slots?.progress || FormatFile.Progress;
+
   return (
     <div className={wrapperClassNames}>
       <DetailsContainer
@@ -40,21 +46,17 @@ export function FormatFile({
         aria-busy={!isComplete}
       >
         <div className={thumbnailContainerClassNames}>
-          <Thumbnail
+          <ThumbnailSlot
             key={file.key}
             compact={display === "compact"}
             file={file}
             size={displaySize}
           />
-          <FormatFile.Progress file={file} isComplete={isComplete} />
+          <ProgressSlot file={file} isComplete={isComplete} />
         </div>
-        <FormatFile.Expanded
-          file={file}
-          fileSize={fileSize}
-          display={display}
-        />
+        <ExpandedSlot file={file} fileSize={fileSize} display={display} />
       </DetailsContainer>
-      <FormatFile.DeleteButton
+      <DeleteButtonSlot
         isComplete={isComplete}
         onDelete={onDelete}
         displaySize={displaySize}
@@ -118,7 +120,7 @@ FormatFile.DeleteButton = function DeleteButton({
         onClick={() => setDeleteConfirmationOpen(true)}
         variation="destructive"
         type="tertiary"
-        icon="remove"
+        icon="trash"
         ariaLabel="Delete File"
         size={buttonSize}
       />
