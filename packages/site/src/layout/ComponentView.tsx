@@ -198,8 +198,31 @@ export const ComponentView = () => {
       <BaseView.Main>
         <Page width="narrow" title={PageMeta.title}>
           <Box>
+<<<<<<< Updated upstream
             <Content spacing="large">
               <Box direction="column" gap="small" alignItems="flex-end">
+=======
+            <Content spacing="larger">
+              <Box direction="column" gap="base">
+                <Box direction="row" gap="small" width={700}>
+                  {PageMeta?.component?.codedExamples?.map((example, index) => (
+                    <Button
+                      key={index}
+                      variation={example.active ? "work" : "learning"}
+                      type={"secondary"}
+                      size={"small"}
+                      onClick={() => {
+                        updateCode(example.code);
+                        PageMeta.component.codedExamples.forEach(
+                          ex => (ex.active = false),
+                        );
+                        example.active = true;
+                      }}
+                      label={example.name}
+                    />
+                  ))}
+                </Box>
+>>>>>>> Stashed changes
                 <CodePreviewWindow>
                   <AtlantisPreviewViewer />
                 </CodePreviewWindow>

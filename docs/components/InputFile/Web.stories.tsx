@@ -8,6 +8,8 @@ import {
 import { FormatFile } from "@jobber/components/FormatFile";
 import { Heading } from "@jobber/components/Heading";
 import { Content } from "@jobber/components/Content";
+import { Modal } from "@jobber/components/Modal";
+import { Button } from "@jobber/components/Button";
 
 export default {
   title: "Components/Forms and Inputs/InputFile/Web",
@@ -23,6 +25,7 @@ export default {
             "InputFile",
             "updateFiles",
           ],
+          "@jobber/components/Modal": ["Modal"],
         },
       },
     },
@@ -171,6 +174,37 @@ const VariationsAndSizesTemplate: ComponentStory<typeof InputFile> = args => {
     return Promise.resolve({ url: "https://httpbin.org/post" });
   }
 };
+
+const ImagesOnlyTemplate: ComponentStory<typeof InputFile> = args => {
+  const [files, setFiles] = useState<FileUpload[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  return (
+    <>
+      <Button label="Open Modal" onClick={() => setIsModalOpen(true)} />
+      <Modal
+        title="Images Only"
+        open={isModalOpen}
+        onRequestClose={() => setIsModalOpen(false)}
+      >
+        <InputFile
+          {...args}
+          onUploadStart={handleUpload}
+          onUploadProgress={handleUpload}
+          onUploadComplete={handleUpload}
+        />
+        {files.map(file => (
+          <FormatFile file={file} key={file.key} />
+        ))}
+      </Modal>
+    </>
+  );
+
+  function handleUpload(file: FileUpload) {
+    setFiles(oldFiles => updateFiles(file, oldFiles));
+  }
+};
+
 export const VariationsAndSizes = VariationsAndSizesTemplate.bind({});
 
 export const UsingUpdateFiles = StatefulTemplate.bind({});
@@ -179,7 +213,7 @@ UsingUpdateFiles.args = {
   getUploadParams: () => Promise.resolve({ url: "https://httpbin.org/post" }),
 };
 
-export const ImagesOnly = StatefulTemplate.bind({});
+export const ImagesOnly = ImagesOnlyTemplate.bind({});
 ImagesOnly.args = {
   allowMultiple: true,
   allowedTypes: "images",
