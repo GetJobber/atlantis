@@ -26,12 +26,13 @@
   align-items: center;
   padding: 0;
   border: none;
+  border-radius: var(--radius-base);
   text-align: left;
   background-color: transparent;
 }
 
 .large {
-  width: 168px;
+  width: 900px;
   height: 168px;
 }
 
@@ -53,12 +54,12 @@
 }
 
 .expanded .wrapper {
-  outline: none;
+  outline: transparent;
 }
 
 .compact .wrapper:focus {
   box-shadow: var(--shadow-focus);
-  outline: none;
+  outline: transparent;
 }
 
 .compact .thumbnail {
