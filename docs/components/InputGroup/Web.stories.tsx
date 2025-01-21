@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { InputGroup } from "@jobber/components/InputGroup";
 import { InputTime } from "@jobber/components/InputTime";
 import { InputText } from "@jobber/components/InputText";
+import { Form } from "@jobber/components/Form";
+import { InputValidation } from "@jobber/components/InputValidation";
+import { Button } from "@jobber/components/Button";
 
 export default {
   title: "Components/Forms and Inputs/InputGroup/Web",
@@ -49,6 +52,57 @@ const NestedTemplate: ComponentStory<typeof InputGroup> = args => {
   );
 };
 
+const QuotemealTemplate: ComponentStory<typeof InputGroup> = () => {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [titleValidation, setTitleValidation] = useState("");
+  const [descriptionValidation, setDescriptionValidation] = useState("");
+
+  const handleValidation = () => {
+    if (!title) setTitleValidation("Title is required.");
+    if (!description) setDescriptionValidation("Description is required.");
+  };
+
+  const handleSubmit = () => {
+    handleValidation();
+
+    if (title && description) {
+      alert("Form submitted! 🎉");
+    }
+  };
+
+  return (
+    <Form onSubmit={handleSubmit}>
+      <InputGroup>
+        <InputText
+          name="title"
+          placeholder="Title"
+          value={title}
+          onChange={(newValue: string) => {
+            setTitle(newValue);
+            setTitleValidation("");
+          }}
+        />
+        <InputText
+          name="description"
+          placeholder="Description"
+          value={description}
+          onChange={(newValue: string) => {
+            setDescription(newValue);
+            setDescriptionValidation("");
+          }}
+          multiline
+        />
+      </InputGroup>
+      {titleValidation && <InputValidation message={titleValidation} />}
+      {descriptionValidation && (
+        <InputValidation message={descriptionValidation} />
+      )}
+      <Button label="Submit" submit />
+    </Form>
+  );
+};
+
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
   flowDirection: "vertical",
@@ -58,3 +112,5 @@ export const Nested = NestedTemplate.bind({});
 Nested.args = {
   flowDirection: "vertical",
 };
+
+export const Quotemeal = QuotemealTemplate.bind({});
