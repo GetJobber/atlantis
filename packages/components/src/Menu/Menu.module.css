@@ -77,7 +77,7 @@
 }
 
 .action:hover,
-.action:focus {
+.action:focus-visible {
   background-color: var(--color-surface--hover);
 }
 
