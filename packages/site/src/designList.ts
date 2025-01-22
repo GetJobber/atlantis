@@ -24,12 +24,6 @@ export const designList = [
     additionalMatches: ["Palette", "Colours"],
   },
   {
-    title: "Interaction",
-    to: "/design/interaction",
-    imageURL: "/Colors.png",
-    additionalMatches: ["Animation", "Hover", "Focus", "Active"],
-  },
-  {
     title: "Elevations",
     to: "/design/elevations",
     imageURL: "/Elevations.png",
