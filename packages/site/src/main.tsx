@@ -17,7 +17,6 @@ handleStorybookRedirect();
 
 const urlParams = new URLSearchParams(window.location.search);
 const minimalMode = urlParams.has("minimal");
-const context = urlParams.get("context") || "";
 
 initAtlantisTheme(urlParams.get("theme"));
 
@@ -31,7 +30,6 @@ function renderApp() {
           <AtlantisThemeContextProvider>
             <AtlantisSiteProvider
               minimal={{ requested: minimalMode, enabled: false }}
-              context={context}
             >
               <Analytics />
               <AtlantisPreviewProvider>

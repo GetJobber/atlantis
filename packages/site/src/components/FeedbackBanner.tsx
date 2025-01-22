@@ -13,9 +13,9 @@ import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
 export const FeedbackBanner = () => {
   const [isExpanded, setIsExpanded] = useState(true);
   const hideFeedbackBanner = localStorage.getItem("hideFeedbackBanner");
-  const { context } = useAtlantisSite();
+  const { isMinimal } = useAtlantisSite();
 
-  if (hideFeedbackBanner || context === "vscode") {
+  if (hideFeedbackBanner || isMinimal) {
     return null;
   }
 

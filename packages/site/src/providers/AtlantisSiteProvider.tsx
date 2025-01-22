@@ -14,14 +14,12 @@ const AtlantisSiteContext = createContext<{
   enableMinimal: () => void;
   disableMinimal: () => void;
   isMinimal: boolean;
-  context: string;
 }>({
   minimal: {
     requested: false,
     enabled: false,
   },
   isMinimal: false,
-  context: "",
   enableMinimal: () => ({}),
   disableMinimal: () => ({}),
 });
@@ -33,10 +31,8 @@ export const useAtlantisSite = () => {
 export const AtlantisSiteProvider = ({
   children,
   minimal,
-  context,
 }: PropsWithChildren<{
   readonly minimal: { enabled: boolean; requested: boolean };
-  readonly context: string;
 }>) => {
   const [minimalState, setMinimalState] = useState(minimal);
 
@@ -61,7 +57,6 @@ export const AtlantisSiteProvider = ({
         isMinimal: minimalState.enabled && minimalState.requested,
         enableMinimal,
         disableMinimal,
-        context,
       }}
     >
       {children}
