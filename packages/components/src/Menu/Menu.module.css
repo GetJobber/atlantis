@@ -75,7 +75,7 @@
   cursor: pointer;
   gap: var(--menu-space);
   align-items: center;
-    transition: background-color var(--timing-base) ease-in, box-shadow var(--timing-base) ease-in;
+  transition: background-color var(--timing-base) ease-in, box-shadow var(--timing-base) ease-in;
 }
 
 .action:hover,
