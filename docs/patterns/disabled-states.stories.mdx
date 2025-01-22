@@ -1,0 +1,85 @@
+import { Meta } from "@storybook/addon-docs";
+import { Figma } from "@storybook/addon-designs/blocks";
+import showDo from "./assets/Atlantis_Docs_Show_Do.png";
+import showDont from "./assets/Atlantis_Docs_Show_Dont.png";
+
+<Meta title="Patterns/Disabled states" />
+
+This pattern involves how we disable, show, or hide actions based on different
+criteria. It becomes a balance in explaining the interface and not overwhelming
+users with choice. Below are a few of the common examples and accompanying
+guidelines for handling those situations.
+
+<Figma url="https://www.figma.com/design/HXWXusJPZLmaJNGlKEpiyhXW/Product%2FBase?m=auto&node-id=21011-642&t=SHOjoSApnGE6QQeB-1"
+>
+
+Goal Avoid placing the user in a frustrating state where actions are unavailable
+and they do not know how to enable.
+
+Use when… An action is unavailable to the user based on a prerequisite condition
+(i.e. the user cannot cannot submit a form unless data has been entered)
+
+Principle Visibility of System Status
+
+Recognition over recall
+
+Solution Avoid disabled states Your first goal should be to avoid disabled
+states entirely. If there is a condition required for the user to take an
+action, present the opportunity to set the required condition before the user is
+blocked by a disabled state. An example of this is on our “work objects” which
+all require a client to be saved. If the user makes it to the bottom of the form
+and has not added a client, the primary CTA is “Select Client“.
+
+Open image-20210609-175911.png
+
+After the user has selected a client, the primary “Save” and “Save And” actions
+become available.
+
+Open image-20210609-175948.png
+
+If you can’t avoid them If a “fulfilled prerequisite” is unavailable and you
+must disable the element, ensure that the user is informed why they cannot
+perform the action and how to enable it. In the Web example, it's not obvious
+that the reason you can't create a tax group is because you need to have more
+than one tax rate first.
+
+Web On web, a tooltip may help explain to the user why they can’t select an
+element. Make sure the Tooltip can be triggered both by focus and hover.
+
+Open image-20210610-174109.png
+
+Mobile In a mobile context, Supporting Text maybe more helpful for users as it
+does not require an additional interaction to uncover. If an input element (such
+as a Select or InputText) has “assistive text” built in, do not use the
+assistive text in a disabled state, but provide the Supporting Text as a
+separate element.
+
+Open image-20220516-231545.png
+
+Permissions-related unavailability When functionality or a feature isn't
+available because of a user's permissions, instead of disabling hide the action
+altogether.
+
+Account-tier-related unavailability If functionality is unavailable because of a
+user’s subscription tier, but we want to introduce the functionality to
+encourage them to upgrade, use an InlinePrompt near the place the unavailable UI
+would exist, or a Button variation=learning in place of the UI to nudge the user
+to learn more.
+
+Why Avoiding disabled states is an accessibility best practice and also
+generally helpful from a usability perspective. The more time a user spends
+trying to understand why they can’t take an action, the less time they spend
+getting sh\*t done.
+
+Disabling elements is often the easiest path for a development team to manage
+conditional states of an interface to design and build, but results in a
+less-friendly interface for the user.
+
+## Non-obvious details
+
+Implementation If an element must be disabled and there’s an explanation to the
+user…
+
+Web: Tooltip can be a helpful component
+
+Mobile: Text (level Supporting) is useful for mobile contexts
