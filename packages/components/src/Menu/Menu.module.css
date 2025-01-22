@@ -65,24 +65,28 @@
 
 .action {
   display: flex;
-  gap: var(--menu-space);
   width: 100%;
   padding: var(--menu-space);
   border: none;
   border-radius: var(--radius-base);
+  outline: transparent;
   text-align: start;
   background-color: transparent;
   cursor: pointer;
+  gap: var(--menu-space);
   align-items: center;
+  transition:
+    background-color var(--timing-base) ease-in,
+    box-shadow var(--timing-base) ease-in;
 }
 
 .action:hover,
-.action:focus {
+.action:focus-visible {
   background-color: var(--color-surface--hover);
 }
 
 .action:focus-visible {
-  outline-color: var(--color-focus);
+  box-shadow: var(--shadow-focus);
 }
 .action span {
   /* match appearance of Button labels */
