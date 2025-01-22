@@ -1,5 +1,14 @@
 import { Canvas, Meta } from "@storybook/addon-docs";
-import { Card, Content, Disclosure, InputText, Text } from "@jobber/components";
+import { Figma } from "@storybook/addon-designs/blocks";
+import {
+  Card,
+  Content,
+  Disclosure,
+  InputText,
+  Text,
+  Tabs,
+  Tab,
+} from "@jobber/components";
 
 <Meta title="Design/Animation" />
 
@@ -8,53 +17,81 @@ import { Card, Content, Disclosure, InputText, Text } from "@jobber/components";
 Interactive states provide feedback to the user in a predictable way to help
 them predict what will happen when they engage with Jobber.
 
-## State change
+## State changes
 
 State changes are used to inform the user that an interaction is about to, is,
-our has taken place.
+or has taken place.
 
-### Web
+<Tabs>
+    <Tab label="Web">
+        The primary examples for web are hover and focus.
 
-The primary examples for web are hover and focus.
+        <Canvas>
+        <Card header="Interactive element example" url="#">
+            <Content>
+            <Text>This card has examples of hover and focus states for the web</Text>
+            <InputText placeholder="Inputs change too" />
+            </Content>
+        </Card>
+        </Canvas>
 
-<Canvas>
-  <Card header="Interactive element example" url="#">
-    <Content>
-      <Text>This card has examples of hover and focus states for the web</Text>
-      <InputText placeholder="Inputs change too" />
-    </Content>
-  </Card>
-</Canvas>
+        #### CSS implementation
+            Atlantis components come with these states handled, but if you're extending or
+            creating custom elements, this is the general pattern used to achieve an "Atlantis"
+            interactive state.
 
-<Disclosure title="CSS implementation">
-    Atlantis components come with these states handled, but if you're extending or
-    creating custom elements, this is the general pattern used to achieve an "Atlantis"
-    interactive state.
+            ```css
+            .myElement {
+                background-color: var(--color-surface);
+                /* apply consistent transitions */
+                transition: all var(--timing-base) ease-in;
+                cursor: pointer;
+                /* hide the default focus ring, but still support "high contrast" modes */
+                outline: transparent;
+            }
 
-    ```css
+            .myElement:hover,
+            /* use :focus-visible instead of :focus to reduce visual noise for mouse users */
+            .myElement:focus-visible {
+                background-color: var(--color-surface--hover);
+            }
 
-    .myElement {
-    background-color: var(--color-surface);
-    /* apply consistent transitions */
-    transition: all var(--timing-base) ease-in;
-    cursor: pointer;
-    /* hides the default browser focus ring while maintaining compatibility with "high contrast" modes */
-    outline: transparent;
-    }
+            .myElement:focus-visible {
+                box-shadow: var(--shadow-focus);
+            }
+            ```
 
-    /* use :focus-visible instead of :focus to provide appropriate feedback to keyboard users
+    </Tab>
 
-without adding visual noise for mouse users \*/ .myElement:hover,
-.myElement:focus-visible {  
- background-color: var(--color-surface--hover); }
+    <Tab label="Mobile">
+        The most common interactive state in mobile is `pressed`. Most elements
+        will reduce in opacity when pressed.
 
-    .myElement:focus-visible {
-    box-shadow: var(--shadow-focus);
-    }
-    ```
+        While there is no system-wide "focus ring", input borders change color when focused.
 
-</Disclosure>
+        <Figma
+            collapsable
+            url="https://www.figma.com/proto/avvgu5SkbBvS8lGVePBsqO/Product%2FMobile?node-id=63935-11952&t=9XDlpJmD0lnq3e97-1"
+            />
 
-## Mobile
+        #### React Native implementation
 
-The most common interactive state in mobile is `pressed`.
+        ```.ts
+        // as a classname in styles.ts files
+
+        pressed {
+            opacity: tokens["opacity-pressed"]
+        }
+        ```
+
+        ```.ts
+        // as a property on react-native core components
+
+        <TouchableOpacity
+            activeOpacity={tokens["opacity-pressed"]}
+            onPress={yourActionHere}
+        >
+        ```
+    </Tab>
+
+</Tabs>
