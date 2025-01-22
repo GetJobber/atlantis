@@ -42,6 +42,11 @@ export const HomePage = () => {
               sections: ["Resources"],
             },
             {
+              title: "Patterns",
+              to: "/patterns",
+              sections: ["Resources"],
+            },
+            {
               title: "Packages",
               to: "/packages",
             },
