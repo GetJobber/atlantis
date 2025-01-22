@@ -53,6 +53,7 @@ interface InputDateProps
 
 export function InputDate(inputProps: InputDateProps) {
   const formFieldActionsRef = useRef<FieldActionsRef>(null);
+  console.log("inputProps", inputProps);
 
   return (
     <DatePicker

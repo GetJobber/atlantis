@@ -54,6 +54,11 @@ export interface Suffix extends BaseSuffix {
  */
 export interface CommonFormFieldProps {
   /**
+   * A unique identifier for the input.
+   */
+  readonly id?: string;
+
+  /**
    * Determines the alignment of the text inside the input.
    */
   readonly align?: "center" | "right";

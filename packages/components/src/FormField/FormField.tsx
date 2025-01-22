@@ -11,7 +11,8 @@ export function FormField(props: FormFieldProps) {
   // Warning: do not move useId into FormFieldInternal. This must be here to avoid
   // a problem where useId isn't stable across multiple StrictMode renders.
   // https://github.com/facebook/react/issues/27103
-  const id = useId();
+  const generatedId = useId();
+  const id = props.id || generatedId;
 
   return <FormFieldInternal {...props} id={id} />;
 }

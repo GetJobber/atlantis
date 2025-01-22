@@ -1,0 +1,6 @@
+.label {
+  display: block;
+  margin-bottom: var(--space-smaller);
+  color: var(--color-text--secondary);
+  line-height: var(--typography--lineHeight-base);
+}
