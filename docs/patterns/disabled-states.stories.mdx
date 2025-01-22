@@ -1,8 +1,10 @@
 import { Meta } from "@storybook/addon-docs";
 import { Figma } from "@storybook/addon-designs/blocks";
-import { InlineLabel } from "@jobber/components/InlineLabel";
+import { InlineLabel, Tabs, Tab } from "@jobber/components";
 
 <Meta title="Patterns/Disabled states" />
+
+# Disabled states
 
 | **Platform**                                                     | **Status**                                     |
 | :--------------------------------------------------------------- | :--------------------------------------------- |
@@ -13,8 +15,6 @@ criteria. It becomes a balance in explaining the interface and not overwhelming
 users with choice. Below are a few of the common examples and accompanying
 guidelines for handling those situations.
 
-<Figma url="https://www.figma.com/design/HXWXusJPZLmaJNGlKEpiyhXW/Product%2FBase?m=auto&node-id=21011-642&t=SHOjoSApnGE6QQeB-1" />
-
 ## Goal
 
 Avoid placing the user in a frustrating state where actions are unavailable and
@@ -22,14 +22,16 @@ they do not know how to enable.
 
 ## Use when…
 
-An action is unavailable to the user based on a prerequisite condition (i.e. the
-user cannot cannot submit a form unless data has been entered)
+There's absolutely no other way to avoid a disabled state. This should be a last
+resort. This flowchart can help you find alternatives:
 
-## Principle
+<Figma url="https://www.figma.com/design/HXWXusJPZLmaJNGlKEpiyhXW/Product%2FBase?m=auto&node-id=21011-642&t=SHOjoSApnGE6QQeB-1" />
 
-Visibility of System Status
+## Principles
 
-Recognition over recall
+[Visibility of system status](https://www.nngroup.com/articles/visibility-system-status/) -
+
+[Recognition over recall](https://www.nngroup.com/articles/recognition-and-recall/)
 
 ## Solution
 
@@ -43,15 +45,6 @@ If the user makes it to the bottom of the form and has not added a client, the
 primary CTA is “Select Client“.
 
 <Figma url="https://www.figma.com/design/HXWXusJPZLmaJNGlKEpiyhXW/Product%2FBase?m=auto&node-id=21013-643&t=SHOjoSApnGE6QQeB-1" />
-
-Web On web, a tooltip may help explain to the user why they can’t select an
-element. Make sure the Tooltip can be triggered both by focus and hover.
-
-Mobile In a mobile context, Supporting Text maybe more helpful for users as it
-does not require an additional interaction to uncover. If an input element (such
-as a Select or InputText) has “assistive text” built in, do not use the
-assistive text in a disabled state, but provide the Supporting Text as a
-separate element.
 
 #### Permissions-related unavailability
 
@@ -83,3 +76,22 @@ While you should avoid disabled states, many Atlantis components do offer the
 ability to create that state if required.
 
 Typically this is done with a `disabled` boolean property.
+
+You must also ensure that the user can understand _why_ the element is disabled.
+
+<Tabs>
+  <Tab label="Web">
+    A [Tooltip](../components/Tooltip) may help explain to the user why they
+    can’t select an element. Make sure the Tooltip can be triggered both by
+    focus and hover.
+    <Figma url="https://www.figma.com/design/HXWXusJPZLmaJNGlKEpiyhXW/Product%2FBase?m=auto&node-id=21049-582&t=SHOjoSApnGE6QQeB-1" />
+  </Tab>
+  <Tab label="Mobile">
+    [Text](../component/Text) (level="supportingText") is more helpful for users
+    in the mobile app as it does not require an additional interaction to
+    uncover. If an input element (such as a Select or InputText) has “assistive
+    text” built in, do not use the assistive text in a disabled state, but
+    provide the supporting Text as a separate element.
+    <Figma url="https://www.figma.com/design/HXWXusJPZLmaJNGlKEpiyhXW/Product%2FBase?m=auto&node-id=21049-645&t=SHOjoSApnGE6QQeB-1" />
+  </Tab>
+</Tabs>
