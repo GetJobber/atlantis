@@ -126,6 +126,11 @@ export const routes: Array<AtlantisRoute> = [
         exact: true,
       },
       {
+        path: "/design/interaction",
+        handle: "Interaction",
+        exact: true,
+      },
+      {
         path: "/design/opacity",
         handle: "Opacity",
         exact: true,

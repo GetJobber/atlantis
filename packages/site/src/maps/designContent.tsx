@@ -2,6 +2,7 @@ import AnimationDocs from "@atlantis/docs/design/Animation.stories.mdx";
 import BorderDocs from "@atlantis/docs/design/Borders.stories.mdx";
 import ColorDocs from "@atlantis/docs/design/Colors.stories.mdx";
 import ElevationDocs from "@atlantis/docs/design/Elevations.stories.mdx";
+import InteractionDocs from "@atlantis/docs/design/Interaction.stories.mdx";
 import OpacityDocs from "@atlantis/docs/design/Opacity.stories.mdx";
 import RadiiDocs from "@atlantis/docs/design/Radii.stories.mdx";
 import ResponsiveBreakpointsDocs from "@atlantis/docs/design/ResponsiveBreakpoint.stories.mdx";
@@ -29,6 +30,11 @@ export const designContentMap: ContentMapItems = {
     intro: "Elevations",
     title: "Elevations",
     content: () => <ElevationDocs />,
+  },
+  interaction: {
+    intro: "Interaction",
+    title: "Interaction",
+    content: () => <InteractionDocs />,
   },
   opacity: {
     intro: "Opacity",
