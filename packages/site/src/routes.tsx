@@ -340,6 +340,13 @@ export const routes: Array<AtlantisRoute> = [
     exact: true,
   },
   {
+    path: "/patterns/:name",
+    component: ContentLoader,
+    handle: "PatternsContent",
+    inNav: false,
+    exact: true,
+  },
+  {
     path: "/changelog/:name",
     component: ContentLoader,
     handle: "ChangelogContent",

@@ -29,10 +29,14 @@ export const ContentLoader = () => {
     case location.pathname.startsWith("/packages"):
       type = "packages";
       break;
+    case location.pathname.startsWith("/patterns"):
+      type = "patterns";
+      break;
     default:
       type = "content";
   }
 
+  console.log("type", type);
   const content = contentMap[type][name];
 
   return content ? (
