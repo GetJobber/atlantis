@@ -1,5 +1,6 @@
 import { Box, Button, Heading } from "@jobber/components";
 import { useState } from "react";
+import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
 
 /**
  * FeedbackBanner
@@ -12,8 +13,9 @@ import { useState } from "react";
 export const FeedbackBanner = () => {
   const [isExpanded, setIsExpanded] = useState(true);
   const hideFeedbackBanner = localStorage.getItem("hideFeedbackBanner");
+  const { isMinimal } = useAtlantisSite();
 
-  if (hideFeedbackBanner) {
+  if (hideFeedbackBanner || isMinimal) {
     return null;
   }
 
