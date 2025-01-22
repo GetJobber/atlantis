@@ -94,6 +94,16 @@ export interface UploadParams {
 
 interface InputFileProps {
   /**
+   * The name of the input field.
+   */
+  readonly name?: string;
+
+  /**
+   * The value of the input field.
+   */
+  readonly value?: FileUpload[];
+
+  /**
    * Display variation.
    * @default "dropzone"
    */
@@ -219,6 +229,8 @@ export function InputFile({
   onUploadComplete,
   onUploadError,
   validator,
+  name,
+  value,
 }: InputFileProps) {
   const maxFiles = maxFilesValidation?.maxFiles || 0;
   const numberOfCurrentFiles = maxFilesValidation?.numberOfCurrentFiles || 0;
@@ -323,6 +335,9 @@ export function InputFile({
         tabIndex={variation === "button" ? -1 : 0}
       >
         <input {...getInputProps()} />
+        {name && (
+          <input type="hidden" name={name} value={JSON.stringify(value)} />
+        )}
 
         {variation === "dropzone" && (
           <div className={styles.dropzoneContent}>
