@@ -83,8 +83,6 @@ const imageTransition = {
   opacity: { duration: 0.2 },
 };
 
-const spaceHolder = "\u00A0";
-
 // A little bit more than the transition's duration
 // We're doing this to prevent a bug from framer-motion
 // https://github.com/framer/motion/issues/1769
@@ -177,11 +175,13 @@ export function LightBox({
             <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
               {images.some(image => image.title) && (
                 <Heading level={4}>
-                  {images[currentImageIndex].title || spaceHolder}
+                  {images[currentImageIndex].title || "\u00A0"}
                 </Heading>
               )}
               {images.some(image => image.caption) && (
-                <Text>{images[currentImageIndex].caption || spaceHolder}</Text>
+                <div className={styles.caption}>
+                  <Text>{images[currentImageIndex].caption}</Text>
+                </div>
               )}
             </AtlantisThemeContextProvider>
           </div>
