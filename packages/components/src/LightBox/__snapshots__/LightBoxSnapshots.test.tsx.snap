@@ -10,45 +10,59 @@ exports[`Images renders an image 1`] = `
     <div
       class="toolbar"
     >
+      1/1
+      <div
+        class="staticThemeProviderWrapper"
+        data-theme="dark"
+      >
+        <button
+          aria-label="Close"
+          class="button base onlyIcon subtle tertiary"
+          type="button"
+        >
+          <svg
+            data-testid="remove"
+            style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
+            />
+          </svg>
+          <span
+            class="base semiBold base base"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="imagesWrapper"
+    >
+      <div
+        class="imageWrapper"
+      >
+        <img
+          class="image"
+          draggable="false"
+          src="https://i.imgur.com/6Jcfgnp.jpg"
+          style="z-index: 1; opacity: 1; transform: none; user-select: none;"
+        />
+      </div>
+    </div>
+    <div
+      class="captionWrapper"
+    >
       <span
         class="title"
       >
         Dis be a title
       </span>
-      <button
-        aria-label="Close"
-        class="button base onlyIcon subtle tertiary"
-        type="button"
+      <span
+        class="caption"
       >
-        <svg
-          data-testid="remove"
-          style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
-          />
-        </svg>
-        <span
-          class="base semiBold base base"
-        />
-      </button>
-    </div>
-    <div
-      class="imagesWrapper"
-    >
-      <img
-        class="image"
-        draggable="false"
-        src="https://i.imgur.com/6Jcfgnp.jpg"
-        style="z-index: 1; opacity: 1; transform: translateX(0px) translateY(-50%) translateZ(0); user-select: none;"
-      />
-    </div>
-    <div
-      class="toolbar"
-    >
-      Dis be a caption 🎉
+        Dis be a caption 🎉
+      </span>
     </div>
     <div
       class="overlay"

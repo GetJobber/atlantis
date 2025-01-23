@@ -10,6 +10,7 @@ import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import styles from "./LightBox.module.css";
 import { ButtonDismiss } from "../ButtonDismiss";
 import { Button } from "../Button";
+import { AtlantisThemeContextProvider } from "../AtlantisThemeContext";
 
 interface PresentedImage {
   title?: string;
@@ -64,6 +65,7 @@ const variants = {
   center: {
     zIndex: 1,
     x: 0,
+    y: 0,
     opacity: 1,
   },
   exit: (direction: number) => {
@@ -76,7 +78,7 @@ const variants = {
 };
 
 const imageTransition = {
-  x: { type: "spring", stiffness: 300, damping: 30 },
+  x: { type: "spring", stiffness: 100, damping: 30 },
   opacity: { duration: 0.2 },
 };
 
@@ -134,42 +136,53 @@ export function LightBox({
           ref={lightboxRef}
         >
           <div className={styles.toolbar}>
-            <span className={styles.title}>
-              {images[currentImageIndex].title}
-            </span>
-            <ButtonDismiss ariaLabel="Close" onClick={handleRequestClose} />
+            {`${currentImageIndex + 1}/${images.length}`}
+            {/* Is it okay? */}
+            <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
+              <ButtonDismiss ariaLabel="Close" onClick={handleRequestClose} />
+            </AtlantisThemeContextProvider>
           </div>
           <div className={styles.imagesWrapper}>
-            <AnimatePresence initial={false}>
-              <motion.img
-                key={currentImageIndex}
-                variants={variants}
-                src={images[currentImageIndex].url}
-                custom={direction}
-                className={styles.image}
-                style={{ y: "-50%" }}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={imageTransition}
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={1}
-                onDragEnd={handleOnDragEnd}
-              />
-            </AnimatePresence>
-          </div>
-
-          {images.length > 1 && (
-            <>
+            {images.length > 1 && (
               <PreviousButton onClick={debouncedHandlePrevious} />
-              <NextButton onClick={debouncedHandleNext} />
-            </>
-          )}
+            )}
 
-          <div className={styles.toolbar}>
-            {images[currentImageIndex].caption}
+            {/* <div className={styles.imageWrapper}> */}
+            <div className={styles.imageWrapper}>
+              <AnimatePresence initial={false}>
+                <motion.img
+                  key={currentImageIndex}
+                  variants={variants}
+                  src={images[currentImageIndex].url}
+                  custom={direction}
+                  className={styles.image}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={imageTransition}
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={1}
+                  onDragEnd={handleOnDragEnd}
+                />
+              </AnimatePresence>
+            </div>
+
+            {/* </div> */}
+
+            {images.length > 1 && <NextButton onClick={debouncedHandleNext} />}
           </div>
+
+          {/*  */}
+          <div className={styles.captionWrapper}>
+            <span className={styles.title}>
+              {images[currentImageIndex].title || "x"}
+            </span>
+            <span className={styles.caption}>
+              {images[currentImageIndex].caption || "x"}
+            </span>
+          </div>
+
           <div className={styles.overlay} onClick={handleRequestClose} />
         </div>
       )}

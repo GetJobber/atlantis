@@ -17,19 +17,20 @@
 
 .next,
 .prev {
-  display: flex;
+  /* display: flex;
   position: absolute;
   top: 50%;
+
+  transform: translateY(-50%); */
   z-index: var(--elevation-base);
-  transform: translateY(-50%);
 }
 
 .next {
-  right: var(--space-base);
+  /* right: var(--space-base); */
 }
 
 .prev {
-  left: var(--space-base);
+  /* left: var(--space-base); */
 }
 
 .lightboxWrapper {
@@ -40,7 +41,7 @@
   z-index: var(--elevation-modal);
   width: 100%;
   height: 100%;
-  justify-content: space-between;
+  justify-content: center;
   flex-direction: column;
 }
 
@@ -48,23 +49,31 @@
   display: flex;
   z-index: var(--elevation-base);
   padding: var(--space-small) var(--space-base);
-  color: var(--color-text--secondary);
+  color: var(--color-text--reverse);
   font-size: var(--typography--fontSize-large);
-  background-color: var(--color-surface--background);
-  justify-content: space-between;
+  justify-content: end;
+  align-items: center;
 }
 
 .title {
-  display: inline-flex;
-  align-items: center;
+  z-index: var(--elevation-base);
+  margin-bottom: 8px;
+  color: var(--color-text--reverse);
+}
+
+.caption {
+  z-index: var(--elevation-base);
+  margin-bottom: 32px;
+  color: var(--color-text--reverse);
 }
 
 .imagesWrapper {
   display: flex;
-  justify-content: center;
-  position: relative;
-  flex: 1 1 0;
-  min-height: 0;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 24px;
+  align-items: center;
+  align-content: center;
 }
 
 .overlay {
@@ -73,13 +82,34 @@
   right: 0;
   bottom: 0;
   left: 0;
+  /* TODO: add a dark overlay here while image is sorted */
   background-color: var(--color-overlay);
+  /* background-color: rgba(0, 0, 0, 0.6); */
 }
 
 .image {
-  position: absolute;
-  top: 50%;
+  width: 100%;
+  height: 100%;
   max-width: 100%;
   max-height: 100%;
-  margin: auto;
+  /* overflow: hidden; */
+  object-fit: contain;
+}
+
+.imageWrapper {
+  /* Corresponds to max image area */
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 150px);
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 auto;
+}
+
+.captionWrapper {
+  display: flex;
+  flex-direction: column;
+  /* background-color: black; */
 }
