@@ -8,7 +8,7 @@ export function isOptionSelected(
 }
 
 export function isGroup(option: AnyOption) {
-  if (option.options) return true;
+  if ("options" in option) return true;
 
   return false;
 }
