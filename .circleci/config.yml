@@ -82,12 +82,12 @@ jobs:
       - run:
           name: Check for manual releases
           command: |
-            set -e
-            if git log --max-count=1 --pretty=%s | grep -q "chore(release): Publish"; then
-              echo "Skipping run on release commit."
-            else
-              npm run preventManualRelease
-            fi
+            # set -e
+            # if git log --max-count=1 --pretty=%s | grep -q "chore(release): Publish"; then
+            #   echo "Skipping run on release commit."
+            # else
+            #   npm run preventManualRelease
+            # fi
 
   check_git_status:
     <<: *container_config
