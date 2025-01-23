@@ -137,12 +137,14 @@ export function LightBox({
           key="Lightbox"
           ref={lightboxRef}
         >
-          <div className={styles.toolbar}>
-            {`${currentImageIndex + 1}/${images.length}`}
-            <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
+          <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
+            <div className={styles.toolbar}>
+              <div></div>
+              <Text>{`${currentImageIndex + 1}/${images.length}`}</Text>
               <ButtonDismiss ariaLabel="Close" onClick={handleRequestClose} />
-            </AtlantisThemeContextProvider>
-          </div>
+            </div>
+          </AtlantisThemeContextProvider>
+
           <div className={styles.imagesWrapper}>
             {images.length > 1 && (
               <PreviousButton onClick={debouncedHandlePrevious} />

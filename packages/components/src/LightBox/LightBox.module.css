@@ -36,7 +36,7 @@
   z-index: var(--elevation-base);
   color: var(--color-text--reverse);
   font-size: var(--typography--fontSize-large);
-  justify-content: end;
+  justify-content: space-between;
   align-items: center;
 }
 
