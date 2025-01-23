@@ -1,0 +1,197 @@
+import { Meta, Canvas } from "@storybook/addon-docs";
+import { Figma } from "@storybook/addon-designs/blocks";
+import {
+  InlineLabel,
+  Box,
+  Icon,
+  Heading,
+  Text,
+  Button,
+  Tabs,
+  Tab,
+} from "@jobber/components";
+
+<Meta title="Patterns/Empty states" />
+
+# Empty states
+
+| **Platform**                                                     | **Status**                                     |
+| :--------------------------------------------------------------- | :--------------------------------------------- |
+| <InlineLabel>Web</InlineLabel> <InlineLabel>Mobile</InlineLabel> | <InlineLabel color="green">Ready</InlineLabel> |
+
+## Goal
+
+A successful empty state should
+
+- communicate system status
+- increase learnability of the system
+- deliver direct pathways for key tasks
+
+Designing Empty States in Complex Applications: 3 Guidelines
+
+## Use when...
+
+Use when there _could_ be content in a view, but there is none. Possible reasons
+for the “emptiness” may include, but are not limited to…
+
+- A notifications panel when the user hasn't received any notifications
+- A list of user-generated content before user has created any content (for
+  example, a list of clients when the user doesn’t yet have any clients)
+- Dashboards or other data-centric views when the user has not generated any
+  data (ie Home)
+- Search results with no match
+- An error has resulted in the user not being able to access content they
+  otherwise could
+
+## Principles
+
+Visibility of system status - communicating to the user why there is no content
+and how they can change that
+
+Consistency and standards - presenting empty states in a consistent manner
+ensures a cohesive experience
+
+Aesthetics and minimalist design - an intentionally designed empty state ensures
+that the user is able to focus on the most important action to remedy their
+state
+
+## Solution
+
+Generally speaking, an empty state should:
+
+- Inform what is happening
+- Inform why is it happening
+- (When relevant) provide the user with a CTA to create a “populated” state
+
+<Figma url="https://www.figma.com/design/HXWXusJPZLmaJNGlKEpiyhXW/Product%2FBase?m=auto&node-id=21162-662&t=SHOjoSApnGE6QQeB-1" />
+
+### Common elements
+
+#### When _not_ to add a CTA
+
+Some situations where you would not use a direct CTA in the empty state may
+include:
+
+- There is already another means to act in close proximity to the empty state
+
+  - Example: if a card might has an action button in its header, there’s no need
+    to duplicate that
+
+- The action to populate the empty state has dependencies on another action
+  being taken in a different stage of the Jobber workflow
+  - Example: Quote requiring SC approval before it appears in a segmented list
+  - Example: A payment requires creation and delivery of an invoice, and
+    subsequent SC payment, before it can be created
+
+### Empty states in lists
+
+When there is an empty state where a list of items would be, provide an
+explanation of why the list is empty.
+
+When relevant, provide a call-to-action.
+
+<Figma url="https://www.figma.com/design/HXWXusJPZLmaJNGlKEpiyhXW/Product%2FBase?m=auto&node-id=21162-768&t=SHOjoSApnGE6QQeB-1" />
+
+The quotes section of this work list is empty, but there’s no direct action to
+take Example empty states when an entered search returns no results, and when a
+list has no content.
+
+Where relevant, a CTA is offered to allow the user to populate the list - this
+CTA also allows the user to initiate a key step in adopting the product.
+
+Open image-20220128-235521.png
+
+No results due to no matching query vs. no results due to a lack of content are
+handled differently as the action to resolve (new search) is near-at-hand in the
+case of the “no matching” query.
+
+### Error states
+
+An example of an empty state that is used in our ErrorFallback template. An
+alert icon reinforces that something’s gone wrong, the message explains what’s
+happened and the action offers a clear path to try and resolve the issue.
+
+This error state takes up the entire view, so we have space to offer:
+
+Clear visual reinforcement via icon
+
+Heading summarizing the issue
+
+Descriptive text explaining resolution path
+
+CTA to allow immediate recovery attempt
+
+The user could also pull-to-refresh in this scenario, but the button allows for
+both non-gesture-based resolution and reduces the leap from understanding to
+acting.
+
+Open image-20220128-003139.png An alert icon and a heading saying something went
+wrong followed by a message that says Could not load content. Refresh to try
+again. and a Refresh button.
+
+Empty states in main views (such as Tabs) An example of an empty state
+explaining why it’s empty, and a clear CTA to populate the section - again, this
+also helps guide to the user to take a key action in adopting a valuable feature
+of Jobber.
+
+Open image-20220129-001352.png
+
+Empty states in cards and similar content containers within larger views If a
+card is empty, but has a clear action to add content, there’s no need to provide
+additional messaging. For example, see the “Invoices” card which has a + action
+to immediately create an invoice.
+
+When a card is empty, and there is no way for the user to add content (ex. the
+user doesn’t have permission), show an empty state with a description to give
+the user context. Do not hide the card, as this state-based hiding and showing
+may not be intuitive for the user. For example, see the”Payments” card here,
+where the user needs to create an invoice and interact with the SC before they
+can create a payment against a job.
+
+Within a card, the same rules apply. In this example from Timesheets, there is
+no “empty state” for the notes on the timesheet entry because the “EDIT” action
+on the card allows the user to directly add that information.
+
+Open image-20220204-003754.png
+
+Open image-20220204-004220.png
+
+## Why
+
+By considering and accounting for these often “un-happy” paths in the user’s
+journey, we can allow the user to learn how to use Jobber more effectively,
+guide them out of troublesome scenarios, and ensure that they never feel like
+they’ve hit a dead-end in the product.
+
+## Not obvious details
+
+In some cases, illustrations may be useful in an empty state to bring some
+personality to the scenario. If this fits your use case, work with the design
+team to find or create an appropriate illustration.
+
+## Implementation
+
+<Tabs>
+  <Tab label="Web">
+   There's no component but these are some common patterns:
+
+  <Canvas>
+    <Box direction="column" alignItems="center">
+      <Icon name="alert" />
+      <Heading level={4}>No results found</Heading>
+      <Text>Try adjusting your search criteria or clearing filters</Text>
+      <Button variation="subtle" label="Clear Filters" />
+    </Box>
+  </Canvas>
+  </Tab>
+  <Tab label="Mobile">
+    [EmptyState](../component/EmptyState?mobile) gives you the boilerplate 
+    `Icon` + `Heading` + `Text` + `Button` out of the box but you can also compose it
+    similar to the web implementation if more flexibility is needed.
+  </Tab>
+</Tabs>
+
+## Related
+
+- [Empty State](../component/EmptyState?mobile) mobile component
+- [Disabled states](../patterns/disabled-states)

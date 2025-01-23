@@ -82,6 +82,11 @@ export const routes: Array<AtlantisRoute> = [
         exact: true,
       },
       {
+        path: "/patterns/empty-states",
+        handle: "Empty states",
+        exact: true,
+      },
+      {
         path: "/patterns/disabled-states",
         handle: "Disabled states",
         exact: true,
