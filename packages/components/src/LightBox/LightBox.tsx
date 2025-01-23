@@ -151,11 +151,6 @@ export function LightBox({
             )}
 
             <div className={styles.imageWrapper}>
-              {/* <img
-                src={images[currentImageIndex].url}
-                alt=""
-                className={styles.image}
-              /> */}
               <AnimatePresence initial={false}>
                 <motion.img
                   key={currentImageIndex}

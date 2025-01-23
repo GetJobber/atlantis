@@ -52,6 +52,7 @@
 }
 
 .image {
+  position: absolute;
   width: 100%;
   height: 100%;
   max-width: 100%;
@@ -60,18 +61,13 @@
 }
 
 .imageWrapper {
-  /* Corresponds to max image area */
   display: flex;
   position: relative;
   width: 100%;
-  /* //TODO: make dynamic */
-  /* height: calc(100vh - 150px); */
   height: 100%;
-  overflow: hidden;
   justify-content: center;
   align-items: center;
   flex: 1 1 0;
-  /* background-color: orange; */
 }
 
 .captionWrapper {
