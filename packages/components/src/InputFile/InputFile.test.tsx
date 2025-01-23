@@ -286,6 +286,193 @@ describe("Post Requests", () => {
   });
 });
 
+describe("Form submission", () => {
+  function fetchUploadParams(file: File) {
+    return Promise.resolve({
+      key: file.name,
+      url: "https://httpbin.org/post",
+    });
+  }
+
+  it("submits the correct value when the form is submitted", async () => {
+    const mockSubmit = jest.fn(event => {
+      event.preventDefault();
+    });
+
+    const { container } = render(
+      <form onSubmit={mockSubmit}>
+        <InputFile
+          name="fileInput"
+          value={[
+            {
+              key: "1",
+              name: "file1.png",
+              type: "image/png",
+              size: 1234,
+              progress: 1,
+              src: () => Promise.resolve("https://via.placeholder.com/250"),
+            },
+          ]}
+          getUploadParams={jest.fn()}
+        />
+        <button type="submit">Submit</button>
+      </form>,
+    );
+
+    const submitButton = container.querySelector(
+      "button[type=submit]",
+    ) as HTMLButtonElement;
+    await userEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(mockSubmit).toHaveBeenCalledTimes(1);
+
+      const formData = new FormData(
+        container.querySelector("form") as HTMLFormElement,
+      );
+      const submittedValue = formData.get("fileInput");
+      expect(submittedValue).not.toBeNull();
+
+      const parsedValue = JSON.parse(submittedValue as string);
+      expect(parsedValue).toEqual([
+        {
+          key: "1",
+          name: "file1.png",
+          type: "image/png",
+          size: 1234,
+          progress: 1,
+        },
+      ]);
+    });
+  });
+
+  it("submits the correct value when the form is submitted with multiple files", async () => {
+    const mockSubmit = jest.fn(event => {
+      event.preventDefault();
+    });
+
+    const { container } = render(
+      <form onSubmit={mockSubmit}>
+        <InputFile
+          name="fileInput"
+          value={[
+            {
+              key: "1",
+              name: "file1.png",
+              type: "image/png",
+              size: 1234,
+              progress: 1,
+              src: () => Promise.resolve("https://via.placeholder.com/250"),
+            },
+            {
+              key: "2",
+              name: "file2.jpg",
+              type: "image/jpeg",
+              size: 5678,
+              progress: 1,
+              src: () => Promise.resolve("https://via.placeholder.com/250"),
+            },
+          ]}
+          getUploadParams={jest.fn()}
+        />
+        <button type="submit">Submit</button>
+      </form>,
+    );
+
+    const submitButton = container.querySelector(
+      "button[type=submit]",
+    ) as HTMLButtonElement;
+    await userEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(mockSubmit).toHaveBeenCalledTimes(1);
+
+      const formData = new FormData(
+        container.querySelector("form") as HTMLFormElement,
+      );
+      const submittedValue = formData.get("fileInput");
+      expect(submittedValue).not.toBeNull();
+
+      const parsedValue = JSON.parse(submittedValue as string);
+      expect(parsedValue).toEqual([
+        {
+          key: "1",
+          name: "file1.png",
+          type: "image/png",
+          size: 1234,
+          progress: 1,
+        },
+        {
+          key: "2",
+          name: "file2.jpg",
+          type: "image/jpeg",
+          size: 5678,
+          progress: 1,
+        },
+      ]);
+    });
+  });
+
+  it("includes hidden input with name and value in form submission", () => {
+    const { container } = render(
+      <form>
+        <InputFile
+          name="fileInput"
+          value={[
+            {
+              key: "1",
+              name: "file1.png",
+              type: "image/png",
+              size: 1234,
+              progress: 1,
+              src: () => Promise.resolve("https://via.placeholder.com/250"),
+            },
+          ]}
+          getUploadParams={fetchUploadParams}
+        />
+      </form>,
+    );
+
+    const hiddenInput = container.querySelector(
+      "input[type=hidden]",
+    ) as HTMLInputElement;
+    expect(hiddenInput).toHaveAttribute("name", "fileInput");
+    const parsedValue = JSON.parse(hiddenInput.value);
+    expect(parsedValue).toEqual([
+      {
+        key: "1",
+        name: "file1.png",
+        type: "image/png",
+        size: 1234,
+        progress: 1,
+      },
+    ]);
+  });
+
+  it("does not include hidden input if name is not provided", () => {
+    const { container } = render(
+      <form>
+        <InputFile
+          value={[
+            {
+              key: "1",
+              name: "file1.png",
+              type: "image/png",
+              size: 1234,
+              progress: 1,
+              src: () => Promise.resolve("https://via.placeholder.com/250"),
+            },
+          ]}
+          getUploadParams={fetchUploadParams}
+        />
+      </form>,
+    );
+
+    const hiddenInput = container.querySelector("input[type=hidden]");
+    expect(hiddenInput).toBeNull();
+  });
+});
+
 describe("PUT requests", () => {
   function putUploadParams(file: File) {
     return Promise.resolve({
