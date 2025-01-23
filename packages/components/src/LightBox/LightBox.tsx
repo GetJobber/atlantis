@@ -185,6 +185,7 @@ export function LightBox({
               )}
             </AtlantisThemeContextProvider>
           </div>
+          <div className={styles.overlay} onClick={handleRequestClose} />
         </div>
       )}
     </>

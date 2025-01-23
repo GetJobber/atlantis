@@ -35,6 +35,7 @@
 .toolbar {
   display: grid;
   z-index: var(--elevation-base);
+  margin-bottom: var(--space-largest);
   font-size: var(--typography--fontSize-large);
   align-items: center;
   grid-template-columns: 1fr 1fr 1fr;
@@ -81,4 +82,13 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-small);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--color-overlay);
 }
