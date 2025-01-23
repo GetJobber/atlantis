@@ -3,6 +3,12 @@ import { useState } from "react";
 import { usePopper } from "react-popper";
 import { MenuProps } from "./Autocomplete.types";
 
+export interface UseRepositionMenu extends ReturnType<typeof usePopper> {
+  readonly menuRef: HTMLElement | null;
+  readonly setMenuRef: (ref: HTMLElement | null) => void;
+  readonly targetWidth: number | undefined;
+}
+
 export function useRepositionMenu(
   attachTo: MenuProps["attachTo"],
   visible = false,
