@@ -14,7 +14,6 @@ exports[`Images renders an image 1`] = `
       <div
         class="toolbar"
       >
-        <div />
         <p
           class="base regular base text"
         >

@@ -49,7 +49,7 @@
   justify-self: center;
 }
 
-.imagesWrapper {
+.slideWrapper {
   display: flex;
   z-index: var(--elevation-base);
   height: 100%;
@@ -66,7 +66,7 @@
   object-fit: contain;
 }
 
-.imageWrapper {
+.imageArea {
   position: relative;
   width: 100%;
   height: 100%;
