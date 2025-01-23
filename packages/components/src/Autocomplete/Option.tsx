@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from "react";
 import classnames from "classnames";
 import styles from "./Autocomplete.module.css";
 import { isGroup } from "./Autocomplete.utils";
-import { AnyOption } from "./Autocomplete.types";
+import { AnyOption, Option } from "./Autocomplete.types";
 import { Heading } from "../Heading";
 import { Text } from "../Text";
 import { Icon } from "../Icon";
@@ -11,8 +11,8 @@ export interface MenuOptionProps {
   readonly isHighlighted: boolean;
   readonly option: AnyOption;
   readonly onOptionSelect: (option: AnyOption) => void;
-  readonly isSelected: boolean;
   readonly addSeparators: boolean;
+  readonly isSelected: boolean;
 }
 
 export function MenuOption({
@@ -38,11 +38,11 @@ export function MenuOption({
   );
 }
 
-function MenuOptionContent({
+export function MenuOptionContent({
   option,
   isSelected,
 }: {
-  readonly option: AnyOption;
+  readonly option: Option;
   readonly isSelected: boolean;
 }) {
   return (
@@ -67,7 +67,7 @@ function MenuOptionContent({
   );
 }
 
-function MenuOptionGroup({ option }: { readonly option: AnyOption }) {
+export function MenuOptionGroup({ option }: { readonly option: AnyOption }) {
   return (
     <div className={styles.heading}>
       <Heading level={5}>{option.label}</Heading>
@@ -75,20 +75,25 @@ function MenuOptionGroup({ option }: { readonly option: AnyOption }) {
   );
 }
 
-type BaseMenuOptionProps = PropsWithChildren<
-  Omit<MenuOptionProps, "isSelected">
->;
+export interface BaseMenuOptionProps<
+  GenericOption extends AnyOption = AnyOption,
+> extends PropsWithChildren {
+  readonly option: GenericOption;
+  readonly onOptionSelect: (option: GenericOption) => void;
+  readonly isHighlighted: boolean;
+  readonly addSeparators: boolean;
+}
 
 /**
  * Renders the base option component. The component takes children and renders them inside a button.
  */
-export function BaseMenuOption({
+export function BaseMenuOption<GenericOption extends AnyOption = AnyOption>({
   option,
   isHighlighted,
   onOptionSelect,
   addSeparators,
   children,
-}: BaseMenuOptionProps) {
+}: BaseMenuOptionProps<GenericOption>) {
   const optionClass = classnames(styles.option, {
     [styles.active]: isHighlighted,
     [styles.separator]: addSeparators,
@@ -97,7 +102,6 @@ export function BaseMenuOption({
   return (
     <button
       className={optionClass}
-      key={option.value}
       onMouseDown={onOptionSelect.bind(undefined, option)}
     >
       {children}
