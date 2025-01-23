@@ -1,14 +1,24 @@
-import React, { Ref, forwardRef, useEffect, useRef, useState } from "react";
-import { XOR } from "ts-xor";
+import React, {
+  Ref,
+  RefAttributes,
+  forwardRef,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import styles from "./Autocomplete.module.css";
-import { Menu } from "./Menu";
+import { Menu } from "./Menu/Menu";
 import { AnyOption, AutocompleteProps, Option } from "./Autocomplete.types";
 import { InputText, InputTextRef } from "../InputText";
 import { useDebounce } from "../utils/useDebounce";
 
 // Max statements increased to make room for the debounce functions
-/* eslint max-statements: ["error", 14] */
-function AutocompleteInternal(
+// eslint-disable-next-line max-statements
+function AutocompleteInternal<
+  GenericOption extends AnyOption = AnyOption,
+  GenericOptionValue extends Option = Option,
+  GenericGetOptionsValue extends AnyOption = AnyOption,
+>(
   {
     initialOptions = [],
     value,
@@ -21,11 +31,18 @@ function AutocompleteInternal(
     onBlur,
     onFocus,
     validations,
+    customMenuRender,
     ...inputProps
-  }: AutocompleteProps,
+  }: AutocompleteProps<
+    GenericOption,
+    GenericOptionValue,
+    GenericGetOptionsValue
+  >,
   ref: Ref<InputTextRef>,
 ) {
-  const [options, setOptions] = useState(initialOptions);
+  const [options, setOptions] = useState<
+    Array<GenericOption | GenericGetOptionsValue>
+  >(mapToOptions(initialOptions));
   const [menuVisible, setMenuVisible] = useState(false);
   const [inputText, setInputText] = useState(value?.label ?? "");
   const autocompleteRef = useRef(null);
@@ -53,15 +70,14 @@ function AutocompleteInternal(
         validations={validations}
         {...inputProps}
       />
-      {menuVisible && (
-        <Menu
-          attachTo={autocompleteRef}
-          visible={menuVisible && options.length > 0}
-          options={options}
-          selectedOption={value}
-          onOptionSelect={handleMenuChange}
-        />
-      )}
+      <Menu
+        attachTo={autocompleteRef}
+        visible={menuVisible && options.length > 0}
+        options={options}
+        customMenuRender={customMenuRender}
+        selectedOption={value}
+        onOptionSelect={handleMenuChange}
+      />
     </div>
   );
 
@@ -74,16 +90,17 @@ function AutocompleteInternal(
   }
 
   async function updateSearch() {
-    const updatedOptions: AnyOption[] = await getOptions(inputText);
-    const filteredOptions = updatedOptions.filter((option: AnyOption) =>
+    const updatedOptions = await getOptions(inputText);
+    const filteredOptions = updatedOptions.filter(option =>
       "options" in option && option.options ? option.options.length > 0 : true,
     );
+
     setOptions(mapToOptions(filteredOptions));
   }
 
-  function handleMenuChange(chosenOption: Option) {
+  function handleMenuChange(chosenOption: GenericOptionValue) {
     onChange(chosenOption);
-    updateInput(chosenOption.label);
+    updateInput(chosenOption.label ?? "");
     setMenuVisible(false);
   }
 
@@ -91,7 +108,7 @@ function AutocompleteInternal(
     updateInput(newText);
 
     if (allowFreeForm) {
-      onChange({ label: newText });
+      onChange({ label: newText } as GenericOptionValue);
     }
   }
 
@@ -114,16 +131,32 @@ function AutocompleteInternal(
   }
 }
 
-function mapToOptions(items: AnyOption[]) {
-  return items.reduce(function (result: AnyOption[], item) {
-    result = result.concat([item]);
+function mapToOptions<GenericOption extends AnyOption = AnyOption>(
+  items: GenericOption[],
+) {
+  const retVal = items.reduce<GenericOption[]>((result, item) => {
+    result.push(item);
 
-    if (item.options) {
-      result = result.concat(item.options);
+    if ("options" in item && item.options) {
+      result = result.concat(item.options as GenericOption[]);
     }
 
     return result;
   }, []);
+
+  return retVal;
 }
 
-export const Autocomplete = forwardRef(AutocompleteInternal);
+// Casts the Generics to the forward ref so autocomplete works as expected for consumers
+export const Autocomplete = forwardRef(AutocompleteInternal) as <
+  GenericOption extends AnyOption = AnyOption,
+  GenericOptionValue extends Option = Option,
+  GenericGetOptionsValue extends AnyOption = AnyOption,
+>(
+  props: AutocompleteProps<
+    GenericOption,
+    GenericOptionValue,
+    GenericGetOptionsValue
+  > &
+    RefAttributes<InputTextRef>,
+) => ReturnType<typeof AutocompleteInternal>;
