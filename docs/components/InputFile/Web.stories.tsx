@@ -8,6 +8,7 @@ import {
 import { FormatFile } from "@jobber/components/FormatFile";
 import { Heading } from "@jobber/components/Heading";
 import { Content } from "@jobber/components/Content";
+import { Button } from "@jobber/components/Button";
 
 export default {
   title: "Components/Forms and Inputs/InputFile/Web",
@@ -171,13 +172,74 @@ const VariationsAndSizesTemplate: ComponentStory<typeof InputFile> = args => {
     return Promise.resolve({ url: "https://httpbin.org/post" });
   }
 };
-export const VariationsAndSizes = VariationsAndSizesTemplate.bind({});
+
+const FormSubmissionTemplate: ComponentStory<typeof InputFile> = args => {
+  const [files, setFiles] = useState<FileUpload[]>([]);
+  const [submittedData, setSubmittedData] = useState<{
+    [key: string]: FormDataEntryValue;
+  } | null>(null);
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const formEntries = Object.fromEntries(formData.entries());
+    setSubmittedData(formEntries);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <Content>
+        {files.map(file => (
+          <FormatFile file={file} key={file.key} />
+        ))}
+        <InputFile
+          {...args}
+          name="hiddenInputFiles"
+          value={files}
+          onUploadStart={handleUpload}
+          onUploadProgress={handleUpload}
+          onUploadComplete={handleUpload}
+        />
+
+        <Button label="Submit" submit />
+
+        <div>
+          <Heading level={5}>Submitted Data:</Heading>
+          <pre>
+            {JSON.stringify(
+              {
+                ...submittedData,
+                hiddenInputFiles: submittedData?.hiddenInputFiles
+                  ? JSON.parse(submittedData.hiddenInputFiles as string)
+                  : null,
+              },
+              null,
+              2,
+            )}
+          </pre>
+        </div>
+      </Content>
+    </form>
+  );
+
+  function handleUpload(file: FileUpload) {
+    setFiles(oldFiles => updateFiles(file, oldFiles));
+  }
+};
+
+export const FormSubmission = FormSubmissionTemplate.bind({});
+FormSubmission.args = {
+  allowMultiple: true,
+  getUploadParams: () => Promise.resolve({ url: "https://httpbin.org/post" }),
+};
 
 export const UsingUpdateFiles = StatefulTemplate.bind({});
 UsingUpdateFiles.args = {
   allowMultiple: true,
   getUploadParams: () => Promise.resolve({ url: "https://httpbin.org/post" }),
 };
+
+export const VariationsAndSizes = VariationsAndSizesTemplate.bind({});
 
 export const ImagesOnly = StatefulTemplate.bind({});
 ImagesOnly.args = {
