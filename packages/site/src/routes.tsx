@@ -77,6 +77,11 @@ export const routes: Array<AtlantisRoute> = [
     component: PatternsPage,
     children: [
       {
+        path: "/patterns/interaction",
+        handle: "Interaction",
+        exact: true,
+      },
+      {
         path: "/patterns/disabled-states",
         handle: "Disabled states",
         exact: true,
