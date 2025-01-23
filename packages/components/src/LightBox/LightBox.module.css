@@ -55,18 +55,6 @@
   align-items: center;
 }
 
-.title {
-  z-index: var(--elevation-base);
-  margin-bottom: 8px;
-  color: var(--color-text--reverse);
-}
-
-.caption {
-  z-index: var(--elevation-base);
-  margin-bottom: 32px;
-  color: var(--color-text--reverse);
-}
-
 .imagesWrapper {
   display: flex;
   width: 100%;
@@ -83,8 +71,8 @@
   bottom: 0;
   left: 0;
   /* TODO: add a dark overlay here while image is sorted */
-  background-color: var(--color-overlay);
-  /* background-color: rgba(0, 0, 0, 0.6); */
+  /* background-color: var(--color-overlay); */
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .image {
@@ -101,15 +89,19 @@
   display: flex;
   position: relative;
   width: 100%;
+  /* //TODO: make dynamic */
   height: calc(100vh - 150px);
   overflow: hidden;
   justify-content: center;
   align-items: center;
-  flex: 1 1 auto;
+  flex: 1 1 0;
 }
 
 .captionWrapper {
   display: flex;
   flex-direction: column;
-  /* background-color: black; */
+  align-items: center;
+  z-index: var(--elevation-base);
+  margin-bottom: 32px;
+  gap: 8px;
 }

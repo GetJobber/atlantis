@@ -9,7 +9,9 @@ import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import styles from "./LightBox.module.css";
 import { ButtonDismiss } from "../ButtonDismiss";
+import { Text } from "../Text";
 import { Button } from "../Button";
+import { Heading } from "../Heading";
 import { AtlantisThemeContextProvider } from "../AtlantisThemeContext";
 
 interface PresentedImage {
@@ -137,7 +139,6 @@ export function LightBox({
         >
           <div className={styles.toolbar}>
             {`${currentImageIndex + 1}/${images.length}`}
-            {/* Is it okay? */}
             <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
               <ButtonDismiss ariaLabel="Close" onClick={handleRequestClose} />
             </AtlantisThemeContextProvider>
@@ -147,7 +148,6 @@ export function LightBox({
               <PreviousButton onClick={debouncedHandlePrevious} />
             )}
 
-            {/* <div className={styles.imageWrapper}> */}
             <div className={styles.imageWrapper}>
               <AnimatePresence initial={false}>
                 <motion.img
@@ -168,19 +168,17 @@ export function LightBox({
               </AnimatePresence>
             </div>
 
-            {/* </div> */}
-
             {images.length > 1 && <NextButton onClick={debouncedHandleNext} />}
           </div>
 
           {/*  */}
           <div className={styles.captionWrapper}>
-            <span className={styles.title}>
-              {images[currentImageIndex].title || "x"}
-            </span>
-            <span className={styles.caption}>
-              {images[currentImageIndex].caption || "x"}
-            </span>
+            <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
+              <Heading level={4}>
+                {images[currentImageIndex].title || "x"}
+              </Heading>
+              <Text>{images[currentImageIndex].caption || "x"}</Text>
+            </AtlantisThemeContextProvider>
           </div>
 
           <div className={styles.overlay} onClick={handleRequestClose} />
