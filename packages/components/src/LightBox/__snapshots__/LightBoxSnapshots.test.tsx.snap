@@ -41,10 +41,10 @@ exports[`Images renders an image 1`] = `
       </div>
     </div>
     <div
-      class="imagesWrapper"
+      class="slideWrapper"
     >
       <div
-        class="imageWrapper"
+        class="imageArea"
       >
         <img
           class="image"
