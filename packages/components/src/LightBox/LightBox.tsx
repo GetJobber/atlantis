@@ -60,7 +60,7 @@ const swipePower = (offset: number, velocity: number) => {
 const variants = {
   enter: (direction: number) => {
     return {
-      x: direction > 0 ? 1000 : -1000,
+      x: direction > 0 ? 3000 : -3000,
       opacity: 0,
     };
   },
@@ -73,7 +73,7 @@ const variants = {
   exit: (direction: number) => {
     return {
       zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
+      x: direction < 0 ? 3000 : -3000,
       opacity: 0,
     };
   },
@@ -149,6 +149,11 @@ export function LightBox({
             )}
 
             <div className={styles.imageWrapper}>
+              {/* <img
+                src={images[currentImageIndex].url}
+                alt=""
+                className={styles.image}
+              /> */}
               <AnimatePresence initial={false}>
                 <motion.img
                   key={currentImageIndex}
@@ -175,13 +180,13 @@ export function LightBox({
           <div className={styles.captionWrapper}>
             <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
               <Heading level={4}>
-                {images[currentImageIndex].title || "x"}
+                {images[currentImageIndex].title || "\u00A0"}
               </Heading>
-              <Text>{images[currentImageIndex].caption || "x"}</Text>
+              <Text>{images[currentImageIndex].caption || "\u00A0"}</Text>
             </AtlantisThemeContextProvider>
           </div>
 
-          <div className={styles.overlay} onClick={handleRequestClose} />
+          {/* <div className={styles.overlay} onClick={handleRequestClose} /> */}
         </div>
       )}
     </>
@@ -227,31 +232,27 @@ interface NavButtonProps {
 
 function PreviousButton({ onClick }: NavButtonProps) {
   return (
-    <div className={styles.prev}>
-      <Button
-        size="large"
-        variation="subtle"
-        type="secondary"
-        icon="arrowLeft"
-        ariaLabel="Previous image"
-        onClick={onClick}
-      />
-    </div>
+    <Button
+      size="large"
+      variation="subtle"
+      type="secondary"
+      icon="arrowLeft"
+      ariaLabel="Previous image"
+      onClick={onClick}
+    />
   );
 }
 
 function NextButton({ onClick }: NavButtonProps) {
   return (
-    <div className={styles.next}>
-      <Button
-        size="large"
-        variation="subtle"
-        type="secondary"
-        icon="arrowRight"
-        ariaLabel="Next image"
-        onClick={onClick}
-      />
-    </div>
+    <Button
+      size="large"
+      variation="subtle"
+      type="secondary"
+      icon="arrowRight"
+      ariaLabel="Next image"
+      onClick={onClick}
+    />
   );
 }
 

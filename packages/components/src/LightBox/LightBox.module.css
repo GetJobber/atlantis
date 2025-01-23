@@ -15,32 +15,18 @@
   }
 }
 
-.next,
-.prev {
-  /* display: flex;
-  position: absolute;
-  top: 50%;
-
-  transform: translateY(-50%); */
-  z-index: var(--elevation-base);
-}
-
-.next {
-  /* right: var(--space-base); */
-}
-
-.prev {
-  /* left: var(--space-base); */
-}
-
 .lightboxWrapper {
   display: flex;
   position: fixed;
   top: 0;
+  right: 0;
+  bottom: 0;
   left: 0;
   z-index: var(--elevation-modal);
-  width: 100%;
   height: 100%;
+  max-width: 100%;
+  padding: 0 32px;
+  background-color: rgba(0, 0, 0, 0.8);
   justify-content: center;
   flex-direction: column;
 }
@@ -48,7 +34,6 @@
 .toolbar {
   display: flex;
   z-index: var(--elevation-base);
-  padding: var(--space-small) var(--space-base);
   color: var(--color-text--reverse);
   font-size: var(--typography--fontSize-large);
   justify-content: end;
@@ -57,22 +42,13 @@
 
 .imagesWrapper {
   display: flex;
-  width: 100%;
+  z-index: var(--elevation-base);
   height: 100%;
+  max-width: 100%;
   margin-bottom: 24px;
   align-items: center;
   align-content: center;
-}
-
-.overlay {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  /* TODO: add a dark overlay here while image is sorted */
-  /* background-color: var(--color-overlay); */
-  background-color: rgba(0, 0, 0, 0.8);
+  gap: 16px;
 }
 
 .image {
@@ -80,7 +56,6 @@
   height: 100%;
   max-width: 100%;
   max-height: 100%;
-  /* overflow: hidden; */
   object-fit: contain;
 }
 
@@ -90,11 +65,13 @@
   position: relative;
   width: 100%;
   /* //TODO: make dynamic */
-  height: calc(100vh - 150px);
+  /* height: calc(100vh - 150px); */
+  height: 100%;
   overflow: hidden;
   justify-content: center;
   align-items: center;
   flex: 1 1 0;
+  /* background-color: orange; */
 }
 
 .captionWrapper {

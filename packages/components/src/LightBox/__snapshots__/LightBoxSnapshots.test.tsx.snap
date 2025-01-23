@@ -53,20 +53,22 @@ exports[`Images renders an image 1`] = `
     <div
       class="captionWrapper"
     >
-      <span
-        class="title"
+      <div
+        class="staticThemeProviderWrapper"
+        data-theme="dark"
       >
-        Dis be a title
-      </span>
-      <span
-        class="caption"
-      >
-        Dis be a caption 🎉
-      </span>
+        <h4
+          class="base bold large heading"
+        >
+          Dis be a title
+        </h4>
+        <p
+          class="base regular base text"
+        >
+          Dis be a caption 🎉
+        </p>
+      </div>
     </div>
-    <div
-      class="overlay"
-    />
   </div>
 </div>
 `;
