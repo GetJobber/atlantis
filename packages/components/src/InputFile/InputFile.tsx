@@ -94,12 +94,17 @@ export interface UploadParams {
 
 interface InputFileProps {
   /**
-   * The name of the input field.
+   * The name of the input field. This is used as the name attribute for both the file input element
+   * and the hidden input element that holds the JSON stringified value of the selected files.
+   * This ensures the file data is properly included in form submissions.
    */
   readonly name?: string;
 
   /**
-   * The value of the input field.
+   * The value of the input field. This should be an array of `FileUpload` objects representing the
+   * selected or uploaded files. The value is JSON stringified and set on a hidden input element,
+   * ensuring the file data is included in form submissions.
+   * Providing this prop makes the component controlled.
    */
   readonly value?: FileUpload[];
 
