@@ -60,27 +60,26 @@ const swipePower = (offset: number, velocity: number) => {
 const variants = {
   enter: (direction: number) => {
     return {
-      x: direction > 0 ? 3000 : -3000,
+      x: direction > 0 ? 1000 : -1000,
       opacity: 0,
     };
   },
   center: {
     zIndex: 1,
     x: 0,
-    y: 0,
     opacity: 1,
   },
   exit: (direction: number) => {
     return {
       zIndex: 0,
-      x: direction < 0 ? 3000 : -3000,
+      x: direction < 0 ? 1000 : -1000,
       opacity: 0,
     };
   },
 };
 
 const imageTransition = {
-  x: { type: "spring", stiffness: 100, damping: 30 },
+  x: { type: "spring", stiffness: 300, damping: 30 },
   opacity: { duration: 0.2 },
 };
 
@@ -139,7 +138,6 @@ export function LightBox({
         >
           <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
             <div className={styles.toolbar}>
-              <div></div>
               <Text>{`${currentImageIndex + 1}/${images.length}`}</Text>
               <ButtonDismiss ariaLabel="Close" onClick={handleRequestClose} />
             </div>
@@ -173,7 +171,6 @@ export function LightBox({
             {images.length > 1 && <NextButton onClick={debouncedHandleNext} />}
           </div>
 
-          {/*  */}
           <div className={styles.captionWrapper}>
             <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
               <Heading level={4}>
@@ -182,8 +179,6 @@ export function LightBox({
               <Text>{images[currentImageIndex].caption || "\u00A0"}</Text>
             </AtlantisThemeContextProvider>
           </div>
-
-          {/* <div className={styles.overlay} onClick={handleRequestClose} /> */}
         </div>
       )}
     </>
