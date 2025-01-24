@@ -161,7 +161,7 @@ export function FormFieldLabel({
   identifier,
   style,
 }: {
-  readonly placeholder?: string;
+  readonly placeholder?: ReactNode;
   readonly identifier?: string;
   readonly style?: React.CSSProperties;
 }) {

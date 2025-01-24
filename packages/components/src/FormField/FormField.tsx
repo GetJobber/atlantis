@@ -1,11 +1,24 @@
-import React, { useId } from "react";
+import React, {
+  PropsWithChildren,
+  createContext,
+  forwardRef,
+  useContext,
+  useId,
+} from "react";
 import { FormFieldProps } from "./FormFieldTypes";
-import { FormFieldWrapper } from "./FormFieldWrapper";
+import { FormFieldLabel, FormFieldWrapper } from "./FormFieldWrapper";
 import { FormFieldPostFix } from "./FormFieldPostFix";
 import { useAtlantisFormFieldActions } from "./hooks/useAtlantisFormFieldActions";
 import { useAtlantisFormField } from "./hooks/useAtlantisFormField";
 import { useAtlantisFormFieldName } from "./hooks/useAtlantisFormFieldName";
 import { useAtlantisReactHookForm } from "./hooks/useAtlantisReactHookForm";
+import { FormFieldDescription } from "./FormFieldDescription";
+import styles from "./FormField.module.css";
+import {
+  useFormFieldWrapperStyles,
+  useFormFieldWrapperStylesProps,
+} from "./hooks/useFormFieldWrapperStyles";
+import { InputValidation } from "../InputValidation";
 
 export function FormField(props: FormFieldProps) {
   // Warning: do not move useId into FormFieldInternal. This must be here to avoid
@@ -168,4 +181,110 @@ function setAutocomplete(
   }
 
   return autocompleteSetting;
+}
+
+export const FormFieldContext = createContext<
+  Omit<FormFieldProviderProps, "children">
+>({
+  disabled: false,
+  valid: true,
+  readOnly: false,
+  descriptionIdentifier: "",
+});
+
+FormField.Provider = function FormFieldProvider(props: FormFieldProviderProps) {
+  return (
+    <FormFieldContext.Provider
+      value={{
+        disabled: props.disabled,
+        valid: props.valid,
+        readOnly: props.readOnly,
+        wrapperClasses: props.wrapperClasses,
+        wrapperInlineStyle: props.wrapperInlineStyle,
+      }}
+    >
+      {props.children}
+    </FormFieldContext.Provider>
+  );
+};
+
+FormField.Control = function FormFieldControl(props: FormFieldControlProps) {
+  const { containerClasses, wrapperClasses, wrapperInlineStyle } =
+    useFormFieldWrapperStyles(props);
+
+  return (
+    <FormField.Provider
+      wrapperClasses={wrapperClasses}
+      wrapperInlineStyle={wrapperInlineStyle}
+    >
+      <div className={containerClasses}>{props.children}</div>
+    </FormField.Provider>
+  );
+};
+
+// eslint-disable-next-line react/display-name
+FormField.Input = forwardRef(
+  ({ autoComplete, ...rest }: React.InputHTMLAttributes<object>, ref) => {
+    const { wrapperClasses, wrapperInlineStyle } = useFormFieldState();
+
+    return (
+      <div
+        className={wrapperClasses}
+        style={wrapperInlineStyle}
+        data-testid="Form-Field-Wrapper"
+      >
+        <input
+          className={styles.input}
+          autoComplete={setAutocomplete(autoComplete == "autocomplete")}
+          ref={ref as React.RefObject<HTMLInputElement>}
+          {...rest}
+        />
+      </div>
+    );
+  },
+);
+
+export const useFormFieldState = () => {
+  return useContext(FormFieldContext);
+};
+
+FormField.Label = function FormLabel({ children, style }: FormFieldLabelProps) {
+  const localStyle = style || { position: "relative" };
+
+  return <FormFieldLabel placeholder={children} style={localStyle} />;
+};
+
+FormField.HelperText = function FormLabel({ children }: FormFieldLabelProps) {
+  const { descriptionIdentifier } = useFormFieldState();
+
+  return (
+    <FormFieldDescription description={children} id={descriptionIdentifier} />
+  );
+};
+
+FormField.ErrorMessage = function FormErrorMessage({
+  children,
+}: PropsWithChildren) {
+  return <InputValidation message={children} />;
+};
+
+interface FormFieldLabelProps {
+  readonly children: React.ReactNode;
+  readonly style?: React.CSSProperties;
+}
+
+interface FormFieldControlProps extends useFormFieldWrapperStylesProps {
+  readonly children: React.ReactNode;
+  readonly containerChildren?: React.ReactNode;
+  readonly wrapperRef?: React.RefObject<HTMLDivElement>;
+}
+
+interface FormFieldProviderProps {
+  readonly children: React.ReactNode;
+  readonly disabled?: boolean;
+  readonly valid?: boolean;
+  readonly readOnly?: boolean;
+  readonly descriptionIdentifier?: string;
+  readonly wrapperClasses?: string;
+  readonly wrapperInlineStyle?: React.CSSProperties;
 }

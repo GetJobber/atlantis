@@ -1,10 +1,10 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import styles from "./FormField.module.css";
 import { Text } from "../Text";
 
 interface FormFieldDescriptionProps {
-  readonly id: string;
-  readonly description?: string;
+  readonly id?: string;
+  readonly description?: ReactNode;
   readonly visible?: boolean;
 }
 

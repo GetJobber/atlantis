@@ -32,6 +32,24 @@ const InlineTemplate: ComponentStory<typeof FormField> = args => {
   );
 };
 
+export const ComposedTemplate: ComponentStory<
+  typeof FormField.Control
+> = args => {
+  return (
+    <FormField.Control>
+      <FormField.Label>Label</FormField.Label>
+      <FormField.Input
+        placeholder="Enter Your Text!"
+        {...args}
+        size={2}
+        value={args.value as string}
+      />
+      <FormField.HelperText>Description</FormField.HelperText>
+      <FormField.ErrorMessage>Error</FormField.ErrorMessage>
+    </FormField.Control>
+  );
+};
+
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
   placeholder: "Words...",

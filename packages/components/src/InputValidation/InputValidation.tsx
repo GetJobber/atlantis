@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import styles from "./InputValidation.module.css";
 import { Text } from "../Text";
@@ -8,7 +8,7 @@ interface InputValidationProps {
   /**
    * Validation message to be displayed
    */
-  readonly message: string;
+  readonly message: ReactNode;
   readonly visible?: boolean;
 }
 
