@@ -231,27 +231,31 @@ interface NavButtonProps {
 
 function PreviousButton({ onClick }: NavButtonProps) {
   return (
-    <Button
-      size="large"
-      variation="subtle"
-      type="secondary"
-      icon="arrowLeft"
-      ariaLabel="Previous image"
-      onClick={onClick}
-    />
+    <div className={styles.prev}>
+      <Button
+        size="large"
+        variation="subtle"
+        type="secondary"
+        icon="arrowLeft"
+        ariaLabel="Previous image"
+        onClick={onClick}
+      />
+    </div>
   );
 }
 
 function NextButton({ onClick }: NavButtonProps) {
   return (
-    <Button
-      size="large"
-      variation="subtle"
-      type="secondary"
-      icon="arrowRight"
-      ariaLabel="Next image"
-      onClick={onClick}
-    />
+    <div className={styles.next}>
+      <Button
+        size="large"
+        variation="subtle"
+        type="secondary"
+        icon="arrowRight"
+        ariaLabel="Next image"
+        onClick={onClick}
+      />
+    </div>
   );
 }
 

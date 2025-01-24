@@ -31,6 +31,25 @@
   flex-direction: column;
 }
 
+.next,
+.prev {
+  position: absolute;
+  top: 50%;
+  z-index: calc(var(--elevation-base) + 1);
+  transform: translateY(-50%);
+  @media (--medium-screens-and-up) {
+    position: static;
+  }
+}
+
+.next {
+  right: var(--space-small);
+}
+
+.prev {
+  left: var(--space-small);
+}
+
 .toolbar {
   display: grid;
   z-index: var(--elevation-base);
@@ -52,6 +71,7 @@
 
 .slideWrapper {
   display: flex;
+  position: relative;
   z-index: var(--elevation-base);
   height: 100%;
   max-width: 100%;
