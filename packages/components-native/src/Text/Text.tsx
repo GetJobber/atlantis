@@ -4,6 +4,7 @@ import {
   LineHeight,
   TextAccessibilityRole,
   TextAlign,
+  TextColor,
   TextSize,
   TextVariation,
   TruncateLength,
@@ -85,6 +86,11 @@ interface TextProps
    * of the TextInput
    */
   readonly hideFromScreenReader?: boolean;
+
+  /**
+   * Style override for text
+   */
+  readonly styleOverride?: TextStyleOverride;
 }
 
 export type TextLevel = "text" | "textSupporting";
@@ -92,6 +98,10 @@ export type TextLevel = "text" | "textSupporting";
 interface LevelStyle {
   readonly size: TextSize;
   readonly lineHeight: LineHeight;
+}
+
+export interface TextStyleOverride {
+  readonly color: TextColor | undefined;
 }
 
 const levelStyles: Record<TextLevel, LevelStyle> = {
@@ -125,14 +135,21 @@ export function Text({
   italic = false,
   hideFromScreenReader = false,
   maxFontScaleSize,
+  styleOverride,
   underline,
   selectable,
 }: TextProps): JSX.Element {
   const accessibilityRole: TextAccessibilityRole = "text";
 
+  let color: TextColor = variation;
+
+  if (styleOverride?.color) {
+    color = styleOverride.color;
+  }
+
   return (
     <Typography
-      color={variation}
+      color={color}
       fontFamily="base"
       fontStyle={italic ? "italic" : "regular"}
       fontWeight={getFontWeight({ level, emphasis })}

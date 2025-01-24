@@ -329,6 +329,8 @@ export type TextColor =
   | "orangeDark"
   | "navyDark"
   | "limeDark"
+  | "purple400"
+  | "purple600"
   | "purpleDark"
   | "pinkDark"
   | "tealDark"

@@ -298,4 +298,40 @@ describe("Button", () => {
       expect(handlePress).toHaveBeenCalledTimes(1);
     });
   });
+
+  describe("styleOverrides", () => {
+    describe("borderColor", () => {
+      it("should apply the borderColor style override", () => {
+        const borderColor = "color-base-grey--100";
+        const { buttonStyle } = renderButton(
+          <Button
+            label="Override"
+            onPress={jest.fn()}
+            styleOverrides={{ borderColor }}
+          />,
+        );
+
+        expect(buttonStyle).toMatchObject({
+          borderColor: tokens[borderColor],
+        });
+      });
+
+      it("should throw an error if the colour is not a valid token key", () => {
+        const borderColor = "red";
+
+        const renderButtonWithInvalidStyleOverride = () =>
+          renderButton(
+            <Button
+              label="Override"
+              onPress={jest.fn()}
+              styleOverrides={{ borderColor }}
+            />,
+          );
+
+        expect(renderButtonWithInvalidStyleOverride).toThrow(
+          "Invalid borderColor key: red",
+        );
+      });
+    });
+  });
 });
