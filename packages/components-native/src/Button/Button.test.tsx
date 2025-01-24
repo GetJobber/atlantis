@@ -302,7 +302,8 @@ describe("Button", () => {
   describe("styleOverrides", () => {
     describe("borderColor", () => {
       it("should apply the borderColor style override", () => {
-        const borderColor = "color-base-grey--100";
+        const borderColor = tokens["color-base-grey--100"];
+
         const { buttonStyle } = renderButton(
           <Button
             label="Override"
@@ -312,25 +313,8 @@ describe("Button", () => {
         );
 
         expect(buttonStyle).toMatchObject({
-          borderColor: tokens[borderColor],
+          borderColor,
         });
-      });
-
-      it("should throw an error if the colour is not a valid token key", () => {
-        const borderColor = "red";
-
-        const renderButtonWithInvalidStyleOverride = () =>
-          renderButton(
-            <Button
-              label="Override"
-              onPress={jest.fn()}
-              styleOverrides={{ borderColor }}
-            />,
-          );
-
-        expect(renderButtonWithInvalidStyleOverride).toThrow(
-          "Invalid borderColor key: red",
-        );
       });
     });
   });

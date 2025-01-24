@@ -85,7 +85,7 @@ interface CommonButtonProps {
 }
 
 export interface CommonButtonStyleOverride {
-  readonly borderColor?: string; // TODO: get proper type
+  readonly borderColor?: typeof tokens;
 }
 
 interface LabelButton extends CommonButtonProps {
@@ -129,17 +129,10 @@ export function Button({
     fullHeight && styles.fullHeight,
   ];
 
-  console.log("tokens", tokens);
-
   if (styleOverrides?.borderColor) {
-    if (styleOverrides.borderColor in tokens) {
-      const borderColor =
-        tokens[styleOverrides.borderColor as keyof typeof tokens];
-      buttonStyle.push({ borderColor: borderColor });
-    } else {
-      throw new Error(`Invalid borderColor key: ${styleOverrides.borderColor}`);
-    }
+    buttonStyle.push({ borderColor: styleOverrides.borderColor });
   }
+
   // attempts to use Pressable caused problems.  When a ScrollView contained
   // an InputText that was focused, it required two presses to activate the
   // Pressable.  Using a TouchableHighlight made things register correctly
