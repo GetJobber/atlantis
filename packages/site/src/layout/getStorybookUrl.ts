@@ -11,7 +11,7 @@ export const getStorybookUrl = (path: string) => {
   if (!hostname && import.meta.env.DEV) {
     hostname = "http://localhost:6005/";
   } else if (!hostname) {
-    hostname = "https://atlantis.getjobber.com/";
+    hostname = `https://${window.location.hostname}/`;
   }
 
   // This is an example of how I think this can be used in the future. If there's a better way, we can do that instead!
