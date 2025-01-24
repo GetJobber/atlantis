@@ -1,2 +1,2 @@
-export { Button } from "./Button";
+export { Button, CommonButtonStyleOverride } from "./Button";
 export type { ButtonVariation, ButtonType } from "./types";
