@@ -136,6 +136,22 @@ allowed to be uploaded.
 />
 ```
 
+### name & value
+
+InputFile includes a hidden input element to enable seamless integration with
+form submissions.
+
+The `name` prop defines the key under which the uploaded file data is submitted
+in the form.
+
+The `value` prop contains an array of `FileUpload` objects, which represent the
+files that have been uploaded.
+
+When the form is submitted, the file data stored in the value prop is serialized
+into a JSON string and included in the hidden input with the specified name.
+This ensures the data is submitted as part of the form in a format that is easy
+to parse and use.
+
 ## Notes
 
 If you would like to restrict specific file types, it is advised that you use
