@@ -76,7 +76,8 @@
 .captionWrapper {
   display: flex;
   z-index: var(--elevation-base);
-  margin-bottom: var(--space-larger);
+  max-width: 600px;
+  margin: 0 auto var(--space-larger);
   text-align: center;
   flex-direction: column;
   align-items: center;
@@ -85,6 +86,7 @@
 
 .caption {
   min-height: calc(17.5px * 3);
+  text-align: left;
   @media (--medium-screens-and-up) {
     min-height: calc(17.5px * 2);
   }
