@@ -1,5 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react-native";
+import { tokens } from "@jobber/design";
 import { Text } from ".";
 
 it("renders text with no additional props", () => {
@@ -147,4 +148,36 @@ it("renders text with underline styling", () => {
   const text = render(<Text underline="dashed">Test Text</Text>);
 
   expect(text.toJSON()).toMatchSnapshot();
+});
+
+describe("styleOverride", () => {
+  describe("color", () => {
+    describe("when color is not provided", () => {
+      it("does not override the color", () => {
+        const text = render(<Text>Test Text</Text>);
+
+        // eslint-disable-next-line dot-notation
+        expect(text.toJSON()?.["props"]["style"]).toEqual(
+          expect.arrayContaining([
+            expect.not.objectContaining({
+              color: tokens["color-orange--dark"],
+            }),
+          ]),
+        );
+      });
+    });
+
+    it("renders text with color override", () => {
+      const text = render(
+        <Text styleOverride={{ color: "orangeDark" }}>Test Text</Text>,
+      );
+
+      // eslint-disable-next-line dot-notation
+      expect(text.toJSON()?.["props"]["style"]).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ color: tokens["color-orange--dark"] }),
+        ]),
+      );
+    });
+  });
 });
