@@ -3,7 +3,7 @@
 exports[`renders a banner with a primary 'learning' action when the type is 'notice' 1`] = `
 <div>
   <div
-    class="banner"
+    class="banner notice"
     role="status"
   >
     <div
@@ -37,7 +37,7 @@ exports[`renders a banner with a primary 'learning' action when the type is 'not
         class="bannerAction"
       >
         <button
-          class="button small learning tertiary"
+          class="button small learning secondary"
           type="button"
         >
           <span
@@ -78,7 +78,7 @@ exports[`renders a banner with a primary 'learning' action when the type is 'not
 exports[`renders a banner with a primary action 1`] = `
 <div>
   <div
-    class="banner"
+    class="banner success"
     role="status"
   >
     <div
@@ -112,7 +112,7 @@ exports[`renders a banner with a primary action 1`] = `
         class="bannerAction"
       >
         <button
-          class="button small work tertiary"
+          class="button small work secondary"
           type="button"
         >
           <span
@@ -153,7 +153,7 @@ exports[`renders a banner with a primary action 1`] = `
 exports[`renders a notice banner 1`] = `
 <div>
   <div
-    class="banner"
+    class="banner notice"
     role="status"
   >
     <div
@@ -214,7 +214,7 @@ exports[`renders a notice banner 1`] = `
 exports[`renders a success banner 1`] = `
 <div>
   <div
-    class="banner"
+    class="banner success"
     role="status"
   >
     <div
@@ -275,7 +275,7 @@ exports[`renders a success banner 1`] = `
 exports[`renders a warning banner 1`] = `
 <div>
   <div
-    class="banner"
+    class="banner warning"
     role="status"
   >
     <div
@@ -340,7 +340,7 @@ exports[`renders a warning banner 1`] = `
 exports[`renders an error banner 1`] = `
 <div>
   <div
-    class="banner"
+    class="banner error"
     role="alert"
   >
     <div

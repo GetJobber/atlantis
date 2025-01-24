@@ -1,14 +1,36 @@
 .banner {
+  --banner-border: var(--color-border);
+  --banner-surface: --var(--color-surface);
   display: flex;
   position: relative;
   box-shadow: var(--shadow-base);
   padding: calc(var(--space-base) - var(--space-smaller)) var(--space-base);
-  border: var(--border-base) solid var(--color-border);
+  border: var(--border-base) solid var(--banner-border);
   border-radius: var(--radius-base);
   color: var(--color-text);
-  background-color: var(--color-surface);
+  background-color: var(--banner-surface);
   gap: var(--space-small);
   align-items: center;
+}
+
+.notice {
+  /* --banner-border: var(--color-informative); */
+  --banner-surface: var(--color-informative--surface);
+}
+
+.error {
+  /* --banner-border: var(--color-critical); */
+  --banner-surface: var(--color-critical--surface);
+}
+
+.warning {
+  /* --banner-border: var(--color-warning); */
+  --banner-surface: var(--color-warning--surface);
+}
+
+.success {
+  /* --banner-border: var(--color-success); */
+  --banner-surface: var(--color-success--surface);
 }
 
 .bannerChildren > a {
@@ -58,10 +80,15 @@
 .closeButton {
   margin: calc(var(--space-smallest) * -1) 0;
   align-self: flex-start;
+  mix-blend-mode: multiply;
 
   @media (--small-screens-and-below) {
     margin: calc(var(--space-small) * -1) 0;
   }
+}
+
+[data-theme="dark"] .closeButton {
+  mix-blend-mode: screen;
 }
 
 .iconWrapper {
