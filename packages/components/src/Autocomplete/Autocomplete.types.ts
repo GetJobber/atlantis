@@ -88,7 +88,7 @@ export interface AutocompleteProps<
    */
   readonly placeholder: string;
 
-  readonly customMenuRender?: (
+  readonly customRenderMenu?: (
     props: CustomOptionsMenuProp<
       GenericOption | GenericGetOptionsValue,
       GenericOptionValue
@@ -112,7 +112,7 @@ export interface MenuProps<
    */
   readonly attachTo: RefObject<Element | null>;
   onOptionSelect(chosenOption?: GenericOptionValue): void;
-  readonly customMenuRender?: (
+  readonly customRenderMenu?: (
     props: CustomOptionsMenuProp<GenericOption, GenericOptionValue>,
   ) => React.ReactElement;
 }

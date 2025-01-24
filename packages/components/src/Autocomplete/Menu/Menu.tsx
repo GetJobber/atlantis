@@ -20,15 +20,15 @@ export function Menu<
   selectedOption,
   onOptionSelect,
   attachTo,
-  customMenuRender,
+  customRenderMenu,
 }: MenuProps<GenericOption, GenericOptionValue>) {
   if (!visible) return null;
 
-  if (customMenuRender) {
+  if (customRenderMenu) {
     return (
       <InternalCustomMenu
         attachTo={attachTo}
-        customMenuRender={customMenuRender}
+        customRenderMenu={customRenderMenu}
         options={options}
         onOptionSelect={onOptionSelect}
         selectedOption={selectedOption}
@@ -54,7 +54,7 @@ interface InternalCustomMenuProps<
   readonly selectedOption?: GenericOptionValue;
   readonly attachTo: MenuProps["attachTo"];
   readonly onOptionSelect: (chosenOption?: GenericOptionValue) => void;
-  readonly customMenuRender: (
+  readonly customRenderMenu: (
     props: CustomOptionsMenuProp<GenericOption, GenericOptionValue>,
   ) => React.ReactElement;
 }
@@ -66,7 +66,7 @@ function InternalCustomMenu<
   options,
   selectedOption,
   onOptionSelect,
-  customMenuRender,
+  customRenderMenu,
   attachTo,
 }: InternalCustomMenuProps<GenericOption, GenericOptionValue>) {
   const {
@@ -77,7 +77,7 @@ function InternalCustomMenu<
     targetWidth,
   } = useRepositionMenu(attachTo, true);
 
-  const menuContent = customMenuRender({
+  const menuContent = customRenderMenu({
     options,
     menuRef,
     onOptionSelect,

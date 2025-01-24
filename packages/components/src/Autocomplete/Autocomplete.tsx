@@ -31,7 +31,7 @@ function AutocompleteInternal<
     onBlur,
     onFocus,
     validations,
-    customMenuRender,
+    customRenderMenu,
     ...inputProps
   }: AutocompleteProps<
     GenericOption,
@@ -74,7 +74,7 @@ function AutocompleteInternal<
         attachTo={autocompleteRef}
         visible={menuVisible && options.length > 0}
         options={options}
-        customMenuRender={customMenuRender}
+        customRenderMenu={customRenderMenu}
         selectedOption={value}
         onOptionSelect={handleMenuChange}
       />

@@ -287,7 +287,7 @@ const SuperCustomTemplate = () => {
         placeholder="Search for something"
         value={value}
         onChange={newValue => setValue(newValue)}
-        customMenuRender={props => <CustomMenuContent {...props} />}
+        customRenderMenu={props => <CustomMenuContent {...props} />}
         getOptions={getOptions}
       />
     </Content>
