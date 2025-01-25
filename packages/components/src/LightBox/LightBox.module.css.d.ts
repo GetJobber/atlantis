@@ -1,5 +1,6 @@
 declare const styles: {
   readonly "lightboxWrapper": string;
+  readonly "backgroundImage": string;
   readonly "next": string;
   readonly "prev": string;
   readonly "toolbar": string;
@@ -8,7 +9,7 @@ declare const styles: {
   readonly "imageArea": string;
   readonly "captionWrapper": string;
   readonly "caption": string;
-  readonly "overlay": string;
+  readonly "blurOverlay": string;
 };
 export = styles;
 

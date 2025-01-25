@@ -136,6 +136,14 @@ export function LightBox({
           key="Lightbox"
           ref={lightboxRef}
         >
+          <div
+            className={styles.backgroundImage}
+            style={{
+              backgroundImage: `url("${images[currentImageIndex].url}")`,
+            }}
+          ></div>
+          <div className={styles.blurOverlay} onClick={handleRequestClose} />
+
           <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
             <div className={styles.toolbar}>
               <Text>{`${currentImageIndex + 1}/${images.length}`}</Text>
@@ -185,7 +193,6 @@ export function LightBox({
               )}
             </AtlantisThemeContextProvider>
           </div>
-          <div className={styles.overlay} onClick={handleRequestClose} />
         </div>
       )}
     </>
