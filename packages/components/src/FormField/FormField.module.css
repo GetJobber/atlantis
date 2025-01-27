@@ -40,7 +40,7 @@
   --field--background-color: var(--color-surface);
 
   --field--base-elevation: var(--elevation-base);
-  --field--label-elevation: calc(var(--field--base-elevation) + 1);
+  --field--internalLabel-elevation: calc(var(--field--base-elevation) + 1);
   --field--postfix-elevation: calc(var(--field--base-elevation) - 1);
   --field--postfix-action-elevation: calc(var(--field--base-elevation) + 2);
 
@@ -215,7 +215,7 @@
   flex-direction: column;
 }
 
-.textarea .inputWrapper:has(.label) .childrenWrapper {
+.textarea .inputWrapper:has(.internalLabel) .childrenWrapper {
   padding-top: var(--field--padding-top);
 }
 
@@ -227,7 +227,7 @@
 }
 
 .select .input {
-  z-index: var(--field--label-elevation);
+  z-index: var(--field--internalLabel-elevation);
 }
 
 .input:-webkit-autofill,
@@ -237,7 +237,7 @@
   -webkit-box-shadow: 0 0 0 30px var(--color-surface) inset !important;
 }
 
-.textarea:not(:has(.label)) {
+.textarea:not(:has(.internalLabel)) {
   .input {
     padding-top: var(--field--padding-top);
   }
@@ -250,16 +250,15 @@
 /**
  * Label
  **/
-.label {
+.internalLabel {
   position: absolute;
   top: var(--field--placeholder-offset);
-  z-index: var(--field--label-elevation);
+  z-index: var(--field--internalLabel-elevation);
   width: 100%;
   padding-left: var(--field--padding-left);
   padding-right: var(--field--padding-right);
   overflow: hidden;
   color: var(--field--placeholder-color);
-  line-height: var(--field--value-lineHeight);
   text-align: var(--field--textAlign);
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -268,9 +267,16 @@
   transition: all var(--timing-quick);
 }
 
+.externalLabel {
+  display: block;
+  margin-bottom: var(--space-smaller);
+  color: var(--field--placeholder-color);
+  line-height: var(--typography--lineHeight-base);
+}
+
 .select select,
 .right select,
-.select .label {
+.select .internalLabel {
   padding-right: calc(var(--field--padding-right) + var(--base-unit) * 2);
 }
 
@@ -278,37 +284,37 @@
   background-color: var(--field--background-color);
 }
 
-.text .label {
+.text .internalLabel {
   padding-top: var(--field--padding-top);
   transform: translateY(var(--field--placeholder-transform));
 }
 
-.textarea .label {
+.textarea .internalLabel {
   padding-right: var(--field--padding-right);
 }
 
-.miniLabel .label,
-.timeInputLabel:focus-within .label {
+.miniLabel .internalLabel,
+.timeInputLabel:focus-within .internalLabel {
   font-size: var(--typography--fontSize-small);
 }
 
-.text.miniLabel .label {
+.text.miniLabel .internalLabel {
   padding-top: var(--space-smallest);
 }
 
-.textarea.miniLabel .label {
+.textarea.miniLabel .internalLabel {
   background-color: var(--field--background-color);
 }
 
-.small.miniLabel .label,
-.timeInputLabel.small.miniLabel:focus-within .label {
+.small.miniLabel .internalLabel,
+.timeInputLabel.small.miniLabel:focus-within .internalLabel {
   display: none;
 }
 
 /**This is valid cascading order **/
 /* stylelint-disable-next-line no-descending-specificity */
-.large.miniLabel .label,
-.timeInputLabel.large.miniLabel:focus-within .label {
+.large.miniLabel .internalLabel,
+.timeInputLabel.large.miniLabel:focus-within .internalLabel {
   padding-top: var(--space-small);
 }
 

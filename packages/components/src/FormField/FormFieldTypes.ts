@@ -182,6 +182,8 @@ export interface FormFieldProps extends CommonFormFieldProps {
    */
   readonly defaultValue?: string | Date;
 
+  readonly hideMiniLabel?: boolean;
+
   /**
    * Determines what kind of keyboard appears on mobile web.
    */

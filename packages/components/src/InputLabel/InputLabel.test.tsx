@@ -4,7 +4,7 @@ import { InputLabel } from "./InputLabel";
 
 describe("InputLabel component", () => {
   it("should render the label with the provided text", () => {
-    render(<InputLabel label="Test Label" inputId="test-id" />);
+    render(<InputLabel htmlFor="test-id">Test Label</InputLabel>);
 
     const labelElement = screen.getByText("Test Label");
     expect(labelElement).toBeInTheDocument();
@@ -13,7 +13,7 @@ describe("InputLabel component", () => {
   });
 
   it("should not render anything when the label is not provided", () => {
-    const { container } = render(<InputLabel inputId="test-id" />);
+    const { container } = render(<InputLabel htmlFor="test-id" />);
 
     expect(container.firstChild).toBeNull();
   });
@@ -22,11 +22,9 @@ describe("InputLabel component", () => {
     const customStyle = { color: "red", fontWeight: "bold" };
 
     render(
-      <InputLabel
-        label="Styled Label"
-        inputId="styled-id"
-        style={customStyle}
-      />,
+      <InputLabel htmlFor="styled-id" style={customStyle}>
+        Styled Label
+      </InputLabel>,
     );
 
     const labelElement = screen.getByText("Styled Label");
@@ -34,7 +32,7 @@ describe("InputLabel component", () => {
   });
 
   it("should render with a default inputId when none is provided", () => {
-    render(<InputLabel label="No ID Label" />);
+    render(<InputLabel>No ID Label</InputLabel>);
 
     const labelElement = screen.getByText("No ID Label");
     expect(labelElement).toBeInTheDocument();

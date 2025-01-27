@@ -1,20 +1,28 @@
 import React from "react";
 import styles from "./InputLabel.module.css";
 
-export function InputLabel({
-  label,
-  inputId,
-  style,
-}: {
-  readonly label?: string;
-  readonly inputId?: string;
+export interface InputLabelProps {
+  readonly children?: React.ReactNode;
+  readonly htmlFor?: string;
   readonly style?: React.CSSProperties;
-}) {
-  if (!label) return null;
+  readonly external?: boolean;
+}
+
+export function InputLabel({
+  children,
+  htmlFor,
+  style,
+  external = true,
+}: InputLabelProps): JSX.Element | null {
+  if (!children) return null;
 
   return (
-    <label className={styles.label} htmlFor={inputId} style={style}>
-      {label}
+    <label
+      className={external ? styles.external : styles.label}
+      htmlFor={htmlFor}
+      style={style}
+    >
+      {children}
     </label>
   );
 }

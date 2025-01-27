@@ -20,7 +20,7 @@ const InputTextTemplate: ComponentStory<typeof InputLabel> = () => {
 
   return (
     <div>
-      <InputLabel inputId="ageInput" label="Age" />
+      <InputLabel htmlFor="ageInput">Age</InputLabel>
       <InputText
         id="ageInput"
         version={2}
@@ -38,7 +38,7 @@ const InputDateTemplate: ComponentStory<typeof InputLabel> = () => {
 
   return (
     <div>
-      <InputLabel inputId="birthdayInput" label="Birthday" />
+      <InputLabel htmlFor="birthdayInput">Birthday</InputLabel>
       <InputDate
         id="birthdayInput"
         value={value}
@@ -53,7 +53,7 @@ export const LabelledInputDate = InputDateTemplate.bind({});
 const InputEmailTemplate: ComponentStory<typeof InputLabel> = () => {
   return (
     <div>
-      <InputLabel inputId="emailInput" label="Email" />
+      <InputLabel htmlFor="emailInput">Email</InputLabel>
       <InputEmail id="emailInput" />
     </div>
   );
@@ -66,7 +66,7 @@ const InputPhoneNumberTemplate: ComponentStory<typeof InputLabel> = () => {
 
   return (
     <div>
-      <InputLabel inputId="phoneNumberInput" label="Phone Number" />
+      <InputLabel htmlFor="phoneNumberInput">Phone number</InputLabel>
       <InputPhoneNumber
         id="phoneNumberInput"
         value={value || ""}
@@ -84,7 +84,9 @@ const CustomStylesTemplate: ComponentStory<typeof InputLabel> = () => {
 
   return (
     <div>
-      <InputLabel inputId="ageInput" label="Age" style={customStyles} />
+      <InputLabel htmlFor="ageInput" style={customStyles}>
+        Age
+      </InputLabel>
       <InputText
         id="ageInput"
         version={2}
