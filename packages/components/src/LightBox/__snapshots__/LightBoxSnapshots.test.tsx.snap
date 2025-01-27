@@ -8,6 +8,13 @@ exports[`Images renders an image 1`] = `
     tabindex="0"
   >
     <div
+      class="backgroundImage"
+      style="background-image: url(https://i.imgur.com/6Jcfgnp.jpg);"
+    />
+    <div
+      class="blurOverlay"
+    />
+    <div
       class="staticThemeProviderWrapper"
       data-theme="dark"
     >
@@ -77,9 +84,6 @@ exports[`Images renders an image 1`] = `
         </div>
       </div>
     </div>
-    <div
-      class="overlay"
-    />
   </div>
 </div>
 `;

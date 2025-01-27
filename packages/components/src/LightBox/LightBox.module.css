@@ -27,7 +27,6 @@
   max-width: 100%;
   padding: var(--space-base) var(--space-larger);
   background-color: var(--color-base-grey--400);
-  /* background-color: var(--color-surface--reverse); */
   justify-content: center;
   flex-direction: column;
 }
