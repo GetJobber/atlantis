@@ -11,6 +11,7 @@ import { Menu } from "./Menu/Menu";
 import { AnyOption, AutocompleteProps, Option } from "./Autocomplete.types";
 import { InputText, InputTextRef } from "../InputText";
 import { useDebounce } from "../utils/useDebounce";
+import { mergeRefs } from "../utils/mergeRefs";
 
 // Max statements increased to make room for the debounce functions
 // eslint-disable-next-line max-statements
@@ -47,6 +48,7 @@ function AutocompleteInternal<
   const [inputText, setInputText] = useState(value?.label ?? "");
   const autocompleteRef = useRef(null);
   const delayedSearch = useDebounce(updateSearch, debounceRate);
+  const inputRef = useRef<InputTextRef | null>(null);
 
   useEffect(() => {
     delayedSearch();
@@ -59,7 +61,7 @@ function AutocompleteInternal<
   return (
     <div className={styles.autocomplete} ref={autocompleteRef}>
       <InputText
-        ref={ref}
+        ref={mergeRefs([ref, inputRef])}
         autocomplete={false}
         size={size}
         value={inputText}
@@ -72,6 +74,7 @@ function AutocompleteInternal<
       />
       <Menu
         attachTo={autocompleteRef}
+        inputRef={inputRef}
         inputFocused={inputFocused}
         options={options}
         customRenderMenu={customRenderMenu}

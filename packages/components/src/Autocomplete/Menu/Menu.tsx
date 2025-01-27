@@ -1,4 +1,5 @@
-import React from "react";
+import React, { RefObject } from "react";
+import { InputTextRef } from "@jobber/components/InputText";
 import { DefaultMenu, DefaultMenuProps } from "./DefaultMenu";
 import { useMenuWrapper } from "./MenuWrapper";
 import {
@@ -17,6 +18,7 @@ export function Menu<
   onOptionSelect,
   inputFocused,
   attachTo,
+  inputRef,
   customRenderMenu,
 }: MenuProps<GenericOption, GenericOptionValue>) {
   if (customRenderMenu) {
@@ -24,6 +26,7 @@ export function Menu<
       <InternalCustomMenu
         attachTo={attachTo}
         inputFocused={inputFocused}
+        inputRef={inputRef}
         customRenderMenu={customRenderMenu}
         options={options}
         onOptionSelect={onOptionSelect}
@@ -39,6 +42,7 @@ export function Menu<
       options={options}
       onOptionSelect={onOptionSelect as DefaultMenuProps["onOptionSelect"]}
       selectedOption={selectedOption}
+      visible={inputFocused}
     />
   );
 }
@@ -51,6 +55,7 @@ interface InternalCustomMenuProps<
   readonly options: GenericOption[];
   readonly selectedOption?: GenericOptionValue;
   readonly attachTo: MenuProps["attachTo"];
+  readonly inputRef: RefObject<InputTextRef | null>;
   readonly onOptionSelect: (chosenOption?: GenericOptionValue) => void;
   readonly customRenderMenu: (
     props: CustomOptionsMenuProp<GenericOption, GenericOptionValue>,
@@ -67,6 +72,7 @@ function InternalCustomMenu<
   customRenderMenu,
   attachTo,
   inputFocused,
+  inputRef,
 }: InternalCustomMenuProps<GenericOption, GenericOptionValue>) {
   const { MenuWrapper, menuRef } = useMenuWrapper({ attachTo });
 
@@ -77,6 +83,7 @@ function InternalCustomMenu<
     selectedOption,
     inputFocused,
     MenuWrapper,
+    inputRef,
   });
 
   return menuContent;

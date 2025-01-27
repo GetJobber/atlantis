@@ -29,6 +29,7 @@ export function DefaultMenu({
   selectedOption,
   onOptionSelect,
   attachTo,
+  visible,
 }: DefaultMenuProps) {
   const {
     menuRef,
@@ -66,6 +67,7 @@ export function DefaultMenu({
         direction,
         highlightedIndex,
       });
+      if (!visible) return;
 
       switch (direction) {
         case KeyboardAction.Previous:
@@ -92,7 +94,7 @@ export function DefaultMenu({
 
   const menu = (
     <MenuWrapper
-      {...{ setMenuRef, popperStyles, attributes, targetWidth, visible: true }}
+      {...{ setMenuRef, popperStyles, attributes, targetWidth, visible }}
     >
       {options?.map((option, index) => {
         return (

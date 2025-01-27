@@ -1,5 +1,6 @@
 import { RefObject } from "react";
 import { FormFieldProps } from "../FormField";
+import { InputTextRef } from "../InputText";
 
 type OptionValue = string | number;
 
@@ -114,6 +115,7 @@ export interface MenuProps<
    * Element that the menu is attached to when the menu opens.
    */
   readonly attachTo: RefObject<Element | null>;
+  readonly inputRef: RefObject<InputTextRef | null>;
   onOptionSelect(chosenOption?: GenericOptionValue): void;
   readonly customRenderMenu?: (
     props: CustomOptionsMenuProp<GenericOption, GenericOptionValue>,
@@ -144,6 +146,8 @@ export interface CustomOptionsMenuProp<
    * Determine if the input is focused. Can be used to conditionally render the menu.
    */
   readonly inputFocused: boolean;
+
+  readonly inputRef: RefObject<InputTextRef | null>;
   /**
    * Component that wraps the menu content. Used for handling keyboard scroll behavior.
    */

@@ -37,8 +37,10 @@ export function useKeyboardNavigation<
   options,
   onOptionSelect,
   menuRef,
+  visible,
 }: {
   options: GenericOption[];
+  visible?: boolean;
   menuRef?: HTMLElement | null;
   onOptionSelect: (option?: GenericOptionValue) => void;
 }) {
@@ -49,7 +51,6 @@ export function useKeyboardNavigation<
   const initialHighlight = options.some(detectGroups) ? 1 : 0;
   useEffect(() => setHighlightedIndex(initialHighlight), [options]);
   useEffect(() => {
-    console.log("highlightedIndex", highlightedIndex);
     menuRef?.children[highlightedIndex]?.scrollIntoView?.({
       behavior: "smooth",
       block: "nearest",
@@ -59,6 +60,7 @@ export function useKeyboardNavigation<
 
   const onRequestHighlightChange = useCallback(
     (event: KeyboardEvent, direction: KeyboardAction) => {
+      if (!visible) return;
       const indexChange = getRequestedIndexChange({
         event,
         options,
@@ -82,7 +84,7 @@ export function useKeyboardNavigation<
           break;
       }
     },
-    [highlightedIndex, options, onOptionSelect],
+    [highlightedIndex, options, onOptionSelect, visible],
   );
   useCustomKeyboardNavigation({ onRequestHighlightChange });
 
