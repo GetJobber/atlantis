@@ -4,7 +4,12 @@ import { IconColorNames, IconNames } from "@jobber/design";
 import { XOR } from "ts-xor";
 import { styles } from "./Button.style";
 import { InternalButtonLoading } from "./components/InternalButtonLoading";
-import { ButtonSize, ButtonType, ButtonVariation } from "./types";
+import {
+  ButtonSize,
+  ButtonType,
+  ButtonVariation,
+  CommonButtonBorderColor,
+} from "./types";
 import { ActionLabel, ActionLabelVariation } from "../ActionLabel";
 import { Icon } from "../Icon";
 import { tokens } from "../utils/design";
@@ -85,7 +90,7 @@ interface CommonButtonProps {
 }
 
 export interface CommonButtonStyleOverride {
-  readonly borderColor?: typeof tokens;
+  readonly borderColor?: CommonButtonBorderColor;
 }
 
 interface LabelButton extends CommonButtonProps {
@@ -130,7 +135,7 @@ export function Button({
   ];
 
   if (styleOverrides?.borderColor) {
-    buttonStyle.push({ borderColor: styleOverrides.borderColor });
+    buttonStyle.push({ borderColor: tokens[styleOverrides.borderColor] });
   }
 
   // attempts to use Pressable caused problems.  When a ScrollView contained
