@@ -77,7 +77,7 @@ exports[`Images renders an image 1`] = `
           class="caption"
         >
           <p
-            class="base regular base text"
+            class="base regular large text"
           >
             Dis be a caption 🎉
           </p>

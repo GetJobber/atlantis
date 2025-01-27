@@ -189,7 +189,7 @@ export function LightBox({
               )}
               {images.some(image => image.caption) && (
                 <div className={styles.caption}>
-                  <Text>{images[currentImageIndex].caption}</Text>
+                  <Text size="large">{images[currentImageIndex].caption}</Text>
                 </div>
               )}
             </AtlantisThemeContextProvider>
