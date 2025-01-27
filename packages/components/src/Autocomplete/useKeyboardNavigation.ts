@@ -1,5 +1,6 @@
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
-import { AnyOption } from "./Autocomplete.types";
+import { useCallback, useEffect, useState } from "react";
+import { AnyOption, Option } from "./Autocomplete.types";
 import { isGroup } from "./Autocomplete.utils";
 
 export enum KeyboardAction {
@@ -8,7 +9,7 @@ export enum KeyboardAction {
   Select = 0,
 }
 
-export function useKeyboardNavigation({
+export function useCustomKeyboardNavigation({
   onRequestHighlightChange,
 }: {
   onRequestHighlightChange?: (
@@ -27,6 +28,65 @@ export function useKeyboardNavigation({
   useOnKeyDown((event: KeyboardEvent) => {
     onRequestHighlightChange?.(event, KeyboardAction.Select);
   }, "Enter");
+}
+
+export function useKeyboardNavigation<
+  GenericOption extends AnyOption = AnyOption,
+  GenericOptionValue extends Option = Option,
+>({
+  options,
+  onOptionSelect,
+  menuRef,
+}: {
+  options: GenericOption[];
+  menuRef?: HTMLElement | null;
+  onOptionSelect: (option?: GenericOptionValue) => void;
+}) {
+  const [highlightedIndex, setHighlightedIndex] = useState(0);
+
+  const detectGroups = (option: AnyOption) => "options" in option;
+
+  const initialHighlight = options.some(detectGroups) ? 1 : 0;
+  useEffect(() => setHighlightedIndex(initialHighlight), [options]);
+  useEffect(() => {
+    console.log("highlightedIndex", highlightedIndex);
+    menuRef?.children[highlightedIndex]?.scrollIntoView?.({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "start",
+    });
+  }, [highlightedIndex]);
+
+  const onRequestHighlightChange = useCallback(
+    (event: KeyboardEvent, direction: KeyboardAction) => {
+      const indexChange = getRequestedIndexChange({
+        event,
+        options,
+        direction,
+        highlightedIndex,
+      });
+
+      switch (direction) {
+        case KeyboardAction.Previous:
+          setHighlightedIndex(prev => Math.max(0, prev + indexChange));
+          break;
+        case KeyboardAction.Next:
+          setHighlightedIndex(prev =>
+            Math.min(options.length - 1, prev + indexChange),
+          );
+          break;
+        case KeyboardAction.Select:
+          onOptionSelect(
+            options[highlightedIndex] as unknown as GenericOptionValue,
+          );
+          break;
+      }
+    },
+    [highlightedIndex, options, onOptionSelect],
+  );
+  useCustomKeyboardNavigation({ onRequestHighlightChange });
+
+  return { highlightedIndex };
 }
 
 export function getRequestedIndexChange<T extends AnyOption>({
