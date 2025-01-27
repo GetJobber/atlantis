@@ -7,6 +7,7 @@ import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
+import { useBreakpoints } from "@jobber/hooks/useBreakpoints";
 import styles from "./LightBox.module.css";
 import { ButtonDismiss } from "../ButtonDismiss";
 import { Text } from "../Text";
@@ -237,10 +238,12 @@ interface NavButtonProps {
 }
 
 function PreviousButton({ onClick }: NavButtonProps) {
+  const { mediumAndUp } = useBreakpoints();
+
   return (
     <div className={styles.prev}>
       <Button
-        size="large"
+        size={mediumAndUp ? "large" : "small"}
         variation="subtle"
         type="secondary"
         icon="arrowLeft"
@@ -252,10 +255,12 @@ function PreviousButton({ onClick }: NavButtonProps) {
 }
 
 function NextButton({ onClick }: NavButtonProps) {
+  const { mediumAndUp } = useBreakpoints();
+
   return (
     <div className={styles.next}>
       <Button
-        size="large"
+        size={mediumAndUp ? "large" : "small"}
         variation="subtle"
         type="secondary"
         icon="arrowRight"

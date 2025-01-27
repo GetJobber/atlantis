@@ -1,6 +1,12 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
+import {
+  BREAKPOINT_SIZES,
+  mockViewportWidth,
+} from "@jobber/hooks/useBreakpoints";
 import { LightBox } from ".";
+
+const { setViewportWidth } = mockViewportWidth();
 
 test("Lightbox opens and shows the image", () => {
   const title = "Dis be a title";
@@ -81,6 +87,7 @@ test("Lightbox displays the selected imageIndex", () => {
   const caption = "Dis be a caption 🎉";
   const titleTwo = "FirstOne";
   const captionTwo = "This is the one we should find";
+  setViewportWidth(BREAKPOINT_SIZES.lg);
   const handleClose = jest.fn();
 
   const { queryByText } = render(
