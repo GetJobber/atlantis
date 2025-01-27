@@ -52,6 +52,7 @@
   transform: translateY(-50%);
   @media (--medium-screens-and-up) {
     position: static;
+    transform: none;
   }
 }
 
