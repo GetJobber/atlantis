@@ -89,7 +89,7 @@
   z-index: var(--elevation-base);
   height: 100%;
   max-width: 100%;
-  margin-bottom: var(--space-larger);
+  margin-bottom: var(--space-large);
   align-items: center;
   gap: var(--space-base);
 }
