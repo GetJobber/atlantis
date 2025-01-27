@@ -88,6 +88,9 @@ export interface AutocompleteProps<
    */
   readonly placeholder: string;
 
+  /**
+   * Override the content rendered in the menu.
+   */
   readonly customRenderMenu?: (
     props: CustomOptionsMenuProp<
       GenericOption | GenericGetOptionsValue,
@@ -103,9 +106,9 @@ export interface MenuProps<
   GenericOption extends AnyOption = AnyOption,
   GenericOptionValue extends Option = Option,
 > {
-  readonly visible: boolean;
   readonly options: GenericOption[];
   readonly selectedOption?: GenericOptionValue;
+  readonly inputFocused: boolean;
 
   /**
    * Element that the menu is attached to when the menu opens.
@@ -130,11 +133,22 @@ export interface CustomOptionsMenuProp<
    */
   selectedOption?: GenericOptionValue;
   /**
-   * The HTML element that wraps the menu content
+   * The HTML element that wraps the menu content. Used for handling keyboard scroll behavior.
    */
   readonly menuRef: HTMLElement | null | undefined;
   /**
    * Callback to select an option
    */
   readonly onOptionSelect: (chosenOption?: GenericOptionValue) => void;
+  /**
+   * Determine if the input is focused. Can be used to conditionally render the menu.
+   */
+  readonly inputFocused: boolean;
+  /**
+   * Component that wraps the menu content. Used for handling keyboard scroll behavior.
+   */
+  readonly MenuWrapper: (props: {
+    children: React.ReactNode;
+    visible: boolean;
+  }) => React.ReactElement;
 }

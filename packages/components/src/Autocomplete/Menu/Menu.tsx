@@ -1,33 +1,29 @@
 import React from "react";
-import { createPortal } from "react-dom";
-import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import { DefaultMenu, DefaultMenuProps } from "./DefaultMenu";
-import { MenuPopper } from "./MenuPopper";
+import { useMenuWrapper } from "./MenuWrapper";
 import {
   AnyOption,
   CustomOptionsMenuProp,
   MenuProps,
   Option,
 } from "../Autocomplete.types";
-import { useRepositionMenu } from "../useRepositionMenu";
 
 export function Menu<
   GenericOption extends AnyOption = AnyOption,
   GenericOptionValue extends Option = Option,
 >({
-  visible,
   options,
   selectedOption,
   onOptionSelect,
+  inputFocused,
   attachTo,
   customRenderMenu,
 }: MenuProps<GenericOption, GenericOptionValue>) {
-  if (!visible) return null;
-
   if (customRenderMenu) {
     return (
       <InternalCustomMenu
         attachTo={attachTo}
+        inputFocused={inputFocused}
         customRenderMenu={customRenderMenu}
         options={options}
         onOptionSelect={onOptionSelect}
@@ -35,6 +31,7 @@ export function Menu<
       />
     );
   }
+  if (!inputFocused || !options.length) return null;
 
   return (
     <DefaultMenu
@@ -50,6 +47,7 @@ interface InternalCustomMenuProps<
   GenericOption extends AnyOption = AnyOption,
   GenericOptionValue extends Option = Option,
 > {
+  readonly inputFocused: boolean;
   readonly options: GenericOption[];
   readonly selectedOption?: GenericOptionValue;
   readonly attachTo: MenuProps["attachTo"];
@@ -68,36 +66,18 @@ function InternalCustomMenu<
   onOptionSelect,
   customRenderMenu,
   attachTo,
+  inputFocused,
 }: InternalCustomMenuProps<GenericOption, GenericOptionValue>) {
-  const {
-    menuRef,
-    setMenuRef,
-    styles: popperStyles,
-    attributes,
-    targetWidth,
-  } = useRepositionMenu(attachTo, true);
+  const { MenuWrapper, menuRef } = useMenuWrapper({ attachTo });
 
   const menuContent = customRenderMenu({
     options,
     menuRef,
     onOptionSelect,
     selectedOption,
+    inputFocused,
+    MenuWrapper,
   });
 
-  const menu = (
-    <MenuPopper
-      {...{
-        setMenuRef,
-        popperStyles,
-        attributes,
-        targetWidth,
-        visible: true,
-      }}
-    >
-      {menuContent}
-    </MenuPopper>
-  );
-  const mounted = useIsMounted();
-
-  return mounted.current ? createPortal(menu, document.body) : menu;
+  return menuContent;
 }

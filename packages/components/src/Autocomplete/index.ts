@@ -16,9 +16,10 @@ export {
 } from "./Autocomplete.types";
 export {
   KeyboardAction,
-  getRequestedIndexChange as getRequestedIndex,
+  getRequestedIndexChange,
   useKeyboardNavigation,
+  useCustomKeyboardNavigation,
 } from "./useKeyboardNavigation";
 export { useRepositionMenu } from "./useRepositionMenu";
-export { MenuPopper } from "./Menu/MenuPopper";
+export { MenuWrapper, useMenuWrapper } from "./Menu/MenuWrapper";
 export { isOptionSelected, isGroup } from "./Autocomplete.utils";

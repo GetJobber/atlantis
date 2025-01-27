@@ -1,14 +1,14 @@
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import React, { RefObject, useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { MenuPopper } from "./MenuPopper";
+import { MenuWrapper } from "./MenuWrapper";
 import { AnyOption, Option } from "../Autocomplete.types";
 import { isOptionSelected } from "../Autocomplete.utils";
 import { MenuOption } from "../Option";
 import {
   KeyboardAction,
   getRequestedIndexChange,
-  useKeyboardNavigation,
+  useCustomKeyboardNavigation,
 } from "../useKeyboardNavigation";
 import { useRepositionMenu } from "../useRepositionMenu";
 
@@ -20,6 +20,7 @@ export interface DefaultMenuProps {
    */
   readonly attachTo: RefObject<Element | null>;
   onOptionSelect(chosenOption: Option): void;
+  readonly visible?: boolean;
 }
 
 // eslint-disable-next-line max-statements
@@ -83,14 +84,14 @@ export function DefaultMenu({
     [highlightedIndex, options, onOptionSelect],
   );
 
-  useKeyboardNavigation({
+  useCustomKeyboardNavigation({
     onRequestHighlightChange,
   });
 
   const mounted = useIsMounted();
 
   const menu = (
-    <MenuPopper
+    <MenuWrapper
       {...{ setMenuRef, popperStyles, attributes, targetWidth, visible: true }}
     >
       {options?.map((option, index) => {
@@ -105,7 +106,7 @@ export function DefaultMenu({
           />
         );
       })}
-    </MenuPopper>
+    </MenuWrapper>
   );
 
   return mounted.current ? createPortal(menu, document.body) : menu;

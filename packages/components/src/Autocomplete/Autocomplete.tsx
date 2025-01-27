@@ -43,7 +43,7 @@ function AutocompleteInternal<
   const [options, setOptions] = useState<
     Array<GenericOption | GenericGetOptionsValue>
   >(mapToOptions(initialOptions));
-  const [menuVisible, setMenuVisible] = useState(false);
+  const [inputFocused, setInputFocused] = useState(false);
   const [inputText, setInputText] = useState(value?.label ?? "");
   const autocompleteRef = useRef(null);
   const delayedSearch = useDebounce(updateSearch, debounceRate);
@@ -72,7 +72,7 @@ function AutocompleteInternal<
       />
       <Menu
         attachTo={autocompleteRef}
-        visible={menuVisible && options.length > 0}
+        inputFocused={inputFocused}
         options={options}
         customRenderMenu={customRenderMenu}
         selectedOption={value}
@@ -101,7 +101,7 @@ function AutocompleteInternal<
   function handleMenuChange(chosenOption: GenericOptionValue) {
     onChange(chosenOption);
     updateInput(chosenOption.label ?? "");
-    setMenuVisible(false);
+    setInputFocused(false);
   }
 
   function handleInputChange(newText: string) {
@@ -113,7 +113,7 @@ function AutocompleteInternal<
   }
 
   function handleInputBlur() {
-    setMenuVisible(false);
+    setInputFocused(false);
 
     if (value == undefined || value.label !== inputText) {
       setInputText("");
@@ -123,7 +123,7 @@ function AutocompleteInternal<
   }
 
   function handleInputFocus() {
-    setMenuVisible(true);
+    setInputFocused(true);
 
     if (onFocus) {
       onFocus();
