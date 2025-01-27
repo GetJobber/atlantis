@@ -40,7 +40,7 @@
   --field--background-color: var(--color-surface);
 
   --field--base-elevation: var(--elevation-base);
-  --field--internalLabel-elevation: calc(var(--field--base-elevation) + 1);
+  --field--label-elevation: calc(var(--field--base-elevation) + 1);
   --field--postfix-elevation: calc(var(--field--base-elevation) - 1);
   --field--postfix-action-elevation: calc(var(--field--base-elevation) + 2);
 
@@ -215,7 +215,7 @@
   flex-direction: column;
 }
 
-.textarea .inputWrapper:has(.internalLabel) .childrenWrapper {
+.textarea .inputWrapper:has(.label) .childrenWrapper {
   padding-top: var(--field--padding-top);
 }
 
@@ -227,7 +227,7 @@
 }
 
 .select .input {
-  z-index: var(--field--internalLabel-elevation);
+  z-index: var(--field--label-elevation);
 }
 
 .input:-webkit-autofill,
@@ -237,7 +237,7 @@
   -webkit-box-shadow: 0 0 0 30px var(--color-surface) inset !important;
 }
 
-.textarea:not(:has(.internalLabel)) {
+.textarea:not(:has(.label)) {
   .input {
     padding-top: var(--field--padding-top);
   }
@@ -250,10 +250,10 @@
 /**
  * Label
  **/
-.internalLabel {
+.label {
   position: absolute;
   top: var(--field--placeholder-offset);
-  z-index: var(--field--internalLabel-elevation);
+  z-index: var(--field--label-elevation);
   width: 100%;
   padding-left: var(--field--padding-left);
   padding-right: var(--field--padding-right);
@@ -276,7 +276,7 @@
 
 .select select,
 .right select,
-.select .internalLabel {
+.select .label {
   padding-right: calc(var(--field--padding-right) + var(--base-unit) * 2);
 }
 
@@ -284,37 +284,37 @@
   background-color: var(--field--background-color);
 }
 
-.text .internalLabel {
+.text .label {
   padding-top: var(--field--padding-top);
   transform: translateY(var(--field--placeholder-transform));
 }
 
-.textarea .internalLabel {
+.textarea .label {
   padding-right: var(--field--padding-right);
 }
 
-.miniLabel .internalLabel,
-.timeInputLabel:focus-within .internalLabel {
+.miniLabel .label,
+.timeInputLabel:focus-within .label {
   font-size: var(--typography--fontSize-small);
 }
 
-.text.miniLabel .internalLabel {
+.text.miniLabel .label {
   padding-top: var(--space-smallest);
 }
 
-.textarea.miniLabel .internalLabel {
+.textarea.miniLabel .label {
   background-color: var(--field--background-color);
 }
 
-.small.miniLabel .internalLabel,
-.timeInputLabel.small.miniLabel:focus-within .internalLabel {
+.small.miniLabel .label,
+.timeInputLabel.small.miniLabel:focus-within .label {
   display: none;
 }
 
 /**This is valid cascading order **/
 /* stylelint-disable-next-line no-descending-specificity */
-.large.miniLabel .internalLabel,
-.timeInputLabel.large.miniLabel:focus-within .internalLabel {
+.large.miniLabel .label,
+.timeInputLabel.large.miniLabel:focus-within .label {
   padding-top: var(--space-small);
 }
 

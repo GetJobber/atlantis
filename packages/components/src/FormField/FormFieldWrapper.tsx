@@ -177,7 +177,7 @@ export function FormFieldLabel({
 
   return (
     <label
-      className={external ? styles.externalLabel : styles.internalLabel}
+      className={external ? styles.externalLabel : styles.label}
       htmlFor={htmlFor}
       style={style}
     >
