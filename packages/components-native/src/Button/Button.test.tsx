@@ -302,7 +302,7 @@ describe("Button", () => {
   describe("styleOverrides", () => {
     describe("borderColor", () => {
       it("should apply the borderColor style override", () => {
-        const borderColor = tokens["color-base-grey--100"];
+        const borderColor = "color-base-grey--100";
 
         const { buttonStyle } = renderButton(
           <Button
@@ -313,7 +313,7 @@ describe("Button", () => {
         );
 
         expect(buttonStyle).toMatchObject({
-          borderColor,
+          borderColor: tokens[borderColor],
         });
       });
     });
