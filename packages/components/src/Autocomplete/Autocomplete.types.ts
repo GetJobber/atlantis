@@ -115,6 +115,9 @@ export interface MenuProps<
    * Element that the menu is attached to when the menu opens.
    */
   readonly attachTo: RefObject<Element | null>;
+  /**
+   * Ref to the TextInput element.
+   */
   readonly inputRef: RefObject<InputTextRef | null>;
   onOptionSelect(chosenOption?: GenericOptionValue): void;
   readonly customRenderMenu?: (
@@ -147,6 +150,9 @@ export interface CustomOptionsMenuProp<
    */
   readonly inputFocused: boolean;
 
+  /**
+   * Ref to the TextInput element.
+   */
   readonly inputRef: RefObject<InputTextRef | null>;
   /**
    * Component that wraps the menu content. Used for handling keyboard scroll behavior.

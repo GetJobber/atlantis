@@ -11,6 +11,9 @@ export interface MenuOptionProps {
   readonly isHighlighted: boolean;
   readonly option: AnyOption;
   readonly onOptionSelect: (option: AnyOption) => void;
+  /**
+   * Whether to add separators between the options.
+   */
   readonly addSeparators: boolean;
   readonly isSelected: boolean;
   readonly UNSAFE_className?: {
