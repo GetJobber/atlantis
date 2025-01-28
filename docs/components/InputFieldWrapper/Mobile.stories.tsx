@@ -21,9 +21,6 @@ export const Basic = BasicTemplate.bind({});
 Basic.args = {
   placeholder: "Enter a value in cents",
   prefix: { icon: "invoice" },
-  styleOverride: {
-    container: { backgroundColor: "red" },
-  },
 };
 
 export const PrefixAndSuffix = BasicTemplate.bind({});
