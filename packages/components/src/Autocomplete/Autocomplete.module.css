@@ -4,8 +4,7 @@
 }
 
 .options {
-  display: none;
-  position: absolute;
+  visibility: hidden;
   z-index: calc(var(--elevation-menu) + var(--elevation-modal));
   width: 100%;
   /* Unfortunately this is how we define our line item picker height in jobber online.
@@ -18,8 +17,8 @@
   border: var(--border-base) solid var(--color-color-border);
   border-radius: var(--radius-base);
   overflow: auto;
-  scroll-behavior: smooth;
   background-color: var(--color-surface);
+  scroll-behavior: smooth;
 }
 
 .options h5 {
@@ -28,11 +27,12 @@
 }
 
 .options.visible {
-  display: block;
+  position: absolute;
+  visibility: visible;
 }
 
 .options.visible:empty {
-  display: none;
+  visibility: hidden;
 }
 
 .option {
@@ -49,7 +49,6 @@
   list-style: none;
   background-color: transparent;
   cursor: pointer;
-  transition: all var(--timing-base);
 }
 
 .option:hover,

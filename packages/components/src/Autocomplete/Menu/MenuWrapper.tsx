@@ -76,7 +76,6 @@ export function useMenuWrapper({
 function DefaultMenuWrapper(props: PropsWithChildren<MenuWrapperProps>) {
   const mounted = useIsMounted();
   const menu = <MenuWrapper {...props} />;
-  if (!props.visible) return null;
 
   return mounted.current ? createPortal(menu, document.body) : menu;
 }
