@@ -166,44 +166,41 @@ export function LightBox({
           </AtlantisThemeContextProvider>
 
           <div className={styles.slideWrapper}>
-            {images.length > 1 && showButtons && (
-              <div
-                className={styles.prev}
-                onMouseEnter={() => setIsButtonsHovered(true)}
-                onMouseLeave={() => setIsButtonsHovered(false)}
-              >
-                <PreviousButton onClick={debouncedHandlePrevious} />
-              </div>
-            )}
-
-            <div className={styles.imageArea}>
-              <AnimatePresence initial={false}>
-                <motion.img
-                  key={currentImageIndex}
-                  variants={variants}
-                  src={images[currentImageIndex].url}
-                  custom={direction}
-                  className={styles.image}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={imageTransition}
-                  drag="x"
-                  dragConstraints={{ left: 0, right: 0 }}
-                  dragElastic={1}
-                  onDragEnd={handleOnDragEnd}
-                />
-              </AnimatePresence>
-            </div>
+            <AnimatePresence initial={false}>
+              <motion.img
+                key={currentImageIndex}
+                variants={variants}
+                src={images[currentImageIndex].url}
+                custom={direction}
+                className={styles.image}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={imageTransition}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={1}
+                onDragEnd={handleOnDragEnd}
+              />
+            </AnimatePresence>
 
             {images.length > 1 && showButtons && (
-              <div
-                className={styles.next}
-                onMouseEnter={() => setIsButtonsHovered(true)}
-                onMouseLeave={() => setIsButtonsHovered(false)}
-              >
-                <NextButton onClick={debouncedHandleNext} />
-              </div>
+              <>
+                <div
+                  className={styles.prev}
+                  onMouseEnter={() => setIsButtonsHovered(true)}
+                  onMouseLeave={() => setIsButtonsHovered(false)}
+                >
+                  <PreviousButton onClick={debouncedHandlePrevious} />
+                </div>
+                <div
+                  className={styles.next}
+                  onMouseEnter={() => setIsButtonsHovered(true)}
+                  onMouseLeave={() => setIsButtonsHovered(false)}
+                >
+                  <NextButton onClick={debouncedHandleNext} />
+                </div>
+              </>
             )}
           </div>
 
