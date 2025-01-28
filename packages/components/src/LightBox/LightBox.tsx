@@ -99,6 +99,7 @@ export function LightBox({
   const [direction, setDirection] = useState(0);
   const [showButtons, setShowButtons] = useState(false);
   const [mouseMovementCount, setMouseMovementCount] = useState(0);
+  const [buttonsHovered, setIsButtonsHovered] = useState(false);
   const lightboxRef = useFocusTrap<HTMLDivElement>(open);
   const debouncedHandleNext = debounce(handleMoveNext, debounceDuration);
   const debouncedHandlePrevious = debounce(
@@ -121,7 +122,7 @@ export function LightBox({
   });
 
   useEffect(() => {
-    if (mouseMovementCount <= 1) {
+    if (mouseMovementCount <= 1 && !buttonsHovered) {
       setShowButtons(false);
     }
   }, [mouseMovementCount]);
@@ -146,7 +147,7 @@ export function LightBox({
 
             setTimeout(() => {
               setMouseMovementCount(prev => prev - 1);
-            }, 500);
+            }, 1000);
           }}
         >
           <div
@@ -166,7 +167,13 @@ export function LightBox({
 
           <div className={styles.slideWrapper}>
             {images.length > 1 && showButtons && (
-              <PreviousButton onClick={debouncedHandlePrevious} />
+              <div
+                className={styles.prev}
+                onMouseEnter={() => setIsButtonsHovered(true)}
+                onMouseLeave={() => setIsButtonsHovered(false)}
+              >
+                <PreviousButton onClick={debouncedHandlePrevious} />
+              </div>
             )}
 
             <div className={styles.imageArea}>
@@ -190,7 +197,13 @@ export function LightBox({
             </div>
 
             {images.length > 1 && showButtons && (
-              <NextButton onClick={debouncedHandleNext} />
+              <div
+                className={styles.next}
+                onMouseEnter={() => setIsButtonsHovered(true)}
+                onMouseLeave={() => setIsButtonsHovered(false)}
+              >
+                <NextButton onClick={debouncedHandleNext} />
+              </div>
             )}
           </div>
 
@@ -254,16 +267,14 @@ function PreviousButton({ onClick }: NavButtonProps) {
   const { mediumAndUp } = useBreakpoints();
 
   return (
-    <div className={styles.prev}>
-      <Button
-        size={mediumAndUp ? "large" : "small"}
-        variation="subtle"
-        type="secondary"
-        icon="arrowLeft"
-        ariaLabel="Previous image"
-        onClick={onClick}
-      />
-    </div>
+    <Button
+      size={mediumAndUp ? "large" : "small"}
+      variation="subtle"
+      type="secondary"
+      icon="arrowLeft"
+      ariaLabel="Previous image"
+      onClick={onClick}
+    />
   );
 }
 
@@ -271,16 +282,14 @@ function NextButton({ onClick }: NavButtonProps) {
   const { mediumAndUp } = useBreakpoints();
 
   return (
-    <div className={styles.next}>
-      <Button
-        size={mediumAndUp ? "large" : "small"}
-        variation="subtle"
-        type="secondary"
-        icon="arrowRight"
-        ariaLabel="Next image"
-        onClick={onClick}
-      />
-    </div>
+    <Button
+      size={mediumAndUp ? "large" : "small"}
+      variation="subtle"
+      type="secondary"
+      icon="arrowRight"
+      ariaLabel="Next image"
+      onClick={onClick}
+    />
   );
 }
 
