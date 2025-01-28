@@ -1,12 +1,18 @@
+/* eslint-disable max-statements */
 import React, { useCallback, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import {
+  AnyOption,
   Autocomplete,
   BaseMenuOption,
   CustomOptionsMenuProp,
   KeyboardAction,
+  MenuOption,
   Option,
-  getRequestedIndex,
+  getRequestedIndexChange,
+  isGroup,
+  isOptionSelected,
+  useCustomKeyboardNavigation,
   useKeyboardNavigation,
 } from "@jobber/components/Autocomplete";
 import { Button } from "@jobber/components/Button";
@@ -14,8 +20,9 @@ import { Text } from "@jobber/components/Text";
 import { Content } from "@jobber/components/Content";
 import { Flex } from "@jobber/components/Flex";
 import { StatusLabel } from "@jobber/components/StatusLabel";
-import { Combobox } from "@jobber/components/Combobox";
 import { Icon } from "@jobber/components/Icon";
+import { Grid } from "@jobber/components/Grid";
+import { Heading } from "@jobber/components/Heading";
 
 export default {
   title: "Components/Forms and Inputs/Autocomplete/Web",
@@ -33,7 +40,7 @@ export default {
   },
 } as ComponentMeta<typeof Autocomplete>;
 
-const options = [
+const defaultOptions = [
   { value: 1, label: "Nostromo" },
   { value: 2, label: "Rodger Young" },
   { value: 3, label: "Serenity" },
@@ -42,11 +49,7 @@ const options = [
   {
     value: 6,
     label: "Enterprise-D",
-    details: "NCC-1701D",
-    test: "tes",
-    options: [{ value: 2, label: "test" }],
   },
-  { label: "Ships", options: [{ value: 2, label: "test" }] },
 ];
 
 // Each template calls args.initialOptions so that the options
@@ -215,7 +218,7 @@ const SetAValueTemplate: ComponentStory<typeof Autocomplete> = args => {
 
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
-  initialOptions: options,
+  initialOptions: defaultOptions,
   placeholder: "Search for something",
 };
 
@@ -233,11 +236,18 @@ SectionHeading.args = {
 
 export const SetAValue = SetAValueTemplate.bind({});
 SetAValue.args = {
-  initialOptions: options,
+  initialOptions: defaultOptions,
   placeholder: "Search for something",
 };
 
-const actualOptions = [
+interface CustomOption {
+  value: number;
+  label: string;
+  address: string;
+  contact: string;
+  status: string;
+}
+const actualOptions: CustomOption[] = [
   {
     value: 1,
     label: "Nostromo",
@@ -268,112 +278,346 @@ const actualOptions = [
   },
 ];
 
-const SuperCustomTemplate = () => {
-  const [value, setValue] = useState<(typeof actualOptions)[0]>();
+const CustomRenderingTemplate = () => {
+  const BasicCustomTemplate = () => {
+    const [value, setValue] = useState<Option | undefined>();
+    const [detailsValue, setDetailsValue] = useState<Option | undefined>();
+    const basicOptions = withDetailsOptions;
+    const sectionHeadingOptions = SectionHeadingOptions;
+    const planetSection = sectionHeadingOptions.find(
+      ({ label }) => label === "Planets",
+    )?.options;
 
-  function getOptions(text: string) {
-    if (text === "") {
-      return actualOptions;
+    return (
+      <Content>
+        <Autocomplete
+          placeholder="Search for a basic option"
+          value={value}
+          onChange={newValue => setValue(newValue)}
+          customRenderMenu={({
+            MenuWrapper,
+            inputFocused,
+            onOptionSelect,
+            options,
+            selectedOption,
+          }) => {
+            const { highlightedIndex } = useKeyboardNavigation({
+              options,
+              onOptionSelect,
+              visible: inputFocused,
+            });
+
+            return (
+              <MenuWrapper visible={inputFocused}>
+                {options.map((option, index) => {
+                  return (
+                    <MenuOption
+                      key={index}
+                      option={option}
+                      addSeparators={false}
+                      isHighlighted={index === highlightedIndex}
+                      onOptionSelect={onOptionSelect}
+                      isSelected={isOptionSelected(selectedOption, option)}
+                    />
+                  );
+                })}
+              </MenuWrapper>
+            );
+          }}
+          getOptions={getOptions}
+        />
+        <Autocomplete
+          placeholder="Search for an option with section headings"
+          initialOptions={sectionHeadingOptions}
+          value={detailsValue}
+          onChange={newValue => setDetailsValue(newValue)}
+          customRenderMenu={({
+            MenuWrapper,
+            inputFocused,
+            onOptionSelect,
+            options,
+            selectedOption,
+            menuRef,
+          }) => {
+            const { highlightedIndex } = useKeyboardNavigation({
+              visible: inputFocused,
+              options,
+              onOptionSelect,
+              menuRef,
+            });
+
+            return (
+              <MenuWrapper visible={inputFocused}>
+                {options.map((option, index) => {
+                  const optionStyle = getOptionStyling({
+                    option,
+                    highlightedIndex,
+                    options,
+                  });
+
+                  return (
+                    <MenuOption
+                      key={index}
+                      option={option}
+                      addSeparators={isGroup(option)}
+                      isHighlighted={index === highlightedIndex}
+                      onOptionSelect={onOptionSelect}
+                      isSelected={isOptionSelected(selectedOption, option)}
+                      UNSAFE_style={optionStyle}
+                    />
+                  );
+                })}
+              </MenuWrapper>
+            );
+          }}
+          getOptions={getHeadingsOption}
+        />
+      </Content>
+    );
+
+    function getOptionStyling({
+      option,
+      highlightedIndex,
+      options,
+    }: {
+      option: AnyOption;
+      highlightedIndex: number;
+      options: AnyOption[];
+    }) {
+      const isSectionLabel = "options" in option;
+      const isPlanetsLabel = option.label === "Planets";
+
+      const inPlanetSection = planetSection?.find?.(
+        ({ label }) => label === option.label,
+      );
+      const activeOption = options[highlightedIndex];
+
+      const activeOptionInSection =
+        isSectionLabel &&
+        option?.options?.find?.(({ label }) => label === activeOption?.label);
+      let optionColor = "var(--color-success--surface)";
+      let groupColor = "var(--color-success)";
+
+      if (isSectionLabel && activeOptionInSection) {
+        groupColor = "var(--color-informative)";
+        optionColor = "var(--color-informative--surface)";
+      } else if (!isSectionLabel && inPlanetSection) {
+        groupColor = "var(--color-warning)";
+        optionColor = "var(--color-warning--surface)";
+      } else if (isSectionLabel && isPlanetsLabel) {
+        groupColor = "var(--color-critical)";
+        optionColor = "var(--color-critical--surface)";
+      }
+      const isActive = activeOption === option ? 0.5 : 1;
+
+      return {
+        groupOption: {
+          heading: {
+            backgroundColor: groupColor,
+          },
+        },
+        option: {
+          backgroundColor: optionColor,
+          opacity: isActive,
+        },
+      };
     }
-    const filterRegex = new RegExp(text, "i");
 
-    return actualOptions.filter(option => option.label.match(filterRegex));
-  }
+    function getOptions(text: string) {
+      if (text === "") {
+        return basicOptions;
+      }
+      const filterRegex = new RegExp(text, "i");
 
-  return (
-    <Content>
-      <pre>{JSON.stringify(value, undefined, 2)}</pre>
+      return basicOptions.filter(option => option.label.match(filterRegex));
+    }
+
+    function getHeadingsOption(text: string) {
+      if (text === "") {
+        return sectionHeadingOptions;
+      }
+      const filterRegex = new RegExp(text, "i");
+
+      return sectionHeadingOptions.map(section => ({
+        ...section,
+        options: section.options.filter(option =>
+          option.label.match(filterRegex),
+        ),
+      }));
+    }
+  };
+
+  const SuperCustomTemplate = () => {
+    const [value, setValue] = useState<CustomOption | undefined>();
+
+    function getOptions(text: string) {
+      if (text === "") {
+        return actualOptions;
+      }
+      const filterRegex = new RegExp(text, "i");
+
+      return actualOptions.filter(
+        option =>
+          option.label.match(filterRegex) ||
+          option.address.match(filterRegex) ||
+          option.contact.match(filterRegex),
+      );
+    }
+
+    return (
       <Autocomplete
         placeholder="Search for something"
+        initialOptions={actualOptions}
         value={value}
         onChange={newValue => setValue(newValue)}
         customRenderMenu={props => <CustomMenuContent {...props} />}
         getOptions={getOptions}
       />
-    </Content>
-  );
-};
+    );
+  };
 
-function CustomMenuContent({
-  options: actualOptions1,
-  selectedOption,
+  function CustomMenuContent({
+    options,
+    selectedOption,
+    onOptionSelect,
+    inputFocused,
+    inputRef,
+    MenuWrapper,
+    menuRef,
+  }: CustomOptionsMenuProp<CustomOption, CustomOption>) {
+    // Set to -1 to account for the footer being the first option when options are being initialized
+    const [highlightedOptionIndex, setHighlightedOptionIndex] = useState(-1);
+    // Length of options + 1 to account for the footer
+    const maxIndex = options.length - 1 + 1;
+    const footerFocused = highlightedOptionIndex === maxIndex;
 
-  onOptionSelect,
-}: CustomOptionsMenuProp<
-  (typeof actualOptions)[number],
-  (typeof actualOptions)[number]
->) {
-  const [highlightedIndex, setHighlightedIndex] = useState(0);
-  const onRequestHighlightChange = useCallback(
-    (event: KeyboardEvent, direction: KeyboardAction) => {
-      const indexChange = getRequestedIndex({
-        event,
-        options: actualOptions1,
-        direction,
-        highlightedIndex,
-      });
+    const menuVisible = inputFocused || footerFocused;
 
-      switch (direction) {
-        case KeyboardAction.Previous:
-          setHighlightedIndex(prev => Math.max(0, prev + indexChange));
-          break;
-        case KeyboardAction.Next:
-          setHighlightedIndex(prev =>
-            Math.min(actualOptions1.length - 1, prev + indexChange),
-          );
-          break;
-        case KeyboardAction.Select:
-          onOptionSelect(actualOptions1[highlightedIndex]);
-          break;
-      }
-    },
-    [highlightedIndex, actualOptions1, onOptionSelect],
-  );
-  useKeyboardNavigation({ onRequestHighlightChange });
+    const onRequestHighlightChange = useCallback(
+      (event: KeyboardEvent, direction: KeyboardAction) => {
+        const indexChange = getRequestedIndexChange({
+          event,
+          options,
+          direction,
+          highlightedIndex: highlightedOptionIndex,
+        });
+        const newPreviousIndex = Math.max(
+          0,
+          highlightedOptionIndex + indexChange,
+        );
+        const newNextIndex = Math.min(
+          maxIndex,
+          highlightedOptionIndex + indexChange,
+        );
+        const footerElement = menuRef?.childNodes[maxIndex] as HTMLElement;
+        if (!menuVisible) return;
 
-  const optionsToRender = actualOptions1.map(option => {
-    const label = option.status;
-    const status = option.status === "Active" ? "success" : "informative";
+        switch (direction) {
+          case KeyboardAction.Previous:
+            // If the footer is focused, focus the input
+            if (highlightedOptionIndex === maxIndex) {
+              inputRef?.current?.focus();
+            }
+            setHighlightedOptionIndex(newPreviousIndex);
+            menuRef?.children[newPreviousIndex]?.scrollIntoView?.({
+              behavior: "smooth",
+              block: "nearest",
+              inline: "start",
+            });
+
+            break;
+          case KeyboardAction.Next:
+            setHighlightedOptionIndex(newNextIndex);
+            menuRef?.children[newNextIndex]?.scrollIntoView?.({
+              behavior: "smooth",
+              block: "nearest",
+              inline: "start",
+            });
+
+            if (newNextIndex === maxIndex) {
+              footerElement?.focus();
+            }
+            break;
+
+          case KeyboardAction.Select:
+            // Don't select the footer
+            highlightedOptionIndex < maxIndex &&
+              onOptionSelect(options[highlightedOptionIndex]);
+
+            menuRef?.children[highlightedOptionIndex]?.scrollIntoView?.({
+              behavior: "smooth",
+              block: "nearest",
+              inline: "start",
+            });
+            footerElement?.click();
+            break;
+        }
+      },
+      [highlightedOptionIndex, options, onOptionSelect],
+    );
+    useCustomKeyboardNavigation({ onRequestHighlightChange });
+
+    const optionsToRender = options.map((option, index) => {
+      const label = option.status;
+      const status = option.status === "Active" ? "success" : "informative";
+
+      return (
+        <BaseMenuOption
+          addSeparators={true}
+          isHighlighted={index === highlightedOptionIndex}
+          onOptionSelect={onOptionSelect}
+          option={option}
+          key={option.label}
+        >
+          <Flex template={["grow", "shrink"]}>
+            <Flex align="start" template={["shrink", "grow"]}>
+              <Content spacing="minuscule">
+                {selectedOption === option && (
+                  <Icon name="checkmark" size="small" />
+                )}
+                <Text>{option.label}</Text>
+                <Text variation="subdued">{option.address}</Text>
+                <Text variation="subdued">{option.contact}</Text>
+              </Content>
+            </Flex>
+            <StatusLabel status={status} label={label} />
+          </Flex>
+        </BaseMenuOption>
+      );
+    });
+
+    function addNewClient() {
+      window.alert("Add new client");
+    }
+    const footer = (
+      <Button
+        label="+ Add new client"
+        onClick={addNewClient}
+        size="small"
+        fullWidth
+        type="tertiary"
+      />
+    );
 
     return (
-      <BaseMenuOption
-        addSeparators={true}
-        isHighlighted={selectedOption === option}
-        onOptionSelect={onOptionSelect}
-        option={option}
-        key={option.label}
-      >
-        <Flex template={["grow", "shrink"]}>
-          <Flex align="start" template={["shrink", "grow"]}>
-            <Content spacing="minuscule">
-              {selectedOption === option && (
-                <Icon name="checkmark" size="small" />
-              )}
-              <Text>{option.label}</Text>
-              <Text variation="subdued">{option.address}</Text>
-              <Text variation="subdued">{option.contact}</Text>
-            </Content>
-          </Flex>
-          <StatusLabel status={status} label={label} />
-        </Flex>
-      </BaseMenuOption>
+      <MenuWrapper visible={menuVisible}>
+        {optionsToRender}
+        {footer}
+      </MenuWrapper>
     );
-  });
-
-  const footer = (
-    <Combobox.Action
-      label={"+ Add new client"}
-      visible
-      onClick={() => console.log("hihi")}
-    />
-  );
+  }
 
   return (
-    <>
-      {optionsToRender}
-      {footer}
-    </>
+    <Grid>
+      <Grid.Cell size={{ xs: 12 }}>
+        <Heading level={2}>Basic Custom Rendering</Heading>
+        <BasicCustomTemplate />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 12 }}>
+        <Heading level={2}>Super Custom Rendering</Heading>
+        <SuperCustomTemplate />
+      </Grid.Cell>
+    </Grid>
   );
-}
-
-export const SuperCustom = SuperCustomTemplate.bind({});
+};
+export const CustomRendering = CustomRenderingTemplate.bind({});

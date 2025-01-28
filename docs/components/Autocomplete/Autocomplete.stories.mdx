@@ -1,5 +1,6 @@
 import { Meta } from "@storybook/addon-docs";
 import { Autocomplete } from "@jobber/components/Autocomplete";
+import { Tabs, Tab } from "@jobber/components";
 
 <Meta
   title="Components/Forms and Inputs/Autocomplete"
@@ -37,6 +38,562 @@ Using the `getOptions` prop, you can pass a function that will be called when
 the user types in the input. This async request should return a list of possible
 options based on the user's input. This can be achieved by using either promises
 or `await`.
+
+## Component customization
+
+### Custom rendering
+
+If you need more control over the rendering of content in the menu, you can
+provide a **custom render function** using `customRenderMenu`
+
+This is useful if the default rendering of the Autocomplete Menu doesn’t meet
+your requirements. If a custom render function is provided you will be able to
+completely control how the menu is rendered.
+
+This is achieved by providing a function to the `customRenderMenu` prop. This
+function will receive the following props:
+
+- `MenuWrapper` is the wrapper of the Autocomplete Menu, this is the element
+  that will be visible when the menu is open. It handles the positioning of the
+  Autocomplete Menu
+- `inputFocused` is a boolean that indicates if the input is focused.
+- `onOptionSelect` is a function that is called when an option is selected for
+  updating the value of the Autocomplete.
+- `options` is the list of options to render in the Autocomplete Menu. This is
+  the options that are returned from the `getOptions` function.
+- `selectedOption` is the option that is currently selected.
+- `menuRef` is a ref that is passed to the Autocomplete Menu this is used by the
+  `useKeyboardNavigation` hook to handle the keyboard navigation of the options.
+- `inputRef` is a ref that is passed to the Autocomplete Menu to provide a ref
+  to the `InputText` component.
+
+There are also some helper functions that are used to handle the keyboard
+navigation of the options and the base styling of the options.
+
+- `useKeyboardNavigation` is used to handle the default keyboard navigation of
+  the options
+- `MenuOption` is the default rendering of the options in the Autocomplete Menu.
+  The `UNSAFE_style` prop is used to add a custom styling to the options.
+- `isGroup` is a helper function that is used to determine if the option is a
+  group.
+- `isOptionSelected` is a helper function that is used to determine if the
+  option is selected.
+- `BaseMenuOption` is the base component for the options in the Autocomplete
+  Menu. This component provides the base styling and functionality for the
+  options such as the separators and the highlighting.
+
+<Tabs>
+<Tab label="Basic MenuOption Override">
+In this example we will override the default rendering of the Autocomplete Menu to add a custom styling to the options while keeping the default keyboard navigation.
+
+```tsx
+<Autocomplete
+  ...
+  customRenderMenu={({
+    MenuWrapper,
+    inputFocused,
+    onOptionSelect,
+    options,
+    selectedOption,
+    menuRef,
+  }) => {
+    const { highlightedIndex } = useKeyboardNavigation({
+      visible: inputFocused,
+            options,
+            onOptionSelect,
+            menuRef,
+          });
+
+    return (
+      <MenuWrapper visible={inputFocused}>
+        {options.map((option, index) => {
+          const optionStyle = getOptionStyling({
+            option,
+            highlightedIndex,
+            options,
+          });
+
+          return (
+            <MenuOption
+              key={index}
+              option={option}
+              addSeparators={isGroup(option)}
+              isHighlighted={index === highlightedIndex}
+              onOptionSelect={onOptionSelect}
+              isSelected={isOptionSelected(selectedOption, option)}
+              UNSAFE_style={optionStyle}
+            />
+          );
+        })}
+      </MenuWrapper>
+    );
+  }}
+/>
+```
+
+#### Full Example
+
+```tsx
+const sectionHeadingOptions = [
+  {
+    label: "Ships",
+    options: [
+      { value: 1, label: "Sulaco" },
+      { value: 2, label: "Nostromo" },
+      { value: 3, label: "Serenity" },
+      { value: 4, label: "Sleeper Service" },
+      { value: 5, label: "Enterprise" },
+      { value: 6, label: "Enterprise-D" },
+    ],
+  },
+  {
+    label: "Planets",
+    options: [
+      { value: 7, label: "Endor" },
+      { value: 8, label: "Vulcan" },
+      { value: 9, label: "Bespin" },
+      { value: 10, label: "Tatooine" },
+    ],
+  },
+];
+
+export const SimpleCustomMenu = () => {
+  const [value, setValue] = useState<Option | undefined>();
+
+  const planetSection = sectionHeadingOptions.find(
+    ({ label }) => label === "Planets"
+  )?.options;
+
+  return (
+    <Autocomplete
+      placeholder="Search for an option with section headings"
+      initialOptions={sectionHeadingOptions}
+      value={value}
+      onChange={newValue => setValue(newValue)}
+      customRenderMenu={({
+        MenuWrapper,
+        inputFocused,
+        onOptionSelect,
+        options,
+        selectedOption,
+        menuRef,
+      }) => {
+        const { highlightedIndex } = useKeyboardNavigation({
+          visible: inputFocused,
+          options,
+          onOptionSelect,
+          menuRef,
+        });
+
+        return (
+          <MenuWrapper visible={inputFocused}>
+            {options.map((option, index) => {
+              const optionStyle = getOptionStyling({
+                option,
+                highlightedIndex,
+                options,
+              });
+
+              return (
+                <MenuOption
+                  key={index}
+                  option={option}
+                  addSeparators={isGroup(option)}
+                  isHighlighted={index === highlightedIndex}
+                  onOptionSelect={onOptionSelect}
+                  isSelected={isOptionSelected(selectedOption, option)}
+                  UNSAFE_style={optionStyle}
+                />
+              );
+            })}
+          </MenuWrapper>
+        );
+      }}
+      getOptions={getOptions}
+    />
+  );
+
+  function getOptionStyling({
+    option,
+    highlightedIndex,
+    options,
+  }: {
+    option: AnyOption;
+    highlightedIndex: number;
+    options: AnyOption[];
+  }) {
+    const isSectionLabel = "options" in option;
+    const isPlanetsLabel = option.label === "Planets";
+
+    const inPlanetSection = planetSection?.find?.(
+      ({ label }) => label === option.label
+    );
+    const activeOption = options[highlightedIndex];
+
+    const activeOptionInSection =
+      isSectionLabel &&
+      option?.options?.find?.(({ label }) => label === activeOption?.label);
+    let optionColor = "var(--color-success--surface)";
+    let groupColor = "var(--color-success)";
+
+    if (isSectionLabel && activeOptionInSection) {
+      groupColor = "var(--color-informative)";
+      optionColor = "var(--color-informative--surface)";
+    } else if (!isSectionLabel && inPlanetSection) {
+      groupColor = "var(--color-warning)";
+      optionColor = "var(--color-warning--surface)";
+    } else if (isSectionLabel && isPlanetsLabel) {
+      groupColor = "var(--color-critical)";
+      optionColor = "var(--color-critical--surface)";
+    }
+    const isActive = activeOption === option ? 0.5 : 1;
+
+    return {
+      groupOption: {
+        heading: {
+          backgroundColor: groupColor,
+        },
+      },
+      option: {
+        backgroundColor: optionColor,
+        opacity: isActive,
+      },
+    };
+  }
+
+  function getOptions(text: string) {
+    if (text === "") {
+      return sectionHeadingOptions;
+    }
+    const filterRegex = new RegExp(text, "i");
+
+    return sectionHeadingOptions.map(section => ({
+      ...section,
+      options: section.options.filter(option =>
+        option.label.match(filterRegex)
+      ),
+    }));
+  }
+};
+```
+
+</Tab>
+<Tab label="Advanced Custom Menu Override">
+
+In this example we will override the rendering of the menu to render the Options
+in a completely custom way. This example will also include a footer that is
+rendered at the bottom of the menu.
+
+<br />
+
+**Note:** Due to the complexity of the example, we will not be using the
+`useKeyboardNavigation` hook to handle the keyboard navigation of the options.
+
+<br />
+
+Instead we will be handling the keyboard navigation manually with the Instead we
+will be handling the keyboard navigation manually with the
+`useCustomKeyboardNavigation` hook. This requires us to manually keep track of
+the highlighted option index and update it when the user navigates the menu.
+
+<br />
+#### Full Example
+
+```tsx
+import { KeyboardAction, useCustomKeyboardNavigation, CustomOptionsMenuProp, getRequestedIndexChange } from "@jobber/components/Autocomplete";
+
+interface CustomOption {
+  value: number;
+  label: string;
+  address: string;
+  contact: string;
+  status: string;
+}
+const options: CustomOption[] = [
+  {
+    value: 1,
+    label: "Nostromo",
+    address: "4517 Washington Ave. Manchester, Kentucky 39495",
+    contact: "(406) 555-4145 · darlene.r@gmail.com",
+    status: "Lead",
+  },
+  {
+    value: 2,
+    label: "Rodger Young",
+    address: "8502 Preston Rd. Inglewood, Maine 98380",
+    contact: "(406) 555-0120 · marvin.m@gmail.com",
+    status: "Active",
+  },
+  {
+    value: 3,
+    label: "Serenity",
+    address: "3 Properties",
+    contact: "(406) 555-0120 · seemore.b@gmail.com",
+    status: "Active",
+  },
+  {
+    value: 4,
+    label: "Sleeper Service",
+    address: "3891 Ranchview Dr. Richardson, California 62639",
+    contact: "(406) 555-0120",
+    status: "Active",
+  },
+];
+const AdvancedCustomMenu = () => {
+  const [value, setValue] = useState<CustomOption | undefined>();
+
+  function getOptions(text: string) {
+    if (text === "") {
+      return options;
+    }
+    const filterRegex = new RegExp(text, "i");
+
+    return options.filter(
+      option =>
+        option.label.match(filterRegex) ||
+        option.address.match(filterRegex) ||
+        option.contact.match(filterRegex),
+    );
+  }
+
+  return (
+    <Autocomplete
+      placeholder="Search for something"
+      initialOptions={options}
+      value={value}
+      onChange={newValue => setValue(newValue)}
+      customRenderMenu={props => <CustomMenuContent {...props} />}
+      getOptions={getOptions}
+    />
+  );
+}
+
+function CustomMenuContent({
+    options,
+    selectedOption,
+    onOptionSelect,
+    inputFocused,
+    inputRef,
+    MenuWrapper,
+    menuRef,
+  }: CustomOptionsMenuProp<CustomOption, CustomOption>) {
+    // Set to -1 to account for the footer being the first option when options are being initialized
+    const [highlightedOptionIndex, setHighlightedOptionIndex] = useState(-1);
+    // Length of options + 1 to account for the footer
+    const maxIndex = options.length - 1 + 1;
+    const footerFocused = highlightedOptionIndex === maxIndex;
+
+    const menuVisible = inputFocused || footerFocused;
+
+    const onRequestHighlightChange = useCallback(
+      (event: KeyboardEvent, direction: KeyboardAction) => {
+        const indexChange = getRequestedIndexChange({
+          event,
+          options,
+          direction,
+          highlightedIndex: highlightedOptionIndex,
+        });
+        const newPreviousIndex = Math.max(
+          0,
+          highlightedOptionIndex + indexChange,
+        );
+        const newNextIndex = Math.min(
+          maxIndex,
+          highlightedOptionIndex + indexChange,
+        );
+        const footerElement = menuRef?.childNodes[maxIndex] as HTMLElement;
+        if (!menuVisible) return;
+
+        switch (direction) {
+          case KeyboardAction.Previous:
+            // If the footer is focused, focus the input
+            if (highlightedOptionIndex === maxIndex) {
+              inputRef?.current?.focus();
+            }
+            setHighlightedOptionIndex(newPreviousIndex);
+            menuRef?.children[newPreviousIndex]?.scrollIntoView?.({
+              behavior: "smooth",
+              block: "nearest",
+              inline: "start",
+            });
+
+            break;
+          case KeyboardAction.Next:
+            setHighlightedOptionIndex(newNextIndex);
+            menuRef?.children[newNextIndex]?.scrollIntoView?.({
+              behavior: "smooth",
+              block: "nearest",
+              inline: "start",
+            });
+
+            if (newNextIndex === maxIndex) {
+              footerElement?.focus();
+            }
+            break;
+
+          case KeyboardAction.Select:
+            // Don't select the footer
+            highlightedOptionIndex < maxIndex &&
+              onOptionSelect(options[highlightedOptionIndex]);
+
+            menuRef?.children[highlightedOptionIndex]?.scrollIntoView?.({
+              behavior: "smooth",
+              block: "nearest",
+              inline: "start",
+            });
+            footerElement?.click();
+            break;
+        }
+      },
+      [highlightedOptionIndex, options, onOptionSelect],
+    );
+    useCustomKeyboardNavigation({ onRequestHighlightChange });
+
+    const optionsToRender = options.map((option, index) => {
+      const label = option.status;
+      const status = option.status === "Active" ? "success" : "informative";
+
+      return (
+        <BaseMenuOption
+          addSeparators={true}
+          isHighlighted={index === highlightedOptionIndex}
+          onOptionSelect={onOptionSelect}
+          option={option}
+          key={option.label}
+        >
+          <Flex template={["grow", "shrink"]}>
+            <Flex align="start" template={["shrink", "grow"]}>
+              <Content spacing="minuscule">
+                {selectedOption === option && (
+                  <Icon name="checkmark" size="small" />
+                )}
+                <Text>{option.label}</Text>
+                <Text variation="subdued">{option.address}</Text>
+                <Text variation="subdued">{option.contact}</Text>
+              </Content>
+            </Flex>
+            <StatusLabel status={status} label={label} />
+          </Flex>
+        </BaseMenuOption>
+      );
+    });
+
+    function addNewClient() {
+      window.alert("Add new client");
+    }
+    const footer = (
+      <Button
+        label="+ Add new client"
+        onClick={addNewClient}
+        size="small"
+        fullWidth
+        type="tertiary"
+      />
+    );
+
+    return (
+      <MenuWrapper visible={menuVisible}>
+        {optionsToRender}
+        {footer}
+      </MenuWrapper>
+    );
+  }
+<Autocomplete
+  ...
+  customRenderMenu={props => <CustomMenuContent {...props} />}
+/>
+```
+
+#### Keyboard Navigation
+
+The following code is the keyboard navigation logic for the menu. It is used to
+handle the keyboard navigation of the options and the footer.
+
+- `highlightedOptionIndex` is the index of the option that is currently
+  highlighted. It is initially set to -1 to account for the footer being the
+  first option when options are being initialized.
+- `maxIndex` is the index of the footer.
+- `footerFocused` is a boolean that indicates if the footer is focused.
+- `menuVisible` is a boolean that indicates if the menu is visible.
+- `onRequestHighlightChange` is a function that is called when the user
+  navigates the menu.
+- `getRequestedIndexChange` is a helper function that is used to get the index
+  change based on the keyboard event, direction and if the option is a group.
+
+```tsx
+... // Other code
+// Set to -1 to account for the footer being the first option when options are being initialized
+const [highlightedOptionIndex, setHighlightedOptionIndex] = useState(-1);
+// Length of options + 1 to account for the footer
+const maxIndex = options.length - 1 + 1;
+const footerFocused = highlightedOptionIndex === maxIndex;
+const menuVisible = inputFocused || footerFocused;
+
+const onRequestHighlightChange = useCallback(
+  (event: KeyboardEvent, direction: KeyboardAction) => {
+    event.preventDefault();
+    const indexChange = getRequestedIndexChange({
+      event,
+      options,
+      direction,
+      highlightedIndex: highlightedOptionIndex,
+    });
+    const newPreviousIndex = Math.max(0, highlightedOptionIndex + indexChange);
+    const newNextIndex = Math.min(
+      maxIndex,
+      highlightedOptionIndex + indexChange
+    );
+    const footerElement = menuRef?.childNodes[maxIndex] as HTMLElement;
+    // Do nothing if the menu is not visible
+    if (!menuVisible) return;
+
+    switch (direction) {
+      case KeyboardAction.Previous:
+        // If the footer is focused, focus the input if the direction is previous
+        if (highlightedOptionIndex === maxIndex) {
+          inputRef?.current?.focus();
+        }
+        setHighlightedOptionIndex(newPreviousIndex);
+        menuRef?.children[newPreviousIndex]?.scrollIntoView?.({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "start",
+        });
+
+        break;
+      case KeyboardAction.Next:
+        setHighlightedOptionIndex(newNextIndex);
+        menuRef?.children[newNextIndex]?.scrollIntoView?.({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "start",
+        });
+
+        if (newNextIndex === maxIndex) {
+          footerElement?.focus();
+        }
+        break;
+
+      case KeyboardAction.Select:
+        // Don't select the footer
+        highlightedOptionIndex < maxIndex &&
+          onOptionSelect(options[highlightedOptionIndex]);
+
+        menuRef?.children[highlightedOptionIndex]?.scrollIntoView?.({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "start",
+        });
+        break;
+    }
+  },
+  [highlightedOptionIndex, options, onOptionSelect]
+);
+useCustomKeyboardNavigation({ onRequestHighlightChange });
+```
+
+</Tab>
+</Tabs>
 
 ## Related components
 

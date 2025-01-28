@@ -1,0 +1,192 @@
+import { Tabs, Tab } from "@jobber/components/Tabs";
+import { Canvas } from "@storybook/addon-docs";
+import { Source } from "@storybook/blocks";
+import { Chip } from "@jobber/components/Chip";
+import { Icon } from "@jobber/components/Icon";
+import { Content } from "@jobber/components/Content";
+import { Disclosure } from "@jobber/components/Disclosure";
+import { Heading } from "@jobber/components/Heading";
+import { Box } from "@jobber/components/Box";
+import { Text } from "@jobber/components/Text";
+import { StatusLabel } from "@jobber/components/StatusLabel";
+import {
+  BasicCustomTemplate,
+  AdvancedCustomTemplate,
+  AdvancedCustomTemplateCode,
+  BasicCustomTemplateCode,
+} from "./AutocompleteExamples";
+
+## Component customization
+
+### Custom rendering
+
+If you need more control over the rendering of content in the menu, you can
+provide a **custom render function** using `customRenderMenu`
+
+This is useful if the default rendering of the Autocomplete Menu doesn’t meet
+your requirements. If a custom render function is provided you will be able to
+completely control how the menu is rendered.
+
+This is achieved by providing a function to the `customRenderMenu` prop. This
+function will receive the following props:
+
+- `MenuWrapper` is the wrapper of the Autocomplete Menu, this is the element
+  that will be visible when the menu is open. It handles the positioning of the
+  Autocomplete Menu
+- `inputFocused` is a boolean that indicates if the input is focused.
+- `onOptionSelect` is a function that is called when an option is selected for
+  updating the value of the Autocomplete.
+- `options` is the list of options to render in the Autocomplete Menu. This is
+  the options that are returned from the `getOptions` function.
+- `selectedOption` is the option that is currently selected.
+- `menuRef` is a ref that is passed to the Autocomplete Menu this is used by the
+  `useKeyboardNavigation` hook to handle the keyboard navigation of the options.
+- `inputRef` is a ref that is passed to the Autocomplete Menu to provide a ref
+  to the `InputText` component.
+
+There are also some helper functions that are used to handle the keyboard
+navigation of the options and the base styling of the options.
+
+- `useKeyboardNavigation` is used to handle the default keyboard navigation of
+  the options
+- `MenuOption` is the default rendering of the options in the Autocomplete Menu.
+  The `UNSAFE_style` prop is used to add a custom styling to the options.
+- `isGroup` is a helper function that is used to determine if the option is a
+  group.
+- `isOptionSelected` is a helper function that is used to determine if the
+  option is selected.
+- `BaseMenuOption` is the base component for the options in the Autocomplete
+  Menu. This component provides the base styling and functionality for the
+  options such as the separators and the highlighting.. This is used in the
+  advanced example below.
+
+<Tabs>
+<Tab label="Basic Menu Option Override">
+In this example we will override the default rendering of the Autocomplete Menu to add a custom styling to the options while keeping the default keyboard navigation.
+
+<Canvas>
+  <BasicCustomTemplate />
+</Canvas>
+
+<Disclosure title="Full Example (Click to Reveal Code)">
+
+<Source type="code" code={BasicCustomTemplateCode} />
+
+</Disclosure>
+
+</Tab>
+<Tab label="Advanced Custom Menu Override">
+
+In this example we will override the rendering of the menu to render the Options
+in a completely custom way. This example will also include a footer that is
+rendered at the bottom of the menu.
+
+**Note:** Due to the complexity of the example, we will not be using the
+`useKeyboardNavigation` hook to handle the keyboard navigation of the options.
+
+Instead we will be handling the keyboard navigation manually with the Instead we
+will be handling the keyboard navigation manually with the
+`useCustomKeyboardNavigation` hook. This requires us to manually keep track of
+the highlighted option index and update it when the user navigates the menu.
+
+<Canvas>
+  <AdvancedCustomTemplate />
+</Canvas>
+
+<Disclosure title="Full Example (Click to Reveal Code)">
+
+<Source type="code" code={AdvancedCustomTemplateCode} />
+
+</Disclosure>
+
+#### Keyboard Navigation
+
+The following code is the keyboard navigation logic for the menu. It is used to
+handle the keyboard navigation of the options and the footer.
+
+- `highlightedOptionIndex` is the index of the option that is currently
+  highlighted. It is initially set to -1 to account for the footer being the
+  first option when options are being initialized.
+- `maxIndex` is the index of the footer.
+- `footerFocused` is a boolean that indicates if the footer is focused.
+- `menuVisible` is a boolean that indicates if the menu is visible.
+- `onRequestHighlightChange` is a function that is called when the user
+  navigates the menu.
+- `getRequestedIndexChange` is a helper function that is used to get the index
+  change based on the keyboard event, direction and if the option is a group.
+
+```tsx
+
+... // Other code
+// Set to -1 to account for the footer being the first option when options are being initialized
+const [highlightedOptionIndex, setHighlightedOptionIndex] = useState(-1);
+// Length of options + 1 to account for the footer
+const maxIndex = options.length - 1 + 1;
+const footerFocused = highlightedOptionIndex === maxIndex;
+const menuVisible = inputFocused || footerFocused;
+
+const onRequestHighlightChange = useCallback(
+  (event: KeyboardEvent, direction: KeyboardAction) => {
+    event.preventDefault();
+    const indexChange = getRequestedIndexChange({
+      event,
+      options,
+      direction,
+      highlightedIndex: highlightedOptionIndex,
+    });
+    const newPreviousIndex = Math.max(0, highlightedOptionIndex + indexChange);
+    const newNextIndex = Math.min(
+      maxIndex,
+      highlightedOptionIndex + indexChange
+    );
+    const footerElement = menuRef?.childNodes[maxIndex] as HTMLElement;
+    // Do nothing if the menu is not visible
+    if (!menuVisible) return;
+
+    switch (direction) {
+      case KeyboardAction.Previous:
+        // If the footer is focused, focus the input if the direction is previous
+        if (highlightedOptionIndex === maxIndex) {
+          inputRef?.current?.focus();
+        }
+        setHighlightedOptionIndex(newPreviousIndex);
+        menuRef?.children[newPreviousIndex]?.scrollIntoView?.({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "start",
+        });
+
+        break;
+      case KeyboardAction.Next:
+        setHighlightedOptionIndex(newNextIndex);
+        menuRef?.children[newNextIndex]?.scrollIntoView?.({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "start",
+        });
+
+        if (newNextIndex === maxIndex) {
+          footerElement?.focus();
+        }
+        break;
+
+      case KeyboardAction.Select:
+        // Don't select the footer
+        highlightedOptionIndex < maxIndex &&
+          onOptionSelect(options[highlightedOptionIndex]);
+
+        menuRef?.children[highlightedOptionIndex]?.scrollIntoView?.({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "start",
+        });
+        break;
+    }
+  },
+  [highlightedOptionIndex, options, onOptionSelect]
+);
+useCustomKeyboardNavigation({ onRequestHighlightChange });
+```
+
+</Tab>
+</Tabs>

@@ -1,5 +1,6 @@
 import AutocompleteContent from "@atlantis/docs/components/Autocomplete/Autocomplete.stories.mdx";
 import Props from "./Autocomplete.props.json";
+import Notes from "./AutocompleteNotes.mdx";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
@@ -37,4 +38,5 @@ const [value, setValue] = useState();
       ),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;
