@@ -147,7 +147,7 @@ export function LightBox({
 
             setTimeout(() => {
               setMouseMovementCount(prev => prev - 1);
-            }, 1000);
+            }, 500);
           }}
         >
           <div
@@ -166,23 +166,25 @@ export function LightBox({
           </AtlantisThemeContextProvider>
 
           <div className={styles.slideWrapper}>
-            <AnimatePresence initial={false}>
-              <motion.img
-                key={currentImageIndex}
-                variants={variants}
-                src={images[currentImageIndex].url}
-                custom={direction}
-                className={styles.image}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={imageTransition}
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={1}
-                onDragEnd={handleOnDragEnd}
-              />
-            </AnimatePresence>
+            <div className={styles.imageArea}>
+              <AnimatePresence initial={false}>
+                <motion.img
+                  key={currentImageIndex}
+                  variants={variants}
+                  src={images[currentImageIndex].url}
+                  custom={direction}
+                  className={styles.image}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={imageTransition}
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={1}
+                  onDragEnd={handleOnDragEnd}
+                />
+              </AnimatePresence>
+            </div>
 
             {images.length > 1 && showButtons && (
               <>
