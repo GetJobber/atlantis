@@ -36,7 +36,6 @@ export const ContentLoader = () => {
       type = "content";
   }
 
-  console.log("type", type);
   const content = contentMap[type][name];
 
   return content ? (
