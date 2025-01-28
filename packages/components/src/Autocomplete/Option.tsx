@@ -19,12 +19,12 @@ export interface MenuOptionProps {
   readonly UNSAFE_className?: {
     option?: BaseMenuOptionProps["UNSAFE_className"];
     content?: MenuOptionContentProps["UNSAFE_className"];
-    groupOption?: MenuOptionGroupProps["UNSAFE_className"];
+    groupOption?: MenuGroupOptionProps["UNSAFE_className"];
   };
   readonly UNSAFE_style?: {
     option?: BaseMenuOptionProps["UNSAFE_style"];
     content?: MenuOptionContentProps["UNSAFE_style"];
-    groupOption?: MenuOptionGroupProps["UNSAFE_style"];
+    groupOption?: MenuGroupOptionProps["UNSAFE_style"];
   };
 }
 
@@ -39,7 +39,7 @@ export function MenuOption({
 }: MenuOptionProps) {
   if (isGroup(option)) {
     return (
-      <MenuOptionGroup
+      <MenuGroupOptions
         UNSAFE_className={UNSAFE_className.groupOption}
         option={option}
         UNSAFE_style={UNSAFE_style.groupOption}
@@ -115,17 +115,17 @@ export function MenuOptionContent({
   );
 }
 
-export interface MenuOptionGroupProps {
+export interface MenuGroupOptionProps {
   readonly option: AnyOption;
   readonly UNSAFE_className?: { heading?: string };
   readonly UNSAFE_style?: { heading?: React.CSSProperties };
 }
 
-export function MenuOptionGroup({
+export function MenuGroupOptions({
   option,
   UNSAFE_className = {},
   UNSAFE_style = {},
-}: MenuOptionGroupProps) {
+}: MenuGroupOptionProps) {
   const headingClassName = classnames(styles.heading, UNSAFE_className.heading);
 
   return (
