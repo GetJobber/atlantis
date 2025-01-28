@@ -1,8 +1,9 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { AnyOption, Autocomplete } from ".";
+import { AnyOption, Autocomplete, CustomOptionsMenuProp } from ".";
 import { InputTextRef } from "../InputText";
+import { Text } from "../Text";
 
 function returnOptions(options: AnyOption[]) {
   return async () => {
@@ -46,6 +47,7 @@ const headingOptions = [
   },
 ];
 
+// eslint-disable-next-line max-statements
 describe("Autocomplete", () => {
   it("renders an Autocomplete", async () => {
     const { container } = render(
@@ -284,5 +286,68 @@ describe("Autocomplete", () => {
 
     textRef.current?.scrollIntoView();
     expect(scrollIntoViewMock).toHaveBeenCalled();
+  });
+
+  function RenderCustomMenu({
+    options: customOptions,
+    MenuWrapper,
+  }: CustomOptionsMenuProp) {
+    return (
+      <MenuWrapper visible={true}>
+        {customOptions.map(option => (
+          <Text key={option.label}>{option.label}</Text>
+        ))}
+      </MenuWrapper>
+    );
+  }
+  describe("Custom Menu", () => {
+    it("should render the options", () => {
+      render(
+        <Autocomplete
+          value={undefined}
+          onChange={jest.fn()}
+          placeholder="placeholder_name"
+          initialOptions={options}
+          getOptions={returnOptions(options)}
+          customRenderMenu={props => <RenderCustomMenu {...props} />}
+        />,
+      );
+
+      expect(screen.getByText(options[0].label)).toBeInstanceOf(
+        HTMLParagraphElement,
+      );
+      expect(screen.getByText(options[0].label)).toBeInstanceOf(
+        HTMLParagraphElement,
+      );
+    });
+
+    it("should provide the inputFocused prop", async () => {
+      const mockCustomRenderMenu = jest.fn();
+      render(
+        <Autocomplete
+          value={undefined}
+          onChange={jest.fn()}
+          placeholder="placeholder_name"
+          initialOptions={options}
+          getOptions={returnOptions(options)}
+          customRenderMenu={mockCustomRenderMenu}
+        />,
+      );
+      const input = screen.getByRole("textbox");
+
+      expect(mockCustomRenderMenu).toHaveBeenCalledWith(
+        expect.objectContaining({
+          inputFocused: false,
+        }),
+      );
+
+      await userEvent.click(input);
+
+      expect(mockCustomRenderMenu).toHaveBeenCalledWith(
+        expect.objectContaining({
+          inputFocused: true,
+        }),
+      );
+    });
   });
 });
