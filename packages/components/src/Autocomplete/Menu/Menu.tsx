@@ -1,7 +1,7 @@
 import React, { RefObject } from "react";
 import { InputTextRef } from "@jobber/components/InputText";
 import { DefaultMenu, DefaultMenuProps } from "./DefaultMenu";
-import { useMenuWrapper } from "./MenuWrapper";
+import { useAutocompleteMenu } from "./MenuWrapper";
 import {
   AnyOption,
   CustomOptionsMenuProp,
@@ -23,7 +23,7 @@ export function Menu<
 }: MenuProps<GenericOption, GenericOptionValue>) {
   if (customRenderMenu) {
     return (
-      <InternalCustomMenu
+      <CustomMenu
         attachTo={attachTo}
         inputFocused={inputFocused}
         inputRef={inputRef}
@@ -62,7 +62,11 @@ interface InternalCustomMenuProps<
   ) => React.ReactElement;
 }
 
-function InternalCustomMenu<
+/**
+ * Renders the custom Menu for the Autocomplete component.
+ * Provides the menuRef and MenuWrapper to the customRenderMenu function.
+ */
+function CustomMenu<
   GenericOption extends AnyOption = AnyOption,
   GenericOptionValue extends Option = Option,
 >({
@@ -74,7 +78,7 @@ function InternalCustomMenu<
   inputFocused,
   inputRef,
 }: InternalCustomMenuProps<GenericOption, GenericOptionValue>) {
-  const { MenuWrapper, menuRef } = useMenuWrapper({ attachTo });
+  const { MenuWrapper, menuRef } = useAutocompleteMenu({ attachTo });
 
   const menuContent = customRenderMenu({
     options,

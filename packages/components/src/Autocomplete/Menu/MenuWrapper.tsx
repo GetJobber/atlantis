@@ -34,9 +34,11 @@ function MenuWrapperInternal({
   );
 }
 
-export const MenuWrapper = React.memo(MenuWrapperInternal);
-
-export function useMenuWrapper({
+/**
+ * Provides a wrapper for the Autocomplete menu that handles positioning and visibility.
+ * @param attachTo - The element that the menu should be attached to.
+ */
+export function useAutocompleteMenu({
   attachTo,
 }: {
   attachTo: React.RefObject<Element | null>;
@@ -56,7 +58,7 @@ export function useMenuWrapper({
       }, [menuRef, props.menuRef]);
 
       return (
-        <DefaultMenuWrapper
+        <MenuWrapper
           attributes={props.attributes}
           popperStyles={props.styles}
           setMenuRef={props.setMenuRef}
@@ -64,7 +66,7 @@ export function useMenuWrapper({
           visible={visible}
         >
           {children}
-        </DefaultMenuWrapper>
+        </MenuWrapper>
       );
     },
     [attachTo],
@@ -73,9 +75,9 @@ export function useMenuWrapper({
   return { MenuWrapper: Wrapper, menuRef };
 }
 
-function DefaultMenuWrapper(props: PropsWithChildren<MenuWrapperProps>) {
+export function MenuWrapper(props: PropsWithChildren<MenuWrapperProps>) {
   const mounted = useIsMounted();
-  const menu = <MenuWrapper {...props} />;
+  const menu = <MenuWrapperInternal {...props} />;
 
   return mounted.current ? createPortal(menu, document.body) : menu;
 }
