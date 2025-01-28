@@ -1,15 +1,10 @@
 import React from "react";
-import { TouchableHighlight, View } from "react-native";
+import { StyleProp, TouchableHighlight, View, ViewStyle } from "react-native";
 import { IconColorNames, IconNames } from "@jobber/design";
 import { XOR } from "ts-xor";
 import { styles } from "./Button.style";
 import { InternalButtonLoading } from "./components/InternalButtonLoading";
-import {
-  ButtonSize,
-  ButtonType,
-  ButtonVariation,
-  CommonButtonBorderColor,
-} from "./types";
+import { ButtonSize, ButtonType, ButtonVariation } from "./types";
 import { ActionLabel, ActionLabelVariation } from "../ActionLabel";
 import { Icon } from "../Icon";
 import { tokens } from "../utils/design";
@@ -86,11 +81,14 @@ interface CommonButtonProps {
   /**
    * Styles to override the default styles
    */
-  readonly styleOverrides?: CommonButtonStyleOverride;
+  readonly UNSAFE_style?: ButtonUnsafeStyle;
 }
 
-export interface CommonButtonStyleOverride {
-  readonly borderColor?: CommonButtonBorderColor;
+export interface ButtonUnsafeStyle {
+  container?: StyleProp<ViewStyle>;
+  contentContainer?: StyleProp<ViewStyle>;
+  iconContainer?: StyleProp<ViewStyle>;
+  actionLabelContainer?: StyleProp<ViewStyle>;
 }
 
 interface LabelButton extends CommonButtonProps {
@@ -121,8 +119,9 @@ export function Button({
   accessibilityHint,
   icon,
   testID,
-  styleOverrides,
-}: ButtonProps): JSX.Element {
+  UNSAFE_style,
+}: // styleOverrides,
+ButtonProps): JSX.Element {
   const buttonStyle = [
     styles.button,
     styles[size],
@@ -134,9 +133,9 @@ export function Button({
     fullHeight && styles.fullHeight,
   ];
 
-  if (styleOverrides?.borderColor) {
-    buttonStyle.push({ borderColor: tokens[styleOverrides.borderColor] });
-  }
+  // if (styleOverrides?.borderColor) {
+  //   buttonStyle.push({ borderColor: tokens[styleOverrides.borderColor] });
+  // }
 
   // attempts to use Pressable caused problems.  When a ScrollView contained
   // an InputText that was focused, it required two presses to activate the
@@ -160,11 +159,16 @@ export function Button({
         fullHeight && styles.fullHeight,
       ]}
     >
-      <View style={buttonStyle}>
+      <View style={[buttonStyle, UNSAFE_style?.container]}>
         {loading && <InternalButtonLoading variation={variation} type={type} />}
-        <View style={getContentStyles(label, icon)}>
+        <View
+          style={[
+            getContentStyles(label, icon),
+            UNSAFE_style?.contentContainer,
+          ]}
+        >
           {icon && (
-            <View style={styles.iconStyle}>
+            <View style={[styles.iconStyle, UNSAFE_style?.iconContainer]}>
               <Icon
                 name={icon}
                 color={getIconColorVariation(variation, type, disabled)}
@@ -172,7 +176,9 @@ export function Button({
             </View>
           )}
           {label && (
-            <View style={styles.labelStyle}>
+            <View
+              style={[styles.labelStyle, UNSAFE_style?.actionLabelContainer]}
+            >
               <ActionLabel
                 variation={getActionLabelVariation(variation, type)}
                 disabled={disabled}

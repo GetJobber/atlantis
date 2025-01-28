@@ -1,4 +1,5 @@
 import React from "react";
+import { StyleProp, TextStyle } from "react-native";
 import {
   BaseWeight,
   LineHeight,
@@ -12,8 +13,9 @@ import {
   TypographyProps,
 } from "../Typography";
 import { tokens } from "../utils/design";
+import { TypographyUnsafeStyle } from "../Typography/Typography";
 
-interface TextProps
+export interface TextProps
   extends Pick<TypographyProps<"base">, "maxFontScaleSize" | "selectable"> {
   /**
    * Visual hierarchy of the text
@@ -90,7 +92,8 @@ interface TextProps
   /**
    * Style override for text
    */
-  readonly styleOverride?: TextStyleOverride;
+  // readonly styleOverride?: TextStyleOverride;
+  readonly UNSAFE_style?: TypographyUnsafeStyle;
 }
 
 export type TextLevel = "text" | "textSupporting";
@@ -103,6 +106,12 @@ interface LevelStyle {
 export interface TextStyleOverride {
   readonly color: TextColor | undefined;
 }
+// export interface TextUnsafeStyle {
+//   // should probably be called textStyle or something like that;
+//   // container will work for most other components but Text is slightly different
+//   // container?: StyleProp<TextStyle>;
+//   textStyle?: StyleProp<TextStyle>;
+// }
 
 const levelStyles: Record<TextLevel, LevelStyle> = {
   text: {
@@ -135,21 +144,23 @@ export function Text({
   italic = false,
   hideFromScreenReader = false,
   maxFontScaleSize,
-  styleOverride,
+  // styleOverride,
+  UNSAFE_style,
   underline,
   selectable,
 }: TextProps): JSX.Element {
   const accessibilityRole: TextAccessibilityRole = "text";
 
-  let color: TextColor = variation;
+  // let color: TextColor = variation;
 
-  if (styleOverride?.color) {
-    color = styleOverride.color;
-  }
+  // if (styleOverride?.color) {
+  //   color = styleOverride.color;
+  // }
 
   return (
     <Typography
-      color={color}
+      color={variation}
+      UNSAFE_style={UNSAFE_style}
       fontFamily="base"
       fontStyle={italic ? "italic" : "regular"}
       fontWeight={getFontWeight({ level, emphasis })}
