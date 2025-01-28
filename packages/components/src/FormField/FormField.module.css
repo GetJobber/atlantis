@@ -259,6 +259,7 @@
   padding-right: var(--field--padding-right);
   overflow: hidden;
   color: var(--field--placeholder-color);
+  line-height: var(--field--value-lineHeight);
   text-align: var(--field--textAlign);
   text-overflow: ellipsis;
   white-space: nowrap;

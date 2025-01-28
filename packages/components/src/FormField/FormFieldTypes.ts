@@ -74,6 +74,13 @@ export interface CommonFormFieldProps {
   readonly disabled?: boolean;
 
   /**
+   * If this is false the placeholder is shifted to a mini label inside the input
+   * once a value has been added. Setting this to true hides the mini label.
+   */
+
+  readonly hideMiniLabel?: boolean;
+
+  /**
    * Highlights the field red to indicate an error.
    */
   readonly invalid?: boolean;
@@ -115,7 +122,8 @@ export interface CommonFormFieldProps {
   onValidation?(message: string): void;
 
   /**
-   * Hint text that goes above the value once the form is filled out.
+   * Hint text. If hideMiniLabel is false this text provides a mini label inside the
+   * input once a value has been added.
    */
   readonly placeholder?: string;
 
@@ -181,8 +189,6 @@ export interface FormFieldProps extends CommonFormFieldProps {
    * state is controlling the value, use the `value` prop instead.
    */
   readonly defaultValue?: string | Date;
-
-  readonly hideMiniLabel?: boolean;
 
   /**
    * Determines what kind of keyboard appears on mobile web.
