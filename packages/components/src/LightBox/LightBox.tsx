@@ -108,7 +108,6 @@ export function LightBox({
   );
   const mounted = useIsMounted();
   const prevOpen = useRef(open);
-  // const mouseMovements = [];
   useRefocusOnActivator(open);
 
   useOnKeyDown(handleRequestClose, "Escape");
@@ -122,7 +121,11 @@ export function LightBox({
   });
 
   useEffect(() => {
-    if (mouseMovementCount <= 1 && !buttonsHovered) {
+    setCurrentImageIndex(imageIndex);
+  }, [imageIndex, open]);
+
+  useEffect(() => {
+    if (mouseMovementCount === 0 && !buttonsHovered) {
       setShowButtons(false);
     }
   }, [mouseMovementCount]);
@@ -141,14 +144,7 @@ export function LightBox({
           aria-label="Lightbox"
           key="Lightbox"
           ref={lightboxRef}
-          onMouseMove={() => {
-            setShowButtons(true);
-            setMouseMovementCount(prev => prev + 1);
-
-            setTimeout(() => {
-              setMouseMovementCount(prev => prev - 1);
-            }, 500);
-          }}
+          onMouseMove={handleMouseMovement}
         >
           <div
             className={styles.backgroundImage}
@@ -186,22 +182,16 @@ export function LightBox({
               </AnimatePresence>
             </div>
 
-            {images.length > 1 && showButtons && (
+            {showButtons && (
               <>
-                <div
-                  className={styles.prev}
-                  onMouseEnter={() => setIsButtonsHovered(true)}
-                  onMouseLeave={() => setIsButtonsHovered(false)}
-                >
-                  <PreviousButton onClick={debouncedHandlePrevious} />
-                </div>
-                <div
-                  className={styles.next}
-                  onMouseEnter={() => setIsButtonsHovered(true)}
-                  onMouseLeave={() => setIsButtonsHovered(false)}
-                >
-                  <NextButton onClick={debouncedHandleNext} />
-                </div>
+                <PreviousButton
+                  onClick={debouncedHandlePrevious}
+                  setIsButtonsHovered={setIsButtonsHovered}
+                />
+                <NextButton
+                  onClick={debouncedHandleNext}
+                  setIsButtonsHovered={setIsButtonsHovered}
+                />
               </>
             )}
           </div>
@@ -245,6 +235,16 @@ export function LightBox({
     onRequestClose({ lastPosition: currentImageIndex });
   }
 
+  function handleMouseMovement() {
+    if (images.length <= 1) return;
+    setShowButtons(true);
+    setMouseMovementCount(prev => prev + 1);
+
+    setTimeout(() => {
+      setMouseMovementCount(prev => prev - 1);
+    }, 500);
+  }
+
   function handleOnDragEnd(
     event: MouseEvent | TouchEvent | PointerEvent,
     { offset, velocity }: PanInfo,
@@ -260,35 +260,48 @@ export function LightBox({
 }
 interface NavButtonProps {
   readonly onClick: () => void;
+  readonly setIsButtonsHovered: (buttonsHovered: boolean) => void;
 }
 
-function PreviousButton({ onClick }: NavButtonProps) {
+function PreviousButton({ onClick, setIsButtonsHovered }: NavButtonProps) {
   const { mediumAndUp } = useBreakpoints();
 
   return (
-    <Button
-      size={mediumAndUp ? "large" : "small"}
-      variation="subtle"
-      type="secondary"
-      icon="arrowLeft"
-      ariaLabel="Previous image"
-      onClick={onClick}
-    />
+    <div
+      className={styles.prev}
+      onMouseEnter={() => setIsButtonsHovered(true)}
+      onMouseLeave={() => setIsButtonsHovered(false)}
+    >
+      <Button
+        size={mediumAndUp ? "large" : "small"}
+        variation="subtle"
+        type="secondary"
+        icon="arrowLeft"
+        ariaLabel="Previous image"
+        onClick={onClick}
+      />
+    </div>
   );
 }
 
-function NextButton({ onClick }: NavButtonProps) {
+function NextButton({ onClick, setIsButtonsHovered }: NavButtonProps) {
   const { mediumAndUp } = useBreakpoints();
 
   return (
-    <Button
-      size={mediumAndUp ? "large" : "small"}
-      variation="subtle"
-      type="secondary"
-      icon="arrowRight"
-      ariaLabel="Next image"
-      onClick={onClick}
-    />
+    <div
+      className={styles.next}
+      onMouseEnter={() => setIsButtonsHovered(true)}
+      onMouseLeave={() => setIsButtonsHovered(false)}
+    >
+      <Button
+        size={mediumAndUp ? "large" : "small"}
+        variation="subtle"
+        type="secondary"
+        icon="arrowRight"
+        ariaLabel="Next image"
+        onClick={onClick}
+      />
+    </div>
   );
 }
 
