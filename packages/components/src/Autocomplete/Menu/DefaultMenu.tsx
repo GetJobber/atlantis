@@ -1,15 +1,9 @@
-import { useIsMounted } from "@jobber/hooks/useIsMounted";
-import React, { RefObject, useCallback, useEffect, useState } from "react";
-import { createPortal } from "react-dom";
+import React, { RefObject } from "react";
 import { MenuWrapper } from "./MenuWrapper";
 import { AnyOption, Option } from "../Autocomplete.types";
 import { isOptionSelected } from "../Autocomplete.utils";
 import { MenuOption } from "../Option";
-import {
-  KeyboardAction,
-  getRequestedIndexChange,
-  useCustomKeyboardNavigation,
-} from "../useKeyboardNavigation";
+import { useKeyboardNavigation } from "../useKeyboardNavigation";
 import { useRepositionMenu } from "../useRepositionMenu";
 
 export interface DefaultMenuProps {
@@ -23,7 +17,9 @@ export interface DefaultMenuProps {
   readonly visible?: boolean;
 }
 
-// eslint-disable-next-line max-statements
+/**
+ * Renders the default Menu for the Autocomplete component.
+ */
 export function DefaultMenu({
   options,
   selectedOption,
@@ -37,62 +33,20 @@ export function DefaultMenu({
     styles: popperStyles,
     attributes,
     targetWidth,
-  } = useRepositionMenu(attachTo, true);
-
-  const [highlightedIndex, setHighlightedIndex] = useState(0);
+  } = useRepositionMenu(attachTo, visible);
 
   const detectSeparatorCondition = (option: Option) =>
     option.description || option.details;
 
-  const detectGroups = (option: AnyOption) => "options" in option;
-
   const addSeparators = options.some(detectSeparatorCondition);
-
-  const initialHighlight = options.some(detectGroups) ? 1 : 0;
-  useEffect(() => setHighlightedIndex(initialHighlight), [options]);
-
-  useEffect(() => {
-    menuRef?.children[highlightedIndex]?.scrollIntoView?.({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "start",
-    });
-  }, [highlightedIndex]);
-
-  const onRequestHighlightChange = useCallback(
-    (event: KeyboardEvent, direction: KeyboardAction) => {
-      const indexChange = getRequestedIndexChange({
-        event,
-        options,
-        direction,
-        highlightedIndex,
-      });
-      if (!visible) return;
-
-      switch (direction) {
-        case KeyboardAction.Previous:
-          setHighlightedIndex(prev => Math.max(0, prev + indexChange));
-          break;
-        case KeyboardAction.Next:
-          setHighlightedIndex(prev =>
-            Math.min(options.length - 1, prev + indexChange),
-          );
-          break;
-        case KeyboardAction.Select:
-          onOptionSelect(options[highlightedIndex]);
-          break;
-      }
-    },
-    [highlightedIndex, options, onOptionSelect],
-  );
-
-  useCustomKeyboardNavigation({
-    onRequestHighlightChange,
+  const { highlightedIndex } = useKeyboardNavigation({
+    onOptionSelect,
+    options,
+    visible,
+    menuRef,
   });
 
-  const mounted = useIsMounted();
-
-  const menu = (
+  return (
     <MenuWrapper
       {...{ setMenuRef, popperStyles, attributes, targetWidth, visible }}
     >
@@ -110,6 +64,4 @@ export function DefaultMenu({
       })}
     </MenuWrapper>
   );
-
-  return mounted.current ? createPortal(menu, document.body) : menu;
 }

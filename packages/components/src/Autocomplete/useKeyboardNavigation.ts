@@ -9,6 +9,9 @@ export enum KeyboardAction {
   Select = 0,
 }
 
+/**
+ * Hook to handle custom keyboard navigation for the Autocomplete component.
+ */
 export function useCustomKeyboardNavigation({
   onRequestHighlightChange,
 }: {
@@ -30,6 +33,10 @@ export function useCustomKeyboardNavigation({
   }, "Enter");
 }
 
+/**
+ * Hook to handle keyboard navigation for the Menu in the Autocomplete component.
+ * If using components in the menu that aren't MenuOption or BaseMenuOption, you should use the `useCustomKeyboardNavigation` hook.
+ */
 export function useKeyboardNavigation<
   GenericOption extends AnyOption = AnyOption,
   GenericOptionValue extends Option = Option,
@@ -42,7 +49,7 @@ export function useKeyboardNavigation<
   options: GenericOption[];
   visible?: boolean;
   menuRef?: HTMLElement | null;
-  onOptionSelect: (option?: GenericOptionValue) => void;
+  onOptionSelect: (option: GenericOptionValue) => void;
 }) {
   const [highlightedIndex, setHighlightedIndex] = useState(0);
 
@@ -91,6 +98,10 @@ export function useKeyboardNavigation<
   return { highlightedIndex };
 }
 
+/**
+ * Function to get the requested index change based on the current highlighted index and the direction of the keyboard action.
+ * Accounts for groups in the options array.
+ */
 export function getRequestedIndexChange<T extends AnyOption>({
   event,
   options,
