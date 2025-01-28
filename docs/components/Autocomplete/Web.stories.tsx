@@ -1,5 +1,5 @@
 /* eslint-disable max-statements */
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import {
   AnyOption,
@@ -23,6 +23,7 @@ import { StatusLabel } from "@jobber/components/StatusLabel";
 import { Icon } from "@jobber/components/Icon";
 import { Grid } from "@jobber/components/Grid";
 import { Heading } from "@jobber/components/Heading";
+import { useCallbackRef } from "@jobber/hooks/useCallbackRef";
 
 export default {
   title: "Components/Forms and Inputs/Autocomplete/Web",
@@ -486,12 +487,41 @@ const CustomRenderingTemplate = () => {
     menuRef,
   }: CustomOptionsMenuProp<CustomOption, CustomOption>) {
     // Set to -1 to account for the footer being the first option when options are being initialized
-    const [highlightedOptionIndex, setHighlightedOptionIndex] = useState(-1);
+    const INITIAL_HIGHLIGHTED_OPTION_INDEX = -1;
+
+    const [highlightedOptionIndex, setHighlightedOptionIndex] = useState(
+      INITIAL_HIGHLIGHTED_OPTION_INDEX,
+    );
     // Length of options + 1 to account for the footer
     const maxIndex = options.length - 1 + 1;
-    const footerFocused = highlightedOptionIndex === maxIndex;
 
-    const menuVisible = inputFocused || footerFocused;
+    // We need to track the footer focus state because it can be focused instead of just the Input
+    const [footerFocused, setFooterFocused] = useState(false);
+    const footerElement = document.querySelector(
+      "#footerElement",
+    ) as HTMLElement;
+
+    const footerFocusedCallback = useCallbackRef(() => {
+      setFooterFocused(true);
+    });
+    const footerBlurCallback = useCallbackRef(() => {
+      setFooterFocused(false);
+    });
+
+    useEffect(() => {
+      footerElement?.addEventListener("focus", footerFocusedCallback);
+      footerElement?.addEventListener("blur", footerBlurCallback);
+
+      return () => {
+        footerElement?.removeEventListener("focus", footerFocusedCallback);
+        footerElement?.removeEventListener("blur", footerBlurCallback);
+      };
+    }, [footerElement, footerFocusedCallback, footerBlurCallback]);
+
+    const menuVisible = useMemo(
+      () => inputFocused || footerFocused,
+      [inputFocused, footerFocused],
+    );
 
     const onRequestHighlightChange = useCallback(
       (event: KeyboardEvent, direction: KeyboardAction) => {
@@ -509,7 +539,7 @@ const CustomRenderingTemplate = () => {
           maxIndex,
           highlightedOptionIndex + indexChange,
         );
-        const footerElement = menuRef?.childNodes[maxIndex] as HTMLElement;
+
         if (!menuVisible) return;
 
         switch (direction) {
@@ -549,7 +579,11 @@ const CustomRenderingTemplate = () => {
               block: "nearest",
               inline: "start",
             });
-            footerElement?.click();
+
+            // If the footer is selected, click it
+            if (highlightedOptionIndex === maxIndex) {
+              footerElement?.click();
+            }
             break;
         }
       },
@@ -594,6 +628,7 @@ const CustomRenderingTemplate = () => {
         label="+ Add new client"
         onClick={addNewClient}
         size="small"
+        id="footerElement"
         fullWidth
         type="tertiary"
       />

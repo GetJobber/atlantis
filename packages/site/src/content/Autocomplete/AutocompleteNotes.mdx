@@ -108,7 +108,9 @@ handle the keyboard navigation of the options and the footer.
   highlighted. It is initially set to -1 to account for the footer being the
   first option when options are being initialized.
 - `maxIndex` is the index of the footer.
-- `footerFocused` is a boolean that indicates if the footer is focused.
+- `footerFocused` is a boolean that indicates if the footer is focused. We need
+  to track this because it can be focused instead of just the Input and if we
+  don't then it is possible for the Menu to remain opened
 - `menuVisible` is a boolean that indicates if the menu is visible.
 - `onRequestHighlightChange` is a function that is called when the user
   navigates the menu.
@@ -118,12 +120,43 @@ handle the keyboard navigation of the options and the footer.
 ```tsx
 
 ... // Other code
-// Set to -1 to account for the footer being the first option when options are being initialized
-const [highlightedOptionIndex, setHighlightedOptionIndex] = useState(-1);
-// Length of options + 1 to account for the footer
-const maxIndex = options.length - 1 + 1;
-const footerFocused = highlightedOptionIndex === maxIndex;
-const menuVisible = inputFocused || footerFocused;
+  // Set to -1 to account for the footer being the first option when options are being initialized
+  const INITIAL_HIGHLIGHTED_OPTION_INDEX = -1;
+
+  const [highlightedOptionIndex, setHighlightedOptionIndex] = useState(
+    INITIAL_HIGHLIGHTED_OPTION_INDEX,
+  );
+  // Length of options + 1 to account for the footer
+  const maxIndex = options.length - 1 + 1;
+
+  // We need to track the footer focus state because it can be focused instead of just the Input
+  const [footerFocused, setFooterFocused] = useState(false);
+  const footerElement = document.querySelector(
+    "#footerElement",
+  ) as HTMLElement;
+
+  const footerFocusedCallback = useCallbackRef(() => {
+    setFooterFocused(true);
+  });
+  const footerBlurCallback = useCallbackRef(() => {
+    setFooterFocused(false);
+  });
+
+  useEffect(() => {
+    footerElement?.addEventListener("focus", footerFocusedCallback);
+    footerElement?.addEventListener("blur", footerBlurCallback);
+
+    return () => {
+      footerElement?.removeEventListener("focus", footerFocusedCallback);
+      footerElement?.removeEventListener("blur", footerBlurCallback);
+    };
+  }, [footerElement, footerFocusedCallback, footerBlurCallback]);
+
+  const menuVisible = useMemo(
+    () => inputFocused || footerFocused,
+    [inputFocused, footerFocused],
+  );
+
 
 const onRequestHighlightChange = useCallback(
   (event: KeyboardEvent, direction: KeyboardAction) => {
@@ -139,7 +172,6 @@ const onRequestHighlightChange = useCallback(
       maxIndex,
       highlightedOptionIndex + indexChange
     );
-    const footerElement = menuRef?.childNodes[maxIndex] as HTMLElement;
     // Do nothing if the menu is not visible
     if (!menuVisible) return;
 

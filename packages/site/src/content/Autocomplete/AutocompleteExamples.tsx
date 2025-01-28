@@ -20,7 +20,8 @@ import {
   useCustomKeyboardNavigation,
   useKeyboardNavigation,
 } from "@jobber/components/Autocomplete";
-import { useCallback, useState } from "react";
+import { useCallbackRef } from "@jobber/hooks";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 const SectionHeadingOptions = [
   {
@@ -356,6 +357,7 @@ export const AdvancedCustomTemplate = () => {
   );
 };
 
+// eslint-disable-next-line max-statements
 function CustomMenuContent({
   options,
   selectedOption,
@@ -366,12 +368,39 @@ function CustomMenuContent({
   menuRef,
 }: CustomOptionsMenuProp<CustomOption, CustomOption>) {
   // Set to -1 to account for the footer being the first option when options are being initialized
-  const [highlightedOptionIndex, setHighlightedOptionIndex] = useState(-1);
+  const INITIAL_HIGHLIGHTED_OPTION_INDEX = -1;
+
+  const [highlightedOptionIndex, setHighlightedOptionIndex] = useState(
+    INITIAL_HIGHLIGHTED_OPTION_INDEX,
+  );
   // Length of options + 1 to account for the footer
   const maxIndex = options.length - 1 + 1;
-  const footerFocused = highlightedOptionIndex === maxIndex;
 
-  const menuVisible = inputFocused || footerFocused;
+  // We need to track the footer focus state because it can be focused instead of just the Input
+  const [footerFocused, setFooterFocused] = useState(false);
+  const footerElement = document.querySelector("#footerElement") as HTMLElement;
+
+  const footerFocusedCallback = useCallbackRef(() => {
+    setFooterFocused(true);
+  });
+  const footerBlurCallback = useCallbackRef(() => {
+    setFooterFocused(false);
+  });
+
+  useEffect(() => {
+    footerElement?.addEventListener("focus", footerFocusedCallback);
+    footerElement?.addEventListener("blur", footerBlurCallback);
+
+    return () => {
+      footerElement?.removeEventListener("focus", footerFocusedCallback);
+      footerElement?.removeEventListener("blur", footerBlurCallback);
+    };
+  }, [footerElement, footerFocusedCallback, footerBlurCallback]);
+
+  const menuVisible = useMemo(
+    () => inputFocused || footerFocused,
+    [inputFocused, footerFocused],
+  );
 
   const onRequestHighlightChange = useCallback(
     (event: KeyboardEvent, direction: KeyboardAction) => {
@@ -389,7 +418,6 @@ function CustomMenuContent({
         maxIndex,
         highlightedOptionIndex + indexChange,
       );
-      const footerElement = menuRef?.childNodes[maxIndex] as HTMLElement;
       if (!menuVisible) return;
 
       switch (direction) {
@@ -429,7 +457,10 @@ function CustomMenuContent({
             block: "nearest",
             inline: "start",
           });
-          footerElement?.click();
+
+          if (highlightedOptionIndex === maxIndex) {
+            footerElement?.click();
+          }
           break;
       }
     },
@@ -473,6 +504,7 @@ function CustomMenuContent({
     <Button
       label="+ Add new client"
       onClick={addNewClient}
+      id="footerElement"
       size="small"
       fullWidth
       type="tertiary"
@@ -566,12 +598,41 @@ interface CustomOption {
     menuRef,
   }: CustomOptionsMenuProp<CustomOption, CustomOption>) {
     // Set to -1 to account for the footer being the first option when options are being initialized
-    const [highlightedOptionIndex, setHighlightedOptionIndex] = useState(-1);
+    const INITIAL_HIGHLIGHTED_OPTION_INDEX = -1;
+
+    const [highlightedOptionIndex, setHighlightedOptionIndex] = useState(
+      INITIAL_HIGHLIGHTED_OPTION_INDEX,
+    );
     // Length of options + 1 to account for the footer
     const maxIndex = options.length - 1 + 1;
-    const footerFocused = highlightedOptionIndex === maxIndex;
-  
-    const menuVisible = inputFocused || footerFocused;
+
+    // We need to track the footer focus state because it can be focused instead of just the Input
+    const [footerFocused, setFooterFocused] = useState(false);
+    const footerElement = document.querySelector(
+      "#footerElement",
+    ) as HTMLElement;
+
+    const footerFocusedCallback = useCallbackRef(() => {
+      setFooterFocused(true);
+    });
+    const footerBlurCallback = useCallbackRef(() => {
+      setFooterFocused(false);
+    });
+
+    useEffect(() => {
+      footerElement?.addEventListener("focus", footerFocusedCallback);
+      footerElement?.addEventListener("blur", footerBlurCallback);
+
+      return () => {
+        footerElement?.removeEventListener("focus", footerFocusedCallback);
+        footerElement?.removeEventListener("blur", footerBlurCallback);
+      };
+    }, [footerElement, footerFocusedCallback, footerBlurCallback]);
+
+    const menuVisible = useMemo(
+      () => inputFocused || footerFocused,
+      [inputFocused, footerFocused],
+    );
   
     const onRequestHighlightChange = useCallback(
       (event: KeyboardEvent, direction: KeyboardAction) => {
@@ -589,7 +650,6 @@ interface CustomOption {
           maxIndex,
           highlightedOptionIndex + indexChange,
         );
-        const footerElement = menuRef?.childNodes[maxIndex] as HTMLElement;
         if (!menuVisible) return;
   
         switch (direction) {
@@ -629,7 +689,9 @@ interface CustomOption {
               block: "nearest",
               inline: "start",
             });
-            footerElement?.click();
+            if (highlightedOptionIndex === maxIndex) {
+              footerElement?.click();
+            }
             break;
         }
       },
@@ -673,6 +735,7 @@ interface CustomOption {
       <Button
         label="+ Add new client"
         onClick={addNewClient}
+        id="footerElement"
         size="small"
         fullWidth
         type="tertiary"
