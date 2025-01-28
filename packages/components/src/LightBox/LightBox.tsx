@@ -97,6 +97,8 @@ export function LightBox({
 }: LightBoxProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(imageIndex);
   const [direction, setDirection] = useState(0);
+  const [showButtons, setShowButtons] = useState(false);
+  const [mouseMovementCount, setMouseMovementCount] = useState(0);
   const lightboxRef = useFocusTrap<HTMLDivElement>(open);
   const debouncedHandleNext = debounce(handleMoveNext, debounceDuration);
   const debouncedHandlePrevious = debounce(
@@ -105,7 +107,7 @@ export function LightBox({
   );
   const mounted = useIsMounted();
   const prevOpen = useRef(open);
-
+  // const mouseMovements = [];
   useRefocusOnActivator(open);
 
   useOnKeyDown(handleRequestClose, "Escape");
@@ -119,8 +121,10 @@ export function LightBox({
   });
 
   useEffect(() => {
-    setCurrentImageIndex(imageIndex);
-  }, [imageIndex, open]);
+    if (mouseMovementCount <= 1) {
+      setShowButtons(false);
+    }
+  }, [mouseMovementCount]);
 
   if (prevOpen.current !== open) {
     prevOpen.current = open;
@@ -136,6 +140,14 @@ export function LightBox({
           aria-label="Lightbox"
           key="Lightbox"
           ref={lightboxRef}
+          onMouseMove={() => {
+            setShowButtons(true);
+            setMouseMovementCount(prev => prev + 1);
+
+            setTimeout(() => {
+              setMouseMovementCount(prev => prev - 1);
+            }, 500);
+          }}
         >
           <div
             className={styles.backgroundImage}
@@ -153,7 +165,7 @@ export function LightBox({
           </AtlantisThemeContextProvider>
 
           <div className={styles.slideWrapper}>
-            {images.length > 1 && (
+            {images.length > 1 && showButtons && (
               <PreviousButton onClick={debouncedHandlePrevious} />
             )}
 
@@ -177,7 +189,9 @@ export function LightBox({
               </AnimatePresence>
             </div>
 
-            {images.length > 1 && <NextButton onClick={debouncedHandleNext} />}
+            {images.length > 1 && showButtons && (
+              <NextButton onClick={debouncedHandleNext} />
+            )}
           </div>
 
           <div className={styles.captionWrapper}>
@@ -232,7 +246,6 @@ export function LightBox({
     }
   }
 }
-
 interface NavButtonProps {
   readonly onClick: () => void;
 }
