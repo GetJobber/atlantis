@@ -238,7 +238,7 @@ export function InputFile({
 
       return validator ? validator(file) : null;
     },
-    [maxFiles, numberOfCurrentFiles],
+    [maxFiles, numberOfCurrentFiles, validator],
   );
 
   const options: DropzoneOptions = {

@@ -499,7 +499,7 @@ export const ClearAllFilters: StoryFn<typeof DataList> = args => {
   const apolloClient1 = useMemo(
     () =>
       new ApolloClient({
-        uri: "https://swapi-graphql.netlify.app/.netlify/functions/index",
+        uri: "https://swapi-graphql.netlify.app/graphql",
         cache: new InMemoryCache(),
       }),
     [],
