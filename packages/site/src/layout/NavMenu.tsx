@@ -131,12 +131,7 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
       </div>
       <a
         href="https://atlantis.getjobber.com/storybook/?path=/docs/introduction--docs"
-        style={{
-          margin: 0,
-          marginTop: "auto",
-          fontSize: "var(--typography--fontSize-small)",
-          color: "var(--color-text--secondary)",
-        }}
+        className={styles.navFooterLink}
       >
         View in Storybook
       </a>
