@@ -43,6 +43,32 @@ describe("FormField", () => {
         );
       });
     });
+    describe("with hideMiniLabel", () => {
+      it("should still render placeholder if there is no value", () => {
+        const FORM_FIELD_TEST_ID = "Form-Field-Wrapper";
+        const placeholder = "The best placeholder!";
+        render(<FormField placeholder={placeholder} hideMiniLabel={true} />);
+        expect(screen.getByLabelText(placeholder)).toBeInTheDocument();
+        expect(screen.getByTestId(FORM_FIELD_TEST_ID)).not.toHaveClass(
+          "miniLabel",
+        );
+      });
+      it("should hide the mini label", () => {
+        const FORM_FIELD_TEST_ID = "Form-Field-Wrapper";
+        const placeholder = "The best placeholder!";
+        render(
+          <FormField
+            placeholder={placeholder}
+            hideMiniLabel={true}
+            value="Foo"
+          />,
+        );
+        expect(screen.queryByLabelText(placeholder)).not.toBeInTheDocument();
+        expect(screen.getByTestId(FORM_FIELD_TEST_ID)).not.toHaveClass(
+          "miniLabel",
+        );
+      });
+    });
   });
 
   describe("when small", () => {
