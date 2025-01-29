@@ -3,7 +3,6 @@ import React, {
   PropsWithChildren,
   ReactElement,
   ReactNode,
-  createContext,
 } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
@@ -24,119 +23,6 @@ export function Menu({
   items,
   smallScreenBreakpoint = 490,
 }: MenuProps) {
-  return (
-    <Menu.Wrapper
-      activator={activator}
-      smallScreenBreakpoint={smallScreenBreakpoint}
-    >
-      <Menu.Shadow />
-
-      <Menu.Activator />
-
-      <MenuPortal>
-        <AnimatePresence>
-          <Menu.Popper>
-            <Menu.Overlay />
-            {items.length > 0 && (
-              <Menu.ItemWrapper>
-                {items.map((item, index) => (
-                  <Menu.Item key={index} item={item} />
-                ))}
-              </Menu.ItemWrapper>
-            )}
-          </Menu.Popper>
-        </AnimatePresence>
-      </MenuPortal>
-    </Menu.Wrapper>
-  );
-}
-
-export function handleParentClick(event: MouseEvent<HTMLDivElement>) {
-  // Since the menu is being rendered within the same parent as the activator,
-  // we need to stop the click event from bubbling up. If the Menu component
-  // gets added within a parent that has a click handler, any click on the
-  // menu will trigger the parent's click handler.
-  event.stopPropagation();
-}
-
-export const MenuContext = createContext<{
-  shadowRef: React.RefObject<HTMLSpanElement>;
-  shadowRefStyle: string;
-  toggle: (
-    callbackPassthrough?: (event?: MouseEvent) => void,
-  ) => (event: MouseEvent) => void;
-  hide: () => void;
-  visible: boolean;
-  buttonID: string;
-  menuID: string;
-  menuRef: React.RefObject<HTMLDivElement>;
-  setPopperElement: React.Dispatch<React.SetStateAction<HTMLElement | null>>;
-  state: State | null;
-  overlay: string;
-  popperContainer: string;
-  section: string;
-  sectionHeader: string;
-  positionAttributes: {
-    [key: string]:
-      | {
-          [key: string]: string;
-        }
-      | undefined;
-  };
-  menu: string;
-  activator?: ReactElement;
-  smallScreenBreakpoint: number;
-}>({
-  shadowRef: { current: null },
-  shadowRefStyle: "",
-  toggle: () => () => ({ props: { onClick: () => ({}) } }),
-  hide: () => ({}),
-  visible: false,
-  buttonID: "",
-  menuID: "",
-  menuRef: { current: null },
-  setPopperElement: () => ({}),
-  state: null,
-  overlay: "",
-  popperContainer: "",
-  section: "",
-  sectionHeader: "",
-  positionAttributes: {},
-  smallScreenBreakpoint: 490,
-  menu: "",
-});
-
-export const useMenuContext = () => {
-  return React.useContext(MenuContext);
-};
-
-Menu.Activator = function MenuActivator() {
-  const { toggle, buttonID, menuID, visible, activator } = useMenuContext();
-
-  return React.cloneElement(activator as ReactElement, {
-    onClick: toggle((activator as ReactElement)?.props?.onClick),
-    id: buttonID,
-    ariaControls: menuID,
-    ariaExpanded: visible,
-    ariaHaspopup: true,
-  });
-};
-
-Menu.Shadow = function MenuShadow() {
-  const { shadowRef, shadowRefStyle } = useMenuContext();
-
-  return <span ref={shadowRef} className={shadowRefStyle} />;
-};
-
-Menu.Wrapper = function MenuWrapper({
-  children,
-  smallScreenBreakpoint,
-  activator,
-}: {
-  readonly children: ReactNode;
-  readonly smallScreenBreakpoint: number;
-  readonly activator?: ReactElement;
-}) {
   const {
     shadowRef,
     popperElement,
@@ -180,43 +66,96 @@ Menu.Wrapper = function MenuWrapper({
   }
 
   return (
-    <MenuContext.Provider
-      value={{
-        toggle,
-        hide,
-        visible,
-        buttonID,
-        menuID,
-        menuRef,
-        setPopperElement,
-        state,
-        shadowRefStyle,
-        overlay,
-        popperContainer,
-        section,
-        sectionHeader,
-        positionAttributes,
-        menu,
-        shadowRef,
-        smallScreenBreakpoint,
-        activator,
-      }}
-    >
-      <div className={wrapperClasses} onClick={handleParentClick}>
-        {children}
-      </div>
-    </MenuContext.Provider>
+    <Menu.Wrapper className={wrapperClasses}>
+      <span ref={shadowRef} className={shadowRefStyle} />
+
+      {React.cloneElement(activator as ReactElement, {
+        onClick: toggle((activator as ReactElement).props.onClick),
+        id: buttonID,
+        ariaControls: menuID,
+        ariaExpanded: visible,
+        ariaHaspopup: true,
+      })}
+
+      <MenuPortal>
+        <AnimatePresence>
+          {visible && (
+            <Menu.Popper
+              setPopperElement={setPopperElement}
+              className={popperContainer}
+              positionAttributes={positionAttributes}
+            >
+              <Menu.Overlay
+                className={overlay}
+                toggle={toggle}
+                smallScreenBreakpoint={smallScreenBreakpoint}
+              />
+              {items.length > 0 && (
+                <Menu.ItemWrapper
+                  className={menu}
+                  menuID={menuID}
+                  buttonID={buttonID}
+                  smallScreenBreakpoint={smallScreenBreakpoint}
+                  state={state}
+                  menuRef={menuRef}
+                  hide={hide}
+                >
+                  {items.map((item, index) => (
+                    <Menu.Item
+                      key={index}
+                      className={section}
+                      item={item}
+                      headerClassName={sectionHeader}
+                    />
+                  ))}
+                </Menu.ItemWrapper>
+              )}
+            </Menu.Popper>
+          )}
+        </AnimatePresence>
+      </MenuPortal>
+    </Menu.Wrapper>
+  );
+}
+
+export function handleParentClick(event: MouseEvent<HTMLDivElement>) {
+  // Since the menu is being rendered within the same parent as the activator,
+  // we need to stop the click event from bubbling up. If the Menu component
+  // gets added within a parent that has a click handler, any click on the
+  // menu will trigger the parent's click handler.
+  event.stopPropagation();
+}
+
+Menu.Wrapper = function MenuWrapper({
+  children,
+  className,
+}: {
+  readonly children: ReactNode;
+  readonly className: string;
+}) {
+  return (
+    <div className={className} onClick={handleParentClick}>
+      {children}
+    </div>
   );
 };
 
-Menu.Popper = function MenuPopper({ children }: PropsWithChildren) {
-  const { setPopperElement, positionAttributes, popperContainer } =
-    useMenuContext();
-
+Menu.Popper = function MenuPopper({
+  children,
+  setPopperElement,
+  className,
+  positionAttributes,
+}: PropsWithChildren<{
+  readonly setPopperElement: React.Dispatch<
+    React.SetStateAction<HTMLElement | null>
+  >;
+  readonly className: string;
+  readonly positionAttributes: { [key: string]: string };
+}>) {
   return (
     <div
       ref={setPopperElement}
-      className={popperContainer}
+      className={className}
       {...positionAttributes}
       {...formFieldFocusAttribute}
     >
@@ -225,12 +164,18 @@ Menu.Popper = function MenuPopper({ children }: PropsWithChildren) {
   );
 };
 
-Menu.Overlay = function MenuOverlay() {
-  const { overlay, toggle, smallScreenBreakpoint } = useMenuContext();
-
+Menu.Overlay = function MenuOverlay({
+  className,
+  toggle,
+  smallScreenBreakpoint,
+}: {
+  readonly className: string;
+  readonly toggle: () => (e: React.MouseEvent) => void;
+  readonly smallScreenBreakpoint: number;
+}) {
   return (
     <motion.div
-      className={overlay}
+      className={className}
       onClick={toggle()}
       variants={MenuVariation(smallScreenBreakpoint)}
       initial="overlayStartStop"
@@ -244,20 +189,27 @@ Menu.Overlay = function MenuOverlay() {
   );
 };
 
-Menu.ItemWrapper = function ItemWrapper({ children }: PropsWithChildren) {
-  const {
-    menu,
-    buttonID,
-    menuID,
-    hide,
-    smallScreenBreakpoint,
-    state,
-    menuRef,
-  } = useMenuContext();
-
+Menu.ItemWrapper = function ItemWrapper({
+  children,
+  className,
+  buttonID,
+  menuID,
+  smallScreenBreakpoint,
+  state,
+  menuRef,
+  hide,
+}: PropsWithChildren<{
+  readonly className: string;
+  readonly menuID: string;
+  readonly buttonID: string;
+  readonly smallScreenBreakpoint: number;
+  readonly state: State | null;
+  readonly menuRef: React.RefObject<HTMLDivElement>;
+  readonly hide: () => void;
+}>) {
   return (
     <motion.div
-      className={menu}
+      className={className}
       role="menu"
       data-elevation={"elevated"}
       aria-labelledby={buttonID}
@@ -279,13 +231,19 @@ Menu.ItemWrapper = function ItemWrapper({ children }: PropsWithChildren) {
   );
 };
 
-Menu.Item = function MenuItem({ item }: { readonly item: SectionProps }) {
-  const { section, sectionHeader } = useMenuContext();
-
+Menu.Item = function MenuItem({
+  className,
+  headerClassName,
+  item,
+}: {
+  readonly className: string;
+  readonly headerClassName: string;
+  readonly item: SectionProps;
+}) {
   return (
-    <div className={section}>
+    <div className={className}>
       {item.header && (
-        <Menu.ItemHeader className={sectionHeader} text={item.header} />
+        <Menu.ItemHeader className={headerClassName} text={item.header} />
       )}
 
       {item.actions.map(action => (

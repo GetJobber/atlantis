@@ -95,6 +95,8 @@
     "Menu.ItemHeader",
     "Menu.ItemWrapper",
     "Menu.Overlay",
+    "Menu.Popper",
+    "Menu.Wrapper",
     "Modal",
     "MultiSelect",
     "Option",
