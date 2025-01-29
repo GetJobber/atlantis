@@ -60,52 +60,6 @@ exports[`Images renders an image 1`] = `
           style="z-index: 1; opacity: 1; transform: none; user-select: none;"
         />
       </div>
-      <div
-        class="prev buttonHidden"
-      >
-        <button
-          aria-label="Previous image"
-          class="button large onlyIcon subtle secondary"
-          type="button"
-        >
-          <svg
-            data-testid="arrowLeft"
-            style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 32px; height: 32px;"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M15.209 15.797a.996.996 0 0 1-.001 1.41.994.994 0 0 1-1.41 0l-5.005-5a.998.998 0 0 1 0-1.415l5-5a.994.994 0 0 1 1.41 0 .996.996 0 0 1 .001 1.411L10.916 11.5l4.293 4.297Z"
-            />
-          </svg>
-          <span
-            class="base semiBold large base"
-          />
-        </button>
-      </div>
-      <div
-        class="next buttonHidden"
-      >
-        <button
-          aria-label="Next image"
-          class="button large onlyIcon subtle secondary"
-          type="button"
-        >
-          <svg
-            data-testid="arrowRight"
-            style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 32px; height: 32px;"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M8.791 15.797a.996.996 0 0 0 .001 1.41.994.994 0 0 0 1.41 0l5.005-5a.998.998 0 0 0 0-1.415l-5-5a.994.994 0 0 0-1.41 0 .995.995 0 0 0-.001 1.411l4.288 4.297-4.293 4.297Z"
-            />
-          </svg>
-          <span
-            class="base semiBold large base"
-          />
-        </button>
-      </div>
     </div>
     <div
       class="captionWrapper"
