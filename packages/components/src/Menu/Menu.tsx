@@ -80,37 +80,40 @@ export function Menu({
       <MenuPortal>
         <AnimatePresence>
           {visible && (
-            <Menu.Popper
-              setPopperElement={setPopperElement}
-              className={popperContainer}
-              positionAttributes={positionAttributes}
-            >
+            <>
               <Menu.Overlay
                 className={overlay}
                 toggle={toggle}
                 smallScreenBreakpoint={smallScreenBreakpoint}
               />
-              {items.length > 0 && (
-                <Menu.ItemWrapper
-                  className={menu}
-                  menuID={menuID}
-                  buttonID={buttonID}
-                  smallScreenBreakpoint={smallScreenBreakpoint}
-                  state={state}
-                  menuRef={menuRef}
-                  hide={hide}
-                >
-                  {items.map((item, index) => (
-                    <Menu.Item
-                      key={index}
-                      className={section}
-                      item={item}
-                      headerClassName={sectionHeader}
-                    />
-                  ))}
-                </Menu.ItemWrapper>
-              )}
-            </Menu.Popper>
+
+              <Menu.Popper
+                setPopperElement={setPopperElement}
+                className={popperContainer}
+                positionAttributes={positionAttributes}
+              >
+                {items.length > 0 && (
+                  <Menu.ItemWrapper
+                    className={menu}
+                    menuID={menuID}
+                    buttonID={buttonID}
+                    smallScreenBreakpoint={smallScreenBreakpoint}
+                    state={state}
+                    menuRef={menuRef}
+                    hide={hide}
+                  >
+                    {items.map((item, index) => (
+                      <Menu.Item
+                        key={index}
+                        className={section}
+                        item={item}
+                        headerClassName={sectionHeader}
+                      />
+                    ))}
+                  </Menu.ItemWrapper>
+                )}
+              </Menu.Popper>
+            </>
           )}
         </AnimatePresence>
       </MenuPortal>
