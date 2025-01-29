@@ -107,6 +107,7 @@
     "Popover",
     "Popover.Arrow",
     "Popover.DismissWrapper",
+    "Popover.Provider",
     "Popover.Wrapper",
     "ProgressBar",
     "RadioGroup",

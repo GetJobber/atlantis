@@ -1,4 +1,4 @@
-import React, { CSSProperties, PropsWithChildren } from "react";
+import React, { CSSProperties, PropsWithChildren, createContext } from "react";
 import { PopoverProps } from "./types";
 import { usePopover } from "./usePopover";
 import { usePopoverStyles } from "./usePopoverStyles";
@@ -13,6 +13,60 @@ export function Popover({
   UNSAFE_className = {},
   UNSAFE_style = {},
 }: PopoverProps) {
+  return (
+    <Popover.Provider
+      attachTo={attachTo}
+      open={open}
+      preferredPlacement={preferredPlacement}
+      UNSAFE_className={UNSAFE_className}
+      UNSAFE_style={UNSAFE_style}
+    >
+      <Popover.Wrapper>
+        <Popover.DismissWrapper>
+          <ButtonDismiss onClick={onRequestClose} ariaLabel="Close dialog" />
+        </Popover.DismissWrapper>
+        {children}
+        <Popover.Arrow />
+      </Popover.Wrapper>
+    </Popover.Provider>
+  );
+}
+interface PopoverContextProps
+  extends Pick<PopoverProps, "UNSAFE_className" | "UNSAFE_style"> {
+  setPopperElement: (element: HTMLElement | null) => void;
+  setArrowElement: (element: HTMLElement | null) => void;
+  popperStyles: { [key: string]: CSSProperties };
+  attributes: { [key: string]: { [key: string]: string } | undefined };
+  popoverClassNames: string;
+  dismissButtonClassNames: string;
+  arrowClassNames: string;
+}
+const PopoverContext = createContext<PopoverContextProps>({
+  popperStyles: {},
+  attributes: {},
+} as PopoverContextProps);
+
+const usePopoverContext = () => {
+  return React.useContext(PopoverContext);
+};
+
+Popover.Provider = function PopoverProvider({
+  children,
+  preferredPlacement,
+  attachTo,
+  open,
+  UNSAFE_className,
+  UNSAFE_style,
+}: PropsWithChildren<
+  Pick<
+    PopoverProps,
+    | "UNSAFE_className"
+    | "preferredPlacement"
+    | "attachTo"
+    | "open"
+    | "UNSAFE_style"
+  >
+>) {
   const { setPopperElement, setArrowElement, popperStyles, attributes } =
     usePopover({
       preferredPlacement,
@@ -25,46 +79,32 @@ export function Popover({
   if (!open) return null;
 
   return (
-    <Popover.Wrapper
-      UNSAFE_style={UNSAFE_style}
-      setPopperElement={setPopperElement}
-      popperStyles={popperStyles}
-      popoverClassNames={popoverClassNames}
-      attributes={attributes}
+    <PopoverContext.Provider
+      value={{
+        setPopperElement,
+        setArrowElement,
+        popperStyles,
+        attributes,
+        popoverClassNames,
+        dismissButtonClassNames,
+        UNSAFE_className,
+        UNSAFE_style,
+        arrowClassNames,
+      }}
     >
-      <Popover.DismissWrapper
-        className={dismissButtonClassNames}
-        style={UNSAFE_style.dismissButtonContainer}
-      >
-        <ButtonDismiss onClick={onRequestClose} ariaLabel="Close dialog" />
-      </Popover.DismissWrapper>
       {children}
-      <Popover.Arrow
-        setArrowElement={setArrowElement}
-        className={arrowClassNames}
-        popperStyles={popperStyles}
-        UNSAFE_style={UNSAFE_style}
-      />
-    </Popover.Wrapper>
+    </PopoverContext.Provider>
   );
-}
+};
 
-Popover.Arrow = function PopoverArrow({
-  setArrowElement,
-  className,
-  popperStyles,
-  UNSAFE_style,
-}: Pick<PopoverProps, "UNSAFE_style"> & {
-  readonly className: string;
-  readonly setArrowElement: React.Dispatch<
-    React.SetStateAction<HTMLElement | null | undefined>
-  >;
-  readonly popperStyles: { [key: string]: CSSProperties };
-}) {
+Popover.Arrow = function PopoverArrow() {
+  const { setArrowElement, popperStyles, arrowClassNames, UNSAFE_style } =
+    usePopoverContext();
+
   return (
     <div
       ref={setArrowElement}
-      className={className}
+      className={arrowClassNames}
       style={{ ...popperStyles.arrow, ...(UNSAFE_style?.arrow ?? {}) }}
       data-testid="popover-arrow"
     />
@@ -73,44 +113,34 @@ Popover.Arrow = function PopoverArrow({
 
 Popover.DismissWrapper = function PopoverDismissWrapper({
   children,
-  className,
-  style,
   testId = "popover-dismiss-button-container",
 }: PropsWithChildren<{
-  readonly className: string;
-  readonly style?: CSSProperties;
   readonly testId?: string;
 }>) {
+  const { dismissButtonClassNames, UNSAFE_style } = usePopoverContext();
+
   return (
-    <div className={className} style={style ?? {}} data-testid={testId}>
+    <div
+      className={dismissButtonClassNames}
+      style={UNSAFE_style?.dismissButtonContainer ?? {}}
+      data-testid={testId}
+    >
       {children}
     </div>
   );
 };
 
 Popover.Wrapper = function PopoverWrapper({
-  UNSAFE_style,
-  setPopperElement,
-  popperStyles,
-  popoverClassNames,
-  attributes,
   children,
-}: PropsWithChildren<
-  Pick<PopoverProps, "UNSAFE_style"> & {
-    readonly setPopperElement?: React.Dispatch<
-      React.SetStateAction<HTMLElement | null | undefined>
-    >;
-    readonly popperStyles: { [key: string]: CSSProperties };
-    readonly popoverClassNames: string;
-    readonly attributes: {
-      [key: string]:
-        | {
-            [key: string]: string;
-          }
-        | undefined;
-    };
-  }
->) {
+}: PropsWithChildren<Pick<PopoverProps, "UNSAFE_style">>) {
+  const {
+    popperStyles,
+    setPopperElement,
+    popoverClassNames,
+    attributes,
+    UNSAFE_style,
+  } = usePopoverContext();
+
   return (
     <div
       role="dialog"

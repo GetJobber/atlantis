@@ -1,5 +1,6 @@
 import React, {
   MouseEvent,
+  MouseEventHandler,
   PropsWithChildren,
   ReactElement,
   ReactNode,
@@ -34,7 +35,6 @@ export function Menu({
         <MenuPortal>
           <AnimatePresence>
             <Menu.Popper>
-              <Menu.Overlay />
               {items.length > 0 && (
                 <Menu.ItemWrapper>
                   {items.map((item, index) => (
@@ -72,7 +72,9 @@ interface MenuContextProps {
   readonly shadowRef: React.RefObject<HTMLSpanElement>;
   readonly popperElement: HTMLElement | null;
   readonly width: number;
-  readonly toggle: (callbackPassthrough?: (event?: MouseEvent) => void) => void;
+  readonly toggle: (
+    callbackPassthrough?: (event?: MouseEvent) => void,
+  ) => MouseEventHandler<HTMLDivElement> | undefined;
   readonly buttonID: string;
   readonly menuID: string;
   readonly hide: () => void;
@@ -207,16 +209,22 @@ Menu.Popper = function MenuPopper({ children }: PropsWithChildren) {
     useMenuContext();
 
   return (
-    visible && (
-      <div
-        ref={setPopperElement}
-        className={popperContainer}
-        {...positionAttributes}
-        {...formFieldFocusAttribute}
-      >
-        {children}
-      </div>
-    )
+    <>
+      {visible && (
+        <>
+          <Menu.Overlay />(
+          <div
+            ref={setPopperElement}
+            className={popperContainer}
+            {...positionAttributes}
+            {...formFieldFocusAttribute}
+          >
+            {children}
+          </div>
+          )
+        </>
+      )}
+    </>
   );
 };
 
