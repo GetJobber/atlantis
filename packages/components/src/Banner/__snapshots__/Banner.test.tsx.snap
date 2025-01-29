@@ -37,7 +37,7 @@ exports[`renders a banner with a primary 'learning' action when the type is 'not
         class="bannerAction"
       >
         <button
-          class="button small learning secondary"
+          class="button small subtle primary"
           type="button"
         >
           <span
@@ -112,7 +112,7 @@ exports[`renders a banner with a primary action 1`] = `
         class="bannerAction"
       >
         <button
-          class="button small work secondary"
+          class="button small subtle primary"
           type="button"
         >
           <span

@@ -65,8 +65,8 @@ export function Banner({
     primaryAction = Object.assign(
       {
         size: "small",
-        type: "secondary",
-        variation: type === "success" ? "work" : "learning",
+        type: "primary",
+        variation: "subtle",
       },
       primaryAction,
     );
