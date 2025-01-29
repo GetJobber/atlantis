@@ -42,6 +42,7 @@ for the “emptiness” may include, but are not limited to…
 - [Visibility of system status](https://www.nngroup.com/articles/visibility-system-status/)
 - [Consistency and standards](https://www.nngroup.com/articles/consistency-and-standards/)
 - [Aesthetics and minimalist design](https://www.nngroup.com/videos/aesthetic-and-minimalist-design/)
+- [Help users recognize, diagnose and recover from errors](https://www.nngroup.com/articles/ten-usability-heuristics/#toc-9-help-users-recognize-diagnose-and-recover-from-errors-9)
 
 ## Solution
 
@@ -155,8 +156,8 @@ team to find or create an appropriate illustration.
    There's no component but these are some common patterns:
 
   <Canvas>
-    <Box direction="column" alignItems="center">
-      <Icon name="alert" />
+    <Box direction="column" alignItems="center" gap="base" width="100%">
+      <Icon size="large" name="alert" />
       <Heading level={4}>No results found</Heading>
       <Text>Try adjusting your search criteria or clearing filters</Text>
       <Button variation="subtle" label="Clear Filters" />
