@@ -46,6 +46,7 @@ export const HomePage = () => {
             {
               title: "Patterns",
               to: "/patterns",
+              imageURL: "/Patterns.png",
               sections: ["Resources"],
             },
             {
