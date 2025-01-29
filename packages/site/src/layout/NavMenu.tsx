@@ -129,7 +129,7 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
           })}
         </MenuList>
         <a
-          href="/storybook/?path=/docs/introduction--docs"
+          href="https://atlantis.getjobber.com/storybook/?path=/docs/introduction--docs"
           style={{
             fontSize: "var(--typography--fontSize-small)",
             color: "var(--color-text--secondary)",
