@@ -74,8 +74,8 @@ navigation of the options and the base styling of the options.
   the options
 - `MenuOption` is the default rendering of the options in the Autocomplete Menu.
   The `UNSAFE_style` prop is used to add a custom styling to the options.
-- `isGroup` is a helper function that is used to determine if the option is a
-  group.
+- `isOptionGroup` is a helper function that is used to determine if the option
+  is a group.
 - `isOptionSelected` is a helper function that is used to determine if the
   option is selected.
 - `BaseMenuOption` is the base component for the options in the Autocomplete
@@ -117,7 +117,7 @@ In this example we will override the default rendering of the Autocomplete Menu 
             <MenuOption
               key={index}
               option={option}
-              addSeparators={isGroup(option)}
+              addSeparators={isOptionGroup(option)}
               isHighlighted={index === highlightedIndex}
               onOptionSelect={onOptionSelect}
               isSelected={isOptionSelected(selectedOption, option)}
@@ -196,9 +196,9 @@ export const SimpleCustomMenu = () => {
 
               return (
                 <MenuOption
-                  key={index}
+                  key={option.value}
                   option={option}
-                  addSeparators={isGroup(option)}
+                  addSeparators={isOptionGroup(option)}
                   isHighlighted={index === highlightedIndex}
                   onOptionSelect={onOptionSelect}
                   isSelected={isOptionSelected(selectedOption, option)}
@@ -222,7 +222,7 @@ export const SimpleCustomMenu = () => {
     highlightedIndex: number;
     options: AnyOption[];
   }) {
-    const isSectionLabel = "options" in option;
+    const isSectionLabel = isOptionGroup(option);
     const isPlanetsLabel = option.label === "Planets";
 
     const inPlanetSection = planetSection?.find?.(

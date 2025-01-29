@@ -22,4 +22,4 @@ export {
 } from "./useKeyboardNavigation";
 export { useRepositionMenu } from "./useRepositionMenu";
 export { MenuWrapper, useAutocompleteMenu } from "./Menu/MenuWrapper";
-export { isOptionSelected, isGroup } from "./Autocomplete.utils";
+export { isOptionSelected, isOptionGroup } from "./Autocomplete.utils";

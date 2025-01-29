@@ -1,7 +1,7 @@
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useCallback, useEffect, useState } from "react";
 import { AnyOption, Option } from "./Autocomplete.types";
-import { isGroup } from "./Autocomplete.utils";
+import { isOptionGroup } from "./Autocomplete.utils";
 
 export enum KeyboardAction {
   Previous = -1,
@@ -53,9 +53,7 @@ export function useKeyboardNavigation<
 }) {
   const [highlightedIndex, setHighlightedIndex] = useState(0);
 
-  const detectGroups = (option: AnyOption) => "options" in option;
-
-  const initialHighlight = options.some(detectGroups) ? 1 : 0;
+  const initialHighlight = options.some(isOptionGroup) ? 1 : 0;
   useEffect(() => setHighlightedIndex(initialHighlight), [options]);
   useEffect(() => {
     menuRef?.children[highlightedIndex]?.scrollIntoView?.({
@@ -85,7 +83,7 @@ export function useKeyboardNavigation<
           );
           break;
         case KeyboardAction.Select:
-          if (isGroup(options[highlightedIndex])) return;
+          if (isOptionGroup(options[highlightedIndex])) return;
           onOptionSelect(
             options[highlightedIndex] as unknown as GenericOptionValue,
           );
@@ -117,7 +115,7 @@ export function getRequestedIndexChange<T extends AnyOption>({
   event.preventDefault();
   const requestedIndex = options[highlightedIndex + direction];
 
-  return requestedIndex && isGroup(requestedIndex)
+  return requestedIndex && isOptionGroup(requestedIndex)
     ? direction + direction
     : direction;
 }

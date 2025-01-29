@@ -1,4 +1,4 @@
-import { AnyOption, Option } from "./Autocomplete.types";
+import { AnyOption, GroupOption, Option } from "./Autocomplete.types";
 
 export function isOptionSelected(
   selectedOption: Option | undefined,
@@ -7,8 +7,13 @@ export function isOptionSelected(
   return Boolean(selectedOption && selectedOption.value === option.value);
 }
 
-export function isGroup(option: AnyOption) {
-  if ("options" in option) return true;
-
-  return false;
+/**
+ * Helper function to determine if the option is a group. This is used to
+ * determine if the option contains a list of options for rendering Section
+ * Labels in the Autocomplete component.
+ */
+export function isOptionGroup<T extends AnyOption>(
+  option: T,
+): option is Extract<T, GroupOption> {
+  return "options" in option;
 }

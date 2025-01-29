@@ -23,6 +23,10 @@ export type AnyOption<
   GenericOption extends Option | GroupOption = Option | GroupOption,
 > = GenericOption;
 
+export type OptionInGroup<T extends AnyOption> = T extends GroupOption
+  ? T["options"][number]
+  : T;
+
 export interface AutocompleteProps<
   GenericOption extends AnyOption = AnyOption,
   GenericOptionValue extends Option = Option,
@@ -132,7 +136,7 @@ export interface CustomOptionsMenuProp<
   /**
    * The options to display in the menu
    */
-  options: GenericOption[];
+  options: Array<OptionInGroup<GenericOption> | GenericOption>;
   /**
    * The currently selected option
    */

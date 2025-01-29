@@ -9,6 +9,7 @@ import React, {
 import styles from "./Autocomplete.module.css";
 import { Menu } from "./Menu/Menu";
 import { AnyOption, AutocompleteProps, Option } from "./Autocomplete.types";
+import { isOptionGroup } from "./Autocomplete.utils";
 import { InputText, InputTextRef } from "../InputText";
 import { useDebounce } from "../utils/useDebounce";
 import { mergeRefs } from "../utils/mergeRefs";
@@ -95,7 +96,7 @@ function AutocompleteInternal<
   async function updateSearch() {
     const updatedOptions = await getOptions(inputText);
     const filteredOptions = updatedOptions.filter(option =>
-      "options" in option && option.options ? option.options.length > 0 : true,
+      isOptionGroup(option) ? option.options.length > 0 : true,
     );
 
     setOptions(mapToOptions(filteredOptions));
@@ -140,7 +141,7 @@ function mapToOptions<GenericOption extends AnyOption = AnyOption>(
   const retVal = items.reduce<GenericOption[]>((result, item) => {
     result.push(item);
 
-    if ("options" in item && item.options) {
+    if (isOptionGroup(item) && item.options) {
       result = result.concat(item.options as GenericOption[]);
     }
 

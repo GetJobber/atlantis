@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from "react";
 import classnames from "classnames";
 import styles from "./Autocomplete.module.css";
-import { isGroup } from "./Autocomplete.utils";
+import { isOptionGroup } from "./Autocomplete.utils";
 import { AnyOption, Option } from "./Autocomplete.types";
 import { Heading } from "../Heading";
 import { Text } from "../Text";
@@ -37,7 +37,7 @@ export function MenuOption({
   UNSAFE_className = {},
   UNSAFE_style = {},
 }: MenuOptionProps) {
-  if (isGroup(option)) {
+  if (isOptionGroup(option)) {
     return (
       <MenuGroupOptions
         UNSAFE_className={UNSAFE_className.groupOption}

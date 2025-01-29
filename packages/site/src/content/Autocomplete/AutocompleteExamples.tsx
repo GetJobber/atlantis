@@ -15,7 +15,7 @@ import {
   MenuOption,
   Option,
   getRequestedIndexChange,
-  isGroup,
+  isOptionGroup,
   isOptionSelected,
   useCustomKeyboardNavigation,
   useKeyboardNavigation,
@@ -87,7 +87,7 @@ export const BasicCustomTemplate = () => {
                   <MenuOption
                     key={index}
                     option={option}
-                    addSeparators={isGroup(option)}
+                    addSeparators={isOptionGroup(option)}
                     isHighlighted={index === highlightedIndex}
                     onOptionSelect={onOptionSelect}
                     isSelected={isOptionSelected(selectedOption, option)}
@@ -113,7 +113,7 @@ export const BasicCustomTemplate = () => {
     highlightedIndex: number;
     options: AnyOption[];
   }) {
-    const isSectionLabel = "options" in option;
+    const isSectionLabel = isOptionGroup(option);
     const isPlanetsLabel = option.label === "Planets";
 
     const inPlanetSection = planetSection?.find?.(
@@ -209,7 +209,7 @@ export const BasicCustomTemplate = () => {
                   <MenuOption
                     key={index}
                     option={option}
-                    addSeparators={isGroup(option)}
+                    addSeparators={isOptionGroup(option)}
                     isHighlighted={index === highlightedIndex}
                     onOptionSelect={onOptionSelect}
                     isSelected={isOptionSelected(selectedOption, option)}

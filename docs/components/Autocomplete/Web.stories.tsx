@@ -10,7 +10,7 @@ import {
   MenuOption,
   Option,
   getRequestedIndexChange,
-  isGroup,
+  isOptionGroup,
   isOptionSelected,
   useCustomKeyboardNavigation,
   useKeyboardNavigation,
@@ -313,7 +313,7 @@ const CustomRenderingTemplate = () => {
                 {options.map((option, index) => {
                   return (
                     <MenuOption
-                      key={index}
+                      key={option.value}
                       option={option}
                       addSeparators={false}
                       isHighlighted={index === highlightedIndex}
@@ -358,9 +358,9 @@ const CustomRenderingTemplate = () => {
 
                   return (
                     <MenuOption
-                      key={index}
+                      key={option.label}
                       option={option}
-                      addSeparators={isGroup(option)}
+                      addSeparators={isOptionGroup(option)}
                       isHighlighted={index === highlightedIndex}
                       onOptionSelect={onOptionSelect}
                       isSelected={isOptionSelected(selectedOption, option)}
@@ -385,7 +385,7 @@ const CustomRenderingTemplate = () => {
       highlightedIndex: number;
       options: AnyOption[];
     }) {
-      const isSectionLabel = "options" in option;
+      const isSectionLabel = isOptionGroup(option);
       const isPlanetsLabel = option.label === "Planets";
 
       const inPlanetSection = planetSection?.find?.(
@@ -601,7 +601,7 @@ const CustomRenderingTemplate = () => {
           isHighlighted={index === highlightedOptionIndex}
           onOptionSelect={onOptionSelect}
           option={option}
-          key={option.label}
+          key={option.value}
         >
           <Flex template={["grow", "shrink"]}>
             <Flex align="start" template={["shrink", "grow"]}>
