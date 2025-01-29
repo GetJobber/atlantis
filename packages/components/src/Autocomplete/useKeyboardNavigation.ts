@@ -85,6 +85,7 @@ export function useKeyboardNavigation<
           );
           break;
         case KeyboardAction.Select:
+          if (isGroup(options[highlightedIndex])) return;
           onOptionSelect(
             options[highlightedIndex] as unknown as GenericOptionValue,
           );
