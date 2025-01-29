@@ -245,6 +245,6 @@ iframe {
 
 @media screen and (min-width: 1024px) {
   .baseView-sideRail {
-    display: flex;
+    display: grid;
   }
 }
