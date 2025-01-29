@@ -29,7 +29,6 @@
 .container label {
   display: flex;
   z-index: 1;
-  height: 100%;
   padding: 0 calc(var(--space-base) - var(--space-smaller));
   overflow: hidden;
   font-size: var(--typography--fontSize-base);
