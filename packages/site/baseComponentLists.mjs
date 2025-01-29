@@ -6,6 +6,7 @@
 const components = [
   "AnimatedPresence",
   "AnimatedSwitcher",
+  "AtlantisThemeContext",
   "Autocomplete",
   "Avatar",
   "Banner",
