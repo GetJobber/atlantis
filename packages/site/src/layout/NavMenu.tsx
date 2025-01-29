@@ -128,16 +128,18 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
             );
           })}
         </MenuList>
-        <a
-          href="https://atlantis.getjobber.com/storybook/?path=/docs/introduction--docs"
-          style={{
-            fontSize: "var(--typography--fontSize-small)",
-            color: "var(--color-text--secondary)",
-          }}
-        >
-          View in Storybook
-        </a>
       </div>
+      <a
+        href="https://atlantis.getjobber.com/storybook/?path=/docs/introduction--docs"
+        style={{
+          margin: 0,
+          marginTop: "auto",
+          fontSize: "var(--typography--fontSize-small)",
+          color: "var(--color-text--secondary)",
+        }}
+      >
+        View in Storybook
+      </a>
     </nav>
   );
 };
