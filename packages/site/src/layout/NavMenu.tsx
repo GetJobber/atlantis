@@ -1,7 +1,6 @@
-import { Box, Button, Icon, Typography } from "@jobber/components";
+import { Box, Button, Typography } from "@jobber/components";
 import { Link, useLocation } from "react-router-dom";
-import { Fragment, PropsWithChildren, useRef, useState } from "react";
-import { SearchBox } from "./SearchBox";
+import { Fragment, PropsWithChildren, useRef } from "react";
 import AnimatedPresenceDisclosure from "./AnimatedPresenceDisclosure";
 import styles from "./NavMenu.module.css";
 import { routes } from "../routes";
@@ -18,7 +17,6 @@ interface NavMenuProps {
  * @returns ReactNode
  */
 export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
-  const [open, setOpen] = useState(false);
   const { isMinimal } = useAtlantisSite();
   const { pathname } = useLocation();
   const selectedRef = useRef<HTMLAnchorElement | null>(null);
@@ -82,23 +80,6 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
             <JobberLogo />
           </Link>
         </Box>
-        <Box>
-          <button
-            type="button"
-            onClick={() => setOpen(true)}
-            className={styles.searchButton}
-            aria-label="Search"
-          >
-            <Icon name="search" color="greyBlue" />
-            <span className={styles.searchButtonText}>
-              <Typography size={"base"} textColor={"textSecondary"}>
-                Search
-              </Typography>
-            </span>
-            <div className={styles.searchKeyIndicator}>/</div>
-          </button>
-        </Box>
-        <SearchBox open={open} setOpen={setOpen} />
       </div>
       <div className={styles.navMenu}>
         <MenuList>
