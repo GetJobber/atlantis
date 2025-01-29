@@ -39,10 +39,10 @@ export const useMenu = () => {
     setPopperElement,
     shadowRef,
     width,
-    buttonID,
     toggle,
     hide,
     menuID,
+    buttonID,
     menuRef,
   };
 };

@@ -45,11 +45,11 @@ exports[`Menu with custom activator renders 1`] = `
       class="shadowRef"
     />
     <button
-      aria-controls=":rc:"
+      aria-controls=":rd:"
       aria-expanded="false"
       aria-haspopup="true"
       class="button base work primary"
-      id=":rb:"
+      id=":rc:"
       type="button"
     >
       <span

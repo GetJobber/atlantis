@@ -11,7 +11,6 @@ export const useMenuStyles = ({ activator }: Pick<MenuProps, "activator">) => {
   const wrapperClasses = classNames(styles.wrapper, {
     [styles.fullWidth]: fullWidth,
   });
-  console.log("FULL WIDTH?", fullWidth);
 
   return {
     wrapperClasses,
