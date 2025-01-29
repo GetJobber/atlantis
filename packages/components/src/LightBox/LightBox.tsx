@@ -181,14 +181,18 @@ export function LightBox({
               </AnimatePresence>
             </div>
 
-            <PreviousButton
-              onClick={debouncedHandlePrevious}
-              mouseIsStationary={mouseIsStationary}
-            />
-            <NextButton
-              onClick={debouncedHandleNext}
-              mouseIsStationary={mouseIsStationary}
-            />
+            {images.length > 1 && (
+              <>
+                <PreviousButton
+                  onClick={debouncedHandlePrevious}
+                  mouseIsStationary={mouseIsStationary}
+                />
+                <NextButton
+                  onClick={debouncedHandleNext}
+                  mouseIsStationary={mouseIsStationary}
+                />
+              </>
+            )}
           </div>
 
           <div className={styles.captionWrapper}>
@@ -231,7 +235,6 @@ export function LightBox({
   }
 
   function handleMouseMovement() {
-    if (images.length <= 1) return;
     setMouseIsStationary(false);
     setMouseMovementCount(prev => prev + 1);
 
@@ -263,6 +266,7 @@ function PreviousButton({ onClick, mouseIsStationary }: NavButtonProps) {
 
   return (
     <div
+      data-testid="prev-button-wrapper"
       className={`${styles.prev} ${
         mouseIsStationary ? styles.buttonHidden : styles.buttonVisible
       }`}

@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import {
   BREAKPOINT_SIZES,
   mockViewportWidth,
@@ -142,6 +142,51 @@ describe("LightBox", () => {
       expect(document.documentElement.classList).not.toContain(
         "atlantisLightBoxActive",
       );
+    });
+  });
+
+  describe("navigation buttons", () => {
+    test("displays the next and previous buttons when more than one image", () => {
+      render(
+        <LightBox
+          open={true}
+          images={[
+            {
+              title: "Dis be a title",
+              caption: "Dis be a caption 🎉",
+              url: "https://i.imgur.com/6Jcfgnp.jpg",
+            },
+            {
+              title: "Title two",
+              caption: "This is the one we should find",
+              url: "https://i.imgur.com/6Jcfgnp.jpg",
+            },
+          ]}
+          imageIndex={1}
+          onRequestClose={jest.fn()}
+        />,
+      );
+      expect(screen.queryByLabelText("Previous image")).toBeInTheDocument();
+      expect(screen.queryByLabelText("Next image")).toBeInTheDocument();
+    });
+
+    test("doesn't display the next and previous buttons when only one image", () => {
+      render(
+        <LightBox
+          open={true}
+          images={[
+            {
+              title: "Dis be a title",
+              caption: "Dis be a caption 🎉",
+              url: "https://i.imgur.com/6Jcfgnp.jpg",
+            },
+          ]}
+          imageIndex={0}
+          onRequestClose={jest.fn()}
+        />,
+      );
+      expect(screen.queryByLabelText("Previous image")).toBeNull();
+      expect(screen.queryByLabelText("Next image")).toBeNull();
     });
   });
 });
