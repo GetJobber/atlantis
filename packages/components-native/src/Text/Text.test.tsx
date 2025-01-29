@@ -150,34 +150,22 @@ it("renders text with underline styling", () => {
   expect(text.toJSON()).toMatchSnapshot();
 });
 
-describe("styleOverride", () => {
-  describe("color", () => {
-    describe("when color is not provided", () => {
-      it("does not override the color", () => {
-        const text = render(<Text>Test Text</Text>);
+describe("UNSAFE_style", () => {
+  it("applies custom styles via UNSAFE_style prop", () => {
+    const customStyle = {
+      textStyle: {
+        fontSize: 20,
+        color: tokens["color-blue--dark"],
+      },
+    };
+    const text = render(<Text UNSAFE_style={customStyle}>Test Text</Text>);
 
-        // eslint-disable-next-line dot-notation
-        expect(text.toJSON()?.["props"]["style"]).toEqual(
-          expect.arrayContaining([
-            expect.not.objectContaining({
-              color: tokens["color-orange--dark"],
-            }),
-          ]),
-        );
-      });
-    });
-
-    it("renders text with color override", () => {
-      const text = render(
-        <Text styleOverride={{ color: "orangeDark" }}>Test Text</Text>,
-      );
-
-      // eslint-disable-next-line dot-notation
-      expect(text.toJSON()?.["props"]["style"]).toEqual(
-        expect.arrayContaining([
-          expect.objectContaining({ color: tokens["color-orange--dark"] }),
-        ]),
-      );
-    });
+    // eslint-disable-next-line dot-notation
+    expect(text.toJSON()?.["props"]["style"]).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ fontSize: customStyle.textStyle.fontSize }),
+        expect.objectContaining({ color: customStyle.textStyle.color }),
+      ]),
+    );
   });
 });

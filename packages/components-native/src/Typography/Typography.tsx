@@ -183,10 +183,6 @@ function InternalTypography<T extends FontFamily = "base">({
     style.push(underlineTextStyle, styles.underline);
   }
 
-  // if (UNSAFE_style) {
-  //   style.push(UNSAFE_style);
-  // }
-
   const numberOfLinesForNativeText = maxNumberOfLines[maxLines];
 
   const text = getTransformedText(children, transform);

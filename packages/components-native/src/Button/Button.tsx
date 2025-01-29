@@ -120,8 +120,7 @@ export function Button({
   icon,
   testID,
   UNSAFE_style,
-}: // styleOverrides,
-ButtonProps): JSX.Element {
+}: ButtonProps): JSX.Element {
   const buttonStyle = [
     styles.button,
     styles[size],
@@ -132,10 +131,6 @@ ButtonProps): JSX.Element {
     fullWidth && styles.reducedPaddingForFullWidth,
     fullHeight && styles.fullHeight,
   ];
-
-  // if (styleOverrides?.borderColor) {
-  //   buttonStyle.push({ borderColor: tokens[styleOverrides.borderColor] });
-  // }
 
   // attempts to use Pressable caused problems.  When a ScrollView contained
   // an InputText that was focused, it required two presses to activate the
