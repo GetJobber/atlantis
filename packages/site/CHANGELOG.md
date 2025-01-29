@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.4](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.20.3...@jobber/atlantis-site@0.20.4) (2025-01-29)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.20.3](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.20.2...@jobber/atlantis-site@0.20.3) (2025-01-29)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.20.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.20.1...@jobber/atlantis-site@0.20.2) (2025-01-29)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.20.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.20.0...@jobber/atlantis-site@0.20.1) (2025-01-27)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+# [0.20.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.19.9...@jobber/atlantis-site@0.20.0) (2025-01-24)
+
+
+### Features
+
+* **docx:** Use the current hostname for storybook links ([#2339](https://github.com/GetJobber/atlantis/issues/2339)) ([ab5dc6c](https://github.com/GetJobber/atlantis/commit/ab5dc6c51f76a2ed20f9f02e3875207aaaf7accc))
+
+
+
+
+
 ## [0.19.9](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.19.8...@jobber/atlantis-site@0.19.9) (2025-01-23)
 
 **Note:** Version bump only for package @jobber/atlantis-site
