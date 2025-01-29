@@ -4,6 +4,7 @@
 import { PathPrompt } from "inquirer-path";
 
 export default (plop, config) => {
+  // Merge the config with the default values
   const { basePath, templateGlob } = Object.assign(
     {
       basePath: "packages/components/src",

@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.11.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.11.7...@jobber/components@6.11.8) (2025-01-27)
+
+
+### Bug Fixes
+
+* **components:** Add validator prop to handleValidation ([#2340](https://github.com/GetJobber/atlantis/issues/2340)) ([841141b](https://github.com/GetJobber/atlantis/commit/841141bd1a0fe1760a0ac99a6a26a7747da421da))
+
+
+
+
+
+## [6.11.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.11.5...@jobber/components@6.11.7) (2025-01-23)
+
+
+### Bug Fixes
+
+* **hooks:** Force bump packages to avoid lerna problem ([#2335](https://github.com/GetJobber/atlantis/issues/2335)) ([f4e55f8](https://github.com/GetJobber/atlantis/commit/f4e55f806a65d12a8ddf2fbda248d9a32405af2d))
+
+
+
+
+
 ## [6.11.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.11.4...@jobber/components@6.11.5) (2025-01-17)
 
 
