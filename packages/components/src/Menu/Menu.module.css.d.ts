@@ -5,11 +5,8 @@ declare const styles: {
   readonly "menu": string;
   readonly "section": string;
   readonly "sectionHeader": string;
-  readonly "action": string;
-  readonly "destructive": string;
   readonly "overlay": string;
   readonly "fullWidth": string;
-  readonly "screenReaderOnly": string;
 };
 export = styles;
 
