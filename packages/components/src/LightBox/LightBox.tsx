@@ -180,20 +180,20 @@ export function LightBox({
                 />
               </AnimatePresence>
             </div>
-
-            {images.length > 1 && (
-              <>
-                <PreviousButton
-                  onClick={debouncedHandlePrevious}
-                  mouseIsStationary={mouseIsStationary}
-                />
-                <NextButton
-                  onClick={debouncedHandleNext}
-                  mouseIsStationary={mouseIsStationary}
-                />
-              </>
-            )}
           </div>
+
+          {images.length > 1 && (
+            <>
+              <PreviousButton
+                onClick={debouncedHandlePrevious}
+                mouseIsStationary={mouseIsStationary}
+              />
+              <NextButton
+                onClick={debouncedHandleNext}
+                mouseIsStationary={mouseIsStationary}
+              />
+            </>
+          )}
 
           <div className={styles.captionWrapper}>
             <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">

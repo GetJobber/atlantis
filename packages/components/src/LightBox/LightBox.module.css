@@ -32,7 +32,8 @@
 .prev {
   position: absolute;
   top: 43%;
-  z-index: calc(var(--elevation-base) + 1);
+  z-index: 50;
+  /* z-index: calc(var(--elevation-base) + 2); */
 }
 
 .next {
