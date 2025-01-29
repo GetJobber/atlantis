@@ -1,4 +1,5 @@
 import React, { forwardRef } from "react";
+import omit from "lodash/omit";
 import { useInputDateActivatorActions } from "./useInputDateActivatorActions";
 import { InputDateRebuiltProps } from "./InputDate.types";
 import { Suffix } from "../FormField";
@@ -30,18 +31,21 @@ export const InputDateRebuilt = forwardRef(function InputDateInternal(
 
   function InputDateActivator(activatorProps: DatePickerActivatorProps) {
     const { onClick, value } = activatorProps;
+    const newActivatorProps = omit(activatorProps, ["activator"]);
 
     const { handleChange, handleFocus, handleBlur, isFocused } =
       useInputDateActivatorActions({
-        onChange: activatorProps.onChange,
+        onChange: newActivatorProps.onChange,
         onFocus: event => {
-          activatorProps.onFocus?.();
           props.onFocus?.(event);
+          newActivatorProps.onFocus?.();
         },
         onBlur: event => {
           props.onBlur?.(event);
+          newActivatorProps.onBlur?.();
         },
       });
+
     const suffix =
       props.showIcon !== false
         ? ({
@@ -51,15 +55,13 @@ export const InputDateRebuilt = forwardRef(function InputDateInternal(
           } as Suffix)
         : undefined;
 
-    // Set form field to formatted date string immediately, to avoid validations
-    //  triggering incorrectly when it blurs (to handle the datepicker UI click)
-
     const showEmptyValueLabel = !value && !isFocused;
 
     return (
       // We prevent the picker from opening on focus for keyboard navigation, so to maintain a good UX for mouse users we want to open the picker on click
       <div onClick={onClick}>
         <InputText
+          {...newActivatorProps}
           {...props}
           version={2}
           value={

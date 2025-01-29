@@ -62,11 +62,16 @@ export const VersionComparison = () => {
   const [inline, setInline] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState<string | undefined>();
   const [description, setDescription] = React.useState<string>("");
+  const [showIcon, setShowIcon] = React.useState(true);
 
   const extraProps = {
     error: errorMessage,
     disabled,
-    readonly,
+    // For version 1
+    readonly: readonly,
+    // For version 2
+    readOnly: readonly,
+    showIcon,
     inline,
     description,
   };
@@ -179,7 +184,10 @@ export const VersionComparison = () => {
           {
             placeholder: "Readonly date picker",
             ...extraProps,
+            // For version 1
             readonly: true,
+            // For version 2
+            readOnly: true,
           },
           "readonly",
         )}
@@ -229,6 +237,12 @@ export const VersionComparison = () => {
             onClick={() => {
               setDescription(description ? "" : "This is a description");
             }}
+          />
+        </Grid.Cell>
+        <Grid.Cell size={{ xs: 6 }}>
+          <Button
+            label="Toggle Show Icon"
+            onClick={() => setShowIcon(prev => !prev)}
           />
         </Grid.Cell>
       </Grid>
