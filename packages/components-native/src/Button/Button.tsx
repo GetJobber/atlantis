@@ -154,16 +154,20 @@ export function Button({
         fullHeight && styles.fullHeight,
       ]}
     >
-      <View style={[buttonStyle, UNSAFE_style?.container]}>
+      <View style={[buttonStyle, UNSAFE_style?.container]} testID="content">
         {loading && <InternalButtonLoading variation={variation} type={type} />}
         <View
           style={[
             getContentStyles(label, icon),
             UNSAFE_style?.contentContainer,
           ]}
+          testID="contentContainer"
         >
           {icon && (
-            <View style={[styles.iconStyle, UNSAFE_style?.iconContainer]}>
+            <View
+              style={[styles.iconStyle, UNSAFE_style?.iconContainer]}
+              testID="iconContainer"
+            >
               <Icon
                 name={icon}
                 color={getIconColorVariation(variation, type, disabled)}
@@ -173,6 +177,7 @@ export function Button({
           {label && (
             <View
               style={[styles.labelStyle, UNSAFE_style?.actionLabelContainer]}
+              testID="actionLabelContainer"
             >
               <ActionLabel
                 variation={getActionLabelVariation(variation, type)}
