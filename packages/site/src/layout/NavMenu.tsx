@@ -128,6 +128,15 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
             );
           })}
         </MenuList>
+        <a
+          href="/storybook/?path=/docs/introduction--docs"
+          style={{
+            fontSize: "var(--typography--fontSize-small)",
+            color: "var(--color-text--secondary)",
+          }}
+        >
+          View in Storybook
+        </a>
       </div>
     </nav>
   );
