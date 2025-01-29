@@ -25,10 +25,14 @@
   z-index: var(--elevation-modal);
   max-width: 100%;
   max-height: 100%;
-  padding: var(--space-base) var(--space-larger);
+  padding: var(--space-base);
   background-color: var(--color-base-grey--400);
   justify-content: center;
   flex-direction: column;
+
+  @media (--medium-screens-and-up) {
+    padding: var(--space-base) var(--space-larger);
+  }
 }
 
 .backgroundImage {
@@ -47,22 +51,35 @@
 .next,
 .prev {
   position: absolute;
-  top: 50%;
+  top: 43%;
   z-index: calc(var(--elevation-base) + 1);
-  transform: translateY(-50%);
 }
 
 .next {
-  right: var(--space-small);
+  right: 24px;
   @media (--medium-screens-and-up) {
-    right: 0;
+    right: 32px;
   }
 }
 
+.buttonHidden {
+  opacity: 0;
+  transition: opacity var(--timing-base) ease-in;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.buttonVisible {
+  opacity: 1;
+  transition: opacity var(--timing-base) ease-in;
+}
+
 .prev {
-  left: var(--space-small);
+  left: 24px;
   @media (--medium-screens-and-up) {
-    left: 0;
+    left: 32px;
   }
 }
 
@@ -86,7 +103,6 @@
 }
 
 .slideWrapper {
-  position: relative;
   z-index: var(--elevation-base);
   height: 100%;
   max-width: 100%;

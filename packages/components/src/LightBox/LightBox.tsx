@@ -97,9 +97,8 @@ export function LightBox({
 }: LightBoxProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(imageIndex);
   const [direction, setDirection] = useState(0);
-  const [showButtons, setShowButtons] = useState(false);
+  const [mouseIsStationary, setMouseIsStationary] = useState(true);
   const [mouseMovementCount, setMouseMovementCount] = useState(0);
-  const [buttonsHovered, setIsButtonsHovered] = useState(false);
   const lightboxRef = useFocusTrap<HTMLDivElement>(open);
   const debouncedHandleNext = debounce(handleMoveNext, debounceDuration);
   const debouncedHandlePrevious = debounce(
@@ -125,8 +124,8 @@ export function LightBox({
   }, [imageIndex, open]);
 
   useEffect(() => {
-    if (mouseMovementCount === 0 && !buttonsHovered) {
-      setShowButtons(false);
+    if (mouseMovementCount === 0) {
+      setMouseIsStationary(true);
     }
   }, [mouseMovementCount]);
 
@@ -182,18 +181,14 @@ export function LightBox({
               </AnimatePresence>
             </div>
 
-            {showButtons && (
-              <>
-                <PreviousButton
-                  onClick={debouncedHandlePrevious}
-                  setIsButtonsHovered={setIsButtonsHovered}
-                />
-                <NextButton
-                  onClick={debouncedHandleNext}
-                  setIsButtonsHovered={setIsButtonsHovered}
-                />
-              </>
-            )}
+            <PreviousButton
+              onClick={debouncedHandlePrevious}
+              mouseIsStationary={mouseIsStationary}
+            />
+            <NextButton
+              onClick={debouncedHandleNext}
+              mouseIsStationary={mouseIsStationary}
+            />
           </div>
 
           <div className={styles.captionWrapper}>
@@ -237,12 +232,12 @@ export function LightBox({
 
   function handleMouseMovement() {
     if (images.length <= 1) return;
-    setShowButtons(true);
+    setMouseIsStationary(false);
     setMouseMovementCount(prev => prev + 1);
 
     setTimeout(() => {
       setMouseMovementCount(prev => prev - 1);
-    }, 500);
+    }, 1000);
   }
 
   function handleOnDragEnd(
@@ -260,17 +255,17 @@ export function LightBox({
 }
 interface NavButtonProps {
   readonly onClick: () => void;
-  readonly setIsButtonsHovered: (buttonsHovered: boolean) => void;
+  readonly mouseIsStationary: boolean;
 }
 
-function PreviousButton({ onClick, setIsButtonsHovered }: NavButtonProps) {
+function PreviousButton({ onClick, mouseIsStationary }: NavButtonProps) {
   const { mediumAndUp } = useBreakpoints();
 
   return (
     <div
-      className={styles.prev}
-      onMouseEnter={() => setIsButtonsHovered(true)}
-      onMouseLeave={() => setIsButtonsHovered(false)}
+      className={`${styles.prev} ${
+        mouseIsStationary ? styles.buttonHidden : styles.buttonVisible
+      }`}
     >
       <Button
         size={mediumAndUp ? "large" : "small"}
@@ -284,14 +279,14 @@ function PreviousButton({ onClick, setIsButtonsHovered }: NavButtonProps) {
   );
 }
 
-function NextButton({ onClick, setIsButtonsHovered }: NavButtonProps) {
+function NextButton({ onClick, mouseIsStationary }: NavButtonProps) {
   const { mediumAndUp } = useBreakpoints();
 
   return (
     <div
-      className={styles.next}
-      onMouseEnter={() => setIsButtonsHovered(true)}
-      onMouseLeave={() => setIsButtonsHovered(false)}
+      className={`${styles.next} ${
+        mouseIsStationary ? styles.buttonHidden : styles.buttonVisible
+      }`}
     >
       <Button
         size={mediumAndUp ? "large" : "small"}

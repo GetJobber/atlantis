@@ -3,6 +3,8 @@ declare const styles: {
   readonly "backgroundImage": string;
   readonly "next": string;
   readonly "prev": string;
+  readonly "buttonHidden": string;
+  readonly "buttonVisible": string;
   readonly "toolbar": string;
   readonly "slideWrapper": string;
   readonly "image": string;
