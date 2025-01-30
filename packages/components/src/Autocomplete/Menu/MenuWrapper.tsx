@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import styles from "../Autocomplete.module.css";
 import { UseRepositionMenu, useRepositionMenu } from "../useRepositionMenu";
 
-export interface MenuWrapperProps {
+export interface BaseAutocompleteMenuWrapperInternalProps {
   readonly setMenuRef: UseRepositionMenu["setMenuRef"];
   readonly popperStyles: UseRepositionMenu["styles"];
   readonly attributes: UseRepositionMenu["attributes"];
@@ -13,14 +13,14 @@ export interface MenuWrapperProps {
   readonly visible?: boolean;
 }
 
-function MenuWrapperInternal({
+function BaseAutocompleteMenuWrapperInternal({
   setMenuRef,
   popperStyles,
   attributes,
   targetWidth,
   visible,
   children,
-}: PropsWithChildren<MenuWrapperProps>) {
+}: PropsWithChildren<BaseAutocompleteMenuWrapperInternalProps>) {
   return (
     <div
       className={classNames(styles.options, { [styles.visible]: visible })}
@@ -43,8 +43,8 @@ export function useAutocompleteMenu({
 }: {
   attachTo: React.RefObject<Element | null>;
 }) {
-  const [menuRef, setMenuRef] = React.useState<HTMLElement | null>();
-  const Wrapper = useCallback(
+  const [menuRef, setMenuRef] = React.useState<HTMLElement | null>(null);
+  const AutocompleteMenuWrapper = useCallback(
     ({
       children,
       visible,
@@ -52,32 +52,34 @@ export function useAutocompleteMenu({
       children?: React.ReactNode;
       visible: boolean;
     }): React.ReactElement => {
-      const props = useRepositionMenu(attachTo, visible);
+      const menuPopperProps = useRepositionMenu(attachTo, visible);
       useEffect(() => {
-        setMenuRef(props.menuRef);
-      }, [menuRef, props.menuRef]);
+        setMenuRef(menuPopperProps.menuRef);
+      }, [menuPopperProps.menuRef]);
 
       return (
-        <MenuWrapper
-          attributes={props.attributes}
-          popperStyles={props.styles}
-          setMenuRef={props.setMenuRef}
-          targetWidth={props.targetWidth}
+        <BaseAutocompleteMenuWrapper
+          attributes={menuPopperProps.attributes}
+          popperStyles={menuPopperProps.styles}
+          setMenuRef={menuPopperProps.setMenuRef}
+          targetWidth={menuPopperProps.targetWidth}
           visible={visible}
         >
           {children}
-        </MenuWrapper>
+        </BaseAutocompleteMenuWrapper>
       );
     },
     [attachTo],
   );
 
-  return { MenuWrapper: Wrapper, menuRef };
+  return { MenuWrapper: AutocompleteMenuWrapper, menuRef };
 }
 
-export function MenuWrapper(props: PropsWithChildren<MenuWrapperProps>) {
+export function BaseAutocompleteMenuWrapper(
+  props: PropsWithChildren<BaseAutocompleteMenuWrapperInternalProps>,
+) {
   const mounted = useIsMounted();
-  const menu = <MenuWrapperInternal {...props} />;
+  const menu = <BaseAutocompleteMenuWrapperInternal {...props} />;
 
   return mounted.current ? createPortal(menu, document.body) : menu;
 }

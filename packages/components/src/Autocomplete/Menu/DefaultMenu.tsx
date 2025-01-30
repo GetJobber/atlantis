@@ -1,5 +1,5 @@
 import React, { RefObject } from "react";
-import { MenuWrapper } from "./MenuWrapper";
+import { BaseAutocompleteMenuWrapper } from "./MenuWrapper";
 import { AnyOption, Option } from "../Autocomplete.types";
 import { isOptionSelected } from "../Autocomplete.utils";
 import { MenuOption } from "../Option";
@@ -47,7 +47,7 @@ export function DefaultMenu({
   });
 
   return (
-    <MenuWrapper
+    <BaseAutocompleteMenuWrapper
       {...{ setMenuRef, popperStyles, attributes, targetWidth, visible }}
     >
       {options?.map((option, index) => {
@@ -62,6 +62,6 @@ export function DefaultMenu({
           />
         );
       })}
-    </MenuWrapper>
+    </BaseAutocompleteMenuWrapper>
   );
 }

@@ -23,5 +23,8 @@ export {
   useCustomKeyboardNavigation,
 } from "./useKeyboardNavigation";
 export { useRepositionMenu } from "./useRepositionMenu";
-export { MenuWrapper, useAutocompleteMenu } from "./Menu/MenuWrapper";
+export {
+  BaseAutocompleteMenuWrapper,
+  useAutocompleteMenu,
+} from "./Menu/MenuWrapper";
 export { isOptionSelected, isOptionGroup } from "./Autocomplete.utils";
