@@ -13,7 +13,7 @@ export function useRepositionMenu(
   attachTo: MenuProps["attachTo"],
   visible = false,
 ) {
-  const [menuRef, setMenuRef] = useState<HTMLElement | null>();
+  const [menuRef, setMenuRef] = useState<HTMLElement | null>(null);
   const popper = usePopper(attachTo.current, menuRef, {
     modifiers: [
       { name: "offset", options: { offset: [0, 8] } },
