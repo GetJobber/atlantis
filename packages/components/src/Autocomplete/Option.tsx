@@ -126,11 +126,31 @@ export function MenuGroupOptions({
   UNSAFE_className = {},
   UNSAFE_style = {},
 }: MenuGroupOptionProps) {
-  const headingClassName = classnames(styles.heading, UNSAFE_className.heading);
+  return (
+    <BaseMenuGroupOption
+      UNSAFE_className={UNSAFE_className.heading}
+      UNSAFE_style={UNSAFE_style.heading}
+    >
+      <Heading level={5}>{option.label}</Heading>
+    </BaseMenuGroupOption>
+  );
+}
+
+export interface BaseMenuGroupOptionProps extends PropsWithChildren {
+  readonly UNSAFE_className?: string;
+  readonly UNSAFE_style?: React.CSSProperties;
+}
+
+export function BaseMenuGroupOption({
+  children,
+  UNSAFE_className = "",
+  UNSAFE_style = {},
+}: BaseMenuGroupOptionProps) {
+  const headingClassName = classnames(styles.heading, UNSAFE_className);
 
   return (
-    <div className={headingClassName} style={UNSAFE_style.heading}>
-      <Heading level={5}>{option.label}</Heading>
+    <div className={headingClassName} style={UNSAFE_style}>
+      {children}
     </div>
   );
 }
@@ -169,6 +189,8 @@ export function BaseMenuOption<GenericOption extends AnyOption = AnyOption>({
 
   return (
     <button
+      role="option"
+      type="button"
       className={optionClass}
       onMouseDown={onOptionSelect.bind(undefined, option)}
       style={UNSAFE_style}

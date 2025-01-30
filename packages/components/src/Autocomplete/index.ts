@@ -4,6 +4,8 @@ export {
   BaseMenuOption,
   BaseMenuOptionProps,
   MenuOption,
+  BaseMenuGroupOption,
+  BaseMenuGroupOptionProps,
 } from "./Option";
 export {
   AnyOption,
