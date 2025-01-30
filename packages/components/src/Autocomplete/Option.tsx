@@ -10,7 +10,7 @@ import { Icon } from "../Icon";
 export interface MenuOptionProps {
   readonly isHighlighted: boolean;
   readonly option: AnyOption;
-  readonly onOptionSelect: (option: AnyOption) => void;
+  readonly onOptionSelect: (option?: AnyOption) => void;
   /**
    * Whether to add separators between the options.
    */
@@ -158,8 +158,8 @@ export function BaseMenuGroupOption({
 export interface BaseMenuOptionProps<
   GenericOption extends AnyOption = AnyOption,
 > extends PropsWithChildren {
-  readonly option: GenericOption;
-  readonly onOptionSelect: (option: GenericOption) => void;
+  readonly option?: GenericOption;
+  readonly onOptionSelect?: (option?: GenericOption) => void;
   readonly isHighlighted: boolean;
   readonly addSeparators: boolean;
   readonly UNSAFE_className?: string;
@@ -192,7 +192,7 @@ export function BaseMenuOption<GenericOption extends AnyOption = AnyOption>({
       role="option"
       type="button"
       className={optionClass}
-      onMouseDown={onOptionSelect.bind(undefined, option)}
+      onMouseDown={onOptionSelect?.bind(undefined, option)}
       style={UNSAFE_style}
     >
       {children}
