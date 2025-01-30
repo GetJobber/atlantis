@@ -8,7 +8,17 @@ import { Button } from "../Button";
 import { isSafari } from "../utils/getClientBrowser";
 
 export function Gallery({ files, size = "base", max, onDelete }: GalleryProps) {
-  const { images, filesToImageIndex } = generateImagesArray(files);
+  const [images, setImages] = useState<{ title: string; url: string }[]>([]);
+  const [filesToImageIndex, setFilesToImageIndex] = useState<
+    (number | undefined)[]
+  >([]);
+
+  React.useEffect(() => {
+    generateImagesArray(files).then(result => {
+      setImages(result.images);
+      setFilesToImageIndex(result.filesToImageIndex);
+    });
+  }, [files]);
 
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
@@ -25,7 +35,8 @@ export function Gallery({ files, size = "base", max, onDelete }: GalleryProps) {
               key={file.key}
               file={{
                 ...file,
-                src: () => Promise.resolve(file.thumbnailSrc || file.src),
+                src: () =>
+                  Promise.resolve(file.thumbnailSrc || getFileSrc(file)),
               }}
               display="compact"
               displaySize={size}
@@ -65,14 +76,14 @@ export function Gallery({ files, size = "base", max, onDelete }: GalleryProps) {
     </>
   );
 
-  function handleThumbnailClicked(index: number) {
+  async function handleThumbnailClicked(index: number) {
     if (
       files[index].type.startsWith("image/") &&
       isSupportedImageType(files[index])
     ) {
       handleLightboxOpen(index);
     } else {
-      window.open(files[index].src, "_blank");
+      window.open(await getFileSrc(files[index]), "_blank");
     }
   }
 
@@ -90,6 +101,10 @@ export function Gallery({ files, size = "base", max, onDelete }: GalleryProps) {
   }
 }
 
+async function getFileSrc(file: File) {
+  return typeof file.src === "string" ? file.src : file.src();
+}
+
 function isSupportedImageType(file: File) {
   const userAgent =
     typeof document === "undefined" ? "" : window.navigator.userAgent;
@@ -99,14 +114,14 @@ function isSupportedImageType(file: File) {
   return (nonHeicImage || isSafari(userAgent)) && nonSVGImage;
 }
 
-function generateImagesArray(files: File[]) {
+async function generateImagesArray(files: File[]) {
   const images = [];
   const filesToImageIndex = [];
   let imageIndex = 0;
 
   for (let i = 0; i < files.length; i++) {
     if (files[i].type.startsWith("image/") && isSupportedImageType(files[i])) {
-      images.push({ title: files[i].name, url: files[i].src });
+      images.push({ title: files[i].name, url: await getFileSrc(files[i]) });
       filesToImageIndex.push(imageIndex);
       imageIndex++;
     } else {

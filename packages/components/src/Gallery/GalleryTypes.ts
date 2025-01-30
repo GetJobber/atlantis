@@ -43,5 +43,5 @@ export interface File
   /**
    * The data url of the file.
    */
-  readonly src: string;
+  readonly src: string | (() => Promise<string>);
 }
