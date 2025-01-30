@@ -13,7 +13,7 @@ export interface DefaultMenuProps {
    * Element that it's attached to when the menu opens.
    */
   readonly attachTo: RefObject<Element | null>;
-  onOptionSelect(chosenOption: Option): void;
+  onOptionSelect(chosenOption?: Option): void;
   readonly visible?: boolean;
 }
 

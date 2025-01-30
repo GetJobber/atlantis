@@ -102,9 +102,9 @@ function AutocompleteInternal<
     setOptions(mapToOptions(filteredOptions));
   }
 
-  function handleMenuChange(chosenOption: GenericOptionValue) {
+  function handleMenuChange(chosenOption?: GenericOptionValue) {
     onChange(chosenOption);
-    updateInput(chosenOption.label ?? "");
+    updateInput(chosenOption?.label ?? "");
     setInputFocused(false);
   }
 

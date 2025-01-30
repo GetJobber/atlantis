@@ -49,7 +49,7 @@ export function useKeyboardNavigation<
   options: GenericOption[];
   visible?: boolean;
   menuRef?: HTMLElement | null;
-  onOptionSelect: (option: GenericOptionValue) => void;
+  onOptionSelect: (option?: GenericOptionValue) => void;
 }) {
   const [highlightedIndex, setHighlightedIndex] = useState(0);
 
