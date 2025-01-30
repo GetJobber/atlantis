@@ -21,7 +21,7 @@
   scroll-behavior: smooth;
 }
 
-.options h5 {
+.options .heading {
   padding: var(--space-small) 0 var(--space-smaller) var(--space-small);
   border-bottom: var(--border-base) solid var(--color-border);
 }
@@ -68,7 +68,7 @@
 }
 
 .options .heading:not(:first-child) {
-  padding-top: var(--space-small);
+  padding-top: var(--space-base);
 }
 
 .option .icon {
