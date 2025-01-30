@@ -31,7 +31,7 @@ export const InputDateRebuilt = forwardRef(function InputDateInternal(
 
   function InputDateActivator(activatorProps: DatePickerActivatorProps) {
     const { onClick, value } = activatorProps;
-    const newActivatorProps = omit(activatorProps, ["activator"]);
+    const newActivatorProps = omit(activatorProps, ["activator", "fullWidth"]);
 
     const { handleChange, handleFocus, handleBlur, isFocused } =
       useInputDateActivatorActions({
