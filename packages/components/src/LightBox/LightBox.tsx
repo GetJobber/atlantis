@@ -98,7 +98,6 @@ export function LightBox({
   const [currentImageIndex, setCurrentImageIndex] = useState(imageIndex);
   const [direction, setDirection] = useState(0);
   const [mouseIsStationary, setMouseIsStationary] = useState(true);
-  const [mouseMovementCount, setMouseMovementCount] = useState(0);
   const lightboxRef = useFocusTrap<HTMLDivElement>(open);
   const debouncedHandleNext = debounce(handleMoveNext, debounceDuration);
   const debouncedHandlePrevious = debounce(
@@ -108,6 +107,10 @@ export function LightBox({
   const mounted = useIsMounted();
   const prevOpen = useRef(open);
   useRefocusOnActivator(open);
+
+  const handleMouseMovement = debounce(() => {
+    setMouseIsStationary(true);
+  }, 1000);
 
   useOnKeyDown(handleRequestClose, "Escape");
 
@@ -123,12 +126,6 @@ export function LightBox({
     setCurrentImageIndex(imageIndex);
   }, [imageIndex, open]);
 
-  useEffect(() => {
-    if (mouseMovementCount === 0) {
-      setMouseIsStationary(true);
-    }
-  }, [mouseMovementCount]);
-
   if (prevOpen.current !== open) {
     prevOpen.current = open;
     togglePrintStyles(open);
@@ -143,7 +140,12 @@ export function LightBox({
           aria-label="Lightbox"
           key="Lightbox"
           ref={lightboxRef}
-          onMouseMove={handleMouseMovement}
+          onMouseMove={() => {
+            if (mouseIsStationary) {
+              setMouseIsStationary(false);
+              handleMouseMovement();
+            }
+          }}
         >
           <div
             className={styles.backgroundImage}
@@ -232,15 +234,6 @@ export function LightBox({
 
   function handleRequestClose() {
     onRequestClose({ lastPosition: currentImageIndex });
-  }
-
-  function handleMouseMovement() {
-    setMouseIsStationary(false);
-    setMouseMovementCount(prev => prev + 1);
-
-    setTimeout(() => {
-      setMouseMovementCount(prev => prev - 1);
-    }, 1000);
   }
 
   function handleOnDragEnd(
