@@ -3,6 +3,7 @@ import React, {
   RefAttributes,
   forwardRef,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from "react";
@@ -42,9 +43,12 @@ function AutocompleteInternal<
   >,
   ref: Ref<InputTextRef>,
 ) {
-  const [options, setOptions] = useState<
-    Array<GenericOption | GenericGetOptionsValue>
-  >(mapToOptions(initialOptions));
+  const initialOptionsMemo = useMemo(
+    () => mapToOptions(initialOptions),
+    [initialOptions],
+  );
+  const [options, setOptions] =
+    useState<Array<GenericOption | GenericGetOptionsValue>>(initialOptionsMemo);
   const [inputFocused, setInputFocused] = useState(false);
   const [inputText, setInputText] = useState(value?.label ?? "");
   const autocompleteRef = useRef(null);
