@@ -67,6 +67,7 @@ export interface InputPressableProps {
   readonly suffix?: {
     icon?: IconNames;
     label?: string;
+    onPress?: () => void;
   };
   /**
    * Add a clear action on the input that clears the value.
