@@ -1,0 +1,133 @@
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Figma } from "@storybook/addon-designs/blocks";
+import {
+  Card,
+  Content,
+  Banner,
+  Disclosure,
+  InlineLabel,
+  InputText,
+  Text,
+  Tabs,
+  Tab,
+} from "@jobber/components";
+
+<Meta title="Patterns/Interaction" />
+
+# Error states
+
+| **Platform**                                                     | **Status**                                     |
+| :--------------------------------------------------------------- | :--------------------------------------------- |
+| <InlineLabel>Web</InlineLabel> <InlineLabel>Mobile</InlineLabel> | <InlineLabel color="green">Ready</InlineLabel> |
+
+## Goal
+
+Inform the user when something is wrong, and equip them with the resources to
+set it right whenever possible.
+
+## Use when…
+
+An error has occurred, whether due to
+
+#### User actions
+
+- the user has left a required form field empty
+- the user has selected an invalid option
+- the user has entered data in an invalid format
+- the user has requested data that doesn’t exist
+
+#### Systemic problems
+
+- the system is unable to connect to the server
+- the system took to long to process and has timed out
+- the system is undergoing maintenance and cannot be used
+
+## Solution
+
+First and foremost: design to avoid the possibility of errors!
+
+> Good error messages are important, but the best designs carefully prevent
+> problems from occurring in the first place. Either eliminate error-prone
+> conditions, or check for them and present users with a confirmation option
+> before they commit to the action.
+
+With that said, it’s largely impossible to avoid _all_ of the errors, _all_ of
+the time. By being proactive, we can help users recover effectively to reduce
+disruption to their task-at-hand.
+
+#### Effective content
+
+This is the most important, so it comes first. Follow the guidance in our
+[product vocabulary](../content/product-vocabulary) and
+[voice & tone](../content/voice-and-tone) guides to help you craft effective
+error messages.
+
+#### Generic errors
+
+In the case where something's gone wrong and we cannot predict or know the
+cause, the alert should say **Something went wrong. Please try again later.**
+
+<Canvas>
+  <Banner type="error">
+    <Text>Something went wrong. Please try again later.</Text>
+  </Banner>
+</Canvas>
+
+Whenever possible, avoid showing raw error messages (`500 response timeout`) in
+the app. Write like a human and whenever possible explain if there's anything
+the user can do to resolve the issue.
+
+#### Inline errors
+
+This is probably the most common scenario. In these instances, provide a clear,
+concise message as close as possible to the impacted or offending elements in
+the interface.
+
+<Figma url="https://www.figma.com/design/HXWXusJPZLmaJNGlKEpiyhXW/Product%2FBase?m=auto&node-id=21553-13&t=I64jeZUgqvXJBJOl-1" />
+
+#### System-wide errors
+
+If an issue is not specific to a given screen or user flow, use a "global" error
+message. This should be a banner that runs across the top of the app'
+
+#### Empty states
+
+If content is missing as a result of the error, follow guidance around
+[empty states.](../patterns/empty-states)
+
+## Implementation
+
+Atlantis and mobile have input validation built-in for ease of use. The input
+validation is integrated with the Form components on both web and mobile as
+well.
+
+As always, reference our Product Vocabulary when writing error messages to
+ensure we’re being supportive to our users as they attempt to recover from
+errors.
+
+Inline validation Our input components and Form are already set up to allow
+teams to add inline validation quickly and easily as you build your forms, and
+there’s documentation to walk you through it:
+
+Web Atlantis FormField (which powers InputText, InputPassword, InputNumber, etc)
+has validation built-in.
+
+Mobile Jobber Docs - Forms
+
+React Hook Form validation docs (the library we built our Form on top of)
+
+System-wide feedback Web Our global banner system should power all system-wide
+error messaging in web.
+
+Mobile There’s no global banner UI in place in the app, but the API schema in
+Jobber Online is consumable by the app.
+
+## Related
+
+- [Empty states](../patterns/empty-states)
+- [Banner](../components/banner)
+
+## Principles
+
+- [Visibility of system status](https://www.nngroup.com/articles/visibility-system-status/)
+- [Help users recognize, diagnose and recover from errors](https://www.nngroup.com/articles/ten-usability-heuristics/#toc-9-help-users-recognize-diagnose-and-recover-from-errors-9)
