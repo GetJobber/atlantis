@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.69.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.68.1...@jobber/design@0.69.0) (2025-01-31)
+
+
+### Features
+
+* **design:** Add additional status icons for warning and info ([#2348](https://github.com/GetJobber/atlantis/issues/2348)) ([d371b07](https://github.com/GetJobber/atlantis/commit/d371b070592116e241252da38e975274aea2ed0e))
+
+
+
+
+
 ## [0.68.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.68.0...@jobber/design@0.68.1) (2025-01-15)
 
 **Note:** Version bump only for package @jobber/design
