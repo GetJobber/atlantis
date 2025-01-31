@@ -183,6 +183,10 @@ function InternalTypography<T extends FontFamily = "base">({
     style.push(underlineTextStyle, styles.underline);
   }
 
+  if (UNSAFE_style?.textStyle) {
+    style.push(UNSAFE_style.textStyle);
+  }
+
   const numberOfLinesForNativeText = maxNumberOfLines[maxLines];
 
   const text = getTransformedText(children, transform);
@@ -200,7 +204,7 @@ function InternalTypography<T extends FontFamily = "base">({
         {...{
           allowFontScaling,
           adjustsFontSizeToFit,
-          style: [style, UNSAFE_style?.textStyle],
+          style,
           numberOfLines: numberOfLinesForNativeText,
         }}
         {...accessibilityProps}
@@ -336,8 +340,6 @@ export type TextColor =
   | "orangeDark"
   | "navyDark"
   | "limeDark"
-  | "purple400"
-  | "purple600"
   | "purpleDark"
   | "pinkDark"
   | "tealDark"

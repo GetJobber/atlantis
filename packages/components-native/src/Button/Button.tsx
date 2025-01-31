@@ -132,6 +132,10 @@ export function Button({
     fullHeight && styles.fullHeight,
   ];
 
+  if (UNSAFE_style?.container) {
+    buttonStyle.push(UNSAFE_style.container);
+  }
+
   // attempts to use Pressable caused problems.  When a ScrollView contained
   // an InputText that was focused, it required two presses to activate the
   // Pressable.  Using a TouchableHighlight made things register correctly
@@ -154,7 +158,7 @@ export function Button({
         fullHeight && styles.fullHeight,
       ]}
     >
-      <View style={[buttonStyle, UNSAFE_style?.container]} testID="content">
+      <View style={buttonStyle}>
         {loading && <InternalButtonLoading variation={variation} type={type} />}
         <View
           style={[

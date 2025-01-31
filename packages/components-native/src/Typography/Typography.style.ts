@@ -171,14 +171,6 @@ export const typographyTokens: { [index: string]: TextStyle } = {
     color: tokens["color-yellow"],
   },
 
-  purple400: {
-    color: tokens["color-base-purple--400"],
-  },
-
-  purple600: {
-    color: tokens["color-base-purple--600"],
-  },
-
   yellowDark: {
     color: tokens["color-yellow--dark"],
   },

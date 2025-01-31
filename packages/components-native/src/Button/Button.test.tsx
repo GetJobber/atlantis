@@ -303,7 +303,10 @@ describe("Button", () => {
 
   describe("UNSAFE_style", () => {
     it("should apply the container style override", () => {
-      const containerStyle = { backgroundColor: "red" };
+      const containerStyle = {
+        backgroundColor: "red",
+        borderColor: tokens["color-base-red--500"],
+      };
 
       const { buttonStyle } = renderButton(
         <Button
