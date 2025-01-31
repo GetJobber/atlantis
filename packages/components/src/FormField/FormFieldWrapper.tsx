@@ -95,7 +95,7 @@ export function FormFieldWrapper({
         <FormFieldInputHorizontalWrapper>
           <AffixIcon {...prefix} size={size} />
           <FormFieldInputWrapperStyles>
-            {!(value && !showMiniLabel) && (
+            {(showMiniLabel || !value) && (
               <FormFieldLabel
                 htmlFor={identifier}
                 style={
