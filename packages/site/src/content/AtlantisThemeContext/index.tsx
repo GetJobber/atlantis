@@ -8,21 +8,23 @@ export default {
   props: Props,
   component: {
     element: `<AtlantisThemeContextProvider>
-    <Content>
-      <div style={{ display: "flex", gap: "8px" }}>
-        <InlineLabel color="red">Past due</InlineLabel>
-        <InlineLabel color="yellow">Unscheduled</InlineLabel>
-        <InlineLabel color="green">Approved</InlineLabel>
-        <InlineLabel color="greyBlue">Draft</InlineLabel>
-        <InlineLabel color="lightBlue">Sent</InlineLabel>
-      </div>
-      <Flex gap="base" align="center" direction="row" template={["grow", "grow"]}>
-        <Button label="Set dark theme" onClick={() => updateTheme("dark")} />
-        <Button label="Set light theme" onClick={() => updateTheme("light")} />
-      </Flex>
-    </Content>
+    <Box background="surface" padding="larger" radius="base">
+      <Content>
+        <div style={{ display: "flex", gap: "8px" }}>
+          <InlineLabel color="red">Past due</InlineLabel>
+          <InlineLabel color="yellow">Unscheduled</InlineLabel>
+          <InlineLabel color="green">Approved</InlineLabel>
+          <InlineLabel color="greyBlue">Draft</InlineLabel>
+          <InlineLabel color="lightBlue">Sent</InlineLabel>
+        </div>
+        <Flex gap="base" align="center" direction="row" template={["grow", "grow"]}>
+          <Button label="Set dark theme" onClick={() => updateTheme("dark")} />
+          <Button label="Set light theme" onClick={() => updateTheme("light")} />
+        </Flex>
+      </Content>
+    </Box>
   </AtlantisThemeContextProvider>
-  ;`,
+  `,
   },
   title: "AtlantisThemeContext",
   links: [
