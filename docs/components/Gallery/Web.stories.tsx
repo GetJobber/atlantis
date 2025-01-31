@@ -99,6 +99,16 @@ const files = [
   },
 ];
 
+// This is just a bit of a smoke test to confirm that the Gallery component still
+// functions as expected when it receives a promise for the src.
+function convertFileSrcToPromises(fileToConvert) {
+  return fileToConvert.map(file => ({
+    ...file,
+    src: () =>
+      Promise.resolve(typeof file.src === "string" ? file.src : file.src()),
+  }));
+}
+
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
   files,
@@ -106,6 +116,6 @@ Basic.args = {
 
 export const MaxFiles = BasicTemplate.bind({});
 MaxFiles.args = {
-  files,
+  files: convertFileSrcToPromises(files),
   max: 3,
 };
