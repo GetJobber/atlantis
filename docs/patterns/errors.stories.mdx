@@ -7,6 +7,7 @@ import {
   Disclosure,
   InlineLabel,
   InputText,
+  InputValidation,
   Text,
   Tabs,
   Tab,
@@ -83,12 +84,17 @@ This is probably the most common scenario. In these instances, provide a clear,
 concise message as close as possible to the impacted or offending elements in
 the interface.
 
-<Figma url="https://www.figma.com/design/HXWXusJPZLmaJNGlKEpiyhXW/Product%2FBase?m=auto&node-id=21553-13&t=I64jeZUgqvXJBJOl-1" />
+<Canvas>
+  <InputText invalid placeholder="First name" />
+  <InputValidation message="First name is required" />
+</Canvas>
 
 #### System-wide errors
 
 If an issue is not specific to a given screen or user flow, use a "global" error
 message. This should be a banner that runs across the top of the app'
+
+<Figma url="https://www.figma.com/design/HXWXusJPZLmaJNGlKEpiyhXW/Product%2FBase?m=auto&node-id=21651-16&t=Xj6lgTxoUsgsDwGR-1" />
 
 #### Empty states
 
@@ -97,35 +103,28 @@ If content is missing as a result of the error, follow guidance around
 
 ## Implementation
 
-Atlantis and mobile have input validation built-in for ease of use. The input
-validation is integrated with the Form components on both web and mobile as
-well.
+### Forms and inputs
 
-As always, reference our Product Vocabulary when writing error messages to
-ensure we’re being supportive to our users as they attempt to recover from
-errors.
+Atlantis inputs like InputText have input validation built-in for ease of use.
+The input validation is integrated with the Form components on both web and
+mobile as well.
 
-Inline validation Our input components and Form are already set up to allow
-teams to add inline validation quickly and easily as you build your forms, and
-there’s documentation to walk you through it:
+You can also provide InputValidation externally if needed.
 
-Web Atlantis FormField (which powers InputText, InputPassword, InputNumber, etc)
-has validation built-in.
+### System-wide feedback
 
-Mobile Jobber Docs - Forms
-
-React Hook Form validation docs (the library we built our Form on top of)
-
-System-wide feedback Web Our global banner system should power all system-wide
-error messaging in web.
-
-Mobile There’s no global banner UI in place in the app, but the API schema in
-Jobber Online is consumable by the app.
+Jobber uses a GlobalBanner system to present
 
 ## Related
 
+### Patterns
+
 - [Empty states](../patterns/empty-states)
-- [Banner](../components/banner)
+
+### Components
+
+- [Banner](../components/Banner)
+- [InputValidation](../components/InputValidation)
 
 ## Principles
 
