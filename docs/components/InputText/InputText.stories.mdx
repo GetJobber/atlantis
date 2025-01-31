@@ -167,7 +167,7 @@ See:
 ### External label
 
 You can use `FormFieldLabel` to provide a label outside of the input. The
-`hideMiniLabel` prop on `InputText` can be used to hide the mini label that
+`showMiniLabel` prop on `InputText` can be used to hide the mini label that
 appears when a value is provided.
 
 <style>
@@ -184,7 +184,7 @@ appears when a value is provided.
       External label
     </FormFieldLabel>
     <InputText
-      hideMiniLabel={true}
+      showMiniLabel={false}
       placeholder="You can still have a placeholder"
       id="ext-input"
     />

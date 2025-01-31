@@ -21,7 +21,7 @@ export interface useFormFieldWrapperStylesProps
   readonly error?: string;
   suffixRef?: RefObject<HTMLDivElement>;
   prefixRef?: RefObject<HTMLDivElement>;
-  hideMiniLabel?: boolean;
+  showMiniLabel?: boolean;
 }
 
 export interface LabelPadding {
@@ -46,7 +46,7 @@ export function useFormFieldWrapperStyles({
   type,
   disabled,
   inline,
-  hideMiniLabel = false,
+  showMiniLabel = true,
 }: useFormFieldWrapperStylesProps) {
   const isSafari = useIsSafari();
   const wrapperClasses = classnames(
@@ -55,7 +55,7 @@ export function useFormFieldWrapperStyles({
     align && styles[align],
     {
       [styles.miniLabel]:
-        (!hideMiniLabel && placeholder && value !== "") ||
+        (showMiniLabel && placeholder && value !== "") ||
         (placeholder && type === "select") ||
         // Naively assume that if the the type is tel, it is the InputPhoneNumber
         (placeholder && type === "tel"),

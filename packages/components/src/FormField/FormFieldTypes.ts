@@ -74,11 +74,13 @@ export interface CommonFormFieldProps {
   readonly disabled?: boolean;
 
   /**
-   * If this is false the placeholder is shifted to a mini label inside the input
-   * once a value has been added. Setting this to true hides the mini label.
+   * Controls the visibility of the mini label that appears inside the input
+   * when a value is entered. By default, the placeholder text moves up to
+   * become a mini label. Set to false to disable this behavior.
+   *
+   * @default true
    */
-
-  readonly hideMiniLabel?: boolean;
+  readonly showMiniLabel?: boolean;
 
   /**
    * Highlights the field red to indicate an error.
@@ -122,8 +124,10 @@ export interface CommonFormFieldProps {
   onValidation?(message: string): void;
 
   /**
-   * Hint text. If hideMiniLabel is false this text provides a mini label inside the
-   * input once a value has been added.
+   * Text that appears inside the input when empty and floats above the value
+   * as a mini label once the user enters a value.
+   * When showMiniLabel is false, this text only serves as a standard placeholder and
+   * disappears when the user types.
    */
   readonly placeholder?: string;
 

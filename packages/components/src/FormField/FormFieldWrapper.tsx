@@ -18,7 +18,7 @@ export interface FormFieldWrapperProps extends FormFieldProps {
   readonly descriptionIdentifier: string;
   readonly clearable: Clearable;
   readonly onClear: () => void;
-  readonly hideMiniLabel?: boolean;
+  readonly showMiniLabel?: boolean;
 }
 
 export function FormFieldWrapper({
@@ -43,7 +43,7 @@ export function FormFieldWrapper({
   onClear,
   toolbar,
   toolbarVisibility = "while-editing",
-  hideMiniLabel = false,
+  showMiniLabel = true,
   wrapperRef,
 }: PropsWithChildren<FormFieldWrapperProps>) {
   const prefixRef = useRef() as RefObject<HTMLDivElement>;
@@ -64,7 +64,7 @@ export function FormFieldWrapper({
       disabled,
       inline,
       size,
-      hideMiniLabel,
+      showMiniLabel,
     });
 
   const { focused } = useFormFieldFocus({ wrapperRef });
@@ -95,7 +95,7 @@ export function FormFieldWrapper({
         <FormFieldInputHorizontalWrapper>
           <AffixIcon {...prefix} size={size} />
           <FormFieldInputWrapperStyles>
-            {!(value && hideMiniLabel) && (
+            {!(value && !showMiniLabel) && (
               <FormFieldLabel
                 htmlFor={identifier}
                 style={
