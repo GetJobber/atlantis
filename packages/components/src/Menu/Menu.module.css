@@ -76,8 +76,8 @@
   gap: var(--menu-space);
   align-items: center;
   transition:
-    background-color var(--timing-base) ease-in,
-    box-shadow var(--timing-base) ease-in;
+    background-color var(--timing-base) ease-out,
+    box-shadow var(--timing-base) ease-out;
 }
 
 .action:hover,
