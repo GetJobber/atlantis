@@ -12,6 +12,7 @@ export interface InputDateRebuiltProps
     | "multiline"
     | "rows"
     | "type"
+    | "version"
   > {
   /**
    * A Date object value
@@ -40,7 +41,7 @@ export interface InputDateRebuiltProps
   readonly emptyValueLabel?: string;
 
   /**
-   * Version 2 is highly experimental. Avoid using it unless you have talked with Atlantis first.
+   * Version 2 is highly experimental, avoid using it unless you have talked with Atlantis first.
    */
   readonly version: 2;
 
