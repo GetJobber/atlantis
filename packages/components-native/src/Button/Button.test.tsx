@@ -319,12 +319,30 @@ describe("Button", () => {
       expect(buttonStyle).toMatchObject(containerStyle);
     });
 
-    it("should apply the contentContainer style override", () => {
+    it("should apply the contentContainer style override to labels", () => {
       const contentContainerStyle = { padding: 10 };
 
       const { getByTestId } = renderButton(
         <Button
           label="Override"
+          onPress={jest.fn()}
+          UNSAFE_style={{ contentContainer: contentContainerStyle }}
+        />,
+      );
+
+      const contentContainer = getByTestId("contentContainer");
+      expect(contentContainer.props.style).toContainEqual(
+        contentContainerStyle,
+      );
+    });
+
+    it("should apply the contentContainer style override to icons", () => {
+      const contentContainerStyle = { padding: 10 };
+
+      const { getByTestId } = renderButton(
+        <Button
+          label="Cog"
+          icon="cog"
           onPress={jest.fn()}
           UNSAFE_style={{ contentContainer: contentContainerStyle }}
         />,

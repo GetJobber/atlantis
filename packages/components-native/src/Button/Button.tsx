@@ -161,15 +161,17 @@ export function Button({
       <View style={buttonStyle}>
         {loading && <InternalButtonLoading variation={variation} type={type} />}
         <View
-          style={[
-            getContentStyles(label, icon),
-            UNSAFE_style?.contentContainer,
-          ]}
+          style={getContentStyles(label, icon, UNSAFE_style?.contentContainer)}
           testID="contentContainer"
         >
           {icon && (
             <View
-              style={[styles.iconStyle, UNSAFE_style?.iconContainer]}
+              style={[
+                styles.iconStyle,
+                ...(UNSAFE_style?.iconContainer
+                  ? [UNSAFE_style.iconContainer]
+                  : []),
+              ]}
               testID="iconContainer"
             >
               <Icon
@@ -180,7 +182,12 @@ export function Button({
           )}
           {label && (
             <View
-              style={[styles.labelStyle, UNSAFE_style?.actionLabelContainer]}
+              style={[
+                styles.labelStyle,
+                ...(UNSAFE_style?.actionLabelContainer
+                  ? [UNSAFE_style.actionLabelContainer]
+                  : []),
+              ]}
               testID="actionLabelContainer"
             >
               <ActionLabel
@@ -246,15 +253,19 @@ function getIconColorVariation(
 function getContentStyles(
   label: string | undefined,
   icon: IconNames | undefined,
+  unsafeContentContainerStyles?: StyleProp<ViewStyle> | undefined,
 ) {
   if (label && !icon) {
-    return undefined;
+    return unsafeContentContainerStyles
+      ? [unsafeContentContainerStyles]
+      : undefined;
   }
 
   return [
     styles.content,
     icon && !!label && styles.iconPaddingOffset,
     !!label && styles.contentWithLabel,
+    ...(unsafeContentContainerStyles ? [unsafeContentContainerStyles] : []),
   ];
 }
 
