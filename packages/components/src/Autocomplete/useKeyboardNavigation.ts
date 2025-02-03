@@ -11,6 +11,7 @@ export enum KeyboardAction {
 
 /**
  * Hook to handle custom keyboard navigation for the Autocomplete component.
+ * Use this hook if you are using components in the menu that aren't MenuOption or BaseMenuOption.
  */
 export function useCustomKeyboardNavigation({
   onRequestHighlightChange,

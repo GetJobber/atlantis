@@ -57,7 +57,12 @@ There are also some helper functions that are used to handle the keyboard
 navigation of the options and the base styling of the options.
 
 - `useKeyboardNavigation` is used to handle the default keyboard navigation of
-  the options
+  the options. Use this hook if you are using only using MenuOption or
+  BaseMenuOption components in the menu.
+- `useCustomKeyboardNavigation` is used to handle the keyboard navigation of the
+  options. Use this hook if you are using components in the menu that aren't
+  MenuOption or BaseMenuOption such as custom elements. See the Advanced
+  examples below for more information.
 - `MenuOption` is the default rendering of the options in the Autocomplete Menu.
   The `UNSAFE_style` prop is used to add a custom styling to the options.
 - `isOptionGroup` is a helper function that is used to determine if the option
