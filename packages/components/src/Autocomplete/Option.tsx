@@ -28,6 +28,9 @@ export interface MenuOptionProps {
   };
 }
 
+/**
+ * The rendering of the default MenuOption
+ */
 export function MenuOption({
   isHighlighted,
   option,
@@ -121,6 +124,9 @@ export interface MenuGroupOptionProps {
   readonly UNSAFE_style?: { heading?: React.CSSProperties };
 }
 
+/**
+ * The rendering of the default MenuGroupOption
+ */
 export function MenuGroupOptions({
   option,
   UNSAFE_className = {},
@@ -136,6 +142,9 @@ export function MenuGroupOptions({
   );
 }
 
+/**
+ * The base component for the MenuGroupOption
+ */
 export interface BaseMenuGroupOptionProps extends PropsWithChildren {
   readonly UNSAFE_className?: string;
   readonly UNSAFE_style?: React.CSSProperties;

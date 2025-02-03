@@ -4,6 +4,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import {
   AnyOption,
   Autocomplete,
+  BaseMenuGroupOption,
   BaseMenuOption,
   CustomOptionsMenuProp,
   KeyboardAction,
@@ -20,10 +21,11 @@ import { Text } from "@jobber/components/Text";
 import { Content } from "@jobber/components/Content";
 import { Flex } from "@jobber/components/Flex";
 import { StatusLabel } from "@jobber/components/StatusLabel";
-import { Icon } from "@jobber/components/Icon";
+import { Icon, IconNames } from "@jobber/components/Icon";
 import { Grid } from "@jobber/components/Grid";
 import { Heading } from "@jobber/components/Heading";
 import { useCallbackRef } from "@jobber/hooks/useCallbackRef";
+import { StatusIndicatorType } from "@jobber/components/StatusIndicator";
 
 export default {
   title: "Components/Forms and Inputs/Autocomplete/Web",
@@ -448,7 +450,7 @@ const CustomRenderingTemplate = () => {
     }
   };
 
-  const SuperCustomTemplate = () => {
+  const AdvancedCustomTemplate = () => {
     const [value, setValue] = useState<CustomOption | undefined>();
 
     function getOptions(text: string) {
@@ -649,10 +651,428 @@ const CustomRenderingTemplate = () => {
         <BasicCustomTemplate />
       </Grid.Cell>
       <Grid.Cell size={{ xs: 12 }}>
-        <Heading level={2}>Super Custom Rendering</Heading>
-        <SuperCustomTemplate />
+        <Heading level={2}>Advanced Custom Rendering</Heading>
+        <AdvancedCustomTemplate />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 12 }}>
+        <AdvancedSectionHeadingTemplate />
       </Grid.Cell>
     </Grid>
   );
 };
 export const CustomRendering = CustomRenderingTemplate.bind({});
+
+interface CustomOptionForGroup {
+  value: number;
+  label: string;
+  status: string;
+}
+interface CustomGroupOption {
+  label: string;
+  icon: IconNames;
+  options: CustomOptionForGroup[];
+}
+
+const SectionHeadingOptionsCustom: CustomGroupOption[] = [
+  {
+    label: "Quotes",
+    icon: "quote",
+    options: [
+      { value: 1, label: "Quote for Acme Corp", status: "Draft" },
+      { value: 2, label: "Quote for Stark Industries", status: "Approved" },
+      {
+        value: 3,
+        label: "Quote for Wayne Enterprises",
+        status: "Awaiting approval",
+      },
+      { value: 4, label: "Quote for Umbrella Corp", status: "Paid" },
+    ],
+  },
+  {
+    icon: "invoice",
+    label: "Invoices",
+    options: [
+      { value: 5, label: "Invoice for Acme Corp", status: "Draft" },
+      {
+        value: 6,
+        label: "Invoice for Stark Industries",
+        status: "Awaiting payment",
+      },
+      {
+        value: 7,
+        label: "Invoice for Wayne Enterprises",
+        status: "Awaiting payment",
+      },
+      { value: 8, label: "Invoice for Umbrella Corp", status: "Paid" },
+    ],
+  },
+];
+
+interface CustomElementOption {
+  sectionLabel: string;
+  indexToInsertAfter: number;
+}
+type OptionsWithExtraElements =
+  | CustomGroupOption
+  | CustomOptionForGroup
+  | CustomElementOption;
+
+function AdvancedSectionHeadingTemplate() {
+  const [value, setValue] = useState<CustomOptionForGroup | undefined>();
+
+  return (
+    <Autocomplete
+      placeholder="Search for something under a section heading"
+      initialOptions={SectionHeadingOptionsCustom}
+      value={value}
+      onChange={newValue => setValue(newValue)}
+      getOptions={() => SectionHeadingOptionsCustom}
+      customRenderMenu={props => (
+        <AdvancedSectionHeadingCustomMenuContent {...props} />
+      )}
+    />
+  );
+}
+
+function AdvancedSectionHeadingCustomMenuContent({
+  options,
+  selectedOption,
+  onOptionSelect,
+  inputFocused,
+  inputRef,
+  MenuWrapper,
+  menuRef,
+}: CustomOptionsMenuProp<CustomGroupOption, CustomOptionForGroup>) {
+  const { optionsWithExtraElements, extraElementFocused } =
+    useCustomSectionOptions(options);
+  // Set to 1 to account for the first option being the section heading
+  const initialHighlight = options.some(isOptionGroup) ? 1 : 0;
+
+  const [highlightedOptionIndex, setHighlightedOptionIndex] =
+    useState(initialHighlight);
+  // Length of options -1 and the number of extra elements
+
+  const maxIndex = optionsWithExtraElements.length - 1;
+
+  const menuVisible = useMemo(
+    () => extraElementFocused || inputFocused,
+    [extraElementFocused, inputFocused],
+  );
+  const onRequestHighlightChange = useCallback(
+    (event: KeyboardEvent, direction: KeyboardAction) => {
+      const requestedIndex =
+        optionsWithExtraElements[highlightedOptionIndex + direction];
+      // Default index change to the direction. If the requested index is not an extra element,
+      // then we need to adjust the index change to account for the section heading
+      let indexChange = direction;
+
+      if (requestedIndex && !isExtraElement(requestedIndex)) {
+        indexChange =
+          requestedIndex && isOptionGroup(requestedIndex)
+            ? direction + direction
+            : direction;
+      }
+
+      const newPreviousIndex = Math.max(
+        0,
+        highlightedOptionIndex + indexChange,
+      );
+      const newNextIndex = Math.min(
+        maxIndex,
+        highlightedOptionIndex + indexChange,
+      );
+
+      if (!menuVisible) return;
+
+      switch (direction) {
+        case KeyboardAction.Previous:
+          // If the footer is focused, focus the input
+          if (!isExtraElement(optionsWithExtraElements[newPreviousIndex])) {
+            inputRef?.current?.focus();
+          }
+
+          if (isExtraElement(optionsWithExtraElements[newPreviousIndex])) {
+            const element = document.getElementById(
+              optionsWithExtraElements[newPreviousIndex].sectionLabel,
+            ) as HTMLElement;
+            element?.focus();
+          }
+          setHighlightedOptionIndex(newPreviousIndex);
+          menuRef?.children[newPreviousIndex]?.scrollIntoView?.({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "start",
+          });
+
+          break;
+        case KeyboardAction.Next:
+          setHighlightedOptionIndex(newNextIndex);
+          menuRef?.children[newNextIndex]?.scrollIntoView?.({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "start",
+          });
+
+          if (isExtraElement(optionsWithExtraElements[newNextIndex])) {
+            const element = document.getElementById(
+              optionsWithExtraElements[newNextIndex].sectionLabel,
+            ) as HTMLElement;
+            element?.focus();
+          } else {
+            inputRef?.current?.focus();
+          }
+          break;
+
+        case KeyboardAction.Select:
+          menuRef?.children[highlightedOptionIndex]?.scrollIntoView?.({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "start",
+          });
+
+          if (
+            isExtraElement(optionsWithExtraElements[highlightedOptionIndex])
+          ) {
+            const element = document.getElementById(
+              optionsWithExtraElements[highlightedOptionIndex].sectionLabel,
+            ) as HTMLElement;
+            element?.click();
+          } else if (
+            !isOptionGroup(optionsWithExtraElements[highlightedOptionIndex])
+          ) {
+            onOptionSelect(optionsWithExtraElements[highlightedOptionIndex]);
+          }
+
+          break;
+      }
+    },
+    [
+      highlightedOptionIndex,
+      options,
+      onOptionSelect,
+      extraElementFocused,
+      maxIndex,
+      optionsWithExtraElements,
+    ],
+  );
+  useCustomKeyboardNavigation({ onRequestHighlightChange });
+
+  const optionsToRender = optionsWithExtraElements.map((option, index) => {
+    if (isExtraElement(option)) {
+      return (
+        <AdvancedSectionFooterButton
+          label={option.sectionLabel}
+          id={option.sectionLabel}
+          key={`${option.sectionLabel}-create-new`}
+        />
+      );
+    }
+
+    if (isOptionGroup(option)) {
+      return (
+        <BaseMenuGroupOption key={option.label}>
+          <Flex template={["grow", "shrink"]}>
+            <Heading level={5}>{option.label}</Heading>
+            <Icon name={option.icon} />
+          </Flex>
+        </BaseMenuGroupOption>
+      );
+    }
+
+    return (
+      <SelectableOption
+        isSelected={selectedOption === option}
+        key={option.value}
+        option={option}
+        index={index}
+        highlightedOptionIndex={highlightedOptionIndex}
+        onOptionSelect={onOptionSelect}
+      />
+    );
+  });
+
+  return <MenuWrapper visible={menuVisible}>{optionsToRender}</MenuWrapper>;
+}
+
+function AdvancedSectionFooterButton({
+  label,
+  id,
+}: {
+  readonly label: string;
+  readonly id: string;
+}) {
+  return (
+    <Button
+      label={`+ Add new ${label}`}
+      onClick={() => alert(`Add new ${label}`)}
+      size="small"
+      id={id}
+      fullWidth
+      type="tertiary"
+    />
+  );
+}
+
+/**
+ * Renders the selectable option
+ * @param option - The option to render
+ * @param index - The index of the option
+ * @param highlightedOptionIndex - The index of the highlighted option
+ * @param onOptionSelect - The function to call when the option is selected
+ * @param isSelected - Whether the option is selected
+ */
+function SelectableOption({
+  option,
+  index,
+  highlightedOptionIndex,
+  onOptionSelect,
+  isSelected,
+}: {
+  readonly option: CustomOptionForGroup;
+  readonly index: number;
+  readonly highlightedOptionIndex: number;
+  readonly onOptionSelect: (option?: CustomOptionForGroup) => void;
+  readonly isSelected: boolean;
+}) {
+  let status: StatusIndicatorType = "informative";
+
+  switch (option.status) {
+    case "Paid":
+    case "Approved":
+      status = "success";
+      break;
+    case "Awaiting payment":
+    case "Awaiting approval":
+      status = "warning";
+      break;
+    case "Draft":
+      status = "inactive";
+      break;
+  }
+
+  return (
+    <BaseMenuOption
+      addSeparators={true}
+      isHighlighted={highlightedOptionIndex === index}
+      onOptionSelect={onOptionSelect}
+      option={option}
+    >
+      <Flex template={["grow", "shrink"]}>
+        <Text>{isSelected ? `Selected: ${option.label}` : option.label}</Text>
+        <StatusLabel label={option.status} status={status} />
+      </Flex>
+    </BaseMenuOption>
+  );
+}
+
+/**
+ * Get the indices of the options that should have extra elements inserted after them
+ * @param options - The options to get the extra element indices for
+ * @returns The indices of the options that should have extra elements inserted after them
+ */
+function getExtraElementIndices(
+  options: (CustomOptionForGroup | CustomGroupOption)[],
+) {
+  const sectionsOptions = options.filter(isOptionGroup);
+
+  return sectionsOptions.map(({ label, options: optionsInSection }) => {
+    const indexToInsertAfter = options.findIndex(
+      opt => opt === optionsInSection[optionsInSection.length - 1],
+    );
+
+    return {
+      sectionLabel: label,
+      indexToInsertAfter,
+    };
+  });
+}
+
+/**
+ * Creates a new array with the extra elements inserted into the options array
+ * @param options - The options to insert the extra elements into
+ * @param extraElements - The extra elements to insert into the options
+ * @returns The options with the extra elements inserted
+ */
+function insertExtraElements(
+  options: (CustomOptionForGroup | CustomGroupOption)[],
+  extraElements: CustomElementOption[],
+) {
+  return options.reduce<Array<OptionsWithExtraElements>>(
+    (acc, option, index) => {
+      const shouldInsertExtraElement = extraElements.find(
+        ({ indexToInsertAfter }) => indexToInsertAfter === index,
+      );
+
+      if (shouldInsertExtraElement) {
+        return [
+          ...acc,
+          option,
+          {
+            sectionLabel: shouldInsertExtraElement.sectionLabel,
+            indexToInsertAfter: shouldInsertExtraElement.indexToInsertAfter,
+          },
+        ];
+      }
+
+      return [...acc, option];
+    },
+    [],
+  );
+}
+
+/**
+ * Custom hook to handle the section options with extra elements
+ * @param options - The options to handle
+ * @returns The options with the extra elements inserted and the focus state for the extra elements
+ */
+function useCustomSectionOptions(
+  options: (CustomGroupOption | CustomOptionForGroup)[],
+) {
+  const extraElements = useMemo(
+    () => getExtraElementIndices(options),
+    [options],
+  );
+  const optionsWithExtraElements = useMemo(
+    () => insertExtraElements(options, extraElements),
+    [options, extraElements],
+  );
+  // We need to track the focus state for the extra elements because it can be focused instead of just the Input
+  const [extraElementFocused, setExtraElementFocused] = useState(false);
+
+  const extraElementFocusCallback = useCallbackRef(() => {
+    setExtraElementFocused(true);
+  });
+  const extraElementBlurCallback = useCallbackRef(() => {
+    setExtraElementFocused(false);
+  });
+  // Add event listeners to the extra elements for focus and blur
+  useEffect(() => {
+    extraElements.forEach(({ sectionLabel }) => {
+      const element = document.getElementById(sectionLabel) as HTMLElement;
+      element?.addEventListener("focus", extraElementFocusCallback);
+      element?.addEventListener("blur", extraElementBlurCallback);
+    });
+
+    return () => {
+      extraElements.forEach(({ sectionLabel }) => {
+        const element = document.getElementById(sectionLabel) as HTMLElement;
+        element?.removeEventListener("focus", extraElementFocusCallback);
+        element?.removeEventListener("blur", extraElementBlurCallback);
+      });
+    };
+  }, [extraElements]);
+
+  return {
+    optionsWithExtraElements,
+    extraElementFocused,
+  };
+}
+
+/**
+ * Checks if the option is an extra element
+ * @param option - The option to check
+ * @returns Whether the option is an extra element
+ */
+function isExtraElement(option: object): option is CustomElementOption {
+  return option && "sectionLabel" in option && "indexToInsertAfter" in option;
+}
