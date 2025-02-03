@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.70.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.69.0...@jobber/design@0.70.0) (2025-02-03)
+
+
+### Features
+
+* **design:** Add new airspace logo ([#2355](https://github.com/GetJobber/atlantis/issues/2355)) ([827c5c8](https://github.com/GetJobber/atlantis/commit/827c5c8399b3aba1a03295921c1ded6b49eb124c))
+
+
+
+
+
 # [0.69.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.68.1...@jobber/design@0.69.0) (2025-01-31)
 
 
