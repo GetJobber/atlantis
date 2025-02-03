@@ -156,7 +156,7 @@ export function LightBox({
             style={{
               backgroundImage: `url("${images[currentImageIndex].url}")`,
             }}
-          ></div>
+          />
           <div className={styles.blurOverlay} onClick={handleRequestClose} />
 
           <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
@@ -166,26 +166,24 @@ export function LightBox({
             </div>
           </AtlantisThemeContextProvider>
 
-          <div className={styles.slideWrapper}>
-            <div className={styles.imageArea}>
-              <AnimatePresence initial={false}>
-                <motion.img
-                  key={currentImageIndex}
-                  variants={variants}
-                  src={images[currentImageIndex].url}
-                  custom={direction}
-                  className={styles.image}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={imageTransition}
-                  drag="x"
-                  dragConstraints={{ left: 0, right: 0 }}
-                  dragElastic={1}
-                  onDragEnd={handleOnDragEnd}
-                />
-              </AnimatePresence>
-            </div>
+          <div className={styles.imageArea}>
+            <AnimatePresence initial={false}>
+              <motion.img
+                key={currentImageIndex}
+                variants={variants}
+                src={images[currentImageIndex].url}
+                custom={direction}
+                className={styles.image}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={imageTransition}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={1}
+                onDragEnd={handleOnDragEnd}
+              />
+            </AnimatePresence>
           </div>
 
           {images.length > 1 && (
