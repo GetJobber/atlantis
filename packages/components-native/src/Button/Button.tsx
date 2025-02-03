@@ -79,7 +79,14 @@ interface CommonButtonProps {
   readonly testID?: string;
 
   /**
-   * Styles to override the default styles
+   * Custom style overrides for the Button component. This prop allows you to
+   * apply specific styles to different parts of the button, potentially bypassing
+   * the default design system styles. Use with caution to avoid inconsistencies.
+   *
+   * - `container`: Style for the button's outer container.
+   * - `contentContainer`: Style for the container holding the button's content.
+   * - `iconContainer`: Style for the container wrapping the icon.
+   * - `actionLabelContainer`: Style for the container wrapping the action label.
    */
   readonly UNSAFE_style?: ButtonUnsafeStyle;
 }

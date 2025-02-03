@@ -4,7 +4,6 @@ import {
   LineHeight,
   TextAccessibilityRole,
   TextAlign,
-  TextColor,
   TextSize,
   TextVariation,
   TruncateLength,
@@ -104,16 +103,6 @@ interface LevelStyle {
   readonly lineHeight: LineHeight;
 }
 
-export interface TextStyleOverride {
-  readonly color: TextColor | undefined;
-}
-// export interface TextUnsafeStyle {
-//   // should probably be called textStyle or something like that;
-//   // container will work for most other components but Text is slightly different
-//   // container?: StyleProp<TextStyle>;
-//   textStyle?: StyleProp<TextStyle>;
-// }
-
 const levelStyles: Record<TextLevel, LevelStyle> = {
   text: {
     size: "default",
@@ -145,7 +134,6 @@ export function Text({
   italic = false,
   hideFromScreenReader = false,
   maxFontScaleSize,
-  // styleOverride,
   UNSAFE_style,
   underline,
   selectable,
