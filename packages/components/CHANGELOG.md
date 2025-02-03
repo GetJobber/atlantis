@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.12.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.11.8...@jobber/components@6.12.0) (2025-02-03)
+
+
+### Features
+
+* **components:** Allow for external label [JOB-113378] ([#2333](https://github.com/GetJobber/atlantis/issues/2333)) ([1435e97](https://github.com/GetJobber/atlantis/commit/1435e973a5b5865af3b903bdd05c7f6ee458f4be))
+
+
+
+
+
 ## [6.11.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.11.7...@jobber/components@6.11.8) (2025-01-27)
 
 
