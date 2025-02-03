@@ -50,7 +50,7 @@ An interactive element is... being interacted with.
         - a custom focus ring is applied
 
         #### Timing
-        Most state transitions use `var(--timing-base) ease-in` for a pleasant
+        Most state transitions use `var(--timing-base) ease-out` for a pleasant
         transition.
 
         #### CSS implementation
@@ -62,7 +62,7 @@ An interactive element is... being interacted with.
             .myElement {
                 background-color: var(--color-surface);
                 /* apply consistent transitions to background and box-shadow */
-                transition: all var(--timing-base) ease-in;
+                transition: all var(--timing-base) ease-out;
                 cursor: pointer;
                 /* hide the default focus ring, but still support "high contrast" modes */
                 outline: transparent;
