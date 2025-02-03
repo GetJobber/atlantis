@@ -2,13 +2,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, PanInfo, motion } from "framer-motion";
 import ReactDOM from "react-dom";
-import debounce from "lodash/debounce";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import { useBreakpoints } from "@jobber/hooks/useBreakpoints";
 import styles from "./LightBox.module.css";
+import { useDebounce } from "../utils/useDebounce";
 import { ButtonDismiss } from "../ButtonDismiss";
 import { Text } from "../Text";
 import { Button } from "../Button";
@@ -87,7 +87,8 @@ const imageTransition = {
 // A little bit more than the transition's duration
 // We're doing this to prevent a bug from framer-motion
 // https://github.com/framer/motion/issues/1769
-const debounceDuration = 250;
+const BUTTON_DEBOUNCE_DELAY = 250;
+const MOVEMENT_DEBOUNCE_DELAY = 1000;
 
 export function LightBox({
   open,
@@ -99,18 +100,21 @@ export function LightBox({
   const [direction, setDirection] = useState(0);
   const [mouseIsStationary, setMouseIsStationary] = useState(true);
   const lightboxRef = useFocusTrap<HTMLDivElement>(open);
-  const debouncedHandleNext = debounce(handleMoveNext, debounceDuration);
-  const debouncedHandlePrevious = debounce(
+  const debouncedHandleNext = useDebounce(
+    handleMoveNext,
+    BUTTON_DEBOUNCE_DELAY,
+  );
+  const debouncedHandlePrevious = useDebounce(
     handleMovePrevious,
-    debounceDuration,
+    BUTTON_DEBOUNCE_DELAY,
   );
   const mounted = useIsMounted();
   const prevOpen = useRef(open);
   useRefocusOnActivator(open);
 
-  const handleMouseMovement = debounce(() => {
+  const handleMouseMovement = useDebounce(() => {
     setMouseIsStationary(true);
-  }, 1000);
+  }, MOVEMENT_DEBOUNCE_DELAY);
 
   useOnKeyDown(handleRequestClose, "Escape");
 
