@@ -786,17 +786,16 @@ function AdvancedSectionHeadingCustomMenuContent({
 
       switch (direction) {
         case KeyboardAction.Previous:
-          // If the footer is focused, focus the input
-          if (!isExtraElement(optionsWithExtraElements[newPreviousIndex])) {
-            inputRef?.current?.focus();
-          }
-
+          // If the option is an extra element, focus the extra element. Else focus the input
           if (isExtraElement(optionsWithExtraElements[newPreviousIndex])) {
             const element = document.getElementById(
               optionsWithExtraElements[newPreviousIndex].sectionLabel,
             ) as HTMLElement;
             element?.focus();
+          } else {
+            inputRef?.current?.focus();
           }
+
           setHighlightedOptionIndex(newPreviousIndex);
           menuRef?.children[newPreviousIndex]?.scrollIntoView?.({
             behavior: "smooth",
@@ -813,6 +812,7 @@ function AdvancedSectionHeadingCustomMenuContent({
             inline: "start",
           });
 
+          // If the option is an extra element, focus the extra element. Else focus the input
           if (isExtraElement(optionsWithExtraElements[newNextIndex])) {
             const element = document.getElementById(
               optionsWithExtraElements[newNextIndex].sectionLabel,
@@ -830,6 +830,7 @@ function AdvancedSectionHeadingCustomMenuContent({
             inline: "start",
           });
 
+          // If the option is an extra element, click the extra element. Else check it is not an option group and select the option
           if (
             isExtraElement(optionsWithExtraElements[highlightedOptionIndex])
           ) {
@@ -881,7 +882,7 @@ function AdvancedSectionHeadingCustomMenuContent({
 
     return (
       <SelectableOption
-        isSelected={selectedOption === option}
+        isSelected={isOptionSelected(selectedOption, option)}
         key={option.value}
         option={option}
         index={index}
@@ -958,7 +959,9 @@ function SelectableOption({
       option={option}
     >
       <Flex template={["grow", "shrink"]}>
-        <Text>{isSelected ? `Selected: ${option.label}` : option.label}</Text>
+        <Text>
+          {isSelected && <Icon name="checkmark" size="small" />} {option.label}
+        </Text>
         <StatusLabel label={option.status} status={status} />
       </Flex>
     </BaseMenuOption>
