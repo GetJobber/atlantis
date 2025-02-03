@@ -1,9 +1,7 @@
 /* eslint-disable max-statements */
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import uniq from "lodash/uniq";
 import { Meta, StoryFn, StoryObj } from "@storybook/react";
-import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
-import { useCollectionQuery } from "@jobber/hooks/useCollectionQuery";
 import {
   DataList,
   DataListEmptyStateProps,
@@ -20,7 +18,6 @@ import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
 import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
 import { Flex } from "@jobber/components/Flex";
-import { LIST_QUERY, ListQueryType, apolloClient } from "./storyUtils";
 
 const meta: Meta = {
   title: "Components/Lists and Tables/DataList/Web",
@@ -53,45 +50,148 @@ const meta: Meta = {
 
 export default meta;
 
+const mockedData = [
+  {
+    id: "1",
+    label: "Peregrine Falcon",
+    species: "Falcon",
+    home: "Worldwide",
+    eyeColor: "Yellow",
+    tags: ["Fast", "Predator", "Bird of Prey"],
+    homePopulation: "Unknown",
+    lastActivity: new Date("2023-01-01"),
+  },
+  {
+    id: "2",
+    label: "Bald Eagle",
+    species: "Eagle",
+    home: "North America",
+    eyeColor: "Yellow",
+    tags: ["National Bird", "Predator", "Bird of Prey"],
+    homePopulation: "70,000",
+    lastActivity: new Date("2023-02-01"),
+  },
+  {
+    id: "3",
+    label: "Golden Eagle",
+    species: "Eagle",
+    home: "Northern Hemisphere",
+    eyeColor: "Brown",
+    tags: ["Powerful", "Predator", "Bird of Prey"],
+    homePopulation: "Unknown",
+    lastActivity: new Date("2023-03-01"),
+  },
+  {
+    id: "4",
+    label: "Snowy Owl",
+    species: "Owl",
+    home: "Arctic",
+    eyeColor: "Yellow",
+    tags: ["Nocturnal", "Predator", "Bird of Prey"],
+    homePopulation: "Unknown",
+    lastActivity: new Date("2023-04-01"),
+  },
+  {
+    id: "5",
+    label: "Scarlet Macaw",
+    species: "Parrot",
+    home: "Central and South America",
+    eyeColor: "Yellow",
+    tags: ["Colorful", "Intelligent", "Bird"],
+    homePopulation: "Unknown",
+    lastActivity: new Date("2023-05-01"),
+  },
+  {
+    id: "6",
+    label: "Kingfisher",
+    species: "Kingfisher",
+    home: "Worldwide",
+    eyeColor: "Brown",
+    tags: ["Diving", "Fisher", "Bird"],
+    homePopulation: "Unknown",
+    lastActivity: new Date("2023-06-01"),
+  },
+  {
+    id: "7",
+    label: "Peacock",
+    species: "Peafowl",
+    home: "India",
+    eyeColor: "Brown",
+    tags: ["Colorful", "Display", "Bird"],
+    homePopulation: "Unknown",
+    lastActivity: new Date("2023-07-01"),
+  },
+  {
+    id: "8",
+    label: "Albatross",
+    species: "Albatross",
+    home: "Southern Ocean",
+    eyeColor: "Brown",
+    tags: ["Large", "Seabird", "Bird"],
+    homePopulation: "Unknown",
+    lastActivity: new Date("2023-08-01"),
+  },
+  {
+    id: "9",
+    label: "Puffin",
+    species: "Puffin",
+    home: "North Atlantic",
+    eyeColor: "Orange",
+    tags: ["Diving", "Seabird", "Bird"],
+    homePopulation: "Unknown",
+    lastActivity: new Date("2023-09-01"),
+  },
+  {
+    id: "10",
+    label: "Flamingo",
+    species: "Flamingo",
+    home: "Worldwide",
+    eyeColor: "Yellow",
+    tags: ["Wading", "Colorful", "Bird"],
+    homePopulation: "Unknown",
+    lastActivity: new Date("2023-10-01"),
+  },
+  {
+    id: "11",
+    label: "Toucan",
+    species: "Toucan",
+    home: "Central and South America",
+    eyeColor: "Brown",
+    tags: ["Colorful", "Large Beak", "Bird"],
+    homePopulation: "Unknown",
+    lastActivity: new Date("2023-11-01"),
+  },
+  {
+    id: "12",
+    label: "Penguin",
+    species: "Penguin",
+    home: "Antarctica",
+    eyeColor: "Brown",
+    tags: ["Flightless", "Swimmer", "Bird"],
+    homePopulation: "Unknown",
+    lastActivity: new Date("2023-12-01"),
+  },
+];
+
 const DataListStory = (args: {
   data?: unknown;
   title: string;
   headerVisibility?: { xs: boolean; md: boolean };
   loadingState?: "initial" | "filtering" | "loadingMore" | "none";
 }) => {
-  const { data, nextPage, loadingNextPage, loadingInitialContent } =
-    useCollectionQuery<ListQueryType>({
-      query: LIST_QUERY,
-      queryOptions: {
-        fetchPolicy: "network-only",
-        nextFetchPolicy: "cache-first",
-        client: apolloClient,
-      },
-
-      getCollectionByPath(items) {
-        return items?.allPeople;
-      },
-    });
-
-  const items = data?.allPeople.edges || [];
-  const totalCount = data?.allPeople.totalCount || null;
-  const mappedData = items.map(({ node }) => ({
+  const items = mockedData;
+  const totalCount = mockedData.length;
+  const mappedData = items.map(node => ({
     id: node.id,
-    label: node.name,
-    species: node.species?.name,
-    home: node.homeworld.name,
+    label: node.label,
+    species: node.species,
+    home: node.home,
     eyeColor: (
       <InlineLabel color={getColor(node.eyeColor)}>{node.eyeColor}</InlineLabel>
     ),
-    tags: uniq([
-      node.birthYear,
-      ...(node.hairColor?.split(", ") || []),
-      ...(node.skinColor?.split(", ") || []),
-      ...node.homeworld.climates,
-      ...node.homeworld.terrains,
-    ]),
-    homePopulation: node.homeworld.population?.toLocaleString(),
-    lastActivity: new Date(node.created),
+    tags: uniq(node.tags),
+    homePopulation: node.homePopulation,
+    lastActivity: node.lastActivity,
   }));
 
   const [selected, setSelected] = useState<DataListSelectedType<string>>();
@@ -110,7 +210,6 @@ const DataListStory = (args: {
         eyeColor: "Eye color",
         lastActivity: "Last activity",
       }}
-      onLoadMore={nextPage}
       selected={selected}
       onSelect={setSelected}
       onSelectAll={setSelected}
@@ -219,7 +318,7 @@ const DataListStory = (args: {
 
       <DataList.Search
         onSearch={search => console.log(search)}
-        placeholder="Search characters..."
+        placeholder="Search birds..."
       />
 
       <DataList.ItemActions onClick={handleActionClick}>
@@ -346,12 +445,9 @@ const DataListStory = (args: {
 
       <DataList.EmptyState
         type="empty"
-        message="Character list is looking empty"
+        message="Bird list is looking empty"
         action={
-          <Button
-            label="New character"
-            onClick={() => alert("Create a new character")}
-          />
+          <Button label="New bird" onClick={() => alert("Create a new bird")} />
         }
       />
 
@@ -394,9 +490,6 @@ const DataListStory = (args: {
   }
 
   function getLoadingState() {
-    if (loadingInitialContent) return "initial";
-    if (loadingNextPage) return "loadingMore";
-
     return args.loadingState;
   }
 };
@@ -404,7 +497,7 @@ const DataListStory = (args: {
 export const Basic: StoryObj<typeof DataList> = {
   render: () => (
     <DataListStory
-      title="All characters"
+      title="All birds"
       headerVisibility={{ xs: false, md: true }}
     />
   ),
@@ -458,84 +551,18 @@ export const ClearAllFilters: StoryFn<typeof DataList> = args => {
     });
   }
 
-  const LIST_QUERY1 = useMemo(
-    () => gql`
-      query ListQuery($cursor: String) {
-        allPeople(first: 10, after: $cursor) {
-          edges {
-            node {
-              created
-              id
-              name
-              eyeColor
-              hairColor
-              skinColor
-              birthYear
-              homeworld {
-                name
-                climates
-                id
-                population
-                terrains
-              }
-              species {
-                name
-                id
-              }
-            }
-            cursor
-          }
-          pageInfo {
-            hasNextPage
-            endCursor
-          }
-          totalCount
-        }
-      }
-    `,
-    [],
-  );
+  const items = mockedData;
+  const totalCount = mockedData.length;
 
-  const apolloClient1 = useMemo(
-    () =>
-      new ApolloClient({
-        uri: "https://swapi-graphql.netlify.app/graphql",
-        cache: new InMemoryCache(),
-      }),
-    [],
-  );
-
-  const { data } = useCollectionQuery<ListQueryType>({
-    query: LIST_QUERY1,
-    queryOptions: {
-      fetchPolicy: "network-only",
-      nextFetchPolicy: "cache-first",
-      client: apolloClient1,
-    },
-
-    getCollectionByPath(items) {
-      return items?.allPeople;
-    },
-  });
-
-  const items = data?.allPeople.edges || [];
-  const totalCount = data?.allPeople.totalCount || null;
-
-  const mappedData = items.map(({ node }) => ({
+  const mappedData = items.map(node => ({
     id: node.id,
-    label: node.name,
-    species: node.species?.name,
-    home: node.homeworld.name,
+    label: node.label,
+    species: node.species,
+    home: node.home,
     eyeColor: node.eyeColor,
-    tags: uniq([
-      node.birthYear,
-      ...(node.hairColor?.split(", ") || []),
-      ...(node.skinColor?.split(", ") || []),
-      ...node.homeworld.climates,
-      ...node.homeworld.terrains,
-    ]),
-    homePopulation: node.homeworld.population?.toLocaleString(),
-    lastActivity: new Date(node.created),
+    tags: uniq(node.tags),
+    homePopulation: node.homePopulation,
+    lastActivity: node.lastActivity,
   }));
 
   const homeFilters = [...new Set(mappedData.map(({ home }) => home))];
@@ -690,7 +717,7 @@ export const ClearAllFilters: StoryFn<typeof DataList> = args => {
 };
 
 ClearAllFilters.args = {
-  title: "All characters",
+  title: "All birds",
   headerVisibility: { xs: false, md: true },
   headers: {
     label: "Name",
@@ -706,8 +733,6 @@ ClearAllFilters.parameters = {
       hidden: false,
       extraImports: {
         lodash: ["uniq"],
-        "@apollo/client": ["gql", "ApolloClient", "InMemoryCache"],
-        "@jobber/hooks/useCollectionQuery": ["useCollectionQuery"],
       },
     },
   },
@@ -717,7 +742,7 @@ export const EmptyState: StoryObj<typeof DataList> = {
   render: () => (
     <DataListStory
       data={[]}
-      title="All characters"
+      title="All birds"
       headerVisibility={{ xs: false, md: true }}
     />
   ),
@@ -788,7 +813,7 @@ export const CustomRenderEmptyState: StoryFn<typeof DataList> = args => {
       </DataList.Layout>
       <DataList.EmptyState
         type="empty"
-        message="Character list is looking empty"
+        message="Bird list is looking empty"
         customRender={({
           message,
         }: Omit<DataListEmptyStateProps, "customRender">) => (
@@ -796,7 +821,7 @@ export const CustomRenderEmptyState: StoryFn<typeof DataList> = args => {
             <h3>{message}</h3>
             <Flex template={["grow", "shrink"]} direction="column">
               <Button
-                label="Create a new character"
+                label="Create a new bird"
                 onClick={() => alert("Create")}
               />
               <Button
@@ -813,7 +838,7 @@ export const CustomRenderEmptyState: StoryFn<typeof DataList> = args => {
 };
 
 CustomRenderEmptyState.args = {
-  title: "All characters",
+  title: "All birds",
   headerVisibility: { xs: false, md: true },
   headers: {
     label: "Name",
