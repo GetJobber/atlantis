@@ -1,5 +1,4 @@
 import React from "react";
-import { StyleProp, TextStyle } from "react-native";
 import {
   BaseWeight,
   LineHeight,
@@ -90,9 +89,11 @@ export interface TextProps
   readonly hideFromScreenReader?: boolean;
 
   /**
-   * Style override for text
+   * Allows for custom styling to be applied directly to the text component,
+   * bypassing the default styles. Use with caution, as it may lead to inconsistencies
+   * with the design system. It is recommended to use this prop only when absolutely
+   * necesssary and when the desired style cannot be achieved through existing props.
    */
-  // readonly styleOverride?: TextStyleOverride;
   readonly UNSAFE_style?: TypographyUnsafeStyle;
 }
 
@@ -150,12 +151,6 @@ export function Text({
   selectable,
 }: TextProps): JSX.Element {
   const accessibilityRole: TextAccessibilityRole = "text";
-
-  // let color: TextColor = variation;
-
-  // if (styleOverride?.color) {
-  //   color = styleOverride.color;
-  // }
 
   return (
     <Typography
