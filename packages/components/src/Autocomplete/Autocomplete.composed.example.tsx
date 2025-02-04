@@ -5,10 +5,10 @@ import { AutocompleteProps } from "./types";
 import { useAutoCompleteHandlers, useAutocomplete } from "./useAutoComplete";
 import { useAutoCompleteMenu } from "./useAutocompleteMenu";
 import { useRepositionMenu } from "./useRepositionMenu";
-import { AutocompleteMenu } from "./AutocompleteMenu";
 import { InputText, InputTextRef } from "../InputText";
+import { Box } from "../Box";
 
-function AutocompleteInternal(
+function AutocompleteComposedInternal(
   {
     initialOptions = [],
     value,
@@ -34,6 +34,7 @@ function AutocompleteInternal(
     setInputText,
     options,
   } = useAutocomplete({ initialOptions, value, debounce, getOptions });
+
   const {
     handleInputChange,
     handleInputFocus,
@@ -61,13 +62,12 @@ function AutocompleteInternal(
     targetWidth,
   } = useRepositionMenu(autocompleteRef);
 
-  const { mounted, highlightedIndex, isOptionSelected, isGroup } =
-    useAutoCompleteMenu({
-      visible: menuVisible,
-      menuRef,
-      options,
-      onOptionSelect: handleMenuChange,
-    });
+  const { mounted } = useAutoCompleteMenu({
+    visible: menuVisible,
+    menuRef,
+    options,
+    onOptionSelect: handleMenuChange,
+  });
 
   return (
     <div className={styles.autocomplete} ref={autocompleteRef}>
@@ -87,26 +87,17 @@ function AutocompleteInternal(
         options &&
         mounted.current &&
         createPortal(
-          <AutocompleteMenu
-            attachTo={autocompleteRef}
-            visible={menuVisible && options.length > 0}
-            options={options}
-            selectedOption={value}
-            onOptionSelect={handleMenuChange}
-            setMenuRef={setMenuRef}
-            attributes={attributes}
-            targetWidth={targetWidth}
-            popperStyles={popperStyles}
-            menuRef={menuRef}
-            addSeparators={true}
-            highlightedIndex={highlightedIndex}
-            isOptionSelected={isOptionSelected}
-            isGroup={isGroup}
-          />,
+          <div
+            ref={setMenuRef}
+            {...attributes.popper}
+            style={{ ...popperStyles.popper, width: targetWidth }}
+          >
+            <Box>CUSTOM MENU INTERNALS</Box>
+          </div>,
           document.body,
         )}
     </div>
   );
 }
 
-export const Autocomplete = forwardRef(AutocompleteInternal);
+export const Autocomplete = forwardRef(AutocompleteComposedInternal);
