@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.13.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.12.1...@jobber/components@6.13.0) (2025-02-04)
+
+
+### Features
+
+* **components:** Add InputDateRebuilt to better support react-hook-form ([#2302](https://github.com/GetJobber/atlantis/issues/2302)) ([9075ba6](https://github.com/GetJobber/atlantis/commit/9075ba688a3626069a010d576ce39aa887460a5f))
+
+
+
+
+
 ## [6.12.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.12.0...@jobber/components@6.12.1) (2025-02-03)
 
 **Note:** Version bump only for package @jobber/components
