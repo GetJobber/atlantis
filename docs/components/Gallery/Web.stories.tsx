@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Gallery } from "@jobber/components/Gallery";
+import { Gallery, GalleryFile } from "@jobber/components/Gallery";
 
 export default {
   title: "Components/Images and Icons/Gallery/Web",
@@ -15,7 +15,7 @@ const BasicTemplate: ComponentStory<typeof Gallery> = args => (
   <Gallery {...args} />
 );
 
-const files = [
+const files: GalleryFile[] = [
   {
     key: "abc",
     name: "myballisbigandroundIamrollingitontheground.png",
@@ -101,11 +101,10 @@ const files = [
 
 // This is just a bit of a smoke test to confirm that the Gallery component still
 // functions as expected when it receives a promise for the src.
-function convertFileSrcToPromises(fileToConvert) {
+function convertFileSrcToPromises(fileToConvert: GalleryFile[]) {
   return fileToConvert.map(file => ({
     ...file,
-    src: () =>
-      Promise.resolve(typeof file.src === "string" ? file.src : file.src()),
+    src: () => Promise.resolve(file.src),
   }));
 }
 

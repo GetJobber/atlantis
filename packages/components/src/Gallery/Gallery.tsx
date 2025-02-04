@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import styles from "./Gallery.module.css";
-import { File, GalleryProps } from "./GalleryTypes";
+import { GalleryFile, GalleryProps } from "./GalleryTypes";
 import { LightBox } from "../LightBox";
 import { FormatFile } from "../FormatFile";
 import { Button } from "../Button";
@@ -101,11 +101,11 @@ export function Gallery({ files, size = "base", max, onDelete }: GalleryProps) {
   }
 }
 
-async function getFileSrc(file: File) {
+async function getFileSrc(file: GalleryFile) {
   return typeof file.src === "string" ? file.src : file.src();
 }
 
-function isSupportedImageType(file: File) {
+function isSupportedImageType(file: GalleryFile) {
   const userAgent =
     typeof document === "undefined" ? "" : window.navigator.userAgent;
   const nonHeicImage = !file.type.startsWith("image/heic");
@@ -114,7 +114,7 @@ function isSupportedImageType(file: File) {
   return (nonHeicImage || isSafari(userAgent)) && nonSVGImage;
 }
 
-async function generateImagesArray(files: File[]) {
+async function generateImagesArray(files: GalleryFile[]) {
   const images = [];
   const filesToImageIndex = [];
   let imageIndex = 0;
