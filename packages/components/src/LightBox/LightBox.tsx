@@ -190,11 +190,11 @@ export function LightBox({
             <>
               <PreviousButton
                 onClick={debouncedHandlePrevious}
-                mouseIsStationary={mouseIsStationary}
+                hideButton={mouseIsStationary}
               />
               <NextButton
                 onClick={debouncedHandleNext}
-                mouseIsStationary={mouseIsStationary}
+                hideButton={mouseIsStationary}
               />
             </>
           )}
@@ -253,16 +253,16 @@ export function LightBox({
 }
 interface NavButtonProps {
   readonly onClick: () => void;
-  readonly mouseIsStationary: boolean;
+  readonly hideButton: boolean;
 }
 
-function PreviousButton({ onClick, mouseIsStationary }: NavButtonProps) {
+function PreviousButton({ onClick, hideButton }: NavButtonProps) {
   const { mediumAndUp } = useBreakpoints();
 
   return (
     <div
       className={`${styles.prev} ${
-        mouseIsStationary ? styles.buttonHidden : styles.buttonVisible
+        hideButton ? styles.buttonHidden : styles.buttonVisible
       }`}
     >
       <Button
@@ -277,13 +277,13 @@ function PreviousButton({ onClick, mouseIsStationary }: NavButtonProps) {
   );
 }
 
-function NextButton({ onClick, mouseIsStationary }: NavButtonProps) {
+function NextButton({ onClick, hideButton }: NavButtonProps) {
   const { mediumAndUp } = useBreakpoints();
 
   return (
     <div
       className={`${styles.next} ${
-        mouseIsStationary ? styles.buttonHidden : styles.buttonVisible
+        hideButton ? styles.buttonHidden : styles.buttonVisible
       }`}
     >
       <Button
