@@ -64,11 +64,16 @@ export interface InputPressableProps {
   /**
    * Symbol to display after the text input
    */
-  readonly suffix?: {
-    icon?: IconNames;
-    label?: string;
-    onPress?: () => void;
-  };
+  readonly suffix?:
+    | {
+        icon?: IconNames;
+        label?: string;
+      }
+    | {
+        icon: IconNames; // Required when onPress is present
+        label?: string;
+        onPress: () => void;
+      };
   /**
    * Add a clear action on the input that clears the value.
    *
