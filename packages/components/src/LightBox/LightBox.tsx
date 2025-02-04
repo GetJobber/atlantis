@@ -203,12 +203,15 @@ export function LightBox({
             </>
           )}
 
-          <div className={styles.captionWrapper}>
-            <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
-              <Heading level={4}>{images[currentImageIndex].title}</Heading>
-              <Text size="large">{images[currentImageIndex].caption}</Text>
-            </AtlantisThemeContextProvider>
-          </div>
+          {(images[currentImageIndex].title ||
+            images[currentImageIndex].caption) && (
+            <div className={styles.captionWrapper}>
+              <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
+                <Heading level={4}>{images[currentImageIndex].title}</Heading>
+                <Text size="large">{images[currentImageIndex].caption}</Text>
+              </AtlantisThemeContextProvider>
+            </div>
+          )}
         </div>
       )}
     </>
