@@ -104,7 +104,8 @@ const files: GalleryFile[] = [
 function convertFileSrcToPromises(fileToConvert: GalleryFile[]) {
   return fileToConvert.map(file => ({
     ...file,
-    src: () => Promise.resolve(file.src),
+    src: () =>
+      typeof file.src === "string" ? Promise.resolve(file.src) : file.src(),
   }));
 }
 
