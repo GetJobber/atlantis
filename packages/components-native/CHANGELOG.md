@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.75.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.75.2...@jobber/components-native@0.75.3) (2025-02-04)
+
+
+### Bug Fixes
+
+* **components-native:** Add missing onPress prop type to InputPressable suffix (it's already accepted) ([#2349](https://github.com/GetJobber/atlantis/issues/2349)) ([606971b](https://github.com/GetJobber/atlantis/commit/606971b50c05be8f33214bef94c49f6fccd410a9))
+
+
+
+
+
 ## [0.75.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.75.1...@jobber/components-native@0.75.2) (2024-11-29)
 
 
