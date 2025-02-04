@@ -19,6 +19,7 @@
   overflow: auto;
   background-color: var(--color-surface);
   scroll-behavior: smooth;
+  opacity: 0;
 }
 
 .options .heading {
@@ -27,12 +28,13 @@
 }
 
 .options.visible {
-  position: absolute;
   visibility: visible;
+  opacity: 1;
 }
 
 .options.visible:empty {
   visibility: hidden;
+  opacity: 0;
 }
 
 .option {
