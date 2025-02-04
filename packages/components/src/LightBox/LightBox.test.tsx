@@ -12,7 +12,7 @@ describe("LightBox", () => {
   beforeEach(() => {
     setViewportWidth(BREAKPOINT_SIZES.lg);
   });
-  test("Lightbox opens and shows the image", () => {
+  test("opens and shows the image", () => {
     const title = "Dis be a title";
     const caption = "Dis be a caption 🎉";
     const handleClose = jest.fn();
@@ -35,7 +35,7 @@ describe("LightBox", () => {
     expect(queryByText(caption)).toBeInstanceOf(HTMLElement);
   });
 
-  test("lightbox doesn't show up", () => {
+  test("doesn't display when the open prop is false", () => {
     const title = "Dis be a title";
     const caption = "Dis be a caption 🎉";
     const handleClose = jest.fn();
@@ -58,7 +58,7 @@ describe("LightBox", () => {
     expect(queryByText(caption)).toBeNull();
   });
 
-  test("lightbox closes when user clicks close", () => {
+  test("closes when user clicks close", () => {
     const title = "Dis be a title";
     const caption = "Dis be a caption 🎉";
 
@@ -86,7 +86,7 @@ describe("LightBox", () => {
     fireEvent.click(getByLabelText("Close"));
   });
 
-  test("Lightbox displays the selected imageIndex", () => {
+  test("displays the image title of the selected imageIndex", () => {
     const title = "Dis be a title";
     const caption = "Dis be a caption 🎉";
     const titleTwo = "FirstOne";
@@ -114,7 +114,7 @@ describe("LightBox", () => {
       />,
     );
 
-    expect(queryByText(titleTwo)).toBeInstanceOf(HTMLElement);
+    expect(queryByText(titleTwo)).toBeInTheDocument();
     expect(queryByText(title)).toBeNull();
   });
 

@@ -261,7 +261,6 @@ function PreviousButton({ onClick, mouseIsStationary }: NavButtonProps) {
 
   return (
     <div
-      data-testid="prev-button-wrapper"
       className={`${styles.prev} ${
         mouseIsStationary ? styles.buttonHidden : styles.buttonVisible
       }`}
