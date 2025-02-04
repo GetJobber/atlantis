@@ -11,7 +11,6 @@ declare const styles: {
   readonly "image": string;
   readonly "imageArea": string;
   readonly "captionWrapper": string;
-  readonly "caption": string;
   readonly "blurOverlay": string;
 };
 export = styles;

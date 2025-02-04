@@ -28,8 +28,9 @@
 .next,
 .prev {
   position: absolute;
-  top: 43%;
+  top: 50%;
   z-index: var(--elevation-menu);
+  transform: translateY(-50%);
 }
 
 .next {
@@ -122,14 +123,6 @@
   text-align: center;
   flex-direction: column;
   gap: var(--space-small);
-}
-
-.caption {
-  min-height: calc(21.438px * 3);
-  text-align: left;
-  @media (--medium-screens-and-up) {
-    min-height: calc(21.438px * 2);
-  }
 }
 
 .blurOverlay {

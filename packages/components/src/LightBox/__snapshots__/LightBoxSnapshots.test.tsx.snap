@@ -77,15 +77,11 @@ exports[`Images renders an image 1`] = `
         >
           Dis be a title
         </h4>
-        <div
-          class="caption"
+        <p
+          class="base regular large text"
         >
-          <p
-            class="base regular large text"
-          >
-            Dis be a caption 🎉
-          </p>
-        </div>
+          Dis be a caption 🎉
+        </p>
       </div>
     </div>
   </div>
