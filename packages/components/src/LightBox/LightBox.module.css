@@ -29,7 +29,7 @@
 .prev {
   position: absolute;
   top: 43%;
-  z-index: calc(var(--elevation-base) + 1);
+  z-index: var(--elevation-menu);
 }
 
 .next {
@@ -50,7 +50,8 @@
   opacity: 0;
   transition: opacity var(--timing-base) ease-in;
 
-  &:hover {
+  &:hover,
+  &:focus-within {
     opacity: 1;
   }
 }
@@ -124,7 +125,9 @@
 }
 
 .caption {
+  max-height: 100px;
   min-height: calc(21.438px * 3);
+  overflow: auto;
   text-align: left;
   @media (--medium-screens-and-up) {
     min-height: calc(21.438px * 2);
