@@ -154,7 +154,7 @@ export interface CommonFormFieldProps {
    * Experimental:
    * Determine which version of the FormField to use.
    * Right now this isn't used but it will be used in the future
-   * to allow us to release new versions of our form inputs without breaking existing functionality
+   * to allow us to release new versions of our form inputs without breaking existing functionality.
    */
   version?: 1;
 }
