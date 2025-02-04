@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.14.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.13.2...@jobber/components@6.14.0) (2025-02-04)
+
+
+### Features
+
+* **components:** Allow Gallery to take a promise source [JOB-113953] ([#2351](https://github.com/GetJobber/atlantis/issues/2351)) ([1bdffa6](https://github.com/GetJobber/atlantis/commit/1bdffa6cdd0fb258ad37089ca5f4e00a21c44602))
+
+
+
+
+
 ## [6.13.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.13.0...@jobber/components@6.13.2) (2025-02-04)
 
 **Note:** Version bump only for package @jobber/components
