@@ -29,7 +29,6 @@
 .prev {
   position: absolute;
   top: 50%;
-  z-index: var(--elevation-menu);
   transform: translateY(-50%);
 }
 
