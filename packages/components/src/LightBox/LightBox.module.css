@@ -119,9 +119,12 @@
   display: flex;
   z-index: var(--elevation-base);
   max-width: 600px;
+  max-height: 90px;
   margin: 0 auto var(--space-larger);
+  overflow-y: auto;
   text-align: center;
   flex-direction: column;
+  flex-shrink: 0;
   gap: var(--space-small);
 }
 
