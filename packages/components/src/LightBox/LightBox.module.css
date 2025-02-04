@@ -125,9 +125,7 @@
 }
 
 .caption {
-  max-height: 100px;
   min-height: calc(21.438px * 3);
-  overflow: auto;
   text-align: left;
   @media (--medium-screens-and-up) {
     min-height: calc(21.438px * 2);
