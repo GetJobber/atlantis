@@ -6,6 +6,8 @@ declare const styles: {
   readonly "buttonVisible": string;
   readonly "lightboxWrapper": string;
   readonly "toolbar": string;
+  readonly "closeButton": string;
+  readonly "slideNumber": string;
   readonly "image": string;
   readonly "imageArea": string;
   readonly "captionWrapper": string;

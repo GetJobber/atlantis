@@ -86,12 +86,12 @@
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-.toolbar button {
+.closeButton {
   grid-column: 3;
   justify-self: end;
 }
 
-.toolbar p {
+.slideNumber {
   grid-column: 2;
   justify-self: center;
 }

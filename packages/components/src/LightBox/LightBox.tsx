@@ -161,8 +161,12 @@ export function LightBox({
 
           <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
             <div className={styles.toolbar}>
-              <Text>{`${currentImageIndex + 1}/${images.length}`}</Text>
-              <ButtonDismiss ariaLabel="Close" onClick={handleRequestClose} />
+              <div className={styles.slideNumber}>
+                <Text>{`${currentImageIndex + 1}/${images.length}`}</Text>
+              </div>
+              <div className={styles.closeButton}>
+                <ButtonDismiss ariaLabel="Close" onClick={handleRequestClose} />
+              </div>
             </div>
           </AtlantisThemeContextProvider>
 
