@@ -120,7 +120,6 @@
   margin: 0 auto var(--space-larger);
   text-align: center;
   flex-direction: column;
-  align-items: center;
   gap: var(--space-small);
 }
 
