@@ -105,14 +105,11 @@
 
 .imageArea {
   position: relative;
-  width: 100%;
   height: 100%;
-  margin: auto;
+  max-width: 100%;
   margin-bottom: var(--space-large);
   @media (--medium-screens-and-up) {
-    width: calc(
-      100% - (2 * var(--space-largest) + 2 * var(--space-base))
-    ); /* nav buttons width + inner padding */
+    margin: 0 calc(var(--space-largest) + var(--space-base)) var(--space-large);
   }
 }
 
