@@ -110,6 +110,12 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
           })}
         </MenuList>
       </div>
+      <a
+        href="https://atlantis.getjobber.com/storybook/?path=/docs/introduction--docs"
+        className={styles.navFooterLink}
+      >
+        View in Storybook
+      </a>
     </nav>
   );
 };

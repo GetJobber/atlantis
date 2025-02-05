@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { InputPressable } from "@jobber/components-native";
 
-export default {
+const meta: Meta<typeof InputPressable> = {
   title: "Components/Forms and Inputs/InputPressable/Mobile",
   component: InputPressable,
   parameters: {
@@ -10,7 +11,10 @@ export default {
     previewTabs: { code: { hidden: false } },
     viewport: { defaultViewport: "mobile1" },
   },
-} as ComponentMeta<typeof InputPressable>;
+};
+
+export default meta;
+type Story = StoryObj<typeof InputPressable>;
 
 const BasicTemplate: ComponentStory<typeof InputPressable> = args => (
   <InputPressable {...args} />
@@ -39,6 +43,17 @@ PrefixOrSuffix.args = {
   value: "2021-01-01",
   prefix: { icon: "calendar" },
   onPress: () => alert("📅"),
+};
+
+export const ClickableSuffix: Story = {
+  render: () => (
+    <InputPressable
+      placeholder="Placeholder"
+      value="input value"
+      onPress={() => alert("👍")}
+      suffix={{ icon: "dropdown", onPress: () => alert("👍") }}
+    />
+  ),
 };
 
 export const Disabled = BasicTemplate.bind({});

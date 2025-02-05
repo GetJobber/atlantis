@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/GetJobber/atlantis/compare/@jobber/formatters@0.3.0...@jobber/formatters@0.4.0) (2025-02-04)
+
+
+### Features
+
+* **design:** BREAKING CHANGE: Complete rebuild of the design token package ([#1965](https://github.com/GetJobber/atlantis/issues/1965)) ([b749502](https://github.com/GetJobber/atlantis/commit/b749502e347a4e14a1c5fcfdbc3114f54bb616f1))
+
+
+
+
+
 # [0.3.0](https://github.com/GetJobber/atlantis/compare/@jobber/formatters@0.2.2...@jobber/formatters@0.3.0) (2024-04-11)
 
 

@@ -54,6 +54,11 @@ export interface Suffix extends BaseSuffix {
  */
 export interface CommonFormFieldProps {
   /**
+   * A unique identifier for the input.
+   */
+  readonly id?: string;
+
+  /**
    * Determines the alignment of the text inside the input.
    */
   readonly align?: "center" | "right";
@@ -67,6 +72,15 @@ export interface CommonFormFieldProps {
    * Disable the input
    */
   readonly disabled?: boolean;
+
+  /**
+   * Controls the visibility of the mini label that appears inside the input
+   * when a value is entered. By default, the placeholder text moves up to
+   * become a mini label. Set to false to disable this behavior.
+   *
+   * @default true
+   */
+  readonly showMiniLabel?: boolean;
 
   /**
    * Highlights the field red to indicate an error.
@@ -110,7 +124,10 @@ export interface CommonFormFieldProps {
   onValidation?(message: string): void;
 
   /**
-   * Hint text that goes above the value once the form is filled out.
+   * Text that appears inside the input when empty and floats above the value
+   * as a mini label once the user enters a value.
+   * When showMiniLabel is false, this text only serves as a standard placeholder and
+   * disappears when the user types.
    */
   readonly placeholder?: string;
 
@@ -137,7 +154,7 @@ export interface CommonFormFieldProps {
    * Experimental:
    * Determine which version of the FormField to use.
    * Right now this isn't used but it will be used in the future
-   * to allow us to release new versions of our form inputs without breaking existing functionality
+   * to allow us to release new versions of our form inputs without breaking existing functionality.
    */
   version?: 1;
 }
