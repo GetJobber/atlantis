@@ -84,6 +84,19 @@ exports[`Images renders an image 1`] = `
         </p>
       </div>
     </div>
+    <div
+      class="thumbnailBar"
+    >
+      <div
+        class="thumbnail selected"
+      >
+        <img
+          alt="Dis be a title"
+          class="thumbnailImage"
+          src="https://i.imgur.com/6Jcfgnp.jpg"
+        />
+      </div>
+    </div>
   </div>
 </div>
 `;
