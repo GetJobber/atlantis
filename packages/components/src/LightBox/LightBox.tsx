@@ -225,6 +225,11 @@ export function LightBox({
                   index === currentImageIndex ? styles.selected : ""
                 }`}
                 onClick={() => {
+                  if (index < currentImageIndex) {
+                    setDirection(-1);
+                  } else {
+                    setDirection(1);
+                  }
                   setCurrentImageIndex(index);
                 }}
               >
