@@ -107,11 +107,7 @@ export function Popover({
     </div>
   );
 
-  return <>{open && <PopoverPortal>{popoverContent}</PopoverPortal>}</>;
-}
-
-function PopoverPortal({ children }: { children: React.ReactNode }) {
-  return ReactDOM.createPortal(children, document.body);
+  return <>{open && ReactDOM.createPortal(popoverContent, document.body)}</>;
 }
 
 function buildModifiers(arrowElement: HTMLElement | undefined | null) {
