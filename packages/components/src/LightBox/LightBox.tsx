@@ -147,8 +147,8 @@ export function LightBox({
           onMouseMove={() => {
             if (mouseIsStationary) {
               setMouseIsStationary(false);
-              handleMouseMovement();
             }
+            handleMouseMovement();
           }}
         >
           <div
