@@ -216,6 +216,34 @@ export function LightBox({
               </AtlantisThemeContextProvider>
             </div>
           )}
+
+          {images.length > 1 && (
+            <div className={styles.thumbnailBar}>
+              {images.map((image, index) => (
+                <div
+                  key={index}
+                  className={`${styles.thumbnail} ${
+                    index === currentImageIndex ? styles.selected : ""
+                  }`}
+                  onClick={() => {
+                    if (index < currentImageIndex) {
+                      setDirection(-1);
+                    } else {
+                      setDirection(1);
+                    }
+                    setCurrentImageIndex(index);
+                  }}
+                >
+                  <img
+                    key={index}
+                    src={image.url}
+                    alt={image.title}
+                    className={styles.thumbnailImage}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </>

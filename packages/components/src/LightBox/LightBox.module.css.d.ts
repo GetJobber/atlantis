@@ -12,6 +12,10 @@ declare const styles: {
   readonly "imageArea": string;
   readonly "captionWrapper": string;
   readonly "blurOverlay": string;
+  readonly "thumbnailBar": string;
+  readonly "thumbnailImage": string;
+  readonly "thumbnail": string;
+  readonly "selected": string;
 };
 export = styles;
 
