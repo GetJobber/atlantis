@@ -134,3 +134,58 @@
   backdrop-filter: blur(30px);
   background-color: rgba(3, 43, 58, 0.25);
 }
+
+.thumbnailBar {
+  display: flex;
+  position: relative;
+  z-index: var(--elevation-base);
+  width: 100%;
+  min-width: 0;
+  min-height: 80px; /*why is this needed? */
+  padding-bottom: var(--space-base);
+  overflow-x: scroll;
+  justify-content: safe center;
+  align-items: center;
+  gap: var(--space-small);
+}
+
+.thumbnailImage {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-small);
+  /* background-color: white; */
+  opacity: 0.8;
+  object-fit: cover;
+}
+
+.thumbnail {
+  display: flex;
+  width: 64px;
+  height: 64px;
+  box-sizing: border-box;
+  border-radius: var(--radius-small);
+  align-items: center;
+  justify-content: center;
+  /* background-color: white; */
+  flex-shrink: 0;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.selected {
+  width: 80px;
+  height: 80px;
+  margin-left: 4px;
+  margin-right: 4px;
+  padding: 2px;
+  border: 2px solid var(--color-text--reverse);
+  /* background-color: ; */
+
+  .thumbnailImage {
+    width: 72px;
+    height: 72px;
+    opacity: 1;
+  }
+}
