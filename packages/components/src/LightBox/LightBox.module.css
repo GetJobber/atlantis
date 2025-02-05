@@ -166,7 +166,9 @@
   border-radius: var(--radius-small);
   align-items: center;
   justify-content: center;
-
+  transition:
+    border var(--timing-slow) ease-in,
+    margin var(--timing-base) ease-in-out;
   /* background-color: white; */
   flex-shrink: 0;
 
@@ -186,8 +188,12 @@
   /* background-color: ; */
 
   .thumbnailImage {
-    width: 72px;
-    height: 72px;
+    /* width: 72px;
+    height: 72px; */
     opacity: 1;
+    transform: scale(1.125);
+    transition:
+      transform var(--timing-quick) ease-in-out,
+      opacity var(--timing-base) linear;
   }
 }
