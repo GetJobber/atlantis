@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.15.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.14.0...@jobber/components@6.15.0) (2025-02-05)
+
+
+### Features
+
+* **components:** Autocomplete Custom Menu Rendering ([#2229](https://github.com/GetJobber/atlantis/issues/2229)) ([262a1df](https://github.com/GetJobber/atlantis/commit/262a1dfb16cc1d2b7b506276c7032ba3dbf1f09e))
+
+
+
+
+
+# [6.14.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.13.2...@jobber/components@6.14.0) (2025-02-04)
+
+
+### Features
+
+* **components:** Allow Gallery to take a promise source [JOB-113953] ([#2351](https://github.com/GetJobber/atlantis/issues/2351)) ([1bdffa6](https://github.com/GetJobber/atlantis/commit/1bdffa6cdd0fb258ad37089ca5f4e00a21c44602))
+
+
+
+
+
+## [6.13.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.13.0...@jobber/components@6.13.2) (2025-02-04)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [6.13.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.12.1...@jobber/components@6.13.0) (2025-02-04)
+
+
+### Features
+
+* **components:** Add InputDateRebuilt to better support react-hook-form ([#2302](https://github.com/GetJobber/atlantis/issues/2302)) ([9075ba6](https://github.com/GetJobber/atlantis/commit/9075ba688a3626069a010d576ce39aa887460a5f))
+
+
+
+
+
+## [6.12.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.12.0...@jobber/components@6.12.1) (2025-02-03)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [6.12.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.11.8...@jobber/components@6.12.0) (2025-02-03)
+
+
+### Features
+
+* **components:** Allow for external label [JOB-113378] ([#2333](https://github.com/GetJobber/atlantis/issues/2333)) ([1435e97](https://github.com/GetJobber/atlantis/commit/1435e973a5b5865af3b903bdd05c7f6ee458f4be))
+
+
+
+
+
 ## [6.11.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.11.7...@jobber/components@6.11.8) (2025-01-27)
 
 
