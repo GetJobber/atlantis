@@ -77,6 +77,7 @@ export function Popover({
     },
   );
   useRefocusOnActivator(open);
+
   const popoverClassNames = classnames(
     classes.popover,
     UNSAFE_className.container,
