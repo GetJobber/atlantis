@@ -80,7 +80,7 @@ const variants = {
 };
 
 const imageTransition = {
-  x: { type: "spring", stiffness: 300, damping: 30 },
+  x: { duration: 0.65, ease: [0.42, 0, 0, 1.03] },
   opacity: { duration: 0.2 },
 };
 
