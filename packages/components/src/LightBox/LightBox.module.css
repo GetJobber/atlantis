@@ -28,9 +28,8 @@
 .next,
 .prev {
   position: absolute;
-  top: 50%;
+  top: 40%;
   z-index: var(--elevation-base);
-  transform: translateY(-50%);
 }
 
 .next {
@@ -152,7 +151,9 @@
 .thumbnailImage {
   width: 64px;
   height: 64px;
+  /* border: 2px solid transparent !important; ensure no default border shows */
   border-radius: var(--radius-small);
+  outline: none;
   /* background-color: white; */
   opacity: 0.8;
   object-fit: cover;
@@ -163,9 +164,11 @@
   width: 64px;
   height: 64px;
   box-sizing: border-box;
+  border: 2px solid transparent;
   border-radius: var(--radius-small);
   align-items: center;
   justify-content: center;
+
   /* background-color: white; */
   flex-shrink: 0;
 
@@ -181,11 +184,18 @@
   margin-right: 4px;
   padding: 2px;
   border: 2px solid var(--color-text--reverse);
+  transition:
+    border var(--timing-slow) ease-in,
+    margin var(--timing-base) ease-in-out;
   /* background-color: ; */
 
   .thumbnailImage {
-    width: 72px;
-    height: 72px;
+    /* width: 72px;
+    height: 72px; */
     opacity: 1;
+    transform: scale(1.125);
+    transition:
+      transform var(--timing-base) ease-in-out,
+      opacity var(--timing-base) linear;
   }
 }
