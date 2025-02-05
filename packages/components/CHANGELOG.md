@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.16.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.15.0...@jobber/components@6.16.0) (2025-02-05)
+
+
+### Features
+
+* **components:** Enhance image lightbox layout and background ([#2337](https://github.com/GetJobber/atlantis/issues/2337)) ([203dcfa](https://github.com/GetJobber/atlantis/commit/203dcfad9e22488e6faafc992c460612276f0de3))
+
+
+
+
+
 # [6.15.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.14.0...@jobber/components@6.15.0) (2025-02-05)
 
 
