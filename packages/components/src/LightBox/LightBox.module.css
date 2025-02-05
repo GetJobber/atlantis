@@ -140,36 +140,35 @@
   position: relative;
   z-index: var(--elevation-base);
   width: 100%;
-  min-width: 0;
-  min-height: 80px; /*why is this needed? */
+  min-height: 100px; /* shouldnt need this ? */
   padding-bottom: var(--space-base);
   overflow-x: scroll;
   justify-content: safe center;
   align-items: center;
   gap: var(--space-small);
+  flex-shrink: 0;
 }
 
 .thumbnailImage {
-  width: 64px;
-  height: 64px;
+  width: 100%;
+  height: 100%;
   border-radius: var(--radius-small);
   opacity: 0.8;
   object-fit: cover;
 }
 
 .thumbnail {
-  display: flex;
   width: 64px;
   height: 64px;
-  box-sizing: border-box;
-  border: 2px solid transparent;
+  box-shadow: none;
+  padding: 0;
+  border: none;
   border-radius: var(--radius-small);
-  align-items: center;
-  justify-content: center;
+  background-color: var(--color-text--reverse);
   transition:
-    border var(--timing-slow) ease-in,
-    margin var(--timing-base) ease-in-out;
-  /* background-color: white; */
+    border var(--timing-base) ease-in,
+    margin var(--timing-base) ease-in-out,
+    transform var(--timing-quick) ease-in-out;
   flex-shrink: 0;
 
   &:hover {
@@ -177,23 +176,17 @@
   }
 }
 
-.selected {
+.thumbnail.selected {
   width: 80px;
   height: 80px;
   margin-left: 4px;
   margin-right: 4px;
   padding: 2px;
   border: 2px solid var(--color-text--reverse);
-
-  /* background-color: ; */
+  background-color: transparent;
 
   .thumbnailImage {
-    /* width: 72px;
-    height: 72px; */
     opacity: 1;
-    transform: scale(1.125);
-    transition:
-      transform var(--timing-quick) ease-in-out,
-      opacity var(--timing-base) linear;
+    transition: opacity var(--timing-base) linear;
   }
 }
