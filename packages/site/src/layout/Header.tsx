@@ -10,13 +10,12 @@ export const Header = ({ onOpenTriton }: HeaderProps) => {
   return (
     <div
       style={{
-        width: "calc(100% - var(--sideBarWidth) - (2 * var(--space-small)))",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
         padding: "var(--space-small)",
         borderLeft: "var(--border-base) solid var(--color-border)",
-        borderRight: "var(--border-base) solid var(--color-border)",
+        borderBottom: "var(--border-base) solid var(--color-border)",
       }}
     >
       <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
