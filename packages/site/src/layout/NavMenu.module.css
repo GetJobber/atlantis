@@ -5,7 +5,7 @@
   --navItemHeight: 40px;
   display: flex;
   flex-direction: column;
-  padding: 36px 0 0 0;
+  padding: 20px 0 0 0;
   height: 100dvh;
   min-width: var(--sideBarWidth);
   box-sizing: border-box;
