@@ -138,7 +138,8 @@
   z-index: var(--elevation-base);
   width: 100%;
   min-height: 100px; /* shouldnt need this ? */
-  padding-bottom: var(--space-base);
+  margin-bottom: var(--space-small);
+  padding-bottom: var(--space-smaller);
   overflow-x: scroll;
   justify-content: safe center;
   align-items: center;
@@ -170,14 +171,6 @@
   }
 }
 
-.thumbnail:first-child {
-  margin-left: var(--space-base);
-}
-
-.thumbnail:last-child {
-  margin-right: var(--space-base);
-}
-
 .thumbnail.selected {
   margin: 0 var(--space-smaller);
   padding: var(--space-smallest);
@@ -189,4 +182,14 @@
     opacity: 1;
     transition: opacity var(--timing-base) linear;
   }
+}
+
+.thumbnail:first-child,
+.thumbnail.selected:first-child {
+  margin-left: var(--space-base);
+}
+
+.thumbnail:last-child,
+.thumbnail.selected:last-child {
+  margin-right: var(--space-base);
 }
