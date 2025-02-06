@@ -162,7 +162,6 @@
   background-color: var(--color-text--reverse);
   transition:
     border var(--timing-base) ease-in,
-    margin var(--timing-base) ease-in-out,
     transform var(--timing-quick) ease-in-out;
   flex-shrink: 0;
 

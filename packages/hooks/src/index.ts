@@ -1,4 +1,3 @@
-// Export all hooks
 export * from "./useAssert";
 export * from "./useBool";
 export * from "./useBreakpoints";

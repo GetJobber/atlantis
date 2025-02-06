@@ -240,7 +240,7 @@ describe("LightBox", () => {
       expect(screen.queryByTestId("thumbnail-bar")).not.toBeInTheDocument();
     });
 
-    test("displays the selected image thumbnail caption when clicked", () => {
+    test("displays the selected image thumbnail caption when imageclicked", () => {
       const handleClose = jest.fn();
       const destinationImageTitle = "title of destination image";
       const destinationImageCaption = "caption of destination image";
