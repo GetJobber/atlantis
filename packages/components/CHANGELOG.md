@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.17.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.17.0...@jobber/components@6.17.1) (2025-02-06)
+
+
+### Bug Fixes
+
+* **components:** Put Popover inside a portal  ([#2360](https://github.com/GetJobber/atlantis/issues/2360)) ([4798047](https://github.com/GetJobber/atlantis/commit/479804745c744dc9e98cca4d025fb6ef66193709))
+
+
+
+
+
 # [6.17.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.16.0...@jobber/components@6.17.0) (2025-02-06)
 
 
