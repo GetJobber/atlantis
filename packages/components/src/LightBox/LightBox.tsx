@@ -2,14 +2,18 @@
 import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, PanInfo, motion } from "framer-motion";
 import ReactDOM from "react-dom";
-import debounce from "lodash/debounce";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
+import { useBreakpoints } from "@jobber/hooks/useBreakpoints";
 import styles from "./LightBox.module.css";
+import { useDebounce } from "../utils/useDebounce";
 import { ButtonDismiss } from "../ButtonDismiss";
+import { Text } from "../Text";
 import { Button } from "../Button";
+import { Heading } from "../Heading";
+import { AtlantisThemeContextProvider } from "../AtlantisThemeContext";
 
 interface PresentedImage {
   title?: string;
@@ -83,7 +87,8 @@ const imageTransition = {
 // A little bit more than the transition's duration
 // We're doing this to prevent a bug from framer-motion
 // https://github.com/framer/motion/issues/1769
-const debounceDuration = 250;
+const BUTTON_DEBOUNCE_DELAY = 250;
+const MOVEMENT_DEBOUNCE_DELAY = 1000;
 
 export function LightBox({
   open,
@@ -93,16 +98,23 @@ export function LightBox({
 }: LightBoxProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(imageIndex);
   const [direction, setDirection] = useState(0);
+  const [mouseIsStationary, setMouseIsStationary] = useState(true);
   const lightboxRef = useFocusTrap<HTMLDivElement>(open);
-  const debouncedHandleNext = debounce(handleMoveNext, debounceDuration);
-  const debouncedHandlePrevious = debounce(
+  const debouncedHandleNext = useDebounce(
+    handleMoveNext,
+    BUTTON_DEBOUNCE_DELAY,
+  );
+  const debouncedHandlePrevious = useDebounce(
     handleMovePrevious,
-    debounceDuration,
+    BUTTON_DEBOUNCE_DELAY,
   );
   const mounted = useIsMounted();
   const prevOpen = useRef(open);
-
   useRefocusOnActivator(open);
+
+  const handleMouseMovement = useDebounce(() => {
+    setMouseIsStationary(true);
+  }, MOVEMENT_DEBOUNCE_DELAY);
 
   useOnKeyDown(handleRequestClose, "Escape");
 
@@ -132,14 +144,33 @@ export function LightBox({
           aria-label="Lightbox"
           key="Lightbox"
           ref={lightboxRef}
+          onMouseMove={() => {
+            if (mouseIsStationary) {
+              setMouseIsStationary(false);
+            }
+            handleMouseMovement();
+          }}
         >
-          <div className={styles.toolbar}>
-            <span className={styles.title}>
-              {images[currentImageIndex].title}
-            </span>
-            <ButtonDismiss ariaLabel="Close" onClick={handleRequestClose} />
-          </div>
-          <div className={styles.imagesWrapper}>
+          <div
+            className={styles.backgroundImage}
+            style={{
+              backgroundImage: `url("${images[currentImageIndex].url}")`,
+            }}
+          />
+          <div className={styles.blurOverlay} onClick={handleRequestClose} />
+
+          <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
+            <div className={styles.toolbar}>
+              <div className={styles.slideNumber}>
+                <Text>{`${currentImageIndex + 1}/${images.length}`}</Text>
+              </div>
+              <div className={styles.closeButton}>
+                <ButtonDismiss ariaLabel="Close" onClick={handleRequestClose} />
+              </div>
+            </div>
+          </AtlantisThemeContextProvider>
+
+          <div className={styles.imageArea}>
             <AnimatePresence initial={false}>
               <motion.img
                 key={currentImageIndex}
@@ -147,7 +178,6 @@ export function LightBox({
                 src={images[currentImageIndex].url}
                 custom={direction}
                 className={styles.image}
-                style={{ y: "-50%" }}
                 initial="enter"
                 animate="center"
                 exit="exit"
@@ -162,15 +192,30 @@ export function LightBox({
 
           {images.length > 1 && (
             <>
-              <PreviousButton onClick={debouncedHandlePrevious} />
-              <NextButton onClick={debouncedHandleNext} />
+              <PreviousButton
+                onClick={debouncedHandlePrevious}
+                hideButton={mouseIsStationary}
+              />
+              <NextButton
+                onClick={debouncedHandleNext}
+                hideButton={mouseIsStationary}
+              />
             </>
           )}
 
-          <div className={styles.toolbar}>
-            {images[currentImageIndex].caption}
-          </div>
-          <div className={styles.overlay} onClick={handleRequestClose} />
+          {(images[currentImageIndex].title ||
+            images[currentImageIndex].caption) && (
+            <div className={styles.captionWrapper}>
+              <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
+                {images[currentImageIndex].title && (
+                  <Heading level={4}>{images[currentImageIndex].title}</Heading>
+                )}
+                {images[currentImageIndex].caption && (
+                  <Text size="large">{images[currentImageIndex].caption}</Text>
+                )}
+              </AtlantisThemeContextProvider>
+            </div>
+          )}
         </div>
       )}
     </>
@@ -209,16 +254,22 @@ export function LightBox({
     }
   }
 }
-
 interface NavButtonProps {
   readonly onClick: () => void;
+  readonly hideButton: boolean;
 }
 
-function PreviousButton({ onClick }: NavButtonProps) {
+function PreviousButton({ onClick, hideButton }: NavButtonProps) {
+  const { mediumAndUp } = useBreakpoints();
+
   return (
-    <div className={styles.prev}>
+    <div
+      className={`${styles.prev} ${
+        hideButton ? styles.buttonHidden : styles.buttonVisible
+      }`}
+    >
       <Button
-        size="large"
+        size={mediumAndUp ? "large" : "small"}
         variation="subtle"
         type="secondary"
         icon="arrowLeft"
@@ -229,11 +280,17 @@ function PreviousButton({ onClick }: NavButtonProps) {
   );
 }
 
-function NextButton({ onClick }: NavButtonProps) {
+function NextButton({ onClick, hideButton }: NavButtonProps) {
+  const { mediumAndUp } = useBreakpoints();
+
   return (
-    <div className={styles.next}>
+    <div
+      className={`${styles.next} ${
+        hideButton ? styles.buttonHidden : styles.buttonVisible
+      }`}
+    >
       <Button
-        size="large"
+        size={mediumAndUp ? "large" : "small"}
         variation="subtle"
         type="secondary"
         icon="arrowRight"

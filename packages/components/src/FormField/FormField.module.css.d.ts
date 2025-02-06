@@ -20,6 +20,7 @@ declare const styles: {
   readonly "input": string;
   readonly "label": string;
   readonly "select": string;
+  readonly "externalLabel": string;
   readonly "postfix": string;
   readonly "affixIcon": string;
   readonly "suffix": string;

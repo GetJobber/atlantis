@@ -109,7 +109,7 @@ export interface DataListProps<T extends DataListObject> {
   /**
    * Total number of items in the DataList.
    *
-   * This renders an "N result" text with the DataList
+   * This renders an "N results" text with the DataList
    * that helps users know how many items they have
    * in the list
    */

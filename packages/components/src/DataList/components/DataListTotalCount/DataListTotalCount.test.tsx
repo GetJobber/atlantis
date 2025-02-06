@@ -12,6 +12,11 @@ describe("DataListTotalCount", () => {
     expect(screen.getByText("(10 results)")).toBeInTheDocument();
   });
 
+  it("should render the proper pluralization for 1 result", () => {
+    render(<DataListTotalCount totalCount={1} loading={false} />);
+    expect(screen.getByText("(1 result)")).toBeInTheDocument();
+  });
+
   it("should render a Glimmer when loading and total count is null", () => {
     render(<DataListTotalCount totalCount={null} loading={true} />);
     const results = screen.getByTestId(DATALIST_TOTALCOUNT_TEST_ID);

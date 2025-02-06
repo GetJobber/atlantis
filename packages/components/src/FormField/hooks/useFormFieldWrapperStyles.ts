@@ -18,9 +18,10 @@ export interface useFormFieldWrapperStylesProps
     | "disabled"
     | "inline"
   > {
-  readonly error: string;
-  suffixRef: RefObject<HTMLDivElement>;
-  prefixRef: RefObject<HTMLDivElement>;
+  readonly error?: string;
+  suffixRef?: RefObject<HTMLDivElement>;
+  prefixRef?: RefObject<HTMLDivElement>;
+  showMiniLabel?: boolean;
 }
 
 export interface LabelPadding {
@@ -45,6 +46,7 @@ export function useFormFieldWrapperStyles({
   type,
   disabled,
   inline,
+  showMiniLabel = true,
 }: useFormFieldWrapperStylesProps) {
   const isSafari = useIsSafari();
   const wrapperClasses = classnames(
@@ -53,7 +55,7 @@ export function useFormFieldWrapperStyles({
     align && styles[align],
     {
       [styles.miniLabel]:
-        (placeholder && value !== "") ||
+        (showMiniLabel && placeholder && value !== "") ||
         (placeholder && type === "select") ||
         // Naively assume that if the the type is tel, it is the InputPhoneNumber
         (placeholder && type === "tel"),
@@ -86,8 +88,8 @@ export function useFormFieldWrapperStyles({
       getAffixPaddding({
         value,
         type,
-        prefixWidth: prefixRef.current?.offsetWidth || 0,
-        suffixWidth: suffixRef.current?.offsetWidth || 0,
+        prefixWidth: prefixRef?.current?.offsetWidth || 0,
+        suffixWidth: suffixRef?.current?.offsetWidth || 0,
       }),
     );
   }, [value]);

@@ -4,7 +4,7 @@ export { useAtlantisFormField } from "./hooks/useAtlantisFormField";
 export { useAtlantisFormFieldActions } from "./hooks/useAtlantisFormFieldActions";
 export { useAtlantisFormFieldName } from "./hooks/useAtlantisFormFieldName";
 export { useAtlantisReactHookForm } from "./hooks/useAtlantisReactHookForm";
-export { FormFieldWrapper } from "./FormFieldWrapper";
+export { FormFieldLabel, FormFieldWrapper } from "./FormFieldWrapper";
 export {
   useFormFieldWrapperStyles,
   useFormFieldWrapperStylesProps,

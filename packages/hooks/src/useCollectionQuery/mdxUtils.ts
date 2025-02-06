@@ -39,7 +39,7 @@ export const LIST_QUERY = gql`
 `;
 
 export const apolloClient = new ApolloClient({
-  uri: "https://swapi-graphql.netlify.app/.netlify/functions/index",
+  uri: "https://swapi-graphql.netlify.app/graphql",
   cache: new InMemoryCache(),
 });
 
