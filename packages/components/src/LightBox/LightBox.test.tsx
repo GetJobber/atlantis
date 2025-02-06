@@ -190,4 +190,89 @@ describe("LightBox", () => {
       expect(screen.queryByLabelText("Next image")).toBeNull();
     });
   });
+
+  describe("thumbnail bar", () => {
+    test("displays with images when more than one image", () => {
+      const handleClose = jest.fn();
+
+      render(
+        <LightBox
+          open={true}
+          images={[
+            {
+              title: "title of unselected image",
+              caption: "caption",
+              url: "https://i.imgur.com/6Jcfgnp.jpg",
+            },
+            {
+              title: "titleTwo",
+              caption: "captionTwo",
+              url: "https://i.imgur.com/6Jcfgnp.jpg",
+            },
+          ]}
+          imageIndex={1}
+          onRequestClose={handleClose}
+        />,
+      );
+      expect(
+        screen.queryByAltText("title of unselected image"),
+      ).toBeInTheDocument();
+      expect(screen.queryByTestId("thumbnail-bar")).toBeInTheDocument();
+    });
+
+    test("doesn't display when there is only one image", () => {
+      const handleClose = jest.fn();
+
+      render(
+        <LightBox
+          open={true}
+          images={[
+            {
+              title: "title",
+              caption: "caption",
+              url: "https://i.imgur.com/6Jcfgnp.jpg",
+            },
+          ]}
+          imageIndex={0}
+          onRequestClose={handleClose}
+        />,
+      );
+      expect(screen.queryByTestId("thumbnail-bar")).not.toBeInTheDocument();
+    });
+
+    test("displays the selected image thumbnail caption when clicked", () => {
+      const handleClose = jest.fn();
+      const destinationImageTitle = "title of destination image";
+      const destinationImageCaption = "caption of destination image";
+
+      render(
+        <LightBox
+          open={true}
+          images={[
+            {
+              title: destinationImageTitle,
+              caption: destinationImageCaption,
+              url: "https://i.imgur.com/6Jcfgnp.jpg",
+            },
+            {
+              title: "initially selected image title",
+              caption: "initially selected image caption",
+              url: "https://i.imgur.com/6Jcfgnp.jpg",
+            },
+          ]}
+          imageIndex={1}
+          onRequestClose={handleClose}
+        />,
+      );
+
+      const destinationImage = screen.getByAltText(destinationImageTitle);
+      expect(
+        screen.queryByText(destinationImageCaption),
+      ).not.toBeInTheDocument();
+
+      fireEvent.click(destinationImage);
+
+      expect(screen.queryByText(destinationImageCaption)).toBeInTheDocument();
+    });
+  });
 });

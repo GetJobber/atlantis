@@ -234,7 +234,11 @@ export function LightBox({
           )}
 
           {images.length > 1 && (
-            <div className={styles.thumbnailBar} ref={thumbnailBarRef}>
+            <div
+              className={styles.thumbnailBar}
+              ref={thumbnailBarRef}
+              data-testid="thumbnail-bar"
+            >
               {images.map((image, index) => (
                 <div
                   key={index}
