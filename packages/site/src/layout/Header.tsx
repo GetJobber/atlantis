@@ -13,18 +13,19 @@ export const Header = ({ onOpenTriton }: HeaderProps) => {
         width: "calc(100% - var(--sideBarWidth) - (2 * var(--space-small)))",
         display: "flex",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "space-between",
         padding: "var(--space-small)",
       }}
     >
-      <Box width={385} direction="row" alignItems="center" gap={"base"}>
-        <Box width={"100%"}>
-          <SearchButton />
+      <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
+        <Box width={385} direction="row" alignItems="center" gap={"base"}>
+          <Box width={"100%"}>
+            <SearchButton />
+          </Box>
+          <Button onClick={onOpenTriton} icon="sparkles" ariaLabel="triton" />
         </Box>
-        <Button onClick={onOpenTriton} icon="sparkles" ariaLabel="triton" />
-
-        <ToggleThemeButton />
-      </Box>
+      </div>
+      <ToggleThemeButton />
     </div>
   );
 };
