@@ -106,7 +106,7 @@
   max-width: 100%;
   margin: 0 var(--space-base) var(--space-large);
   @media (--medium-screens-and-up) {
-    margin: 0 /* nav button width + inner padding + outer padding */
+    margin: 0 /* nav button width + inner padding + outer margin */
       calc(var(--space-largest) + var(--space-base) + var(--space-large))
       var(--space-large);
   }

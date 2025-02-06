@@ -11,6 +11,7 @@ const { setViewportWidth } = mockViewportWidth();
 describe("LightBox", () => {
   beforeEach(() => {
     setViewportWidth(BREAKPOINT_SIZES.lg);
+    HTMLDivElement.prototype.scrollIntoView = jest.fn();
   });
   test("opens and shows the image", () => {
     const title = "Dis be a title";
