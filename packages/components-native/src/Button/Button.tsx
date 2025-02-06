@@ -161,11 +161,11 @@ export function Button({
         fullHeight && styles.fullHeight,
       ]}
     >
-      <View style={[...buttonStyle, UNSAFE_style?.container]}>
+      <View style={[buttonStyle, UNSAFE_style?.container]}>
         {loading && <InternalButtonLoading variation={variation} type={type} />}
         <View
           style={[
-            ...getContentStyles(label, icon),
+            getContentStyles(label, icon),
             UNSAFE_style?.contentContainer,
           ]}
           testID="contentContainer"

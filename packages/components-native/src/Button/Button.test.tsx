@@ -46,7 +46,7 @@ function renderButton(element: ReactElement) {
   expect(instance.getByText(element.props.label)).toBeDefined();
 
   const buttonStyleEl = button.children[0] as ReactTestInstance;
-  const buttonStyle = buttonStyleEl.props.style.reduce(
+  const buttonStyle = buttonStyleEl.props.style.flat().reduce(
     (mergedStyles: CSSProperties, additionalStyles: CSSProperties) => ({
       ...mergedStyles,
       ...additionalStyles,
