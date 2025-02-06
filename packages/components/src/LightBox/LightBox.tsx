@@ -63,7 +63,7 @@ const swipePower = (offset: number, velocity: number) => {
 const variants = {
   enter: (direction: number) => {
     return {
-      x: direction > 0 ? "100%" : "-100%",
+      x: direction > 0 ? "150%" : "-150%",
     };
   },
   center: {
@@ -71,7 +71,7 @@ const variants = {
   },
   exit: (direction: number) => {
     return {
-      x: direction < 0 ? "100%" : "-100%",
+      x: direction < 0 ? "150%" : "-150%",
     };
   },
 };
