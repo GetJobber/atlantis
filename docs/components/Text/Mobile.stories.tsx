@@ -1,7 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import { Text } from "@jobber/components-native";
-import { tokens } from "@jobber/design";
 
 export default {
   title: "Components/Text and Typography/Text/Mobile",
@@ -23,14 +22,8 @@ const BasicTemplate: ComponentStory<typeof Text> = args => {
 export const Basic = BasicTemplate.bind({});
 
 Basic.args = {
-  children: "640K is more memory than anyone will ever need on a computer",
-  UNSAFE_style: {
-    textStyle: {
-      color: tokens["color-purple--light"],
-      fontSize: 24,
-      letterSpacing: 3,
-    },
-  },
+  children:
+    '"640K is more memory than anyone will ever need on a computer" - Not Bill Gates',
 };
 
 export const SupportingText = BasicTemplate.bind({});
