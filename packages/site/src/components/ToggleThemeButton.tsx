@@ -19,9 +19,6 @@ export const ToggleThemeButton = () => {
   return (
     <div
       style={{
-        position: "fixed",
-        bottom: "var(--space-base)",
-        right: "var(--space-base)",
         boxShadow: "var(--shadow-base)",
         borderRadius: "var(--radius-base)",
         zIndex: 1,

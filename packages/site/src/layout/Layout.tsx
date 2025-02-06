@@ -12,7 +12,6 @@ import { NavMenu } from "./NavMenu";
 import { Header } from "./Header";
 import { routes } from "../routes";
 import "./code-theme.css";
-import { ToggleThemeButton } from "../components/ToggleThemeButton";
 import { hooksList } from "../hooksList";
 import { NotFoundPage } from "../pages/NotFoundPage";
 
@@ -86,8 +85,6 @@ export const Layout = () => {
         <Header onOpenTriton={openTriton} />
         <RoutesSwitch />
       </div>
-
-      <ToggleThemeButton />
 
       <SideDrawer open={tritonOpen} onRequestClose={() => setTritonOpen(false)}>
         <SideDrawer.Toolbar>

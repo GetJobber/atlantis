@@ -1,5 +1,6 @@
 import { Box, Button } from "@jobber/components";
 import { SearchButton } from "./SearchButton";
+import { ToggleThemeButton } from "../components/ToggleThemeButton";
 
 interface HeaderProps {
   readonly onOpenTriton: () => void;
@@ -21,6 +22,8 @@ export const Header = ({ onOpenTriton }: HeaderProps) => {
           <SearchButton />
         </Box>
         <Button onClick={onOpenTriton} icon="sparkles" ariaLabel="triton" />
+
+        <ToggleThemeButton />
       </Box>
     </div>
   );
