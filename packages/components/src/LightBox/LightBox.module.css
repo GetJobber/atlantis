@@ -160,9 +160,6 @@
 .thumbnail {
   width: 64px;
   height: 64px;
-  box-shadow: none;
-  padding: 0;
-  border: none;
   border-radius: var(--radius-small);
   background-color: var(--color-text--reverse);
   transition:
@@ -177,13 +174,12 @@
 }
 
 .thumbnail.selected {
-  width: 80px;
-  height: 80px;
   margin-left: 4px;
   margin-right: 4px;
   padding: 2px;
   border: 2px solid var(--color-text--reverse);
   background-color: transparent;
+  transform: scale(1.25);
 
   .thumbnailImage {
     opacity: 1;
