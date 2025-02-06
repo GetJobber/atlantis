@@ -73,11 +73,15 @@ exports[`Images renders an image 1`] = `
         class="staticThemeProviderWrapper"
         data-theme="dark"
       >
-        <h4
-          class="base bold large heading"
+        <div
+          class="caption"
         >
-          Dis be a title
-        </h4>
+          <h4
+            class="base bold large heading"
+          >
+            Dis be a title
+          </h4>
+        </div>
         <p
           class="base regular large text"
         >

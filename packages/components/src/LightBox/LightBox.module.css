@@ -119,10 +119,13 @@
   max-height: 90px;
   margin: 0 auto var(--space-larger);
   overflow-y: auto;
-  text-align: center;
   flex-direction: column;
   flex-shrink: 0;
   gap: var(--space-small);
+}
+
+.caption {
+  text-align: center;
 }
 
 .blurOverlay {
