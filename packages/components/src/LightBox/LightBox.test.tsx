@@ -201,11 +201,13 @@ describe("LightBox", () => {
           images={[
             {
               title: "title of unselected image",
+              alt: "alt of unselected image",
               caption: "caption",
               url: "https://i.imgur.com/6Jcfgnp.jpg",
             },
             {
               title: "titleTwo",
+              alt: "alt 1",
               caption: "captionTwo",
               url: "https://i.imgur.com/6Jcfgnp.jpg",
             },
@@ -215,7 +217,7 @@ describe("LightBox", () => {
         />,
       );
       expect(
-        screen.queryByAltText("title of unselected image"),
+        screen.queryByAltText("alt of unselected image"),
       ).toBeInTheDocument();
       expect(screen.queryByTestId("thumbnail-bar")).toBeInTheDocument();
     });
@@ -240,18 +242,19 @@ describe("LightBox", () => {
       expect(screen.queryByTestId("thumbnail-bar")).not.toBeInTheDocument();
     });
 
-    test("displays the selected image thumbnail caption when imageclicked", () => {
+    test("displays the selected image thumbnail and caption when imageclicked", () => {
       const handleClose = jest.fn();
-      const destinationImageTitle = "title of destination image";
       const destinationImageCaption = "caption of destination image";
+      const destinationImageAlt = "alt of destination image";
 
       render(
         <LightBox
           open={true}
           images={[
             {
-              title: destinationImageTitle,
+              title: "title of destination image",
               caption: destinationImageCaption,
+              alt: destinationImageAlt,
               url: "https://i.imgur.com/6Jcfgnp.jpg",
             },
             {
@@ -265,12 +268,15 @@ describe("LightBox", () => {
         />,
       );
 
-      const destinationImage = screen.getByAltText(destinationImageTitle);
       expect(
         screen.queryByText(destinationImageCaption),
       ).not.toBeInTheDocument();
 
+      const destinationImage = screen.getByAltText(destinationImageAlt);
       fireEvent.click(destinationImage);
+
+      const imagesWithAlt = screen.getAllByAltText(destinationImageAlt);
+      expect(imagesWithAlt).toHaveLength(2);
 
       expect(screen.queryByText(destinationImageCaption)).toBeInTheDocument();
     });
