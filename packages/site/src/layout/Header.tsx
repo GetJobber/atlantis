@@ -9,7 +9,7 @@ export const Header = ({ onOpenTriton }: HeaderProps) => {
   return (
     <div
       style={{
-        width: "calc(100% - var(--sideBarWidth))",
+        width: "calc(100% - var(--sideBarWidth) - (2 * var(--space-small)))",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
