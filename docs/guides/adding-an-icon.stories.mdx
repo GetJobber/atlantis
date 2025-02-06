@@ -7,6 +7,7 @@ import addIcon5 from "./assets/add_icon_5.png";
 import addIcon6 from "./assets/add_icon_6.png";
 import addIcon7 from "./assets/add_icon_7.gif";
 import addIcon8 from "./assets/add_icon_8.png";
+import addIcon9 from "./assets/add_icon_9.png";
 
 <Meta title="Guides/Adding an icon" />
 
@@ -14,11 +15,25 @@ import addIcon8 from "./assets/add_icon_8.png";
 
 ## Design guidelines
 
-Follow the
-[Icon construction guidelines](../components/Icon#component-view-design-&-usage-guidelines).
+#### Size, weight, and spacing
+
+When contributing a new icon, design for the `base` size. The `small` and
+`large` sizes will be created automatically once the `base` size has been added.
+
+Icons are only responsible for their own spacing. Spacing when used within other
+components, such as
+[List](../?path=/docs/components-lists-and-tables-list--docs), is the
+responsibility of those other components.
+
+- Icons should have a height and width of 20px container within a 24px artboard,
+  effectively providing a 2px padding on all sides
+- Icons can be optically adjusted within this 20px space to attain good visual
+  balance with the rest of the Atlantis icon set
+- Circular icons should have a 20px diameter
+- Lines should have a 2px weight
 
 Get approval for your new icon from the design team, then proceed to creating
-and exporting from Figma.
+and exporting a production-ready SVGfrom Figma.
 
 ## Creating and exporting from Figma
 
@@ -104,10 +119,8 @@ have the Atlantis repo on your machine and know how to use GitHub.
 
 ## Using your icon
 
-Once your Atlantis PR is merged, import the latest Atlantis design and component
-versions into Jobber, jobber-mobile, etc
-
-Run npm i @jobber/components@latest @jobber/design@latest in the repo where you
+One the PR is merged, import into your project by running
+`npm i @jobber/components@latest @jobber/design@latest` in the repo where you
 need to use your icon.
 
 If at any point you run into issues or have questions about this process, please
@@ -115,10 +128,9 @@ reach out to us at #team-atlantis
 
 ## Troubleshooting
 
-Because sometimes, problems arise!
+My icon has areas filled in that shouldn't be!
 
-My holes aren't showing up!
+<img width="100%" src={addIcon9} />
 
-Does it look like this?
-
-If so, ensure you do steps 6 to 9 of Creating and exporting from Figma.
+Ensure you do steps 6 to 9 of
+[Creating and exporting from Figma.](#component-view-creating-and-exporting-from-figma)
