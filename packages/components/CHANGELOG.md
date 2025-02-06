@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.17.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.16.0...@jobber/components@6.17.0) (2025-02-06)
+
+
+### Features
+
+* **components:** bring back status-driven surface color in Banner ([#2338](https://github.com/GetJobber/atlantis/issues/2338)) ([02e4964](https://github.com/GetJobber/atlantis/commit/02e4964faeded561fa087dfb558437d832d45b4a))
+
+
+
+
+
 # [6.16.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.15.0...@jobber/components@6.16.0) (2025-02-05)
 
 
