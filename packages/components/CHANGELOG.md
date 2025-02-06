@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.17.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.17.0...@jobber/components@6.17.1) (2025-02-06)
+
+
+### Bug Fixes
+
+* **components:** Put Popover inside a portal  ([#2360](https://github.com/GetJobber/atlantis/issues/2360)) ([4798047](https://github.com/GetJobber/atlantis/commit/479804745c744dc9e98cca4d025fb6ef66193709))
+
+
+
+
+
+# [6.17.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.16.0...@jobber/components@6.17.0) (2025-02-06)
+
+
+### Features
+
+* **components:** bring back status-driven surface color in Banner ([#2338](https://github.com/GetJobber/atlantis/issues/2338)) ([02e4964](https://github.com/GetJobber/atlantis/commit/02e4964faeded561fa087dfb558437d832d45b4a))
+
+
+
+
+
+# [6.16.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.15.0...@jobber/components@6.16.0) (2025-02-05)
+
+
+### Features
+
+* **components:** Enhance image lightbox layout and background ([#2337](https://github.com/GetJobber/atlantis/issues/2337)) ([203dcfa](https://github.com/GetJobber/atlantis/commit/203dcfad9e22488e6faafc992c460612276f0de3))
+
+
+
+
+
 # [6.15.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.14.0...@jobber/components@6.15.0) (2025-02-05)
 
 

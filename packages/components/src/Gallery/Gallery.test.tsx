@@ -1,5 +1,9 @@
 import React from "react";
 import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import {
+  BREAKPOINT_SIZES,
+  mockViewportWidth,
+} from "@jobber/hooks/useBreakpoints";
 import * as browserUtilities from "@jobber/components/utils/getClientBrowser";
 import { Gallery } from ".";
 import { File } from "./GalleryTypes";
@@ -67,6 +71,8 @@ beforeEach(() => {
   openSpy.mockClear();
 });
 
+const { setViewportWidth } = mockViewportWidth();
+
 async function setupAndOpenLightbox() {
   const rendered = render(<Gallery files={files} />);
 
@@ -118,6 +124,7 @@ describe("when the Gallery has a maximum", () => {
   });
 
   describe("when the a Gallery thumbnail is clicked", () => {
+    setViewportWidth(BREAKPOINT_SIZES.lg);
     it("opens the lightbox", async () => {
       const { getByLabelText } = await setupAndOpenLightbox();
 
@@ -128,6 +135,7 @@ describe("when the Gallery has a maximum", () => {
 
 describe("when the lightbox is already opened", () => {
   describe("when the user clicks close on the lightbox", () => {
+    setViewportWidth(BREAKPOINT_SIZES.lg);
     it("should close the lightbox", async () => {
       const { getByLabelText, queryAllByLabelText } =
         await setupAndOpenLightbox();
