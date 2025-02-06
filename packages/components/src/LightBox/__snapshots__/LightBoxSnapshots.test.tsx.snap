@@ -74,7 +74,7 @@ exports[`Images renders an image 1`] = `
         data-theme="dark"
       >
         <div
-          class="caption"
+          class="title"
         >
           <h4
             class="base bold large heading"
