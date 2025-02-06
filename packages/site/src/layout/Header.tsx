@@ -15,6 +15,8 @@ export const Header = ({ onOpenTriton }: HeaderProps) => {
         alignItems: "center",
         justifyContent: "space-between",
         padding: "var(--space-small)",
+        borderLeft: "var(--border-base) solid var(--color-border)",
+        borderRight: "var(--border-base) solid var(--color-border)",
       }}
     >
       <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
