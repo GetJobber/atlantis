@@ -19,6 +19,7 @@ import { AtlantisThemeContextProvider } from "../AtlantisThemeContext";
 interface PresentedImage {
   title?: string;
   caption?: string;
+  alt?: string;
   url: string;
 }
 
@@ -189,6 +190,11 @@ export function LightBox({
                 custom={direction}
                 className={styles.image}
                 initial="enter"
+                alt={
+                  images[currentImageIndex].alt ||
+                  images[currentImageIndex].title ||
+                  ""
+                }
                 animate="center"
                 exit="exit"
                 transition={imageTransition}
@@ -244,7 +250,7 @@ export function LightBox({
                   <img
                     key={index}
                     src={image.url}
-                    alt={image.title}
+                    alt={image.alt || image.title || ""}
                     className={styles.thumbnailImage}
                   />
                 </div>
