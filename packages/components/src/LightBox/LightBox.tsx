@@ -7,6 +7,7 @@ import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import { useBreakpoints } from "@jobber/hooks/useBreakpoints";
+import classNames from "classnames";
 import styles from "./LightBox.module.css";
 import { useDebounce } from "../utils/useDebounce";
 import { ButtonDismiss } from "../ButtonDismiss";
@@ -237,17 +238,10 @@ export function LightBox({
               {images.map((image, index) => (
                 <div
                   key={index}
-                  className={`${styles.thumbnail} ${
-                    index === currentImageIndex ? styles.selected : ""
-                  }`}
-                  onClick={() => {
-                    if (index < currentImageIndex) {
-                      setDirection(-1);
-                    } else {
-                      setDirection(1);
-                    }
-                    setCurrentImageIndex(index);
-                  }}
+                  className={classNames(styles.thumbnail, {
+                    [styles.selected]: index === currentImageIndex,
+                  })}
+                  onClick={() => handleThumbnailClick(index)}
                 >
                   <img
                     key={index}
@@ -295,6 +289,15 @@ export function LightBox({
     } else if (swipe > swipeConfidenceThreshold) {
       handleMovePrevious();
     }
+  }
+
+  function handleThumbnailClick(index: number) {
+    if (index < currentImageIndex) {
+      setDirection(-1);
+    } else {
+      setDirection(1);
+    }
+    setCurrentImageIndex(index);
   }
 }
 interface NavButtonProps {
