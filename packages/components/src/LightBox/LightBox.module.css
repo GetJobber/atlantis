@@ -179,7 +179,7 @@
   padding: 2px;
   border: 2px solid var(--color-text--reverse);
   background-color: transparent;
-  transform: scale(1.25);
+  transform: scale(1.125);
 
   .thumbnailImage {
     opacity: 1;
