@@ -139,10 +139,6 @@ export function Button({
     fullHeight && styles.fullHeight,
   ];
 
-  if (UNSAFE_style?.container) {
-    buttonStyle.push(UNSAFE_style.container);
-  }
-
   // attempts to use Pressable caused problems.  When a ScrollView contained
   // an InputText that was focused, it required two presses to activate the
   // Pressable.  Using a TouchableHighlight made things register correctly
@@ -165,20 +161,18 @@ export function Button({
         fullHeight && styles.fullHeight,
       ]}
     >
-      <View style={buttonStyle}>
+      <View style={[...buttonStyle, UNSAFE_style?.container]}>
         {loading && <InternalButtonLoading variation={variation} type={type} />}
         <View
-          style={getContentStyles(label, icon, UNSAFE_style?.contentContainer)}
+          style={[
+            ...getContentStyles(label, icon),
+            UNSAFE_style?.contentContainer,
+          ]}
           testID="contentContainer"
         >
           {icon && (
             <View
-              style={[
-                styles.iconStyle,
-                ...(UNSAFE_style?.iconContainer
-                  ? [UNSAFE_style.iconContainer]
-                  : []),
-              ]}
+              style={[styles.iconStyle, UNSAFE_style?.iconContainer]}
               testID="iconContainer"
             >
               <Icon
@@ -189,12 +183,7 @@ export function Button({
           )}
           {label && (
             <View
-              style={[
-                styles.labelStyle,
-                ...(UNSAFE_style?.actionLabelContainer
-                  ? [UNSAFE_style.actionLabelContainer]
-                  : []),
-              ]}
+              style={[styles.labelStyle, UNSAFE_style?.actionLabelContainer]}
               testID="actionLabelContainer"
             >
               <ActionLabel
@@ -260,19 +249,15 @@ function getIconColorVariation(
 function getContentStyles(
   label: string | undefined,
   icon: IconNames | undefined,
-  unsafeContentContainerStyles?: StyleProp<ViewStyle> | undefined,
 ) {
   if (label && !icon) {
-    return unsafeContentContainerStyles
-      ? [unsafeContentContainerStyles]
-      : undefined;
+    return [];
   }
 
   return [
     styles.content,
     icon && !!label && styles.iconPaddingOffset,
     !!label && styles.contentWithLabel,
-    ...(unsafeContentContainerStyles ? [unsafeContentContainerStyles] : []),
   ];
 }
 
