@@ -137,9 +137,9 @@
   position: relative;
   z-index: var(--elevation-base);
   width: 100%;
-  min-height: 100px; /* shouldnt need this ? */
+  min-height: 90px;
   margin-bottom: var(--space-small);
-  padding-bottom: var(--space-smaller);
+  padding-bottom: var(--space-small);
   overflow-x: scroll;
   justify-content: safe center;
   align-items: center;
