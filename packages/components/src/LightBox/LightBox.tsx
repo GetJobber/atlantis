@@ -34,7 +34,7 @@ interface LightBoxProps {
   readonly open: boolean;
   /**
    * Images is an array of objects defining a LightBox image. This object consists of
-   * `title`, `caption` and `url`. `title` and `caption` are optional, `url` is
+   * `title`, `caption`, `alt` and `url`. `title`, `alt` and `caption` are optional, `url` is
    * required, for each image.
    */
   readonly images: PresentedImage[];
