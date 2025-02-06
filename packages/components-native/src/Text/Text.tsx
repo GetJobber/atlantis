@@ -88,10 +88,9 @@ export interface TextProps
   readonly hideFromScreenReader?: boolean;
 
   /**
-   * Allows for custom styling to be applied directly to the text component,
-   * bypassing the default styles. Use with caution, as it may lead to inconsistencies
-   * with the design system. It is recommended to use this prop only when absolutely
-   * necesssary and when the desired style cannot be achieved through existing props.
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information [here](https://atlantis.getjobber.com/storybook/?path=/docs/guides-customizing-components--docs#unsafe_-props).
    */
   readonly UNSAFE_style?: TypographyUnsafeStyle;
 }
