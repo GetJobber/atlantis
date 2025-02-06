@@ -1,0 +1,124 @@
+import { Meta } from "@storybook/addon-docs";
+import addIcon1 from "./assets/add_icon_1.png";
+import addIcon2 from "./assets/add_icon_2.png";
+import addIcon3 from "./assets/add_icon_3.png";
+import addIcon4 from "./assets/add_icon_4.png";
+import addIcon5 from "./assets/add_icon_5.png";
+import addIcon6 from "./assets/add_icon_6.png";
+import addIcon7 from "./assets/add_icon_7.gif";
+import addIcon8 from "./assets/add_icon_8.png";
+
+<Meta title="Guides/Adding an icon" />
+
+# Adding an icon
+
+## Design guidelines
+
+Follow the
+[Icon construction guidelines](../components/Icon#component-view-design-&-usage-guidelines).
+
+Get approval for your new icon from the design team, then proceed to creating
+and exporting from Figma.
+
+## Creating and exporting from Figma
+
+1. With the vector object selected, outline strokes (shift + command + o or
+   Object > Outline Stroke in the Figma menu)
+
+- Tip: `CMD + /` will open quick actions.
+
+<img width="100%" src={addIcon1} />
+
+2. Use the Union tool to combine all vector elements into one object
+
+<img width="100%" src={addIcon2} />
+
+3. Flatten the vector object (`command + e` or `Object > Flatten Selection`)
+
+<img width="100%" src={addIcon3} />
+
+4. Rename the vector object "Union" (see icons in Product/Base for reference)
+
+5. Set the vector object to have a fill of `#000000`
+
+6. Open
+   [Fill Rule Editor](https://www.figma.com/community/plugin/771155994770327940/Fill-Rule-Editor)
+   from the Plugins by clicking "Run"
+
+<img width="100%" src={addIcon4} />
+
+7. The goal here is to ensure everything is highlighted blue (non-zero rule)
+   under the "Fill Rule Editor" instead of orange (even-odd rule)
+
+- Figma uses even-odd rule for SVG's and it isn't widely supported
+
+<img width="100%" src={addIcon5} />
+
+8. Click the orange vectors to turn them blue
+
+<img width="100%" src={addIcon6} />
+
+9. Once it's in a blue state, some hollow parts will be filled again. To make
+   them have holes again, click the paths/lines you want to be hollowed.
+
+- Tip: When you hover on the path, it'll get darker. At that point, you can
+  click it! Otherwise, it'll turn orange again and you'll have to start over.
+  <img width="100%" src={addIcon7} />
+
+10. Export an SVG of your icon in the 24×24 frame. Ensure:
+    - your vector object is not going outside of the frame
+    - the Frame has the "Clip Content" checkmark unchecked
+    - width and height are 24×24
+
+<img width="100%" src={addIcon8} />
+
+## Adding your icon to Atlantis
+
+Either you (the designer) or your devs can do this step. This assumes that you
+have the Atlantis repo on your machine and know how to use GitHub.
+
+1. Open the Atlantis folder in your machine and navigate to
+   `packages/design/src/icons`
+2. Drop your exported SVG in the icons folder
+3. Open a file called `Icon.stories.mdx` and update the Icons documentation
+4. Find the appropriate section for your icon (such as Arrows, Files, or User)
+   and add it to that list
+
+### To preview locally
+
+1. Open your terminal and run `npm install`
+2. Run `npm run bootstrap`
+3. Run `npm start`
+
+### To publish a preview build
+
+1. Push your code to GitHub (Atlantis will compress your SVG files on commit)
+2. Create a Pull Request (PR)
+3. A preview build will be automatically created and appear on your PR as a
+   comment
+
+### Reviews and approvals
+
+1. Tag the Atlantis team for a review
+2. Once approved, Atlantis will merge your PR
+
+## Using your icon
+
+Once your Atlantis PR is merged, import the latest Atlantis design and component
+versions into Jobber, jobber-mobile, etc
+
+Run npm i @jobber/components@latest @jobber/design@latest in the repo where you
+need to use your icon.
+
+If at any point you run into issues or have questions about this process, please
+reach out to us at #team-atlantis
+
+## Troubleshooting
+
+Because sometimes, problems arise!
+
+My holes aren't showing up!
+
+Does it look like this?
+
+If so, ensure you do steps 6 to 9 of Creating and exporting from Figma.

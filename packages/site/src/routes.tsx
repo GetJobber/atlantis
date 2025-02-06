@@ -205,6 +205,11 @@ export const routes: Array<AtlantisRoute> = [
         exact: true,
       },
       {
+        path: "/guides/adding-an-icon",
+        handle: "Adding an icon",
+        exact: true,
+      },
+      {
         path: "/guides/frontend-styleguide",
         handle: "Frontend styleguide",
         exact: true,
