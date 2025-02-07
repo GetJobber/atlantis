@@ -30,9 +30,7 @@ function getIconAndTextColorFromRender({
 
   const iconColor = getByTestId(iconName).findByType(Path).props.fill;
   const textColor = getByRole("text").props.style.find(
-    (style: CSSProperties) => {
-      return style.color;
-    },
+    (style: CSSProperties) => style.color,
   ).color;
 
   return { iconColor, textColor };

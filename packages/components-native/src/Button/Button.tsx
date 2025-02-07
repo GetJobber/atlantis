@@ -246,7 +246,7 @@ function getContentStyles(
   icon: IconNames | undefined,
 ) {
   if (label && !icon) {
-    return [];
+    return undefined;
   }
 
   return [
