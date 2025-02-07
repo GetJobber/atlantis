@@ -13,7 +13,7 @@ BaseView.Main = function Main({
 }) {
   return (
     <Box>
-      <Header onOpenTriton={() => alert("open triton")} />
+      <Header />
       <main
         style={{
           overflowY: "scroll",

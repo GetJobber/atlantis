@@ -1,18 +1,11 @@
-import { PropsWithChildren, useEffect, useRef, useState } from "react";
+import { PropsWithChildren, useEffect, useRef } from "react";
 import { Route, Switch, useHistory, useLocation } from "react-router";
-import {
-  Box,
-  Button,
-  Content,
-  InputText,
-  SideDrawer,
-  Text,
-} from "@jobber/components";
 import { NavMenu } from "./NavMenu";
 import { routes } from "../routes";
 import "./code-theme.css";
 import { hooksList } from "../hooksList";
 import { NotFoundPage } from "../pages/NotFoundPage";
+import { TritonSideDrawer } from "../components/TritonSideDrawer";
 
 /**
  * Layout for whole application. This will display the NavMenu and the content of the page.
@@ -25,8 +18,6 @@ export const Layout = () => {
   const scrollPane = useRef<HTMLDivElement>(null);
   const path = new URLSearchParams(location.search).get("path");
   const history = useHistory();
-  const [tritonOpen, setTritonOpen] = useState(false);
-  const [question, setQuestion] = useState("");
   useEffect(() => {
     if (scrollPane?.current) {
       scrollPane?.current.scrollTo({ top: 0 });
@@ -45,25 +36,6 @@ export const Layout = () => {
     }
   }
 
-  const sendSearch = async () => {
-    console.log("searching!", question);
-    const b = await fetch("http://localhost:8788/stream", {
-      headers: {
-        "Content-Type": "application/json",
-        "Triton-Api-Key": localStorage.getItem("tritonApiKey") || "",
-      },
-      method: "POST",
-      body: JSON.stringify({
-        personality: "developer",
-        query: question,
-        questions: [],
-        questionType: "web",
-        responses: [],
-      }),
-    });
-    console.log("HI!", await b.json());
-  };
-
   return (
     <LayoutWrapper>
       <NavMenu mainContentRef={scrollPane} />
@@ -78,22 +50,7 @@ export const Layout = () => {
       >
         <RoutesSwitch />
       </div>
-
-      <SideDrawer open={tritonOpen} onRequestClose={() => setTritonOpen(false)}>
-        <SideDrawer.Toolbar>
-          <Box margin={{ bottom: "base" }}>
-            <Content>
-              <Text>Welcome to Triton!</Text>
-            </Content>
-          </Box>
-          <InputText
-            multiline
-            value={question}
-            onChange={d => setQuestion(d as string)}
-          />
-          <Button label="Search" onClick={sendSearch}></Button>
-        </SideDrawer.Toolbar>
-      </SideDrawer>
+      <TritonSideDrawer />
     </LayoutWrapper>
   );
 };

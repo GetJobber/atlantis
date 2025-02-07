@@ -1,12 +1,11 @@
 import { Box, Button } from "@jobber/components";
 import { SearchButton } from "./SearchButton";
 import { ToggleThemeButton } from "../components/ToggleThemeButton";
+import { useTritonChat } from "../providers/TritonProvider";
 
-interface HeaderProps {
-  readonly onOpenTriton: () => void;
-}
+export const Header = () => {
+  const { onOpenTriton } = useTritonChat();
 
-export const Header = ({ onOpenTriton }: HeaderProps) => {
   return (
     <div
       style={{
