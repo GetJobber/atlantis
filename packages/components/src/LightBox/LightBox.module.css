@@ -118,6 +118,7 @@
   max-width: 600px;
   max-height: 90px;
   margin: 0 auto var(--space-larger);
+  padding: 0 var(--space-base);
   overflow-y: auto;
   flex-direction: column;
   flex-shrink: 0;
