@@ -2,7 +2,7 @@ import { Box } from "@jobber/components";
 import { PropsWithChildren } from "react";
 
 export function BaseView({ children }: PropsWithChildren) {
-  return <div style={{ display: "flex", height: "100dvh" }}>{children}</div>;
+  return <div style={{ display: "flex", height: "100%" }}>{children}</div>;
 }
 
 BaseView.Main = function Main({
@@ -13,7 +13,7 @@ BaseView.Main = function Main({
   return (
     <main
       style={{
-        overflowY: "scroll",
+        overflowY: "auto",
         backgroundColor: "var(--color-surface)",
         boxShadow: "var(--shadow-low)",
         flexGrow: 1,

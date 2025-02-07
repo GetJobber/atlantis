@@ -74,16 +74,19 @@ export const Layout = () => {
       <NavMenu mainContentRef={scrollPane} />
       <div
         style={{
-          overflow: "auto",
           width: "100%",
           height: "100dvh",
           outline: "transparent",
+          display: "flex",
+          flexDirection: "column",
         }}
         ref={scrollPane}
         tabIndex={0}
       >
         <Header onOpenTriton={openTriton} />
-        <RoutesSwitch />
+        <div style={{ flex: 1, minHeight: 0 }}>
+          <RoutesSwitch />
+        </div>
       </div>
 
       <SideDrawer open={tritonOpen} onRequestClose={() => setTritonOpen(false)}>
