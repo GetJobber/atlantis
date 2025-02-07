@@ -10,17 +10,18 @@ export const Header = ({ onOpenTriton }: HeaderProps) => {
   return (
     <div
       style={{
+        backgroundColor: "var(--color-surface--background)",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
         padding: "var(--space-small)",
-        borderLeft: "var(--border-base) solid var(--color-border)",
-        borderBottom: "var(--border-base) solid var(--color-border)",
+        border: "var(--border-base) solid var(--color-border)",
+        borderTop: "none",
       }}
     >
       <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
         <Box width={385} direction="row" alignItems="center" gap={"base"}>
-          <Box width={"100%"}>
+          <Box width="100%">
             <SearchButton />
           </Box>
           <Button onClick={onOpenTriton} icon="sparkles" ariaLabel="triton" />

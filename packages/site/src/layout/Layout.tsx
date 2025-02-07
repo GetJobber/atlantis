@@ -9,7 +9,6 @@ import {
   Text,
 } from "@jobber/components";
 import { NavMenu } from "./NavMenu";
-import { Header } from "./Header";
 import { routes } from "../routes";
 import "./code-theme.css";
 import { hooksList } from "../hooksList";
@@ -46,10 +45,6 @@ export const Layout = () => {
     }
   }
 
-  const openTriton = () => {
-    setTritonOpen(true);
-  };
-
   const sendSearch = async () => {
     console.log("searching!", question);
     const b = await fetch("http://localhost:8788/stream", {
@@ -77,16 +72,11 @@ export const Layout = () => {
           width: "100%",
           height: "100dvh",
           outline: "transparent",
-          display: "flex",
-          flexDirection: "column",
         }}
         ref={scrollPane}
         tabIndex={0}
       >
-        <Header onOpenTriton={openTriton} />
-        <div style={{ flex: 1, minHeight: 0 }}>
-          <RoutesSwitch />
-        </div>
+        <RoutesSwitch />
       </div>
 
       <SideDrawer open={tritonOpen} onRequestClose={() => setTritonOpen(false)}>
