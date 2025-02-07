@@ -13,6 +13,7 @@
     "Box",
     "Button",
     "ButtonDismiss",
+    "ButtonNavigationProvider",
     "Card",
     "Cell",
     "CellCurrency",
