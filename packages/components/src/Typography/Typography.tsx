@@ -10,7 +10,13 @@ import truncate from "./css/Truncate.module.css";
 import alignment from "./css/TextAlignment.module.css";
 import fontFamilies from "./css/FontFamilies.module.css";
 import underlineStyles from "./css/Underline.module.css";
-import { UnderlineStyle, UnderlineStyleWithColor } from "./types";
+import strikethroughStyles from "./css/Strikethrough.module.css";
+import {
+  StrikethroughStyle,
+  StrikethroughStyleWithColor,
+  UnderlineStyle,
+  UnderlineStyleWithColor,
+} from "./types";
 
 interface TypographyProps {
   readonly id?: string;
@@ -61,6 +67,15 @@ interface TypographyProps {
    * @example "double color-invoice" for a double underline in the specified color
    */
   readonly underline?: UnderlineStyle | UnderlineStyleWithColor | undefined;
+  /**
+   * The style (and optionally a color) of strikethrough the text is decorated with.
+   * All semantic color tokens (other than the base values) defined in tokens.web
+   * are valid values. If omitted, no strikethrough is applied.
+   */
+  readonly strikethrough?:
+    | StrikethroughStyle
+    | StrikethroughStyleWithColor
+    | undefined;
 }
 export type TypographyOptions = Omit<TypographyProps, "children">;
 
@@ -77,6 +92,7 @@ export function Typography({
   numberOfLines,
   fontFamily,
   underline,
+  strikethrough,
 }: TypographyProps) {
   const shouldTruncateText = numberOfLines && numberOfLines > 0;
   const className = classnames(
@@ -89,6 +105,7 @@ export function Typography({
     fontFamily && fontFamilies[fontFamily],
     shouldTruncateText && truncate.textTruncate,
     underline && underlineStyles.basicUnderline,
+    strikethrough && strikethroughStyles.basicStrikethrough,
     {
       ...(align && { [alignment[align]]: align !== `start` }),
     },
@@ -103,14 +120,9 @@ export function Typography({
     };
   }
 
-  if (underline) {
-    const [underlineStyle, underlineColor] = underline.split(" ");
-
-    stylesOverrides.textDecorationStyle = underlineStyle as UnderlineStyle;
-    stylesOverrides.textDecorationColor = computeUnderlineColor(
-      underlineColor,
-      textColor,
-    );
+  if (strikethrough || underline) {
+    const decoration = strikethrough || underline;
+    applyTextDecoration(decoration, stylesOverrides, textColor);
   }
 
   return (
@@ -120,12 +132,29 @@ export function Typography({
   );
 }
 
-function computeUnderlineColor(
+function applyTextDecoration(
+  decoration: string,
+  stylesOverrides: CSSProperties,
+  textColor?: keyof typeof textColors,
+) {
+  const [decorationStyle, decorationColor] = decoration.split(" ");
+
+  stylesOverrides.textDecorationStyle =
+    decoration === "underline"
+      ? (decorationStyle as UnderlineStyle)
+      : (decorationStyle as StrikethroughStyle);
+  stylesOverrides.textDecorationColor = computeDecoratorColor(
+    decorationColor,
+    textColor,
+  );
+}
+
+function computeDecoratorColor(
   textDecorationColor: string,
   textColor?: keyof typeof textColors,
 ): string | undefined {
-  // Use the specified underline color if one is provided. If no underline color
-  // is specified, fall back to the text color for the underline.
+  // Use the specified color if one is provided. If no color
+  // is specified, fall back to the text color for the decoration.
   if (textDecorationColor) {
     return `var(--${textDecorationColor})`;
   }

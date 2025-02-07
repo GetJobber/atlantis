@@ -13,3 +13,7 @@ type Color = {
 export type UnderlineStyle = "solid" | "double" | "dotted" | "dashed";
 
 export type UnderlineStyleWithColor = `${UnderlineStyle} ${Color}`;
+
+export type StrikethroughStyle = "line-through";
+
+export type StrikethroughStyleWithColor = `${StrikethroughStyle} ${Color}`;
