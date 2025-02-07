@@ -1,4 +1,5 @@
 import { Meta } from "@storybook/addon-docs";
+import { Figma } from "@storybook/addon-designs/blocks";
 import addIcon1 from "./assets/add_icon_1.png";
 import addIcon2 from "./assets/add_icon_2.png";
 import addIcon3 from "./assets/add_icon_3.png";
@@ -20,20 +21,49 @@ import addIcon9 from "./assets/add_icon_9.png";
 When contributing a new icon, design for the `base` size. The `small` and
 `large` sizes will be created automatically once the `base` size has been added.
 
-Icons are only responsible for their own spacing. Spacing when used within other
-components, such as
-[List](../?path=/docs/components-lists-and-tables-list--docs), is the
-responsibility of those other components.
+<Figma url="https://www.figma.com/design/HXWXusJPZLmaJNGlKEpiyhXW/Product%2FBase?m=auto&node-id=22052-110&t=MBdtC5XQjEl6WoD4-1" />
 
-- Icons should have a height and width of 20px container within a 24px artboard,
-  effectively providing a 2px padding on all sides
-- Icons can be optically adjusted within this 20px space to attain good visual
-  balance with the rest of the Atlantis icon set
-- Circular icons should have a 20px diameter
-- Lines should have a 2px weight
+| Specification | Value |
+| ------------- | ----- |
+| Frame size    | 24x24 |
+| Max icon size | 20x20 |
+| Safe area     | 2px   |
+| Stroke weight | 2px   |
+
+Icons are only responsible for their own 2px safe area. Spacing when used within
+other components, such as
+[List](../?path=/docs/components-lists-and-tables-list--docs), is the
+responsibility of those components.
+
+#### Corners
+
+<Figma url="https://www.figma.com/design/HXWXusJPZLmaJNGlKEpiyhXW/Product%2FBase?m=auto&node-id=22052-80&t=MBdtC5XQjEl6WoD4-1" />
+
+| Corner Type      | Radius    |
+| ---------------- | --------- |
+| 90°              | 2px       |
+| More than 90°    | 1px       |
+| Less than 90°    | 0.5px     |
+| Interior corners | No radius |
+
+#### Line terminals
+
+<Figma url="https://www.figma.com/design/HXWXusJPZLmaJNGlKEpiyhXW/Product%2FBase?m=auto&node-id=22052-63&t=MBdtC5XQjEl6WoD4-1" />
+
+| Line Terminal Type   | Style            |
+| -------------------- | ---------------- |
+| Interrupted lines    | Geometric/square |
+| Organic line endings | Round            |
+
+#### Color
+
+Design your icons with `#000000`. If an icon is associated with a systemic color
+such as ["destructive"](../?path=/docs/design-colors--docs#destructive) specify
+the system color for the icon when it is added to Atlantis. In all other cases,
+use the default icon color.
 
 Get approval for your new icon from the design team, then proceed to creating
-and exporting a production-ready SVGfrom Figma.
+and exporting a production-ready SVG from Figma.
 
 ## Creating and exporting from Figma
 
