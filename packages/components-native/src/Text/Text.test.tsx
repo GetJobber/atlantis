@@ -158,14 +158,13 @@ describe("UNSAFE_style", () => {
         color: tokens["color-blue--dark"],
       },
     };
-    const text = render(<Text UNSAFE_style={customStyle}>Test Text</Text>);
 
-    // eslint-disable-next-line dot-notation
-    expect(text.toJSON()?.["props"]["style"]).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({ fontSize: customStyle.textStyle.fontSize }),
-        expect.objectContaining({ color: customStyle.textStyle.color }),
-      ]),
+    const { getByRole } = render(
+      <Text UNSAFE_style={customStyle}>Test Text</Text>,
+    );
+    const textElement = getByRole("text");
+    expect(textElement.props.style).toContainEqual(
+      expect.objectContaining(customStyle.textStyle),
     );
   });
 });
