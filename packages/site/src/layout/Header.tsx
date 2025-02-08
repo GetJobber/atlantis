@@ -14,8 +14,6 @@ export const Header = () => {
         alignItems: "center",
         justifyContent: "space-between",
         padding: "var(--space-small)",
-        border: "var(--border-base) solid var(--color-border)",
-        borderTop: "none",
       }}
     >
       <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>

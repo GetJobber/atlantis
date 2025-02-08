@@ -14,15 +14,15 @@ BaseView.Main = function Main({
   return (
     <Box>
       <Header />
-      <main
-        style={{
-          overflowY: "scroll",
-          backgroundColor: "var(--color-surface)",
-          boxShadow: "var(--shadow-low)",
-          flexGrow: 1,
-        }}
+      <Box
+        as="main"
+        background="surface"
+        radius="base"
+        position="relative"
+        overflow="auto"
+        alignItems="center"
       >
-        <Box alignItems="center">
+        <Box alignItems="center" radius="base" overflow="auto">
           <div
             style={{
               width: "100%",
@@ -34,7 +34,7 @@ BaseView.Main = function Main({
             {children}
           </div>
         </Box>
-      </main>
+      </Box>
     </Box>
   );
 };
