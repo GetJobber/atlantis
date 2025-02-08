@@ -164,3 +164,10 @@ mock in your test setup:
 const scrollIntoViewMock = jest.fn();
 window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
 ```
+
+## Developer notes
+
+- The Combobox confines tabbing to within itself while it's open using
+  [useFocusTrap](../?path=/docs/hooks-usefocustrap--docs)
+- Pressing `esc` will close the Combobox and return focus to the activator using
+  [useRefocusOnActivator](../?path=/docs/hooks-userefocusonactivator--docs)

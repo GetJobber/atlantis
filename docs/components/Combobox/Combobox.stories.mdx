@@ -58,19 +58,13 @@ search query.
 
 ## Accessibility
 
-### Keyboard operation
-
-- The activator can be actioned with `space` or `return`
-- The Combobox confines tabbing to within itself while it's open using
-  [useFocusTrap](../?path=/docs/hooks-usefocustrap--docs)
-- Pressing `esc` will close the Combobox and return focus to the activator using
-  [useRefocusOnActivator](../?path=/docs/hooks-userefocusonactivator--docs)
-- The search input is automatically focused when the Combobox opens. The button
-  to clear the input can be focused with `tab`
-- The options list is navigated with the `up` and `down` arrow keys, and
-  actioned with `space` or `return`, this can be done at any time when the
-  Combobox is open
-- The actions, if present, are the next tabbable element after the search
+| Shortcut Keys   | Action                                                                                          |
+| --------------- | ----------------------------------------------------------------------------------------------- |
+| Space or Return | Open/close the Combobox                                                                         |
+| Escape          | Close the Combobox and return focus to the activator                                            |
+| Tab             | When closed: Move to activator<br/>When open: Move from search input to clear button to actions |
+| Up/Down Arrow   | Navigate through options list                                                                   |
+| Space or Return | Select focused option                                                                           |
 
 ### Assistive technology
 
