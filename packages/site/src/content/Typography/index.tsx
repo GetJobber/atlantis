@@ -1,6 +1,7 @@
 import Content from "@atlantis/docs/components/Typography/Typography.stories.mdx";
 import Props from "./Typography.props.json";
 import MobileProps from "./Typography.props-mobile.json";
+import Notes from "./TypographyNotes.mdx";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
@@ -21,4 +22,5 @@ export default {
       ),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;
