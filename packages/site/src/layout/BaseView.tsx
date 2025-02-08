@@ -14,27 +14,37 @@ BaseView.Main = function Main({
   return (
     <Box>
       <Header />
-      <Box
-        as="main"
-        background="surface"
-        radius="base"
-        position="relative"
-        overflow="auto"
-        alignItems="center"
+      <main
+        style={{
+          backgroundColor: "var(--color-surface)",
+          boxShadow: "var(--shadow-base)",
+          flexGrow: 1,
+          borderRadius: "var(--radius-base)",
+          position: "relative",
+          overflow: "hidden",
+        }}
       >
-        <Box alignItems="center" radius="base" overflow="auto">
-          <div
-            style={{
-              width: "100%",
-              maxWidth: "calc(768px + var(--space-large)",
-              padding: "0 var(--space-base)",
-              boxSizing: "border-box",
-            }}
-          >
-            {children}
-          </div>
-        </Box>
-      </Box>
+        <div
+          style={{
+            height: "100%",
+            overflowY: "scroll",
+            borderRadius: "inherit",
+          }}
+        >
+          <Box alignItems="center">
+            <div
+              style={{
+                width: "100%",
+                maxWidth: "calc(768px + var(--space-large)",
+                padding: "0 var(--space-base)",
+                boxSizing: "border-box",
+              }}
+            >
+              {children}
+            </div>
+          </Box>
+        </div>
+      </main>
     </Box>
   );
 };
