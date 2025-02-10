@@ -1,4 +1,4 @@
-import { Box, Button } from "@jobber/components";
+import { Box, Button, Tooltip } from "@jobber/components";
 import { SearchButton } from "./SearchButton";
 import { ToggleThemeButton } from "../components/ToggleThemeButton";
 import { useTritonChat } from "../providers/TritonProvider";
@@ -32,7 +32,14 @@ export const Header = () => {
             <Box width="100%">
               <SearchButton />
             </Box>
-            <Button onClick={onOpenTriton} icon="sparkles" ariaLabel="triton" />
+            <Tooltip message="Ask Triton">
+              <Button
+                onClick={onOpenTriton}
+                icon="sparkles"
+                ariaLabel="triton"
+                variation="subtle"
+              />
+            </Tooltip>
           </Box>
         </div>
       </div>
