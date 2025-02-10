@@ -40,6 +40,7 @@ export const Layout = () => {
       <NavMenu mainContentRef={scrollPane} />
       <div
         style={{
+          overflow: "auto",
           width: "100%",
           height: "100dvh",
           outline: "transparent",
