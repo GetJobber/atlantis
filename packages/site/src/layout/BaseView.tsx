@@ -12,7 +12,7 @@ BaseView.Main = function Main({
   readonly children: React.ReactNode;
 }) {
   return (
-    <Box>
+    <Box width="grow">
       <Header />
       <main
         style={{
