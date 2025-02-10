@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.17.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.17.1...@jobber/components@6.17.2) (2025-02-07)
+
+
+### Bug Fixes
+
+* **components:** Prevent Stretching Small Images in Lightbox ([#2363](https://github.com/GetJobber/atlantis/issues/2363)) ([2dada61](https://github.com/GetJobber/atlantis/commit/2dada61e15b3628f31b765d38a9ccfe8a7c7f760))
+
+
+
+
+
 ## [6.17.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.17.0...@jobber/components@6.17.1) (2025-02-06)
 
 
