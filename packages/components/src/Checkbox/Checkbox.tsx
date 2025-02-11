@@ -52,9 +52,13 @@ interface BaseCheckboxProps {
    */
   readonly description?: string;
 
+  readonly version?: 1;
+
   onChange?(newValue: boolean): void;
 
   onFocus?(): void;
+
+  onBlur?(): void;
 }
 
 interface CheckboxLabelProps extends BaseCheckboxProps {
@@ -71,7 +75,7 @@ interface CheckboxChildrenProps extends BaseCheckboxProps {
   readonly children?: ReactElement;
 }
 
-type CheckboxProps = XOR<CheckboxLabelProps, CheckboxChildrenProps>;
+export type CheckboxProps = XOR<CheckboxLabelProps, CheckboxChildrenProps>;
 
 export function Checkbox({
   checked,

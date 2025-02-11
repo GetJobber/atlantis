@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Checkbox } from "@jobber/components/Checkbox";
 import { Text } from "@jobber/components/Text";
 import { Link } from "@jobber/components/Link";
+import { Checkbox } from "@jobber/components/Checkbox";
 
 export default {
   title: "Components/Selections/Checkbox/Web",
@@ -15,8 +15,14 @@ export default {
 
 const BasicTemplate: ComponentStory<typeof Checkbox> = args => {
   const [checked, setChecked] = useState(true);
+  const myRef = useRef<HTMLInputElement>(null);
 
-  return <Checkbox {...args} checked={checked} onChange={setChecked} />;
+  console.log(args);
+
+  // return <Checkbox {...args} checked={checked} onChange={setChecked} />;
+  return (
+    <Checkbox version={2} checked={checked} onChange={setChecked} ref={myRef} />
+  );
 };
 
 export const Basic = BasicTemplate.bind({});
