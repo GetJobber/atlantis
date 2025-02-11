@@ -367,7 +367,7 @@ export interface DataListActionProps<T extends DataListObject> {
   readonly actionUrl?: string;
 
   /**
-   * Determine if the action is always visible.
+   * Determine if the action is always visible. It is not recommended to set this to true on more then one action.
    */
   readonly alwaysVisible?: boolean;
 }
