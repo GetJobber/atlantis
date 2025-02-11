@@ -33,7 +33,7 @@ export const ComponentNotFound = () => {
                   },
                   {
                     content:
-                      "Add an entry to generate new props. In baseComponentLists.mjs, add the new key you just used for the folder (componentName)",
+                      "In baseComponentLists.mjs, add the new key you just used for the folder (componentName). Run **npm run generate** within packages/site",
                     id: 3,
                   },
                   {
