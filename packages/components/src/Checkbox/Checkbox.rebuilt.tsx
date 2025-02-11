@@ -60,6 +60,8 @@ interface BaseCheckboxProps {
   onChange?(newValue: boolean): void;
 
   onFocus?(): void;
+
+  onBlur?(): void;
 }
 
 interface CheckboxLabelProps extends BaseCheckboxProps {
