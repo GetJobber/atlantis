@@ -19,7 +19,7 @@ BaseView.Main = function Main({
           backgroundColor: "var(--color-surface)",
           boxShadow: "var(--shadow-base)",
           flexGrow: 1,
-          borderRadius: "var(--radius-base) var(--radius-base) 0",
+          borderRadius: "var(--radius-base) var(--radius-base) 0 0",
           position: "relative",
           overflow: "hidden",
         }}
