@@ -1,81 +1,10 @@
-import React, {
-  ChangeEvent,
-  ReactElement,
-  useEffect,
-  useId,
-  useState,
-} from "react";
+import React, { ChangeEvent, useEffect, useId, useState } from "react";
 import classnames from "classnames";
-import { XOR } from "ts-xor";
 import { Controller, useForm, useFormContext } from "react-hook-form";
 import styles from "./Checkbox.module.css";
+import { CheckboxProps } from "./Checkbox.types";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
-
-interface BaseCheckboxProps {
-  /**
-   * Determines if the checkbox is checked or not.
-   */
-  readonly checked?: boolean;
-
-  /**
-   * Initial checked value of the checkbox. Only use this when you need to
-   * pre-populate the checked attribute that is not controlled by the component's
-   * state. If a state is controlling it, use the `checked` prop instead.
-   */
-  readonly defaultChecked?: boolean;
-
-  /**
-   * Disables the checkbox.
-   */
-  readonly disabled?: boolean;
-
-  /**
-   * When `true` the checkbox to appears in indeterminate.
-   *
-   * @default false
-   */
-  readonly indeterminate?: boolean;
-
-  /**
-   * Checkbox input name
-   */
-  readonly name?: string;
-
-  /**
-   * Value of the checkbox.
-   */
-  readonly value?: string;
-
-  /**
-   * Further description of the label
-   */
-  readonly description?: string;
-
-  readonly version?: 1;
-
-  onChange?(newValue: boolean): void;
-
-  onFocus?(): void;
-
-  onBlur?(): void;
-}
-
-interface CheckboxLabelProps extends BaseCheckboxProps {
-  /**
-   * Label that shows up beside the checkbox.
-   */
-  readonly label?: string;
-}
-
-interface CheckboxChildrenProps extends BaseCheckboxProps {
-  /**
-   * Component children, which shows up as a label
-   */
-  readonly children?: ReactElement;
-}
-
-export type CheckboxProps = XOR<CheckboxLabelProps, CheckboxChildrenProps>;
 
 export function Checkbox({
   checked,
