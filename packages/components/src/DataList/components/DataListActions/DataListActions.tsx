@@ -26,8 +26,13 @@ export function DataListActions<T extends DataListObject>({
   return (
     <>
       {exposedActions.map(({ props }) => {
-        if (props.visible && !props.visible(activeItem)) return null;
-        if (!props.icon) return null;
+        const shouldHide =
+          (props.visible && !props.visible(activeItem)) ||
+          !(props.icon || props.alwaysVisible);
+
+        if (shouldHide) {
+          return null;
+        }
 
         function getActionLabel() {
           if (typeof props.label === "string") {
@@ -40,6 +45,21 @@ export function DataListActions<T extends DataListObject>({
         }
 
         const actionLabel = getActionLabel();
+
+        // If the action is always visible, we don't need a tooltip.
+        if (props.alwaysVisible) {
+          return (
+            <Button
+              key={props.label}
+              label={actionLabel}
+              onClick={() => {
+                props.onClick?.(activeItem);
+              }}
+              type="tertiary"
+              variation="subtle"
+            />
+          );
+        }
 
         return (
           <Tooltip key={actionLabel} message={actionLabel}>
