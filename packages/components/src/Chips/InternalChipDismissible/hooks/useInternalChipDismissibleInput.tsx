@@ -51,6 +51,16 @@ export function useInternalChipDismissibleInput({
     previousOptionIndex: activeIndex > 0 ? activeIndex - 1 : maxOptionIndex,
   };
 
+  function handleSearch(newSearchValue: string, newOptions: ChipProps[] = []) {
+    onSearch && onSearch(newSearchValue);
+
+    setAllOptions(
+      generateOptions(newOptions, newSearchValue, canAddCustomOption),
+    );
+    setShouldCancelEnter(false);
+  }
+
+  const handleDebouncedSearch = debounce(handleSearch, 300);
   const actions = {
     generateDescendantId: (index: number) => `${computed.menuId}-${index}`,
 
@@ -130,11 +140,7 @@ export function useInternalChipDismissibleInput({
       handleKeydownEvents(callbacks, event);
     },
 
-    handleDebouncedSearch: debounce(() => {
-      onSearch && onSearch(searchValue);
-      setAllOptions(generateOptions(options, searchValue, canAddCustomOption));
-      setShouldCancelEnter(false);
-    }, 300),
+    handleDebouncedSearch,
   };
 
   return {
