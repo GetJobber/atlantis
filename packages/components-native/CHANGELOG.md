@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.76.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.75.5...@jobber/components-native@0.76.0) (2025-02-12)
+
+
+### Features
+
+* **components-native:** Adding Unsafe style to mobile Text and Button [JOB-112128] ([#2350](https://github.com/GetJobber/atlantis/issues/2350)) ([65f6b92](https://github.com/GetJobber/atlantis/commit/65f6b922f171825da2f1fdb886872967f294567e))
+
+
+
+
+
 ## [0.75.5](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.75.3...@jobber/components-native@0.75.5) (2025-02-04)
 
 **Note:** Version bump only for package @jobber/components-native
