@@ -163,7 +163,7 @@
   width: 64px;
   height: 64px;
   border-radius: var(--radius-small);
-  background-color: var(--color-text--reverse);
+  background-color: var(--color-surface);
   transition:
     border var(--timing-base) ease-in,
     transform var(--timing-quick) ease-in-out;
@@ -177,7 +177,7 @@
 .thumbnail.selected {
   margin: 0 var(--space-smaller);
   padding: var(--space-smallest);
-  border: 2px solid var(--color-text--reverse);
+  border: 2px solid var(--color-surface);
   background-color: transparent;
   transform: scale(1.125);
 
