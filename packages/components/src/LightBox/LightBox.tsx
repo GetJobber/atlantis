@@ -96,7 +96,7 @@ export function LightBox({
   const [direction, setDirection] = useState(0);
   const [mouseIsStationary, setMouseIsStationary] = useState(true);
   const lightboxRef = useFocusTrap<HTMLDivElement>(open);
-  const thumbnailBarRef = useRef<HTMLDivElement>(null);
+  const selectedThumbnailRef = useRef<HTMLDivElement>(null);
 
   const debouncedHandleNext = useDebounce(
     handleMoveNext,
@@ -134,16 +134,11 @@ export function LightBox({
   }
 
   useEffect(() => {
-    if (thumbnailBarRef.current) {
-      const selectedThumbnail = thumbnailBarRef.current.children[
-        currentImageIndex
-      ] as HTMLElement;
-      selectedThumbnail?.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-        inline: "center",
-      });
-    }
+    selectedThumbnailRef?.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
   }, [currentImageIndex]);
 
   const template = (
@@ -240,7 +235,6 @@ export function LightBox({
           {images.length > 1 && (
             <div
               className={styles.thumbnailBar}
-              ref={thumbnailBarRef}
               data-testid="ATL-Thumbnail-Bar"
             >
               {images.map((image, index) => (
@@ -250,6 +244,9 @@ export function LightBox({
                     [styles.selected]: index === currentImageIndex,
                   })}
                   onClick={() => handleThumbnailClick(index)}
+                  ref={
+                    index === currentImageIndex ? selectedThumbnailRef : null
+                  }
                 >
                   <img
                     key={index}
