@@ -219,7 +219,7 @@ describe("LightBox", () => {
       expect(
         screen.queryByAltText("alt of unselected image"),
       ).toBeInTheDocument();
-      expect(screen.queryByTestId("thumbnail-bar")).toBeInTheDocument();
+      expect(screen.queryByTestId("ATL-Thumbnail-Bar")).toBeInTheDocument();
     });
 
     test("doesn't display when there is only one image", () => {

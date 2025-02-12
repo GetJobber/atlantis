@@ -241,7 +241,7 @@ export function LightBox({
             <div
               className={styles.thumbnailBar}
               ref={thumbnailBarRef}
-              data-testid="thumbnail-bar"
+              data-testid="ATL-Thumbnail-Bar"
             >
               {images.map((image, index) => (
                 <div
