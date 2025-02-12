@@ -16,6 +16,7 @@ export function Checkbox({
   indeterminate = false,
   description,
   children,
+  onBlur,
   onChange,
   onFocus,
 }: CheckboxProps) {
@@ -81,6 +82,7 @@ export function Checkbox({
                   aria-label={label}
                   onChange={handleChange}
                   onFocus={onFocus}
+                  onBlur={onBlur}
                 />
                 <span className={styles.checkBox}>
                   <Icon name={iconName} color="surface" />

@@ -17,6 +17,7 @@ export const Checkbox = forwardRef(function CheckboxRebuilt(
     description,
     children,
     id,
+    onBlur,
     onChange,
     onFocus,
   }: CheckboxRebuiltProps,
@@ -54,6 +55,7 @@ export const Checkbox = forwardRef(function CheckboxRebuilt(
             aria-label={label}
             onChange={handleChange}
             onFocus={onFocus}
+            onBlur={onBlur}
           />
           <span className={styles.checkBox}>
             <Icon name={iconName} color="surface" />
