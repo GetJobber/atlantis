@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.8](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.21.7...@jobber/atlantis-site@0.21.8) (2025-02-12)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.21.7](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.21.6...@jobber/atlantis-site@0.21.7) (2025-02-12)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.21.6](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.21.5...@jobber/atlantis-site@0.21.6) (2025-02-11)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.21.5](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.21.4...@jobber/atlantis-site@0.21.5) (2025-02-07)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.21.4](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.21.3...@jobber/atlantis-site@0.21.4) (2025-02-07)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.21.3](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.21.2...@jobber/atlantis-site@0.21.3) (2025-02-06)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.21.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.21.1...@jobber/atlantis-site@0.21.2) (2025-02-06)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
 ## [0.21.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.21.0...@jobber/atlantis-site@0.21.1) (2025-02-05)
 
 **Note:** Version bump only for package @jobber/atlantis-site

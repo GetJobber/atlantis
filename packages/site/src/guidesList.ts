@@ -13,6 +13,10 @@ export const guidesList = [
     to: "/guides/documentation-styleguide",
   },
   {
+    title: "Adding an icon",
+    to: "/guides/adding-an-icon",
+  },
+  {
     title: "Frontend styleguide",
     to: "/guides/frontend-styleguide",
   },

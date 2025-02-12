@@ -1,5 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react-native";
+import { tokens } from "@jobber/design";
 import { Text } from ".";
 
 it("renders text with no additional props", () => {
@@ -147,4 +148,23 @@ it("renders text with underline styling", () => {
   const text = render(<Text underline="dashed">Test Text</Text>);
 
   expect(text.toJSON()).toMatchSnapshot();
+});
+
+describe("UNSAFE_style", () => {
+  it("applies custom styles via UNSAFE_style prop", () => {
+    const customStyle = {
+      textStyle: {
+        fontSize: 20,
+        color: tokens["color-blue--dark"],
+      },
+    };
+
+    const { getByRole } = render(
+      <Text UNSAFE_style={customStyle}>Test Text</Text>,
+    );
+    const textElement = getByRole("text");
+    expect(textElement.props.style).toContainEqual(
+      expect.objectContaining(customStyle.textStyle),
+    );
+  });
 });

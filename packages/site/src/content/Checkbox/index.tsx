@@ -1,6 +1,7 @@
 import CheckboxContent from "@atlantis/docs/components/Checkbox/Checkbox.stories.mdx";
 import Props from "./Checkbox.props.json";
 import MobileProps from "./Checkbox.props-mobile.json";
+import Notes from "./CheckboxNotes.mdx";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
@@ -27,4 +28,5 @@ export default {
       url: getStorybookUrl("?path=/docs/components-selections-checkbox--docs"),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

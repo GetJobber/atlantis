@@ -44,7 +44,7 @@ function renderButton(element: ReactElement) {
   expect(instance.getByText(element.props.label)).toBeDefined();
 
   const buttonStyleEl = button.children[0] as ReactTestInstance;
-  const buttonStyle = buttonStyleEl.props.style.reduce(
+  const buttonStyle = buttonStyleEl.props.style.flat().reduce(
     (mergedStyles: CSSProperties, additionalStyles: CSSProperties) => ({
       ...mergedStyles,
       ...additionalStyles,
@@ -296,6 +296,93 @@ describe("Button", () => {
       rerender(setup());
       fireEvent.press(getByLabelText(label));
       expect(handlePress).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe("UNSAFE_style", () => {
+    it("should apply the container style override", () => {
+      const containerStyle = {
+        backgroundColor: "red",
+        borderColor: tokens["color-base-red--500"],
+      };
+
+      const { buttonStyle } = renderButton(
+        <Button
+          label="Override"
+          onPress={jest.fn()}
+          UNSAFE_style={{ container: containerStyle }}
+        />,
+      );
+
+      expect(buttonStyle).toMatchObject(containerStyle);
+    });
+
+    it("should apply the contentContainer style override to labels", () => {
+      const contentContainerStyle = { padding: 10 };
+
+      const { getByTestId } = renderButton(
+        <Button
+          label="Override"
+          onPress={jest.fn()}
+          UNSAFE_style={{ contentContainer: contentContainerStyle }}
+        />,
+      );
+
+      const contentContainer = getByTestId("contentContainer");
+      expect(contentContainer.props.style).toContainEqual(
+        contentContainerStyle,
+      );
+    });
+
+    it("should apply the contentContainer style override to icons", () => {
+      const contentContainerStyle = { padding: 10 };
+
+      const { getByTestId } = renderButton(
+        <Button
+          label="Cog"
+          icon="cog"
+          onPress={jest.fn()}
+          UNSAFE_style={{ contentContainer: contentContainerStyle }}
+        />,
+      );
+
+      const contentContainer = getByTestId("contentContainer");
+      expect(contentContainer.props.style).toContainEqual(
+        contentContainerStyle,
+      );
+    });
+
+    it("should apply the iconContainer style override", () => {
+      const iconContainerStyle = { margin: 5 };
+
+      const { getByTestId } = renderButton(
+        <Button
+          label="Cog"
+          icon="cog"
+          onPress={jest.fn()}
+          UNSAFE_style={{ iconContainer: iconContainerStyle }}
+        />,
+      );
+
+      const iconContainer = getByTestId("iconContainer");
+      expect(iconContainer.props.style).toContainEqual(iconContainerStyle);
+    });
+
+    it("should apply the actionLabelContainer style override", () => {
+      const actionLabelContainerStyle = { margin: 5 };
+
+      const { getByTestId } = renderButton(
+        <Button
+          label="Override"
+          onPress={jest.fn()}
+          UNSAFE_style={{ actionLabelContainer: actionLabelContainerStyle }}
+        />,
+      );
+
+      const actionLabelContainer = getByTestId("actionLabelContainer");
+      expect(actionLabelContainer.props.style).toContainEqual(
+        actionLabelContainerStyle,
+      );
     });
   });
 });

@@ -65,14 +65,14 @@ export function Banner({
     primaryAction = Object.assign(
       {
         size: "small",
-        type: "tertiary",
-        variation: type === "notice" ? "learning" : "work",
+        type: "primary",
+        variation: "subtle",
       },
       primaryAction,
     );
   }
 
-  const bannerClassNames = classnames(styles.banner, {
+  const bannerClassNames = classnames(styles.banner, [styles[type]], {
     [styles.medium]: bannerWidth >= bannerWidths.medium,
   });
 

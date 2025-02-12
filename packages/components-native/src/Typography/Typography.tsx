@@ -118,6 +118,8 @@ export interface TypographyProps<T extends FontFamily>
    * Have text styled with strike through
    */
   readonly strikeThrough?: boolean;
+
+  readonly UNSAFE_style?: TypographyUnsafeStyle;
 }
 
 const maxNumberOfLines = {
@@ -128,6 +130,10 @@ const maxNumberOfLines = {
   extraLarge: 16,
   unlimited: undefined,
 };
+
+export interface TypographyUnsafeStyle {
+  textStyle?: StyleProp<TextStyle>;
+}
 
 export const Typography = React.memo(InternalTypography);
 
@@ -152,6 +158,7 @@ function InternalTypography<T extends FontFamily = "base">({
   accessibilityRole = "text",
   strikeThrough = false,
   underline,
+  UNSAFE_style,
   selectable = true,
 }: TypographyProps<T>): JSX.Element {
   const sizeAndHeight = getSizeAndHeightStyle(size, lineHeight);
@@ -174,6 +181,10 @@ function InternalTypography<T extends FontFamily = "base">({
   if (underline) {
     const underlineTextStyle: TextStyle = { textDecorationStyle: underline };
     style.push(underlineTextStyle, styles.underline);
+  }
+
+  if (UNSAFE_style?.textStyle) {
+    style.push(UNSAFE_style.textStyle);
   }
 
   const numberOfLinesForNativeText = maxNumberOfLines[maxLines];

@@ -11,8 +11,9 @@ import {
   TypographyProps,
 } from "../Typography";
 import { tokens } from "../utils/design";
+import { TypographyUnsafeStyle } from "../Typography/Typography";
 
-interface TextProps
+export interface TextProps
   extends Pick<TypographyProps<"base">, "maxFontScaleSize" | "selectable"> {
   /**
    * Visual hierarchy of the text
@@ -85,6 +86,13 @@ interface TextProps
    * of the TextInput
    */
   readonly hideFromScreenReader?: boolean;
+
+  /**
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information [here](https://atlantis.getjobber.com/storybook/?path=/docs/guides-customizing-components--docs#unsafe_-props).
+   */
+  readonly UNSAFE_style?: TypographyUnsafeStyle;
 }
 
 export type TextLevel = "text" | "textSupporting";
@@ -125,6 +133,7 @@ export function Text({
   italic = false,
   hideFromScreenReader = false,
   maxFontScaleSize,
+  UNSAFE_style,
   underline,
   selectable,
 }: TextProps): JSX.Element {
@@ -133,6 +142,7 @@ export function Text({
   return (
     <Typography
       color={variation}
+      UNSAFE_style={UNSAFE_style}
       fontFamily="base"
       fontStyle={italic ? "italic" : "regular"}
       fontWeight={getFontWeight({ level, emphasis })}

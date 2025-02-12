@@ -1,13 +1,11 @@
 node_modules
 dist
-.rollup.cache
 .rpt2_cache
 packages/design/colors.js
 packages/design/src/assets/**
 packages/design/src/icons/iconStyles.*
 packages/design/icons
 packages/generators/templates
-public
 storybook-static
 
 *.css.d.ts

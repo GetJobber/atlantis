@@ -87,6 +87,11 @@ export const routes: Array<AtlantisRoute> = [
         exact: true,
       },
       {
+        path: "/patterns/errors",
+        handle: "Errors",
+        exact: true,
+      },
+      {
         path: "/patterns/disabled-states",
         handle: "Disabled states",
         exact: true,
@@ -202,6 +207,11 @@ export const routes: Array<AtlantisRoute> = [
       {
         path: "/guides/documentation-styleguide",
         handle: "Writing documentation",
+        exact: true,
+      },
+      {
+        path: "/guides/adding-an-icon",
+        handle: "Adding an icon",
         exact: true,
       },
       {

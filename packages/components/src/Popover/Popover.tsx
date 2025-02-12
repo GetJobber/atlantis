@@ -2,6 +2,7 @@ import React, { CSSProperties, useState } from "react";
 import { usePopper } from "react-popper";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import classnames from "classnames";
+import ReactDOM from "react-dom";
 import classes from "./Popover.module.css";
 import { ButtonDismiss } from "../ButtonDismiss";
 
@@ -86,37 +87,34 @@ export function Popover({
     UNSAFE_className.dismissButtonContainer,
   );
   const arrowClassNames = classnames(classes.arrow, UNSAFE_className.arrow);
-
-  return (
-    <>
-      {open && (
-        <div
-          role="dialog"
-          data-elevation={"elevated"}
-          ref={setPopperElement}
-          style={{ ...popperStyles.popper, ...(UNSAFE_style.container ?? {}) }}
-          className={popoverClassNames}
-          {...attributes.popper}
-          data-testid="popover-container"
-        >
-          <div
-            className={dismissButtonClassNames}
-            style={UNSAFE_style.dismissButtonContainer ?? {}}
-            data-testid="popover-dismiss-button-container"
-          >
-            <ButtonDismiss onClick={onRequestClose} ariaLabel="Close dialog" />
-          </div>
-          {children}
-          <div
-            ref={setArrowElement}
-            className={arrowClassNames}
-            style={{ ...popperStyles.arrow, ...(UNSAFE_style.arrow ?? {}) }}
-            data-testid="popover-arrow"
-          />
-        </div>
-      )}
-    </>
+  const popoverContent = (
+    <div
+      role="dialog"
+      data-elevation={"elevated"}
+      ref={setPopperElement}
+      style={{ ...popperStyles.popper, ...(UNSAFE_style.container ?? {}) }}
+      className={popoverClassNames}
+      {...attributes.popper}
+      data-testid="popover-container"
+    >
+      <div
+        className={dismissButtonClassNames}
+        style={UNSAFE_style.dismissButtonContainer ?? {}}
+        data-testid="popover-dismiss-button-container"
+      >
+        <ButtonDismiss onClick={onRequestClose} ariaLabel="Close dialog" />
+      </div>
+      {children}
+      <div
+        ref={setArrowElement}
+        className={arrowClassNames}
+        style={{ ...popperStyles.arrow, ...(UNSAFE_style.arrow ?? {}) }}
+        data-testid="popover-arrow"
+      />
+    </div>
   );
+
+  return <>{open && ReactDOM.createPortal(popoverContent, document.body)}</>;
 }
 
 function buildModifiers(arrowElement: HTMLElement | undefined | null) {

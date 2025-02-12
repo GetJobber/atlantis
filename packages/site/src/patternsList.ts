@@ -10,6 +10,11 @@ export const patternsList = [
     imageURL: "/EmptyStates.png",
   },
   {
+    title: "Errors",
+    to: "/patterns/errors",
+    imageURL: "/Errors.png",
+  },
+  {
     title: "Disabled states",
     to: "/patterns/disabled-states",
     imageURL: "/DisabledStates.png",
