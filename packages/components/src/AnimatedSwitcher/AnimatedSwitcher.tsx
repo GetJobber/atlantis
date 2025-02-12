@@ -1,6 +1,6 @@
 import React, { ReactElement, useState } from "react";
 import { AnimatePresence, Variants, motion } from "framer-motion";
-import { IconNames } from "@jobber/design";
+import { IconColorNames, IconNames } from "@jobber/design";
 import {
   DURATION_AVERAGE,
   DURATION_SIMPLE,
@@ -115,19 +115,23 @@ export function AnimatedSwitcher({
 interface AnimatedSwitcherIconProps
   extends Pick<AnimatedSwitcherProps, "switched"> {
   readonly initialIcon: IconNames;
+  readonly initialIconColor?: IconColorNames;
   readonly switchToIcon: IconNames;
+  readonly switchToIconColor?: IconColorNames;
 }
 
 AnimatedSwitcher.Icon = function AnimatedSwitcherIcon({
   switchToIcon,
   switched,
   initialIcon,
+  initialIconColor,
+  switchToIconColor,
 }: AnimatedSwitcherIconProps) {
   return (
     <AnimatedSwitcher
       switched={switched}
-      initialChild={<Icon name={initialIcon} />}
-      switchTo={<Icon name={switchToIcon} />}
+      initialChild={<Icon name={initialIcon} color={initialIconColor} />}
+      switchTo={<Icon name={switchToIcon} color={switchToIconColor} />}
     />
   );
 };

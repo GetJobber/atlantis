@@ -22,12 +22,12 @@ export const SPIN_COUNTER_CLOCK_WISE: Variants = {
   visible: {
     rotate: 0,
     scale: 1,
-    transition: { duration: DURATION_AVERAGE, ease: "easeOut" },
+    transition: { duration: DURATION_SIMPLE, ease: "easeOut" },
   },
   hidden: {
     rotate: 180,
     scale: 0.6,
-    transition: { duration: DURATION_AVERAGE, ease: "easeIn" },
+    transition: { duration: DURATION_SIMPLE, ease: "easeIn" },
   },
 };
 
@@ -35,11 +35,11 @@ export const SPIN_CLOCK_WISE: Variants = {
   visible: {
     rotate: 0,
     scale: 1,
-    transition: { duration: DURATION_AVERAGE, ease: "easeOut" },
+    transition: { duration: DURATION_SIMPLE, ease: "easeOut" },
   },
   hidden: {
     rotate: -180,
     scale: 0.6,
-    transition: { duration: DURATION_AVERAGE, ease: "easeIn" },
+    transition: { duration: DURATION_SIMPLE, ease: "easeIn" },
   },
 };
