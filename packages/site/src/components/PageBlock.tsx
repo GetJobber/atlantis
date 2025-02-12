@@ -8,6 +8,7 @@ import { CategoryCardSection } from "./CategoryCardSection";
 import { PageWrapper } from "../layout/PageWrapper";
 import { ContentCardProps } from "../types/components";
 import usePageTitle from "../hooks/usePageTitle";
+import { TopNav } from "../layout/TopNav";
 
 interface PageBlockProps {
   readonly structure: {
@@ -63,48 +64,62 @@ export const PageBlock = ({ structure }: PageBlockProps) => {
 
   return (
     <PageWrapper>
-      <HeaderBlock {...structure.header} />
-      <BodyBlock>
-        {structure.showSegmentedControl && (
-          <div
-            style={{
-              width: "240px",
-              margin: "auto",
-              paddingBottom: "var(--space-largest)",
-            }}
-          >
-            <SegmentedControl
-              selectedValue={cardView}
-              onSelectValue={setCardView}
-            >
-              <SegmentedControl.Option value={"category"}>
-                Categorical
-              </SegmentedControl.Option>
-              <SegmentedControl.Option value={"a-z"}>
-                Alphabetical
-              </SegmentedControl.Option>
-            </SegmentedControl>
-          </div>
-        )}
+      <TopNav />
+      <main
+        style={{
+          boxShadow: "var(--shadow-base)",
+          borderRadius: "var(--radius-base) var(--radius-base) 0 0",
+          overflow: "hidden",
+          position: "relative",
+          flexGrow: 1,
+          backgroundColor: "var(--color-surface)",
+        }}
+      >
+        <div style={{ overflowY: "scroll", height: "100%" }}>
+          <HeaderBlock {...structure.header} />
+          <BodyBlock>
+            {structure.showSegmentedControl && (
+              <div
+                style={{
+                  width: "240px",
+                  margin: "auto",
+                  paddingBottom: "var(--space-largest)",
+                }}
+              >
+                <SegmentedControl
+                  selectedValue={cardView}
+                  onSelectValue={setCardView}
+                >
+                  <SegmentedControl.Option value={"category"}>
+                    Categorical
+                  </SegmentedControl.Option>
+                  <SegmentedControl.Option value={"a-z"}>
+                    Alphabetical
+                  </SegmentedControl.Option>
+                </SegmentedControl>
+              </div>
+            )}
 
-        {structure.useCategories && cardView === "category" ? (
-          <>
-            {sectionedComponents().map(({ section, items }) => (
-              <CategoryCardSection key={section} category={section}>
-                {items.map((content, index) => (
+            {structure.useCategories && cardView === "category" ? (
+              <>
+                {sectionedComponents().map(({ section, items }) => (
+                  <CategoryCardSection key={section} category={section}>
+                    {items.map((content, index) => (
+                      <ContentCard {...content} key={index} />
+                    ))}
+                  </CategoryCardSection>
+                ))}
+              </>
+            ) : (
+              <ContentCardWrapper>
+                {structure.body.content.map((content, index) => (
                   <ContentCard {...content} key={index} />
                 ))}
-              </CategoryCardSection>
-            ))}
-          </>
-        ) : (
-          <ContentCardWrapper>
-            {structure.body.content.map((content, index) => (
-              <ContentCard {...content} key={index} />
-            ))}
-          </ContentCardWrapper>
-        )}
-      </BodyBlock>
+              </ContentCardWrapper>
+            )}
+          </BodyBlock>
+        </div>
+      </main>
     </PageWrapper>
   );
 };
