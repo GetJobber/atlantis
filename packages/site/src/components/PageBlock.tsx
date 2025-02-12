@@ -8,7 +8,7 @@ import { CategoryCardSection } from "./CategoryCardSection";
 import { PageWrapper } from "../layout/PageWrapper";
 import { ContentCardProps } from "../types/components";
 import usePageTitle from "../hooks/usePageTitle";
-import { Header } from "../layout/Header";
+import { TopNav } from "../layout/TopNav";
 
 interface PageBlockProps {
   readonly structure: {
@@ -64,7 +64,7 @@ export const PageBlock = ({ structure }: PageBlockProps) => {
 
   return (
     <PageWrapper>
-      <Header />
+      <TopNav />
       <main
         style={{
           boxShadow: "var(--shadow-base)",

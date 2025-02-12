@@ -3,7 +3,7 @@ import { SearchButton } from "./SearchButton";
 import { ToggleThemeButton } from "../components/ToggleThemeButton";
 import { useTritonChat } from "../providers/TritonProvider";
 
-export const Header = () => {
+export const TopNav = () => {
   const { onOpenTriton } = useTritonChat();
 
   return (

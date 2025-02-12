@@ -1,6 +1,6 @@
 import { Box } from "@jobber/components";
 import { PropsWithChildren } from "react";
-import { Header } from "./Header";
+import { TopNav } from "./TopNav";
 
 export function BaseView({ children }: PropsWithChildren) {
   return <div style={{ display: "flex", height: "100dvh" }}>{children}</div>;
@@ -13,7 +13,7 @@ BaseView.Main = function Main({
 }) {
   return (
     <Box width="grow">
-      <Header />
+      <TopNav />
       <main
         style={{
           backgroundColor: "var(--color-surface)",
