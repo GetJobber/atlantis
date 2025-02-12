@@ -1,77 +1,167 @@
-import { Meta } from "@storybook/addon-docs";
-import { Icon } from "@jobber/components/Icon";
+import { Meta, Canvas } from "@storybook/addon-docs";
+import { Banner, Icon, Content, Text, Tooltip } from "@jobber/components";
 
 <Meta title="Components/Images and Icons/Icon" component={Icon} />
 
 # Icon
 
-Atlantis provides built-in icons that represent common tasks and types of
-content in a variety of use cases.
+Icons are used to visually represent an idea or action. They can act as
+wayfinding tools to orient users in the product, and identify common
+interactions.
 
-Icons are used to visually communicate core parts of the product and available
-actions. They can act as wayfinding tools to more easily understand where they
-are in the product, and common interaction patterns that are available.
-
-Use icons as intended. Provided icons have a specific meaning. To avoid
-confusing users, each icon should be used in accordance with its meaning and
-recommended usage.
+<Banner type="notice" dismissible={false}>
+  Looking to add a new Icon to Atlantis? Read the [Adding an
+  icon](../guides/adding-an-icon) guide before you get started.
+</Banner>
 
 ## Design & usage guidelines
 
-### Icon sizes
+Icons should generally be paired with a label to help users understand the
+meaning. If you want to use an Icon without a label, test with users to ensure
+it's clear what the Icon represents.
 
-#### Base
+In cases where a label may not be feasible space-wise, use a Tooltip to provide
+contextual support.
 
-Use the `base` size for most icon usage.
+<Canvas>
+  <div
+    style={{ display: "flex", alignItems: "center", gap: "var(--space-large)" }}
+  >
+    <Tooltip message="Search">
+      <Icon name="search" />
+    </Tooltip>
+    <Tooltip message="Support">
+      <Icon name="help" />
+    </Tooltip>
+    <Tooltip message="Settings">
+      <Icon name="cog" />
+    </Tooltip>
+  </div>
+</Canvas>
 
-#### Small
+### Status
 
-Only use `small` when space is severely constrained, such as in a
-[small Button.](../?path=/docs/components-actions-button--docs#sizes)
+Icons are commonly paired with status messages to help the user quickly
+understand the state of the application.
 
-#### Large
+<Canvas>
+  <Content spacing="larger">
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--space-small)",
+      }}
+    >
+      <Icon name="alert" color="critical" />
+      <Content spacing="smallest">
+        <Text variation="error">Something has gone wrong</Text>
+      </Content>
+    </div>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--space-small)",
+      }}
+    >
+      <Icon name="warning" color="warning" />
+      <Content spacing="smallest">
+        <Text variation="warn">Something could go wrong</Text>
+      </Content>
+    </div>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--space-small)",
+      }}
+    >
+      <Icon name="info" color="informative" />
+      <Content spacing="smallest">
+        <Text variation="info">Something is happening</Text>
+      </Content>
+    </div>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--space-small)",
+      }}
+    >
+      <Icon name="checkmark" />
+      <Content spacing="smallest">
+        <Text variation="success">Something succeeded</Text>
+      </Content>
+    </div>
+  </Content>
+</Canvas>
 
-Only use `large` icons when the icon is a prominent feature of the interface,
-such as in a full-screen error view on a mobile device.
+### Sizes
 
-### Icon construction guidelines
+<Canvas>
+  <Content spacing="larger">
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--space-large)",
+      }}
+    >
+      <Icon name="search" size="small" />
+      <Content spacing="smallest">
+        <Text>Small</Text>
+        <Text size="small" variation="subdued">
+          When space is severely constrained
+        </Text>
+      </Content>
+    </div>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--space-base)",
+      }}
+    >
+      <Icon name="search" />
+      <Content spacing="smallest">
+        <Text>Base</Text>
+        <Text size="small" variation="subdued">
+          For most icon usage
+        </Text>
+      </Content>
+    </div>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--space-small)",
+      }}
+    >
+      <Icon name="search" size="large" />
+      <Content spacing="smallest">
+        <Text>Large</Text>
+        <Text size="small" variation="subdued">
+          When the icon is prominently featured in the interface
+        </Text>
+      </Content>
+    </div>
+  </Content>
+</Canvas>
 
-When contributing a new icon, design to these guidelines for the `base` size.
-The `small` and `large` sizes will be generated programatically once the `base`
-size icon has been created.
+## Related components
 
-#### Size, weight, and spacing
+- [Button](../components/Button)
+- [IconButton](../components/IconButton) (mobile-only)
+- [Banner](../components/Banner)
 
-Icons are only responsible for their own spacing. Spacing when used within other
-components, such as
-[List](../?path=/docs/components-lists-and-tables-list--docs), is the
-responsibility of those other components.
+## Accessibility
 
-- Icons should have a height and width of 20px container within a 24px artboard,
-  effectively providing a 2px padding on all sides
-- Icons can be optically adjusted within this 20px space to attain good visual
-  balance with the rest of the Atlantis icon set
-- Circular icons should have a 20px diameter
-- Lines should have a 2px weight
-
-#### Corners
-
-- 90° corners should have a 2px radius
-- Greater than 90° corners should have a 1px radius
-- Less than 90° corners should have an 0.5px radius
-- Interior corners should not have a radius
-
-#### Line terminals
-
-- When a line is interrupted, terminals should be geometric/square
-- when a line ends organically, terminals should be round
-
-#### Color
-
-Design your icons with `#000000`. If an icon is associated with a systemic color
-such as ["destructive"](../?path=/docs/design-colors--docs#destructive) specify
-the system color for the icon when it is added to Atlantis. In all other cases,
-use the default icon color.
+- Icons are a visual supplement, so they should not be used as the only means of
+  conveying information
+  - Ensure icons are paired with a label if they are used as a standalone
+    element
+  - When used in an icon-only Button, provide an aria-label and use a Tooltip
 
 ## Available icons
 
