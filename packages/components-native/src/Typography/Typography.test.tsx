@@ -225,6 +225,20 @@ it("renders text that is inaccessible", () => {
   );
 });
 
+it("applies custom UNSAFE_style to text", () => {
+  const customStyle = { color: "red", fontSize: 20 };
+  const typography = render(
+    <Typography UNSAFE_style={{ textStyle: customStyle }}>
+      Test Text
+    </Typography>,
+  );
+  const textElement = typography.getByText("Test Text");
+
+  expect(textElement.props.style).toEqual(
+    expect.arrayContaining([expect.objectContaining(customStyle)]),
+  );
+});
+
 describe("underline", () => {
   it.each(["solid", "double", "dotted", "dashed"] as const)(
     "renders text with %s underline",
