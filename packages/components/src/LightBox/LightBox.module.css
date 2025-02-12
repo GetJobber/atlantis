@@ -160,8 +160,8 @@
 }
 
 .thumbnail {
-  width: var(--space-extravagant);
-  height: var(--space-extravagant);
+  width: 64px;
+  height: 64px;
   border-radius: var(--radius-small);
   background-color: var(--color-text--reverse);
   transition:
