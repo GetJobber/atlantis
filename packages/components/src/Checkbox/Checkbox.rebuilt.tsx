@@ -1,28 +1,25 @@
-import React, { ChangeEvent, ForwardedRef, forwardRef } from "react";
+import React, { ChangeEvent } from "react";
 import classnames from "classnames";
 import styles from "./Checkbox.module.css";
 import { CheckboxRebuiltProps } from "./Checkbox.types";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
 
-export const Checkbox = forwardRef(function CheckboxRebuilt(
-  {
-    checked,
-    defaultChecked,
-    disabled,
-    label,
-    name,
-    value,
-    indeterminate = false,
-    description,
-    children,
-    id,
-    onBlur,
-    onChange,
-    onFocus,
-  }: CheckboxRebuiltProps,
-  ref: ForwardedRef<HTMLInputElement>,
-) {
+export function CheckboxRebuilt({
+  checked,
+  defaultChecked,
+  disabled,
+  label,
+  name,
+  value,
+  indeterminate = false,
+  description,
+  children,
+  id,
+  onBlur,
+  onChange,
+  onFocus,
+}: CheckboxRebuiltProps) {
   const wrapperClassName = classnames(
     styles.wrapper,
     disabled && styles.disabled,
@@ -43,7 +40,6 @@ export const Checkbox = forwardRef(function CheckboxRebuilt(
       <label className={wrapperClassName}>
         <span className={styles.checkHolder}>
           <input
-            ref={ref}
             type="checkbox"
             id={id}
             className={inputClassName}
@@ -73,4 +69,4 @@ export const Checkbox = forwardRef(function CheckboxRebuilt(
       )}
     </div>
   );
-});
+}

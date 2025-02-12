@@ -1,6 +1,6 @@
 import React from "react";
-import { Checkbox as CheckboxLegacy } from "./Checkbox";
-import { Checkbox as CheckboxRebuilt } from "./Checkbox.rebuilt";
+import { CheckboxLegacy } from "./Checkbox";
+import { CheckboxRebuilt } from "./Checkbox.rebuilt";
 import { CheckboxProps, CheckboxRebuiltProps } from "./Checkbox.types";
 
 type CheckboxShimProps = CheckboxProps | CheckboxRebuiltProps;

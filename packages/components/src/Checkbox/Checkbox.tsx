@@ -6,7 +6,7 @@ import { CheckboxProps } from "./Checkbox.types";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
 
-export function Checkbox({
+export function CheckboxLegacy({
   checked,
   defaultChecked,
   disabled,

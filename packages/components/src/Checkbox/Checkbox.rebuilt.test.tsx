@@ -1,6 +1,6 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
-import { Checkbox } from "./Checkbox.rebuilt";
+import { Checkbox } from ".";
 import { Text } from "../Text";
 
 describe("Checkbox", () => {
