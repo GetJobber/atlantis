@@ -22,6 +22,27 @@ export function TritonSideDrawer() {
     setApiKey,
   } = useTritonChat();
 
+  const saveAndValidateApiKey = async () => {
+    await setApiKey(apiKey);
+    validateApiKey();
+  };
+
+  const validateApiKey = async () => {
+    const response = await fetch("http://localhost:8788/auth", {
+      headers: {
+        "Content-Type": "application/json",
+        "Triton-Api-Key": localStorage.getItem("tritonApiKey") || "",
+      },
+      method: "POST",
+    });
+
+    if (response.ok) {
+      console.log("API key is valid");
+    } else {
+      console.log("API key is invalid, ", response.status);
+    }
+  };
+
   const [apiKey, setLocalApiKey] = useState("");
 
   return (
@@ -61,7 +82,7 @@ export function TritonSideDrawer() {
                 value={apiKey}
                 onChange={d => setLocalApiKey(d as string)}
               />
-              <Button label="Save" onClick={() => setApiKey(apiKey)} />
+              <Button label="Save" onClick={saveAndValidateApiKey} />
             </Content>
           </Box>
         )}
