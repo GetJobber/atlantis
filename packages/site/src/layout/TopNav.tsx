@@ -8,19 +8,16 @@ export const TopNav = () => {
 
   return (
     <Box padding="base" direction="row" alignItems="center" gap="small">
-      <div
-        style={{
-          display: "flex",
-          flexGrow: "1",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "0 0 0 var(--space-extravagant)",
-          gap: "var(--space-small)",
-        }}
+      <Box
+        direction="row"
+        gap="small"
+        justifyContent="center"
+        width="grow"
+        padding={{ left: "extravagant" }}
       >
-        <div style={{ minWidth: "200px" }}>
+        <Box width={200}>
           <SearchButton />
-        </div>
+        </Box>
         <Tooltip message="Ask Triton">
           <Button
             onClick={onOpenTriton}
@@ -29,7 +26,7 @@ export const TopNav = () => {
             variation="subtle"
           />
         </Tooltip>
-      </div>
+      </Box>
       <ToggleThemeButton />
     </Box>
   );
