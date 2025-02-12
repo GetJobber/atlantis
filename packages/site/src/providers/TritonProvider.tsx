@@ -7,6 +7,8 @@ interface TritonContextType {
   question: string;
   setQuestion: (question: string) => void;
   sendSearch: () => void;
+  hasApiKey: boolean;
+  setApiKey: (key: string) => Promise<void>;
 }
 
 const TritonContext = createContext<TritonContextType>({
@@ -16,11 +18,21 @@ const TritonContext = createContext<TritonContextType>({
   question: "",
   setQuestion: () => ({}),
   sendSearch: () => ({}),
+  hasApiKey: false,
+  setApiKey: async () => Promise.resolve(),
 });
 
 export function TritonProvider({ children }: PropsWithChildren) {
   const [tritonOpen, setTritonOpen] = useState(false);
   const [question, setQuestion] = useState("");
+  const [hasApiKey, setHasApiKey] = useState(
+    Boolean(localStorage.getItem("tritonApiKey")),
+  );
+
+  const setApiKey = async (key: string) => {
+    localStorage.setItem("tritonApiKey", key);
+    setHasApiKey(Boolean(key));
+  };
 
   const sendSearch = async () => {
     console.log("searching!", question);
@@ -48,6 +60,8 @@ export function TritonProvider({ children }: PropsWithChildren) {
     question,
     setQuestion,
     sendSearch,
+    hasApiKey,
+    setApiKey,
   };
 
   return (
