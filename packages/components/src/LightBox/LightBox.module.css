@@ -141,7 +141,7 @@
   position: relative;
   z-index: var(--elevation-base);
   width: 100%;
-  min-height: 90px;
+  min-height: 92px;
   margin-bottom: var(--space-small);
   padding-bottom: var(--space-small);
   overflow-x: scroll;
@@ -149,6 +149,22 @@
   align-items: center;
   gap: var(--space-small);
   flex-shrink: 0;
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-interactive--subtle) transparent;
+
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: var(--radius-small);
+    background: var(--color-interactive--subtle);
+  }
 }
 
 .thumbnailImage {
