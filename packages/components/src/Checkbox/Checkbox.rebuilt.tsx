@@ -66,7 +66,6 @@ export function CheckboxRebuilt({
             value={value}
             defaultChecked={defaultChecked}
             disabled={disabled}
-            aria-checked={indeterminate ? "mixed" : effectiveChecked}
             onChange={handleChange}
             onFocus={onFocus}
             onBlur={onBlur}
