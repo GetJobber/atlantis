@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import classnames from "classnames";
 import styles from "./Checkbox.module.css";
 import { CheckboxRebuiltProps } from "./Checkbox.types";
@@ -19,6 +19,18 @@ export function CheckboxRebuilt({
   onChange,
   onFocus,
 }: CheckboxRebuiltProps) {
+  const [internalChecked, setInternalChecked] = useState(
+    defaultChecked ?? false,
+  );
+  const isControlled = checked !== undefined;
+  const effectiveChecked = isControlled ? checked : internalChecked;
+
+  useEffect(() => {
+    if (defaultChecked !== undefined) {
+      setInternalChecked(defaultChecked);
+    }
+  }, [defaultChecked]);
+
   const wrapperClassName = classnames(
     styles.wrapper,
     disabled && styles.disabled,
@@ -39,6 +51,10 @@ export function CheckboxRebuilt({
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const newChecked = event.currentTarget.checked;
+
+    if (!isControlled) {
+      setInternalChecked(newChecked);
+    }
     onChange?.(newChecked);
   }
 
@@ -51,11 +67,10 @@ export function CheckboxRebuilt({
             id={id}
             className={inputClassName}
             name={name}
-            checked={checked}
-            defaultChecked={defaultChecked}
+            checked={effectiveChecked}
             value={value}
             disabled={disabled}
-            aria-checked={checked}
+            aria-checked={indeterminate ? "mixed" : effectiveChecked}
             onChange={handleChange}
             onFocus={onFocus}
             onBlur={onBlur}
