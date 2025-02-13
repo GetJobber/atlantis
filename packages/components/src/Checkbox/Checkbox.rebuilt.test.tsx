@@ -93,6 +93,7 @@ describe("Checkbox", () => {
 
       fireEvent.click(getByRole("checkbox"));
       expect(handleChange).toHaveBeenCalledWith(true);
+      expect(handleChange).toHaveBeenCalledTimes(1);
     });
 
     it("calls onChange with false when checked checkbox is clicked", () => {
@@ -108,6 +109,7 @@ describe("Checkbox", () => {
 
       fireEvent.click(getByRole("checkbox"));
       expect(handleChange).toHaveBeenCalledWith(false);
+      expect(handleChange).toHaveBeenCalledTimes(1);
     });
 
     it("calls onFocus when checkbox receives focus", () => {
