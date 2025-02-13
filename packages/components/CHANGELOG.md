@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.17.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.17.2...@jobber/components@6.17.3) (2025-02-13)
+
+
+### Bug Fixes
+
+* **components:** InputChipDismissibleInput clearing options in chip on initial render ([#2371](https://github.com/GetJobber/atlantis/issues/2371)) ([9a98ef1](https://github.com/GetJobber/atlantis/commit/9a98ef1b74140181e0078fe88a4085cba3db62ae))
+
+
+
+
+
 ## [6.17.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.17.1...@jobber/components@6.17.2) (2025-02-07)
 
 
