@@ -46,10 +46,19 @@ export interface BaseCheckboxProps {
    */
   readonly id?: string;
 
+  /**
+   * Called when the checkbox value changes
+   */
   onChange?(newValue: boolean): void;
 
+  /**
+   * Called when the checkbox is focused
+   */
   onFocus?(): void;
 
+  /**
+   * Called when the checkbox loses focus
+   */
   onBlur?(): void;
 }
 
@@ -71,8 +80,23 @@ export type CheckboxRebuiltProps = Omit<
   BaseCheckboxProps,
   "label" | "description" | "children"
 > & {
+  /**
+   * Label that shows up beside the checkbox.
+   * String will be rendered with the default markup.
+   * ReactElement will be rendered with provided positionining.
+   */
   label?: string | ReactElement;
+
+  /**
+   * Additional description of the checkbox.
+   * String will be rendered with the default markup.
+   * ReactElement will be rendered with provided positioning.
+   */
   description?: string | ReactElement;
+
+  /**
+   * Version 2 is highly experimental, avoid using it unless you have talked with Atlantis first.
+   */
   version: 2;
 };
 
