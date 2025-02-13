@@ -14,7 +14,6 @@ export function CheckboxRebuilt({
   value,
   indeterminate = false,
   description,
-  children,
   id,
   onBlur,
   onChange,
@@ -28,7 +27,15 @@ export function CheckboxRebuilt({
     [styles.indeterminate]: indeterminate,
   });
   const iconName = indeterminate ? "minus2" : "checkmark";
-  const labelText = label ? <Text>{label}</Text> : children;
+  const labelText = typeof label === "string" ? <Text>{label}</Text> : label;
+  const descriptionText =
+    typeof description === "string" ? (
+      <Text size="small" variation="subdued">
+        {description}
+      </Text>
+    ) : (
+      description
+    );
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const newChecked = event.currentTarget.checked;
@@ -48,7 +55,7 @@ export function CheckboxRebuilt({
             defaultChecked={defaultChecked}
             value={value}
             disabled={disabled}
-            aria-label={label}
+            aria-checked={checked}
             onChange={handleChange}
             onFocus={onFocus}
             onBlur={onBlur}
@@ -61,11 +68,7 @@ export function CheckboxRebuilt({
         {labelText && <span className={styles.label}>{labelText}</span>}
       </label>
       {description && (
-        <div className={styles.description}>
-          <Text variation="subdued" size="small">
-            {description}
-          </Text>
-        </div>
+        <div className={styles.description}>{descriptionText}</div>
       )}
     </div>
   );

@@ -67,10 +67,12 @@ interface CheckboxChildrenProps extends BaseCheckboxProps {
   readonly children?: ReactElement;
 }
 
-export type CheckboxRebuiltProps = XOR<
-  CheckboxLabelProps,
-  CheckboxChildrenProps
+export type CheckboxRebuiltProps = Omit<
+  BaseCheckboxProps,
+  "label" | "description" | "children"
 > & {
+  label?: string | ReactElement;
+  description?: string | ReactElement;
   version: 2;
 };
 

@@ -25,7 +25,15 @@ describe("Checkbox", () => {
     expect(checkbox).toBeDisabled();
   });
 
-  it("renders a description when provided", () => {
+  it("renders a description when provided string", () => {
+    const { getByText } = render(
+      <Checkbox version={2} label="Label" description="Additional info" />,
+    );
+    const description = getByText("Additional info");
+    expect(description).toBeInTheDocument();
+  });
+
+  it("renders a description when provided markup", () => {
     const { getByText } = render(
       <Checkbox version={2} label="Label" description="Additional info" />,
     );
@@ -39,11 +47,9 @@ describe("Checkbox", () => {
       expect(getByText("Click me")).toBeInTheDocument();
     });
 
-    it("renders with children as label", () => {
+    it("renders with markup as label", () => {
       const { getByText } = render(
-        <Checkbox version={2}>
-          <Text>Custom label content</Text>
-        </Checkbox>,
+        <Checkbox version={2} label={<Text>Custom label content</Text>} />,
       );
       expect(getByText("Custom label content")).toBeInTheDocument();
     });
