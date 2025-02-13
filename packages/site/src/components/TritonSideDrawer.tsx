@@ -5,6 +5,7 @@ import {
   Heading,
   InputPassword,
   InputText,
+  InputValidation,
   SideDrawer,
   Text,
 } from "@jobber/components";
@@ -25,14 +26,17 @@ export function TritonSideDrawer() {
   const saveAndValidateApiKey = async () => {
     try {
       await setApiKey(apiKey);
+      setValidationError("");
       // Success - will automatically show chat due to hasApiKey being true
     } catch (error) {
       console.log("API key is invalid");
+      setValidationError("Invalid API key");
       // Stay on auth screen since hasApiKey remains false
     }
   };
 
   const [apiKey, setLocalApiKey] = useState("");
+  const [validationError, setValidationError] = useState("");
 
   return (
     <SideDrawer open={tritonOpen} onRequestClose={onCloseTriton}>
@@ -69,8 +73,12 @@ export function TritonSideDrawer() {
               </Text>
               <InputPassword
                 value={apiKey}
-                onChange={d => setLocalApiKey(d as string)}
+                onChange={d => {
+                  setLocalApiKey(d as string);
+                  if (!d) setValidationError("");
+                }}
               />
+              {validationError && <InputValidation message={validationError} />}
               <Button label="Save" onClick={saveAndValidateApiKey} />
             </Content>
           </Box>
