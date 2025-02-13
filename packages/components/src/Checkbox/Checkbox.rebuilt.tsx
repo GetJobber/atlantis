@@ -39,8 +39,8 @@ export function CheckboxRebuilt({
     [styles.indeterminate]: indeterminate,
   });
   const iconName = indeterminate ? "minus2" : "checkmark";
-  const labelText = typeof label === "string" ? <Text>{label}</Text> : label;
-  const descriptionText =
+  const labelContent = typeof label === "string" ? <Text>{label}</Text> : label;
+  const descriptionContent =
     typeof description === "string" ? (
       <Text size="small" variation="subdued">
         {description}
@@ -80,10 +80,10 @@ export function CheckboxRebuilt({
           </span>
         </span>
 
-        {labelText && <span className={styles.label}>{labelText}</span>}
+        {labelContent && <span className={styles.label}>{labelContent}</span>}
       </label>
       {description && (
-        <div className={styles.description}>{descriptionText}</div>
+        <div className={styles.description}>{descriptionContent}</div>
       )}
     </div>
   );

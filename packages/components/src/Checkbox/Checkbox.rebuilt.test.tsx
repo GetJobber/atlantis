@@ -119,5 +119,15 @@ describe("Checkbox", () => {
       fireEvent.focus(getByRole("checkbox"));
       expect(handleFocus).toHaveBeenCalled();
     });
+
+    it("calls onBlur when checkbox loses focus", () => {
+      const handleBlur = jest.fn();
+      const { getByRole } = render(
+        <Checkbox version={2} label="Blur me" onBlur={handleBlur} />,
+      );
+
+      fireEvent.blur(getByRole("checkbox"));
+      expect(handleBlur).toHaveBeenCalled();
+    });
   });
 });
