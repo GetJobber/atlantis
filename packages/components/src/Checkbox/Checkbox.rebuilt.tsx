@@ -25,12 +25,6 @@ export function CheckboxRebuilt({
   const isControlled = checked !== undefined;
   const effectiveChecked = isControlled ? checked : internalChecked;
 
-  useEffect(() => {
-    if (defaultChecked !== undefined) {
-      setInternalChecked(defaultChecked);
-    }
-  }, [defaultChecked]);
-
   const wrapperClassName = classnames(
     styles.wrapper,
     disabled && styles.disabled,
@@ -38,6 +32,7 @@ export function CheckboxRebuilt({
   const inputClassName = classnames(styles.input, {
     [styles.indeterminate]: indeterminate,
   });
+
   const iconName = indeterminate ? "minus2" : "checkmark";
   const labelContent = typeof label === "string" ? <Text>{label}</Text> : label;
   const descriptionContent =
@@ -48,6 +43,12 @@ export function CheckboxRebuilt({
     ) : (
       description
     );
+
+  useEffect(() => {
+    if (defaultChecked !== undefined && !isControlled) {
+      setInternalChecked(defaultChecked);
+    }
+  }, [defaultChecked, isControlled]);
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const newChecked = event.currentTarget.checked;
