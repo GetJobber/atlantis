@@ -7,6 +7,8 @@ interface TritonContextType {
   question: string;
   setQuestion: (question: string) => void;
   sendSearch: () => void;
+  hasApiKey: boolean;
+  setApiKey: (key: string) => Promise<void>;
 }
 
 const TritonContext = createContext<TritonContextType>({
@@ -16,11 +18,38 @@ const TritonContext = createContext<TritonContextType>({
   question: "",
   setQuestion: () => ({}),
   sendSearch: () => ({}),
+  hasApiKey: false,
+  setApiKey: async () => Promise.resolve(),
 });
 
 export function TritonProvider({ children }: PropsWithChildren) {
   const [tritonOpen, setTritonOpen] = useState(false);
   const [question, setQuestion] = useState("");
+  const [hasApiKey, setHasApiKey] = useState(
+    Boolean(localStorage.getItem("tritonApiKey")),
+  );
+
+  const setApiKey = async (key: string) => {
+    try {
+      const response = await fetch("http://localhost:8788/auth/verify", {
+        headers: {
+          "Content-Type": "application/json",
+          "Triton-Api-Key": key,
+        },
+        method: "POST",
+      });
+
+      if (response.ok) {
+        localStorage.setItem("tritonApiKey", key);
+        setHasApiKey(true);
+      } else {
+        throw new Error("Invalid API key");
+      }
+    } catch (error) {
+      console.error("API key validation failed:", error);
+      throw error;
+    }
+  };
 
   const sendSearch = async () => {
     console.log("searching!", question);
@@ -48,6 +77,8 @@ export function TritonProvider({ children }: PropsWithChildren) {
     question,
     setQuestion,
     sendSearch,
+    hasApiKey,
+    setApiKey,
   };
 
   return (
