@@ -2,7 +2,7 @@ import {
   Box,
   Button,
   Content,
-  Heading,
+  // Heading,
   InputPassword,
   InputText,
   InputValidation,
@@ -10,6 +10,7 @@ import {
   Text,
 } from "@jobber/components";
 import { useState } from "react";
+import { TritonConversation } from "./TritonConversation";
 import { useTritonChat } from "../providers/TritonProvider";
 
 export function TritonSideDrawer() {
@@ -21,6 +22,7 @@ export function TritonSideDrawer() {
     sendSearch,
     hasApiKey,
     setApiKey,
+    loading,
   } = useTritonChat();
 
   const saveAndValidateApiKey = async () => {
@@ -42,29 +44,47 @@ export function TritonSideDrawer() {
     <SideDrawer open={tritonOpen} onRequestClose={onCloseTriton}>
       <SideDrawer.Toolbar>
         {hasApiKey ? (
-          <Content>
-            <Heading level={2}>Welcome personality!</Heading>
+          // <Content>
+          //   <Heading level={2}>Welcome!</Heading>
 
-            <div style={{ marginBottom: 80 }}>
-              <Text>
-                I am an early-stage AI that can help you build with Atlantis
-                components. You can ask me questions, I will generate custom
-                component code and you can test it all out in the live preview.
-              </Text>
+          //   <div style={{ marginBottom: 80 }}>
+          //     <Text>
+          //       I am an early-stage AI that can help you build with Atlantis
+          //       components. You can ask me questions, I will generate custom
+          //       component code and you can test it all out in the live preview.
+          //     </Text>
+          //   </div>
+          <>
+            <div style={{ height: "60vh", overflowY: "auto" }}>
+              <TritonConversation />
             </div>
-            <InputText
-              placeholder="Ask a Question"
-              multiline={true}
-              value={question}
-              onChange={d => setQuestion(d as string)}
-              toolbarVisibility="always"
-              toolbar={
-                <div style={{ marginLeft: "auto" }}>
-                  <Button onClick={() => sendSearch()} label="Ask" />
-                </div>
-              }
-            />
-          </Content>
+            <div
+              onKeyDown={e => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  sendSearch();
+                  e.preventDefault();
+                  e.stopPropagation();
+                }
+              }}
+            >
+              <InputText
+                placeholder="Ask a Question"
+                multiline={true}
+                value={question}
+                onChange={d => setQuestion(d as string)}
+                toolbarVisibility="always"
+                toolbar={
+                  <div style={{ marginLeft: "auto" }}>
+                    <Button
+                      onClick={() => sendSearch()}
+                      label="Ask"
+                      loading={loading}
+                    />
+                  </div>
+                }
+              />
+            </div>
+          </>
         ) : (
           <Box margin={{ bottom: "base" }}>
             <Content>

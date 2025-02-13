@@ -9,6 +9,9 @@ interface TritonContextType {
   sendSearch: () => void;
   hasApiKey: boolean;
   setApiKey: (key: string) => Promise<void>;
+  responses: string[];
+  questions: string[];
+  loading: boolean;
 }
 
 const TritonContext = createContext<TritonContextType>({
@@ -20,6 +23,9 @@ const TritonContext = createContext<TritonContextType>({
   sendSearch: () => ({}),
   hasApiKey: false,
   setApiKey: async () => Promise.resolve(),
+  responses: [],
+  questions: [],
+  loading: false,
 });
 
 export function TritonProvider({ children }: PropsWithChildren) {
@@ -28,6 +34,9 @@ export function TritonProvider({ children }: PropsWithChildren) {
   const [hasApiKey, setHasApiKey] = useState(
     Boolean(localStorage.getItem("tritonApiKey")),
   );
+  const [responses, setResponses] = useState<string[]>([]);
+  const [questions, setQuestions] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const setApiKey = async (key: string) => {
     try {
@@ -51,23 +60,45 @@ export function TritonProvider({ children }: PropsWithChildren) {
     }
   };
 
+  // eslint-disable-next-line max-statements
   const sendSearch = async () => {
-    console.log("searching!", question);
-    const b = await fetch("http://localhost:8788/stream", {
-      headers: {
-        "Content-Type": "application/json",
-        "Triton-Api-Key": localStorage.getItem("tritonApiKey") || "",
-      },
-      method: "POST",
-      body: JSON.stringify({
-        personality: "developer",
-        query: question,
-        questions: [],
-        questionType: "web",
-        responses: [],
-      }),
-    });
-    console.log("HI!", await b.json());
+    if (!question.trim()) return;
+
+    try {
+      setLoading(true);
+      console.log("Question:", question);
+      setQuestions(prev => [...prev, question]);
+
+      const response = await fetch("http://localhost:8788/stream", {
+        headers: {
+          "Content-Type": "application/json",
+          "Triton-Api-Key": localStorage.getItem("tritonApiKey") || "",
+        },
+        method: "POST",
+        body: JSON.stringify({
+          personality: "developer",
+          query: question,
+          questions: questions,
+          questionType: "web",
+          responses: responses,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.text(); // Get response as text first
+      console.log("Response from server:", data);
+
+      // Add the response directly to our state
+      setResponses(prev => [...prev, data]);
+      setQuestion(""); // Clear input after sending
+    } catch (error) {
+      console.error("Search failed:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const value = {
@@ -79,6 +110,9 @@ export function TritonProvider({ children }: PropsWithChildren) {
     sendSearch,
     hasApiKey,
     setApiKey,
+    responses,
+    questions,
+    loading,
   };
 
   return (
