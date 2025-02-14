@@ -92,7 +92,7 @@ describe("Checkbox", () => {
       );
 
       fireEvent.click(getByRole("checkbox"));
-      expect(handleChange).toHaveBeenCalledWith(true);
+      expect(handleChange).toHaveBeenCalledWith(true, expect.any(Object));
       expect(handleChange).toHaveBeenCalledTimes(1);
     });
 
@@ -108,7 +108,7 @@ describe("Checkbox", () => {
       );
 
       fireEvent.click(getByRole("checkbox"));
-      expect(handleChange).toHaveBeenCalledWith(false);
+      expect(handleChange).toHaveBeenCalledWith(false, expect.any(Object));
       expect(handleChange).toHaveBeenCalledTimes(1);
     });
 

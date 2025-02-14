@@ -40,8 +40,7 @@ export function CheckboxRebuilt({
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const newChecked = event.currentTarget.checked;
-
-    onChange?.(newChecked);
+    onChange?.(newChecked, event);
   }
 
   return (

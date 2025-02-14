@@ -78,7 +78,7 @@ interface CheckboxChildrenProps extends BaseCheckboxProps {
 
 export type CheckboxRebuiltProps = Omit<
   BaseCheckboxProps,
-  "label" | "description" | "children"
+  "label" | "description" | "children" | "onChange"
 > & {
   /**
    * Label that shows up beside the checkbox.
@@ -93,6 +93,15 @@ export type CheckboxRebuiltProps = Omit<
    * ReactElement will be rendered with provided positioning.
    */
   description?: string | ReactElement;
+
+  /**
+   * Called when the checkbox value changes.
+   * Includes the change event as a second argument.
+   */
+  onChange?(
+    newValue: boolean,
+    event: React.ChangeEvent<HTMLInputElement>,
+  ): void;
 
   /**
    * Version 2 is highly experimental, avoid using it unless you have talked with Atlantis first.
