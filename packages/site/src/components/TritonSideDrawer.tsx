@@ -52,7 +52,10 @@ export function TritonSideDrawer() {
               gap: 16,
             }}
           >
-            <div style={{ flex: 1, overflowY: "auto", minHeight: 0 }}>
+            <div
+              style={{ flex: 1, overflowY: "auto", minHeight: 0 }}
+              data-conversation-container
+            >
               <TritonConversation />
             </div>
             <div
@@ -73,9 +76,9 @@ export function TritonSideDrawer() {
                 toolbar={
                   <div style={{ marginLeft: "auto" }}>
                     <Button
-                      onClick={() => sendSearch()}
-                      label="Ask"
+                      label={loading ? "Asking..." : "Ask"}
                       loading={loading}
+                      onClick={sendSearch}
                     />
                   </div>
                 }

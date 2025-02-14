@@ -1,4 +1,5 @@
 import { PropsWithChildren, createContext, useContext, useState } from "react";
+import { useTritonApi } from "../utils/useTritonApi";
 
 interface TritonContextType {
   tritonOpen: boolean;
@@ -12,6 +13,7 @@ interface TritonContextType {
   responses: string[];
   questions: string[];
   loading: boolean;
+  setLoading: (loading: boolean) => void;
 }
 
 const TritonContext = createContext<TritonContextType>({
@@ -26,6 +28,7 @@ const TritonContext = createContext<TritonContextType>({
   responses: [],
   questions: [],
   loading: false,
+  setLoading: () => ({}),
 });
 
 export function TritonProvider({ children }: PropsWithChildren) {
@@ -36,24 +39,16 @@ export function TritonProvider({ children }: PropsWithChildren) {
   );
   const [responses, setResponses] = useState<string[]>([]);
   const [questions, setQuestions] = useState<string[]>([]);
-  const [loading, setLoading] = useState(false);
+  const { fetchWithApiKey, loading, setLoading } = useTritonApi();
 
   const setApiKey = async (key: string) => {
     try {
-      const response = await fetch("http://localhost:8788/auth/verify", {
-        headers: {
-          "Content-Type": "application/json",
-          "Triton-Api-Key": key,
-        },
-        method: "POST",
+      await fetchWithApiKey({
+        endpoint: "/auth/verify",
+        body: { key },
       });
-
-      if (response.ok) {
-        localStorage.setItem("tritonApiKey", key);
-        setHasApiKey(true);
-      } else {
-        throw new Error("Invalid API key");
-      }
+      localStorage.setItem("tritonApiKey", key);
+      setHasApiKey(true);
     } catch (error) {
       console.error("API key validation failed:", error);
       throw error;
@@ -65,35 +60,53 @@ export function TritonProvider({ children }: PropsWithChildren) {
     if (!question.trim()) return;
 
     try {
-      setLoading(true);
-      console.log("Question:", question);
-      setQuestions(prev => [...prev, question]);
-
-      const response = await fetch("http://localhost:8788/stream", {
-        headers: {
-          "Content-Type": "application/json",
-          "Triton-Api-Key": localStorage.getItem("tritonApiKey") || "",
-        },
-        method: "POST",
-        body: JSON.stringify({
+      const response = await fetchWithApiKey({
+        endpoint: "/stream",
+        body: {
           personality: "developer",
           query: question,
-          questions: questions,
+          questions,
           questionType: "web",
-          responses: responses,
-        }),
+          responses,
+        },
       });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      if (!response.body) return;
+      const reader = response.body.getReader();
+      const { value } = await reader.read();
+
+      const fullText = new TextDecoder().decode(value);
+
+      // Now add the question to conversation once we have the response
+      setQuestions(prev => [...prev, question]);
+      setResponses(prev => [...prev, ""]);
+      setQuestion(""); // Clear input now that we're showing it in conversation
+
+      // Simulate typing
+      let accumulated = "";
+      const chunkSize = 5;
+
+      const scrollToBottom = () => {
+        const container = document.querySelector(
+          "[data-conversation-container]",
+        );
+
+        if (container) {
+          container.scrollTop = container.scrollHeight;
+        }
+      };
+
+      for (let i = 0; i < fullText.length; i += chunkSize) {
+        accumulated += fullText.slice(i, i + chunkSize);
+        setResponses(prev => {
+          const newResponses = [...prev];
+          newResponses[newResponses.length - 1] = accumulated;
+
+          return newResponses;
+        });
+        scrollToBottom();
+        await new Promise(resolve => setTimeout(resolve, 1));
       }
-
-      const data = await response.text(); // Get response as text first
-      console.log("Response from server:", data);
-
-      // Add the response directly to our state
-      setResponses(prev => [...prev, data]);
-      setQuestion(""); // Clear input after sending
     } catch (error) {
       console.error("Search failed:", error);
     } finally {
@@ -113,6 +126,7 @@ export function TritonProvider({ children }: PropsWithChildren) {
     responses,
     questions,
     loading,
+    setLoading,
   };
 
   return (
