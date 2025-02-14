@@ -150,20 +150,24 @@
   gap: var(--space-small);
   flex-shrink: 0;
 
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-interactive--subtle) transparent;
-
-  &::-webkit-scrollbar {
-    height: 8px;
+  @supports (scrollbar-color: #000 #000) {
+    scrollbar-width: thin; /* Safari version 18.3: Bug causes this rule to undermine other scrollbar styling  */
+    scrollbar-color: var(--color-interactive--subtle) transparent;
   }
 
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
+  @supports not (scrollbar-color: #000 #000) {
+    &::-webkit-scrollbar {
+      height: 8px;
+    }
 
-  &::-webkit-scrollbar-thumb {
-    border-radius: var(--radius-small);
-    background: var(--color-interactive--subtle);
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: var(--radius-small);
+      background: var(--color-interactive--subtle);
+    }
   }
 }
 
