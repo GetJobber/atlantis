@@ -141,7 +141,7 @@
   position: relative;
   z-index: var(--elevation-base);
   width: 100%;
-  min-height: 92px;
+  min-height: 96px;
   margin-bottom: var(--space-small);
   padding-bottom: var(--space-small);
   overflow-x: scroll;
@@ -150,7 +150,6 @@
   gap: var(--space-small);
   flex-shrink: 0;
 
-  scrollbar-width: thin;
   scrollbar-color: var(--color-interactive--subtle) transparent;
 
   &::-webkit-scrollbar {
