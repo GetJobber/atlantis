@@ -1,5 +1,6 @@
 import { Box, Content, Heading, Icon, Text } from "@jobber/components";
 import ReactMarkdown from "react-markdown";
+import styles from "./TritonConversation.module.css";
 import { useTritonChat } from "../providers/TritonProvider";
 
 export function TritonConversation() {
@@ -24,10 +25,7 @@ export function TritonConversation() {
   return (
     <div
       style={{
-        height: "100%",
-        paddingRight: 12,
-        overflow: "auto",
-        scrollbarWidth: "thin",
+        paddingRight: "var(--space-base)",
       }}
     >
       {responses.map((response, index) => (
@@ -36,7 +34,6 @@ export function TritonConversation() {
             style={{
               width: "100%",
               display: "flex",
-              marginTop: 10,
             }}
           >
             <Box
@@ -48,16 +45,37 @@ export function TritonConversation() {
               <Text>{questions[index]}</Text>
             </Box>
           </div>
-          <div style={{ display: "flex", marginBottom: "large" }}>
+          <div style={{ display: "flex", gap: 6, marginBottom: "large" }}>
             <Icon name="sparkles" size="small" color="interactiveSubtle" />
-            <div style={{ width: "100%" }}>
-              <ReactMarkdown
-                components={{
-                  p: ({ children }) => <Text>{children}</Text>,
-                }}
-              >
-                {response}
-              </ReactMarkdown>
+            <div style={{ flex: 1, marginBottom: 40 }}>
+              <Content spacing="base">
+                <ReactMarkdown
+                  components={{
+                    // a: ({
+                    //   children,
+                    // }: {
+                    //   readonly children: React.ReactNode;
+                    // }) => {
+                    //   return (
+                    //     <Link
+                    //       url={`/components/${String(children)}`}
+                    //       external={false}
+                    //     >
+                    //       {children}
+                    //     </Link>
+                    //   );
+                    // },
+                    p: ({ children }) => <Text>{children}</Text>,
+                    pre: ({ children }) => (
+                      <pre className={styles.codeWrapper} tabIndex={0}>
+                        {children}
+                      </pre>
+                    ),
+                  }}
+                >
+                  {response}
+                </ReactMarkdown>
+              </Content>
             </div>
           </div>
         </div>

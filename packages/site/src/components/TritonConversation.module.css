@@ -1,0 +1,22 @@
+.codeWrapper {
+  position: relative;
+  background: var(--color-surface--background);
+  padding: var(--space-small);
+  border-radius: var(--radius-base);
+  border: var(--border-base) solid var(--color-border);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-all;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.codeWrapper code {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.codeWrapper:focus {
+  box-shadow: var(--shadow-focus);
+  outline: none;
+}
