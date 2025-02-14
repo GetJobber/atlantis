@@ -12,7 +12,13 @@ export const TopNav = () => {
   const { mediumAndUp } = useBreakpoints();
 
   return (
-    <Box padding="base" direction="row" alignItems="center" gap="small">
+    <Box
+      padding="base"
+      direction="row"
+      alignItems="center"
+      gap="small"
+      justifyContent={mediumAndUp ? "" : "space-between"}
+    >
       <div className={styles.mobileNavContainer}>
         <Box
           direction="row"
@@ -38,23 +44,30 @@ export const TopNav = () => {
       <Box
         direction="row"
         gap="small"
-        justifyContent="center"
-        width="grow"
-        padding={mediumAndUp ? { left: "extravagant" } : {}}
+        alignItems="center"
+        width={mediumAndUp ? "grow" : "auto"}
       >
-        <Box width={200}>
-          <SearchButton />
+        <Box
+          direction="row"
+          gap="small"
+          justifyContent="center"
+          width={mediumAndUp ? "grow" : "auto"}
+          padding={mediumAndUp ? { left: "extravagant" } : {}}
+        >
+          <Box width={mediumAndUp ? 200 : "auto"}>
+            <SearchButton />
+          </Box>
+          <Tooltip message="Ask Triton">
+            <Button
+              onClick={onOpenTriton}
+              icon="sparkles"
+              ariaLabel="triton"
+              variation="subtle"
+            />
+          </Tooltip>
         </Box>
-        <Tooltip message="Ask Triton">
-          <Button
-            onClick={onOpenTriton}
-            icon="sparkles"
-            ariaLabel="triton"
-            variation="subtle"
-          />
-        </Tooltip>
+        <ToggleThemeButton />
       </Box>
-      <ToggleThemeButton />
     </Box>
   );
 };
