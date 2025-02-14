@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.18.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.17.3...@jobber/components@6.18.0) (2025-02-14)
+
+
+### Features
+
+* **components:** Add thumbnails and change animations in lightbox component ([#2362](https://github.com/GetJobber/atlantis/issues/2362)) ([9050c99](https://github.com/GetJobber/atlantis/commit/9050c99c960b5983caa2fb8969dfa031d71632fb))
+
+
+
+
+
 ## [6.17.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.17.2...@jobber/components@6.17.3) (2025-02-13)
 
 
