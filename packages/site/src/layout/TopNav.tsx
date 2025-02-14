@@ -45,7 +45,7 @@ export const TopNav = () => {
         direction="row"
         gap="small"
         alignItems="center"
-        width={mediumAndUp ? "grow" : "auto"}
+        width={mediumAndUp ? "grow" : "shrink"}
       >
         <Box
           direction="row"
