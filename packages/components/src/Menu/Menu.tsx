@@ -64,7 +64,7 @@ export interface SectionProps {
 // eslint-disable-next-line max-statements
 export function Menu({ activator, items }: MenuProps) {
   const [visible, setVisible] = useState(false);
-  const shadowRef = useRef<HTMLSpanElement>(null);
+  const popperRef = useRef<HTMLDivElement>(null);
 
   const { width } = useWindowDimensions();
 
@@ -88,7 +88,7 @@ export function Menu({ activator, items }: MenuProps) {
     styles: popperStyles,
     attributes,
     state,
-  } = usePopper(shadowRef.current?.nextElementSibling, popperElement, {
+  } = usePopper(popperRef.current, popperElement, {
     placement: "bottom-start",
     strategy: "fixed",
     modifiers: [
@@ -127,14 +127,15 @@ export function Menu({ activator, items }: MenuProps) {
 
   return (
     <div className={wrapperClasses} onClick={handleParentClick}>
-      <span ref={shadowRef} className={styles.shadowRef} />
-      {React.cloneElement(activator, {
-        onClick: toggle(activator.props.onClick),
-        id: buttonID,
-        ariaControls: menuID,
-        ariaExpanded: visible,
-        ariaHaspopup: true,
-      })}
+      <div ref={popperRef}>
+        {React.cloneElement(activator, {
+          onClick: toggle(activator.props.onClick),
+          id: buttonID,
+          ariaControls: menuID,
+          ariaExpanded: visible,
+          ariaHaspopup: true,
+        })}
+      </div>
       <MenuPortal>
         <AnimatePresence>
           {visible && (

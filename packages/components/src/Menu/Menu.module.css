@@ -10,10 +10,6 @@
   z-index: var(--elevation-modal);
 }
 
-.shadowRef {
-  display: none;
-}
-
 .menu {
   --menu-space: var(--space-small);
   --menu-offset: var(--space-smallest);
