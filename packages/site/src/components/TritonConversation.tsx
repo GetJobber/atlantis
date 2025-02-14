@@ -22,18 +22,33 @@ export function TritonConversation() {
   }
 
   return (
-    <div style={{ height: "100%", overflow: "auto" }}>
+    <div
+      style={{
+        height: "100%",
+        paddingRight: 12,
+        overflow: "auto",
+        scrollbarWidth: "thin",
+      }}
+    >
       {responses.map((response, index) => (
         <div key={index}>
-          <Box
-            background="surface"
-            padding="small"
-            radius="base"
-            margin={{ bottom: "small" }}
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              marginTop: 10,
+            }}
           >
-            <Text>{questions[index]}</Text>
-          </Box>
-          <div style={{ display: "flex", gap: "small", marginBottom: "large" }}>
+            <Box
+              background="surface--background"
+              padding="small"
+              radius="base"
+              margin={{ bottom: "small" }}
+            >
+              <Text>{questions[index]}</Text>
+            </Box>
+          </div>
+          <div style={{ display: "flex", marginBottom: "large" }}>
             <Icon name="sparkles" size="small" color="interactiveSubtle" />
             <div style={{ width: "100%" }}>
               <ReactMarkdown

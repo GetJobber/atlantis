@@ -44,18 +44,15 @@ export function TritonSideDrawer() {
     <SideDrawer open={tritonOpen} onRequestClose={onCloseTriton}>
       <SideDrawer.Toolbar>
         {hasApiKey ? (
-          // <Content>
-          //   <Heading level={2}>Welcome!</Heading>
-
-          //   <div style={{ marginBottom: 80 }}>
-          //     <Text>
-          //       I am an early-stage AI that can help you build with Atlantis
-          //       components. You can ask me questions, I will generate custom
-          //       component code and you can test it all out in the live preview.
-          //     </Text>
-          //   </div>
-          <>
-            <div style={{ height: "60vh", overflowY: "auto" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              height: "calc(100vh - 80px)",
+              gap: 16,
+            }}
+          >
+            <div style={{ flex: 1, overflowY: "auto", minHeight: 0 }}>
               <TritonConversation />
             </div>
             <div
@@ -84,7 +81,7 @@ export function TritonSideDrawer() {
                 }
               />
             </div>
-          </>
+          </div>
         ) : (
           <Box margin={{ bottom: "base" }}>
             <Content>
