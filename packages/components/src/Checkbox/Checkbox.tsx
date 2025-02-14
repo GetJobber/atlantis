@@ -2,7 +2,7 @@ import React, { ChangeEvent, useEffect, useId, useState } from "react";
 import classnames from "classnames";
 import { Controller, useForm, useFormContext } from "react-hook-form";
 import styles from "./Checkbox.module.css";
-import { CheckboxProps } from "./Checkbox.types";
+import { CheckboxLegacyProps } from "./Checkbox.types";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
 
@@ -19,7 +19,7 @@ export function CheckboxLegacy({
   onBlur,
   onChange,
   onFocus,
-}: CheckboxProps) {
+}: CheckboxLegacyProps) {
   const { control, setValue, watch } =
     useFormContext() != undefined
       ? useFormContext()

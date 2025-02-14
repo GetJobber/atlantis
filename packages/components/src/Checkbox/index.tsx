@@ -1,9 +1,9 @@
 import React from "react";
 import { CheckboxLegacy } from "./Checkbox";
 import { CheckboxRebuilt } from "./Checkbox.rebuilt";
-import { CheckboxProps, CheckboxRebuiltProps } from "./Checkbox.types";
+import { CheckboxLegacyProps, CheckboxRebuiltProps } from "./Checkbox.types";
 
-type CheckboxShimProps = CheckboxProps | CheckboxRebuiltProps;
+type CheckboxShimProps = CheckboxLegacyProps | CheckboxRebuiltProps;
 
 function isNewCheckboxProps(
   props: CheckboxShimProps,
@@ -19,4 +19,4 @@ export function Checkbox(props: CheckboxShimProps) {
   return <CheckboxLegacy {...props} />;
 }
 
-export type { CheckboxProps, CheckboxRebuiltProps };
+export type { CheckboxLegacyProps, CheckboxRebuiltProps };

@@ -100,6 +100,9 @@ export type CheckboxRebuiltProps = Omit<
   version: 2;
 };
 
-export type CheckboxProps = XOR<CheckboxLabelProps, CheckboxChildrenProps> & {
+export type CheckboxLegacyProps = XOR<
+  CheckboxLabelProps,
+  CheckboxChildrenProps
+> & {
   version?: 1;
 };
