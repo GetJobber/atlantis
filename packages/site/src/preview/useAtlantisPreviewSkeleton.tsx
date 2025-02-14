@@ -283,12 +283,9 @@ export const useAtlantisPreviewSkeleton = (type: "web" | "mobile") => {
     iframeTheme: Theme,
   ) => {
     if (doc) {
-      console.log(`🔥 WRITE TO DOC`);
       doc.open();
       doc.write(skeletonHTML(iframeTheme, type));
       doc.close();
-    } else {
-      console.log(`🔥 FAILED TO WRITE TO DOC`);
     }
   };
 
@@ -296,11 +293,9 @@ export const useAtlantisPreviewSkeleton = (type: "web" | "mobile") => {
     currentFrame: HTMLIFrameElement,
     transpiledCode: string | null | undefined,
   ) => {
-    console.log(`🔥 UPDATE IFRAME CODE`);
     const iframeWindow = currentFrame.contentWindow;
 
     if (iframeWindow) {
-      console.log(`🔥 HAS WINDOW`);
       const codeWrapper =
         type == "web"
           ? WebCodeWrapper(transpiledCode)
@@ -316,7 +311,6 @@ export const useAtlantisPreviewSkeleton = (type: "web" | "mobile") => {
     transpiledCode: string | null | undefined,
   ) => {
     if (html === "<html><head></head><body></body></html>") {
-      console.log(`🔥 WRITE CODE TO IFRAME CODE 1`);
       writeSkeleton(selectedFrame.current?.contentDocument, theme);
       selectedFrame?.current?.addEventListener("load", () => {
         if (selectedFrame.current) {
@@ -330,10 +324,8 @@ export const useAtlantisPreviewSkeleton = (type: "web" | "mobile") => {
         }
       });
     } else if (selectedFrame.current) {
-      console.log(`🔥 WRITE CODE TO IFRAME CODE 2`);
       updateIframeCode(selectedFrame.current, transpiledCode);
     } else {
-      console.log(`🔥 WRITE CODE TO IFRAME CODE 3`);
       console.log("tried to update iframe");
     }
   };
