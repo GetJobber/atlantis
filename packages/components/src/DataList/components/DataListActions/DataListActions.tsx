@@ -26,11 +26,10 @@ export function DataListActions<T extends DataListObject>({
   return (
     <>
       {exposedActions.map(({ props }) => {
-        const shouldHide =
-          (props.visible && !props.visible(activeItem)) ||
-          !(props.icon || props.alwaysVisible);
+        const isVisible = props.visible ? props.visible(activeItem) : true;
+        const hasIconOrAlwaysVisible = props.icon || props.alwaysVisible;
 
-        if (shouldHide) {
+        if (!isVisible || !hasIconOrAlwaysVisible) {
           return null;
         }
 
