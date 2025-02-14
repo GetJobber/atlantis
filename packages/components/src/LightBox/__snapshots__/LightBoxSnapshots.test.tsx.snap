@@ -59,10 +59,11 @@ exports[`Images renders an image 1`] = `
       class="imageArea"
     >
       <img
+        alt="Dis be a title"
         class="image"
         draggable="false"
         src="https://i.imgur.com/6Jcfgnp.jpg"
-        style="z-index: 1; opacity: 1; transform: none; user-select: none;"
+        style="transform: none; user-select: none;"
       />
     </div>
     <div
@@ -72,11 +73,15 @@ exports[`Images renders an image 1`] = `
         class="staticThemeProviderWrapper"
         data-theme="dark"
       >
-        <h4
-          class="base bold large heading"
+        <div
+          class="title"
         >
-          Dis be a title
-        </h4>
+          <h4
+            class="base bold large heading"
+          >
+            Dis be a title
+          </h4>
+        </div>
         <p
           class="base regular large text"
         >
