@@ -1,6 +1,7 @@
-import { Box, Content, Heading, Icon, Text } from "@jobber/components";
+import { Box, Content, Heading, Icon, Link, Text } from "@jobber/components";
 import ReactMarkdown from "react-markdown";
 import styles from "./TritonConversation.module.css";
+import { componentMap, getComponentPath } from "./TritonLinks";
 import { useTritonChat } from "../providers/TritonProvider";
 
 export function TritonConversation() {
@@ -51,20 +52,26 @@ export function TritonConversation() {
               <Content spacing="base">
                 <ReactMarkdown
                   components={{
-                    // a: ({
-                    //   children,
-                    // }: {
-                    //   readonly children: React.ReactNode;
-                    // }) => {
-                    //   return (
-                    //     <Link
-                    //       url={`/components/${String(children)}`}
-                    //       external={false}
-                    //     >
-                    //       {children}
-                    //     </Link>
-                    //   );
-                    // },
+                    a: ({
+                      children,
+                    }: {
+                      readonly children: React.ReactNode;
+                    }) => {
+                      const text = String(children);
+
+                      const key = Object.keys(componentMap).find(mapKey =>
+                        text.toLowerCase().includes(mapKey.toLowerCase()),
+                      );
+
+                      return (
+                        <Link
+                          url={getComponentPath(key || "")}
+                          external={false}
+                        >
+                          {children}
+                        </Link>
+                      );
+                    },
                     p: ({ children }) => <Text>{children}</Text>,
                     pre: ({ children }) => (
                       <pre className={styles.codeWrapper} tabIndex={0}>
