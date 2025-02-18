@@ -77,12 +77,10 @@ export function TritonProvider({ children }: PropsWithChildren) {
 
       const fullText = new TextDecoder().decode(value);
 
-      // Now add the question to conversation once we have the response
       setQuestions(prev => [...prev, question]);
       setResponses(prev => [...prev, ""]);
-      setQuestion(""); // Clear input now that we're showing it in conversation
+      setQuestion("");
 
-      // Simulate typing
       let accumulated = "";
       const chunkSize = 5;
 

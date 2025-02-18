@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   Content,
-  // Heading,
   InputPassword,
   InputText,
   InputValidation,
@@ -29,11 +28,9 @@ export function TritonSideDrawer() {
     try {
       await setApiKey(apiKey);
       setValidationError("");
-      // Success - will automatically show chat due to hasApiKey being true
     } catch (error) {
       console.log("API key is invalid");
       setValidationError("Invalid API key");
-      // Stay on auth screen since hasApiKey remains false
     }
   };
 

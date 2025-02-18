@@ -27,7 +27,7 @@ export function useTritonApi() {
       return response;
     } catch (error) {
       console.error("API request failed:", error);
-      setLoading(false); // Reset loading on error
+      setLoading(false);
       throw error;
     }
   };
