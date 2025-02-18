@@ -111,7 +111,10 @@ export function getExposedActions(
     const hasIcon = Boolean(child.props.icon);
     const isAlwaysVisible = child.props.alwaysVisible; // If true, the child action will always be visible and not nested in the dropdown.
 
-    if (isAlwaysVisible === false || (isAlwaysVisible === undefined && !hasIcon)) {
+    if (
+      isAlwaysVisible === false ||
+      (isAlwaysVisible === undefined && !hasIcon)
+    ) {
       return result;
     }
 
