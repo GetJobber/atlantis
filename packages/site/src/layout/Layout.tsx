@@ -1,14 +1,11 @@
 import { PropsWithChildren, useEffect, useRef } from "react";
 import { Route, Switch, useHistory, useLocation } from "react-router";
-import { MobileNavMenu } from "./MobileNavMenu";
-import { LeftDrawer } from "./LeftDrawer";
-import { DesktopNavMenu } from "./DesktopNavMenu";
+import { NavMenu } from "./NavMenu";
 import { routes } from "../routes";
 import "./code-theme.css";
 import { hooksList } from "../hooksList";
 import { NotFoundPage } from "../pages/NotFoundPage";
 import { TritonSideDrawer } from "../components/TritonSideDrawer";
-import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
 /**
  * Layout for whole application. This will display the NavMenu and the content of the page.
  * @returns ReactNode
@@ -19,7 +16,6 @@ export const Layout = () => {
   const scrollPane = useRef<HTMLDivElement>(null);
   const path = new URLSearchParams(location.search).get("path");
   const history = useHistory();
-  const { isMobileMenuOpen, toggleMobileMenu } = useAtlantisSite();
 
   useEffect(() => {
     if (scrollPane?.current) {
@@ -41,10 +37,7 @@ export const Layout = () => {
 
   return (
     <LayoutWrapper>
-      <DesktopNavMenu mainContentRef={scrollPane} />
-      <LeftDrawer open={isMobileMenuOpen} onClose={toggleMobileMenu}>
-        <MobileNavMenu mainContentRef={scrollPane} />
-      </LeftDrawer>
+      <NavMenu mainContentRef={scrollPane} />
       <div
         style={{
           overflow: "auto",

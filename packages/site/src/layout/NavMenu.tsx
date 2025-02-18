@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Fragment, PropsWithChildren, useRef } from "react";
 import AnimatedPresenceDisclosure from "./AnimatedPresenceDisclosure";
 import styles from "./NavMenu.module.css";
+import { LeftDrawer } from "./LeftDrawer";
 import { routes } from "../routes";
 import { JobberLogo } from "../assets/JobberLogo.svg";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
@@ -17,7 +18,7 @@ export interface NavMenuProps {
  * @returns ReactNode
  */
 export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
-  const { isMinimal } = useAtlantisSite();
+  const { isMinimal, isMobileMenuOpen, toggleMobileMenu } = useAtlantisSite();
   const { pathname } = useLocation();
   const selectedRef = useRef<HTMLAnchorElement | null>(null);
 
@@ -69,7 +70,7 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
     mainContentRef.current?.focus();
   };
 
-  return (
+  const menuContent = (
     <nav className={styles.navMenuContainer}>
       <div className={styles.navMenuHeader}>
         <VisibleWhenFocused>
@@ -117,6 +118,17 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
         View in Storybook
       </a>
     </nav>
+  );
+
+  return (
+    <>
+      <div className={styles.desktopNavContainer}>{menuContent}</div>
+      <div className={styles.mobileNavContainer}>
+        <LeftDrawer open={isMobileMenuOpen} onClose={toggleMobileMenu}>
+          {menuContent}
+        </LeftDrawer>
+      </div>
+    </>
   );
 };
 

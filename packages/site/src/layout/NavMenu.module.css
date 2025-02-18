@@ -131,3 +131,19 @@ a.navFooterLink {
   font-size: var(--typography--fontSize-small);
   color: var(--color-text--secondary);
 }
+
+.desktopNavContainer {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: block;
+  }
+}
+
+.mobileNavContainer {
+  display: block;
+
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+}
