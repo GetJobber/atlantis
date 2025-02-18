@@ -52,13 +52,8 @@ export function TritonConversation() {
               <Content spacing="base">
                 <ReactMarkdown
                   components={{
-                    a: ({
-                      children,
-                    }: {
-                      readonly children: React.ReactNode;
-                    }) => {
+                    a: ({ children }) => {
                       const text = String(children);
-
                       const key = Object.keys(componentMap).find(mapKey =>
                         text.toLowerCase().includes(mapKey.toLowerCase()),
                       );
