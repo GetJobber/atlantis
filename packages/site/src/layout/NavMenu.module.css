@@ -3,16 +3,12 @@
   --negativeHoverOffset: calc(-1 * var(--hoverOffset));
   --subItemInset: calc(var(--space-small) + var(--space-smaller));
   --navItemHeight: 40px;
-  display: none;
+  display: flex;
   flex-direction: column;
   padding: 35px 0 0 0;
   height: 100dvh;
   min-width: var(--sideBarWidth);
   box-sizing: border-box;
-
-  @media screen and (min-width: 768px) {
-    display: flex;
-  }
 }
 
 .navMenuContainer>* {

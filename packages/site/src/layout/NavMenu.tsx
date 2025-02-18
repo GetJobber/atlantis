@@ -8,7 +8,7 @@ import { JobberLogo } from "../assets/JobberLogo.svg";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
 import { VisibleWhenFocused } from "../components/VisibleWhenFocused";
 
-interface NavMenuProps {
+export interface NavMenuProps {
   readonly mainContentRef: React.RefObject<HTMLDivElement>;
 }
 

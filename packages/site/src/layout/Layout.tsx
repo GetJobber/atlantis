@@ -1,14 +1,14 @@
 import { PropsWithChildren, useEffect, useRef } from "react";
 import { Route, Switch, useHistory, useLocation } from "react-router";
-import { NavMenu } from "./NavMenu";
+import { MobileNavMenu } from "./MobileNavMenu";
 import { LeftDrawer } from "./LeftDrawer";
+import { DesktopNavMenu } from "./DesktopNavMenu";
 import { routes } from "../routes";
 import "./code-theme.css";
 import { hooksList } from "../hooksList";
 import { NotFoundPage } from "../pages/NotFoundPage";
 import { TritonSideDrawer } from "../components/TritonSideDrawer";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
-
 /**
  * Layout for whole application. This will display the NavMenu and the content of the page.
  * @returns ReactNode
@@ -41,8 +41,10 @@ export const Layout = () => {
 
   return (
     <LayoutWrapper>
-      <NavMenu mainContentRef={scrollPane} />
-      <LeftDrawer open={isMobileMenuOpen} onClose={toggleMobileMenu} />
+      <DesktopNavMenu mainContentRef={scrollPane} />
+      <LeftDrawer open={isMobileMenuOpen} onClose={toggleMobileMenu}>
+        <MobileNavMenu mainContentRef={scrollPane} />
+      </LeftDrawer>
       <div
         style={{
           overflow: "auto",
