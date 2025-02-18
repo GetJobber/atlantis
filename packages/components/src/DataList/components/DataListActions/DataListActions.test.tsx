@@ -131,6 +131,54 @@ describe("DataListActions", () => {
       expect(screen.queryByLabelText("Edit")).not.toBeInTheDocument();
     });
   });
+
+  describe("alwaysVisible prop", () => {
+    const label = "Foo";
+    const moreLabel = "More actions";
+
+    describe("is true", () => {
+      it("should not render the more actions icon", () => {
+        render(
+          <DataListActions>
+            <DataListAction
+              alwaysVisible
+              icon="edit"
+              label={label}
+              visible={() => true}
+            />
+          </DataListActions>,
+        );
+
+        expect(screen.queryByLabelText(moreLabel)).not.toBeInTheDocument();
+        expect(screen.getByLabelText(label)).toBeInTheDocument();
+      });
+    });
+
+    describe("is false", () => {
+      it("should render the more actions icon", () => {
+        render(
+          <DataListActions>
+            <DataListAction
+              alwaysVisible={false}
+              icon="edit"
+              label={label}
+              visible={() => true}
+            />
+          </DataListActions>,
+        );
+
+        expect(screen.getByLabelText(moreLabel)).toBeInTheDocument();
+      });
+    });
+
+    describe("is undefined", () => {
+      it("should render the more actions icon", () => {
+        renderComponent();
+
+        expect(screen.getByLabelText("More actions")).toBeInTheDocument();
+      });
+    });
+  });
 });
 
 function renderComponent(itemsToExpose = 3) {
