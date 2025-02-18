@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.19.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.19.0...@jobber/components@6.19.1) (2025-02-18)
+
+
+### Bug Fixes
+
+* **components:** Fix scrollbar styling bug in Lightbox component for Safari  ([#2376](https://github.com/GetJobber/atlantis/issues/2376)) ([446f058](https://github.com/GetJobber/atlantis/commit/446f058699e7432120e6350c22beaf8093cd4c2f))
+
+
+
+
+
 # [6.19.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.18.0...@jobber/components@6.19.0) (2025-02-18)
 
 
