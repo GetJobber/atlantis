@@ -6,10 +6,12 @@ import styles from "./TopNav.module.css";
 import { ToggleThemeButton } from "../components/ToggleThemeButton";
 import { useTritonChat } from "../providers/TritonProvider";
 import { JobberLogo } from "../assets/JobberLogo.svg";
+import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
 
 export const TopNav = () => {
   const { onOpenTriton } = useTritonChat();
   const { mediumAndUp } = useBreakpoints();
+  const { toggleMobileMenu } = useAtlantisSite();
 
   return (
     <Box
@@ -31,7 +33,7 @@ export const TopNav = () => {
             type="tertiary"
             variation="subtle"
             size="base"
-            onClick={() => alert("open menu")}
+            onClick={toggleMobileMenu}
             icon="menu"
           />
           <Box padding={{ top: "smaller" }}>
