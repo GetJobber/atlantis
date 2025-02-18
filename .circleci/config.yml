@@ -159,6 +159,21 @@ jobs:
       - run:
           command: npm run storybook:build
 
+  generate_sitemap:
+    <<: *container_config
+    steps:
+      - *attach_workspace
+      - run:
+          name: Install static sitemap generator
+          command: npm install -g static-sitemap-cli
+      - run:
+          name: Generate sitemap
+          command: |
+            cd storybook-static
+            static-sitemap --prefix https://atlantis.jobber.com/ .
+            mv sitemap.xml ../sitemap.xml
+      - *persist_to_workspace
+
   build_new_docs:
     <<: *container_config
     steps:
@@ -207,6 +222,9 @@ workflows:
       - build_storybook:
           requires:
             - install_dependencies
+      - generate_sitemap:
+          requires:
+            - build_storybook
       - build_new_docs:
           requires:
             - install_dependencies
@@ -214,6 +232,7 @@ workflows:
           requires:
             - build_storybook
             - build_new_docs
+            - generate_sitemap
       - release:
           filters:
             branches:
