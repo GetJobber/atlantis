@@ -158,6 +158,7 @@ jobs:
       - *generate_base_path
       - run:
           command: npm run storybook:build
+      - *persist_to_workspace
 
   generate_sitemap:
     <<: *container_config
