@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.20.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.19.1...@jobber/components@6.20.0) (2025-02-18)
+
+
+### Features
+
+* Allow DataList.ItemAction to avoid nesting ([#2370](https://github.com/GetJobber/atlantis/issues/2370)) ([97aaa08](https://github.com/GetJobber/atlantis/commit/97aaa087260efa6a30b578e77be09dff6b58210c))
+
+
+
+
+
+## [6.19.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.19.0...@jobber/components@6.19.1) (2025-02-18)
+
+
+### Bug Fixes
+
+* **components:** Fix scrollbar styling bug in Lightbox component for Safari  ([#2376](https://github.com/GetJobber/atlantis/issues/2376)) ([446f058](https://github.com/GetJobber/atlantis/commit/446f058699e7432120e6350c22beaf8093cd4c2f))
+
+
+
+
+
+# [6.19.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.18.0...@jobber/components@6.19.0) (2025-02-18)
+
+
+### Features
+
+* **components:** Checkbox v2 ([#2369](https://github.com/GetJobber/atlantis/issues/2369)) ([7fc06f9](https://github.com/GetJobber/atlantis/commit/7fc06f9da99291623d1cb1581ecef523860618a7))
+
+
+
+
+
+# [6.18.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.17.3...@jobber/components@6.18.0) (2025-02-14)
+
+
+### Features
+
+* **components:** Add thumbnails and change animations in lightbox component ([#2362](https://github.com/GetJobber/atlantis/issues/2362)) ([9050c99](https://github.com/GetJobber/atlantis/commit/9050c99c960b5983caa2fb8969dfa031d71632fb))
+
+
+
+
+
 ## [6.17.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.17.2...@jobber/components@6.17.3) (2025-02-13)
 
 
