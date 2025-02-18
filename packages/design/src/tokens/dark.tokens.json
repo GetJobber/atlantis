@@ -166,20 +166,20 @@
             "$value": "{color.base.blue-.200}"
         },
         "surface": {
-            "$value": "{color.base.blue-.900}",
+            "$value": "{color.base.blue-.800}",
             "$description": "The primary color of the application surface (background). If interactive, surfaces have a hover and active color."
         },
         "surface-": {
             "hover": {
-                "$value": "{color.base.blue-.800}",
+                "$value": "{color.base.blue-.700}",
                 "$description": "Hover state for surface."
             },
             "active": {
-                "$value": "{color.base.blue-.700}",
+                "$value": "{color.base.blue-.600}",
                 "$description": "Active state for surface."
             },
             "background": {
-                "$value": "{color.base.blue-.1000}",
+                "$value": "{color.base.blue-.900}",
                 "$description": "A slightly darker surface gives a receded appearance relative to main surfaces."
             },
             "background-": {
@@ -188,7 +188,7 @@
                     "$description": "Hover state for surface--background."
                 },
                 "subtle": {
-                    "$value": "{color.base.blue-.800}",
+                    "$value": "{color.base.blue-.700}",
                     "$description": "Use when a subtler distinction than the standard surface--background is needed."
                 }
             },
