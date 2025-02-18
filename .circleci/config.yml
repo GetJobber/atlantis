@@ -165,12 +165,12 @@ jobs:
       - *attach_workspace
       - run:
           name: Install static sitemap generator
-          command: npm install -g static-sitemap-cli
+          command: npm install static-sitemap-cli
       - run:
           name: Generate sitemap
           command: |
             cd storybook-static
-            static-sitemap --prefix https://atlantis.jobber.com/ .
+            npx static-sitemap --prefix https://atlantis.jobber.com/ .
             mv sitemap.xml ../sitemap.xml
       - *persist_to_workspace
 
