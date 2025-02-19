@@ -17,3 +17,63 @@ allowed. See
 
 Since this type of `Button` will only be used to submit a form, it does not make
 sense to allow the `external`, `onClick`, `to`, or `url` props.
+
+### UNSAFE\_ props (advanced usage)
+
+General information for using `UNSAFE_` props can be found
+[here](https://atlantis.getjobber.com/storybook/?path=/docs/guides-customizing-components--docs#unsafe_-props).
+
+**Note**: Use of `UNSAFE_` props is **at your own risk** and should be
+considered a **last resort**. Future Popover updates may lead to unintended
+breakages.
+
+#### UNSAFE_style (mobile)
+
+The mobile Button component has four elements that can be targeted with styles.
+These are the container, content container, icon container, and action label
+container.
+
+Use `UNSAFE_style` to apply custom styles to the Button. Because React Native
+does not support className, you can use `UNSAFE_style for either inline styles
+or StyleSheet:
+
+```tsx
+// Using inline styles
+UNSAFE_style: {
+    container: { backgroundColor: tokens["color-purple--light"] },
+    contentContainer: {
+      backgroundColor: tokens["color-purple--lighter"],
+      borderRadius: tokens["radius-large"],
+    },
+    iconContainer: { backgroundColor: tokens["color-purple"] },
+    actionLabelContainer: { paddingLeft: tokens["space-larger"] },
+  },
+```
+
+```tsx
+// Using StyleSheet
+import { StyleSheet } from 'react-native';
+
+const styles = StyleSheet.create({
+  customContainer: {
+    backgroundColor: "lightblue",
+  },
+  customContentContainer: {
+    paddingRight: 8,
+  },
+  customIconContainer: {
+    marginRight: 4,
+  },
+  customActionLabelContainer: {
+    paddingLeft: 8,
+  },
+});
+
+// Then in your component:
+UNSAFE_style={{
+  container: styles.customContainer,
+  contentContainer: styles.customContentContainer,
+  iconContainer: styles.customIconContainer,
+  actionLabelContainer: styles.customActionLabelContainer,
+}}
+```
