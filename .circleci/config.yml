@@ -165,13 +165,49 @@ jobs:
     steps:
       - *attach_workspace
       - run:
-          name: Install static sitemap generator
-          command: npm install static-sitemap-cli
+          name: Create sitemap generator script
+          command: |
+            cat << 'EOF' > generate-sitemap.js
+            const fs = require('fs');
+            const path = require('path');
+
+            function walkDir(dir, baseUrl, callback) {
+              const files = fs.readdirSync(dir);
+              files.forEach(file => {
+                const filepath = path.join(dir, file);
+                const stats = fs.statSync(filepath);
+                if (stats.isDirectory()) {
+                  walkDir(filepath, baseUrl, callback);
+                } else if (stats.isFile() && file.endsWith('.html')) {
+                  const relativePath = path.relative('storybook-static', filepath);
+                  callback(path.join(baseUrl, relativePath));
+                }
+              });
+            }
+
+            const urls = [];
+            walkDir('storybook-static', 'https://atlantis.jobber.com', url => {
+              urls.push(url.replace(/\\/g, '/'));
+            });
+
+            const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+            <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+              ${urls.map(url => `
+                <url>
+                  <loc>${url}</loc>
+                  <changefreq>daily</changefreq>
+                </url>
+              `).join('')}
+            </urlset>`;
+
+            fs.writeFileSync('sitemap.xml', sitemap);
+            EOF
       - run:
           name: Generate sitemap
           command: |
             cd storybook-static
-            npx static-sitemap --prefix https://atlantis.jobber.com/ .
+            node ../generate-sitemap.js
+            mv ../sitemap.xml .
             mv sitemap.xml ../sitemap.xml
       - *persist_to_workspace
 
