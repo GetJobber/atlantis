@@ -9,6 +9,7 @@ export const smallButtonHeight = staticTokens["space-base"] * 2.5;
 
 // TODO: this is a temporary solution. We're going to make a helper function that internally
 // uses useAtlantisTheme+useMemo to get the tokens, so they don't need to be passed in.
+// Call the function `buildThemedStyles`? Return a hook function that returns the styles?
 export const getStyles = (tokens: AtlantisThemeContextValue["tokens"]) => {
   return StyleSheet.create({
     fullHeight: {
