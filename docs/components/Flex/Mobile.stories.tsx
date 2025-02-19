@@ -1,8 +1,14 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { View } from "react-native";
-import { Card, Content, Flex, Icon, Text } from "@jobber/components-native";
-import { StatusLabel } from "@jobber/components/StatusLabel";
+import {
+  Card,
+  Content,
+  Flex,
+  Icon,
+  StatusLabel,
+  Text,
+} from "@jobber/components-native";
 
 export default {
   title: "Components/Layouts and Structure/Flex/Mobile",
@@ -24,7 +30,7 @@ const NestedTemplate: ComponentStory<typeof Flex> = args => (
       <View>
         <Flex template={["grow", "shrink"]}>
           <Text emphasis="strong">Dylan Tec</Text>
-          <StatusLabel label="Success" status="success" />
+          <StatusLabel text="Success" status="success" />
         </Flex>
         <Text>Sep 03 | $100 | Quote #93</Text>
       </View>
