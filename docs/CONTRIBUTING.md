@@ -150,7 +150,7 @@ follow the following format.
 `<TYPE>(<optional SCOPE>): <conditionally BREAKING CHANGE:> <description>`
 
 Want help with your pull request title? We have a
-[tool to help](../?path=/docs/guides-pull-request-title-generator--docs).
+[tool to help](/guides/pull-request-title-generator).
 
 ##### Requesting review
 
@@ -195,11 +195,10 @@ changes._
 
 ### Code and sandbox
 
-Some components, like
-[Card](../?path=/story/components-layouts-and-structure-card-web--basic),
-includes a "Code" tab on the top right of the screen. This is turned off by
-default. To turn this feature on, add a `parameter` of `previewTabs.code.hidden`
-and set it to `false` on your stories meta.
+Some components, like [Card](/components/Card), includes a "Code" tab on the top
+right of the screen. This is turned off by default. To turn this feature on, add
+a `parameter` of `previewTabs.code.hidden` and set it to `false` on your stories
+meta.
 
 ```ts
 export default {

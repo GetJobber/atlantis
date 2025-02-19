@@ -23,8 +23,8 @@ parent container with a fixed width. Be sure to avoid truncating the labels.
 
 ## Content guidelines
 
-Concise [Text](../?path=/docs/components-text-and-typography-text--docs) should
-be used as the primary format for option labels.
+Concise [Text](/components/Text) should be used as the primary format for option
+labels.
 
 <Canvas>
   <SegmentedControl defaultOption="option1">
@@ -36,8 +36,8 @@ be used as the primary format for option labels.
   </SegmentedControl>
 </Canvas>
 
-Using [Icons](../?path=/docs/components-images-and-icons-icon--docs) as labels
-should only be used if the icon has been tested as understandable in isolation.
+Using [Icons](/components/Icon) as labels should only be used if the icon has
+been tested as understandable in isolation.
 
 <Canvas>
   <SegmentedControl defaultOption="calendar">
@@ -61,24 +61,21 @@ Mixing content types across options should also be avoided. This would create an
 inconsistent experience for users and lead to a jarring visual rhythm.
 
 If you do not have enough horizontal room to allow for readable labels, consider
-using [Menu](/?path=/docs/components-navigation-menu--docs) as an alternative
-single-selection method for modifying the view. Otherwise, truncation will
-prevent the user from reading the label and a label with wrapped text will
-create layout inconsistencies.
+using [Menu](/components/Menu) as an alternative single-selection method for
+modifying the view. Otherwise, truncation will prevent the user from reading the
+label and a label with wrapped text will create layout inconsistencies.
 
 ## Related components
 
-Unlike [Tabs](../?path=/docs/components-navigation-tabs--docs), the contents of
-each segment are not contained by each label. You should use Tabs when you need
-to navigate between related subgroups of different content.
+Unlike [Tabs](/components/Tabs), the contents of each segment are not contained
+by each label. You should use Tabs when you need to navigate between related
+subgroups of different content.
 
-Unlike [Switch](../?path=/docs/components-selections-switch--docs), which
-toggles between a simple On/Off state, the SegmentedControl offers more than two
-options.
+Unlike [Switch](/components/Switch), which toggles between a simple On/Off
+state, the SegmentedControl offers more than two options.
 
 With SegmentedControl, options are more aggressively grouped than
-[Chips](../?path=/docs/components-selections-chips--docs) and also cannot reflow
-when it runs out of room.
+[Chips](/components/Chips) and also cannot reflow when it runs out of room.
 
 ## Accessibility
 
