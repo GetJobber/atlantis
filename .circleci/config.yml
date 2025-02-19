@@ -167,7 +167,7 @@ jobs:
       - run:
           name: Create sitemap generator script
           command: |
-            cat << 'EOF' > generate-sitemap.js
+            cat \<< 'EOF' > generate-sitemap.js
             const fs = require('fs');
 
             // Read and parse the stories.json file
