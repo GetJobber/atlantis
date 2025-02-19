@@ -29,7 +29,7 @@ const Message = ({ question, response }: MessageProps) => (
         background="surface--background"
         padding="small"
         radius="base"
-        margin={{ bottom: "small" }}
+        margin={{ bottom: "base" }}
       >
         <Text>{question}</Text>
       </Box>
