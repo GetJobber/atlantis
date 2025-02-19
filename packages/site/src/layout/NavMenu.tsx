@@ -18,7 +18,8 @@ export interface NavMenuProps {
  * @returns ReactNode
  */
 export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
-  const { isMinimal, isMobileMenuOpen, toggleMobileMenu } = useAtlantisSite();
+  const { isMinimal, isMobileMenuOpen, toggleMobileMenu, closeMobileMenu } =
+    useAtlantisSite();
   const { pathname } = useLocation();
   const selectedRef = useRef<HTMLAnchorElement | null>(null);
 
@@ -68,6 +69,7 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
 
   const skipToContent = () => {
     mainContentRef.current?.focus();
+    closeMobileMenu();
   };
 
   const menuContent = (
@@ -77,7 +79,7 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
           <Button label="Skip to Content" onClick={skipToContent} />
         </VisibleWhenFocused>
         <Box>
-          <Link to="/">
+          <Link to="/" onClick={closeMobileMenu}>
             <JobberLogo />
           </Link>
         </Box>
@@ -155,12 +157,14 @@ export const StyledLink = ({
     isSelected,
     styles.selected,
   );
+  const { closeMobileMenu } = useAtlantisSite();
 
   return (
     <Link
       to={to ?? "/"}
       className={className}
       ref={isSelected ? selectedRef : null}
+      onClick={closeMobileMenu}
     >
       {children}
     </Link>
@@ -182,12 +186,14 @@ export const StyledSubLink = ({
     isSelected,
     styles.selected,
   );
+  const { closeMobileMenu } = useAtlantisSite();
 
   return (
     <Link
       to={to ?? "/"}
       className={className}
       ref={isSelected ? selectedRef : null}
+      onClick={closeMobileMenu}
     >
       {children}
     </Link>
