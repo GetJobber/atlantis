@@ -39,19 +39,20 @@ export function TritonProvider({ children }: PropsWithChildren) {
   );
   const [responses, setResponses] = useState<string[]>([]);
   const [questions, setQuestions] = useState<string[]>([]);
-  const { fetchWithApiKey, loading, setLoading } = useTritonApi();
+  const [loading, setLoading] = useState(false);
+  const { fetchWithApiKey } = useTritonApi();
 
   const setApiKey = async (key: string) => {
     try {
-      await fetchWithApiKey({
-        endpoint: "/auth/verify",
-        body: { key },
-      });
+      setLoading(true);
+      await fetchWithApiKey({ endpoint: "/auth/verify", key });
       localStorage.setItem("tritonApiKey", key);
       setHasApiKey(true);
     } catch (error) {
       console.error("API key validation failed:", error);
       throw error;
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -60,6 +61,7 @@ export function TritonProvider({ children }: PropsWithChildren) {
     if (!question.trim()) return;
 
     try {
+      setLoading(true);
       const response = await fetchWithApiKey({
         endpoint: "/stream",
         body: {
