@@ -31,6 +31,34 @@ const TritonContext = createContext<TritonContextType>({
   setLoading: () => ({}),
 });
 
+const handleStreamResponse = async (
+  fullText: string,
+  setResponses: React.Dispatch<React.SetStateAction<string[]>>,
+) => {
+  let accumulated = "";
+  const chunkSize = 5;
+
+  const scrollToBottom = () => {
+    const container = document.querySelector("[data-conversation-container]");
+
+    if (container) {
+      container.scrollTop = container.scrollHeight;
+    }
+  };
+
+  for (let i = 0; i < fullText.length; i += chunkSize) {
+    accumulated += fullText.slice(i, i + chunkSize);
+    setResponses(prev => {
+      const newResponses = [...prev];
+      newResponses[newResponses.length - 1] = accumulated;
+
+      return newResponses;
+    });
+    scrollToBottom();
+    await new Promise(resolve => setTimeout(resolve, 1));
+  }
+};
+
 export function TritonProvider({ children }: PropsWithChildren) {
   const [tritonOpen, setTritonOpen] = useState(false);
   const [question, setQuestion] = useState("");
@@ -76,37 +104,13 @@ export function TritonProvider({ children }: PropsWithChildren) {
       if (!response.body) return;
       const reader = response.body.getReader();
       const { value } = await reader.read();
-
       const fullText = new TextDecoder().decode(value);
 
       setQuestions(prev => [...prev, question]);
       setResponses(prev => [...prev, ""]);
       setQuestion("");
 
-      let accumulated = "";
-      const chunkSize = 5;
-
-      const scrollToBottom = () => {
-        const container = document.querySelector(
-          "[data-conversation-container]",
-        );
-
-        if (container) {
-          container.scrollTop = container.scrollHeight;
-        }
-      };
-
-      for (let i = 0; i < fullText.length; i += chunkSize) {
-        accumulated += fullText.slice(i, i + chunkSize);
-        setResponses(prev => {
-          const newResponses = [...prev];
-          newResponses[newResponses.length - 1] = accumulated;
-
-          return newResponses;
-        });
-        scrollToBottom();
-        await new Promise(resolve => setTimeout(resolve, 1));
-      }
+      await handleStreamResponse(fullText, setResponses);
     } catch (error) {
       console.error("Search failed:", error);
     } finally {
