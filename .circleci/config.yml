@@ -98,6 +98,8 @@ jobs:
       - run:
           name: Check for uncommitted files
           command: |
+            git status
+            cat packages/site/src/content/ActionItem/ActionItem.props-mobile.json
             if [ -n "$(git status --porcelain)" ]; then
               echo "Found uncommitted changes which is unexpected. This likely means you forgot to commit generated files."
               echo "Here's the diff:"
@@ -164,7 +166,7 @@ jobs:
     steps:
       - *attach_workspace
       - run:
-          command: cd packages/site && npm run generate && npm run build
+          command: cd packages/site && npm run generate && npm run build && git status
 
   release:
     <<: *container_config
