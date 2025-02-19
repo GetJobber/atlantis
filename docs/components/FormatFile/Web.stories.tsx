@@ -43,6 +43,22 @@ Collapsed.args = {
   onDelete: () => alert("Deleted"),
 };
 
+export const QuickDelete = BasicTemplate.bind({});
+QuickDelete.args = {
+  file: {
+    key: "abc",
+    name: "myballisbigandroundIamrollingitontheground.png",
+    type: "image/png",
+    size: 213402324,
+    progress: 1,
+    src: () => Promise.resolve("https://picsum.photos/250"),
+  },
+  display: "compact",
+  displaySize: "large",
+  quickDelete: true,
+  onDelete: () => alert("Deleted"),
+};
+
 export const ExpandedWithDelete = BasicTemplate.bind({});
 ExpandedWithDelete.args = {
   file: {
