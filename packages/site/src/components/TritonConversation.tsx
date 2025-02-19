@@ -2,6 +2,7 @@ import { Box, Content, Heading, Icon, Link, Text } from "@jobber/components";
 import ReactMarkdown from "react-markdown";
 import styles from "./TritonConversation.module.css";
 import { componentMap, getComponentPath } from "./TritonLinks";
+import { CopyCodeButton } from "./CodeCopyButton";
 import { useTritonChat } from "../providers/TritonProvider";
 
 const WelcomeMessage = () => (
@@ -53,11 +54,19 @@ const Message = ({ question, response }: MessageProps) => (
                 );
               },
               p: ({ children }) => <Text>{children}</Text>,
-              pre: ({ children }) => (
-                <pre className={styles.codeWrapper} tabIndex={0}>
-                  {children}
-                </pre>
-              ),
+              pre: ({ children, ...props }) => {
+                const codeElement = (children as React.ReactElement[])[0];
+                const codeContent = String(codeElement?.props?.children || "");
+
+                return (
+                  <div style={{ position: "relative" }}>
+                    <pre className={styles.codeWrapper} tabIndex={0} {...props}>
+                      {children}
+                    </pre>
+                    <CopyCodeButton code={codeContent} />
+                  </div>
+                );
+              },
             }}
           >
             {response}
