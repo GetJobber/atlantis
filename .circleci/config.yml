@@ -167,53 +167,42 @@ jobs:
       - run:
           name: Create sitemap generator script
           command: |
-            cat \<< 'EOF' > generate-sitemap.js
+            cat << 'EOF' > generate-sitemap.js
             const fs = require('fs');
-            const path = require('path');
 
-            const storybookDir = path.resolve(process.cwd(), 'storybook-static');
+            // Read and parse the stories.json file
+            const storiesData = JSON.parse(
+              fs.readFileSync("storybook-static/stories.json", "utf8")
+            );
+            const stories = storiesData.stories;
 
-            function walkDir(dir, baseUrl, callback) {
-              const files = fs.readdirSync(dir);
-              files.forEach(file => {
-                const filepath = path.join(dir, file);
-                const stats = fs.statSync(filepath);
-                if (stats.isDirectory()) {
-                  walkDir(filepath, baseUrl, callback);
-                } else if (stats.isFile() && file.endsWith('.html')) {
-                  const relativePath = path.relative(storybookDir, filepath);
-                  callback(baseUrl + '/' + relativePath.replace(/\\/g, '/'));
-                }
-              });
+            // Create a set to store unique URLs
+            const urls = new Set();
+
+            // Process each story
+            for (const [, story] of Object.entries(stories)) {
+              // Skip stories that are marked as docs-only
+              if (story.tags && story.tags.includes("stories-mdx-docsOnly")) {
+                continue;
+              }
+
+              // Add the story URL to the set
+              urls.add(`https://atlantis.jobber.com/?path=/story/${story.id}`);
             }
 
-            console.log('Generating sitemap from:', storybookDir);
-            
-            if (!fs.existsSync(storybookDir)) {
-              console.error('Storybook directory not found at:', storybookDir);
-              process.exit(1);
-            }
-
-            const urls = [];
-            walkDir(storybookDir, 'https://atlantis.jobber.com', url => {
-              urls.push(url);
-            });
-
-            console.log('Found URLs:', urls.length);
-
+            // Generate the sitemap XML
             const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
             <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-              ${urls.map(url => `
+              ${[...urls].map(url => `
                 <url>
                   <loc>${url}</loc>
                   <changefreq>daily</changefreq>
-                </url>
-              `).join('')}
+                </url>`).join('')}
             </urlset>`;
 
-            const outputPath = path.resolve(process.cwd(), 'sitemap.xml');
-            fs.writeFileSync(outputPath, sitemap);
-            console.log('Sitemap written to:', outputPath);
+            // Write the sitemap to a file
+            fs.writeFileSync("sitemap.xml", sitemap);
+            console.log(`Generated sitemap with ${urls.size} URLs`);
             EOF
       - run:
           name: Generate sitemap
