@@ -173,8 +173,8 @@ function InternalDataList({
       {shouldRenderStickyHeader && (
         <DataListStickyHeader>
           <div className={styles.headerFilters}>
-            <InternalDataListFilters />
             <InternalDataListSearch />
+            <InternalDataListFilters />
           </div>
 
           <InternalDataListStatusBar />
