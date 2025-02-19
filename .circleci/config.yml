@@ -160,6 +160,7 @@ jobs:
       - *generate_base_path
       - run:
           command: npm run storybook:build
+      - *persist_to_workspace
 
   build_new_docs:
     <<: *container_config
@@ -167,6 +168,7 @@ jobs:
       - *attach_workspace
       - run:
           command: cd packages/site && npm run generate && npm run build && git status
+      - *persist_to_workspace
 
   release:
     <<: *container_config
