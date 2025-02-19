@@ -182,7 +182,7 @@ jobs:
                   walkDir(filepath, baseUrl, callback);
                 } else if (stats.isFile() && file.endsWith('.html')) {
                   const relativePath = path.relative(storybookDir, filepath);
-                  callback(path.join(baseUrl, relativePath));
+                  callback(baseUrl + '/' + relativePath.replace(/\\/g, '/'));
                 }
               });
             }
@@ -196,7 +196,7 @@ jobs:
 
             const urls = [];
             walkDir(storybookDir, 'https://atlantis.jobber.com', url => {
-              urls.push(url.replace(/\\/g, '/'));
+              urls.push(url);
             });
 
             console.log('Found URLs:', urls.length);
