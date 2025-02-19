@@ -171,6 +171,8 @@ jobs:
             const fs = require('fs');
             const path = require('path');
 
+            const storybookDir = path.resolve(process.cwd(), 'storybook-static');
+
             function walkDir(dir, baseUrl, callback) {
               const files = fs.readdirSync(dir);
               files.forEach(file => {
@@ -179,16 +181,25 @@ jobs:
                 if (stats.isDirectory()) {
                   walkDir(filepath, baseUrl, callback);
                 } else if (stats.isFile() && file.endsWith('.html')) {
-                  const relativePath = path.relative('storybook-static', filepath);
+                  const relativePath = path.relative(storybookDir, filepath);
                   callback(path.join(baseUrl, relativePath));
                 }
               });
             }
 
+            console.log('Generating sitemap from:', storybookDir);
+            
+            if (!fs.existsSync(storybookDir)) {
+              console.error('Storybook directory not found at:', storybookDir);
+              process.exit(1);
+            }
+
             const urls = [];
-            walkDir('storybook-static', 'https://atlantis.jobber.com', url => {
+            walkDir(storybookDir, 'https://atlantis.jobber.com', url => {
               urls.push(url.replace(/\\/g, '/'));
             });
+
+            console.log('Found URLs:', urls.length);
 
             const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
             <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -200,15 +211,20 @@ jobs:
               `).join('')}
             </urlset>`;
 
-            fs.writeFileSync('sitemap.xml', sitemap);
+            const outputPath = path.resolve(process.cwd(), 'sitemap.xml');
+            fs.writeFileSync(outputPath, sitemap);
+            console.log('Sitemap written to:', outputPath);
             EOF
       - run:
           name: Generate sitemap
           command: |
-            cd storybook-static
-            node ../generate-sitemap.js
-            mv ../sitemap.xml .
-            mv sitemap.xml ../sitemap.xml
+            ls -la
+            echo "Current directory: $PWD"
+            echo "Contents of storybook-static:"
+            ls -la storybook-static
+            node generate-sitemap.js
+            mv sitemap.xml storybook-static/
+            mv storybook-static/sitemap.xml .
       - *persist_to_workspace
 
   build_new_docs:
