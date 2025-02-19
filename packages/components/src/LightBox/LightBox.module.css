@@ -15,6 +15,10 @@
   }
 }
 
+:root {
+  --public-lightbox-box-sizing: inherit;
+}
+
 .backgroundImage {
   position: absolute;
   inset: 0;
@@ -71,6 +75,10 @@
   background-color: var(--color-base-grey--400);
   justify-content: center;
   flex-direction: column;
+}
+
+.lightboxWrapper * {
+  box-sizing: var(--public-lightbox-box-sizing);
 }
 
 .toolbar {
