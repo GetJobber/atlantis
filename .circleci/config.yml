@@ -48,7 +48,7 @@ references:
           echo "Found uncommitted changes which is unexpected. This likely means you forgot to commit generated files."
           echo "Here's the diff:"
           git status
-          echo "If the diff includes *.props.json files, run `npm run generate` inside packages/site, review and commit the changes."
+          echo "If the diff includes *.props.json files, run 'npm run generate' inside packages/site, review and commit the changes."
           exit 1
         else
           echo "No uncommitted changes."
