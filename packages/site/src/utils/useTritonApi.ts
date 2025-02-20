@@ -12,7 +12,16 @@ interface UseTritonApi {
     setLoading: (loading: boolean) => void,
     key?: string,
   ) => Promise<boolean>;
+  scrollToBottom: () => void;
 }
+
+const scrollToBottom = () => {
+  const container = document.querySelector("[data-conversation-container]");
+
+  if (container) {
+    container.scrollTop = container.scrollHeight;
+  }
+};
 
 export function useTritonApi(): UseTritonApi {
   const invokeTritonApi = async ({ endpoint, body, key }: TritonApiOptions) => {
@@ -85,5 +94,5 @@ export function useTritonApi(): UseTritonApi {
     }
   };
 
-  return { invokeTritonApi, validateApiKey };
+  return { invokeTritonApi, validateApiKey, scrollToBottom };
 }

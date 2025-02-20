@@ -33,34 +33,6 @@ const TritonContext = createContext<TritonContextType>({
   isValidKey: false,
 });
 
-const scrollToBottom = () => {
-  const container = document.querySelector("[data-conversation-container]");
-
-  if (container) {
-    container.scrollTop = container.scrollHeight;
-  }
-};
-
-const handleStreamResponse = async (
-  fullText: string,
-  setResponses: React.Dispatch<React.SetStateAction<string[]>>,
-) => {
-  let accumulated = "";
-  const chunkSize = 5;
-
-  for (let i = 0; i < fullText.length; i += chunkSize) {
-    accumulated += fullText.slice(i, i + chunkSize);
-    setResponses(prev => {
-      const newResponses = [...prev];
-      newResponses[newResponses.length - 1] = accumulated;
-
-      return newResponses;
-    });
-    scrollToBottom();
-    await new Promise(resolve => setTimeout(resolve, 1));
-  }
-};
-
 // eslint-disable-next-line max-statements
 export function TritonProvider({ children }: PropsWithChildren) {
   const [tritonOpen, setTritonOpen] = useState(false);
@@ -69,7 +41,27 @@ export function TritonProvider({ children }: PropsWithChildren) {
   const [questions, setQuestions] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [isValidKey, setIsValidKey] = useState(false);
-  const { invokeTritonApi, validateApiKey } = useTritonApi();
+  const { invokeTritonApi, validateApiKey, scrollToBottom } = useTritonApi();
+
+  const handleStreamResponse = async (
+    fullText: string,
+    updateResponses: React.Dispatch<React.SetStateAction<string[]>>,
+  ) => {
+    let accumulated = "";
+    const chunkSize = 5;
+
+    for (let i = 0; i < fullText.length; i += chunkSize) {
+      accumulated += fullText.slice(i, i + chunkSize);
+      updateResponses(prev => {
+        const newResponses = [...prev];
+        newResponses[newResponses.length - 1] = accumulated;
+
+        return newResponses;
+      });
+      scrollToBottom();
+      await new Promise(resolve => setTimeout(resolve, 1));
+    }
+  };
 
   const handleValidateApiKey = async (key?: string) => {
     return validateApiKey(setIsValidKey, setLoading, key);
