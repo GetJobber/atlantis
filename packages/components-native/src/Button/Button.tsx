@@ -2,7 +2,7 @@ import React from "react";
 import { StyleProp, TouchableHighlight, View, ViewStyle } from "react-native";
 import { IconColorNames, IconNames } from "@jobber/design";
 import { XOR } from "ts-xor";
-import { getStyles } from "./Button.style";
+import { useButtonStyles } from "./Button.style";
 import { InternalButtonLoading } from "./components/InternalButtonLoading";
 import { ButtonSize, ButtonType, ButtonVariation } from "./types";
 import { ActionLabel, ActionLabelVariation } from "../ActionLabel";
@@ -124,7 +124,7 @@ export function Button({
   UNSAFE_style,
 }: ButtonProps): JSX.Element {
   const { tokens } = useAtlantisTheme();
-  const styles = getStyles(tokens);
+  const styles = useButtonStyles();
 
   const buttonStyle = [
     styles.button,
@@ -247,7 +247,7 @@ function getIconColorVariation(
 function getContentStyles(
   label: string | undefined,
   icon: IconNames | undefined,
-  styles: ReturnType<typeof getStyles>,
+  styles: ReturnType<typeof useButtonStyles>,
 ) {
   if (label && !icon) {
     return undefined;

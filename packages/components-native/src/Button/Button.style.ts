@@ -1,6 +1,6 @@
 import { tokens as staticTokens } from "@jobber/design";
 import { StyleSheet } from "react-native";
-import { AtlantisThemeContextValue } from "../AtlantisThemeContext";
+import { createThemedStyleHook } from "../AtlantisThemeContext";
 
 const iconTranslateY = staticTokens["space-large"] / 2;
 const buttonRadius = staticTokens["radius-base"];
@@ -10,7 +10,7 @@ export const smallButtonHeight = staticTokens["space-base"] * 2.5;
 // TODO: this is a temporary solution. We're going to make a helper function that internally
 // uses useAtlantisTheme+useMemo to get the tokens, so they don't need to be passed in.
 // Call the function `buildThemedStyles`? Return a hook function that returns the styles?
-export const getStyles = (tokens: AtlantisThemeContextValue["tokens"]) => {
+export const useButtonStyles = createThemedStyleHook(tokens => {
   return StyleSheet.create({
     fullHeight: {
       flexGrow: 1,
@@ -121,4 +121,4 @@ export const getStyles = (tokens: AtlantisThemeContextValue["tokens"]) => {
       backgroundColor: tokens["color-disabled--secondary"],
     },
   });
-};
+});
