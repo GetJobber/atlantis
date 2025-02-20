@@ -11,6 +11,11 @@ export interface AtlantisThemeContextValue {
    * The design tokens for the current theme.
    */
   readonly tokens: typeof iosTokens;
+
+  /**
+   * Change the current theme globally.
+   */
+  setTheme: (theme: Theme) => void;
 }
 
 export interface AtlantisThemeContextProviderProps extends PropsWithChildren {
