@@ -5,12 +5,13 @@
   --navItemHeight: 40px;
   display: flex;
   flex-direction: column;
-  height: 100dvh;
+  height: 100%;
   min-width: var(--sideBarWidth);
   box-sizing: border-box;
 
   @media screen and (min-width: 768px) {
     padding: 35px 0 0 0;
+    height: 100dvh;
   }
 }
 
