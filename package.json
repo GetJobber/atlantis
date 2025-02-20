@@ -16,12 +16,13 @@
     "packages/site"
   ],
   "scripts": {
-    "build": "npm run storybook:build && cd packages/site && npm run build && mv ../../storybook-static dist/storybook && mv dist ../../storybook-static",
+    "build": "npm run storybook:build && cd packages/site && npm run build && mv ../../storybook-static dist/storybook && mv dist ../../storybook-static && npm run generate:sitemap",
     "build:hooksIndex": "node scripts/createIndexFile.js ./packages/hooks/src",
     "bootstrap": "npm run bootstrap --workspaces --if-present",
     "ci:release": "lerna publish --yes",
     "clean": "rm -rf node_modules **/dist packages/**/.rollup.cache storybook-static",
     "generate": "plop -- --path='./packages/components/src/'",
+    "generate:sitemap": "node sitemap-generator.js",
     "lint": "npm run lint:js && npm run lint:css",
     "lerna:clean": "lerna run clean && lerna clean --y && npm run clean",
     "lint:css": "stylelint 'packages/**/*.css' --allow-empty-input --ignore-pattern 'packages/**/dist/**/*.css'",
