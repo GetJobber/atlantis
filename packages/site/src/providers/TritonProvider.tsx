@@ -68,12 +68,12 @@ export function TritonProvider({ children }: PropsWithChildren) {
   const [responses, setResponses] = useState<string[]>([]);
   const [questions, setQuestions] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
-  const { fetchWithApiKey } = useTritonApi();
+  const { invokeTritonApi } = useTritonApi();
 
   const setApiKey = async (key: string) => {
     try {
       setLoading(true);
-      await fetchWithApiKey({ endpoint: "/auth/verify", key });
+      await invokeTritonApi({ endpoint: "/auth/verify", key });
       localStorage.setItem("tritonApiKey", key);
       setHasApiKey(true);
     } catch (error) {
@@ -90,7 +90,7 @@ export function TritonProvider({ children }: PropsWithChildren) {
 
     try {
       setLoading(true);
-      const response = await fetchWithApiKey({
+      const response = await invokeTritonApi({
         endpoint: "/stream",
         body: {
           personality: "developer",

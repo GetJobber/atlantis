@@ -5,7 +5,7 @@ interface TritonApiOptions {
 }
 
 export function useTritonApi() {
-  const fetchWithApiKey = async ({ endpoint, body, key }: TritonApiOptions) => {
+  const invokeTritonApi = async ({ endpoint, body, key }: TritonApiOptions) => {
     try {
       const response = await fetch(
         `https://atlantis-ai.jobber.dev${endpoint}`,
@@ -38,5 +38,5 @@ export function useTritonApi() {
     }
   };
 
-  return { fetchWithApiKey };
+  return { invokeTritonApi };
 }
