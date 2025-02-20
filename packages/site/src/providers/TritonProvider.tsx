@@ -31,20 +31,20 @@ const TritonContext = createContext<TritonContextType>({
   setLoading: () => ({}),
 });
 
+const scrollToBottom = () => {
+  const container = document.querySelector("[data-conversation-container]");
+
+  if (container) {
+    container.scrollTop = container.scrollHeight;
+  }
+};
+
 const handleStreamResponse = async (
   fullText: string,
   setResponses: React.Dispatch<React.SetStateAction<string[]>>,
 ) => {
   let accumulated = "";
   const chunkSize = 5;
-
-  const scrollToBottom = () => {
-    const container = document.querySelector("[data-conversation-container]");
-
-    if (container) {
-      container.scrollTop = container.scrollHeight;
-    }
-  };
 
   for (let i = 0; i < fullText.length; i += chunkSize) {
     accumulated += fullText.slice(i, i + chunkSize);
