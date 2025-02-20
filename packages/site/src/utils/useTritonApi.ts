@@ -103,25 +103,25 @@ export function useTritonApi(): UseTritonApi {
     }
   };
 
-  const handleStreamResponse = async (
-    fullText: string,
-    setResponses: React.Dispatch<React.SetStateAction<string[]>>,
-  ) => {
-    let accumulated = "";
-    const chunkSize = 5;
+  // const handleStreamResponse = async (
+  //   fullText: string,
+  //   setResponses: React.Dispatch<React.SetStateAction<string[]>>,
+  // ) => {
+  //   let accumulated = "";
+  //   const chunkSize = 5;
 
-    for (let i = 0; i < fullText.length; i += chunkSize) {
-      accumulated += fullText.slice(i, i + chunkSize);
-      setResponses(prev => {
-        const newResponses = [...prev];
-        newResponses[newResponses.length - 1] = accumulated;
+  //   for (let i = 0; i < fullText.length; i += chunkSize) {
+  //     accumulated += fullText.slice(i, i + chunkSize);
+  //     setResponses(prev => {
+  //       const newResponses = [...prev];
+  //       newResponses[newResponses.length - 1] = accumulated;
 
-        return newResponses;
-      });
-      scrollToBottom();
-      await new Promise(resolve => setTimeout(resolve, 1));
-    }
-  };
+  //       return newResponses;
+  //     });
+  //     scrollToBottom();
+  //     await new Promise(resolve => setTimeout(resolve, 1));
+  //   }
+  // };
 
   const sendSearch = async ({
     question,
@@ -157,14 +157,27 @@ export function useTritonApi(): UseTritonApi {
 
       if (!response.body) return;
       const reader = response.body.getReader();
-      const { value } = await reader.read();
-      const fullText = new TextDecoder().decode(value);
+      let chunks = "";
+      let done, value;
 
       setQuestions(prev => [...prev, question]);
       setResponses(prev => [...prev, ""]);
       setQuestion("");
 
-      await handleStreamResponse(fullText, setResponses);
+      do {
+        ({ done, value } = await reader.read());
+
+        if (!done) {
+          chunks += new TextDecoder().decode(value);
+          setResponses(prev => {
+            const newResponses = [...prev];
+            newResponses[newResponses.length - 1] = chunks;
+
+            return newResponses;
+          });
+          scrollToBottom();
+        }
+      } while (!done);
     } catch (error) {
       console.error("Search failed:", error);
     } finally {
