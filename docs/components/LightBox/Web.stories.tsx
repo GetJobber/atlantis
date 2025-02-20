@@ -1,8 +1,7 @@
-import React, { CSSProperties, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Button } from "@jobber/components/Button";
 import { LightBox } from "@jobber/components/LightBox";
-import { Box } from "@jobber/components/Box";
 
 export default {
   title: "Components/Images and Icons/LightBox/Web",
@@ -34,44 +33,16 @@ const images = [
 
 const BasicTemplate: ComponentStory<typeof LightBox> = args => {
   const [isOpen, setIsOpen] = useState(false);
-  const [boxSizing, setBoxSizing] = useState<CSSProperties["boxSizing"]>();
-
-  useEffect(() => {
-    document.documentElement.style.setProperty(
-      "--public-lightbox-box-sizing",
-      boxSizing ?? "inherit",
-    );
-  }, [boxSizing]);
 
   return (
-    <Box direction="column" gap="base">
+    <>
       <Button label="Click me!" onClick={() => setIsOpen(true)} />
-      <Button
-        label="Set Box Sizing to Border Box"
-        onClick={() => setBoxSizing("border-box")}
-      />
-      <Button
-        label="Set Box Sizing to Content Box"
-        onClick={() => setBoxSizing("content-box")}
-      />
-      <Button
-        label="Set Box Sizing to Inherit"
-        onClick={() => setBoxSizing("inherit")}
-      />
-      <Button
-        label="Set Box Sizing to Initial"
-        onClick={() => setBoxSizing("initial")}
-      />
-      <Button
-        label="Set Box Sizing to Unset"
-        onClick={() => setBoxSizing("unset")}
-      />
       <LightBox
         {...args}
         open={isOpen}
         onRequestClose={() => setIsOpen(false)}
       />
-    </Box>
+    </>
   );
 };
 
