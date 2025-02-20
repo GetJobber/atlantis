@@ -1,5 +1,5 @@
 /* eslint-disable max-statements */
-import React, { useEffect, useRef, useState } from "react";
+import React, { CSSProperties, useEffect, useRef, useState } from "react";
 import { AnimatePresence, PanInfo, motion } from "framer-motion";
 import ReactDOM from "react-dom";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
@@ -52,6 +52,13 @@ interface LightBoxProps {
    * that has the index of the image the user was on when LightBox was closed.
    */
   onRequestClose(options: RequestCloseOptions): void;
+
+  /**
+   * Sets the box-sizing for the thumbnails in the lightbox. This is a solution for a problem where
+   * tailwind was setting the box-sizing to `border-box` and causing issues with the lightbox.
+   * @default "content-box"
+   */
+  readonly boxSizing?: CSSProperties["boxSizing"];
 }
 
 const swipeConfidenceThreshold = 10000;
@@ -87,6 +94,7 @@ const BUTTON_DEBOUNCE_DELAY = 250;
 const MOVEMENT_DEBOUNCE_DELAY = 1000;
 
 export function LightBox({
+  boxSizing = "content-box",
   open,
   images,
   imageIndex = 0,
@@ -166,7 +174,14 @@ export function LightBox({
           <div className={styles.blurOverlay} onClick={handleRequestClose} />
 
           <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
-            <div className={styles.toolbar}>
+            <div
+              className={styles.toolbar}
+              style={
+                {
+                  "--lightbox--box-sizing": boxSizing,
+                } as React.CSSProperties
+              }
+            >
               <div className={styles.slideNumber}>
                 <Text>{`${currentImageIndex + 1}/${images.length}`}</Text>
               </div>
