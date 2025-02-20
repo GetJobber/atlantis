@@ -4,11 +4,25 @@ const path = require("path");
 // Base URL of your site
 const BASE_URL = "https://atlantis.getjobber.com";
 
-// Read the routes file
+// Read the routes file and componentList
 const routesContent = fs.readFileSync(
   path.join(__dirname, "packages/site/src/routes.tsx"),
   "utf8",
 );
+const componentListContent = fs.readFileSync(
+  path.join(__dirname, "packages/site/src/componentList.ts"),
+  "utf8",
+);
+
+// Extract component paths from componentList
+const componentPaths = [];
+const componentMatches = componentListContent.matchAll(
+  /to:\s*["']([^"']+)["']/g,
+);
+
+for (const match of componentMatches) {
+  componentPaths.push(match[1]);
+}
 
 // Extract just the paths from the routes using regex
 const paths = [];
@@ -29,8 +43,12 @@ for (const match of routeMatches) {
   paths.push(normalizedPath);
 }
 
-// Remove duplicates
-const uniquePaths = [...new Set(paths)];
+// Combine all paths and remove duplicates
+const allPaths = [...paths, ...componentPaths];
+const uniquePaths = [...new Set(allPaths)];
+
+// Sort paths alphabetically for better readability
+uniquePaths.sort();
 
 // Generate sitemap XML
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
