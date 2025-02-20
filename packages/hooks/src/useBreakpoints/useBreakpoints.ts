@@ -4,7 +4,7 @@ export const BREAKPOINT_SIZES = { sm: 490, md: 768, lg: 1080, xl: 1440 };
 
 /**
  * Hook equivalent of CSS media queries with our
- * [supported breakpoints](https://atlantis.getjobber.com/?path=/docs/design-breakpoints--docs).
+ * [supported breakpoints](https://atlantis.getjobber.com/design/breakpoints).
  */
 export function useBreakpoints() {
   const { sm, md, lg, xl } = BREAKPOINT_SIZES;
