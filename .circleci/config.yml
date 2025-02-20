@@ -40,6 +40,21 @@ references:
       name: Install Dependencies
       command: npm ci
 
+  check_git_status: &check_git_status
+    run:
+      name: Check for uncommitted files
+      command: |
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "Found uncommitted changes which is unexpected. This likely means you forgot to commit generated files."
+          echo "Here's the diff:"
+          git status
+          echo "If the diff includes *.props.json files, run 'npm run generate' inside packages/site, review and commit the changes."
+          exit 1
+        else
+          echo "No uncommitted changes."
+          git status
+        fi
+
   github_authenticity: &github_authenticity
     run:
       name: Establishing GitHub Authenticity
@@ -91,24 +106,6 @@ jobs:
               npm run preventManualRelease
             fi
 
-  check_git_status:
-    <<: *container_config
-    steps:
-      - *attach_workspace
-      - run:
-          name: Check for uncommitted files
-          command: |
-            if [ -n "$(git status --porcelain)" ]; then
-              echo "Found uncommitted changes which is unexpected. This likely means you forgot to commit generated files."
-              echo "Here's the diff:"
-              git status
-              echo "If the diff includes *.props.json files, run `npm run generate` inside packages/site, review and commit the changes."
-              exit 1
-            else
-              echo "No uncommitted changes."
-              git status
-            fi
-
   lint_javascript:
     <<: *container_config
     steps:
@@ -158,63 +155,7 @@ jobs:
       - *generate_base_path
       - run:
           command: npm run storybook:build
-      - *persist_to_workspace
-
-  generate_sitemap:
-    <<: *container_config
-    steps:
-      - *attach_workspace
-      - run:
-          name: Create sitemap generator script
-          command: |
-            cat \<< 'EOF' > generate-sitemap.js
-            const fs = require('fs');
-
-            // Read and parse the stories.json file
-            const storiesData = JSON.parse(
-              fs.readFileSync("storybook-static/stories.json", "utf8")
-            );
-            const stories = storiesData.stories;
-
-            // Create a set to store unique URLs
-            const urls = new Set();
-
-            // Process each story
-            for (const [, story] of Object.entries(stories)) {
-              // Skip stories that are marked as docs-only
-              if (story.tags && story.tags.includes("stories-mdx-docsOnly")) {
-                continue;
-              }
-
-              // Add the story URL to the set
-              urls.add(`https://atlantis.jobber.com/?path=/story/${story.id}`);
-            }
-
-            // Generate the sitemap XML
-            const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-            <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-              ${[...urls].map(url => `
-                <url>
-                  <loc>${url}</loc>
-                  <changefreq>daily</changefreq>
-                </url>`).join('')}
-            </urlset>`;
-
-            // Write the sitemap to a file
-            fs.writeFileSync("sitemap.xml", sitemap);
-            console.log(`Generated sitemap with ${urls.size} URLs`);
-            EOF
-      - run:
-          name: Generate sitemap
-          command: |
-            ls -la
-            echo "Current directory: $PWD"
-            echo "Contents of storybook-static:"
-            ls -la storybook-static
-            node generate-sitemap.js
-            mv sitemap.xml storybook-static/
-            mv storybook-static/sitemap.xml .
-      - *persist_to_workspace
+      - *check_git_status
 
   build_new_docs:
     <<: *container_config
@@ -222,6 +163,7 @@ jobs:
       - *attach_workspace
       - run:
           command: cd packages/site && npm run generate && npm run build
+      - *check_git_status
 
   release:
     <<: *container_config
@@ -264,17 +206,9 @@ workflows:
       - build_storybook:
           requires:
             - install_dependencies
-      - generate_sitemap:
-          requires:
-            - build_storybook
       - build_new_docs:
           requires:
             - install_dependencies
-      - check_git_status:
-          requires:
-            - build_storybook
-            - build_new_docs
-            - generate_sitemap
       - release:
           filters:
             branches:
@@ -285,4 +219,3 @@ workflows:
             - test
             - build_storybook
             - build_new_docs
-            - check_git_status
