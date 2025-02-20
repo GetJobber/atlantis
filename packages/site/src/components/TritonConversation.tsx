@@ -1,5 +1,6 @@
 import { Box, Content, Heading, Icon, Link, Text } from "@jobber/components";
 import ReactMarkdown from "react-markdown";
+import { ReactElement } from "react";
 import styles from "./TritonConversation.module.css";
 import { componentMap, getComponentPath } from "./TritonLinks";
 import { CopyCodeButton } from "./CodeCopyButton";
@@ -55,8 +56,8 @@ const Message = ({ question, response }: MessageProps) => (
               },
               p: ({ children }) => <Text>{children}</Text>,
               pre: ({ children, ...props }) => {
-                const codeElement = (children as React.ReactElement[])[0];
-                const codeContent = String(codeElement?.props?.children || "");
+                const codeContent =
+                  (children as ReactElement)?.props?.children || "";
 
                 return (
                   <div style={{ position: "relative" }}>
