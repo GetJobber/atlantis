@@ -5,6 +5,7 @@ import {
   useContext,
   useState,
 } from "react";
+import { useBreakpoints } from "@jobber/hooks";
 
 const AtlantisSiteContext = createContext<{
   minimal: {
@@ -41,6 +42,8 @@ export const AtlantisSiteProvider = ({
   const [minimalState, setMinimalState] = useState(minimal);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const { mediumAndUp } = useBreakpoints();
+
   const enableMinimal = useCallback(() => {
     setMinimalState(prevState => ({
       ...prevState,
@@ -56,7 +59,9 @@ export const AtlantisSiteProvider = ({
   }, []);
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(prevState => !prevState);
+    if (!mediumAndUp) {
+      setIsMobileMenuOpen(prevState => !prevState);
+    }
   };
 
   return (
