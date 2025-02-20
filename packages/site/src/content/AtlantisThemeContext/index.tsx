@@ -1,11 +1,13 @@
 import AtlantisThemeContextContent from "@atlantis/docs/components/AtlantisThemeContext/AtlantisThemeContext.stories.mdx";
 import Props from "./AtlantisThemeContext.props.json";
+import MobileProps from "./AtlantisThemeContext.props-mobile.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <AtlantisThemeContextContent />,
   props: Props,
+  mobileProps: MobileProps,
   component: {
     element: `<AtlantisThemeContextProvider>
     <Box background="surface" padding="larger" radius="base" gap="base">
