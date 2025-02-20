@@ -45,6 +45,19 @@
           "name": "(newValue?: Date) => void"
         }
       },
+      "id": {
+        "defaultValue": null,
+        "description": "A unique identifier for the input.",
+        "name": "id",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
       "align": {
         "defaultValue": null,
         "description": "Determines the alignment of the text inside the input.",
@@ -151,7 +164,7 @@
       },
       "placeholder": {
         "defaultValue": null,
-        "description": "Hint text that goes above the value once the form is filled out.",
+        "description": "Text that appears inside the input when empty and floats above the value\nas a mini label once the user enters a value.\nWhen showMiniLabel is false, this text only serves as a standard placeholder and\ndisappears when the user types.",
         "name": "placeholder",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
@@ -263,7 +276,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event: KeyboardEvent<Element>) => void"
+          "name": "(event: React.KeyboardEvent) => void"
         }
       },
       "onFocus": {
@@ -276,7 +289,7 @@
         },
         "required": false,
         "type": {
-          "name": "() => void"
+          "name": "(event?: React.FocusEvent) => void"
         }
       },
       "onBlur": {
@@ -289,7 +302,7 @@
         },
         "required": false,
         "type": {
-          "name": "() => void"
+          "name": "(event?: React.FocusEvent) => void"
         }
       },
       "inputRef": {
@@ -990,10 +1003,10 @@
           "name": "() => string"
         }
       },
-      "__@iterator@14828": {
+      "__@iterator@9870": {
         "defaultValue": null,
         "description": "Iterator",
-        "name": "__@iterator@14828",
+        "name": "__@iterator@9870",
         "parent": {
           "fileName": "atlantis/node_modules/typescript/lib/lib.es2015.iterable.d.ts",
           "name": "String"

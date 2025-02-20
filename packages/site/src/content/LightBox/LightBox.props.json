@@ -21,7 +21,7 @@
       },
       "images": {
         "defaultValue": null,
-        "description": "Images is an array of objects defining a LightBox image. This object consists of\n`title`, `alt`, `caption` and `url`. `title`, `alt` and `caption` are optional, `url` is\nrequired, for each image.",
+        "description": "Images is an array of objects defining a LightBox image. This object consists of\n`title`, `caption`, `alt` and `url`. `title`, `alt` and `caption` are optional, `url` is\nrequired, for each image.",
         "name": "images",
         "parent": {
           "fileName": "../components/src/LightBox/LightBox.tsx",

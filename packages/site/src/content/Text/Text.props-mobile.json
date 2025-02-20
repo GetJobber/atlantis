@@ -193,6 +193,19 @@
           "name": "boolean"
         }
       },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information [here](https://atlantis.getjobber.com/storybook/?path=/docs/guides-customizing-components--docs#unsafe_-props).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "../components-native/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "TypographyUnsafeStyle"
+        }
+      },
       "maxFontScaleSize": {
         "defaultValue": null,
         "description": "Set the maximum font the text can go to size when the user scales their\ndevice font size",
