@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.20.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.20.0...@jobber/components@6.20.1) (2025-02-20)
+
+
+### Bug Fixes
+
+* **components:** Allow Chip to be used as an activator in Menu  ([#2375](https://github.com/GetJobber/atlantis/issues/2375)) ([2e0ad52](https://github.com/GetJobber/atlantis/commit/2e0ad52d497e6d84d5cb7272071ad0557ea6fb0b))
+
+
+
+
+
 # [6.20.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.19.1...@jobber/components@6.20.0) (2025-02-18)
 
 
