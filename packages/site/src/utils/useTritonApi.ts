@@ -1,10 +1,20 @@
+/* eslint-disable max-statements */
 interface TritonApiOptions {
   endpoint: string;
   body?: object;
   key?: string;
 }
 
-export function useTritonApi() {
+interface UseTritonApi {
+  invokeTritonApi: (options: TritonApiOptions) => Promise<Response>;
+  validateApiKey: (
+    setIsValidKey: (isValid: boolean) => void,
+    setLoading: (loading: boolean) => void,
+    key?: string,
+  ) => Promise<boolean>;
+}
+
+export function useTritonApi(): UseTritonApi {
   const invokeTritonApi = async ({ endpoint, body, key }: TritonApiOptions) => {
     try {
       const response = await fetch(
@@ -38,5 +48,42 @@ export function useTritonApi() {
     }
   };
 
-  return { invokeTritonApi };
+  const validateApiKey = async (
+    setIsValidKey: (isValid: boolean) => void,
+    setLoading: (loading: boolean) => void,
+    key?: string,
+  ): Promise<boolean> => {
+    const keyToValidate = key || localStorage.getItem("tritonApiKey");
+
+    if (!keyToValidate) {
+      setIsValidKey(false);
+
+      return false;
+    }
+
+    try {
+      setLoading(true);
+      await invokeTritonApi({ endpoint: "/auth/verify", key: keyToValidate });
+
+      if (key) {
+        localStorage.setItem("tritonApiKey", key);
+      }
+
+      setIsValidKey(true);
+
+      return true;
+    } catch (error) {
+      console.error("API key validation failed:", error);
+
+      if (!key) {
+        localStorage.removeItem("tritonApiKey");
+      }
+      setIsValidKey(false);
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { invokeTritonApi, validateApiKey };
 }

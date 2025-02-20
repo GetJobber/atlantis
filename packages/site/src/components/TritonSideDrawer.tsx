@@ -8,7 +8,7 @@ import {
   SideDrawer,
   Text,
 } from "@jobber/components";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { TritonConversation } from "./TritonConversation";
 import { useTritonChat } from "../providers/TritonProvider";
 
@@ -117,15 +117,20 @@ export function TritonSideDrawer() {
     question,
     setQuestion,
     sendSearch,
-    hasApiKey,
     setApiKey,
     loading,
+    validateApiKey,
+    isValidKey,
   } = useTritonChat();
+
+  useEffect(() => {
+    validateApiKey();
+  }, []);
 
   return (
     <SideDrawer open={tritonOpen} onRequestClose={onCloseTriton}>
       <SideDrawer.Toolbar>
-        {hasApiKey ? (
+        {isValidKey ? (
           <ChatInterface
             question={question}
             setQuestion={setQuestion}

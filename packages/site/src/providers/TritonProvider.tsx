@@ -8,12 +8,13 @@ interface TritonContextType {
   question: string;
   setQuestion: (question: string) => void;
   sendSearch: () => void;
-  hasApiKey: boolean;
   setApiKey: (key: string) => Promise<void>;
   responses: string[];
   questions: string[];
   loading: boolean;
   setLoading: (loading: boolean) => void;
+  validateApiKey: () => Promise<boolean>;
+  isValidKey: boolean;
 }
 
 const TritonContext = createContext<TritonContextType>({
@@ -23,12 +24,13 @@ const TritonContext = createContext<TritonContextType>({
   question: "",
   setQuestion: () => ({}),
   sendSearch: () => ({}),
-  hasApiKey: false,
   setApiKey: async () => Promise.resolve(),
   responses: [],
   questions: [],
   loading: false,
   setLoading: () => ({}),
+  validateApiKey: async () => false,
+  isValidKey: false,
 });
 
 const scrollToBottom = () => {
@@ -59,29 +61,22 @@ const handleStreamResponse = async (
   }
 };
 
+// eslint-disable-next-line max-statements
 export function TritonProvider({ children }: PropsWithChildren) {
   const [tritonOpen, setTritonOpen] = useState(false);
   const [question, setQuestion] = useState("");
-  const [hasApiKey, setHasApiKey] = useState(
-    Boolean(localStorage.getItem("tritonApiKey")),
-  );
   const [responses, setResponses] = useState<string[]>([]);
   const [questions, setQuestions] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
-  const { invokeTritonApi } = useTritonApi();
+  const [isValidKey, setIsValidKey] = useState(false);
+  const { invokeTritonApi, validateApiKey } = useTritonApi();
+
+  const handleValidateApiKey = async (key?: string) => {
+    return validateApiKey(setIsValidKey, setLoading, key);
+  };
 
   const setApiKey = async (key: string) => {
-    try {
-      setLoading(true);
-      await invokeTritonApi({ endpoint: "/auth/verify", key });
-      localStorage.setItem("tritonApiKey", key);
-      setHasApiKey(true);
-    } catch (error) {
-      console.error("API key validation failed:", error);
-      throw error;
-    } finally {
-      setLoading(false);
-    }
+    await handleValidateApiKey(key);
   };
 
   // eslint-disable-next-line max-statements
@@ -125,12 +120,13 @@ export function TritonProvider({ children }: PropsWithChildren) {
     question,
     setQuestion,
     sendSearch,
-    hasApiKey,
     setApiKey,
     responses,
     questions,
     loading,
     setLoading,
+    validateApiKey: handleValidateApiKey,
+    isValidKey,
   };
 
   return (
