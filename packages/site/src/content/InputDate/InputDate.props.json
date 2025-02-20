@@ -11,7 +11,7 @@
         "description": "A Date object value\n(e.g., `new Date(\"11/11/2011\")`)",
         "name": "value",
         "parent": {
-          "fileName": "../components/src/InputDate/InputDate.tsx",
+          "fileName": "packages/components/src/InputDate/InputDate.types.ts",
           "name": "InputDateProps"
         },
         "required": false,
@@ -24,7 +24,7 @@
         "description": "onChange handler that provides the new value (or event)",
         "name": "onChange",
         "parent": {
-          "fileName": "../components/src/InputDate/InputDate.tsx",
+          "fileName": "packages/components/src/InputDate/InputDate.types.ts",
           "name": "InputDateProps"
         },
         "required": true,
@@ -37,7 +37,7 @@
         "description": "The maximum selectable date.",
         "name": "maxDate",
         "parent": {
-          "fileName": "../components/src/InputDate/InputDate.tsx",
+          "fileName": "packages/components/src/InputDate/InputDate.types.ts",
           "name": "InputDateProps"
         },
         "required": false,
@@ -50,7 +50,7 @@
         "description": "The minimum selectable date.",
         "name": "minDate",
         "parent": {
-          "fileName": "../components/src/InputDate/InputDate.tsx",
+          "fileName": "packages/components/src/InputDate/InputDate.types.ts",
           "name": "InputDateProps"
         },
         "required": false,
@@ -65,7 +65,7 @@
         "description": "Whether to show the calendar icon",
         "name": "showIcon",
         "parent": {
-          "fileName": "../components/src/InputDate/InputDate.tsx",
+          "fileName": "packages/components/src/InputDate/InputDate.types.ts",
           "name": "InputDateProps"
         },
         "required": false,
@@ -78,8 +78,21 @@
         "description": "Text to display instead of a date value",
         "name": "emptyValueLabel",
         "parent": {
-          "fileName": "../components/src/InputDate/InputDate.tsx",
+          "fileName": "packages/components/src/InputDate/InputDate.types.ts",
           "name": "InputDateProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "id": {
+        "defaultValue": null,
+        "description": "A unique identifier for the input.",
+        "name": "id",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
         },
         "required": false,
         "type": {
@@ -116,6 +129,21 @@
         "defaultValue": null,
         "description": "Disable the input",
         "name": "disabled",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "showMiniLabel": {
+        "defaultValue": {
+          "value": "true"
+        },
+        "description": "Controls the visibility of the mini label that appears inside the input\nwhen a value is entered. By default, the placeholder text moves up to\nbecome a mini label. Set to false to disable this behavior.",
+        "name": "showMiniLabel",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
           "name": "CommonFormFieldProps"
@@ -192,7 +220,7 @@
       },
       "placeholder": {
         "defaultValue": null,
-        "description": "Hint text that goes above the value once the form is filled out.",
+        "description": "Text that appears inside the input when empty and floats above the value\nas a mini label once the user enters a value.\nWhen showMiniLabel is false, this text only serves as a standard placeholder and\ndisappears when the user types.",
         "name": "placeholder",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
@@ -218,7 +246,7 @@
       },
       "version": {
         "defaultValue": null,
-        "description": "Experimental:\nDetermine which version of the FormField to use.\nRight now this isn't used but it will be used in the future\nto allow us to release new versions of our form inputs without breaking existing functionality",
+        "description": "Experimental:\nDetermine which version of the FormField to use.\nRight now this isn't used but it will be used in the future\nto allow us to release new versions of our form inputs without breaking existing functionality.",
         "name": "version",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
@@ -252,7 +280,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event: KeyboardEvent<Element>) => void"
+          "name": "(event: React.KeyboardEvent) => void"
         }
       },
       "onFocus": {
@@ -265,7 +293,7 @@
         },
         "required": false,
         "type": {
-          "name": "() => void"
+          "name": "(event?: React.FocusEvent) => void"
         }
       },
       "inputRef": {
@@ -304,7 +332,7 @@
         },
         "required": false,
         "type": {
-          "name": "() => void"
+          "name": "(event?: React.FocusEvent) => void"
         }
       }
     }
