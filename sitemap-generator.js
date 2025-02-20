@@ -16,11 +16,16 @@ const routeMatches = routesContent.matchAll(/path:\s*["']([^"']+)["']/g);
 
 for (const match of routeMatches) {
   const routePath = match[1];
-  // Remove dynamic parameters and ensure path starts with forward slash
-  const cleanPath = routePath.replace(/:[^/]+/g, "all");
-  const normalizedPath = cleanPath.startsWith("/")
-    ? cleanPath
-    : `/${cleanPath}`;
+
+  // Skip dynamic routes (those with parameters)
+  if (routePath.includes(":")) {
+    continue;
+  }
+
+  // Ensure path starts with forward slash
+  const normalizedPath = routePath.startsWith("/")
+    ? routePath
+    : `/${routePath}`;
   paths.push(normalizedPath);
 }
 
