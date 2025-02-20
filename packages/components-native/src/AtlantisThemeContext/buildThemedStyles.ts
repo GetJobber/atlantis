@@ -9,7 +9,7 @@ import { useAtlantisTheme } from "./AtlantisThemeContext";
  *
  * @example
  * ```tsx
- * const useStyles = createThemedStyleHook(tokens => ({
+ * const useStyles = buildThemedStyles(tokens => ({
  *   container: {
  *     backgroundColor: tokens["color-surface"],
  *     padding: tokens["space-base"],
@@ -32,9 +32,9 @@ import { useAtlantisTheme } from "./AtlantisThemeContext";
  *
  * @see Related functions: {@link useAtlantisTheme}
  */
-export function createThemedStyleHook<T extends StyleSheet.NamedStyles<T>>(
-  styleFactory: (tokens: AtlantisThemeContextValue["tokens"]) => T,
-) {
+export function buildThemedStyles<
+  T extends Parameters<typeof StyleSheet.create>[0],
+>(styleFactory: (tokens: AtlantisThemeContextValue["tokens"]) => T) {
   return function useStyles() {
     const { tokens } = useAtlantisTheme();
 
