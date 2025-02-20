@@ -11,7 +11,7 @@
         "description": "Use this when you're expecting a long answer.",
         "name": "multiline",
         "parent": {
-          "fileName": "../components/src/InputText/InputText.tsx",
+          "fileName": "packages/components/src/InputText/InputText.types.ts",
           "name": "MultilineProps"
         },
         "required": false,
@@ -24,12 +24,25 @@
         "description": "Specifies the visible height of a long answer form field. Can be in the\nform of a single number to set a static height, or an object with a min\nand max keys indicating the minimum number of visible rows, and the\nmaximum number of visible rows.",
         "name": "rows",
         "parent": {
-          "fileName": "../components/src/InputText/InputText.tsx",
+          "fileName": "packages/components/src/InputText/InputText.types.ts",
           "name": "MultilineProps"
         },
         "required": false,
         "type": {
           "name": "number | RowRange"
+        }
+      },
+      "id": {
+        "defaultValue": null,
+        "description": "A unique identifier for the input.",
+        "name": "id",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
         }
       },
       "align": {
@@ -62,6 +75,21 @@
         "defaultValue": null,
         "description": "Disable the input",
         "name": "disabled",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "showMiniLabel": {
+        "defaultValue": {
+          "value": "true"
+        },
+        "description": "Controls the visibility of the mini label that appears inside the input\nwhen a value is entered. By default, the placeholder text moves up to\nbecome a mini label. Set to false to disable this behavior.",
+        "name": "showMiniLabel",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
           "name": "CommonFormFieldProps"
@@ -151,7 +179,7 @@
       },
       "placeholder": {
         "defaultValue": null,
-        "description": "Hint text that goes above the value once the form is filled out.",
+        "description": "Text that appears inside the input when empty and floats above the value\nas a mini label once the user enters a value.\nWhen showMiniLabel is false, this text only serves as a standard placeholder and\ndisappears when the user types.",
         "name": "placeholder",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
@@ -203,7 +231,7 @@
       },
       "version": {
         "defaultValue": null,
-        "description": "Experimental:\nDetermine which version of the FormField to use.\nRight now this isn't used but it will be used in the future\nto allow us to release new versions of our form inputs without breaking existing functionality",
+        "description": "Experimental:\nDetermine which version of the FormField to use.\nRight now this isn't used but it will be used in the future\nto allow us to release new versions of our form inputs without breaking existing functionality.",
         "name": "version",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
@@ -289,7 +317,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event: KeyboardEvent<Element>) => void"
+          "name": "(event: React.KeyboardEvent) => void"
         }
       },
       "onFocus": {
@@ -302,7 +330,7 @@
         },
         "required": false,
         "type": {
-          "name": "() => void"
+          "name": "(event?: React.FocusEvent) => void"
         }
       },
       "onBlur": {
@@ -315,7 +343,7 @@
         },
         "required": false,
         "type": {
-          "name": "() => void"
+          "name": "(event?: React.FocusEvent) => void"
         }
       },
       "inputRef": {
@@ -393,7 +421,7 @@
         },
         "required": false,
         "type": {
-          "name": "ReactNode"
+          "name": "any"
         }
       },
       "toolbarVisibility": {
