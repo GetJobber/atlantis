@@ -70,6 +70,16 @@ const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
     .join("")}
 </urlset>`;
 
-// Write sitemap to file
-fs.writeFileSync("sitemap.xml", sitemap);
-console.log(`Generated sitemap with ${uniquePaths.length} URLs`);
+// Ensure storybook-static directory exists
+const outputDir = path.join(__dirname, "storybook-static");
+
+if (!fs.existsSync(outputDir)) {
+  fs.mkdirSync(outputDir, { recursive: true });
+}
+
+// Write sitemap to file in storybook-static directory
+const outputPath = path.join(outputDir, "sitemap.xml");
+fs.writeFileSync(outputPath, sitemap);
+console.log(
+  `Generated sitemap with ${uniquePaths.length} URLs at ${outputPath}`,
+);
