@@ -6,6 +6,7 @@ import "./code-theme.css";
 import { hooksList } from "../hooksList";
 import { NotFoundPage } from "../pages/NotFoundPage";
 import { TritonSideDrawer } from "../components/TritonSideDrawer";
+
 /**
  * Layout for whole application. This will display the NavMenu and the content of the page.
  * @returns ReactNode
@@ -16,7 +17,6 @@ export const Layout = () => {
   const scrollPane = useRef<HTMLDivElement>(null);
   const path = new URLSearchParams(location.search).get("path");
   const history = useHistory();
-
   useEffect(() => {
     if (scrollPane?.current) {
       scrollPane?.current.scrollTo({ top: 0 });
