@@ -20,7 +20,6 @@ exports[`Images renders an image 1`] = `
     >
       <div
         class="toolbar"
-        style="--lightbox--box-sizing: content-box;"
       >
         <div
           class="slideNumber"

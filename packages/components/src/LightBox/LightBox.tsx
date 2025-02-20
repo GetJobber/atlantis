@@ -174,14 +174,7 @@ export function LightBox({
           <div className={styles.blurOverlay} onClick={handleRequestClose} />
 
           <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
-            <div
-              className={styles.toolbar}
-              style={
-                {
-                  "--lightbox--box-sizing": boxSizing,
-                } as React.CSSProperties
-              }
-            >
+            <div className={styles.toolbar}>
               <div className={styles.slideNumber}>
                 <Text>{`${currentImageIndex + 1}/${images.length}`}</Text>
               </div>
@@ -250,6 +243,11 @@ export function LightBox({
           {images.length > 1 && (
             <div
               className={styles.thumbnailBar}
+              style={
+                {
+                  "--lightbox--box-sizing": boxSizing,
+                } as React.CSSProperties
+              }
               data-testid="ATL-Thumbnail-Bar"
             >
               {images.map((image, index) => (
