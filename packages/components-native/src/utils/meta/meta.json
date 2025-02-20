@@ -8,6 +8,7 @@
     "AtlantisContext.Provider",
     "AtlantisFormContext.Consumer",
     "AtlantisFormContext.Provider",
+    "AtlantisThemeContextProvider",
     "AutoLink",
     "Banner",
     "BottomSheet",
