@@ -1,124 +1,121 @@
-import { tokens as staticTokens } from "@jobber/design";
 import { StyleSheet } from "react-native";
-import { AtlantisThemeContextValue } from "../AtlantisThemeContext";
+import { tokens } from "../utils/design";
 
-const iconTranslateY = staticTokens["space-large"] / 2;
-const buttonRadius = staticTokens["radius-base"];
-export const baseButtonHeight = staticTokens["space-base"] * 3;
-export const smallButtonHeight = staticTokens["space-base"] * 2.5;
+const iconTranslateY = tokens["space-large"] / 2;
+const buttonRadius = tokens["radius-base"];
+export const baseButtonHeight = tokens["space-base"] * 3;
+export const smallButtonHeight = tokens["space-base"] * 2.5;
 
-// TODO: this is a temporary solution. We're going to make a helper function that internally
-// uses useAtlantisTheme+useMemo to get the tokens, so they don't need to be passed in.
-// Call the function `buildThemedStyles`? Return a hook function that returns the styles?
-export const getStyles = (tokens: AtlantisThemeContextValue["tokens"]) => {
-  return StyleSheet.create({
-    fullHeight: {
-      flexGrow: 1,
-      flexShrink: 0,
-    },
+export const styles = StyleSheet.create({
+  fullHeight: {
+    flexGrow: 1,
+    flexShrink: 0,
+  },
 
-    fullWidth: {
-      alignSelf: "stretch",
-    },
+  fullWidth: {
+    alignSelf: "stretch",
+  },
 
-    touchable: {
-      borderRadius: buttonRadius,
-    },
+  touchable: {
+    borderRadius: buttonRadius,
+  },
 
-    button: {
-      justifyContent: "center",
-      alignItems: "center",
-      alignSelf: "stretch",
-      flexDirection: "row",
-      overflow: "hidden",
-      margin: 0,
-      borderRadius: buttonRadius,
-      borderWidth: tokens["border-base"],
-      paddingVertical: tokens["space-small"],
-    },
+  button: {
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "stretch",
+    flexDirection: "row",
+    overflow: "hidden",
+    margin: 0,
+    borderRadius: buttonRadius,
+    borderWidth: tokens["border-base"],
+    paddingVertical: tokens["space-small"],
+  },
 
-    base: {
-      minHeight: baseButtonHeight,
-      paddingHorizontal: tokens["space-base"],
-    },
+  base: {
+    minHeight: baseButtonHeight,
+    paddingHorizontal: tokens["space-base"],
+  },
 
-    small: {
-      minHeight: smallButtonHeight,
-      paddingHorizontal: tokens["space-small"] + tokens["space-smaller"],
-    },
+  small: {
+    minHeight: smallButtonHeight,
+    paddingHorizontal: tokens["space-small"] + tokens["space-smaller"],
+  },
 
-    reducedPaddingForFullWidth: {
-      paddingHorizontal: tokens["space-smaller"],
-    },
+  reducedPaddingForFullWidth: {
+    paddingHorizontal: tokens["space-smaller"],
+  },
 
-    iconPaddingOffset: {
-      paddingRight: tokens["space-smaller"],
-    },
+  iconPaddingOffset: {
+    paddingRight: tokens["space-smaller"],
+  },
 
-    content: {
-      paddingLeft: tokens["space-large"],
-      height: "100%",
-    },
+  content: {
+    paddingLeft: tokens["space-large"],
+    height: "100%",
+  },
 
-    contentWithLabel: {
-      paddingLeft: tokens["space-large"] + tokens["space-small"],
-    },
+  contentWithLabel: {
+    paddingLeft: tokens["space-large"] + tokens["space-small"],
+  },
 
-    iconStyle: {
-      position: "absolute",
-      top: "50%",
-      left: 0,
-      transform: [{ translateY: -iconTranslateY }],
-    },
+  iconStyle: {
+    position: "absolute",
+    top: "50%",
+    left: 0,
+    transform: [{ translateY: -iconTranslateY }],
+  },
 
-    labelStyle: {
-      flexGrow: 1,
-      justifyContent: "center",
-    },
+  labelStyle: {
+    flexGrow: 1,
+    justifyContent: "center",
+  },
 
-    /* Variations */
-    work: {
-      backgroundColor: tokens["color-interactive"],
-      borderColor: tokens["color-interactive"],
-    },
+  /* Variations */
 
-    learning: {
-      backgroundColor: tokens["color-interactive--subtle"],
-      borderColor: tokens["color-interactive--subtle"],
-    },
+  work: {
+    backgroundColor: tokens["color-interactive"],
+    borderColor: tokens["color-interactive"],
+  },
 
-    destructive: {
-      backgroundColor: tokens["color-destructive"],
-      borderColor: tokens["color-destructive"],
-    },
+  learning: {
+    backgroundColor: tokens["color-interactive--subtle"],
+    borderColor: tokens["color-interactive--subtle"],
+  },
 
-    /* Cancel is special because, by default, it's styled as a secondary button */
-    cancel: {
-      backgroundColor: tokens["color-surface"],
-      borderColor: tokens["color-border"],
-    },
+  destructive: {
+    backgroundColor: tokens["color-destructive"],
+    borderColor: tokens["color-destructive"],
+  },
 
-    cancelSecondary: {
-      borderColor: "transparent",
-    },
+  /* Cancel is special because, by default, it's styled as a secondary button */
+  cancel: {
+    backgroundColor: tokens["color-surface"],
+    borderColor: tokens["color-border"],
+  },
 
-    /* Types */
-    primary: {},
+  cancelSecondary: {
+    borderColor: "transparent",
+  },
 
-    secondary: {
-      backgroundColor: tokens["color-surface"],
-      borderColor: tokens["color-border"],
-    },
+  /* Types */
 
-    tertiary: {
-      backgroundColor: tokens["color-surface"],
-      borderColor: "transparent",
-    },
+  primary: {},
 
-    /* Disabled */
-    disabled: {
-      borderColor: tokens["color-disabled--secondary"],
-      backgroundColor: tokens["color-disabled--secondary"],
-    },
-  });
-};
+  secondary: {
+    backgroundColor: tokens["color-surface"],
+    borderColor: tokens["color-border"],
+  },
+
+  tertiary: {
+    backgroundColor: tokens["color-surface"],
+    borderColor: "transparent",
+  },
+
+  /* Disabled */
+
+  disabled: {
+    borderColor: tokens["color-disabled--secondary"],
+    backgroundColor: tokens["color-disabled--secondary"],
+  },
+});

@@ -2,12 +2,12 @@ import React from "react";
 import { StyleProp, TouchableHighlight, View, ViewStyle } from "react-native";
 import { IconColorNames, IconNames } from "@jobber/design";
 import { XOR } from "ts-xor";
-import { getStyles } from "./Button.style";
+import { styles } from "./Button.style";
 import { InternalButtonLoading } from "./components/InternalButtonLoading";
 import { ButtonSize, ButtonType, ButtonVariation } from "./types";
 import { ActionLabel, ActionLabelVariation } from "../ActionLabel";
 import { Icon } from "../Icon";
-import { useAtlantisTheme } from "../AtlantisThemeContext";
+import { tokens } from "../utils/design";
 
 interface CommonButtonProps {
   /**
@@ -123,9 +123,6 @@ export function Button({
   testID,
   UNSAFE_style,
 }: ButtonProps): JSX.Element {
-  const { tokens } = useAtlantisTheme();
-  const styles = getStyles(tokens);
-
   const buttonStyle = [
     styles.button,
     styles[size],
@@ -163,7 +160,7 @@ export function Button({
         {loading && <InternalButtonLoading variation={variation} type={type} />}
         <View
           style={[
-            getContentStyles(label, icon, styles),
+            getContentStyles(label, icon),
             UNSAFE_style?.contentContainer,
           ]}
           testID="contentContainer"
@@ -247,7 +244,6 @@ function getIconColorVariation(
 function getContentStyles(
   label: string | undefined,
   icon: IconNames | undefined,
-  styles: ReturnType<typeof getStyles>,
 ) {
   if (label && !icon) {
     return undefined;
