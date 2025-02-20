@@ -16,7 +16,6 @@ const AtlantisSiteContext = createContext<{
   isMinimal: boolean;
   isMobileMenuOpen: boolean;
   toggleMobileMenu: () => void;
-  closeMobileMenu: () => void;
 }>({
   minimal: {
     requested: false,
@@ -27,7 +26,6 @@ const AtlantisSiteContext = createContext<{
   disableMinimal: () => ({}),
   isMobileMenuOpen: false,
   toggleMobileMenu: () => ({}),
-  closeMobileMenu: () => ({}),
 });
 
 export const useAtlantisSite = () => {
@@ -61,10 +59,6 @@ export const AtlantisSiteProvider = ({
     setIsMobileMenuOpen(prevState => !prevState);
   };
 
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
-
   return (
     <AtlantisSiteContext.Provider
       value={{
@@ -74,7 +68,6 @@ export const AtlantisSiteProvider = ({
         disableMinimal,
         isMobileMenuOpen,
         toggleMobileMenu,
-        closeMobileMenu,
       }}
     >
       {children}

@@ -24,7 +24,7 @@ function AnimatedPresenceDisclosure({
     [children],
   );
 
-  const { closeMobileMenu } = useAtlantisSite();
+  const { toggleMobileMenu } = useAtlantisSite();
 
   // Determine if any child is selected based on the current URL
   const hasSelectedChild = childrenArray.some(
@@ -66,7 +66,7 @@ function AnimatedPresenceDisclosure({
           isTitleSelected ? styles.selected : ""
         } stickySectionHeader`}
       >
-        <Link to={to ?? "/"} tabIndex={0} onClick={closeMobileMenu}>
+        <Link to={to ?? "/"} tabIndex={0} onClick={toggleMobileMenu}>
           <Typography fontWeight="semiBold" size={"large"} textColor="heading">
             {title}
           </Typography>

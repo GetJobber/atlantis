@@ -18,8 +18,7 @@ export interface NavMenuProps {
  * @returns ReactNode
  */
 export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
-  const { isMinimal, isMobileMenuOpen, toggleMobileMenu, closeMobileMenu } =
-    useAtlantisSite();
+  const { isMinimal, isMobileMenuOpen, toggleMobileMenu } = useAtlantisSite();
   const { pathname } = useLocation();
   const selectedRef = useRef<HTMLAnchorElement | null>(null);
 
@@ -69,7 +68,7 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
 
   const skipToContent = () => {
     mainContentRef.current?.focus();
-    closeMobileMenu();
+    toggleMobileMenu();
   };
 
   const menuContent = (
@@ -79,7 +78,7 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
           <Button label="Skip to Content" onClick={skipToContent} />
         </VisibleWhenFocused>
         <div className={styles.navMenuHeaderLogo}>
-          <Link to="/" onClick={closeMobileMenu}>
+          <Link to="/" onClick={toggleMobileMenu}>
             <JobberLogo />
           </Link>
         </div>
@@ -131,7 +130,7 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
           onClose={toggleMobileMenu}
           header={
             <Box padding={{ top: "smaller" }}>
-              <Link to="/" onClick={closeMobileMenu}>
+              <Link to="/" onClick={toggleMobileMenu}>
                 <JobberLogo />
               </Link>
             </Box>
@@ -167,14 +166,14 @@ export const StyledLink = ({
     isSelected,
     styles.selected,
   );
-  const { closeMobileMenu } = useAtlantisSite();
+  const { toggleMobileMenu } = useAtlantisSite();
 
   return (
     <Link
       to={to ?? "/"}
       className={className}
       ref={isSelected ? selectedRef : null}
-      onClick={closeMobileMenu}
+      onClick={toggleMobileMenu}
     >
       {children}
     </Link>
@@ -196,14 +195,14 @@ export const StyledSubLink = ({
     isSelected,
     styles.selected,
   );
-  const { closeMobileMenu } = useAtlantisSite();
+  const { toggleMobileMenu } = useAtlantisSite();
 
   return (
     <Link
       to={to ?? "/"}
       className={className}
       ref={isSelected ? selectedRef : null}
-      onClick={closeMobileMenu}
+      onClick={toggleMobileMenu}
     >
       {children}
     </Link>
