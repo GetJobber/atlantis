@@ -146,7 +146,7 @@
         },
         "required": false,
         "type": {
-          "name": "{ icon?: IconNames; label?: string; }"
+          "name": "{ icon: IconNames; label?: string; onPress: () => void; } | { onPress?: never; icon?: IconNames; label?: string; }"
         }
       },
       "clearable": {
