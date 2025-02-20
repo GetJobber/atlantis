@@ -78,11 +78,11 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
         <VisibleWhenFocused>
           <Button label="Skip to Content" onClick={skipToContent} />
         </VisibleWhenFocused>
-        <Box>
+        <div className={styles.navMenuHeaderLogo}>
           <Link to="/" onClick={closeMobileMenu}>
             <JobberLogo />
           </Link>
-        </Box>
+        </div>
       </div>
       <div className={styles.navMenu}>
         <MenuList>
@@ -126,7 +126,17 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
     <>
       <div className={styles.desktopNavContainer}>{menuContent}</div>
       <div className={styles.mobileNavContainer}>
-        <LeftDrawer open={isMobileMenuOpen} onClose={toggleMobileMenu}>
+        <LeftDrawer
+          open={isMobileMenuOpen}
+          onClose={toggleMobileMenu}
+          header={
+            <Box padding={{ top: "smaller" }}>
+              <Link to="/" onClick={closeMobileMenu}>
+                <JobberLogo />
+              </Link>
+            </Box>
+          }
+        >
           {menuContent}
         </LeftDrawer>
       </div>

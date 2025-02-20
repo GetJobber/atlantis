@@ -1,20 +1,26 @@
-import { Button } from "@jobber/components";
+import { Box, Button } from "@jobber/components";
 import { PropsWithChildren } from "react";
 import styles from "./LeftDrawer.module.css";
 
 interface LeftDrawerProps extends PropsWithChildren {
   readonly open: boolean;
   readonly onClose: () => void;
+  readonly header?: React.ReactNode;
 }
 
-export function LeftDrawer({ children, open, onClose }: LeftDrawerProps) {
+export function LeftDrawer({
+  children,
+  open,
+  onClose,
+  header,
+}: LeftDrawerProps) {
   if (!open) return null;
 
   return (
     <>
       <div className={styles.overlay} onClick={onClose} />
       <div className={styles.drawer}>
-        <div className={styles.header}>
+        <Box padding="small" direction="row" alignItems="center" gap="small">
           <Button
             icon="cross"
             ariaLabel="Close"
@@ -22,7 +28,8 @@ export function LeftDrawer({ children, open, onClose }: LeftDrawerProps) {
             variation="subtle"
             onClick={onClose}
           />
-        </div>
+          {header}
+        </Box>
         <div className={styles.content}>{children}</div>
       </div>
     </>
