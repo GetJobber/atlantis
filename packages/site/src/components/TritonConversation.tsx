@@ -2,8 +2,8 @@ import { Box, Content, Heading, Icon, Link, Text } from "@jobber/components";
 import ReactMarkdown from "react-markdown";
 import { ReactElement } from "react";
 import styles from "./TritonConversation.module.css";
-import { componentMap, getComponentPath } from "./TritonLinks";
 import { CopyCodeButton } from "./CodeCopyButton";
+import { componentMap, getComponentPath } from "../utils/TritonLinks";
 import { useTritonChat } from "../providers/TritonProvider";
 
 const WelcomeMessage = () => (
