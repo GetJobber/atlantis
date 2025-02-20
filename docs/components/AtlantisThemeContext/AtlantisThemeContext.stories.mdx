@@ -13,7 +13,7 @@ tokens.
 
 ## Design & usage guidelines
 
-### Using the AtlantisThemeContextProvider
+### Usage for web
 
 ```tsx
 import {
@@ -41,7 +41,7 @@ function ThemedComponent() {
         }}
       >
         <Content>
-          <Text>The current theme is: {theme}. </Text>
+          <Text>The current theme is: {theme}.</Text>
           <Text>
             The javascript tokens can be accessed via the tokens object.
           </Text>
@@ -56,6 +56,50 @@ function ThemedComponent() {
           />
         </Content>
       </div>
+    </Content>
+  );
+}
+```
+
+### Usage for mobile
+
+```tsx
+import { AtlantisThemeContextProvider, useAtlantisTheme } from "@jobber/components/AtlantisThemeContext";
+
+function App() {
+  return (
+    <AtlantisThemeContextProvider>
+      <ThemedComponent />
+    </AtlantisThemeContextProvider>
+  );
+}
+
+function ThemedComponent() {
+  const { theme, tokens, setTheme } = useAtlantisTheme();
+  return (
+    <Content>
+      <View
+        style={{
+          background: tokens["surface-background"],
+          padding: tokens["space-base"],
+        }}
+      >
+        <Content>
+          <Text>The current theme is: {theme}.</Text>
+          <Text>
+            The javascript tokens can be accessed via the tokens object.
+          </Text>
+          <Text>The theme can be changed using `setTheme`</Text>
+          <Button
+            onPress={() => setTheme("light")}
+            label="The theme can be changed to light"
+          />
+          <Button
+            onPress={() => setTheme("dark")}
+            label="The theme can be changed to dark"
+          />
+        </Content>
+      </View>
     </Content>
   );
 }
