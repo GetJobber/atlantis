@@ -13,6 +13,15 @@ interface UseTritonApi {
     key?: string,
   ) => Promise<boolean>;
   scrollToBottom: () => void;
+  sendSearch: (options: {
+    question: string;
+    questions: string[];
+    responses: string[];
+    setLoading: (loading: boolean) => void;
+    setQuestions: React.Dispatch<React.SetStateAction<string[]>>;
+    setResponses: React.Dispatch<React.SetStateAction<string[]>>;
+    setQuestion: (question: string) => void;
+  }) => Promise<void>;
 }
 
 const scrollToBottom = () => {
@@ -94,5 +103,74 @@ export function useTritonApi(): UseTritonApi {
     }
   };
 
-  return { invokeTritonApi, validateApiKey, scrollToBottom };
+  const handleStreamResponse = async (
+    fullText: string,
+    setResponses: React.Dispatch<React.SetStateAction<string[]>>,
+  ) => {
+    let accumulated = "";
+    const chunkSize = 5;
+
+    for (let i = 0; i < fullText.length; i += chunkSize) {
+      accumulated += fullText.slice(i, i + chunkSize);
+      setResponses(prev => {
+        const newResponses = [...prev];
+        newResponses[newResponses.length - 1] = accumulated;
+
+        return newResponses;
+      });
+      scrollToBottom();
+      await new Promise(resolve => setTimeout(resolve, 1));
+    }
+  };
+
+  const sendSearch = async ({
+    question,
+    questions,
+    responses,
+    setLoading,
+    setQuestions,
+    setResponses,
+    setQuestion,
+  }: {
+    question: string;
+    questions: string[];
+    responses: string[];
+    setLoading: (loading: boolean) => void;
+    setQuestions: React.Dispatch<React.SetStateAction<string[]>>;
+    setResponses: React.Dispatch<React.SetStateAction<string[]>>;
+    setQuestion: (question: string) => void;
+  }) => {
+    if (!question.trim()) return;
+
+    try {
+      setLoading(true);
+      const response = await invokeTritonApi({
+        endpoint: "/stream",
+        body: {
+          personality: "developer",
+          query: question,
+          questions,
+          questionType: "web",
+          responses,
+        },
+      });
+
+      if (!response.body) return;
+      const reader = response.body.getReader();
+      const { value } = await reader.read();
+      const fullText = new TextDecoder().decode(value);
+
+      setQuestions(prev => [...prev, question]);
+      setResponses(prev => [...prev, ""]);
+      setQuestion("");
+
+      await handleStreamResponse(fullText, setResponses);
+    } catch (error) {
+      console.error("Search failed:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { invokeTritonApi, validateApiKey, scrollToBottom, sendSearch };
 }

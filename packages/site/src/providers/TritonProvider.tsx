@@ -33,7 +33,6 @@ const TritonContext = createContext<TritonContextType>({
   isValidKey: false,
 });
 
-// eslint-disable-next-line max-statements
 export function TritonProvider({ children }: PropsWithChildren) {
   const [tritonOpen, setTritonOpen] = useState(false);
   const [question, setQuestion] = useState("");
@@ -41,27 +40,7 @@ export function TritonProvider({ children }: PropsWithChildren) {
   const [questions, setQuestions] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [isValidKey, setIsValidKey] = useState(false);
-  const { invokeTritonApi, validateApiKey, scrollToBottom } = useTritonApi();
-
-  const handleStreamResponse = async (
-    fullText: string,
-    updateResponses: React.Dispatch<React.SetStateAction<string[]>>,
-  ) => {
-    let accumulated = "";
-    const chunkSize = 5;
-
-    for (let i = 0; i < fullText.length; i += chunkSize) {
-      accumulated += fullText.slice(i, i + chunkSize);
-      updateResponses(prev => {
-        const newResponses = [...prev];
-        newResponses[newResponses.length - 1] = accumulated;
-
-        return newResponses;
-      });
-      scrollToBottom();
-      await new Promise(resolve => setTimeout(resolve, 1));
-    }
-  };
+  const { validateApiKey, sendSearch } = useTritonApi();
 
   const handleValidateApiKey = async (key?: string) => {
     return validateApiKey(setIsValidKey, setLoading, key);
@@ -71,38 +50,16 @@ export function TritonProvider({ children }: PropsWithChildren) {
     await handleValidateApiKey(key);
   };
 
-  // eslint-disable-next-line max-statements
-  const sendSearch = async () => {
-    if (!question.trim()) return;
-
-    try {
-      setLoading(true);
-      const response = await invokeTritonApi({
-        endpoint: "/stream",
-        body: {
-          personality: "developer",
-          query: question,
-          questions,
-          questionType: "web",
-          responses,
-        },
-      });
-
-      if (!response.body) return;
-      const reader = response.body.getReader();
-      const { value } = await reader.read();
-      const fullText = new TextDecoder().decode(value);
-
-      setQuestions(prev => [...prev, question]);
-      setResponses(prev => [...prev, ""]);
-      setQuestion("");
-
-      await handleStreamResponse(fullText, setResponses);
-    } catch (error) {
-      console.error("Search failed:", error);
-    } finally {
-      setLoading(false);
-    }
+  const handleSendSearch = () => {
+    return sendSearch({
+      question,
+      questions,
+      responses,
+      setLoading,
+      setQuestions,
+      setResponses,
+      setQuestion,
+    });
   };
 
   const value = {
@@ -111,7 +68,7 @@ export function TritonProvider({ children }: PropsWithChildren) {
     onCloseTriton: () => setTritonOpen(false),
     question,
     setQuestion,
-    sendSearch,
+    sendSearch: handleSendSearch,
     setApiKey,
     responses,
     questions,
