@@ -4,13 +4,17 @@ const path = require("path");
 // Base URL of your site
 const BASE_URL = "https://atlantis.getjobber.com";
 
-// Read the routes file and componentList
+// Read the routes file, componentList, and hooksList
 const routesContent = fs.readFileSync(
   path.join(__dirname, "packages/site/src/routes.tsx"),
   "utf8",
 );
 const componentListContent = fs.readFileSync(
   path.join(__dirname, "packages/site/src/componentList.ts"),
+  "utf8",
+);
+const hooksListContent = fs.readFileSync(
+  path.join(__dirname, "packages/site/src/hooksList.ts"),
   "utf8",
 );
 
@@ -22,6 +26,14 @@ const componentMatches = componentListContent.matchAll(
 
 for (const match of componentMatches) {
   componentPaths.push(match[1]);
+}
+
+// Extract hooks paths from hooksList
+const hooksPaths = [];
+const hooksMatches = hooksListContent.matchAll(/to:\s*["']([^"']+)["']/g);
+
+for (const match of hooksMatches) {
+  hooksPaths.push(match[1]);
 }
 
 // Extract just the paths from the routes using regex
@@ -44,7 +56,7 @@ for (const match of routeMatches) {
 }
 
 // Combine all paths and remove duplicates
-const allPaths = [...paths, ...componentPaths];
+const allPaths = [...paths, ...componentPaths, ...hooksPaths];
 const uniquePaths = [...new Set(allPaths)];
 
 // Sort paths alphabetically for better readability
