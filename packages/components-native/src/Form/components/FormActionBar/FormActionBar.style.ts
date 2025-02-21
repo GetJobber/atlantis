@@ -1,11 +1,12 @@
-import { StyleSheet } from "react-native";
-import { tokens } from "../../../utils/design";
+import { buildThemedStyles } from "../../../AtlantisThemeContext";
 
-export const styles = StyleSheet.create({
-  saveButton: {
-    padding: tokens["space-base"],
-    backgroundColor: tokens["color-surface"],
-    width: "100%",
-    ...tokens["shadow-high"],
-  },
+export const useStyles = buildThemedStyles(tokens => {
+  return {
+    saveButton: {
+      padding: tokens["space-base"],
+      backgroundColor: tokens["color-surface"],
+      width: "100%",
+      ...tokens["shadow-high"],
+    },
+  };
 });

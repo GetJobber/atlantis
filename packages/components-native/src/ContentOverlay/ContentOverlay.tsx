@@ -20,7 +20,7 @@ import {
 } from "react-native";
 import { Portal } from "react-native-portalize";
 import { useKeyboardVisibility } from "./hooks/useKeyboardVisibility";
-import { styles } from "./ContentOverlay.style";
+import { useStyles } from "./ContentOverlay.style";
 import { useViewLayoutHeight } from "./hooks/useViewLayoutHeight";
 import {
   ContentOverlayProps,
@@ -125,6 +125,8 @@ function ContentOverlayInternal(
     childrenHeight,
     windowHeight,
   ]);
+
+  const styles = useStyles();
 
   const modalStyle = [
     styles.modal,

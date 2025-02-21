@@ -2,7 +2,7 @@ import React from "react";
 import { ColorValue, Pressable, View } from "react-native";
 import { XOR } from "ts-xor";
 import { tokens } from "@jobber/design";
-import { styles } from "./Checkbox.style";
+import { useStyles } from "./Checkbox.style";
 import { Text } from "../Text";
 import { Icon } from "../Icon";
 import { FormField } from "../FormField";
@@ -124,6 +124,8 @@ function CheckboxInternal({
     disabled,
     indeterminate,
   );
+
+  const styles = useStyles();
 
   return (
     <Pressable

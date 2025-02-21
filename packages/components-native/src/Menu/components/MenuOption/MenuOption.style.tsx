@@ -1,11 +1,12 @@
-import { StyleSheet } from "react-native";
-import { tokens } from "../../../utils/design";
+import { buildThemedStyles } from "../../../AtlantisThemeContext";
 
-export const styles = StyleSheet.create({
-  menuOption: {
-    display: "flex",
-    paddingHorizontal: tokens["space-base"],
-    paddingVertical: tokens["space-small"],
-    borderRadius: tokens["radius-large"],
-  },
+export const useStyles = buildThemedStyles(tokens => {
+  return {
+    menuOption: {
+      display: "flex",
+      paddingHorizontal: tokens["space-base"],
+      paddingVertical: tokens["space-small"],
+      borderRadius: tokens["radius-large"],
+    },
+  };
 });
