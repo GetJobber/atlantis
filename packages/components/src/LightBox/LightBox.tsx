@@ -7,6 +7,7 @@ import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import { useBreakpoints } from "@jobber/hooks/useBreakpoints";
+import classNames from "classnames";
 import styles from "./LightBox.module.css";
 import { useDebounce } from "../utils/useDebounce";
 import { ButtonDismiss } from "../ButtonDismiss";
@@ -18,6 +19,7 @@ import { AtlantisThemeContextProvider } from "../AtlantisThemeContext";
 interface PresentedImage {
   title?: string;
   caption?: string;
+  alt?: string;
   url: string;
 }
 
@@ -32,7 +34,7 @@ interface LightBoxProps {
   readonly open: boolean;
   /**
    * Images is an array of objects defining a LightBox image. This object consists of
-   * `title`, `caption` and `url`. `title` and `caption` are optional, `url` is
+   * `title`, `caption`, `alt` and `url`. `title`, `alt` and `caption` are optional, `url` is
    * required, for each image.
    */
   readonly images: PresentedImage[];
@@ -61,27 +63,21 @@ const swipePower = (offset: number, velocity: number) => {
 const variants = {
   enter: (direction: number) => {
     return {
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0,
+      x: direction > 0 ? "150%" : "-150%",
     };
   },
   center: {
-    zIndex: 1,
     x: 0,
-    opacity: 1,
   },
   exit: (direction: number) => {
     return {
-      zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0,
+      x: direction < 0 ? "150%" : "-150%",
     };
   },
 };
 
 const imageTransition = {
-  x: { type: "spring", stiffness: 300, damping: 30 },
-  opacity: { duration: 0.2 },
+  x: { duration: 0.65, ease: [0.42, 0, 0, 1.03] },
 };
 
 // A little bit more than the transition's duration
@@ -100,6 +96,8 @@ export function LightBox({
   const [direction, setDirection] = useState(0);
   const [mouseIsStationary, setMouseIsStationary] = useState(true);
   const lightboxRef = useFocusTrap<HTMLDivElement>(open);
+  const selectedThumbnailRef = useRef<HTMLDivElement>(null);
+
   const debouncedHandleNext = useDebounce(
     handleMoveNext,
     BUTTON_DEBOUNCE_DELAY,
@@ -134,6 +132,14 @@ export function LightBox({
     prevOpen.current = open;
     togglePrintStyles(open);
   }
+
+  useEffect(() => {
+    selectedThumbnailRef?.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+  }, [currentImageIndex]);
 
   const template = (
     <>
@@ -179,6 +185,11 @@ export function LightBox({
                 custom={direction}
                 className={styles.image}
                 initial="enter"
+                alt={
+                  images[currentImageIndex].alt ||
+                  images[currentImageIndex].title ||
+                  ""
+                }
                 animate="center"
                 exit="exit"
                 transition={imageTransition}
@@ -208,12 +219,43 @@ export function LightBox({
             <div className={styles.captionWrapper}>
               <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
                 {images[currentImageIndex].title && (
-                  <Heading level={4}>{images[currentImageIndex].title}</Heading>
+                  <div className={styles.title}>
+                    <Heading level={4}>
+                      {images[currentImageIndex].title}
+                    </Heading>
+                  </div>
                 )}
                 {images[currentImageIndex].caption && (
                   <Text size="large">{images[currentImageIndex].caption}</Text>
                 )}
               </AtlantisThemeContextProvider>
+            </div>
+          )}
+
+          {images.length > 1 && (
+            <div
+              className={styles.thumbnailBar}
+              data-testid="ATL-Thumbnail-Bar"
+            >
+              {images.map((image, index) => (
+                <div
+                  key={index}
+                  className={classNames(styles.thumbnail, {
+                    [styles.selected]: index === currentImageIndex,
+                  })}
+                  onClick={() => handleThumbnailClick(index)}
+                  ref={
+                    index === currentImageIndex ? selectedThumbnailRef : null
+                  }
+                >
+                  <img
+                    key={index}
+                    src={image.url}
+                    alt={image.alt || image.title || ""}
+                    className={styles.thumbnailImage}
+                  />
+                </div>
+              ))}
             </div>
           )}
         </div>
@@ -252,6 +294,15 @@ export function LightBox({
     } else if (swipe > swipeConfidenceThreshold) {
       handleMovePrevious();
     }
+  }
+
+  function handleThumbnailClick(index: number) {
+    if (index < currentImageIndex) {
+      setDirection(-1);
+    } else {
+      setDirection(1);
+    }
+    setCurrentImageIndex(index);
   }
 }
 interface NavButtonProps {

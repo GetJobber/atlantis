@@ -262,7 +262,7 @@
         "description": "",
         "name": "ref",
         "parent": {
-          "fileName": "atlantis2/node_modules/@types/react/index.d.ts",
+          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
           "name": "RefAttributes"
         },
         "required": false,
@@ -275,7 +275,7 @@
         "description": "",
         "name": "key",
         "parent": {
-          "fileName": "atlantis2/node_modules/@types/react/index.d.ts",
+          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
           "name": "Attributes"
         },
         "required": false,

@@ -57,7 +57,7 @@ options, handling user interactions, and managing search functionality.
 option has `id`, `label`, and `prefix` props which are used to identify and
 display the option.
 
-#### Custom Content
+#### Custom content
 
 You can use the `prefix` option to render content on the left side of the
 provided `label`. An example of this behaviour can be found in the
@@ -125,7 +125,7 @@ has been closed. As such, it will only have a difference in timing for
 multi-select since a single-select selection will immediately close the
 Combobox.
 
-### Selection Display
+### Selection display
 
 When using the default activator, the selections will be displayed inside the
 activator. The data will still be returned via callback.
@@ -151,7 +151,7 @@ has been fetched and the `Combobox.Option`s have been replaced with the new
 ones.
 
 Note that the component does not cache the initial options when using
-`onSearch`. If new data was fetched and replaced the inital options on search
+`onSearch`. If new data was fetched and replaced the initial options on search
 then a user clears the search, either with the clear button or deleting the
 term, the initial options would need to be restored manually.
 
@@ -164,3 +164,10 @@ mock in your test setup:
 const scrollIntoViewMock = jest.fn();
 window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
 ```
+
+## Developer notes
+
+- The Combobox confines tabbing to within itself while it's open using
+  [useFocusTrap](/hooks/useFocusTrap)
+- Pressing `esc` will close the Combobox and return focus to the activator using
+  [useRefocusOnActivator](/hooks/useRefocusOnActivator)

@@ -311,7 +311,6 @@ export const useAtlantisPreviewSkeleton = (type: "web" | "mobile") => {
     transpiledCode: string | null | undefined,
   ) => {
     if (html === "<html><head></head><body></body></html>") {
-      writeSkeleton(selectedFrame.current?.contentDocument, theme);
       selectedFrame?.current?.addEventListener("load", () => {
         if (selectedFrame.current) {
           const iframeDocument = selectedFrame.current.contentDocument;
@@ -323,6 +322,7 @@ export const useAtlantisPreviewSkeleton = (type: "web" | "mobile") => {
           updateIframeCode(selectedFrame.current, transpiledCode);
         }
       });
+      writeSkeleton(selectedFrame.current?.contentDocument, theme);
     } else if (selectedFrame.current) {
       updateIframeCode(selectedFrame.current, transpiledCode);
     } else {

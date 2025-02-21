@@ -365,6 +365,11 @@ export interface DataListActionProps<T extends DataListObject> {
    * The URL to navigate to when the action is clicked.
    */
   readonly actionUrl?: string;
+
+  /**
+   * Determine if the action is always visible. It is not recommended to set this to true on more then one action.
+   */
+  readonly alwaysVisible?: boolean;
 }
 
 export interface DataListActionsProps<T extends DataListObject> {

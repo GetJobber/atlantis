@@ -28,9 +28,8 @@
 .next,
 .prev {
   position: absolute;
-  top: 50%;
+  top: 40%;
   z-index: var(--elevation-base);
-  transform: translateY(-50%);
 }
 
 .next {
@@ -69,20 +68,16 @@
   z-index: var(--elevation-modal);
   max-width: 100%;
   max-height: 100%;
-  padding: var(--space-base);
   background-color: var(--color-base-grey--400);
   justify-content: center;
   flex-direction: column;
-
-  @media (--medium-screens-and-up) {
-    padding: var(--space-base) var(--space-larger);
-  }
 }
 
 .toolbar {
   display: grid;
   z-index: var(--elevation-base);
   margin-bottom: var(--space-largest);
+  padding: var(--space-base) var(--space-base) 0;
   font-size: var(--typography--fontSize-large);
   align-items: center;
   grid-template-columns: 1fr 1fr 1fr;
@@ -109,9 +104,11 @@
   position: relative;
   height: 100%;
   max-width: 100%;
-  margin-bottom: var(--space-large);
+  margin: 0 var(--space-base) var(--space-large);
   @media (--medium-screens-and-up) {
-    margin: 0 calc(var(--space-largest) + var(--space-base)) var(--space-large);
+    margin: 0 /* nav button width + inner padding + outer margin */
+      calc(var(--space-largest) + var(--space-base) + var(--space-large))
+      var(--space-large);
   }
 }
 
@@ -121,11 +118,15 @@
   max-width: 600px;
   max-height: 90px;
   margin: 0 auto var(--space-larger);
+  padding: 0 var(--space-base);
   overflow-y: auto;
-  text-align: center;
   flex-direction: column;
   flex-shrink: 0;
   gap: var(--space-small);
+}
+
+.title {
+  text-align: center;
 }
 
 .blurOverlay {
@@ -133,4 +134,85 @@
   inset: 0;
   backdrop-filter: blur(30px);
   background-color: rgba(3, 43, 58, 0.25);
+}
+
+.thumbnailBar {
+  display: flex;
+  position: relative;
+  z-index: var(--elevation-base);
+  width: 100%;
+  min-height: 92px;
+  margin-bottom: var(--space-small);
+  padding-bottom: var(--space-small);
+  overflow-x: scroll;
+  justify-content: safe center;
+  align-items: center;
+  gap: var(--space-small);
+  flex-shrink: 0;
+
+  @supports (scrollbar-color: #000 #000) {
+    scrollbar-width: thin; /* Safari version 18.3: Bug causes this rule to undermine other scrollbar styling  */
+    scrollbar-color: var(--color-interactive--subtle) transparent;
+  }
+
+  @supports not (scrollbar-color: #000 #000) {
+    &::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: var(--radius-small);
+      background: var(--color-interactive--subtle);
+    }
+  }
+}
+
+.thumbnailImage {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-small);
+  opacity: var(--opacity-overlay);
+  object-fit: cover;
+}
+
+.thumbnail {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-small);
+  background-color: var(--color-surface);
+  transition:
+    border var(--timing-base) ease-in,
+    transform var(--timing-quick) ease-in-out;
+  flex-shrink: 0;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.thumbnail.selected {
+  margin: 0 var(--space-smaller);
+  padding: var(--space-smallest);
+  border: 2px solid var(--color-surface);
+  background-color: transparent;
+  transform: scale(1.125);
+
+  .thumbnailImage {
+    opacity: 1;
+    transition: opacity var(--timing-base) linear;
+  }
+}
+
+.thumbnail:first-child,
+.thumbnail.selected:first-child {
+  margin-left: var(--space-base);
+}
+
+.thumbnail:last-child,
+.thumbnail.selected:last-child {
+  margin-right: var(--space-base);
 }

@@ -3,6 +3,113 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.8](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.22.7...@jobber/atlantis-site@0.22.8) (2025-02-20)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.22.7](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.22.6...@jobber/atlantis-site@0.22.7) (2025-02-20)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.22.6](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.22.5...@jobber/atlantis-site@0.22.6) (2025-02-20)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.22.5](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.22.4...@jobber/atlantis-site@0.22.5) (2025-02-19)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.22.4](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.22.3...@jobber/atlantis-site@0.22.4) (2025-02-18)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.22.3](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.22.2...@jobber/atlantis-site@0.22.3) (2025-02-18)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.22.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.22.1...@jobber/atlantis-site@0.22.2) (2025-02-18)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.22.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.22.0...@jobber/atlantis-site@0.22.1) (2025-02-18)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+# [0.22.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.21.9...@jobber/atlantis-site@0.22.0) (2025-02-14)
+
+
+### Features
+
+* **components:** Add thumbnails and change animations in lightbox component ([#2362](https://github.com/GetJobber/atlantis/issues/2362)) ([9050c99](https://github.com/GetJobber/atlantis/commit/9050c99c960b5983caa2fb8969dfa031d71632fb))
+
+
+
+
+
+## [0.21.9](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.21.8...@jobber/atlantis-site@0.21.9) (2025-02-13)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.21.8](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.21.7...@jobber/atlantis-site@0.21.8) (2025-02-12)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.21.7](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.21.6...@jobber/atlantis-site@0.21.7) (2025-02-12)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.21.6](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.21.5...@jobber/atlantis-site@0.21.6) (2025-02-11)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
 ## [0.21.5](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.21.4...@jobber/atlantis-site@0.21.5) (2025-02-07)
 
 **Note:** Version bump only for package @jobber/atlantis-site
