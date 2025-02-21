@@ -144,14 +144,6 @@ a.navFooterLink {
   }
 }
 
-.mobileNavContainer {
-  display: block;
-
-  @media screen and (min-width: 768px) {
-    display: none;
-  }
-}
-
 .navMenuHeaderLogo {
   display: none;
 
