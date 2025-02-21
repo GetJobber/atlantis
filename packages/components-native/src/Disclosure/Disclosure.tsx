@@ -7,7 +7,7 @@ import Reanimated, {
   withTiming,
 } from "react-native-reanimated";
 import { EASE_CUBIC_IN_OUT } from "./constants";
-import { styles } from "./Disclosure.style";
+import { useStyles } from "./Disclosure.style";
 import { tokens } from "../utils/design";
 import { Icon } from "../Icon";
 
@@ -60,12 +60,14 @@ export function Disclosure({
   isEmpty,
   animationDuration = tokens["timing-slowest"],
 }: DisclosureProps): JSX.Element {
+  const styles = useStyles();
+
   return (
     <View style={styles.container}>
       <DisclosureHeader
-        {...{ header, onToggle, isEmpty, open, animationDuration }}
+        {...{ header, onToggle, isEmpty, open, animationDuration, styles }}
       />
-      <DisclosureContent {...{ content, open, animationDuration }} />
+      <DisclosureContent {...{ content, open, animationDuration, styles }} />
     </View>
   );
 }
@@ -73,7 +75,9 @@ export function Disclosure({
 type DisclosureHeaderProps = Pick<
   DisclosureProps,
   "header" | "onToggle" | "isEmpty" | "open" | "animationDuration"
->;
+> & {
+  readonly styles: ReturnType<typeof useStyles>;
+};
 
 function DisclosureHeader({
   header,
@@ -81,6 +85,7 @@ function DisclosureHeader({
   isEmpty,
   open,
   animationDuration,
+  styles,
 }: DisclosureHeaderProps) {
   const rotateZ = useSharedValue(0);
 
@@ -116,12 +121,15 @@ function DisclosureHeader({
 type DisclosureContentProps = Pick<
   DisclosureProps,
   "content" | "open" | "animationDuration"
->;
+> & {
+  readonly styles: ReturnType<typeof useStyles>;
+};
 
 function DisclosureContent({
   content,
   open,
   animationDuration,
+  styles,
 }: DisclosureContentProps) {
   const [maxHeight, setMaxHeight] = useState(0);
   const height = useSharedValue(0);

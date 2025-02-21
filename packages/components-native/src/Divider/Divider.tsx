@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
-import { horizontalStyles } from "./DividerHorizontal.style";
-import { verticalStyles } from "./DividerVertical.style";
+import { useHorizontalStyles } from "./DividerHorizontal.style";
+import { useVerticalStyles } from "./DividerVertical.style";
 
 interface DividerProps {
   /**
@@ -27,6 +27,9 @@ export function Divider({
   direction = "horizontal",
   testID = "Divider",
 }: DividerProps): JSX.Element {
+  const horizontalStyles = useHorizontalStyles();
+  const verticalStyles = useVerticalStyles();
+
   const directionalStyles =
     direction === "horizontal" ? horizontalStyles : verticalStyles;
   const style = [

@@ -35,7 +35,7 @@ export const useStyles = buildThemedStyles(tokens => {
 
     base: {
       minHeight: baseButtonHeight,
-      paddingHorizontal: tokens["space-base"],
+      // paddingHorizontal: tokens["space-base"],
     },
 
     small: {

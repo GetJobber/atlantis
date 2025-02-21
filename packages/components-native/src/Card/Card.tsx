@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import { IconNames } from "@jobber/design";
 import { XOR } from "ts-xor";
-import { styles } from "./Card.style";
+import { useStyles } from "./Card.style";
 import { InternalCardHeader } from "./components/InternalCardHeader";
 import { ErrorMessageWrapper } from "../ErrorMessageWrapper";
 import { ActionLabel } from "../ActionLabel";
@@ -61,7 +61,10 @@ interface ButtonAction {
 
 export type CardAction = XOR<IconAction, ButtonAction>;
 
-function getElevationStyle(elevation: elevationProp) {
+function getElevationStyle(
+  elevation: elevationProp,
+  styles: ReturnType<typeof useStyles>,
+) {
   if (elevation === "none") {
     return undefined;
   }
@@ -78,11 +81,13 @@ export function Card({
   error,
   elevation = "none",
 }: CardProps): JSX.Element {
+  const styles = useStyles();
+
   return (
     <ErrorMessageWrapper message={error} wrapFor="card">
       <View
         onLayout={handleLayoutChange}
-        style={[styles.container, getElevationStyle(elevation)]}
+        style={[styles.container, getElevationStyle(elevation, styles)]}
         testID={testID}
       >
         {header && (
