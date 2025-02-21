@@ -81,7 +81,7 @@ interface CommonButtonProps {
   /**
    * **Use at your own risk:** Custom style for specific elements. This should only be used as a
    * **last resort**. Using this may result in unexpected side effects.
-   * More information [here](https://atlantis.getjobber.com/storybook/?path=/docs/guides-customizing-components--docs#unsafe_-props).
+   * More information in the Customizing components Guide.
    */
   readonly UNSAFE_style?: ButtonUnsafeStyle;
 }
