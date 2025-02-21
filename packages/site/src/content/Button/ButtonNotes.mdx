@@ -21,10 +21,10 @@ sense to allow the `external`, `onClick`, `to`, or `url` props.
 ### UNSAFE\_ props (advanced usage)
 
 General information for using `UNSAFE_` props can be found
-[here](https://atlantis.getjobber.com/storybook/?path=/docs/guides-customizing-components--docs#unsafe_-props).
+[here](/guides/customizing-components).
 
 **Note**: Use of `UNSAFE_` props is **at your own risk** and should be
-considered a **last resort**. Future Popover updates may lead to unintended
+considered a **last resort**. Future Button updates may lead to unintended
 breakages.
 
 #### UNSAFE_style (mobile)
@@ -33,12 +33,12 @@ The mobile Button component has four elements that can be targeted with styles.
 These are the container, content container, icon container, and action label
 container.
 
-Use `UNSAFE_style` to apply custom styles to the Button. Because React Native
-does not support className, you can use `UNSAFE_style for either inline styles
-or StyleSheet:
+React Native does not support className. Instead, you can use `UNSAFE_style` to
+apply styles either inline or through a StyleSheet.
+
+##### Inline styles
 
 ```tsx
-// Using inline styles
 UNSAFE_style: {
     container: { backgroundColor: tokens["color-purple--light"] },
     contentContainer: {
@@ -50,30 +50,30 @@ UNSAFE_style: {
   },
 ```
 
-```tsx
-// Using StyleSheet
-import { StyleSheet } from 'react-native';
+##### StyleSheet
 
-const styles = StyleSheet.create({
+```tsx
+// Button.tsx
+  UNSAFE_style={{
+    container: styles.customContainer,
+    contentContainer: styles.customContentContainer,
+    iconContainer: styles.customIconContainer,
+    actionLabelContainer: styles.customActionLabelContainer,
+  }}
+
+// Button.style.ts
+export const styles = StyleSheet.create({
   customContainer: {
-    backgroundColor: "lightblue",
+    backgroundColor: tokens["color-purple--light"],
   },
   customContentContainer: {
-    paddingRight: 8,
+    borderRadius: tokens["radius-large"],
   },
   customIconContainer: {
-    marginRight: 4,
+    backgroundColor: tokens["color-purple--lighter"],
   },
   customActionLabelContainer: {
-    paddingLeft: 8,
+    paddingLeft: tokens["space-larger"],
   },
 });
-
-// Then in your component:
-UNSAFE_style={{
-  container: styles.customContainer,
-  contentContainer: styles.customContentContainer,
-  iconContainer: styles.customIconContainer,
-  actionLabelContainer: styles.customActionLabelContainer,
-}}
 ```
