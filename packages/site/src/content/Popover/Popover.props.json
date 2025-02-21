@@ -72,6 +72,36 @@
         "type": {
           "name": "\"top\" | \"bottom\" | \"left\" | \"right\" | \"auto\""
         }
+      },
+      "UNSAFE_className": {
+        "defaultValue": {
+          "value": "{}"
+        },
+        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information [here](https://atlantis.getjobber.com/storybook/?path=/docs/guides-customizing-components--docs#unsafe_-props).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "../components/src/Popover/Popover.tsx",
+          "name": "PopoverProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ container?: string; dismissButtonContainer?: string; arrow?: string; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": {
+          "value": "{}"
+        },
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information [here](https://atlantis.getjobber.com/storybook/?path=/docs/guides-customizing-components--docs#unsafe_-props).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "../components/src/Popover/Popover.tsx",
+          "name": "PopoverProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ container?: CSSProperties; dismissButtonContainer?: CSSProperties; arrow?: CSSProperties; }"
+        }
       }
     }
   }
