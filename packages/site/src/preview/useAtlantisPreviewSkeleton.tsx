@@ -265,7 +265,7 @@ export const MobileCodeWrapper = (
                 ${transpiledCode}
 
             function RootWrapper() {
-              const themedApp = React.createElement(AtlantisThemeContextProvider, null, React.createElement(function ExtractSetTheme(props) {
+              const themedApp = React.createElement(AtlantisThemeContextProvider, null, React.createElement(function ThemeHandler(props) {
                 const { setTheme } = useAtlantisTheme();
 
                 // Make this globally available so the doc's site theme can update it
