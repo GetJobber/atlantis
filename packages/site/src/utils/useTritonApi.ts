@@ -103,26 +103,6 @@ export function useTritonApi(): UseTritonApi {
     }
   };
 
-  // const handleStreamResponse = async (
-  //   fullText: string,
-  //   setResponses: React.Dispatch<React.SetStateAction<string[]>>,
-  // ) => {
-  //   let accumulated = "";
-  //   const chunkSize = 5;
-
-  //   for (let i = 0; i < fullText.length; i += chunkSize) {
-  //     accumulated += fullText.slice(i, i + chunkSize);
-  //     setResponses(prev => {
-  //       const newResponses = [...prev];
-  //       newResponses[newResponses.length - 1] = accumulated;
-
-  //       return newResponses;
-  //     });
-  //     scrollToBottom();
-  //     await new Promise(resolve => setTimeout(resolve, 1));
-  //   }
-  // };
-
   const sendSearch = async ({
     question,
     questions,
