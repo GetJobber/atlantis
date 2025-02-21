@@ -1,4 +1,14 @@
-## Developer Notes
+## Developer notes
+
+## Testing
+
+When using Jest to test LightBox implementations, you will need to include this
+mock in your test setup:
+
+```js
+const scrollIntoViewMock = jest.fn();
+window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
+```
 
 ### OnRequestClose
 

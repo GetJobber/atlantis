@@ -22,17 +22,13 @@ properties to have similar names across the system. For example...
 We use `base` as our default whenever possible when a property has a set range
 of outcomes. This can be seen in..
 
-- the `size` properties of
-  [Button](../?path=/docs/components-actions-button--docs),
-  [Avatar](../?path=/docs/components-images-and-icons-avatar--docs),
-  [InputText](../?path=/docs/components-forms-and-inputs-inputtext--docs),
-  [Text](../?path=/docs/components-text-and-typography-text--docs),
-  [ProgressBar](../?path=/docs/components-status-and-feedback-progressbar--docs),
-  [Spinner](../?path=/docs/components-status-and-feedback-spinner--docs), etc;
-- `maxLines` of [Text](../?path=/docs/components-text-and-typography-text--docs)
-- values of [Shadow](../?path=/docs/design-elevations--docs),
-  [Spacing](../?path=/docs/design-spacing--docs),
-  [Border Radius](../?path=/docs/design-borders--docs) design tokens
+- the `size` properties of [Button](/components/Button),
+  [Avatar](/components/Avatar), [InputText](/components/InputText),
+  [Text](/components/Text), [ProgressBar](/components/ProgressBar),
+  [Spinner](/components/Spinner), etc;
+- `maxLines` of [Text](/components/Text)
+- values of [Shadow](/design/elevationss), [Spacing](/design/spacing),
+  [Border Radius](/design/borders) design tokens
 
 This allows us to set an expectation of the base (or most common) use case when
 a prop is in action.
@@ -42,9 +38,8 @@ a prop is in action.
 If a component has `open` and `closed` states, use a boolean property named
 `open`.
 
-This can be seen in [Modal](../?path=/docs/components-overlays-modal--docs),
-[Drawer](../?path=/docs/components-layouts-and-structure-drawer--docs), and
-[Popover](../?path=/docs/components-overlays-popover--docs).
+This can be seen in [Modal](/components/Modal), [Drawer](/components/Drawer),
+and [Popover](/components/Popover).
 
 ## Typescript
 
@@ -193,8 +188,8 @@ Wherever possible use Atlantis `design` tokens.
 
 ### Spacing (margins and padding)
 
-Use the appropriate [Spacing](../?path=/docs/design-spacing--docs) values for
-spacing. Do not use rems, ems, or hard-coded pixel values.
+Use the appropriate [Spacing](/design/spacing) values for spacing. Do not use
+rems, ems, or hard-coded pixel values.
 
 If you require a space that is larger than the Spacing values, or falls
 somewhere in between, use the CSS `calc` function with Atlantis spacing values

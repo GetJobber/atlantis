@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableHighlight, View } from "react-native";
+import { StyleProp, TouchableHighlight, View, ViewStyle } from "react-native";
 import { IconColorNames, IconNames } from "@jobber/design";
 import { XOR } from "ts-xor";
 import { styles } from "./Button.style";
@@ -77,6 +77,20 @@ interface CommonButtonProps {
    * Used to locate this view in end-to-end tests.
    */
   readonly testID?: string;
+
+  /**
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information [here](https://atlantis.getjobber.com/storybook/?path=/docs/guides-customizing-components--docs#unsafe_-props).
+   */
+  readonly UNSAFE_style?: ButtonUnsafeStyle;
+}
+
+export interface ButtonUnsafeStyle {
+  container?: StyleProp<ViewStyle>;
+  contentContainer?: StyleProp<ViewStyle>;
+  iconContainer?: StyleProp<ViewStyle>;
+  actionLabelContainer?: StyleProp<ViewStyle>;
 }
 
 interface LabelButton extends CommonButtonProps {
@@ -107,6 +121,7 @@ export function Button({
   accessibilityHint,
   icon,
   testID,
+  UNSAFE_style,
 }: ButtonProps): JSX.Element {
   const buttonStyle = [
     styles.button,
@@ -141,11 +156,20 @@ export function Button({
         fullHeight && styles.fullHeight,
       ]}
     >
-      <View style={buttonStyle}>
+      <View style={[buttonStyle, UNSAFE_style?.container]}>
         {loading && <InternalButtonLoading variation={variation} type={type} />}
-        <View style={getContentStyles(label, icon)}>
+        <View
+          style={[
+            getContentStyles(label, icon),
+            UNSAFE_style?.contentContainer,
+          ]}
+          testID="contentContainer"
+        >
           {icon && (
-            <View style={styles.iconStyle}>
+            <View
+              style={[styles.iconStyle, UNSAFE_style?.iconContainer]}
+              testID="iconContainer"
+            >
               <Icon
                 name={icon}
                 color={getIconColorVariation(variation, type, disabled)}
@@ -153,7 +177,10 @@ export function Button({
             </View>
           )}
           {label && (
-            <View style={styles.labelStyle}>
+            <View
+              style={[styles.labelStyle, UNSAFE_style?.actionLabelContainer]}
+              testID="actionLabelContainer"
+            >
               <ActionLabel
                 variation={getActionLabelVariation(variation, type)}
                 disabled={disabled}

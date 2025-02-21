@@ -10,11 +10,9 @@ Base component that defines typographic standards across Jobber.
 
 <Banner type="notice" dismissible={false}>
 
-Typography is the component that powers our Heading and Text components “under
-the hood”. You should first look to use
-[Heading](../?path=/docs/components-text-and-typography-heading--docs) and
-[Text](../?path=/docs/components-text-and-typography-text--docs) before you
-reach for Typography.
+Typography is the component that powers our Heading and Text components "under
+the hood". You should first look to use [Heading](/components/Heading) and
+[Text](/components/Text) before you reach for Typography.
 
 </Banner>
 
@@ -50,28 +48,3 @@ and RTL applications.
   <Typography align="center">Center</Typography>
   <Typography align="end">End</Typography>
 </Canvas>
-
-## Platform considerations
-
-React Native has a lot of limitations around Android and iOS when it comes to
-copying text on a device.
-
-#### Android
-
-- ✅ Highlight specific text
-- ✅ Have an option to copy and other smart actions like opening a map when it's
-  an address
-- ❌ It can't highlight the text on anything that is tappable. For example
-  - Button
-  - List
-  - Long press to copy phone, address, etc
-  - In short, anything text you can tap and it does an action like open a modal
-    cannot be highlighted
-
-#### iOS
-
-- ❌ Highlight specific text
-  - ✅ It can only copy all of the block of text
-- ➖ Only have an option to "copy"
-- ✅ Unlike Android, It can copy the text on anything that is tappable
-  - The long press would show a copy action and cancel the press action on it

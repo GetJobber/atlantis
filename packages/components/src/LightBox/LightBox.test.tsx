@@ -11,6 +11,7 @@ const { setViewportWidth } = mockViewportWidth();
 describe("LightBox", () => {
   beforeEach(() => {
     setViewportWidth(BREAKPOINT_SIZES.lg);
+    HTMLDivElement.prototype.scrollIntoView = jest.fn();
   });
   test("opens and shows the image", () => {
     const title = "Dis be a title";
@@ -187,6 +188,97 @@ describe("LightBox", () => {
       );
       expect(screen.queryByLabelText("Previous image")).toBeNull();
       expect(screen.queryByLabelText("Next image")).toBeNull();
+    });
+  });
+
+  describe("thumbnail bar", () => {
+    test("displays with images when more than one image", () => {
+      const handleClose = jest.fn();
+
+      render(
+        <LightBox
+          open={true}
+          images={[
+            {
+              title: "title of unselected image",
+              alt: "alt of unselected image",
+              caption: "caption",
+              url: "https://i.imgur.com/6Jcfgnp.jpg",
+            },
+            {
+              title: "titleTwo",
+              alt: "alt 1",
+              caption: "captionTwo",
+              url: "https://i.imgur.com/6Jcfgnp.jpg",
+            },
+          ]}
+          imageIndex={1}
+          onRequestClose={handleClose}
+        />,
+      );
+      expect(
+        screen.queryByAltText("alt of unselected image"),
+      ).toBeInTheDocument();
+      expect(screen.queryByTestId("ATL-Thumbnail-Bar")).toBeInTheDocument();
+    });
+
+    test("doesn't display when there is only one image", () => {
+      const handleClose = jest.fn();
+
+      render(
+        <LightBox
+          open={true}
+          images={[
+            {
+              title: "title",
+              caption: "caption",
+              url: "https://i.imgur.com/6Jcfgnp.jpg",
+            },
+          ]}
+          imageIndex={0}
+          onRequestClose={handleClose}
+        />,
+      );
+      expect(screen.queryByTestId("thumbnail-bar")).not.toBeInTheDocument();
+    });
+
+    test("displays the selected image thumbnail and caption when imageclicked", () => {
+      const handleClose = jest.fn();
+      const destinationImageCaption = "caption of destination image";
+      const destinationImageAlt = "alt of destination image";
+
+      render(
+        <LightBox
+          open={true}
+          images={[
+            {
+              title: "title of destination image",
+              caption: destinationImageCaption,
+              alt: destinationImageAlt,
+              url: "https://i.imgur.com/6Jcfgnp.jpg",
+            },
+            {
+              title: "initially selected image title",
+              caption: "initially selected image caption",
+              url: "https://i.imgur.com/6Jcfgnp.jpg",
+            },
+          ]}
+          imageIndex={1}
+          onRequestClose={handleClose}
+        />,
+      );
+
+      expect(
+        screen.queryByText(destinationImageCaption),
+      ).not.toBeInTheDocument();
+
+      const destinationImage = screen.getByAltText(destinationImageAlt);
+      fireEvent.click(destinationImage);
+
+      const imagesWithAlt = screen.getAllByAltText(destinationImageAlt);
+      expect(imagesWithAlt).toHaveLength(2);
+
+      expect(screen.queryByText(destinationImageCaption)).toBeInTheDocument();
     });
   });
 });

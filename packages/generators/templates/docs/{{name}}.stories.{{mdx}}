@@ -47,13 +47,6 @@ The {{name}} will... _Add a brief description of the design and usage of the com
   Is there any related resource (internal or external) to this component?
 -->
 
-## Platform considerations
-
-<!--
-  Mostly for mobile components. Is there something that applies only for Android/iOS or
-  is browser-specific?
--->
-
 ## Accessibility
 
 <!--
@@ -79,13 +72,4 @@ The {{name}} will... _Add a brief description of the design and usage of the com
   that conveys the visual design of the component, with variants and state accounted for.
   Consider progressive enhancement; might this rely on newer browser features that aren’t
   widely supported yet?
--->
-
-## Notes
-
-<!--
-  What decisions worth remembering have gone into this component? Did we consider any potentially valuable
-  functionality that we’re not implementing right now for scope purposes? Are there any design decisions
-  that might need explaining beyond the usage guidelines? This will help consumers understand this component
-  more fully.
 -->

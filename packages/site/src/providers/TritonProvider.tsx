@@ -1,4 +1,5 @@
 import { PropsWithChildren, createContext, useContext, useState } from "react";
+import { useTritonApi } from "../utils/useTritonApi";
 
 interface TritonContextType {
   tritonOpen: boolean;
@@ -7,6 +8,13 @@ interface TritonContextType {
   question: string;
   setQuestion: (question: string) => void;
   sendSearch: () => void;
+  setApiKey: (key: string) => Promise<void>;
+  responses: string[];
+  questions: string[];
+  loading: boolean;
+  setLoading: (loading: boolean) => void;
+  validateApiKey: () => Promise<void>;
+  isValidKey: boolean;
 }
 
 const TritonContext = createContext<TritonContextType>({
@@ -16,29 +24,42 @@ const TritonContext = createContext<TritonContextType>({
   question: "",
   setQuestion: () => ({}),
   sendSearch: () => ({}),
+  setApiKey: async () => Promise.resolve(),
+  responses: [],
+  questions: [],
+  loading: false,
+  setLoading: () => ({}),
+  validateApiKey: async () => Promise.resolve(),
+  isValidKey: false,
 });
 
 export function TritonProvider({ children }: PropsWithChildren) {
   const [tritonOpen, setTritonOpen] = useState(false);
   const [question, setQuestion] = useState("");
+  const [responses, setResponses] = useState<string[]>([]);
+  const [questions, setQuestions] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [isValidKey, setIsValidKey] = useState(false);
+  const { validateApiKey, sendSearch } = useTritonApi();
 
-  const sendSearch = async () => {
-    console.log("searching!", question);
-    const b = await fetch("http://localhost:8788/stream", {
-      headers: {
-        "Content-Type": "application/json",
-        "Triton-Api-Key": localStorage.getItem("tritonApiKey") || "",
-      },
-      method: "POST",
-      body: JSON.stringify({
-        personality: "developer",
-        query: question,
-        questions: [],
-        questionType: "web",
-        responses: [],
-      }),
+  const handleValidateApiKey = async (key?: string) => {
+    return validateApiKey(setIsValidKey, setLoading, key);
+  };
+
+  const setApiKey = async (key: string) => {
+    await handleValidateApiKey(key);
+  };
+
+  const handleSendSearch = () => {
+    return sendSearch({
+      question,
+      questions,
+      responses,
+      setLoading,
+      setQuestions,
+      setResponses,
+      setQuestion,
     });
-    console.log("HI!", await b.json());
   };
 
   const value = {
@@ -47,7 +68,14 @@ export function TritonProvider({ children }: PropsWithChildren) {
     onCloseTriton: () => setTritonOpen(false),
     question,
     setQuestion,
-    sendSearch,
+    sendSearch: handleSendSearch,
+    setApiKey,
+    responses,
+    questions,
+    loading,
+    setLoading,
+    validateApiKey: handleValidateApiKey,
+    isValidKey,
   };
 
   return (
