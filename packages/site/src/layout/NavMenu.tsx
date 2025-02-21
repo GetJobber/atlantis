@@ -78,7 +78,7 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
           <Button label="Skip to Content" onClick={skipToContent} />
         </VisibleWhenFocused>
         <div className={styles.navMenuHeaderLogo}>
-          <Link to="/" onClick={toggleMobileMenu}>
+          <Link to="/">
             <JobberLogo />
           </Link>
         </div>
