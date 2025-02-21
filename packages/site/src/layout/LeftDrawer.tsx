@@ -17,21 +17,18 @@ export function LeftDrawer({
   if (!open) return null;
 
   return (
-    <>
-      <div className={styles.overlay} onClick={onClose} />
-      <div className={styles.drawer}>
-        <Box padding="small" direction="row" alignItems="center" gap="small">
-          <Button
-            icon="cross"
-            ariaLabel="Close"
-            type="tertiary"
-            variation="subtle"
-            onClick={onClose}
-          />
-          {header}
-        </Box>
-        <div className={styles.content}>{children}</div>
-      </div>
-    </>
+    <div className={styles.drawer}>
+      <Box padding="small" direction="row" alignItems="center" gap="small">
+        <Button
+          icon="cross"
+          ariaLabel="Close"
+          type="tertiary"
+          variation="subtle"
+          onClick={onClose}
+        />
+        {header}
+      </Box>
+      <div className={styles.content}>{children}</div>
+    </div>
   );
 }

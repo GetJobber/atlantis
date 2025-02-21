@@ -1,13 +1,3 @@
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(var(--color-black--rgb), 0.4);
-  z-index: var(--elevation-modal);
-}
-
 .drawer {
   position: fixed;
   top: 0;
