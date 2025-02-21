@@ -11,7 +11,7 @@ interface UseTritonApi {
     setIsValidKey: (isValid: boolean) => void,
     setLoading: (loading: boolean) => void,
     key?: string,
-  ) => Promise<boolean>;
+  ) => Promise<void>;
   scrollToBottom: () => void;
   sendSearch: (options: {
     question: string;
@@ -70,13 +70,13 @@ export function useTritonApi(): UseTritonApi {
     setIsValidKey: (isValid: boolean) => void,
     setLoading: (loading: boolean) => void,
     key?: string,
-  ): Promise<boolean> => {
+  ): Promise<void> => {
     const keyToValidate = key || localStorage.getItem("tritonApiKey");
 
     if (!keyToValidate) {
       setIsValidKey(false);
 
-      return false;
+      return;
     }
 
     try {
@@ -88,11 +88,7 @@ export function useTritonApi(): UseTritonApi {
       }
 
       setIsValidKey(true);
-
-      return true;
     } catch (error) {
-      console.error("API key validation failed:", error);
-
       if (!key) {
         localStorage.removeItem("tritonApiKey");
       }

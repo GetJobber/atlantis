@@ -13,7 +13,7 @@ interface TritonContextType {
   questions: string[];
   loading: boolean;
   setLoading: (loading: boolean) => void;
-  validateApiKey: () => Promise<boolean>;
+  validateApiKey: () => Promise<void>;
   isValidKey: boolean;
 }
 
@@ -29,7 +29,7 @@ const TritonContext = createContext<TritonContextType>({
   questions: [],
   loading: false,
   setLoading: () => ({}),
-  validateApiKey: async () => false,
+  validateApiKey: async () => Promise.resolve(),
   isValidKey: false,
 });
 
