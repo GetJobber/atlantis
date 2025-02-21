@@ -1,43 +1,13 @@
-import React from "react";
-import classnames from "classnames";
-import getHumanReadableFileSize from "filesize";
+import React, { useState } from "react";
 import styles from "./FormatFile.module.css";
-import { FormatFileDeleteButton } from "./FormatFileDeleteButton";
-import { InternalThumbnail } from "./InternalThumbnail";
-import { FileUpload } from "../InputFile";
+import { FormatFileProps } from "./types";
+import { useFormatFileStyles } from "./useFormatFileStyles";
+import { useFormatFile } from "./useFormatFile";
+import { Thumbnail } from "../Thumbnail";
 import { Text } from "../Text";
 import { ProgressBar } from "../ProgressBar";
-
-interface FormatFileProps {
-  /**
-   * File upload details object. (See FileUpload type.)
-   */
-  readonly file: FileUpload;
-
-  /**
-   * To display as either a file row or thumbnail
-   *
-   * @default "expanded"
-   */
-  readonly display?: "expanded" | "compact";
-
-  /**
-   * The base dimensions of the thumbnail
-   *
-   * @default "base"
-   */
-  readonly displaySize?: "base" | "large";
-
-  /**
-   * Function to execute when format file is clicked
-   */
-  onClick?(event: React.MouseEvent<HTMLDivElement | HTMLButtonElement>): void;
-
-  /**
-   * onDelete callback - this function will be called when the delete action is triggered
-   */
-  onDelete?(): void;
-}
+import { Button } from "../Button";
+import { ConfirmationModal } from "../ConfirmationModal";
 
 export function FormatFile({
   file,
@@ -45,26 +15,26 @@ export function FormatFile({
   displaySize = "base",
   onDelete,
   onClick,
+  slots,
 }: FormatFileProps) {
-  const isComplete = file.progress >= 1;
-  const fileSize = getHumanReadableFileSize(file.size);
-  const wrapperClassNames = classnames(styles[display], styles.formatFile, {
-    [styles[displaySize]]: display === "compact",
+  const { isComplete, DetailsContainer, fileSize } = useFormatFile({
+    onClick,
+    file,
   });
 
-  const DetailsContainer = isComplete && onClick ? "button" : "div";
+  const { wrapperClassNames, detailsClassNames, thumbnailContainerClassNames } =
+    useFormatFileStyles({
+      display,
+      displaySize,
+      onClick: !!onClick,
+      onDelete: !!onDelete,
+      isComplete,
+    });
 
-  const detailsClassNames = classnames(styles.wrapper, {
-    [styles[displaySize]]: display === "compact",
-    [styles.hoverable]: isHoverable({ display, isComplete, onClick, onDelete }),
-    [styles.clickable]: onClick,
-    [styles.deleteable]: display === "compact",
-  });
-
-  const thumbnailContainerClassNames = classnames(
-    styles.thumbnail,
-    styles[displaySize],
-  );
+  const ThumbnailSlot = slots?.thumbnail || Thumbnail;
+  const ExpandedSlot = slots?.expanded || FormatFile.Expanded;
+  const DeleteButtonSlot = slots?.deleteButton || FormatFile.DeleteButton;
+  const ProgressSlot = slots?.progress || FormatFile.Progress;
 
   return (
     <div className={wrapperClassNames}>
@@ -76,56 +46,93 @@ export function FormatFile({
         aria-busy={!isComplete}
       >
         <div className={thumbnailContainerClassNames}>
-          <InternalThumbnail
+          <ThumbnailSlot
             key={file.key}
             compact={display === "compact"}
             file={file}
             size={displaySize}
           />
-
-          {!isComplete && (
-            <div className={styles.progress}>
-              <ProgressBar
-                size="small"
-                currentStep={file.progress * 100}
-                totalSteps={100}
-              />
-            </div>
-          )}
+          <ProgressSlot file={file} isComplete={isComplete} />
         </div>
-
-        {display === "expanded" && (
-          <div className={styles.contentBlock}>
-            <Text size="base">{file.name}</Text>
-            <Text size="small">{fileSize}</Text>
-          </div>
-        )}
+        <ExpandedSlot file={file} fileSize={fileSize} display={display} />
       </DetailsContainer>
-      {isComplete && onDelete && (
-        <div className={styles.deleteButton}>
-          <FormatFileDeleteButton
-            size={display === "expanded" ? "large" : displaySize}
-            onDelete={onDelete}
-          />
-        </div>
-      )}
+      <DeleteButtonSlot
+        isComplete={isComplete}
+        onDelete={onDelete}
+        displaySize={displaySize}
+      />
     </div>
   );
 }
 
-function isHoverable({
-  display,
+FormatFile.Progress = function Progress({
+  file,
   isComplete,
-  onClick,
-  onDelete,
-}: Pick<FormatFileProps, "display" | "onClick" | "onDelete"> & {
-  isComplete: boolean;
-}): boolean {
-  if (display === "compact") {
-    return Boolean(isComplete && (onClick || onDelete));
-  } else if (display === "expanded") {
-    return Boolean(isComplete && onClick);
+}: Pick<FormatFileProps, "file"> & { readonly isComplete: boolean }) {
+  if (isComplete) {
+    return null;
   }
 
-  return false;
-}
+  return (
+    <div className={styles.progress}>
+      <ProgressBar
+        size="small"
+        currentStep={file.progress * 100}
+        totalSteps={100}
+      />
+    </div>
+  );
+};
+
+FormatFile.Expanded = function Expanded({
+  display,
+  file,
+  fileSize,
+}: Pick<FormatFileProps, "display" | "file"> & { readonly fileSize: string }) {
+  if (display !== "expanded") {
+    return null;
+  }
+
+  return (
+    <div className={styles.contentBlock}>
+      <Text size="base">{file.name}</Text>
+      <Text size="small">{fileSize}</Text>
+    </div>
+  );
+};
+
+FormatFile.DeleteButton = function DeleteButton({
+  isComplete,
+  displaySize,
+  onDelete,
+}: Pick<FormatFileProps, "onDelete" | "displaySize"> & {
+  readonly isComplete: boolean;
+}) {
+  if (!isComplete || !onDelete) {
+    return null;
+  }
+  const buttonSize = displaySize === "base" ? "small" : "base";
+  const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
+
+  return (
+    <div className={styles.deleteButton}>
+      <Button
+        onClick={() => setDeleteConfirmationOpen(true)}
+        variation="destructive"
+        type="tertiary"
+        icon="trash"
+        ariaLabel="Delete File"
+        size={buttonSize}
+      />
+      <ConfirmationModal
+        title="Confirm Deletion"
+        message={`Are you sure you want to delete this file?`}
+        confirmLabel="Delete"
+        variation="destructive"
+        open={deleteConfirmationOpen}
+        onConfirm={() => onDelete?.()}
+        onRequestClose={() => setDeleteConfirmationOpen(false)}
+      />
+    </div>
+  );
+};
