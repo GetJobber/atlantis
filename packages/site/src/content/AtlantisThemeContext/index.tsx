@@ -25,7 +25,7 @@ export default {
     </Box>
   </AtlantisThemeContextProvider>
   `,
-  mobileElement: `const { theme, tokens, setTheme } = useAtlantisTheme();
+    mobileElement: `const { theme, tokens, setTheme } = useAtlantisTheme();
 
 return (
   <AtlantisThemeContextProvider dangerouslyOverrideTheme={theme}>
