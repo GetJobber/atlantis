@@ -191,7 +191,7 @@
       },
       "UNSAFE_style": {
         "defaultValue": null,
-        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information [here](https://atlantis.getjobber.com/storybook/?path=/docs/guides-customizing-components--docs#unsafe_-props).",
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the Customizing components Guide.",
         "name": "UNSAFE_style",
         "parent": {
           "fileName": "../components-native/src/Button/Button.tsx",
