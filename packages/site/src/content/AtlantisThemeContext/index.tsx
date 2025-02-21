@@ -25,21 +25,19 @@ export default {
     </Box>
   </AtlantisThemeContextProvider>
   `,
-  mobileElement: `
-    const { theme, tokens, setTheme } = useAtlantisTheme();
+  mobileElement: `const { theme, tokens, setTheme } = useAtlantisTheme();
 
-    return (
-    <AtlantisThemeContextProvider>
-      <View style={{ backgroundColor: tokens["color-surface"], borderRadius: tokens["radius-base"], width: "100%" }}>
-        <Content>
-          <Text>Current Theme: {theme}</Text>
-          <Button label="Set dark theme" onPress={() => setTheme("dark")} />
-          <Button label="Set light theme" onPress={() => setTheme("light")} />
-        </Content>
-      </View>
-    </AtlantisThemeContextProvider>
-    )
-  `,
+return (
+  <AtlantisThemeContextProvider dangerouslyOverrideTheme={theme}>
+    <View style={{ backgroundColor: tokens["color-surface"], borderRadius: tokens["radius-base"], width: "100%" }}>
+      <Content>
+        <Text>Current Theme: {theme}</Text>
+        <Button label="Set dark theme" onPress={() => setTheme("dark")} />
+        <Button label="Set light theme" onPress={() => setTheme("light")} />
+      </Content>
+    </View>
+  </AtlantisThemeContextProvider>
+)`,
   },
   title: "AtlantisThemeContext",
   links: [
