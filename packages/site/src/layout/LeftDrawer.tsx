@@ -18,7 +18,7 @@ export function LeftDrawer({
 
   return (
     <div className={styles.drawer}>
-      <Box padding="small" direction="row" alignItems="center" gap="small">
+      <Box padding="base" direction="row" alignItems="center" gap="small">
         <Button
           icon="cross"
           ariaLabel="Close"
