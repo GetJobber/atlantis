@@ -43,6 +43,10 @@ export const AtlantisPreviewProvider = ({ children }: PropsWithChildren) => {
       const iframeWindow = iframe.current.contentWindow;
       iframeWindow?.postMessage({ type: "updateTheme", theme }, "*");
     }
+    if (iframeMobile.current) {
+      const iframeMobileWindow = iframeMobile.current.contentWindow;
+      iframeMobileWindow?.postMessage({ type: "updateTheme", theme }, "*");
+    }
   }, [theme]);
 
   return (
