@@ -4,16 +4,20 @@ import { Text, ViewStyle } from "react-native";
 import {
   InputFieldWrapper,
   InputFieldWrapperProps,
-  commonInputStyles,
+  useCommonInputStyles,
 } from ".";
-import { styles } from "./InputFieldWrapper.style";
+import { useStyles } from "./InputFieldWrapper.style";
 import {
   INPUT_FIELD_WRAPPER_GLIMMERS_TEST_ID,
   INPUT_FIELD_WRAPPER_SPINNER_TEST_ID,
 } from "./InputFieldWrapper";
-import { typographyStyles } from "../Typography";
+import { useTypographyStyles } from "../Typography";
 
 const mockLabel = { label: "$" };
+
+const styles = useStyles();
+const commonInputStyles = useCommonInputStyles();
+const typographyStyles = useTypographyStyles();
 
 type InputFieldWrapperTestProps = Omit<InputFieldWrapperProps, "children">;
 

@@ -10,14 +10,17 @@ import {
   prefixIconTestId,
   prefixLabelTestId,
 } from "./Prefix";
-import { typographyStyles } from "../../../Typography";
-import { styles } from "../../InputFieldWrapper.style";
+import { useTypographyStyles } from "../../../Typography";
+import { useStyles } from "../../InputFieldWrapper.style";
 import { tokens } from "../../../utils/design";
 import * as IconComponent from "../../../Icon/Icon";
 
 const iconSpy = jest.spyOn(IconComponent, "Icon");
 
 const mockLabel = "$";
+
+const styles = useStyles();
+const typographyStyles = useTypographyStyles();
 
 function setupLabel({
   disabled = false,

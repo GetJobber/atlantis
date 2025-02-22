@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import { ProgressBarProps } from "./types";
-import { styles } from "./ProgressBar.style";
+import { useStyles } from "./ProgressBar.style";
 import { ProgressBarInner, calculateWidth } from "./ProgressBarInner";
 import { ProgressBarStepped } from "./ProgressBarStepped";
 import { sizeStyles } from "./ProgressBar.size.style";
@@ -19,6 +19,7 @@ export function ProgressBar({
   size = "base",
 }: ProgressBarProps): JSX.Element {
   const { t } = useAtlantisI18n();
+  const styles = useStyles();
 
   return (
     <View

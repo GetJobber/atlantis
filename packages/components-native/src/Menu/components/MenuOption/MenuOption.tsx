@@ -1,7 +1,7 @@
 import React from "react";
 import { Pressable, View } from "react-native";
 import capitalize from "lodash/capitalize";
-import { styles } from "./MenuOption.style";
+import { useStyles } from "./MenuOption.style";
 import { MenuOptionInternalProps } from "../../types";
 import { tokens } from "../../../utils/design";
 import { Flex } from "../../../Flex";
@@ -20,6 +20,7 @@ export function MenuOption({
 }: MenuOptionInternalProps): JSX.Element {
   const destructiveColor = "destructive";
   const textVariation = destructive ? destructiveColor : "heading";
+  const styles = useStyles();
 
   return (
     <View testID="ATL-MENU-OPTIONS">

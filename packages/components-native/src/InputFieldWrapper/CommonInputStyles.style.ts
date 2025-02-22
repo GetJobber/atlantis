@@ -1,7 +1,9 @@
 import { buildThemedStyles } from "../AtlantisThemeContext";
-import { typographyStyles } from "../Typography";
+import { useTypographyStyles } from "../Typography";
 
 export const useCommonInputStyles = buildThemedStyles(tokens => {
+  const typographyStyles = useTypographyStyles();
+
   return {
     input: {
       width: "100%",
