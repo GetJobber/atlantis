@@ -124,19 +124,20 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
   return (
     <>
       <div className={styles.desktopNavContainer}>{menuContent}</div>
-      <LeftDrawer
-        open={isMobileMenuOpen}
-        onClose={toggleMobileMenu}
-        header={
-          <Box padding={{ top: "smaller" }}>
-            <Link to="/" onClick={toggleMobileMenu}>
-              <JobberLogo />
-            </Link>
-          </Box>
-        }
-      >
-        {menuContent}
-      </LeftDrawer>
+      {isMobileMenuOpen && (
+        <LeftDrawer
+          onClose={toggleMobileMenu}
+          header={
+            <Box padding={{ top: "smaller" }}>
+              <Link to="/" onClick={toggleMobileMenu}>
+                <JobberLogo />
+              </Link>
+            </Box>
+          }
+        >
+          {menuContent}
+        </LeftDrawer>
+      )}
     </>
   );
 };

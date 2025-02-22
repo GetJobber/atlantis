@@ -3,19 +3,11 @@ import { PropsWithChildren } from "react";
 import styles from "./LeftDrawer.module.css";
 
 interface LeftDrawerProps extends PropsWithChildren {
-  readonly open: boolean;
   readonly onClose: () => void;
   readonly header?: React.ReactNode;
 }
 
-export function LeftDrawer({
-  children,
-  open,
-  onClose,
-  header,
-}: LeftDrawerProps) {
-  if (!open) return null;
-
+export function LeftDrawer({ children, onClose, header }: LeftDrawerProps) {
   return (
     <div className={styles.drawer}>
       <Box padding="base" direction="row" alignItems="center" gap="small">
