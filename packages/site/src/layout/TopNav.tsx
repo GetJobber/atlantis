@@ -2,7 +2,6 @@ import { Box, Button, Tooltip } from "@jobber/components";
 import { useBreakpoints } from "@jobber/hooks";
 import { Link } from "react-router-dom";
 import { SearchButton } from "./SearchButton";
-import styles from "./TopNav.module.css";
 import { ToggleThemeButton } from "../components/ToggleThemeButton";
 import { useTritonChat } from "../providers/TritonProvider";
 import { JobberLogo } from "../assets/JobberLogo.svg";
@@ -21,7 +20,7 @@ export const TopNav = () => {
       gap="small"
       justifyContent={mediumAndUp ? "" : "space-between"}
     >
-      <div className={styles.mobileNavContainer}>
+      {!mediumAndUp && (
         <Box
           direction="row"
           gap="small"
@@ -42,7 +41,7 @@ export const TopNav = () => {
             </Link>
           </Box>
         </Box>
-      </div>
+      )}
       <Box
         direction="row"
         gap="small"
