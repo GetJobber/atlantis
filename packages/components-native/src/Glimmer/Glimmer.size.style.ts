@@ -1,6 +1,6 @@
 import { buildThemedStyles } from "../AtlantisThemeContext";
 
-export const useStyles = buildThemedStyles(tokens => {
+export const useSizeStyles = buildThemedStyles(tokens => {
   return {
     small: { height: tokens["space-small"] },
     base: { height: tokens["space-base"] },

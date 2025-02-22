@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 // import Reanimated from "react-native-reanimated";
 // import { useTiming } from "utils/reanimated";
-import { styles } from "./ProgressBar.style";
+import { useStyles } from "./ProgressBar.style";
 
 interface ProgressBarInnerProps {
   readonly width: number;
@@ -21,6 +21,7 @@ export function ProgressBarInner({
   //   fromValue: 0,
   //   toValue: 1,
   // });
+  const styles = useStyles();
 
   return (
     <View

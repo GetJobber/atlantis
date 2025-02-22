@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { Portal } from "react-native-portalize";
 import { useSafeAreaFrame } from "react-native-safe-area-context";
-import { styles } from "./Menu.style";
+import { useStyles } from "./Menu.style";
 import { findViewpoint } from "./utils";
 import { MenuProps } from "./types";
 import { MenuOption } from "./components/MenuOption";
@@ -62,6 +62,8 @@ export function Menu({ menuOptions, customActivator }: MenuProps): JSX.Element {
       openMenu();
     }
   };
+
+  const styles = useStyles();
 
   return (
     <>

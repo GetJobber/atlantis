@@ -6,7 +6,7 @@ import Toast, {
 } from "react-native-toast-message";
 import { AccessibilityInfo, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { styles } from "./Toast.styles";
+import { useStyles } from "./Toast.styles";
 import { tokens } from "../utils/design";
 import { Text } from "../Text";
 import { IconButton } from "../IconButton";
@@ -18,6 +18,7 @@ const ANNOUNCEMENT_DELAY = 100;
 function DefaultToast({ text1 }: ToastConfigParams<string>): JSX.Element {
   const { bottom } = useSafeAreaInsets();
   const { t } = useAtlantisI18n();
+  const styles = useStyles();
   const toastContainerStyles = [styles.container, { paddingBottom: bottom }];
 
   return (

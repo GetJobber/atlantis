@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import { styles } from "./ProgressBar.style";
+import { useStyles } from "./ProgressBar.style";
 
 interface ProgressBarSteppedProps {
   readonly total: number;
@@ -17,6 +17,8 @@ export function ProgressBarStepped({
   loading,
   inProgress,
 }: ProgressBarSteppedProps) {
+  const styles = useStyles();
+
   return (
     <View style={[styles.progressBarContainer, { height: 10 }]}>
       {Array.from({ length: total }).map((_, index) => {

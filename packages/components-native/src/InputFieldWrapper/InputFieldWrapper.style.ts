@@ -1,10 +1,11 @@
 import { StyleSheet } from "react-native";
 import { useCommonInputStyles } from "./CommonInputStyles.style";
 import { buildThemedStyles } from "../AtlantisThemeContext";
-import { typographyStyles } from "../Typography";
+import { useTypographyStyles } from "../Typography";
 
 export const useStyles = buildThemedStyles(tokens => {
   const commonInputStyles = useCommonInputStyles();
+  const typographyStyles = useTypographyStyles();
 
   return {
     container: StyleSheet.flatten([

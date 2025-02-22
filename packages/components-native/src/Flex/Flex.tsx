@@ -1,7 +1,8 @@
 import React, { Children, PropsWithChildren } from "react";
 import { View } from "react-native";
 import chunk from "lodash/chunk";
-import { columnStyles, gapStyles, styles } from "./Flex.styles";
+import { columnStyles, styles } from "./Flex.styles";
+import { useGapStyles } from "./Flex.gap.styles";
 import { FlexProps } from "./types";
 import { Content } from "../Content";
 
@@ -60,7 +61,7 @@ function Row({
         <View
           style={[
             columnStyles[template[index]] || columnStyles.grow,
-            index > 0 && gap && gapStyles[gap],
+            index > 0 && gap && useGapStyles()[gap],
           ]}
         >
           {child}
