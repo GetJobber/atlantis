@@ -1,6 +1,7 @@
 import { Box, Button, Typography } from "@jobber/components";
 import { Link, useLocation } from "react-router-dom";
 import { Fragment, PropsWithChildren, useRef } from "react";
+import { useBreakpoints } from "@jobber/hooks";
 import AnimatedPresenceDisclosure from "./AnimatedPresenceDisclosure";
 import styles from "./NavMenu.module.css";
 import { LeftDrawer } from "./LeftDrawer";
@@ -166,13 +167,14 @@ export const StyledLink = ({
     styles.selected,
   );
   const { toggleMobileMenu } = useAtlantisSite();
+  const { mediumAndUp } = useBreakpoints();
 
   return (
     <Link
       to={to ?? "/"}
       className={className}
       ref={isSelected ? selectedRef : null}
-      onClick={toggleMobileMenu}
+      onClick={mediumAndUp ? undefined : toggleMobileMenu}
     >
       {children}
     </Link>
@@ -195,13 +197,14 @@ export const StyledSubLink = ({
     styles.selected,
   );
   const { toggleMobileMenu } = useAtlantisSite();
+  const { mediumAndUp } = useBreakpoints();
 
   return (
     <Link
       to={to ?? "/"}
       className={className}
       ref={isSelected ? selectedRef : null}
-      onClick={toggleMobileMenu}
+      onClick={mediumAndUp ? undefined : toggleMobileMenu}
     >
       {children}
     </Link>
