@@ -3,11 +3,11 @@ import { useCommonInputStyles } from "./CommonInputStyles.style";
 import { buildThemedStyles } from "../AtlantisThemeContext";
 import { useTypographyStyles } from "../Typography";
 
-export const useStyles = buildThemedStyles(tokens => {
+export const useStyles = () => {
   const commonInputStyles = useCommonInputStyles();
   const typographyStyles = useTypographyStyles();
 
-  return {
+  return buildThemedStyles(tokens => ({
     container: StyleSheet.flatten([
       commonInputStyles.container,
       {
@@ -141,5 +141,5 @@ export const useStyles = buildThemedStyles(tokens => {
       paddingTop: tokens["space-base"] - tokens["space-smaller"],
       bottom: tokens["space-smaller"],
     },
-  };
-});
+  }))();
+};

@@ -28,12 +28,15 @@ export function Menu({ menuOptions, customActivator }: MenuProps): JSX.Element {
   const screenInfo = useScreenInformation();
 
   const { t } = useAtlantisI18n();
+  const styles = useStyles();
 
   const findMenuLayout = useCallback(() => {
     if (activatorLayout.current) {
-      setMenuPosition(findViewpoint(screenInfo, activatorLayout.current));
+      setMenuPosition(
+        findViewpoint(screenInfo, activatorLayout.current, styles),
+      );
     }
-  }, [screenInfo, activatorLayout]);
+  }, [screenInfo, activatorLayout, styles]);
 
   const openMenu = () => {
     menuButtonRef.current?.measureInWindow(
@@ -62,8 +65,6 @@ export function Menu({ menuOptions, customActivator }: MenuProps): JSX.Element {
       openMenu();
     }
   };
-
-  const styles = useStyles();
 
   return (
     <>

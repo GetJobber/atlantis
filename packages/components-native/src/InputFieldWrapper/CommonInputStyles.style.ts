@@ -1,10 +1,10 @@
 import { buildThemedStyles } from "../AtlantisThemeContext";
 import { useTypographyStyles } from "../Typography";
 
-export const useCommonInputStyles = buildThemedStyles(tokens => {
+export const useCommonInputStyles = () => {
   const typographyStyles = useTypographyStyles();
 
-  return {
+  return buildThemedStyles(tokens => ({
     input: {
       width: "100%",
       flexShrink: 1,
@@ -38,5 +38,5 @@ export const useCommonInputStyles = buildThemedStyles(tokens => {
       borderWidth: tokens["border-base"],
       borderRadius: tokens["radius-base"],
     },
-  };
-});
+  }))();
+};

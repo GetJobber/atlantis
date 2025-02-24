@@ -1,6 +1,6 @@
 import { Platform, StyleSheet, TextStyle } from "react-native";
-import { tokens as staticTokens } from "@jobber/design";
 import { webFonts } from "./webFonts";
+import { tokens as staticTokens } from "../utils/design";
 import {
   AtlantisThemeContextValue,
   buildThemedStyles,
@@ -618,6 +618,7 @@ export const createTypographyTokens = (
     textDecorationLine: "line-through",
   },
 });
+console.log(staticTokens["typography--fontSize-base"]);
 
 /**
  * `StyleSheet` for Typography.tsx.

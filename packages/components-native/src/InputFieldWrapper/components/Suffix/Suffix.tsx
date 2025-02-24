@@ -11,7 +11,7 @@ import { tokens } from "../../../utils/design";
 import { Icon } from "../../../Icon";
 import { Text } from "../../../Text";
 import { typographyStyles } from "../../../Typography";
-import { styles } from "../../InputFieldWrapper.style";
+import { useStyles } from "../../InputFieldWrapper.style";
 
 export interface SuffixLabelProps {
   readonly focused: boolean;
@@ -35,6 +35,8 @@ export function SuffixLabel({
   hasLeftMargin = true,
   styleOverride,
 }: SuffixLabelProps): JSX.Element {
+  const styles = useStyles();
+
   return (
     <View
       testID={suffixLabelTestId}
@@ -87,6 +89,8 @@ export function SuffixIcon({
   hasLeftMargin = false,
   onPress,
 }: SuffixIconProps): JSX.Element {
+  const styles = useStyles();
+
   return (
     <View
       testID={suffixIconTestId}

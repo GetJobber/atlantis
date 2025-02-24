@@ -1,5 +1,10 @@
 import React from "react";
-import { RenderAPI, fireEvent, render } from "@testing-library/react-native";
+import {
+  RenderAPI,
+  fireEvent,
+  render,
+  renderHook,
+} from "@testing-library/react-native";
 import { Text, ViewStyle } from "react-native";
 import {
   InputFieldWrapper,
@@ -15,9 +20,19 @@ import { useTypographyStyles } from "../Typography";
 
 const mockLabel = { label: "$" };
 
-const styles = useStyles();
-const commonInputStyles = useCommonInputStyles();
-const typographyStyles = useTypographyStyles();
+let styles: ReturnType<typeof useStyles>;
+let commonInputStyles: ReturnType<typeof useCommonInputStyles>;
+let typographyStyles: ReturnType<typeof useTypographyStyles>;
+
+beforeAll(() => {
+  const stylesHook = renderHook(() => useStyles());
+  const commonInputStylesHook = renderHook(() => useCommonInputStyles());
+  const typographyStylesHook = renderHook(() => useTypographyStyles());
+
+  styles = stylesHook.result.current;
+  commonInputStyles = commonInputStylesHook.result.current;
+  typographyStyles = typographyStylesHook.result.current;
+});
 
 type InputFieldWrapperTestProps = Omit<InputFieldWrapperProps, "children">;
 
@@ -163,7 +178,7 @@ describe("InputFieldWrapper", () => {
       const styleOverride = {
         container: {
           backgroundColor: "purple",
-          width: "50%",
+          width: "50%" as const,
         },
       };
       const { getByTestId } = renderInputFieldWrapper({
