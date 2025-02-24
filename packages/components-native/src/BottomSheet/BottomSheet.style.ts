@@ -1,5 +1,5 @@
 import { Dimensions, StyleSheet } from "react-native";
-import { tokens as staticTokens } from "@jobber/design";
+import { tokens as staticTokens } from "../utils/design";
 import { buildThemedStyles } from "../AtlantisThemeContext";
 
 const { height } = Dimensions.get("window");

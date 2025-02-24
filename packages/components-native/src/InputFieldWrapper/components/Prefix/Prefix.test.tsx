@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react-native";
+import { render, renderHook } from "@testing-library/react-native";
 import { TextStyle } from "react-native";
 import { ReactTestInstance } from "react-test-renderer";
 import {
@@ -10,7 +10,10 @@ import {
   prefixIconTestId,
   prefixLabelTestId,
 } from "./Prefix";
-import { useTypographyStyles } from "../../../Typography";
+import {
+  typographyStyles as staticStyles,
+  useTypographyStyles,
+} from "../../../Typography";
 import { useStyles } from "../../InputFieldWrapper.style";
 import { tokens } from "../../../utils/design";
 import * as IconComponent from "../../../Icon/Icon";
@@ -19,8 +22,18 @@ const iconSpy = jest.spyOn(IconComponent, "Icon");
 
 const mockLabel = "$";
 
-const styles = useStyles();
-const typographyStyles = useTypographyStyles();
+let styles: ReturnType<typeof useStyles>;
+let typographyStyles: ReturnType<typeof useTypographyStyles>;
+
+beforeAll(() => {
+  const stylesHook = renderHook(() => useStyles());
+  const typographyStylesHook = renderHook(() => useTypographyStyles());
+
+  styles = stylesHook.result.current;
+  typographyStyles = typographyStylesHook.result.current;
+  console.log(typographyStyles.defaultSize);
+  console.log(staticStyles.defaultSize);
+});
 
 function setupLabel({
   disabled = false,
@@ -159,6 +172,8 @@ describe("Prefix", () => {
         disabled: true,
       });
       const prefixLabel = tree.getByText(mockLabel);
+      // console.log(tree.debug());
+      console.log(prefixLabel.props.style);
       const expectedStyle = [
         typographyStyles.baseRegularRegular,
         typographyStyles.disabled,

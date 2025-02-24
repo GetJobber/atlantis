@@ -19,4 +19,5 @@ export type {
   TruncateLength,
 } from "./Typography";
 export { useTypographyStyles } from "./Typography.style";
+export { typographyStyles } from "./Typography.style";
 export { TypographyGestureDetector } from "./TypographyGestureDetector";

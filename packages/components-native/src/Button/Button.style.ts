@@ -1,4 +1,4 @@
-import { tokens as staticTokens } from "@jobber/design";
+import { tokens as staticTokens } from "../utils/design";
 import { buildThemedStyles } from "../AtlantisThemeContext";
 
 const iconTranslateY = staticTokens["space-large"] / 2;

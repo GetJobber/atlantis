@@ -145,7 +145,6 @@ export function InputFieldWrapper({
 
   const showLoadingSpinner = loading && loadingType === "spinner";
   const showLoadingGlimmer = loading && loadingType === "glimmer";
-
   const styles = useStyles();
 
   return (

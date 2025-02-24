@@ -40,7 +40,13 @@ export function ProgressBarStepped({
                 styles.inProgressStep,
               lastStep && { marginRight: 0 },
             ]}
-            testID={"progress-step"}
+            testID={
+              isCompleted
+                ? "progress-step-completed"
+                : step <= inProgressSteps
+                ? "progress-step-in-progress"
+                : "progress-step-incomplete"
+            }
           ></View>
         );
       })}
