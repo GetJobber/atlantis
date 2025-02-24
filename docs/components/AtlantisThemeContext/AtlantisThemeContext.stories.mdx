@@ -26,7 +26,8 @@ theme for the entire app.
 
 On web, you'll need to import the `updateTheme` function and call it with the
 new theme. This is a separate function because it synchronizes the theme update
-across all providers in various react trees (due to our island architecture).
+across all providers under various React trees. Synchronizing across providers
+is necessary for cases where an island-based architecture is used.
 
 ### Usage for web
 
