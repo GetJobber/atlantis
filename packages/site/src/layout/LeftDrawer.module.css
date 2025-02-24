@@ -17,6 +17,10 @@
   }
 }
 
+.drawerClosing {
+  animation: slideOut 200ms ease-out;
+}
+
 .header {
   padding: var(--space-base);
 }
@@ -32,5 +36,14 @@
   }
   to {
     transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
   }
 }

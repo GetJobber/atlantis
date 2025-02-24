@@ -1,5 +1,5 @@
 import { Box, Button } from "@jobber/components";
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, useState } from "react";
 import styles from "./LeftDrawer.module.css";
 
 interface LeftDrawerProps extends PropsWithChildren {
@@ -8,15 +8,26 @@ interface LeftDrawerProps extends PropsWithChildren {
 }
 
 export function LeftDrawer({ children, onClose, header }: LeftDrawerProps) {
+  const [isClosing, setIsClosing] = useState(false);
+
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      onClose();
+    }, 200);
+  };
+
   return (
-    <div className={styles.drawer}>
+    <div
+      className={`${styles.drawer} ${isClosing ? styles.drawerClosing : ""}`}
+    >
       <Box padding="base" direction="row" alignItems="center" gap="small">
         <Button
           icon="cross"
           ariaLabel="Close"
           type="tertiary"
           variation="subtle"
-          onClick={onClose}
+          onClick={handleClose}
         />
         {header}
       </Box>
