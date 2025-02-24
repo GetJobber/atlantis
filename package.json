@@ -30,7 +30,7 @@
     "lint:fix": "npm run lint:js -- --fix && npm run lint:css -- --fix && npm run lint:markdown -- --write",
     "lint:js": "eslint --ext .js,.jsx,.ts,.tsx,.mjs,.cjs . --report-unused-disable-directives",
     "lint:markdown": "prettier --check '**/*.{md,mdx}' --write",
-    "merge:dist": "mv ../../storybook-static dist/storybook && mv dist ../../storybook-static",
+    "merge:dist": "mv storybook-static packages/site/dist/storybook && mv packages/site/dist storybook-static",
     "pack": "npm run bootstrap && npm pack -w",
     "postinstall": "npm run bootstrap",
     "prestart": "npm run build:hooksIndex",
