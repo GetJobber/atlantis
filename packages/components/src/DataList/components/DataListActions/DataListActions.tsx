@@ -46,7 +46,7 @@ export function DataListActions<T extends DataListObject>({
         const actionLabel = getActionLabel();
 
         // If the action is always visible, we don't want a tooltip.
-        if (props.alwaysVisibled) {
+        if (props.alwaysVisible) {
           return (
             <Button
               ariaLabel={actionLabel}
