@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.20.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.20.2...@jobber/components@6.20.3) (2025-02-24)
+
+
+### Bug Fixes
+
+* **components:** Fix typo in the DataList.ItemAction logic ([#2395](https://github.com/GetJobber/atlantis/issues/2395)) ([fc30eb4](https://github.com/GetJobber/atlantis/commit/fc30eb4fb59a9a67fe90b2a1285b23ea3e293edc))
+
+
+
+
+
 ## [6.20.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.20.1...@jobber/components@6.20.2) (2025-02-24)
 
 **Note:** Version bump only for package @jobber/components
