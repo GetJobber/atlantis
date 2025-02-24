@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.24.3](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.24.2...@jobber/atlantis-site@0.24.3) (2025-02-24)
+
+
+### Bug Fixes
+
+* **docx:** Stop Triton Link from doing full page navigation ([#2396](https://github.com/GetJobber/atlantis/issues/2396)) ([a955cba](https://github.com/GetJobber/atlantis/commit/a955cbab62b2d6d3968a5063259d599d40a67822))
+
+
+
+
+
 ## [0.24.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.24.1...@jobber/atlantis-site@0.24.2) (2025-02-24)
 
 **Note:** Version bump only for package @jobber/atlantis-site
