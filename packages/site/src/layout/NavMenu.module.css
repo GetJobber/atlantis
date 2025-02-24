@@ -5,7 +5,7 @@
   --navItemHeight: 40px;
   display: flex;
   flex-direction: column;
-  padding: 36px 0 0 0;
+  padding: 35px 0 0 0;
   height: 100dvh;
   min-width: var(--sideBarWidth);
   box-sizing: border-box;
@@ -50,46 +50,6 @@
   border-radius: var(--radius-small);
 }
 
-.searchButton {
-  display: flex;
-  align-items: center;
-  border: var(--border-base) solid var(--color-border--interactive);
-  border-radius: var(--radius-base);
-  padding: var(--space-small);
-  background: var(--color-surface);
-  outline: transparent;
-  cursor: pointer;
-  transition: all var(--timing-base) ease-out;
-
-  &:focus-visible {
-    box-shadow: var(--shadow-focus);
-    background-color: var(--color-surface--background--hover);
-  }
-}
-
-.searchButton:hover {
-  background: var(--color-surface--background--hover);
-  border: var(--border-base) solid var(--color-interactive--subtle--hover);
-}
-
-.searchButtonText {
-  margin: 0 var(--space-small);
-  flex: 1;
-  text-align: start;
-}
-
-.searchKeyIndicator {
-  background: var(--color-surface--background);
-  width: 20px;
-  height: 20px;
-  font-size: var(--typography--fontSize-large);
-  color: var(--color-text);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--radius-small);
-  box-shadow: var(--shadow-low);
-}
 
 .navMenuLink {
   color: var(--color-text);
