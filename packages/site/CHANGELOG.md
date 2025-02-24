@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.24.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.23.0...@jobber/atlantis-site@0.24.0) (2025-02-24)
+
+
+### Features
+
+* **docx:** Integrate triton to next gen docs ([#2373](https://github.com/GetJobber/atlantis/issues/2373)) ([5053e7b](https://github.com/GetJobber/atlantis/commit/5053e7bfe6dd5d0141e6a6ba279346d352397ac6)), closes [#2364](https://github.com/GetJobber/atlantis/issues/2364)
+
+
+
+
+
 # [0.23.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.22.9...@jobber/atlantis-site@0.23.0) (2025-02-24)
 
 
