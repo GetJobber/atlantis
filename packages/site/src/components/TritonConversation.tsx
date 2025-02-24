@@ -1,6 +1,7 @@
-import { Box, Content, Heading, Icon, Link, Text } from "@jobber/components";
+import { Box, Content, Heading, Icon, Text } from "@jobber/components";
 import ReactMarkdown from "react-markdown";
 import { ReactElement } from "react";
+import { Link } from "react-router-dom";
 import styles from "./TritonConversation.module.css";
 import { CopyCodeButton } from "./CodeCopyButton";
 import { componentMap, getComponentPath } from "../utils/TritonLinks";
@@ -48,11 +49,7 @@ const Message = ({ question, response }: MessageProps) => (
                   text.toLowerCase().includes(mapKey.toLowerCase()),
                 );
 
-                return (
-                  <Link url={getComponentPath(key || "")} external={false}>
-                    {children}
-                  </Link>
-                );
+                return <Link to={getComponentPath(key || "")}>{children}</Link>;
               },
               p: ({ children }) => <Text>{children}</Text>,
               pre: ({ children, ...props }) => {
