@@ -1,8 +1,8 @@
 import React from "react";
 import { View } from "react-native";
 import { useStyles } from "./StatusLabel.style";
-import { tokens } from "../utils/design";
 import { Text } from "../Text";
+import { useAtlantisTheme } from "../AtlantisThemeContext";
 
 export type StatusType =
   | "success"
@@ -64,6 +64,8 @@ interface StatusLabelIconProps {
 }
 
 function StatusLabelIcon({ status, styles }: StatusLabelIconProps) {
+  const { tokens } = useAtlantisTheme();
+
   return (
     <View
       testID={`${status}LabelIcon`}
