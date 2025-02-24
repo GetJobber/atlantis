@@ -17,3 +17,65 @@ allowed. See
 
 Since this type of `Button` will only be used to submit a form, it does not make
 sense to allow the `external`, `onClick`, `to`, or `url` props.
+
+## Component customization
+
+### UNSAFE\_ props (advanced usage)
+
+General information for using `UNSAFE_` props can be found
+[here](/guides/customizing-components).
+
+**Note**: Use of `UNSAFE_` props is **at your own risk** and should be
+considered a **last resort**. Future Button updates may lead to unintended
+breakages.
+
+#### UNSAFE_style (mobile)
+
+The mobile Button component has four elements that can be targeted with styles.
+These are the container, content container, icon container, and action label
+container.
+
+React Native does not support className. Instead, you can use `UNSAFE_style` to
+apply styles either inline or through a StyleSheet.
+
+##### Inline styles
+
+```tsx
+UNSAFE_style: {
+    container: { backgroundColor: tokens["color-purple--light"] },
+    contentContainer: {
+      backgroundColor: tokens["color-purple--lighter"],
+      borderRadius: tokens["radius-large"],
+    },
+    iconContainer: { backgroundColor: tokens["color-purple"] },
+    actionLabelContainer: { paddingLeft: tokens["space-larger"] },
+  },
+```
+
+##### StyleSheet
+
+```tsx
+// Button.tsx
+  UNSAFE_style={{
+    container: styles.customContainer,
+    contentContainer: styles.customContentContainer,
+    iconContainer: styles.customIconContainer,
+    actionLabelContainer: styles.customActionLabelContainer,
+  }}
+
+// Button.style.ts
+export const styles = StyleSheet.create({
+  customContainer: {
+    backgroundColor: tokens["color-purple--light"],
+  },
+  customContentContainer: {
+    borderRadius: tokens["radius-large"],
+  },
+  customIconContainer: {
+    backgroundColor: tokens["color-purple--lighter"],
+  },
+  customActionLabelContainer: {
+    paddingLeft: tokens["space-larger"],
+  },
+});
+```
