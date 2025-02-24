@@ -5,10 +5,14 @@
   --navItemHeight: 40px;
   display: flex;
   flex-direction: column;
-  padding: 35px 0 0 0;
-  height: 100dvh;
+  height: 100%;
   min-width: var(--sideBarWidth);
   box-sizing: border-box;
+
+  @media screen and (min-width: 768px) {
+    padding: 35px 0 0 0;
+    height: 100dvh;
+  }
 }
 
 .navMenuContainer>* {
@@ -130,4 +134,20 @@ a.navFooterLink {
   margin-top: auto;
   font-size: var(--typography--fontSize-small);
   color: var(--color-text--secondary);
+}
+
+.desktopNavContainer {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: block;
+  }
+}
+
+.navMenuHeaderLogo {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: block;
+  }
 }
