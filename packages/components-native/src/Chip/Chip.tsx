@@ -4,7 +4,7 @@ import { IconNames } from "@jobber/design";
 import { useStyles } from "./Chip.style";
 import { Icon } from "../Icon";
 import { Typography } from "../Typography";
-import { tokens } from "../utils/design";
+import { useAtlantisTheme } from "../AtlantisThemeContext";
 
 export type AccentType = "client" | "invoice" | "job" | "request" | "quote";
 
@@ -57,8 +57,6 @@ export interface ChipProps {
   readonly accent?: AccentType;
 }
 
-const defaultAccentColor = tokens["color-surface--reverse"];
-
 export function Chip({
   icon,
   label,
@@ -71,6 +69,8 @@ export function Chip({
   accent,
 }: ChipProps): JSX.Element {
   const styles = useStyles();
+  const { tokens } = useAtlantisTheme();
+  const defaultAccentColor = tokens["color-surface--reverse"];
 
   const { chipStyle, iconCustomColor, dismissColor } = useMemo(() => {
     const accentColor = accent ? tokens[`color-${accent}`] : defaultAccentColor;

@@ -8,8 +8,9 @@ import Reanimated, {
 } from "react-native-reanimated";
 import { EASE_CUBIC_IN_OUT } from "./constants";
 import { useStyles } from "./Disclosure.style";
-import { tokens } from "../utils/design";
+import { tokens as staticTokens } from "../utils/design";
 import { Icon } from "../Icon";
+import { useAtlantisTheme } from "../AtlantisThemeContext";
 
 const ReanimatedView = Reanimated.View;
 const ReanimatedScrollView = Reanimated.ScrollView;
@@ -58,7 +59,7 @@ export function Disclosure({
   open,
   onToggle,
   isEmpty,
-  animationDuration = tokens["timing-slowest"],
+  animationDuration = staticTokens["timing-slowest"],
 }: DisclosureProps): JSX.Element {
   const styles = useStyles();
 
@@ -99,6 +100,8 @@ function DisclosureHeader({
       transform: [{ rotateZ: `${rotateZ.value}deg` }],
     };
   });
+
+  const { tokens } = useAtlantisTheme();
 
   return (
     <TouchableOpacity

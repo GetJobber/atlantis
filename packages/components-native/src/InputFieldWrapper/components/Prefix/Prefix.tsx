@@ -9,7 +9,7 @@ import {
 import { IconNames } from "@jobber/design";
 import { Icon } from "../../../Icon";
 import { Text } from "../../../Text";
-import { tokens } from "../../../utils/design";
+import { useAtlantisTheme } from "../../../AtlantisThemeContext";
 import { useTypographyStyles } from "../../../Typography";
 import { useStyles } from "../../InputFieldWrapper.style";
 
@@ -85,6 +85,7 @@ export function PrefixIcon({
   icon,
 }: PrefixIconProps): JSX.Element {
   const styles = useStyles();
+  const { tokens } = useAtlantisTheme();
 
   return (
     <View

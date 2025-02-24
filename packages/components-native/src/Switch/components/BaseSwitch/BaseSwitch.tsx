@@ -2,7 +2,7 @@ import React from "react";
 import { Platform } from "react-native";
 import { Switch } from "react-native-gesture-handler";
 import { useFormController } from "../../../hooks";
-import { tokens } from "../../../utils/design";
+import { useAtlantisTheme } from "../../../AtlantisThemeContext";
 
 export interface BaseSwitchProps {
   /**
@@ -50,6 +50,8 @@ export function BaseSwitch({
   });
 
   const internalValue = value ?? field.value;
+
+  const { tokens } = useAtlantisTheme();
 
   function getThumbColor() {
     if (Platform.OS === "android") {

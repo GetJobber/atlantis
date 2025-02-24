@@ -618,7 +618,6 @@ export const createTypographyTokens = (
     textDecorationLine: "line-through",
   },
 });
-console.log(staticTokens["typography--fontSize-base"]);
 
 /**
  * `StyleSheet` for Typography.tsx.
@@ -630,7 +629,8 @@ console.log(staticTokens["typography--fontSize-base"]);
  * import { typographyStyles } from "@jobber/components-native"
  * ```
  */
-export const typographyStyles: { [index: string]: TextStyle } =
-  StyleSheet.create(createTypographyTokens(staticTokens));
+export const typographyStyles: Record<string, TextStyle> = StyleSheet.create(
+  createTypographyTokens(staticTokens),
+);
 
 export const useTypographyStyles = buildThemedStyles(createTypographyTokens);

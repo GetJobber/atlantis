@@ -14,11 +14,11 @@ import { findViewpoint } from "./utils";
 import { MenuProps } from "./types";
 import { MenuOption } from "./components/MenuOption";
 import { Overlay } from "./components/Overlay";
-import { tokens } from "../utils/design";
 import { Button } from "../Button";
 import { Content } from "../Content";
 import { useAtlantisContext } from "../AtlantisContext";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
+import { useAtlantisTheme } from "../AtlantisThemeContext";
 
 export function Menu({ menuOptions, customActivator }: MenuProps): JSX.Element {
   const [open, setOpen] = useState<boolean>(false);
@@ -65,6 +65,8 @@ export function Menu({ menuOptions, customActivator }: MenuProps): JSX.Element {
       openMenu();
     }
   };
+
+  const { tokens } = useAtlantisTheme();
 
   return (
     <>

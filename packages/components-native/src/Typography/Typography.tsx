@@ -11,8 +11,8 @@ import {
 } from "react-native";
 import { TypographyGestureDetector } from "./TypographyGestureDetector";
 import { typographyStyles as styles } from "./Typography.style";
-import { tokens } from "../utils/design";
 import { capitalize } from "../utils/intl";
+import { useAtlantisTheme } from "../AtlantisThemeContext";
 
 export interface TypographyProps<T extends FontFamily>
   extends Pick<TextProps, "selectable"> {
@@ -197,6 +197,8 @@ function InternalTypography<T extends FontFamily = "base">({
         importantForAccessibility: "no-hide-descendants",
       }
     : { accessibilityRole };
+
+  const { tokens } = useAtlantisTheme();
 
   return (
     <TypographyGestureDetector>

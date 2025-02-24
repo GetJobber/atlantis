@@ -1,10 +1,12 @@
 import React from "react";
 import { ActivityIndicator, ActivityIndicatorProps } from "react-native";
-import { tokens } from "../utils/design";
+import { useAtlantisTheme } from "../AtlantisThemeContext";
 
 export function JobberActivityIndicator(
   props: ActivityIndicatorProps,
 ): JSX.Element {
+  const { tokens } = useAtlantisTheme();
+
   return (
     <ActivityIndicator
       {...props}
