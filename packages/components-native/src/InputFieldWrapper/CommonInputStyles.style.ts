@@ -48,6 +48,9 @@ export const createCommonInputTokens = (
   },
 });
 
+/**
+ * @deprecated Use useCommonInputStyles instead
+ */
 export const commonInputStyles = StyleSheet.create(
   createCommonInputTokens(staticTokens, staticTypographyStyles),
 );

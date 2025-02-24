@@ -620,14 +620,7 @@ export const createTypographyTokens = (
 });
 
 /**
- * `StyleSheet` for Typography.tsx.
- *
- * If you find yourself needing to use what's inside this object on files other
- * than `<Typography />`, please import from `@jobber/components-native` instead.
- *
- * ```
- * import { typographyStyles } from "@jobber/components-native"
- * ```
+ * @deprecated Use useCommonInputStyles instead
  */
 export const typographyStyles: Record<string, TextStyle> = StyleSheet.create(
   createTypographyTokens(staticTokens),
