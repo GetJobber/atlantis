@@ -1,11 +1,13 @@
 import AtlantisThemeContextContent from "@atlantis/docs/components/AtlantisThemeContext/AtlantisThemeContext.stories.mdx";
 import Props from "./AtlantisThemeContext.props.json";
+import MobileProps from "./AtlantisThemeContext.props-mobile.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <AtlantisThemeContextContent />,
   props: Props,
+  mobileProps: MobileProps,
   component: {
     element: `<AtlantisThemeContextProvider>
     <Box background="surface" padding="larger" radius="base" gap="base">
@@ -23,6 +25,19 @@ export default {
     </Box>
   </AtlantisThemeContextProvider>
   `,
+    mobileElement: `const { theme, tokens, setTheme } = useAtlantisTheme();
+
+return (
+  <AtlantisThemeContextProvider dangerouslyOverrideTheme={theme}>
+    <View style={{ backgroundColor: tokens["color-surface"], borderRadius: tokens["radius-base"], width: "100%" }}>
+      <Content>
+        <Text>Current Theme: {theme}</Text>
+        <Button label="Set dark theme" onPress={() => setTheme("dark")} />
+        <Button label="Set light theme" onPress={() => setTheme("light")} />
+      </Content>
+    </View>
+  </AtlantisThemeContextProvider>
+)`,
   },
   title: "AtlantisThemeContext",
   links: [

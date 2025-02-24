@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.77.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.76.0...@jobber/components-native@0.77.0) (2025-02-24)
+
+
+### Features
+
+* **components-native:** AtlantisThemeContext for mobile ([#2387](https://github.com/GetJobber/atlantis/issues/2387)) ([1c3085f](https://github.com/GetJobber/atlantis/commit/1c3085ff2fda058fc0e2f6438194638ba1352c27))
+
+
+
+
+
 # [0.76.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.75.5...@jobber/components-native@0.76.0) (2025-02-12)
 
 
