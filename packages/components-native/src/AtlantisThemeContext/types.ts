@@ -1,9 +1,8 @@
 import { iosTokens } from "@jobber/design";
-import { PropsWithChildren } from "react";
 
 export interface AtlantisThemeContextValue {
   /**
-   * The theme of the application.
+   * The active theme.
    */
   readonly theme: Theme;
 
@@ -11,9 +10,14 @@ export interface AtlantisThemeContextValue {
    * The design tokens for the current theme.
    */
   readonly tokens: typeof iosTokens;
+
+  /**
+   * Change the current theme globally.
+   */
+  readonly setTheme: (theme: Theme) => void;
 }
 
-export interface AtlantisThemeContextProviderProps extends PropsWithChildren {
+export interface AtlantisThemeContextProviderProps {
   /**
    * The children to render.
    */

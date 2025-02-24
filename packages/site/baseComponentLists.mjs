@@ -88,6 +88,7 @@ const mobileComponents = [
   "ActionItemGroup",
   "ActionLabel",
   "ActivityIndicator",
+  "AtlantisThemeContext",
   "AutoLink",
   "Banner",
   "BottomSheet",

@@ -3,6 +3,111 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.24.4](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.24.3...@jobber/atlantis-site@0.24.4) (2025-02-24)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.24.3](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.24.2...@jobber/atlantis-site@0.24.3) (2025-02-24)
+
+
+### Bug Fixes
+
+* **docx:** Stop Triton Link from doing full page navigation ([#2396](https://github.com/GetJobber/atlantis/issues/2396)) ([a955cba](https://github.com/GetJobber/atlantis/commit/a955cbab62b2d6d3968a5063259d599d40a67822))
+
+
+
+
+
+## [0.24.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.24.1...@jobber/atlantis-site@0.24.2) (2025-02-24)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.24.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.24.0...@jobber/atlantis-site@0.24.1) (2025-02-24)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+# [0.24.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.23.0...@jobber/atlantis-site@0.24.0) (2025-02-24)
+
+
+### Features
+
+* **docx:** Integrate triton to next gen docs ([#2373](https://github.com/GetJobber/atlantis/issues/2373)) ([5053e7b](https://github.com/GetJobber/atlantis/commit/5053e7bfe6dd5d0141e6a6ba279346d352397ac6)), closes [#2364](https://github.com/GetJobber/atlantis/issues/2364)
+
+
+
+
+
+# [0.23.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.22.9...@jobber/atlantis-site@0.23.0) (2025-02-24)
+
+
+### Features
+
+* **components-native:** AtlantisThemeContext for mobile ([#2387](https://github.com/GetJobber/atlantis/issues/2387)) ([1c3085f](https://github.com/GetJobber/atlantis/commit/1c3085ff2fda058fc0e2f6438194638ba1352c27))
+
+
+
+
+
+## [0.22.9](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.22.8...@jobber/atlantis-site@0.22.9) (2025-02-21)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.22.8](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.22.7...@jobber/atlantis-site@0.22.8) (2025-02-20)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.22.7](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.22.6...@jobber/atlantis-site@0.22.7) (2025-02-20)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.22.6](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.22.5...@jobber/atlantis-site@0.22.6) (2025-02-20)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.22.5](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.22.4...@jobber/atlantis-site@0.22.5) (2025-02-19)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.22.4](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.22.3...@jobber/atlantis-site@0.22.4) (2025-02-18)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
 ## [0.22.3](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.22.2...@jobber/atlantis-site@0.22.3) (2025-02-18)
 
 **Note:** Version bump only for package @jobber/atlantis-site

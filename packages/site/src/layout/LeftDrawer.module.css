@@ -1,0 +1,49 @@
+.drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--color-surface--background);
+  z-index: var(--elevation-modal);
+  display: flex;
+  flex-direction: column;
+  animation: slideIn 200ms ease-out;
+}
+
+@media screen and (min-width: 768px) {
+  .drawer {
+    display: none;
+  }
+}
+
+.drawerClosing {
+  animation: slideOut 200ms ease-out;
+}
+
+.header {
+  padding: var(--space-base);
+}
+
+.content {
+  flex: 1;
+  overflow-y: hidden;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}

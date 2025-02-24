@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.20.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.20.2...@jobber/components@6.20.3) (2025-02-24)
+
+
+### Bug Fixes
+
+* **components:** Fix typo in the DataList.ItemAction logic ([#2395](https://github.com/GetJobber/atlantis/issues/2395)) ([fc30eb4](https://github.com/GetJobber/atlantis/commit/fc30eb4fb59a9a67fe90b2a1285b23ea3e293edc))
+
+
+
+
+
+## [6.20.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.20.1...@jobber/components@6.20.2) (2025-02-24)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [6.20.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.20.0...@jobber/components@6.20.1) (2025-02-20)
+
+
+### Bug Fixes
+
+* **components:** Allow Chip to be used as an activator in Menu  ([#2375](https://github.com/GetJobber/atlantis/issues/2375)) ([2e0ad52](https://github.com/GetJobber/atlantis/commit/2e0ad52d497e6d84d5cb7272071ad0557ea6fb0b))
+
+
+
+
+
+# [6.20.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.19.1...@jobber/components@6.20.0) (2025-02-18)
+
+
+### Features
+
+* Allow DataList.ItemAction to avoid nesting ([#2370](https://github.com/GetJobber/atlantis/issues/2370)) ([97aaa08](https://github.com/GetJobber/atlantis/commit/97aaa087260efa6a30b578e77be09dff6b58210c))
+
+
+
+
+
 ## [6.19.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.19.0...@jobber/components@6.19.1) (2025-02-18)
 
 

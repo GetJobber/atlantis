@@ -1,10 +1,5 @@
 import { androidTokens, darkTokens, iosTokens } from "@jobber/design";
-import React, {
-  PropsWithChildren,
-  createContext,
-  useContext,
-  useState,
-} from "react";
+import React, { createContext, useContext, useState } from "react";
 import merge from "lodash/merge";
 import { Platform } from "react-native";
 import {
@@ -24,68 +19,31 @@ const completeDarkTokens = merge({}, lightTokens, darkTokens);
 const AtlantisThemeContext = createContext<AtlantisThemeContextValue>({
   theme: "light",
   tokens: lightTokens,
+  setTheme: () => {
+    console.error(
+      "useAtlantisTheme accessed outside of AtlantisThemeContextProvider",
+    );
+  },
 });
 
 export function AtlantisThemeContextProvider({
   children,
   dangerouslyOverrideTheme,
 }: AtlantisThemeContextProviderProps) {
-  if (dangerouslyOverrideTheme) {
-    return (
-      <InternalStaticThemeProvider
-        dangerouslyOverrideTheme={dangerouslyOverrideTheme}
-      >
-        {children}
-      </InternalStaticThemeProvider>
-    );
-  }
-
-  return (
-    <InternalDynamicThemeProvider>{children}</InternalDynamicThemeProvider>
-  );
-}
-
-function InternalDynamicThemeProvider({ children }: PropsWithChildren) {
-  // TODO: check initial theme from local/device storage?
-  // const initialTheme: Theme = (globalThis.document.documentElement.dataset.theme as Theme) ?? "light";
+  // TODO: check last saved theme from local/device storage
   const initialTheme: Theme = "light";
+  const [globalTheme, setGlobalTheme] = useState<Theme>(initialTheme);
 
-  const [internalTheme] = useState<Theme>(initialTheme);
+  const currentTheme = dangerouslyOverrideTheme ?? globalTheme;
   const currentTokens =
-    internalTheme === "dark" ? completeDarkTokens : lightTokens;
-
-  // TODO: listen for global theme update -> setInternalTheme
-  // See web's AtlantisThemeContext for an example of how it does this.
+    currentTheme === "dark" ? completeDarkTokens : lightTokens;
 
   return (
     <AtlantisThemeContext.Provider
       value={{
-        theme: internalTheme,
+        theme: currentTheme,
         tokens: currentTokens,
-      }}
-    >
-      {children}
-    </AtlantisThemeContext.Provider>
-  );
-}
-
-function InternalStaticThemeProvider({
-  dangerouslyOverrideTheme,
-  children,
-}: Required<
-  Pick<
-    AtlantisThemeContextProviderProps,
-    "dangerouslyOverrideTheme" | "children"
-  >
->) {
-  const currentTokens =
-    dangerouslyOverrideTheme === "dark" ? completeDarkTokens : lightTokens;
-
-  return (
-    <AtlantisThemeContext.Provider
-      value={{
-        theme: dangerouslyOverrideTheme,
-        tokens: currentTokens,
+        setTheme: setGlobalTheme,
       }}
     >
       {children}

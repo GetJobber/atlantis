@@ -186,16 +186,5 @@
         }
       }
     }
-  },
-  {
-    "tags": {
-      "param": "updatedFile FileUpload File that was updated.\nfiles Existing array of FileUploads.",
-      "returns": "FileUpload[] updated set of files."
-    },
-    "filePath": "../components/src/InputFile/InputFile.tsx",
-    "description": "Upsert a given `FileUpload` into an array of `FileUpload`s.\n`key` is used to uniquely identify files.",
-    "displayName": "updateFiles",
-    "methods": [],
-    "props": {}
   }
 ]
