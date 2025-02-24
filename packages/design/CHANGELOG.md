@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.71.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.70.1...@jobber/design@0.71.0) (2025-02-24)
+
+
+### Features
+
+* **design:** Add battery, speed, wheel icons, replace fuel Fleet management icons ([#2394](https://github.com/GetJobber/atlantis/issues/2394)) ([7b5a8c9](https://github.com/GetJobber/atlantis/commit/7b5a8c92b471325abac324a61ce6a2e05ca05d87))
+
+
+
+
+
 ## [0.70.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.70.0...@jobber/design@0.70.1) (2025-02-03)
 
 **Note:** Version bump only for package @jobber/design
