@@ -4,6 +4,18 @@ const path = require("path");
 // Base URL of your site
 const BASE_URL = "https://atlantis.getjobber.com";
 
+// Regex components
+const ROUTE_PATH_CAPTURE = "[\"']([^\"']+)[\"']";
+const PATH_ATTRIBUTE = "path:\\s*";
+const TO_ATTRIBUTE = "to:\\s*";
+
+// Composed regex patterns
+const ROUTE_PATH_PATTERN = new RegExp(
+  `${PATH_ATTRIBUTE}${ROUTE_PATH_CAPTURE}`,
+  "g",
+);
+const TO_PATH_PATTERN = new RegExp(`${TO_ATTRIBUTE}${ROUTE_PATH_CAPTURE}`, "g");
+
 // Read the routes file, componentList, and hooksList
 const routesContent = fs.readFileSync(
   path.join(__dirname, "packages/site/src/routes.tsx"),
@@ -20,29 +32,25 @@ const hooksListContent = fs.readFileSync(
 
 // Extract component paths from componentList
 const componentPaths = [];
-const componentMatches = componentListContent.matchAll(
-  /to:\s*["']([^"']+)["']/g,
-);
+const componentMatches = componentListContent.matchAll(TO_PATH_PATTERN);
 
-for (const match of componentMatches) {
-  componentPaths.push(match[1]);
+for (const [, componentPath] of componentMatches) {
+  componentPaths.push(componentPath);
 }
 
 // Extract hooks paths from hooksList
 const hooksPaths = [];
-const hooksMatches = hooksListContent.matchAll(/to:\s*["']([^"']+)["']/g);
+const hooksMatches = hooksListContent.matchAll(TO_PATH_PATTERN);
 
-for (const match of hooksMatches) {
-  hooksPaths.push(match[1]);
+for (const [, hookPath] of hooksMatches) {
+  hooksPaths.push(hookPath);
 }
 
 // Extract just the paths from the routes using regex
 const paths = [];
-const routeMatches = routesContent.matchAll(/path:\s*["']([^"']+)["']/g);
+const routeMatches = routesContent.matchAll(ROUTE_PATH_PATTERN);
 
-for (const match of routeMatches) {
-  const routePath = match[1];
-
+for (const [, routePath] of routeMatches) {
   // Skip dynamic routes (those with parameters)
   if (routePath.includes(":")) {
     continue;
