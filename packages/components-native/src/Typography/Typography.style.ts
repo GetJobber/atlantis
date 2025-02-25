@@ -620,7 +620,7 @@ export const createTypographyTokens = (
 });
 
 /**
- * @deprecated Use useCommonInputStyles instead
+ * @deprecated Use useTypographyStyles instead
  */
 export const typographyStyles: Record<string, TextStyle> = StyleSheet.create(
   createTypographyTokens(staticTokens),

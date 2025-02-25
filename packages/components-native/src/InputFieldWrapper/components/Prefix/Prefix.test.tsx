@@ -10,10 +10,7 @@ import {
   prefixIconTestId,
   prefixLabelTestId,
 } from "./Prefix";
-import {
-  typographyStyles as staticStyles,
-  useTypographyStyles,
-} from "../../../Typography";
+import { useTypographyStyles } from "../../../Typography";
 import { useStyles } from "../../InputFieldWrapper.style";
 import { tokens } from "../../../utils/design";
 import * as IconComponent from "../../../Icon/Icon";
@@ -31,8 +28,6 @@ beforeAll(() => {
 
   styles = stylesHook.result.current;
   typographyStyles = typographyStylesHook.result.current;
-  console.log(typographyStyles.defaultSize);
-  console.log(staticStyles.defaultSize);
 });
 
 function setupLabel({

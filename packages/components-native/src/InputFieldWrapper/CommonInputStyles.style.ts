@@ -4,6 +4,7 @@ import {
   buildThemedStyles,
 } from "../AtlantisThemeContext";
 import {
+  // eslint-disable-next-line import/no-deprecated
   typographyStyles as staticTypographyStyles,
   useTypographyStyles,
 } from "../Typography";
@@ -52,6 +53,7 @@ export const createCommonInputTokens = (
  * @deprecated Use useCommonInputStyles instead
  */
 export const commonInputStyles = StyleSheet.create(
+  // eslint-disable-next-line import/no-deprecated
   createCommonInputTokens(staticTokens, staticTypographyStyles),
 );
 

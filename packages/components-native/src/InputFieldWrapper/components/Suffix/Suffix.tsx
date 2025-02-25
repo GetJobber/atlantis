@@ -9,7 +9,7 @@ import {
 import { IconNames } from "@jobber/design";
 import { Icon } from "../../../Icon";
 import { Text } from "../../../Text";
-import { typographyStyles } from "../../../Typography";
+import { useTypographyStyles } from "../../../Typography";
 import { useAtlantisTheme } from "../../../AtlantisThemeContext";
 import { useStyles } from "../../InputFieldWrapper.style";
 
@@ -36,6 +36,7 @@ export function SuffixLabel({
   styleOverride,
 }: SuffixLabelProps): JSX.Element {
   const styles = useStyles();
+  const typographyStyles = useTypographyStyles();
 
   return (
     <View

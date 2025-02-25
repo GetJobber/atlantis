@@ -1,8 +1,10 @@
 import { buildThemedStyles } from "../AtlantisThemeContext";
-import { typographyStyles } from "../Typography";
+import { useTypographyStyles } from "../Typography";
 
-export const useStyles = buildThemedStyles(tokens => {
-  return {
+export const useStyles = () => {
+  const typographyStyles = useTypographyStyles();
+
+  return buildThemedStyles(tokens => ({
     inputPaddingTop: {
       paddingTop:
         (typographyStyles.smallSize.fontSize || 0) +
@@ -22,9 +24,8 @@ export const useStyles = buildThemedStyles(tokens => {
     },
 
     multilineInputiOS: {
-      // for placeholder
       paddingTop:
         (typographyStyles.defaultSize.fontSize || 0) + tokens["space-smallest"],
     },
-  };
-});
+  }))();
+};

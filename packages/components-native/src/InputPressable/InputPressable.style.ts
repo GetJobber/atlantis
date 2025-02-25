@@ -1,8 +1,10 @@
 import { buildThemedStyles } from "../AtlantisThemeContext";
-import { typographyStyles } from "../Typography/Typography.style";
+import { useTypographyStyles } from "../Typography";
 
-export const useStyles = buildThemedStyles(tokens => {
-  return {
+export const useStyles = () => {
+  const typographyStyles = useTypographyStyles();
+
+  return buildThemedStyles(tokens => ({
     pressable: {
       flex: 1,
     },
@@ -26,5 +28,5 @@ export const useStyles = buildThemedStyles(tokens => {
     inputInvalid: {
       borderColor: tokens["color-critical"],
     },
-  };
-});
+  }))();
+};
