@@ -1,11 +1,11 @@
 import { StyleSheet } from "react-native";
-import { useCommonInputStyles } from "../InputFieldWrapper";
+import { getCommonInputStyles } from "../InputFieldWrapper";
 import { buildThemedStyles } from "../AtlantisThemeContext";
 
-export const useStyles = () => {
-  const commonInputStyles = useCommonInputStyles();
+export const useStyles = buildThemedStyles(tokens => {
+  const commonInputStyles = getCommonInputStyles(tokens);
 
-  return buildThemedStyles(tokens => ({
+  return {
     container: StyleSheet.flatten([
       commonInputStyles.container,
       {
@@ -54,5 +54,5 @@ export const useStyles = () => {
       paddingTop: tokens["space-smaller"],
       flexDirection: "row",
     },
-  }))();
-};
+  };
+});

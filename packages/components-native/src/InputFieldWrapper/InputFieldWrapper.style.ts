@@ -1,13 +1,13 @@
 import { StyleSheet } from "react-native";
-import { useCommonInputStyles } from "./CommonInputStyles.style";
+import { getCommonInputStyles } from "./CommonInputStyles.style";
 import { buildThemedStyles } from "../AtlantisThemeContext";
-import { useTypographyStyles } from "../Typography";
+import { getTypographyStyles } from "../Typography";
 
-export const useStyles = () => {
-  const commonInputStyles = useCommonInputStyles();
-  const typographyStyles = useTypographyStyles();
+export const useStyles = buildThemedStyles(tokens => {
+  const commonInputStyles = getCommonInputStyles(tokens);
+  const typographyStyles = getTypographyStyles(tokens);
 
-  return buildThemedStyles(tokens => ({
+  return {
     container: StyleSheet.flatten([
       commonInputStyles.container,
       {
@@ -141,5 +141,5 @@ export const useStyles = () => {
       paddingTop: tokens["space-base"] - tokens["space-smaller"],
       bottom: tokens["space-smaller"],
     },
-  }))();
-};
+  };
+});

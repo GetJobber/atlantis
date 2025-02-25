@@ -1,10 +1,10 @@
 import { buildThemedStyles } from "../AtlantisThemeContext";
-import { useTypographyStyles } from "../Typography";
+import { getTypographyStyles } from "../Typography";
 
-export const useStyles = () => {
-  const typographyStyles = useTypographyStyles();
+export const useStyles = buildThemedStyles(tokens => {
+  const typographyStyles = getTypographyStyles(tokens);
 
-  return buildThemedStyles(tokens => ({
+  return {
     inputPaddingTop: {
       paddingTop:
         (typographyStyles.smallSize.fontSize || 0) +
@@ -27,5 +27,5 @@ export const useStyles = () => {
       paddingTop:
         (typographyStyles.defaultSize.fontSize || 0) + tokens["space-smallest"],
     },
-  }))();
-};
+  };
+});
