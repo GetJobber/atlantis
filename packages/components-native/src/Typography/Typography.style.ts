@@ -82,9 +82,9 @@ const fonts = Platform.select({
 });
 
 /**
- * Reusable typography tokens to ensure consistency for any client facing texts.
+ * Reusable typography styles to ensure consistency for any client facing texts.
  */
-export const createTypographyTokens = (
+export const getTypographyStyles = (
   tokens: AtlantisThemeContextValue["tokens"] | typeof staticTokens,
 ): { [index: string]: TextStyle } => ({
   // This follows a pattern of
@@ -623,7 +623,7 @@ export const createTypographyTokens = (
  * @deprecated Use useTypographyStyles instead
  */
 export const typographyStyles: Record<string, TextStyle> = StyleSheet.create(
-  createTypographyTokens(staticTokens),
+  getTypographyStyles(staticTokens),
 );
 
-export const useTypographyStyles = buildThemedStyles(createTypographyTokens);
+export const useTypographyStyles = buildThemedStyles(getTypographyStyles);

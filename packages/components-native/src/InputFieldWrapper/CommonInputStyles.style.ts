@@ -4,9 +4,9 @@ import {
   buildThemedStyles,
 } from "../AtlantisThemeContext";
 import {
+  getTypographyStyles,
   // eslint-disable-next-line import/no-deprecated
   typographyStyles as staticTypographyStyles,
-  useTypographyStyles,
 } from "../Typography";
 import { tokens as staticTokens } from "../utils/design";
 
@@ -57,11 +57,14 @@ export const commonInputStyles = StyleSheet.create(
   createCommonInputTokens(staticTokens, staticTypographyStyles),
 );
 
-export const useCommonInputStyles = () => {
-  const typographyStyles = useTypographyStyles();
-  const themedStyles = buildThemedStyles(tokens =>
-    createCommonInputTokens(tokens, typographyStyles),
-  )();
+export const getCommonInputStyles = (
+  tokens: AtlantisThemeContextValue["tokens"],
+) => {
+  const typographyStyles = getTypographyStyles(tokens);
 
-  return themedStyles;
+  return createCommonInputTokens(tokens, typographyStyles);
 };
+
+export const useCommonInputStyles = buildThemedStyles(tokens => {
+  return getCommonInputStyles(tokens);
+});

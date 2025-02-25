@@ -47,32 +47,6 @@ describe("buildThemedStyles", () => {
     expect(result.current).toBe(initialResult);
   });
 
-  it("creates styles with dependent hooks", () => {
-    const useDependentStyles = () => ({
-      text: { color: "red" },
-    });
-
-    const useTestStyles = () => {
-      const dependentStyles = useDependentStyles();
-
-      return buildThemedStyles(tokens => ({
-        container: {
-          ...dependentStyles.text,
-          padding: tokens["space-base"],
-        },
-      }))();
-    };
-
-    const { result } = renderHook(() => useTestStyles(), { wrapper });
-
-    expect(result.current).toEqual({
-      container: {
-        color: "red",
-        padding: expect.any(Number),
-      },
-    });
-  });
-
   it("handles empty style objects", () => {
     const useTestStyles = buildThemedStyles(() => ({}));
 
