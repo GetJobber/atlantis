@@ -1,12 +1,13 @@
 import omit from "lodash/omit";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useId, useRef, useState } from "react";
 import { InputDateProps } from "./InputDate.types";
 import { FieldActionsRef, FormField, Suffix } from "../FormField";
 import { DatePicker } from "../DatePicker";
 
 export function InputDate(inputProps: InputDateProps) {
   const formFieldActionsRef = useRef<FieldActionsRef>(null);
-  const uniqueId = inputProps.id || `datepicker-${Math.random()}`;
+  const generatedId = useId();
+  const uniqueId = inputProps.id || `datepicker-${generatedId}`;
 
   return (
     <DatePicker
