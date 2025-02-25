@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 import React, { ReactElement, useEffect, useRef, useState } from "react";
 import classnames from "classnames";
 import ReactDatePicker from "react-datepicker";
@@ -13,6 +14,8 @@ import { useFocusOnSelectedDate } from "./useFocusOnSelectedDate";
 import { useAtlantisContext } from "../AtlantisContext";
 
 interface BaseDatePickerProps {
+  /** Unique identifier for the datepicker */
+  readonly id?: string;
   /**
    * The maximum selectable date.
    */
@@ -83,6 +86,9 @@ interface DatePickerInlineProps extends BaseDatePickerProps {
 
 type DatePickerProps = XOR<DatePickerModalProps, DatePickerInlineProps>;
 
+const datePickerEventBus = new EventTarget();
+const DATEPICKER_OPEN_EVENT = "datepicker-open";
+
 /*eslint max-statements: ["error", 13]*/
 export function DatePicker({
   onChange,
@@ -97,6 +103,7 @@ export function DatePicker({
   maxDate,
   minDate,
   highlightDates,
+  id,
 }: DatePickerProps) {
   const { ref, focusOnSelectedDate } = useFocusOnSelectedDate();
   const [open, setOpen] = useState(false);
@@ -121,6 +128,26 @@ export function DatePicker({
     useRefocusOnActivator(open);
     useEffect(focusOnSelectedDate, [open]);
   }
+
+  useEffect(() => {
+    const handleOtherPickerOpen = (event: Event) => {
+      if (event instanceof CustomEvent && event.detail.id !== id) {
+        pickerRef.current?.setOpen(false);
+      }
+    };
+
+    datePickerEventBus.addEventListener(
+      DATEPICKER_OPEN_EVENT,
+      handleOtherPickerOpen,
+    );
+
+    return () => {
+      datePickerEventBus.removeEventListener(
+        DATEPICKER_OPEN_EVENT,
+        handleOtherPickerOpen,
+      );
+    };
+  }, [id]);
 
   return (
     <div className={wrapperClassName} ref={ref} data-elevation={"elevated"}>
@@ -171,6 +198,9 @@ export function DatePicker({
 
   function handleCalendarOpen() {
     setOpen(true);
+    datePickerEventBus.dispatchEvent(
+      new CustomEvent(DATEPICKER_OPEN_EVENT, { detail: { id } }),
+    );
   }
 
   function handleCalendarClose() {

@@ -6,9 +6,11 @@ import { DatePicker } from "../DatePicker";
 
 export function InputDate(inputProps: InputDateProps) {
   const formFieldActionsRef = useRef<FieldActionsRef>(null);
+  const uniqueId = inputProps.id || `datepicker-${Math.random()}`;
 
   return (
     <DatePicker
+      id={uniqueId}
       selected={inputProps.value}
       onChange={inputProps.onChange}
       disabled={inputProps.disabled}
