@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import { styles } from "./TextList.style";
+import { useStyles } from "./TextList.style";
 import { Content, Spacing } from "../Content";
 import { Text, TextLevel } from "../Text";
 
@@ -43,6 +43,8 @@ export function TextList({
   level = "text",
   spacing = "none",
 }: TextListProps): JSX.Element {
+  const styles = useStyles();
+
   return (
     <>
       {items && (

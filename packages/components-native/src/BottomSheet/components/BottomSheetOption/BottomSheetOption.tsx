@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableOpacity, View } from "react-native";
 import { IconColorNames, IconNames } from "@jobber/design";
-import { styles } from "./BottomSheetOption.styles";
+import { useStyles } from "./BottomSheetOption.styles";
 import { TextAlign } from "../../../Typography";
 import { capitalize } from "../../../utils/intl";
 import { Text } from "../../../Text";
@@ -28,6 +28,7 @@ export function BottomSheetOption({
 }: BottomSheetOptionProps): JSX.Element {
   const destructiveColor = "destructive";
   const textVariation = destructive ? destructiveColor : "subdued";
+  const styles = useStyles();
 
   return (
     <TouchableOpacity

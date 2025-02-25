@@ -1,29 +1,30 @@
-import { StyleSheet } from "react-native";
-import { tokens } from "../utils/design";
+import { buildThemedStyles } from "../AtlantisThemeContext";
 
-export const styles = StyleSheet.create({
-  actionItemHorizontalOffset: {
-    paddingHorizontal: tokens["space-base"],
-  },
+export const useStyles = buildThemedStyles(tokens => {
+  return {
+    actionItemHorizontalOffset: {
+      paddingHorizontal: tokens["space-base"],
+    },
 
-  icon: {
-    justifyContent: "flex-start",
-    paddingRight: tokens["space-small"],
-  },
+    icon: {
+      justifyContent: "flex-start",
+      paddingRight: tokens["space-small"],
+    },
 
-  titlePadding: {
-    paddingBottom: tokens["space-smaller"],
-  },
+    titlePadding: {
+      paddingBottom: tokens["space-smaller"],
+    },
 
-  content: {
-    flex: 1,
-  },
+    content: {
+      flex: 1,
+    },
 
-  offsetForIcons: {
-    paddingTop: tokens["space-smallest"],
-  },
+    offsetForIcons: {
+      paddingTop: tokens["space-smallest"],
+    },
 
-  actionIcon: {
-    paddingLeft: tokens["space-small"],
-  },
+    actionIcon: {
+      paddingLeft: tokens["space-small"],
+    },
+  };
 });

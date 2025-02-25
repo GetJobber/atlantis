@@ -1,7 +1,7 @@
 import { IconColorNames, IconNames } from "@jobber/design";
 import React from "react";
 import { View } from "react-native";
-import { styles } from "./EmptyState.style";
+import { useStyles } from "./EmptyState.style";
 import { Text } from "../Text";
 import { Content } from "../Content";
 import { Icon } from "../Icon";
@@ -65,6 +65,8 @@ export function EmptyState({
   secondaryAction,
   iconColor = "blue",
 }: EmptyStateProps): JSX.Element {
+  const styles = useStyles();
+
   return (
     <Content>
       {icon && (

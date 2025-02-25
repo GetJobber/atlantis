@@ -9,9 +9,9 @@ import {
 import { IconNames } from "@jobber/design";
 import { Icon } from "../../../Icon";
 import { Text } from "../../../Text";
-import { tokens } from "../../../utils/design";
-import { typographyStyles } from "../../../Typography";
-import { styles } from "../../InputFieldWrapper.style";
+import { useAtlantisTheme } from "../../../AtlantisThemeContext";
+import { useTypographyStyles } from "../../../Typography";
+import { useStyles } from "../../InputFieldWrapper.style";
 
 export interface PrefixLabelProps {
   readonly focused: boolean;
@@ -33,6 +33,9 @@ export function PrefixLabel({
   label,
   styleOverride,
 }: PrefixLabelProps): JSX.Element {
+  const styles = useStyles();
+  const typographyStyles = useTypographyStyles();
+
   return (
     <View
       style={[
@@ -81,6 +84,9 @@ export function PrefixIcon({
   inputInvalid,
   icon,
 }: PrefixIconProps): JSX.Element {
+  const styles = useStyles();
+  const { tokens } = useAtlantisTheme();
+
   return (
     <View
       testID={prefixIconTestId}

@@ -1,10 +1,18 @@
 import React from "react";
-import { render } from "@testing-library/react-native";
+import { render, renderHook } from "@testing-library/react-native";
 import { Divider } from "./Divider";
-import { horizontalStyles } from "./DividerHorizontal.style";
-import { verticalStyles } from "./DividerVertical.style";
+import { useHorizontalStyles } from "./DividerHorizontal.style";
+import { useVerticalStyles } from "./DividerVertical.style";
 
 const dividerTestId = "Divider";
+
+let horizontalStyles: ReturnType<typeof useHorizontalStyles>;
+let verticalStyles: ReturnType<typeof useVerticalStyles>;
+
+beforeAll(() => {
+  horizontalStyles = renderHook(() => useHorizontalStyles()).result.current;
+  verticalStyles = renderHook(() => useVerticalStyles()).result.current;
+});
 
 describe("Divider", () => {
   it("uses the given testID", () => {

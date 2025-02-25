@@ -1,19 +1,20 @@
-import { StyleSheet } from "react-native";
-import { tokens } from "../../../utils/design";
+import { buildThemedStyles } from "../../../AtlantisThemeContext";
 
-export const styles = StyleSheet.create({
-  bottomSheetOption: {
-    display: "flex",
-    flexDirection: "row",
-    alignContent: "center",
-    alignItems: "center",
-    padding: tokens["space-small"],
-  },
-  icon: {
-    paddingHorizontal: tokens["space-small"],
-  },
-  title: {
-    paddingHorizontal: tokens["space-small"],
-    flexShrink: 1,
-  },
+export const useStyles = buildThemedStyles(tokens => {
+  return {
+    bottomSheetOption: {
+      display: "flex",
+      flexDirection: "row",
+      alignContent: "center",
+      alignItems: "center",
+      padding: tokens["space-small"],
+    },
+    icon: {
+      paddingHorizontal: tokens["space-small"],
+    },
+    title: {
+      paddingHorizontal: tokens["space-small"],
+      flexShrink: 1,
+    },
+  };
 });

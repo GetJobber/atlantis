@@ -1,10 +1,21 @@
-import { StyleSheet } from "react-native";
-import { typographyStyles } from "../Typography";
-import { tokens } from "../utils/design";
+import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+import {
+  AtlantisThemeContextValue,
+  buildThemedStyles,
+} from "../AtlantisThemeContext";
+import {
+  getTypographyStyles,
+  // eslint-disable-next-line import/no-deprecated
+  typographyStyles as staticTypographyStyles,
+} from "../Typography";
+import { tokens as staticTokens } from "../utils/design";
 
-export const commonInputStyles = StyleSheet.create({
+export const createCommonInputTokens = (
+  tokens: AtlantisThemeContextValue["tokens"] | typeof staticTokens,
+  typographyStyles: Record<string, TextStyle>,
+): Record<string, ViewStyle | TextStyle> => ({
   input: {
-    width: "100%",
+    width: "100%" as const,
     flexShrink: 1,
     flexGrow: 1,
     color: tokens["color-text"],
@@ -36,4 +47,24 @@ export const commonInputStyles = StyleSheet.create({
     borderWidth: tokens["border-base"],
     borderRadius: tokens["radius-base"],
   },
+});
+
+/**
+ * @deprecated Use useCommonInputStyles instead
+ */
+export const commonInputStyles = StyleSheet.create(
+  // eslint-disable-next-line import/no-deprecated
+  createCommonInputTokens(staticTokens, staticTypographyStyles),
+);
+
+export const getCommonInputStyles = (
+  tokens: AtlantisThemeContextValue["tokens"],
+) => {
+  const typographyStyles = getTypographyStyles(tokens);
+
+  return createCommonInputTokens(tokens, typographyStyles);
+};
+
+export const useCommonInputStyles = buildThemedStyles(tokens => {
+  return getCommonInputStyles(tokens);
 });

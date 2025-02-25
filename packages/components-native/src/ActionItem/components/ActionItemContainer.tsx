@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import { Pressable, View } from "react-native";
-import { styles } from "./ActionItemContainer.style";
-import { styles as actionItemStyles } from "../ActionItem.style";
+import { useStyles } from "./ActionItemContainer.style";
+import { useStyles as useActionItemStyles } from "../ActionItem.style";
 
 interface ActionItemContainerProps {
   readonly children: ReactNode;
@@ -16,6 +16,9 @@ export function ActionItemContainer({
   children,
   testID,
 }: ActionItemContainerProps): JSX.Element {
+  const styles = useStyles();
+  const actionItemStyles = useActionItemStyles();
+
   if (onPress) {
     return (
       <Pressable

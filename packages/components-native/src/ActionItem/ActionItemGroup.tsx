@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { View } from "react-native";
 import { ActionItem, ActionItemProps } from "./ActionItem";
-import { styles } from "./ActionItem.style";
+import { useStyles } from "./ActionItem.style";
 import { Divider } from "../Divider";
 
 export type ActionItemElement =
@@ -29,6 +29,8 @@ function renderChildren(children: ActionItemElement | ActionItemElement[]) {
 
   return childArray.map((child, index) => {
     const isSubsequentChild = index !== 0;
+
+    const styles = useStyles();
 
     return (
       <View key={index}>

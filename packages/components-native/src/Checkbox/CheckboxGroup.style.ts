@@ -1,15 +1,16 @@
-import { StyleSheet } from "react-native";
-import { tokens } from "../utils/design";
+import { buildThemedStyles } from "../AtlantisThemeContext";
 
-export const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-    paddingHorizontal: tokens["space-base"],
-    paddingVertical: tokens["space-small"],
-  },
-  nestedCheckboxes: {
-    marginLeft: tokens["space-large"],
-  },
+export const useStyles = buildThemedStyles(tokens => {
+  return {
+    container: {
+      width: "100%",
+      justifyContent: "center",
+      alignItems: "center",
+      paddingHorizontal: tokens["space-base"],
+      paddingVertical: tokens["space-small"],
+    },
+    nestedCheckboxes: {
+      marginLeft: tokens["space-large"],
+    },
+  };
 });

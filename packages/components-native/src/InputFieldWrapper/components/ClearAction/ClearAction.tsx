@@ -1,6 +1,6 @@
 import React from "react";
 import { Pressable, View } from "react-native";
-import { styles } from "./ClearAction.style";
+import { useStyles } from "./ClearAction.style";
 import { Icon } from "../../../Icon";
 import { useAtlantisI18n } from "../../../hooks/useAtlantisI18n";
 
@@ -17,6 +17,7 @@ export function ClearAction({
   hasMarginRight = false,
 }: ClearActionProps): JSX.Element {
   const { t } = useAtlantisI18n();
+  const styles = useStyles();
 
   return (
     <Pressable

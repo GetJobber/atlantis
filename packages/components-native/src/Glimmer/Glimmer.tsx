@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Animated, Easing, LayoutChangeEvent, View } from "react-native";
 import Svg, { Defs, LinearGradient, Rect, Stop } from "react-native-svg";
-import { shineWidth, styles } from "./Glimmer.style";
-import { sizeStyles } from "./Glimmer.size.style";
-import { shapeStyles } from "./Glimmer.shape.style";
+import { shineWidth, useStyles } from "./Glimmer.style";
+import { useSizeStyles } from "./Glimmer.size.style";
+import { useShapeStyles } from "./Glimmer.shape.style";
 import { tokens } from "../utils/design";
 
-export type GlimmerShapes = keyof typeof shapeStyles;
-export type GlimmerSizes = keyof typeof sizeStyles;
+export type GlimmerShapes = keyof ReturnType<typeof useShapeStyles>;
+export type GlimmerSizes = keyof ReturnType<typeof useSizeStyles>;
 export type GlimmerTimings = "base" | "fast";
 
 interface GlimmerProps {
@@ -64,6 +64,10 @@ export function Glimmer({
 
     return shine.stop;
   }, [parentWidth]);
+
+  const styles = useStyles();
+  const sizeStyles = useSizeStyles();
+  const shapeStyles = useShapeStyles();
 
   return (
     <View

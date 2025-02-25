@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react-native";
-import { tokens } from "@jobber/design";
 import { Text } from ".";
+import { tokens } from "../utils/design";
 
 it("renders text with no additional props", () => {
   const text = render(<Text>Test Text</Text>);

@@ -1,11 +1,12 @@
-import { StyleSheet } from "react-native";
-import { tokens } from "../../../utils/design";
+import { buildThemedStyles } from "../../../AtlantisThemeContext";
 
-export const styles = StyleSheet.create({
-  circle: {
-    width: tokens["space-large"],
-    height: tokens["space-large"],
-    borderRadius: tokens["radius-circle"],
-    backgroundColor: tokens["color-surface"],
-  },
+export const useStyles = buildThemedStyles(tokens => {
+  return {
+    circle: {
+      width: tokens["space-large"],
+      height: tokens["space-large"],
+      borderRadius: tokens["radius-circle"],
+      backgroundColor: tokens["color-surface"],
+    },
+  };
 });

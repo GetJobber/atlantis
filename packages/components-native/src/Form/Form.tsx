@@ -8,7 +8,7 @@ import {
   View,
   findNodeHandle,
 } from "react-native";
-import { styles } from "./Form.style";
+import { useStyles } from "./Form.style";
 import { FormErrorBanner } from "./components/FormErrorBanner";
 import { KEYBOARD_SAVE_BUTTON_DISTANCE } from "./constants";
 import { FormMessageBanner } from "./components/FormMessageBanner";
@@ -135,6 +135,8 @@ function InternalForm<T extends FieldValues, S>({
   const onLayout = (event: LayoutChangeEvent) => {
     setMessageBannerHeight(event.nativeEvent.layout.height);
   };
+
+  const styles = useStyles();
 
   return (
     <FormProvider {...formMethods}>

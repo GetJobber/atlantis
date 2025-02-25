@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import isNil from "lodash/isNil";
 import { RowCount, ThumbnailListProps } from "./types";
-import { styles } from "./ThumbnailList.style";
+import { useStyles } from "./ThumbnailList.style";
 import { File, FormatFile } from "../FormatFile";
 
 function isImage(file: File) {
@@ -26,6 +26,7 @@ export function ThumbnailList({
   createThumbnail,
 }: ThumbnailListProps): JSX.Element {
   const imageList = filterImages(files);
+  const styles = useStyles();
 
   return (
     <View

@@ -4,7 +4,7 @@ import { AutoLinkProps } from "./types";
 import { ComposeTextWithLinks } from "./components";
 import { useCreateLinkedText } from "./hooks/useCreateLinkedText";
 import { TypographyGestureDetector } from "../Typography";
-import { tokens } from "../utils/design";
+import { useAtlantisTheme } from "../AtlantisThemeContext";
 
 export function AutoLink({
   children: text = "",
@@ -13,6 +13,7 @@ export function AutoLink({
   ...rest
 }: AutoLinkProps): JSX.Element {
   const { splitText, matches } = useCreateLinkedText({ text, ...rest });
+  const { tokens } = useAtlantisTheme();
 
   return (
     <TypographyGestureDetector>

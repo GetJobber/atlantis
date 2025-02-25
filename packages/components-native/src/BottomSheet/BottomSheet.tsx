@@ -3,7 +3,7 @@ import { Modalize } from "react-native-modalize";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Keyboard, View } from "react-native";
 import { BottomSheetOption } from "./components/BottomSheetOption";
-import { styles } from "./BottomSheet.style";
+import { useStyles } from "./BottomSheet.style";
 import { useIsScreenReaderEnabled } from "../hooks";
 import { Divider } from "../Divider";
 import { Heading } from "../Heading";
@@ -55,22 +55,26 @@ function BottomSheetInternal(
 ) {
   const isScreenReaderEnabled = useIsScreenReaderEnabled();
   const [open, setOpen] = useState<boolean>(false);
+  const styles = useStyles();
 
   return (
     <>
-      {open && <Overlay />}
+      {open && <Overlay styles={styles} />}
       <Modalize
         ref={ref}
         adjustToContentHeight={true}
         modalStyle={styles.modal}
         overlayStyle={styles.overlayModalize}
-        HeaderComponent={heading && <Header heading={heading} />}
+        HeaderComponent={
+          heading && <Header heading={heading} styles={styles} />
+        }
         FooterComponent={
           <Footer
             cancellable={(showCancel && !loading) || isScreenReaderEnabled}
             onCancel={() => {
               (ref as RefObject<BottomSheetRef>)?.current?.close();
             }}
+            styles={styles}
           />
         }
         withHandle={false}
@@ -101,7 +105,13 @@ function BottomSheetInternal(
   }
 }
 
-function Header({ heading }: { readonly heading: string }) {
+function Header({
+  heading,
+  styles,
+}: {
+  readonly heading: string;
+  readonly styles: ReturnType<typeof useStyles>;
+}) {
   return (
     <View style={styles.header}>
       <Heading level={"subtitle"}>{heading}</Heading>
@@ -112,9 +122,11 @@ function Header({ heading }: { readonly heading: string }) {
 function Footer({
   cancellable,
   onCancel,
+  styles,
 }: {
   readonly cancellable: boolean;
   readonly onCancel: () => void;
+  readonly styles: ReturnType<typeof useStyles>;
 }) {
   const insets = useSafeAreaInsets();
   const { t } = useAtlantisI18n();
@@ -143,6 +155,10 @@ function dismissKeyboard() {
   Keyboard.dismiss();
 }
 
-function Overlay() {
+function Overlay({
+  styles,
+}: {
+  readonly styles: ReturnType<typeof useStyles>;
+}) {
   return <View style={styles.overlay} />;
 }

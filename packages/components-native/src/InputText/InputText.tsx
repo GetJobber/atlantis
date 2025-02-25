@@ -22,7 +22,7 @@ import { RegisterOptions } from "react-hook-form";
 import { IconNames } from "@jobber/design";
 import identity from "lodash/identity";
 import { Clearable, useShowClear } from "@jobber/hooks";
-import { styles } from "./InputText.style";
+import { useStyles } from "./InputText.style";
 import { useInputAccessoriesContext } from "./context";
 import { useFormController } from "../hooks";
 import {
@@ -30,7 +30,7 @@ import {
   InputFieldWrapperProps,
 } from "../InputFieldWrapper/InputFieldWrapper";
 import { InputFieldWrapper } from "../InputFieldWrapper";
-import { commonInputStyles } from "../InputFieldWrapper/CommonInputStyles.style";
+import { useCommonInputStyles } from "../InputFieldWrapper/CommonInputStyles.style";
 
 export interface InputTextProps
   extends Pick<
@@ -362,6 +362,9 @@ function InputTextInternal(
 
     onFocusNext();
   }
+
+  const styles = useStyles();
+  const commonInputStyles = useCommonInputStyles();
 
   return (
     <InputFieldWrapper

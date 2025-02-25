@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { View } from "react-native";
 import { RegisterOptions } from "react-hook-form";
-import { styles } from "./Select.style";
+import { useStyles } from "./Select.style";
 import { SelectInternalPicker } from "./components/SelectInternalPicker";
 import { InputFieldWrapper } from "../InputFieldWrapper";
 import { Icon } from "../Icon";
@@ -124,6 +124,7 @@ export function Select({
   });
   const valueTextVariation = disabled ? "disabled" : undefined;
   const hasValue = internalValue && internalValue?.length > 0;
+  const styles = useStyles();
 
   return (
     <InputFieldWrapper
