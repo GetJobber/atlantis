@@ -1,4 +1,3 @@
-/* eslint-disable max-statements */
 import React, { ReactElement, useEffect, useRef, useState } from "react";
 import classnames from "classnames";
 import ReactDatePicker from "react-datepicker";
