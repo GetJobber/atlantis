@@ -3,7 +3,7 @@ import { tokens } from "../utils/design";
 
 export const styles = StyleSheet.create({
   thumbnailContainer: {
-    backgroundColor: tokens["color-surface--background"],
+    backgroundColor: tokens["color-interactive--background"],
     borderWidth: tokens["border-base"],
     borderColor: tokens["color-border"],
     borderRadius: tokens["radius-base"],
