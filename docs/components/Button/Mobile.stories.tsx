@@ -1,10 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import {
-  AtlantisThemeContextProvider,
-  Button,
-  Theme,
-} from "@jobber/components-native";
+import { Button } from "@jobber/components-native";
 
 export default {
   title: "Components/Actions/Button/Mobile",
@@ -31,17 +27,4 @@ Cancel.args = {
   label: "Cancel",
   variation: "cancel",
   onPress: () => alert("I have been cancelled"),
-};
-
-export const ThemeToggle: ComponentStory<typeof Button> = () => {
-  const [theme, setTheme] = useState<Theme>("light");
-
-  return (
-    <AtlantisThemeContextProvider dangerouslyOverrideTheme={theme}>
-      <Button
-        label="Toggle Theme"
-        onPress={() => setTheme(theme === "light" ? "dark" : "light")}
-      />
-    </AtlantisThemeContextProvider>
-  );
 };
