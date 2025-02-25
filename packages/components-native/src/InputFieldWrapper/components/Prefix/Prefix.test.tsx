@@ -167,8 +167,6 @@ describe("Prefix", () => {
         disabled: true,
       });
       const prefixLabel = tree.getByText(mockLabel);
-      // console.log(tree.debug());
-      console.log(prefixLabel.props.style);
       const expectedStyle = [
         typographyStyles.baseRegularRegular,
         typographyStyles.disabled,
