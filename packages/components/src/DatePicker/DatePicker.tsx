@@ -172,7 +172,6 @@ export function DatePicker({
   }
 
   function handleCalendarOpen() {
-    // If there's already an open picker that's different from this one, close it
     if (
       openDatePickerRef.current &&
       openDatePickerRef.current !== pickerRef.current
@@ -180,13 +179,11 @@ export function DatePicker({
       openDatePickerRef.current.setOpen(false);
     }
 
-    // Set this picker as the currently open one
     openDatePickerRef.current = pickerRef.current;
     setOpen(true);
   }
 
   function handleCalendarClose() {
-    // Clear the ref if this picker is the one that's closing
     if (openDatePickerRef.current === pickerRef.current) {
       openDatePickerRef.current = null;
     }
