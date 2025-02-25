@@ -83,6 +83,8 @@ interface DatePickerInlineProps extends BaseDatePickerProps {
 
 type DatePickerProps = XOR<DatePickerModalProps, DatePickerInlineProps>;
 
+const openDatePickerRef = { current: null as ReactDatePicker | null };
+
 /*eslint max-statements: ["error", 13]*/
 export function DatePicker({
   onChange,
@@ -115,7 +117,7 @@ export function DatePicker({
   const datePickerClassNames = classnames(styles.datePicker, {
     [styles.inline]: inline,
   });
-  const { pickerRef } = useEscapeKeyToCloseDatePicker(open, ref);
+  const { pickerRef } = useEscapeKeyToCloseDatePicker(open);
 
   if (smartAutofocus) {
     useRefocusOnActivator(open);
@@ -170,35 +172,46 @@ export function DatePicker({
   }
 
   function handleCalendarOpen() {
+    if (
+      openDatePickerRef.current &&
+      openDatePickerRef.current !== pickerRef.current
+    ) {
+      openDatePickerRef.current.setOpen(false);
+    }
+
+    openDatePickerRef.current = pickerRef.current;
     setOpen(true);
   }
 
   function handleCalendarClose() {
+    if (openDatePickerRef.current === pickerRef.current) {
+      openDatePickerRef.current = null;
+    }
     setOpen(false);
   }
 }
 
-function useEscapeKeyToCloseDatePicker(
-  open: boolean,
-  ref: React.RefObject<HTMLDivElement>,
-): { pickerRef: React.RefObject<ReactDatePicker> } {
+function useEscapeKeyToCloseDatePicker(open: boolean): {
+  pickerRef: React.RefObject<ReactDatePicker>;
+} {
   const pickerRef = useRef<ReactDatePicker>(null);
 
-  const escFunction = (event: KeyboardEvent) => {
-    if (event.key === "Escape" && open) {
-      // Close the picker ourselves and prevent propagation so that ESC presses with the picker open
-      // do not close parent elements that may also be listening for ESC presses such as Modals
-      pickerRef.current?.setOpen(false);
-      event.stopPropagation();
-    }
-  };
   useEffect(() => {
-    ref.current?.addEventListener("keydown", escFunction);
+    const escFunction = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && open) {
+        // Close the picker ourselves and prevent propagation so that ESC presses with the picker open
+        // do not close parent elements that may also be listening for ESC presses such as Modals
+        pickerRef.current?.setOpen(false);
+        event.stopPropagation();
+      }
+    };
+
+    document.addEventListener("keydown", escFunction, true);
 
     return () => {
-      ref.current?.removeEventListener("keydown", escFunction);
+      document.removeEventListener("keydown", escFunction, true);
     };
-  }, [open, ref, pickerRef]);
+  }, [open]);
 
   return {
     pickerRef,
