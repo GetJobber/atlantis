@@ -14,8 +14,6 @@ import { useFocusOnSelectedDate } from "./useFocusOnSelectedDate";
 import { useAtlantisContext } from "../AtlantisContext";
 
 interface BaseDatePickerProps {
-  /** Unique identifier for the datepicker */
-  readonly id?: string;
   /**
    * The maximum selectable date.
    */
@@ -86,8 +84,7 @@ interface DatePickerInlineProps extends BaseDatePickerProps {
 
 type DatePickerProps = XOR<DatePickerModalProps, DatePickerInlineProps>;
 
-const datePickerEventBus = new EventTarget();
-const DATEPICKER_OPEN_EVENT = "datepicker-open";
+const openDatePickerRef = { current: null as ReactDatePicker | null };
 
 /*eslint max-statements: ["error", 13]*/
 export function DatePicker({
@@ -103,7 +100,6 @@ export function DatePicker({
   maxDate,
   minDate,
   highlightDates,
-  id,
 }: DatePickerProps) {
   const { ref, focusOnSelectedDate } = useFocusOnSelectedDate();
   const [open, setOpen] = useState(false);
@@ -122,32 +118,12 @@ export function DatePicker({
   const datePickerClassNames = classnames(styles.datePicker, {
     [styles.inline]: inline,
   });
-  const { pickerRef } = useEscapeKeyToCloseDatePicker(open, ref);
+  const { pickerRef } = useEscapeKeyToCloseDatePicker(open);
 
   if (smartAutofocus) {
     useRefocusOnActivator(open);
     useEffect(focusOnSelectedDate, [open]);
   }
-
-  useEffect(() => {
-    const handleOtherPickerOpen = (event: Event) => {
-      if (event instanceof CustomEvent && event.detail.id !== id) {
-        pickerRef.current?.setOpen(false);
-      }
-    };
-
-    datePickerEventBus.addEventListener(
-      DATEPICKER_OPEN_EVENT,
-      handleOtherPickerOpen,
-    );
-
-    return () => {
-      datePickerEventBus.removeEventListener(
-        DATEPICKER_OPEN_EVENT,
-        handleOtherPickerOpen,
-      );
-    };
-  }, [id]);
 
   return (
     <div className={wrapperClassName} ref={ref} data-elevation={"elevated"}>
@@ -197,38 +173,49 @@ export function DatePicker({
   }
 
   function handleCalendarOpen() {
+    // If there's already an open picker that's different from this one, close it
+    if (
+      openDatePickerRef.current &&
+      openDatePickerRef.current !== pickerRef.current
+    ) {
+      openDatePickerRef.current.setOpen(false);
+    }
+
+    // Set this picker as the currently open one
+    openDatePickerRef.current = pickerRef.current;
     setOpen(true);
-    datePickerEventBus.dispatchEvent(
-      new CustomEvent(DATEPICKER_OPEN_EVENT, { detail: { id } }),
-    );
   }
 
   function handleCalendarClose() {
+    // Clear the ref if this picker is the one that's closing
+    if (openDatePickerRef.current === pickerRef.current) {
+      openDatePickerRef.current = null;
+    }
     setOpen(false);
   }
 }
 
-function useEscapeKeyToCloseDatePicker(
-  open: boolean,
-  ref: React.RefObject<HTMLDivElement>,
-): { pickerRef: React.RefObject<ReactDatePicker> } {
+function useEscapeKeyToCloseDatePicker(open: boolean): {
+  pickerRef: React.RefObject<ReactDatePicker>;
+} {
   const pickerRef = useRef<ReactDatePicker>(null);
 
-  const escFunction = (event: KeyboardEvent) => {
-    if (event.key === "Escape" && open) {
-      // Close the picker ourselves and prevent propagation so that ESC presses with the picker open
-      // do not close parent elements that may also be listening for ESC presses such as Modals
-      pickerRef.current?.setOpen(false);
-      event.stopPropagation();
-    }
-  };
   useEffect(() => {
-    ref.current?.addEventListener("keydown", escFunction);
+    const escFunction = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && open) {
+        // Close the picker ourselves and prevent propagation so that ESC presses with the picker open
+        // do not close parent elements that may also be listening for ESC presses such as Modals
+        pickerRef.current?.setOpen(false);
+        event.stopPropagation();
+      }
+    };
+
+    document.addEventListener("keydown", escFunction, true);
 
     return () => {
-      ref.current?.removeEventListener("keydown", escFunction);
+      document.removeEventListener("keydown", escFunction, true);
     };
-  }, [open, ref, pickerRef]);
+  }, [open]);
 
   return {
     pickerRef,

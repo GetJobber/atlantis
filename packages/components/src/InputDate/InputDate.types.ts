@@ -64,7 +64,6 @@ export interface InputDateProps
       | "placeholder"
       | "onChange"
       | "onBlur"
-      | "id"
     > {
   /**
    * A Date object value
