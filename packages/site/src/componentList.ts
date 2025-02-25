@@ -495,7 +495,14 @@ export const componentList = [
     to: "/components/LightBox",
     imageURL: "/LightBox.png",
     sections: ["Images & Icons"],
-    additionalMatches: ["Gallery", "Carousel", "Display", "Image"],
+    additionalMatches: [
+      "Gallery",
+      "Carousel",
+      "Display",
+      "Image",
+      "Box Sizing",
+      "Border Box",
+    ],
   },
   {
     title: "Link",
