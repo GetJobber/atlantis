@@ -6,7 +6,7 @@ import {
   BrowserRouter as Router,
   Switch,
 } from "react-router-dom";
-import { Button } from ".";
+import { Button } from "./Button";
 
 it("renders a Button", () => {
   const { container } = render(<Button label="Submit" />);

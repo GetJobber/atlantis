@@ -29,6 +29,13 @@
   fill: var(--public--button--color-variation);
   align-items: center;
   justify-content: center;
+  /**
+  replaces
+  .hasIconAndLabel {
+  width: auto;
+  gap: var(--space-smaller); }
+ **/
+  gap: var(--space-smaller);
 }
 
 .button * {
@@ -200,27 +207,20 @@ a.button.disabled:hover {
   flex-shrink: 0;
 }
 
-.onlyIcon {
+.buttonChildren:has(> svg:only-child) {
   width: var(--button--size);
   padding: 0;
 }
 
-.hasIconAndLabel {
-  width: auto;
-  gap: var(--space-smaller);
-}
-
-.hasIconAndLabel > * {
-  text-align: start;
-}
-
-.hasIconAndLabel > *:first-child {
+/** Icon on Left */
+.buttonChildren
+  > svg:first-of-type:first-child:not(:only-child):not(:last-child) {
   margin-left: calc(var(--space-smaller) * -1);
 }
 
-.iconOnRight > *:first-child {
-  order: 1;
-  margin-left: 0;
+/** Icon on Right */
+.buttonChildren
+  > svg:last-of-type:last-child:not(:only-child):not(:first-child) {
   margin-right: calc(var(--space-smaller) * -1);
 }
 

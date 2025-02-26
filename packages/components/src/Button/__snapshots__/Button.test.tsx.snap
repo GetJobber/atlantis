@@ -3,7 +3,7 @@
 exports[`renders a Button 1`] = `
 <div>
   <button
-    class="button base work primary"
+    class="button base work primary buttonChildren"
     type="button"
   >
     <span
@@ -19,7 +19,7 @@ exports[`renders a Button that is just an icon 1`] = `
 <div>
   <button
     aria-label="Person"
-    class="button base onlyIcon work primary"
+    class="button base work primary buttonChildren"
     type="button"
   >
     <svg
@@ -35,9 +35,6 @@ exports[`renders a Button that is just an icon 1`] = `
         d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10Zm-10 8c1.47 0 2.846-.396 4.03-1.087-2.079-1.865-3.826-2.087-5.175-1.766-1.134.27-2.138.955-2.951 1.726A7.963 7.963 0 0 0 12 20Zm-1.608-4.799c2.206-.525 4.682.056 7.245 2.475a8 8 0 1 0-11.322-.047c1.018-1.016 2.396-2.028 4.077-2.428Z"
       />
     </svg>
-    <span
-      class="base semiBold base base"
-    />
   </button>
 </div>
 `;
@@ -45,7 +42,7 @@ exports[`renders a Button that is just an icon 1`] = `
 exports[`renders a Button with a link and opens in new tab 1`] = `
 <div>
   <a
-    class="button base work primary"
+    class="button base work primary buttonChildren"
     href="💩.com"
     target="_blank"
   >
@@ -61,7 +58,7 @@ exports[`renders a Button with a link and opens in new tab 1`] = `
 exports[`renders a Button with a loading state 1`] = `
 <div>
   <button
-    class="button base work primary loading"
+    class="button base work primary loading buttonChildren"
     type="button"
   >
     <span
@@ -76,7 +73,7 @@ exports[`renders a Button with a loading state 1`] = `
 exports[`renders a Button with an icon 1`] = `
 <div>
   <button
-    class="button base hasIconAndLabel work primary"
+    class="button base work primary buttonChildren"
     type="button"
   >
     <svg
@@ -101,7 +98,7 @@ exports[`renders a Button with an icon 1`] = `
 exports[`renders a Button with an icon on the right 1`] = `
 <div>
   <button
-    class="button base hasIconAndLabel iconOnRight work primary"
+    class="button base work primary buttonChildren"
     type="button"
   >
     <svg
@@ -126,7 +123,7 @@ exports[`renders a Button with an icon on the right 1`] = `
 exports[`renders a Link as a Button for routing 1`] = `
 <div>
   <a
-    class="button base work primary"
+    class="button base work primary buttonChildren"
     href="/jobber"
   >
     <span
@@ -141,7 +138,7 @@ exports[`renders a Link as a Button for routing 1`] = `
 exports[`renders a destructuve Button 1`] = `
 <div>
   <button
-    class="button base destructive primary"
+    class="button base destructive primary buttonChildren"
     type="button"
   >
     <span
@@ -156,7 +153,7 @@ exports[`renders a destructuve Button 1`] = `
 exports[`renders a disabled Button 1`] = `
 <div>
   <button
-    class="button base work primary disabled"
+    class="button base work primary disabled buttonChildren"
     disabled=""
     type="button"
   >
@@ -172,7 +169,7 @@ exports[`renders a disabled Button 1`] = `
 exports[`renders a large Button 1`] = `
 <div>
   <button
-    class="button large work primary"
+    class="button large work primary buttonChildren"
     type="button"
   >
     <span
@@ -187,7 +184,7 @@ exports[`renders a large Button 1`] = `
 exports[`renders a learning Button 1`] = `
 <div>
   <button
-    class="button base learning primary"
+    class="button base learning primary buttonChildren"
     type="button"
   >
     <span
@@ -202,7 +199,7 @@ exports[`renders a learning Button 1`] = `
 exports[`renders a secondary Button 1`] = `
 <div>
   <button
-    class="button base work secondary"
+    class="button base work secondary buttonChildren"
     type="button"
   >
     <span
@@ -217,7 +214,7 @@ exports[`renders a secondary Button 1`] = `
 exports[`renders a small Button 1`] = `
 <div>
   <button
-    class="button small work primary"
+    class="button small work primary buttonChildren"
     type="button"
   >
     <span
@@ -232,7 +229,7 @@ exports[`renders a small Button 1`] = `
 exports[`renders a subtle Button 1`] = `
 <div>
   <button
-    class="button base subtle primary"
+    class="button base subtle primary buttonChildren"
     type="button"
   >
     <span
@@ -247,7 +244,7 @@ exports[`renders a subtle Button 1`] = `
 exports[`renders a tertiary Button 1`] = `
 <div>
   <button
-    class="button base work tertiary"
+    class="button base work tertiary buttonChildren"
     type="button"
   >
     <span

@@ -12,6 +12,8 @@
     "Body",
     "Box",
     "Button",
+    "Button.Icon",
+    "Button.Label",
     "ButtonDismiss",
     "Card",
     "Cell",
