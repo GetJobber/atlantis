@@ -185,6 +185,15 @@
   height: 100%;
 }
 
+.truncateGradient > span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 10%;
+  background-color: var(--chip-base-bg-color);
+}
+
 .truncateGradient::before,
 .truncateGradient::after {
   content: "";
@@ -196,7 +205,7 @@
 .truncateGradient::before {
   background: linear-gradient(
     to left,
-    var(--chip-base-bg-color) 5%,
+    var(--chip-base-bg-color) 10%,
     rgba(255, 255, 255, 0)
   );
   opacity: 1;
@@ -205,7 +214,7 @@
 .truncateGradient::after {
   background: linear-gradient(
     to left,
-    var(--chip-base-hover-bg-color) 5%,
+    var(--chip-base-hover-bg-color) 10%,
     rgba(255, 255, 255, 0)
   );
   opacity: 0;
