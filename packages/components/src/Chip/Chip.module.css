@@ -212,11 +212,13 @@
 }
 
 .chip:hover .truncateGradient::before,
+.chip:focus .truncateGradient::before,
 .chip:focus-visible .truncateGradient::before {
   opacity: 0;
 }
 
 .chip:hover .truncateGradient::after,
+.chip:focus .truncateGradient::after,
 .chip:focus-visible .truncateGradient::after {
   opacity: 1;
 }
