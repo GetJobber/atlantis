@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import ReactDatePicker from "react-datepicker";
 import userEvent from "@testing-library/user-event";
 import { DatePicker } from "./DatePicker";
@@ -179,6 +179,52 @@ describe("Ensure ReactDatePicker CSS class names exists", () => {
         await userEvent.tab();
         expect(container.querySelector(className)).toBeTruthy();
       });
+    });
+  });
+});
+
+describe("Multiple DatePicker instances", () => {
+  beforeEach(() => {
+    jest.useRealTimers();
+  });
+
+  it("should close other open DatePickers when one is opened", async () => {
+    const { container } = render(
+      <>
+        <DatePicker onChange={jest.fn()} />
+        <DatePicker onChange={jest.fn()} />
+      </>,
+    );
+
+    const [picker1, picker2] = screen.getAllByRole("button", {
+      name: /open datepicker/i,
+    });
+
+    // Open first picker
+    await userEvent.click(picker1);
+    await waitFor(() => {
+      const calendar = container.querySelector(".react-datepicker");
+      expect(calendar).toBeInTheDocument();
+      expect(calendar?.closest(".datePickerWrapper")).toBe(
+        picker1.closest(".datePickerWrapper"),
+      );
+    });
+
+    // Open second picker
+    await userEvent.click(picker2);
+    await waitFor(() => {
+      // Verify only one calendar exists and it belongs to picker2
+      const calendars = container.querySelectorAll(".react-datepicker");
+      expect(calendars).toHaveLength(1);
+      expect(calendars[0].closest(".datePickerWrapper")).toBe(
+        picker2.closest(".datePickerWrapper"),
+      );
+
+      expect(
+        picker1
+          .closest(".datePickerWrapper")
+          ?.querySelector(".react-datepicker"),
+      ).toBeNull();
     });
   });
 });

@@ -89,7 +89,7 @@ interface DatePickerCloseDetails {
 
 const DATEPICKER_SWITCH_EVENT = "atlantis.datepicker-switch";
 
-// eslint-disable-next-line max-statements
+/*eslint max-statements: ["error", 16]*/
 export function DatePicker({
   onChange,
   onMonthChange,
