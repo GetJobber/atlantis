@@ -52,7 +52,6 @@ export const createCommonInputTokens = (
  * @deprecated Use useCommonInputStyles instead
  */
 export const commonInputStyles = StyleSheet.create(
-  // eslint-disable-next-line import/no-deprecated
   createCommonInputTokens(staticTokens),
 );
 
