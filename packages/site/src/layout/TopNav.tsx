@@ -10,7 +10,7 @@ import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
 export const TopNav = () => {
   const { onOpenTriton } = useTritonChat();
   const { mediumAndUp } = useBreakpoints();
-  const { toggleMobileMenu } = useAtlantisSite();
+  const { toggleMobileMenu, isMinimal } = useAtlantisSite();
 
   return (
     <Box
@@ -18,9 +18,11 @@ export const TopNav = () => {
       direction="row"
       alignItems="center"
       gap="small"
-      justifyContent={mediumAndUp ? "" : "space-between"}
+      justifyContent={
+        isMinimal ? "flex-end" : mediumAndUp ? "" : "space-between"
+      }
     >
-      {!mediumAndUp && (
+      {!mediumAndUp && !isMinimal && (
         <Box
           direction="row"
           gap="small"
@@ -46,7 +48,7 @@ export const TopNav = () => {
         direction="row"
         gap="small"
         alignItems="center"
-        width={mediumAndUp ? "grow" : "shrink"}
+        width={isMinimal ? "shrink" : mediumAndUp ? "grow" : "shrink"}
       >
         <Box
           direction="row"
@@ -55,9 +57,11 @@ export const TopNav = () => {
           width={mediumAndUp ? "grow" : "auto"}
           padding={mediumAndUp ? { left: "extravagant" } : {}}
         >
-          <Box width={mediumAndUp ? 200 : "auto"}>
-            <SearchButton />
-          </Box>
+          {!isMinimal && (
+            <Box width={mediumAndUp ? 200 : "auto"}>
+              <SearchButton />
+            </Box>
+          )}
           <Tooltip message="Ask Triton">
             <Button
               onClick={onOpenTriton}

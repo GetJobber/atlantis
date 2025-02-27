@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.24.5](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.24.4...@jobber/atlantis-site@0.24.5) (2025-02-25)
+
+
+### Bug Fixes
+
+* **docx:** Hide menu button, logo, and search in minimal mode ([#2398](https://github.com/GetJobber/atlantis/issues/2398)) ([c8cc021](https://github.com/GetJobber/atlantis/commit/c8cc021ef3c6af19bb265c2be68aa70170c38ffa))
+
+
+
+
+
 ## [0.24.4](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.24.3...@jobber/atlantis-site@0.24.4) (2025-02-24)
 
 **Note:** Version bump only for package @jobber/atlantis-site
