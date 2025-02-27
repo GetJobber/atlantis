@@ -87,7 +87,7 @@ interface DatePickerCloseDetails {
   id: string;
 }
 
-const DATEPICKER_SWITCH_EVENT = "atlantis.datepicker-switch";
+export const DATEPICKER_SWITCH_EVENT = "atlantis.datepicker-switch";
 
 /*eslint max-statements: ["error", 16]*/
 export function DatePicker({
