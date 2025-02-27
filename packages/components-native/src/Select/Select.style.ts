@@ -17,14 +17,17 @@ export const useStyles = buildThemedStyles(tokens => {
       },
     ]),
 
-    input: {
-      flexDirection: "row",
-      flexGrow: 0,
-      paddingTop: tokens["space-smaller"],
-      minHeight: 0,
-      minWidth: "100%",
-      paddingRight: tokens["space-small"],
-    },
+    input: StyleSheet.flatten([
+      commonInputStyles.input,
+      {
+        flexDirection: "row",
+        flexGrow: 0,
+        paddingTop: tokens["space-smaller"],
+        minHeight: 0,
+        minWidth: "100%",
+        paddingRight: tokens["space-small"],
+      },
+    ]),
 
     value: {
       flexGrow: 1,

@@ -152,7 +152,7 @@ function InternalTypography<T extends FontFamily = "base">({
   maxFontScaleSize,
   adjustsFontSizeToFit = false,
   lineHeight,
-  letterSpacing,
+  letterSpacing = "base",
   reverseTheme = false,
   hideFromScreenReader = false,
   accessibilityRole = "text",
@@ -234,7 +234,7 @@ function getFontStyle(
   fontFamily: FontFamily = "base",
   fontStyle: FontStyle = "regular",
   fontWeight: FontWeight = "regular",
-  styles: Record<string, TextStyle>,
+  styles: ReturnType<typeof useTypographyStyles>,
 ) {
   const defaultBaseFontStyling = styles.baseRegularRegular;
   const defaultDisplayFontStyling = styles.displayRegularBold;
@@ -302,7 +302,7 @@ function getSizeAndHeightStyle(
 }
 
 function getLetterSpacingStyle(
-  letterSpacing: LetterSpacing = "base",
+  letterSpacing: LetterSpacing,
   styles: Record<string, TextStyle>,
 ) {
   return styles[`${letterSpacing}LetterSpacing`];

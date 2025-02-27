@@ -1,11 +1,11 @@
 import { Dimensions, StyleSheet } from "react-native";
-import { tokens as staticTokens } from "../utils/design";
 import { buildThemedStyles } from "../AtlantisThemeContext";
 
 const { height } = Dimensions.get("window");
-const modalBorderRadius = staticTokens["radius-larger"];
 
 export const useStyles = buildThemedStyles(tokens => {
+  const modalBorderRadius = tokens["radius-larger"];
+
   return {
     overlayModalize: {
       backgroundColor: "transparent",

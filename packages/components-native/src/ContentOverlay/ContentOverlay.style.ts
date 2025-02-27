@@ -1,10 +1,9 @@
-import { tokens as staticTokens } from "../utils/design";
 import { buildThemedStyles } from "../AtlantisThemeContext";
 
-const modalBorderRadius = staticTokens["radius-larger"];
-const titleOffsetFromHandle = staticTokens["space-base"];
-
 export const useStyles = buildThemedStyles(tokens => {
+  const modalBorderRadius = tokens["radius-larger"];
+  const titleOffsetFromHandle = tokens["space-base"];
+
   return {
     handle: {
       width: tokens["space-largest"],

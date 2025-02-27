@@ -1,10 +1,8 @@
-import { tokens as staticTokens } from "../utils/design";
 import { buildThemedStyles } from "../AtlantisThemeContext";
 
-const checkboxDimensions =
-  staticTokens["space-large"] + staticTokens["space-smaller"];
-
 export const useStyles = buildThemedStyles(tokens => {
+  const checkboxDimensions = tokens["space-large"] + tokens["space-smaller"];
+
   return {
     container: {
       width: "100%",

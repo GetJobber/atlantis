@@ -1,9 +1,8 @@
-import { tokens as staticTokens } from "../utils/design";
 import { buildThemedStyles } from "../AtlantisThemeContext";
 
-const chipHeight = staticTokens["space-larger"] + staticTokens["space-small"];
-
 export const useStyles = buildThemedStyles(tokens => {
+  const chipHeight = tokens["space-larger"] + tokens["space-small"];
+
   return {
     container: {
       alignItems: "center",
