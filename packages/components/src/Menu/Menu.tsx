@@ -61,10 +61,10 @@ export interface SectionProps {
   actions: ActionProps[];
 }
 
+// eslint-disable-next-line max-statements
 export function Menu({ activator, items }: MenuProps) {
   const [visible, setVisible] = useState(false);
   const popperRef = useRef<HTMLDivElement>(null);
-  const a = 1;
 
   const { width } = useWindowDimensions();
 
