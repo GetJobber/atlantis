@@ -266,7 +266,7 @@ function getTransformedText(text?: string, transform?: TextTransform) {
 }
 
 function getColorStyle(
-  styles: Record<string, TextStyle>,
+  styles: ReturnType<typeof useTypographyStyles>,
   color?: TextColor,
   reverseTheme?: boolean,
 ) {
@@ -279,7 +279,7 @@ function getColorStyle(
 }
 
 function getAlignStyle(
-  styles: Record<string, TextStyle>,
+  styles: ReturnType<typeof useTypographyStyles>,
   alignStyle: TextAlign = I18nManager.isRTL ? "end" : "start",
 ) {
   return styles[`${alignStyle}Align`];
@@ -287,7 +287,7 @@ function getAlignStyle(
 
 function getSizeAndHeightStyle(
   textSize: TextSize,
-  styles: Record<string, TextStyle>,
+  styles: ReturnType<typeof useTypographyStyles>,
   lineHeightOverwrite?: LineHeight,
 ) {
   const fontSize = styles[`${textSize}Size`];
@@ -303,7 +303,7 @@ function getSizeAndHeightStyle(
 
 function getLetterSpacingStyle(
   letterSpacing: LetterSpacing,
-  styles: Record<string, TextStyle>,
+  styles: ReturnType<typeof useTypographyStyles>,
 ) {
   return styles[`${letterSpacing}LetterSpacing`];
 }

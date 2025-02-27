@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useStyles } from "./SelectDefaultPicker.style";
+import { styles } from "./SelectDefaultPicker.style";
 import { SelectInternalPickerProps } from "../../types";
 import { SelectPressable } from "../SelectPressable/SelectPressable";
 import { useAtlantisI18n } from "../../../hooks/useAtlantisI18n";
@@ -23,7 +23,6 @@ export function SelectDefaultPicker({
   const [show, setShow] = useState(false);
   const { t } = useAtlantisI18n();
   const selectedLanguage = options.find(option => option.isActive);
-  const styles = useStyles();
 
   return (
     <>
