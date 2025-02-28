@@ -1,8 +1,9 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import ReactDatePicker from "react-datepicker";
 import userEvent from "@testing-library/user-event";
 import { DatePicker } from "./DatePicker";
+import styles from "./DatePicker.module.css";
 
 beforeEach(() => {
   /**
@@ -96,7 +97,7 @@ it("should call onMonthChange when the user switches month", async () => {
 describe("react-datepicker-ignore-onclickoutside class behavior", () => {
   const className = "react-datepicker-ignore-onclickoutside";
 
-  it("should add class when non-inline picker is opened", async () => {
+  it("should add className when non-inline picker is opened", async () => {
     const { container } = render(<DatePicker onChange={jest.fn()} />);
     const target = container.firstChild;
 
@@ -107,11 +108,34 @@ describe("react-datepicker-ignore-onclickoutside class behavior", () => {
     expect(target).toHaveClass(className);
   });
 
-  it("should never have class when inline", () => {
+  it("should never have className when inline", () => {
     const { container } = render(<DatePicker onChange={jest.fn()} inline />);
     const target = container.firstChild;
 
     expect(target).not.toHaveClass(className);
+  });
+
+  it("should only apply className to active DatePicker", async () => {
+    const { container } = render(
+      <>
+        <DatePicker onChange={jest.fn()} />
+        <DatePicker onChange={jest.fn()} />
+      </>,
+    );
+    const [picker1, picker2] = container.querySelectorAll(
+      `.${styles.datePickerWrapper}`,
+    );
+
+    expect(picker1).not.toHaveClass(className);
+    expect(picker2).not.toHaveClass(className);
+
+    jest.useRealTimers();
+    await userEvent.click(
+      within(picker1 as HTMLElement).getByLabelText("Open Datepicker"),
+    );
+
+    expect(picker1).toHaveClass(className);
+    expect(picker2).not.toHaveClass(className);
   });
 });
 
