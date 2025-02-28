@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.20.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.20.3...@jobber/components@6.20.4) (2025-02-28)
+
+
+### Bug Fixes
+
+* **components:** Keep only one DatePicker open at a time ([#2397](https://github.com/GetJobber/atlantis/issues/2397)) ([c90217a](https://github.com/GetJobber/atlantis/commit/c90217a5053c2a810cd87a0d0665aa3150e80860))
+
+
+
+
+
 ## [6.20.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.20.2...@jobber/components@6.20.3) (2025-02-24)
 
 
