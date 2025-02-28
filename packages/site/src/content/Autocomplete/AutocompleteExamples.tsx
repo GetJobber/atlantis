@@ -406,8 +406,8 @@ function CustomMenuContent({
     [inputFocused, footerFocused],
   );
 
-  /* eslint-disable max-statements */
   const onRequestHighlightChange = useCallback(
+    /* eslint-disable max-statements */
     (event: KeyboardEvent, direction: KeyboardAction) => {
       const indexChange = getRequestedIndexChange({
         event,
