@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useId, useRef, useState } from "react";
+import React, { ReactElement, useEffect, useRef, useState } from "react";
 import classnames from "classnames";
 import ReactDatePicker from "react-datepicker";
 import { XOR } from "ts-xor";
@@ -83,13 +83,7 @@ interface DatePickerInlineProps extends BaseDatePickerProps {
 
 type DatePickerProps = XOR<DatePickerModalProps, DatePickerInlineProps>;
 
-interface DatePickerCloseDetails {
-  id: string;
-}
-
-const DATEPICKER_SWITCH_EVENT = "atlantis.datepicker-switch";
-
-/*eslint max-statements: ["error", 16]*/
+/*eslint max-statements: ["error", 13]*/
 export function DatePicker({
   onChange,
   onMonthChange,
@@ -121,74 +115,7 @@ export function DatePicker({
   const datePickerClassNames = classnames(styles.datePicker, {
     [styles.inline]: inline,
   });
-  const pickerRef = useRef<ReactDatePicker>(null);
-  const pickerId = useRef(useId());
-
-  /**
-   * The onChange callback on ReactDatePicker returns a Date and an Event, but
-   * the onChange in our interface only provides the Date. Simplifying the code
-   * by removing this function and passing it directly to the underlying
-   * component breaks tests both here and downstream (i.e. the pattern
-   * `expect(onChange).toHaveBeenCalledWith(date)` is commonly used and would
-   * fail).
-   */
-  function handleChange(value: Date /* , event: React.SyntheticEvent */) {
-    onChange(value);
-  }
-
-  function handleCalendarOpen() {
-    document.dispatchEvent(
-      new CustomEvent(DATEPICKER_SWITCH_EVENT, {
-        detail: { id: pickerId.current },
-      }),
-    );
-
-    pickerRef.current?.setOpen(true);
-    setOpen(true);
-  }
-
-  function handleCalendarClose() {
-    pickerRef.current?.setOpen(false);
-    setOpen(false);
-  }
-
-  // Listen for close events from other DatePickers
-  useEffect(() => {
-    const handleClose = (event: CustomEvent<DatePickerCloseDetails>) => {
-      if (event.detail.id !== pickerId.current) {
-        pickerRef.current?.setOpen(false);
-        setOpen(false);
-      }
-    };
-
-    document.addEventListener(
-      DATEPICKER_SWITCH_EVENT,
-      handleClose as EventListener,
-    );
-
-    return () => {
-      document.removeEventListener(
-        DATEPICKER_SWITCH_EVENT,
-        handleClose as EventListener,
-      );
-    };
-  }, []);
-
-  // Handle ESC key
-  useEffect(() => {
-    const escFunction = (event: KeyboardEvent) => {
-      if (event.key === "Escape" && open) {
-        pickerRef.current?.setOpen(false);
-        event.stopPropagation();
-      }
-    };
-
-    document.addEventListener("keydown", escFunction, true);
-
-    return () => {
-      document.removeEventListener("keydown", escFunction, true);
-    };
-  }, [open]);
+  const { pickerRef } = useEscapeKeyToCloseDatePicker(open, ref);
 
   if (smartAutofocus) {
     useRefocusOnActivator(open);
@@ -216,7 +143,6 @@ export function DatePicker({
         renderCustomHeader={props => <DatePickerCustomHeader {...props} />}
         onCalendarOpen={handleCalendarOpen}
         onCalendarClose={handleCalendarClose}
-        open={open}
         dateFormat={[
           dateFormat,
           "P",
@@ -230,4 +156,51 @@ export function DatePicker({
       />
     </div>
   );
+
+  /**
+   * The onChange callback on ReactDatePicker returns a Date and an Event, but
+   * the onChange in our interface only provides the Date. Simplifying the code
+   * by removing this function and passing it directly to the underlying
+   * component breaks tests both here and downstream (i.e. the pattern
+   * `expect(onChange).toHaveBeenCalledWith(date)` is commonly used and would
+   * fail).
+   */
+  function handleChange(value: Date /* , event: React.SyntheticEvent */) {
+    onChange(value);
+  }
+
+  function handleCalendarOpen() {
+    setOpen(true);
+  }
+
+  function handleCalendarClose() {
+    setOpen(false);
+  }
+}
+
+function useEscapeKeyToCloseDatePicker(
+  open: boolean,
+  ref: React.RefObject<HTMLDivElement>,
+): { pickerRef: React.RefObject<ReactDatePicker> } {
+  const pickerRef = useRef<ReactDatePicker>(null);
+
+  const escFunction = (event: KeyboardEvent) => {
+    if (event.key === "Escape" && open) {
+      // Close the picker ourselves and prevent propagation so that ESC presses with the picker open
+      // do not close parent elements that may also be listening for ESC presses such as Modals
+      pickerRef.current?.setOpen(false);
+      event.stopPropagation();
+    }
+  };
+  useEffect(() => {
+    ref.current?.addEventListener("keydown", escFunction);
+
+    return () => {
+      ref.current?.removeEventListener("keydown", escFunction);
+    };
+  }, [open, ref, pickerRef]);
+
+  return {
+    pickerRef,
+  };
 }
