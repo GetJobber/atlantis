@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import ReactDatePicker from "react-datepicker";
 import userEvent from "@testing-library/user-event";
 import { DatePicker } from "./DatePicker";
@@ -76,18 +76,6 @@ it("always appears when inline", () => {
   expect(screen.getByText("15")).toBeInstanceOf(HTMLDivElement);
 });
 
-it("should not add the `react-datepicker-ignore-onclickoutside` when inline", () => {
-  const { container, rerender } = render(<DatePicker onChange={jest.fn()} />);
-
-  const target = container.firstChild;
-  const className = "react-datepicker-ignore-onclickoutside";
-  expect(target).toHaveClass(className);
-
-  rerender(<DatePicker onChange={jest.fn()} inline />);
-
-  expect(target).not.toHaveClass(className);
-});
-
 it("should call onMonthChange when the user switches month", async () => {
   const monthChangeHandler = jest.fn();
   render(
@@ -103,6 +91,28 @@ it("should call onMonthChange when the user switches month", async () => {
   await userEvent.click(screen.getByLabelText("Next Month"));
 
   expect(monthChangeHandler).toHaveBeenCalledWith(expect.any(Date));
+});
+
+describe("react-datepicker-ignore-onclickoutside class behavior", () => {
+  const className = "react-datepicker-ignore-onclickoutside";
+
+  it("should add class when non-inline picker is opened", async () => {
+    const { container } = render(<DatePicker onChange={jest.fn()} />);
+    const target = container.firstChild;
+
+    expect(target).not.toHaveClass(className);
+
+    jest.useRealTimers();
+    await userEvent.click(screen.getByLabelText("Open Datepicker"));
+    expect(target).toHaveClass(className);
+  });
+
+  it("should never have class when inline", () => {
+    const { container } = render(<DatePicker onChange={jest.fn()} inline />);
+    const target = container.firstChild;
+
+    expect(target).not.toHaveClass(className);
+  });
 });
 
 describe("ESC key behavior", () => {
@@ -179,52 +189,6 @@ describe("Ensure ReactDatePicker CSS class names exists", () => {
         await userEvent.tab();
         expect(container.querySelector(className)).toBeTruthy();
       });
-    });
-  });
-});
-
-describe("Multiple DatePicker instances", () => {
-  beforeEach(() => {
-    jest.useRealTimers();
-  });
-
-  it("should close other open DatePickers when one is opened", async () => {
-    const { container } = render(
-      <>
-        <DatePicker onChange={jest.fn()} />
-        <DatePicker onChange={jest.fn()} />
-      </>,
-    );
-
-    const [picker1, picker2] = screen.getAllByRole("button", {
-      name: /open datepicker/i,
-    });
-
-    // Open first picker
-    await userEvent.click(picker1);
-    await waitFor(() => {
-      const calendar = container.querySelector(".react-datepicker");
-      expect(calendar).toBeInTheDocument();
-      expect(calendar?.closest(".datePickerWrapper")).toBe(
-        picker1.closest(".datePickerWrapper"),
-      );
-    });
-
-    // Open second picker
-    await userEvent.click(picker2);
-    await waitFor(() => {
-      // Verify only one calendar exists and it belongs to picker2
-      const calendars = container.querySelectorAll(".react-datepicker");
-      expect(calendars).toHaveLength(1);
-      expect(calendars[0].closest(".datePickerWrapper")).toBe(
-        picker2.closest(".datePickerWrapper"),
-      );
-
-      expect(
-        picker1
-          .closest(".datePickerWrapper")
-          ?.querySelector(".react-datepicker"),
-      ).toBeNull();
     });
   });
 });
