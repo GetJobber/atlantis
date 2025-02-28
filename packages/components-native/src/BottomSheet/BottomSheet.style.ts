@@ -2,7 +2,7 @@ import { Dimensions, StyleSheet } from "react-native";
 import { tokens } from "../utils/design";
 
 const { height } = Dimensions.get("window");
-const modalBorderRadius = tokens["radius-larger"];
+const modalBorderRadius = tokens["radius-base"];
 
 export const styles = StyleSheet.create({
   overlayModalize: {
@@ -18,6 +18,8 @@ export const styles = StyleSheet.create({
     borderTopLeftRadius: modalBorderRadius,
     borderTopRightRadius: modalBorderRadius,
     paddingTop: tokens["space-small"],
+    backgroundColor: tokens["color-surface--background"],
+    ...tokens["shadow-base"],
   },
   children: {
     paddingBottom: tokens["space-small"],
