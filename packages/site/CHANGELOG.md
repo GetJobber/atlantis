@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.25.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.24.7...@jobber/atlantis-site@0.25.0) (2025-02-28)
+
+
+### Features
+
+* **components-native:** Allow for stylesheets to be dynamically updated [JOB-116234] ([#2389](https://github.com/GetJobber/atlantis/issues/2389)) ([73ef013](https://github.com/GetJobber/atlantis/commit/73ef0134493b8e8f83c3498da181bbe79ac45bfd))
+
+
+
+
+
 ## [0.24.7](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.24.6...@jobber/atlantis-site@0.24.7) (2025-02-28)
 
 **Note:** Version bump only for package @jobber/atlantis-site

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.78.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.77.1...@jobber/components-native@0.78.0) (2025-02-28)
+
+
+### Features
+
+* **components-native:** Allow for stylesheets to be dynamically updated [JOB-116234] ([#2389](https://github.com/GetJobber/atlantis/issues/2389)) ([73ef013](https://github.com/GetJobber/atlantis/commit/73ef0134493b8e8f83c3498da181bbe79ac45bfd))
+
+
+
+
+
 ## [0.77.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.77.0...@jobber/components-native@0.77.1) (2025-02-24)
 
 **Note:** Version bump only for package @jobber/components-native
