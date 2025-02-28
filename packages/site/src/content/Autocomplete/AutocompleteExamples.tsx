@@ -407,7 +407,7 @@ function CustomMenuContent({
   );
 
   const onRequestHighlightChange = useCallback(
-    /* eslint-disable max-statements */
+    // eslint-disable-next-line max-statements
     (event: KeyboardEvent, direction: KeyboardAction) => {
       const indexChange = getRequestedIndexChange({
         event,
