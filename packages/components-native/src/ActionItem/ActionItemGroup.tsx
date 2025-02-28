@@ -24,13 +24,12 @@ export function ActionItemGroup({
 }
 
 function renderChildren(children: ActionItemElement | ActionItemElement[]) {
+  const styles = useStyles();
   const childArray = React.Children.toArray(children);
   if (childArray.length === 1) return children;
 
   return childArray.map((child, index) => {
     const isSubsequentChild = index !== 0;
-
-    const styles = useStyles();
 
     return (
       <View key={index}>

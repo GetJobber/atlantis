@@ -111,6 +111,8 @@ function CheckboxGroupInternal({
   };
   const indeterminate = checkIndeterminateStatus(actualCheckedValues);
 
+  const styles = useStyles();
+
   function cloneChildCheckbox(
     checkbox: React.ReactElement<CheckboxProps>,
   ): React.ReactElement<CheckboxProps> {
@@ -165,8 +167,6 @@ function CheckboxGroupInternal({
 
     return acc && value;
   }
-
-  const styles = useStyles();
 
   return (
     <View>
