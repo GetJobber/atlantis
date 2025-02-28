@@ -417,7 +417,13 @@ const AllTemplate: ComponentStory<typeof Chip> = () => {
             </Chip.Suffix>
           </Chip>
         </div>
-        <div style={{ maxWidth: "300px" }}>
+        <div
+          style={{
+            maxWidth: "300px",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
           <Typography>Truncation Examples</Typography>
           <Typography>Long Label Only</Typography>
           <Chip label={longLabel} />
