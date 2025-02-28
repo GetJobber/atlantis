@@ -60,7 +60,7 @@
       },
       "animationDuration": {
         "defaultValue": {
-          "value": "tokens[\"timing-slowest\"]"
+          "value": "staticTokens[\"timing-slowest\"]"
         },
         "description": "An optional property that determines the duration of the opening and closing animation of the disclosure component.\nIt's defined in milliseconds.",
         "name": "animationDuration",

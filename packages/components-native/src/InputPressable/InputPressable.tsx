@@ -4,8 +4,8 @@ import { FieldError } from "react-hook-form";
 import { Text as NativeText, Pressable } from "react-native";
 import { Clearable, useShowClear } from "@jobber/hooks";
 import { XOR } from "ts-xor";
-import { styles } from "./InputPressable.style";
-import { InputFieldWrapper, commonInputStyles } from "../InputFieldWrapper";
+import { useStyles } from "./InputPressable.style";
+import { InputFieldWrapper, useCommonInputStyles } from "../InputFieldWrapper";
 
 interface BasicSuffix {
   icon?: IconNames;
@@ -128,6 +128,9 @@ export function InputPressableInternal(
     hasValue,
     disabled,
   });
+
+  const styles = useStyles();
+  const commonInputStyles = useCommonInputStyles();
 
   return (
     <InputFieldWrapper

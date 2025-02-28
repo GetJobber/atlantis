@@ -7,3 +7,4 @@ export {
   AtlantisThemeContextProviderProps,
   AtlantisThemeContextValue,
 } from "./types";
+export { buildThemedStyles } from "./buildThemedStyles";

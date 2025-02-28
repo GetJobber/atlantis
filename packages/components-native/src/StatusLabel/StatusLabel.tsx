@@ -1,8 +1,8 @@
 import React from "react";
 import { View } from "react-native";
-import { styles } from "./StatusLabel.style";
-import { tokens } from "../utils/design";
+import { useStyles } from "./StatusLabel.style";
 import { Text } from "../Text";
+import { useAtlantisTheme } from "../AtlantisThemeContext";
 
 export type StatusType =
   | "success"
@@ -38,6 +38,8 @@ export function StatusLabel({
   alignment = "end",
   status = "success",
 }: StatusLabelProps): JSX.Element {
+  const styles = useStyles();
+
   return (
     <View
       style={[
@@ -51,16 +53,19 @@ export function StatusLabel({
         </Text>
       </View>
       <View style={styles.innerPad} />
-      <StatusLabelIcon status={status} />
+      <StatusLabelIcon status={status} styles={styles} />
     </View>
   );
 }
 
 interface StatusLabelIconProps {
   readonly status: StatusType;
+  readonly styles: ReturnType<typeof useStyles>;
 }
 
-function StatusLabelIcon({ status }: StatusLabelIconProps) {
+function StatusLabelIcon({ status, styles }: StatusLabelIconProps) {
+  const { tokens } = useAtlantisTheme();
+
   return (
     <View
       testID={`${status}LabelIcon`}

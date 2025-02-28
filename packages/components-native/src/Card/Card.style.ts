@@ -1,46 +1,47 @@
-import { StyleSheet } from "react-native";
-import { tokens } from "../utils/design";
+import { buildThemedStyles } from "../AtlantisThemeContext";
 
-export const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    backgroundColor: tokens["color-surface"],
-  },
+export const useStyles = buildThemedStyles(tokens => {
+  return {
+    container: {
+      width: "100%",
+      backgroundColor: tokens["color-surface"],
+    },
 
-  lowElevation: {
-    ...tokens["shadow-low"],
-  },
+    lowElevation: {
+      ...tokens["shadow-low"],
+    },
 
-  baseElevation: {
-    ...tokens["shadow-base"],
-  },
+    baseElevation: {
+      ...tokens["shadow-base"],
+    },
 
-  highElevation: {
-    ...tokens["shadow-high"],
-  },
+    highElevation: {
+      ...tokens["shadow-high"],
+    },
 
-  headerTitle: {
-    flexGrow: 1,
-    flex: 1,
-  },
+    headerTitle: {
+      flexGrow: 1,
+      flex: 1,
+    },
 
-  footer: {
-    height: tokens["space-largest"],
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
+    footer: {
+      height: tokens["space-largest"],
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+    },
 
-  pressed: {
-    opacity: tokens["opacity-pressed"],
-  },
+    pressed: {
+      opacity: tokens["opacity-pressed"],
+    },
 
-  actionItem: {
-    height: tokens["typography--lineHeight-base"],
-    justifyContent: "center",
-  },
+    actionItem: {
+      height: tokens["typography--lineHeight-base"],
+      justifyContent: "center",
+    },
 
-  actionLabel: {
-    paddingTop: tokens["space-smallest"],
-  },
+    actionLabel: {
+      paddingTop: tokens["space-smallest"],
+    },
+  };
 });
