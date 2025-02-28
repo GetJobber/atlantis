@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.20.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.20.4...@jobber/components@6.20.5) (2025-02-28)
+
+
+### Bug Fixes
+
+* **components:** Fix Chip Truncation Gradient ([#2399](https://github.com/GetJobber/atlantis/issues/2399)) ([b329aa1](https://github.com/GetJobber/atlantis/commit/b329aa1a6cbcedfbc95a3179e017214054cb8015))
+
+
+
+
+
 ## [6.20.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.20.3...@jobber/components@6.20.4) (2025-02-28)
 
 
