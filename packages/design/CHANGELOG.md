@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.71.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.71.0...@jobber/design@0.71.1) (2025-02-28)
+
+
+### Bug Fixes
+
+* **design:** update headset icon to fix fill rule issue ([#2402](https://github.com/GetJobber/atlantis/issues/2402)) ([6c4aa1b](https://github.com/GetJobber/atlantis/commit/6c4aa1b70142389b63fa5393ba8f2d952ff7a447))
+
+
+
+
+
 # [0.71.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.70.1...@jobber/design@0.71.0) (2025-02-24)
 
 
