@@ -182,10 +182,10 @@ For Example:
 
 ```jsx
 //Descriptive
-<Button color=Color.red/>
+<Button color=Color.red />
 
 //Semantic
-<Button type=ButtonType.dangerous/>
+<Button type=ButtonType.dangerous />
 ```
 
 _This helps us ensure that we can change our internal style without breaking API
