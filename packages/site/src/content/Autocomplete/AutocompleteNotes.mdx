@@ -95,13 +95,12 @@ In this example we will override the default rendering of the Autocomplete Menu 
 
 In this example we will override the rendering of the menu to render the Options
 in a completely custom way. This example will also include a footer that is
-rendered at the bottom of the menu.
+rendered at the bottom of the menu with sticky positioning.
 
 **Note:** Due to the complexity of the example, we will not be using the
 `useKeyboardNavigation` hook to handle the keyboard navigation of the options.
 
-Instead we will be handling the keyboard navigation manually with the Instead we
-will be handling the keyboard navigation manually with the
+Instead we will be handling the keyboard navigation manually with the
 `useCustomKeyboardNavigation` hook. This requires us to manually keep track of
 the highlighted option index and update it when the user navigates the menu.
 
@@ -122,6 +121,10 @@ handles attaching the menu to the input. Our custom options are wrapped by the
 `BaseMenuOption` component which handles the base styling and functionality for
 the options. Inside the `BaseMenuOption` component the content that we want to
 render is provided as children.
+
+**Note:** For the footer to be sticky at the bottom of the menu without being
+scrollable, the footer needs to be wrapped in a `div` with `position: "sticky"`
+and `bottom: 0`.
 
 <Disclosure title="Menu Option Content (Click to Reveal Code)">
 
@@ -146,6 +149,9 @@ handle the keyboard navigation of the options and the footer.
   navigates the menu.
 - `getRequestedIndexChange` is a helper function that is used to get the index
   change based on the keyboard event, direction and if the option is a group.
+- `KeyboardAction.Next` case should calculate the exact scroll position needed
+  with the footer height offset in mind, when the next element is hidden behind
+  the footer.
 
 <Disclosure title="Keyboard Navigation (Click to Reveal Code)">
 

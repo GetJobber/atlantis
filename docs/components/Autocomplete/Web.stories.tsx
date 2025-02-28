@@ -558,18 +558,35 @@ const CustomRenderingTemplate = () => {
             });
 
             break;
-          case KeyboardAction.Next:
+          case KeyboardAction.Next: {
             setHighlightedOptionIndex(newNextIndex);
-            menuRef?.children[newNextIndex]?.scrollIntoView?.({
-              behavior: "smooth",
-              block: "nearest",
-              inline: "start",
-            });
+            const nextElement = menuRef?.children[newNextIndex];
+            const footerHeight = footerElement?.offsetHeight || 0;
+
+            if (nextElement) {
+              const rect = nextElement.getBoundingClientRect();
+              const menuRect = menuRef.getBoundingClientRect();
+
+              // If element is hidden behind footer
+              if (rect.bottom > menuRect.bottom - footerHeight) {
+                // Calculate exact scroll position needed
+                const scrollOffset =
+                  rect.bottom - (menuRect.bottom - footerHeight);
+                menuRef.scrollTop += scrollOffset;
+              } else {
+                nextElement.scrollIntoView({
+                  behavior: "smooth",
+                  block: "nearest",
+                  inline: "start",
+                });
+              }
+            }
 
             if (newNextIndex === maxIndex) {
               footerElement?.focus();
             }
             break;
+          }
 
           case KeyboardAction.Select:
             // Don't select the footer
@@ -626,14 +643,16 @@ const CustomRenderingTemplate = () => {
       window.alert("Add new client");
     }
     const footer = (
-      <Button
-        label="+ Add new client"
-        onClick={addNewClient}
-        size="small"
-        id="footerElement"
-        fullWidth
-        type="tertiary"
-      />
+      <div style={{ position: "sticky", bottom: 0 }}>
+        <Button
+          label="+ Add new client"
+          onClick={addNewClient}
+          size="small"
+          id="footerElement"
+          fullWidth
+          type="tertiary"
+        />
+      </div>
     );
 
     return (
