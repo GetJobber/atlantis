@@ -1,0 +1,54 @@
+up:
+  - nvm
+  - run:
+      label: "Install Dependencies"
+      command: "test -d node_modules && npm run lerna:clean; npm ci"
+      working_dir: "."
+      checksum_command: "cat package.json package-lock.json && test -d node_modules || echo 'no_modules'"
+
+# log:
+#   services:
+#     - name: storybook
+#       args:
+#         command: npm run storybook
+#     - name: site
+#       args:
+#         command: cd packages/site && npm run start
+# wants to install tmux
+
+doctor:
+  sections:
+    - name: environment_setup
+      desc: "Atlantis Development Environment"
+      steps:
+        # - check: custom
+        #   args:
+        #     desc: "Checking Node.js version"
+        #     command: ["node", "-v"]
+        #     version_matches: "v22"
+        - check: custom
+          args:
+            desc: "Checking npm version"
+            command: ["npm", "-v"]
+            version_matches: "10"
+        - check: custom
+          args:
+            desc: "Checking for node_modules"
+            command: ["test", "-d", "node_modules"]
+        # - check: custom
+        #   args:
+        #     desc: "Checking Storybook port (6005) is available"
+        #     command: ["sh", "-c", "! lsof -i :6005 || (echo 'Port 6005 is already in use by:' && lsof -i :6005)"]
+        #     fail_message: "Port 6005 is already in use. Please stop any running Storybook instances or processes using this port"
+        - check: custom
+          args:
+            desc: "Checking package.json exists"
+            command: ["test", "-f", "package.json"]
+        - check: custom
+          args:
+            desc: "Checking package-lock.json exists"
+            command: ["test", "-f", "package-lock.json"]
+        - check: custom
+          args:
+            desc: "Checking lerna.json exists"
+            command: ["test", "-f", "lerna.json"]
