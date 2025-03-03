@@ -180,3 +180,41 @@ function ThemedComponent() {
   );
 }
 ```
+
+### Creating themed styles with buildThemedStyles (Mobile Only)
+
+The `buildThemedStyles` utility is available to help create themed StyleSheets
+that automatically update when the theme changes.
+
+```tsx
+// In the .style.ts file
+import { buildThemedStyles } from "@jobber/components/AtlantisThemeContext";
+
+const useStyles = buildThemedStyles(tokens => ({
+  container: {
+    backgroundColor: tokens["color-surface"],
+    padding: tokens["space-base"],
+    borderRadius: tokens["radius-base"],
+  },
+  text: {
+    color: tokens["color-text"],
+    fontSize: tokens["font-size-base"],
+  },
+}));
+
+// In the component file
+function ThemedComponent() {
+  const styles = useStyles();
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>Themed content</Text>
+    </View>
+  );
+}
+```
+
+Key features:
+
+- Automatically updates styles when the theme changes
+- Works with React Native's StyleSheet system
+- Memoized so that the StyleSheet is only re-created when the theme changes
