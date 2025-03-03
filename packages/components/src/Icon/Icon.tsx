@@ -29,6 +29,12 @@ export interface IconProps {
    * Used to locate this view in end-to-end tests
    */
   readonly testID?: string;
+
+  /**
+   * Determines the placement of the icon.
+   * @default inline
+   */
+  readonly placement?: "inline" | "block";
 }
 
 export function Icon({
@@ -37,6 +43,7 @@ export function Icon({
   customColor,
   size = "base",
   testID,
+  placement = "inline",
 }: IconProps) {
   let icon;
   const { svgStyle, pathStyle, paths, viewBox } = getIcon({
@@ -55,14 +62,16 @@ export function Icon({
   }
 
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox={viewBox}
-      style={svgStyle}
-      data-testid={testID || name}
-    >
-      {icon}
-    </svg>
+    <span style={{ display: placement === "block" ? "block" : "inline-block" }}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox={viewBox}
+        style={svgStyle}
+        data-testid={testID || name}
+      >
+        {icon}
+      </svg>
+    </span>
   );
 }
 
