@@ -11,6 +11,13 @@
   max-width: 420px;
 }
 
+.drawer.anchored {
+  position: absolute;
+  right: auto;
+  height: auto;
+  max-width: none;
+}
+
 .container,
 .drawer,
 .header,
