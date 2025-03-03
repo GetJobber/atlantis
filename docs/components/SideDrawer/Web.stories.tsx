@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { SideDrawer } from "@jobber/components/SideDrawer";
 import { Button } from "@jobber/components/Button";
@@ -268,6 +268,51 @@ const BackButtonTemplate: ComponentStory<typeof SideDrawer> = args => {
   );
 };
 
+const AnchoredTemplate: ComponentStory<typeof SideDrawer> = args => {
+  const [sideDrawerOpen, setSideDrawerOpen] = useState(args.open);
+  const anchorRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <div style={{ display: "flex", gap: "24px" }}>
+      <div style={{ width: "200px", background: "#f5f5f5", padding: "16px" }}>
+        Left Panel
+      </div>
+      <div
+        ref={anchorRef}
+        style={{
+          width: "300px",
+          background: "#f5f5f5",
+          padding: "16px",
+          position: "relative",
+        }}
+      >
+        <Text>Middle Panel</Text>
+        <Button
+          onClick={() => setSideDrawerOpen(true)}
+          label="Open Side Drawer"
+        />
+      </div>
+      <div style={{ width: "200px", background: "#f5f5f5", padding: "16px" }}>
+        Right Panel
+      </div>
+
+      <SideDrawer
+        {...args}
+        open={sideDrawerOpen}
+        onRequestClose={() => setSideDrawerOpen(false)}
+        anchorElement={anchorRef}
+      >
+        <SideDrawer.Title>Anchored Side Drawer</SideDrawer.Title>
+        <Content>
+          <Text>
+            This drawer is anchored to the middle panel instead of the viewport.
+          </Text>
+        </Content>
+      </SideDrawer>
+    </div>
+  );
+};
+
 export const Basic = BasicTemplate.bind({});
 Basic.args = { open: true };
 
@@ -282,3 +327,6 @@ Toolbar.args = { open: true };
 
 export const BackButton = BackButtonTemplate.bind({});
 BackButton.args = { open: true };
+
+export const Anchored = AnchoredTemplate.bind({});
+Anchored.args = { open: true };

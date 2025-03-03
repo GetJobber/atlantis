@@ -1,5 +1,5 @@
-import React, { useId, useState } from "react";
-import type { KeyboardEvent, PropsWithChildren } from "react";
+import React, { useEffect, useId, useState } from "react";
+import type { KeyboardEvent, PropsWithChildren, RefObject } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, Variants, motion } from "framer-motion";
 import { tokens } from "@jobber/design";
@@ -38,6 +38,12 @@ interface SideDrawerProps extends PropsWithChildren {
    * Change the scrolling direction of the drawer. Useful for chat-like interfaces.
    */
   readonly scrollDirection?: "normal" | "reverse";
+
+  /**
+   * Element to anchor the drawer to. When provided, the drawer will be positioned
+   * relative to this element instead of the viewport.
+   */
+  readonly anchorElement?: RefObject<HTMLElement>;
 }
 
 const variants: Variants = {
@@ -45,13 +51,46 @@ const variants: Variants = {
   visible: { x: 0, transitionEnd: { x: 0 } },
 };
 
-export function SideDrawer({
-  children,
-  onRequestClose,
-  open,
-  variation = "base",
-  scrollDirection,
-}: SideDrawerProps) {
+const useAnchorPosition = (
+  anchorElement: RefObject<HTMLElement> | undefined,
+  open: boolean,
+) => {
+  const [position, setPosition] = useState<{
+    top: number;
+    left: number;
+    width: number;
+  }>({
+    top: 0,
+    left: 0,
+    width: 0,
+  });
+
+  useEffect(() => {
+    if (anchorElement?.current && open) {
+      const updatePosition = () => {
+        const rect = anchorElement.current?.getBoundingClientRect();
+
+        if (rect) {
+          const width = Math.min(420, rect.right);
+          setPosition({
+            top: rect.top,
+            left: rect.right - width,
+            width: width,
+          });
+        }
+      };
+
+      updatePosition();
+      window.addEventListener("resize", updatePosition);
+
+      return () => window.removeEventListener("resize", updatePosition);
+    }
+  }, [anchorElement, open]);
+
+  return position;
+};
+
+const useSideDrawerState = (open: boolean) => {
   const [ref, setRef] = useState<HTMLDivElement | null>(null);
   const [components, setComponents] = useState<RegisteredComponents>({
     backButton: false,
@@ -63,6 +102,42 @@ export function SideDrawer({
   const [headerShadowRef, noHeaderShadow] = useInView<HTMLDivElement>();
   const [footerShadowRef, noFooterShadow] = useInView<HTMLDivElement>();
 
+  return {
+    ref,
+    setRef,
+    components,
+    setComponents,
+    slots: { toolbar, title, actions, backButton, footer },
+    sideDrawerRef,
+    headerShadowRef,
+    noHeaderShadow,
+    footerShadowRef,
+    noFooterShadow,
+  };
+};
+
+export function SideDrawer({
+  children,
+  onRequestClose,
+  open,
+  variation = "base",
+  scrollDirection,
+  anchorElement,
+}: SideDrawerProps) {
+  const {
+    ref,
+    setRef,
+    components,
+    setComponents,
+    slots,
+    sideDrawerRef,
+    headerShadowRef,
+    noHeaderShadow,
+    footerShadowRef,
+    noFooterShadow,
+  } = useSideDrawerState(open);
+  const position = useAnchorPosition(anchorElement, open);
+
   const container = globalThis.document?.body || null;
   const isMounted = useIsMounted();
 
@@ -71,11 +146,11 @@ export function SideDrawer({
   return createPortal(
     <SideDrawerContext.Provider
       value={{
-        actionPortal: ref?.querySelector(actions.selector),
-        titlePortal: ref?.querySelector(title.selector),
-        toolbarPortal: ref?.querySelector(toolbar.selector),
-        backPortal: ref?.querySelector(backButton.selector),
-        footerPortal: ref?.querySelector(footer.selector),
+        actionPortal: ref?.querySelector(slots.actions.selector),
+        titlePortal: ref?.querySelector(slots.title.selector),
+        toolbarPortal: ref?.querySelector(slots.toolbar.selector),
+        backPortal: ref?.querySelector(slots.backButton.selector),
+        footerPortal: ref?.querySelector(slots.footer.selector),
         components,
         registerComponent: key =>
           setComponents(prev => ({ ...prev, [key]: true })),
@@ -97,6 +172,7 @@ export function SideDrawer({
           <motion.div
             className={classNames(styles.drawer, {
               [styles.reverseScroll]: scrollDirection === "reverse",
+              [styles.anchored]: Boolean(anchorElement),
             })}
             ref={setRef}
             data-elevation={"elevated"}
@@ -107,6 +183,18 @@ export function SideDrawer({
             transition={{
               duration: tokens["timing-base"] / 1000,
             }}
+            style={
+              anchorElement
+                ? {
+                    position: "absolute",
+                    top: `${position.top}px`,
+                    left: `${position.left}px`,
+                    width: `${position.width}px`,
+                    height: "auto",
+                    maxHeight: `calc(100vh - ${position.top}px)`,
+                  }
+                : undefined
+            }
           >
             <div
               ref={sideDrawerRef}
@@ -129,16 +217,19 @@ export function SideDrawer({
                       className={classNames(styles.backButton, {
                         [styles.backButtonVisible]: components.backButton,
                       })}
-                      {...backButton.attr}
+                      {...slots.backButton.attr}
                     />
                     <div
                       className={classNames(styles.heading)}
-                      {...title.attr}
+                      {...slots.title.attr}
                     />
                   </Flex>
 
                   <div className={styles.headerActions}>
-                    <div className={styles.hideWhenEmpty} {...actions.attr} />
+                    <div
+                      className={styles.hideWhenEmpty}
+                      {...slots.actions.attr}
+                    />
                     <Button
                       ariaLabel="Close"
                       icon="cross"
@@ -149,7 +240,7 @@ export function SideDrawer({
                   </div>
                 </Flex>
 
-                <div className={styles.hideWhenEmpty} {...toolbar.attr} />
+                <div className={styles.hideWhenEmpty} {...slots.toolbar.attr} />
               </div>
 
               <div className={styles.content}>
@@ -171,7 +262,7 @@ export function SideDrawer({
                   [styles.hasShadow]:
                     footerShadowRef.current && !noFooterShadow,
                 })}
-                {...footer.attr}
+                {...slots.footer.attr}
               />
             </div>
           </motion.div>
