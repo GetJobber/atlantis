@@ -103,7 +103,7 @@ const ChatInterface = ({
       </div>
       <div onKeyDown={handleKeyDown}>
         <InputText
-          placeholder="Ask a Question"
+          placeholder="Ask a question"
           multiline={true}
           value={question}
           onChange={value => setQuestion(value as string)}
@@ -154,7 +154,7 @@ export function TritonSideDrawer() {
           />
         </Tooltip>
       </SideDrawer.Actions>
-      <SideDrawer.Toolbar>
+      <Box padding={{ left: "base", right: "base" }}>
         {isValidKey ? (
           <ChatInterface
             question={question}
@@ -165,7 +165,7 @@ export function TritonSideDrawer() {
         ) : (
           <ApiKeyForm onSubmit={setApiKey} loading={loading} />
         )}
-      </SideDrawer.Toolbar>
+      </Box>
     </SideDrawer>
   );
 }
