@@ -1,12 +1,14 @@
 import {
   Box,
   Button,
-  Content,
+  Heading,
+  Icon,
   InputPassword,
   InputText,
   InputValidation,
   SideDrawer,
   Text,
+  Tooltip,
 } from "@jobber/components";
 import { useCallback, useEffect, useState } from "react";
 import { TritonConversation } from "./TritonConversation";
@@ -32,21 +34,32 @@ const ApiKeyForm = ({
   };
 
   return (
-    <Box margin={{ bottom: "base" }}>
-      <Content>
-        <Text>
-          To authenticate with Triton, paste the secret API key below.
-        </Text>
-        <InputPassword
-          value={apiKey}
-          onChange={value => {
-            setApiKey(value as string);
-            if (!value) setValidationError("");
-          }}
-        />
-        {validationError && <InputValidation message={validationError} />}
-        <Button label="Save" onClick={handleSubmit} loading={loading} />
-      </Content>
+    <Box
+      padding="larger"
+      gap="base"
+      alignItems="center"
+      margin={{ bottom: "base" }}
+      background="surface--background--subtle"
+      radius="base"
+    >
+      <Box gap="small" alignItems="center">
+        <Icon name="warning" size="large" />
+        <Heading level={3}>Authentication required</Heading>
+      </Box>
+      <Text align="center">
+        Enter your Atlantis AI API key to access Triton
+      </Text>
+      <InputPassword
+        value={apiKey}
+        align="center"
+        placeholder="API key"
+        onChange={value => {
+          setApiKey(value as string);
+          if (!value) setValidationError("");
+        }}
+      />
+      {validationError && <InputValidation message={validationError} />}
+      <Button label="Submit" onClick={handleSubmit} loading={loading} />
     </Box>
   );
 };
@@ -129,6 +142,18 @@ export function TritonSideDrawer() {
 
   return (
     <SideDrawer open={tritonOpen} onRequestClose={onCloseTriton}>
+      <SideDrawer.Title>Triton</SideDrawer.Title>
+      <SideDrawer.Actions>
+        <Tooltip message="Visit Triton Site">
+          <Button
+            ariaLabel="Visit Triton Site"
+            icon="export"
+            type="secondary"
+            variation="subtle"
+            url="https://atlantis-ai.jobber.dev"
+          />
+        </Tooltip>
+      </SideDrawer.Actions>
       <SideDrawer.Toolbar>
         {isValidKey ? (
           <ChatInterface
