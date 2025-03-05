@@ -9,7 +9,7 @@ import { useTritonChat } from "../providers/TritonProvider";
 
 const WelcomeMessage = () => (
   <Content>
-    <Heading level={2}>Welcome!</Heading>
+    <Heading level={3}>Welcome!</Heading>
     <div style={{ marginBottom: 80 }}>
       <Text>
         I am an early-stage AI that can help you build with Atlantis components.
