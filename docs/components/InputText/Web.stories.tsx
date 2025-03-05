@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { forwardRef, useEffect, useRef, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import noop from "lodash/noop";
+import uniq from "lodash/uniq";
 import { InputText } from "@jobber/components/InputText";
 import { Button } from "@jobber/components/Button";
 import { Content } from "@jobber/components/Content";
 import { Grid } from "@jobber/components/Grid";
 import { Box } from "@jobber/components/Box";
-import { FormFieldLabel } from "@jobber/components/FormField";
+import {
+  FormFieldLabel,
+  FormFieldWrapper,
+  useFormFieldWrapperStyles,
+} from "@jobber/components/FormField";
+import { ChipDismissible } from "@jobber/components/Chip";
+import { Chips } from "@jobber/components/Chips";
+import styles from "./CustomInput.module.css";
 
 export default {
   title: "Components/Forms and Inputs/InputText/Web",
@@ -387,3 +396,108 @@ export const Controlled = ControlledTemplate.bind({});
 Controlled.args = {
   placeholder: "Hakunamatata",
 };
+
+const options = [
+  { label: "michael.lawson@reqres.in", value: "michael.lawson@reqres.in" },
+  { label: "lindsay.ferguson@reqres.in", value: "lindsay.ferguson@reqres.in" },
+  { label: "tobias.funke@reqres.in", value: "tobias.funke@reqres.in" },
+  { label: "byron.fields@reqres.in", value: "byron.fields@reqres.in" },
+  { label: "george.edwards@reqres.in", value: "george.edwards@reqres.in" },
+  { label: "rachel.howell@reqres.in" },
+];
+
+export function CustomInput() {
+  const [inputValue, setInputValue] = useState<string[]>([]);
+
+  const actions = {
+    handleSelect: (value: string[]) => {
+      setInputValue(value);
+    },
+    handleCustomAdd: (value: string) => {
+      setInputValue(uniq([...inputValue, value]));
+    },
+  };
+
+  const activatorRef = useRef<HTMLInputElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Force menu to open when the activator is focused since the activator is an input element which can have issue
+    const focusInListener = () => {
+      activatorRef.current?.focus();
+    };
+    wrapperRef.current?.addEventListener("focusin", focusInListener);
+
+    return () => {
+      wrapperRef.current?.removeEventListener("focusin", focusInListener);
+    };
+  }, []);
+
+  return (
+    <div className={styles.myCustomPaddingClass}>
+      <FormFieldWrapper
+        error=""
+        identifier="custom-input"
+        descriptionIdentifier="custom-input-description"
+        clearable={"never"}
+        // Right now this is required but we should remove it in the future
+        onClear={noop}
+        wrapperRef={wrapperRef}
+        prefix={{ label: "To" }}
+        suffix={{
+          icon: "more",
+          onClick: () => {
+            alert("You clicked more");
+          },
+          ariaLabel: "More",
+        }}
+      >
+        <Chips
+          type="dismissible"
+          selected={inputValue}
+          onChange={actions.handleSelect}
+          onCustomAdd={actions.handleCustomAdd}
+          isLoadingMore={false}
+          onSearch={noop}
+          onLoadMore={noop}
+          activator={<CustomInputActivator onClick={noop} ref={activatorRef} />}
+        >
+          {options.map(opt => (
+            <ChipDismissible
+              key={opt.value}
+              label={opt.label}
+              value={opt.value}
+            />
+          ))}
+        </Chips>
+      </FormFieldWrapper>
+    </div>
+  );
+}
+
+const CustomInputTemplate = () => {
+  return <CustomInput />;
+};
+
+/**
+ * Custom input activator for the dismissible chip input. is used to provide the styling of our base
+ * This is a solution because right now the activator for chips assumes the menu wants to open when the input is clicked but this is not the case for this
+ * implementation.
+ */
+const CustomInputActivator = forwardRef<
+  HTMLInputElement,
+  { readonly onClick: () => void }
+>(function CustomInputActivatorInternal({ onClick }, ref) {
+  const { inputStyle } = useFormFieldWrapperStyles({});
+
+  return (
+    <input
+      onFocus={onClick}
+      ref={ref}
+      className={inputStyle}
+      style={{ width: "auto", flex: "1 1 auto" }}
+    />
+  );
+});
+
+export const CustomInputStory = CustomInputTemplate.bind({});

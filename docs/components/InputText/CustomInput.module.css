@@ -1,0 +1,15 @@
+/**
+ * Custom padding class for input[role="combobox"] to adjust the sizing of the dismissible chip input
+ */
+.myCustomPaddingClass input[role="combobox"] {
+  padding-top: var(--field--padding-top);
+  padding-bottom: var(--field--padding-bottom);
+  padding-left: var(--field--padding-left);
+  padding-right: var(--field--padding-right);
+}
+/**
+   * Shifts the chips so that they don't overlap with the input prefix
+  */
+.myCustomPaddingClass div[role="listbox"] {
+  padding-left: var(--field--padding-left);
+}
