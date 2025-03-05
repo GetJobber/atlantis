@@ -1,4 +1,10 @@
-import React, { forwardRef, useEffect, useRef, useState } from "react";
+import React, {
+  RefObject,
+  forwardRef,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import noop from "lodash/noop";
 import uniq from "lodash/uniq";
@@ -9,11 +15,22 @@ import { Grid } from "@jobber/components/Grid";
 import { Box } from "@jobber/components/Box";
 import {
   FormFieldLabel,
-  FormFieldWrapper,
   useFormFieldWrapperStyles,
 } from "@jobber/components/FormField";
 import { ChipDismissible } from "@jobber/components/Chip";
 import { Chips } from "@jobber/components/Chips";
+import { Menu } from "@jobber/components/Menu";
+import {
+  AffixIcon,
+  AffixLabel,
+  // eslint-disable-next-line import/no-internal-modules
+} from "@jobber/components/FormField/FormFieldAffix";
+import {
+  FormFieldInputHorizontalWrapper,
+  FormFieldInputWrapperStyles,
+  FormFieldWrapperMain,
+  // eslint-disable-next-line import/no-internal-modules
+} from "@jobber/components/FormField/FormFieldWrapper";
 import styles from "./CustomInput.module.css";
 
 export default {
@@ -397,24 +414,25 @@ Controlled.args = {
   placeholder: "Hakunamatata",
 };
 
-const options = [
+const AllOptions = [
   { label: "michael.lawson@reqres.in", value: "michael.lawson@reqres.in" },
   { label: "lindsay.ferguson@reqres.in", value: "lindsay.ferguson@reqres.in" },
   { label: "tobias.funke@reqres.in", value: "tobias.funke@reqres.in" },
   { label: "byron.fields@reqres.in", value: "byron.fields@reqres.in" },
   { label: "george.edwards@reqres.in", value: "george.edwards@reqres.in" },
-  { label: "rachel.howell@reqres.in" },
 ];
 
 export function CustomInput() {
-  const [inputValue, setInputValue] = useState<string[]>([]);
+  const [selectedOptions, setSelectedOptions] = useState<string[]>(
+    AllOptions.map(opt => opt.value),
+  );
 
   const actions = {
     handleSelect: (value: string[]) => {
-      setInputValue(value);
+      setSelectedOptions(value);
     },
     handleCustomAdd: (value: string) => {
-      setInputValue(uniq([...inputValue, value]));
+      setSelectedOptions(uniq([...selectedOptions, value]));
     },
   };
 
@@ -432,45 +450,57 @@ export function CustomInput() {
       wrapperRef.current?.removeEventListener("focusin", focusInListener);
     };
   }, []);
+  const prefixRef = useRef() as RefObject<HTMLDivElement>;
+
+  const { wrapperClasses, containerClasses, wrapperInlineStyle } =
+    useFormFieldWrapperStyles({});
 
   return (
     <div className={styles.myCustomPaddingClass}>
-      <FormFieldWrapper
-        error=""
-        identifier="custom-input"
-        descriptionIdentifier="custom-input-description"
-        clearable={"never"}
-        // Right now this is required but we should remove it in the future
-        onClear={noop}
-        wrapperRef={wrapperRef}
-        prefix={{ label: "To" }}
-        suffix={{
-          icon: "more",
-          onClick: () => {
-            alert("You clicked more");
-          },
-          ariaLabel: "More",
-        }}
-      >
-        <Chips
-          type="dismissible"
-          selected={inputValue}
-          onChange={actions.handleSelect}
-          onCustomAdd={actions.handleCustomAdd}
-          isLoadingMore={false}
-          onSearch={noop}
-          onLoadMore={noop}
-          activator={<CustomInputActivator onClick={noop} ref={activatorRef} />}
+      <div className={containerClasses}>
+        <div
+          className={wrapperClasses}
+          style={wrapperInlineStyle}
+          data-testid="Form-Field-Wrapper"
+          ref={wrapperRef}
         >
-          {options.map(opt => (
-            <ChipDismissible
-              key={opt.value}
-              label={opt.label}
-              value={opt.value}
-            />
-          ))}
-        </Chips>
-      </FormFieldWrapper>
+          <FormFieldInputHorizontalWrapper>
+            <FormFieldInputWrapperStyles>
+              <AffixLabel label="To" labelRef={prefixRef} />
+              <FormFieldWrapperMain>
+                <Chips
+                  type="dismissible"
+                  selected={selectedOptions}
+                  onChange={actions.handleSelect}
+                  onCustomAdd={actions.handleCustomAdd}
+                  isLoadingMore={false}
+                  onSearch={noop}
+                  onLoadMore={noop}
+                  activator={
+                    <CustomInputActivator onClick={noop} ref={activatorRef} />
+                  }
+                >
+                  {AllOptions.map(opt => (
+                    <ChipDismissible
+                      key={opt.value}
+                      label={opt.label}
+                      value={opt.value}
+                    />
+                  ))}
+                </Chips>
+              </FormFieldWrapperMain>
+            </FormFieldInputWrapperStyles>
+            <div className={styles.suffixMenu}>
+              <Menu
+                activator={<AffixIcon icon="more" variation="suffix" />}
+                items={[
+                  { actions: [{ label: "Add", onClick: () => alert("Add") }] },
+                ]}
+              />
+            </div>
+          </FormFieldInputHorizontalWrapper>
+        </div>
+      </div>
     </div>
   );
 }

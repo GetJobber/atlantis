@@ -13,3 +13,9 @@
 .myCustomPaddingClass div[role="listbox"] {
   padding-left: var(--field--padding-left);
 }
+
+.suffixMenu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
