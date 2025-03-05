@@ -197,7 +197,7 @@
     },
     "border-": {
       "interactive": {
-        "$value": "{color.base.blue-.300}",
+        "$value": "{color.base.blue-.500}",
         "$description": "Use for the borders of interactive elements to give greater visual significance and ensure the element meets WCAG contrast standards."
       },
       "section": {
