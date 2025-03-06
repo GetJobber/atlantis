@@ -20,6 +20,83 @@ sense to allow the `external`, `onClick`, `to`, or `url` props.
 
 ## Component customization
 
+### Composable Usage (web only)
+
+The Button component is built with the `Button.Label`, `Button.Icon` components.
+This composition is the recommended way to customize the Button component
+instead of the prop driven usages.
+
+`Button.Label` is used to display the label of the button.
+
+`Button.Icon` is used to display an icon on the button.
+
+Buttons with icons and labels can be converted using the following example:
+
+```tsx
+<Button icon="add" label="Add" />
+```
+
+becomes
+
+```tsx
+<Button>
+  <Button.Icon icon="add" />
+  <Button.Label>Add</Button.Label>
+</Button>
+```
+
+To convert a button with an icon on the right, use the following example:
+
+```tsx
+<Button icon="add" label="Add" iconOnRight />
+```
+
+becomes
+
+```tsx
+<Button>
+  <Button.Label>Add</Button.Label>
+  <Button.Icon icon="add" />
+</Button>
+```
+
+### Styling another component with Button styles
+
+The Button styles can be used to style another component. Using the
+`useButtonStyles` hook, the styles can be applied to the component. Allowing for
+a component to look like a Button but be something else. This is useful for
+styling Client-side routing links to look like a Button.
+
+`useButtonStyles` is a hook that two sets of styles:
+
+- `buttonWrapperStyles`: The styles for the button wrapper. This handles the
+  background color, border radius, and padding.
+- `buttonChildrenStyles`: The styles for the button children. This handles the
+  icon and label spacing.
+
+The following example shows how to do this with React Router:
+
+```tsx
+import { Link } from "react-router-dom";
+
+function LinkButton() {
+  const { buttonWrapperStyles, buttonChildrenStyles } = useButtonStyles({
+    type: "tertiary",
+    variation: "subtle",
+  });
+
+  return (
+    <Link
+      to="/"
+      className={classnames(buttonWrapperStyles, buttonChildrenStyles)}
+    >
+      <Button.Label>Navigate Home</Button.Label>
+      <Button.Icon icon="home" />
+    </Link>
+  );
+}
+```
+
 ### UNSAFE\_ props (advanced usage)
 
 General information for using `UNSAFE_` props can be found
