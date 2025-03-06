@@ -293,7 +293,7 @@ const ComparisonTemplate: ComponentStory<typeof Button> = () => {
       <Grid.Cell size={{ xs: 6 }}>
         <Button type={type} variation={variation} size="small">
           <Button.Icon icon="note" size="small" />
-          <Button.Label>{`${type} ${variation} Combined Small Props`}</Button.Label>
+          <Button.Label size="small">{`${type} ${variation} Combined Small Props`}</Button.Label>
         </Button>
       </Grid.Cell>
       <Grid.Cell size={{ xs: 6 }}>
@@ -308,7 +308,7 @@ const ComparisonTemplate: ComponentStory<typeof Button> = () => {
       </Grid.Cell>
       <Grid.Cell size={{ xs: 6 }}>
         <Button type={type} variation={variation} size="small">
-          <Button.Label>{`${type} ${variation} Combined Small Props on Right`}</Button.Label>
+          <Button.Label size="small">{`${type} ${variation} Combined Small Props on Right`}</Button.Label>
           <Button.Icon icon="note" size="small" />
         </Button>
       </Grid.Cell>
@@ -348,27 +348,27 @@ const ComparisonTemplate: ComponentStory<typeof Button> = () => {
 };
 
 const ComposedLinksTemplate: ComponentStory<typeof Button> = () => {
-  const { buttonClassNames, buttonChildrenStyles } = useButtonStyles({});
+  const { buttonWrapperStyles, buttonChildrenStyles } = useButtonStyles({});
 
   return (
     <Router basename="/components/composed-links">
       <Link
         to="/"
-        className={classnames(buttonClassNames, buttonChildrenStyles)}
+        className={classnames(buttonWrapperStyles, buttonChildrenStyles)}
       >
         <Button.Label>Home</Button.Label>
         <Button.Icon icon="home" />
       </Link>
       <Link
         to="/office"
-        className={classnames(buttonClassNames, buttonChildrenStyles)}
+        className={classnames(buttonWrapperStyles, buttonChildrenStyles)}
       >
         <Button.Label>Office</Button.Label>
         <Button.Icon icon="address" />
       </Link>
       <Link
         to="/dentist"
-        className={classnames(buttonClassNames, buttonChildrenStyles)}
+        className={classnames(buttonWrapperStyles, buttonChildrenStyles)}
       >
         <Button.Label>Dentist</Button.Label>
       </Link>

@@ -25,12 +25,12 @@ const Button = (props: ButtonProps) => {
     submit,
   } = props;
 
-  const { buttonClassNames, buttonChildrenStyles } = useButtonStyles(props);
+  const { buttonWrapperStyles, buttonChildrenStyles } = useButtonStyles(props);
 
   const buttonType: HTMLButtonType = submit ? "submit" : "button";
 
   const tagProps = {
-    className: classnames(buttonClassNames, buttonChildrenStyles),
+    className: classnames(buttonWrapperStyles, buttonChildrenStyles),
     disabled,
     id,
     ...(submit && { name, value }),

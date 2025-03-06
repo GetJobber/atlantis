@@ -29,12 +29,6 @@
   fill: var(--public--button--color-variation);
   align-items: center;
   justify-content: center;
-  /**
-  replaces
-  .hasIconAndLabel {
-  width: auto;
-  gap: var(--space-smaller); }
- **/
   gap: var(--space-smaller);
 }
 
