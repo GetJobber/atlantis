@@ -274,6 +274,80 @@ sectioned, such as table headers or list sections.
 Use `--color-border--interactive` for interactive elements to ensure accessible
 contrast.
 
+### Workflow
+
+These colors are associated with steps of the home services workflow. These
+should be used sparingly and only on elements that are directly related to the
+workflow.
+
+#### Requests and assessments
+
+<Swatch
+  colors={[
+    "--color-request",
+    "--color-request--surface",
+    "--color-request--onSurface",
+  ]}
+/>
+
+Requests and assessments use orange to convey a "warm handoff" from the service
+consumer to the service provider.
+
+#### Quotes
+
+<Swatch
+  colors={[
+    "--color-quote",
+    "--color-quote--surface",
+    "--color-quote--onSurface",
+  ]}
+/>
+
+Quotes use pink to suggest an increased likelihood of the service provider
+winning the work.
+
+#### Jobs and visits
+
+<Swatch
+  colors={["--color-job", "--color-job--surface", "--color-job--onSurface"]}
+/>
+
+Jobs are green because of their core association to Jobber, which has
+historically used some shade of green for branding.
+
+Visits inherit the job color as they are closely related to jobs.
+
+#### Invoices and payments
+
+<Swatch
+  colors={[
+    "--color-invoice",
+    "--color-invoice--surface",
+    "--color-invoice--onSurface",
+  ]}
+/>
+
+Invoices are blue as this is a common color associated with banking and finance.
+
+<Swatch
+  colors={[
+    "--color-payments",
+    "--color-payments--surface",
+    "--color-payments--onSurface",
+  ]}
+/>
+
+Payments inherit the invoice color as they are closely related to invoices.
+
+#### Tasks
+
+<Swatch
+  colors={["--color-task", "--color-task--surface", "--color-task--onSurface"]}
+/>
+
+Tasks use a deeper shade of blue than invoices and the two rarely share
+interfaces as tasks are generally isolated to scheduling.
+
 ### Brand
 
 Use these colors to represent the Jobber brand visual language.
@@ -312,3 +386,6 @@ caution, it's _bright!_
       .map(key => `--${key}`)}
   />
 </Disclosure>
+
+<br />
+<br />
