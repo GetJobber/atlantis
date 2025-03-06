@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
-import { Button } from "@jobber/components/Button";
+import { Button, ButtonType, ButtonVariation } from "@jobber/components/Button";
 import { Form } from "@jobber/components/Form";
 import { InputNumber } from "@jobber/components/InputNumber";
 import { Content } from "@jobber/components/Content";
-import { ButtonComposed } from "@jobber/components/ButtonComposed";
+import { Grid } from "@jobber/components/Grid";
+import { Heading } from "@jobber/components/Heading";
 
 export default {
   title: "Components/Actions/Button/Web",
@@ -75,80 +76,272 @@ const FormTemplate: ComponentStory<typeof Button> = () => (
   </Form>
 );
 
-const ComparisonTemplate: ComponentStory<typeof Button> = () => (
-  <div
-    style={{
-      display: "grid",
-      gridTemplateColumns: "1fr 1fr",
-      gap: "16px",
-      maxWidth: "800px",
-    }}
-  >
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "8px",
-        alignItems: "center",
-      }}
-    >
-      <h3>Button</h3>
-      <Button label="DefaultDefaultDefaultDefaultDefaultDefaultDefaultDefaultDefault" />
-      <Button label="Primary" variation="work" />
-      <Button label="Secondary" variation="learning" />
-      <Button label="Destructive" variation="destructive" />
-      <Button label="Subtle" variation="subtle" />
-      <Button icon="add" ariaLabel="Add" />
-      {/* @ts-expect-error asfdsa */}
-      <ButtonComposed>
-        <ButtonComposed.Icon icon="add" size="base" />
-      </ButtonComposed>
-      <Button label="With Icon" icon="add" />
-      {/* @ts-expect-error asfdsa */}
-      <ButtonComposed>
-        <ButtonComposed.Icon icon="add" size="base" />
-        <ButtonComposed.Label>With Icon</ButtonComposed.Label>
-        <ButtonComposed.Icon icon="alert" size="base" />
-      </ButtonComposed>
-      <Button label="With Icon" icon="add" iconOnRight={true} />
-      {/* @ts-expect-error asfdsa */}
-      <ButtonComposed>
-        <ButtonComposed.Label>With Icon</ButtonComposed.Label>
-        <ButtonComposed.Icon icon="add" size="base" />
-      </ButtonComposed>
-      <Button label="Loading" loading={true} />
-      <Button label="Disabled" disabled={true} />
-      <Button label="SmallSmallSmallSmallSmallSmallSmall" size="small" />
-      <Button label="LargeLargeLargeLargeLarge" size="large" />
-      <Button label="Full Width" fullWidth={true} icon="add" />
-    </div>
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "8px",
-        alignItems: "center",
-      }}
-    >
-      <h3>ButtonComposed</h3>
-      <ButtonComposed label="DefaultDefaultDefaultDefaultDefaultDefaultDefaultDefaultDefault" />
-      <ButtonComposed label="Primary" variation="work" />
-      <ButtonComposed label="Secondary" variation="learning" />
-      <ButtonComposed label="Destructive" variation="destructive" />
-      <ButtonComposed label="Subtle" variation="subtle" />
-      <ButtonComposed icon="add" ariaLabel="Add" />
+const ComparisonTemplate: ComponentStory<typeof Button> = () => {
+  const [type, setType] = useState<ButtonType>("primary");
+  const [variation, setVariation] = useState<ButtonVariation>("work");
 
-      <ButtonComposed label="Loading" loading={true} />
-      <ButtonComposed label="Disabled" disabled={true} />
-      <ButtonComposed
-        label="SmallSmallSmallSmallSmallSmallSmall"
-        size="small"
-      />
-      <ButtonComposed label="LargeLargeLargeLargeLarge" size="large" />
-      <ButtonComposed label="Full Width" fullWidth={true} icon="add" />
-    </div>
-  </div>
-);
+  return (
+    <Grid>
+      <Grid.Cell size={{ xs: 3 }}>
+        <Button label="Set type primary" onClick={() => setType("primary")} />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 3 }}>
+        <Button
+          label="Set type secondary"
+          onClick={() => setType("secondary")}
+        />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 3 }}>
+        <Button label="Set type tertiary" onClick={() => setType("tertiary")} />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 3 }}></Grid.Cell>
+      <Grid.Cell size={{ xs: 3 }}>
+        <Button
+          label="Set variation work"
+          onClick={() => setVariation("work")}
+        />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 3 }}>
+        <Button
+          label="Set variation learning"
+          onClick={() => setVariation("learning")}
+        />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 3 }}>
+        <Button
+          label="Set variation subtle"
+          onClick={() => setVariation("subtle")}
+        />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 3 }}>
+        <Button
+          label="Set variation destructive"
+          onClick={() => setVariation("destructive")}
+        />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Heading level={3}>Non-composed</Heading>
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Heading level={3}>Composed</Heading>
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Button
+          label={`${type} ${variation} Button`}
+          type={type}
+          variation={variation}
+        />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Button type={type} variation={variation}>
+          <Button.Label>{`${type} ${variation} Button`}</Button.Label>
+        </Button>
+      </Grid.Cell>
+
+      <Grid.Cell size={{ xs: 6 }}>
+        <Button
+          label={`${type} ${variation} Small Button`}
+          type={type}
+          variation={variation}
+          size="small"
+        />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Button type={type} variation={variation} size="small">
+          <Button.Label size="small">{`${type} ${variation} Small Button`}</Button.Label>
+        </Button>
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Button
+          label={`${type} ${variation} Base Size Button`}
+          type={type}
+          variation={variation}
+          size="base"
+        />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Button
+          label={`${type} ${variation} Large Button`}
+          type={type}
+          variation={variation}
+          size="large"
+        />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Button
+          label={`${type} ${variation} with Icon`}
+          type={type}
+          variation={variation}
+          icon="add"
+        />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Button type={type} variation={variation}>
+          <Button.Icon icon="add" />
+          <Button.Label>{`${type} ${variation} with Icon`}</Button.Label>
+        </Button>
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Button
+          label={`${type} ${variation} with Right Icon`}
+          type={type}
+          variation={variation}
+          icon="arrowRight"
+          iconOnRight={true}
+        />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Button type={type} variation={variation}>
+          <Button.Label>{`${type} ${variation} with Right Icon`}</Button.Label>
+          <Button.Icon icon="arrowRight" />
+        </Button>
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Button
+          icon="cog"
+          ariaLabel="Settings"
+          type={type}
+          variation={variation}
+        />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Button type={type} variation={variation}>
+          <Button.Icon icon="cog" />
+        </Button>
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Button
+          label={`${type} ${variation} Small Button`}
+          type={type}
+          variation={variation}
+          size="small"
+        />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Button type={type} variation={variation} size="small">
+          <Button.Label size="small">{`${type} ${variation} Small Button`}</Button.Label>
+        </Button>
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Button
+          label={`${type} ${variation} Base Button`}
+          type={type}
+          variation={variation}
+          size="base"
+        />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Button type={type} variation={variation} size="base">
+          <Button.Label size="base">{`${type} ${variation} Base Button`}</Button.Label>
+        </Button>
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Button
+          label={`${type} ${variation} Large Button`}
+          type={type}
+          variation={variation}
+          size="large"
+        />
+      </Grid.Cell>
+
+      <Grid.Cell size={{ xs: 6 }}>
+        <Button type={type} variation={variation} size="large">
+          <Button.Label size="large">{`${type} ${variation} Large Button`}</Button.Label>
+        </Button>
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Button
+          label={`${type} ${variation} Loading Button`}
+          type={type}
+          variation={variation}
+          loading={true}
+        />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Button type={type} variation={variation} loading={true}>
+          <Button.Label>{`${type} ${variation} Loading Button`}</Button.Label>
+        </Button>
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Button
+          label={`${type} ${variation} Disabled Button`}
+          type={type}
+          variation={variation}
+          disabled={true}
+        />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Button type={type} variation={variation} disabled={true}>
+          <Button.Label>{`${type} ${variation} Disabled Button`}</Button.Label>
+        </Button>
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        {/* Combined props */}
+        <Button
+          label={`${type} ${variation} Combined Small Props`}
+          type={type}
+          variation={variation}
+          icon="note"
+          size="small"
+        />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Button type={type} variation={variation} size="small">
+          <Button.Icon icon="note" size="small" />
+          <Button.Label>{`${type} ${variation} Combined Small Props`}</Button.Label>
+        </Button>
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        {/* Combined props */}
+        <Button
+          label={`${type} ${variation} Combined Small Props on Right`}
+          type={type}
+          iconOnRight={true}
+          variation={variation}
+          icon="note"
+          size="small"
+        />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Button type={type} variation={variation} size="small">
+          <Button.Label>{`${type} ${variation} Combined Small Props on Right`}</Button.Label>
+          <Button.Icon icon="note" size="small" />
+        </Button>
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Button
+          label={`${type} ${variation} Combined Large Props`}
+          type={type}
+          variation={variation}
+          icon="note"
+          size="large"
+        />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Button type={type} variation={variation} size="large">
+          <Button.Icon icon="note" size="large" />
+          <Button.Label size="large">{`${type} ${variation} Combined Large Props`}</Button.Label>
+        </Button>
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Button
+          label={`${type} ${variation} Combined Large Props on Right`}
+          type={type}
+          variation={variation}
+          icon="note"
+          size="large"
+          iconOnRight={true}
+        />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Button type={type} variation={variation} size="large">
+          <Button.Label size="large">{`${type} ${variation} Combined Large Props on Right`}</Button.Label>
+          <Button.Icon icon="note" size="large" />
+        </Button>
+      </Grid.Cell>
+    </Grid>
+  );
+};
 
 export const Comparison = ComparisonTemplate.bind({});
 Comparison.parameters = {
@@ -161,3 +354,11 @@ Comparison.parameters = {
 };
 
 export const FormSubmit = FormTemplate.bind({});
+// {/* URL link */}
+// <Grid.Cell size={{ xs: 6 }}>
+// <Button
+//   label="External Link Button"
+//   url="https://getjobber.com"
+//   external={true}
+// />
+// </Grid.Cell>
