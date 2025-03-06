@@ -62,7 +62,6 @@ function InternalActivator(
     }
   } else {
     return (
-      // @ts-expect-error - we need to desctructure the newActivatorProps with more care to XOR prop types.
       <Button
         variation="work"
         type="tertiary"
