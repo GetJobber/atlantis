@@ -11,6 +11,9 @@ interface AffixLabelProps extends Affix {
   readonly variation?: "prefix" | "suffix";
 }
 
+/**
+ * @internal Reach out to UX Foundations is using this component since it is possible it might change
+ */
 export function AffixLabel({
   label,
   variation = "prefix",
@@ -27,6 +30,10 @@ export function AffixLabel({
     </div>
   );
 }
+
+/**
+ * @internal Reach out to UX Foundations is using this component since it is possible it might change
+ */
 interface AffixIconProps extends Pick<FormFieldProps, "size"> {
   readonly variation?: "prefix" | "suffix";
 }
