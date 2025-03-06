@@ -100,12 +100,11 @@ interface ComposedButtonProps
   readonly type?: ButtonType;
 }
 
-export type ButtonProps = XOR<
-  XOR<BaseActionProps, XOR<DestructiveActionProps, SubmitActionProps>> &
-    XOR<
-      XOR<SubmitButtonProps, BasicButtonProps>,
-      XOR<ButtonLinkProps, ButtonAnchorProps>
-    > &
-    XOR<ButtonIconProps, ButtonLabelProps>,
-  ComposedButtonProps
->;
+export type ButtonProps =
+  | (XOR<BaseActionProps, XOR<DestructiveActionProps, SubmitActionProps>> &
+      XOR<
+        XOR<SubmitButtonProps, BasicButtonProps>,
+        XOR<ButtonLinkProps, ButtonAnchorProps>
+      > &
+      XOR<ButtonIconProps, ButtonLabelProps>)
+  | ComposedButtonProps;

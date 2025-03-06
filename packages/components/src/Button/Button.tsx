@@ -19,11 +19,10 @@ const Button = (props: ButtonProps) => {
     onClick,
     onMouseDown,
     role,
-    url,
-    to,
     value,
     submit,
   } = props;
+  const { to, url } = props as { to?: string; url?: string };
 
   const { buttonWrapperStyles, buttonChildrenStyles } = useButtonStyles(props);
 
@@ -46,7 +45,8 @@ const Button = (props: ButtonProps) => {
     role: role,
   };
 
-  const buttonInternals = props.children || <ButtonContent {...props} />;
+  const buttonInternals =
+    "children" in props ? props.children : <ButtonContent {...props} />;
 
   if (to) {
     return (
