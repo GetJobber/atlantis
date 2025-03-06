@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
-import { Button, ButtonType, ButtonVariation } from "@jobber/components/Button";
+import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import classnames from "classnames";
+import {
+  Button,
+  ButtonType,
+  ButtonVariation,
+  useButtonStyles,
+} from "@jobber/components/Button";
 import { Form } from "@jobber/components/Form";
 import { InputNumber } from "@jobber/components/InputNumber";
 import { Content } from "@jobber/components/Content";
@@ -276,7 +282,6 @@ const ComparisonTemplate: ComponentStory<typeof Button> = () => {
         </Button>
       </Grid.Cell>
       <Grid.Cell size={{ xs: 6 }}>
-        {/* Combined props */}
         <Button
           label={`${type} ${variation} Combined Small Props`}
           type={type}
@@ -292,7 +297,6 @@ const ComparisonTemplate: ComponentStory<typeof Button> = () => {
         </Button>
       </Grid.Cell>
       <Grid.Cell size={{ xs: 6 }}>
-        {/* Combined props */}
         <Button
           label={`${type} ${variation} Combined Small Props on Right`}
           type={type}
@@ -343,6 +347,49 @@ const ComparisonTemplate: ComponentStory<typeof Button> = () => {
   );
 };
 
+const ComposedLinksTemplate: ComponentStory<typeof Button> = () => {
+  const { buttonClassNames, buttonChildrenStyles } = useButtonStyles({});
+
+  return (
+    <Router basename="/components/composed-links">
+      <Link
+        to="/"
+        className={classnames(buttonClassNames, buttonChildrenStyles)}
+      >
+        <Button.Label>Home</Button.Label>
+        <Button.Icon icon="home" />
+      </Link>
+      <Link
+        to="/office"
+        className={classnames(buttonClassNames, buttonChildrenStyles)}
+      >
+        <Button.Label>Office</Button.Label>
+        <Button.Icon icon="address" />
+      </Link>
+      <Link
+        to="/dentist"
+        className={classnames(buttonClassNames, buttonChildrenStyles)}
+      >
+        <Button.Label>Dentist</Button.Label>
+      </Link>
+      <hr />
+      <Switch>
+        <Route exact path="/">
+          This is my home, time to get cozy.
+        </Route>
+        <Route exact path="/office">
+          This is my office, time to get to work.
+        </Route>
+        <Route exact path="/dentist">
+          This is the dentist, time to get my teeth fixed.
+        </Route>
+      </Switch>
+    </Router>
+  );
+};
+
+export const ComposedLinks = ComposedLinksTemplate.bind({});
+
 export const Comparison = ComparisonTemplate.bind({});
 Comparison.parameters = {
   docs: {
@@ -354,11 +401,3 @@ Comparison.parameters = {
 };
 
 export const FormSubmit = FormTemplate.bind({});
-// {/* URL link */}
-// <Grid.Cell size={{ xs: 6 }}>
-// <Button
-//   label="External Link Button"
-//   url="https://getjobber.com"
-//   external={true}
-// />
-// </Grid.Cell>
