@@ -1,6 +1,6 @@
 import classnames from "classnames";
 import styles from "./Button.module.css";
-import { ButtonProps } from "./Button.types";
+import { ButtonSize, ButtonType, ButtonVariation } from "./Button.types";
 
 export interface UseButtonStyles {
   /**
@@ -12,10 +12,18 @@ export interface UseButtonStyles {
    */
   buttonChildrenStyles: string;
 }
-export type UseButtonStylesProps = Pick<
-  ButtonProps,
-  "size" | "disabled" | "fullWidth" | "loading" | "variation" | "type"
->;
+
+/**
+ * The props that are used to style the button
+ */
+export interface UseButtonStylesProps {
+  size?: ButtonSize;
+  disabled?: boolean;
+  fullWidth?: boolean;
+  loading?: boolean;
+  variation?: ButtonVariation;
+  type?: ButtonType;
+}
 
 export function useButtonStyles({
   size = "base",

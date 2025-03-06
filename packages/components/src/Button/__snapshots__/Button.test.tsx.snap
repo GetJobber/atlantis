@@ -101,6 +101,11 @@ exports[`renders a Button with an icon on the right 1`] = `
     class="button base work primary buttonChildren"
     type="button"
   >
+    <span
+      class="base semiBold base base"
+    >
+      Add
+    </span>
     <svg
       data-testid="add"
       style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
@@ -111,11 +116,6 @@ exports[`renders a Button with an icon on the right 1`] = `
         d="M12 5a1 1 0 0 0-1 1v5H6a1 1 0 1 0 0 2h5v5a1 1 0 1 0 2 0v-5h5a1 1 0 1 0 0-2h-5V6a1 1 0 0 0-1-1Z"
       />
     </svg>
-    <span
-      class="base semiBold base base"
-    >
-      Add
-    </span>
   </button>
 </div>
 `;

@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { ButtonProps } from "./Button.types";
+import { ButtonProps, ButtonSize } from "./Button.types";
 import { Icon } from "../Icon";
 import { Typography, TypographyOptions } from "../Typography";
 
@@ -7,11 +7,17 @@ import { Typography, TypographyOptions } from "../Typography";
  * For backwards compatibility with the legacy button
  * @deprecated Used composed solution instead
  */
-export function ButtonContent({ label, icon, size = "base" }: ButtonProps) {
+export function ButtonContent({
+  label,
+  icon,
+  size = "base",
+  iconOnRight = false,
+}: Pick<ButtonProps, "label" | "icon" | "size" | "iconOnRight">) {
   return (
     <>
-      {icon && <ButtonIcon icon={icon} size={size} />}
+      {icon && !iconOnRight && <ButtonIcon icon={icon} size={size} />}
       {label && <ButtonLabel size={size}>{label}</ButtonLabel>}
+      {icon && iconOnRight && <ButtonIcon icon={icon} size={size} />}
     </>
   );
 }
@@ -30,7 +36,7 @@ function getTypeSizes(size: string) {
 export function ButtonIcon({
   icon,
   size = "base",
-}: Required<Pick<ButtonProps, "icon" | "size">>) {
+}: Required<Pick<ButtonProps, "icon">> & { readonly size?: ButtonSize }) {
   return <Icon name={icon} size={size} />;
 }
 
