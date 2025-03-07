@@ -1,5 +1,10 @@
 import React, { useEffect, useId, useState } from "react";
-import type { KeyboardEvent, PropsWithChildren, RefObject } from "react";
+import type {
+  CSSProperties,
+  KeyboardEvent,
+  PropsWithChildren,
+  RefObject,
+} from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, Variants, motion } from "framer-motion";
 import { tokens } from "@jobber/design";
@@ -44,6 +49,24 @@ interface SideDrawerProps extends PropsWithChildren {
    * relative to this element instead of the viewport.
    */
   readonly anchorElement?: RefObject<HTMLElement>;
+
+  /**
+   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_className?: {
+    container?: string;
+  };
+
+  /**
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: {
+    container?: CSSProperties;
+  };
 }
 
 const variants: Variants = {
@@ -123,6 +146,8 @@ export function SideDrawer({
   variation = "base",
   scrollDirection,
   anchorElement,
+  UNSAFE_className,
+  UNSAFE_style,
 }: SideDrawerProps) {
   const {
     ref,
@@ -170,10 +195,14 @@ export function SideDrawer({
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
-            className={classNames(styles.drawer, {
-              [styles.reverseScroll]: scrollDirection === "reverse",
-              [styles.anchored]: Boolean(anchorElement),
-            })}
+            className={classNames(
+              styles.drawer,
+              {
+                [styles.reverseScroll]: scrollDirection === "reverse",
+                [styles.anchored]: Boolean(anchorElement),
+              },
+              UNSAFE_className?.container,
+            )}
             ref={setRef}
             data-elevation={"elevated"}
             variants={variants}
@@ -183,8 +212,8 @@ export function SideDrawer({
             transition={{
               duration: tokens["timing-base"] / 1000,
             }}
-            style={
-              anchorElement
+            style={{
+              ...(anchorElement
                 ? {
                     position: "absolute",
                     top: `${position.top}px`,
@@ -193,8 +222,9 @@ export function SideDrawer({
                     height: "auto",
                     maxHeight: `calc(100vh - ${position.top}px)`,
                   }
-                : undefined
-            }
+                : undefined),
+              ...UNSAFE_style?.container,
+            }}
           >
             <div
               ref={sideDrawerRef}

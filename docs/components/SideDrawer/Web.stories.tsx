@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { SideDrawer } from "@jobber/components/SideDrawer";
 import { Button } from "@jobber/components/Button";
@@ -313,6 +313,88 @@ const AnchoredTemplate: ComponentStory<typeof SideDrawer> = args => {
   );
 };
 
+const CustomWidthAnchoredTemplate: ComponentStory<typeof SideDrawer> = args => {
+  const [sideDrawerOpen, setSideDrawerOpen] = useState(args.open);
+  const anchorRef = useRef<HTMLDivElement>(null);
+
+  // Calculate position manually to ensure proper alignment
+  const [position, setPosition] = useState({ left: 0 });
+
+  useEffect(() => {
+    if (anchorRef.current && sideDrawerOpen) {
+      const updatePosition = () => {
+        const rect = anchorRef.current?.getBoundingClientRect();
+
+        if (rect) {
+          setPosition({
+            left: rect.right - 250, // 250px is our desired width
+          });
+        }
+      };
+
+      updatePosition();
+      window.addEventListener("resize", updatePosition);
+
+      return () => window.removeEventListener("resize", updatePosition);
+    }
+  }, [sideDrawerOpen]);
+
+  return (
+    <div style={{ display: "flex", gap: "24px" }}>
+      <div style={{ width: "300px", background: "#f5f5f5", padding: "16px" }}>
+        Left Panel
+      </div>
+      <div
+        ref={anchorRef}
+        style={{
+          width: "400px",
+          background: "#f5f5f5",
+          padding: "16px",
+          position: "relative",
+        }}
+      >
+        <Text>Middle Panel</Text>
+        <Button
+          onClick={() => setSideDrawerOpen(true)}
+          label="Open Side Drawer"
+        />
+      </div>
+      <div style={{ width: "300px", background: "#f5f5f5", padding: "16px" }}>
+        Right Panel
+      </div>
+
+      <SideDrawer
+        {...args}
+        open={sideDrawerOpen}
+        onRequestClose={() => setSideDrawerOpen(false)}
+        anchorElement={anchorRef}
+        UNSAFE_style={{
+          container: {
+            width: "250px",
+            position: "absolute",
+            left: `${position.left}px`,
+          },
+        }}
+      >
+        <SideDrawer.Title>Custom Width Anchored Drawer</SideDrawer.Title>
+        <Content>
+          <Text>
+            This drawer is anchored to the middle panel and has a custom width
+            of 250px, while maintaining proper right-edge alignment with its
+            anchor element.
+          </Text>
+          <Text>
+            By default, anchored drawers are capped at 420px or the right edge
+            of the anchor element. When customizing the width, we need to
+            calculate the left position to maintain proper alignment with the
+            anchor.
+          </Text>
+        </Content>
+      </SideDrawer>
+    </div>
+  );
+};
+
 export const Basic = BasicTemplate.bind({});
 Basic.args = { open: true };
 
@@ -330,3 +412,6 @@ BackButton.args = { open: true };
 
 export const Anchored = AnchoredTemplate.bind({});
 Anchored.args = { open: true };
+
+export const CustomWidthAnchored = CustomWidthAnchoredTemplate.bind({});
+CustomWidthAnchored.args = { open: true };
