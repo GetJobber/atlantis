@@ -1,11 +1,12 @@
 import React from "react";
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import {
   Route,
   RouteChildrenProps,
   BrowserRouter as Router,
   Switch,
 } from "react-router-dom";
+import userEvent from "@testing-library/user-event";
 import { Button } from "./Button";
 
 it("renders a Button", () => {
@@ -239,5 +240,53 @@ describe("Button role", () => {
   it("should apply provided role when present", () => {
     const { getByRole } = render(<Button label="hello" role="combobox" />);
     expect(getByRole("combobox")).toBeInstanceOf(HTMLButtonElement);
+  });
+});
+
+describe("Button with children", () => {
+  it("renders custom children", () => {
+    const { getByText } = render(
+      <Button type="primary">
+        <Button.Label>Custom Button Content</Button.Label>
+      </Button>,
+    );
+
+    expect(getByText("Custom Button Content")).toBeInTheDocument();
+  });
+
+  it("applies button styles to the wrapper when using children", () => {
+    render(
+      <Button type="primary" variation="destructive">
+        <Button.Label>Custom Content</Button.Label>
+      </Button>,
+    );
+    const button = screen.getByRole("button");
+
+    // The button should have the destructive class
+    expect(button).toHaveClass("destructive");
+  });
+
+  it("supports children with other button props", async () => {
+    const handleClick = jest.fn();
+    render(
+      <Button onClick={handleClick}>
+        <Button.Label>Click Me</Button.Label>
+      </Button>,
+    );
+
+    await userEvent.click(screen.getByText("Click Me"));
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+
+  it("allows both rendering of label and icon", () => {
+    render(
+      <Button type="primary">
+        <Button.Label>Click Me</Button.Label>
+        <Button.Icon icon="add" />
+      </Button>,
+    );
+
+    expect(screen.getByText("Click Me")).toBeInTheDocument();
+    expect(screen.getByTestId("add")).toBeInTheDocument();
   });
 });

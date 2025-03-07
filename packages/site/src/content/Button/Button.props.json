@@ -84,17 +84,17 @@
           "name": "string"
         }
       },
-      "variation": {
+      "icon": {
         "defaultValue": null,
         "description": "",
-        "name": "variation",
+        "name": "icon",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "BaseActionProps"
+          "name": "ButtonFoundationProps"
         },
         "required": false,
         "type": {
-          "name": "ButtonVariation"
+          "name": "IconNames"
         }
       },
       "ariaLabel": {
@@ -175,19 +175,6 @@
           "name": "boolean"
         }
       },
-      "icon": {
-        "defaultValue": null,
-        "description": "",
-        "name": "icon",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "IconNames"
-        }
-      },
       "iconOnRight": {
         "defaultValue": null,
         "description": "",
@@ -264,6 +251,32 @@
         "required": false,
         "type": {
           "name": "(event: MouseEvent<HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => void"
+        }
+      },
+      "children": {
+        "defaultValue": null,
+        "description": "Optional children to render inside the button",
+        "name": "children",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "variation": {
+        "defaultValue": null,
+        "description": "",
+        "name": "variation",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "BaseActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ButtonVariation"
         }
       },
       "role": {

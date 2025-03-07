@@ -32,8 +32,9 @@ Button.Wrapper = function ButtonWrapper(props: ButtonProps) {
     role,
     value,
     submit,
+    to,
+    url,
   } = props;
-  const { to, url } = props as { to?: string; url?: string };
 
   const { buttonWrapperStyles, buttonChildrenStyles } = useButtonStyles(props);
 
@@ -56,8 +57,7 @@ Button.Wrapper = function ButtonWrapper(props: ButtonProps) {
     role: role,
   };
 
-  const buttonInternals =
-    "children" in props ? props.children : <ButtonContent {...props} />;
+  const buttonInternals = props.children || <ButtonContent {...props} />;
 
   if (to) {
     return (

@@ -1,5 +1,4 @@
 import { IconNames } from "@jobber/design";
-import { PropsWithChildren } from "react";
 import { LinkProps } from "react-router-dom";
 import { XOR } from "ts-xor";
 
@@ -32,6 +31,10 @@ export interface ButtonFoundationProps {
   onMouseDown?(
     event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
   ): void;
+  /**
+   * Optional children to render inside the button
+   */
+  readonly children?: React.ReactNode;
 }
 
 interface ButtonIconProps extends ButtonFoundationProps {
@@ -91,20 +94,15 @@ interface BasicButtonProps extends ButtonFoundationProps {
   readonly role?: string;
 }
 
-interface ComposedButtonProps
-  extends PropsWithChildren<BaseActionProps & BasicButtonProps> {
-  readonly submit?: boolean;
-  readonly role?: string;
-  readonly name?: string;
-  readonly value?: string;
-  readonly type?: ButtonType;
-}
+// This type relaxes the XOR constraint when children are provided
+type WithChildrenOrLabelIcon<T> =
+  | (T & XOR<ButtonIconProps, ButtonLabelProps>)
+  | (T & { readonly children: React.ReactNode; readonly ariaLabel?: string });
 
-export type ButtonProps =
-  | (XOR<BaseActionProps, XOR<DestructiveActionProps, SubmitActionProps>> &
-      XOR<
-        XOR<SubmitButtonProps, BasicButtonProps>,
-        XOR<ButtonLinkProps, ButtonAnchorProps>
-      > &
-      XOR<ButtonIconProps, ButtonLabelProps>)
-  | ComposedButtonProps;
+export type ButtonProps = WithChildrenOrLabelIcon<
+  XOR<BaseActionProps, XOR<DestructiveActionProps, SubmitActionProps>> &
+    XOR<
+      XOR<SubmitButtonProps, BasicButtonProps>,
+      XOR<ButtonLinkProps, ButtonAnchorProps>
+    >
+>;
