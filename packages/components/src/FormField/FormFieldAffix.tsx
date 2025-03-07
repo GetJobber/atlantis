@@ -12,7 +12,7 @@ interface AffixLabelProps extends Affix {
 }
 
 /**
- * @internal Reach out to UX Foundations is using this component since it is possible it might change
+ * @internal Reach out to UX Foundations if using this component since it is possible it might change
  */
 export function AffixLabel({
   label,
@@ -32,7 +32,7 @@ export function AffixLabel({
 }
 
 /**
- * @internal Reach out to UX Foundations is using this component since it is possible it might change
+ * @internal Reach out to UX Foundations if using this component since it is possible it might change
  */
 interface AffixIconProps extends Pick<FormFieldProps, "size"> {
   readonly variation?: "prefix" | "suffix";

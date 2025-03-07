@@ -135,7 +135,7 @@ export function FormFieldWrapper({
 }
 
 /**
- * @internal Reach out to UX Foundations is using this component since it is possible it might change
+ * @internal Reach out to UX Foundations if using this component since it is possible it might change
  */
 export function FormFieldInputHorizontalWrapper({
   children,
@@ -144,7 +144,7 @@ export function FormFieldInputHorizontalWrapper({
 }
 
 /**
- * @internal Reach out to UX Foundations is using this component since it is possible it might change
+ * @internal Reach out to UX Foundations if using this component since it is possible it might change
  */
 export function FormFieldInputWrapperStyles({
   children,
@@ -155,7 +155,7 @@ export function FormFieldInputWrapperStyles({
 }
 
 /**
- * @internal Reach out to UX Foundations is using this component since it is possible it might change
+ * @internal Reach out to UX Foundations if using this component since it is possible it might change
  */
 export function FormFieldWrapperMain({
   children,
@@ -196,7 +196,7 @@ export function FormFieldLabel({
 }
 
 /**
- * @internal Reach out to UX Foundations is using this component since it is possible it might change
+ * @internal Reach out to UX Foundations if using this component since it is possible it might change
  */
 export function FormFieldWrapperToolbar({
   toolbar,
