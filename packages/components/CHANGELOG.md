@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.20.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.20.6...@jobber/components@6.20.7) (2025-03-07)
+
+
+### Bug Fixes
+
+* **components:** Autocomplete portal has 0 height and width when not visible ([#2407](https://github.com/GetJobber/atlantis/issues/2407)) ([50909e8](https://github.com/GetJobber/atlantis/commit/50909e8139751a94b48e53265972f9adba64a9a6))
+
+
+
+
+
 ## [6.20.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.20.5...@jobber/components@6.20.6) (2025-03-07)
 
 
