@@ -12,6 +12,11 @@ export interface UseButtonStyles {
    * The class names styling the button children. This is used for adding the correct spacing between the icon and label inside of the button
    */
   buttonChildrenStyles: string;
+
+  /**
+   * The combined buttonWrapperStyles and buttonChildrenStyles
+   */
+  customButtonStyles: string;
 }
 
 /**
@@ -45,5 +50,9 @@ export function useButtonStyles({
   });
   const buttonChildrenStyles = classnames(styles.buttonChildren);
 
-  return { buttonWrapperStyles, buttonChildrenStyles };
+  return {
+    buttonWrapperStyles,
+    buttonChildrenStyles,
+    customButtonStyles: classnames(buttonWrapperStyles, buttonChildrenStyles),
+  };
 }

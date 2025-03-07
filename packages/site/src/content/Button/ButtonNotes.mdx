@@ -73,6 +73,9 @@ styling Client-side routing links to look like a Button.
   background color, border radius, and padding.
 - `buttonChildrenStyles`: The styles for the button children. This handles the
   icon and label spacing.
+- `customButtonStyles`: The combined styles of `buttonWrapperStyles` and
+  `buttonChildrenStyles`. This is useful if you don't want to customize the
+  styles
 
 The following example shows how to do this with React Router:
 
@@ -80,15 +83,18 @@ The following example shows how to do this with React Router:
 import { Link } from "react-router-dom";
 
 function LinkButton() {
-  const { buttonWrapperStyles, buttonChildrenStyles } = useButtonStyles({
-    type: "tertiary",
-    variation: "subtle",
-  });
+  const { buttonWrapperStyles, buttonChildrenStyles, customButtonStyles } =
+    useButtonStyles({
+      type: "tertiary",
+      variation: "subtle",
+    });
 
   return (
     <Link
       to="/"
       className={classnames(buttonWrapperStyles, buttonChildrenStyles)}
+      // or
+      className={customButtonStyles}
     >
       <Button.Label>Navigate Home</Button.Label>
       <Button.Icon icon="home" />

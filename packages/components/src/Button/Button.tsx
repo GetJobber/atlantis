@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import classnames from "classnames";
 import { ButtonProps, HTMLButtonType } from "./Button.types";
 import { useButtonStyles } from "./useButtonStyles";
 // eslint-disable-next-line import/no-deprecated
@@ -36,12 +35,12 @@ Button.Wrapper = function ButtonWrapper(props: ButtonProps) {
     url,
   } = props;
 
-  const { buttonWrapperStyles, buttonChildrenStyles } = useButtonStyles(props);
+  const { customButtonStyles } = useButtonStyles(props);
 
   const buttonType: HTMLButtonType = submit ? "submit" : "button";
 
   const tagProps = {
-    className: classnames(buttonWrapperStyles, buttonChildrenStyles),
+    className: customButtonStyles,
     disabled,
     id,
     ...(submit && { name, value }),
