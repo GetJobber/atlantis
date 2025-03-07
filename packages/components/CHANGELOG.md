@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.20.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.20.5...@jobber/components@6.20.6) (2025-03-07)
+
+
+### Bug Fixes
+
+* **components:** Export form field internal components. ([#2411](https://github.com/GetJobber/atlantis/issues/2411)) ([f7fbeb3](https://github.com/GetJobber/atlantis/commit/f7fbeb3d06bdf0ee0950ff94b5732d10e1f558b0))
+
+
+
+
+
 ## [6.20.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.20.4...@jobber/components@6.20.5) (2025-02-28)
 
 
