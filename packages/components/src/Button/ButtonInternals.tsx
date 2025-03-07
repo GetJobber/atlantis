@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import { ButtonProps, ButtonSize } from "./Button.types";
+import { useButton } from "./ButtonProvider";
 import { Icon } from "../Icon";
 import { Typography, TypographyOptions } from "../Typography";
 
@@ -35,8 +36,11 @@ function getTypeSizes(size: string) {
 
 export function ButtonIcon({
   icon,
-  size = "base",
+  size: sizeProp,
 }: Required<Pick<ButtonProps, "icon">> & { readonly size?: ButtonSize }) {
+  const { size: contextSize } = useButton();
+  const size = sizeProp || contextSize;
+
   return <Icon name={icon} size={size} />;
 }
 
@@ -44,9 +48,12 @@ export function ButtonLabel({
   element = "span",
   fontWeight = "semiBold",
   fontFamily = "base",
-  size = "base",
+  size: sizeProp,
   ...props
 }: TypographyOptions & { readonly children: ReactNode }) {
+  const { size: contextSize } = useButton();
+  const size = sizeProp || contextSize;
+
   return (
     <Typography
       element={element}

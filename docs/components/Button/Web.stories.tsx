@@ -143,36 +143,6 @@ const ComparisonTemplate: ComponentStory<typeof Button> = () => {
           <Button.Label>{`${type} ${variation} Button`}</Button.Label>
         </Button>
       </Grid.Cell>
-
-      <Grid.Cell size={{ xs: 6 }}>
-        <Button
-          label={`${type} ${variation} Small Button`}
-          type={type}
-          variation={variation}
-          size="small"
-        />
-      </Grid.Cell>
-      <Grid.Cell size={{ xs: 6 }}>
-        <Button type={type} variation={variation} size="small">
-          <Button.Label size="small">{`${type} ${variation} Small Button`}</Button.Label>
-        </Button>
-      </Grid.Cell>
-      <Grid.Cell size={{ xs: 6 }}>
-        <Button
-          label={`${type} ${variation} Base Size Button`}
-          type={type}
-          variation={variation}
-          size="base"
-        />
-      </Grid.Cell>
-      <Grid.Cell size={{ xs: 6 }}>
-        <Button
-          label={`${type} ${variation} Large Button`}
-          type={type}
-          variation={variation}
-          size="large"
-        />
-      </Grid.Cell>
       <Grid.Cell size={{ xs: 6 }}>
         <Button
           label={`${type} ${variation} with Icon`}
@@ -225,7 +195,7 @@ const ComparisonTemplate: ComponentStory<typeof Button> = () => {
       </Grid.Cell>
       <Grid.Cell size={{ xs: 6 }}>
         <Button type={type} variation={variation} size="small">
-          <Button.Label size="small">{`${type} ${variation} Small Button`}</Button.Label>
+          <Button.Label>{`${type} ${variation} Small Button`}</Button.Label>
         </Button>
       </Grid.Cell>
       <Grid.Cell size={{ xs: 6 }}>
@@ -238,7 +208,7 @@ const ComparisonTemplate: ComponentStory<typeof Button> = () => {
       </Grid.Cell>
       <Grid.Cell size={{ xs: 6 }}>
         <Button type={type} variation={variation} size="base">
-          <Button.Label size="base">{`${type} ${variation} Base Button`}</Button.Label>
+          <Button.Label>{`${type} ${variation} Base Button`}</Button.Label>
         </Button>
       </Grid.Cell>
       <Grid.Cell size={{ xs: 6 }}>
@@ -252,7 +222,7 @@ const ComparisonTemplate: ComponentStory<typeof Button> = () => {
 
       <Grid.Cell size={{ xs: 6 }}>
         <Button type={type} variation={variation} size="large">
-          <Button.Label size="large">{`${type} ${variation} Large Button`}</Button.Label>
+          <Button.Label>{`${type} ${variation} Large Button`}</Button.Label>
         </Button>
       </Grid.Cell>
       <Grid.Cell size={{ xs: 6 }}>
@@ -292,8 +262,8 @@ const ComparisonTemplate: ComponentStory<typeof Button> = () => {
       </Grid.Cell>
       <Grid.Cell size={{ xs: 6 }}>
         <Button type={type} variation={variation} size="small">
-          <Button.Icon icon="note" size="small" />
-          <Button.Label size="small">{`${type} ${variation} Combined Small Props`}</Button.Label>
+          <Button.Icon icon="note" />
+          <Button.Label>{`${type} ${variation} Combined Small Props`}</Button.Label>
         </Button>
       </Grid.Cell>
       <Grid.Cell size={{ xs: 6 }}>
@@ -308,8 +278,8 @@ const ComparisonTemplate: ComponentStory<typeof Button> = () => {
       </Grid.Cell>
       <Grid.Cell size={{ xs: 6 }}>
         <Button type={type} variation={variation} size="small">
-          <Button.Label size="small">{`${type} ${variation} Combined Small Props on Right`}</Button.Label>
-          <Button.Icon icon="note" size="small" />
+          <Button.Label>{`${type} ${variation} Combined Small Props on Right`}</Button.Label>
+          <Button.Icon icon="note" />
         </Button>
       </Grid.Cell>
       <Grid.Cell size={{ xs: 6 }}>
@@ -323,8 +293,8 @@ const ComparisonTemplate: ComponentStory<typeof Button> = () => {
       </Grid.Cell>
       <Grid.Cell size={{ xs: 6 }}>
         <Button type={type} variation={variation} size="large">
-          <Button.Icon icon="note" size="large" />
-          <Button.Label size="large">{`${type} ${variation} Combined Large Props`}</Button.Label>
+          <Button.Icon icon="note" />
+          <Button.Label>{`${type} ${variation} Combined Large Props`}</Button.Label>
         </Button>
       </Grid.Cell>
       <Grid.Cell size={{ xs: 6 }}>
@@ -339,8 +309,8 @@ const ComparisonTemplate: ComponentStory<typeof Button> = () => {
       </Grid.Cell>
       <Grid.Cell size={{ xs: 6 }}>
         <Button type={type} variation={variation} size="large">
-          <Button.Label size="large">{`${type} ${variation} Combined Large Props on Right`}</Button.Label>
-          <Button.Icon icon="note" size="large" />
+          <Button.Label>{`${type} ${variation} Combined Large Props on Right`}</Button.Label>
+          <Button.Icon icon="note" />
         </Button>
       </Grid.Cell>
     </Grid>

@@ -5,8 +5,19 @@ import { ButtonProps, HTMLButtonType } from "./Button.types";
 import { useButtonStyles } from "./useButtonStyles";
 // eslint-disable-next-line import/no-deprecated
 import { ButtonContent, ButtonIcon, ButtonLabel } from "./ButtonInternals";
+import { ButtonProvider } from "./ButtonProvider";
 
-const Button = (props: ButtonProps) => {
+function Button(props: ButtonProps) {
+  const { size } = props;
+
+  return (
+    <Button.Provider size={size}>
+      <Button.Wrapper {...props} />
+    </Button.Provider>
+  );
+}
+
+Button.Wrapper = function ButtonWrapper(props: ButtonProps) {
   const {
     ariaControls,
     ariaHaspopup,
@@ -63,4 +74,5 @@ const Button = (props: ButtonProps) => {
 
 Button.Label = ButtonLabel;
 Button.Icon = ButtonIcon;
+Button.Provider = ButtonProvider;
 export { Button, ButtonProps };

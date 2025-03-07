@@ -5,3 +5,4 @@ export {
   UseButtonStyles,
   UseButtonStylesProps,
 } from "./useButtonStyles";
+export { useButton } from "./ButtonProvider";
