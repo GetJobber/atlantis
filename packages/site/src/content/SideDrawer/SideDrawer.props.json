@@ -59,6 +59,45 @@
         "type": {
           "name": "\"normal\" | \"reverse\""
         }
+      },
+      "anchorElement": {
+        "defaultValue": null,
+        "description": "Element to anchor the drawer to. When provided, the drawer will be positioned\nrelative to this element instead of the viewport.",
+        "name": "anchorElement",
+        "parent": {
+          "fileName": "../components/src/SideDrawer/SideDrawer.tsx",
+          "name": "SideDrawerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "RefObject<HTMLElement>"
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "../components/src/SideDrawer/SideDrawer.tsx",
+          "name": "SideDrawerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ container?: string; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "../components/src/SideDrawer/SideDrawer.tsx",
+          "name": "SideDrawerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ container?: CSSProperties; }"
+        }
       }
     }
   },
