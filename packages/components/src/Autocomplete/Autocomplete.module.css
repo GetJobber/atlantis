@@ -6,10 +6,8 @@
 .options {
   visibility: hidden;
   z-index: calc(var(--elevation-menu) + var(--elevation-modal));
-  width: 100%;
-  /* Unfortunately this is how we define our line item picker height in jobber online.
-  This is a concession to maintain visual parity. */
-  max-height: 300px;
+  width: 0;
+  height: 0;
   box-shadow: var(--shadow-base);
   box-sizing: border-box;
   margin: 0;
@@ -29,6 +27,9 @@
 
 .options.visible {
   visibility: visible;
+  width: 100%;
+  height: auto;
+  max-height: 300px;
   opacity: 1;
 }
 
