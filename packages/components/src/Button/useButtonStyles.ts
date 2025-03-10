@@ -41,13 +41,14 @@ export function useButtonStyles({
 }: UseButtonStylesProps) {
   const { size: contextSize } = useButton();
   const size = sizeProp || contextSize;
-  const buttonWrapperStyles = classnames(styles.button, styles[size], {
-    [styles[variation]]: variation,
-    [styles[type]]: type,
-    [styles.disabled]: disabled,
-    [styles.fullWidth]: fullWidth,
-    [styles.loading]: loading,
-  });
+  const buttonWrapperStyles = classnames(
+    [styles.button, styles[size], styles[variation], styles[type]],
+    {
+      [styles.disabled]: disabled,
+      [styles.fullWidth]: fullWidth,
+      [styles.loading]: loading,
+    },
+  );
   const buttonChildrenStyles = classnames(styles.buttonChildren);
 
   return {
