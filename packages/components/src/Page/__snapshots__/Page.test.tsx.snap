@@ -28,7 +28,7 @@ exports[`When actions are provided renders a Page with action buttons and a menu
               class="primaryAction"
             >
               <button
-                class="button base work primary fullWidth"
+                class="button base work primary fullWidth buttonChildren"
                 type="button"
               >
                 <span
@@ -42,7 +42,7 @@ exports[`When actions are provided renders a Page with action buttons and a menu
               class="actionButton"
             >
               <button
-                class="button base work secondary fullWidth"
+                class="button base work secondary fullWidth buttonChildren"
                 type="button"
               >
                 <span
@@ -63,7 +63,7 @@ exports[`When actions are provided renders a Page with action buttons and a menu
                     aria-controls=":r1:"
                     aria-expanded="false"
                     aria-haspopup="true"
-                    class="button base hasIconAndLabel work secondary fullWidth"
+                    class="button base work secondary fullWidth buttonChildren"
                     id=":r0:"
                     type="button"
                   >
