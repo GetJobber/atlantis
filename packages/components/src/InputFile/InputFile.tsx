@@ -9,10 +9,14 @@ import {
   formatMimeTypes,
   mimeTypeToReadable,
 } from "./FileTypes";
-import { InputValidation } from "../InputValidation";
-import { Button } from "../Button";
+import { InputFileHintText } from "./InputFileHintText";
+import { InputFileDescription } from "./InputFileDescription";
+import { InputFileButton } from "./InputFileButton";
+import { InputFileDropzoneWrapper } from "./InputFileDropzoneWrapper";
+import { InputFileValidationError } from "./types";
+import { InputFileValidationErrors } from "./InputFileValidationErrors";
+import { InputFileContentContext } from "./InputFileContentContext";
 import { Content } from "../Content";
-import { Typography } from "../Typography";
 
 export interface FileUpload {
   /**
@@ -95,6 +99,7 @@ export interface UploadParams {
 interface InputFileProps {
   /**
    * Display variation.
+   * @deprecated The only supported variation is "dropzone"
    * @default "dropzone"
    */
   readonly variation?: "dropzone" | "button";
@@ -130,6 +135,11 @@ interface InputFileProps {
   readonly allowMultiple?: boolean;
 
   /**
+   * Override the default hint text.
+   */
+  readonly hintText?: string;
+
+  /**
    * Further description of the input.
    */
   readonly description?: string;
@@ -151,6 +161,11 @@ interface InputFileProps {
      */
     readonly numberOfCurrentFiles: number;
   };
+
+  /**
+   * Children will be rendered instead of the default content
+   */
+  readonly children?: React.ReactNode;
 
   /**
    * A callback that receives a file object and returns a `UploadParams` needed
@@ -212,6 +227,7 @@ export function InputFile({
   allowMultiple = false,
   allowedTypes = "all",
   description,
+  hintText,
   maxFilesValidation,
   getUploadParams,
   onUploadStart,
@@ -219,6 +235,7 @@ export function InputFile({
   onUploadComplete,
   onUploadError,
   validator,
+  children,
 }: InputFileProps) {
   const maxFiles = maxFilesValidation?.maxFiles || 0;
   const numberOfCurrentFiles = maxFilesValidation?.numberOfCurrentFiles || 0;
@@ -303,18 +320,47 @@ export function InputFile({
     });
 
     return acc;
-  }, [] as { code: string; message: string }[]);
+  }, [] as InputFileValidationError[]);
 
-  const { buttonLabel, hintText } = getLabels(
-    providedButtonLabel,
-    allowMultiple,
-    allowedTypes,
-  );
   const dropZone = classnames(styles.dropZoneBase, {
     [styles.dropZone]: variation === "dropzone",
     [styles.active]: isDragActive,
     [styles.error]: fileRejections?.length > 0,
   });
+
+  const fileType =
+    allowedTypes === "images" || allowedTypes === "basicImages"
+      ? "Image"
+      : "File";
+
+  const contentContext = {
+    fileType: fileType,
+    allowMultiple,
+    description,
+    hintText,
+    buttonLabel: providedButtonLabel,
+    size,
+  };
+
+  const defaultContent = (
+    <>
+      {variation === "dropzone" && (
+        <InputFile.DropzoneWrapper>
+          <Content spacing="small">
+            <InputFile.Button size={"small"} fullWidth={false} />
+            {size === "base" && (
+              <>
+                <InputFile.HintText />
+                <InputFile.Description />
+              </>
+            )}
+          </Content>
+        </InputFile.DropzoneWrapper>
+      )}
+
+      {variation === "button" && <InputFile.Button fullWidth={true} />}
+    </>
+  );
 
   return (
     <>
@@ -323,41 +369,11 @@ export function InputFile({
         tabIndex={variation === "button" ? -1 : 0}
       >
         <input {...getInputProps()} />
-
-        {variation === "dropzone" && (
-          <div className={styles.dropzoneContent}>
-            <Content spacing="small">
-              <Button label={buttonLabel} size="small" type="secondary" />
-              {size === "base" && (
-                <>
-                  <Typography size="small">{hintText}</Typography>
-                  {description && (
-                    <Typography size="small" textColor="textSecondary">
-                      {description}
-                    </Typography>
-                  )}
-                </>
-              )}
-            </Content>
-          </div>
-        )}
-
-        {variation === "button" && (
-          <Button
-            label={buttonLabel}
-            size={size}
-            type="secondary"
-            fullWidth={true}
-          />
-        )}
+        <InputFileContentContext.Provider value={contentContext}>
+          {children || defaultContent}
+        </InputFileContentContext.Provider>
       </div>
-      {validationErrors?.length > 0 && (
-        <div className={styles.validationErrors}>
-          {validationErrors.map(error => (
-            <InputValidation message={error.message} key={error.code} />
-          ))}
-        </div>
-      )}
+      <InputFile.ValidationErrors validationErrors={validationErrors} />
     </>
   );
 
@@ -450,26 +466,6 @@ function createAxiosConfig({
   };
 }
 
-function getLabels(
-  providedButtonLabel: string | undefined,
-  multiple: boolean,
-  allowedTypes: string | string[],
-) {
-  const fileType =
-    allowedTypes === "images" || allowedTypes === "basicImages"
-      ? "Image"
-      : "File";
-  let buttonLabel = multiple ? `Upload ${fileType}s` : `Upload ${fileType}`;
-  const fileTypeDeterminer = fileType === "Image" ? "an" : "a";
-  const hintText = multiple
-    ? `Select or drag ${fileType.toLowerCase()}s here to upload`
-    : `Select or drag ${fileTypeDeterminer} ${fileType.toLowerCase()} here to upload`;
-
-  if (providedButtonLabel) buttonLabel = providedButtonLabel;
-
-  return { buttonLabel, hintText };
-}
-
 function getFileUpload(
   file: File,
   key: string,
@@ -531,3 +527,9 @@ export function updateFiles(updatedFile: FileUpload, files: FileUpload[]) {
 function generateId() {
   return Math.floor(Math.random() * Date.now()).toString(16);
 }
+
+InputFile.Button = InputFileButton;
+InputFile.Description = InputFileDescription;
+InputFile.DropzoneWrapper = InputFileDropzoneWrapper;
+InputFile.HintText = InputFileHintText;
+InputFile.ValidationErrors = InputFileValidationErrors;

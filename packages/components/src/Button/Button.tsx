@@ -8,6 +8,7 @@ import { Icon } from "../Icon";
 import { Typography } from "../Typography";
 
 type ButtonType = "button" | "submit";
+export type ButtonSize = "small" | "base" | "large";
 
 interface ButtonFoundationProps {
   /**
@@ -26,7 +27,7 @@ interface ButtonFoundationProps {
   readonly id?: string;
   readonly label?: string;
   readonly loading?: boolean;
-  readonly size?: "small" | "base" | "large";
+  readonly size?: ButtonSize;
   onClick?(
     event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
   ): void;
