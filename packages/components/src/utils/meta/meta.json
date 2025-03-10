@@ -1,5 +1,7 @@
 {
   "exportedComponents": [
+    "AffixIcon",
+    "AffixLabel",
     "AnimatedPresence",
     "AnimatedSwitcher",
     "AnimatedSwitcher.Icon",
@@ -57,8 +59,12 @@
     "Footer",
     "Form",
     "FormField",
+    "FormFieldInputHorizontalWrapper",
+    "FormFieldInputWrapperStyles",
     "FormFieldLabel",
     "FormFieldWrapper",
+    "FormFieldWrapperMain",
+    "FormFieldWrapperToolbar",
     "FormatDate",
     "FormatEmail",
     "FormatFile",
