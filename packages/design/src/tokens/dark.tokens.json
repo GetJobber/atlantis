@@ -329,7 +329,7 @@
                 "$description": "Use for the surface of an element that has payments status."
             },
             "onSurface": {
-                "$value": "{color.invoice-.surface}",
+                "$value": "{color.invoice-.onSurface}",
                 "$description": "Use for text or iconography that sits overtop a payments background."
             }
         },
