@@ -1,13 +1,18 @@
 import React, { useCallback, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Card } from "@jobber/components/Card";
 import {
   FileUpload,
   InputFile,
   updateFiles,
+  useInputFileContentContext,
 } from "@jobber/components/InputFile";
+import { Button } from "@jobber/components/Button";
 import { FormatFile } from "@jobber/components/FormatFile";
 import { Heading } from "@jobber/components/Heading";
 import { Content } from "@jobber/components/Content";
+import { Icon } from "@jobber/components/Icon";
+import { Text } from "@jobber/components/Text";
 
 export default {
   title: "Components/Forms and Inputs/InputFile/Web",
@@ -31,6 +36,7 @@ export default {
 
 const StatefulTemplate: ComponentStory<typeof InputFile> = args => {
   const [files, setFiles] = useState<FileUpload[]>([]);
+  console.log("StatefulTemplate args", args);
 
   return (
     <>
@@ -206,8 +212,161 @@ WithDescription.args = {
   description: "JPEG, HEIC, PNG up to 5MB each",
 };
 
+export const WithCustomHintText = StatefulTemplate.bind({});
+WithCustomHintText.args = {
+  allowMultiple: true,
+  getUploadParams: () => Promise.resolve({ url: "https://httpbin.org/post" }),
+  description: "This is the description",
+  hintText: "This is the custom hint text",
+};
+
 export const FileSizeValidator = FileSizeValidatorTemplate.bind({});
 FileSizeValidator.args = {
   allowMultiple: true,
   getUploadParams: () => Promise.resolve({ url: "https://httpbin.org/post" }),
 };
+
+// A component to access the context
+const ContextDisplay = () => {
+  const context = useInputFileContentContext();
+
+  return (
+    <Card elevation="base">
+      <Heading level={5}>
+        Custom content can still access the InputFile context
+      </Heading>
+      <ul>
+        <li>
+          <Text>File Type: {context.fileType}</Text>
+        </li>
+        <li>
+          <Text>Allow Multiple: {context.allowMultiple ? "Yes" : "No"}</Text>
+        </li>
+        <li>
+          <Text>Description: {context.description}</Text>
+        </li>
+      </ul>
+    </Card>
+  );
+};
+
+const CustomContentTemplate: ComponentStory<typeof InputFile> = () => {
+  const [files, setFiles] = useState<FileUpload[]>([]);
+
+  return (
+    <Content>
+      <Heading level={4}>Custom Button</Heading>
+      <InputFile
+        onUploadStart={handleUpload}
+        onUploadProgress={handleUpload}
+        onUploadComplete={handleUpload}
+        getUploadParams={() =>
+          Promise.resolve({ url: "https://httpbin.org/post" })
+        }
+      >
+        <InputFile.DropzoneWrapper>
+          <Button ariaLabel="Upload" icon="image" type="tertiary" />
+        </InputFile.DropzoneWrapper>
+      </InputFile>
+      <Heading level={4}>Custom Icons</Heading>
+      <InputFile
+        onUploadStart={handleUpload}
+        onUploadProgress={handleUpload}
+        onUploadComplete={handleUpload}
+        getUploadParams={() =>
+          Promise.resolve({ url: "https://httpbin.org/post" })
+        }
+      >
+        <InputFile.DropzoneWrapper>
+          <Icon name="pdf" />
+          <Icon name="arrowRight" />
+          <Icon name="printer" />
+        </InputFile.DropzoneWrapper>
+      </InputFile>
+      <Heading level={4}>Custom content that uses InputFile.Provider</Heading>
+      <InputFile
+        allowMultiple={true}
+        description="This is the description"
+        hintText="This is the hint text"
+        onUploadStart={handleUpload}
+        onUploadProgress={handleUpload}
+        onUploadComplete={handleUpload}
+        getUploadParams={() =>
+          Promise.resolve({ url: "https://httpbin.org/post" })
+        }
+      >
+        <InputFile.DropzoneWrapper>
+          <ContextDisplay />
+        </InputFile.DropzoneWrapper>
+      </InputFile>
+      {files.map(file => (
+        <FormatFile file={file} key={file.key} />
+      ))}
+    </Content>
+  );
+
+  function handleUpload(file: FileUpload) {
+    setFiles(oldFiles => updateFiles(file, oldFiles));
+  }
+};
+
+export const CustomContent = CustomContentTemplate.bind({});
+
+const CustomContentWithSubcomponentsTemplate: ComponentStory<
+  typeof InputFile
+> = () => {
+  const [files, setFiles] = useState<FileUpload[]>([]);
+
+  return (
+    <Content>
+      <Heading level={4}>Subcomponents in a different order</Heading>
+      <InputFile
+        description="Very cool description"
+        onUploadStart={handleUpload}
+        onUploadProgress={handleUpload}
+        onUploadComplete={handleUpload}
+        getUploadParams={() =>
+          Promise.resolve({ url: "https://httpbin.org/post" })
+        }
+      >
+        <InputFile.DropzoneWrapper>
+          <Content spacing="small">
+            <InputFile.HintText />
+            <InputFile.Button size={"small"} fullWidth={false} />
+            <InputFile.Description />
+          </Content>
+        </InputFile.DropzoneWrapper>
+      </InputFile>
+      <Heading level={4}>Subcomponents with additional content</Heading>
+      <InputFile
+        description="Very cool description"
+        onUploadStart={handleUpload}
+        onUploadProgress={handleUpload}
+        onUploadComplete={handleUpload}
+        getUploadParams={() =>
+          Promise.resolve({ url: "https://httpbin.org/post" })
+        }
+      >
+        <InputFile.DropzoneWrapper>
+          <Content spacing="small">
+            <Icon name="pdf" />
+            <InputFile.Button size={"small"} fullWidth={false} />
+            <InputFile.HintText />
+            <Heading level={4}>Additional Header</Heading>
+            <InputFile.Description />
+          </Content>
+        </InputFile.DropzoneWrapper>
+      </InputFile>
+      {files.map(file => (
+        <FormatFile file={file} key={file.key} />
+      ))}
+    </Content>
+  );
+
+  function handleUpload(file: FileUpload) {
+    setFiles(oldFiles => updateFiles(file, oldFiles));
+  }
+};
+
+export const CustomContentWithSubcomponents =
+  CustomContentWithSubcomponentsTemplate.bind({});
