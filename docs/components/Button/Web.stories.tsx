@@ -359,6 +359,21 @@ const ComposedLinksTemplate: ComponentStory<typeof Button> = () => {
 };
 
 export const ComposedLinks = ComposedLinksTemplate.bind({});
+ComposedLinks.parameters = {
+  previewTabs: {
+    code: {
+      hidden: false,
+      extraImports: {
+        "react-router-dom": [
+          "Route",
+          { name: "BrowserRouter", alias: "Router" },
+          "Switch",
+        ],
+        "@jobber/components/Button": ["useButtonStyles"],
+      },
+    },
+  },
+};
 
 export const Comparison = ComparisonTemplate.bind({});
 Comparison.parameters = {
