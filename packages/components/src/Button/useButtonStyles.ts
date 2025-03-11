@@ -3,22 +3,6 @@ import styles from "./Button.module.css";
 import { ButtonSize, ButtonType, ButtonVariation } from "./Button.types";
 import { useButton } from "./ButtonProvider";
 
-export interface UseButtonStyles {
-  /**
-   * The class names styling the button element
-   */
-  buttonWrapperStyles: string;
-  /**
-   * The class names styling the button children. This is used for adding the correct spacing between the icon and label inside of the button
-   */
-  buttonChildrenStyles: string;
-
-  /**
-   * The combined buttonWrapperStyles and buttonChildrenStyles
-   */
-  customButtonStyles: string;
-}
-
 /**
  * The props that are used to style the button
  */
