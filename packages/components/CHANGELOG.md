@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.20.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.20.7...@jobber/components@6.20.8) (2025-03-11)
+
+
+### Bug Fixes
+
+* **components:** Fix box-sizing issue on Lightbox ([#2390](https://github.com/GetJobber/atlantis/issues/2390)) ([ba73f05](https://github.com/GetJobber/atlantis/commit/ba73f051dca4b44c68adde32e39c2ad3397d5d1f))
+
+
+
+
+
+## [6.20.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.20.6...@jobber/components@6.20.7) (2025-03-07)
+
+
+### Bug Fixes
+
+* **components:** Autocomplete portal has 0 height and width when not visible ([#2407](https://github.com/GetJobber/atlantis/issues/2407)) ([50909e8](https://github.com/GetJobber/atlantis/commit/50909e8139751a94b48e53265972f9adba64a9a6))
+
+
+
+
+
+## [6.20.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.20.5...@jobber/components@6.20.6) (2025-03-07)
+
+
+### Bug Fixes
+
+* **components:** Export form field internal components. ([#2411](https://github.com/GetJobber/atlantis/issues/2411)) ([f7fbeb3](https://github.com/GetJobber/atlantis/commit/f7fbeb3d06bdf0ee0950ff94b5732d10e1f558b0))
+
+
+
+
+
 ## [6.20.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.20.4...@jobber/components@6.20.5) (2025-02-28)
 
 
