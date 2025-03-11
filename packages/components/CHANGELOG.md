@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.20.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.20.7...@jobber/components@6.20.8) (2025-03-11)
+
+
+### Bug Fixes
+
+* **components:** Fix box-sizing issue on Lightbox ([#2390](https://github.com/GetJobber/atlantis/issues/2390)) ([ba73f05](https://github.com/GetJobber/atlantis/commit/ba73f051dca4b44c68adde32e39c2ad3397d5d1f))
+
+
+
+
+
 ## [6.20.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.20.6...@jobber/components@6.20.7) (2025-03-07)
 
 
