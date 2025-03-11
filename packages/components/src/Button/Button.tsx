@@ -35,12 +35,12 @@ Button.Wrapper = function ButtonWrapper(props: ButtonProps) {
     url,
   } = props;
 
-  const { customButtonStyles } = useButtonStyles(props);
+  const { combined } = useButtonStyles(props);
 
   const buttonType: HTMLButtonType = submit ? "submit" : "button";
 
   const tagProps = {
-    className: customButtonStyles,
+    className: combined,
     disabled,
     id,
     ...(submit && { name, value }),

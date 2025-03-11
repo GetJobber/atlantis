@@ -318,27 +318,27 @@ const ComparisonTemplate: ComponentStory<typeof Button> = () => {
 };
 
 const ComposedLinksTemplate: ComponentStory<typeof Button> = () => {
-  const { buttonWrapperStyles, buttonChildrenStyles } = useButtonStyles({});
+  const buttonStyles = useButtonStyles({});
 
   return (
     <Router basename="/components/composed-links">
       <Link
         to="/"
-        className={classnames(buttonWrapperStyles, buttonChildrenStyles)}
+        className={classnames(buttonStyles.wrapper, buttonStyles.children)}
       >
         <Button.Label>Home</Button.Label>
         <Button.Icon icon="home" />
       </Link>
       <Link
         to="/office"
-        className={classnames(buttonWrapperStyles, buttonChildrenStyles)}
+        className={classnames(buttonStyles.wrapper, buttonStyles.children)}
       >
         <Button.Label>Office</Button.Label>
         <Button.Icon icon="address" />
       </Link>
       <Link
         to="/dentist"
-        className={classnames(buttonWrapperStyles, buttonChildrenStyles)}
+        className={classnames(buttonStyles.wrapper, buttonStyles.children)}
       >
         <Button.Label>Dentist</Button.Label>
       </Link>

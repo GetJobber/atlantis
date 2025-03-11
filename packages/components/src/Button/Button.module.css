@@ -197,24 +197,28 @@ a.button.disabled:hover {
 
 /* Icon */
 
-.button svg {
+.button [data-button-icon] {
   flex-shrink: 0;
 }
 
-.buttonChildren:has(> svg:only-child) {
+.buttonChildren:has(> [data-button-icon]:only-child) {
   width: var(--button--size);
   padding: 0;
 }
 
 /** Icon on Left */
 .buttonChildren
-  > svg:first-of-type:first-child:not(:only-child):not(:last-child) {
+  > [data-button-icon]:first-of-type:first-child:not(:only-child):not(
+    :last-child
+  ) {
   margin-left: calc(var(--space-smaller) * -1);
 }
 
 /** Icon on Right */
 .buttonChildren
-  > svg:last-of-type:last-child:not(:only-child):not(:first-child) {
+  > [data-button-icon]:last-of-type:last-child:not(:only-child):not(
+    :first-child
+  ) {
   margin-right: calc(var(--space-smaller) * -1);
 }
 

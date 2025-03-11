@@ -41,7 +41,7 @@ export function useButtonStyles({
 }: UseButtonStylesProps) {
   const { size: contextSize } = useButton();
   const size = sizeProp || contextSize;
-  const buttonWrapperStyles = classnames(
+  const wrapper = classnames(
     [styles.button, styles[size], styles[variation], styles[type]],
     {
       [styles.disabled]: disabled,
@@ -49,11 +49,11 @@ export function useButtonStyles({
       [styles.loading]: loading,
     },
   );
-  const buttonChildrenStyles = classnames(styles.buttonChildren);
+  const children = styles.buttonChildren;
 
   return {
-    buttonWrapperStyles,
-    buttonChildrenStyles,
-    customButtonStyles: classnames(buttonWrapperStyles, buttonChildrenStyles),
+    wrapper,
+    children,
+    combined: classnames(wrapper, children),
   };
 }

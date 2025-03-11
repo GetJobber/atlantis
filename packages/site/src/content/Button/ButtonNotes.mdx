@@ -62,20 +62,18 @@ becomes
 
 ### Styling another component with Button styles
 
-The Button styles can be used to style another component. Using the
-`useButtonStyles` hook, the styles can be applied to the component. Allowing for
-a component to look like a Button but be something else. This is useful for
-styling Client-side routing links to look like a Button.
+Using the `useButtonStyles` hook, the styles for a button can be applied to
+another component. This is useful for styling Client-side routing links to look
+like a Button.
 
-`useButtonStyles` is a hook that two sets of styles:
+`useButtonStyles` is a hook that provides three sets of styles:
 
-- `buttonWrapperStyles`: The styles for the button wrapper. This handles the
-  background color, border radius, and padding.
-- `buttonChildrenStyles`: The styles for the button children. This handles the
-  icon and label spacing.
-- `customButtonStyles`: The combined styles of `buttonWrapperStyles` and
-  `buttonChildrenStyles`. This is useful if you don't want to customize the
-  styles
+- `wrapper`: The styles for the button wrapper. This handles the background
+  color, border radius, and padding.
+- `children`: The styles for the button children. This handles the icon and
+  label spacing.
+- `combined`: The combined styles of `wrapper` and `children`. This is useful if
+  you don't want to customize the styles
 
 The following example shows how to do this with React Router:
 
@@ -83,18 +81,17 @@ The following example shows how to do this with React Router:
 import { Link } from "react-router-dom";
 
 function LinkButton() {
-  const { buttonWrapperStyles, buttonChildrenStyles, customButtonStyles } =
-    useButtonStyles({
-      type: "tertiary",
-      variation: "subtle",
-    });
+  const buttonStyles = useButtonStyles({
+    type: "tertiary",
+    variation: "subtle",
+  });
 
   return (
     <Link
       to="/"
-      className={classnames(buttonWrapperStyles, buttonChildrenStyles)}
+      className={classnames(buttonStyles.wrapper, buttonStyles.children)}
       // or
-      className={customButtonStyles}
+      className={buttonStyles.combined}
     >
       <Button.Label>Navigate Home</Button.Label>
       <Button.Icon icon="home" />

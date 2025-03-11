@@ -19,10 +19,7 @@ export interface ButtonFoundationProps {
   readonly disabled?: boolean;
   readonly external?: boolean;
   readonly fullWidth?: boolean;
-  readonly icon?: IconNames;
-  readonly iconOnRight?: boolean;
   readonly id?: string;
-  readonly label?: string;
   readonly loading?: boolean;
   readonly size?: ButtonSize;
   onClick?(
@@ -31,11 +28,31 @@ export interface ButtonFoundationProps {
   onMouseDown?(
     event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
   ): void;
-  /**
-   * Optional children to render inside the button
-   */
-  readonly children?: React.ReactNode;
 }
+
+interface ButtonNonComposableProps extends ButtonFoundationProps {
+  readonly icon?: IconNames;
+  readonly iconOnRight?: boolean;
+  readonly label?: string;
+}
+
+interface ButtonIconProps extends ButtonNonComposableProps {
+  readonly icon: IconNames;
+  readonly ariaLabel: string;
+}
+
+interface ButtonLabelProps extends ButtonNonComposableProps {
+  readonly label: string;
+}
+
+type BaseButtonProps = XOR<
+  BaseActionProps,
+  XOR<DestructiveActionProps, SubmitActionProps>
+> &
+  XOR<
+    XOR<SubmitButtonProps, BasicButtonProps>,
+    XOR<ButtonLinkProps, ButtonAnchorProps>
+  >;
 
 interface ButtonIconProps extends ButtonFoundationProps {
   readonly icon: IconNames;
@@ -94,15 +111,16 @@ interface BasicButtonProps extends ButtonFoundationProps {
   readonly role?: string;
 }
 
-// This type relaxes the XOR constraint when children are provided
-type WithChildrenOrLabelIcon<T> =
-  | (T & XOR<ButtonIconProps, ButtonLabelProps>)
-  | (T & { readonly children: React.ReactNode; readonly ariaLabel?: string });
+export type ButtonWithChildrenProps = BaseButtonProps & {
+  readonly children: React.ReactNode;
+};
 
-export type ButtonProps = WithChildrenOrLabelIcon<
-  XOR<BaseActionProps, XOR<DestructiveActionProps, SubmitActionProps>> &
-    XOR<
-      XOR<SubmitButtonProps, BasicButtonProps>,
-      XOR<ButtonLinkProps, ButtonAnchorProps>
-    >
+export type ButtonWithoutChildrenProps = BaseButtonProps &
+  XOR<ButtonIconProps, ButtonLabelProps> & {
+    readonly children?: never;
+  };
+
+export type ButtonProps = XOR<
+  ButtonWithChildrenProps,
+  ButtonWithoutChildrenProps
 >;
