@@ -83,7 +83,7 @@
       },
       "hintText": {
         "defaultValue": null,
-        "description": "Override the default hint text.",
+        "description": "Override the default hint text with a custom value.",
         "name": "hintText",
         "parent": {
           "fileName": "../components/src/InputFile/InputFile.tsx",

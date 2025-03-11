@@ -135,7 +135,7 @@ interface InputFileProps {
   readonly allowMultiple?: boolean;
 
   /**
-   * Override the default hint text.
+   * Override the default hint text with a custom value.
    */
   readonly hintText?: string;
 
