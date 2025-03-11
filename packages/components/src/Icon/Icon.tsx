@@ -1,9 +1,10 @@
 import React from "react";
 import { IconColorNames, IconNames, IconSizes, getIcon } from "@jobber/design";
+import { DataAttributes } from "../types";
 
 export { IconColorNames, IconNames } from "@jobber/design";
 
-export interface IconProps extends React.DataHTMLAttributes<SVGElement> {
+export interface IconProps extends DataAttributes {
   /** The icon to show.  */
   readonly name: IconNames;
 

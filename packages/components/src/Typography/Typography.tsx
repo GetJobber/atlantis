@@ -11,8 +11,9 @@ import alignment from "./css/TextAlignment.module.css";
 import fontFamilies from "./css/FontFamilies.module.css";
 import underlineStyles from "./css/Underline.module.css";
 import { UnderlineStyle, UnderlineStyleWithColor } from "./types";
+import { DataAttributes } from "../types";
 
-interface TypographyProps extends React.DataHTMLAttributes<HTMLElement> {
+interface TypographyProps extends DataAttributes {
   readonly id?: string;
   /**
    * @default "p"
