@@ -250,7 +250,7 @@
         },
         "required": false,
         "type": {
-          "name": "\"small\" | \"base\" | \"large\""
+          "name": "ButtonSize"
         }
       },
       "onMouseDown": {

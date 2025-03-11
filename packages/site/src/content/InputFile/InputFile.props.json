@@ -10,7 +10,7 @@
         "defaultValue": {
           "value": "dropzone"
         },
-        "description": "Display variation.",
+        "description": "Display variation.\n@deprecated The only supported variation is \"dropzone\"",
         "name": "variation",
         "parent": {
           "fileName": "../components/src/InputFile/InputFile.tsx",
@@ -81,6 +81,19 @@
           "name": "boolean"
         }
       },
+      "hintText": {
+        "defaultValue": null,
+        "description": "Override the default hint text.",
+        "name": "hintText",
+        "parent": {
+          "fileName": "../components/src/InputFile/InputFile.tsx",
+          "name": "InputFileProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
       "description": {
         "defaultValue": null,
         "description": "Further description of the input.",
@@ -105,6 +118,19 @@
         "required": false,
         "type": {
           "name": "{ readonly maxFiles: number; readonly numberOfCurrentFiles: number; }"
+        }
+      },
+      "children": {
+        "defaultValue": null,
+        "description": "Children will be rendered instead of the default content",
+        "name": "children",
+        "parent": {
+          "fileName": "../components/src/InputFile/InputFile.tsx",
+          "name": "InputFileProps"
+        },
+        "required": false,
+        "type": {
+          "name": "React.ReactNode"
         }
       },
       "getUploadParams": {
@@ -183,6 +209,401 @@
         "required": false,
         "type": {
           "name": "<T extends File>(file: T) => FileError | FileError[]"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/InputFile/InputFile.tsx",
+    "description": "",
+    "displayName": "InputFile.Button",
+    "methods": [],
+    "props": {
+      "external": {
+        "defaultValue": null,
+        "description": "",
+        "name": "external",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "onClick": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onClick",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void"
+        }
+      },
+      "variation": {
+        "defaultValue": null,
+        "description": "",
+        "name": "variation",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "BaseActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"work\" | \"learning\" | \"subtle\" | \"destructive\""
+        }
+      },
+      "type": {
+        "defaultValue": null,
+        "description": "",
+        "name": "type",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "SubmitActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"primary\" | \"secondary\" | \"tertiary\""
+        }
+      },
+      "ariaLabel": {
+        "defaultValue": null,
+        "description": "Used for screen readers. Will override label on screen\nreader if present.",
+        "name": "ariaLabel",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "ariaControls": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ariaControls",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "ariaHaspopup": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ariaHaspopup",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "ariaExpanded": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ariaExpanded",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "disabled": {
+        "defaultValue": null,
+        "description": "",
+        "name": "disabled",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "fullWidth": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "",
+        "name": "fullWidth",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "icon": {
+        "defaultValue": null,
+        "description": "",
+        "name": "icon",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "IconNames"
+        }
+      },
+      "iconOnRight": {
+        "defaultValue": null,
+        "description": "",
+        "name": "iconOnRight",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "id": {
+        "defaultValue": null,
+        "description": "",
+        "name": "id",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "loading": {
+        "defaultValue": null,
+        "description": "",
+        "name": "loading",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "size": {
+        "defaultValue": null,
+        "description": "",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ButtonSize"
+        }
+      },
+      "onMouseDown": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onMouseDown",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void"
+        }
+      },
+      "role": {
+        "defaultValue": null,
+        "description": "Used to override the default button role.",
+        "name": "role",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "BasicButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "label": {
+        "defaultValue": null,
+        "description": "",
+        "name": "label",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/InputFile/InputFile.tsx",
+    "description": "",
+    "displayName": "InputFile.Description",
+    "methods": [],
+    "props": {
+      "maxLines": {
+        "defaultValue": null,
+        "description": "",
+        "name": "maxLines",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"base\" | \"large\" | \"single\" | \"larger\" | \"unlimited\""
+        }
+      },
+      "variation": {
+        "defaultValue": {
+          "value": "subdued"
+        },
+        "description": "",
+        "name": "variation",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"disabled\" | \"info\" | \"default\" | \"subdued\" | \"success\" | \"error\" | \"warn\""
+        }
+      },
+      "align": {
+        "defaultValue": null,
+        "description": "",
+        "name": "align",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"start\" | \"center\" | \"end\""
+        }
+      },
+      "size": {
+        "defaultValue": {
+          "value": "small"
+        },
+        "description": "",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"base\" | \"large\""
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/InputFile/InputFile.tsx",
+    "description": "",
+    "displayName": "InputFile.DropzoneWrapper",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/InputFile/InputFile.tsx",
+    "description": "",
+    "displayName": "InputFile.HintText",
+    "methods": [],
+    "props": {
+      "maxLines": {
+        "defaultValue": null,
+        "description": "",
+        "name": "maxLines",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"base\" | \"large\" | \"single\" | \"larger\" | \"unlimited\""
+        }
+      },
+      "variation": {
+        "defaultValue": null,
+        "description": "",
+        "name": "variation",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"disabled\" | \"info\" | \"default\" | \"subdued\" | \"success\" | \"error\" | \"warn\""
+        }
+      },
+      "align": {
+        "defaultValue": null,
+        "description": "",
+        "name": "align",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"start\" | \"center\" | \"end\""
+        }
+      },
+      "size": {
+        "defaultValue": {
+          "value": "small"
+        },
+        "description": "",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"base\" | \"large\""
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/InputFile/InputFile.tsx",
+    "description": "",
+    "displayName": "InputFile.ValidationErrors",
+    "methods": [],
+    "props": {
+      "validationErrors": {
+        "defaultValue": null,
+        "description": "",
+        "name": "validationErrors",
+        "required": true,
+        "type": {
+          "name": "InputFileValidationError[]"
         }
       }
     }
