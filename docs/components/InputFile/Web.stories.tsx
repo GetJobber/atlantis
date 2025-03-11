@@ -36,7 +36,6 @@ export default {
 
 const StatefulTemplate: ComponentStory<typeof InputFile> = args => {
   const [files, setFiles] = useState<FileUpload[]>([]);
-  console.log("StatefulTemplate args", args);
 
   return (
     <>
@@ -226,7 +225,6 @@ FileSizeValidator.args = {
   getUploadParams: () => Promise.resolve({ url: "https://httpbin.org/post" }),
 };
 
-// A component to access the context
 const ContextDisplay = () => {
   const context = useInputFileContentContext();
 
@@ -268,6 +266,7 @@ const CustomContentTemplate: ComponentStory<typeof InputFile> = () => {
           <Button ariaLabel="Upload" icon="image" type="tertiary" />
         </InputFile.DropzoneWrapper>
       </InputFile>
+
       <Heading level={4}>Custom Icons</Heading>
       <InputFile
         onUploadStart={handleUpload}
@@ -283,6 +282,7 @@ const CustomContentTemplate: ComponentStory<typeof InputFile> = () => {
           <Icon name="printer" />
         </InputFile.DropzoneWrapper>
       </InputFile>
+
       <Heading level={4}>Custom content that uses InputFile.Provider</Heading>
       <InputFile
         allowMultiple={true}
@@ -337,6 +337,7 @@ const CustomContentWithSubcomponentsTemplate: ComponentStory<
           </Content>
         </InputFile.DropzoneWrapper>
       </InputFile>
+
       <Heading level={4}>Subcomponents with additional content</Heading>
       <InputFile
         description="Very cool description"
