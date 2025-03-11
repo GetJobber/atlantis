@@ -1,15 +1,152 @@
 import { Meta } from "@storybook/addon-docs";
 
-# Input File
-
 <Meta title="Components/Forms and Inputs/InputFile" />
+
+# InputFile
 
 InputFile allows users to upload a file, or multiple files by dragging and
 dropping them into an area on the page or by clicking a button.
 
-## Design & usage guidelines
+## Basic Usage
 
-When contributing to, or consuming the InputFile component, consider the
-following:
+```tsx
+<InputFile
+  getUploadParams={file => ({
+    url: "https://upload.example.com",
+    key: file.name,
+  })}
+/>
+```
 
-- Provide feedback once the file(s) have been dropped and uploading begins.
+## Customization
+
+### Using Props
+
+Basic customization can be achieved through props:
+
+```tsx
+<InputFile
+  getUploadParams={getUploadParams}
+  size="small"
+  buttonLabel="Choose Images"
+  allowMultiple={true}
+  allowedTypes="images"
+  hintText="Drop your images here"
+  description="Supported formats: JPG, PNG"
+/>
+```
+
+### Using Children
+
+For complete control over the layout, you can provide custom children:
+
+```tsx
+<InputFile getUploadParams={getUploadParams}>
+  <InputFile.DropzoneWrapper>
+    <h2>Upload Your Files</h2>
+    <InputFile.Button size="large" />
+    <InputFile.HintText />
+    <InputFile.Description />
+  </InputFile.DropzoneWrapper>
+</InputFile>
+```
+
+### Available Subcomponents
+
+1. `InputFile.Button`: Upload button
+
+   ```tsx
+   <InputFile.Button size="large" fullWidth={false} variation="work" />
+   ```
+
+2. `InputFile.HintText`: Helper text for the dropzone
+
+   ```tsx
+   <InputFile.HintText size="small" />
+   ```
+
+3. `InputFile.Description`: Additional description text
+
+   ```tsx
+   <InputFile.Description size="small" variation="subdued" />
+   ```
+
+4. `InputFile.DropzoneWrapper`: Wrapper for dropzone content
+   ```tsx
+   <InputFile.DropzoneWrapper>{/* Your content */}</InputFile.DropzoneWrapper>
+   ```
+
+### Using Context
+
+Subcomponents automatically access the InputFile context. The context includes:
+
+```tsx
+interface InputFileContentContextValue {
+  fileType: string; // Type of file being uploaded
+  allowMultiple: boolean; // Multiple files allowed
+  description?: string; // Description text
+  hintText?: string; // Hint text
+  buttonLabel?: string; // Button label
+  size: "small" | "base"; // Component size
+}
+```
+
+You can access this context in custom components:
+
+```tsx
+import { useInputFileContentContext } from "./InputFileContentContext";
+
+function CustomUploadContent() {
+  const { fileType, allowMultiple, size } = useInputFileContentContext();
+
+  return (
+    <div>
+      <h3>Upload {allowMultiple ? `${fileType}s` : fileType}</h3>
+      <InputFile.Button size={size} />
+    </div>
+  );
+}
+```
+
+## Examples
+
+### Basic Dropzone
+
+```tsx
+<InputFile getUploadParams={getUploadParams} />
+```
+
+### Image Upload with Validation
+
+```tsx
+<InputFile
+  getUploadParams={getUploadParams}
+  allowedTypes="images"
+  maxFilesValidation={{ maxFiles: 5, numberOfCurrentFiles: 0 }}
+  validator={file => {
+    if (file.size > 5000000) {
+      return { code: "file-too-large", message: "File is too large" };
+    }
+    return null;
+  }}
+/>
+```
+
+### Custom Layout
+
+```tsx
+<InputFile getUploadParams={getUploadParams}>
+  <InputFile.DropzoneWrapper>
+    <div className="custom-layout">
+      <h2>Upload Documents</h2>
+      <div className="upload-section">
+        <InputFile.Button size="large" />
+        <InputFile.HintText />
+      </div>
+      <div className="info-section">
+        <InputFile.Description />
+      </div>
+    </div>
+  </InputFile.DropzoneWrapper>
+</InputFile>
+```
