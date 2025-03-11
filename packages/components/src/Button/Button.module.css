@@ -207,18 +207,12 @@ a.button.disabled:hover {
 }
 
 /** Icon on Left */
-.buttonChildren
-  > [data-button-icon]:first-of-type:first-child:not(:only-child):not(
-    :last-child
-  ) {
+.buttonChildren > [data-button-icon]:has(+ [data-button-label]) {
   margin-left: calc(var(--space-smaller) * -1);
 }
 
 /** Icon on Right */
-.buttonChildren
-  > [data-button-icon]:last-of-type:last-child:not(:only-child):not(
-    :first-child
-  ) {
+.buttonChildren > [data-button-label] ~ [data-button-icon] {
   margin-right: calc(var(--space-smaller) * -1);
 }
 
