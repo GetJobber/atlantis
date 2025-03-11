@@ -84,17 +84,17 @@
           "name": "string"
         }
       },
-      "icon": {
+      "variation": {
         "defaultValue": null,
         "description": "",
-        "name": "icon",
+        "name": "variation",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
+          "name": "BaseActionProps"
         },
         "required": false,
         "type": {
-          "name": "IconNames"
+          "name": "ButtonVariation"
         }
       },
       "ariaLabel": {
@@ -175,36 +175,10 @@
           "name": "boolean"
         }
       },
-      "iconOnRight": {
-        "defaultValue": null,
-        "description": "",
-        "name": "iconOnRight",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
       "id": {
         "defaultValue": null,
         "description": "",
         "name": "id",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "label": {
-        "defaultValue": null,
-        "description": "",
-        "name": "label",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
           "name": "ButtonFoundationProps"
@@ -253,32 +227,6 @@
           "name": "(event: MouseEvent<HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => void"
         }
       },
-      "children": {
-        "defaultValue": null,
-        "description": "Optional children to render inside the button",
-        "name": "children",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ReactNode"
-        }
-      },
-      "variation": {
-        "defaultValue": null,
-        "description": "",
-        "name": "variation",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "BaseActionProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ButtonVariation"
-        }
-      },
       "role": {
         "defaultValue": null,
         "description": "Used to override the default button role.",
@@ -316,6 +264,45 @@
         "required": false,
         "type": {
           "name": "string"
+        }
+      },
+      "label": {
+        "defaultValue": null,
+        "description": "",
+        "name": "label",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonLabelProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "icon": {
+        "defaultValue": null,
+        "description": "",
+        "name": "icon",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonNonComposableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "IconNames"
+        }
+      },
+      "iconOnRight": {
+        "defaultValue": null,
+        "description": "",
+        "name": "iconOnRight",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonNonComposableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
         }
       }
     }
