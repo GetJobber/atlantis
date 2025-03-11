@@ -12,7 +12,7 @@ import fontFamilies from "./css/FontFamilies.module.css";
 import underlineStyles from "./css/Underline.module.css";
 import { UnderlineStyle, UnderlineStyleWithColor } from "./types";
 
-interface TypographyProps {
+interface TypographyProps extends React.DataHTMLAttributes<HTMLElement> {
   readonly id?: string;
   /**
    * @default "p"
@@ -77,6 +77,7 @@ export function Typography({
   numberOfLines,
   fontFamily,
   underline,
+  ...dataAttributes
 }: TypographyProps) {
   const shouldTruncateText = numberOfLines && numberOfLines > 0;
   const className = classnames(
@@ -114,7 +115,12 @@ export function Typography({
   }
 
   return (
-    <Tag id={id} className={className} style={stylesOverrides}>
+    <Tag
+      id={id}
+      className={className}
+      style={stylesOverrides}
+      {...dataAttributes}
+    >
       {children}
     </Tag>
   );
