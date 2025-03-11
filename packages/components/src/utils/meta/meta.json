@@ -84,6 +84,8 @@
     "InputFile.DropzoneWrapper",
     "InputFile.HintText",
     "InputFile.ValidationErrors",
+    "InputFileContentContext.Consumer",
+    "InputFileContentContext.Provider",
     "InputGroup",
     "InputNumber",
     "InputPassword",

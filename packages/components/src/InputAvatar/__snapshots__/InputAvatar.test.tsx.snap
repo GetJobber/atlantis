@@ -32,11 +32,13 @@ exports[`renders 1`] = `
       <input
         accept="image/*"
         autocomplete="off"
+        data-testid="input-file-input"
         style="display: none;"
         tabindex="-1"
         type="file"
       />
       <button
+        aria-label="Upload file"
         class="button small work secondary fullWidth"
         type="button"
       >
@@ -73,11 +75,13 @@ exports[`renders with a provided image 1`] = `
       <input
         accept="image/*"
         autocomplete="off"
+        data-testid="input-file-input"
         style="display: none;"
         tabindex="-1"
         type="file"
       />
       <button
+        aria-label="Upload file"
         class="button small work secondary fullWidth"
         type="button"
       >

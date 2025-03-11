@@ -20,7 +20,7 @@ export function InputFileButton({
   return (
     <Button
       {...buttonProps}
-      ariaLabel="Input file button"
+      ariaLabel="Upload file"
       label={finalLabel}
       size={size ?? context.size}
       type="secondary"

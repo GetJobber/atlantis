@@ -1,5 +1,5 @@
 import React from "react";
-import { render, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import axios from "axios";
 import { userEvent } from "@testing-library/user-event";
 import { InputFile } from ".";
@@ -330,6 +330,176 @@ describe("PUT requests", () => {
         },
         onUploadProgress: expect.any(Function),
       });
+    });
+  });
+});
+
+describe("Content", () => {
+  function fetchUploadParams(file: File) {
+    return Promise.resolve({
+      key: file.name,
+      url: "https://httpbin.org/post",
+      fields: { secret: "🤫" },
+    });
+  }
+
+  it("renders default content in dropzone variation", () => {
+    render(
+      <InputFile
+        description="Description text"
+        hintText="Hint text"
+        getUploadParams={fetchUploadParams}
+      />,
+    );
+
+    const button = screen.getByRole("button", { name: "Upload file" });
+    expect(
+      screen.getByRole("button", { name: "Upload file" }),
+    ).toBeInTheDocument();
+    expect(button).not.toHaveClass("fullWidth");
+    expect(screen.queryByText("Description text")).toBeInTheDocument();
+    expect(screen.queryByText("Hint text")).toBeInTheDocument();
+  });
+
+  it("renders default content without hint text and description in small size", () => {
+    render(
+      <InputFile
+        description="Description text"
+        hintText="Hint text"
+        size="small"
+        getUploadParams={fetchUploadParams}
+      />,
+    );
+
+    expect(
+      screen.getByRole("button", { name: "Upload File" }),
+    ).toBeInTheDocument();
+    expect(screen.queryByText("Description text")).not.toBeInTheDocument();
+    expect(screen.queryByText("Hint text")).not.toBeInTheDocument();
+  });
+
+  it("renders default content in button variation", () => {
+    render(
+      <InputFile
+        hintText="Hint text"
+        description="Description text"
+        variation="button"
+        getUploadParams={fetchUploadParams}
+      />,
+    );
+
+    const button = screen.getByRole("button", { name: "Upload file" });
+    expect(button).toBeInTheDocument();
+    expect(button).toHaveClass("fullWidth");
+    expect(screen.queryByText("Description text")).not.toBeInTheDocument();
+    expect(screen.queryByText("Hint text")).not.toBeInTheDocument();
+  });
+
+  it("renders custom content using InputFile subcomponents", () => {
+    render(
+      <InputFile getUploadParams={fetchUploadParams}>
+        <InputFile.DropzoneWrapper>
+          <div data-testid="custom-wrapper">
+            <InputFile.Button size="large" />
+            <InputFile.Description>Custom description</InputFile.Description>
+            <InputFile.HintText>Custom hint</InputFile.HintText>
+          </div>
+        </InputFile.DropzoneWrapper>
+      </InputFile>,
+    );
+
+    expect(screen.getByTestId("custom-wrapper")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Upload file" })).toHaveClass(
+      "large",
+    );
+    expect(screen.getByText("Custom description")).toBeInTheDocument();
+    expect(screen.getByText("Custom hint")).toBeInTheDocument();
+  });
+
+  it("renders custom content with non-subcomponents", () => {
+    render(
+      <InputFile getUploadParams={fetchUploadParams}>
+        <div data-testid="custom-content">
+          <h2>Custom Title</h2>
+          <p>Custom instructions</p>
+          <span>Additional content</span>
+        </div>
+      </InputFile>,
+    );
+    expect(screen.getByTestId("custom-content")).toBeInTheDocument();
+    expect(screen.getByText("Custom Title")).toBeInTheDocument();
+    expect(screen.getByText("Custom instructions")).toBeInTheDocument();
+    expect(screen.getByText("Additional content")).toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "Upload file" }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("renders custom content mixing subcomponents and regular elements", () => {
+    render(
+      <InputFile getUploadParams={fetchUploadParams}>
+        <div data-testid="mixed-content">
+          <h2>Custom Upload Section</h2>
+          <InputFile.Button />
+          <div className="custom-section">
+            <InputFile.HintText />
+            <p>Additional instructions</p>
+          </div>
+          <InputFile.Description>Important notes</InputFile.Description>
+        </div>
+      </InputFile>,
+    );
+
+    expect(screen.getByTestId("mixed-content")).toBeInTheDocument();
+    expect(screen.getByText("Custom Upload Section")).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Upload file" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("Select or drag a file here to upload"),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Additional instructions")).toBeInTheDocument();
+    expect(screen.getByText("Important notes")).toBeInTheDocument();
+  });
+
+  it("provides correct context to nested components", () => {
+    render(
+      <InputFile
+        getUploadParams={fetchUploadParams}
+        allowMultiple={true}
+        description="Context Description"
+        hintText="Context Hint"
+        allowedTypes="images"
+      >
+        <InputFile.Button />
+        <InputFile.Description />
+        <InputFile.HintText />
+      </InputFile>,
+    );
+
+    expect(screen.getByText("Context Description")).toBeInTheDocument();
+    expect(screen.getByText("Context Hint")).toBeInTheDocument();
+  });
+
+  it("maintains dropzone functionality with custom content", async () => {
+    const handleUploadStart = jest.fn();
+    render(
+      <InputFile
+        getUploadParams={fetchUploadParams}
+        onUploadStart={handleUploadStart}
+      >
+        <div data-testid="custom-content">
+          <InputFile.Button />
+          <p>Custom text</p>
+        </div>
+      </InputFile>,
+    );
+
+    const input = screen.getByTestId("input-file-input");
+    await userEvent.upload(input, testFile);
+
+    await waitFor(() => {
+      expect(handleUploadStart).toHaveBeenCalled();
     });
   });
 });

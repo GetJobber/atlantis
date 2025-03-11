@@ -347,7 +347,7 @@ export function InputFile({
       {variation === "dropzone" && (
         <InputFile.DropzoneWrapper>
           <Content spacing="small">
-            <InputFile.Button size={"small"} fullWidth={false} />
+            <InputFile.Button size="small" fullWidth={false} />
             {size === "base" && (
               <>
                 <InputFile.HintText />
@@ -368,7 +368,7 @@ export function InputFile({
         {...getRootProps({ className: dropZone })}
         tabIndex={variation === "button" ? -1 : 0}
       >
-        <input {...getInputProps()} />
+        <input {...getInputProps()} data-testid="input-file-input" />
         <InputFileContentContext.Provider value={contentContext}>
           {children || defaultContent}
         </InputFileContentContext.Provider>
