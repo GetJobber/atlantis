@@ -282,7 +282,7 @@ describe("Button with children", () => {
     render(
       <Button type="primary">
         <Button.Label>Click Me</Button.Label>
-        <Button.Icon icon="add" />
+        <Button.Icon name="add" />
       </Button>,
     );
 

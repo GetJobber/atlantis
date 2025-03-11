@@ -1,8 +1,8 @@
-import React, { ReactNode } from "react";
-import { ButtonProps, ButtonSize } from "./Button.types";
+import React from "react";
+import { ButtonProps } from "./Button.types";
 import { useButton } from "./ButtonProvider";
-import { Icon } from "../Icon";
-import { Typography, TypographyOptions } from "../Typography";
+import { Icon, IconProps } from "../Icon";
+import { Typography, TypographyProps } from "../Typography";
 
 /**
  * For backwards compatibility with the legacy button
@@ -16,9 +16,9 @@ export function ButtonContent({
 }: Pick<ButtonProps, "label" | "icon" | "size" | "iconOnRight">) {
   return (
     <>
-      {icon && !iconOnRight && <ButtonIcon icon={icon} size={size} />}
+      {icon && !iconOnRight && <ButtonIcon name={icon} size={size} />}
       {label && <ButtonLabel size={size}>{label}</ButtonLabel>}
-      {icon && iconOnRight && <ButtonIcon icon={icon} size={size} />}
+      {icon && iconOnRight && <ButtonIcon name={icon} size={size} />}
     </>
   );
 }
@@ -34,14 +34,11 @@ function getTypeSizes(size: string) {
   }
 }
 
-export function ButtonIcon({
-  icon,
-  size: sizeProp,
-}: Required<Pick<ButtonProps, "icon">> & { readonly size?: ButtonSize }) {
+export function ButtonIcon({ size: sizeProp, ...props }: IconProps) {
   const { size: contextSize } = useButton();
   const size = sizeProp || contextSize;
 
-  return <Icon data-button-icon name={icon} size={size} />;
+  return <Icon data-button-icon {...props} size={size} />;
 }
 
 export function ButtonLabel({
@@ -50,7 +47,7 @@ export function ButtonLabel({
   fontFamily = "base",
   size: sizeProp,
   ...props
-}: TypographyOptions & { readonly children: ReactNode }) {
+}: TypographyProps) {
   const { size: contextSize } = useButton();
   const size = sizeProp || contextSize;
 

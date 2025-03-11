@@ -13,7 +13,7 @@ import underlineStyles from "./css/Underline.module.css";
 import { UnderlineStyle, UnderlineStyleWithColor } from "./types";
 import { DataAttributes } from "../types";
 
-interface TypographyProps extends DataAttributes {
+export interface TypographyProps extends DataAttributes {
   readonly id?: string;
   /**
    * @default "p"
