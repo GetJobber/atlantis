@@ -11,12 +11,12 @@ function Button(props: ButtonProps) {
 
   return (
     <Button.Provider size={size}>
-      <Button.Wrapper {...props} />
+      <ButtonWrapper {...props} />
     </Button.Provider>
   );
 }
 
-Button.Wrapper = function ButtonWrapper(props: ButtonProps) {
+function ButtonWrapper(props: ButtonProps) {
   const {
     ariaControls,
     ariaHaspopup,
@@ -69,7 +69,7 @@ Button.Wrapper = function ButtonWrapper(props: ButtonProps) {
   const Tag = url ? "a" : "button";
 
   return <Tag {...tagProps}>{buttonInternals}</Tag>;
-};
+}
 
 Button.Label = ButtonLabel;
 Button.Icon = ButtonIcon;

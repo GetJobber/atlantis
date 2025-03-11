@@ -15,7 +15,6 @@
     "Button.Icon",
     "Button.Label",
     "Button.Provider",
-    "Button.Wrapper",
     "ButtonDismiss",
     "Card",
     "Cell",
