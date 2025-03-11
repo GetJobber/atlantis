@@ -33,6 +33,7 @@ exports[`When actions are provided renders a Page with action buttons and a menu
               >
                 <span
                   class="base semiBold base base"
+                  data-button-label="true"
                 >
                   Send Food
                 </span>
@@ -47,6 +48,7 @@ exports[`When actions are provided renders a Page with action buttons and a menu
               >
                 <span
                   class="base semiBold base base"
+                  data-button-label="true"
                 >
                   Send Drink
                 </span>
@@ -68,6 +70,7 @@ exports[`When actions are provided renders a Page with action buttons and a menu
                     type="button"
                   >
                     <svg
+                      data-button-icon="true"
                       data-testid="more"
                       style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                       viewBox="0 0 24 24"
@@ -79,6 +82,7 @@ exports[`When actions are provided renders a Page with action buttons and a menu
                     </svg>
                     <span
                       class="base semiBold base base"
+                      data-button-label="true"
                     >
                       More Actions
                     </span>

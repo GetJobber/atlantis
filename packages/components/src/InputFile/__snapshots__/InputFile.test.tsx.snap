@@ -25,6 +25,7 @@ exports[`Post Requests renders an InputFile 1`] = `
         >
           <span
             class="base semiBold base base"
+            data-button-label="true"
           >
             Upload File
           </span>
@@ -67,6 +68,7 @@ exports[`Post Requests renders an InputFile with multiple images allowed 1`] = `
         >
           <span
             class="base semiBold base base"
+            data-button-label="true"
           >
             Upload Images
           </span>
@@ -108,6 +110,7 @@ exports[`Post Requests renders an InputFile with multiple uploads 1`] = `
         >
           <span
             class="base semiBold base base"
+            data-button-label="true"
           >
             Upload Files
           </span>
@@ -149,6 +152,7 @@ exports[`Post Requests renders an InputFile with only images allowed 1`] = `
         >
           <span
             class="base semiBold base base"
+            data-button-label="true"
           >
             Upload Image
           </span>
@@ -189,6 +193,7 @@ exports[`Post Requests renders an InputFile with proper variations 1`] = `
         >
           <span
             class="base semiBold base base"
+            data-button-label="true"
           >
             Upload File
           </span>
@@ -224,6 +229,7 @@ exports[`Post Requests renders an InputFile with proper variations 1`] = `
         >
           <span
             class="base semiBold base base"
+            data-button-label="true"
           >
             Upload File
           </span>
@@ -248,6 +254,7 @@ exports[`Post Requests renders an InputFile with proper variations 1`] = `
     >
       <span
         class="base semiBold base base"
+        data-button-label="true"
       >
         Upload File
       </span>
@@ -270,6 +277,7 @@ exports[`Post Requests renders an InputFile with proper variations 1`] = `
     >
       <span
         class="base semiBold base base"
+        data-button-label="true"
       >
         Upload File
       </span>

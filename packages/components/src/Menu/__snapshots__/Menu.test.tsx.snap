@@ -15,6 +15,7 @@ exports[`Menu renders 1`] = `
         type="button"
       >
         <svg
+          data-button-icon="true"
           data-testid="more"
           style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
           viewBox="0 0 24 24"
@@ -26,6 +27,7 @@ exports[`Menu renders 1`] = `
         </svg>
         <span
           class="base semiBold base base"
+          data-button-label="true"
         >
           More Actions
         </span>
@@ -51,6 +53,7 @@ exports[`Menu with custom activator renders 1`] = `
       >
         <span
           class="base semiBold base base"
+          data-button-label="true"
         >
           Menu
         </span>

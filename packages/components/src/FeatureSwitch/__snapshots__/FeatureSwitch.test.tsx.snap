@@ -169,6 +169,7 @@ exports[`renders a full FeatureSwitch 1`] = `
         >
           <span
             class="base semiBold base base"
+            data-button-label="true"
           >
             Edit
           </span>

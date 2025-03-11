@@ -39,6 +39,7 @@ exports[`Images renders an image 1`] = `
             type="button"
           >
             <svg
+              data-button-icon="true"
               data-testid="remove"
               style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
               viewBox="0 0 24 24"
