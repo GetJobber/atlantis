@@ -38,7 +38,7 @@ export function ButtonIcon({ size: sizeProp, ...props }: IconProps) {
   const { size: contextSize } = useButton();
   const size = sizeProp || contextSize;
 
-  return <Icon data-button-icon {...props} size={size} />;
+  return <Icon {...props} size={size} />;
 }
 
 export function ButtonLabel({
@@ -53,7 +53,6 @@ export function ButtonLabel({
 
   return (
     <Typography
-      data-button-label
       element={element}
       fontWeight={fontWeight}
       fontFamily={fontFamily}

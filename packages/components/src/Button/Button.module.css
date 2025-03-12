@@ -197,23 +197,23 @@ a.button.disabled:hover {
 
 /* Icon */
 
-.button [data-button-icon] {
+.button svg {
   flex-shrink: 0;
 }
 
-.buttonChildren:has(> [data-button-icon]:only-child) {
+.buttonChildren:has(> svg:only-child) {
   width: var(--button--size);
   padding: 0;
 }
 
-/** Icon on Left */
-.buttonChildren > [data-button-icon]:has(+ [data-button-label]) {
-  margin-left: calc(var(--space-smaller) * -1);
+/** Icon on Right */
+.buttonChildren > span ~ svg {
+  margin-right: calc(var(--space-smaller) * -1);
 }
 
-/** Icon on Right */
-.buttonChildren > [data-button-label] ~ [data-button-icon] {
-  margin-right: calc(var(--space-smaller) * -1);
+/** Icon on Left */
+.buttonChildren > svg:has(+ span:nth-child(2)) {
+  margin-left: calc(var(--space-smaller) * -1);
 }
 
 .fullWidth {
