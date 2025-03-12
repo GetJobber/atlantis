@@ -10,9 +10,9 @@ function Button(props: ButtonProps) {
   const { size } = props;
 
   return (
-    <Button.Provider size={size}>
+    <ButtonProvider size={size}>
       <ButtonWrapper {...props} />
-    </Button.Provider>
+    </ButtonProvider>
   );
 }
 
@@ -73,5 +73,4 @@ function ButtonWrapper(props: ButtonProps) {
 
 Button.Label = ButtonLabel;
 Button.Icon = ButtonIcon;
-Button.Provider = ButtonProvider;
 export { Button, ButtonProps };
