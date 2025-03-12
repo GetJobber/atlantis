@@ -1,0 +1,88 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Content/Error messages" />
+
+# Error messages
+
+## Principles
+
+Effective error messages should be:
+
+- **Clear**: Use simple, plain language that helps SPs understand the issue.
+- **Concise**: Be brief but informative.
+- **Actionable**: Provide SPs with a clear next step.
+- **Empathetic**: Avoid blaming the user; instead, offer support.
+
+Error messages are an important part of the user experience, and therefore should be accomadated for when designing:
+
+- **Space**: If working in an area with the potential for errors, make sure enough space is accomadated for to ensure it can be communicated clearly.
+- **Placing** Errors should be positioned as close to where the error has occured as possible in order to avoid confusion.
+
+## Structure
+
+A well-structured error message has **three stages**:
+
+1. **What happened?** (Clearly state the issue)
+2. **Why did it happen?** (If relevant, briefly explain the cause)
+3. **How to fix it?** (Guide the SP on the next step)
+
+Example:
+> **Error:** Your image couldn't be uploaded.
+> **Why?** The file size is too large.
+> **What to do?** Select an image that's less than 5MB.
+
+With those three stages, and by incorporating linking words (such as because), you can create a well-structured, helpful error message that offers clear guidance.
+> Your image couldn't be added because the file size is too large. Select an image that's less than 5MB."
+
+## Voice and tone
+
+- Use **friendly and professional** language.
+- Avoid technical jargon unless speaking to a technical audience.
+- Use contractions and natural phrasing (e.g., "We couldn’t process your request" instead of "Request processing failed").
+- Avoid all-caps and exclamation marks. It's not the end of the world. (e.g., "Error!" → "There’s a problem").
+
+## Do’s and Don’ts
+
+| ✅ **Do**                                      | ❌ **Don't**                                  |
+|----------------------------------------------- |---------------------------------------------|
+| **Use specific error messages.** <br> _Example:_ "Your password must be at least 8 characters." | **Use generic errors.** <br> _Example:_ "Something went wrong." |
+| **Offer a solution.** <br> _Example:_ "Try resetting your password." | **Blame the user.** <br> _Example:_ "You entered an invalid email." |
+| **Use a helpful, supportive tone.** | **Use negative or alarming language.** <br> _Example:_ "Critical failure!" |
+
+## Common Usage
+
+### 1. **Banners**
+- Explicitly state what action the SPs need to take and, if appropriate, the consequences of not taking the action.
+- The CTA should reinforce the action.
+- Example:
+-  > **Body:** You need to update your payment details to continue accepting payments.
+   > **CTA:** Update details
+
+### 2. **Toast**
+- As a rule, stick to three or four words maximum. For errors, toasts are generally best reserved for technical errors such as connection time outs.
+- Example:
+- > **Body:** Connection timed out
+
+### 3. **Form Errors**
+- Highlight errors inline. Avoid words like "field" and "value" - just use the name of the field to let them know it's a requirement.
+- If appropriate, provide a solution.
+- Example:
+  > **Error:** Email is required.
+  > **Solution:** Enter a valid email address.
+
+### 4. **Warnings**
+- Jobber will sometimes want to warn SPs about consequences of their actions that they take in their settings if they have the potential to be detrimental.
+- Avoid language such as "are you sure" in these scenarios. Instead restate their intended action, and clearly outline the consequences of performing it.
+- Where possible, provide a CTA that reinforces the action and lets them proceed with the change, along with an secondary CTA that lets them opt out of the change.
+- Example:
+- > **Body:** By turning off Jobber Payments, your clients won't be able to pay any new or outstanding invoices"
+  > **CTA:** Turn off
+  > **Secondary CTA:** Keep on
+
+## Final Checklist
+- ✅ Is the error message clear and concise?
+- ✅ Does it guide the user toward a solution?
+- ✅ Is the tone helpful and professional?
+- ✅ Does it follow the outlined structure?
+
+By following these best practices, error messages can become a valuable part of the user experience rather than a frustration point that cause unecessary confusion.
