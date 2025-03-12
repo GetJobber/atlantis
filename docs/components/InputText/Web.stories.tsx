@@ -525,7 +525,11 @@ const CustomInputActivator = forwardRef<
       onFocus={onClick}
       ref={ref}
       className={inputStyle}
-      style={{ width: "auto", flex: "1 1 auto" }}
+      style={{
+        flex: "1",
+        minWidth: "120px",
+        lineHeight: "var(--typography--lineHeight-base)",
+      }}
     />
   );
 });
