@@ -50,7 +50,7 @@ export function ButtonLabel({
   fontFamily = "base",
   size: sizeProp,
   ...props
-}: TypographyProps) {
+}: Omit<TypographyProps, "textColor">) {
   const { size: contextSize } = useButton();
   const size = sizeProp || contextSize;
 
