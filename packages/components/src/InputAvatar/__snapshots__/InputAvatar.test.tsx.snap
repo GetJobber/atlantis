@@ -42,7 +42,6 @@ exports[`renders 1`] = `
       >
         <span
           class="base semiBold base base"
-          data-button-label="true"
         >
           Upload Image
         </span>
@@ -84,7 +83,6 @@ exports[`renders with a provided image 1`] = `
       >
         <span
           class="base semiBold base base"
-          data-button-label="true"
         >
           Change Image
         </span>
@@ -96,7 +94,6 @@ exports[`renders with a provided image 1`] = `
     >
       <span
         class="base semiBold base base"
-        data-button-label="true"
       >
         Remove
       </span>

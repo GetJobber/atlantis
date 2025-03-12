@@ -11,9 +11,8 @@ import alignment from "./css/TextAlignment.module.css";
 import fontFamilies from "./css/FontFamilies.module.css";
 import underlineStyles from "./css/Underline.module.css";
 import { UnderlineStyle, UnderlineStyleWithColor } from "./types";
-import { DataAttributes } from "../types";
 
-export interface TypographyProps extends DataAttributes {
+export interface TypographyProps {
   readonly id?: string;
   /**
    * @default "p"
@@ -78,7 +77,6 @@ export function Typography({
   numberOfLines,
   fontFamily,
   underline,
-  ...dataAttributes
 }: TypographyProps) {
   const shouldTruncateText = numberOfLines && numberOfLines > 0;
   const className = classnames(
@@ -116,12 +114,7 @@ export function Typography({
   }
 
   return (
-    <Tag
-      id={id}
-      className={className}
-      style={stylesOverrides}
-      {...dataAttributes}
-    >
+    <Tag id={id} className={className} style={stylesOverrides}>
       {children}
     </Tag>
   );

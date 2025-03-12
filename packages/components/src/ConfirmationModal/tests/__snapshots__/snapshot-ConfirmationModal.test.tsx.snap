@@ -50,7 +50,6 @@ exports[`renders a simple ConfirmationModal 1`] = `
           >
             <span
               class="base semiBold base base"
-              data-button-label="true"
             >
               We Shall
             </span>
@@ -61,7 +60,6 @@ exports[`renders a simple ConfirmationModal 1`] = `
           >
             <span
               class="base semiBold base base"
-              data-button-label="true"
             >
               Cancel
             </span>

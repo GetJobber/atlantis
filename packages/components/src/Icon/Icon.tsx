@@ -1,10 +1,9 @@
 import React from "react";
 import { IconColorNames, IconNames, IconSizes, getIcon } from "@jobber/design";
-import { DataAttributes } from "../types";
 
 export { IconColorNames, IconNames } from "@jobber/design";
 
-export interface IconProps extends DataAttributes {
+export interface IconProps {
   /** The icon to show.  */
   readonly name: IconNames;
 
@@ -38,7 +37,6 @@ export function Icon({
   customColor,
   size = "base",
   testID,
-  ...dataAttributes
 }: IconProps) {
   let icon;
   const { svgStyle, pathStyle, paths, viewBox } = getIcon({
@@ -62,7 +60,6 @@ export function Icon({
       viewBox={viewBox}
       style={svgStyle}
       data-testid={testID || name}
-      {...dataAttributes}
     >
       {icon}
     </svg>

@@ -42,7 +42,6 @@ exports[`renders a banner with a primary 'learning' action when the type is 'not
         >
           <span
             class="base semiBold base base"
-            data-button-label="true"
           >
             smash me
           </span>
@@ -58,7 +57,6 @@ exports[`renders a banner with a primary 'learning' action when the type is 'not
         type="button"
       >
         <svg
-          data-button-icon="true"
           data-testid="remove"
           style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
           viewBox="0 0 24 24"
@@ -116,7 +114,6 @@ exports[`renders a banner with a primary action 1`] = `
         >
           <span
             class="base semiBold base base"
-            data-button-label="true"
           >
             smash me
           </span>
@@ -132,7 +129,6 @@ exports[`renders a banner with a primary action 1`] = `
         type="button"
       >
         <svg
-          data-button-icon="true"
           data-testid="remove"
           style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
           viewBox="0 0 24 24"
@@ -191,7 +187,6 @@ exports[`renders a notice banner 1`] = `
         type="button"
       >
         <svg
-          data-button-icon="true"
           data-testid="remove"
           style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
           viewBox="0 0 24 24"
@@ -250,7 +245,6 @@ exports[`renders a success banner 1`] = `
         type="button"
       >
         <svg
-          data-button-icon="true"
           data-testid="remove"
           style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
           viewBox="0 0 24 24"
@@ -313,7 +307,6 @@ exports[`renders a warning banner 1`] = `
         type="button"
       >
         <svg
-          data-button-icon="true"
           data-testid="remove"
           style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
           viewBox="0 0 24 24"
@@ -376,7 +369,6 @@ exports[`renders an error banner 1`] = `
         type="button"
       >
         <svg
-          data-button-icon="true"
           data-testid="remove"
           style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
           viewBox="0 0 24 24"
