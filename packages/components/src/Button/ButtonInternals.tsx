@@ -34,7 +34,10 @@ function getTypeSizes(size: string) {
   }
 }
 
-export function ButtonIcon({ size: sizeProp, ...props }: IconProps) {
+export function ButtonIcon({
+  size: sizeProp,
+  ...props
+}: Pick<IconProps, "size" | "name" | "testID">) {
   const { size: contextSize } = useButton();
   const size = sizeProp || contextSize;
 
