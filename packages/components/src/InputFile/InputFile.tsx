@@ -336,8 +336,8 @@ export function InputFile({
     fileType: fileType,
     allowMultiple,
     description,
-    hintText,
-    buttonLabel: providedButtonLabel,
+    hintText: hintText || "",
+    buttonLabel: providedButtonLabel || "",
     size,
   };
 
