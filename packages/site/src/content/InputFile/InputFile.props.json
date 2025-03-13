@@ -593,23 +593,5 @@
         }
       }
     }
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/InputFile/InputFile.tsx",
-    "description": "",
-    "displayName": "InputFile.ValidationErrors",
-    "methods": [],
-    "props": {
-      "validationErrors": {
-        "defaultValue": null,
-        "description": "",
-        "name": "validationErrors",
-        "required": true,
-        "type": {
-          "name": "InputFileValidationError[]"
-        }
-      }
-    }
   }
 ]
