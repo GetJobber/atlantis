@@ -225,7 +225,7 @@
         "description": "",
         "name": "external",
         "parent": {
-          "fileName": "packages/components/src/Button/Button.tsx",
+          "fileName": "packages/components/src/Button/Button.types.ts",
           "name": "ButtonFoundationProps"
         },
         "required": false,
@@ -238,12 +238,12 @@
         "description": "",
         "name": "onClick",
         "parent": {
-          "fileName": "packages/components/src/Button/Button.tsx",
+          "fileName": "packages/components/src/Button/Button.types.ts",
           "name": "ButtonFoundationProps"
         },
         "required": false,
         "type": {
-          "name": "(event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void"
+          "name": "(event: MouseEvent<HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => void"
         }
       },
       "variation": {
@@ -251,12 +251,12 @@
         "description": "",
         "name": "variation",
         "parent": {
-          "fileName": "packages/components/src/Button/Button.tsx",
+          "fileName": "packages/components/src/Button/Button.types.ts",
           "name": "BaseActionProps"
         },
         "required": false,
         "type": {
-          "name": "\"work\" | \"learning\" | \"subtle\" | \"destructive\""
+          "name": "ButtonVariation"
         }
       },
       "type": {
@@ -264,33 +264,20 @@
         "description": "",
         "name": "type",
         "parent": {
-          "fileName": "packages/components/src/Button/Button.tsx",
+          "fileName": "packages/components/src/Button/Button.types.ts",
           "name": "SubmitActionProps"
         },
         "required": false,
         "type": {
-          "name": "\"primary\" | \"secondary\" | \"tertiary\""
-        }
-      },
-      "ariaLabel": {
-        "defaultValue": null,
-        "description": "Used for screen readers. Will override label on screen\nreader if present.",
-        "name": "ariaLabel",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.tsx",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
+          "name": "ButtonType"
         }
       },
       "ariaControls": {
         "defaultValue": null,
-        "description": "",
+        "description": "Used for screen readers. Will override label on screen\nreader if present.",
         "name": "ariaControls",
         "parent": {
-          "fileName": "packages/components/src/Button/Button.tsx",
+          "fileName": "packages/components/src/Button/Button.types.ts",
           "name": "ButtonFoundationProps"
         },
         "required": false,
@@ -303,7 +290,7 @@
         "description": "",
         "name": "ariaHaspopup",
         "parent": {
-          "fileName": "packages/components/src/Button/Button.tsx",
+          "fileName": "packages/components/src/Button/Button.types.ts",
           "name": "ButtonFoundationProps"
         },
         "required": false,
@@ -316,7 +303,7 @@
         "description": "",
         "name": "ariaExpanded",
         "parent": {
-          "fileName": "packages/components/src/Button/Button.tsx",
+          "fileName": "packages/components/src/Button/Button.types.ts",
           "name": "ButtonFoundationProps"
         },
         "required": false,
@@ -329,7 +316,7 @@
         "description": "",
         "name": "disabled",
         "parent": {
-          "fileName": "packages/components/src/Button/Button.tsx",
+          "fileName": "packages/components/src/Button/Button.types.ts",
           "name": "ButtonFoundationProps"
         },
         "required": false,
@@ -344,33 +331,7 @@
         "description": "",
         "name": "fullWidth",
         "parent": {
-          "fileName": "packages/components/src/Button/Button.tsx",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "icon": {
-        "defaultValue": null,
-        "description": "",
-        "name": "icon",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.tsx",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "IconNames"
-        }
-      },
-      "iconOnRight": {
-        "defaultValue": null,
-        "description": "",
-        "name": "iconOnRight",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.tsx",
+          "fileName": "packages/components/src/Button/Button.types.ts",
           "name": "ButtonFoundationProps"
         },
         "required": false,
@@ -383,20 +344,7 @@
         "description": "",
         "name": "id",
         "parent": {
-          "fileName": "packages/components/src/Button/Button.tsx",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "label": {
-        "defaultValue": null,
-        "description": "",
-        "name": "label",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.tsx",
+          "fileName": "packages/components/src/Button/Button.types.ts",
           "name": "ButtonFoundationProps"
         },
         "required": false,
@@ -409,7 +357,7 @@
         "description": "",
         "name": "loading",
         "parent": {
-          "fileName": "packages/components/src/Button/Button.tsx",
+          "fileName": "packages/components/src/Button/Button.types.ts",
           "name": "ButtonFoundationProps"
         },
         "required": false,
@@ -422,7 +370,7 @@
         "description": "",
         "name": "size",
         "parent": {
-          "fileName": "packages/components/src/Button/Button.tsx",
+          "fileName": "packages/components/src/Button/Button.types.ts",
           "name": "ButtonFoundationProps"
         },
         "required": false,
@@ -435,12 +383,12 @@
         "description": "",
         "name": "onMouseDown",
         "parent": {
-          "fileName": "packages/components/src/Button/Button.tsx",
+          "fileName": "packages/components/src/Button/Button.types.ts",
           "name": "ButtonFoundationProps"
         },
         "required": false,
         "type": {
-          "name": "(event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void"
+          "name": "(event: MouseEvent<HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => void"
         }
       },
       "role": {
@@ -448,8 +396,60 @@
         "description": "Used to override the default button role.",
         "name": "role",
         "parent": {
-          "fileName": "packages/components/src/Button/Button.tsx",
+          "fileName": "packages/components/src/Button/Button.types.ts",
           "name": "BasicButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "icon": {
+        "defaultValue": null,
+        "description": "",
+        "name": "icon",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonNonComposableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "IconNames"
+        }
+      },
+      "ariaLabel": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ariaLabel",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonNonComposableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "iconOnRight": {
+        "defaultValue": null,
+        "description": "",
+        "name": "iconOnRight",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonNonComposableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "label": {
+        "defaultValue": null,
+        "description": "",
+        "name": "label",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonLabelProps"
         },
         "required": false,
         "type": {
