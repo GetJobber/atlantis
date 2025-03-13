@@ -11,9 +11,7 @@ declare const styles: {
   readonly "small": string;
   readonly "base": string;
   readonly "large": string;
-  readonly "onlyIcon": string;
-  readonly "hasIconAndLabel": string;
-  readonly "iconOnRight": string;
+  readonly "buttonChildren": string;
   readonly "fullWidth": string;
   readonly "loading": string;
   readonly "animateStripes": string;
