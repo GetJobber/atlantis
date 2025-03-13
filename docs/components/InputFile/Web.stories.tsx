@@ -230,20 +230,28 @@ const DropzoneContextDisplay = () => {
 
   return (
     <Card elevation="base">
-      <Heading level={5}>
-        Custom content can still access the InputFile context
-      </Heading>
-      <ul>
-        <li>
-          <Text>File Type: {context.fileType}</Text>
-        </li>
-        <li>
-          <Text>Allow Multiple: {context.allowMultiple ? "Yes" : "No"}</Text>
-        </li>
-        <li>
-          <Text>Description: {context.description}</Text>
-        </li>
-      </ul>
+      <div style={{ padding: 16 }}>
+        <Heading level={5}>
+          Custom content can still access the InputFile context
+        </Heading>
+        <ul>
+          <li>
+            <Text>File Type: {context.fileType}</Text>
+          </li>
+          <li>
+            <Text>Allow Multiple: {context.allowMultiple ? "Yes" : "No"}</Text>
+          </li>
+          <li>
+            <Text>Description: {context.description}</Text>
+          </li>
+          <li>
+            <Text>Hint Text: {context.hintText}</Text>
+          </li>
+          <li>
+            <Text>Button Label: {context.buttonLabel}</Text>
+          </li>
+        </ul>
+      </div>
     </Card>
   );
 };
@@ -286,8 +294,6 @@ const CustomDropzoneContentTemplate: ComponentStory<typeof InputFile> = () => {
       <Heading level={4}>Custom content that uses InputFile.Provider</Heading>
       <InputFile
         allowMultiple={true}
-        description="This is the description"
-        hintText="This is the hint text"
         onUploadStart={handleUpload}
         onUploadProgress={handleUpload}
         onUploadComplete={handleUpload}
