@@ -372,7 +372,7 @@ export function InputFile({
           {children || defaultContent}
         </InputFileContentContext.Provider>
       </div>
-      <InputFile.ValidationErrors validationErrors={validationErrors} />
+      <InputFileValidationErrors validationErrors={validationErrors} />
     </>
   );
 
@@ -531,4 +531,3 @@ InputFile.Button = InputFileButton;
 InputFile.Description = InputFileDescription;
 InputFile.DropzoneWrapper = InputFileDropzoneWrapper;
 InputFile.HintText = InputFileHintText;
-InputFile.ValidationErrors = InputFileValidationErrors;

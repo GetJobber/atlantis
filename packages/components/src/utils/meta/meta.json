@@ -91,7 +91,6 @@
     "InputFile.Description",
     "InputFile.DropzoneWrapper",
     "InputFile.HintText",
-    "InputFile.ValidationErrors",
     "InputFileContentContext.Consumer",
     "InputFileContentContext.Provider",
     "InputGroup",

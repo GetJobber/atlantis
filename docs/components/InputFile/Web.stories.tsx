@@ -225,7 +225,7 @@ FileSizeValidator.args = {
   getUploadParams: () => Promise.resolve({ url: "https://httpbin.org/post" }),
 };
 
-const ContextDisplay = () => {
+const DropzoneContextDisplay = () => {
   const context = useInputFileContentContext();
 
   return (
@@ -248,7 +248,7 @@ const ContextDisplay = () => {
   );
 };
 
-const CustomContentTemplate: ComponentStory<typeof InputFile> = () => {
+const CustomDropzoneContentTemplate: ComponentStory<typeof InputFile> = () => {
   const [files, setFiles] = useState<FileUpload[]>([]);
 
   return (
@@ -296,29 +296,10 @@ const CustomContentTemplate: ComponentStory<typeof InputFile> = () => {
         }
       >
         <InputFile.DropzoneWrapper>
-          <ContextDisplay />
+          <DropzoneContextDisplay />
         </InputFile.DropzoneWrapper>
       </InputFile>
-      {files.map(file => (
-        <FormatFile file={file} key={file.key} />
-      ))}
-    </Content>
-  );
 
-  function handleUpload(file: FileUpload) {
-    setFiles(oldFiles => updateFiles(file, oldFiles));
-  }
-};
-
-export const CustomContent = CustomContentTemplate.bind({});
-
-const CustomContentWithSubcomponentsTemplate: ComponentStory<
-  typeof InputFile
-> = () => {
-  const [files, setFiles] = useState<FileUpload[]>([]);
-
-  return (
-    <Content>
       <Heading level={4}>Subcomponents in a different order</Heading>
       <InputFile
         description="Very cool description"
@@ -369,5 +350,67 @@ const CustomContentWithSubcomponentsTemplate: ComponentStory<
   }
 };
 
-export const CustomContentWithSubcomponents =
-  CustomContentWithSubcomponentsTemplate.bind({});
+export const CustomContentInDropzoneVariation =
+  CustomDropzoneContentTemplate.bind({});
+
+const ButtonContextDisplay = () => {
+  const context = useInputFileContentContext();
+
+  return (
+    <Button fullWidth={true}>
+      <Text>File Type: {context.fileType}</Text>
+    </Button>
+  );
+};
+
+const CustomButtonContentTemplate: ComponentStory<typeof InputFile> = () => {
+  const [files, setFiles] = useState<FileUpload[]>([]);
+
+  return (
+    <Content>
+      <Heading level={4}>Custom button</Heading>
+      <InputFile
+        variation="button"
+        onUploadStart={handleUpload}
+        onUploadProgress={handleUpload}
+        onUploadComplete={handleUpload}
+        getUploadParams={() =>
+          Promise.resolve({ url: "https://httpbin.org/post" })
+        }
+      >
+        <InputFile.Button
+          ariaLabel="Upload image"
+          label="Upload image"
+          icon="image"
+          type="tertiary"
+          fullWidth={true}
+        />
+      </InputFile>
+
+      <Heading level={4}>Custom button that uses InputFile.Provider</Heading>
+      <InputFile
+        variation="button"
+        onUploadStart={handleUpload}
+        onUploadProgress={handleUpload}
+        onUploadComplete={handleUpload}
+        getUploadParams={() =>
+          Promise.resolve({ url: "https://httpbin.org/post" })
+        }
+      >
+        <ButtonContextDisplay />
+      </InputFile>
+
+      {files.map(file => (
+        <FormatFile file={file} key={file.key} />
+      ))}
+    </Content>
+  );
+
+  function handleUpload(file: FileUpload) {
+    setFiles(oldFiles => updateFiles(file, oldFiles));
+  }
+};
+
+export const CustomContentInButtonVariation = CustomButtonContentTemplate.bind(
+  {},
+);

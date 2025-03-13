@@ -161,7 +161,7 @@ on the `variation` and `size` props:
   <InputFile.DropzoneWrapper>
     <Content spacing="small">
       <InputFile.Button size="small" fullWidth={false} />
-      {/* HintText and Description are omitted in small size */}
+      {/* In the default InputFile, HintText and Description are omitted in small size */}
     </Content>
   </InputFile.DropzoneWrapper>
 </InputFile>
@@ -184,7 +184,6 @@ Basic customization can be achieved through props:
 ```tsx
 <InputFile
   getUploadParams={getUploadParams}
-  size="small"
   buttonLabel="Choose Images"
   allowMultiple={true}
   allowedTypes="images"
@@ -200,10 +199,11 @@ For complete control over the layout, you can provide custom children:
 ```tsx
 <InputFile getUploadParams={getUploadParams}>
   <InputFile.DropzoneWrapper>
-    <h2>Upload Your Files</h2>
-    <InputFile.Button size="large" />
-    <InputFile.HintText />
-    <InputFile.Description />
+    <Content spacing="small">
+      <InputFile.Button size="small" fullWidth={false} />
+      <InputFile.HintText />
+      <InputFile.Description />
+    </Content>
   </InputFile.DropzoneWrapper>
 </InputFile>
 ```
@@ -263,6 +263,10 @@ function CustomUploadContent() {
     </div>
   );
 }
+
+<InputFile getUploadParams={getUploadParams}>
+  <CustomUploadContent />
+</InputFile>;
 ```
 
 ## Examples
@@ -289,13 +293,13 @@ function CustomUploadContent() {
 />
 ```
 
-### Custom layout
+### Custom dropzone layout
 
 ```tsx
 <InputFile getUploadParams={getUploadParams}>
   <InputFile.DropzoneWrapper>
     <div className="custom-layout">
-      <h2>Upload Documents</h2>
+      <Heading level={2}>Upload Documents</Heading>
       <div className="upload-section">
         <InputFile.Button size="large" />
         <InputFile.HintText />
@@ -305,6 +309,20 @@ function CustomUploadContent() {
       </div>
     </div>
   </InputFile.DropzoneWrapper>
+</InputFile>
+```
+
+### Custom button
+
+```tsx
+<InputFile variation="button" getUploadParams={getUploadParams}>
+  <InputFile.Button
+    ariaLabel="Upload image"
+    label="Upload image"
+    icon="image"
+    type="tertiary"
+    fullWidth={true}
+  />
 </InputFile>
 ```
 
