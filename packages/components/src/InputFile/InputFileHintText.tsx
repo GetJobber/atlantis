@@ -7,20 +7,11 @@ export function InputFileHintText({
   children,
   ...textProps
 }: PropsWithChildren<TextProps>) {
-  const { hintText, fileType, allowMultiple } = useInputFileContentContext();
+  const { hintText } = useInputFileContentContext();
 
   return (
     <Text {...textProps} size={size}>
-      {children || hintText || getDefaultHintText(fileType, allowMultiple)}
+      {children || hintText}
     </Text>
   );
-}
-
-function getDefaultHintText(fileType: string, multiple: boolean) {
-  const fileTypeDeterminer = fileType === "Image" ? "an" : "a";
-  const hintText = multiple
-    ? `Select or drag ${fileType.toLowerCase()}s here to upload`
-    : `Select or drag ${fileTypeDeterminer} ${fileType.toLowerCase()} here to upload`;
-
-  return hintText;
 }

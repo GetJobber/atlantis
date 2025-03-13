@@ -1,19 +1,17 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { InputFileButton } from "./InputFileButton";
-import {
-  InputFileContentContext,
-  InputFileContentContextValue,
-} from "./InputFileContentContext";
+import { InputFileContentContext } from "./InputFileContentContext";
+import { ButtonSize } from "../Button/Button.types";
 
 describe("InputFileButton", () => {
-  const defaultContextValue: InputFileContentContextValue = {
+  const defaultContextValue = {
     fileType: "File",
     allowMultiple: false,
     description: undefined,
-    hintText: undefined,
-    buttonLabel: undefined,
-    size: "base",
+    hintText: "Select or drag a file here to upload",
+    buttonLabel: "Upload File",
+    size: "base" as ButtonSize,
   };
 
   function renderWithContext(
@@ -27,97 +25,30 @@ describe("InputFileButton", () => {
     );
   }
 
-  it("renders with default props", () => {
+  it("renders with default props from context", () => {
     renderWithContext(<InputFileButton />);
-
     const button = screen.getByRole("button");
     expect(button).toHaveAttribute("type", "button");
-    expect(button).toHaveTextContent("Upload File");
     expect(button).toHaveAttribute("aria-label", "Upload file");
+    expect(button).toHaveTextContent("Upload File");
+    expect(button.className).toContain("base");
   });
 
-  it("uses custom label when provided", () => {
-    renderWithContext(<InputFileButton label="Custom Upload" />);
-
+  it("uses provided props over context values", () => {
+    renderWithContext(
+      <InputFileButton label="Custom Label" size="small" fullWidth />,
+    );
     const button = screen.getByRole("button");
-    expect(button).toHaveTextContent("Custom Upload");
-  });
-
-  it("uses context button label when no label prop is provided", () => {
-    renderWithContext(<InputFileButton />, {
-      ...defaultContextValue,
-      buttonLabel: "Context Label",
-    });
-
-    const button = screen.getByRole("button");
-    expect(button).toHaveTextContent("Context Label");
-  });
-
-  it("uses context size when no size prop is provided", () => {
-    renderWithContext(<InputFileButton />, {
-      ...defaultContextValue,
-      size: "small",
-    });
-
-    const button = screen.getByRole("button");
+    expect(button).toHaveTextContent("Custom Label");
     expect(button.className).toContain("small");
-    expect(button).toHaveAttribute("type", "button");
-  });
-
-  it("overrides context size with size prop when provided", () => {
-    renderWithContext(<InputFileButton size="small" />, {
-      ...defaultContextValue,
-      size: "base",
-    });
-
-    const button = screen.getByRole("button");
-    expect(button.className).toContain("small");
-  });
-
-  it("uses plural form in label when allowMultiple is true", () => {
-    renderWithContext(<InputFileButton />, {
-      ...defaultContextValue,
-      allowMultiple: true,
-      fileType: "Image",
-    });
-
-    const button = screen.getByRole("button");
-    expect(button).toHaveTextContent("Upload Images");
-  });
-
-  it("uses singular form in label when allowMultiple is false", () => {
-    renderWithContext(<InputFileButton />, {
-      ...defaultContextValue,
-      allowMultiple: false,
-      fileType: "Image",
-    });
-
-    const button = screen.getByRole("button");
-    expect(button).toHaveTextContent("Upload Image");
-  });
-
-  it("applies fullWidth prop correctly", () => {
-    renderWithContext(<InputFileButton fullWidth={true} />);
-
-    const button = screen.getByRole("button");
     expect(button.className).toContain("fullWidth");
   });
 
-  it("defaults to non-fullWidth when prop is not provided", () => {
-    renderWithContext(<InputFileButton />);
-
-    const button = screen.getByRole("button");
-    expect(button.className).not.toContain("fullWidth");
-  });
-
   it("passes through additional button props", () => {
-    renderWithContext(
-      <InputFileButton disabled={true} variation="work" loading={true} />,
-    );
-
+    renderWithContext(<InputFileButton disabled loading variation="work" />);
     const button = screen.getByRole("button");
     expect(button).toBeDisabled();
-    expect(button.className).toContain("work");
     expect(button.className).toContain("loading");
+    expect(button.className).toContain("work");
   });
 });

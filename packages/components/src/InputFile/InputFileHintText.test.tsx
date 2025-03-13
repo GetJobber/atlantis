@@ -1,19 +1,17 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { InputFileHintText } from "./InputFileHintText";
-import {
-  InputFileContentContext,
-  InputFileContentContextValue,
-} from "./InputFileContentContext";
+import { InputFileContentContext } from "./InputFileContentContext";
+import { ButtonSize } from "../Button/Button.types";
 
 describe("InputFileHintText", () => {
-  const defaultContextValue: InputFileContentContextValue = {
+  const defaultContextValue = {
     fileType: "File",
     allowMultiple: false,
     description: undefined,
-    hintText: undefined,
-    buttonLabel: undefined,
-    size: "base",
+    hintText: "Select or drag a file here to upload",
+    buttonLabel: "Upload File",
+    size: "base" as ButtonSize,
   };
 
   function renderWithContext(
@@ -27,74 +25,26 @@ describe("InputFileHintText", () => {
     );
   }
 
-  it("renders with default hint text for a single file", () => {
+  it("renders hint text from context when no children provided", () => {
     renderWithContext(<InputFileHintText />);
     expect(
       screen.getByText("Select or drag a file here to upload"),
     ).toBeInTheDocument();
   });
 
-  it("renders with default hint text for multiple files", () => {
-    renderWithContext(<InputFileHintText />, {
-      ...defaultContextValue,
-      allowMultiple: true,
-    });
-    expect(
-      screen.getByText("Select or drag files here to upload"),
-    ).toBeInTheDocument();
-  });
-
-  it("uses 'an' for Image file type", () => {
-    renderWithContext(<InputFileHintText />, {
-      ...defaultContextValue,
-      fileType: "Image",
-    });
-    expect(
-      screen.getByText("Select or drag an image here to upload"),
-    ).toBeInTheDocument();
-  });
-
-  it("renders with custom hint text from context", () => {
-    renderWithContext(<InputFileHintText />, {
-      ...defaultContextValue,
-      hintText: "Custom hint text",
-    });
+  it("renders children instead of context hint text when provided", () => {
+    renderWithContext(<InputFileHintText>Custom hint text</InputFileHintText>);
     expect(screen.getByText("Custom hint text")).toBeInTheDocument();
+    expect(
+      screen.queryByText("Select or drag a file here to upload"),
+    ).not.toBeInTheDocument();
   });
 
-  it("renders children over context hint text", () => {
-    renderWithContext(
-      <InputFileHintText>Override hint text</InputFileHintText>,
-      {
-        ...defaultContextValue,
-        hintText: "Context hint text",
-      },
-    );
-    expect(screen.getByText("Override hint text")).toBeInTheDocument();
-    expect(screen.queryByText("Context hint text")).not.toBeInTheDocument();
-  });
-
-  it("applies custom size prop", () => {
-    renderWithContext(<InputFileHintText size="large" />);
+  it("passes through text props to underlying Text component", () => {
+    renderWithContext(<InputFileHintText size="large" variation="subdued" />);
     const textElement = screen.getByText(
       "Select or drag a file here to upload",
     );
-    expect(textElement).toHaveClass("large");
-  });
-
-  it("defaults to small size", () => {
-    renderWithContext(<InputFileHintText />);
-    const textElement = screen.getByText(
-      "Select or drag a file here to upload",
-    );
-    expect(textElement).toHaveClass("small");
-  });
-
-  it("passes through additional text props", () => {
-    renderWithContext(<InputFileHintText align="center" variation="subdued" />);
-    const textElement = screen.getByText(
-      "Select or drag a file here to upload",
-    );
-    expect(textElement).toHaveClass("center", "textSecondary");
+    expect(textElement).toHaveClass("large", "textSecondary");
   });
 });

@@ -15,32 +15,17 @@ export function InputFileButton({
   fullWidth = false,
   ...buttonProps
 }: InputFileButtonProps) {
-  const context = useInputFileContentContext();
-  const finalLabel = getDefaultLabel(
-    label || context.buttonLabel,
-    context.allowMultiple,
-    context.fileType,
-  );
+  const { buttonLabel: contextLabel, size: contextSize } =
+    useInputFileContentContext();
 
   return (
     <Button
       {...buttonProps}
       ariaLabel="Upload file"
-      label={finalLabel}
-      size={size ?? context.size}
+      label={label || contextLabel}
+      size={size ?? contextSize}
       type="secondary"
       fullWidth={fullWidth}
     />
-  );
-}
-
-function getDefaultLabel(
-  providedButtonLabel: string | undefined,
-  multiple: boolean,
-  fileType: string,
-) {
-  return (
-    providedButtonLabel ||
-    (multiple ? `Upload ${fileType}s` : `Upload ${fileType}`)
   );
 }
