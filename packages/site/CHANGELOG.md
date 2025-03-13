@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.25.6...@jobber/atlantis-site@0.26.0) (2025-03-13)
+
+
+### Features
+
+* **components:** Add support for composable buttons ([#2412](https://github.com/GetJobber/atlantis/issues/2412)) ([eff2bbd](https://github.com/GetJobber/atlantis/commit/eff2bbd008639469ab68124858db2dba4fce3b58))
+
+
+
+
+
+## [0.25.6](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.25.5...@jobber/atlantis-site@0.25.6) (2025-03-11)
+
+
+### Bug Fixes
+
+* **components:** Fix box-sizing issue on Lightbox ([#2390](https://github.com/GetJobber/atlantis/issues/2390)) ([ba73f05](https://github.com/GetJobber/atlantis/commit/ba73f051dca4b44c68adde32e39c2ad3397d5d1f))
+
+
+
+
+
+## [0.25.5](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.25.4...@jobber/atlantis-site@0.25.5) (2025-03-07)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.25.4](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.25.3...@jobber/atlantis-site@0.25.4) (2025-03-07)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
 ## [0.25.3](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.25.2...@jobber/atlantis-site@0.25.3) (2025-03-06)
 
 **Note:** Version bump only for package @jobber/atlantis-site

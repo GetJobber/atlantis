@@ -112,12 +112,12 @@ describe("InputFileButton", () => {
 
   it("passes through additional button props", () => {
     renderWithContext(
-      <InputFileButton disabled={true} variation="work" icon="upload" />,
+      <InputFileButton disabled={true} variation="work" loading={true} />,
     );
 
     const button = screen.getByRole("button");
     expect(button).toBeDisabled();
     expect(button.className).toContain("work");
-    expect(button.className).toContain("hasIconAndLabel");
+    expect(button.className).toContain("loading");
   });
 });

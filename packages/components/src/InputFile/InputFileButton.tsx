@@ -7,7 +7,7 @@ export function InputFileButton({
   size,
   fullWidth = false,
   ...buttonProps
-}: Omit<ButtonProps, "submit" | "name" | "value" | "to" | "url">) {
+}: Omit<ButtonProps, "submit" | "name" | "value" | "to" | "url" | "children">) {
   const context = useInputFileContentContext();
   const finalLabel = getDefaultLabel(
     label || context.buttonLabel,

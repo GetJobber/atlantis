@@ -134,12 +134,18 @@ export function FormFieldWrapper({
   );
 }
 
+/**
+ * @internal Reach out to UX Foundations if using this component since it is possible it might change
+ */
 export function FormFieldInputHorizontalWrapper({
   children,
 }: PropsWithChildren) {
   return <div className={styles.horizontalWrapper}>{children}</div>;
 }
 
+/**
+ * @internal Reach out to UX Foundations if using this component since it is possible it might change
+ */
 export function FormFieldInputWrapperStyles({
   children,
 }: {
@@ -148,6 +154,9 @@ export function FormFieldInputWrapperStyles({
   return <div className={styles.inputWrapper}>{children}</div>;
 }
 
+/**
+ * @internal Reach out to UX Foundations if using this component since it is possible it might change
+ */
 export function FormFieldWrapperMain({
   children,
   tabIndex = -1,
@@ -186,6 +195,9 @@ export function FormFieldLabel({
   );
 }
 
+/**
+ * @internal Reach out to UX Foundations if using this component since it is possible it might change
+ */
 export function FormFieldWrapperToolbar({
   toolbar,
   isToolbarVisible,

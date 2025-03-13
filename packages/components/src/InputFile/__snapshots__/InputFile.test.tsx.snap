@@ -22,7 +22,7 @@ exports[`Post Requests renders an InputFile 1`] = `
       >
         <button
           aria-label="Upload file"
-          class="button small work secondary"
+          class="button small work secondary buttonChildren"
           type="button"
         >
           <span
@@ -66,7 +66,7 @@ exports[`Post Requests renders an InputFile with multiple images allowed 1`] = `
       >
         <button
           aria-label="Upload file"
-          class="button small work secondary"
+          class="button small work secondary buttonChildren"
           type="button"
         >
           <span
@@ -109,7 +109,7 @@ exports[`Post Requests renders an InputFile with multiple uploads 1`] = `
       >
         <button
           aria-label="Upload file"
-          class="button small work secondary"
+          class="button small work secondary buttonChildren"
           type="button"
         >
           <span
@@ -152,7 +152,7 @@ exports[`Post Requests renders an InputFile with only images allowed 1`] = `
       >
         <button
           aria-label="Upload file"
-          class="button small work secondary"
+          class="button small work secondary buttonChildren"
           type="button"
         >
           <span
@@ -194,7 +194,7 @@ exports[`Post Requests renders an InputFile with proper variations 1`] = `
       >
         <button
           aria-label="Upload file"
-          class="button small work secondary"
+          class="button small work secondary buttonChildren"
           type="button"
         >
           <span
@@ -231,7 +231,7 @@ exports[`Post Requests renders an InputFile with proper variations 1`] = `
       >
         <button
           aria-label="Upload file"
-          class="button small work secondary"
+          class="button small work secondary buttonChildren"
           type="button"
         >
           <span
@@ -257,7 +257,7 @@ exports[`Post Requests renders an InputFile with proper variations 1`] = `
     />
     <button
       aria-label="Upload file"
-      class="button base work secondary fullWidth"
+      class="button base work secondary fullWidth buttonChildren"
       type="button"
     >
       <span
@@ -281,7 +281,7 @@ exports[`Post Requests renders an InputFile with proper variations 1`] = `
     />
     <button
       aria-label="Upload file"
-      class="button small work secondary fullWidth"
+      class="button small work secondary fullWidth buttonChildren"
       type="button"
     >
       <span

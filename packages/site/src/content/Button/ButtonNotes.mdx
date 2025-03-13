@@ -20,6 +20,86 @@ sense to allow the `external`, `onClick`, `to`, or `url` props.
 
 ## Component customization
 
+### Composable usage (web only)
+
+The Button component is built with the `Button.Label`, `Button.Icon` components.
+This composition is the recommended way to customize the Button component
+instead of the prop driven usages.
+
+`Button.Label` is used to display the label of the button.
+
+`Button.Icon` is used to display an icon on the button.
+
+Buttons with icons and labels can be converted using the following example:
+
+```tsx
+<Button icon="add" label="Add" />
+```
+
+becomes
+
+```tsx
+<Button>
+  <Button.Icon name="add" />
+  <Button.Label>Add</Button.Label>
+</Button>
+```
+
+To convert a button with an icon on the right, use the following example:
+
+```tsx
+<Button icon="add" label="Add" iconOnRight />
+```
+
+becomes
+
+```tsx
+<Button>
+  <Button.Label>Add</Button.Label>
+  <Button.Icon name="add" />
+</Button>
+```
+
+### Styling another component with Button styles
+
+Using the `useButtonStyles` hook, the styles for a button can be applied to
+another component. This is useful for styling Client-side routing links to look
+like a Button.
+
+`useButtonStyles` is a hook that provides three sets of styles:
+
+- `wrapper`: The styles for the button wrapper. This handles the background
+  color, border radius, and padding.
+- `children`: The styles for the button children. This handles the icon and
+  label spacing.
+- `combined`: The combined styles of `wrapper` and `children`. This is useful if
+  you don't want to customize the styles
+
+The following example shows how to do this with React Router:
+
+```tsx
+import { Link } from "react-router-dom";
+
+function LinkButton() {
+  const buttonStyles = useButtonStyles({
+    type: "tertiary",
+    variation: "subtle",
+  });
+
+  return (
+    <Link
+      to="/"
+      className={classnames(buttonStyles.wrapper, buttonStyles.children)}
+      // or
+      className={buttonStyles.combined}
+    >
+      <Button.Label>Navigate Home</Button.Label>
+      <Button.Icon name="home" />
+    </Link>
+  );
+}
+```
+
 ### UNSAFE\_ props (advanced usage)
 
 General information for using `UNSAFE_` props can be found

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.72.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.71.2...@jobber/design@0.72.0) (2025-03-12)
+
+
+### Features
+
+* **components:** Add sprout icon ([#2420](https://github.com/GetJobber/atlantis/issues/2420)) ([34ae744](https://github.com/GetJobber/atlantis/commit/34ae744245011dad66b7820b5e65280dc8db371a))
+
+
+
+
+
+## [0.71.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.71.1...@jobber/design@0.71.2) (2025-03-11)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
 ## [0.71.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.71.0...@jobber/design@0.71.1) (2025-02-28)
 
 

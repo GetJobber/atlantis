@@ -39,7 +39,7 @@ exports[`renders 1`] = `
       />
       <button
         aria-label="Upload file"
-        class="button small work secondary fullWidth"
+        class="button small work secondary fullWidth buttonChildren"
         type="button"
       >
         <span
@@ -82,7 +82,7 @@ exports[`renders with a provided image 1`] = `
       />
       <button
         aria-label="Upload file"
-        class="button small work secondary fullWidth"
+        class="button small work secondary fullWidth buttonChildren"
         type="button"
       >
         <span
@@ -93,7 +93,7 @@ exports[`renders with a provided image 1`] = `
       </button>
     </div>
     <button
-      class="button small destructive secondary"
+      class="button small destructive secondary buttonChildren"
       type="button"
     >
       <span
