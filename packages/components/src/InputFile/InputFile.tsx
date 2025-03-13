@@ -99,7 +99,6 @@ export interface UploadParams {
 interface InputFileProps {
   /**
    * Display variation.
-   * @deprecated The only supported variation is "dropzone"
    * @default "dropzone"
    */
   readonly variation?: "dropzone" | "button";

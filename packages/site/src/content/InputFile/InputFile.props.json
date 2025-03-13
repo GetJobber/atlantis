@@ -10,7 +10,7 @@
         "defaultValue": {
           "value": "dropzone"
         },
-        "description": "Display variation.\n@deprecated The only supported variation is \"dropzone\"",
+        "description": "Display variation.",
         "name": "variation",
         "parent": {
           "fileName": "../components/src/InputFile/InputFile.tsx",
@@ -391,6 +391,19 @@
           "name": "string"
         }
       },
+      "label": {
+        "defaultValue": null,
+        "description": "",
+        "name": "label",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.tsx",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
       "loading": {
         "defaultValue": null,
         "description": "",
@@ -438,15 +451,6 @@
           "fileName": "packages/components/src/Button/Button.tsx",
           "name": "BasicButtonProps"
         },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "label": {
-        "defaultValue": null,
-        "description": "",
-        "name": "label",
         "required": false,
         "type": {
           "name": "string"
