@@ -137,12 +137,12 @@
         "description": "",
         "name": "onClick",
         "parent": {
-          "fileName": "packages/components/src/Button/Button.tsx",
+          "fileName": "packages/components/src/Button/Button.types.ts",
           "name": "ButtonFoundationProps"
         },
         "required": false,
         "type": {
-          "name": "(event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void"
+          "name": "(event: MouseEvent<HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => void"
         }
       }
     }

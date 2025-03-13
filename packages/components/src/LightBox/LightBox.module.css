@@ -137,11 +137,13 @@
 }
 
 .thumbnailBar {
+  --lightbox--box-sizing: content-box;
   display: flex;
   position: relative;
   z-index: var(--elevation-base);
   width: 100%;
   min-height: 92px;
+  box-sizing: var(--lightbox--box-sizing);
   margin-bottom: var(--space-small);
   padding-bottom: var(--space-small);
   overflow-x: scroll;
@@ -169,6 +171,10 @@
       background: var(--color-interactive--subtle);
     }
   }
+}
+
+.thumbnailBar * {
+  box-sizing: var(--lightbox--box-sizing);
 }
 
 .thumbnailImage {
