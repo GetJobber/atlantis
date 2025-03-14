@@ -21,6 +21,7 @@ export interface ButtonFoundationProps {
   readonly id?: string;
   readonly loading?: boolean;
   readonly size?: ButtonSize;
+  readonly ariaLabel?: string;
   onClick?(
     event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
   ): void;
@@ -30,7 +31,6 @@ export interface ButtonFoundationProps {
 }
 
 interface ButtonNonComposableProps extends ButtonFoundationProps {
-  readonly ariaLabel?: string;
   readonly icon?: IconNames;
   readonly iconOnRight?: boolean;
   readonly label?: string;
