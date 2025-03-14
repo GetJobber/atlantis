@@ -97,22 +97,9 @@
           "name": "ButtonVariation"
         }
       },
-      "ariaLabel": {
-        "defaultValue": null,
-        "description": "Used for screen readers. Will override label on screen\nreader if present.",
-        "name": "ariaLabel",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
       "ariaControls": {
         "defaultValue": null,
-        "description": "",
+        "description": "Used for screen readers. Will override label on screen\nreader if present.",
         "name": "ariaControls",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
@@ -273,6 +260,19 @@
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
           "name": "ButtonLabelProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "ariaLabel": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ariaLabel",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonNonComposableProps"
         },
         "required": false,
         "type": {

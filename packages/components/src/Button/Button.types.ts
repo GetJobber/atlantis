@@ -12,7 +12,6 @@ export interface ButtonFoundationProps {
    * Used for screen readers. Will override label on screen
    * reader if present.
    */
-  readonly ariaLabel?: string;
   readonly ariaControls?: string;
   readonly ariaHaspopup?: boolean;
   readonly ariaExpanded?: boolean;
@@ -22,6 +21,7 @@ export interface ButtonFoundationProps {
   readonly id?: string;
   readonly loading?: boolean;
   readonly size?: ButtonSize;
+  readonly ariaLabel?: string;
   onClick?(
     event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
   ): void;
@@ -42,24 +42,6 @@ interface ButtonIconProps extends ButtonNonComposableProps {
 }
 
 interface ButtonLabelProps extends ButtonNonComposableProps {
-  readonly label: string;
-}
-
-type BaseButtonProps = XOR<
-  BaseActionProps,
-  XOR<DestructiveActionProps, SubmitActionProps>
-> &
-  XOR<
-    XOR<SubmitButtonProps, BasicButtonProps>,
-    XOR<ButtonLinkProps, ButtonAnchorProps>
-  >;
-
-interface ButtonIconProps extends ButtonFoundationProps {
-  readonly icon: IconNames;
-  readonly ariaLabel: string;
-}
-
-interface ButtonLabelProps extends ButtonFoundationProps {
   readonly label: string;
 }
 
@@ -110,6 +92,15 @@ interface BasicButtonProps extends ButtonFoundationProps {
    */
   readonly role?: string;
 }
+
+type BaseButtonProps = XOR<
+  BaseActionProps,
+  XOR<DestructiveActionProps, SubmitActionProps>
+> &
+  XOR<
+    XOR<SubmitButtonProps, BasicButtonProps>,
+    XOR<ButtonLinkProps, ButtonAnchorProps>
+  >;
 
 export type ButtonWithChildrenProps = BaseButtonProps & {
   readonly children: React.ReactNode;
