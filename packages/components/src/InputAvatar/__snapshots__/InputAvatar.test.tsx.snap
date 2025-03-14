@@ -38,7 +38,6 @@ exports[`renders 1`] = `
         type="file"
       />
       <button
-        aria-label="Upload file"
         class="button small work secondary fullWidth buttonChildren"
         type="button"
       >
@@ -81,7 +80,6 @@ exports[`renders with a provided image 1`] = `
         type="file"
       />
       <button
-        aria-label="Upload file"
         class="button small work secondary fullWidth buttonChildren"
         type="button"
       >

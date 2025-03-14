@@ -352,10 +352,12 @@ describe("Content", () => {
       />,
     );
 
-    const button = screen.getByRole("button", { name: "Upload file" });
-    expect(
-      screen.getByRole("button", { name: "Upload file" }),
-    ).toBeInTheDocument();
+    const button = screen.getByRole("button", {
+      name: (accessibleName, element) => {
+        return accessibleName === "Upload File" && element.tagName === "BUTTON";
+      },
+    });
+    expect(button).toBeInTheDocument();
     expect(button).not.toHaveClass("fullWidth");
     expect(screen.queryByText("Description text")).toBeInTheDocument();
     expect(screen.queryByText("Hint text")).toBeInTheDocument();
@@ -372,7 +374,13 @@ describe("Content", () => {
     );
 
     expect(
-      screen.getByRole("button", { name: "Upload File" }),
+      screen.getByRole("button", {
+        name: (accessibleName, element) => {
+          return (
+            accessibleName === "Upload File" && element.tagName === "BUTTON"
+          );
+        },
+      }),
     ).toBeInTheDocument();
     expect(screen.queryByText("Description text")).not.toBeInTheDocument();
     expect(screen.queryByText("Hint text")).not.toBeInTheDocument();
@@ -388,7 +396,11 @@ describe("Content", () => {
       />,
     );
 
-    const button = screen.getByRole("button", { name: "Upload file" });
+    const button = screen.getByRole("button", {
+      name: (accessibleName, element) => {
+        return accessibleName === "Upload File" && element.tagName === "BUTTON";
+      },
+    });
     expect(button).toBeInTheDocument();
     expect(button).toHaveClass("fullWidth");
     expect(screen.queryByText("Description text")).not.toBeInTheDocument();
@@ -409,7 +421,7 @@ describe("Content", () => {
     );
 
     expect(screen.getByTestId("custom-wrapper")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Upload file" })).toHaveClass(
+    expect(screen.getByRole("button", { name: "Upload File" })).toHaveClass(
       "large",
     );
     expect(screen.getByText("Custom description")).toBeInTheDocument();
@@ -453,7 +465,7 @@ describe("Content", () => {
     expect(screen.getByTestId("mixed-content")).toBeInTheDocument();
     expect(screen.getByText("Custom Upload Section")).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: "Upload file" }),
+      screen.getByRole("button", { name: "Upload File" }),
     ).toBeInTheDocument();
     expect(
       screen.getByText("Select or drag a file here to upload"),

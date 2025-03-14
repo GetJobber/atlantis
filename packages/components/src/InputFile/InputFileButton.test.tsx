@@ -29,7 +29,6 @@ describe("InputFileButton", () => {
     renderWithContext(<InputFileButton />);
     const button = screen.getByRole("button");
     expect(button).toHaveAttribute("type", "button");
-    expect(button).toHaveAttribute("aria-label", "Upload file");
     expect(button).toHaveTextContent("Upload File");
     expect(button.className).toContain("base");
   });
