@@ -9,6 +9,7 @@ exports[`Post Requests renders an InputFile 1`] = `
   >
     <input
       autocomplete="off"
+      data-testid="input-file-input"
       style="display: none;"
       tabindex="-1"
       type="file"
@@ -30,7 +31,7 @@ exports[`Post Requests renders an InputFile 1`] = `
           </span>
         </button>
         <p
-          class="base regular small"
+          class="base regular small text"
         >
           Select or drag a file here to upload
         </p>
@@ -50,6 +51,7 @@ exports[`Post Requests renders an InputFile with multiple images allowed 1`] = `
     <input
       accept="image/*"
       autocomplete="off"
+      data-testid="input-file-input"
       multiple=""
       style="display: none;"
       tabindex="-1"
@@ -72,7 +74,7 @@ exports[`Post Requests renders an InputFile with multiple images allowed 1`] = `
           </span>
         </button>
         <p
-          class="base regular small"
+          class="base regular small text"
         >
           Select or drag images here to upload
         </p>
@@ -91,6 +93,7 @@ exports[`Post Requests renders an InputFile with multiple uploads 1`] = `
   >
     <input
       autocomplete="off"
+      data-testid="input-file-input"
       multiple=""
       style="display: none;"
       tabindex="-1"
@@ -113,7 +116,7 @@ exports[`Post Requests renders an InputFile with multiple uploads 1`] = `
           </span>
         </button>
         <p
-          class="base regular small"
+          class="base regular small text"
         >
           Select or drag files here to upload
         </p>
@@ -133,6 +136,7 @@ exports[`Post Requests renders an InputFile with only images allowed 1`] = `
     <input
       accept="image/*"
       autocomplete="off"
+      data-testid="input-file-input"
       style="display: none;"
       tabindex="-1"
       type="file"
@@ -154,7 +158,7 @@ exports[`Post Requests renders an InputFile with only images allowed 1`] = `
           </span>
         </button>
         <p
-          class="base regular small"
+          class="base regular small text"
         >
           Select or drag an image here to upload
         </p>
@@ -173,6 +177,7 @@ exports[`Post Requests renders an InputFile with proper variations 1`] = `
   >
     <input
       autocomplete="off"
+      data-testid="input-file-input"
       style="display: none;"
       tabindex="-1"
       type="file"
@@ -194,7 +199,7 @@ exports[`Post Requests renders an InputFile with proper variations 1`] = `
           </span>
         </button>
         <p
-          class="base regular small"
+          class="base regular small text"
         >
           Select or drag a file here to upload
         </p>
@@ -208,6 +213,7 @@ exports[`Post Requests renders an InputFile with proper variations 1`] = `
   >
     <input
       autocomplete="off"
+      data-testid="input-file-input"
       style="display: none;"
       tabindex="-1"
       type="file"
@@ -238,6 +244,7 @@ exports[`Post Requests renders an InputFile with proper variations 1`] = `
   >
     <input
       autocomplete="off"
+      data-testid="input-file-input"
       style="display: none;"
       tabindex="-1"
       type="file"
@@ -260,6 +267,7 @@ exports[`Post Requests renders an InputFile with proper variations 1`] = `
   >
     <input
       autocomplete="off"
+      data-testid="input-file-input"
       style="display: none;"
       tabindex="-1"
       type="file"
