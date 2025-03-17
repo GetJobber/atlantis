@@ -45,7 +45,7 @@ exports[`renders a banner with a primary 'learning' action when the type is 'not
         class="bannerAction"
       >
         <button
-          class="button small subtle primary"
+          class="button small subtle primary buttonChildren"
           type="button"
         >
           <span
@@ -61,7 +61,7 @@ exports[`renders a banner with a primary 'learning' action when the type is 'not
     >
       <button
         aria-label="Dismiss notification"
-        class="button base onlyIcon subtle tertiary"
+        class="button base subtle tertiary buttonChildren"
         type="button"
       >
         <svg
@@ -74,9 +74,6 @@ exports[`renders a banner with a primary 'learning' action when the type is 'not
             d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
           />
         </svg>
-        <span
-          class="base semiBold base base"
-        />
       </button>
     </div>
   </div>
@@ -120,7 +117,7 @@ exports[`renders a banner with a primary action 1`] = `
         class="bannerAction"
       >
         <button
-          class="button small subtle primary"
+          class="button small subtle primary buttonChildren"
           type="button"
         >
           <span
@@ -136,7 +133,7 @@ exports[`renders a banner with a primary action 1`] = `
     >
       <button
         aria-label="Dismiss notification"
-        class="button base onlyIcon subtle tertiary"
+        class="button base subtle tertiary buttonChildren"
         type="button"
       >
         <svg
@@ -149,9 +146,6 @@ exports[`renders a banner with a primary action 1`] = `
             d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
           />
         </svg>
-        <span
-          class="base semiBold base base"
-        />
       </button>
     </div>
   </div>
@@ -205,7 +199,7 @@ exports[`renders a notice banner 1`] = `
     >
       <button
         aria-label="Dismiss notification"
-        class="button base onlyIcon subtle tertiary"
+        class="button base subtle tertiary buttonChildren"
         type="button"
       >
         <svg
@@ -218,9 +212,6 @@ exports[`renders a notice banner 1`] = `
             d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
           />
         </svg>
-        <span
-          class="base semiBold base base"
-        />
       </button>
     </div>
   </div>
@@ -266,7 +257,7 @@ exports[`renders a success banner 1`] = `
     >
       <button
         aria-label="Dismiss notification"
-        class="button base onlyIcon subtle tertiary"
+        class="button base subtle tertiary buttonChildren"
         type="button"
       >
         <svg
@@ -279,9 +270,6 @@ exports[`renders a success banner 1`] = `
             d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
           />
         </svg>
-        <span
-          class="base semiBold base base"
-        />
       </button>
     </div>
   </div>
@@ -335,7 +323,7 @@ exports[`renders a warning banner 1`] = `
     >
       <button
         aria-label="Dismiss notification"
-        class="button base onlyIcon subtle tertiary"
+        class="button base subtle tertiary buttonChildren"
         type="button"
       >
         <svg
@@ -348,9 +336,6 @@ exports[`renders a warning banner 1`] = `
             d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
           />
         </svg>
-        <span
-          class="base semiBold base base"
-        />
       </button>
     </div>
   </div>
@@ -400,7 +385,7 @@ exports[`renders an error banner 1`] = `
     >
       <button
         aria-label="Dismiss notification"
-        class="button base onlyIcon subtle tertiary"
+        class="button base subtle tertiary buttonChildren"
         type="button"
       >
         <svg
@@ -413,9 +398,6 @@ exports[`renders an error banner 1`] = `
             d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
           />
         </svg>
-        <span
-          class="base semiBold base base"
-        />
       </button>
     </div>
   </div>

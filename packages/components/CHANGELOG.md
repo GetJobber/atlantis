@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.22.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.21.0...@jobber/components@6.22.0) (2025-03-17)
+
+
+### Features
+
+* **components:** Make InputFile composable [JOB-110281] ([#2417](https://github.com/GetJobber/atlantis/issues/2417)) ([4396128](https://github.com/GetJobber/atlantis/commit/4396128cd89c5692fdf45aadb7fcba4968a2bec1))
+
+
+
+
+
+# [6.21.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.20.8...@jobber/components@6.21.0) (2025-03-13)
+
+
+### Features
+
+* **components:** Add support for composable buttons ([#2412](https://github.com/GetJobber/atlantis/issues/2412)) ([eff2bbd](https://github.com/GetJobber/atlantis/commit/eff2bbd008639469ab68124858db2dba4fce3b58))
+
+
+
+
+
+## [6.20.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.20.7...@jobber/components@6.20.8) (2025-03-11)
+
+
+### Bug Fixes
+
+* **components:** Fix box-sizing issue on Lightbox ([#2390](https://github.com/GetJobber/atlantis/issues/2390)) ([ba73f05](https://github.com/GetJobber/atlantis/commit/ba73f051dca4b44c68adde32e39c2ad3397d5d1f))
+
+
+
+
+
 ## [6.20.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.20.6...@jobber/components@6.20.7) (2025-03-07)
 
 

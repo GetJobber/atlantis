@@ -12,7 +12,7 @@ import fontFamilies from "./css/FontFamilies.module.css";
 import underlineStyles from "./css/Underline.module.css";
 import { UnderlineStyle, UnderlineStyleWithColor } from "./types";
 
-interface TypographyProps {
+export interface TypographyProps {
   readonly id?: string;
   /**
    * @default "p"
