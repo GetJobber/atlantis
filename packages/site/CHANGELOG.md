@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.27.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.26.0...@jobber/atlantis-site@0.27.0) (2025-03-17)
+
+
+### Features
+
+* **components:** Make InputFile composable [JOB-110281] ([#2417](https://github.com/GetJobber/atlantis/issues/2417)) ([4396128](https://github.com/GetJobber/atlantis/commit/4396128cd89c5692fdf45aadb7fcba4968a2bec1))
+
+
+
+
+
+# [0.26.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.25.6...@jobber/atlantis-site@0.26.0) (2025-03-13)
+
+
+### Features
+
+* **components:** Add support for composable buttons ([#2412](https://github.com/GetJobber/atlantis/issues/2412)) ([eff2bbd](https://github.com/GetJobber/atlantis/commit/eff2bbd008639469ab68124858db2dba4fce3b58))
+
+
+
+
+
 ## [0.25.6](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.25.5...@jobber/atlantis-site@0.25.6) (2025-03-11)
 
 
