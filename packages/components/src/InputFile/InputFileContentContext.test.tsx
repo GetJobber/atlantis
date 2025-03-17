@@ -19,7 +19,7 @@ describe("InputFileContentContext", () => {
     });
   });
 
-  it("computes hint text based on fileType and allowMultiple", () => {
+  it("computes the hint text based on fileType and allowMultiple", () => {
     const wrapper = ({ children }: { children: React.ReactNode }) => (
       <InputFileContentContext.Provider
         value={{
