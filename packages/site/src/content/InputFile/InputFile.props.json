@@ -378,6 +378,19 @@
           "name": "ButtonSize"
         }
       },
+      "ariaLabel": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ariaLabel",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
       "onMouseDown": {
         "defaultValue": null,
         "description": "",
@@ -415,19 +428,6 @@
         "required": false,
         "type": {
           "name": "IconNames"
-        }
-      },
-      "ariaLabel": {
-        "defaultValue": null,
-        "description": "",
-        "name": "ariaLabel",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonNonComposableProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
         }
       },
       "iconOnRight": {
