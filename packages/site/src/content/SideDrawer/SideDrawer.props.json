@@ -64,7 +64,7 @@
         "defaultValue": {
           "value": false
         },
-        "description": "",
+        "description": "Changes whether the SideDrawer is positioned to the side of the viewport or inline with the content.",
         "name": "inline",
         "parent": {
           "fileName": "../components/src/SideDrawer/SideDrawer.tsx",

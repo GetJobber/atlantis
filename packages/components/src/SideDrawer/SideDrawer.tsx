@@ -39,6 +39,10 @@ interface SideDrawerProps extends PropsWithChildren {
    */
   readonly scrollDirection?: "normal" | "reverse";
 
+  /**
+   * Changes whether the SideDrawer is positioned to the side of the viewport or inline with the content.
+   * @default false
+   */
   readonly inline?: boolean;
 
   /**
