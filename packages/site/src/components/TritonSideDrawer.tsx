@@ -6,6 +6,7 @@ import {
   InputPassword,
   InputText,
   InputValidation,
+  SegmentedControl,
   SideDrawer,
   Text,
   Tooltip,
@@ -134,6 +135,8 @@ export function TritonSideDrawer() {
     loading,
     validateApiKey,
     isValidKey,
+    personality,
+    setPersonality,
   } = useTritonChat();
 
   useEffect(() => {
@@ -144,15 +147,29 @@ export function TritonSideDrawer() {
     <SideDrawer open={tritonOpen} onRequestClose={onCloseTriton}>
       <SideDrawer.Title>Triton</SideDrawer.Title>
       <SideDrawer.Actions>
-        <Tooltip message="Visit Triton Site">
-          <Button
-            ariaLabel="Visit Triton Site"
-            icon="export"
-            type="secondary"
-            variation="subtle"
-            url="https://atlantis-ai.jobber.dev"
-          />
-        </Tooltip>
+        <Box direction="row" gap="small" alignItems="center">
+          <SegmentedControl
+            selectedValue={personality}
+            onSelectValue={setPersonality}
+            size="small"
+          >
+            <SegmentedControl.Option value="developer">
+              Developer
+            </SegmentedControl.Option>
+            <SegmentedControl.Option value="designer">
+              Designer
+            </SegmentedControl.Option>
+          </SegmentedControl>
+          <Tooltip message="Visit Triton Site">
+            <Button
+              ariaLabel="Visit Triton Site"
+              icon="export"
+              type="secondary"
+              variation="subtle"
+              url="https://atlantis-ai.jobber.dev"
+            />
+          </Tooltip>
+        </Box>
       </SideDrawer.Actions>
       <Box padding={{ left: "base", right: "base" }}>
         {isValidKey ? (
