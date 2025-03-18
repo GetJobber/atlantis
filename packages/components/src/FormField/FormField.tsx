@@ -1,5 +1,4 @@
 import React, { useId } from "react";
-import classNames from "classnames";
 import { FormFieldProps } from "./FormFieldTypes";
 import { FormFieldWrapper } from "./FormFieldWrapper";
 import { FormFieldPostFix } from "./FormFieldPostFix";
@@ -7,7 +6,6 @@ import { useAtlantisFormFieldActions } from "./hooks/useAtlantisFormFieldActions
 import { useAtlantisFormField } from "./hooks/useAtlantisFormField";
 import { useAtlantisFormFieldName } from "./hooks/useAtlantisFormFieldName";
 import { useAtlantisReactHookForm } from "./hooks/useAtlantisReactHookForm";
-import styles from "./FormField.module.css";
 
 export function FormField(props: FormFieldProps) {
   // Warning: do not move useId into FormFieldInternal. This must be here to avoid
@@ -106,6 +104,8 @@ function FormFieldInternal(props: FormFieldInternalProps) {
       readonly,
       keyboard,
       autofocus,
+      value,
+      type,
       handleChange,
       handleBlur,
       handleFocus,
@@ -145,9 +145,6 @@ function FormFieldInternal(props: FormFieldInternalProps) {
           <>
             <input
               {...textFieldProps}
-              className={classNames(textFieldProps.className, {
-                [styles.emptyPhoneNumber]: type === "tel" && !value,
-              })}
               autoComplete={setAutocomplete(autocomplete)}
               type={type}
               maxLength={maxLength}
