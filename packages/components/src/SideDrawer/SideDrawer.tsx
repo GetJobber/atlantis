@@ -1,18 +1,13 @@
-import React, { useEffect, useId, useState } from "react";
-import type {
-  CSSProperties,
-  KeyboardEvent,
-  PropsWithChildren,
-  RefObject,
-} from "react";
+import React, { useId, useState } from "react";
+import type { CSSProperties, KeyboardEvent, PropsWithChildren } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, Variants, motion } from "framer-motion";
-import { tokens } from "@jobber/design";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import classNames from "classnames";
 import { useInView } from "@jobber/hooks/useInView";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
+import { tokens } from "@jobber/design";
 import { SideDrawerActions } from "./SideDrawerActions";
 import { RegisteredComponents, SideDrawerContext } from "./SideDrawerContext";
 import { SideDrawerTitle } from "./SideDrawerTitle";
@@ -44,11 +39,7 @@ interface SideDrawerProps extends PropsWithChildren {
    */
   readonly scrollDirection?: "normal" | "reverse";
 
-  /**
-   * Element to anchor the drawer to. When provided, the drawer will be positioned
-   * relative to this element instead of the viewport.
-   */
-  readonly anchorElement?: RefObject<HTMLElement>;
+  readonly inline?: boolean;
 
   /**
    * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
@@ -70,47 +61,14 @@ interface SideDrawerProps extends PropsWithChildren {
 }
 
 const variants: Variants = {
-  hidden: { x: "100%" },
+  initial: { x: "100%" },
   visible: { x: 0, transitionEnd: { x: 0 } },
+  hidden: { x: "100%" },
 };
-
-const useAnchorPosition = (
-  anchorElement: RefObject<HTMLElement> | undefined,
-  open: boolean,
-) => {
-  const [position, setPosition] = useState<{
-    top: number;
-    left: number;
-    width: number;
-  }>({
-    top: 0,
-    left: 0,
-    width: 0,
-  });
-
-  useEffect(() => {
-    if (anchorElement?.current && open) {
-      const updatePosition = () => {
-        const rect = anchorElement.current?.getBoundingClientRect();
-
-        if (rect) {
-          const width = Math.min(420, rect.right);
-          setPosition({
-            top: rect.top,
-            left: rect.right - width,
-            width: width,
-          });
-        }
-      };
-
-      updatePosition();
-      window.addEventListener("resize", updatePosition);
-
-      return () => window.removeEventListener("resize", updatePosition);
-    }
-  }, [anchorElement, open]);
-
-  return position;
+const inlineVariants: Variants = {
+  initial: { x: "25%", opacity: 0 },
+  visible: { x: 0, opacity: 1, transitionEnd: { x: 0 } },
+  hidden: { x: "25%", opacity: 0 },
 };
 
 const useSideDrawerState = (open: boolean) => {
@@ -145,7 +103,7 @@ export function SideDrawer({
   open,
   variation = "base",
   scrollDirection,
-  anchorElement,
+  inline = false,
   UNSAFE_className,
   UNSAFE_style,
 }: SideDrawerProps) {
@@ -161,14 +119,15 @@ export function SideDrawer({
     footerShadowRef,
     noFooterShadow,
   } = useSideDrawerState(open);
-  const position = useAnchorPosition(anchorElement, open);
+
+  useRefocusOnActivator(open);
 
   const container = globalThis.document?.body || null;
   const isMounted = useIsMounted();
 
   if (!isMounted.current && !container) return null;
 
-  return createPortal(
+  const SideDrawerRender = (
     <SideDrawerContext.Provider
       value={{
         actionPortal: ref?.querySelector(slots.actions.selector),
@@ -183,7 +142,7 @@ export function SideDrawer({
           setComponents(prev => ({ ...prev, [key]: false })),
       }}
     >
-      {open && (
+      {open && !inline && (
         <button
           className={styles.overlay}
           aria-label="Close"
@@ -199,32 +158,20 @@ export function SideDrawer({
               styles.drawer,
               {
                 [styles.reverseScroll]: scrollDirection === "reverse",
-                [styles.anchored]: Boolean(anchorElement),
+                [styles.inline]: inline,
               },
               UNSAFE_className?.container,
             )}
             ref={setRef}
             data-elevation={"elevated"}
-            variants={variants}
-            initial="hidden"
+            variants={inline ? inlineVariants : variants}
+            initial="initial"
             animate="visible"
             exit="hidden"
             transition={{
               duration: tokens["timing-base"] / 1000,
             }}
-            style={{
-              ...(anchorElement
-                ? {
-                    position: "absolute",
-                    top: `${position.top}px`,
-                    left: `${position.left}px`,
-                    width: `${position.width}px`,
-                    height: "auto",
-                    maxHeight: `calc(100vh - ${position.top}px)`,
-                  }
-                : undefined),
-              ...UNSAFE_style?.container,
-            }}
+            style={UNSAFE_style?.container}
           >
             <div
               ref={sideDrawerRef}
@@ -298,9 +245,14 @@ export function SideDrawer({
           </motion.div>
         )}
       </AnimatePresence>
-    </SideDrawerContext.Provider>,
-    container,
+    </SideDrawerContext.Provider>
   );
+
+  if (inline) {
+    return SideDrawerRender;
+  }
+
+  return createPortal(SideDrawerRender, container);
 
   function handleKeyUp(event: KeyboardEvent<HTMLDivElement>): void {
     if (event.key === "Escape") {

@@ -60,17 +60,19 @@
           "name": "\"normal\" | \"reverse\""
         }
       },
-      "anchorElement": {
-        "defaultValue": null,
-        "description": "Element to anchor the drawer to. When provided, the drawer will be positioned\nrelative to this element instead of the viewport.",
-        "name": "anchorElement",
+      "inline": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "",
+        "name": "inline",
         "parent": {
           "fileName": "../components/src/SideDrawer/SideDrawer.tsx",
           "name": "SideDrawerProps"
         },
         "required": false,
         "type": {
-          "name": "RefObject<HTMLElement>"
+          "name": "boolean"
         }
       },
       "UNSAFE_className": {

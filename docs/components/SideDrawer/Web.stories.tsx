@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { SideDrawer } from "@jobber/components/SideDrawer";
 import { Button } from "@jobber/components/Button";
@@ -12,6 +12,8 @@ import { Flex } from "@jobber/components/Flex";
 import { Emphasis } from "@jobber/components/Emphasis";
 import { InputText } from "@jobber/components/InputText";
 import { useBool } from "@jobber/hooks/useBool";
+import { Page } from "@jobber/components/Page";
+import { Box } from "@jobber/components/Box";
 
 export default {
   title: "Components/Overlays/SideDrawer/Web",
@@ -268,130 +270,54 @@ const BackButtonTemplate: ComponentStory<typeof SideDrawer> = args => {
   );
 };
 
-const AnchoredTemplate: ComponentStory<typeof SideDrawer> = args => {
-  const [sideDrawerOpen, setSideDrawerOpen] = useState(args.open);
-  const anchorRef = useRef<HTMLDivElement>(null);
+const InlineTemplate: ComponentStory<typeof SideDrawer> = args => {
+  const [drawerOpen, setDrawerOpen] = useState(args.open || false);
 
   return (
-    <div style={{ display: "flex", gap: "24px" }}>
-      <div style={{ width: "200px", background: "#f5f5f5", padding: "16px" }}>
-        Left Panel
-      </div>
-      <div
-        ref={anchorRef}
-        style={{
-          width: "300px",
-          background: "#f5f5f5",
-          padding: "16px",
-          position: "relative",
-        }}
-      >
-        <Text>Middle Panel</Text>
-        <Button
-          onClick={() => setSideDrawerOpen(true)}
-          label="Open Side Drawer"
-        />
-      </div>
-      <div style={{ width: "200px", background: "#f5f5f5", padding: "16px" }}>
-        Right Panel
-      </div>
-
-      <SideDrawer
-        {...args}
-        open={sideDrawerOpen}
-        onRequestClose={() => setSideDrawerOpen(false)}
-        anchorElement={anchorRef}
-      >
-        <SideDrawer.Title>Anchored Side Drawer</SideDrawer.Title>
+    <Page title="Page" width="fill" intro="">
+      <Box direction="row">
         <Content>
+          <Button
+            label="Toggle Drawer"
+            onClick={() => setDrawerOpen(!drawerOpen)}
+          />
           <Text>
-            This drawer is anchored to the middle panel instead of the viewport.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
           </Text>
         </Content>
-      </SideDrawer>
-    </div>
-  );
-};
-
-const CustomWidthAnchoredTemplate: ComponentStory<typeof SideDrawer> = args => {
-  const [sideDrawerOpen, setSideDrawerOpen] = useState(args.open);
-  const anchorRef = useRef<HTMLDivElement>(null);
-
-  // Calculate position manually to ensure proper alignment
-  const [position, setPosition] = useState({ left: 0 });
-
-  useEffect(() => {
-    if (anchorRef.current && sideDrawerOpen) {
-      const updatePosition = () => {
-        const rect = anchorRef.current?.getBoundingClientRect();
-
-        if (rect) {
-          setPosition({
-            left: rect.right - 250, // 250px is our desired width
-          });
-        }
-      };
-
-      updatePosition();
-      window.addEventListener("resize", updatePosition);
-
-      return () => window.removeEventListener("resize", updatePosition);
-    }
-  }, [sideDrawerOpen]);
-
-  return (
-    <div style={{ display: "flex", gap: "24px" }}>
-      <div style={{ width: "300px", background: "#f5f5f5", padding: "16px" }}>
-        Left Panel
-      </div>
-      <div
-        ref={anchorRef}
-        style={{
-          width: "400px",
-          background: "#f5f5f5",
-          padding: "16px",
-          position: "relative",
-        }}
-      >
-        <Text>Middle Panel</Text>
-        <Button
-          onClick={() => setSideDrawerOpen(true)}
-          label="Open Side Drawer"
-        />
-      </div>
-      <div style={{ width: "300px", background: "#f5f5f5", padding: "16px" }}>
-        Right Panel
-      </div>
-
-      <SideDrawer
-        {...args}
-        open={sideDrawerOpen}
-        onRequestClose={() => setSideDrawerOpen(false)}
-        anchorElement={anchorRef}
-        UNSAFE_style={{
-          container: {
-            width: "250px",
-            position: "absolute",
-            left: `${position.left}px`,
-          },
-        }}
-      >
-        <SideDrawer.Title>Custom Width Anchored Drawer</SideDrawer.Title>
-        <Content>
-          <Text>
-            This drawer is anchored to the middle panel and has a custom width
-            of 250px, while maintaining proper right-edge alignment with its
-            anchor element.
-          </Text>
-          <Text>
-            By default, anchored drawers are capped at 420px or the right edge
-            of the anchor element. When customizing the width, we need to
-            calculate the left position to maintain proper alignment with the
-            anchor.
-          </Text>
-        </Content>
-      </SideDrawer>
-    </div>
+        <SideDrawer
+          open={drawerOpen}
+          onRequestClose={() => setDrawerOpen(!drawerOpen)}
+          inline={true}
+        >
+          <SideDrawer.Title>Anchored Side Drawer</SideDrawer.Title>
+          <Content>
+            <Text>
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+              accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+              quae ab illo inventore veritatis et quasi architecto beatae vitae
+              dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+              aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
+              eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam
+              est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+              velit, sed quia non numquam eius modi tempora incidunt ut labore
+              et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima
+              veniam, quis nostrum exercitationem ullam corporis suscipit
+              laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem
+              vel eum iure reprehenderit qui in ea voluptate velit esse quam
+              nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo
+              voluptas nulla pariatur?
+            </Text>
+          </Content>
+        </SideDrawer>
+      </Box>
+    </Page>
   );
 };
 
@@ -410,8 +336,5 @@ Toolbar.args = { open: true };
 export const BackButton = BackButtonTemplate.bind({});
 BackButton.args = { open: true };
 
-export const Anchored = AnchoredTemplate.bind({});
-Anchored.args = { open: true };
-
-export const CustomWidthAnchored = CustomWidthAnchoredTemplate.bind({});
-CustomWidthAnchored.args = { open: true };
+export const Inline = InlineTemplate.bind({});
+Inline.args = { open: true };
