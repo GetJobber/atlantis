@@ -92,7 +92,8 @@ const ChatInterface = ({
       style={{
         display: "flex",
         flexDirection: "column",
-        height: "calc(100vh - 80px)",
+        flex: 1,
+        minHeight: 0,
         gap: 16,
       }}
     >
@@ -147,7 +148,18 @@ export function TritonSideDrawer() {
     <SideDrawer open={tritonOpen} onRequestClose={onCloseTriton}>
       <SideDrawer.Title>Triton</SideDrawer.Title>
       <SideDrawer.Actions>
-        <Box direction="row" gap="small" alignItems="center">
+        <Tooltip message="Visit Triton Site">
+          <Button
+            ariaLabel="Visit Triton Site"
+            icon="export"
+            type="secondary"
+            variation="subtle"
+            url="https://atlantis-ai.jobber.dev"
+          />
+        </Tooltip>
+      </SideDrawer.Actions>
+      {isValidKey && (
+        <SideDrawer.Toolbar>
           <SegmentedControl
             selectedValue={personality}
             onSelectValue={setPersonality}
@@ -160,18 +172,13 @@ export function TritonSideDrawer() {
               Designer
             </SegmentedControl.Option>
           </SegmentedControl>
-          <Tooltip message="Visit Triton Site">
-            <Button
-              ariaLabel="Visit Triton Site"
-              icon="export"
-              type="secondary"
-              variation="subtle"
-              url="https://atlantis-ai.jobber.dev"
-            />
-          </Tooltip>
-        </Box>
-      </SideDrawer.Actions>
-      <Box padding={{ left: "base", right: "base" }}>
+        </SideDrawer.Toolbar>
+      )}
+      <Box
+        padding={{ left: "base", right: "base", bottom: "base" }}
+        direction="column"
+        height="grow"
+      >
         {isValidKey ? (
           <ChatInterface
             question={question}
