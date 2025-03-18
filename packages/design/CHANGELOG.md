@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.72.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.72.0...@jobber/design@0.72.1) (2025-03-17)
+
+
+### Bug Fixes
+
+* **design:** move warning icon up by 1px ([#2418](https://github.com/GetJobber/atlantis/issues/2418)) ([5cf06ad](https://github.com/GetJobber/atlantis/commit/5cf06ad235f73110334359087bbe3b98e8259f40))
+
+
+
+
+
 # [0.72.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.71.2...@jobber/design@0.72.0) (2025-03-12)
 
 
