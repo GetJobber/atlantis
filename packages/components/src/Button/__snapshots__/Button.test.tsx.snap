@@ -30,9 +30,11 @@ exports[`renders a Button that is just an icon 1`] = `
     >
       <path
         d="M16 10a4 4 0 1 1-8 0 4 4 0 0 1 8 0Zm-2 0a2 2 0 1 0-4 0 2 2 0 0 0 4 0Z"
+        fill="currentColor"
       />
       <path
         d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10Zm-10 8c1.47 0 2.846-.396 4.03-1.087-2.079-1.865-3.826-2.087-5.175-1.766-1.134.27-2.138.955-2.951 1.726A7.963 7.963 0 0 0 12 20Zm-1.608-4.799c2.206-.525 4.682.056 7.245 2.475a8 8 0 1 0-11.322-.047c1.018-1.016 2.396-2.028 4.077-2.428Z"
+        fill="currentColor"
       />
     </svg>
   </button>
@@ -84,6 +86,7 @@ exports[`renders a Button with an icon 1`] = `
     >
       <path
         d="M12 5a1 1 0 0 0-1 1v5H6a1 1 0 1 0 0 2h5v5a1 1 0 1 0 2 0v-5h5a1 1 0 1 0 0-2h-5V6a1 1 0 0 0-1-1Z"
+        fill="currentColor"
       />
     </svg>
     <span
@@ -114,6 +117,7 @@ exports[`renders a Button with an icon on the right 1`] = `
     >
       <path
         d="M12 5a1 1 0 0 0-1 1v5H6a1 1 0 1 0 0 2h5v5a1 1 0 1 0 2 0v-5h5a1 1 0 1 0 0-2h-5V6a1 1 0 0 0-1-1Z"
+        fill="currentColor"
       />
     </svg>
   </button>

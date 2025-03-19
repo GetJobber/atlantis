@@ -33,6 +33,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 1`]
               >
                 <path
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -80,6 +81,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 1`]
             >
               <path
                 d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                fill="currentColor"
                 style="fill: var(--color-surface);"
               />
             </svg>
@@ -184,6 +186,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 2`]
               >
                 <path
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -229,6 +232,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 2`]
               >
                 <path
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -275,6 +279,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 2`]
             >
               <path
                 d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                fill="currentColor"
                 style="fill: var(--color-surface);"
               />
             </svg>
@@ -379,6 +384,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
               >
                 <path
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -424,6 +430,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
               >
                 <path
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -470,6 +477,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
               >
                 <path
                   d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -517,6 +525,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
             >
               <path
                 d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                fill="currentColor"
                 style="fill: var(--color-surface);"
               />
             </svg>
@@ -621,6 +630,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
               >
                 <path
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -666,6 +676,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
               >
                 <path
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -712,6 +723,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
               >
                 <path
                   d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -757,6 +769,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
               >
                 <path
                   d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -803,6 +816,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
             >
               <path
                 d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                fill="currentColor"
                 style="fill: var(--color-surface);"
               />
             </svg>
@@ -907,6 +921,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
               >
                 <path
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -952,6 +967,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
               >
                 <path
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -998,6 +1014,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
               >
                 <path
                   d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -1043,6 +1060,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
               >
                 <path
                   d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -1089,6 +1107,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
               >
                 <path
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -1136,6 +1155,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
             >
               <path
                 d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                fill="currentColor"
                 style="fill: var(--color-surface);"
               />
             </svg>
@@ -1240,6 +1260,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               >
                 <path
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -1285,6 +1306,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               >
                 <path
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -1331,6 +1353,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               >
                 <path
                   d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -1376,6 +1399,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               >
                 <path
                   d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -1422,6 +1446,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               >
                 <path
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -1467,6 +1492,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               >
                 <path
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -1513,6 +1539,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
             >
               <path
                 d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                fill="currentColor"
                 style="fill: var(--color-surface);"
               />
             </svg>
@@ -1617,6 +1644,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               >
                 <path
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -1662,6 +1690,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               >
                 <path
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -1708,6 +1737,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               >
                 <path
                   d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -1753,6 +1783,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               >
                 <path
                   d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -1799,6 +1830,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               >
                 <path
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -1844,6 +1876,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               >
                 <path
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -1890,6 +1923,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               >
                 <path
                   d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -1937,6 +1971,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
             >
               <path
                 d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                fill="currentColor"
                 style="fill: var(--color-surface);"
               />
             </svg>
@@ -2041,6 +2076,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               >
                 <path
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -2086,6 +2122,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               >
                 <path
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -2132,6 +2169,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               >
                 <path
                   d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -2177,6 +2215,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               >
                 <path
                   d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -2223,6 +2262,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               >
                 <path
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -2268,6 +2308,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               >
                 <path
                   d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -2314,6 +2355,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               >
                 <path
                   d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -2359,6 +2401,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               >
                 <path
                   d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                  fill="currentColor"
                   style="fill: var(--color-surface);"
                 />
               </svg>
@@ -2405,6 +2448,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
             >
               <path
                 d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                fill="currentColor"
                 style="fill: var(--color-surface);"
               />
             </svg>

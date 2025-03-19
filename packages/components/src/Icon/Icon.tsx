@@ -1,4 +1,4 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import { IconColorNames, IconNames, IconSizes, getIcon } from "@jobber/design";
 
 export { IconColorNames, IconNames } from "@jobber/design";
@@ -29,6 +29,20 @@ export interface IconProps {
    * Used to locate this view in end-to-end tests
    */
   readonly testID?: string;
+
+  /**
+   * **Use at your own risk:** Custom classNames for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_className?: string;
+
+  /**
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: CSSProperties;
 }
 
 export function Icon({
@@ -37,6 +51,8 @@ export function Icon({
   customColor,
   size = "base",
   testID,
+  UNSAFE_className,
+  UNSAFE_style,
 }: IconProps) {
   let icon;
   const { svgStyle, pathStyle, paths, viewBox } = getIcon({
@@ -50,7 +66,12 @@ export function Icon({
     icon = getTruck(pathStyle, customColor);
   } else {
     icon = paths.map((path: string) => (
-      <path key={path} style={{ ...pathStyle }} d={path} fill={customColor} />
+      <path
+        key={path}
+        style={{ ...pathStyle }}
+        d={path}
+        fill={customColor || "currentColor"}
+      />
     ));
   }
 
@@ -58,7 +79,8 @@ export function Icon({
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox={viewBox}
-      style={svgStyle}
+      style={{ ...svgStyle, ...UNSAFE_style }}
+      className={UNSAFE_className}
       data-testid={testID || name}
     >
       {icon}
