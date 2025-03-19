@@ -2,10 +2,6 @@ import { Canvas, Meta } from "@storybook/addon-docs";
 import { Banner } from "@jobber/components/Banner";
 import { Icon } from "@jobber/components/Icon";
 
-{/* Sections of this file have been duplicated in the new docs site temporarily. */}
-{/* When updating this file, make sure to also update the corresponding notes file: */}
-{/* packages/site/src/content/[Component]/[Component]Notes.mdx */}
-
 # Banner
 
 <Meta title="Components/Status and Feedback/Banner" />
@@ -22,8 +18,8 @@ Banner should align to the left and right of the content it is related to.
 
 When using a Banner within a modal or a page layout, this means Banner should
 align with the text, inputs or other UI elements beneath it. For best results,
-use [Content](../?path=/docs/components-layouts-and-structure-content--docs) to
-ensure consistent vertical spacing between Banner and adjacent elements.
+use [Content](/components/Content) to ensure consistent vertical spacing between
+Banner and adjacent elements.
 
 #### "Global" Banner (web)
 
@@ -40,12 +36,8 @@ be flush with the edges of the screen.
 
 ### Types of Banner
 
-There are four types of Banner, each with guidelines for their usage:
-
-- `success` (web only) [<Icon name="link" />](#success-message)
-- `notice` [<Icon name="link" />](#notice-message)
-- `warning`[<Icon name="link" />](#warning-message)
-- `error` [<Icon name="link" />](#error-message)
+Banners come in four types; `success`, `notice`, `warning` and `error`. Each
+type has guidelines for usage:
 
 ### Success message (Web only)
 
@@ -60,15 +52,11 @@ Success banners are appropriate when:
   <li>success feedback is delayed</li>
 </ul>
 
-Otherwise, use
-[Toast](../?path=/docs/components-status-and-feedback-toast--docs) as the
-default for success messages.
+Otherwise, use [Toast](/components/Toast) as the default for success messages.
 
 #### Success messages (mobile)
 
-On mobile, use
-[Toast](../?path=/docs/components-status-and-feedback-toast--docs) for a success
-message.
+On mobile, use [Toast](/components/Toast) for a success message.
 
 ### Notice message
 
@@ -104,12 +92,11 @@ Use warning banners when:
 </ul>
 
 Warning messages should be one to two short sentences that describe the possibly
-unknown impact a user’s changes or actions will have. They should not begin with
+unknown impact a user's changes or actions will have. They should not begin with
 "Warning:" and should not be used as a way to block or redirect a workflow.
 
-On web, you should use
-[ConfirmationModal](../?path=/docs/components-overlays-confirmationmodal--docs)
-when you need to get explicit confirmation from the user before they complete an
+On web, you should use [ConfirmationModal](/components/ConfirmationModal) when
+you need to get explicit confirmation from the user before they complete an
 action that is difficult to reverse.
 
 ### Error message
@@ -141,8 +128,7 @@ context to the user.
 
 If an error is directly related to an input, don't use a banner. Use the
 [InputText validation message](../?path=/docs/components-forms-and-inputs-inputtext--docs#validation-message)
-component or, if unavailable,
-[InputValidation](../?path=/docs/components-forms-and-inputs-inputvalidation--docs).
+component or, if unavailable, [InputValidation](/components/InputValidation).
 Scroll to the first affected field on submission.
 
 #### Errors in forms (mobile)
@@ -169,39 +155,12 @@ Content in Banner should:
 
 - Be concise and kept to only 1 to 2 sentences where possible
 - Avoid exceeding 200 characters
-- Follow the
-  [Product Vocabulary](../?path=/docs/content-product-vocabulary--docs) where
-  applicable
+- Follow the [Product Vocabulary](/content/product-vocabulary) where applicable
 - In the case of warning or error banners, explain how to resolve the issue
-
-## Actions in Banners
-
-### Actions (web)
-
-It is discouraged to use a Button component when requiring an action within a
-Banner. If you require an action, use the `primaryActions` prop. The
-`primaryAction` accepts the same props as the Button component.
-
-See
-[Actions in Banners](../?path=/story/components-status-and-feedback-banner-web--actions-in-banners)
-for some examples.
-
-### Actions (mobile)
-
-Use the `action` prop to specify an `onPress` callback and a `label`. Banner
-will render the action using an
-[ActionLabel](../?path=/docs/components-actions-actionlabel--docs).
-
-See
-[Actions in Banners](../?path=/story/components-status-and-feedback-banner-mobile--actions-in-banners)
-for an example.
 
 ## Related components
 
 - To provide low-priority, temporary feedback on the outcome of a user action,
-  use [Toast](../?path=/docs/components-status-and-feedback-toast--docs)
-  instead.
-- Use
-  [ConfirmationModal](../?path=/docs/components-overlays-confirmationmodal--docs)
-  when you need to get explicit confirmation from the user before they complete
-  an action.
+  use [Toast](/components/Toast) instead.
+- Use [ConfirmationModal](/components/ConfirmationModal) when you need to get
+  explicit confirmation from the user before they complete an action.

@@ -40,6 +40,13 @@ export const componentList = [
     sections: ["Utilities"],
   },
   {
+    title: "AtlantisThemeContext",
+    to: "/components/AtlantisThemeContext",
+    imageURL: "/AtlantisThemeContext.png",
+    additionalMatches: ["Theme", "Dark Mode", "Light Mode"],
+    sections: ["Themes"],
+  },
+  {
     title: "Autocomplete",
     to: "/components/Autocomplete",
     imageURL: "/Autocomplete.png",
@@ -488,7 +495,14 @@ export const componentList = [
     to: "/components/LightBox",
     imageURL: "/LightBox.png",
     sections: ["Images & Icons"],
-    additionalMatches: ["Gallery", "Carousel", "Display", "Image"],
+    additionalMatches: [
+      "Gallery",
+      "Carousel",
+      "Display",
+      "Image",
+      "Box Sizing",
+      "Border Box",
+    ],
   },
   {
     title: "Link",

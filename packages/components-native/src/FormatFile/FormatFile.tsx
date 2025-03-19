@@ -1,6 +1,6 @@
 import React, { createRef, useCallback, useState } from "react";
 import { TouchableOpacity, View } from "react-native";
-import { styles } from "./FormatFile.style";
+import { useStyles } from "./FormatFile.style";
 import { MediaView } from "./components/MediaView";
 import {
   BottomSheetOptionsSuffix,
@@ -96,6 +96,8 @@ function FormatFileContent({
   onUploadComplete,
   isMedia,
 }: FormatFileContentProps): JSX.Element {
+  const styles = useStyles();
+
   return (
     <View
       style={[

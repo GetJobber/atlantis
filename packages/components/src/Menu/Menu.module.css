@@ -10,10 +10,6 @@
   z-index: var(--elevation-modal);
 }
 
-.shadowRef {
-  display: none;
-}
-
 .menu {
   --menu-space: var(--space-small);
   --menu-offset: var(--space-smallest);
@@ -76,8 +72,8 @@
   gap: var(--menu-space);
   align-items: center;
   transition:
-    background-color var(--timing-base) ease-in,
-    box-shadow var(--timing-base) ease-in;
+    background-color var(--timing-base) ease-out,
+    box-shadow var(--timing-base) ease-out;
 }
 
 .action:hover,

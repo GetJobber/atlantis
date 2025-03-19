@@ -18,6 +18,7 @@ export interface FormFieldWrapperProps extends FormFieldProps {
   readonly descriptionIdentifier: string;
   readonly clearable: Clearable;
   readonly onClear: () => void;
+  readonly showMiniLabel?: boolean;
 }
 
 export function FormFieldWrapper({
@@ -42,6 +43,7 @@ export function FormFieldWrapper({
   onClear,
   toolbar,
   toolbarVisibility = "while-editing",
+  showMiniLabel = true,
   wrapperRef,
 }: PropsWithChildren<FormFieldWrapperProps>) {
   const prefixRef = useRef() as RefObject<HTMLDivElement>;
@@ -62,6 +64,7 @@ export function FormFieldWrapper({
       disabled,
       inline,
       size,
+      showMiniLabel,
     });
 
   const { focused } = useFormFieldFocus({ wrapperRef });
@@ -92,15 +95,18 @@ export function FormFieldWrapper({
         <FormFieldInputHorizontalWrapper>
           <AffixIcon {...prefix} size={size} />
           <FormFieldInputWrapperStyles>
-            <FormFieldLabel
-              placeholder={placeholder}
-              identifier={identifier}
-              style={
-                prefixRef?.current || suffixRef?.current
-                  ? labelStyle
-                  : undefined
-              }
-            />
+            {(showMiniLabel || !value) && (
+              <FormFieldLabel
+                htmlFor={identifier}
+                style={
+                  prefixRef?.current || suffixRef?.current
+                    ? labelStyle
+                    : undefined
+                }
+              >
+                {placeholder}
+              </FormFieldLabel>
+            )}
             <AffixLabel {...prefix} labelRef={prefixRef} />
 
             <FormFieldWrapperMain>{children}</FormFieldWrapperMain>
@@ -128,12 +134,18 @@ export function FormFieldWrapper({
   );
 }
 
+/**
+ * @internal Reach out to UX Foundations if using this component since it is possible it might change
+ */
 export function FormFieldInputHorizontalWrapper({
   children,
 }: PropsWithChildren) {
   return <div className={styles.horizontalWrapper}>{children}</div>;
 }
 
+/**
+ * @internal Reach out to UX Foundations if using this component since it is possible it might change
+ */
 export function FormFieldInputWrapperStyles({
   children,
 }: {
@@ -142,6 +154,9 @@ export function FormFieldInputWrapperStyles({
   return <div className={styles.inputWrapper}>{children}</div>;
 }
 
+/**
+ * @internal Reach out to UX Foundations if using this component since it is possible it might change
+ */
 export function FormFieldWrapperMain({
   children,
   tabIndex = -1,
@@ -157,23 +172,32 @@ export function FormFieldWrapperMain({
 }
 
 export function FormFieldLabel({
-  placeholder,
-  identifier,
+  children,
+  htmlFor,
   style,
+  external = false,
 }: {
-  readonly placeholder?: string;
-  readonly identifier?: string;
+  readonly children?: ReactNode;
+  readonly htmlFor?: string;
   readonly style?: React.CSSProperties;
+  readonly external?: boolean;
 }) {
-  if (!placeholder) return null;
+  if (!children) return null;
 
   return (
-    <label className={styles.label} htmlFor={identifier} style={style}>
-      {placeholder}
+    <label
+      className={external ? styles.externalLabel : styles.label}
+      htmlFor={htmlFor}
+      style={style}
+    >
+      {children}
     </label>
   );
 }
 
+/**
+ * @internal Reach out to UX Foundations if using this component since it is possible it might change
+ */
 export function FormFieldWrapperToolbar({
   toolbar,
   isToolbarVisible,

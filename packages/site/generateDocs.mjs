@@ -29,13 +29,31 @@ import {
 const parseAndWriteDocs = (componentPath, outputPath) => {
   console.log("parsing component at:", componentPath);
   const documentation = parse(componentPath);
-  const cleanedDocumentation = removeDeclarations(documentation);
+  const cleanedDocumentation = removeNonComponents(
+    removeDeclarations(documentation),
+  );
 
   const outputDir = dirname(outputPath);
   mkdirSync(outputDir, { recursive: true });
 
   console.log("writing documentation to:", outputPath);
   writeFileSync(outputPath, JSON.stringify(cleanedDocumentation, null, 2));
+};
+
+/**
+ * react-docgen-typescript parses every export from the component file, which
+ * includes functions that are not components.
+ *
+ * This method filters out any items that start with a lowercase letter, which is almost always
+ * non-component function exports.
+ *
+ * @param {object} doc
+ * @returns The doc without any functions
+ */
+const removeNonComponents = doc => {
+  doc = doc.filter(item => item.displayName.match(/^[A-Z]/));
+
+  return doc;
 };
 
 /**

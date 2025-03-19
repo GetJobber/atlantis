@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from "react";
 import { Typography, TypographyOptions } from "../Typography";
 
-interface TextProps {
+export interface TextProps {
   readonly maxLines?:
     | "single"
     | "small"

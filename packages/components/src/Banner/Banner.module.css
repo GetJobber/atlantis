@@ -1,22 +1,47 @@
 .banner {
+  --banner-surface: var(--color-surface);
+  --banner-textColor: var(--color-text);
   display: flex;
   position: relative;
-  box-shadow: var(--shadow-base);
   padding: calc(var(--space-base) - var(--space-smaller)) var(--space-base);
-  border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
-  color: var(--color-text);
-  background-color: var(--color-surface);
+  color: var(--banner-textColor);
+  background-color: var(--banner-surface);
   gap: var(--space-small);
   align-items: center;
 }
 
+.notice {
+  --banner-surface: var(--color-informative--surface);
+  --banner-textColor: var(--color-informative--onSurface);
+}
+
+.error {
+  --banner-surface: var(--color-critical--surface);
+  --banner-textColor: var(--color-critical--onSurface);
+}
+
+.warning {
+  --banner-surface: var(--color-warning--surface);
+  --banner-textColor: var(--color-warning--onSurface);
+}
+
+.success {
+  --banner-surface: var(--color-success--surface);
+  --banner-textColor: var(--color-success--onSurface);
+}
+
+.bannerChildren > a,
+.bannerChildren > p {
+  color: inherit;
+}
+
 .bannerChildren > a {
-  color: var(--color-text);
+  text-decoration: underline;
 }
 
 .bannerChildren > a:hover {
-  color: var(--color-blue);
+  color: var(--color-heading);
 }
 
 .bannerContent {
@@ -51,17 +76,22 @@
 
   @media (--small-screens-and-below) {
     width: 100%;
-    margin-top: var(--space-small);
+    padding-left: var(--space-larger);
   }
 }
 
 .closeButton {
   margin: calc(var(--space-smallest) * -1) 0;
   align-self: flex-start;
+  mix-blend-mode: multiply;
 
   @media (--small-screens-and-below) {
     margin: calc(var(--space-small) * -1) 0;
   }
+}
+
+[data-theme="dark"] .closeButton {
+  mix-blend-mode: screen;
 }
 
 .iconWrapper {

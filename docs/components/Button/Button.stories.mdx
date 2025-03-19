@@ -5,10 +5,6 @@ import { Form } from "@jobber/components/Form";
 import { InputNumber } from "@jobber/components/InputNumber";
 import { Content } from "@jobber/components/Content";
 
-{/* Sections of this file have been duplicated in the new docs site temporarily. */}
-{/* When updating this file, make sure to also update the corresponding notes file: */}
-{/* packages/site/src/content/[Component]/[Component]Notes.mdx */}
-
 <Meta title="Components/Actions/Button" component={Button} />
 
 # Button
@@ -107,8 +103,7 @@ Actions for all three levels.
 
 A Primary destructive action will permanently destroy an object carrying
 significant data, such as a job, quote, or client. This destructive action
-should be contained in a
-[ConfirmationModal](../?path=/docs/components-overlays-confirmationmodal--docs)
+should be contained in a [ConfirmationModal](/components/ConfirmationModal)
 triggered by clicking a secondary or tertiary destructive button.
 
 #### Secondary or Tertiary
@@ -300,21 +295,3 @@ A way to communicate to the user that a background action is being performed.
   />
   <Button label="Canceling..." variation="subtle" loading={true} />
 </Canvas>
-
-## Client-side routing (Web only)
-
-A Button can be used for client-side routing as well. When using a Button to
-handle the client-side routing, use the `to` prop. Notice when you click below
-that the URL will change to the appropriate route. See
-[Web/Client Side Routing example](../?path=/story/components-actions-button-web--client-side-routing).
-
-## Form submit (Web only)
-
-Passing the `submit` prop will allow a Button to submit a
-[Form](../?path=/docs/components-forms-and-inputs-form--docs). Since submitting
-a form is a specific action, only `variation="work"` and `type="primary"` are
-allowed. See
-[Web/Form Submit example](../?path=/story/components-actions-button-web--form-submit)
-
-Since this type of `Button` will only be used to submit a form, it does not make
-sense to allow the `external`, `onClick`, `to`, or `url` props.

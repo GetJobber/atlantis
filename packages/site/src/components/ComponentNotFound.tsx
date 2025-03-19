@@ -33,15 +33,20 @@ export const ComponentNotFound = () => {
                   },
                   {
                     content:
-                      "Add an entry to generate new props. In generateDocs.mjs, add the new key you just used for the folder (componentName)",
+                      "In baseComponentLists.mjs, add the new key you just used for the folder (componentName)",
                     id: 3,
                   },
                   {
                     content:
-                      "Add a new entry to site/src/content/index.ts that matches your title",
+                      "Run **npm run generate** within packages/site to generate props files",
                     id: 4,
                   },
-                  { content: "Reload this page", id: 5 },
+                  {
+                    content:
+                      "Add a new entry to site/src/content/index.ts that matches your title",
+                    id: 5,
+                  },
+                  { content: "Reload this page", id: 6 },
                 ]}
               ></List>
             </Card>

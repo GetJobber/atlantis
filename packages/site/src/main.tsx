@@ -12,6 +12,7 @@ import { AtlantisSiteProvider } from "./providers/AtlantisSiteProvider";
 import { initAtlantisTheme } from "./utils/theme";
 import { Analytics } from "./components/Analytics";
 import { handleStorybookRedirect } from "./utils/storybook";
+import { TritonProvider } from "./providers/TritonProvider";
 
 handleStorybookRedirect();
 
@@ -33,7 +34,9 @@ function renderApp() {
             >
               <Analytics />
               <AtlantisPreviewProvider>
-                <Layout />
+                <TritonProvider>
+                  <Layout />
+                </TritonProvider>
               </AtlantisPreviewProvider>
             </AtlantisSiteProvider>
           </AtlantisThemeContextProvider>

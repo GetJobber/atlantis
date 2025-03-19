@@ -1,19 +1,38 @@
 import React from "react";
-import { RenderAPI, fireEvent, render } from "@testing-library/react-native";
+import {
+  RenderAPI,
+  fireEvent,
+  render,
+  renderHook,
+} from "@testing-library/react-native";
 import { Text, ViewStyle } from "react-native";
 import {
   InputFieldWrapper,
   InputFieldWrapperProps,
-  commonInputStyles,
+  useCommonInputStyles,
 } from ".";
-import { styles } from "./InputFieldWrapper.style";
+import { useStyles } from "./InputFieldWrapper.style";
 import {
   INPUT_FIELD_WRAPPER_GLIMMERS_TEST_ID,
   INPUT_FIELD_WRAPPER_SPINNER_TEST_ID,
 } from "./InputFieldWrapper";
-import { typographyStyles } from "../Typography";
+import { useTypographyStyles } from "../Typography";
 
 const mockLabel = { label: "$" };
+
+let styles: ReturnType<typeof useStyles>;
+let commonInputStyles: ReturnType<typeof useCommonInputStyles>;
+let typographyStyles: ReturnType<typeof useTypographyStyles>;
+
+beforeAll(() => {
+  const stylesHook = renderHook(() => useStyles());
+  const commonInputStylesHook = renderHook(() => useCommonInputStyles());
+  const typographyStylesHook = renderHook(() => useTypographyStyles());
+
+  styles = stylesHook.result.current;
+  commonInputStyles = commonInputStylesHook.result.current;
+  typographyStyles = typographyStylesHook.result.current;
+});
 
 type InputFieldWrapperTestProps = Omit<InputFieldWrapperProps, "children">;
 
@@ -159,7 +178,7 @@ describe("InputFieldWrapper", () => {
       const styleOverride = {
         container: {
           backgroundColor: "purple",
-          width: "50%",
+          width: "50%" as const,
         },
       };
       const { getByTestId } = renderInputFieldWrapper({

@@ -28,7 +28,7 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     ...props,
     version: 1,
   };
-  const id = useId();
+  const id = useInputTextId(props);
 
   const { rowRange } = useTextAreaResize({
     rows: props.rows,
@@ -43,7 +43,7 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
 
   const { name } = useAtlantisFormFieldName({
     nameProp: props.name,
-    id: props.id || id,
+    id: id,
   });
 
   const { handleChange, handleBlur, handleFocus, handleKeyDown, handleClear } =
@@ -51,6 +51,7 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
       onChange: props.onChange,
       onBlur: props.onBlur,
       onFocus: props.onFocus,
+      onKeyDown: props.onKeyDown,
       onEnter: props.onEnter,
       inputRef: inputTextRef,
     });
@@ -129,6 +130,12 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     </FormFieldWrapper>
   );
 });
+
+function useInputTextId(props: InputTextRebuiltProps) {
+  const generatedId = useId();
+
+  return props.id || generatedId;
+}
 
 function TextArea({
   fieldProps,

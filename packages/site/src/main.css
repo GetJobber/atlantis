@@ -218,6 +218,7 @@ iframe {
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   grid-template-rows: auto;
   gap: var(--space-base);
+  isolation: isolate;
 }
 
 @media screen and (min-width: 1024px) {

@@ -1,0 +1,37 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/AtlantisThemeContext/AtlantisThemeContext.tsx",
+    "description": "",
+    "displayName": "AtlantisThemeContextProvider",
+    "methods": [],
+    "props": {
+      "children": {
+        "defaultValue": null,
+        "description": "The children to render.",
+        "name": "children",
+        "parent": {
+          "fileName": "packages/components/src/AtlantisThemeContext/types.ts",
+          "name": "AtlantisThemeContextProviderProps"
+        },
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "dangerouslyOverrideTheme": {
+        "defaultValue": null,
+        "description": "Force the theme for this provider to always be the same as the provided theme. Useful for sections that should remain the same theme regardless of the rest of the application's theme.\nThis is dangerous because the children in this provider will not be able to change the theme.",
+        "name": "dangerouslyOverrideTheme",
+        "parent": {
+          "fileName": "packages/components/src/AtlantisThemeContext/types.ts",
+          "name": "AtlantisThemeContextProviderProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Theme"
+        }
+      }
+    }
+  }
+]

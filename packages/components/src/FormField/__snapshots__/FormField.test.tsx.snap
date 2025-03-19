@@ -21,7 +21,7 @@ exports[`FormField when small renders 1`] = `
           >
             <input
               class="input"
-              id=":r4:"
+              id=":r6:"
               type="text"
               value=""
             />

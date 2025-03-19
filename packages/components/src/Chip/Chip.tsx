@@ -78,7 +78,9 @@ export const Chip = ({
             <div
               className={styles.truncateGradient}
               data-testid="ATL-Chip-Truncation-Gradient"
-            />
+            >
+              <span />
+            </div>
           )}
         </div>
         {suffix}

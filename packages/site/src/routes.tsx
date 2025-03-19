@@ -3,6 +3,7 @@ import { ComponentsPage } from "./pages/ComponentsPage";
 import { ContentLoader } from "./components/ContentLoader";
 import { ContentPage } from "./pages/ContentPage";
 import { DesignPage } from "./pages/DesignPage";
+import { PatternsPage } from "./pages/PatternsPage";
 import { ComponentView } from "./layout/ComponentView";
 import { componentList } from "./componentList";
 import { componentSections } from "./componentSections";
@@ -68,6 +69,34 @@ export const routes: Array<AtlantisRoute> = [
     component: HomePage,
     exact: true,
     handle: "Home",
+  },
+  {
+    path: "/patterns",
+    handle: "Patterns",
+    exact: true,
+    component: PatternsPage,
+    children: [
+      {
+        path: "/patterns/interaction",
+        handle: "Interaction",
+        exact: true,
+      },
+      {
+        path: "/patterns/empty-states",
+        handle: "Empty states",
+        exact: true,
+      },
+      {
+        path: "/patterns/errors",
+        handle: "Errors",
+        exact: true,
+      },
+      {
+        path: "/patterns/disabled-states",
+        handle: "Disabled states",
+        exact: true,
+      },
+    ],
   },
   {
     path: "/components",
@@ -178,6 +207,11 @@ export const routes: Array<AtlantisRoute> = [
       {
         path: "/guides/documentation-styleguide",
         handle: "Writing documentation",
+        exact: true,
+      },
+      {
+        path: "/guides/adding-an-icon",
+        handle: "Adding an icon",
         exact: true,
       },
       {
@@ -322,6 +356,13 @@ export const routes: Array<AtlantisRoute> = [
     path: "/packages/:name",
     component: ContentLoader,
     handle: "PackagesContent",
+    inNav: false,
+    exact: true,
+  },
+  {
+    path: "/patterns/:name",
+    component: ContentLoader,
+    handle: "PatternsContent",
     inNav: false,
     exact: true,
   },

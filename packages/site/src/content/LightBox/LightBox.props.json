@@ -21,7 +21,7 @@
       },
       "images": {
         "defaultValue": null,
-        "description": "Images is an array of objects defining a LightBox image. This object consists of\n`title`, `caption` and `url`. `title` and `caption` are optional, `url` is\nrequired, for each image.",
+        "description": "Images is an array of objects defining a LightBox image. This object consists of\n`title`, `caption`, `alt` and `url`. `title`, `alt` and `caption` are optional, `url` is\nrequired, for each image.",
         "name": "images",
         "parent": {
           "fileName": "../components/src/LightBox/LightBox.tsx",
@@ -58,6 +58,21 @@
         "required": true,
         "type": {
           "name": "(options: RequestCloseOptions) => void"
+        }
+      },
+      "boxSizing": {
+        "defaultValue": {
+          "value": "content-box"
+        },
+        "description": "Sets the box-sizing for the thumbnails in the lightbox. This is a solution for a problem where\ntailwind was setting the box-sizing to `border-box` and causing issues with the lightbox.",
+        "name": "boxSizing",
+        "parent": {
+          "fileName": "../components/src/LightBox/LightBox.tsx",
+          "name": "LightBoxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "BoxSizing"
         }
       }
     }

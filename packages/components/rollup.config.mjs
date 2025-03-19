@@ -13,7 +13,7 @@ import presetenv from "postcss-preset-env";
 import multiInput from "rollup-plugin-multi-input";
 import nodePolyfills from "rollup-plugin-polyfill-node";
 import alias from "@rollup/plugin-alias";
-
+// comments for manual release
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 export default {

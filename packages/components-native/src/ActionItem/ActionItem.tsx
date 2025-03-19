@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import { View } from "react-native";
 import { IconColorNames, IconNames } from "@jobber/design";
-import { styles } from "./ActionItem.style";
+import { useStyles } from "./ActionItem.style";
 import { ActionItemContainer } from "./components/ActionItemContainer";
 import { Typography } from "../Typography";
 import { Icon } from "../Icon";
@@ -64,6 +64,8 @@ export function ActionItem({
   const actionIconStyle = {
     justifyContent: actionIconAlignment,
   };
+
+  const styles = useStyles();
 
   const addIconOffset = icon || onPress ? styles.offsetForIcons : undefined;
   const titlePadding = children ? styles.titlePadding : undefined;

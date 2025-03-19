@@ -80,6 +80,7 @@ export function useInputTextFormField({
 }: useInputTextFormFieldProps) {
   const descriptionIdentifier = `descriptionUUID--${id}`;
   const fieldProps = {
+    ...rest,
     id,
     className: styles.input,
     name,
@@ -95,7 +96,6 @@ export function useInputTextFormField({
     autoFocus: rest.autoFocus,
     invalid: error || rest.invalid ? "true" : undefined,
     onKeyDown: handleKeyDown,
-    ...rest,
   };
 
   return { fieldProps, descriptionIdentifier };

@@ -1,15 +1,16 @@
-import { Box, Button, Icon, Typography } from "@jobber/components";
+import { Box, Button, Typography } from "@jobber/components";
 import { Link, useLocation } from "react-router-dom";
-import { Fragment, PropsWithChildren, useRef, useState } from "react";
-import { SearchBox } from "./SearchBox";
+import { Fragment, PropsWithChildren, useRef } from "react";
+import { useBreakpoints } from "@jobber/hooks";
 import AnimatedPresenceDisclosure from "./AnimatedPresenceDisclosure";
 import styles from "./NavMenu.module.css";
+import { LeftDrawer } from "./LeftDrawer";
 import { routes } from "../routes";
 import { JobberLogo } from "../assets/JobberLogo.svg";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
 import { VisibleWhenFocused } from "../components/VisibleWhenFocused";
 
-interface NavMenuProps {
+export interface NavMenuProps {
   readonly mainContentRef: React.RefObject<HTMLDivElement>;
 }
 
@@ -18,8 +19,7 @@ interface NavMenuProps {
  * @returns ReactNode
  */
 export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
-  const [open, setOpen] = useState(false);
-  const { isMinimal } = useAtlantisSite();
+  const { isMinimal, isMobileMenuOpen, toggleMobileMenu } = useAtlantisSite();
   const { pathname } = useLocation();
   const selectedRef = useRef<HTMLAnchorElement | null>(null);
 
@@ -69,36 +69,20 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
 
   const skipToContent = () => {
     mainContentRef.current?.focus();
+    toggleMobileMenu();
   };
 
-  return (
+  const menuContent = (
     <nav className={styles.navMenuContainer}>
       <div className={styles.navMenuHeader}>
         <VisibleWhenFocused>
           <Button label="Skip to Content" onClick={skipToContent} />
         </VisibleWhenFocused>
-        <Box>
+        <div className={styles.navMenuHeaderLogo}>
           <Link to="/">
             <JobberLogo />
           </Link>
-        </Box>
-        <Box>
-          <button
-            type="button"
-            onClick={() => setOpen(true)}
-            className={styles.searchButton}
-            aria-label="Search"
-          >
-            <Icon name="search" color="greyBlue" />
-            <span className={styles.searchButtonText}>
-              <Typography size={"base"} textColor={"textSecondary"}>
-                Search
-              </Typography>
-            </span>
-            <div className={styles.searchKeyIndicator}>/</div>
-          </button>
-        </Box>
-        <SearchBox open={open} setOpen={setOpen} />
+        </div>
       </div>
       <div className={styles.navMenu}>
         <MenuList>
@@ -129,7 +113,33 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
           })}
         </MenuList>
       </div>
+      <a
+        href="https://atlantis.getjobber.com/storybook/?path=/docs/introduction--docs"
+        className={styles.navFooterLink}
+      >
+        View in Storybook
+      </a>
     </nav>
+  );
+
+  return (
+    <>
+      <div className={styles.desktopNavContainer}>{menuContent}</div>
+      {isMobileMenuOpen && (
+        <LeftDrawer
+          onClose={toggleMobileMenu}
+          header={
+            <Box padding={{ top: "smaller" }}>
+              <Link to="/" onClick={toggleMobileMenu}>
+                <JobberLogo />
+              </Link>
+            </Box>
+          }
+        >
+          {menuContent}
+        </LeftDrawer>
+      )}
+    </>
   );
 };
 
@@ -156,12 +166,15 @@ export const StyledLink = ({
     isSelected,
     styles.selected,
   );
+  const { toggleMobileMenu } = useAtlantisSite();
+  const { mediumAndUp } = useBreakpoints();
 
   return (
     <Link
       to={to ?? "/"}
       className={className}
       ref={isSelected ? selectedRef : null}
+      onClick={mediumAndUp ? undefined : toggleMobileMenu}
     >
       {children}
     </Link>
@@ -183,12 +196,15 @@ export const StyledSubLink = ({
     isSelected,
     styles.selected,
   );
+  const { toggleMobileMenu } = useAtlantisSite();
+  const { mediumAndUp } = useBreakpoints();
 
   return (
     <Link
       to={to ?? "/"}
       className={className}
       ref={isSelected ? selectedRef : null}
+      onClick={mediumAndUp ? undefined : toggleMobileMenu}
     >
       {children}
     </Link>

@@ -73,7 +73,7 @@
       },
       "totalCount": {
         "defaultValue": null,
-        "description": "Total number of items in the DataList.\n\nThis renders an \"N result\" text with the DataList\nthat helps users know how many items they have\nin the list",
+        "description": "Total number of items in the DataList.\n\nThis renders an \"N results\" text with the DataList\nthat helps users know how many items they have\nin the list",
         "name": "totalCount",
         "parent": {
           "fileName": "packages/components/src/DataList/DataList.types.ts",
@@ -206,7 +206,7 @@
         },
         "required": false,
         "type": {
-          "name": "ReactElement<ButtonProps, string | JSXElementConstructor<any>>"
+          "name": "ReactElement<{ external?: never; onClick?: never; readonly name?: string; submit: never; readonly type?: ButtonType; readonly value?: string; readonly id?: string; readonly variation?: ButtonVariation; ... 15 more ...; readonly children?: never; } | ... 34 more ... | { ...; }, string | JSXElementConstructor<...>>"
         }
       },
       "type": {
@@ -454,6 +454,19 @@
         "required": false,
         "type": {
           "name": "string"
+        }
+      },
+      "alwaysVisible": {
+        "defaultValue": null,
+        "description": "Determine if the action is always visible. It is not recommended to set this to true on more then one action.",
+        "name": "alwaysVisible",
+        "parent": {
+          "fileName": "packages/components/src/DataList/DataList.types.ts",
+          "name": "DataListActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
         }
       }
     }

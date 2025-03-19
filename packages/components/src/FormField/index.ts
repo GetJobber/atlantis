@@ -4,7 +4,16 @@ export { useAtlantisFormField } from "./hooks/useAtlantisFormField";
 export { useAtlantisFormFieldActions } from "./hooks/useAtlantisFormFieldActions";
 export { useAtlantisFormFieldName } from "./hooks/useAtlantisFormFieldName";
 export { useAtlantisReactHookForm } from "./hooks/useAtlantisReactHookForm";
-export { FormFieldWrapper } from "./FormFieldWrapper";
+export {
+  FormFieldInputHorizontalWrapper,
+  FormFieldInputWrapperStyles,
+  FormFieldLabel,
+  FormFieldWrapper,
+  FormFieldWrapperMain,
+  FormFieldWrapperToolbar,
+  FormFieldWrapperProps,
+} from "./FormFieldWrapper";
+export { AffixIcon, AffixLabel } from "./FormFieldAffix";
 export {
   useFormFieldWrapperStyles,
   useFormFieldWrapperStylesProps,

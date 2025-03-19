@@ -1,12 +1,12 @@
 import React from "react";
 import { View } from "react-native";
 import { ProgressBarProps } from "./types";
-import { styles } from "./ProgressBar.style";
+import { useStyles } from "./ProgressBar.style";
 import { ProgressBarInner, calculateWidth } from "./ProgressBarInner";
 import { ProgressBarStepped } from "./ProgressBarStepped";
 import { sizeStyles } from "./ProgressBar.size.style";
-import { tokens } from "../utils/design";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
+import { useAtlantisTheme } from "../AtlantisThemeContext";
 
 export function ProgressBar({
   loading,
@@ -19,6 +19,8 @@ export function ProgressBar({
   size = "base",
 }: ProgressBarProps): JSX.Element {
   const { t } = useAtlantisI18n();
+  const styles = useStyles();
+  const { tokens } = useAtlantisTheme();
 
   return (
     <View

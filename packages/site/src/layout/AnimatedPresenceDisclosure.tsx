@@ -2,6 +2,7 @@ import { AnimatedPresence, Button, Typography } from "@jobber/components";
 import React, { useEffect, useMemo, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styles from "./NavMenu.module.css";
+import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
 
 interface AnimatedPresenceDisclosureProps {
   readonly children: React.ReactNode;
@@ -22,6 +23,8 @@ function AnimatedPresenceDisclosure({
     () => React.Children.toArray(children),
     [children],
   );
+
+  const { toggleMobileMenu } = useAtlantisSite();
 
   // Determine if any child is selected based on the current URL
   const hasSelectedChild = childrenArray.some(
@@ -63,7 +66,7 @@ function AnimatedPresenceDisclosure({
           isTitleSelected ? styles.selected : ""
         } stickySectionHeader`}
       >
-        <Link to={to ?? "/"} tabIndex={0}>
+        <Link to={to ?? "/"} tabIndex={0} onClick={toggleMobileMenu}>
           <Typography fontWeight="semiBold" size={"large"} textColor="heading">
             {title}
           </Typography>

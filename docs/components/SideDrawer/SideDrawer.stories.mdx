@@ -1,10 +1,6 @@
 import { Meta, ArgsTable } from "@storybook/addon-docs";
 import { SideDrawer } from "@jobber/components";
 
-{/* Sections of this file have been duplicated in the new docs site temporarily. */}
-{/* When updating this file, make sure to also update the corresponding notes file: */}
-{/* packages/site/src/content/[Component]/[Component]Notes.mdx */}
-
 <Meta title="Components/Overlays/SideDrawer" parameters={{ alpha: true }} />
 
 # Side Drawer
@@ -15,106 +11,10 @@ with the page's contents while the SideDrawer overlay is open.
 
 ## Related components
 
-Use [Drawer](../?path=/docs/components-layouts-and-structure-drawer--docs) if
-you need to allow users to view supplementary content while still allowing users
-to interact with the main contents of the page.
+Use [Drawer](/components/Drawer) if you need to allow users to view
+supplementary content while still allowing users to interact with the main
+contents of the page.
 
-Use [Modal](../?path=/docs/components-overlays-Modal--docs) if you need to
-overlay the page's content and block user interaction with the page, and do not
-need the user to have visibilty of the page's primary contents.
-
-## Implementation guidelines
-
-We're using a compound component pattern to separate the different parts of the
-component. This allows us to have a more flexible component.
-
-### Main wrapper
-
-The `SideDrawer` component is the main component that holds everything.
-
-<ArgsTable of={SideDrawer} />
-
-### Title
-
-The `SideDrawer.Title` component is used to show the title of the SideDrawer.
-You can pass a:
-
-- `string` to use the default styling of the title.
-- `ReactElement` to customize the title. Keep in mind that you have to handle
-  the styling of the title.
-
-```tsx
-<SideDrawer>
-  <SideDrawer.Title>My Title</SideDrawer.Title>
-</SideDrawer>
-```
-
-Or
-
-```tsx
-<SideDrawer>
-  <SideDrawer.Title>
-    <Heading level={2} element="h3">
-      My Title
-    </Heading>
-  </SideDrawer.Title>
-</SideDrawer>
-```
-
-### Actions
-
-The `SideDrawer.Actions` component is used to render the actions next to the
-close button. This accepts any component but it is meant to only be for
-components that invoke an action.
-
-```tsx
-<SideDrawer>
-  <SideDrawer.Actions>
-    <Button icon="add" ariaLabel="Add" />
-  </SideDrawer.Actions>
-</SideDrawer>
-```
-
-### Toolbar
-
-The `SideDrawer.Toolbar` component is used to render the toolbar below the title
-and have it be sticky. This is great for tools like search and filters that
-stick to the top with the title. If your toolbar scrolls with the page, you can
-just implement it as a direct child of the `SideDrawer`.
-
-```tsx
-<SideDrawer>
-  <SideDrawer.Toolbar>
-    <InputText placeholder="Search" />
-  </SideDrawer.Toolbar>
-</SideDrawer>
-```
-
-### Footer
-
-The `SideDrawer.Footer` component is used to render a fixed bar at the bottom of
-the SideDrawer. This is great for elements such as buttons that should always be
-visible to the user.
-
-```tsx
-<SideDrawer>
-  <SideDrawer.Footer>
-    <Button label="Save" fullWidth={true} />
-  </SideDrawer.Footer>
-</SideDrawer>
-```
-
-### Back Button
-
-SideDrawer also comes with a back button that you can use and add to the UI
-before the title. Use this when the user can navigate back to the previous
-SideSheet content.
-
-```tsx
-<SideDrawer>
-  <SideDrawer.BackButton onClick={handleClick} />
-  <SideDrawer.Title>My Title</SideDrawer.Title>
-</SideDrawer>
-```
-
-<ArgsTable of={SideDrawer.BackButton} />
+Use [Modal](/components/Modal) if you need to overlay the page's content and
+block user interaction with the page, and do not need the user to have visibilty
+of the page's primary contents.

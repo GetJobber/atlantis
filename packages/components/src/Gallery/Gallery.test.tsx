@@ -1,9 +1,14 @@
 import React from "react";
-import { fireEvent, render, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import {
+  BREAKPOINT_SIZES,
+  mockViewportWidth,
+} from "@jobber/hooks/useBreakpoints";
 import * as browserUtilities from "@jobber/components/utils/getClientBrowser";
 import { Gallery } from ".";
+import { File } from "./GalleryTypes";
 
-const files = [
+const files: File[] = [
   {
     key: "abc",
     name: "myballisbigandroundIamrollingitontheground.png",
@@ -51,12 +56,22 @@ const files = [
   },
 ];
 
+function convertFileSrcToPromises(fileToConvert: File[]): File[] {
+  return fileToConvert.map(file => ({
+    ...file,
+    src: () =>
+      Promise.resolve(typeof file.src === "string" ? file.src : file.src()),
+  }));
+}
+
 const openSpy = jest.spyOn(window, "open");
 openSpy.mockImplementation();
 
 beforeEach(() => {
   openSpy.mockClear();
 });
+
+const { setViewportWidth } = mockViewportWidth();
 
 async function setupAndOpenLightbox() {
   const rendered = render(<Gallery files={files} />);
@@ -75,7 +90,7 @@ describe("when the Gallery is large", () => {
 
     const internalThumbnails = await findAllByTestId("internalThumbnailImage");
 
-    expect(internalThumbnails[0].parentElement.className).toContain("large");
+    expect(internalThumbnails[0].parentElement?.className).toContain("large");
   });
 });
 
@@ -109,6 +124,7 @@ describe("when the Gallery has a maximum", () => {
   });
 
   describe("when the a Gallery thumbnail is clicked", () => {
+    setViewportWidth(BREAKPOINT_SIZES.lg);
     it("opens the lightbox", async () => {
       const { getByLabelText } = await setupAndOpenLightbox();
 
@@ -119,6 +135,7 @@ describe("when the Gallery has a maximum", () => {
 
 describe("when the lightbox is already opened", () => {
   describe("when the user clicks close on the lightbox", () => {
+    setViewportWidth(BREAKPOINT_SIZES.lg);
     it("should close the lightbox", async () => {
       const { getByLabelText, queryAllByLabelText } =
         await setupAndOpenLightbox();
@@ -133,7 +150,7 @@ describe("when the lightbox is already opened", () => {
 });
 
 describe("when the delete button is clicked on a gallery item", () => {
-  it("calls the onDelete handler for that gallery item", () => {
+  it("calls the onDelete handler for that gallery item", async () => {
     const deleteHandler = jest.fn();
     const { getByText, getAllByLabelText } = render(
       <Gallery files={files} onDelete={deleteHandler} />,
@@ -145,7 +162,9 @@ describe("when the delete button is clicked on a gallery item", () => {
       getByText("Are you sure you want to delete this file?"),
     ).toBeInstanceOf(HTMLParagraphElement);
 
-    fireEvent.click(getByText("Delete"));
+    await act(async () => {
+      fireEvent.click(getByText("Delete"));
+    });
 
     expect(deleteHandler).toHaveBeenCalledWith(files[0]);
   });
@@ -234,4 +253,16 @@ describe("Thumbnails", () => {
       });
     },
   );
+});
+
+describe("when the src is a promise", () => {
+  it("should correctly displays thumbnails", async () => {
+    const { findAllByTestId } = render(
+      <Gallery files={convertFileSrcToPromises(files)} />,
+    );
+
+    const internalThumbnails = await findAllByTestId("internalThumbnailImage");
+
+    expect(internalThumbnails.length).toEqual(files.length);
+  });
 });

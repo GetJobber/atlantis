@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { View } from "react-native";
 import { ActionItem, ActionItemProps } from "./ActionItem";
-import { styles } from "./ActionItem.style";
+import { useStyles } from "./ActionItem.style";
 import { Divider } from "../Divider";
 
 export type ActionItemElement =
@@ -24,6 +24,7 @@ export function ActionItemGroup({
 }
 
 function renderChildren(children: ActionItemElement | ActionItemElement[]) {
+  const styles = useStyles();
   const childArray = React.Children.toArray(children);
   if (childArray.length === 1) return children;
 

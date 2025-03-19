@@ -3,6 +3,88 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.72.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.72.0...@jobber/design@0.72.1) (2025-03-17)
+
+
+### Bug Fixes
+
+* **design:** move warning icon up by 1px ([#2418](https://github.com/GetJobber/atlantis/issues/2418)) ([5cf06ad](https://github.com/GetJobber/atlantis/commit/5cf06ad235f73110334359087bbe3b98e8259f40))
+
+
+
+
+
+# [0.72.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.71.2...@jobber/design@0.72.0) (2025-03-12)
+
+
+### Features
+
+* **components:** Add sprout icon ([#2420](https://github.com/GetJobber/atlantis/issues/2420)) ([34ae744](https://github.com/GetJobber/atlantis/commit/34ae744245011dad66b7820b5e65280dc8db371a))
+
+
+
+
+
+## [0.71.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.71.1...@jobber/design@0.71.2) (2025-03-11)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.71.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.71.0...@jobber/design@0.71.1) (2025-02-28)
+
+
+### Bug Fixes
+
+* **design:** update headset icon to fix fill rule issue ([#2402](https://github.com/GetJobber/atlantis/issues/2402)) ([6c4aa1b](https://github.com/GetJobber/atlantis/commit/6c4aa1b70142389b63fa5393ba8f2d952ff7a447))
+
+
+
+
+
+# [0.71.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.70.1...@jobber/design@0.71.0) (2025-02-24)
+
+
+### Features
+
+* **design:** Add battery, speed, wheel icons, replace fuel Fleet management icons ([#2394](https://github.com/GetJobber/atlantis/issues/2394)) ([7b5a8c9](https://github.com/GetJobber/atlantis/commit/7b5a8c92b471325abac324a61ce6a2e05ca05d87))
+
+
+
+
+
+## [0.70.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.70.0...@jobber/design@0.70.1) (2025-02-03)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+# [0.70.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.69.0...@jobber/design@0.70.0) (2025-02-03)
+
+
+### Features
+
+* **design:** Add new airspace logo ([#2355](https://github.com/GetJobber/atlantis/issues/2355)) ([827c5c8](https://github.com/GetJobber/atlantis/commit/827c5c8399b3aba1a03295921c1ded6b49eb124c))
+
+
+
+
+
+# [0.69.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.68.1...@jobber/design@0.69.0) (2025-01-31)
+
+
+### Features
+
+* **design:** Add additional status icons for warning and info ([#2348](https://github.com/GetJobber/atlantis/issues/2348)) ([d371b07](https://github.com/GetJobber/atlantis/commit/d371b070592116e241252da38e975274aea2ed0e))
+
+
+
+
+
 ## [0.68.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.68.0...@jobber/design@0.68.1) (2025-01-15)
 
 **Note:** Version bump only for package @jobber/design

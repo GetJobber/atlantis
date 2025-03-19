@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components-native",
-  "version": "0.75.2",
+  "version": "0.78.0",
   "license": "MIT",
   "description": "React Native implementation of Atlantis",
   "repository": {
@@ -64,6 +64,7 @@
   },
   "peerDependencies": {
     "@babel/core": "^7.4.5",
+    "@jobber/design": "*",
     "@react-native-community/datetimepicker": ">=6.7.0",
     "date-fns": "^2.30.0",
     "date-fns-tz": "^2.0.0",
