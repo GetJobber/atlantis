@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode, useState } from "react";
+import React, { CSSProperties, ReactElement, ReactNode, useState } from "react";
 import classnames from "classnames";
 import {
   Breakpoints,
@@ -37,6 +37,36 @@ interface DisclosureProps {
    * Used to make the disclosure a Controlled Component.
    */
   readonly open?: boolean;
+
+  /**
+   * **Use at your own risk:** Custom classNames for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_className?: {
+    container?: string;
+    summary?: string;
+    summaryWrap?: string;
+    title?: string;
+    icon?: string;
+    arrowIconWrapper?: string;
+    content?: string;
+  };
+
+  /**
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: {
+    container?: CSSProperties;
+    summary?: CSSProperties;
+    summaryWrap?: CSSProperties;
+    title?: CSSProperties;
+    icon?: CSSProperties;
+    arrowIconWrapper?: CSSProperties;
+    content?: CSSProperties;
+  };
 }
 
 export function Disclosure({
@@ -45,6 +75,8 @@ export function Disclosure({
   defaultOpen = false,
   onToggle,
   open,
+  UNSAFE_className = {},
+  UNSAFE_style = {},
 }: DisclosureProps) {
   const [internalOpen, setInternalOpen] = useState(
     defaultOpen || open || false,
@@ -54,26 +86,71 @@ export function Disclosure({
   const isBelowBreakpoint = exactWidth && exactWidth < Breakpoints.small;
   const isTitleString = typeof title === "string";
 
+  const containerClassNames = classnames(
+    styles.details,
+    UNSAFE_className.container,
+  );
+
+  const summaryClassNames = classnames(
+    styles.summary,
+    UNSAFE_className.summary,
+  );
+
+  const summaryWrapClassNames = classnames(
+    styles.summaryWrap,
+    { [styles.customSummaryWrap]: !isTitleString },
+    UNSAFE_className.summaryWrap,
+  );
+
+  const arrowIconWrapperClassNames = classnames(
+    styles.arrowIconWrapper,
+    UNSAFE_className.arrowIconWrapper,
+  );
+
+  const contentClassNames = classnames(
+    styles.content,
+    UNSAFE_className.content,
+  );
+
   return (
-    <details open={isOpen} className={styles.details}>
-      <summary className={styles.summary} onClick={handleToggle}>
+    <details
+      open={isOpen}
+      className={containerClassNames}
+      style={UNSAFE_style.container}
+    >
+      <summary
+        className={summaryClassNames}
+        style={UNSAFE_style.summary}
+        onClick={handleToggle}
+      >
         <div
-          className={classnames(styles.summaryWrap, {
-            [styles.customSummaryWrap]: !isTitleString,
-          })}
+          className={summaryWrapClassNames}
+          style={UNSAFE_style.summaryWrap}
           ref={titleRef}
         >
           <DisclosureTitle
             title={title}
             size={isBelowBreakpoint ? "base" : "large"}
             isTitleString={isTitleString}
+            UNSAFE_className={UNSAFE_className.title}
+            UNSAFE_style={UNSAFE_style.title}
           />
-          <span className={styles.arrowIconWrapper}>
-            <Icon name="arrowDown" color="interactive" />
+          <span
+            className={arrowIconWrapperClassNames}
+            style={UNSAFE_style.arrowIconWrapper}
+          >
+            <Icon
+              name="arrowDown"
+              color={!UNSAFE_style.icon?.color ? "interactive" : undefined}
+              UNSAFE_className={UNSAFE_className.icon}
+              UNSAFE_style={UNSAFE_style.icon}
+            />
           </span>
         </div>
       </summary>
-      <span className={styles.content}>{children}</span>
+      <span className={contentClassNames} style={UNSAFE_style.content}>
+        {children}
+      </span>
     </details>
   );
 
@@ -98,13 +175,34 @@ interface DisclosureTitleProps {
    * Whether the title is a string.
    */
   readonly isTitleString: boolean;
+  /**
+   * **Use at your own risk:** Custom className for the title.
+   */
+  readonly UNSAFE_className?: string;
+  /**
+   * **Use at your own risk:** Custom style for the title.
+   */
+  readonly UNSAFE_style?: CSSProperties;
 }
 
-function DisclosureTitle({ title, size, isTitleString }: DisclosureTitleProps) {
+function DisclosureTitle({
+  title,
+  size,
+  isTitleString,
+  UNSAFE_className,
+  UNSAFE_style,
+}: DisclosureTitleProps) {
   if (!isTitleString) return <>{title}</>;
 
   return (
-    <Typography element="h4" size={size} fontWeight="bold" textColor="heading">
+    <Typography
+      element="h4"
+      size={size}
+      fontWeight="bold"
+      textColor="heading"
+      UNSAFE_className={UNSAFE_className}
+      UNSAFE_style={UNSAFE_style}
+    >
       {title}
     </Typography>
   );
