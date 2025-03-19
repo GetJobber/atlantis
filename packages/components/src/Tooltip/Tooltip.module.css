@@ -85,7 +85,7 @@
   left: var(--tooltip--offset);
 }
 
-.help {
+.help > * {
   cursor: help;
 }
 

@@ -155,7 +155,7 @@ describe("with help intent prop provided", () => {
     const content = "Help content";
     const contentID = "help-content";
 
-    render(
+    const { container } = render(
       <Tooltip message={message} intent="help">
         <div data-testid={contentID}>{content}</div>
       </Tooltip>,
@@ -164,7 +164,8 @@ describe("with help intent prop provided", () => {
     const tooltipContent = screen.getByTestId(contentID);
     await userEvent.hover(tooltipContent);
 
-    const tooltip = screen.getByRole("tooltip");
-    expect(tooltip).toHaveClass("help");
+    // The help class is applied to the span wrapping the children, not the tooltip itself
+    const helpSpan = container.querySelector(`.help`);
+    expect(helpSpan).toBeInTheDocument();
   });
 });

@@ -59,13 +59,16 @@ export function Tooltip({
     placement === "top" && styles.top,
     placement === "left" && styles.left,
     placement === "right" && styles.right,
-    intent === "help" && styles.help,
   );
 
   return (
     <>
       <span className={styles.shadowActivator} ref={shadowRef} />
-      {children}
+      {intent === "help" ? (
+        <span className={styles.help}>{children}</span>
+      ) : (
+        <>{children}</>
+      )}
       <TooltipPortal>
         {show && Boolean(message) && (
           <div
