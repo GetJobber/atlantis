@@ -148,3 +148,23 @@ describe("with a preferred placement", () => {
     },
   );
 });
+
+describe("with help intent prop provided", () => {
+  it("should use help cursor style on hover", async () => {
+    const message = "Help tooltip message";
+    const content = "Help content";
+    const contentID = "help-content";
+
+    render(
+      <Tooltip message={message} intent="help">
+        <div data-testid={contentID}>{content}</div>
+      </Tooltip>,
+    );
+
+    const tooltipContent = screen.getByTestId(contentID);
+    await userEvent.hover(tooltipContent);
+
+    const tooltip = screen.getByRole("tooltip");
+    expect(tooltip).toHaveClass("help");
+  });
+});
