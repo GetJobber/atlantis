@@ -92,11 +92,10 @@ export function useInternalChipDismissible({
           onChange(newSelected);
 
           // After the state update and component re-render, attempt to focus
-          if (nextFocusIndex >= 0) {
-            // Using a slightly longer timeout to ensure DOM has updated
-            setTimeout(() => {
-              // Get the elements after the chips have been re-rendered
-              if (ref.current) {
+          setTimeout(() => {
+            if (ref.current) {
+              if (newSelected.length > 0 && nextFocusIndex >= 0) {
+                // If we have remaining chips, focus the appropriate chip
                 const chipElements =
                   ref.current.querySelectorAll('[role="option"]');
                 const newElement = chipElements[nextFocusIndex] as
@@ -107,9 +106,19 @@ export function useInternalChipDismissible({
                   newElement.focus();
                   focusIndexRef.current = nextFocusIndex;
                 }
+              } else {
+                // If we deleted the last chip, focus the activator element
+                const activator = ref.current.querySelector(
+                  '[aria-label="Add"]',
+                ) as HTMLElement | null;
+
+                if (activator) {
+                  activator.focus();
+                  focusIndexRef.current = -1;
+                }
               }
-            }, 10); // Slightly longer timeout to ensure DOM has updated
-          }
+            }
+          }, 10); // Slightly longer timeout to ensure DOM has updated
         } else {
           // Default behavior without focus management
           onChange(selected.filter(val => val !== value));
@@ -184,11 +193,10 @@ export function useInternalChipDismissible({
           onChange(newSelected);
 
           // After the state update and component re-render, attempt to focus
-          if (nextFocusIndex >= 0) {
-            // Using a slightly longer timeout to ensure DOM has updated
-            setTimeout(() => {
-              // Get the elements after the chips have been re-rendered
-              if (ref.current) {
+          setTimeout(() => {
+            if (ref.current) {
+              if (newSelected.length > 0 && nextFocusIndex >= 0) {
+                // If we have remaining chips, focus the appropriate chip
                 const chipElements =
                   ref.current.querySelectorAll('[role="option"]');
                 const newElement = chipElements[nextFocusIndex] as
@@ -199,9 +207,19 @@ export function useInternalChipDismissible({
                   newElement.focus();
                   focusIndexRef.current = nextFocusIndex;
                 }
+              } else {
+                // If we deleted the last chip, focus the activator element
+                const activator = ref.current.querySelector(
+                  '[aria-label="Add"]',
+                ) as HTMLElement | null;
+
+                if (activator) {
+                  activator.focus();
+                  focusIndexRef.current = -1;
+                }
               }
-            }, 10); // Slightly longer timeout to ensure DOM has updated
-          }
+            }
+          }, 10); // Slightly longer timeout to ensure DOM has updated
         }
       };
     },
