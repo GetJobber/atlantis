@@ -61,6 +61,20 @@ export interface TypographyProps {
    * @example "double color-invoice" for a double underline in the specified color
    */
   readonly underline?: UnderlineStyle | UnderlineStyleWithColor | undefined;
+
+  /**
+   * **Use at your own risk:** Custom classNames for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_className?: string;
+
+  /**
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: CSSProperties;
 }
 export type TypographyOptions = Omit<TypographyProps, "children">;
 
@@ -77,6 +91,8 @@ export function Typography({
   numberOfLines,
   fontFamily,
   underline,
+  UNSAFE_className,
+  UNSAFE_style,
 }: TypographyProps) {
   const shouldTruncateText = numberOfLines && numberOfLines > 0;
   const className = classnames(
@@ -92,6 +108,7 @@ export function Typography({
     {
       ...(align && { [alignment[align]]: align !== `start` }),
     },
+    UNSAFE_className,
   );
 
   let stylesOverrides: CSSProperties = {};
@@ -114,7 +131,11 @@ export function Typography({
   }
 
   return (
-    <Tag id={id} className={className} style={stylesOverrides}>
+    <Tag
+      id={id}
+      className={className}
+      style={{ ...stylesOverrides, ...UNSAFE_style }}
+    >
       {children}
     </Tag>
   );
