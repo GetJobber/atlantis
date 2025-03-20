@@ -5,6 +5,8 @@ interface TritonApiOptions {
   key?: string;
 }
 
+export type ActivePersonalities = "developer" | "designer";
+
 interface UseTritonApi {
   invokeTritonApi: (options: TritonApiOptions) => Promise<Response>;
   validateApiKey: (
@@ -21,6 +23,7 @@ interface UseTritonApi {
     setQuestions: React.Dispatch<React.SetStateAction<string[]>>;
     setResponses: React.Dispatch<React.SetStateAction<string[]>>;
     setQuestion: (question: string) => void;
+    personality: ActivePersonalities;
   }) => Promise<void>;
 }
 
@@ -107,6 +110,7 @@ export function useTritonApi(): UseTritonApi {
     setQuestions,
     setResponses,
     setQuestion,
+    personality,
   }: {
     question: string;
     questions: string[];
@@ -115,6 +119,7 @@ export function useTritonApi(): UseTritonApi {
     setQuestions: React.Dispatch<React.SetStateAction<string[]>>;
     setResponses: React.Dispatch<React.SetStateAction<string[]>>;
     setQuestion: (question: string) => void;
+    personality: ActivePersonalities;
   }) => {
     if (!question.trim()) return;
 
@@ -123,7 +128,7 @@ export function useTritonApi(): UseTritonApi {
       const response = await invokeTritonApi({
         endpoint: "/stream",
         body: {
-          personality: "developer",
+          personality,
           query: question,
           questions,
           questionType: "web",
