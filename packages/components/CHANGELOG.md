@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.23.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.23.0...@jobber/components@6.23.1) (2025-03-20)
+
+
+### Bug Fixes
+
+* **components:** fix controlled SegmentedControl render state update ([#2428](https://github.com/GetJobber/atlantis/issues/2428)) ([000625d](https://github.com/GetJobber/atlantis/commit/000625d99da3a77a404555b040f19e105751e500))
+
+
+
+
+
 # [6.23.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.22.0...@jobber/components@6.23.0) (2025-03-20)
 
 
