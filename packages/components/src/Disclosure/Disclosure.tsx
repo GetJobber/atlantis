@@ -48,7 +48,10 @@ interface DisclosureProps {
     summary?: string;
     summaryWrap?: string;
     title?: string;
-    icon?: string;
+    icon?: {
+      svg?: string;
+      path?: string;
+    };
     arrowIconWrapper?: string;
     content?: string;
   };
@@ -63,7 +66,10 @@ interface DisclosureProps {
     summary?: CSSProperties;
     summaryWrap?: CSSProperties;
     title?: CSSProperties;
-    icon?: CSSProperties;
+    icon?: {
+      svg?: CSSProperties;
+      path?: CSSProperties;
+    };
     arrowIconWrapper?: CSSProperties;
     content?: CSSProperties;
   };
@@ -141,9 +147,15 @@ export function Disclosure({
           >
             <Icon
               name="arrowDown"
-              color={!UNSAFE_style.icon?.color ? "interactive" : undefined}
-              UNSAFE_className={UNSAFE_className.icon}
-              UNSAFE_style={UNSAFE_style.icon}
+              color="interactive"
+              UNSAFE_className={{
+                svg: UNSAFE_className.icon?.svg,
+                path: UNSAFE_className.icon?.path,
+              }}
+              UNSAFE_style={{
+                svg: UNSAFE_style.icon?.svg,
+                path: UNSAFE_style.icon?.path,
+              }}
             />
           </span>
         </div>

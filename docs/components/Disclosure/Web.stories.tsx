@@ -73,3 +73,20 @@ export const Controlled = ControlledTemplate.bind({});
 Controlled.args = {
   title: "Controlled Disclosure",
 };
+
+export const WithUnsafeIconColor = BasicTemplate.bind({});
+WithUnsafeIconColor.args = {
+  title: "Custom Icon Color",
+  UNSAFE_style: {
+    icon: {
+      path: {
+        fill: "var(--color-purple)",
+      },
+      svg: {
+        width: "32px",
+        height: "32px",
+        backgroundColor: "var(--color-yellow)",
+      },
+    },
+  },
+};
