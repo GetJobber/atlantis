@@ -77,7 +77,7 @@ export function Icon({
         style={{ ...pathStyle, ...UNSAFE_style?.path }}
         className={UNSAFE_className?.path}
         d={path}
-        fill={UNSAFE_style?.path?.fill || customColor}
+        fill={customColor}
       />
     ));
   }
