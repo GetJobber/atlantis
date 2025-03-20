@@ -72,6 +72,32 @@
         "type": {
           "name": "string"
         }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom classnames for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "../components/src/Icon/Icon.tsx",
+          "name": "IconProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ svg?: string; path?: string; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "../components/src/Icon/Icon.tsx",
+          "name": "IconProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ svg?: CSSProperties; path?: CSSProperties; }"
+        }
       }
     }
   }
