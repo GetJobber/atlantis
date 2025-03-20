@@ -4,7 +4,7 @@ import React, {
   createContext,
   useCallback,
   useContext,
-  useEffect,
+  useRef,
   useState,
 } from "react";
 
@@ -64,11 +64,12 @@ export function SegmentedControlProvider<T>({
     ? selectedValue
     : internalSelectedValue;
 
-  useEffect(() => {
-    if (isControlled && currentSelectedOption !== undefined) {
-      onSelectValue?.(currentSelectedOption);
-    }
-  }, []);
+  const hasInitialized = useRef(false);
+
+  if (!hasInitialized.current && currentSelectedOption !== undefined) {
+    onSelectValue?.(currentSelectedOption);
+    hasInitialized.current = true;
+  }
 
   return (
     <SegmentedControlContext.Provider
