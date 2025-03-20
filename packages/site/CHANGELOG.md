@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.28.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.27.1...@jobber/atlantis-site@0.28.0) (2025-03-20)
+
+
+### Features
+
+* **components:** Add UNSAFE_ props to Icon ([#2429](https://github.com/GetJobber/atlantis/issues/2429)) ([2e5b463](https://github.com/GetJobber/atlantis/commit/2e5b463f61580a838c361299a101208f92fef433))
+
+
+
+
+
 ## [0.27.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.27.0...@jobber/atlantis-site@0.27.1) (2025-03-19)
 
 **Note:** Version bump only for package @jobber/atlantis-site
