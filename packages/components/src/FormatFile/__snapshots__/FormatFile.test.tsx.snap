@@ -25,12 +25,10 @@ exports[`renders a FormatFile 1`] = `
           >
             <path
               d="M14 9a1 1 0 0 0-1-1h-3a1 1 0 0 0-1 1v6a1 1 0 1 0 2 0v-1.5h2a1 1 0 1 0 0-2h-2V10h2a1 1 0 0 0 1-1Z"
-              fill="currentColor"
               style="fill: var(--color-greyBlue);"
             />
             <path
               d="M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.414A2 2 0 0 0 19.414 6L16 2.586A2 2 0 0 0 14.586 2H6Zm0 18V4h8.586L18 7.414V20H6Z"
-              fill="currentColor"
               style="fill: var(--color-greyBlue);"
             />
           </svg>

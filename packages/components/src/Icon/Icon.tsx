@@ -31,18 +31,24 @@ export interface IconProps {
   readonly testID?: string;
 
   /**
-   * **Use at your own risk:** Custom classNames for specific elements. This should only be used as a
+   * **Use at your own risk:** Custom classnames for specific elements. This should only be used as a
    * **last resort**. Using this may result in unexpected side effects.
    * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
    */
-  readonly UNSAFE_className?: string;
+  readonly UNSAFE_className?: {
+    svg?: string;
+    path?: string;
+  };
 
   /**
    * **Use at your own risk:** Custom style for specific elements. This should only be used as a
    * **last resort**. Using this may result in unexpected side effects.
    * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
    */
-  readonly UNSAFE_style?: CSSProperties;
+  readonly UNSAFE_style?: {
+    svg?: CSSProperties;
+    path?: CSSProperties;
+  };
 }
 
 export function Icon({
@@ -68,9 +74,10 @@ export function Icon({
     icon = paths.map((path: string) => (
       <path
         key={path}
-        style={{ ...pathStyle }}
+        style={{ ...pathStyle, ...UNSAFE_style?.path }}
+        className={UNSAFE_className?.path}
         d={path}
-        fill={customColor || "currentColor"}
+        fill={UNSAFE_style?.path?.color || customColor}
       />
     ));
   }
@@ -79,8 +86,8 @@ export function Icon({
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox={viewBox}
-      style={{ ...svgStyle, ...UNSAFE_style }}
-      className={UNSAFE_className}
+      style={{ ...svgStyle, ...UNSAFE_style?.svg }}
+      className={UNSAFE_className?.svg}
       data-testid={testID || name}
     >
       {icon}
