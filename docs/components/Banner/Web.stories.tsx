@@ -20,7 +20,7 @@ const BasicTemplate: ComponentStory<typeof Banner> = () => (
       Jobber will be performing scheduled maintenance on Feb. 21
     </Banner>
     <Banner type="warning">
-      Changes to this visit will not be applied to past visits
+      Changes to this visit will not be applied to future visits
     </Banner>
     <Banner type="error">
       Payment could not be processed because of a network error
