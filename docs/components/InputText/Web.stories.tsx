@@ -12,7 +12,14 @@ export default {
   component: InputText,
   parameters: {
     viewMode: "story",
-    previewTabs: { code: { hidden: false } },
+    previewTabs: {
+      code: {
+        hidden: false,
+        extraImports: {
+          "@jobber/components/FormField": ["FormFieldLabel"],
+        },
+      },
+    },
   },
 } as ComponentMeta<typeof InputText>;
 
