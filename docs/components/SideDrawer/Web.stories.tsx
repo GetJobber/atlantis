@@ -275,7 +275,7 @@ const InlineTemplate: ComponentStory<typeof SideDrawer> = args => {
 
   return (
     <Page title="Page" width="fill" intro="">
-      <Box direction="row">
+      <Box direction="row" gap="base">
         <Content>
           <Button
             label="Toggle Drawer"
