@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import React from "react";
 import { Typography } from ".";
 
@@ -310,5 +310,27 @@ describe("underlining", () => {
       `;
 
     expect(container).toMatchInlineSnapshot(snapshot);
+  });
+});
+
+describe("UNSAFE props", () => {
+  it("should apply the UNSAFE_className to the element", () => {
+    render(
+      <Typography UNSAFE_className="custom-class">
+        Text with custom class
+      </Typography>,
+    );
+    const element = screen.getByText("Text with custom class");
+    expect(element).toHaveClass("custom-class");
+  });
+
+  it("should apply the UNSAFE_style to the element", () => {
+    render(
+      <Typography UNSAFE_style={{ color: "#0066CC" }}>
+        Text with custom style
+      </Typography>,
+    );
+    const element = screen.getByText("Text with custom style");
+    expect(element).toHaveStyle({ color: "#0066CC" });
   });
 });
