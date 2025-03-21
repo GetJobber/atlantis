@@ -316,7 +316,7 @@ describe("underlining", () => {
 describe("UNSAFE props", () => {
   it("should apply the UNSAFE_className to the element", () => {
     render(
-      <Typography UNSAFE_className="custom-class">
+      <Typography UNSAFE_className={{ textStyle: "custom-class" }}>
         Text with custom class
       </Typography>,
     );
@@ -326,7 +326,7 @@ describe("UNSAFE props", () => {
 
   it("should apply the UNSAFE_style to the element", () => {
     render(
-      <Typography UNSAFE_style={{ color: "#0066CC" }}>
+      <Typography UNSAFE_style={{ textStyle: { color: "#0066CC" } }}>
         Text with custom style
       </Typography>,
     );
