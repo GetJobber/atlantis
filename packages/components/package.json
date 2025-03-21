@@ -418,6 +418,7 @@
     "dist/*"
   ],
   "dependencies": {
+    "@floating-ui/react": "^0.27.5",
     "@jobber/formatters": "^0.4.0",
     "@popperjs/core": "^2.0.6",
     "@tanstack/react-table": "8.5.13",
