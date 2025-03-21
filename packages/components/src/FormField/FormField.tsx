@@ -104,6 +104,8 @@ function FormFieldInternal(props: FormFieldInternalProps) {
       readonly,
       keyboard,
       autofocus,
+      value,
+      type,
       handleChange,
       handleBlur,
       handleFocus,
