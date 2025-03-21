@@ -199,12 +199,7 @@ describe("Deleting a chip", () => {
     );
   }
 
-  // There is a quick focus on the body before focusing on the next chip,
-  // this makes the the component difficult to test comprehensively.
-  // Strategies tried: userEvent library (typing backspace),
-  // and waitFor on the first chip's removal.
-  // eslint-disable-next-line jest/no-disabled-tests
-  it.skip("should focus on the next chip if the very first chip has focus", async () => {
+  it("should focus on the next chip if the very first chip has focus", async () => {
     render(<MockChips />);
 
     const first = getByChipLabelText("chip");
@@ -212,23 +207,64 @@ describe("Deleting a chip", () => {
     expect(first).toHaveFocus();
 
     await userEvent.keyboard("{Backspace}");
-    expect(first).not.toBeInTheDocument();
 
-    const second = getByChipLabelText("chip2");
-    expect(second).toHaveFocus();
+    // After deletion, the second chip should have focus
+    await waitFor(() => {
+      const second = getByChipLabelText("chip2");
+      expect(second).toHaveFocus();
+    });
   });
 
-  // eslint-disable-next-line jest/no-disabled-tests
-  it.skip("should focus on the previous chip if the not-first chip has focus", async () => {
+  it("should focus on the previous chip if the not-first chip has focus", async () => {
     render(<MockChips />);
 
-    const second = getByChipLabelText("chip2");
+    // Focus the second chip
     await userEvent.tab();
+    await userEvent.keyboard("{ArrowRight}");
+    const second = getByChipLabelText("chip2");
     expect(second).toHaveFocus();
-    await userEvent.keyboard("{Backspace}");
-    expect(second).not.toBeInTheDocument();
 
-    const first = getByChipLabelText("chip2");
-    expect(first).toHaveFocus();
+    await userEvent.keyboard("{Backspace}");
+
+    // After deletion, the first chip should have focus
+    await waitFor(() => {
+      const first = getByChipLabelText("chip");
+      expect(first).toHaveFocus();
+    });
+  });
+
+  it("should focus on the Add button when the last chip is removed", async () => {
+    function SingleChipMock() {
+      const mockChips = ["chip"];
+      const [selected, setSelected] = useState(mockChips);
+
+      return (
+        <InternalChipDismissible
+          selected={selected}
+          onChange={setSelected}
+          onClick={jest.fn}
+        >
+          {mockChips.map(chip => (
+            <Chip key={chip} label={chip} value={chip} />
+          ))}
+        </InternalChipDismissible>
+      );
+    }
+
+    render(<SingleChipMock />);
+
+    // Focus the only chip
+    await userEvent.tab();
+    const onlyChip = getByChipLabelText("chip");
+    expect(onlyChip).toHaveFocus();
+
+    // Delete the only chip
+    await userEvent.keyboard("{Delete}");
+
+    // After deletion, the Add button should have focus
+    await waitFor(() => {
+      const addButton = screen.getByRole("button", { name: "Add" });
+      expect(addButton).toHaveFocus();
+    });
   });
 });
