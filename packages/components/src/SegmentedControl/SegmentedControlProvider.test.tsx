@@ -79,7 +79,7 @@ describe("SegmentedControlProvider", () => {
       });
     });
 
-    it("initializes with the correct value", () => {
+    it("initializes with the correct value via onSelectValue", async () => {
       const handleSelectValue = jest.fn();
       render(
         <SegmentedControlProvider
@@ -89,6 +89,10 @@ describe("SegmentedControlProvider", () => {
           <SegmentedControl />
         </SegmentedControlProvider>,
       );
+
+      await waitFor(() => {
+        expect(handleSelectValue).toHaveBeenCalledWith("option2");
+      });
 
       expect(screen.getByLabelText("Option 2")).toBeChecked();
     });

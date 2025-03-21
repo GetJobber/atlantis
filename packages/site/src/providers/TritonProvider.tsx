@@ -1,5 +1,6 @@
+/* eslint-disable max-statements */
 import { PropsWithChildren, createContext, useContext, useState } from "react";
-import { useTritonApi } from "../utils/useTritonApi";
+import { ActivePersonalities, useTritonApi } from "../utils/useTritonApi";
 
 interface TritonContextType {
   tritonOpen: boolean;
@@ -15,6 +16,8 @@ interface TritonContextType {
   setLoading: (loading: boolean) => void;
   validateApiKey: () => Promise<void>;
   isValidKey: boolean;
+  personality: ActivePersonalities;
+  setPersonality: (value: ActivePersonalities) => void;
 }
 
 const TritonContext = createContext<TritonContextType>({
@@ -31,6 +34,8 @@ const TritonContext = createContext<TritonContextType>({
   setLoading: () => ({}),
   validateApiKey: async () => Promise.resolve(),
   isValidKey: false,
+  personality: "developer",
+  setPersonality: () => ({}),
 });
 
 export function TritonProvider({ children }: PropsWithChildren) {
@@ -40,6 +45,8 @@ export function TritonProvider({ children }: PropsWithChildren) {
   const [questions, setQuestions] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [isValidKey, setIsValidKey] = useState(false);
+  const [personality, setPersonality] =
+    useState<ActivePersonalities>("developer");
   const { validateApiKey, sendSearch } = useTritonApi();
 
   const handleValidateApiKey = async (key?: string) => {
@@ -59,6 +66,7 @@ export function TritonProvider({ children }: PropsWithChildren) {
       setQuestions,
       setResponses,
       setQuestion,
+      personality,
     });
   };
 
@@ -76,6 +84,8 @@ export function TritonProvider({ children }: PropsWithChildren) {
     setLoading,
     validateApiKey: handleValidateApiKey,
     isValidKey,
+    personality,
+    setPersonality,
   };
 
   return (
