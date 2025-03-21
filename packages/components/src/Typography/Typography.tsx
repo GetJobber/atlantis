@@ -67,14 +67,14 @@ export interface TypographyProps {
    * **last resort**. Using this may result in unexpected side effects.
    * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
    */
-  readonly UNSAFE_className?: string;
+  readonly UNSAFE_className?: { textStyle?: string };
 
   /**
    * **Use at your own risk:** Custom style for specific elements. This should only be used as a
    * **last resort**. Using this may result in unexpected side effects.
    * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
    */
-  readonly UNSAFE_style?: CSSProperties;
+  readonly UNSAFE_style?: { textStyle?: CSSProperties };
 }
 export type TypographyOptions = Omit<TypographyProps, "children">;
 
@@ -108,7 +108,7 @@ export function Typography({
     {
       ...(align && { [alignment[align]]: align !== `start` }),
     },
-    UNSAFE_className,
+    UNSAFE_className?.textStyle,
   );
 
   let stylesOverrides: CSSProperties = {};
@@ -134,7 +134,7 @@ export function Typography({
     <Tag
       id={id}
       className={className}
-      style={{ ...stylesOverrides, ...UNSAFE_style }}
+      style={{ ...stylesOverrides, ...UNSAFE_style?.textStyle }}
     >
       {children}
     </Tag>
