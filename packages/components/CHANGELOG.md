@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.23.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.23.1...@jobber/components@6.23.2) (2025-03-21)
+
+
+### Bug Fixes
+
+* **components:** remove unnecessary useEffect in SegmentedControlProvider ([#2437](https://github.com/GetJobber/atlantis/issues/2437)) ([8b7f43f](https://github.com/GetJobber/atlantis/commit/8b7f43f21dd18a55cfde8e2a00ef18bc10953c4f))
+
+
+
+
+
 ## [6.23.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.23.0...@jobber/components@6.23.1) (2025-03-20)
 
 
