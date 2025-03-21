@@ -1,3 +1,51 @@
+## Component customization
+
+### UNSAFE\_ props (advanced usage)
+
+General information for using `UNSAFE_` props can be found
+[here](/guides/customizing-components).
+
+SideDrawer has one element that can be targeted with classes or styles: the
+container.
+
+**Note**: Use of `UNSAFE_` props is **at your own risk** and should be
+considered a **last resort**. Future SideDrawer updates may lead to unintended
+breakages.
+
+#### UNSAFE_className
+
+Use `UNSAFE_className` to apply custom classes to the SideDrawer. This can be
+useful for applying styles via CSS Modules.
+
+```tsx
+// SideDrawer.tsx
+  UNSAFE_className={{
+    container: styles.customSideDrawerBackground,
+  }}
+
+// SideDrawer.module.css
+.customSideDrawerBackground {
+  background-color: var(--color-surface--background);
+}
+```
+
+You can also use the `UNSAFE_className` prop to apply custom classes to the
+container element within the SideDrawer.
+
+```tsx
+  UNSAFE_className={{ container: "custom-container-class" }}
+```
+
+#### UNSAFE_style
+
+Use `UNSAFE_style` to apply inline custom styles to the SideDrawer.
+
+```tsx
+  UNSAFE_style={{
+    container: { backgroundColor: "var(--color-surface--background)" },
+  }}
+```
+
 ## Configuration
 
 We're using a compound component pattern to separate the different parts of the

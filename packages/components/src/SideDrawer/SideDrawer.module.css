@@ -11,6 +11,12 @@
   max-width: 420px;
 }
 
+.drawer.inline {
+  position: static;
+  width: 100%;
+  height: 100%;
+}
+
 .container,
 .drawer,
 .header,

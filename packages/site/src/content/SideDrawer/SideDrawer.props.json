@@ -59,6 +59,47 @@
         "type": {
           "name": "\"normal\" | \"reverse\""
         }
+      },
+      "inline": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "Changes whether the SideDrawer is positioned to the side of the viewport or inline with the content.",
+        "name": "inline",
+        "parent": {
+          "fileName": "../components/src/SideDrawer/SideDrawer.tsx",
+          "name": "SideDrawerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "../components/src/SideDrawer/SideDrawer.tsx",
+          "name": "SideDrawerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ container?: string; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "../components/src/SideDrawer/SideDrawer.tsx",
+          "name": "SideDrawerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ container?: CSSProperties; }"
+        }
       }
     }
   },

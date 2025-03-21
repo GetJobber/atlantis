@@ -1,5 +1,6 @@
 declare const styles: {
   readonly "drawer": string;
+  readonly "inline": string;
   readonly "container": string;
   readonly "header": string;
   readonly "content": string;
