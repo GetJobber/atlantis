@@ -47,7 +47,7 @@ interface DisclosureProps {
     container?: string;
     summary?: string;
     summaryWrap?: string;
-    title?: string;
+    title?: { textStyle?: string };
     icon?: {
       svg?: string;
       path?: string;
@@ -65,7 +65,7 @@ interface DisclosureProps {
     container?: CSSProperties;
     summary?: CSSProperties;
     summaryWrap?: CSSProperties;
-    title?: CSSProperties;
+    title?: { textStyle?: CSSProperties };
     icon?: {
       svg?: CSSProperties;
       path?: CSSProperties;
@@ -190,11 +190,11 @@ interface DisclosureTitleProps {
   /**
    * **Use at your own risk:** Custom className for the title.
    */
-  readonly UNSAFE_className?: string;
+  readonly UNSAFE_className?: { textStyle?: string };
   /**
    * **Use at your own risk:** Custom style for the title.
    */
-  readonly UNSAFE_style?: CSSProperties;
+  readonly UNSAFE_style?: { textStyle?: CSSProperties };
 }
 
 function DisclosureTitle({
