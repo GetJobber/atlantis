@@ -148,3 +148,24 @@ describe("with a preferred placement", () => {
     },
   );
 });
+
+describe("with help intent prop provided", () => {
+  it("should use help cursor style on hover", async () => {
+    const message = "Help tooltip message";
+    const content = "Help content";
+    const contentID = "help-content";
+
+    const { container } = render(
+      <Tooltip message={message} intent="help">
+        <div data-testid={contentID}>{content}</div>
+      </Tooltip>,
+    );
+
+    const tooltipContent = screen.getByTestId(contentID);
+    await userEvent.hover(tooltipContent);
+
+    // The help class is applied to the span wrapping the children, not the tooltip itself
+    const helpSpan = container.querySelector(`.help`);
+    expect(helpSpan).toBeInTheDocument();
+  });
+});

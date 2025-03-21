@@ -6,7 +6,7 @@ import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import styles from "./Tooltip.module.css";
 import { useTooltipPositioning } from "./useTooltipPositioning";
-import { Placement } from "./Tooltip.types";
+import { Intent, Placement } from "./Tooltip.types";
 
 const variation = {
   startOrStop: { opacity: 0 },
@@ -24,6 +24,11 @@ interface TooltipProps {
    * @default 'top'
    */
   readonly preferredPlacement?: Placement;
+  /**
+   * The intent of the tooltip.
+   * @default 'info'
+   */
+  readonly intent?: Intent;
 
   readonly setTabIndex?: boolean;
 }
@@ -32,6 +37,7 @@ export function Tooltip({
   message,
   children,
   preferredPlacement = "top",
+  intent = "info",
   setTabIndex = true,
 }: TooltipProps) {
   const [show, setShow] = useState(false);
@@ -58,7 +64,11 @@ export function Tooltip({
   return (
     <>
       <span className={styles.shadowActivator} ref={shadowRef} />
-      {children}
+      {intent === "help" ? (
+        <span className={styles.help}>{children}</span>
+      ) : (
+        <>{children}</>
+      )}
       <TooltipPortal>
         {show && Boolean(message) && (
           <div

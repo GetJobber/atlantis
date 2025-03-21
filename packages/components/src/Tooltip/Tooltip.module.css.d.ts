@@ -7,6 +7,7 @@ declare const styles: {
   readonly "bottom": string;
   readonly "left": string;
   readonly "right": string;
+  readonly "help": string;
   readonly "tooltipMessage": string;
 };
 export = styles;
