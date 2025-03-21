@@ -165,7 +165,7 @@
         },
         "required": false,
         "type": {
-          "name": "string"
+          "name": "{ textStyle?: string; }"
         }
       },
       "UNSAFE_style": {
@@ -178,7 +178,7 @@
         },
         "required": false,
         "type": {
-          "name": "CSSProperties"
+          "name": "{ textStyle?: CSSProperties; }"
         }
       }
     }
