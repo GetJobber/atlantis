@@ -188,11 +188,11 @@ interface DisclosureTitleProps {
    */
   readonly isTitleString: boolean;
   /**
-   * **Use at your own risk:** Custom className for the title.
+   * Custom className for the DisclosureTitle.
    */
   readonly UNSAFE_className?: { textStyle?: string };
   /**
-   * **Use at your own risk:** Custom style for the title.
+   * Custom style for the DisclosureTitle.
    */
   readonly UNSAFE_style?: { textStyle?: CSSProperties };
 }
