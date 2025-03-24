@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.29.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.28.2...@jobber/atlantis-site@0.29.0) (2025-03-24)
+
+
+### Features
+
+* **components:** Add anchored positioning support for SideDrawer ([#2403](https://github.com/GetJobber/atlantis/issues/2403)) ([6b20373](https://github.com/GetJobber/atlantis/commit/6b203739216f69dcc7cb90d157be2fc65bb718bb))
+
+
+
+
+
 ## [0.28.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.28.1...@jobber/atlantis-site@0.28.2) (2025-03-21)
 
 **Note:** Version bump only for package @jobber/atlantis-site
