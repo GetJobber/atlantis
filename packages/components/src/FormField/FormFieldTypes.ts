@@ -278,4 +278,11 @@ export interface FormFieldProps extends CommonFormFieldProps {
    * Determines the visibility of the toolbar.
    */
   readonly toolbarVisibility?: "always" | "while-editing";
+
+  /**
+   * Pattern is currently only used for the InputPhone type
+   * it is used to determine the format of the phone number
+   * and the number of digits to expect.
+   */
+  readonly pattern?: string;
 }
