@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useForm, useFormContext } from "react-hook-form";
 import { InputMask, InputMaskProps } from "./InputMask";
 import { CommonFormFieldProps, FormField, FormFieldProps } from "../FormField";
@@ -44,11 +44,24 @@ export function InputPhoneNumber({
       ? useFormContext()
       : // If there isn't a Form Context being provided, get a form for this field.
         useForm({ mode: "onTouched" });
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      if (shouldAdjustPhoneInput(props.value, pattern)) {
+        inputRef.current.style.paddingLeft =
+          "calc(var(--field--padding-right) + var(--space-smaller))";
+      } else {
+        inputRef.current.style.paddingLeft = "var(--field--padding-left)";
+      }
+    }
+  }, [props.value, pattern]);
 
   return (
     <InputMask pattern={pattern} strict={false}>
       <FormField
         {...props}
+        inputRef={inputRef}
         type="tel"
         validations={{
           required: {
@@ -86,4 +99,8 @@ export function InputPhoneNumber({
 
     return true;
   }
+}
+
+function shouldAdjustPhoneInput(value: string | undefined, pattern: string) {
+  return (value === undefined || value.length < 1) && pattern[0] === "(";
 }

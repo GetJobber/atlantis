@@ -1,12 +1,7 @@
 import { ChangeEvent, FocusEvent, KeyboardEvent, useEffect } from "react";
 import { UseControllerReturn } from "react-hook-form";
-import classNames from "classnames";
 import styles from "../FormField.module.css";
-import type {
-  CommonFormFieldProps,
-  FormFieldProps,
-  KeyBoardTypes,
-} from "../FormFieldTypes";
+import type { FormFieldProps, KeyBoardTypes } from "../FormFieldTypes";
 
 export interface useAtlantisFormFieldProps
   extends Pick<
@@ -50,16 +45,6 @@ export interface useAtlantisFormFieldProps
    * Determines if the field has validations
    */
   readonly validations: boolean;
-
-  /**
-   * The type of the field
-   */
-  readonly type: string;
-
-  /**
-   * The value of the field
-   */
-  readonly value?: CommonFormFieldProps["value"];
 
   /**
    * Callback for when the field value changes
@@ -107,8 +92,6 @@ export function useAtlantisFormField({
   readonly,
   keyboard,
   autofocus,
-  type,
-  value,
   handleChange,
   handleBlur,
   handleFocus,
@@ -123,9 +106,7 @@ export function useAtlantisFormField({
   const fieldProps = {
     ...useControllerField,
     id,
-    className: classNames(styles.input, {
-      [styles.emptyPhoneNumber]: type === "tel" && !value,
-    }),
+    className: styles.input,
     name: (validations || nameProp) && name,
     disabled: disabled,
     readOnly: readonly,
