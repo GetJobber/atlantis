@@ -18,6 +18,8 @@
     "Button.Label",
     "ButtonDismiss",
     "Card",
+    "Card.Body",
+    "Card.Header",
     "Cell",
     "CellCurrency",
     "CellNumeric",
