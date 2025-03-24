@@ -67,7 +67,7 @@ type CardPropOptions = LinkCardProps | ClickableCardProps | RegularCardProps;
  * </Card>
  * ```
  */
-function CardHeaderComponent({ children }: CardHeaderProps) {
+function CardHeaderCompoundComponent({ children }: CardHeaderProps) {
   return <>{children}</>;
 }
 
@@ -87,7 +87,7 @@ function CardHeaderComponent({ children }: CardHeaderProps) {
  * </Card>
  * ```
  */
-function CardBodyComponent({ children }: CardBodyProps) {
+function CardBodyCompoundComponent({ children }: CardBodyProps) {
   return <>{children}</>;
 }
 
@@ -150,7 +150,8 @@ export function Card(props: CardPropOptions) {
   const isUsingCompoundPattern = React.Children.toArray(children).some(
     child =>
       React.isValidElement(child) &&
-      (child.type === CardHeaderComponent || child.type === CardBodyComponent),
+      (child.type === CardHeaderCompoundComponent ||
+        child.type === CardBodyCompoundComponent),
   );
 
   const content = isUsingCompoundPattern
@@ -166,5 +167,5 @@ export function Card(props: CardPropOptions) {
   );
 }
 
-Card.Header = CardHeaderComponent;
-Card.Body = CardBodyComponent;
+Card.Header = CardHeaderCompoundComponent;
+Card.Body = CardBodyCompoundComponent;
