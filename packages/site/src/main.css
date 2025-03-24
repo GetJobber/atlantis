@@ -235,7 +235,7 @@ iframe {
 
 .baseView-sideRail {
   width: var(--sideBarWidth);
-  padding: 36px var(--space-base);
+  padding: 90px var(--space-large);
   display: none;
   flex-direction: column;
   flex-shrink: 0;
