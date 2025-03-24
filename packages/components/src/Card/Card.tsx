@@ -1,6 +1,5 @@
 import React, { ReactElement } from "react";
 import classnames from "classnames";
-import { XOR } from "ts-xor";
 import styles from "./Card.module.css";
 import colors from "./cardcolors.module.css";
 import elevations from "./CardElevations.module.css";
@@ -8,13 +7,16 @@ import { CardClickable } from "./CardClickable";
 import { CardHeader } from "./CardHeader";
 import {
   CardBodyProps,
-  CardCompositionProps,
   CardHeaderProps,
   CardProps,
   HeaderActionProps,
 } from "./types";
 
-interface LinkCardProps extends CardProps {
+/**
+ * Props for a card that acts as a link.
+ * When url is provided, the card becomes clickable and navigates to the specified URL.
+ */
+type LinkCardProps = CardProps & {
   /**
    * URL that the card would navigate to once clicked.
    */
@@ -24,18 +26,67 @@ interface LinkCardProps extends CardProps {
    * Makes the URL open in new tab on click.
    */
   external?: boolean;
-}
+  onClick?: never;
+};
 
-interface ClickableCardProps extends CardProps {
+/**
+ * Props for a card that has a click handler.
+ * When onClick is provided, the card becomes clickable and triggers the handler on click.
+ */
+type ClickableCardProps = CardProps & {
+  /**
+   * Event handler that gets called when the card is clicked.
+   */
   onClick(event: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>): void;
-}
+  url?: never;
+};
 
-type CardPropOptions = XOR<CardProps, XOR<LinkCardProps, ClickableCardProps>>;
+/**
+ * Props for a regular card without any click behavior.
+ */
+type RegularCardProps = CardProps & {
+  url?: never;
+  onClick?: never;
+};
 
+type CardPropOptions = LinkCardProps | ClickableCardProps | RegularCardProps;
+
+/**
+ * Header component for the Card.
+ * Used in the compound component pattern to provide a consistent header layout.
+ *
+ * @example
+ * ```tsx
+ * <Card>
+ *   <Card.Header>
+ *     <Text>Header Content</Text>
+ *   </Card.Header>
+ *   <Card.Body>
+ *     <p>Card content</p>
+ *   </Card.Body>
+ * </Card>
+ * ```
+ */
 function CardHeaderComponent({ children }: CardHeaderProps) {
   return <>{children}</>;
 }
 
+/**
+ * Body component for the Card.
+ * Used in the compound component pattern to provide a consistent content layout.
+ *
+ * @example
+ * ```tsx
+ * <Card>
+ *   <Card.Header>
+ *     <Text>Header Content</Text>
+ *   </Card.Header>
+ *   <Card.Body>
+ *     <p>Card content</p>
+ *   </Card.Body>
+ * </Card>
+ * ```
+ */
 function CardBodyComponent({ children }: CardBodyProps) {
   return <>{children}</>;
 }
@@ -85,20 +136,13 @@ function renderCardWrapper(
   return <div className={className}>{content}</div>;
 }
 
-function CardComponent({
-  accent,
-  header,
-  children,
-  onClick,
-  title,
-  url,
-  external = false,
-  elevation = "none",
-}: CardPropOptions) {
+export function Card(props: CardPropOptions) {
+  const { accent, header, children, title, elevation = "none" } = props;
+
   const className = classnames(
     styles.card,
     accent && styles.accent,
-    (url || onClick) && styles.clickable,
+    ("url" in props || "onClick" in props) && styles.clickable,
     accent && colors[accent],
     elevation !== "none" && elevations[`${elevation}Elevation`],
   );
@@ -113,12 +157,14 @@ function CardComponent({
     ? children
     : renderCardContent(children, title, header);
 
-  return renderCardWrapper(className, content, onClick, url, external);
+  return renderCardWrapper(
+    className,
+    content,
+    "onClick" in props ? props.onClick : undefined,
+    "url" in props ? props.url : undefined,
+    "url" in props && "external" in props ? props.external : undefined,
+  );
 }
-
-const Card = CardComponent as React.FC<CardPropOptions> & CardCompositionProps;
 
 Card.Header = CardHeaderComponent;
 Card.Body = CardBodyComponent;
-
-export { Card };
