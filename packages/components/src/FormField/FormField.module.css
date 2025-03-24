@@ -210,7 +210,7 @@
 }
 
 .emptyPhoneNumber {
-  margin-left: var(--space-smaller);
+  padding-left: calc(var(--field--padding-right) + var(--space-smaller));
 }
 
 .textarea .childrenWrapper {
