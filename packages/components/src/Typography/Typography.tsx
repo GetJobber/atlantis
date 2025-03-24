@@ -111,47 +111,48 @@ export function Typography({
     UNSAFE_className?.textStyle,
   );
 
-  let stylesOverrides: CSSProperties = {};
+  const truncateStyles: CSSProperties = shouldTruncateText
+    ? {
+        WebkitLineClamp: numberOfLines,
+        WebkitBoxOrient: "vertical",
+      }
+    : {};
 
-  if (shouldTruncateText) {
-    stylesOverrides = {
-      WebkitLineClamp: numberOfLines,
-      WebkitBoxOrient: "vertical",
-    };
-  }
-
-  if (underline) {
-    const [underlineStyle, underlineColor] = underline.split(" ");
-
-    stylesOverrides.textDecorationStyle = underlineStyle as UnderlineStyle;
-    stylesOverrides.textDecorationColor = computeUnderlineColor(
-      underlineColor,
-      textColor,
-    );
-  }
+  const underlineInlineStyles = computeUnderlineStyles(underline, textColor);
 
   return (
     <Tag
       id={id}
       className={className}
-      style={{ ...stylesOverrides, ...UNSAFE_style?.textStyle }}
+      style={{
+        ...truncateStyles,
+        ...underlineInlineStyles,
+        ...UNSAFE_style?.textStyle,
+      }}
     >
       {children}
     </Tag>
   );
 }
 
-function computeUnderlineColor(
-  textDecorationColor: string,
+function computeUnderlineStyles(
+  underline?: UnderlineStyle | UnderlineStyleWithColor,
   textColor?: keyof typeof textColors,
-): string | undefined {
-  // Use the specified underline color if one is provided. If no underline color
-  // is specified, fall back to the text color for the underline.
-  if (textDecorationColor) {
-    return `var(--${textDecorationColor})`;
+): CSSProperties {
+  if (!underline) {
+    return {};
   }
 
-  if (textColor) {
-    return textColors[textColor];
+  const [underlineStyle, underlineColor] = underline.split(" ");
+  const underlineInlineStyles: CSSProperties = {
+    textDecorationStyle: underlineStyle as UnderlineStyle,
+  };
+
+  if (underlineColor) {
+    underlineInlineStyles.textDecorationColor = `var(--${underlineColor})`;
+  } else if (textColor) {
+    underlineInlineStyles.textDecorationColor = textColors[textColor];
   }
+
+  return underlineInlineStyles;
 }
