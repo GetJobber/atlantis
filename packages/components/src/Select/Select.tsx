@@ -11,7 +11,7 @@ type SelectProps = Pick<
   FormFieldProps,
   Exclude<
     keyof FormFieldProps,
-    "type" | "rows" | "keyboard" | "actionsRef" | "clearable"
+    "type" | "rows" | "keyboard" | "actionsRef" | "clearable" | "pattern"
   >
 >;
 
