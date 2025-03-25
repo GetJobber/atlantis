@@ -1,6 +1,7 @@
 import DisclosureContent from "@atlantis/docs/components/Disclosure/Disclosure.stories.mdx";
 import Props from "./Disclosure.props.json";
 import MobileProps from "./Disclosure.props-mobile.json";
+import Notes from "./DisclosureNotes.mdx";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 import { ContentExport } from "../../types/content";
 
@@ -32,4 +33,5 @@ export default {
       ),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;
