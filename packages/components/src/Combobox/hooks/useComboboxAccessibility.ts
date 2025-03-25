@@ -4,6 +4,8 @@ import {
   UseInteractionsReturn,
   autoPlacement,
   autoUpdate,
+  offset,
+  shift,
   useDismiss,
   useFloating,
   useInteractions,
@@ -11,6 +13,8 @@ import {
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import { ComboboxOption } from "../Combobox.types";
 import { ComboboxContext } from "../ComboboxProvider";
+
+const COMBOBOX_OFFSET = 8;
 
 // eslint-disable-next-line max-statements
 export function useComboboxAccessibility(
@@ -42,7 +46,9 @@ export function useComboboxAccessibility(
       if (!openState) handleClose();
     },
     middleware: [
+      offset(COMBOBOX_OFFSET),
       autoPlacement({ allowedPlacements: ["bottom-start", "top-start"] }),
+      shift({ padding: COMBOBOX_OFFSET }),
     ],
     placement: "bottom-start",
     whileElementsMounted: autoUpdate,
