@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.31.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.30.1...@jobber/atlantis-site@0.31.0) (2025-03-25)
+
+
+### Features
+
+* **components:** Add UNSAFE_ props to Disclosure ([#2431](https://github.com/GetJobber/atlantis/issues/2431)) ([0dc5272](https://github.com/GetJobber/atlantis/commit/0dc5272899acc45b35f551068cecad29ce99ede9))
+
+
+
+
+
 ## [0.30.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.30.0...@jobber/atlantis-site@0.30.1) (2025-03-24)
 
 **Note:** Version bump only for package @jobber/atlantis-site
