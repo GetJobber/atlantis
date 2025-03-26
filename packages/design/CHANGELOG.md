@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.73.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.72.1...@jobber/design@0.73.0) (2025-03-26)
+
+
+### Features
+
+* **components:** Add New Schedule Day View Icons ([#2444](https://github.com/GetJobber/atlantis/issues/2444)) ([9212331](https://github.com/GetJobber/atlantis/commit/9212331f2fd185d1508f2dc0fb1d8f5bf4321bb7))
+
+
+
+
+
 ## [0.72.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.72.0...@jobber/design@0.72.1) (2025-03-17)
 
 
