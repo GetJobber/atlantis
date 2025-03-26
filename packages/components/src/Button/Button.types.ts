@@ -1,6 +1,7 @@
 import { IconNames } from "@jobber/design";
 import { LinkProps } from "react-router-dom";
 import { XOR } from "ts-xor";
+import { CSSProperties } from "react";
 
 export type HTMLButtonType = "button" | "submit";
 export type ButtonVariation = "work" | "learning" | "subtle" | "destructive";
@@ -22,6 +23,39 @@ export interface ButtonFoundationProps {
   readonly loading?: boolean;
   readonly size?: ButtonSize;
   readonly ariaLabel?: string;
+
+  /**
+   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_className?: {
+    container?: string;
+    buttonLabel?: {
+      textStyle?: string;
+    };
+    buttonIcon?: {
+      svg?: string;
+      path?: string;
+    };
+  };
+
+  /**
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: {
+    container?: CSSProperties;
+    buttonLabel?: {
+      textStyle?: CSSProperties;
+    };
+    buttonIcon?: {
+      svg?: CSSProperties;
+      path?: CSSProperties;
+    };
+  };
+
   onClick?(
     event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
   ): void;
