@@ -17,6 +17,7 @@ export function InternalChipDismissible(props: InternalChipDismissibleProps) {
     handleChipRemove,
     handleCustomAdd,
     handleWrapperKeyDown,
+    setChipRef,
   } = useInternalChipDismissible(props);
 
   return (
@@ -28,23 +29,30 @@ export function InternalChipDismissible(props: InternalChipDismissibleProps) {
       role="listbox"
     >
       {sortedVisibleChipOptions.map(chip => (
-        <InternalChip
+        <div
           key={chip.value}
-          {...chip}
-          onKeyDown={handleChipKeyDown(chip.value)}
-          onClick={handleChipClick(chip.value)}
-          ariaLabel={`${chip.label}. Press delete or backspace to remove ${chip.label}`}
-          tabIndex={0}
-          suffix={
-            <InternalChipButton
-              icon="remove"
-              invalid={chip.invalid}
-              disabled={chip.disabled}
-              label={chip.label}
-              onClick={handleChipRemove(chip.value)}
-            />
-          }
-        />
+          ref={element => setChipRef(chip.value, element)}
+          data-value={chip.value}
+          className={styles.chipWrapper}
+          data-chip-id={chip.value}
+        >
+          <InternalChip
+            {...chip}
+            onKeyDown={handleChipKeyDown(chip.value)}
+            onClick={handleChipClick(chip.value)}
+            ariaLabel={`${chip.label}. Press delete or backspace to remove ${chip.label}`}
+            tabIndex={0}
+            suffix={
+              <InternalChipButton
+                icon="remove"
+                invalid={chip.invalid}
+                disabled={chip.disabled}
+                label={chip.label}
+                onClick={handleChipRemove(chip.value)}
+              />
+            }
+          />
+        </div>
       ))}
 
       <InternalChipDismissibleInput

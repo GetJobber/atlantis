@@ -204,7 +204,7 @@ describe("Deleting a chip", () => {
   // Strategies tried: userEvent library (typing backspace),
   // and waitFor on the first chip's removal.
   // eslint-disable-next-line jest/no-disabled-tests
-  it.skip("should focus on the next chip if the very first chip has focus", async () => {
+  it("should focus on the next chip if the very first chip has focus", async () => {
     render(<MockChips />);
 
     const first = getByChipLabelText("chip");
@@ -219,16 +219,24 @@ describe("Deleting a chip", () => {
   });
 
   // eslint-disable-next-line jest/no-disabled-tests
-  it.skip("should focus on the previous chip if the not-first chip has focus", async () => {
+  it("should focus on the previous chip if the not-first chip has focus", async () => {
     render(<MockChips />);
 
-    const second = getByChipLabelText("chip2");
+    // First focus on the first chip
+    const first = getByChipLabelText("chip");
     await userEvent.tab();
+    expect(first).toHaveFocus();
+
+    // Navigate to the second chip
+    await userEvent.keyboard("{ArrowRight}");
+    const second = getByChipLabelText("chip2");
     expect(second).toHaveFocus();
+
+    // Delete the second chip
     await userEvent.keyboard("{Backspace}");
     expect(second).not.toBeInTheDocument();
 
-    const first = getByChipLabelText("chip2");
+    // First chip should get focus after deletion
     expect(first).toHaveFocus();
   });
 });
