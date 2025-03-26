@@ -24,6 +24,13 @@ export interface ButtonFoundationProps {
   readonly size?: ButtonSize;
   readonly ariaLabel?: string;
 
+  onClick?(
+    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
+  ): void;
+  onMouseDown?(
+    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
+  ): void;
+
   /**
    * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
    * **last resort**. Using this may result in unexpected side effects.
@@ -55,13 +62,6 @@ export interface ButtonFoundationProps {
       path?: CSSProperties;
     };
   };
-
-  onClick?(
-    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
-  ): void;
-  onMouseDown?(
-    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
-  ): void;
 }
 
 interface ButtonNonComposableProps extends ButtonFoundationProps {
