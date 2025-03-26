@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.31.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.31.1...@jobber/atlantis-site@0.31.2) (2025-03-26)
+
+
+### Bug Fixes
+
+* **components:** Move Phone Input Cursor Inside Parentheses ([#2425](https://github.com/GetJobber/atlantis/issues/2425)) ([256b676](https://github.com/GetJobber/atlantis/commit/256b6765d7092cbf15fc9c37a74c755255515778))
+
+
+
+
+
 ## [0.31.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.31.0...@jobber/atlantis-site@0.31.1) (2025-03-26)
 
 **Note:** Version bump only for package @jobber/atlantis-site
