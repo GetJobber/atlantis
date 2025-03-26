@@ -405,4 +405,88 @@ describe("UNSAFE_ props", () => {
       });
     });
   });
+
+  describe("Composable Button", () => {
+    describe("UNSAFE_className", () => {
+      it("applies to Button.Icon", () => {
+        render(
+          <Button>
+            <Button.Icon
+              name="add"
+              UNSAFE_className={{
+                svg: "custom-icon-svg",
+                path: "custom-icon-path",
+              }}
+            />
+          </Button>,
+        );
+
+        expect(screen.getByTestId("add")).toHaveClass("custom-icon-svg");
+        expect(screen.getByTestId("add").querySelector("path")).toHaveClass(
+          "custom-icon-path",
+        );
+      });
+
+      it("applies to Button.Label", () => {
+        render(
+          <Button>
+            <Button.Label UNSAFE_className={{ textStyle: "custom-label" }}>
+              Custom Composable Label ClassName
+            </Button.Label>
+          </Button>,
+        );
+
+        expect(
+          screen.getByText("Custom Composable Label ClassName"),
+        ).toHaveClass("custom-label");
+      });
+    });
+
+    describe("UNSAFE_style", () => {
+      it("applies to Button.Icon", () => {
+        render(
+          <Button>
+            <Button.Icon
+              name="add"
+              UNSAFE_style={{
+                svg: {
+                  width: "var(--space-large)",
+                },
+                path: {
+                  fill: "var(--color-green)",
+                },
+              }}
+            />
+          </Button>,
+        );
+
+        expect(screen.getByTestId("add")).toHaveStyle({
+          width: "var(--space-large)",
+        });
+        expect(screen.getByTestId("add").querySelector("path")).toHaveStyle({
+          fill: "var(--color-green)",
+        });
+      });
+
+      it("applies to Button.Label", () => {
+        render(
+          <Button>
+            <Button.Label
+              UNSAFE_style={{
+                textStyle: {
+                  color: "var(--color-blue)",
+                },
+              }}
+            >
+              Custom Composable Label Style
+            </Button.Label>
+          </Button>,
+        );
+
+        expect(screen.getByText("Custom Composable Label Style")).toHaveStyle({
+          color: "var(--color-blue)",
+        });
+      });
+    });
+  });
 });
