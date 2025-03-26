@@ -1,7 +1,7 @@
 import classnames from "classnames";
 import styles from "./Button.module.css";
 import { ButtonSize, ButtonType, ButtonVariation } from "./Button.types";
-import { useButton } from "./ButtonProvider";
+import { useButtonContext } from "./ButtonProvider";
 
 /**
  * The props that are used to style the button
@@ -23,7 +23,7 @@ export function useButtonStyles({
   variation = "work",
   type = "primary",
 }: UseButtonStylesProps) {
-  const { size: contextSize } = useButton();
+  const { size: contextSize } = useButtonContext();
   const size = sizeProp || contextSize;
   const wrapper = classnames(
     [styles.button, styles[size], styles[variation], styles[type]],
