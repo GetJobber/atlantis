@@ -76,7 +76,11 @@ function Example() {
 
 * `useButtonStyles`: Returns a map of css classes that `Button` uses internally.
 Consumers might use this to make something else look like a `Button`.
-* `useButtonContext`: Returns internal context that the `Button` shares with its subcomponents. Currently, only the Button's `size` is shared. This allows `Button.Icon` to inherit the same size and apply that to the underlying `Icon` it wraps. Consumers might use Button's context within a custom child component, allowing that child to adapt to the `size` prop for example.
+* `useButtonContext`: Returns internal context that the `Button` shares with its
+subcomponents. Currently, only the Button's `size` is shared. This allows
+`Button.Icon` to inherit the same size and apply that to the underlying `Icon`
+it wraps. Consumers might use Button's context within a custom child component,
+allowing that child to adapt to the `size` prop for example.
 
 
 ## Named `customRender____` props
