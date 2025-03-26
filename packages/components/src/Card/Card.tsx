@@ -39,6 +39,7 @@ type ClickableCardProps = CardProps & {
    */
   onClick(event: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>): void;
   url?: never;
+  readonly external?: never;
 };
 
 /**
@@ -47,6 +48,7 @@ type ClickableCardProps = CardProps & {
 type RegularCardProps = CardProps & {
   url?: never;
   onClick?: never;
+  readonly external?: never;
 };
 
 type CardPropOptions = LinkCardProps | ClickableCardProps | RegularCardProps;
@@ -137,12 +139,21 @@ function renderCardWrapper(
 }
 
 export function Card(props: CardPropOptions) {
-  const { accent, header, children, title, elevation = "none" } = props;
+  const {
+    accent,
+    header,
+    children,
+    title,
+    elevation = "none",
+    onClick,
+    url,
+    external,
+  } = props;
 
   const className = classnames(
     styles.card,
     accent && styles.accent,
-    ("url" in props || "onClick" in props) && styles.clickable,
+    (url || onClick) && styles.clickable,
     accent && colors[accent],
     elevation !== "none" && elevations[`${elevation}Elevation`],
   );
@@ -158,13 +169,7 @@ export function Card(props: CardPropOptions) {
     ? children
     : renderCardContent(children, title, header);
 
-  return renderCardWrapper(
-    className,
-    content,
-    "onClick" in props ? props.onClick : undefined,
-    "url" in props ? props.url : undefined,
-    "url" in props && "external" in props ? props.external : undefined,
-  );
+  return renderCardWrapper(className, content, onClick, url, external);
 }
 
 Card.Header = CardHeaderCompoundComponent;
