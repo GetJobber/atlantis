@@ -249,13 +249,13 @@ function InternalForm<T extends FieldValues, S>({
     let result: S;
 
     handleSubmit(data => {
-      internalSubmit(data).then(saveResult => {
+      return internalSubmit(data).then(saveResult => {
         result = saveResult as S;
-      })
+      });
     })().then(() => {
-          removeListenerRef.current?.();
-          onSubmitSuccess(result);
-        });
+      removeListenerRef.current?.();
+      onSubmitSuccess(result);
+    });
   }
 
   async function internalSubmit(data: FormValues<T>) {
@@ -268,8 +268,7 @@ function InternalForm<T extends FieldValues, S>({
     if (performSubmit) {
       Keyboard.dismiss();
 
-      return onSubmit(data)
-        .catch(handleSubmitCatch);
+      return onSubmit(data).catch(handleSubmitCatch);
     }
   }
 
