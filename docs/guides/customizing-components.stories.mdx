@@ -26,10 +26,65 @@ from:
 If you choose to customize components, you assume responsibility for these
 concerns and any issues that may arise in future versions.
 
+## Compound components
+
+Some components expose their foundational building blocks. This usually
+includes subcomponents and hooks for providing styles, state, and
+additional logic.
+
+These components provide greater flexibility, giving you much more control
+over their appearance and behaviour.
+
+### Example: [Button](../components/Button)
+
+The `Button` component offers a very simple API allowing you to specify a
+label, icon, and icon position. However, because it doesn't accept children,
+it's very inflexible.
+
+```tsx
+<Button
+  label="Home"
+  icon="home"
+  iconOnRight
+/>
+```
+
+For greater control, `Button` is also available as a compound component and has
+exposed `Button.Label` and `Button.Icon` as subcomponents. This allows complete
+customization of the button's underlying content.
+
+Using the provided subcomponents, it's possible to build something more complex
+like this:
+
+```tsx
+function Example() {
+  const [created, setCreated] = useState(false);
+
+  return (
+    <Button
+      onClick={() => setCreated(!created)}
+      variation={created ? "destructive" : "work"}
+    >
+      {created ? <Avatar initials="AB" /> : <Button.Icon name="person" />}
+      <Button.Label>{created ? "Delete user" : "Create user"}</Button.Label>
+    </Button>
+  );
+}
+```
+
+`Button` also exposes a few hooks that can be used within your own components:
+
+* `useButtonStyles`: Returns a map of css classes that `Button` uses internally.
+Consumers might use this to make something else look like a `Button`.
+* `useButtonContext`: Returns internal context that the `Button` shares with its
+subcomponents. Consumers might use Button's context within a custom child
+component, allowing that child to adapt to the `size` prop for example.
+
+
 ## Named `customRender____` props
 
-Our primary approach to enabling customization is using named render props
-following the `customRender____` pattern.
+Some of our components use render props following the `customRender____`
+naming convention.
 
 This allows you to both:
 
@@ -38,7 +93,7 @@ This allows you to both:
 
 [Reference implementation](https://github.com/GetJobber/atlantis/blob/304e776cf7fc1b9683cecbb1d7a0d8dbebdb60bb/packages/components/src/List/List.tsx#L25C3-L25C60)
 
-##### Example: [List](../components/List) customRenderItem
+### Example: [List](../components/List) customRenderItem
 
 ```tsx
 const renderProductItem = item => (
@@ -53,9 +108,7 @@ export const CustomRenderExample = () => (
 );
 ```
 
-## Other approaches
-
-### ReactNode
+## Slot props with ReactNode
 
 Extending prop types to allow a `ReactNode` to be inserted is useful for simpler
 cases where your:
@@ -65,7 +118,7 @@ cases where your:
 
 [Reference implementation](https://github.com/GetJobber/atlantis/blob/master/packages/components/src/Tabs/Tabs.tsx#L119C3-L119C38)
 
-##### Example: [Tab](../components/Tabs) label
+### Example: [Tab](../components/Tabs) label
 
 ```tsx
 <Tab label={<MyCustomLabel />} />
@@ -74,7 +127,7 @@ cases where your:
 Customizing the `label` doesn’t require exposing or interacting with the `Tab`’s
 internal state (e.g., active state styling).
 
-### UNSAFE\_ props
+## UNSAFE\_ props
 
 <Banner type="warning" dismissible={false}>
   These properties are prefixed `UNSAFE_` for a reason! Their usage is **at your
@@ -93,7 +146,7 @@ ways to meet your needs.
 
 [Reference implementation](https://github.com/GetJobber/atlantis/blob/304e776cf7fc1b9683cecbb1d7a0d8dbebdb60bb/packages/components/src/Popover/Popover.tsx#L36-L56)
 
-##### Example: `UNSAFE_className`
+### Example: `UNSAFE_className`
 
 ```tsx
 <Component UNSAFE_className={{ container: styles.customClass }} />
@@ -108,7 +161,7 @@ ways to meet your needs.
 <Component UNSAFE_className={{ container: "custom-container-class" }} />
 ```
 
-##### Example: `UNSAFE_style`
+### Example: `UNSAFE_style`
 
 ```tsx
 <Component
