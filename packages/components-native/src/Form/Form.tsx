@@ -150,7 +150,7 @@ function InternalForm<T extends FieldValues, S>({
 
         <FormBody
           keyboardHeight={calculateSaveButtonOffset()}
-          submit={handleSubmit(internalSubmit)}
+          submit={callHandleSubmit}
           isFormSubmitting={isSubmitting}
           saveButtonLabel={saveButtonLabel}
           shouldRenderActionBar={saveButtonPosition === "sticky"}
@@ -193,13 +193,13 @@ function InternalForm<T extends FieldValues, S>({
                     <View style={styles.fixedSaveButton}>
                       {renderStickySection ? (
                         renderStickySection(
-                          handleSubmit(internalSubmit),
+                          callHandleSubmit,
                           saveButtonLabel,
                           isSubmitting,
                         )
                       ) : (
                         <FormSaveButton
-                          primaryAction={handleSubmit(internalSubmit)}
+                          primaryAction={callHandleSubmit}
                           label={saveButtonLabel}
                           loading={isSubmitting}
                           secondaryActions={secondaryActions}
@@ -245,6 +245,19 @@ function InternalForm<T extends FieldValues, S>({
     setKeyboardScreenY(0);
   }
 
+  function callHandleSubmit() {
+    let result: S;
+
+    handleSubmit(data => {
+      internalSubmit(data).then(saveResult => {
+        result = saveResult as S;
+      })
+    })().then(() => {
+          removeListenerRef.current?.();
+          onSubmitSuccess(result);
+        });
+  }
+
   async function internalSubmit(data: FormValues<T>) {
     let performSubmit = true;
 
@@ -256,10 +269,6 @@ function InternalForm<T extends FieldValues, S>({
       Keyboard.dismiss();
 
       return onSubmit(data)
-        .then((result: S) => {
-          removeListenerRef.current?.();
-          onSubmitSuccess(result);
-        })
         .catch(handleSubmitCatch);
     }
   }
@@ -287,7 +296,7 @@ function InternalForm<T extends FieldValues, S>({
   function handleRetry() {
     clearFormErrors();
 
-    return handleSubmit(internalSubmit)();
+    return callHandleSubmit();
   }
 
   function calculateSaveButtonOffset() {
