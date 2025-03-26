@@ -290,3 +290,119 @@ describe("Button with children", () => {
     expect(screen.getByTestId("add")).toBeInTheDocument();
   });
 });
+
+describe("UNSAFE_ props", () => {
+  describe("Non-composable Button", () => {
+    describe("UNSAFE_className", () => {
+      it("applies to container", () => {
+        render(
+          <Button
+            label="Custom Container ClassName"
+            UNSAFE_className={{
+              container: "custom-container",
+            }}
+          />,
+        );
+
+        expect(screen.getByRole("button")).toHaveClass("custom-container");
+      });
+
+      it("applies to label", () => {
+        render(
+          <Button
+            label="Custom Label ClassName"
+            UNSAFE_className={{
+              buttonLabel: { textStyle: "custom-label" },
+            }}
+          />,
+        );
+
+        expect(screen.getByText("Custom Label ClassName")).toHaveClass(
+          "custom-label",
+        );
+      });
+
+      it("applies to icon", () => {
+        render(
+          <Button
+            label="Custom Icon ClassName"
+            icon="add"
+            UNSAFE_className={{
+              buttonIcon: {
+                svg: "custom-icon-svg",
+                path: "custom-icon-path",
+              },
+            }}
+          />,
+        );
+
+        expect(screen.getByTestId("add")).toHaveClass("custom-icon-svg");
+        expect(screen.getByTestId("add").querySelector("path")).toHaveClass(
+          "custom-icon-path",
+        );
+      });
+    });
+
+    describe("UNSAFE_style", () => {
+      it("applies to container", () => {
+        render(
+          <Button
+            label="Custom Container Style"
+            UNSAFE_style={{
+              container: {
+                backgroundColor: "var(--color-yellow)",
+              },
+            }}
+          />,
+        );
+        expect(screen.getByRole("button")).toHaveStyle({
+          backgroundColor: "var(--color-yellow)",
+        });
+      });
+
+      it("applies to label", () => {
+        render(
+          <Button
+            label="Custom Label Style"
+            UNSAFE_style={{
+              buttonLabel: {
+                textStyle: {
+                  color: "var(--color-blue)",
+                },
+              },
+            }}
+          />,
+        );
+        expect(screen.getByText("Custom Label Style")).toHaveStyle({
+          color: "var(--color-blue)",
+        });
+      });
+
+      it("applies to icon", () => {
+        render(
+          <Button
+            label="Custom Icon Style"
+            icon="add"
+            UNSAFE_style={{
+              buttonIcon: {
+                svg: {
+                  width: "var(--space-large)",
+                },
+                path: {
+                  fill: "var(--color-green)",
+                },
+              },
+            }}
+          />,
+        );
+
+        expect(screen.getByTestId("add")).toHaveStyle({
+          width: "var(--space-large)",
+        });
+        expect(screen.getByTestId("add").querySelector("path")).toHaveStyle({
+          fill: "var(--color-green)",
+        });
+      });
+    });
+  });
+});
