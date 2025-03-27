@@ -1,6 +1,7 @@
 import IconContent from "@atlantis/docs/components/Icon/Icon.stories.mdx";
 import Props from "./Icon.props.json";
 import MobileProps from "./Icon.props-mobile.json";
+import Notes from "./IconNotes.mdx";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
@@ -21,4 +22,5 @@ export default {
       ),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

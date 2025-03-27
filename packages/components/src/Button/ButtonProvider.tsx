@@ -20,6 +20,6 @@ export function ButtonProvider({
   );
 }
 
-export function useButton() {
+export function useButtonContext() {
   return useContext(ButtonContext);
 }

@@ -2,7 +2,6 @@
   z-index: var(--elevation-tooltip);
   width: calc(var(--space-extravagant) * 3.75);
   box-shadow: var(--shadow-base);
-  margin-top: var(--space-small);
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
   overflow: auto;

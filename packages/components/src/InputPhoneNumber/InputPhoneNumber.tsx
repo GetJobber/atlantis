@@ -50,6 +50,7 @@ export function InputPhoneNumber({
       <FormField
         {...props}
         type="tel"
+        pattern={pattern}
         validations={{
           required: {
             value: Boolean(required),
