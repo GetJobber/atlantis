@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import { IconColorNames, IconNames } from "@jobber/design";
-import { styles } from "./IconButton.style";
+import { useStyles } from "./IconButton.style";
 import { Icon } from "../Icon";
 
 interface IconButtonProps {
@@ -51,6 +51,8 @@ export function IconButton({
   accessibilityLabel,
   testID,
 }: IconButtonProps): JSX.Element {
+  const styles = useStyles();
+
   return (
     <TouchableOpacity
       onPress={onPress}

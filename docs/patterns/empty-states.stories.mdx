@@ -1,0 +1,150 @@
+import { Meta, Canvas } from "@storybook/addon-docs";
+import { Figma } from "@storybook/addon-designs/blocks";
+import {
+  InlineLabel,
+  Box,
+  Icon,
+  Heading,
+  Text,
+  Button,
+  Tabs,
+  Tab,
+} from "@jobber/components";
+
+<Meta title="Patterns/Empty states" />
+
+# Empty states
+
+| **Platform**                                                     | **Status**                                     |
+| :--------------------------------------------------------------- | :--------------------------------------------- |
+| <InlineLabel>Web</InlineLabel> <InlineLabel>Mobile</InlineLabel> | <InlineLabel color="green">Ready</InlineLabel> |
+
+## Goal
+
+Ensure the user does not hit a dead end when there is no content to display.
+
+## Use when...
+
+Use when there _could_ be content in a view, but there is none. Possible reasons
+for the “emptiness” may include, but are not limited to…
+
+- A notifications panel when the user hasn't received any notifications
+- A list of user-generated content before user has created any content (for
+  example, a list of clients when the user doesn’t yet have any clients)
+- Dashboards or other data-centric views when the user has not generated any
+  data (ie Home)
+- Search results with no match
+- An error has resulted in the user not being able to access content they
+  otherwise could
+
+## Solution
+
+A successful empty state should:
+
+- communicate system status
+- increase learnability of the system
+- deliver direct pathways for key tasks
+
+[Designing Empty States in Complex Applications: 3 Guidelines](https://www.nngroup.com/articles/empty-state-interface-design/#:~:text=Empty%20states%20that%20are%20intentionally,getting%20started%20with%20key%20tasks)
+
+<Figma url="https://www.figma.com/design/HXWXusJPZLmaJNGlKEpiyhXW/Product%2FBase?m=auto&node-id=21162-662&t=SHOjoSApnGE6QQeB-1" />
+
+#### When _not_ to add a CTA
+
+You might not use a direct CTA in the empty state if:
+
+- The action to populate the empty state has dependencies on another action
+  being taken
+  - Example: Quotes must be approved by clients before they appear in a list of
+    "approved quotes"
+  - Example: A payment requires creation and delivery of an invoice, and the
+    client to make a payment, before it exists
+
+### In lists
+
+Adjust your context and actions if the user has no content because of a search
+or filter, vs when they have no content at all.
+
+<Figma url="https://www.figma.com/design/HXWXusJPZLmaJNGlKEpiyhXW/Product%2FBase?m=auto&node-id=21189-604&t=nhEwO89McEzvF5TV-1" />
+
+<Figma url="https://www.figma.com/design/HXWXusJPZLmaJNGlKEpiyhXW/Product%2FBase?m=auto&node-id=21162-768&t=SHOjoSApnGE6QQeB-1" />
+
+### Error states
+
+A full-screen "empty" error state can help the user make sense of what's going
+on, and how to get back on track. If an entire view goes blank due to an error,
+a single Banner can look out of place.
+
+<Canvas>
+  <Box direction="column" alignItems="center" gap="base" width="100%">
+    <Icon size="large" name="alert" color="critical" />
+    <Heading level={4}>Something went wrong</Heading>
+    <Text>Couldn't load content. Refresh to try again.</Text>
+    <Button label="Refresh" />
+  </Box>
+</Canvas>
+
+### When the user can't add content
+
+When a card is empty, and there is no way for the user to add content, you
+should still show some form of empty state, but without a CTA.
+
+Do not hide the card, as this state-based hiding and showing may not be
+intuitive for the user. For example, see the ”Payments” card here, where the
+user needs to create an invoice and interact with their client before they can
+create a payment against a job.
+
+<Figma url="https://www.figma.com/design/HXWXusJPZLmaJNGlKEpiyhXW/Product%2FBase?m=auto&node-id=21341-20062&t=nhEwO89McEzvF5TV-1" />
+
+## Why
+
+By considering and accounting for these often “un-happy” paths in the user’s
+journey, we can allow the user to learn how to use Jobber more effectively,
+guide them out of troublesome scenarios, and ensure that they never feel like
+they’ve hit a dead-end in the product.
+
+## Implementation
+
+<Tabs>
+  <Tab label="Web">
+   There's no component but these are some common patterns:
+
+  <Canvas>
+    <Box direction="column" alignItems="center" gap="base" width="100%">
+      <Icon size="large" name="alert" />
+      <Heading level={4}>No results found</Heading>
+      <Text>Try adjusting your search criteria or clearing filters</Text>
+      <Button variation="subtle" label="Clear Filters" />
+    </Box>
+  </Canvas>
+  </Tab>
+  <Tab label="Mobile">
+    [EmptyState](../components/EmptyState) gives you the boilerplate 
+    `Icon` + `Heading` + `Text` + `Button` out of the box but you can also compose it
+    similar to the web implementation if more flexibility is needed.
+  </Tab>
+</Tabs>
+
+## Not obvious details
+
+In some cases, illustrations may be useful in an empty state to bring some
+personality to the scenario. If this fits your use case, work with the design
+team to find or create an appropriate illustration.
+
+## Related
+
+### Patterns
+
+- [Errors](../patterns/errors)
+- [Disabled states](../patterns/disabled-states)
+
+### Components
+
+- [Empty state](../components/EmptyState) mobile component
+
+## Principles
+
+- [Visibility of system status](https://www.nngroup.com/articles/visibility-system-status/)
+- [Consistency and standards](https://www.nngroup.com/articles/consistency-and-standards/)
+- [Aesthetics and minimalist design](https://www.nngroup.com/videos/aesthetic-and-minimalist-design/)
+- [Help users recognize, diagnose and recover from errors](https://www.nngroup.com/articles/ten-usability-heuristics/#toc-9-help-users-recognize-diagnose-and-recover-from-errors-9)

@@ -1,0 +1,54 @@
+## Component customization
+
+### UNSAFE\_ props (advanced usage)
+
+General information for using `UNSAFE_` props can be found
+[here](/guides/customizing-components).
+
+**Note**: Use of `UNSAFE_` props is **at your own risk** and should be
+considered a **last resort**. Future Text updates may lead to unintended
+breakages.
+
+#### UNSAFE_style (mobile)
+
+The mobile Text component can be custom styled using the `textStyle` type via
+the `UNSAFE_style` prop.
+
+React Native does not support className. Instead, you can use `UNSAFE_style` to
+apply styles either inline or through a StyleSheet.
+
+##### Inline styles
+
+```tsx
+UNSAFE_style={{ textStyle: { color: tokens["color-purple--light"] } }}
+```
+
+##### StyleSheet
+
+```tsx
+// Text.tsx
+  UNSAFE_style={{
+    textStyle: styles.customTextStyle,
+  }}
+
+// Text.style.ts
+export const styles = StyleSheet.create({
+  customTextStyle: {
+    color: tokens["color-purple--light"],
+  },
+});
+```
+
+## Platform Considerations (Mobile)
+
+### Notes
+
+Text uses the core component [Text](https://reactnative.dev/docs/text) from
+`react-native`.
+
+### Copying text
+
+There are a few caveats around copying text on Android and iOS that you can read
+under the
+[Typography](../?path=/docs/components-text-and-typography-typography--docs#platform-considerations)
+documentation.

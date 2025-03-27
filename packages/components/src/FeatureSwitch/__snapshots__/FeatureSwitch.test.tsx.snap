@@ -164,7 +164,7 @@ exports[`renders a full FeatureSwitch 1`] = `
         class="action"
       >
         <button
-          class="button base work tertiary"
+          class="button base work tertiary buttonChildren"
           type="button"
         >
           <span

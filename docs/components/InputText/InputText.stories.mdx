@@ -1,7 +1,9 @@
-import { Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Canvas, Meta } from "@storybook/addon-docs";
 import { useState } from "react";
 import { InputText } from "@jobber/components/InputText";
 import { Content } from "@jobber/components/Content";
+import { Disclosure } from "@jobber/components/Disclosure";
+import { FormFieldLabel } from "@jobber/components/FormField";
 
 <Meta title="Components/Forms and Inputs/InputText" component={InputText} />
 
@@ -15,21 +17,37 @@ Input text is used in forms that accept short or long answers from users.
 
 Use this to allow users to provide short answers.
 
+export const ControlledExample = () => {
+  const [age, setAge] = useState("Veintisiete");
+  return (
+    <InputText
+      value={age}
+      onChange={setAge}
+      name="age"
+      placeholder="Age in words"
+    />
+  );
+};
+
 <Canvas>
-  <Story name="Controlled">
-    {() => {
-      const [age, setAge] = useState("Veintisiete");
-      return (
-        <InputText
-          value={age}
-          onChange={setAge}
-          name="age"
-          placeholder="Age in words"
-        />
-      );
-    }}
-  </Story>
+  <ControlledExample />
 </Canvas>
+
+<Disclosure title="Show code">
+```tsx
+const ControlledExample = () => {
+  const [age, setAge] = useState("Veintisiete");
+  return (
+    <InputText
+      value={age}
+      onChange={setAge}
+      name="age"
+      placeholder="Age in words"
+    />
+  );
+};
+```
+</Disclosure>
 
 ### Multiline
 
@@ -40,13 +58,7 @@ For web, you can set a minimum and maximum number of rows. See:
 [Web/rows example](../?path=/story/components-forms-and-inputs-inputtext-web--multiline).
 
 <Canvas>
-  <Story name="Multiline">
-    <InputText
-      multiline={true}
-      placeholder="Describe your age"
-      name="describeAge"
-    />
-  </Story>
+  <InputText multiline={true} placeholder="Describe your age" />
 </Canvas>
 
 ### Prefix/suffix
@@ -54,8 +66,8 @@ For web, you can set a minimum and maximum number of rows. See:
 Use a prefix or suffix when additional visual cues about an input's function may
 be helpful.
 
-Some fields have common visual patterns such as “search” having a magnifying
-glass icon, “Select” having a downwards arrow, or currency inputs having a
+Some fields have common visual patterns such as "search" having a magnifying
+glass icon, "Select" having a downwards arrow, or currency inputs having a
 currency symbol. These signifiers reinforce the purpose of the input to increase
 [Recognition over Recall](https://www.nngroup.com/articles/ten-usability-heuristics/)
 and align the input with
@@ -94,38 +106,15 @@ Follow the
 [product vocabulary](../?path=/docs/content-product-vocabulary--docs#general-phrasing)
 for guidance on writing helpful error messages.
 
-Atlantis utilizes [React Hook Forms](https://react-hook-form.com/) to handle
-`input` and `form` validation. This means that the
-[React Hook Forms validation options](https://react-hook-form.com/api#register)
-are available out of the box.
-
-This includes, but is not limited to:
-
-- `required` - A Boolean which, if true, indicates that the input must have a
-  value.
-- `maxLength` - The maximum length of the value to accept for this input.
-- `minLength` - The minimum length of the value to accept for this input.
-- `pattern` - The regex pattern for the input.
-- `validate` - You can pass a callback function as the argument to validate, or
-  you can pass an object of callback functions to validate all of them.
-
 <Canvas>
-  <Story name="Validation">
-    {() => {
-      return (
-        <InputText
-          placeholder="What's your age"
-          name="age"
-          validations={{
-            required: {
-              value: true,
-              message: "You have to tell us your age",
-            },
-            validate: validations,
-          }}
-        />
-      );
-      function validations(val) {
+  <InputText
+    placeholder="What's your age"
+    validations={{
+      required: {
+        value: true,
+        message: "You have to tell us your age",
+      },
+      validate: val => {
         if (val.length > 0 && !isNaN(val)) {
           return "Type your age in words please.";
         }
@@ -133,9 +122,9 @@ This includes, but is not limited to:
           return "That seems too old.";
         }
         return true;
-      }
+      },
     }}
-  </Story>
+  />
 </Canvas>
 
 ## States
@@ -143,13 +132,11 @@ This includes, but is not limited to:
 ### Disabled
 
 <Canvas>
-  <Story name="disabled">
-    <InputText
-      placeholder="Credit card"
-      value="**** **** **** 1234"
-      disabled={true}
-    />
-  </Story>
+  <InputText
+    placeholder="Credit card"
+    value="**** **** **** 1234"
+    disabled={true}
+  />
 </Canvas>
 
 ### Invalid
@@ -162,6 +149,33 @@ See:
   <InputText placeholder="Email" value="atlantis" invalid={true} />
 </Canvas>
 
+### External label
+
+You can use `FormFieldLabel` to provide a label outside of the input. The
+`showMiniLabel` prop on `InputText` can be used to hide the mini label that
+appears when a value is provided.
+
+<style>
+  {`
+  .fullWidth {
+    width: 100%;
+  }
+`}
+</style>
+
+<Canvas>
+  <div className="fullWidth">
+    <FormFieldLabel external={true} htmlFor="ext-input">
+      External label
+    </FormFieldLabel>
+    <InputText
+      showMiniLabel={false}
+      placeholder="You can still have a placeholder"
+      id="ext-input"
+    />
+  </div>
+</Canvas>
+
 ### Keyboard
 
 Determine what default keyboard appears on mobile.
@@ -169,20 +183,3 @@ Determine what default keyboard appears on mobile.
 <Canvas>
   <InputText placeholder="Describe your age" keyboard="numeric" />
 </Canvas>
-
-### Using onValidation (Web)
-
-If you need to capture the error message and render it outside of the component.
-Read the
-[InputValidation](../?path=/docs/components-forms-and-inputs-inputvalidation--docs)
-documentation.
-
-### Version 2 Shim (Experimental)
-
-If you need to use the version 2 shim, you can pass `version={2}` to the
-`InputText` and provide the required props. Due to issues with typescript
-[see](https://github.com/microsoft/TypeScript/issues/32447) the aria attributes
-(and other props separated by `-`) are not typed correctly. This means that the
-shim will not enforce the version to be set to `2` when using these props. As a
-result version 1 usages will have these props appear in the intellisense but
-they will not do anything.

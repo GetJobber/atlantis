@@ -10,10 +10,6 @@
   z-index: var(--elevation-modal);
 }
 
-.shadowRef {
-  display: none;
-}
-
 .menu {
   --menu-space: var(--space-small);
   --menu-offset: var(--space-smallest);
@@ -63,6 +59,40 @@
   padding: calc(var(--menu-space) * 1.5) var(--menu-space);
 }
 
+.action {
+  display: flex;
+  width: 100%;
+  padding: var(--menu-space);
+  border: none;
+  border-radius: var(--radius-base);
+  outline: transparent;
+  text-align: start;
+  background-color: transparent;
+  cursor: pointer;
+  gap: var(--menu-space);
+  align-items: center;
+  transition:
+    background-color var(--timing-base) ease-out,
+    box-shadow var(--timing-base) ease-out;
+}
+
+.action:hover,
+.action:focus-visible {
+  background-color: var(--color-surface--hover);
+}
+
+.action:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+.action span {
+  /* match appearance of Button labels */
+  -webkit-font-smoothing: antialiased;
+}
+
+.action.destructive > span {
+  color: var(--color-destructive);
+}
+
 .overlay {
   position: fixed;
   top: 0;
@@ -79,4 +109,14 @@
 
 .fullWidth {
   width: 100%;
+}
+
+.screenReaderOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
 }

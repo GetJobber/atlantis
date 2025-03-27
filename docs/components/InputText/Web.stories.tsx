@@ -5,18 +5,37 @@ import { Button } from "@jobber/components/Button";
 import { Content } from "@jobber/components/Content";
 import { Grid } from "@jobber/components/Grid";
 import { Box } from "@jobber/components/Box";
+import { FormFieldLabel } from "@jobber/components/FormField";
 
 export default {
   title: "Components/Forms and Inputs/InputText/Web",
   component: InputText,
   parameters: {
     viewMode: "story",
-    previewTabs: { code: { hidden: false } },
+    previewTabs: {
+      code: {
+        hidden: false,
+        extraImports: {
+          "@jobber/components/FormField": ["FormFieldLabel"],
+        },
+      },
+    },
   },
 } as ComponentMeta<typeof InputText>;
 
 const BasicTemplate: ComponentStory<typeof InputText> = args => {
   return <InputText {...args} />;
+};
+
+const ExternalLabelTemplate: ComponentStory<typeof InputText> = args => {
+  return (
+    <div>
+      <FormFieldLabel external={true} htmlFor="ext-input">
+        External label
+      </FormFieldLabel>
+      <InputText id="ext-input" {...args} />
+    </div>
+  );
 };
 
 export const Basic = BasicTemplate.bind({});
@@ -73,6 +92,13 @@ export const Clearable = BasicTemplate.bind({});
 Clearable.args = {
   name: "name",
   clearable: "always",
+};
+
+export const ExternalLabel = ExternalLabelTemplate.bind({});
+ExternalLabel.args = {
+  name: "name",
+  clearable: "always",
+  showMiniLabel: false,
 };
 
 export const VersionComparison = () => {

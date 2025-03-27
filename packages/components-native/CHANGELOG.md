@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.78.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.77.1...@jobber/components-native@0.78.0) (2025-02-28)
+
+
+### Features
+
+* **components-native:** Allow for stylesheets to be dynamically updated [JOB-116234] ([#2389](https://github.com/GetJobber/atlantis/issues/2389)) ([73ef013](https://github.com/GetJobber/atlantis/commit/73ef0134493b8e8f83c3498da181bbe79ac45bfd))
+
+
+
+
+
+## [0.77.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.77.0...@jobber/components-native@0.77.1) (2025-02-24)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+# [0.77.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.76.0...@jobber/components-native@0.77.0) (2025-02-24)
+
+
+### Features
+
+* **components-native:** AtlantisThemeContext for mobile ([#2387](https://github.com/GetJobber/atlantis/issues/2387)) ([1c3085f](https://github.com/GetJobber/atlantis/commit/1c3085ff2fda058fc0e2f6438194638ba1352c27))
+
+
+
+
+
+# [0.76.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.75.5...@jobber/components-native@0.76.0) (2025-02-12)
+
+
+### Features
+
+* **components-native:** Adding Unsafe style to mobile Text and Button [JOB-112128] ([#2350](https://github.com/GetJobber/atlantis/issues/2350)) ([65f6b92](https://github.com/GetJobber/atlantis/commit/65f6b922f171825da2f1fdb886872967f294567e))
+
+
+
+
+
+## [0.75.5](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.75.3...@jobber/components-native@0.75.5) (2025-02-04)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.75.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.75.2...@jobber/components-native@0.75.3) (2025-02-04)
+
+
+### Bug Fixes
+
+* **components-native:** Add missing onPress prop type to InputPressable suffix (it's already accepted) ([#2349](https://github.com/GetJobber/atlantis/issues/2349)) ([606971b](https://github.com/GetJobber/atlantis/commit/606971b50c05be8f33214bef94c49f6fccd410a9))
+
+
+
+
+
 ## [0.75.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.75.1...@jobber/components-native@0.75.2) (2024-11-29)
 
 

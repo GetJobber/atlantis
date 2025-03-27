@@ -40,6 +40,21 @@ references:
       name: Install Dependencies
       command: npm ci
 
+  check_git_status: &check_git_status
+    run:
+      name: Check for uncommitted files
+      command: |
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "Found uncommitted changes which is unexpected. This likely means you forgot to commit generated files."
+          echo "Here's the diff:"
+          git status
+          echo "If the diff includes *.props.json files, run 'npm run generate' inside packages/site, review and commit the changes."
+          exit 1
+        else
+          echo "No uncommitted changes."
+          git status
+        fi
+
   github_authenticity: &github_authenticity
     run:
       name: Establishing GitHub Authenticity
@@ -91,29 +106,11 @@ jobs:
               npm run preventManualRelease
             fi
 
-  check_git_status:
-    <<: *container_config
-    steps:
-      - *attach_workspace
-      - run:
-          name: Check for uncommitted files
-          command: |
-            if [ -n "$(git status --porcelain)" ]; then
-              echo "Found uncommitted changes which is unexpected. This likely means you forgot to commit generated files."
-              echo "Here's the diff:"
-              git status
-              echo "If the diff includes *.props.json files, run `npm run generate` inside packages/site, review and commit the changes."
-              exit 1
-            else
-              echo "No uncommitted changes."
-              git status
-            fi
-
   lint_javascript:
     <<: *container_config
     steps:
       - *attach_workspace
-      - run: npm run lint:js -- --format junit -o reports/junit/js-lint-results.xml
+      - run: npm run lint:js -- --quiet --format junit -o reports/junit/js-lint-results.xml
       - store_test_results:
           path: reports/junit
       - store_artifacts:
@@ -158,6 +155,7 @@ jobs:
       - *generate_base_path
       - run:
           command: npm run storybook:build
+      - *check_git_status
 
   build_new_docs:
     <<: *container_config
@@ -165,6 +163,7 @@ jobs:
       - *attach_workspace
       - run:
           command: cd packages/site && npm run generate && npm run build
+      - *check_git_status
 
   release:
     <<: *container_config
@@ -210,10 +209,6 @@ workflows:
       - build_new_docs:
           requires:
             - install_dependencies
-      - check_git_status:
-          requires:
-            - build_storybook
-            - build_new_docs
       - release:
           filters:
             branches:
@@ -224,4 +219,3 @@ workflows:
             - test
             - build_storybook
             - build_new_docs
-            - check_git_status

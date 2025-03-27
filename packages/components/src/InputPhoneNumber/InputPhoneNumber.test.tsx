@@ -118,6 +118,44 @@ describe("InputPhoneNumber", () => {
       expect(screen.getByText("(___) ___-____")).toBeInTheDocument();
     });
 
+    it("should have the correct style when the input is empty", () => {
+      render(
+        <InputPhoneNumber
+          placeholder={placeholder}
+          value=""
+          onChange={jest.fn()}
+        />,
+      );
+
+      const input = screen.getByRole("textbox");
+      expect(input).toHaveClass("emptyPhoneNumber");
+    });
+    it("should have the correct style when the input is not empty", () => {
+      render(
+        <InputPhoneNumber
+          placeholder={placeholder}
+          value="123123"
+          onChange={jest.fn()}
+        />,
+      );
+
+      const input = screen.getByRole("textbox");
+      expect(input).not.toHaveClass("emptyPhoneNumber");
+    });
+    it("should have the correct style when the pattern isn't one we need to adjust for", () => {
+      render(
+        <InputPhoneNumber
+          placeholder={placeholder}
+          pattern="***-***-**"
+          value="123123"
+          onChange={jest.fn()}
+        />,
+      );
+
+      const input = screen.getByRole("textbox");
+      expect(input).not.toHaveClass("emptyPhoneNumber");
+    });
+
     it("should render a custom pattern", () => {
       const { getByText } = render(
         <InputPhoneNumber

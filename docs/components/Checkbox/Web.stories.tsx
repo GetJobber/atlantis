@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Checkbox } from "@jobber/components/Checkbox";
 import { Text } from "@jobber/components/Text";
 import { Link } from "@jobber/components/Link";
+import { Checkbox } from "@jobber/components/Checkbox";
 
 export default {
   title: "Components/Selections/Checkbox/Web",

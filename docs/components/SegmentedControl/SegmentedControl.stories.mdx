@@ -2,10 +2,6 @@ import { ArgsTable, Canvas, Meta } from "@storybook/addon-docs";
 import { SegmentedControl } from "@jobber/components";
 import { Icon } from "@jobber/components/Icon";
 
-{/* Sections of this file have been duplicated in the new docs site temporarily. */}
-{/* When updating this file, make sure to also update the corresponding notes file: */}
-{/* packages/site/src/content/[Component]/[Component]Notes.mdx */}
-
 <Meta
   title="Components/Selections/SegmentedControl"
   component={SegmentedControl}
@@ -27,8 +23,8 @@ parent container with a fixed width. Be sure to avoid truncating the labels.
 
 ## Content guidelines
 
-Concise [Text](../?path=/docs/components-text-and-typography-text--docs) should
-be used as the primary format for option labels.
+Concise [Text](/components/Text) should be used as the primary format for option
+labels.
 
 <Canvas>
   <SegmentedControl defaultOption="option1">
@@ -40,8 +36,8 @@ be used as the primary format for option labels.
   </SegmentedControl>
 </Canvas>
 
-Using [Icons](../?path=/docs/components-images-and-icons-icon--docs) as labels
-should only be used if the icon has been tested as understandable in isolation.
+Using [Icons](/components/Icon) as labels should only be used if the icon has
+been tested as understandable in isolation.
 
 <Canvas>
   <SegmentedControl defaultOption="calendar">
@@ -65,67 +61,21 @@ Mixing content types across options should also be avoided. This would create an
 inconsistent experience for users and lead to a jarring visual rhythm.
 
 If you do not have enough horizontal room to allow for readable labels, consider
-using [Menu](/?path=/docs/components-navigation-menu--docs) as an alternative
-single-selection method for modifying the view. Otherwise, truncation will
-prevent the user from reading the label and a label with wrapped text will
-create layout inconsistencies.
-
-## Controlled and Uncontrolled
-
-### Uncontrolled
-
-An
-[uncontrolled](..../?path=/story/components-selections-segmentedcontrol-web--uncontrolled)
-SegmentedControl manages its selected state internally, which is useful for
-simpler use cases where the selected option does not need to sync with other
-parts of your application’s state.
-
-Use the `defaultValue` prop to set the initially selected option.
-
-```tsx
-<SegmentedControl defaultValue="day">
-  <SegmentedControl.Option value="day">Day</SegmentedControl.Option>
-  <SegmentedControl.Option value="week">Week</SegmentedControl.Option>
-  <SegmentedControl.Option value="month">Month</SegmentedControl.Option>
-</SegmentedControl.Option>
-```
-
-### Controlled
-
-Use a
-[controlled](..../?path=/story/components-selections-segmentedcontrol-web--controlled)
-SegmentedControl when the selected option needs to sync with other application
-state or when side effects should occur upon selection changes.
-
-For a controlled SegmentedControl, set the `selectedValue` prop and use
-`onSelectValue` as a callback that updates the external state.
-
-```tsx
-const [selectedOption, setSelectedOption] = useState("day");
-
-<SegmentedControl
-  selectedValue={selectedOption}
-  onSelectValue={setSelectedOption}
->
-  <SegmentedControl.Option value="day">Day</SegmentedControl.Option>
-  <SegmentedControl.Option value="week">Week</SegmentedControl.Option>
-  <SegmentedControl.Option value="month">Month</SegmentedControl.Option>
-</SegmentedControl>;
-```
+using [Menu](/components/Menu) as an alternative single-selection method for
+modifying the view. Otherwise, truncation will prevent the user from reading the
+label and a label with wrapped text will create layout inconsistencies.
 
 ## Related components
 
-Unlike [Tabs](../?path=/docs/components-navigation-tabs--docs), the contents of
-each segment are not contained by each label. You should use Tabs when you need
-to navigate between related subgroups of different content.
+Unlike [Tabs](/components/Tabs), the contents of each segment are not contained
+by each label. You should use Tabs when you need to navigate between related
+subgroups of different content.
 
-Unlike [Switch](../?path=/docs/components-selections-switch--docs), which
-toggles between a simple On/Off state, the SegmentedControl offers more than two
-options.
+Unlike [Switch](/components/Switch), which toggles between a simple On/Off
+state, the SegmentedControl offers more than two options.
 
 With SegmentedControl, options are more aggressively grouped than
-[Chips](../?path=/docs/components-selections-chips--docs) and also cannot reflow
-when it runs out of room.
+[Chips](/components/Chips) and also cannot reflow when it runs out of room.
 
 ## Accessibility
 

@@ -18,7 +18,7 @@ const skeletonHTML = (theme: Theme, type: "web" | "mobile") => {
   return `
 
 <!DOCTYPE html>
-<html data-theme="${type === "web" ? theme : "light"}" data-type="${type}">
+<html data-theme="${theme}" data-type="${type}">
 <head>
 <style>
 html,body,#root {
@@ -76,6 +76,9 @@ html,body,#root {
           }
         } else if (type === 'updateTheme') {
           document.documentElement.dataset.theme = theme;
+          if (window.updateMobileTheme) {
+            window.updateMobileTheme(theme);
+          }
         }
       });
       </script>
@@ -207,6 +210,7 @@ export const MobileCodeWrapper = (
               ActionItemGroup,
               ActionLabel,
               ActivityIndicator,
+              AtlantisThemeContextProvider,
               AutoLink,
               Banner,
               BottomSheet,
@@ -250,6 +254,7 @@ export const MobileCodeWrapper = (
               Toast,
               showToast,
               Typography,
+              useAtlantisTheme,
               useState,
               forwardRef,
               useEffect,
@@ -260,7 +265,20 @@ export const MobileCodeWrapper = (
                 ${transpiledCode}
 
             function RootWrapper() {
-              return React.createElement(Host, {style:{display:'flex',alignItems:'center',justifyContent:'center', width:'100%'}}, React.createElement(App));
+              const themedApp = React.createElement(AtlantisThemeContextProvider, null, React.createElement(function ThemeHandler(props) {
+                const { setTheme } = useAtlantisTheme();
+
+                // Make this globally available so the doc's site theme can update it
+                window.updateMobileTheme = (theme) => setTheme(theme);
+
+                // Set the initial theme on mount
+                useEffect(() => {
+                  setTheme(document.documentElement.dataset.theme);
+                }, []);
+
+                return React.createElement(App);
+              }));
+              return React.createElement(Host, {style:{display:'flex',alignItems:'center',justifyContent:'center', width:'100%'}}, themedApp);
             }
 
             function IntlWrapper() {
@@ -311,7 +329,6 @@ export const useAtlantisPreviewSkeleton = (type: "web" | "mobile") => {
     transpiledCode: string | null | undefined,
   ) => {
     if (html === "<html><head></head><body></body></html>") {
-      writeSkeleton(selectedFrame.current?.contentDocument, theme);
       selectedFrame?.current?.addEventListener("load", () => {
         if (selectedFrame.current) {
           const iframeDocument = selectedFrame.current.contentDocument;
@@ -323,6 +340,7 @@ export const useAtlantisPreviewSkeleton = (type: "web" | "mobile") => {
           updateIframeCode(selectedFrame.current, transpiledCode);
         }
       });
+      writeSkeleton(selectedFrame.current?.contentDocument, theme);
     } else if (selectedFrame.current) {
       updateIframeCode(selectedFrame.current, transpiledCode);
     } else {

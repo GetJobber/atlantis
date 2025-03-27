@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react-native";
+import { render, renderHook } from "@testing-library/react-native";
 import { TextStyle } from "react-native";
 import {
   SuffixIcon,
@@ -7,7 +7,7 @@ import {
   SuffixLabel,
   SuffixLabelProps,
 } from "./Suffix";
-import { typographyStyles } from "../../../Typography";
+import { useTypographyStyles } from "../../../Typography";
 
 const mockLabel = "$";
 
@@ -48,6 +48,13 @@ function setupIcon({
     />,
   );
 }
+
+let typographyStyles: ReturnType<typeof useTypographyStyles>;
+
+beforeAll(() => {
+  const typographyStylesHook = renderHook(() => useTypographyStyles());
+  typographyStyles = typographyStylesHook.result.current;
+});
 
 describe("Suffix", () => {
   it("renders a suffix label when specified", () => {

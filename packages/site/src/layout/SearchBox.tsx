@@ -15,6 +15,7 @@ import { ToolBoxIllustration } from "../assets/ToolBoxIllustration";
 import { componentList } from "../componentList";
 import { contentList } from "../contentList";
 import { designList } from "../designList";
+import { patternsList } from "../patternsList";
 import { guidesList } from "../guidesList";
 import { changelogList } from "../changelogList";
 import { hooksList } from "../hooksList";
@@ -25,6 +26,7 @@ const lists = [
   { title: "Components", items: componentList },
   { title: "Content", items: contentList },
   { title: "Design", items: designList },
+  { title: "Patterns", items: patternsList },
   { title: "Changelog", items: changelogList },
   { title: "Guides", items: guidesList },
   { title: "Hooks", items: hooksList },

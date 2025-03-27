@@ -44,7 +44,16 @@ interface PopoverContextProps
 const PopoverContext = createContext<PopoverContextProps>({
   popperStyles: {},
   attributes: {},
-} as PopoverContextProps);
+  setPopperElement: () => {
+    // noop
+  },
+  setArrowElement: () => {
+    // noop
+  },
+  popoverClassNames: "",
+  dismissButtonClassNames: "",
+  arrowClassNames: "",
+});
 
 const usePopoverContext = () => {
   return React.useContext(PopoverContext);

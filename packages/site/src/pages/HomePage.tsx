@@ -28,6 +28,7 @@ export const HomePage = () => {
             {
               title: "Content",
               to: "/content",
+              imageURL: "/ContentGuidance.png",
               sections: ["Resources"],
             },
             {
@@ -39,6 +40,13 @@ export const HomePage = () => {
             {
               title: "Guides",
               to: "/guides",
+              imageURL: "/Guides.png",
+              sections: ["Resources"],
+            },
+            {
+              title: "Patterns",
+              to: "/patterns",
+              imageURL: "/Patterns.png",
               sections: ["Resources"],
             },
             {

@@ -85,12 +85,12 @@ blockquote {
 custom-elements,
 section[role="tabpanel"] {
   & table {
-    min-width: 66%;
+    min-width: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-overflow-scrolling: touch;
-    margin: var(--space-large) auto;
+    margin: var(--space-large) 0;
     font-size: var(--typography--fontSize-base);
     line-height: 24px;
     padding: 0;
@@ -218,6 +218,7 @@ iframe {
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   grid-template-rows: auto;
   gap: var(--space-base);
+  isolation: isolate;
 }
 
 @media screen and (min-width: 1024px) {
@@ -234,7 +235,7 @@ iframe {
 
 .baseView-sideRail {
   width: var(--sideBarWidth);
-  padding: 36px var(--space-base);
+  padding: 90px var(--space-large);
   display: none;
   flex-direction: column;
   flex-shrink: 0;

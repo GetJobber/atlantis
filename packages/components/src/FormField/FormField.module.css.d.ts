@@ -18,8 +18,10 @@ declare const styles: {
   readonly "inputWrapper": string;
   readonly "childrenWrapper": string;
   readonly "input": string;
+  readonly "emptyPhoneNumber": string;
   readonly "label": string;
   readonly "select": string;
+  readonly "externalLabel": string;
   readonly "postfix": string;
   readonly "affixIcon": string;
   readonly "suffix": string;

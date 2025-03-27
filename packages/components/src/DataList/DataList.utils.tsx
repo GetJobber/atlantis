@@ -109,8 +109,14 @@ export function getExposedActions(
 
   return firstNChildren.reduce((result: typeof childrenArray, child, i) => {
     const hasIcon = Boolean(child.props.icon);
+    const isAlwaysVisible = child.props.alwaysVisible; // If true, the child action will always be visible and not nested in the dropdown.
 
-    if (!hasIcon) return result; // If the child does not have an icon, continue.
+    if (
+      isAlwaysVisible === false ||
+      (isAlwaysVisible === undefined && !hasIcon)
+    ) {
+      return result;
+    }
 
     const isLastChildAdded = result.length === i;
 

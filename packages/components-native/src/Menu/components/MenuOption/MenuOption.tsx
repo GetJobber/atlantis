@@ -1,12 +1,12 @@
 import React from "react";
 import { Pressable, View } from "react-native";
 import capitalize from "lodash/capitalize";
-import { styles } from "./MenuOption.style";
+import { useStyles } from "./MenuOption.style";
 import { MenuOptionInternalProps } from "../../types";
-import { tokens } from "../../../utils/design";
 import { Flex } from "../../../Flex";
 import { Typography } from "../../../Typography";
 import { Icon } from "../../../Icon";
+import { useAtlantisTheme } from "../../../AtlantisThemeContext";
 
 export function MenuOption({
   label,
@@ -20,6 +20,8 @@ export function MenuOption({
 }: MenuOptionInternalProps): JSX.Element {
   const destructiveColor = "destructive";
   const textVariation = destructive ? destructiveColor : "heading";
+  const styles = useStyles();
+  const { tokens } = useAtlantisTheme();
 
   return (
     <View testID="ATL-MENU-OPTIONS">

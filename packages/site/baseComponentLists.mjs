@@ -6,6 +6,7 @@
 const components = [
   "AnimatedPresence",
   "AnimatedSwitcher",
+  "AtlantisThemeContext",
   "Autocomplete",
   "Avatar",
   "Banner",
@@ -87,6 +88,7 @@ const mobileComponents = [
   "ActionItemGroup",
   "ActionLabel",
   "ActivityIndicator",
+  "AtlantisThemeContext",
   "AutoLink",
   "Banner",
   "BottomSheet",

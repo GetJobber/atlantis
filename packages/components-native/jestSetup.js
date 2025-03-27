@@ -1,5 +1,5 @@
 import React from "react";
-
+// Mock the useIsScreenReaderEnabled hook
 jest.mock("./dist/src/hooks", () => {
   const actualHooks = jest.requireActual("./dist/src/hooks");
 

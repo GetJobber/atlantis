@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import debounce from "lodash/debounce";
 import classNames from "classnames";
+import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import styles from "./InternalChipDismissible.module.css";
 import { ChipDismissibleInputProps } from "./InternalChipDismissibleTypes";
 import {
@@ -19,6 +20,7 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
     attachTo,
     isLoadingMore = false,
     onLoadMore,
+    options,
   } = props;
 
   const {
@@ -50,16 +52,15 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
     update,
     setPositionedElementRef,
   } = useRepositionMenu(attachTo);
+  useSafeLayoutEffect(() => {
+    update?.();
+  }, [allOptions, menuOpen, update, options]);
 
   useEffect(() => {
-    if (menuOpen && update) update();
-  }, [allOptions]);
-
-  useEffect(() => {
-    handleDebouncedSearch();
+    handleDebouncedSearch(searchValue, options);
 
     return handleDebouncedSearch.cancel;
-  }, [searchValue]);
+  }, [searchValue, options]);
 
   useEffect(() => {
     isInView && onLoadMore && onLoadMore(searchValue);

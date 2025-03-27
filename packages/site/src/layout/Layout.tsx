@@ -3,10 +3,9 @@ import { Route, Switch, useHistory, useLocation } from "react-router";
 import { NavMenu } from "./NavMenu";
 import { routes } from "../routes";
 import "./code-theme.css";
-import { ToggleThemeButton } from "../components/ToggleThemeButton";
 import { hooksList } from "../hooksList";
 import { NotFoundPage } from "../pages/NotFoundPage";
-import { FeedbackBanner } from "../components/FeedbackBanner";
+import { TritonSideDrawer } from "../components/TritonSideDrawer";
 
 /**
  * Layout for whole application. This will display the NavMenu and the content of the page.
@@ -18,7 +17,6 @@ export const Layout = () => {
   const scrollPane = useRef<HTMLDivElement>(null);
   const path = new URLSearchParams(location.search).get("path");
   const history = useHistory();
-
   useEffect(() => {
     if (scrollPane?.current) {
       scrollPane?.current.scrollTo({ top: 0 });
@@ -52,9 +50,7 @@ export const Layout = () => {
       >
         <RoutesSwitch />
       </div>
-
-      <ToggleThemeButton />
-      <FeedbackBanner />
+      <TritonSideDrawer />
     </LayoutWrapper>
   );
 };

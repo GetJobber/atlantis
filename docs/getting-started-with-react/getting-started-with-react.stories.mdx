@@ -123,10 +123,10 @@ The next section is the return value which will return the TSX defining our
 component. In here you can see that our `GifGift` component is composed of the
 following other react components:
 
-- [Card](../?path=/docs/components-layouts-and-structure-card--docs)
-- [Content](../?path=/docs/components-layouts-and-structure-content--docs)
-- [Button](../?path=/docs/components-actions-button--docs)
-- [InputText](../?path=/docs/components-forms-and-inputs-inputtext--docs)
+- [Card](/components/Card)
+- [Content](/components/Content)
+- [Button](/components/Button)
+- [InputText](/components/InputText)
 
 If you look at the docs for the above components you can see how the different
 props they expose allow us to customize their behaviour given the needs of our
@@ -168,38 +168,34 @@ button. Here we call the `setURL` setter to show the `loadingGIF`. Then, we call
 
 #### 1. Primitive components:
 
-Examples: [Icon](..?path=/docs/components-images-and-icons-icon--docs),
-[Avatar](..?path=/docs/components-images-and-icons-avatar--docs)
+Examples: [Icon](/components/Icon), [Avatar](/components/Avatar)
 
 These components do not accept children and have minimal customization.
 
 #### 2. Simple components:
 
-Examples: [Button](..?path=/docs/components-actions-button--docs),
-[Link](..?path=/docs/components-text-and-typography-link--docs)
+Examples: [Button](/components/Button), [Link](/components/Link)
 
 These allow basic customization through props or limited children, like
 `ReactNode` or specific child types.
 
 #### 3. Compound components:
 
-Examples: [Chip](..?path=/docs/components-selections-chip--docs),
-[DataList](..?path=/docs/components-lists-and-tables-datalist--docs)
+Examples: [Chip](/components/Chip), [DataList](/components/DataList)
 
 These are part of larger compositions and may validate their children types to
 maintain internal consistency.
 
 #### 4. Strict complex components:
 
-Example:
-[Autocomplete](..?path=/docs/components-forms-and-inputs-autocomplete--docs),
+Example: [Autocomplete](/components/Autocomplete)
 
 These have multiple UI pieces they are built out of but strict APIs and limited
 customization.
 
 #### 5. Customizable complex components:
 
-Example: [Combobox](..?path=/docs/components-selections-combobox--docs)
+Example: [Combobox](/components/Combobox)
 
 These also have multiple UI pieces they are built out of but offer options for
 customization.

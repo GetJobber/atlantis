@@ -1,8 +1,9 @@
 import CreateAReactComponentComponent from "@atlantis/docs/guides/create-basic-component.stories.mdx";
 import CustomizingComponentsComponent from "@atlantis/docs/guides/customizing-components.stories.mdx";
 import DocumentationStyleguideComponent from "@atlantis/docs/guides/documentation-style.stories.mdx";
-import FrontendStyleguideComponenet from "@atlantis/docs/guides/frontend-style.stories.mdx";
-import GettingSatrtedWithReactComponent from "@atlantis/docs/getting-started-with-react/getting-started-with-react.stories.mdx";
+import FrontendStyleguideComponent from "@atlantis/docs/guides/frontend-style.stories.mdx";
+import AddingAnIcon from "@atlantis/docs/guides/adding-an-icon.stories.mdx";
+import GettingStartedWithReactComponent from "@atlantis/docs/getting-started-with-react/getting-started-with-react.stories.mdx";
 import PullRequestTitleGeneratorComponent from "@atlantis/docs/guides/pull-request-title-generator.stories.mdx";
 import { ContentMapItems } from "../types/maps";
 
@@ -22,15 +23,20 @@ export const guidesContentMap: ContentMapItems = {
     title: "Writing documentation",
     content: () => <DocumentationStyleguideComponent />,
   },
+  "adding-an-icon": {
+    intro: "Adding an icon",
+    title: "Adding an icon",
+    content: () => <AddingAnIcon />,
+  },
   "frontend-styleguide": {
     intro: "Frontend styleguide",
     title: "Frontend styleguide",
-    content: () => <FrontendStyleguideComponenet />,
+    content: () => <FrontendStyleguideComponent />,
   },
   "getting-started-with-react": {
     intro: "Getting started with React",
     title: "Getting started with React",
-    content: () => <GettingSatrtedWithReactComponent />,
+    content: () => <GettingStartedWithReactComponent />,
   },
   "pull-request-title-generator": {
     intro: "Pull request title generator",
