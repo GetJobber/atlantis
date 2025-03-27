@@ -1,0 +1,28 @@
+.sidekick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--public-sidekick-space, var(--space-base, 16px));
+}
+
+.sidekick.left > :first-child {
+  flex-grow: 1;
+}
+
+.sidekick.right > :last-child {
+  flex-grow: 1;
+}
+
+.sidekick.left.withWidth > :first-child {
+  flex-basis: var(--public-sidekick-width);
+}
+
+.sidekick.right.widthWidth > :last-child {
+  flex-basis: var(--public-sidekick-width);
+}
+
+.sidekick.left > :last-child,
+.sidekick.right > :last-child {
+  flex-basis: 0;
+  flex-grow: 999;
+  min-inline-size: var(--public-sidekick-min-size, 50px);
+}

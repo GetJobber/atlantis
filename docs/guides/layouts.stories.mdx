@@ -1,0 +1,97 @@
+import { Stack } from "@jobber/components/Stack";
+import { Center } from "@jobber/components/Center";
+import { Typography } from "@jobber/components/Typography";
+import { Heading } from "@jobber/components/Heading";
+import { Card } from "@jobber/components/Card";
+import { Square } from "@jobber/components/Square";
+import { Tiles } from "@jobber/components/Tiles";
+import { ResponsiveSwitcher } from "@jobber/components/ResponsiveSwitcher";
+import { Cover } from "@jobber/components/Cover";
+import { Button } from "@jobber/components/Button";
+import { Text } from "@jobber/components/Text";
+import { Cluster } from "@jobber/components/Cluster";
+import { SideKick } from "@jobber/components/SideKick";
+
+<Stack splitAfter={3}>
+  <Heading level={1}>Heading1!</Heading>
+  <Heading level={2}>Heading2!</Heading>
+  <Heading level={3}>Heading3!</Heading>
+  <Heading level={4}>Heading4!</Heading>
+  <Heading level={5}>Heading5!</Heading>
+  <Heading level={6}>Heading6!</Heading>
+</Stack>
+
+<Center max="30ch">
+  <Card elevation="base">
+    <Square padding="20px" borderWidth="10px" invert>
+      <Heading level={1}>Heading1!</Heading>
+    </Square>
+  </Card>
+</Center>
+
+<Tiles minSize="20rem" space="12px">
+  <Square padding="20px" borderWidth="0px" invert>
+    <Heading level={1}>Heading1!</Heading>
+  </Square>
+  <Square padding="20px" borderWidth="0px" invert>
+    <Heading level={1}>Heading1!</Heading>
+  </Square>
+  <Square padding="20px" borderWidth="0px" invert>
+    <Heading level={1}>Heading1!</Heading>
+  </Square>
+</Tiles>
+
+<ResponsiveSwitcher threshold="4px" space="12px" limit={1}>
+  <Square padding="20px" invert>
+    <Center alsoText>
+      <Heading level={1}>H</Heading>
+    </Center>
+  </Square>
+  <Square padding="20px" borderWidth="0">
+    <Stack>
+      <Heading level={1}>H</Heading>
+      <Square padding="20px">
+        <Heading level={1}>H</Heading>
+      </Square>
+      <Square padding="20px">
+        <Heading level={1}>H</Heading>
+      </Square>
+    </Stack>
+  </Square>
+</ResponsiveSwitcher>
+
+<Square>
+  <Cover minHeight="20vh" space="12px">
+    <Cover.Center>
+      <Cover minHeight="200px">
+        <Cover.Center>
+          <Center andText>
+            <Cluster justify="end" space="12px">
+              <Button>
+                <Button.Label>Hi!</Button.Label>
+              </Button>
+              <Button>
+                <Button.Label>Hi 2!</Button.Label>
+              </Button>
+            </Cluster>
+          </Center>
+        </Cover.Center>
+      </Cover>
+      <Cover.Center>
+        <Square padding="20px" borderWidth="0px" invert>
+          <Heading level={1}>Heading1!</Heading>
+        </Square>
+      </Cover.Center>
+      <div>After Stuff</div>
+    </Cover.Center>
+  </Cover>
+</Square>
+
+<SideKick space="12px">
+  <Square padding="20px" borderWidth="0px" invert>
+    <Heading level={1}>Heading1!</Heading>
+  </Square>
+  <Square padding="20px" borderWidth="0px" invert>
+    <Heading level={1}>Heading1!</Heading>
+  </Square>
+</SideKick>

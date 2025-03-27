@@ -28,4 +28,8 @@ export const guidesList = [
     title: "Pull request title generator",
     to: "/guides/pull-request-title-generator",
   },
+  {
+    title: "Layouts",
+    to: "/guides/layouts",
+  },
 ];

@@ -1,0 +1,13 @@
+.tiles {
+  display: grid;
+  grid-gap: var(--public-tile-space);
+}
+
+@supports (width: min(var(--public-tile-min-size), 100%)) {
+  .tiles {
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(min(var(--public-tile-min-size), 100%), 1fr)
+    );
+  }
+}

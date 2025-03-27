@@ -1,0 +1,93 @@
+.stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.stack.topOnly > * {
+  margin-block: 0;
+}
+
+.stack.recursive * {
+  margin-block: 0;
+}
+
+.stack.recursive * + * {
+  margin-block-start: var(--public-stack-space, var(--space-base));
+}
+
+.stack.topOnly > * + * {
+  margin-block-start: var(--public-stack-space, var(--space-base));
+}
+
+.stack:only-child {
+  block-size: 100%;
+}
+
+/**
+
+Split After Block.
+
+If there is a way to loop in the future of use a css custom property, we can use that instead of the nth-child duplication method.
+
+**/
+
+.stack.splitAfter-1 > :nth-child(1) {
+  margin-block-end: auto;
+}
+
+.stack.splitAfter-2 > :nth-child(2) {
+  margin-block-end: auto;
+}
+
+.stack.splitAfter-3 > :nth-child(3) {
+  margin-block-end: auto;
+}
+
+.stack.splitAfter-4 > :nth-child(4) {
+  margin-block-end: auto;
+}
+
+.stack.splitAfter-5 > :nth-child(5) {
+  margin-block-end: auto;
+}
+
+.stack.splitAfter-6 > :nth-child(6) {
+  margin-block-end: auto;
+}
+
+.stack.splitAfter-7 > :nth-child(7) {
+  margin-block-end: auto;
+}
+
+.stack.splitAfter-8 > :nth-child(8) {
+  margin-block-end: auto;
+}
+
+.stack.splitAfter-9 > :nth-child(9) {
+  margin-block-end: auto;
+}
+
+.stack.splitAfter-10 > :nth-child(10) {
+  margin-block-end: auto;
+}
+
+.stack.splitAfter-11 > :nth-child(11) {
+  margin-block-end: auto;
+}
+
+.stack.splitAfter-12 > :nth-child(12) {
+  margin-block-end: auto;
+}
+
+.stack.splitAfter-13 > :nth-child(13) {
+  margin-block-end: auto;
+}
+
+.stack.splitAfter-14 > :nth-child(14) {
+  margin-block-end: auto;
+}
+
+.stack.splitAfter-15 > :nth-child(15) {
+  margin-block-end: auto;
+}

@@ -1,0 +1,17 @@
+.square {
+  --square-padding: var(--space-base);
+  --square-border-width: var(--border-base);
+  padding: var(--square-padding);
+  border: var(--square-border-width) solid;
+  color: var(--color-text);
+  background-color: var(--color-surface);
+}
+
+.square * {
+  color: inherit;
+}
+
+.square.invert {
+  color: var(--color-text--reverse);
+  background-color: var(--color-surface--reverse);
+}

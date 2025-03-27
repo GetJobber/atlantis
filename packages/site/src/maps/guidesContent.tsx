@@ -5,6 +5,7 @@ import FrontendStyleguideComponent from "@atlantis/docs/guides/frontend-style.st
 import AddingAnIcon from "@atlantis/docs/guides/adding-an-icon.stories.mdx";
 import GettingStartedWithReactComponent from "@atlantis/docs/getting-started-with-react/getting-started-with-react.stories.mdx";
 import PullRequestTitleGeneratorComponent from "@atlantis/docs/guides/pull-request-title-generator.stories.mdx";
+import LayoutsComponent from "@atlantis/docs/guides/layouts.stories.mdx";
 import { ContentMapItems } from "../types/maps";
 
 export const guidesContentMap: ContentMapItems = {
@@ -42,5 +43,10 @@ export const guidesContentMap: ContentMapItems = {
     intro: "Pull request title generator",
     title: "Pull request title generator",
     content: () => <PullRequestTitleGeneratorComponent />,
+  },
+  layouts: {
+    intro: "Layouts",
+    title: "Layouts",
+    content: () => <LayoutsComponent />,
   },
 };
