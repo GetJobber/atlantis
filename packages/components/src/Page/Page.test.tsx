@@ -108,6 +108,26 @@ describe("When actions are provided", () => {
     expect(handleSecondaryAction).toHaveBeenCalledTimes(1);
   });
 
+  it("renders secondary action without primary action", () => {
+    const handleSecondaryAction = jest.fn();
+
+    const { getByText } = render(
+      <Page
+        title="Secondary Only"
+        secondaryAction={{
+          label: "Secondary Action",
+          onClick: handleSecondaryAction,
+        }}
+      >
+        Content
+      </Page>,
+    );
+
+    expect(getByText("Secondary Action")).toBeInTheDocument();
+    fireEvent.click(getByText("Secondary Action"));
+    expect(handleSecondaryAction).toHaveBeenCalledTimes(1);
+  });
+
   describe("getActionProps", () => {
     it("given action props, it returns the correct props", () => {
       const buttonActionProps = {
