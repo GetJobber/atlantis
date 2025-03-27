@@ -80,21 +80,20 @@ export function useInternalChipDismissible({
         target instanceof HTMLInputElement && target.value;
       if (isInputAndHasValue) return;
 
-      const nextElementToFocus = target.nextElementSibling;
-      const prevElementToFocus = target.previousElementSibling;
+      if (event.key === "ArrowLeft") {
+        const prevFocusable = findFocusableElement(target, "previous");
 
-      if (
-        event.key === "ArrowLeft" &&
-        prevElementToFocus instanceof HTMLElement
-      ) {
-        prevElementToFocus.focus();
+        if (prevFocusable) {
+          prevFocusable.focus();
+        }
       }
 
-      if (
-        event.key === "ArrowRight" &&
-        nextElementToFocus instanceof HTMLElement
-      ) {
-        nextElementToFocus.focus();
+      if (event.key === "ArrowRight") {
+        const nextFocusable = findFocusableElement(target, "next");
+
+        if (nextFocusable) {
+          nextFocusable.focus();
+        }
       }
     },
 
