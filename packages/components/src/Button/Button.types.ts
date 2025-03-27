@@ -34,6 +34,8 @@ export interface ButtonFoundationProps {
   /**
    * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
    * **last resort**. Using this may result in unexpected side effects.
+   * **Note:** If you are applying fill override to buttonIcon.path, you will need to add !important due
+   * to Button's children element css inheritance.
    * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
    */
   readonly UNSAFE_className?: {
@@ -50,6 +52,8 @@ export interface ButtonFoundationProps {
   /**
    * **Use at your own risk:** Custom style for specific elements. This should only be used as a
    * **last resort**. Using this may result in unexpected side effects.
+   * **Note:** If you are applying fill override to buttonIcon.path, you will need to add !important due
+   * to Button's children element css inheritance.
    * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
    */
   readonly UNSAFE_style?: {
