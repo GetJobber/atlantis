@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.27.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.26.4...@jobber/components@6.27.0) (2025-03-27)
+
+
+### Features
+
+* **components:** Use new status icons in Banner ([#2419](https://github.com/GetJobber/atlantis/issues/2419)) ([bce7448](https://github.com/GetJobber/atlantis/commit/bce7448a373a42e782a60b3953625844b9a0aa61))
+
+
+
+
+
 ## [6.26.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.26.3...@jobber/components@6.26.4) (2025-03-27)
 
 **Note:** Version bump only for package @jobber/components
