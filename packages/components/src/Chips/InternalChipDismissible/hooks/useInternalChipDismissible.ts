@@ -76,13 +76,39 @@ export function useInternalChipDismissible({
           const target = event.target;
 
           if (target instanceof HTMLElement) {
-            const prevElement = target.previousElementSibling;
-            const nextElement = target.nextElementSibling;
+            const findFocusableElement = (
+              element: Element | null,
+              direction: "previous" | "next",
+            ): HTMLElement | null => {
+              if (!element) return null;
 
-            if (prevElement instanceof HTMLElement) {
-              prevElement.focus();
-            } else if (nextElement instanceof HTMLElement) {
-              nextElement.focus();
+              const nextElement =
+                direction === "previous"
+                  ? element.previousElementSibling
+                  : element.nextElementSibling;
+
+              if (!nextElement) return null;
+
+              // Check if element is a div or button
+              if (
+                nextElement instanceof HTMLElement &&
+                (nextElement.tagName === "DIV" ||
+                  nextElement.tagName === "BUTTON")
+              ) {
+                return nextElement;
+              }
+
+              // Recursively continue search
+              return findFocusableElement(nextElement, direction);
+            };
+
+            const prevFocusable = findFocusableElement(target, "previous");
+            const nextFocusable = findFocusableElement(target, "next");
+
+            if (prevFocusable) {
+              prevFocusable.focus();
+            } else if (nextFocusable) {
+              nextFocusable.focus();
             }
           }
           actions.handleChipRemove(value)();
