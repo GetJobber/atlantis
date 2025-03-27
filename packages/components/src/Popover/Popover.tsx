@@ -1,4 +1,5 @@
 import React, { CSSProperties, PropsWithChildren, createContext } from "react";
+import ReactDOM from "react-dom";
 import { PopoverProps } from "./types";
 import { usePopover } from "./usePopover";
 import { usePopoverStyles } from "./usePopoverStyles";
@@ -33,6 +34,7 @@ export function Popover({
 }
 interface PopoverContextProps
   extends Pick<PopoverProps, "UNSAFE_className" | "UNSAFE_style"> {
+  open: boolean;
   setPopperElement: (element: HTMLElement | null) => void;
   setArrowElement: (element: HTMLElement | null) => void;
   popperStyles: { [key: string]: CSSProperties };
@@ -42,6 +44,7 @@ interface PopoverContextProps
   arrowClassNames: string;
 }
 const PopoverContext = createContext<PopoverContextProps>({
+  open: false,
   popperStyles: {},
   attributes: {},
   setPopperElement: () => {
@@ -90,6 +93,7 @@ Popover.Provider = function PopoverProvider({
   return (
     <PopoverContext.Provider
       value={{
+        open,
         setPopperElement,
         setArrowElement,
         popperStyles,
@@ -143,6 +147,7 @@ Popover.Wrapper = function PopoverWrapper({
   children,
 }: PropsWithChildren<Pick<PopoverProps, "UNSAFE_style">>) {
   const {
+    open,
     popperStyles,
     setPopperElement,
     popoverClassNames,
@@ -150,7 +155,9 @@ Popover.Wrapper = function PopoverWrapper({
     UNSAFE_style,
   } = usePopoverContext();
 
-  return (
+  if (!open) return null;
+
+  const content = (
     <div
       role="dialog"
       data-elevation={"elevated"}
@@ -163,4 +170,6 @@ Popover.Wrapper = function PopoverWrapper({
       {children}
     </div>
   );
+
+  return ReactDOM.createPortal(content, document.body);
 };
