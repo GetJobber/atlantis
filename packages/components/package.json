@@ -210,6 +210,11 @@
       "import": "./dist/FormatTime/index.mjs",
       "require": "./dist/FormatTime/index.cjs"
     },
+    "./Frame": {
+      "types": "./dist/Frame/index.d.ts",
+      "import": "./dist/Frame/index.mjs",
+      "require": "./dist/Frame/index.cjs"
+    },
     "./Gallery": {
       "types": "./dist/Gallery/index.d.ts",
       "import": "./dist/Gallery/index.mjs",

@@ -37,6 +37,7 @@ export * from "./FormatEmail";
 export * from "./FormatFile";
 export * from "./FormatRelativeDateTime";
 export * from "./FormatTime";
+export * from "./Frame";
 export * from "./Gallery";
 export * from "./Glimmer";
 export * from "./Grid";

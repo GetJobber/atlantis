@@ -13,11 +13,11 @@
 }
 
 .stack.recursive * + * {
-  margin-block-start: var(--public-stack-space, var(--space-base));
+  margin-block-start: var(--public-stack-space);
 }
 
 .stack.topOnly > * + * {
-  margin-block-start: var(--public-stack-space, var(--space-base));
+  margin-block-start: var(--public-stack-space);
 }
 
 .stack:only-child {

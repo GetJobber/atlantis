@@ -11,6 +11,7 @@ import { Button } from "@jobber/components/Button";
 import { Text } from "@jobber/components/Text";
 import { Cluster } from "@jobber/components/Cluster";
 import { SideKick } from "@jobber/components/SideKick";
+import { Frame } from "@jobber/components/Frame";
 
 <Stack splitAfter={3}>
   <Heading level={1}>Heading1!</Heading>
@@ -20,6 +21,7 @@ import { SideKick } from "@jobber/components/SideKick";
   <Heading level={5}>Heading5!</Heading>
   <Heading level={6}>Heading6!</Heading>
 </Stack>
+;
 
 <Center max="30ch">
   <Card elevation="base">
@@ -87,7 +89,7 @@ import { SideKick } from "@jobber/components/SideKick";
   </Cover>
 </Square>
 
-<SideKick space="12px">
+<SideKick space="12px" contentMinWidth="55%" sideWidth="50%" onRight>
   <Square padding="20px" borderWidth="0px" invert>
     <Heading level={1}>Heading1!</Heading>
   </Square>

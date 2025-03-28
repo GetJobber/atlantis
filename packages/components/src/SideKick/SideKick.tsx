@@ -5,8 +5,8 @@ import styles from "./SideKick.module.css";
 export const SideKick = ({
   children,
   sideWidth,
-  contentMinWidth,
-  space,
+  contentMinWidth = "50%",
+  space = "var(--space-base)",
   onRight,
 }: {
   readonly children: React.ReactNode;
@@ -27,6 +27,7 @@ export const SideKick = ({
       className={classNames(
         styles.sidekick,
         onRight ? styles.right : styles.left,
+        sideWidth ? styles.withWidth : null,
       )}
     >
       {children}

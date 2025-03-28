@@ -14,6 +14,7 @@ import { GuidesPage } from "./pages/GuidesPage";
 import { PackagesPage } from "./pages/PackagesPage";
 import { ComponentNotFound } from "./components/ComponentNotFound";
 import { WelcomeGuidePage } from "./pages/WelcomeGuidePage";
+import { LayoutPage } from "./pages/LayoutPage";
 
 export interface AtlantisRoute {
   path?: string;
@@ -69,6 +70,11 @@ export const routes: Array<AtlantisRoute> = [
     component: HomePage,
     exact: true,
     handle: "Home",
+  },
+  {
+    path: "/layouts",
+    component: LayoutPage,
+    handle: "Layouts",
   },
   {
     path: "/patterns",
