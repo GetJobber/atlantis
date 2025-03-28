@@ -5,7 +5,6 @@ import { usePopoverStyles } from "./usePopoverStyles";
 
 interface PopoverContextProps
   extends Pick<PopoverProps, "UNSAFE_className" | "UNSAFE_style"> {
-  open: boolean;
   setPopperElement: (element: HTMLElement | null) => void;
   setArrowElement: (element: HTMLElement | null) => void;
   popperStyles: { [key: string]: CSSProperties };
@@ -16,7 +15,6 @@ interface PopoverContextProps
 }
 
 const PopoverContext = createContext<PopoverContextProps>({
-  open: false,
   popperStyles: {},
   attributes: {},
   setPopperElement: () => {
@@ -57,7 +55,6 @@ export function PopoverProvider({
   return (
     <PopoverContext.Provider
       value={{
-        open,
         setPopperElement,
         setArrowElement,
         popperStyles,

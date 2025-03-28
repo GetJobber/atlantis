@@ -71,15 +71,12 @@ Popover.Wrapper = function PopoverWrapper({
   children,
 }: PropsWithChildren<Pick<PopoverProps, "UNSAFE_style">>) {
   const {
-    open,
     popperStyles,
     setPopperElement,
     popoverClassNames,
     attributes,
     UNSAFE_style,
   } = usePopoverContext();
-
-  if (!open) return null;
 
   return (
     <AtlantisThemedPortal>
