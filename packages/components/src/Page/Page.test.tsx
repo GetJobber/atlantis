@@ -123,7 +123,7 @@ describe("When actions are provided", () => {
       </Page>,
     );
 
-    expect(getByText("Secondary Action")).toBeInTheDocument();
+    expect(getByText("Secondary Action")).toBeVisible();
     fireEvent.click(getByText("Secondary Action"));
     expect(handleSecondaryAction).toHaveBeenCalledTimes(1);
   });
