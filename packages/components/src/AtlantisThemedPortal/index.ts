@@ -1,0 +1,1 @@
+export { AtlantisThemedPortal } from "./AtlantisThemedPortal";
