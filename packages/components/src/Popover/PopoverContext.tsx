@@ -2,28 +2,25 @@ import React, { CSSProperties, createContext, useContext } from "react";
 import { PopoverProps, PopoverProviderProps } from "./types";
 import { usePopover } from "./usePopover";
 import { usePopoverStyles } from "./usePopoverStyles";
+import { AtlantisThemedPortal } from "../AtlantisThemedPortal";
 
 interface PopoverContextProps
   extends Pick<PopoverProps, "UNSAFE_className" | "UNSAFE_style"> {
   setPopperElement: (element: HTMLElement | null) => void;
   setArrowElement: (element: HTMLElement | null) => void;
   popperStyles: { [key: string]: CSSProperties };
-  attributes: { [key: string]: { [key: string]: string } | undefined };
-  popoverClassNames: string;
   dismissButtonClassNames: string;
   arrowClassNames: string;
 }
 
 const PopoverContext = createContext<PopoverContextProps>({
   popperStyles: {},
-  attributes: {},
   setPopperElement: () => {
     // noop
   },
   setArrowElement: () => {
     // noop
   },
-  popoverClassNames: "",
   dismissButtonClassNames: "",
   arrowClassNames: "",
 });
@@ -58,15 +55,25 @@ export function PopoverProvider({
         setPopperElement,
         setArrowElement,
         popperStyles,
-        attributes,
-        popoverClassNames,
         dismissButtonClassNames,
         UNSAFE_className,
         UNSAFE_style,
         arrowClassNames,
       }}
     >
-      {children}
+      <AtlantisThemedPortal>
+        <div
+          role="dialog"
+          data-elevation={"elevated"}
+          ref={setPopperElement}
+          style={{ ...popperStyles.popper, ...(UNSAFE_style?.container ?? {}) }}
+          className={popoverClassNames}
+          {...attributes.popper}
+          data-testid="popover-container"
+        >
+          {children}
+        </div>
+      </AtlantisThemedPortal>
     </PopoverContext.Provider>
   );
 }

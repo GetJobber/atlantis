@@ -1,8 +1,7 @@
-import React, { PropsWithChildren } from "react";
-import { PopoverProps } from "./types";
+import React from "react";
+import { PopoverDismissWrapperProps, PopoverProps } from "./types";
 import { PopoverProvider, usePopoverContext } from "./PopoverContext";
 import { ButtonDismiss } from "../ButtonDismiss";
-import { AtlantisThemedPortal } from "../AtlantisThemedPortal";
 
 export function Popover({
   onRequestClose,
@@ -21,13 +20,11 @@ export function Popover({
       UNSAFE_className={UNSAFE_className}
       UNSAFE_style={UNSAFE_style}
     >
-      <Popover.Wrapper>
-        <Popover.DismissWrapper>
-          <ButtonDismiss onClick={onRequestClose} ariaLabel="Close dialog" />
-        </Popover.DismissWrapper>
-        {children}
-        <Popover.Arrow />
-      </Popover.Wrapper>
+      <Popover.DismissWrapper>
+        <ButtonDismiss onClick={onRequestClose} ariaLabel="Close dialog" />
+      </Popover.DismissWrapper>
+      {children}
+      <Popover.Arrow />
     </Popover.Provider>
   );
 }
@@ -62,33 +59,5 @@ Popover.DismissWrapper = function PopoverDismissWrapper({
     >
       {children}
     </div>
-  );
-};
-
-Popover.Wrapper = function PopoverWrapper({
-  children,
-}: PropsWithChildren<Pick<PopoverProps, "UNSAFE_style">>) {
-  const {
-    popperStyles,
-    setPopperElement,
-    popoverClassNames,
-    attributes,
-    UNSAFE_style,
-  } = usePopoverContext();
-
-  return (
-    <AtlantisThemedPortal>
-      <div
-        role="dialog"
-        data-elevation={"elevated"}
-        ref={setPopperElement}
-        style={{ ...popperStyles.popper, ...(UNSAFE_style?.container ?? {}) }}
-        className={popoverClassNames}
-        {...attributes.popper}
-        data-testid="popover-container"
-      >
-        {children}
-      </div>
-    </AtlantisThemedPortal>
   );
 };
