@@ -5,6 +5,7 @@ import { useBreakpoints } from "@jobber/hooks";
 import AnimatedPresenceDisclosure from "./AnimatedPresenceDisclosure";
 import styles from "./NavMenu.module.css";
 import { LeftDrawer } from "./LeftDrawer";
+import { getStorybookUrl } from "./getStorybookUrl";
 import { routes } from "../routes";
 import { JobberLogo } from "../assets/JobberLogo.svg";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
@@ -114,7 +115,7 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
         </MenuList>
       </div>
       <a
-        href="https://atlantis.getjobber.com/storybook/?path=/docs/introduction--docs"
+        href={getStorybookUrl("?path=/docs/introduction--docs")}
         className={styles.navFooterLink}
       >
         View in Storybook
