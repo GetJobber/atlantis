@@ -35,7 +35,7 @@ export function InternalChipButton({
       onClick={handleClick}
       role="button"
       aria-label={`Remove ${label}`}
-      aria-hidden={true}
+      aria-hidden={disabled}
       aria-disabled={disabled}
       data-testid="remove-chip-button"
     >

@@ -3,6 +3,34 @@ import sortBy from "lodash/sortBy";
 import { useLiveAnnounce } from "@jobber/hooks/useLiveAnnounce";
 import { InternalChipDismissibleProps } from "../InternalChipDismissibleTypes";
 
+/**
+ * Recursively finds a focusable element (div or button) in the specified direction
+ */
+function findFocusableElement(
+  element: Element | null,
+  direction: "previous" | "next",
+): HTMLElement | null {
+  if (!element) return null;
+
+  const nextElement =
+    direction === "previous"
+      ? element.previousElementSibling
+      : element.nextElementSibling;
+
+  if (!nextElement) return null;
+
+  // Check if element is a div or button
+  if (
+    nextElement instanceof HTMLElement &&
+    (nextElement.tagName === "DIV" || nextElement.tagName === "BUTTON")
+  ) {
+    return nextElement;
+  }
+
+  // Recursively continue search
+  return findFocusableElement(nextElement, direction);
+}
+
 export function useInternalChipDismissible({
   children,
   selected,
@@ -52,21 +80,20 @@ export function useInternalChipDismissible({
         target instanceof HTMLInputElement && target.value;
       if (isInputAndHasValue) return;
 
-      const nextElementToFocus = target.nextElementSibling;
-      const prevElementToFocus = target.previousElementSibling;
+      if (event.key === "ArrowLeft") {
+        const prevFocusable = findFocusableElement(target, "previous");
 
-      if (
-        event.key === "ArrowLeft" &&
-        prevElementToFocus instanceof HTMLElement
-      ) {
-        prevElementToFocus.focus();
+        if (prevFocusable) {
+          prevFocusable.focus();
+        }
       }
 
-      if (
-        event.key === "ArrowRight" &&
-        nextElementToFocus instanceof HTMLElement
-      ) {
-        nextElementToFocus.focus();
+      if (event.key === "ArrowRight") {
+        const nextFocusable = findFocusableElement(target, "next");
+
+        if (nextFocusable) {
+          nextFocusable.focus();
+        }
       }
     },
 
@@ -76,13 +103,13 @@ export function useInternalChipDismissible({
           const target = event.target;
 
           if (target instanceof HTMLElement) {
-            const prevElement = target.previousElementSibling;
-            const nextElement = target.nextElementSibling;
+            const prevFocusable = findFocusableElement(target, "previous");
+            const nextFocusable = findFocusableElement(target, "next");
 
-            if (prevElement instanceof HTMLElement) {
-              prevElement.focus();
-            } else if (nextElement instanceof HTMLElement) {
-              nextElement.focus();
+            if (prevFocusable) {
+              prevFocusable.focus();
+            } else if (nextFocusable) {
+              nextFocusable.focus();
             }
           }
           actions.handleChipRemove(value)();
