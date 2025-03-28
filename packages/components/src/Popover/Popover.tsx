@@ -2,7 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import {
   PopoverArrowProps,
-  PopoverDismissWrapperProps,
+  PopoverDismissButtonProps,
   PopoverProps,
 } from "./types";
 import { PopoverProvider, usePopoverContext } from "./PopoverContext";
@@ -26,12 +26,11 @@ export function Popover({
       UNSAFE_className={UNSAFE_className}
       UNSAFE_style={UNSAFE_style}
     >
-      <Popover.DismissWrapper
+      <Popover.DismissButton
         UNSAFE_className={UNSAFE_className}
         UNSAFE_style={UNSAFE_style}
-      >
-        <ButtonDismiss onClick={onRequestClose} ariaLabel="Close dialog" />
-      </Popover.DismissWrapper>
+        onClick={onRequestClose}
+      />
       {children}
       <Popover.Arrow
         UNSAFE_className={UNSAFE_className}
@@ -61,11 +60,12 @@ Popover.Arrow = function PopoverArrow({
   );
 };
 
-Popover.DismissWrapper = function PopoverDismissWrapper({
-  children,
-  UNSAFE_className,
-  UNSAFE_style,
-}: PopoverDismissWrapperProps) {
+Popover.DismissButton = function PopoverDismissButton(
+  props: PopoverDismissButtonProps,
+) {
+  const { UNSAFE_className, UNSAFE_style, children, ...dismissButtonProps } =
+    props;
+
   const popoverStyles = usePopoverStyles();
   const classes = classnames(
     popoverStyles.dismissButton,
@@ -78,7 +78,9 @@ Popover.DismissWrapper = function PopoverDismissWrapper({
       style={UNSAFE_style?.dismissButtonContainer ?? {}}
       data-testid="popover-dismiss-button-container"
     >
-      {children}
+      {children ?? (
+        <ButtonDismiss ariaLabel="Close dialog" {...dismissButtonProps} />
+      )}
     </div>
   );
 };

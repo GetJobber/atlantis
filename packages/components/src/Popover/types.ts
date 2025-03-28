@@ -1,4 +1,6 @@
 import { CSSProperties, PropsWithChildren } from "react";
+import { XOR } from "ts-xor";
+import { ButtonDismissProps } from "../ButtonDismiss";
 
 export interface PopoverProps {
   /**
@@ -73,7 +75,13 @@ export type PopoverProviderProps = PropsWithChildren<
   }
 >;
 
-export interface PopoverDismissWrapperProps extends PropsWithChildren {
+interface PopoverDismissButtonWithChildren {
+  readonly children: React.ReactNode;
+}
+
+type PopoverDismissButtonWithoutChildren = Partial<ButtonDismissProps>;
+
+export type PopoverDismissButtonProps = {
   /**
    * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
    * **last resort**. Using this may result in unexpected side effects.
@@ -91,7 +99,7 @@ export interface PopoverDismissWrapperProps extends PropsWithChildren {
   readonly UNSAFE_style?: {
     dismissButtonContainer?: CSSProperties;
   };
-}
+} & XOR<PopoverDismissButtonWithChildren, PopoverDismissButtonWithoutChildren>;
 
 export interface PopoverArrowProps {
   /**
