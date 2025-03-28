@@ -24,7 +24,7 @@ export const usePopover = ({
   return { setPopperElement, setArrowElement, popperStyles, attributes };
 };
 
-export function buildModifiers(arrowElement: HTMLElement | undefined | null) {
+function buildModifiers(arrowElement: HTMLElement | undefined | null) {
   const modifiers = [
     {
       name: "arrow",
@@ -48,6 +48,6 @@ export function buildModifiers(arrowElement: HTMLElement | undefined | null) {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function isHTMLElement(el: any): el is Element {
+function isHTMLElement(el: any): el is Element {
   return globalThis?.document && el instanceof Element;
 }
