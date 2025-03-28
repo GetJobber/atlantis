@@ -1,28 +1,20 @@
 import React, { CSSProperties, createContext, useContext } from "react";
-import { PopoverProps, PopoverProviderProps } from "./types";
+import classnames from "classnames";
+import { PopoverProviderProps } from "./types";
 import { usePopover } from "./usePopover";
 import { usePopoverStyles } from "./usePopoverStyles";
 import { AtlantisThemedPortal } from "../AtlantisThemedPortal";
 
-interface PopoverContextProps
-  extends Pick<PopoverProps, "UNSAFE_className" | "UNSAFE_style"> {
-  setPopperElement: (element: HTMLElement | null) => void;
+interface PopoverContextProps {
   setArrowElement: (element: HTMLElement | null) => void;
   popperStyles: { [key: string]: CSSProperties };
-  dismissButtonClassNames: string;
-  arrowClassNames: string;
 }
 
 const PopoverContext = createContext<PopoverContextProps>({
   popperStyles: {},
-  setPopperElement: () => {
-    // noop
-  },
   setArrowElement: () => {
     // noop
   },
-  dismissButtonClassNames: "",
-  arrowClassNames: "",
 });
 
 export function usePopoverContext() {
@@ -44,21 +36,19 @@ export function PopoverProvider({
       open,
     });
 
-  const { popoverClassNames, dismissButtonClassNames, arrowClassNames } =
-    usePopoverStyles({ UNSAFE_className });
+  const popoverStyles = usePopoverStyles();
+  const classes = classnames(
+    popoverStyles.container,
+    UNSAFE_className?.container,
+  );
 
   if (!open) return null;
 
   return (
     <PopoverContext.Provider
       value={{
-        setPopperElement,
         setArrowElement,
         popperStyles,
-        dismissButtonClassNames,
-        UNSAFE_className,
-        UNSAFE_style,
-        arrowClassNames,
       }}
     >
       <AtlantisThemedPortal>
@@ -66,8 +56,8 @@ export function PopoverProvider({
           role="dialog"
           data-elevation={"elevated"}
           ref={setPopperElement}
-          style={{ ...popperStyles.popper, ...(UNSAFE_style?.container ?? {}) }}
-          className={popoverClassNames}
+          style={{ ...popperStyles.popper, ...UNSAFE_style?.container }}
+          className={classes}
           {...attributes.popper}
           data-testid="popover-container"
         >
