@@ -79,7 +79,9 @@ interface PopoverDismissButtonWithChildren {
   readonly children: React.ReactNode;
 }
 
-type PopoverDismissButtonWithoutChildren = Partial<ButtonDismissProps>;
+type PopoverDismissButtonWithoutChildren = Partial<ButtonDismissProps> & {
+  readonly children?: never;
+};
 
 export type PopoverDismissButtonProps = {
   /**
