@@ -51,9 +51,7 @@ Popover.Arrow = function PopoverArrow() {
 Popover.DismissWrapper = function PopoverDismissWrapper({
   children,
   testId = "popover-dismiss-button-container",
-}: PropsWithChildren<{
-  readonly testId?: string;
-}>) {
+}: PopoverDismissWrapperProps) {
   const { dismissButtonClassNames, UNSAFE_style } = usePopoverContext();
 
   return (

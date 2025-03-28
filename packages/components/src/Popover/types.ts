@@ -61,3 +61,7 @@ export type PopoverProviderProps = PropsWithChildren<
     | "UNSAFE_style"
   >
 >;
+
+export type PopoverDismissWrapperProps = PropsWithChildren<{
+  readonly testId?: string;
+}>;
