@@ -109,6 +109,132 @@ General information for using `UNSAFE_` props can be found
 considered a **last resort**. Future Button updates may lead to unintended
 breakages.
 
+#### UNSAFE_className and UNSAFE_style (web)
+
+The Button component has multiple elements that can be targeted with classes or
+styles:
+
+- `container`: The root button element
+- `buttonLabel`: The text label element of the Button
+- `buttonIcon`: The icon element of the Button
+
+**Note** that `buttonLabel` and `buttonIcon` are to be used in a non-composed
+Button. If you're using the composed Button with children, you should use the
+UNSAFE props on the sub-components.
+
+#### UNSAFE_className (web)
+
+Use `UNSAFE_className` to apply custom classes to the Button. This can be useful
+for applying styles via CSS Modules.
+
+##### Non composed UNSAFE_className usage
+
+```tsx
+<Button
+  label="Custom styling with className"
+  icon="add"
+  UNSAFE_className={{
+    container: styles.customButton,
+    buttonLabel: { textStyle: styles.customLabel },
+    buttonIcon: { svg: styles.customIcon, path: styles.customIconPath },
+  }}
+/>
+
+// css
+.customButton {
+  border-radius: 24px;
+}
+
+.customLabel {
+  color: var(--color-blue);
+  text-transform: uppercase;
+}
+
+.customIcon {
+  background-color: var(--color-red);
+}
+
+.customIconPath {
+  fill: var(--color-green) !important;
+}
+```
+
+##### Composed UNSAFE_className usage
+
+```tsx
+<Button>
+  <Button.Icon
+    name="sparkles"
+    UNSAFE_className={{ svg: styles.customIcon, path: styles.customIconPath }}
+  />
+  <Button.Label
+    UNSAFE_className={{
+      textStyle: styles.customLabel,
+    }}
+  >
+    label 1
+  </Button.Label>
+</Button>
+```
+
+#### UNSAFE_style (web)
+
+The `UNSAFE_style` prop provides granular control over the Button's appearance
+through inline styles. The structure mirrors `UNSAFE_className` to allow for
+consistent styling patterns.
+
+##### Non composed UNSAFE_style usage
+
+```tsx
+<Button
+  label="Custom styling with style"
+  icon="sparkles"
+  UNSAFE_style={{
+    container: {
+      borderRadius: "24px",
+    },
+    buttonLabel: {
+      textStyle: {
+        color: "var(--color-blue)",
+        textTransform: "uppercase",
+      },
+    },
+    buttonIcon: {
+      svg: {
+        backgroundColor: "var(--color-red)",
+      },
+      path: {
+        fill: "var(--color-green) !important",
+      },
+    },
+  }}
+/>
+```
+
+##### Composed UNSAFE_style usage
+
+```tsx
+<Button UNSAFE_style={{ borderRadius: "24px" }}>
+  <Button.Icon
+    name="sparkles"
+    UNSAFE_style={{
+      svg: { backgroundColor: "var(--color-red)" },
+      path: { fill: "var(--color-green) !important" },
+    }}
+  />
+  <Button.Label
+    UNSAFE_style={{
+      textStyle: {
+        color: "var(--color-red)",
+        textDecoration: "underline",
+      },
+    }}
+  >
+    label 1
+  </Button.Label>
+</Button>
+```
+
 #### UNSAFE_style (mobile)
 
 The mobile Button component has four elements that can be targeted with styles.
