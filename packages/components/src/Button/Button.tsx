@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import classnames from "classnames";
 import { ButtonProps, HTMLButtonType } from "./Button.types";
 import { useButtonStyles } from "./useButtonStyles";
 // eslint-disable-next-line import/no-deprecated
@@ -33,16 +34,22 @@ function ButtonWrapper(props: ButtonProps) {
     submit,
     to,
     url,
+    UNSAFE_className = {},
+    UNSAFE_style = {},
+    children,
   } = props;
 
   const { combined } = useButtonStyles(props);
 
   const buttonType: HTMLButtonType = submit ? "submit" : "button";
 
+  const buttonClassNames = classnames(combined, UNSAFE_className.container);
+
   const tagProps = {
-    className: combined,
+    className: buttonClassNames,
     disabled,
     id,
+    style: UNSAFE_style.container,
     ...(submit && { name, value }),
     ...(!disabled && { href: url }),
     ...(!disabled && { onClick: onClick }),
@@ -56,7 +63,7 @@ function ButtonWrapper(props: ButtonProps) {
     role: role,
   };
 
-  const buttonInternals = props.children || <ButtonContent {...props} />;
+  const buttonInternals = children || <ButtonContent {...props} />;
 
   if (to) {
     return (

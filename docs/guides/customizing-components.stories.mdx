@@ -28,25 +28,20 @@ concerns and any issues that may arise in future versions.
 
 ## Compound components
 
-Some components expose their foundational building blocks. This usually
-includes subcomponents and hooks for providing styles, state, and
-additional logic.
+Some components expose their foundational building blocks. This usually includes
+subcomponents and hooks for providing styles, state, and additional logic.
 
-These components provide greater flexibility, giving you much more control
-over their appearance and behaviour.
+These components provide greater flexibility, giving you much more control over
+their appearance and behaviour.
 
 ### Example: [Button](../components/Button)
 
-The `Button` component offers a very simple API allowing you to specify a
-label, icon, and icon position. However, because it doesn't accept children,
-it's very inflexible.
+The `Button` component offers a very simple API allowing you to specify a label,
+icon, and icon position. However, because it doesn't accept children, it's very
+inflexible.
 
 ```tsx
-<Button
-  label="Home"
-  icon="home"
-  iconOnRight
-/>
+<Button label="Home" icon="home" iconOnRight />
 ```
 
 For greater control, `Button` is also available as a compound component and has
@@ -74,17 +69,16 @@ function Example() {
 
 `Button` also exposes a few hooks that can be used within your own components:
 
-* `useButtonStyles`: Returns a map of css classes that `Button` uses internally.
-Consumers might use this to make something else look like a `Button`.
-* `useButtonContext`: Returns internal context that the `Button` shares with its
-subcomponents. Consumers might use Button's context within a custom child
-component, allowing that child to adapt to the `size` prop for example.
-
+- `useButtonStyles`: Returns a map of css classes that `Button` uses internally.
+  Consumers might use this to make something else look like a `Button`.
+- `useButtonContext`: Returns internal context that the `Button` shares with its
+  subcomponents. Consumers might use Button's context within a custom child
+  component, allowing that child to adapt to the `size` prop for example.
 
 ## Named `customRender____` props
 
-Some of our components use render props following the `customRender____`
-naming convention.
+Some of our components use render props following the `customRender____` naming
+convention.
 
 This allows you to both:
 

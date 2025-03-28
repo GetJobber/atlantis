@@ -1,6 +1,7 @@
 import { IconNames } from "@jobber/design";
 import { LinkProps } from "react-router-dom";
 import { XOR } from "ts-xor";
+import { CSSProperties } from "react";
 
 export type HTMLButtonType = "button" | "submit";
 export type ButtonVariation = "work" | "learning" | "subtle" | "destructive";
@@ -22,12 +23,49 @@ export interface ButtonFoundationProps {
   readonly loading?: boolean;
   readonly size?: ButtonSize;
   readonly ariaLabel?: string;
+
   onClick?(
     event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
   ): void;
   onMouseDown?(
     event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
   ): void;
+
+  /**
+   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * **Note:** If you are applying fill override to buttonIcon.path, you will need to add !important due
+   * to Button's children element css inheritance.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_className?: {
+    container?: string;
+    buttonLabel?: {
+      textStyle?: string;
+    };
+    buttonIcon?: {
+      svg?: string;
+      path?: string;
+    };
+  };
+
+  /**
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * **Note:** If you are applying fill override to buttonIcon.path, you will need to add !important due
+   * to Button's children element css inheritance.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: {
+    container?: CSSProperties;
+    buttonLabel?: {
+      textStyle?: CSSProperties;
+    };
+    buttonIcon?: {
+      svg?: CSSProperties;
+      path?: CSSProperties;
+    };
+  };
 }
 
 interface ButtonNonComposableProps extends ButtonFoundationProps {
