@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import { CSSProperties, PropsWithChildren } from "react";
 
 export interface PopoverProps {
   /**
@@ -50,3 +50,14 @@ export interface PopoverProps {
     arrow?: CSSProperties;
   };
 }
+
+export type PopoverProviderProps = PropsWithChildren<
+  Pick<
+    PopoverProps,
+    | "UNSAFE_className"
+    | "preferredPlacement"
+    | "attachTo"
+    | "open"
+    | "UNSAFE_style"
+  >
+>;
