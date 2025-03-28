@@ -1,9 +1,9 @@
 import React, { CSSProperties, PropsWithChildren, createContext } from "react";
-import ReactDOM from "react-dom";
 import { PopoverProps } from "./types";
 import { usePopover } from "./usePopover";
 import { usePopoverStyles } from "./usePopoverStyles";
 import { ButtonDismiss } from "../ButtonDismiss";
+import { AtlantisThemedPortal } from "../AtlantisThemedPortal";
 
 export function Popover({
   onRequestClose,
@@ -157,19 +157,19 @@ Popover.Wrapper = function PopoverWrapper({
 
   if (!open) return null;
 
-  const content = (
-    <div
-      role="dialog"
-      data-elevation={"elevated"}
-      ref={setPopperElement}
-      style={{ ...popperStyles.popper, ...(UNSAFE_style?.container ?? {}) }}
-      className={popoverClassNames}
-      {...attributes.popper}
-      data-testid="popover-container"
-    >
-      {children}
-    </div>
+  return (
+    <AtlantisThemedPortal>
+      <div
+        role="dialog"
+        data-elevation={"elevated"}
+        ref={setPopperElement}
+        style={{ ...popperStyles.popper, ...(UNSAFE_style?.container ?? {}) }}
+        className={popoverClassNames}
+        {...attributes.popper}
+        data-testid="popover-container"
+      >
+        {children}
+      </div>
+    </AtlantisThemedPortal>
   );
-
-  return ReactDOM.createPortal(content, document.body);
 };
