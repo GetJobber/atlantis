@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.32.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.31.6...@jobber/atlantis-site@0.32.0) (2025-03-28)
+
+
+### Features
+
+* **components:** Add secondary action support to Page component even without primary action ([#2446](https://github.com/GetJobber/atlantis/issues/2446)) ([3916f3b](https://github.com/GetJobber/atlantis/commit/3916f3b8d716690431e454376e01037166138838))
+
+
+
+
+
 ## [0.31.6](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.31.5...@jobber/atlantis-site@0.31.6) (2025-03-27)
 
 **Note:** Version bump only for package @jobber/atlantis-site
