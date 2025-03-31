@@ -101,7 +101,7 @@
       },
       "secondaryAction": {
         "defaultValue": null,
-        "description": "Page title secondary action button settings.\n  Only shown if there is a primaryAction.",
+        "description": "Page title secondary action button settings.",
         "name": "secondaryAction",
         "parent": {
           "fileName": "../components/src/Page/Page.tsx",
