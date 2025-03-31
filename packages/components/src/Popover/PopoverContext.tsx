@@ -36,12 +36,6 @@ export function PopoverProvider({
       open,
     });
 
-  const popoverStyles = usePopoverStyles();
-  const classes = classnames(
-    popoverStyles.container,
-    UNSAFE_className?.container,
-  );
-
   if (!open) return null;
 
   return (
@@ -51,19 +45,50 @@ export function PopoverProvider({
         popperStyles,
       }}
     >
-      <AtlantisThemedPortal>
-        <div
-          role="dialog"
-          data-elevation={"elevated"}
-          ref={setPopperElement}
-          style={{ ...popperStyles.popper, ...UNSAFE_style?.container }}
-          className={classes}
-          {...attributes.popper}
-          data-testid="popover-container"
-        >
-          {children}
-        </div>
-      </AtlantisThemedPortal>
+      <PopoverWrapper
+        attributes={attributes}
+        UNSAFE_className={UNSAFE_className}
+        UNSAFE_style={UNSAFE_style}
+        setPopperElement={setPopperElement}
+      >
+        {children}
+      </PopoverWrapper>
     </PopoverContext.Provider>
+  );
+}
+
+function PopoverWrapper({
+  children,
+  attributes,
+  setPopperElement,
+  UNSAFE_className,
+  UNSAFE_style,
+}: {
+  readonly children: React.ReactNode;
+  readonly attributes: Record<string, { [key: string]: string } | undefined>;
+  readonly setPopperElement: (element: HTMLElement | null) => void;
+} & Pick<PopoverProviderProps, "UNSAFE_className" | "UNSAFE_style">) {
+  const popoverStyles = usePopoverStyles();
+  const { popperStyles } = usePopoverContext();
+
+  const classes = classnames(
+    popoverStyles.container,
+    UNSAFE_className?.container,
+  );
+
+  return (
+    <AtlantisThemedPortal>
+      <div
+        role="dialog"
+        data-elevation="elevated"
+        ref={setPopperElement}
+        style={{ ...popperStyles.popper, ...UNSAFE_style?.container }}
+        className={classes}
+        {...attributes.popper}
+        data-testid="popover-container"
+      >
+        {children}
+      </div>
+    </AtlantisThemedPortal>
   );
 }
