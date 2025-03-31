@@ -5,7 +5,6 @@ import { Popover } from "@jobber/components/Popover";
 import { Button } from "@jobber/components/Button";
 import { Heading } from "@jobber/components/Heading";
 import { Text } from "@jobber/components/Text";
-import { AtlantisThemeContextProvider } from "@jobber/components/AtlantisThemeContext";
 import { Box } from "@jobber/components/Box";
 
 export default {
@@ -100,18 +99,16 @@ const ComposedTemplate: ComponentStory<typeof Popover> = args => {
             onClick={() => setShowPopover1(!showPopover1)}
           />
         </div>
-        <AtlantisThemeContextProvider dangerouslyOverrideTheme="light">
-          <Popover.Provider {...args} attachTo={divRef1} open={showPopover1}>
-            <Popover.DismissButton
-              onClick={() => setShowPopover1(!showPopover1)}
-            />
+        <Popover.Provider {...args} attachTo={divRef1} open={showPopover1}>
+          <Popover.DismissButton
+            onClick={() => setShowPopover1(!showPopover1)}
+          />
 
-            <Content>
-              <Text>This is a Popover built with composable subcomponents</Text>
-            </Content>
-            <Popover.Arrow />
-          </Popover.Provider>
-        </AtlantisThemeContextProvider>
+          <Content>
+            <Text>This is a Popover built with composable subcomponents</Text>
+          </Content>
+          <Popover.Arrow />
+        </Popover.Provider>
       </Box>
 
       <Box gap="base">
