@@ -2,6 +2,8 @@ import { IconNames } from "@jobber/design";
 import { LinkProps } from "react-router-dom";
 import { XOR } from "ts-xor";
 import { CSSProperties } from "react";
+import { TypographyProps } from "../Typography/Typography";
+import { IconProps } from "../Icon/Icon";
 
 export type HTMLButtonType = "button" | "submit";
 export type ButtonVariation = "work" | "learning" | "subtle" | "destructive";
@@ -40,13 +42,8 @@ export interface ButtonFoundationProps {
    */
   readonly UNSAFE_className?: {
     container?: string;
-    buttonLabel?: {
-      textStyle?: string;
-    };
-    buttonIcon?: {
-      svg?: string;
-      path?: string;
-    };
+    buttonLabel?: TypographyProps["UNSAFE_className"];
+    buttonIcon?: IconProps["UNSAFE_className"];
   };
 
   /**
@@ -58,13 +55,8 @@ export interface ButtonFoundationProps {
    */
   readonly UNSAFE_style?: {
     container?: CSSProperties;
-    buttonLabel?: {
-      textStyle?: CSSProperties;
-    };
-    buttonIcon?: {
-      svg?: CSSProperties;
-      path?: CSSProperties;
-    };
+    buttonLabel?: TypographyProps["UNSAFE_style"];
+    buttonIcon?: IconProps["UNSAFE_style"];
   };
 }
 
