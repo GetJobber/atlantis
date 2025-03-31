@@ -100,12 +100,10 @@ const ComposedTemplate: ComponentStory<typeof Popover> = args => {
           />
         </div>
         <Popover.Provider {...args} attachTo={divRef1} open={showPopover1}>
-          <Popover.DismissButton
-            onClick={() => setShowPopover1(!showPopover1)}
-          />
+          <Popover.DismissButton onClick={() => setShowPopover1(false)} />
 
           <Content>
-            <Text>This is a Popover built with composable subcomponents</Text>
+            This is a Popover built with composable subcomponents
           </Content>
           <Popover.Arrow />
         </Popover.Provider>
@@ -121,9 +119,7 @@ const ComposedTemplate: ComponentStory<typeof Popover> = args => {
         </div>
         <Popover.Provider {...args} attachTo={divRef2} open={showPopover2}>
           <Content>
-            <Text>
-              This is a Popover that excludes the arrow and dismiss button
-            </Text>
+            This is a Popover that excludes the arrow and dismiss button
           </Content>
         </Popover.Provider>
       </Box>
@@ -138,16 +134,11 @@ const ComposedTemplate: ComponentStory<typeof Popover> = args => {
         </div>
         <Popover.Provider {...args} attachTo={divRef3} open={showPopover3}>
           <Popover.DismissButton>
-            <Button
-              onClick={() => setShowPopover3(!showPopover3)}
-              variation="subtle"
-            >
+            <Button onClick={() => setShowPopover3(false)} variation="subtle">
               <Button.Icon name="eyeCrossed" />
             </Button>
           </Popover.DismissButton>
-          <Content>
-            <Text>This is a Popover with a custom dismiss button</Text>
-          </Content>
+          <Content>This is a Popover with a custom dismiss button</Content>
           <Popover.Arrow />
         </Popover.Provider>
       </Box>
