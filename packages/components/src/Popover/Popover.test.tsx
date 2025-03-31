@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Popover, type PopoverProps } from ".";
+import { Button } from "../Button";
 
 const content = "Test Content";
 
@@ -24,7 +25,7 @@ const renderPopover = (props: Omit<PopoverProps, "attachTo">) => {
   );
 };
 
-describe("Popover", () => {
+describe("Non-composable Popover", () => {
   it("should render a Popover with the content and dismiss button", async () => {
     const handleClose = jest.fn();
 
@@ -118,6 +119,228 @@ describe("Popover", () => {
       });
 
       const arrow = screen.getByTestId("popover-arrow");
+      expect(getComputedStyle(arrow).backgroundColor).toBe("green");
+    });
+  });
+});
+
+describe("Composable Popover", () => {
+  it("renders the popover content", async () => {
+    const handleClose = jest.fn();
+    const divRef = React.createRef<HTMLDivElement>();
+
+    render(
+      <>
+        <div ref={divRef}></div>
+        <Popover.Provider attachTo={divRef} open={true}>
+          <Popover.DismissButton onClick={handleClose} />
+          {content}
+          <Popover.Arrow />
+        </Popover.Provider>
+      </>,
+    );
+    expect(screen.queryByText(content)).toBeVisible();
+  });
+
+  it("renders the arrow", async () => {
+    const handleClose = jest.fn();
+    const divRef = React.createRef<HTMLDivElement>();
+
+    render(
+      <>
+        <div ref={divRef}></div>
+        <Popover.Provider attachTo={divRef} open={true}>
+          <Popover.DismissButton onClick={handleClose} />
+          {content}
+          <Popover.Arrow />
+        </Popover.Provider>
+      </>,
+    );
+
+    expect(screen.queryByTestId("popover-arrow")).toBeVisible();
+  });
+
+  it("renders the dismiss button and closes the popover when clicked", async () => {
+    const handleClose = jest.fn();
+    const divRef = React.createRef<HTMLDivElement>();
+
+    render(
+      <>
+        <div ref={divRef}></div>
+        <Popover.Provider attachTo={divRef} open={true}>
+          <Popover.DismissButton onClick={handleClose} />
+          {content}
+          <Popover.Arrow />
+        </Popover.Provider>
+      </>,
+    );
+
+    await userEvent.click(screen.getByLabelText("Close dialog"));
+    expect(handleClose).toHaveBeenCalledTimes(1);
+  });
+
+  it("allows rendering a custom dismiss button and closes the popover when clicked", async () => {
+    const handleClose = jest.fn();
+    const divRef = React.createRef<HTMLDivElement>();
+
+    render(
+      <>
+        <div ref={divRef}></div>
+        <Popover.Provider attachTo={divRef} open={true}>
+          <Popover.DismissButton>
+            <Button onClick={handleClose}>
+              <Button.Label>Close this</Button.Label>
+            </Button>
+          </Popover.DismissButton>
+          {content}
+          <Popover.Arrow />
+        </Popover.Provider>
+      </>,
+    );
+
+    await userEvent.click(screen.getByText("Close this"));
+    expect(handleClose).toHaveBeenCalledTimes(1);
+  });
+
+  it("does not render the popover when open is false", async () => {
+    const handleClose = jest.fn();
+    const divRef = React.createRef<HTMLDivElement>();
+
+    render(
+      <>
+        <div ref={divRef}></div>
+        <Popover.Provider attachTo={divRef} open={false}>
+          <Popover.DismissButton onClick={handleClose} />
+          {content}
+          <Popover.Arrow />
+        </Popover.Provider>
+      </>,
+    );
+
+    expect(screen.queryByText(content)).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("Close dialog")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("popover-arrow")).not.toBeInTheDocument();
+  });
+
+  it("does not render the arrow when it's omitted", async () => {
+    const handleClose = jest.fn();
+    const divRef = React.createRef<HTMLDivElement>();
+
+    render(
+      <>
+        <div ref={divRef}></div>
+        <Popover.Provider attachTo={divRef} open={true}>
+          <Popover.DismissButton onClick={handleClose} />
+          {content}
+        </Popover.Provider>
+      </>,
+    );
+
+    expect(screen.queryByTestId("popover-arrow")).not.toBeInTheDocument();
+  });
+
+  it("does not render the dismiss button when it's omitted", async () => {
+    const divRef = React.createRef<HTMLDivElement>();
+
+    render(
+      <>
+        <div ref={divRef}></div>
+        <Popover.Provider attachTo={divRef} open={true}>
+          {content}
+          <Popover.Arrow />
+        </Popover.Provider>
+      </>,
+    );
+
+    expect(screen.queryByLabelText("Close dialog")).not.toBeInTheDocument();
+  });
+
+  describe("UNSAFE_ props", () => {
+    it("applies the UNSAFE_ props to the container", () => {
+      const handleClose = jest.fn();
+      const divRef = React.createRef<HTMLDivElement>();
+
+      render(
+        <>
+          <div ref={divRef}></div>
+          <Popover.Provider
+            attachTo={divRef}
+            open={true}
+            UNSAFE_className={{
+              container: "custom-container-class",
+            }}
+            UNSAFE_style={{
+              container: { backgroundColor: "red" },
+            }}
+          >
+            <Popover.DismissButton onClick={handleClose} />
+            {content}
+            <Popover.Arrow />
+          </Popover.Provider>
+        </>,
+      );
+
+      const popover = screen.getByTestId("popover-container");
+      expect(popover).toHaveClass("custom-container-class");
+      expect(getComputedStyle(popover).backgroundColor).toBe("red");
+    });
+
+    it("applies the UNSAFE_ props to the dismiss button", () => {
+      const handleClose = jest.fn();
+      const divRef = React.createRef<HTMLDivElement>();
+
+      render(
+        <>
+          <div ref={divRef}></div>
+          <Popover.Provider attachTo={divRef} open={true}>
+            <Popover.DismissButton
+              onClick={handleClose}
+              UNSAFE_className={{
+                dismissButtonContainer: "custom-dismiss-button-class",
+              }}
+              UNSAFE_style={{
+                dismissButtonContainer: { backgroundColor: "blue" },
+              }}
+            />
+            {content}
+            <Popover.Arrow />
+          </Popover.Provider>
+        </>,
+      );
+
+      const dismissButtonContainer = screen.getByTestId(
+        "popover-dismiss-button-container",
+      );
+      expect(dismissButtonContainer).toHaveClass("custom-dismiss-button-class");
+      expect(getComputedStyle(dismissButtonContainer).backgroundColor).toBe(
+        "blue",
+      );
+    });
+
+    it("applies the UNSAFE_ props to the arrow", () => {
+      const handleClose = jest.fn();
+      const divRef = React.createRef<HTMLDivElement>();
+
+      render(
+        <>
+          <div ref={divRef}></div>
+          <Popover.Provider attachTo={divRef} open={true}>
+            <Popover.DismissButton onClick={handleClose} />
+            {content}
+            <Popover.Arrow
+              UNSAFE_className={{
+                arrow: "custom-arrow-class",
+              }}
+              UNSAFE_style={{
+                arrow: { backgroundColor: "green" },
+              }}
+            />
+          </Popover.Provider>
+        </>,
+      );
+
+      const arrow = screen.getByTestId("popover-arrow");
+      expect(arrow).toHaveClass("custom-arrow-class");
       expect(getComputedStyle(arrow).backgroundColor).toBe("green");
     });
   });
