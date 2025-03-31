@@ -1,23 +1,18 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import { AtlantisThemedPortalProps } from "./types";
+import { AtlantisPortalContentProps } from "./types";
 import {
   AtlantisThemeContextProvider,
   useAtlantisTheme,
 } from "../AtlantisThemeContext";
 
-export function AtlantisThemedPortal({
+export function AtlantisPortalContent({
   children,
-  container,
-}: AtlantisThemedPortalProps) {
+}: AtlantisPortalContentProps) {
   const { theme } = useAtlantisTheme();
-  const portalTarget = container ?? document.body;
 
-  const content = (
+  return (
     <AtlantisThemeContextProvider dangerouslyOverrideTheme={theme}>
       {children}
     </AtlantisThemeContextProvider>
   );
-
-  return ReactDOM.createPortal(content, portalTarget);
 }

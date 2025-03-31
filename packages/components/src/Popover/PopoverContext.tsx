@@ -1,9 +1,10 @@
 import React, { CSSProperties, createContext, useContext } from "react";
 import classnames from "classnames";
+import ReactDOM from "react-dom";
 import { PopoverProviderProps } from "./types";
 import { usePopover } from "./usePopover";
 import { usePopoverStyles } from "./usePopoverStyles";
-import { AtlantisThemedPortal } from "../AtlantisThemedPortal";
+import { AtlantisPortalContent } from "../AtlantisPortalContent";
 
 interface PopoverContextProps {
   setArrowElement: (element: HTMLElement | null) => void;
@@ -76,8 +77,8 @@ function PopoverWrapper({
     UNSAFE_className?.container,
   );
 
-  return (
-    <AtlantisThemedPortal>
+  const content = (
+    <AtlantisPortalContent>
       <div
         role="dialog"
         data-elevation="elevated"
@@ -89,6 +90,8 @@ function PopoverWrapper({
       >
         {children}
       </div>
-    </AtlantisThemedPortal>
+    </AtlantisPortalContent>
   );
+
+  return ReactDOM.createPortal(content, document.body);
 }
