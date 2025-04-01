@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useEffect, useId, useState } from "react";
 import classnames from "classnames";
-import { Controller, useForm, useFormContext } from "react-hook-form";
+import { Controller, useForm, useFormContext, useWatch } from "react-hook-form";
 import styles from "./Checkbox.module.css";
 import { CheckboxLegacyProps } from "./Checkbox.types";
 import { Icon } from "../Icon";
@@ -20,7 +20,7 @@ export function CheckboxLegacy({
   onChange,
   onFocus,
 }: CheckboxLegacyProps) {
-  const { control, setValue, watch } =
+  const { control, setValue } =
     useFormContext() != undefined
       ? useFormContext()
       : // If there isn't a Form Context being provided, get a form for this field.
@@ -37,11 +37,16 @@ export function CheckboxLegacy({
     name ? name : `generatedName--${identifier}`,
   );
 
+  const watchedValue = useWatch({
+    control,
+    name: controlledName,
+  });
+
   useEffect(() => {
     if (value != undefined) {
       setValue(controlledName, value);
     }
-  }, [value, watch(controlledName)]);
+  }, [value, watchedValue]);
 
   const wrapperClassName = classnames(
     styles.wrapper,
