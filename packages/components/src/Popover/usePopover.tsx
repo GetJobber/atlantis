@@ -1,5 +1,5 @@
 import { usePopper } from "react-popper";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { PopoverProps } from "./types";
 
@@ -11,11 +11,32 @@ export const usePopover = ({
   const [popperElement, setPopperElement] = useState<HTMLElement | null>();
   const [arrowElement, setArrowElement] = useState<HTMLElement | null>();
 
+  const modifiers = useMemo(() => {
+    return [
+      {
+        name: "arrow",
+        options: { element: arrowElement, padding: 10 },
+      },
+      {
+        name: "offset",
+        options: {
+          offset: [0, 10],
+        },
+      },
+      {
+        name: "flip",
+        options: {
+          fallbackPlacements: ["auto"],
+        },
+      },
+    ];
+  }, [arrowElement]);
+
   const { styles: popperStyles, attributes } = usePopper(
     isHTMLElement(attachTo) ? attachTo : attachTo.current,
     popperElement,
     {
-      modifiers: buildModifiers(arrowElement),
+      modifiers,
       placement: preferredPlacement,
     },
   );
@@ -23,29 +44,6 @@ export const usePopover = ({
 
   return { setPopperElement, setArrowElement, popperStyles, attributes };
 };
-
-function buildModifiers(arrowElement: HTMLElement | undefined | null) {
-  const modifiers = [
-    {
-      name: "arrow",
-      options: { element: arrowElement, padding: 10 },
-    },
-    {
-      name: "offset",
-      options: {
-        offset: [0, 10],
-      },
-    },
-    {
-      name: "flip",
-      options: {
-        fallbackPlacements: ["auto"],
-      },
-    },
-  ];
-
-  return modifiers;
-}
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function isHTMLElement(el: any): el is Element {
