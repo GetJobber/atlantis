@@ -55,7 +55,7 @@ Popover.Arrow = function PopoverArrow({
       ref={setArrowElement}
       className={classes}
       style={{ ...popperStyles.arrow, ...UNSAFE_style?.arrow }}
-      data-testid="popover-arrow"
+      data-testid="ATL-Popover-Arrow"
     />
   );
 };
@@ -76,7 +76,7 @@ Popover.DismissButton = function PopoverDismissButton(
     <div
       className={classes}
       style={UNSAFE_style?.dismissButtonContainer ?? {}}
-      data-testid="popover-dismiss-button-container"
+      data-testid="ATL-Popover-Dismiss-Button-Container"
     >
       {children ?? (
         <ButtonDismiss ariaLabel="Close dialog" {...dismissButtonProps} />
