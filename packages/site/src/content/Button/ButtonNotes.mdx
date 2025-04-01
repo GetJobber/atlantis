@@ -109,6 +109,11 @@ General information for using `UNSAFE_` props can be found
 considered a **last resort**. Future Button updates may lead to unintended
 breakages.
 
+**Use of !important** You will see that `!important` is used for `path.fill` of
+Icon's UNSAFE props. This is needed since Button's children element `fill` is
+set to `inherit !important`. _However_, in React `!important` is unreliable with
+`style` attribute when used with non css variable colors.
+
 #### UNSAFE_className and UNSAFE_style (web)
 
 The Button component has multiple elements that can be targeted with classes or
