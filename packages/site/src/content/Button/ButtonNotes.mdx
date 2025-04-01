@@ -1,3 +1,5 @@
+import { Tabs, Tab } from "@jobber/components/Tabs";
+
 ## Configuration
 
 ### Client-side routing (web only)
@@ -127,118 +129,121 @@ styles:
 Button. If you're using the composed Button with children, you should use the
 UNSAFE props on the sub-components.
 
-#### UNSAFE_className (web)
+<Tabs>
+  <Tab label="UNSAFE_className">
+    Use `UNSAFE_className` to apply custom classes to the Button. This can be useful
+    for applying styles via CSS Modules.
 
-Use `UNSAFE_className` to apply custom classes to the Button. This can be useful
-for applying styles via CSS Modules.
+    ##### Non composed UNSAFE_className usage
 
-##### Non composed UNSAFE_className usage
+    ```tsx
+    <Button
+      label="Custom styling with className"
+      icon="add"
+      UNSAFE_className={{
+        container: styles.customButton,
+        buttonLabel: { textStyle: styles.customLabel },
+        buttonIcon: { svg: styles.customIcon, path: styles.customIconPath },
+      }}
+    />
 
-```tsx
-<Button
-  label="Custom styling with className"
-  icon="add"
-  UNSAFE_className={{
-    container: styles.customButton,
-    buttonLabel: { textStyle: styles.customLabel },
-    buttonIcon: { svg: styles.customIcon, path: styles.customIconPath },
-  }}
-/>
+    // css
+    .customButton {
+      border-radius: 24px;
+    }
 
-// css
-.customButton {
-  border-radius: 24px;
-}
+    .customLabel {
+      color: var(--color-blue);
+      text-transform: uppercase;
+    }
 
-.customLabel {
-  color: var(--color-blue);
-  text-transform: uppercase;
-}
+    .customIcon {
+      background-color: var(--color-red);
+    }
 
-.customIcon {
-  background-color: var(--color-red);
-}
+    .customIconPath {
+      fill: var(--color-green) !important;
+    }
+    ```
 
-.customIconPath {
-  fill: var(--color-green) !important;
-}
-```
+    ##### Composed UNSAFE_className usage
 
-##### Composed UNSAFE_className usage
+    ```tsx
+    <Button>
+      <Button.Icon
+        name="sparkles"
+        UNSAFE_className={{ svg: styles.customIcon, path: styles.customIconPath }}
+      />
+      <Button.Label
+        UNSAFE_className={{
+          textStyle: styles.customLabel,
+        }}
+      >
+        label 1
+      </Button.Label>
+    </Button>
+    ```
 
-```tsx
-<Button>
-  <Button.Icon
-    name="sparkles"
-    UNSAFE_className={{ svg: styles.customIcon, path: styles.customIconPath }}
-  />
-  <Button.Label
-    UNSAFE_className={{
-      textStyle: styles.customLabel,
-    }}
-  >
-    label 1
-  </Button.Label>
-</Button>
-```
+  </Tab>
+  <Tab label="UNSAFE_style">
+    The `UNSAFE_style` prop provides granular control over the Button's appearance
+    through inline styles. The structure mirrors `UNSAFE_className` to allow for
+    consistent styling patterns.
 
-#### UNSAFE_style (web)
+    ##### Non composed UNSAFE_style usage
 
-The `UNSAFE_style` prop provides granular control over the Button's appearance
-through inline styles. The structure mirrors `UNSAFE_className` to allow for
-consistent styling patterns.
+    ```tsx
+    <Button
+      label="Custom styling with style"
+      icon="sparkles"
+      UNSAFE_style={{
+        container: {
+          borderRadius: "24px",
+        },
+        buttonLabel: {
+          textStyle: {
+            color: "var(--color-blue)",
+            textTransform: "uppercase",
+          },
+        },
+        buttonIcon: {
+          svg: {
+            backgroundColor: "var(--color-red)",
+          },
+          path: {
+            fill: "var(--color-green) !important",
+          },
+        },
+      }}
+    />
+    ```
 
-##### Non composed UNSAFE_style usage
+    ##### Composed UNSAFE_style usage
 
-```tsx
-<Button
-  label="Custom styling with style"
-  icon="sparkles"
-  UNSAFE_style={{
-    container: {
-      borderRadius: "24px",
-    },
-    buttonLabel: {
-      textStyle: {
-        color: "var(--color-blue)",
-        textTransform: "uppercase",
-      },
-    },
-    buttonIcon: {
-      svg: {
-        backgroundColor: "var(--color-red)",
-      },
-      path: {
-        fill: "var(--color-green) !important",
-      },
-    },
-  }}
-/>
-```
+    ```tsx
+    <Button UNSAFE_style={{ borderRadius: "24px" }}>
+      <Button.Icon
+        name="sparkles"
+        UNSAFE_style={{
+          svg: { backgroundColor: "var(--color-red)" },
+          path: { fill: "var(--color-green) !important" },
+        }}
+      />
+      <Button.Label
+        UNSAFE_style={{
+          textStyle: {
+            color: "var(--color-red)",
+            textDecoration: "underline",
+          },
+        }}
+      >
+        label 1
+      </Button.Label>
+    </Button>
+    ```
 
-##### Composed UNSAFE_style usage
-
-```tsx
-<Button UNSAFE_style={{ borderRadius: "24px" }}>
-  <Button.Icon
-    name="sparkles"
-    UNSAFE_style={{
-      svg: { backgroundColor: "var(--color-red)" },
-      path: { fill: "var(--color-green) !important" },
-    }}
-  />
-  <Button.Label
-    UNSAFE_style={{
-      textStyle: {
-        color: "var(--color-red)",
-        textDecoration: "underline",
-      },
-    }}
-  >
-    label 1
-  </Button.Label>
-</Button>
-```
+  </Tab>
+</Tabs>
 
 #### UNSAFE_style (mobile)
 
