@@ -4,7 +4,7 @@ import {
   PopoverArrowProps,
   PopoverDismissButtonProps,
   PopoverProps,
-} from "./types";
+} from "./Popover.types";
 import { PopoverProvider, usePopoverContext } from "./PopoverContext";
 import { usePopoverStyles } from "./usePopoverStyles";
 import { ButtonDismiss } from "../ButtonDismiss";

@@ -1,5 +1,5 @@
 import React from "react";
-import { AtlantisPortalContentProps } from "./types";
+import { AtlantisPortalContentProps } from "./AtlantisPortalContent.types";
 import {
   AtlantisThemeContextProvider,
   useAtlantisTheme,

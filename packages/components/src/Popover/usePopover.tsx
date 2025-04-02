@@ -1,7 +1,7 @@
 import { usePopper } from "react-popper";
 import { useMemo, useState } from "react";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
-import { PopoverProps } from "./types";
+import { PopoverProps } from "./Popover.types";
 
 export const usePopover = ({
   preferredPlacement,

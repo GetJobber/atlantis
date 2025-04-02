@@ -1,7 +1,7 @@
 import React, { CSSProperties, createContext, useContext } from "react";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
-import { PopoverProviderProps } from "./types";
+import { PopoverProviderProps } from "./Popover.types";
 import { usePopover } from "./usePopover";
 import { usePopoverStyles } from "./usePopoverStyles";
 import { AtlantisPortalContent } from "../AtlantisPortalContent";

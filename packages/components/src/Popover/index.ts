@@ -6,4 +6,4 @@ export type {
   PopoverProviderProps,
   PopoverDismissButtonProps,
   PopoverArrowProps,
-} from "./types";
+} from "./Popover.types";
