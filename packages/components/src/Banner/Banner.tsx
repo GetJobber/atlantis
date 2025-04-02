@@ -120,11 +120,11 @@ export function Banner({
 function getBannerIcon(type: BannerType): IconNames | undefined {
   switch (type) {
     case "notice":
-      return "starburst";
+      return "info";
     case "success":
       return "checkmark";
     case "warning":
-      return "help";
+      return "warning";
     case "error":
       return "alert";
   }
