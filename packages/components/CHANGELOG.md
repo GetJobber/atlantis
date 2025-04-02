@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.29.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.28.0...@jobber/components@6.29.0) (2025-04-01)
+
+
+### Features
+
+* **components:** Add UNSAFE props to Button ([#2448](https://github.com/GetJobber/atlantis/issues/2448)) ([c4f4798](https://github.com/GetJobber/atlantis/commit/c4f4798aa150e90587b6f7a1afc129398ecfef9c))
+
+
+
+
+
 # [6.28.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.27.0...@jobber/components@6.28.0) (2025-03-28)
 
 
