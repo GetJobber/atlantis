@@ -211,24 +211,6 @@
     "displayName": "Popover.DismissButton",
     "methods": [],
     "props": {
-      "UNSAFE_className": {
-        "defaultValue": null,
-        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
-        "name": "UNSAFE_className",
-        "required": false,
-        "type": {
-          "name": "{ dismissButtonContainer?: string; }"
-        }
-      },
-      "UNSAFE_style": {
-        "defaultValue": null,
-        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
-        "name": "UNSAFE_style",
-        "required": false,
-        "type": {
-          "name": "{ dismissButtonContainer?: CSSProperties; }"
-        }
-      },
       "onClick": {
         "defaultValue": null,
         "description": "",
@@ -253,6 +235,32 @@
         "required": false,
         "type": {
           "name": "string"
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "packages/components/src/Popover/Popover.types.ts",
+          "name": "PopoverDismissButtonBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ dismissButtonContainer?: string; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/Popover/Popover.types.ts",
+          "name": "PopoverDismissButtonBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ dismissButtonContainer?: CSSProperties; }"
         }
       }
     }
