@@ -1,3 +1,6 @@
+import { Canvas } from "@storybook/addon-docs";
+import { Cover, Heading, Text, Form } from "@jobber/components";
+
 # Cover
 
 The Cover component helps you create full-height layouts with vertically
@@ -15,33 +18,16 @@ Use Cover when you need to:
 
 ## Basic example
 
-```jsx
-<Cover minHeight="100vh">
-  <Cover.Center>
-    <Heading>Welcome back!</Heading>
-    <Text>Sign in to continue to your account.</Text>
-    <Form>{/* Form content */}</Form>
-  </Cover.Center>
-</Cover>
-```
-
-## Props
-
-### Cover
-
-| Prop        | Type              | Description                                            | Default     |
-| ----------- | ----------------- | ------------------------------------------------------ | ----------- |
-| `children`  | `React.ReactNode` | The content to be displayed within the Cover component | Required    |
-| `minHeight` | `string`          | Sets the minimum height of the Cover component         | `undefined` |
-| `space`     | `string`          | Sets the spacing between child elements                | `undefined` |
-
-### Cover.Center
-
-| Prop       | Type              | Description                                                      | Default  |
-| ---------- | ----------------- | ---------------------------------------------------------------- | -------- |
-| `children` | `React.ReactNode` | The content to be vertically centered within the Cover component | Required |
-
-## Subcomponents
+<Canvas>
+  <Cover minHeight="50vh">
+    <Text>Content above</Text>
+    <Cover.Center>
+      <Heading>Welcome back!</Heading>
+      <Text>Sign in to continue to your account.</Text>
+    </Cover.Center>
+    <Text>Content below</Text>
+  </Cover>
+</Canvas>
 
 ### Cover.Center
 
@@ -49,11 +35,14 @@ Use `Cover.Center` to vertically center content within the Cover component.
 Content within `Cover.Center` will be automatically centered in the available
 space.
 
-```jsx
-<Cover minHeight="100vh">
-  <Cover.Center>{/* Centered content */}</Cover.Center>
-</Cover>
-```
+<Canvas>
+  <Cover minHeight="40vh">
+    <Cover.Center>
+      <Heading>Welcome back!</Heading>
+      <Text>Sign in to continue to your account.</Text>
+    </Cover.Center>
+  </Cover>
+</Canvas>
 
 ## Best practices
 
@@ -61,13 +50,3 @@ space.
 - Consider the viewport height (`vh`) units for full-screen covers
 - Ensure content within `Cover.Center` is properly structured for vertical
   centering
-- Use appropriate spacing values that match your design system
-
-## Related components
-
-## Accessibility
-
-- Ensure proper heading hierarchy within the Cover component
-- Maintain sufficient color contrast for content visibility
-- Use semantic HTML elements for content structure
-- Test keyboard navigation when interactive elements are present

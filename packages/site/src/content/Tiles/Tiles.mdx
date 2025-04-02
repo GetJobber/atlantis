@@ -1,3 +1,141 @@
+import { Canvas } from "@storybook/addon-docs";
+import { Tiles, Card, Text, Rectangle, Stack } from "@jobber/components";
+
 # Tiles
 
-Tiles rule.
+The Tiles component creates a responsive grid layout that automatically adjusts
+based on available space. It's perfect for displaying a collection of
+similarly-sized items in a grid format.
+
+## Design & usage guidelines
+
+Use Tiles when you need to:
+
+- Display a collection of similar content (like cards, images, or content
+  blocks)
+- Create a responsive grid that adapts to different screen sizes
+- Maintain consistent sizing across items while maximizing space usage
+
+### When to use
+
+- Photo galleries or image collections
+- Card-based layouts
+- Feature showcases
+- Product grids
+- Dashboard widgets
+
+### When not to use
+
+- For single-column layouts (use [Stack](/components/Stack) instead)
+- For when you want items to be their natural size (use
+  [Cluster](/components/Cluster) instead)
+
+## Content guidelines
+
+Content within Tiles should:
+
+- Be consistent in structure across tiles
+- Have similar visual weight
+- Be self-contained within each tile
+- Not rely on specific positioning relative to other tiles
+
+## Implementation
+
+The Tiles component provides two key properties to control its layout:
+
+### minSize
+
+Controls the minimum width of each tile. Tiles will automatically flow to the
+next row when they can't maintain this minimum width.
+
+<Canvas>
+<div style={{width:'100%'}}>
+
+<Tiles minSize="30ch">
+  <Rectangle padding="0">
+  <Card>
+    <Rectangle>
+    <Text>First tile</Text>
+    </Rectangle>
+  </Card>
+  </Rectangle>
+  <Rectangle padding="0">
+  <Card>
+    <Rectangle>
+    <Text>Second tile</Text>
+    </Rectangle>
+  </Card>
+  </Rectangle>
+</Tiles>
+</div>
+</Canvas>
+
+<Canvas>
+<div style={{width:'100%'}}>
+
+<Tiles minSize="20ch">
+  <Rectangle padding="0">
+  <Card>
+    <Rectangle>
+    <Text>First tile</Text>
+    </Rectangle>
+  </Card>
+  </Rectangle>
+  <Rectangle padding="0">
+  <Card>
+    <Rectangle>
+    <Text>Second tile</Text>
+    </Rectangle>
+  </Card>
+  </Rectangle>
+</Tiles>
+</div>
+</Canvas>
+### space
+
+Controls the gap between tiles. Uses Jobber's spacing scale:
+
+<Canvas>
+  <div style={{ width: "100%" }}>
+    <Tiles space="largest">
+      <Rectangle padding="0">
+        <Card>
+          <Rectangle>
+            <Text>First tile</Text>
+          </Rectangle>
+        </Card>
+      </Rectangle>
+      <Rectangle padding="0">
+        <Card>
+          <Rectangle>
+            <Text>Second tile</Text>
+          </Rectangle>
+        </Card>
+      </Rectangle>
+    </Tiles>
+  </div>
+</Canvas>
+
+Available spacing options:
+
+- `minuscule`
+- `smallest`
+- `smaller`
+- `small`
+- `base` (default)
+- `large`
+- `larger`
+- `largest`
+- `extravagant`
+
+## Accessibility
+
+The Tiles component:
+
+- Maintains a logical reading order for screen readers
+- Preserves content structure within each tile
+- Allows keyboard navigation through tile content
+
+## Related components
+
+- [Stack](/components/Stack) - For vertical stacking of elements

@@ -1,5 +1,83 @@
+import { Canvas } from "@storybook/addon-docs";
+import { Frame } from "@jobber/components";
+import { Heading, Text } from "@jobber/components";
+
 # Frame
 
-Frame is a component that allows you to create a frame around a component.
+Frame is a component that creates a fixed aspect ratio container for content.
+It's particularly useful for handling images and videos, ensuring they maintain
+consistent proportions across different screen sizes.
 
 ## Usage
+
+Frame accepts any content as a child element and maintains the specified aspect
+ratio. By default, it uses a 16:9 ratio, but this can be customized using the
+`n` and `d` props.
+
+<Canvas>
+  <Frame>
+    <img
+      src="https://placehold.co/600x400?text=Profile+photo"
+      alt="Profile photo"
+    />
+  </Frame>
+</Canvas>
+
+### Common aspect ratios
+
+Frame supports various aspect ratios through its `n` (numerator) and `d`
+(denominator) props:
+
+<Canvas>
+  <Frame>
+    <img
+      src="https://placehold.co/600x400?text=Landscape+photo"
+      alt="Landscape photo"
+    />
+  </Frame>
+</Canvas>
+
+// 1:1 (square)
+
+<Canvas>
+  <Frame n={1} d={1}>
+    <img
+      src="https://placehold.co/600x400?text=Profile+photo"
+      alt="Profile photo"
+    />
+  </Frame>
+</Canvas>
+
+// 4:3
+
+<Canvas>
+  <Frame n={4} d={3}>
+    <img
+      src="https://placehold.co/600x400?text=Classic+photo"
+      alt="Classic photo"
+    />
+  </Frame>
+</Canvas>
+
+### Content handling
+
+Frame automatically centers its content and handles overflow. Images and videos
+are set to `object-fit: cover` by default, ensuring they fill the frame while
+maintaining their aspect ratio.
+
+<Canvas>
+  <Frame>
+    <div style={{ padding: "1rem", textAlign: "center" }}>
+      <Heading level={2}>Content Works Too</Heading>
+      <Text>
+        Any content will be centered and cropped to fit the aspect ratio.
+      </Text>
+    </div>
+  </Frame>
+</Canvas>
+
+## Related components
+
+- For responsive layouts with multiple frames, consider using
+  [Tiles](/components/Tiles)
+- For full-height layouts with centered content, use [Cover](/components/Cover)

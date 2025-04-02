@@ -1,5 +1,88 @@
+import { Canvas } from "@storybook/addon-docs";
+import { SideKick, Card, Content, Rectangle } from "@jobber/components";
+
 # SideKick
 
-The SideKick component is a component that allows you to create a sidekick.
+The SideKick component provides a complementary panel that appears alongside the
+main content area, offering additional context or functionality without
+disrupting the primary workflow.
 
-## Usage
+## Design & usage guidelines
+
+Use SideKick when you need to:
+
+- Display supplementary information related to the main content
+- Provide quick access to contextual actions or tools
+- Show preview content while maintaining focus on the primary task
+- Present form fields or options that are optional or secondary to the main
+  workflow
+
+### When to use
+
+- When users need quick access to related information without leaving their
+  current context
+- For displaying preview content that enhances the primary workflow
+- When additional options or tools should be readily available but not prominent
+- To show supplementary form fields that aren't required for the primary task
+
+### When not to use
+
+- For critical primary actions or required form fields
+- When the additional content is essential to complete the main task
+- If the supplementary content needs to block interaction with the main content
+- For temporary or dismissible notifications (use [Toast](/components/Toast)
+  instead)
+- For error messages or warnings (use [Banner](/components/Banner) instead)
+
+## Implementation
+
+The SideKick component creates a flexible horizontal layout with a main content
+area and a side panel. The layout automatically adjusts based on available space
+and wraps content when needed.
+
+### Basic usage
+
+<Canvas>
+  <div style={{ width: "100%" }}>
+    <SideKick sideWidth="30px" contentMinWidth="30px">
+      <Rectangle padding="0">
+        <Card>
+          <Content>Main content goes here</Content>
+        </Card>
+      </Rectangle>
+      <Rectangle padding="0">
+        <Card>
+          <Content>Side panel content goes here</Content>
+        </Card>
+      </Rectangle>
+    </SideKick>
+  </div>
+</Canvas>
+
+### With custom widths
+
+<Canvas>
+  <div style={{ width: "100%" }}>
+    <SideKick contentMinWidth="30ch" sideWidth="30ch">
+      <Rectangle padding="0">
+        <Card>
+          <Content>Fixed-width side panel (400px)</Content>
+        </Card>
+      </Rectangle>
+      <Rectangle padding="0">
+        <Card>
+          <Content>Main content (minimum 60% width)</Content>
+        </Card>
+      </Rectangle>
+    </SideKick>
+  </div>
+</Canvas>
+
+## Related components
+
+- For temporary notifications, use [Toast](/components/Toast)
+- For important messages that require attention, use
+  [Banner](/components/Banner)
+- For modal dialogs that require immediate action, use
+  [Modal](/components/Modal)
+- For mobile-specific side panels, use [Drawer](/components/Drawer)

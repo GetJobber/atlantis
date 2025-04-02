@@ -1,4 +1,92 @@
+import { Canvas } from "@storybook/addon-docs";
+import { Heading, Text, Rectangle, Stack } from "@jobber/components";
+
 # Rectangle
 
-Rectangle is a component that allows you to create a rectangle around a
-component.
+The Rectangle component provides a flexible container that wraps content with
+customizable padding, borders, and colors. It's useful for creating visual
+containers, cards, or sections with consistent spacing and styling.
+
+## Usage
+
+<Canvas>
+  <Rectangle>
+    <Text>I am in a rectangle</Text>
+  </Rectangle>
+</Canvas>
+
+## Examples
+
+### Basic Rectangle
+
+A simple rectangle with default styling:
+
+<Canvas>
+  <Rectangle>
+    <Stack>
+      <Heading level={2}>Rectangle Content</Heading>
+      <Text>This is an example of content inside a Rectangle component.</Text>
+    </Stack>
+  </Rectangle>
+</Canvas>
+
+### Custom Padding
+
+Adjust the spacing around content:
+
+<Canvas>
+  <Rectangle padding="largest">
+    <Stack>
+      <Heading level={2}>Spacious Content</Heading>
+      <Text>This rectangle has extra padding around its content.</Text>
+    </Stack>
+  </Rectangle>
+</Canvas>
+
+### With Border
+
+Add a border to create visual separation:
+
+<Canvas>
+  <Rectangle borderWidth="2px">
+    <Stack>
+      <Heading level={2}>Bordered Rectangle</Heading>
+      <Text>This rectangle has a visible border.</Text>
+    </Stack>
+  </Rectangle>
+</Canvas>
+
+### Inverted Colors
+
+Swap the background and text colors:
+
+<Canvas>
+  <Rectangle borderWidth="2px" invert>
+    <Stack>
+      <Heading level={2}>Inverted Rectangle</Heading>
+      <Text>The colors are inverted in this example.</Text>
+    </Stack>
+  </Rectangle>
+</Canvas>
+
+### Custom Background
+
+Use semantic colors to change the background:
+
+<Canvas>
+  <Rectangle colorSurface="color-surface--background">
+    <Stack>
+      <Heading level={2}>Custom Background</Heading>
+      <Text>This rectangle uses a different background color.</Text>
+    </Stack>
+  </Rectangle>
+</Canvas>
+
+## Best Practices
+
+- Use consistent padding values to maintain visual harmony across your interface
+- Consider using the `invert` prop when placing the rectangle on dark
+  backgrounds
+- Combine with other layout components like `Stack` for organized content
+  structure
+- Use semantic color tokens to ensure consistency
