@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.34.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.33.0...@jobber/atlantis-site@0.34.0) (2025-04-02)
+
+
+### Features
+
+* **components:** Add UNSAFE props to Text ([#2454](https://github.com/GetJobber/atlantis/issues/2454)) ([fa35ca2](https://github.com/GetJobber/atlantis/commit/fa35ca2e9fc5d7ae0ce3ed74900f1a5fb193ad82))
+
+
+
+
+
 # [0.33.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.32.0...@jobber/atlantis-site@0.33.0) (2025-04-01)
 
 
