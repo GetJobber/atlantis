@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { AtlantisThemeContextProvider } from "@jobber/components/AtlantisThemeContext";
 import { Content } from "@jobber/components/Content";
 import { Popover } from "@jobber/components/Popover";
 import { Button } from "@jobber/components/Button";
@@ -147,3 +148,32 @@ const ComposedTemplate: ComponentStory<typeof Popover> = args => {
 };
 
 export const Composed = ComposedTemplate.bind({});
+
+const ForceThemeTemplate: ComponentStory<typeof Popover> = args => {
+  const divRef1 = useRef<HTMLDivElement>(null);
+  const [showPopover1, setShowPopover1] = useState(args.open);
+  const buttonStyles = { width: "fit-content" };
+
+  return (
+    <Box gap="base">
+      <Heading level={2}>Force theme of popover content</Heading>
+      <div ref={divRef1} style={buttonStyles}>
+        <Button
+          label="Toggle Popover"
+          onClick={() => setShowPopover1(!showPopover1)}
+        />
+      </div>
+      <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
+        <Popover.Provider {...args} attachTo={divRef1} open={showPopover1}>
+          <Popover.DismissButton onClick={() => setShowPopover1(false)} />
+          <Content>
+            <Text>This is a Popover built with composable subcomponents</Text>
+          </Content>
+          <Popover.Arrow />
+        </Popover.Provider>
+      </AtlantisThemeContextProvider>
+    </Box>
+  );
+};
+
+export const ForceTheme = ForceThemeTemplate.bind({});
