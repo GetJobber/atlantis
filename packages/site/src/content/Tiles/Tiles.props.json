@@ -1,0 +1,33 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Tiles/Tiles.tsx",
+    "description": "",
+    "displayName": "Tiles",
+    "methods": [],
+    "props": {
+      "minSize": {
+        "defaultValue": {
+          "value": "30ch"
+        },
+        "description": "",
+        "name": "minSize",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "space": {
+        "defaultValue": {
+          "value": "base"
+        },
+        "description": "",
+        "name": "space",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  }
+]

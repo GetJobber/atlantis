@@ -1,0 +1,51 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/SideKick/SideKick.tsx",
+    "description": "",
+    "displayName": "SideKick",
+    "methods": [],
+    "props": {
+      "sideWidth": {
+        "defaultValue": null,
+        "description": "",
+        "name": "sideWidth",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "contentMinWidth": {
+        "defaultValue": {
+          "value": "50%"
+        },
+        "description": "",
+        "name": "contentMinWidth",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "space": {
+        "defaultValue": {
+          "value": "var(--space-base)"
+        },
+        "description": "",
+        "name": "space",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "onRight": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onRight",
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      }
+    }
+  }
+]

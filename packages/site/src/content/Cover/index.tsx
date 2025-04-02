@@ -1,0 +1,22 @@
+import Content from "./Cover.mdx";
+import Props from "./Cover.props.json";
+import { ContentExport } from "../../types/content";
+
+export default {
+  content: () => <Content />,
+  props: Props,
+  component: {
+    element: `<Cover>
+    Content Above
+    <Cover.Center>Centered Content</Cover.Center>
+    Content Below
+    </Cover>`,
+  },
+  title: "Cover",
+  links: [
+    {
+      label: "Storybook",
+      url: "/?path=/story/components-layouts-and-structure-cover-web--basic",
+    },
+  ],
+} as const satisfies ContentExport;

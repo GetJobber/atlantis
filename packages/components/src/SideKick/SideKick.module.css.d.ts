@@ -1,7 +1,9 @@
 declare const styles: {
-  readonly sidekick: string;
-  readonly left: string;
-  readonly right: string;
-  readonly withWidth: string;
+  readonly "sidekick": string;
+  readonly "left": string;
+  readonly "withWidthLeft": string;
+  readonly "right": string;
+  readonly "withWidthRight": string;
 };
-export default styles;
+export = styles;
+

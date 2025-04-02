@@ -1,4 +1,5 @@
 declare const styles: {
-  readonly cluster: string;
+  readonly "cluster": string;
 };
-export default styles;
+export = styles;
+

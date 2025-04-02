@@ -1,0 +1,37 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Cover/Cover.tsx",
+    "description": "",
+    "displayName": "Cover",
+    "methods": [],
+    "props": {
+      "minHeight": {
+        "defaultValue": null,
+        "description": "",
+        "name": "minHeight",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "space": {
+        "defaultValue": null,
+        "description": "",
+        "name": "space",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Cover/Cover.tsx",
+    "description": "",
+    "displayName": "Cover.Center",
+    "methods": [],
+    "props": {}
+  }
+]

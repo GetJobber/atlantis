@@ -1,0 +1,19 @@
+.rectangle {
+  --rectangle-padding: var(--space-base);
+  --rectangle-border-width: var(--border-base);
+  padding: var(--rectangle-padding);
+  border: var(--rectangle-border-width) solid;
+
+  border-radius: inherit;
+  color: var(--rectangle-color-inverse);
+  background-color: var(--rectangle-color-surface);
+}
+
+.rectangle * {
+  color: inherit;
+}
+
+.rectangle.invert {
+  color: var(--rectangle-color-surface);
+  background-color: var(--rectangle-color-inverse);
+}

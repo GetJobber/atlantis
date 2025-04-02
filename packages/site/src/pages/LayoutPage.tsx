@@ -1,25 +1,25 @@
-import { Cover, Heading, SideKick, Square, Stack } from "@jobber/components";
+import { Cover, Heading, Rectangle, SideKick, Stack } from "@jobber/components";
 
 export const LayoutPage = () => {
   return (
     <SideKick onRight>
-      <Square borderWidth="0">
+      <Rectangle borderWidth="0">
         <Cover minHeight="100vh">
-          <Square borderWidth="0px">
+          <Rectangle borderWidth="0px">
             <Heading level={1}>Heading1!</Heading>
-          </Square>
+          </Rectangle>
         </Cover>
-      </Square>
-      <Square padding="12px" borderWidth="0">
+      </Rectangle>
+      <Rectangle padding="12px" borderWidth="0">
         <Stack space="12px">
-          <Square borderWidth="0px">
+          <Rectangle borderWidth="0px">
             <Heading level={1}>Heading1!</Heading>
-          </Square>
-          <Square borderWidth="0px">
+          </Rectangle>
+          <Rectangle borderWidth="0px">
             <Heading level={1}>Heading1!</Heading>
-          </Square>
+          </Rectangle>
         </Stack>
-      </Square>
+      </Rectangle>
     </SideKick>
   );
 };

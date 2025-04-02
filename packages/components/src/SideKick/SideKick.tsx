@@ -1,6 +1,29 @@
-import React from "react";
+import React, { useMemo } from "react";
 import classNames from "classnames";
 import styles from "./SideKick.module.css";
+
+type Spaces =
+  | "minuscule"
+  | "smallest"
+  | "smaller"
+  | "small"
+  | "base"
+  | "large"
+  | "larger"
+  | "largest"
+  | "extravagant";
+
+const spaceTokens: Record<Spaces, string> = {
+  minuscule: "var(--space-minuscule)",
+  smallest: "var(--space-smallest)",
+  smaller: "var(--space-smaller)",
+  small: "var(--space-small)",
+  base: "var(--space-base)",
+  large: "var(--space-large)",
+  larger: "var(--space-larger)",
+  largest: "var(--space-largest)",
+  extravagant: "var(--space-extravagant)",
+};
 
 export const SideKick = ({
   children,
@@ -12,22 +35,31 @@ export const SideKick = ({
   readonly children: React.ReactNode;
   readonly sideWidth?: string;
   readonly contentMinWidth?: string;
-  readonly space?: string;
+  readonly space?: string | Spaces;
   readonly onRight?: boolean;
 }) => {
+  const spaceMapped = useMemo(
+    () => (spaceTokens[space as Spaces] ? spaceTokens[space as Spaces] : space),
+    [space],
+  );
+
   return (
     <div
       style={
         {
-          "--public-sidekick-width": sideWidth,
-          "--public-sidekick-min-size": contentMinWidth,
-          "--public-sidekick-space": space,
+          "--public-sidekick-side-width": sideWidth,
+          "--public-sidekick-min-width": contentMinWidth,
+          "--public-sidekick-space": spaceMapped,
         } as React.CSSProperties
       }
       className={classNames(
         styles.sidekick,
         onRight ? styles.right : styles.left,
-        sideWidth ? styles.withWidth : null,
+        sideWidth
+          ? onRight
+            ? styles.withWidthRight
+            : styles.withWidthLeft
+          : null,
       )}
     >
       {children}

@@ -5,3 +5,4 @@ declare const styles: {
   readonly "intrinsic": string;
 };
 export = styles;
+

@@ -1,0 +1,93 @@
+import React from "react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { SideKick } from "@jobber/components/SideKick";
+import { Content } from "@jobber/components/Content";
+import { Text } from "@jobber/components/Text";
+import { Card } from "@jobber/components/Card";
+import { Stack } from "@jobber/components/Stack";
+import { Rectangle } from "@jobber/components/Rectangle";
+
+export default {
+  title: "Components/Layouts and Structure/SideKick/Web",
+  component: SideKick,
+  parameters: {
+    viewMode: "story",
+    previewTabs: { code: { hidden: false } },
+  },
+} as ComponentMeta<typeof SideKick>;
+
+const BasicTemplate: ComponentStory<typeof SideKick> = args => (
+  <SideKick {...args}>
+    <Rectangle padding="0">
+      <Card>
+        <Rectangle>
+          <Stack>
+            <Text>This is the main</Text>
+          </Stack>
+        </Rectangle>
+      </Card>
+    </Rectangle>
+    <Rectangle padding="0">
+      <Card>
+        <Rectangle>
+          <Text>This is the side</Text>
+        </Rectangle>
+      </Card>
+    </Rectangle>
+  </SideKick>
+);
+
+export const Basic = BasicTemplate.bind({});
+
+Basic.args = {
+  contentMinWidth: "200px",
+};
+
+export const CustomSideWidth = BasicTemplate.bind({});
+CustomSideWidth.args = {
+  contentMinWidth: "70%",
+};
+
+export const CustomSpace = BasicTemplate.bind({});
+CustomSpace.args = {
+  space: "var(--space-large)",
+};
+
+export const RightSide = BasicTemplate.bind({});
+RightSide.args = {
+  onRight: true,
+};
+
+export const CustomContentMinWidth = BasicTemplate.bind({});
+CustomContentMinWidth.args = {
+  contentMinWidth: "60%",
+};
+
+const ComplexTemplate: ComponentStory<typeof SideKick> = args => (
+  <SideKick {...args}>
+    <Card>
+      <Content>
+        <Text>This side panel has a fixed width of 400px</Text>
+        <Text>It contains important navigation or supplementary content</Text>
+      </Content>
+    </Card>
+    <Card>
+      <Content>
+        <Text>
+          This main content area grows to fill the available space while
+          maintaining a minimum width of 70% of the container
+        </Text>
+        <Text>
+          The space between the panels is customized to be larger than default
+        </Text>
+      </Content>
+    </Card>
+  </SideKick>
+);
+
+export const ComplexExample = ComplexTemplate.bind({});
+ComplexExample.args = {
+  sideWidth: "400px",
+  contentMinWidth: "10%",
+  space: "larger",
+};

@@ -1,0 +1,164 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Cluster } from "@jobber/components/Cluster";
+import { Button } from "@jobber/components/Button";
+import { Chip } from "@jobber/components/Chip";
+import { Content } from "@jobber/components/Content";
+import { Stack } from "@jobber/components/Stack";
+import { ResponsiveSwitcher } from "@jobber/components/ResponsiveSwitcher";
+import { SideKick } from "@jobber/components/SideKick";
+import { Tiles } from "@jobber/components/Tiles";
+import { Cover } from "@jobber/components/Cover";
+import { Text } from "@jobber/components/Text";
+
+<Meta title="Components/Layout/Cluster" component={Cluster} />
+
+# Cluster
+
+A layout component that manages groups of elements with varying lengths in a
+responsive, wrapped arrangement.
+
+## Design & usage guidelines
+
+The Cluster component is ideal for:
+
+- Button groups at the end of forms
+- Collections of tags or keywords
+- Metadata displays
+- Any horizontally arranged elements that need consistent spacing
+
+You can control the alignment of clustered elements (left, right, or center) to
+match your layout requirements, along with the justification of the cluster
+itself with the `justify` prop.
+
+## Examples
+
+### Basic Usage
+
+The most common use case is grouping related elements with consistent spacing.
+
+<Canvas>
+  <Cluster>
+    <Button label="Save" />
+    <Button label="Cancel" type="secondary" />
+    <Button label="Delete" variation="destructive" type="secondary" />
+  </Cluster>
+</Canvas>
+
+### Tag Collections
+
+Perfect for displaying multiple tags or status indicators.
+
+<Canvas>
+  <Cluster>
+    <Chip label="Active" />
+    <Chip label="High Priority" />
+    <Chip label="In Progress" />
+    <Chip label="Needs Review" />
+  </Cluster>
+</Canvas>
+
+### Justification Options
+
+Control how items are justified within the cluster.
+
+<Canvas>
+  <div style={{ width: "100%" }}>
+    <Stack>
+      <Cluster justify="start">
+        <Button label="Left" />
+        <Button label="Justify" type="secondary" />
+      </Cluster>
+    </Stack>
+    <Stack>
+      <Cluster justify="center">
+        <Button label="Center" />
+        <Button label="Justify" type="secondary" />
+      </Cluster>
+    </Stack>
+    <Stack>
+      <Cluster justify="end">
+        <Button label="Right" />
+        <Button label="Justify" type="secondary" />
+      </Cluster>
+    </Stack>
+  </div>
+</Canvas>
+
+### Alignment Options
+
+Control how items are aligned within the cluster.
+
+<Canvas>
+    <Stack space="larger">
+      <Cluster align="start">
+        <Button label="Start" />
+        <Button label="Align" type="secondary" />
+        <div style={{ width: "50%" }}>
+           <Stack>
+            <Text>Plus some text to make the cluster longer and wider and taller to show off how the alignment works</Text>
+              <Text>Plus some text to make the cluster longer and wider and taller to show off how the alignment works</Text>
+            </Stack>
+         </div>
+
+    </Cluster>
+    <Cluster align="center">
+      <Button label="Center" />
+      <Button label="Align" type="secondary" />
+
+   <div style={{ width: "50%" }}>
+           <Stack>
+            <Text>Plus some text to make the cluster longer and wider and taller to show off how the alignment works</Text>
+              <Text>Plus some text to make the cluster longer and wider and taller to show off how the alignment works</Text>
+            </Stack>
+         </div>
+    </Cluster>
+    <Cluster align="end">
+      <Button label="End" />
+        <Button label="Align" type="secondary" />
+    <div style={{ width: "50%" }}>
+           <Stack>
+            <Text>Plus some text to make the cluster longer and wider and taller to show off how the alignment works</Text>
+              <Text>Plus some text to make the cluster longer and wider and taller to show off how the alignment works</Text>
+            </Stack>
+         </div>
+      </Cluster>
+    </Stack>
+</Canvas>
+
+### Spacing Variations
+
+Adjust the space between items using the `space` prop.
+
+<Canvas>
+  <Content>
+    <Content>
+      <Cluster space="small">
+        <Chip label="Small" />
+        <Chip label="Spacing" />
+        <Chip label="Between" />
+      </Cluster>
+    </Content>
+    <Content>
+      <Cluster space="base">
+        <Chip label="Base" />
+        <Chip label="Spacing" />
+        <Chip label="Between" />
+      </Cluster>
+    </Content>
+    <Content>
+      <Cluster space="large">
+        <Chip label="Large" />
+        <Chip label="Spacing" />
+        <Chip label="Between" />
+      </Cluster>
+    </Content>
+  </Content>
+</Canvas>
+
+## Related components
+
+Use [Stack](/components/Stack) when you need to arrange elements vertically
+instead of in a horizontal cluster.
+
+Use [Tiles](/components/Tiles) when you need elements arranged in a grid with
+equal spacing and consistent sizing.

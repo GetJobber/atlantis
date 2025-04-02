@@ -1,0 +1,40 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Stack/Stack.tsx",
+    "description": "",
+    "displayName": "Stack",
+    "methods": [],
+    "props": {
+      "space": {
+        "defaultValue": {
+          "value": "spaceTokens.base"
+        },
+        "description": "",
+        "name": "space",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "splitAfter": {
+        "defaultValue": null,
+        "description": "",
+        "name": "splitAfter",
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "recursive": {
+        "defaultValue": null,
+        "description": "",
+        "name": "recursive",
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      }
+    }
+  }
+]

@@ -138,6 +138,13 @@ export const componentList = [
     sections: ["Selections"],
   },
   {
+    title: "Cluster",
+    to: "/components/Cluster",
+    imageURL: "/Cluster.png",
+    sections: ["Layouts & Structure"],
+    additionalMatches: ["Grid", "Columns", "Rows"],
+  },
+  {
     title: "Combobox",
     to: "/components/Combobox",
     imageURL: "/Combobox.png",
@@ -170,6 +177,13 @@ export const componentList = [
     imageURL: "/Countdown.png",
     sections: ["Utilities"],
     additionalMatches: ["Timer", "Time", "Clock"],
+  },
+  {
+    title: "Cover",
+    to: "/components/Cover",
+    imageURL: "/Cover.png",
+    sections: ["Layouts & Structure"],
+    additionalMatches: ["Layout", "Container", "Stack", "Wrapper"],
   },
   {
     title: "DataDump",
@@ -256,6 +270,13 @@ export const componentList = [
     title: "Flex",
     to: "/components/Flex",
     imageURL: "/Flex.png",
+    sections: ["Layouts & Structure"],
+    additionalMatches: ["Layout", "Stack", "Container"],
+  },
+  {
+    title: "Frame",
+    to: "/components/Frame",
+    imageURL: "/Frame.png",
     sections: ["Layouts & Structure"],
     additionalMatches: ["Layout", "Stack", "Container"],
   },
@@ -581,6 +602,13 @@ export const componentList = [
     additionalMatches: ["Radio Button", "Select"],
   },
   {
+    title: "Rectangle",
+    to: "/components/Rectangle",
+    imageURL: "/Rectangle.png",
+    sections: ["Layouts & Structure"],
+    additionalMatches: ["Layout", "Container"],
+  },
+  {
     title: "RecurringSelect",
     to: "/components/RecurringSelect",
     imageURL: "/RecurringSelect.png",
@@ -609,6 +637,13 @@ export const componentList = [
     additionalMatches: ["Drawer", "Panel", "Sidebar", "Flyout"],
   },
   {
+    title: "SideKick",
+    to: "/components/SideKick",
+    imageURL: "/SideKick.png",
+    sections: ["Layouts & Structure"],
+    additionalMatches: ["Layout", "Container", "Stack", "Wrapper"],
+  },
+  {
     title: "Spinner",
     to: "/components/Spinner",
     imageURL: "/Spinner.png",
@@ -621,6 +656,13 @@ export const componentList = [
       "Busy",
       "ActivityIndicator",
     ],
+  },
+  {
+    title: "Stack",
+    to: "/components/Stack",
+    imageURL: "/Stack.png",
+    sections: ["Layouts & Structure"],
+    additionalMatches: ["Layout", "Container", "Stack", "Wrapper"],
   },
   {
     title: "StatusIndicator",
@@ -676,6 +718,13 @@ export const componentList = [
     imageURL: "/ThumbnailList.png",
     sections: ["Images & Icons"],
     additionalMatches: ["Gallery", "Image", "Photo"],
+  },
+  {
+    title: "Tiles",
+    to: "/components/Tiles",
+    imageURL: "/Tiles.png",
+    sections: ["Layouts & Structure"],
+    additionalMatches: ["Layout", "Container", "Stack", "Wrapper"],
   },
   {
     title: "Toast",

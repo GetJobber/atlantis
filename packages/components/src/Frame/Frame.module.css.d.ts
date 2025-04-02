@@ -1,4 +1,5 @@
 declare const styles: {
-  readonly frame: string;
+  readonly "frame": string;
 };
-export default styles;
+export = styles;
+

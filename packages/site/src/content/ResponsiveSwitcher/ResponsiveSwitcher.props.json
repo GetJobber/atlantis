@@ -1,0 +1,42 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/ResponsiveSwitcher/ResponsiveSwitcher.tsx",
+    "description": "",
+    "displayName": "ResponsiveSwitcher",
+    "methods": [],
+    "props": {
+      "threshold": {
+        "defaultValue": null,
+        "description": "",
+        "name": "threshold",
+        "required": true,
+        "type": {
+          "name": "BreakpointSizes | (string & {})"
+        }
+      },
+      "space": {
+        "defaultValue": {
+          "value": "spaceTokens.base"
+        },
+        "description": "",
+        "name": "space",
+        "required": false,
+        "type": {
+          "name": "(string & {}) | Spaces"
+        }
+      },
+      "limit": {
+        "defaultValue": {
+          "value": 2
+        },
+        "description": "",
+        "name": "limit",
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      }
+    }
+  }
+]

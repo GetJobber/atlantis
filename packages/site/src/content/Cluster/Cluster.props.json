@@ -1,0 +1,38 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Cluster/Cluster.tsx",
+    "description": "",
+    "displayName": "Cluster",
+    "methods": [],
+    "props": {
+      "justify": {
+        "defaultValue": null,
+        "description": "",
+        "name": "justify",
+        "required": false,
+        "type": {
+          "name": "\"start\" | \"end\" | \"center\" | \"between\" | \"around\""
+        }
+      },
+      "align": {
+        "defaultValue": null,
+        "description": "",
+        "name": "align",
+        "required": false,
+        "type": {
+          "name": "\"start\" | \"end\" | \"center\""
+        }
+      },
+      "space": {
+        "defaultValue": null,
+        "description": "",
+        "name": "space",
+        "required": false,
+        "type": {
+          "name": "Spaces | (string & {})"
+        }
+      }
+    }
+  }
+]

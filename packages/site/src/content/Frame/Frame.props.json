@@ -1,0 +1,33 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Frame/Frame.tsx",
+    "description": "",
+    "displayName": "Frame",
+    "methods": [],
+    "props": {
+      "n": {
+        "defaultValue": {
+          "value": 16
+        },
+        "description": "",
+        "name": "n",
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "d": {
+        "defaultValue": {
+          "value": 9
+        },
+        "description": "",
+        "name": "d",
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      }
+    }
+  }
+]

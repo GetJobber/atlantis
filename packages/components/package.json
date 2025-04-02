@@ -355,6 +355,11 @@
       "import": "./dist/RadioGroup/index.mjs",
       "require": "./dist/RadioGroup/index.cjs"
     },
+    "./Rectangle": {
+      "types": "./dist/Rectangle/index.d.ts",
+      "import": "./dist/Rectangle/index.mjs",
+      "require": "./dist/Rectangle/index.cjs"
+    },
     "./RecurringSelect": {
       "types": "./dist/RecurringSelect/index.d.ts",
       "import": "./dist/RecurringSelect/index.mjs",
@@ -379,11 +384,6 @@
       "types": "./dist/Spinner/index.d.ts",
       "import": "./dist/Spinner/index.mjs",
       "require": "./dist/Spinner/index.cjs"
-    },
-    "./Square": {
-      "types": "./dist/Square/index.d.ts",
-      "import": "./dist/Square/index.mjs",
-      "require": "./dist/Square/index.cjs"
     },
     "./StatusIndicator": {
       "types": "./dist/StatusIndicator/index.d.ts",
