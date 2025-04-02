@@ -75,15 +75,7 @@ export type PopoverProviderProps = PropsWithChildren<
   }
 >;
 
-interface PopoverDismissButtonWithChildren {
-  readonly children: React.ReactNode;
-}
-
-type PopoverDismissButtonWithoutChildren = Partial<ButtonDismissProps> & {
-  readonly children?: never;
-};
-
-export type PopoverDismissButtonProps = {
+interface PopoverDismissButtonBaseProps {
   /**
    * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
    * **last resort**. Using this may result in unexpected side effects.
@@ -101,7 +93,21 @@ export type PopoverDismissButtonProps = {
   readonly UNSAFE_style?: {
     dismissButtonContainer?: CSSProperties;
   };
-} & XOR<PopoverDismissButtonWithChildren, PopoverDismissButtonWithoutChildren>;
+}
+
+interface PopoverDismissButtonWithChildren
+  extends PopoverDismissButtonBaseProps {
+  readonly children: React.ReactNode;
+}
+
+type PopoverDismissButtonWithoutChildren = Partial<ButtonDismissProps> & {
+  readonly children?: never;
+} & PopoverDismissButtonBaseProps;
+
+export type PopoverDismissButtonProps = XOR<
+  PopoverDismissButtonWithChildren,
+  PopoverDismissButtonWithoutChildren
+>;
 
 export interface PopoverArrowProps {
   /**
