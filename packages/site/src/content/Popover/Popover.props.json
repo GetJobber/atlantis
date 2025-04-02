@@ -11,7 +11,7 @@
         "description": "Element the Popover will attach to and point at. A `useRef` must be attached to an html element\nand passed as an attachTo prop in order for the Popover to function properly",
         "name": "attachTo",
         "parent": {
-          "fileName": "packages/components/src/Popover/types.ts",
+          "fileName": "packages/components/src/Popover/Popover.types.ts",
           "name": "PopoverProps"
         },
         "required": true,
@@ -24,7 +24,7 @@
         "description": "Popover content.",
         "name": "children",
         "parent": {
-          "fileName": "packages/components/src/Popover/types.ts",
+          "fileName": "packages/components/src/Popover/Popover.types.ts",
           "name": "PopoverProps"
         },
         "required": true,
@@ -37,7 +37,7 @@
         "description": "Control Popover visibility.",
         "name": "open",
         "parent": {
-          "fileName": "packages/components/src/Popover/types.ts",
+          "fileName": "packages/components/src/Popover/Popover.types.ts",
           "name": "PopoverProps"
         },
         "required": true,
@@ -50,7 +50,7 @@
         "description": "Callback executed when the user wants to close/dismiss the Popover",
         "name": "onRequestClose",
         "parent": {
-          "fileName": "packages/components/src/Popover/types.ts",
+          "fileName": "packages/components/src/Popover/Popover.types.ts",
           "name": "PopoverProps"
         },
         "required": false,
@@ -65,7 +65,7 @@
         "description": "Describes the preferred placement of the Popover.",
         "name": "preferredPlacement",
         "parent": {
-          "fileName": "packages/components/src/Popover/types.ts",
+          "fileName": "packages/components/src/Popover/Popover.types.ts",
           "name": "PopoverProps"
         },
         "required": false,
@@ -78,7 +78,7 @@
         "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
         "name": "UNSAFE_className",
         "parent": {
-          "fileName": "packages/components/src/Popover/types.ts",
+          "fileName": "packages/components/src/Popover/Popover.types.ts",
           "name": "PopoverProps"
         },
         "required": false,
@@ -91,7 +91,7 @@
         "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
         "name": "UNSAFE_style",
         "parent": {
-          "fileName": "packages/components/src/Popover/types.ts",
+          "fileName": "packages/components/src/Popover/Popover.types.ts",
           "name": "PopoverProps"
         },
         "required": false,
@@ -115,7 +115,7 @@
         "description": "Describes the preferred placement of the Popover.",
         "name": "preferredPlacement",
         "parent": {
-          "fileName": "packages/components/src/Popover/types.ts",
+          "fileName": "packages/components/src/Popover/Popover.types.ts",
           "name": "PopoverProps"
         },
         "required": false,
@@ -128,7 +128,7 @@
         "description": "Element the Popover will attach to and point at. A `useRef` must be attached to an html element\nand passed as an attachTo prop in order for the Popover to function properly",
         "name": "attachTo",
         "parent": {
-          "fileName": "packages/components/src/Popover/types.ts",
+          "fileName": "packages/components/src/Popover/Popover.types.ts",
           "name": "PopoverProps"
         },
         "required": true,
@@ -141,7 +141,7 @@
         "description": "Control Popover visibility.",
         "name": "open",
         "parent": {
-          "fileName": "packages/components/src/Popover/types.ts",
+          "fileName": "packages/components/src/Popover/Popover.types.ts",
           "name": "PopoverProps"
         },
         "required": true,
@@ -181,7 +181,7 @@
         "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
         "name": "UNSAFE_className",
         "parent": {
-          "fileName": "packages/components/src/Popover/types.ts",
+          "fileName": "packages/components/src/Popover/Popover.types.ts",
           "name": "PopoverArrowProps"
         },
         "required": false,
@@ -194,7 +194,7 @@
         "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
         "name": "UNSAFE_style",
         "parent": {
-          "fileName": "packages/components/src/Popover/types.ts",
+          "fileName": "packages/components/src/Popover/Popover.types.ts",
           "name": "PopoverArrowProps"
         },
         "required": false,
