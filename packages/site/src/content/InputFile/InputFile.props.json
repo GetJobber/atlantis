@@ -546,6 +546,32 @@
         "type": {
           "name": "\"small\" | \"base\" | \"large\""
         }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom classNames for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ textStyle?: string; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ textStyle?: CSSProperties; }"
+        }
       }
     }
   },
@@ -616,6 +642,32 @@
         "required": false,
         "type": {
           "name": "\"small\" | \"base\" | \"large\""
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom classNames for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ textStyle?: string; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ textStyle?: CSSProperties; }"
         }
       }
     }
