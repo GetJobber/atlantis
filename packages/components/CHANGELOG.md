@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.31.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.31.0...@jobber/components@6.31.1) (2025-04-03)
+
+
+### Bug Fixes
+
+* **components:** Dismissible Chip Focus Management ([#2447](https://github.com/GetJobber/atlantis/issues/2447)) ([e19a857](https://github.com/GetJobber/atlantis/commit/e19a85707db597411301f547f005b64702ad4e8b))
+
+
+
+
+
 # [6.31.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.30.0...@jobber/components@6.31.0) (2025-04-03)
 
 
