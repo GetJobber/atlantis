@@ -1,0 +1,100 @@
+import { Canvas } from "@storybook/addon-docs";
+import { Text } from "@jobber/components";
+import { ResponsiveSwitcher } from "@jobber/components";
+import { Emphasis } from "@jobber/components";
+import { Markdown } from "@jobber/components";
+import { Heading } from "@jobber/components";
+import { Rectangle } from "@jobber/components";
+import { Stack } from "@jobber/components";
+import { Cluster } from "@jobber/components";
+import { Button } from "@jobber/components";
+import { Menu } from "@jobber/components";
+import { Page } from "@jobber/components";
+import { SideKick } from "@jobber/components";
+import { Tiles } from "@jobber/components";
+import { Typography } from "@jobber/components";
+
+# Scaffolding
+
+Scaffolding are full-page layouts to ensure consistency across the app and full
+responsive behavior for free.
+
+<Canvas>
+  <Page
+    title="Legacy Page"
+    subtitle="Subtitle goes here"
+    primaryAction={{ label: "Action 1" }}
+    secondaryAction={{ label: "Action 2" }}
+    moreActionsMenu={[
+      {
+        actions: [
+          {
+            label: "Action 1",
+            onClick: () => {
+              console.log("Action 1");
+            },
+          },
+          {
+            label: "Action 2",
+            onClick: () => {
+              console.log("Action 2");
+            },
+          },
+        ],
+      },
+    ]}
+  >
+    <Text>Children Go Here</Text>
+  </Page>
+</Canvas>
+
+<Canvas>
+  <div style={{ width: "100%" }}>
+    <Rectangle textColor={false}>
+      <Stack space="larger">
+        <Stack space="larger">
+          <SideKick contentMinWidth="60%">
+            <Stack>
+              <Heading level={1}>Composed Page</Heading>
+              <Text size="large" variation="subdued">
+                <Emphasis variation="bold">Subtitle goes here</Emphasis>
+              </Text>
+            </Stack>
+            <Stack>
+              <Cluster justify="end">
+                <Button label="Action 1" />
+                <Button label="Action 2" type="secondary" />
+                <Menu
+                  items={[
+                    {
+                      actions: [
+                        {
+                          label: "Action 1",
+                          onClick: () => {
+                            console.log("Action 1");
+                          },
+                        },
+                        {
+                          label: "Action 2",
+                          onClick: () => {
+                            console.log("Action 2");
+                          },
+                        },
+                      ],
+                    },
+                  ]}
+                  activator={
+                    <Button icon="more" label="More Actions" type="secondary" />
+                  }
+                />
+              </Cluster>
+            </Stack>
+          </SideKick>
+        </Stack>
+        <Stack>
+          <Text>Children Go Here</Text>
+        </Stack>
+      </Stack>
+    </Rectangle>
+  </div>
+</Canvas>

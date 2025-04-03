@@ -12,7 +12,7 @@ import { Text } from "@jobber/components/Text";
 import { Cluster } from "@jobber/components/Cluster";
 import { SideKick } from "@jobber/components/SideKick";
 import { Frame } from "@jobber/components/Frame";
-import { Canvas, Meta } from "@storybook/addon-docs";
+import { Canvas, Meta, Story } from "@storybook/addon-docs";
 import { Chip } from "@jobber/components/Chip";
 import { InputText } from "@jobber/components/InputText";
 import { FormFieldLabel } from "@jobber/components/FormField";
@@ -21,11 +21,12 @@ import { useState } from "react";
 
 <Meta title="Guides/Layouts" />
 
-# Atlantis Layout Components
+# Page Layouts
 
-<Text>
-This page outlines the layout components available in Atlantis to help you easily build out your pages and layouts without needing to reach for CSS.
-</Text>
+<Stack>
+  <Text>These layout components are designed to help you easily build smaller-scale layouts without needing to reach for CSS.  </Text>
+  <Text>More complex full-page scaffolding can be found on the [Scaffolding](/guides/scaffolding) page.  </Text>
+</Stack>
 <Stack space="largest">
 <section>
 <Stack>
@@ -68,12 +69,11 @@ This page outlines the layout components available in Atlantis to help you easil
   </Stack>
   
 </Canvas>
-{/*
 <Story>
-{() => {
-  const [modalOpen, setModalOpen] = useState(false);
-  return (
-<Canvas>
+  {() => {
+    const [modalOpen, setModalOpen] = useState(false);
+    return (
+  <Canvas>
   <Stack>
     <Heading level={2}>Stack Modal Layouts</Heading>
     <Text>Stacks are a great way to layout content in a modal format. They are responsive and easy to read.</Text>
@@ -89,10 +89,9 @@ This page outlines the layout components available in Atlantis to help you easil
     </Rectangle>
     </Modal>
     </Stack>
-</Canvas>
-)}}
+  </Canvas>
+  )}}
 </Story>
-*/}
 
 </Stack>
 </section>
@@ -138,7 +137,24 @@ This page outlines the layout components available in Atlantis to help you easil
       </Stack>
     </Rectangle>
   </Canvas>
-
+  <Canvas>
+    <Rectangle colorSurface="#F3E8FD" colorInverse="#5B21B6" invert>
+      <Stack>
+        <Heading level={2}>Custom Rectangle Background</Heading>
+        <Text>We just pass through any value you provide for colors in case you need something outside our semantic colors.</Text>
+      </Stack>
+    </Rectangle>
+  </Canvas>
+ <Canvas>
+  <Card>
+    <Rectangle colorSurface="color-surface--background">
+      <Stack>
+        <Heading level={2}>Card Rectangles</Heading>
+        <Text>Rectangles respect parent border-radius so they're card friendly.</Text>
+      </Stack>
+    </Rectangle>
+    </Card>
+  </Canvas>
   </Stack>
 </section>
 <section>
@@ -222,7 +238,6 @@ This page outlines the layout components available in Atlantis to help you easil
   </Tiles>
   </Stack>
 </Canvas>
-{/*
 <Story>
 {() => {
   const [tileSize, setTileSize] = useState("20ch");
@@ -260,10 +275,10 @@ This page outlines the layout components available in Atlantis to help you easil
   )
 }}
 </Story>
-*/}
 </Stack>
 </section>
 <section>
+<Stack>
 <Canvas>
   <Stack>
     <Heading level={1}>Cover</Heading>
@@ -282,37 +297,88 @@ This page outlines the layout components available in Atlantis to help you easil
     </Cover>
   </Stack>
   </Canvas>
-
+  <Canvas>
+    <Cover minHeight="40vh">
+      <Stack>
+        <Heading level={2}>Cover with a heading</Heading>
+        <Text>You can place content above and below the centered content and align it any way you want, and the centered content will always be centered in the provided parent space.</Text>
+      </Stack>
+      <Cover.Center>
+        <Rectangle colorSurface="color-surface--background">
+          <Text>This is the centered content</Text>
+        </Rectangle>
+      </Cover.Center>
+      <Rectangle invert>
+        <Stack>
+          <Heading level={2}>Cover Footer Content</Heading>
+          <Text>This is the footer content</Text>
+        </Stack>
+      </Rectangle>
+    </Cover>
+  </Canvas>
+  </Stack>
+</section>
+<section>
+<Stack>
+  <Canvas>
+      <Center>
+      <Stack>
+      <Heading level={1}>Center</Heading>
+      <Text>The Center component is used to horizontally center content.</Text>
+      </Stack>
+      </Center>
+  </Canvas>
+ <Canvas>
+      <Center andText>
+      <Stack>
+      <Heading level={1}>Text Center</Heading>
+      <Text>The `andText` prop will center the text as well as the content.</Text>
+      </Stack>
+      </Center>
+  </Canvas>
+  <Canvas>
+    <Center max="200px">
+      <Stack>
+        <Heading level={2}>Max Width</Heading>
+        <Text>The Center component can also take a `max` prop to limit the width of the content.</Text>
+      </Stack>  
+    </Center>
+  </Canvas>
+  <Canvas>
+    <Center gutters="largest">
+      <Stack>
+        <Heading level={2}>Gutters</Heading>
+        <Text>The Center component can also take a `gutters` prop to add minimum space between the content and the edges of the parent so the content never touches the edge of the parent/screen. This space only applies to the element when required, not by default.</Text>
+      </Stack>
+    </Center>
+   
+  </Canvas>
+  <Canvas>
+        <Center intrinsic>
+          <Text>The `intrinsic` prop ensures that any content that is shorter than the largest possible width will center itself.</Text>
+          <Rectangle>
+            <Button label="Intrinsic Button" />
+          </Rectangle>
+        </Center>
+  </Canvas>
+</Stack>
 </section>
 <section>
 <Stack>
  <Canvas>
   <Stack>
   <Heading level={1}>Frame</Heading>
-  <Text>The Frame component is used to create an aspect ratio with a layout. It's especially good at handling images and videos and cropping them to fit the aspect ratio.</Text>
-  <Cluster>
-  <Heading level={2}>16x9</Heading>
+  <Text>The Frame component is used to create an aspect ratio with a layout. It's especially good at handling images and videos and cropping them to fit the aspect ratio (default 16x9).</Text>
   <Frame>
     <img src="/img_collage.jpg" alt="Placeholder" />
   </Frame>
-  
-  <Heading level={2}>1x1</Heading>
-  <Frame n={1} d={1}>
-    <img src="/img_collage.jpg" alt="Placeholder" />
-  </Frame>
-  </Cluster>
-  <Frame>
-    <Cover>
-      <Heading level={2}>It Works for Content As Well</Heading>
-      <Text>Everything is centered and cropped to fit the aspect ratio.</Text>
-    </Cover>
-  </Frame>
+ 
   </Stack>
   </Canvas>
   <Canvas>
     <Stack>
-      <Heading level={2}>4x3</Heading>
-        <Frame n={4} d={3}>
+      <Heading level={2}>1x1</Heading>
+        <Frame n={1} d={1}>
           <img src="/img_collage.jpg" alt="Placeholder" />
         </Frame>
     </Stack>
@@ -324,6 +390,14 @@ This page outlines the layout components available in Atlantis to help you easil
           <img src="/img_collage.jpg" alt="Placeholder" />
         </Frame>
     </Stack>
+  </Canvas>
+  <Canvas>
+ <Frame>
+    <Cover>
+      <Heading level={2}>It Works for Content As Well</Heading>
+      <Text>Everything is centered and cropped to fit the aspect ratio.</Text>
+    </Cover>
+  </Frame>
   </Canvas>
   </Stack>
 </section>
@@ -393,4 +467,15 @@ This page outlines the layout components available in Atlantis to help you easil
   </Canvas>
 </Stack>
 </section>
+
+<Cover minHeight="30vh">
+<Stack>
+<Canvas>
+  <Stack>
+  <Heading level={1}>Looking For More?</Heading>
+  <Text>Check out the [Scaffolding](/guides/scaffolding) page to see how to layout full pages with these components</Text>
+  </Stack>
+</Canvas>
+</Stack>
+</Cover>
 </Stack>

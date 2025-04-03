@@ -29,7 +29,11 @@ export const guidesList = [
     to: "/guides/pull-request-title-generator",
   },
   {
-    title: "Layouts",
+    title: "Page Layouts",
     to: "/guides/layouts",
+  },
+  {
+    title: "Scaffolding",
+    to: "/guides/scaffolding",
   },
 ];

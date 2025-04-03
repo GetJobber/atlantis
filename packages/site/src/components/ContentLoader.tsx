@@ -43,6 +43,7 @@ export const ContentLoader = () => {
       key={`${type}-${name}`}
       title={content.title}
       content={content.content}
+      noMaxWidth={content.noMaxWidth}
     />
   ) : (
     <NotFoundPage />

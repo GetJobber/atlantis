@@ -14,7 +14,6 @@ import { GuidesPage } from "./pages/GuidesPage";
 import { PackagesPage } from "./pages/PackagesPage";
 import { ComponentNotFound } from "./components/ComponentNotFound";
 import { WelcomeGuidePage } from "./pages/WelcomeGuidePage";
-import { LayoutPage } from "./pages/LayoutPage";
 
 export interface AtlantisRoute {
   path?: string;
@@ -70,11 +69,6 @@ export const routes: Array<AtlantisRoute> = [
     component: HomePage,
     exact: true,
     handle: "Home",
-  },
-  {
-    path: "/layouts",
-    component: LayoutPage,
-    handle: "Layouts",
   },
   {
     path: "/patterns",
@@ -233,6 +227,16 @@ export const routes: Array<AtlantisRoute> = [
       {
         path: "/guides/pull-request-title-generator",
         handle: "Pull request title generator",
+        exact: true,
+      },
+      {
+        path: "/guides/page-layouts",
+        handle: "Page Layouts",
+        exact: true,
+      },
+      {
+        path: "/guides/scaffolding",
+        handle: "Scaffolding",
         exact: true,
       },
     ],

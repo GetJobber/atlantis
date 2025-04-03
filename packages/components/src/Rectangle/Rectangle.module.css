@@ -9,7 +9,7 @@
   background-color: var(--rectangle-color-surface);
 }
 
-.rectangle * {
+.color * {
   color: inherit;
 }
 

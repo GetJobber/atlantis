@@ -35,6 +35,7 @@ export const Rectangle = ({
   colorSurface = "color-surface",
   colorInverse = "color-text",
   invert,
+  textColor = true,
 }: {
   readonly children: React.ReactNode;
   readonly padding?: Spaces | (string & NonNullable<unknown>);
@@ -42,6 +43,7 @@ export const Rectangle = ({
   readonly colorSurface?: SemanticColors | (string & NonNullable<unknown>);
   readonly colorInverse?: SemanticColors | (string & NonNullable<unknown>);
   readonly invert?: boolean;
+  readonly textColor?: boolean;
 }) => {
   const paddingMapped = useMemo(
     () =>
@@ -85,6 +87,7 @@ export const Rectangle = ({
       }
       className={classNames(styles.rectangle, {
         [styles.invert]: invert,
+        [styles.color]: textColor,
       })}
     >
       {children}
