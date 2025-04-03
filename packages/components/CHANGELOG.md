@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.31.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.30.0...@jobber/components@6.31.0) (2025-04-03)
+
+
+### Features
+
+* **components:** Popover composability ([#2451](https://github.com/GetJobber/atlantis/issues/2451)) ([81709e8](https://github.com/GetJobber/atlantis/commit/81709e8468234bab8c9148a8f31a20194cc22d33))
+
+
+
+
+
 # [6.30.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.29.0...@jobber/components@6.30.0) (2025-04-02)
 
 
