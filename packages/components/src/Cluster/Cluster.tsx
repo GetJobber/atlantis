@@ -39,7 +39,6 @@ export const Cluster = ({
     () => (spaceTokens[space as Spaces] ? spaceTokens[space as Spaces] : space),
     [space],
   );
-  console.log(spaceMapped);
 
   return (
     <div

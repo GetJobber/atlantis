@@ -38,18 +38,28 @@ export const Rectangle = ({
   textColor = true,
 }: {
   readonly children: React.ReactNode;
-  readonly padding?: Spaces | (string & NonNullable<unknown>);
+  readonly padding?:
+    | Spaces
+    | { x?: string; y?: string }
+    | (string & NonNullable<unknown>);
   readonly borderWidth?: Spaces | (string & NonNullable<unknown>);
   readonly colorSurface?: SemanticColors | (string & NonNullable<unknown>);
   readonly colorInverse?: SemanticColors | (string & NonNullable<unknown>);
   readonly invert?: boolean;
   readonly textColor?: boolean;
 }) => {
-  const paddingMapped = useMemo(
-    () =>
-      spaceTokens[padding as Spaces] ? spaceTokens[padding as Spaces] : padding,
-    [padding],
-  );
+  const paddingMapped = useMemo(() => {
+    if (typeof padding === "object") {
+      const x = spaceTokens[padding.x as Spaces] || padding.x;
+      const y = spaceTokens[padding.y as Spaces] || padding.y;
+
+      return `${x} ${y}`;
+    }
+
+    return spaceTokens[padding as Spaces]
+      ? spaceTokens[padding as Spaces]
+      : padding;
+  }, [padding]);
 
   const borderWidthMapped = useMemo(
     () =>
