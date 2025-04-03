@@ -15,6 +15,7 @@ import ButtonDismissContent from "./ButtonDismiss";
 import ButtonGroupContent from "./ButtonGroup";
 import CheckboxContent from "./Checkbox";
 import CardContent from "./Card";
+import CenterContent from "./Center";
 import ChipContent from "./Chip";
 import ChipsContent from "./Chips";
 import ClusterContent from "./Cluster";
@@ -151,6 +152,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   Card: {
     ...CardContent,
+  },
+  Center: {
+    ...CenterContent,
   },
   Checkbox: {
     ...CheckboxContent,

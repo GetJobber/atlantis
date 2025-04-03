@@ -117,6 +117,13 @@ export const componentList = [
     additionalMatches: ["Tile"],
   },
   {
+    title: "Center",
+    to: "/components/Center",
+    imageURL: "/Center.png",
+    sections: ["Layouts & Structure"],
+    additionalMatches: ["Layout", "Container", "Stack", "Wrapper"],
+  },
+  {
     title: "Checkbox",
     to: "/components/Checkbox",
     imageURL: "/Checkbox.png",

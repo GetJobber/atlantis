@@ -99,6 +99,7 @@ export const WebCodeWrapper = (transpiledCode: string | null | undefined) => `
               Button,
               ButtonDismiss,
               Card,
+              Center,
               Checkbox,
               Chip,
               Chips,

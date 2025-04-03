@@ -58,6 +58,17 @@
         "type": {
           "name": "boolean"
         }
+      },
+      "textColor": {
+        "defaultValue": {
+          "value": true
+        },
+        "description": "",
+        "name": "textColor",
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
       }
     }
   }

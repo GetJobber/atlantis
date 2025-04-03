@@ -14,6 +14,7 @@ const components = [
   "Button",
   "ButtonDismiss",
   "Card",
+  "Center",
   "Checkbox",
   "Chip",
   "Chips",
