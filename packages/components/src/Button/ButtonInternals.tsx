@@ -1,6 +1,6 @@
 import React from "react";
 import { ButtonProps } from "./Button.types";
-import { useButton } from "./ButtonProvider";
+import { useButtonContext } from "./ButtonProvider";
 import { Icon, IconProps } from "../Icon";
 import { Typography, TypographyProps } from "../Typography";
 
@@ -13,12 +13,44 @@ export function ButtonContent({
   icon,
   size = "base",
   iconOnRight = false,
-}: Pick<ButtonProps, "label" | "icon" | "size" | "iconOnRight">) {
+  UNSAFE_className,
+  UNSAFE_style,
+}: Pick<
+  ButtonProps,
+  | "label"
+  | "icon"
+  | "size"
+  | "iconOnRight"
+  | "UNSAFE_className"
+  | "UNSAFE_style"
+>) {
   return (
     <>
-      {icon && !iconOnRight && <ButtonIcon name={icon} size={size} />}
-      {label && <ButtonLabel size={size}>{label}</ButtonLabel>}
-      {icon && iconOnRight && <ButtonIcon name={icon} size={size} />}
+      {icon && !iconOnRight && (
+        <ButtonIcon
+          name={icon}
+          size={size}
+          UNSAFE_className={UNSAFE_className?.buttonIcon}
+          UNSAFE_style={UNSAFE_style?.buttonIcon}
+        />
+      )}
+      {label && (
+        <ButtonLabel
+          size={size}
+          UNSAFE_className={UNSAFE_className?.buttonLabel}
+          UNSAFE_style={UNSAFE_style?.buttonLabel}
+        >
+          {label}
+        </ButtonLabel>
+      )}
+      {icon && iconOnRight && (
+        <ButtonIcon
+          name={icon}
+          size={size}
+          UNSAFE_className={UNSAFE_className?.buttonIcon}
+          UNSAFE_style={UNSAFE_style?.buttonIcon}
+        />
+      )}
     </>
   );
 }
@@ -37,8 +69,11 @@ function getTypeSizes(size: string) {
 export function ButtonIcon({
   size: sizeProp,
   ...props
-}: Pick<IconProps, "size" | "name" | "testID">) {
-  const { size: contextSize } = useButton();
+}: Pick<
+  IconProps,
+  "size" | "name" | "testID" | "UNSAFE_className" | "UNSAFE_style"
+>) {
+  const { size: contextSize } = useButtonContext();
   const size = sizeProp || contextSize;
 
   return <Icon {...props} size={size} />;
@@ -51,7 +86,7 @@ export function ButtonLabel({
   size: sizeProp,
   ...props
 }: Omit<TypographyProps, "textColor">) {
-  const { size: contextSize } = useButton();
+  const { size: contextSize } = useButtonContext();
   const size = sizeProp || contextSize;
 
   return (

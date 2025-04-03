@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import React from "react";
 import { Text } from ".";
 
@@ -147,4 +147,26 @@ it("renders a center-aligned text", () => {
       </p>
     </div>
   `);
+});
+
+describe("UNSAFE props", () => {
+  it("should apply the UNSAFE_className to the element", () => {
+    render(
+      <Text UNSAFE_className={{ textStyle: "custom-class" }}>
+        Text with custom class
+      </Text>,
+    );
+    const element = screen.getByText("Text with custom class");
+    expect(element).toHaveClass("custom-class");
+  });
+
+  it("should apply the UNSAFE_style to the element", () => {
+    render(
+      <Text UNSAFE_style={{ textStyle: { color: "red" } }}>
+        Text with custom style
+      </Text>,
+    );
+    const element = screen.getByText("Text with custom style");
+    expect(element).toHaveStyle({ color: "red" });
+  });
 });
