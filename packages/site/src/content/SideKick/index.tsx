@@ -6,12 +6,14 @@ export default {
   content: () => <Content />,
   props: Props,
   component: {
-    element: `<SideKick contentMinWidth="60%" sideWidth="60px">
-        <InputText label="Name" />
+    element: `<div style={{width:'100%'}}>
+    <SideKick  contentMinWidth="200px" sideWidth="50ch">
+        <InputText placeholder="Name" label="Name" />
         <Button>
             <Button.Label>Submit</Button.Label>
         </Button>
     </SideKick>
+    </div>
     `,
   },
   title: "SideKick",

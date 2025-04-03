@@ -66,14 +66,16 @@ are set to `object-fit: cover` by default, ensuring they fill the frame while
 maintaining their aspect ratio.
 
 <Canvas>
-  <Frame>
-    <div style={{ padding: "1rem", textAlign: "center" }}>
-      <Heading level={2}>Content Works Too</Heading>
-      <Text>
-        Any content will be centered and cropped to fit the aspect ratio.
-      </Text>
-    </div>
-  </Frame>
+  <div style={{ width: "100%" }}>
+    <Frame>
+      <div style={{ padding: "1rem", textAlign: "center" }}>
+        <Heading level={2}>Content Works Too</Heading>
+        <Text>
+          Any content will be centered and cropped to fit the aspect ratio.
+        </Text>
+      </div>
+    </Frame>
+  </div>
 </Canvas>
 
 ## Related components

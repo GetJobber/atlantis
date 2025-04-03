@@ -6,7 +6,7 @@ export default {
   content: () => <Content />,
   props: Props,
   component: {
-    element: `<Cover>
+    element: `<Cover minHeight="100vh">
     Content Above
     <Cover.Center>Centered Content</Cover.Center>
     Content Below
