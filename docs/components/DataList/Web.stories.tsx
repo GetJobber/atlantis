@@ -530,8 +530,11 @@ export const ClearAllFilters: StoryFn<typeof DataList> = args => {
     selectedFiltersInitialState,
   );
 
+  const [searchValue, setSearchValue] = useState("");
+
   function removeAllFilters() {
     setSelectedFilters(selectedFiltersInitialState);
+    setSearchValue("");
   }
 
   function handleRemoveIndividualFilterGroup(type: keyof SelectedFilters) {
@@ -649,7 +652,11 @@ export const ClearAllFilters: StoryFn<typeof DataList> = args => {
       </DataList.Filters>
 
       <DataList.Search
-        onSearch={search => console.log(search)}
+        value={searchValue}
+        onSearch={search => {
+          console.log("search value:", search);
+          setSearchValue(search);
+        }}
         placeholder="Search data..."
       />
       <DataList.Layout size="md">
