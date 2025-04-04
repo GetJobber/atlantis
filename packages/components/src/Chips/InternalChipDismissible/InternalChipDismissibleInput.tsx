@@ -90,7 +90,7 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
         autoFocus={true}
       />
 
-      {(hasAvailableOptions || isLoadingMore) && (
+      {searchValue.length > 0 && (hasAvailableOptions || isLoadingMore) && (
         <div
           ref={setPositionedElementRef}
           className={styles.menu}
