@@ -26,16 +26,28 @@ export function Rectangle({
   textColor = true,
 }: RectangleProps) {
   const paddingMapped = useMemo(() => {
-    if (typeof padding === "object") {
-      const x = spaceTokens[padding.x as Spaces] || padding.x;
-      const y = spaceTokens[padding.y as Spaces] || padding.y;
+    const paddingAsObject = (paddingIn: { x?: string; y?: string }) => {
+      const x = spaceTokens[paddingIn.x as Spaces] ?? (paddingIn.x || "0");
+      const y = spaceTokens[paddingIn.y as Spaces] ?? (paddingIn.y || "0");
 
-      return `${x} ${y}`;
-    }
+      return {
+        "--rectangle-padding-x": x,
+        "--rectangle-padding-y": y,
+      } as React.CSSProperties;
+    };
 
-    return spaceTokens[padding as Spaces]
-      ? spaceTokens[padding as Spaces]
-      : padding;
+    const paddingAsString = (paddingIn: string) => {
+      const paddingValue = spaceTokens[paddingIn as Spaces] ?? paddingIn;
+
+      return {
+        "--rectangle-padding-x": paddingValue,
+        "--rectangle-padding-y": paddingValue,
+      } as React.CSSProperties;
+    };
+
+    return typeof padding === "object"
+      ? paddingAsObject(padding)
+      : paddingAsString(padding);
   }, [padding]);
 
   const borderWidthMapped = useMemo(
@@ -66,10 +78,10 @@ export function Rectangle({
     <div
       style={
         {
-          "--rectangle-padding": paddingMapped,
           "--rectangle-border-width": borderWidthMapped,
           "--rectangle-color-surface": colorSurfaceMapped,
           "--rectangle-color-inverse": colorInverseMapped,
+          ...paddingMapped,
         } as React.CSSProperties
       }
       className={classNames(styles.rectangle, {

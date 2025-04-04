@@ -155,6 +155,16 @@ import { useState } from "react";
     </Rectangle>
     </Card>
   </Canvas>
+  <Canvas>
+  <Card>
+    <Rectangle padding={{y: "18px",x:"67px"}}>
+      <Stack>
+        <Heading level={2}>Rectangle Offset Padding</Heading>
+        <Text>You can modify the padding, in unequal increments, to meet specific design requirements but it's best to use the space tokens for consistent spacing where possible and striving for equal paddings everywhere else. Use offset padding only when necessary.</Text>
+      </Stack>
+    </Rectangle>
+    </Card>
+  </Canvas>
   </Stack>
 </section>
 <section>
@@ -444,7 +454,7 @@ import { useState } from "react";
   <Stack>
   <Heading level={1}>Sidekick</Heading>
   <Text>The Sidekick component is used to create a horizontal layout where one half of the content is fixed width, and the other half is fluid. Where there is no longer the specified sideWidth space remaining, the content will wrap to the next line.</Text>
-  <SideKick sideWidth="20%" contentMinWidth="70%">
+  <SideKick sideWidth="120px" contentMinWidth="60%">
       <InputText placeholder="Sidekick Input" />
       <Button label="Sidekick Button" />
     </SideKick>
