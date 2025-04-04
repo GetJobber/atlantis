@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.32.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.31.1...@jobber/components@6.32.0) (2025-04-04)
+
+
+### Features
+
+* **components:** Add UNSAFE props to Heading ([#2459](https://github.com/GetJobber/atlantis/issues/2459)) ([2fbf940](https://github.com/GetJobber/atlantis/commit/2fbf940a48934872e1339e1003aa163dbe0ef89f))
+
+
+
+
+
 ## [6.31.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.31.0...@jobber/components@6.31.1) (2025-04-03)
 
 
