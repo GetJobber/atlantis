@@ -5,6 +5,61 @@
     "description": "",
     "displayName": "Center",
     "methods": [],
-    "props": {}
+    "props": {
+      "max": {
+        "defaultValue": {
+          "value": "50ch"
+        },
+        "description": "The maximum width of the centered content.",
+        "name": "max",
+        "parent": {
+          "fileName": "packages/components/src/Center/types.ts",
+          "name": "CenterProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "andText": {
+        "defaultValue": null,
+        "description": "Whether to also center the text.",
+        "name": "andText",
+        "parent": {
+          "fileName": "packages/components/src/Center/types.ts",
+          "name": "CenterProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "gutters": {
+        "defaultValue": null,
+        "description": "The amount of space between the content and the edges of the container.",
+        "name": "gutters",
+        "parent": {
+          "fileName": "packages/components/src/Center/types.ts",
+          "name": "CenterProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Spaces | (string & {})"
+        }
+      },
+      "intrinsic": {
+        "defaultValue": null,
+        "description": "Whether to instrictly center the content.",
+        "name": "intrinsic",
+        "parent": {
+          "fileName": "packages/components/src/Center/types.ts",
+          "name": "CenterProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      }
+    }
   }
 ]
