@@ -18,6 +18,7 @@ import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
 import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
 import { Flex } from "@jobber/components/Flex";
+import { useDebounce } from "@jobber/components/utils/useDebounce";
 
 const meta: Meta = {
   title: "Components/Lists and Tables/DataList/Web",
@@ -532,6 +533,10 @@ export const ClearAllFilters: StoryFn<typeof DataList> = args => {
 
   const [searchValue, setSearchValue] = useState("");
 
+  const debouncedRequest = useDebounce((search: string) => {
+    console.log("debounced search request", search);
+  }, 300);
+
   function removeAllFilters() {
     setSelectedFilters(selectedFiltersInitialState);
     setSearchValue("");
@@ -654,8 +659,8 @@ export const ClearAllFilters: StoryFn<typeof DataList> = args => {
       <DataList.Search
         value={searchValue}
         onSearch={search => {
-          console.log("search value:", search);
           setSearchValue(search);
+          debouncedRequest(search);
         }}
         placeholder="Search data..."
       />

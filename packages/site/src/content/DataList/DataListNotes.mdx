@@ -340,10 +340,17 @@ requests for example.
 ```tsx
 const [searchValue, setSearchValue] = useState("");
 
+const debouncedRequest = useDebounce((search: string) => {
+  console.log("delayed request", search);
+}, 300);
+
 <DataList>
   <DataList.Search
     value={searchValue}
-    onSearch={setSearchValue}
+    onSearch={(search) => {
+      setSearchValue(search);
+      debouncedRequest(search);
+    }}
   />
 </DataList>
 ```
