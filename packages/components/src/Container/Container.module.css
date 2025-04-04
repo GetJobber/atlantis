@@ -1,0 +1,4 @@
+.container {
+  container-name: var(--public-container-name);
+  container-type: inline-size;
+}

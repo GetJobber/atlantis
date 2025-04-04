@@ -11,6 +11,7 @@ export * from "./ButtonDismiss";
 export * from "./Card";
 export * from "./Center";
 export * from "./Cluster";
+export * from "./Container";
 export * from "./Cover";
 export * from "./Checkbox";
 export * from "./Chip";

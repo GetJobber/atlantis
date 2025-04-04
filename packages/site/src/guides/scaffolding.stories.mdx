@@ -13,6 +13,8 @@ import { Page } from "@jobber/components";
 import { SideKick } from "@jobber/components";
 import { Tiles } from "@jobber/components";
 import { Typography } from "@jobber/components";
+import { Container } from "@jobber/components";
+import styles from "./scaffolding.module.css";
 
 # Scaffolding
 
@@ -21,7 +23,7 @@ responsive behavior for free.
 
 <Canvas>
   <Page
-    title="Legacy Page"
+    title="Page"
     subtitle="Subtitle goes here"
     primaryAction={{ label: "Action 1" }}
     secondaryAction={{ label: "Action 2" }}
@@ -52,48 +54,29 @@ responsive behavior for free.
   <div style={{ width: "100%" }}>
     <Rectangle textColor={false}>
       <Stack space="larger">
-        <Stack space="larger">
-          <SideKick contentMinWidth="60%">
-            <Stack>
-              <Heading level={1}>Composed Page</Heading>
-              <Text size="large" variation="subdued">
-                <Emphasis variation="bold">Subtitle goes here</Emphasis>
-              </Text>
-            </Stack>
-            <Stack>
-              <Cluster justify="end">
-                <Button label="Action 1" />
-                <Button label="Action 2" type="secondary" />
-                <Menu
-                  items={[
-                    {
-                      actions: [
-                        {
-                          label: "Action 1",
-                          onClick: () => {
-                            console.log("Action 1");
-                          },
-                        },
-                        {
-                          label: "Action 2",
-                          onClick: () => {
-                            console.log("Action 2");
-                          },
-                        },
-                      ],
-                    },
-                  ]}
-                  activator={
-                    <Button icon="more" label="More Actions" type="secondary" />
-                  }
-                />
-              </Cluster>
-            </Stack>
-          </SideKick>
-        </Stack>
-        <Stack>
-          <Text>Children Go Here</Text>
-        </Stack>
+        <SideKick contentMinWidth="40.5ch" sideWidth="32ch">
+          <Stack>
+            <Heading level={1}>Page</Heading>
+            <Text size="large" variation="subdued">
+              <Emphasis variation="bold">Subtitle goes here</Emphasis>
+            </Text>
+          </Stack>
+          <Container name="actions" className={styles.actions}>
+            <Cluster justify="end">
+              <Button label="Action 1" />
+              <Button label="Action 2" type="secondary" />
+              <Menu
+                items={[
+                  {
+                    actions: [{ label: "Action 1" }, { label: "Action 2" }],
+                    label: "Action 3",
+                  },
+                ]}
+              />
+            </Cluster>
+          </Container>
+        </SideKick>
+        <Text>Children Go Here</Text>
       </Stack>
     </Rectangle>
   </div>

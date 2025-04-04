@@ -110,6 +110,11 @@
       "import": "./dist/Cover/index.mjs",
       "require": "./dist/Cover/index.cjs"
     },
+    "./Container": {
+      "types": "./dist/Container/index.d.ts",
+      "import": "./dist/Container/index.mjs",
+      "require": "./dist/Container/index.cjs"
+    },
     "./Content": {
       "types": "./dist/Content/index.d.ts",
       "import": "./dist/Content/index.mjs",
