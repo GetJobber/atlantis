@@ -1,0 +1,14 @@
+.frame {
+  display: flex;
+  overflow: hidden;
+  aspect-ratio: var(--public-frame-numerator) / var(--public-frame-denominator);
+  justify-content: center;
+  align-items: center;
+}
+
+.frame img,
+.frame video {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}

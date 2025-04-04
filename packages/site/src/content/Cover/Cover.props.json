@@ -1,0 +1,45 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Cover/Cover.tsx",
+    "description": "",
+    "displayName": "Cover",
+    "methods": [],
+    "props": {
+      "minHeight": {
+        "defaultValue": null,
+        "description": "The minimum height of the element. Suggested to use `vh` units.",
+        "name": "minHeight",
+        "parent": {
+          "fileName": "packages/components/src/Cover/types.ts",
+          "name": "CoverProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "space": {
+        "defaultValue": null,
+        "description": "The amount of space around the centered content",
+        "name": "space",
+        "parent": {
+          "fileName": "packages/components/src/Cover/types.ts",
+          "name": "CoverProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Cover/Cover.tsx",
+    "description": "",
+    "displayName": "Cover.Center",
+    "methods": [],
+    "props": {}
+  }
+]

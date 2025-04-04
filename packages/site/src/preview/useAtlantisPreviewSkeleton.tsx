@@ -58,6 +58,50 @@ html,body,#root {
         var root;
         var rootElement;
       </script>
+      <style>
+      @container wrapper (min-width:0px){
+        .item > *{
+          width: 80%;
+          background-color: var(--color-surface--background);
+          border-radius: var(--radius-base);
+          padding: var(--space-large);
+        }
+      }
+      @container wrapper-two (min-width:0px){
+        .item > *{
+          width: 80%;
+          background-color: var(--color-payments);
+          color: var(--color-text--reverse);
+          border-radius: var(--radius-base);
+          padding: var(--space-large);
+        }
+          .item h1 {
+          color: var(--color-text--reverse--secondary);
+
+          }
+          .item p {
+          color: var(--color-text--reverse);
+          }
+      }
+  @container wrapper-three (min-width:0px){
+ 
+        .item > *{
+          width: 50%;
+          background-color: var(--color-success);
+          color: var(--color-text--reverse);
+          padding: var(--space-large);
+        }
+          .item h1 {
+          color: var(--color-text--secondary);
+          background-color: var(--color-surface--background);
+          padding: var(--space-small);
+          border-radius: var(--radius-base);
+          }
+          .item p {
+          color: var(--color-text--reverse);
+          }
+      }
+      </style>
       <script>
       window.onerror = function(message, source, lineno, colno, error) {
         console.log('ERROR', message, source, lineno, colno, error);
@@ -99,13 +143,17 @@ export const WebCodeWrapper = (transpiledCode: string | null | undefined) => `
               Button,
               ButtonDismiss,
               Card,
+              Center,
               Checkbox,
               Chip,
               Chips,
+              Cluster,
               Combobox,
               ConfirmationModal,
+              Container,
               Content,
               Countdown,
+              Cover,
               DataDump,
               DataList,
               DataTable,
@@ -126,6 +174,7 @@ export const WebCodeWrapper = (transpiledCode: string | null | undefined) => `
               FormatRelativeDateTime,
               FormatTime,
               FormField,
+              Frame,
               Gallery,
               Glimmer,
               Grid,
@@ -156,11 +205,15 @@ export const WebCodeWrapper = (transpiledCode: string | null | undefined) => `
               ProgressBar,
               RadioGroup,
               RadioOption,
+              Rectangle,
               RecurringSelect,
+              ResponsiveSwitcher, 
               SegmentedControl,
               Select,
               SideDrawer,
+              SideKick,
               Spinner,
+              Stack,
               StatusIndicator,
               StatusLabel,
               Switch,
@@ -175,6 +228,7 @@ export const WebCodeWrapper = (transpiledCode: string | null | undefined) => `
               Tabs,
               Tab,
               Text,
+              Tiles,
               Toast,
               showToast,
               Tooltip,

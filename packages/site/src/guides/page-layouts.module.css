@@ -1,0 +1,41 @@
+@container container-items (min-width:0px) {
+    .item>* {
+        --color-border: var(--color-critical);
+        --border-base: var(--border-thick);
+    }
+
+    .itemDotted>* {
+        --color-border: var(--color-task);
+        border-style: dotted;
+        --border-base: var(--border-thicker);
+    }
+
+    .itemUpsideDown>* {
+        --color-border: var(--color-critical);
+        --border-base: var(--border-thicker);
+        transform: rotate(180deg);
+    }
+}
+
+@container container-items (max-width: 600px) {
+    .item>* {
+        --color-border: var(--color-success);
+        --border-base: var(--border-thicker);
+    }
+}
+
+@container container-items (max-width: 650px) {
+    .itemDotted>* {
+        --color-border: var(--color-visit);
+        border-style: dotted;
+        --border-base: var(--border-thicker);
+    }
+}
+
+@container container-items (max-width: 700px) {
+    .itemUpsideDown>* {
+        --color-border: var(--color-event);
+        --border-base: var(--border-thick);
+        transform: rotate(0deg);
+    }
+}

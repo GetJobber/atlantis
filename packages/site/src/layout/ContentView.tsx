@@ -8,16 +8,18 @@ export const ContentView = ({
   title,
   key,
   content,
+  noMaxWidth = false,
 }: {
   readonly title: string;
   readonly key: string;
   readonly content: ContentExport["content"];
+  readonly noMaxWidth?: boolean;
 }) => {
   usePageTitle({ title });
 
   return (
     <BaseView>
-      <BaseView.Main>
+      <BaseView.Main noMaxWidth={noMaxWidth}>
         <custom-elements>
           <Content>{content()}</Content>
         </custom-elements>

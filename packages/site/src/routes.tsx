@@ -229,6 +229,16 @@ export const routes: Array<AtlantisRoute> = [
         handle: "Pull request title generator",
         exact: true,
       },
+      {
+        path: "/guides/page-layouts",
+        handle: "Page Layouts",
+        exact: true,
+      },
+      {
+        path: "/guides/scaffolding",
+        handle: "Scaffolding",
+        exact: true,
+      },
     ],
   },
   {

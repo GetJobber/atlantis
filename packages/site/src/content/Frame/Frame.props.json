@@ -1,0 +1,41 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Frame/Frame.tsx",
+    "description": "",
+    "displayName": "Frame",
+    "methods": [],
+    "props": {
+      "n": {
+        "defaultValue": {
+          "value": 16
+        },
+        "description": "The left, width, initial, part of the ratio",
+        "name": "n",
+        "parent": {
+          "fileName": "packages/components/src/Frame/types.ts",
+          "name": "FrameProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "d": {
+        "defaultValue": {
+          "value": 9
+        },
+        "description": "The right, height, secondary part of the ratio",
+        "name": "d",
+        "parent": {
+          "fileName": "packages/components/src/Frame/types.ts",
+          "name": "FrameProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      }
+    }
+  }
+]

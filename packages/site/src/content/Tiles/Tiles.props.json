@@ -1,0 +1,41 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Tiles/Tiles.tsx",
+    "description": "",
+    "displayName": "Tiles",
+    "methods": [],
+    "props": {
+      "minSize": {
+        "defaultValue": {
+          "value": "30ch"
+        },
+        "description": "The minimum size of the tiles.",
+        "name": "minSize",
+        "parent": {
+          "fileName": "packages/components/src/Tiles/types.ts",
+          "name": "TilesProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "space": {
+        "defaultValue": {
+          "value": "base"
+        },
+        "description": "The amount of space between the tiles. Semantic tokens are available.",
+        "name": "space",
+        "parent": {
+          "fileName": "packages/components/src/Tiles/types.ts",
+          "name": "TilesProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  }
+]
