@@ -12,6 +12,11 @@ export interface ChipDismissibleInputProps
   readonly options: ChipProps[];
   onCustomOptionSelect?(value: string): void;
   onOptionSelect(value: string): void;
+  /**
+   * Control whether the menu only appears once the user types.
+   * @default false
+   */
+  readonly onlyShowMenuOnSearch?: boolean;
 }
 
 export interface ChipDismissibleInputOptionProps extends ChipProps {
