@@ -18,11 +18,12 @@ interface BannerProps {
   readonly type: BannerType;
 
   /**
-   * Accepts props for Button. Default action uses a 'subtle' Button.
+   * Accepts props for Button. Default action uses a 'subtle' Button
    */
   readonly primaryAction?: ButtonProps;
 
   /**
+   * Set to false to hide the dismiss button
    * @default true
    */
   readonly dismissible?: boolean;
@@ -35,7 +36,7 @@ interface BannerProps {
   onDismiss?(): void;
 
   /**
-   * When provided, Banner's visibility is controlled by this value.
+   * When provided, Banner's visibility is controlled by this value
    * @default undefined
    */
   readonly controlledVisiblity?: boolean;
