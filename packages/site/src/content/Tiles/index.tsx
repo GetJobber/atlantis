@@ -7,17 +7,14 @@ export default {
   content: () => <Content />,
   props: Props,
   component: {
-    element: `<Stack>
-        <Tiles>
-        <Frame>
-        <img src="/img_collage.jpg" />
-        </Frame>
-        <Frame>
-        <img src="/img_collage.jpg" />
-        </Frame>
-    </Tiles>
-    </Stack>
-    `,
+    element: `<Tiles>
+  <Frame>
+    <img src="/img_collage.jpg" />
+  </Frame>
+  <Frame>
+    <img src="/img_collage.jpg" />
+  </Frame>
+</Tiles>`,
   },
   title: "Tiles",
   links: [

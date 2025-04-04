@@ -1,17 +1,7 @@
 import React, { useMemo } from "react";
 import classNames from "classnames";
 import styles from "./Stack.module.css";
-
-type Spaces =
-  | "minuscule"
-  | "smallest"
-  | "smaller"
-  | "small"
-  | "base"
-  | "large"
-  | "larger"
-  | "largest"
-  | "extravagant";
+import { Spaces, StackProps } from "./types";
 
 const spaceTokens: Record<Spaces, string> = {
   minuscule: "var(--space-minuscule)",
@@ -25,17 +15,12 @@ const spaceTokens: Record<Spaces, string> = {
   extravagant: "var(--space-extravagant)",
 };
 
-export const Stack = ({
+export function Stack({
   space = spaceTokens.base,
   recursive,
   splitAfter,
   children,
-}: {
-  readonly space?: string | Spaces;
-  readonly splitAfter?: number;
-  readonly recursive?: boolean;
-  readonly children: React.ReactNode;
-}) => {
+}: StackProps) {
   const spaceMapped = useMemo(
     () => (spaceTokens[space as Spaces] ? spaceTokens[space as Spaces] : space),
     [space],
@@ -60,4 +45,4 @@ export const Stack = ({
       {children}
     </div>
   );
-};
+}

@@ -10,19 +10,27 @@
         "defaultValue": {
           "value": "base"
         },
-        "description": "",
+        "description": "The amount of space around the rectangle. Semantic tokens are available.",
         "name": "padding",
+        "parent": {
+          "fileName": "packages/components/src/Rectangle/types.ts",
+          "name": "RectangleProps"
+        },
         "required": false,
         "type": {
-          "name": "Spaces | (string & {})"
+          "name": "Spaces | { x?: string; y?: string; } | (string & {})"
         }
       },
       "borderWidth": {
         "defaultValue": {
           "value": "0px"
         },
-        "description": "",
+        "description": "The width of the border. Semantic tokens are available.",
         "name": "borderWidth",
+        "parent": {
+          "fileName": "packages/components/src/Rectangle/types.ts",
+          "name": "RectangleProps"
+        },
         "required": false,
         "type": {
           "name": "Spaces | (string & {})"
@@ -32,8 +40,12 @@
         "defaultValue": {
           "value": "color-surface"
         },
-        "description": "",
+        "description": "The color of the surface. Semantic tokens are available.",
         "name": "colorSurface",
+        "parent": {
+          "fileName": "packages/components/src/Rectangle/types.ts",
+          "name": "RectangleProps"
+        },
         "required": false,
         "type": {
           "name": "(string & {}) | \"base-unit\" | \"color-interactive\" | \"color-interactive--hover\" | \"color-interactive--subtle\" | \"color-interactive--subtle--hover\" | \"color-interactive--background\" | ... 38 more ... | \"color-brand\""
@@ -43,8 +55,12 @@
         "defaultValue": {
           "value": "color-text"
         },
-        "description": "",
+        "description": "The color of the inverse. Semantic tokens are available.",
         "name": "colorInverse",
+        "parent": {
+          "fileName": "packages/components/src/Rectangle/types.ts",
+          "name": "RectangleProps"
+        },
         "required": false,
         "type": {
           "name": "(string & {}) | \"base-unit\" | \"color-interactive\" | \"color-interactive--hover\" | \"color-interactive--subtle\" | \"color-interactive--subtle--hover\" | \"color-interactive--background\" | ... 38 more ... | \"color-brand\""
@@ -52,8 +68,12 @@
       },
       "invert": {
         "defaultValue": null,
-        "description": "",
+        "description": "Whether to invert the colors.",
         "name": "invert",
+        "parent": {
+          "fileName": "packages/components/src/Rectangle/types.ts",
+          "name": "RectangleProps"
+        },
         "required": false,
         "type": {
           "name": "boolean"
@@ -63,8 +83,12 @@
         "defaultValue": {
           "value": true
         },
-        "description": "",
+        "description": "Whether to force the text color to inherit from the parent. Enabled by default.",
         "name": "textColor",
+        "parent": {
+          "fileName": "packages/components/src/Rectangle/types.ts",
+          "name": "RectangleProps"
+        },
         "required": false,
         "type": {
           "name": "boolean"

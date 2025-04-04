@@ -8,8 +8,12 @@
     "props": {
       "minHeight": {
         "defaultValue": null,
-        "description": "",
+        "description": "The minimum height of the element. Suggested to use `vh` units.",
         "name": "minHeight",
+        "parent": {
+          "fileName": "packages/components/src/Cover/types.ts",
+          "name": "CoverProps"
+        },
         "required": false,
         "type": {
           "name": "string"
@@ -17,8 +21,12 @@
       },
       "space": {
         "defaultValue": null,
-        "description": "",
+        "description": "The amount of space around the centered content",
         "name": "space",
+        "parent": {
+          "fileName": "packages/components/src/Cover/types.ts",
+          "name": "CoverProps"
+        },
         "required": false,
         "type": {
           "name": "string"

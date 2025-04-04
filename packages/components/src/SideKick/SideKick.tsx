@@ -1,17 +1,7 @@
 import React, { useMemo } from "react";
 import classNames from "classnames";
 import styles from "./SideKick.module.css";
-
-type Spaces =
-  | "minuscule"
-  | "smallest"
-  | "smaller"
-  | "small"
-  | "base"
-  | "large"
-  | "larger"
-  | "largest"
-  | "extravagant";
+import { SideKickProps, Spaces } from "./types";
 
 const spaceTokens: Record<Spaces, string> = {
   minuscule: "var(--space-minuscule)",
@@ -25,19 +15,13 @@ const spaceTokens: Record<Spaces, string> = {
   extravagant: "var(--space-extravagant)",
 };
 
-export const SideKick = ({
+export function SideKick({
   children,
   sideWidth,
   contentMinWidth = "50%",
   space = "var(--space-base)",
   onRight,
-}: {
-  readonly children: React.ReactNode;
-  readonly sideWidth?: string;
-  readonly contentMinWidth?: string;
-  readonly space?: string | Spaces;
-  readonly onRight?: boolean;
-}) => {
+}: SideKickProps) {
   const spaceMapped = useMemo(
     () => (spaceTokens[space as Spaces] ? spaceTokens[space as Spaces] : space),
     [space],
@@ -65,4 +49,4 @@ export const SideKick = ({
       {children}
     </div>
   );
-};
+}

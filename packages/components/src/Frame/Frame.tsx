@@ -1,15 +1,8 @@
 import React from "react";
 import styles from "./Frame.module.css";
+import { FrameProps } from "./types";
 
-export const Frame = ({
-  children,
-  n = 16,
-  d = 9,
-}: {
-  readonly children: React.ReactNode;
-  readonly n?: number;
-  readonly d?: number;
-}) => {
+export function Frame({ children, n = 16, d = 9 }: FrameProps) {
   return (
     <div
       className={styles.frame}
@@ -23,4 +16,4 @@ export const Frame = ({
       {children}
     </div>
   );
-};
+}

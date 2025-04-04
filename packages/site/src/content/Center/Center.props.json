@@ -5,45 +5,6 @@
     "description": "",
     "displayName": "Center",
     "methods": [],
-    "props": {
-      "max": {
-        "defaultValue": {
-          "value": "50ch"
-        },
-        "description": "",
-        "name": "max",
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "andText": {
-        "defaultValue": null,
-        "description": "",
-        "name": "andText",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "gutters": {
-        "defaultValue": null,
-        "description": "",
-        "name": "gutters",
-        "required": false,
-        "type": {
-          "name": "Spaces | (string & {})"
-        }
-      },
-      "intrinsic": {
-        "defaultValue": null,
-        "description": "",
-        "name": "intrinsic",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      }
-    }
+    "props": {}
   }
 ]

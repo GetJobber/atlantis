@@ -8,30 +8,42 @@
     "props": {
       "threshold": {
         "defaultValue": null,
-        "description": "",
+        "description": "The minimum width of the top-level children. If this can't be met, the children will break to row.",
         "name": "threshold",
+        "parent": {
+          "fileName": "packages/components/src/ResponsiveSwitcher/types.ts",
+          "name": "ResponsiveSwitcherProps"
+        },
         "required": true,
         "type": {
-          "name": "BreakpointSizes | (string & {})"
+          "name": "string"
         }
       },
       "space": {
         "defaultValue": {
           "value": "spaceTokens.base"
         },
-        "description": "",
+        "description": "The amount of space between the children. Semantic tokens are available.",
         "name": "space",
+        "parent": {
+          "fileName": "packages/components/src/ResponsiveSwitcher/types.ts",
+          "name": "ResponsiveSwitcherProps"
+        },
         "required": false,
         "type": {
-          "name": "(string & {}) | Spaces"
+          "name": "Spaces | (string & {})"
         }
       },
       "limit": {
         "defaultValue": {
           "value": 2
         },
-        "description": "",
+        "description": "Useful for dynamic content. If the number of children is greater than this, the children will break to row.",
         "name": "limit",
+        "parent": {
+          "fileName": "packages/components/src/ResponsiveSwitcher/types.ts",
+          "name": "ResponsiveSwitcherProps"
+        },
         "required": false,
         "type": {
           "name": "number"

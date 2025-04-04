@@ -8,11 +8,11 @@ export default {
   props: Props,
   component: {
     element: `<Cluster>
-      <Chip label="Cluster Chip" />
-      <Heading level={5}>These are all in a cluster</Heading>
-      <Button label="Clustered items have variable widths" />
-      <Text>They wrap when they run out of space</Text>
-      </Cluster>
+  <Chip label="Cluster Chip" />
+  <Heading level={5}>These are all in a cluster</Heading>
+  <Button label="Clustered items have variable widths" />
+  <Text>They wrap when they run out of space</Text>
+</Cluster>
     `,
   },
   title: "Cluster",

@@ -8,8 +8,12 @@
     "props": {
       "sideWidth": {
         "defaultValue": null,
-        "description": "",
+        "description": "The width of the sidekick.",
         "name": "sideWidth",
+        "parent": {
+          "fileName": "packages/components/src/SideKick/types.ts",
+          "name": "SideKickProps"
+        },
         "required": false,
         "type": {
           "name": "string"
@@ -19,8 +23,12 @@
         "defaultValue": {
           "value": "50%"
         },
-        "description": "",
+        "description": "The minimum width of the content.",
         "name": "contentMinWidth",
+        "parent": {
+          "fileName": "packages/components/src/SideKick/types.ts",
+          "name": "SideKickProps"
+        },
         "required": false,
         "type": {
           "name": "string"
@@ -30,8 +38,12 @@
         "defaultValue": {
           "value": "var(--space-base)"
         },
-        "description": "",
+        "description": "The amount of space between the sidekick and the content. Semantic tokens are available.",
         "name": "space",
+        "parent": {
+          "fileName": "packages/components/src/SideKick/types.ts",
+          "name": "SideKickProps"
+        },
         "required": false,
         "type": {
           "name": "string"
@@ -39,8 +51,12 @@
       },
       "onRight": {
         "defaultValue": null,
-        "description": "",
+        "description": "Whether to place the sidekick on the right.",
         "name": "onRight",
+        "parent": {
+          "fileName": "packages/components/src/SideKick/types.ts",
+          "name": "SideKickProps"
+        },
         "required": false,
         "type": {
           "name": "boolean"

@@ -8,9 +8,13 @@ export default {
   props: Props,
   component: {
     element: `<Stack>
-       <Card><Rectangle>Vertically</Rectangle></Card>
-       <Card><Rectangle>Stacked</Rectangle></Card>
-    </Stack>
+  <Card>
+    <Rectangle>Vertically</Rectangle>
+  </Card>
+  <Card>
+    <Rectangle>Stacked</Rectangle>
+  </Card>
+</Stack>
     `,
   },
   title: "Stack",

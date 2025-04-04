@@ -8,19 +8,19 @@ export default {
   props: Props,
   component: {
     element: `<div style={{width:'100%'}}>
-    <ResponsiveSwitcher threshold="50ch">
+  <ResponsiveSwitcher threshold="50ch">
     <Card>
-    <Rectangle>
-    <Text>Content Left/Above</Text>
-    </Rectangle>
+      <Rectangle>
+        <Text>Content Left/Above</Text>
+      </Rectangle>
     </Card>
     <Card>
-    <Rectangle>
-    <Text>Content Right/Below</Text>
-    </Rectangle>
+      <Rectangle>
+        <Text>Content Right/Below</Text>
+      </Rectangle>
     </Card>
-    </ResponsiveSwitcher>
-    </div>`,
+  </ResponsiveSwitcher>
+</div>`,
   },
   title: "ResponsiveSwitcher",
   links: [

@@ -8,10 +8,12 @@ export default {
   props: Props,
   component: {
     element: `<Cover minHeight="100vh">
-    Content Above
-    <Cover.Center>Centered Content</Cover.Center>
-    Content Below
-    </Cover>`,
+  <Text>Content Above</Text>
+  <Cover.Center>
+    <Text>Centered Content</Text>
+  </Cover.Center>
+  <Text>Content Below</Text>
+</Cover>`,
   },
   title: "Cover",
   links: [

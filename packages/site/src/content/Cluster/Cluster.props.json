@@ -8,8 +8,12 @@
     "props": {
       "justify": {
         "defaultValue": null,
-        "description": "",
+        "description": "The horizontal justification of the cluster elements.",
         "name": "justify",
+        "parent": {
+          "fileName": "packages/components/src/Cluster/types.ts",
+          "name": "ClusterProps"
+        },
         "required": false,
         "type": {
           "name": "\"start\" | \"end\" | \"center\" | \"between\" | \"around\""
@@ -17,8 +21,12 @@
       },
       "align": {
         "defaultValue": null,
-        "description": "",
+        "description": "The vertical alignment of the cluster elements.",
         "name": "align",
+        "parent": {
+          "fileName": "packages/components/src/Cluster/types.ts",
+          "name": "ClusterProps"
+        },
         "required": false,
         "type": {
           "name": "\"start\" | \"end\" | \"center\""
@@ -26,8 +34,12 @@
       },
       "space": {
         "defaultValue": null,
-        "description": "",
+        "description": "The amount of space between the cluster elements. Semantic tokens are available.",
         "name": "space",
+        "parent": {
+          "fileName": "packages/components/src/Cluster/types.ts",
+          "name": "ClusterProps"
+        },
         "required": false,
         "type": {
           "name": "Spaces | (string & {})"

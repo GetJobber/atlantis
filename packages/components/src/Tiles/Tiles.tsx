@@ -1,16 +1,6 @@
 import React, { useMemo } from "react";
 import styles from "./Tiles.module.css";
-
-type Spaces =
-  | "minuscule"
-  | "smallest"
-  | "smaller"
-  | "small"
-  | "base"
-  | "large"
-  | "larger"
-  | "largest"
-  | "extravagant";
+import { Spaces, TilesProps } from "./types";
 
 const spaceTokens: Record<Spaces, string> = {
   minuscule: "var(--space-minuscule)",
@@ -24,15 +14,11 @@ const spaceTokens: Record<Spaces, string> = {
   extravagant: "var(--space-extravagant)",
 };
 
-export const Tiles = ({
+export function Tiles({
   children,
   minSize = "30ch",
   space = "base",
-}: {
-  readonly children: React.ReactNode;
-  readonly minSize: string;
-  readonly space: string;
-}) => {
+}: TilesProps) {
   const spaceMapped = useMemo(
     () => (spaceTokens[space as Spaces] ? spaceTokens[space as Spaces] : space),
     [space],
@@ -51,4 +37,4 @@ export const Tiles = ({
       {children}
     </div>
   );
-};
+}

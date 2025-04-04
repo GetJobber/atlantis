@@ -7,9 +7,9 @@ export default {
   content: () => <Content />,
   props: Props,
   component: {
-    element: `<Frame>
-        <img src="/img_collage.jpg" />
-    </Frame>`,
+    element: `<Frame n={16} d={9}>
+  <img src="/img_collage.jpg" />
+</Frame>`,
   },
   title: "Frame",
   links: [

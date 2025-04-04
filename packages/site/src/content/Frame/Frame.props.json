@@ -10,8 +10,12 @@
         "defaultValue": {
           "value": 16
         },
-        "description": "",
+        "description": "The left, width, initial, part of the ratio",
         "name": "n",
+        "parent": {
+          "fileName": "packages/components/src/Frame/types.ts",
+          "name": "FrameProps"
+        },
         "required": false,
         "type": {
           "name": "number"
@@ -21,8 +25,12 @@
         "defaultValue": {
           "value": 9
         },
-        "description": "",
+        "description": "The right, height, secondary part of the ratio",
         "name": "d",
+        "parent": {
+          "fileName": "packages/components/src/Frame/types.ts",
+          "name": "FrameProps"
+        },
         "required": false,
         "type": {
           "name": "number"

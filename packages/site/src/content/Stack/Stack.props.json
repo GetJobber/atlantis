@@ -10,8 +10,12 @@
         "defaultValue": {
           "value": "spaceTokens.base"
         },
-        "description": "",
+        "description": "The amount of space between the children. Semantic tokens are available.",
         "name": "space",
+        "parent": {
+          "fileName": "packages/components/src/Stack/types.ts",
+          "name": "StackProps"
+        },
         "required": false,
         "type": {
           "name": "string"
@@ -19,8 +23,12 @@
       },
       "splitAfter": {
         "defaultValue": null,
-        "description": "",
+        "description": "The number of children to split the stack after. Requires parent to have height greater than the sum of the children.",
         "name": "splitAfter",
+        "parent": {
+          "fileName": "packages/components/src/Stack/types.ts",
+          "name": "StackProps"
+        },
         "required": false,
         "type": {
           "name": "number"
@@ -28,8 +36,12 @@
       },
       "recursive": {
         "defaultValue": null,
-        "description": "",
+        "description": "Whether to recursively apply the stack spacing to all the children, not just the top-level.",
         "name": "recursive",
+        "parent": {
+          "fileName": "packages/components/src/Stack/types.ts",
+          "name": "StackProps"
+        },
         "required": false,
         "type": {
           "name": "boolean"

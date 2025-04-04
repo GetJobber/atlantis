@@ -1,15 +1,8 @@
 import React from "react";
 import styles from "./Cover.module.css";
+import { CoverProps } from "./types";
 
-export const Cover = ({
-  children,
-  minHeight,
-  space,
-}: {
-  readonly children: React.ReactNode;
-  readonly minHeight?: string;
-  readonly space?: string;
-}) => {
+export function Cover({ children, minHeight, space }: CoverProps) {
   return (
     <div
       style={
@@ -23,7 +16,7 @@ export const Cover = ({
       {children}
     </div>
   );
-};
+}
 
 Cover.Center = function CenterContent({
   children,

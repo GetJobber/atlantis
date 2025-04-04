@@ -10,8 +10,12 @@
         "defaultValue": {
           "value": "30ch"
         },
-        "description": "",
+        "description": "The minimum size of the tiles.",
         "name": "minSize",
+        "parent": {
+          "fileName": "packages/components/src/Tiles/types.ts",
+          "name": "TilesProps"
+        },
         "required": false,
         "type": {
           "name": "string"
@@ -21,8 +25,12 @@
         "defaultValue": {
           "value": "base"
         },
-        "description": "",
+        "description": "The amount of space between the tiles. Semantic tokens are available.",
         "name": "space",
+        "parent": {
+          "fileName": "packages/components/src/Tiles/types.ts",
+          "name": "TilesProps"
+        },
         "required": false,
         "type": {
           "name": "string"

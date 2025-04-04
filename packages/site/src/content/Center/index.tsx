@@ -7,15 +7,15 @@ export default {
   content: () => <Content />,
   props: Props,
   component: {
-    element: `<div style={{width:'100%', backgroundColor:'white'}}>
-    <Center>
+    element: `<div style={{width:'100%', backgroundColor:'var(--color-surface'}}>
+  <Center>
     <Card>
-    <Rectangle>
-    <Text>Hello</Text>
-    </Rectangle>
+      <Rectangle>
+        <Text>Hello</Text>
+      </Rectangle>
     </Card>
-    </Center>
-    </div>
+  </Center>
+</div>
     `,
   },
   title: "Center",

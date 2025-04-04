@@ -1,16 +1,6 @@
 import React, { useMemo } from "react";
 import styles from "./Cluster.module.css";
-
-type Spaces =
-  | "minuscule"
-  | "smallest"
-  | "smaller"
-  | "small"
-  | "base"
-  | "large"
-  | "larger"
-  | "largest"
-  | "extravagant";
+import { ClusterProps, Spaces } from "./types";
 
 const spaceTokens: Record<Spaces, string> = {
   minuscule: "var(--space-minuscule)",
@@ -24,17 +14,7 @@ const spaceTokens: Record<Spaces, string> = {
   extravagant: "var(--space-extravagant)",
 };
 
-export const Cluster = ({
-  children,
-  justify,
-  align,
-  space,
-}: {
-  readonly children: React.ReactNode;
-  readonly justify?: "start" | "end" | "center" | "between" | "around";
-  readonly align?: "start" | "end" | "center";
-  readonly space?: Spaces | (string & NonNullable<unknown>);
-}) => {
+export function Cluster({ children, justify, align, space }: ClusterProps) {
   const spaceMapped = useMemo(
     () => (spaceTokens[space as Spaces] ? spaceTokens[space as Spaces] : space),
     [space],
@@ -54,4 +34,4 @@ export const Cluster = ({
       {children}
     </div>
   );
-};
+}

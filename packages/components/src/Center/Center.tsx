@@ -1,17 +1,7 @@
 import React, { useMemo } from "react";
 import classNames from "classnames";
 import styles from "./Center.module.css";
-
-type Spaces =
-  | "minuscule"
-  | "smallest"
-  | "smaller"
-  | "small"
-  | "base"
-  | "large"
-  | "larger"
-  | "largest"
-  | "extravagant";
+import { CenterProps, Spaces } from "./types";
 
 const spaceTokens: Record<Spaces, string> = {
   minuscule: "var(--space-minuscule)",
@@ -25,19 +15,13 @@ const spaceTokens: Record<Spaces, string> = {
   extravagant: "var(--space-extravagant)",
 };
 
-export const Center = ({
+export function Center({
   children,
   max = "50ch",
   andText,
   gutters,
   intrinsic,
-}: {
-  readonly children: React.ReactNode;
-  readonly max?: string;
-  readonly andText?: boolean;
-  readonly gutters?: Spaces | (string & NonNullable<unknown>);
-  readonly intrinsic?: boolean;
-}) => {
+}: CenterProps) {
   const guttersMapped = useMemo(
     () =>
       spaceTokens[gutters as Spaces] ? spaceTokens[gutters as Spaces] : gutters,
@@ -62,4 +46,4 @@ export const Center = ({
       {children}
     </div>
   );
-};
+}

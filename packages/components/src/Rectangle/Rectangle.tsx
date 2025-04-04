@@ -2,19 +2,7 @@ import React, { useMemo } from "react";
 import classNames from "classnames";
 import { semantic } from "@jobber/design";
 import styles from "./Rectangle.module.css";
-
-type Spaces =
-  | "minuscule"
-  | "smallest"
-  | "smaller"
-  | "small"
-  | "base"
-  | "large"
-  | "larger"
-  | "largest"
-  | "extravagant";
-
-type SemanticColors = keyof typeof semantic;
+import { RectangleProps, SemanticColors, Spaces } from "./types";
 
 const spaceTokens: Record<Spaces, string> = {
   minuscule: "var(--space-minuscule)",
@@ -28,7 +16,7 @@ const spaceTokens: Record<Spaces, string> = {
   extravagant: "var(--space-extravagant)",
 };
 
-export const Rectangle = ({
+export function Rectangle({
   children,
   padding = "base",
   borderWidth = "0px",
@@ -36,18 +24,7 @@ export const Rectangle = ({
   colorInverse = "color-text",
   invert,
   textColor = true,
-}: {
-  readonly children: React.ReactNode;
-  readonly padding?:
-    | Spaces
-    | { x?: string; y?: string }
-    | (string & NonNullable<unknown>);
-  readonly borderWidth?: Spaces | (string & NonNullable<unknown>);
-  readonly colorSurface?: SemanticColors | (string & NonNullable<unknown>);
-  readonly colorInverse?: SemanticColors | (string & NonNullable<unknown>);
-  readonly invert?: boolean;
-  readonly textColor?: boolean;
-}) => {
+}: RectangleProps) {
   const paddingMapped = useMemo(() => {
     if (typeof padding === "object") {
       const x = spaceTokens[padding.x as Spaces] || padding.x;
@@ -103,4 +80,4 @@ export const Rectangle = ({
       {children}
     </div>
   );
-};
+}

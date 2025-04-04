@@ -8,8 +8,8 @@ export default {
   props: Props,
   component: {
     element: `<Rectangle>
-    <Text>I am in a rectangle</Text>
-    </Rectangle>`,
+  <Text>I am in a rectangle</Text>
+</Rectangle>`,
   },
   title: "Rectangle",
   links: [

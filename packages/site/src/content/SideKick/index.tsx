@@ -8,13 +8,13 @@ export default {
   props: Props,
   component: {
     element: `<div style={{width:'100%'}}>
-    <SideKick  contentMinWidth="80%" sideWidth="70px">
-        <InputText placeholder="Name" label="Name" />
-          <Button>
-              <Button.Label>Submit</Button.Label>
-          </Button>
-    </SideKick>
-    </div>
+  <SideKick contentMinWidth="80%" sideWidth="70px">
+    <InputText placeholder="Name" label="Name" />
+    <Button>
+        <Button.Label>Submit</Button.Label>
+    </Button>
+  </SideKick>
+</div>
     `,
   },
   title: "SideKick",
