@@ -2,3 +2,7 @@
   container-name: var(--public-container-name);
   container-type: inline-size;
 }
+
+.apply {
+  container-type: inline-size;
+}

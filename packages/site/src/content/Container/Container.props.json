@@ -1,0 +1,56 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Container/Container.tsx",
+    "description": "",
+    "displayName": "Container",
+    "methods": [],
+    "props": {
+      "name": {
+        "defaultValue": null,
+        "description": "",
+        "name": "name",
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      },
+      "className": {
+        "defaultValue": null,
+        "description": "",
+        "name": "className",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Container/Container.tsx",
+    "description": "",
+    "displayName": "Container.Apply",
+    "methods": [],
+    "props": {
+      "className": {
+        "defaultValue": null,
+        "description": "",
+        "name": "className",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "style": {
+        "defaultValue": null,
+        "description": "",
+        "name": "style",
+        "required": true,
+        "type": {
+          "name": "React.CSSProperties"
+        }
+      }
+    }
+  }
+]

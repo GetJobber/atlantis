@@ -24,3 +24,19 @@ export const Container = ({
     </div>
   );
 };
+
+Container.Apply = function Apply({
+  children,
+  className,
+  style,
+}: {
+  readonly children: ReactNode;
+  readonly className?: string;
+  readonly style: React.CSSProperties;
+}) {
+  return (
+    <div style={style} className={classNames(className, styles.apply)}>
+      {children}
+    </div>
+  );
+};

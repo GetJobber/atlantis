@@ -21,6 +21,7 @@ const components = [
   "Cluster",
   "Combobox",
   "ConfirmationModal",
+  "Container",
   "Content",
   "Cover",
   "Countdown",

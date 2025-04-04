@@ -21,6 +21,7 @@ import ChipsContent from "./Chips";
 import ClusterContent from "./Cluster";
 import ComboboxContent from "./Combobox";
 import ConfirmationModalContent from "./ConfirmationModal";
+import ContainerContent from "./Container";
 import ContentStuff from "./Content";
 import ContentOverlayContent from "./ContentOverlay";
 import CountdownContent from "./Countdown";
@@ -174,6 +175,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   ConfirmationModal: {
     ...ConfirmationModalContent,
+  },
+  Container: {
+    ...ContainerContent,
   },
   Content: {
     ...ContentStuff,

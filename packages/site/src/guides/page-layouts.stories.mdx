@@ -18,6 +18,9 @@ import { InputText } from "@jobber/components/InputText";
 import { FormFieldLabel } from "@jobber/components/FormField";
 import { Modal } from "@jobber/components/Modal";
 import { useState } from "react";
+import { Container } from "@jobber/components/Container";
+
+import styles from "./page-layouts.module.css";
 
 <Meta title="Guides/Layouts" />
 
@@ -449,6 +452,7 @@ import { useState } from "react";
 </Stack>
 </section>
 <section>
+
 <Stack> 
 <Canvas>
   <Stack>
@@ -476,6 +480,61 @@ import { useState } from "react";
     </SideKick>
   </Canvas>
 </Stack>
+</section>
+<section>
+<Stack>
+     <Stack>
+     <Heading level={1}>Container</Heading>
+     <Text>Containers are for isolating styles to a specific layout. Set a container name, and apply associated styles where needed.</Text>
+     <Text>We provide a set of predfined Containers and styles for common layout patterns.</Text>
+     <Text>You can also create your own containers and portable style overrides with these tools.</Text>
+     </Stack>
+    <Container name="container-items">
+      <Stack>
+        <Container.Apply className={styles.item}>
+          <Card>
+            <Rectangle>
+              <Stack>
+                <Heading level={1}>Container Example</Heading>
+                <Text>We've overridden the default styles without having to edit anything.</Text>
+              </Stack>
+            </Rectangle>
+          </Card>
+        </Container.Apply>
+        <Container.Apply className={styles.itemDotted}>
+          <Card>
+            <Rectangle>
+              <Stack>
+                <Heading level={1}>Container Example</Heading>
+                <Text>These cards are functionally identical except they have different content widths.</Text>
+              </Stack>
+            </Rectangle>
+          </Card>
+        </Container.Apply>
+        <Container.Apply className={styles.itemUpsideDown}>
+          <Card>
+            <Rectangle>
+              <Stack>
+                <Heading level={1}>Container Example</Heading>
+                <Text>They're also perfectly portable. Only here will you find a card with a rotated text. Copy this out and paste it anywhere else and it won't
+                be rotated anymore.</Text>
+              </Stack>
+            </Rectangle>
+          </Card>
+        </Container.Apply>
+      </Stack>
+</Container>
+<Stack>
+ <Card>
+            <Rectangle>
+              <Stack>
+                <Heading level={1}>Container Example</Heading>
+                <Text>This last example is exactly the same as the others, except it's not in the container.</Text>
+              </Stack>
+            </Rectangle>
+          </Card>
+          </Stack>
+          </Stack>
 </section>
 
 <Cover minHeight="30vh">

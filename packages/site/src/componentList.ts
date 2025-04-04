@@ -166,6 +166,13 @@ export const componentList = [
     sections: ["Overlays"],
   },
   {
+    title: "Container",
+    to: "/components/Container",
+    imageURL: "/Placeholder.png",
+    sections: ["Layouts & Structure"],
+    additionalMatches: ["Layout", "Container", "Stack", "Query"],
+  },
+  {
     title: "Content",
     to: "/components/Content",
     imageURL: "/Content.png",

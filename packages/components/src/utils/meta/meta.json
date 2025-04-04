@@ -37,6 +37,7 @@
     "ComboboxContextProvider",
     "ConfirmationModal",
     "Container",
+    "Container.Apply",
     "Content",
     "Countdown",
     "Cover",
