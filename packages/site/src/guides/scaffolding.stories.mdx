@@ -21,6 +21,7 @@ import styles from "./scaffolding.module.css";
 Scaffolding are full-page layouts to ensure consistency across the app and full
 responsive behavior for free.
 
+<Heading level={3}>Legacy Page</Heading>
 <Canvas>
   <Page
     title="Page"
@@ -50,11 +51,12 @@ responsive behavior for free.
   </Page>
 </Canvas>
 
+<Heading level={3}>Composed Page With New Layout Components</Heading>
 <Canvas>
   <div style={{ width: "100%" }}>
     <Rectangle textColor={false}>
       <Stack space="larger">
-        <SideKick contentMinWidth="40.5ch" sideWidth="32ch">
+        <SideKick contentMinWidth="32ch" sideWidth="40.5ch">
           <Stack>
             <Heading level={1}>Page</Heading>
             <Text size="large" variation="subdued">

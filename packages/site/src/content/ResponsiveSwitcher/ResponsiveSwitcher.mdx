@@ -1,6 +1,178 @@
+import {
+  ResponsiveSwitcher,
+  Card,
+  Text,
+  Rectangle,
+  Stack,
+} from "@jobber/components";
+import { Canvas } from "@storybook/addon-docs";
+
 # ResponsiveSwitcher
 
-The ResponsiveSwitcher component is a component that allows you to switch
-between different views based on the screen size.
+The ResponsiveSwitcher component is a layout component that automatically
+switches between horizontal and vertical arrangements based on the available
+space. It's designed to create responsive layouts that adapt to different screen
+sizes without requiring media queries.
 
-## Usage
+## When to use
+
+Use ResponsiveSwitcher when you need to:
+
+- Create layouts that switch between horizontal and vertical arrangements based
+  on container width
+- Build responsive interfaces without writing media queries
+- Implement flexible grid-like layouts that adapt to available space
+- Create responsive form layouts
+- Build adaptive content sections that work across different screen sizes
+
+## Props
+
+### threshold
+
+**Required**  
+Controls when the layout switches between horizontal and vertical arrangements.
+Can be either a breakpoint size (`sm`, `md`, `lg`, `xl`) or a custom pixel
+value.
+
+Available breakpoint sizes:
+
+- `sm`: 490px
+- `md`: 768px
+- `lg`: 1080px
+- `xl`: 1440px
+
+### space
+
+**Optional**  
+Controls the gap between elements. Accepts either a design token or a custom
+value.
+
+Available space tokens:
+
+- `minuscule`
+- `smallest`
+- `smaller`
+- `small`
+- `base` (default)
+- `large`
+- `larger`
+- `largest`
+- `extravagant`
+
+### limit
+
+**Optional**  
+Controls the maximum number of items that can appear in a row before wrapping.
+
+Default: `2`
+
+## Examples
+
+### Basic Usage
+
+<Canvas>
+  <div style={{ width: "100%" }}>
+    <ResponsiveSwitcher threshold="30ch">
+      <div>
+        <Card>
+          <Rectangle>
+            <Text>First item</Text>
+          </Rectangle>
+        </Card>
+      </div>
+      <div>
+        <Card>
+          <Rectangle>
+            <Text>Second item</Text>
+          </Rectangle>
+        </Card>
+      </div>
+    </ResponsiveSwitcher>
+  </div>
+</Canvas>
+
+### Custom Spacing
+
+<Canvas>
+  <div style={{ width: "100%" }}>
+    <ResponsiveSwitcher threshold="40ch" space="large">
+      <div>
+        <Card>
+          <Rectangle>
+            <Text>More space</Text>
+          </Rectangle>
+        </Card>
+      </div>
+      <div>
+        <Card>
+          <Rectangle>
+            <Text>Between items</Text>
+          </Rectangle>
+        </Card>
+      </div>
+    </ResponsiveSwitcher>
+  </div>
+</Canvas>
+
+### Custom Threshold
+
+<Canvas>
+  <div style={{ width: "100%" }}>
+    <ResponsiveSwitcher threshold="200px">
+      <div>
+        <Card>
+          <Rectangle>
+            <Text>Custom breakpoint</Text>
+          </Rectangle>
+        </Card>
+      </div>
+      <div>
+        <Card>
+          <Rectangle>
+            <Text>at 200px</Text>
+          </Rectangle>
+        </Card>
+      </div>
+    </ResponsiveSwitcher>
+  </div>
+</Canvas>
+
+### With Item Limit
+
+<Canvas>
+  <div style={{ width: "100%" }}>
+    <ResponsiveSwitcher threshold="30ch" limit={3}>
+      <Card>
+        <Rectangle>
+          <Text>First item</Text>
+        </Rectangle>
+      </Card>
+      <Card>
+        <Rectangle>
+          <Text>Second item</Text>
+        </Rectangle>
+      </Card>
+      <Card>
+        <Rectangle>
+          <Text>Third item</Text>
+        </Rectangle>
+      </Card>
+      <Card>
+        <Rectangle>
+          <Text>Fourth item (will force all to wrap)</Text>
+        </Rectangle>
+      </Card>
+    </ResponsiveSwitcher>
+  </div>
+</Canvas>
+
+## Implementation Details
+
+The ResponsiveSwitcher uses CSS Flexbox with the `flex-wrap` property to create
+responsive layouts. It calculates when to switch between layouts using CSS
+`calc()` and custom properties, avoiding the need for media queries.
+
+## Related Components
+
+- For vertical layouts with consistent spacing, use [Stack](/components/Stack)
+- For horizontal layouts with wrapping, use [Cluster](/components/Cluster)

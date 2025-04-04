@@ -444,14 +444,14 @@ import { useState } from "react";
   <Stack>
   <Heading level={1}>Sidekick</Heading>
   <Text>The Sidekick component is used to create a horizontal layout where one half of the content is fixed width, and the other half is fluid. Where there is no longer the specified sideWidth space remaining, the content will wrap to the next line.</Text>
-  <SideKick sideWidth="70%" contentMinWidth="20%">
+  <SideKick sideWidth="20%" contentMinWidth="70%">
       <InputText placeholder="Sidekick Input" />
       <Button label="Sidekick Button" />
     </SideKick>
   </Stack>
   </Canvas>
   <Canvas>
-    <SideKick sideWidth="200px" contentMinWidth="60%">
+    <SideKick sideWidth="60%" contentMinWidth="200px">
       <Cover>
         <Cover.Center>
         <Stack>

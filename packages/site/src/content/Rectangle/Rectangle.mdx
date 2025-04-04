@@ -7,6 +7,17 @@ The Rectangle component provides a flexible container that wraps content with
 customizable padding, borders, and colors. It's useful for creating visual
 containers, cards, or sections with consistent spacing and styling.
 
+Rectangle differs from the legacy Box component in that it's not trying to
+recreate the box model of CSS within React, it's simply a layout component that
+makes a rectangle.
+
+You can specify the padding of the rectangle (defualts to our base padding). The
+border width of the rectangle, and the background color of the rectangle. That's
+it! Great for composition.
+
+Use it for spacing within cards, spacing between components, or as a container
+for content.
+
 ## Usage
 
 <Canvas>
@@ -71,7 +82,7 @@ Swap the background and text colors:
 
 ### Custom Background
 
-Use semantic colors to change the background:
+Use semantic colors to change the background (use sparingly):
 
 <Canvas>
   <Rectangle colorSurface="color-surface--background">
@@ -89,4 +100,5 @@ Use semantic colors to change the background:
   backgrounds
 - Combine with other layout components like `Stack` for organized content
   structure
-- Use semantic color tokens to ensure consistency
+- Use semantic color tokens to ensure consistency with the rest of the design
+  system

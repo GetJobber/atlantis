@@ -23,7 +23,8 @@ const BasicTemplate: ComponentStory<typeof Center> = args => (
         This is centered content that demonstrates the Center component&rsquo;s
         ability to constrain and center content within a container. The content
         will be centered horizontally and have a maximum width defined by the
-        max prop.
+        max prop. If gutters are applied, they will be applied when there is
+        more room at the edges of the container.
       </Text>
       <Rectangle>
         <Button>
@@ -49,12 +50,6 @@ export const WithAndText = BasicTemplate.bind({});
 WithAndText.args = {
   max: "50ch",
   andText: true,
-};
-
-export const Intrinsic = BasicTemplate.bind({});
-Intrinsic.args = {
-  max: "50ch",
-  intrinsic: true,
 };
 
 const CustomMaxWidthTemplate: ComponentStory<typeof Center> = args => (

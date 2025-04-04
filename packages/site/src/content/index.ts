@@ -80,6 +80,7 @@ import ProgressBarContent from "./ProgressBar";
 import RadioGroupContent from "./RadioGroup";
 import RecurringSelectContent from "./RecurringSelect";
 import RectangleContent from "./Rectangle";
+import ResponsiveSwitcherContent from "./ResponsiveSwitcher";
 import SegmentedControlContent from "./SegmentedControl";
 import SelectContent from "./Select";
 import SideDrawerContent from "./SideDrawer";
@@ -350,6 +351,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   RecurringSelect: {
     ...RecurringSelectContent,
+  },
+  ResponsiveSwitcher: {
+    ...ResponsiveSwitcherContent,
   },
   SegmentedControl: {
     ...SegmentedControlContent,

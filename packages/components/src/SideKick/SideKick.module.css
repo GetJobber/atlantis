@@ -9,13 +9,13 @@
 }
 
 .withWidthLeft > :first-child {
-  flex-basis: var(--public-sidekick-side-width);
+  flex-basis: var(--public-sidekick-min-width);
 }
 
 .left > :last-child {
   flex-basis: 0;
   flex-grow: 999;
-  min-inline-size: var(--public-sidekick-min-width);
+  min-inline-size: var(--public-sidekick-side-width);
 }
 
 .right > :last-child {
@@ -23,11 +23,11 @@
 }
 
 .withWidthRight > :last-child {
-  flex-basis: var(--public-sidekick-side-width);
+  flex-basis: var(--public-sidekick-min-width);
 }
 
 .right > :first-child {
   flex-basis: 0;
   flex-grow: 999;
-  min-inline-size: var(--public-sidekick-min-width);
+  min-inline-size: var(--public-sidekick-side-width);
 }

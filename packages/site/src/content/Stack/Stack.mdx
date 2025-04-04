@@ -7,6 +7,12 @@ The Stack component creates a vertical layout of elements with consistent
 spacing between them. It's one of the fundamental layout components in Atlantis
 that helps create clean, organized interfaces.
 
+The Stack differs from our legacy Content component in that it's not tackling
+multiple use cases. The Stack only manages vertical spacing between elements.
+Content also managed the padding around the edges of the content, which is now
+handled by Rectangle. Splitting the two components allows them both to be more
+flexible and useful than before.
+
 ## When to use
 
 Use Stack when you need to:

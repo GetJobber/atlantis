@@ -1,6 +1,7 @@
 import Content from "./Cover.mdx";
 import Props from "./Cover.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -16,7 +17,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "/?path=/story/components-layouts-and-structure-cover-web--basic",
+      url: getStorybookUrl(
+        "?path=/story/components-layouts-and-structure-cover-web--basic",
+      ),
     },
   ],
 } as const satisfies ContentExport;

@@ -40,14 +40,15 @@ const BasicTemplate: ComponentStory<typeof SideKick> = args => (
 export const Basic = BasicTemplate.bind({});
 
 Basic.args = {
-  contentMinWidth: "200px",
+  contentMinWidth: "70ch",
+  sideWidth: "50%",
 };
 
 export const CustomSideWidth = BasicTemplate.bind({});
 CustomSideWidth.args = {
-  contentMinWidth: "70%",
+  contentMinWidth: "220px",
+  sideWidth: "20%",
 };
-
 export const CustomSpace = BasicTemplate.bind({});
 CustomSpace.args = {
   space: "var(--space-large)",
@@ -87,7 +88,7 @@ const ComplexTemplate: ComponentStory<typeof SideKick> = args => (
 
 export const ComplexExample = ComplexTemplate.bind({});
 ComplexExample.args = {
-  sideWidth: "400px",
-  contentMinWidth: "10%",
+  sideWidth: "10%",
+  contentMinWidth: "400px",
   space: "larger",
 };

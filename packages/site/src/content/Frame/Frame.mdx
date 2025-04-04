@@ -12,7 +12,7 @@ consistent proportions across different screen sizes.
 
 Frame accepts any content as a child element and maintains the specified aspect
 ratio. By default, it uses a 16:9 ratio, but this can be customized using the
-`n` and `d` props.
+`n` for numerator and `d` for denominator props.
 
 <Canvas>
   <Frame>
@@ -28,6 +28,8 @@ ratio. By default, it uses a 16:9 ratio, but this can be customized using the
 Frame supports various aspect ratios through its `n` (numerator) and `d`
 (denominator) props:
 
+#### 16:9 (landscape)
+
 <Canvas>
   <Frame>
     <img
@@ -37,7 +39,7 @@ Frame supports various aspect ratios through its `n` (numerator) and `d`
   </Frame>
 </Canvas>
 
-// 1:1 (square)
+#### 1:1 (square)
 
 <Canvas>
   <Frame n={1} d={1}>
@@ -48,7 +50,7 @@ Frame supports various aspect ratios through its `n` (numerator) and `d`
   </Frame>
 </Canvas>
 
-// 4:3
+#### 4:3
 
 <Canvas>
   <Frame n={4} d={3}>

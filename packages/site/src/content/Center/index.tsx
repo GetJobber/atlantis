@@ -1,18 +1,30 @@
 import Content from "./Center.stories.mdx";
 import Props from "./Center.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
   props: Props,
   component: {
-    element: `<Center>Hei</Center>`,
+    element: `<div style={{width:'100%', backgroundColor:'white'}}>
+    <Center>
+    <Card>
+    <Rectangle>
+    <Text>Hello</Text>
+    </Rectangle>
+    </Card>
+    </Center>
+    </div>
+    `,
   },
   title: "Center",
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-Center-web--docs",
+      url: getStorybookUrl(
+        "?path=/story/components-layouts-and-structure-center-web--basic",
+      ),
     },
   ],
 } as const satisfies ContentExport;

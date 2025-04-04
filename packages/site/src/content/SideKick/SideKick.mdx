@@ -1,11 +1,12 @@
 import { Canvas } from "@storybook/addon-docs";
-import { SideKick, Card, Content, Rectangle } from "@jobber/components";
+import { SideKick, Card, Rectangle, Cover, Text } from "@jobber/components";
 
 # SideKick
 
 The SideKick component provides a complementary panel that appears alongside the
 main content area, offering additional context or functionality without
-disrupting the primary workflow.
+disrupting the primary workflow. It's default responsive and will wrap content
+when either of the provided widths are exceeded.
 
 ## Design & usage guidelines
 
@@ -44,17 +45,17 @@ and wraps content when needed.
 
 <Canvas>
   <div style={{ width: "100%" }}>
-    <SideKick sideWidth="30px" contentMinWidth="30px">
-      <Rectangle padding="0">
-        <Card>
-          <Content>Main content goes here</Content>
-        </Card>
-      </Rectangle>
-      <Rectangle padding="0">
-        <Card>
-          <Content>Side panel content goes here</Content>
-        </Card>
-      </Rectangle>
+    <SideKick sideWidth="80px" contentMinWidth="60%">
+      <Card>
+        <Rectangle>
+          <Text>Main content goes here</Text>
+        </Rectangle>
+      </Card>
+      <Card>
+        <Rectangle>
+          <Text>Side panel content goes here</Text>
+        </Rectangle>
+      </Card>
     </SideKick>
   </div>
 </Canvas>
@@ -63,26 +64,24 @@ and wraps content when needed.
 
 <Canvas>
   <div style={{ width: "100%" }}>
-    <SideKick contentMinWidth="30ch" sideWidth="30ch">
-      <Rectangle padding="0">
-        <Card>
-          <Content>Fixed-width side panel (400px)</Content>
-        </Card>
-      </Rectangle>
-      <Rectangle padding="0">
-        <Card>
-          <Content>Main content (minimum 60% width)</Content>
-        </Card>
-      </Rectangle>
+    <SideKick contentMinWidth="50%" sideWidth="40%">
+      <Card>
+        <Rectangle>
+          <Text>Main content (50% width or wrap)</Text>
+        </Rectangle>
+      </Card>
+      <Card>
+        <Rectangle>
+          <Text> Side width (40% of remaining space)</Text>
+        </Rectangle>
+      </Card>
     </SideKick>
   </div>
 </Canvas>
 
 ## Related components
 
-- For temporary notifications, use [Toast](/components/Toast)
-- For important messages that require attention, use
-  [Banner](/components/Banner)
-- For modal dialogs that require immediate action, use
-  [Modal](/components/Modal)
-- For mobile-specific side panels, use [Drawer](/components/Drawer)
+- For equal width responsive panels use
+  [ResponsiveSwitcher](/components/ResponsiveSwitcher)
+- For vertical spacing use [Stack](/components/Stack)
+- For horizontal centering use [Center](/components/Center)

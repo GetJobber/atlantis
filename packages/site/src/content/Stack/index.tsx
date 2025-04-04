@@ -1,14 +1,15 @@
 import Content from "./Stack.mdx";
 import Props from "./Stack.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
   props: Props,
   component: {
     element: `<Stack>
-       <Text>Hello</Text>
-       <Text>World</Text>
+       <Card><Rectangle>Vertically</Rectangle></Card>
+       <Card><Rectangle>Stacked</Rectangle></Card>
     </Stack>
     `,
   },
@@ -16,7 +17,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-Stack-web--docs",
+      url: getStorybookUrl(
+        "?path=/story/components-layouts-and-structure-stack-web--basic",
+      ),
     },
   ],
 } as const satisfies ContentExport;

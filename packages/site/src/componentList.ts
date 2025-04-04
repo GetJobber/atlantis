@@ -119,7 +119,7 @@ export const componentList = [
   {
     title: "Center",
     to: "/components/Center",
-    imageURL: "/Center.png",
+    imageURL: "/Placeholder.png",
     sections: ["Layouts & Structure"],
     additionalMatches: ["Layout", "Container", "Stack", "Wrapper"],
   },
@@ -147,7 +147,7 @@ export const componentList = [
   {
     title: "Cluster",
     to: "/components/Cluster",
-    imageURL: "/Cluster.png",
+    imageURL: "/Placeholder.png",
     sections: ["Layouts & Structure"],
     additionalMatches: ["Grid", "Columns", "Rows"],
   },
@@ -188,7 +188,7 @@ export const componentList = [
   {
     title: "Cover",
     to: "/components/Cover",
-    imageURL: "/Cover.png",
+    imageURL: "/Placeholder.png",
     sections: ["Layouts & Structure"],
     additionalMatches: ["Layout", "Container", "Stack", "Wrapper"],
   },
@@ -283,7 +283,7 @@ export const componentList = [
   {
     title: "Frame",
     to: "/components/Frame",
-    imageURL: "/Frame.png",
+    imageURL: "/Placeholder.png",
     sections: ["Layouts & Structure"],
     additionalMatches: ["Layout", "Stack", "Container"],
   },
@@ -611,7 +611,7 @@ export const componentList = [
   {
     title: "Rectangle",
     to: "/components/Rectangle",
-    imageURL: "/Rectangle.png",
+    imageURL: "/Placeholder.png",
     sections: ["Layouts & Structure"],
     additionalMatches: ["Layout", "Container"],
   },
@@ -621,6 +621,13 @@ export const componentList = [
     imageURL: "/RecurringSelect.png",
     sections: ["Selections"],
     additionalMatches: ["Calendar", "Date Picker", "Schedule"],
+  },
+  {
+    title: "ResponsiveSwitcher",
+    to: "/components/ResponsiveSwitcher",
+    imageURL: "/Placeholder.png",
+    sections: ["Layouts & Structure"],
+    additionalMatches: ["Layout", "Container", "Stack", "Wrapper"],
   },
   {
     title: "SegmentedControl",
@@ -646,7 +653,7 @@ export const componentList = [
   {
     title: "SideKick",
     to: "/components/SideKick",
-    imageURL: "/SideKick.png",
+    imageURL: "/Placeholder.png",
     sections: ["Layouts & Structure"],
     additionalMatches: ["Layout", "Container", "Stack", "Wrapper"],
   },
@@ -667,7 +674,7 @@ export const componentList = [
   {
     title: "Stack",
     to: "/components/Stack",
-    imageURL: "/Stack.png",
+    imageURL: "/Placeholder.png",
     sections: ["Layouts & Structure"],
     additionalMatches: ["Layout", "Container", "Stack", "Wrapper"],
   },
@@ -729,7 +736,7 @@ export const componentList = [
   {
     title: "Tiles",
     to: "/components/Tiles",
-    imageURL: "/Tiles.png",
+    imageURL: "/Placeholder.png",
     sections: ["Layouts & Structure"],
     additionalMatches: ["Layout", "Container", "Stack", "Wrapper"],
   },

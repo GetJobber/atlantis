@@ -1,6 +1,7 @@
 import Content from "./Rectangle.mdx";
 import Props from "./Rectangle.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -14,7 +15,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-Rectangle-web--docs",
+      url: getStorybookUrl(
+        "?path=/story/components-layouts-and-structure-rectangle-web--basic",
+      ),
     },
   ],
 } as const satisfies ContentExport;

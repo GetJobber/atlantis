@@ -1,6 +1,7 @@
 import Content from "./Cluster.mdx";
 import Props from "./Cluster.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -18,7 +19,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "/?path=/story/components-layouts-and-structure-cluster-web--basic",
+      url: getStorybookUrl(
+        "?path=/story/components-layouts-and-structure-cluster-web--basic",
+      ),
     },
   ],
 } as const satisfies ContentExport;
