@@ -278,6 +278,19 @@
           "name": "string"
         }
       },
+      "value": {
+        "defaultValue": null,
+        "description": "The controlled value of the search input.\n\nSupply this field if you want to take control over the search input's\nvalue. You'll need to use `onSearch` to handle updating your state with\nthe latest value.",
+        "name": "value",
+        "parent": {
+          "fileName": "packages/components/src/DataList/DataList.types.ts",
+          "name": "DataListSearchProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
       "onSearch": {
         "defaultValue": null,
         "description": "",
