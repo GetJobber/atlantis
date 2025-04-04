@@ -125,6 +125,9 @@ describe("useBreakpoints", () => {
         mediumAndUp: true,
         largeAndUp: true,
         extraLargeAndUp: true,
+
+        mediumAndDown: false,
+        largeAndDown: false,
       });
     });
 
@@ -140,6 +143,9 @@ describe("useBreakpoints", () => {
         largeAndUp: true,
 
         extraLargeAndUp: false,
+
+        mediumAndDown: false,
+        largeAndDown: true,
       });
     });
 
@@ -155,6 +161,9 @@ describe("useBreakpoints", () => {
 
         largeAndUp: false,
         extraLargeAndUp: false,
+
+        mediumAndDown: true,
+        largeAndDown: true,
       });
     });
 
@@ -170,6 +179,51 @@ describe("useBreakpoints", () => {
         mediumAndUp: false,
         largeAndUp: false,
         extraLargeAndUp: false,
+
+        mediumAndDown: true,
+        largeAndDown: true,
+      });
+    });
+  });
+
+  describe("and down", () => {
+    it("should have the correct breakpoint values on xl size screens", () => {
+      setViewportWidth(BREAKPOINT_SIZES.xl);
+      const { result } = renderHook(useBreakpoints);
+
+      expect(result.current).toMatchObject({
+        mediumAndDown: false,
+        largeAndDown: false,
+      });
+    });
+
+    it("should have the correct breakpoint values on lg size screens", () => {
+      setViewportWidth(BREAKPOINT_SIZES.lg);
+      const { result } = renderHook(useBreakpoints);
+
+      expect(result.current).toMatchObject({
+        mediumAndDown: false,
+        largeAndDown: true,
+      });
+    });
+
+    it("should have the correct breakpoint values on md size screens", () => {
+      setViewportWidth(BREAKPOINT_SIZES.md);
+      const { result } = renderHook(useBreakpoints);
+
+      expect(result.current).toMatchObject({
+        mediumAndDown: true,
+        largeAndDown: true,
+      });
+    });
+
+    it("should have the correct breakpoint values on sm size screens", () => {
+      setViewportWidth(BREAKPOINT_SIZES.sm);
+      const { result } = renderHook(useBreakpoints);
+
+      expect(result.current).toMatchObject({
+        mediumAndDown: true,
+        largeAndDown: true,
       });
     });
   });
