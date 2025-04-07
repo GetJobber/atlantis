@@ -25,6 +25,7 @@ function ButtonWrapper(props: ButtonProps) {
     ariaLabel,
     disabled = false,
     external,
+    htmlButtonRef,
     id,
     name,
     onClick,
@@ -62,6 +63,7 @@ function ButtonWrapper(props: ButtonProps) {
     "aria-label": ariaLabel,
     role: role,
   };
+  const refProp = url ? {} : { ref: htmlButtonRef };
 
   const buttonInternals = children || <ButtonContent {...props} />;
 
@@ -73,9 +75,15 @@ function ButtonWrapper(props: ButtonProps) {
     );
   }
 
-  const Tag = url ? "a" : "button";
+  if (url) {
+    return <a {...tagProps}>{buttonInternals}</a>;
+  }
 
-  return <Tag {...tagProps}>{buttonInternals}</Tag>;
+  return (
+    <button {...tagProps} {...refProp}>
+      {buttonInternals}
+    </button>
+  );
 }
 
 Button.Label = ButtonLabel;
