@@ -3,6 +3,7 @@ import {
   RenderAPI,
   fireEvent,
   render,
+  renderHook,
   waitFor,
 } from "@testing-library/react-native";
 import { Platform, TextStyle } from "react-native";
@@ -12,7 +13,7 @@ import { InputAccessoriesProvider } from "./context";
 import {
   Clearable,
   InputFieldWrapperProps,
-  commonInputStyles,
+  useCommonInputStyles,
 } from "../InputFieldWrapper";
 
 const MockInputFieldWrapper = jest.fn();
@@ -40,6 +41,15 @@ function renderInputText(props: InputTextProps): RenderAPI {
 }
 
 const clearInput = "Clear input";
+
+let commonInputStyles: ReturnType<typeof useCommonInputStyles>;
+
+beforeAll(() => {
+  const commonInputStylesHook = renderHook(() => useCommonInputStyles());
+
+  commonInputStyles = commonInputStylesHook.result.current;
+});
+
 // eslint-disable-next-line max-statements
 describe("InputText", () => {
   describe("InputFieldWrapper gets the expected props", () => {

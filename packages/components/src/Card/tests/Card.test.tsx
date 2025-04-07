@@ -154,3 +154,75 @@ it("renders a card with an elevation", () => {
   expect(container.firstChild).toHaveClass("card baseElevation");
   expect(getByText("This is the card content.")).toBeDefined();
 });
+
+it("renders a card with compound components", () => {
+  const { getByText, container } = render(
+    <Card accent="green">
+      <Card.Header>
+        <Text>Compound Header</Text>
+      </Card.Header>
+      <Card.Body>
+        <p>This is the card content.</p>
+      </Card.Body>
+    </Card>,
+  );
+
+  expect(container.firstChild).toHaveClass("card accent green");
+  expect(getByText("Compound Header")).toBeInTheDocument();
+  expect(getByText("This is the card content.")).toBeInTheDocument();
+});
+
+it("renders a clickable card with compound components", () => {
+  const clickHandler = jest.fn();
+  const { getByText, container } = render(
+    <Card accent="green" onClick={clickHandler}>
+      <Card.Header>
+        <Text>Clickable Header</Text>
+      </Card.Header>
+      <Card.Body>
+        <p>This is a clickable card.</p>
+      </Card.Body>
+    </Card>,
+  );
+
+  expect(container.firstChild).toHaveClass("card accent clickable green");
+  expect(getByText("Clickable Header")).toBeInTheDocument();
+  expect(getByText("This is a clickable card.")).toBeInTheDocument();
+  fireEvent.click(container.firstChild as HTMLElement);
+  expect(clickHandler).toHaveBeenCalledTimes(1);
+});
+
+it("renders a link card with compound components", () => {
+  const { getByText, getByRole } = render(
+    <Card accent="green" url="https://frend.space">
+      <Card.Header>
+        <Text>Link Header</Text>
+      </Card.Header>
+      <Card.Body>
+        <p>This is a link card.</p>
+      </Card.Body>
+    </Card>,
+  );
+
+  expect(getByRole("link")).toHaveClass("card accent clickable green");
+  expect(getByRole("link")).toHaveAttribute("href", "https://frend.space");
+  expect(getByText("Link Header")).toBeInTheDocument();
+  expect(getByText("This is a link card.")).toBeInTheDocument();
+});
+
+it("renders a card with compound components and elevation", () => {
+  const { getByText, container } = render(
+    <Card elevation="base">
+      <Card.Header>
+        <Text>Elevated Header</Text>
+      </Card.Header>
+      <Card.Body>
+        <p>This is an elevated card.</p>
+      </Card.Body>
+    </Card>,
+  );
+
+  expect(container.firstChild).toHaveClass("card baseElevation");
+  expect(getByText("Elevated Header")).toBeInTheDocument();
+  expect(getByText("This is an elevated card.")).toBeInTheDocument();
+});

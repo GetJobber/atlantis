@@ -1,0 +1,337 @@
+## Configuration
+
+### getUploadParams
+
+`getUploadParams` is a necessary callback that tells InputFile where and how to
+upload files that are passed to it. It must return an object conforming to the
+`UploadParams` interface. `getUploadParams` can be async, allowing for a network
+request to fetch any extra fields.
+
+```ts
+interface UploadParams {
+  /**
+   * Url to POST file to.
+   */
+  readonly url: string;
+
+  /**
+   * Key to identify file.
+   * If unspecified a random `uuid` will be used.
+   */
+  readonly key?: string;
+
+  /**
+   * Any extra fields to send with the upload POST.
+   * If unspecified only the file will be included.
+   */
+  readonly fields?: { [field: string]: string };
+}
+```
+
+### updateFiles helper
+
+InputFile also exports an `updateFiles` method. This method allows for easily
+updating an array of `FileUpload`s based on their `key` as uploads progress.
+
+```ts
+/**
+ * Upsert a given `FileUpload` into an array of `FileUpload`s.
+ * `key` is used to uniquely identify files.
+ *
+ * @param updatedFile FileUpload File that was updated.
+ * @param files Existing array of FileUploads.
+ * @returns FileUpload[] updated set of files.
+ */
+export function updateFiles(updatedFile: FileUpload, files: FileUpload[]);
+```
+
+### validator
+
+InputFile can accept a `validator` function as a prop. This will allow you to
+reject or accept file uploads based on your needs. The value of the function
+must accept a File and return `null` when it is accepted or an error object when
+rejected.
+
+For example, the code below only accepts files that are less than 2MB in size.
+Take a look at the
+[File Size Validator](../?path=/story/components-forms-and-inputs-inputfile-web--file-size-validator)
+story for expected behavior.
+
+```ts
+function fileSizeValidator(file: File) {
+  if (file.size > 2000000) {
+    return {
+      code: "file-too-big",
+      message: "The file is too big. Try using a smaller image",
+    };
+  }
+
+  return null;
+}
+```
+
+### maxFiles
+
+The `maxFiles` property in the InputFile component is used to specify the
+maximum number of files that can be uploaded via the dropzone. This property is
+part of the `maxFilesValidation` object, which also includes the
+`numberOfCurrentFiles` property to track the number of files that have already
+been uploaded. When the total number of uploaded files exceeds the `maxFiles`
+limit, the component will display a validation message and prevent additional
+files from being uploaded.
+
+The
+[Max Files Limit](../?path=/story/components-forms-and-inputs-inputfile-web--max-files-limit)
+example demonstrates the behaviour of uploading more than `maxFiles`.
+
+```ts
+ <InputFile
+    ...
+    onUploadComplete={handleUpload}
+    maxFilesValidation={{ maxFiles: 3, numberOfCurrentFiles: files.length }}
+  />
+```
+
+`maxFiles` is directly mapped to `react-dropzone`'s `maxFiles` prop, documented
+[here](https://react-dropzone.js.org/#!/Accepting%20specific%20number%20of%20files).
+
+### description
+
+The `description` prop is a string that can be used to provide additional
+information to the user. A common use case is to provide the accepted file types
+and maximum size for each file. With a helpful `description`, users are more
+aware of the limitations and requirements of the file upload.
+
+### hintText
+
+The hint text provides instructions for file upload and automatically adjusts
+based on context. For single files it shows "Select or drag a file here to
+upload", while for multiple files it shows "Select or drag files here to
+upload". When `allowedTypes` is set to "images", it uses "image" instead of
+"file". You can override the default text using the `hintText` prop.
+
+### allowedTypes
+
+The `allowedTypes` prop determines the types of files that can be uploaded.
+`allowedTypes` accepts `images`, `basicImages` or an array of customized file
+types. If the `allowedTypes` prop is not provided, all types will be accepted.
+
+Using the `FileTypes` enum, you can customize the types of files that are
+allowed to be uploaded.
+
+```ts
+<InputFile
+  ...
+  allowedTypes={["JPEG", "PNG", "HEIC", "PDF", "DOCX"]}
+/>
+```
+
+## Basic usage
+
+```tsx
+<InputFile
+  getUploadParams={file => ({
+    url: "https://upload.example.com",
+    key: file.name,
+  })}
+/>
+```
+
+## Default content structure
+
+When no children are provided, InputFile renders different default content based
+on the `variation` and `size` props:
+
+### Dropzone variation (default)
+
+```tsx
+// size="base" (default)
+<InputFile getUploadParams={getUploadParams}>
+  <InputFile.DropzoneWrapper>
+    <Content spacing="small">
+      <InputFile.Button size="small" fullWidth={false} />
+      <InputFile.HintText />
+      <InputFile.Description />
+    </Content>
+  </InputFile.DropzoneWrapper>
+</InputFile>
+
+// size="small"
+<InputFile size="small" getUploadParams={getUploadParams}>
+  <InputFile.DropzoneWrapper>
+    <Content spacing="small">
+      <InputFile.Button size="small" fullWidth={false} />
+      {/* In the default InputFile, HintText and Description are omitted in small size */}
+    </Content>
+  </InputFile.DropzoneWrapper>
+</InputFile>
+```
+
+### Button variation
+
+```tsx
+<InputFile variation="button" getUploadParams={getUploadParams}>
+  <InputFile.Button fullWidth={true} />
+</InputFile>
+```
+
+## Customization
+
+### Using props
+
+Basic customization can be achieved through props:
+
+```tsx
+<InputFile
+  getUploadParams={getUploadParams}
+  buttonLabel="Choose Images"
+  allowMultiple={true}
+  allowedTypes="images"
+  hintText="Drop your images here"
+  description="Supported formats: JPG, PNG"
+/>
+```
+
+### Using children
+
+For complete control over the layout, you can provide custom children:
+
+```tsx
+<InputFile getUploadParams={getUploadParams}>
+  <InputFile.DropzoneWrapper>
+    <Content spacing="small">
+      <InputFile.Button size="small" fullWidth={false} />
+      <InputFile.HintText />
+      <InputFile.Description />
+    </Content>
+  </InputFile.DropzoneWrapper>
+</InputFile>
+```
+
+### Available subcomponents
+
+1. `InputFile.Button`: Upload button
+
+   ```tsx
+   <InputFile.Button size="large" fullWidth={false} variation="work" />
+   ```
+
+2. `InputFile.HintText`: Helper text for the dropzone
+
+   ```tsx
+   <InputFile.HintText size="small" />
+   ```
+
+3. `InputFile.Description`: Additional description text
+
+   ```tsx
+   <InputFile.Description size="small" variation="subdued" />
+   ```
+
+4. `InputFile.DropzoneWrapper`: Wrapper for dropzone content
+   ```tsx
+   <InputFile.DropzoneWrapper>{/* Your content */}</InputFile.DropzoneWrapper>
+   ```
+
+### Using context
+
+Subcomponents automatically access the InputFile context. The context includes:
+
+```tsx
+interface InputFileContentContextValue {
+  fileType: string; // Type of file being uploaded
+  allowMultiple: boolean; // Multiple files allowed
+  description?: string; // Description text
+  hintText?: string; // Hint text
+  buttonLabel?: string; // Button label
+  size: "small" | "base"; // Component size
+}
+```
+
+You can also access this context in custom components:
+
+```tsx
+import { useInputFileContentContext } from "./InputFileContentContext";
+
+function CustomUploadContent() {
+  const { fileType, allowMultiple, size } = useInputFileContentContext();
+
+  return (
+    <div>
+      <h3>Upload {allowMultiple ? `${fileType}s` : fileType}</h3>
+      <InputFile.Button size={size} />
+    </div>
+  );
+}
+
+<InputFile getUploadParams={getUploadParams}>
+  <CustomUploadContent />
+</InputFile>;
+```
+
+## Examples
+
+### Basic dropzone
+
+```tsx
+<InputFile getUploadParams={getUploadParams} />
+```
+
+### Image upload with validation
+
+```tsx
+<InputFile
+  getUploadParams={getUploadParams}
+  allowedTypes="images"
+  maxFilesValidation={{ maxFiles: 5, numberOfCurrentFiles: 0 }}
+  validator={file => {
+    if (file.size > 5000000) {
+      return { code: "file-too-large", message: "File is too large" };
+    }
+    return null;
+  }}
+/>
+```
+
+### Custom dropzone layout
+
+```tsx
+<InputFile getUploadParams={getUploadParams}>
+  <InputFile.DropzoneWrapper>
+    <div className="custom-layout">
+      <Heading level={2}>Upload Documents</Heading>
+      <div className="upload-section">
+        <InputFile.Button size="large" />
+        <InputFile.HintText />
+      </div>
+      <div className="info-section">
+        <InputFile.Description />
+      </div>
+    </div>
+  </InputFile.DropzoneWrapper>
+</InputFile>
+```
+
+### Custom button
+
+```tsx
+<InputFile variation="button" getUploadParams={getUploadParams}>
+  <InputFile.Button
+    ariaLabel="Upload image"
+    label="Upload image"
+    icon="image"
+    type="tertiary"
+    fullWidth={true}
+  />
+</InputFile>
+```
+
+## Developer notes
+
+- Always provide clear feedback during the upload process
+- Consider using size="small" in compact layouts or forms
+- Include descriptive text to help users understand file requirements
+- If you would like to restrict specific file types, it is advised that you use
+  the `allowedTypes` property instead of the `validator` property.
+- For image uploads, use `allowedTypes="basicImages"` to restrict to common
+  formats

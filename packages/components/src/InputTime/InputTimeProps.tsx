@@ -3,6 +3,7 @@ import { CommonFormFieldProps, FormFieldProps } from "../FormField";
 export interface InputTimeProps
   extends Pick<
       CommonFormFieldProps,
+      | "id"
       | "align"
       | "description"
       | "disabled"

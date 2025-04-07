@@ -60,6 +60,19 @@
           "name": "boolean"
         }
       },
+      "id": {
+        "defaultValue": null,
+        "description": "A unique identifier for the input.",
+        "name": "id",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
       "description": {
         "defaultValue": null,
         "description": "Further description of the input, can be used for a hint.",
@@ -77,6 +90,21 @@
         "defaultValue": null,
         "description": "Disable the input",
         "name": "disabled",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "showMiniLabel": {
+        "defaultValue": {
+          "value": "true"
+        },
+        "description": "Controls the visibility of the mini label that appears inside the input\nwhen a value is entered. By default, the placeholder text moves up to\nbecome a mini label. Set to false to disable this behavior.",
+        "name": "showMiniLabel",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
           "name": "CommonFormFieldProps"
@@ -153,7 +181,7 @@
       },
       "placeholder": {
         "defaultValue": null,
-        "description": "Hint text that goes above the value once the form is filled out.",
+        "description": "Text that appears inside the input when empty and floats above the value\nas a mini label once the user enters a value.\nWhen showMiniLabel is false, this text only serves as a standard placeholder and\ndisappears when the user types.",
         "name": "placeholder",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
@@ -190,6 +218,19 @@
           "name": "Clearable"
         }
       },
+      "version": {
+        "defaultValue": null,
+        "description": "Experimental:\nDetermine which version of the FormField to use.\nRight now this isn't used but it will be used in the future\nto allow us to release new versions of our form inputs without breaking existing functionality.",
+        "name": "version",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "1"
+        }
+      },
       "autocomplete": {
         "defaultValue": null,
         "description": "Determines if browser form autocomplete is enabled.\nNote that \"one-time-code\" is experimental and should not be used without\nconsultation. \"address-line1\" and \"address-line2\" are\nused for billing address information.",
@@ -213,7 +254,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event: KeyboardEvent<Element>) => void"
+          "name": "(event: React.KeyboardEvent) => void"
         }
       },
       "onFocus": {
@@ -226,7 +267,7 @@
         },
         "required": false,
         "type": {
-          "name": "() => void"
+          "name": "(event?: React.FocusEvent) => void"
         }
       },
       "onBlur": {
@@ -239,7 +280,7 @@
         },
         "required": false,
         "type": {
-          "name": "() => void"
+          "name": "(event?: React.FocusEvent) => void"
         }
       },
       "validations": {

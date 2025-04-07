@@ -1,13 +1,15 @@
 import Content from "@atlantis/docs/components/SegmentedControl/SegmentedControl.stories.mdx";
 import Props from "./SegmentedControl.props.json";
+import Notes from "./SegmentedControlNotes.mdx";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
   props: Props,
   component: {
     element: `const [activeOption, setActiveOption] = useState("week");
-    const options = [{label:'Week',value:'week'},{label:'Months',value:'months'},{label:'Year',value:'year'}] 
+    const options = [{label:'Week',value:'week'},{label:'Months',value:'months'},{label:'Year',value:'year'}]
   return (
     <Content>
       <Text>
@@ -35,7 +37,10 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-SegmentedControl-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-selections-segmentedcontrol--docs`,
+      ),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

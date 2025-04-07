@@ -11,27 +11,32 @@ import { ButtonDismiss } from "../ButtonDismiss/ButtonDismiss";
 
 interface BannerProps {
   readonly children: ReactNode;
-  readonly type: BannerType;
+
   /**
-   * The default cta variation should be a 'work' variation. If the banner
-   * 'type' is set to 'notice' we change the cta variation to 'learning'
+   * Sets the status-based theme of the Banner
+   */
+  readonly type: BannerType;
+
+  /**
+   * Accepts props for Button. Default action uses a 'subtle' Button
    */
   readonly primaryAction?: ButtonProps;
 
   /**
+   * Set to false to hide the dismiss button
    * @default true
    */
   readonly dismissible?: boolean;
 
   /**
-   * Adds an icon to the left of the banner content
+   * Use to override the default status Icon
    */
   readonly icon?: IconNames;
 
   onDismiss?(): void;
 
   /**
-   * When provided, the banner's visibility is controlled by this value.
+   * When provided, Banner's visibility is controlled by this value
    * @default undefined
    */
   readonly controlledVisiblity?: boolean;
@@ -65,14 +70,14 @@ export function Banner({
     primaryAction = Object.assign(
       {
         size: "small",
-        type: "tertiary",
-        variation: type === "notice" ? "learning" : "work",
+        type: "primary",
+        variation: "subtle",
       },
       primaryAction,
     );
   }
 
-  const bannerClassNames = classnames(styles.banner, {
+  const bannerClassNames = classnames(styles.banner, [styles[type]], {
     [styles.medium]: bannerWidth >= bannerWidths.medium,
   });
 
@@ -120,11 +125,11 @@ export function Banner({
 function getBannerIcon(type: BannerType): IconNames | undefined {
   switch (type) {
     case "notice":
-      return "starburst";
+      return "info";
     case "success":
       return "checkmark";
     case "warning":
-      return "help";
+      return "warning";
     case "error":
       return "alert";
   }

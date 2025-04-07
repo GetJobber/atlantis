@@ -25,6 +25,7 @@ export interface ContentExport {
   title: string;
   description?: string;
   links: ContentExportLinks[];
+  notes?: () => JSX.Element;
 }
 interface GeneratedTag {
   name: string;

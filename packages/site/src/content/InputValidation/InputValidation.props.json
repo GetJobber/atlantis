@@ -18,6 +18,21 @@
         "type": {
           "name": "string"
         }
+      },
+      "visible": {
+        "defaultValue": {
+          "value": true
+        },
+        "description": "",
+        "name": "visible",
+        "parent": {
+          "fileName": "../components/src/InputValidation/InputValidation.tsx",
+          "name": "InputValidationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
       }
     }
   }

@@ -1,42 +1,93 @@
 import { Meta } from "@storybook/addon-docs";
+import { Banner } from "@jobber/components/Banner";
 
 <Meta title="Guides/Customizing components" />
 
 # Customizing components
 
-### Philosophy: easy to use, flexible to customize
+## Balancing simplicity, flexibility, and consistency
 
 Atlantis is designed to make building consistent, accessible, and visually
-appealing user interfaces as effortless as possible. Our goal is to create
-components that work out of the box, requiring minimal setup or configuration
-from consumers.
+appealing user interfaces as effortless as possible for you.
 
-While we strive to cover the most common design scenarios with thoughtful
-defaults, we understand that unique use cases may require customization. For
-these scenarios, we provide mechanisms to extend or modify our components in a
-way that maintains flexibility without compromising the integrity of the
-components.
+We strive to speed up building the most common use cases "out of the box" with
+thoughtful defaults that create consistency for users. When unique scenarios
+arise that may require customization, we provide flexible mechanisms to extend
+or modify our components without compromising the integrity of their most common
+use cases.
 
-We recommend using the default implementations wherever possible to benefit from
-consistency, maintainability, and built in accessibility. However, if you choose
-to customize, please note that the responsibility for ensuring proper
-functionality and cohesion will rest with you.
+We recommend using the default implementations wherever possible to benefit
+from:
 
-Atlantis aims to strike a balance between simplicity, flexibility, and
-consistency.
+- consistency
+- improvements from the design system "for free"
+- built-in accessibility
 
-### Primary customization approach: named render props
+If you choose to customize components, you assume responsibility for these
+concerns and any issues that may arise in future versions.
 
-In Atlantis, our primary approach to enabling customization is through named
-render props, using the `customRender____` pattern. This method allows consumers
-to inject their own UI logic while retaining the default behaviors and
-functionality of the component.
+## Compound components
 
-#### Example: customRenderItem
+Some components expose their foundational building blocks. This usually includes
+subcomponents and hooks for providing styles, state, and additional logic.
 
-Here's an example of how to use a named render prop to customize the rendering
-of items in a [List](..?path=/docs/components-lists-and-tables-list--docs)
-component:
+These components provide greater flexibility, giving you much more control over
+their appearance and behaviour.
+
+### Example: [Button](../components/Button)
+
+The `Button` component offers a very simple API allowing you to specify a label,
+icon, and icon position. However, because it doesn't accept children, it's very
+inflexible.
+
+```tsx
+<Button label="Home" icon="home" iconOnRight />
+```
+
+For greater control, `Button` is also available as a compound component and has
+exposed `Button.Label` and `Button.Icon` as subcomponents. This allows complete
+customization of the button's underlying content.
+
+Using the provided subcomponents, it's possible to build something more complex
+like this:
+
+```tsx
+function Example() {
+  const [created, setCreated] = useState(false);
+
+  return (
+    <Button
+      onClick={() => setCreated(!created)}
+      variation={created ? "destructive" : "work"}
+    >
+      {created ? <Avatar initials="AB" /> : <Button.Icon name="person" />}
+      <Button.Label>{created ? "Delete user" : "Create user"}</Button.Label>
+    </Button>
+  );
+}
+```
+
+`Button` also exposes a few hooks that can be used within your own components:
+
+- `useButtonStyles`: Returns a map of css classes that `Button` uses internally.
+  Consumers might use this to make something else look like a `Button`.
+- `useButtonContext`: Returns internal context that the `Button` shares with its
+  subcomponents. Consumers might use Button's context within a custom child
+  component, allowing that child to adapt to the `size` prop for example.
+
+## Named `customRender____` props
+
+Some of our components use render props following the `customRender____` naming
+convention.
+
+This allows you to both:
+
+- inject your own UI logic
+- retain the default behaviors and functionality of the component
+
+[Reference implementation](https://github.com/GetJobber/atlantis/blob/304e776cf7fc1b9683cecbb1d7a0d8dbebdb60bb/packages/components/src/List/List.tsx#L25C3-L25C60)
+
+### Example: [List](../components/List) customRenderItem
 
 ```tsx
 const renderProductItem = item => (
@@ -51,27 +102,73 @@ export const CustomRenderExample = () => (
 );
 ```
 
-In this example, the default List behavior (such as the main list structure and
-handling item interactions) is preserved. Only the presentation of individual
-items is customized.
+## Slot props with ReactNode
 
-### Other customization approaches
+Extending prop types to allow a `ReactNode` to be inserted is useful for simpler
+cases where your:
 
-While custom render functions are our primary approach it is not used in all
-places. For simple cases where customization does not depend on internal state,
-we have chosen to extend prop types to allow for a `ReactNode` to be passed in.
+- customization does not depend on internal state
+- design is relatively simple
 
-#### Example: Tab component (see [Tabs](..?path=/docs/components-navigation-tabs--docs))
+[Reference implementation](https://github.com/GetJobber/atlantis/blob/master/packages/components/src/Tabs/Tabs.tsx#L119C3-L119C38)
 
-Instead of introducing `customRenderLabel`, the `Tab` component was updated to
-allow the `label` prop to accept a `ReactNode`.
+### Example: [Tab](../components/Tabs) label
 
 ```tsx
 <Tab label={<MyCustomLabel />} />
 ```
 
-This approach was chosen to provide a simpler experience for those implementing
-Atlantis components. Customizing the `label` didn’t require exposing or
-interacting with the `Tab`’s internal state (e.g., active state styling). Once
-the design becomes more complex a custom render function would become a better
-fit.
+Customizing the `label` doesn’t require exposing or interacting with the `Tab`’s
+internal state (e.g., active state styling).
+
+## UNSAFE\_ props
+
+<Banner type="warning" dismissible={false}>
+  These properties are prefixed `UNSAFE_` for a reason! Their usage is **at your
+  own risk** and should be considered a **last resort**. Atlantis updates may
+  break these usages.
+</Banner>
+
+`UNSAFE_` props are used to allow for advanced styling customization of:
+
+- a component's container
+- in some cases, a component's sub-components
+
+If you are considering using an `UNSAFE_` prop, we encourage you to
+[talk to us](https://getjobber.slack.com/archives/C03BJHV3PMG) to look for safer
+ways to meet your needs.
+
+[Reference implementation](https://github.com/GetJobber/atlantis/blob/304e776cf7fc1b9683cecbb1d7a0d8dbebdb60bb/packages/components/src/Popover/Popover.tsx#L36-L56)
+
+### Example: `UNSAFE_className`
+
+```tsx
+<Component UNSAFE_className={{ container: styles.customClass }} />
+
+.customClass {
+  background-color: var(--color-surface--background);
+  padding-right: var(--space-larger);
+}
+```
+
+```tsx
+<Component UNSAFE_className={{ container: "custom-container-class" }} />
+```
+
+### Example: `UNSAFE_style`
+
+```tsx
+<Component
+  UNSAFE_style={{
+    container: { backgroundColor: "var(--color-surface--background)" },
+    dismissArrow: { paddingRight: "var(--space-larger)" },
+  }}
+/>
+```
+
+**Note:** Inspiration for this approach was taken from:
+
+- React Spectrum's
+  [UNSAFE\_ escape hatches](https://react-spectrum.adobe.com/react-spectrum/styling.html#escape-hatches)
+- Gestalt's
+  [dangerouslySet**\_** pattern](https://gestalt.pinterest.systems/get_started/developers/hacking_gestalt#Box's-dangerouslySetInlineStyle)

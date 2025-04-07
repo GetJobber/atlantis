@@ -11,7 +11,7 @@
         "description": "@deprecated Use `ref` instead.",
         "name": "inputRef",
         "parent": {
-          "fileName": "../components/src/Autocomplete/Autocomplete.tsx",
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
           "name": "AutocompleteProps"
         },
         "required": false,
@@ -21,15 +21,15 @@
       },
       "initialOptions": {
         "defaultValue": null,
-        "description": "Initial options to show when user first focuses the Autocomplete",
+        "description": "",
         "name": "initialOptions",
         "parent": {
-          "fileName": "../components/src/Autocomplete/Autocomplete.tsx",
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
           "name": "AutocompleteProps"
         },
         "required": false,
         "type": {
-          "name": "{ [x: number]: GroupOption; length: number; toString: () => string; toLocaleString: { (): string; (locales: string | string[], options?: NumberFormatOptions & DateTimeFormatOptions): string; }; ... 37 more ...; readonly [Symbol.unscopables]: { ...; }; } | { ...; }"
+          "name": "GenericOption[]"
         }
       },
       "value": {
@@ -37,7 +37,7 @@
         "description": "Set Autocomplete value.",
         "name": "value",
         "parent": {
-          "fileName": "../components/src/Autocomplete/Autocomplete.tsx",
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
           "name": "AutocompleteProps"
         },
         "required": true,
@@ -52,7 +52,7 @@
         "description": "Allow the autocomplete to use values not from the drop down menu.",
         "name": "allowFreeForm",
         "parent": {
-          "fileName": "../components/src/Autocomplete/Autocomplete.tsx",
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
           "name": "AutocompleteProps"
         },
         "required": false,
@@ -67,7 +67,7 @@
         "description": "Debounce in milliseconds for getOptions",
         "name": "debounce",
         "parent": {
-          "fileName": "../components/src/Autocomplete/Autocomplete.tsx",
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
           "name": "AutocompleteProps"
         },
         "required": false,
@@ -80,12 +80,12 @@
         "description": "Simplified onChange handler that only provides the new value.\n@param newValue",
         "name": "onChange",
         "parent": {
-          "fileName": "../components/src/Autocomplete/Autocomplete.tsx",
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
           "name": "AutocompleteProps"
         },
         "required": true,
         "type": {
-          "name": "(newValue?: Option) => void"
+          "name": "(newValue?: GenericOptionValue) => void"
         }
       },
       "getOptions": {
@@ -93,12 +93,12 @@
         "description": "Called as the user types in the input. The autocomplete will display what\nis returned from this method to the user as available options.\n@param newInputText",
         "name": "getOptions",
         "parent": {
-          "fileName": "../components/src/Autocomplete/Autocomplete.tsx",
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
           "name": "AutocompleteProps"
         },
         "required": true,
         "type": {
-          "name": "(newInputText: string) => { [x: number]: GroupOption; length: number; toString: () => string; toLocaleString: { (): string; (locales: string | string[], options?: NumberFormatOptions & DateTimeFormatOptions): string; }; ... 37 more ...; readonly [Symbol.unscopables]: { ...; }; } | { ...; } | Promise<...>"
+          "name": "(newInputText: string) => (GenericOption | GenericGetOptionsValue)[] | Promise<(GenericOption | GenericGetOptionsValue)[]>"
         }
       },
       "placeholder": {
@@ -106,12 +106,25 @@
         "description": "Hint text that goes above the value once the form is filled out.",
         "name": "placeholder",
         "parent": {
-          "fileName": "../components/src/Autocomplete/Autocomplete.tsx",
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
           "name": "AutocompleteProps"
         },
         "required": true,
         "type": {
           "name": "string"
+        }
+      },
+      "customRenderMenu": {
+        "defaultValue": null,
+        "description": "Override the content rendered in the menu.",
+        "name": "customRenderMenu",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(props: CustomOptionsMenuProp<GenericOption | GenericGetOptionsValue, GenericOptionValue>) => ReactElement<...>"
         }
       },
       "clearable": {
@@ -125,6 +138,19 @@
         "required": false,
         "type": {
           "name": "Clearable"
+        }
+      },
+      "description": {
+        "defaultValue": null,
+        "description": "Further description of the input, can be used for a hint.",
+        "name": "description",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
         }
       },
       "invalid": {
@@ -163,7 +189,7 @@
         },
         "required": false,
         "type": {
-          "name": "() => void"
+          "name": "(event?: React.FocusEvent) => void"
         }
       },
       "onFocus": {
@@ -176,7 +202,7 @@
         },
         "required": false,
         "type": {
-          "name": "() => void"
+          "name": "(event?: React.FocusEvent) => void"
         }
       },
       "prefix": {

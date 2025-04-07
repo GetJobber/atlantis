@@ -46,7 +46,7 @@
   box-sizing: border-box;
   padding: 0;
   overflow: hidden;
-  background-color: var(--color-surface--background);
+  background-color: var(--color-interactive--background);
   flex-shrink: 0;
   align-items: center;
   justify-content: center;

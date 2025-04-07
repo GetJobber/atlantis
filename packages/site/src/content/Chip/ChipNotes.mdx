@@ -1,0 +1,70 @@
+import { Canvas } from "@storybook/addon-docs";
+import { Chip } from "@jobber/components/Chip";
+import { Icon } from "@jobber/components/Icon";
+import { Content } from "@jobber/components/Content";
+import { Box } from "@jobber/components/Box";
+import { Text } from "@jobber/components/Text";
+import { StatusLabel } from "@jobber/components/StatusLabel";
+
+## Configuration
+
+### Chip.Prefix
+
+When `Chip.Prefix` is provided with an Icon or Avatar as its immediate child,
+default markup and styles are automatically applied. If these styles and markup
+are not desired, or if you would like to provide your own child, you should
+provide your own wrapper element and layout.
+
+<Canvas>
+  <Box direction="column" gap="base">
+    <Box direction="row" alignItems="center" gap="base">
+      <Chip label="Select team">
+        <Chip.Prefix>
+          <Icon name="person" size="small" />
+        </Chip.Prefix>
+      </Chip>
+      <Text>Default styling</Text>
+    </Box>
+    <Box direction="row" alignItems="center" gap="large">
+      <Chip label="Select team">
+        <Chip.Prefix>
+          <div style={{ display: "flex", marginRight: 20 }}>
+            <Icon name="person" size="small" />
+          </div>
+        </Chip.Prefix>
+      </Chip>
+      <Text>Custom wrapper around Icon to add larger margin</Text>
+    </Box>
+    <Box direction="row" alignItems="center" gap="base">
+      <Chip label="Select team">
+        <Chip.Prefix>
+          <div style={{ display: "flex", marginRight: 15 }}>
+            <StatusLabel status="success" label="Ready" />
+          </div>
+        </Chip.Prefix>
+      </Chip>
+      <Text>Custom wrapper around child</Text>
+    </Box>
+  </Box>
+</Canvas>
+
+## Component customization
+
+### Base Chip Color Overrides
+
+If you wish to modify the colors of the Base variant, you may do so with CSS
+custom properties (variables).
+
+For the resting background color: `--public-chip-base-bg-color`
+
+For the hover/focused background color: `--public-chip-base-hover-bg-color`
+
+For the text content and miscellaneous content such as the line separator
+between the `label` and `heading`: `--public-chip-base-content-color`
+
+## Developer notes
+
+Chip is in the process of being applied to the more opinionated Chips
+convenience wrapper, but by design does not carry the same level of "out of the
+box" functionality as it is a more "atomic" element that can be used outside of
+those more complex selection flows.

@@ -1,6 +1,7 @@
 import FormatRelativeDateTimeContent from "@atlantis/docs/components/FormatRelativeDateTime/FormatRelativeDateTime.stories.mdx";
 import Props from "./FormatRelativeDateTime.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <FormatRelativeDateTimeContent />,
@@ -15,7 +16,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-FormatRelativeDateTime-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-utilities-formatrelativedatetime--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

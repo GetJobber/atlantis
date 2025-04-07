@@ -8,51 +8,84 @@ exports[`Images renders an image 1`] = `
     tabindex="0"
   >
     <div
-      class="toolbar"
+      class="backgroundImage"
+      style="background-image: url(https://i.imgur.com/6Jcfgnp.jpg);"
+    />
+    <div
+      class="blurOverlay"
+    />
+    <div
+      class="staticThemeProviderWrapper"
+      data-theme="dark"
     >
-      <span
-        class="title"
+      <div
+        class="toolbar"
       >
-        Dis be a title
-      </span>
-      <button
-        aria-label="Close"
-        class="button base onlyIcon subtle tertiary"
-        type="button"
-      >
-        <svg
-          data-testid="remove"
-          style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
+        <div
+          class="slideNumber"
         >
-          <path
-            d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
-          />
-        </svg>
-        <span
-          class="base semiBold base base"
-        />
-      </button>
+          <p
+            class="base regular base text"
+          >
+            1/1
+          </p>
+        </div>
+        <div
+          class="closeButton"
+        >
+          <button
+            aria-label="Close"
+            class="button base subtle tertiary buttonChildren"
+            type="button"
+          >
+            <svg
+              data-testid="remove"
+              style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
     <div
-      class="imagesWrapper"
+      class="imageArea"
     >
       <img
+        alt="Dis be a title"
         class="image"
         draggable="false"
         src="https://i.imgur.com/6Jcfgnp.jpg"
-        style="z-index: 1; opacity: 1; transform: translateX(0px) translateY(-50%) translateZ(0); user-select: none;"
+        style="transform: none; user-select: none;"
       />
     </div>
     <div
-      class="toolbar"
+      class="captionWrapper"
     >
-      Dis be a caption 🎉
+      <div
+        class="staticThemeProviderWrapper"
+        data-theme="dark"
+      >
+        <div
+          class="title"
+        >
+          <h4
+            class="base bold large heading"
+          >
+            Dis be a title
+          </h4>
+        </div>
+        <p
+          class="base regular large text"
+        >
+          Dis be a caption 🎉
+        </p>
+      </div>
     </div>
-    <div
-      class="overlay"
-    />
   </div>
 </div>
 `;

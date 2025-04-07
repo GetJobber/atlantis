@@ -2,6 +2,7 @@ import Content from "@atlantis/docs/components/Menu/Menu.stories.mdx";
 import Props from "./Menu.props.json";
 import MobileProps from "./Menu.props-mobile.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -62,14 +63,14 @@ export default {
     },
   ];
 
-  return <Host><Menu menuOptions={menuOptions} /></Host>`,
+  return <Menu menuOptions={menuOptions} />`,
     defaultProps: {},
   },
   title: "Menu",
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-Menu-web--docs",
+      url: getStorybookUrl(`?path=/docs/components-navigation-menu--docs`),
     },
   ],
 } as const satisfies ContentExport;

@@ -25,7 +25,7 @@ Color should never be the single means of conveying information in an interface.
 Use labels, iconography, or hints for assistive technology alongside color to
 ensure your content can be understood by everyone.
 
-## Usage guidelines
+## Design & usage guidelines
 
 ### Typography
 
@@ -45,7 +45,7 @@ Headings have a bold, high-contrast color to cement their hierarchy.
 A slightly softer color is used for body text for greater readability.
 
 Text that is relevant but less important ("secondary") can be lower-contrast to
-suggest its’ reduced importance. This color should only be used when there is
+suggest its' reduced importance. This color should only be used when there is
 more important text content already present.
 
 ##### Text--Reverse
@@ -63,11 +63,10 @@ standard secondary text.
 ### Interactions
 
 Use these colors in buttons and form controls to communicate the presence and
-meaning of interaction. In cases such as
-[Buttons](../?path=/docs/components-actions-button--docs) where the interactive
-color is functioning as a background color or the text color, the alternative
-color should be `--color-surface` so that the label matches the theme of the
-application's background.
+meaning of interaction. In cases such as [Buttons](/components/Button) where the
+interactive color is functioning as a background color or the text color, the
+alternative color should be `--color-surface` so that the label matches the
+theme of the application's background.
 
 #### Interactive
 
@@ -84,11 +83,23 @@ The default color used for interactive elements.
 Use for interactive elements that should be less visually pronounced, such as an
 icon action in main navigation, or buttons to dismiss or cancel a workflow.
 
+##### Interactive--Background
+
+<Swatch
+  colors={[
+    "--color-interactive--background",
+    "--color-interactive--background--hover",
+  ]}
+/>
+
+Use for the background of interactive elements to ensure separation from the
+surface they appear on.
+
 #### Destructive
 
 <Swatch colors={[`--color-destructive`, "--color-destructive--hover"]} />
 
-Use to signify that an interaction will destroy something in the users’ account
+Use to signify that an interaction will destroy something in the users' account
 or workflow.
 
 #### Disabled
@@ -230,8 +241,8 @@ application.
 <Swatch colors={["--color-overlay"]} />
 
 Use to mask an area of the interface to promote focus to a foreground action,
-such as a [Modal](../?path=/docs/components-overlays-modal--docs)’s appearance.
-Overlay includes built-in opacity values.
+such as a [Modal](/components/Modal)'s appearance. Overlay includes built-in
+opacity values.
 
 #### Overlay--Dimmed
 
@@ -245,7 +256,7 @@ includes built-in opacity values.
 
 Defining the edges of elements on the same elevation plane, border colors are
 the subtle maintainers of layout structure. Learn more about borders in our
-[Borders guide.](../?path=/docs/design-borders--docs)
+[Borders guide.](/design/borders)
 
 <Swatch
   colors={[
@@ -263,6 +274,88 @@ sectioned, such as table headers or list sections.
 Use `--color-border--interactive` for interactive elements to ensure accessible
 contrast.
 
+### Workflow
+
+These colors are associated with steps of the home services workflow. These
+should be used sparingly and only on elements that are directly related to the
+workflow.
+
+#### Requests and assessments
+
+<Swatch
+  colors={[
+    "--color-request",
+    "--color-request--surface",
+    "--color-request--onSurface",
+  ]}
+/>
+
+Requests and assessments use orange to convey a "warm handoff" from the service
+consumer to the service provider.
+
+#### Quotes
+
+<Swatch
+  colors={[
+    "--color-quote",
+    "--color-quote--surface",
+    "--color-quote--onSurface",
+  ]}
+/>
+
+Quotes use pink to suggest the likelihood of the service provider winning the
+work is getting warmer relative to a request.
+
+#### Jobs and visits
+
+<Swatch
+  colors={["--color-job", "--color-job--surface", "--color-job--onSurface"]}
+/>
+
+Jobs are green because of their core association to Jobber, which has
+historically used some shade of green for branding.
+
+<Swatch
+  colors={[
+    "--color-visit",
+    "--color-visit--surface",
+    "--color-visit--onSurface",
+  ]}
+/>
+
+Visits inherit the job color as they are closely related to jobs.
+
+#### Invoices and payments
+
+<Swatch
+  colors={[
+    "--color-invoice",
+    "--color-invoice--surface",
+    "--color-invoice--onSurface",
+  ]}
+/>
+
+Invoices are blue as this is a common color associated with banking and finance.
+
+<Swatch
+  colors={[
+    "--color-payments",
+    "--color-payments--surface",
+    "--color-payments--onSurface",
+  ]}
+/>
+
+Payments inherit the invoice color as they are closely related to invoices.
+
+#### Tasks
+
+<Swatch
+  colors={["--color-task", "--color-task--surface", "--color-task--onSurface"]}
+/>
+
+Tasks use a deeper shade of blue than invoices and the two rarely share
+interfaces as tasks are generally isolated to scheduling.
+
 ### Brand
 
 Use these colors to represent the Jobber brand visual language.
@@ -272,14 +365,14 @@ Use these colors to represent the Jobber brand visual language.
 <Swatch colors={["--color-brand"]} />
 
 The primary color associated with our brand, from website to ads to product; AKA
-“Jobber Green”.
+"Jobber Green".
 
 #### Brand--Highlight
 
 <Swatch colors={["--color-brand--highlight"]} />
 
 Use to highlight an element in a way that aligns with our website. Use with
-caution, it’s _bright!_
+caution, it's _bright!_
 
 <br />
 <br />
@@ -301,3 +394,6 @@ caution, it’s _bright!_
       .map(key => `--${key}`)}
   />
 </Disclosure>
+
+<br />
+<br />

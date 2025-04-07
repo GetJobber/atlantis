@@ -49,6 +49,7 @@ import IconContent from "./Icon";
 import IconButtonContent from "./IconButton";
 import InlineLabelContent from "./InlineLabel";
 import InputAvatarContent from "./InputAvatar";
+import InputCurrencyContent from "./InputCurrency";
 import InputDateContent from "./InputDate";
 import InputEmailContent from "./InputEmail";
 import InputFieldWrapperContent from "./InputFieldWrapper";
@@ -89,6 +90,7 @@ import TooltipContent from "./Tooltip";
 import TypographyContent from "./Typography";
 import TextListContent from "./TextList";
 import ThumbnailListContent from "./ThumbnailList";
+import AtlantisThemeContextContent from "./AtlantisThemeContext";
 import { ContentExport } from "../types/content";
 
 export const SiteContent: Record<string, ContentExport> = {
@@ -109,6 +111,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   AnimatedSwitcher: {
     ...AnimatedSwitcherContent,
+  },
+  AtlantisThemeContext: {
+    ...AtlantisThemeContextContent,
   },
   Autocomplete: {
     ...AutoCompleteContent,
@@ -244,6 +249,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   InputAvatar: {
     ...InputAvatarContent,
+  },
+  InputCurrency: {
+    ...InputCurrencyContent,
   },
   InputDate: {
     ...InputDateContent,

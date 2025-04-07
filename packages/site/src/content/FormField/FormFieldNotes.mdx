@@ -1,0 +1,33 @@
+## Configuration
+
+### Mobile
+
+FormField should not be used to wrap separate instances of a given input
+component, it should be done at the component level. For example, say you had
+four SpecialInput components on a given form. Instead of the four SpecialInput
+components in FormField, it would be better to go to the SpecialInput component
+where it is exported and wrap it there.
+
+```ts
+// The SpecialInput implementation, without any form logic
+function SpecialInputInternal(props) {
+  ...
+}
+
+// This is what would be exported and used by other views or components
+export function SpecialInput(props) {
+  return (
+    <FormField name={props.name}>
+      {(field) => {
+        return (
+          <SpecialInput
+            ...props
+            onChange={field.onChange}
+            value={field.value}
+          />
+        );
+      }}
+    </FormField>
+  );
+}
+```

@@ -9,7 +9,7 @@
   box-sizing: border-box;
   border: var(--border-base) solid var(--color-border--interactive);
   border-radius: var(--radius-base);
-  background-color: var(--color-surface--background);
+  background-color: var(--color-interactive--background);
 }
 
 .small {
@@ -29,7 +29,6 @@
 .container label {
   display: flex;
   z-index: 1;
-  height: 100%;
   padding: 0 calc(var(--space-base) - var(--space-smaller));
   overflow: hidden;
   font-size: var(--typography--fontSize-base);

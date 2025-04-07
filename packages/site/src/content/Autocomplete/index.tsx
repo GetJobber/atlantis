@@ -1,5 +1,6 @@
 import AutocompleteContent from "@atlantis/docs/components/Autocomplete/Autocomplete.stories.mdx";
 import Props from "./Autocomplete.props.json";
+import Notes from "./AutocompleteNotes.mdx";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
@@ -33,8 +34,9 @@ const [value, setValue] = useState();
     {
       label: "Storybook",
       url: getStorybookUrl(
-        "?path=/story/components-forms-and-inputs-autocomplete-web--basic",
+        "?path=/docs/components-forms-and-inputs-autocomplete--docs",
       ),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

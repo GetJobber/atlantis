@@ -1,6 +1,7 @@
 import StatusIndicatorContent from "@atlantis/docs/components/StatusIndicator/StatusIndicator.stories.mdx";
 import Props from "./StatusIndicator.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <StatusIndicatorContent />,
@@ -20,7 +21,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-StatusIndicator-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-status-and-feedback-statusindicator--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

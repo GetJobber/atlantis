@@ -7,9 +7,14 @@ import "./main.css";
 import { BrowserRouter } from "react-router-dom";
 import { AtlantisThemeContextProvider } from "@jobber/components";
 import { Layout } from "./layout/Layout";
-import { AtlantisPreviewEditorProvider } from "./providers/AtlantisPreviewEditorProvider";
+import { AtlantisPreviewProvider } from "./preview/AtlantisPreviewProvider";
 import { AtlantisSiteProvider } from "./providers/AtlantisSiteProvider";
 import { initAtlantisTheme } from "./utils/theme";
+import { Analytics } from "./components/Analytics";
+import { handleStorybookRedirect } from "./utils/storybook";
+import { TritonProvider } from "./providers/TritonProvider";
+
+handleStorybookRedirect();
 
 const urlParams = new URLSearchParams(window.location.search);
 const minimalMode = urlParams.has("minimal");
@@ -27,9 +32,12 @@ function renderApp() {
             <AtlantisSiteProvider
               minimal={{ requested: minimalMode, enabled: false }}
             >
-              <AtlantisPreviewEditorProvider>
-                <Layout />
-              </AtlantisPreviewEditorProvider>
+              <Analytics />
+              <AtlantisPreviewProvider>
+                <TritonProvider>
+                  <Layout />
+                </TritonProvider>
+              </AtlantisPreviewProvider>
             </AtlantisSiteProvider>
           </AtlantisThemeContextProvider>
         </BrowserRouter>

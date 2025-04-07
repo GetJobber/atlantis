@@ -1,97 +1,104 @@
 import { Box, Button, Typography } from "@jobber/components";
-import { Link } from "react-router-dom";
-import { Fragment, PropsWithChildren, useState } from "react";
-import { SearchBox } from "./SearchBox";
+import { Link, useLocation } from "react-router-dom";
+import { Fragment, PropsWithChildren, useRef } from "react";
+import { useBreakpoints } from "@jobber/hooks";
 import AnimatedPresenceDisclosure from "./AnimatedPresenceDisclosure";
+import styles from "./NavMenu.module.css";
+import { LeftDrawer } from "./LeftDrawer";
+import { getStorybookUrl } from "./getStorybookUrl";
 import { routes } from "../routes";
 import { JobberLogo } from "../assets/JobberLogo.svg";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
+import { VisibleWhenFocused } from "../components/VisibleWhenFocused";
+
+export interface NavMenuProps {
+  readonly mainContentRef: React.RefObject<HTMLDivElement>;
+}
 
 /**
  * Left side navigation menu for the application.
  * @returns ReactNode
  */
-export const NavMenu = () => {
-  const [open, setOpen] = useState(false);
-  const { isMinimal } = useAtlantisSite();
+export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
+  const { isMinimal, isMobileMenuOpen, toggleMobileMenu } = useAtlantisSite();
+  const { pathname } = useLocation();
+  const selectedRef = useRef<HTMLAnchorElement | null>(null);
 
   if (isMinimal) return null;
 
-  return (
-    <div
-      style={{
-        width: 220,
-        height: "100dvh",
-        backgroundColor: "var(--color-surface--background)",
-        overflow: "auto",
-      }}
-    >
-      <Box height={24} padding="base">
-        <Link to="/">
-          <JobberLogo />
-        </Link>
-      </Box>
-      <Box padding="base">
-        <Button
-          onClick={() => setOpen(true)}
-          label="Search"
-          icon="search"
-          variation="subtle"
-        />
-      </Box>
-      <SearchBox open={open} setOpen={setOpen} />
-      <MenuList>
-        <Box>
+  interface MenuItem {
+    handle: string;
+    children?: MenuItem[];
+    path?: string;
+  }
+
+  const iterateSubSubMenu = (menuItems: MenuItem[], routeIndex: number) => {
+    return menuItems.map((menuItem, menuItemIndex) => {
+      return (
+        <MenuSubItem key={`${routeIndex}-${menuItemIndex}`}>
+          <StyledSubLink
+            to={`/components/${menuItem.handle}`}
+            selectedRef={selectedRef}
+          >
+            {menuItem.handle}
+          </StyledSubLink>
+        </MenuSubItem>
+      );
+    });
+  };
+
+  const iterateSubMenu = (menuItems: MenuItem[], routeIndex: number) => {
+    return menuItems.map((menuItem, menuItemIndex) => {
+      if (menuItem.children) {
+        return (
+          <Fragment key={`${routeIndex}-${menuItemIndex}`}>
+            {sectionTitle(menuItem.handle)}
+            {iterateSubSubMenu(menuItem.children, routeIndex)}
+          </Fragment>
+        );
+      }
+
+      return (
+        <MenuSubItem key={`${routeIndex}-${menuItemIndex}`}>
+          <StyledSubLink to={menuItem.path ?? "/"} selectedRef={selectedRef}>
+            {menuItem.handle}
+          </StyledSubLink>
+        </MenuSubItem>
+      );
+    });
+  };
+
+  const skipToContent = () => {
+    mainContentRef.current?.focus();
+    toggleMobileMenu();
+  };
+
+  const menuContent = (
+    <nav className={styles.navMenuContainer}>
+      <div className={styles.navMenuHeader}>
+        <VisibleWhenFocused>
+          <Button label="Skip to Content" onClick={skipToContent} />
+        </VisibleWhenFocused>
+        <div className={styles.navMenuHeaderLogo}>
+          <Link to="/">
+            <JobberLogo />
+          </Link>
+        </div>
+      </div>
+      <div className={styles.navMenu}>
+        <MenuList>
           {routes?.map((route, routeIndex) => {
             if (route.inNav === false) return null;
 
-            interface MenuItem {
-              handle: string;
-              children?: MenuItem[];
-              path?: string;
-            }
-
-            const iterateSubSubMenu = (menuItems: MenuItem[]) => {
-              return menuItems.map((menuItem, menuItemIndex) => {
-                return (
-                  <MenuItem key={`${routeIndex}-${menuItemIndex}`}>
-                    <StyledLink to={`/components/${menuItem.handle}`}>
-                      {menuItem.handle}
-                    </StyledLink>
-                  </MenuItem>
-                );
-              });
-            };
-
-            const iterateSubMenu = (menuItems: MenuItem[]) => {
-              return menuItems.map((menuItem, menuItemIndex) => {
-                if (menuItem.children) {
-                  return (
-                    <Fragment key={`${routeIndex}-${menuItemIndex}`}>
-                      {sectionTitle(menuItem.handle)}
-                      {iterateSubSubMenu(menuItem.children)}
-                    </Fragment>
-                  );
-                }
-
-                return (
-                  <MenuItem key={`${routeIndex}-${menuItemIndex}`}>
-                    <StyledLink to={menuItem.path ?? "/"}>
-                      {menuItem.handle}
-                    </StyledLink>
-                  </MenuItem>
-                );
-              });
-            };
-
             if (route.children) {
               return (
-                <Box key={routeIndex} padding="base">
+                <Box key={routeIndex}>
                   <AnimatedPresenceDisclosure
                     to={route.path ?? "/"}
                     title={route.handle}
+                    selected={pathname.startsWith(route.path ?? "/")}
                   >
-                    {iterateSubMenu(route.children)}
+                    {iterateSubMenu(route.children, routeIndex)}
                   </AnimatedPresenceDisclosure>
                 </Box>
               );
@@ -99,35 +106,76 @@ export const NavMenu = () => {
 
             return (
               <MenuItem key={routeIndex}>
-                <StyledLink to={route.path ?? "/"}>{route.handle}</StyledLink>
+                <StyledLink to={route.path ?? "/"} selectedRef={selectedRef}>
+                  {route.handle}
+                </StyledLink>
               </MenuItem>
             );
           })}
-        </Box>
-      </MenuList>
-    </div>
+        </MenuList>
+      </div>
+      <a
+        href={getStorybookUrl("?path=/docs/introduction--docs")}
+        className={styles.navFooterLink}
+      >
+        View in Storybook
+      </a>
+    </nav>
   );
+
+  return (
+    <>
+      <div className={styles.desktopNavContainer}>{menuContent}</div>
+      {isMobileMenuOpen && (
+        <LeftDrawer
+          onClose={toggleMobileMenu}
+          header={
+            <Box padding={{ top: "smaller" }}>
+              <Link to="/" onClick={toggleMobileMenu}>
+                <JobberLogo />
+              </Link>
+            </Box>
+          }
+        >
+          {menuContent}
+        </LeftDrawer>
+      )}
+    </>
+  );
+};
+
+const getLinkClassName = (
+  baseClasses: string,
+  isSelected: boolean,
+  selectedClass: string,
+): string => {
+  return `${baseClasses} ${isSelected ? selectedClass : ""}`.trim();
 };
 
 export const StyledLink = ({
   to,
   children,
-  style,
-}: PropsWithChildren<{ readonly to: string; readonly style?: object }>) => {
+  selectedRef,
+}: PropsWithChildren<{
+  readonly to: string;
+  readonly selectedRef: React.RefObject<HTMLAnchorElement>;
+}>) => {
+  const { pathname } = useLocation();
+  const isSelected = pathname === to;
+  const className = getLinkClassName(
+    `${styles.navMenuItem} ${styles.navMenuLink}`,
+    isSelected,
+    styles.selected,
+  );
+  const { toggleMobileMenu } = useAtlantisSite();
+  const { mediumAndUp } = useBreakpoints();
+
   return (
     <Link
       to={to ?? "/"}
-      style={{
-        outline: "transparent",
-        color: "var(--color-heading)",
-        fontSize: "var(--typography--fontSize-large)",
-        fontWeight: 600,
-        width: "100%",
-        textDecoration: "none",
-        userSelect: "none",
-        transition: "all var(--timing-base) ease-out",
-        ...style,
-      }}
+      className={className}
+      ref={isSelected ? selectedRef : null}
+      onClick={mediumAndUp ? undefined : toggleMobileMenu}
     >
       {children}
     </Link>
@@ -137,25 +185,27 @@ export const StyledLink = ({
 export const StyledSubLink = ({
   to,
   children,
-  style,
-}: PropsWithChildren<{ readonly to: string; readonly style?: object }>) => {
+  selectedRef,
+}: PropsWithChildren<{
+  readonly to: string;
+  readonly selectedRef: React.RefObject<HTMLAnchorElement>;
+}>) => {
+  const { pathname } = useLocation();
+  const isSelected = pathname === to;
+  const className = getLinkClassName(
+    `${styles.navMenuItem} ${styles.navMenuSubItem} ${styles.navMenuLink}`,
+    isSelected,
+    styles.selected,
+  );
+  const { toggleMobileMenu } = useAtlantisSite();
+  const { mediumAndUp } = useBreakpoints();
+
   return (
     <Link
       to={to ?? "/"}
-      style={{
-        outline: "transparent",
-        color: "var(--color-heading)",
-        fontSize: "var(--typography--fontSize-base)",
-        fontWeight: 700,
-        width: "100%",
-        textDecoration: "none",
-        userSelect: "none",
-        transition: "all var(--timing-base) ease-out",
-        display: "block",
-        padding:
-          "var(--space-smaller) var(--space-smaller) var(--space-smaller) var(--space-base)",
-        ...style,
-      }}
+      className={className}
+      ref={isSelected ? selectedRef : null}
+      onClick={mediumAndUp ? undefined : toggleMobileMenu}
     >
       {children}
     </Link>
@@ -163,34 +213,31 @@ export const StyledSubLink = ({
 };
 
 export const MenuList = ({ children }: PropsWithChildren) => {
-  return <ul style={{ listStyleType: "none", padding: 0 }}>{children}</ul>;
+  return <ul style={{ listStyle: "none", padding: 0 }}>{children}</ul>;
 };
 
 export const MenuItem = ({ children }: PropsWithChildren) => {
   return (
-    <li
-      style={{
-        display: "flex",
-        margin: "0 var(--space-small) var(--space-smaller) var(--space-small)",
-        padding: "var(--space-small)",
-        borderRadius: "var(--radius-small)",
-        color: "var(--color-heading)",
-        alignItems: "center",
-      }}
-    >
-      {children}
+    <li style={{ listStyle: "none" }} className="stickySectionHeader">
+      <Typography fontWeight="semiBold" size={"large"} textColor="heading">
+        {children}
+      </Typography>
     </li>
   );
 };
 
-export const changelogTitle = (
-  <Typography fontWeight="semiBold" size="large" textColor="heading">
-    Changelog
-  </Typography>
-);
+export const MenuSubItem = ({ children }: PropsWithChildren) => {
+  return (
+    <li style={{ listStyle: "none" }}>
+      <Typography textColor="heading">{children}</Typography>
+    </li>
+  );
+};
 
 export const sectionTitle = (section: string) => (
-  <Typography fontWeight="bold" size="small" textColor="textSecondary">
-    {section.toUpperCase()}
-  </Typography>
+  <div className={`${styles.navMenuItem} ${styles.navMenuSubTitle}`}>
+    <Typography fontWeight="bold" size="small" textColor="textSecondary">
+      {section.toUpperCase()}
+    </Typography>
+  </div>
 );

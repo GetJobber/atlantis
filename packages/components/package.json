@@ -1,11 +1,12 @@
 {
   "name": "@jobber/components",
-  "version": "6.7.0",
+  "version": "6.33.2",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "sideEffects": false,
   "exports": {
     ".": {
       "types": "./dist/index.d.mts",
@@ -417,7 +418,8 @@
     "dist/*"
   ],
   "dependencies": {
-    "@jobber/formatters": "^0.3.0",
+    "@floating-ui/react": "^0.27.5",
+    "@jobber/formatters": "^0.4.0",
     "@popperjs/core": "^2.0.6",
     "@tanstack/react-table": "8.5.13",
     "@types/color": "^3.0.1",
@@ -465,6 +467,7 @@
   },
   "peerDependencies": {
     "@apollo/client": "^3",
+    "@jobber/design": "*",
     "@jobber/hooks": "^2",
     "@tanstack/react-table": "^8",
     "axios": "^1",

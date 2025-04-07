@@ -1,19 +1,14 @@
-import { Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { UseCollectionQuery } from "./UseCollectionQuery";
 import { List } from "@jobber/components/List";
-import { Button } from "@jobber/components/Button";
-import { Spinner } from "@jobber/components/Spinner";
-import { InlineLabel } from "@jobber/components/InlineLabel";
-import * as hooks from "@atlantis/packages/hooks/src";
 import {
-  LIST_QUERY,
-  apolloClient,
-  getLoadingState,
   propsList,
   returnValues,
   subscriptionPropsList,
-} from "@atlantis/packages/hooks/src/useCollectionQuery/mdxUtils";
+} from "@jobber/hooks/useCollectionQuery/mdxUtils";
+import { useCollectionQuery } from "@jobber/hooks/useCollectionQuery";
 
-<Meta title="Hooks/useCollectionQuery" component={hooks.useCollectionQuery} />
+<Meta title="Hooks/useCollectionQuery" component={useCollectionQuery} />
 
 # UseCollectionQuery
 
@@ -50,68 +45,7 @@ const {
 ```
 
 <Canvas>
-  <Story name="useCollectionQuery">
-    {() => {
-      const {
-        data,
-        refresh,
-        nextPage,
-        loadingRefresh,
-        loadingNextPage,
-        loadingInitialContent,
-      } = hooks.useCollectionQuery({
-        // useCollectionQuery should be called with the query type, and
-        // optionally, the subscription type. The Canvas errors with
-        // typing included, so typing has been removed in this example.
-        // Please see the first example for appropriate typing.
-        query: LIST_QUERY,
-        queryOptions: {
-          fetchPolicy: "network-only",
-          nextFetchPolicy: "cache-first",
-          client: apolloClient,
-        },
-        getCollectionByPath(items) {
-          return items.allPlanets;
-        },
-      });
-      const { loadingStatus, loading } = getLoadingState(
-        loadingInitialContent,
-        loadingRefresh,
-        loadingNextPage
-      );
-      let items = [];
-      if (data) {
-        items = data.allPlanets.edges.map(edge => {
-          return {
-            section: "Star Wars Planets",
-            id: edge.node.id,
-            icon: "starFill",
-            iconColor: "green",
-            content: edge.node.name,
-          };
-        });
-      }
-      return (
-        <>
-          <InlineLabel size="large">{loadingStatus}</InlineLabel>
-          {loading && <Spinner size="small" inline={true} />}
-          <List items={items} />
-          <Button
-            label={"Refresh"}
-            onClick={() => {
-              refresh();
-            }}
-          />
-          <Button
-            label={"Fetch More"}
-            onClick={() => {
-              nextPage();
-            }}
-          />
-        </>
-      );
-    }}
-  </Story>
+  <UseCollectionQuery />
 </Canvas>
 
 ## Props

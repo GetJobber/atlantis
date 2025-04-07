@@ -17,6 +17,7 @@ export default {
     file: "public/editorMobileBundle.js",
     format: "esm",
     exports: "named",
+    banner: "var global = global || {cancelAnimationFrame: () => {}};", // Some code in the mobile bundle is looking for this, so we have to stub it.
   },
   plugins: [
     commonjs(),
@@ -30,6 +31,10 @@ export default {
     alias({
       entries: [
         { find: "react-native", replacement: "./src/MobileOverrides.jsx" },
+        {
+          find: "react-native-modalize",
+          replacement: path.resolve(dirname, "./src/MobileOverrides.jsx"),
+        },
         {
           find: "react-native-keyboard-aware-scroll-view",
           replacement: path.resolve(dirname, "./src/MobileOverrides.jsx"),
@@ -47,15 +52,15 @@ export default {
           replacement: path.resolve(dirname, "./src/MobileOverrides.jsx"),
         },
         {
-          find: "react-native-modalize",
-          replacement: path.resolve(dirname, "./src/MobileOverrides.jsx"),
-        },
-        {
           find: "react-native-svg",
           replacement: path.resolve(dirname, "./src/MobileOverrides.jsx"),
         },
         {
           find: "react-native-reanimated",
+          replacement: path.resolve(dirname, "./src/MobileOverrides.jsx"),
+        },
+        {
+          find: "@react-native-picker/picker",
           replacement: path.resolve(dirname, "./src/MobileOverrides.jsx"),
         },
       ],

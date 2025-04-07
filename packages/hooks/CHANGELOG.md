@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.13.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.12.4...@jobber/hooks@2.13.0) (2025-03-13)
+
+
+### Features
+
+* **components:** Add support for composable buttons ([#2412](https://github.com/GetJobber/atlantis/issues/2412)) ([eff2bbd](https://github.com/GetJobber/atlantis/commit/eff2bbd008639469ab68124858db2dba4fce3b58))
+
+
+
+
+
+## [2.12.4](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.12.3...@jobber/hooks@2.12.4) (2025-02-20)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+## [2.12.3](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.12.1...@jobber/hooks@2.12.3) (2025-02-04)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+## [2.12.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.11.2...@jobber/hooks@2.12.1) (2025-01-23)
+
+
+### Bug Fixes
+
+* **docx:** use a correct link for star wars graphQL API (useCollectionQuery hook) ([#2326](https://github.com/GetJobber/atlantis/issues/2326)) ([59d80e8](https://github.com/GetJobber/atlantis/commit/59d80e85749eced481b07f702071ff34f8734bbc))
+* **hooks:** Force bump packages to avoid lerna problem ([#2335](https://github.com/GetJobber/atlantis/issues/2335)) ([f4e55f8](https://github.com/GetJobber/atlantis/commit/f4e55f806a65d12a8ddf2fbda248d9a32405af2d))
+
+
+
+
+
 ## [2.11.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.11.0...@jobber/hooks@2.11.1) (2024-10-01)
 
 **Note:** Version bump only for package @jobber/hooks

@@ -1,0 +1,33 @@
+## Configuration
+
+### react-hook-form
+
+Atlantis utilizes [React Hook Form](https://react-hook-form.com/) to handle
+`input` and `form` validation. This means that the
+[React Hook Form validation options](https://react-hook-form.com/api#register)
+are available out of the box.
+
+This includes, but is not limited to:
+
+- `required` - A Boolean which, if true, indicates that the input must have a
+  value.
+- `maxLength` - The maximum length of the value to accept for this input.
+- `minLength` - The minimum length of the value to accept for this input.
+- `pattern` - The regex pattern for the input.
+- `validate` - You can pass a callback function as the argument to validate, or
+  you can pass an object of callback functions to validate all of them.
+
+### Using onValidation (Web)
+
+If you need to capture the error message and render it outside of the component.
+Read the [InputValidation](/components/InputValidation) documentation.
+
+### Version 2 Shim (Experimental)
+
+If you need to use the version 2 shim, you can pass `version={2}` to the
+`InputText` and provide the required props. Due to issues with typescript
+[see](https://github.com/microsoft/TypeScript/issues/32447) the aria attributes
+(and other props separated by `-`) are not typed correctly. This means that the
+shim will not enforce the version to be set to `2` when using these props. As a
+result version 1 usages will have these props appear in the intellisense but
+they will not do anything.

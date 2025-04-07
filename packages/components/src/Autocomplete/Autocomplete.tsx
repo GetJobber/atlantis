@@ -1,81 +1,27 @@
-import React, { Ref, forwardRef, useEffect, useRef, useState } from "react";
-import { XOR } from "ts-xor";
+import React, {
+  Ref,
+  RefAttributes,
+  forwardRef,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import styles from "./Autocomplete.module.css";
-import { Menu } from "./Menu";
-import { AnyOption, GroupOption, Option } from "./Option";
+import { Menu } from "./Menu/Menu";
+import { AnyOption, AutocompleteProps, Option } from "./Autocomplete.types";
+import { isOptionGroup } from "./Autocomplete.utils";
 import { InputText, InputTextRef } from "../InputText";
-import { FormFieldProps } from "../FormField";
 import { useDebounce } from "../utils/useDebounce";
-
-type OptionCollection = XOR<Option[], GroupOption[]>;
-
-interface AutocompleteProps
-  extends Pick<
-    FormFieldProps,
-    | "clearable"
-    | "invalid"
-    | "name"
-    | "onBlur"
-    | "onFocus"
-    | "prefix"
-    | "size"
-    | "suffix"
-    | "validations"
-  > {
-  /**
-   * @deprecated
-   * Use `ref` instead.
-   */
-  readonly inputRef?: FormFieldProps["inputRef"];
-
-  /**
-   * Initial options to show when user first focuses the Autocomplete
-   */
-  readonly initialOptions?: OptionCollection;
-
-  /**
-   * Set Autocomplete value.
-   */
-  readonly value: Option | undefined;
-
-  /**
-   * Allow the autocomplete to use values not from the drop down menu.
-   *
-   * @default true
-   */
-  readonly allowFreeForm?: boolean;
-
-  /**
-   * Debounce in milliseconds for getOptions
-   *
-   * @default 300
-   */
-  readonly debounce?: number;
-
-  /**
-   * Simplified onChange handler that only provides the new value.
-   * @param newValue
-   */
-  onChange(newValue?: Option): void;
-
-  /**
-   * Called as the user types in the input. The autocomplete will display what
-   * is returned from this method to the user as available options.
-   * @param newInputText
-   */
-  getOptions(
-    newInputText: string,
-  ): OptionCollection | Promise<OptionCollection>;
-
-  /**
-   * Hint text that goes above the value once the form is filled out.
-   */
-  readonly placeholder: string;
-}
+import { mergeRefs } from "../utils/mergeRefs";
 
 // Max statements increased to make room for the debounce functions
-/* eslint max-statements: ["error", 14] */
-function AutocompleteInternal(
+// eslint-disable-next-line max-statements
+function AutocompleteInternal<
+  GenericOption extends AnyOption = AnyOption,
+  GenericOptionValue extends Option = Option,
+  GenericGetOptionsValue extends AnyOption = AnyOption,
+>(
   {
     initialOptions = [],
     value,
@@ -88,15 +34,26 @@ function AutocompleteInternal(
     onBlur,
     onFocus,
     validations,
+    customRenderMenu,
     ...inputProps
-  }: AutocompleteProps,
+  }: AutocompleteProps<
+    GenericOption,
+    GenericOptionValue,
+    GenericGetOptionsValue
+  >,
   ref: Ref<InputTextRef>,
 ) {
-  const [options, setOptions] = useState(initialOptions);
-  const [menuVisible, setMenuVisible] = useState(false);
+  const initialOptionsMemo = useMemo(
+    () => mapToOptions(initialOptions),
+    [initialOptions],
+  );
+  const [options, setOptions] =
+    useState<Array<GenericOption | GenericGetOptionsValue>>(initialOptionsMemo);
+  const [inputFocused, setInputFocused] = useState(false);
   const [inputText, setInputText] = useState(value?.label ?? "");
   const autocompleteRef = useRef(null);
   const delayedSearch = useDebounce(updateSearch, debounceRate);
+  const inputRef = useRef<InputTextRef | null>(null);
 
   useEffect(() => {
     delayedSearch();
@@ -109,7 +66,7 @@ function AutocompleteInternal(
   return (
     <div className={styles.autocomplete} ref={autocompleteRef}>
       <InputText
-        ref={ref}
+        ref={mergeRefs([ref, inputRef])}
         autocomplete={false}
         size={size}
         value={inputText}
@@ -120,15 +77,15 @@ function AutocompleteInternal(
         validations={validations}
         {...inputProps}
       />
-      {menuVisible && (
-        <Menu
-          attachTo={autocompleteRef}
-          visible={menuVisible && options.length > 0}
-          options={options}
-          selectedOption={value}
-          onOptionSelect={handleMenuChange}
-        />
-      )}
+      <Menu
+        attachTo={autocompleteRef}
+        inputRef={inputRef}
+        inputFocused={inputFocused}
+        options={options}
+        customRenderMenu={customRenderMenu}
+        selectedOption={value}
+        onOptionSelect={handleMenuChange}
+      />
     </div>
   );
 
@@ -141,29 +98,30 @@ function AutocompleteInternal(
   }
 
   async function updateSearch() {
-    const updatedOptions: AnyOption[] = await getOptions(inputText);
-    const filteredOptions = updatedOptions.filter((option: AnyOption) =>
-      "options" in option && option.options ? option.options.length > 0 : true,
+    const updatedOptions = await getOptions(inputText);
+    const filteredOptions = updatedOptions.filter(option =>
+      isOptionGroup(option) ? option.options.length > 0 : true,
     );
+
     setOptions(mapToOptions(filteredOptions));
   }
 
-  function handleMenuChange(chosenOption: Option) {
+  function handleMenuChange(chosenOption?: GenericOptionValue) {
     onChange(chosenOption);
-    updateInput(chosenOption.label);
-    setMenuVisible(false);
+    updateInput(chosenOption?.label ?? "");
+    setInputFocused(false);
   }
 
   function handleInputChange(newText: string) {
     updateInput(newText);
 
     if (allowFreeForm) {
-      onChange({ label: newText });
+      onChange({ label: newText } as GenericOptionValue);
     }
   }
 
   function handleInputBlur() {
-    setMenuVisible(false);
+    setInputFocused(false);
 
     if (value == undefined || value.label !== inputText) {
       setInputText("");
@@ -173,7 +131,7 @@ function AutocompleteInternal(
   }
 
   function handleInputFocus() {
-    setMenuVisible(true);
+    setInputFocused(true);
 
     if (onFocus) {
       onFocus();
@@ -181,16 +139,32 @@ function AutocompleteInternal(
   }
 }
 
-function mapToOptions(items: AnyOption[]) {
-  return items.reduce(function (result: AnyOption[], item) {
-    result = result.concat([item]);
+function mapToOptions<GenericOption extends AnyOption = AnyOption>(
+  items: GenericOption[],
+) {
+  const retVal = items.reduce<GenericOption[]>((result, item) => {
+    result.push(item);
 
-    if (item.options) {
-      result = result.concat(item.options);
+    if (isOptionGroup(item) && item.options) {
+      result = result.concat(item.options as GenericOption[]);
     }
 
     return result;
   }, []);
+
+  return retVal;
 }
 
-export const Autocomplete = forwardRef(AutocompleteInternal);
+// Casts the Generics to the forward ref so autocomplete works as expected for consumers
+export const Autocomplete = forwardRef(AutocompleteInternal) as <
+  GenericOption extends AnyOption = AnyOption,
+  GenericOptionValue extends Option = Option,
+  GenericGetOptionsValue extends AnyOption = AnyOption,
+>(
+  props: AutocompleteProps<
+    GenericOption,
+    GenericOptionValue,
+    GenericGetOptionsValue
+  > &
+    RefAttributes<InputTextRef>,
+) => ReturnType<typeof AutocompleteInternal>;

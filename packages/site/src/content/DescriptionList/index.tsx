@@ -1,6 +1,7 @@
 import Content from "@atlantis/docs/components/DescriptionList/DescriptionList.stories.mdx";
 import Props from "./DescriptionList.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -17,7 +18,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-DescriptionList-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-lists-and-tables-descriptionlist--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

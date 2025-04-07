@@ -40,6 +40,21 @@ references:
       name: Install Dependencies
       command: npm ci
 
+  check_git_status: &check_git_status
+    run:
+      name: Check for uncommitted files
+      command: |
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "Found uncommitted changes which is unexpected. This likely means you forgot to commit generated files."
+          echo "Here's the diff:"
+          git status
+          echo "If the diff includes *.props.json files, run 'npm run generate' inside packages/site, review and commit the changes."
+          exit 1
+        else
+          echo "No uncommitted changes."
+          git status
+        fi
+
   github_authenticity: &github_authenticity
     run:
       name: Establishing GitHub Authenticity
@@ -85,33 +100,17 @@ jobs:
             set -e
             if git log --max-count=1 --pretty=%s | grep -q "chore(release): Publish"; then
               echo "Skipping run on release commit."
+            elif git log --max-count=1 --pretty=%s | grep -q "chore(release): Manual release"; then
+              echo "Skipping run on manual release commit."
             else
               npm run preventManualRelease
-            fi
-
-  check_git_status:
-    <<: *container_config
-    steps:
-      - *attach_workspace
-      - run:
-          name: Check for uncommitted files
-          command: |
-            if [ -n "$(git status --porcelain)" ]; then
-              echo "Found uncommitted changes which is unexpected. This likely means you forgot to commit generated files."
-              echo "Here's the diff:"
-              git status
-              echo "If the diff includes *.props.json files, run `npm run generate` inside packages/site, review and commit the changes."
-              exit 1
-            else
-              echo "No uncommitted changes."
-              git status
             fi
 
   lint_javascript:
     <<: *container_config
     steps:
       - *attach_workspace
-      - run: npm run lint:js -- --format junit -o reports/junit/js-lint-results.xml
+      - run: npm run lint:js -- --quiet --format junit -o reports/junit/js-lint-results.xml
       - store_test_results:
           path: reports/junit
       - store_artifacts:
@@ -148,14 +147,15 @@ jobs:
       - store_artifacts:
           path: coverage
 
-  build_docs:
+  build_storybook:
     resource_class: medium+
     <<: *container_config
     steps:
       - *attach_workspace
       - *generate_base_path
       - run:
-          command: npm run build
+          command: npm run storybook:build
+      - *check_git_status
 
   build_new_docs:
     <<: *container_config
@@ -163,6 +163,7 @@ jobs:
       - *attach_workspace
       - run:
           command: cd packages/site && npm run generate && npm run build
+      - *check_git_status
 
   release:
     <<: *container_config
@@ -195,23 +196,19 @@ workflows:
             - install_dependencies
       - lint_javascript:
           requires:
-            - check_for_manual_release
+            - install_dependencies
       - lint_css:
           requires:
-            - check_for_manual_release
+            - install_dependencies
       - test:
           requires:
-            - check_for_manual_release
-      - build_docs:
+            - install_dependencies
+      - build_storybook:
           requires:
-            - check_for_manual_release
+            - install_dependencies
       - build_new_docs:
           requires:
-            - check_for_manual_release
-      - check_git_status:
-          requires:
-            - build_docs
-            - build_new_docs
+            - install_dependencies
       - release:
           filters:
             branches:
@@ -220,6 +217,5 @@ workflows:
             - lint_javascript
             - lint_css
             - test
-            - build_docs
+            - build_storybook
             - build_new_docs
-            - check_git_status

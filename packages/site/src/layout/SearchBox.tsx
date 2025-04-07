@@ -1,25 +1,42 @@
 import {
   Box,
   Content,
+  Heading,
   InputText,
   InputTextRef,
   Modal,
   Typography,
 } from "@jobber/components";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useOnKeyDown } from "@jobber/hooks";
 import styles from "./SearchBox.module.css";
-import { ContentCardWrapper } from "../components/ContentCardWrapper";
-import { ContentCard } from "../components/ContentCard";
+import { SearchBoxSection } from "./SearchBoxSection";
+import { ToolBoxIllustration } from "../assets/ToolBoxIllustration";
 import { componentList } from "../componentList";
+import { contentList } from "../contentList";
 import { designList } from "../designList";
+import { patternsList } from "../patternsList";
+import { guidesList } from "../guidesList";
+import { changelogList } from "../changelogList";
+import { hooksList } from "../hooksList";
+import { packagesList } from "../packagesList";
+import { ContentListItem } from "../types/components";
+
+const lists = [
+  { title: "Components", items: componentList },
+  { title: "Content", items: contentList },
+  { title: "Design", items: designList },
+  { title: "Patterns", items: patternsList },
+  { title: "Changelog", items: changelogList },
+  { title: "Guides", items: guidesList },
+  { title: "Hooks", items: hooksList },
+  { title: "Packages", items: packagesList },
+];
 
 /**
- * Full Page Search Modal
+ * Search Input & Modal; for filtering and searching all navigation items.
  *
- * This lists all the components and design items in the system,
- * for filtering and searching.
- *
- * @param param0 {open,setOpen}
+ * @param param0 {open, setOpen} - The props for the SearchBox component.
  * @returns ReactNode
  */
 export const SearchBox = ({
@@ -32,25 +49,32 @@ export const SearchBox = ({
   const ref = useRef<InputTextRef>(null);
   const [search, setSearch] = useState("");
 
-  const filteredDesignList = useMemo(() => {
-    return designList.filter(
-      d =>
-        d.title.toLowerCase().includes(search.toLowerCase()) ||
-        d.additionalMatches?.find(e =>
-          e.toLowerCase().includes(search.toLowerCase()),
+  const filterItems = (items: ContentListItem[], searchTerm: string) => {
+    const lowerCaseSearchTerm = searchTerm.toLowerCase();
+
+    return items.filter(
+      item =>
+        item.title.toLowerCase().includes(lowerCaseSearchTerm) ||
+        item.additionalMatches?.some((e: string) =>
+          e.toLowerCase().includes(lowerCaseSearchTerm),
         ),
     );
+  };
+
+  useOnKeyDown(event => {
+    event.preventDefault();
+    setOpen(true);
+  }, "/");
+
+  const filteredLists = useMemo(() => {
+    return lists.map(list => ({
+      title: list.title,
+      items: filterItems(list.items, search),
+    }));
   }, [search]);
 
-  const filteredComponentList = useMemo(() => {
-    return componentList.filter(
-      d =>
-        d.title.toLowerCase().includes(search.toLowerCase()) ||
-        d.additionalMatches?.find(e =>
-          e.toLowerCase().includes(search.toLowerCase()),
-        ),
-    );
-  }, [search]);
+  const emptyResults = filteredLists.every(list => list.items.length === 0);
+
   useEffect(() => {
     if (open) {
       ref.current?.focus();
@@ -74,62 +98,54 @@ export const SearchBox = ({
           onChange={d => setSearch(d as string)}
         />
         <div className={styles.searchBoxResults}>
-          {filteredComponentList.length > 0 && (
-            <Content>
-              <Typography
-                size={"base"}
-                fontWeight={"bold"}
-                textCase={"uppercase"}
-                textColor={"textSecondary"}
-                element="h3"
-              >
-                Components
-              </Typography>
-              <ContentCardWrapper>
-                {filteredComponentList.map(({ title, to, imageURL }, key) => {
-                  return (
-                    <ContentCard
-                      onClick={closeModal}
-                      title={title}
-                      to={to}
-                      imageURL={imageURL}
-                      key={key}
+          <Content spacing={"larger"}>
+            {filteredLists.map(
+              list =>
+                list.items.length > 0 && (
+                  <Content key={list.title}>
+                    <SearchBoxSection
+                      sectionTitle={list.title}
+                      filteredListItems={list.items}
+                      handleCloseModal={closeModal}
                     />
-                  );
-                })}
-              </ContentCardWrapper>
-            </Content>
-          )}
-          {filteredDesignList.length > 0 && (
-            <Box padding={{ top: "largest" }}>
-              <Content>
-                <Typography
-                  size={"base"}
-                  fontWeight={"bold"}
-                  textCase={"uppercase"}
-                  textColor={"textSecondary"}
-                  element="h3"
-                >
-                  Design
-                </Typography>
-                <ContentCardWrapper>
-                  {filteredDesignList.map(({ title, to, imageURL }, key) => {
-                    return (
-                      <ContentCard
-                        onClick={closeModal}
-                        title={title}
-                        to={to}
-                        imageURL={imageURL}
-                        key={key}
-                      />
-                    );
-                  })}
-                </ContentCardWrapper>
-              </Content>
-            </Box>
-          )}
+                  </Content>
+                ),
+            )}
+            {emptyResults && <EmptyResults />}
+          </Content>
         </div>
       </Content>
     </Modal>
   );
 };
+
+const EmptyResults = () => (
+  <Box
+    height={"100%"}
+    direction={"column"}
+    padding={"extravagant"}
+    gap={"larger"}
+    alignItems={"center"}
+  >
+    <ToolBoxIllustration />
+    <Heading level={1} element={"h3"}>
+      The toolbox looks empty!
+    </Heading>
+    <Typography
+      align={"center"}
+      fontWeight={"semiBold"}
+      size={"large"}
+      textColor={"text"}
+    >
+      We couldn&apos;t match any results with your search; try a different term.
+    </Typography>
+    <Typography
+      align={"center"}
+      fontWeight={"medium"}
+      size={"large"}
+      textColor={"textSecondary"}
+    >
+      If you think something&apos;s missing, let the Atlantis team know.
+    </Typography>
+  </Box>
+);

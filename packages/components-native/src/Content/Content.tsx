@@ -1,8 +1,8 @@
 import React, { ReactNode } from "react";
 import { View } from "react-native";
-import { horizontalStyles } from "./ContentHorizontal.style";
-import { verticalStyles } from "./ContentVertical.style";
-import { spaceStyles } from "./ContentSpaceAround.style";
+import { useHorizontalStyles } from "./ContentHorizontal.style";
+import { useVerticalStyles } from "./ContentVertical.style";
+import { useSpaceAroundStyles } from "./ContentSpaceAround.style";
 
 export type Spacing =
   | "none"
@@ -37,9 +37,13 @@ export function Content({
   childSpacing = "base",
   direction = "vertical",
 }: ContentProps): JSX.Element {
+  const horizontalStyles = useHorizontalStyles();
+  const verticalStyles = useVerticalStyles();
+  const spaceAroundStyles = useSpaceAroundStyles();
+
   const styles = direction === "horizontal" ? horizontalStyles : verticalStyles;
   const styleName = `${spacing}Space` as const;
-  const containerStyle = spaceStyles[styleName];
+  const containerStyle = spaceAroundStyles[styleName];
 
   return (
     <View style={[styles.wrapper, containerStyle]}>{renderChildren()}</View>

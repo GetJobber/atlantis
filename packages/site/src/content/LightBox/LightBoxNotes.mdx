@@ -1,0 +1,28 @@
+## Developer notes
+
+## Testing
+
+When using Jest to test LightBox implementations, you will need to include this
+mock in your test setup:
+
+```js
+const scrollIntoViewMock = jest.fn();
+window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
+```
+
+### OnRequestClose
+
+This function receives the index of the last image the user viewed before
+closing the LightBox component with the lastPosition key. This might we useful
+if we want to return information about the final state when closed (e.g. for
+analytics).
+
+### Box Sizing
+
+The lightbox uses the box-sizing property to ensure that the lightbox and its
+children are rendered in the correct box-sizing context. This is a solution for
+a problem where tailwind was setting the box-sizing to `border-box` and causing
+issues with the lightbox.
+
+This is a one off solution for this type of problem. If we were to encounter
+this issue again, we should consider a more robust solution.

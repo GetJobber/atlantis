@@ -117,8 +117,8 @@
 .disabled {
   --field--placeholder-color: var(--color-disabled);
   --field--value-color: var(--color-disabled);
-  --field--background-color: var(--color-surface--background);
-  --field--border-color: var(--color-disabled--secondary);
+  --field--background-color: var(--color-disabled--secondary);
+  --field--border-color: var(--color-border);
 }
 
 /* override iOS default styling for disabled input */
@@ -209,6 +209,10 @@
   outline: none;
 }
 
+.emptyPhoneNumber {
+  padding-left: calc(var(--field--padding-left) + var(--space-smaller));
+}
+
 .textarea .childrenWrapper {
   display: flex;
   min-height: var(--field--height);
@@ -266,6 +270,13 @@
   pointer-events: none;
   transform: translateY(var(--field--placeholder-transform));
   transition: all var(--timing-quick);
+}
+
+.externalLabel {
+  display: block;
+  margin-bottom: var(--space-smaller);
+  color: var(--field--placeholder-color);
+  line-height: var(--typography--lineHeight-base);
 }
 
 .select select,

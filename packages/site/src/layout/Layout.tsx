@@ -1,10 +1,11 @@
-import { PropsWithChildren, useEffect } from "react";
-import { Route, Switch, useLocation } from "react-router";
+import { PropsWithChildren, useEffect, useRef } from "react";
+import { Route, Switch, useHistory, useLocation } from "react-router";
 import { NavMenu } from "./NavMenu";
-import { ComponentView } from "./ComponentView";
-import { AtlantisRoute, routes } from "../routes";
+import { routes } from "../routes";
 import "./code-theme.css";
-import { ToggleThemeButton } from "../components/ToggleThemeButton";
+import { hooksList } from "../hooksList";
+import { NotFoundPage } from "../pages/NotFoundPage";
+import { TritonSideDrawer } from "../components/TritonSideDrawer";
 
 /**
  * Layout for whole application. This will display the NavMenu and the content of the page.
@@ -13,75 +14,83 @@ import { ToggleThemeButton } from "../components/ToggleThemeButton";
 
 export const Layout = () => {
   const location = useLocation();
-
+  const scrollPane = useRef<HTMLDivElement>(null);
+  const path = new URLSearchParams(location.search).get("path");
+  const history = useHistory();
   useEffect(() => {
-    window.scrollTo({ top: 0 });
-  }, [location]);
+    if (scrollPane?.current) {
+      scrollPane?.current.scrollTo({ top: 0 });
+    }
+  }, [location, scrollPane?.current]);
+
+  // Redirects for the links on the hooks packages page
+  if (path && path.includes("hooks")) {
+    const pathRegex = /hooks-(.*)--docs/g.exec(path);
+    const match = hooksList.find(
+      hook => pathRegex?.[1] === hook.title.toLowerCase(),
+    );
+
+    if (match) {
+      history.push(match.to);
+    }
+  }
 
   return (
     <LayoutWrapper>
-      <NavMenu />
-      <div style={{ overflow: "auto", width: "100%", minHeight: "100%" }}>
-        <Switch>
-          <>
-            {routes?.map((route, routeIndex) => {
-              if (route.inNav === false) return null;
-
-              const iterateSubMenu = (childroutes: AtlantisRoute[]) => {
-                return childroutes.map((child, childIndex) => {
-                  // We don't want to loop through the components
-                  if (!child.children) {
-                    return (
-                      <Route
-                        key={childIndex}
-                        exact={child.exact ?? false}
-                        path={child.path}
-                        component={child.component}
-                      />
-                    );
-                  }
-                });
-              };
-
-              // Top level items with children (Changelog)
-              if (route.children) {
-                return (
-                  <>
-                    <Route
-                      key={routeIndex}
-                      exact={route.exact ?? false}
-                      path={route.path}
-                      component={route.component}
-                    />
-                    {iterateSubMenu(route.children)}
-                  </>
-                );
-              }
-
-              // Top level items with no children
-              return (
-                <Route
-                  exact={route.exact ?? false}
-                  key={routeIndex}
-                  path={route.path}
-                  component={route.component}
-                />
-              );
-            })}
-
-            {/* The component page */}
-            <Route
-              key={"component"}
-              exact={true}
-              path={"/components/:name"}
-              component={ComponentView}
-            />
-          </>
-        </Switch>
+      <NavMenu mainContentRef={scrollPane} />
+      <div
+        style={{
+          overflow: "auto",
+          width: "100%",
+          height: "100dvh",
+          outline: "transparent",
+        }}
+        ref={scrollPane}
+        tabIndex={0}
+      >
+        <RoutesSwitch />
       </div>
-
-      <ToggleThemeButton />
+      <TritonSideDrawer />
     </LayoutWrapper>
+  );
+};
+
+const RoutesSwitch = () => {
+  const baseRoutes: JSX.Element[] = [];
+
+  routes?.forEach((route, routeIndex) => {
+    // Top level items with children (Changelog)
+    if (route.children) {
+      baseRoutes.push(
+        <Route
+          key={routeIndex}
+          exact={route.exact ?? false}
+          path={route.path}
+          component={route.component}
+        />,
+      );
+    } else {
+      // Top level items with no children
+      baseRoutes.push(
+        <Route
+          exact={route.exact ?? false}
+          key={routeIndex}
+          path={route.path}
+          component={route.component}
+        />,
+      );
+    }
+  });
+  baseRoutes.push(
+    <Route key={routes.length} path="*" component={NotFoundPage} />,
+  );
+
+  return (
+    // The key is used to force a remount of the Switch
+    // when the path changes. This ensures:
+    // 1. The component props are updated when the path changes
+    // 2. The Design tab is selected when the path changes
+    <Switch key={location.pathname}>{baseRoutes}</Switch>
   );
 };
 
@@ -90,7 +99,7 @@ export const LayoutWrapper = ({ children }: PropsWithChildren) => {
     <div
       style={{
         display: "flex",
-        background: "var(--color-surface)",
+        background: "var(--color-surface--background)",
       }}
     >
       {children}

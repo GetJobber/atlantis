@@ -1,0 +1,253 @@
+import { Tabs, Tab } from "@jobber/components/Tabs";
+import { Canvas } from "@storybook/addon-docs";
+import { Source } from "@storybook/blocks";
+import { Chip } from "@jobber/components/Chip";
+import { Icon } from "@jobber/components/Icon";
+import { Content } from "@jobber/components/Content";
+import { Disclosure } from "@jobber/components/Disclosure";
+import { Heading } from "@jobber/components/Heading";
+import { Box } from "@jobber/components/Box";
+import { Text } from "@jobber/components/Text";
+import { StatusLabel } from "@jobber/components/StatusLabel";
+import {
+  BasicCustomTemplate,
+  AdvancedCustomTemplate,
+  AdvancedCustomTemplateCode,
+  BasicCustomTemplateCode,
+  CustomRenderingWithSectionHeadingsCode,
+  AdvancedSectionHeadingTemplate,
+  useCustomSectionOptionsCode,
+  isExtraElementCode,
+  AdvancedRenderMenuOptionCode,
+  AdvancedSectionSelectableOptionCode,
+  AdvancedSectionMenuRenderingCode,
+  AdvancedKeyboardNavigationSnippet,
+  AdvancedSectionKeyboardNavigationSnippet,
+} from "./AutocompleteExamples";
+
+## Component customization
+
+### Custom rendering
+
+If you need more control over the rendering of content in the menu, you can
+provide a **custom render function** using `customRenderMenu`
+
+This is useful if the default rendering of the Autocomplete Menu doesn’t meet
+your requirements. If a custom render function is provided you will be able to
+completely control how the menu is rendered.
+
+This is achieved by providing a function to the `customRenderMenu` prop. This
+function will receive the following props:
+
+- `MenuWrapper` is the wrapper of the Autocomplete Menu, this is the element
+  that will be visible when the menu is open. It handles the positioning of the
+  Autocomplete Menu
+- `inputFocused` is a boolean that indicates if the input is focused.
+- `onOptionSelect` is a function that is called when an option is selected for
+  updating the value of the Autocomplete.
+- `options` is the list of options to render in the Autocomplete Menu. This is
+  the options that are returned from the `getOptions` function.
+- `selectedOption` is the option that is currently selected.
+- `menuRef` is a ref that is passed to the Autocomplete Menu this is used by the
+  `useKeyboardNavigation` hook to handle the keyboard navigation of the options.
+- `inputRef` is a ref that is passed to the Autocomplete Menu to provide a ref
+  to the `InputText` component.
+
+There are also some helper functions that are used to handle the keyboard
+navigation of the options and the base styling of the options.
+
+- `useKeyboardNavigation` is used to handle the default keyboard navigation of
+  the options. Use this hook if you are using only using MenuOption or
+  BaseMenuOption components in the menu.
+- `useCustomKeyboardNavigation` is used to handle the keyboard navigation of the
+  options. Use this hook if you are using components in the menu that aren't
+  MenuOption or BaseMenuOption such as custom elements. See the Advanced
+  examples below for more information.
+- `MenuOption` is the default rendering of the options in the Autocomplete Menu.
+  The `UNSAFE_style` prop is used to add a custom styling to the options.
+- `isOptionGroup` is a helper function that is used to determine if the option
+  is a group.
+- `isOptionSelected` is a helper function that is used to determine if the
+  option is selected.
+- `MenuOptionContent` is the default rendering of the content of the options in
+  the Autocomplete Menu.
+- `BaseMenuOption` is the base component for the options in the Autocomplete
+  Menu. This component provides the base styling and functionality for the
+  options such as the separators and the highlighting. This is used in the
+  advanced example below.
+
+<Tabs>
+<Tab label="Basic Override">
+In this example we will override the default rendering of the Autocomplete Menu to add a custom styling to the options while keeping the default keyboard navigation.
+
+<Canvas>
+  <BasicCustomTemplate />
+</Canvas>
+
+<Disclosure title="Full Example (Click to Reveal Code)">
+
+<Source type="code" code={BasicCustomTemplateCode} />
+
+</Disclosure>
+
+</Tab>
+<Tab label="Advanced Menu Override">
+
+In this example we will override the rendering of the menu to render the Options
+in a completely custom way. This example will also include a footer that is
+rendered at the bottom of the menu with sticky positioning.
+
+**Note:** Due to the complexity of the example, we will not be using the
+`useKeyboardNavigation` hook to handle the keyboard navigation of the options.
+
+Instead we will be handling the keyboard navigation manually with the
+`useCustomKeyboardNavigation` hook. This requires us to manually keep track of
+the highlighted option index and update it when the user navigates the menu.
+
+<Canvas>
+  <AdvancedCustomTemplate />
+</Canvas>
+
+<Disclosure title="Full Example (Click to Reveal Code)">
+
+<Source type="code" code={AdvancedCustomTemplateCode} />
+
+</Disclosure>
+
+#### Rendering the Menu Content
+
+The content in the Menu is wrapped by the `<MenuWrapper>` component which
+handles attaching the menu to the input. Our custom options are wrapped by the
+`BaseMenuOption` component which handles the base styling and functionality for
+the options. Inside the `BaseMenuOption` component the content that we want to
+render is provided as children.
+
+**Note:** For the footer to be sticky at the bottom of the menu without being
+scrollable, the footer needs to be wrapped in a `div` with `position: "sticky"`
+and `bottom: 0`.
+
+<Disclosure title="Menu Option Content (Click to Reveal Code)">
+
+<Source type="code" code={AdvancedRenderMenuOptionCode} />
+
+</Disclosure>
+
+#### Keyboard Navigation
+
+The following code is the keyboard navigation logic for the menu. It is used to
+handle the keyboard navigation of the options and the footer.
+
+- `highlightedOptionIndex` is the index of the option that is currently
+  highlighted. It is initially set to -1 to account for the footer being the
+  first option when options are being initialized.
+- `maxIndex` is the index of the footer.
+- `footerFocused` is a boolean that indicates if the footer is focused. We need
+  to track this because it can be focused instead of just the Input and if we
+  don't then it is possible for the Menu to remain opened
+- `menuVisible` is a boolean that indicates if the menu is visible.
+- `onRequestHighlightChange` is a function that is called when the user
+  navigates the menu.
+- `getRequestedIndexChange` is a helper function that is used to get the index
+  change based on the keyboard event, direction and if the option is a group.
+- `KeyboardAction.Next` case should calculate the exact scroll position needed
+  with the footer height offset in mind, when the next element is hidden behind
+  the footer.
+
+<Disclosure title="Keyboard Navigation (Click to Reveal Code)">
+
+<Source type="code" code={AdvancedKeyboardNavigationSnippet} />
+
+</Disclosure>
+
+</Tab>
+<Tab label="Advanced Custom Section Headings">
+
+In this example we will override the rendering of the menu to render the an
+Autocomplete with Section Headings and Custom Elements in the Section Headings.
+
+**Note:** Similar to the Advanced Custom Menu Override, due to the complexity of
+the example, we will not be using the `useKeyboardNavigation` hook to handle the
+keyboard navigation of the options.
+
+<Canvas>
+  <AdvancedSectionHeadingTemplate />
+</Canvas>
+
+<Disclosure title="Full Example (Click to Reveal Code)">
+
+<Source type="code" code={CustomRenderingWithSectionHeadingsCode} />
+
+</Disclosure>
+
+#### Rendering the Menu Content
+
+The content in the Menu is wrapped by the `<MenuWrapper>` component which
+handles attaching the menu to the input. We use the `optionsWithExtraElements`
+to render the options. The `optionsWithExtraElements` is the options with the
+extra elements inserted in the correct positions. This array is generated using
+a custom hook called `useCustomSectionOptions`. (explanation of the hook below).
+
+<Disclosure title="Menu Content Rendering (Click to Reveal Code)">
+
+<Source type="code" code={AdvancedSectionMenuRenderingCode} />
+       
+</Disclosure>
+
+#### Utilities used for Custom Rendering
+
+The following utilities were created in this example to help with custom
+rendering:
+
+`useCustomSectionOptions` determines the indices of the options that should have
+extra elements inserted after them. It then inserts the extra elements into an
+array and returns it with the extra elements inserted. This is used when the
+options are being rendered.
+
+<Disclosure title="useCustomSectionOptions (Click to Reveal Code)">
+
+<Source type="code" code={useCustomSectionOptionsCode} />
+
+</Disclosure>
+
+`isExtraElement` is a helper function that is used to determine if the option is
+an extra element.
+
+<Disclosure title="isExtraElement (Click to Reveal Code)">
+
+<Source type="code" code={isExtraElementCode} />
+
+</Disclosure>
+
+`SelectableOption` is a component that is used to render the selectable options
+in the menu.
+
+<Disclosure title="SelectableOption (Click to Reveal Code)">
+
+<Source type="code" code={AdvancedSectionSelectableOptionCode} />
+
+</Disclosure>
+
+#### Keyboard Navigation
+
+The following code is the keyboard navigation logic for the menu. It is used to
+handle the keyboard navigation of the options and the footers in each of the
+sections.
+
+The keyboard navigation logic is similar to the Advanced Custom Menu Override.
+However, we need to account for the extra elements in each of the sections
+instead of just a single footer.
+
+`useCustomSectionOptions` returns the options with the extra elements inserted
+and the `extraElementFocused` state. It provides event listeners for keeping
+track of the focused state for if an extra element is focused. There are
+additional checks to see if the requested index is an extra element and if it
+is, focus the extra element and if not it will focus the input.
+
+<Disclosure title="Keyboard Navigation (Click to Reveal Code)">
+
+<Source type="code" code={AdvancedSectionKeyboardNavigationSnippet} />
+
+</Disclosure>
+
+</Tab>
+</Tabs>

@@ -24,6 +24,13 @@ export default {
 } as ComponentMeta<typeof Chip>;
 
 const AllTemplate: ComponentStory<typeof Chip> = () => {
+  const longLabel =
+    "This is a very long chip label that will definitely need to be truncated";
+  const longHeading =
+    "This is a very long heading that will need truncation as well";
+  const shortLabel = "Short Label";
+  const shortHeading = "Short Heading";
+
   return (
     <Content>
       <div style={{ display: "flex", gap: 12 }}>
@@ -402,6 +409,80 @@ const AllTemplate: ComponentStory<typeof Chip> = () => {
             invalid
             disabled
           >
+            <Chip.Prefix>
+              <Avatar initials="st" size="small" />
+            </Chip.Prefix>
+            <Chip.Suffix>
+              <Icon name="cross" size="small" color="interactiveSubtle" />
+            </Chip.Suffix>
+          </Chip>
+        </div>
+        <div
+          style={{
+            maxWidth: "300px",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Typography>Truncation Examples</Typography>
+          <Typography>Long Label Only</Typography>
+          <Chip label={longLabel} />
+          <Typography>Long Label with Prefix</Typography>
+          <Chip label={longLabel}>
+            <Chip.Prefix>
+              <Avatar initials="st" size="small" />
+            </Chip.Prefix>
+          </Chip>
+          <Typography>Long Label with Suffix</Typography>
+          <Chip label={longLabel}>
+            <Chip.Suffix>
+              <Icon name="cross" size="small" color="interactiveSubtle" />
+            </Chip.Suffix>
+          </Chip>
+          <Typography>Long Label with Both</Typography>
+          <Chip label={longLabel}>
+            <Chip.Prefix>
+              <Avatar initials="st" size="small" />
+            </Chip.Prefix>
+            <Chip.Suffix>
+              <Icon name="cross" size="small" color="interactiveSubtle" />
+            </Chip.Suffix>
+          </Chip>
+          <Typography>Long Heading with Short Label</Typography>
+          <Chip label={shortLabel} heading={longHeading} />
+          <Typography>Short Heading with Long Label</Typography>
+          <Chip label={longLabel} heading={shortHeading} />
+          <Typography>Long Heading and Long Label</Typography>
+          <Chip label={longLabel} heading={longHeading} />
+          <Typography>Long Everything with Prefix and Suffix</Typography>
+          <Chip label={longLabel} heading={longHeading}>
+            <Chip.Prefix>
+              <Avatar initials="st" size="small" />
+            </Chip.Prefix>
+            <Chip.Suffix>
+              <Icon name="cross" size="small" color="interactiveSubtle" />
+            </Chip.Suffix>
+          </Chip>
+          <Typography>Subtle Variation with Long Text</Typography>
+          <Chip label={longLabel} heading={longHeading} variation="subtle">
+            <Chip.Prefix>
+              <Avatar initials="st" size="small" />
+            </Chip.Prefix>
+            <Chip.Suffix>
+              <Icon name="cross" size="small" color="interactiveSubtle" />
+            </Chip.Suffix>
+          </Chip>
+          <Typography>Invalid with Long Text</Typography>
+          <Chip label={longLabel} heading={longHeading} invalid>
+            <Chip.Prefix>
+              <Avatar initials="st" size="small" />
+            </Chip.Prefix>
+            <Chip.Suffix>
+              <Icon name="cross" size="small" color="interactiveSubtle" />
+            </Chip.Suffix>
+          </Chip>
+          <Typography>Disabled with Long Text</Typography>
+          <Chip label={longLabel} heading={longHeading} disabled>
             <Chip.Prefix>
               <Avatar initials="st" size="small" />
             </Chip.Prefix>

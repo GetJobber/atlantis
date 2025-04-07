@@ -1,6 +1,10 @@
 import { mkdirSync, writeFileSync } from "fs";
 import { dirname } from "path";
 import { parse } from "react-docgen-typescript";
+import {
+  ListOfGeneratedMobileComponents,
+  ListOfGeneratedWebComponents,
+} from "./baseComponentLists.mjs";
 
 /**
  * This script is used to generate the *.props.json files under the src/content directory of this repo.
@@ -25,13 +29,31 @@ import { parse } from "react-docgen-typescript";
 const parseAndWriteDocs = (componentPath, outputPath) => {
   console.log("parsing component at:", componentPath);
   const documentation = parse(componentPath);
-  const cleanedDocumentation = removeDeclarations(documentation);
+  const cleanedDocumentation = removeNonComponents(
+    removeDeclarations(documentation),
+  );
 
   const outputDir = dirname(outputPath);
   mkdirSync(outputDir, { recursive: true });
 
   console.log("writing documentation to:", outputPath);
   writeFileSync(outputPath, JSON.stringify(cleanedDocumentation, null, 2));
+};
+
+/**
+ * react-docgen-typescript parses every export from the component file, which
+ * includes functions that are not components.
+ *
+ * This method filters out any items that start with a lowercase letter, which is almost always
+ * non-component function exports.
+ *
+ * @param {object} doc
+ * @returns The doc without any functions
+ */
+const removeNonComponents = doc => {
+  doc = doc.filter(item => item.displayName.match(/^[A-Z]/));
+
+  return doc;
 };
 
 /**
@@ -117,136 +139,6 @@ const buildMobileComponentDocs = name => {
   parseAndWriteDocs(componentPath, outputPath);
 };
 
-/**
- * List of components to build documentation for. There is a future in which this list is dynamically generated from an 'ls' command or similar.
- * For now though, since not ALL the components are in the system, we're building manually.
- */
-const components = [
-  "AnimatedPresence",
-  "AnimatedSwitcher",
-  "Autocomplete",
-  "Avatar",
-  "Banner",
-  "Box",
-  "Button",
-  "ButtonDismiss",
-  "Card",
-  "Checkbox",
-  "Chip",
-  "Chips",
-  "Combobox",
-  "ConfirmationModal",
-  "Content",
-  "Countdown",
-  "DataDump",
-  "DataList",
-  "DataTable",
-  "DatePicker",
-  "DescriptionList",
-  "Disclosure",
-  "Divider",
-  "Drawer",
-  "Emphasis",
-  "FeatureSwitch",
-  "Flex",
-  "Form",
-  "FormatDate",
-  "FormatEmail",
-  "FormatFile",
-  "FormatRelativeDateTime",
-  "FormatTime",
-  "FormField",
-  "Gallery",
-  "Glimmer",
-  "Grid",
-  "Heading",
-  "Icon",
-  "InlineLabel",
-  "InputAvatar",
-  "InputDate",
-  "InputEmail",
-  "InputFile",
-  "InputGroup",
-  "InputNumber",
-  "InputPassword",
-  "InputPhoneNumber",
-  "InputText",
-  "InputTime",
-  "InputValidation",
-  "LightBox",
-  "Link",
-  "List",
-  "Markdown",
-  "Menu",
-  "Modal",
-  "MultiSelect",
-  "Page",
-  "Popover",
-  "ProgressBar",
-  "RadioGroup",
-  "RecurringSelect",
-  "SegmentedControl",
-  "Select",
-  "SideDrawer",
-  "Spinner",
-  "StatusIndicator",
-  "StatusLabel",
-  "Switch",
-  "Table",
-  "Tabs",
-  "Text",
-  "Toast",
-  "Tooltip",
-  "Typography",
-];
+ListOfGeneratedWebComponents.forEach(buildComponentDocs);
 
-const mobileComponents = [
-  "ActionLabel",
-  "Button",
-  "ButtonGroup",
-  "IconButton",
-  "Card",
-  "Form",
-  "InputDate",
-  "InputEmail",
-  "InputNumber",
-  "InputPassword",
-  "InputPressable",
-  "InputSearch",
-  "InputText",
-  "InputTime",
-  "FormatFile",
-  "Icon",
-  "ThumbnailList",
-  "ActionItem",
-  "ActionItemGroup",
-  "Content",
-  "Disclosure",
-  "Divider",
-  "Flex",
-  "TextList",
-  "Menu",
-  "ContentOverlay",
-  "FormField",
-  "InputFieldWrapper",
-  "BottomSheet",
-  "Checkbox",
-  "Chips",
-  "Select",
-  "Switch",
-  "ActivityIndicator",
-  "Banner",
-  "EmptyState",
-  "Glimmer",
-  "ProgressBar",
-  "StatusLabel",
-  "Toast",
-  "AutoLink",
-  "Heading",
-  "Text",
-  "Typography",
-];
-
-components.forEach(buildComponentDocs);
-
-mobileComponents.forEach(buildMobileComponentDocs);
+ListOfGeneratedMobileComponents.forEach(buildMobileComponentDocs);

@@ -1,4 +1,4 @@
-# Foundation
+# Design
 
 Foundational colors, styling and design tokens for the Jobber Atlantis Design
 System

@@ -1,6 +1,7 @@
 import Content from "@atlantis/docs/components/InputAvatar/InputAvatar.stories.mdx";
 import Props from "./InputAvatar.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -32,7 +33,9 @@ async function handleChange(newAvatar: unknown) {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-InputAvatar-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-forms-and-inputs-inputavatar--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

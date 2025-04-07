@@ -1,0 +1,80 @@
+## Component customization
+
+### Custom rendering (advanced usage)
+
+If you need more control over the rendering of list items, you can provide a
+**custom render function** using one or more of the `customRenderItem` or
+`customRenderSection` props.
+
+This is useful if the default rendering of the `ListItem` or section header
+component doesn’t meet your requirements. If a custom render function is
+provided onClick, url, and hover functionality will still work. Sectioned list
+functionality will also remain the same.
+
+If a custom render function is provided for the section only the appearance of
+the header will change.
+
+**Example: Custom Render Function with Custom Interface**
+
+```tsx
+import { List } from "./List";
+
+interface ProductListItemProps extends BaseListItemProps {
+  readonly name: string;
+  readonly price: string;
+  readonly section: string;
+  readonly onClick?: () => void;
+}
+
+const items: ProductListItemProps[] = [
+  { id: 1, name: "Lawn Mower", price: "$250.00", section: "Garden Tools", onClick: () => alert("Lawn Mower clicked") },
+  { id: 2, name: "Hedge Trimmer", price: "$85.00", section: "Garden Tools", onClick: () => alert("Hedge Trimmer clicked") },
+  { id: 3, name: "Drill", price: "$50.00", section: "Power Tools", onClick: () => alert("Drill clicked") },
+  { id: 4, name: "Screwdriver", price: "$10.00", section: "Hand Tools", onClick: () => alert("Screwdriver clicked") },
+];
+
+
+const renderProductItem = (item: ProductListItemProps) => (
+    <Flex template={["shrink", "grow"]} align="start">
+        <Text>{item.price}</Text>
+        <Heading level={4}>{item.name}</Heading>
+    </Flex>
+  </div>
+);
+
+export const CustomRenderExample = () => (
+  <List items={items} customRenderItem={renderProductItem} />
+);
+
+```
+
+**In this example**:
+
+- We define a custom interface (`ProductListItemProps`) that extends
+  `BaseListItemProps`.
+- The `customRenderItem` function provides complete control over how each item
+  is rendered.
+
+**About Custom Rendering:**
+
+- Use a custom render function when you need complex layouts that the `ListItem`
+  component can’t provide.
+- Create your own interface extending `BaseListItemProps` to define the fields
+  you need.
+
+#### Using Your own Custom Item Styles
+
+Some styles (such as hover and active item styles) are always applied to list
+items, even when using a custom render function. However, other styles (like
+padding, alignment, and border-bottom) are applied by default but can be
+disabled by setting `customItemStyles={true}` alongside `customRenderItem`. This
+option allows you to remove some of the default item styles and apply your own.
+
+For instance, in the Simple List with Custom Styles example, setting
+`customItemStyles={true}` allows for the creation of a list with rounded corners
+and no border-bottom. You can also experiment by toggling this prop in the other
+custom render examples to observe its impact.
+
+Note: The `customItemStyles` prop is only valid when a `customRenderItem`
+function is provided. The same principle applies to the `customSectionStyles`,
+and `customRenderSection`.

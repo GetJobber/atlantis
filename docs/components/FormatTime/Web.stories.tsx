@@ -24,8 +24,14 @@ const BasicTemplate: ComponentStory<typeof FormatTime> = args => {
 
   return (
     <>
-      <FormatTime {...args} time={earlyTime} /> -{" "}
-      <FormatTime {...args} time={lateTime} />
+      <div>
+        <FormatTime {...args} time={earlyTime} use24HourClock={true} /> -{" "}
+        <FormatTime {...args} time={lateTime} use24HourClock={true} />
+      </div>
+      <div>
+        <FormatTime {...args} time={earlyTime} use24HourClock={false} /> -{" "}
+        <FormatTime {...args} time={lateTime} use24HourClock={false} />
+      </div>
     </>
   );
 };

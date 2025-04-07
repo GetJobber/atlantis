@@ -42,83 +42,89 @@ export const PropsList = ({
   });
 
   return (
-    <Content>
-      <InputText
-        value={search}
-        onChange={searchIn => setSearch(searchIn as string)}
-        placeholder="Search Props"
-      />
-      {filteredValues.map((value, key) => {
-        return (
-          <DataList
-            key={key}
-            title={`${value.name} properties`}
-            data={value.props}
-            headers={{
-              key: "Property",
-              description: "Description",
-              component: "Type",
-            }}
-            headerVisibility={{ xs: false, md: true }}
-          >
-            <DataList.Layout size="md">
-              {(item: {
-                key: ReactNode;
-                description: string;
-                component: ReactNode;
-                required: boolean;
-              }) => (
-                <Grid>
-                  <Grid.Cell size={{ xs: 2 }}>
-                    <div
-                      style={{
-                        display: "flex",
-                        gap: "var(--space-small)",
-                        flexWrap: "wrap",
-                      }}
-                    >
-                      {item.key}
-                      {item.required && <InlineLabel>Required</InlineLabel>}
-                    </div>
-                  </Grid.Cell>
-                  <Grid.Cell size={{ xs: 3 }}>{item.component}</Grid.Cell>
-                  <Grid.Cell size={{ xs: 7 }}>{item.description}</Grid.Cell>
-                </Grid>
-              )}
-            </DataList.Layout>
-            <DataList.Layout size="xs">
-              {(item: {
-                key: string;
-                description: string;
-                component: ReactNode;
-                required: boolean;
-              }) => (
-                <Grid>
-                  <Grid.Cell size={{ xs: 6 }}>
-                    <div
-                      style={{
-                        display: "flex",
-                        gap: "var(--space-smaller",
-                        flexWrap: "wrap",
-                      }}
-                    >
-                      {item.key}
-                      {item.required && <InlineLabel>Required</InlineLabel>}
-                    </div>
-                  </Grid.Cell>
-                  <Grid.Cell size={{ xs: 6 }}>{item.component}</Grid.Cell>
-                  <Grid.Cell size={{ xs: 12 }}>{item.description}</Grid.Cell>
-                </Grid>
-              )}
-            </DataList.Layout>
+    <div data-props-list>
+      <Content>
+        <InputText
+          value={search}
+          onChange={searchIn => setSearch(searchIn as string)}
+          placeholder="Search Props"
+        />
+        {filteredValues.map((value, key) => {
+          return (
+            <DataList
+              key={key}
+              title={`${value.name} properties`}
+              data={value.props}
+              headers={{
+                key: "Property",
+                description: "Description",
+                component: "Type",
+              }}
+              headerVisibility={{ xs: false, lg: true }}
+            >
+              <DataList.Layout size="md">
+                {(item: {
+                  key: ReactNode;
+                  description: string;
+                  component: ReactNode;
+                  required: boolean;
+                }) => (
+                  <Grid>
+                    <Grid.Cell size={{ md: 5, lg: 3 }}>
+                      <div
+                        style={{
+                          display: "flex",
+                          gap: "var(--space-small)",
+                          flexWrap: "wrap",
+                        }}
+                      >
+                        {item.key}
+                        {item.required && <InlineLabel>Required</InlineLabel>}
+                      </div>
+                    </Grid.Cell>
+                    <Grid.Cell size={{ md: 7, lg: 3 }}>
+                      {item.component}
+                    </Grid.Cell>
+                    <Grid.Cell size={{ md: 12, lg: 6 }}>
+                      {item.description}
+                    </Grid.Cell>
+                  </Grid>
+                )}
+              </DataList.Layout>
+              <DataList.Layout size="xs">
+                {(item: {
+                  key: string;
+                  description: string;
+                  component: ReactNode;
+                  required: boolean;
+                }) => (
+                  <Grid>
+                    <Grid.Cell size={{ xs: 12 }}>
+                      <div
+                        style={{
+                          display: "flex",
+                          gap: "var(--space-smaller",
+                          flexWrap: "wrap",
+                        }}
+                      >
+                        {item.key}
+                        {item.required && <InlineLabel>Required</InlineLabel>}
+                      </div>
+                    </Grid.Cell>
+                    <Grid.Cell size={{ xs: 12 }}>{item.component}</Grid.Cell>
+                    <Grid.Cell size={{ xs: 12 }}>{item.description}</Grid.Cell>
+                  </Grid>
+                )}
+              </DataList.Layout>
 
-            <DataList.EmptyState
-              type="filtered"
-              message="No props found with your search criteria."
-            />
-          </DataList>
-        );
-      })}
-    </Content>
+              <DataList.EmptyState
+                type="filtered"
+                message="No props found with your search criteria."
+              />
+            </DataList>
+          );
+        })}
+      </Content>
+    </div>
   );
 };

@@ -1,7 +1,9 @@
 import Content from "@atlantis/docs/components/Typography/Typography.stories.mdx";
 import Props from "./Typography.props.json";
 import MobileProps from "./Typography.props-mobile.json";
+import Notes from "./TypographyNotes.mdx";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -15,7 +17,10 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-Typography-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-text-and-typography-typography--docs`,
+      ),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

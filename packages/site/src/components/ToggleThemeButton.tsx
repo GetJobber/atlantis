@@ -17,22 +17,10 @@ export const ToggleThemeButton = () => {
   };
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        bottom: "var(--space-base)",
-        right: "var(--space-base)",
-        boxShadow: "var(--shadow-base)",
-        borderRadius: "var(--radius-base)",
-      }}
-      data-elevation="elevated"
-    >
-      <Button
-        type="secondary"
-        variation="subtle"
-        label={isDark ? "☀️" : "🌒"}
-        onClick={handleClick}
-      />
-    </div>
+    <Button
+      variation="subtle"
+      label={isDark ? "☀️" : "🌒"}
+      onClick={handleClick}
+    />
   );
 };

@@ -1,1 +1,1 @@
-export { ButtonDismiss } from "./ButtonDismiss";
+export { ButtonDismiss, type ButtonDismissProps } from "./ButtonDismiss";

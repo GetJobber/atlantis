@@ -1,6 +1,7 @@
 import DataDumpContent from "@atlantis/docs/components/DataDump/DataDump.stories.mdx";
 import Props from "./DataDump.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <DataDumpContent />,
@@ -12,7 +13,7 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-DataDump-web--docs",
+      url: getStorybookUrl(`?path=/docs/components-utilities-datadump--docs`),
     },
   ],
 } as const satisfies ContentExport;

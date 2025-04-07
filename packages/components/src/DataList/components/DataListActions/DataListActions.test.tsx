@@ -131,6 +131,71 @@ describe("DataListActions", () => {
       expect(screen.queryByLabelText("Edit")).not.toBeInTheDocument();
     });
   });
+
+  describe("alwaysVisible prop", () => {
+    const label = "Foo";
+    const moreLabel = "More actions";
+
+    const setupAlwaysVisible = (alwaysVisible = true) => {
+      render(
+        <DataListActions>
+          <DataListAction
+            alwaysVisible={alwaysVisible}
+            icon="edit"
+            label={label}
+            visible={() => true}
+          />
+        </DataListActions>,
+      );
+    };
+
+    describe("is true", () => {
+      it("should not render the more actions icon", () => {
+        setupAlwaysVisible();
+
+        expect(screen.queryByLabelText(moreLabel)).not.toBeInTheDocument();
+        expect(screen.getByLabelText(label)).toBeInTheDocument();
+      });
+
+      it("should not render the tooltip", async () => {
+        setupAlwaysVisible();
+
+        const actionButton = screen.getByLabelText(label);
+        await userEvent.hover(actionButton);
+
+        expect(
+          document.querySelector("div[role='tooltip']"),
+        ).not.toBeInTheDocument();
+      });
+    });
+
+    describe("is false", () => {
+      it("should render the more actions icon", () => {
+        setupAlwaysVisible(false);
+
+        expect(screen.getByLabelText(moreLabel)).toBeInTheDocument();
+      });
+    });
+
+    describe("is undefined", () => {
+      it("should render the more actions icon", () => {
+        renderComponent();
+
+        expect(screen.getByLabelText("More actions")).toBeInTheDocument();
+      });
+
+      it("should render the tooltip", async () => {
+        renderComponent();
+
+        const moreButton = screen.getByLabelText("More actions");
+        await userEvent.hover(moreButton);
+
+        expect(
+          document.querySelector("div[role='tooltip']"),
+        ).toBeInTheDocument();
+      });
+    });
+  });
 });
 
 function renderComponent(itemsToExpose = 3) {

@@ -2,36 +2,44 @@ import Content from "@atlantis/docs/components/Content/Content.stories.mdx";
 import Props from "./Content.props.json";
 import MobileProps from "./Content.props-mobile.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
   props: Props,
   mobileProps: MobileProps,
   component: {
-    element: `
-    return (
-    <Content spacing={"small"}>
-      <Card title="About me">
-        <Content spacing={"small"}>
-          <Heading level={2}>Sign up!</Heading>
-          <Text>
-            Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis
-            vestibulum. Nulla vitae elit libero, a pharetra augue. Nullam quis
-            risus eget urna mollis ornare vel eu leo. Vestibulum id ligula porta
-            felis euismod semper. Curabitur blandit tempus porttitor.
-          </Text>
-          <InputText placeholder="Name" />
-          <InputText placeholder="Phone" />
-          <InputText placeholder="Email" />
-          <InputText
-            multiline={true}
-            placeholder="Describe yourself"
-            name="describeAge"
-          />
+    element: `return (
+      <div style={{ width: "100%" }}>
+        <Content spacing={"base"}>
+          <Heading level={6} element={"p"}>
+            Base
+          </Heading>
+          <Box background={"base-blue--500"} height={16} radius={"base"}></Box>
+          <Box background={"base-blue--500"} height={16} radius={"base"}></Box>
+          <Box background={"base-blue--500"} height={16} radius={"base"}></Box>
+          <Content spacing={"small"}>
+            <Heading level={6} element={"p"}>
+              Small
+            </Heading>
+            <Box
+              background={"base-blue--500"}
+              height={16}
+              radius={"base"}
+            ></Box>
+            <Box
+              background={"base-blue--500"}
+              height={16}
+              radius={"base"}
+            ></Box>
+            <Box
+              background={"base-blue--500"}
+              height={16}
+              radius={"base"}
+            ></Box>
+          </Content>
         </Content>
-      </Card>
-    </Content>
-  );`,
+      </div>);`,
     mobileElement: `<Content direction={"vertical"}>
         <Text>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque totam
@@ -47,7 +55,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-Content-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-layouts-and-structure-content--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

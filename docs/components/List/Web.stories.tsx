@@ -14,6 +14,8 @@ import { Heading } from "@jobber/components/Heading";
 import { Icon, IconNames } from "@jobber/components/Icon";
 import { FileUpload } from "@jobber/components/InputFile";
 import { FormatFile } from "@jobber/components/FormatFile";
+import { Box } from "@jobber/components/Box";
+import { Tooltip } from "@jobber/components/Tooltip";
 
 export default {
   title: "Components/Lists and Tables/List/Web",
@@ -256,13 +258,42 @@ function RenderProductList({
   );
 }
 
-export const SectionedListWithCustomRenderer = BasicTemplate.bind({});
-SectionedListWithCustomRenderer.args = {
+export const SectionedListWithCustomItem = BasicTemplate.bind({});
+SectionedListWithCustomItem.args = {
   items: productsList,
   customRenderItem: (item: ProductListItemProps) => (
     <RenderProductList listItem={item} />
   ),
 };
+
+export const SectionedListWithCustomSection = BasicTemplate.bind({});
+SectionedListWithCustomSection.args = {
+  items: sectionedListItems,
+  customRenderSection: (sectionHeading: string) => (
+    <RenderCustomSection sectionHeading={sectionHeading} />
+  ),
+};
+
+function RenderCustomSection({
+  sectionHeading,
+}: {
+  readonly sectionHeading: string;
+}) {
+  return (
+    <Box direction="row" alignItems="center" gap="base">
+      <Icon name="calendar" />
+      <Heading level={3}>{sectionHeading}</Heading>
+      <div style={{ marginLeft: "auto" }}>
+        <Tooltip
+          message="These are the items which occurred on this date"
+          preferredPlacement="left"
+        >
+          <Icon name="help" />
+        </Tooltip>
+      </div>
+    </Box>
+  );
+}
 
 export const SimpleListWithCustomStyles = SimpleTemplate.bind({});
 const simpleListItems: ListItemProps[] = [

@@ -1,6 +1,8 @@
 import Content from "@atlantis/docs/components/DataList/DataList.stories.mdx";
 import Props from "./DataList.props.json";
+import Notes from "./DataListNotes.mdx";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
@@ -22,8 +24,8 @@ export default {
       <DataList.Layout>
         {(item) => (
           <Grid>
-            <Grid.Cell size={{ xs: 12, md: 6 }}>{item.name}</Grid.Cell>
-            <Grid.Cell size={{ xs: 12, md: 6 }}>{item.email}</Grid.Cell>
+            <Grid.Cell size={{ xs: 6 }}>{item.name}</Grid.Cell>
+            <Grid.Cell size={{ xs: 6 }}>{item.email}</Grid.Cell>
           </Grid>
         )}
       </DataList.Layout>
@@ -39,7 +41,10 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-lists-and-tables-datalist--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-lists-and-tables-datalist--docs`,
+      ),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

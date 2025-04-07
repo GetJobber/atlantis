@@ -1,9 +1,10 @@
 {
   "name": "@jobber/atlantis-site",
   "private": true,
-  "version": "0.15.5",
+  "version": "0.37.2",
   "type": "module",
   "scripts": {
+    "e2e": "playwright test",
     "dev": "npm run bundle && npm run copyFiles && vite",
     "bundle": "rollup -c editorBundle.rollup.config.js && rollup -c editorMobileBundle.rollup.config.js",
     "copyFiles": "cp ../design/dist/foundation.css ./public/foundation.css && cp ../components/dist/styles.css ./public/styles.css && cp ../design/dist/dark.mode.css ./public/dark.mode.css && cp ./node_modules/axios/dist/esm/axios.js ./public",
@@ -21,6 +22,8 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-element-to-jsx-string": "^15.0.0",
+    "react-markdown": "^9.0.1",
+    "react-native-svg-web": "^1.0.9",
     "react-router": "5.3.4",
     "react-router-dom": "5.3.4"
   },
@@ -29,9 +32,12 @@
     "@babel/preset-react": "^7.26.3",
     "@mdx-js/react": "^3.0.1",
     "@mdx-js/rollup": "^3.0.1",
+    "@playwright/test": "^1.49.0",
+    "@react-native/babel-preset": "^0.76.3",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-replace": "^6.0.1",
     "@types/babel__standalone": "^7.1.9",
+    "@types/node": "^22.10.1",
     "@types/prismjs": "^1.26.4",
     "@types/react": "18.2.0",
     "@types/react-dom": "18.2.0",

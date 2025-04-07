@@ -36,6 +36,16 @@
                     "$value": "{color.base.blue-.100}",
                     "$description": "Hover state for interactive--subtle."
                 }
+            },
+            "background": {
+                "$value": "{color.base.blue-.700}",
+                "$description": "Use for the background of interactive elements to ensure separation from the surface they appear on."
+            },
+            "background-": {
+                "hover": {
+                    "$value": "{color.base.blue-.600}",
+                    "$description": "Hover state for interactive--background."
+                }
             }
         },
         "destructive": {
@@ -319,7 +329,7 @@
                 "$description": "Use for the surface of an element that has payments status."
             },
             "onSurface": {
-                "$value": "{color.invoice-.surface}",
+                "$value": "{color.invoice-.onSurface}",
                 "$description": "Use for text or iconography that sits overtop a payments background."
             }
         },

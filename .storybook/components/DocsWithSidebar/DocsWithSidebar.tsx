@@ -1,6 +1,7 @@
 import React, { PropsWithChildren, useState } from "react";
 import { DocsContainer, DocsContainerProps } from "@storybook/addon-docs";
 import { Button } from "@jobber/components/Button";
+import { Box } from "@jobber/components/Box";
 import { Banner } from "@jobber/components/Banner";
 import styles from "./DocsWithSidebar.css";
 import { TableOfContents } from "../TableOfContents";
@@ -10,6 +11,8 @@ export function DocsWithSidebar({
   context,
   ...rest
 }: PropsWithChildren<DocsContainerProps>) {
+  const [hidden,setHidden] = useState(localStorage.getItem('toggleNewDocs') === 'true');
+
   const githubRepo = "https://github.com/GetJobber/atlantis";
   const githubInfo = {
     repo: githubRepo,
@@ -27,6 +30,14 @@ export function DocsWithSidebar({
     styles.sidebar,
     navigationOpen && styles.visible,
   ].join(" ");
+  const newDocs = () => {
+    localStorage.removeItem('nolikeynewsite')
+    window.parent.location.href = '/'
+  }
+  const toggleTab = () => {
+    setHidden(!hidden)
+    localStorage.setItem('toggleNewDocs', !hidden ? 'true' : 'false')
+  }
 
   return (
     <div className={styles.wrapper}>
@@ -53,6 +64,20 @@ export function DocsWithSidebar({
           <TableOfContents githubInfo={githubInfo} />
         </div>
       </aside>
+      <div style={{
+        position:'fixed',
+        bottom:0,
+        left: hidden ? -195 : 0,
+        borderTopRightRadius:'var(--radius-base)',
+        backgroundColor:'var(--color-surface)',
+        border:'1px solid var(--color-border)',
+        transition:'left 0.3s'
+      }}>
+        <Box direction="row">
+          <Button label="View the new docs site" type='tertiary' onClick={newDocs} />
+          <Button onClick={toggleTab} icon={hidden ? 'arrowRight' : "arrowLeft"} ariaLabel="hide" type='tertiary' variation="subtle" />
+        </Box>
+      </div>
     </div>
   );
 

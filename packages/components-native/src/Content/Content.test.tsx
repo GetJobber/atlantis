@@ -1,11 +1,11 @@
 import React from "react";
-import { render } from "@testing-library/react-native";
+import { render, renderHook } from "@testing-library/react-native";
 import { View } from "react-native";
 import { ReactTestInstance } from "react-test-renderer";
 import { Content, ContentProps } from "./Content";
-import { spaceStyles } from "./ContentSpaceAround.style";
-import { verticalStyles } from "./ContentVertical.style";
-import { horizontalStyles } from "./ContentHorizontal.style";
+import { useSpaceAroundStyles } from "./ContentSpaceAround.style";
+import { useVerticalStyles } from "./ContentVertical.style";
+import { useHorizontalStyles } from "./ContentHorizontal.style";
 import { Text } from "../Text";
 
 function getContentComponent(parentView: ReactTestInstance) {
@@ -42,6 +42,16 @@ function setupContent(
 
   return { ...container, parentView, contentView, contentChildren };
 }
+
+let spaceStyles: ReturnType<typeof useSpaceAroundStyles>;
+let verticalStyles: ReturnType<typeof useVerticalStyles>;
+let horizontalStyles: ReturnType<typeof useHorizontalStyles>;
+
+beforeAll(() => {
+  spaceStyles = renderHook(() => useSpaceAroundStyles()).result.current;
+  verticalStyles = renderHook(() => useVerticalStyles()).result.current;
+  horizontalStyles = renderHook(() => useHorizontalStyles()).result.current;
+});
 
 describe("Space around", () => {
   it("should have a base padding around the component", () => {

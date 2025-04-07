@@ -1,6 +1,7 @@
 import EmphasisContent from "@atlantis/docs/components/Emphasis/Emphasis.stories.mdx";
 import Props from "./Emphasis.props.json";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <EmphasisContent />,
@@ -16,7 +17,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-Emphasis-web--docs",
+      url: getStorybookUrl(
+        `?path=/docs/components-text-and-typography-emphasis--docs`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

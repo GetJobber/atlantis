@@ -1,12 +1,12 @@
 import ChipsContent from "@atlantis/docs/components/Chips/Chips.stories.mdx";
 import Props from "./Chips.props.json";
-import MobileProps from "./Chips.props-mobile.json";
+import Notes from "./ChipsNotes.mdx";
 import { ContentExport } from "../../types/content";
+import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <ChipsContent />,
   props: Props,
-  mobileProps: MobileProps,
   component: {
     element: `const [selected, setSelected] = useState();
 
@@ -24,21 +24,13 @@ export default {
     </Content>
   );
     `,
-    mobileElement: `<Chip
-        label={"Active chip"}
-        onPress={function onPress() {
-          return alert("hi!");
-        }}
-        accessibilityLabel={"Active chip"}
-        isActive={true}
-      />
-    `,
   },
   title: "Chips",
   links: [
     {
       label: "Storybook",
-      url: "http://localhost:6006/?path=/docs/components-utilities-Chips-web--docs",
+      url: getStorybookUrl(`?path=/docs/components-selections-chips--docs`),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;
