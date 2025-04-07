@@ -1,12 +1,20 @@
 import { ChangeEvent, FocusEvent, KeyboardEvent, useEffect } from "react";
 import { UseControllerReturn } from "react-hook-form";
+import classNames from "classnames";
 import styles from "../FormField.module.css";
 import type { FormFieldProps, KeyBoardTypes } from "../FormFieldTypes";
 
 export interface useAtlantisFormFieldProps
   extends Pick<
     FormFieldProps,
-    "description" | "disabled" | "readonly" | "inline" | "autofocus"
+    | "description"
+    | "disabled"
+    | "readonly"
+    | "inline"
+    | "autofocus"
+    | "pattern"
+    | "type"
+    | "value"
   > {
   /**
    * The html id for the field
@@ -45,6 +53,7 @@ export interface useAtlantisFormFieldProps
    * Determines if the field has validations
    */
   readonly validations: boolean;
+
   /**
    * Callback for when the field value changes
    */
@@ -91,6 +100,9 @@ export function useAtlantisFormField({
   readonly,
   keyboard,
   autofocus,
+  pattern,
+  type,
+  value,
   handleChange,
   handleBlur,
   handleFocus,
@@ -105,7 +117,13 @@ export function useAtlantisFormField({
   const fieldProps = {
     ...useControllerField,
     id,
-    className: styles.input,
+    className: classNames(styles.input, {
+      [styles.emptyPhoneNumber]: shouldAddPhoneNumberClass(
+        type,
+        value,
+        pattern,
+      ),
+    }),
     name: (validations || nameProp) && name,
     disabled: disabled,
     readOnly: readonly,
@@ -126,4 +144,12 @@ export function useAtlantisFormField({
   useEffect(() => handleValidation(errorMessage), [errorMessage]);
 
   return { textFieldProps, fieldProps, descriptionIdentifier };
+}
+
+function shouldAddPhoneNumberClass(
+  type: string | undefined,
+  value: string | number | Date | undefined,
+  pattern: string | undefined,
+) {
+  return type === "tel" && !value && pattern && pattern[0] === "(";
 }

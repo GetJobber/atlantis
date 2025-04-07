@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.73.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.72.1...@jobber/design@0.73.0) (2025-03-26)
+
+
+### Features
+
+* **components:** Add New Schedule Day View Icons ([#2444](https://github.com/GetJobber/atlantis/issues/2444)) ([9212331](https://github.com/GetJobber/atlantis/commit/9212331f2fd185d1508f2dc0fb1d8f5bf4321bb7))
+
+
+
+
+
+## [0.72.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.72.0...@jobber/design@0.72.1) (2025-03-17)
+
+
+### Bug Fixes
+
+* **design:** move warning icon up by 1px ([#2418](https://github.com/GetJobber/atlantis/issues/2418)) ([5cf06ad](https://github.com/GetJobber/atlantis/commit/5cf06ad235f73110334359087bbe3b98e8259f40))
+
+
+
+
+
+# [0.72.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.71.2...@jobber/design@0.72.0) (2025-03-12)
+
+
+### Features
+
+* **components:** Add sprout icon ([#2420](https://github.com/GetJobber/atlantis/issues/2420)) ([34ae744](https://github.com/GetJobber/atlantis/commit/34ae744245011dad66b7820b5e65280dc8db371a))
+
+
+
+
+
+## [0.71.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.71.1...@jobber/design@0.71.2) (2025-03-11)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
 ## [0.71.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.71.0...@jobber/design@0.71.1) (2025-02-28)
 
 

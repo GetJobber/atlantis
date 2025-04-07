@@ -14,7 +14,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   const optionsExist = props.options.length > 0;
   const { optionsListRef } = useComboboxContent(props.open, props.selected);
 
-  const { popperRef, popperStyles, attributes } = useComboboxAccessibility(
+  const { popperRef, popperStyles, floatingProps } = useComboboxAccessibility(
     props.handleSelection,
     props.options,
     optionsListRef,
@@ -30,8 +30,8 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       data-elevation={"elevated"}
       tabIndex={0}
       className={classnames(styles.content, { [styles.hidden]: !props.open })}
-      style={popperStyles.popper}
-      {...attributes.popper}
+      style={popperStyles}
+      {...floatingProps}
     >
       <ComboboxContentSearch
         open={props.open}

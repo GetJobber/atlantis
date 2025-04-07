@@ -18,6 +18,8 @@ import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
 import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
 import { Flex } from "@jobber/components/Flex";
+// eslint-disable-next-line import/no-internal-modules
+import { useDebounce } from "@jobber/components/utils/useDebounce";
 
 const meta: Meta = {
   title: "Components/Lists and Tables/DataList/Web",
@@ -530,8 +532,15 @@ export const ClearAllFilters: StoryFn<typeof DataList> = args => {
     selectedFiltersInitialState,
   );
 
+  const [searchValue, setSearchValue] = useState("");
+
+  const debouncedRequest = useDebounce((search: string) => {
+    console.log("debounced search request", search);
+  }, 300);
+
   function removeAllFilters() {
     setSelectedFilters(selectedFiltersInitialState);
+    setSearchValue("");
   }
 
   function handleRemoveIndividualFilterGroup(type: keyof SelectedFilters) {
@@ -649,7 +658,11 @@ export const ClearAllFilters: StoryFn<typeof DataList> = args => {
       </DataList.Filters>
 
       <DataList.Search
-        onSearch={search => console.log(search)}
+        value={searchValue}
+        onSearch={search => {
+          setSearchValue(search);
+          debouncedRequest(search);
+        }}
         placeholder="Search data..."
       />
       <DataList.Layout size="md">

@@ -154,6 +154,32 @@
         "type": {
           "name": "UnderlineStyle | \"solid color-indigo\" | \"solid color-indigo--light\" | \"solid color-indigo--lighter\" | \"solid color-indigo--lightest\" | \"solid color-indigo--dark\" | ... 634 more ... | \"dashed color-client\""
         }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom classNames for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "../components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ textStyle?: string; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "../components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ textStyle?: CSSProperties; }"
+        }
       }
     }
   }

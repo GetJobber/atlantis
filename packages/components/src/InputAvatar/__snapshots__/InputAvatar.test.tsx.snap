@@ -32,12 +32,13 @@ exports[`renders 1`] = `
       <input
         accept="image/*"
         autocomplete="off"
+        data-testid="input-file-input"
         style="display: none;"
         tabindex="-1"
         type="file"
       />
       <button
-        class="button small work secondary fullWidth"
+        class="button small work secondary fullWidth buttonChildren"
         type="button"
       >
         <span
@@ -73,12 +74,13 @@ exports[`renders with a provided image 1`] = `
       <input
         accept="image/*"
         autocomplete="off"
+        data-testid="input-file-input"
         style="display: none;"
         tabindex="-1"
         type="file"
       />
       <button
-        class="button small work secondary fullWidth"
+        class="button small work secondary fullWidth buttonChildren"
         type="button"
       >
         <span
@@ -89,7 +91,7 @@ exports[`renders with a provided image 1`] = `
       </button>
     </div>
     <button
-      class="button small destructive secondary"
+      class="button small destructive secondary buttonChildren"
       type="button"
     >
       <span

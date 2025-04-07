@@ -1,0 +1,42 @@
+import { Tabs, Tab } from "@jobber/components/Tabs";
+
+## Component customization
+
+### UNSAFE\_ props (advanced usage)
+
+General information for using `UNSAFE_` props can be found
+[here](/guides/customizing-components).
+
+**Note**: Use of `UNSAFE_` props is **at your own risk** and should be
+considered a **last resort**. Future Icon updates may lead to unintended
+breakages.
+
+#### UNSAFE_props (web)
+
+<Tabs>
+  <Tab label="UNSAFE_className">
+    Use `UNSAFE_className` to apply custom classes to the Heading component. This can be
+    useful for applying styles via CSS Modules.
+
+    ```tsx
+    <Heading level={1} UNSAFE_className={{ textStyle: styles.customHeading }}>
+      Test with custom class name
+    </Heading>
+
+    // YourComponent.module.css
+    .customHeading {
+      color: var(--color-red);
+    }
+    ```
+
+  </Tab>
+  <Tab label="UNSAFE_style">
+    Use `UNSAFE_style` to apply inline custom styles to the Heading component.
+    
+    ```tsx
+    <Heading level={1} UNSAFE_style={{ textStyle: { color: "red" } }}>
+      Test with custom style
+    </Heading>
+    ```
+  </Tab>
+</Tabs>

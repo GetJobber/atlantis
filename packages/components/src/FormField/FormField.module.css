@@ -209,6 +209,10 @@
   outline: none;
 }
 
+.emptyPhoneNumber {
+  padding-left: calc(var(--field--padding-left) + var(--space-smaller));
+}
+
 .textarea .childrenWrapper {
   display: flex;
   min-height: var(--field--height);
