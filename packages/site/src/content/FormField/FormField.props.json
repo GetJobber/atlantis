@@ -305,6 +305,19 @@
           "name": "\"always\" | \"while-editing\""
         }
       },
+      "pattern": {
+        "defaultValue": null,
+        "description": "Pattern is currently only used for the InputPhone type\nit is used to determine the format of the phone number\nand the number of digits to expect.",
+        "name": "pattern",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
       "id": {
         "defaultValue": null,
         "description": "A unique identifier for the input.",

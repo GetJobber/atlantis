@@ -10,7 +10,7 @@ exports[`Menu renders 1`] = `
         aria-controls=":r1:"
         aria-expanded="false"
         aria-haspopup="true"
-        class="button base hasIconAndLabel work secondary fullWidth"
+        class="button base work secondary fullWidth buttonChildren"
         id=":r0:"
         type="button"
       >
@@ -45,7 +45,7 @@ exports[`Menu with custom activator renders 1`] = `
         aria-controls=":rc:"
         aria-expanded="false"
         aria-haspopup="true"
-        class="button base work primary"
+        class="button base work primary buttonChildren"
         id=":rb:"
         type="button"
       >

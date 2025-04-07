@@ -13,14 +13,17 @@ export const TopNav = () => {
   const { toggleMobileMenu, isMinimal } = useAtlantisSite();
 
   return (
-    <Box
-      padding="base"
-      direction="row"
-      alignItems="center"
-      gap="small"
-      justifyContent={
-        isMinimal ? "flex-end" : mediumAndUp ? "" : "space-between"
-      }
+    <nav
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: isMinimal
+          ? "flex-end"
+          : mediumAndUp
+          ? ""
+          : "space-between",
+        padding: "12px 16px",
+      }}
     >
       {!mediumAndUp && !isMinimal && (
         <Box
@@ -73,6 +76,6 @@ export const TopNav = () => {
         </Box>
         <ToggleThemeButton />
       </Box>
-    </Box>
+    </nav>
   );
 };

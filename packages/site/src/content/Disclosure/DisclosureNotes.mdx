@@ -1,0 +1,74 @@
+## Component customization
+
+### UNSAFE\_ props (advanced usage)
+
+General information for using `UNSAFE_` props can be found
+[here](/guides/customizing-components).
+
+**Note**: Use of `UNSAFE_` props is **at your own risk** and should be
+considered a **last resort**. Future Disclosure updates may lead to unintended
+breakages.
+
+Disclosure has multiple elements that can be targeted with classes or styles:
+
+- `container`: The container element of the Disclosure
+- `summary`: The clickable header area of the Disclosure
+- `summaryWrap`: The inner content within the summary, containing the title and
+  toggle arrow
+- `title`: The title element of the Disclosure
+- `icon`: The toggle arrow of the Disclosure
+- `arrowIconWrapper`: The wrapper element for the toggle arrow
+- `content`: The content inside the Disclosure
+
+#### UNSAFE_className (web)
+
+Use `UNSAFE_className` to apply custom classes to the Disclosure. This can be
+useful for applying styles via CSS Modules.
+
+```tsx
+// Disclosure.tsx
+UNSAFE_className={{
+  container: styles.customDisclosure,
+  summary: styles.customSummary,
+}}
+
+// Disclosure.stories.css
+.customDisclosure {
+  border: 3px solid var(--color-interactive);
+  border-radius: var(--radius-base);
+}
+
+.customSummary {
+  padding: var(--space-base);
+}
+```
+
+#### UNSAFE_style (web)
+
+The `UNSAFE_style` prop provides granular control over the Disclosure's
+appearance through inline styles, allowing you to modify the dimensions and
+colors independently.
+
+```tsx
+<Disclosure
+  ...
+  UNSAFE_style={{
+    container: {
+      border: "3px solid var(--color-interactive)",
+      borderRadius: "var(--radius-base)",
+    },
+    title: {
+      textStyle: {
+        color: "var(--color-interactive--hover)",
+      },
+    },
+    icon: {
+      path: {
+        fill: "var(--color-interactive--subtle)",
+      },
+    },
+  }}
+>
+  ...
+</Disclosure>
+```
