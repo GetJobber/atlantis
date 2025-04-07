@@ -1,3 +1,5 @@
+import { Tabs, Tab } from "@jobber/components/Tabs";
+
 ## Component customization
 
 ### UNSAFE\_ props (advanced usage)
@@ -8,6 +10,39 @@ General information for using `UNSAFE_` props can be found
 **Note**: Use of `UNSAFE_` props is **at your own risk** and should be
 considered a **last resort**. Future Text updates may lead to unintended
 breakages.
+
+#### UNSAFE\_ props (web)
+
+<Tabs>
+  <Tab label="UNSAFE_className">
+    Use `UNSAFE_className` to apply custom classes to the Text component. This
+    can be useful for applying styles via CSS Modules.
+
+    ```tsx
+    // YourComponent.tsx
+    <Text UNSAFE_className={{ textStyle: styles.customText }}>
+      Custom text style
+    </Text>
+
+    // YourComponent.module.css
+    .customText {
+      color: var(--color-purple);
+    }
+    ```
+
+  </Tab>
+
+  <Tab label="UNSAFE_style">
+    Use `UNSAFE_style` to apply inline custom styles to the Text component.
+
+    ```tsx
+    <Text UNSAFE_style={{ textStyle: { color: "var(--color-purple)" } }}>
+      Custom text style
+    </Text>
+    ```
+
+  </Tab>
+</Tabs>
 
 #### UNSAFE_style (mobile)
 
