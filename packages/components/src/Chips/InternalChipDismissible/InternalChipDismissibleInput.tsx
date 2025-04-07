@@ -33,7 +33,6 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
     searchValue,
     generateDescendantId,
     handleBlur,
-    handleOpenMenu,
     handleSearchChange,
     handleCancelBlur,
     handleEnableBlur,
@@ -66,8 +65,10 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
     isInView && onLoadMore && onLoadMore(searchValue);
   }, [isInView]);
 
-  if (!menuOpen) {
-    return React.cloneElement(activator, { onClick: handleOpenMenu });
+  if (!menuOpen && !searchValue) {
+    return React.cloneElement(activator, {
+      onClick: () => inputRef.current?.focus(),
+    });
   }
 
   return (
@@ -86,11 +87,10 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
         onChange={handleSearchChange}
         onKeyDown={handleKeyDown}
         onBlur={debounce(handleBlur, 200)}
-        onFocus={handleOpenMenu}
         autoFocus={true}
       />
 
-      {searchValue.length > 0 && (hasAvailableOptions || isLoadingMore) && (
+      {menuOpen && !!searchValue && (hasAvailableOptions || isLoadingMore) && (
         <div
           ref={setPositionedElementRef}
           className={styles.menu}
