@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import debounce from "lodash/debounce";
+/* eslint-disable max-statements */
+import React, { useEffect, useState } from "react";
 import classNames from "classnames";
 import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import styles from "./InternalChipDismissible.module.css";
@@ -42,6 +42,7 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
     handleDebouncedSearch,
   } = useInternalChipDismissibleInput(props);
 
+  const [showInput, setShowInput] = useState(false);
   const menuRef = useScrollToActive(activeIndex);
   const { ref: visibleChildRef, isInView } = useInView<HTMLDivElement>();
 
@@ -65,11 +66,24 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
     isInView && onLoadMore && onLoadMore(searchValue);
   }, [isInView]);
 
-  if (!menuOpen && !searchValue) {
-    return React.cloneElement(activator, {
-      onClick: () => inputRef.current?.focus(),
-    });
+  if (!showInput) {
+    const handleActivate = () => {
+      setShowInput(true);
+      setTimeout(() => inputRef.current?.focus(), 0);
+    };
+
+    return React.cloneElement(activator, { onClick: handleActivate });
   }
+
+  const handleInputBlur = () => {
+    handleBlur();
+
+    setTimeout(() => {
+      if (inputRef.current?.value === "") {
+        setShowInput(false);
+      }
+    }, 150);
+  };
 
   return (
     <>
@@ -86,7 +100,7 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
         value={searchValue}
         onChange={handleSearchChange}
         onKeyDown={handleKeyDown}
-        onBlur={debounce(handleBlur, 200)}
+        onBlur={handleInputBlur}
         autoFocus={true}
       />
 

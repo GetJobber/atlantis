@@ -83,7 +83,6 @@ export function useInternalChipDismissibleInput({
     handleBlur: () => {
       if (shouldCancelBlur) return;
       actions.handleReset();
-      actions.handleCloseMenu();
     },
 
     handleSearchChange: (event: ChangeEvent<HTMLInputElement>) => {
