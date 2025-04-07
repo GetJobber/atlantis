@@ -60,11 +60,6 @@ export const hooksList = [
     sections: ["React Utilities"],
   },
   {
-    title: "usePasswordStrength",
-    to: "/hooks/usePasswordStrength",
-    sections: ["Accessibility"],
-  },
-  {
     title: "useRefocusOnActivator",
     to: "/hooks/useRefocusOnActivator",
     sections: ["Window & Layout"],
