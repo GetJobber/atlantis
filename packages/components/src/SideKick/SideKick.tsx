@@ -29,7 +29,6 @@ export function SideKick({
     [space],
   );
   const collapsed = useMediaQuery(`(max-width: ${collapseBelow || "0"})`);
-  console.log(collapsed, collapseBelow);
 
   return (
     <div

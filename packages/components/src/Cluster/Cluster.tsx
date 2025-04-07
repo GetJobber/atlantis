@@ -40,7 +40,6 @@ export function Cluster({
   }, [collapseBelow]);
 
   const isCollapsed = useMediaQuery(`(max-width: ${collapseBelowMapped})`);
-  console.log("collapseBelowMapped", collapseBelowMapped, isCollapsed);
 
   return (
     <div

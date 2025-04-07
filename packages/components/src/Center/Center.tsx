@@ -48,7 +48,6 @@ export function Center({
       "--center-gutters": guttersMapped,
     } as React.CSSProperties;
   }, [maxWidthMapped, guttersMapped, align]);
-  console.log("maxWidth", maxWidthMapped, maxWidth);
 
   return (
     <div
