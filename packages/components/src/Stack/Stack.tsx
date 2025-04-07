@@ -20,7 +20,7 @@ export function Stack({
   recursive,
   splitAfter,
   children,
-  align = "start",
+  align,
 }: StackProps) {
   const spaceMapped = useMemo(
     () => (spaceTokens[space as Spaces] ? spaceTokens[space as Spaces] : space),
@@ -33,7 +33,6 @@ export function Stack({
         {
           "--public-stack-split": splitAfter,
           "--public-stack-space": spaceMapped,
-          "--public-stack-align": align,
         } as React.CSSProperties
       }
       className={classNames(
@@ -42,6 +41,9 @@ export function Stack({
         splitAfter
           ? styles[`splitAfter-${splitAfter}` as keyof typeof styles]
           : undefined,
+        align === "center" ? styles.center : undefined,
+        align === "start" ? styles.start : undefined,
+        align === "end" ? styles.end : undefined,
       )}
     >
       {children}

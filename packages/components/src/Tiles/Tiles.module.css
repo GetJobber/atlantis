@@ -1,6 +1,7 @@
 .tiles {
   display: grid;
   grid-gap: var(--public-tile-space);
+  width: 100%;
 }
 
 @supports (width: min(var(--public-tile-min-size), 100%)) {

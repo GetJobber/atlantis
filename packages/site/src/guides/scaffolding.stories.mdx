@@ -55,9 +55,13 @@ responsive behavior for free.
 <Heading level={3}>Composed Page With New Layout Components</Heading>
 <Canvas>
   <Center align="left" maxWidth="1285px">
-    <Box padding="base" width="100%">
+    <Box padding="base">
       <Stack space="larger">
-        <SideKick contentMinWidth="42%" sideWidth="383px">
+        <SideKick
+          contentMinWidth="40%"
+          sideWidth="364px"
+          collapseBelow="1285px"
+        >
           <Stack>
             <Heading level={1}>Page</Heading>
             <Text size="large" variation="subdued">
@@ -81,4 +85,46 @@ responsive behavior for free.
       </Stack>
     </Box>
   </Center>
+</Canvas>
+<Heading level={3}>
+  Composed Page With New Layout Components + Container Query
+</Heading>
+<Canvas>
+  <Container name="container-items">
+    <Box padding="base">
+      <Center align="left" maxWidth="1285px">
+        <Stack space="larger">
+          <SideKick
+            collapseBelow="1285px"
+            contentMinWidth="30%"
+            sideWidth="364px"
+          >
+            <Stack>
+              <Heading level={1}>Page</Heading>
+              <Text size="large" variation="subdued">
+                <Emphasis variation="bold">Subtitle goes here</Emphasis>
+              </Text>
+            </Stack>
+            <Box>
+              <Container.Apply className={styles.actions}>
+                <Cluster justify="end">
+                  <Button label="Action 1" />
+                  <Button label="Action 2" type="secondary" />
+                  <Menu
+                    items={[
+                      {
+                        actions: [{ label: "Action 1" }, { label: "Action 2" }],
+                        label: "Action 3",
+                      },
+                    ]}
+                  />
+                </Cluster>
+              </Container.Apply>
+            </Box>
+          </SideKick>
+          <Text>Children Go Here</Text>
+        </Stack>
+      </Center>
+    </Box>
+  </Container>
 </Canvas>

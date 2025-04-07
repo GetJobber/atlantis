@@ -1,13 +1,13 @@
-@media (max-width: 1286px) {
-    .actions> :first-child {
+@media (max-width: 1285px) {
+    .actions>div> :first-child {
         width: 100%;
     }
 
-    .actions>:nth-child(2) {
+    .actions>div> :nth-child(2) {
         flex-grow: 1;
     }
 
-    .actions>:nth-child(3) {
+    .actions>div> :nth-child(3) {
         flex-grow: 1;
     }
 }

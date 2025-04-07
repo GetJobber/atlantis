@@ -18,7 +18,7 @@ const spaceTokens: Record<Spaces, string> = {
 
 export function Center({
   children,
-  maxWidth = Breakpoints.larger,
+  maxWidth = Breakpoints.smaller,
   andText,
   gutters,
   intrinsic,

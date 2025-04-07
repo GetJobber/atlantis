@@ -19,4 +19,6 @@ export interface SideKickProps {
   readonly space?: string | Spaces;
   /** Whether to place the sidekick on the right. */
   readonly onRight?: boolean;
+  /** The breakpoint to collapse the sidekick at. */
+  readonly collapseBelow?: string;
 }
