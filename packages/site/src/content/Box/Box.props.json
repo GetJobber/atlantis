@@ -81,7 +81,7 @@
         },
         "required": false,
         "type": {
-          "name": "\"base\" | \"minuscule\" | \"smallest\" | \"smaller\" | \"small\" | \"slim\" | \"large\" | \"larger\" | \"largest\" | \"extravagant\""
+          "name": "\"base\" | \"minuscule\" | \"smallest\" | \"smaller\" | \"small\" | \"large\" | \"larger\" | \"largest\" | \"extravagant\""
         }
       },
       "height": {
