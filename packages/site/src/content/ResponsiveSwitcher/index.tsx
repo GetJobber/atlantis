@@ -10,14 +10,14 @@ export default {
     element: `<div style={{width:'100%'}}>
   <ResponsiveSwitcher threshold="50ch">
     <Card>
-      <Rectangle>
+      <Box padding="base">
         <Text>Content Left/Above</Text>
-      </Rectangle>
+      </Box>
     </Card>
     <Card>
-      <Rectangle>
+      <Box padding="base">
         <Text>Content Right/Below</Text>
-      </Rectangle>
+      </Box>
     </Card>
   </ResponsiveSwitcher>
 </div>`,

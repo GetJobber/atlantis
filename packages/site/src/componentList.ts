@@ -616,13 +616,6 @@ export const componentList = [
     additionalMatches: ["Radio Button", "Select"],
   },
   {
-    title: "Rectangle",
-    to: "/components/Rectangle",
-    imageURL: "/Placeholder.png",
-    sections: ["Layouts & Structure"],
-    additionalMatches: ["Layout", "Container"],
-  },
-  {
     title: "RecurringSelect",
     to: "/components/RecurringSelect",
     imageURL: "/RecurringSelect.png",

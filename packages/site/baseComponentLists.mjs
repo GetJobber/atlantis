@@ -72,7 +72,6 @@ const components = [
   "Popover",
   "ProgressBar",
   "RadioGroup",
-  "Rectangle",
   "RecurringSelect",
   "ResponsiveSwitcher",
   "SegmentedControl",

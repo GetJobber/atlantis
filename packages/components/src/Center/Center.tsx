@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import classNames from "classnames";
+import { Breakpoints } from "@jobber/hooks/useResizeObserver";
 import styles from "./Center.module.css";
 import { CenterProps, Spaces } from "./types";
 
@@ -17,10 +18,11 @@ const spaceTokens: Record<Spaces, string> = {
 
 export function Center({
   children,
-  max = "50ch",
+  maxWidth = Breakpoints.larger,
   andText,
   gutters,
   intrinsic,
+  align = "center",
 }: CenterProps) {
   const guttersMapped = useMemo(
     () =>
@@ -28,19 +30,36 @@ export function Center({
     [gutters],
   );
 
+  const maxWidthMapped = useMemo(() => {
+    if (typeof maxWidth === "number") {
+      return `${maxWidth}px`;
+    }
+
+    if (Breakpoints[maxWidth as keyof typeof Breakpoints]) {
+      return Breakpoints[maxWidth as keyof typeof Breakpoints] + "px";
+    }
+
+    return maxWidth;
+  }, [maxWidth]);
+
+  const style = useMemo(() => {
+    return {
+      "--center-measure": maxWidthMapped,
+      "--center-gutters": guttersMapped,
+    } as React.CSSProperties;
+  }, [maxWidthMapped, guttersMapped, align]);
+  console.log("maxWidth", maxWidthMapped, maxWidth);
+
   return (
     <div
-      style={
-        {
-          "--center-measure": max,
-          "--center-gutters": guttersMapped,
-        } as React.CSSProperties
-      }
+      style={style}
       className={classNames(
         styles.center,
         andText && styles.andText,
         gutters && styles.gutters,
         intrinsic && styles.intrinsic,
+        align === "left" && styles.left,
+        align === "right" && styles.right,
       )}
     >
       {children}

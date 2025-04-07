@@ -4,6 +4,15 @@
   box-sizing: content-box;
   margin-inline: auto;
   max-inline-size: var(--center-measure);
+  width: 100%;
+}
+
+.left {
+  margin-inline-start: 0;
+}
+
+.right {
+  margin-inline-end: 0;
 }
 
 .center.andText {

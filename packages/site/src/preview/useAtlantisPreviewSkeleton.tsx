@@ -205,7 +205,6 @@ export const WebCodeWrapper = (transpiledCode: string | null | undefined) => `
               ProgressBar,
               RadioGroup,
               RadioOption,
-              Rectangle,
               RecurringSelect,
               ResponsiveSwitcher, 
               SegmentedControl,

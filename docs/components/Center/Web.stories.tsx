@@ -5,7 +5,7 @@ import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
 import { Button } from "@jobber/components/Button";
 import { Stack } from "@jobber/components/Stack";
-import { Rectangle } from "@jobber/components/Rectangle";
+import { Box } from "@jobber/components/Box";
 
 export default {
   title: "Components/Layouts and Structure/Center/Web",
@@ -26,29 +26,29 @@ const BasicTemplate: ComponentStory<typeof Center> = args => (
         max prop. If gutters are applied, they will be applied when there is
         more room at the edges of the container.
       </Text>
-      <Rectangle>
+      <Box padding="base">
         <Button>
           <Button.Label>Click me</Button.Label>
         </Button>
-      </Rectangle>
+      </Box>
     </Stack>
   </Center>
 );
 
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
-  max: "50ch",
+  maxWidth: "50ch",
 };
 
 export const WithGutters = BasicTemplate.bind({});
 WithGutters.args = {
-  max: "50ch",
+  maxWidth: "50ch",
   gutters: "base",
 };
 
 export const WithAndText = BasicTemplate.bind({});
 WithAndText.args = {
-  max: "50ch",
+  maxWidth: "50ch",
   andText: true,
 };
 
@@ -66,6 +66,6 @@ const CustomMaxWidthTemplate: ComponentStory<typeof Center> = args => (
 
 export const CustomMaxWidth = CustomMaxWidthTemplate.bind({});
 CustomMaxWidth.args = {
-  max: "75ch",
+  maxWidth: "75ch",
   gutters: "large",
 };

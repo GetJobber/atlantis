@@ -5,7 +5,7 @@ import { Stack } from "@jobber/components/Stack";
 import { Heading } from "@jobber/components/Heading";
 import { Text } from "@jobber/components/Text";
 import { Button } from "@jobber/components/Button";
-import { Rectangle } from "@jobber/components/Rectangle";
+import { Box } from "@jobber/components/Box";
 
 <Meta title="Components/Layout/Center" />
 
@@ -60,7 +60,7 @@ difficulties.
 ### Centered text with maximum width
 
 <Canvas>
-  <Center max="200px" andText>
+  <Center maxWidth="200px" andText>
     <Stack>
       <Heading level={2}>Narrow content</Heading>
       <Text>This content and text are centered within a 200px container</Text>
@@ -88,8 +88,8 @@ difficulties.
       elements within the Center component have less width than the longest
       item, they will naturally find the center of the widest item
     </Text>
-    <Rectangle>
+    <Box padding="base">
       <Button label="Centered Button" />
-    </Rectangle>
+    </Box>
   </Center>
 </Canvas>

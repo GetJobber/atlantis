@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Stack } from "@jobber/components/Stack";
 import { Card } from "@jobber/components/Card";
 import { Text } from "@jobber/components/Text";
-import { Rectangle } from "@jobber/components/Rectangle";
+import { Box } from "@jobber/components/Box";
 
 export default {
   title: "Components/Layouts and Structure/Stack/Web",
@@ -17,19 +17,19 @@ export default {
 const BasicTemplate: ComponentStory<typeof Stack> = args => (
   <Stack {...args}>
     <Card>
-      <Rectangle>
+      <Box padding="base">
         <Text>First item</Text>
-      </Rectangle>
+      </Box>
     </Card>
     <Card>
-      <Rectangle>
+      <Box padding="base">
         <Text>Second item</Text>
-      </Rectangle>
+      </Box>
     </Card>
     <Card>
-      <Rectangle>
+      <Box padding="base">
         <Text>Third item</Text>
-      </Rectangle>
+      </Box>
     </Card>
   </Stack>
 );
@@ -52,19 +52,19 @@ const SplitTemplate: ComponentStory<typeof Stack> = args => (
   >
     <Stack {...args}>
       <Card>
-        <Rectangle>
+        <Box padding="base">
           <Text>First item</Text>
-        </Rectangle>
+        </Box>
       </Card>
       <Card>
-        <Rectangle>
+        <Box padding="base">
           <Text>Second item</Text>
-        </Rectangle>
+        </Box>
       </Card>
       <Card>
-        <Rectangle>
+        <Box padding="base">
           <Text>Third item</Text>
-        </Rectangle>
+        </Box>
       </Card>
     </Stack>
   </div>
@@ -80,27 +80,27 @@ const RecursiveTemplate: ComponentStory<typeof Stack> = args => (
   <Stack {...args}>
     <div>
       <Card>
-        <Rectangle>
+        <Box padding="base">
           <Text>Nested item 1.1</Text>
           <Text>Nested item 1.1.2</Text>
-        </Rectangle>
+        </Box>
       </Card>
       <Card>
-        <Rectangle>
+        <Box padding="base">
           <Text>Nested item 1.2</Text>
-        </Rectangle>
+        </Box>
       </Card>
     </div>
     <div>
       <Card>
-        <Rectangle>
+        <Box padding="base">
           <Text>Nested item 2.1</Text>
-        </Rectangle>
+        </Box>
       </Card>
       <Card>
-        <Rectangle>
+        <Box padding="base">
           <Text>Nested item 2.2</Text>
-        </Rectangle>
+        </Box>
       </Card>
     </div>
   </Stack>

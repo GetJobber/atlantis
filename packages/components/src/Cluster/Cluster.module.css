@@ -5,3 +5,13 @@
   justify-content: var(--public-cluster-justify, flex-start);
   align-items: var(--public-cluster-align, center);
 }
+
+.collapsed > * {
+  flex-basis: auto;
+  width: 100%;
+  min-width: 0;
+}
+
+.collapsed {
+  flex-direction: column;
+}

@@ -68,7 +68,6 @@ export * from "./Popover";
 export * from "./ProgressBar";
 export * from "./RadioGroup";
 export * from "./RecurringSelect";
-export * from "./Rectangle";
 export * from "./ResponsiveSwitcher";
 export * from "./Select";
 export * from "./SegmentedControl";

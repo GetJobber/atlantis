@@ -9,10 +9,10 @@ export default {
   component: {
     element: `<Stack>
   <Card>
-    <Rectangle>Vertically</Rectangle>
+    <Box padding="base">Vertically</Box>
   </Card>
   <Card>
-    <Rectangle>Stacked</Rectangle>
+    <Box padding="base">Stacked</Box>
   </Card>
 </Stack>
     `,

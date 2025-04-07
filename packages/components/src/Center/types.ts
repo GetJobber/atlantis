@@ -1,3 +1,5 @@
+import { Breakpoints } from "@jobber/hooks/useResizeObserver";
+
 export type Spaces =
   | "minuscule"
   | "smallest"
@@ -12,9 +14,17 @@ export interface CenterProps {
   readonly children: React.ReactNode;
 
   /**
+   * The alignment of the content.
+   */
+  readonly align?: "left" | "center" | "right";
+
+  /**
    * The maximum width of the centered content.
    */
-  readonly max?: string;
+  readonly maxWidth?:
+    | typeof Breakpoints
+    | (string & NonNullable<unknown>)
+    | number;
 
   /**
    * Whether to also center the text.

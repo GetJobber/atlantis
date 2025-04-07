@@ -10,9 +10,9 @@ export default {
     element: `<div style={{width:'100%', backgroundColor:'var(--color-surface'}}>
   <Center>
     <Card>
-      <Rectangle>
+      <Box padding="base">
         <Text>Hello</Text>
-      </Rectangle>
+      </Box>
     </Card>
   </Center>
 </div>

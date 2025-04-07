@@ -17,4 +17,6 @@ export interface StackProps {
   readonly splitAfter?: number;
   /** Whether to recursively apply the stack spacing to all the children, not just the top-level. */
   readonly recursive?: boolean;
+  /** The alignment of the stack. */
+  readonly align?: "start" | "center" | "end";
 }
