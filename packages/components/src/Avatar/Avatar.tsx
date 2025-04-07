@@ -31,6 +31,36 @@ interface AvatarFoundationProps {
    * @default "base"
    */
   readonly size?: AvatarSize;
+
+  /**
+   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * **Note:** If you are applying fill override to buttonIcon.path, you will need to add !important due
+   * to Button's children element css inheritance.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_className?: {
+    container?: string;
+    initials?: string;
+    fallbackIcon?: {
+      svg?: string;
+      path?: string;
+    };
+  };
+
+  /**
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: {
+    container?: CSSProperties;
+    initials?: CSSProperties;
+    fallbackIcon?: {
+      svg?: CSSProperties;
+      path?: CSSProperties;
+    };
+  };
 }
 
 interface AvatarWithImageProps extends AvatarFoundationProps {
@@ -49,10 +79,13 @@ export function Avatar({
   initials,
   size = "base",
   color,
+  UNSAFE_className = {},
+  UNSAFE_style = {},
 }: AvatarProps) {
   const style: CSSProperties = {
     backgroundColor: color,
     borderColor: color,
+    ...UNSAFE_style.container,
   };
 
   if (imageUrl) {
@@ -65,9 +98,14 @@ export function Avatar({
     [styles.isDark]: shouldBeDark,
   });
 
+  const containerClassNames = classnames(
+    className,
+    UNSAFE_className?.container,
+  );
+
   return (
     <div
-      className={className}
+      className={containerClassNames}
       style={style}
       role={imageUrl && "img"}
       aria-label={name}
