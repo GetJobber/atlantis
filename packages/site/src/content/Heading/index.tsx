@@ -1,6 +1,7 @@
 import HeadingContent from "@atlantis/docs/components/Heading/Heading.stories.mdx";
 import Props from "./Heading.props.json";
 import MobileProps from "./Heading.props-mobile.json";
+import Notes from "./HeadingNotes.mdx";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
@@ -22,4 +23,5 @@ export default {
       ),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

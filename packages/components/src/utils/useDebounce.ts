@@ -26,7 +26,11 @@ export function useDebounce<T extends AnyFunction>(
   }
 
   const debounced = useMemo(() => {
-    return debounce(() => funcRef.current(), wait, options);
+    return debounce(
+      (...args: Parameters<T>) => funcRef.current(...args),
+      wait,
+      options,
+    );
     // Note: do not add any dependencies! There is currently no use case where we would change
     // the wait delay or options between renders. By not tracking as dependencies, this allows
     // consumers of useDebounce to provide a raw object for options rather than forcing them to

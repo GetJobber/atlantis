@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.37.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.37.0...@jobber/atlantis-site@0.37.1) (2025-04-07)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+# [0.37.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.36.0...@jobber/atlantis-site@0.37.0) (2025-04-04)
+
+
+### Features
+
+* **components:** Make DataList.Search optionally controllable ([#2460](https://github.com/GetJobber/atlantis/issues/2460)) ([a68249b](https://github.com/GetJobber/atlantis/commit/a68249bbfac450eea8e0fc0df1a97e883b93ebc5))
+
+
+
+
+
+# [0.36.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.35.1...@jobber/atlantis-site@0.36.0) (2025-04-04)
+
+
+### Features
+
+* **components:** Add UNSAFE props to Heading ([#2459](https://github.com/GetJobber/atlantis/issues/2459)) ([2fbf940](https://github.com/GetJobber/atlantis/commit/2fbf940a48934872e1339e1003aa163dbe0ef89f))
+
+
+
+
+
 ## [0.35.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.35.0...@jobber/atlantis-site@0.35.1) (2025-04-03)
 
 **Note:** Version bump only for package @jobber/atlantis-site
