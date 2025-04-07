@@ -3,7 +3,7 @@ import classnames from "classnames";
 import { XOR } from "ts-xor";
 import styles from "./Avatar.module.css";
 import { isDark } from "./utilities";
-import { Icon } from "../Icon";
+import { Icon, IconProps } from "../Icon";
 
 type AvatarSize = "base" | "large" | "small";
 interface AvatarFoundationProps {
@@ -42,10 +42,7 @@ interface AvatarFoundationProps {
   readonly UNSAFE_className?: {
     container?: string;
     initials?: string;
-    fallbackIcon?: {
-      svg?: string;
-      path?: string;
-    };
+    fallbackIcon?: IconProps["UNSAFE_className"];
   };
 
   /**
@@ -56,10 +53,7 @@ interface AvatarFoundationProps {
   readonly UNSAFE_style?: {
     container?: CSSProperties;
     initials?: CSSProperties;
-    fallbackIcon?: {
-      svg?: CSSProperties;
-      path?: CSSProperties;
-    };
+    fallbackIcon?: IconProps["UNSAFE_style"];
   };
 }
 
@@ -111,7 +105,19 @@ export function Avatar({
       aria-label={name}
     >
       {!imageUrl && (
-        <Initials initials={initials} dark={shouldBeDark} iconSize={size} />
+        <Initials
+          initials={initials}
+          dark={shouldBeDark}
+          iconSize={size}
+          UNSAFE_className={{
+            initials: UNSAFE_className.initials,
+            fallbackIcon: UNSAFE_className.fallbackIcon,
+          }}
+          UNSAFE_style={{
+            initials: UNSAFE_style.initials,
+            fallbackIcon: UNSAFE_style.fallbackIcon,
+          }}
+        />
       )}
     </div>
   );
@@ -121,22 +127,44 @@ interface InitialsProps {
   readonly dark?: boolean;
   readonly iconSize?: AvatarSize;
   readonly initials?: string;
+
+  readonly UNSAFE_className?: {
+    initials?: string;
+    fallbackIcon?: IconProps["UNSAFE_className"];
+  };
+
+  readonly UNSAFE_style?: {
+    initials?: CSSProperties;
+    fallbackIcon?: IconProps["UNSAFE_style"];
+  };
 }
 
 function Initials({
   initials,
   dark = false,
   iconSize = "base",
+  UNSAFE_className,
+  UNSAFE_style,
 }: InitialsProps) {
   if (!initials) {
     return (
-      <Icon name="person" color={dark ? "white" : "blue"} size={iconSize} />
+      <Icon
+        name="person"
+        color={dark ? "white" : "blue"}
+        size={iconSize}
+        UNSAFE_className={UNSAFE_className?.fallbackIcon}
+        UNSAFE_style={UNSAFE_style?.fallbackIcon}
+      />
     );
   }
 
-  const className = classnames(styles.initials, {
+  const className = classnames(styles.initials, UNSAFE_className?.initials, {
     [styles.smallInitials]: initials.length > 2,
   });
 
-  return <span className={className}>{initials.substr(0, 3)}</span>;
+  return (
+    <span className={className} style={UNSAFE_style?.initials}>
+      {initials.substr(0, 3)}
+    </span>
+  );
 }
