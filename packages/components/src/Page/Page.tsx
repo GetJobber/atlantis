@@ -57,7 +57,6 @@ interface PageFoundationProps {
 
   /**
    * Page title secondary action button settings.
-   *   Only shown if there is a primaryAction.
    */
   readonly secondaryAction?: ButtonActionProps;
 
@@ -110,7 +109,7 @@ export function Page({
   });
 
   const showMenu = moreActionsMenu.length > 0;
-  const showActionGroup = showMenu || primaryAction;
+  const showActionGroup = showMenu || primaryAction || secondaryAction;
 
   if (primaryAction != undefined) {
     primaryAction = Object.assign({ fullWidth: true }, primaryAction);

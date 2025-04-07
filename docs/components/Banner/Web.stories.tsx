@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Banner } from "@jobber/components/Banner";
 import { Button } from "@jobber/components/Button";
+import { Content } from "@jobber/components/Content";
 
 export default {
   title: "Components/Status and Feedback/Banner/Web",
@@ -12,8 +13,19 @@ export default {
   },
 } as ComponentMeta<typeof Banner>;
 
-const BasicTemplate: ComponentStory<typeof Banner> = args => (
-  <Banner {...args}>Your splines are being reticulated</Banner>
+const BasicTemplate: ComponentStory<typeof Banner> = () => (
+  <Content>
+    <Banner type="success">Your account was upgraded successfully</Banner>
+    <Banner type="notice">
+      Jobber will be performing scheduled maintenance on Feb. 21
+    </Banner>
+    <Banner type="warning">
+      Changes to this visit will not be applied to future visits
+    </Banner>
+    <Banner type="error">
+      Payment could not be processed because of a network error
+    </Banner>
+  </Content>
 );
 
 const ActionsTemplate: ComponentStory<typeof Banner> = args => (
