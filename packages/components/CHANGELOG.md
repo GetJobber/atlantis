@@ -3,6 +3,88 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.33.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.33.1...@jobber/components@6.33.2) (2025-04-07)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [6.33.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.33.0...@jobber/components@6.33.1) (2025-04-07)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [6.33.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.32.0...@jobber/components@6.33.0) (2025-04-04)
+
+
+### Features
+
+* **components:** Make DataList.Search optionally controllable ([#2460](https://github.com/GetJobber/atlantis/issues/2460)) ([a68249b](https://github.com/GetJobber/atlantis/commit/a68249bbfac450eea8e0fc0df1a97e883b93ebc5))
+
+
+
+
+
+# [6.32.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.31.1...@jobber/components@6.32.0) (2025-04-04)
+
+
+### Features
+
+* **components:** Add UNSAFE props to Heading ([#2459](https://github.com/GetJobber/atlantis/issues/2459)) ([2fbf940](https://github.com/GetJobber/atlantis/commit/2fbf940a48934872e1339e1003aa163dbe0ef89f))
+
+
+
+
+
+## [6.31.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.31.0...@jobber/components@6.31.1) (2025-04-03)
+
+
+### Bug Fixes
+
+* **components:** Dismissible Chip Focus Management ([#2447](https://github.com/GetJobber/atlantis/issues/2447)) ([e19a857](https://github.com/GetJobber/atlantis/commit/e19a85707db597411301f547f005b64702ad4e8b))
+
+
+
+
+
+# [6.31.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.30.0...@jobber/components@6.31.0) (2025-04-03)
+
+
+### Features
+
+* **components:** Popover composability ([#2451](https://github.com/GetJobber/atlantis/issues/2451)) ([81709e8](https://github.com/GetJobber/atlantis/commit/81709e8468234bab8c9148a8f31a20194cc22d33))
+
+
+
+
+
+# [6.30.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.29.0...@jobber/components@6.30.0) (2025-04-02)
+
+
+### Features
+
+* **components:** Add UNSAFE props to Text ([#2454](https://github.com/GetJobber/atlantis/issues/2454)) ([fa35ca2](https://github.com/GetJobber/atlantis/commit/fa35ca2e9fc5d7ae0ce3ed74900f1a5fb193ad82))
+
+
+
+
+
+# [6.29.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.28.0...@jobber/components@6.29.0) (2025-04-01)
+
+
+### Features
+
+* **components:** Add UNSAFE props to Button ([#2448](https://github.com/GetJobber/atlantis/issues/2448)) ([c4f4798](https://github.com/GetJobber/atlantis/commit/c4f4798aa150e90587b6f7a1afc129398ecfef9c))
+
+
+
+
+
 # [6.28.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.27.0...@jobber/components@6.28.0) (2025-03-28)
 
 

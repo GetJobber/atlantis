@@ -212,6 +212,15 @@ export interface DataListSearchProps {
    */
   readonly initialValue?: string;
 
+  /**
+   * The controlled value of the search input.
+   *
+   * Supply this field if you want to take control over the search input's
+   * value. You'll need to use `onSearch` to handle updating your state with
+   * the latest value.
+   */
+  readonly value?: string;
+
   readonly onSearch: (value: string) => void;
 }
 
