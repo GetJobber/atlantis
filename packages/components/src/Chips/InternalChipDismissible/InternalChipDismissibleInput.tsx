@@ -1,6 +1,7 @@
 /* eslint-disable max-statements */
 import React, { useEffect, useState } from "react";
 import classNames from "classnames";
+import debounce from "lodash/debounce";
 import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import styles from "./InternalChipDismissible.module.css";
 import { ChipDismissibleInputProps } from "./InternalChipDismissibleTypes";
@@ -21,6 +22,7 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
     isLoadingMore = false,
     onLoadMore,
     options,
+    onlyShowMenuOnSearch = false,
   } = props;
 
   const {
@@ -40,6 +42,7 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
     handleKeyDown,
     handleSelectOption,
     handleDebouncedSearch,
+    handleOpenMenu,
   } = useInternalChipDismissibleInput(props);
 
   const [showInput, setShowInput] = useState(false);
@@ -66,24 +69,33 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
     isInView && onLoadMore && onLoadMore(searchValue);
   }, [isInView]);
 
-  if (!showInput) {
+  if (onlyShowMenuOnSearch && !showInput) {
     const handleActivate = () => {
       setShowInput(true);
       setTimeout(() => inputRef.current?.focus(), 0);
     };
 
     return React.cloneElement(activator, { onClick: handleActivate });
+  } else if (!onlyShowMenuOnSearch && !menuOpen) {
+    return React.cloneElement(activator, { onClick: handleOpenMenu });
   }
 
   const handleInputBlur = () => {
     handleBlur();
 
-    setTimeout(() => {
-      if (inputRef.current?.value === "") {
-        setShowInput(false);
-      }
-    }, 150);
+    if (onlyShowMenuOnSearch) {
+      setTimeout(() => {
+        if (inputRef.current?.value === "") {
+          setShowInput(false);
+        }
+      }, 150);
+    }
   };
+
+  const shouldShowMenu =
+    menuOpen &&
+    (hasAvailableOptions || isLoadingMore) &&
+    (!onlyShowMenuOnSearch || !!searchValue);
 
   return (
     <>
@@ -95,16 +107,19 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
         aria-label="Press up and down arrow to cycle through the options or type to narrow down the results"
         aria-autocomplete="list"
         aria-owns={menuId}
-        aria-expanded={hasAvailableOptions}
+        aria-expanded={shouldShowMenu}
         aria-activedescendant={generateDescendantId(activeIndex)}
         value={searchValue}
         onChange={handleSearchChange}
         onKeyDown={handleKeyDown}
-        onBlur={handleInputBlur}
+        onBlur={
+          onlyShowMenuOnSearch ? handleInputBlur : debounce(handleBlur, 200)
+        }
+        onFocus={!onlyShowMenuOnSearch ? handleOpenMenu : undefined}
         autoFocus={true}
       />
 
-      {menuOpen && !!searchValue && (hasAvailableOptions || isLoadingMore) && (
+      {shouldShowMenu && (
         <div
           ref={setPositionedElementRef}
           className={styles.menu}

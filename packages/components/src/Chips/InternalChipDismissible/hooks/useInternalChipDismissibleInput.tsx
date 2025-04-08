@@ -22,6 +22,7 @@ export function useInternalChipDismissibleInput({
   onCustomOptionSelect,
   onOptionSelect,
   onSearch,
+  onlyShowMenuOnSearch = false,
 }: ChipDismissibleInputProps) {
   const menuId = useId();
   const [allOptions, setAllOptions] = useState<
@@ -98,6 +99,14 @@ export function useInternalChipDismissibleInput({
       if (newSearchValue.length === 0 && menuOpen) {
         actions.handleCloseMenu();
       }
+
+      if (onlyShowMenuOnSearch && newSearchValue.length > 0 && !menuOpen) {
+        actions.handleOpenMenu();
+      }
+
+      if (onlyShowMenuOnSearch && newSearchValue.length === 0 && menuOpen) {
+        actions.handleCloseMenu();
+      }
     },
 
     handleSetActiveOnMouseOver: (index: number) => {
@@ -119,7 +128,17 @@ export function useInternalChipDismissibleInput({
     handleKeyDown: (event: KeyboardEvent<HTMLInputElement>) => {
       const callbacks: KeyDownCallBacks = {};
 
-      if (searchValue.length > 0) {
+      if (searchValue.length === 0) {
+        callbacks.Backspace = () => {
+          const target = computed.inputRef.current?.previousElementSibling;
+
+          if (target instanceof HTMLElement) {
+            target.focus();
+          }
+        };
+      }
+
+      if (!onlyShowMenuOnSearch || searchValue.length > 0) {
         callbacks.Enter = () => {
           if (shouldCancelEnter) return;
           actions.handleSelectOption(computed.activeOption);
@@ -136,18 +155,6 @@ export function useInternalChipDismissibleInput({
           setActiveIndex(computed.nextOptionIndex);
         };
         callbacks.ArrowUp = () => setActiveIndex(computed.previousOptionIndex);
-      }
-
-      if (searchValue.length === 0) {
-        callbacks.Backspace = () => {
-          // If there's no text left to delete,
-          // and delete is pressed again, focus on a chip instead.
-          const target = computed.inputRef.current?.previousElementSibling;
-
-          if (target instanceof HTMLElement) {
-            target.focus();
-          }
-        };
       }
 
       handleKeydownEvents(callbacks, event);
