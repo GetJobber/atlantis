@@ -97,6 +97,7 @@
     "InputFileContentContext.Provider",
     "InputGroup",
     "InputNumber",
+    "InputNumber2",
     "InputPassword",
     "InputPhoneNumber",
     "InputText",
