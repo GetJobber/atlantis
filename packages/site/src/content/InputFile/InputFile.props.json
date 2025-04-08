@@ -243,7 +243,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event: MouseEvent<HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => void"
+          "name": "(event: MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent>) => void"
         }
       },
       "variation": {
@@ -401,7 +401,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event: MouseEvent<HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => void"
+          "name": "(event: MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent>) => void"
         }
       },
       "UNSAFE_className": {
@@ -441,6 +441,19 @@
         "required": false,
         "type": {
           "name": "string"
+        }
+      },
+      "htmlButtonRef": {
+        "defaultValue": null,
+        "description": "",
+        "name": "htmlButtonRef",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "BasicButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Ref<HTMLButtonElement>"
         }
       },
       "icon": {
