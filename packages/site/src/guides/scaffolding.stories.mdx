@@ -1,5 +1,9 @@
 import { Canvas } from "@storybook/addon-docs";
 import { Text } from "@jobber/components";
+import { Card } from "@jobber/components";
+import { Icon } from "@jobber/components";
+import { StatusIndicator } from "@jobber/components";
+import { StatusLabel } from "@jobber/components";
 import { ResponsiveSwitcher } from "@jobber/components";
 import { Emphasis } from "@jobber/components";
 import { Markdown } from "@jobber/components";
@@ -82,4 +86,69 @@ responsive behavior for free.
       </Stack>
     </Rectangle>
   </div>
+</Canvas>
+
+<Heading level={3}>Metadata Card</Heading>
+<Canvas>
+  <Card accent="green">
+    <Rectangle
+      colorSurface="color-surface--background--subtle"
+      padding="larger"
+    >
+      <Stack space="base">
+        <Cluster justify="space-between" align="center">
+          <Cluster>
+            <Icon name="job" />
+            <StatusLabel label="Active" status="informative" />
+          </Cluster>
+          <Cluster>
+            <Button label="More" type="secondary" icon="more" />
+            <Button label="Primary Action" icon="camera" />
+          </Cluster>
+        </Cluster>
+        <Heading level={1}>Job #32</Heading>
+        <Card>
+          <Rectangle colorSurface="color-surface--background--subtle" padding="large">
+            <Stack>
+              <Stack space="smallest">
+                <Cluster justify="space-between" align="start">
+                  <Cluster align="center">
+                    <Text variation="strong">Josephine Smith</Text>
+                    <StatusIndicator status="informative" />
+                  </Cluster>
+                  <Menu
+                    activator={
+                      <Button
+                        ariaLabel="More options"
+                        icon="more"
+                        type="tertiary"
+                        variation="subtle"
+                      />
+                    }
+                    items={[{ actions: [
+                      { label: "Action 1" },
+                      { label: "Action 2" }
+                    ] }]}
+                  />
+                </Cluster>
+                <Text>3891 Ranchview Dr. Richardson, California 62639</Text>
+              </Stack>
+              <Tiles space="smaller" columns={2}>
+                <Stack space="smallest">
+                  <Text>453-998-0078</Text>
+                  <Text variation="subdued" textDecoration="underline">josephine.smith@gmail.com</Text>
+                </Stack>
+                <Stack align="end" space="smallest">
+                  <Text variation="subdued">Lead source</Text>
+                  <Text>Google Ad</Text>
+                </Stack>
+              </Tiles>
+            </Stack>
+          </Rectangle>
+        </Card>
+
+      </Stack>
+    </Rectangle>
+
+  </Card>
 </Canvas>
