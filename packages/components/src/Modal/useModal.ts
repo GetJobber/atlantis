@@ -2,9 +2,11 @@ import {
   useClick,
   useDismiss,
   useFloating,
+  useFloatingNodeId,
   useInteractions,
   useRole,
 } from "@floating-ui/react";
+import { useRef } from "react";
 
 interface UseModalProps {
   open: boolean;
@@ -14,12 +16,17 @@ interface UseModalProps {
 
 export function useModal({
   open,
-  activatorRef,
+  activatorRef: refProp,
   onRequestClose,
 }: UseModalProps) {
+  const nodeId = useFloatingNodeId();
+  const defaultActivatorRef = useRef<HTMLElement | null>(null);
+  const activatorRef = refProp ?? defaultActivatorRef;
+
   const { refs: floatingRefs, context: floatingContext } = useFloating({
     elements: { reference: activatorRef?.current },
-    onOpenChange: newOpen => {
+    nodeId,
+    onOpenChange: (newOpen: boolean) => {
       if (!newOpen) {
         onRequestClose?.();
       }
@@ -31,11 +38,16 @@ export function useModal({
   const dismiss = useDismiss(floatingContext, {
     outsidePressEvent: "mousedown",
     escapeKey: true,
+    bubbles: true,
   });
   const role = useRole(floatingContext);
 
-  // Merge all the interactions into prop getters
-  const { getFloatingProps } = useInteractions([click, dismiss, role]);
+  useInteractions([click, dismiss, role]);
 
-  return { floatingRefs, floatingContext, getFloatingProps };
+  return {
+    floatingRefs,
+    floatingContext,
+    nodeId,
+    activatorRef,
+  };
 }

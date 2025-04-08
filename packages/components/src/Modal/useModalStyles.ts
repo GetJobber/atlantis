@@ -6,6 +6,10 @@ export function useModalStyles(size?: keyof typeof sizes) {
   return {
     modal: classnames(styles.modal, size && sizes[size]),
     overlay: styles.overlay,
-    container: styles.container,
+    header: styles.header,
+    dismissButton: styles.closeButton,
+    actionBar: styles.actionBar,
+    leftAction: styles.leftAction,
+    rightAction: styles.rightAction,
   };
 }
