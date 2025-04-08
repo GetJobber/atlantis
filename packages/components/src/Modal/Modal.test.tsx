@@ -10,7 +10,6 @@ import userEvent from "@testing-library/user-event";
 import { Modal } from "./Modal";
 import styles from "./Modal.module.css";
 import { useModalStyles } from "./useModalStyles";
-import { ModalProvider, ModalWrapper } from "./ModalContext";
 import { Content } from "../Content";
 import { Text } from "../Text";
 
@@ -383,13 +382,13 @@ describe("Composable Modal", () => {
   });
 });
 
-describe("ModalProvider", () => {
+describe("Modal.Provider", () => {
   const open = true;
 
   it("should render the modal content", () => {
     render(
-      <ModalProvider open={open}>
-        <ModalWrapper>
+      <Modal.Provider open={open}>
+        <Modal.Wrapper>
           <Modal.Header title="Modal Title" />
           <Content>
             <Text>This is some extra content</Text>
@@ -399,8 +398,8 @@ describe("ModalProvider", () => {
             secondary={{ label: "Cancel" }}
             tertiary={{ label: "Delete", variation: "destructive" }}
           />
-        </ModalWrapper>
-      </ModalProvider>,
+        </Modal.Wrapper>
+      </Modal.Provider>,
     );
     const header = screen.getByTestId("ATL-Modal-Header");
     expect(header).toBeDefined();
@@ -413,11 +412,11 @@ describe("ModalProvider", () => {
 
   it('modal contains aria role of "dialog"', async () => {
     render(
-      <ModalProvider open={open}>
-        <ModalWrapper>
+      <Modal.Provider open={open}>
+        <Modal.Wrapper>
           <Modal.Header title="Modal Title" />
-        </ModalWrapper>
-      </ModalProvider>,
+        </Modal.Wrapper>
+      </Modal.Provider>,
     );
     expect(await screen.findByRole("dialog")).toBeInTheDocument();
   });
@@ -425,11 +424,11 @@ describe("ModalProvider", () => {
   it("calls onRequestClose when pressing the escape key", async () => {
     const handleRequestClose = jest.fn();
     render(
-      <ModalProvider open={open} onRequestClose={handleRequestClose}>
-        <ModalWrapper>
+      <Modal.Provider open={open} onRequestClose={handleRequestClose}>
+        <Modal.Wrapper>
           <Modal.Header title="Modal Title" />
-        </ModalWrapper>
-      </ModalProvider>,
+        </Modal.Wrapper>
+      </Modal.Provider>,
     );
 
     await userEvent.keyboard("{Escape}");

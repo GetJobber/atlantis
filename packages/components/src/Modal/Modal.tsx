@@ -1,11 +1,12 @@
 import React from "react";
-import classnames from "classnames";
-import { ModalProvider, ModalWrapper, useModalContext } from "./ModalContext";
-import { HeaderProps, ModalActionsProps, ModalProps } from "./Modal.types";
-import { useModalStyles } from "./useModalStyles";
-import { Heading } from "../Heading";
-import { Button } from "../Button";
-import { ButtonDismiss } from "../ButtonDismiss";
+import { ModalProvider, useModalContext } from "./ModalContext";
+import { ModalProps } from "./Modal.types";
+import {
+  ModalActions,
+  ModalActivator,
+  ModalHeader,
+  ModalWrapper,
+} from "./ModalInternals";
 
 const Modal = ({
   open = false,
@@ -29,7 +30,7 @@ const Modal = ({
       onRequestClose={onRequestClose}
       activatorRef={activatorRef}
     >
-      <ModalWrapper
+      <Modal.Wrapper
         UNSAFE_className={UNSAFE_className}
         UNSAFE_style={UNSAFE_style}
       >
@@ -43,7 +44,7 @@ const Modal = ({
         >
           {children}
         </ModalContent>
-      </ModalWrapper>
+      </Modal.Wrapper>
     </ModalProvider>
   );
 };
@@ -86,90 +87,12 @@ function ModalContent({
   return template;
 }
 
-Modal.Header = function Header({
-  title,
-  children,
-  UNSAFE_className,
-  UNSAFE_style,
-}: HeaderProps) {
-  const { header, dismissButton } = useModalStyles();
-  const { dismissible, onRequestClose } = useModalContext();
-  const headerClassName = classnames(header, UNSAFE_className?.header);
-  const dismissButtonClassName = classnames(
-    dismissButton,
-    UNSAFE_className?.dismissButton,
-  );
-  const content = children ?? (
-    <div
-      className={headerClassName}
-      data-testid="ATL-Modal-Header"
-      style={UNSAFE_style?.header}
-    >
-      <Heading level={2}>{title}</Heading>
+Modal.Header = ModalHeader;
 
-      {dismissible && (
-        <div
-          className={dismissButtonClassName}
-          style={UNSAFE_style?.dismissButton}
-        >
-          <ButtonDismiss onClick={onRequestClose} ariaLabel="Close modal" />
-        </div>
-      )}
-    </div>
-  );
+Modal.Actions = ModalActions;
 
-  return <>{content}</>;
-};
+Modal.Activator = ModalActivator;
+Modal.Provider = ModalProvider;
 
-Modal.Actions = function Actions({
-  primary,
-  secondary,
-  tertiary,
-  UNSAFE_className,
-  UNSAFE_style,
-}: ModalActionsProps) {
-  const { actionBar, rightAction, leftAction } = useModalStyles();
-  const shouldShow =
-    primary != undefined || secondary != undefined || tertiary != undefined;
-  const actionBarClassName = classnames(actionBar, UNSAFE_className?.actionBar);
-  const rightActionClassName = classnames(
-    rightAction,
-    UNSAFE_className?.rightAction,
-  );
-  const leftActionClassName = classnames(
-    leftAction,
-    UNSAFE_className?.leftAction,
-  );
-
-  return (
-    <>
-      {shouldShow && (
-        <div
-          className={actionBarClassName}
-          style={UNSAFE_style?.actionBar}
-          data-testid="ATL-Modal-Actions"
-        >
-          <div
-            className={rightActionClassName}
-            style={UNSAFE_style?.rightAction}
-          >
-            {primary && <Button {...primary} />}
-            {secondary && (
-              <Button {...secondary} type="primary" variation="subtle" />
-            )}
-          </div>
-          {tertiary && (
-            <div
-              className={leftActionClassName}
-              style={UNSAFE_style?.leftAction}
-            >
-              <Button {...tertiary} type="secondary" variation="destructive" />
-            </div>
-          )}
-        </div>
-      )}
-    </>
-  );
-};
-
+Modal.Wrapper = ModalWrapper;
 export { Modal };
