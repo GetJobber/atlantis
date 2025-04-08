@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.75.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.74.0...@jobber/design@0.75.0) (2025-04-08)
+
+
+### Features
+
+* **design:** add slim spacing token and add to docs ([#2465](https://github.com/GetJobber/atlantis/issues/2465)) ([91396c8](https://github.com/GetJobber/atlantis/commit/91396c8c0326a8b89087e62067eeba390e1ef80c))
+
+
+
+
+
 # [0.74.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.73.0...@jobber/design@0.74.0) (2025-04-08)
 
 
