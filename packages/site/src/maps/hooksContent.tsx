@@ -10,7 +10,6 @@ import UseIsMountedDocs from "@atlantis/docs/hooks/useIsMounted.stories.mdx";
 import UseLiveAnnounceDocs from "@atlantis/docs/hooks/useLiveAnnounce.stories.mdx";
 import UseOnKeyDownDocs from "@atlantis/docs/hooks/useOnKeyDown.stories.mdx";
 import UseOnMountDocs from "@atlantis/docs/hooks/useOnMount.stories.mdx";
-import UsePasswordStrengthDocs from "@atlantis/docs/hooks/usePasswordStrength.stories.mdx";
 import UseRefocusOnActivatorDocs from "@atlantis/docs/hooks/useRefocusOnActivator.stories.mdx";
 import UseResizeObserverDocs from "@atlantis/docs/hooks/useResizeObserver.stories.mdx";
 import UseWindowDimensionsDocs from "@atlantis/docs/hooks/useWindowDimensions.stories.mdx";
@@ -76,11 +75,6 @@ export const hooksContentMap: ContentMapItems = {
     intro: "useOnMount",
     title: "useOnMount",
     content: () => <UseOnMountDocs />,
-  },
-  usePasswordStrength: {
-    intro: "usePasswordStrength",
-    title: "usePasswordStrength",
-    content: () => <UsePasswordStrengthDocs />,
   },
   useRefocusOnActivator: {
     intro: "useRefocusOnActivator",
