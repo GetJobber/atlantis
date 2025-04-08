@@ -20,8 +20,14 @@
   animation: glimmer 2s infinite linear;
 }
 
+[data-theme="dark"] .glimmer,
 .reverseTheme {
   --glimmer-background: rgba(var(--color-white--rgb), 10%);
+  --glimmer-shine-opacity: 20%;
+}
+
+[data-theme="dark"] .reverseTheme {
+  --glimmer-background: rgba(var(--color-black--rgb), 10%);
   --glimmer-shine-opacity: 25%;
 }
 
