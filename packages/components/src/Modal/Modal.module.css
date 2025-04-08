@@ -31,7 +31,6 @@
   padding: var(--space-small);
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
-  overflow: auto;
   background-color: var(--color-surface);
   flex: 0 0 auto;
   outline-color: var(--color-focus);

@@ -1,35 +1,13 @@
-import React, { ReactNode } from "react";
-import ReactDOM from "react-dom";
+import React from "react";
 import classnames from "classnames";
-import { AnimatePresence, motion } from "framer-motion";
-import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
-import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
-import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
-import styles from "./Modal.module.css";
-import sizes from "./ModalSizes.module.css";
+import { ModalProvider, ModalWrapper, useModalContext } from "./ModalContext";
+import { HeaderProps, ModalActionsProps, ModalProps } from "./Modal.types";
+import { useModalStyles } from "./useModalStyles";
 import { Heading } from "../Heading";
-import { Button, ButtonProps } from "../Button";
+import { Button } from "../Button";
 import { ButtonDismiss } from "../ButtonDismiss";
 
-export interface ModalProps {
-  /**
-   * @default false
-   */
-  readonly title?: string;
-  readonly open?: boolean;
-  readonly size?: keyof typeof sizes;
-  /**
-   * @default true
-   */
-  readonly dismissible?: boolean;
-  readonly children: ReactNode;
-  readonly primaryAction?: ButtonProps;
-  readonly secondaryAction?: ButtonProps;
-  readonly tertiaryAction?: ButtonProps;
-  onRequestClose?(): void;
-}
-
-export function Modal({
+const Modal = ({
   open = false,
   title,
   size,
@@ -39,131 +17,159 @@ export function Modal({
   secondaryAction,
   tertiaryAction,
   onRequestClose,
-}: ModalProps) {
-  const modalClassName = classnames(styles.modal, size && sizes[size]);
-  useRefocusOnActivator(open);
-  const modalRef = useFocusTrap<HTMLDivElement>(open);
-  useOnKeyDown(handleRequestClose, "Escape");
-
-  const template = (
-    <AnimatePresence>
-      {open && (
-        <div
-          ref={modalRef}
-          role="dialog"
-          className={styles.container}
-          tabIndex={0}
+  activatorRef,
+  UNSAFE_className,
+  UNSAFE_style,
+}: ModalProps) => {
+  return (
+    <ModalProvider
+      open={open}
+      size={size}
+      dismissible={dismissible}
+      onRequestClose={onRequestClose}
+      activatorRef={activatorRef}
+    >
+      <ModalWrapper
+        UNSAFE_className={UNSAFE_className}
+        UNSAFE_style={UNSAFE_style}
+      >
+        <ModalContent
+          title={title}
+          primaryAction={primaryAction}
+          secondaryAction={secondaryAction}
+          tertiaryAction={tertiaryAction}
+          UNSAFE_className={UNSAFE_className}
+          UNSAFE_style={UNSAFE_style}
         >
-          <motion.div
-            key={styles.overlay}
-            className={styles.overlay}
-            onClick={onRequestClose}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.8 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          />
-          <motion.div
-            key={styles.modal}
-            className={modalClassName}
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            transition={{
-              duration: 0.2,
-              ease: "easeInOut",
-            }}
-          >
-            {title != undefined && (
-              <Header
-                title={title}
-                dismissible={dismissible}
-                onRequestClose={onRequestClose}
-              />
-            )}
-            {children}
+          {children}
+        </ModalContent>
+      </ModalWrapper>
+    </ModalProvider>
+  );
+};
 
-            <Actions
-              primary={primaryAction}
-              secondary={secondaryAction}
-              tertiary={tertiaryAction}
-            />
-          </motion.div>
-        </div>
+/**
+ * Default Modal Content for Modal. Used to maintain backwards compatibility with the legacy modal.
+ */
+function ModalContent({
+  title,
+  children,
+  primaryAction,
+  secondaryAction,
+  tertiaryAction,
+  UNSAFE_className,
+  UNSAFE_style,
+}: ModalProps) {
+  const { onRequestClose, dismissible } = useModalContext();
+  const template = (
+    <>
+      {title != undefined && (
+        <Modal.Header
+          title={title}
+          dismissible={dismissible}
+          onRequestClose={onRequestClose}
+          UNSAFE_className={UNSAFE_className}
+          UNSAFE_style={UNSAFE_style}
+        />
       )}
-    </AnimatePresence>
+      {children}
+      <Modal.Actions
+        primary={primaryAction}
+        secondary={secondaryAction}
+        tertiary={tertiaryAction}
+        UNSAFE_className={UNSAFE_className}
+        UNSAFE_style={UNSAFE_style}
+      />
+    </>
   );
 
-  return globalThis?.document
-    ? ReactDOM.createPortal(template, document.body)
-    : template;
-
-  function handleRequestClose() {
-    if (open && onRequestClose) {
-      onRequestClose();
-    }
-  }
+  return template;
 }
 
-interface HeaderProps {
-  readonly title: string;
-  readonly dismissible?: boolean;
-  onRequestClose?(): void;
-}
-
-function Header({ title, dismissible, onRequestClose }: HeaderProps) {
-  return (
-    <div className={styles.header} data-testid="modal-header">
+Modal.Header = function Header({
+  title,
+  children,
+  UNSAFE_className,
+  UNSAFE_style,
+}: HeaderProps) {
+  const { header, dismissButton } = useModalStyles();
+  const { dismissible, onRequestClose } = useModalContext();
+  const headerClassName = classnames(header, UNSAFE_className?.header);
+  const dismissButtonClassName = classnames(
+    dismissButton,
+    UNSAFE_className?.dismissButton,
+  );
+  const content = children ?? (
+    <div
+      className={headerClassName}
+      data-testid="ATL-Modal-Header"
+      style={UNSAFE_style?.header}
+    >
       <Heading level={2}>{title}</Heading>
 
       {dismissible && (
-        <div className={styles.closeButton}>
+        <div
+          className={dismissButtonClassName}
+          style={UNSAFE_style?.dismissButton}
+        >
           <ButtonDismiss onClick={onRequestClose} ariaLabel="Close modal" />
         </div>
       )}
     </div>
   );
-}
 
-interface ActionsProps {
-  readonly primary?: ButtonProps;
-  readonly secondary?: ButtonProps;
-  readonly tertiary?: ButtonProps;
-}
+  return <>{content}</>;
+};
 
-function Actions({ primary, secondary, tertiary }: ActionsProps) {
+Modal.Actions = function Actions({
+  primary,
+  secondary,
+  tertiary,
+  UNSAFE_className,
+  UNSAFE_style,
+}: ModalActionsProps) {
+  const { actionBar, rightAction, leftAction } = useModalStyles();
   const shouldShow =
     primary != undefined || secondary != undefined || tertiary != undefined;
-
-  if (secondary != undefined) {
-    secondary = Object.assign(
-      { type: "primary", variation: "subtle" },
-      secondary,
-    );
-  }
-
-  if (tertiary != undefined) {
-    tertiary = Object.assign(
-      { type: "secondary", variation: "destructive" },
-      tertiary,
-    );
-  }
+  const actionBarClassName = classnames(actionBar, UNSAFE_className?.actionBar);
+  const rightActionClassName = classnames(
+    rightAction,
+    UNSAFE_className?.rightAction,
+  );
+  const leftActionClassName = classnames(
+    leftAction,
+    UNSAFE_className?.leftAction,
+  );
 
   return (
     <>
       {shouldShow && (
-        <div className={styles.actionBar}>
-          <div className={styles.rightAction}>
+        <div
+          className={actionBarClassName}
+          style={UNSAFE_style?.actionBar}
+          data-testid="ATL-Modal-Actions"
+        >
+          <div
+            className={rightActionClassName}
+            style={UNSAFE_style?.rightAction}
+          >
             {primary && <Button {...primary} />}
-            {secondary && <Button {...secondary} />}
+            {secondary && (
+              <Button {...secondary} type="primary" variation="subtle" />
+            )}
           </div>
           {tertiary && (
-            <div className={styles.leftAction}>
-              <Button {...tertiary} />
+            <div
+              className={leftActionClassName}
+              style={UNSAFE_style?.leftAction}
+            >
+              <Button {...tertiary} type="secondary" variation="destructive" />
             </div>
           )}
         </div>
       )}
     </>
   );
-}
+};
+
+export { Modal };

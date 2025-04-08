@@ -36,7 +36,7 @@ export function useModal({
 
   const click = useClick(floatingContext);
   const dismiss = useDismiss(floatingContext, {
-    outsidePressEvent: "mousedown",
+    outsidePressEvent: "click",
     escapeKey: true,
     bubbles: true,
   });
