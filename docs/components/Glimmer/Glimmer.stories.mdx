@@ -1,6 +1,7 @@
 import { ArgsTable, Canvas, Meta, Source } from "@storybook/addon-docs";
 import { Tab, Tabs } from "@jobber/components/Tabs";
 import { Glimmer } from "@jobber/components/Glimmer";
+import { Box } from "@jobber/components/Box";
 
 <Meta title="Components/Status and Feedback/Glimmer" component={Glimmer} />
 
@@ -19,11 +20,14 @@ the `Glimmer` will automatically darken itself so it's still noticeable.
   <Glimmer />
 </Canvas>
 
-If you have a darker or coloured background, you can toggle the `reverseTheme`
-to switch the colors so it's still noticeable.
+If you the Glimmer sits on a `reverse` background (dark in light mode, light in
+dark mode), you can toggle the `reverseTheme` prop to switch the colors so it's
+still noticeable.
 
 <Canvas style={{ background: "var(--color-surface--reverse)" }}>
-  <Glimmer reverseTheme={true} />
+  <Box background="surface--reverse" padding="base">
+    <Glimmer reverseTheme />
+  </Box>
 </Canvas>
 
 ## Semantic blocks
