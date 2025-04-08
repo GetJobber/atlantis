@@ -109,6 +109,8 @@
     "Markdown",
     "Menu",
     "Modal",
+    "ModalProvider",
+    "ModalWrapper",
     "MultiSelect",
     "Option",
     "Page",
