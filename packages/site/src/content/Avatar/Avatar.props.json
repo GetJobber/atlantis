@@ -72,6 +72,36 @@
         "type": {
           "name": "AvatarSize"
         }
+      },
+      "UNSAFE_className": {
+        "defaultValue": {
+          "value": "{}"
+        },
+        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\n**Note:** If you are applying fill override to buttonIcon.path, you will need to add !important due\nto Button's children element css inheritance.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "../components/src/Avatar/Avatar.tsx",
+          "name": "AvatarFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ container?: string; initials?: string; fallbackIcon?: { svg?: string; path?: string; }; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": {
+          "value": "{}"
+        },
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "../components/src/Avatar/Avatar.tsx",
+          "name": "AvatarFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ container?: CSSProperties; initials?: CSSProperties; fallbackIcon?: { svg?: CSSProperties; path?: CSSProperties; }; }"
+        }
       }
     }
   }
