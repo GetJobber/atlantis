@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import classnames from "classnames";
 import { useInView } from "@jobber/hooks/useInView";
 import styles from "./Chip.module.css";
@@ -9,19 +9,7 @@ import { useChildComponent } from "./hooks/useChildComponent";
 import { Typography } from "../Typography";
 import { Tooltip } from "../Tooltip";
 
-// Define a type for the Chip component with the properties we add to it
-type ChipComponent = React.ForwardRefExoticComponent<
-  ChipProps & React.RefAttributes<HTMLButtonElement | HTMLDivElement>
-> & {
-  Prefix: typeof ChipPrefix;
-  Suffix: typeof ChipSuffix;
-  displayName: string;
-};
-
-export const Chip = React.forwardRef<
-  HTMLButtonElement | HTMLDivElement,
-  ChipProps
->(
+const ChipComponent = forwardRef<HTMLButtonElement | HTMLDivElement, ChipProps>(
   (
     {
       ariaLabel,
@@ -47,8 +35,8 @@ export const Chip = React.forwardRef<
       [styles.disabled]: disabled,
     });
 
-    const prefix = useChildComponent(children, d => d.type === Chip.Prefix);
-    const suffix = useChildComponent(children, d => d.type === Chip.Suffix);
+    const prefix = useChildComponent(children, d => d.type === ChipPrefix);
+    const suffix = useChildComponent(children, d => d.type === ChipSuffix);
 
     const [labelRef, labelFullyVisible] = useInView<HTMLSpanElement>();
     const [headingRef, headingFullyVisible] = useInView<HTMLSpanElement>();
@@ -126,7 +114,7 @@ export const Chip = React.forwardRef<
       </Tooltip>
     );
   },
-) as ChipComponent;
+);
 
 function getTooltipMessage(
   labelFullyVisible: boolean,
@@ -145,6 +133,11 @@ function getTooltipMessage(
   return message;
 }
 
-Chip.Prefix = ChipPrefix;
-Chip.Suffix = ChipSuffix;
-Chip.displayName = "Chip";
+ChipComponent.displayName = "Chip";
+
+const ChipNamespace = Object.assign(ChipComponent, {
+  Prefix: ChipPrefix,
+  Suffix: ChipSuffix,
+});
+
+export { ChipNamespace as Chip };
