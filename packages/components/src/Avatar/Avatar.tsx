@@ -41,9 +41,7 @@ interface AvatarFoundationProps {
    */
   readonly UNSAFE_className?: {
     container?: string;
-    initials?: string;
-    fallbackIcon?: IconProps["UNSAFE_className"];
-  };
+  } & InitialsUnsafeClassNameProps;
 
   /**
    * **Use at your own risk:** Custom style for specific elements. This should only be used as a
@@ -52,9 +50,7 @@ interface AvatarFoundationProps {
    */
   readonly UNSAFE_style?: {
     container?: CSSProperties;
-    initials?: CSSProperties;
-    fallbackIcon?: IconProps["UNSAFE_style"];
-  };
+  } & InitialsUnsafeStyleProps;
 }
 
 interface AvatarWithImageProps extends AvatarFoundationProps {
@@ -123,20 +119,24 @@ export function Avatar({
   );
 }
 
+interface InitialsUnsafeClassNameProps {
+  initials?: string;
+  fallbackIcon?: IconProps["UNSAFE_className"];
+}
+
+interface InitialsUnsafeStyleProps {
+  initials?: CSSProperties;
+  fallbackIcon?: IconProps["UNSAFE_style"];
+}
+
 interface InitialsProps {
   readonly dark?: boolean;
   readonly iconSize?: AvatarSize;
   readonly initials?: string;
 
-  readonly UNSAFE_className?: {
-    initials?: string;
-    fallbackIcon?: IconProps["UNSAFE_className"];
-  };
+  readonly UNSAFE_className?: InitialsUnsafeClassNameProps;
 
-  readonly UNSAFE_style?: {
-    initials?: CSSProperties;
-    fallbackIcon?: IconProps["UNSAFE_style"];
-  };
+  readonly UNSAFE_style?: InitialsUnsafeStyleProps;
 }
 
 function Initials({
