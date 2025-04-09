@@ -73,27 +73,41 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
     isInView && onLoadMore && onLoadMore(searchValue);
   }, [isInView]);
 
-  // Conditionally render the activator button or nothing (if input is shown).
-  if (onlyShowMenuOnSearch && !showInput) {
+  // Conditionally render the activator button or the input section.
+  if (onlyShowMenuOnSearch) {
     // Mode: Only show menu after typing.
-    const handleActivate = () => {
-      setShowInput(true);
-      setTimeout(() => inputRef.current?.focus(), 0);
-    };
+    if (!showInput) {
+      const handleActivate = () => {
+        setShowInput(true);
+        setTimeout(() => inputRef.current?.focus(), 0);
+      };
 
-    return React.cloneElement(activator, { onClick: handleActivate });
-  } else if (!onlyShowMenuOnSearch && !menuOpen) {
+      return React.cloneElement(activator, { onClick: handleActivate });
+    }
+    // If showInput is true, fall through to render the input section below.
+  } else {
     // Mode: Show menu on focus/click (default).
-    return React.cloneElement(activator, { onClick: handleOpenMenu });
+    if (!menuOpen) {
+      return React.cloneElement(activator, { onClick: handleOpenMenu });
+    }
+    // If menuOpen is true, fall through to render the input section below.
   }
 
+  // If we didn't return an activator above, render the input and potentially the menu.
   const handleInputBlur = () => {
     if (onlyShowMenuOnSearch) {
       // Mode: Only show menu after typing.
+
+      // Capture input value BEFORE calling the hook's blur
+      const valueBeforeBlur = inputRef.current?.value;
+
+      // Allow hook to reset menu state immediately
       handleBlur();
+
       setTimeout(() => {
-        if (inputRef.current?.value === "") {
-          setShowInput(false);
+        // Check the value *as it was when blur occurred*
+        if (valueBeforeBlur === "") {
+          setShowInput(false); // This will trigger rerender with activator
         }
       }, DEBOUNCE_TIME);
     } else {
