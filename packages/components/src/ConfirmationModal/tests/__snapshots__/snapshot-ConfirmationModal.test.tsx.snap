@@ -8,6 +8,7 @@ exports[`renders a simple ConfirmationModal 1`] = `
   >
     <div
       class="overlay"
+      data-testid="ATL-Modal-Overlay"
       style="position: fixed; overflow: auto; top: 0px; right: 0px; bottom: 0px; left: 0px; opacity: 0;"
     >
       <span

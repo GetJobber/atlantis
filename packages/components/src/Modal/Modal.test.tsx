@@ -223,60 +223,6 @@ describe("Default Modal", () => {
   });
 });
 
-describe("UNSAFE_ props", () => {
-  it("applies UNSAFE_className to Modal.Header", () => {
-    const customClass = "custom-header-class";
-    render(
-      <Modal.Header
-        title="Custom Header"
-        UNSAFE_className={{ header: customClass }}
-      />,
-    );
-
-    const headerElement = screen.getByTestId("ATL-Modal-Header");
-    expect(headerElement).toHaveClass(customClass);
-  });
-
-  it("applies UNSAFE_style to Modal.Header", () => {
-    const customStyle = { color: "purple", fontStyle: "italic" };
-    render(
-      <Modal.Header
-        title="Custom Header"
-        UNSAFE_style={{ header: customStyle }}
-      />,
-    );
-
-    const headerElement = screen.getByTestId("ATL-Modal-Header");
-    expect(headerElement).toHaveStyle(customStyle);
-  });
-
-  it("applies UNSAFE_className to Modal.Actions", () => {
-    const customClass = "custom-actions-class";
-    render(
-      <Modal.Actions
-        primary={{ label: "Submit" }}
-        UNSAFE_className={{ actionBar: customClass }}
-      />,
-    );
-
-    const actionBarElement = screen.getByTestId("ATL-Modal-Actions");
-    expect(actionBarElement).toHaveClass(customClass);
-  });
-
-  it("applies UNSAFE_style to Modal.Actions", () => {
-    const customStyle = { backgroundColor: "lightyellow", padding: "15px" };
-    render(
-      <Modal.Actions
-        primary={{ label: "Submit" }}
-        UNSAFE_style={{ actionBar: customStyle }}
-      />,
-    );
-
-    const actionBarElement = screen.getByTestId("ATL-Modal-Actions");
-    expect(actionBarElement).toHaveStyle(customStyle);
-  });
-});
-
 describe("Composable Modal", () => {
   it("should render the modal content", () => {
     render(
@@ -326,5 +272,95 @@ describe("Composable Modal", () => {
 
     await userEvent.keyboard("{Escape}");
     expect(handleRequestClose).toHaveBeenCalledTimes(1);
+  });
+
+  describe("UNSAFE_ props", () => {
+    it("applies UNSAFE_className to Modal.Header", () => {
+      const customClass = "custom-header-class";
+      render(
+        <Modal.Header
+          title="Custom Header"
+          UNSAFE_className={{ header: customClass }}
+        />,
+      );
+
+      const headerElement = screen.getByTestId("ATL-Modal-Header");
+      expect(headerElement).toHaveClass(customClass);
+    });
+
+    it("applies UNSAFE_style to Modal.Header", () => {
+      const customStyle = { color: "purple", fontStyle: "italic" };
+      render(
+        <Modal.Header
+          title="Custom Header"
+          UNSAFE_style={{ header: customStyle }}
+        />,
+      );
+
+      const headerElement = screen.getByTestId("ATL-Modal-Header");
+      expect(headerElement).toHaveStyle(customStyle);
+    });
+
+    it("applies UNSAFE_className to Modal.Actions", () => {
+      const customClass = "custom-actions-class";
+      render(
+        <Modal.Actions
+          primary={{ label: "Submit" }}
+          UNSAFE_className={{ actionBar: customClass }}
+        />,
+      );
+
+      const actionBarElement = screen.getByTestId("ATL-Modal-Actions");
+      expect(actionBarElement).toHaveClass(customClass);
+    });
+
+    it("applies UNSAFE_style to Modal.Actions", () => {
+      const customStyle = { backgroundColor: "lightyellow", padding: "15px" };
+      render(
+        <Modal.Actions
+          primary={{ label: "Submit" }}
+          UNSAFE_style={{ actionBar: customStyle }}
+        />,
+      );
+
+      const actionBarElement = screen.getByTestId("ATL-Modal-Actions");
+      expect(actionBarElement).toHaveStyle(customStyle);
+    });
+
+    it("applies UNSAFE_className to Modal.Wrapper", () => {
+      const customClass = "custom-wrapper-class";
+      render(
+        <Modal.Provider open={true}>
+          <Modal.Wrapper
+            UNSAFE_className={{ modal: customClass, overlay: customClass }}
+          >
+            <Modal.Header title="Modal Title" />
+          </Modal.Wrapper>
+        </Modal.Provider>,
+      );
+
+      const modalElement = screen.getByRole("dialog");
+      const overlayElement = screen.getByTestId("ATL-Modal-Overlay");
+      expect(modalElement).toHaveClass(customClass);
+      expect(overlayElement).toHaveClass(customClass);
+    });
+
+    it("applies UNSAFE_style to Modal.Wrapper", () => {
+      const customStyle = { backgroundColor: "lightyellow", padding: "15px" };
+      render(
+        <Modal.Provider open={true}>
+          <Modal.Wrapper
+            UNSAFE_style={{ modal: customStyle, overlay: customStyle }}
+          >
+            <Modal.Header title="Modal Title" />
+          </Modal.Wrapper>
+        </Modal.Provider>,
+      );
+
+      const modalElement = screen.getByRole("dialog");
+      const overlayElement = screen.getByTestId("ATL-Modal-Overlay");
+      expect(modalElement).toHaveStyle(customStyle);
+      expect(overlayElement).toHaveStyle(customStyle);
+    });
   });
 });
