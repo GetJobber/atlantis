@@ -23,6 +23,7 @@ export function useInternalChipDismissibleInput({
   onOptionSelect,
   onSearch,
   onlyShowMenuOnSearch = false,
+  submitInputOnFocusShift = false,
 }: ChipDismissibleInputProps) {
   const menuId = useId();
   const [allOptions, setAllOptions] = useState<
@@ -82,6 +83,15 @@ export function useInternalChipDismissibleInput({
     handleEnableBlur: () => setShouldCancelBlur(false),
 
     handleBlur: () => {
+      if (
+        submitInputOnFocusShift &&
+        searchValue.length > 0 &&
+        allOptions.length > 0
+      ) {
+        const lastOption = allOptions[allOptions.length - 1];
+        actions.handleSelectOption(lastOption);
+      }
+
       if (shouldCancelBlur) return;
       actions.handleReset();
     },

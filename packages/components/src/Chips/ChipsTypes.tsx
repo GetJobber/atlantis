@@ -103,6 +103,18 @@ export interface ChipDismissibleProps extends ChipFoundationProps {
    * @param searchValue - The input value
    */
   onLoadMore?(searchValue: string): void;
+
+  /**
+   * Control whether the menu only appears once the user types.
+   * @default false
+   */
+  readonly onlyShowMenuOnSearch?: boolean;
+
+  /**
+   * Select the last available option when focus shifts away from the input.
+   * @default false
+   */
+  readonly submitInputOnFocusShift?: boolean;
 }
 
 export type ChipsProps =

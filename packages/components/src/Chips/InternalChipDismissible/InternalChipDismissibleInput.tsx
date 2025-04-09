@@ -1,4 +1,3 @@
-/* eslint-disable max-statements */
 import React, { useEffect, useState } from "react";
 import classNames from "classnames";
 import debounce from "lodash/debounce";
@@ -17,6 +16,7 @@ import { Spinner } from "../../Spinner";
 
 const DEBOUNCE_TIME = 200;
 
+// eslint-disable-next-line max-statements
 export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
   const {
     activator = <Button icon="add" type="secondary" ariaLabel="Add" />,
@@ -47,6 +47,8 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
     handleDebouncedSearch,
   } = useInternalChipDismissibleInput(props);
 
+  // Controls whether the input field or the activator button is rendered.
+  // This state is only used when `onlyShowMenuOnSearch` is true.
   const [showInput, setShowInput] = useState(false);
   const menuRef = useScrollToActive(activeIndex);
   const { ref: visibleChildRef, isInView } = useInView<HTMLDivElement>();
@@ -71,7 +73,9 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
     isInView && onLoadMore && onLoadMore(searchValue);
   }, [isInView]);
 
+  // Conditionally render the activator button or nothing (if input is shown).
   if (onlyShowMenuOnSearch && !showInput) {
+    // Mode: Only show menu after typing.
     const handleActivate = () => {
       setShowInput(true);
       setTimeout(() => inputRef.current?.focus(), 0);
@@ -79,17 +83,23 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
 
     return React.cloneElement(activator, { onClick: handleActivate });
   } else if (!onlyShowMenuOnSearch && !menuOpen) {
+    // Mode: Show menu on focus/click (default).
     return React.cloneElement(activator, { onClick: handleOpenMenu });
   }
 
   const handleInputBlur = () => {
-    handleBlur();
-
-    setTimeout(() => {
-      if (inputRef.current?.value === "") {
-        setShowInput(false);
-      }
-    }, DEBOUNCE_TIME);
+    if (onlyShowMenuOnSearch) {
+      // Mode: Only show menu after typing.
+      handleBlur();
+      setTimeout(() => {
+        if (inputRef.current?.value === "") {
+          setShowInput(false);
+        }
+      }, DEBOUNCE_TIME);
+    } else {
+      // Mode: Show menu on focus/click (default).
+      debounce(handleBlur, DEBOUNCE_TIME)();
+    }
   };
 
   const shouldShowMenu =
@@ -112,12 +122,8 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
         value={searchValue}
         onChange={handleSearchChange}
         onKeyDown={handleKeyDown}
-        onBlur={
-          onlyShowMenuOnSearch
-            ? handleInputBlur
-            : debounce(handleBlur, DEBOUNCE_TIME)
-        }
-        onFocus={!onlyShowMenuOnSearch ? handleOpenMenu : undefined}
+        onBlur={handleInputBlur}
+        onFocus={onlyShowMenuOnSearch ? undefined : handleOpenMenu}
         autoFocus={true}
       />
 

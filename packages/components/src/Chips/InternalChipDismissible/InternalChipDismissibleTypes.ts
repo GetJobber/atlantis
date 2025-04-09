@@ -17,6 +17,11 @@ export interface ChipDismissibleInputProps
    * @default false
    */
   readonly onlyShowMenuOnSearch?: boolean;
+  /**
+   * Select the last available option when focus shifts away from the input.
+   * @default false
+   */
+  readonly submitInputOnFocusShift?: boolean;
 }
 
 export interface ChipDismissibleInputOptionProps extends ChipProps {
