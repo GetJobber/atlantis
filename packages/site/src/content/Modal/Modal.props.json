@@ -137,7 +137,7 @@
         },
         "required": false,
         "type": {
-          "name": "{ modal?: string; overlay?: string; container?: string; header?: string; actionBar?: string; rightAction?: string; leftAction?: string; }"
+          "name": "{ modal?: string; overlay?: string; header?: string; title?: { textStyle?: string; }; actionBar?: string; rightAction?: string; leftAction?: string; }"
         }
       },
       "UNSAFE_style": {
@@ -150,7 +150,7 @@
         },
         "required": false,
         "type": {
-          "name": "{ modal?: React.CSSProperties; overlay?: React.CSSProperties; container?: React.CSSProperties; header?: React.CSSProperties; actionBar?: React.CSSProperties; rightAction?: React.CSSProperties; leftAction?: React.CSSProperties; }"
+          "name": "{ modal?: React.CSSProperties; overlay?: React.CSSProperties; header?: React.CSSProperties; title?: { textStyle?: CSSProperties; }; actionBar?: React.CSSProperties; rightAction?: React.CSSProperties; leftAction?: React.CSSProperties; }"
         }
       }
     }
@@ -172,7 +172,7 @@
         },
         "required": false,
         "type": {
-          "name": "{ header?: string; dismissButton?: string; }"
+          "name": "{ header?: string; title?: { textStyle?: string; }; dismissButton?: string; }"
         }
       },
       "UNSAFE_style": {
@@ -185,7 +185,7 @@
         },
         "required": false,
         "type": {
-          "name": "{ header?: React.CSSProperties; dismissButton?: React.CSSProperties; }"
+          "name": "{ header?: React.CSSProperties; title?: { textStyle?: CSSProperties; }; dismissButton?: React.CSSProperties; }"
         }
       },
       "title": {
