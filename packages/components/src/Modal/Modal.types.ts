@@ -7,6 +7,7 @@ import {
 import { XOR } from "ts-xor";
 import sizes from "./ModalSizes.module.css";
 import { ButtonProps } from "../Button";
+import { HeadingProps } from "../Heading";
 
 export interface ModalProviderProps {
   readonly children: React.ReactNode;
@@ -110,8 +111,8 @@ export interface ModalProps {
   readonly UNSAFE_className?: {
     modal?: string;
     overlay?: string;
-    container?: string;
     header?: string;
+    title?: HeadingProps["UNSAFE_className"];
     actionBar?: string;
     rightAction?: string;
     leftAction?: string;
@@ -125,8 +126,8 @@ export interface ModalProps {
   readonly UNSAFE_style?: {
     modal?: React.CSSProperties;
     overlay?: React.CSSProperties;
-    container?: React.CSSProperties;
     header?: React.CSSProperties;
+    title?: HeadingProps["UNSAFE_style"];
     actionBar?: React.CSSProperties;
     rightAction?: React.CSSProperties;
     leftAction?: React.CSSProperties;
@@ -217,6 +218,7 @@ interface HeaderPropsWithoutChildren {
    */
   readonly UNSAFE_className?: {
     header?: string;
+    title?: HeadingProps["UNSAFE_className"];
     dismissButton?: string;
   };
   /**
@@ -226,6 +228,7 @@ interface HeaderPropsWithoutChildren {
    */
   readonly UNSAFE_style?: {
     header?: React.CSSProperties;
+    title?: HeadingProps["UNSAFE_style"];
     dismissButton?: React.CSSProperties;
   };
 }

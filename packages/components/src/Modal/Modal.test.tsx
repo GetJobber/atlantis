@@ -1,15 +1,8 @@
 import React from "react";
-import {
-  fireEvent,
-  render,
-  renderHook,
-  screen,
-  waitFor,
-} from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Modal } from "./Modal";
 import styles from "./Modal.module.css";
-import { useModalStyles } from "./useModalStyles";
 import { Content } from "../Content";
 import { Text } from "../Text";
 
@@ -230,164 +223,64 @@ describe("Default Modal", () => {
   });
 });
 
-describe("Composable Modal", () => {
-  function ComposedModal({
-    children,
-    onRequestClose,
-  }: {
-    readonly children: React.ReactNode;
-    readonly onRequestClose: () => void;
-  }) {
-    return (
-      <Modal open={true} onRequestClose={onRequestClose}>
-        {children}
-      </Modal>
-    );
-  }
-
-  it("renders a modal", () => {
-    render(<ComposedModal onRequestClose={jest.fn()}>Content</ComposedModal>);
-    expect(screen.getByText("Content")).toBeTruthy();
-  });
-
-  it("renders the modal with a header", async () => {
-    const handleRequestClose = jest.fn();
+describe("UNSAFE_ props", () => {
+  it("applies UNSAFE_className to Modal.Header", () => {
+    const customClass = "custom-header-class";
     render(
-      <ComposedModal onRequestClose={handleRequestClose}>
-        <Modal.Header title="Modal Title" />
-      </ComposedModal>,
+      <Modal.Header
+        title="Custom Header"
+        UNSAFE_className={{ header: customClass }}
+      />,
     );
-    const header = screen.getByTestId("ATL-Modal-Header");
-    const dismissButton = screen.getByLabelText("Close modal");
 
-    expect(header).toBeDefined();
-    expect(header).toHaveTextContent("Modal Title");
-    await userEvent.click(dismissButton);
-    expect(handleRequestClose).toHaveBeenCalledTimes(1);
+    const headerElement = screen.getByTestId("ATL-Modal-Header");
+    expect(headerElement).toHaveClass(customClass);
   });
 
-  it("renders composed actions", async () => {
-    const handlePrimaryAction = jest.fn();
-    const handleSecondaryAction = jest.fn();
-    const handleRequestClose = jest.fn();
+  it("applies UNSAFE_style to Modal.Header", () => {
+    const customStyle = { color: "purple", fontStyle: "italic" };
     render(
-      <ComposedModal onRequestClose={handleRequestClose}>
-        <Modal.Header title="Modal Title" />
-        <Modal.Actions
-          primary={{ label: "Submit", onClick: handlePrimaryAction }}
-          secondary={{ label: "Cancel", onClick: handleSecondaryAction }}
-        />
-      </ComposedModal>,
+      <Modal.Header
+        title="Custom Header"
+        UNSAFE_style={{ header: customStyle }}
+      />,
     );
-    const primaryButton = screen.getByText("Submit");
-    const secondaryButton = screen.getByText("Cancel");
 
-    await userEvent.click(primaryButton);
-    expect(handlePrimaryAction).toHaveBeenCalledTimes(1);
-    await userEvent.click(secondaryButton);
-    expect(handleSecondaryAction).toHaveBeenCalledTimes(1);
-    expect(handleRequestClose).toHaveBeenCalledTimes(0);
+    const headerElement = screen.getByTestId("ATL-Modal-Header");
+    expect(headerElement).toHaveStyle(customStyle);
   });
 
-  it("closes the modal when the escape key is pressed", async () => {
-    const handleRequestClose = jest.fn();
+  it("applies UNSAFE_className to Modal.Actions", () => {
+    const customClass = "custom-actions-class";
     render(
-      <ComposedModal onRequestClose={handleRequestClose}>
-        Content
-      </ComposedModal>,
+      <Modal.Actions
+        primary={{ label: "Submit" }}
+        UNSAFE_className={{ actionBar: customClass }}
+      />,
     );
-    await userEvent.keyboard("{Escape}");
-    expect(handleRequestClose).toHaveBeenCalledTimes(1);
+
+    const actionBarElement = screen.getByTestId("ATL-Modal-Actions");
+    expect(actionBarElement).toHaveClass(customClass);
   });
 
-  it("should render custom modal header", () => {
-    const { result: modalStyles } = renderHook(() => useModalStyles());
+  it("applies UNSAFE_style to Modal.Actions", () => {
+    const customStyle = { backgroundColor: "lightyellow", padding: "15px" };
     render(
-      <ComposedModal onRequestClose={jest.fn()}>
-        <Modal.Header>
-          <div
-            className={modalStyles.current.header}
-            data-testid="custom-header"
-          >
-            <h1>Modal Title</h1>
-          </div>
-        </Modal.Header>
-      </ComposedModal>,
+      <Modal.Actions
+        primary={{ label: "Submit" }}
+        UNSAFE_style={{ actionBar: customStyle }}
+      />,
     );
-    const customHeader = screen.getByTestId("custom-header");
-    expect(customHeader).toHaveClass(modalStyles.current.header);
-    expect(customHeader).toHaveTextContent("Modal Title");
-  });
 
-  describe("UNSAFE_ props", () => {
-    it("applies UNSAFE_className to Modal.Header", () => {
-      const customClass = "custom-header-class";
-      render(
-        <ComposedModal onRequestClose={jest.fn()}>
-          <Modal.Header
-            title="Custom Header"
-            UNSAFE_className={{ header: customClass }}
-          />
-        </ComposedModal>,
-      );
-
-      const headerElement = screen.getByTestId("ATL-Modal-Header");
-      expect(headerElement).toHaveClass(customClass);
-    });
-
-    it("applies UNSAFE_style to Modal.Header", () => {
-      const customStyle = { color: "purple", fontStyle: "italic" };
-      render(
-        <ComposedModal onRequestClose={jest.fn()}>
-          <Modal.Header
-            title="Custom Header"
-            UNSAFE_style={{ header: customStyle }}
-          />
-        </ComposedModal>,
-      );
-
-      const headerElement = screen.getByTestId("ATL-Modal-Header");
-      expect(headerElement).toHaveStyle(customStyle);
-    });
-
-    it("applies UNSAFE_className to Modal.Actions", () => {
-      const customClass = "custom-actions-class";
-      render(
-        <ComposedModal onRequestClose={jest.fn()}>
-          <Modal.Actions
-            primary={{ label: "Submit" }}
-            UNSAFE_className={{ actionBar: customClass }}
-          />
-        </ComposedModal>,
-      );
-
-      const actionBarElement = screen.getByTestId("ATL-Modal-Actions");
-      expect(actionBarElement).toHaveClass(customClass);
-    });
-
-    it("applies UNSAFE_style to Modal.Actions", () => {
-      const customStyle = { backgroundColor: "lightyellow", padding: "15px" };
-      render(
-        <ComposedModal onRequestClose={jest.fn()}>
-          <Modal.Actions
-            primary={{ label: "Submit" }}
-            UNSAFE_style={{ actionBar: customStyle }}
-          />
-        </ComposedModal>,
-      );
-
-      const actionBarElement = screen.getByTestId("ATL-Modal-Actions");
-      expect(actionBarElement).toHaveStyle(customStyle);
-    });
+    const actionBarElement = screen.getByTestId("ATL-Modal-Actions");
+    expect(actionBarElement).toHaveStyle(customStyle);
   });
 });
 
-describe("Modal.Provider", () => {
-  const open = true;
-
+describe("Composable Modal", () => {
   it("should render the modal content", () => {
     render(
-      <Modal.Provider open={open}>
+      <Modal.Provider open={true}>
         <Modal.Wrapper>
           <Modal.Header title="Modal Title" />
           <Content>
@@ -412,7 +305,7 @@ describe("Modal.Provider", () => {
 
   it('modal contains aria role of "dialog"', async () => {
     render(
-      <Modal.Provider open={open}>
+      <Modal.Provider open={true}>
         <Modal.Wrapper>
           <Modal.Header title="Modal Title" />
         </Modal.Wrapper>
@@ -424,7 +317,7 @@ describe("Modal.Provider", () => {
   it("calls onRequestClose when pressing the escape key", async () => {
     const handleRequestClose = jest.fn();
     render(
-      <Modal.Provider open={open} onRequestClose={handleRequestClose}>
+      <Modal.Provider open={true} onRequestClose={handleRequestClose}>
         <Modal.Wrapper>
           <Modal.Header title="Modal Title" />
         </Modal.Wrapper>

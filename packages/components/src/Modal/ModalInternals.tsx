@@ -40,7 +40,13 @@ export function ModalHeader({
       data-testid="ATL-Modal-Header"
       style={UNSAFE_style?.header}
     >
-      <Heading level={2}>{title}</Heading>
+      <Heading
+        level={2}
+        UNSAFE_className={UNSAFE_className?.title}
+        UNSAFE_style={UNSAFE_style?.title}
+      >
+        {title}
+      </Heading>
 
       {dismissible && (
         <div
