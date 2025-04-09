@@ -121,8 +121,6 @@ interface BasicButtonProps extends ButtonFoundationProps {
    * Used to override the default button role.
    */
   readonly role?: string;
-
-  readonly htmlButtonRef?: React.Ref<HTMLButtonElement>;
 }
 
 type BaseButtonProps = XOR<

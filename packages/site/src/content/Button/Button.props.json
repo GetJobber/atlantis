@@ -266,19 +266,6 @@
           "name": "string"
         }
       },
-      "htmlButtonRef": {
-        "defaultValue": null,
-        "description": "",
-        "name": "htmlButtonRef",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "BasicButtonProps"
-        },
-        "required": false,
-        "type": {
-          "name": "Ref<HTMLButtonElement>"
-        }
-      },
       "to": {
         "defaultValue": null,
         "description": "**Deprecated**: to will be removed in the next major version\n@deprecated",
@@ -342,6 +329,32 @@
         "required": false,
         "type": {
           "name": "boolean"
+        }
+      },
+      "ref": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ref",
+        "parent": {
+          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
+          "name": "RefAttributes"
+        },
+        "required": false,
+        "type": {
+          "name": "Ref<ButtonRefElement>"
+        }
+      },
+      "key": {
+        "defaultValue": null,
+        "description": "",
+        "name": "key",
+        "parent": {
+          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
+          "name": "Attributes"
+        },
+        "required": false,
+        "type": {
+          "name": "Key"
         }
       }
     }
