@@ -10,18 +10,41 @@ import { ButtonProps } from "../Button";
 
 export interface ModalProviderProps {
   readonly children: React.ReactNode;
+  /**
+   * Size of the modal.
+   */
   readonly size?: keyof typeof sizes;
+  /**
+   * Whether the modal is open.
+   */
   readonly open?: boolean;
+  /**
+   * Callback executed when the user wants to close/dismiss the Modal
+   */
   readonly onRequestClose?: () => void;
+  /**
+   * Ref to specify the activator element. Useful if the activator can unmount
+   * and focused needs to be returned to the activator element.
+   */
   readonly activatorRef?: MutableRefObject<HTMLElement | null> | null;
   readonly dismissible?: boolean;
 }
 
 export interface ModalWrapperProps extends PropsWithChildren {
+  /**
+   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
   readonly UNSAFE_className?: {
     modal?: string;
     overlay?: string;
   };
+  /**
+   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
   readonly UNSAFE_style?: {
     modal?: React.CSSProperties;
     overlay?: React.CSSProperties;
@@ -39,27 +62,52 @@ export interface ModalOverlayProps extends PropsWithChildren {
 
 export interface ModalProps {
   /**
-   * @default false
+   * Title of the modal.
    */
   readonly title?: string;
+  /**
+   * Whether the modal is open.
+   */
   readonly open?: boolean;
+  /**
+   * Size of the modal.
+   */
   readonly size?: keyof typeof sizes;
   /**
+   * Whether the modal will render a dismiss button.
    * @default true
    */
   readonly dismissible?: boolean;
   readonly children: ReactNode;
+  /**
+   * Primary action of the modal.
+   */
   readonly primaryAction?: ButtonProps;
+  /**
+   * Secondary action of the modal.
+   */
   readonly secondaryAction?: ButtonProps;
+  /**
+   * Tertiary action of the modal. This will be rendered on the left side of the action bar.
+   * Useful for actions like "Cancel" that are not destructive.
+   */
   readonly tertiaryAction?: ButtonProps;
+  /**
+   * Callback executed when the user wants to close/dismiss the Modal
+   */
   onRequestClose?(): void;
   /**
    * Ref to specify the activator element. Useful if the activator can unmount
    * and needs to be re-mounted.
    */
-  activatorRef?: MutableRefObject<HTMLElement | null> | null;
+  readonly activatorRef?: MutableRefObject<HTMLElement | null> | null;
 
-  UNSAFE_className?: {
+  /**
+   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_className?: {
     modal?: string;
     overlay?: string;
     container?: string;
@@ -68,7 +116,13 @@ export interface ModalProps {
     rightAction?: string;
     leftAction?: string;
   };
-  UNSAFE_style?: {
+
+  /**
+   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: {
     modal?: React.CSSProperties;
     overlay?: React.CSSProperties;
     container?: React.CSSProperties;
@@ -80,25 +134,62 @@ export interface ModalProps {
 }
 
 export interface ModalContextType {
-  open?: boolean;
-  onRequestClose: () => void;
-  activatorRef: MutableRefObject<HTMLElement | null>;
-  floatingRefs: ExtendedRefs<ReferenceType> | null;
-  floatingContext: FloatingContext;
-  size?: keyof typeof sizes;
-  floatingNodeId?: string;
-  dismissible?: boolean;
+  readonly open?: ModalProps["open"];
+  readonly onRequestClose: ModalProps["onRequestClose"];
+  readonly activatorRef: ModalProps["activatorRef"];
+  /**
+   * Refs used by floating-ui to position the modal.
+   */
+  readonly floatingRefs: ExtendedRefs<ReferenceType> | null;
+  /**
+   * Context used by floating-ui to position the modal.
+   */
+  readonly floatingContext: FloatingContext;
+  /**
+   * Size of the modal.
+   */
+  readonly size?: ModalProps["size"];
+  /**
+   * Floating-ui node id for the modal. Used to ensure the modal is aware of other floating-ui elements.
+   */
+  readonly floatingNodeId?: string;
+  /**
+   * Whether the modal is dismissible.
+   */
+  readonly dismissible?: ModalProps["dismissible"];
 }
 
 export interface ModalActionsProps {
+  /**
+   * Primary action of the modal.
+   */
   readonly primary?: ButtonProps;
+  /**
+   * Secondary action of the modal.
+   */
   readonly secondary?: ButtonProps;
+  /**
+   * Tertiary action of the modal. This will be rendered on the left side of the action bar.
+   * Useful for actions like "Cancel" that are not destructive.
+   */
   readonly tertiary?: ButtonProps;
+
+  /**
+   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
   readonly UNSAFE_className?: {
     actionBar?: string;
     rightAction?: string;
     leftAction?: string;
   };
+
+  /**
+   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
   readonly UNSAFE_style?: {
     actionBar?: React.CSSProperties;
     rightAction?: React.CSSProperties;
@@ -107,13 +198,32 @@ export interface ModalActionsProps {
 }
 
 interface HeaderPropsWithoutChildren {
-  readonly title: string;
-  readonly dismissible?: boolean;
+  /**
+   * Title of the modal.
+   */
+  readonly title: NonNullable<ModalProps["title"]>;
+  /**
+   * Whether the modal is dismissible.
+   */
+  readonly dismissible?: ModalProps["dismissible"];
+  /**
+   * Callback executed when the user wants to close/dismiss the Modal
+   */
   onRequestClose?(): void;
+  /**
+   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
   readonly UNSAFE_className?: {
     header?: string;
     dismissButton?: string;
   };
+  /**
+   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
   readonly UNSAFE_style?: {
     header?: React.CSSProperties;
     dismissButton?: React.CSSProperties;
