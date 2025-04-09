@@ -135,6 +135,7 @@ function getTooltipMessage(
 
 ChipComponent.displayName = "Chip";
 
+// Required to assign sub-components to the Chip component when it is a forwardRef
 const ChipNamespace = Object.assign(ChipComponent, {
   Prefix: ChipPrefix,
   Suffix: ChipSuffix,
