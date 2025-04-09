@@ -1,0 +1,300 @@
+## Component customization
+
+### Composable usage
+
+Modal exposes its internal building blocks as subcomponents: `Modal.Provider`,
+`Modal.Activator`, `Modal.Header`, `Modal.Wrapper`, `Modal.Actions`. This gives
+you more control over the Modal's appearance and behaviour.
+
+Here is a basic example of how our current non-composable Modal is used:
+
+```tsx
+<Modal
+  open={true}
+  onRequestClose={() => setShowModal(false)}
+  title="Modal Title"
+  primaryAction={{ label: "Submit", onClick: handlePrimaryAction }}
+  secondaryAction={{
+    label: "Cancel",
+    onClick: handleSecondaryAction,
+  }}
+>
+  <Content>Modal content goes here</Content>
+</Modal>
+```
+
+Using Modal's built-in subcomponents, this UI can alternatively be expressed as:
+
+```tsx
+
+<Modal.Provider open={true} onRequestClose={() => setShowModal(false)}>
+  <Modal.Wrapper>
+    <Modal.Header title="Modal Title" />
+    <Modal.Content>
+      Modal content goes here
+    </Modal.Content>
+    <Modal.Actions primaryAction={{ label: "Submit", onClick: handlePrimaryAction }}
+        secondaryAction={{
+          label: "Cancel",
+          onClick: handleSecondaryAction,
+        }}} />
+  </Modal.Wrapper>
+</Modal.Provider>
+```
+
+If you want to use a custom header, you can do the following:
+
+```tsx
+function CustomHeader() {
+  const { header } = useModalStyles();
+  const { onRequestClose } = useModalContext();
+
+  return (
+    <div className={header}>
+      <Heading level={2}>Custom Header</Heading>
+      <Menu
+        items={[
+          {
+            actions: [
+              { label: "Close Modal", onClick: onRequestClose },
+              {
+                label: "Another Action",
+                onClick: () => alert("Another Action"),
+              },
+            ],
+          },
+        ]}
+      />
+    </div>
+  );
+}
+
+function CustomModal() {
+  const [showModal, setShowModal] = useState(false);
+
+  return (
+    <>
+      <Button label="Open Modal" onClick={() => setShowModal(true)} />
+      <Modal.Provider
+        open={showModal}
+        onRequestClose={() => setShowModal(false)}
+      >
+        <Modal.Wrapper>
+          <Modal.Header>
+            <CustomHeader />
+          </Modal.Header>
+          <Content>
+            <Text>Modal content goes here</Text>
+          </Content>
+          <Modal.Actions
+            primaryAction={{ label: "Submit", onClick: handlePrimaryAction }}
+            secondaryAction={{
+              label: "Cancel",
+              onClick: handleSecondaryAction,
+            }}
+          />
+        </Modal.Wrapper>
+      </Modal.Provider>
+    </>
+  );
+}
+```
+
+Sometimes you may want to manually control where the modal returns focus to.
+This usually happens when a modal is triggered by an element that is removed
+from the DOM after the modal is opened. The base modal component generally
+handles this, but there are some edge cases that may require manual control.
+
+To resolve this, you can use the `Modal.Activator` component to manually control
+where the modal returns focus to, you can do the following:
+
+```tsx
+function ModalWithCustomFocus() {
+  const [showModal, setShowModal] = useState(false);
+  const [hideActivator, setHideActivator] = useState(false);
+
+  return (
+    <>
+      {!hideActivator && <Button label="Open Modal" onClick={() => setShowModal(true)} />}
+      <Modal.Provider open={true} onRequestClose={() => setShowModal(false)}>
+        <Modal.Activator>
+          <InputText placeholder="Modal will return focus here" />
+      </Modal.Activator>
+      <Modal.Wrapper>
+        <Modal.Header title="Modal Title" />
+        <Modal.Content>Modal content goes here</Modal.Content>
+      </Modal.Wrapper>
+    </Modal.Provider>
+  );
+}
+```
+
+### UNSAFE\_ props (advanced usage)
+
+General information for using `UNSAFE_` props can be found
+[here](/guides/customizing-components).
+
+Modal have x elements that can be targeted with classes or styles. These are:
+
+- Modal: The container of the content in the modal
+- Overlay: The background overlay that appears behind the modal
+- Header: The header of the modal
+- Title: The title text of the modal
+- ActionBar: The action bar of the modal
+- RightAction: The right action of the modal
+- LeftAction: The left action of the modal
+
+**Note**: Use of `UNSAFE_` props is **at your own risk** and should be
+considered a **last resort**. Future Popover updates may lead to unintended
+breakages.
+
+#### UNSAFE_className
+
+Use `UNSAFE_className` to apply custom classes to the Popover. This can be
+useful for applying styles via CSS Modules.
+
+```tsx
+// YourComponent.tsx
+UNSAFE_className: {
+    modal: styles.customModal;
+    overlay: styles.customOverlay;
+    header: styles.customHeader;
+    title: {textStyle: styles.customTitle };
+    actionBar: styles.customActionBar;
+    rightAction: styles.customRightAction;
+    leftAction: styles.customLeftAction;
+  };
+
+// YourComponent.module.css
+.customModal {
+  background-color: var(--color-surface--background);
+}
+
+.customOverlay {
+  background-color: var(--color-indigo);
+}
+
+.customHeader {
+  padding-left: var(--space-extravagant);
+}
+
+.customTitle {
+  color: var(--color-red);
+}
+
+.customActionBar {
+  padding-left: var(--space-extravagant);
+}
+
+.customRightAction {
+  padding-left: var(--space-extravagant);
+  background-color: var(--color-red);
+}
+
+.customLeftAction {
+  padding-left: var(--space-extravagant);
+}
+```
+
+You can also use the `UNSAFE_className` prop to apply custom classes to any
+element within the Modal.
+
+```tsx
+UNSAFE_className={{ modal: "custom-modal-class" }}
+```
+
+If you're using Modal with its composable subcomponents, you'll need to pass
+`UNSAFE_className` to the individual subcomponents accordingly:
+
+```tsx
+<Modal.Provider open={showModal} onRequestClose={() => setShowModal(false)}>
+  <Modal.Wrapper>
+    <Modal.Header
+      title="Modal Title"
+      UNSAFE_className={{
+        title: { textStyle: styles.customTitle },
+        header: styles.customHeader,
+        dismissButton: styles.customDismissButton,
+      }}
+    />
+    <Content>
+      <Text>Modal content goes here</Text>
+    </Content>
+    <Modal.Actions
+      UNSAFE_className={{
+        actionBar: styles.customActionBar,
+        rightAction: styles.customRightAction,
+        leftAction: styles.customLeftAction,
+      }}
+      primaryAction={{ label: "Submit", onClick: handlePrimaryAction }}
+      secondaryAction={{
+        label: "Cancel",
+        onClick: handleSecondaryAction,
+      }}
+    />
+  </Modal.Wrapper>
+</Modal.Provider>
+```
+
+#### UNSAFE_style
+
+Use `UNSAFE_style` to apply inline custom styles to the Popover.
+
+```tsx
+UNSAFE_style={{
+  modal: { backgroundColor: "lightblue" },
+  overlay: { backgroundColor: "rgba(0, 0, 0, 0.7)" },
+  header: { borderBottom: "1px solid var(--color-border)" },
+  title: { textStyle: { color: "var(--color-indigo)" } },
+  actionBar: { paddingTop: "var(--space-larger)" },
+  rightAction: { marginLeft: "var(--space-generous)" },
+  leftAction: { marginRight: "var(--space-generous)" },
+}}
+```
+
+If you're using Modal with its composable subcomponents, you'll need to pass
+`UNSAFE_style` to the individual subcomponents accordingly:
+
+```tsx
+<Modal.Provider
+  open={showModal}
+  onRequestClose={() => setShowModal(false)}
+  UNSAFE_style={{
+    overlay: {
+      backgroundColor: "rgba(0, 0, 0, 0.7)",
+    },
+  }}
+>
+  <Modal.Wrapper
+    UNSAFE_style={{
+      modal: {
+        backgroundColor: "var(--color-surface--background)",
+      },
+    }}
+  >
+    <Modal.Header
+      title="Modal Title"
+      UNSAFE_style={{
+        header: { borderBottom: "1px solid var(--color-border)" },
+        title: { textStyle: { color: "var(--color-indigo)" } },
+        dismissButton: { marginRight: "var(--space-generous)" },
+      }}
+    />
+    <Content>
+      <Text>Modal content goes here</Text>
+    </Content>
+    <Modal.Actions
+      UNSAFE_style={{
+        actionBar: { paddingTop: "var(--space-larger)" },
+        rightAction: { marginLeft: "var(--space-generous)" },
+        leftAction: { marginRight: "var(--space-generous)" },
+      }}
+      primaryAction={{ label: "Submit", onClick: handlePrimaryAction }}
+      secondaryAction={{
+        label: "Cancel",
+        onClick: handleSecondaryAction,
+      }}
+    />
+  </Modal.Wrapper>
+</Modal.Provider>
+```

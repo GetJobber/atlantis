@@ -289,3 +289,119 @@ const ModalCustomThemeTemplate: ComponentStory<typeof Modal> = () => {
   );
 };
 export const ModalCustomTheme = ModalCustomThemeTemplate.bind({});
+
+const ModalsWithPoppers: ComponentStory<typeof Modal> = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [customActivatorOpen, setCustomActivatorOpen] = useState(false);
+  const [selectedOptions, setSelectedOptions] = useState<
+    Array<{ id: string | number; label: string }>
+  >([]);
+
+  const options = [
+    { id: "1", label: "Option 1" },
+    { id: "2", label: "Option 2" },
+    { id: "3", label: "Option 3" },
+    { id: "4", label: "Option 4" },
+  ];
+  const [inputDateValue, setInputDateValue] = useState<Date | undefined>();
+  const [popoverOpen, setPopoverOpen] = useState(false);
+  const buttonRef = useRef<HTMLDivElement>(null);
+  const customActivatorRef = useRef<HTMLSpanElement>(null);
+
+  return (
+    <Content>
+      <Button label="Open Composed Modal" onClick={() => setModalOpen(true)} />
+      <Modal
+        open={modalOpen}
+        onRequestClose={() => {
+          setModalOpen(false);
+          setPopoverOpen(false);
+        }}
+      >
+        <Content>
+          <Text>It&apos;s harder, better, faster, and stronger! 🤖</Text>
+          <Combobox
+            selected={selectedOptions}
+            onSelect={selection => setSelectedOptions(selection)}
+            multiSelect
+            subjectNoun="options"
+          >
+            {options.map(option => (
+              <Combobox.Option
+                key={option.id}
+                id={option.id}
+                label={option.label}
+              />
+            ))}
+          </Combobox>
+          <InputDate
+            onChange={setInputDateValue}
+            value={inputDateValue}
+            placeholder="Enter your date"
+          />
+
+          <div style={{ textAlign: "center" }} ref={buttonRef}>
+            <Button
+              label="Show Popover inside of a modal"
+              onClick={() => setPopoverOpen(!popoverOpen)}
+              type="secondary"
+            />
+          </div>
+          <Popover
+            open={popoverOpen}
+            attachTo={buttonRef}
+            onRequestClose={() => setPopoverOpen(false)}
+            preferredPlacement="bottom"
+          >
+            <Box padding="base">
+              <Text>This is additional information shown in a popover.</Text>
+              <Text>
+                Popovers are useful for displaying context-specific information
+                without cluttering the interface.
+              </Text>
+            </Box>
+          </Popover>
+          <Tooltip message="This is a tooltip in a modal">
+            <Icon name="help" color="blue" />
+          </Tooltip>
+        </Content>
+
+        <Modal.Actions
+          primary={{
+            label: "Submit",
+            onClick: () => {
+              setModalOpen(false);
+            },
+          }}
+          secondary={{
+            label: "Cancel",
+            onClick: () => setModalOpen(false),
+          }}
+        />
+      </Modal>
+      <Text>
+        This is a modal with a specified activator. The activator is used to
+        return focus to the input when the modal is closed.
+      </Text>
+
+      <Button
+        label="Open Modal that will return focus to the input"
+        onClick={() => setCustomActivatorOpen(true)}
+      />
+      <span ref={customActivatorRef} style={{ display: "contents" }}>
+        <InputText placeholder="Modal will return focus here" />
+      </span>
+      <Modal
+        open={customActivatorOpen}
+        onRequestClose={() => setCustomActivatorOpen(false)}
+        title="Custom Activator"
+        activatorRef={customActivatorRef}
+      >
+        <Content>
+          <Text>This modal will return focus to the input</Text>
+        </Content>
+      </Modal>
+    </Content>
+  );
+};
+export const ModalsWithPopper = ModalsWithPoppers.bind({});
