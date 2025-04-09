@@ -3,6 +3,7 @@ import {
   useDismiss,
   useFloating,
   useFloatingNodeId,
+  useFloatingParentNodeId,
   useInteractions,
   useRole,
 } from "@floating-ui/react";
@@ -43,11 +44,13 @@ export function useModal({
   const role = useRole(floatingContext);
 
   useInteractions([click, dismiss, role]);
+  const parentId = useFloatingParentNodeId();
 
   return {
     floatingRefs,
     floatingContext,
     nodeId,
     activatorRef,
+    parentId,
   };
 }

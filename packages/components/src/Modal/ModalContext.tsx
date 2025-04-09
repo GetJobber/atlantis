@@ -1,10 +1,6 @@
 import noop from "lodash/noop";
 import React, { MutableRefObject, createContext, useContext } from "react";
-import {
-  FloatingContext,
-  FloatingTree,
-  useFloatingParentNodeId,
-} from "@floating-ui/react";
+import { FloatingContext, FloatingTree } from "@floating-ui/react";
 import sizes from "./ModalSizes.module.css";
 import { useModal } from "./useModal";
 import { ModalContextType } from "./Modal.types";
@@ -36,13 +32,12 @@ export function ModalProvider({
   activatorRef: refProp,
   dismissible = true,
 }: ModalProviderProps) {
-  const { floatingRefs, floatingContext, nodeId, activatorRef } = useModal({
-    open,
-    activatorRef: refProp,
-    onRequestClose,
-  });
-
-  const parentId = useFloatingParentNodeId();
+  const { floatingRefs, floatingContext, nodeId, activatorRef, parentId } =
+    useModal({
+      open,
+      activatorRef: refProp,
+      onRequestClose,
+    });
 
   const content = (
     <ModalContext.Provider

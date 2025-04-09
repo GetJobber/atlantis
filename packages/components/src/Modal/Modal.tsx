@@ -8,7 +8,7 @@ import {
   ModalWrapper,
 } from "./ModalInternals";
 
-const Modal = ({
+export function Modal({
   open = false,
   title,
   size,
@@ -21,7 +21,7 @@ const Modal = ({
   activatorRef,
   UNSAFE_className,
   UNSAFE_style,
-}: ModalProps) => {
+}: ModalProps) {
   return (
     <ModalProvider
       open={open}
@@ -47,7 +47,7 @@ const Modal = ({
       </Modal.Wrapper>
     </ModalProvider>
   );
-};
+}
 
 /**
  * Default Modal Content for Modal. Used to maintain backwards compatibility with the legacy modal.
@@ -95,4 +95,3 @@ Modal.Activator = ModalActivator;
 Modal.Provider = ModalProvider;
 
 Modal.Wrapper = ModalWrapper;
-export { Modal };
