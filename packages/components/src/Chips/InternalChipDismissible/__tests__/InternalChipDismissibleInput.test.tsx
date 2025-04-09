@@ -4,22 +4,15 @@ import { act } from "react-dom/test-utils";
 import { InternalChipDismissibleInput } from "../InternalChipDismissibleInput";
 import { ChipProps } from "../../Chip";
 
-const initialMockIsInView = jest.fn(() => false);
+let mockCurrentIsInView = false;
 
-// Rename variable to follow Jest's allowed pattern
-let mockCurrentIsInView = initialMockIsInView();
-
-// Update function to modify the renamed variable
 const mockSetIsInView = (value: boolean) => {
   mockCurrentIsInView = value;
 };
-// Create ref outside the mock factory
-const mockRef = React.createRef<HTMLDivElement>();
 
 jest.mock("../hooks/useInView", () => ({
   useInView: () => {
-    // Return the external variable (now named mock*) and ref
-    return { ref: mockRef, isInView: mockCurrentIsInView };
+    return { isInView: mockCurrentIsInView };
   },
 }));
 
@@ -28,8 +21,9 @@ const handleCustomOptionSelect = jest.fn();
 const handleSearch = jest.fn();
 const handleLoadMore = jest.fn();
 
-// Fix: Create a valid ref object for attachTo
-const mockAttachToRef = React.createRef<HTMLDivElement>();
+const attachToRef: React.MutableRefObject<HTMLDivElement | null> = {
+  current: null,
+};
 
 const optionsArray = ["Amazing", "Fabulous", "Magical"];
 const options: ChipProps[] = optionsArray.map(opt => ({
@@ -37,10 +31,9 @@ const options: ChipProps[] = optionsArray.map(opt => ({
   label: opt,
 }));
 
-const baseProps = {
+const props = {
   options: options,
-  // Fix: Use the created ref
-  attachTo: mockAttachToRef,
+  attachTo: attachToRef,
   isLoadingMore: false,
   onOptionSelect: handleOptionSelect,
   onCustomOptionSelect: handleCustomOptionSelect,
@@ -55,13 +48,12 @@ let rerender: (
   >,
 ) => void;
 
-// Add a dummy element for attachTo ref
+// Add a dummy element for the attachTo ref
 beforeAll(() => {
   const dummyElement = document.createElement("div");
   dummyElement.setAttribute("id", "dummy-attach-to");
   document.body.appendChild(dummyElement);
-  (mockAttachToRef as React.MutableRefObject<HTMLDivElement>).current =
-    dummyElement;
+  attachToRef.current = dummyElement;
 });
 
 afterAll(() => {
@@ -70,22 +62,19 @@ afterAll(() => {
   if (dummyElement) {
     document.body.removeChild(dummyElement);
   }
-  (mockAttachToRef as React.MutableRefObject<HTMLDivElement | null>).current =
-    null;
+  attachToRef.current = null;
 });
 
 beforeEach(() => {
-  // Reset mocks and state before each test
   jest.clearAllMocks();
-  mockSetIsInView(false); // Reset isInView state
+  mockSetIsInView(false);
 
   const { rerender: rerenderComponent } = render(
-    <InternalChipDismissibleInput {...baseProps} />,
+    <InternalChipDismissibleInput {...props} />,
   );
   rerender = rerenderComponent;
 });
 
-// Use fake timers for tests involving debounce/setTimeout
 afterEach(() => {
   jest.useRealTimers();
 });
@@ -113,7 +102,6 @@ describe("Menu open", () => {
   });
 
   it("should not show the add button", () => {
-    // Button role might still exist if input is also a button, query specifically
     expect(
       screen.queryByRole("button", { name: "Add" }),
     ).not.toBeInTheDocument();
@@ -133,9 +121,7 @@ describe("Menu open", () => {
   });
 
   it("should have a loading spinner", () => {
-    rerender(
-      <InternalChipDismissibleInput {...baseProps} isLoadingMore={true} />,
-    );
+    rerender(<InternalChipDismissibleInput {...props} isLoadingMore={true} />);
     expect(screen.getByRole("alert", { name: "loading" })).toBeInTheDocument();
   });
 });
@@ -147,20 +133,17 @@ describe("Arrow keys", () => {
   });
 
   it("should highlight the next option on arrow down", () => {
-    // Fix: Use getByRole as combobox should exist
     fireEvent.keyDown(screen.getByRole("combobox"), { key: "ArrowDown" });
     isOptionhighlighted(optionsArray[1]);
   });
 
   it("should highlight the last option on arrow up", () => {
-    // Fix: Use getByRole
     fireEvent.keyDown(screen.getByRole("combobox"), { key: "ArrowUp" });
     isOptionhighlighted(optionsArray[optionsArray.length - 1]);
   });
 
   it("should highlight the first option on arrow down when the last option is highlighted", () => {
     const input = screen.getByRole("combobox");
-    // Ensure last option is highlighted
     fireEvent.keyDown(input, { key: "ArrowUp" });
     isOptionhighlighted(optionsArray[optionsArray.length - 1]);
 
@@ -169,14 +152,11 @@ describe("Arrow keys", () => {
   });
 
   it("should not do anything on arrow down when the last option is highlighted and it's loading", () => {
-    rerender(
-      <InternalChipDismissibleInput {...baseProps} isLoadingMore={true} />,
-    );
+    rerender(<InternalChipDismissibleInput {...props} isLoadingMore={true} />);
     expect(screen.getByRole("alert", { name: "loading" })).toBeInTheDocument();
     const highlighted = optionsArray[optionsArray.length - 1];
     const input = screen.getByRole("combobox");
 
-    // Ensure last option is highlighted
     fireEvent.keyDown(input, { key: "ArrowUp" });
     isOptionhighlighted(highlighted);
 
@@ -192,9 +172,7 @@ describe("Add/delete via keyboard", () => {
   });
 
   it("should add the highlighted option on enter", () => {
-    // Fix: Use getByRole
     fireEvent.keyDown(screen.getByRole("combobox"), { key: "Enter" });
-    // Fix: Expect the value string, not the object
     expect(handleOptionSelect).toHaveBeenCalledWith(optionsArray[0]);
     expect(handleCustomOptionSelect).not.toHaveBeenCalled();
   });
@@ -203,7 +181,6 @@ describe("Add/delete via keyboard", () => {
     const input = screen.getByRole("combobox");
     fireEvent.keyDown(input, { key: "ArrowDown" });
     fireEvent.keyDown(input, { key: "Tab" });
-    // Fix: Expect the value string, not the object
     expect(handleOptionSelect).toHaveBeenCalledWith(optionsArray[1]);
     expect(handleCustomOptionSelect).not.toHaveBeenCalled();
   });
@@ -214,7 +191,7 @@ describe("Activator", () => {
   beforeEach(() => {
     rerender(
       <InternalChipDismissibleInput
-        {...baseProps}
+        {...props}
         activator={<div>{activatorLabel}</div>}
       />,
     );
@@ -245,7 +222,7 @@ describe("onLoadMore", () => {
     act(() => {
       mockSetIsInView(true);
       // Manually rerender after changing the mock value
-      rerender(<InternalChipDismissibleInput {...baseProps} />);
+      rerender(<InternalChipDismissibleInput {...props} />);
     });
 
     expect(handleLoadMore).toHaveBeenCalledTimes(1);
@@ -254,14 +231,14 @@ describe("onLoadMore", () => {
     // Simulate element going out of view
     act(() => {
       mockSetIsInView(false);
-      rerender(<InternalChipDismissibleInput {...baseProps} />);
+      rerender(<InternalChipDismissibleInput {...props} />);
     });
     expect(handleLoadMore).toHaveBeenCalledTimes(1);
 
     // Simulate coming into view again
     act(() => {
       mockSetIsInView(true);
-      rerender(<InternalChipDismissibleInput {...baseProps} />);
+      rerender(<InternalChipDismissibleInput {...props} />);
     });
     expect(handleLoadMore).toHaveBeenCalledTimes(2);
   });
@@ -273,21 +250,19 @@ describe("onLoadMore", () => {
     const searchValue = "test";
     fireEvent.change(input, { target: { value: searchValue } });
 
-    // Simulate element coming into view AFTER search
+    // Simulate element coming into view after search
     act(() => {
       mockSetIsInView(true);
-      // Rerender needed here too
-      rerender(<InternalChipDismissibleInput {...baseProps} />);
+      rerender(<InternalChipDismissibleInput {...props} />);
     });
 
     expect(handleLoadMore).toHaveBeenCalledWith(searchValue);
   });
 });
 
-describe("Blur Behavior", () => {
+describe("Default Blur Behavior", () => {
   beforeEach(() => {
     jest.useFakeTimers();
-    // Open menu by default
     const addButton = screen.getByRole("button", { name: "Add" });
     fireEvent.click(addButton);
   });
@@ -296,40 +271,31 @@ describe("Blur Behavior", () => {
     const input = screen.getByRole("combobox");
     fireEvent.blur(input);
 
-    // Menu should still be open immediately
+    // Menu should still be open immediately after blur
     expect(screen.getByRole("listbox")).toBeInTheDocument();
-    expect(handleOptionSelect).not.toHaveBeenCalled(); // Assuming blur doesn't select
+    expect(handleOptionSelect).not.toHaveBeenCalled();
 
-    // Advance timers past the debounce time (DEBOUNCE_TIME = 200)
     act(() => {
       jest.advanceTimersByTime(200);
     });
 
-    // Now the menu should be closed (assuming handleBlur closes it)
-    // We check if the input is gone, as it implies the component state reset
+    // Menu should be closed and activator should be back after debounce timeout
     expect(screen.queryByRole("combobox")).not.toBeInTheDocument();
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
-    // Check if the activator is back
     expect(screen.getByRole("button", { name: "Add" })).toBeInTheDocument();
   });
 
   // Simulate clicking on a menu item which also triggers blur
-  it("should select item and close menu if blur happens due to item click (default mode)", () => {
+  it("should select item and close menu if blur happens due to item click", () => {
     const firstOption = screen.getByRole("option", { name: optionsArray[0] });
-
-    // Simulate clicking the option (fires mousedown, mouseup, click) and blurs input
-    // fireEvent.click handles this sequence generally
     fireEvent.click(firstOption);
 
-    // Option should be selected immediately
     expect(handleOptionSelect).toHaveBeenCalledWith(optionsArray[0]);
 
-    // Advance timers
     act(() => {
       jest.advanceTimersByTime(200);
     });
 
-    // Menu and input should be closed/gone now
     expect(screen.queryByRole("combobox")).not.toBeInTheDocument();
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
   });
@@ -339,10 +305,7 @@ describe("onlyShowMenuOnSearch", () => {
   beforeEach(() => {
     jest.useFakeTimers();
     rerender(
-      <InternalChipDismissibleInput
-        {...baseProps}
-        onlyShowMenuOnSearch={true}
-      />,
+      <InternalChipDismissibleInput {...props} onlyShowMenuOnSearch={true} />,
     );
   });
 
@@ -360,12 +323,11 @@ describe("onlyShowMenuOnSearch", () => {
       screen.queryByRole("button", { name: "Add" }),
     ).not.toBeInTheDocument();
     expect(screen.getByRole("combobox")).toBeInTheDocument();
-    // Menu should NOT show until typing
+    // Menu should not show until typing
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
 
-    // Should focus input after timeout
     act(() => {
-      jest.advanceTimersByTime(1); // Advance timers slightly for the setTimeout(..., 0)
+      jest.advanceTimersByTime(1);
     });
     expect(screen.getByRole("combobox")).toHaveFocus();
   });
@@ -395,7 +357,6 @@ describe("onlyShowMenuOnSearch", () => {
     // Input should still be there immediately
     expect(screen.getByRole("combobox")).toBeInTheDocument();
 
-    // Advance timers
     act(() => {
       jest.advanceTimersByTime(200);
     });
@@ -405,26 +366,22 @@ describe("onlyShowMenuOnSearch", () => {
     expect(screen.getByRole("button", { name: "Add" })).toBeInTheDocument();
   });
 
-  it("should NOT hide input on blur if not empty", () => {
+  it("should not hide input on blur if not empty", () => {
     const addButton = screen.getByRole("button", { name: "Add" });
     fireEvent.click(addButton);
     const input = screen.getByRole("combobox");
 
-    // Type something
     fireEvent.change(input, { target: { value: "test" } });
-
-    // Blur the input
     fireEvent.blur(input);
 
     // Input should still be there immediately
     expect(screen.getByRole("combobox")).toBeInTheDocument();
 
-    // Advance timers
     act(() => {
       jest.advanceTimersByTime(200);
     });
 
-    // Input should still be there
+    // Input should still be there since it's not empty
     expect(screen.getByRole("combobox")).toBeInTheDocument();
     expect(
       screen.queryByRole("button", { name: "Add" }),
@@ -432,13 +389,11 @@ describe("onlyShowMenuOnSearch", () => {
   });
 });
 
-// Helper function
 function isOptionhighlighted(highlighted: string) {
   const activeClass = "activeOption";
   const option = screen.getByRole("option", { name: highlighted });
   expect(option).toHaveClass(activeClass);
 
-  // Fix: Check aria-activedescendant on the combobox input
   const input = screen.getByRole("combobox");
   expect(input).toHaveAttribute("aria-activedescendant", option.id);
 
@@ -447,9 +402,6 @@ function isOptionhighlighted(highlighted: string) {
     .forEach(opt => {
       const otherOption = screen.getByRole("option", { name: opt });
       expect(otherOption).not.toHaveClass(activeClass);
-      // Check that aria-selected is not true or is absent (Removed the check entirely as it's not used)
-      // expect(otherOption).not.toHaveAttribute("aria-selected", "true");
-      // Check that the input's active descendant is not this option's ID
       expect(input.getAttribute("aria-activedescendant")).not.toBe(
         otherOption.id,
       );
