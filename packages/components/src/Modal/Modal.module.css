@@ -17,6 +17,7 @@
 
 .overlay {
   display: grid;
+  z-index: var(--elevation-modal);
   background-color: var(--color-overlay);
   place-items: center;
 }
