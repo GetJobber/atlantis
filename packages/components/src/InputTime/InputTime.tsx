@@ -1,21 +1,25 @@
 import React, { useRef } from "react";
 import { useTimePredict } from "./hooks/useTimePredict";
-import { InputTimeProps } from "./InputTimeProps";
+import { InputTimeLegacyProps } from "./InputTime.types";
+import { dateToTimeString, timeStringToDate } from "./timeUtils";
 import { FormField, FormFieldProps } from "../FormField";
 
-export function InputTime({
+export function InputTimeLegacy({
   defaultValue,
   value,
   onChange,
+  onBlur,
+  onKeyUp,
   ...params
-}: InputTimeProps) {
+}: InputTimeLegacyProps) {
   const ref = useRef<HTMLInputElement>(null);
   const { setTypedTime } = useTimePredict({ value, handleChange });
 
   const fieldProps: FormFieldProps = {
     onChange: handleChange,
     ...(defaultValue && { defaultValue: dateToTimeString(defaultValue) }),
-    ...(!defaultValue && { value: dateToTimeString(value) }),
+    ...(!defaultValue &&
+      value !== undefined && { value: dateToTimeString(value) }),
     ...params,
   };
 
@@ -27,6 +31,7 @@ export function InputTime({
       onBlur={handleBlur}
       onKeyUp={e => {
         fieldProps.onKeyUp?.(e);
+        onKeyUp?.(e);
         !isNaN(parseInt(e.key, 10)) && setTypedTime(prev => prev + e.key);
       }}
     />
@@ -36,52 +41,29 @@ export function InputTime({
     onChange?.(timeStringToDate(newValue));
   }
 
-  function handleBlur() {
-    params.onBlur?.();
+  function handleBlur(event: React.FocusEvent<HTMLInputElement>) {
+    onBlur?.(event);
 
-    // Time inputs doesn't clear the typed value when it's invalid. This should
-    // force it to reset the input value when the typed value is invalid.
     if (ref.current) {
-      if (!ref.current.checkValidity()) {
-        ref.current.value = "";
+      const inputElement = ref.current;
+
+      if (!inputElement.checkValidity()) {
+        inputElement.value = value !== undefined ? dateToTimeString(value) : "";
+
+        if (value === undefined && defaultValue === undefined) {
+          inputElement.value = "";
+        }
+      } else if (inputElement.value) {
+        const formattedDate = timeStringToDate(inputElement.value);
+
+        if (formattedDate) {
+          const formattedString = dateToTimeString(formattedDate);
+
+          if (inputElement.value !== formattedString) {
+            inputElement.value = formattedString;
+          }
+        }
       }
     }
-  }
-}
-
-function dateToTimeString(date?: Date): string {
-  if (!(date instanceof Date)) {
-    return "";
-  }
-
-  // Extract hours and minutes from the Date object
-  const hours = date.getHours().toString().padStart(2, "0");
-  const minutes = date.getMinutes().toString().padStart(2, "0");
-
-  // Return the time string in HH:MM format
-  return `${hours}:${minutes}`;
-}
-
-export function timeStringToDate(timeString: string): Date | undefined {
-  try {
-    const [hours, minutes] = timeString.split(":").map(Number);
-
-    if (
-      isNaN(hours) ||
-      isNaN(minutes) ||
-      hours < 0 ||
-      hours > 24 ||
-      minutes < 0 ||
-      minutes > 60
-    ) {
-      return undefined;
-    }
-
-    const date = new Date();
-    date.setHours(hours, minutes, 0, 0);
-
-    return date;
-  } catch {
-    return undefined;
   }
 }
