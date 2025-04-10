@@ -19,20 +19,20 @@ const BasicTemplate: ComponentStory<typeof Frame> = args => (
 
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
-  n: 16,
-  d: 9,
+  aspectX: 16,
+  aspectY: 9,
 };
 
 export const Square = BasicTemplate.bind({});
 Square.args = {
-  n: 1,
-  d: 1,
+  aspectX: 1,
+  aspectY: 1,
 };
 
 export const FourByThree = BasicTemplate.bind({});
 FourByThree.args = {
-  n: 4,
-  d: 3,
+  aspectX: 4,
+  aspectY: 3,
 };
 
 export const WithContent: ComponentStory<typeof Frame> = () => (

@@ -1,16 +1,9 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import classNames from "classnames";
 import styles from "./Container.module.css";
+import { ContainerApplyProps, ContainerProps } from "./types";
 
-export const Container = ({
-  children,
-  name,
-  className,
-}: {
-  readonly children: ReactNode;
-  readonly name: string;
-  readonly className?: string;
-}) => {
+export const Container = ({ children, name, className }: ContainerProps) => {
   return (
     <div
       style={
@@ -28,12 +21,8 @@ export const Container = ({
 Container.Apply = function Apply({
   children,
   className,
-  style,
-}: {
-  readonly children: ReactNode;
-  readonly className?: string;
-  readonly style: React.CSSProperties;
-}) {
+  style = {},
+}: ContainerApplyProps) {
   return (
     <div style={style} className={classNames(className, styles.apply)}>
       {children}

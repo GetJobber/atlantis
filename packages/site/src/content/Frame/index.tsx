@@ -7,7 +7,7 @@ export default {
   content: () => <Content />,
   props: Props,
   component: {
-    element: `<Frame n={16} d={9}>
+    element: `<Frame aspectX={16} aspectY={9}>
   <img src="/img_collage.jpg" />
 </Frame>`,
   },

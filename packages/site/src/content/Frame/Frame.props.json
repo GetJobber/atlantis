@@ -6,12 +6,12 @@
     "displayName": "Frame",
     "methods": [],
     "props": {
-      "n": {
+      "aspectX": {
         "defaultValue": {
           "value": 16
         },
-        "description": "The left, width, initial, part of the ratio",
-        "name": "n",
+        "description": "The horizontal (width) part of the aspect ratio",
+        "name": "aspectX",
         "parent": {
           "fileName": "packages/components/src/Frame/types.ts",
           "name": "FrameProps"
@@ -21,12 +21,12 @@
           "name": "number"
         }
       },
-      "d": {
+      "aspectY": {
         "defaultValue": {
           "value": 9
         },
-        "description": "The right, height, secondary part of the ratio",
-        "name": "d",
+        "description": "The vertical (height) part of the aspect ratio",
+        "name": "aspectY",
         "parent": {
           "fileName": "packages/components/src/Frame/types.ts",
           "name": "FrameProps"

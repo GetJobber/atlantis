@@ -1,7 +1,7 @@
 export interface FrameProps {
   readonly children: React.ReactNode;
-  /** The left, width, initial, part of the ratio */
-  readonly n?: number;
-  /** The right, height, secondary part of the ratio */
-  readonly d?: number;
+  /** The horizontal (width) part of the aspect ratio */
+  readonly aspectX?: number;
+  /** The vertical (height) part of the aspect ratio */
+  readonly aspectY?: number;
 }

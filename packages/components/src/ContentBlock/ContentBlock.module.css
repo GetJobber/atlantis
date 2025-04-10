@@ -3,6 +3,7 @@
   --content-block-gutters: 0;
   width: 100%;
   box-sizing: content-box;
+  margin-inline: auto;
   max-inline-size: var(--content-block-max-width);
 }
 

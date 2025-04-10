@@ -961,13 +961,13 @@ export const VisualTestLayoutPage = () => {
                 </section>
                 <section>
                   <Text size="large">Square Frame (1:1)</Text>
-                  <Frame n={1} d={1}>
+                  <Frame aspectX={1} aspectY={1}>
                     <img src="/img_collage.jpg" alt="Frame Example" />
                   </Frame>
                 </section>
                 <section>
                   <Text size="large">Old Fashioned TV Frame (4:3)</Text>
-                  <Frame n={4} d={3}>
+                  <Frame aspectX={4} aspectY={3}>
                     <img src="/img_collage.jpg" alt="Frame Example" />
                   </Frame>
                 </section>
