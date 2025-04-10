@@ -1,0 +1,104 @@
+## Configuration
+
+### Card Types
+
+The Card component supports three distinct types of cards:
+
+1. **Regular Card** - A basic card without any click behavior
+2. **Link Card** - A card that navigates to a URL when clicked
+3. **Clickable Card** - A card that triggers a custom click handler
+
+### Component Customization
+
+#### Composable Usage
+
+The Card component supports both prop-driven and composable approaches. The
+standard prop-driven usage with `title` and `header` props is straightforward
+and suitable for most use cases. For advanced customization needs, the Card
+component also provides `Card.Header` and `Card.Body` components.
+
+`Card.Header` is used to display custom header content of the card. `Card.Body`
+is used to display the main content of the card.
+
+Here's an example of converting a prop-driven card to a composable one when more
+customization is needed:
+
+```tsx
+<Card title="Card Title" header="Header Text">
+  <p>Card content</p>
+</Card>
+```
+
+becomes
+
+```tsx
+<Card>
+  <Card.Header>
+    <Text>Card Title</Text>
+  </Card.Header>
+  <Card.Body>
+    <p>Card content</p>
+  </Card.Body>
+</Card>
+```
+
+#### Link Card Example
+
+```tsx
+<Card url="/dashboard" external={true}>
+  <Card.Header>
+    <Text>External Link</Text>
+  </Card.Header>
+  <Card.Body>
+    <p>Click to navigate to dashboard</p>
+  </Card.Body>
+</Card>
+```
+
+#### Clickable Card Example
+
+```tsx
+<Card onClick={handleClick}>
+  <Card.Header>
+    <Text>Interactive Card</Text>
+  </Card.Header>
+  <Card.Body>
+    <p>Click to trigger action</p>
+  </Card.Body>
+</Card>
+```
+
+### Props Compatibility
+
+The Card component uses a discriminated union pattern to ensure proper usage.
+This means that the component can be one of three distinct types, each with its
+own set of valid props:
+
+- A Link Card must have a `url` prop and cannot have an `onClick` handler
+- A Clickable Card must have an `onClick` prop and cannot have a `url`
+- A Regular Card has neither `url` nor `onClick`
+
+This type system ensures that each card has a clear and single responsibility
+for its interaction behavior, making it impossible to create ambiguous card
+states (like having both a URL and click handler).
+
+### Styling
+
+Cards can be customized with the following props:
+
+- `accent`: Applies an accent color to the card
+- `elevation`: Controls the card's shadow elevation ("none" | "base" | "raised"
+  | "floating")
+
+Example with styling:
+
+```tsx
+<Card accent="purple" elevation="raised">
+  <Card.Header>
+    <Text>Styled Card</Text>
+  </Card.Header>
+  <Card.Body>
+    <p>Card with purple accent and raised elevation</p>
+  </Card.Body>
+</Card>
+```
