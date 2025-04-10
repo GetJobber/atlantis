@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "@jobber/design/foundation.css";
-import "@jobber/design/dark.mode.css";
+import "@jobber/design/dist/foundation.css";
+import "@jobber/design/dist/dark.mode.css";
 import "@jobber/components/styles";
 import "./main.css";
 import { BrowserRouter } from "react-router-dom";

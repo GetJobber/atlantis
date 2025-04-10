@@ -32,7 +32,7 @@ The Container component consists of two parts:
 2. `Container.Apply` - Applies container queries to its children
 
 <Canvas>
-  <div style={{ width: "100%" }}>
+  <ContentBlock maxWidth="100%">
     <Container name="example">
       <Stack>
         <Container.Apply className={styles.item}>
@@ -48,7 +48,7 @@ The Container component consists of two parts:
         </Container.Apply>
       </Stack>
     </Container>
-  </div>
+  </ContentBlock>
 </Canvas>
 
 ### Writing container queries
@@ -70,7 +70,7 @@ You can have multiple containers on a page, each with its own name. This allows
 for independent responsive behavior:
 
 <Canvas>
-  <div style={{ width: "100%" }}>
+  <ContentBlock maxWidth="100%">
     <Stack>
       <Container name="first">
         <Container.Apply className={styles.item}>
@@ -87,7 +87,7 @@ for independent responsive behavior:
         </Container.Apply>
       </Container>
     </Stack>
-  </div>
+  </ContentBlock>
 </Canvas>
 
 ## Content guidelines

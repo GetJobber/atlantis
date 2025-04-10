@@ -67,27 +67,27 @@ stack.
 ### Split Layout
 
 <Canvas>
-  <div style={{ height: "200px" }}>
+  <Box height={200}>
     <Stack splitAfter={2}>
       <Text>Main content</Text>
       <Text>Secondary content</Text>
       <Text>Footer content</Text>
     </Stack>
-  </div>
+  </Box>
 </Canvas>
 
 ### Recursive Spacing
 
 <Canvas>
   <Stack space="large" recursive>
-    <div>
+    <Box>
       <Text>Nested item 1.1</Text>
       <Text>Nested item 1.2</Text>
-    </div>
-    <div>
+    </Box>
+    <Box>
       <Text>Nested item 2.1</Text>
       <Text>Nested item 2.2</Text>
-    </div>
+    </Box>
   </Stack>
 </Canvas>
 

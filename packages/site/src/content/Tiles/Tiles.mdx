@@ -49,7 +49,7 @@ Controls the minimum width of each tile. Tiles will automatically flow to the
 next row when they can't maintain this minimum width.
 
 <Canvas>
-<div style={{width:'100%'}}>
+<ContentBlock maxWidth="100%">
 
 <Tiles minSize="30ch">
   <Box padding="0">
@@ -67,11 +67,11 @@ next row when they can't maintain this minimum width.
   </Card>
   </Box>
 </Tiles>
-</div>
+</ContentBlock>
 </Canvas>
 
 <Canvas>
-<div style={{width:'100%'}}>
+<ContentBlock maxWidth="100%">
 
 <Tiles minSize="20ch">
   <Box>
@@ -89,14 +89,14 @@ next row when they can't maintain this minimum width.
   </Card>
   </Box>
 </Tiles>
-</div>
+</ContentBlock>
 </Canvas>
 ### space
 
 Controls the gap between tiles. Uses Jobber's spacing scale:
 
 <Canvas>
-  <div style={{ width: "100%" }}>
+  <ContentBlock maxWidth="100%">
     <Tiles space="largest">
       <Box>
         <Card>
@@ -113,7 +113,7 @@ Controls the gap between tiles. Uses Jobber's spacing scale:
         </Card>
       </Box>
     </Tiles>
-  </div>
+  </ContentBlock>
 </Canvas>
 
 ## Accessibility

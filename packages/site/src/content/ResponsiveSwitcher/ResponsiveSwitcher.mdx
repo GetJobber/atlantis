@@ -24,76 +24,76 @@ Use ResponsiveSwitcher when you need to:
 ### Basic Usage
 
 <Canvas>
-  <div style={{ width: "100%" }}>
+  <ContentBlock maxWidth="100%">
     <ResponsiveSwitcher threshold="30ch">
-      <div>
+      <Box>
         <Card>
           <Box padding="base">
             <Text>First item</Text>
           </Box>
         </Card>
-      </div>
-      <div>
+      </Box>
+      <Box>
         <Card>
           <Box padding="base">
             <Text>Second item</Text>
           </Box>
         </Card>
-      </div>
+      </Box>
     </ResponsiveSwitcher>
-  </div>
+  </ContentBlock>
 </Canvas>
 
 ### Custom Spacing
 
 <Canvas>
-  <div style={{ width: "100%" }}>
+  <ContentBlock maxWidth="100%">
     <ResponsiveSwitcher threshold="40ch" space="large">
-      <div>
+      <Box>
         <Card>
           <Box padding="base">
             <Text>More space</Text>
           </Box>
         </Card>
-      </div>
-      <div>
+      </Box>
+      <Box>
         <Card>
           <Box padding="base">
             <Text>Between items</Text>
           </Box>
         </Card>
-      </div>
+      </Box>
     </ResponsiveSwitcher>
-  </div>
+  </ContentBlock>
 </Canvas>
 
 ### Custom Threshold
 
 <Canvas>
-  <div style={{ width: "100%" }}>
+  <ContentBlock maxWidth="100%">
     <ResponsiveSwitcher threshold="200px">
-      <div>
+      <Box>
         <Card>
           <Box padding="base">
             <Text>Custom breakpoint</Text>
           </Box>
         </Card>
-      </div>
-      <div>
+      </Box>
+      <Box>
         <Card>
           <Box padding="base">
             <Text>at 200px</Text>
           </Box>
         </Card>
-      </div>
+      </Box>
     </ResponsiveSwitcher>
-  </div>
+  </ContentBlock>
 </Canvas>
 
 ### With Item Limit
 
 <Canvas>
-  <div style={{ width: "100%" }}>
+  <ContentBlock maxWidth="100%">
     <ResponsiveSwitcher threshold="30ch" limit={3}>
       <Card>
         <Box padding="base">
@@ -116,7 +116,7 @@ Use ResponsiveSwitcher when you need to:
         </Box>
       </Card>
     </ResponsiveSwitcher>
-  </div>
+  </ContentBlock>
 </Canvas>
 
 ## Implementation Details
