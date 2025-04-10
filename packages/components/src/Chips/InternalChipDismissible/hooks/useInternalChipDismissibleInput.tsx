@@ -83,6 +83,8 @@ export function useInternalChipDismissibleInput({
     handleEnableBlur: () => setShouldCancelBlur(false),
 
     handleBlur: () => {
+      if (shouldCancelBlur) return;
+
       if (
         submitInputOnFocusShift &&
         searchValue.length > 0 &&
@@ -95,8 +97,6 @@ export function useInternalChipDismissibleInput({
 
         actions.handleSelectOption(optionToSelect);
       }
-
-      if (shouldCancelBlur) return;
       actions.handleReset();
     },
 

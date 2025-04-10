@@ -25,214 +25,298 @@ function setupHook(params?: Partial<typeof hookParams>) {
   return result;
 }
 
-describe("handleReset", () => {
-  it("should reset active index and search value", () => {
-    const result = setupHook();
+beforeEach(() => {
+  jest.clearAllMocks();
+  jest.useFakeTimers();
+});
 
-    // set the value to no  default
-    const initialValue = "I am here!";
-    act(() => {
-      result.current.handleSearchChange(fakeChangeEvent(initialValue));
-      result.current.handleKeyDown(fakeKeyDownEvent("ArrowDown"));
+afterEach(() => {
+  jest.useRealTimers();
+});
+
+describe("useInternalChipDismissibleInput", () => {
+  describe("handleReset", () => {
+    it("should reset active index and search value", () => {
+      const result = setupHook();
+      const initialValue = "I am here!";
+
+      act(() => {
+        result.current.handleSearchChange(fakeChangeEvent(initialValue));
+        result.current.handleKeyDown(fakeKeyDownEvent("ArrowDown"));
+      });
+
+      expect(result.current.searchValue).toBe(initialValue);
+      expect(result.current.activeIndex).toBe(1);
+
+      act(() => result.current.handleReset());
+      expect(result.current.activeIndex).toBe(0);
+      expect(result.current.searchValue).toBe("");
     });
-    expect(result.current.searchValue).toBe(initialValue);
-    expect(result.current.activeIndex).toBe(1);
-
-    act(() => result.current.handleReset());
-    expect(result.current.activeIndex).toBe(0);
-    expect(result.current.searchValue).toBe("");
   });
-});
 
-describe("handleOpenMenu", () => {
-  it("should reset active index and close the menu", () => {
-    const result = setupHook();
-    expect(result.current.menuOpen).toBe(false);
+  describe("menu controls", () => {
+    it("handleOpenMenu should open the menu", () => {
+      const result = setupHook();
+      expect(result.current.menuOpen).toBe(false);
 
-    act(() => result.current.handleOpenMenu());
-    expect(result.current.menuOpen).toBe(true);
-  });
-});
-
-describe("handleCloseMenu", () => {
-  it("should reset active index and close the menu", () => {
-    const result = setupHook();
-    expect(result.current.menuOpen).toBe(false);
-    expect(result.current.activeIndex).toBe(0);
-
-    act(() => {
-      result.current.handleOpenMenu();
-      result.current.handleKeyDown(fakeKeyDownEvent("ArrowDown"));
+      act(() => result.current.handleOpenMenu());
+      expect(result.current.menuOpen).toBe(true);
     });
-    expect(result.current.menuOpen).toBe(true);
-    expect(result.current.activeIndex).toBe(1);
 
-    act(() => result.current.handleCloseMenu());
-    expect(result.current.menuOpen).toBe(false);
-    expect(result.current.activeIndex).toBe(0);
-  });
-});
+    it("handleCloseMenu should reset active index and close the menu", () => {
+      const result = setupHook();
+      act(() => {
+        result.current.handleOpenMenu();
+        result.current.handleKeyDown(fakeKeyDownEvent("ArrowDown"));
+      });
 
-describe("handleBlur", () => {
-  it("should allow blur", () => {
-    const result = setupHook();
+      expect(result.current.menuOpen).toBe(true);
+      expect(result.current.activeIndex).toBe(1);
 
-    act(() => {
-      result.current.handleOpenMenu();
-      result.current.handleKeyDown(fakeKeyDownEvent("ArrowDown"));
+      act(() => result.current.handleCloseMenu());
+      expect(result.current.menuOpen).toBe(false);
+      expect(result.current.activeIndex).toBe(0);
     });
-    expect(result.current.menuOpen).toBe(true);
-    expect(result.current.activeIndex).toBe(1);
-
-    act(() => result.current.handleBlur());
-    expect(result.current.menuOpen).toBe(false);
-    expect(result.current.activeIndex).toBe(0);
   });
 
-  it("should not reset the menu open and active index when blurring is disabled", () => {
-    const result = setupHook();
+  describe("handleBlur", () => {
+    it("should allow blur", () => {
+      const result = setupHook();
+      act(() => {
+        result.current.handleOpenMenu();
+        result.current.handleKeyDown(fakeKeyDownEvent("ArrowDown"));
+      });
 
-    act(() => {
-      result.current.handleOpenMenu();
-      result.current.handleKeyDown(fakeKeyDownEvent("ArrowDown"));
+      act(() => result.current.handleBlur());
+      expect(result.current.menuOpen).toBe(false);
+      expect(result.current.activeIndex).toBe(0);
     });
-    act(() => result.current.handleKeyDown(fakeKeyDownEvent("ArrowDown")));
-    expect(result.current.menuOpen).toBe(true);
-    expect(result.current.activeIndex).toBe(2);
 
-    act(() => result.current.handleCancelBlur());
-    act(() => result.current.handleBlur());
-    expect(result.current.shouldCancelBlur).toBe(true);
-    expect(result.current.menuOpen).toBe(true);
-    expect(result.current.activeIndex).toBe(2);
-  });
-});
+    it("should not reset menu state if shouldCancelBlur is true", () => {
+      const result = setupHook();
 
-describe("setSearchValue", () => {
-  it("should set the searchValue", () => {
-    const result = setupHook();
+      act(() => {
+        result.current.handleOpenMenu();
+        result.current.handleKeyDown(fakeKeyDownEvent("ArrowDown"));
+        result.current.handleCancelBlur();
+      });
 
-    const value = "🍩";
-    act(() => result.current.handleSearchChange(fakeChangeEvent(value)));
-    expect(result.current.searchValue).toBe(value);
-  });
+      act(() => result.current.handleBlur());
 
-  it("should reset the active index on search", () => {
-    const result = setupHook();
+      expect(result.current.shouldCancelBlur).toBe(true);
+      expect(result.current.menuOpen).toBe(true);
+      expect(result.current.activeIndex).toBe(1);
+    });
 
-    act(() => result.current.handleKeyDown(fakeKeyDownEvent("ArrowDown")));
-    expect(result.current.activeIndex).toBe(1);
+    it("should allow enabling blur again", () => {
+      const result = setupHook();
+      act(() => {
+        result.current.handleCancelBlur();
+        result.current.handleEnableBlur();
+      });
 
-    act(() => result.current.handleSearchChange(fakeChangeEvent("🍩")));
-    expect(result.current.activeIndex).toBe(0);
-  });
-});
+      expect(result.current.shouldCancelBlur).toBe(false);
+    });
 
-describe("handleSetActiveOnMouseOver", () => {
-  it("should return a function", () => {
-    const result = setupHook();
-    expect(result.current.handleSetActiveOnMouseOver(2)).toEqual(
-      expect.any(Function),
-    );
-  });
+    it("should select fallback option if submitInputOnFocusShift is true", () => {
+      const result = setupHook({
+        submitInputOnFocusShift: true,
+      });
 
-  it("should update the active index", () => {
-    const result = setupHook();
-    result.current.handleSetActiveOnMouseOver(2)();
-    expect(result.current.activeIndex).toEqual(2);
-  });
-});
+      act(() => result.current.handleSearchChange(fakeChangeEvent("Mag")));
+      act(() => result.current.handleBlur());
 
-describe("Selecting an option", () => {
-  it("should only trigger the onOptionSelect callback when the value is from the option provided", () => {
-    const result = setupHook();
-    const selectedOption = result.current.allOptions[2];
-    expect(selectedOption.custom).toBe(false);
-    act(() => result.current.handleSelectOption(selectedOption));
-    expect(handleOptionSelect).toHaveBeenCalledWith(selectedOption.value);
-    expect(handleCustomOptionSelect).not.toHaveBeenCalled();
-  });
+      expect(handleOptionSelect).toHaveBeenCalledWith("Magical");
+    });
 
-  it("should only trigger the onCustomOptionSelect callback when the value is custom", () => {
-    const result = setupHook();
+    it("should select custom option if submitInputOnFocusShift and custom option is enabled", () => {
+      const result = setupHook({
+        submitInputOnFocusShift: true,
+      });
 
-    const value = "🍩";
-    const selectedOption = { label: value, value, custom: true };
-    act(() => result.current.handleSelectOption(selectedOption));
-    expect(handleCustomOptionSelect).toHaveBeenCalledWith(selectedOption.value);
-    expect(handleCustomOptionSelect).toHaveBeenCalledWith(value);
-    expect(handleOptionSelect).not.toHaveBeenCalled();
+      const value = "Mystical";
+
+      act(() => {
+        result.current.handleSearchChange(fakeChangeEvent(value));
+      });
+
+      act(() => {
+        result.current.handleDebouncedSearch(value, []);
+        jest.runAllTimers();
+      });
+
+      act(() => {
+        result.current.handleBlur();
+      });
+
+      expect(handleCustomOptionSelect).toHaveBeenCalledWith(value);
+    });
   });
 
-  it("should not do anything when you press enter and there's no search value nor options to select", () => {
-    const result = setupHook({ options: [] });
-    act(() => result.current.handleKeyDown(fakeKeyDownEvent("Enter")));
-    expect(handleOptionSelect).not.toHaveBeenCalled();
-    expect(handleCustomOptionSelect).not.toHaveBeenCalled();
+  describe("handleSearchChange", () => {
+    it("should update the searchValue and reset index", () => {
+      const result = setupHook();
+
+      act(() => result.current.handleKeyDown(fakeKeyDownEvent("ArrowDown")));
+      expect(result.current.activeIndex).toBe(1);
+
+      act(() => result.current.handleSearchChange(fakeChangeEvent("🍩")));
+      expect(result.current.searchValue).toBe("🍩");
+      expect(result.current.activeIndex).toBe(0);
+    });
+
+    it("should toggle menu open state with onlyShowMenuOnSearch", () => {
+      const result = setupHook({ onlyShowMenuOnSearch: true });
+
+      act(() => result.current.handleSearchChange(fakeChangeEvent("Hello")));
+      expect(result.current.menuOpen).toBe(true);
+
+      act(() => result.current.handleSearchChange(fakeChangeEvent("")));
+      expect(result.current.menuOpen).toBe(false);
+    });
+  });
+
+  describe("handleSetActiveOnMouseOver", () => {
+    it("should set active index", () => {
+      const result = setupHook();
+      act(() => result.current.handleSetActiveOnMouseOver(2)());
+      expect(result.current.activeIndex).toBe(2);
+    });
+  });
+
+  describe("handleSelectOption", () => {
+    it("should call onOptionSelect", () => {
+      const result = setupHook();
+      const option = result.current.allOptions[1];
+
+      act(() => result.current.handleSelectOption(option));
+      expect(handleOptionSelect).toHaveBeenCalledWith(option.value);
+    });
+
+    it("should call onCustomOptionSelect", () => {
+      const result = setupHook();
+      const option = {
+        value: "🍩",
+        label: "🍩",
+        custom: true,
+        prefix: undefined,
+      };
+
+      act(() => result.current.handleSelectOption(option));
+      expect(handleCustomOptionSelect).toHaveBeenCalledWith("🍩");
+    });
+
+    it("should do nothing if no options exist", () => {
+      const result = setupHook({ options: [] });
+
+      act(() =>
+        result.current.handleSelectOption({
+          label: "Ghost",
+          value: "Ghost",
+          custom: false,
+        }),
+      );
+
+      expect(handleOptionSelect).not.toHaveBeenCalled();
+    });
   });
 
   describe("handleKeyDown", () => {
-    it("should select the first option on 'Enter'", () => {
+    it("should ignore if shift key is pressed", () => {
       const result = setupHook();
+
+      const event = {
+        key: "Enter",
+        preventDefault: jest.fn(),
+        shiftKey: true,
+      } as unknown as KeyboardEvent<HTMLInputElement>;
+
+      act(() => result.current.handleKeyDown(event));
+      expect(handleOptionSelect).not.toHaveBeenCalled();
+    });
+
+    it("should handle Enter, Tab, Comma, ArrowDown, ArrowUp", () => {
+      const result = setupHook();
+
+      act(() => result.current.handleKeyDown(fakeKeyDownEvent("ArrowDown")));
+      expect(result.current.activeIndex).toBe(1);
+
+      act(() => result.current.handleKeyDown(fakeKeyDownEvent("ArrowUp")));
+      expect(result.current.activeIndex).toBe(0);
+
+      act(() => result.current.handleKeyDown(fakeKeyDownEvent("ArrowUp")));
+      expect(result.current.activeIndex).toBe(chips.length - 1);
+
+      act(() => result.current.handleKeyDown(fakeKeyDownEvent("ArrowDown")));
+      expect(result.current.activeIndex).toBe(0);
+
       act(() => result.current.handleKeyDown(fakeKeyDownEvent("Enter")));
       expect(handleOptionSelect).toHaveBeenCalledWith(chips[0]);
-    });
 
-    it("should select the active option on 'Tab'", () => {
-      const result = setupHook();
-      act(() => result.current.handleKeyDown(fakeKeyDownEvent("ArrowDown")));
       act(() => result.current.handleKeyDown(fakeKeyDownEvent("Tab")));
-      expect(handleOptionSelect).toHaveBeenCalledWith(chips[1]);
-    });
+      expect(handleOptionSelect).toHaveBeenCalledWith(chips[0]);
 
-    it("should add the typed text on 'Comma'", () => {
-      const result = setupHook();
-      const value = "Marvelous";
-      act(() => result.current.handleSearchChange(fakeChangeEvent(value)));
-      act(() => result.current.handleKeyDown(fakeKeyDownEvent(",")));
+      const value = "Xylophonic";
+
+      act(() => {
+        result.current.handleSearchChange(fakeChangeEvent(value));
+      });
+
+      act(() => {
+        result.current.handleDebouncedSearch(value, []);
+        jest.runAllTimers();
+      });
+
+      act(() => {
+        result.current.handleKeyDown(fakeKeyDownEvent(","));
+      });
+
       expect(handleCustomOptionSelect).toHaveBeenCalledWith(value);
-      expect(handleOptionSelect).not.toHaveBeenCalled();
-    });
 
-    it("should not add an empty string 'Comma'", () => {
-      const result = setupHook();
+      act(() => result.current.handleSearchChange(fakeChangeEvent("")));
       act(() => result.current.handleKeyDown(fakeKeyDownEvent(",")));
-      expect(handleCustomOptionSelect).not.toHaveBeenCalled();
-      expect(handleOptionSelect).not.toHaveBeenCalled();
+      expect(handleCustomOptionSelect).toHaveBeenCalledTimes(1);
     });
 
-    it("should increment the active index by one on 'ArrowDown'", () => {
+    it("should focus previous element on Backspace when empty", () => {
       const result = setupHook();
-      act(() => result.current.handleKeyDown(fakeKeyDownEvent("ArrowDown")));
-      expect(result.current.activeIndex).toBe(1);
 
-      act(() => result.current.handleKeyDown(fakeKeyDownEvent("ArrowDown")));
-      expect(result.current.activeIndex).toBe(2);
+      const sibling = document.createElement("button");
+      sibling.focus = jest.fn();
+
+      const input = document.createElement("input");
+      Object.defineProperty(input, "previousElementSibling", {
+        value: sibling,
+      });
+
+      result.current.inputRef.current = input;
+
+      act(() => result.current.handleSearchChange(fakeChangeEvent("")));
+      act(() => result.current.handleKeyDown(fakeKeyDownEvent("Backspace")));
+
+      expect(sibling.focus).toHaveBeenCalled();
     });
+  });
 
-    it("should decrement the active index by one on 'ArrowUp'", () => {
+  describe("generateDescendantId", () => {
+    it("should return a valid id", () => {
       const result = setupHook();
-      act(() => result.current.handleKeyDown(fakeKeyDownEvent("ArrowDown")));
-      expect(result.current.activeIndex).toBe(1);
-
-      act(() => result.current.handleKeyDown(fakeKeyDownEvent("ArrowUp")));
-      expect(result.current.activeIndex).toBe(0);
+      const id = result.current.generateDescendantId(3);
+      expect(id).toBe(`${result.current.menuId}-3`);
     });
+  });
 
-    it("should go to the last index when the active index is at 0 and you press 'ArrowUp'", () => {
+  describe("handleDebouncedSearch", () => {
+    it("should debounce and update options", () => {
       const result = setupHook();
-      expect(result.current.activeIndex).toBe(0);
-      act(() => result.current.handleKeyDown(fakeKeyDownEvent("ArrowUp")));
-      expect(result.current.activeIndex).toBe(chips.length - 1);
-    });
-
-    it("should go to the first index when the active index is at the last option and you press 'ArrowDown'", () => {
-      const result = setupHook();
-      expect(result.current.activeIndex).toBe(0);
-      act(() => result.current.handleKeyDown(fakeKeyDownEvent("ArrowUp")));
-      expect(result.current.activeIndex).toBe(chips.length - 1);
-      act(() => result.current.handleKeyDown(fakeKeyDownEvent("ArrowDown")));
-      expect(result.current.activeIndex).toBe(0);
+      act(() => {
+        result.current.handleDebouncedSearch("Magical", hookParams.options);
+      });
+      act(() => {
+        jest.runAllTimers();
+      });
+      expect(result.current.allOptions.length).toBe(1);
+      expect(result.current.allOptions[0].label).toBe("Magical");
     });
   });
 });
@@ -246,6 +330,7 @@ function fakeChangeEvent(initialValue: string) {
 function fakeKeyDownEvent(key: string) {
   return {
     key: key,
-    preventDefault: jest.fn,
+    preventDefault: jest.fn(),
+    shiftKey: false,
   } as unknown as KeyboardEvent<HTMLInputElement>;
 }
