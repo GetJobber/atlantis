@@ -4,7 +4,8 @@ import { ResponsiveSwitcher } from "@jobber/components/ResponsiveSwitcher";
 import { Card } from "@jobber/components/Card";
 import { Heading } from "@jobber/components/Heading";
 import { Text } from "@jobber/components/Text";
-import { Content } from "@jobber/components/Content";
+import { Stack } from "@jobber/components/Stack";
+import { Box } from "@jobber/components/Box";
 
 type ResponsiveSwitcherProps = React.ComponentProps<typeof ResponsiveSwitcher>;
 
@@ -21,28 +22,32 @@ const BasicTemplate: ComponentStory<typeof ResponsiveSwitcher> = (
   args: ResponsiveSwitcherProps,
 ) => {
   return (
-    <Content>
+    <Stack>
       <ResponsiveSwitcher {...args}>
         <Card>
-          <Content>
-            <Heading level={3}>Left/Top Content</Heading>
-            <Text>
-              This content will switch between horizontal and vertical layout
-              based on the threshold.
-            </Text>
-          </Content>
+          <Box padding="base">
+            <Stack>
+              <Heading level={3}>Left/Top Content</Heading>
+              <Text>
+                This content will switch between horizontal and vertical layout
+                based on the threshold.
+              </Text>
+            </Stack>
+          </Box>
         </Card>
         <Card>
-          <Content>
-            <Heading level={3}>Right/Bottom Content</Heading>
-            <Text>
-              The layout switches when the container width is less than the
-              threshold.
-            </Text>
-          </Content>
+          <Box padding="base">
+            <Stack>
+              <Heading level={3}>Right/Bottom Content</Heading>
+              <Text>
+                The layout switches when the container width is less than the
+                threshold.
+              </Text>
+            </Stack>
+          </Box>
         </Card>
       </ResponsiveSwitcher>
-    </Content>
+    </Stack>
   );
 };
 
@@ -57,28 +62,28 @@ const MultipleItemsTemplate: ComponentStory<typeof ResponsiveSwitcher> = (
   args: ResponsiveSwitcherProps,
 ) => {
   return (
-    <Content>
+    <Stack>
       <ResponsiveSwitcher {...args}>
         <Card>
-          <Content>
+          <Stack>
             <Heading level={3}>Card 1</Heading>
             <Text>First card content</Text>
-          </Content>
+          </Stack>
         </Card>
         <Card>
-          <Content>
+          <Stack>
             <Heading level={3}>Card 2</Heading>
             <Text>Second card content</Text>
-          </Content>
+          </Stack>
         </Card>
         <Card>
-          <Content>
+          <Stack>
             <Heading level={3}>Card 3</Heading>
             <Text>Third card content</Text>
-          </Content>
+          </Stack>
         </Card>
       </ResponsiveSwitcher>
-    </Content>
+    </Stack>
   );
 };
 
@@ -93,22 +98,26 @@ const CustomSpacingTemplate: ComponentStory<typeof ResponsiveSwitcher> = (
   args: ResponsiveSwitcherProps,
 ) => {
   return (
-    <Content>
+    <Stack>
       <ResponsiveSwitcher {...args}>
         <Card>
-          <Content>
-            <Heading level={3}>Custom Space</Heading>
-            <Text>Using a custom spacing value</Text>
-          </Content>
+          <Box padding="base">
+            <Stack>
+              <Heading level={3}>Custom Space</Heading>
+              <Text>Using a custom spacing value</Text>
+            </Stack>
+          </Box>
         </Card>
         <Card>
-          <Content>
-            <Heading level={3}>Between Items</Heading>
-            <Text>The gap between items is customizable</Text>
-          </Content>
+          <Box padding="base">
+            <Stack>
+              <Heading level={3}>Between Items</Heading>
+              <Text>The gap between items is customizable</Text>
+            </Stack>
+          </Box>
         </Card>
       </ResponsiveSwitcher>
-    </Content>
+    </Stack>
   );
 };
 
