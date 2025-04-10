@@ -66,7 +66,7 @@ describe("Tabs Component", () => {
     describe("when children are dynamically rendered", () => {
       it("should not render a removed tab", async () => {
         const { rerender } = render(dynamicChildren(true));
-        const tab = await screen.findByRole("tab", { name: "Cheese" });
+        const tab = screen.getByRole("tab", { name: "Cheese" });
         expect(tab).toBeInTheDocument();
 
         rerender(dynamicChildren(false));
@@ -80,7 +80,7 @@ describe("Tabs Component", () => {
         expect(tab).not.toBeInTheDocument();
 
         rerender(dynamicChildren(true));
-        const newTab = await screen.findByRole("tab", { name: "Cheese" });
+        const newTab = screen.getByRole("tab", { name: "Cheese" });
         expect(newTab).toBeInTheDocument();
       });
     });
@@ -90,15 +90,15 @@ describe("Tabs Component", () => {
     it("should switch tabs", async () => {
       render(omelet);
 
-      expect(screen.queryByText("🍳")).toBeInTheDocument();
+      expect(screen.getByText("🍳")).toBeInTheDocument();
       expect(screen.queryByText("🧀")).not.toBeInTheDocument();
 
       await userEvent.click(screen.getByRole("tab", { name: "Cheese" }));
       expect(screen.queryByText("🍳")).not.toBeInTheDocument();
-      expect(screen.queryByText("🧀")).toBeInTheDocument();
+      expect(screen.getByText("🧀")).toBeInTheDocument();
 
       await userEvent.click(screen.getByRole("tab", { name: "Eggs" }));
-      expect(screen.queryByText("🍳")).toBeInTheDocument();
+      expect(screen.getByText("🍳")).toBeInTheDocument();
       expect(screen.queryByText("🧀")).not.toBeInTheDocument();
     });
 
@@ -122,11 +122,11 @@ describe("Tabs Component", () => {
       await userEvent.keyboard("{ArrowRight}");
       expect(tab2).toHaveFocus();
       expect(screen.queryByText("🍳")).not.toBeInTheDocument();
-      expect(screen.queryByText("🧀")).toBeInTheDocument();
+      expect(screen.getByText("🧀")).toBeInTheDocument();
 
       await userEvent.keyboard("{ArrowLeft}");
       expect(tab1).toHaveFocus();
-      expect(screen.queryByText("🍳")).toBeInTheDocument();
+      expect(screen.getByText("🍳")).toBeInTheDocument();
       expect(screen.queryByText("🧀")).not.toBeInTheDocument();
     });
 
@@ -180,7 +180,7 @@ describe("Tabs Component", () => {
 
       await userEvent.click(screen.getByRole("tab", { name: "Cheese" }));
       expect(screen.queryByText("🍳")).not.toBeInTheDocument();
-      expect(screen.queryByText("🧀")).toBeInTheDocument();
+      expect(screen.getByText("🧀")).toBeInTheDocument();
     });
 
     it("sets the active tab to 0 if the defaultTab is out of bounds", () => {
@@ -196,7 +196,7 @@ describe("Tabs Component", () => {
         </Tabs>,
       );
 
-      expect(screen.queryByText("🍳")).toBeInTheDocument();
+      expect(screen.getByText("🍳")).toBeInTheDocument();
       expect(screen.queryByText("🧀")).not.toBeInTheDocument();
     });
 
@@ -226,15 +226,15 @@ describe("Tabs Component", () => {
 
       render(<ControlledTabs />);
 
-      expect(screen.queryByText("🍳")).toBeInTheDocument();
+      expect(screen.getByText("🍳")).toBeInTheDocument();
       expect(screen.queryByText("🧀")).not.toBeInTheDocument();
 
       await userEvent.click(screen.getByText("Set Tab 1"));
       expect(screen.queryByText("🍳")).not.toBeInTheDocument();
-      expect(screen.queryByText("🧀")).toBeInTheDocument();
+      expect(screen.getByText("🧀")).toBeInTheDocument();
 
       await userEvent.click(screen.getByText("Set Tab 0"));
-      expect(screen.queryByText("🍳")).toBeInTheDocument();
+      expect(screen.getByText("🍳")).toBeInTheDocument();
       expect(screen.queryByText("🧀")).not.toBeInTheDocument();
     });
 
@@ -391,12 +391,12 @@ describe("Tabs Component", () => {
       const { rerender } = render(<Tabs>{manyTabs.map(tab => tab)}</Tabs>);
 
       await userEvent.click(screen.getByText("Tab 9"));
-      expect(screen.queryByText("Content 9")).toBeInTheDocument();
+      expect(screen.getByText("Content 9")).toBeInTheDocument();
 
       const manyNewTabs = buildTabs(15);
       rerender(<Tabs>{manyNewTabs.map(tab => tab)}</Tabs>);
 
-      expect(screen.queryByText("Content 9")).toBeInTheDocument();
+      expect(screen.getByText("Content 9")).toBeInTheDocument();
     });
 
     it("when number of tabs doesn't change, the active tab doesn't change", async () => {
@@ -404,12 +404,12 @@ describe("Tabs Component", () => {
       const { rerender } = render(<Tabs>{manyTabs.map(tab => tab)}</Tabs>);
 
       await userEvent.click(screen.getByText("Tab 9"));
-      expect(screen.queryByText("Content 9")).toBeInTheDocument();
+      expect(screen.getByText("Content 9")).toBeInTheDocument();
 
       const manyNewTabs = buildTabs(10);
       rerender(<Tabs>{manyNewTabs.map(tab => tab)}</Tabs>);
 
-      expect(screen.queryByText("Content 9")).toBeInTheDocument();
+      expect(screen.getByText("Content 9")).toBeInTheDocument();
     });
 
     it("when the number of tabs shrinks and defaultTab is specified, the active tab is reset to defaultTab", async () => {
@@ -420,7 +420,7 @@ describe("Tabs Component", () => {
       );
 
       await userEvent.click(screen.getByText("Tab 9"));
-      expect(screen.queryByText("Content 9")).toBeInTheDocument();
+      expect(screen.getByText("Content 9")).toBeInTheDocument();
 
       const manyNewTabs = buildTabs(5);
       rerender(
@@ -428,7 +428,7 @@ describe("Tabs Component", () => {
       );
 
       expect(screen.queryByText("Content 9")).not.toBeInTheDocument();
-      expect(screen.queryByText(`Content ${defaultTab}`)).toBeInTheDocument();
+      expect(screen.getByText(`Content ${defaultTab}`)).toBeInTheDocument();
     });
 
     it("when the number of tabs shrinks and defaultTab is not specified, the active tab is reset to the first tab", async () => {
@@ -436,13 +436,13 @@ describe("Tabs Component", () => {
       const { rerender } = render(<Tabs>{manyTabs.map(tab => tab)}</Tabs>);
 
       await userEvent.click(screen.getByText("Tab 9"));
-      expect(screen.queryByText("Content 9")).toBeInTheDocument();
+      expect(screen.getByText("Content 9")).toBeInTheDocument();
 
       const manyNewTabs = buildTabs(5);
       rerender(<Tabs>{manyNewTabs.map(tab => tab)}</Tabs>);
 
       expect(screen.queryByText("Content 9")).not.toBeInTheDocument();
-      expect(screen.queryByText("Content 0")).toBeInTheDocument();
+      expect(screen.getByText("Content 0")).toBeInTheDocument();
     });
   });
 });
