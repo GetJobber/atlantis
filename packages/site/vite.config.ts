@@ -63,12 +63,7 @@ export default defineConfig({
     alias: {
       "@jobber/formatters": path.resolve(__dirname, "../formatters/src"),
       "@jobber/hooks": path.resolve(__dirname, "../hooks/src"),
-      "@jobber/components": path.resolve(__dirname, "../components/dist"),
       "@jobber/design": path.resolve(__dirname, "../design/dist"),
-      "@jobber/styles": path.resolve(
-        __dirname,
-        "../components/dist/styles.css",
-      ),
       "@storybook/addon-docs": path.resolve(
         __dirname,
         "./src/components/StorybookOverrides",
