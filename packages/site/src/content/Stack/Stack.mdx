@@ -1,4 +1,4 @@
-import { Stack, Text } from "@jobber/components";
+import { Stack, Text, Box } from "@jobber/components";
 import { Canvas } from "@storybook/addon-docs";
 
 # Stack
@@ -21,27 +21,6 @@ Use Stack when you need to:
 - Build forms with evenly spaced fields
 - Layout content in cards or modals
 - Create sections with equal vertical rhythm
-
-## Props
-
-### space
-
-Controls the vertical spacing between elements. Accepts either a design token or
-a custom value.
-
-### recursive
-
-When `true`, applies spacing to all nested elements. When `false` (default),
-only applies spacing to direct children.
-
-### splitAfter
-
-Creates a split in the stack after the specified child index (1-15), pushing the
-remaining content to the bottom. Useful for creating layouts with footer
-content.
-
-Relies on the height of the parent element to be larger than the height of the
-stack.
 
 ## Examples
 

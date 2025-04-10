@@ -1,6 +1,8 @@
 import { Canvas } from "@storybook/addon-docs";
 import { Frame } from "@jobber/components";
 import { Heading, Text } from "@jobber/components";
+import { Box } from "@jobber/components/Box";
+import { ContentBlock } from "@jobber/components/ContentBlock";
 
 # Frame
 
@@ -12,14 +14,11 @@ consistent proportions across different screen sizes.
 
 Frame accepts any content as a child element and maintains the specified aspect
 ratio. By default, it uses a 16:9 ratio, but this can be customized using the
-`n` for numerator and `d` for denominator props.
+`aspectX` and `aspectY` props.
 
 <Canvas>
   <Frame>
-    <img
-      src="https://placehold.co/600x400?text=Profile+photo"
-      alt="Profile photo"
-    />
+    <img src="https://placehold.co/600x400?text=Photo" alt="Photo" />
   </Frame>
 </Canvas>
 

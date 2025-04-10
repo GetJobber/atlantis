@@ -3,19 +3,21 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Cluster } from "@jobber/components/Cluster";
 import { Button } from "@jobber/components/Button";
 import { Chip } from "@jobber/components/Chip";
+import { ContentBlock } from "@jobber/components/ContentBlock";
 
 export default {
   title: "Components/Layouts and Structure/Cluster/Web",
   component: Cluster,
   parameters: {
-    layout: "centered",
     viewMode: "story",
     previewTabs: { code: { hidden: false } },
   },
 } as ComponentMeta<typeof Cluster>;
 
 const BasicTemplate: ComponentStory<typeof Cluster> = args => (
-  <Cluster {...args} />
+  <ContentBlock maxWidth="100%">
+    <Cluster {...args} />
+  </ContentBlock>
 );
 
 export const Basic = BasicTemplate.bind({});

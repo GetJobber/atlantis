@@ -65,22 +65,28 @@ const MultipleItemsTemplate: ComponentStory<typeof ResponsiveSwitcher> = (
     <Stack>
       <ResponsiveSwitcher {...args}>
         <Card>
-          <Stack>
-            <Heading level={3}>Card 1</Heading>
-            <Text>First card content</Text>
-          </Stack>
+          <Box padding="base">
+            <Stack>
+              <Heading level={3}>Card 1</Heading>
+              <Text>First card content</Text>
+            </Stack>
+          </Box>
         </Card>
         <Card>
-          <Stack>
-            <Heading level={3}>Card 2</Heading>
-            <Text>Second card content</Text>
-          </Stack>
+          <Box padding="base">
+            <Stack>
+              <Heading level={3}>Card 2</Heading>
+              <Text>Second card content</Text>
+            </Stack>
+          </Box>
         </Card>
         <Card>
-          <Stack>
-            <Heading level={3}>Card 3</Heading>
-            <Text>Third card content</Text>
-          </Stack>
+          <Box padding="base">
+            <Stack>
+              <Heading level={3}>Card 3</Heading>
+              <Text>Third card content</Text>
+            </Stack>
+          </Box>
         </Card>
       </ResponsiveSwitcher>
     </Stack>

@@ -7,7 +7,7 @@ export default {
   content: () => <Content />,
   props: Props,
   component: {
-    element: `<Box width="100%" background="surface"}}>
+    element: `<Box width="100%" background="surface">
   <ContentBlock justify="center">
     <Card>
       <Box padding="base">
