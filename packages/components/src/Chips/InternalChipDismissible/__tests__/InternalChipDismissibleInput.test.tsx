@@ -218,24 +218,20 @@ describe("onLoadMore", () => {
     const addButton = screen.getByRole("button", { name: "Add" });
     fireEvent.click(addButton);
 
-    // Simulate element coming into view
     act(() => {
       mockSetIsInView(true);
-      // Manually rerender after changing the mock value
       rerender(<InternalChipDismissibleInput {...props} />);
     });
 
     expect(handleLoadMore).toHaveBeenCalledTimes(1);
     expect(handleLoadMore).toHaveBeenCalledWith("");
 
-    // Simulate element going out of view
     act(() => {
       mockSetIsInView(false);
       rerender(<InternalChipDismissibleInput {...props} />);
     });
     expect(handleLoadMore).toHaveBeenCalledTimes(1);
 
-    // Simulate coming into view again
     act(() => {
       mockSetIsInView(true);
       rerender(<InternalChipDismissibleInput {...props} />);
@@ -250,7 +246,6 @@ describe("onLoadMore", () => {
     const searchValue = "test";
     fireEvent.change(input, { target: { value: searchValue } });
 
-    // Simulate element coming into view after search
     act(() => {
       mockSetIsInView(true);
       rerender(<InternalChipDismissibleInput {...props} />);
@@ -285,7 +280,6 @@ describe("Default Blur Behavior", () => {
     expect(screen.getByRole("button", { name: "Add" })).toBeInTheDocument();
   });
 
-  // Simulate clicking on a menu item which also triggers blur
   it("should select item and close menu if blur happens due to item click", () => {
     const firstOption = screen.getByRole("option", { name: optionsArray[0] });
     fireEvent.click(firstOption);
@@ -351,7 +345,6 @@ describe("onlyShowMenuOnSearch", () => {
     fireEvent.click(addButton);
     const input = screen.getByRole("combobox");
 
-    // Blur the input while it's empty
     fireEvent.blur(input);
 
     // Input should still be there immediately

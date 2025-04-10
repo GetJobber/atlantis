@@ -41,7 +41,6 @@ export function useInternalChipDismissibleInput({
   const { liveAnnounce } = useLiveAnnounce();
 
   useEffect(() => {
-    console.log("In useEffect");
     setAllOptions(generateOptions(options, searchValue, canAddCustomOption));
   }, [options]);
 
@@ -91,12 +90,10 @@ export function useInternalChipDismissibleInput({
         searchValue.length > 0 &&
         allOptions.length > 0
       ) {
-        console.log(allOptions);
         // If there's a custom option, select it. Otherwise select the best match
         const optionToSelect = canAddCustomOption
           ? allOptions[allOptions.length - 1]
           : allOptions[0];
-        console.log(optionToSelect);
         actions.handleSelectOption(optionToSelect);
       }
 
@@ -189,7 +186,6 @@ function generateOptions(
   searchValue: string,
   canAddCustomOption: boolean,
 ) {
-  console.log(searchValue);
   const allOptions: ChipDismissibleInputOptionProps[] = options
     .filter(option =>
       option.label.toLowerCase().match(searchValue.trim().toLowerCase()),
@@ -202,7 +198,6 @@ function generateOptions(
     canAddCustomOption,
   );
   shouldAddCustomOption && allOptions.push(customOption);
-  console.log(allOptions);
 
   return allOptions;
 }
