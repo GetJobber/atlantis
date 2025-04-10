@@ -61,19 +61,6 @@
         "type": {
           "name": "(string & {}) | Spaces"
         }
-      },
-      "intrinsic": {
-        "defaultValue": null,
-        "description": "Whether to instrictly center the content.",
-        "name": "intrinsic",
-        "parent": {
-          "fileName": "packages/components/src/ContentBlock/types.ts",
-          "name": "ContentBlockProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
       }
     }
   }

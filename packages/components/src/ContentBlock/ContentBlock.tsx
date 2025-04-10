@@ -21,7 +21,6 @@ export function ContentBlock({
   maxWidth = Breakpoints.smaller,
   andText,
   gutters,
-  intrinsic,
   justify = "left",
 }: ContentBlockProps) {
   const guttersMapped = useMemo(
@@ -56,7 +55,6 @@ export function ContentBlock({
         styles.contentBlock,
         andText && styles.andText,
         gutters && styles.gutters,
-        intrinsic && styles.intrinsic,
         justify === "left" && styles.left,
         justify === "right" && styles.right,
       )}

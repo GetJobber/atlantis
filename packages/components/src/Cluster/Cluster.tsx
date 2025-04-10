@@ -39,13 +39,25 @@ export function Cluster({
     return collapseBelow as string;
   }, [collapseBelow]);
 
+  const justifyMapped = useMemo(() => {
+    if (justify === "between") {
+      return "space-between";
+    }
+
+    if (justify === "around") {
+      return "space-around";
+    }
+
+    return justify;
+  }, [justify]);
+
   const isCollapsed = useMediaQuery(`(max-width: ${collapseBelowMapped})`);
 
   return (
     <div
       style={
         {
-          "--public-cluster-justify": justify,
+          "--public-cluster-justify": justifyMapped,
           "--public-cluster-align": align,
           "--public-cluster-space": spaceMapped,
         } as React.CSSProperties

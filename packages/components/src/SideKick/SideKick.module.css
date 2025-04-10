@@ -19,10 +19,6 @@
   min-inline-size: var(--public-sidekick-side-width);
 }
 
-.right > :last-child {
-  flex-grow: 1;
-}
-
 .withWidthRight > :last-child {
   flex-basis: var(--public-sidekick-min-width);
 }
@@ -31,6 +27,10 @@
   flex-basis: 0;
   flex-grow: 999;
   min-inline-size: var(--public-sidekick-side-width);
+}
+
+.right > :last-child {
+  flex-grow: 1;
 }
 
 .collapsed {

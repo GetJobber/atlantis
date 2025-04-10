@@ -35,9 +35,4 @@ export interface ContentBlockProps {
    * The amount of space between the content and the edges of the container.
    */
   readonly gutters?: Spaces | (string & NonNullable<unknown>);
-
-  /**
-   * Whether to instrictly center the content.
-   */
-  readonly intrinsic?: boolean;
 }

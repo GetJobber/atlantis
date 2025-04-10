@@ -15,12 +15,12 @@
   margin-inline-end: 0;
 }
 
-.left.andText {
-  text-align: left;
+.andText {
+  text-align: center;
 }
 
-.center.andText {
-  text-align: center;
+.left.andText {
+  text-align: left;
 }
 
 .right.andText {
@@ -30,21 +30,4 @@
 .gutters {
   padding-inline-start: var(--content-block-gutters);
   padding-inline-end: var(--content-block-gutters);
-}
-
-.intrinsic {
-  display: flex;
-  flex-direction: column;
-}
-
-.intrinsic.left {
-  align-items: flex-start;
-}
-
-.intrinsic.center {
-  align-items: center;
-}
-
-.intrinsic.right {
-  align-items: flex-end;
 }
