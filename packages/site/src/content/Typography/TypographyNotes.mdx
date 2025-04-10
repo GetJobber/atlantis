@@ -11,7 +11,7 @@ General information for using `UNSAFE_` props can be found
 considered a **last resort**. Future Typography updates may lead to unintended
 breakages.
 
-#### UNSAFE\_ props in web
+#### UNSAFE\_ props (web)
 
 <Tabs>
   <Tab label="UNSAFE_className">
@@ -19,7 +19,7 @@ breakages.
     can be useful for applying styles via CSS Modules.
 
     ```tsx
-    // Typography.tsx
+    // YourComponent.tsx
     <Typography
       UNSAFE_className={{
         textStyle: styles.customText,
@@ -28,7 +28,7 @@ breakages.
       Text with UNSAFE className
     </Typography>
 
-    // Typography.module.css
+    // YourComponent.module.css
     .customText {
       color: var(--color-purple);
     }
@@ -54,7 +54,7 @@ breakages.
   </Tab>
 </Tabs>
 
-#### UNSAFE\_ props in mobile
+#### UNSAFE\_ props (mobile)
 
 Use `UNSAFE_style` to apply custom styles to the Typography component.
 

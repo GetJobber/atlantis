@@ -118,6 +118,18 @@ WithActions.args = {
   ],
 };
 
+export const SecondaryActionOnly = BasicTemplate.bind({});
+
+SecondaryActionOnly.args = {
+  title: "Settings",
+  secondaryAction: {
+    label: "View Documentation",
+    onClick: () => {
+      alert("View Documentation!");
+    },
+  },
+};
+
 export const WithIntro = BasicTemplate.bind({});
 WithIntro.args = {
   title: "Notifications",

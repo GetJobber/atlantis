@@ -6,47 +6,6 @@
     "displayName": "Card",
     "methods": [],
     "props": {
-      "url": {
-        "defaultValue": null,
-        "description": "URL that the card would navigate to once clicked.",
-        "name": "url",
-        "parent": {
-          "fileName": "../components/src/Card/Card.tsx",
-          "name": "LinkCardProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "external": {
-        "defaultValue": {
-          "value": false
-        },
-        "description": "Makes the URL open in new tab on click.",
-        "name": "external",
-        "parent": {
-          "fileName": "../components/src/Card/Card.tsx",
-          "name": "LinkCardProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "onClick": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onClick",
-        "parent": {
-          "fileName": "../components/src/Card/Card.tsx",
-          "name": "ClickableCardProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>) => void"
-        }
-      },
       "accent": {
         "defaultValue": null,
         "description": "The `accent`, if provided, will effect the color accent at the top of\nthe card.",
@@ -87,9 +46,7 @@
         }
       },
       "elevation": {
-        "defaultValue": {
-          "value": "none"
-        },
+        "defaultValue": null,
         "description": "",
         "name": "elevation",
         "parent": {
@@ -100,7 +57,54 @@
         "type": {
           "name": "elevationProp"
         }
+      },
+      "url": {
+        "defaultValue": null,
+        "description": "URL that the card would navigate to once clicked.",
+        "name": "url",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "external": {
+        "defaultValue": null,
+        "description": "Makes the URL open in new tab on click.",
+        "name": "external",
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "onClick": {
+        "defaultValue": null,
+        "description": "Event handler that gets called when the card is clicked.",
+        "name": "onClick",
+        "required": false,
+        "type": {
+          "name": "(event: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>) => void"
+        }
       }
     }
+  },
+  {
+    "tags": {
+      "example": "```tsx\n<Card>\n  <Card.Header>\n    <Text>Header Content</Text>\n  </Card.Header>\n  <Card.Body>\n    <p>Card content</p>\n  </Card.Body>\n</Card>\n```"
+    },
+    "filePath": "../components/src/Card/Card.tsx",
+    "description": "Header component for the Card.\nUsed in the compound component pattern to provide a consistent header layout.",
+    "displayName": "Card.Header",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {
+      "example": "```tsx\n<Card>\n  <Card.Header>\n    <Text>Header Content</Text>\n  </Card.Header>\n  <Card.Body>\n    <p>Card content</p>\n  </Card.Body>\n</Card>\n```"
+    },
+    "filePath": "../components/src/Card/Card.tsx",
+    "description": "Body component for the Card.\nUsed in the compound component pattern to provide a consistent content layout.",
+    "displayName": "Card.Body",
+    "methods": [],
+    "props": {}
   }
 ]

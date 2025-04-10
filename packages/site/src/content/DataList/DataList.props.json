@@ -206,7 +206,7 @@
         },
         "required": false,
         "type": {
-          "name": "ReactElement<{ external?: never; onClick?: never; readonly name?: string; submit: never; readonly type?: ButtonType; readonly value?: string; readonly id?: string; readonly variation?: ButtonVariation; ... 15 more ...; readonly children?: never; } | ... 34 more ... | { ...; }, string | JSXElementConstructor<...>>"
+          "name": "ReactElement<{ external?: never; onClick?: never; readonly name?: string; submit: never; readonly type?: ButtonType; readonly value?: string; readonly id?: string; readonly variation?: ButtonVariation; ... 17 more ...; readonly children?: never; } | ... 34 more ... | { ...; }, string | JSXElementConstructor<...>>"
         }
       },
       "type": {
@@ -269,6 +269,19 @@
         "defaultValue": null,
         "description": "The initial value of the search input.\n\nUpdating this prop after the component has mounted will rerender the\ncomponent with the new value. Only update the value of this when you\nabsolutely have to.",
         "name": "initialValue",
+        "parent": {
+          "fileName": "packages/components/src/DataList/DataList.types.ts",
+          "name": "DataListSearchProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "value": {
+        "defaultValue": null,
+        "description": "The controlled value of the search input.\n\nSupply this field if you want to take control over the search input's\nvalue. You'll need to use `onSearch` to handle updating your state with\nthe latest value.",
+        "name": "value",
         "parent": {
           "fileName": "packages/components/src/DataList/DataList.types.ts",
           "name": "DataListSearchProps"

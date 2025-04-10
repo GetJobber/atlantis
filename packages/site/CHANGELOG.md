@@ -3,6 +3,158 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.38.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.37.3...@jobber/atlantis-site@0.38.0) (2025-04-08)
+
+
+### Features
+
+* **design:** add slim spacing token and add to docs ([#2465](https://github.com/GetJobber/atlantis/issues/2465)) ([91396c8](https://github.com/GetJobber/atlantis/commit/91396c8c0326a8b89087e62067eeba390e1ef80c))
+
+
+
+
+
+## [0.37.3](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.37.2...@jobber/atlantis-site@0.37.3) (2025-04-08)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.37.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.37.1...@jobber/atlantis-site@0.37.2) (2025-04-07)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.37.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.37.0...@jobber/atlantis-site@0.37.1) (2025-04-07)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+# [0.37.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.36.0...@jobber/atlantis-site@0.37.0) (2025-04-04)
+
+
+### Features
+
+* **components:** Make DataList.Search optionally controllable ([#2460](https://github.com/GetJobber/atlantis/issues/2460)) ([a68249b](https://github.com/GetJobber/atlantis/commit/a68249bbfac450eea8e0fc0df1a97e883b93ebc5))
+
+
+
+
+
+# [0.36.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.35.1...@jobber/atlantis-site@0.36.0) (2025-04-04)
+
+
+### Features
+
+* **components:** Add UNSAFE props to Heading ([#2459](https://github.com/GetJobber/atlantis/issues/2459)) ([2fbf940](https://github.com/GetJobber/atlantis/commit/2fbf940a48934872e1339e1003aa163dbe0ef89f))
+
+
+
+
+
+## [0.35.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.35.0...@jobber/atlantis-site@0.35.1) (2025-04-03)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+# [0.35.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.34.0...@jobber/atlantis-site@0.35.0) (2025-04-03)
+
+
+### Features
+
+* **components:** Popover composability ([#2451](https://github.com/GetJobber/atlantis/issues/2451)) ([81709e8](https://github.com/GetJobber/atlantis/commit/81709e8468234bab8c9148a8f31a20194cc22d33))
+
+
+
+
+
+# [0.34.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.33.0...@jobber/atlantis-site@0.34.0) (2025-04-02)
+
+
+### Features
+
+* **components:** Add UNSAFE props to Text ([#2454](https://github.com/GetJobber/atlantis/issues/2454)) ([fa35ca2](https://github.com/GetJobber/atlantis/commit/fa35ca2e9fc5d7ae0ce3ed74900f1a5fb193ad82))
+
+
+
+
+
+# [0.33.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.32.0...@jobber/atlantis-site@0.33.0) (2025-04-01)
+
+
+### Features
+
+* **components:** Add UNSAFE props to Button ([#2448](https://github.com/GetJobber/atlantis/issues/2448)) ([c4f4798](https://github.com/GetJobber/atlantis/commit/c4f4798aa150e90587b6f7a1afc129398ecfef9c))
+
+
+
+
+
+# [0.32.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.31.6...@jobber/atlantis-site@0.32.0) (2025-03-28)
+
+
+### Features
+
+* **components:** Add secondary action support to Page component even without primary action ([#2446](https://github.com/GetJobber/atlantis/issues/2446)) ([3916f3b](https://github.com/GetJobber/atlantis/commit/3916f3b8d716690431e454376e01037166138838))
+
+
+
+
+
+## [0.31.6](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.31.5...@jobber/atlantis-site@0.31.6) (2025-03-27)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.31.5](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.31.4...@jobber/atlantis-site@0.31.5) (2025-03-27)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.31.4](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.31.3...@jobber/atlantis-site@0.31.4) (2025-03-26)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.31.3](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.31.2...@jobber/atlantis-site@0.31.3) (2025-03-26)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.31.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.31.1...@jobber/atlantis-site@0.31.2) (2025-03-26)
+
+
+### Bug Fixes
+
+* **components:** Move Phone Input Cursor Inside Parentheses ([#2425](https://github.com/GetJobber/atlantis/issues/2425)) ([256b676](https://github.com/GetJobber/atlantis/commit/256b6765d7092cbf15fc9c37a74c755255515778))
+
+
+
+
+
 ## [0.31.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.31.0...@jobber/atlantis-site@0.31.1) (2025-03-26)
 
 **Note:** Version bump only for package @jobber/atlantis-site

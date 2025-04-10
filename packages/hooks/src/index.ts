@@ -10,7 +10,6 @@ export * from "./useIsMounted";
 export * from "./useLiveAnnounce";
 export * from "./useOnKeyDown";
 export * from "./useOnMount";
-export * from "./usePasswordStrength";
 export * from "./useRefocusOnActivator";
 export * from "./useResizeObserver";
 export * from "./useSafeLayoutEffect";
