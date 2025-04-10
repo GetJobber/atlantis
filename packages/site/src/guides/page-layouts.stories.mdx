@@ -262,16 +262,16 @@ import styles from "./page-layouts.module.css";
 <section>
 <Stack>
   <Canvas>
-      <ContentBlock>
+      <ContentBlock maxWidth="100%">
       <Stack>
-        <Heading level={1}>Center</Heading>
-        <Text>The Center component is used to horizontally center content.</Text>
+        <Heading level={1}>Content Block</Heading>
+        <Text>The ContentBlock component is used to horizontally justify and limit content.</Text>
       </Stack>
       </ContentBlock>
   </Canvas>
  <Canvas>
-      <ContentBlock maxWidth="300px">
-      <Stack align="start">
+      <ContentBlock maxWidth="300px" justify="center" andText>
+      <Stack>
       <Heading level={1}>Text Center</Heading>
       <Text>The `andText` prop will center the text as well as the content.</Text>
       </Stack>
@@ -281,7 +281,7 @@ import styles from "./page-layouts.module.css";
     <ContentBlock maxWidth="200px">
       <Stack>
         <Heading level={2}>Max Width</Heading>
-        <Text>The Center component can also take a `max` prop to limit the width of the content.</Text>
+        <Text>The Center component can also take a `maxWidth` prop to limit the width of the content.</Text>
       </Stack>  
     </ContentBlock>
   </Canvas>
@@ -406,9 +406,9 @@ import styles from "./page-layouts.module.css";
 <Stack>
      <Stack>
      <Heading level={1}>Container</Heading>
-     <Text>Containers are for isolating style overrides to a specific layout. Set a container name, and apply associated styles where needed.</Text>
+      <Text>Containers are for isolating style overrides to a specific layout. Set a container name, and apply associated styles where needed.</Text>
      <Text>Containers are just container queries, and are fairly advanced. Only use them when absolutely necessary.</Text>
-     <Text>We provide a set of predfined Containers and styles for common layout pattern overrides, which are fully suported unlike custom-built containers.</Text>
+     <Text>We will soon provide a set of predfined Containers and styles for common layout pattern adjustments.</Text>
      <Text>You can also create your own containers and portable style overrides with these tools.</Text>
      </Stack>
     <Container name="container-items">
@@ -416,7 +416,7 @@ import styles from "./page-layouts.module.css";
       <Stack>
         <Container.Apply className={styles.item}>
           <Card>
-            <Box padding="base" width={1280}>
+            <Box padding="base">
               <Stack>
                 <Heading level={1}>Container Example</Heading>
                 <Text>We've overridden the default styles without having to modify any existing code or styles.</Text>
