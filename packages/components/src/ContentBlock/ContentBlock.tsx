@@ -46,7 +46,7 @@ export function ContentBlock({
       "--content-block-max-width": maxWidthMapped,
       "--content-block-gutters": guttersMapped,
     } as React.CSSProperties;
-  }, [maxWidthMapped, guttersMapped, justify]);
+  }, [maxWidthMapped, guttersMapped]);
 
   return (
     <div
