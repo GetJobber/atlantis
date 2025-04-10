@@ -44,6 +44,19 @@
         "type": {
           "name": "Spaces | (string & {})"
         }
+      },
+      "collapseBelow": {
+        "defaultValue": null,
+        "description": "The breakpoint below which the cluster will collapse.",
+        "name": "collapseBelow",
+        "parent": {
+          "fileName": "packages/components/src/Cluster/types.ts",
+          "name": "ClusterProps"
+        },
+        "required": false,
+        "type": {
+          "name": "any"
+        }
       }
     }
   }

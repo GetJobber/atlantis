@@ -1,10 +1,11 @@
 declare const styles: {
-  readonly "center": string;
-  readonly "andText": string;
-  readonly "gutters": string;
-  readonly "intrinsic": string;
+  readonly "contentBlock": string;
   readonly "left": string;
   readonly "right": string;
+  readonly "andText": string;
+  readonly "center": string;
+  readonly "gutters": string;
+  readonly "intrinsic": string;
 };
 export = styles;
 

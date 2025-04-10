@@ -1,0 +1,80 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/ContentBlock/ContentBlock.tsx",
+    "description": "",
+    "displayName": "ContentBlock",
+    "methods": [],
+    "props": {
+      "justify": {
+        "defaultValue": {
+          "value": "left"
+        },
+        "description": "The justification of the content.",
+        "name": "justify",
+        "parent": {
+          "fileName": "packages/components/src/ContentBlock/types.ts",
+          "name": "ContentBlockProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"left\" | \"center\" | \"right\""
+        }
+      },
+      "maxWidth": {
+        "defaultValue": {
+          "value": "Breakpoints.smaller"
+        },
+        "description": "The maximum width of the centered content.",
+        "name": "maxWidth",
+        "parent": {
+          "fileName": "packages/components/src/ContentBlock/types.ts",
+          "name": "ContentBlockProps"
+        },
+        "required": false,
+        "type": {
+          "name": "any"
+        }
+      },
+      "andText": {
+        "defaultValue": null,
+        "description": "Whether to also center the text.",
+        "name": "andText",
+        "parent": {
+          "fileName": "packages/components/src/ContentBlock/types.ts",
+          "name": "ContentBlockProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "gutters": {
+        "defaultValue": null,
+        "description": "The amount of space between the content and the edges of the container.",
+        "name": "gutters",
+        "parent": {
+          "fileName": "packages/components/src/ContentBlock/types.ts",
+          "name": "ContentBlockProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(string & {}) | Spaces"
+        }
+      },
+      "intrinsic": {
+        "defaultValue": null,
+        "description": "Whether to instrictly center the content.",
+        "name": "intrinsic",
+        "parent": {
+          "fileName": "packages/components/src/ContentBlock/types.ts",
+          "name": "ContentBlockProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      }
+    }
+  }
+]

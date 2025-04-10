@@ -1,8 +1,8 @@
 import React, { useMemo } from "react";
 import classNames from "classnames";
 import { Breakpoints } from "@jobber/hooks/useResizeObserver";
-import styles from "./Center.module.css";
-import { CenterProps, Spaces } from "./types";
+import styles from "./ContentBlock.module.css";
+import { ContentBlockProps, Spaces } from "./types";
 
 const spaceTokens: Record<Spaces, string> = {
   minuscule: "var(--space-minuscule)",
@@ -16,14 +16,14 @@ const spaceTokens: Record<Spaces, string> = {
   extravagant: "var(--space-extravagant)",
 };
 
-export function Center({
+export function ContentBlock({
   children,
   maxWidth = Breakpoints.smaller,
   andText,
   gutters,
   intrinsic,
-  align = "center",
-}: CenterProps) {
+  justify = "left",
+}: ContentBlockProps) {
   const guttersMapped = useMemo(
     () =>
       spaceTokens[gutters as Spaces] ? spaceTokens[gutters as Spaces] : gutters,
@@ -44,21 +44,21 @@ export function Center({
 
   const style = useMemo(() => {
     return {
-      "--center-measure": maxWidthMapped,
-      "--center-gutters": guttersMapped,
+      "--content-block-max-width": maxWidthMapped,
+      "--content-block-gutters": guttersMapped,
     } as React.CSSProperties;
-  }, [maxWidthMapped, guttersMapped, align]);
+  }, [maxWidthMapped, guttersMapped, justify]);
 
   return (
     <div
       style={style}
       className={classNames(
-        styles.center,
+        styles.contentBlock,
         andText && styles.andText,
         gutters && styles.gutters,
         intrinsic && styles.intrinsic,
-        align === "left" && styles.left,
-        align === "right" && styles.right,
+        justify === "left" && styles.left,
+        justify === "right" && styles.right,
       )}
     >
       {children}

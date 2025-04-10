@@ -117,8 +117,8 @@ export const componentList = [
     additionalMatches: ["Tile"],
   },
   {
-    title: "Center",
-    to: "/components/Center",
+    title: "ContentBlock",
+    to: "/components/ContentBlock",
     imageURL: "/Placeholder.png",
     sections: ["Layouts & Structure"],
     additionalMatches: ["Layout", "Container", "Stack", "Wrapper"],

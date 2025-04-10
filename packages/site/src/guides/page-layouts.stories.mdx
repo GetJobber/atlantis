@@ -1,5 +1,5 @@
 import { Stack } from "@jobber/components/Stack";
-import { Center } from "@jobber/components/Center";
+import { ContentBlock } from "@jobber/components";
 import { Typography } from "@jobber/components/Typography";
 import { Box } from "@jobber/components/Box";
 import { Heading } from "@jobber/components/Heading";
@@ -262,45 +262,45 @@ import styles from "./page-layouts.module.css";
 <section>
 <Stack>
   <Canvas>
-      <Center>
+      <ContentBlock>
       <Stack>
         <Heading level={1}>Center</Heading>
         <Text>The Center component is used to horizontally center content.</Text>
       </Stack>
-      </Center>
+      </ContentBlock>
   </Canvas>
  <Canvas>
-      <Center maxWidth="300px">
+      <ContentBlock maxWidth="300px">
       <Stack align="start">
       <Heading level={1}>Text Center</Heading>
       <Text>The `andText` prop will center the text as well as the content.</Text>
       </Stack>
-      </Center>
+      </ContentBlock>
   </Canvas>
   <Canvas>
-    <Center maxWidth="200px">
+    <ContentBlock maxWidth="200px">
       <Stack>
         <Heading level={2}>Max Width</Heading>
         <Text>The Center component can also take a `max` prop to limit the width of the content.</Text>
       </Stack>  
-    </Center>
+    </ContentBlock>
   </Canvas>
   <Canvas>
-    <Center gutters="largest">
+    <ContentBlock gutters="largest">
       <Stack>
         <Heading level={2}>Gutters</Heading>
         <Text>The Center component can also take a `gutters` prop to add minimum space between the content and the edges of the parent so the content never touches the edge of the parent/screen. This space only applies to the element when required, not by default.</Text>
       </Stack>
-    </Center>
+    </ContentBlock>
    
   </Canvas>
   <Canvas>
-        <Center intrinsic>
+        <ContentBlock intrinsic>
           <Text>The `intrinsic` prop ensures that any content that is shorter than the largest possible width will center itself.</Text>
           <Box padding="base">
             <Button label="Intrinsic Button" />
           </Box>
-        </Center>
+        </ContentBlock>
   </Canvas>
 </Stack>
 </section>
@@ -419,7 +419,7 @@ import styles from "./page-layouts.module.css";
      <Text>You can also create your own containers and portable style overrides with these tools.</Text>
      </Stack>
     <Container name="container-items">
-    <Center maxWidth="1280px" align="left">
+    <ContentBlock maxWidth="1280px" align="left">
       <Stack>
         <Container.Apply className={styles.item}>
           <Card>
@@ -452,7 +452,7 @@ import styles from "./page-layouts.module.css";
           </Card>
         </Container.Apply>
       </Stack>
-      </Center>
+      </ContentBlock>
 </Container>
 <Stack>
  <Card>

@@ -10,13 +10,13 @@ export type Spaces =
   | "larger"
   | "largest"
   | "extravagant";
-export interface CenterProps {
+export interface ContentBlockProps {
   readonly children: React.ReactNode;
 
   /**
-   * The alignment of the content.
+   * The justification of the content.
    */
-  readonly align?: "left" | "center" | "right";
+  readonly justify?: "left" | "center" | "right";
 
   /**
    * The maximum width of the centered content.

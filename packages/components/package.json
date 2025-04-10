@@ -70,11 +70,6 @@
       "import": "./dist/Card/index.mjs",
       "require": "./dist/Card/index.cjs"
     },
-    "./Center": {
-      "types": "./dist/Center/index.d.ts",
-      "import": "./dist/Center/index.mjs",
-      "require": "./dist/Center/index.cjs"
-    },
     "./Checkbox": {
       "types": "./dist/Checkbox/index.d.ts",
       "import": "./dist/Checkbox/index.mjs",
@@ -119,6 +114,11 @@
       "types": "./dist/Content/index.d.ts",
       "import": "./dist/Content/index.mjs",
       "require": "./dist/Content/index.cjs"
+    },
+    "./ContentBlock": {
+      "types": "./dist/ContentBlock/index.d.ts",
+      "import": "./dist/ContentBlock/index.mjs",
+      "require": "./dist/ContentBlock/index.cjs"
     },
     "./Countdown": {
       "types": "./dist/Countdown/index.d.ts",

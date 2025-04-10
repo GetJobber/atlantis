@@ -61,6 +61,19 @@
         "type": {
           "name": "boolean"
         }
+      },
+      "collapseBelow": {
+        "defaultValue": null,
+        "description": "The breakpoint to collapse the sidekick at.",
+        "name": "collapseBelow",
+        "parent": {
+          "fileName": "packages/components/src/SideKick/types.ts",
+          "name": "SideKickProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
       }
     }
   }

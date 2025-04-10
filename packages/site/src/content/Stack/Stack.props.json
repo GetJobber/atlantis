@@ -46,6 +46,19 @@
         "type": {
           "name": "boolean"
         }
+      },
+      "align": {
+        "defaultValue": null,
+        "description": "The alignment of the stack.",
+        "name": "align",
+        "parent": {
+          "fileName": "packages/components/src/Stack/types.ts",
+          "name": "StackProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"start\" | \"center\" | \"end\""
+        }
       }
     }
   }

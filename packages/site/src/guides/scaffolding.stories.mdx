@@ -14,7 +14,7 @@ import { Tiles } from "@jobber/components";
 import { Typography } from "@jobber/components";
 import { Container } from "@jobber/components";
 import { Box } from "@jobber/components";
-import { Center } from "@jobber/components";
+import { ContentBlock } from "@jobber/components";
 import styles from "./scaffolding.module.css";
 
 # Scaffolding
@@ -54,7 +54,7 @@ responsive behavior for free.
 
 <Heading level={3}>Composed Page With New Layout Components</Heading>
 <Canvas>
-  <Center align="left" maxWidth="1285px">
+  <ContentBlock align="left" maxWidth="1285px">
     <Box padding="base">
       <Stack space="larger">
         <SideKick
@@ -84,7 +84,7 @@ responsive behavior for free.
         <Text>Children Go Here</Text>
       </Stack>
     </Box>
-  </Center>
+  </ContentBlock>
 </Canvas>
 <Heading level={3}>
   Composed Page With New Layout Components + Container Query
@@ -92,7 +92,7 @@ responsive behavior for free.
 <Canvas>
   <Container name="container-items">
     <Box padding="base">
-      <Center align="left" maxWidth="1285px">
+      <ContentBlock align="left" maxWidth="1285px">
         <Stack space="larger">
           <SideKick
             collapseBelow="1285px"
@@ -124,7 +124,7 @@ responsive behavior for free.
           </SideKick>
           <Text>Children Go Here</Text>
         </Stack>
-      </Center>
+      </ContentBlock>
     </Box>
   </Container>
 </Canvas>
