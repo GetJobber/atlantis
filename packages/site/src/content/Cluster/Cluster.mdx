@@ -2,7 +2,6 @@ import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
 import { Cluster } from "@jobber/components/Cluster";
 import { Button } from "@jobber/components/Button";
 import { Chip } from "@jobber/components/Chip";
-import { Content } from "@jobber/components/Content";
 import { Stack } from "@jobber/components/Stack";
 import { ResponsiveSwitcher } from "@jobber/components/ResponsiveSwitcher";
 import { SideKick } from "@jobber/components/SideKick";
@@ -131,29 +130,29 @@ Control how items are aligned within the cluster.
 Adjust the space between items using the `space` prop.
 
 <Canvas>
-  <Content>
-    <Content>
+  <Stack>
+    <Stack>
       <Cluster space="small">
         <Chip label="Small" />
         <Chip label="Spacing" />
         <Chip label="Between" />
       </Cluster>
-    </Content>
-    <Content>
+    </Stack>
+    <Stack>
       <Cluster space="base">
         <Chip label="Base" />
         <Chip label="Spacing" />
         <Chip label="Between" />
       </Cluster>
-    </Content>
-    <Content>
+    </Stack>
+    <Stack>
       <Cluster space="large">
         <Chip label="Large" />
         <Chip label="Spacing" />
         <Chip label="Between" />
       </Cluster>
-    </Content>
-  </Content>
+    </Stack>
+  </Stack>
 </Canvas>
 
 ## Related components

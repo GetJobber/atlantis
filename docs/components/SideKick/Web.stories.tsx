@@ -1,7 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { SideKick } from "@jobber/components/SideKick";
-import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
 import { Card } from "@jobber/components/Card";
 import { Stack } from "@jobber/components/Stack";
@@ -67,21 +66,25 @@ CustomContentMinWidth.args = {
 const ComplexTemplate: ComponentStory<typeof SideKick> = args => (
   <SideKick {...args}>
     <Card>
-      <Content>
-        <Text>This side panel has a fixed width of 400px</Text>
-        <Text>It contains important navigation or supplementary content</Text>
-      </Content>
+      <Box padding="base">
+        <Stack>
+          <Text>This side panel has a fixed width of 400px</Text>
+          <Text>It contains important navigation or supplementary content</Text>
+        </Stack>
+      </Box>
     </Card>
     <Card>
-      <Content>
-        <Text>
-          This main content area grows to fill the available space while
-          maintaining a minimum width of 70% of the container
-        </Text>
-        <Text>
-          The space between the panels is customized to be larger than default
-        </Text>
-      </Content>
+      <Box padding="base">
+        <Stack>
+          <Text>
+            This main content area grows to fill the available space while
+            maintaining a minimum width of 70% of the container
+          </Text>
+          <Text>
+            The space between the panels is customized to be larger than default
+          </Text>
+        </Stack>
+      </Box>
     </Card>
   </SideKick>
 );
