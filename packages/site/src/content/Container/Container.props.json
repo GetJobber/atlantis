@@ -10,6 +10,10 @@
         "defaultValue": null,
         "description": "",
         "name": "name",
+        "parent": {
+          "fileName": "packages/components/src/Container/types.ts",
+          "name": "ContainerProps"
+        },
         "required": true,
         "type": {
           "name": "string"
@@ -19,6 +23,10 @@
         "defaultValue": null,
         "description": "",
         "name": "className",
+        "parent": {
+          "fileName": "packages/components/src/Container/types.ts",
+          "name": "ContainerProps"
+        },
         "required": false,
         "type": {
           "name": "string"
@@ -37,6 +45,10 @@
         "defaultValue": null,
         "description": "",
         "name": "className",
+        "parent": {
+          "fileName": "packages/components/src/Container/types.ts",
+          "name": "ContainerApplyProps"
+        },
         "required": false,
         "type": {
           "name": "string"
@@ -46,9 +58,13 @@
         "defaultValue": null,
         "description": "",
         "name": "style",
-        "required": true,
+        "parent": {
+          "fileName": "packages/components/src/Container/types.ts",
+          "name": "ContainerApplyProps"
+        },
+        "required": false,
         "type": {
-          "name": "React.CSSProperties"
+          "name": "CSSProperties"
         }
       }
     }
