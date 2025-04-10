@@ -62,7 +62,7 @@ Perfect for displaying multiple tags or status indicators.
 Control how items are justified within the cluster.
 
 <Canvas>
-  <div style={{ width: "100%" }}>
+  <ContentBlock maxWidth="100%">
     <Stack>
       <Cluster justify="start">
         <Button label="Left" />
@@ -81,7 +81,7 @@ Control how items are justified within the cluster.
         <Button label="Justify" type="secondary" />
       </Cluster>
     </Stack>
-  </div>
+  </ContentBlock>
 </Canvas>
 
 ### Alignment Options
@@ -93,36 +93,36 @@ Control how items are aligned within the cluster.
       <Cluster align="start">
         <Button label="Start" />
         <Button label="Align" type="secondary" />
-        <div style={{ width: "50%" }}>
+        <ContentBlock maxWidth="50%">
            <Stack>
             <Text>Plus some text to make the cluster longer and wider and taller to show off how the alignment works</Text>
               <Text>Plus some text to make the cluster longer and wider and taller to show off how the alignment works</Text>
             </Stack>
-         </div>
+         </ContentBlock>
 
     </Cluster>
     <Cluster align="center">
       <Button label="Center" />
       <Button label="Align" type="secondary" />
-
-   <div style={{ width: "50%" }}>
+      <ContentBlock maxWidth="50%">
            <Stack>
             <Text>Plus some text to make the cluster longer and wider and taller to show off how the alignment works</Text>
               <Text>Plus some text to make the cluster longer and wider and taller to show off how the alignment works</Text>
             </Stack>
-         </div>
+      </ContentBlock>
     </Cluster>
     <Cluster align="end">
       <Button label="End" />
-        <Button label="Align" type="secondary" />
-    <div style={{ width: "50%" }}>
+      <Button label="Align" type="secondary" />
+      <ContentBlock maxWidth="50%">
            <Stack>
             <Text>Plus some text to make the cluster longer and wider and taller to show off how the alignment works</Text>
               <Text>Plus some text to make the cluster longer and wider and taller to show off how the alignment works</Text>
             </Stack>
-         </div>
+      </ContentBlock>
       </Cluster>
     </Stack>
+
 </Canvas>
 
 ### Spacing Variations
