@@ -11,3 +11,62 @@
         flex-grow: 1;
     }
 }
+
+.iconCircle {
+    background-color: var(--color-surface--background--subtle);
+    padding: var(--space-base);
+    border-radius: 50%;
+    transition: all var(--timing-base);
+}
+
+button:hover .iconCircle {
+    background-color: var(--color-success);
+}
+
+button:hover .iconCircle path {
+    fill: var(--color-white) !important;
+}
+
+.emptyStateContainer {
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-base);
+}
+
+@container assessment-container (min-width: 0px) {
+  .assessmentCard {
+    border: 2px dashed var(--color-border);
+    border-radius: var(--radius-base);
+  }
+}
+
+@container form-container (max-width: 600px) {
+  .formPadding {
+    padding: var(--space-base);
+  }
+}
+
+@container form-container (min-width: 600px) {
+  .formPadding {
+    padding: var(--space-extravagant);
+  }
+}
+
+.emptyStateContainer {
+  width: 100%;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: all var(--timing-base);
+}
+
+.emptyStateContainer:hover {
+  background-color: var(--color-surface--background);
+}
+
+.emptyStateContainer:hover .iconCircle {
+  background-color: var(--color-success);
+}
+
+.emptyStateContainer:hover .iconCircle path {
+  fill: var(--color-white) !important;
+}

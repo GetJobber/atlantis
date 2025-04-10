@@ -13,6 +13,10 @@ import { InputNumber } from "@jobber/components/InputNumber";
 import { Content } from "@jobber/components/Content";
 import { Grid } from "@jobber/components/Grid";
 import { Heading } from "@jobber/components/Heading";
+import { Stack } from "@jobber/components/Stack";
+import { Icon } from "@jobber/components/Icon";
+import { Text } from "@jobber/components/Text";
+import { Box } from "@jobber/components/Box";
 
 export default {
   title: "Components/Actions/Button/Web",
@@ -386,3 +390,50 @@ Comparison.parameters = {
 };
 
 export const FormSubmit = FormTemplate.bind({});
+
+export const EmptyState: ComponentStory<typeof Button> = () => (
+  <Box>
+    <Button
+      type="tertiary"
+      variation="subtle"
+      fullWidth
+      UNSAFE_style={{
+        container: {
+          border: "2px dashed var(--color-border)",
+        },
+      }}
+    >
+      <Stack align="center" space="base">
+        <Box
+          radius="circle"
+          padding="base"
+          background="surface--background--subtle"
+        >
+          <Icon
+            name="truck"
+            size="large"
+            UNSAFE_style={{
+              path: { fill: "var(--color-icon)" },
+              svg: {
+                backgroundColor: "var(--color-surface--background--subtle)",
+                padding: "var(--space-base)",
+                borderRadius: "50%",
+                transition: "all var(--timing-base)",
+              },
+            }}
+          />
+        </Box>
+        <Text align="center">Empty state message</Text>
+      </Stack>
+    </Button>
+  </Box>
+);
+
+EmptyState.parameters = {
+  docs: {
+    description: {
+      story:
+        "Empty state button with hover effects that changes background and icon colors.",
+    },
+  },
+};
