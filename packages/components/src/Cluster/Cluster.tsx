@@ -30,6 +30,10 @@ export function Cluster({
   );
 
   const collapseBelowMapped = useMemo(() => {
+    if (!collapseBelow) {
+      return "0px"; // Never collapse if no breakpoint specified
+    }
+
     const collapsedKey = collapseBelow as keyof typeof Breakpoints;
 
     if (Breakpoints[collapsedKey]) {

@@ -3,16 +3,21 @@
   --content-block-gutters: 0;
   width: 100%;
   box-sizing: content-box;
-  margin-inline: auto;
   max-inline-size: var(--content-block-max-width);
 }
 
 .left {
   margin-inline-start: 0;
+  margin-inline-end: auto;
 }
 
 .right {
   margin-inline-end: 0;
+  margin-inline-start: auto;
+}
+
+.center {
+  margin-inline: auto;
 }
 
 .andText {

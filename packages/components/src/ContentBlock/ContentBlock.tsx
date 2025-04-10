@@ -57,6 +57,7 @@ export function ContentBlock({
         gutters && styles.gutters,
         justify === "left" && styles.left,
         justify === "right" && styles.right,
+        justify === "center" && styles.center,
       )}
     >
       {children}
