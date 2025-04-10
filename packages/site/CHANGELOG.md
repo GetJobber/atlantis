@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.39.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.38.0...@jobber/atlantis-site@0.39.0) (2025-04-10)
+
+
+### Features
+
+* **components:** Add unsafe props to Avatar web ([#2473](https://github.com/GetJobber/atlantis/issues/2473)) ([8ed647d](https://github.com/GetJobber/atlantis/commit/8ed647da8ea64bc038a7f37138fdf8fd96908b43))
+
+
+
+
+
 # [0.38.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.37.3...@jobber/atlantis-site@0.38.0) (2025-04-08)
 
 
