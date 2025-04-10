@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test.describe("Button Visual Tests", () => {
+test.describe("Atlantis Visual Tests", () => {
   test.beforeEach(async ({ page }) => {
     await page.waitForTimeout(500);
   });
