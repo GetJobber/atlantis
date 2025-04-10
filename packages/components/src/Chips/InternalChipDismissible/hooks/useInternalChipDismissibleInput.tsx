@@ -88,8 +88,12 @@ export function useInternalChipDismissibleInput({
         searchValue.length > 0 &&
         allOptions.length > 0
       ) {
-        const lastOption = allOptions[allOptions.length - 1];
-        actions.handleSelectOption(lastOption);
+        // If there's a custom option, select it. Otherwise select the best match
+        const optionToSelect = canAddCustomOption
+          ? allOptions[allOptions.length - 1]
+          : allOptions[0];
+
+        actions.handleSelectOption(optionToSelect);
       }
 
       if (shouldCancelBlur) return;

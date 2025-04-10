@@ -18,7 +18,7 @@ export interface ChipDismissibleInputProps
    */
   readonly onlyShowMenuOnSearch?: boolean;
   /**
-   * Select the last available option when focus shifts away from the input.
+   * If true, automatically selects an option based on the current search value when the input loses focus.
    * @default false
    */
   readonly submitInputOnFocusShift?: boolean;
