@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "6.31.0",
+  "version": "6.34.0",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.cjs",
@@ -482,8 +482,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7",
     "react-popper": "^2",
-    "react-router-dom": "^6",
-    "zxcvbn": "^4"
+    "react-router-dom": "^6"
   },
   "browserslist": [
     "last 1 version",

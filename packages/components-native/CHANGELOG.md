@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.79.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.78.0...@jobber/components-native@0.79.0) (2025-04-08)
+
+
+### Features
+
+* **design:** Update lightness value of `base-blue--600` to improve accessibility ([#2438](https://github.com/GetJobber/atlantis/issues/2438)) ([bb6ca7f](https://github.com/GetJobber/atlantis/commit/bb6ca7fafed17bd2c048dd05ba56388284a2a831))
+
+
+
+
+
 # [0.78.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.77.1...@jobber/components-native@0.78.0) (2025-02-28)
 
 

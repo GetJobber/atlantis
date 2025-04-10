@@ -3,6 +3,71 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.38.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.37.3...@jobber/atlantis-site@0.38.0) (2025-04-08)
+
+
+### Features
+
+* **design:** add slim spacing token and add to docs ([#2465](https://github.com/GetJobber/atlantis/issues/2465)) ([91396c8](https://github.com/GetJobber/atlantis/commit/91396c8c0326a8b89087e62067eeba390e1ef80c))
+
+
+
+
+
+## [0.37.3](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.37.2...@jobber/atlantis-site@0.37.3) (2025-04-08)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.37.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.37.1...@jobber/atlantis-site@0.37.2) (2025-04-07)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.37.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.37.0...@jobber/atlantis-site@0.37.1) (2025-04-07)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+# [0.37.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.36.0...@jobber/atlantis-site@0.37.0) (2025-04-04)
+
+
+### Features
+
+* **components:** Make DataList.Search optionally controllable ([#2460](https://github.com/GetJobber/atlantis/issues/2460)) ([a68249b](https://github.com/GetJobber/atlantis/commit/a68249bbfac450eea8e0fc0df1a97e883b93ebc5))
+
+
+
+
+
+# [0.36.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.35.1...@jobber/atlantis-site@0.36.0) (2025-04-04)
+
+
+### Features
+
+* **components:** Add UNSAFE props to Heading ([#2459](https://github.com/GetJobber/atlantis/issues/2459)) ([2fbf940](https://github.com/GetJobber/atlantis/commit/2fbf940a48934872e1339e1003aa163dbe0ef89f))
+
+
+
+
+
+## [0.35.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.35.0...@jobber/atlantis-site@0.35.1) (2025-04-03)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
 # [0.35.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.34.0...@jobber/atlantis-site@0.35.0) (2025-04-03)
 
 
