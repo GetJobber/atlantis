@@ -68,16 +68,16 @@ are set to `object-fit: cover` by default, ensuring they fill the frame while
 maintaining their aspect ratio.
 
 <Canvas>
-  <div style={{ width: "100%" }}>
+  <ContentBlock maxWidth="100%">
     <Frame>
-      <div style={{ padding: "1rem", textAlign: "center" }}>
+      <Box padding="base">
         <Heading level={2}>Content Works Too</Heading>
         <Text>
           Any content will be centered and cropped to fit the aspect ratio.
         </Text>
-      </div>
+      </Box>
     </Frame>
-  </div>
+  </ContentBlock>
 </Canvas>
 
 ## Related components

@@ -7,7 +7,7 @@ export default {
   content: () => <Content />,
   props: Props,
   component: {
-    element: `<div style={{width:'100%'}}>
+    element: `<ContentBlock maxWidth="100%">
   <ResponsiveSwitcher threshold="50ch">
     <Card>
       <Box padding="base">
@@ -20,7 +20,7 @@ export default {
       </Box>
     </Card>
   </ResponsiveSwitcher>
-</div>`,
+</ContentBlock>`,
   },
   title: "ResponsiveSwitcher",
   links: [

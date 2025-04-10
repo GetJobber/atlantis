@@ -78,7 +78,7 @@ WithSplit.args = {
 
 const RecursiveTemplate: ComponentStory<typeof Stack> = args => (
   <Stack {...args}>
-    <div>
+    <Box>
       <Card>
         <Box padding="base">
           <Text>Nested item 1.1</Text>
@@ -90,8 +90,8 @@ const RecursiveTemplate: ComponentStory<typeof Stack> = args => (
           <Text>Nested item 1.2</Text>
         </Box>
       </Card>
-    </div>
-    <div>
+    </Box>
+    <Box>
       <Card>
         <Box padding="base">
           <Text>Nested item 2.1</Text>
@@ -102,7 +102,7 @@ const RecursiveTemplate: ComponentStory<typeof Stack> = args => (
           <Text>Nested item 2.2</Text>
         </Box>
       </Card>
-    </div>
+    </Box>
   </Stack>
 );
 

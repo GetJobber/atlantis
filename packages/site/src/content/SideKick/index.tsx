@@ -7,14 +7,14 @@ export default {
   content: () => <Content />,
   props: Props,
   component: {
-    element: `<div style={{width:'100%'}}>
+    element: `<ContentBlock maxWidth="100%">
   <SideKick contentMinWidth="80%" sideWidth="70px">
     <InputText placeholder="Name" label="Name" />
     <Button>
         <Button.Label>Submit</Button.Label>
     </Button>
   </SideKick>
-</div>
+</ContentBlock>
     `,
   },
   title: "SideKick",

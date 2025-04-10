@@ -7,7 +7,7 @@ export default {
   content: () => <Content />,
   props: Props,
   component: {
-    element: `<div style={{width:'100%', backgroundColor:'var(--color-surface'}}>
+    element: `<Box width="100%" background="surface"}}>
   <ContentBlock justify="center">
     <Card>
       <Box padding="base">
@@ -15,7 +15,7 @@ export default {
       </Box>
     </Card>
   </ContentBlock>
-</div>
+</Box>
     `,
   },
   title: "ContentBlock",

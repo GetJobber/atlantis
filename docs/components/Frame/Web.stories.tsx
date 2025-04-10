@@ -1,6 +1,9 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Frame } from "@jobber/components/Frame";
+import { Box } from "@jobber/components/Box";
+import { Heading } from "@jobber/components/Heading";
+import { Text } from "@jobber/components/Text";
 
 export default {
   title: "Components/Layouts and Structure/Frame/Web",
@@ -37,9 +40,9 @@ FourByThree.args = {
 
 export const WithContent: ComponentStory<typeof Frame> = () => (
   <Frame>
-    <div style={{ padding: "1rem", textAlign: "center" }}>
-      <h2>It Works for Content As Well</h2>
-      <p>Everything is centered and cropped to fit the aspect ratio.</p>
-    </div>
+    <Box padding="base">
+      <Heading level={2}>It Works for Content As Well</Heading>
+      <Text>Everything is centered and cropped to fit the aspect ratio.</Text>
+    </Box>
   </Frame>
 );

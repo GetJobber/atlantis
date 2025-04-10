@@ -6,7 +6,7 @@ export default {
   content: () => <Content />,
   props: Props,
   component: {
-    element: `<div style={{width:'100%'}}>
+    element: `<ContentBlock maxWidth="100%">
   <Container name="wrapper">
     <Container.Apply className='item'>
       <Stack>
@@ -17,7 +17,7 @@ export default {
       </Stack>
     </Container.Apply>
   </Container>
-</div>
+</ContentBlock>
     `,
   },
   title: "Container",
