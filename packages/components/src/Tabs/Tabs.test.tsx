@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { InlineLabel } from "@jobber/components/InlineLabel";
 import { Tab, Tabs } from ".";
@@ -13,6 +13,23 @@ const omelet = (
     </Tab>
     <Tab label="Cheese" onClick={() => count++}>
       <p>🧀</p>
+    </Tab>
+  </Tabs>
+);
+
+const dynamicChildren = (showCheese: boolean) => (
+  <Tabs>
+    <Tab label="Eggs">
+      <p>🍳</p>
+      <p>Eggs</p>
+    </Tab>
+    {showCheese && (
+      <Tab label="Cheese" onClick={() => count++}>
+        <p>🧀</p>
+      </Tab>
+    )}
+    <Tab label="Berries">
+      <p>🍓</p>
     </Tab>
   </Tabs>
 );
@@ -44,6 +61,28 @@ describe("Tabs Component", () => {
     it("displays the label when it is a ReactNode", () => {
       const { container } = render(omeletWithReactNodeLabel);
       expect(container).toMatchSnapshot();
+    });
+
+    describe("when children are dynamically rendered", () => {
+      it("should not render a removed tab", async () => {
+        const { rerender } = render(dynamicChildren(true));
+        const tab = await screen.findByRole("tab", { name: "Cheese" });
+        expect(tab).toBeInTheDocument();
+
+        rerender(dynamicChildren(false));
+        const oldTab = screen.queryByRole("tab", { name: "Cheese" });
+        expect(oldTab).not.toBeInTheDocument();
+      });
+
+      it("should render an added tab", async () => {
+        const { rerender } = render(dynamicChildren(false));
+        const tab = screen.queryByRole("tab", { name: "Cheese" });
+        expect(tab).not.toBeInTheDocument();
+
+        rerender(dynamicChildren(true));
+        const newTab = await screen.findByRole("tab", { name: "Cheese" });
+        expect(newTab).toBeInTheDocument();
+      });
     });
   });
 
@@ -79,7 +118,7 @@ describe("Tabs Component", () => {
       const tab1 = getByRole("tab", { name: "Eggs" });
       const tab2 = getByRole("tab", { name: "Cheese" });
 
-      tab1.focus();
+      await userEvent.click(tab1);
       await userEvent.keyboard("{ArrowRight}");
       expect(tab2).toHaveFocus();
       expect(queryByText("🍳")).not.toBeInTheDocument();
@@ -97,7 +136,7 @@ describe("Tabs Component", () => {
       const tab1 = getByRole("tab", { name: "Eggs" });
       const tab2 = getByRole("tab", { name: "Cheese" });
 
-      tab1.focus();
+      await userEvent.click(tab1);
       await userEvent.keyboard("{ArrowRight}");
       expect(tab2).toHaveFocus();
 
@@ -198,6 +237,53 @@ describe("Tabs Component", () => {
       expect(queryByText("🍳")).toBeInTheDocument();
       expect(queryByText("🧀")).not.toBeInTheDocument();
     });
+
+    describe("when children are dynamically rendered", () => {
+      // eslint-disable-next-line max-statements
+      it("should handle arrow key navigation with a removed tab", async () => {
+        const { rerender } = render(dynamicChildren(true));
+
+        const tab1 = screen.getByRole("tab", { name: "Eggs" });
+        const tab2 = screen.getByRole("tab", { name: "Cheese" });
+        const tab3 = screen.getByRole("tab", { name: "Berries" });
+
+        await userEvent.click(tab1);
+        await userEvent.keyboard("{ArrowRight}");
+        expect(tab2).toHaveFocus();
+        await userEvent.keyboard("{ArrowRight}");
+        expect(tab3).toHaveFocus();
+        await userEvent.keyboard("{ArrowRight}");
+        expect(tab1).toHaveFocus();
+
+        rerender(dynamicChildren(false));
+        await userEvent.click(tab1);
+        await userEvent.keyboard("{ArrowRight}");
+        expect(tab3).toHaveFocus();
+        await userEvent.keyboard("{ArrowRight}");
+        expect(tab1).toHaveFocus();
+      });
+
+      // eslint-disable-next-line max-statements
+      it("should handle arrow key navigation with an added tab", async () => {
+        const { rerender } = render(dynamicChildren(false));
+
+        const tab1 = screen.getByRole("tab", { name: "Eggs" });
+        const tab3 = screen.getByRole("tab", { name: "Berries" });
+
+        await userEvent.click(tab1);
+        await userEvent.keyboard("{ArrowRight}");
+        expect(tab3).toHaveFocus();
+
+        rerender(dynamicChildren(true));
+        const tab2 = screen.getByRole("tab", { name: "Cheese" });
+
+        await userEvent.click(tab1);
+        await userEvent.keyboard("{ArrowRight}");
+        expect(tab2).toHaveFocus();
+        await userEvent.keyboard("{ArrowRight}");
+        expect(tab3).toHaveFocus();
+      });
+    });
   });
 
   describe("Focus Management", () => {
@@ -217,7 +303,7 @@ describe("Tabs Component", () => {
       const tab1 = getByRole("tab", { name: "Eggs" });
       const focusableChild = getByText("Focusable Child");
 
-      tab1.focus();
+      await userEvent.click(tab1);
       await userEvent.keyboard("{Tab}");
       expect(focusableChild).toHaveFocus();
     });
@@ -238,7 +324,7 @@ describe("Tabs Component", () => {
       const tab1 = getByRole("tab", { name: "Eggs" });
       const focusableChild = getByText("Focusable Child");
 
-      tab1.focus();
+      await userEvent.click(tab1);
       await userEvent.keyboard("{Tab}");
       expect(focusableChild).toHaveFocus();
 
