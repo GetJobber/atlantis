@@ -1,5 +1,8 @@
 declare const styles: {
   readonly "stack": string;
+  readonly "start": string;
+  readonly "center": string;
+  readonly "end": string;
   readonly "topOnly": string;
   readonly "recursive": string;
   readonly "splitAfter-1": string;

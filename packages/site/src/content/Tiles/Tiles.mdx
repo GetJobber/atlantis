@@ -1,5 +1,5 @@
 import { Canvas } from "@storybook/addon-docs";
-import { Tiles, Card, Text, Rectangle, Stack } from "@jobber/components";
+import { Tiles, Card, Text, Box, Stack } from "@jobber/components";
 
 # Tiles
 
@@ -52,20 +52,20 @@ next row when they can't maintain this minimum width.
 <div style={{width:'100%'}}>
 
 <Tiles minSize="30ch">
-  <Rectangle padding="0">
+  <Box padding="0">
   <Card>
-    <Rectangle>
+    <Box padding="base">
     <Text>First tile</Text>
-    </Rectangle>
+    </Box>
   </Card>
-  </Rectangle>
-  <Rectangle padding="0">
+  </Box>
+  <Box padding="0">
   <Card>
-    <Rectangle>
+    <Box padding="base">
     <Text>Second tile</Text>
-    </Rectangle>
+        </Box>
   </Card>
-  </Rectangle>
+  </Box>
 </Tiles>
 </div>
 </Canvas>
@@ -74,20 +74,20 @@ next row when they can't maintain this minimum width.
 <div style={{width:'100%'}}>
 
 <Tiles minSize="20ch">
-  <Rectangle padding="0">
+  <Box>
   <Card>
-    <Rectangle>
+    <Box padding="base">
     <Text>First tile</Text>
-    </Rectangle>
+    </Box>
   </Card>
-  </Rectangle>
-  <Rectangle padding="0">
+  </Box>
+  <Box padding="0">
   <Card>
-    <Rectangle>
+    <Box padding="base">
     <Text>Second tile</Text>
-    </Rectangle>
+    </Box>
   </Card>
-  </Rectangle>
+  </Box>
 </Tiles>
 </div>
 </Canvas>
@@ -98,20 +98,20 @@ Controls the gap between tiles. Uses Jobber's spacing scale:
 <Canvas>
   <div style={{ width: "100%" }}>
     <Tiles space="largest">
-      <Rectangle padding="0">
+      <Box>
         <Card>
-          <Rectangle>
+          <Box padding="base">
             <Text>First tile</Text>
-          </Rectangle>
+          </Box>
         </Card>
-      </Rectangle>
-      <Rectangle padding="0">
+      </Box>
+      <Box>
         <Card>
-          <Rectangle>
+          <Box padding="base">
             <Text>Second tile</Text>
-          </Rectangle>
+          </Box>
         </Card>
-      </Rectangle>
+      </Box>
     </Tiles>
   </div>
 </Canvas>

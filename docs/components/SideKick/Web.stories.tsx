@@ -5,7 +5,7 @@ import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
 import { Card } from "@jobber/components/Card";
 import { Stack } from "@jobber/components/Stack";
-import { Rectangle } from "@jobber/components/Rectangle";
+import { Box } from "@jobber/components/Box";
 
 export default {
   title: "Components/Layouts and Structure/SideKick/Web",
@@ -18,22 +18,22 @@ export default {
 
 const BasicTemplate: ComponentStory<typeof SideKick> = args => (
   <SideKick {...args}>
-    <Rectangle padding="0">
+    <Box>
       <Card>
-        <Rectangle>
+        <Box padding="base">
           <Stack>
             <Text>This is the main</Text>
           </Stack>
-        </Rectangle>
+        </Box>
       </Card>
-    </Rectangle>
-    <Rectangle padding="0">
+    </Box>
+    <Box>
       <Card>
-        <Rectangle>
+        <Box padding="base">
           <Text>This is the side</Text>
-        </Rectangle>
+        </Box>
       </Card>
-    </Rectangle>
+    </Box>
   </SideKick>
 );
 

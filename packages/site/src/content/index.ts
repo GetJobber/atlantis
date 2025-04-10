@@ -15,7 +15,6 @@ import ButtonDismissContent from "./ButtonDismiss";
 import ButtonGroupContent from "./ButtonGroup";
 import CheckboxContent from "./Checkbox";
 import CardContent from "./Card";
-import CenterContent from "./Center";
 import ChipContent from "./Chip";
 import ChipsContent from "./Chips";
 import ClusterContent from "./Cluster";
@@ -23,6 +22,7 @@ import ComboboxContent from "./Combobox";
 import ConfirmationModalContent from "./ConfirmationModal";
 import ContainerContent from "./Container";
 import ContentStuff from "./Content";
+import ContentBlockContent from "./ContentBlock";
 import ContentOverlayContent from "./ContentOverlay";
 import CountdownContent from "./Countdown";
 import CoverContent from "./Cover";
@@ -80,7 +80,6 @@ import PopoverContent from "./Popover";
 import ProgressBarContent from "./ProgressBar";
 import RadioGroupContent from "./RadioGroup";
 import RecurringSelectContent from "./RecurringSelect";
-import RectangleContent from "./Rectangle";
 import ResponsiveSwitcherContent from "./ResponsiveSwitcher";
 import SegmentedControlContent from "./SegmentedControl";
 import SelectContent from "./Select";
@@ -155,9 +154,6 @@ export const SiteContent: Record<string, ContentExport> = {
   Card: {
     ...CardContent,
   },
-  Center: {
-    ...CenterContent,
-  },
   Checkbox: {
     ...CheckboxContent,
   },
@@ -181,6 +177,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   Content: {
     ...ContentStuff,
+  },
+  ContentBlock: {
+    ...ContentBlockContent,
   },
   ContentOverlay: {
     ...ContentOverlayContent,
@@ -349,9 +348,6 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   RadioGroup: {
     ...RadioGroupContent,
-  },
-  Rectangle: {
-    ...RectangleContent,
   },
   RecurringSelect: {
     ...RecurringSelectContent,

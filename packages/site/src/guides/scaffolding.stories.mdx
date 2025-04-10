@@ -4,7 +4,6 @@ import { ResponsiveSwitcher } from "@jobber/components";
 import { Emphasis } from "@jobber/components";
 import { Markdown } from "@jobber/components";
 import { Heading } from "@jobber/components";
-import { Rectangle } from "@jobber/components";
 import { Stack } from "@jobber/components";
 import { Cluster } from "@jobber/components";
 import { Button } from "@jobber/components";
@@ -14,6 +13,8 @@ import { SideKick } from "@jobber/components";
 import { Tiles } from "@jobber/components";
 import { Typography } from "@jobber/components";
 import { Container } from "@jobber/components";
+import { Box } from "@jobber/components";
+import { ContentBlock } from "@jobber/components";
 import styles from "./scaffolding.module.css";
 
 # Scaffolding
@@ -53,33 +54,77 @@ responsive behavior for free.
 
 <Heading level={3}>Composed Page With New Layout Components</Heading>
 <Canvas>
-  <div style={{ width: "100%" }}>
-    <Rectangle textColor={false}>
+  <ContentBlock align="left" maxWidth="1285px">
+    <Box padding="base">
       <Stack space="larger">
-        <SideKick contentMinWidth="32ch" sideWidth="40.5ch">
+        <SideKick
+          contentMinWidth="40%"
+          sideWidth="364px"
+          collapseBelow="1285px"
+        >
           <Stack>
             <Heading level={1}>Page</Heading>
             <Text size="large" variation="subdued">
               <Emphasis variation="bold">Subtitle goes here</Emphasis>
             </Text>
           </Stack>
-          <Container name="actions" className={styles.actions}>
-            <Cluster justify="end">
-              <Button label="Action 1" />
-              <Button label="Action 2" type="secondary" />
-              <Menu
-                items={[
-                  {
-                    actions: [{ label: "Action 1" }, { label: "Action 2" }],
-                    label: "Action 3",
-                  },
-                ]}
-              />
-            </Cluster>
-          </Container>
+          <Cluster justify="end" collapseBelow="1285px">
+            <Button label="Action 1" />
+            <Button label="Action 2" type="secondary" />
+            <Menu
+              items={[
+                {
+                  actions: [{ label: "Action 1" }, { label: "Action 2" }],
+                  label: "Action 3",
+                },
+              ]}
+            />
+          </Cluster>
         </SideKick>
         <Text>Children Go Here</Text>
       </Stack>
-    </Rectangle>
-  </div>
+    </Box>
+  </ContentBlock>
+</Canvas>
+<Heading level={3}>
+  Composed Page With New Layout Components + Container Query
+</Heading>
+<Canvas>
+  <Container name="container-items">
+    <Box padding="base">
+      <ContentBlock align="left" maxWidth="1285px">
+        <Stack space="larger">
+          <SideKick
+            collapseBelow="1285px"
+            contentMinWidth="30%"
+            sideWidth="364px"
+          >
+            <Stack>
+              <Heading level={1}>Page</Heading>
+              <Text size="large" variation="subdued">
+                <Emphasis variation="bold">Subtitle goes here</Emphasis>
+              </Text>
+            </Stack>
+            <Box>
+              <Container.Apply className={styles.actions}>
+                <Cluster justify="end">
+                  <Button label="Action 1" />
+                  <Button label="Action 2" type="secondary" />
+                  <Menu
+                    items={[
+                      {
+                        actions: [{ label: "Action 1" }, { label: "Action 2" }],
+                        label: "Action 3",
+                      },
+                    ]}
+                  />
+                </Cluster>
+              </Container.Apply>
+            </Box>
+          </SideKick>
+          <Text>Children Go Here</Text>
+        </Stack>
+      </ContentBlock>
+    </Box>
+  </Container>
 </Canvas>

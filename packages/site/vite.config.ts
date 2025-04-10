@@ -57,11 +57,13 @@ export default defineConfig({
   },
   optimizeDeps: {
     include: ["@jobber/formatters", "@jobber/hooks", "@jobber/components"],
+    force: true,
   },
   resolve: {
     alias: {
       "@jobber/formatters": path.resolve(__dirname, "../formatters/src"),
       "@jobber/hooks": path.resolve(__dirname, "../hooks/src"),
+      "@jobber/design": path.resolve(__dirname, "../design/dist"),
       "@storybook/addon-docs": path.resolve(
         __dirname,
         "./src/components/StorybookOverrides",

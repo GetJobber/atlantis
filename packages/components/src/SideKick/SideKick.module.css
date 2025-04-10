@@ -2,6 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--public-sidekick-space);
+  width: 100%;
 }
 
 .left > :first-child {
@@ -30,4 +31,8 @@
   flex-basis: 0;
   flex-grow: 999;
   min-inline-size: var(--public-sidekick-side-width);
+}
+
+.collapsed {
+  flex-direction: column;
 }

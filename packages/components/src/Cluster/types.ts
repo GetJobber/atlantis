@@ -1,3 +1,5 @@
+import { Breakpoints } from "@jobber/hooks/useResizeObserver";
+
 export type Spaces =
   | "minuscule"
   | "smallest"
@@ -26,4 +28,9 @@ export interface ClusterProps {
    * The amount of space between the cluster elements. Semantic tokens are available.
    */
   readonly space?: Spaces | (string & NonNullable<unknown>);
+
+  /**
+   * The breakpoint below which the cluster will collapse.
+   */
+  readonly collapseBelow?: typeof Breakpoints | (string & NonNullable<unknown>);
 }

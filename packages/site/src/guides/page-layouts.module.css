@@ -13,7 +13,6 @@
     .itemUpsideDown>* {
         --color-border: var(--color-critical);
         --border-base: var(--border-thicker);
-        transform: rotate(180deg);
     }
 }
 
@@ -36,6 +35,5 @@
     .itemUpsideDown>* {
         --color-border: var(--color-event);
         --border-base: var(--border-thick);
-        transform: rotate(0deg);
     }
 }

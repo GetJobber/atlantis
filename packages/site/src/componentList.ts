@@ -117,8 +117,8 @@ export const componentList = [
     additionalMatches: ["Tile"],
   },
   {
-    title: "Center",
-    to: "/components/Center",
+    title: "ContentBlock",
+    to: "/components/ContentBlock",
     imageURL: "/Placeholder.png",
     sections: ["Layouts & Structure"],
     additionalMatches: ["Layout", "Container", "Stack", "Wrapper"],
@@ -614,13 +614,6 @@ export const componentList = [
     imageURL: "/RadioGroup.png",
     sections: ["Forms & Inputs"],
     additionalMatches: ["Radio Button", "Select"],
-  },
-  {
-    title: "Rectangle",
-    to: "/components/Rectangle",
-    imageURL: "/Placeholder.png",
-    sections: ["Layouts & Structure"],
-    additionalMatches: ["Layout", "Container"],
   },
   {
     title: "RecurringSelect",

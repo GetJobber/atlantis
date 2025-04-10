@@ -20,6 +20,7 @@ export function Stack({
   recursive,
   splitAfter,
   children,
+  align,
 }: StackProps) {
   const spaceMapped = useMemo(
     () => (spaceTokens[space as Spaces] ? spaceTokens[space as Spaces] : space),
@@ -40,6 +41,9 @@ export function Stack({
         splitAfter
           ? styles[`splitAfter-${splitAfter}` as keyof typeof styles]
           : undefined,
+        align === "center" ? styles.center : undefined,
+        align === "start" ? styles.start : undefined,
+        align === "end" ? styles.end : undefined,
       )}
     >
       {children}

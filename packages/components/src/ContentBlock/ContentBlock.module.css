@@ -1,0 +1,50 @@
+.contentBlock {
+  --content-block-max-width: 100ch;
+  --content-block-gutters: 0;
+  width: 100%;
+  box-sizing: content-box;
+  margin-inline: auto;
+  max-inline-size: var(--content-block-max-width);
+}
+
+.left {
+  margin-inline-start: 0;
+}
+
+.right {
+  margin-inline-end: 0;
+}
+
+.left.andText {
+  text-align: left;
+}
+
+.center.andText {
+  text-align: center;
+}
+
+.right.andText {
+  text-align: right;
+}
+
+.gutters {
+  padding-inline-start: var(--content-block-gutters);
+  padding-inline-end: var(--content-block-gutters);
+}
+
+.intrinsic {
+  display: flex;
+  flex-direction: column;
+}
+
+.intrinsic.left {
+  align-items: flex-start;
+}
+
+.intrinsic.center {
+  align-items: center;
+}
+
+.intrinsic.right {
+  align-items: flex-end;
+}

@@ -1,3 +1,5 @@
+import { Breakpoints } from "@jobber/hooks/useResizeObserver";
+
 export type Spaces =
   | "minuscule"
   | "smallest"
@@ -8,13 +10,21 @@ export type Spaces =
   | "larger"
   | "largest"
   | "extravagant";
-export interface CenterProps {
+export interface ContentBlockProps {
   readonly children: React.ReactNode;
+
+  /**
+   * The justification of the content.
+   */
+  readonly justify?: "left" | "center" | "right";
 
   /**
    * The maximum width of the centered content.
    */
-  readonly max?: string;
+  readonly maxWidth?:
+    | typeof Breakpoints
+    | (string & NonNullable<unknown>)
+    | number;
 
   /**
    * Whether to also center the text.

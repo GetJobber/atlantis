@@ -1,8 +1,10 @@
 .container {
   container-name: var(--public-container-name);
   container-type: inline-size;
+  width: 100%;
 }
 
 .apply {
   container-type: inline-size;
+  width: 100%;
 }

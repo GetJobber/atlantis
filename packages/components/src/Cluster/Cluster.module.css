@@ -4,4 +4,15 @@
   gap: var(--public-cluster-space, var(--space-base, 16px));
   justify-content: var(--public-cluster-justify, flex-start);
   align-items: var(--public-cluster-align, center);
+  width: 100%;
+}
+
+.collapsed > * {
+  flex-basis: auto;
+  width: 100%;
+  min-width: 0;
+}
+
+.collapsed {
+  flex-direction: column;
 }

@@ -1,5 +1,5 @@
 import { Canvas } from "@storybook/addon-docs";
-import { SideKick, Card, Rectangle, Cover, Text } from "@jobber/components";
+import { SideKick, Card, Box, Text } from "@jobber/components";
 
 # SideKick
 
@@ -47,14 +47,14 @@ and wraps content when needed.
   <div style={{ width: "100%" }}>
     <SideKick sideWidth="80px" contentMinWidth="60%">
       <Card>
-        <Rectangle>
+        <Box padding="base">
           <Text>Main content goes here</Text>
-        </Rectangle>
+        </Box>
       </Card>
       <Card>
-        <Rectangle>
+        <Box padding="base">
           <Text>Side panel content goes here</Text>
-        </Rectangle>
+        </Box>
       </Card>
     </SideKick>
   </div>
@@ -66,14 +66,14 @@ and wraps content when needed.
   <div style={{ width: "100%" }}>
     <SideKick contentMinWidth="50%" sideWidth="40%">
       <Card>
-        <Rectangle>
+        <Box padding="base">
           <Text>Main content (50% width or wrap)</Text>
-        </Rectangle>
+        </Box>
       </Card>
       <Card>
-        <Rectangle>
+        <Box padding="base">
           <Text> Side width (40% of remaining space)</Text>
-        </Rectangle>
+        </Box>
       </Card>
     </SideKick>
   </div>
@@ -84,4 +84,5 @@ and wraps content when needed.
 - For equal width responsive panels use
   [ResponsiveSwitcher](/components/ResponsiveSwitcher)
 - For vertical spacing use [Stack](/components/Stack)
-- For horizontal centering use [Center](/components/Center)
+- For horizontal justified content (including centering and text) use
+  [ContentBlock](/components/ContentBlock)

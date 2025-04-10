@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import classNames from "classnames";
+import { useMediaQuery } from "@jobber/hooks";
 import styles from "./SideKick.module.css";
 import { SideKickProps, Spaces } from "./types";
 
@@ -21,11 +22,13 @@ export function SideKick({
   contentMinWidth = "50%",
   space = "var(--space-base)",
   onRight,
+  collapseBelow,
 }: SideKickProps) {
   const spaceMapped = useMemo(
     () => (spaceTokens[space as Spaces] ? spaceTokens[space as Spaces] : space),
     [space],
   );
+  const collapsed = useMediaQuery(`(max-width: ${collapseBelow || "0"})`);
 
   return (
     <div
@@ -44,6 +47,7 @@ export function SideKick({
             ? styles.withWidthRight
             : styles.withWidthLeft
           : null,
+        collapsed && collapseBelow ? styles.collapsed : null,
       )}
     >
       {children}

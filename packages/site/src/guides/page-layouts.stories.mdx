@@ -1,9 +1,9 @@
 import { Stack } from "@jobber/components/Stack";
-import { Center } from "@jobber/components/Center";
+import { ContentBlock } from "@jobber/components";
 import { Typography } from "@jobber/components/Typography";
+import { Box } from "@jobber/components/Box";
 import { Heading } from "@jobber/components/Heading";
 import { Card } from "@jobber/components/Card";
-import { Rectangle } from "@jobber/components/Rectangle";
 import { Tiles } from "@jobber/components/Tiles";
 import { ResponsiveSwitcher } from "@jobber/components/ResponsiveSwitcher";
 import { Cover } from "@jobber/components/Cover";
@@ -58,7 +58,7 @@ import styles from "./page-layouts.module.css";
     <Text>Stacks are a great way to layout content in a card format. They are responsive and easy to read.</Text>
     <Cluster>
       <Card elevation="base">
-        <Rectangle>
+        <Box padding="base">
           <Stack>
             <Heading level={3}>Card Layout</Heading>
             <Text>A card with a header, body text, and footer</Text>
@@ -66,7 +66,7 @@ import styles from "./page-layouts.module.css";
             <Text>And they're all stacked vertically</Text>
             <Text>with equal spacing</Text>
           </Stack>
-        </Rectangle>
+        </Box>
       </Card>
     </Cluster>
   </Stack>
@@ -82,14 +82,14 @@ import styles from "./page-layouts.module.css";
     <Text>Stacks are a great way to layout content in a modal format. They are responsive and easy to read.</Text>
     <Button label="Open Modal" onClick={() => setModalOpen(true)} />
     <Modal open={modalOpen} onRequestClose={() => setModalOpen(false)}>
-    <Rectangle>
+    <Box padding="base">
       <Stack>
         <Heading level={3}>Modal Layout</Heading>
         <Text>A modal with a header, body text, and footer</Text>
         <Text>And they're all stacked vertically with equal spacing</Text>
         <Button label="Close the Modal" onClick={() => setModalOpen(false)} />
       </Stack>  
-    </Rectangle>
+    </Box>
     </Modal>
     </Stack>
   </Canvas>
@@ -97,78 +97,6 @@ import styles from "./page-layouts.module.css";
 </Story>
 
 </Stack>
-</section>
-<section>
-  <Stack>
-  <Canvas>
-    <Rectangle>
-      <Stack>
-        <Heading level={1}>Rectangle</Heading>
-        <Text>The Rectangle component is used to create a rectangle with default padding.</Text>
-      </Stack>
-    </Rectangle>
-  </Canvas>
-  <Canvas>
-    <Rectangle padding="largest">
-      <Stack>
-        <Heading level={2}>Rectangle Padding</Heading>
-        <Text>You can modify the padding, in equal increments, to create a consistent spacing pattern.</Text>
-      </Stack>
-    </Rectangle>
-  </Canvas>
-  <Canvas>
-    <Rectangle borderWidth="2px">
-      <Stack>
-        <Heading level={2}>Rectangle Border</Heading>
-        <Text>You can set a border width, which uses the inverse for color.</Text>
-      </Stack>
-    </Rectangle>
-  </Canvas>
- <Canvas>
-    <Rectangle borderWidth="2px" invert>
-      <Stack>
-        <Heading level={2}>Rectangle Inverted</Heading>
-        <Text>By default when inverted we use a transparent border color so everything lines up.</Text>
-      </Stack>
-    </Rectangle>
-  </Canvas>
-  <Canvas>
-    <Rectangle colorSurface="color-surface--background">
-      <Stack>
-        <Heading level={2}>Rectangle Background</Heading>
-        <Text>You can set a background color, which uses our semantic color palette.</Text>
-      </Stack>
-    </Rectangle>
-  </Canvas>
-  <Canvas>
-    <Rectangle colorSurface="#F3E8FD" colorInverse="#5B21B6" invert>
-      <Stack>
-        <Heading level={2}>Custom Rectangle Background</Heading>
-        <Text>We just pass through any value you provide for colors in case you need something outside our semantic colors.</Text>
-      </Stack>
-    </Rectangle>
-  </Canvas>
- <Canvas>
-  <Card>
-    <Rectangle colorSurface="color-surface--background">
-      <Stack>
-        <Heading level={2}>Card Rectangles</Heading>
-        <Text>Rectangles respect parent border-radius so they're card friendly.</Text>
-      </Stack>
-    </Rectangle>
-    </Card>
-  </Canvas>
-  <Canvas>
-  <Card>
-    <Rectangle padding={{y: "18px",x:"67px"}}>
-      <Stack>
-        <Heading level={2}>Rectangle Offset Padding</Heading>
-        <Text>You can modify the padding, in unequal increments, to meet specific design requirements but it's best to use the space tokens for consistent spacing where possible and striving for equal paddings everywhere else. Use offset padding only when necessary.</Text>
-      </Stack>
-    </Rectangle>
-    </Card>
-  </Canvas>
-  </Stack>
 </section>
 <section>
 <Stack>
@@ -265,22 +193,22 @@ import styles from "./page-layouts.module.css";
     </Cluster>
   <Tiles minSize={tileSize} space="12px">
     <Card elevation="base">
-      <Rectangle padding="20px" borderWidth="0px">
+      <Box padding="base" borderWidth="0px">
         <Stack>
           <Heading level={2}>Card Title</Heading>
           <Text>Card Description</Text>
           <Button label="Card Button" />
         </Stack>
-      </Rectangle>
+      </Box>
     </Card>
     <Card elevation="base">
-      <Rectangle padding="20px" borderWidth="0px">
+      <Box padding="base" borderWidth="0px">
         <Stack>
           <Heading level={2}>Longer Card Title</Heading>
           <Text>A longer card description that spans multiple lines</Text>
           <Button label="Card Button" />
         </Stack>
-        </Rectangle>
+      </Box>
     </Card>
   </Tiles>
   </Stack>
@@ -298,14 +226,14 @@ import styles from "./page-layouts.module.css";
     <Text>The Cover component is used to create an arbitrary height layout with an option to center content and have content above/below the centered content.</Text>
     <Cover minHeight="30vh">
       <Cover.Center>
-      <Rectangle invert>
-      <Stack>
+        <Box padding="base" background="surface--background">
+        <Stack>
         <Heading level={2}>Centered Content</Heading>
-        <Rectangle colorSurface="color-text" colorInverse="color-surface" invert>
+        <Box colorSurface="color-text" colorInverse="color-surface" invert>
             <Text>This is a square</Text>
-        </Rectangle>
+        </Box>
         </Stack>
-      </Rectangle>
+      </Box>
       </Cover.Center>
     </Cover>
   </Stack>
@@ -317,16 +245,16 @@ import styles from "./page-layouts.module.css";
         <Text>You can place content above and below the centered content and align it any way you want, and the centered content will always be centered in the provided parent space.</Text>
       </Stack>
       <Cover.Center>
-        <Rectangle colorSurface="color-surface--background">
+        <Box background="color-surface--background">
           <Text>This is the centered content</Text>
-        </Rectangle>
+        </Box>
       </Cover.Center>
-      <Rectangle invert>
+        <Box background="color-surface--background">
         <Stack>
           <Heading level={2}>Cover Footer Content</Heading>
           <Text>This is the footer content</Text>
         </Stack>
-      </Rectangle>
+      </Box>
     </Cover>
   </Canvas>
   </Stack>
@@ -334,45 +262,45 @@ import styles from "./page-layouts.module.css";
 <section>
 <Stack>
   <Canvas>
-      <Center>
+      <ContentBlock>
       <Stack>
-      <Heading level={1}>Center</Heading>
-      <Text>The Center component is used to horizontally center content.</Text>
+        <Heading level={1}>Center</Heading>
+        <Text>The Center component is used to horizontally center content.</Text>
       </Stack>
-      </Center>
+      </ContentBlock>
   </Canvas>
  <Canvas>
-      <Center andText>
-      <Stack>
+      <ContentBlock maxWidth="300px">
+      <Stack align="start">
       <Heading level={1}>Text Center</Heading>
       <Text>The `andText` prop will center the text as well as the content.</Text>
       </Stack>
-      </Center>
+      </ContentBlock>
   </Canvas>
   <Canvas>
-    <Center max="200px">
+    <ContentBlock maxWidth="200px">
       <Stack>
         <Heading level={2}>Max Width</Heading>
         <Text>The Center component can also take a `max` prop to limit the width of the content.</Text>
       </Stack>  
-    </Center>
+    </ContentBlock>
   </Canvas>
   <Canvas>
-    <Center gutters="largest">
+    <ContentBlock gutters="largest">
       <Stack>
         <Heading level={2}>Gutters</Heading>
         <Text>The Center component can also take a `gutters` prop to add minimum space between the content and the edges of the parent so the content never touches the edge of the parent/screen. This space only applies to the element when required, not by default.</Text>
       </Stack>
-    </Center>
+    </ContentBlock>
    
   </Canvas>
   <Canvas>
-        <Center intrinsic>
+        <ContentBlock intrinsic>
           <Text>The `intrinsic` prop ensures that any content that is shorter than the largest possible width will center itself.</Text>
-          <Rectangle>
+          <Box padding="base">
             <Button label="Intrinsic Button" />
-          </Rectangle>
-        </Center>
+          </Box>
+        </ContentBlock>
   </Canvas>
 </Stack>
 </section>
@@ -421,31 +349,31 @@ import styles from "./page-layouts.module.css";
     <Heading level={1}>Responsive Switcher</Heading>
     <Text>The Responsive Switcher component is used to create a responsive layout that will automatically swap from horizontal to vertical when the content exceeds the threshold.</Text>
     <ResponsiveSwitcher threshold="60ch" space="12px" limit={2}>
-      <Rectangle padding="20px" invert>
+      <Box padding="base" background="surface--background">
           <Heading level={3}>Content on the left/top</Heading>
-      </Rectangle>
-      <Rectangle padding="20px" invert>
+      </Box>
+      <Box padding="base" background="surface--background">
         <Heading level={3}>Content on the right/bottom</Heading>
-      </Rectangle>
+      </Box>
     </ResponsiveSwitcher>
   </Stack>
   </Canvas>
   <Canvas>
       <ResponsiveSwitcher threshold="50ch" limit={3}>
       <Card elevation="base">
-        <Rectangle>
+          <Box padding="base">
           <Heading level={3}>Some Card Content</Heading>
-        </Rectangle>
+        </Box>
       </Card>
        <Card elevation="base">
-        <Rectangle>
+        <Box padding="base">
           <Heading level={3}>Some Card Content</Heading>
-        </Rectangle>
+        </Box>
       </Card>
       <Card elevation="base">
-        <Rectangle>
+        <Box padding="base">
           <Heading level={3}>Some Card Content</Heading>
-        </Rectangle>
+        </Box>
       </Card>
       </ResponsiveSwitcher>
   </Canvas>
@@ -485,53 +413,55 @@ import styles from "./page-layouts.module.css";
 <Stack>
      <Stack>
      <Heading level={1}>Container</Heading>
-     <Text>Containers are for isolating styles to a specific layout. Set a container name, and apply associated styles where needed.</Text>
-     <Text>We provide a set of predfined Containers and styles for common layout patterns.</Text>
+     <Text>Containers are for isolating style overrides to a specific layout. Set a container name, and apply associated styles where needed.</Text>
+     <Text>Containers are just container queries, and are fairly advanced. Only use them when absolutely necessary.</Text>
+     <Text>We provide a set of predfined Containers and styles for common layout pattern overrides, which are fully suported unlike custom-built containers.</Text>
      <Text>You can also create your own containers and portable style overrides with these tools.</Text>
      </Stack>
     <Container name="container-items">
+    <ContentBlock maxWidth="1280px" align="left">
       <Stack>
         <Container.Apply className={styles.item}>
           <Card>
-            <Rectangle>
+            <Box padding="base" width={1280}>
               <Stack>
                 <Heading level={1}>Container Example</Heading>
-                <Text>We've overridden the default styles without having to edit anything.</Text>
+                <Text>We've overridden the default styles without having to modify any existing code or styles.</Text>
               </Stack>
-            </Rectangle>
+            </Box>
           </Card>
         </Container.Apply>
         <Container.Apply className={styles.itemDotted}>
           <Card>
-            <Rectangle>
+            <Box padding="base">
               <Stack>
                 <Heading level={1}>Container Example</Heading>
-                <Text>These cards are functionally identical except they have different content widths.</Text>
+                <Text>These cards are functionally identical except they have different container queries based on their content widths.</Text>
               </Stack>
-            </Rectangle>
+            </Box>
           </Card>
         </Container.Apply>
         <Container.Apply className={styles.itemUpsideDown}>
           <Card>
-            <Rectangle>
+            <Box padding="base">
               <Stack>
                 <Heading level={1}>Container Example</Heading>
-                <Text>They're also perfectly portable. Only here will you find a card with a rotated text. Copy this out and paste it anywhere else and it won't
-                be rotated anymore.</Text>
+                <Text>They're also perfectly portable. If you just need the layout, take everything under the Container.Apply. If you want the wrapper but not the container styles, grab the Container.Apply as well. Or, just re-use the container elsewhere to wrap other content.</Text>
               </Stack>
-            </Rectangle>
+            </Box>
           </Card>
         </Container.Apply>
       </Stack>
+      </ContentBlock>
 </Container>
 <Stack>
  <Card>
-            <Rectangle>
+            <Box padding="base">
               <Stack>
                 <Heading level={1}>Container Example</Heading>
                 <Text>This last example is exactly the same as the others, except it's not in the container.</Text>
               </Stack>
-            </Rectangle>
+            </Box>
           </Card>
           </Stack>
           </Stack>
