@@ -1,12 +1,8 @@
-import React, { ChangeEvent, useId } from "react";
+import React, { ChangeEvent, useId, useRef } from "react";
 import { useTimePredict } from "./hooks/useTimePredict";
 import { InputTimeProps, InputTimeRebuiltProps } from "./InputTime.Types";
 import { dateToTimeString, timeStringToDate } from "./utils/input-time-utils";
-import {
-  FormFieldProps,
-  FormFieldWrapper,
-  useFormFieldWrapperStyles,
-} from "../FormField";
+import { FormFieldWrapper, useFormFieldWrapperStyles } from "../FormField";
 
 export function InputTimeRebuilt({
   defaultValue,
@@ -14,22 +10,17 @@ export function InputTimeRebuilt({
   onChange,
   ...params
 }: InputTimeRebuiltProps) {
+  const ref =
+    (params.inputRef as React.RefObject<HTMLInputElement>) ??
+    useRef<HTMLInputElement>(null);
   const { setTypedTime } = useTimePredict({
     value,
     handleChange,
   });
-  console.log("version2");
 
   const { inputStyle } = useFormFieldWrapperStyles(params);
 
   const id = getId(params);
-  const fieldProps = {
-    onChange: handleChange,
-    ...(defaultValue && {
-      defaultValue: dateToTimeString(defaultValue),
-    }),
-    ...(!defaultValue && { value: dateToTimeString(value) }),
-  };
 
   return (
     <FormFieldWrapper
@@ -49,25 +40,51 @@ export function InputTimeRebuilt({
       value={value}
     >
       <input
-        ref={params.inputRef as React.RefObject<HTMLInputElement>}
+        ref={ref}
         type="time"
         className={inputStyle}
         onBlur={handleBlur}
-        onChange={handleChange}
+        onChange={handleChangeEvent}
         onFocus={handleFocus}
+        defaultValue={defaultValue ? dateToTimeString(defaultValue) : undefined}
+        onKeyUp={e => {
+          !isNaN(parseInt(e.key, 10)) && setTypedTime(prev => prev + e.key);
+        }}
+        value={dateToTimeString(value)}
       />
     </FormFieldWrapper>
   );
 
-  function handleChange(event: ChangeEvent<HTMLInputElement>) {
-    onChange?.(timeStringToDate(event.target.value));
+  function handleChangeEvent(event: ChangeEvent<HTMLInputElement>) {
+    handleChange(event.target.value);
   }
 
-  function handleBlur() {}
+  function handleChange(newValue: string) {
+    onChange?.(timeStringToDate(newValue));
+  }
 
-  function handleClear() {}
+  function handleBlur() {
+    params.onBlur?.();
 
-  function handleFocus() {}
+    if (ref.current) {
+      if (!ref.current.checkValidity()) {
+        // don't we need to update the value too?
+        // is it valid for them to be out of sync?
+        // onChange?.(undefined);
+        ref.current.value = "";
+      }
+    }
+  }
+
+  function handleClear() {
+    handleBlur();
+    onChange?.(undefined);
+    ref.current?.focus();
+  }
+
+  function handleFocus() {
+    params.onFocus?.();
+  }
 
   function getId(props: InputTimeProps) {
     const generatedId = useId();
