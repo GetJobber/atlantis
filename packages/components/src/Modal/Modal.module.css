@@ -15,33 +15,21 @@
   --modal--shadow: var(--shadow-base);
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
+.overlay {
+  display: grid;
   z-index: var(--elevation-modal);
-  padding: var(--space-small);
-  overflow: auto;
-}
-
-.container,
-.overlay {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-.overlay {
   background-color: var(--color-overlay);
+  place-items: center;
 }
 
 .modal {
   position: relative;
+  z-index: var(--elevation-modal);
   width: 100%;
   max-width: var(--modal--width);
   box-shadow: var(--modal--shadow);
   margin: auto;
+  padding: var(--space-small);
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
   background-color: var(--color-surface);
