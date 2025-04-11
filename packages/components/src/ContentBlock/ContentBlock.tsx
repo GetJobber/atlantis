@@ -2,19 +2,8 @@ import React, { useMemo } from "react";
 import classNames from "classnames";
 import { Breakpoints } from "@jobber/hooks/useResizeObserver";
 import styles from "./ContentBlock.module.css";
-import { ContentBlockProps, Spaces } from "./types";
-
-const spaceTokens: Record<Spaces, string> = {
-  minuscule: "var(--space-minuscule)",
-  smallest: "var(--space-smallest)",
-  smaller: "var(--space-smaller)",
-  small: "var(--space-small)",
-  base: "var(--space-base)",
-  large: "var(--space-large)",
-  larger: "var(--space-larger)",
-  largest: "var(--space-largest)",
-  extravagant: "var(--space-extravagant)",
-};
+import { ContentBlockProps } from "./types";
+import { useSpaces } from "../sharedHooks/useSpaces";
 
 export function ContentBlock({
   children,
@@ -23,11 +12,7 @@ export function ContentBlock({
   gutters,
   justify = "left",
 }: ContentBlockProps) {
-  const guttersMapped = useMemo(
-    () =>
-      spaceTokens[gutters as Spaces] ? spaceTokens[gutters as Spaces] : gutters,
-    [gutters],
-  );
+  const guttersMapped = useSpaces(gutters);
 
   const maxWidthMapped = useMemo(() => {
     if (typeof maxWidth === "number") {

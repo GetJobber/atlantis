@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--public-sidekick-space);
-  width: 100%;
+  width: var(--public-sidekick-width);
 }
 
 .left > :first-child {

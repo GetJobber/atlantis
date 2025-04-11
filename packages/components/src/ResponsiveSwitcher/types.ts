@@ -1,13 +1,4 @@
-export type Spaces =
-  | "minuscule"
-  | "smallest"
-  | "smaller"
-  | "small"
-  | "base"
-  | "large"
-  | "larger"
-  | "largest"
-  | "extravagant";
+import { Spaces } from "../sharedHooks/useSpaces";
 
 export interface ResponsiveSwitcherProps {
   readonly children: React.ReactNode;

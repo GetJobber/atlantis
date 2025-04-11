@@ -1,13 +1,4 @@
-export type Spaces =
-  | "minuscule"
-  | "smallest"
-  | "smaller"
-  | "small"
-  | "base"
-  | "large"
-  | "larger"
-  | "largest"
-  | "extravagant";
+import { Spaces } from "../sharedHooks/useSpaces";
 
 export interface SideKickProps {
   readonly children: React.ReactNode;
@@ -21,4 +12,6 @@ export interface SideKickProps {
   readonly onRight?: boolean;
   /** The breakpoint to collapse the sidekick at. */
   readonly collapseBelow?: string;
+  /** Whether to allow the sidekick to take the width of the content. Defaults to 100% */
+  readonly autoWidth?: boolean;
 }

@@ -127,11 +127,11 @@ export const VisualTestComponentPage = () => {
               <Text size="large">Avatar with Images</Text>
               <Cluster>
                 <Avatar
-                  imageUrl="https://i.pravatar.cc/300?img=1"
+                  imageUrl="https://placehold.co/300x300?text=John+Doe"
                   name="John Doe"
                 />
                 <Avatar
-                  imageUrl="https://i.pravatar.cc/300?img=2"
+                  imageUrl="https://placehold.co/300x300?text=Jane+Smith"
                   name="Jane Smith"
                   color="#6B4CD5"
                 />

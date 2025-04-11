@@ -1,6 +1,9 @@
 import { Box, Grid, Heading, InputTime, Stack, Text } from "@jobber/components";
 import { useState } from "react";
 
+// Reference time set to noon on January 1, 2024
+const REFERENCE_TIME = new Date(2024, 0, 1, 12, 0, 0);
+
 export const VisualTestInputTimePage = () => {
   const [value, setValue] = useState<Date | undefined>(undefined);
 
@@ -60,7 +63,7 @@ export const VisualTestInputTimePage = () => {
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
                 <InputTime
-                  value={new Date()}
+                  value={REFERENCE_TIME}
                   onChange={newValue => setValue(newValue)}
                   disabled={true}
                 />
@@ -74,7 +77,7 @@ export const VisualTestInputTimePage = () => {
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
                 <InputTime
-                  defaultValue={new Date()}
+                  defaultValue={REFERENCE_TIME}
                   onChange={newValue => setValue(newValue)}
                   placeholder="With default value"
                 />

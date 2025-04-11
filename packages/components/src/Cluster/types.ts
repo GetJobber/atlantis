@@ -1,15 +1,5 @@
 import { Breakpoints } from "@jobber/hooks/useResizeObserver";
-
-export type Spaces =
-  | "minuscule"
-  | "smallest"
-  | "smaller"
-  | "small"
-  | "base"
-  | "large"
-  | "larger"
-  | "largest"
-  | "extravagant";
+import { Spaces } from "../sharedHooks/useSpaces";
 
 export interface ClusterProps {
   readonly children: React.ReactNode;
@@ -33,4 +23,9 @@ export interface ClusterProps {
    * The breakpoint below which the cluster will collapse.
    */
   readonly collapseBelow?: typeof Breakpoints | (string & NonNullable<unknown>);
+
+  /**
+   * Enabling this prevents the cluster from taking 100% of the width of the parent and instead flows with the content.
+   */
+  autoWidth?: boolean;
 }

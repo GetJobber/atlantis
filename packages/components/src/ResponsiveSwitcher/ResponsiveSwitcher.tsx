@@ -1,19 +1,8 @@
-import React, { useMemo } from "react";
+import React from "react";
 import classNames from "classnames";
 import styles from "./ResponsiveSwitcher.module.css";
-import { ResponsiveSwitcherProps, Spaces } from "./types";
-
-const spaceTokens: Record<Spaces, string> = {
-  minuscule: "var(--space-minuscule)",
-  smallest: "var(--space-smallest)",
-  smaller: "var(--space-smaller)",
-  small: "var(--space-small)",
-  base: "var(--space-base)",
-  large: "var(--space-large)",
-  larger: "var(--space-larger)",
-  largest: "var(--space-largest)",
-  extravagant: "var(--space-extravagant)",
-};
+import { ResponsiveSwitcherProps } from "./types";
+import { spaceTokens, useSpaces } from "../sharedHooks/useSpaces";
 
 export function ResponsiveSwitcher({
   children,
@@ -21,10 +10,7 @@ export function ResponsiveSwitcher({
   space = spaceTokens.base,
   limit = 2,
 }: ResponsiveSwitcherProps) {
-  const spaceMapped = useMemo(
-    () => (spaceTokens[space as Spaces] ? spaceTokens[space as Spaces] : space),
-    [space],
-  );
+  const spaceMapped = useSpaces(space);
 
   return (
     <div
