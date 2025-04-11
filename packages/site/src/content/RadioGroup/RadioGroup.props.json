@@ -59,6 +59,21 @@
         "type": {
           "name": "string"
         }
+      },
+      "verticallyCentered": {
+        "defaultValue": {
+          "value": "false"
+        },
+        "description": "Whether to vertically center the radio buttons.",
+        "name": "verticallyCentered",
+        "parent": {
+          "fileName": "../components/src/RadioGroup/RadioGroup.tsx",
+          "name": "RadioGroupProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
       }
     }
   }
