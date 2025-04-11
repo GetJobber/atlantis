@@ -6,6 +6,9 @@ import { Divider } from "@jobber/components/Divider";
 import { Checkbox } from "@jobber/components/Checkbox";
 import { Chip, Chips } from "@jobber/components/Chips";
 import { InputNumber } from "@jobber/components/InputNumber";
+import { Text } from "@jobber/components/Text";
+import { Box } from "@jobber/components/Box";
+import { Avatar } from "@jobber/components/Avatar";
 
 export default {
   title: "Components/Forms and Inputs/RadioGroup/Web",
@@ -152,6 +155,40 @@ const CustomRadioOptionContentTemplate: ComponentStory<
   );
 };
 
+const CustomRadioOptionCenteredButtonTemplate: ComponentStory<
+  typeof RadioGroup
+> = args => {
+  const [option, setOption] = useState("option1");
+
+  return (
+    <Content>
+      <Text>
+        Use the `verticallyCentered` prop to align the radio buttons vertically
+        with the custom option content.
+      </Text>
+      <RadioGroup
+        {...args}
+        onChange={(value: string) => setOption(value)}
+        value={option}
+        verticallyCentered={true}
+      >
+        <RadioOption value="option1">
+          <Box padding="small" direction="row" gap="small" alignItems="center">
+            <Avatar initials="A" />
+            <div>Option 1</div>
+          </Box>
+        </RadioOption>
+        <RadioOption value="option2">
+          <Box padding="small" direction="row" gap="small" alignItems="center">
+            <Avatar initials="B" />
+            <div>Option 2</div>
+          </Box>
+        </RadioOption>
+      </RadioGroup>
+    </Content>
+  );
+};
+
 export const Basic = BasicTemplate.bind({});
 
 export const Description = DescriptionTemplate.bind({});
@@ -165,3 +202,6 @@ export const CustomRadioOptionContent = CustomRadioOptionContentTemplate.bind(
 CustomRadioOptionContent.args = {
   ariaLabel: "Reminder Settings",
 };
+
+export const CustomRadioOptionCenteredButton =
+  CustomRadioOptionCenteredButtonTemplate.bind({});
