@@ -1,0 +1,105 @@
+import { Tabs, Tab } from "@jobber/components/Tabs";
+
+## Component customization
+
+### UNSAFE\_ props (advanced usage)
+
+General information for using `UNSAFE_` props can be found
+[here](/guides/customizing-components).
+
+**Note**: Use of `UNSAFE_` props is **at your own risk** and should be
+considered a **last resort**. Future Icon updates may lead to unintended
+breakages.
+
+#### UNSAFE_props (web)
+
+<Tabs>
+  <Tab label="UNSAFE_className">
+    Use `UNSAFE_className` to apply custom classes to the Avatar component. This can be
+    useful for applying styles via CSS Modules.
+
+    ```tsx
+    // For Avatar with image
+    <Avatar
+      name="Custom Container Class Name"
+      imageUrl="https://api.adorable.io/avatars/150/jobbler"
+      UNSAFE_className={{ container: styles.customContainerClassName }}
+    />
+
+    // For Avatar with initials
+    <Avatar
+      initials="JB"
+      UNSAFE_className={{ initials: styles.customInitialsClassName }}
+    />,
+
+    // For Avatar with fallback icon
+    <Avatar
+      initials=""
+      UNSAFE_className={{
+        fallbackIcon: {
+          svg: styles.customFallbackIconSvgClassName,
+          path: styles.customFallbackIconPathClassName,
+        },
+      }}
+    />
+
+    // YourComponent.module.css
+    .customContainerClassName {
+      border-color: var(--color-red);
+    }
+
+    .customInitialsClassName {
+      color: var(--color-blue);
+    }
+
+    .customFallbackIconSvgClassName {
+      width: 59px;
+      height: 59px;
+    }
+
+    .customFallbackIconPathClassName {
+      fill: var(--color-blue);
+    }
+    ```
+
+  </Tab>
+  <Tab label="UNSAFE_style">
+    Use `UNSAFE_style` to apply inline custom styles to the Avatar component.
+    
+    ```tsx
+    // For Avatar with image
+     <Avatar
+      name="Custom Container Style"
+      imageUrl="https://api.adorable.io/avatars/150/jobbler"
+      UNSAFE_style={{
+        container: {
+          borderColor: "var(--color-green)",
+        },
+      }}
+    />
+
+    // For Avatar with initials
+    <Avatar
+      initials="JB"
+      UNSAFE_style={{ initials: { color: "var(--color-blue)" } }}
+    />
+
+    // For Avatar with fallback icon
+    <Avatar
+      initials=""
+      UNSAFE_style={{
+        fallbackIcon: {
+          svg: {
+            width: "59px",
+            height: "59px",
+          },
+          path: {
+            fill: "var(--color-blue)",
+          },
+        },
+      }}
+    />,
+    ```
+
+  </Tab>
+</Tabs>

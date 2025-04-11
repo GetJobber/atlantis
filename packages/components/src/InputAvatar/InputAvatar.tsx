@@ -5,7 +5,8 @@ import { FileUpload, InputFile, UploadParams } from "../InputFile";
 import { ProgressBar } from "../ProgressBar";
 import { Button } from "../Button";
 
-interface InputAvatarProps extends Omit<AvatarProps, "size"> {
+interface InputAvatarProps
+  extends Omit<AvatarProps, "size" | "UNSAFE_className" | "UNSAFE_style"> {
   /**
    * A callback that receives a file object and returns a `UploadParams` needed
    * to upload the file.
