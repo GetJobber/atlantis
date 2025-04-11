@@ -1,0 +1,52 @@
+import { Canvas } from "@storybook/addon-docs";
+import { Cover, Heading, Text, Form } from "@jobber/components";
+
+# Cover
+
+The Cover component helps you create fixed-height layouts with the option for
+vertically centered content. It's great for creating hero sections, marketing
+callouts, or any layout where you want content to fill the available vertical
+space.
+
+## Design & usage guidelines
+
+Use Cover when you need to:
+
+- Create full-height layouts with centered content
+- Build hero sections or splash screens
+- Display content that should fill the available vertical space
+
+## Basic example
+
+<Canvas>
+  <Cover minHeight="50vh">
+    <Text>Content above</Text>
+    <Cover.Center>
+      <Heading>Welcome back!</Heading>
+      <Text>Sign in to continue to your account.</Text>
+    </Cover.Center>
+    <Text>Content below</Text>
+  </Cover>
+</Canvas>
+
+### Cover.Center
+
+Use `Cover.Center` to vertically center content within the Cover component.
+Content within `Cover.Center` will be automatically centered in the available
+space.
+
+<Canvas>
+  <Cover minHeight="40vh">
+    <Cover.Center>
+      <Heading>Welcome back!</Heading>
+      <Text>Sign in to continue to your account.</Text>
+    </Cover.Center>
+  </Cover>
+</Canvas>
+
+## Best practices
+
+- Use meaningful minimum heights that make sense for your content
+- Consider the viewport height (`vh`) units for full-screen covers
+- Ensure content within `Cover.Center` is properly structured for vertical
+  centering

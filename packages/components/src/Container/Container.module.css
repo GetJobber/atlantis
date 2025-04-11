@@ -1,0 +1,10 @@
+.container {
+  container-name: var(--public-container-name);
+  container-type: inline-size;
+  width: var(--public-container-width);
+}
+
+.apply {
+  container-type: inline-size;
+  width: var(--public-container-apply-width);
+}

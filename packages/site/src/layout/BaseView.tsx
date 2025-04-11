@@ -8,8 +8,10 @@ export function BaseView({ children }: PropsWithChildren) {
 
 BaseView.Main = function Main({
   children,
+  noMaxWidth = false,
 }: {
   readonly children: React.ReactNode;
+  readonly noMaxWidth?: boolean;
 }) {
   return (
     <Box width="grow">
@@ -35,7 +37,9 @@ BaseView.Main = function Main({
             <div
               style={{
                 width: "100%",
-                maxWidth: "calc(768px + var(--space-large)",
+                maxWidth: noMaxWidth
+                  ? "none"
+                  : "calc(768px + var(--space-large))",
                 padding: "0 var(--space-base)",
                 boxSizing: "border-box",
               }}

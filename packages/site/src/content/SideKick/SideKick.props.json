@@ -1,0 +1,95 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/SideKick/SideKick.tsx",
+    "description": "",
+    "displayName": "SideKick",
+    "methods": [],
+    "props": {
+      "sideWidth": {
+        "defaultValue": null,
+        "description": "The width of the sidekick.",
+        "name": "sideWidth",
+        "parent": {
+          "fileName": "packages/components/src/SideKick/types.ts",
+          "name": "SideKickProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "contentMinWidth": {
+        "defaultValue": {
+          "value": "50%"
+        },
+        "description": "The minimum width of the content.",
+        "name": "contentMinWidth",
+        "parent": {
+          "fileName": "packages/components/src/SideKick/types.ts",
+          "name": "SideKickProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "space": {
+        "defaultValue": {
+          "value": "var(--space-base)"
+        },
+        "description": "The amount of space between the sidekick and the content. Semantic tokens are available.",
+        "name": "space",
+        "parent": {
+          "fileName": "packages/components/src/SideKick/types.ts",
+          "name": "SideKickProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "onRight": {
+        "defaultValue": null,
+        "description": "Whether to place the sidekick on the right.",
+        "name": "onRight",
+        "parent": {
+          "fileName": "packages/components/src/SideKick/types.ts",
+          "name": "SideKickProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "collapseBelow": {
+        "defaultValue": null,
+        "description": "The breakpoint to collapse the sidekick at.",
+        "name": "collapseBelow",
+        "parent": {
+          "fileName": "packages/components/src/SideKick/types.ts",
+          "name": "SideKickProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "autoWidth": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "Whether to allow the sidekick to take the width of the content. Defaults to 100%",
+        "name": "autoWidth",
+        "parent": {
+          "fileName": "packages/components/src/SideKick/types.ts",
+          "name": "SideKickProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      }
+    }
+  }
+]

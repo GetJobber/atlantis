@@ -1,0 +1,80 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Stack/Stack.tsx",
+    "description": "",
+    "displayName": "Stack",
+    "methods": [],
+    "props": {
+      "space": {
+        "defaultValue": {
+          "value": "spaceTokens.base"
+        },
+        "description": "The amount of space between the children. Semantic tokens are available.",
+        "name": "space",
+        "parent": {
+          "fileName": "packages/components/src/Stack/types.ts",
+          "name": "StackProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "splitAfter": {
+        "defaultValue": null,
+        "description": "The number of children to split the stack after (1-15). Requires parent to have height greater than the sum of the children.",
+        "name": "splitAfter",
+        "parent": {
+          "fileName": "packages/components/src/Stack/types.ts",
+          "name": "StackProps"
+        },
+        "required": false,
+        "type": {
+          "name": "1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15"
+        }
+      },
+      "recursive": {
+        "defaultValue": null,
+        "description": "Whether to recursively apply the stack spacing to all the children, not just the top-level.",
+        "name": "recursive",
+        "parent": {
+          "fileName": "packages/components/src/Stack/types.ts",
+          "name": "StackProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "align": {
+        "defaultValue": null,
+        "description": "The alignment of the stack.",
+        "name": "align",
+        "parent": {
+          "fileName": "packages/components/src/Stack/types.ts",
+          "name": "StackProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"start\" | \"center\" | \"end\""
+        }
+      },
+      "autoWidth": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "Whether to allow the stack to take the width of the content. Defaults to 100%",
+        "name": "autoWidth",
+        "parent": {
+          "fileName": "packages/components/src/Stack/types.ts",
+          "name": "StackProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      }
+    }
+  }
+]
