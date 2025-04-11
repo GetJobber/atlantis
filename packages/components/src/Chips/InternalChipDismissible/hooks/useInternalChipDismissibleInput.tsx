@@ -22,6 +22,8 @@ export function useInternalChipDismissibleInput({
   onCustomOptionSelect,
   onOptionSelect,
   onSearch,
+  onlyShowMenuOnSearch = false,
+  submitInputOnFocusShift = false,
 }: ChipDismissibleInputProps) {
   const menuId = useId();
   const [allOptions, setAllOptions] = useState<
@@ -67,6 +69,7 @@ export function useInternalChipDismissibleInput({
     handleReset: () => {
       setActiveIndex(activeIndex === 0 ? activeIndex : activeIndex - 1);
       setSearchValue("");
+      actions.handleCloseMenu();
     },
 
     handleOpenMenu: () => setMenuOpen(true),
@@ -81,14 +84,35 @@ export function useInternalChipDismissibleInput({
 
     handleBlur: () => {
       if (shouldCancelBlur) return;
+
+      if (
+        submitInputOnFocusShift &&
+        searchValue.length > 0 &&
+        allOptions.length > 0
+      ) {
+        // If there's a custom option, select it. Otherwise select the best match
+        const optionToSelect = canAddCustomOption
+          ? allOptions[allOptions.length - 1]
+          : allOptions[0];
+        actions.handleSelectOption(optionToSelect);
+      }
+
       actions.handleReset();
-      actions.handleCloseMenu();
     },
 
     handleSearchChange: (event: ChangeEvent<HTMLInputElement>) => {
       setActiveIndex(0);
-      setSearchValue(event.currentTarget.value);
+      const newSearchValue = event.currentTarget.value;
+      setSearchValue(newSearchValue);
       setShouldCancelEnter(true);
+
+      if (onlyShowMenuOnSearch && newSearchValue.length > 0 && !menuOpen) {
+        actions.handleOpenMenu();
+      }
+
+      if (onlyShowMenuOnSearch && newSearchValue.length === 0 && menuOpen) {
+        actions.handleCloseMenu();
+      }
     },
 
     handleSetActiveOnMouseOver: (index: number) => {
@@ -108,22 +132,26 @@ export function useInternalChipDismissibleInput({
     },
 
     handleKeyDown: (event: KeyboardEvent<HTMLInputElement>) => {
-      const callbacks: KeyDownCallBacks = {
-        Enter: () => {
+      const callbacks: KeyDownCallBacks = {};
+
+      if (!onlyShowMenuOnSearch || searchValue.length > 0) {
+        callbacks.Enter = () => {
           if (shouldCancelEnter) return;
           actions.handleSelectOption(computed.activeOption);
-        },
-        Tab: () => actions.handleSelectOption(computed.activeOption),
-        ",": () => {
+        };
+        callbacks.Tab = () => actions.handleSelectOption(computed.activeOption);
+
+        callbacks[","] = () => {
           if (searchValue.length === 0) return;
           actions.handleSelectOption(generateCustomOptionObject(searchValue));
-        },
-        ArrowDown: () => {
+        };
+
+        callbacks.ArrowDown = () => {
           if (isLoadingMore && activeIndex === maxOptionIndex) return;
           setActiveIndex(computed.nextOptionIndex);
-        },
-        ArrowUp: () => setActiveIndex(computed.previousOptionIndex),
-      };
+        };
+        callbacks.ArrowUp = () => setActiveIndex(computed.previousOptionIndex);
+      }
 
       if (searchValue.length === 0) {
         callbacks.Backspace = () => {
@@ -139,7 +167,6 @@ export function useInternalChipDismissibleInput({
 
       handleKeydownEvents(callbacks, event);
     },
-
     handleDebouncedSearch,
   };
 

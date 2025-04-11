@@ -95,6 +95,8 @@ const SelectionTemplate: ComponentStory<typeof Chips> = args => {
       isLoadingMore={loading}
       onSearch={handleSearch}
       onLoadMore={handleLoadMore}
+      onlyShowMenuOnSearch={true}
+      submitInputOnFocusShift={true}
     >
       {options.map(name => (
         <Chip key={name} label={name} value={name} />
