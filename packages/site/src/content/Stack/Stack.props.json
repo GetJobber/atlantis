@@ -23,7 +23,7 @@
       },
       "splitAfter": {
         "defaultValue": null,
-        "description": "The number of children to split the stack after. Requires parent to have height greater than the sum of the children.",
+        "description": "The number of children to split the stack after (1-15). Requires parent to have height greater than the sum of the children.",
         "name": "splitAfter",
         "parent": {
           "fileName": "packages/components/src/Stack/types.ts",
@@ -31,7 +31,7 @@
         },
         "required": false,
         "type": {
-          "name": "number"
+          "name": "1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15"
         }
       },
       "recursive": {
@@ -58,6 +58,21 @@
         "required": false,
         "type": {
           "name": "\"start\" | \"center\" | \"end\""
+        }
+      },
+      "autoWidth": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "Whether to allow the stack to take the width of the content. Defaults to 100%",
+        "name": "autoWidth",
+        "parent": {
+          "fileName": "packages/components/src/Stack/types.ts",
+          "name": "StackProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
         }
       }
     }

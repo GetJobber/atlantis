@@ -8,7 +8,7 @@
     "props": {
       "name": {
         "defaultValue": null,
-        "description": "",
+        "description": "The name of the container. This allows you to name your container query, but it's not necessary.",
         "name": "name",
         "parent": {
           "fileName": "packages/components/src/Container/types.ts",
@@ -21,7 +21,7 @@
       },
       "className": {
         "defaultValue": null,
-        "description": "",
+        "description": "The class name for the container. This allows you to target the container with CSS.",
         "name": "className",
         "parent": {
           "fileName": "packages/components/src/Container/types.ts",
@@ -30,6 +30,21 @@
         "required": false,
         "type": {
           "name": "string"
+        }
+      },
+      "autoWidth": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "Whether to allow the container to take the width of the content. Defaults to 100%",
+        "name": "autoWidth",
+        "parent": {
+          "fileName": "packages/components/src/Container/types.ts",
+          "name": "ContainerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
         }
       }
     }
@@ -43,7 +58,7 @@
     "props": {
       "className": {
         "defaultValue": null,
-        "description": "",
+        "description": "The class name for the container. This allows you to target the container with CSS.",
         "name": "className",
         "parent": {
           "fileName": "packages/components/src/Container/types.ts",
@@ -56,7 +71,7 @@
       },
       "style": {
         "defaultValue": null,
-        "description": "",
+        "description": "The style for the container",
         "name": "style",
         "parent": {
           "fileName": "packages/components/src/Container/types.ts",
@@ -65,6 +80,21 @@
         "required": false,
         "type": {
           "name": "CSSProperties"
+        }
+      },
+      "autoWidth": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "Whether to allow the container to take the width of the content. Defaults to 100%",
+        "name": "autoWidth",
+        "parent": {
+          "fileName": "packages/components/src/Container/types.ts",
+          "name": "ContainerApplyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
         }
       }
     }

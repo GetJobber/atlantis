@@ -35,6 +35,21 @@
         "type": {
           "name": "string"
         }
+      },
+      "autoWidth": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "Whether to allow the tiles to take the width of the content. Defaults to 100%",
+        "name": "autoWidth",
+        "parent": {
+          "fileName": "packages/components/src/Tiles/types.ts",
+          "name": "TilesProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
       }
     }
   }
