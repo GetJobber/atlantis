@@ -57,6 +57,21 @@
         "type": {
           "name": "any"
         }
+      },
+      "autoWidth": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "Enabling this prevents the cluster from taking 100% of the width of the parent and instead flows with the content.",
+        "name": "autoWidth",
+        "parent": {
+          "fileName": "packages/components/src/Cluster/types.ts",
+          "name": "ClusterProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
       }
     }
   }
