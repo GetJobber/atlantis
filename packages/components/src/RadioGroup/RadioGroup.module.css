@@ -33,7 +33,6 @@
   flex-shrink: 0;
 }
 
-
 .verticallyCentered .input + .label::before {
   align-self: center;
 }
