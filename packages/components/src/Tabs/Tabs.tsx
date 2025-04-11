@@ -94,23 +94,32 @@ export function Tabs({
           ref={tabRow}
           onKeyDown={handleKeyDown}
         >
-          {tabChildren.map((tab, index) => (
-            <InternalTab
-              key={tab.props.label}
-              label={tab.props.label}
-              selected={activeTab === index}
-              activateTab={activateTab(index)}
-              onClick={tab.props.onClick}
-              ref={el => {
-                if (el) {
-                  tabRefs.current.set(index, el);
-                } else {
-                  tabRefs.current.delete(index);
-                }
-              }}
-              tabIndex={activeTab === index ? 0 : -1}
-            />
-          ))}
+          {React.Children.map(children, child => {
+            if (!isChildTab(child)) {
+              return child;
+            }
+
+            const index = tabChildren.findIndex(
+              tab => tab.props.label === child.props.label,
+            );
+
+            return (
+              <InternalTab
+                label={child.props.label}
+                selected={activeTab === index}
+                activateTab={activateTab(index)}
+                onClick={child.props.onClick}
+                ref={el => {
+                  if (el) {
+                    tabRefs.current.set(index, el);
+                  } else {
+                    tabRefs.current.delete(index);
+                  }
+                }}
+                tabIndex={activeTab === index ? 0 : -1}
+              />
+            );
+          })}
         </ul>
       </div>
       <section
@@ -179,12 +188,18 @@ function getActiveTabs(children: TabsProps["children"]) {
   const activeTabChildren: ReactElement[] = [];
 
   React.Children.toArray(children).forEach(child => {
-    if (React.isValidElement(child) && child.type === Tab) {
+    if (isChildTab(child)) {
       activeTabChildren.push(child);
     }
   });
 
   return activeTabChildren;
+}
+
+function isChildTab(
+  child: ReactNode,
+): child is ReactElement<TabProps, typeof Tab> {
+  return React.isValidElement(child) && child.type === Tab;
 }
 
 export { InternalTab };
