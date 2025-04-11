@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.40.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.39.0...@jobber/atlantis-site@0.40.0) (2025-04-11)
+
+
+### Features
+
+* **components:** add UNSAFE_className and UNSAFE_style props to Divider ([#2474](https://github.com/GetJobber/atlantis/issues/2474)) ([e43885c](https://github.com/GetJobber/atlantis/commit/e43885c75af6b5147442e38d7d2a4e137fb757de))
+
+
+
+
+
+# [0.39.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.38.0...@jobber/atlantis-site@0.39.0) (2025-04-10)
+
+
+### Features
+
+* **components:** Add unsafe props to Avatar web ([#2473](https://github.com/GetJobber/atlantis/issues/2473)) ([8ed647d](https://github.com/GetJobber/atlantis/commit/8ed647da8ea64bc038a7f37138fdf8fd96908b43))
+
+
+
+
+
 # [0.38.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.37.3...@jobber/atlantis-site@0.38.0) (2025-04-08)
 
 
