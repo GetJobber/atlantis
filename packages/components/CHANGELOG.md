@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.36.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.35.0...@jobber/components@6.36.0) (2025-04-11)
+
+
+### Features
+
+* **components:** add UNSAFE_className and UNSAFE_style props to Divider ([#2474](https://github.com/GetJobber/atlantis/issues/2474)) ([e43885c](https://github.com/GetJobber/atlantis/commit/e43885c75af6b5147442e38d7d2a4e137fb757de))
+
+
+
+
+
 # [6.35.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.34.0...@jobber/components@6.35.0) (2025-04-10)
 
 
