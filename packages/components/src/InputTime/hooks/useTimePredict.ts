@@ -1,6 +1,6 @@
 import debounce from "lodash/debounce";
 import { useCallback, useEffect, useState } from "react";
-import { InputTimeProps } from "../InputTimeProps";
+import { InputTimeProps } from "../InputTime.Types";
 
 interface UseTimePredictProps extends Pick<InputTimeProps, "value"> {
   readonly handleChange: (value: string) => void;
