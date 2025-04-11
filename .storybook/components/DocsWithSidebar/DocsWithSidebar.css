@@ -5,15 +5,15 @@
 }
 
 .content {
-  flex: 1 1 0;
   overflow: auto;
-  background-color: var(--color-surface);
   background: var(--color-surface);
+  background-color: var(--color-surface);
+  flex: 1 1 0;
 }
 
 .content > div {
-  background-color: inherit;
   background: inherit;
+  background-color: inherit;
 }
 
 .sidebar {
