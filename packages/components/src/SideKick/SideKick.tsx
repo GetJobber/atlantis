@@ -12,6 +12,7 @@ export function SideKick({
   space = "var(--space-base)",
   onRight,
   collapseBelow,
+  autoWidth = false,
 }: SideKickProps) {
   const spaceMapped = useSpaces(space);
   const collapsed = useMediaQuery(`(max-width: ${collapseBelow || "0"})`);
@@ -23,6 +24,7 @@ export function SideKick({
           "--public-sidekick-side-width": sideWidth,
           "--public-sidekick-min-width": contentMinWidth,
           "--public-sidekick-space": spaceMapped,
+          "--public-sidekick-width": autoWidth ? "auto" : "100%",
         } as React.CSSProperties
       }
       className={classNames(

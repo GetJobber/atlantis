@@ -12,4 +12,6 @@ export interface SideKickProps {
   readonly onRight?: boolean;
   /** The breakpoint to collapse the sidekick at. */
   readonly collapseBelow?: string;
+  /** Whether to allow the sidekick to take the width of the content. Defaults to 100% */
+  readonly autoWidth?: boolean;
 }

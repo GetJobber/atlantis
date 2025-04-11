@@ -12,6 +12,7 @@ export function Cluster({
   align,
   space,
   collapseBelow,
+  autoWidth = false,
 }: ClusterProps) {
   const spaceMapped = useSpaces(space);
 
@@ -50,6 +51,7 @@ export function Cluster({
           "--public-cluster-justify": justifyMapped,
           "--public-cluster-align": align,
           "--public-cluster-space": spaceMapped,
+          "--public-cluster-width": autoWidth ? "auto" : "100%",
         } as React.CSSProperties
       }
       className={classNames(styles.cluster, isCollapsed && styles.collapsed)}

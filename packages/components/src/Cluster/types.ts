@@ -23,4 +23,9 @@ export interface ClusterProps {
    * The breakpoint below which the cluster will collapse.
    */
   readonly collapseBelow?: typeof Breakpoints | (string & NonNullable<unknown>);
+
+  /**
+   * Enabling this prevents the cluster from taking 100% of the width of the parent and instead flows with the content.
+   */
+  autoWidth?: boolean;
 }

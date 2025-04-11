@@ -6,4 +6,6 @@ export interface TilesProps {
   readonly minSize: string;
   /** The amount of space between the tiles. Semantic tokens are available. */
   readonly space: string | Spaces;
+  /** Whether to allow the tiles to take the width of the content. Defaults to 100% */
+  readonly autoWidth?: boolean;
 }

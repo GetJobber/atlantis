@@ -4,7 +4,7 @@
   gap: var(--public-cluster-space, var(--space-base, 16px));
   justify-content: var(--public-cluster-justify, flex-start);
   align-items: var(--public-cluster-align, center);
-  width: 100%;
+  width: var(--public-cluster-width);
 }
 
 .collapsed > * {
@@ -15,4 +15,9 @@
 
 .collapsed {
   flex-direction: column;
+}
+
+/** When we nest clusters, the clustering stops working because of the 100% width. This prevents nested clusters from fighting **/
+.cluster .cluster {
+  width: auto;
 }

@@ -10,6 +10,7 @@ export function Stack({
   splitAfter,
   children,
   align,
+  autoWidth = false,
 }: StackProps) {
   const spaceMapped = useSpaces(space);
 
@@ -19,6 +20,7 @@ export function Stack({
         {
           "--public-stack-split": splitAfter,
           "--public-stack-space": spaceMapped,
+          "--public-stack-width": autoWidth ? "auto" : "100%",
         } as React.CSSProperties
       }
       className={classNames(

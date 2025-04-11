@@ -7,6 +7,7 @@ export function Tiles({
   children,
   minSize = "30ch",
   space = "base",
+  autoWidth = false,
 }: TilesProps) {
   const spaceMapped = useSpaces(space);
 
@@ -16,6 +17,7 @@ export function Tiles({
         {
           "--public-tile-min-size": minSize,
           "--public-tile-space": spaceMapped,
+          "--public-tiles-width": autoWidth ? "auto" : "100%",
         } as React.CSSProperties
       }
       className={styles.tiles}
