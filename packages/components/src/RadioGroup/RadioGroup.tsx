@@ -1,4 +1,5 @@
 import React, { ReactElement, useId } from "react";
+import classnames from "classnames";
 import { InternalRadioOption } from "./RadioOption";
 import styles from "./RadioGroup.module.css";
 
@@ -29,6 +30,13 @@ interface RadioGroupProps {
    * @default useId()
    */
   readonly name?: string;
+
+  /**
+   * Whether to vertically center the radio buttons.
+   *
+   * @default false
+   */
+  readonly verticallyCentered?: boolean;
 }
 
 export function RadioGroup({
@@ -36,10 +44,15 @@ export function RadioGroup({
   value,
   ariaLabel,
   onChange,
+  verticallyCentered,
   name = useId(),
 }: RadioGroupProps) {
+  const classes = classnames(styles.radioGroup, {
+    [styles.verticallyCentered]: verticallyCentered,
+  });
+
   return (
-    <div role="radiogroup" aria-label={ariaLabel} className={styles.radioGroup}>
+    <div role="radiogroup" aria-label={ariaLabel} className={classes}>
       {React.Children.map(children, option => (
         <InternalRadioOption
           checked={value === option.props.value}
