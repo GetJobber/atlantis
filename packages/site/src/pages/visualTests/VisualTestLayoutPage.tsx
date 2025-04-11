@@ -15,150 +15,137 @@ import {
   Text,
   Tiles,
 } from "@jobber/components";
-import { PageWrapper } from "../layout/PageWrapper";
 
 export const VisualTestLayoutPage = () => {
   return (
-    <PageWrapper>
-      <main
-        style={{
-          boxShadow: "var(--shadow-base)",
-          borderRadius: "var(--radius-base) var(--radius-base) 0 0",
-          position: "relative",
-          flexGrow: 1,
-          backgroundColor: "var(--color-surface)",
-          padding: "var(--space-large)",
-        }}
-      >
-        <Stack space="extravagant">
-          {/* Stack Examples */}
-          <Stack>
-            <Heading level={1}>Stack Examples</Heading>
-            <Stack space="large">
-              {/* Basic Stack */}
-              <section>
-                <Text size="large">Basic Stack</Text>
+    <Stack>
+      <Box padding="large">
+        {/* Stack Examples */}
+        <Stack>
+          <Heading level={1}>Stack Examples</Heading>
+          <Stack space="large">
+            {/* Basic Stack */}
+            <section>
+              <Text size="large">Basic Stack</Text>
+              <Card>
+                <Box padding="base">
+                  <Stack>
+                    <Text>First item</Text>
+                    <Text>Second item</Text>
+                    <Text>Third item</Text>
+                  </Stack>
+                </Box>
+              </Card>
+            </section>
+
+            {/* Stack with Different Spacing */}
+            <section>
+              <Text size="large">Stack with Different Spacing</Text>
+              <Cluster>
                 <Card>
                   <Box padding="base">
-                    <Stack>
-                      <Text>First item</Text>
-                      <Text>Second item</Text>
-                      <Text>Third item</Text>
+                    <Stack space="small">
+                      <Text>Small Space</Text>
+                      <Text>Between Items</Text>
+                      <Text>In Stack</Text>
                     </Stack>
                   </Box>
                 </Card>
-              </section>
-
-              {/* Stack with Different Spacing */}
-              <section>
-                <Text size="large">Stack with Different Spacing</Text>
-                <Cluster>
-                  <Card>
-                    <Box padding="base">
-                      <Stack space="small">
-                        <Text>Small Space</Text>
-                        <Text>Between Items</Text>
-                        <Text>In Stack</Text>
-                      </Stack>
-                    </Box>
-                  </Card>
-                  <Card>
-                    <Box padding="base">
-                      <Stack space="large">
-                        <Text>Large Space</Text>
-                        <Text>Between Items</Text>
-                        <Text>In Stack</Text>
-                      </Stack>
-                    </Box>
-                  </Card>
-                </Cluster>
-              </section>
-
-              {/* Stack with Form Layout */}
-              <section>
-                <Text size="large">Stack with Form Layout</Text>
                 <Card>
                   <Box padding="base">
-                    <Stack>
-                      <InputText placeholder="Enter your name" />
-                      <InputText placeholder="Enter your email" />
-                      <Button label="Submit Form" />
+                    <Stack space="large">
+                      <Text>Large Space</Text>
+                      <Text>Between Items</Text>
+                      <Text>In Stack</Text>
                     </Stack>
                   </Box>
                 </Card>
-              </section>
+              </Cluster>
+            </section>
 
-              {/* Stack with Alignment */}
-              <section>
-                <Text size="large">Stack with Alignment</Text>
-                <Cluster>
-                  <Card>
-                    <Box padding="base" width="grow">
-                      <Stack align="start">
-                        <Text>Start Aligned</Text>
-                        <Button label="Button" />
-                        <Text>Text</Text>
-                      </Stack>
-                    </Box>
-                  </Card>
-                  <Card>
-                    <Box padding="base" width="grow">
-                      <Stack align="center">
-                        <Text>Center Aligned</Text>
-                        <Button label="Button" />
-                        <Text>Text</Text>
-                      </Stack>
-                    </Box>
-                  </Card>
-                  <Card>
-                    <Box padding="base" width="grow">
-                      <Stack align="end">
-                        <Text>End Aligned</Text>
-                        <Button label="Button" />
-                        <Text>Text</Text>
-                      </Stack>
-                    </Box>
-                  </Card>
-                </Cluster>
-              </section>
+            {/* Stack with Form Layout */}
+            <section>
+              <Text size="large">Stack with Form Layout</Text>
+              <Card>
+                <Box padding="base">
+                  <Stack>
+                    <InputText placeholder="Enter your name" />
+                    <InputText placeholder="Enter your email" />
+                    <Button label="Submit Form" />
+                  </Stack>
+                </Box>
+              </Card>
+            </section>
 
-              {/* Stack with Split */}
-              <section>
-                <Text size="large">Stack with Split</Text>
+            {/* Stack with Alignment */}
+            <section>
+              <Text size="large">Stack with Alignment</Text>
+              <Cluster>
                 <Card>
-                  <Box padding="base" height={300}>
-                    <Stack splitAfter={2}>
-                      <Text>Main Content 1</Text>
-                      <Text>Main Content 2</Text>
-                      <Text>Footer Content</Text>
+                  <Box padding="base" width="grow">
+                    <Stack align="start">
+                      <Text>Start Aligned</Text>
+                      <Button label="Button" />
+                      <Text>Text</Text>
                     </Stack>
                   </Box>
                 </Card>
-              </section>
-
-              {/* Recursive Stack */}
-              <section>
-                <Text size="large">Recursive Stack</Text>
                 <Card>
-                  <Box padding="base">
-                    <Stack space="large" recursive>
-                      <div>
-                        <Text>Nested Group 1</Text>
-                        <Text>These items have space</Text>
-                        <Text>Due to recursive prop</Text>
-                      </div>
-                      <div>
-                        <Text>Nested Group 2</Text>
-                        <Text>These also have</Text>
-                        <Text>The same spacing</Text>
-                      </div>
+                  <Box padding="base" width="grow">
+                    <Stack align="center">
+                      <Text>Center Aligned</Text>
+                      <Button label="Button" />
+                      <Text>Text</Text>
                     </Stack>
                   </Box>
                 </Card>
-              </section>
-            </Stack>
+                <Card>
+                  <Box padding="base" width="grow">
+                    <Stack align="end">
+                      <Text>End Aligned</Text>
+                      <Button label="Button" />
+                      <Text>Text</Text>
+                    </Stack>
+                  </Box>
+                </Card>
+              </Cluster>
+            </section>
+
+            {/* Stack with Split */}
+            <section>
+              <Text size="large">Stack with Split</Text>
+              <Card>
+                <Box padding="base" height={300}>
+                  <Stack splitAfter={2}>
+                    <Text>Main Content 1</Text>
+                    <Text>Main Content 2</Text>
+                    <Text>Footer Content</Text>
+                  </Stack>
+                </Box>
+              </Card>
+            </section>
+
+            {/* Recursive Stack */}
+            <section>
+              <Text size="large">Recursive Stack</Text>
+              <Card>
+                <Box padding="base">
+                  <Stack space="large" recursive>
+                    <div>
+                      <Text>Nested Group 1</Text>
+                      <Text>These items have space</Text>
+                      <Text>Due to recursive prop</Text>
+                    </div>
+                    <div>
+                      <Text>Nested Group 2</Text>
+                      <Text>These also have</Text>
+                      <Text>The same spacing</Text>
+                    </div>
+                  </Stack>
+                </Box>
+              </Card>
+            </section>
           </Stack>
-
           {/* Cluster Examples */}
           <Stack>
             <Heading level={1}>Cluster Examples</Heading>
@@ -901,8 +888,8 @@ export const VisualTestLayoutPage = () => {
               <section>
                 <Text size="large">Cover with Custom Spacing</Text>
                 <Card>
-                  <Box padding="base">
-                    <Cover minHeight="30vh" space="var(--space-large)">
+                  <Box padding="large">
+                    <Cover minHeight="30vh" space="large">
                       <Text>Top content with large spacing</Text>
                       <Cover.Center>
                         <Stack>
@@ -1246,7 +1233,7 @@ export const VisualTestLayoutPage = () => {
             </Stack>
           </Stack>
         </Stack>
-      </main>
-    </PageWrapper>
+      </Box>
+    </Stack>
   );
 };

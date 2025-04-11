@@ -6,8 +6,8 @@ import "./code-theme.css";
 import { hooksList } from "../hooksList";
 import { NotFoundPage } from "../pages/NotFoundPage";
 import { TritonSideDrawer } from "../components/TritonSideDrawer";
-import { VisualTestComponentPage } from "../pages/VisualTestComponentPage";
-import { VisualTestLayoutPage } from "../pages/VisualTestLayoutPage";
+import { VisualTestRouter } from "../pages/visualTests/VisualTestRouter";
+import { VisualTestCatchAll } from "../pages/visualTests/VisualTestCatchAll";
 
 /**
  * Layout for whole application. This will display the NavMenu and the content of the page.
@@ -70,14 +70,10 @@ const OutOfLayoutSwitch = () => {
     <Switch>
       <Route
         exact={true}
-        path="/visual-tests/components"
-        component={VisualTestComponentPage}
+        path="/visual-tests/:path"
+        component={VisualTestRouter}
       />
-      <Route
-        exact={true}
-        path="/visual-tests/layout"
-        component={VisualTestLayoutPage}
-      />
+      <Route path="/visual-tests" exact={true} component={VisualTestCatchAll} />
     </Switch>
   );
 };
