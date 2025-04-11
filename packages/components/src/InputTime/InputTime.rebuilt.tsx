@@ -22,6 +22,11 @@ export function InputTimeRebuilt({
 
   const id = getId(params);
 
+  const valueProps = {
+    ...(defaultValue && { defaultValue: dateToTimeString(defaultValue) }),
+    ...(!defaultValue && { value: dateToTimeString(value) }),
+  };
+
   return (
     <FormFieldWrapper
       disabled={params.disabled}
@@ -42,15 +47,15 @@ export function InputTimeRebuilt({
       <input
         ref={ref}
         type="time"
+        name={params.name}
         className={inputStyle}
         onBlur={handleBlur}
         onChange={handleChangeEvent}
         onFocus={handleFocus}
-        defaultValue={defaultValue ? dateToTimeString(defaultValue) : undefined}
         onKeyUp={e => {
           !isNaN(parseInt(e.key, 10)) && setTypedTime(prev => prev + e.key);
         }}
-        value={dateToTimeString(value)}
+        {...valueProps}
       />
     </FormFieldWrapper>
   );
