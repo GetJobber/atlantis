@@ -1,20 +1,9 @@
-import React, { useMemo } from "react";
+import React from "react";
 import classNames from "classnames";
 import { useMediaQuery } from "@jobber/hooks";
 import styles from "./SideKick.module.css";
-import { SideKickProps, Spaces } from "./types";
-
-const spaceTokens: Record<Spaces, string> = {
-  minuscule: "var(--space-minuscule)",
-  smallest: "var(--space-smallest)",
-  smaller: "var(--space-smaller)",
-  small: "var(--space-small)",
-  base: "var(--space-base)",
-  large: "var(--space-large)",
-  larger: "var(--space-larger)",
-  largest: "var(--space-largest)",
-  extravagant: "var(--space-extravagant)",
-};
+import { SideKickProps } from "./types";
+import { useSpaces } from "../sharedHooks/useSpaces";
 
 export function SideKick({
   children,
@@ -24,10 +13,7 @@ export function SideKick({
   onRight,
   collapseBelow,
 }: SideKickProps) {
-  const spaceMapped = useMemo(
-    () => (spaceTokens[space as Spaces] ? spaceTokens[space as Spaces] : space),
-    [space],
-  );
+  const spaceMapped = useSpaces(space);
   const collapsed = useMediaQuery(`(max-width: ${collapseBelow || "0"})`);
 
   return (

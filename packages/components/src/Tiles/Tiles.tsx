@@ -1,28 +1,14 @@
-import React, { useMemo } from "react";
+import React from "react";
 import styles from "./Tiles.module.css";
-import { Spaces, TilesProps } from "./types";
-
-const spaceTokens: Record<Spaces, string> = {
-  minuscule: "var(--space-minuscule)",
-  smallest: "var(--space-smallest)",
-  smaller: "var(--space-smaller)",
-  small: "var(--space-small)",
-  base: "var(--space-base)",
-  large: "var(--space-large)",
-  larger: "var(--space-larger)",
-  largest: "var(--space-largest)",
-  extravagant: "var(--space-extravagant)",
-};
+import { TilesProps } from "./types";
+import { useSpaces } from "../sharedHooks/useSpaces";
 
 export function Tiles({
   children,
   minSize = "30ch",
   space = "base",
 }: TilesProps) {
-  const spaceMapped = useMemo(
-    () => (spaceTokens[space as Spaces] ? spaceTokens[space as Spaces] : space),
-    [space],
-  );
+  const spaceMapped = useSpaces(space);
 
   return (
     <div

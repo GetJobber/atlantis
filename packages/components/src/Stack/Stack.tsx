@@ -1,19 +1,8 @@
-import React, { useMemo } from "react";
+import React from "react";
 import classNames from "classnames";
 import styles from "./Stack.module.css";
-import { Spaces, StackProps } from "./types";
-
-const spaceTokens: Record<Spaces, string> = {
-  minuscule: "var(--space-minuscule)",
-  smallest: "var(--space-smallest)",
-  smaller: "var(--space-smaller)",
-  small: "var(--space-small)",
-  base: "var(--space-base)",
-  large: "var(--space-large)",
-  larger: "var(--space-larger)",
-  largest: "var(--space-largest)",
-  extravagant: "var(--space-extravagant)",
-};
+import { StackProps } from "./types";
+import { spaceTokens, useSpaces } from "../sharedHooks/useSpaces";
 
 export function Stack({
   space = spaceTokens.base,
@@ -22,10 +11,7 @@ export function Stack({
   children,
   align,
 }: StackProps) {
-  const spaceMapped = useMemo(
-    () => (spaceTokens[space as Spaces] ? spaceTokens[space as Spaces] : space),
-    [space],
-  );
+  const spaceMapped = useSpaces(space);
 
   return (
     <div

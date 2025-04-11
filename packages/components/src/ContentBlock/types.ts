@@ -1,15 +1,6 @@
 import { Breakpoints } from "@jobber/hooks/useResizeObserver";
+import { Spaces } from "../sharedHooks/useSpaces";
 
-export type Spaces =
-  | "minuscule"
-  | "smallest"
-  | "smaller"
-  | "small"
-  | "base"
-  | "large"
-  | "larger"
-  | "largest"
-  | "extravagant";
 export interface ContentBlockProps {
   readonly children: React.ReactNode;
 

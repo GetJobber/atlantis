@@ -3,19 +3,8 @@ import { Breakpoints } from "@jobber/hooks/useResizeObserver";
 import { useMediaQuery } from "@jobber/hooks";
 import classNames from "classnames";
 import styles from "./Cluster.module.css";
-import { ClusterProps, Spaces } from "./types";
-
-const spaceTokens: Record<Spaces, string> = {
-  minuscule: "var(--space-minuscule)",
-  smallest: "var(--space-smallest)",
-  smaller: "var(--space-smaller)",
-  small: "var(--space-small)",
-  base: "var(--space-base)",
-  large: "var(--space-large)",
-  larger: "var(--space-larger)",
-  largest: "var(--space-largest)",
-  extravagant: "var(--space-extravagant)",
-};
+import { ClusterProps } from "./types";
+import { useSpaces } from "../sharedHooks/useSpaces";
 
 export function Cluster({
   children,
@@ -24,10 +13,7 @@ export function Cluster({
   space,
   collapseBelow,
 }: ClusterProps) {
-  const spaceMapped = useMemo(
-    () => (spaceTokens[space as Spaces] ? spaceTokens[space as Spaces] : space),
-    [space],
-  );
+  const spaceMapped = useSpaces(space);
 
   const collapseBelowMapped = useMemo(() => {
     if (!collapseBelow) {
