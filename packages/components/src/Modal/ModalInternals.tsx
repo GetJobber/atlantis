@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from "react";
 import classNames from "classnames";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   FloatingFocusManager,
   FloatingNode,
@@ -175,40 +175,43 @@ export function ModalWrapper({
   const modalclassNames = classNames(modal, UNSAFE_className?.modal);
 
   return (
-    <FloatingNode id={floatingNodeId}>
-      <FloatingPortal>
-        <AtlantisPortalContent>
-          {open && (
-            <ModalOverlay
-              UNSAFE_className={UNSAFE_className}
-              UNSAFE_style={UNSAFE_style}
-            >
-              <FloatingFocusManager
-                context={floatingContext}
-                returnFocus={activatorRef?.current ? activatorRef : true}
-                initialFocus={floatingRefs?.floating}
+    <AnimatePresence>
+      {open && (
+        <FloatingNode id={floatingNodeId}>
+          <FloatingPortal>
+            <AtlantisPortalContent>
+              <ModalOverlay
+                UNSAFE_className={UNSAFE_className}
+                UNSAFE_style={UNSAFE_style}
               >
-                <motion.div
-                  className={modalclassNames}
-                  style={UNSAFE_style?.modal}
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.9, opacity: 0 }}
-                  transition={{
-                    duration: 0.2,
-                    ease: "easeInOut",
-                  }}
-                  ref={floatingRefs?.setFloating}
-                  role="dialog"
-                  tabIndex={0}
+                <FloatingFocusManager
+                  context={floatingContext}
+                  returnFocus={activatorRef?.current ? activatorRef : true}
+                  order={["content", "floating"]}
                 >
-                  {children}
-                </motion.div>
-              </FloatingFocusManager>
-            </ModalOverlay>
-          )}
-        </AtlantisPortalContent>
-      </FloatingPortal>
-    </FloatingNode>
+                  <motion.div
+                    data-floating-ui-focusable
+                    className={modalclassNames}
+                    style={UNSAFE_style?.modal}
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.9, opacity: 0 }}
+                    transition={{
+                      duration: 0.2,
+                      ease: "easeInOut",
+                    }}
+                    ref={floatingRefs?.setFloating}
+                    role="dialog"
+                    tabIndex={-1}
+                  >
+                    {children}
+                  </motion.div>
+                </FloatingFocusManager>
+              </ModalOverlay>
+            </AtlantisPortalContent>
+          </FloatingPortal>
+        </FloatingNode>
+      )}
+    </AnimatePresence>
   );
 }
