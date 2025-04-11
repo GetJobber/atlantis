@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 
 interface UseArrowKeyNavigationProps {
-  elementsRef: React.RefObject<(HTMLElement | null)[]>;
+  elementsRef: React.RefObject<Map<number, HTMLElement>>;
   onActivate: (index: number) => void;
 }
 
@@ -14,14 +14,11 @@ export const useArrowKeyNavigation = ({
       const elements = elementsRef.current;
       if (!elements) return;
 
-      const currentIndex = elements.findIndex(
-        element => element === document.activeElement,
-      );
-
+      const currentIndex = getActiveTabIndex(elements);
       if (currentIndex === -1) return;
 
       const focusAndActivateTab = (index: number) => {
-        const element = elements[index];
+        const element = elements.get(index);
 
         if (element) {
           element.focus();
@@ -31,12 +28,11 @@ export const useArrowKeyNavigation = ({
 
       if (event.key === "ArrowRight") {
         event.preventDefault();
-        const nextIndex = (currentIndex + 1) % elements.length;
+        const nextIndex = (currentIndex + 1) % elements.size;
         focusAndActivateTab(nextIndex);
       } else if (event.key === "ArrowLeft") {
         event.preventDefault();
-        const prevIndex =
-          (currentIndex - 1 + elements.length) % elements.length;
+        const prevIndex = (currentIndex - 1 + elements.size) % elements.size;
         focusAndActivateTab(prevIndex);
       }
     },
@@ -45,3 +41,17 @@ export const useArrowKeyNavigation = ({
 
   return handleKeyDown;
 };
+
+function getActiveTabIndex(elements: Map<number, HTMLElement>) {
+  const currentTab = Array.from(elements).find(
+    ([, element]) => element === document.activeElement,
+  );
+
+  if (!currentTab) {
+    return -1;
+  }
+
+  const [currentIndex] = currentTab;
+
+  return currentIndex;
+}

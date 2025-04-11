@@ -6,6 +6,8 @@ import { Typography } from "@jobber/components/Typography";
 import { Icon } from "@jobber/components/Icon";
 import { StatusIndicator } from "@jobber/components/StatusIndicator";
 import { Flex } from "@jobber/components/Flex";
+import { Button } from "@jobber/components/Button";
+import { Content } from "@jobber/components/Content";
 
 export default {
   title: "Components/Navigation/Tabs/Web",
@@ -167,11 +169,45 @@ const ControlledTemplate: ComponentStory<typeof Tabs> = args => {
   );
 };
 
+const DynamicTabsTemplate: ComponentStory<typeof Tab> = args => {
+  const [showCheese, setShowCheese] = useState(false);
+
+  const toggleCheese = () => {
+    setShowCheese(!showCheese);
+  };
+
+  return (
+    <Content>
+      <Button onClick={toggleCheese}>Toggle Cheese Tab</Button>
+      <Tabs>
+        <Tab {...args}>
+          🍳 Some eggs are laid by female animals of many different species,
+          including birds, reptiles, amphibians, mammals, and fish, and have
+          been eaten by humans for thousands of years.
+        </Tab>
+        {showCheese && (
+          <Tab label="Cheese">
+            🧀 Cheese is a dairy product derived from milk that is produced in a
+            wide range of flavors, textures, and forms by coagulation of the
+            milk protein casein.
+          </Tab>
+        )}
+        <Tab label="Berries">
+          🍓 A berry is a small, pulpy, and often edible fruit. Typically,
+          berries are juicy, rounded, brightly colored, sweet, sour or tart, and
+          do not have a stone or pit.
+        </Tab>
+      </Tabs>
+    </Content>
+  );
+};
+
 export const Basic = BasicTemplate.bind({});
 export const WithDefaultTab = WithDefaultTabTemplate.bind({});
 export const WithTabChangeCallback = WithTabChangeCallbackTemplate.bind({});
 export const WithCustomReactNode = WithCustomReactNodeTemplate.bind({});
 export const Controlled = ControlledTemplate.bind({});
+export const DynamicTabs = DynamicTabsTemplate.bind({});
 
 Basic.args = {
   label: "Eggs",
@@ -183,4 +219,8 @@ WithDefaultTab.args = {
 
 WithTabChangeCallback.args = {
   defaultTab: 1,
+};
+
+DynamicTabs.args = {
+  label: "Eggs",
 };

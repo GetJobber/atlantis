@@ -12,7 +12,9 @@ import { useArrowKeyNavigation } from "./hooks/useArrowKeyNavigation";
 import { Typography } from "../Typography";
 
 interface TabsProps {
-  readonly children: ReactElement | ReactElement[];
+  readonly children:
+    | ReactElement
+    | Array<ReactElement | null | undefined | boolean>;
 
   /**
    * Specifies the index of the tab that should be active on mount
@@ -41,8 +43,10 @@ export function Tabs({
   activeTab: controlledActiveTab,
   onTabChange,
 }: TabsProps) {
+  const tabChildren = getActiveTabs(children);
+
   const activeTabInitialValue =
-    defaultTab < React.Children.count(children) ? defaultTab : 0;
+    defaultTab < tabChildren.length ? defaultTab : 0;
   const [internalActiveTab, setInternalActiveTab] = useState(
     activeTabInitialValue,
   );
@@ -54,7 +58,7 @@ export function Tabs({
     [styles.overflowLeft]: overflowLeft,
   });
 
-  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const tabRefs = useRef<Map<number, HTMLButtonElement>>(new Map());
 
   const activateTab = (index: number) => {
     return () => {
@@ -73,15 +77,13 @@ export function Tabs({
     onActivate: index => activateTab(index)(),
   });
 
-  const activeTabProps = (React.Children.toArray(children) as ReactElement[])[
-    activeTab
-  ]?.props;
+  const activeTabProps = tabChildren[activeTab]?.props;
 
   useEffect(() => {
-    if (activeTab > React.Children.count(children) - 1) {
+    if (activeTab > tabChildren.length - 1) {
       setInternalActiveTab(activeTabInitialValue);
     }
-  }, [React.Children.count(children)]);
+  }, [tabChildren.length]);
 
   return (
     <div className={styles.tabs}>
@@ -92,13 +94,20 @@ export function Tabs({
           ref={tabRow}
           onKeyDown={handleKeyDown}
         >
-          {React.Children.map(children, (tab, index) => (
+          {tabChildren.map((tab, index) => (
             <InternalTab
+              key={tab.props.label}
               label={tab.props.label}
               selected={activeTab === index}
               activateTab={activateTab(index)}
               onClick={tab.props.onClick}
-              ref={el => (tabRefs.current[index] = el)}
+              ref={el => {
+                if (el) {
+                  tabRefs.current.set(index, el);
+                } else {
+                  tabRefs.current.delete(index);
+                }
+              }}
               tabIndex={activeTab === index ? 0 : -1}
             />
           ))}
@@ -165,5 +174,17 @@ const InternalTab = React.forwardRef<HTMLButtonElement, InternalTabProps>(
 );
 
 InternalTab.displayName = "InternalTab";
+
+function getActiveTabs(children: TabsProps["children"]) {
+  const activeTabChildren: ReactElement[] = [];
+
+  React.Children.toArray(children).forEach(child => {
+    if (React.isValidElement(child) && child.type === Tab) {
+      activeTabChildren.push(child);
+    }
+  });
+
+  return activeTabChildren;
+}
 
 export { InternalTab };
