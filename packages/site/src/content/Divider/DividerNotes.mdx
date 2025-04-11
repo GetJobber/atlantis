@@ -1,0 +1,52 @@
+## Component customization
+
+### UNSAFE\_ props (advanced usage)
+
+General information for using `UNSAFE_` props can be found
+[here](/guides/customizing-components).
+
+**Note**: Use of `UNSAFE_` props is **at your own risk** and should be
+considered a **last resort**. Future Divider updates may lead to unintended
+breakages.
+
+Divider has one element that can be targeted with classes or styles:
+
+- `container`: The main `div` element of the Divider
+
+#### UNSAFE_className (web)
+
+Use `UNSAFE_className` to apply custom classes to the Divider. This can be
+useful for applying styles via CSS Modules.
+
+```tsx
+// YourComponent.tsx
+import styles from "./YourStyles.module.css";
+
+<Divider
+  UNSAFE_className={{
+    container: styles.customDivider,
+  }}
+/>
+
+// YourStyles.module.css
+.customDivider {
+  background-color: var(--color-background-brand-bold);
+  height: 5px;
+}
+```
+
+#### UNSAFE_style (web)
+
+The `UNSAFE_style` prop provides granular control over the Divider's appearance
+through inline styles.
+
+```tsx
+<Divider
+  UNSAFE_style={{
+    container: {
+      backgroundColor: "var(--color-background-danger-bold)",
+      height: "10px",
+    },
+  }}
+/>
+```
