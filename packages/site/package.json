@@ -12,6 +12,7 @@
     "generate": "node generateDocs.mjs",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
+    "test:visual:rebuild": "rm -rf node_modules && npm install && playwright test --config=playwright.config.ts --project=chromium tests/visual/",
     "test:visual": "playwright test --config=playwright.config.ts --project=chromium tests/visual/",
     "test:visual:update": "playwright test --config=playwright.config.ts --project=chromium tests/visual/ --update-snapshots"
   },

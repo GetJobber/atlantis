@@ -48,6 +48,8 @@ import { VisualTestTablePage } from "./VisualTestTablePage";
 import { VisualTestDataTablePage } from "./VisualTestDataTablePage";
 import { VisualTestTooltipPage } from "./VisualTestTooltipPage";
 import { VisualTestTypographyPage } from "./VisualTestTypographyPage";
+import { VisualTestTabsPage } from "./VisualTestTabsPage";
+import { VisualTestToastPage } from "./VisualTestToastPage";
 
 export const VisualTestRouter = () => {
   return (
