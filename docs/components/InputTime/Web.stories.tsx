@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { InputTime } from "@jobber/components/InputTime";
 import { Content } from "@jobber/components/Content";
@@ -21,9 +21,9 @@ export default {
 const newDate = new Date();
 newDate.setHours(2, 35, 0, 0);
 
-const BasicTemplate: ComponentStory<typeof InputTime> = args => {
-  return <InputTime {...args} />;
-};
+const BasicTemplate: ComponentStory<typeof InputTime> = args => (
+  <InputTime {...args} />
+);
 
 const ControlledTemplate: ComponentStory<typeof InputTime> = args => {
   const [time, setTime] = useState<Date>();
@@ -32,23 +32,10 @@ const ControlledTemplate: ComponentStory<typeof InputTime> = args => {
     setTime(newTime);
   };
 
-  const myRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    console.log("external ref");
-    console.log(myRef);
-  }, []);
-
   return (
     <Content>
       <Flex template={["grow", "shrink"]}>
-        <InputTime
-          {...args}
-          version={2}
-          value={time}
-          inputRef={myRef}
-          onChange={handleChange}
-        />
+        <InputTime {...args} value={time} onChange={handleChange} />
         <Button label="Reset" size="large" onClick={() => setTime()} />
       </Flex>
       <pre>{time && time.toString()}</pre>

@@ -11,8 +11,6 @@ export function InputTime({
   onChange,
   ...params
 }: InputTimeProps) {
-  // this will only work if inputRef is not provided
-  // otherwise due to spreading fieldProps after inputRef, the inputRef will be overwritten
   const ref = useRef<HTMLInputElement>(null);
   const { setTypedTime } = useTimePredict({ value, handleChange });
 
@@ -45,13 +43,10 @@ export function InputTime({
 
   function handleBlur() {
     params.onBlur?.();
-    console.log("handleBlur");
 
     // Time inputs doesn't clear the typed value when it's invalid. This should
     // force it to reset the input value when the typed value is invalid.
     if (ref.current) {
-      // when would this ever be invalid? we don't allow any
-      // of the attributes that would make it invalid
       if (!ref.current.checkValidity()) {
         ref.current.value = "";
       }
