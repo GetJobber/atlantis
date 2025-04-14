@@ -69,8 +69,8 @@ export function InputTimeRebuilt({
     onChange?.(timeStringToDate(newValue));
   }
 
-  function handleBlur() {
-    params.onBlur?.();
+  function handleBlur(event?: React.FocusEvent<HTMLInputElement>) {
+    params.onBlur?.(event);
 
     if (ref.current) {
       if (!ref.current.checkValidity()) {
@@ -88,8 +88,8 @@ export function InputTimeRebuilt({
     ref.current?.focus();
   }
 
-  function handleFocus() {
-    params.onFocus?.();
+  function handleFocus(event?: React.FocusEvent<HTMLInputElement>) {
+    params.onFocus?.(event);
   }
 
   function getId(props: InputTimeProps) {
