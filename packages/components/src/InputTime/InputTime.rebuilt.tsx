@@ -52,6 +52,7 @@ export function InputTimeRebuilt({
         onBlur={handleBlur}
         onChange={handleChangeEvent}
         onFocus={handleFocus}
+        data-testid="ATL-InputTime-input"
         onKeyUp={e => {
           !isNaN(parseInt(e.key, 10)) && setTypedTime(prev => prev + e.key);
         }}

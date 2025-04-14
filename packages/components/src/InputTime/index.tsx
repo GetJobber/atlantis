@@ -8,8 +8,6 @@ export type InputTimeShimProps = InputTimeProps | InputTimeRebuiltProps;
 function isNewInputTimeProps(
   props: InputTimeShimProps,
 ): props is InputTimeRebuiltProps {
-  console.log("version", props.version);
-
   return props.version === 2;
 }
 

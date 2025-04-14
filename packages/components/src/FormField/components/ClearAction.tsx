@@ -22,6 +22,7 @@ export function ClearAction({
       onClick={onClick}
       type="button"
       aria-label="Clear input"
+      data-testid="ATL-FormField-clearButton"
     >
       <Icon name="remove" size="small" />
     </button>
