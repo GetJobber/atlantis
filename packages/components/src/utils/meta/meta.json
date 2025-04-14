@@ -72,6 +72,9 @@
     "FormatDate",
     "FormatEmail",
     "FormatFile",
+    "FormatFile.DeleteButton",
+    "FormatFile.Expanded",
+    "FormatFile.Progress",
     "FormatRelativeDateTime",
     "FormatTime",
     "Gallery",
@@ -142,6 +145,8 @@
     "Table",
     "Tabs",
     "Text",
+    "Thumbnail",
+    "Thumbnail.Image",
     "Toast",
     "Tooltip",
     "Typography"
