@@ -7,7 +7,7 @@ import { FormField, FormFieldProps } from "../FormField";
  * Unfortunately Docz doesn't currently support Omit so it has been reduced to
  * its component parts.
  */
-type SelectProps = Pick<
+export type SelectProps = Pick<
   FormFieldProps,
   Exclude<
     keyof FormFieldProps,
