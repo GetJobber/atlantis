@@ -2,49 +2,75 @@
  * For playground purposes only.
  */
 import uniq from "lodash/uniq";
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
+
+const ALL_OPTIONS = [
+  "Apple",
+  "Banana",
+  "Cherry",
+  "Date",
+  "Fig",
+  "Grape",
+  "Honeydew",
+  "Kiwi",
+  "Lemon",
+  "Mango",
+  "Nectarine",
+  "Orange",
+  "Papaya",
+  "Quince",
+  "Raspberry",
+  "Strawberry",
+  "Tangerine",
+  "Ugli fruit",
+  "Vanilla bean",
+  "Watermelon",
+  "Xigua",
+  "Yuzu",
+  "Zucchini", // Technically a fruit!
+];
+
+// Initial selected items can be anything, even if not in ALL_OPTIONS initially
+const INITIAL_SELECTED = ["Mando", "Din Djarin"];
 
 export function useFakeOptionQuery() {
-  const [options, setOptions] = useState<string[]>([]);
-  const initialDataGetUrl = "https://swapi.dev/api/people/?format=json";
-  const [nextGet, setNextGet] = useState(initialDataGetUrl);
-  const [loading, setLoading] = useState(false);
-  const [selected, setSelected] = useState(["Mando", "Din Djarin"]);
+  const [selected, setSelected] = useState<string[]>(INITIAL_SELECTED);
+  // Initialize options with selected items + all available options
+  const [options, setOptions] = useState<string[]>(() =>
+    uniq([...INITIAL_SELECTED, ...ALL_OPTIONS]),
+  );
 
-  const actions = {
-    handleLoadMore: () => {
-      if (loading || !nextGet) return;
+  const handleSearch = useCallback(
+    (searchValue: string) => {
+      if (!searchValue) {
+        // Show all options (including selected) if search is cleared
+        setOptions(uniq([...selected, ...ALL_OPTIONS]));
+      } else {
+        // Filter all options based on search, but always include currently selected ones
+        const filtered = ALL_OPTIONS.filter(option =>
+          option.toLowerCase().includes(searchValue.toLowerCase()),
+        );
+        setOptions(uniq([...selected, ...filtered]));
+      }
+    },
+    [selected], // Re-create search handler if selected changes
+  );
 
-      setLoading(true);
-      fetchData(nextGet).then(result => {
-        const newOptions = uniq([...selected, ...options, ...result.options]);
-        setOptions(newOptions);
-        setNextGet(result.next);
-        setLoading(false);
-      });
-    },
-    handleSearch: (searchValue: string) => {
-      setNextGet(initialDataGetUrl + `&search=${searchValue}`);
-      setOptions(selected);
-    },
-    handleSelect: (value: string[]) => {
-      setSelected(value);
-    },
-    handleCustomAdd: (value: string) => {
-      setSelected(uniq([...selected, value]));
-    },
+  const handleSelect = (value: string[]) => {
+    setSelected(value);
+    // Ensure newly deselected options are still available if they are part of ALL_OPTIONS
+    setOptions(prevOptions => uniq([...value, ...prevOptions, ...ALL_OPTIONS]));
   };
 
-  useEffect(() => actions.handleLoadMore(), []); // load once on mount
-  useEffect(() => actions.handleLoadMore(), [nextGet]);
+  const handleCustomAdd = (value: string) => {
+    const newSelected = uniq([...selected, value]);
+    setSelected(newSelected);
+    // Add the custom value to the available options as well
+    setOptions(prevOptions => uniq([...newSelected, ...prevOptions, value]));
+  };
 
-  return { selected, options, loading, ...actions };
+  // Note: loading and handleLoadMore are removed as they are not needed for static data
+  return { selected, options, handleSearch, handleSelect, handleCustomAdd };
 }
 
-async function fetchData(url: string) {
-  const response = await fetch(url);
-  const { results, next } = await response.json();
-  const options: string[] = results.map((data: { name: string }) => data.name);
-
-  return { options, next };
-}
+// fetchData function is removed as it's no longer needed
