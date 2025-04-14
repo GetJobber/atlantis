@@ -13,12 +13,13 @@ export function SideKick({
   onRight,
   collapseBelow,
   autoWidth = false,
+  as: Tag = "div",
 }: SideKickProps) {
   const spaceMapped = useSpaces(gap);
   const collapsed = useMediaQuery(`(max-width: ${collapseBelow || "0"})`);
 
   return (
-    <div
+    <Tag
       style={
         {
           "--public-sidekick-side-width": sideWidth,
@@ -39,6 +40,6 @@ export function SideKick({
       )}
     >
       {children}
-    </div>
+    </Tag>
   );
 }

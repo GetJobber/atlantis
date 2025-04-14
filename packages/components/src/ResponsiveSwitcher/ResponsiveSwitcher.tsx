@@ -9,11 +9,12 @@ export function ResponsiveSwitcher({
   threshold,
   gap = spaceTokens.base,
   limit = 2,
+  as: Tag = "div",
 }: ResponsiveSwitcherProps) {
   const spaceMapped = useSpaces(gap);
 
   return (
-    <div
+    <Tag
       className={classNames(
         styles.responsiveSwitcher,
         styles[`limit-${limit}` as keyof typeof styles],
@@ -27,6 +28,6 @@ export function ResponsiveSwitcher({
       }
     >
       {children}
-    </div>
+    </Tag>
   );
 }

@@ -11,6 +11,7 @@ export function ContentBlock({
   andText,
   gutters,
   justify = "left",
+  as: Tag = "div",
 }: ContentBlockProps) {
   const guttersMapped = useSpaces(gutters);
 
@@ -34,7 +35,7 @@ export function ContentBlock({
   }, [maxWidthMapped, guttersMapped]);
 
   return (
-    <div
+    <Tag
       style={style}
       className={classNames(
         styles.contentBlock,
@@ -46,6 +47,6 @@ export function ContentBlock({
       )}
     >
       {children}
-    </div>
+    </Tag>
   );
 }

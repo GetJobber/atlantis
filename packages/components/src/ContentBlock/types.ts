@@ -26,4 +26,16 @@ export interface ContentBlockProps {
    * The amount of space between the content and the edges of the container.
    */
   readonly gutters?: Spaces | (string & NonNullable<unknown>);
+
+  /** The HTML tag to render the container as. Defaults to `div`. */
+  as?:
+    | "section"
+    | "article"
+    | "ul"
+    | "li"
+    | "div"
+    | "span"
+    | "dl"
+    | "dd"
+    | "dt";
 }

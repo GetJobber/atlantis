@@ -2,9 +2,14 @@ import React from "react";
 import styles from "./Cover.module.css";
 import { CoverProps } from "./types";
 
-export function Cover({ children, minHeight, gap }: CoverProps) {
+export function Cover({
+  children,
+  minHeight,
+  gap,
+  as: Tag = "div",
+}: CoverProps) {
   return (
-    <div
+    <Tag
       style={
         {
           "--public-cover-min-height": minHeight,
@@ -14,7 +19,7 @@ export function Cover({ children, minHeight, gap }: CoverProps) {
       className={styles.cover}
     >
       {children}
-    </div>
+    </Tag>
   );
 }
 

@@ -11,11 +11,12 @@ export function Stack({
   children,
   align,
   autoWidth = false,
+  as: Tag = "div",
 }: StackProps) {
   const spaceMapped = useSpaces(gap);
 
   return (
-    <div
+    <Tag
       style={
         {
           "--public-stack-split": splitAfter,
@@ -35,6 +36,6 @@ export function Stack({
       )}
     >
       {children}
-    </div>
+    </Tag>
   );
 }

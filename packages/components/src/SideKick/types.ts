@@ -14,4 +14,15 @@ export interface SideKickProps {
   readonly collapseBelow?: string;
   /** Whether to allow the sidekick to take the width of the content. Defaults to 100% */
   readonly autoWidth?: boolean;
+  /** The HTML tag to render the container as. Defaults to `div`. */
+  as?:
+    | "section"
+    | "article"
+    | "ul"
+    | "li"
+    | "div"
+    | "span"
+    | "dl"
+    | "dd"
+    | "dt";
 }

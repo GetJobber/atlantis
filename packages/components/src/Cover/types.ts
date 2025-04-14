@@ -4,4 +4,15 @@ export interface CoverProps {
   readonly minHeight?: string;
   /** The amount of space around the centered content */
   readonly gap?: string;
+  /** The HTML tag to render the container as. Defaults to `div`. */
+  as?:
+    | "section"
+    | "article"
+    | "ul"
+    | "li"
+    | "div"
+    | "span"
+    | "dl"
+    | "dd"
+    | "dt";
 }

@@ -28,4 +28,15 @@ export interface StackProps {
   readonly align?: "start" | "center" | "end";
   /** Whether to allow the stack to take the width of the content. Defaults to 100% */
   readonly autoWidth?: boolean;
+  /** The HTML tag to render the container as. Defaults to `div`. */
+  as?:
+    | "section"
+    | "article"
+    | "ul"
+    | "li"
+    | "div"
+    | "span"
+    | "dl"
+    | "dd"
+    | "dt";
 }

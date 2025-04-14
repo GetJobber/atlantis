@@ -8,4 +8,15 @@ export interface TilesProps {
   readonly gap: string | Spaces;
   /** Whether to allow the tiles to take the width of the content. Defaults to 100% */
   readonly autoWidth?: boolean;
+  /** The HTML tag to render the container as. Defaults to `div`. */
+  as?:
+    | "section"
+    | "article"
+    | "ul"
+    | "li"
+    | "div"
+    | "span"
+    | "dl"
+    | "dd"
+    | "dt";
 }

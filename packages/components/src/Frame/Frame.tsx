@@ -2,9 +2,14 @@ import React from "react";
 import styles from "./Frame.module.css";
 import { FrameProps } from "./types";
 
-export function Frame({ children, aspectX = 16, aspectY = 9 }: FrameProps) {
+export function Frame({
+  children,
+  aspectX = 16,
+  aspectY = 9,
+  as: Tag = "div",
+}: FrameProps) {
   return (
-    <div
+    <Tag
       className={styles.frame}
       style={
         {
@@ -14,6 +19,6 @@ export function Frame({ children, aspectX = 16, aspectY = 9 }: FrameProps) {
       }
     >
       {children}
-    </div>
+    </Tag>
   );
 }
