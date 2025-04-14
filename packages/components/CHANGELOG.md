@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.36.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.36.0...@jobber/components@6.36.1) (2025-04-14)
+
+
+### Bug Fixes
+
+* **components:** Support conditionally rendering children in Tabs ([#2478](https://github.com/GetJobber/atlantis/issues/2478)) ([bfba4e9](https://github.com/GetJobber/atlantis/commit/bfba4e9d1f92f337f551635caa88a83ca4b2e293))
+
+
+
+
+
 # [6.36.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.35.0...@jobber/components@6.36.0) (2025-04-11)
 
 
