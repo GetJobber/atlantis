@@ -15,6 +15,8 @@ import {
 import { Icon } from "../../../Icon";
 import { ChipProps } from "../../Chip";
 
+// const DEBOUNCE_TIME = 200;
+
 // eslint-disable-next-line max-statements
 export function useInternalChipDismissibleInput({
   options,
@@ -31,6 +33,7 @@ export function useInternalChipDismissibleInput({
   >([]);
   const [searchValue, setSearchValue] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showInput, setShowInput] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [shouldCancelBlur, setShouldCancelBlur] = useState(false);
   const [shouldCancelEnter, setShouldCancelEnter] = useState(false);
@@ -63,13 +66,13 @@ export function useInternalChipDismissibleInput({
   }
 
   const handleDebouncedSearch = debounce(handleSearch, 300);
+
   const actions = {
     generateDescendantId: (index: number) => `${computed.menuId}-${index}`,
 
     handleReset: () => {
       setActiveIndex(activeIndex === 0 ? activeIndex : activeIndex - 1);
       setSearchValue("");
-      actions.handleCloseMenu();
     },
 
     handleOpenMenu: () => setMenuOpen(true),
@@ -85,6 +88,8 @@ export function useInternalChipDismissibleInput({
     handleBlur: () => {
       if (shouldCancelBlur) return;
 
+      const valueBeforeBlur = computed.inputRef.current?.value;
+
       if (
         submitInputOnFocusShift &&
         searchValue.length > 0 &&
@@ -97,7 +102,12 @@ export function useInternalChipDismissibleInput({
         actions.handleSelectOption(optionToSelect);
       }
 
+      if (valueBeforeBlur === "") {
+        setShowInput(false);
+      }
+
       actions.handleReset();
+      actions.handleCloseMenu();
     },
 
     handleSearchChange: (event: ChangeEvent<HTMLInputElement>) => {
@@ -128,6 +138,14 @@ export function useInternalChipDismissibleInput({
         liveAnnounce(`${selected.label} Added`);
         actions.handleReset();
         computed.inputRef.current?.focus();
+      }
+    },
+
+    handleShowInput: () => {
+      setShowInput(true);
+
+      if (!onlyShowMenuOnSearch) {
+        actions.handleOpenMenu();
       }
     },
 
@@ -176,6 +194,7 @@ export function useInternalChipDismissibleInput({
     allOptions,
     ...computed,
     menuOpen,
+    showInput,
     searchValue,
     shouldCancelBlur,
   };

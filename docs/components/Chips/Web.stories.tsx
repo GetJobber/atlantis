@@ -75,26 +75,39 @@ export const MultiSelect = MultiSelectTemplate.bind({});
 MultiSelect.args = {};
 
 const SelectionTemplate: ComponentStory<typeof Chips> = args => {
-  const {
-    selected,
-    options,
-    loading,
-    handleLoadMore,
-    handleSearch,
-    handleSelect,
-    handleCustomAdd,
-  } = useFakeOptionQuery();
+  const [selected, setSelected] = useState<string[]>(["Mando"]);
+  const [options, setOptions] = useState<string[]>([
+    "Mando",
+    "Luke",
+    "Leia",
+    "Han",
+    "Chewie",
+    "R2D2",
+    "C3PO",
+  ]);
+  const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState("");
+
+  const handleCustomAdd = (value: string) => {
+    setOptions([...options, value]);
+  };
+
+  const handleSearch = (value: string) => {
+    options.filter(option =>
+      option.toLowerCase().includes(value.toLowerCase()),
+    );
+  };
 
   return (
     <Chips
       {...args}
       type="dismissible"
       selected={selected}
-      onChange={handleSelect}
+      onChange={setSelected}
       onCustomAdd={handleCustomAdd}
       isLoadingMore={loading}
       onSearch={handleSearch}
-      onLoadMore={handleLoadMore}
+      onLoadMore={() => console.log("load more")}
       onlyShowMenuOnSearch={true}
       submitInputOnFocusShift={true}
     >
