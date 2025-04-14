@@ -7,7 +7,7 @@ export interface ResponsiveSwitcherProps {
   readonly threshold: string;
 
   /** The amount of space between the children. Semantic tokens are available. */
-  readonly space?: Spaces | (string & NonNullable<unknown>);
+  readonly gap?: Spaces | (string & NonNullable<unknown>);
 
   /** Useful for dynamic content. If the number of children is greater than this, the children will break to row. */
   readonly limit?: number;

@@ -36,12 +36,12 @@ const BasicTemplate: ComponentStory<typeof Stack> = args => (
 
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
-  space: "base",
+  gap: "base",
 };
 
 export const CustomSpace = BasicTemplate.bind({});
 CustomSpace.args = {
-  space: "large",
+  gap: "large",
 };
 
 const SplitTemplate: ComponentStory<typeof Stack> = args => (
@@ -72,7 +72,7 @@ const SplitTemplate: ComponentStory<typeof Stack> = args => (
 
 export const WithSplit = SplitTemplate.bind({});
 WithSplit.args = {
-  space: "base",
+  gap: "base",
   splitAfter: 1,
 };
 
@@ -108,6 +108,6 @@ const RecursiveTemplate: ComponentStory<typeof Stack> = args => (
 
 export const Recursive = RecursiveTemplate.bind({});
 Recursive.args = {
-  space: "large",
+  gap: "large",
   recursive: true,
 };

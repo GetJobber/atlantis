@@ -6,10 +6,10 @@ import { useSpaces } from "../sharedHooks/useSpaces";
 export function Tiles({
   children,
   minSize = "30ch",
-  space = "base",
+  gap = "base",
   autoWidth = false,
 }: TilesProps) {
-  const spaceMapped = useSpaces(space);
+  const spaceMapped = useSpaces(gap);
 
   return (
     <div

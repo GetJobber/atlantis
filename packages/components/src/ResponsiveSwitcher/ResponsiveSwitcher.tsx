@@ -7,10 +7,10 @@ import { spaceTokens, useSpaces } from "../sharedHooks/useSpaces";
 export function ResponsiveSwitcher({
   children,
   threshold,
-  space = spaceTokens.base,
+  gap = spaceTokens.base,
   limit = 2,
 }: ResponsiveSwitcherProps) {
-  const spaceMapped = useSpaces(space);
+  const spaceMapped = useSpaces(gap);
 
   return (
     <div

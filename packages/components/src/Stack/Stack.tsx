@@ -5,14 +5,14 @@ import { StackProps } from "./types";
 import { spaceTokens, useSpaces } from "../sharedHooks/useSpaces";
 
 export function Stack({
-  space = spaceTokens.base,
+  gap = spaceTokens.base,
   recursive,
   splitAfter,
   children,
   align,
   autoWidth = false,
 }: StackProps) {
-  const spaceMapped = useSpaces(space);
+  const spaceMapped = useSpaces(gap);
 
   return (
     <div

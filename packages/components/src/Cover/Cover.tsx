@@ -2,13 +2,13 @@ import React from "react";
 import styles from "./Cover.module.css";
 import { CoverProps } from "./types";
 
-export function Cover({ children, minHeight, space }: CoverProps) {
+export function Cover({ children, minHeight, gap }: CoverProps) {
   return (
     <div
       style={
         {
           "--public-cover-min-height": minHeight,
-          "--public-cover-space": space,
+          "--public-cover-space": gap,
         } as React.CSSProperties
       }
       className={styles.cover}

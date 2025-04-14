@@ -9,12 +9,12 @@ export function SideKick({
   children,
   sideWidth,
   contentMinWidth = "50%",
-  space = "var(--space-base)",
+  gap = "var(--space-base)",
   onRight,
   collapseBelow,
   autoWidth = false,
 }: SideKickProps) {
-  const spaceMapped = useSpaces(space);
+  const spaceMapped = useSpaces(gap);
   const collapsed = useMediaQuery(`(max-width: ${collapseBelow || "0"})`);
 
   return (

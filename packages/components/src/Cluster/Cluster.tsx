@@ -10,11 +10,11 @@ export function Cluster({
   children,
   justify,
   align,
-  space,
+  gap,
   collapseBelow,
   autoWidth = false,
 }: ClusterProps) {
-  const spaceMapped = useSpaces(space);
+  const spaceMapped = useSpaces(gap);
 
   const collapseBelowMapped = useMemo(() => {
     if (!collapseBelow) {

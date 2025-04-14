@@ -54,7 +54,7 @@ const BasicTemplate: ComponentStory<typeof ResponsiveSwitcher> = (
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
   threshold: "60ch",
-  space: "base",
+  gap: "base",
   limit: 2,
 } as ResponsiveSwitcherProps;
 
@@ -96,7 +96,7 @@ const MultipleItemsTemplate: ComponentStory<typeof ResponsiveSwitcher> = (
 export const MultipleItems = MultipleItemsTemplate.bind({});
 MultipleItems.args = {
   threshold: "50ch",
-  space: "large",
+  gap: "large",
   limit: 3,
 } as ResponsiveSwitcherProps;
 
@@ -130,6 +130,6 @@ const CustomSpacingTemplate: ComponentStory<typeof ResponsiveSwitcher> = (
 export const CustomSpacing = CustomSpacingTemplate.bind({});
 CustomSpacing.args = {
   threshold: "40ch",
-  space: "12px",
+  gap: "12px",
   limit: 2,
 } as ResponsiveSwitcherProps;

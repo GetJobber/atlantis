@@ -7,7 +7,7 @@ export interface SideKickProps {
   /** The minimum width of the content. */
   readonly contentMinWidth?: string;
   /** The amount of space between the sidekick and the content. Semantic tokens are available. */
-  readonly space?: string | Spaces;
+  readonly gap?: string | Spaces;
   /** Whether to place the sidekick on the right. */
   readonly onRight?: boolean;
   /** The breakpoint to collapse the sidekick at. */

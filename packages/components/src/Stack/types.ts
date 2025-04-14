@@ -3,7 +3,7 @@ import { Spaces } from "../sharedHooks/useSpaces";
 export interface StackProps {
   readonly children: React.ReactNode;
   /** The amount of space between the children. Semantic tokens are available. */
-  readonly space?: string | Spaces;
+  readonly gap?: string | Spaces;
   /** The number of children to split the stack after (1-15). Requires parent to have height greater than the sum of the children. */
   readonly splitAfter?:
     | 1

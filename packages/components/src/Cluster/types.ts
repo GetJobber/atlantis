@@ -17,7 +17,7 @@ export interface ClusterProps {
   /**
    * The amount of space between the cluster elements. Semantic tokens are available.
    */
-  readonly space?: Spaces | (string & NonNullable<unknown>);
+  readonly gap?: Spaces | (string & NonNullable<unknown>);
 
   /**
    * The breakpoint below which the cluster will collapse.

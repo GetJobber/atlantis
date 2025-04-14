@@ -25,11 +25,11 @@ export const VisualTestComponentPage = () => {
           padding: "var(--space-large)",
         }}
       >
-        <Stack space="extravagant">
+        <Stack gap="extravagant">
           {/* Button Examples */}
           <Stack>
             <Heading level={1}>Button Examples</Heading>
-            <Stack space="large">
+            <Stack gap="large">
               {/* Basic Button Types */}
               <section>
                 <Text size="large">Basic Button Types</Text>
@@ -119,7 +119,7 @@ export const VisualTestComponentPage = () => {
           {/* Avatar Examples */}
           <Stack>
             <Heading level={1}>Avatar Examples</Heading>
-            <Stack space="large">
+            <Stack gap="large">
               {/* Avatar Sizes */}
               <section>
                 <Text size="large">Avatar Sizes</Text>
@@ -175,30 +175,30 @@ export const VisualTestComponentPage = () => {
           {/* StatusIndicator Examples */}
           <Stack>
             <Heading level={1}>StatusIndicator Examples</Heading>
-            <Stack space="large">
+            <Stack gap="large">
               {/* All Status Types */}
               <section>
                 <Text size="large">All Status Types</Text>
                 <Card>
                   <Box padding="base">
                     <Cluster>
-                      <Cluster space="small">
+                      <Cluster gap="small">
                         <StatusIndicator status="success" />
                         <Text>Success</Text>
                       </Cluster>
-                      <Cluster space="small">
+                      <Cluster gap="small">
                         <StatusIndicator status="warning" />
                         <Text>Warning</Text>
                       </Cluster>
-                      <Cluster space="small">
+                      <Cluster gap="small">
                         <StatusIndicator status="critical" />
                         <Text>Critical</Text>
                       </Cluster>
-                      <Cluster space="small">
+                      <Cluster gap="small">
                         <StatusIndicator status="inactive" />
                         <Text>Inactive</Text>
                       </Cluster>
-                      <Cluster space="small">
+                      <Cluster gap="small">
                         <StatusIndicator status="informative" />
                         <Text>Informative</Text>
                       </Cluster>
@@ -210,10 +210,10 @@ export const VisualTestComponentPage = () => {
               {/* Status Indicators in Context */}
               <section>
                 <Text size="large">Status Indicators in Context</Text>
-                <Stack space="base">
+                <Stack gap="base">
                   <Card>
                     <Box padding="base">
-                      <Cluster space="small" align="center">
+                      <Cluster gap="small" align="center">
                         <StatusIndicator status="success" />
                         <Text>System Status: Online</Text>
                       </Cluster>
@@ -221,7 +221,7 @@ export const VisualTestComponentPage = () => {
                   </Card>
                   <Card>
                     <Box padding="base">
-                      <Cluster space="small" align="center">
+                      <Cluster gap="small" align="center">
                         <StatusIndicator status="critical" />
                         <Text>System Status: Error</Text>
                       </Cluster>
@@ -235,11 +235,11 @@ export const VisualTestComponentPage = () => {
           {/* Banner Examples */}
           <Stack>
             <Heading level={1}>Banner Examples</Heading>
-            <Stack space="large">
+            <Stack gap="large">
               {/* Basic Banner Types */}
               <section>
                 <Text size="large">Basic Banner Types</Text>
-                <Stack space="base">
+                <Stack gap="base">
                   <Banner type="notice">
                     This is a notice banner with default icon
                   </Banner>
@@ -258,7 +258,7 @@ export const VisualTestComponentPage = () => {
               {/* Banners with Actions */}
               <section>
                 <Text size="large">Banners with Actions</Text>
-                <Stack space="base">
+                <Stack gap="base">
                   <Banner
                     type="notice"
                     primaryAction={{
@@ -283,7 +283,7 @@ export const VisualTestComponentPage = () => {
               {/* Banners with Custom Icons */}
               <section>
                 <Text size="large">Banners with Custom Icons</Text>
-                <Stack space="base">
+                <Stack gap="base">
                   <Banner type="notice" icon="calendar">
                     A notice banner with a custom calendar icon
                   </Banner>
@@ -296,7 +296,7 @@ export const VisualTestComponentPage = () => {
               {/* Non-dismissible Banners */}
               <section>
                 <Text size="large">Non-dismissible Banners</Text>
-                <Stack space="base">
+                <Stack gap="base">
                   <Banner type="warning" dismissible={false}>
                     This warning banner cannot be dismissed
                   </Banner>
