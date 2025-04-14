@@ -194,14 +194,6 @@ describe("Add/delete via keyboard", () => {
     expect(handleCustomOptionSelect).not.toHaveBeenCalled();
   });
 
-  it("should add the highlighted option on tab", () => {
-    const input = screen.getByRole("combobox");
-    fireEvent.keyDown(input, { key: "ArrowDown" });
-    fireEvent.keyDown(input, { key: "Tab" });
-    expect(handleOptionSelect).toHaveBeenCalledWith(optionsArray[1]);
-    expect(handleCustomOptionSelect).not.toHaveBeenCalled();
-  });
-
   it("should call onCustomOptionSelect on enter when search value is new", () => {
     const input = screen.getByRole("combobox");
     const newValue = "Brand New Option";
@@ -212,6 +204,29 @@ describe("Add/delete via keyboard", () => {
     });
 
     fireEvent.keyDown(input, { key: "Enter" });
+
+    expect(handleCustomOptionSelect).toHaveBeenCalledWith(newValue);
+    expect(handleOptionSelect).not.toHaveBeenCalled();
+  });
+
+  it("should add the highlighted option on tab", () => {
+    const input = screen.getByRole("combobox");
+    fireEvent.keyDown(input, { key: "ArrowDown" });
+    fireEvent.keyDown(input, { key: "Tab" });
+    expect(handleOptionSelect).toHaveBeenCalledWith(optionsArray[1]);
+    expect(handleCustomOptionSelect).not.toHaveBeenCalled();
+  });
+
+  it("should add the current input as a custom option on comma", () => {
+    const input = screen.getByRole("combobox");
+    const newValue = "Comma Option";
+    fireEvent.change(input, { target: { value: newValue } });
+
+    act(() => {
+      jest.runOnlyPendingTimers();
+    });
+
+    fireEvent.keyDown(input, { key: "," });
 
     expect(handleCustomOptionSelect).toHaveBeenCalledWith(newValue);
     expect(handleOptionSelect).not.toHaveBeenCalled();

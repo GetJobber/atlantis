@@ -20,7 +20,6 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
     isLoadingMore = false,
     onLoadMore,
     options,
-    onlyShowMenuOnSearch = false,
   } = props;
 
   const {
@@ -34,7 +33,7 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
     showInput,
     generateDescendantId,
     handleBlur,
-    handleOpenMenu,
+    handleFocus,
     handleSearchChange,
     handleCancelBlur,
     handleEnableBlur,
@@ -90,7 +89,7 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
         onChange={handleSearchChange}
         onKeyDown={handleKeyDown}
         onBlur={() => setTimeout(handleBlur, 200)}
-        onFocus={onlyShowMenuOnSearch ? undefined : handleOpenMenu}
+        onFocus={handleFocus}
         autoFocus={true}
       />
 

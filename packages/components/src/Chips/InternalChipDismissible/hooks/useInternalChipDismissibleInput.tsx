@@ -95,7 +95,7 @@ export function useInternalChipDismissibleInput({
       ) {
         // If there's a custom option, select it. Otherwise select the best match
         const optionToSelect = canAddCustomOption
-          ? allOptions[allOptions.length - 1]
+          ? generateCustomOptionObject(searchValue)
           : allOptions[0];
         actions.handleSelectOption(optionToSelect);
       }
@@ -103,6 +103,12 @@ export function useInternalChipDismissibleInput({
       actions.handleReset();
       actions.handleCloseMenu();
       setShowInput(false);
+    },
+
+    handleFocus: () => {
+      if (!onlyShowMenuOnSearch) {
+        actions.handleOpenMenu();
+      }
     },
 
     handleSearchChange: (event: ChangeEvent<HTMLInputElement>) => {
