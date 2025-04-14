@@ -62,6 +62,20 @@ const BasicTemplate: ComponentStory<typeof Glimmer> = args => (
       </Text>
       <Glimmer {...args} />
     </div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--space-small)",
+        padding: "var(--space-base)",
+        backgroundColor: "var(--color-surface--reverse)",
+      }}
+    >
+      <Text size="small" variation="subdued">
+        On surface--reverse (toggle reverseTheme prop)
+      </Text>
+      <Glimmer {...args} />
+    </div>
   </div>
 );
 
