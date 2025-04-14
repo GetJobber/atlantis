@@ -11,7 +11,7 @@
         "description": "Intial value of the input. Only use this when you need to prepopulate the\nfield with a data that is not controlled by the components state. If a\nstate is controlling the value, use the `value` prop instead.",
         "name": "defaultValue",
         "parent": {
-          "fileName": "packages/components/src/InputTime/InputTimeProps.tsx",
+          "fileName": "packages/components/src/InputTime/InputTime.Types.tsx",
           "name": "InputTimeProps"
         },
         "required": false,
@@ -24,7 +24,7 @@
         "description": "Set the component to the given value.",
         "name": "value",
         "parent": {
-          "fileName": "packages/components/src/InputTime/InputTimeProps.tsx",
+          "fileName": "packages/components/src/InputTime/InputTime.Types.tsx",
           "name": "InputTimeProps"
         },
         "required": false,
@@ -37,12 +37,25 @@
         "description": "Function called when user changes input value.",
         "name": "onChange",
         "parent": {
-          "fileName": "packages/components/src/InputTime/InputTimeProps.tsx",
+          "fileName": "packages/components/src/InputTime/InputTime.Types.tsx",
           "name": "InputTimeProps"
         },
         "required": false,
         "type": {
           "name": "(newValue?: Date) => void"
+        }
+      },
+      "version": {
+        "defaultValue": null,
+        "description": "The version of the component.",
+        "name": "version",
+        "parent": {
+          "fileName": "packages/components/src/InputTime/InputTime.Types.tsx",
+          "name": "InputTimeProps"
+        },
+        "required": false,
+        "type": {
+          "name": "1 | 2"
         }
       },
       "id": {
