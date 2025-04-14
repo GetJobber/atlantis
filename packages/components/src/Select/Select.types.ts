@@ -48,3 +48,17 @@ export interface SelectRebuiltProps
   readonly readonly?: boolean;
   readonly autofocus?: boolean;
 }
+
+/**
+ * The following is the same as:
+ *   type BaseProps = Omit<FormFieldProps, "type" | "children">;
+ * Unfortunately Docz doesn't currently support Omit so it has been reduced to
+ * its component parts.
+ */
+export type SelectProps = Pick<
+  FormFieldProps,
+  Exclude<
+    keyof FormFieldProps,
+    "type" | "rows" | "keyboard" | "actionsRef" | "clearable" | "pattern"
+  >
+>;
