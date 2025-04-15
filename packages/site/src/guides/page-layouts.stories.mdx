@@ -30,7 +30,7 @@ import styles from "./page-layouts.module.css";
   <Text>These layout components are designed to help you easily build smaller-scale layouts without needing to reach for CSS.  </Text>
   <Text>More complex full-page scaffolding can be found on the [Scaffolding](/guides/scaffolding) page.  </Text>
 </Stack>
-<Stack space="largest">
+<Stack gap="largest">
 <section>
 <Stack>
 <Canvas>
@@ -115,9 +115,9 @@ import styles from "./page-layouts.module.css";
 <Canvas>
   <Stack>
     <Heading level={2}>Spaced Out Cluster</Heading>
-    <Text>The Cluster component has a default space of 12px between items. You can customize this space by passing the space prop.</Text>
+    <Text>The Cluster component has a default space of 12px between items. You can customize this space by passing the gap prop.</Text>
 
-      <Cluster space="larger">
+      <Cluster gap="larger">
         <Chip label="There" />
         <Chip label="is" />
         <Chip label="a" />
@@ -171,7 +171,7 @@ import styles from "./page-layouts.module.css";
   <Heading level={1}>Tiles</Heading>
     <Text>The Tiles component is used to create a horizontal grid of fixed-width items. 
     It is a flexible container that aligns items horizontally and will start moving items to the next row when there is no more room.</Text>
-  <Tiles minSize="15ch" space="12px">
+  <Tiles minSize="15ch" gap="12px">
     <Text>Here is a longer bit of repeated copy that will surely cause the tile to wrap.</Text>
     <Text>Here is a longer bit of repeated copy that will surely cause the tile to wrap.</Text>
     <Text>Here is a longer bit of repeated copy that will surely cause the tile to wrap.</Text>
@@ -191,7 +191,7 @@ import styles from "./page-layouts.module.css";
       <Button label="Change the size of the tiles" onClick={() => setTileSize(tileSize === "20ch" ? "30ch" : "20ch")} />
       <Text>Current tile size: {tileSize}</Text>
     </Cluster>
-  <Tiles minSize={tileSize} space="12px">
+  <Tiles minSize={tileSize} gap="12px">
     <Card elevation="base">
       <Box padding="base" borderWidth="0px">
         <Stack>
@@ -341,7 +341,7 @@ import styles from "./page-layouts.module.css";
   <Stack>
     <Heading level={1}>Responsive Switcher</Heading>
     <Text>The Responsive Switcher component is used to create a responsive layout that will automatically swap from horizontal to vertical when the content exceeds the threshold.</Text>
-    <ResponsiveSwitcher threshold="60ch" space="12px" limit={2}>
+    <ResponsiveSwitcher threshold="60ch" gap="12px" limit={2}>
       <Box padding="base" background="surface--background">
           <Heading level={3}>Content on the left/top</Heading>
       </Box>

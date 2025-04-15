@@ -7,10 +7,19 @@ export const Container = ({
   children,
   name,
   className,
+  as: Tag = "div",
   autoWidth = false,
+  dataAttributes,
+  ariaAttributes,
+  role,
+  id,
 }: ContainerProps) => {
   return (
-    <div
+    <Tag
+      role={role}
+      id={id}
+      {...dataAttributes}
+      {...ariaAttributes}
       style={
         {
           "--public-container-name": name,
@@ -20,7 +29,7 @@ export const Container = ({
       className={classNames(styles.container, className)}
     >
       {children}
-    </div>
+    </Tag>
   );
 };
 

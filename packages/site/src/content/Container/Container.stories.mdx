@@ -36,7 +36,7 @@ The Container component consists of two parts:
   <ContentBlock maxWidth="100%">
     <Container name="example">
       <Stack>
-        <Container.Apply className={styles.item}>
+        <Container.Apply className={styles.item} autoWidth>
           <Card>
             <Stack>
               <Heading level={1}>Container Example</Heading>
@@ -74,14 +74,14 @@ for independent responsive behavior:
   <ContentBlock maxWidth="100%">
     <Stack>
       <Container name="first">
-        <Container.Apply className={styles.item}>
+        <Container.Apply className={styles.item} autoWidth>
           <Card>
             <Text>First container</Text>
           </Card>
         </Container.Apply>
       </Container>
       <Container name="second">
-        <Container.Apply className={styles.item}>
+        <Container.Apply className={styles.item} autoWidth>
           <Card>
             <Text>Second container</Text>
           </Card>

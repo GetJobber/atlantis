@@ -1,9 +1,10 @@
-import React, { useMemo } from "react";
+import React from "react";
 import classNames from "classnames";
 import { Breakpoints } from "@jobber/hooks/useResizeObserver";
 import styles from "./ContentBlock.module.css";
 import { ContentBlockProps } from "./types";
-import { useSpaces } from "../sharedHooks/useSpaces";
+import { getMappedAtlantisSpaceToken } from "../sharedHelpers/getMappedAtlantisSpaceToken";
+import { getMappedBreakpointWidth } from "../sharedHelpers/getMappedBreakpointWidth";
 
 export function ContentBlock({
   children,
@@ -11,31 +12,27 @@ export function ContentBlock({
   andText,
   gutters,
   justify = "left",
+  as: Tag = "div",
+  dataAttributes,
+  ariaAttributes,
+  role,
+  id,
+  UNSAFE_className,
+  UNSAFE_style,
 }: ContentBlockProps) {
-  const guttersMapped = useSpaces(gutters);
-
-  const maxWidthMapped = useMemo(() => {
-    if (typeof maxWidth === "number") {
-      return `${maxWidth}px`;
-    }
-
-    if (Breakpoints[maxWidth as keyof typeof Breakpoints]) {
-      return Breakpoints[maxWidth as keyof typeof Breakpoints] + "px";
-    }
-
-    return maxWidth;
-  }, [maxWidth]);
-
-  const style = useMemo(() => {
-    return {
-      "--content-block-max-width": maxWidthMapped,
-      "--content-block-gutters": guttersMapped,
-    } as React.CSSProperties;
-  }, [maxWidthMapped, guttersMapped]);
-
   return (
-    <div
-      style={style}
+    <Tag
+      role={role}
+      id={id}
+      {...dataAttributes}
+      {...ariaAttributes}
+      style={
+        {
+          "--content-block-max-width": getMappedBreakpointWidth(maxWidth),
+          "--content-block-gutters": getMappedAtlantisSpaceToken(gutters),
+          ...UNSAFE_style?.container,
+        } as React.CSSProperties
+      }
       className={classNames(
         styles.contentBlock,
         andText && styles.andText,
@@ -43,9 +40,10 @@ export function ContentBlock({
         justify === "left" && styles.left,
         justify === "right" && styles.right,
         justify === "center" && styles.center,
+        UNSAFE_className?.container,
       )}
     >
       {children}
-    </div>
+    </Tag>
   );
 }

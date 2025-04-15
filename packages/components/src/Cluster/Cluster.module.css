@@ -7,17 +7,71 @@
   width: var(--public-cluster-width);
 }
 
-.collapsed > * {
-  flex-basis: auto;
-  width: 100%;
-  min-width: 0;
-}
-
-.collapsed {
-  flex-direction: column;
-}
-
 /** When we nest clusters, the clustering stops working because of the 100% width. This prevents nested clusters from fighting **/
 .cluster .cluster {
   width: auto;
+}
+
+/** For collapse below. If any of the sizes are active, we're in column mode. */
+
+.sm,
+.md,
+.lg,
+.xl {
+  flex-direction: column;
+}
+
+.sm > *,
+.md > *,
+.lg > *,
+.xl > * {
+  width: 100%;
+}
+
+@media (--small-screens-and-up) {
+  .sm {
+    flex-direction: row;
+  }
+
+  .sm > * {
+    width: auto;
+  }
+}
+
+@media (--medium-screens-and-up) {
+  .md {
+    flex-direction: row;
+  }
+
+  .md > * {
+    width: auto;
+  }
+}
+
+@media (--large-screens-and-up) {
+  .lg {
+    flex-direction: row;
+  }
+
+  .lg > * {
+    width: auto;
+  }
+}
+
+@media (--extra-large-screens-and-up) {
+  .xl {
+    flex-direction: row;
+  }
+
+  .xl > * {
+    width: auto;
+  }
+}
+
+.cluster.collapsed {
+  flex-direction: column;
+}
+
+.cluster.collapsed > * {
+  width: 100%;
 }

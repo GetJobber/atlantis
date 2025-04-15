@@ -45,7 +45,7 @@ WithChips.args = {
 
 export const CustomSpacing = BasicTemplate.bind({});
 CustomSpacing.args = {
-  space: "large",
+  gap: "large",
   children: (
     <>
       <Chip label="Large" />

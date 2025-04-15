@@ -50,7 +50,7 @@ CustomSideWidth.args = {
 };
 export const CustomSpace = BasicTemplate.bind({});
 CustomSpace.args = {
-  space: "var(--space-large)",
+  gap: "var(--space-large)",
 };
 
 export const RightSide = BasicTemplate.bind({});
@@ -93,5 +93,5 @@ export const ComplexExample = ComplexTemplate.bind({});
 ComplexExample.args = {
   sideWidth: "10%",
   contentMinWidth: "400px",
-  space: "larger",
+  gap: "larger",
 };
