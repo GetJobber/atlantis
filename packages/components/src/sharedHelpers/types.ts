@@ -1,6 +1,6 @@
 export interface CommonAtlantisProps {
-  data?: Record<string, string>;
-  aria?: Record<string, string>;
+  data?: { [key: `data-${string}`]: string };
+  aria?: React.AriaAttributes;
   role?: string;
   id?: string;
 }
