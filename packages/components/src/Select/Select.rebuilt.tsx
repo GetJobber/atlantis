@@ -65,21 +65,21 @@ export const SelectRebuilt = forwardRef(function SelectInternal(
       size={props.size}
       align={props.align}
       inline={props.inline}
-      autofocus={props.autoFocus}
+      autofocus={props.autofocus}
       name={name}
       wrapperRef={wrapperRef}
-      error={props.error ?? ""}
-      invalid={Boolean(props.error || props.invalid)}
+      error={""}
+      invalid={props.invalid}
       identifier={id}
       descriptionIdentifier={descriptionIdentifier}
       description={props.description}
-      clearable={props.clearable ?? "never"}
-      onClear={handleClear}
       type="select"
       placeholder={props.placeholder}
       value={props.value}
       prefix={props.prefix}
       suffix={props.suffix}
+      onClear={handleClear}
+      clearable="never"
     >
       <>
         <select
