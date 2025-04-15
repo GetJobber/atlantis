@@ -88,7 +88,7 @@ export function useInternalChipDismissibleInput({
     handleBlur: () => {
       if (shouldCancelBlur) return;
 
-      const valueBeforeBlur = computed.inputRef.current?.value;
+      // const valueBeforeBlur = computed.inputRef.current?.value;
 
       if (
         submitInputOnFocusShift &&
@@ -102,12 +102,9 @@ export function useInternalChipDismissibleInput({
         actions.handleSelectOption(optionToSelect);
       }
 
-      if (valueBeforeBlur === "") {
-        setShowInput(false);
-      }
-
       actions.handleReset();
       actions.handleCloseMenu();
+      setShowInput(false);
     },
 
     handleSearchChange: (event: ChangeEvent<HTMLInputElement>) => {

@@ -244,7 +244,7 @@ describe("handleBlur", () => {
   describe("when onlyShowMenuOnSearch is true", () => {
     const onlyShowMenuParams = { ...hookParams, onlyShowMenuOnSearch: true };
 
-    it("should set showInput to false when blurring with empty input", () => {
+    it("should set showInput to false when blurring", () => {
       const result = setupHook(onlyShowMenuParams);
 
       act(() => result.current.handleShowInput()); // Input is shown first
@@ -259,29 +259,6 @@ describe("handleBlur", () => {
       });
 
       expect(result.current.showInput).toBe(false);
-      expect(result.current.menuOpen).toBe(false);
-      expect(result.current.activeIndex).toBe(0);
-      expect(result.current.searchValue).toBe("");
-    });
-
-    it("should keep showInput true when blurring with non-empty input", () => {
-      const result = setupHook(onlyShowMenuParams);
-      const value = "test";
-
-      act(() => result.current.handleShowInput()); // Input is shown first
-      act(() => result.current.handleSearchChange(fakeChangeEvent(value))); // User types
-      expect(result.current.showInput).toBe(true);
-      expect(result.current.searchValue).toBe(value);
-
-      act(() => {
-        if (result.current.inputRef.current) {
-          result.current.inputRef.current.value = value;
-        }
-      });
-
-      act(() => result.current.handleBlur());
-
-      expect(result.current.showInput).toBe(true);
       expect(result.current.menuOpen).toBe(false);
       expect(result.current.activeIndex).toBe(0);
       expect(result.current.searchValue).toBe("");

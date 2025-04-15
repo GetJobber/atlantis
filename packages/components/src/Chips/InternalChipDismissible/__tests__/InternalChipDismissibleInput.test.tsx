@@ -335,7 +335,7 @@ describe("Default Blur Behavior", () => {
     jest.useRealTimers();
   });
 
-  it("should hide input on blur if empty", () => {
+  it("should hide input and menu on blur", () => {
     const input = screen.getByRole("combobox");
     expect(input).toHaveValue("");
     fireEvent.blur(input);
@@ -350,26 +350,6 @@ describe("Default Blur Behavior", () => {
     expect(screen.queryByRole("combobox")).not.toBeInTheDocument();
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Add" })).toBeInTheDocument();
-  });
-
-  it("should close the menu but keep input on blur (non-empty input)", () => {
-    const input = screen.getByRole("combobox");
-    const searchValue = "test";
-    fireEvent.change(input, { target: { value: searchValue } });
-    expect(input).toHaveValue(searchValue);
-    fireEvent.blur(input);
-
-    expect(screen.getByRole("listbox")).toBeInTheDocument();
-
-    act(() => {
-      jest.runOnlyPendingTimers();
-    });
-
-    expect(screen.getByRole("combobox")).toBeInTheDocument();
-    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
-    expect(
-      screen.queryByRole("button", { name: "Add" }),
-    ).not.toBeInTheDocument();
   });
 
   it("should select item and keep input focused if blur happens due to item click", () => {
@@ -443,7 +423,7 @@ describe("onlyShowMenuOnSearch", () => {
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
   });
 
-  it("should hide input on blur if empty", () => {
+  it("should hide input on blur", () => {
     const addButton = screen.getByRole("button", { name: "Add" });
     fireEvent.click(addButton);
     const input = screen.getByRole("combobox");
@@ -460,26 +440,6 @@ describe("onlyShowMenuOnSearch", () => {
     expect(screen.queryByRole("combobox")).not.toBeInTheDocument();
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Add" })).toBeInTheDocument();
-  });
-
-  it("should not hide input on blur if not empty", () => {
-    const addButton = screen.getByRole("button", { name: "Add" });
-    fireEvent.click(addButton);
-    const input = screen.getByRole("combobox");
-
-    fireEvent.change(input, { target: { value: "test" } });
-    fireEvent.blur(input);
-
-    expect(screen.getByRole("combobox")).toBeInTheDocument();
-
-    act(() => {
-      jest.runOnlyPendingTimers();
-    });
-
-    expect(screen.getByRole("combobox")).toBeInTheDocument();
-    expect(
-      screen.queryByRole("button", { name: "Add" }),
-    ).not.toBeInTheDocument();
   });
 });
 
