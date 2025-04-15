@@ -235,7 +235,7 @@ export const VisualTestLayoutPage = () => {
                   </Card>
                   <Card>
                     <Box padding="base">
-                      <Cluster justify="between">
+                      <Cluster justify="space-between">
                         <Button label="Space" />
                         <Button label="Between" type="secondary" />
                         <Button label="Items" type="secondary" />
@@ -244,7 +244,7 @@ export const VisualTestLayoutPage = () => {
                   </Card>
                   <Card>
                     <Box padding="base">
-                      <Cluster justify="around">
+                      <Cluster justify="space-around">
                         <Button label="Space" />
                         <Button label="Around" type="secondary" />
                         <Button label="Items" type="secondary" />
@@ -259,7 +259,7 @@ export const VisualTestLayoutPage = () => {
                 <Text size="large">Cluster with Collapse</Text>
                 <Card>
                   <Box padding="base">
-                    <Cluster collapseBelow="600px">
+                    <Cluster collapseBelow="md">
                       <Button label="These" />
                       <Button label="Items" type="secondary" />
                       <Button label="Will" type="secondary" />
@@ -746,7 +746,7 @@ export const VisualTestLayoutPage = () => {
                     <SideKick
                       sideWidth="200px"
                       contentMinWidth="50%"
-                      collapseBelow="800px"
+                      collapseBelow="lg"
                     >
                       <Card>
                         <Box padding="base">

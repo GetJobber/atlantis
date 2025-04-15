@@ -31,7 +31,7 @@ export interface ClusterProps extends CommonAtlantisProps {
   /**
    * The breakpoint below which the cluster will collapse.
    */
-  readonly collapseBelow?: typeof AtlantisBreakpoints;
+  readonly collapseBelow?: keyof typeof AtlantisBreakpoints;
 
   /**
    * Force the cluster to collapse. Use this when our breakpoints are not enough control.
