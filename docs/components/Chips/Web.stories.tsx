@@ -75,8 +75,15 @@ export const MultiSelect = MultiSelectTemplate.bind({});
 MultiSelect.args = {};
 
 const SelectionTemplate: ComponentStory<typeof Chips> = args => {
-  const { selected, options, handleSearch, handleSelect, handleCustomAdd } =
-    useFakeOptionQuery();
+  const {
+    selected,
+    options,
+    loading,
+    handleLoadMore,
+    handleSearch,
+    handleSelect,
+    handleCustomAdd,
+  } = useFakeOptionQuery();
 
   return (
     <Chips
@@ -85,9 +92,11 @@ const SelectionTemplate: ComponentStory<typeof Chips> = args => {
       selected={selected}
       onChange={handleSelect}
       onCustomAdd={handleCustomAdd}
+      isLoadingMore={loading}
       onSearch={handleSearch}
-      // onlyShowMenuOnSearch={true}
-      // submitInputOnFocusShift={true}
+      onLoadMore={handleLoadMore}
+      onlyShowMenuOnSearch={true}
+      submitInputOnFocusShift={true}
     >
       {options.map(name => (
         <Chip key={name} label={name} value={name} />
