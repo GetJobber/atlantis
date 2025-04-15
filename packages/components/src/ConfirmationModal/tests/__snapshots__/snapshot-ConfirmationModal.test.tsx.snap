@@ -3,88 +3,69 @@
 exports[`renders a simple ConfirmationModal 1`] = `
 <div>
   <div
-    class="staticThemeProviderWrapper"
-    data-theme="light"
+    class="container"
+    role="dialog"
+    tabindex="0"
   >
     <div
       class="overlay"
-      data-testid="ATL-Modal-Overlay"
-      style="position: fixed; overflow: auto; top: 0px; right: 0px; bottom: 0px; left: 0px; opacity: 0;"
+      style="opacity: 0;"
+    />
+    <div
+      class="modal"
+      style="opacity: 0; transform: scale(0.9) translateZ(0);"
     >
-      <span
-        data-floating-ui-focus-guard=""
-        data-type="inside"
-        role="button"
-        style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: fixed; white-space: nowrap; width: 1px; top: 0px; left: 0px;"
-        tabindex="0"
-      />
       <div
-        class="modal"
-        data-floating-ui-focusable="true"
-        role="dialog"
-        style="opacity: 0; transform: scale(0.9) translateZ(0);"
-        tabindex="-1"
+        class="header"
+        data-testid="modal-header"
       >
-        <div
-          class="header"
-          data-testid="ATL-Modal-Header"
+        <h2
+          class="base bold largest heading"
         >
-          <h2
-            class="base bold largest heading"
-          >
-            Should we?
-          </h2>
-        </div>
+          Should we?
+        </h2>
+      </div>
+      <div
+        class="padded base"
+      >
         <div
           class="padded base"
         >
-          <div
-            class="padded base"
+          <p
+            class="base regular base text"
           >
-            <p
-              class="base regular base text"
-            >
-              Do something…
-            </p>
-          </div>
-        </div>
-        <div
-          class="actionBar"
-          data-testid="ATL-Modal-Actions"
-        >
-          <div
-            class="rightAction"
-          >
-            <button
-              class="button base work primary buttonChildren"
-              type="button"
-            >
-              <span
-                class="base semiBold base base"
-              >
-                We Shall
-              </span>
-            </button>
-            <button
-              class="button base subtle primary buttonChildren"
-              type="button"
-            >
-              <span
-                class="base semiBold base base"
-              >
-                Cancel
-              </span>
-            </button>
-          </div>
+            Do something…
+          </p>
         </div>
       </div>
-      <span
-        data-floating-ui-focus-guard=""
-        data-type="inside"
-        role="button"
-        style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: fixed; white-space: nowrap; width: 1px; top: 0px; left: 0px;"
-        tabindex="0"
-      />
+      <div
+        class="actionBar"
+      >
+        <div
+          class="rightAction"
+        >
+          <button
+            class="button base work primary buttonChildren"
+            type="button"
+          >
+            <span
+              class="base semiBold base base"
+            >
+              We Shall
+            </span>
+          </button>
+          <button
+            class="button base subtle primary buttonChildren"
+            type="button"
+          >
+            <span
+              class="base semiBold base base"
+            >
+              Cancel
+            </span>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
