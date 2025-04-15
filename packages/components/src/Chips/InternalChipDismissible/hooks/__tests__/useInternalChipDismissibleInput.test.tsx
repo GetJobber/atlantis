@@ -1,4 +1,4 @@
-import { ChangeEvent, KeyboardEvent } from "react";
+import { ChangeEvent, KeyboardEvent, MutableRefObject } from "react";
 import { act, renderHook } from "@testing-library/react-hooks";
 import { useInternalChipDismissibleInput } from "../useInternalChipDismissibleInput";
 
@@ -36,11 +36,32 @@ function setupHook(params?: Partial<typeof hookParams>) {
     useInternalChipDismissibleInput({ ...hookParams, ...params }),
   );
 
+  act(() => {
+    (
+      result.current.inputRef as MutableRefObject<HTMLInputElement | null>
+    ).current = document.createElement("input");
+  });
+
   return result;
 }
 
+describe("Initial State", () => {
+  it("should initialize with default values", () => {
+    const result = setupHook();
+    expect(result.current.searchValue).toBe("");
+    expect(result.current.menuOpen).toBe(false);
+    expect(result.current.showInput).toBe(false);
+    expect(result.current.activeIndex).toBe(0);
+    expect(result.current.allOptions).toEqual(
+      expect.arrayContaining(
+        hookParams.options.map(opt => ({ ...opt, custom: false })),
+      ),
+    );
+  });
+});
+
 describe("handleReset", () => {
-  it("should reset active index, search value and close the menu", () => {
+  it("should reset active index and search value", () => {
     const result = setupHook();
 
     const initialValue = "I am here!";
@@ -56,7 +77,6 @@ describe("handleReset", () => {
     act(() => result.current.handleReset());
     expect(result.current.activeIndex).toBe(0);
     expect(result.current.searchValue).toBe("");
-    expect(result.current.menuOpen).toBe(false);
   });
 
   it("should keep active index at 0 if it's already 0", () => {
@@ -64,21 +84,11 @@ describe("handleReset", () => {
 
     expect(result.current.activeIndex).toBe(0);
     expect(result.current.searchValue).toBe("");
-    expect(result.current.menuOpen).toBe(false);
-
-    act(() => {
-      result.current.handleOpenMenu();
-      result.current.handleSearchChange(fakeChangeEvent("testing"));
-    });
-    expect(result.current.searchValue).toBe("testing");
-    expect(result.current.menuOpen).toBe(true);
-    expect(result.current.activeIndex).toBe(0);
 
     act(() => result.current.handleReset());
 
     expect(result.current.activeIndex).toBe(0);
     expect(result.current.searchValue).toBe("");
-    expect(result.current.menuOpen).toBe(false);
   });
 });
 
@@ -112,7 +122,7 @@ describe("handleCloseMenu", () => {
 });
 
 describe("handleBlur", () => {
-  it("should allow blur", () => {
+  it("should allow blur, close menu and reset state", () => {
     const result = setupHook();
 
     act(() => {
@@ -192,7 +202,7 @@ describe("handleBlur", () => {
       expect(result.current.searchValue).toBe("");
     });
 
-    it("should submit anything on blur when search value is empty", () => {
+    it("should not submit anything on blur when search value is empty", () => {
       const result = setupHook({ submitInputOnFocusShift: true });
 
       act(() => {
@@ -210,7 +220,7 @@ describe("handleBlur", () => {
       expect(result.current.activeIndex).toBe(0);
     });
 
-    it("should submit anything on blur when search value exists but there are no options", () => {
+    it("should not submit anything on blur when search value exists but there are no options", () => {
       const result = setupHook({ submitInputOnFocusShift: true, options: [] });
       const searchValue = "NoMatch";
 
@@ -228,6 +238,82 @@ describe("handleBlur", () => {
       expect(result.current.menuOpen).toBe(false);
       expect(result.current.activeIndex).toBe(0);
       expect(result.current.searchValue).toBe("");
+    });
+  });
+
+  describe("when onlyShowMenuOnSearch is true", () => {
+    const onlyShowMenuParams = { ...hookParams, onlyShowMenuOnSearch: true };
+
+    it("should set showInput to false when blurring with empty input", () => {
+      const result = setupHook(onlyShowMenuParams);
+
+      act(() => result.current.handleShowInput()); // Input is shown first
+      expect(result.current.showInput).toBe(true);
+      expect(result.current.searchValue).toBe("");
+
+      act(() => {
+        if (result.current.inputRef.current) {
+          result.current.inputRef.current.value = "";
+        }
+        result.current.handleBlur();
+      });
+
+      expect(result.current.showInput).toBe(false);
+      expect(result.current.menuOpen).toBe(false);
+      expect(result.current.activeIndex).toBe(0);
+      expect(result.current.searchValue).toBe("");
+    });
+
+    it("should keep showInput true when blurring with non-empty input", () => {
+      const result = setupHook(onlyShowMenuParams);
+      const value = "test";
+
+      act(() => result.current.handleShowInput()); // Input is shown first
+      act(() => result.current.handleSearchChange(fakeChangeEvent(value))); // User types
+      expect(result.current.showInput).toBe(true);
+      expect(result.current.searchValue).toBe(value);
+
+      act(() => {
+        if (result.current.inputRef.current) {
+          result.current.inputRef.current.value = value;
+        }
+      });
+
+      act(() => result.current.handleBlur());
+
+      expect(result.current.showInput).toBe(true);
+      expect(result.current.menuOpen).toBe(false);
+      expect(result.current.activeIndex).toBe(0);
+      expect(result.current.searchValue).toBe("");
+    });
+
+    it("should open the menu after a delay when search value is not empty", () => {
+      const { result } = renderHook(() =>
+        useInternalChipDismissibleInput(onlyShowMenuParams),
+      );
+
+      expect(result.current.menuOpen).toBe(false);
+
+      act(() => {
+        result.current.handleSearchChange(fakeChangeEvent("test"));
+        jest.advanceTimersByTime(300);
+      });
+      expect(result.current.menuOpen).toBe(true);
+    });
+
+    it("should close the menu when search value becomes empty", () => {
+      const { result } = renderHook(() =>
+        useInternalChipDismissibleInput(onlyShowMenuParams),
+      );
+
+      act(() => {
+        result.current.handleSearchChange(fakeChangeEvent("test"));
+        jest.advanceTimersByTime(300);
+      });
+      expect(result.current.menuOpen).toBe(true);
+
+      act(() => result.current.handleSearchChange(fakeChangeEvent("")));
+      expect(result.current.menuOpen).toBe(false);
     });
   });
 });
@@ -274,7 +360,10 @@ describe("handleSearchChange", () => {
 
       expect(result.current.menuOpen).toBe(false);
 
-      act(() => result.current.handleSearchChange(fakeChangeEvent("test")));
+      act(() => {
+        result.current.handleSearchChange(fakeChangeEvent("test"));
+        jest.advanceTimersByTime(300);
+      });
 
       expect(result.current.menuOpen).toBe(true);
     });
@@ -284,12 +373,16 @@ describe("handleSearchChange", () => {
         useInternalChipDismissibleInput(onlyShowMenuParams),
       );
 
-      act(() => result.current.handleSearchChange(fakeChangeEvent("test")));
+      act(() => {
+        result.current.handleSearchChange(fakeChangeEvent("test"));
+        jest.advanceTimersByTime(300);
+      });
       expect(result.current.menuOpen).toBe(true);
 
       act(() => result.current.handleSearchChange(fakeChangeEvent("")));
       expect(result.current.menuOpen).toBe(false);
     });
+
     describe("when onlyShowMenuOnSearch is true and search value is empty", () => {
       it("should not handle selections", () => {
         const { result } = renderHook(() =>
@@ -386,7 +479,9 @@ describe("handleSetActiveOnMouseOver", () => {
 
   it("should update the active index", () => {
     const result = setupHook();
-    result.current.handleSetActiveOnMouseOver(2)();
+    act(() => {
+      result.current.handleSetActiveOnMouseOver(2)();
+    });
     expect(result.current.activeIndex).toEqual(2);
   });
 });
@@ -482,6 +577,37 @@ describe("Selecting an option", () => {
       act(() => result.current.handleKeyDown(fakeKeyDownEvent("ArrowDown")));
       expect(result.current.activeIndex).toBe(0);
     });
+  });
+});
+
+describe("handleShowInput", () => {
+  it("should set showInput to true", () => {
+    const result = setupHook();
+    expect(result.current.showInput).toBe(false);
+    act(() => result.current.handleShowInput());
+    expect(result.current.showInput).toBe(true);
+  });
+
+  it("should open menu when onlyShowMenuOnSearch is false", () => {
+    const result = setupHook({ onlyShowMenuOnSearch: false });
+    expect(result.current.showInput).toBe(false);
+    expect(result.current.menuOpen).toBe(false);
+
+    act(() => result.current.handleShowInput());
+
+    expect(result.current.showInput).toBe(true);
+    expect(result.current.menuOpen).toBe(true);
+  });
+
+  it("should not open menu when onlyShowMenuOnSearch is true", () => {
+    const result = setupHook({ onlyShowMenuOnSearch: true });
+    expect(result.current.showInput).toBe(false);
+    expect(result.current.menuOpen).toBe(false);
+
+    act(() => result.current.handleShowInput());
+
+    expect(result.current.showInput).toBe(true);
+    expect(result.current.menuOpen).toBe(false);
   });
 });
 

@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import classNames from "classnames";
-import debounce from "lodash/debounce";
 import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import styles from "./InternalChipDismissible.module.css";
 import { ChipDismissibleInputProps } from "./InternalChipDismissibleTypes";
@@ -13,8 +12,6 @@ import {
 import { Text } from "../../Text";
 import { Button } from "../../Button";
 import { Spinner } from "../../Spinner";
-
-const DEBOUNCE_TIME = 200;
 
 // eslint-disable-next-line max-statements
 export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
@@ -35,6 +32,7 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
     menuId,
     menuOpen,
     searchValue,
+    showInput,
     generateDescendantId,
     handleBlur,
     handleOpenMenu,
@@ -44,12 +42,10 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
     handleSetActiveOnMouseOver,
     handleKeyDown,
     handleSelectOption,
+    handleShowInput,
     handleDebouncedSearch,
   } = useInternalChipDismissibleInput(props);
 
-  // Controls whether the input field or the activator button is rendered.
-  // This state is only used when `onlyShowMenuOnSearch` is true.
-  const [showInput, setShowInput] = useState(false);
   const menuRef = useScrollToActive(activeIndex);
   const { ref: visibleChildRef, isInView } = useInView<HTMLDivElement>();
 
@@ -73,41 +69,11 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
     isInView && onLoadMore && onLoadMore(searchValue);
   }, [isInView]);
 
-  if (onlyShowMenuOnSearch) {
-    if (!showInput) {
-      const handleActivate = () => {
-        setShowInput(true);
-        setTimeout(() => inputRef.current?.focus(), 0);
-      };
-
-      return React.cloneElement(activator, { onClick: handleActivate });
-    }
-  } else {
-    if (!menuOpen) {
-      return React.cloneElement(activator, { onClick: handleOpenMenu });
-    }
+  if (!showInput) {
+    return React.cloneElement(activator, { onClick: handleShowInput });
   }
 
-  const handleInputBlur = () => {
-    if (onlyShowMenuOnSearch) {
-      const valueBeforeBlur = inputRef.current?.value;
-
-      handleBlur();
-
-      setTimeout(() => {
-        if (valueBeforeBlur === "") {
-          setShowInput(false);
-        }
-      }, DEBOUNCE_TIME);
-    } else {
-      debounce(handleBlur, DEBOUNCE_TIME)();
-    }
-  };
-
-  const shouldShowMenu =
-    menuOpen &&
-    (hasAvailableOptions || isLoadingMore) &&
-    (!onlyShowMenuOnSearch || !!searchValue);
+  const shouldShowMenu = menuOpen && (hasAvailableOptions || isLoadingMore);
 
   return (
     <>
@@ -124,7 +90,7 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
         value={searchValue}
         onChange={handleSearchChange}
         onKeyDown={handleKeyDown}
-        onBlur={handleInputBlur}
+        onBlur={() => setTimeout(handleBlur, 200)}
         onFocus={onlyShowMenuOnSearch ? undefined : handleOpenMenu}
         autoFocus={true}
       />
