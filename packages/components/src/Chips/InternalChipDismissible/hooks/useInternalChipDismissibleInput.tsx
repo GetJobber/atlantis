@@ -15,6 +15,8 @@ import {
 import { Icon } from "../../../Icon";
 import { ChipProps } from "../../Chip";
 
+const SEARCH_DEBOUNCE_TIME = 300;
+
 // eslint-disable-next-line max-statements
 export function useInternalChipDismissibleInput({
   options,
@@ -63,7 +65,7 @@ export function useInternalChipDismissibleInput({
     setShouldCancelEnter(false);
   }
 
-  const handleDebouncedSearch = debounce(handleSearch, 300);
+  const handleDebouncedSearch = debounce(handleSearch, SEARCH_DEBOUNCE_TIME);
 
   const actions = {
     generateDescendantId: (index: number) => `${computed.menuId}-${index}`,
@@ -117,7 +119,7 @@ export function useInternalChipDismissibleInput({
       if (onlyShowMenuOnSearch && newSearchValue.length > 0 && !menuOpen) {
         setTimeout(() => {
           actions.handleOpenMenu();
-        }, 300);
+        }, SEARCH_DEBOUNCE_TIME);
       }
 
       if (onlyShowMenuOnSearch && newSearchValue.length === 0 && menuOpen) {
