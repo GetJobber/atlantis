@@ -1,12 +1,12 @@
 import React from "react";
-import { ModalProvider, useModalContext } from "./ModalContext";
-import { ModalProps } from "./Modal.types";
+import { ModalProvider, useModalContext } from "./ModalContext.rebuilt";
+import { ModalProps } from "./Modal.rebuilt.types";
 import {
   ModalActions,
   ModalActivator,
   ModalHeader,
   ModalWrapper,
-} from "./ModalInternals";
+} from "./ModalInternals.rebuilt";
 
 export function Modal({
   open = false,

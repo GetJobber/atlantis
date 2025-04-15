@@ -3,7 +3,7 @@ import React, { MutableRefObject, createContext, useContext } from "react";
 import { FloatingContext, FloatingTree } from "@floating-ui/react";
 import sizes from "./ModalSizes.module.css";
 import { useModal } from "./useModal";
-import { ModalContextType } from "./Modal.types";
+import { ModalContextType } from "./Modal.rebuilt.types";
 
 export const ModalContext = createContext<ModalContextType>({
   open: false,

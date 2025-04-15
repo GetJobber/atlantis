@@ -1,7 +1,7 @@
 import React from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Modal } from "./Modal";
+import { Modal } from "./Modal.rebuilt";
 import styles from "./Modal.module.css";
 import { Content } from "../Content";
 import { Text } from "../Text";

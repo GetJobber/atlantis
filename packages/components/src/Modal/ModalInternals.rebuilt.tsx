@@ -7,12 +7,12 @@ import {
   FloatingOverlay,
   FloatingPortal,
 } from "@floating-ui/react";
-import { useModalContext } from "./ModalContext";
+import { useModalContext } from "./ModalContext.rebuilt";
 import {
   HeaderProps,
   ModalActionsProps,
   ModalWrapperProps,
-} from "./Modal.types";
+} from "./Modal.rebuilt.types";
 import { useModalStyles } from "./useModalStyles";
 import { Heading } from "../Heading";
 import { ButtonDismiss } from "../ButtonDismiss";
@@ -187,7 +187,7 @@ export function ModalWrapper({
                 <FloatingFocusManager
                   context={floatingContext}
                   returnFocus={activatorRef?.current ? activatorRef : true}
-                  order={["content", "floating"]}
+                  initialFocus={floatingRefs?.floating}
                 >
                   <motion.div
                     data-floating-ui-focusable
