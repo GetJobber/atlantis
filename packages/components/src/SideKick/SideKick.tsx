@@ -2,11 +2,11 @@ import React from "react";
 import classNames from "classnames";
 import styles from "./SideKick.module.css";
 import { SideKickProps } from "./types";
-import { useSpaces } from "../sharedHooks/useSpaces";
 import {
   ariaPropsMapped,
   dataPropsMapped,
-} from "../sharedHooks/useCommonProps";
+} from "../sharedHelpers/getCommonProps";
+import { getMappedAtlantisSpaceToken } from "../sharedHelpers/getMappedAtlantisSpaceToken";
 
 export function SideKick({
   children,
@@ -22,9 +22,9 @@ export function SideKick({
   aria,
   role,
   id,
+  UNSAFE_className,
+  UNSAFE_style,
 }: SideKickProps) {
-  const spaceMapped = useSpaces(gap);
-
   return (
     <Tag
       role={role}
@@ -35,8 +35,9 @@ export function SideKick({
         {
           "--public-sidekick-side-width": sideWidth,
           "--public-sidekick-min-width": contentMinWidth,
-          "--public-sidekick-space": spaceMapped,
+          "--public-sidekick-space": getMappedAtlantisSpaceToken(gap),
           "--public-sidekick-width": autoWidth ? "auto" : "100%",
+          ...UNSAFE_style?.container,
         } as React.CSSProperties
       }
       className={classNames(
@@ -49,6 +50,7 @@ export function SideKick({
           : null,
         collapseBelow,
         collapsed ? styles.collapsed : undefined,
+        UNSAFE_className?.container,
       )}
     >
       {children}

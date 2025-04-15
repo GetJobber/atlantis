@@ -2,11 +2,14 @@ import React from "react";
 import classNames from "classnames";
 import styles from "./ResponsiveSwitcher.module.css";
 import { ResponsiveSwitcherProps } from "./types";
-import { spaceTokens, useSpaces } from "../sharedHooks/useSpaces";
+import {
+  getMappedAtlantisSpaceToken,
+  spaceTokens,
+} from "../sharedHelpers/getMappedAtlantisSpaceToken";
 import {
   ariaPropsMapped,
   dataPropsMapped,
-} from "../sharedHooks/useCommonProps";
+} from "../sharedHelpers/getCommonProps";
 
 export function ResponsiveSwitcher({
   children,
@@ -18,9 +21,9 @@ export function ResponsiveSwitcher({
   aria,
   role,
   id,
+  UNSAFE_className,
+  UNSAFE_style,
 }: ResponsiveSwitcherProps) {
-  const spaceMapped = useSpaces(gap);
-
   return (
     <Tag
       role={role}
@@ -30,12 +33,15 @@ export function ResponsiveSwitcher({
       className={classNames(
         styles.responsiveSwitcher,
         styles[`limit-${limit}` as keyof typeof styles],
+        UNSAFE_className?.container,
       )}
       style={
         {
           "--public-responsive-switcher-threshold": threshold,
-          "--public-responsive-switcher-space": spaceMapped,
+          "--public-responsive-switcher-space":
+            getMappedAtlantisSpaceToken(gap),
           "--public-responsive-switcher-limit": limit,
+          ...UNSAFE_style?.container,
         } as React.CSSProperties
       }
     >

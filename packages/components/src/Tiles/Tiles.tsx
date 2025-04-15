@@ -1,11 +1,12 @@
 import React from "react";
+import classNames from "classnames";
 import styles from "./Tiles.module.css";
 import { TilesProps } from "./types";
-import { useSpaces } from "../sharedHooks/useSpaces";
 import {
   ariaPropsMapped,
   dataPropsMapped,
-} from "../sharedHooks/useCommonProps";
+} from "../sharedHelpers/getCommonProps";
+import { getMappedAtlantisSpaceToken } from "../sharedHelpers/getMappedAtlantisSpaceToken";
 
 export function Tiles({
   children,
@@ -17,9 +18,9 @@ export function Tiles({
   aria,
   role,
   id,
+  UNSAFE_className,
+  UNSAFE_style,
 }: TilesProps) {
-  const spaceMapped = useSpaces(gap);
-
   return (
     <Tag
       role={role}
@@ -29,11 +30,12 @@ export function Tiles({
       style={
         {
           "--public-tile-min-size": minSize,
-          "--public-tile-space": spaceMapped,
+          "--public-tile-space": getMappedAtlantisSpaceToken(gap),
           "--public-tiles-width": autoWidth ? "auto" : "100%",
+          ...UNSAFE_style?.container,
         } as React.CSSProperties
       }
-      className={styles.tiles}
+      className={classNames(styles.tiles, UNSAFE_className?.container)}
     >
       {children}
     </Tag>

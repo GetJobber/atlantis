@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import {
   CommonAllowedElements,
   CommonAtlantisProps,
-} from "../sharedHooks/types";
+} from "../sharedHelpers/types";
 
 export interface ContainerProps extends CommonAtlantisProps {
   readonly children: ReactNode;

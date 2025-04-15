@@ -5,7 +5,7 @@ import { ContainerApplyProps, ContainerProps } from "./types";
 import {
   ariaPropsMapped,
   dataPropsMapped,
-} from "../sharedHooks/useCommonProps";
+} from "../sharedHelpers/getCommonProps";
 
 export const Container = ({
   children,

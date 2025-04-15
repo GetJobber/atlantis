@@ -1,9 +1,9 @@
-import { Spaces } from "../sharedHooks/useSpaces";
-import { AtlantisBreakpoints } from "../sharedHooks/useBreakpoints";
+import { Spaces } from "../sharedHelpers/getMappedAtlantisSpaceToken";
+import { AtlantisBreakpoints } from "../sharedHelpers/getMappedBreakpointWidth";
 import {
   CommonAllowedElements,
   CommonAtlantisProps,
-} from "../sharedHooks/types";
+} from "../sharedHelpers/types";
 
 export interface ClusterProps extends CommonAtlantisProps {
   readonly children: React.ReactNode;
@@ -47,4 +47,19 @@ export interface ClusterProps extends CommonAtlantisProps {
    * The HTML tag to render the cluster as.
    */
   as?: CommonAllowedElements;
+
+  /** **Use at your own risk:** Custom class names for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_className?: {
+    container?: string;
+  };
+  /** **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: {
+    container?: React.CSSProperties;
+  };
 }

@@ -2,11 +2,11 @@ import React from "react";
 import classNames from "classnames";
 import styles from "./Cluster.module.css";
 import { ClusterProps } from "./types";
-import { useSpaces } from "../sharedHooks/useSpaces";
 import {
   ariaPropsMapped,
   dataPropsMapped,
-} from "../sharedHooks/useCommonProps";
+} from "../sharedHelpers/getCommonProps";
+import { getMappedAtlantisSpaceToken } from "../sharedHelpers/getMappedAtlantisSpaceToken";
 
 export function Cluster({
   children,
@@ -21,8 +21,10 @@ export function Cluster({
   aria,
   role,
   id,
+  UNSAFE_className,
+  UNSAFE_style,
 }: ClusterProps) {
-  const spaceMapped = useSpaces(gap);
+  const spaceMapped = getMappedAtlantisSpaceToken(gap);
 
   return (
     <Tag
@@ -36,12 +38,14 @@ export function Cluster({
           "--public-cluster-align": align,
           "--public-cluster-space": spaceMapped,
           "--public-cluster-width": autoWidth ? "auto" : "100%",
+          ...UNSAFE_style?.container,
         } as React.CSSProperties
       }
       className={classNames(
         styles.cluster,
         collapseBelow,
         collapsed ? styles.collapsed : undefined,
+        UNSAFE_className?.container,
       )}
     >
       {children}

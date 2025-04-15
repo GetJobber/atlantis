@@ -1,5 +1,3 @@
-import { useMemo } from "react";
-
 export type Spaces =
   | "minuscule"
   | "slim"
@@ -25,13 +23,8 @@ export const spaceTokens: Record<Spaces, string> = {
   extravagant: "var(--space-extravagant)",
 };
 
-export const useSpaces = (
+export const getMappedAtlantisSpaceToken = (
   space: Spaces | (string & NonNullable<unknown>) | undefined,
 ) => {
-  const spaceMapped = useMemo(
-    () => (spaceTokens[space as Spaces] ? spaceTokens[space as Spaces] : space),
-    [space],
-  );
-
-  return spaceMapped;
+  return spaceTokens[space as Spaces] ? spaceTokens[space as Spaces] : space;
 };
