@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.41.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.41.0...@jobber/atlantis-site@0.41.1) (2025-04-15)
+
+
+### Bug Fixes
+
+* **docx:** Fix InputCurrency Storybook Link ([#2487](https://github.com/GetJobber/atlantis/issues/2487)) ([c7945e0](https://github.com/GetJobber/atlantis/commit/c7945e038bccf806e77638c7020de935d70ec9b2))
+
+
+
+
+
 # [0.41.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.40.1...@jobber/atlantis-site@0.41.0) (2025-04-15)
 
 
