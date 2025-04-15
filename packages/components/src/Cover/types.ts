@@ -29,3 +29,14 @@ export interface CoverProps extends CommonAtlantisProps {
     container?: React.CSSProperties;
   };
 }
+
+export interface CoverCenterContentProps extends CommonAtlantisProps {
+  readonly children: React.ReactNode;
+  readonly UNSAFE_className?: {
+    centerContent?: string;
+  };
+  readonly UNSAFE_style?: {
+    centerContent?: React.CSSProperties;
+  };
+  readonly as?: CommonAllowedElements;
+}
